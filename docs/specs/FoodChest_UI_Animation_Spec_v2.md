@@ -1306,9 +1306,9 @@ Atlas dùng để khóa style và có prototype nhanh. Production pass nên tạ
 - Hiệu ứng flash vẫn giữ đủ contrast cho CTA và không gây nhấp nháy quá ngưỡng accessibility.
 - Ở tier low, tắt filter/particle nhưng silhouette rương và reward vẫn đọc rõ.
 
-### 33.2. Bộ 30 món
+### 33.2. Bộ 50 món
 
-- Có đúng 30 ID, không thiếu, không trùng filename.
+- Có đúng 50 ID, không thiếu, không trùng filename.
 - Mỗi ảnh nhận diện đúng cue bắt buộc trong bảng mục 31.
 - Cùng góc camera, kích thước bát/đĩa và hướng sáng.
 - Không cắt mất món trong `full`, `card` hoặc `thumb`.
@@ -1324,7 +1324,7 @@ Ngoài 9 checkpoint ở mục 23, thêm các snapshot:
 
 | Snapshot | Viewport | Nội dung |
 | --- | --- | --- |
-| Inventory 30 items | 1600×900 | grid đủ ảnh, skeleton/error fixture |
+| Inventory 50 items | 1600×900 | grid đủ ảnh, skeleton/error fixture |
 | Reward common | 1600×900 | ảnh món + common frame |
 | Reward rare | 1600×900 | cùng món + rare layer |
 | Reward epic | 1600×900 | cùng món + epic layer |
@@ -1350,24 +1350,35 @@ Sequence runtime dùng nhịp reveal tham khảo từ video [League of Legends �
 
 | Beat | State | Thời lượng | Chuyển động chính |
 | --- | --- | ---: | --- |
-| 1 | `key-flight` | 620 ms | chìa bay theo ease-out và bắt sáng |
-| 2 | `inserting` | 260 ms | tia lửa khóa, dừng đúng tâm lõi |
-| 3 | `locking` | 420 ms | chìa xoay, rương nén nhẹ, haptic ngắn |
-| 4 | `charging` | 660 ms | cột sáng tăng dần, rune tăng tốc |
-| 5 | `pulse` | 460 ms | pre-flash + sóng xung kích thứ nhất |
-| 6 | `anticipation` | 640 ms | giảm sáng, letterbox, khoảng lặng có chủ đích |
-| 7 | `impact` | 180 ms | white flash, lens flare, double shockwave, camera shake |
-| 8 | `opening` | 560 ms | nắp mở, ánh sáng tràn khỏi rương |
-| 9 | `reward-rise` | 760 ms | sigil nâng lên; hết beat mới mount modal món ăn |
+| 1 | `key-flight` | 560 ms | chìa bay theo ease-out và bắt sáng |
+| 2 | `inserting` | 220 ms | tia lửa khóa, dừng đúng tâm lõi |
+| 3 | `locking` | 360 ms | chìa xoay, rương nén nhẹ, haptic ngắn |
+| 4 | `charging` | 610 ms | cột sáng tăng dần, rune tăng tốc |
+| 5 | `pulse` | 380 ms | pre-flash + sóng xung kích thứ nhất |
+| 6 | `anticipation` | 580 ms | giảm sáng, letterbox, khoảng lặng có chủ đích |
+| 7 | `impact` | 160 ms | white flash, lens flare, double shockwave, camera shake |
+| 8 | `opening` | 540 ms | nắp mở, ánh sáng tràn khỏi rương |
+| 9 | `reward-rise` | 730 ms | sigil nâng lên; hết beat mới mount modal món ăn |
 
 Reward được persist ngay khi người dùng mở rương nhưng bị loại khỏi toàn bộ selector hiển thị bởi `pendingRevealRewardId`. `completeRewardReveal()` chỉ chạy khi timeline kết thúc hoặc người dùng chủ động bỏ qua; vì vậy ảnh và tên món không thể lộ trước nhịp reveal.
 
 ### 35.1. Audio track tùy chỉnh
 
-URL `*.mp3.waveform.json` của Motion Array chỉ là dữ liệu biên độ để vẽ waveform, không phải tệp âm thanh có thể phát. Sau khi tải tệp MP3/OGG bằng tài khoản có quyền sử dụng, đặt file trong `public/assets/audio/` và cấu hình:
+Runtime đã bundle file MP3 dài 4,284 giây tại `public/assets/audio/chest-opening.mp3`; phần âm chính kết thúc ở khoảng 4,14 giây và khớp tổng thời lượng timeline. Có thể ghi đè bằng biến môi trường:
 
 ```dotenv
 VITE_CHEST_OPENING_AUDIO_URL=/assets/audio/chest-opening.mp3
 ```
 
-Track được khởi chạy trực tiếp trong gesture mở rương để đáp ứng autoplay policy. Các sound cue Web Audio vẫn chạy ở 18% gain làm lớp transient và tự trở lại 100% nếu không cấu hình track. Dừng/skip/unmount luôn hủy track đang phát.
+Track được khởi chạy trực tiếp trong gesture mở rương để đáp ứng autoplay policy. Các sound cue Web Audio chạy ở 18% gain làm lớp transient. Dừng/skip/unmount luôn hủy track đang phát.
+
+---
+
+## 36. Thành tựu, rarity Kim Cương và rương vô hạn
+
+- Trang `/achievements` hiển thị toàn bộ món theo ba banner Sáng/Trưa/Tối.
+- Món đã từng nhận hiển thị đầy đủ và cho phép mở tìm quán; món chưa nhận phủ silhouette và khóa.
+- Tiến độ được tính theo `dishId` duy nhất, không tính số bản trùng.
+- Khi người dùng thu thập đủ mọi món active trong catalog, `unlimitedChestUnlockedAt` được ghi vào localStorage. Từ thời điểm đó `canOpenChest` bỏ kiểm tra chìa và mỗi lượt mở có cost bằng 0.
+- Catalog seed tăng từ 30 lên 50 món với 20 món Hàn, Nhật, Ý, Pháp, Mỹ, Trung Quốc và Thái Lan.
+- Rarity của reward gắn với giá trị món thay vì random độc lập: `common`, `rare`, `epic`, `diamond`. Món càng cao cấp có trọng số càng thấp; Kim Cương dành cho Hanwoo, Omakase, Bistecca Fiorentina, French Tasting Menu và Lẩu Haidilao.

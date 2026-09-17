@@ -1,6 +1,6 @@
 # MealGacha · Rương Vị Giác
 
-Web app gợi ý món ăn sáng, trưa và tối qua trải nghiệm mở rương theo phong cách fantasy game client. Mỗi ngày người dùng điểm danh nhận 10 chìa khóa, mở rương để sưu tập món, ghép 3 phần thưởng cùng ngày thành món mới, tìm quán gần vị trí hiện tại và dùng vòng quay tự do.
+Web app gợi ý món ăn sáng, trưa và tối qua trải nghiệm mở rương theo phong cách fantasy game client. Mỗi ngày người dùng điểm danh nhận 10 chìa khóa, mở rương để sưu tập 50 món, ghép 3 phần thưởng cùng ngày thành món mới, hoàn thành Thành tựu để mở rương vô hạn, tìm quán gần vị trí hiện tại và dùng vòng quay tự do.
 
 ## Chạy local
 
@@ -24,7 +24,7 @@ pnpm build
 
 - `VITE_GOOGLE_MAPS_API_KEY`: khóa cho Places API (New). Nên giới hạn theo HTTP referrer và chỉ bật API cần thiết. Nếu chưa có khóa, popup quán chạy bằng dữ liệu demo và hiển thị nhãn rõ ràng.
 - `VITE_CATALOG_URL`: URL CSV của Google Sheet đã **Publish to web**. Người dùng cũng có thể cấu hình và xem trước nguồn trong trang Cài đặt.
-- `VITE_CHEST_OPENING_AUDIO_URL`: URL tới file MP3/OGG mở rương đã được cấp phép. Đặt file vào `public/assets/audio/chest-opening.mp3` rồi cấu hình `/assets/audio/chest-opening.mp3`. Nếu bỏ trống, ứng dụng dùng sound cue tổng hợp để hoạt cảnh vẫn có âm thanh.
+- `VITE_CHEST_OPENING_AUDIO_URL`: URL ghi đè cho âm thanh mở rương. Mặc định app dùng file `public/assets/audio/chest-opening.mp3` dài 4,284 giây và đồng bộ timeline 4,14 giây.
 - `VITE_DAILY_KEYS`, `VITE_CHEST_COST`: tham số kinh tế mặc định là 10 chìa/ngày và 1 chìa/lượt.
 - `VITE_APP_TIME_ZONE`: múi giờ nghiệp vụ, mặc định `Asia/Ho_Chi_Minh`.
 

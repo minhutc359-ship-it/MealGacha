@@ -1,12 +1,22 @@
-import { useEffect } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom"
 import { useAppStore } from "./store/useAppStore"
 import { ClientShell } from "./components/layout/ClientShell"
 import { Toast } from "./components/ui/Toast"
 import { ChestPage } from "./pages/ChestPage"
-import { CollectionPage } from "./pages/CollectionPage"
-import { WheelPage } from "./pages/WheelPage"
-import { SettingsPage } from "./pages/SettingsPage"
+
+const CollectionPage = lazy(() =>
+  import("./pages/CollectionPage").then((module) => ({ default: module.CollectionPage })),
+)
+const AchievementsPage = lazy(() =>
+  import("./pages/AchievementsPage").then((module) => ({ default: module.AchievementsPage })),
+)
+const WheelPage = lazy(() =>
+  import("./pages/WheelPage").then((module) => ({ default: module.WheelPage })),
+)
+const SettingsPage = lazy(() =>
+  import("./pages/SettingsPage").then((module) => ({ default: module.SettingsPage })),
+)
 
 function AppInner() {
   const init = useAppStore((s) => s.init)
@@ -37,12 +47,15 @@ function AppInner() {
   return (
     <ClientShell>
       <Toast />
-      <Routes>
-        <Route path="/" element={<ChestPage />} />
-        <Route path="/collection" element={<CollectionPage />} />
-        <Route path="/wheel" element={<WheelPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-      </Routes>
+      <Suspense fallback={<div className="route-loading"><span>◇</span><p>Đang mở giao diện...</p></div>}>
+        <Routes>
+          <Route path="/" element={<ChestPage />} />
+          <Route path="/collection" element={<CollectionPage />} />
+          <Route path="/achievements" element={<AchievementsPage />} />
+          <Route path="/wheel" element={<WheelPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+        </Routes>
+      </Suspense>
     </ClientShell>
   )
 }

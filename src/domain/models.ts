@@ -1,7 +1,7 @@
 export type MealSlot = "breakfast" | "lunch" | "dinner"
 export type RewardSource = "chest" | "fusion"
 export type RewardStatus = "available" | "consumed"
-export type RewardRarity = "common" | "rare" | "epic"
+export type RewardRarity = "common" | "rare" | "epic" | "diamond"
 
 export interface Dish {
   id: string
@@ -13,6 +13,8 @@ export interface Dish {
   imageUrl?: string
   tags: string[]
   weight: number
+  rarity?: RewardRarity
+  priceTier?: 1 | 2 | 3 | 4
   active: boolean
   minRating?: number
   minReviews?: number
@@ -77,6 +79,7 @@ export interface UserState {
   fusions: FusionTransaction[]
   keyTransactions: KeyTransaction[]
   recentDishIdsByMeal: Record<MealSlot, string[]>
+  unlimitedChestUnlockedAt?: string
   preferences: UserPreferences
   createdAt: string
   updatedAt: string

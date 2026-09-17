@@ -80,6 +80,21 @@ const tabs = [
     ),
   },
   {
+    to: "/achievements",
+    label: "Thành tựu",
+    icon: (active: boolean) => (
+      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+        <path
+          d="M8 4h8v5a4 4 0 01-8 0V4zM8 6H5v2a4 4 0 004 4M16 6h3v2a4 4 0 01-4 4M12 13v4M8 20h8M10 17h4"
+          stroke="currentColor"
+          strokeWidth={active ? 2 : 1.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
     to: "/wheel",
     label: "Vòng quay",
     icon: (active: boolean) => (
