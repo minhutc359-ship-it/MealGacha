@@ -427,6 +427,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .ritual-ring-inner i:nth-child(5) { transform: rotate(240deg) translateY(-152px); }
 .ritual-ring-inner i:nth-child(6) { transform: rotate(300deg) translateY(-152px); }
 .vertical-ray { position: absolute; width: 2px; height: 330px; opacity: .28; background: linear-gradient(transparent, var(--scene-accent) 40%, var(--cyan-200) 50%, var(--scene-accent) 60%, transparent); box-shadow: 0 0 20px var(--scene-accent); }
+.energy-column { width: 112px; height: 330px; position: absolute; z-index: 2; opacity: 0; pointer-events: none; background: linear-gradient(to top,transparent,color-mix(in srgb,var(--scene-accent) 45%,transparent) 32%,rgba(255,255,255,.52) 68%,transparent); filter: blur(18px); clip-path: polygon(43% 100%,57% 100%,78% 0,22% 0); transform: translateY(85px) scaleY(.18); transform-origin: 50% 75%; }
+.scene-vignette { position: absolute; inset: -28px; z-index: 10; opacity: 0; pointer-events: none; background: radial-gradient(circle at 50% 52%,transparent 24%,rgba(0,4,10,.88) 78%); transition: opacity .3s ease; }
+.cinematic-bar { height: 0; position: absolute; left: -18vw; right: -18vw; z-index: 18; pointer-events: none; background: #01040a; transition: height .38s cubic-bezier(.22,.75,.24,1), opacity .24s ease; opacity: 0; }
+.cinematic-bar-top { top: -1px; }.cinematic-bar-bottom { bottom: -1px; }
 
 .chest-model { width: 238px; height: 205px; position: relative; z-index: 4; transform-style: preserve-3d; filter: drop-shadow(0 28px 24px rgba(0,0,0,.68)); }
 .chest-shadow { position: absolute; left: 20px; right: 20px; bottom: -22px; height: 28px; border-radius: 50%; background: rgba(0,0,0,.75); filter: blur(12px); }
@@ -451,16 +455,29 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .key-head { width: 38px; height: 38px; display: grid; place-items: center; color: var(--cyan-200); border: 3px solid #c69e51; background: #082432; transform: rotate(45deg); font-size: 17px; }
 .key-shaft { width: 65px; height: 8px; margin-left: -2px; background: linear-gradient(#ead390,#6e5227); border: 1px solid #f5dda0; }
 .key-tooth { width: 16px; height: 19px; margin-left: -4px; border-right: 7px solid #c49a4e; border-bottom: 7px solid #c49a4e; }
+.key-spark { width: 10px; height: 10px; position: absolute; right: -4px; top: 12px; opacity: 0; border-radius: 50%; background: white; box-shadow: 0 0 8px white,0 0 20px var(--scene-accent),0 0 42px var(--scene-accent); }
 .scene-key-flight .taste-key { animation: key-flight .62s cubic-bezier(.23,.9,.36,1) forwards; }
-.scene-inserting .taste-key, .scene-charging .taste-key, .scene-anticipation .taste-key { opacity: 1; transform: translate(194px,72px) rotate(5deg) scale(.72); }
+.scene-inserting .taste-key, .scene-locking .taste-key, .scene-charging .taste-key, .scene-pulse .taste-key, .scene-anticipation .taste-key { opacity: 1; transform: translate(194px,72px) rotate(5deg) scale(.72); }
+.scene-inserting .key-spark { animation: key-spark .26s ease-out forwards; }
+.scene-locking .taste-key { animation: key-turn .42s cubic-bezier(.2,.8,.25,1) forwards; }
+.scene-locking .chest-model { animation: lock-jolt .42s ease-out; }
 
-.scene-charging .chest-model, .scene-anticipation .chest-model { animation: chest-charge .42s ease-in-out infinite alternate; }
-.scene-charging .ritual-ring, .scene-anticipation .ritual-ring { border-color: color-mix(in srgb,var(--scene-accent) 76%,white); filter: drop-shadow(0 0 8px var(--scene-accent)); }
-.scene-charging .chest-core, .scene-anticipation .chest-core { animation: core-pulse .32s ease-in-out infinite alternate; }
-.scene-anticipation .ritual-ring { animation-duration: 1.4s; }
-.scene-anticipation .chest-model { animation-duration: .08s; }
+.scene-charging .chest-model, .scene-pulse .chest-model { animation: chest-charge .36s ease-in-out infinite alternate; }
+.scene-charging .ritual-ring, .scene-pulse .ritual-ring, .scene-anticipation .ritual-ring { border-color: color-mix(in srgb,var(--scene-accent) 76%,white); filter: drop-shadow(0 0 8px var(--scene-accent)); }
+.scene-charging .chest-core, .scene-pulse .chest-core { animation: core-pulse .28s ease-in-out infinite alternate; }
+.scene-charging .energy-column, .scene-pulse .energy-column { animation: column-charge .64s ease-out forwards; }
+.scene-pulse .scene-flash { animation: pulse-flash .38s ease-out forwards; }
+.scene-pulse .shockwave-primary { animation: pulse-wave .46s ease-out forwards; }
+.scene-pulse .ritual-ring { animation-duration: .72s; filter: drop-shadow(0 0 14px var(--scene-accent)); }
+.scene-anticipation .scene-vignette { opacity: .88; }
+.scene-anticipation .cinematic-bar { height: 19px; opacity: .88; }
+.scene-anticipation .ritual-ring { animation-duration: 2.8s; opacity: .42; }
+.scene-anticipation .chest-model { animation: anticipation-clench .64s cubic-bezier(.4,0,.2,1) forwards; }
+.scene-anticipation .energy-column { opacity: .44; transform: translateY(12px) scaleY(.72); }
 .scene-impact .scene-flash { animation: scene-flash .32s ease-out forwards; }
-.scene-impact .shockwave { animation: shockwave .55s ease-out forwards; }
+.scene-impact .lens-flare { animation: lens-flare .48s ease-out forwards; }
+.scene-impact .shockwave-primary { animation: shockwave .55s ease-out forwards; }
+.scene-impact .shockwave-secondary { animation: shockwave .7s .1s ease-out forwards; }
 .scene-impact .chest-model { animation: chest-impact .3s ease-out; }
 .scene-impact .burst-particles i, .scene-opening .burst-particles i { animation: particle-burst .62s ease-out var(--particle-delay) forwards; }
 .scene-opening .chest-lid, .scene-reward-rise .chest-lid, .scene-result .chest-lid { transform: translateY(-31px) rotateX(-64deg) scaleY(.72); }
@@ -472,7 +489,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .scene-reward-rise.scene-rarity-epic .reward-sigil { background: linear-gradient(150deg,#fff0b4,#e8c777 43%,#8b5cf6 72%,#1f103f); box-shadow: 0 0 65px #e8c777, 0 0 110px rgba(139,92,246,.4); }
 
 .scene-flash { position: absolute; inset: 0; z-index: 12; opacity: 0; border-radius: 50%; background: radial-gradient(circle,#fff 0%,var(--cyan-200) 22%,var(--scene-accent) 42%,transparent 68%); mix-blend-mode: screen; pointer-events: none; }
+.lens-flare { width: 560px; height: 5px; position: absolute; z-index: 14; opacity: 0; pointer-events: none; background: linear-gradient(90deg,transparent,var(--scene-accent) 18%,white 48%,white 52%,var(--scene-accent) 82%,transparent); box-shadow: 0 0 16px white,0 0 42px var(--scene-accent); transform: scaleX(.08); }
 .shockwave { width: 140px; height: 140px; position: absolute; z-index: 11; opacity: 0; border-radius: 50%; border: 3px solid var(--cyan-200); box-shadow: 0 0 24px var(--scene-accent), inset 0 0 18px var(--scene-accent); pointer-events: none; }
+.shockwave-secondary { width: 112px; height: 112px; border-width: 1px; }
 .reward-sigil { width: 82px; height: 106px; position: absolute; z-index: 7; display: grid; place-items: center; opacity: 0; transform: translateY(85px) scale(.3); clip-path: polygon(50% 0,93% 22%,100% 75%,50% 100%,0 75%,7% 22%); background: linear-gradient(150deg,var(--gold-300),var(--scene-accent) 58%,#052033); box-shadow: 0 0 45px var(--scene-accent); }
 .reward-sigil::before { content: ''; position: absolute; inset: 5px; clip-path: inherit; background: #061724; }
 .reward-sigil span { position: relative; z-index: 2; color: var(--cyan-200); font-size: 34px; text-shadow: 0 0 18px var(--scene-accent); }
@@ -512,9 +531,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 @keyframes ring-spin { to { transform: rotate(360deg); } }
 @keyframes ring-spin-reverse { to { transform: rotate(-360deg); } }
 @keyframes key-flight { 0% { opacity: 0; transform: translate(-30px,-50px) rotate(-18deg) scale(.75); } 22% { opacity: 1; } 74% { transform: translate(172px,55px) rotate(2deg) scale(.78); } 100% { opacity: 1; transform: translate(194px,72px) rotate(5deg) scale(.72); } }
+@keyframes key-turn { 0% { transform: translate(194px,72px) rotate(5deg) scale(.72); } 45% { transform: translate(194px,72px) rotate(28deg) scale(.72); filter: drop-shadow(0 0 19px var(--scene-accent)); } 100% { transform: translate(194px,72px) rotate(18deg) scale(.72); } }
+@keyframes key-spark { 0% { opacity: 0; transform: scale(.2); } 38% { opacity: 1; transform: scale(1.5); } 100% { opacity: 0; transform: scale(3.4); } }
+@keyframes lock-jolt { 0%,100% { transform: translateY(0); } 35% { transform: translateY(3px) scale(.985); } 58% { transform: translateY(-2px) scale(1.01); } }
 @keyframes chest-charge { from { transform: translateY(0) scale(1); } to { transform: translateY(-3px) scale(1.018); } }
 @keyframes core-pulse { to { filter: brightness(1.72) drop-shadow(0 0 16px var(--scene-accent)); } }
+@keyframes column-charge { 0% { opacity: 0; transform: translateY(85px) scaleY(.18); } 100% { opacity: .7; transform: translateY(8px) scaleY(.82); } }
+@keyframes pulse-flash { 0% { opacity: 0; transform: scale(.18); } 34% { opacity: .52; } 100% { opacity: 0; transform: scale(.82); } }
+@keyframes pulse-wave { 0% { opacity: .66; transform: scale(.34); } 100% { opacity: 0; transform: scale(2.35); } }
+@keyframes anticipation-clench { 0% { transform: scale(1.02); filter: brightness(1.16); } 70% { transform: scale(.955) translateY(4px); filter: brightness(.72); } 100% { transform: scale(.97) translateY(2px); filter: brightness(.9) drop-shadow(0 0 14px var(--scene-accent)); } }
 @keyframes scene-flash { 0% { opacity: 0; transform: scale(.2); } 22% { opacity: 1; } 100% { opacity: 0; transform: scale(1.24); } }
+@keyframes lens-flare { 0% { opacity: 0; transform: scaleX(.08); } 18% { opacity: 1; transform: scaleX(1); } 62% { opacity: .7; transform: scaleX(.82); } 100% { opacity: 0; transform: scaleX(.28); } }
 @keyframes shockwave { 0% { opacity: .9; transform: scale(.25); } 100% { opacity: 0; transform: scale(3.2); } }
 @keyframes chest-impact { 0% { transform: scale(1); } 38% { transform: scale(.88) translateY(7px); } 100% { transform: scale(1.08) translateY(-6px); } }
 @keyframes reward-rise { 0% { opacity: 0; transform: translateY(85px) scale(.3); } 60% { opacity: 1; transform: translateY(-60px) scale(1.12); } 100% { opacity: 1; transform: translateY(-48px) scale(1); } }
@@ -576,9 +603,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ritual-halo, .ritual-ring, .scene-key-flight .taste-key, .scene-charging .chest-model,
-  .scene-anticipation .chest-model, .scene-charging .chest-core, .scene-anticipation .chest-core,
-  .scene-impact .scene-flash, .scene-impact .shockwave, .scene-impact .burst-particles i,
+  .ritual-halo, .ritual-ring, .scene-key-flight .taste-key, .scene-locking .taste-key,
+  .scene-locking .chest-model, .scene-charging .chest-model, .scene-pulse .chest-model,
+  .scene-anticipation .chest-model, .scene-charging .chest-core, .scene-pulse .chest-core,
+  .scene-charging .energy-column, .scene-pulse .energy-column, .scene-pulse .scene-flash,
+  .scene-pulse .shockwave, .scene-impact .scene-flash, .scene-impact .lens-flare,
+  .scene-impact .shockwave, .scene-impact .burst-particles i,
   .scene-opening .burst-particles i, .scene-reward-rise .reward-sigil, .scene-stars i,
   .reward-shine, .reward-confetti i, .ritual-impact .ritual-stage { animation: none !important; }
   .chest-parallax { transform: none !important; transition: none !important; }

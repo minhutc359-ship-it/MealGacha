@@ -1342,3 +1342,32 @@ Ngoài 9 checkpoint ở mục 23, thêm các snapshot:
 - [MDN — prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion)
 - [MDN — requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)
 
+---
+
+## 35. Timeline cinematic triển khai
+
+Sequence runtime dùng nhịp reveal tham khảo từ video [League of Legends – Hextech Chest Opening (2x)](https://www.youtube.com/watch?v=Tg0vTmufv8M), nhưng rương, rune, màu sắc và asset của MealGacha vẫn là thiết kế nguyên bản.
+
+| Beat | State | Thời lượng | Chuyển động chính |
+| --- | --- | ---: | --- |
+| 1 | `key-flight` | 620 ms | chìa bay theo ease-out và bắt sáng |
+| 2 | `inserting` | 260 ms | tia lửa khóa, dừng đúng tâm lõi |
+| 3 | `locking` | 420 ms | chìa xoay, rương nén nhẹ, haptic ngắn |
+| 4 | `charging` | 660 ms | cột sáng tăng dần, rune tăng tốc |
+| 5 | `pulse` | 460 ms | pre-flash + sóng xung kích thứ nhất |
+| 6 | `anticipation` | 640 ms | giảm sáng, letterbox, khoảng lặng có chủ đích |
+| 7 | `impact` | 180 ms | white flash, lens flare, double shockwave, camera shake |
+| 8 | `opening` | 560 ms | nắp mở, ánh sáng tràn khỏi rương |
+| 9 | `reward-rise` | 760 ms | sigil nâng lên; hết beat mới mount modal món ăn |
+
+Reward được persist ngay khi người dùng mở rương nhưng bị loại khỏi toàn bộ selector hiển thị bởi `pendingRevealRewardId`. `completeRewardReveal()` chỉ chạy khi timeline kết thúc hoặc người dùng chủ động bỏ qua; vì vậy ảnh và tên món không thể lộ trước nhịp reveal.
+
+### 35.1. Audio track tùy chỉnh
+
+URL `*.mp3.waveform.json` của Motion Array chỉ là dữ liệu biên độ để vẽ waveform, không phải tệp âm thanh có thể phát. Sau khi tải tệp MP3/OGG bằng tài khoản có quyền sử dụng, đặt file trong `public/assets/audio/` và cấu hình:
+
+```dotenv
+VITE_CHEST_OPENING_AUDIO_URL=/assets/audio/chest-opening.mp3
+```
+
+Track được khởi chạy trực tiếp trong gesture mở rương để đáp ứng autoplay policy. Các sound cue Web Audio vẫn chạy ở 18% gain làm lớp transient và tự trở lại 100% nếu không cấu hình track. Dừng/skip/unmount luôn hủy track đang phát.

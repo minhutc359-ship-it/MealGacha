@@ -15,17 +15,35 @@ import { RevealModal } from "../components/chest/RevealModal"
 import { LootVfxCanvas } from "../components/chest/LootVfxCanvas"
 import { ChestOddsModal } from "../components/chest/ChestOddsModal"
 import { preloadFoodAsset } from "../infrastructure/assets/foodAssets"
-import { playSound } from "../infrastructure/audio/soundEngine"
+import {
+  playSound,
+  preloadChestOpeningTrack,
+  startChestOpeningTrack,
+  stopChestOpeningTrack,
+} from "../infrastructure/audio/soundEngine"
 import { getVisibleRewards } from "../domain/rewardPresentation"
 
-type ChestState = "idle" | "key-flight" | "inserting" | "charging" | "anticipation" | "impact" | "opening" | "reward-rise" | "result"
+type ChestState =
+  | "idle"
+  | "key-flight"
+  | "inserting"
+  | "locking"
+  | "charging"
+  | "pulse"
+  | "anticipation"
+  | "impact"
+  | "opening"
+  | "reward-rise"
+  | "result"
 
 const STATE_LABELS: Record<ChestState, string> = {
   idle: "Sẵn sàng khai mở",
   "key-flight": "Chìa khóa đang cộng hưởng",
   inserting: "Kích hoạt lõi vị giác",
+  locking: "Khóa cổ ngữ đã khớp",
   charging: "Tích tụ năng lượng",
-  anticipation: "Phần thưởng đang thức tỉnh",
+  pulse: "Cộng hưởng cực đại",
+  anticipation: "Lắng nghe khoảnh khắc thức tỉnh",
   impact: "Khai mở!",
   opening: "Rương đã mở",
   "reward-rise": "Triệu hồi món ăn",
@@ -35,7 +53,9 @@ const STATE_LABELS: Record<ChestState, string> = {
 const RITUAL_STEPS: ChestState[] = [
   "key-flight",
   "inserting",
+  "locking",
   "charging",
+  "pulse",
   "anticipation",
   "impact",
   "opening",
@@ -97,6 +117,7 @@ export function ChestPage() {
   const processingRef = useRef(false)
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
   const pendingRewardRef = useRef<RewardInstance | null>(null)
+  const customTrackRef = useRef(false)
 
   const theme = SLOT_THEME[slot]
   const today = getDateKey()
@@ -120,7 +141,11 @@ export function ChestPage() {
     setShowReveal(true)
     completeRewardReveal()
     processingRef.current = false
-    playSound("reveal", user.preferences.soundEnabled)
+    playSound(
+      "reveal",
+      user.preferences.soundEnabled,
+      customTrackRef.current ? 0.18 : 1,
+    )
     vibrate(nextReward.rarity === "epic" ? [30, 45, 80] : 35, reduceMotion)
   }, [completeRewardReveal, reduceMotion, user.preferences.soundEnabled])
 
@@ -128,33 +153,52 @@ export function ChestPage() {
     timelineRef.current?.kill()
     const timeline = gsap.timeline({ onComplete: finishReveal })
     timelineRef.current = timeline
+    const cue = (sound: Parameters<typeof playSound>[0]) => {
+      playSound(
+        sound,
+        user.preferences.soundEnabled,
+        customTrackRef.current ? 0.18 : 1,
+      )
+    }
 
     timeline
       .call(() => {
         setChestState("key-flight")
-        playSound("key", user.preferences.soundEnabled)
+        cue("key")
         vibrate(12, reduceMotion)
       })
-      .to({}, { duration: 0.58 })
+      .to({}, { duration: 0.62 })
       .call(() => setChestState("inserting"))
-      .to({}, { duration: 0.3 })
+      .to({}, { duration: 0.26 })
+      .call(() => {
+        setChestState("locking")
+        cue("lock")
+        vibrate(18, reduceMotion)
+      })
+      .to({}, { duration: 0.42 })
       .call(() => {
         setChestState("charging")
-        playSound("charge", user.preferences.soundEnabled)
+        cue("charge")
       })
-      .to({}, { duration: 1.02 })
+      .to({}, { duration: 0.66 })
+      .call(() => {
+        setChestState("pulse")
+        cue("pulse")
+        vibrate([12, 40, 20], reduceMotion)
+      })
+      .to({}, { duration: 0.46 })
       .call(() => setChestState("anticipation"))
-      .to({}, { duration: 0.48 })
+      .to({}, { duration: 0.64 })
       .call(() => {
         setChestState("impact")
-        playSound("impact", user.preferences.soundEnabled)
+        cue("impact")
         vibrate([18, 25, 55], reduceMotion)
       })
-      .to({}, { duration: 0.2 })
+      .to({}, { duration: 0.18 })
       .call(() => setChestState("opening"))
-      .to({}, { duration: 0.54 })
+      .to({}, { duration: 0.56 })
       .call(() => setChestState("reward-rise"))
-      .to({}, { duration: 0.82 })
+      .to({}, { duration: 0.76 })
   }, [finishReveal, reduceMotion, user.preferences.soundEnabled])
 
   const triggerOpen = useCallback(() => {
@@ -171,10 +215,14 @@ export function ChestPage() {
     setRitualRarity(result.reward.rarity ?? "common")
     preloadFoodAsset(result.reward.dishId, "full")
     if (skipAnimation || reduceMotion) {
+      customTrackRef.current = false
       setChestState("reward-rise")
       window.setTimeout(finishReveal, reduceMotion ? 120 : 40)
       return
     }
+    customTrackRef.current = startChestOpeningTrack(
+      user.preferences.soundEnabled,
+    )
     runTimeline()
   }, [
     finishReveal,
@@ -184,21 +232,26 @@ export function ChestPage() {
     showToast,
     skipAnimation,
     slot,
+    user.preferences.soundEnabled,
   ])
 
   const skipCurrentAnimation = () => {
     timelineRef.current?.kill()
+    stopChestOpeningTrack()
+    customTrackRef.current = false
     finishReveal()
   }
 
   const closeReveal = () => {
     timelineRef.current?.kill()
+    stopChestOpeningTrack()
     completeRewardReveal()
     setShowReveal(false)
     setReward(null)
     pendingRewardRef.current = null
     setChestState("idle")
     setRitualRarity(null)
+    customTrackRef.current = false
     processingRef.current = false
   }
 
@@ -222,8 +275,13 @@ export function ChestPage() {
   }, [isAnimating, showOdds, showReveal, triggerOpen])
 
   useEffect(() => {
+    preloadChestOpeningTrack()
+  }, [])
+
+  useEffect(() => {
     return () => {
       timelineRef.current?.kill()
+      stopChestOpeningTrack()
       completeRewardReveal()
     }
   }, [completeRewardReveal])
@@ -453,13 +511,20 @@ function ChestScene({
         <i />
       </div>
       <div className="vertical-ray" />
+      <div className="energy-column" />
+      <div className="scene-vignette" />
+      <div className="cinematic-bar cinematic-bar-top" />
+      <div className="cinematic-bar cinematic-bar-bottom" />
       <div className="scene-flash" />
-      <div className="shockwave" />
+      <div className="lens-flare" />
+      <div className="shockwave shockwave-primary" />
+      <div className="shockwave shockwave-secondary" />
 
       <div className="taste-key" aria-hidden="true">
         <span className="key-head">◇</span>
         <span className="key-shaft" />
         <span className="key-tooth" />
+        <i className="key-spark" />
       </div>
 
       <div className="chest-parallax">

@@ -108,32 +108,44 @@ export function LootVfxCanvas({ state, accent, reducedMotion, rarity }: Props) {
         let lastState = stateRef.current
         let impactStartedAt = 0
         let burstStartedAt = 0
+        let pulseStartedAt = 0
         let elapsed = 0
         nextApp.ticker.add((ticker) => {
           elapsed += ticker.deltaMS
           scene.position.set(nextApp.renderer.width / 2, nextApp.renderer.height / 2 + 12)
 
           const currentState = stateRef.current
-          const isCharging = currentState === "charging" || currentState === "anticipation"
+          const isCharging = ["locking", "charging", "pulse"].includes(currentState)
+          const isSuspense = currentState === "anticipation"
           const isRevealing = ["impact", "opening", "reward-rise", "result"].includes(currentState)
           const rarityColor = rarityRef.current === "epic" ? 0xe8c777 : rarityRef.current === "rare" ? 0x35d6e6 : color
           if (!reducedMotionRef.current) {
-            ringGroup.rotation += ticker.deltaTime * (isCharging ? 0.006 : 0.0015)
-            middleRing.rotation -= ticker.deltaTime * (isCharging ? 0.01 : 0.0025)
+            ringGroup.rotation += ticker.deltaTime * (isCharging ? 0.008 : isSuspense ? 0.0007 : 0.0015)
+            middleRing.rotation -= ticker.deltaTime * (isCharging ? 0.013 : isSuspense ? 0.001 : 0.0025)
           }
-          ringGroup.alpha = isCharging ? 0.94 : 0.62
+          ringGroup.alpha = isCharging ? 0.94 : isSuspense ? 0.38 : 0.62
           aura.tint = rarityColor
           aura.alpha = isRevealing ? 0.22 : isCharging ? 0.16 : 0.08
           aura.scale.set(1 + Math.sin(elapsed * 0.003) * (isCharging ? 0.18 : 0.06))
 
           dust.forEach(({ particle, angle, radius, speed }, index) => {
-            const drift = elapsed * speed * (isCharging ? 2.4 : 1)
+            const drift = elapsed * speed * (isCharging ? 2.4 : isSuspense ? 0.35 : 1)
             particle.position.set(
               Math.cos(angle + drift) * radius,
               Math.sin(angle + drift) * radius * 0.68,
             )
             particle.alpha = (isCharging ? 0.55 : 0.24) + Math.sin(elapsed * 0.002 + index) * 0.12
           })
+
+          if (currentState === "pulse" && lastState !== "pulse") {
+            pulseStartedAt = performance.now()
+          }
+          if (pulseStartedAt > 0) {
+            const progress = Math.min((performance.now() - pulseStartedAt) / 460, 1)
+            aura.scale.set(1 + Math.sin(progress * Math.PI) * 0.62)
+            aura.alpha = 0.16 + Math.sin(progress * Math.PI) * 0.36
+            if (progress === 1) pulseStartedAt = 0
+          }
 
           if (currentState === "impact" && lastState !== "impact") {
             impactStartedAt = performance.now()

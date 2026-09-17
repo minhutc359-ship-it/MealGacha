@@ -24,6 +24,7 @@ pnpm build
 
 - `VITE_GOOGLE_MAPS_API_KEY`: khóa cho Places API (New). Nên giới hạn theo HTTP referrer và chỉ bật API cần thiết. Nếu chưa có khóa, popup quán chạy bằng dữ liệu demo và hiển thị nhãn rõ ràng.
 - `VITE_CATALOG_URL`: URL CSV của Google Sheet đã **Publish to web**. Người dùng cũng có thể cấu hình và xem trước nguồn trong trang Cài đặt.
+- `VITE_CHEST_OPENING_AUDIO_URL`: URL tới file MP3/OGG mở rương đã được cấp phép. Đặt file vào `public/assets/audio/chest-opening.mp3` rồi cấu hình `/assets/audio/chest-opening.mp3`. Nếu bỏ trống, ứng dụng dùng sound cue tổng hợp để hoạt cảnh vẫn có âm thanh.
 - `VITE_DAILY_KEYS`, `VITE_CHEST_COST`: tham số kinh tế mặc định là 10 chìa/ngày và 1 chìa/lượt.
 - `VITE_APP_TIME_ZONE`: múi giờ nghiệp vụ, mặc định `Asia/Ho_Chi_Minh`.
 
