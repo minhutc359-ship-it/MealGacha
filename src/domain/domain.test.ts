@@ -5,6 +5,7 @@ import { applyFuse, canFuse } from "./fuseRewards"
 import { getDateKey } from "./dateKey"
 import { RewardInstance, UserState } from "./models"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
+import { getVisibleRewards } from "./rewardPresentation"
 
 function makeState(overrides: Partial<UserState> = {}): UserState {
   const now = new Date().toISOString()
@@ -110,5 +111,17 @@ describe("fusion", () => {
     expect(result.state.fusions).toHaveLength(1)
     expect(result.reward.source).toBe("fusion")
     expect(["rare", "epic"]).toContain(result.reward.rarity)
+  })
+})
+
+describe("reward presentation", () => {
+  it("keeps the persisted chest reward hidden until reveal completes", () => {
+    const existing = makeReward("existing")
+    const pending = makeReward("pending")
+
+    expect(getVisibleRewards([existing, pending], pending.id).map((reward) => reward.id)).toEqual([
+      "existing",
+    ])
+    expect(getVisibleRewards([existing, pending], null)).toHaveLength(2)
   })
 })

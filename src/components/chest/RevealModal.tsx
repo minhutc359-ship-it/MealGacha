@@ -7,6 +7,7 @@ import {
 import { PlacesModal } from "../places/PlacesModal"
 import { FoodImage } from "../food/FoodImage"
 import { RarityFrame } from "../ui/RarityFrame"
+import { useAppStore } from "../../store/useAppStore"
 
 interface Props {
   reward: RewardInstance
@@ -25,10 +26,32 @@ export function RevealModal({
 }: Props) {
   const [showPlaces, setShowPlaces] = useState(false)
   const firstFocusRef = useRef<HTMLButtonElement>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const toggleFavorite = useAppStore((state) => state.toggleFavorite)
+  const favorite = useAppStore(
+    (state) => state.user.rewards.find((item) => item.id === reward.id)?.favorite ?? reward.favorite,
+  )
+  const showToast = useAppStore((state) => state.showToast)
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
+      if (e.key !== "Tab" || !dialogRef.current) return
+      const focusable = Array.from(
+        dialogRef.current.querySelectorAll<HTMLElement>(
+          'button:not(:disabled), a[href], input:not(:disabled), [tabindex]:not([tabindex="-1"])',
+        ),
+      )
+      if (focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
     }
     document.addEventListener("keydown", handleKey)
     setTimeout(() => firstFocusRef.current?.focus(), 50)
@@ -37,11 +60,25 @@ export function RevealModal({
 
   const dish = reward.dish
   const rarity = reward.rarity ?? "common"
+  const particleCount = rarity === "epic" ? 24 : rarity === "rare" ? 16 : 9
+
+  const shareReward = async () => {
+    const text = `Tôi vừa mở được ${dish.name} trong Rương Vị Giác!`
+    try {
+      if (navigator.share) await navigator.share({ title: "Rương Vị Giác", text })
+      else {
+        await navigator.clipboard.writeText(text)
+        showToast("Đã sao chép kết quả!", "success")
+      }
+    } catch (error) {
+      if ((error as DOMException).name !== "AbortError") showToast("Không thể chia sẻ kết quả.", "error")
+    }
+  }
 
   return (
     <>
       <div
-        className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4"
+        className={`reward-reveal-backdrop rarity-${rarity} fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4`}
         style={{
           background: "rgba(8,12,24,0.88)",
           backdropFilter: "blur(10px)",
@@ -54,7 +91,8 @@ export function RevealModal({
         aria-label={`Phần thưởng: ${dish.name}`}
       >
         <div
-          className="w-full max-w-md rounded-3xl overflow-hidden animate-reveal-card"
+          ref={dialogRef}
+          className={`reward-reveal-card rarity-${rarity} w-full max-w-md rounded-3xl overflow-hidden animate-reveal-card`}
           style={{
             background: "linear-gradient(160deg, #0f1a2e 0%, #080c18 100%)",
             border: "1.5px solid rgba(0,212,255,0.3)",
@@ -70,6 +108,12 @@ export function RevealModal({
                 "linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(168,85,247,0.06) 100%)",
             }}
           >
+            <div className="reward-confetti" aria-hidden="true">
+              {Array.from({ length: particleCount }, (_, index) => (
+                <i key={index} style={{ "--confetti-index": index } as React.CSSProperties} />
+              ))}
+            </div>
+            <div className="reward-shine" aria-hidden="true" />
             {/* Radial glow */}
             <div
               className="absolute inset-0"
@@ -134,6 +178,7 @@ export function RevealModal({
 
           {/* Info */}
           <div className="px-5 pb-5">
+            <p className="reward-unlocked-label">PHẦN THƯỞNG ĐÃ ĐƯỢC KHAI MỞ</p>
             <h2
               className="text-2xl font-extrabold mb-0.5 mt-1"
               style={{ fontFamily: "Exo 2, sans-serif", color: "#e8edf5" }}
@@ -148,6 +193,13 @@ export function RevealModal({
                 {dish.category}
               </p>
             )}
+
+            <div className="reward-utility-actions">
+              <button onClick={() => toggleFavorite(reward.id)} aria-pressed={favorite}>
+                {favorite ? "♥ Đã yêu thích" : "♡ Yêu thích"}
+              </button>
+              <button onClick={shareReward}>↗ Chia sẻ</button>
+            </div>
 
             {/* Actions */}
             <button

@@ -2,15 +2,18 @@ import { canCheckIn } from "../../domain/checkIn"
 import { MEAL_SLOT_ICONS } from "../../domain/models"
 import { getDateKey } from "../../domain/dateKey"
 import { useAppStore } from "../../store/useAppStore"
+import { getVisibleRewards } from "../../domain/rewardPresentation"
 
 export function ActivityRail() {
   const user = useAppStore((state) => state.user)
+  const pendingRevealRewardId = useAppStore((state) => state.pendingRevealRewardId)
   const checkIn = useAppStore((state) => state.checkIn)
-  const available = user.rewards.filter(
+  const visibleRewards = getVisibleRewards(user.rewards, pendingRevealRewardId)
+  const available = visibleRewards.filter(
     (reward) => reward.status === "available",
   ).length
   const today = getDateKey()
-  const todayRewards = user.rewards.filter(
+  const todayRewards = visibleRewards.filter(
     (reward) => reward.acquiredDate === today,
   )
   const canClaim = canCheckIn(user)

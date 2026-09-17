@@ -1,10 +1,13 @@
 import { NavLink } from "react-router-dom"
 import { FoodImage } from "../food/FoodImage"
 import { useAppStore } from "../../store/useAppStore"
+import { getVisibleRewards } from "../../domain/rewardPresentation"
 
 export function InventoryPanel() {
   const rewards = useAppStore((state) => state.user.rewards)
-  const recent = [...rewards].reverse().slice(0, 8)
+  const pendingRevealRewardId = useAppStore((state) => state.pendingRevealRewardId)
+  const visibleRewards = getVisibleRewards(rewards, pendingRevealRewardId)
+  const recent = [...visibleRewards].reverse().slice(0, 8)
 
   return (
     <aside
@@ -16,7 +19,7 @@ export function InventoryPanel() {
           <small>KHO VỊ GIÁC</small>
           <h2>Phần thưởng</h2>
         </div>
-        <span className="panel-count">{rewards.length}</span>
+        <span className="panel-count">{visibleRewards.length}</span>
       </div>
 
       {recent.length > 0 ? (

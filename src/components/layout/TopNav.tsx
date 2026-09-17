@@ -10,6 +10,8 @@ const links = [
 
 export function TopNav() {
   const keys = useAppStore((state) => state.user.keys)
+  const soundEnabled = useAppStore((state) => state.user.preferences.soundEnabled)
+  const updatePreference = useAppStore((state) => state.updatePreference)
 
   return (
     <header className="client-topbar">
@@ -38,6 +40,15 @@ export function TopNav() {
       </nav>
 
       <div className="topbar-wallet" aria-label={`${keys} chìa khóa`}>
+        <button
+          className="quick-sound-toggle"
+          onClick={() => updatePreference("soundEnabled", !soundEnabled)}
+          aria-label={soundEnabled ? "Tắt âm thanh" : "Bật âm thanh"}
+          aria-pressed={soundEnabled}
+          title={soundEnabled ? "Tắt âm thanh" : "Bật âm thanh"}
+        >
+          {soundEnabled ? "◖))" : "◖×"}
+        </button>
         <span className="key-glyph" aria-hidden="true">
           ◇
         </span>

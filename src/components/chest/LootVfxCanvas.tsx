@@ -5,16 +5,18 @@ interface Props {
   state: string
   accent: string
   reducedMotion: boolean
+  rarity: string | null
 }
 
 function toHex(color: string): number {
   return Number.parseInt(color.replace("#", ""), 16)
 }
 
-export function LootVfxCanvas({ state, accent, reducedMotion }: Props) {
+export function LootVfxCanvas({ state, accent, reducedMotion, rarity }: Props) {
   const hostRef = useRef<HTMLDivElement>(null)
   const stateRef = useRef(state)
   const reducedMotionRef = useRef(reducedMotion)
+  const rarityRef = useRef(rarity)
 
   useEffect(() => {
     stateRef.current = state
@@ -23,6 +25,10 @@ export function LootVfxCanvas({ state, accent, reducedMotion }: Props) {
   useEffect(() => {
     reducedMotionRef.current = reducedMotion
   }, [reducedMotion])
+
+  useEffect(() => {
+    rarityRef.current = rarity
+  }, [rarity])
 
   useEffect(() => {
     const host = hostRef.current
@@ -56,10 +62,13 @@ export function LootVfxCanvas({ state, accent, reducedMotion }: Props) {
         const color = toHex(accent)
         const scene = new Container()
         const ringGroup = new Container()
+        const aura = new Graphics().circle(0, 0, 86).fill({ color, alpha: 0.12 })
         const outerRing = new Graphics().circle(0, 0, 184).stroke({ width: 1.2, color, alpha: 0.33 })
         const middleRing = new Graphics().circle(0, 0, 145).stroke({ width: 1, color: 0xa8f3f7, alpha: 0.2 })
         const shockwave = new Graphics().circle(0, 0, 52).stroke({ width: 4, color: 0xa8f3f7, alpha: 0.9 })
+        const echoWave = new Graphics().circle(0, 0, 46).stroke({ width: 1.5, color, alpha: 0.65 })
         shockwave.alpha = 0
+        echoWave.alpha = 0
 
         for (let index = 0; index < 12; index += 1) {
           const angle = (Math.PI * 2 * index) / 12
@@ -83,11 +92,22 @@ export function LootVfxCanvas({ state, accent, reducedMotion }: Props) {
           return { particle, angle, radius, speed: 0.00025 + (index % 7) * 0.00006 }
         })
 
-        scene.addChild(ringGroup, shockwave)
+        const burst = Array.from({ length: 28 }, (_, index) => {
+          const shard = new Graphics()
+            .roundRect(-1.5, -5, 3, 10, 2)
+            .fill({ color: index % 4 === 0 ? 0xe8c777 : 0xa8f3f7, alpha: 0.95 })
+          shard.alpha = 0
+          shard.rotation = (Math.PI * 2 * index) / 28
+          scene.addChild(shard)
+          return { shard, angle: (Math.PI * 2 * index) / 28, velocity: 105 + (index % 6) * 17 }
+        })
+
+        scene.addChild(aura, ringGroup, shockwave, echoWave)
         nextApp.stage.addChild(scene)
 
         let lastState = stateRef.current
         let impactStartedAt = 0
+        let burstStartedAt = 0
         let elapsed = 0
         nextApp.ticker.add((ticker) => {
           elapsed += ticker.deltaMS
@@ -95,11 +115,16 @@ export function LootVfxCanvas({ state, accent, reducedMotion }: Props) {
 
           const currentState = stateRef.current
           const isCharging = currentState === "charging" || currentState === "anticipation"
+          const isRevealing = ["impact", "opening", "reward-rise", "result"].includes(currentState)
+          const rarityColor = rarityRef.current === "epic" ? 0xe8c777 : rarityRef.current === "rare" ? 0x35d6e6 : color
           if (!reducedMotionRef.current) {
             ringGroup.rotation += ticker.deltaTime * (isCharging ? 0.006 : 0.0015)
             middleRing.rotation -= ticker.deltaTime * (isCharging ? 0.01 : 0.0025)
           }
           ringGroup.alpha = isCharging ? 0.94 : 0.62
+          aura.tint = rarityColor
+          aura.alpha = isRevealing ? 0.22 : isCharging ? 0.16 : 0.08
+          aura.scale.set(1 + Math.sin(elapsed * 0.003) * (isCharging ? 0.18 : 0.06))
 
           dust.forEach(({ particle, angle, radius, speed }, index) => {
             const drift = elapsed * speed * (isCharging ? 2.4 : 1)
@@ -112,14 +137,34 @@ export function LootVfxCanvas({ state, accent, reducedMotion }: Props) {
 
           if (currentState === "impact" && lastState !== "impact") {
             impactStartedAt = performance.now()
+            burstStartedAt = impactStartedAt
             shockwave.alpha = 1
             shockwave.scale.set(0.45)
+            echoWave.alpha = 0.8
+            echoWave.scale.set(0.35)
           }
           if (impactStartedAt > 0) {
             const progress = Math.min((performance.now() - impactStartedAt) / 560, 1)
             shockwave.scale.set(0.45 + progress * 3.5)
             shockwave.alpha = 1 - progress
+            const echoProgress = Math.max(0, Math.min((progress - 0.18) / 0.82, 1))
+            echoWave.scale.set(0.35 + echoProgress * 4.2)
+            echoWave.alpha = (1 - echoProgress) * 0.72
             if (progress === 1) impactStartedAt = 0
+          }
+          if (burstStartedAt > 0) {
+            const progress = Math.min((performance.now() - burstStartedAt) / 760, 1)
+            burst.forEach(({ shard, angle, velocity }, index) => {
+              const distance = velocity * (1 - (1 - progress) ** 2)
+              shard.position.set(Math.cos(angle) * distance, Math.sin(angle) * distance)
+              shard.rotation = angle + progress * (index % 2 === 0 ? 2.4 : -2.4)
+              shard.alpha = Math.sin(progress * Math.PI) * (rarityRef.current === "epic" ? 1 : 0.72)
+              shard.tint = rarityColor
+            })
+            if (progress === 1) {
+              burstStartedAt = 0
+              burst.forEach(({ shard }) => { shard.alpha = 0 })
+            }
           }
           lastState = currentState
         })

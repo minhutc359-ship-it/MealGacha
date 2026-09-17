@@ -5,6 +5,7 @@ import { useAppStore } from "../store/useAppStore"
 import {
   MealSlot,
   RewardInstance,
+  RewardRarity,
   MEAL_SLOT_LABELS,
   MEAL_SLOT_ICONS,
 } from "../domain/models"
@@ -12,8 +13,10 @@ import { canCheckIn } from "../domain/checkIn"
 import { getCurrentHour, getDateKey } from "../domain/dateKey"
 import { RevealModal } from "../components/chest/RevealModal"
 import { LootVfxCanvas } from "../components/chest/LootVfxCanvas"
+import { ChestOddsModal } from "../components/chest/ChestOddsModal"
 import { preloadFoodAsset } from "../infrastructure/assets/foodAssets"
 import { playSound } from "../infrastructure/audio/soundEngine"
+import { getVisibleRewards } from "../domain/rewardPresentation"
 
 type ChestState = "idle" | "key-flight" | "inserting" | "charging" | "anticipation" | "impact" | "opening" | "reward-rise" | "result"
 
@@ -27,6 +30,20 @@ const STATE_LABELS: Record<ChestState, string> = {
   opening: "Rương đã mở",
   "reward-rise": "Triệu hồi món ăn",
   result: "Đã nhận phần thưởng",
+}
+
+const RITUAL_STEPS: ChestState[] = [
+  "key-flight",
+  "inserting",
+  "charging",
+  "anticipation",
+  "impact",
+  "opening",
+  "reward-rise",
+]
+
+function vibrate(pattern: number | number[], reducedMotion: boolean) {
+  if (!reducedMotion && "vibrate" in navigator) navigator.vibrate(pattern)
 }
 
 function defaultSlot(): MealSlot {
@@ -67,19 +84,24 @@ export function ChestPage() {
   const checkIn = useAppStore((state) => state.checkIn)
   const openChest = useAppStore((state) => state.openChest)
   const showToast = useAppStore((state) => state.showToast)
+  const pendingRevealRewardId = useAppStore((state) => state.pendingRevealRewardId)
+  const completeRewardReveal = useAppStore((state) => state.completeRewardReveal)
   const navigate = useNavigate()
   const [slot, setSlot] = useState<MealSlot>(defaultSlot)
   const [chestState, setChestState] = useState<ChestState>("idle")
   const [reward, setReward] = useState<RewardInstance | null>(null)
   const [showReveal, setShowReveal] = useState(false)
+  const [showOdds, setShowOdds] = useState(false)
   const [skipAnimation, setSkipAnimation] = useState(false)
+  const [ritualRarity, setRitualRarity] = useState<RewardRarity | null>(null)
   const processingRef = useRef(false)
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
   const pendingRewardRef = useRef<RewardInstance | null>(null)
 
   const theme = SLOT_THEME[slot]
   const today = getDateKey()
-  const todayCount = user.rewards.filter(
+  const visibleRewards = getVisibleRewards(user.rewards, pendingRevealRewardId)
+  const todayCount = visibleRewards.filter(
     (item) => item.acquiredDate === today,
   ).length
   const checkedIn = !canCheckIn(user)
@@ -96,9 +118,11 @@ export function ChestPage() {
     setChestState("result")
     setReward(nextReward)
     setShowReveal(true)
+    completeRewardReveal()
     processingRef.current = false
     playSound("reveal", user.preferences.soundEnabled)
-  }, [user.preferences.soundEnabled])
+    vibrate(nextReward.rarity === "epic" ? [30, 45, 80] : 35, reduceMotion)
+  }, [completeRewardReveal, reduceMotion, user.preferences.soundEnabled])
 
   const runTimeline = useCallback(() => {
     timelineRef.current?.kill()
@@ -109,27 +133,29 @@ export function ChestPage() {
       .call(() => {
         setChestState("key-flight")
         playSound("key", user.preferences.soundEnabled)
+        vibrate(12, reduceMotion)
       })
-      .to({}, { duration: 0.62 })
+      .to({}, { duration: 0.58 })
       .call(() => setChestState("inserting"))
-      .to({}, { duration: 0.28 })
+      .to({}, { duration: 0.3 })
       .call(() => {
         setChestState("charging")
         playSound("charge", user.preferences.soundEnabled)
       })
-      .to({}, { duration: 0.82 })
+      .to({}, { duration: 1.02 })
       .call(() => setChestState("anticipation"))
-      .to({}, { duration: 0.38 })
+      .to({}, { duration: 0.48 })
       .call(() => {
         setChestState("impact")
         playSound("impact", user.preferences.soundEnabled)
+        vibrate([18, 25, 55], reduceMotion)
       })
-      .to({}, { duration: 0.22 })
+      .to({}, { duration: 0.2 })
       .call(() => setChestState("opening"))
-      .to({}, { duration: 0.46 })
+      .to({}, { duration: 0.54 })
       .call(() => setChestState("reward-rise"))
-      .to({}, { duration: 0.7 })
-  }, [finishReveal, user.preferences.soundEnabled])
+      .to({}, { duration: 0.82 })
+  }, [finishReveal, reduceMotion, user.preferences.soundEnabled])
 
   const triggerOpen = useCallback(() => {
     if (processingRef.current) return
@@ -142,6 +168,7 @@ export function ChestPage() {
     }
 
     pendingRewardRef.current = result.reward
+    setRitualRarity(result.reward.rarity ?? "common")
     preloadFoodAsset(result.reward.dishId, "full")
     if (skipAnimation || reduceMotion) {
       setChestState("reward-rise")
@@ -166,10 +193,12 @@ export function ChestPage() {
 
   const closeReveal = () => {
     timelineRef.current?.kill()
+    completeRewardReveal()
     setShowReveal(false)
     setReward(null)
     pendingRewardRef.current = null
     setChestState("idle")
+    setRitualRarity(null)
     processingRef.current = false
   }
 
@@ -179,14 +208,29 @@ export function ChestPage() {
   }
 
   useEffect(() => {
+    const handleShortcut = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null
+      if (target?.matches("input, textarea, select, button, a")) return
+      if (event.code === "Space" && !isAnimating && !showReveal && !showOdds) {
+        event.preventDefault()
+        triggerOpen()
+      }
+      if (event.key.toLowerCase() === "s" && isAnimating) skipCurrentAnimation()
+    }
+    window.addEventListener("keydown", handleShortcut)
+    return () => window.removeEventListener("keydown", handleShortcut)
+  }, [isAnimating, showOdds, showReveal, triggerOpen])
+
+  useEffect(() => {
     return () => {
       timelineRef.current?.kill()
+      completeRewardReveal()
     }
-  }, [])
+  }, [completeRewardReveal])
 
   return (
     <div
-      className="loot-stage-page"
+      className={`loot-stage-page ritual-${chestState} ${ritualRarity ? `ritual-rarity-${ritualRarity}` : ""}`}
       style={
         {
           "--slot-accent": theme.accent,
@@ -265,11 +309,20 @@ export function ChestPage() {
           state={chestState}
           accent={theme.accent}
           reducedMotion={reduceMotion}
+          rarity={ritualRarity}
         />
 
         <div className="ritual-status">
           <span className={isAnimating ? "is-live" : ""} />
           <p>{STATE_LABELS[chestState]}</p>
+        </div>
+
+        <div className="ritual-progress" aria-label={`Tiến trình: ${STATE_LABELS[chestState]}`}>
+          {RITUAL_STEPS.map((step, index) => {
+            const currentIndex = RITUAL_STEPS.indexOf(chestState)
+            const active = currentIndex >= index || chestState === "result"
+            return <i key={step} className={active ? "is-active" : ""} />
+          })}
         </div>
 
         <div className="stage-actions">
@@ -311,6 +364,7 @@ export function ChestPage() {
           <span>
             TỶ LỆ HIẾM <strong>28%</strong>
           </span>
+          <button onClick={() => setShowOdds(true)}>XEM TỈ LỆ</button>
         </footer>
       </section>
 
@@ -326,6 +380,7 @@ export function ChestPage() {
           }}
         />
       )}
+      {showOdds && <ChestOddsModal onClose={() => setShowOdds(false)} />}
     </div>
   )
 }
@@ -334,10 +389,12 @@ function ChestScene({
   state,
   accent,
   reducedMotion,
+  rarity,
 }: {
   state: ChestState
   accent: string
   reducedMotion: boolean
+  rarity: RewardRarity | null
 }) {
   const particles = useMemo(
     () =>
@@ -350,16 +407,36 @@ function ChestScene({
     [],
   )
 
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (reducedMotion) return
+    const bounds = event.currentTarget.getBoundingClientRect()
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5
+    event.currentTarget.style.setProperty("--tilt-x", `${y * -7}deg`)
+    event.currentTarget.style.setProperty("--tilt-y", `${x * 9}deg`)
+  }
+
+  const resetPointer = (event: React.PointerEvent<HTMLDivElement>) => {
+    event.currentTarget.style.setProperty("--tilt-x", "0deg")
+    event.currentTarget.style.setProperty("--tilt-y", "0deg")
+  }
+
   return (
     <div
-      className={`chest-scene scene-${state}`}
+      className={`chest-scene scene-${state} scene-rarity-${rarity ?? "common"}`}
       style={{ "--scene-accent": accent } as React.CSSProperties}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetPointer}
     >
       <LootVfxCanvas
         state={state}
         accent={accent}
         reducedMotion={reducedMotion}
+        rarity={rarity}
       />
+      <div className="scene-stars" aria-hidden="true">
+        {Array.from({ length: 12 }, (_, index) => <i key={index} />)}
+      </div>
       <div className="ritual-halo" />
       <div className="ritual-ring ritual-ring-outer">
         <i />
@@ -385,23 +462,25 @@ function ChestScene({
         <span className="key-tooth" />
       </div>
 
-      <div className="chest-model" aria-hidden="true">
-        <div className="chest-shadow" />
-        <div className="chest-lid">
-          <div className="lid-face">
-            <span />
-            <span />
+      <div className="chest-parallax">
+        <div className="chest-model" aria-hidden="true">
+          <div className="chest-shadow" />
+          <div className="chest-lid">
+            <div className="lid-face">
+              <span />
+              <span />
+            </div>
           </div>
-        </div>
-        <div className="chest-body">
-          <div className="body-panel left" />
-          <div className="body-panel right" />
-          <div className="chest-core">
-            <span>◇</span>
+          <div className="chest-body">
+            <div className="body-panel left" />
+            <div className="body-panel right" />
+            <div className="chest-core">
+              <span>◇</span>
+            </div>
+            <div className="chest-band" />
           </div>
-          <div className="chest-band" />
+          <div className="inner-light" />
         </div>
-        <div className="inner-light" />
       </div>
 
       <div className="reward-sigil">
