@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: #080c18;
+  --color-foreground: #e8edf5;
+  --color-card: #0e1628;
+  --color-primary: #f5a623;
+  --color-primary-foreground: #080c18;
+  --color-secondary: #162040;
+  --color-secondary-foreground: #a8b8d0;
+  --color-muted: #111827;
+  --color-muted-foreground: #6b7f99;
+  --color-accent: #00d4ff;
+  --color-accent-foreground: #080c18;
+  --color-border: rgba(0,212,255,0.12);
+  --radius: 12px;
+  --font-display: 'Exo 2', sans-serif;
+  --font-body: 'Be Vietnam Pro', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  background-color: #080c18;
+  color: #e8edf5;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  min-height: 100dvh;
+  overscroll-behavior: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.18); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,212,255,0.35); }
+
+/* Hide scrollbars on overflow containers */
+.overflow-x-auto { -ms-overflow-style: none; scrollbar-width: none; }
+.overflow-x-auto::-webkit-scrollbar { display: none; }
+
+/* Range input thumb */
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #00d4ff;
+  border: 2px solid #080c18;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0,212,255,0.4);
+}
+input[type='range']::-moz-range-thumb {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #00d4ff;
+  border: 2px solid #080c18;
+  cursor: pointer;
+}
+
+/* ─── Keyframes ─────────────────────────────────────────────────────── */
+
+@keyframes chest-shake {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  15%  { transform: rotate(-3.5deg) scale(1.04); }
+  30%  { transform: rotate(4deg) scale(1.07); }
+  45%  { transform: rotate(-5deg) scale(1.10); }
+  60%  { transform: rotate(5deg) scale(1.10); }
+  75%  { transform: rotate(-3deg) scale(1.06); }
+  90%  { transform: rotate(2deg) scale(1.03); }
+}
+
+@keyframes chest-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.06); }
+}
+
+@keyframes burst-out {
+  0%   { transform: scale(0.4) rotate(-8deg); opacity: 0; }
+  55%  { transform: scale(1.12) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes float-particle {
+  0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx, 20px), -70px) scale(0.2); opacity: 0; }
+}
+
+@keyframes ambient-drift {
+  0%   { transform: translate(0, 0); opacity: var(--op, 0.3); }
+  33%  { transform: translate(8px, -12px); opacity: calc(var(--op, 0.3) * 1.4); }
+  66%  { transform: translate(-6px, -6px); opacity: calc(var(--op, 0.3) * 0.7); }
+  100% { transform: translate(0, 0); opacity: var(--op, 0.3); }
+}
+
+@keyframes key-bounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  30%  { transform: translateY(-5px) rotate(-8deg); }
+  60%  { transform: translateY(-3px) rotate(4deg); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal-card {
+  0%   { opacity: 0; transform: scale(0.75) rotateX(15deg); }
+  55%  { transform: scale(1.04) rotateX(-3deg); opacity: 1; }
+  100% { transform: scale(1) rotateX(0deg); opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Animation utility classes ─────────────────────────────────────── */
+.animate-chest-shake  { animation: chest-shake 0.7s ease-in-out; }
+.animate-chest-glow   { animation: chest-glow 1.2s ease-in-out infinite; }
+.animate-burst-out    { animation: burst-out 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.animate-fade-in-up   { animation: fade-in-up 0.38s ease forwards; }
+.animate-reveal-card  { animation: reveal-card 0.55s cubic-bezier(0.34,1.4,0.64,1) forwards; }
+.animate-pulse-glow   { animation: pulse-glow 1.8s ease-in-out infinite; }
+.animate-key-bounce   { animation: key-bounce 1.6s ease-in-out infinite; }
+.animate-slide-up     { animation: slide-up 0.35s ease forwards; }
+
+/* Reduced-motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .animate-chest-shake,
+  .animate-chest-glow,
+  .animate-burst-out,
+  .animate-fade-in-up,
+  .animate-reveal-card,
+  .animate-pulse-glow,
+  .animate-key-bounce,
+  .animate-slide-up,
+  .animate-spin {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
