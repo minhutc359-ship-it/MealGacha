@@ -1,39 +1,41 @@
-import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import { useAppStore } from './store/useAppStore';
-import { BottomNav } from './components/layout/BottomNav';
-import { Toast } from './components/ui/Toast';
-import { ChestPage } from './pages/ChestPage';
-import { CollectionPage } from './pages/CollectionPage';
-import { WheelPage } from './pages/WheelPage';
-import { SettingsPage } from './pages/SettingsPage';
+import { useEffect } from "react"
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom"
+import { useAppStore } from "./store/useAppStore"
+import { ClientShell } from "./components/layout/ClientShell"
+import { Toast } from "./components/ui/Toast"
+import { ChestPage } from "./pages/ChestPage"
+import { CollectionPage } from "./pages/CollectionPage"
+import { WheelPage } from "./pages/WheelPage"
+import { SettingsPage } from "./pages/SettingsPage"
 
 function AppInner() {
-  const init = useAppStore((s) => s.init);
-  const navigate = useNavigate();
+  const init = useAppStore((s) => s.init)
+  const navigate = useNavigate()
 
-  useEffect(() => { init(); }, []);
+  useEffect(() => {
+    init()
+  }, [])
 
   // Cross-tab sync: reload user state when another tab mutates localStorage
   useEffect(() => {
     const handler = (e: StorageEvent) => {
-      if (e.key === 'foodchest.user.v1' && e.newValue) {
-        useAppStore.setState({ user: useAppStore.getState()['user'] });
-        useAppStore.getState().init();
+      if (e.key === "foodchest.user.v1" && e.newValue) {
+        useAppStore.setState({ user: useAppStore.getState()["user"] })
+        useAppStore.getState().init()
       }
-    };
-    window.addEventListener('storage', handler);
-    return () => window.removeEventListener('storage', handler);
-  }, []);
+    }
+    window.addEventListener("storage", handler)
+    return () => window.removeEventListener("storage", handler)
+  }, [])
 
   useEffect(() => {
-    const handler = () => navigate('/collection');
-    window.addEventListener('nav:collection', handler);
-    return () => window.removeEventListener('nav:collection', handler);
-  }, [navigate]);
+    const handler = () => navigate("/collection")
+    window.addEventListener("nav:collection", handler)
+    return () => window.removeEventListener("nav:collection", handler)
+  }, [navigate])
 
   return (
-    <div style={{ background: '#080c18', minHeight: '100dvh' }}>
+    <ClientShell>
       <Toast />
       <Routes>
         <Route path="/" element={<ChestPage />} />
@@ -41,9 +43,8 @@ function AppInner() {
         <Route path="/wheel" element={<WheelPage />} />
         <Route path="/settings" element={<SettingsPage />} />
       </Routes>
-      <BottomNav />
-    </div>
-  );
+    </ClientShell>
+  )
 }
 
 export default function App() {
@@ -51,5 +52,5 @@ export default function App() {
     <BrowserRouter>
       <AppInner />
     </BrowserRouter>
-  );
+  )
 }
