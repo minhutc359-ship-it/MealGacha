@@ -29,6 +29,7 @@ const StoredUserSchema = z
       lunch: z.array(z.string()),
       dinner: z.array(z.string()),
     }),
+    unlimitedChestUnlockedAt: z.string().optional(),
     preferences: z.object({
       soundEnabled: z.boolean().optional(),
       reducedMotion: z.boolean().optional(),

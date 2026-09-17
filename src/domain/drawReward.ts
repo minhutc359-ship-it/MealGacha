@@ -8,6 +8,7 @@ import {
   RewardRarity,
 } from "./models"
 import { getDateKey } from "./dateKey"
+import { hasUnlimitedChestAccess, isCatalogComplete } from "./achievements"
 
 const CHEST_COST = parseInt(import.meta.env.VITE_CHEST_COST || "1", 10)
 const RECENT_EXCLUSION = 3
@@ -20,9 +21,21 @@ function secureRandom(): number {
 
 export function drawRarity(fusion = false): RewardRarity {
   const roll = secureRandom()
-  if (fusion) return roll < 0.18 ? "epic" : "rare"
-  if (roll < 0.06) return "epic"
-  if (roll < 0.28) return "rare"
+  if (fusion) {
+    if (roll < 0.03) return "diamond"
+    return roll < 0.25 ? "epic" : "rare"
+  }
+  if (roll < 0.01) return "diamond"
+  if (roll < 0.07) return "epic"
+  if (roll < 0.29) return "rare"
+  return "common"
+}
+
+export function getDishRarity(dish: Dish): RewardRarity {
+  if (dish.rarity) return dish.rarity
+  if (dish.weight <= 12) return "diamond"
+  if (dish.weight <= 35) return "epic"
+  if (dish.weight <= 70) return "rare"
   return "common"
 }
 
@@ -61,7 +74,7 @@ export function canOpenChest(
   dishes: Dish[],
   slot: MealSlot,
 ): string | null {
-  if (state.keys < CHEST_COST)
+  if (!hasUnlimitedChestAccess(state, dishes) && state.keys < CHEST_COST)
     return "Không đủ chìa khóa. Hãy điểm danh để nhận thêm."
   if (dishes.length === 0) return "Dữ liệu món ăn chưa sẵn sàng."
   const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [])
@@ -73,10 +86,16 @@ export function applyOpenChest(
   state: UserState,
   dishes: Dish[],
   slot: MealSlot,
-): { state: UserState; reward: RewardInstance } {
+): {
+  state: UserState
+  reward: RewardInstance
+  unlockedUnlimited: boolean
+} {
   const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [])
   const dish = drawWeighted(pool)
   const now = new Date().toISOString()
+  const unlimitedBeforeDraw = hasUnlimitedChestAccess(state, dishes)
+  const cost = unlimitedBeforeDraw ? 0 : CHEST_COST
   const rewardId = crypto.randomUUID()
   const snapshot: DishSnapshot = {
     id: dish.id,
@@ -95,12 +114,12 @@ export function applyOpenChest(
     acquiredAt: now,
     acquiredDate: getDateKey(),
     favorite: false,
-    rarity: drawRarity(),
+    rarity: getDishRarity(dish),
   }
   const tx: KeyTransaction = {
     id: crypto.randomUUID(),
-    amount: -CHEST_COST,
-    balanceAfter: state.keys - CHEST_COST,
+    amount: -cost,
+    balanceAfter: state.keys - cost,
     reason: "chest_open",
     createdAt: now,
     referenceId: rewardId,
@@ -109,13 +128,18 @@ export function applyOpenChest(
     0,
     5,
   )
+  const rewards = [...state.rewards, reward]
+  const completedNow = isCatalogComplete(rewards, dishes)
+  const unlockedUnlimited = !unlimitedBeforeDraw && completedNow
   const newState: UserState = {
     ...state,
-    keys: state.keys - CHEST_COST,
-    rewards: [...state.rewards, reward],
-    keyTransactions: [...state.keyTransactions, tx],
+    keys: state.keys - cost,
+    rewards,
+    keyTransactions: cost > 0 ? [...state.keyTransactions, tx] : state.keyTransactions,
     recentDishIdsByMeal: { ...state.recentDishIdsByMeal, [slot]: recent },
+    unlimitedChestUnlockedAt:
+      state.unlimitedChestUnlockedAt ?? (completedNow ? now : undefined),
     updatedAt: now,
   }
-  return { state: newState, reward }
+  return { state: newState, reward, unlockedUnlimited }
 }

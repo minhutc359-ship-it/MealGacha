@@ -6,6 +6,10 @@ import { getDateKey } from "./dateKey"
 import { RewardInstance, UserState } from "./models"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
 import { getVisibleRewards } from "./rewardPresentation"
+import {
+  getCollectionProgress,
+  isCatalogComplete,
+} from "./achievements"
 
 function makeState(overrides: Partial<UserState> = {}): UserState {
   const now = new Date().toISOString()
@@ -71,7 +75,19 @@ describe("chest draw", () => {
     expect(result.state.keys).toBe(2)
     expect(result.reward.mealSlot).toBe("lunch")
     expect(result.state.rewards).toHaveLength(1)
-    expect(["common", "rare", "epic"]).toContain(result.reward.rarity)
+    expect(["common", "rare", "epic", "diamond"]).toContain(result.reward.rarity)
+  })
+
+  it("does not consume keys after unlimited chest access is unlocked", () => {
+    const state = makeState({
+      keys: 0,
+      unlimitedChestUnlockedAt: new Date().toISOString(),
+    })
+    expect(canOpenChest(state, SEED_DISHES, "dinner")).toBeNull()
+
+    const result = applyOpenChest(state, SEED_DISHES, "dinner")
+    expect(result.state.keys).toBe(0)
+    expect(result.state.keyTransactions).toHaveLength(0)
   })
 
   it("excludes the last three dishes when the banner has enough choices", () => {
@@ -110,7 +126,28 @@ describe("fusion", () => {
     expect(result.state.rewards).toHaveLength(4)
     expect(result.state.fusions).toHaveLength(1)
     expect(result.reward.source).toBe("fusion")
-    expect(["rare", "epic"]).toContain(result.reward.rarity)
+    expect(["rare", "epic", "diamond"]).toContain(result.reward.rarity)
+  })
+})
+
+describe("achievements", () => {
+  it("tracks unique dishes and completes the catalog only once every dish is opened", () => {
+    const rewards = SEED_DISHES.map((dish, index) => ({
+      ...makeReward(`achievement-${index}`),
+      dishId: dish.id,
+      dish: {
+        id: dish.id,
+        name: dish.name,
+        searchQuery: dish.searchQuery,
+        category: dish.category,
+      },
+    }))
+
+    const progress = getCollectionProgress(rewards, SEED_DISHES)
+    expect(progress.unlocked).toBe(SEED_DISHES.length)
+    expect(progress.percentage).toBe(100)
+    expect(isCatalogComplete(rewards, SEED_DISHES)).toBe(true)
+    expect(isCatalogComplete(rewards.slice(1), SEED_DISHES)).toBe(false)
   })
 })
 

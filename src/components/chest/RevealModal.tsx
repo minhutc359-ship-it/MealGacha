@@ -6,7 +6,7 @@ import {
 } from "../../domain/models"
 import { PlacesModal } from "../places/PlacesModal"
 import { FoodImage } from "../food/FoodImage"
-import { RarityFrame } from "../ui/RarityFrame"
+import { RarityFrame, RARITY_LABELS } from "../ui/RarityFrame"
 import { useAppStore } from "../../store/useAppStore"
 
 interface Props {
@@ -60,7 +60,7 @@ export function RevealModal({
 
   const dish = reward.dish
   const rarity = reward.rarity ?? "common"
-  const particleCount = rarity === "epic" ? 24 : rarity === "rare" ? 16 : 9
+  const particleCount = rarity === "diamond" ? 34 : rarity === "epic" ? 24 : rarity === "rare" ? 16 : 9
 
   const shareReward = async () => {
     const text = `Tôi vừa mở được ${dish.name} trong Rương Vị Giác!`
@@ -161,11 +161,7 @@ export function RevealModal({
               </div>
             )}
             <div className={`reward-rarity-badge rarity-${rarity}`}>
-              {rarity === "epic"
-                ? "Sử thi"
-                : rarity === "rare"
-                  ? "Hiếm"
-                  : "Thường"}
+              {RARITY_LABELS[rarity]}
             </div>
             {/* Bottom fade */}
             <div

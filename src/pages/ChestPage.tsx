@@ -22,6 +22,7 @@ import {
   stopChestOpeningTrack,
 } from "../infrastructure/audio/soundEngine"
 import { getVisibleRewards } from "../domain/rewardPresentation"
+import { hasUnlimitedChestAccess } from "../domain/achievements"
 
 type ChestState =
   | "idle"
@@ -101,6 +102,7 @@ const SLOT_THEME: Record<MealSlot, {
 
 export function ChestPage() {
   const user = useAppStore((state) => state.user)
+  const dishes = useAppStore((state) => state.dishes)
   const checkIn = useAppStore((state) => state.checkIn)
   const openChest = useAppStore((state) => state.openChest)
   const showToast = useAppStore((state) => state.showToast)
@@ -132,6 +134,7 @@ export function ChestPage() {
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches
   }, [])
   const reduceMotion = user.preferences.reducedMotion || prefersReducedMotion
+  const unlimited = hasUnlimitedChestAccess(user, dishes)
 
   const finishReveal = useCallback(() => {
     const nextReward = pendingRewardRef.current
@@ -146,7 +149,14 @@ export function ChestPage() {
       user.preferences.soundEnabled,
       customTrackRef.current ? 0.18 : 1,
     )
-    vibrate(nextReward.rarity === "epic" ? [30, 45, 80] : 35, reduceMotion)
+    vibrate(
+      nextReward.rarity === "diamond"
+        ? [35, 35, 70, 35, 110]
+        : nextReward.rarity === "epic"
+          ? [30, 45, 80]
+          : 35,
+      reduceMotion,
+    )
   }, [completeRewardReveal, reduceMotion, user.preferences.soundEnabled])
 
   const runTimeline = useCallback(() => {
@@ -167,38 +177,38 @@ export function ChestPage() {
         cue("key")
         vibrate(12, reduceMotion)
       })
-      .to({}, { duration: 0.62 })
+      .to({}, { duration: 0.56 })
       .call(() => setChestState("inserting"))
-      .to({}, { duration: 0.26 })
+      .to({}, { duration: 0.22 })
       .call(() => {
         setChestState("locking")
         cue("lock")
         vibrate(18, reduceMotion)
       })
-      .to({}, { duration: 0.42 })
+      .to({}, { duration: 0.36 })
       .call(() => {
         setChestState("charging")
         cue("charge")
       })
-      .to({}, { duration: 0.66 })
+      .to({}, { duration: 0.61 })
       .call(() => {
         setChestState("pulse")
         cue("pulse")
         vibrate([12, 40, 20], reduceMotion)
       })
-      .to({}, { duration: 0.46 })
+      .to({}, { duration: 0.38 })
       .call(() => setChestState("anticipation"))
-      .to({}, { duration: 0.64 })
+      .to({}, { duration: 0.58 })
       .call(() => {
         setChestState("impact")
         cue("impact")
         vibrate([18, 25, 55], reduceMotion)
       })
-      .to({}, { duration: 0.18 })
+      .to({}, { duration: 0.16 })
       .call(() => setChestState("opening"))
-      .to({}, { duration: 0.56 })
+      .to({}, { duration: 0.54 })
       .call(() => setChestState("reward-rise"))
-      .to({}, { duration: 0.76 })
+      .to({}, { duration: 0.73 })
   }, [finishReveal, reduceMotion, user.preferences.soundEnabled])
 
   const triggerOpen = useCallback(() => {
@@ -303,7 +313,7 @@ export function ChestPage() {
         </div>
         <div className="mobile-wallet">
           <span>◇</span>
-          <strong>{user.keys}</strong>
+          <strong>{unlimited ? "∞" : user.keys}</strong>
         </div>
       </div>
 
@@ -388,13 +398,17 @@ export function ChestPage() {
             id="open-chest-button"
             className="hextech-button"
             onClick={triggerOpen}
-            disabled={user.keys < 1 || isAnimating || showReveal}
+            disabled={(!unlimited && user.keys < 1) || isAnimating || showReveal}
           >
             <span>
               {isAnimating ? STATE_LABELS[chestState] : "KHAI MỞ RƯƠNG"}
             </span>
             <small>
-              {isAnimating ? "Năng lượng đang hội tụ" : "TIÊU HAO 1 CHÌA KHÓA"}
+              {isAnimating
+                ? "Năng lượng đang hội tụ"
+                : unlimited
+                  ? "ĐẶC QUYỀN VÔ HẠN · KHÔNG TỐN CHÌA"
+                  : "TIÊU HAO 1 CHÌA KHÓA"}
             </small>
           </button>
 
@@ -429,7 +443,7 @@ export function ChestPage() {
       {showReveal && reward && (
         <RevealModal
           reward={reward}
-          canOpenAgain={user.keys >= 1}
+          canOpenAgain={unlimited || user.keys >= 1}
           onClose={closeReveal}
           onOpenAgain={openAgain}
           onGoCollection={() => {
@@ -438,7 +452,13 @@ export function ChestPage() {
           }}
         />
       )}
-      {showOdds && <ChestOddsModal onClose={() => setShowOdds(false)} />}
+      {showOdds && (
+        <ChestOddsModal
+          dishes={dishes}
+          slot={slot}
+          onClose={() => setShowOdds(false)}
+        />
+      )}
     </div>
   )
 }

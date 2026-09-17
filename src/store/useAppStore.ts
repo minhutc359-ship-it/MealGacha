@@ -17,14 +17,20 @@ interface AppStore {
 
   init(): void
   checkIn(): boolean
-  openChest(slot: MealSlot): { reward: RewardInstance; error: null } | {
+  openChest(slot: MealSlot): {
+    reward: RewardInstance
+    error: null
+    unlockedUnlimited: boolean
+  } | {
     reward: null
     error: string
+    unlockedUnlimited: false
   }
   fuse(inputIds: [string, string, string], targetSlot: MealSlot): {
     reward: RewardInstance
     error: null
-  } | { reward: null; error: string }
+    unlockedUnlimited: boolean
+  } | { reward: null; error: string; unlockedUnlimited: false }
   toggleFavorite(rewardId: string): void
   showToast(message: string, type?: "success" | "error" | "info"): void
   dismissToast(): void
@@ -68,23 +74,26 @@ export const useAppStore = create<AppStore>((set, get) => ({
   openChest(slot) {
     const { user, dishes } = get()
     const err = canOpenChest(user, dishes, slot)
-    if (err) return { reward: null, error: err }
-    const { state: newUser, reward } = applyOpenChest(user, dishes, slot)
+    if (err) return { reward: null, error: err, unlockedUnlimited: false }
+    const { state: newUser, reward, unlockedUnlimited } = applyOpenChest(user, dishes, slot)
     repository.saveUser(newUser)
     set({ user: newUser, pendingRevealRewardId: reward.id })
-    return { reward, error: null }
+    if (unlockedUnlimited) {
+      get().showToast("◆ Hoàn thành toàn bộ món — đã mở khóa rương vô hạn!", "success")
+    }
+    return { reward, error: null, unlockedUnlimited }
   },
 
   fuse(inputIds, targetSlot) {
     const { user, dishes } = get()
     const err = canFuse(user.rewards, inputIds)
-    if (err) return { reward: null, error: err }
+    if (err) return { reward: null, error: err, unlockedUnlimited: false }
     const pool = dishes.filter(
       (d) => d.active && d.mealSlots.includes(targetSlot),
     )
     if (pool.length === 0)
-      return { reward: null, error: "Không có món nào cho banner đích." }
-    const { state: newUser, reward } = applyFuse(
+      return { reward: null, error: "Không có món nào cho banner đích.", unlockedUnlimited: false }
+    const { state: newUser, reward, unlockedUnlimited } = applyFuse(
       user,
       dishes,
       inputIds,
@@ -92,7 +101,10 @@ export const useAppStore = create<AppStore>((set, get) => ({
     )
     repository.saveUser(newUser)
     set({ user: newUser })
-    return { reward, error: null }
+    if (unlockedUnlimited) {
+      get().showToast("◆ Hoàn thành toàn bộ món — đã mở khóa rương vô hạn!", "success")
+    }
+    return { reward, error: null, unlockedUnlimited }
   },
 
   toggleFavorite(rewardId) {

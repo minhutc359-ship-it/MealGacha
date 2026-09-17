@@ -6,8 +6,9 @@ import {
   DishSnapshot,
 } from "./models"
 import { Dish } from "./models"
-import { drawWeighted, buildPool, drawRarity } from "./drawReward"
+import { drawWeighted, buildPool, getDishRarity } from "./drawReward"
 import { getDateKey } from "./dateKey"
+import { hasUnlimitedChestAccess, isCatalogComplete } from "./achievements"
 
 export function canFuse(
   rewards: RewardInstance[],
@@ -30,14 +31,21 @@ export function applyFuse(
   dishes: Dish[],
   inputIds: [string, string, string],
   targetSlot: MealSlot,
-): { state: UserState; reward: RewardInstance } {
+): { state: UserState; reward: RewardInstance; unlockedUnlimited: boolean } {
   const now = new Date().toISOString()
   const inputDishIds = inputIds.map(
     (id) => state.rewards.find((r) => r.id === id)!.dishId,
   )
   let pool = buildPool(dishes, targetSlot, [])
   const alternatives = pool.filter((d) => !inputDishIds.includes(d.id))
-  const drawPool = alternatives.length > 0 ? alternatives : pool
+  const preferredPool = alternatives.filter(
+    (dish) => getDishRarity(dish) !== "common",
+  )
+  const drawPool = preferredPool.length > 0
+    ? preferredPool
+    : alternatives.length > 0
+      ? alternatives
+      : pool
   const dish = drawWeighted(drawPool)
   const outId = crypto.randomUUID()
   const fusionId = crypto.randomUUID()
@@ -59,7 +67,7 @@ export function applyFuse(
     acquiredDate: getDateKey(),
     fusionId,
     favorite: false,
-    rarity: drawRarity(true),
+    rarity: getDishRarity(dish),
   }
   const fusion: FusionTransaction = {
     id: fusionId,
@@ -74,13 +82,19 @@ export function applyFuse(
       ? { ...r, status: "consumed" as const, consumedAt: now, fusionId }
       : r,
   )
+  const rewards = [...newRewards, reward]
+  const unlimitedBeforeFuse = hasUnlimitedChestAccess(state, dishes)
+  const completedNow = isCatalogComplete(rewards, dishes)
   return {
     state: {
       ...state,
-      rewards: [...newRewards, reward],
+      rewards,
       fusions: [...state.fusions, fusion],
+      unlimitedChestUnlockedAt:
+        state.unlimitedChestUnlockedAt ?? (completedNow ? now : undefined),
       updatedAt: now,
     },
     reward,
+    unlockedUnlimited: !unlimitedBeforeFuse && completedNow,
   }
 }

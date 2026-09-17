@@ -1,15 +1,20 @@
 import { NavLink } from "react-router-dom"
 import { useAppStore } from "../../store/useAppStore"
+import { hasUnlimitedChestAccess } from "../../domain/achievements"
 
 const links = [
   { to: "/", label: "Rương vị giác" },
   { to: "/collection", label: "Bộ sưu tập" },
+  { to: "/achievements", label: "Thành tựu" },
   { to: "/wheel", label: "Vòng quay" },
   { to: "/settings", label: "Cài đặt" },
 ]
 
 export function TopNav() {
   const keys = useAppStore((state) => state.user.keys)
+  const user = useAppStore((state) => state.user)
+  const dishes = useAppStore((state) => state.dishes)
+  const unlimited = hasUnlimitedChestAccess(user, dishes)
   const soundEnabled = useAppStore((state) => state.user.preferences.soundEnabled)
   const updatePreference = useAppStore((state) => state.updatePreference)
 
@@ -39,7 +44,7 @@ export function TopNav() {
         ))}
       </nav>
 
-      <div className="topbar-wallet" aria-label={`${keys} chìa khóa`}>
+      <div className={`topbar-wallet ${unlimited ? "is-unlimited" : ""}`} aria-label={unlimited ? "Rương vô hạn" : `${keys} chìa khóa`}>
         <button
           className="quick-sound-toggle"
           onClick={() => updatePreference("soundEnabled", !soundEnabled)}
@@ -52,8 +57,8 @@ export function TopNav() {
         <span className="key-glyph" aria-hidden="true">
           ◇
         </span>
-        <strong>{keys}</strong>
-        <small>CHÌA</small>
+        <strong>{unlimited ? "∞" : keys}</strong>
+        <small>{unlimited ? "VÔ HẠN" : "CHÌA"}</small>
       </div>
     </header>
   )

@@ -1,17 +1,34 @@
 import { useEffect, useRef } from "react"
+import type { Dish, MealSlot, RewardRarity } from "../../domain/models"
+import { getDishRarity } from "../../domain/drawReward"
 
 interface Props {
+  dishes: Dish[]
+  slot: MealSlot
   onClose(): void
 }
 
-const CHEST_ODDS = [
-  { label: "Thường", value: 72, className: "common", note: "Món phù hợp banner đã chọn" },
-  { label: "Hiếm", value: 22, className: "rare", note: "Khung cyan và hiệu ứng tăng cường" },
-  { label: "Sử thi", value: 6, className: "epic", note: "Khung vàng tím và đại cảnh đặc biệt" },
+const RARITY_META: Array<{
+  rarity: RewardRarity
+  label: string
+  note: string
+}> = [
+  { rarity: "common", label: "Thường", note: "Món phổ biến, dễ tiếp cận" },
+  { rarity: "rare", label: "Hiếm", note: "Món có mức giá nhỉnh hơn" },
+  { rarity: "epic", label: "Sử thi", note: "Trải nghiệm ẩm thực cao cấp" },
+  { rarity: "diamond", label: "Kim cương", note: "Fine dining và dịp siêu đặc biệt" },
 ]
 
-export function ChestOddsModal({ onClose }: Props) {
+export function ChestOddsModal({ dishes, slot, onClose }: Props) {
   const closeRef = useRef<HTMLButtonElement>(null)
+  const pool = dishes.filter((dish) => dish.active && dish.mealSlots.includes(slot))
+  const totalWeight = pool.reduce((sum, dish) => sum + Math.max(dish.weight, 1), 0)
+  const odds = RARITY_META.map((meta) => {
+    const weight = pool
+      .filter((dish) => getDishRarity(dish) === meta.rarity)
+      .reduce((sum, dish) => sum + Math.max(dish.weight, 1), 0)
+    return { ...meta, value: totalWeight > 0 ? (weight / totalWeight) * 100 : 0 }
+  })
 
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
@@ -40,22 +57,22 @@ export function ChestOddsModal({ onClose }: Props) {
         </header>
 
         <div className="odds-list">
-          {CHEST_ODDS.map((item) => (
-            <div className={`odds-row rarity-${item.className}`} key={item.label}>
+          {odds.map((item) => (
+            <div className={`odds-row rarity-${item.rarity}`} key={item.label}>
               <span className="odds-gem" aria-hidden="true">◇</span>
               <div>
                 <strong>{item.label}</strong>
                 <small>{item.note}</small>
-                <span className="odds-track"><i style={{ width: `${item.value}%` }} /></span>
+                <span className="odds-track"><i style={{ width: `${Math.max(item.value, item.value > 0 ? 2 : 0)}%` }} /></span>
               </div>
-              <b>{item.value}%</b>
+              <b>{item.value < 1 && item.value > 0 ? "<1" : item.value.toFixed(1)}%</b>
             </div>
           ))}
         </div>
 
         <div className="fusion-odds">
           <span>✦</span>
-          <p><strong>Ghép món được bảo chứng</strong><small>82% Hiếm · 18% Sử thi</small></p>
+          <p><strong>Giá trị càng cao, tỉ lệ càng thấp</strong><small>Khung Kim Cương dành cho món và dịp siêu hiếm</small></p>
         </div>
         <p className="odds-note">Món được chọn ngẫu nhiên có trọng số và giảm lặp 3 kết quả gần nhất khi pool đủ lớn.</p>
       </section>

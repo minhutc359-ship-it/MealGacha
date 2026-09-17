@@ -5,6 +5,7 @@ export const RARITY_LABELS: Record<RewardRarity, string> = {
   common: "Phổ biến",
   rare: "Hiếm",
   epic: "Sử thi",
+  diamond: "Kim cương",
 }
 
 export function RarityFrame({

@@ -30,7 +30,8 @@ let preloadedTrack: HTMLAudioElement | null = null
 let activeTrack: HTMLAudioElement | null = null
 
 function getChestTrackUrl(): string {
-  return import.meta.env.VITE_CHEST_OPENING_AUDIO_URL?.trim() ?? ""
+  return import.meta.env.VITE_CHEST_OPENING_AUDIO_URL?.trim()
+    || "/assets/audio/chest-opening.mp3"
 }
 
 export function preloadChestOpeningTrack(): void {

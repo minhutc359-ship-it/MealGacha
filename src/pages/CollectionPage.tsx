@@ -11,6 +11,7 @@ import { getDateKey } from "../domain/dateKey"
 import { FoodImage } from "../components/food/FoodImage"
 import { RevealModal } from "../components/chest/RevealModal"
 import { playSound } from "../infrastructure/audio/soundEngine"
+import { RARITY_LABELS } from "../components/ui/RarityFrame"
 
 type SlotFilter = "all" | MealSlot
 type StatusFilter = "all" | "available" | "consumed"
@@ -517,11 +518,7 @@ function RewardCard({
           <span
             className={`reward-rarity-inline rarity-${reward.rarity ?? "common"}`}
           >
-            {reward.rarity === "epic"
-              ? "Sử thi"
-              : reward.rarity === "rare"
-                ? "Hiếm"
-                : "Thường"}
+            {RARITY_LABELS[reward.rarity ?? "common"]}
           </span>
           {reward.source === "fusion" && (
             <span

@@ -118,7 +118,13 @@ export function LootVfxCanvas({ state, accent, reducedMotion, rarity }: Props) {
           const isCharging = ["locking", "charging", "pulse"].includes(currentState)
           const isSuspense = currentState === "anticipation"
           const isRevealing = ["impact", "opening", "reward-rise", "result"].includes(currentState)
-          const rarityColor = rarityRef.current === "epic" ? 0xe8c777 : rarityRef.current === "rare" ? 0x35d6e6 : color
+          const rarityColor = rarityRef.current === "diamond"
+            ? 0xd9fbff
+            : rarityRef.current === "epic"
+              ? 0xe8c777
+              : rarityRef.current === "rare"
+                ? 0x35d6e6
+                : color
           if (!reducedMotionRef.current) {
             ringGroup.rotation += ticker.deltaTime * (isCharging ? 0.008 : isSuspense ? 0.0007 : 0.0015)
             middleRing.rotation -= ticker.deltaTime * (isCharging ? 0.013 : isSuspense ? 0.001 : 0.0025)
@@ -170,7 +176,7 @@ export function LootVfxCanvas({ state, accent, reducedMotion, rarity }: Props) {
               const distance = velocity * (1 - (1 - progress) ** 2)
               shard.position.set(Math.cos(angle) * distance, Math.sin(angle) * distance)
               shard.rotation = angle + progress * (index % 2 === 0 ? 2.4 : -2.4)
-              shard.alpha = Math.sin(progress * Math.PI) * (rarityRef.current === "epic" ? 1 : 0.72)
+              shard.alpha = Math.sin(progress * Math.PI) * (["epic", "diamond"].includes(rarityRef.current ?? "") ? 1 : 0.72)
               shard.tint = rarityColor
             })
             if (progress === 1) {
