@@ -53,6 +53,8 @@ function devContentWriter(): Plugin {
   const dishesPath = path.join(root, 'src/infrastructure/catalog/localDishes.json')
   const bannerConfigPath = path.join(root, 'src/infrastructure/banner/bannerConfig.ts')
   const bannerDir = path.join(root, 'public/assets/banners')
+  const foodDir = path.join(root, 'public/assets/food/full')
+  const eventsPath = path.join(root, 'src/infrastructure/events/limitedEvents.json')
 
   function readBody(req: import('node:http').IncomingMessage): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -82,7 +84,16 @@ function devContentWriter(): Plugin {
               res.end('Dish ID already exists')
               return
             }
-            fs.writeFileSync(dishesPath, `${JSON.stringify([...current, payload], null, 2)}\n`)
+            const imageData = typeof payload.imageData === 'string' ? payload.imageData : ''
+            const imageMatch = imageData.match(/^data:image\/webp;base64,(.+)$/)
+            const dish = { ...payload }
+            delete dish.imageData
+            if (imageMatch && /^[a-z0-9-]+$/.test(String(payload.id ?? ''))) {
+              fs.mkdirSync(foodDir, { recursive: true })
+              fs.writeFileSync(path.join(foodDir, `${payload.id}.webp`), Buffer.from(imageMatch[1], 'base64'))
+              dish.imageUrl = `/assets/food/full/${payload.id}.webp`
+            }
+            fs.writeFileSync(dishesPath, `${JSON.stringify([...current, dish], null, 2)}\n`)
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify({ ok: true }))
             return
@@ -102,10 +113,21 @@ function devContentWriter(): Plugin {
             fs.writeFileSync(path.join(bannerDir, fileName), Buffer.from(match[2], 'base64'))
             fs.writeFileSync(
               bannerConfigPath,
-              `export interface BannerConfig {\n  id: string\n  imageUrl: string\n  enabled: boolean\n}\n\nexport const BANNER_CONFIG: BannerConfig = ${JSON.stringify({ id, imageUrl: `/assets/banners/${fileName}`, enabled: payload.enabled === true }, null, 2)}\n`,
+              `export interface BannerConfig {\n  id: string\n  imageUrl: string\n  enabled: boolean\n  eventId?: string\n  startsAt?: string\n  endsAt?: string\n}\n\nexport const BANNER_CONFIG: BannerConfig = ${JSON.stringify({ id, imageUrl: `/assets/banners/${fileName}`, enabled: payload.enabled === true, eventId: payload.eventId || undefined, startsAt: payload.startsAt || undefined, endsAt: payload.endsAt || undefined }, null, 2)}\n`,
             )
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify({ ok: true, imageUrl: `/assets/banners/${fileName}` }))
+            return
+          }
+          if (req.url === '/__meal-gacha/dev/events') {
+            if (!Array.isArray(payload)) {
+              res.statusCode = 400
+              res.end('Events must be an array')
+              return
+            }
+            fs.writeFileSync(eventsPath, `${JSON.stringify(payload, null, 2)}\n`)
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ ok: true }))
             return
           }
           res.statusCode = 404

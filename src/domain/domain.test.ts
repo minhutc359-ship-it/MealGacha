@@ -15,6 +15,7 @@ import { RewardInstance, UserState } from "./models"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
 import { getVisibleRewards } from "./rewardPresentation"
 import { getWeeklyEvent, getWeeklyEventProgress } from "./weeklyEvent"
+import { isDishAvailable } from "./limitedEvents"
 import {
   getCollectionProgress,
   isCatalogComplete,
@@ -254,6 +255,20 @@ describe("weekly events", () => {
     const progress = getWeeklyEventProgress([], SEED_DISHES, new Date("2026-09-18T10:00:00"))
     expect(progress.opened).toBe(0)
     expect(progress.percentage).toBe(0)
+  })
+})
+
+describe("limited events", () => {
+  it("keeps limited dishes visible in data but blocks them outside the event window", () => {
+    const dish = { ...SEED_DISHES[0], type: "limited" as const, limitedEventId: "festival" }
+    const event = {
+      id: "festival",
+      title: "Festival",
+      startsAt: "2026-09-18T00:00:00+07:00",
+      endsAt: "2026-09-19T00:00:00+07:00",
+    }
+    expect(isDishAvailable(dish, [event], new Date("2026-09-18T12:00:00+07:00"))).toBe(true)
+    expect(isDishAvailable(dish, [event], new Date("2026-09-19T12:00:00+07:00"))).toBe(false)
   })
 })
 

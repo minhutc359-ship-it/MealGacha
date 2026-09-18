@@ -6,6 +6,9 @@ import { fetchCatalog, ParseResult } from "../infrastructure/catalog/csvAdapter"
 import { Dish } from "../domain/models"
 import { RewardRarity } from "../domain/models"
 import { BannerConfig } from "../infrastructure/banner/bannerConfig"
+import { LimitedEvent } from "../domain/models"
+import sourceLimitedEvents from "../infrastructure/events/limitedEvents.json"
+import { useLanguage } from "../i18n"
 
 interface CatalogPreview {
   url: string
@@ -30,13 +33,17 @@ export function SettingsPage() {
   const [preview, setPreview] = useState<CatalogPreview | null>(null)
   const [showReset, setShowReset] = useState(false)
   const [newDish, setNewDish] = useState<LocalDishDraft>(createLocalDishDraft())
+  const [dishImageUploading, setDishImageUploading] = useState(false)
   const [bannerDraft, setBannerDraft] = useState<BannerConfig>(() =>
     repository.loadBannerOverride() ?? { id: "local-banner-1", imageUrl: "", enabled: false },
   )
+  const [eventDrafts, setEventDrafts] = useState<LimitedEvent[]>(sourceLimitedEvents as LimitedEvent[])
+  const [newEvent, setNewEvent] = useState<LimitedEvent>({ id: "", title: "", startsAt: "", endsAt: "" })
   const fileRef = useRef<HTMLInputElement>(null)
 
   const prefs = user.preferences
   const isLocal = import.meta.env.DEV
+  const { language, setLanguage, t } = useLanguage()
 
   const slotCounts = {
     breakfast: dishes.filter(
@@ -129,12 +136,14 @@ export function SettingsPage() {
       rarity: newDish.rarity || undefined,
       priceTier: newDish.priceTier,
       active: newDish.active,
+      type: newDish.type,
+      limitedEventId: newDish.type === "limited" ? newDish.limitedEventId || undefined : undefined,
     }
     try {
       const response = await fetch("/__meal-gacha/dev/dish", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dish),
+        body: JSON.stringify({ ...dish, imageData: newDish.imageData }),
       })
       if (!response.ok) throw new Error("Không thể ghi món vào source.")
     } catch (error) {
@@ -147,6 +156,27 @@ export function SettingsPage() {
       return
     }
     setNewDish(createLocalDishDraft())
+  }
+
+  const handleDishImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    event.target.value = ""
+    if (!file) return
+    if (!file.type.startsWith("image/")) {
+      showToast("Ảnh món phải là file hình ảnh.", "error")
+      return
+    }
+    setDishImageUploading(true)
+    try {
+      const imageData = await convertImageToWebp(file)
+      const imageUrl = `/assets/food/full/${newDish.id.trim() || "new-dish"}.webp`
+      setNewDish((current) => ({ ...current, imageUrl, imageData }))
+      showToast("Đã chuyển ảnh sang WebP. Bấm thêm món để lưu vào source.", "success")
+    } catch {
+      showToast("Không thể chuyển ảnh. Hãy thử file PNG/JPG khác.", "error")
+    } finally {
+      setDishImageUploading(false)
+    }
   }
 
   const handleBannerUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -181,6 +211,9 @@ export function SettingsPage() {
           id: bannerDraft.id,
           imageData: bannerDraft.imageUrl,
           enabled: bannerDraft.enabled,
+          eventId: bannerDraft.eventId,
+          startsAt: bannerDraft.startsAt,
+          endsAt: bannerDraft.endsAt,
         }),
       })
       if (!response.ok) throw new Error("Không thể ghi banner vào source.")
@@ -191,6 +224,46 @@ export function SettingsPage() {
       return
     }
     showToast("Đã bật banner local. Tải lại trang để xem popup.", "success")
+  }
+
+  const updateEvent = (eventId: string, key: "title" | "startsAt" | "endsAt", value: string) => {
+    setEventDrafts((events) => events.map((event) => event.id === eventId ? { ...event, [key]: value } : event))
+  }
+
+  const saveLocalEvents = async () => {
+    const response = await fetch("/__meal-gacha/dev/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(eventDrafts),
+    })
+    if (!response.ok) {
+      showToast("Không thể ghi sự kiện vào source.", "error")
+      return
+    }
+    showToast("Đã cập nhật sự kiện. Tải lại dev server để áp dụng.", "success")
+  }
+
+  const createLocalEvent = async () => {
+    if (!/^[a-z0-9-]+$/.test(newEvent.id) || !newEvent.title || !newEvent.startsAt || !newEvent.endsAt) {
+      showToast("Event cần ID hợp lệ, tên và thời gian bắt đầu/kết thúc.", "error")
+      return
+    }
+    if (eventDrafts.some((event) => event.id === newEvent.id)) {
+      showToast("ID event đã tồn tại.", "error")
+      return
+    }
+    setEventDrafts((events) => [...events, newEvent])
+    const response = await fetch("/__meal-gacha/dev/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify([...eventDrafts, newEvent]),
+    })
+    if (!response.ok) {
+      showToast("Không thể tạo event.", "error")
+      return
+    }
+    setNewEvent({ id: "", title: "", startsAt: "", endsAt: "" })
+    showToast("Đã tạo sự kiện giới hạn.", "success")
   }
 
   const clearLocalBanner = () => {
@@ -253,10 +326,29 @@ export function SettingsPage() {
               />
               Bật popup banner local
             </label>
+            <label className="local-dish-field"><span>Sự kiện giới hạn</span><select value={bannerDraft.eventId ?? ""} onChange={(event) => setBannerDraft((current) => ({ ...current, eventId: event.target.value || undefined }))}><option value="">Không gắn event</option>{eventDrafts.map((event) => <option key={event.id} value={event.id}>{event.title}</option>)}</select></label>
             <div className="flex gap-2">
               <button className="local-dish-submit flex-1" onClick={saveLocalBanner}>Lưu banner</button>
               <button className="local-banner-clear" onClick={clearLocalBanner}>Xóa</button>
             </div>
+          </div>
+          <div className="limited-event-settings">
+            <strong>Danh sách sự kiện giới hạn</strong>
+            <div className="limited-event-create">
+              <TextField label="ID event" value={newEvent.id} placeholder="moon-festival" onChange={(value) => setNewEvent((event) => ({ ...event, id: value }))} />
+              <TextField label="Tên event" value={newEvent.title} placeholder="Lễ hội đêm trăng" onChange={(value) => setNewEvent((event) => ({ ...event, title: value }))} />
+              <TextField label="Bắt đầu (ISO)" value={newEvent.startsAt} placeholder="2026-09-18T00:00:00+07:00" onChange={(value) => setNewEvent((event) => ({ ...event, startsAt: value }))} />
+              <TextField label="Kết thúc (ISO)" value={newEvent.endsAt} placeholder="2026-09-25T23:59:59+07:00" onChange={(value) => setNewEvent((event) => ({ ...event, endsAt: value }))} />
+              <button className="local-dish-submit" onClick={createLocalEvent}>+ Tạo sự kiện</button>
+            </div>
+            {eventDrafts.map((event) => (
+              <div className="limited-event-row" key={event.id}>
+                <TextField label="Tên" value={event.title} placeholder="Tên event" onChange={(value) => updateEvent(event.id, "title", value)} />
+                <TextField label="Bắt đầu (ISO)" value={event.startsAt} placeholder="2026-09-18T00:00:00+07:00" onChange={(value) => updateEvent(event.id, "startsAt", value)} />
+                <TextField label="Kết thúc (ISO)" value={event.endsAt} placeholder="2026-09-25T23:59:59+07:00" onChange={(value) => updateEvent(event.id, "endsAt", value)} />
+              </div>
+            ))}
+            <button className="local-dish-submit" onClick={saveLocalEvents}>Lưu thời gian sự kiện</button>
           </div>
         </Section>
       )}
@@ -351,14 +443,21 @@ export function SettingsPage() {
 
       {/* Preferences */}
       <Section title="Tuỳ chọn">
+        <div className="language-setting">
+          <span>{t("language")}</span>
+          <div>
+            <button className={language === "vi" ? "is-active" : ""} onClick={() => setLanguage("vi")}>{t("vietnamese")}</button>
+            <button className={language === "en" ? "is-active" : ""} onClick={() => setLanguage("en")}>{t("english")}</button>
+          </div>
+        </div>
         <ToggleRow
-          label="Âm thanh nghi thức"
+          label={t("sound")}
           description="Hiệu ứng âm thanh khi mở rương, ghép món và quay"
           checked={prefs.soundEnabled}
           onChange={(v) => updatePref("soundEnabled", v)}
         />
         <ToggleRow
-          label="Giảm chuyển động"
+          label={t("reducedMotion")}
           description="Tắt animation nếu gây khó chịu"
           checked={prefs.reducedMotion}
           onChange={(v) => updatePref("reducedMotion", v)}
@@ -408,6 +507,10 @@ export function SettingsPage() {
           <TextField label="Category" value={newDish.category} placeholder="noodle" onChange={(value) => updateNewDish("category", value)} />
           <TextField label="Tags, cách nhau bằng dấu phẩy" value={newDish.tags} placeholder="vietnamese, hot" onChange={(value) => updateNewDish("tags", value)} />
           <TextField label="URL ảnh hoặc /assets/food/full/id.webp" value={newDish.imageUrl} placeholder="/assets/food/full/bun-ca-keo.webp" onChange={(value) => updateNewDish("imageUrl", value)} />
+          <label className="local-dish-upload">
+            <span>{dishImageUploading ? "Đang chuyển sang WebP..." : "Hoặc upload PNG/JPG để tự convert WebP"}</span>
+            <input type="file" accept="image/png,image/jpeg,image/webp" onChange={handleDishImageUpload} disabled={dishImageUploading} />
+          </label>
           <div className="local-dish-grid">
             <label className="local-dish-field">
               <span>Bữa áp dụng</span>
@@ -436,6 +539,24 @@ export function SettingsPage() {
                 <option value="diamond">Diamond</option>
               </select>
             </label>
+          </div>
+          <div className="local-dish-grid">
+            <label className="local-dish-field">
+              <span>Loại món</span>
+              <select value={newDish.type} onChange={(event) => updateNewDish("type", event.target.value as LocalDishDraft["type"])}>
+                <option value="standard">Món thường</option>
+                <option value="limited">Món giới hạn</option>
+              </select>
+            </label>
+            {newDish.type === "limited" && (
+              <label className="local-dish-field">
+                <span>Sự kiện</span>
+                <select value={newDish.limitedEventId} onChange={(event) => updateNewDish("limitedEventId", event.target.value)}>
+                  <option value="">Chọn sự kiện</option>
+                  {eventDrafts.map((event) => <option key={event.id} value={event.id}>{event.title}</option>)}
+                </select>
+              </label>
+            )}
           </div>
           <div className="local-dish-grid">
             <NumberInput label="Weight" unit="" value={newDish.weight} min={1} max={1000} step={1} onChange={(value) => updateNewDish("weight", value)} />
@@ -726,11 +847,14 @@ interface LocalDishDraft {
   category: string
   tags: string
   imageUrl: string
+  imageData: string
   description: string
   weight: number
   rarity: RewardRarity | ""
   priceTier: 1 | 2 | 3 | 4
   active: boolean
+  type: "standard" | "limited"
+  limitedEventId: string
 }
 
 function createLocalDishDraft(): LocalDishDraft {
@@ -742,12 +866,42 @@ function createLocalDishDraft(): LocalDishDraft {
     category: "",
     tags: "",
     imageUrl: "",
+    imageData: "",
     description: "",
     weight: 100,
     rarity: "",
     priceTier: 2,
     active: true,
+    type: "standard",
+    limitedEventId: "",
   }
+}
+
+function convertImageToWebp(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const image = new Image()
+    const objectUrl = URL.createObjectURL(file)
+    image.onload = () => {
+      const scale = Math.min(1, 1024 / Math.max(image.naturalWidth, image.naturalHeight))
+      const canvas = document.createElement("canvas")
+      canvas.width = Math.max(1, Math.round(image.naturalWidth * scale))
+      canvas.height = Math.max(1, Math.round(image.naturalHeight * scale))
+      const context = canvas.getContext("2d")
+      if (!context) {
+        URL.revokeObjectURL(objectUrl)
+        reject(new Error("Canvas unavailable"))
+        return
+      }
+      context.drawImage(image, 0, 0, canvas.width, canvas.height)
+      URL.revokeObjectURL(objectUrl)
+      resolve(canvas.toDataURL("image/webp", 0.86))
+    }
+    image.onerror = () => {
+      URL.revokeObjectURL(objectUrl)
+      reject(new Error("Image load failed"))
+    }
+    image.src = objectUrl
+  })
 }
 
 function TextField({ label, value, placeholder, onChange }: { label: string; value: string; placeholder: string; onChange(value: string): void }) {

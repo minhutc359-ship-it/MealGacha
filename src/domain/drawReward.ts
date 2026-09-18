@@ -6,9 +6,11 @@ import {
   UserState,
   DishSnapshot,
   RewardRarity,
+  LimitedEvent,
 } from "./models"
 import { getDateKey, isGoldenHour } from "./dateKey"
 import { hasUnlimitedChestAccess, isCatalogComplete } from "./achievements"
+import { isDishAvailable } from "./limitedEvents"
 
 const CHEST_COST = parseInt(import.meta.env.VITE_CHEST_COST || "1", 10)
 const RECENT_EXCLUSION = 3
@@ -66,8 +68,9 @@ export function buildPool(
   dishes: Dish[],
   slot: MealSlot,
   recentIds: string[],
+  events: LimitedEvent[] = [],
 ): Dish[] {
-  let pool = dishes.filter((d) => d.active && d.mealSlots.includes(slot))
+  let pool = dishes.filter((d) => isDishAvailable(d, events) && d.mealSlots.includes(slot))
   if (pool.length >= 5) {
     const excluded = recentIds.slice(0, RECENT_EXCLUSION)
     const filtered = pool.filter((d) => !excluded.includes(d.id))
@@ -80,11 +83,12 @@ export function canOpenChest(
   state: UserState,
   dishes: Dish[],
   slot: MealSlot,
+  events: LimitedEvent[] = [],
 ): string | null {
   if (!hasUnlimitedChestAccess(state, dishes) && state.keys < CHEST_COST)
     return "Không đủ chìa khóa. Hãy điểm danh để nhận thêm."
   if (dishes.length === 0) return "Dữ liệu món ăn chưa sẵn sàng."
-  const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [])
+  const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [], events)
   if (pool.length === 0) return "Không có món nào cho bữa này."
   return null
 }
@@ -140,12 +144,13 @@ export function applyOpenChest(
   dishes: Dish[],
   slot: MealSlot,
   options: { free?: boolean } = {},
+  events: LimitedEvent[] = [],
 ): {
   state: UserState
   reward: RewardInstance
   unlockedUnlimited: boolean
 } {
-  const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [])
+  const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [], events)
   const pityPool = state.pityCount >= 9
     ? pool.filter((item) => ["epic", "diamond"].includes(getDishRarity(item)))
     : state.pityCount >= 4

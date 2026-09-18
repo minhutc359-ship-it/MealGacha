@@ -13,7 +13,7 @@ export function getActiveUniqueDishes(dishes: Dish[]): Dish[] {
 }
 
 export function getBannerDishes(dishes: Dish[], slot: MealSlot): Dish[] {
-  return getActiveUniqueDishes(dishes).filter((dish) => dish.mealSlots.includes(slot))
+  return getActiveUniqueDishes(dishes).filter((dish) => dish.type !== "limited" && dish.mealSlots.includes(slot))
 }
 
 export function getCollectionProgress(

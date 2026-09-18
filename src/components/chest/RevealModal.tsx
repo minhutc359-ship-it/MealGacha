@@ -137,7 +137,7 @@ export function RevealModal({
         >
           {/* Art area */}
           <div
-            className="relative h-64 flex items-center justify-center overflow-hidden"
+            className="reward-art-area relative h-64 flex items-center justify-center overflow-hidden"
             style={{
               background:
                 "linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(168,85,247,0.06) 100%)",
@@ -210,7 +210,7 @@ export function RevealModal({
           </div>
 
           {/* Info */}
-          <div className="px-5 pb-5">
+          <div className="reward-reveal-info px-5 pb-5">
             <p className="reward-unlocked-label">PHẦN THƯỞNG ĐÃ ĐƯỢC KHAI MỞ</p>
             <h2
               className="text-2xl font-extrabold mb-0.5 mt-1"
@@ -227,7 +227,7 @@ export function RevealModal({
               </p>
             )}
 
-            <div className="reward-utility-actions">
+            <div className="reward-utility-actions" role="group" aria-label="Thao tác phần thưởng">
               <button onClick={() => toggleFavorite(reward.id)} aria-pressed={favorite}>
                 {favorite ? "♥ Đã yêu thích" : "♡ Yêu thích"}
               </button>

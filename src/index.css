@@ -345,6 +345,16 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .weekly-event span { margin-top: 5px; color: var(--text-dim); font-size: 9px; }
 .weekly-event i { display: block; height: 3px; margin-top: 8px; background: rgba(125,148,168,.16); }
 .weekly-event i b { display: block; height: 100%; background: linear-gradient(90deg, var(--cyan-500), var(--gold-300)); }
+.limited-event-countdown { margin: -10px 0 16px; padding: 9px 11px; border-left: 2px solid #f472b6; background: rgba(236,72,153,.08); }
+.limited-event-countdown small, .limited-event-countdown strong { display: block; }
+.limited-event-countdown small { color: #f9a8d4; font: 700 8px/1 'Exo 2', sans-serif; letter-spacing: .12em; }
+.limited-event-countdown strong { margin-top: 5px; color: #ffe4f1; font: 800 12px/1 'Exo 2', sans-serif; }
+.limited-achievement-section { margin-top: 4px; }
+.limited-achievement-group { margin-bottom: 24px; }
+.limited-achievement-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(236,72,153,.2); }
+.limited-achievement-heading strong { color: #f9a8d4; font: 800 14px/1 'Exo 2', sans-serif; }
+.limited-achievement-heading span { color: var(--gold-300); font: 800 11px/1 'Exo 2', sans-serif; }
+.limited-event-create { display: grid; gap: 8px; margin: 10px 0 14px; padding: 10px; border: 1px dashed rgba(236,72,153,.3); background: rgba(236,72,153,.04); }
 .golden-hour-banner { margin: 10px 14px 0; padding: 9px 11px; color: var(--gold-300); border: 1px solid rgba(232,199,119,.3); background: rgba(169,120,47,.12); font-size: 9px; text-align: center; }
 .achievement-stat { padding: 12px; border: 1px solid rgba(125,148,168,.15); background: rgba(9,31,48,.5); }
 .achievement-collapse-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 13px 15px; color: var(--text-main); text-align: left; border: 1px solid rgba(232,199,119,.22); background: linear-gradient(145deg, rgba(169,120,47,.1), rgba(9,31,48,.58)); cursor: pointer; }
@@ -367,11 +377,17 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .local-dish-field { display: grid; gap: 5px; color: var(--text-dim); font-size: 9px; }
 .local-dish-field input, .local-dish-field select { min-width: 0; padding: 9px 10px; color: var(--text-main); border: 1px solid rgba(25,199,232,.16); border-radius: 8px; outline: none; background: rgba(14,22,40,.78); font: inherit; }
 .local-dish-field input:focus, .local-dish-field select:focus { border-color: rgba(25,199,232,.5); }
+.local-dish-upload { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; color: var(--text-dim); border: 1px dashed rgba(25,199,232,.24); background: rgba(25,199,232,.04); font-size: 9px; }
+.local-dish-upload input { min-width: 0; max-width: 48%; color: var(--text-dim); font-size: 9px; }
 .local-dish-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .local-dish-meals { display: flex; gap: 7px; height: 35px; align-items: center; }
 .local-dish-meals label { display: flex; align-items: center; gap: 3px; color: var(--text-main); font-size: 16px; }
 .local-dish-active { display: flex; align-items: center; gap: 7px; color: #a9bac7; font-size: 10px; }
 .local-dish-submit { padding: 10px; color: #07131f; border: 1px solid var(--gold-300); background: linear-gradient(135deg, var(--gold-300), #b98b3e); font: 800 11px/1 'Exo 2', sans-serif; cursor: pointer; }
+.language-setting { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid rgba(107,127,153,.12); color: #a9bac7; font-size: 10px; }
+.language-setting > div { display: flex; gap: 5px; }
+.language-setting button { padding: 6px 9px; color: #7f96a9; border: 1px solid rgba(125,148,168,.2); background: rgba(7,24,39,.52); font-size: 9px; cursor: pointer; }
+.language-setting button.is-active { color: var(--cyan-200); border-color: rgba(25,199,232,.55); background: rgba(25,199,232,.1); }
 .local-banner-settings { display: grid; gap: 10px; }
 .local-banner-settings img { width: 100%; max-height: 180px; object-fit: cover; border: 1px solid rgba(25,199,232,.25); background: #06131f; }
 .local-banner-settings input[type='file'] { width: 100%; color: var(--text-dim); font-size: 10px; }
@@ -651,9 +667,11 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .reward-confetti i { --x: 0px; --y: -210px; width: 4px; height: 11px; position: absolute; left: 50%; top: 45%; opacity: 0; border-radius: 3px; background: var(--cyan-200); box-shadow: 0 0 9px currentColor; animation: reward-confetti .9s calc(var(--confetti-index) * 18ms) cubic-bezier(.17,.7,.35,1) forwards; }
 .rarity-epic .reward-confetti i { background: var(--gold-300); }.rarity-rare .reward-confetti i { background: var(--cyan-200); }.rarity-diamond .reward-confetti i { background: linear-gradient(#fff,#77e9ff,#c19dff); box-shadow: 0 0 13px #bdf7ff; }
 .reward-confetti i:nth-child(12n+1) { --x: -190px; --y: -150px; transform: rotate(-42deg); }.reward-confetti i:nth-child(12n+2) { --x: -150px; --y: -225px; transform: rotate(-28deg); }.reward-confetti i:nth-child(12n+3) { --x: -95px; --y: -250px; transform: rotate(-14deg); }.reward-confetti i:nth-child(12n+4) { --x: -38px; --y: -275px; transform: rotate(-5deg); }.reward-confetti i:nth-child(12n+5) { --x: 34px; --y: -270px; transform: rotate(8deg); }.reward-confetti i:nth-child(12n+6) { --x: 92px; --y: -248px; transform: rotate(18deg); }.reward-confetti i:nth-child(12n+7) { --x: 148px; --y: -214px; transform: rotate(29deg); }.reward-confetti i:nth-child(12n+8) { --x: 190px; --y: -155px; transform: rotate(44deg); }.reward-confetti i:nth-child(12n+9) { --x: 178px; --y: -72px; transform: rotate(62deg); }.reward-confetti i:nth-child(12n+10) { --x: -174px; --y: -74px; transform: rotate(-62deg); }.reward-confetti i:nth-child(12n+11) { --x: 122px; --y: -115px; transform: rotate(40deg); }.reward-confetti i:nth-child(12n+12) { --x: -120px; --y: -118px; transform: rotate(-40deg); }
-.reward-unlocked-label { margin-top: 2px; color: var(--gold-300); font: 700 8px/1 'Exo 2',sans-serif; letter-spacing: .2em; }
-.reward-utility-actions { display: flex; gap: 8px; margin: -7px 0 13px; }
-.reward-utility-actions button { padding: 5px 8px; color: #7f96a9; border: 1px solid rgba(125,148,168,.18); border-radius: 7px; background: rgba(7,24,39,.52); font-size: 9px; cursor: pointer; transition: .2s ease; }
+.reward-art-area { min-height: 256px; }
+.reward-reveal-info { position: relative; z-index: 2; padding-top: 17px; }
+.reward-unlocked-label { margin-top: 0; color: var(--gold-300); font: 700 8px/1.2 'Exo 2',sans-serif; letter-spacing: .2em; }
+.reward-utility-actions { min-height: 30px; display: flex; flex-wrap: wrap; gap: 7px; margin: 13px 0 15px; }
+.reward-utility-actions button { min-height: 28px; padding: 5px 9px; color: #9aafbd; border: 1px solid rgba(125,148,168,.22); border-radius: 7px; background: rgba(7,24,39,.7); font-size: 9px; cursor: pointer; transition: .2s ease; }
 .reward-utility-actions button:hover, .reward-utility-actions button[aria-pressed='true'] { color: var(--gold-300); border-color: rgba(232,199,119,.36); }
 @keyframes reward-shine-sweep { to { left: 125%; } }
 @keyframes reward-confetti { 0% { opacity: 0; translate: 0 0; scale: .2; } 18% { opacity: 1; } 100% { opacity: 0; translate: var(--x) var(--y); rotate: 220deg; scale: 1; } }
@@ -739,7 +757,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 
   .reward-reveal-backdrop { padding:12px !important; align-items:center !important; }
   .reward-reveal-card { max-height:92dvh; border-radius:22px !important; overflow-y:auto !important; }
-  .reward-reveal-card > div:first-child { height:230px; }
+  .reward-art-area { height:230px; min-height:230px; flex: 0 0 230px; }
+  .reward-reveal-info { padding-top: 15px; }
   .reward-art-frame { height:194px; }
 
   .achievements-page { min-height:calc(100dvh - 134px); padding:12px 10px 18px; }

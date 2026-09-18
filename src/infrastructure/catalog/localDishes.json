@@ -1,1 +1,133 @@
-[]
+[
+  {
+    "id": "banner-tay-bac-com-lam",
+    "name": "Cơm lam",
+    "searchQuery": "Cơm lam Tây Bắc",
+    "mealSlots": [
+      "lunch",
+      "breakfast"
+    ],
+    "category": "rice",
+    "description": "Gạo nếp nương dẻo thơm được nướng trong ống tre, mang hương vị đặc trưng của núi rừng",
+    "imageUrl": "/assets/food/full/banner-tay-bac-com-lam.webp",
+    "tags": [
+      "vietnamese",
+      "limited"
+    ],
+    "weight": 100,
+    "rarity": "common",
+    "priceTier": 1,
+    "active": true,
+    "type": "limited",
+    "limitedEventId": "taybac-festival"
+  },
+  {
+    "id": "banner-tay-bac-thang-co",
+    "name": "Thắng cố",
+    "searchQuery": "Thắng cố Tây Bắc",
+    "mealSlots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "food",
+    "description": "Món canh hầm truyền thống kết hợp nội tạng, thịt gia súc cùng các loại gia vị đại ngàn độc đáo.",
+    "imageUrl": "/assets/food/full/banner-tay-bac-thang-co.webp",
+    "tags": [
+      "vietnamese",
+      "limited"
+    ],
+    "weight": 369,
+    "priceTier": 2,
+    "active": true,
+    "type": "limited",
+    "limitedEventId": "taybac-festival"
+  },
+  {
+    "id": "banner-tay-bac-goi-rau-don",
+    "name": "Gỏi rau dơn",
+    "searchQuery": "Gỏi rau dơn Tây Bắc",
+    "mealSlots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "vegetable",
+    "description": "Rau dơn rừng giòn mát được trộn cùng lạc rang, ớt, tỏi và gia vị chua ngọt thanh nhẹ.",
+    "imageUrl": "/assets/food/full/banner-tay-bac-goi-rau-don.webp",
+    "tags": [
+      "vietnamese",
+      "limited"
+    ],
+    "weight": 28,
+    "rarity": "rare",
+    "priceTier": 2,
+    "active": true,
+    "type": "limited",
+    "limitedEventId": "taybac-festival"
+  },
+  {
+    "id": "banner-tay-bac-thit-trau-gac-bep",
+    "name": "Thịt trâu gác bếp",
+    "searchQuery": "Thịt trâu gác bếp Tây Bắc",
+    "mealSlots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "meat",
+    "description": "Thịt trâu tươi ướp mắc khén, hạt dổi rồi sấy trên than hồng, thớ thịt đỏ hồng đậm đà.",
+    "imageUrl": "/assets/food/full/banner-tay-bac-thit-trau-gac-bep.webp",
+    "tags": [
+      "vietnamese",
+      "limited"
+    ],
+    "weight": 100,
+    "rarity": "diamond",
+    "priceTier": 3,
+    "active": true,
+    "type": "limited",
+    "limitedEventId": "taybac-festival"
+  },
+  {
+    "id": "banner-tay-bac-ga-nuong-mac-khen",
+    "name": "Gà nướng mắc khén",
+    "searchQuery": "Gà nướng mắc khén Tây Bắc",
+    "mealSlots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "chicken",
+    "description": "Gà đồi da giòn vàng ướp hạt mắc khén thơm nồng, ăn kèm chẩm chéo cay cay.",
+    "imageUrl": "/assets/food/full/banner-tay-bac-ga-nuong-mac-khen.webp",
+    "tags": [
+      "vietnamese",
+      "limited"
+    ],
+    "weight": 747,
+    "rarity": "diamond",
+    "priceTier": 4,
+    "active": true,
+    "type": "limited",
+    "limitedEventId": "taybac-festival"
+  },
+  {
+    "id": "banner-tay-bac-xoi-ngu-sac",
+    "name": "Xôi ngũ sắc",
+    "searchQuery": "Xôi ngũ sắc",
+    "mealSlots": [
+      "lunch",
+      "breakfast"
+    ],
+    "category": "rice",
+    "description": "Món xôi dẻo thơm rực rỡ 5 màu tự nhiên từ lá cây rừng, tượng trưng cho ngũ hành.",
+    "imageUrl": "/assets/food/full/banner-tay-bac-xoi-ngu-sac.webp",
+    "tags": [
+      "vietnamese",
+      "limited"
+    ],
+    "weight": 459,
+    "rarity": "diamond",
+    "priceTier": 1,
+    "active": true,
+    "type": "limited",
+    "limitedEventId": "taybac-festival"
+  }
+]

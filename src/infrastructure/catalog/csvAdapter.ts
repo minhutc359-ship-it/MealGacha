@@ -37,6 +37,8 @@ const RawRowSchema = z.object({
   rarity: RarityEnum.optional(),
   price_tier: z.coerce.number().int().min(1).max(4).optional(),
   active: z.string().transform((s) => s.toLowerCase() === "true"),
+  type: z.enum(["standard", "limited"]).optional().default("standard"),
+  limited_event_id: z.string().optional().default(""),
   min_rating: z.coerce.number().min(0).max(5).optional(),
   min_reviews: z.coerce.number().int().min(0).optional(),
 })
@@ -94,6 +96,8 @@ export function parseCsv(csvText: string): ParseResult {
       rarity: r.rarity,
       priceTier: r.price_tier as 1 | 2 | 3 | 4 | undefined,
       active: r.active,
+      type: r.type,
+      limitedEventId: r.limited_event_id || undefined,
       minRating: r.min_rating,
       minReviews: r.min_reviews,
     })

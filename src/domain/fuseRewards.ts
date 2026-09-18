@@ -4,11 +4,13 @@ import {
   MealSlot,
   FusionTransaction,
   DishSnapshot,
+  LimitedEvent,
 } from "./models"
 import { Dish } from "./models"
 import { drawWeighted, buildPool, getDishRarity } from "./drawReward"
 import { getDateKey } from "./dateKey"
 import { hasUnlimitedChestAccess, isCatalogComplete } from "./achievements"
+import { isDishAvailable } from "./limitedEvents"
 
 export function canFuse(
   rewards: RewardInstance[],
@@ -31,12 +33,13 @@ export function applyFuse(
   dishes: Dish[],
   inputIds: [string, string, string],
   targetSlot: MealSlot,
+  events: LimitedEvent[] = [],
 ): { state: UserState; reward: RewardInstance; unlockedUnlimited: boolean } {
   const now = new Date().toISOString()
   const inputDishIds = inputIds.map(
     (id) => state.rewards.find((r) => r.id === id)!.dishId,
   )
-  let pool = buildPool(dishes, targetSlot, [])
+  let pool = buildPool(dishes, targetSlot, [], events)
   const alternatives = pool.filter((d) => !inputDishIds.includes(d.id))
   const preferredPool = alternatives.filter(
     (dish) => getDishRarity(dish) !== "common",

@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom"
 import { useAppStore } from "../../store/useAppStore"
 import { hasUnlimitedChestAccess } from "../../domain/achievements"
+import { TranslationKey, useLanguage } from "../../i18n"
 
-const links = [
-  { to: "/", label: "Rương vị giác" },
-  { to: "/collection", label: "Bộ sưu tập" },
-  { to: "/achievements", label: "Thành tựu" },
-  { to: "/wheel", label: "Vòng quay" },
-  { to: "/settings", label: "Cài đặt" },
+const links: { to: string; key: TranslationKey }[] = [
+  { to: "/", key: "chest" },
+  { to: "/collection", key: "collection" },
+  { to: "/achievements", key: "achievements" },
+  { to: "/wheel", key: "wheel" },
+  { to: "/settings", key: "settings" },
 ]
 
 export function TopNav() {
@@ -17,6 +18,7 @@ export function TopNav() {
   const unlimited = hasUnlimitedChestAccess(user, dishes)
   const soundEnabled = useAppStore((state) => state.user.preferences.soundEnabled)
   const updatePreference = useAppStore((state) => state.updatePreference)
+  const { t } = useLanguage()
 
   return (
     <header className="client-topbar">
@@ -38,7 +40,7 @@ export function TopNav() {
         {links.map((link) => (
           <NavLink key={link.to} to={link.to} end={link.to === "/"}>
             {({ isActive }) => (
-              <span className={isActive ? "is-active" : ""}>{link.label}</span>
+              <span className={isActive ? "is-active" : ""}>{t(link.key)}</span>
             )}
           </NavLink>
         ))}

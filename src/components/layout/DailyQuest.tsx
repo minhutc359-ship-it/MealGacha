@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { canClaimDailyQuest, getDailyQuests } from "../../domain/dailyQuest"
 import { useAppStore } from "../../store/useAppStore"
+import { useLanguage } from "../../i18n"
 
 export function DailyQuest({ compact = false }: { compact?: boolean }) {
   const user = useAppStore((state) => state.user)
@@ -12,6 +13,7 @@ export function DailyQuest({ compact = false }: { compact?: boolean }) {
     optionId: string
   } | null>(null)
   const quests = useMemo(() => getDailyQuests(dishes, now), [dishes, now])
+  const { t } = useLanguage()
 
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 60_000)
@@ -36,7 +38,7 @@ export function DailyQuest({ compact = false }: { compact?: boolean }) {
 
   return (
     <div className={`daily-quests ${compact ? "daily-quest-compact" : ""}`}>
-      <div className="daily-quests-label">NHIỆM VỤ MỖI 3 GIỜ · +3 🔑 / NHIỆM VỤ</div>
+      <div className="daily-quests-label">{t("dailyQuest")} · +3 🔑 / QUEST</div>
       {quests.map((quest) => {
         const canClaim = canClaimDailyQuest(user, quest)
         return (

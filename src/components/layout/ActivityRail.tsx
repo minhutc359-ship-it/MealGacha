@@ -7,6 +7,10 @@ import { DailyQuest } from "./DailyQuest"
 import { canClaimFreeChest } from "../../domain/drawReward"
 import { useNavigate } from "react-router-dom"
 import { getWeeklyEventProgress } from "../../domain/weeklyEvent"
+import limitedEvents from "../../infrastructure/events/limitedEvents.json"
+import { formatRemainingTime, getActiveLimitedEvents } from "../../domain/limitedEvents"
+import { useEffect, useState } from "react"
+import { useLanguage } from "../../i18n"
 
 export function ActivityRail() {
   const user = useAppStore((state) => state.user)
@@ -26,13 +30,20 @@ export function ActivityRail() {
   const navigate = useNavigate()
   const dishes = useAppStore((state) => state.dishes)
   const weeklyEvent = getWeeklyEventProgress(user.rewards, dishes)
+  const [now, setNow] = useState(() => new Date())
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(new Date()), 60_000)
+    return () => window.clearInterval(timer)
+  }, [])
+  const limitedEvent = getActiveLimitedEvents(limitedEvents, now)[0]
+  const { t } = useLanguage()
 
   return (
     <aside className="client-panel activity-rail" aria-label="Hoạt động">
       <div className="panel-heading">
         <div>
           <small>HÀNH TRÌNH</small>
-          <h2>Hôm nay</h2>
+          <h2>{t("today")}</h2>
         </div>
         <span className={`status-dot ${canClaim ? "is-ready" : ""}`} />
       </div>
@@ -44,8 +55,8 @@ export function ActivityRail() {
       >
         <span className="mission-icon">◇</span>
         <span>
-          <strong>{canClaim ? "Điểm danh nhận chìa" : "Đã điểm danh"}</strong>
-          <small>{canClaim ? "+10 chìa khóa" : "Quay lại vào ngày mai"}</small>
+          <strong>{canClaim ? t("checkIn") : t("checkedIn")}</strong>
+          <small>{canClaim ? `+10 ${t("keys")}` : t("comeBackTomorrow")}</small>
         </span>
         <b>{canClaim ? "+10" : "✓"}</b>
       </button>
@@ -53,11 +64,17 @@ export function ActivityRail() {
       <DailyQuest />
 
       <div className="weekly-event">
-        <small>SỰ KIỆN TUẦN</small>
+        <small>{t("weeklyEvent")}</small>
         <strong>{weeklyEvent.event.label}</strong>
         <span>{weeklyEvent.opened}/{weeklyEvent.total} món · {weeklyEvent.percentage}%</span>
         <i><b style={{ width: `${weeklyEvent.percentage}%` }} /></i>
       </div>
+      {limitedEvent && (
+        <div className="limited-event-countdown">
+          <small>EVENT GIỚI HẠN · {limitedEvent.title}</small>
+          <strong>Còn {formatRemainingTime(limitedEvent.endsAt, now)}</strong>
+        </div>
+      )}
 
       <button
         className={`daily-mission ${freeChestReady ? "is-ready" : "is-done"}`}
@@ -88,7 +105,7 @@ export function ActivityRail() {
         </div>
         <div>
           <strong>{user.checkInStreak}</strong>
-          <small>Ngày liên tiếp</small>
+          <small>{t("streak")}</small>
         </div>
       </div>
 

@@ -18,13 +18,16 @@ import {
 import { getDishRarity } from "../domain/drawReward"
 import { useAppStore } from "../store/useAppStore"
 import { RaritySticker } from "../components/ui/RaritySticker"
+import limitedEvents from "../infrastructure/events/limitedEvents.json"
+import { LimitedEvent } from "../domain/models"
+import { useLanguage } from "../i18n"
 
 const SLOTS: MealSlot[] = ["breakfast", "lunch", "dinner"]
 
 export function AchievementsPage() {
   const user = useAppStore((state) => state.user)
   const dishes = useAppStore((state) => state.dishes)
-  const [slot, setSlot] = useState<MealSlot>("breakfast")
+  const [slot, setSlot] = useState<MealSlot | "events">("breakfast")
   const [placeDish, setPlaceDish] = useState<Dish | null>(null)
   const [showExtendedAchievements, setShowExtendedAchievements] = useState(false)
 
@@ -37,16 +40,17 @@ export function AchievementsPage() {
     [dishes, user.rewards],
   )
   const bannerDishes = useMemo(
-    () => getBannerDishes(dishes, slot),
+    () => slot === "events" ? [] : getBannerDishes(dishes, slot),
     [dishes, slot],
   )
   const bannerProgress = useMemo(
-    () => getCollectionProgress(user.rewards, dishes, slot),
+    () => slot === "events" ? { unlocked: 0, total: 0, percentage: 0 } : getCollectionProgress(user.rewards, dishes, slot),
     [dishes, slot, user.rewards],
   )
   const unlimited = Boolean(user.unlimitedChestUnlockedAt)
   const achievementProgress = getAchievementProgress(user, dishes)
   const themeProgress = getThemeProgress(user.rewards, dishes)
+  const { t } = useLanguage()
 
   return (
     <div className="achievements-page">
@@ -99,9 +103,13 @@ export function AchievementsPage() {
             </button>
           )
         })}
+        <button className={slot === "events" ? "is-active" : ""} onClick={() => setSlot("events")}>
+          <span>⏳</span>
+          <div><strong>SỰ KIỆN GIỚI HẠN</strong><small>{dishes.filter((dish) => dish.type === "limited").length} món</small></div>
+        </button>
       </nav>
 
-      <section className="achievement-section">
+      {slot !== "events" && <section className="achievement-section">
         <div className="achievement-section-heading">
           <div>
             <small>BANNER {MEAL_SLOT_LABELS[slot].toUpperCase()}</small>
@@ -145,7 +153,28 @@ export function AchievementsPage() {
             )
           })}
         </div>
-      </section>
+      </section>}
+      {slot === "events" && (
+        <section className="achievement-section limited-achievement-section">
+          <div className="achievement-section-heading"><div><small>SỰ KIỆN GIỚI HẠN</small><h2>Bộ sưu tập theo event</h2></div></div>
+          {(limitedEvents as LimitedEvent[]).map((event) => {
+            const eventDishes = dishes.filter((dish) => dish.type === "limited" && dish.limitedEventId === event.id)
+            if (eventDishes.length === 0) return null
+            const unlocked = new Set(user.rewards.map((reward) => reward.dishId))
+            return <div className="limited-achievement-group" key={event.id}>
+              <div className="limited-achievement-heading"><strong>{event.title}</strong><span>{eventDishes.filter((dish) => unlocked.has(dish.id)).length}/{eventDishes.length}</span></div>
+              <div className="achievement-grid">{eventDishes.map((dish) => {
+                const rarity = getDishRarity(dish)
+                const isUnlocked = unlocked.has(dish.id)
+                return <button key={dish.id} className={`achievement-card rarity-${rarity} ${isUnlocked ? "is-unlocked" : "is-locked"}`} onClick={() => isUnlocked && setPlaceDish(dish)}>
+                  <RarityFrame rarity={rarity} className="achievement-art"><FoodImage dishId={dish.id} name={dish.name} imageUrl={dish.imageUrl} variant="card" /><RaritySticker priceTier={dish.priceTier} rarity={rarity} />{!isUnlocked && <div className="achievement-lock"><span>⌾</span><b>CHƯA MỞ</b></div>}</RarityFrame>
+                  <div className="achievement-card-info"><div><strong>{dish.name}</strong><small>{RARITY_LABELS[rarity]}</small></div><span>{isUnlocked ? "✓" : "🔒"}</span></div>
+                </button>
+              })}</div>
+            </div>
+          })}
+        </section>
+      )}
       <section className="achievement-section mt-6">
         <button
           type="button"
@@ -154,8 +183,8 @@ export function AchievementsPage() {
           onClick={() => setShowExtendedAchievements((open) => !open)}
         >
           <span>
-            <small>THÀNH TỰU MỞ RỘNG</small>
-            <strong>Hồ sơ chiến tích</strong>
+            <small>{t("extendedAchievements")}</small>
+            <strong>{t("achievementProfile")}</strong>
           </span>
           <b aria-hidden="true">{showExtendedAchievements ? "⌃" : "⌄"}</b>
         </button>

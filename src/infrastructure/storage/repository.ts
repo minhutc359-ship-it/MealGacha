@@ -11,6 +11,7 @@ const KEYS = {
 } as const
 
 const defaultPrefs: UserPreferences = {
+  language: "vi",
   soundEnabled: false,
   reducedMotion: false,
   hiddenDishIds: [],
@@ -41,6 +42,7 @@ const StoredUserSchema = z
     }),
     unlimitedChestUnlockedAt: z.string().optional(),
     preferences: z.object({
+      language: z.enum(["vi", "en"]).optional(),
       soundEnabled: z.boolean().optional(),
       reducedMotion: z.boolean().optional(),
       hiddenDishIds: z.array(z.string()).optional(),

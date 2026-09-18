@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import { BANNER_CONFIG, BannerConfig } from "../../infrastructure/banner/bannerConfig"
 import { repository } from "../../infrastructure/storage/repository"
+import limitedEvents from "../../infrastructure/events/limitedEvents.json"
+import { isLimitedEventActive } from "../../domain/limitedEvents"
+import { LimitedEvent } from "../../domain/models"
 
 function getBannerConfig(): BannerConfig {
   if (import.meta.env.DEV) return repository.loadBannerOverride() ?? BANNER_CONFIG
@@ -15,11 +18,17 @@ export function AnnouncementBanner() {
   const [banner, setBanner] = useState<BannerConfig>(() => getBannerConfig())
   const [visible, setVisible] = useState(false)
   const [dontShowAgain, setDontShowAgain] = useState(false)
+  const event = banner.eventId
+    ? (limitedEvents as LimitedEvent[]).find((item) => item.id === banner.eventId)
+    : undefined
 
   useEffect(() => {
     const nextBanner = getBannerConfig()
     setBanner(nextBanner)
-    if (!nextBanner.enabled || !nextBanner.imageUrl) return
+    const nextEvent = nextBanner.eventId
+      ? (limitedEvents as LimitedEvent[]).find((item) => item.id === nextBanner.eventId)
+      : undefined
+    if (!nextBanner.enabled || !nextBanner.imageUrl || (nextEvent && !isLimitedEventActive(nextEvent))) return
     setVisible(localStorage.getItem(getDismissKey(nextBanner.id)) !== "true")
   }, [])
 

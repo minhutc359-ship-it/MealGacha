@@ -12,7 +12,10 @@ import {
 import { applyFuse, canFuse } from "../domain/fuseRewards"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
 import localDishes from "../infrastructure/catalog/localDishes.json"
+import limitedEvents from "../infrastructure/events/limitedEvents.json"
 import { fetchCatalog } from "../infrastructure/catalog/csvAdapter"
+import { LimitedEvent } from "../domain/models"
+import { isDishAvailable } from "../domain/limitedEvents"
 import {
   applyDailyQuest,
   canClaimDailyQuest,
@@ -22,6 +25,7 @@ import {
 interface AppStore {
   user: UserState
   dishes: Dish[]
+  limitedEvents: LimitedEvent[]
   catalogLoading: boolean
   catalogError: string | null
   toast: { message: string; type: "success" | "error" | "info" } | null
@@ -63,6 +67,7 @@ interface AppStore {
 export const useAppStore = create<AppStore>((set, get) => ({
   user: repository.loadUser(),
   dishes: [...SEED_DISHES, ...(localDishes as Dish[])],
+  limitedEvents: limitedEvents as LimitedEvent[],
   catalogLoading: false,
   catalogError: null,
   toast: null,
@@ -70,7 +75,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   init() {
     const user = repository.loadUser()
-    set({ user, dishes: [...SEED_DISHES, ...(localDishes as Dish[])] })
+    set({ user, dishes: [...SEED_DISHES, ...(localDishes as Dish[])], limitedEvents: limitedEvents as LimitedEvent[] })
     const cached = import.meta.env.DEV
       ? repository.loadCatalog()
       : repository.loadPublishedCatalog()
@@ -125,9 +130,9 @@ export const useAppStore = create<AppStore>((set, get) => ({
   openFreeChest(slot) {
     const { user, dishes } = get()
     if (!canClaimFreeChest(user)) return { reward: null, error: "Bạn đã dùng rương miễn phí hôm nay." }
-    const err = canOpenChest({ ...user, keys: 1 }, dishes, slot)
+    const err = canOpenChest({ ...user, keys: 1 }, dishes, slot, get().limitedEvents)
     if (err) return { reward: null, error: err }
-    const result = applyOpenChest(user, dishes, slot, { free: true })
+    const result = applyOpenChest(user, dishes, slot, { free: true }, get().limitedEvents)
     repository.saveUser(result.state)
     set({ user: result.state, pendingRevealRewardId: result.reward.id })
     get().showToast("Rương miễn phí đã mở! 🎁", "success")
@@ -156,9 +161,9 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   openChest(slot) {
     const { user, dishes } = get()
-    const err = canOpenChest(user, dishes, slot)
+    const err = canOpenChest(user, dishes, slot, get().limitedEvents)
     if (err) return { reward: null, error: err, unlockedUnlimited: false }
-    const { state: newUser, reward, unlockedUnlimited } = applyOpenChest(user, dishes, slot)
+    const { state: newUser, reward, unlockedUnlimited } = applyOpenChest(user, dishes, slot, {}, get().limitedEvents)
     repository.saveUser(newUser)
     set({ user: newUser, pendingRevealRewardId: reward.id })
     if (unlockedUnlimited) {
@@ -171,9 +176,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const { user, dishes } = get()
     const err = canFuse(user.rewards, inputIds)
     if (err) return { reward: null, error: err, unlockedUnlimited: false }
-    const pool = dishes.filter(
-      (d) => d.active && d.mealSlots.includes(targetSlot),
-    )
+    const pool = dishes.filter((d) => isDishAvailable(d, get().limitedEvents) && d.mealSlots.includes(targetSlot))
     if (pool.length === 0)
       return { reward: null, error: "Không có món nào cho banner đích.", unlockedUnlimited: false }
     const { state: newUser, reward, unlockedUnlimited } = applyFuse(
@@ -181,6 +184,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
       dishes,
       inputIds,
       targetSlot,
+      get().limitedEvents,
     )
     repository.saveUser(newUser)
     set({ user: newUser })

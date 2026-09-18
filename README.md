@@ -54,6 +54,8 @@ Trong local, vào **Cài đặt → Banner thông báo local**, tải ảnh lên
 
 Checkbox “không hiển thị lại lần sau” được lưu theo `bannerId`. Khi `id` đổi cho banner mới, popup sẽ hiện lại và trạng thái checkbox cũ không được dùng.
 
+Món giới hạn dùng `type: "limited"` và `limitedEventId`. Event được lưu trong `src/infrastructure/events/limitedEvents.json`; hết `endsAt`, món không còn xuất hiện trong pool mở rương nhưng vẫn còn trong Bộ sưu tập và tab **Sự kiện giới hạn**.
+
 Toàn bộ dữ liệu người dùng được lưu trong `localStorage`; chức năng xuất/nhập backup nằm trong Cài đặt.
 
 ## Tài liệu thiết kế

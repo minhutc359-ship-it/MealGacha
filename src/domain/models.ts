@@ -2,6 +2,15 @@ export type MealSlot = "breakfast" | "lunch" | "dinner"
 export type RewardSource = "chest" | "fusion" | "free_chest"
 export type RewardStatus = "available" | "consumed"
 export type RewardRarity = "common" | "rare" | "epic" | "diamond"
+export type DishType = "standard" | "limited"
+
+export interface LimitedEvent {
+  id: string
+  title: string
+  startsAt: string
+  endsAt: string
+  bannerId?: string
+}
 
 export interface Dish {
   id: string
@@ -16,6 +25,8 @@ export interface Dish {
   rarity?: RewardRarity
   priceTier?: 1 | 2 | 3 | 4
   active: boolean
+  type?: DishType
+  limitedEventId?: string
   minRating?: number
   minReviews?: number
 }
@@ -64,6 +75,7 @@ export interface KeyTransaction {
 }
 
 export interface UserPreferences {
+  language?: "vi" | "en"
   soundEnabled: boolean
   reducedMotion: boolean
   hiddenDishIds: string[]
