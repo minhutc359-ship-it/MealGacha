@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import type { Dish, MealSlot, RewardRarity } from "../../domain/models"
-import { getDishRarity } from "../../domain/drawReward"
+import { RARITY_ODDS } from "../../domain/drawReward"
 
 interface Props {
   dishes: Dish[]
@@ -22,12 +22,8 @@ const RARITY_META: Array<{
 export function ChestOddsModal({ dishes, slot, onClose }: Props) {
   const closeRef = useRef<HTMLButtonElement>(null)
   const pool = dishes.filter((dish) => dish.active && dish.mealSlots.includes(slot))
-  const totalWeight = pool.reduce((sum, dish) => sum + Math.max(dish.weight, 1), 0)
   const odds = RARITY_META.map((meta) => {
-    const weight = pool
-      .filter((dish) => getDishRarity(dish) === meta.rarity)
-      .reduce((sum, dish) => sum + Math.max(dish.weight, 1), 0)
-    return { ...meta, value: totalWeight > 0 ? (weight / totalWeight) * 100 : 0 }
+    return { ...meta, value: pool.length > 0 ? RARITY_ODDS[meta.rarity] : 0 }
   })
 
   useEffect(() => {

@@ -758,10 +758,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .mobile-wallet { min-width:66px; height:32px; padding:0 10px; }
   .meal-banner-tabs { min-height:56px; border-radius:10px; overflow:hidden; }
   .mobile-checkin { min-height:48px; margin-top:8px; border-radius:10px; }
-  .ritual-stage { min-height:505px; padding:14px 0 4px; grid-template-rows:auto 258px auto auto auto; }
+  .ritual-stage { min-height:auto; padding:12px 0 4px; grid-template-rows:auto 218px auto auto auto; }
   .ritual-copy h1 { margin-top:6px; font-size:21px; line-height:1.02; }
   .ritual-copy p { margin-top:5px; }
-  .chest-scene { width:450px; max-width:132%; height:278px; min-height:278px; transform:scale(.7); }
+  .chest-scene { width:100%; max-width:none; height:218px; min-height:218px; margin-inline:auto; justify-self:center; transform:scale(.62); transform-origin:50% 50%; }
   .ritual-status { margin-top:-8px; }
   .ritual-progress { width:min(230px,68vw); margin-top:-5px; }
   .stage-actions { width:min(250px,100%); min-height:86px; }

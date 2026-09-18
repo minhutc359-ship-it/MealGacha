@@ -15,6 +15,12 @@ import { isDishAvailable } from "./limitedEvents"
 const CHEST_COST = parseInt(import.meta.env.VITE_CHEST_COST || "1", 10)
 const RECENT_EXCLUSION = 3
 export const FREE_CHEST_COST = 0
+export const RARITY_ODDS: Record<RewardRarity, number> = {
+  common: 68.6,
+  rare: 20.9,
+  epic: 9.1,
+  diamond: 1.4,
+}
 export const DUPLICATE_SHARD_VALUES: Record<RewardRarity, number> = {
   common: 2,
   rare: 5,
@@ -34,9 +40,9 @@ export function drawRarity(fusion = false): RewardRarity {
     if (roll < 0.03) return "diamond"
     return roll < 0.25 ? "epic" : "rare"
   }
-  if (roll < 0.01) return "diamond"
-  if (roll < 0.07) return "epic"
-  if (roll < 0.29) return "rare"
+  if (roll < RARITY_ODDS.diamond / 100) return "diamond"
+  if (roll < (RARITY_ODDS.diamond + RARITY_ODDS.epic) / 100) return "epic"
+  if (roll < (RARITY_ODDS.diamond + RARITY_ODDS.epic + RARITY_ODDS.rare) / 100) return "rare"
   return "common"
 }
 
@@ -160,7 +166,9 @@ export function applyOpenChest(
   const boostedPool = isGoldenHour() && goldenPool.length > 0 && secureRandom() < 0.25
     ? goldenPool
     : pool
-  const dish = drawWeighted(pityPool.length > 0 ? pityPool : boostedPool)
+  const targetRarity = drawRarity()
+  const rarityPool = boostedPool.filter((item) => getDishRarity(item) === targetRarity)
+  const dish = drawWeighted(pityPool.length > 0 ? pityPool : rarityPool.length > 0 ? rarityPool : boostedPool)
   const now = new Date().toISOString()
   const unlimitedBeforeDraw = hasUnlimitedChestAccess(state, dishes)
   const free = options.free === true

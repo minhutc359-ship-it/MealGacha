@@ -463,7 +463,7 @@ export function ChestPage() {
           </span>
           <i />
           <span>
-            {t("rarityRate")} <strong>28%</strong>
+            {t("rarityRate")} <strong>31.4%</strong>
           </span>
           <button onClick={() => setShowOdds(true)}>{t("viewOdds")}</button>
         </footer>
