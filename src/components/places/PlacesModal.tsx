@@ -121,7 +121,7 @@ export function PlacesModal({ dish, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4"
+      className="places-backdrop fixed inset-0 z-[60] flex items-center justify-center p-4"
       style={{ background: "rgba(8,12,24,0.92)", backdropFilter: "blur(14px)" }}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()
@@ -130,7 +130,7 @@ export function PlacesModal({ dish, onClose }: Props) {
       aria-modal="true"
     >
       <div
-        className="w-full max-w-sm rounded-3xl overflow-hidden flex flex-col"
+        className="places-panel w-full max-w-sm rounded-3xl overflow-hidden flex flex-col"
         style={{
           background: "#0e1628",
           border: "1.5px solid rgba(0,212,255,0.2)",

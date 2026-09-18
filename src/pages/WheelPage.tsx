@@ -127,6 +127,7 @@ function drawWheel(
 
 export function WheelPage() {
   const preferences = useAppStore((state) => state.user.preferences)
+  const dishes = useAppStore((state) => state.dishes)
   const [inputText, setInputText] = useState(() =>
     repository.loadWheelItems().join("\n"),
   )
@@ -136,12 +137,25 @@ export function WheelPage() {
   const [result, setResult] = useState<string | null>(null)
   const [angleDeg, setAngleDeg] = useState(0)
   const [history, setHistory] = useState<string[]>([])
+  const [usedSuggestionIds, setUsedSuggestionIds] = useState<string[]>([])
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animFrameRef = useRef<number>(0)
   const angleDegRef = useRef(0)
 
   const items = useMemo(() => parseItems(inputText, dedup), [inputText, dedup])
+  const suggestions = useMemo(() => {
+    const entered = new Set(items.map((item) => item.toLocaleLowerCase()))
+    const used = new Set(usedSuggestionIds)
+    return dishes
+      .filter((dish) => dish.active && !used.has(dish.id) && !entered.has(dish.name.toLocaleLowerCase()))
+      .slice(0, 5)
+  }, [dishes, items, usedSuggestionIds])
+
+  const addSuggestion = (dishId: string, name: string) => {
+    setInputText((current) => current.trim() ? `${current.trim()}\n${name}` : name)
+    setUsedSuggestionIds((current) => [...current, dishId])
+  }
 
   useEffect(() => {
     repository.saveWheelItems(items)
@@ -367,6 +381,24 @@ export function WheelPage() {
             e.target.style.borderColor = "rgba(0,212,255,0.15)"
           }}
         />
+        {suggestions.length > 0 && (
+          <div className="wheel-suggestions" aria-label="Gợi ý món ăn">
+            <span className="wheel-suggestions-label">Gợi ý món</span>
+            <div className="wheel-suggestions-list">
+              {suggestions.map((dish) => (
+                <button
+                  type="button"
+                  key={dish.id}
+                  onClick={() => addSuggestion(dish.id, dish.name)}
+                  disabled={spinning}
+                  className="wheel-suggestion"
+                >
+                  + {dish.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="flex items-center gap-4 mb-4 text-xs text-[#6b7f99]">

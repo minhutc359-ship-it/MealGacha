@@ -115,7 +115,7 @@ export function RevealModal({
   return (
     <>
       <div
-        className={`reward-reveal-backdrop rarity-${rarity} fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4`}
+        className={`reward-reveal-backdrop rarity-${rarity} fixed inset-0 z-50 flex items-center justify-center p-4`}
         style={{
           background: "rgba(8,12,24,0.88)",
           backdropFilter: "blur(10px)",

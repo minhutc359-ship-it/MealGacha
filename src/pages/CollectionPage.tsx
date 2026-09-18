@@ -99,7 +99,7 @@ export function CollectionPage() {
   const canFuseToday = availableToday.length >= 3
 
   return (
-    <div className="min-h-dvh pb-20 flex flex-col max-w-md mx-auto px-4 pt-4">
+    <div className="collection-page min-h-dvh pb-20 flex flex-col mx-auto px-4 pt-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-1">
         <div>
