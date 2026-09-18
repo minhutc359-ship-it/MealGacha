@@ -28,6 +28,7 @@ interface GooglePlace {
   googleMapsUri?: string
   currentOpeningHours?: { openNow?: boolean }
   priceLevel?: string
+  businessStatus?: string
   location?: { latitude?: number; longitude?: number }
 }
 
@@ -71,7 +72,7 @@ export function scoreAndSort(
       }
     })
     .sort((a, b) => (b._score ?? 0) - (a._score ?? 0))
-    .slice(0, 8)
+    .slice(0, 5)
 }
 
 export async function searchNearbyPlaces(
@@ -92,6 +93,7 @@ export async function searchNearbyPlaces(
           "places.googleMapsUri",
           "places.currentOpeningHours.openNow",
           "places.priceLevel",
+          "places.businessStatus",
           "places.location",
         ].join(","),
       },
@@ -122,6 +124,7 @@ export async function searchNearbyPlaces(
   const radiusKm = options.radiusMeters / 1000
   const mapped = (payload.places ?? [])
     .map((place): PlaceResult | null => {
+      if (place.businessStatus === "CLOSED_PERMANENTLY") return null
       const latitude = place.location?.latitude
       const longitude = place.location?.longitude
       if (typeof latitude !== "number" || typeof longitude !== "number")
@@ -219,5 +222,5 @@ export async function searchOpenStreetMapPlaces(
     })
     .filter((place): place is PlaceResult => place !== null)
     .filter((place) => place.distanceKm <= radiusKm)
-  return places.slice(0, 20)
+  return scoreAndSort(places, radiusKm)
 }

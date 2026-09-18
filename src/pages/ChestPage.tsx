@@ -26,6 +26,7 @@ import { hasUnlimitedChestAccess } from "../domain/achievements"
 import { canClaimFreeChest } from "../domain/drawReward"
 import { isGoldenHour } from "../domain/dateKey"
 import { DailyQuest } from "../components/layout/DailyQuest"
+import { TranslationKey, useLanguage } from "../i18n"
 
 type ChestState =
   | "idle"
@@ -40,18 +41,18 @@ type ChestState =
   | "reward-rise"
   | "result"
 
-const STATE_LABELS: Record<ChestState, string> = {
-  idle: "Sẵn sàng khai mở",
-  "key-flight": "Chìa khóa đang cộng hưởng",
-  inserting: "Kích hoạt lõi vị giác",
-  locking: "Khóa cổ ngữ đã khớp",
-  charging: "Tích tụ năng lượng",
-  pulse: "Cộng hưởng cực đại",
-  anticipation: "Lắng nghe khoảnh khắc thức tỉnh",
-  impact: "Khai mở!",
-  opening: "Rương đã mở",
-  "reward-rise": "Triệu hồi món ăn",
-  result: "Đã nhận phần thưởng",
+const STATE_LABELS: Record<ChestState, TranslationKey> = {
+  idle: "readyState",
+  "key-flight": "keyFlight",
+  inserting: "inserting",
+  locking: "locking",
+  charging: "charging",
+  pulse: "pulse",
+  anticipation: "anticipation",
+  impact: "impact",
+  opening: "opening",
+  "reward-rise": "rewardRise",
+  result: "result",
 }
 
 const RITUAL_STEPS: ChestState[] = [
@@ -80,26 +81,26 @@ function defaultSlot(): MealSlot {
 const SLOT_THEME: Record<MealSlot, {
   accent: string
   glow: string
-  title: string
-  subtitle: string
+  titleKey: TranslationKey
+  subtitleKey: TranslationKey
 }> = {
   breakfast: {
     accent: "#e8c777",
     glow: "rgba(232,199,119,.42)",
-    title: "BÌNH MINH",
-    subtitle: "Món ngon khởi đầu ngày mới",
+    titleKey: "sunrise",
+    subtitleKey: "sunriseSubtitle",
   },
   lunch: {
     accent: "#19c7e8",
     glow: "rgba(25,199,232,.42)",
-    title: "THIÊN QUANG",
-    subtitle: "Nạp năng lượng giữa ngày",
+    titleKey: "daylight",
+    subtitleKey: "daylightSubtitle",
   },
   dinner: {
     accent: "#a78bfa",
     glow: "rgba(167,139,250,.42)",
-    title: "DẠ YẾN",
-    subtitle: "Khép ngày bằng một lựa chọn xứng đáng",
+    titleKey: "dusk",
+    subtitleKey: "duskSubtitle",
   },
 }
 
@@ -141,6 +142,7 @@ export function ChestPage() {
   const unlimited = hasUnlimitedChestAccess(user, dishes)
   const freeChestReady = canClaimFreeChest(user)
   const goldenHour = isGoldenHour()
+  const { t } = useLanguage()
 
   const finishReveal = useCallback(() => {
     const nextReward = pendingRewardRef.current
@@ -314,8 +316,8 @@ export function ChestPage() {
     >
       <div className="stage-mobile-header">
         <div>
-          <h1>RƯƠNG VỊ GIÁC</h1>
-          <p>Mở rương, chốt món.</p>
+          <h1>{t("brandTitle")}</h1>
+          <p>{t("brandSubtitle")}</p>
         </div>
         <div className="mobile-wallet">
           <span>◇</span>
@@ -341,7 +343,7 @@ export function ChestPage() {
             >
               <span>{MEAL_SLOT_ICONS[mealSlot]}</span>
               <div>
-                <strong>{itemTheme.title}</strong>
+                <strong>{t(itemTheme.titleKey)}</strong>
                 <small>{MEAL_SLOT_LABELS[mealSlot]}</small>
               </div>
             </button>
@@ -357,10 +359,10 @@ export function ChestPage() {
         <span>◇</span>
         <p>
           <strong>
-            {checkedIn ? "Đã điểm danh hôm nay" : "Điểm danh nhận 10 chìa"}
+            {checkedIn ? t("checkedIn") : t("checkIn")}
           </strong>
           <small>
-            {checkedIn ? "Quay lại vào ngày mai" : "Mỗi ngày một lần"}
+            {checkedIn ? t("comeBackTomorrow") : t("dailyOnce")}
           </small>
         </p>
         <b>{checkedIn ? "✓" : "+10"}</b>
@@ -370,7 +372,7 @@ export function ChestPage() {
 
       {goldenHour && (
         <div className="golden-hour-banner">
-          ✦ GIỜ VÀNG · Cơ hội món Rare+ tăng trong khung 18:00–21:00
+          ✦ {t("goldenHour")}
         </div>
       )}
 
@@ -381,23 +383,23 @@ export function ChestPage() {
       >
         <span>🎁</span>
         <p>
-          <strong>{freeChestReady ? "Rương miễn phí hôm nay" : "Đã dùng rương miễn phí"}</strong>
-          <small>{freeChestReady ? "Không tốn chìa khóa" : "Quay lại vào ngày mai"}</small>
+          <strong>{freeChestReady ? t("freeChestReady") : t("freeChestUsed")}</strong>
+          <small>{freeChestReady ? t("noKey") : t("returnTomorrow")}</small>
         </p>
-        <b>{freeChestReady ? "MỞ" : "✓"}</b>
+        <b>{freeChestReady ? t("open") : "✓"}</b>
       </button>
 
       <section className="ritual-stage" aria-live="polite">
         <header className="ritual-copy">
           <small>
-            {theme.title} · {MEAL_SLOT_LABELS[slot]}
+            {t(theme.titleKey)} · {MEAL_SLOT_LABELS[slot]}
           </small>
           <h1>
-            Đánh thức lựa chọn
+            {t("chestHeading")}
             <br />
-            <span>của bạn</span>
+            <span>{t("chestHeadingYour")}</span>
           </h1>
-          <p>{theme.subtitle}</p>
+          <p>{t(theme.subtitleKey)}</p>
         </header>
 
         <ChestScene
@@ -409,10 +411,10 @@ export function ChestPage() {
 
         <div className="ritual-status">
           <span className={isAnimating ? "is-live" : ""} />
-          <p>{STATE_LABELS[chestState]}</p>
+          <p>{t(STATE_LABELS[chestState])}</p>
         </div>
 
-        <div className="ritual-progress" aria-label={`Tiến trình: ${STATE_LABELS[chestState]}`}>
+        <div className="ritual-progress" aria-label={`${t("result")}: ${t(STATE_LABELS[chestState])}`}>
           {RITUAL_STEPS.map((step, index) => {
             const currentIndex = RITUAL_STEPS.indexOf(chestState)
             const active = currentIndex >= index || chestState === "result"
@@ -428,20 +430,20 @@ export function ChestPage() {
             disabled={(!unlimited && user.keys < 1) || isAnimating || showReveal}
           >
             <span>
-              {isAnimating ? STATE_LABELS[chestState] : "KHAI MỞ RƯƠNG"}
+              {isAnimating ? t(STATE_LABELS[chestState]) : t("openChest")}
             </span>
             <small>
               {isAnimating
-                ? "Năng lượng đang hội tụ"
+                ? t("energyGathering")
                 : unlimited
-                  ? "ĐẶC QUYỀN VÔ HẠN · KHÔNG TỐN CHÌA"
-                  : "TIÊU HAO 1 CHÌA KHÓA"}
+                  ? t("unlimitedCost")
+                  : t("keyCost")}
             </small>
           </button>
 
           {isAnimating ? (
             <button className="skip-action" onClick={skipCurrentAnimation}>
-              Bỏ qua hoạt cảnh
+              {t("skipScene")}
             </button>
           ) : (
             <label className="skip-toggle">
@@ -450,20 +452,20 @@ export function ChestPage() {
                 checked={skipAnimation}
                 onChange={(event) => setSkipAnimation(event.target.checked)}
               />
-              <span>Bỏ qua hoạt cảnh lần sau</span>
+              <span>{t("skipNext")}</span>
             </label>
           )}
         </div>
 
         <footer className="stage-footer">
           <span>
-            HÔM NAY <strong>{todayCount}</strong> MÓN
+            {t("todayDishes")} <strong>{todayCount}</strong> {t("dishes")}
           </span>
           <i />
           <span>
-            TỶ LỆ HIẾM <strong>28%</strong>
+            {t("rarityRate")} <strong>28%</strong>
           </span>
-          <button onClick={() => setShowOdds(true)}>XEM TỈ LỆ</button>
+          <button onClick={() => setShowOdds(true)}>{t("viewOdds")}</button>
         </footer>
       </section>
 

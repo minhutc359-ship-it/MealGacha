@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom"
+import { TranslationKey, useLanguage } from "../../i18n"
 
 const tabs = [
   {
     to: "/",
-    label: "Rương",
+    key: "chest" as TranslationKey,
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <rect
@@ -29,7 +30,7 @@ const tabs = [
   },
   {
     to: "/collection",
-    label: "Bộ sưu tập",
+    key: "collection" as TranslationKey,
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <rect
@@ -81,7 +82,7 @@ const tabs = [
   },
   {
     to: "/achievements",
-    label: "Thành tựu",
+    key: "achievements" as TranslationKey,
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <path
@@ -96,7 +97,7 @@ const tabs = [
   },
   {
     to: "/wheel",
-    label: "Vòng quay",
+    key: "wheel" as TranslationKey,
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <circle
@@ -118,7 +119,7 @@ const tabs = [
   },
   {
     to: "/settings",
-    label: "Cài đặt",
+    key: "settings" as TranslationKey,
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <circle
@@ -140,6 +141,8 @@ const tabs = [
 ]
 
 export function BottomNav() {
+  const { t } = useLanguage()
+
   return (
     <nav
       className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-50 border-t"
@@ -150,7 +153,7 @@ export function BottomNav() {
       }}
     >
       <div className="flex max-w-md mx-auto">
-        {tabs.map(({ to, label, icon }) => (
+        {tabs.map(({ to, key, icon }) => (
           <NavLink key={to} to={to} end={to === "/"} className="flex-1">
             {({ isActive }) => (
               <div
@@ -160,7 +163,7 @@ export function BottomNav() {
               >
                 {icon(isActive)}
                 <span className="text-[10px] font-medium leading-none">
-                  {label}
+                  {t(key)}
                 </span>
               </div>
             )}

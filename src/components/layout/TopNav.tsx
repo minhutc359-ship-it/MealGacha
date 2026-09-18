@@ -31,8 +31,8 @@ export function TopNav() {
           V
         </span>
         <span>
-          <strong>RƯƠNG VỊ GIÁC</strong>
-          <small>Mở rương, chốt món</small>
+          <strong>{t("brandTitle")}</strong>
+          <small>{t("brandSubtitle")}</small>
         </span>
       </NavLink>
 
@@ -50,9 +50,9 @@ export function TopNav() {
         <button
           className="quick-sound-toggle"
           onClick={() => updatePreference("soundEnabled", !soundEnabled)}
-          aria-label={soundEnabled ? "Tắt âm thanh" : "Bật âm thanh"}
+          aria-label={soundEnabled ? t("soundOn") : t("soundOff")}
           aria-pressed={soundEnabled}
-          title={soundEnabled ? "Tắt âm thanh" : "Bật âm thanh"}
+          title={soundEnabled ? t("soundOn") : t("soundOff")}
         >
           {soundEnabled ? "◖))" : "◖×"}
         </button>
@@ -60,7 +60,7 @@ export function TopNav() {
           ◇
         </span>
         <strong>{unlimited ? "∞" : keys}</strong>
-        <small>{unlimited ? "VÔ HẠN" : "CHÌA"}</small>
+        <small>{unlimited ? t("unlimitedChest") : t("keyShort")}</small>
       </div>
     </header>
   )

@@ -70,7 +70,7 @@ function devContentWriter(): Plugin {
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
         if (!req.url?.startsWith('/__meal-gacha/dev/')) return next()
-        if (req.method !== 'POST') {
+        if (req.method !== 'POST' && req.method !== 'PUT') {
           res.statusCode = 405
           res.end('Method Not Allowed')
           return
@@ -79,6 +79,19 @@ function devContentWriter(): Plugin {
           const payload = JSON.parse(await readBody(req)) as Record<string, unknown>
           if (req.url === '/__meal-gacha/dev/dish') {
             const current = JSON.parse(fs.readFileSync(dishesPath, 'utf8')) as unknown[]
+            if (req.method === 'PUT') {
+              const dishId = String(payload.id ?? '')
+              if (!dishId || !/^[a-z0-9-]+$/.test(dishId)) {
+                res.statusCode = 400
+                res.end('Invalid dish payload')
+                return
+              }
+              const next = [...current.filter((item) => (item as { id?: string }).id !== dishId), payload]
+              fs.writeFileSync(dishesPath, `${JSON.stringify(next, null, 2)}\n`)
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify({ ok: true }))
+              return
+            }
             if (current.some((item) => (item as { id?: string }).id === payload.id)) {
               res.statusCode = 409
               res.end('Dish ID already exists')

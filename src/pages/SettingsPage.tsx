@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useMemo, useState, useRef } from "react"
 import { useAppStore } from "../store/useAppStore"
 import { repository } from "../infrastructure/storage/repository"
 import { MEAL_SLOT_ICONS, MealSlot } from "../domain/models"
@@ -9,6 +9,7 @@ import { BannerConfig } from "../infrastructure/banner/bannerConfig"
 import { LimitedEvent } from "../domain/models"
 import sourceLimitedEvents from "../infrastructure/events/limitedEvents.json"
 import { useLanguage } from "../i18n"
+import { RarityFrame } from "../components/ui/RarityFrame"
 
 interface CatalogPreview {
   url: string
@@ -56,6 +57,14 @@ export function SettingsPage() {
   }
 
   const recentTx = [...user.keyTransactions].reverse().slice(0, 8)
+  const catalogCategories = useMemo(
+    () => [...new Set(dishes.map((dish) => dish.category).filter(Boolean) as string[])].sort(),
+    [dishes],
+  )
+  const catalogTags = useMemo(
+    () => [...new Set(dishes.flatMap((dish) => dish.tags))].sort(),
+    [dishes],
+  )
 
   const handlePreview = async () => {
     const url = catalogUrl.trim()
@@ -504,13 +513,22 @@ export function SettingsPage() {
           <TextField label="ID món" value={newDish.id} placeholder="bun-ca-keo" onChange={(value) => updateNewDish("id", value)} />
           <TextField label="Tên món" value={newDish.name} placeholder="Bún cá kèo" onChange={(value) => updateNewDish("name", value)} />
           <TextField label="Từ khóa tìm quán" value={newDish.searchQuery} placeholder="bún cá kèo" onChange={(value) => updateNewDish("searchQuery", value)} />
-          <TextField label="Category" value={newDish.category} placeholder="noodle" onChange={(value) => updateNewDish("category", value)} />
-          <TextField label="Tags, cách nhau bằng dấu phẩy" value={newDish.tags} placeholder="vietnamese, hot" onChange={(value) => updateNewDish("tags", value)} />
+          <TextField label="Category (chọn hoặc nhập mới)" value={newDish.category} placeholder="noodle" list="catalog-categories" onChange={(value) => updateNewDish("category", value)} />
+          <label className="local-dish-field">
+            <span>Tags (chọn sẵn hoặc nhập mới, cách nhau bằng dấu phẩy)</span>
+            <input list="catalog-tags" value={newDish.tags} placeholder="vietnamese, hot" onChange={(event) => updateNewDish("tags", event.target.value)} />
+            <div className="local-dish-suggestions">
+              {catalogTags.map((tag) => <button type="button" key={tag} onClick={() => updateNewDish("tags", [...new Set([...newDish.tags.split(",").map((item) => item.trim()).filter(Boolean), tag])].join(", "))}>{tag}</button>)}
+            </div>
+          </label>
+          <datalist id="catalog-categories">{catalogCategories.map((category) => <option key={category} value={category} />)}</datalist>
+          <datalist id="catalog-tags">{catalogTags.map((tag) => <option key={tag} value={tag} />)}</datalist>
           <TextField label="URL ảnh hoặc /assets/food/full/id.webp" value={newDish.imageUrl} placeholder="/assets/food/full/bun-ca-keo.webp" onChange={(value) => updateNewDish("imageUrl", value)} />
           <label className="local-dish-upload">
             <span>{dishImageUploading ? "Đang chuyển sang WebP..." : "Hoặc upload PNG/JPG để tự convert WebP"}</span>
             <input type="file" accept="image/png,image/jpeg,image/webp" onChange={handleDishImageUpload} disabled={dishImageUploading} />
           </label>
+          {newDish.imageData && <RarityFrame rarity={newDish.rarity || "common"} className="local-dish-preview"><img src={newDish.imageData} alt="Preview món mới" /></RarityFrame>}
           <div className="local-dish-grid">
             <label className="local-dish-field">
               <span>Bữa áp dụng</span>
@@ -882,17 +900,20 @@ function convertImageToWebp(file: File): Promise<string> {
     const image = new Image()
     const objectUrl = URL.createObjectURL(file)
     image.onload = () => {
-      const scale = Math.min(1, 1024 / Math.max(image.naturalWidth, image.naturalHeight))
+      const size = 512
       const canvas = document.createElement("canvas")
-      canvas.width = Math.max(1, Math.round(image.naturalWidth * scale))
-      canvas.height = Math.max(1, Math.round(image.naturalHeight * scale))
+      canvas.width = size
+      canvas.height = size
       const context = canvas.getContext("2d")
       if (!context) {
         URL.revokeObjectURL(objectUrl)
         reject(new Error("Canvas unavailable"))
         return
       }
-      context.drawImage(image, 0, 0, canvas.width, canvas.height)
+      const sourceSize = Math.min(image.naturalWidth, image.naturalHeight)
+      const sourceX = (image.naturalWidth - sourceSize) / 2
+      const sourceY = (image.naturalHeight - sourceSize) / 2
+      context.drawImage(image, sourceX, sourceY, sourceSize, sourceSize, 0, 0, size, size)
       URL.revokeObjectURL(objectUrl)
       resolve(canvas.toDataURL("image/webp", 0.86))
     }
@@ -904,11 +925,11 @@ function convertImageToWebp(file: File): Promise<string> {
   })
 }
 
-function TextField({ label, value, placeholder, onChange }: { label: string; value: string; placeholder: string; onChange(value: string): void }) {
+function TextField({ label, value, placeholder, list, onChange }: { label: string; value: string; placeholder: string; list?: string; onChange(value: string): void }) {
   return (
     <label className="local-dish-field">
       <span>{label}</span>
-      <input value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)} />
+      <input list={list} value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)} />
     </label>
   )
 }

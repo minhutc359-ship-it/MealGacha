@@ -9,6 +9,7 @@ import { FoodImage } from "../food/FoodImage"
 import { RarityFrame, RARITY_LABELS } from "../ui/RarityFrame"
 import { useAppStore } from "../../store/useAppStore"
 import { RaritySticker } from "../ui/RaritySticker"
+import { useLanguage } from "../../i18n"
 
 interface Props {
   reward: RewardInstance
@@ -33,6 +34,7 @@ export function RevealModal({
     (state) => state.user.rewards.find((item) => item.id === reward.id)?.favorite ?? reward.favorite,
   )
   const showToast = useAppStore((state) => state.showToast)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -64,15 +66,15 @@ export function RevealModal({
   const particleCount = rarity === "diamond" ? 34 : rarity === "epic" ? 24 : rarity === "rare" ? 16 : 9
 
   const shareReward = async () => {
-    const text = `Tôi vừa mở được ${dish.name} trong Rương Vị Giác!`
+    const text = `${dish.name} · ${t("brandTitle")}`
     try {
       if (navigator.share) await navigator.share({ title: "Rương Vị Giác", text })
       else {
         await navigator.clipboard.writeText(text)
-        showToast("Đã sao chép kết quả!", "success")
+        showToast(t("copyResult"), "success")
       }
     } catch (error) {
-      if ((error as DOMException).name !== "AbortError") showToast("Không thể chia sẻ kết quả.", "error")
+      if ((error as DOMException).name !== "AbortError") showToast(t("shareError"), "error")
     }
   }
 
@@ -89,7 +91,7 @@ export function RevealModal({
     context.fillRect(0, 0, 900, 560)
     context.fillStyle = "#e8c777"
     context.font = "700 22px Exo 2"
-    context.fillText("RUONG VI GIAC", 54, 64)
+    context.fillText(t("brandTitle"), 54, 64)
     context.fillStyle = "#edf8ff"
     context.font = "800 52px Exo 2"
     context.fillText(dish.name, 54, 270)
@@ -98,7 +100,7 @@ export function RevealModal({
     context.fillText(RARITY_LABELS[rarity].toUpperCase(), 54, 320)
     context.fillStyle = "#7d94a8"
     context.font = "18px Be Vietnam Pro"
-    context.fillText("Một lựa chọn vừa được khai mở.", 54, 380)
+    context.fillText(t("unlockedReward"), 54, 380)
     const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png"))
     if (!blob) return
     const url = URL.createObjectURL(blob)
@@ -107,7 +109,7 @@ export function RevealModal({
     link.download = `ruong-vi-giac-${dish.id}.png`
     link.click()
     URL.revokeObjectURL(url)
-    showToast("Đã tải share card!", "success")
+    showToast(t("downloadedCard"), "success")
   }
 
   return (
@@ -193,7 +195,7 @@ export function RevealModal({
                     backdropFilter: "blur(4px)",
                   }}
                 >
-                  ✨ Ghép món
+                  ✨ {t("fusion")}
                 </span>
               </div>
             )}
@@ -211,7 +213,7 @@ export function RevealModal({
 
           {/* Info */}
           <div className="reward-reveal-info px-5 pb-5">
-            <p className="reward-unlocked-label">PHẦN THƯỞNG ĐÃ ĐƯỢC KHAI MỞ</p>
+            <p className="reward-unlocked-label">{t("unlockedReward")}</p>
             <h2
               className="text-2xl font-extrabold mb-0.5 mt-1"
               style={{ fontFamily: "Exo 2, sans-serif", color: "#e8edf5" }}
@@ -227,12 +229,12 @@ export function RevealModal({
               </p>
             )}
 
-            <div className="reward-utility-actions" role="group" aria-label="Thao tác phần thưởng">
+            <div className="reward-utility-actions" role="group" aria-label={t("rewards")}>
               <button onClick={() => toggleFavorite(reward.id)} aria-pressed={favorite}>
-                {favorite ? "♥ Đã yêu thích" : "♡ Yêu thích"}
+                {favorite ? `♥ ${t("favorited")}` : `♡ ${t("favorite")}`}
               </button>
-              <button onClick={shareReward}>↗ Chia sẻ</button>
-              <button onClick={downloadShareCard}>▣ Card</button>
+              <button onClick={shareReward}>↗ {t("share")}</button>
+              <button onClick={downloadShareCard}>▣ {t("downloadCard")}</button>
             </div>
 
             {/* Actions */}
@@ -246,7 +248,7 @@ export function RevealModal({
                 boxShadow: "0 4px 16px rgba(0,212,255,0.3)",
               }}
             >
-              📍 Tìm quán gần đây
+              📍 {t("findRestaurants")}
             </button>
 
             <div className="grid grid-cols-2 gap-2.5">
@@ -269,7 +271,7 @@ export function RevealModal({
                       }
                 }
               >
-                🔑 Mở tiếp
+                🔑 {t("openAgain")}
               </button>
               <button
                 onClick={onGoCollection}
@@ -280,7 +282,7 @@ export function RevealModal({
                   background: "rgba(14,22,40,0.5)",
                 }}
               >
-                📦 Bộ sưu tập
+                📦 {t("collection")}
               </button>
             </div>
 
@@ -289,7 +291,7 @@ export function RevealModal({
                 className="text-center text-xs mt-2.5"
                 style={{ color: "#6b7f99" }}
               >
-                Hết chìa · Điểm danh ngày mai để nhận thêm
+                {t("noKeysCheckIn")}
               </p>
             )}
           </div>

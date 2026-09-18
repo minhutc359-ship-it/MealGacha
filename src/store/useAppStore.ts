@@ -34,6 +34,7 @@ interface AppStore {
   init(): void
   checkIn(): boolean
   addLocalDish(dish: Dish): { success: boolean; error?: string }
+  updateDish(dishId: string, patch: Pick<Dish, "name" | "rarity">): Promise<{ success: boolean; error?: string }>
   claimDailyQuest(questId: string, optionId: string): { correct: boolean; error?: string }
   openFreeChest(slot: MealSlot): { reward: RewardInstance | null; error?: string }
   convertDuplicate(rewardId: string): boolean
@@ -107,6 +108,32 @@ export const useAppStore = create<AppStore>((set, get) => ({
     repository.saveLocalCatalog(nextDishes)
     set({ dishes: nextDishes })
     get().showToast(`Đã thêm món ${dish.name} vào catalog local.`, "success")
+    return { success: true }
+  },
+
+  async updateDish(dishId, patch) {
+    if (!import.meta.env.DEV) {
+      return { success: false, error: "Chức năng này chỉ khả dụng trong môi trường dev." }
+    }
+    const { dishes } = get()
+    const current = dishes.find((dish) => dish.id === dishId)
+    if (!current) return { success: false, error: "Không tìm thấy món cần sửa." }
+    const nextDish = { ...current, name: patch.name.trim(), rarity: patch.rarity }
+    if (!nextDish.name) return { success: false, error: "Label không được để trống." }
+    try {
+      const response = await fetch("/__meal-gacha/dev/dish", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(nextDish),
+      })
+      if (!response.ok) throw new Error("Không thể ghi thay đổi món vào source.")
+    } catch (error) {
+      return { success: false, error: (error as Error).message }
+    }
+    const nextDishes = dishes.map((dish) => dish.id === dishId ? nextDish : dish)
+    repository.saveLocalCatalog(nextDishes)
+    set({ dishes: nextDishes })
+    get().showToast(`Đã cập nhật ${nextDish.name}.`, "success")
     return { success: true }
   },
 
