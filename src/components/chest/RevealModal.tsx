@@ -75,6 +75,40 @@ export function RevealModal({
     }
   }
 
+  const downloadShareCard = async () => {
+    const canvas = document.createElement("canvas")
+    canvas.width = 900
+    canvas.height = 560
+    const context = canvas.getContext("2d")
+    if (!context) return
+    const gradient = context.createLinearGradient(0, 0, 900, 560)
+    gradient.addColorStop(0, "#071827")
+    gradient.addColorStop(1, rarity === "diamond" ? "#5d3d9d" : "#0d3041")
+    context.fillStyle = gradient
+    context.fillRect(0, 0, 900, 560)
+    context.fillStyle = "#e8c777"
+    context.font = "700 22px Exo 2"
+    context.fillText("RUONG VI GIAC", 54, 64)
+    context.fillStyle = "#edf8ff"
+    context.font = "800 52px Exo 2"
+    context.fillText(dish.name, 54, 270)
+    context.fillStyle = "#a8f3ff"
+    context.font = "700 24px Exo 2"
+    context.fillText(RARITY_LABELS[rarity].toUpperCase(), 54, 320)
+    context.fillStyle = "#7d94a8"
+    context.font = "18px Be Vietnam Pro"
+    context.fillText("Một lựa chọn vừa được khai mở.", 54, 380)
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png"))
+    if (!blob) return
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = `ruong-vi-giac-${dish.id}.png`
+    link.click()
+    URL.revokeObjectURL(url)
+    showToast("Đã tải share card!", "success")
+  }
+
   return (
     <>
       <div
@@ -126,6 +160,7 @@ export function RevealModal({
               <FoodImage
                 dishId={dish.id}
                 name={dish.name}
+                imageUrl={dish.imageUrl}
                 variant="full"
                 eager
               />
@@ -195,6 +230,7 @@ export function RevealModal({
                 {favorite ? "♥ Đã yêu thích" : "♡ Yêu thích"}
               </button>
               <button onClick={shareReward}>↗ Chia sẻ</button>
+              <button onClick={downloadShareCard}>▣ Card</button>
             </div>
 
             {/* Actions */}

@@ -6,6 +6,8 @@ import {
   getBannerDishes,
   getCollectionProgress,
   getUnlockedDishIds,
+  getAchievementProgress,
+  getThemeProgress,
 } from "../domain/achievements"
 import {
   Dish,
@@ -23,6 +25,7 @@ export function AchievementsPage() {
   const dishes = useAppStore((state) => state.dishes)
   const [slot, setSlot] = useState<MealSlot>("breakfast")
   const [placeDish, setPlaceDish] = useState<Dish | null>(null)
+  const [showExtendedAchievements, setShowExtendedAchievements] = useState(false)
 
   const unlockedIds = useMemo(
     () => getUnlockedDishIds(user.rewards),
@@ -41,6 +44,8 @@ export function AchievementsPage() {
     [dishes, slot, user.rewards],
   )
   const unlimited = Boolean(user.unlimitedChestUnlockedAt)
+  const achievementProgress = getAchievementProgress(user, dishes)
+  const themeProgress = getThemeProgress(user.rewards, dishes)
 
   return (
     <div className="achievements-page">
@@ -119,7 +124,7 @@ export function AchievementsPage() {
                 aria-label={unlocked ? `${dish.name}, đã mở` : `${dish.name}, chưa mở`}
               >
                 <RarityFrame rarity={rarity} className="achievement-art">
-                  <FoodImage dishId={dish.id} name={dish.name} variant="card" />
+                  <FoodImage dishId={dish.id} name={dish.name} imageUrl={dish.imageUrl} variant="card" />
                   {!unlocked && (
                     <div className="achievement-lock" aria-hidden="true">
                       <span>⌾</span>
@@ -139,10 +144,52 @@ export function AchievementsPage() {
           })}
         </div>
       </section>
+      <section className="achievement-section mt-6">
+        <button
+          type="button"
+          className="achievement-collapse-toggle"
+          aria-expanded={showExtendedAchievements}
+          onClick={() => setShowExtendedAchievements((open) => !open)}
+        >
+          <span>
+            <small>THÀNH TỰU MỞ RỘNG</small>
+            <strong>Hồ sơ chiến tích</strong>
+          </span>
+          <b aria-hidden="true">{showExtendedAchievements ? "⌃" : "⌄"}</b>
+        </button>
+        {showExtendedAchievements && (
+          <div className="achievement-collapse-content">
+            <div className="grid grid-cols-2 gap-2 mb-5">
+              <AchievementStat label="Món đã mở" value={achievementProgress.opened} icon="🍜" />
+              <AchievementStat label="Lần ghép" value={achievementProgress.fused} icon="✨" />
+              <AchievementStat label="Streak tốt nhất" value={achievementProgress.streak} icon="🔥" />
+              <AchievementStat label="Quest đã giải" value={achievementProgress.quests} icon="🧩" />
+            </div>
+            <div className="theme-progress-list">
+              {themeProgress.map((theme) => (
+                <div key={theme.id} className="theme-progress-row">
+                  <span>{theme.label}</span>
+                  <i><b style={{ width: `${theme.percentage}%` }} /></i>
+                  <strong>{theme.unlocked}/{theme.total}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
 
       {placeDish && (
         <PlacesModal dish={placeDish} onClose={() => setPlaceDish(null)} />
       )}
+    </div>
+  )
+}
+function AchievementStat({ label, value, icon }: { label: string; value: number; icon: string }) {
+  return (
+    <div className="achievement-stat">
+      <span>{icon}</span>
+      <strong>{value}</strong>
+      <small>{label}</small>
     </div>
   )
 }

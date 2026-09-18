@@ -7,11 +7,18 @@ import {
   DishSnapshot,
   RewardRarity,
 } from "./models"
-import { getDateKey } from "./dateKey"
+import { getDateKey, isGoldenHour } from "./dateKey"
 import { hasUnlimitedChestAccess, isCatalogComplete } from "./achievements"
 
 const CHEST_COST = parseInt(import.meta.env.VITE_CHEST_COST || "1", 10)
 const RECENT_EXCLUSION = 3
+export const FREE_CHEST_COST = 0
+export const DUPLICATE_SHARD_VALUES: Record<RewardRarity, number> = {
+  common: 2,
+  rare: 5,
+  epic: 15,
+  diamond: 40,
+}
 
 function secureRandom(): number {
   const arr = new Uint32Array(1)
@@ -82,20 +89,77 @@ export function canOpenChest(
   return null
 }
 
+export function canClaimFreeChest(state: UserState): boolean {
+  return state.lastFreeChestDate !== getDateKey()
+}
+
+export function canConvertDuplicate(state: UserState, rewardId: string): boolean {
+  const reward = state.rewards.find((item) => item.id === rewardId)
+  return Boolean(reward && reward.status === "available" && !reward.convertedAt &&
+    state.rewards.some((item) => item.id !== rewardId && item.dishId === reward.dishId))
+}
+
+export function applyConvertDuplicate(state: UserState, rewardId: string): UserState {
+  if (!canConvertDuplicate(state, rewardId)) return state
+  const reward = state.rewards.find((item) => item.id === rewardId)!
+  const amount = DUPLICATE_SHARD_VALUES[reward.rarity ?? "common"]
+  const now = new Date().toISOString()
+  return {
+    ...state,
+    shards: state.shards + amount,
+    rewards: state.rewards.map((item) => item.id === rewardId
+      ? { ...item, status: "consumed", consumedAt: now, convertedAt: now }
+      : item),
+    updatedAt: now,
+  }
+}
+
+export function applyShardExchange(state: UserState, shardCost: number): UserState {
+  if (shardCost <= 0 || state.shards < shardCost) return state
+  const now = new Date().toISOString()
+  const keys = Math.floor(shardCost / 10)
+  if (keys <= 0) return state
+  const tx: KeyTransaction = {
+    id: crypto.randomUUID(),
+    amount: keys,
+    balanceAfter: state.keys + keys,
+    reason: "shard_exchange",
+    createdAt: now,
+  }
+  return {
+    ...state,
+    shards: state.shards - keys * 10,
+    keys: state.keys + keys,
+    keyTransactions: [...state.keyTransactions, tx],
+    updatedAt: now,
+  }
+}
+
 export function applyOpenChest(
   state: UserState,
   dishes: Dish[],
   slot: MealSlot,
+  options: { free?: boolean } = {},
 ): {
   state: UserState
   reward: RewardInstance
   unlockedUnlimited: boolean
 } {
   const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [])
-  const dish = drawWeighted(pool)
+  const pityPool = state.pityCount >= 9
+    ? pool.filter((item) => ["epic", "diamond"].includes(getDishRarity(item)))
+    : state.pityCount >= 4
+      ? pool.filter((item) => ["rare", "epic", "diamond"].includes(getDishRarity(item)))
+      : []
+  const goldenPool = pool.filter((item) => ["rare", "epic", "diamond"].includes(getDishRarity(item)))
+  const boostedPool = isGoldenHour() && goldenPool.length > 0 && secureRandom() < 0.25
+    ? goldenPool
+    : pool
+  const dish = drawWeighted(pityPool.length > 0 ? pityPool : boostedPool)
   const now = new Date().toISOString()
   const unlimitedBeforeDraw = hasUnlimitedChestAccess(state, dishes)
-  const cost = unlimitedBeforeDraw ? 0 : CHEST_COST
+  const free = options.free === true
+  const cost = unlimitedBeforeDraw || free ? 0 : CHEST_COST
   const rewardId = crypto.randomUUID()
   const snapshot: DishSnapshot = {
     id: dish.id,
@@ -109,7 +173,7 @@ export function applyOpenChest(
     dishId: dish.id,
     dish: snapshot,
     mealSlot: slot,
-    source: "chest",
+    source: free ? "free_chest" : "chest",
     status: "available",
     acquiredAt: now,
     acquiredDate: getDateKey(),
@@ -120,7 +184,7 @@ export function applyOpenChest(
     id: crypto.randomUUID(),
     amount: -cost,
     balanceAfter: state.keys - cost,
-    reason: "chest_open",
+    reason: free ? "free_chest" : "chest_open",
     createdAt: now,
     referenceId: rewardId,
   }
@@ -134,6 +198,11 @@ export function applyOpenChest(
   const newState: UserState = {
     ...state,
     keys: state.keys - cost,
+    pityCount:
+      getDishRarity(dish) === "common" || getDishRarity(dish) === "rare"
+        ? state.pityCount + 1
+        : 0,
+    lastFreeChestDate: free ? getDateKey() : state.lastFreeChestDate,
     rewards,
     keyTransactions: cost > 0 ? [...state.keyTransactions, tx] : state.keyTransactions,
     recentDishIdsByMeal: { ...state.recentDishIdsByMeal, [slot]: recent },

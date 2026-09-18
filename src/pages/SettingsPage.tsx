@@ -4,6 +4,8 @@ import { repository } from "../infrastructure/storage/repository"
 import { MEAL_SLOT_ICONS, MealSlot } from "../domain/models"
 import { fetchCatalog, ParseResult } from "../infrastructure/catalog/csvAdapter"
 import { Dish } from "../domain/models"
+import { RewardRarity } from "../domain/models"
+import { BannerConfig } from "../infrastructure/banner/bannerConfig"
 
 interface CatalogPreview {
   url: string
@@ -16,6 +18,7 @@ export function SettingsPage() {
   const user = useAppStore((s) => s.user)
   const updatePref = useAppStore((s) => s.updatePreference)
   const loadRemoteCatalog = useAppStore((s) => s.loadRemoteCatalog)
+  const addLocalDish = useAppStore((s) => s.addLocalDish)
   const dishes = useAppStore((s) => s.dishes)
   const resetData = useAppStore((s) => s.resetData)
   const showToast = useAppStore((s) => s.showToast)
@@ -26,9 +29,14 @@ export function SettingsPage() {
   const [previewLoading, setPreviewLoading] = useState(false)
   const [preview, setPreview] = useState<CatalogPreview | null>(null)
   const [showReset, setShowReset] = useState(false)
+  const [newDish, setNewDish] = useState<LocalDishDraft>(createLocalDishDraft())
+  const [bannerDraft, setBannerDraft] = useState<BannerConfig>(() =>
+    repository.loadBannerOverride() ?? { id: "local-banner-1", imageUrl: "", enabled: false },
+  )
   const fileRef = useRef<HTMLInputElement>(null)
 
   const prefs = user.preferences
+  const isLocal = import.meta.env.DEV
 
   const slotCounts = {
     breakfast: dishes.filter(
@@ -92,6 +100,105 @@ export function SettingsPage() {
     showToast("Đã xóa override. Dùng dữ liệu gốc.", "info")
   }
 
+  const updateNewDish = <K extends keyof LocalDishDraft>(
+    key: K,
+    value: LocalDishDraft[K],
+  ) => setNewDish((current) => ({ ...current, [key]: value }))
+
+  const handleAddLocalDish = async () => {
+    const id = newDish.id.trim()
+    const name = newDish.name.trim()
+    if (!id || !name || !/^[a-z0-9-]+$/.test(id)) {
+      showToast("ID chỉ dùng chữ thường, số và dấu gạch ngang; tên món không được trống.", "error")
+      return
+    }
+    if (newDish.mealSlots.length === 0) {
+      showToast("Chọn ít nhất một khung bữa.", "error")
+      return
+    }
+    const dish = {
+      id,
+      name,
+      searchQuery: newDish.searchQuery.trim() || name,
+      mealSlots: newDish.mealSlots,
+      category: newDish.category.trim() || undefined,
+      description: newDish.description.trim() || undefined,
+      imageUrl: newDish.imageUrl.trim() || undefined,
+      tags: newDish.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
+      weight: Number(newDish.weight) || 100,
+      rarity: newDish.rarity || undefined,
+      priceTier: newDish.priceTier,
+      active: newDish.active,
+    }
+    try {
+      const response = await fetch("/__meal-gacha/dev/dish", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dish),
+      })
+      if (!response.ok) throw new Error("Không thể ghi món vào source.")
+    } catch (error) {
+      showToast((error as Error).message, "error")
+      return
+    }
+    const result = addLocalDish(dish)
+    if (!result.success) {
+      showToast(result.error ?? "Không thể thêm món.", "error")
+      return
+    }
+    setNewDish(createLocalDishDraft())
+  }
+
+  const handleBannerUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+    if (!file.type.startsWith("image/")) {
+      showToast("Banner phải là file hình ảnh.", "error")
+      return
+    }
+    const reader = new FileReader()
+    reader.onload = () => {
+      setBannerDraft({
+        id: `local-${Date.now()}`,
+        imageUrl: String(reader.result),
+        enabled: true,
+      })
+    }
+    reader.readAsDataURL(file)
+    event.target.value = ""
+  }
+
+  const saveLocalBanner = async () => {
+    if (!bannerDraft.imageUrl) {
+      showToast("Hãy tải ảnh banner trước.", "error")
+      return
+    }
+    try {
+      const response = await fetch("/__meal-gacha/dev/banner", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: bannerDraft.id,
+          imageData: bannerDraft.imageUrl,
+          enabled: bannerDraft.enabled,
+        }),
+      })
+      if (!response.ok) throw new Error("Không thể ghi banner vào source.")
+      const result = (await response.json()) as { imageUrl: string }
+      repository.saveBannerOverride({ ...bannerDraft, imageUrl: result.imageUrl })
+    } catch (error) {
+      showToast((error as Error).message, "error")
+      return
+    }
+    showToast("Đã bật banner local. Tải lại trang để xem popup.", "success")
+  }
+
+  const clearLocalBanner = () => {
+    repository.clearBannerOverride()
+    setBannerDraft({ id: "local-banner-1", imageUrl: "", enabled: false })
+    showToast("Đã xóa banner local.", "info")
+  }
+
   const handleExport = () => {
     const json = repository.exportBackup()
     const blob = new Blob([json], { type: "application/json" })
@@ -130,6 +237,30 @@ export function SettingsPage() {
         Cài đặt
       </h1>
 
+      {isLocal && (
+        <Section title="Banner thông báo local">
+          <p className="text-xs mb-3 leading-relaxed" style={{ color: "#6b7f99" }}>
+            Chỉ hiển thị trong môi trường local. Production dùng <strong>BANNER_CONFIG</strong> đã commit trong source.
+          </p>
+          <div className="local-banner-settings">
+            {bannerDraft.imageUrl && <img src={bannerDraft.imageUrl} alt="Xem trước banner" />}
+            <input type="file" accept="image/*" onChange={handleBannerUpload} />
+            <label className="local-dish-active">
+              <input
+                type="checkbox"
+                checked={bannerDraft.enabled}
+                onChange={(event) => setBannerDraft((current) => ({ ...current, enabled: event.target.checked }))}
+              />
+              Bật popup banner local
+            </label>
+            <div className="flex gap-2">
+              <button className="local-dish-submit flex-1" onClick={saveLocalBanner}>Lưu banner</button>
+              <button className="local-banner-clear" onClick={clearLocalBanner}>Xóa</button>
+            </div>
+          </div>
+        </Section>
+      )}
+
       {/* Stats */}
       <Section title="Thống kê">
         <div className="grid grid-cols-3 gap-2 mb-3">
@@ -150,6 +281,18 @@ export function SettingsPage() {
             value={user.fusions.length}
             color="#a855f7"
             icon="✨"
+          />
+          <StatTile
+            label="Streak tốt nhất"
+            value={user.bestCheckInStreak}
+            color="#4ade80"
+            icon="🔥"
+          />
+          <StatTile
+            label="Mảnh vị giác"
+            value={user.shards}
+            color="#f472b6"
+            icon="♢"
           />
         </div>
         <div className="flex gap-3 text-xs" style={{ color: "#6b7f99" }}>
@@ -178,8 +321,16 @@ export function SettingsPage() {
                 <span style={{ color: "#6b7f99" }}>
                   {tx.reason === "daily_checkin"
                     ? "🔑 Điểm danh"
+                    : tx.reason === "daily_quest"
+                      ? "🧩 Mật mã vị giác"
                     : tx.reason === "chest_open"
                       ? "📦 Mở rương"
+                      : tx.reason === "free_chest"
+                        ? "🎁 Rương miễn phí"
+                        : tx.reason === "streak_reward"
+                          ? "🔥 Thưởng streak"
+                          : tx.reason === "shard_exchange"
+                            ? "♢ Đổi mảnh"
                       : "⚙️ Khác"}
                 </span>
                 <div className="flex items-center gap-3">
@@ -245,6 +396,56 @@ export function SettingsPage() {
           />
         </div>
       </Section>
+
+      {isLocal && <Section title="Thêm món local">
+        <p className="text-xs mb-3 leading-relaxed" style={{ color: "#6b7f99" }}>
+          Chỉ lưu trên trình duyệt hiện tại. Khi deploy, thêm món vào catalog/seed và commit ảnh vào <strong>public/assets/food/full</strong>.
+        </p>
+        <div className="local-dish-form">
+          <TextField label="ID món" value={newDish.id} placeholder="bun-ca-keo" onChange={(value) => updateNewDish("id", value)} />
+          <TextField label="Tên món" value={newDish.name} placeholder="Bún cá kèo" onChange={(value) => updateNewDish("name", value)} />
+          <TextField label="Từ khóa tìm quán" value={newDish.searchQuery} placeholder="bún cá kèo" onChange={(value) => updateNewDish("searchQuery", value)} />
+          <TextField label="Category" value={newDish.category} placeholder="noodle" onChange={(value) => updateNewDish("category", value)} />
+          <TextField label="Tags, cách nhau bằng dấu phẩy" value={newDish.tags} placeholder="vietnamese, hot" onChange={(value) => updateNewDish("tags", value)} />
+          <TextField label="URL ảnh hoặc /assets/food/full/id.webp" value={newDish.imageUrl} placeholder="/assets/food/full/bun-ca-keo.webp" onChange={(value) => updateNewDish("imageUrl", value)} />
+          <div className="local-dish-grid">
+            <label className="local-dish-field">
+              <span>Bữa áp dụng</span>
+              <div className="local-dish-meals">
+                {(["breakfast", "lunch", "dinner"] as MealSlot[]).map((meal) => (
+                  <label key={meal}>
+                    <input
+                      type="checkbox"
+                      checked={newDish.mealSlots.includes(meal)}
+                      onChange={(event) => updateNewDish("mealSlots", event.target.checked
+                        ? [...newDish.mealSlots, meal]
+                        : newDish.mealSlots.filter((item) => item !== meal))}
+                    />
+                    {MEAL_SLOT_ICONS[meal]}
+                  </label>
+                ))}
+              </div>
+            </label>
+            <label className="local-dish-field">
+              <span>Rarity</span>
+              <select value={newDish.rarity} onChange={(event) => updateNewDish("rarity", event.target.value as RewardRarity | "")}>
+                <option value="">Theo weight</option>
+                <option value="common">Common</option>
+                <option value="rare">Rare</option>
+                <option value="epic">Epic</option>
+                <option value="diamond">Diamond</option>
+              </select>
+            </label>
+          </div>
+          <div className="local-dish-grid">
+            <NumberInput label="Weight" unit="" value={newDish.weight} min={1} max={1000} step={1} onChange={(value) => updateNewDish("weight", value)} />
+            <NumberInput label="Price tier" unit="/4" value={newDish.priceTier} min={1} max={4} step={1} onChange={(value) => updateNewDish("priceTier", value as 1 | 2 | 3 | 4)} />
+          </div>
+          <TextField label="Mô tả" value={newDish.description} placeholder="Món ăn đặc trưng..." onChange={(value) => updateNewDish("description", value)} />
+          <label className="local-dish-active"><input type="checkbox" checked={newDish.active} onChange={(event) => updateNewDish("active", event.target.checked)} /> Có thể xuất hiện trong rương</label>
+          <button className="local-dish-submit" onClick={handleAddLocalDish}>+ Thêm vào catalog local</button>
+        </div>
+      </Section>}
 
       {/* Catalog source — with preview */}
       <Section title="Nguồn dữ liệu món ăn">
@@ -514,6 +715,47 @@ export function SettingsPage() {
         Rương Vị Giác v1.0 · Mở rương, chốt món 🍴
       </p>
     </div>
+  )
+}
+
+interface LocalDishDraft {
+  id: string
+  name: string
+  searchQuery: string
+  mealSlots: MealSlot[]
+  category: string
+  tags: string
+  imageUrl: string
+  description: string
+  weight: number
+  rarity: RewardRarity | ""
+  priceTier: 1 | 2 | 3 | 4
+  active: boolean
+}
+
+function createLocalDishDraft(): LocalDishDraft {
+  return {
+    id: "",
+    name: "",
+    searchQuery: "",
+    mealSlots: ["lunch"],
+    category: "",
+    tags: "",
+    imageUrl: "",
+    description: "",
+    weight: 100,
+    rarity: "",
+    priceTier: 2,
+    active: true,
+  }
+}
+
+function TextField({ label, value, placeholder, onChange }: { label: string; value: string; placeholder: string; onChange(value: string): void }) {
+  return (
+    <label className="local-dish-field">
+      <span>{label}</span>
+      <input value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)} />
+    </label>
   )
 }
 

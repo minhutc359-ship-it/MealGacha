@@ -7,6 +7,7 @@ import {
 interface Props {
   dishId: string
   name: string
+  imageUrl?: string
   variant?: FoodImageVariant
   className?: string
   style?: CSSProperties
@@ -18,13 +19,14 @@ const CATEGORY_FALLBACK = "🍴"
 export function FoodImage({
   dishId,
   name,
+  imageUrl,
   variant = "card",
   className = "",
   style,
   eager = false,
 }: Props) {
   const [failed, setFailed] = useState(false)
-  const src = getFoodAssetUrl(dishId, variant)
+  const src = imageUrl || getFoodAssetUrl(dishId, variant)
 
   if (!src || failed) {
     return (

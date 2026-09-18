@@ -23,6 +23,9 @@ import {
 } from "../infrastructure/audio/soundEngine"
 import { getVisibleRewards } from "../domain/rewardPresentation"
 import { hasUnlimitedChestAccess } from "../domain/achievements"
+import { canClaimFreeChest } from "../domain/drawReward"
+import { isGoldenHour } from "../domain/dateKey"
+import { DailyQuest } from "../components/layout/DailyQuest"
 
 type ChestState =
   | "idle"
@@ -104,6 +107,7 @@ export function ChestPage() {
   const user = useAppStore((state) => state.user)
   const dishes = useAppStore((state) => state.dishes)
   const checkIn = useAppStore((state) => state.checkIn)
+  const openFreeChest = useAppStore((state) => state.openFreeChest)
   const openChest = useAppStore((state) => state.openChest)
   const showToast = useAppStore((state) => state.showToast)
   const pendingRevealRewardId = useAppStore((state) => state.pendingRevealRewardId)
@@ -135,6 +139,8 @@ export function ChestPage() {
   }, [])
   const reduceMotion = user.preferences.reducedMotion || prefersReducedMotion
   const unlimited = hasUnlimitedChestAccess(user, dishes)
+  const freeChestReady = canClaimFreeChest(user)
+  const goldenHour = isGoldenHour()
 
   const finishReveal = useCallback(() => {
     const nextReward = pendingRewardRef.current
@@ -358,6 +364,27 @@ export function ChestPage() {
           </small>
         </p>
         <b>{checkedIn ? "✓" : "+10"}</b>
+      </button>
+
+      <DailyQuest compact />
+
+      {goldenHour && (
+        <div className="golden-hour-banner">
+          ✦ GIỜ VÀNG · Cơ hội món Rare+ tăng trong khung 18:00–21:00
+        </div>
+      )}
+
+      <button
+        className={`mobile-checkin ${freeChestReady ? "is-ready" : "is-done"}`}
+        onClick={() => freeChestReady && openFreeChest(slot)}
+        disabled={!freeChestReady || isAnimating || showReveal}
+      >
+        <span>🎁</span>
+        <p>
+          <strong>{freeChestReady ? "Rương miễn phí hôm nay" : "Đã dùng rương miễn phí"}</strong>
+          <small>{freeChestReady ? "Không tốn chìa khóa" : "Quay lại vào ngày mai"}</small>
+        </p>
+        <b>{freeChestReady ? "MỞ" : "✓"}</b>
       </button>
 
       <section className="ritual-stage" aria-live="polite">

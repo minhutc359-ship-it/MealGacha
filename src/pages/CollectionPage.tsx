@@ -20,6 +20,8 @@ export function CollectionPage() {
   const user = useAppStore((s) => s.user)
   const fuse = useAppStore((s) => s.fuse)
   const toggleFavorite = useAppStore((s) => s.toggleFavorite)
+  const convertDuplicate = useAppStore((s) => s.convertDuplicate)
+  const exchangeShards = useAppStore((s) => s.exchangeShards)
   const showToast = useAppStore((s) => s.showToast)
 
   const [slotFilter, setSlotFilter] = useState<SlotFilter>("all")
@@ -140,6 +142,18 @@ export function CollectionPage() {
         </button>
       </div>
 
+      <div className="flex items-center justify-between gap-2 mb-3 px-3 py-2 rounded-xl" style={{ background: "rgba(236,72,153,0.07)", border: "1px solid rgba(236,72,153,0.18)" }}>
+        <span className="text-xs" style={{ color: "#f9a8d4" }}>♢ {user.shards} mảnh vị giác</span>
+        <button
+          onClick={exchangeShards}
+          disabled={user.shards < 10}
+          className="text-xs font-bold px-2 py-1 rounded-lg"
+          style={{ color: user.shards >= 10 ? "#f9a8d4" : "#6b7f99", border: "1px solid rgba(236,72,153,0.25)" }}
+        >
+          Đổi 10 mảnh → 1 🔑
+        </button>
+      </div>
+
       {/* Fusion panel */}
       {fusionMode && (
         <div
@@ -177,6 +191,7 @@ export function CollectionPage() {
                     <FoodImage
                       dishId={r.dishId}
                       name={r.dish.name}
+                      imageUrl={r.dish.imageUrl}
                       variant="thumb"
                     />
                   ) : (
@@ -395,6 +410,10 @@ export function CollectionPage() {
                     onSelect={() => toggleSelect(r.id)}
                     onFavorite={() => toggleFavorite(r.id)}
                     onFindPlaces={() => setPlaceDish(r)}
+                    onConvertDuplicate={() => convertDuplicate(r.id)}
+                    canConvertDuplicate={user.rewards.some(
+                      (other) => other.id !== r.id && other.dishId === r.dishId,
+                    )}
                   />
                 ))}
               </div>
@@ -455,6 +474,8 @@ function RewardCard({
   onSelect,
   onFavorite,
   onFindPlaces,
+  onConvertDuplicate,
+  canConvertDuplicate,
 }: {
   reward: RewardInstance
   fusionMode: boolean
@@ -464,6 +485,8 @@ function RewardCard({
   onSelect(): void
   onFavorite(): void
   onFindPlaces(): void
+  onConvertDuplicate(): void
+  canConvertDuplicate: boolean
 }) {
   const isConsumed = reward.status === "consumed"
   const isLocked = fusionMode && !selectable && !isSelected
@@ -496,6 +519,7 @@ function RewardCard({
         <FoodImage
           dishId={reward.dishId}
           name={reward.dish.name}
+          imageUrl={reward.dish.imageUrl}
           variant="thumb"
         />
       </div>
@@ -558,6 +582,18 @@ function RewardCard({
           >
             📍
           </button>
+          {reward.status === "available" && !reward.convertedAt && canConvertDuplicate && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                onConvertDuplicate()
+              }}
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-sm transition-colors"
+              title="Đổi món trùng thành mảnh"
+            >
+              ♢
+            </button>
+          )}
           <button
             onClick={(e) => {
               e.stopPropagation()

@@ -6,6 +6,7 @@ import {
   PlaceResult,
   scoreAndSort,
   searchNearbyPlaces,
+  searchOpenStreetMapPlaces,
 } from "../../infrastructure/places/placesGateway"
 
 interface Props {
@@ -29,7 +30,7 @@ export function PlacesModal({ dish, onClose }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [filterOpen, setFilterOpen] = useState(false)
   const [filterNear, setFilterNear] = useState(false)
-  const [dataSource, setDataSource] = useState<"google" | "demo" | null>(null)
+  const [dataSource, setDataSource] = useState<"google" | "osm" | "demo" | null>(null)
   const locationRef = useRef<{ lat: number; lng: number } | null>(null)
   const manualRef = useRef<HTMLInputElement>(null)
 
@@ -69,18 +70,8 @@ export function PlacesModal({ dish, onClose }: Props) {
     setError(null)
     try {
       const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-      if (!apiKey) {
-        await new Promise((r) => setTimeout(r, 800)) // simulate network
-        setAllPlaces(
-          getMockPlaces(
-            dish.searchQuery,
-            lat,
-            lng,
-            prefs.searchRadiusMeters / 1000,
-          ),
-        )
-        setDataSource("demo")
-      } else {
+      const provider = import.meta.env.VITE_PLACES_PROVIDER || "osm"
+      if (provider === "google" && apiKey) {
         const places = await searchNearbyPlaces({
           query: dish.searchQuery,
           lat,
@@ -92,6 +83,15 @@ export function PlacesModal({ dish, onClose }: Props) {
         })
         setAllPlaces(places)
         setDataSource("google")
+      } else {
+        const places = await searchOpenStreetMapPlaces({
+          query: dish.searchQuery,
+          lat,
+          lng,
+          radiusMeters: prefs.searchRadiusMeters,
+        })
+        setAllPlaces(places)
+        setDataSource("osm")
       }
     } catch {
       setError("Không thể tìm quán. Thử lại sau hoặc mở Google Maps.")
@@ -285,7 +285,7 @@ export function PlacesModal({ dish, onClose }: Props) {
           {/* Filter chips */}
           {allPlaces.length > 0 && (
             <>
-              {dataSource === "demo" && (
+              {dataSource === "osm" && (
                 <div
                   className="rounded-xl px-3 py-2 text-xs"
                   style={{
@@ -294,8 +294,13 @@ export function PlacesModal({ dish, onClose }: Props) {
                     color: "#f5a623",
                   }}
                 >
-                  Chế độ demo · Thêm VITE_GOOGLE_MAPS_API_KEY để nhận dữ liệu
-                  quán thực.
+                  Dữ liệu từ OpenStreetMap · rating/review không có trong nguồn này.
+                  Bộ lọc đang mở và khoảng cách vẫn hoạt động.
+                </div>
+              )}
+              {dataSource === "demo" && (
+                <div className="rounded-xl px-3 py-2 text-xs" style={{ background: "rgba(245,166,35,0.08)", border: "1px solid rgba(245,166,35,0.2)", color: "#f5a623" }}>
+                  Chế độ demo · Không thể kết nối provider địa điểm.
                 </div>
               )}
               <div className="flex items-center gap-2">
@@ -340,6 +345,13 @@ export function PlacesModal({ dish, onClose }: Props) {
                   <span className="text-xs" style={{ color: "#6b7f99" }}>
                     Dữ liệu từ{" "}
                     <strong style={{ color: "#a8b8d0" }}>Google Maps</strong>
+                  </span>
+                </div>
+              )}
+              {dataSource === "osm" && (
+                <div className="flex items-center justify-center pt-1 pb-2">
+                  <span className="text-xs" style={{ color: "#6b7f99" }}>
+                    © OpenStreetMap contributors
                   </span>
                 </div>
               )}
@@ -447,12 +459,18 @@ function PlaceCard({ place }: { place: PlaceResult }) {
         {place.address}
       </p>
       <div className="flex items-center gap-3 text-xs mb-3">
-        <span className="font-bold" style={{ color: "#f5a623" }}>
-          ★ {place.rating.toFixed(1)}
-        </span>
-        <span style={{ color: "#6b7f99" }}>
-          ({place.userRatingCount.toLocaleString()})
-        </span>
+        {place.rating !== undefined ? (
+          <>
+            <span className="font-bold" style={{ color: "#f5a623" }}>
+              ★ {place.rating.toFixed(1)}
+            </span>
+            <span style={{ color: "#6b7f99" }}>
+              ({(place.userRatingCount ?? 0).toLocaleString()})
+            </span>
+          </>
+        ) : (
+          <span style={{ color: "#6b7f99" }}>Chưa có rating/review</span>
+        )}
         <span style={{ color: "#6b7f99" }}>
           📍 {place.distanceKm.toFixed(1)} km
         </span>

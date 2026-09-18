@@ -4,6 +4,7 @@ import { useAppStore } from "./store/useAppStore"
 import { ClientShell } from "./components/layout/ClientShell"
 import { Toast } from "./components/ui/Toast"
 import { ChestPage } from "./pages/ChestPage"
+import { AnnouncementBanner } from "./components/ui/AnnouncementBanner"
 
 const CollectionPage = lazy(() =>
   import("./pages/CollectionPage").then((module) => ({ default: module.CollectionPage })),
@@ -47,6 +48,7 @@ function AppInner() {
   return (
     <ClientShell>
       <Toast />
+      <AnnouncementBanner />
       <Suspense fallback={<div className="route-loading"><span>◇</span><p>Đang mở giao diện...</p></div>}>
         <Routes>
           <Route path="/" element={<ChestPage />} />

@@ -1,8 +1,8 @@
 export interface PlaceResult {
   name: string
   address: string
-  rating: number
-  userRatingCount: number
+  rating?: number
+  userRatingCount?: number
   distanceKm: number
   mapsUrl: string
   isOpen?: boolean
@@ -62,8 +62,8 @@ export function scoreAndSort(
 ): PlaceResult[] {
   return places
     .map((place) => {
-      const ratingScore = Math.min(Math.max((place.rating - 3) / 2, 0), 1)
-      const volumeScore = Math.min(Math.log10(place.userRatingCount + 1) / 3, 1)
+      const ratingScore = Math.min(Math.max(((place.rating ?? 3) - 3) / 2, 0), 1)
+      const volumeScore = Math.min(Math.log10((place.userRatingCount ?? 0) + 1) / 3, 1)
       const distanceScore = Math.max(1 - place.distanceKm / radiusKm, 0)
       return {
         ...place,
@@ -147,9 +147,77 @@ export async function searchNearbyPlaces(
     .filter(
       (place) =>
         place.distanceKm <= radiusKm &&
-        place.rating >= options.minRating &&
-        place.userRatingCount >= options.minReviews,
+        (place.rating ?? 0) >= options.minRating &&
+        (place.userRatingCount ?? 0) >= options.minReviews,
     )
 
   return scoreAndSort(mapped, radiusKm)
+}
+
+export interface OpenStreetMapSearchOptions {
+  query: string
+  lat: number
+  lng: number
+  radiusMeters: number
+}
+
+interface PhotonFeature {
+  geometry?: { coordinates?: [number, number] }
+  properties?: {
+    name?: string
+    street?: string
+    housenumber?: string
+    district?: string
+    city?: string
+    postcode?: string
+    osm_type?: "N" | "W" | "R"
+    osm_id?: number
+    osm_value?: string
+  }
+}
+
+export async function searchOpenStreetMapPlaces(
+  options: OpenStreetMapSearchOptions,
+): Promise<PlaceResult[]> {
+  const radiusKm = options.radiusMeters / 1000
+  const params = new URLSearchParams({
+    q: options.query,
+    lat: String(options.lat),
+    lon: String(options.lng),
+    limit: "30",
+    lang: "vi",
+  })
+  params.append("osm_tag", "amenity:restaurant")
+  params.append("osm_tag", "amenity:fast_food")
+  params.append("osm_tag", "amenity:cafe")
+  const response = await fetch(`https://photon.komoot.io/api/?${params}`)
+  if (!response.ok) throw new Error(`Photon ${response.status}`)
+
+  const payload = (await response.json()) as { features?: PhotonFeature[] }
+  const seen = new Set<string>()
+  const places = (payload.features ?? [])
+    .map((element): PlaceResult | null => {
+      const [longitude, latitude] = element.geometry?.coordinates ?? []
+      const properties = element.properties ?? {}
+      const name = properties.name?.trim()
+      if (!name || typeof latitude !== "number" || typeof longitude !== "number") return null
+      const key = `${name}:${latitude.toFixed(5)}:${longitude.toFixed(5)}`
+      if (seen.has(key)) return null
+      seen.add(key)
+      const address = [properties.housenumber, properties.street, properties.district, properties.city, properties.postcode]
+        .filter(Boolean)
+        .join(" ") || "Địa chỉ chưa được cập nhật trên OpenStreetMap"
+      const osmType = properties.osm_type === "N" ? "node" : properties.osm_type === "W" ? "way" : "relation"
+      return {
+        name,
+        address,
+        distanceKm: haversine(options.lat, options.lng, latitude, longitude),
+        mapsUrl: properties.osm_id
+          ? `https://www.openstreetmap.org/${osmType}/${properties.osm_id}`
+          : `https://www.openstreetmap.org/search?query=${encodeURIComponent(name)}`,
+      }
+    })
+    .filter((place): place is PlaceResult => place !== null)
+    .filter((place) => place.distanceKm <= radiusKm)
+  return places.slice(0, 20)
 }

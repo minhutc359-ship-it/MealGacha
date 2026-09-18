@@ -33,6 +33,7 @@ export function InventoryPanel() {
               <FoodImage
                 dishId={reward.dishId}
                 name={reward.dish.name}
+                imageUrl={reward.dish.imageUrl}
                 variant="thumb"
               />
               {reward.status === "consumed" && (

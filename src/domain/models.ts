@@ -1,5 +1,5 @@
 export type MealSlot = "breakfast" | "lunch" | "dinner"
-export type RewardSource = "chest" | "fusion"
+export type RewardSource = "chest" | "fusion" | "free_chest"
 export type RewardStatus = "available" | "consumed"
 export type RewardRarity = "common" | "rare" | "epic" | "diamond"
 
@@ -41,6 +41,7 @@ export interface RewardInstance {
   fusionId?: string
   favorite: boolean
   rarity?: RewardRarity
+  convertedAt?: string
 }
 
 export interface FusionTransaction {
@@ -56,7 +57,7 @@ export interface KeyTransaction {
   id: string
   amount: number
   balanceAfter: number
-  reason: "daily_checkin" | "chest_open" | "migration" | "admin_adjustment"
+  reason: "daily_checkin" | "daily_quest" | "chest_open" | "free_chest" | "streak_reward" | "event_reward" | "shard_exchange" | "migration" | "admin_adjustment"
   createdAt: string
   referenceId?: string
 }
@@ -72,9 +73,17 @@ export interface UserPreferences {
 }
 
 export interface UserState {
-  schemaVersion: 1
+  schemaVersion: 1 | 2
   keys: number
   lastCheckInDate?: string
+  checkInStreak: number
+  bestCheckInStreak: number
+  dailyQuestDate?: string
+  dailyQuestCycle?: string
+  completedDailyQuestIds?: string[]
+  shards: number
+  pityCount: number
+  lastFreeChestDate?: string
   rewards: RewardInstance[]
   fusions: FusionTransaction[]
   keyTransactions: KeyTransaction[]

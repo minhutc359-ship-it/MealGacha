@@ -3,6 +3,10 @@ import { MEAL_SLOT_ICONS } from "../../domain/models"
 import { getDateKey } from "../../domain/dateKey"
 import { useAppStore } from "../../store/useAppStore"
 import { getVisibleRewards } from "../../domain/rewardPresentation"
+import { DailyQuest } from "./DailyQuest"
+import { canClaimFreeChest } from "../../domain/drawReward"
+import { useNavigate } from "react-router-dom"
+import { getWeeklyEventProgress } from "../../domain/weeklyEvent"
 
 export function ActivityRail() {
   const user = useAppStore((state) => state.user)
@@ -17,6 +21,11 @@ export function ActivityRail() {
     (reward) => reward.acquiredDate === today,
   )
   const canClaim = canCheckIn(user)
+  const freeChestReady = canClaimFreeChest(user)
+  const openFreeChest = useAppStore((state) => state.openFreeChest)
+  const navigate = useNavigate()
+  const dishes = useAppStore((state) => state.dishes)
+  const weeklyEvent = getWeeklyEventProgress(user.rewards, dishes)
 
   return (
     <aside className="client-panel activity-rail" aria-label="Hoạt động">
@@ -41,6 +50,33 @@ export function ActivityRail() {
         <b>{canClaim ? "+10" : "✓"}</b>
       </button>
 
+      <DailyQuest />
+
+      <div className="weekly-event">
+        <small>SỰ KIỆN TUẦN</small>
+        <strong>{weeklyEvent.event.label}</strong>
+        <span>{weeklyEvent.opened}/{weeklyEvent.total} món · {weeklyEvent.percentage}%</span>
+        <i><b style={{ width: `${weeklyEvent.percentage}%` }} /></i>
+      </div>
+
+      <button
+        className={`daily-mission ${freeChestReady ? "is-ready" : "is-done"}`}
+        onClick={() => {
+          if (freeChestReady) {
+            openFreeChest("dinner")
+            navigate("/")
+          }
+        }}
+        disabled={!freeChestReady}
+      >
+        <span className="mission-icon">🎁</span>
+        <span>
+          <strong>{freeChestReady ? "Rương miễn phí" : "Đã dùng rương miễn phí"}</strong>
+          <small>{freeChestReady ? "Không tốn chìa khóa" : "Quay lại ngày mai"}</small>
+        </span>
+        <b>{freeChestReady ? "MỞ" : "✓"}</b>
+      </button>
+
       <div className="activity-stats">
         <div>
           <strong>{todayRewards.length}</strong>
@@ -51,9 +87,14 @@ export function ActivityRail() {
           <small>Còn sử dụng</small>
         </div>
         <div>
-          <strong>{user.fusions.length}</strong>
-          <small>Lần ghép</small>
+          <strong>{user.checkInStreak}</strong>
+          <small>Ngày liên tiếp</small>
         </div>
+      </div>
+
+      <div className="activity-economy">
+        <span>♢ {user.shards} mảnh</span>
+        <span>◇ Pity {Math.min(user.pityCount, 10)}/10</span>
       </div>
 
       <div className="recent-activity">

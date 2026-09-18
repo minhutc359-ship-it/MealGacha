@@ -2,6 +2,7 @@ import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
+import fs from 'node:fs'
 
 import siteConfiguration from './.figma/make/site.json'
 
@@ -23,6 +24,7 @@ export default defineConfig(({ mode }) => {
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: '/src/**/*.stories.{ts,tsx,js,jsx}' }),
+      ...(mode === 'development' ? [devContentWriter()] : []),
     ],
     resolve: {
       alias: {
@@ -45,6 +47,77 @@ export default defineConfig(({ mode }) => {
     },
   }
 })
+
+function devContentWriter(): Plugin {
+  const root = process.cwd()
+  const dishesPath = path.join(root, 'src/infrastructure/catalog/localDishes.json')
+  const bannerConfigPath = path.join(root, 'src/infrastructure/banner/bannerConfig.ts')
+  const bannerDir = path.join(root, 'public/assets/banners')
+
+  function readBody(req: import('node:http').IncomingMessage): Promise<string> {
+    return new Promise((resolve, reject) => {
+      let body = ''
+      req.on('data', (chunk) => { body += chunk })
+      req.on('end', () => resolve(body))
+      req.on('error', reject)
+    })
+  }
+
+  return {
+    name: 'meal-gacha-dev-content-writer',
+    configureServer(server) {
+      server.middlewares.use(async (req, res, next) => {
+        if (!req.url?.startsWith('/__meal-gacha/dev/')) return next()
+        if (req.method !== 'POST') {
+          res.statusCode = 405
+          res.end('Method Not Allowed')
+          return
+        }
+        try {
+          const payload = JSON.parse(await readBody(req)) as Record<string, unknown>
+          if (req.url === '/__meal-gacha/dev/dish') {
+            const current = JSON.parse(fs.readFileSync(dishesPath, 'utf8')) as unknown[]
+            if (current.some((item) => (item as { id?: string }).id === payload.id)) {
+              res.statusCode = 409
+              res.end('Dish ID already exists')
+              return
+            }
+            fs.writeFileSync(dishesPath, `${JSON.stringify([...current, payload], null, 2)}\n`)
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ ok: true }))
+            return
+          }
+          if (req.url === '/__meal-gacha/dev/banner') {
+            const imageData = String(payload.imageData ?? '')
+            const match = imageData.match(/^data:image\/(webp|png|jpeg|jpg);base64,(.+)$/)
+            const id = String(payload.id ?? '')
+            if (!match || !/^[a-z0-9-]+$/.test(id)) {
+              res.statusCode = 400
+              res.end('Invalid banner payload')
+              return
+            }
+            fs.mkdirSync(bannerDir, { recursive: true })
+            const extension = match[1] === 'jpeg' ? 'jpg' : match[1]
+            const fileName = `${id}.${extension}`
+            fs.writeFileSync(path.join(bannerDir, fileName), Buffer.from(match[2], 'base64'))
+            fs.writeFileSync(
+              bannerConfigPath,
+              `export interface BannerConfig {\n  id: string\n  imageUrl: string\n  enabled: boolean\n}\n\nexport const BANNER_CONFIG: BannerConfig = ${JSON.stringify({ id, imageUrl: `/assets/banners/${fileName}`, enabled: payload.enabled === true }, null, 2)}\n`,
+            )
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ ok: true, imageUrl: `/assets/banners/${fileName}` }))
+            return
+          }
+          res.statusCode = 404
+          res.end('Not Found')
+        } catch (error) {
+          res.statusCode = 500
+          res.end(error instanceof Error ? error.message : 'Write failed')
+        }
+      })
+    },
+  }
+}
 
 type FigmaSiteConfiguration = {
   title?: string
@@ -85,7 +158,7 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
     return html.replace(`<!-- ${slotName} -->`, content)
   }
 
-  const title = config.title ?? "Figma Make App"
+  const title = config.title ?? "Rương vị giác"
   const description = config.description ?? ''
   const favicon = config.icons?.icon ?? ''
   const socialImage = config.openGraph?.image ?? ''

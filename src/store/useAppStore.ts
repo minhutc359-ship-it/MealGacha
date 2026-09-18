@@ -2,10 +2,22 @@ import { create } from "zustand"
 import { UserState, Dish, MealSlot, RewardInstance } from "../domain/models"
 import { repository } from "../infrastructure/storage/repository"
 import { applyCheckIn, canCheckIn } from "../domain/checkIn"
-import { applyOpenChest, canOpenChest } from "../domain/drawReward"
+import {
+  applyConvertDuplicate,
+  applyOpenChest,
+  applyShardExchange,
+  canClaimFreeChest,
+  canOpenChest,
+} from "../domain/drawReward"
 import { applyFuse, canFuse } from "../domain/fuseRewards"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
+import localDishes from "../infrastructure/catalog/localDishes.json"
 import { fetchCatalog } from "../infrastructure/catalog/csvAdapter"
+import {
+  applyDailyQuest,
+  canClaimDailyQuest,
+  getDailyQuests,
+} from "../domain/dailyQuest"
 
 interface AppStore {
   user: UserState
@@ -17,6 +29,11 @@ interface AppStore {
 
   init(): void
   checkIn(): boolean
+  addLocalDish(dish: Dish): { success: boolean; error?: string }
+  claimDailyQuest(questId: string, optionId: string): { correct: boolean; error?: string }
+  openFreeChest(slot: MealSlot): { reward: RewardInstance | null; error?: string }
+  convertDuplicate(rewardId: string): boolean
+  exchangeShards(): boolean
   openChest(slot: MealSlot): {
     reward: RewardInstance
     error: null
@@ -45,7 +62,7 @@ interface AppStore {
 
 export const useAppStore = create<AppStore>((set, get) => ({
   user: repository.loadUser(),
-  dishes: SEED_DISHES,
+  dishes: [...SEED_DISHES, ...(localDishes as Dish[])],
   catalogLoading: false,
   catalogError: null,
   toast: null,
@@ -53,8 +70,10 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   init() {
     const user = repository.loadUser()
-    set({ user })
-    const cached = repository.loadCatalog()
+    set({ user, dishes: [...SEED_DISHES, ...(localDishes as Dish[])] })
+    const cached = import.meta.env.DEV
+      ? repository.loadCatalog()
+      : repository.loadPublishedCatalog()
     if (cached?.dishes?.length) set({ dishes: cached.dishes })
     const overrideUrl = repository.loadAdminOverrideUrl()
     const catalogUrl = overrideUrl || import.meta.env.VITE_CATALOG_URL
@@ -68,6 +87,70 @@ export const useAppStore = create<AppStore>((set, get) => ({
     repository.saveUser(newUser)
     set({ user: newUser })
     get().showToast(`+10 chìa khóa! Mở rương thôi nào 🔑`, "success")
+    return true
+  },
+
+  addLocalDish(dish) {
+    if (!import.meta.env.DEV) {
+      return { success: false, error: "Chức năng này chỉ khả dụng trong môi trường dev." }
+    }
+    const { dishes } = get()
+    if (dishes.some((item) => item.id === dish.id)) {
+      return { success: false, error: `ID món "${dish.id}" đã tồn tại.` }
+    }
+    const nextDishes = [...dishes, dish]
+    repository.saveLocalCatalog(nextDishes)
+    set({ dishes: nextDishes })
+    get().showToast(`Đã thêm món ${dish.name} vào catalog local.`, "success")
+    return { success: true }
+  },
+
+  claimDailyQuest(questId, optionId) {
+    const { user, dishes } = get()
+    const quest = getDailyQuests(dishes).find((item) => item.id === questId)
+    if (!quest) {
+      return { correct: false, error: "Chưa đủ dữ liệu món ăn cho nhiệm vụ hôm nay." }
+    }
+    if (!canClaimDailyQuest(user, quest)) {
+      return { correct: false, error: "Bạn đã nhận thưởng nhiệm vụ hôm nay rồi." }
+    }
+    const result = applyDailyQuest(user, quest, optionId)
+    if (!result.correct) return { correct: false }
+    repository.saveUser(result.state)
+    set({ user: result.state })
+    get().showToast(`+3 chìa khóa! ${quest.title} đã được giải 🔑`, "success")
+    return { correct: true }
+  },
+
+  openFreeChest(slot) {
+    const { user, dishes } = get()
+    if (!canClaimFreeChest(user)) return { reward: null, error: "Bạn đã dùng rương miễn phí hôm nay." }
+    const err = canOpenChest({ ...user, keys: 1 }, dishes, slot)
+    if (err) return { reward: null, error: err }
+    const result = applyOpenChest(user, dishes, slot, { free: true })
+    repository.saveUser(result.state)
+    set({ user: result.state, pendingRevealRewardId: result.reward.id })
+    get().showToast("Rương miễn phí đã mở! 🎁", "success")
+    return { reward: result.reward }
+  },
+
+  convertDuplicate(rewardId) {
+    const { user } = get()
+    const newUser = applyConvertDuplicate(user, rewardId)
+    if (newUser === user) return false
+    repository.saveUser(newUser)
+    set({ user: newUser })
+    get().showToast("Đã đổi món trùng thành mảnh vị giác.", "success")
+    return true
+  },
+
+  exchangeShards() {
+    const { user } = get()
+    const newUser = applyShardExchange(user, 10)
+    if (newUser === user) return false
+    repository.saveUser(newUser)
+    set({ user: newUser })
+    get().showToast("Đã đổi 10 mảnh thành 1 chìa khóa.", "success")
     return true
   },
 
