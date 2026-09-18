@@ -15,7 +15,7 @@ import {
   MEAL_SLOT_ICONS,
   MEAL_SLOT_LABELS,
 } from "../domain/models"
-import { getDishRarity } from "../domain/drawReward"
+import { getDishRarity, getPriceTierFromWeight, getRarityFromWeight } from "../domain/drawReward"
 import { useAppStore } from "../store/useAppStore"
 import { RaritySticker } from "../components/ui/RaritySticker"
 import limitedEvents from "../infrastructure/events/limitedEvents.json"
@@ -208,12 +208,28 @@ function AchievementDishCard({
   const [editing, setEditing] = useState(false)
   const [imageUploading, setImageUploading] = useState(false)
   const [label, setLabel] = useState(dish.name)
-  const [rarity, setRarity] = useState(dish.rarity ?? getDishRarity(dish))
+  const [weight, setWeight] = useState(dish.weight)
+  const [rarity, setRarity] = useState(dish.rarity ?? getRarityFromWeight(dish.weight))
+  const [priceTier, setPriceTier] = useState<1 | 2 | 3 | 4>(dish.priceTier ?? getPriceTierFromWeight(dish.weight))
   const effectiveRarity = getDishRarity({ ...dish, name: label, rarity })
 
   const save = async () => {
-    const result = await updateDish(dish.id, { name: label, rarity })
+    const result = await updateDish(dish.id, { name: label, rarity, weight, priceTier })
     if (result.success) setEditing(false)
+  }
+
+  const handleWeightChange = (nextWeight: number) => {
+    const normalizedWeight = Math.min(1000, Math.max(1, nextWeight || 1))
+    setWeight(normalizedWeight)
+    setRarity(getRarityFromWeight(normalizedWeight))
+    setPriceTier(getPriceTierFromWeight(normalizedWeight))
+  }
+
+  const handleRarityChange = (nextRarity: NonNullable<Dish["rarity"]>) => {
+    const suggestedWeight = nextRarity === "diamond" ? 8 : nextRarity === "epic" ? 25 : nextRarity === "rare" ? 50 : 100
+    setRarity(nextRarity)
+    setWeight(suggestedWeight)
+    setPriceTier(getPriceTierFromWeight(suggestedWeight))
   }
 
   const replaceImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -244,11 +260,11 @@ function AchievementDishCard({
       >
         <RarityFrame rarity={effectiveRarity} className="achievement-art">
           <FoodImage dishId={dish.id} name={label} imageUrl={dish.imageUrl} variant="card" />
-          <RaritySticker priceTier={dish.priceTier} rarity={effectiveRarity} />
+          <RaritySticker priceTier={priceTier} rarity={effectiveRarity} />
           {!unlocked && <div className="achievement-lock" aria-hidden="true"><span>⌾</span><b>{t("notUnlocked")}</b></div>}
         </RarityFrame>
         <div className="achievement-card-info">
-          <div><strong>{label}</strong><small>{"₫".repeat(dish.priceTier ?? 1)} · {RARITY_LABELS[effectiveRarity]}</small></div>
+          <div><strong>{label}</strong><small>{"₫".repeat(priceTier)} · {RARITY_LABELS[effectiveRarity]}</small></div>
           <span>{unlocked ? "✓" : "🔒"}</span>
         </div>
       </button>
@@ -257,14 +273,16 @@ function AchievementDishCard({
           {!editing ? <button type="button" onClick={() => setEditing(true)}>{t("editLabel")}</button> : (
             <>
               <input aria-label={t("label")} value={label} onChange={(event) => setLabel(event.target.value)} />
-              <select aria-label={t("rarity")} value={rarity} onChange={(event) => setRarity(event.target.value as NonNullable<Dish["rarity"]>)}>
+              <input aria-label="Weight" type="number" min={1} max={1000} value={weight} onChange={(event) => handleWeightChange(Number(event.target.value))} />
+              <select aria-label={t("rarity")} value={rarity} onChange={(event) => handleRarityChange(event.target.value as NonNullable<Dish["rarity"]>)}>
                 <option value="common">Common</option>
                 <option value="rare">Rare</option>
                 <option value="epic">Epic</option>
                 <option value="diamond">Diamond</option>
               </select>
+              <output className="achievement-dev-price">Price {priceTier}/4</output>
               <button type="button" onClick={save}>{t("saveChanges")}</button>
-              <button type="button" onClick={() => { setLabel(dish.name); setRarity(dish.rarity ?? getDishRarity(dish)); setEditing(false) }}>{t("undo")}</button>
+              <button type="button" onClick={() => { setLabel(dish.name); setWeight(dish.weight); setRarity(dish.rarity ?? getRarityFromWeight(dish.weight)); setPriceTier(dish.priceTier ?? getPriceTierFromWeight(dish.weight)); setEditing(false) }}>{t("undo")}</button>
             </>
           )}
           <label className="achievement-dev-image-button">

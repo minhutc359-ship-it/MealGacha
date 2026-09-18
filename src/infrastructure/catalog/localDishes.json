@@ -1,5 +1,27 @@
 [
   {
+    "id": "banner-tay-bac-goi-rau-don",
+    "name": "Gỏi rau dơn",
+    "searchQuery": "Gỏi rau dơn Tây Bắc",
+    "mealSlots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "vegetable",
+    "description": "Rau dơn rừng giòn mát được trộn cùng lạc rang, ớt, tỏi và gia vị chua ngọt thanh nhẹ.",
+    "imageUrl": "/assets/food/full/banner-tay-bac-goi-rau-don.webp",
+    "tags": [
+      "vietnamese",
+      "limited"
+    ],
+    "weight": 29,
+    "rarity": "epic",
+    "priceTier": 3,
+    "active": true,
+    "type": "limited",
+    "limitedEventId": "taybac-festival"
+  },
+  {
     "id": "banner-tay-bac-com-lam",
     "name": "Cơm lam",
     "searchQuery": "Cơm lam Tây Bắc",
@@ -36,33 +58,12 @@
       "vietnamese",
       "limited"
     ],
-    "weight": 369,
+    "weight": 58,
     "priceTier": 2,
     "active": true,
     "type": "limited",
-    "limitedEventId": "taybac-festival"
-  },
-  {
-    "id": "banner-tay-bac-goi-rau-don",
-    "name": "Gỏi rau dơn",
-    "searchQuery": "Gỏi rau dơn Tây Bắc",
-    "mealSlots": [
-      "lunch",
-      "dinner"
-    ],
-    "category": "vegetable",
-    "description": "Rau dơn rừng giòn mát được trộn cùng lạc rang, ớt, tỏi và gia vị chua ngọt thanh nhẹ.",
-    "imageUrl": "/assets/food/full/banner-tay-bac-goi-rau-don.webp",
-    "tags": [
-      "vietnamese",
-      "limited"
-    ],
-    "weight": 28,
-    "rarity": "rare",
-    "priceTier": 2,
-    "active": true,
-    "type": "limited",
-    "limitedEventId": "taybac-festival"
+    "limitedEventId": "taybac-festival",
+    "rarity": "rare"
   },
   {
     "id": "banner-tay-bac-thit-trau-gac-bep",
@@ -79,9 +80,9 @@
       "vietnamese",
       "limited"
     ],
-    "weight": 100,
+    "weight": 12,
     "rarity": "diamond",
-    "priceTier": 3,
+    "priceTier": 4,
     "active": true,
     "type": "limited",
     "limitedEventId": "taybac-festival"
@@ -101,7 +102,7 @@
       "vietnamese",
       "limited"
     ],
-    "weight": 747,
+    "weight": 12,
     "rarity": "diamond",
     "priceTier": 4,
     "active": true,
@@ -123,9 +124,9 @@
       "vietnamese",
       "limited"
     ],
-    "weight": 459,
+    "weight": 12,
     "rarity": "diamond",
-    "priceTier": 1,
+    "priceTier": 4,
     "active": true,
     "type": "limited",
     "limitedEventId": "taybac-festival"

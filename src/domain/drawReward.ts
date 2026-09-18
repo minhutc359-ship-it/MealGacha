@@ -28,6 +28,20 @@ export const DUPLICATE_SHARD_VALUES: Record<RewardRarity, number> = {
   diamond: 40,
 }
 
+export function getRarityFromWeight(weight: number): RewardRarity {
+  if (weight <= 12) return "diamond"
+  if (weight <= 35) return "epic"
+  if (weight <= 70) return "rare"
+  return "common"
+}
+
+export function getPriceTierFromWeight(weight: number): 1 | 2 | 3 | 4 {
+  if (weight <= 12) return 4
+  if (weight <= 35) return 3
+  if (weight <= 70) return 2
+  return 1
+}
+
 function secureRandom(): number {
   const arr = new Uint32Array(1)
   crypto.getRandomValues(arr)
@@ -48,10 +62,7 @@ export function drawRarity(fusion = false): RewardRarity {
 
 export function getDishRarity(dish: Dish): RewardRarity {
   if (dish.rarity) return dish.rarity
-  if (dish.weight <= 12) return "diamond"
-  if (dish.weight <= 35) return "epic"
-  if (dish.weight <= 70) return "rare"
-  return "common"
+  return getRarityFromWeight(dish.weight)
 }
 
 export function drawWeighted(items: Dish[]): Dish {

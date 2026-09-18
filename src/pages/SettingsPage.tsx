@@ -9,8 +9,9 @@ import { BannerConfig } from "../infrastructure/banner/bannerConfig"
 import { LimitedEvent } from "../domain/models"
 import sourceLimitedEvents from "../infrastructure/events/limitedEvents.json"
 import { useLanguage } from "../i18n"
-import { RarityFrame } from "../components/ui/RarityFrame"
+import { RarityFrame, RARITY_LABELS } from "../components/ui/RarityFrame"
 import { convertImageToWebp } from "../infrastructure/assets/imageProcessing"
+import { getPriceTierFromWeight, getRarityFromWeight } from "../domain/drawReward"
 
 interface CatalogPreview {
   url: string
@@ -66,6 +67,21 @@ export function SettingsPage() {
     () => [...new Set(dishes.flatMap((dish) => dish.tags))].sort(),
     [dishes],
   )
+  const previewRarity = newDish.rarity || getRarityFromWeight(newDish.weight)
+  const updateNewDishWeight = (weight: number) => setNewDish((current) => ({
+    ...current,
+    weight,
+    rarity: getRarityFromWeight(weight),
+    priceTier: getPriceTierFromWeight(weight),
+  }))
+  const updateNewDishRarity = (rarity: RewardRarity | "") => {
+    if (!rarity) {
+      updateNewDish("rarity", "")
+      return
+    }
+    const weight = rarity === "diamond" ? 8 : rarity === "epic" ? 25 : rarity === "rare" ? 50 : 100
+    setNewDish((current) => ({ ...current, rarity, weight, priceTier: getPriceTierFromWeight(weight) }))
+  }
 
   const handlePreview = async () => {
     const url = catalogUrl.trim()
@@ -529,7 +545,16 @@ export function SettingsPage() {
             <span>{dishImageUploading ? "Đang chuyển sang WebP..." : "Hoặc upload PNG/JPG để tự convert WebP"}</span>
             <input type="file" accept="image/png,image/jpeg,image/webp" onChange={handleDishImageUpload} disabled={dishImageUploading} />
           </label>
-          {newDish.imageData && <RarityFrame rarity={newDish.rarity || "common"} className="local-dish-preview"><img src={newDish.imageData} alt="Preview món mới" /></RarityFrame>}
+          <div className="local-dish-rarity-preview">
+            <RarityFrame rarity={previewRarity} className="local-dish-preview">
+              {newDish.imageData ? <img src={newDish.imageData} alt="Preview món mới" /> : <span>◇</span>}
+            </RarityFrame>
+            <div>
+              <span className="local-dish-rarity-caption">Khung rarity</span>
+              <strong>{RARITY_LABELS[previewRarity]}</strong>
+              <small>{newDish.rarity ? "Theo rarity đã chọn" : "Suy ra từ weight"}</small>
+            </div>
+          </div>
           <div className="local-dish-grid">
             <label className="local-dish-field">
               <span>Bữa áp dụng</span>
@@ -550,12 +575,12 @@ export function SettingsPage() {
             </label>
             <label className="local-dish-field">
               <span>Rarity</span>
-              <select value={newDish.rarity} onChange={(event) => updateNewDish("rarity", event.target.value as RewardRarity | "")}>
+              <select value={newDish.rarity} onChange={(event) => updateNewDishRarity(event.target.value as RewardRarity | "")}>
                 <option value="">Theo weight</option>
-                <option value="common">Common</option>
-                <option value="rare">Rare</option>
-                <option value="epic">Epic</option>
-                <option value="diamond">Diamond</option>
+                <option value="common">{RARITY_LABELS.common} · Common</option>
+                <option value="rare">{RARITY_LABELS.rare} · Rare</option>
+                <option value="epic">{RARITY_LABELS.epic} · Epic</option>
+                <option value="diamond">{RARITY_LABELS.diamond} · Diamond</option>
               </select>
             </label>
           </div>
@@ -578,8 +603,15 @@ export function SettingsPage() {
             )}
           </div>
           <div className="local-dish-grid">
-            <NumberInput label="Weight" unit="" value={newDish.weight} min={1} max={1000} step={1} onChange={(value) => updateNewDish("weight", value)} />
-            <NumberInput label="Price tier" unit="/4" value={newDish.priceTier} min={1} max={4} step={1} onChange={(value) => updateNewDish("priceTier", value as 1 | 2 | 3 | 4)} />
+            <div>
+              <NumberInput label="Weight" unit="" value={newDish.weight} min={1} max={1000} step={1} onChange={updateNewDishWeight} />
+              <p className="local-dish-field-hint">Weight cao hơn = tỉ lệ chọn cao hơn trong cùng rarity.</p>
+            </div>
+            <div className="local-dish-auto-value">
+              <span>Price tier</span>
+              <strong>{newDish.priceTier}/4</strong>
+              <small>Tự động: weight thấp hơn = mức giá cao hơn</small>
+            </div>
           </div>
           <TextField label="Mô tả" value={newDish.description} placeholder="Món ăn đặc trưng..." onChange={(value) => updateNewDish("description", value)} />
           <label className="local-dish-active"><input type="checkbox" checked={newDish.active} onChange={(event) => updateNewDish("active", event.target.checked)} /> Có thể xuất hiện trong rương</label>

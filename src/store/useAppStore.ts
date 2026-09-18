@@ -34,7 +34,7 @@ interface AppStore {
   init(): void
   checkIn(): boolean
   addLocalDish(dish: Dish): { success: boolean; error?: string }
-  updateDish(dishId: string, patch: Pick<Dish, "name" | "rarity"> & { imageData?: string }): Promise<{ success: boolean; error?: string }>
+  updateDish(dishId: string, patch: Partial<Pick<Dish, "name" | "rarity" | "weight" | "priceTier">> & { imageData?: string }): Promise<{ success: boolean; error?: string }>
   deleteDish(dishId: string): Promise<{ success: boolean; error?: string }>
   claimDailyQuest(questId: string, optionId: string): { correct: boolean; error?: string }
   openFreeChest(slot: MealSlot): { reward: RewardInstance | null; error?: string }
@@ -121,8 +121,10 @@ export const useAppStore = create<AppStore>((set, get) => ({
     if (!current) return { success: false, error: "Không tìm thấy món cần sửa." }
     const nextDish = {
       ...current,
-      name: patch.name.trim(),
-      rarity: patch.rarity,
+      ...(patch.name !== undefined ? { name: patch.name.trim() } : {}),
+      ...(patch.rarity !== undefined ? { rarity: patch.rarity } : {}),
+      ...(patch.weight !== undefined ? { weight: patch.weight } : {}),
+      ...(patch.priceTier !== undefined ? { priceTier: patch.priceTier } : {}),
       ...(patch.imageData ? { imageUrl: `/assets/food/full/${dishId}.webp` } : {}),
     }
     if (!nextDish.name) return { success: false, error: "Label không được để trống." }
