@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react"
 import { canClaimDailyQuest, getDailyQuests } from "../../domain/dailyQuest"
 import { useAppStore } from "../../store/useAppStore"
 import { useLanguage } from "../../i18n"
+import { startSpinResultTrack } from "../../infrastructure/audio/soundEngine"
 
 export function DailyQuest({ compact = false }: { compact?: boolean }) {
   const user = useAppStore((state) => state.user)
@@ -33,6 +34,9 @@ export function DailyQuest({ compact = false }: { compact?: boolean }) {
     if (!quest || !canClaimDailyQuest(user, quest)) return
     const result = claimDailyQuest(questId, optionId)
     if (result.error) return
+    if (result.correct) {
+      startSpinResultTrack(user.preferences.soundEnabled)
+    }
     setWrongOption(result.correct ? null : { questId, optionId })
   }
 

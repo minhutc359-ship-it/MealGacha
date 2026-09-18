@@ -24,6 +24,17 @@ import { useLanguage } from "../i18n"
 import { convertImageToWebp } from "../infrastructure/assets/imageProcessing"
 
 const SLOTS: MealSlot[] = ["breakfast", "lunch", "dinner"]
+const RARITY_ORDER = { common: 0, rare: 1, epic: 2, diamond: 3 } as const
+
+function sortDishesByRarity(items: Dish[]): Dish[] {
+  return items
+    .map((dish, index) => ({ dish, index }))
+    .sort((left, right) => {
+      const rarityDifference = RARITY_ORDER[getDishRarity(left.dish)] - RARITY_ORDER[getDishRarity(right.dish)]
+      return rarityDifference || left.index - right.index
+    })
+    .map(({ dish }) => dish)
+}
 
 export function AchievementsPage() {
   const user = useAppStore((state) => state.user)
@@ -41,7 +52,7 @@ export function AchievementsPage() {
     [dishes, user.rewards],
   )
   const bannerDishes = useMemo(
-    () => slot === "events" ? [] : getBannerDishes(dishes, slot),
+    () => slot === "events" ? [] : sortDishesByRarity(getBannerDishes(dishes, slot)),
     [dishes, slot],
   )
   const bannerProgress = useMemo(
@@ -138,7 +149,7 @@ export function AchievementsPage() {
         <section className="achievement-section limited-achievement-section">
           <div className="achievement-section-heading"><div><small>{t("limitedEvent")}</small><h2>{t("limitedCollection")}</h2></div></div>
           {(limitedEvents as LimitedEvent[]).map((event) => {
-            const eventDishes = dishes.filter((dish) => dish.type === "limited" && dish.limitedEventId === event.id)
+            const eventDishes = sortDishesByRarity(dishes.filter((dish) => dish.type === "limited" && dish.limitedEventId === event.id))
             if (eventDishes.length === 0) return null
             const unlocked = new Set(user.rewards.map((reward) => reward.dishId))
             return <div className="limited-achievement-group" key={event.id}>

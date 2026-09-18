@@ -1,7 +1,13 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from "react"
 import { repository } from "../infrastructure/storage/repository"
 import { useAppStore } from "../store/useAppStore"
-import { playSound } from "../infrastructure/audio/soundEngine"
+import {
+  preloadSpinTrack,
+  startSpinResultTrack,
+  startSpinTrack,
+  stopSpinResultTrack,
+  stopSpinTrack,
+} from "../infrastructure/audio/soundEngine"
 
 function secureRandInt(max: number): number {
   const arr = new Uint32Array(1)
@@ -143,6 +149,14 @@ export function WheelPage() {
   const animFrameRef = useRef<number>(0)
   const angleDegRef = useRef(0)
 
+  useEffect(() => {
+    preloadSpinTrack()
+    return () => {
+      stopSpinTrack()
+      stopSpinResultTrack()
+    }
+  }, [])
+
   const items = useMemo(() => parseItems(inputText, dedup), [inputText, dedup])
   const suggestions = useMemo(() => {
     const entered = new Set(items.map((item) => item.toLocaleLowerCase()))
@@ -173,6 +187,7 @@ export function WheelPage() {
     if (spinning || items.length < 2) return
     setResult(null)
     setSpinning(true)
+    startSpinTrack(preferences.soundEnabled)
 
     const winnerIndex = secureRandInt(items.length)
     const arc = 360 / items.length
@@ -207,7 +222,8 @@ export function WheelPage() {
         setResult(items[winnerIndex])
         setHistory((h) => [items[winnerIndex], ...h].slice(0, 10))
         setSpinning(false)
-        playSound("reveal", preferences.soundEnabled)
+        stopSpinTrack()
+        startSpinResultTrack(preferences.soundEnabled)
         if (removeWinner) {
           const remaining = items.filter((_, i) => i !== winnerIndex)
           setInputText(remaining.join("\n"))

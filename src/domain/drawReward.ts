@@ -13,7 +13,8 @@ import { hasUnlimitedChestAccess, isCatalogComplete } from "./achievements"
 import { isDishAvailable } from "./limitedEvents"
 
 const CHEST_COST = parseInt(import.meta.env.VITE_CHEST_COST || "1", 10)
-const RECENT_EXCLUSION = 3
+const RECENT_EXCLUSION = 1
+export const SHARDS_PER_KEY = 50
 export const FREE_CHEST_COST = 0
 export const RARITY_ODDS: Record<RewardRarity, number> = {
   common: 68.6,
@@ -138,7 +139,7 @@ export function applyConvertDuplicate(state: UserState, rewardId: string): UserS
 export function applyShardExchange(state: UserState, shardCost: number): UserState {
   if (shardCost <= 0 || state.shards < shardCost) return state
   const now = new Date().toISOString()
-  const keys = Math.floor(shardCost / 10)
+  const keys = Math.floor(shardCost / SHARDS_PER_KEY)
   if (keys <= 0) return state
   const tx: KeyTransaction = {
     id: crypto.randomUUID(),
@@ -149,7 +150,7 @@ export function applyShardExchange(state: UserState, shardCost: number): UserSta
   }
   return {
     ...state,
-    shards: state.shards - keys * 10,
+    shards: state.shards - keys * SHARDS_PER_KEY,
     keys: state.keys + keys,
     keyTransactions: [...state.keyTransactions, tx],
     updatedAt: now,

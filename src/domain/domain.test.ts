@@ -161,13 +161,14 @@ describe("chest draw", () => {
     expect(result.state.keyTransactions).toHaveLength(0)
   })
 
-  it("excludes the last three dishes when the banner has enough choices", () => {
+  it("only excludes the most recent dish when the banner has enough choices", () => {
     const lunch = SEED_DISHES.filter(
       (dish) => dish.active && dish.mealSlots.includes("lunch"),
     )
     const recent = lunch.slice(0, 3).map((dish) => dish.id)
     const pool = buildPool(SEED_DISHES, "lunch", recent)
-    expect(pool.some((dish) => recent.includes(dish.id))).toBe(false)
+    expect(pool.some((dish) => dish.id === recent[0])).toBe(false)
+    expect(pool.some((dish) => recent.slice(1).includes(dish.id))).toBe(true)
   })
 
   it("allows one free chest per local day without spending keys", () => {
@@ -190,7 +191,7 @@ describe("chest draw", () => {
     expect(converted.shards).toBe(5)
     expect(converted.rewards.find((reward) => reward.id === duplicate.id)?.convertedAt).toBeTruthy()
 
-    const exchanged = applyShardExchange({ ...converted, shards: 10 }, 10)
+    const exchanged = applyShardExchange({ ...converted, shards: 50 }, 50)
     expect(exchanged.shards).toBe(0)
     expect(exchanged.keys).toBe(1)
   })

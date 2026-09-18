@@ -11,6 +11,7 @@ import { getDateKey } from "../domain/dateKey"
 import { FoodImage } from "../components/food/FoodImage"
 import { RevealModal } from "../components/chest/RevealModal"
 import { playSound } from "../infrastructure/audio/soundEngine"
+import { SHARDS_PER_KEY } from "../domain/drawReward"
 import { RARITY_LABELS } from "../components/ui/RarityFrame"
 
 type SlotFilter = "all" | MealSlot
@@ -146,11 +147,11 @@ export function CollectionPage() {
         <span className="text-xs" style={{ color: "#f9a8d4" }}>♢ {user.shards} mảnh vị giác</span>
         <button
           onClick={exchangeShards}
-          disabled={user.shards < 10}
+          disabled={user.shards < SHARDS_PER_KEY}
           className="text-xs font-bold px-2 py-1 rounded-lg"
-          style={{ color: user.shards >= 10 ? "#f9a8d4" : "#6b7f99", border: "1px solid rgba(236,72,153,0.25)" }}
+          style={{ color: user.shards >= SHARDS_PER_KEY ? "#f9a8d4" : "#6b7f99", border: "1px solid rgba(236,72,153,0.25)" }}
         >
-          Đổi 10 mảnh → 1 🔑
+          Đổi {SHARDS_PER_KEY} mảnh → 1 🔑
         </button>
       </div>
 

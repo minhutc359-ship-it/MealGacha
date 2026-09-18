@@ -8,6 +8,7 @@ import {
   applyShardExchange,
   canClaimFreeChest,
   canOpenChest,
+  SHARDS_PER_KEY,
 } from "../domain/drawReward"
 import { applyFuse, canFuse } from "../domain/fuseRewards"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
@@ -209,11 +210,11 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   exchangeShards() {
     const { user } = get()
-    const newUser = applyShardExchange(user, 10)
+    const newUser = applyShardExchange(user, SHARDS_PER_KEY)
     if (newUser === user) return false
     repository.saveUser(newUser)
     set({ user: newUser })
-    get().showToast("Đã đổi 10 mảnh thành 1 chìa khóa.", "success")
+    get().showToast(`Đã đổi ${SHARDS_PER_KEY} mảnh thành 1 chìa khóa.`, "success")
     return true
   },
 
