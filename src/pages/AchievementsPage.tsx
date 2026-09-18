@@ -21,6 +21,7 @@ import { RaritySticker } from "../components/ui/RaritySticker"
 import limitedEvents from "../infrastructure/events/limitedEvents.json"
 import { LimitedEvent } from "../domain/models"
 import { useLanguage } from "../i18n"
+import { convertImageToWebp } from "../infrastructure/assets/imageProcessing"
 
 const SLOTS: MealSlot[] = ["breakfast", "lunch", "dinner"]
 
@@ -202,8 +203,10 @@ function AchievementDishCard({
   onOpen(): void
 }) {
   const updateDish = useAppStore((state) => state.updateDish)
+  const deleteDish = useAppStore((state) => state.deleteDish)
   const { t } = useLanguage()
   const [editing, setEditing] = useState(false)
+  const [imageUploading, setImageUploading] = useState(false)
   const [label, setLabel] = useState(dish.name)
   const [rarity, setRarity] = useState(dish.rarity ?? getDishRarity(dish))
   const effectiveRarity = getDishRarity({ ...dish, name: label, rarity })
@@ -211,6 +214,25 @@ function AchievementDishCard({
   const save = async () => {
     const result = await updateDish(dish.id, { name: label, rarity })
     if (result.success) setEditing(false)
+  }
+
+  const replaceImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    event.target.value = ""
+    if (!file) return
+    if (!file.type.startsWith("image/")) return
+    setImageUploading(true)
+    try {
+      const imageData = await convertImageToWebp(file)
+      await updateDish(dish.id, { name: label, rarity, imageData })
+    } finally {
+      setImageUploading(false)
+    }
+  }
+
+  const removeDish = async () => {
+    if (!window.confirm(t("confirmDelete"))) return
+    await deleteDish(dish.id)
   }
 
   return (
@@ -245,6 +267,11 @@ function AchievementDishCard({
               <button type="button" onClick={() => { setLabel(dish.name); setRarity(dish.rarity ?? getDishRarity(dish)); setEditing(false) }}>{t("undo")}</button>
             </>
           )}
+          <label className="achievement-dev-image-button">
+            {imageUploading ? t("uploadingImage") : `▣ ${t("replaceImage")}`}
+            <input type="file" accept="image/png,image/jpeg,image/webp" onChange={replaceImage} disabled={imageUploading} />
+          </label>
+          <button type="button" className="achievement-dev-delete" onClick={removeDish}>{t("deleteDish")}</button>
         </div>
       )}
     </div>

@@ -70,7 +70,7 @@ function devContentWriter(): Plugin {
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
         if (!req.url?.startsWith('/__meal-gacha/dev/')) return next()
-        if (req.method !== 'POST' && req.method !== 'PUT') {
+        if (req.method !== 'POST' && req.method !== 'PUT' && req.method !== 'DELETE') {
           res.statusCode = 405
           res.end('Method Not Allowed')
           return
@@ -79,6 +79,24 @@ function devContentWriter(): Plugin {
           const payload = JSON.parse(await readBody(req)) as Record<string, unknown>
           if (req.url === '/__meal-gacha/dev/dish') {
             const current = JSON.parse(fs.readFileSync(dishesPath, 'utf8')) as unknown[]
+            if (req.method === 'DELETE') {
+              const dishId = String(payload.id ?? '')
+              const item = current.find((entry) => (entry as { id?: string }).id === dishId) as { imageUrl?: string } | undefined
+              if (!dishId) {
+                res.statusCode = 400
+                res.end('Invalid dish payload')
+                return
+              }
+              const imageName = item?.imageUrl?.startsWith('/assets/food/full/') ? path.basename(item.imageUrl) : ''
+              if (imageName) {
+                const imagePath = path.join(foodDir, imageName)
+                if (fs.existsSync(imagePath)) fs.unlinkSync(imagePath)
+              }
+              fs.writeFileSync(dishesPath, `${JSON.stringify(current.filter((entry) => (entry as { id?: string }).id !== dishId), null, 2)}\n`)
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify({ ok: true }))
+              return
+            }
             if (req.method === 'PUT') {
               const dishId = String(payload.id ?? '')
               if (!dishId || !/^[a-z0-9-]+$/.test(dishId)) {
@@ -86,7 +104,16 @@ function devContentWriter(): Plugin {
                 res.end('Invalid dish payload')
                 return
               }
-              const next = [...current.filter((item) => (item as { id?: string }).id !== dishId), payload]
+              const imageData = typeof payload.imageData === 'string' ? payload.imageData : ''
+              const imageMatch = imageData.match(/^data:image\/webp;base64,(.+)$/)
+              const dish = { ...payload }
+              delete dish.imageData
+              if (imageMatch) {
+                fs.mkdirSync(foodDir, { recursive: true })
+                fs.writeFileSync(path.join(foodDir, `${dishId}.webp`), Buffer.from(imageMatch[1], 'base64'))
+                dish.imageUrl = `/assets/food/full/${dishId}.webp`
+              }
+              const next = [...current.filter((item) => (item as { id?: string }).id !== dishId), dish]
               fs.writeFileSync(dishesPath, `${JSON.stringify(next, null, 2)}\n`)
               res.setHeader('Content-Type', 'application/json')
               res.end(JSON.stringify({ ok: true }))

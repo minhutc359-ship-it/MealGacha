@@ -34,7 +34,8 @@ interface AppStore {
   init(): void
   checkIn(): boolean
   addLocalDish(dish: Dish): { success: boolean; error?: string }
-  updateDish(dishId: string, patch: Pick<Dish, "name" | "rarity">): Promise<{ success: boolean; error?: string }>
+  updateDish(dishId: string, patch: Pick<Dish, "name" | "rarity"> & { imageData?: string }): Promise<{ success: boolean; error?: string }>
+  deleteDish(dishId: string): Promise<{ success: boolean; error?: string }>
   claimDailyQuest(questId: string, optionId: string): { correct: boolean; error?: string }
   openFreeChest(slot: MealSlot): { reward: RewardInstance | null; error?: string }
   convertDuplicate(rewardId: string): boolean
@@ -118,13 +119,18 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const { dishes } = get()
     const current = dishes.find((dish) => dish.id === dishId)
     if (!current) return { success: false, error: "Không tìm thấy món cần sửa." }
-    const nextDish = { ...current, name: patch.name.trim(), rarity: patch.rarity }
+    const nextDish = {
+      ...current,
+      name: patch.name.trim(),
+      rarity: patch.rarity,
+      ...(patch.imageData ? { imageUrl: `/assets/food/full/${dishId}.webp` } : {}),
+    }
     if (!nextDish.name) return { success: false, error: "Label không được để trống." }
     try {
       const response = await fetch("/__meal-gacha/dev/dish", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(nextDish),
+        body: JSON.stringify({ ...nextDish, ...(patch.imageData ? { imageData: patch.imageData } : {}) }),
       })
       if (!response.ok) throw new Error("Không thể ghi thay đổi món vào source.")
     } catch (error) {
@@ -134,6 +140,29 @@ export const useAppStore = create<AppStore>((set, get) => ({
     repository.saveLocalCatalog(nextDishes)
     set({ dishes: nextDishes })
     get().showToast(`Đã cập nhật ${nextDish.name}.`, "success")
+    return { success: true }
+  },
+
+  async deleteDish(dishId) {
+    if (!import.meta.env.DEV) {
+      return { success: false, error: "Chức năng này chỉ khả dụng trong môi trường dev." }
+    }
+    const { dishes } = get()
+    if (!dishes.some((dish) => dish.id === dishId)) return { success: false, error: "Không tìm thấy món cần xóa." }
+    try {
+      const response = await fetch("/__meal-gacha/dev/dish", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: dishId }),
+      })
+      if (!response.ok) throw new Error("Không thể xóa món khỏi source.")
+    } catch (error) {
+      return { success: false, error: (error as Error).message }
+    }
+    const nextDishes = dishes.filter((dish) => dish.id !== dishId)
+    repository.saveLocalCatalog(nextDishes)
+    set({ dishes: nextDishes })
+    get().showToast("Đã xóa món khỏi catalog local.", "success")
     return { success: true }
   },
 
