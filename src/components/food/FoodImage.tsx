@@ -1,5 +1,6 @@
 import { CSSProperties, useState } from "react"
 import {
+  cacheFoodAsset,
   FoodImageVariant,
   getFoodAssetUrl,
 } from "../../infrastructure/assets/foodAssets"
@@ -50,6 +51,7 @@ export function FoodImage({
       loading={eager ? "eager" : "lazy"}
       decoding="async"
       fetchPriority={eager ? "high" : "auto"}
+      onLoad={(event) => cacheFoodAsset(src, event.currentTarget)}
       onError={() => setFailed(true)}
       className={`food-image ${className}`}
       style={style}
