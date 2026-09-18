@@ -26,6 +26,7 @@ export interface DishSnapshot {
   searchQuery: string
   imageUrl?: string
   category?: string
+  priceTier?: 1 | 2 | 3 | 4
 }
 
 export interface RewardInstance {

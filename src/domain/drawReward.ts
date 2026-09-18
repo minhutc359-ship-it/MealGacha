@@ -167,6 +167,7 @@ export function applyOpenChest(
     searchQuery: dish.searchQuery,
     imageUrl: dish.imageUrl,
     category: dish.category,
+    priceTier: dish.priceTier,
   }
   const reward: RewardInstance = {
     id: rewardId,

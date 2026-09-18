@@ -17,6 +17,7 @@ import {
 } from "../domain/models"
 import { getDishRarity } from "../domain/drawReward"
 import { useAppStore } from "../store/useAppStore"
+import { RaritySticker } from "../components/ui/RaritySticker"
 
 const SLOTS: MealSlot[] = ["breakfast", "lunch", "dinner"]
 
@@ -125,6 +126,7 @@ export function AchievementsPage() {
               >
                 <RarityFrame rarity={rarity} className="achievement-art">
                   <FoodImage dishId={dish.id} name={dish.name} imageUrl={dish.imageUrl} variant="card" />
+                  <RaritySticker priceTier={dish.priceTier} rarity={rarity} />
                   {!unlocked && (
                     <div className="achievement-lock" aria-hidden="true">
                       <span>⌾</span>

@@ -312,7 +312,7 @@ export function SettingsPage() {
       {/* Key history */}
       {recentTx.length > 0 && (
         <Section title="Lịch sử chìa khóa">
-          <div className="flex flex-col gap-1.5">
+          <div className="key-history-scroll flex flex-col gap-1.5">
             {recentTx.map((tx) => (
               <div
                 key={tx.id}

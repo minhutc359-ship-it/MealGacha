@@ -55,6 +55,7 @@ export function applyFuse(
     searchQuery: dish.searchQuery,
     imageUrl: dish.imageUrl,
     category: dish.category,
+    priceTier: dish.priceTier,
   }
   const reward: RewardInstance = {
     id: outId,

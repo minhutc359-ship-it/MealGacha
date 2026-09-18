@@ -8,6 +8,7 @@ import { PlacesModal } from "../places/PlacesModal"
 import { FoodImage } from "../food/FoodImage"
 import { RarityFrame, RARITY_LABELS } from "../ui/RarityFrame"
 import { useAppStore } from "../../store/useAppStore"
+import { RaritySticker } from "../ui/RaritySticker"
 
 interface Props {
   reward: RewardInstance
@@ -164,6 +165,7 @@ export function RevealModal({
                 variant="full"
                 eager
               />
+              <RaritySticker priceTier={dish.priceTier} rarity={rarity} />
             </RarityFrame>
             {/* Badges */}
             <div className="absolute top-3 left-3 flex gap-2">

@@ -376,6 +376,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .local-banner-settings img { width: 100%; max-height: 180px; object-fit: cover; border: 1px solid rgba(25,199,232,.25); background: #06131f; }
 .local-banner-settings input[type='file'] { width: 100%; color: var(--text-dim); font-size: 10px; }
 .local-banner-clear { padding: 10px 14px; color: #f87171; border: 1px solid rgba(239,68,68,.28); background: rgba(239,68,68,.08); font-size: 10px; cursor: pointer; }
+.key-history-scroll { max-height: 240px; overflow-y: auto; padding-right: 4px; scrollbar-width: thin; scrollbar-color: rgba(25,199,232,.35) transparent; }
+.key-history-scroll::-webkit-scrollbar { width: 4px; }
+.key-history-scroll::-webkit-scrollbar-thumb { background: rgba(25,199,232,.35); }
 
 .announcement-banner-backdrop { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 18px; background: rgba(1,6,14,.86); backdrop-filter: blur(12px); animation: fade-in-up .22s ease both; }
 .announcement-banner-panel { width: min(620px, 100%); overflow: hidden; border: 1px solid rgba(232,199,119,.5); background: #071827; box-shadow: 0 28px 90px rgba(0,0,0,.75), 0 0 40px rgba(25,199,232,.12); animation: reveal-card .35s cubic-bezier(.2,.85,.32,1.12) both; }
@@ -416,7 +419,14 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .rarity-frame::after { content: ''; position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(169,120,47,.5); box-shadow: inset 0 0 24px rgba(169,120,47,.08); }
 .rarity-frame.rarity-rare::after { border-color: rgba(25,199,232,.82); box-shadow: inset 0 0 32px rgba(25,199,232,.14), 0 0 24px rgba(25,199,232,.12); }
 .rarity-frame.rarity-epic::after { border-color: rgba(232,199,119,.96); box-shadow: inset 0 0 42px rgba(232,199,119,.17), 0 0 32px rgba(168,85,247,.16); }
-.rarity-frame.rarity-diamond::after { border: 2px solid transparent; background: linear-gradient(transparent,transparent) padding-box, linear-gradient(135deg,#fff,#70e8ff 28%,#caa8ff 58%,#fff 82%,#66dfff) border-box; box-shadow: inset 0 0 44px rgba(176,244,255,.2), 0 0 28px rgba(99,220,255,.22), 0 0 54px rgba(167,139,250,.18); animation: diamond-frame-pulse 1.8s ease-in-out infinite; }
+.rarity-frame.rarity-diamond::after { inset: 0; border: 2px solid transparent; background: linear-gradient(135deg,#fff,#70e8ff 28%,#caa8ff 58%,#fff 82%,#66dfff) border-box; -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; box-shadow: 0 0 28px rgba(99,220,255,.22), 0 0 54px rgba(167,139,250,.18); animation: diamond-frame-pulse 1.8s ease-in-out infinite; }
+.rarity-sticker { position: absolute; top: 9px; left: 9px; z-index: 5; min-width: 30px; height: 30px; display: grid; place-items: center; padding: 0 6px; color: #06131f; border: 2px solid currentColor; clip-path: polygon(50% 0,90% 13%,100% 50%,90% 87%,50% 100%,10% 87%,0 50%,10% 13%); font: 900 11px/1 'Exo 2', sans-serif; letter-spacing: .04em; filter: drop-shadow(0 0 7px currentColor); }
+.rarity-sticker-common { color: #b7c7d3; background: #dbe7ed; }
+.rarity-sticker-rare { color: #19c7e8; background: #c8f8ff; }
+.rarity-sticker-epic { color: #e8c777; background: #fff0b4; }
+.rarity-sticker-diamond { color: #70e8ff; background: linear-gradient(135deg, #fff, #bdf7ff 45%, #d6baff); animation: sticker-diamond-pulse 1.2s ease-in-out infinite; }
+.achievement-art .rarity-sticker { top: 7px; left: 7px; }
+.reward-art-frame .rarity-sticker { top: 12px; left: 12px; transform: scale(1.1); }
 .reward-art-frame { width: min(72%, 290px); height: 218px; position: relative; z-index: 2; overflow: hidden; clip-path: polygon(7% 0,93% 0,100% 10%,100% 90%,93% 100%,7% 100%,0 90%,0 10%); }
 .reward-art-frame .food-image, .reward-art-frame .food-image-fallback { width: 100%; height: 100%; object-fit: cover; }
 .reward-rarity-badge { position: absolute; right: 13px; bottom: 15px; z-index: 4; padding: 5px 9px; color: #b7c7d3; background: rgba(2,11,20,.78); border: 1px solid rgba(125,148,168,.32); font: 800 9px/1 'Exo 2',sans-serif; letter-spacing: .14em; text-transform: uppercase; backdrop-filter: blur(5px); }
@@ -634,6 +644,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .reward-reveal-card.rarity-rare { border-color: rgba(53,214,230,.72) !important; box-shadow: 0 0 95px rgba(25,199,232,.2), 0 28px 70px rgba(0,0,0,.72) !important; }
 .reward-reveal-card.rarity-epic { border-color: rgba(232,199,119,.9) !important; box-shadow: 0 0 105px rgba(232,199,119,.22), 0 0 55px rgba(139,92,246,.16), 0 28px 70px rgba(0,0,0,.74) !important; }
 .reward-reveal-card.rarity-diamond { border-color: rgba(211,250,255,.95) !important; box-shadow: 0 0 115px rgba(131,232,255,.3),0 0 72px rgba(166,117,255,.24),0 28px 70px rgba(0,0,0,.78) !important; }
+.reward-reveal-card.rarity-epic { animation: reveal-epic-card .7s .12s cubic-bezier(.2,.85,.32,1.15) both; }
+.reward-reveal-card.rarity-diamond { animation: reveal-diamond-card .9s .08s cubic-bezier(.16,.9,.3,1.12) both; }
 .reward-shine { width: 34%; height: 180%; position: absolute; left: -60%; top: -40%; z-index: 6; pointer-events: none; opacity: .38; background: linear-gradient(90deg,transparent,rgba(255,255,255,.82),transparent); filter: blur(7px); transform: rotate(17deg); animation: reward-shine-sweep 1.05s .16s ease-out forwards; }
 .reward-confetti { position: absolute; inset: 0; z-index: 7; pointer-events: none; overflow: visible; }
 .reward-confetti i { --x: 0px; --y: -210px; width: 4px; height: 11px; position: absolute; left: 50%; top: 45%; opacity: 0; border-radius: 3px; background: var(--cyan-200); box-shadow: 0 0 9px currentColor; animation: reward-confetti .9s calc(var(--confetti-index) * 18ms) cubic-bezier(.17,.7,.35,1) forwards; }
@@ -645,6 +657,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .reward-utility-actions button:hover, .reward-utility-actions button[aria-pressed='true'] { color: var(--gold-300); border-color: rgba(232,199,119,.36); }
 @keyframes reward-shine-sweep { to { left: 125%; } }
 @keyframes reward-confetti { 0% { opacity: 0; translate: 0 0; scale: .2; } 18% { opacity: 1; } 100% { opacity: 0; translate: var(--x) var(--y); rotate: 220deg; scale: 1; } }
+@keyframes sticker-diamond-pulse { 50% { transform: scale(1.12) rotate(4deg); filter: drop-shadow(0 0 14px #70e8ff); } }
+@keyframes reveal-epic-card { 0%,100% { transform: scale(1); } 35% { transform: scale(1.025) rotate(-.4deg); } 70% { transform: scale(1.012) rotate(.3deg); } }
+@keyframes reveal-diamond-card { 0% { filter: brightness(1); } 32% { filter: brightness(1.5) saturate(1.35); } 58% { filter: brightness(1.12) saturate(1.15); } 100% { filter: brightness(1); } }
 
 /* ─── Odds modal ─────────────────────────────────────────────────── */
 .odds-backdrop { position: fixed; inset: 0; z-index: 70; display: grid; place-items: center; padding: 18px; background: rgba(1,6,14,.9); backdrop-filter: blur(12px); }
@@ -722,8 +737,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .stage-footer i { display:none; }
   .stage-footer span { padding-right:7px; border-right:1px solid rgba(125,148,168,.16); }
 
-  .reward-reveal-backdrop { padding:0 !important; align-items:flex-end !important; }
-  .reward-reveal-card { max-height:94dvh; border-radius:22px 22px 0 0 !important; }
+  .reward-reveal-backdrop { padding:12px !important; align-items:center !important; }
+  .reward-reveal-card { max-height:92dvh; border-radius:22px !important; overflow-y:auto !important; }
   .reward-reveal-card > div:first-child { height:230px; }
   .reward-art-frame { height:194px; }
 
@@ -753,6 +768,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .scene-impact .shockwave, .scene-impact .burst-particles i,
   .scene-opening .burst-particles i, .scene-reward-rise .reward-sigil, .scene-stars i,
   .reward-shine, .reward-confetti i, .ritual-impact .ritual-stage,
-  .rarity-frame.rarity-diamond::after, .achievement-hero::before { animation: none !important; }
+  .rarity-frame.rarity-diamond::after, .rarity-sticker-diamond,
+  .reward-reveal-card.rarity-epic, .reward-reveal-card.rarity-diamond,
+  .achievement-hero::before { animation: none !important; }
   .chest-parallax { transform: none !important; transition: none !important; }
 }
