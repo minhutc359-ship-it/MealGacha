@@ -60,6 +60,20 @@ export const FOOD_ASSET_IDS = [
 ] as const
 
 const assetIds = new Set<string>(FOOD_ASSET_IDS)
+const preloadedFoodAssets = new Map<string, HTMLImageElement>()
+
+export function cacheFoodAsset(src: string, image?: HTMLImageElement): void {
+  if (!src || preloadedFoodAssets.has(src)) return
+  if (image) {
+    preloadedFoodAssets.set(src, image)
+    return
+  }
+  if (typeof Image === "undefined") return
+  const preloader = new Image()
+  preloadedFoodAssets.set(src, preloader)
+  preloader.addEventListener("error", () => preloadedFoodAssets.delete(src), { once: true })
+  preloader.src = src
+}
 
 export function hasFoodAsset(dishId: string): boolean {
   return assetIds.has(dishId)
@@ -82,5 +96,8 @@ export function preloadFoodAsset(
   if (!src || typeof Image === "undefined") return
   const image = new Image()
   image.decoding = "async"
+  if (preloadedFoodAssets.has(src)) return
+  preloadedFoodAssets.set(src, image)
+  image.addEventListener("error", () => preloadedFoodAssets.delete(src), { once: true })
   image.src = src
 }
