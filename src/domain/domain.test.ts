@@ -69,6 +69,16 @@ describe("daily check-in", () => {
     expect(canCheckIn(first)).toBe(false)
     expect(applyCheckIn(first)).toBe(first)
   })
+  it("restores a missing streak and awards the third-day bonus", () => {
+    const first = applyCheckIn(makeState({ checkInStreak: undefined, bestCheckInStreak: undefined }))
+    expect(first.checkInStreak).toBe(1)
+    expect(first.bestCheckInStreak).toBe(1)
+
+    const yesterday = getDateKey(new Date(Date.now() - 24 * 60 * 60 * 1000))
+    const third = applyCheckIn(makeState({ lastCheckInDate: yesterday, checkInStreak: 2, bestCheckInStreak: 2 }))
+    expect(third.checkInStreak).toBe(3)
+    expect(third.keyTransactions.at(-1)?.amount).toBe(12)
+  })
 })
 
 describe("chest draw", () => {

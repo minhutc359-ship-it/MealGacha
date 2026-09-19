@@ -16,7 +16,7 @@ export function applyCheckIn(state: UserState): UserState {
   if (!canCheckIn(state)) return state;
   const now = new Date().toISOString();
   const streak = state.lastCheckInDate === getPreviousDateKey()
-    ? state.checkInStreak + 1
+    ? (state.checkInStreak ?? 0) + 1
     : 1
   const milestone = streak === 3 ? 2 : streak === 7 ? 5 : streak === 14 ? 10 : 0
   const totalKeys = DAILY_KEYS + milestone
@@ -31,7 +31,7 @@ export function applyCheckIn(state: UserState): UserState {
     ...state,
     keys: state.keys + totalKeys,
     checkInStreak: streak,
-    bestCheckInStreak: Math.max(state.bestCheckInStreak, streak),
+    bestCheckInStreak: Math.max(state.bestCheckInStreak ?? 0, streak),
     lastCheckInDate: getDateKey(),
     keyTransactions: [...state.keyTransactions, tx],
     updatedAt: now,

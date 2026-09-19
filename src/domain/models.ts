@@ -30,6 +30,14 @@ export interface Dish {
   fusion?: { enabled: boolean }
 }
 
+/** Legacy announcement events, kept separate from the seasonal banner catalog. */
+export interface LimitedEvent {
+  id: string
+  startsAt: string
+  endsAt: string
+  title?: string
+}
+
 export interface DishSnapshot {
   id: string
   name: string
@@ -66,12 +74,13 @@ export interface KeyTransaction {
   id: string
   amount: number
   balanceAfter: number
-  reason: "daily_checkin" | "chest_open" | "daily_quiz" | "taste_swipe" | "migration" | "admin_adjustment"
+  reason: "daily_checkin" | "chest_open" | "daily_quiz" | "daily_quest" | "taste_swipe" | "migration" | "admin_adjustment"
   createdAt: string
   referenceId?: string
 }
 
 export interface UserPreferences {
+  language?: "vi" | "en"
   soundEnabled: boolean
   reducedMotion: boolean
   hiddenDishIds: string[]
@@ -86,6 +95,10 @@ export interface UserState {
   displayName: string
   keys: number
   lastCheckInDate?: string
+  checkInStreak?: number
+  bestCheckInStreak?: number
+  dailyQuestCycle?: string
+  completedDailyQuestIds?: string[]
   rewards: RewardInstance[]
   fusions: FusionTransaction[]
   keyTransactions: KeyTransaction[]

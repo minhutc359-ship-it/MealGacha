@@ -1,14 +1,17 @@
 import { z } from "zod"
 import { UserState, CatalogCache, UserPreferences } from "../../domain/models"
+import type { BannerConfig } from "../banner/bannerConfig"
 
 const KEYS = {
   user: "foodchest.user.v1",
   catalog: "foodchest.catalog.v1",
   adminOverride: "foodchest.admin-override.v1",
   wheel: "foodchest.wheel.v1",
+  bannerOverride: "foodchest.banner-override.v1",
 } as const
 
 const defaultPrefs: UserPreferences = {
+  language: "vi",
   soundEnabled: true,
   reducedMotion: false,
   hiddenDishIds: [],
@@ -22,6 +25,10 @@ const StoredUserSchema = z
     schemaVersion: z.union([z.literal(1), z.literal(2)]),
     displayName: z.string().max(32).optional(),
     keys: z.number().int().nonnegative(),
+    checkInStreak: z.number().int().nonnegative().optional(),
+    bestCheckInStreak: z.number().int().nonnegative().optional(),
+    dailyQuestCycle: z.string().optional(),
+    completedDailyQuestIds: z.array(z.string()).optional(),
     rewards: z.array(z.unknown()),
     fusions: z.array(z.unknown()),
     keyTransactions: z.array(z.unknown()),
@@ -40,6 +47,7 @@ const StoredUserSchema = z
     dailyQuiz: z.object({ date: z.string(), answers: z.record(z.string(), z.string()) }).optional(),
     tasteSwipeRewardDate: z.string().optional(),
     preferences: z.object({
+      language: z.enum(["vi", "en"]).optional(),
       soundEnabled: z.boolean().optional(),
       reducedMotion: z.boolean().optional(),
       hiddenDishIds: z.array(z.string()).optional(),
@@ -74,6 +82,9 @@ function defaultUserState(): UserState {
     schemaVersion: 2,
     displayName: "Nhà thám hiểm",
     keys: 0,
+    checkInStreak: 0,
+    bestCheckInStreak: 0,
+    completedDailyQuestIds: [],
     rewards: [],
     fusions: [],
     keyTransactions: [],
@@ -99,6 +110,9 @@ export function migrateUserState(raw: unknown): UserState | null {
     ...state,
     schemaVersion: 2,
     displayName: state.displayName ?? (typeof localStorage !== "undefined" ? localStorage.getItem("mealgacha.profile.name") : null) ?? defaults.displayName,
+    checkInStreak: state.checkInStreak ?? 0,
+    bestCheckInStreak: state.bestCheckInStreak ?? 0,
+    completedDailyQuestIds: state.completedDailyQuestIds ?? [],
     timelinePosts: state.timelinePosts ?? [],
     fragments: state.fragments ?? {},
     unlockedTitleIds: Array.from(new Set(["newbie", ...(state.unlockedTitleIds ?? [])])),
@@ -168,6 +182,20 @@ export const repository = {
 
   saveWheelItems(items: string[]): void {
     safeSet(KEYS.wheel, items)
+  },
+
+  loadBannerOverride(): BannerConfig | null {
+    return safeGet(KEYS.bannerOverride, null, (raw) => {
+      const parsed = z.object({
+        id: z.string(),
+        imageUrl: z.string(),
+        enabled: z.boolean(),
+        eventId: z.string().optional(),
+        startsAt: z.string().optional(),
+        endsAt: z.string().optional(),
+      }).safeParse(raw)
+      return parsed.success ? parsed.data : null
+    })
   },
 
   clearAll(): void {

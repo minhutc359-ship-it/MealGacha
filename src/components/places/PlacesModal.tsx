@@ -108,7 +108,7 @@ export function PlacesModal({ dish, onClose }: Props) {
   const displayed = allPlaces
     .filter((p) => !filterOpen || p.isOpen === true)
     .filter((p) => p.distanceKm <= (filterNear ? 1 : radiusKm))
-    .sort((a, b) => sortBy === "distance" ? a.distanceKm - b.distanceKm : sortBy === "rating" ? b.rating - a.rating : (b._score ?? 0) - (a._score ?? 0))
+    .sort((a, b) => sortBy === "distance" ? a.distanceKm - b.distanceKm : sortBy === "rating" ? (b.rating ?? 0) - (a.rating ?? 0) : (b._score ?? 0) - (a._score ?? 0))
 
   return (
     <div
@@ -431,12 +431,16 @@ function PlaceCard({ place }: { place: PlaceResult }) {
         {place.address}
       </p>
       <div className="flex items-center gap-3 text-xs mb-3">
-        <span className="font-bold" style={{ color: "#f5a623" }}>
-          ★ {place.rating.toFixed(1)}
-        </span>
-        <span style={{ color: "#6b7f99" }}>
-          ({place.userRatingCount.toLocaleString()})
-        </span>
+        {place.rating !== undefined && place.rating > 0 ? (
+          <>
+            <span className="font-bold" style={{ color: "#f5a623" }}>
+              ★ {place.rating.toFixed(1)}
+            </span>
+            <span style={{ color: "#6b7f99" }}>
+              ({(place.userRatingCount ?? 0).toLocaleString()})
+            </span>
+          </>
+        ) : <span style={{ color: "#6b7f99" }}>Chưa có đánh giá</span>}
         <span style={{ color: "#6b7f99" }}>
           📍 {place.distanceKm.toFixed(1)} km
         </span>

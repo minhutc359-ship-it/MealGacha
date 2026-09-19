@@ -14,6 +14,7 @@ import { deleteImage } from "../infrastructure/storage/imageRepository"
 import { clearImages } from "../infrastructure/storage/imageRepository"
 import { enrichDish } from "../infrastructure/catalog/enrichDish"
 import { EVENT_DISHES } from "../infrastructure/catalog/eventCatalog"
+import { applyDailyQuest, getDailyQuests } from "../domain/dailyQuest"
 
 function withEventDishes(dishes: Dish[]): Dish[] {
   const ids = new Set(dishes.map((dish) => dish.id))
@@ -31,6 +32,7 @@ interface AppStore {
   init(): void
   checkIn(): boolean
   answerQuiz(questionId: string, answerId: string): { correct: boolean; error?: string }
+  claimDailyQuest(questId: string, optionId: string): { correct: boolean; error?: string }
   saveTasteProfile(tags: string[]): void
   resetTasteProfile(): void
   saveTimelinePost(post: TimelinePost): void
@@ -89,7 +91,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const newUser = applyCheckIn(user)
     repository.saveUser(newUser)
     set({ user: newUser })
-    get().showToast(`+10 chìa khóa! Mở rương thôi nào 🔑`, "success")
+    get().showToast(`+${newUser.keys - user.keys} chìa khóa! Mở rương thôi nào 🔑`, "success")
     return true
   },
 
@@ -103,6 +105,18 @@ export const useAppStore = create<AppStore>((set, get) => ({
     set({ user: result.state })
     get().showToast(result.correct ? "Đúng rồi! +1 chìa khóa 🔑" : "Chưa đúng! Thử câu tiếp theo nhé.", result.correct ? "success" : "info")
     return { correct: result.correct }
+  },
+
+  claimDailyQuest(questId, optionId) {
+    const { user, dishes } = get()
+    const quest = getDailyQuests(dishes).find((item) => item.id === questId)
+    if (!quest) return { correct: false, error: "Nhiệm vụ không còn hiệu lực." }
+    const result = applyDailyQuest(user, quest, optionId)
+    if (!result.correct) return { correct: false }
+    repository.saveUser(result.state)
+    set({ user: result.state })
+    get().showToast("Hoàn thành nhiệm vụ! +3 chìa khóa 🔑", "success")
+    return { correct: true }
   },
 
   saveTasteProfile(tags) {
