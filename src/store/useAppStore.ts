@@ -2,31 +2,28 @@ import { create } from "zustand"
 import { UserState, Dish, MealSlot, RewardInstance } from "../domain/models"
 import { repository } from "../infrastructure/storage/repository"
 import { applyCheckIn, canCheckIn } from "../domain/checkIn"
-import {
-  applyConvertDuplicate,
-  applyOpenChest,
-  applyShardExchange,
-  canClaimFreeChest,
-  canOpenChest,
-  SHARDS_PER_KEY,
-} from "../domain/drawReward"
+import { applyOpenChest, canOpenChest } from "../domain/drawReward"
 import { applyFuse, canFuse } from "../domain/fuseRewards"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
-import localDishes from "../infrastructure/catalog/localDishes.json"
-import limitedEvents from "../infrastructure/events/limitedEvents.json"
 import { fetchCatalog } from "../infrastructure/catalog/csvAdapter"
-import { LimitedEvent } from "../domain/models"
-import { isDishAvailable } from "../domain/limitedEvents"
-import {
-  applyDailyQuest,
-  canClaimDailyQuest,
-  getDailyQuests,
-} from "../domain/dailyQuest"
+import { answerDailyQuestion, getDailyQuestions } from "../domain/dailyQuiz"
+import { getDateKey } from "../domain/dateKey"
+import { syncTitles, TITLES } from "../domain/titles"
+import type { TimelinePost } from "../domain/models"
+import { deleteImage } from "../infrastructure/storage/imageRepository"
+import { clearImages } from "../infrastructure/storage/imageRepository"
+import { enrichDish } from "../infrastructure/catalog/enrichDish"
+import { EVENT_DISHES } from "../infrastructure/catalog/eventCatalog"
+import { applyDailyQuest, getDailyQuests } from "../domain/dailyQuest"
+
+function withEventDishes(dishes: Dish[]): Dish[] {
+  const ids = new Set(dishes.map((dish) => dish.id))
+  return [...dishes, ...EVENT_DISHES.filter((dish) => !ids.has(dish.id))]
+}
 
 interface AppStore {
   user: UserState
   dishes: Dish[]
-  limitedEvents: LimitedEvent[]
   catalogLoading: boolean
   catalogError: string | null
   toast: { message: string; type: "success" | "error" | "info" } | null
@@ -34,14 +31,15 @@ interface AppStore {
 
   init(): void
   checkIn(): boolean
-  addLocalDish(dish: Dish): { success: boolean; error?: string }
-  updateDish(dishId: string, patch: Partial<Pick<Dish, "name" | "rarity" | "weight" | "priceTier">> & { imageData?: string }): Promise<{ success: boolean; error?: string }>
-  deleteDish(dishId: string): Promise<{ success: boolean; error?: string }>
+  answerQuiz(questionId: string, answerId: string): { correct: boolean; error?: string }
   claimDailyQuest(questId: string, optionId: string): { correct: boolean; error?: string }
-  openFreeChest(slot: MealSlot): { reward: RewardInstance | null; error?: string }
-  convertDuplicate(rewardId: string): boolean
-  exchangeShards(): boolean
-  openChest(slot: MealSlot): {
+  saveTasteProfile(tags: string[]): void
+  resetTasteProfile(): void
+  saveTimelinePost(post: TimelinePost): void
+  deleteTimelinePost(id: string): Promise<void>
+  equipTitle(id: string): void
+  setDisplayName(name: string): void
+  openChest(slot: MealSlot, eventId?: string): {
     reward: RewardInstance
     error: null
     unlockedUnlimited: boolean
@@ -64,13 +62,12 @@ interface AppStore {
     value: UserState["preferences"][K],
   ): void
   loadRemoteCatalog(url?: string): Promise<void>
-  resetData(): void
+  resetData(): Promise<void>
 }
 
 export const useAppStore = create<AppStore>((set, get) => ({
   user: repository.loadUser(),
-  dishes: [...SEED_DISHES, ...(localDishes as Dish[])],
-  limitedEvents: limitedEvents as LimitedEvent[],
+  dishes: SEED_DISHES,
   catalogLoading: false,
   catalogError: null,
   toast: null,
@@ -78,11 +75,11 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   init() {
     const user = repository.loadUser()
-    set({ user, dishes: [...SEED_DISHES, ...(localDishes as Dish[])], limitedEvents: limitedEvents as LimitedEvent[] })
-    const cached = import.meta.env.DEV
-      ? repository.loadCatalog()
-      : repository.loadPublishedCatalog()
-    if (cached?.dishes?.length) set({ dishes: cached.dishes })
+    const cached = repository.loadCatalog()
+    const dishes = cached?.dishes?.length ? withEventDishes(cached.dishes.map(enrichDish)) : SEED_DISHES
+    const titled = syncTitles(user, dishes)
+    if (titled !== user) repository.saveUser(titled)
+    set({ user: titled, dishes })
     const overrideUrl = repository.loadAdminOverrideUrl()
     const catalogUrl = overrideUrl || import.meta.env.VITE_CATALOG_URL
     if (catalogUrl) get().loadRemoteCatalog(catalogUrl)
@@ -94,137 +91,102 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const newUser = applyCheckIn(user)
     repository.saveUser(newUser)
     set({ user: newUser })
-    get().showToast(`+10 chìa khóa! Mở rương thôi nào 🔑`, "success")
+    get().showToast(`+${newUser.keys - user.keys} chìa khóa! Mở rương thôi nào 🔑`, "success")
     return true
   },
 
-  addLocalDish(dish) {
-    if (!import.meta.env.DEV) {
-      return { success: false, error: "Chức năng này chỉ khả dụng trong môi trường dev." }
-    }
-    const { dishes } = get()
-    if (dishes.some((item) => item.id === dish.id)) {
-      return { success: false, error: `ID món "${dish.id}" đã tồn tại.` }
-    }
-    const nextDishes = [...dishes, dish]
-    repository.saveLocalCatalog(nextDishes)
-    set({ dishes: nextDishes })
-    get().showToast(`Đã thêm món ${dish.name} vào catalog local.`, "success")
-    return { success: true }
-  },
-
-  async updateDish(dishId, patch) {
-    if (!import.meta.env.DEV) {
-      return { success: false, error: "Chức năng này chỉ khả dụng trong môi trường dev." }
-    }
-    const { dishes } = get()
-    const current = dishes.find((dish) => dish.id === dishId)
-    if (!current) return { success: false, error: "Không tìm thấy món cần sửa." }
-    const nextDish = {
-      ...current,
-      ...(patch.name !== undefined ? { name: patch.name.trim() } : {}),
-      ...(patch.rarity !== undefined ? { rarity: patch.rarity } : {}),
-      ...(patch.weight !== undefined ? { weight: patch.weight } : {}),
-      ...(patch.priceTier !== undefined ? { priceTier: patch.priceTier } : {}),
-      ...(patch.imageData ? { imageUrl: `/assets/food/full/${dishId}.webp` } : {}),
-    }
-    if (!nextDish.name) return { success: false, error: "Label không được để trống." }
-    try {
-      const response = await fetch("/__meal-gacha/dev/dish", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...nextDish, ...(patch.imageData ? { imageData: patch.imageData } : {}) }),
-      })
-      if (!response.ok) throw new Error("Không thể ghi thay đổi món vào source.")
-    } catch (error) {
-      return { success: false, error: (error as Error).message }
-    }
-    const nextDishes = dishes.map((dish) => dish.id === dishId ? nextDish : dish)
-    repository.saveLocalCatalog(nextDishes)
-    set({ dishes: nextDishes })
-    get().showToast(`Đã cập nhật ${nextDish.name}.`, "success")
-    return { success: true }
-  },
-
-  async deleteDish(dishId) {
-    if (!import.meta.env.DEV) {
-      return { success: false, error: "Chức năng này chỉ khả dụng trong môi trường dev." }
-    }
-    const { dishes } = get()
-    if (!dishes.some((dish) => dish.id === dishId)) return { success: false, error: "Không tìm thấy món cần xóa." }
-    try {
-      const response = await fetch("/__meal-gacha/dev/dish", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: dishId }),
-      })
-      if (!response.ok) throw new Error("Không thể xóa món khỏi source.")
-    } catch (error) {
-      return { success: false, error: (error as Error).message }
-    }
-    const nextDishes = dishes.filter((dish) => dish.id !== dishId)
-    repository.saveLocalCatalog(nextDishes)
-    set({ dishes: nextDishes })
-    get().showToast("Đã xóa món khỏi catalog local.", "success")
-    return { success: true }
+  answerQuiz(questionId, answerId) {
+    const { user, dishes } = get()
+    const question = getDailyQuestions(dishes).find((item) => item.id === questionId)
+    if (!question) return { correct: false, error: "Câu hỏi không còn hiệu lực." }
+    const result = answerDailyQuestion(user, question, answerId)
+    if (result.error) return { correct: false, error: result.error }
+    repository.saveUser(result.state)
+    set({ user: result.state })
+    get().showToast(result.correct ? "Đúng rồi! +1 chìa khóa 🔑" : "Chưa đúng! Thử câu tiếp theo nhé.", result.correct ? "success" : "info")
+    return { correct: result.correct }
   },
 
   claimDailyQuest(questId, optionId) {
     const { user, dishes } = get()
     const quest = getDailyQuests(dishes).find((item) => item.id === questId)
-    if (!quest) {
-      return { correct: false, error: "Chưa đủ dữ liệu món ăn cho nhiệm vụ hôm nay." }
-    }
-    if (!canClaimDailyQuest(user, quest)) {
-      return { correct: false, error: "Bạn đã nhận thưởng nhiệm vụ hôm nay rồi." }
-    }
+    if (!quest) return { correct: false, error: "Nhiệm vụ không còn hiệu lực." }
     const result = applyDailyQuest(user, quest, optionId)
     if (!result.correct) return { correct: false }
     repository.saveUser(result.state)
     set({ user: result.state })
-    get().showToast(`+3 chìa khóa! ${quest.title} đã được giải 🔑`, "success")
+    get().showToast("Hoàn thành nhiệm vụ! +3 chìa khóa 🔑", "success")
     return { correct: true }
   },
 
-  openFreeChest(slot) {
+  saveTasteProfile(tags) {
+    const user = get().user
+    const date = getDateKey()
+    const bonus = user.tasteSwipeRewardDate === date ? 0 : 2
+    const now = new Date().toISOString()
+    const next = {
+      ...user,
+      keys: user.keys + bonus,
+      favoriteTasteTags: [...new Set(tags)],
+      tasteProfileUpdatedAt: now,
+      tasteSwipeRewardDate: date,
+      keyTransactions: bonus ? [...user.keyTransactions, { id: crypto.randomUUID(), amount: bonus, balanceAfter: user.keys + bonus, reason: "taste_swipe" as const, createdAt: now }] : user.keyTransactions,
+      updatedAt: now,
+    }
+    repository.saveUser(next)
+    set({ user: next })
+    get().showToast(bonus ? "Đã lưu khẩu vị! +2 chìa khóa hôm nay." : "Đã cập nhật khẩu vị.", "success")
+  },
+
+  resetTasteProfile() {
+    const user = get().user
+    const next = { ...user, favoriteTasteTags: [], updatedAt: new Date().toISOString() }
+    repository.saveUser(next)
+    set({ user: next })
+  },
+
+  saveTimelinePost(post) {
     const { user, dishes } = get()
-    if (!canClaimFreeChest(user)) return { reward: null, error: "Bạn đã dùng rương miễn phí hôm nay." }
-    const err = canOpenChest({ ...user, keys: 1 }, dishes, slot, get().limitedEvents)
-    if (err) return { reward: null, error: err }
-    const result = applyOpenChest(user, dishes, slot, { free: true }, get().limitedEvents)
-    repository.saveUser(result.state)
-    set({ user: result.state, pendingRevealRewardId: result.reward.id })
-    get().showToast("Rương miễn phí đã mở! 🎁", "success")
-    return { reward: result.reward }
+    const posts = [...user.timelinePosts.filter((item) => item.id !== post.id), post]
+    const next = syncTitles({ ...user, timelinePosts: posts, updatedAt: new Date().toISOString() }, dishes)
+    repository.saveUser(next)
+    set({ user: next })
+    if (next.unlockedTitleIds.length > user.unlockedTitleIds.length) get().showToast("Danh hiệu mới đã mở khóa!", "success")
   },
 
-  convertDuplicate(rewardId) {
-    const { user } = get()
-    const newUser = applyConvertDuplicate(user, rewardId)
-    if (newUser === user) return false
-    repository.saveUser(newUser)
-    set({ user: newUser })
-    get().showToast("Đã đổi món trùng thành mảnh vị giác.", "success")
-    return true
-  },
-
-  exchangeShards() {
-    const { user } = get()
-    const newUser = applyShardExchange(user, SHARDS_PER_KEY)
-    if (newUser === user) return false
-    repository.saveUser(newUser)
-    set({ user: newUser })
-    get().showToast(`Đã đổi ${SHARDS_PER_KEY} mảnh thành 1 chìa khóa.`, "success")
-    return true
-  },
-
-  openChest(slot) {
+  async deleteTimelinePost(id) {
     const { user, dishes } = get()
-    const err = canOpenChest(user, dishes, slot, get().limitedEvents)
+    const post = user.timelinePosts.find((item) => item.id === id)
+    if (!post) return
+    const next = syncTitles({ ...user, timelinePosts: user.timelinePosts.filter((item) => item.id !== id), updatedAt: new Date().toISOString() }, dishes)
+    repository.saveUser(next)
+    set({ user: next })
+    if (post.imageId && !next.timelinePosts.some((item) => item.imageId === post.imageId)) await deleteImage(post.imageId).catch(() => undefined)
+  },
+
+  equipTitle(id) {
+    const user = get().user
+    if (!user.unlockedTitleIds.includes(id) || !TITLES.some((title) => title.id === id)) return
+    const next = { ...user, equippedTitleId: id, updatedAt: new Date().toISOString() }
+    repository.saveUser(next)
+    set({ user: next })
+  },
+
+  setDisplayName(name) {
+    const user = get().user
+    const next = { ...user, displayName: name.slice(0, 32), updatedAt: new Date().toISOString() }
+    repository.saveUser(next)
+    set({ user: next })
+  },
+
+  openChest(slot, eventId) {
+    const { user, dishes } = get()
+    const err = canOpenChest(user, dishes, slot, eventId)
     if (err) return { reward: null, error: err, unlockedUnlimited: false }
-    const { state: newUser, reward, unlockedUnlimited } = applyOpenChest(user, dishes, slot, {}, get().limitedEvents)
-    repository.saveUser(newUser)
-    set({ user: newUser, pendingRevealRewardId: reward.id })
+    const { state: newUser, reward, unlockedUnlimited } = applyOpenChest(user, dishes, slot, eventId)
+    const titled = syncTitles(newUser, dishes)
+    repository.saveUser(titled)
+    set({ user: titled, pendingRevealRewardId: reward.id })
     if (unlockedUnlimited) {
       get().showToast("◆ Hoàn thành toàn bộ món — đã mở khóa rương vô hạn!", "success")
     }
@@ -235,7 +197,9 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const { user, dishes } = get()
     const err = canFuse(user.rewards, inputIds)
     if (err) return { reward: null, error: err, unlockedUnlimited: false }
-    const pool = dishes.filter((d) => isDishAvailable(d, get().limitedEvents) && d.mealSlots.includes(targetSlot))
+    const pool = dishes.filter(
+      (d) => d.active && d.mealSlots.includes(targetSlot),
+    )
     if (pool.length === 0)
       return { reward: null, error: "Không có món nào cho banner đích.", unlockedUnlimited: false }
     const { state: newUser, reward, unlockedUnlimited } = applyFuse(
@@ -243,10 +207,10 @@ export const useAppStore = create<AppStore>((set, get) => ({
       dishes,
       inputIds,
       targetSlot,
-      get().limitedEvents,
     )
-    repository.saveUser(newUser)
-    set({ user: newUser })
+    const titled = syncTitles(newUser, dishes)
+    repository.saveUser(titled)
+    set({ user: titled })
     if (unlockedUnlimited) {
       get().showToast("◆ Hoàn thành toàn bộ món — đã mở khóa rương vô hạn!", "success")
     }
@@ -308,7 +272,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
           dishes: result.dishes,
         }
         repository.saveCatalog(cache)
-        set({ dishes: result.dishes })
+        set({ dishes: withEventDishes(result.dishes.map(enrichDish)) })
       }
     } catch (e) {
       set({ catalogError: `Không thể tải catalog: ${(e as Error).message}` })
@@ -317,8 +281,10 @@ export const useAppStore = create<AppStore>((set, get) => ({
     }
   },
 
-  resetData() {
+  async resetData() {
+    await clearImages().catch(() => undefined)
     repository.clearAll()
+    localStorage.removeItem("mealgacha.profile.name")
     window.location.reload()
   },
 }))

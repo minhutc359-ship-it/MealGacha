@@ -3,17 +3,12 @@ import { MEAL_SLOT_ICONS } from "../../domain/models"
 import { getDateKey } from "../../domain/dateKey"
 import { useAppStore } from "../../store/useAppStore"
 import { getVisibleRewards } from "../../domain/rewardPresentation"
-import { DailyQuest } from "./DailyQuest"
-import { canClaimFreeChest } from "../../domain/drawReward"
-import { useNavigate } from "react-router-dom"
-import { getWeeklyEventProgress } from "../../domain/weeklyEvent"
-import limitedEvents from "../../infrastructure/events/limitedEvents.json"
-import { formatRemainingTime, getActiveLimitedEvents } from "../../domain/limitedEvents"
-import { useEffect, useState } from "react"
-import { useLanguage } from "../../i18n"
+import { Link } from "react-router-dom"
+import { getDailyQuestions } from "../../domain/dailyQuiz"
 
 export function ActivityRail() {
   const user = useAppStore((state) => state.user)
+  const dishes = useAppStore((state) => state.dishes)
   const pendingRevealRewardId = useAppStore((state) => state.pendingRevealRewardId)
   const checkIn = useAppStore((state) => state.checkIn)
   const visibleRewards = getVisibleRewards(user.rewards, pendingRevealRewardId)
@@ -25,25 +20,13 @@ export function ActivityRail() {
     (reward) => reward.acquiredDate === today,
   )
   const canClaim = canCheckIn(user)
-  const freeChestReady = canClaimFreeChest(user)
-  const openFreeChest = useAppStore((state) => state.openFreeChest)
-  const navigate = useNavigate()
-  const dishes = useAppStore((state) => state.dishes)
-  const weeklyEvent = getWeeklyEventProgress(user.rewards, dishes)
-  const [now, setNow] = useState(() => new Date())
-  useEffect(() => {
-    const timer = window.setInterval(() => setNow(new Date()), 60_000)
-    return () => window.clearInterval(timer)
-  }, [])
-  const limitedEvent = getActiveLimitedEvents(limitedEvents, now)[0]
-  const { t } = useLanguage()
 
   return (
     <aside className="client-panel activity-rail" aria-label="Hoạt động">
       <div className="panel-heading">
         <div>
           <small>HÀNH TRÌNH</small>
-          <h2>{t("today")}</h2>
+          <h2>Hôm nay</h2>
         </div>
         <span className={`status-dot ${canClaim ? "is-ready" : ""}`} />
       </div>
@@ -55,44 +38,18 @@ export function ActivityRail() {
       >
         <span className="mission-icon">◇</span>
         <span>
-          <strong>{canClaim ? t("checkIn") : t("checkedIn")}</strong>
-          <small>{canClaim ? `+10 ${t("keys")}` : t("comeBackTomorrow")}</small>
+          <strong>{canClaim ? "Điểm danh nhận chìa" : "Đã điểm danh"}</strong>
+          <small>{canClaim ? "+10 chìa khóa" : "Quay lại vào ngày mai"}</small>
         </span>
         <b>{canClaim ? "+10" : "✓"}</b>
       </button>
 
-      <DailyQuest />
-
-      <div className="weekly-event">
-        <small>{t("weeklyEvent")}</small>
-        <strong>{weeklyEvent.event.label}</strong>
-        <span>{weeklyEvent.opened}/{weeklyEvent.total} món · {weeklyEvent.percentage}%</span>
-        <i><b style={{ width: `${weeklyEvent.percentage}%` }} /></i>
-      </div>
-      {limitedEvent && (
-        <div className="limited-event-countdown">
-          <small>EVENT GIỚI HẠN · {limitedEvent.title}</small>
-          <strong>Còn {formatRemainingTime(limitedEvent.endsAt, now)}</strong>
-        </div>
-      )}
-
-      <button
-        className={`daily-mission ${freeChestReady ? "is-ready" : "is-done"}`}
-        onClick={() => {
-          if (freeChestReady) {
-            openFreeChest("dinner")
-            navigate("/")
-          }
-        }}
-        disabled={!freeChestReady}
-      >
-        <span className="mission-icon">🎁</span>
-        <span>
-          <strong>{freeChestReady ? "Rương miễn phí" : "Đã dùng rương miễn phí"}</strong>
-          <small>{freeChestReady ? "Không tốn chìa khóa" : "Quay lại ngày mai"}</small>
-        </span>
-        <b>{freeChestReady ? "MỞ" : "✓"}</b>
-      </button>
+      <Link to="/daily-quiz" className="daily-mission is-ready">
+        <span className="mission-icon">✦</span>
+        <span><strong>Đoán món hôm nay</strong><small>{getDailyQuestions(dishes).filter((item) => user.dailyQuiz?.date !== today || !user.dailyQuiz.answers[item.id]).length} câu chưa chơi · +1 chìa/câu đúng</small></span>
+        <b>→</b>
+      </Link>
+      <Link to="/events" className="daily-mission is-ready"><span className="mission-icon">✦</span><span><strong>Sự kiện theo mùa</strong><small>6 banner món ăn để khám phá</small></span><b>→</b></Link>
 
       <div className="activity-stats">
         <div>
@@ -104,14 +61,9 @@ export function ActivityRail() {
           <small>Còn sử dụng</small>
         </div>
         <div>
-          <strong>{user.checkInStreak}</strong>
-          <small>{t("streak")}</small>
+          <strong>{user.fusions.length}</strong>
+          <small>Lần ghép</small>
         </div>
-      </div>
-
-      <div className="activity-economy">
-        <span>♢ {user.shards} mảnh</span>
-        <span>◇ Pity {Math.min(user.pityCount, 10)}/10</span>
       </div>
 
       <div className="recent-activity">

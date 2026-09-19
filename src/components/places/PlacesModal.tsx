@@ -1,13 +1,9 @@
 import { useState, useEffect, useRef } from "react"
 import { DishSnapshot } from "../../domain/models"
 import { useAppStore } from "../../store/useAppStore"
-import { useLanguage } from "../../i18n"
 import {
-  haversine,
   PlaceResult,
-  scoreAndSort,
   searchNearbyPlaces,
-  searchOpenStreetMapPlaces,
 } from "../../infrastructure/places/placesGateway"
 
 interface Props {
@@ -31,10 +27,11 @@ export function PlacesModal({ dish, onClose }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [filterOpen, setFilterOpen] = useState(false)
   const [filterNear, setFilterNear] = useState(false)
-  const [dataSource, setDataSource] = useState<"google" | "osm" | "demo" | null>(null)
+  const [sortBy, setSortBy] = useState<"recommended" | "distance" | "rating">("recommended")
+  const [radiusKm, setRadiusKm] = useState(3)
+  const [dataSource, setDataSource] = useState<"google" | null>(null)
   const locationRef = useRef<{ lat: number; lng: number } | null>(null)
   const manualRef = useRef<HTMLInputElement>(null)
-  const { t } = useLanguage()
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -72,28 +69,22 @@ export function PlacesModal({ dish, onClose }: Props) {
     setError(null)
     try {
       const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-      const provider = import.meta.env.VITE_PLACES_PROVIDER || "osm"
-      if (provider === "google" && apiKey) {
+      if (!apiKey) {
+        setAllPlaces([])
+        setError("Tìm quán trực tiếp chưa được cấu hình. Bạn có thể mở Google Maps với món và khu vực đã chọn.")
+      } else {
+        const fullDish = useAppStore.getState().dishes.find((item) => item.id === dish.id)
         const places = await searchNearbyPlaces({
-          query: dish.searchQuery,
+          query: fullDish?.restaurantSearch?.queries?.[0] || dish.searchQuery,
           lat,
           lng,
-          radiusMeters: prefs.searchRadiusMeters,
+          radiusMeters: Math.max(radiusKm * 1000, prefs.searchRadiusMeters),
           minRating: prefs.minRating,
           minReviews: prefs.minReviews,
           apiKey,
         })
         setAllPlaces(places)
         setDataSource("google")
-      } else {
-        const places = await searchOpenStreetMapPlaces({
-          query: dish.searchQuery,
-          lat,
-          lng,
-          radiusMeters: prefs.searchRadiusMeters,
-        })
-        setAllPlaces(places)
-        setDataSource("osm")
       }
     } catch {
       setError("Không thể tìm quán. Thử lại sau hoặc mở Google Maps.")
@@ -116,12 +107,12 @@ export function PlacesModal({ dish, onClose }: Props) {
   // Apply filter chips on top of scored results
   const displayed = allPlaces
     .filter((p) => !filterOpen || p.isOpen === true)
-    .filter((p) => !filterNear || p.distanceKm <= 2)
-  const openFilterAvailable = allPlaces.some((place) => place.isOpen !== undefined)
+    .filter((p) => p.distanceKm <= (filterNear ? 1 : radiusKm))
+    .sort((a, b) => sortBy === "distance" ? a.distanceKm - b.distanceKm : sortBy === "rating" ? (b.rating ?? 0) - (a.rating ?? 0) : (b._score ?? 0) - (a._score ?? 0))
 
   return (
     <div
-      className="places-backdrop fixed inset-0 z-[60] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4"
       style={{ background: "rgba(8,12,24,0.92)", backdropFilter: "blur(14px)" }}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()
@@ -130,7 +121,7 @@ export function PlacesModal({ dish, onClose }: Props) {
       aria-modal="true"
     >
       <div
-        className="places-panel w-full max-w-sm rounded-3xl overflow-hidden flex flex-col"
+        className="w-full max-w-sm rounded-3xl overflow-hidden flex flex-col"
         style={{
           background: "#0e1628",
           border: "1.5px solid rgba(0,212,255,0.2)",
@@ -148,10 +139,10 @@ export function PlacesModal({ dish, onClose }: Props) {
               className="font-extrabold text-base leading-tight"
               style={{ fontFamily: "Exo 2, sans-serif" }}
             >
-              {t("placeSearchTitle")} {dish.name}
+              Quán {dish.name}
             </h3>
             <p className="text-xs mt-0.5" style={{ color: "#6b7f99" }}>
-              {t("nearbyRestaurants")}
+              Gần vị trí của bạn
             </p>
           </div>
           <button
@@ -175,9 +166,10 @@ export function PlacesModal({ dish, onClose }: Props) {
                 boxShadow: "0 4px 16px rgba(0,212,255,0.3)",
               }}
             >
-              📍 {t("useLocation")}
+              📍 Dùng vị trí hiện tại của tôi
             </button>
           )}
+          {locState === "idle" && <div className="flex gap-2"><input ref={manualRef} value={manualInput} onChange={(event) => setManualInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") openMapsSearch() }} placeholder="Hoặc nhập khu vực: Cầu Giấy, Hà Nội" className="flex-1 min-w-0 px-3 py-2.5 rounded-xl text-sm bg-[#162b3c] text-white" /><button onClick={openMapsSearch} className="px-3 text-[#00d4ff]">Tìm</button></div>}
 
           {locState === "requesting" && (
             <div
@@ -189,7 +181,7 @@ export function PlacesModal({ dish, onClose }: Props) {
             >
               <span className="w-5 h-5 border-2 border-[#00d4ff] border-t-transparent rounded-full animate-spin" />
               <span className="text-sm" style={{ color: "#00d4ff" }}>
-                {t("locationLoading")}
+                Đang lấy vị trí...
               </span>
             </div>
           )}
@@ -206,9 +198,9 @@ export function PlacesModal({ dish, onClose }: Props) {
               >
                 <span>
                   {locState === "denied"
-                    ? `🚫 ${t("locationDenied")}`
-                    : `⚠️ ${t("locationError")}`}{" "}
-                  {t("enterArea")}
+                    ? "🚫 Quyền vị trí bị từ chối."
+                    : "⚠️ Không lấy được vị trí."}{" "}
+                  Nhập khu vực để tìm kiếm:
                 </span>
                 {locState === "error" && (
                   <button
@@ -219,7 +211,7 @@ export function PlacesModal({ dish, onClose }: Props) {
                       color: "#f87171",
                     }}
                   >
-                    {t("tryAgain")}
+                    Thử lại
                   </button>
                 )}
               </div>
@@ -231,7 +223,7 @@ export function PlacesModal({ dish, onClose }: Props) {
                   onKeyDown={(e) => {
                     if (e.key === "Enter") openMapsSearch()
                   }}
-                  placeholder={t("locationSearchPlaceholder")}
+                  placeholder="Quận 1, TP.HCM..."
                   className="flex-1 px-3 py-2.5 rounded-xl text-sm outline-none"
                   style={{
                     background: "rgba(22,32,64,0.8)",
@@ -254,7 +246,7 @@ export function PlacesModal({ dish, onClose }: Props) {
                     border: "1px solid rgba(0,212,255,0.3)",
                   }}
                 >
-                  {t("search")}
+                  Tìm
                 </button>
               </div>
             </>
@@ -264,7 +256,7 @@ export function PlacesModal({ dish, onClose }: Props) {
             <div className="flex flex-col items-center gap-3 py-6">
               <div className="w-10 h-10 border-2 border-[#00d4ff] border-t-transparent rounded-full animate-spin" />
               <p className="text-sm" style={{ color: "#6b7f99" }}>
-                {t("loadingRestaurants")}
+                Đang tìm quán ngon gần bạn...
               </p>
             </div>
           )}
@@ -280,7 +272,7 @@ export function PlacesModal({ dish, onClose }: Props) {
             >
               {error}
               <button onClick={openMapsSearch} className="underline ml-2">
-                {t("mapsFallback")}
+                Mở Maps thay thế
               </button>
             </div>
           )}
@@ -288,41 +280,25 @@ export function PlacesModal({ dish, onClose }: Props) {
           {/* Filter chips */}
           {allPlaces.length > 0 && (
             <>
-              {dataSource === "osm" && (
-                <div
-                  className="rounded-xl px-3 py-2 text-xs"
-                  style={{
-                    background: "rgba(245,166,35,0.08)",
-                    border: "1px solid rgba(245,166,35,0.2)",
-                    color: "#f5a623",
-                  }}
-                >
-                  {t("dataFromOsm")} {t("filterDataNote")}
-                </div>
-              )}
-              {dataSource === "demo" && (
-                <div className="rounded-xl px-3 py-2 text-xs" style={{ background: "rgba(245,166,35,0.08)", border: "1px solid rgba(245,166,35,0.2)", color: "#f5a623" }}>
-                  Chế độ demo · Không thể kết nối provider địa điểm.
-                </div>
-              )}
               <div className="flex items-center gap-2">
                 <FilterChip
                   active={filterOpen}
-                  disabled={!openFilterAvailable}
                   onClick={() => setFilterOpen(!filterOpen)}
-                  label={t("openNow")}
+                  label="Đang mở"
                 />
                 <FilterChip
                   active={filterNear}
                   onClick={() => setFilterNear(!filterNear)}
-                  label={t("nearTwoKm")}
+                  label="≤ 1 km"
                 />
+                <select aria-label="Sắp xếp quán" value={sortBy} onChange={(event) => setSortBy(event.target.value as typeof sortBy)} className="min-w-0 text-xs bg-[#10293b] text-[#b4d3de] p-2"><option value="recommended">Gợi ý</option><option value="distance">Gần nhất</option><option value="rating">Rating cao</option></select>
+                <select aria-label="Bán kính" value={radiusKm} onChange={(event) => setRadiusKm(Number(event.target.value))} className="text-xs bg-[#10293b] text-[#b4d3de] p-2"><option value={1}>1 km</option><option value={3}>3 km</option><option value={5}>5 km</option></select>
                 <button
                   onClick={openMapsSearch}
                   className="ml-auto text-xs flex-shrink-0"
                   style={{ color: "#00d4ff" }}
                 >
-                  {t("openMaps")} →
+                  Mở Maps →
                 </button>
               </div>
             </>
@@ -346,14 +322,8 @@ export function PlacesModal({ dish, onClose }: Props) {
                     <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z" />
                   </svg>
                   <span className="text-xs" style={{ color: "#6b7f99" }}>
-                    {t("dataFromGoogle")}
-                  </span>
-                </div>
-              )}
-              {dataSource === "osm" && (
-                <div className="flex items-center justify-center pt-1 pb-2">
-                  <span className="text-xs" style={{ color: "#6b7f99" }}>
-                    © OpenStreetMap contributors
+                    Dữ liệu từ{" "}
+                    <strong style={{ color: "#a8b8d0" }}>Google Maps</strong>
                   </span>
                 </div>
               )}
@@ -363,7 +333,7 @@ export function PlacesModal({ dish, onClose }: Props) {
           {allPlaces.length > 0 && displayed.length === 0 && !loading && (
             <div className="text-center py-4">
               <p className="text-sm mb-2" style={{ color: "#6b7f99" }}>
-                {t("noFilterResults")}
+                Không có quán khớp bộ lọc.
               </p>
               <button
                 onClick={() => {
@@ -373,7 +343,7 @@ export function PlacesModal({ dish, onClose }: Props) {
                 className="text-sm"
                 style={{ color: "#00d4ff" }}
               >
-                {t("clearFilters")}
+                Bỏ bộ lọc
               </button>
             </div>
           )}
@@ -384,14 +354,14 @@ export function PlacesModal({ dish, onClose }: Props) {
             !error && (
               <div className="text-center py-6">
                 <p className="text-sm mb-1" style={{ color: "#6b7f99" }}>
-                  {t("noPlaces")}
+                  Không tìm thấy quán đủ tiêu chí.
                 </p>
                 <button
                   onClick={openMapsSearch}
                   className="text-sm"
                   style={{ color: "#00d4ff" }}
                 >
-                  {t("openMapLink")}
+                  Tìm trên Google Maps →
                 </button>
               </div>
             )}
@@ -403,29 +373,19 @@ export function PlacesModal({ dish, onClose }: Props) {
 
 function FilterChip({
   active,
-  disabled = false,
   onClick,
   label,
 }: {
   active: boolean
-  disabled?: boolean
   onClick(): void
   label: string
 }) {
   return (
     <button
       onClick={onClick}
-      disabled={disabled}
       className="px-2.5 py-1 rounded-full text-xs font-medium transition-all flex-shrink-0"
       style={
-        disabled
-          ? {
-              background: "rgba(14,22,40,0.35)",
-              color: "#44566b",
-              border: "1px solid rgba(107,127,153,0.12)",
-              cursor: "not-allowed",
-            }
-          : active
+        active
           ? {
               background: "rgba(0,212,255,0.15)",
               color: "#00d4ff",
@@ -444,8 +404,6 @@ function FilterChip({
 }
 
 function PlaceCard({ place }: { place: PlaceResult }) {
-  const { t } = useLanguage()
-
   return (
     <div
       className="p-3.5 rounded-2xl transition-all"
@@ -465,7 +423,7 @@ function PlaceCard({ place }: { place: PlaceResult }) {
                 : { background: "rgba(239,68,68,0.1)", color: "#f87171" }
             }
           >
-            {place.isOpen ? t("restaurantOpen") : t("restaurantClosed")}
+            {place.isOpen ? "Mở" : "Đóng"}
           </span>
         )}
       </div>
@@ -473,7 +431,7 @@ function PlaceCard({ place }: { place: PlaceResult }) {
         {place.address}
       </p>
       <div className="flex items-center gap-3 text-xs mb-3">
-        {place.rating !== undefined ? (
+        {place.rating !== undefined && place.rating > 0 ? (
           <>
             <span className="font-bold" style={{ color: "#f5a623" }}>
               ★ {place.rating.toFixed(1)}
@@ -482,9 +440,7 @@ function PlaceCard({ place }: { place: PlaceResult }) {
               ({(place.userRatingCount ?? 0).toLocaleString()})
             </span>
           </>
-        ) : (
-          <span style={{ color: "#6b7f99" }}>{t("unknownRating")}</span>
-        )}
+        ) : <span style={{ color: "#6b7f99" }}>Chưa có đánh giá</span>}
         <span style={{ color: "#6b7f99" }}>
           📍 {place.distanceKm.toFixed(1)} km
         </span>
@@ -506,7 +462,7 @@ function PlaceCard({ place }: { place: PlaceResult }) {
             border: "1px solid rgba(0,212,255,0.2)",
           }}
         >
-          {t("openMaps")}
+          Xem trên Maps
         </a>
         <a
           href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.address)}`}
@@ -519,95 +475,9 @@ function PlaceCard({ place }: { place: PlaceResult }) {
             border: "1px solid rgba(245,166,35,0.2)",
           }}
         >
-          {t("directions")}
+          Chỉ đường
         </a>
       </div>
     </div>
   )
-}
-
-function getMockPlaces(
-  query: string,
-  lat: number,
-  lng: number,
-  radiusKm: number,
-): PlaceResult[] {
-  const offsets = [
-    {
-      dlat: 0.004,
-      dlng: 0.003,
-      suffix: "Ngon",
-      reviews: 234,
-      rating: 4.5,
-      open: true,
-      price: 2,
-    },
-    {
-      dlat: -0.007,
-      dlng: 0.005,
-      suffix: "Bà Năm",
-      reviews: 180,
-      rating: 4.3,
-      open: true,
-      price: 1,
-    },
-    {
-      dlat: 0.01,
-      dlng: -0.004,
-      suffix: "24h",
-      reviews: 312,
-      rating: 4.6,
-      open: true,
-      price: 2,
-    },
-    {
-      dlat: -0.003,
-      dlng: -0.008,
-      suffix: "Gia Đình",
-      reviews: 97,
-      rating: 4.2,
-      open: false,
-      price: 1,
-    },
-    {
-      dlat: 0.014,
-      dlng: 0.002,
-      suffix: "Đặc Biệt",
-      reviews: 156,
-      rating: 4.4,
-      open: true,
-      price: 3,
-    },
-    {
-      dlat: -0.012,
-      dlng: 0.009,
-      suffix: "Cổ Truyền",
-      reviews: 88,
-      rating: 4.1,
-      open: false,
-      price: 1,
-    },
-    {
-      dlat: 0.007,
-      dlng: -0.011,
-      suffix: "Hiện Đại",
-      reviews: 421,
-      rating: 4.7,
-      open: true,
-      price: 3,
-    },
-  ]
-
-  const places: PlaceResult[] = offsets.map((o, i) => ({
-    name: `${query.charAt(0).toUpperCase() + query.slice(1)} ${o.suffix}`,
-    address: `${[12, 56, 78, 34, 90, 23, 67][i]} ${["Lê Lợi", "Nguyễn Trãi", "Hai Bà Trưng", "Võ Văn Tần", "Trần Hưng Đạo", "Lý Tự Trọng", "Nam Kỳ Khởi Nghĩa"][i]}, Q${[1, 5, 3, 3, 1, 1, 3][i]}`,
-    rating: o.rating,
-    userRatingCount: o.reviews,
-    distanceKm: haversine(lat, lng, lat + o.dlat, lng + o.dlng),
-    mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query + " " + o.suffix)}`,
-    isOpen: o.open,
-    priceLevel: o.price,
-  }))
-
-  return scoreAndSort(places, radiusKm)
 }

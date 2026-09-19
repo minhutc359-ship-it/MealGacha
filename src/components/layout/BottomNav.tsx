@@ -1,10 +1,9 @@
 import { NavLink } from "react-router-dom"
-import { TranslationKey, useLanguage } from "../../i18n"
 
 const tabs = [
   {
     to: "/",
-    key: "chest" as TranslationKey,
+    label: "Rương",
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <rect
@@ -30,7 +29,7 @@ const tabs = [
   },
   {
     to: "/collection",
-    key: "collection" as TranslationKey,
+    label: "Hồ sơ",
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <rect
@@ -82,7 +81,7 @@ const tabs = [
   },
   {
     to: "/achievements",
-    key: "achievements" as TranslationKey,
+    label: "Thành tựu",
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <path
@@ -97,7 +96,7 @@ const tabs = [
   },
   {
     to: "/wheel",
-    key: "wheel" as TranslationKey,
+    label: "Vòng quay",
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <circle
@@ -119,7 +118,7 @@ const tabs = [
   },
   {
     to: "/settings",
-    key: "settings" as TranslationKey,
+    label: "Cài đặt",
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
         <circle
@@ -141,8 +140,6 @@ const tabs = [
 ]
 
 export function BottomNav() {
-  const { t } = useLanguage()
-
   return (
     <nav
       className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-50 border-t"
@@ -153,7 +150,7 @@ export function BottomNav() {
       }}
     >
       <div className="flex max-w-md mx-auto">
-        {tabs.map(({ to, key, icon }) => (
+        {tabs.map(({ to, label, icon }) => (
           <NavLink key={to} to={to} end={to === "/"} className="flex-1">
             {({ isActive }) => (
               <div
@@ -163,7 +160,7 @@ export function BottomNav() {
               >
                 {icon(isActive)}
                 <span className="text-[10px] font-medium leading-none">
-                  {t(key)}
+                  {label}
                 </span>
               </div>
             )}

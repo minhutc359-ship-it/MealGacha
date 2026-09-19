@@ -51,6 +51,12 @@ export const FOOD_ASSET_IDS = [
   "pad-thai",
   "tom-yum-goong",
   "mango-sticky-rice",
+  "cha-ca-la-vong", "bun-thang", "xoi-xeo", "com-lang-vong", "ca-phe-trung",
+  "korean-fried-chicken", "jjajangmyeon", "kimchi-jjigae", "hotteok", "bingsu",
+  "tonkotsu-ramen", "takoyaki", "okonomiyaki", "yakitori", "tonkatsu", "matcha-parfait",
+  "som-tam", "pad-kra-pao", "boat-noodles", "green-curry", "moo-ping",
+  "carbonara", "ossobuco", "tiramisu", "gelato",
+  "roast-turkey", "beef-wellington", "honey-glazed-ham", "mashed-potato", "gingerbread", "christmas-pudding", "yule-log", "hot-chocolate",
 ] as const
 
 const assetIds = new Set<string>(FOOD_ASSET_IDS)
@@ -64,8 +70,9 @@ export function cacheFoodAsset(src: string, image?: HTMLImageElement): void {
   }
   if (typeof Image === "undefined") return
   const preloader = new Image()
-  preloader.src = src
   preloadedFoodAssets.set(src, preloader)
+  preloader.addEventListener("error", () => preloadedFoodAssets.delete(src), { once: true })
+  preloader.src = src
 }
 
 export function hasFoodAsset(dishId: string): boolean {
@@ -87,9 +94,9 @@ export function preloadFoodAsset(
 ): void {
   const src = getFoodAssetUrl(dishId, variant)
   if (!src || typeof Image === "undefined") return
-  if (preloadedFoodAssets.has(src)) return
   const image = new Image()
   image.decoding = "async"
+  if (preloadedFoodAssets.has(src)) return
   preloadedFoodAssets.set(src, image)
   image.addEventListener("error", () => preloadedFoodAssets.delete(src), { once: true })
   image.src = src

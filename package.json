@@ -1,5 +1,6 @@
 {
-  "name": "figma-make-app",
+  "name": "meal-gacha",
+  "packageManager": "pnpm@10.34.3",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -9,7 +10,8 @@
     "preview": "vite preview",
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "validate:catalog": "node scripts/validate-catalog.mjs"
   },
   "dependencies": {
     "@types/papaparse": "^5.5.2",
