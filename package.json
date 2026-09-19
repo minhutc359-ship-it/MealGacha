@@ -1,5 +1,6 @@
 {
   "name": "meal-gacha",
+  "packageManager": "pnpm@10.34.3",
   "private": true,
   "version": "1.0.0",
   "type": "module",
