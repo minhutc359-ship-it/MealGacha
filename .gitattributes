@@ -47,6 +47,11 @@
 # serve their contents without requiring Git LFS.
 public/assets/audio/** -filter -diff -merge -text
 
+# Runtime food and event WebP assets are normal Git blobs in this project.
+# Keep them outside LFS so the Vercel checkout serves the actual image bytes.
+public/assets/food/** -filter -diff -merge -text
+public/assets/events/** -filter -diff -merge -text
+
 # ---------------------------------------------------------------------------
 # 3D & Game Assets
 # ---------------------------------------------------------------------------
