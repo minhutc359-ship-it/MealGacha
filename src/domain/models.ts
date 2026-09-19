@@ -1,16 +1,7 @@
 export type MealSlot = "breakfast" | "lunch" | "dinner"
-export type RewardSource = "chest" | "fusion" | "free_chest"
+export type RewardSource = "chest" | "fusion"
 export type RewardStatus = "available" | "consumed"
 export type RewardRarity = "common" | "rare" | "epic" | "diamond"
-export type DishType = "standard" | "limited"
-
-export interface LimitedEvent {
-  id: string
-  title: string
-  startsAt: string
-  endsAt: string
-  bannerId?: string
-}
 
 export interface Dish {
   id: string
@@ -25,10 +16,18 @@ export interface Dish {
   rarity?: RewardRarity
   priceTier?: 1 | 2 | 3 | 4
   active: boolean
-  type?: DishType
-  limitedEventId?: string
   minRating?: number
   minReviews?: number
+  nameEn?: string
+  descriptionEn?: string
+  country?: string
+  region?: string
+  categories?: string[]
+  baseWeight?: number
+  type?: "normal" | "limited"
+  limitedEventId?: string
+  restaurantSearch?: { queries: string[]; cuisineTags?: string[] }
+  fusion?: { enabled: boolean }
 }
 
 export interface DishSnapshot {
@@ -37,7 +36,6 @@ export interface DishSnapshot {
   searchQuery: string
   imageUrl?: string
   category?: string
-  priceTier?: 1 | 2 | 3 | 4
 }
 
 export interface RewardInstance {
@@ -53,7 +51,6 @@ export interface RewardInstance {
   fusionId?: string
   favorite: boolean
   rarity?: RewardRarity
-  convertedAt?: string
 }
 
 export interface FusionTransaction {
@@ -69,13 +66,12 @@ export interface KeyTransaction {
   id: string
   amount: number
   balanceAfter: number
-  reason: "daily_checkin" | "daily_quest" | "chest_open" | "free_chest" | "streak_reward" | "event_reward" | "shard_exchange" | "migration" | "admin_adjustment"
+  reason: "daily_checkin" | "chest_open" | "daily_quiz" | "taste_swipe" | "migration" | "admin_adjustment"
   createdAt: string
   referenceId?: string
 }
 
 export interface UserPreferences {
-  language?: "vi" | "en"
   soundEnabled: boolean
   reducedMotion: boolean
   hiddenDishIds: string[]
@@ -86,25 +82,35 @@ export interface UserPreferences {
 }
 
 export interface UserState {
-  schemaVersion: 1 | 2
+  schemaVersion: 2
+  displayName: string
   keys: number
   lastCheckInDate?: string
-  checkInStreak: number
-  bestCheckInStreak: number
-  dailyQuestDate?: string
-  dailyQuestCycle?: string
-  completedDailyQuestIds?: string[]
-  shards: number
-  pityCount: number
-  lastFreeChestDate?: string
   rewards: RewardInstance[]
   fusions: FusionTransaction[]
   keyTransactions: KeyTransaction[]
   recentDishIdsByMeal: Record<MealSlot, string[]>
   unlimitedChestUnlockedAt?: string
+  timelinePosts: TimelinePost[]
+  fragments: Record<string, number>
+  equippedTitleId: string
+  unlockedTitleIds: string[]
+  favoriteTasteTags: string[]
+  tasteProfileUpdatedAt?: string
+  dailyQuiz?: { date: string; answers: Record<string, string> }
+  tasteSwipeRewardDate?: string
   preferences: UserPreferences
   createdAt: string
   updatedAt: string
+}
+
+export interface TimelinePost {
+  id: string
+  dishId: string
+  note?: string
+  imageId?: string
+  createdAt: string
+  updatedAt?: string
 }
 
 export interface CatalogCache {

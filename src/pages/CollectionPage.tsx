@@ -11,8 +11,8 @@ import { getDateKey } from "../domain/dateKey"
 import { FoodImage } from "../components/food/FoodImage"
 import { RevealModal } from "../components/chest/RevealModal"
 import { playSound } from "../infrastructure/audio/soundEngine"
-import { SHARDS_PER_KEY } from "../domain/drawReward"
 import { RARITY_LABELS } from "../components/ui/RarityFrame"
+import { FusionRitual } from "../components/chest/FusionRitual"
 
 type SlotFilter = "all" | MealSlot
 type StatusFilter = "all" | "available" | "consumed"
@@ -21,8 +21,6 @@ export function CollectionPage() {
   const user = useAppStore((s) => s.user)
   const fuse = useAppStore((s) => s.fuse)
   const toggleFavorite = useAppStore((s) => s.toggleFavorite)
-  const convertDuplicate = useAppStore((s) => s.convertDuplicate)
-  const exchangeShards = useAppStore((s) => s.exchangeShards)
   const showToast = useAppStore((s) => s.showToast)
 
   const [slotFilter, setSlotFilter] = useState<SlotFilter>("all")
@@ -33,6 +31,7 @@ export function CollectionPage() {
   const [targetSlot, setTargetSlot] = useState<MealSlot>("lunch")
   const [placeDish, setPlaceDish] = useState<RewardInstance | null>(null)
   const [fusionResult, setFusionResult] = useState<RewardInstance | null>(null)
+  const [fusionRitual, setFusionRitual] = useState<{ materials: RewardInstance[]; result: RewardInstance } | null>(null)
 
   const today = getDateKey()
 
@@ -86,7 +85,7 @@ export function CollectionPage() {
       return
     }
     if (result.reward) {
-      setFusionResult(result.reward)
+      setFusionRitual({ materials: selected.map((id) => user.rewards.find((item) => item.id === id)!), result: result.reward })
       playSound("fusion", user.preferences.soundEnabled)
     }
     showToast(`✨ Ghép thành công: ${result.reward?.dish.name}!`, "success")
@@ -100,7 +99,7 @@ export function CollectionPage() {
   const canFuseToday = availableToday.length >= 3
 
   return (
-    <div className="collection-page min-h-dvh pb-20 flex flex-col mx-auto px-4 pt-4">
+    <div className="min-h-dvh pb-20 flex flex-col max-w-md mx-auto px-4 pt-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-1">
         <div>
@@ -143,18 +142,6 @@ export function CollectionPage() {
         </button>
       </div>
 
-      <div className="flex items-center justify-between gap-2 mb-3 px-3 py-2 rounded-xl" style={{ background: "rgba(236,72,153,0.07)", border: "1px solid rgba(236,72,153,0.18)" }}>
-        <span className="text-xs" style={{ color: "#f9a8d4" }}>♢ {user.shards} mảnh vị giác</span>
-        <button
-          onClick={exchangeShards}
-          disabled={user.shards < SHARDS_PER_KEY}
-          className="text-xs font-bold px-2 py-1 rounded-lg"
-          style={{ color: user.shards >= SHARDS_PER_KEY ? "#f9a8d4" : "#6b7f99", border: "1px solid rgba(236,72,153,0.25)" }}
-        >
-          Đổi {SHARDS_PER_KEY} mảnh → 1 🔑
-        </button>
-      </div>
-
       {/* Fusion panel */}
       {fusionMode && (
         <div
@@ -192,7 +179,6 @@ export function CollectionPage() {
                     <FoodImage
                       dishId={r.dishId}
                       name={r.dish.name}
-                      imageUrl={r.dish.imageUrl}
                       variant="thumb"
                     />
                   ) : (
@@ -411,10 +397,6 @@ export function CollectionPage() {
                     onSelect={() => toggleSelect(r.id)}
                     onFavorite={() => toggleFavorite(r.id)}
                     onFindPlaces={() => setPlaceDish(r)}
-                    onConvertDuplicate={() => convertDuplicate(r.id)}
-                    canConvertDuplicate={user.rewards.some(
-                      (other) => other.id !== r.id && other.dishId === r.dishId,
-                    )}
                   />
                 ))}
               </div>
@@ -435,6 +417,7 @@ export function CollectionPage() {
           onGoCollection={() => setFusionResult(null)}
         />
       )}
+      {fusionRitual && <FusionRitual materials={fusionRitual.materials} result={fusionRitual.result} reducedMotion={user.preferences.reducedMotion || window.matchMedia("(prefers-reduced-motion: reduce)").matches} onComplete={() => { setFusionResult(fusionRitual.result); setFusionRitual(null) }} />}
     </div>
   )
 }
@@ -475,8 +458,6 @@ function RewardCard({
   onSelect,
   onFavorite,
   onFindPlaces,
-  onConvertDuplicate,
-  canConvertDuplicate,
 }: {
   reward: RewardInstance
   fusionMode: boolean
@@ -486,8 +467,6 @@ function RewardCard({
   onSelect(): void
   onFavorite(): void
   onFindPlaces(): void
-  onConvertDuplicate(): void
-  canConvertDuplicate: boolean
 }) {
   const isConsumed = reward.status === "consumed"
   const isLocked = fusionMode && !selectable && !isSelected
@@ -520,7 +499,6 @@ function RewardCard({
         <FoodImage
           dishId={reward.dishId}
           name={reward.dish.name}
-          imageUrl={reward.dish.imageUrl}
           variant="thumb"
         />
       </div>
@@ -583,18 +561,6 @@ function RewardCard({
           >
             📍
           </button>
-          {reward.status === "available" && !reward.convertedAt && canConvertDuplicate && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                onConvertDuplicate()
-              }}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-sm transition-colors"
-              title="Đổi món trùng thành mảnh"
-            >
-              ♢
-            </button>
-          )}
           <button
             onClick={(e) => {
               e.stopPropagation()

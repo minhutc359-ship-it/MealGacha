@@ -1,6 +1,6 @@
 # MealGacha · Rương Vị Giác
 
-Web app gợi ý món ăn sáng, trưa và tối qua trải nghiệm mở rương theo phong cách fantasy game client. Mỗi ngày người dùng điểm danh nhận 10 chìa khóa, mở rương để sưu tập 50 món, ghép 3 phần thưởng cùng ngày thành món mới, hoàn thành Thành tựu để mở rương vô hạn, tìm quán gần vị trí hiện tại và dùng vòng quay tự do.
+Web app gợi ý món ăn sáng, trưa và tối qua trải nghiệm mở rương theo phong cách fantasy game client. Điểm danh nhận 10 chìa mỗi ngày, giải 3 câu Đoán món để nhận thêm 3 chìa và hoàn tất Taste Swipe nhận 2 chìa. Sưu tập 50 món thường cùng 33 món giới hạn trong 6 sự kiện theo mùa, dung hợp 3 phần thưởng cùng ngày, ghi nhật ký ăn uống và mở danh hiệu. Thu thập đủ món thường để mở rương vô hạn.
 
 ## Chạy local
 
@@ -18,45 +18,25 @@ Các lệnh kiểm tra:
 pnpm typecheck
 pnpm test
 pnpm build
+pnpm validate:catalog
 ```
 
 ## Cấu hình
 
-- `VITE_PLACES_PROVIDER`: mặc định là `osm`, dùng Photon + dữ liệu OpenStreetMap miễn phí và hiển thị attribution. Đặt `google` để dùng Google Places API (New).
-- `VITE_GOOGLE_MAPS_API_KEY`: khóa cho Google Places API khi `VITE_PLACES_PROVIDER=google`. Rating/review chỉ có từ Google; với OSM, app dùng tên, địa chỉ, khoảng cách và giờ mở cửa nếu dữ liệu có.
+- `VITE_GOOGLE_MAPS_API_KEY`: khóa cho Places API (New). Giới hạn theo HTTP referrer và chỉ bật API cần thiết. Nếu chưa có khóa hoặc vị trí bị từ chối, popup đưa ra liên kết tìm trên Google Maps; app không bịa quán hay đánh giá.
 - `VITE_CATALOG_URL`: URL CSV của Google Sheet đã **Publish to web**. Người dùng cũng có thể cấu hình và xem trước nguồn trong trang Cài đặt.
 - `VITE_CHEST_OPENING_AUDIO_URL`: URL ghi đè cho âm thanh mở rương. Mặc định app dùng file `public/assets/audio/chest-opening.mp3` dài 4,284 giây và đồng bộ timeline 4,14 giây.
 - `VITE_DAILY_KEYS`, `VITE_CHEST_COST`: tham số kinh tế mặc định là 10 chìa/ngày và 1 chìa/lượt.
 - `VITE_APP_TIME_ZONE`: múi giờ nghiệp vụ, mặc định `Asia/Ho_Chi_Minh`.
 
-### Thêm món mới
+Hồ sơ, chìa, lịch sử và bài viết nằm trong `localStorage`; ảnh check-in nằm trong IndexedDB. Trang Cài đặt có xuất/nhập JSON (không chứa ảnh) và ZIP đầy đủ (có ảnh). Dữ liệu và tọa độ không được tải lên máy chủ của ứng dụng; kết quả Google Places phụ thuộc API key và quyền vị trí.
 
-Vào **Cài đặt → Thêm món local** khi chạy `pnpm dev` để thêm món và kiểm tra ngay trên trình duyệt developer. Dev server sẽ ghi món vào `src/infrastructure/catalog/localDishes.json`, vì vậy dữ liệu đã trở thành source code và có thể commit để deploy. Section này không được render trong production và store cũng từ chối action ngoài dev.
+## Luồng sử dụng
 
-Để món có ảnh khi deploy:
-
-1. Đặt ảnh WebP tại `public/assets/food/full/<id>.webp`.
-2. Nhập `imageUrl` là `/assets/food/full/<id>.webp` trong form, hoặc thêm dòng món vào catalog CSV/seed catalog.
-3. Commit ảnh và dữ liệu catalog lên repository rồi build/deploy lại.
-
-Nếu không commit `localDishes.json` và ảnh, món chỉ tồn tại trên môi trường dev/browser đã thêm món đó; user trên server không thể mở setting này.
-
-### Banner thông báo mới
-
-Trong local, vào **Cài đặt → Banner thông báo local**, tải ảnh lên và bật popup để xem thử. Dev server sẽ ghi ảnh vào `public/assets/banners` và cập nhật `src/infrastructure/banner/bannerConfig.ts`; commit các file này để banner chạy khi deploy. Override local chỉ được đọc trong dev, và setting không xuất hiện ở production.
-
-Để banner chạy trên mọi environment:
-
-1. Đặt ảnh vào `public/assets/banners/<file>.webp`.
-2. Mở `src/infrastructure/banner/bannerConfig.ts`.
-3. Đổi `id` sang một ID mới, đặt `imageUrl` thành `/assets/banners/<file>.webp` và `enabled: true`.
-4. Commit ảnh cùng file config rồi build/deploy.
-
-Checkbox “không hiển thị lại lần sau” được lưu theo `bannerId`. Khi `id` đổi cho banner mới, popup sẽ hiện lại và trạng thái checkbox cũ không được dùng.
-
-Món giới hạn dùng `type: "limited"` và `limitedEventId`. Event được lưu trong `src/infrastructure/events/limitedEvents.json`; hết `endsAt`, món không còn xuất hiện trong pool mở rương nhưng vẫn còn trong Bộ sưu tập và tab **Sự kiện giới hạn**.
-
-Toàn bộ dữ liệu người dùng được lưu trong `localStorage`; chức năng xuất/nhập backup nằm trong Cài đặt.
+- **Rương:** Chọn sáng, trưa hoặc tối; nhấn mở để chạy nghi thức chìa khóa, âm thanh và hiệu ứng. Món chỉ hiện khi nghi thức kết thúc (có nút bỏ qua và hỗ trợ giảm chuyển động). Chế độ sự kiện hiện riêng theo ngày và có thể ép bật trong DEV ở Cài đặt.
+- **Hồ sơ:** Xem tổng quan, đổi tên và danh hiệu, xem lịch sử chìa khóa, viết check-in có ảnh; thẻ món có CTA check-in. Taste Swipe ghi nhận tag ưa thích và tăng trọng số món phù hợp tối đa 5% mà không đổi bậc hiếm.
+- **Thành tựu:** Mở khóa vĩnh viễn khi đáp ứng điều kiện theo bộ món cố định; màn sự kiện có 6 banner, ảnh nền và danh sách món đặc trưng. Trang quán lân cận yêu cầu vị trí khi mở popup.
+- **Bảo trì catalog:** CSV có các cột cơ bản `id,name,search_query,meal_slots,category,description,image_url,tags,weight,rarity,price_tier,active`; tuỳ chọn `name_en,description_en,country,region,categories,search_queries,base_weight,type,limited_event_id`. Tag cách nhau bằng `|`. Danh sách giới hạn cài sẵn được tự thêm khi dùng catalog từ CSV.
 
 ## Tài liệu thiết kế
 

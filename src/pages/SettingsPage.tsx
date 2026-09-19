@@ -1,17 +1,12 @@
-import { useMemo, useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useAppStore } from "../store/useAppStore"
 import { repository } from "../infrastructure/storage/repository"
 import { MEAL_SLOT_ICONS, MealSlot } from "../domain/models"
 import { fetchCatalog, ParseResult } from "../infrastructure/catalog/csvAdapter"
 import { Dish } from "../domain/models"
-import { RewardRarity } from "../domain/models"
-import { BannerConfig } from "../infrastructure/banner/bannerConfig"
-import { LimitedEvent } from "../domain/models"
-import sourceLimitedEvents from "../infrastructure/events/limitedEvents.json"
-import { useLanguage } from "../i18n"
-import { RarityFrame, RARITY_LABELS } from "../components/ui/RarityFrame"
-import { convertImageToWebp } from "../infrastructure/assets/imageProcessing"
-import { getPriceTierFromWeight, getRarityFromWeight } from "../domain/drawReward"
+import { clearImages, listImages } from "../infrastructure/storage/imageRepository"
+import { createFullBackup, restoreFullBackup } from "../infrastructure/backup/fullBackup"
+import { getDevEventOverride, EVENTS, setDevEventOverride } from "../domain/events"
 
 interface CatalogPreview {
   url: string
@@ -24,7 +19,6 @@ export function SettingsPage() {
   const user = useAppStore((s) => s.user)
   const updatePref = useAppStore((s) => s.updatePreference)
   const loadRemoteCatalog = useAppStore((s) => s.loadRemoteCatalog)
-  const addLocalDish = useAppStore((s) => s.addLocalDish)
   const dishes = useAppStore((s) => s.dishes)
   const resetData = useAppStore((s) => s.resetData)
   const showToast = useAppStore((s) => s.showToast)
@@ -35,52 +29,33 @@ export function SettingsPage() {
   const [previewLoading, setPreviewLoading] = useState(false)
   const [preview, setPreview] = useState<CatalogPreview | null>(null)
   const [showReset, setShowReset] = useState(false)
-  const [newDish, setNewDish] = useState<LocalDishDraft>(createLocalDishDraft())
-  const [dishImageUploading, setDishImageUploading] = useState(false)
-  const [bannerDraft, setBannerDraft] = useState<BannerConfig>(() =>
-    repository.loadBannerOverride() ?? { id: "local-banner-1", imageUrl: "", enabled: false },
-  )
-  const [eventDrafts, setEventDrafts] = useState<LimitedEvent[]>(sourceLimitedEvents as LimitedEvent[])
-  const [newEvent, setNewEvent] = useState<LimitedEvent>({ id: "", title: "", startsAt: "", endsAt: "" })
   const fileRef = useRef<HTMLInputElement>(null)
+  const zipRef = useRef<HTMLInputElement>(null)
+  const [imageUsage, setImageUsage] = useState({ bytes: 0, count: 0 })
+  const [devEvent, setDevEvent] = useState(getDevEventOverride() || "auto")
+  useEffect(() => { listImages().then((items) => setImageUsage({ bytes: items.reduce((sum, image) => sum + image.blob.size + image.thumbnail.size, 0), count: items.length })).catch(() => undefined) }, [])
 
   const prefs = user.preferences
-  const isLocal = import.meta.env.DEV
-  const { language, setLanguage, t } = useLanguage()
 
-  const slotCounts = {
-    breakfast: dishes.filter(
-      (d) => d.active && d.mealSlots.includes("breakfast"),
-    ).length,
-    lunch: dishes.filter((d) => d.active && d.mealSlots.includes("lunch"))
-      .length,
-    dinner: dishes.filter((d) => d.active && d.mealSlots.includes("dinner"))
-      .length,
+  const handleFullExport = async () => {
+    try {
+      const blob = await createFullBackup()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url; a.download = `MealGachaBackup-${new Date().toISOString().slice(0, 10)}.zip`; a.click()
+      setTimeout(() => URL.revokeObjectURL(url), 10_000)
+      showToast("Đã xuất backup đầy đủ cùng ảnh.", "success")
+    } catch (error) { showToast((error as Error).message, "error") }
   }
 
-  const recentTx = [...user.keyTransactions].reverse().slice(0, 8)
-  const catalogCategories = useMemo(
-    () => [...new Set(dishes.map((dish) => dish.category).filter(Boolean) as string[])].sort(),
-    [dishes],
-  )
-  const catalogTags = useMemo(
-    () => [...new Set(dishes.flatMap((dish) => dish.tags))].sort(),
-    [dishes],
-  )
-  const previewRarity = newDish.rarity || getRarityFromWeight(newDish.weight)
-  const updateNewDishWeight = (weight: number) => setNewDish((current) => ({
-    ...current,
-    weight,
-    rarity: getRarityFromWeight(weight),
-    priceTier: getPriceTierFromWeight(weight),
-  }))
-  const updateNewDishRarity = (rarity: RewardRarity | "") => {
-    if (!rarity) {
-      updateNewDish("rarity", "")
-      return
-    }
-    const weight = rarity === "diamond" ? 8 : rarity === "epic" ? 25 : rarity === "rare" ? 50 : 100
-    setNewDish((current) => ({ ...current, rarity, weight, priceTier: getPriceTierFromWeight(weight) }))
+  const handleFullImport = async (file?: File) => {
+    if (!file) return
+    if (!window.confirm(`Khôi phục từ ${file.name}? Hồ sơ hiện tại sẽ được thay thế. Hãy xuất backup trước khi tiếp tục.`)) return
+    try {
+      await restoreFullBackup(file)
+      showToast("Đã khôi phục hồ sơ và ảnh. Đang tải lại...", "success")
+      setTimeout(() => window.location.reload(), 1000)
+    } catch (error) { showToast((error as Error).message, "error") }
   }
 
   const handlePreview = async () => {
@@ -133,171 +108,6 @@ export function SettingsPage() {
     showToast("Đã xóa override. Dùng dữ liệu gốc.", "info")
   }
 
-  const updateNewDish = <K extends keyof LocalDishDraft>(
-    key: K,
-    value: LocalDishDraft[K],
-  ) => setNewDish((current) => ({ ...current, [key]: value }))
-
-  const handleAddLocalDish = async () => {
-    const id = newDish.id.trim()
-    const name = newDish.name.trim()
-    if (!id || !name || !/^[a-z0-9-]+$/.test(id)) {
-      showToast("ID chỉ dùng chữ thường, số và dấu gạch ngang; tên món không được trống.", "error")
-      return
-    }
-    if (newDish.mealSlots.length === 0) {
-      showToast("Chọn ít nhất một khung bữa.", "error")
-      return
-    }
-    const dish = {
-      id,
-      name,
-      searchQuery: newDish.searchQuery.trim() || name,
-      mealSlots: newDish.mealSlots,
-      category: newDish.category.trim() || undefined,
-      description: newDish.description.trim() || undefined,
-      imageUrl: newDish.imageUrl.trim() || undefined,
-      tags: newDish.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
-      weight: Number(newDish.weight) || 100,
-      rarity: newDish.rarity || undefined,
-      priceTier: newDish.priceTier,
-      active: newDish.active,
-      type: newDish.type,
-      limitedEventId: newDish.type === "limited" ? newDish.limitedEventId || undefined : undefined,
-    }
-    try {
-      const response = await fetch("/__meal-gacha/dev/dish", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...dish, imageData: newDish.imageData }),
-      })
-      if (!response.ok) throw new Error("Không thể ghi món vào source.")
-    } catch (error) {
-      showToast((error as Error).message, "error")
-      return
-    }
-    const result = addLocalDish(dish)
-    if (!result.success) {
-      showToast(result.error ?? "Không thể thêm món.", "error")
-      return
-    }
-    setNewDish(createLocalDishDraft())
-  }
-
-  const handleDishImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    event.target.value = ""
-    if (!file) return
-    if (!file.type.startsWith("image/")) {
-      showToast("Ảnh món phải là file hình ảnh.", "error")
-      return
-    }
-    setDishImageUploading(true)
-    try {
-      const imageData = await convertImageToWebp(file)
-      const imageUrl = `/assets/food/full/${newDish.id.trim() || "new-dish"}.webp`
-      setNewDish((current) => ({ ...current, imageUrl, imageData }))
-      showToast("Đã chuyển ảnh sang WebP. Bấm thêm món để lưu vào source.", "success")
-    } catch {
-      showToast("Không thể chuyển ảnh. Hãy thử file PNG/JPG khác.", "error")
-    } finally {
-      setDishImageUploading(false)
-    }
-  }
-
-  const handleBannerUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
-    if (!file.type.startsWith("image/")) {
-      showToast("Banner phải là file hình ảnh.", "error")
-      return
-    }
-    const reader = new FileReader()
-    reader.onload = () => {
-      setBannerDraft({
-        id: `local-${Date.now()}`,
-        imageUrl: String(reader.result),
-        enabled: true,
-      })
-    }
-    reader.readAsDataURL(file)
-    event.target.value = ""
-  }
-
-  const saveLocalBanner = async () => {
-    if (!bannerDraft.imageUrl) {
-      showToast("Hãy tải ảnh banner trước.", "error")
-      return
-    }
-    try {
-      const response = await fetch("/__meal-gacha/dev/banner", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: bannerDraft.id,
-          imageData: bannerDraft.imageUrl,
-          enabled: bannerDraft.enabled,
-          eventId: bannerDraft.eventId,
-          startsAt: bannerDraft.startsAt,
-          endsAt: bannerDraft.endsAt,
-        }),
-      })
-      if (!response.ok) throw new Error("Không thể ghi banner vào source.")
-      const result = (await response.json()) as { imageUrl: string }
-      repository.saveBannerOverride({ ...bannerDraft, imageUrl: result.imageUrl })
-    } catch (error) {
-      showToast((error as Error).message, "error")
-      return
-    }
-    showToast("Đã bật banner local. Tải lại trang để xem popup.", "success")
-  }
-
-  const updateEvent = (eventId: string, key: "title" | "startsAt" | "endsAt", value: string) => {
-    setEventDrafts((events) => events.map((event) => event.id === eventId ? { ...event, [key]: value } : event))
-  }
-
-  const saveLocalEvents = async () => {
-    const response = await fetch("/__meal-gacha/dev/events", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(eventDrafts),
-    })
-    if (!response.ok) {
-      showToast("Không thể ghi sự kiện vào source.", "error")
-      return
-    }
-    showToast("Đã cập nhật sự kiện. Tải lại dev server để áp dụng.", "success")
-  }
-
-  const createLocalEvent = async () => {
-    if (!/^[a-z0-9-]+$/.test(newEvent.id) || !newEvent.title || !newEvent.startsAt || !newEvent.endsAt) {
-      showToast("Event cần ID hợp lệ, tên và thời gian bắt đầu/kết thúc.", "error")
-      return
-    }
-    if (eventDrafts.some((event) => event.id === newEvent.id)) {
-      showToast("ID event đã tồn tại.", "error")
-      return
-    }
-    setEventDrafts((events) => [...events, newEvent])
-    const response = await fetch("/__meal-gacha/dev/events", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify([...eventDrafts, newEvent]),
-    })
-    if (!response.ok) {
-      showToast("Không thể tạo event.", "error")
-      return
-    }
-    setNewEvent({ id: "", title: "", startsAt: "", endsAt: "" })
-    showToast("Đã tạo sự kiện giới hạn.", "success")
-  }
-
-  const clearLocalBanner = () => {
-    repository.clearBannerOverride()
-    setBannerDraft({ id: "local-banner-1", imageUrl: "", enabled: false })
-    showToast("Đã xóa banner local.", "info")
-  }
-
   const handleExport = () => {
     const json = repository.exportBackup()
     const blob = new Blob([json], { type: "application/json" })
@@ -313,6 +123,8 @@ export function SettingsPage() {
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
+    e.target.value = ""
+    if (!window.confirm(`Nhập ${file.name}? Hồ sơ hiện tại sẽ được thay thế.`)) return
     const reader = new FileReader()
     reader.onload = (ev) => {
       const ok = repository.importBackup(ev.target?.result as string)
@@ -324,7 +136,6 @@ export function SettingsPage() {
       }
     }
     reader.readAsText(file)
-    e.target.value = ""
   }
 
   return (
@@ -336,154 +147,16 @@ export function SettingsPage() {
         Cài đặt
       </h1>
 
-      {isLocal && (
-        <Section title="Banner thông báo local">
-          <p className="text-xs mb-3 leading-relaxed" style={{ color: "#6b7f99" }}>
-            Chỉ hiển thị trong môi trường local. Production dùng <strong>BANNER_CONFIG</strong> đã commit trong source.
-          </p>
-          <div className="local-banner-settings">
-            {bannerDraft.imageUrl && <img src={bannerDraft.imageUrl} alt="Xem trước banner" />}
-            <input type="file" accept="image/*" onChange={handleBannerUpload} />
-            <label className="local-dish-active">
-              <input
-                type="checkbox"
-                checked={bannerDraft.enabled}
-                onChange={(event) => setBannerDraft((current) => ({ ...current, enabled: event.target.checked }))}
-              />
-              Bật popup banner local
-            </label>
-            <label className="local-dish-field"><span>Sự kiện giới hạn</span><select value={bannerDraft.eventId ?? ""} onChange={(event) => setBannerDraft((current) => ({ ...current, eventId: event.target.value || undefined }))}><option value="">Không gắn event</option>{eventDrafts.map((event) => <option key={event.id} value={event.id}>{event.title}</option>)}</select></label>
-            <div className="flex gap-2">
-              <button className="local-dish-submit flex-1" onClick={saveLocalBanner}>Lưu banner</button>
-              <button className="local-banner-clear" onClick={clearLocalBanner}>Xóa</button>
-            </div>
-          </div>
-          <div className="limited-event-settings">
-            <strong>Danh sách sự kiện giới hạn</strong>
-            <div className="limited-event-create">
-              <TextField label="ID event" value={newEvent.id} placeholder="moon-festival" onChange={(value) => setNewEvent((event) => ({ ...event, id: value }))} />
-              <TextField label="Tên event" value={newEvent.title} placeholder="Lễ hội đêm trăng" onChange={(value) => setNewEvent((event) => ({ ...event, title: value }))} />
-              <TextField label="Bắt đầu (ISO)" value={newEvent.startsAt} placeholder="2026-09-18T00:00:00+07:00" onChange={(value) => setNewEvent((event) => ({ ...event, startsAt: value }))} />
-              <TextField label="Kết thúc (ISO)" value={newEvent.endsAt} placeholder="2026-09-25T23:59:59+07:00" onChange={(value) => setNewEvent((event) => ({ ...event, endsAt: value }))} />
-              <button className="local-dish-submit" onClick={createLocalEvent}>+ Tạo sự kiện</button>
-            </div>
-            {eventDrafts.map((event) => (
-              <div className="limited-event-row" key={event.id}>
-                <TextField label="Tên" value={event.title} placeholder="Tên event" onChange={(value) => updateEvent(event.id, "title", value)} />
-                <TextField label="Bắt đầu (ISO)" value={event.startsAt} placeholder="2026-09-18T00:00:00+07:00" onChange={(value) => updateEvent(event.id, "startsAt", value)} />
-                <TextField label="Kết thúc (ISO)" value={event.endsAt} placeholder="2026-09-25T23:59:59+07:00" onChange={(value) => updateEvent(event.id, "endsAt", value)} />
-              </div>
-            ))}
-            <button className="local-dish-submit" onClick={saveLocalEvents}>Lưu thời gian sự kiện</button>
-          </div>
-        </Section>
-      )}
-
-      {/* Stats */}
-      <Section title="Thống kê">
-        <div className="grid grid-cols-3 gap-2 mb-3">
-          <StatTile
-            label="Chìa khóa"
-            value={user.keys}
-            color="#f5a623"
-            icon="🔑"
-          />
-          <StatTile
-            label="Phần thưởng"
-            value={user.rewards.length}
-            color="#00d4ff"
-            icon="📦"
-          />
-          <StatTile
-            label="Ghép thành công"
-            value={user.fusions.length}
-            color="#a855f7"
-            icon="✨"
-          />
-          <StatTile
-            label="Streak tốt nhất"
-            value={user.bestCheckInStreak}
-            color="#4ade80"
-            icon="🔥"
-          />
-          <StatTile
-            label="Mảnh vị giác"
-            value={user.shards}
-            color="#f472b6"
-            icon="♢"
-          />
-        </div>
-        <div className="flex gap-3 text-xs" style={{ color: "#6b7f99" }}>
-          <span>
-            {MEAL_SLOT_ICONS.breakfast} {slotCounts.breakfast} sáng
-          </span>
-          <span>
-            {MEAL_SLOT_ICONS.lunch} {slotCounts.lunch} trưa
-          </span>
-          <span>
-            {MEAL_SLOT_ICONS.dinner} {slotCounts.dinner} tối
-          </span>
-          <span className="ml-auto">{dishes.length} món trong catalog</span>
-        </div>
-      </Section>
-
-      {/* Key history */}
-      {recentTx.length > 0 && (
-        <Section title="Lịch sử chìa khóa">
-          <div className="key-history-scroll flex flex-col gap-1.5">
-            {recentTx.map((tx) => (
-              <div
-                key={tx.id}
-                className="flex items-center justify-between text-xs py-0.5"
-              >
-                <span style={{ color: "#6b7f99" }}>
-                  {tx.reason === "daily_checkin"
-                    ? "🔑 Điểm danh"
-                    : tx.reason === "daily_quest"
-                      ? "🧩 Mật mã vị giác"
-                    : tx.reason === "chest_open"
-                      ? "📦 Mở rương"
-                      : tx.reason === "free_chest"
-                        ? "🎁 Rương miễn phí"
-                        : tx.reason === "streak_reward"
-                          ? "🔥 Thưởng streak"
-                          : tx.reason === "shard_exchange"
-                            ? "♢ Đổi mảnh"
-                      : "⚙️ Khác"}
-                </span>
-                <div className="flex items-center gap-3">
-                  <span
-                    className="font-bold"
-                    style={{ color: tx.amount > 0 ? "#4ade80" : "#f87171" }}
-                  >
-                    {tx.amount > 0 ? "+" : ""}
-                    {tx.amount}
-                  </span>
-                  <span style={{ color: "#6b7f99" }}>= {tx.balanceAfter}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Section>
-      )}
-
       {/* Preferences */}
       <Section title="Tuỳ chọn">
-        <div className="language-setting">
-          <span>{t("language")}</span>
-          <div>
-            <button className={language === "vi" ? "is-active" : ""} onClick={() => setLanguage("vi")}>{t("vietnamese")}</button>
-            <button className={language === "en" ? "is-active" : ""} onClick={() => setLanguage("en")}>{t("english")}</button>
-          </div>
-        </div>
         <ToggleRow
-          label={t("sound")}
+          label="Âm thanh nghi thức"
           description="Hiệu ứng âm thanh khi mở rương, ghép món và quay"
           checked={prefs.soundEnabled}
           onChange={(v) => updatePref("soundEnabled", v)}
         />
         <ToggleRow
-          label={t("reducedMotion")}
+          label="Giảm chuyển động"
           description="Tắt animation nếu gây khó chịu"
           checked={prefs.reducedMotion}
           onChange={(v) => updatePref("reducedMotion", v)}
@@ -521,103 +194,6 @@ export function SettingsPage() {
           />
         </div>
       </Section>
-
-      {isLocal && <Section title="Thêm món local">
-        <p className="text-xs mb-3 leading-relaxed" style={{ color: "#6b7f99" }}>
-          Chỉ lưu trên trình duyệt hiện tại. Khi deploy, thêm món vào catalog/seed và commit ảnh vào <strong>public/assets/food/full</strong>.
-        </p>
-        <div className="local-dish-form">
-          <TextField label="ID món" value={newDish.id} placeholder="bun-ca-keo" onChange={(value) => updateNewDish("id", value)} />
-          <TextField label="Tên món" value={newDish.name} placeholder="Bún cá kèo" onChange={(value) => updateNewDish("name", value)} />
-          <TextField label="Từ khóa tìm quán" value={newDish.searchQuery} placeholder="bún cá kèo" onChange={(value) => updateNewDish("searchQuery", value)} />
-          <TextField label="Category (chọn hoặc nhập mới)" value={newDish.category} placeholder="noodle" list="catalog-categories" onChange={(value) => updateNewDish("category", value)} />
-          <label className="local-dish-field">
-            <span>Tags (chọn sẵn hoặc nhập mới, cách nhau bằng dấu phẩy)</span>
-            <input list="catalog-tags" value={newDish.tags} placeholder="vietnamese, hot" onChange={(event) => updateNewDish("tags", event.target.value)} />
-            <div className="local-dish-suggestions">
-              {catalogTags.map((tag) => <button type="button" key={tag} onClick={() => updateNewDish("tags", [...new Set([...newDish.tags.split(",").map((item) => item.trim()).filter(Boolean), tag])].join(", "))}>{tag}</button>)}
-            </div>
-          </label>
-          <datalist id="catalog-categories">{catalogCategories.map((category) => <option key={category} value={category} />)}</datalist>
-          <datalist id="catalog-tags">{catalogTags.map((tag) => <option key={tag} value={tag} />)}</datalist>
-          <TextField label="URL ảnh hoặc /assets/food/full/id.webp" value={newDish.imageUrl} placeholder="/assets/food/full/bun-ca-keo.webp" onChange={(value) => updateNewDish("imageUrl", value)} />
-          <label className="local-dish-upload">
-            <span>{dishImageUploading ? "Đang chuyển sang WebP..." : "Hoặc upload PNG/JPG để tự convert WebP"}</span>
-            <input type="file" accept="image/png,image/jpeg,image/webp" onChange={handleDishImageUpload} disabled={dishImageUploading} />
-          </label>
-          <div className="local-dish-rarity-preview">
-            <RarityFrame rarity={previewRarity} className="local-dish-preview">
-              {newDish.imageData ? <img src={newDish.imageData} alt="Preview món mới" /> : <span>◇</span>}
-            </RarityFrame>
-            <div>
-              <span className="local-dish-rarity-caption">Khung rarity</span>
-              <strong>{RARITY_LABELS[previewRarity]}</strong>
-              <small>{newDish.rarity ? "Theo rarity đã chọn" : "Suy ra từ weight"}</small>
-            </div>
-          </div>
-          <div className="local-dish-grid">
-            <label className="local-dish-field">
-              <span>Bữa áp dụng</span>
-              <div className="local-dish-meals">
-                {(["breakfast", "lunch", "dinner"] as MealSlot[]).map((meal) => (
-                  <label key={meal}>
-                    <input
-                      type="checkbox"
-                      checked={newDish.mealSlots.includes(meal)}
-                      onChange={(event) => updateNewDish("mealSlots", event.target.checked
-                        ? [...newDish.mealSlots, meal]
-                        : newDish.mealSlots.filter((item) => item !== meal))}
-                    />
-                    {MEAL_SLOT_ICONS[meal]}
-                  </label>
-                ))}
-              </div>
-            </label>
-            <label className="local-dish-field">
-              <span>Rarity</span>
-              <select value={newDish.rarity} onChange={(event) => updateNewDishRarity(event.target.value as RewardRarity | "")}>
-                <option value="">Theo weight</option>
-                <option value="common">{RARITY_LABELS.common} · Common</option>
-                <option value="rare">{RARITY_LABELS.rare} · Rare</option>
-                <option value="epic">{RARITY_LABELS.epic} · Epic</option>
-                <option value="diamond">{RARITY_LABELS.diamond} · Diamond</option>
-              </select>
-            </label>
-          </div>
-          <div className="local-dish-grid">
-            <label className="local-dish-field">
-              <span>Loại món</span>
-              <select value={newDish.type} onChange={(event) => updateNewDish("type", event.target.value as LocalDishDraft["type"])}>
-                <option value="standard">Món thường</option>
-                <option value="limited">Món giới hạn</option>
-              </select>
-            </label>
-            {newDish.type === "limited" && (
-              <label className="local-dish-field">
-                <span>Sự kiện</span>
-                <select value={newDish.limitedEventId} onChange={(event) => updateNewDish("limitedEventId", event.target.value)}>
-                  <option value="">Chọn sự kiện</option>
-                  {eventDrafts.map((event) => <option key={event.id} value={event.id}>{event.title}</option>)}
-                </select>
-              </label>
-            )}
-          </div>
-          <div className="local-dish-grid">
-            <div>
-              <NumberInput label="Weight" unit="" value={newDish.weight} min={1} max={1000} step={1} onChange={updateNewDishWeight} />
-              <p className="local-dish-field-hint">Weight cao hơn = tỉ lệ chọn cao hơn trong cùng rarity.</p>
-            </div>
-            <div className="local-dish-auto-value">
-              <span>Price tier</span>
-              <strong>{newDish.priceTier}/4</strong>
-              <small>Tự động: weight thấp hơn = mức giá cao hơn</small>
-            </div>
-          </div>
-          <TextField label="Mô tả" value={newDish.description} placeholder="Món ăn đặc trưng..." onChange={(value) => updateNewDish("description", value)} />
-          <label className="local-dish-active"><input type="checkbox" checked={newDish.active} onChange={(event) => updateNewDish("active", event.target.checked)} /> Có thể xuất hiện trong rương</label>
-          <button className="local-dish-submit" onClick={handleAddLocalDish}>+ Thêm vào catalog local</button>
-        </div>
-      </Section>}
 
       {/* Catalog source — with preview */}
       <Section title="Nguồn dữ liệu món ăn">
@@ -786,6 +362,8 @@ export function SettingsPage() {
         </div>
       </Section>
 
+      {import.meta.env.DEV && <Section title="Sự kiện (DEV)"><label className="event-dev">Force Activate <select value={devEvent} onChange={(event) => { setDevEvent(event.target.value); setDevEventOverride(event.target.value) }}><option value="auto">Auto</option><option value="none">Không có sự kiện</option>{EVENTS.map((item) => <option key={item.id} value={item.id}>{item.name.vi}</option>)}</select></label></Section>}
+
       {/* Backup */}
       <Section title="Backup & Khôi phục">
         <p
@@ -819,6 +397,8 @@ export function SettingsPage() {
             📥 Nhập backup
           </button>
         </div>
+        <div className="grid grid-cols-2 gap-2 mt-2"><button onClick={handleFullExport} className="py-3 rounded-xl text-sm font-semibold border border-[#72d5e6] text-[#bdefff]">📦 Xuất đầy đủ + ảnh</button><button onClick={() => zipRef.current?.click()} className="py-3 rounded-xl text-sm font-semibold border border-[#537487] text-[#c6dae5]">📥 Nhập ZIP + ảnh</button></div>
+        <input ref={zipRef} type="file" accept=".zip,application/zip" hidden onChange={(event) => { void handleFullImport(event.target.files?.[0]); event.target.value = "" }} />
         <input
           ref={fileRef}
           type="file"
@@ -827,6 +407,8 @@ export function SettingsPage() {
           onChange={handleImport}
         />
       </Section>
+
+      <Section title="Dung lượng & quyền riêng tư"><p className="text-xs text-[#9db4c2]">Ảnh check-in: {imageUsage.count} ảnh · {(imageUsage.bytes / 1048576).toFixed(1)} MB trên thiết bị này.</p><button className="mt-3 text-xs text-[#f2b2a4] underline" onClick={async () => { if (!window.confirm("Xóa toàn bộ ảnh cục bộ? Ghi chú Timeline vẫn còn.")) return; await clearImages(); setImageUsage({ bytes: 0, count: 0 }); showToast("Đã xóa ảnh. Check-in và ghi chú vẫn được giữ.", "info") }}>Xóa tất cả ảnh đã lưu</button><p className="mt-4 text-xs text-[#9db4c2] leading-relaxed">Khẩu vị, Timeline, ảnh và tiến trình chỉ lưu trên thiết bị của bạn. Vị trí chỉ được dùng tạm thời khi bạn bấm Tìm quán; MealGacha không lưu tọa độ GPS.</p></Section>
 
       {/* Danger zone */}
       <Section title="Vùng nguy hiểm">
@@ -887,53 +469,6 @@ export function SettingsPage() {
         Rương Vị Giác v1.0 · Mở rương, chốt món 🍴
       </p>
     </div>
-  )
-}
-
-interface LocalDishDraft {
-  id: string
-  name: string
-  searchQuery: string
-  mealSlots: MealSlot[]
-  category: string
-  tags: string
-  imageUrl: string
-  imageData: string
-  description: string
-  weight: number
-  rarity: RewardRarity | ""
-  priceTier: 1 | 2 | 3 | 4
-  active: boolean
-  type: "standard" | "limited"
-  limitedEventId: string
-}
-
-function createLocalDishDraft(): LocalDishDraft {
-  return {
-    id: "",
-    name: "",
-    searchQuery: "",
-    mealSlots: ["lunch"],
-    category: "",
-    tags: "",
-    imageUrl: "",
-    imageData: "",
-    description: "",
-    weight: 100,
-    rarity: "",
-    priceTier: 2,
-    active: true,
-    type: "standard",
-    limitedEventId: "",
-  }
-}
-
-function TextField({ label, value, placeholder, list, onChange }: { label: string; value: string; placeholder: string; list?: string; onChange(value: string): void }) {
-  return (
-    <label className="local-dish-field">
-      <span>{label}</span>
-      <input list={list} value={value} placeholder={placeholder} onChange={(event) => onChange(event.target.value)} />
-    </label>
   )
 }
 

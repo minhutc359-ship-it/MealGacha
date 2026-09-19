@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react"
 import type { Dish, MealSlot, RewardRarity } from "../../domain/models"
-import { RARITY_ODDS } from "../../domain/drawReward"
+import { buildPool, getDishRarity, getEffectiveWeight } from "../../domain/drawReward"
+import { useAppStore } from "../../store/useAppStore"
 
 interface Props {
   dishes: Dish[]
   slot: MealSlot
+  eventId?: string
   onClose(): void
 }
 
@@ -19,11 +21,16 @@ const RARITY_META: Array<{
   { rarity: "diamond", label: "Kim cương", note: "Fine dining và dịp siêu đặc biệt" },
 ]
 
-export function ChestOddsModal({ dishes, slot, onClose }: Props) {
+export function ChestOddsModal({ dishes, slot, eventId, onClose }: Props) {
   const closeRef = useRef<HTMLButtonElement>(null)
-  const pool = dishes.filter((dish) => dish.active && dish.mealSlots.includes(slot))
+  const user = useAppStore((state) => state.user)
+  const pool = buildPool(dishes, slot, user.recentDishIdsByMeal[slot], eventId)
+  const totalWeight = pool.reduce((sum, dish) => sum + Math.max(getEffectiveWeight(dish, user.favoriteTasteTags), 1), 0)
   const odds = RARITY_META.map((meta) => {
-    return { ...meta, value: pool.length > 0 ? RARITY_ODDS[meta.rarity] : 0 }
+    const weight = pool
+      .filter((dish) => getDishRarity(dish) === meta.rarity)
+      .reduce((sum, dish) => sum + Math.max(getEffectiveWeight(dish, user.favoriteTasteTags), 1), 0)
+    return { ...meta, value: totalWeight > 0 ? (weight / totalWeight) * 100 : 0 }
   })
 
   useEffect(() => {

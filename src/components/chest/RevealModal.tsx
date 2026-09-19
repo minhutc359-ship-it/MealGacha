@@ -8,8 +8,7 @@ import { PlacesModal } from "../places/PlacesModal"
 import { FoodImage } from "../food/FoodImage"
 import { RarityFrame, RARITY_LABELS } from "../ui/RarityFrame"
 import { useAppStore } from "../../store/useAppStore"
-import { RaritySticker } from "../ui/RaritySticker"
-import { useLanguage } from "../../i18n"
+import { shareResultCard } from "../../infrastructure/share/resultCard"
 
 interface Props {
   reward: RewardInstance
@@ -17,6 +16,7 @@ interface Props {
   onClose(): void
   onOpenAgain(): void
   onGoCollection(): void
+  onCheckIn?(dishId: string): void
 }
 
 export function RevealModal({
@@ -25,6 +25,7 @@ export function RevealModal({
   onClose,
   onOpenAgain,
   onGoCollection,
+  onCheckIn,
 }: Props) {
   const [showPlaces, setShowPlaces] = useState(false)
   const firstFocusRef = useRef<HTMLButtonElement>(null)
@@ -34,7 +35,8 @@ export function RevealModal({
     (state) => state.user.rewards.find((item) => item.id === reward.id)?.favorite ?? reward.favorite,
   )
   const showToast = useAppStore((state) => state.showToast)
-  const { t } = useLanguage()
+  const dishes = useAppStore((state) => state.dishes)
+  const occurrences = useAppStore((state) => state.user.rewards.filter((item) => item.dishId === reward.dishId && item.acquiredAt <= reward.acquiredAt).length)
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -66,56 +68,18 @@ export function RevealModal({
   const particleCount = rarity === "diamond" ? 34 : rarity === "epic" ? 24 : rarity === "rare" ? 16 : 9
 
   const shareReward = async () => {
-    const text = `${dish.name} · ${t("brandTitle")}`
     try {
-      if (navigator.share) await navigator.share({ title: "Rương Vị Giác", text })
-      else {
-        await navigator.clipboard.writeText(text)
-        showToast(t("copyResult"), "success")
-      }
+      const result = await shareResultCard(reward)
+      if (result === "downloaded") showToast("Đã lưu ảnh phần thưởng!", "success")
     } catch (error) {
-      if ((error as DOMException).name !== "AbortError") showToast(t("shareError"), "error")
+      if ((error as DOMException).name !== "AbortError") showToast("Không thể xuất ảnh kết quả.", "error")
     }
-  }
-
-  const downloadShareCard = async () => {
-    const canvas = document.createElement("canvas")
-    canvas.width = 900
-    canvas.height = 560
-    const context = canvas.getContext("2d")
-    if (!context) return
-    const gradient = context.createLinearGradient(0, 0, 900, 560)
-    gradient.addColorStop(0, "#071827")
-    gradient.addColorStop(1, rarity === "diamond" ? "#5d3d9d" : "#0d3041")
-    context.fillStyle = gradient
-    context.fillRect(0, 0, 900, 560)
-    context.fillStyle = "#e8c777"
-    context.font = "700 22px Exo 2"
-    context.fillText(t("brandTitle"), 54, 64)
-    context.fillStyle = "#edf8ff"
-    context.font = "800 52px Exo 2"
-    context.fillText(dish.name, 54, 270)
-    context.fillStyle = "#a8f3ff"
-    context.font = "700 24px Exo 2"
-    context.fillText(RARITY_LABELS[rarity].toUpperCase(), 54, 320)
-    context.fillStyle = "#7d94a8"
-    context.font = "18px Be Vietnam Pro"
-    context.fillText(t("unlockedReward"), 54, 380)
-    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png"))
-    if (!blob) return
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement("a")
-    link.href = url
-    link.download = `ruong-vi-giac-${dish.id}.png`
-    link.click()
-    URL.revokeObjectURL(url)
-    showToast(t("downloadedCard"), "success")
   }
 
   return (
     <>
       <div
-        className={`reward-reveal-backdrop rarity-${rarity} fixed inset-0 z-50 flex items-center justify-center p-4`}
+        className={`reward-reveal-backdrop rarity-${rarity} fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4`}
         style={{
           background: "rgba(8,12,24,0.88)",
           backdropFilter: "blur(10px)",
@@ -139,7 +103,7 @@ export function RevealModal({
         >
           {/* Art area */}
           <div
-            className="reward-art-area relative h-64 flex items-center justify-center overflow-hidden"
+            className="relative h-64 flex items-center justify-center overflow-hidden"
             style={{
               background:
                 "linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(168,85,247,0.06) 100%)",
@@ -163,11 +127,9 @@ export function RevealModal({
               <FoodImage
                 dishId={dish.id}
                 name={dish.name}
-                imageUrl={dish.imageUrl}
                 variant="full"
                 eager
               />
-              <RaritySticker priceTier={dish.priceTier} rarity={rarity} />
             </RarityFrame>
             {/* Badges */}
             <div className="absolute top-3 left-3 flex gap-2">
@@ -195,7 +157,7 @@ export function RevealModal({
                     backdropFilter: "blur(4px)",
                   }}
                 >
-                  ✨ {t("fusion")}
+                  ✨ Ghép món
                 </span>
               </div>
             )}
@@ -212,29 +174,29 @@ export function RevealModal({
           </div>
 
           {/* Info */}
-          <div className="reward-reveal-info px-5 pb-5">
-            <p className="reward-unlocked-label">{t("unlockedReward")}</p>
+          <div className="px-5 pb-5">
+            <p className="reward-unlocked-label">{reward.source === "fusion" ? "⚡ DUNG HỢP THÀNH CÔNG" : occurrences <= 1 ? "✨ MÓN MỚI KHÁM PHÁ" : "+1 MẢNH VỊ GIÁC · MÓN ĐÃ SỞ HỮU"}</p>
             <h2
               className="text-2xl font-extrabold mb-0.5 mt-1"
               style={{ fontFamily: "Exo 2, sans-serif", color: "#e8edf5" }}
             >
               {dish.name}
             </h2>
-            {dish.category && (
+            {(dish.category || dishes.find((item) => item.id === dish.id)?.description) && (
               <p
                 className="text-xs uppercase tracking-widest mb-4"
                 style={{ color: "#6b7f99" }}
               >
-                {dish.category}
+                {dishes.find((item) => item.id === dish.id)?.description || dish.category}
               </p>
             )}
 
-            <div className="reward-utility-actions" role="group" aria-label={t("rewards")}>
+            <div className="reward-utility-actions">
               <button onClick={() => toggleFavorite(reward.id)} aria-pressed={favorite}>
-                {favorite ? `♥ ${t("favorited")}` : `♡ ${t("favorite")}`}
+                {favorite ? "♥ Đã yêu thích" : "♡ Yêu thích"}
               </button>
-              <button onClick={shareReward}>↗ {t("share")}</button>
-              <button onClick={downloadShareCard}>▣ {t("downloadCard")}</button>
+              <button onClick={shareReward}>↗ Chia sẻ</button>
+              {onCheckIn && <button onClick={() => onCheckIn(dish.id)}>🍴 Chốt món · Check-in</button>}
             </div>
 
             {/* Actions */}
@@ -248,7 +210,7 @@ export function RevealModal({
                 boxShadow: "0 4px 16px rgba(0,212,255,0.3)",
               }}
             >
-              📍 {t("findRestaurants")}
+              📍 Tìm quán gần tôi
             </button>
 
             <div className="grid grid-cols-2 gap-2.5">
@@ -271,7 +233,7 @@ export function RevealModal({
                       }
                 }
               >
-                🔑 {t("openAgain")}
+                🔑 Mở tiếp
               </button>
               <button
                 onClick={onGoCollection}
@@ -282,7 +244,7 @@ export function RevealModal({
                   background: "rgba(14,22,40,0.5)",
                 }}
               >
-                📦 {t("collection")}
+                📦 Bộ sưu tập
               </button>
             </div>
 
@@ -291,7 +253,7 @@ export function RevealModal({
                 className="text-center text-xs mt-2.5"
                 style={{ color: "#6b7f99" }}
               >
-                {t("noKeysCheckIn")}
+                Hết chìa · Điểm danh ngày mai để nhận thêm
               </p>
             )}
           </div>

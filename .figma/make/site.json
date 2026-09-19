@@ -1,5 +1,7 @@
 {
-  "description": "This web app streamlines project management for teams, enhancing collaboration and productivity through task tracking and real-time updates.",
+  "title": "Meal gacha",
+  "description": "Meal gacha — mở rương, khám phá món ăn và lưu lại hành trình ẩm thực của bạn.",
+  "language": "vi",
   "robots": {
     "index": false
   },

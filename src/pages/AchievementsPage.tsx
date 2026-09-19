@@ -6,8 +6,6 @@ import {
   getBannerDishes,
   getCollectionProgress,
   getUnlockedDishIds,
-  getAchievementProgress,
-  getThemeProgress,
 } from "../domain/achievements"
 import {
   Dish,
@@ -15,33 +13,30 @@ import {
   MEAL_SLOT_ICONS,
   MEAL_SLOT_LABELS,
 } from "../domain/models"
-import { getDishRarity, getPriceTierFromWeight, getRarityFromWeight } from "../domain/drawReward"
+import { getDishRarity } from "../domain/drawReward"
 import { useAppStore } from "../store/useAppStore"
-import { RaritySticker } from "../components/ui/RaritySticker"
-import limitedEvents from "../infrastructure/events/limitedEvents.json"
-import { LimitedEvent } from "../domain/models"
-import { useLanguage } from "../i18n"
-import { convertImageToWebp } from "../infrastructure/assets/imageProcessing"
+import { TITLES, TitleDefinition, titleProgress } from "../domain/titles"
 
 const SLOTS: MealSlot[] = ["breakfast", "lunch", "dinner"]
-const RARITY_ORDER = { common: 0, rare: 1, epic: 2, diamond: 3 } as const
-
-function sortDishesByRarity(items: Dish[]): Dish[] {
-  return items
-    .map((dish, index) => ({ dish, index }))
-    .sort((left, right) => {
-      const rarityDifference = RARITY_ORDER[getDishRarity(left.dish)] - RARITY_ORDER[getDishRarity(right.dish)]
-      return rarityDifference || left.index - right.index
-    })
-    .map(({ dish }) => dish)
-}
 
 export function AchievementsPage() {
+  const [tab, setTab] = useState<"titles" | "collection">("titles")
+  const [selectedTitle, setSelectedTitle] = useState<TitleDefinition | null>(null)
   const user = useAppStore((state) => state.user)
   const dishes = useAppStore((state) => state.dishes)
-  const [slot, setSlot] = useState<MealSlot | "events">("breakfast")
+  const equip = useAppStore((state) => state.equipTitle)
+  return <div className="achievements-shell">
+    <nav className="achievement-main-tabs"><button className={tab === "titles" ? "is-active" : ""} onClick={() => setTab("titles")}>Danh hiệu</button><button className={tab === "collection" ? "is-active" : ""} onClick={() => setTab("collection")}>Hồ sơ chiến tích</button></nav>
+    {tab === "titles" ? <section className="titles-page"><header><small>CHINH PHỤC VỊ GIÁC</small><h1>Danh hiệu</h1><p>Hoàn thành nhiệm vụ để trang trí Hồ sơ vị giác của bạn.</p></header><div className="title-grid">{TITLES.map((title) => { const progress = titleProgress(title, user, dishes); const unlocked = user.unlockedTitleIds.includes(title.id); return <button key={title.id} className={`title-card ${unlocked ? "is-unlocked" : "is-locked"}`} onClick={() => setSelectedTitle(title)}><span>{title.icon}</span><strong>{title.name}</strong><small>{unlocked ? "ĐÃ MỞ" : `${progress.percentage}% hoàn thành`}</small><i><b style={{ width: `${progress.percentage}%` }} /></i></button> })}</div></section> : <BattleRecord />}
+    {selectedTitle && <div className="title-modal-backdrop" role="dialog" aria-modal="true" aria-label={selectedTitle.name} onClick={(event) => { if (event.target === event.currentTarget) setSelectedTitle(null) }}><div className="title-modal"><button className="title-modal-close" onClick={() => setSelectedTitle(null)}>×</button><span>{selectedTitle.icon}</span><h2>{selectedTitle.name}</h2><p>{selectedTitle.description}</p><h3>NHIỆM VỤ</h3>{titleProgress(selectedTitle, user, dishes).tasks.map((task, index) => <div className="title-task" key={index}><span>{task.complete ? "✓" : "○"}</span><strong>{task.label}</strong><small>{task.current}/{task.target}</small></div>)}<p>Phần thưởng: phông nền {selectedTitle.reward.background} · hiệu ứng {selectedTitle.reward.effect}</p>{user.unlockedTitleIds.includes(selectedTitle.id) && <button className="title-equip" onClick={() => { equip(selectedTitle.id); setSelectedTitle(null) }}>{user.equippedTitleId === selectedTitle.id ? "Đang trang bị" : "Trang bị danh hiệu"}</button>}</div></div>}
+  </div>
+}
+
+function BattleRecord() {
+  const user = useAppStore((state) => state.user)
+  const dishes = useAppStore((state) => state.dishes)
+  const [slot, setSlot] = useState<MealSlot>("breakfast")
   const [placeDish, setPlaceDish] = useState<Dish | null>(null)
-  const [showExtendedAchievements, setShowExtendedAchievements] = useState(false)
 
   const unlockedIds = useMemo(
     () => getUnlockedDishIds(user.rewards),
@@ -52,30 +47,30 @@ export function AchievementsPage() {
     [dishes, user.rewards],
   )
   const bannerDishes = useMemo(
-    () => slot === "events" ? [] : sortDishesByRarity(getBannerDishes(dishes, slot)),
+    () => getBannerDishes(dishes, slot),
     [dishes, slot],
   )
   const bannerProgress = useMemo(
-    () => slot === "events" ? { unlocked: 0, total: 0, percentage: 0 } : getCollectionProgress(user.rewards, dishes, slot),
+    () => getCollectionProgress(user.rewards, dishes, slot),
     [dishes, slot, user.rewards],
   )
   const unlimited = Boolean(user.unlimitedChestUnlockedAt)
-  const achievementProgress = getAchievementProgress(user, dishes)
-  const themeProgress = getThemeProgress(user.rewards, dishes)
-  const { t } = useLanguage()
 
   return (
     <div className="achievements-page">
       <header className={`achievement-hero ${unlimited ? "is-complete" : ""}`}>
         <div className="achievement-hero-copy">
-          <small>{t("collectionJourney")}</small>
-          <h1>{t("achievementTitle")}</h1>
-          <p>{t("achievementDescription")}</p>
+          <small>HÀNH TRÌNH SƯU TẦM</small>
+          <h1>Thành tựu Vị Giác</h1>
+          <p>
+            Mở mỗi món ít nhất một lần. Hoàn thành toàn bộ danh mục để mở
+            khóa rương vô hạn vĩnh viễn trên thiết bị này.
+          </p>
           <div className="achievement-reward">
             <span aria-hidden="true">◆</span>
             <div>
-              <strong>{unlimited ? t("unlimitedUnlocked") : t("wholeReward")}</strong>
-              <small>{unlimited ? t("noKeyCost") : t("openUnlimited")}</small>
+              <strong>{unlimited ? "RƯƠNG VÔ HẠN ĐÃ MỞ" : "PHẦN THƯỞNG TOÀN BỘ"}</strong>
+              <small>{unlimited ? "Không còn tiêu hao chìa khóa" : "Mở rương vô hạn lần"}</small>
             </div>
           </div>
         </div>
@@ -83,16 +78,16 @@ export function AchievementsPage() {
         <div
           className="achievement-total-ring"
           style={{ "--progress": `${globalProgress.percentage * 3.6}deg` } as React.CSSProperties}
-          aria-label={`${globalProgress.unlocked}/${globalProgress.total} ${t("dishCount")}`}
+          aria-label={`Đã mở ${globalProgress.unlocked} trên ${globalProgress.total} món`}
         >
           <div>
             <strong>{globalProgress.percentage}%</strong>
-            <small>{globalProgress.unlocked}/{globalProgress.total} {t("dishCount")}</small>
+            <small>{globalProgress.unlocked}/{globalProgress.total} MÓN</small>
           </div>
         </div>
       </header>
 
-      <nav className="achievement-tabs" aria-label={t("chooseBanner")}>
+      <nav className="achievement-tabs" aria-label="Chọn banner thành tựu">
         {SLOTS.map((item) => {
           const progress = getCollectionProgress(user.rewards, dishes, item)
           return (
@@ -107,22 +102,18 @@ export function AchievementsPage() {
                 <small>{progress.unlocked}/{progress.total}</small>
               </div>
               {progress.total > 0 && progress.unlocked === progress.total && (
-                <b aria-label={t("completed")}>✓</b>
+                <b aria-label="Đã hoàn thành">✓</b>
               )}
             </button>
           )
         })}
-        <button className={slot === "events" ? "is-active" : ""} onClick={() => setSlot("events")}>
-          <span>⏳</span>
-          <div><strong>{t("limitedEvent")}</strong><small>{dishes.filter((dish) => dish.type === "limited").length} {t("dishCount")}</small></div>
-        </button>
       </nav>
 
-      {slot !== "events" && <section className="achievement-section">
+      <section className="achievement-section">
         <div className="achievement-section-heading">
           <div>
             <small>BANNER {MEAL_SLOT_LABELS[slot].toUpperCase()}</small>
-            <h2>{t("collectionSet")}</h2>
+            <h2>Bộ sưu tập món</h2>
           </div>
           <div className="banner-progress-copy">
             <span><i style={{ width: `${bannerProgress.percentage}%` }} /></span>
@@ -135,184 +126,37 @@ export function AchievementsPage() {
             const unlocked = unlockedIds.has(dish.id)
             const rarity = getDishRarity(dish)
             return (
-              <AchievementDishCard
+              <button
                 key={dish.id}
-                dish={dish}
-                unlocked={unlocked}
-                onOpen={() => unlocked && setPlaceDish(dish)}
-              />
+                className={`achievement-card rarity-${rarity} ${unlocked ? "is-unlocked" : "is-locked"}`}
+                onClick={() => unlocked && setPlaceDish(dish)}
+                aria-label={unlocked ? `${dish.name}, đã mở` : `${dish.name}, chưa mở`}
+              >
+                <RarityFrame rarity={rarity} className="achievement-art">
+                  <FoodImage dishId={dish.id} name={dish.name} variant="card" />
+                  {!unlocked && (
+                    <div className="achievement-lock" aria-hidden="true">
+                      <span>⌾</span>
+                      <b>CHƯA MỞ</b>
+                    </div>
+                  )}
+                </RarityFrame>
+                <div className="achievement-card-info">
+                  <div>
+                    <strong>{dish.name}</strong>
+                    <small>{"₫".repeat(dish.priceTier ?? 1)} · {RARITY_LABELS[rarity]}</small>
+                  </div>
+                  <span>{unlocked ? "✓" : "🔒"}</span>
+                </div>
+              </button>
             )
           })}
         </div>
-      </section>}
-      {slot === "events" && (
-        <section className="achievement-section limited-achievement-section">
-          <div className="achievement-section-heading"><div><small>{t("limitedEvent")}</small><h2>{t("limitedCollection")}</h2></div></div>
-          {(limitedEvents as LimitedEvent[]).map((event) => {
-            const eventDishes = sortDishesByRarity(dishes.filter((dish) => dish.type === "limited" && dish.limitedEventId === event.id))
-            if (eventDishes.length === 0) return null
-            const unlocked = new Set(user.rewards.map((reward) => reward.dishId))
-            return <div className="limited-achievement-group" key={event.id}>
-              <div className="limited-achievement-heading"><strong>{event.title}</strong><span>{eventDishes.filter((dish) => unlocked.has(dish.id)).length}/{eventDishes.length}</span></div>
-              <div className="achievement-grid">{eventDishes.map((dish) => {
-                const rarity = getDishRarity(dish)
-                const isUnlocked = unlocked.has(dish.id)
-                return <AchievementDishCard key={dish.id} dish={dish} unlocked={isUnlocked} onOpen={() => isUnlocked && setPlaceDish(dish)} />
-              })}</div>
-            </div>
-          })}
-        </section>
-      )}
-      <section className="achievement-section mt-6">
-        <button
-          type="button"
-          className="achievement-collapse-toggle"
-          aria-expanded={showExtendedAchievements}
-          onClick={() => setShowExtendedAchievements((open) => !open)}
-        >
-          <span>
-            <small>{t("extendedAchievements")}</small>
-            <strong>{t("achievementProfile")}</strong>
-          </span>
-          <b aria-hidden="true">{showExtendedAchievements ? "⌃" : "⌄"}</b>
-        </button>
-        {showExtendedAchievements && (
-          <div className="achievement-collapse-content">
-            <div className="grid grid-cols-2 gap-2 mb-5">
-              <AchievementStat label={t("openedDishes")} value={achievementProgress.opened} icon="🍜" />
-              <AchievementStat label="Lần ghép" value={achievementProgress.fused} icon="✨" />
-              <AchievementStat label={t("bestStreak")} value={achievementProgress.streak} icon="🔥" />
-              <AchievementStat label={t("questsSolved")} value={achievementProgress.quests} icon="🧩" />
-            </div>
-            <div className="theme-progress-list">
-              {themeProgress.map((theme) => (
-                <div key={theme.id} className="theme-progress-row">
-                  <span>{theme.label}</span>
-                  <i><b style={{ width: `${theme.percentage}%` }} /></i>
-                  <strong>{theme.unlocked}/{theme.total}</strong>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </section>
 
       {placeDish && (
         <PlacesModal dish={placeDish} onClose={() => setPlaceDish(null)} />
       )}
-    </div>
-  )
-}
-
-function AchievementDishCard({
-  dish,
-  unlocked,
-  onOpen,
-}: {
-  dish: Dish
-  unlocked: boolean
-  onOpen(): void
-}) {
-  const updateDish = useAppStore((state) => state.updateDish)
-  const deleteDish = useAppStore((state) => state.deleteDish)
-  const { t } = useLanguage()
-  const [editing, setEditing] = useState(false)
-  const [imageUploading, setImageUploading] = useState(false)
-  const [label, setLabel] = useState(dish.name)
-  const [weight, setWeight] = useState(dish.weight)
-  const [rarity, setRarity] = useState(dish.rarity ?? getRarityFromWeight(dish.weight))
-  const [priceTier, setPriceTier] = useState<1 | 2 | 3 | 4>(dish.priceTier ?? getPriceTierFromWeight(dish.weight))
-  const effectiveRarity = getDishRarity({ ...dish, name: label, rarity })
-
-  const save = async () => {
-    const result = await updateDish(dish.id, { name: label, rarity, weight, priceTier })
-    if (result.success) setEditing(false)
-  }
-
-  const handleWeightChange = (nextWeight: number) => {
-    const normalizedWeight = Math.min(1000, Math.max(1, nextWeight || 1))
-    setWeight(normalizedWeight)
-    setRarity(getRarityFromWeight(normalizedWeight))
-    setPriceTier(getPriceTierFromWeight(normalizedWeight))
-  }
-
-  const handleRarityChange = (nextRarity: NonNullable<Dish["rarity"]>) => {
-    const suggestedWeight = nextRarity === "diamond" ? 8 : nextRarity === "epic" ? 25 : nextRarity === "rare" ? 50 : 100
-    setRarity(nextRarity)
-    setWeight(suggestedWeight)
-    setPriceTier(getPriceTierFromWeight(suggestedWeight))
-  }
-
-  const replaceImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    event.target.value = ""
-    if (!file) return
-    if (!file.type.startsWith("image/")) return
-    setImageUploading(true)
-    try {
-      const imageData = await convertImageToWebp(file)
-      await updateDish(dish.id, { name: label, rarity, imageData })
-    } finally {
-      setImageUploading(false)
-    }
-  }
-
-  const removeDish = async () => {
-    if (!window.confirm(t("confirmDelete"))) return
-    await deleteDish(dish.id)
-  }
-
-  return (
-    <div className={`achievement-card-shell rarity-${effectiveRarity}`}>
-      <button
-        className={`achievement-card ${unlocked ? "is-unlocked" : "is-locked"}`}
-        onClick={onOpen}
-        aria-label={unlocked ? `${label}, đã mở` : `${label}, chưa mở`}
-      >
-        <RarityFrame rarity={effectiveRarity} className="achievement-art">
-          <FoodImage dishId={dish.id} name={label} imageUrl={dish.imageUrl} variant="card" />
-          <RaritySticker priceTier={priceTier} rarity={effectiveRarity} />
-          {!unlocked && <div className="achievement-lock" aria-hidden="true"><span>⌾</span><b>{t("notUnlocked")}</b></div>}
-        </RarityFrame>
-        <div className="achievement-card-info">
-          <div><strong>{label}</strong><small>{"₫".repeat(priceTier)} · {RARITY_LABELS[effectiveRarity]}</small></div>
-          <span>{unlocked ? "✓" : "🔒"}</span>
-        </div>
-      </button>
-      {import.meta.env.DEV && (
-        <div className="achievement-dev-editor" onClick={(event) => event.stopPropagation()}>
-          {!editing ? <button type="button" onClick={() => setEditing(true)}>{t("editLabel")}</button> : (
-            <>
-              <input aria-label={t("label")} value={label} onChange={(event) => setLabel(event.target.value)} />
-              <input aria-label="Weight" type="number" min={1} max={1000} value={weight} onChange={(event) => handleWeightChange(Number(event.target.value))} />
-              <select aria-label={t("rarity")} value={rarity} onChange={(event) => handleRarityChange(event.target.value as NonNullable<Dish["rarity"]>)}>
-                <option value="common">Common</option>
-                <option value="rare">Rare</option>
-                <option value="epic">Epic</option>
-                <option value="diamond">Diamond</option>
-              </select>
-              <output className="achievement-dev-price">Price {priceTier}/4</output>
-              <button type="button" onClick={save}>{t("saveChanges")}</button>
-              <button type="button" onClick={() => { setLabel(dish.name); setWeight(dish.weight); setRarity(dish.rarity ?? getRarityFromWeight(dish.weight)); setPriceTier(dish.priceTier ?? getPriceTierFromWeight(dish.weight)); setEditing(false) }}>{t("undo")}</button>
-            </>
-          )}
-          <label className="achievement-dev-image-button">
-            {imageUploading ? t("uploadingImage") : `▣ ${t("replaceImage")}`}
-            <input type="file" accept="image/png,image/jpeg,image/webp" onChange={replaceImage} disabled={imageUploading} />
-          </label>
-          <button type="button" className="achievement-dev-delete" onClick={removeDish}>{t("deleteDish")}</button>
-        </div>
-      )}
-    </div>
-  )
-}
-
-function AchievementStat({ label, value, icon }: { label: string; value: number; icon: string }) {
-  return (
-    <div className="achievement-stat">
-      <span>{icon}</span>
-      <strong>{value}</strong>
-      <small>{label}</small>
     </div>
   )
 }

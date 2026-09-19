@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate, useSearchParams } from "react-router-dom"
 import gsap from "gsap"
 import { useAppStore } from "../store/useAppStore"
 import {
@@ -23,10 +23,8 @@ import {
 } from "../infrastructure/audio/soundEngine"
 import { getVisibleRewards } from "../domain/rewardPresentation"
 import { hasUnlimitedChestAccess } from "../domain/achievements"
-import { canClaimFreeChest } from "../domain/drawReward"
-import { isGoldenHour } from "../domain/dateKey"
-import { DailyQuest } from "../components/layout/DailyQuest"
-import { TranslationKey, useLanguage } from "../i18n"
+import { getDailyQuestions } from "../domain/dailyQuiz"
+import { EVENTS, isEventActive } from "../domain/events"
 
 type ChestState =
   | "idle"
@@ -41,18 +39,18 @@ type ChestState =
   | "reward-rise"
   | "result"
 
-const STATE_LABELS: Record<ChestState, TranslationKey> = {
-  idle: "readyState",
-  "key-flight": "keyFlight",
-  inserting: "inserting",
-  locking: "locking",
-  charging: "charging",
-  pulse: "pulse",
-  anticipation: "anticipation",
-  impact: "impact",
-  opening: "opening",
-  "reward-rise": "rewardRise",
-  result: "result",
+const STATE_LABELS: Record<ChestState, string> = {
+  idle: "Sẵn sàng khai mở",
+  "key-flight": "Chìa khóa đang cộng hưởng",
+  inserting: "Kích hoạt lõi vị giác",
+  locking: "Khóa cổ ngữ đã khớp",
+  charging: "Tích tụ năng lượng",
+  pulse: "Cộng hưởng cực đại",
+  anticipation: "Lắng nghe khoảnh khắc thức tỉnh",
+  impact: "Khai mở!",
+  opening: "Rương đã mở",
+  "reward-rise": "Triệu hồi món ăn",
+  result: "Đã nhận phần thưởng",
 }
 
 const RITUAL_STEPS: ChestState[] = [
@@ -81,26 +79,26 @@ function defaultSlot(): MealSlot {
 const SLOT_THEME: Record<MealSlot, {
   accent: string
   glow: string
-  titleKey: TranslationKey
-  subtitleKey: TranslationKey
+  title: string
+  subtitle: string
 }> = {
   breakfast: {
     accent: "#e8c777",
     glow: "rgba(232,199,119,.42)",
-    titleKey: "sunrise",
-    subtitleKey: "sunriseSubtitle",
+    title: "BÌNH MINH",
+    subtitle: "Món ngon khởi đầu ngày mới",
   },
   lunch: {
     accent: "#19c7e8",
     glow: "rgba(25,199,232,.42)",
-    titleKey: "daylight",
-    subtitleKey: "daylightSubtitle",
+    title: "THIÊN QUANG",
+    subtitle: "Nạp năng lượng giữa ngày",
   },
   dinner: {
     accent: "#a78bfa",
     glow: "rgba(167,139,250,.42)",
-    titleKey: "dusk",
-    subtitleKey: "duskSubtitle",
+    title: "DẠ YẾN",
+    subtitle: "Khép ngày bằng một lựa chọn xứng đáng",
   },
 }
 
@@ -108,12 +106,12 @@ export function ChestPage() {
   const user = useAppStore((state) => state.user)
   const dishes = useAppStore((state) => state.dishes)
   const checkIn = useAppStore((state) => state.checkIn)
-  const openFreeChest = useAppStore((state) => state.openFreeChest)
   const openChest = useAppStore((state) => state.openChest)
   const showToast = useAppStore((state) => state.showToast)
   const pendingRevealRewardId = useAppStore((state) => state.pendingRevealRewardId)
   const completeRewardReveal = useAppStore((state) => state.completeRewardReveal)
   const navigate = useNavigate()
+  const [params] = useSearchParams()
   const [slot, setSlot] = useState<MealSlot>(defaultSlot)
   const [chestState, setChestState] = useState<ChestState>("idle")
   const [reward, setReward] = useState<RewardInstance | null>(null)
@@ -140,9 +138,14 @@ export function ChestPage() {
   }, [])
   const reduceMotion = user.preferences.reducedMotion || prefersReducedMotion
   const unlimited = hasUnlimitedChestAccess(user, dishes)
-  const freeChestReady = canClaimFreeChest(user)
-  const goldenHour = isGoldenHour()
-  const { t } = useLanguage()
+  const event = EVENTS.find((item) => item.id === params.get("event") && isEventActive(item, today))
+  useEffect(() => {
+    if (event && !event.dishIds.some((id) => dishes.find((dish) => dish.id === id)?.mealSlots.includes(slot))) {
+      const first = dishes.find((dish) => event.dishIds.includes(dish.id))
+      if (first) setSlot(first.mealSlots[0])
+    }
+  }, [event?.id, dishes, slot])
+  const quizRemaining = getDailyQuestions(dishes).filter((item) => user.dailyQuiz?.date !== today || !user.dailyQuiz.answers[item.id]).length
 
   const finishReveal = useCallback(() => {
     const nextReward = pendingRewardRef.current
@@ -222,7 +225,7 @@ export function ChestPage() {
   const triggerOpen = useCallback(() => {
     if (processingRef.current) return
     processingRef.current = true
-    const result = openChest(slot)
+    const result = openChest(slot, event?.id)
     if (!result.reward) {
       showToast(result.error ?? "Không thể mở rương.", "error")
       processingRef.current = false
@@ -250,6 +253,7 @@ export function ChestPage() {
     showToast,
     skipAnimation,
     slot,
+    event?.id,
     user.preferences.soundEnabled,
   ])
 
@@ -316,14 +320,17 @@ export function ChestPage() {
     >
       <div className="stage-mobile-header">
         <div>
-          <h1>{t("brandTitle")}</h1>
-          <p>{t("brandSubtitle")}</p>
+          <h1>RƯƠNG VỊ GIÁC</h1>
+          <p>Mở rương, chốt món.</p>
         </div>
         <div className="mobile-wallet">
           <span>◇</span>
           <strong>{unlimited ? "∞" : user.keys}</strong>
         </div>
       </div>
+
+      {event && <div className={`chest-event-banner ${event.theme.className}`}><span>{event.icon}</span><div><strong>{event.name.vi}</strong><small>{event.dishIds.length} món trong banner sự kiện</small></div><Link to="/">Đóng ×</Link></div>}
+      {!event && <Link className="chest-event-link" to="/events">✦ Khám phá 6 sự kiện theo mùa →</Link>}
 
       <div className="meal-banner-tabs" role="tablist" aria-label="Chọn bữa ăn">
         {(["breakfast", "lunch", "dinner"] as MealSlot[]).map((mealSlot) => {
@@ -334,7 +341,7 @@ export function ChestPage() {
               key={mealSlot}
               role="tab"
               aria-selected={selected}
-              disabled={isAnimating}
+              disabled={isAnimating || Boolean(event && !event.dishIds.some((id) => dishes.find((dish) => dish.id === id)?.mealSlots.includes(mealSlot)))}
               className={selected ? "is-selected" : ""}
               onClick={() => setSlot(mealSlot)}
               style={
@@ -343,7 +350,7 @@ export function ChestPage() {
             >
               <span>{MEAL_SLOT_ICONS[mealSlot]}</span>
               <div>
-                <strong>{t(itemTheme.titleKey)}</strong>
+                <strong>{itemTheme.title}</strong>
                 <small>{MEAL_SLOT_LABELS[mealSlot]}</small>
               </div>
             </button>
@@ -359,47 +366,30 @@ export function ChestPage() {
         <span>◇</span>
         <p>
           <strong>
-            {checkedIn ? t("checkedIn") : t("checkIn")}
+            {checkedIn ? "Đã điểm danh hôm nay" : "Điểm danh nhận 10 chìa"}
           </strong>
           <small>
-            {checkedIn ? t("comeBackTomorrow") : t("dailyOnce")}
+            {checkedIn ? "Quay lại vào ngày mai" : "Mỗi ngày một lần"}
           </small>
         </p>
         <b>{checkedIn ? "✓" : "+10"}</b>
       </button>
 
-      <DailyQuest compact />
-
-      {goldenHour && (
-        <div className="golden-hour-banner">
-          ✦ {t("goldenHour")}
-        </div>
-      )}
-
-      <button
-        className={`mobile-checkin ${freeChestReady ? "is-ready" : "is-done"}`}
-        onClick={() => freeChestReady && openFreeChest(slot)}
-        disabled={!freeChestReady || isAnimating || showReveal}
-      >
-        <span>🎁</span>
-        <p>
-          <strong>{freeChestReady ? t("freeChestReady") : t("freeChestUsed")}</strong>
-          <small>{freeChestReady ? t("noKey") : t("returnTomorrow")}</small>
-        </p>
-        <b>{freeChestReady ? t("open") : "✓"}</b>
+      <button className="quiz-entry" onClick={() => navigate("/daily-quiz")}>
+        <span>✦</span><strong>ĐOÁN MÓN HÔM NAY</strong><small>{quizRemaining ? `${quizRemaining} câu · nhận thêm tối đa ${quizRemaining} chìa` : "Đã hoàn thành hôm nay"}</small><b>→</b>
       </button>
 
       <section className="ritual-stage" aria-live="polite">
         <header className="ritual-copy">
           <small>
-            {t(theme.titleKey)} · {MEAL_SLOT_LABELS[slot]}
+            {theme.title} · {MEAL_SLOT_LABELS[slot]}
           </small>
           <h1>
-            {t("chestHeading")}
+            Đánh thức lựa chọn
             <br />
-            <span>{t("chestHeadingYour")}</span>
+            <span>của bạn</span>
           </h1>
-          <p>{t(theme.subtitleKey)}</p>
+          <p>{theme.subtitle}</p>
         </header>
 
         <ChestScene
@@ -411,10 +401,10 @@ export function ChestPage() {
 
         <div className="ritual-status">
           <span className={isAnimating ? "is-live" : ""} />
-          <p>{t(STATE_LABELS[chestState])}</p>
+          <p>{STATE_LABELS[chestState]}</p>
         </div>
 
-        <div className="ritual-progress" aria-label={`${t("result")}: ${t(STATE_LABELS[chestState])}`}>
+        <div className="ritual-progress" aria-label={`Tiến trình: ${STATE_LABELS[chestState]}`}>
           {RITUAL_STEPS.map((step, index) => {
             const currentIndex = RITUAL_STEPS.indexOf(chestState)
             const active = currentIndex >= index || chestState === "result"
@@ -430,20 +420,20 @@ export function ChestPage() {
             disabled={(!unlimited && user.keys < 1) || isAnimating || showReveal}
           >
             <span>
-              {isAnimating ? t(STATE_LABELS[chestState]) : t("openChest")}
+              {isAnimating ? STATE_LABELS[chestState] : "KHAI MỞ RƯƠNG"}
             </span>
             <small>
               {isAnimating
-                ? t("energyGathering")
+                ? "Năng lượng đang hội tụ"
                 : unlimited
-                  ? t("unlimitedCost")
-                  : t("keyCost")}
+                  ? "ĐẶC QUYỀN VÔ HẠN · KHÔNG TỐN CHÌA"
+                  : "TIÊU HAO 1 CHÌA KHÓA"}
             </small>
           </button>
 
           {isAnimating ? (
             <button className="skip-action" onClick={skipCurrentAnimation}>
-              {t("skipScene")}
+              Bỏ qua hoạt cảnh
             </button>
           ) : (
             <label className="skip-toggle">
@@ -452,20 +442,20 @@ export function ChestPage() {
                 checked={skipAnimation}
                 onChange={(event) => setSkipAnimation(event.target.checked)}
               />
-              <span>{t("skipNext")}</span>
+              <span>Bỏ qua hoạt cảnh lần sau</span>
             </label>
           )}
         </div>
 
         <footer className="stage-footer">
           <span>
-            {t("todayDishes")} <strong>{todayCount}</strong> {t("dishes")}
+            HÔM NAY <strong>{todayCount}</strong> MÓN
           </span>
           <i />
           <span>
-            {t("rarityRate")} <strong>31.4%</strong>
+            TỶ LỆ HIẾM <strong>28%</strong>
           </span>
-          <button onClick={() => setShowOdds(true)}>{t("viewOdds")}</button>
+          <button onClick={() => setShowOdds(true)}>XEM TỈ LỆ</button>
         </footer>
       </section>
 
@@ -479,12 +469,14 @@ export function ChestPage() {
             closeReveal()
             navigate("/collection")
           }}
+          onCheckIn={(dishId) => { closeReveal(); navigate(`/collection?tab=timeline&dish=${encodeURIComponent(dishId)}`) }}
         />
       )}
       {showOdds && (
         <ChestOddsModal
           dishes={dishes}
           slot={slot}
+          eventId={event?.id}
           onClose={() => setShowOdds(false)}
         />
       )}

@@ -4,19 +4,18 @@ import {
   MealSlot,
   FusionTransaction,
   DishSnapshot,
-  LimitedEvent,
 } from "./models"
 import { Dish } from "./models"
 import { drawWeighted, buildPool, getDishRarity } from "./drawReward"
 import { getDateKey } from "./dateKey"
 import { hasUnlimitedChestAccess, isCatalogComplete } from "./achievements"
-import { isDishAvailable } from "./limitedEvents"
 
 export function canFuse(
   rewards: RewardInstance[],
   ids: string[],
 ): string | null {
   if (ids.length !== 3) return "Chọn đúng 3 phần thưởng."
+  if (new Set(ids).size !== 3) return "Cần chọn 3 phần thưởng khác nhau."
   const selected = ids
     .map((id) => rewards.find((r) => r.id === id))
     .filter(Boolean) as RewardInstance[]
@@ -33,13 +32,12 @@ export function applyFuse(
   dishes: Dish[],
   inputIds: [string, string, string],
   targetSlot: MealSlot,
-  events: LimitedEvent[] = [],
 ): { state: UserState; reward: RewardInstance; unlockedUnlimited: boolean } {
   const now = new Date().toISOString()
   const inputDishIds = inputIds.map(
     (id) => state.rewards.find((r) => r.id === id)!.dishId,
   )
-  let pool = buildPool(dishes, targetSlot, [], events)
+  let pool = buildPool(dishes, targetSlot, [])
   const alternatives = pool.filter((d) => !inputDishIds.includes(d.id))
   const preferredPool = alternatives.filter(
     (dish) => getDishRarity(dish) !== "common",
@@ -49,7 +47,7 @@ export function applyFuse(
     : alternatives.length > 0
       ? alternatives
       : pool
-  const dish = drawWeighted(drawPool)
+  const dish = drawWeighted(drawPool, state.favoriteTasteTags)
   const outId = crypto.randomUUID()
   const fusionId = crypto.randomUUID()
   const snapshot: DishSnapshot = {
@@ -58,7 +56,6 @@ export function applyFuse(
     searchQuery: dish.searchQuery,
     imageUrl: dish.imageUrl,
     category: dish.category,
-    priceTier: dish.priceTier,
   }
   const reward: RewardInstance = {
     id: outId,
@@ -87,12 +84,14 @@ export function applyFuse(
       : r,
   )
   const rewards = [...newRewards, reward]
+  const duplicate = state.rewards.some((item) => item.dishId === dish.id)
   const unlimitedBeforeFuse = hasUnlimitedChestAccess(state, dishes)
   const completedNow = isCatalogComplete(rewards, dishes)
   return {
     state: {
       ...state,
       rewards,
+      fragments: duplicate ? { ...state.fragments, [dish.id]: (state.fragments[dish.id] || 0) + 1 } : state.fragments,
       fusions: [...state.fusions, fusion],
       unlimitedChestUnlockedAt:
         state.unlimitedChestUnlockedAt ?? (completedNow ? now : undefined),

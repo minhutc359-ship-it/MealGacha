@@ -1,14 +1,13 @@
 import { NavLink } from "react-router-dom"
 import { useAppStore } from "../../store/useAppStore"
 import { hasUnlimitedChestAccess } from "../../domain/achievements"
-import { TranslationKey, useLanguage } from "../../i18n"
 
-const links: { to: string; key: TranslationKey }[] = [
-  { to: "/", key: "chest" },
-  { to: "/collection", key: "collection" },
-  { to: "/achievements", key: "achievements" },
-  { to: "/wheel", key: "wheel" },
-  { to: "/settings", key: "settings" },
+const links = [
+  { to: "/", label: "Rương vị giác" },
+  { to: "/collection", label: "Hồ sơ vị giác" },
+  { to: "/achievements", label: "Thành tựu" },
+  { to: "/wheel", label: "Vòng quay" },
+  { to: "/settings", label: "Cài đặt" },
 ]
 
 export function TopNav() {
@@ -18,7 +17,6 @@ export function TopNav() {
   const unlimited = hasUnlimitedChestAccess(user, dishes)
   const soundEnabled = useAppStore((state) => state.user.preferences.soundEnabled)
   const updatePreference = useAppStore((state) => state.updatePreference)
-  const { t } = useLanguage()
 
   return (
     <header className="client-topbar">
@@ -31,8 +29,8 @@ export function TopNav() {
           V
         </span>
         <span>
-          <strong>{t("brandTitle")}</strong>
-          <small>{t("brandSubtitle")}</small>
+          <strong>RƯƠNG VỊ GIÁC</strong>
+          <small>Mở rương, chốt món</small>
         </span>
       </NavLink>
 
@@ -40,7 +38,7 @@ export function TopNav() {
         {links.map((link) => (
           <NavLink key={link.to} to={link.to} end={link.to === "/"}>
             {({ isActive }) => (
-              <span className={isActive ? "is-active" : ""}>{t(link.key)}</span>
+              <span className={isActive ? "is-active" : ""}>{link.label}</span>
             )}
           </NavLink>
         ))}
@@ -50,9 +48,9 @@ export function TopNav() {
         <button
           className="quick-sound-toggle"
           onClick={() => updatePreference("soundEnabled", !soundEnabled)}
-          aria-label={soundEnabled ? t("soundOn") : t("soundOff")}
+          aria-label={soundEnabled ? "Tắt âm thanh" : "Bật âm thanh"}
           aria-pressed={soundEnabled}
-          title={soundEnabled ? t("soundOn") : t("soundOff")}
+          title={soundEnabled ? "Tắt âm thanh" : "Bật âm thanh"}
         >
           {soundEnabled ? "◖))" : "◖×"}
         </button>
@@ -60,7 +58,7 @@ export function TopNav() {
           ◇
         </span>
         <strong>{unlimited ? "∞" : keys}</strong>
-        <small>{unlimited ? t("unlimitedChest") : t("keyShort")}</small>
+        <small>{unlimited ? "VÔ HẠN" : "CHÌA"}</small>
       </div>
     </header>
   )
