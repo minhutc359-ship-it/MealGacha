@@ -44,7 +44,7 @@ for (const [_, id, contents] of events.matchAll(/\{ id: "([a-z-]+)", name: \{[\s
   for (const dishId of ids) if (!dishIds.has(dishId)) errors.push(`Event ${id}: thiếu ${dishId}`)
   if (!existsSync(resolve(`public/assets/events/${id}/banner.webp`))) errors.push(`Event ${id}: thiếu banner`)
 }
-if (eventIds.size !== 6) errors.push(`Cần 6 event (hiện có ${eventIds.size})`)
+if (eventIds.size !== 8) errors.push(`Cần 8 event theo mùa (hiện có ${eventIds.size})`)
 const localEvents = JSON.parse(readFileSync(resolve("src/infrastructure/events/limitedEvents.json"), "utf8"))
 const localDishes = JSON.parse(readFileSync(resolve("src/infrastructure/catalog/localDishes.json"), "utf8"))
 const localEventIds = new Set()

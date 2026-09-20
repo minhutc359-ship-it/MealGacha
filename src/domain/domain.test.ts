@@ -6,7 +6,7 @@ import { getDateKey } from "./dateKey"
 import { RewardInstance, UserState } from "./models"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
 import localDishes from "../infrastructure/catalog/localDishes.json"
-import { getFeaturedEvents } from "./events"
+import { getAnnouncementEvent, getFeaturedEvents } from "./events"
 import { getVisibleRewards } from "./rewardPresentation"
 import {
   getCollectionProgress,
@@ -115,6 +115,28 @@ describe("chest draw", () => {
     const recent = lunch.slice(0, 3).map((dish) => dish.id)
     const pool = buildPool(SEED_DISHES, "lunch", recent)
     expect(pool.some((dish) => recent.includes(dish.id))).toBe(false)
+  })
+})
+
+describe("seasonal event announcements", () => {
+  const catalog = SEED_DISHES
+
+  it("prefers the event that started most recently when seasons overlap", () => {
+    expect(getAnnouncementEvent(catalog, new Date("2027-01-04T05:00:00Z"))?.id).toBe("new-year-feast")
+    expect(getAnnouncementEvent(catalog, new Date("2027-06-14T05:00:00Z"))?.id).toBe("cooling-summer")
+    expect(getAnnouncementEvent(catalog, new Date("2027-08-14T05:00:00Z"))?.id).toBe("dolce-vita")
+  })
+
+  it("opens the New Year banner only during its configured date range", () => {
+    vi.useFakeTimers()
+    try {
+      vi.setSystemTime(new Date("2027-01-04T05:00:00Z"))
+      expect(buildPool(catalog, "dinner", [], "new-year-feast").length).toBeGreaterThan(0)
+      vi.setSystemTime(new Date("2027-01-16T05:00:00Z"))
+      expect(buildPool(catalog, "dinner", [], "new-year-feast")).toHaveLength(0)
+    } finally {
+      vi.useRealTimers()
+    }
   })
 })
 

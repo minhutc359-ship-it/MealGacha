@@ -1,6 +1,6 @@
 # MealGacha · Rương Vị Giác
 
-Web app gợi ý món ăn sáng, trưa và tối qua trải nghiệm mở rương theo phong cách fantasy game client. Điểm danh nhận 10 chìa mỗi ngày, giải 3 câu Đoán món để nhận thêm 3 chìa và hoàn tất Taste Swipe nhận 2 chìa. Sưu tập 50 món thường cùng 39 món giới hạn trong 7 sự kiện, dung hợp 3 phần thưởng cùng ngày, ghi nhật ký ăn uống và mở danh hiệu. Thu thập đủ món thường để mở rương vô hạn.
+Web app gợi ý món ăn sáng, trưa và tối qua trải nghiệm mở rương theo phong cách fantasy game client. Điểm danh nhận 10 chìa mỗi ngày, giải 3 câu Đoán món để nhận thêm 3 chìa và hoàn tất Taste Swipe nhận 2 chìa. Sưu tập 50 món thường cùng 39 món giới hạn trong 9 sự kiện, dung hợp 3 phần thưởng cùng ngày, ghi nhật ký ăn uống và mở danh hiệu. Thu thập đủ món thường để mở rương vô hạn.
 
 ## Chạy local
 
@@ -35,7 +35,7 @@ Hồ sơ, chìa, lịch sử và bài viết nằm trong `localStorage`; ảnh c
 
 - **Rương:** Chọn sáng, trưa hoặc tối; nhấn mở để chạy nghi thức chìa khóa, âm thanh và hiệu ứng. Món chỉ hiện khi nghi thức kết thúc (có nút bỏ qua và hỗ trợ giảm chuyển động). Chế độ sự kiện hiện riêng theo ngày và có thể ép bật trong DEV ở Cài đặt.
 - **Hồ sơ:** Xem tổng quan, đổi tên và danh hiệu, xem lịch sử chìa khóa, viết check-in có ảnh; thẻ món có CTA check-in. Taste Swipe ghi nhận tag ưa thích và tăng trọng số món phù hợp tối đa 5% mà không đổi bậc hiếm.
-- **Thành tựu:** Thu thập đủ 50 món thường để mở rương vô hạn vĩnh viễn. Tab Giới hạn hiển thị món của 7 sự kiện, gồm Lễ hội văn hóa ẩm thực Tây Bắc. Trang quán lân cận yêu cầu vị trí khi mở popup.
+- **Thành tựu:** Thu thập đủ 50 món thường để mở rương vô hạn vĩnh viễn. Tab Giới hạn hiển thị món của 9 sự kiện, gồm Tây Bắc, Năm Mới Rực Rỡ (01–15/01/2027) và Mùa Hè Thanh Mát (01/06–31/08/2027). Hai banner mới chọn 8 món đã có ảnh trong catalog cho mỗi sự kiện. Khi nhiều banner cùng diễn ra, popup thông báo ưu tiên sự kiện bắt đầu gần nhất và dẫn thẳng tới rương sự kiện. Trang quán lân cận yêu cầu vị trí khi mở popup.
 - **Bảo trì catalog:** CSV có các cột cơ bản `id,name,search_query,meal_slots,category,description,image_url,tags,weight,rarity,price_tier,active`; tuỳ chọn `name_en,description_en,country,region,categories,search_queries,base_weight,type,limited_event_id`. Tag cách nhau bằng `|`. Món giới hạn cài sẵn và món thêm trong source vẫn được tự ghép vào catalog khi dùng CSV.
 
 ## Quản trị nội dung ở môi trường DEV
