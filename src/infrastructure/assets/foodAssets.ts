@@ -57,6 +57,10 @@ export const FOOD_ASSET_IDS = [
   "som-tam", "pad-kra-pao", "boat-noodles", "green-curry", "moo-ping",
   "carbonara", "ossobuco", "tiramisu", "gelato",
   "roast-turkey", "beef-wellington", "honey-glazed-ham", "mashed-potato", "gingerbread", "christmas-pudding", "yule-log", "hot-chocolate",
+  "cha-ruoi", "banh-com-hang-than", "ganjang-gejang", "gopchang-gui", "sundae-guk", "taiyaki", "khao-soi",
+  "arancini", "saltimbocca", "pappardelle-cinghiale", "porchetta",
+  "banh-chung", "canh-mang-mien", "gio-xao", "thit-dong", "thit-kho-trung", "dua-hanh",
+  "che-khuc-bach", "che-buoi", "sua-chua-mit", "kem-bo-da-lat", "nom-sua-xoai", "goi-cuon-tom-thit",
 ] as const
 
 const assetIds = new Set<string>(FOOD_ASSET_IDS)

@@ -57,7 +57,15 @@ function getSpinTrackUrl(): string {
 }
 
 function getSpinResultTrackUrl(): string {
-  return getPublicAssetUrl("assets/audio/result_spin.mp3")
+  return getPublicAssetUrl("assets/audio/reward-received.mp3")
+}
+
+export function preloadRewardReceivedTrack(): void {
+  if (typeof window === "undefined" || preloadedSpinResultTrack) return
+  const resultAudio = new Audio(getSpinResultTrackUrl())
+  resultAudio.preload = "auto"
+  resultAudio.load()
+  preloadedSpinResultTrack = resultAudio
 }
 
 export function preloadClickSounds(): void {
@@ -87,10 +95,7 @@ export function preloadSpinTrack(): void {
   audio.load()
   preloadedSpinTrack = audio
 
-  const resultAudio = new Audio(getSpinResultTrackUrl())
-  resultAudio.preload = "auto"
-  resultAudio.load()
-  preloadedSpinResultTrack = resultAudio
+  preloadRewardReceivedTrack()
 }
 
 export function startSpinTrack(enabled: boolean): boolean {

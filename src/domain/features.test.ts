@@ -5,6 +5,7 @@ import { getEffectiveWeight, getDishRarity, buildPool } from "./drawReward"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
 import { TITLES, titleProgress, syncTitles } from "./titles"
 import { getDateKey } from "./dateKey"
+import type { MealSlot } from "./models"
 import { EVENTS } from "./events"
 import { isCatalogComplete } from "./achievements"
 
@@ -84,11 +85,29 @@ describe("event catalog", () => {
     expect(ids.size).toBe(SEED_DISHES.length)
     expect(EVENTS).toHaveLength(8)
     for (const event of EVENTS) {
-      expect(event.dishIds).toHaveLength(event.id === "dolce-vita" ? 7 : 8)
+      expect(event.dishIds).toHaveLength(6)
       expect(event.dishIds.every((id) => ids.has(id))).toBe(true)
+      expect(event.dishIds.every((id) => SEED_DISHES.find((dish) => dish.id === id)?.limitedEventId === event.id)).toBe(true)
     }
     const normal = buildPool(SEED_DISHES, "dinner", [])
     expect(normal.every((dish) => dish.type !== "limited")).toBe(true)
+  })
+  it("makes each of the eight seasonal pools exclusive while active and empty immediately after expiry", () => {
+    const slots: MealSlot[] = ["breakfast", "lunch", "dinner"]
+    for (const event of EVENTS) {
+      const activeAt = new Date(`${event.startsAt}T05:00:00Z`)
+      const expiredAt = new Date(`${event.endsAt}T17:00:00Z`)
+      const available = slots.flatMap((slot) => buildPool(SEED_DISHES, slot, [], event.id, activeAt))
+      expect(new Set(available.map((dish) => dish.id))).toEqual(new Set(event.dishIds))
+      expect(available.every((dish) => dish.type === "limited" && dish.limitedEventId === event.id)).toBe(true)
+      expect(slots.flatMap((slot) => buildPool(SEED_DISHES, slot, [], event.id, expiredAt))).toHaveLength(0)
+    }
+  })
+  it("moves everyday favorites back to their regular meal banners", () => {
+    expect(buildPool(SEED_DISHES, "breakfast", []).map((dish) => dish.id)).toContain("xoi-xeo")
+    const dinner = buildPool(SEED_DISHES, "dinner", []).map((dish) => dish.id)
+    expect(dinner).toEqual(expect.arrayContaining(["korean-fried-chicken", "bingsu", "tonkotsu-ramen", "carbonara", "gelato", "mashed-potato", "hot-chocolate"]))
+    expect(dinner).not.toContain("banh-chung")
   })
   it("keeps the unlimited chest milestone reachable without waiting for future events", () => {
     const base = migrateUserState(legacyState())!

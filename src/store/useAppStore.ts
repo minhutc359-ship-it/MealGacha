@@ -2,7 +2,7 @@ import { create } from "zustand"
 import { UserState, Dish, MealSlot, RewardInstance } from "../domain/models"
 import { repository } from "../infrastructure/storage/repository"
 import { applyCheckIn, canCheckIn } from "../domain/checkIn"
-import { applyOpenChest, canOpenChest } from "../domain/drawReward"
+import { applyOpenChest, buildPool, canOpenChest } from "../domain/drawReward"
 import { applyFuse, canFuse } from "../domain/fuseRewards"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
 import { fetchCatalog } from "../infrastructure/catalog/csvAdapter"
@@ -14,12 +14,14 @@ import { deleteImage } from "../infrastructure/storage/imageRepository"
 import { clearImages } from "../infrastructure/storage/imageRepository"
 import { enrichDish } from "../infrastructure/catalog/enrichDish"
 import { EVENT_DISHES } from "../infrastructure/catalog/eventCatalog"
+import { CURATED_NORMAL_DISHES } from "../infrastructure/catalog/eventCatalog"
 import localDishes from "../infrastructure/catalog/localDishes.json"
 import { applyDailyQuest, getDailyQuests } from "../domain/dailyQuest"
 
 function withBuiltInDishes(dishes: Dish[]): Dish[] {
   const merged = new Map(dishes.map((dish) => [dish.id, dish]))
-  for (const dish of EVENT_DISHES) if (!merged.has(dish.id)) merged.set(dish.id, dish)
+  // Curated dishes own their IDs even when a cached CSV still has old event assignments.
+  for (const dish of [...CURATED_NORMAL_DISHES, ...EVENT_DISHES]) merged.set(dish.id, dish)
   for (const dish of localDishes as Dish[]) merged.set(dish.id, enrichDish(dish))
   return [...merged.values()]
 }
@@ -51,7 +53,7 @@ interface AppStore {
     error: string
     unlockedUnlimited: false
   }
-  fuse(inputIds: [string, string, string], targetSlot: MealSlot): {
+  fuse(inputIds: [string, string, string], targetSlot: MealSlot, eventId?: string): {
     reward: RewardInstance
     error: null
     unlockedUnlimited: boolean
@@ -185,9 +187,10 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   openChest(slot, eventId) {
     const { user, dishes } = get()
-    const err = canOpenChest(user, dishes, slot, eventId)
+    const drawTime = new Date()
+    const err = canOpenChest(user, dishes, slot, eventId, drawTime)
     if (err) return { reward: null, error: err, unlockedUnlimited: false }
-    const { state: newUser, reward, unlockedUnlimited } = applyOpenChest(user, dishes, slot, eventId)
+    const { state: newUser, reward, unlockedUnlimited } = applyOpenChest(user, dishes, slot, eventId, drawTime)
     const titled = syncTitles(newUser, dishes)
     repository.saveUser(titled)
     set({ user: titled, pendingRevealRewardId: reward.id })
@@ -197,20 +200,21 @@ export const useAppStore = create<AppStore>((set, get) => ({
     return { reward, error: null, unlockedUnlimited }
   },
 
-  fuse(inputIds, targetSlot) {
+  fuse(inputIds, targetSlot, eventId) {
     const { user, dishes } = get()
+    const fusionTime = new Date()
     const err = canFuse(user.rewards, inputIds)
     if (err) return { reward: null, error: err, unlockedUnlimited: false }
-    const pool = dishes.filter(
-      (d) => d.active && d.mealSlots.includes(targetSlot),
-    )
+    const pool = buildPool(dishes, targetSlot, [], eventId, fusionTime)
     if (pool.length === 0)
-      return { reward: null, error: "Không có món nào cho banner đích.", unlockedUnlimited: false }
+      return { reward: null, error: eventId ? "Sự kiện đã kết thúc hoặc không có món cho bữa này." : "Không có món nào cho banner đích.", unlockedUnlimited: false }
     const { state: newUser, reward, unlockedUnlimited } = applyFuse(
       user,
       dishes,
       inputIds,
       targetSlot,
+      eventId,
+      fusionTime,
     )
     const titled = syncTitles(newUser, dishes)
     repository.saveUser(titled)

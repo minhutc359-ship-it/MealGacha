@@ -88,6 +88,12 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 .wheel-suggestion:hover:not(:disabled) { border-color: rgba(127, 233, 247, .85); background: rgba(30, 100, 115, .75); transform: translateY(-2px); }
 .wheel-suggestion:disabled { opacity: .5; cursor: default; }
 
+.fusion-event-selector { display: grid; gap: 7px; margin-bottom: 14px; color: #cdb9e9; font-size: 12px; font-weight: 700; }
+.fusion-event-selector select { width: 100%; padding: 10px 12px; border: 1px solid rgba(168, 85, 247, .4); border-radius: 11px; background: #172039; color: #f2ecff; }
+.fusion-event-selector small { color: #a7a6c1; font-size: 11px; font-weight: 400; line-height: 1.5; }
+.fusion-event-selector ~ div button:disabled { opacity: .38; cursor: not-allowed; }
+.reward-event-inline { max-width: 100%; padding: 2px 7px; border: 1px solid rgba(229, 197, 118, .3); border-radius: 999px; color: #e8c777; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 /* Dev-only forms live in Settings and write source files through Vite. */
 .dev-content-panel { display: grid; gap: 20px; margin: 12px 0 25px; }
 .dev-content-section { padding: clamp(16px, 3vw, 24px); border: 1px solid rgba(110, 184, 207, .22); border-radius: 20px; background: linear-gradient(145deg, rgba(18, 43, 60, .84), rgba(6, 19, 33, .94)); }
@@ -145,3 +151,25 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 @media (prefers-reduced-motion: reduce) {
   .announcement-banner-panel { animation: none; }
 }
+/* Equipped title colors the complete client, including dialogs rendered in body. */
+html[data-title-theme="hanoi"] { --title-accent:#e7b970; --title-glow:rgba(225,145,54,.21); --title-deep:#24180f; --cyan-200:#f2d48d; --gold-300:#f3c678; }
+html[data-title-theme="seoul"] { --title-accent:#d58dff; --title-glow:rgba(166,71,230,.23); --title-deep:#160e2b; --cyan-200:#dbb2ff; --gold-300:#f8b8e9; }
+html[data-title-theme="tokyo"] { --title-accent:#ff94a2; --title-glow:rgba(228,78,102,.21); --title-deep:#260e1f; --cyan-200:#ffc0cb; --gold-300:#ffb5a5; }
+html[data-title-theme="diamond"] { --title-accent:#9beaff; --title-glow:rgba(132,204,255,.3); --title-deep:#0b2143; --cyan-200:#c0f3ff; --gold-300:#c7d8ff; }
+html[data-title-theme="fusion"] { --title-accent:#bb9bff; --title-glow:rgba(133,91,239,.27); --title-deep:#1c1136; --cyan-200:#c9afff; --gold-300:#efb1ff; }
+html[data-title-theme="starter"] { --title-accent:#19c7e8; --title-glow:rgba(25,199,232,.11); --title-deep:#071827; }
+.loot-client, .client-backdrop, .client-topbar, .mobile-bottom-nav { transition: background .45s ease, border-color .45s ease, box-shadow .45s ease; }
+.loot-client { background:var(--title-deep,#020912); }
+.loot-client .client-backdrop { background:radial-gradient(circle at 50% 30%,var(--title-glow),transparent 40%),radial-gradient(circle at 85% 80%,var(--title-glow),transparent 32%),linear-gradient(145deg,#020812,var(--title-deep) 52%,#020810); }
+.loot-client .client-topbar { border-bottom-color:var(--title-accent); box-shadow:0 14px 35px rgba(0,0,0,.35),0 1px 24px var(--title-glow); }
+.loot-client .client-nav span.is-active, .loot-client .mobile-bottom-nav .active, .loot-client .brand-mark { color:var(--title-accent); }
+.loot-client .client-nav span.is-active::after { background:linear-gradient(90deg,transparent,var(--title-accent),transparent); }
+.profile-hero h1 { max-width:100%; }
+.profile-hero .profile-edit-name { display:flex; align-items:center; gap:12px; max-width:100%; padding:0; border:0; background:none; color:inherit; text-align:left; font:inherit; overflow-wrap:anywhere; cursor:text; }
+.profile-edit-name span { opacity:.66; font-size:17px; color:var(--cyan-200); }
+.profile-hero .profile-inline-name { width:min(500px,78vw); max-width:100%; padding:5px 8px; border-radius:10px; font:inherit; }
+.profile-title-picker { position:relative; max-width:100%; }
+.profile-hero .profile-title-picker select { max-width:min(370px,82vw); padding:7px 29px 7px 12px; appearance:none; border:1px solid var(--gold-300); border-radius:999px; background:rgba(2,12,26,.68); color:var(--gold-300); font:700 13px 'Exo 2',sans-serif; cursor:pointer; }
+.profile-title-picker > span { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--gold-300); pointer-events:none; }
+.profile-title-picker option { color:#e8edf5; background:#081526; }
+.places-map { display:block; width:100%; height:230px; border:0; border-radius:12px; background:#10293b; }

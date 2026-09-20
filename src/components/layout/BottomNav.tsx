@@ -144,8 +144,8 @@ export function BottomNav() {
     <nav
       className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-50 border-t"
       style={{
-        borderColor: "rgba(0,212,255,0.12)",
-        background: "rgba(8,12,24,0.95)",
+        borderColor: "var(--title-accent, rgba(0,212,255,0.12))",
+        background: "var(--title-deep, rgba(8,12,24,0.95))",
         backdropFilter: "blur(16px)",
       }}
     >
@@ -155,7 +155,7 @@ export function BottomNav() {
             {({ isActive }) => (
               <div
                 className={`flex flex-col items-center gap-0.5 py-2.5 transition-colors ${
-                  isActive ? "text-[#00d4ff]" : "text-[#6b7f99]"
+                  isActive ? "text-[var(--title-accent,#00d4ff)]" : "text-[#6b7f99]"
                 }`}
               >
                 {icon(isActive)}

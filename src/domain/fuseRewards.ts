@@ -32,12 +32,15 @@ export function applyFuse(
   dishes: Dish[],
   inputIds: [string, string, string],
   targetSlot: MealSlot,
+  eventId?: string,
+  fusionTime = new Date(),
 ): { state: UserState; reward: RewardInstance; unlockedUnlimited: boolean } {
-  const now = new Date().toISOString()
+  const now = fusionTime.toISOString()
   const inputDishIds = inputIds.map(
     (id) => state.rewards.find((r) => r.id === id)!.dishId,
   )
-  let pool = buildPool(dishes, targetSlot, [])
+  const pool = buildPool(dishes, targetSlot, [], eventId, fusionTime)
+  if (!pool.length) throw new Error("Sự kiện đã kết thúc hoặc banner không có món cho bữa này.")
   const alternatives = pool.filter((d) => !inputDishIds.includes(d.id))
   const preferredPool = alternatives.filter(
     (dish) => getDishRarity(dish) !== "common",
@@ -65,7 +68,7 @@ export function applyFuse(
     source: "fusion",
     status: "available",
     acquiredAt: now,
-    acquiredDate: getDateKey(),
+    acquiredDate: getDateKey(fusionTime),
     fusionId,
     favorite: false,
     rarity: getDishRarity(dish),
@@ -76,7 +79,7 @@ export function applyFuse(
     outputRewardId: outId,
     targetMealSlot: targetSlot,
     createdAt: now,
-    createdDate: getDateKey(),
+    createdDate: getDateKey(fusionTime),
   }
   const newRewards = state.rewards.map((r) =>
     inputIds.includes(r.id)

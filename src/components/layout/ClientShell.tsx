@@ -5,10 +5,18 @@ import { ActivityRail } from "./ActivityRail"
 import { BottomNav } from "./BottomNav"
 import { useAppStore } from "../../store/useAppStore"
 import { playClickSound, preloadClickSounds } from "../../infrastructure/audio/soundEngine"
+import { TITLES } from "../../domain/titles"
 
 export function ClientShell({ children }: { children: ReactNode }) {
   const ritualActive = useAppStore((state) => Boolean(state.pendingRevealRewardId))
   const soundEnabled = useAppStore((state) => state.user.preferences.soundEnabled)
+  const equippedTitleId = useAppStore((state) => state.user.equippedTitleId)
+  const theme = TITLES.find((title) => title.id === equippedTitleId)?.reward.background ?? "starter"
+
+  useEffect(() => {
+    document.documentElement.dataset.titleTheme = theme
+    return () => { delete document.documentElement.dataset.titleTheme }
+  }, [theme])
 
   useEffect(() => {
     preloadClickSounds()
@@ -34,6 +42,7 @@ export function ClientShell({ children }: { children: ReactNode }) {
   return (
     <div
       className={`loot-client ${ritualActive ? "is-ritual-active" : ""}`}
+      data-title-theme={theme}
       onClickCapture={handleClickCapture}
     >
       <div className="client-backdrop" aria-hidden="true" />

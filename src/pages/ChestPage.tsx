@@ -20,6 +20,8 @@ import {
   preloadChestOpeningTrack,
   startChestOpeningTrack,
   stopChestOpeningTrack,
+  preloadRewardReceivedTrack,
+  startSpinResultTrack,
 } from "../infrastructure/audio/soundEngine"
 import { getVisibleRewards } from "../domain/rewardPresentation"
 import { hasUnlimitedChestAccess } from "../domain/achievements"
@@ -156,6 +158,8 @@ export function ChestPage() {
     setShowReveal(true)
     completeRewardReveal()
     processingRef.current = false
+    stopChestOpeningTrack()
+    startSpinResultTrack(user.preferences.soundEnabled)
     playSound(
       "reveal",
       user.preferences.soundEnabled,
@@ -300,6 +304,7 @@ export function ChestPage() {
 
   useEffect(() => {
     preloadChestOpeningTrack()
+    preloadRewardReceivedTrack()
   }, [])
 
   useEffect(() => {

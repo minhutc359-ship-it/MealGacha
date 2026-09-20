@@ -16,7 +16,7 @@ export function EventsPage() {
   const events = getFeaturedEvents(dishes)
 
   return <div className="events-page">
-    <header><small>LIMITED BANNERS</small><h1>Sự kiện vị giác</h1><p>Thưởng thức banner theo mùa và những sự kiện đặc biệt. Món đã mở vẫn ở trong bộ sưu tập sau khi sự kiện kết thúc.</p></header>
+    <header><small>LIMITED BANNERS</small><h1>Sự kiện vị giác</h1><p>Mỗi banner có món đặc trưng chỉ mở hoặc ghép được khi sự kiện diễn ra. Món đã nhận vẫn ở trong bộ sưu tập sau khi kết thúc.</p></header>
     {import.meta.env.DEV && <label className="event-dev">Xem thử sự kiện <select value={override} onChange={(event) => { setOverride(event.target.value); setDevEventOverride(event.target.value) }}><option value="auto">Theo thời gian</option><option value="none">Không có sự kiện</option>{[...LOCAL_EVENTS.map((event) => ({ id: event.id, title: event.title })), ...EVENTS.map((event) => ({ id: event.id, title: event.name.vi }))].map((event) => <option value={event.id} key={event.id}>{event.title}</option>)}</select></label>}
     <div className="event-grid">{events.map((event) => {
       const eventDishes = event.dishIds.map((id) => dishes.find((dish) => dish.id === id)).filter((dish) => Boolean(dish))
