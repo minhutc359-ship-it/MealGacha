@@ -122,18 +122,43 @@ describe("seasonal event announcements", () => {
   const catalog = SEED_DISHES
 
   it("prefers the event that started most recently when seasons overlap", () => {
-    expect(getAnnouncementEvent(catalog, new Date("2027-01-04T05:00:00Z"))?.id).toBe("new-year-feast")
+    expect(getAnnouncementEvent(catalog, new Date("2027-01-04T05:00:00Z"))?.id).toBe("seoul-midnight")
+    expect(getAnnouncementEvent(catalog, new Date("2027-02-07T05:00:00Z"))?.id).toBe("new-year-feast")
     expect(getAnnouncementEvent(catalog, new Date("2027-06-14T05:00:00Z"))?.id).toBe("cooling-summer")
     expect(getAnnouncementEvent(catalog, new Date("2027-08-14T05:00:00Z"))?.id).toBe("dolce-vita")
   })
 
-  it("opens the New Year banner only during its configured date range", () => {
+  it("opens the Vietnamese Tết banner only from February 4 through February 16 in Vietnam", () => {
     vi.useFakeTimers()
     try {
-      vi.setSystemTime(new Date("2027-01-04T05:00:00Z"))
-      expect(buildPool(catalog, "dinner", [], "new-year-feast").length).toBeGreaterThan(0)
-      vi.setSystemTime(new Date("2027-01-16T05:00:00Z"))
+      vi.setSystemTime(new Date("2027-02-03T16:59:59Z"))
       expect(buildPool(catalog, "dinner", [], "new-year-feast")).toHaveLength(0)
+      vi.setSystemTime(new Date("2027-02-03T17:00:00Z"))
+      expect(buildPool(catalog, "dinner", [], "new-year-feast").length).toBeGreaterThan(0)
+      vi.setSystemTime(new Date("2027-02-16T16:59:59Z"))
+      expect(buildPool(catalog, "dinner", [], "new-year-feast").length).toBeGreaterThan(0)
+      vi.setSystemTime(new Date("2027-02-16T17:00:00Z"))
+      expect(buildPool(catalog, "dinner", [], "new-year-feast")).toHaveLength(0)
+      expect(canOpenChest(makeState({ keys: 1 }), catalog, "dinner", "new-year-feast")).toContain("Không có món")
+    } finally {
+      vi.useRealTimers()
+    }
+  })
+
+  it("never mixes everyday dishes or another active event into a seasonal chest", () => {
+    vi.useFakeTimers()
+    try {
+      vi.setSystemTime(new Date("2027-06-14T05:00:00Z"))
+      const summer = buildPool(catalog, "lunch", [], "cooling-summer")
+      const bangkok = buildPool(catalog, "lunch", [], "bangkok-street-heat")
+      const normal = buildPool(catalog, "lunch", [])
+      expect(summer.length).toBeGreaterThan(0)
+      expect(bangkok.length).toBeGreaterThan(0)
+      expect(summer.every((dish) => dish.limitedEventId === "cooling-summer" && dish.type === "limited")).toBe(true)
+      expect(bangkok.every((dish) => dish.limitedEventId === "bangkok-street-heat" && dish.type === "limited")).toBe(true)
+      expect(normal.every((dish) => dish.type === "normal")).toBe(true)
+      expect(normal).toContainEqual(expect.objectContaining({ id: "bingsu" }))
+      expect(normal.some((dish) => summer.some((eventDish) => eventDish.id === dish.id))).toBe(false)
     } finally {
       vi.useRealTimers()
     }
@@ -141,6 +166,20 @@ describe("seasonal event announcements", () => {
 })
 
 describe("fusion", () => {
+  it("can produce an event-only dish during its season but refuses after expiry without consuming materials", () => {
+    const state = makeState({ rewards: [makeReward("a"), makeReward("b"), makeReward("c")] })
+    vi.useFakeTimers()
+    try {
+      vi.setSystemTime(new Date("2027-02-07T05:00:00Z"))
+      const result = applyFuse(state, SEED_DISHES, ["a", "b", "c"], "dinner", "new-year-feast")
+      expect(result.reward.dishId).toBeDefined()
+      expect(SEED_DISHES.find((dish) => dish.id === result.reward.dishId)?.limitedEventId).toBe("new-year-feast")
+      vi.setSystemTime(new Date("2027-02-17T05:00:00Z"))
+      expect(() => applyFuse(state, SEED_DISHES, ["a", "b", "c"], "dinner", "new-year-feast")).toThrow("Sự kiện đã kết thúc")
+      expect(state.rewards.every((reward) => reward.status === "available")).toBe(true)
+      expect(applyFuse(state, SEED_DISHES, ["a", "b", "c"], "dinner").reward.dishId).not.toBe(result.reward.dishId)
+    } finally { vi.useRealTimers() }
+  })
   it("rejects rewards acquired on different days", () => {
     const rewards = [
       makeReward("a"),

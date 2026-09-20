@@ -68,12 +68,13 @@ export function buildPool(
   slot: MealSlot,
   recentIds: string[],
   eventId?: string,
+  drawTime = new Date(),
 ): Dish[] {
   let pool = dishes.filter((d) => d.active && d.mealSlots.includes(slot))
   if (eventId) {
-    const event = getFeaturedEvents(dishes).find((item) => item.id === eventId)
+    const event = getFeaturedEvents(dishes, drawTime).find((item) => item.id === eventId)
     if (!event?.active) return []
-    pool = pool.filter((dish) => event.dishIds.includes(dish.id))
+    pool = pool.filter((dish) => dish.type === "limited" && dish.limitedEventId === event.id && event.dishIds.includes(dish.id))
   } else pool = pool.filter((dish) => dish.type !== "limited")
   if (pool.length >= 5) {
     const excluded = recentIds.slice(0, RECENT_EXCLUSION)
@@ -88,11 +89,12 @@ export function canOpenChest(
   dishes: Dish[],
   slot: MealSlot,
   eventId?: string,
+  drawTime = new Date(),
 ): string | null {
   if (!hasUnlimitedChestAccess(state, dishes) && state.keys < CHEST_COST)
     return "Không đủ chìa khóa. Hãy điểm danh để nhận thêm."
   if (dishes.length === 0) return "Dữ liệu món ăn chưa sẵn sàng."
-  const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [], eventId)
+  const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [], eventId, drawTime)
   if (pool.length === 0) return "Không có món nào cho bữa này."
   return null
 }
@@ -102,14 +104,16 @@ export function applyOpenChest(
   dishes: Dish[],
   slot: MealSlot,
   eventId?: string,
+  drawTime = new Date(),
 ): {
   state: UserState
   reward: RewardInstance
   unlockedUnlimited: boolean
 } {
-  const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [], eventId)
+  const pool = buildPool(dishes, slot, state.recentDishIdsByMeal[slot] || [], eventId, drawTime)
+  if (!pool.length) throw new Error("Sự kiện đã kết thúc hoặc không còn món cho banner này.")
   const dish = drawWeighted(pool, state.favoriteTasteTags)
-  const now = new Date().toISOString()
+  const now = drawTime.toISOString()
   const unlimitedBeforeDraw = hasUnlimitedChestAccess(state, dishes)
   const cost = unlimitedBeforeDraw ? 0 : CHEST_COST
   const rewardId = crypto.randomUUID()
@@ -128,7 +132,7 @@ export function applyOpenChest(
     source: "chest",
     status: "available",
     acquiredAt: now,
-    acquiredDate: getDateKey(),
+    acquiredDate: getDateKey(drawTime),
     favorite: false,
     rarity: getDishRarity(dish),
   }

@@ -4,7 +4,9 @@ import { DishSnapshot } from "../../domain/models"
 import { useAppStore } from "../../store/useAppStore"
 import {
   PlaceResult,
+  geocodeOpenStreetMapArea,
   searchNearbyPlaces,
+  searchOpenStreetMapPlaces,
 } from "../../infrastructure/places/placesGateway"
 
 interface Props {
@@ -29,8 +31,10 @@ export function PlacesModal({ dish, onClose }: Props) {
   const [filterOpen, setFilterOpen] = useState(false)
   const [filterNear, setFilterNear] = useState(false)
   const [sortBy, setSortBy] = useState<"recommended" | "distance" | "rating">("recommended")
-  const [radiusKm, setRadiusKm] = useState(3)
-  const [dataSource, setDataSource] = useState<"google" | null>(null)
+  const [radiusKm, setRadiusKm] = useState<1 | 3 | 5>(prefs.searchRadiusMeters >= 5000 ? 5 : prefs.searchRadiusMeters <= 1000 ? 1 : 3)
+  const [dataSource, setDataSource] = useState<"google" | "osm" | null>(null)
+  const [expandedPlace, setExpandedPlace] = useState<string | null>(null)
+  const requestIdRef = useRef(0)
   const locationRef = useRef<{ lat: number; lng: number } | null>(null)
   const manualRef = useRef<HTMLInputElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
@@ -68,29 +72,51 @@ export function PlacesModal({ dish, onClose }: Props) {
   }
 
   const searchPlaces = async (lat: number, lng: number) => {
+    const requestId = ++requestIdRef.current
+    setLoading(true)
+    setError(null)
+    setExpandedPlace(null)
+    try {
+      const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+      const fullDish = useAppStore.getState().dishes.find((item) => item.id === dish.id)
+      const query = fullDish?.restaurantSearch?.queries?.[0] || dish.searchQuery
+      if (apiKey) {
+        try {
+          const places = await searchNearbyPlaces({ query, lat, lng, radiusMeters: 5000,
+            minRating: prefs.minRating, minReviews: prefs.minReviews, apiKey })
+          if (requestId !== requestIdRef.current) return
+          setAllPlaces(places)
+          setDataSource("google")
+          return
+        } catch { /* A valid OSM lookup remains available if Google is unavailable. */ }
+      }
+      const places = await searchOpenStreetMapPlaces({ query, lat, lng, radiusMeters: 5000 })
+      if (requestId !== requestIdRef.current) return
+      setAllPlaces(places)
+      setDataSource("osm")
+    } catch {
+      if (requestId === requestIdRef.current) {
+        setAllPlaces([])
+        setError("Không thể tải dữ liệu quán lúc này. Thử lại hoặc mở bản đồ.")
+      }
+    } finally {
+      if (requestId === requestIdRef.current) setLoading(false)
+    }
+  }
+
+  const searchManualArea = async () => {
+    const area = manualInput.trim()
+    if (!area) { manualRef.current?.focus(); return }
     setLoading(true)
     setError(null)
     try {
-      const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-      if (!apiKey) {
-        setAllPlaces([])
-        setError("Tìm quán trực tiếp chưa được cấu hình. Bạn có thể mở Google Maps với món và khu vực đã chọn.")
-      } else {
-        const fullDish = useAppStore.getState().dishes.find((item) => item.id === dish.id)
-        const places = await searchNearbyPlaces({
-          query: fullDish?.restaurantSearch?.queries?.[0] || dish.searchQuery,
-          lat,
-          lng,
-          radiusMeters: Math.max(radiusKm * 1000, prefs.searchRadiusMeters),
-          minRating: prefs.minRating,
-          minReviews: prefs.minReviews,
-          apiKey,
-        })
-        setAllPlaces(places)
-        setDataSource("google")
-      }
+      const position = await geocodeOpenStreetMapArea(area)
+      if (!position) { setError("Không tìm được khu vực này. Hãy thử ghi thêm tên thành phố."); return }
+      locationRef.current = position
+      setLocState("granted")
+      await searchPlaces(position.lat, position.lng)
     } catch {
-      setError("Không thể tìm quán. Thử lại sau hoặc mở Google Maps.")
+      setError("Không thể tìm khu vực lúc này. Hãy thử lại hoặc mở bản đồ.")
     } finally {
       setLoading(false)
     }
@@ -174,7 +200,7 @@ export function PlacesModal({ dish, onClose }: Props) {
               📍 Dùng vị trí hiện tại của tôi
             </button>
           )}
-          {locState === "idle" && <div className="flex gap-2"><input ref={manualRef} value={manualInput} onChange={(event) => setManualInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") openMapsSearch() }} placeholder="Hoặc nhập khu vực: Cầu Giấy, Hà Nội" className="flex-1 min-w-0 px-3 py-2.5 rounded-xl text-sm bg-[#162b3c] text-white" /><button onClick={openMapsSearch} className="px-3 text-[#00d4ff]">Tìm</button></div>}
+          {locState === "idle" && <div className="flex gap-2"><input ref={manualRef} value={manualInput} onChange={(event) => setManualInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") void searchManualArea() }} placeholder="Hoặc nhập khu vực: Cầu Giấy, Hà Nội" className="flex-1 min-w-0 px-3 py-2.5 rounded-xl text-sm bg-[#162b3c] text-white" /><button onClick={() => void searchManualArea()} className="px-3 text-[#00d4ff]">Tìm</button></div>}
 
           {locState === "requesting" && (
             <div
@@ -190,6 +216,7 @@ export function PlacesModal({ dish, onClose }: Props) {
               </span>
             </div>
           )}
+          {locState === "granted" && <div className="flex items-center justify-between gap-2 text-xs text-[#8da2b4]"><span>📍 Đang tìm quanh {manualInput.trim() || "vị trí của bạn"}</span><button type="button" className="text-[#00d4ff]" onClick={() => { setLocState("idle"); setAllPlaces([]); setDataSource(null); setManualInput(""); requestIdRef.current++ }}>Đổi khu vực</button></div>}
 
           {(locState === "denied" || locState === "error") && (
             <>
@@ -226,7 +253,7 @@ export function PlacesModal({ dish, onClose }: Props) {
                   value={manualInput}
                   onChange={(e) => setManualInput(e.target.value)}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") openMapsSearch()
+                    if (e.key === "Enter") void searchManualArea()
                   }}
                   placeholder="Quận 1, TP.HCM..."
                   className="flex-1 px-3 py-2.5 rounded-xl text-sm outline-none"
@@ -243,7 +270,7 @@ export function PlacesModal({ dish, onClose }: Props) {
                   }}
                 />
                 <button
-                  onClick={openMapsSearch}
+                  onClick={() => void searchManualArea()}
                   className="px-4 py-2 rounded-xl text-sm font-bold flex-shrink-0"
                   style={{
                     background: "rgba(0,212,255,0.15)",
@@ -286,18 +313,14 @@ export function PlacesModal({ dish, onClose }: Props) {
           {allPlaces.length > 0 && (
             <>
               <div className="flex items-center gap-2">
-                <FilterChip
-                  active={filterOpen}
-                  onClick={() => setFilterOpen(!filterOpen)}
-                  label="Đang mở"
-                />
+                {dataSource === "google" && <FilterChip active={filterOpen} onClick={() => setFilterOpen(!filterOpen)} label="Đang mở" />}
                 <FilterChip
                   active={filterNear}
                   onClick={() => setFilterNear(!filterNear)}
                   label="≤ 1 km"
                 />
-                <select aria-label="Sắp xếp quán" value={sortBy} onChange={(event) => setSortBy(event.target.value as typeof sortBy)} className="min-w-0 text-xs bg-[#10293b] text-[#b4d3de] p-2"><option value="recommended">Gợi ý</option><option value="distance">Gần nhất</option><option value="rating">Rating cao</option></select>
-                <select aria-label="Bán kính" value={radiusKm} onChange={(event) => setRadiusKm(Number(event.target.value))} className="text-xs bg-[#10293b] text-[#b4d3de] p-2"><option value={1}>1 km</option><option value={3}>3 km</option><option value={5}>5 km</option></select>
+                <select aria-label="Sắp xếp quán" value={sortBy} onChange={(event) => setSortBy(event.target.value as typeof sortBy)} className="min-w-0 text-xs bg-[#10293b] text-[#b4d3de] p-2 rounded-xl"><option value="recommended">Gợi ý</option><option value="distance">Gần nhất</option>{dataSource === "google" && <option value="rating">Rating cao</option>}</select>
+                <select aria-label="Bán kính" value={radiusKm} onChange={(event) => setRadiusKm(Number(event.target.value) as 1 | 3 | 5)} className="text-xs bg-[#10293b] text-[#b4d3de] p-2 rounded-xl"><option value={1}>1 km</option><option value={3}>3 km</option><option value={5}>5 km</option></select>
                 <button
                   onClick={openMapsSearch}
                   className="ml-auto text-xs flex-shrink-0"
@@ -312,8 +335,8 @@ export function PlacesModal({ dish, onClose }: Props) {
           {/* Place cards */}
           {displayed.length > 0 && (
             <>
-              {displayed.map((place, i) => (
-                <PlaceCard key={i} place={place} />
+              {displayed.map((place) => (
+                <PlaceCard key={`${place.name}:${place.lat}:${place.lng}`} place={place} expanded={expandedPlace === `${place.name}:${place.lat}:${place.lng}`} onToggle={() => setExpandedPlace(expandedPlace === `${place.name}:${place.lat}:${place.lng}` ? null : `${place.name}:${place.lat}:${place.lng}`)} />
               ))}
 
               {/* Attribution — required by Google Maps Platform TOS */}
@@ -332,6 +355,7 @@ export function PlacesModal({ dish, onClose }: Props) {
                   </span>
                 </div>
               )}
+              {dataSource === "osm" && <p className="text-xs text-center text-[#8da2b4] py-2">Dữ liệu © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="underline">OpenStreetMap contributors</a>. Chưa có điểm đánh giá; hãy kiểm tra thực đơn trước khi đến.</p>}
             </>
           )}
 
@@ -409,17 +433,20 @@ function FilterChip({
   )
 }
 
-function PlaceCard({ place }: { place: PlaceResult }) {
+function PlaceCard({ place, expanded, onToggle }: { place: PlaceResult; expanded: boolean; onToggle(): void }) {
+  const box = [place.lng - 0.004, place.lat - 0.003, place.lng + 0.004, place.lat + 0.003].join(",")
+  const mapUrl = `https://www.openstreetmap.org/export/embed.html?${new URLSearchParams({ bbox: box, layer: "mapnik", marker: `${place.lat},${place.lng}` })}`
   return (
     <div
       className="p-3.5 rounded-2xl transition-all"
+      onClick={(event) => { if (!(event.target as Element).closest("a, button, iframe")) onToggle() }}
       style={{
         background: "rgba(22,32,64,0.5)",
         border: "1px solid rgba(0,212,255,0.08)",
       }}
     >
       <div className="flex items-start justify-between gap-2 mb-1.5">
-        <p className="text-sm font-bold leading-tight flex-1">{place.name}</p>
+        <button type="button" onClick={onToggle} aria-expanded={expanded} className="text-sm font-bold leading-tight flex-1 text-left">{place.name}</button>
         {place.isOpen !== undefined && (
           <span
             className="text-[11px] px-2 py-0.5 rounded-full flex-shrink-0 font-medium"
@@ -457,6 +484,7 @@ function PlaceCard({ place }: { place: PlaceResult }) {
         )}
       </div>
       <div className="flex gap-2">
+        <button type="button" aria-expanded={expanded} onClick={onToggle} className="px-3 py-2 rounded-xl text-xs font-bold transition-all" style={{ background:"rgba(0,212,255,0.12)", color:"#00d4ff", border:"1px solid rgba(0,212,255,0.2)" }}>{expanded ? "Ẩn bản đồ ↑" : "Xem bản đồ ↓"}</button>
         <a
           href={place.mapsUrl}
           target="_blank"
@@ -484,6 +512,7 @@ function PlaceCard({ place }: { place: PlaceResult }) {
           Chỉ đường
         </a>
       </div>
+      {expanded && <div className="mt-3"><iframe className="places-map" src={mapUrl} loading="lazy" title={`Bản đồ quán ${place.name}`} referrerPolicy="no-referrer" /><p className="text-[11px] mt-1 text-[#8da2b4]">Bản đồ © OpenStreetMap contributors</p></div>}
     </div>
   )
 }

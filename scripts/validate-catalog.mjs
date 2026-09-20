@@ -8,13 +8,15 @@ const events = readFileSync(resolve("src/domain/events.ts"), "utf8")
 const knownTags = new Set([...registry.matchAll(/\["([a-z-]+)",\s*"[^"]+",\s*"[^"]+",\s*"(?:cuisine|region|foodType|taste|ingredient|occasion|price|style)"\]/g)].map((match) => match[1]))
 const dishes = [...seed.matchAll(/\{\s*id:\s*"([a-z0-9-]+)"([\s\S]*?)\n\s*\},/g)].map(([_, id, body]) => ({ id, body }))
 const dishIds = new Set()
+const catalogEventOwner = new Map()
 const errors = []
-for (const match of eventCatalog.matchAll(/\["([a-z0-9-]+)", "([^"]+)", "([^"]+)", "([a-z-]+)", "([A-Z]+)", "([a-z-]+)", "(common|rare|epic|diamond)", \[([^\]]+)\], \[([^\]]+)\]\]/g)) {
+for (const match of eventCatalog.matchAll(/\["([a-z0-9-]+)", "([^"]+)", "([^"]+)", (?:(?:"([a-z-]+)")|null), "([A-Z]+)", "([a-z-]+)", "(common|rare|epic|diamond)", \[([^\]]+)\], \[([^\]]+)\]\]/g)) {
   const [, id, name, query, event, country, category, rarity, slots, tags] = match
   if (dishIds.has(id)) errors.push(`ID trùng: ${id}`)
   dishIds.add(id)
   if (!name || !query || !country || !category || !rarity || !slots) errors.push(`Metadata món sự kiện thiếu: ${id}`)
-  if (!events.includes(`id: "${event}"`)) errors.push(`Event không tồn tại: ${event}`)
+  if (event && !events.includes(`id: "${event}"`)) errors.push(`Event không tồn tại: ${event}`)
+  if (event) catalogEventOwner.set(id, event)
   for (const tag of [...tags.matchAll(/"([a-z-]+)"/g)].map((match) => match[1])) if (!knownTags.has(tag)) errors.push(`Tag ${tag} không tồn tại: ${id}`)
   if (!existsSync(resolve(`public/assets/food/full/${id}.webp`))) errors.push(`Thiếu ảnh: ${id}`)
 }
@@ -35,14 +37,18 @@ for (const dish of dishes) {
   if (!existsSync(resolve(`public/assets/food/full/${dish.id}.webp`))) errors.push(`Thiếu ảnh: ${dish.id}`)
 }
 const eventIds = new Set()
-for (const [_, id, contents] of events.matchAll(/\{ id: "([a-z-]+)", name: \{[\s\S]*?dishIds: \[([^\]]+)\] \},/g)) {
+for (const [_, id, bannerPath, contents] of events.matchAll(/\{ id: "([a-z-]+)", name: \{[\s\S]*?bannerImage: "([^"]+)", theme: \{[^}]+\}, dishIds: \[([^\]]+)\] \},/g)) {
   if (eventIds.has(id)) errors.push(`Event ID trùng: ${id}`)
   eventIds.add(id)
   const ids = [...contents.matchAll(/"([a-z0-9-]+)"/g)].map((match) => match[1])
   if (ids.length < 6 || ids.length > 8) errors.push(`Event ${id}: phải có 6–8 món`)
   if (new Set(ids).size !== ids.length) errors.push(`Event ${id}: món trùng`)
-  for (const dishId of ids) if (!dishIds.has(dishId)) errors.push(`Event ${id}: thiếu ${dishId}`)
-  if (!existsSync(resolve(`public/assets/events/${id}/banner.webp`))) errors.push(`Event ${id}: thiếu banner`)
+  for (const dishId of ids) {
+    if (!dishIds.has(dishId)) errors.push(`Event ${id}: thiếu ${dishId}`)
+    if (catalogEventOwner.get(dishId) !== id) errors.push(`Event ${id}: ${dishId} không thuộc riêng banner này`)
+  }
+  for (const [dishId, owner] of catalogEventOwner) if (owner === id && !ids.includes(dishId)) errors.push(`Event ${id}: chưa liệt kê món riêng ${dishId}`)
+  if (!existsSync(resolve(`public${bannerPath}`))) errors.push(`Event ${id}: thiếu banner ${bannerPath}`)
 }
 if (eventIds.size !== 8) errors.push(`Cần 8 event theo mùa (hiện có ${eventIds.size})`)
 const localEvents = JSON.parse(readFileSync(resolve("src/infrastructure/events/limitedEvents.json"), "utf8"))

@@ -1,6 +1,6 @@
 import { Dish } from "../../domain/models"
 import { enrichDish } from "./enrichDish"
-import { EVENT_DISHES } from "./eventCatalog"
+import { CURATED_NORMAL_DISHES, EVENT_DISHES } from "./eventCatalog"
 
 const RAW_SEED_DISHES: Dish[] = [
   {
@@ -695,4 +695,4 @@ const RAW_SEED_DISHES: Dish[] = [
   },
 ]
 
-export const SEED_DISHES: Dish[] = [...RAW_SEED_DISHES.map(enrichDish), ...EVENT_DISHES]
+export const SEED_DISHES: Dish[] = [...RAW_SEED_DISHES.map(enrichDish), ...CURATED_NORMAL_DISHES, ...EVENT_DISHES]

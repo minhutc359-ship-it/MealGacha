@@ -10,15 +10,18 @@ import { PlacesModal } from "../components/places/PlacesModal"
 import { getDateKey } from "../domain/dateKey"
 import { FoodImage } from "../components/food/FoodImage"
 import { RevealModal } from "../components/chest/RevealModal"
-import { playSound } from "../infrastructure/audio/soundEngine"
+import { playSound, preloadRewardReceivedTrack, startSpinResultTrack } from "../infrastructure/audio/soundEngine"
 import { RARITY_LABELS } from "../components/ui/RarityFrame"
 import { FusionRitual } from "../components/chest/FusionRitual"
+import { getFeaturedEvents } from "../domain/events"
+import { buildPool } from "../domain/drawReward"
 
 type SlotFilter = "all" | MealSlot
 type StatusFilter = "all" | "available" | "consumed"
 
 export function CollectionPage() {
   const user = useAppStore((s) => s.user)
+  const dishes = useAppStore((s) => s.dishes)
   const fuse = useAppStore((s) => s.fuse)
   const toggleFavorite = useAppStore((s) => s.toggleFavorite)
   const showToast = useAppStore((s) => s.showToast)
@@ -29,11 +32,16 @@ export function CollectionPage() {
   const [fusionMode, setFusionMode] = useState(false)
   const [selected, setSelected] = useState<string[]>([])
   const [targetSlot, setTargetSlot] = useState<MealSlot>("lunch")
+  const [selectedEventId, setSelectedEventId] = useState("")
   const [placeDish, setPlaceDish] = useState<RewardInstance | null>(null)
   const [fusionResult, setFusionResult] = useState<RewardInstance | null>(null)
   const [fusionRitual, setFusionRitual] = useState<{ materials: RewardInstance[]; result: RewardInstance } | null>(null)
 
   const today = getDateKey()
+  const featuredEvents = getFeaturedEvents(dishes)
+  const eventTitles = new Map(featuredEvents.map((event) => [event.id, event.title]))
+  const activeEvents = featuredEvents.filter((event) => event.active &&
+    (["breakfast", "lunch", "dinner"] as MealSlot[]).some((slot) => buildPool(dishes, slot, [], event.id).length > 0))
 
   const filtered = useMemo(() => {
     return [...user.rewards].reverse().filter((r) => {
@@ -79,18 +87,20 @@ export function CollectionPage() {
 
   const handleFuse = () => {
     if (selected.length !== 3) return
-    const result = fuse(selected as [string, string, string], targetSlot)
+    const result = fuse(selected as [string, string, string], targetSlot, selectedEventId || undefined)
     if (result.error) {
       showToast(result.error, "error")
       return
     }
     if (result.reward) {
+      preloadRewardReceivedTrack()
       setFusionRitual({ materials: selected.map((id) => user.rewards.find((item) => item.id === id)!), result: result.reward })
       playSound("fusion", user.preferences.soundEnabled)
     }
     showToast(`✨ Ghép thành công: ${result.reward?.dish.name}!`, "success")
     setFusionMode(false)
     setSelected([])
+    setSelectedEventId("")
   }
 
   const availableToday = user.rewards.filter(
@@ -117,6 +127,7 @@ export function CollectionPage() {
           onClick={() => {
             setFusionMode(!fusionMode)
             setSelected([])
+            setSelectedEventId("")
           }}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-bold transition-all"
           style={
@@ -151,6 +162,21 @@ export function CollectionPage() {
             border: "1px solid rgba(168,85,247,0.2)",
           }}
         >
+          <label className="fusion-event-selector">
+            <span>Banner nhận món</span>
+            <select aria-label="Banner nhận món sau dung hợp" value={selectedEventId} onChange={(event) => {
+              const id = event.target.value
+              setSelectedEventId(id)
+              if (id && !buildPool(dishes, targetSlot, [], id).length) {
+                const firstSlot = (["breakfast", "lunch", "dinner"] as MealSlot[]).find((slot) => buildPool(dishes, slot, [], id).length)
+                if (firstSlot) setTargetSlot(firstSlot)
+              }
+            }}>
+              <option value="">Món thường · quanh năm</option>
+              {activeEvents.map((event) => <option key={event.id} value={event.id}>{event.icon} {event.title} · chỉ trong sự kiện</option>)}
+            </select>
+            <small>{selectedEventId ? "Chỉ ghép ra món riêng của sự kiện đang diễn ra. Hết hạn không thể ghép ra nữa." : "Ghép ra món thuộc pool sáng, trưa hoặc tối quanh năm."}</small>
+          </label>
           {/* Selection progress */}
           <div className="flex items-center gap-2 mb-3">
             {[0, 1, 2].map((i) => {
@@ -220,6 +246,7 @@ export function CollectionPage() {
                   <button
                     key={s}
                     onClick={() => setTargetSlot(s)}
+                    disabled={Boolean(selectedEventId && !buildPool(dishes, s, [], selectedEventId).length)}
                     className="py-2 rounded-xl text-xs font-semibold transition-all"
                     style={
                       targetSlot === s
@@ -383,6 +410,7 @@ export function CollectionPage() {
                   <RewardCard
                     key={r.id}
                     reward={r}
+                    eventTitle={eventTitles.get(dishes.find((dish) => dish.id === r.dishId)?.limitedEventId ?? "")}
                     fusionMode={fusionMode}
                     isSelected={selected.includes(r.id)}
                     selectable={canSelect(r)}
@@ -418,7 +446,7 @@ export function CollectionPage() {
           onGoCollection={() => setFusionResult(null)}
         />
       )}
-      {fusionRitual && <FusionRitual materials={fusionRitual.materials} result={fusionRitual.result} reducedMotion={user.preferences.reducedMotion || window.matchMedia("(prefers-reduced-motion: reduce)").matches} onComplete={() => { setFusionResult(fusionRitual.result); setFusionRitual(null) }} />}
+      {fusionRitual && <FusionRitual materials={fusionRitual.materials} result={fusionRitual.result} reducedMotion={user.preferences.reducedMotion || window.matchMedia("(prefers-reduced-motion: reduce)").matches} onComplete={() => { startSpinResultTrack(user.preferences.soundEnabled); setFusionResult(fusionRitual.result); setFusionRitual(null) }} />}
     </div>
   )
 }
@@ -452,6 +480,7 @@ function EmptyState() {
 
 function RewardCard({
   reward,
+  eventTitle,
   fusionMode,
   isSelected,
   selectable,
@@ -461,6 +490,7 @@ function RewardCard({
   onFindPlaces,
 }: {
   reward: RewardInstance
+  eventTitle?: string
   fusionMode: boolean
   isSelected: boolean
   selectable: boolean
@@ -525,6 +555,7 @@ function RewardCard({
           >
             {RARITY_LABELS[reward.rarity ?? "common"]}
           </span>
+          {eventTitle && <span className="reward-event-inline" title="Món chỉ nhận được trong thời gian sự kiện">✦ {eventTitle}</span>}
           {reward.source === "fusion" && (
             <span
               className="text-xs px-1.5 py-0.5 rounded-md"

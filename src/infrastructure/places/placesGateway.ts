@@ -1,6 +1,8 @@
 export interface PlaceResult {
   name: string
   address: string
+  lat: number
+  lng: number
   rating?: number
   userRatingCount?: number
   distanceKm: number
@@ -60,6 +62,7 @@ export function haversine(
 export function scoreAndSort(
   places: PlaceResult[],
   radiusKm: number,
+  limit = 5,
 ): PlaceResult[] {
   return places
     .map((place) => {
@@ -68,11 +71,11 @@ export function scoreAndSort(
       const distanceScore = Math.max(1 - place.distanceKm / radiusKm, 0)
       return {
         ...place,
-        _score: 0.55 * ratingScore + 0.3 * volumeScore + 0.15 * distanceScore,
+        _score: (place._score ?? 0.55 * ratingScore + 0.3 * volumeScore) + 0.15 * distanceScore,
       }
     })
     .sort((a, b) => (b._score ?? 0) - (a._score ?? 0))
-    .slice(0, 5)
+    .slice(0, limit)
 }
 
 export async function searchNearbyPlaces(
@@ -133,6 +136,8 @@ export async function searchNearbyPlaces(
       if (!name) return null
       return {
         name,
+        lat: latitude,
+        lng: longitude,
         address: place.formattedAddress ?? "",
         rating: place.rating ?? 0,
         userRatingCount: place.userRatingCount ?? 0,
@@ -179,9 +184,67 @@ interface PhotonFeature {
   }
 }
 
+const PHOTON_URL = "https://photon.komoot.io/api/"
+const OVERPASS_URL = "https://overpass-api.de/api/interpreter"
+const osmCache = new Map<string, PlaceResult[]>()
+
+export async function geocodeOpenStreetMapArea(query: string): Promise<{ lat: number; lng: number } | null> {
+  const params = new URLSearchParams({ q: query.trim(), limit: "1", lang: "vi" })
+  const response = await fetch(`${PHOTON_URL}?${params}`)
+  if (!response.ok) throw new Error(`Photon ${response.status}`)
+  const payload = await response.json() as { features?: PhotonFeature[] }
+  const [lng, lat] = payload.features?.[0]?.geometry?.coordinates ?? []
+  return typeof lat === "number" && typeof lng === "number" && Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng } : null
+}
+
+interface OsmElement {
+  type: "node" | "way" | "relation"
+  id: number
+  lat?: number
+  lon?: number
+  center?: { lat: number; lon: number }
+  tags?: Record<string, string>
+}
+
+function osmAddress(tags: Record<string, string>): string {
+  return [tags["addr:housenumber"], tags["addr:street"], tags["addr:district"], tags["addr:city"]]
+    .filter(Boolean).join(" ") || "Địa chỉ chưa được cập nhật trên OpenStreetMap"
+}
+
+function queryWords(query: string): string[] {
+  return query.toLocaleLowerCase("vi").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .split(/[^\p{L}\p{N}]+/u).filter((part) => part.length > 2 && !["quan", "nha", "hang", "restaurant", "mon"].includes(part))
+}
+
+async function searchNearbyOsmAmenities(options: OpenStreetMapSearchOptions): Promise<PlaceResult[]> {
+  const radius = Math.min(5000, Math.max(500, options.radiusMeters))
+  const query = `[out:json][timeout:15];nwr(around:${radius},${options.lat},${options.lng})["amenity"~"^(restaurant|fast_food|cafe|food_court)$"]["name"];out center 700;`
+  const response = await fetch(OVERPASS_URL, { method: "POST", body: new URLSearchParams({ data: query }) })
+  if (!response.ok) throw new Error(`Overpass ${response.status}`)
+  const payload = await response.json() as { elements?: OsmElement[] }
+  const words = queryWords(options.query)
+  return (payload.elements ?? []).flatMap((element): PlaceResult[] => {
+    const lat = element.lat ?? element.center?.lat
+    const lng = element.lon ?? element.center?.lon
+    const name = element.tags?.name?.trim()
+    if (!name || lat === undefined || lng === undefined) return []
+    const distanceKm = haversine(options.lat, options.lng, lat, lng)
+    if (distanceKm > radius / 1000) return []
+    const haystack = `${name} ${element.tags?.cuisine ?? ""} ${element.tags?.description ?? ""}`
+      .toLocaleLowerCase("vi").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    const relevance = words.length ? words.filter((word) => haystack.includes(word)).length / words.length : 0
+    return [{ name, address: osmAddress(element.tags ?? {}), lat, lng, distanceKm,
+      mapsUrl: `https://www.openstreetmap.org/${element.type}/${element.id}`,
+      _score: relevance * 0.45 }]
+  })
+}
+
 export async function searchOpenStreetMapPlaces(
   options: OpenStreetMapSearchOptions,
 ): Promise<PlaceResult[]> {
+  const cacheKey = `${options.query}:${options.lat.toFixed(3)}:${options.lng.toFixed(3)}:${options.radiusMeters}`
+  const cached = osmCache.get(cacheKey)
+  if (cached) return cached
   const radiusKm = options.radiusMeters / 1000
   const params = new URLSearchParams({
     q: options.query,
@@ -193,12 +256,16 @@ export async function searchOpenStreetMapPlaces(
   params.append("osm_tag", "amenity:restaurant")
   params.append("osm_tag", "amenity:fast_food")
   params.append("osm_tag", "amenity:cafe")
-  const response = await fetch(`https://photon.komoot.io/api/?${params}`)
-  if (!response.ok) throw new Error(`Photon ${response.status}`)
-
-  const payload = (await response.json()) as { features?: PhotonFeature[] }
+  let features: PhotonFeature[] = []
+  let photonAvailable = false
+  try {
+    const response = await fetch(`${PHOTON_URL}?${params}`)
+    if (!response.ok) throw new Error(`Photon ${response.status}`)
+    photonAvailable = true
+    features = ((await response.json()) as { features?: PhotonFeature[] }).features ?? []
+  } catch { /* Overpass still returns nearby venues when text search is unavailable. */ }
   const seen = new Set<string>()
-  const places = (payload.features ?? [])
+  const places = features
     .map((element): PlaceResult | null => {
       const [longitude, latitude] = element.geometry?.coordinates ?? []
       const properties = element.properties ?? {}
@@ -213,14 +280,30 @@ export async function searchOpenStreetMapPlaces(
       const osmType = properties.osm_type === "N" ? "node" : properties.osm_type === "W" ? "way" : "relation"
       return {
         name,
+        lat: latitude,
+        lng: longitude,
         address,
         distanceKm: haversine(options.lat, options.lng, latitude, longitude),
         mapsUrl: properties.osm_id
           ? `https://www.openstreetmap.org/${osmType}/${properties.osm_id}`
           : `https://www.openstreetmap.org/search?query=${encodeURIComponent(name)}`,
+        _score: 0.45,
       }
     })
     .filter((place): place is PlaceResult => place !== null)
     .filter((place) => place.distanceKm <= radiusKm)
-  return scoreAndSort(places, radiusKm)
+  // Photon matches names and categories; nearby OSM amenities fill sparse dish queries.
+  let nearby: PlaceResult[] = []
+  let overpassAvailable = false
+  if (places.length < 10) {
+    try { nearby = await searchNearbyOsmAmenities(options); overpassAvailable = true } catch { /* Photon results still usable. */ }
+  }
+  for (const place of nearby) {
+    const key = `${place.name}:${place.lat.toFixed(5)}:${place.lng.toFixed(5)}`
+    if (!seen.has(key)) { places.push(place); seen.add(key) }
+  }
+  if (!photonAvailable && !overpassAvailable) throw new Error("Không kết nối được dữ liệu quán OpenStreetMap.")
+  const results = scoreAndSort(places, radiusKm, 20)
+  osmCache.set(cacheKey, results)
+  return results
 }

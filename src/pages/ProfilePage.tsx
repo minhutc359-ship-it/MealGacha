@@ -1,3 +1,4 @@
+import { useRef, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { CollectionPage } from "./CollectionPage"
 import { Timeline } from "../components/profile/Timeline"
@@ -16,15 +17,31 @@ export function ProfilePage() {
   const navigate = useNavigate()
   const tab = (["overview", "timeline", "collection"].includes(params.get("tab") || "") ? params.get("tab") : "overview") as Tab
   const title = TITLES.find((item) => item.id === user.equippedTitleId) || TITLES[0]
+  const [editingName, setEditingName] = useState(false)
+  const [nameDraft, setNameDraft] = useState("")
+  const nameInput = useRef<HTMLInputElement>(null)
+  const cancelNameEdit = useRef(false)
+  const saveName = () => {
+    if (!editingName) return
+    if (!cancelNameEdit.current) setDisplayName(nameDraft.trim())
+    cancelNameEdit.current = false
+    setEditingName(false)
+  }
   const uniqueOpened = new Set(user.rewards.map((item) => item.dishId)).size
   const uniqueCheckin = new Set(user.timelinePosts.map((item) => item.dishId)).size
   const diamondCount = new Set(user.rewards.filter((item) => getDishRarity(dishes.find((dish) => dish.id === item.dishId) || { id: item.dishId, name: item.dish.name, searchQuery: item.dish.searchQuery, mealSlots: [item.mealSlot], tags: [], weight: 100, active: false }) === "diamond").map((item) => item.dishId)).size
   const selectTab = (value: Tab) => setParams(value === "overview" ? {} : { tab: value })
   return <div className="profile-page">
     <header className={`profile-hero theme-${title.reward.background}`}>
-      <small>HỒ SƠ VỊ GIÁC</small><h1>{user.displayName || "Nhà thám hiểm"}</h1><span>{title.icon} {title.name}</span>
-      <label>Tên hiển thị <input value={user.displayName} maxLength={32} onChange={(event) => setDisplayName(event.target.value)} /></label>
-      <label>Danh hiệu <select value={title.id} onChange={(event) => equip(event.target.value)}>{TITLES.filter((item) => user.unlockedTitleIds.includes(item.id)).map((item) => <option value={item.id} key={item.id}>{item.icon} {item.name}</option>)}</select></label>
+      <small>HỒ SƠ VỊ GIÁC</small>
+      <h1>{editingName ? <input ref={nameInput} autoFocus aria-label="Sửa tên hiển thị" className="profile-inline-name" maxLength={32} value={nameDraft} onChange={(event) => setNameDraft(event.target.value)} onBlur={saveName} onKeyDown={(event) => {
+        if (event.key === "Enter") event.currentTarget.blur()
+        if (event.key === "Escape") { cancelNameEdit.current = true; event.currentTarget.blur() }
+      }} /> : <button className="profile-edit-name" title="Chạm để sửa tên" onClick={() => { cancelNameEdit.current = false; setNameDraft(user.displayName); setEditingName(true); requestAnimationFrame(() => nameInput.current?.focus()) }}>{user.displayName || "Nhà thám hiểm"}<span aria-hidden="true">✎</span></button>}</h1>
+      <div className="profile-title-picker">
+        <select aria-label="Đổi danh hiệu và giao diện" title="Chạm để đổi danh hiệu và giao diện" value={title.id} onChange={(event) => equip(event.target.value)}>{TITLES.filter((item) => user.unlockedTitleIds.includes(item.id) || item.id === title.id).map((item) => <option value={item.id} key={item.id}>{item.icon} {item.name}</option>)}</select>
+        <span aria-hidden="true">⌄</span>
+      </div>
     </header>
     <nav className="profile-tabs" aria-label="Hồ sơ vị giác">
       {(["overview", "timeline", "collection"] as Tab[]).map((item) => <button key={item} className={tab === item ? "is-active" : ""} onClick={() => selectTab(item)}>{item === "overview" ? "Tổng quan" : item === "timeline" ? "Dòng thời gian" : "Bộ sưu tập"}</button>)}
