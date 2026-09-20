@@ -2,6 +2,7 @@ import { defineConfig, type HtmlTagDescriptor, type Plugin } from "vite"
 import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 import path from "node:path"
+import { devContentWriter } from "./scripts/devContentWriter"
 
 import siteConfiguration from "./.figma/make/site.json"
 
@@ -25,6 +26,7 @@ export default defineConfig(({ mode }) => {
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: "/src/**/*.stories.{ts,tsx,js,jsx}" }),
+      ...(mode === "development" ? [devContentWriter()] : []),
     ],
     resolve: {
       alias: {

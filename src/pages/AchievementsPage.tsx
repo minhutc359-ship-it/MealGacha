@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react"
+import { createPortal } from "react-dom"
+import { useSearchParams } from "react-router-dom"
 import { FoodImage } from "../components/food/FoodImage"
 import { PlacesModal } from "../components/places/PlacesModal"
 import { RarityFrame, RARITY_LABELS } from "../components/ui/RarityFrame"
@@ -16,11 +18,13 @@ import {
 import { getDishRarity } from "../domain/drawReward"
 import { useAppStore } from "../store/useAppStore"
 import { TITLES, TitleDefinition, titleProgress } from "../domain/titles"
+import { getFeaturedEvents } from "../domain/events"
 
 const SLOTS: MealSlot[] = ["breakfast", "lunch", "dinner"]
 
 export function AchievementsPage() {
-  const [tab, setTab] = useState<"titles" | "collection">("titles")
+  const [params] = useSearchParams()
+  const [tab, setTab] = useState<"titles" | "collection">(params.get("tab") === "collection" ? "collection" : "titles")
   const [selectedTitle, setSelectedTitle] = useState<TitleDefinition | null>(null)
   const user = useAppStore((state) => state.user)
   const dishes = useAppStore((state) => state.dishes)
@@ -28,14 +32,15 @@ export function AchievementsPage() {
   return <div className="achievements-shell">
     <nav className="achievement-main-tabs"><button className={tab === "titles" ? "is-active" : ""} onClick={() => setTab("titles")}>Danh hiệu</button><button className={tab === "collection" ? "is-active" : ""} onClick={() => setTab("collection")}>Hồ sơ chiến tích</button></nav>
     {tab === "titles" ? <section className="titles-page"><header><small>CHINH PHỤC VỊ GIÁC</small><h1>Danh hiệu</h1><p>Hoàn thành nhiệm vụ để trang trí Hồ sơ vị giác của bạn.</p></header><div className="title-grid">{TITLES.map((title) => { const progress = titleProgress(title, user, dishes); const unlocked = user.unlockedTitleIds.includes(title.id); return <button key={title.id} className={`title-card ${unlocked ? "is-unlocked" : "is-locked"}`} onClick={() => setSelectedTitle(title)}><span>{title.icon}</span><strong>{title.name}</strong><small>{unlocked ? "ĐÃ MỞ" : `${progress.percentage}% hoàn thành`}</small><i><b style={{ width: `${progress.percentage}%` }} /></i></button> })}</div></section> : <BattleRecord />}
-    {selectedTitle && <div className="title-modal-backdrop" role="dialog" aria-modal="true" aria-label={selectedTitle.name} onClick={(event) => { if (event.target === event.currentTarget) setSelectedTitle(null) }}><div className="title-modal"><button className="title-modal-close" onClick={() => setSelectedTitle(null)}>×</button><span>{selectedTitle.icon}</span><h2>{selectedTitle.name}</h2><p>{selectedTitle.description}</p><h3>NHIỆM VỤ</h3>{titleProgress(selectedTitle, user, dishes).tasks.map((task, index) => <div className="title-task" key={index}><span>{task.complete ? "✓" : "○"}</span><strong>{task.label}</strong><small>{task.current}/{task.target}</small></div>)}<p>Phần thưởng: phông nền {selectedTitle.reward.background} · hiệu ứng {selectedTitle.reward.effect}</p>{user.unlockedTitleIds.includes(selectedTitle.id) && <button className="title-equip" onClick={() => { equip(selectedTitle.id); setSelectedTitle(null) }}>{user.equippedTitleId === selectedTitle.id ? "Đang trang bị" : "Trang bị danh hiệu"}</button>}</div></div>}
+    {selectedTitle && createPortal(<div className="title-modal-backdrop" role="dialog" aria-modal="true" aria-label={selectedTitle.name} onClick={(event) => { if (event.target === event.currentTarget) setSelectedTitle(null) }}><div className="title-modal"><button className="title-modal-close" onClick={() => setSelectedTitle(null)}>×</button><span>{selectedTitle.icon}</span><h2>{selectedTitle.name}</h2><p>{selectedTitle.description}</p><h3>NHIỆM VỤ</h3>{titleProgress(selectedTitle, user, dishes).tasks.map((task, index) => <div className="title-task" key={index}><span>{task.complete ? "✓" : "○"}</span><strong>{task.label}</strong><small>{task.current}/{task.target}</small></div>)}<p>Phần thưởng: phông nền {selectedTitle.reward.background} · hiệu ứng {selectedTitle.reward.effect}</p>{user.unlockedTitleIds.includes(selectedTitle.id) && <button className="title-equip" onClick={() => { equip(selectedTitle.id); setSelectedTitle(null) }}>{user.equippedTitleId === selectedTitle.id ? "Đang trang bị" : "Trang bị danh hiệu"}</button>}</div></div>, document.body)}
   </div>
 }
 
 function BattleRecord() {
+  const [params] = useSearchParams()
   const user = useAppStore((state) => state.user)
   const dishes = useAppStore((state) => state.dishes)
-  const [slot, setSlot] = useState<MealSlot>("breakfast")
+  const [slot, setSlot] = useState<MealSlot | "events">(params.get("banner") === "events" ? "events" : "breakfast")
   const [placeDish, setPlaceDish] = useState<Dish | null>(null)
 
   const unlockedIds = useMemo(
@@ -47,11 +52,11 @@ function BattleRecord() {
     [dishes, user.rewards],
   )
   const bannerDishes = useMemo(
-    () => getBannerDishes(dishes, slot),
+    () => slot === "events" ? [] : getBannerDishes(dishes, slot),
     [dishes, slot],
   )
   const bannerProgress = useMemo(
-    () => getCollectionProgress(user.rewards, dishes, slot),
+    () => slot === "events" ? { unlocked: 0, total: 0, percentage: 0 } : getCollectionProgress(user.rewards, dishes, slot),
     [dishes, slot, user.rewards],
   )
   const unlimited = Boolean(user.unlimitedChestUnlockedAt)
@@ -107,9 +112,12 @@ function BattleRecord() {
             </button>
           )
         })}
+        <button className={slot === "events" ? "is-active" : ""} onClick={() => setSlot("events")}>
+          <span>✦</span><div><strong>Giới hạn</strong><small>{dishes.filter((dish) => dish.type === "limited").length} món</small></div>
+        </button>
       </nav>
 
-      <section className="achievement-section">
+      {slot !== "events" ? <section className="achievement-section">
         <div className="achievement-section-heading">
           <div>
             <small>BANNER {MEAL_SLOT_LABELS[slot].toUpperCase()}</small>
@@ -122,41 +130,34 @@ function BattleRecord() {
         </div>
 
         <div className="achievement-grid">
-          {bannerDishes.map((dish) => {
-            const unlocked = unlockedIds.has(dish.id)
-            const rarity = getDishRarity(dish)
-            return (
-              <button
-                key={dish.id}
-                className={`achievement-card rarity-${rarity} ${unlocked ? "is-unlocked" : "is-locked"}`}
-                onClick={() => unlocked && setPlaceDish(dish)}
-                aria-label={unlocked ? `${dish.name}, đã mở` : `${dish.name}, chưa mở`}
-              >
-                <RarityFrame rarity={rarity} className="achievement-art">
-                  <FoodImage dishId={dish.id} name={dish.name} variant="card" />
-                  {!unlocked && (
-                    <div className="achievement-lock" aria-hidden="true">
-                      <span>⌾</span>
-                      <b>CHƯA MỞ</b>
-                    </div>
-                  )}
-                </RarityFrame>
-                <div className="achievement-card-info">
-                  <div>
-                    <strong>{dish.name}</strong>
-                    <small>{"₫".repeat(dish.priceTier ?? 1)} · {RARITY_LABELS[rarity]}</small>
-                  </div>
-                  <span>{unlocked ? "✓" : "🔒"}</span>
-                </div>
-              </button>
-            )
-          })}
+          {bannerDishes.map((dish) => <AchievementDishCard key={dish.id} dish={dish} unlocked={unlockedIds.has(dish.id)} onOpen={() => setPlaceDish(dish)} />)}
         </div>
-      </section>
+      </section> : <section className="achievement-section limited-achievement-section">
+        <div className="achievement-section-heading"><div><small>CHỈ XUẤT HIỆN TRONG SỰ KIỆN</small><h2>Bộ sưu tập giới hạn</h2></div></div>
+        {getFeaturedEvents(dishes).map((event) => {
+          const eventDishes = event.dishIds.map((id) => dishes.find((dish) => dish.id === id)).filter((dish): dish is Dish => Boolean(dish))
+          if (!eventDishes.length) return null
+          return <div className="limited-achievement-group" key={event.id}>
+            <div className="limited-achievement-heading"><div><strong>{event.icon} {event.title}</strong><small>{event.active ? "ĐANG DIỄN RA" : "SỰ KIỆN GIỚI HẠN"}</small></div><span>{eventDishes.filter((dish) => unlockedIds.has(dish.id)).length}/{eventDishes.length}</span></div>
+            <div className="achievement-grid">{eventDishes.map((dish) => <AchievementDishCard key={dish.id} dish={dish} unlocked={unlockedIds.has(dish.id)} onOpen={() => setPlaceDish(dish)} />)}</div>
+          </div>
+        })}
+      </section>}
 
       {placeDish && (
         <PlacesModal dish={placeDish} onClose={() => setPlaceDish(null)} />
       )}
     </div>
   )
+}
+
+function AchievementDishCard({ dish, unlocked, onOpen }: { dish: Dish; unlocked: boolean; onOpen(): void }) {
+  const rarity = getDishRarity(dish)
+  return <button className={`achievement-card rarity-${rarity} ${unlocked ? "is-unlocked" : "is-locked"}`} onClick={() => unlocked && onOpen()} aria-label={`${dish.name}, ${unlocked ? "đã mở" : "chưa mở"}`}>
+    <RarityFrame rarity={rarity} className="achievement-art">
+      <FoodImage dishId={dish.id} name={dish.name} imageUrl={dish.imageUrl} variant="card" />
+      {!unlocked && <div className="achievement-lock" aria-hidden="true"><span>⌾</span><b>CHƯA MỞ</b></div>}
+    </RarityFrame>
+    <div className="achievement-card-info"><div><strong>{dish.name}</strong><small>{"₫".repeat(dish.priceTier ?? 1)} · {RARITY_LABELS[rarity]}</small></div><span>{unlocked ? "✓" : "🔒"}</span></div>
+  </button>
 }

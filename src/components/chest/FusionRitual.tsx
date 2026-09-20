@@ -24,7 +24,7 @@ export function FusionRitual({ materials, result, reducedMotion, onComplete }: P
   }, [reducedMotion])
   return <div className={`fusion-ritual phase-${phase} rarity-${result.rarity || "common"}`} role="dialog" aria-modal="true" aria-label="Nghi thức dung hợp">
     <div className="fusion-space"><div className="fusion-ring" aria-hidden="true" />
-      {materials.map((reward, index) => <div className={`fusion-material material-${index + 1}`} key={reward.id}><FoodImage dishId={reward.dishId} name={reward.dish.name} variant="card" eager /><small>{reward.dish.name}</small></div>)}
+      {materials.map((reward, index) => <div className={`fusion-material material-${index + 1}`} key={reward.id}><FoodImage dishId={reward.dishId} name={reward.dish.name} imageUrl={reward.dish.imageUrl} variant="card" eager /><small>{reward.dish.name}</small></div>)}
       <div className="fusion-center" aria-hidden="true">✦</div><div className="fusion-flash" aria-hidden="true" />
     </div>
     <div className="fusion-caption"><small>FUSION MATERIAL · 3 / 3</small><h2>{phase === "flash" ? "DUNG HỢP HOÀN TẤT" : "HỘI TỤ VỊ GIÁC"}</h2><p>Ba món ăn cùng ngày đang hóa thành một phần thưởng mới.</p><button onClick={finish}>Bỏ qua hoạt cảnh</button></div>

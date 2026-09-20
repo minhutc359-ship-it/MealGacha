@@ -8,6 +8,7 @@ const KEYS = {
   adminOverride: "foodchest.admin-override.v1",
   wheel: "foodchest.wheel.v1",
   bannerOverride: "foodchest.banner-override.v1",
+  legacyBannerOverride: "foodchest.banner.local.v1",
 } as const
 
 const defaultPrefs: UserPreferences = {
@@ -185,7 +186,7 @@ export const repository = {
   },
 
   loadBannerOverride(): BannerConfig | null {
-    return safeGet(KEYS.bannerOverride, null, (raw) => {
+    const parseBanner = (raw: unknown): BannerConfig | null => {
       const parsed = z.object({
         id: z.string(),
         imageUrl: z.string(),
@@ -195,7 +196,18 @@ export const repository = {
         endsAt: z.string().optional(),
       }).safeParse(raw)
       return parsed.success ? parsed.data : null
-    })
+    }
+    return safeGet(KEYS.bannerOverride, null, parseBanner) ?? safeGet(KEYS.legacyBannerOverride, null, parseBanner)
+  },
+
+  saveBannerOverride(config: BannerConfig): void {
+    safeSet(KEYS.bannerOverride, config)
+    localStorage.removeItem(KEYS.legacyBannerOverride)
+  },
+
+  clearBannerOverride(): void {
+    localStorage.removeItem(KEYS.bannerOverride)
+    localStorage.removeItem(KEYS.legacyBannerOverride)
   },
 
   clearAll(): void {

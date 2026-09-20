@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react"
+import { createPortal } from "react-dom"
 import { DishSnapshot } from "../../domain/models"
 import { useAppStore } from "../../store/useAppStore"
 import {
@@ -32,12 +33,14 @@ export function PlacesModal({ dish, onClose }: Props) {
   const [dataSource, setDataSource] = useState<"google" | null>(null)
   const locationRef = useRef<{ lat: number; lng: number } | null>(null)
   const manualRef = useRef<HTMLInputElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
     }
     document.addEventListener("keydown", handleKey)
+    closeRef.current?.focus()
     return () => document.removeEventListener("keydown", handleKey)
   }, [onClose])
 
@@ -110,9 +113,9 @@ export function PlacesModal({ dish, onClose }: Props) {
     .filter((p) => p.distanceKm <= (filterNear ? 1 : radiusKm))
     .sort((a, b) => sortBy === "distance" ? a.distanceKm - b.distanceKm : sortBy === "rating" ? (b.rating ?? 0) - (a.rating ?? 0) : (b._score ?? 0) - (a._score ?? 0))
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4"
+      className="places-backdrop fixed inset-0 z-[100] flex items-center justify-center p-4"
       style={{ background: "rgba(8,12,24,0.92)", backdropFilter: "blur(14px)" }}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()
@@ -121,7 +124,7 @@ export function PlacesModal({ dish, onClose }: Props) {
       aria-modal="true"
     >
       <div
-        className="w-full max-w-sm rounded-3xl overflow-hidden flex flex-col"
+        className="places-panel w-full max-w-sm rounded-3xl overflow-hidden flex flex-col"
         style={{
           background: "#0e1628",
           border: "1.5px solid rgba(0,212,255,0.2)",
@@ -146,7 +149,9 @@ export function PlacesModal({ dish, onClose }: Props) {
             </p>
           </div>
           <button
+            ref={closeRef}
             onClick={onClose}
+            aria-label="Đóng danh sách quán"
             className="w-8 h-8 rounded-full flex items-center justify-center text-lg transition-colors"
             style={{ background: "rgba(107,127,153,0.1)", color: "#6b7f99" }}
           >
@@ -367,7 +372,8 @@ export function PlacesModal({ dish, onClose }: Props) {
             )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
 

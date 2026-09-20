@@ -14,7 +14,7 @@ import { getCurrentHour, getDateKey } from "../domain/dateKey"
 import { RevealModal } from "../components/chest/RevealModal"
 import { LootVfxCanvas } from "../components/chest/LootVfxCanvas"
 import { ChestOddsModal } from "../components/chest/ChestOddsModal"
-import { preloadFoodAsset } from "../infrastructure/assets/foodAssets"
+import { cacheFoodAsset, preloadFoodAsset } from "../infrastructure/assets/foodAssets"
 import {
   playSound,
   preloadChestOpeningTrack,
@@ -24,7 +24,7 @@ import {
 import { getVisibleRewards } from "../domain/rewardPresentation"
 import { hasUnlimitedChestAccess } from "../domain/achievements"
 import { getDailyQuestions } from "../domain/dailyQuiz"
-import { EVENTS, isEventActive } from "../domain/events"
+import { getFeaturedEvents } from "../domain/events"
 
 type ChestState =
   | "idle"
@@ -138,7 +138,8 @@ export function ChestPage() {
   }, [])
   const reduceMotion = user.preferences.reducedMotion || prefersReducedMotion
   const unlimited = hasUnlimitedChestAccess(user, dishes)
-  const event = EVENTS.find((item) => item.id === params.get("event") && isEventActive(item, today))
+  const requestedEventId = params.get("event")
+  const event = getFeaturedEvents(dishes).find((item) => item.id === requestedEventId && item.active)
   useEffect(() => {
     if (event && !event.dishIds.some((id) => dishes.find((dish) => dish.id === id)?.mealSlots.includes(slot))) {
       const first = dishes.find((dish) => event.dishIds.includes(dish.id))
@@ -235,6 +236,7 @@ export function ChestPage() {
     pendingRewardRef.current = result.reward
     setRitualRarity(result.reward.rarity ?? "common")
     preloadFoodAsset(result.reward.dishId, "full")
+    if (result.reward.dish.imageUrl) cacheFoodAsset(result.reward.dish.imageUrl)
     if (skipAnimation || reduceMotion) {
       customTrackRef.current = false
       setChestState("reward-rise")
@@ -329,8 +331,8 @@ export function ChestPage() {
         </div>
       </div>
 
-      {event && <div className={`chest-event-banner ${event.theme.className}`}><span>{event.icon}</span><div><strong>{event.name.vi}</strong><small>{event.dishIds.length} món trong banner sự kiện</small></div><Link to="/">Đóng ×</Link></div>}
-      {!event && <Link className="chest-event-link" to="/events">✦ Khám phá 6 sự kiện theo mùa →</Link>}
+      {event && <div className={`chest-event-banner ${event.themeClass}`}><span>{event.icon}</span><div><strong>{event.title}</strong><small>{event.dishIds.length} món trong banner sự kiện</small></div><Link to="/">Đóng ×</Link></div>}
+      {!event && <Link className="chest-event-link" to="/events">{requestedEventId ? "Sự kiện đã kết thúc hoặc chưa bắt đầu · Xem danh sách →" : "✦ Khám phá các sự kiện ẩm thực →"}</Link>}
 
       <div className="meal-banner-tabs" role="tablist" aria-label="Chọn bữa ăn">
         {(["breakfast", "lunch", "dinner"] as MealSlot[]).map((mealSlot) => {

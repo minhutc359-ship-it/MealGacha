@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+import { createPortal } from "react-dom"
 import type { Dish, MealSlot, RewardRarity } from "../../domain/models"
 import { buildPool, getDishRarity, getEffectiveWeight } from "../../domain/drawReward"
 import { useAppStore } from "../../store/useAppStore"
@@ -42,7 +43,7 @@ export function ChestOddsModal({ dishes, slot, eventId, onClose }: Props) {
     return () => document.removeEventListener("keydown", handleKey)
   }, [onClose])
 
-  return (
+  return createPortal(
     <div
       className="odds-backdrop"
       role="dialog"
@@ -79,6 +80,7 @@ export function ChestOddsModal({ dishes, slot, eventId, onClose }: Props) {
         </div>
         <p className="odds-note">Món được chọn ngẫu nhiên có trọng số và giảm lặp 3 kết quả gần nhất khi pool đủ lớn.</p>
       </section>
-    </div>
+    </div>,
+    document.body,
   )
 }

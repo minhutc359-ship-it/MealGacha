@@ -85,7 +85,7 @@ export function Timeline({ initialDishId }: { initialDishId?: string }) {
     </section>}
     {grouped.size === 0 && !editing && <div className="timeline-empty">Chưa có check-in. Chọn một món bạn đã thử và lưu lại khoảnh khắc đầu tiên.</div>}
     {[...grouped].map(([day, posts]) => <section className="timeline-group" key={day}><h3>{dateLabel(day)}</h3>{posts.map((post) => { const dish = dishes.find((item) => item.id === post.dishId); const snapshot = user.rewards.find((item) => item.dishId === post.dishId)?.dish; return <article className="timeline-post" key={post.id}>
-      <header><FoodImage dishId={post.dishId} name={dish?.name || snapshot?.name || post.dishId} variant="thumb" /><div><strong>{dish?.name || snapshot?.name || post.dishId}</strong><small>{new Date(post.createdAt).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" })}</small></div><div className="timeline-post-actions"><button onClick={() => startEdit(post)}>Sửa</button><button onClick={() => { if (window.confirm("Xóa check-in này?")) void deletePost(post.id) }}>Xóa</button></div></header>
+      <header><FoodImage dishId={post.dishId} name={dish?.name || snapshot?.name || post.dishId} imageUrl={dish?.imageUrl || snapshot?.imageUrl} variant="thumb" /><div><strong>{dish?.name || snapshot?.name || post.dishId}</strong><small>{new Date(post.createdAt).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" })}</small></div><div className="timeline-post-actions"><button onClick={() => startEdit(post)}>Sửa</button><button onClick={() => { if (window.confirm("Xóa check-in này?")) void deletePost(post.id) }}>Xóa</button></div></header>
       {post.imageId && <Photo id={post.imageId} />}{post.note && <p>{post.note}</p>}
     </article> })}</section>)}
   </div>

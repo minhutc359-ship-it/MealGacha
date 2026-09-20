@@ -1,10 +1,12 @@
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import { applyCheckIn, canCheckIn } from "./checkIn"
 import { buildPool, canOpenChest, applyOpenChest } from "./drawReward"
 import { applyFuse, canFuse } from "./fuseRewards"
 import { getDateKey } from "./dateKey"
 import { RewardInstance, UserState } from "./models"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
+import localDishes from "../infrastructure/catalog/localDishes.json"
+import { getFeaturedEvents } from "./events"
 import { getVisibleRewards } from "./rewardPresentation"
 import {
   getCollectionProgress,
@@ -160,10 +162,25 @@ describe("achievements", () => {
     }))
 
     const progress = getCollectionProgress(rewards, SEED_DISHES)
-    expect(progress.unlocked).toBe(SEED_DISHES.length)
+    expect(progress.unlocked).toBe(SEED_DISHES.filter((dish) => dish.type !== "limited").length)
+    expect(progress.total).toBe(progress.unlocked)
     expect(progress.percentage).toBe(100)
     expect(isCatalogComplete(rewards, SEED_DISHES)).toBe(true)
     expect(isCatalogComplete(rewards.slice(1), SEED_DISHES)).toBe(false)
+  })
+  it("keeps the local Tây Bắc dishes out of normal chests and unlocks their event pool only in its date range", () => {
+    const catalog = [...SEED_DISHES, ...localDishes] as typeof SEED_DISHES
+    const event = getFeaturedEvents(catalog, new Date("2026-09-18T10:00:00+07:00")).find((item) => item.id === "taybac-festival")
+    expect(event?.dishIds).toHaveLength(6)
+    expect(event?.active).toBe(true)
+    expect(buildPool(catalog, "lunch", []).every((dish) => dish.type !== "limited")).toBe(true)
+    vi.useFakeTimers()
+    try {
+      vi.setSystemTime(new Date("2026-09-18T10:00:00+07:00"))
+      expect(buildPool(catalog, "lunch", [], "taybac-festival").some((dish) => dish.limitedEventId === "taybac-festival")).toBe(true)
+      vi.setSystemTime(new Date("2026-09-20T10:00:00+07:00"))
+      expect(buildPool(catalog, "lunch", [], "taybac-festival")).toHaveLength(0)
+    } finally { vi.useRealTimers() }
   })
 })
 

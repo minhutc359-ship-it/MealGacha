@@ -179,6 +179,7 @@ export function CollectionPage() {
                     <FoodImage
                       dishId={r.dishId}
                       name={r.dish.name}
+                      imageUrl={r.dish.imageUrl}
                       variant="thumb"
                     />
                   ) : (
@@ -499,6 +500,7 @@ function RewardCard({
         <FoodImage
           dishId={reward.dishId}
           name={reward.dish.name}
+          imageUrl={reward.dish.imageUrl}
           variant="thumb"
         />
       </div>
