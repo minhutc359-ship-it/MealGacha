@@ -57,7 +57,7 @@ function getSpinTrackUrl(): string {
 }
 
 function getSpinResultTrackUrl(): string {
-  return getPublicAssetUrl("assets/audio/reward-received.mp3")
+  return getPublicAssetUrl("assets/audio/result_spin.mp3")
 }
 
 export function preloadRewardReceivedTrack(): void {
