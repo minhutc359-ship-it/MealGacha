@@ -82,7 +82,7 @@ describe("event catalog", () => {
   it("contains precisely the featured dishes without allowing limited dishes in normal chests", () => {
     const ids = new Set(SEED_DISHES.map((dish) => dish.id))
     expect(ids.size).toBe(SEED_DISHES.length)
-    expect(EVENTS).toHaveLength(6)
+    expect(EVENTS).toHaveLength(8)
     for (const event of EVENTS) {
       expect(event.dishIds).toHaveLength(event.id === "dolce-vita" ? 7 : 8)
       expect(event.dishIds.every((id) => ids.has(id))).toBe(true)

@@ -18,6 +18,8 @@ export const EVENTS: LimitedEvent[] = [
   { id: "bangkok-street-heat", name: { vi: "Bangkok Street Heat", en: "Bangkok Street Heat" }, description: { vi: "Cay, chua, thơm: một vòng chợ đêm đầy sắc màu.", en: "Bangkok night market heat." }, icon: "🌶️", enabled: true, startsAt: "2027-05-01", endsAt: "2027-07-31", bannerImage: "/assets/events/bangkok-street-heat/banner.webp", theme: { id: "bangkok", className: "event-bangkok" }, dishIds: ["pad-thai", "tom-yum-goong", "mango-sticky-rice", "som-tam", "pad-kra-pao", "boat-noodles", "green-curry", "moo-ping"] },
   { id: "dolce-vita", name: { vi: "Dolce Vita", en: "Dolce Vita" }, description: { vi: "Bữa tối Ý và ánh hoàng hôn Địa Trung Hải.", en: "Italian evenings and golden light." }, icon: "🍝", enabled: true, startsAt: "2027-08-01", endsAt: "2027-10-31", bannerImage: "/assets/events/dolce-vita/banner.webp", theme: { id: "italy", className: "event-italy" }, dishIds: ["pizza", "carbonara", "lasagna", "truffle-risotto", "ossobuco", "tiramisu", "gelato"] },
   { id: "christmas-feast", name: { vi: "Christmas Feast", en: "Christmas Feast" }, description: { vi: "Bữa tiệc cuối năm với những món ăn dành cho dịp đặc biệt.", en: "A festive year-end feast." }, icon: "🎄", enabled: true, startsAt: "2026-12-01", endsAt: "2026-12-31", bannerImage: "/assets/events/christmas-feast/banner.webp", theme: { id: "christmas", className: "event-christmas" }, dishIds: ["roast-turkey", "beef-wellington", "honey-glazed-ham", "mashed-potato", "gingerbread", "christmas-pudding", "yule-log", "hot-chocolate"] },
+  { id: "new-year-feast", name: { vi: "Năm Mới Rực Rỡ", en: "New Year Feast" }, description: { vi: "Đếm ngược cùng bàn tiệc ấm áp và món ngon mở đầu năm mới.", en: "Ring in the new year with a festive feast." }, icon: "🎆", enabled: true, startsAt: "2027-01-01", endsAt: "2027-01-15", bannerImage: "/assets/events/new-year-feast/banner.webp", theme: { id: "new-year", className: "event-new-year" }, dishIds: ["xoi-xeo", "ca-phe-trung", "com-nieu", "haidilao-hotpot", "roast-turkey", "beef-wellington", "tiramisu", "hot-chocolate"] },
+  { id: "cooling-summer", name: { vi: "Mùa Hè Thanh Mát", en: "Refreshing Summer" }, description: { vi: "Trốn nắng với món ăn tươi mát và những vị ngọt dịu mùa hè.", en: "Cool down with refreshing summer flavors." }, icon: "🍧", enabled: true, startsAt: "2027-06-01", endsAt: "2027-08-31", bannerImage: "/assets/events/cooling-summer/banner.webp", theme: { id: "summer", className: "event-summer" }, dishIds: ["mango-sticky-rice", "bingsu", "gelato", "matcha-parfait", "som-tam", "sushi", "com-lang-vong", "bun-dau"] },
 ]
 
 const DEV_OVERRIDE_KEY = "mealgacha.dev-event-override"
@@ -30,6 +32,7 @@ export function setDevEventOverride(id: string | null): void {
   if (!import.meta.env.DEV) return
   if (id === null) localStorage.removeItem(DEV_OVERRIDE_KEY)
   else localStorage.setItem(DEV_OVERRIDE_KEY, id)
+  window.dispatchEvent(new Event("mealgacha:event-preview-changed"))
 }
 
 export function isEventActive(event: LimitedEvent, date: string, override = getDevEventOverride()): boolean {
@@ -73,6 +76,12 @@ export function getFeaturedEvents(dishes: Dish[], now = new Date()): FeaturedEve
     local: true,
   }))
   return [...local, ...seasonal]
+}
+
+export function getAnnouncementEvent(dishes: Dish[], now = new Date()): FeaturedEvent | null {
+  return getFeaturedEvents(dishes, now)
+    .filter((event) => event.active && event.bannerImage && event.dishIds.length > 0)
+    .sort((a, b) => Date.parse(b.startsAt ?? "") - Date.parse(a.startsAt ?? ""))[0] ?? null
 }
 import localEvents from "../infrastructure/events/limitedEvents.json"
 import { BANNER_CONFIG } from "../infrastructure/banner/bannerConfig"

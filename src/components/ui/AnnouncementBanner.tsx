@@ -1,10 +1,17 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { Link } from "react-router-dom"
 import { BANNER_CONFIG, BannerConfig } from "../../infrastructure/banner/bannerConfig"
 import { repository } from "../../infrastructure/storage/repository"
-import { getFeaturedEvents } from "../../domain/events"
+import { getAnnouncementEvent } from "../../domain/events"
 import { useAppStore } from "../../store/useAppStore"
+
+interface AnnouncementContent {
+  id: string
+  imageUrl: string
+  title?: string
+  eventId?: string
+}
 
 function getBannerConfig(): BannerConfig {
   if (import.meta.env.DEV) return repository.loadBannerOverride() ?? BANNER_CONFIG
@@ -16,35 +23,56 @@ function getDismissKey(bannerId: string): string {
 }
 
 export function AnnouncementBanner() {
-  const [banner, setBanner] = useState<BannerConfig>(() => getBannerConfig())
+  const dishes = useAppStore((state) => state.dishes)
+  const [banner, setBanner] = useState<AnnouncementContent | null>(null)
   const [visible, setVisible] = useState(false)
   const [dontShowAgain, setDontShowAgain] = useState(false)
-  useEffect(() => {
-    const nextBanner = getBannerConfig()
-    setBanner(nextBanner)
-    const now = new Date()
-    const activeEvent = nextBanner.eventId
-      ? getFeaturedEvents(useAppStore.getState().dishes, now).some((item) => item.id === nextBanner.eventId && item.active)
-      : true
-    if (!nextBanner.enabled || !nextBanner.imageUrl || !activeEvent ||
-      (nextBanner.startsAt && now < new Date(nextBanner.startsAt)) ||
-      (nextBanner.endsAt && now > new Date(nextBanner.endsAt))) return
-    setVisible(localStorage.getItem(getDismissKey(nextBanner.id)) !== "true")
-  }, [])
+  const dismissedThisVisit = useRef(new Set<string>())
 
-  if (!visible || !banner.enabled || !banner.imageUrl) return null
+  useEffect(() => {
+    const refresh = () => {
+      const configured = getBannerConfig()
+      const now = new Date()
+      const event = getAnnouncementEvent(dishes, now)
+      const fallbackActive = configured.imageUrl && !configured.eventId &&
+        (!configured.startsAt || now >= new Date(configured.startsAt)) &&
+        (!configured.endsAt || now <= new Date(configured.endsAt))
+      const next: AnnouncementContent | null = !configured.enabled ? null : event?.bannerImage
+        ? { id: `event-${event.id}-${event.startsAt ?? "always"}`, imageUrl: event.bannerImage, title: event.title, eventId: event.id }
+        : fallbackActive ? { id: configured.id, imageUrl: configured.imageUrl } : null
+      setBanner(next)
+      setVisible(Boolean(next && !dismissedThisVisit.current.has(next.id) && localStorage.getItem(getDismissKey(next.id)) !== "true"))
+    }
+
+    refresh()
+    const interval = window.setInterval(refresh, 60_000)
+    window.addEventListener("storage", refresh)
+    window.addEventListener("mealgacha:event-preview-changed", refresh)
+    return () => {
+      window.clearInterval(interval)
+      window.removeEventListener("storage", refresh)
+      window.removeEventListener("mealgacha:event-preview-changed", refresh)
+    }
+  }, [dishes])
+
+  if (!visible || !banner) return null
 
   const closeBanner = () => {
+    dismissedThisVisit.current.add(banner.id)
     if (dontShowAgain) localStorage.setItem(getDismissKey(banner.id), "true")
+    setDontShowAgain(false)
     setVisible(false)
   }
 
   return createPortal(
     <div className="announcement-banner-backdrop" role="dialog" aria-modal="true" aria-label="Thông báo mới">
-      <div className="announcement-banner-panel">
-        <img src={banner.imageUrl} alt="Thông báo mới" />
+      <div className={`announcement-banner-panel ${banner.eventId ? "is-event" : ""}`}>
+        <div className="announcement-banner-visual">
+          <img src={banner.imageUrl} alt={banner.title ? `Ảnh sự kiện ${banner.title}` : "Thông báo mới"} />
+          {banner.title && <div className="announcement-banner-heading"><small>✦ SỰ KIỆN ĐANG DIỄN RA</small><h2>{banner.title}</h2></div>}
+        </div>
         <div className="announcement-banner-actions">
-          {banner.eventId && <Link to={`/events`} onClick={closeBanner}>Xem sự kiện →</Link>}
+          <Link to={banner.eventId ? `/?event=${encodeURIComponent(banner.eventId)}` : "/events"} onClick={closeBanner}>{banner.eventId ? "Mở rương sự kiện →" : "Xem sự kiện →"}</Link>
           <label>
             <input
               type="checkbox"
