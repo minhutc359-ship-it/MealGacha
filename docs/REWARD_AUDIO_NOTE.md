@@ -1,0 +1,1 @@
+Reward audio should use the existing public/assets/audio/result_spin.mp3 for chest reveal, fusion and free-spin results. Do not generate or add another reward sound.
