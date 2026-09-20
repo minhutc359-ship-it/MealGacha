@@ -417,7 +417,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .meal-banner-tabs button.is-selected::after { background: linear-gradient(90deg, transparent, var(--tab-accent), transparent); box-shadow: 0 0 14px var(--tab-accent); }
 .meal-banner-tabs button.is-selected > span { filter: none; opacity: 1; }
 
-.ritual-stage { flex: 1; min-height: 650px; position: relative; display: grid; grid-template-rows: auto minmax(300px,1fr) auto auto auto; align-items: center; justify-items: center; padding: 28px 20px 18px; }
+.ritual-stage { flex: 1; min-width: 0; min-height: 650px; position: relative; display: grid; grid-template-columns: minmax(0,1fr); grid-template-rows: auto minmax(300px,1fr) auto auto auto; align-items: center; justify-items: center; padding: 28px 20px 18px; }
 .ritual-copy { position: relative; z-index: 6; text-align: center; pointer-events: none; }
 .ritual-copy small { color: var(--slot-accent); font: 700 9px/1 'Exo 2', sans-serif; letter-spacing: .26em; text-transform: uppercase; }
 .ritual-copy h1 { margin-top: 8px; color: #edf8ff; font: 800 clamp(24px,2.5vw,38px)/.98 'Exo 2', sans-serif; letter-spacing: .035em; text-transform: uppercase; text-shadow: 0 8px 28px rgba(0,0,0,.7); }
@@ -632,7 +632,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .mobile-checkin p { min-width: 0; }.mobile-checkin strong,.mobile-checkin small { display: block; }.mobile-checkin strong { color: #d9e5ec; font-size: 10px; }.mobile-checkin small { margin-top: 3px; color: var(--text-dim); font-size: 8px; }.mobile-checkin b { font-size: 11px; }
   .ritual-stage { min-height: 580px; padding: 20px 0 10px; grid-template-rows: auto 310px auto auto auto; }
   .ritual-copy h1 { font-size: 25px; }.ritual-copy p { font-size: 9px; }
-  .chest-scene { height: 310px; min-height: 310px; transform: scale(.78); width: 470px; max-width: 126%; }
+  .chest-scene { height: 310px; min-height: 310px; transform: scale(.78); transform-origin: center; width: min(470px,126%); justify-self: center; }
   .stage-footer { gap: 10px; }
   .reward-reveal-card { max-height: 92dvh; overflow-y: auto; }
   .odds-backdrop { align-items: end; padding: 0; }
@@ -660,7 +660,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .ritual-stage { min-height:505px; padding:14px 0 4px; grid-template-rows:auto 258px auto auto auto; }
   .ritual-copy h1 { margin-top:6px; font-size:21px; line-height:1.02; }
   .ritual-copy p { margin-top:5px; }
-  .chest-scene { width:450px; max-width:132%; height:278px; min-height:278px; transform:scale(.7); }
+  .chest-scene { width:min(450px,132%); height:278px; min-height:278px; transform:scale(.7); }
   .ritual-status { margin-top:-8px; }
   .ritual-progress { width:min(230px,68vw); margin-top:-5px; }
   .stage-actions { width:min(360px,100%); min-height:86px; }
