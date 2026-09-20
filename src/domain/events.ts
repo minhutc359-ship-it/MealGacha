@@ -41,3 +41,65 @@ export function isEventActive(event: LimitedEvent, date: string, override = getD
 export function getActiveEvents(date: string): LimitedEvent[] {
   return EVENTS.filter((event) => isEventActive(event, date))
 }
+
+export function getFeaturedEvents(dishes: Dish[], now = new Date()): FeaturedEvent[] {
+  const date = getDateKey(now)
+  const override = getDevEventOverride()
+  const seasonal = EVENTS.map((event) => ({
+    id: event.id,
+    title: event.name.vi,
+    description: event.description.vi,
+    icon: event.icon,
+    bannerImage: event.bannerImage,
+    themeClass: event.theme.className,
+    dishIds: [...new Set([...event.dishIds, ...dishes.filter((dish) => dish.type === "limited" && dish.limitedEventId === event.id).map((dish) => dish.id)])],
+    startsAt: event.startsAt,
+    endsAt: event.endsAt,
+    active: isEventActive(event, date, override),
+    local: false,
+  }))
+  const local = LOCAL_EVENTS.map((event) => ({
+    id: event.id,
+    title: event.title,
+    description: "Khám phá hương vị giới hạn và lưu món vào bộ sưu tập.",
+    icon: "🏔️",
+    bannerImage: BANNER_CONFIG.eventId === event.id || LOCAL_EVENTS[0]?.id === event.id
+      ? BANNER_CONFIG.imageUrl : undefined,
+    themeClass: "event-local",
+    dishIds: dishes.filter((dish) => dish.type === "limited" && dish.limitedEventId === event.id).map((dish) => dish.id),
+    startsAt: event.startsAt,
+    endsAt: event.endsAt,
+    active: override === event.id || (override !== "none" && (override === null || override === "auto") && isLimitedEventActive(event, now)),
+    local: true,
+  }))
+  return [...local, ...seasonal]
+}
+import localEvents from "../infrastructure/events/limitedEvents.json"
+import { BANNER_CONFIG } from "../infrastructure/banner/bannerConfig"
+import type { Dish } from "./models"
+import { getDateKey } from "./dateKey"
+import { isLimitedEventActive } from "./limitedEvents"
+
+export interface LocalLimitedEvent {
+  id: string
+  title: string
+  startsAt: string
+  endsAt: string
+  bannerId?: string
+}
+
+export interface FeaturedEvent {
+  id: string
+  title: string
+  description: string
+  icon: string
+  bannerImage?: string
+  themeClass: string
+  dishIds: string[]
+  startsAt?: string
+  endsAt?: string
+  active: boolean
+  local: boolean
+}
+
+export const LOCAL_EVENTS: LocalLimitedEvent[] = localEvents

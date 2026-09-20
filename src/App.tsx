@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom"
 import { useAppStore } from "./store/useAppStore"
 import { ClientShell } from "./components/layout/ClientShell"
 import { Toast } from "./components/ui/Toast"
+import { AnnouncementBanner } from "./components/ui/AnnouncementBanner"
 import { ChestPage } from "./pages/ChestPage"
 
 const ProfilePage = lazy(() => import("./pages/ProfilePage").then((module) => ({ default: module.ProfilePage })))
@@ -48,6 +49,7 @@ function AppInner() {
   return (
     <ClientShell>
       <Toast />
+      <AnnouncementBanner />
       <Suspense fallback={<div className="route-loading"><span>◇</span><p>Đang mở giao diện...</p></div>}>
         <Routes>
           <Route path="/" element={<ChestPage />} />

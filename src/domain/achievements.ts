@@ -13,7 +13,7 @@ export function getActiveUniqueDishes(dishes: Dish[]): Dish[] {
 }
 
 export function getBannerDishes(dishes: Dish[], slot: MealSlot): Dish[] {
-  return getActiveUniqueDishes(dishes).filter((dish) => dish.mealSlots.includes(slot))
+  return getActiveUniqueDishes(dishes).filter((dish) => dish.type !== "limited" && dish.mealSlots.includes(slot))
 }
 
 export function getCollectionProgress(
@@ -21,7 +21,7 @@ export function getCollectionProgress(
   dishes: Dish[],
   slot?: MealSlot,
 ): { unlocked: number; total: number; percentage: number } {
-  const pool = slot ? getBannerDishes(dishes, slot) : getActiveUniqueDishes(dishes)
+  const pool = slot ? getBannerDishes(dishes, slot) : getActiveUniqueDishes(dishes).filter((dish) => dish.type !== "limited")
   const unlockedIds = getUnlockedDishIds(rewards)
   const unlocked = pool.filter((dish) => unlockedIds.has(dish.id)).length
   const total = pool.length

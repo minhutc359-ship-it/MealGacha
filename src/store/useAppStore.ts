@@ -14,11 +14,14 @@ import { deleteImage } from "../infrastructure/storage/imageRepository"
 import { clearImages } from "../infrastructure/storage/imageRepository"
 import { enrichDish } from "../infrastructure/catalog/enrichDish"
 import { EVENT_DISHES } from "../infrastructure/catalog/eventCatalog"
+import localDishes from "../infrastructure/catalog/localDishes.json"
 import { applyDailyQuest, getDailyQuests } from "../domain/dailyQuest"
 
-function withEventDishes(dishes: Dish[]): Dish[] {
-  const ids = new Set(dishes.map((dish) => dish.id))
-  return [...dishes, ...EVENT_DISHES.filter((dish) => !ids.has(dish.id))]
+function withBuiltInDishes(dishes: Dish[]): Dish[] {
+  const merged = new Map(dishes.map((dish) => [dish.id, dish]))
+  for (const dish of EVENT_DISHES) if (!merged.has(dish.id)) merged.set(dish.id, dish)
+  for (const dish of localDishes as Dish[]) merged.set(dish.id, enrichDish(dish))
+  return [...merged.values()]
 }
 
 interface AppStore {
@@ -67,7 +70,7 @@ interface AppStore {
 
 export const useAppStore = create<AppStore>((set, get) => ({
   user: repository.loadUser(),
-  dishes: SEED_DISHES,
+  dishes: withBuiltInDishes(SEED_DISHES),
   catalogLoading: false,
   catalogError: null,
   toast: null,
@@ -76,7 +79,8 @@ export const useAppStore = create<AppStore>((set, get) => ({
   init() {
     const user = repository.loadUser()
     const cached = repository.loadCatalog()
-    const dishes = cached?.dishes?.length ? withEventDishes(cached.dishes.map(enrichDish)) : SEED_DISHES
+    const dishes = cached?.dishes?.length && cached.sourceUrl !== "local://catalog"
+      ? withBuiltInDishes(cached.dishes.map(enrichDish)) : withBuiltInDishes(SEED_DISHES)
     const titled = syncTitles(user, dishes)
     if (titled !== user) repository.saveUser(titled)
     set({ user: titled, dishes })
@@ -272,7 +276,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
           dishes: result.dishes,
         }
         repository.saveCatalog(cache)
-        set({ dishes: withEventDishes(result.dishes.map(enrichDish)) })
+        set({ dishes: withBuiltInDishes(result.dishes.map(enrichDish)) })
       }
     } catch (e) {
       set({ catalogError: `Không thể tải catalog: ${(e as Error).message}` })

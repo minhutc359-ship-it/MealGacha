@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 import {
   RewardInstance,
   MEAL_SLOT_LABELS,
@@ -40,6 +41,7 @@ export function RevealModal({
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
+      if (showPlaces) return
       if (e.key === "Escape") onClose()
       if (e.key !== "Tab" || !dialogRef.current) return
       const focusable = Array.from(
@@ -61,7 +63,7 @@ export function RevealModal({
     document.addEventListener("keydown", handleKey)
     setTimeout(() => firstFocusRef.current?.focus(), 50)
     return () => document.removeEventListener("keydown", handleKey)
-  }, [onClose])
+  }, [onClose, showPlaces])
 
   const dish = reward.dish
   const rarity = reward.rarity ?? "common"
@@ -78,8 +80,8 @@ export function RevealModal({
 
   return (
     <>
-      <div
-        className={`reward-reveal-backdrop rarity-${rarity} fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4`}
+      {createPortal(<div
+        className={`reward-reveal-backdrop rarity-${rarity} fixed inset-0 z-50 flex items-center justify-center p-4`}
         style={{
           background: "rgba(8,12,24,0.88)",
           backdropFilter: "blur(10px)",
@@ -127,6 +129,7 @@ export function RevealModal({
               <FoodImage
                 dishId={dish.id}
                 name={dish.name}
+                imageUrl={dish.imageUrl}
                 variant="full"
                 eager
               />
@@ -258,7 +261,7 @@ export function RevealModal({
             )}
           </div>
         </div>
-      </div>
+      </div>, document.body)}
 
       {showPlaces && (
         <PlacesModal dish={dish} onClose={() => setShowPlaces(false)} />

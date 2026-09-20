@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
+import { Link } from "react-router-dom"
 import { BANNER_CONFIG, BannerConfig } from "../../infrastructure/banner/bannerConfig"
 import { repository } from "../../infrastructure/storage/repository"
-import limitedEvents from "../../infrastructure/events/limitedEvents.json"
-import { isLimitedEventActive } from "../../domain/limitedEvents"
-import { LimitedEvent } from "../../domain/models"
+import { getFeaturedEvents } from "../../domain/events"
+import { useAppStore } from "../../store/useAppStore"
 
 function getBannerConfig(): BannerConfig {
   if (import.meta.env.DEV) return repository.loadBannerOverride() ?? BANNER_CONFIG
@@ -18,17 +19,16 @@ export function AnnouncementBanner() {
   const [banner, setBanner] = useState<BannerConfig>(() => getBannerConfig())
   const [visible, setVisible] = useState(false)
   const [dontShowAgain, setDontShowAgain] = useState(false)
-  const event = banner.eventId
-    ? (limitedEvents as LimitedEvent[]).find((item) => item.id === banner.eventId)
-    : undefined
-
   useEffect(() => {
     const nextBanner = getBannerConfig()
     setBanner(nextBanner)
-    const nextEvent = nextBanner.eventId
-      ? (limitedEvents as LimitedEvent[]).find((item) => item.id === nextBanner.eventId)
-      : undefined
-    if (!nextBanner.enabled || !nextBanner.imageUrl || (nextEvent && !isLimitedEventActive(nextEvent))) return
+    const now = new Date()
+    const activeEvent = nextBanner.eventId
+      ? getFeaturedEvents(useAppStore.getState().dishes, now).some((item) => item.id === nextBanner.eventId && item.active)
+      : true
+    if (!nextBanner.enabled || !nextBanner.imageUrl || !activeEvent ||
+      (nextBanner.startsAt && now < new Date(nextBanner.startsAt)) ||
+      (nextBanner.endsAt && now > new Date(nextBanner.endsAt))) return
     setVisible(localStorage.getItem(getDismissKey(nextBanner.id)) !== "true")
   }, [])
 
@@ -39,11 +39,12 @@ export function AnnouncementBanner() {
     setVisible(false)
   }
 
-  return (
+  return createPortal(
     <div className="announcement-banner-backdrop" role="dialog" aria-modal="true" aria-label="Thông báo mới">
       <div className="announcement-banner-panel">
         <img src={banner.imageUrl} alt="Thông báo mới" />
         <div className="announcement-banner-actions">
+          {banner.eventId && <Link to={`/events`} onClick={closeBanner}>Xem sự kiện →</Link>}
           <label>
             <input
               type="checkbox"
@@ -55,6 +56,7 @@ export function AnnouncementBanner() {
           <button onClick={closeBanner} aria-label="Tắt thông báo">×</button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

@@ -45,5 +45,21 @@ for (const [_, id, contents] of events.matchAll(/\{ id: "([a-z-]+)", name: \{[\s
   if (!existsSync(resolve(`public/assets/events/${id}/banner.webp`))) errors.push(`Event ${id}: thiếu banner`)
 }
 if (eventIds.size !== 6) errors.push(`Cần 6 event (hiện có ${eventIds.size})`)
+const localEvents = JSON.parse(readFileSync(resolve("src/infrastructure/events/limitedEvents.json"), "utf8"))
+const localDishes = JSON.parse(readFileSync(resolve("src/infrastructure/catalog/localDishes.json"), "utf8"))
+const localEventIds = new Set()
+for (const event of localEvents) {
+  if (eventIds.has(event.id) || localEventIds.has(event.id)) errors.push(`Event ID trùng: ${event.id}`)
+  localEventIds.add(event.id)
+  if (!event.title || !Number.isFinite(Date.parse(event.startsAt)) || !Number.isFinite(Date.parse(event.endsAt)) || Date.parse(event.startsAt) >= Date.parse(event.endsAt)) errors.push(`Event không hợp lệ: ${event.id}`)
+}
+for (const dish of localDishes) {
+  if (dishIds.has(dish.id)) errors.push(`ID trùng: ${dish.id}`)
+  dishIds.add(dish.id)
+  if (!dish.name || !dish.searchQuery || !dish.mealSlots?.length || !(dish.weight > 0)) errors.push(`Metadata món local thiếu: ${dish.id}`)
+  if (dish.type === "limited" && !localEventIds.has(dish.limitedEventId) && !eventIds.has(dish.limitedEventId)) errors.push(`Event không tồn tại: ${dish.id}`)
+  for (const tag of dish.tags ?? []) if (!knownTags.has(tag) && tag !== "limited") errors.push(`Tag ${tag} không tồn tại: ${dish.id}`)
+  if (dish.imageUrl?.startsWith("/assets/") && !existsSync(resolve(`public${dish.imageUrl}`))) errors.push(`Thiếu ảnh: ${dish.id}`)
+}
 if (errors.length) { console.error(errors.join("\n")); process.exitCode = 1 }
-else console.log(`Catalog hợp lệ: ${dishIds.size} món, ${knownTags.size} tag, ${eventIds.size} event.`)
+else console.log(`Catalog hợp lệ: ${dishIds.size} món, ${knownTags.size} tag, ${eventIds.size + localEventIds.size} event.`)

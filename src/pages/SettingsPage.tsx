@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import { lazy, Suspense, useState, useRef, useEffect } from "react"
 import { useAppStore } from "../store/useAppStore"
 import { repository } from "../infrastructure/storage/repository"
 import { MEAL_SLOT_ICONS, MealSlot } from "../domain/models"
@@ -6,7 +6,9 @@ import { fetchCatalog, ParseResult } from "../infrastructure/catalog/csvAdapter"
 import { Dish } from "../domain/models"
 import { clearImages, listImages } from "../infrastructure/storage/imageRepository"
 import { createFullBackup, restoreFullBackup } from "../infrastructure/backup/fullBackup"
-import { getDevEventOverride, EVENTS, setDevEventOverride } from "../domain/events"
+import { getDevEventOverride, EVENTS, LOCAL_EVENTS, setDevEventOverride } from "../domain/events"
+
+const DevContentPanel = lazy(() => import("../components/dev/DevContentPanel").then((module) => ({ default: module.DevContentPanel })))
 
 interface CatalogPreview {
   url: string
@@ -139,7 +141,7 @@ export function SettingsPage() {
   }
 
   return (
-    <div className="min-h-dvh pb-20 flex flex-col max-w-md mx-auto px-4 pt-4">
+    <div className="settings-page min-h-dvh pb-20 flex flex-col max-w-3xl mx-auto px-4 pt-4">
       <h1
         className="text-xl font-extrabold mb-5"
         style={{ fontFamily: "Exo 2, sans-serif" }}
@@ -362,7 +364,7 @@ export function SettingsPage() {
         </div>
       </Section>
 
-      {import.meta.env.DEV && <Section title="Sự kiện (DEV)"><label className="event-dev">Force Activate <select value={devEvent} onChange={(event) => { setDevEvent(event.target.value); setDevEventOverride(event.target.value) }}><option value="auto">Auto</option><option value="none">Không có sự kiện</option>{EVENTS.map((item) => <option key={item.id} value={item.id}>{item.name.vi}</option>)}</select></label></Section>}
+      {import.meta.env.DEV && <><Section title="Sự kiện (DEV)"><label className="event-dev">Xem thử banner <select value={devEvent} onChange={(event) => { setDevEvent(event.target.value); setDevEventOverride(event.target.value) }}><option value="auto">Theo thời gian</option><option value="none">Không có sự kiện</option>{LOCAL_EVENTS.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}{EVENTS.map((item) => <option key={item.id} value={item.id}>{item.name.vi}</option>)}</select></label></Section><Suspense fallback={<p>Đang tải công cụ dev...</p>}><DevContentPanel /></Suspense></>}
 
       {/* Backup */}
       <Section title="Backup & Khôi phục">

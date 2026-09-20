@@ -9,7 +9,7 @@ import {
 } from "./models"
 import { getDateKey } from "./dateKey"
 import { hasUnlimitedChestAccess, isCatalogComplete } from "./achievements"
-import { EVENTS, isEventActive } from "./events"
+import { getFeaturedEvents } from "./events"
 
 const CHEST_COST = parseInt(import.meta.env.VITE_CHEST_COST || "1", 10)
 const RECENT_EXCLUSION = 3
@@ -71,8 +71,8 @@ export function buildPool(
 ): Dish[] {
   let pool = dishes.filter((d) => d.active && d.mealSlots.includes(slot))
   if (eventId) {
-    const event = EVENTS.find((item) => item.id === eventId)
-    if (!event || !isEventActive(event, getDateKey())) return []
+    const event = getFeaturedEvents(dishes).find((item) => item.id === eventId)
+    if (!event?.active) return []
     pool = pool.filter((dish) => event.dishIds.includes(dish.id))
   } else pool = pool.filter((dish) => dish.type !== "limited")
   if (pool.length >= 5) {
