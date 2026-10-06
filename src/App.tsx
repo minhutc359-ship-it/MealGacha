@@ -1,28 +1,59 @@
 import { lazy, Suspense, useEffect } from "react"
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom"
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom"
 import { useAppStore } from "./store/useAppStore"
 import { ClientShell } from "./components/layout/ClientShell"
 import { Toast } from "./components/ui/Toast"
 import { AnnouncementBanner } from "./components/ui/AnnouncementBanner"
 import { ChestPage } from "./pages/ChestPage"
 
-const ProfilePage = lazy(() => import("./pages/ProfilePage").then((module) => ({ default: module.ProfilePage })))
+const ProfilePage = lazy(() =>
+  import("./pages/ProfilePage").then((module) => ({
+    default: module.ProfilePage,
+  })),
+)
 const AchievementsPage = lazy(() =>
-  import("./pages/AchievementsPage").then((module) => ({ default: module.AchievementsPage })),
+  import("./pages/AchievementsPage").then((module) => ({
+    default: module.AchievementsPage,
+  })),
 )
 const WheelPage = lazy(() =>
   import("./pages/WheelPage").then((module) => ({ default: module.WheelPage })),
 )
 const SettingsPage = lazy(() =>
-  import("./pages/SettingsPage").then((module) => ({ default: module.SettingsPage })),
+  import("./pages/SettingsPage").then((module) => ({
+    default: module.SettingsPage,
+  })),
 )
-const DailyQuizPage = lazy(() => import("./pages/DailyQuizPage").then((module) => ({ default: module.DailyQuizPage })))
-const TasteSwipePage = lazy(() => import("./pages/TasteSwipePage").then((module) => ({ default: module.TasteSwipePage })))
-const EventsPage = lazy(() => import("./pages/EventsPage").then((module) => ({ default: module.EventsPage })))
+const DailyQuizPage = lazy(() =>
+  import("./pages/DailyQuizPage").then((module) => ({
+    default: module.DailyQuizPage,
+  })),
+)
+const TasteSwipePage = lazy(() =>
+  import("./pages/TasteSwipePage").then((module) => ({
+    default: module.TasteSwipePage,
+  })),
+)
+const EventsPage = lazy(() =>
+  import("./pages/EventsPage").then((module) => ({
+    default: module.EventsPage,
+  })),
+)
+const TCGPage = lazy(() =>
+  import("./pages/TCGPage").then((module) => ({ default: module.TCGPage })),
+)
 
 function AppInner() {
   const init = useAppStore((s) => s.init)
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     init()
@@ -46,13 +77,34 @@ function AppInner() {
     return () => window.removeEventListener("nav:collection", handler)
   }, [navigate])
 
+  if (location.pathname === "/" || location.pathname === "/game")
+    return (
+      <Suspense
+        fallback={
+          <div className="route-loading">
+            <span>✦</span>
+            <p>Đang mở thế giới vị giác…</p>
+          </div>
+        }
+      >
+        <TCGPage />
+      </Suspense>
+    )
+
   return (
     <ClientShell>
       <Toast />
       <AnnouncementBanner />
-      <Suspense fallback={<div className="route-loading"><span>◇</span><p>Đang mở giao diện...</p></div>}>
+      <Suspense
+        fallback={
+          <div className="route-loading">
+            <span>◇</span>
+            <p>Đang mở giao diện...</p>
+          </div>
+        }
+      >
         <Routes>
-          <Route path="/" element={<ChestPage />} />
+          <Route path="/chest" element={<ChestPage />} />
           <Route path="/collection" element={<ProfilePage />} />
           <Route path="/achievements" element={<AchievementsPage />} />
           <Route path="/wheel" element={<WheelPage />} />
@@ -60,6 +112,7 @@ function AppInner() {
           <Route path="/daily-quiz" element={<DailyQuizPage />} />
           <Route path="/taste-swipe" element={<TasteSwipePage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
     </ClientShell>
