@@ -1,6 +1,7 @@
 import { z } from "zod"
 import { UserState, CatalogCache, UserPreferences } from "../../domain/models"
 import type { BannerConfig } from "../banner/bannerConfig"
+import { GAME_KEY, parseGame } from "../../game/storage"
 
 const KEYS = {
   user: "foodchest.user.v1",
@@ -39,13 +40,26 @@ const StoredUserSchema = z
       dinner: z.array(z.string()),
     }),
     unlimitedChestUnlockedAt: z.string().optional(),
-    timelinePosts: z.array(z.object({ id: z.string(), dishId: z.string(), note: z.string().optional(), imageId: z.string().optional(), createdAt: z.string(), updatedAt: z.string().optional() })).optional(),
+    timelinePosts: z
+      .array(
+        z.object({
+          id: z.string(),
+          dishId: z.string(),
+          note: z.string().optional(),
+          imageId: z.string().optional(),
+          createdAt: z.string(),
+          updatedAt: z.string().optional(),
+        }),
+      )
+      .optional(),
     fragments: z.record(z.string(), z.number().int().nonnegative()).optional(),
     equippedTitleId: z.string().optional(),
     unlockedTitleIds: z.array(z.string()).optional(),
     favoriteTasteTags: z.array(z.string()).optional(),
     tasteProfileUpdatedAt: z.string().optional(),
-    dailyQuiz: z.object({ date: z.string(), answers: z.record(z.string(), z.string()) }).optional(),
+    dailyQuiz: z
+      .object({ date: z.string(), answers: z.record(z.string(), z.string()) })
+      .optional(),
     tasteSwipeRewardDate: z.string().optional(),
     preferences: z.object({
       language: z.enum(["vi", "en"]).optional(),
@@ -75,6 +89,7 @@ const StoredCatalogSchema = z
 const BackupSchema = z.object({
   user: StoredUserSchema.optional(),
   catalog: StoredCatalogSchema.nullable().optional(),
+  tcg: z.unknown().optional(),
 })
 
 function defaultUserState(): UserState {
@@ -110,13 +125,20 @@ export function migrateUserState(raw: unknown): UserState | null {
     ...defaults,
     ...state,
     schemaVersion: 2,
-    displayName: state.displayName ?? (typeof localStorage !== "undefined" ? localStorage.getItem("mealgacha.profile.name") : null) ?? defaults.displayName,
+    displayName:
+      state.displayName ??
+      (typeof localStorage !== "undefined"
+        ? localStorage.getItem("mealgacha.profile.name")
+        : null) ??
+      defaults.displayName,
     checkInStreak: state.checkInStreak ?? 0,
     bestCheckInStreak: state.bestCheckInStreak ?? 0,
     completedDailyQuestIds: state.completedDailyQuestIds ?? [],
     timelinePosts: state.timelinePosts ?? [],
     fragments: state.fragments ?? {},
-    unlockedTitleIds: Array.from(new Set(["newbie", ...(state.unlockedTitleIds ?? [])])),
+    unlockedTitleIds: Array.from(
+      new Set(["newbie", ...(state.unlockedTitleIds ?? [])]),
+    ),
     equippedTitleId: state.equippedTitleId ?? "newbie",
     favoriteTasteTags: state.favoriteTasteTags ?? [],
     preferences: { ...defaultPrefs, ...state.preferences },
@@ -146,7 +168,8 @@ export const repository = {
     return safeGet(KEYS.user, defaultUserState(), (raw) => {
       const state = migrateUserState(raw)
       if (!state) return defaultUserState()
-      if ((raw as { schemaVersion?: number }).schemaVersion !== 2) safeSet(KEYS.user, state)
+      if ((raw as { schemaVersion?: number }).schemaVersion !== 2)
+        safeSet(KEYS.user, state)
       return state
     })
   },
@@ -187,17 +210,22 @@ export const repository = {
 
   loadBannerOverride(): BannerConfig | null {
     const parseBanner = (raw: unknown): BannerConfig | null => {
-      const parsed = z.object({
-        id: z.string(),
-        imageUrl: z.string(),
-        enabled: z.boolean(),
-        eventId: z.string().optional(),
-        startsAt: z.string().optional(),
-        endsAt: z.string().optional(),
-      }).safeParse(raw)
+      const parsed = z
+        .object({
+          id: z.string(),
+          imageUrl: z.string(),
+          enabled: z.boolean(),
+          eventId: z.string().optional(),
+          startsAt: z.string().optional(),
+          endsAt: z.string().optional(),
+        })
+        .safeParse(raw)
       return parsed.success ? parsed.data : null
     }
-    return safeGet(KEYS.bannerOverride, null, parseBanner) ?? safeGet(KEYS.legacyBannerOverride, null, parseBanner)
+    return (
+      safeGet(KEYS.bannerOverride, null, parseBanner) ??
+      safeGet(KEYS.legacyBannerOverride, null, parseBanner)
+    )
   },
 
   saveBannerOverride(config: BannerConfig): void {
@@ -213,11 +241,16 @@ export const repository = {
   clearAll(): void {
     Object.values(KEYS).forEach((k) => localStorage.removeItem(k))
     localStorage.removeItem("mealgacha.profile.name")
+    localStorage.removeItem(GAME_KEY)
   },
 
   exportBackup(): string {
     return JSON.stringify(
-      { user: this.loadUser(), catalog: this.loadCatalog() },
+      {
+        user: this.loadUser(),
+        catalog: this.loadCatalog(),
+        tcg: safeGet(GAME_KEY, null, parseGame),
+      },
       null,
       2,
     )
@@ -226,8 +259,14 @@ export const repository = {
   importBackup(json: string): boolean {
     try {
       const parsed = BackupSchema.safeParse(JSON.parse(json))
-      if (!parsed.success || (!parsed.data.user && !parsed.data.catalog))
+      if (
+        !parsed.success ||
+        (!parsed.data.user && !parsed.data.catalog && !parsed.data.tcg)
+      )
         return false
+      // Validate all sections before changing any existing save.
+      const tcg = parsed.data.tcg ? parseGame(parsed.data.tcg) : null
+      if (parsed.data.tcg && !tcg) return false
       if (parsed.data.user) {
         const migrated = migrateUserState(parsed.data.user)
         if (!migrated) return false
@@ -235,6 +274,7 @@ export const repository = {
       }
       if (parsed.data.catalog)
         this.saveCatalog(parsed.data.catalog as unknown as CatalogCache)
+      if (tcg) localStorage.setItem(GAME_KEY, JSON.stringify(tcg))
       return true
     } catch {
       return false

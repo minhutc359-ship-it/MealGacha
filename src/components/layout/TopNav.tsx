@@ -3,7 +3,8 @@ import { useAppStore } from "../../store/useAppStore"
 import { hasUnlimitedChestAccess } from "../../domain/achievements"
 
 const links = [
-  { to: "/", label: "Rương vị giác" },
+  { to: "/", label: "Game thẻ bài" },
+  { to: "/chest", label: "Rương vị giác" },
   { to: "/collection", label: "Hồ sơ vị giác" },
   { to: "/achievements", label: "Thành tựu" },
   { to: "/wheel", label: "Vòng quay" },

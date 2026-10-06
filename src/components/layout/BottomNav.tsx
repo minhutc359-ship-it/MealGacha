@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom"
 
 const tabs = [
   {
-    to: "/",
+    to: "/chest",
     label: "Rương",
     icon: (active: boolean) => (
       <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
