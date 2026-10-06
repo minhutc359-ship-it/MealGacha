@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
+import { RELIC_MAP } from "../../game/expedition"
 import { STAGE_MAP } from "../../game/story"
 import { useGameStore } from "../../game/useGameStore"
 import type { BattleUnit } from "../../game/types"
@@ -26,6 +27,14 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
   useEffect(() => {
     setSelection(null)
   }, [battle.id, battle.round])
+  const canTarget = (uid: string) => {
+    if (!selection) return false
+    if (selection.type === "play") return true
+    const guards = battle.enemy.board.filter((u) =>
+      u.keywords.includes("guard"),
+    )
+    return !guards.length || guards.some((u) => u.uid === uid)
+  }
   const target = (uid: string) => {
     if (selection) {
       act({ ...selection, target: uid })
@@ -40,7 +49,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
         key={u.uid}
         className={`tcg-unit ${u.ready ? "is-ready" : ""} ${
           selected ? "is-selected" : ""
-        } ${enemy && selection ? "is-target" : ""}`}
+        } ${enemy && canTarget(u.uid) ? "is-target" : ""}`}
         onClick={() =>
           enemy
             ? target(u.uid)
@@ -48,7 +57,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                 selected || !u.ready ? null : { type: "attack", uid: u.uid },
               )
         }
-        disabled={!!battle.result}
+        disabled={
+          !!battle.result || (enemy && !!selection && !canTarget(u.uid))
+        }
         aria-label={`${
           enemy ? "Địch" : "Đồng minh"
         } ${c.name}, công ${u.attack}, máu ${u.health}${
@@ -90,9 +101,16 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
       <header className="tcg-battle-top">
         <div>
           <span className="tcg-kicker">
-            {stage ? stage.chapter.title : "LUYỆN TẬP · ĐẤU VỚI AI"}
+            {battle.expedition
+              ? "CON ĐƯỜNG QUA SƯƠNG · THÁM HIỂM"
+              : stage
+                ? stage.chapter.title
+                : "LUYỆN TẬP · ĐẤU VỚI AI"}
           </span>
-          <h1>{stage?.title ?? "Bàn ăn thử thách"}</h1>
+          <h1>
+            {stage?.title ??
+              (battle.expedition ? battle.opponent : "Bàn ăn thử thách")}
+          </h1>
         </div>
         <button
           className="tcg-button ghost"
@@ -101,6 +119,18 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           Rời trận
         </button>
       </header>
+      {battle.expedition && (
+        <div className="tcg-battle-relics">
+          <span>
+            Máu được giữ sau trận · Thua hoặc đầu hàng kết thúc chuyến đi.
+          </span>
+          {battle.expedition.relics.map((id) => (
+            <span key={id} title={RELIC_MAP[id].text}>
+              {RELIC_MAP[id].symbol} {RELIC_MAP[id].name}
+            </span>
+          ))}
+        </div>
+      )}
       <div className="tcg-arena">
         <div className="tcg-arena-top">
           <span>
@@ -115,9 +145,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </button>
         </div>
         <button
-          className={`tcg-hero enemy ${selection ? "is-target" : ""}`}
+          className={`tcg-hero enemy ${canTarget("hero") ? "is-target" : ""}`}
           onClick={() => target("hero")}
-          disabled={!selection || !!battle.result}
+          disabled={!canTarget("hero") || !!battle.result}
           aria-label={`Chủ tướng địch ${battle.opponent}, ${battle.enemy.health} máu`}
         >
           <span className="tcg-avatar">☽</span>
@@ -199,8 +229,10 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             </strong>
           </span>
         </div>
-      <p className="tcg-hand-label">THẺ TRÊN TAY · VUỐT NGANG ĐỂ XEM THÊM →</p>
-      <div className="tcg-hand">
+        <p className="tcg-hand-label">
+          THẺ TRÊN TAY · VUỐT NGANG ĐỂ XEM THÊM →
+        </p>
+        <div className="tcg-hand">
           {battle.player.hand.map((id, index) => (
             <GameCardView
               key={`${index}-${id}`}
@@ -244,7 +276,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
       {confirm && (
         <Dialog title="Đầu hàng trận đấu?" onClose={() => setConfirm(false)}>
           <p>
-            Trận này sẽ được tính là thua. Bạn có thể thử lại bất kỳ lúc nào.
+            {battle.expedition
+              ? "Đầu hàng sẽ kết thúc chuyến thám hiểm này."
+              : "Trận này sẽ được tính là thua. Bạn có thể thử lại bất kỳ lúc nào."}
           </p>
           <div className="tcg-dialog-actions">
             <button
@@ -275,13 +309,22 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             </span>
             <p>
               {battle.result === "win"
-                ? (stage?.ending ??
-                  "Bạn đã hoàn thành trận luyện tập. Một công thức tốt bắt đầu từ những lần thử.")
+                ? battle.expedition
+                  ? battle.loot?.tickets
+                    ? "Bạn đã vượt qua màn sương cuối cùng. Những người lạc đường đã có một chỗ ở bàn ăn. Phần thưởng hành trình đã được trao."
+                    : battle.opponent === "Kẻ Nuốt Ký Ức"
+                      ? "Chuyến thám hiểm đã hoàn thành. Hôm nay bạn đã nhận đủ 3 lượt thưởng. Trở về để đọc đoạn kết."
+                      : "Bạn giữ lại máu còn lại và nhận lương thực. Quay về bản đồ để chọn thẻ hoặc tiếp tục hành trình."
+                  : (stage?.ending ??
+                    "Bạn đã hoàn thành trận luyện tập. Một công thức tốt bắt đầu từ những lần thử.")
                 : "Mỗi thất bại là một công thức cần nêm lại. Thử thêm thẻ giá thấp, Hộ vệ hoặc phép hồi máu."}
             </p>
             <div className="tcg-reward-row">
               <span>◉ +{battle.loot?.coins ?? 0} xu</span>
               <span>✧ +{battle.loot?.xp ?? 0} XP</span>
+              {!!battle.loot?.dust && (
+                <span>✧ +{battle.loot.dust} tinh chất</span>
+              )}
               {!!battle.loot?.tickets && (
                 <span>▱ +{battle.loot.tickets} vé</span>
               )}

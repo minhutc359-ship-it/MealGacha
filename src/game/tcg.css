@@ -375,3 +375,147 @@ button.tcg-hero { text-align:left; }
   .tcg-hand .tcg-card-body>strong { font-size:10px!important; }
 }
 html[data-tcg-reduced-motion='true'] .tcg-app * { animation:none!important; transition:none!important; }
+
+/* The caravan expansion */
+.tcg-expedition-teaser { width:100%; display:flex; align-items:center; gap:20px; text-align:left; padding:22px 25px; margin-top:20px; border:1px solid #c8c19c; border-radius:9px; background:linear-gradient(110deg,#e4e9d9,#f5efdc); color:#345a4b; }
+.tcg-expedition-teaser>span { font:42px Georgia,serif; color:#a68b4e; }
+.tcg-expedition-teaser small { font-size:7px; letter-spacing:1.4px; }
+.tcg-expedition-teaser strong { display:block; font:23px Georgia,serif; margin-top:7px; }
+.tcg-expedition-teaser p { font-size:9px; color:#71886c; margin:8px 0 0; }
+.tcg-expedition-teaser>b { margin-left:auto; font-size:24px; }
+.tcg-expedition-intro { position:relative; min-height:350px; background:#213e35; color:#f1e8c9; border-radius:12px; overflow:hidden; }
+.tcg-expedition-intro>img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:right; opacity:.45; }
+.tcg-expedition-intro:after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#153a30f0,#173b3180,transparent); }
+.tcg-expedition-intro>div { position:relative; z-index:1; padding:38px; max-width:560px; }
+.tcg-expedition-intro h2 { font:46px/1.12 Georgia,serif; margin:20px 0; color:#f2e9cb; }
+.tcg-expedition-intro p { max-width:400px; color:#d0d8bd; font-size:11px; line-height:1.9; }
+.tcg-expedition-intro small { display:block; font-size:8px; margin-top:18px; color:#c3d0ae; }
+.tcg-expedition-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:24px 0 14px; color:#7b8b6e; font-size:9px; }
+.tcg-expedition-stats>span { border-left:1px solid #d5d8c6; padding-left:14px; }
+.tcg-expedition-stats b { display:block; color:#385b49; font:28px Georgia,serif; margin-bottom:5px; }
+.tcg-expedition-reward-note { font-size:9px; color:#96885c; margin:0 0 24px; line-height:1.8; }
+.tcg-expedition-ending { margin-top:20px; }
+.tcg-expedition-ending h2 { font:26px Georgia,serif; margin:12px 0; }
+.tcg-run-dashboard { display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+.tcg-run-dashboard h2 { margin:8px 0 0; font:24px Georgia,serif; }
+.tcg-run-dashboard>span { font-size:11px; color:#a88c50; }
+.tcg-run-dashboard>.tcg-button { margin-left:auto; }
+.tcg-run-health { width:130px; }
+.tcg-run-health strong { color:#ad6652; font:26px Georgia,serif; }
+.tcg-run-health small { color:#979b83; font:12px Georgia,serif; }
+.tcg-run-health .tcg-progress { margin-top:8px; }
+.tcg-run-health .tcg-progress i { background:#b78060; }
+.tcg-run-relics { width:100%; display:flex; gap:8px; flex-wrap:wrap; border-top:1px solid #e0e3d2; padding-top:16px; }
+.tcg-run-relics>span,.tcg-battle-relics>span:not(:first-child) { font-size:9px; background:#ece7d4; border:1px solid #d9cea8; color:#8b784d; border-radius:4px; padding:7px 9px; }
+.tcg-run-relics small { font-size:9px; color:#85937a; }
+.tcg-run-event,.tcg-run-reward { margin-top:22px; border-color:#c9bf94; }
+.tcg-run-event h2,.tcg-run-reward h2 { font:30px Georgia,serif; margin:14px 0; }
+.tcg-run-event .tcg-dialogue { font:24px/1.6 Georgia,serif!important; color:#54704f; max-width:800px; }
+.tcg-run-choices { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:24px; }
+.tcg-run-choice { border:1px solid #c5ceb6; background:#eaf0df; border-radius:7px; padding:20px; text-align:left; color:#3f614b; }
+.tcg-run-choice strong { display:block; font-size:12px; margin-bottom:8px; }
+.tcg-run-choice span,.tcg-run-choice small { display:block; font-size:9px; color:#859274; line-height:1.8; }
+.tcg-route-map { margin:20px 0; }
+.tcg-route-row { display:flex; gap:20px; padding:15px 0; position:relative; }
+.tcg-route-row:not(:last-child):before { content:''; position:absolute; left:24px; top:40px; bottom:-26px; width:1px; background:#d5d9c9; }
+.tcg-route-number { width:48px; flex-shrink:0; padding-top:18px; z-index:1; }
+.tcg-route-number>span { display:grid; place-items:center; width:48px; height:48px; background:#ebeede; border:1px solid #d6dcc8; border-radius:50%; font:20px Georgia,serif; color:#89997b; }
+.tcg-route-row.current .tcg-route-number>span { border-color:#aa9256; color:#967a3b; background:#eee5c9; }
+.tcg-route-branches { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; flex:1; min-width:0; }
+.tcg-route-node { display:flex; align-items:center; gap:14px; padding:19px; min-height:115px; text-align:left; border:1px solid #cbd4bf; background:#f8faef; border-radius:8px; color:#456b52; }
+.tcg-route-node:disabled { opacity:.65; }
+.tcg-route-node.visited:disabled { opacity:.85; background:#e6ebda; }
+.tcg-route-row.current .tcg-route-node:not(:disabled) { border-color:#ae995e; background:#fff9e9; box-shadow:0 3px 12px #9e884010; }
+.tcg-route-node.danger:not(:disabled) { border-color:#b27e5a; }
+.tcg-route-symbol { font:30px Georgia,serif; color:#ab9863; flex-shrink:0; }
+.tcg-route-node small { font-size:7px; text-transform:uppercase; letter-spacing:.7px; color:#889478; }
+.tcg-route-node strong { display:block; font:19px Georgia,serif; margin:7px 0; }
+.tcg-route-node p { font-size:8px; color:#939b82; margin:0; line-height:1.7; }
+.tcg-route-node>b { margin-left:auto; color:#b09a66; }
+.tcg-relic-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; margin:15px 0; }
+.tcg-relic-offer { padding:20px 15px; border:1px solid #d8ceaa; background:#f4eedc; color:#6b6f4a; text-align:left; border-radius:7px; }
+.tcg-relic-offer>span { display:block; font:32px Georgia,serif; color:#ac925b; margin-bottom:15px; }
+.tcg-relic-offer>strong { display:block; font:19px Georgia,serif; }
+.tcg-relic-offer p { font-size:9px; line-height:1.9; margin:10px 0 0; color:#8b8b6f; }
+.tcg-run-reward h3 { font-size:12px; font-weight:500; margin-top:27px; }
+.tcg-run-card-offers { display:grid; grid-template-columns:repeat(3,minmax(0,180px)); gap:20px; margin:20px 0; }
+.tcg-run-replace { display:flex; gap:13px; align-items:center; flex-wrap:wrap; padding:16px; background:#e9eedf; border-radius:6px; margin-bottom:16px; }
+.tcg-run-replace label { width:100%; font-size:10px; color:#7e9274; }
+.tcg-run-replace select { padding:11px; max-width:100%; min-width:0; flex:1; font-size:10px; background:#f5f7ec; color:#42664d; border:1px solid #ced8c0; border-radius:5px; }
+.tcg-run-replace small { font-size:9px; width:100%; color:#a2794e; }
+.tcg-run-deck,.tcg-run-log,.tcg-history { margin-top:16px; }
+.tcg-expedition summary { font-size:12px; color:#577650; cursor:pointer; }
+.tcg-run-deck>div { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:20px; }
+.tcg-run-deck>div>span { display:flex; align-items:center; gap:10px; padding:9px; background:#edf0e3; font-size:9px; color:#637b57; }
+.tcg-run-deck b { color:#a1874b; }
+.tcg-run-deck small { margin-left:auto; }
+.tcg-run-log ol { padding-left:20px; font-size:10px; line-height:2; color:#829175; }
+.tcg-history-list { display:grid; margin-top:15px; }
+.tcg-history-list>button { display:flex; align-items:center; gap:14px; padding:13px 0; border:0; border-bottom:1px solid #e0e4d3; background:none; text-align:left; }
+.tcg-history-list>button>span { font-size:26px; color:#a2a593; }
+.tcg-history-list>button>span.win { color:#b39a60; }
+.tcg-history-list strong { color:#42674e; font-size:11px; font-weight:500; }
+.tcg-history-list small { display:block; margin-top:4px; font-size:8px; color:#8b997c; }
+.tcg-history-list b { margin-left:auto; font-size:9px; color:#8e976f; }
+.tcg-battle-relics { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 15px; }
+.tcg-battle-relics>span:first-child { font-size:9px; color:#8b967c; width:100%; margin-bottom:3px; }
+@media(max-width:740px) { .tcg-route-node { padding:14px; gap:9px; } .tcg-route-node strong { font-size:17px; } .tcg-relic-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .tcg-run-dashboard { gap:18px; } }
+@media(max-width:600px) {
+  .tcg-sidebar nav button>span { font-size:0; }
+  .tcg-sidebar nav button>span:after { content:attr(data-mobile-label); font-size:6px; }
+  .tcg-expedition .tcg-section-heading { align-items:flex-start; flex-wrap:wrap; gap:14px; }
+  .tcg-expedition .tcg-section-heading>.tcg-button { font-size:8px!important; }
+  .tcg-expedition-teaser { padding:17px; gap:14px; }
+  .tcg-expedition-teaser>span { font-size:30px; }
+  .tcg-expedition-teaser strong { font-size:19px; }
+  .tcg-expedition-teaser small { font-size:5px; letter-spacing:.8px; }
+  .tcg-expedition-teaser p { font-size:7px; }
+  .tcg-expedition-intro { min-height:370px; }
+  .tcg-expedition-intro>div { padding:25px; }
+  .tcg-expedition-intro h2 { font-size:39px; }
+  .tcg-expedition-intro p { font-size:10px; }
+  .tcg-expedition-stats { grid-template-columns:repeat(2,1fr); row-gap:18px; font-size:8px; }
+  .tcg-expedition-stats b { font-size:25px; }
+  .tcg-run-dashboard { padding:18px; gap:14px; }
+  .tcg-run-dashboard>div:first-child { width:100%; }
+  .tcg-run-dashboard>.tcg-button { width:100%; margin:0; }
+  .tcg-run-health { width:120px; }
+  .tcg-run-event,.tcg-run-reward { padding:18px; }
+  .tcg-run-event h2,.tcg-run-reward h2 { font-size:25px; }
+  .tcg-run-event .tcg-dialogue { font-size:21px!important; }
+  .tcg-run-choices { grid-template-columns:1fr; }
+  .tcg-run-choice { padding:16px; }
+  .tcg-route-row { gap:12px; }
+  .tcg-route-number,.tcg-route-number>span { width:34px; }
+  .tcg-route-number>span { height:34px; font-size:16px; }
+  .tcg-route-row:not(:last-child):before { left:17px; }
+  .tcg-route-branches { grid-template-columns:1fr; gap:10px; }
+  .tcg-route-node { min-height:102px; }
+  .tcg-run-card-offers { gap:9px; grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .tcg-run-card-offers .tcg-card-body { padding:8px 5px; }
+  .tcg-run-card-offers .tcg-card-body>strong { font-size:11px; }
+  .tcg-run-card-offers .tcg-card-text { font-size:6px; }
+  .tcg-run-card-offers .tcg-card-eyebrow { font-size:4px; }
+  .tcg-run-card-offers .tcg-card-footer { font-size:7px; }
+  .tcg-run-card-offers .tcg-card-footer>span { display:none; }
+  .tcg-run-replace>.tcg-button { width:100%; }
+  .tcg-run-deck>div { grid-template-columns:1fr; }
+  .tcg-relic-offer { padding:14px; }
+  .tcg-relic-offer>strong { font-size:17px; }
+  .tcg-relic-offer p { font-size:8px; }
+  .tcg-reward-row { flex-wrap:wrap; gap:15px; }
+}
+
+.tcg-expedition .tcg-mini-heading { margin-top:28px; }
+.tcg-event-skip { margin-top:16px; }
+.tcg-run-card-description { width:100%; margin:0 0 4px; color:#59764f; font-size:11px; line-height:1.8; }
+.tcg-run-card-description strong,.tcg-run-card-description span,.tcg-run-card-description em { display:block; }
+.tcg-run-card-description em { color:#8b987b; font:16px/1.5 Georgia,serif; margin-top:5px; }
+@media(max-width:600px) {
+  .tcg-sidebar nav button>span:after { font-size:8px; }
+  .tcg-expedition-stats>span { font-size:10px; }
+  .tcg-route-node small { font-size:8px; }
+  .tcg-route-node p { font-size:9px; }
+  .tcg-run-choice span,.tcg-run-choice small { font-size:10px; }
+  .tcg-relic-offer p { font-size:10px; }
+}

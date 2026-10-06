@@ -1,8 +1,8 @@
-# MealGacha v2 · Huyền thoại vị giác
+# MealGacha v2.1 · Huyền thoại vị giác
 
-Game thẻ bài ẩm thực trên React/Vite: **137 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 3 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
+Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 3 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
 
-Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
+Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
 
 ## Game thẻ bài
 
@@ -12,6 +12,10 @@ Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói.
 - **Trao đổi NPC:** 3 đề nghị đổi thẻ mỗi ngày. Chỉ dùng bản dư ngoài số thẻ cần trong tất cả bộ bài; giữ ít nhất 1 bản. Mỗi đề nghị nhận một lần/ngày.
 - **Lưu game:** `foodchest.tcg.v1` độc lập với hồ sơ cũ. Mỗi món cũ chuyển thành 1 thẻ một lần, không xóa lịch sử hoặc chìa. Trận đang đấu tiếp tục sau khi tải lại. Xuất/nhập JSON riêng ở Cài đặt game; backup JSON/ZIP chung cũng bao gồm TCG.
 - **Ngày mới:** theo `VITE_APP_TIME_ZONE`, mặc định Việt Nam. Điểm danh +100 xu/+10 tinh chất; nhiệm vụ ngày và dấu mốc hành trình có phần thưởng riêng.
+
+- **Thám hiểm:** Con đường qua sương có 7 chặng, 6 sự kiện truyện, 10 di vật, đường đi có lựa chọn và máu giữ giữa các trận. Nhặt thẻ để thay vào bộ bài hành trình, đánh tinh anh, nghỉ bếp và vượt Kẻ Nuốt Ký Ức. Hoàn thành nhận 200 xu/40 tinh chất/100 XP/1 vé, tối đa 3 lượt thưởng/ngày.
+- **Bộ Đoàn lữ hành:** 15 thẻ mới (10 đồng minh, 5 bí thuật), thêm Quét sân gây sát thương lên mọi đơn vị địch, có tính lá chắn. Thẻ cũng nhận được qua gói và chế tạo.
+- **Nhật ký & nâng cấp:** 20 trận gần nhất với kết quả và phần thưởng thực; thống kê thám hiểm. Bản lưu v2 tiếp tục sử dụng được, tự bổ sung trường mới.
 
 Luật chi tiết và cấu trúc mã: [`docs/TCG_RULES.md`](docs/TCG_RULES.md).
 

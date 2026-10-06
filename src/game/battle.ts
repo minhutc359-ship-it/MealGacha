@@ -171,21 +171,45 @@ function play(
     return "Hãy chọn một mục tiêu địch."
   p.mana -= card.cost
   p.hand.splice(index, 1)
-  const power = card.power ?? 1
+  const relics = side === "player" ? (b.expedition?.relics ?? []) : []
+  const bonus =
+    relics.includes("old-recipe") &&
+    card.kind === "spell" &&
+    (card.effect === "damage" || card.effect === "sweep")
+      ? 1
+      : relics.includes("tea-cup") && card.effect === "heal"
+        ? 2
+        : 0
+  const power = (card.power ?? 1) + bonus
   if (card.kind === "unit") {
     const synergy = p.board.some(
       (u) => CARD_MAP[u.cardId].school === card.school,
     )
+    const healthBonus = relics.includes("hearth-apron") ? 1 : 0
+    const attackBonus =
+      (relics.includes("ember-pin") && card.school === "ember" ? 1 : 0) +
+      (side === "enemy" ? (b.expedition?.enemyBoost ?? 0) : 0)
+    const bootRush =
+      relics.includes("traveler-boots") && b.expedition?.summoned === 0
     p.board.push({
       uid: `u${b.nextUid++}`,
       cardId: id,
-      attack: card.attack,
-      health: card.health,
-      maxHealth: card.health,
-      shield: (card.keywords.includes("shield") ? 1 : 0) + (synergy ? 1 : 0),
-      ready: card.keywords.includes("rush"),
-      keywords: [...card.keywords],
+      attack: card.attack + attackBonus,
+      health: card.health + healthBonus,
+      maxHealth: card.health + healthBonus,
+      shield:
+        (card.keywords.includes("shield") ? 1 : 0) +
+        (synergy ? 1 : 0) +
+        (relics.includes("sugar-crystal") ? 1 : 0),
+      ready: card.keywords.includes("rush") || bootRush,
+      keywords: [
+        ...card.keywords,
+        ...(bootRush && !card.keywords.includes("rush")
+          ? ["rush" as const]
+          : []),
+      ],
     })
+    if (side === "player" && b.expedition) b.expedition.summoned++
     if (card.effect === "heal")
       p.health = Math.min(p.maxHealth, p.health + power)
     if (card.effect === "draw") draw(b, side, power)
@@ -196,6 +220,7 @@ function play(
       }.`,
     )
   } else {
+    if (card.effect === "sweep") foe.board.forEach((u) => hurt(u, power))
     if (card.effect === "damage") {
       if (target === "hero") foe.health -= power
       else hurt(foe.board.find((u) => u.uid === target)!, power)
@@ -262,6 +287,8 @@ function nextTurn(b: Battle, side: "player" | "enemy") {
   p.board.forEach((u) => {
     u.ready = true
   })
+  if (side === "player" && b.expedition?.relics.includes("grove-seed"))
+    p.health = Math.min(p.maxHealth, p.health + 1)
   draw(b, side)
 }
 function chooseDamageTarget(card: GameCard, foe: Combatant): Target {
@@ -287,7 +314,10 @@ function enemyTurn(b: Battle) {
           (card.kind !== "spell" ||
             card.effect !== "draw" ||
             (p.hand.length <= 5 && p.deck.length > 0)) &&
-          (card.effect !== "heal" || p.health < p.maxHealth),
+          (card.kind === "unit" ||
+            card.effect !== "heal" ||
+            p.health < p.maxHealth) &&
+          (card.effect !== "sweep" || b.player.board.length > 0),
       )
     options.sort((a, z) => {
       const score = (c: GameCard) =>

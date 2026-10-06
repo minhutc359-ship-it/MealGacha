@@ -1,4 +1,5 @@
 import { CARD_MAP, CARDS, STARTER_DECK, STARTER_IDS, RARITIES } from "./catalog"
+import { settleRunCombat, expeditionRewardAvailable } from "./expedition"
 import { STAGES } from "./story"
 import { getDateKey } from "../domain/dateKey"
 import type { GameSave, GameStats, School } from "./types"
@@ -34,6 +35,9 @@ export function newGame(): GameSave {
     battle: null,
     legacyImported: [],
     updatedAt: new Date().toISOString(),
+    expedition: null,
+    expeditionStats: { runs: 0, wins: 0, best: 0 },
+    history: [],
   }
 }
 export function rotateDay(save: GameSave, today = getDateKey()): GameSave {
@@ -162,13 +166,32 @@ export function settleBattle(save: GameSave): GameSave {
   if (!battle?.result || battle.settled) return save
   const win = battle.result === "win"
   const firstClear =
-    win && battle.stageId && !save.clearedStages.includes(battle.stageId)
+    win &&
+    !battle.expedition &&
+    battle.stageId &&
+    !save.clearedStages.includes(battle.stageId)
   const stage = STAGES.find((s) => s.id === battle.stageId)
-  const paidPractice = !battle.stageId && win && save.daily.wins < 5
+  const paidPractice =
+    !battle.expedition && !battle.stageId && win && save.daily.wins < 5
+  const run =
+    battle.expedition && save.expedition
+      ? settleRunCombat(save.expedition, battle)
+      : save.expedition
+  const finishedRun = !!battle.expedition && run?.status === "won" && !run.paid
+  const payRun = finishedRun && expeditionRewardAvailable(save)
   const loot = {
-    coins: firstClear ? (stage?.boss ? 180 : 100) : paidPractice ? 25 : 0,
-    xp: firstClear ? 50 : paidPractice ? 10 : 0,
-    tickets: firstClear && stage?.boss ? 1 : 0,
+    coins: payRun
+      ? 200
+      : firstClear
+        ? stage?.boss
+          ? 180
+          : 100
+        : paidPractice
+          ? 25
+          : 0,
+    xp: payRun ? 100 : firstClear ? 50 : paidPractice ? 10 : 0,
+    tickets: payRun || (firstClear && stage?.boss) ? 1 : 0,
+    dust: payRun ? 40 : 0,
     cardId: firstClear ? stage?.rewardCard : undefined,
   }
   let next: GameSave = {
@@ -176,6 +199,33 @@ export function settleBattle(save: GameSave): GameSave {
     battle: { ...battle, settled: true, loot },
     xp: save.xp + loot.xp,
     coins: save.coins + loot.coins,
+    dust: save.dust + loot.dust,
+    expedition: finishedRun ? { ...run!, paid: true } : run,
+    expeditionStats: {
+      ...save.expeditionStats,
+      wins: save.expeditionStats.wins + (finishedRun ? 1 : 0),
+      best: Math.max(save.expeditionStats.best, run?.route.length ?? 0),
+    },
+    claimedDailyQuests: payRun
+      ? [...save.claimedDailyQuests, `expedition:reward:${battle.id}`]
+      : save.claimedDailyQuests,
+    history: [
+      {
+        id: battle.id,
+        mode: battle.expedition
+          ? "expedition" as const
+          : battle.stageId
+            ? "story" as const
+            : "practice" as const,
+        opponent: battle.opponent,
+        result: battle.result!,
+        rounds: battle.round,
+        date: new Date().toISOString(),
+        stageId: battle.stageId,
+        loot,
+      },
+      ...save.history,
+    ].slice(0, 20),
     packTickets: save.packTickets + loot.tickets,
     clearedStages: firstClear
       ? [...save.clearedStages, battle.stageId!]
@@ -249,6 +299,34 @@ export const QUESTS = [
     coins: 500,
     dust: 400,
     progress: (s: GameSave) => s.clearedStages.length,
+  },
+  {
+    id: "caravan-first",
+    name: "Chiếc ghế cho người lạc đường",
+    description: "Hoàn thành 1 chuyến thám hiểm",
+    target: 1,
+    coins: 150,
+    dust: 50,
+    progress: (s: GameSave) => s.expeditionStats.wins,
+  },
+  {
+    id: "caravan-three",
+    name: "Người thuộc mọi đường về",
+    description: "Hoàn thành 3 chuyến thám hiểm",
+    target: 3,
+    coins: 300,
+    dust: 100,
+    progress: (s: GameSave) => s.expeditionStats.wins,
+  },
+  {
+    id: "caravan-collection",
+    name: "Bạn đồng hành đường xa",
+    description: "Sở hữu 5 thẻ khác nhau thuộc Đoàn lữ hành",
+    target: 5,
+    coins: 150,
+    dust: 40,
+    progress: (s: GameSave) =>
+      CARDS.filter((c) => c.set === "Đoàn lữ hành" && s.cards[c.id] > 0).length,
   },
 ]
 export const DAILY_QUESTS = [

@@ -1,7 +1,7 @@
 export type School = "ember" | "tide" | "grove" | "hearth" | "sugar"
 export type CardRarity = "common" | "rare" | "epic" | "legendary"
 export type Keyword = "guard" | "rush" | "shield" | "drain"
-export type Effect = "damage" | "heal" | "draw" | "buff" | "ward"
+export type Effect = "damage" | "heal" | "draw" | "buff" | "ward" | "sweep"
 
 export interface GameCard {
   id: string
@@ -59,12 +59,68 @@ export interface Battle {
   settled: boolean
   nextUid: number
   loot?: BattleLoot
+  expedition?: ExpeditionCombat
 }
-interface BattleLoot {
+export interface BattleLoot {
   coins: number
   xp: number
   tickets: number
   cardId?: string
+  dust?: number
+}
+export interface ExpeditionCombat {
+  runId: string
+  nodeId: string
+  relics: string[]
+  enemyBoost: number
+  summoned: number
+}
+export type ExpeditionNodeKind = "battle" | "elite" | "boss" | "event" | "camp"
+export interface ExpeditionNode {
+  id: string
+  kind: ExpeditionNodeKind
+  school: School
+  title: string
+  eventId?: string
+}
+export interface ExpeditionReward {
+  cards: string[]
+  relics: string[]
+  cardPicked: boolean
+  relicPicked: boolean
+}
+export interface ExpeditionRun {
+  id: string
+  seed: number
+  status: "path" | "battle" | "event" | "reward" | "won" | "lost" | "abandoned"
+  floor: number
+  health: number
+  maxHealth: number
+  supplies: number
+  deck: string[]
+  relics: string[]
+  nodes: ExpeditionNode[][]
+  route: string[]
+  currentNode: string | null
+  reward: ExpeditionReward | null
+  log: string[]
+  wins: number
+  paid: boolean
+}
+export interface ExpeditionStats {
+  runs: number
+  wins: number
+  best: number
+}
+export interface BattleRecord {
+  id: string
+  mode: "story" | "practice" | "expedition"
+  opponent: string
+  result: "win" | "loss"
+  rounds: number
+  date: string
+  stageId: string | null
+  loot: BattleLoot
 }
 export interface GameStats {
   wins: number
@@ -94,6 +150,9 @@ export interface GameSave {
   battle: Battle | null
   legacyImported: string[]
   updatedAt: string
+  expedition: ExpeditionRun | null
+  expeditionStats: ExpeditionStats
+  history: BattleRecord[]
 }
 export interface Chapter {
   id: string

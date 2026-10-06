@@ -11,6 +11,15 @@ import {
   rotateDay,
   settleBattle,
 } from "./progression"
+import {
+  activeRun,
+  createExpedition,
+  enterRunNode,
+  startRunBattle,
+  resolveRunEvent,
+  pickRunRelic,
+  pickRunCard,
+} from "./expedition"
 import { loadGame, saveGame, parseGame } from "./storage"
 import { isStageUnlocked } from "./story"
 import { getDateKey } from "../domain/dateKey"
@@ -35,6 +44,12 @@ interface Store {
   start(stageId: string | null, choice?: "courage" | "wisdom"): boolean
   act(action: BattleAction): void
   leaveBattle(): void
+  beginExpedition(): boolean
+  enterExpedition(id: string): void
+  chooseEvent(id: string): void
+  chooseRelic(id: string | null): void
+  chooseRunCard(id: string | null, removeIndex?: number): void
+  abandonExpedition(): void
   importSave(raw: unknown): boolean
 }
 
@@ -250,6 +265,13 @@ export const useGameStore = create<Store>((set, get) => {
         set({ notice: "Hãy hoàn thành hoặc đầu hàng trận đang chơi trước." })
         return false
       }
+      if (activeRun(save.expedition)) {
+        set({
+          notice:
+            "Chuyến thám hiểm đang diễn ra. Hoàn thành hoặc kết thúc hành trình trước.",
+        })
+        return false
+      }
       if (stageId && !isStageUnlocked(stageId, save.clearedStages)) return false
       const deck = save.decks.find((d) => d.id === save.activeDeckId)
       const error = deckErrors(deck?.cards ?? [], save.cards)[0]
@@ -282,6 +304,73 @@ export const useGameStore = create<Store>((set, get) => {
         ? settleBattle(save)
         : settleBattle({ ...save, battle: { ...save.battle, result: "loss" } })
       commit({ ...settled, battle: null })
+    },
+    beginExpedition() {
+      const save = current()
+      if (activeRun(save.expedition) || (save.battle && !save.battle.result))
+        return false
+      const deck = save.decks.find((d) => d.id === save.activeDeckId)
+      const error = deckErrors(deck?.cards ?? [], save.cards)[0]
+      if (error) {
+        set({ notice: error })
+        return false
+      }
+      return commit(
+        {
+          ...save,
+          battle: null,
+          expedition: createExpedition(deck!.cards),
+          expeditionStats: {
+            ...save.expeditionStats,
+            runs: save.expeditionStats.runs + 1,
+          },
+        },
+        "Chuyến thám hiểm bắt đầu. Máu được giữ giữa các trận.",
+      )
+    },
+    enterExpedition(id) {
+      const save = current()
+      if (!save.expedition || save.battle) return
+      const run = enterRunNode(save.expedition, id)
+      if (run === save.expedition) return
+      commit({
+        ...save,
+        expedition: run,
+        expeditionStats: {
+          ...save.expeditionStats,
+          best: Math.max(save.expeditionStats.best, run.route.length),
+        },
+        battle: run.status === "battle" ? startRunBattle(run) : null,
+      })
+    },
+    chooseEvent(id) {
+      const save = current()
+      if (!save.expedition || save.battle) return
+      const run = resolveRunEvent(save.expedition, id)
+      if (run !== save.expedition) commit({ ...save, expedition: run })
+    },
+    chooseRelic(id) {
+      const save = current()
+      if (!save.expedition || save.battle) return
+      const run = pickRunRelic(save.expedition, id)
+      if (run !== save.expedition) commit({ ...save, expedition: run })
+    },
+    chooseRunCard(id, removeIndex) {
+      const save = current()
+      if (!save.expedition || save.battle) return
+      const run = pickRunCard(save.expedition, id, removeIndex)
+      if (run !== save.expedition) commit({ ...save, expedition: run })
+    },
+    abandonExpedition() {
+      const save = current()
+      if (!activeRun(save.expedition) || save.battle) return
+      commit(
+        {
+          ...save,
+          expedition: { ...save.expedition!, status: "abandoned", paid: true },
+        },
+        "Đã trở về Phố Đèn Lồng. Bộ sưu tập được giữ nguyên.",
+      )
     },
     importSave(raw) {
       const save = parseGame(raw)

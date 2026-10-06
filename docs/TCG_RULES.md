@@ -1,8 +1,8 @@
-# MealGacha TCG v2 — Luật và bảo trì
+# MealGacha TCG v2.1 — Luật và bảo trì
 
 ## Nội dung đã triển khai
 
-137 thẻ: 112 món từ catalog hiện có (gồm 6 món Tây Bắc), 20 phép thuật mới và 5 đầu bếp huyền thoại. Mỗi lá có ID ổn định, hệ, độ hiếm, giá năng lượng, mô tả kỹ năng và lore. Ảnh món dùng asset trong repository; thẻ bí thuật/đầu bếp dùng biểu trưng và nền bằng CSS.
+152 thẻ: 112 món từ catalog hiện có (gồm 6 món Tây Bắc), 20 bí thuật, 5 đầu bếp huyền thoại và 15 thẻ thuộc bộ Đoàn lữ hành (10 đồng minh, 5 bí thuật). Mỗi lá có ID ổn định, hệ, độ hiếm, giá năng lượng, mô tả kỹ năng và lore. Ảnh món dùng asset trong repository; thẻ bí thuật/đầu bếp dùng biểu trưng và nền bằng CSS.
 
 Sáu chương, mỗi chương ba màn, tổng cộng sáu boss:
 
@@ -27,6 +27,7 @@ Sáu chương, mỗi chương ba màn, tổng cộng sáu boss:
 - Lá chắn là lượng sát thương có thể chặn, tiêu hao trước máu. Hút vị hồi chủ tướng theo sát thương thực gây ra, tính cả giới hạn máu còn lại của mục tiêu.
 - Triệu hồi đồng minh vào sân có đơn vị cùng hệ: nhận thêm một lá chắn.
 - Bí thuật sát thương cần mục tiêu địch; hồi máu tác động chủ tướng; tăng công/máu và thêm lá chắn tác động tất cả đồng minh; các phép tăng công/lá chắn cần có đồng minh trên sân.
+- Quét sân gây sát thương lên tất cả đơn vị địch, tiêu lá chắn trước máu; không gây sát thương lên chủ tướng và không cần chọn mục tiêu.
 - Tay tối đa 8 lá. Rút dư sẽ bỏ thẻ. Không còn thẻ trong bộ: lần rút đầu mất 1 máu, rồi 2, 3… để trận đấu không kéo dài vô tận.
 - Hạ chủ tướng địch xuống 0 là thắng. Trận kết thúc chỉ được quyết toán một lần; kết quả và phần thưởng thực nhận lưu cùng trận.
 
@@ -35,7 +36,7 @@ AI ưu tiên triệu hồi, tận dụng sát thương kết liễu, đánh Hộ
 ## Kinh tế và sưu tập
 
 - Khởi đầu 300 xu, 50 tinh chất, 2 vé và 2 bản của 9 thẻ khởi đầu.
-- Điểm danh +100 xu / +10 tinh chất một lần/ngày. Nhiệm vụ ngày: thắng 2 trận, mở 1 gói, hoàn tất 3 trận. Sáu dấu mốc vĩnh viễn có phần thưởng một lần.
+- Điểm danh +100 xu / +10 tinh chất một lần/ngày. Nhiệm vụ ngày: thắng 2 trận, mở 1 gói, hoàn tất 3 trận. Chín dấu mốc vĩnh viễn có phần thưởng một lần.
 - Luyện tập thắng nhận 25 xu/10 XP nếu tổng trận thắng hôm nay trước trận đó dưới 5; vượt giới hạn vẫn luyện đấu và tăng thống kê. Cốt truyện vẫn nhận thưởng lần đầu, không bị giới hạn này.
 - Sáu gói: tất cả hệ và năm gói theo hệ. Mỗi gói ưu tiên tiêu 1 vé, nếu hết vé tiêu 100 xu; luôn nhận 5 lá.
 - Tỉ lệ cơ bản: Thường 63%, Hiếm 25%, Sử thi 10%, Huyền thoại 2%. Lá cuối tăng tối thiểu tới Hiếm nếu bốn lá trước đều Thường. Bộ đếm bảo đảm Sử thi chạy chung giữa tất cả gói, reset khi nhận Sử thi/Huyền thoại, nâng lá cuối ở gói thứ 8 nếu chưa có.
@@ -43,11 +44,24 @@ AI ưu tiên triệu hồi, tận dụng sát thương kết liễu, đánh Hộ
 - Viền ánh kim giá 60 tinh chất, mở một lần cho ID thẻ; chỉ thay đổi hình thức.
 - NPC có ba trao đổi xác định theo ngày, đổi một bản dư Thường → Hiếm (+20 xu), Hiếm → Sử thi (+50 xu), Sử thi → Huyền thoại (+150 tinh chất). Mỗi đề nghị dùng một lần/ngày. Giữ lại ít nhất một bản và đủ số bản cho mọi bộ bài.
 
+## Thám hiểm — Con đường qua sương
+
+- Khởi đầu miễn phí với bản sao bộ bài đang trang bị, 34 máu và 40 lương thực. Một chuyến đang diễn ra cần hoàn thành hoặc kết thúc trước khi mở chuyến mới hay trận ở chế độ khác.
+- Bảy chặng: giao đấu → gặp gỡ/bếp nghỉ → giao đấu/tinh anh → bếp nghỉ/gặp gỡ → tinh anh/giao đấu → gặp gỡ/bếp nghỉ → Kẻ Nuốt Ký Ức. Chọn một điểm dừng mỗi chặng. Bản đồ và đề nghị thưởng sinh theo seed, lưu cùng chuyến; tải lại không tạo lại các lựa chọn.
+- Máu chủ tướng được giữ giữa các trận; sân, năng lượng và tay bài được tạo lại. Thua hay đầu hàng kết thúc chuyến đi. Tinh anh/trùm có +1 công cho mỗi đơn vị khi vào sân.
+- Thắng giao đấu nhận 25 lương thực, tinh anh 40; chọn 1 trong 3 thẻ để thay một lá của bộ bài hành trình. Bộ bài vẫn đúng 18 lá, tối đa 2 bản. Có thể giữ nguyên bộ bài. Tinh anh thêm lựa chọn 1 trong 3 di vật chưa sở hữu; xử lý cả hai lựa chọn rồi mới mở chặng tiếp theo.
+- Sáu câu chuyện: Chiếc bát còn ấm, Chuyến đò không tên, Chợ lúc nửa đêm, Cây không mùa, Thư viện công thức thất lạc, Đêm bánh sao. Lựa chọn thay đổi máu/lương thực/thẻ/di vật. Không thể chọn phương án thiếu tài nguyên hay khiến máu về 0; luôn có thể giữ hành trang và đi tiếp.
+- Bếp nghỉ hồi 12 máu miễn phí hoặc dùng 25 lương thực chọn di vật. Lương thực độc lập với xu của bộ sưu tập.
+- Mười di vật: Trâm than hồng (+1 công Hỏa vị), La bàn ký ức (+1 bài mở đầu), Hạt mầm bình minh (hồi 1 máu đầu lượt), Tạp dề bà ngoại (+1 máu đồng minh), Đường pha lê (+1 lá chắn đồng minh), Ấm trà bền bỉ (+4 máu tối đa/hồi 4 ngay), Hài lữ khách (đồng minh đầu trận có Xung phong), Trang sách cháy (+1 sát thương bí thuật), Chén trà đoàn viên (+2 hồi máu của thẻ), Đèn dầu không tắt (2 năng lượng mở đầu). Hiệu lực chỉ trong chuyến đi; không trùng ID.
+- Hoàn thành trùm cuối nhận 200 xu, 40 tinh chất, 100 XP và 1 vé, tối đa 3 chuyến hoàn thành được trả thưởng mỗi ngày. Chuyến thứ 4 vẫn tăng thống kê, không trả thưởng. Trận giữa hành trình không nhận tiền luyện tập. Thẻ hành trình không thêm vào bộ sưu tập; 15 thẻ Đoàn lữ hành cũng nằm trong gói thẻ và có thể chế tạo bình thường.
+- Nhật ký giữ 20 trận gần nhất ở tất cả chế độ, gồm kết quả, số lượt, thời điểm và phần thưởng thực. Không phải replay. Thống kê chuyến đã mở, chuyến hoàn thành và chặng xa nhất lưu lâu dài.
+
 ## Lưu trữ và nâng cấp
 
 - Hồ sơ cũ `foodchest.user.v1` giữ nguyên. TCG lưu riêng ở `foodchest.tcg.v1`, schema `version: 1`.
 - Chuyển mỗi dish ID đã từng nhận thành một thẻ TCG, một lần; `legacyImported` bảo vệ khỏi nhập lặp. Khi đã sở hữu 2 bản, chuyển thành tinh chất.
-- Bộ bài, bản trùng, foil, lựa chọn, màn đã thắng, bộ đếm bảo đảm, tài nguyên và battle snapshot đều trong save. Mọi hành động ghi trước khi cập nhật UI; nếu ghi lỗi thì hiện thông báo và không áp dụng thay đổi trong bộ nhớ.
+- Bộ bài, bản trùng, foil, lựa chọn, màn đã thắng, bộ đếm bảo đảm, tài nguyên, battle snapshot, hành trình thám hiểm và nhật ký đều trong save. Mọi hành động ghi trước khi cập nhật UI; nếu ghi lỗi thì hiện thông báo và không áp dụng thay đổi trong bộ nhớ.
+- Bản lưu v2 chưa có hành trình/nhật ký được bổ sung các trường mặc định, giữ nguyên version và storage key. Schema kiểm tra liên kết giữa hành trình và trận để chặn bản sao lưu thiếu trận đang diễn ra.
 - Schema Zod kiểm tra ID, số lượng, giới hạn tay/sân/năng lượng và tài nguyên khi đọc/nhập. JSON TCG có nút xem trước và xác nhận trước khi thay thế. Backup JSON và ZIP của chế độ cũ đều bổ sung TCG; backup cũ không có TCG vẫn nhập được.
 - Event `storage` cập nhật tab khác, `focus` và kiểm tra mỗi phút làm mới ngày. Tiến trình là local, chưa có khóa giao dịch nhiều thiết bị hoặc máy chủ chống chỉnh save.
 - Giữ ID và storage key ổn định khi patch. Khi đổi schema, thêm migration trước khi nâng version; không xóa storage trong quá trình update.
@@ -61,6 +75,7 @@ AI ưu tiên triệu hồi, tận dụng sát thương kết liễu, đánh Hộ
 | `src/game/story.ts` | Chương, màn, đối thoại và thứ tự mở khóa |
 | `src/game/battle.ts` | Reducer chiến đấu thuần, AI, khởi tạo và đổi lượt |
 | `src/game/progression.ts` | Kinh tế, phần thưởng, gói, bảo đảm, nhiệm vụ, NPC |
+| `src/game/expedition.ts` | Bản đồ có seed, sự kiện, di vật và trạng thái chuyến đi |
 | `src/game/storage.ts` | Schema và đọc/ghi bản lưu |
 | `src/game/useGameStore.ts` | Các hành động người chơi, kiểm tra và lưu nguyên tử trong tab |
 | `src/pages/TCGPage.tsx` | Sảnh, bản đồ, cửa hàng, nhiệm vụ và cài đặt |
@@ -77,9 +92,9 @@ pnpm validate:catalog
 pnpm build
 ```
 
-Các test bao gồm: luật thẻ/bộ bài, năng lượng hai bên, triệu hồi/giới hạn sân, Hộ vệ, Lá chắn/Hút vị/đồng hệ, kiệt sức, mở gói có bảo đảm, không nhận thưởng lặp, NPC giữ đủ thẻ, chuyển bộ sưu tập cũ, kiểm tra backup và 200 trận mô phỏng có seed qua toàn bộ chiến dịch.
+Các test bao gồm: luật thẻ/bộ bài, năng lượng hai bên, triệu hồi/giới hạn sân, Hộ vệ, Lá chắn/Hút vị/đồng hệ, kiệt sức, mở gói có bảo đảm, không nhận thưởng lặp, NPC giữ đủ thẻ, chuyển bộ sưu tập cũ, kiểm tra backup 200 trận mô phỏng có seed qua toàn bộ chiến dịch, 100 bản đồ thám hiểm, 30 trận mở đầu và 20 chuyến thám hiểm bằng lượt đấu thật, hiệu lực di vật, thay bài, phần thưởng ngày, sự kiện không kẹt và nâng cấp bản lưu v2.
 
-Kiểm tra giao diện thủ công hoặc Playwright: desktop 1440px và mobile 390px; điểm danh, gói/lật thẻ, lọc thẻ, chi tiết/Escape, lưu bộ bài, nhiệm vụ, khóa màn, lựa chọn, đấu/tải lại/kết thúc lượt/đầu hàng, hướng dẫn và cài đặt mobile.
+Kiểm tra giao diện thủ công hoặc Playwright: desktop 1440px và mobile 390px; điểm danh, gói/lật thẻ, lọc thẻ, chi tiết/Escape, lưu bộ bài, nhiệm vụ, khóa màn, lựa chọn, đấu/tải lại/kết thúc lượt/đầu hàng, hướng dẫn và cài đặt mobile. Thám hiểm: bản đồ/khóa chặng, vào trận/tải lại, thắng/thay bài, tinh anh/di vật, lựa chọn sự kiện, trùm/kết thúc, nhật ký và không tràn ngang trên mobile.
 
 ## Phạm vi hiện tại
 

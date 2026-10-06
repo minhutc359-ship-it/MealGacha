@@ -11,6 +11,8 @@ import { GameCardView } from "../components/game/GameCardView"
 import { BattleBoard } from "../components/game/BattleBoard"
 import { Collection } from "../components/game/Collection"
 import { DeckBuilder } from "../components/game/DeckBuilder"
+import { Expedition } from "../components/game/Expedition"
+import { activeRun } from "../game/expedition"
 import { Trader } from "../components/game/Trader"
 import { Dialog } from "../components/game/Dialog"
 import type { GameSave } from "../game/types"
@@ -23,6 +25,7 @@ import "../game/tcg.css"
 const NAV = [
   { id: "home", name: "Sảnh hành trình", icon: "home" },
   { id: "story", name: "Cốt truyện", icon: "map" },
+  { id: "expedition", name: "Thám hiểm", icon: "compass" },
   { id: "collection", name: "Thư viện thẻ", icon: "cards" },
   { id: "decks", name: "Bộ bài", icon: "deck" },
   { id: "packs", name: "Cửa hàng thẻ", icon: "pack" },
@@ -35,6 +38,7 @@ const paths: Record<string, string> = {
   cards: "M7 5h13v15H7zM4 17H3V2h13v1M10 9h7M10 12h7M10 16h4",
   deck: "m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5",
   pack: "M5 3h14v18H5zM5 7h14M5 17h14m-7-7 3 2-3 2-3-2 3-2",
+  compass: "M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4 6-2 6-6 2 2-6 6-2Z",
   craft: "m15 3 6 6-3 3-6-6 3-3ZM13 9l-9 9 2 2 9-9M3 21h5",
   quest: "M5 4h14v17H5zM9 2h6v4H9zM8 10l2 2 5-4M8 16h7",
   arrow: "M4 12h15m-6-6 6 6-6 6",
@@ -190,7 +194,22 @@ export function TCGPage() {
               aria-current={tab === n.id ? "page" : undefined}
             >
               <Icon name={n.icon} />
-              <span>{n.name}</span>
+              <span
+                data-mobile-label={
+                  ({
+                    home: "Sảnh",
+                    story: "Truyện",
+                    expedition: "Thám hiểm",
+                    collection: "Thẻ",
+                    decks: "Bộ bài",
+                    packs: "Gói thẻ",
+                    workshop: "Xưởng",
+                    quests: "Nhiệm vụ",
+                  } as Record<string, string>)[n.id]
+                }
+              >
+                {n.name}
+              </span>
               {n.id === "quests" && claims > 0 && (
                 <b className="tcg-nav-badge">{claims}</b>
               )}
@@ -263,7 +282,15 @@ export function TCGPage() {
         >
           {current.battle ? (
             <BattleBoard
-              onExit={() => setTab(current.battle?.stageId ? "story" : "home")}
+              onExit={() =>
+                setTab(
+                  current.battle?.expedition
+                    ? "expedition"
+                    : current.battle?.stageId
+                      ? "story"
+                      : "home",
+                )
+              }
             />
           ) : (
             <>
@@ -347,6 +374,25 @@ export function TCGPage() {
                       <span className="tcg-orbit">✦</span>
                     </div>
                   </section>
+                  <button
+                    className="tcg-expedition-teaser"
+                    onClick={() => setTab("expedition")}
+                  >
+                    <span>◈</span>
+                    <div>
+                      <small>CHẾ ĐỘ MỚI · CON ĐƯỜNG QUA SƯƠNG</small>
+                      <strong>
+                        {activeRun(current.expedition)
+                          ? `Tiếp tục thám hiểm · Chặng ${(current.expedition?.floor ?? 0) + 1}/7`
+                          : "Một chuyến đi. Những lựa chọn mới."}
+                      </strong>
+                      <p>
+                        7 chặng · 10 di vật · 6 cuộc gặp gỡ · Bộ thẻ Đoàn lữ
+                        hành
+                      </p>
+                    </div>
+                    <b>→</b>
+                  </button>
                   <div className="tcg-stat-row">
                     <div>
                       <span className="tcg-stat-icon">▱</span>
@@ -462,9 +508,16 @@ export function TCGPage() {
                       </button>
                       <button
                         className="tcg-practice-link"
-                        onClick={() => useGameStore.getState().start(null)}
+                        onClick={() =>
+                          activeRun(current.expedition)
+                            ? setTab("expedition")
+                            : useGameStore.getState().start(null)
+                        }
                       >
-                        ⚔ Luyện tập với AI <span>→</span>
+                        {activeRun(current.expedition)
+                          ? "◈ Tiếp tục thám hiểm"
+                          : "⚔ Luyện tập với AI"}{" "}
+                        <span>→</span>
                       </button>
                     </section>
                   </div>
@@ -491,6 +544,7 @@ export function TCGPage() {
                   </section>
                 </>
               )}
+              {tab === "expedition" && <Expedition />}
               {tab === "story" && (
                 <>
                   <div className="tcg-section-heading">
@@ -770,7 +824,8 @@ export function TCGPage() {
                       <h2>Sao lưu hành trình</h2>
                       <p>
                         Xuất file JSON để chuyển sang thiết bị khác. Bản lưu
-                        chứa bộ sưu tập, bộ bài, cốt truyện và trận đang chơi.
+                        chứa bộ sưu tập, bộ bài, cốt truyện, chuyến thám hiểm,
+                        nhật ký và trận đang chơi.
                       </p>
                       <button
                         className="tcg-button primary"
@@ -851,7 +906,7 @@ export function TCGPage() {
             <span>
               MEALGACHA <i>✦</i> Một thế giới được nấu bằng ký ức.
             </span>
-            <span>KHỞI NGUYÊN · v2.0</span>
+            <span>ĐOÀN LỮ HÀNH · v2.1</span>
           </footer>
         </main>
       </div>
@@ -1042,6 +1097,15 @@ export function TCGPage() {
                   Triệu hồi vào sân có đồng minh cùng hệ nhận 1 lá chắn. Lá chắn
                   chặn sát thương và mất dần. Tay tối đa 8 lá; lá rút dư bị bỏ.
                   Hết bộ bài sẽ chịu kiệt sức 1, 2, 3… máu mỗi lần rút.
+                </p>
+              </li>
+              <li>
+                <strong>Quét sân & thám hiểm</strong>
+                <p>
+                  Bí thuật Quét sân gây sát thương lên mọi đồng minh địch, có
+                  tính lá chắn. Thám hiểm có 7 chặng, giữ máu giữa các trận và
+                  10 di vật thay đổi chiến thuật. Thẻ nhặt trên đường chỉ thuộc
+                  bộ bài của chuyến đi.
                 </p>
               </li>
               <li>

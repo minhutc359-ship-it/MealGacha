@@ -13,13 +13,14 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
   const [query, setQuery] = useState(""),
     [school, setSchool] = useState("all"),
     [rarity, setRarity] = useState("all"),
-    [kind, setKind] = useState("all")
+    [kind, setKind] = useState("all"),
+    [setName, setSetName] = useState("all")
   const [ownedOnly, setOwnedOnly] = useState(false),
     [selected, setSelected] = useState<GameCard | null>(null)
   const normalize = (s: string) =>
     s.normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
-      .replace(/đ/g, "d")
+      .replace(/[đĐ]/g, "d")
       .toLowerCase()
   const cards = useMemo(
     () =>
@@ -28,10 +29,11 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
           (school === "all" || c.school === school) &&
           (rarity === "all" || c.rarity === rarity) &&
           (kind === "all" || c.kind === kind) &&
+          (setName === "all" || c.set === setName) &&
           (!ownedOnly || save.cards[c.id]) &&
-          normalize(`${c.name} ${c.text}`).includes(normalize(query)),
+          normalize(`${c.name} ${c.text} ${c.set}`).includes(normalize(query)),
       ).sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name)),
-    [query, school, rarity, kind, ownedOnly, save.cards],
+    [query, school, rarity, kind, setName, ownedOnly, save.cards],
   )
   const owned = Object.values(save.cards).filter((n) => n > 0).length
   return (
@@ -103,6 +105,18 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
           <option value="all">Mọi loại</option>
           <option value="unit">Đồng minh</option>
           <option value="spell">Bí thuật</option>
+        </select>
+        <select
+          aria-label="Bộ thẻ"
+          value={setName}
+          onChange={(e) => setSetName(e.target.value)}
+        >
+          <option value="all">Tất cả bộ thẻ</option>
+          {[...new Set(CARDS.map((c) => c.set))].map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
         </select>
         <label className="tcg-checkbox">
           <input

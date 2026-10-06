@@ -71,7 +71,7 @@ describe("card catalog and decks", () => {
     expect(CARDS.filter((c) => c.set === "Người giữ vị")).toHaveLength(5)
     expect(new Set(CARDS.map((c) => c.school)).size).toBe(5)
     expect(deckErrors(STARTER_DECK, newGame().cards)).toEqual([])
-    expect(CARDS).toHaveLength(137)
+    expect(CARDS).toHaveLength(152)
     for (const card of CARDS)
       if (card.art)
         expect(existsSync(resolve("public", card.art.slice(1))), card.id).toBe(
