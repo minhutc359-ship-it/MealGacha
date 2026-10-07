@@ -1,8 +1,9 @@
 import { CARD_MAP } from "./catalog"
 import type { BattleFrame } from "./battle"
 import type { School } from "./types"
+import { BOSS_RULES } from "./narrative"
 
-export type EffectKind = "fire" | "water" | "strike" | "leaves" | "sparkle" | "heal" | "buff" | "shield" | "break" | "summon" | "draw" | "resonance" | "turn"
+export type EffectKind = "fire" | "water" | "strike" | "leaves" | "sparkle" | "heal" | "buff" | "shield" | "break" | "summon" | "draw" | "resonance" | "turn" | "vanish" | "awaken" | "finish"
 export interface EffectCue {
   kind: EffectKind
   side: "player" | "enemy"
@@ -69,6 +70,7 @@ export function combatCues(frame: BattleFrame): EffectCue[] {
       if (health < unit.health || shield < unit.shield) {
         add(SCHOOL_HIT[school], side, unit.uid, event.target === unit.uid)
         if (shield < unit.shield) add("break", side, unit.uid)
+        if (!nextUnit) add("vanish", side, unit.uid)
       }
     }
     const spent = event.kind === "play" && event.side === side ? 1 : 0
@@ -83,5 +85,16 @@ export function combatCues(frame: BattleFrame): EffectCue[] {
   )
     add("heal", event.side, "hero")
   if (event.kind === "turn") add("turn", event.side, "hero")
+  if (
+    battle.stageId &&
+    BOSS_RULES[battle.stageId] &&
+    before.enemy.health > before.enemy.maxHealth / 2 &&
+    battle.enemy.health <= battle.enemy.maxHealth / 2 &&
+    battle.enemy.health > 0
+  )
+    add("awaken", "enemy", "hero")
+  for (const side of ["player", "enemy"] as const)
+    if (before[side].health > 0 && battle[side].health <= 0)
+      add("finish", side, "hero")
   return cues
 }

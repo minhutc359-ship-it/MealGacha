@@ -75,6 +75,13 @@ export function GameCardView({
         </span>
       )}
       {foil && <span className="tcg-foil" aria-hidden="true" />}
+      {selected && (
+        <span className="tcg-card-selection-fx" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </span>
+      )}
     </>
   )
   const className = `tcg-card tcg-rarity-${card.rarity} ${

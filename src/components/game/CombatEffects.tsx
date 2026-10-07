@@ -5,7 +5,7 @@ import {
   type CSSProperties,
   type RefObject,
 } from "react"
-import { SCHOOLS } from "../../game/catalog"
+import { CARD_MAP, SCHOOLS } from "../../game/catalog"
 import { combatCues, type EffectCue } from "../../game/combatEffects"
 import type { BattleFrame } from "../../game/battle"
 interface Props {
@@ -42,6 +42,9 @@ const GLYPHS: Partial<Record<EffectCue["kind"], string>> = {
   leaves: "❧",
   sparkle: "✦",
   strike: "╱",
+  vanish: "✧",
+  awaken: "☾",
+  finish: "✺",
 }
 export function CombatEffects({ arena, frame, stamp }: Props) {
   const [layout, setLayout] = useState<Layout | null>(null)
@@ -90,12 +93,39 @@ export function CombatEffects({ arena, frame, stamp }: Props) {
     return () => observer.disconnect()
   }, [arena, frame, stamp])
   if (!layout || !layout.cues.length) return null
+  const card = frame?.event.cardId ? CARD_MAP[frame.event.cardId] : undefined
   return (
     <div
       className="tcg-combat-fx tcg-elemental-fx"
       key={stamp}
       aria-hidden="true"
     >
+      {frame?.event.kind === "play" && card?.kind === "spell" && (
+        <div
+          className="tcg-cast-rune"
+          style={
+            {
+              left: layout.source.x,
+              top: layout.source.y,
+              "--fx-color": SCHOOLS[card.school].color,
+            } as CSSProperties
+          }
+          data-effect="cast"
+        >
+          <i />
+          <i />
+          <b>{card.symbol}</b>
+        </div>
+      )}
+      {card?.effect === "sweep" && (
+        <div
+          className={`tcg-sweep-wave ${
+            frame?.event.side === "player" ? "enemy" : "player"
+          }`}
+          style={{ "--fx-color": SCHOOLS[card.school].color } as CSSProperties}
+          data-effect="sweep"
+        />
+      )}
       {layout.cues.map((cue, i) => {
         const color = ["heal", "leaves"].includes(cue.kind)
           ? "#b4f08b"
@@ -117,15 +147,28 @@ export function CombatEffects({ arena, frame, stamp }: Props) {
             style={style}
           >
             {cue.projectile && (
-              <span
-                className="tcg-fx-projectile"
-                style={
-                  {
-                    "--from-x": `${layout.source.x - cue.x}px`,
-                    "--from-y": `${layout.source.y - cue.y}px`,
-                  } as CSSProperties
-                }
-              />
+              <>
+                <span
+                  className="tcg-fx-beam"
+                  style={
+                    {
+                      left: layout.source.x - cue.x,
+                      top: layout.source.y - cue.y,
+                      "--beam-length": `${Math.hypot(cue.x - layout.source.x, cue.y - layout.source.y)}px`,
+                      "--beam-angle": `${(Math.atan2(cue.y - layout.source.y, cue.x - layout.source.x) * 180) / Math.PI}deg`,
+                    } as CSSProperties
+                  }
+                />
+                <span
+                  className="tcg-fx-projectile"
+                  style={
+                    {
+                      "--from-x": `${layout.source.x - cue.x}px`,
+                      "--from-y": `${layout.source.y - cue.y}px`,
+                    } as CSSProperties
+                  }
+                />
+              </>
             )}
             <span className="tcg-fx-halo" />
             {SPRITES[cue.kind] ? (
@@ -152,6 +195,24 @@ export function CombatEffects({ arena, frame, stamp }: Props) {
               />
             ))}
             {cue.kind === "strike" && <span className="tcg-fx-slash" />}
+            {["fire", "water", "strike", "finish"].includes(cue.kind) && (
+              <span className="tcg-fx-contact">
+                <i />
+                <i />
+                <i />
+                <i />
+              </span>
+            )}
+            {cue.kind === "draw" && (
+              <span className="tcg-fx-draw-fan">
+                <i>▱</i>
+                <i>▱</i>
+                <i>▱</i>
+              </span>
+            )}
+            {cue.kind === "awaken" && (
+              <span className="tcg-fx-awaken-label">THỨC TỈNH</span>
+            )}
           </div>
         )
       })}

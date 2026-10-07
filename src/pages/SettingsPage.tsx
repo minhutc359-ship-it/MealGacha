@@ -152,8 +152,8 @@ export function SettingsPage() {
       {/* Preferences */}
       <Section title="Tuỳ chọn">
         <ToggleRow
-          label="Âm thanh nghi thức"
-          description="Hiệu ứng âm thanh khi mở rương, ghép món và quay"
+          label="Âm thanh game"
+          description="Nhạc, chiến đấu, cutscene, mở rương, ghép món và quay"
           checked={prefs.soundEnabled}
           onChange={(v) => updatePref("soundEnabled", v)}
         />

@@ -15,6 +15,9 @@ const KEYS = {
 const defaultPrefs: UserPreferences = {
   language: "vi",
   soundEnabled: true,
+  musicEnabled: true,
+  musicVolume: 0.38,
+  effectsVolume: 0.7,
   reducedMotion: false,
   hiddenDishIds: [],
   searchRadiusMeters: 3000,
@@ -64,6 +67,9 @@ const StoredUserSchema = z
     preferences: z.object({
       language: z.enum(["vi", "en"]).optional(),
       soundEnabled: z.boolean().optional(),
+      musicEnabled: z.boolean().catch(true).optional(),
+      musicVolume: z.number().min(0).max(1).catch(0.38).optional(),
+      effectsVolume: z.number().min(0).max(1).catch(0.7).optional(),
       reducedMotion: z.boolean().optional(),
       hiddenDishIds: z.array(z.string()).optional(),
       searchRadiusMeters: z.number().optional(),

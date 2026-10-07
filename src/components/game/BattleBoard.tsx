@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react"
-import { playSound } from "../../infrastructure/audio/soundEngine"
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
+import { gameAudio } from "../../infrastructure/audio/gameAudio"
+import { battleMusic, frameSounds } from "../../game/audioScore"
+import { AudioButton, useGameMusic } from "./GameAudio"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
 import { RELIC_MAP } from "../../game/expedition"
 import { STAGE_MAP } from "../../game/story"
@@ -157,8 +159,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
   const ending = useGameStore((s) => s.save.storyEnding)
   const act = useGameStore((s) => s.act)
   const leaveBattle = useGameStore((s) => s.leaveBattle)
-  const soundEnabled = useAppStore((s) => s.user.preferences.soundEnabled)
   const playedSound = useRef("")
+  const compactSound = useRef(presentation?.sequence ?? 0)
+  const resultSound = useRef("")
   const reducedMotion = useAppStore((s) => s.user.preferences.reducedMotion)
   const systemReduced =
     typeof matchMedia !== "undefined" &&
@@ -177,6 +180,13 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     frameIndex < replay.frames.length
   const frame = busy && frameIndex >= 0 ? replay!.frames[frameIndex] : undefined
   const battle = busy ? (frame?.battle ?? replay!.before) : stored
+  useGameMusic(
+    battle.result && !busy
+      ? battle.result === "loss"
+        ? "story-mystery"
+        : null
+      : battleMusic(battle),
+  )
   const stamp = `${replay?.sequence}-${frameIndex}`
   const arena = useRef<HTMLDivElement>(null)
   const inFlight = useRef(false)
@@ -214,14 +224,38 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
   useEffect(() => {
     if (!frame || playedSound.current === stamp) return
     playedSound.current = stamp
-    const cue =
-      frame.event.kind === "attack"
-        ? "impact"
-        : frame.event.kind === "play"
-          ? "pulse"
-          : "tick"
-    playSound(cue, soundEnabled, 0.65)
-  }, [frame, stamp, soundEnabled])
+    compactSound.current = replay!.sequence
+    frameSounds(frame).forEach(({ cue, delay }) => gameAudio.play(cue, delay))
+  }, [frame, stamp, replay])
+  useEffect(() => {
+    if (
+      !(reducedMotion || systemReduced) ||
+      !replay ||
+      compactSound.current === replay.sequence
+    )
+      return
+    compactSound.current = replay.sequence
+    const first = replay.frames[0]
+    const contact = [...replay.frames]
+      .reverse()
+      .find(
+        (item) =>
+          item.event.side === "enemy" &&
+          (item.event.kind === "attack" || item.event.kind === "play"),
+      )
+    for (const [index, item] of [first, contact]
+      .filter((item, index, all) => item && all.indexOf(item) === index)
+      .entries()) {
+      frameSounds(item!).forEach(({ cue, delay }) =>
+        gameAudio.play(cue, delay + index * 180),
+      )
+    }
+  }, [replay, reducedMotion, systemReduced])
+  useEffect(() => {
+    if (!stored.result || busy || resultSound.current === stored.id) return
+    resultSound.current = stored.id
+    gameAudio.play(stored.result === "win" ? "victory" : "defeat", 160)
+  }, [stored.id, stored.result, busy])
   useEffect(() => {
     const previous = document.body.style.overflow
     document.body.style.overflow = "hidden"
@@ -238,10 +272,10 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
   const execute = (action: BattleAction) => {
     if (busy || inFlight.current) return
     inFlight.current = true
-    playSound("tick", soundEnabled, 0.4)
     setSelection(null)
     setDetail(false)
     if (!act(action)) inFlight.current = false
+    else gameAudio.play("confirm")
   }
   const selectedAttacker =
     selection?.type === "attack"
@@ -327,12 +361,14 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                   if (targeting) target(u.uid)
                   else setInspect(u.cardId)
                 } else if (!u.ready) setInspect(u.cardId)
-                else
+                else {
+                  gameAudio.play("select")
                   setSelection(
                     selection?.type === "attack" && selection.uid === u.uid
                       ? null
                       : { type: "attack", uid: u.uid },
                   )
+                }
               }}
             />
           )
@@ -369,6 +405,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </h1>
         </div>
         <div className="tcg-battle-actions">
+          <AudioButton label="Âm thanh trận đấu" />
           <button
             className="tcg-button ghost"
             onClick={() => {
@@ -565,13 +602,18 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
               muted={!!playError(battle, index)}
               selected={selection?.type === "play" && selection.index === index}
               disabled={busy || !!battle.result || !!battle.opening}
-              onClick={() =>
+              onClick={() => {
+                gameAudio.play(
+                  selection?.type === "play" && selection.index === index
+                    ? "deselect"
+                    : "select",
+                )
                 setSelection(
                   selection?.type === "play" && selection.index === index
                     ? null
                     : { type: "play", index },
                 )
-              }
+              }}
             />
           ))}
           {!battle.player.hand.length && (
@@ -700,7 +742,19 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
         </p>
         <CombatEffects arena={arena} frame={frame} stamp={stamp} />
         {frame?.event.cardId && (
-          <div className="tcg-action-card" key={stamp} aria-hidden="true">
+          <div
+            className={`tcg-action-card ${
+              CARD_MAP[frame.event.cardId].kind === "spell" ? "is-skill" : ""
+            }`}
+            style={
+              {
+                "--skill-color":
+                  SCHOOLS[CARD_MAP[frame.event.cardId].school].color,
+              } as CSSProperties
+            }
+            key={stamp}
+            aria-hidden="true"
+          >
             <span>{CARD_MAP[frame.event.cardId].symbol}</span>
             <strong>{CARD_MAP[frame.event.cardId].name}</strong>
             <small>

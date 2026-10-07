@@ -12,6 +12,7 @@ import { StoryScene } from "../components/game/StoryScene"
 import { DuelBasics } from "../components/game/DuelBasics"
 import { MemoryJournal } from "../components/game/MemoryJournal"
 import { CultureJournal } from "../components/game/CultureJournal"
+import { AudioControls, useGameAudio } from "../components/game/GameAudio"
 import { SCENES, BOSS_RULES, WORLD_PRIMER } from "../game/narrative"
 import { stageArtId } from "../game/storyArt"
 import { BattleBoard } from "../components/game/BattleBoard"
@@ -22,10 +23,7 @@ import { activeRun } from "../game/expedition"
 import { Trader } from "../components/game/Trader"
 import { Dialog } from "../components/game/Dialog"
 import type { GameSave } from "../game/types"
-import {
-  playClickSound,
-  preloadClickSounds,
-} from "../infrastructure/audio/soundEngine"
+import { gameAudio } from "../infrastructure/audio/gameAudio"
 import "../game/tcg.css"
 import "../game/combat.css"
 import "../game/story.css"
@@ -70,6 +68,7 @@ function Icon({ name }: { name: string }) {
 }
 
 export function TCGPage() {
+  useGameAudio()
   const [params, setParams] = useSearchParams()
   const tab = params.get("tab") ?? "home"
   const setTab = (id: string) => {
@@ -109,9 +108,6 @@ export function TCGPage() {
   useEffect(() => {
     useGameStore.getState().importLegacy(legacy.rewards.map((r) => r.dishId))
   }, [legacy.rewards])
-  useEffect(() => {
-    preloadClickSounds()
-  }, [])
   useEffect(() => {
     document.documentElement.dataset.tcgReducedMotion = String(
       legacy.preferences.reducedMotion,
@@ -171,10 +167,15 @@ export function TCGPage() {
       className="tcg-app"
       onClickCapture={(event) => {
         const target = event.target
-        if (target instanceof Element && target.closest("button, a"))
-          playClickSound(
-            target.closest(".tcg-sidebar nav") ? "function" : "choose",
-            legacy.preferences.soundEnabled,
+        if (
+          target instanceof Element &&
+          target.closest("button, a") &&
+          !target.closest(
+            ".tcg-viewport-battle, .tcg-scene, .tcg-audio-controls",
+          )
+        )
+          gameAudio.play(
+            target.closest(".tcg-sidebar nav") ? "confirm" : "select",
           )
       }}
     >
@@ -849,6 +850,10 @@ export function TCGPage() {
                   </div>
                   <div className="tcg-settings-grid">
                     <section className="tcg-panel">
+                      <h2>Âm thanh & âm nhạc</h2>
+                      <AudioControls />
+                    </section>
+                    <section className="tcg-panel">
                       <h2>Sao lưu hành trình</h2>
                       <p>
                         Xuất file JSON để chuyển sang thiết bị khác. Bản lưu
@@ -934,7 +939,7 @@ export function TCGPage() {
             <span>
               MEALGACHA <i>✦</i> Một thế giới được nấu bằng ký ức.
             </span>
-            <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.5</span>
+            <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.6</span>
           </footer>
         </main>
       </div>
