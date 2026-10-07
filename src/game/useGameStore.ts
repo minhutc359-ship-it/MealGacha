@@ -1,6 +1,11 @@
 import { create } from "zustand"
 import { CARD_MAP, deckErrors, RARITIES } from "./catalog"
-import { actBattle, startBattle, type BattleAction } from "./battle"
+import {
+  actBattle,
+  startBattle,
+  type BattleAction,
+  type BattlePresentation,
+} from "./battle"
 import {
   DAILY_QUESTS,
   QUESTS,
@@ -28,6 +33,8 @@ import type { GameSave } from "./types"
 interface Store {
   save: GameSave
   notice: string | null
+  presentation: BattlePresentation | null
+  chooseEnding(ending: "remember" | "release"): void
   dismiss(): void
   sync(): void
   importLegacy(ids: string[]): void
@@ -42,7 +49,7 @@ interface Store {
   deleteDeck(id: string): void
   useDeck(id: string): void
   start(stageId: string | null, choice?: "courage" | "wisdom"): boolean
-  act(action: BattleAction): void
+  act(action: BattleAction): boolean
   leaveBattle(): void
   beginExpedition(): boolean
   enterExpedition(id: string): void
@@ -72,6 +79,15 @@ export const useGameStore = create<Store>((set, get) => {
   return {
     save: loadGame(),
     notice: null,
+    presentation: null,
+    chooseEnding(ending) {
+      const save = current()
+      if (
+        save.battle?.stageId === "last-table-3" &&
+        save.battle.result === "win"
+      )
+        commit({ ...save, storyEnding: ending })
+    },
     dismiss: () => set({ notice: null }),
     sync: () => set({ save: loadGame() }),
     importLegacy(ids) {
@@ -284,18 +300,28 @@ export const useGameStore = create<Store>((set, get) => {
         choices: stageId
           ? { ...save.choices, [stageId]: choice }
           : save.choices,
-        battle: startBattle(deck!.cards, stageId, choice),
+        battle: startBattle(deck!.cards, stageId, choice, Math.random, true),
       })
     },
     act(action) {
       const save = current()
-      if (!save.battle) return
+      if (!save.battle) return false
       const result = actBattle(save.battle, action)
       if (result.error) {
         set({ notice: result.error })
-        return
+        return false
       }
-      commit(settleBattle({ ...save, battle: result.battle }))
+      if (commit(settleBattle({ ...save, battle: result.battle })))
+        set({
+          presentation: {
+            battleId: save.battle.id,
+            sequence: (get().presentation?.sequence ?? 0) + 1,
+            before: save.battle,
+            frames: result.frames,
+          },
+        })
+      else return false
+      return true
     },
     leaveBattle() {
       const save = current()
@@ -303,7 +329,7 @@ export const useGameStore = create<Store>((set, get) => {
       const settled = save.battle.result
         ? settleBattle(save)
         : settleBattle({ ...save, battle: { ...save.battle, result: "loss" } })
-      commit({ ...settled, battle: null })
+      if (commit({ ...settled, battle: null })) set({ presentation: null })
     },
     beginExpedition() {
       const save = current()
@@ -340,7 +366,10 @@ export const useGameStore = create<Store>((set, get) => {
           ...save.expeditionStats,
           best: Math.max(save.expeditionStats.best, run.route.length),
         },
-        battle: run.status === "battle" ? startRunBattle(run) : null,
+        battle:
+          run.status === "battle"
+            ? { ...startRunBattle(run), opening: true }
+            : null,
       })
     },
     chooseEvent(id) {

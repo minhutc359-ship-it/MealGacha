@@ -32,6 +32,11 @@ const fighter = z.object({
   hand: z.array(cardId).max(8),
   board: z.array(unit).max(3),
   fatigue: integer,
+  chainSchool: z
+    .enum(["ember", "tide", "grove", "hearth", "sugar"])
+    .nullable()
+    .default(null),
+  resonanceUsed: z.boolean().default(false),
 })
 const relicId = z
   .string()
@@ -186,6 +191,7 @@ export const GameSaveSchema = z
     expeditionStats: z
       .object({ runs: integer, wins: integer, best: integer.max(7) })
       .default({ runs: 0, wins: 0, best: 0 }),
+    storyEnding: z.enum(["remember", "release"]).nullable().default(null),
     history: z
       .array(
         z.object({
@@ -213,6 +219,7 @@ export const GameSaveSchema = z
         result: z.enum(["win", "loss"]).nullable(),
         settled: z.boolean(),
         nextUid: integer,
+        opening: z.boolean().default(false),
         loot: loot.optional(),
         expedition: z
           .object({

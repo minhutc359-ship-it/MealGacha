@@ -46,6 +46,8 @@ export interface Combatant {
   hand: string[]
   board: BattleUnit[]
   fatigue: number
+  chainSchool?: School | null
+  resonanceUsed?: boolean
 }
 export interface Battle {
   id: string
@@ -58,6 +60,7 @@ export interface Battle {
   result: "win" | "loss" | null
   settled: boolean
   nextUid: number
+  opening?: boolean
   loot?: BattleLoot
   expedition?: ExpeditionCombat
 }
@@ -153,6 +156,7 @@ export interface GameSave {
   expedition: ExpeditionRun | null
   expeditionStats: ExpeditionStats
   history: BattleRecord[]
+  storyEnding: "remember" | "release" | null
 }
 export interface Chapter {
   id: string

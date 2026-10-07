@@ -519,3 +519,192 @@ html[data-tcg-reduced-motion='true'] .tcg-app * { animation:none!important; tran
   .tcg-run-choice span,.tcg-run-choice small { font-size:10px; }
   .tcg-relic-offer p { font-size:10px; }
 }
+
+/* The combat theatre uses transforms and opacity; game state is saved before playback. */
+.tcg-arena { background:radial-gradient(ellipse at 50% 40%,#48604a 0%,#243d35 58%,#132b29 100%); isolation:isolate; }
+.tcg-arena:before { content:''; position:absolute; inset:0; border-radius:12px; background:repeating-radial-gradient(ellipse at center,transparent 0 85px,#dbbd7010 86px 87px,transparent 88px 140px); pointer-events:none; z-index:-1; }
+.tcg-arena-top>div { display:flex; gap:6px; }
+.tcg-enemy-cardbacks { display:flex; justify-content:center; height:24px; margin-top:-8px; margin-bottom:7px; }
+.tcg-enemy-cardbacks i { width:23px; height:30px; margin-left:-5px; display:grid; place-items:center; background:linear-gradient(135deg,#243f3c,#18302d); border:1px solid #b89a61; border-radius:3px; color:#d9bc7b; font-size:10px; font-style:normal; transform:rotate(-5deg); box-shadow:0 2px 3px #08171480; }
+.tcg-unit-wrap { position:relative; flex:0 0 auto; }
+.tcg-unit { overflow:visible; }
+.tcg-unit img { border-radius:7px 7px 0 0; }
+.tcg-unit:after { border-radius:7px; }
+.tcg-unit-name { font-size:9px; }
+.tcg-unit small { font-size:7px; }
+.tcg-unit-info { position:absolute; top:3px; right:4px; z-index:8; width:25px; height:25px; display:grid; place-items:center; color:#f2e4bd; background:#102c29d9; border:1px solid #d4c08455; border-radius:50%; font-size:16px; }
+.tcg-unit.is-target,.tcg-hero.is-target { box-shadow:0 0 0 2px #e5ab6833,0 0 26px #eaae5255; border-color:#f3c281; }
+.tcg-target-preview { display:flex; flex-direction:column; position:absolute; left:-2px; right:-2px; top:-27px; padding:5px 2px; border-radius:5px; background:#f1d59a; color:#352a1b; font-size:10px; font-weight:700; z-index:9; pointer-events:none; line-height:1.3; }
+.tcg-target-preview small { position:static; width:auto; color:#6c4234; margin-top:3px; font-size:8px; }
+.tcg-hero { position:relative; }
+.tcg-hero-preview { color:#f3d099; font-size:10px; max-width:190px; }
+.tcg-turn-bar { margin:10px 0; min-height:63px; background:#132e2977; padding:10px 12px; border-radius:6px; }
+.tcg-turn-bar.enemy-turn { background:#583d3266; }
+.tcg-turn-bar p { font-size:10px; line-height:1.6; }
+.tcg-field { padding:22px 0 17px; }
+.tcg-hand-label { display:block; font-size:9px; color:#c6c7a2; letter-spacing:1px; margin:17px 0 10px; }
+.tcg-hand { padding:10px 6px 15px; align-items:flex-end; }
+.tcg-hand .tcg-card { transition:transform .2s,box-shadow .2s; transform-origin:50% 100%; }
+.tcg-hand .tcg-card.is-playable { box-shadow:0 0 0 1px #cfe0af,0 0 16px #91c98744; }
+.tcg-hand .tcg-card.is-selected { transform:translateY(-7px); box-shadow:0 0 0 2px #f5d291,0 0 24px #d6b55177; }
+@media (hover:hover) { .tcg-hand .tcg-card:hover { transform:translateY(-9px) scale(1.025); z-index:2; } }
+.tcg-resonance { display:flex; align-items:center; justify-content:center; gap:12px; padding:9px 12px; border:1px solid #cab87d33; border-radius:6px; margin-top:12px; color:#b1bfa1; background:#102a2777; }
+.tcg-resonance>span { font-size:8px; letter-spacing:1px; color:#dfc789; white-space:nowrap; }
+.tcg-resonance p { margin:0; font-size:10px; }
+.tcg-resonance>small { font-size:8px; white-space:nowrap; }
+.tcg-resonance.is-charged { border-color:#e4c271aa; background:#94793d20; color:#f0ddb2; box-shadow:inset 0 0 22px #d4b77312; }
+.tcg-selected-card { display:flex; align-items:center; gap:18px; background:#102925df; border:1px solid #cab37888; border-radius:8px; padding:16px; margin-top:12px; text-align:left; }
+.tcg-selection-symbol { font-size:36px; color:#ddc384; width:44px; flex-shrink:0; text-align:center; }
+.tcg-selected-card>div { flex:1; }
+.tcg-selected-card h3 { font:18px Georgia,serif; margin:5px 0; color:#f5e9c7; }
+.tcg-selected-card p { font-size:12px; line-height:1.6; color:#d5dfc3; margin:7px 0; }
+.tcg-selected-card small { font-size:10px; color:#b7c9aa; line-height:1.6; }
+.tcg-select-target,.tcg-play-error { color:#f2c68b; font-size:11px; max-width:160px; }
+.tcg-play-error { color:#f0b0a0; }
+.tcg-attack-guide { padding:12px; display:flex; align-items:center; gap:15px; background:#142e2b; border-left:3px solid #d9b979; border-radius:4px; margin-top:10px; text-align:left; }
+.tcg-attack-guide strong { font-size:12px; color:#e9d29d; white-space:nowrap; }
+.tcg-attack-guide span { font-size:11px; color:#bed0b4; line-height:1.6; }
+.tcg-float-number { position:absolute; top:0; left:50%; z-index:15; padding:6px 9px; font-weight:800; font-size:23px; text-shadow:0 2px 4px #112825; white-space:nowrap; pointer-events:none; animation:tcg-number-rise .78s ease-out both; }
+.tcg-float-number.damage { color:#ffbe9b; }
+.tcg-float-number.heal { color:#b8f0b1; }
+.tcg-float-number small { position:static; display:block; font-size:14px; color:#a9e4f0; }
+.tcg-hero .tcg-float-number { top:-5px; }
+.tcg-unit.is-hit,.tcg-hero.is-hit { animation:tcg-hit .3s ease-out; }
+.tcg-unit.is-acting { animation:tcg-lunge .45s ease-in-out; }
+.tcg-unit-wrap.is-fallen { pointer-events:none; animation:tcg-fall .8s ease-in both; }
+.tcg-combat-fx { position:absolute; inset:0; width:100%; height:100%; z-index:20; pointer-events:none; overflow:visible; }
+.tcg-energy-trail { stroke:currentColor; stroke-width:5; stroke-linecap:round; stroke-dasharray:.15 .85; animation:tcg-trail .42s ease-out both; opacity:.9; }
+.fx-attack .tcg-energy-trail { stroke:#f2ddac; stroke-width:3; }
+.tcg-impact-ring { fill:none; stroke:currentColor; stroke-width:3; animation:tcg-ring .6s .17s ease-out both; }
+.tcg-impact-ray { stroke:currentColor; stroke-width:3; stroke-linecap:round; animation:tcg-rays .55s .2s ease-out both; }
+.tcg-action-card { position:absolute; left:50%; top:40%; transform:translate(-50%,-50%); background:#122b28f2; border:1px solid #e7c988; border-radius:8px; padding:11px 23px; display:flex; align-items:center; flex-direction:column; gap:5px; color:#f5e5bd; box-shadow:0 10px 35px #071b1977; z-index:19; pointer-events:none; animation:tcg-action-reveal .68s ease-out both; min-width:180px; }
+.tcg-action-card>span { font-size:30px; }
+.tcg-action-card strong { font:17px Georgia,serif; text-align:center; }
+.tcg-action-card small { font-size:8px; letter-spacing:1px; color:#a7c3b0; }
+.tcg-mulligan-hand { display:flex; justify-content:center; gap:14px; padding:24px 4px 12px; flex-wrap:wrap; }
+.tcg-mulligan-hand>div { width:122px; text-align:center; position:relative; }
+.tcg-mulligan-hand .tcg-card { width:100%; }
+.tcg-mulligan-hand>div>span { display:block; font-size:10px; letter-spacing:1px; color:#797364; margin-top:10px; }
+.tcg-mulligan-hand .is-replacing { transform:translateY(-5px); }
+.tcg-mulligan-hand .is-replacing>span { color:#a15c32; font-weight:700; }
+.tcg-mulligan-hand .is-replacing .tcg-card { outline:2px solid #cf9c57; outline-offset:3px; }
+.tcg-inspect-card { display:grid; justify-items:center; gap:10px; }
+.tcg-inspect-card>.tcg-card { max-width:230px; }
+.tcg-inspect-card p { line-height:1.7; }
+.tcg-inspect-card blockquote { font-family:Georgia,serif; font-style:italic; color:#737963; line-height:1.8; }
+.tcg-rules-list p { line-height:1.9; font-size:13px; padding-bottom:8px; }
+.tcg-scene { padding:17px 20px; margin:18px 0; background:#eae7da; border:1px solid #d4d1bc; border-radius:8px; text-align:left; }
+.tcg-scene-progress { display:flex; gap:5px; margin-bottom:20px; }
+.tcg-scene-progress i { height:3px; flex:1; border-radius:2px; background:#d2d0be; }
+.tcg-scene-progress i.active { background:#8b9b73; }
+.tcg-scene-speaker { font-size:10px; letter-spacing:1px; font-weight:700; color:#46705d; text-transform:uppercase; }
+.tcg-scene-line { min-height:100px; animation:tcg-scene-enter .25s ease-out; }
+.tcg-scene-line p { font:17px/1.8 Georgia,serif; color:#3b463c; margin:10px 0; }
+.tcg-scene-controls { display:flex; align-items:center; justify-content:flex-end; gap:8px; margin-top:14px; }
+.tcg-scene-controls>button:first-child { margin-right:auto; }
+.tcg-scene-controls>span { font-size:11px; color:#5b7757; }
+.tcg-scene-transcript { margin-top:15px; border-top:1px solid #c8c9b633; padding-top:10px; }
+.tcg-scene-transcript summary { font-size:10px; color:#767d68; cursor:pointer; }
+.tcg-scene-transcript p { font-size:12px; line-height:1.9; color:#616858; }
+.tcg-tactic,.tcg-boss-rule { padding:13px 16px; border-left:3px solid #a5b780; background:#e8eddf; border-radius:4px; margin:12px 0; text-align:left; }
+.tcg-tactic strong,.tcg-boss-rule strong { font-size:11px; color:#486749; }
+.tcg-tactic p,.tcg-boss-rule p { font-size:12px; line-height:1.7; color:#656f5c; margin:5px 0 0; }
+.tcg-boss-rule { background:#ede1d4; border-color:#b1815b; }
+.tcg-boss-rule strong { color:#855c43; }
+.tcg-boss-rule.is-awakened { background:#ead7c6; border-color:#ad6346; }
+.tcg-memory-journal { padding:24px; margin-bottom:28px; }
+.tcg-memory-journal>h2 { font:25px Georgia,serif; color:#334b3b; margin:10px 0; }
+.tcg-memory-journal>p { font-size:12px; line-height:1.8; color:#78806b; }
+.tcg-clue-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:20px 0; }
+.tcg-clue-grid article { border:1px solid #c7c7b2; padding:16px; border-radius:6px; background:#f0eee3; }
+.tcg-clue-grid article>span { font-size:8px; letter-spacing:1px; color:#9b8a5c; }
+.tcg-clue-grid h3 { font:17px Georgia,serif; margin:10px 0; color:#425e47; }
+.tcg-clue-grid p { font-size:11px; line-height:1.8; color:#737b66; margin:0; }
+.tcg-clue-grid .is-sealed { background:#e9e8dd; border-style:dashed; }
+.tcg-clue-grid .is-sealed h3 { color:#989b89; }
+.tcg-story-archive { margin-top:18px; border-top:1px solid #d8d7c9; padding-top:15px; }
+.tcg-story-archive summary { cursor:pointer; color:#526b51; font-size:12px; padding:8px 0; }
+.tcg-story-archive>details { border-bottom:1px solid #d8d7c9; }
+.tcg-ending-choice { text-align:left; padding:10px 0; }
+.tcg-ending-choice>h3 { font:22px Georgia,serif; color:#3d5842; }
+.tcg-ending-choice>p { font-size:12px; line-height:1.8; color:#79806b; }
+.tcg-epilogue { background:#e9eadc; border:1px solid #c4c9ae; padding:20px; margin:20px 0; border-radius:6px; text-align:left; }
+.tcg-epilogue h3 { font:23px Georgia,serif; color:#3d5942; margin:9px 0; }
+.tcg-epilogue p { font-size:13px; line-height:1.9; color:#636d58; }
+.tcg-epilogue blockquote { font:15px/1.8 Georgia,serif; font-style:italic; color:#536b51; border-left:2px solid #a6b68a; padding-left:16px; margin:18px 0 0; }
+.reveal-epic .tcg-card { box-shadow:0 0 26px #a47aca77; }
+.reveal-legendary .tcg-card { box-shadow:0 0 32px #deb35a99; animation:tcg-legendary-reveal .9s ease-out; }
+.tcg-revealed { animation:tcg-card-flip .5s ease-out; }
+@keyframes tcg-number-rise { 0% { opacity:0; transform:translate(-50%,10px) scale(.6); } 20% { opacity:1; transform:translate(-50%,-6px) scale(1.1); } 75% { opacity:1; } 100% { opacity:0; transform:translate(-50%,-48px) scale(.95); } }
+@keyframes tcg-hit { 0%,100% { transform:translateX(0); } 25% { transform:translateX(-4px) rotate(-2deg); } 55% { transform:translateX(4px) rotate(2deg); } }
+@keyframes tcg-lunge { 0%,100% { transform:translateY(0); } 35% { transform:translateY(-12px) scale(1.05); } }
+@keyframes tcg-fall { 0% { opacity:1; transform:scale(1); } 100% { opacity:0; transform:translateY(12px) scale(.85); } }
+@keyframes tcg-trail { 0% { stroke-dashoffset:1; opacity:0; } 25% { opacity:1; } 100% { stroke-dashoffset:-.2; opacity:0; } }
+@keyframes tcg-ring { 0% { opacity:0; transform:scale(.3); } 35% { opacity:.95; } 100% { opacity:0; transform:scale(1.7); } }
+@keyframes tcg-rays { 0% { opacity:0; } 30% { opacity:1; } 100% { opacity:0; transform:scale(1.7); } }
+@keyframes tcg-action-reveal { 0% { opacity:0; transform:translate(-50%,-40%) scale(.85); } 25%,70% { opacity:1; transform:translate(-50%,-50%) scale(1); } 100% { opacity:0; transform:translate(-50%,-60%) scale(.97); } }
+@keyframes tcg-scene-enter { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+@keyframes tcg-card-flip { from { opacity:0; transform:perspective(600px) rotateY(80deg) scale(.9); } to { opacity:1; transform:perspective(600px) rotateY(0deg) scale(1); } }
+@keyframes tcg-legendary-reveal { from { transform:scale(.85); opacity:.3; } 60% { transform:scale(1.08); } to { transform:scale(1); opacity:1; } }
+@media(max-width:750px) {
+  .tcg-clue-grid { grid-template-columns:repeat(2,1fr); }
+  .tcg-selected-card { gap:12px; flex-wrap:wrap; }
+  .tcg-selected-card>.tcg-button,.tcg-selected-card>.tcg-select-target,.tcg-selected-card>.tcg-play-error { margin-left:56px; }
+}
+@media(max-width:500px) {
+  .tcg-arena { padding:12px 10px; }
+  .tcg-arena-top { font-size:8px; gap:6px; }
+  .tcg-arena-top>div { gap:4px; }
+  .tcg-arena .tcg-button.ghost { padding:7px 8px; }
+  .tcg-field { gap:12px; min-height:136px; }
+  .tcg-unit,.tcg-empty-slot { width:86px; height:106px; }
+  .tcg-unit-name { font-size:8px; bottom:39px; }
+  .tcg-unit-stats { gap:7px; }
+  .tcg-unit-info { width:22px; height:22px; font-size:14px; }
+  .tcg-turn-bar { gap:7px; padding:10px 5px; }
+  .tcg-turn-bar>span { font-size:7px; letter-spacing:.3px; }
+  .tcg-turn-bar p { font-size:9px; }
+  .tcg-hero { gap:8px; padding:8px 10px; flex-wrap:wrap; justify-content:center; }
+  .tcg-hero strong { font-size:10px; }
+  .tcg-hero-preview { width:100%; max-width:none; text-align:center; }
+  .tcg-resonance { gap:8px; padding:8px; flex-wrap:wrap; }
+  .tcg-resonance p { font-size:9px; }
+  .tcg-resonance>span { font-size:7px; }
+  .tcg-selected-card { padding:12px; }
+  .tcg-selected-card p { font-size:11px; }
+  .tcg-selected-card .tcg-kicker { font-size:8px; }
+  .tcg-attack-guide { flex-direction:column; gap:8px; align-items:flex-start; }
+  .tcg-attack-guide span { font-size:10px; }
+  .tcg-target-preview { font-size:8px; top:-25px; }
+  .tcg-target-preview small { font-size:7px; }
+  .tcg-mulligan-hand { gap:14px 10px; padding-top:15px; }
+  .tcg-mulligan-hand>div { width:calc((100% - 20px)/3); max-width:110px; }
+  .tcg-mulligan-hand .tcg-card.is-compact { height:157px; }
+  .tcg-scene { padding:15px; }
+  .tcg-scene-line { min-height:145px; }
+  .tcg-scene-line p { font-size:16px; line-height:1.7; }
+  .tcg-scene-controls { gap:5px; }
+  .tcg-scene-controls .tcg-button { padding:9px; font-size:10px; }
+  .tcg-clue-grid { grid-template-columns:1fr; gap:8px; }
+  .tcg-memory-journal { padding:18px; }
+  .tcg-epilogue { padding:15px; }
+  .tcg-ending-choice .tcg-choice-row { flex-direction:column; }
+}
+@media(prefers-reduced-motion:reduce) { .tcg-combat-fx,.tcg-action-card,.tcg-float-number { display:none; } .tcg-app * { animation:none!important; transition:none!important; } }
+html[data-tcg-reduced-motion='true'] .tcg-combat-fx,html[data-tcg-reduced-motion='true'] .tcg-action-card,html[data-tcg-reduced-motion='true'] .tcg-float-number { display:none; }
+.tcg-battle-actions { display:flex; gap:8px; justify-content:flex-end; }
+.tcg-battle.is-focused { position:fixed; inset:0; z-index:80; overflow-y:auto; background:#152d29; padding:20px max(18px,calc((100vw - 1120px)/2)); }
+.tcg-battle.is-focused .tcg-battle-top h1 { color:#eadbb2; }
+.tcg-battle.is-focused .tcg-battle-top .tcg-button { color:#d1d9bc; border-color:#b5c3a644; }
+.tcg-battle.is-focused .tcg-combat-log { margin-top:20px; }
+.tcg-opening-inspect { padding:12px 16px; background:#e6e8d9; border-radius:5px; font-size:13px; line-height:1.8; color:#526b4d; }
+@media(max-width:600px) {
+  .tcg-battle-top { gap:10px; align-items:flex-start; }
+  .tcg-battle-top h1 { font-size:19px; }
+  .tcg-battle-actions { flex-direction:column; gap:5px; flex-shrink:0; }
+  .tcg-battle-actions .tcg-button { padding:8px; font-size:9px; }
+  .tcg-battle.is-focused { padding:15px 10px 25px; }
+  .tcg-dialog>header { gap:12px; }
+  .tcg-dialog>header h2 { font-size:21px; line-height:1.35; }
+  .tcg-dialog>header .tcg-icon-button { flex-shrink:0; }
+}

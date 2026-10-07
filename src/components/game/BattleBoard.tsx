@@ -1,10 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { playSound } from "../../infrastructure/audio/soundEngine"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
 import { RELIC_MAP } from "../../game/expedition"
 import { STAGE_MAP } from "../../game/story"
+import { SCENES, BOSS_RULES, ENDINGS } from "../../game/narrative"
+import {
+  cardCost,
+  playError,
+  previewTarget,
+  type BattleAction,
+  type TargetPreview,
+} from "../../game/battle"
 import { useGameStore } from "../../game/useGameStore"
-import type { BattleUnit } from "../../game/types"
+import { useAppStore } from "../../store/useAppStore"
+import type { BattleUnit, Combatant } from "../../game/types"
 import { GameCardView } from "./GameCardView"
+import { CombatEffects } from "./CombatEffects"
+import { StoryScene } from "./StoryScene"
 import { Dialog } from "./Dialog"
 
 interface SpellSelection {
@@ -15,89 +27,319 @@ interface AttackSelection {
   type: "attack"
   uid: string
 }
-
-export function BattleBoard({ onExit }: { onExit: () => void }) {
-  const battle = useGameStore((s) => s.save.battle)!
-  const act = useGameStore((s) => s.act)
-  const leaveBattle = useGameStore((s) => s.leaveBattle)
-  const [selection, setSelection] =
-    useState<SpellSelection | AttackSelection | null>(null)
-  const [confirm, setConfirm] = useState(false)
-  const [showLog, setShowLog] = useState(false)
-  useEffect(() => {
-    setSelection(null)
-  }, [battle.id, battle.round])
-  const canTarget = (uid: string) => {
-    if (!selection) return false
-    if (selection.type === "play") return true
-    const guards = battle.enemy.board.filter((u) =>
-      u.keywords.includes("guard"),
-    )
-    return !guards.length || guards.some((u) => u.uid === uid)
-  }
-  const target = (uid: string) => {
-    if (selection) {
-      act({ ...selection, target: uid })
-      setSelection(null)
-    }
-  }
-  const unit = (u: BattleUnit, enemy: boolean) => {
-    const c = CARD_MAP[u.cardId]
-    const selected = selection?.type === "attack" && selection.uid === u.uid
-    return (
+type Selection = SpellSelection | AttackSelection
+interface UnitProps {
+  unit: BattleUnit
+  enemy: boolean
+  selected: boolean
+  disabled: boolean
+  ghost: boolean
+  preview?: TargetPreview
+  delta?: number
+  shieldDelta?: number
+  source: boolean
+  hit: boolean
+  stamp: string
+  onClick(): void
+  onInspect(): void
+}
+function UnitTile({
+  unit: u,
+  enemy,
+  selected,
+  disabled,
+  ghost,
+  preview,
+  delta = 0,
+  shieldDelta = 0,
+  source,
+  hit,
+  stamp,
+  onClick,
+  onInspect,
+}: UnitProps) {
+  const card = CARD_MAP[u.cardId]
+  return (
+    <div className={`tcg-unit-wrap ${ghost ? "is-fallen" : ""}`}>
       <button
-        key={u.uid}
-        className={`tcg-unit ${u.ready ? "is-ready" : ""} ${
+        className={`tcg-unit ${!enemy && u.ready ? "is-ready" : ""} ${
           selected ? "is-selected" : ""
-        } ${enemy && canTarget(u.uid) ? "is-target" : ""}`}
-        onClick={() =>
-          enemy
-            ? target(u.uid)
-            : setSelection(
-                selected || !u.ready ? null : { type: "attack", uid: u.uid },
-              )
-        }
-        disabled={
-          !!battle.result || (enemy && !!selection && !canTarget(u.uid))
-        }
+        } ${preview?.legal ? "is-target" : ""} ${hit ? "is-hit" : ""} ${
+          source ? "is-acting" : ""
+        }`}
+        data-unit={u.uid}
+        onClick={onClick}
+        disabled={disabled || ghost}
         aria-label={`${
           enemy ? "Địch" : "Đồng minh"
-        } ${c.name}, công ${u.attack}, máu ${u.health}${
-          u.keywords.includes("guard") ? ", Hộ vệ" : ""
-        }`}
+        } ${card.name}, công ${u.attack}, máu ${
+          ghost ? 0 : u.health
+        }, chắn ${u.shield}${preview ? `, ${preview.text}` : ""}`}
       >
-        {c.art ? (
-          <img src={c.art} alt="" />
+        {card.art ? (
+          <img src={card.art} alt="" />
         ) : (
-          <span className="tcg-unit-symbol">{c.symbol}</span>
+          <span className="tcg-unit-symbol">{card.symbol}</span>
         )}
-        <span className="tcg-unit-name">{c.name}</span>
+        <span className="tcg-unit-name">{card.name}</span>
         <span className="tcg-unit-stats">
           <b>⚔ {u.attack}</b>
           {u.shield > 0 && <b className="shield">◇ {u.shield}</b>}
-          <b>♥ {u.health}</b>
+          <b>♥ {ghost ? 0 : u.health}</b>
         </span>
         <small>
-          {u.keywords.includes("guard")
-            ? "HỘ VỆ"
-            : u.keywords.includes("drain")
-              ? "HÚT VỊ"
-              : enemy
-                ? SCHOOLS[c.school].name
-                : u.ready
-                  ? "SẴN SÀNG"
-                  : "ĐANG CHỜ"}
+          {ghost
+            ? "BỊ HẠ GỤC"
+            : u.keywords.includes("guard")
+              ? "HỘ VỆ"
+              : u.keywords.includes("drain")
+                ? "HÚT VỊ"
+                : enemy
+                  ? SCHOOLS[card.school].name
+                  : u.ready
+                    ? "SẴN SÀNG"
+                    : "CHỜ LƯỢT SAU"}
         </small>
+        {(delta !== 0 || shieldDelta !== 0) && (
+          <span
+            key={stamp}
+            className={`tcg-float-number ${delta > 0 ? "heal" : "damage"}`}
+          >
+            {delta !== 0 ? `${delta > 0 ? "+" : ""}${delta} ♥` : ""}
+            {shieldDelta !== 0 && (
+              <small>
+                {shieldDelta > 0 ? "+" : ""}
+                {shieldDelta} ◇
+              </small>
+            )}
+          </span>
+        )}
+        {preview?.legal && (
+          <span className="tcg-target-preview">
+            {preview.defeated ? "✦ HẠ GỤC" : `−${preview.damage} ♥`}
+            {preview.counter > 0 && (
+              <small>
+                Phản đòn −{preview.counter}
+                {preview.attackerDefeated ? " · đổi quân" : ""}
+              </small>
+            )}
+          </span>
+        )}
       </button>
+      <button
+        className="tcg-unit-info"
+        onClick={onInspect}
+        aria-label={`Xem kỹ năng ${card.name}`}
+      >
+        ⓘ
+      </button>
+    </div>
+  )
+}
+function healthDelta(
+  before: Combatant | BattleUnit | undefined,
+  after: Combatant | BattleUnit | undefined,
+) {
+  return before
+    ? Math.max(0, after?.health ?? 0) - Math.max(0, before.health)
+    : 0
+}
+
+export function BattleBoard({ onExit }: { onExit: () => void }) {
+  const stored = useGameStore((s) => s.save.battle)!
+  const presentation = useGameStore((s) => s.presentation)
+  const ending = useGameStore((s) => s.save.storyEnding)
+  const act = useGameStore((s) => s.act)
+  const leaveBattle = useGameStore((s) => s.leaveBattle)
+  const soundEnabled = useAppStore((s) => s.user.preferences.soundEnabled)
+  const playedSound = useRef("")
+  const reducedMotion = useAppStore((s) => s.user.preferences.reducedMotion)
+  const systemReduced =
+    typeof matchMedia !== "undefined" &&
+    matchMedia("(prefers-reduced-motion: reduce)").matches
+  const [playback, setPlayback] = useState({
+    sequence: presentation?.sequence ?? 0,
+    index: presentation?.frames.length ?? 0,
+  })
+  const replay = presentation?.battleId === stored.id ? presentation : null
+  const frameIndex =
+    replay && playback.sequence === replay.sequence ? playback.index : -1
+  const busy =
+    !!replay &&
+    !reducedMotion &&
+    !systemReduced &&
+    frameIndex < replay.frames.length
+  const frame = busy && frameIndex >= 0 ? replay!.frames[frameIndex] : undefined
+  const battle = busy ? (frame?.battle ?? replay!.before) : stored
+  const stamp = `${replay?.sequence}-${frameIndex}`
+  const arena = useRef<HTMLDivElement>(null)
+  const inFlight = useRef(false)
+  const [selection, setSelection] = useState<Selection | null>(null)
+  const [replace, setReplace] = useState<number[]>([])
+  const [openingInspect, setOpeningInspect] = useState<number | null>(null)
+  const [focused, setFocused] = useState(
+    () => typeof window !== "undefined" && window.innerWidth <= 600,
+  )
+  const [confirm, setConfirm] = useState(false)
+  const [showLog, setShowLog] = useState(false)
+  const [showRules, setShowRules] = useState(false)
+  const [inspect, setInspect] = useState<string | null>(null)
+  const [endRead, setEndRead] = useState(false)
+  useEffect(() => {
+    if (!busy || !replay) {
+      inFlight.current = false
+      return
+    }
+    const timer = window.setTimeout(
+      () => setPlayback({ sequence: replay.sequence, index: frameIndex + 1 }),
+      frameIndex < 0 ? 90 : frame?.event.kind === "attack" ? 820 : 690,
     )
+    return () => window.clearTimeout(timer)
+  }, [busy, replay, frameIndex, frame?.event.kind])
+  useEffect(() => {
+    setSelection(null)
+    setReplace([])
+    setEndRead(false)
+  }, [stored.id])
+  useEffect(() => {
+    if (!frame || playedSound.current === stamp) return
+    playedSound.current = stamp
+    const cue =
+      frame.event.kind === "attack"
+        ? "impact"
+        : frame.event.kind === "play"
+          ? "pulse"
+          : "tick"
+    playSound(cue, soundEnabled, 0.65)
+  }, [frame, stamp, soundEnabled])
+  useEffect(() => {
+    if (!focused) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && !document.querySelector("dialog[open]"))
+        setFocused(false)
+    }
+    window.addEventListener("keydown", escape)
+    return () => {
+      document.body.style.overflow = previous
+      window.removeEventListener("keydown", escape)
+    }
+  }, [focused])
+  const execute = (action: BattleAction) => {
+    if (busy || inFlight.current) return
+    inFlight.current = true
+    playSound("tick", soundEnabled, 0.4)
+    setSelection(null)
+    if (!act(action)) inFlight.current = false
   }
+  const selectedAttacker =
+    selection?.type === "attack"
+      ? battle.player.board.find((u) => u.uid === selection.uid)
+      : null
+  const selectedCard =
+    selection?.type === "play"
+      ? CARD_MAP[battle.player.hand[selection.index]]
+      : null
+  const selectedError =
+    selection?.type === "play" ? playError(battle, selection.index) : null
+  const targeting =
+    !!selection &&
+    (selection.type === "attack" || selectedCard?.effect === "damage") &&
+    !selectedError &&
+    !busy
+  const preview = (uid: string) =>
+    targeting ? previewTarget(battle, selection!, uid) : undefined
+  const target = (uid: string) => {
+    if (selection && preview(uid)?.legal) execute({ ...selection, target: uid })
+  }
+  const stage = battle.stageId ? STAGE_MAP[battle.stageId] : null
+  const rule = battle.stageId ? BOSS_RULES[battle.stageId] : null
+  const school = battle.player.chainSchool
+    ? SCHOOLS[battle.player.chainSchool]
+    : null
+  const heroPreview = preview("hero")
   const exit = () => {
     leaveBattle()
     onExit()
   }
-  const stage = battle.stageId ? STAGE_MAP[battle.stageId] : null
+  const skip = () => {
+    if (replay)
+      setPlayback({ sequence: replay.sequence, index: replay.frames.length })
+    inFlight.current = false
+  }
+  const field = (side: "player" | "enemy") => {
+    const units = [...battle[side].board]
+    const ghosts =
+      frame?.before[side].board.filter(
+        (u) => !units.some((next) => next.uid === u.uid),
+      ) ?? []
+    return (
+      <div className={`tcg-field ${side === "enemy" ? "enemy" : ""}`}>
+        {[...units, ...ghosts].map((u) => {
+          const previous = frame?.before[side].board.find(
+            (old) => old.uid === u.uid,
+          )
+          const next = battle[side].board.find((next) => next.uid === u.uid)
+          const delta = frame ? healthDelta(previous, next) : 0
+          const shieldDelta = previous
+            ? (next?.shield ?? 0) - previous.shield
+            : 0
+          const projected = side === "enemy" ? preview(u.uid) : undefined
+          return (
+            <UnitTile
+              key={u.uid}
+              unit={u}
+              enemy={side === "enemy"}
+              ghost={!next}
+              selected={selection?.type === "attack" && selection.uid === u.uid}
+              disabled={
+                busy ||
+                !!battle.result ||
+                !!battle.opening ||
+                (side === "enemy" && !!selection && !projected?.legal)
+              }
+              preview={projected}
+              delta={delta}
+              shieldDelta={shieldDelta}
+              source={frame?.event.source === u.uid}
+              hit={delta < 0 || shieldDelta < 0}
+              stamp={stamp}
+              onInspect={() => {
+                if (!busy && !stored.result) setInspect(u.cardId)
+              }}
+              onClick={() => {
+                if (side === "enemy") {
+                  if (targeting) target(u.uid)
+                  else setInspect(u.cardId)
+                } else if (!u.ready) setInspect(u.cardId)
+                else
+                  setSelection(
+                    selection?.type === "attack" && selection.uid === u.uid
+                      ? null
+                      : { type: "attack", uid: u.uid },
+                  )
+              }}
+            />
+          )
+        })}
+        {Array.from(
+          { length: Math.max(0, 3 - units.length - ghosts.length) },
+          (_, i) => (
+            <span className="tcg-empty-slot" key={`empty-${i}`}>
+              ◇
+            </span>
+          ),
+        )}
+      </div>
+    )
+  }
+  const playerDelta = frame
+    ? healthDelta(frame.before.player, battle.player)
+    : 0
+  const enemyDelta = frame ? healthDelta(frame.before.enemy, battle.enemy) : 0
   return (
-    <section className="tcg-battle">
+    <section className={`tcg-battle ${focused ? "is-focused" : ""}`}>
       <header className="tcg-battle-top">
         <div>
           <span className="tcg-kicker">
@@ -112,18 +354,29 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
               (battle.expedition ? battle.opponent : "Bàn ăn thử thách")}
           </h1>
         </div>
-        <button
-          className="tcg-button ghost"
-          onClick={() => (battle.result ? exit() : setConfirm(true))}
-        >
-          Rời trận
-        </button>
+        <div className="tcg-battle-actions">
+          <button
+            className="tcg-button ghost"
+            onClick={() => setFocused(!focused)}
+            aria-pressed={focused}
+          >
+            {focused ? "Thu gọn bàn đấu" : "Mở rộng bàn đấu"}
+          </button>
+          <button
+            className="tcg-button ghost"
+            onClick={() => {
+              if (busy) skip()
+              else if (battle.result) exit()
+              else setConfirm(true)
+            }}
+          >
+            {busy ? "Bỏ qua hiệu ứng" : "Rời trận"}
+          </button>
+        </div>
       </header>
       {battle.expedition && (
         <div className="tcg-battle-relics">
-          <span>
-            Máu được giữ sau trận · Thua hoặc đầu hàng kết thúc chuyến đi.
-          </span>
+          <span>Máu giữ sau trận · Thua hoặc đầu hàng kết thúc chuyến đi.</span>
           {battle.expedition.relics.map((id) => (
             <span key={id} title={RELIC_MAP[id].text}>
               {RELIC_MAP[id].symbol} {RELIC_MAP[id].name}
@@ -131,24 +384,60 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           ))}
         </div>
       )}
-      <div className="tcg-arena">
+      {rule && (
+        <div
+          className={`tcg-boss-rule ${
+            battle.enemy.health <= battle.enemy.maxHealth / 2
+              ? "is-awakened"
+              : ""
+          }`}
+        >
+          <strong>
+            ☽ {rule.name}
+            {battle.enemy.health <= battle.enemy.maxHealth / 2
+              ? " · THỨC TỈNH"
+              : ""}
+          </strong>
+          <p>{rule.text}</p>
+        </div>
+      )}
+      <div className={`tcg-arena ${busy ? "is-resolving" : ""}`} ref={arena}>
         <div className="tcg-arena-top">
           <span>
             AI · {battle.enemy.hand.length} lá trên tay ·{" "}
-            {battle.enemy.deck.length} lá trong bộ
+            {battle.enemy.deck.length} trong bộ
           </span>
-          <button
-            className="tcg-button ghost"
-            onClick={() => setShowLog(!showLog)}
-          >
-            Nhật ký trận
-          </button>
+          <div>
+            <button
+              className="tcg-button ghost"
+              disabled={busy}
+              onClick={() => setShowRules(!showRules)}
+            >
+              Luật đấu
+            </button>
+            <button
+              className="tcg-button ghost"
+              onClick={() => setShowLog(!showLog)}
+            >
+              Nhật ký
+            </button>
+          </div>
+        </div>
+        <div className="tcg-enemy-cardbacks" aria-hidden="true">
+          {battle.enemy.hand.map((_, i) => (
+            <i key={i}>✦</i>
+          ))}
         </div>
         <button
-          className={`tcg-hero enemy ${canTarget("hero") ? "is-target" : ""}`}
+          className={`tcg-hero enemy ${heroPreview?.legal ? "is-target" : ""} ${
+            enemyDelta < 0 ? "is-hit" : ""
+          }`}
+          data-hero="enemy"
           onClick={() => target("hero")}
-          disabled={!canTarget("hero") || !!battle.result}
-          aria-label={`Chủ tướng địch ${battle.opponent}, ${battle.enemy.health} máu`}
+          disabled={!heroPreview?.legal || busy || !!battle.result}
+          aria-label={`Chủ tướng địch ${battle.opponent}, ${battle.enemy.health} máu${
+            heroPreview ? `, ${heroPreview.text}` : ""
+          }`}
         >
           <span className="tcg-avatar">☽</span>
           <span>
@@ -161,25 +450,40 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             ♥ {Math.max(0, battle.enemy.health)}
             <small>/{battle.enemy.maxHealth}</small>
           </b>
-        </button>
-        <div className="tcg-field enemy">
-          {battle.enemy.board.map((u) => unit(u, true))}
-          {Array.from({ length: 3 - battle.enemy.board.length }, (_, i) => (
-            <span className="tcg-empty-slot" key={i}>
-              ◇
+          {enemyDelta !== 0 && (
+            <span
+              key={stamp}
+              className={`tcg-float-number ${
+                enemyDelta > 0 ? "heal" : "damage"
+              }`}
+            >
+              {enemyDelta > 0 ? "+" : ""}
+              {enemyDelta} ♥
             </span>
-          ))}
-        </div>
-        <div className="tcg-turn-bar">
+          )}
+          {heroPreview?.legal && (
+            <span className="tcg-hero-preview">{heroPreview.text}</span>
+          )}
+        </button>
+        {field("enemy")}
+        <div className={`tcg-turn-bar ${busy ? "enemy-turn" : ""}`}>
           <span>LƯỢT {battle.round}</span>
-          <p aria-live="polite">
-            {selection
-              ? selection.type === "attack"
-                ? "Chọn mục tiêu địch để tấn công"
-                : "Chọn mục tiêu cho phép thuật"
-              : "Chọn bài trên tay hoặc đồng minh sẵn sàng"}
+          <p role="status">
+            {battle.opening
+              ? "Chuẩn bị bài mở đầu"
+              : busy
+                ? (frame?.event.label ?? "Đang thực hiện hành động…")
+                : targeting
+                  ? "Chọn mục tiêu · Xem sát thương và phản đòn"
+                  : selectedCard
+                    ? "Đọc kỹ năng, rồi xác nhận dùng bài"
+                    : "LƯỢT CỦA BẠN · Chọn thẻ hoặc đồng minh"}
           </p>
-          {selection ? (
+          {busy ? (
+            <button className="tcg-button ghost" onClick={skip}>
+              Bỏ qua ⏩
+            </button>
+          ) : selection ? (
             <button
               className="tcg-button ghost"
               onClick={() => setSelection(null)}
@@ -189,31 +493,24 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           ) : (
             <button
               className="tcg-button gold"
-              onClick={() => {
-                act({ type: "end" })
-                setSelection(null)
-              }}
-              disabled={!!battle.result}
+              onClick={() => execute({ type: "end" })}
+              disabled={!!battle.result || !!battle.opening}
             >
               Kết thúc lượt →
             </button>
           )}
         </div>
-        <div className="tcg-field">
-          {battle.player.board.map((u) => unit(u, false))}
-          {Array.from({ length: 3 - battle.player.board.length }, (_, i) => (
-            <span className="tcg-empty-slot" key={i}>
-              ◇
-            </span>
-          ))}
-        </div>
-        <div className="tcg-hero">
+        {field("player")}
+        <div
+          className={`tcg-hero ${playerDelta < 0 ? "is-hit" : ""}`}
+          data-hero="player"
+        >
           <span className="tcg-avatar player">✦</span>
           <span>
             <strong>Người giữ vị</strong>
             <small>
               {battle.player.deck.length} lá trong bộ ·{" "}
-              {battle.player.hand.length}/8 lá trên tay
+              {battle.player.hand.length}/8 trên tay
             </small>
           </span>
           <b>
@@ -228,28 +525,52 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
               {battle.player.mana}/{battle.player.maxMana}
             </strong>
           </span>
+          {playerDelta !== 0 && (
+            <span
+              key={stamp}
+              className={`tcg-float-number ${
+                playerDelta > 0 ? "heal" : "damage"
+              }`}
+            >
+              {playerDelta > 0 ? "+" : ""}
+              {playerDelta} ♥
+            </span>
+          )}
         </div>
-        <p className="tcg-hand-label">
-          THẺ TRÊN TAY · VUỐT NGANG ĐỂ XEM THÊM →
-        </p>
+        <div
+          className={`tcg-resonance ${
+            school && !battle.player.resonanceUsed ? "is-charged" : ""
+          }`}
+        >
+          <span>✦ CỘNG HƯỞNG</span>
+          <p>
+            {battle.player.resonanceUsed
+              ? "Đã kích hoạt · Hồi lại lượt sau"
+              : school
+                ? `${school.name} tiếp theo giảm 1 năng lượng`
+                : "Hai lá cùng hệ liên tiếp → lá thứ hai giảm 1"}
+          </p>
+          <small>1 lần/lượt</small>
+        </div>
+        <p className="tcg-hand-label">BÀI TRÊN TAY · CHỌN ĐỂ XEM KỸ NĂNG →</p>
         <div className="tcg-hand">
           {battle.player.hand.map((id, index) => (
             <GameCardView
               key={`${index}-${id}`}
               card={CARD_MAP[id]}
+              cost={cardCost(battle.player, CARD_MAP[id])}
               compact
-              muted={CARD_MAP[id].cost > battle.player.mana}
+              playable={!playError(battle, index) && !busy}
+              muted={!!playError(battle, index)}
               selected={selection?.type === "play" && selection.index === index}
-              disabled={!!battle.result}
-              onClick={() => {
-                const card = CARD_MAP[id]
-                if (card.kind === "spell" && card.effect === "damage")
-                  setSelection({ type: "play", index })
-                else {
-                  act({ type: "play", index })
-                  setSelection(null)
-                }
-              }}
+              disabled={busy || !!battle.result || !!battle.opening}
+              onClick={() =>
+                setSelection(
+                  selection?.type === "play" && selection.index === index
+                    ? null
+                    : { type: "play", index },
+                )
+              }
             />
           ))}
           {!battle.player.hand.length && (
@@ -258,14 +579,74 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             </p>
           )}
         </div>
+        {selectedCard && !busy && (
+          <div className="tcg-selected-card">
+            <span className="tcg-selection-symbol">{selectedCard.symbol}</span>
+            <div>
+              <span className="tcg-kicker">
+                {SCHOOLS[selectedCard.school].name} ·{" "}
+                {cardCost(battle.player, selectedCard)} NĂNG LƯỢNG
+              </span>
+              <h3>{selectedCard.name}</h3>
+              <p>{selectedCard.text}</p>
+              <small>
+                {selectedCard.kind === "unit"
+                  ? selectedCard.keywords.includes("rush")
+                    ? "Được tấn công ngay khi vào sân."
+                    : "Chờ đến lượt sau để tấn công."
+                  : selectedCard.effect === "damage"
+                    ? "Chọn đơn vị địch hoặc chủ tướng · Vượt Hộ vệ."
+                    : "Hiệu ứng áp dụng ngay sau khi xác nhận."}
+              </small>
+            </div>
+            {selectedError ? (
+              <span className="tcg-play-error">{selectedError}</span>
+            ) : selectedCard.effect !== "damage" ? (
+              <button
+                className="tcg-button primary"
+                onClick={() => selection?.type === "play" && execute(selection)}
+              >
+                {selectedCard.kind === "unit" ? "Triệu hồi" : "Thi triển"} ·{" "}
+                {cardCost(battle.player, selectedCard)} ◈
+              </button>
+            ) : (
+              <span className="tcg-select-target">
+                ↑ Chọn mục tiêu phát sáng
+              </span>
+            )}
+          </div>
+        )}
+        {selection?.type === "attack" && selectedAttacker && !busy && (
+          <div className="tcg-attack-guide">
+            <strong>⚔ {CARD_MAP[selectedAttacker.cardId].name}</strong>
+            <span>
+              Nhấn mục tiêu phát sáng. Sát thương dự báo đã tính lá chắn; hai
+              đơn vị phản đòn đồng thời.
+            </span>
+          </div>
+        )}
         <p className="tcg-arena-hint">
-          Hộ vệ bảo vệ chủ tướng · Đồng minh cùng hệ nhận +1 lá chắn khi vào sân
-          · Hết bộ bài sẽ chịu kiệt sức tăng dần.
+          Hộ vệ chặn đòn đánh, không chặn phép · Tối đa 3 đồng minh · 7 năng
+          lượng · 8 lá trên tay
         </p>
+        <CombatEffects arena={arena} frame={frame} stamp={stamp} />
+        {frame?.event.cardId && (
+          <div className="tcg-action-card" key={stamp} aria-hidden="true">
+            <span>{CARD_MAP[frame.event.cardId].symbol}</span>
+            <strong>{CARD_MAP[frame.event.cardId].name}</strong>
+            <small>
+              {frame.event.kind === "attack"
+                ? "TẤN CÔNG"
+                : frame.event.side === "enemy"
+                  ? "ĐỐI THỦ THI TRIỂN"
+                  : "THI TRIỂN"}
+            </small>
+          </div>
+        )}
       </div>
       {showLog && (
         <section className="tcg-panel tcg-combat-log">
-          <h2>Nhật ký</h2>
+          <h2>Nhật ký trận</h2>
           <ol>
             {battle.log.map((line, i) => (
               <li key={i}>{line}</li>
@@ -273,12 +654,54 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </ol>
         </section>
       )}
+      {showRules && (
+        <Dialog title="Luật chiến đấu" onClose={() => setShowRules(false)}>
+          <div className="tcg-rules-list">
+            <p>
+              <strong>Mục tiêu:</strong> Đưa máu chủ tướng địch về 0. Mỗi lượt
+              rút 1 lá, tăng 1 năng lượng tối đa và hồi đầy (trần 7).
+            </p>
+            <p>
+              <strong>Ra bài:</strong> Mỗi bên có 3 ô. Đồng minh chờ lượt sau;
+              Xung phong đánh ngay. Đồng hệ với một quân trên sân: quân mới +1
+              chắn.
+            </p>
+            <p>
+              <strong>Cộng hưởng:</strong> Hai lá cùng hệ liên tiếp trong lượt
+              giảm 1 chi phí lá thứ hai, tối đa 1 lần/lượt. Đánh bằng đơn vị
+              không ngắt chuỗi bài.
+            </p>
+            <p>
+              <strong>Đánh và phản đòn:</strong> Mỗi đơn vị đánh 1 lần/lượt. Hai
+              đơn vị gây sát thương cùng lúc. Chắn bị trừ trước máu. Hộ vệ bảo
+              vệ các mục tiêu khác; phép vượt Hộ vệ.
+            </p>
+            <p>
+              <strong>Hút vị:</strong> Hồi máu chủ tướng bằng sát thương thực tế
+              gây vào máu, kể cả phản đòn. Sát thương bị chắn không hồi máu.
+            </p>
+            <p>
+              <strong>Cạn bài:</strong> Không thể rút sẽ chịu kiệt sức 1, 2, 3…
+              sát thương. Tay đầy 8 lá sẽ bỏ lá rút thêm.
+            </p>
+          </div>
+        </Dialog>
+      )}
+      {inspect && (
+        <Dialog title={CARD_MAP[inspect].name} onClose={() => setInspect(null)}>
+          <div className="tcg-inspect-card">
+            <GameCardView card={CARD_MAP[inspect]} />
+            <p>{CARD_MAP[inspect].text}</p>
+            <blockquote>{CARD_MAP[inspect].lore}</blockquote>
+          </div>
+        </Dialog>
+      )}
       {confirm && (
         <Dialog title="Đầu hàng trận đấu?" onClose={() => setConfirm(false)}>
           <p>
             {battle.expedition
               ? "Đầu hàng sẽ kết thúc chuyến thám hiểm này."
-              : "Trận này sẽ được tính là thua. Bạn có thể thử lại bất kỳ lúc nào."}
+              : "Trận này tính là thua. Bạn có thể thử lại bất kỳ lúc nào."}
           </p>
           <div className="tcg-dialog-actions">
             <button
@@ -293,49 +716,157 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </div>
         </Dialog>
       )}
-      {battle.result && (
+      {stored.opening && !busy && (
+        <Dialog
+          title="Bữa ăn bắt đầu từ lựa chọn"
+          onClose={() => execute({ type: "mulligan", indices: replace })}
+          wide
+        >
+          <p>
+            Chọn tối đa 3 lá để đổi, rồi bắt đầu. Ưu tiên lá giá thấp và hai lá
+            cùng hệ để Cộng hưởng. Lá trả lại sẽ vào bộ bài sau khi rút lá thay
+            thế.
+          </p>
+          <div className="tcg-mulligan-hand">
+            {stored.player.hand.map((id, index) => (
+              <div
+                key={index}
+                className={replace.includes(index) ? "is-replacing" : ""}
+              >
+                <GameCardView
+                  card={CARD_MAP[id]}
+                  compact
+                  selected={replace.includes(index)}
+                  onClick={() => {
+                    setOpeningInspect(index)
+                    setReplace((old) =>
+                      old.includes(index)
+                        ? old.filter((i) => i !== index)
+                        : old.length < 3
+                          ? [...old, index]
+                          : old,
+                    )
+                  }}
+                />
+                <span>
+                  {replace.includes(index) ? "↻ ĐỔI LÁ NÀY" : "GIỮ LẠI"}
+                </span>
+              </div>
+            ))}
+          </div>
+          {openingInspect !== null && (
+            <p className="tcg-opening-inspect">
+              <strong>
+                {CARD_MAP[stored.player.hand[openingInspect]].name}:
+              </strong>{" "}
+              {CARD_MAP[stored.player.hand[openingInspect]].text}
+            </p>
+          )}
+          <div className="tcg-dialog-actions">
+            <span>
+              {replace.length}/3 lá được đổi · Bắt đầu với {stored.player.mana}{" "}
+              năng lượng
+            </span>
+            <button
+              className="tcg-button primary"
+              onClick={() => execute({ type: "mulligan", indices: replace })}
+            >
+              {replace.length
+                ? `Đổi ${replace.length} lá & bắt đầu`
+                : "Giữ bài & bắt đầu"}{" "}
+              →
+            </button>
+          </div>
+        </Dialog>
+      )}
+      {stored.result && !busy && (
         <Dialog
           title={
-            battle.result === "win"
+            stored.result === "win"
               ? "Hương vị chiến thắng"
               : "Ngọn lửa vẫn còn"
           }
           onClose={exit}
           wide
         >
-          <div className={`tcg-result ${battle.result}`}>
+          <div className={`tcg-result ${stored.result}`}>
             <span className="tcg-result-symbol">
-              {battle.result === "win" ? "✦" : "☽"}
+              {stored.result === "win" ? "✦" : "☽"}
             </span>
-            <p>
-              {battle.result === "win"
-                ? battle.expedition
-                  ? battle.loot?.tickets
-                    ? "Bạn đã vượt qua màn sương cuối cùng. Những người lạc đường đã có một chỗ ở bàn ăn. Phần thưởng hành trình đã được trao."
-                    : battle.opponent === "Kẻ Nuốt Ký Ức"
-                      ? "Chuyến thám hiểm đã hoàn thành. Hôm nay bạn đã nhận đủ 3 lượt thưởng. Trở về để đọc đoạn kết."
-                      : "Bạn giữ lại máu còn lại và nhận lương thực. Quay về bản đồ để chọn thẻ hoặc tiếp tục hành trình."
-                  : (stage?.ending ??
-                    "Bạn đã hoàn thành trận luyện tập. Một công thức tốt bắt đầu từ những lần thử.")
-                : "Mỗi thất bại là một công thức cần nêm lại. Thử thêm thẻ giá thấp, Hộ vệ hoặc phép hồi máu."}
-            </p>
-            <div className="tcg-reward-row">
-              <span>◉ +{battle.loot?.coins ?? 0} xu</span>
-              <span>✧ +{battle.loot?.xp ?? 0} XP</span>
-              {!!battle.loot?.dust && (
-                <span>✧ +{battle.loot.dust} tinh chất</span>
+            {stored.result === "win" && stage ? (
+              <StoryScene
+                key={stored.id}
+                lines={SCENES[stage.id].after}
+                onComplete={() => setEndRead(true)}
+              />
+            ) : (
+              <p>
+                {stored.result === "loss"
+                  ? "Mỗi thất bại là một công thức cần nêm lại. Thử thêm thẻ giá thấp, Hộ vệ hoặc phép hồi máu."
+                  : stored.expedition
+                    ? stored.opponent === "Kẻ Nuốt Ký Ức"
+                      ? "Bạn đã vượt màn sương cuối. Trở về đọc đoạn kết và nhận những người lạc đường vào bàn ăn."
+                      : "Bạn giữ máu còn lại, nhận lương thực. Trở về chọn thẻ và tiếp tục chuyến đi."
+                    : "Một công thức tốt bắt đầu từ những lần thử. Trận luyện tập đã hoàn thành."}
+              </p>
+            )}
+            {stored.result === "win" &&
+              stored.stageId === "last-table-3" &&
+              endRead && (
+                <div className="tcg-ending-choice">
+                  <h3>Bạn viết câu cuối như thế nào?</h3>
+                  <p>
+                    Lựa chọn chỉ đổi đoạn kết. Phần thưởng và bộ sưu tập được
+                    giữ nguyên.
+                  </p>
+                  <div className="tcg-choice-row">
+                    {(["remember", "release"] as const).map((id) => (
+                      <button
+                        key={id}
+                        className={ending === id ? "active" : ""}
+                        onClick={() => useGameStore.getState().chooseEnding(id)}
+                        aria-pressed={ending === id}
+                      >
+                        <span>{id === "remember" ? "◈" : "✦"}</span>
+                        <strong>
+                          {id === "remember"
+                            ? "Trả ký ức về"
+                            : "Viết công thức mới"}
+                        </strong>
+                        <small>
+                          {id === "remember"
+                            ? "Tiếng vọng đi, câu chuyện ở lại."
+                            : "Từ bỏ chiếc muôi để sống một đời mới."}
+                        </small>
+                      </button>
+                    ))}
+                  </div>
+                  {ending && (
+                    <article className="tcg-epilogue">
+                      <h3>{ENDINGS[ending].title}</h3>
+                      <p>{ENDINGS[ending].text}</p>
+                      <blockquote>{ENDINGS[ending].epilogue}</blockquote>
+                    </article>
+                  )}
+                </div>
               )}
-              {!!battle.loot?.tickets && (
-                <span>▱ +{battle.loot.tickets} vé</span>
+            <div className="tcg-reward-row">
+              <span>◉ +{stored.loot?.coins ?? 0} xu</span>
+              <span>✧ +{stored.loot?.xp ?? 0} XP</span>
+              {!!stored.loot?.dust && (
+                <span>✧ +{stored.loot.dust} tinh chất</span>
+              )}
+              {!!stored.loot?.tickets && (
+                <span>▱ +{stored.loot.tickets} vé</span>
               )}
             </div>
-            {battle.loot?.cardId && (
+            {stored.loot?.cardId && (
               <div className="tcg-result-card">
-                <GameCardView card={CARD_MAP[battle.loot.cardId]} compact />
+                <GameCardView card={CARD_MAP[stored.loot.cardId]} compact />
                 <p>
                   Phần thưởng hoàn thành lần đầu.
                   <br />
-                  Nếu đã có 2 bản, nhận tinh chất thay thế.
+                  Đủ 2 bản sẽ nhận tinh chất thay thế.
                 </p>
               </div>
             )}

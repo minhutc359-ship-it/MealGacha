@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react"
+import { useEffect, useRef, useId, type ReactNode } from "react"
 
 export function Dialog({
   title,
@@ -11,6 +11,7 @@ export function Dialog({
   children: ReactNode
   wide?: boolean
 }) {
+  const titleId = useId()
   const ref = useRef<HTMLDialogElement>(null)
   useEffect(() => {
     const el = ref.current
@@ -18,7 +19,9 @@ export function Dialog({
     el?.showModal()
     return () => {
       el?.close()
-      previous?.focus()
+      if (previous?.isConnected && !previous.classList.contains("tcg-skip"))
+        previous.focus({ preventScroll: true })
+      else document.getElementById("tcg-main")?.focus({ preventScroll: true })
     }
   }, [])
   return (
@@ -32,10 +35,10 @@ export function Dialog({
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose()
       }}
-      aria-labelledby="tcg-dialog-title"
+      aria-labelledby={titleId}
     >
       <header>
-        <h2 id="tcg-dialog-title">{title}</h2>
+        <h2 id={titleId}>{title}</h2>
         <button className="tcg-icon-button" onClick={onClose} aria-label="Đóng">
           ×
         </button>

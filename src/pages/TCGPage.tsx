@@ -8,6 +8,9 @@ import { PACKS, QUESTS, DAILY_QUESTS, rotateDay } from "../game/progression"
 import { GAME_KEY, parseGame } from "../game/storage"
 import { getDateKey } from "../domain/dateKey"
 import { GameCardView } from "../components/game/GameCardView"
+import { StoryScene } from "../components/game/StoryScene"
+import { MemoryJournal } from "../components/game/MemoryJournal"
+import { SCENES, BOSS_RULES } from "../game/narrative"
 import { BattleBoard } from "../components/game/BattleBoard"
 import { Collection } from "../components/game/Collection"
 import { DeckBuilder } from "../components/game/DeckBuilder"
@@ -73,6 +76,7 @@ export function TCGPage() {
     dismiss = useGameStore((s) => s.dismiss)
   const legacy = useAppStore((s) => s.user)
   const [help, setHelp] = useState(false)
+  const [sceneRead, setSceneRead] = useState(false)
   const [stageId, setStageId] = useState<string | null>(null),
     [choice, setChoice] = useState<"courage" | "wisdom">("courage")
   const [revealed, setRevealed] = useState<string[]>([]),
@@ -132,6 +136,7 @@ export function TCGPage() {
   }, [notice, dismiss])
   const goStage = (id: string) => {
     setChoice(current.choices[id] ?? "courage")
+    setSceneRead(false)
     setStageId(id)
   }
   const begin = () => {
@@ -554,8 +559,8 @@ export function TCGPage() {
                       </span>
                       <h1>Bản đồ ký ức</h1>
                       <p>
-                        Một chiếc muôi cổ. Năm người giữ lửa. Và một bàn ăn đủ
-                        chỗ cho tất cả.
+                        Năm ngọn lửa đang chờ được đánh thức. Nhưng mỗi lần bạn
+                        thắng, màn sương lại dày thêm. Ai đang nói dối?
                       </p>
                     </div>
                     <div className="tcg-number-badge">
@@ -563,6 +568,7 @@ export function TCGPage() {
                       <small>/18 MÀN</small>
                     </div>
                   </div>
+                  <MemoryJournal />
                   <div className="tcg-chapter-grid">
                     {CHAPTERS.map((ch, i) => {
                       const unlocked = isStageUnlocked(
@@ -906,7 +912,7 @@ export function TCGPage() {
             <span>
               MEALGACHA <i>✦</i> Một thế giới được nấu bằng ký ức.
             </span>
-            <span>ĐOÀN LỮ HÀNH · v2.1</span>
+            <span>CHIẾC GHẾ TRỐNG · v2.2</span>
           </footer>
         </main>
       </div>
@@ -930,7 +936,21 @@ export function TCGPage() {
               {STAGE_MAP[stageId].chapter.title} ·{" "}
               {STAGE_MAP[stageId].boss ? "BOSS" : "THỬ THÁCH"}
             </span>
-            <p className="tcg-dialogue">{STAGE_MAP[stageId].dialogue}</p>
+            <StoryScene
+              key={stageId}
+              lines={SCENES[stageId].before}
+              onComplete={() => setSceneRead(true)}
+            />
+            <div className="tcg-tactic">
+              <strong>Gợi ý chiến thuật</strong>
+              <p>{SCENES[stageId].tactic}</p>
+            </div>
+            {BOSS_RULES[stageId] && (
+              <div className="tcg-boss-rule">
+                <strong>☽ {BOSS_RULES[stageId].name}</strong>
+                <p>{BOSS_RULES[stageId].text}</p>
+              </div>
+            )}
             <p>Bạn mang điều gì vào trận chiến này?</p>
             <div className="tcg-choice-row">
               <button
@@ -973,7 +993,11 @@ export function TCGPage() {
               >
                 Chuẩn bị bộ bài
               </button>
-              <button className="tcg-button primary" onClick={begin}>
+              <button
+                className="tcg-button primary"
+                onClick={begin}
+                disabled={!sceneRead}
+              >
                 Vào trận →
               </button>
             </div>
@@ -995,7 +1019,10 @@ export function TCGPage() {
           <div className="tcg-reveal-row">
             {revealed.map((id, i) =>
               i < revealCount ? (
-                <div className="tcg-revealed" key={i}>
+                <div
+                  className={`tcg-revealed reveal-${CARD_MAP[id].rarity}`}
+                  key={i}
+                >
                   <GameCardView card={CARD_MAP[id]} compact />
                   <small>{RARITIES[CARD_MAP[id].rarity].name}</small>
                 </div>
@@ -1068,10 +1095,19 @@ export function TCGPage() {
             </div>
             <ol>
               <li>
+                <strong>Cộng hưởng cùng hệ</strong>
+                <p>
+                  Dùng hai lá cùng hệ liên tiếp trong một lượt: lá thứ hai giảm
+                  1 năng lượng, có thể về 0. Chỉ kích hoạt một lần mỗi lượt; bắt
+                  đầu lượt mới sẽ đặt lại. Chi phí trên thẻ tự cập nhật.
+                </p>
+              </li>
+              <li>
                 <strong>Triệu hồi đồng minh</strong>
                 <p>
-                  Nhấn một thẻ trên tay để dùng năng lượng. Mỗi bên có 3 ô sân.
-                  Đồng minh đợi tới lượt sau để đánh; Xung phong được đánh ngay.
+                  Đổi tối đa 3 lá trước trận. Chọn thẻ để đọc hiệu ứng, rồi xác
+                  nhận dùng năng lượng. Mỗi bên có 3 ô sân. Đồng minh đợi tới
+                  lượt sau để đánh; Xung phong được đánh ngay.
                 </p>
               </li>
               <li>

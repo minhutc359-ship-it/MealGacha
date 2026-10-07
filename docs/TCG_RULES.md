@@ -1,4 +1,4 @@
-# MealGacha TCG v2.1 — Luật và bảo trì
+# MealGacha TCG v2.2 — Luật và bảo trì
 
 ## Nội dung đã triển khai
 
@@ -15,16 +15,18 @@ Sáu chương, mỗi chương ba màn, tổng cộng sáu boss:
 | Thành Phố Đường Sao | Liên | Giữ những điều ước |
 | Bữa Tiệc Bình Minh | Cả nhóm | Một bàn ăn đủ chỗ cho tất cả |
 
-Đối thoại trước và sau mỗi màn. Lựa chọn Can đảm/Thấu hiểu thay đổi máu/tay khởi đầu; lựa chọn được ghi trong bản lưu, cùng một kết thúc chung. Hoàn thành lần đầu một màn nhận 100 xu (boss 180), 50 XP và một thẻ cố định; boss thêm một vé gói. Chơi lại không nhận thưởng cốt truyện lần nữa.
+Đối thoại trước và sau mỗi màn. Lựa chọn Can đảm/Thấu hiểu thay đổi máu/tay khởi đầu; lựa chọn được ghi trong bản lưu, hai đoạn kết khác nhau chọn sau chiến thắng màn cuối, không đổi phần thưởng. Hoàn thành lần đầu một màn nhận 100 xu (boss 180), 50 XP và một thẻ cố định; boss thêm một vé gói. Chơi lại không nhận thưởng cốt truyện lần nữa.
 
 ## Luật chiến đấu
 
 - Bộ bài đúng 18 lá, tối đa 2 bản mỗi ID, phải sở hữu đủ. Lưu tối đa ba bộ bài; có tự xếp, biểu đồ chi phí, đổi tên và chọn bộ hoạt động.
 - Chủ tướng người chơi có 34 máu / 4 lá (Can đảm) hoặc 32 máu / 5 lá (Thấu hiểu). Đối phương 25–38 máu tùy màn; luyện tập 30 máu.
+- Trước trận mới được đổi tối đa 3 lá một lần. Rút từ phần bộ bài còn lại trước, rồi trả các lá đã đổi vào bộ và xáo; có thể nhận cùng ID nếu bộ có bản thứ hai. Trận đang chơi từ bản cũ không buộc đổi lại.
 - Mỗi bên có 1 năng lượng ở lượt đầu của chính mình. Mỗi lượt tăng một, tối đa 7, hồi đầy và rút một lá.
 - Tối đa 3 đồng minh trên sân. Đồng minh thường đợi tới lượt sau mới đánh; Xung phong được đánh ngay. Mỗi đơn vị đánh một lần/lượt.
 - Hai đơn vị chiến đấu gây sát thương đồng thời. Hộ vệ bắt buộc phải bị đánh trước chủ tướng và đồng minh khác; phép sát thương vượt Hộ vệ.
 - Lá chắn là lượng sát thương có thể chặn, tiêu hao trước máu. Hút vị hồi chủ tướng theo sát thương thực gây ra, tính cả giới hạn máu còn lại của mục tiêu.
+- **Cộng hưởng:** hai lá cùng hệ liên tiếp trong lượt giảm 1 chi phí lá thứ hai, tối thiểu 0; mỗi bên chỉ dùng một lần/lượt. Lá hệ khác ngắt chuỗi, tấn công bằng đơn vị không ngắt. Lượt mới đặt lại.
 - Triệu hồi đồng minh vào sân có đơn vị cùng hệ: nhận thêm một lá chắn.
 - Bí thuật sát thương cần mục tiêu địch; hồi máu tác động chủ tướng; tăng công/máu và thêm lá chắn tác động tất cả đồng minh; các phép tăng công/lá chắn cần có đồng minh trên sân.
 - Quét sân gây sát thương lên tất cả đơn vị địch, tiêu lá chắn trước máu; không gây sát thương lên chủ tướng và không cần chọn mục tiêu.
@@ -32,6 +34,23 @@ Sáu chương, mỗi chương ba màn, tổng cộng sáu boss:
 - Hạ chủ tướng địch xuống 0 là thắng. Trận kết thúc chỉ được quyết toán một lần; kết quả và phần thưởng thực nhận lưu cùng trận.
 
 AI ưu tiên triệu hồi, tận dụng sát thương kết liễu, đánh Hộ vệ, chọn đổi có lợi và tránh rút phép khi tay đầy/bộ rỗng. Bộ đối thủ có 18 lá với đường cong năng lượng, tối đa 2 bản mỗi thẻ. Các vùng dùng hệ riêng; chương cuối kết hợp cả năm hệ.
+
+## Boss, lựa chọn và hiệu ứng
+
+| Boss | Nội tại đầu lượt địch | Dưới nửa máu |
+|---|---|---|
+| Kẻ Canh Bếp Cổ | Đồng minh +1 chắn | +2 chắn |
+| Hỏa Linh bị tha hóa | Đốt chủ tướng bạn 1 | Đốt 2 |
+| Cổ Thụ Quên Lãng | Hồi boss 2 | Hồi 4 |
+| Hải Vương Lãng Quên | Rút thêm 1 lá | Rút 2 |
+| Thiên Nga Đêm Trắng | Đồng minh +1 chắn | +2 chắn |
+| Sương Nhạt | Luân phiên Đốt 1 → Hồi 2 → Rút 1 | Gấp đôi hiệu ứng |
+
+Nội tại chỉ áp dụng boss chiến dịch, không chồng lên luật di vật của thám hiểm. Mỗi lần dùng bài đều chọn và đọc trước; thẻ sát thương chọn mục tiêu, các thẻ khác xác nhận Triệu hồi/Thi triển. Chi phí hiển thị đã tính Cộng hưởng. Dự báo mục tiêu chạy cùng reducer với thao tác thật, gồm chắn, phản đòn, hạ gục và đồng minh bị hạ.
+
+Reducer trả các `BattleFrame` với trạng thái trước/sau và sự kiện của từng hành động. Store quyết toán và lưu **trạng thái cuối một lần**; Board chỉ trình diễn snapshot trong bộ nhớ, khóa thao tác trong lúc chạy. Tải lại bỏ qua phần trình diễn còn lại; không chạy AI lại. Nút bỏ qua và cài đặt giảm chuyển động hiện ngay trạng thái cuối. Chế độ mở rộng che menu để tập trung, tự bật trên điện thoại; Escape trở về nếu không có hộp thoại mở. Âm thanh dùng sound engine có sẵn và tuân theo bật/tắt âm thanh. Hiệu ứng không được đưa vào localStorage hoặc backup.
+
+`narrative.ts` chứa cảnh trước/sau 18 màn, gợi ý, luật boss và hai kết thúc. Hồ sơ manh mối dựa trên ID màn đã vượt, nên không lộ trang khóa và không cần thêm bộ đếm. Đọc lại không phát thưởng. `storyEnding` lưu lựa chọn; chỉ chọn khi đang có trận thắng `last-table-3`, có thể xem lựa chọn khác trong cùng màn kết quả, không cộng lại xu/thẻ.
 
 ## Kinh tế và sưu tập
 
@@ -72,7 +91,7 @@ AI ưu tiên triệu hồi, tận dụng sát thương kết liễu, đánh Hộ
 |---|---|
 | `src/game/types.ts` | Card/deck/save/battle models |
 | `src/game/catalog.ts` | Món thành thẻ, thẻ mới, hệ, luật bộ bài |
-| `src/game/story.ts` | Chương, màn, đối thoại và thứ tự mở khóa |
+| `src/game/story.ts`, `src/game/narrative.ts` | Chương, màn, đối thoại và thứ tự mở khóa |
 | `src/game/battle.ts` | Reducer chiến đấu thuần, AI, khởi tạo và đổi lượt |
 | `src/game/progression.ts` | Kinh tế, phần thưởng, gói, bảo đảm, nhiệm vụ, NPC |
 | `src/game/expedition.ts` | Bản đồ có seed, sự kiện, di vật và trạng thái chuyến đi |
