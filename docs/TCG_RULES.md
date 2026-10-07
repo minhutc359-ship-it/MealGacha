@@ -118,3 +118,11 @@ Kiểm tra giao diện thủ công hoặc Playwright: desktop 1440px và mobile 
 ## Phạm vi hiện tại
 
 Game đơn người với AI và thương nhân NPC, không có thanh toán. PvP, tài khoản máy chủ và trao đổi giữa người chơi cần backend xác thực, authoritative battle, inventory transaction và chống lặp request. Không trình bày chức năng này như đã có.
+
+## Trình diễn chiến đấu v2.3
+
+Bàn đấu cố định theo `100dvh` và safe area, không yêu cầu cuộn trang để chọn bài hoặc đánh mục tiêu. Dọc: hai hàng quân và tối đa hai hàng bài trên tay. Ngang trên màn hình thấp: hai phe cạnh nhau và tay bài một hàng. Phần xác nhận có ô riêng nên chọn bài không đẩy mục tiêu khỏi màn hình. Luật, nhật ký, di vật và toàn văn thẻ đọc trong dialog; Escape hủy chọn hoặc đóng dialog. Điều hướng nền dùng `inert` khi có trận.
+
+`src/game/combatEffects.ts` phân loại hiệu ứng từ cặp snapshot trước/sau: sát thương theo hệ, hồi máu, buff, tạo/vỡ chắn, triệu hồi, rút bài và cộng hưởng. `CombatEffects.tsx` đặt sprite/particle lên đúng chủ tướng, đơn vị hoặc tay bài; Quét sân có hiệu ứng ở từng nạn nhân và phản đòn vẫn hiện trên quân vừa bị hạ. Ba WebP alpha trong `public/assets/tcg/fx/` được tải trước và lưu như Git blob thường để deployment phục vụ đúng ảnh.
+
+Animation chỉ là trình diễn: save cuối cùng vẫn được ghi một lần trước playback. Bỏ qua, giảm chuyển động hoặc tải lại không xử lý sát thương/phần thưởng lần nữa. Không thay đổi mana, cost, luật chắn hay schema lưu trữ ở bản này.

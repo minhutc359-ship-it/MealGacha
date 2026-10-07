@@ -105,7 +105,7 @@ export const SCENES: Record<string, StoryScene> = {
       ),
       line(
         "Thủy thủ",
-        "Mười mười bảy năm rồi tôi chưa cập bến. Hay tôi đã cập bến mười bảy năm trước?",
+        "Mười bảy năm rồi tôi chưa cập bến. Hay tôi đã cập bến mười bảy năm trước?",
       ),
       line(
         "Bạn",
@@ -129,7 +129,7 @@ export const SCENES: Record<string, StoryScene> = {
     before: [
       line(
         "Người kể",
-        "Con tàu không tên có một nồi súp vẫn còn ấm. Mười mười bảy năm trôi qua, nó chưa cạn.",
+        "Con tàu không tên có một nồi súp vẫn còn ấm. Mười bảy năm trôi qua, nó chưa cạn.",
       ),
       line(
         "Bóng Sương",

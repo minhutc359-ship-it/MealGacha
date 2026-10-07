@@ -1,8 +1,16 @@
-# MealGacha v2.2 · Huyền thoại vị giác
+# MealGacha v2.3 · Huyền thoại vị giác
 
 Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 3 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
+
+## Bản 2.3 · Bàn đấu trong một màn hình
+
+- Bàn đấu chiếm viewport; máu, năng lượng, hai hàng quân, 8 lá trên tay và phần xác nhận luôn nằm trong khung. Điện thoại dọc chia tay bài thành tối đa hai hàng; điện thoại ngang đặt hai phe cạnh nhau.
+- Thanh mô tả bài giữ nguyên vị trí khi chọn. Có nút đọc đầy đủ; nhật ký, luật và di vật mở trong hộp thoại. Escape hủy chọn; điều hướng phía sau bàn đấu tạm ngừng nhận focus.
+- Asset alpha mới cho **lửa, nước, khiên**; animation riêng cho đạn bay, va chạm, tạo/vỡ chắn, hồi máu, cường hóa, triệu hồi, rút bài, cộng hưởng và đòn đánh theo hướng hai phe. Hiệu ứng dựa trên snapshot thật, kể cả phản đòn và Quét sân.
+- Giữ nút bỏ qua, cài đặt giảm chuyển động và bản lưu v1. Asset WebP tổng khoảng 345 KiB, tải trước khi dùng trong trận.
+- [Tóm tắt và đánh giá cốt truyện — có spoiler](docs/STORY_OVERVIEW.md). [Nguồn và prompt asset](docs/COMBAT_ASSETS.md).
 
 ## Bản 2.2 · Chiếc ghế trống
 
@@ -10,7 +18,7 @@ Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói.
 - Đổi tối đa 3 lá đầu trận. Chọn bất kỳ lá trên tay để đọc kỹ năng trước khi dùng; dự báo sát thương, phá chắn, phản đòn và đổi quân ngay trên mục tiêu.
 - **Cộng hưởng:** hai lá cùng hệ liên tiếp trong lượt giảm 1 chi phí lá thứ hai (có thể về 0), tối đa một lần mỗi lượt. Áp dụng cho cả bạn và AI.
 - Sáu boss có nội tại riêng, tăng hiệu lực dưới nửa máu. Luật boss hiển thị trước trận và trên sân.
-- Mở rộng bàn đấu để tập trung chơi; điện thoại tự dùng khung này. AI ra bài và tấn công từng hành động. Đường đòn đánh, vòng va chạm, số sát thương/hồi máu/phá chắn, hạ gục và âm thanh theo cài đặt. Có bỏ qua trình diễn và hỗ trợ giảm chuyển động.
+- Bản 2.2 thêm chế độ tập trung; bản 2.3 nâng cấp thành bàn đấu vừa viewport trên mọi kích thước đã kiểm tra. AI ra bài và tấn công từng hành động. Đường đòn đánh, vòng va chạm, số sát thương/hồi máu/phá chắn, hạ gục và âm thanh theo cài đặt. Có bỏ qua trình diễn và hỗ trợ giảm chuyển động.
 - Trạng thái cuối và phần thưởng được lưu trước hiệu ứng; tải lại không lặp sát thương hoặc thưởng. Bản lưu 2.1 tự nhận giá trị mặc định, giữ thẻ, bộ bài và màn đã thắng.
 
 ## Game thẻ bài

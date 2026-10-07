@@ -24,6 +24,7 @@ import {
   preloadClickSounds,
 } from "../infrastructure/audio/soundEngine"
 import "../game/tcg.css"
+import "../game/combat.css"
 
 const NAV = [
   { id: "home", name: "Sảnh hành trình", icon: "home" },
@@ -176,7 +177,7 @@ export function TCGPage() {
       <a href="#tcg-main" className="tcg-skip">
         Đến nội dung chính
       </a>
-      <aside className="tcg-sidebar">
+      <aside className="tcg-sidebar" inert={!!current.battle}>
         <button
           className="tcg-brand"
           onClick={() => setTab("home")}
@@ -251,7 +252,7 @@ export function TCGPage() {
         </div>
       </aside>
       <div className="tcg-content">
-        <header className="tcg-topbar">
+        <header className="tcg-topbar" inert={!!current.battle}>
           <div>
             <span className="tcg-topbar-label">MEALGACHA /</span>
             <strong>{NAV.find((n) => n.id === tab)?.name ?? "Cài đặt"}</strong>
@@ -283,6 +284,7 @@ export function TCGPage() {
         </header>
         <main
           id="tcg-main"
+          tabIndex={-1}
           className={`tcg-main ${current.battle ? "has-battle" : ""}`}
         >
           {current.battle ? (
@@ -912,7 +914,7 @@ export function TCGPage() {
             <span>
               MEALGACHA <i>✦</i> Một thế giới được nấu bằng ký ức.
             </span>
-            <span>CHIẾC GHẾ TRỐNG · v2.2</span>
+            <span>CHIẾC GHẾ TRỐNG · v2.3</span>
           </footer>
         </main>
       </div>
