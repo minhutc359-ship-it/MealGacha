@@ -1,8 +1,16 @@
-# MealGacha v2.5 · Hương vị giữ người
+# MealGacha v2.6 · Nhịp bếp trong trận chiến
 
 Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 3 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
+
+## Bản 2.6 · Nhịp bếp trong trận chiến
+
+- Bài được chọn có ánh sáng lướt qua; kỹ năng có vòng niệm phép, tia nối mục tiêu, va chạm, sóng quét sân và tên phép theo màu hệ. Rút bài, Vị Linh tan đi, boss thức tỉnh và đòn kết liễu có hiệu ứng riêng.
+- Bốn bản nhạc gốc: trận thường, boss/cận nguy, cutscene ấm áp và cutscene bí ẩn. Tiếng triệu hồi, tung phép, lửa/nước/khiên, hồi máu, Cộng hưởng cùng giai điệu thắng/thua khớp hành động thật.
+- Nút ♫ ngay trong trận/cutscene và Cài đặt game: tắt âm chung, tắt nhạc riêng, chỉnh âm lượng nhạc/SFX. Nhạc dừng khi đổi tab, rời TCG hoặc đóng nhật ký; Giảm chuyển động vẫn có âm thanh.
+- Giữ nguyên luật, kinh tế, 152 thẻ, 112 món trong Rương và tiến trình cũ. Không thêm thư viện runtime.
+- Nguồn nhạc và cách tạo lại: [`docs/AUDIO_ASSETS.md`](docs/AUDIO_ASSETS.md). Kết quả kiểm tra: [`docs/VERIFICATION_V26.md`](docs/VERIFICATION_V26.md).
 
 ## Bản 2.5 · Hương vị Việt Nam được trao truyền
 

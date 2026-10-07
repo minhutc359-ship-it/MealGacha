@@ -298,3 +298,50 @@
 @keyframes tcg-left-lunge { 0%,100%{transform:translateX(0)} 35%{transform:translateX(-12px) scale(1.05)} }
 @keyframes tcg-right-lunge { 0%,100%{transform:translateX(0)} 35%{transform:translateX(12px) scale(1.05)} }
 .tcg-viewport-battle .tcg-hand>.tcg-empty { grid-column:1/-1; align-self:center; margin:0; font-size:11px; text-align:center; }
+
+/* Additional layers stay inside the arena and never intercept targets. */
+.tcg-card-selection-fx { position:absolute; inset:0; z-index:8; overflow:hidden; border-radius:inherit; pointer-events:none; box-shadow:inset 0 0 0 2px var(--school-color),inset 0 0 22px color-mix(in srgb,var(--school-color),transparent 50%); }
+.tcg-card-selection-fx>i { position:absolute; inset:-60% -120%; background:linear-gradient(110deg,transparent 42%,#fff9d477 49%,transparent 56%); animation:tcg-selection-glint .48s ease-out both; }
+.tcg-card-selection-fx>i:nth-child(2) { inset:auto 12% 0; height:3px; background:var(--school-color); box-shadow:0 0 10px var(--school-color); animation:tcg-selection-line .3s ease-out both; }
+.tcg-card-selection-fx>i:nth-child(3) { display:none; }
+.tcg-viewport-battle .tcg-hand>.tcg-card.is-selected { animation:tcg-card-pick .22s ease-out; }
+.tcg-cast-rune { position:absolute; width:0; height:0; color:var(--fx-color); pointer-events:none; }
+.tcg-cast-rune>i { position:absolute; width:110px; height:110px; left:-55px; top:-55px; border:2px solid currentColor; border-radius:50%; box-shadow:0 0 18px currentColor,inset 0 0 12px currentColor; animation:tcg-cast-ring .55s ease-out both; }
+.tcg-cast-rune>i:nth-child(2) { width:86px; height:86px; left:-43px; top:-43px; border-style:dashed; animation-name:tcg-cast-inner; }
+.tcg-cast-rune>b { position:absolute; width:50px; left:-25px; top:-25px; text-align:center; font:38px/50px Georgia,serif; text-shadow:0 0 14px currentColor; animation:tcg-cast-symbol .4s ease-out both; }
+.tcg-fx-beam { position:absolute; height:3px; width:var(--beam-length); transform-origin:0 50%; background:linear-gradient(90deg,transparent,currentColor,#fff4c9); box-shadow:0 0 8px currentColor; animation:tcg-beam .3s ease-out both; }
+.tcg-fx-contact { position:absolute; width:0; height:0; }
+.tcg-fx-contact>i { position:absolute; width:50px; height:3px; left:-25px; top:-2px; background:#fff3c6; border-radius:100%; box-shadow:0 0 10px currentColor; animation:tcg-contact .32s .12s ease-out both; }
+.tcg-fx-contact>i:nth-child(2) { --contact-angle:45deg; }
+.tcg-fx-contact>i:nth-child(3) { --contact-angle:90deg; }
+.tcg-fx-contact>i:nth-child(4) { --contact-angle:135deg; }
+.tcg-sweep-wave { position:absolute; left:8%; right:8%; top:20%; height:18%; border:2px solid var(--fx-color); border-radius:50%; box-shadow:0 0 20px var(--fx-color),inset 0 0 12px var(--fx-color); animation:tcg-sweep .55s ease-out both; }
+.tcg-sweep-wave.player { top:45%; }
+.tcg-fx-draw-fan { position:absolute; left:-15px; top:-25px; }
+.tcg-fx-draw-fan>i { position:absolute; color:#e5f2e2; font:36px Georgia,serif; animation:tcg-draw-fan .5s ease-out both; }
+.tcg-fx-draw-fan>i:nth-child(2) { --fan-x:-20px; --fan-turn:-15deg; animation-delay:.04s; }
+.tcg-fx-draw-fan>i:nth-child(3) { --fan-x:20px; --fan-turn:15deg; animation-delay:.08s; }
+.fx-vanish .tcg-fx-halo { border-style:dotted; animation:tcg-vanish-halo .6s ease-out both; }
+.fx-vanish .tcg-fx-glyph { animation:tcg-vanish-glyph .6s ease-out both; }
+.fx-awaken .tcg-fx-halo { border-color:#e19b63; box-shadow:0 0 25px #d78d56; animation:tcg-awaken .65s ease-out both; }
+.tcg-fx-awaken-label { position:absolute; left:-60px; top:-12px; width:120px; text-align:center; font:700 11px/20px sans-serif; letter-spacing:2px; color:#ffe1b5; text-shadow:0 1px 4px #14292b; animation:tcg-element-glyph .65s ease-out both; }
+.fx-finish .tcg-fx-halo { border-width:3px; box-shadow:0 0 22px #edcd7d; animation:tcg-finish .65s ease-out both; }
+.fx-finish .tcg-fx-contact>i { width:90px; left:-45px; }
+.tcg-viewport-battle .tcg-action-card.is-skill { border-color:var(--skill-color); box-shadow:0 0 16px color-mix(in srgb,var(--skill-color),transparent 40%); animation:tcg-skill-title .65s ease-out both; }
+@keyframes tcg-selection-glint { from { transform:translateX(-25%); opacity:0; } 25% { opacity:.8; } to { transform:translateX(25%); opacity:0; } }
+@keyframes tcg-selection-line { from { transform:scaleX(.1); opacity:0; } to { transform:scaleX(1); opacity:1; } }
+@keyframes tcg-card-pick { 0%{transform:translateY(0) scale(.98)} 65%{transform:translateY(-4px)} 100%{transform:translateY(-3px)} }
+@keyframes tcg-cast-ring { 0% { transform:scale(.2) rotate(-35deg);opacity:0; } 35% { opacity:.8; } 100% { transform:scale(1.25) rotate(30deg);opacity:0; } }
+@keyframes tcg-cast-inner { 0% { transform:scale(.3) rotate(45deg);opacity:0; } 35% { opacity:.8; } 100% { transform:scale(1) rotate(-45deg);opacity:0; } }
+@keyframes tcg-cast-symbol { from { transform:translateY(8px) scale(.6);opacity:0; } 40% { opacity:.8; } to { transform:translateY(-12px) scale(1.1);opacity:0; } }
+@keyframes tcg-beam { 0% { transform:rotate(var(--beam-angle)) scaleX(.01);opacity:0; } 45% { opacity:.8; } 80% { transform:rotate(var(--beam-angle)) scaleX(1);opacity:.8; } 100% { transform:rotate(var(--beam-angle)) scaleX(1);opacity:0; } }
+@keyframes tcg-contact { 0% { transform:rotate(var(--contact-angle,0deg)) scale(.1);opacity:0; } 35% { opacity:.8; } 100% { transform:rotate(var(--contact-angle,0deg)) scale(1.3);opacity:0; } }
+@keyframes tcg-sweep { 0% { transform:scaleX(.1) scaleY(.3);opacity:0; } 40% { opacity:.7; } 100% { transform:scaleX(1.1) scaleY(1.3);opacity:0; } }
+@keyframes tcg-draw-fan { from { transform:translate(0,-20px) rotate(0);opacity:0; } 35% { opacity:.9; } to { transform:translate(var(--fan-x,0px),14px) rotate(var(--fan-turn,0deg));opacity:0; } }
+@keyframes tcg-vanish-halo { from { transform:scale(1);opacity:.5; } to { transform:scale(.1);opacity:0; } }
+@keyframes tcg-vanish-glyph { from { transform:translateY(0) scale(1);opacity:.6; } to { transform:translateY(-25px) scale(.1);opacity:0; } }
+@keyframes tcg-awaken { 0% { transform:scale(.3);opacity:0; } 40% { opacity:.7; } 100% { transform:scale(1.5);opacity:0; } }
+@keyframes tcg-finish { 0% { transform:scale(.4);opacity:0; } 40% { opacity:.8; } 100% { transform:scale(1.8);opacity:0; } }
+@keyframes tcg-skill-title { 0%{transform:translate(-50%,-50%) scale(.85);opacity:0} 20%{transform:translate(-50%,-50%) scale(1);opacity:1} 80%{opacity:1} 100%{transform:translate(-50%,-56%) scale(1.02);opacity:0} }
+@media(prefers-reduced-motion:reduce) { .tcg-card-selection-fx>i { animation:none; } }
+html[data-tcg-reduced-motion=true] .tcg-card-selection-fx>i { animation:none; }

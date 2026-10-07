@@ -30,6 +30,7 @@ export function Dialog({
       ref={ref}
       onCancel={(e) => {
         e.preventDefault()
+        e.stopPropagation()
         onClose()
       }}
       onClick={(e) => {

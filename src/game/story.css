@@ -60,3 +60,13 @@ html[data-tcg-reduced-motion=true] .tcg-scene-art img { animation:none; }
 .tcg-culture-discovery h3 { margin:8px 0; color:#405c44; font-size:16px; }
 .tcg-culture-discovery p { margin:0; font-size:12px; line-height:1.8; color:#5b7050; }
 @media(max-width:600px) { .tcg-culture-grid { grid-template-columns:1fr; } .tcg-culture-page-copy { padding:15px; } .tcg-culture-heading h2 { font-size:19px; } }
+
+.tcg-audio-controls { display:grid; gap:16px; margin:18px 0; }
+.tcg-audio-controls>label { display:flex; align-items:center; justify-content:space-between; gap:16px; color:#52664b; font-size:13px; }
+.tcg-audio-controls input[type=checkbox] { width:19px; height:19px; accent-color:#4d7356; }
+.tcg-audio-controls input[type=range] { width:42%; min-width:85px; accent-color:#4d7356; }
+.tcg-audio-controls>p { margin:0; color:#627759; font-size:12px; line-height:1.8; }
+.tcg-audio-controls input:focus-visible { outline:2px solid #597753; outline-offset:4px; }
+.tcg-audio-controls>.tcg-button { justify-self:start; }
+.tcg-audio-button { flex-shrink:0; min-width:34px; font:18px/1 sans-serif!important; padding:6px!important; }
+.tcg-scene-copy .tcg-audio-button { margin-right:6px; }

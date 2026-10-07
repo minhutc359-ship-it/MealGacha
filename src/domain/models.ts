@@ -82,6 +82,9 @@ export interface KeyTransaction {
 export interface UserPreferences {
   language?: "vi" | "en"
   soundEnabled: boolean
+  musicEnabled?: boolean
+  musicVolume?: number
+  effectsVolume?: number
   reducedMotion: boolean
   hiddenDishIds: string[]
   searchRadiusMeters: number
