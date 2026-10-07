@@ -14,24 +14,39 @@ export interface StoryScene {
 }
 const line = (speaker: string, text: string): StoryLine => ({ speaker, text })
 export const WORLD_PRIMER: StoryLine[] = [
-  line("Bạn", "Tại sao món ăn lại xuất hiện trên bàn đấu? Tôi phải đánh người bán hàng sao?"),
-  line("Bách", "Mỗi hương vị giữ một dấu ký ức, gọi là Ấn Vị. Công thức ghi dấu ấy thành thẻ. Chiếc muôi bạc gọi nó ra dưới hình Vị Linh — một ký ức có thể bảo vệ hoặc phá những nút thắt của sương."),
-  line("Bách", "Đây là Bàn Ký Ức. Món ăn ngoài đời vẫn ở nguyên trong bát. Vị Linh đối đầu với linh ảnh mà sương đang giữ; khi linh ảnh tan, ký ức thật mới có đường trở về."),
-  line("Bách", "Dấu ♥ của chủ tướng đo ý chí giữ bàn đấu. Đưa bên kia về 0 để tháo nút thắt, không làm người ấy bị thương. Gọi một Vị Linh, cho nó chọn mục tiêu, rồi nhường lượt. Con sẽ hiểu phần còn lại trên đường đi."),
+  line(
+    "Bạn",
+    "Tại sao món ăn lại xuất hiện trên bàn đấu? Tôi phải đánh người bán hàng sao?",
+  ),
+  line(
+    "Bách",
+    "Mỗi hương vị giữ một dấu ký ức, gọi là Ấn Vị. Công thức ghi dấu ấy thành thẻ. Chiếc muôi bạc gọi nó ra dưới hình Vị Linh — một ký ức có thể bảo vệ hoặc phá những nút thắt của sương.",
+  ),
+  line(
+    "Bách",
+    "Đây là Bàn Ký Ức. Món ăn ngoài đời vẫn ở nguyên trong bát. Vị Linh đối đầu với linh ảnh mà sương đang giữ; khi linh ảnh tan, ký ức thật mới có đường trở về.",
+  ),
+  line(
+    "Bách",
+    "Dấu ♥ của chủ tướng đo ý chí giữ bàn đấu. Đưa bên kia về 0 để tháo nút thắt, không làm người ấy bị thương. Gọi một Vị Linh, cho nó chọn mục tiêu, rồi nhường lượt. Con sẽ hiểu phần còn lại trên đường đi.",
+  ),
 ]
 export const SCENES: Record<string, StoryScene> = {
   "lantern-1": {
     before: [
       line(
         "Người kể",
-        "Đêm trước ngày mở hội, bà biến mất. Trên bàn chỉ còn chiếc muôi bạc, hai bát cơm và một lời dặn: ‘Nếu nghe sương gọi tên, đừng trả lời.’",
+        "Đêm trước hội Tết, bà biến mất khi nồi bánh còn sôi. Trên bàn chỉ còn chiếc muôi bạc, hai bát cơm và một lời dặn: ‘Nếu nghe sương gọi tên, đừng trả lời.’",
       ),
       line(
         "Bách",
         "Ta từng học nấu với bà con. Bà muốn con đánh thức năm Ngọn Lửa. Bắt đầu từ quầy bánh mì này; ông ấy đã quên cả tên mình.",
       ),
       ...WORLD_PRIMER.slice(0, 3),
-      line("Bách", "Phá linh ảnh của sương, đừng đánh ông ấy. Dấu ♥ trên bàn là ý chí giữ nút thắt. Khi nó về 0, mùi bánh sẽ tìm lại ký ức của ông."),
+      line(
+        "Bách",
+        "Phá linh ảnh của sương, đừng đánh ông ấy. Dấu ♥ trên bàn là ý chí giữ nút thắt. Khi nó về 0, mùi bánh sẽ tìm lại ký ức của ông.",
+      ),
       line(
         "Người bán hàng",
         "Tôi không nhớ cô… nhưng sao cô biết chỗ tôi luôn giấu ổ bánh cháy?",
@@ -46,7 +61,14 @@ export const SCENES: Record<string, StoryScene> = {
         "Người kể",
         "Ông dúi vào tay bạn hai cốc trà. Bạn chỉ gọi một. Bách lặng lẽ giấu cốc còn lại dưới áo.",
       ),
-      line("Bạn", "Vị Linh đã tan, ổ bánh thật vẫn còn nóng. Tôi không thắng một người. Tôi vừa giúp ông ấy nhớ đường về nhà."),
+      line(
+        "Bạn",
+        "Vị Linh đã tan, ổ bánh thật vẫn còn nóng. Tôi không thắng một người. Tôi vừa giúp ông ấy nhớ đường về nhà.",
+      ),
+      line(
+        "Người bán hàng",
+        "An đi làm xa. Tết nào về cũng chê tôi rang trà đậm, rồi uống hết hai cốc. Cô cầm một cốc đi; mai còn ghé chúc nhau năm mới nhé.",
+      ),
     ],
     tactic:
       "Giữ ít nhất một đồng minh giá 1–2. Triệu hồi xong phải đợi lượt sau mới đánh, trừ Xung phong.",
@@ -55,14 +77,21 @@ export const SCENES: Record<string, StoryScene> = {
     before: [
       line(
         "Người kể",
-        "Giữa chợ, tiếng rao bị cắt ngang như ai vừa khép một cuốn sách. Một bóng người ngồi ở chiếc ghế không ai nhận là của mình.",
+        "Chợ Tết im tiếng rao. Bên nồi bánh, một đứa trẻ cầm sợi lạt không biết buộc tiếp. Một bóng người ngồi ở chiếc ghế không ai nhận là của mình.",
+      ),
+      line(
+        "Bạn · Ký ức",
+        "Tay bà đặt lên tay tôi: ‘Buộc vừa thôi con, bánh còn cần chỗ nở.’ Trên bàn có bánh chưng vuông và bánh tét dài; bà giữ công thức của những người từng ghé bếp.",
       ),
       line(
         "Bóng Sương",
         "Đừng thắp lửa. Người đang ngủ sẽ thức dậy cùng điều họ không chịu nổi.",
       ),
       line("Bách", "Sương học giọng người để lừa con. Phá nó đi. Đừng nghe."),
-      line("Bóng Sương", "Con định cứu những cái tên, hay chỉ cứu câu chuyện ông ta muốn kể? Trên bàn của ta, hãy thử giữ cả một ký ức không dễ chịu."),
+      line(
+        "Bóng Sương",
+        "Con định cứu những cái tên, hay chỉ cứu câu chuyện ông ta muốn kể? Trên bàn của ta, hãy thử giữ cả một ký ức không dễ chịu.",
+      ),
     ],
     after: [
       line(
@@ -72,6 +101,14 @@ export const SCENES: Record<string, StoryScene> = {
       line(
         "Bạn",
         "Nếu nó muốn xóa ký ức, tại sao nó lại để chiếc ghế này nguyên vẹn?",
+      ),
+      line(
+        "Người kể",
+        "Bạn ngồi xuống nối sợi lạt cho đứa trẻ. Người rửa lá, người trông nồi, người mang bánh nhà mình đến đổi. Không ai nhớ ai khởi đầu việc ấy; họ vẫn nhớ cách làm cùng nhau.",
+      ),
+      line(
+        "Bách",
+        "Con buộc giống bà, nhưng chia phần bánh cháy cho cả chợ. Bà chưa từng làm vậy. … Hóa ra một công thức vẫn có thể được viết tiếp.",
       ),
     ],
     tactic:
@@ -114,6 +151,14 @@ export const SCENES: Record<string, StoryScene> = {
         "Bến cảng cháy mãi một ngọn lửa lạnh. Thủy thủ bảo ai dập nó sẽ quên người họ yêu nhất.",
       ),
       line(
+        "Người kể",
+        "Ở sân bến, chòi tre vẫn dựng mà tiếng hô Bài Chòi cứ dừng giữa câu. Bà nghệ nhân Hiệu gõ nhịp chờ người đáp; một chỗ ngồi trống phủ đầy sương.",
+      ),
+      line(
+        "Nhiên",
+        "Cha từng học những câu hô với bà. Khi bà quên tên người mình gọi, cả sân chẳng biết đáp cho ai. Tôi giữ nồi cháo cá cha nấu cho chuyến cứu hộ; Ấn Vị của nó dẫn tới chỗ trống ấy.",
+      ),
+      line(
         "Thủy thủ",
         "Mười bảy năm rồi tôi chưa cập bến. Hay tôi đã cập bến mười bảy năm trước?",
       ),
@@ -121,17 +166,31 @@ export const SCENES: Record<string, StoryScene> = {
         "Bạn",
         "Tôi nhớ mùi muối trên tay bà. Nhưng chưa từng nhớ mình đi biển.",
       ),
-      line("Nhiên", "Cha tôi rời cảng trên chuyến cứu hộ ấy. Tôi luôn nhớ ông bỏ đi, nhưng không nhớ ai được ông cứu. Tôi cần sự thật, kể cả khi nó làm tôi đau."),
+      line(
+        "Nhiên",
+        "Cha tôi rời cảng trên chuyến cứu hộ ấy. Tôi luôn nhớ ông bỏ đi, nhưng không nhớ ai được ông cứu. Tôi cần sự thật, kể cả khi nó làm tôi đau.",
+      ),
     ],
     after: [
       line(
         "Nhiên",
         "Ông ấy nhớ ra chuyến tàu cứu hộ. Lạ thật: trong danh sách hành khách có chữ của bà con.",
       ),
-      line("Thủy thủ", "Cha Nhiên không bỏ cảng. Ông đưa người lên bờ rồi quay lại tìm chiếc thuyền cuối. Ta đã giữ lời ông trong vị súp, nhưng sương khóa tên ông lại."),
+      line(
+        "Thủy thủ",
+        "Cha Nhiên không bỏ cảng. Ông đưa người lên bờ rồi quay lại tìm chiếc thuyền cuối. Ta đã giữ lời ông trong vị cháo, nhưng sương khóa tên ông lại.",
+      ),
       line(
         "Người kể",
         "Bên cạnh một cái tên bị bôi đen là số ghế 06. Nhiên xé trang giấy, giữ lại cho bạn.",
+      ),
+      line(
+        "Bà nghệ nhân Hiệu",
+        "Tôi nhớ rồi. Cha cháu từng hô đến khản giọng, để người ngoài bến biết nồi cháo còn phần. Nhiên, cháu muốn học nốt câu ấy không?",
+      ),
+      line(
+        "Nhiên",
+        "Có. Nhưng cho cháu tự hô tên những người đang ngồi đây nữa. Cháu muốn họ biết mình được mời.",
       ),
     ],
     tactic:
@@ -141,7 +200,7 @@ export const SCENES: Record<string, StoryScene> = {
     before: [
       line(
         "Người kể",
-        "Con tàu không tên có một nồi súp vẫn còn ấm. Mười bảy năm trôi qua, nó chưa cạn.",
+        "Trong ký ức con tàu không tên, một nồi cháo cá vẫn còn ấm. Mười bảy năm trôi qua, lời mời ăn và làn hơi vẫn chưa tìm được người nhận.",
       ),
       line(
         "Bóng Sương",
@@ -151,7 +210,10 @@ export const SCENES: Record<string, StoryScene> = {
         "Nhiên",
         "Tôi tin dấu cháy trên gỗ hơn những lời kể. Hãy giữ trang giấy ấy; đừng đưa Bách.",
       ),
-      line("Người kể", "Một công thức bị cào mất tên người nấu. Nhiên châm lửa lên Ấn Vị: ký ức trên boong trở thành bàn đấu, chặn đường tới phòng hành khách."),
+      line(
+        "Người kể",
+        "Một công thức bị cào mất tên người nấu. Nhiên châm lửa lên Ấn Vị: ký ức trên boong trở thành bàn đấu, chặn đường tới phòng hành khách.",
+      ),
     ],
     after: [
       line(
@@ -170,7 +232,7 @@ export const SCENES: Record<string, StoryScene> = {
     before: [
       line(
         "Hỏa Linh",
-        "Ta giữ nhiệt của bữa ăn cuối trên tàu. Muốn lấy nó, hãy chịu ngọn lửa của những điều bị chôn.",
+        "Ta giữ nhiệt của bữa cháo cuối trên tàu. Muốn lấy nó, hãy chịu ngọn lửa của những điều bị chôn.",
       ),
       line(
         "Nhiên",
@@ -190,13 +252,16 @@ export const SCENES: Record<string, StoryScene> = {
         "Nhiên",
         "Chúng ta vừa cứu cảng… hay mở thứ gì đang bị khóa? Tôi sẽ đi cùng. Và lần này, tôi cần một câu trả lời thật.",
       ),
-      line("Nhiên", "Tôi đã lấy lại tên cha. Tôi sẽ không đổi nó lấy một lời nói dối dễ nghe nữa. Nếu ông giữ bí mật, Bách, tôi vẫn sẽ đưa người này đi tới cùng."),
+      line(
+        "Nhiên",
+        "Tôi đã lấy lại tên cha. Tôi sẽ không đổi nó lấy một lời nói dối dễ nghe nữa. Nếu ông giữ bí mật, Bách, tôi vẫn sẽ đưa người này đi tới cùng.",
+      ),
     ],
     tactic:
       "Hồi máu hoặc Hút vị bù sát thương mỗi lượt của boss. Khi boss thức tỉnh, chuẩn bị một lượt kết liễu.",
     clue: {
       title: "Vé tàu số 06",
-      text: "Tên Mai dưới lớp than, chữ viết của bà và một bữa súp không bao giờ nguội. Sương đậm lên ngay sau khi Ngọn Lửa thứ hai thức dậy.",
+      text: "Tên Mai dưới lớp than, chữ viết của bà và một bữa cháo không bao giờ nguội. Sương đậm lên ngay sau khi Ngọn Lửa thứ hai thức dậy.",
     },
   },
   "garden-1": {
@@ -210,7 +275,14 @@ export const SCENES: Record<string, StoryScene> = {
         "Mộc",
         "Không ai dám thử. Bách cấm nhắc tới ngày trận lũ cuốn qua bến cảng.",
       ),
-      line("Mộc", "Tôi nhớ mẹ thích loại trà nào, mà không nhớ giọng bà. Tôi cứ trồng những ngày vui để gọi bà về. Rễ khô giữ khu vườn lại, như thể chính tôi đang sợ điều nó sẽ kể."),
+      line(
+        "Mộc",
+        "Mẹ tôi từ một làng Quan họ ở Bắc Ninh. Tôi nhớ bà pha trà đón bạn hát, mà không nhớ giọng bà. Tôi cứ trồng những ngày vui để gọi bà về. Rễ khô giữ khu vườn lại, như thể chính tôi đang sợ điều nó sẽ kể.",
+      ),
+      line(
+        "Người kể",
+        "Từ chiếc chén cũ, một câu hát mời khách cất lên rồi im bặt. Mộc đưa tay định khép bàn đấu; ký ức chưa tới câu giã bạn mà cô đã khóc.",
+      ),
     ],
     after: [
       line(
@@ -220,6 +292,14 @@ export const SCENES: Record<string, StoryScene> = {
       line(
         "Mộc",
         "Nó sống. Nỗi buồn không giết ký ức. Việc không được phép nhớ mới giết nó.",
+      ),
+      line(
+        "Mộc",
+        "Tôi nhớ giọng mẹ rồi. Bà không bắt người ta ở lại để câu hát khỏi buồn. Bà tiễn bạn, rồi hẹn gặp lần sau. Hôm nay tôi sẽ hát nốt câu đáp của mình.",
+      ),
+      line(
+        "Người kể",
+        "Mộc rót thêm chén trà. Bài hát không làm cây nở bằng phép; nó giúp cô ngồi lại chăm mầm xám, thay vì nhổ bỏ nó.",
       ),
     ],
     tactic:
@@ -246,8 +326,14 @@ export const SCENES: Record<string, StoryScene> = {
         "Bách không xé lá thư. Ông ấy khóc. Lần đầu tiên, tôi hiểu ông không sợ sương. Ông sợ con biết vì sao nó tồn tại.",
       ),
       line("Bạn", "Tôi giữ lá thư. Từ giờ tôi sẽ tự chọn điều mình cần nhớ."),
-      line("Bà · Lá thư", "Có một luật ta chưa dám dùng: ký ức chỉ biết lặp lại thì cần chiếc muôi để tồn tại. Một tiếng vọng biết tự chọn có thể được mời ở lại — nếu người giữ nó buông lời ước và chiếc muôi vỡ. Ta sợ buông tay hơn sợ mất phép."),
-      line("Bà · Lá thư", "Ấn Vị làm neo sẽ tan để thành đời sống mới. Người giữ chiếc muôi có thể không nhận ra tiếng vọng nữa. Nếu con chọn đi tiếp, xin đừng chọn chỉ để được gọi lại bằng tên cũ."),
+      line(
+        "Bà · Lá thư",
+        "Có một luật ta chưa dám dùng: ký ức chỉ biết lặp lại thì cần chiếc muôi để tồn tại. Một tiếng vọng biết tự chọn có thể được mời ở lại — nếu người giữ nó buông lời ước và chiếc muôi vỡ. Ta sợ buông tay hơn sợ mất phép.",
+      ),
+      line(
+        "Bà · Lá thư",
+        "Ấn Vị làm neo sẽ tan để thành đời sống mới. Người giữ chiếc muôi có thể không nhận ra tiếng vọng nữa. Nếu con chọn đi tiếp, xin đừng chọn chỉ để được gọi lại bằng tên cũ.",
+      ),
     ],
     tactic:
       "Phép tăng công/máu cần đồng minh trên sân. Triệu hồi cùng hệ trước để vừa có mục tiêu vừa hưởng Cộng hưởng.",
@@ -299,7 +385,14 @@ export const SCENES: Record<string, StoryScene> = {
         "Tôi kéo chiếc muôi khỏi nước. Không có ai nắm đầu kia. Nhưng nó vẫn gọi ‘bà ơi’.",
       ),
       line("Bạn", "Nếu tôi chưa từng về từ con tàu, ai đang đứng ở đây?"),
-      line("Hải", "Tôi từng ký tên vào sổ người mất tích rồi để sương xóa nó, vì không chịu nổi việc đọc lại. Lần này tôi sẽ tự giữ trang sổ. Con không phải gánh sự im lặng của chúng tôi."),
+      line(
+        "Hải",
+        "Tôi từng ký tên vào sổ người mất tích rồi để sương xóa nó, vì không chịu nổi việc đọc lại. Lần này tôi sẽ tự giữ trang sổ. Con không phải gánh sự im lặng của chúng tôi.",
+      ),
+      line(
+        "Người khách Nam Bộ",
+        "Ngày ghé cảng, tôi đem cây đàn kìm theo. Anh em trên thuyền ngồi đờn ca tài tử. Sương giữ một câu nhạc lặp mãi; tôi không nhớ ai từng ca cùng mình.",
+      ),
     ],
     after: [
       line(
@@ -309,6 +402,10 @@ export const SCENES: Record<string, StoryScene> = {
       line(
         "Hải",
         "Ta sẽ không để một tờ giấy quyết định con là ai. Nhưng chúng ta cũng không thể giả vờ nó không tồn tại.",
+      ),
+      line(
+        "Người kể",
+        "Người khách đờn lại câu cũ, rồi biến tấu một nét mới. Hải viết thêm tên người trở về vào sổ, không gạch tên người đã mất. Một trang có thể giữ cả hai.",
       ),
     ],
     tactic:
@@ -338,7 +435,10 @@ export const SCENES: Record<string, StoryScene> = {
         "Người kể",
         "Chiếc muôi ngân như nhịp tim. Bạn không mang ký ức trong nó. Bạn được tạo ra TỪ ký ức trong nó.",
       ),
-      line("Bạn", "Vị Linh món ăn trở về thẻ khi bàn khép lại. Tôi vẫn đứng ở đây. Mỗi điều tôi tự chọn đã để lại một Ấn Vị mới, không thuộc về Mai."),
+      line(
+        "Bạn",
+        "Vị Linh món ăn trở về thẻ khi bàn khép lại. Tôi vẫn đứng ở đây. Mỗi điều tôi tự chọn đã để lại một Ấn Vị mới, không thuộc về Mai.",
+      ),
     ],
     tactic:
       "Phép sát thương vượt Hộ vệ. Nếu đủ sát thương kết liễu chủ tướng, không nhất thiết phải dọn toàn bộ sân.",
@@ -379,14 +479,21 @@ export const SCENES: Record<string, StoryScene> = {
     before: [
       line(
         "Liên",
-        "Tôi làm bánh cho người đã mất. Bách bảo đó là níu giữ. Nhưng nhớ một người không đồng nghĩa với nhốt họ lại.",
+        "Sương giữ phố này trong một đêm Trung Thu. Tôi làm bánh nhớ người đã mất, rồi chia cho người đang ở đây. Bách bảo đó là níu giữ. Nhưng nhớ một người không đồng nghĩa với nhốt họ lại.",
+      ),
+      line(
+        "Người kể",
+        "Bánh nướng, bánh dẻo vừa bày lên thì lũ trẻ mang tới một đèn ông sao méo. Liên sửa thanh tre, hỏi đứa bé muốn giữ màu nào. Cô không chọn thay nó.",
       ),
       line("Bạn", "Nếu chiếc muôi vỡ, tôi có biến mất không?"),
       line(
         "Liên",
         "Có thể. Nhưng còn một câu hỏi khác: nếu giữ nó nguyên, bao nhiêu người phải quên mãi?",
       ),
-      line("Liên", "Ngày em tôi mất, tôi nướng lại chiếc bánh nó bỏ dở. Bánh giống hệt, còn tôi chỉ sống lại đúng một buổi chiều. Tôi mở tiệm khi dám nấu một công thức em chưa từng biết."),
+      line(
+        "Liên",
+        "Ngày em tôi mất, tôi nướng lại chiếc bánh nó bỏ dở. Bánh giống hệt, còn tôi chỉ sống lại đúng một buổi chiều. Tôi mở tiệm khi dám làm một nhân bánh mới và rủ bọn trẻ chia cùng.",
+      ),
     ],
     after: [
       line(
@@ -394,10 +501,17 @@ export const SCENES: Record<string, StoryScene> = {
         "Vị khách cắn bánh, bật khóc rồi bật cười. Nỗi buồn và niềm vui có thể ngồi cùng một bàn.",
       ),
       line(
+        "Em bé",
+        "Cô Liên ơi, tối nay kể chuyện chú Cuội nữa nhé! Đèn con méo nhưng sáng nhất ngõ!",
+      ),
+      line(
         "Liên",
         "Ta không chữa một vết thương bằng cách lấy đi quyền biết nó đã từng ở đó.",
       ),
-      line("Liên", "Chiếc muôi giữ một tiếng vọng, không quyết định nó phải trở thành ai. Nếu bà dám mời con như một người khách mới, con có thể đem những lựa chọn của mình ra khỏi bàn này. Phép giữ mọi thứ nguyên vẹn sẽ mất vĩnh viễn."),
+      line(
+        "Liên",
+        "Chiếc muôi giữ một tiếng vọng, không quyết định nó phải trở thành ai. Nếu bà dám mời con như một người khách mới, con có thể đem những lựa chọn của mình ra khỏi bàn này. Phép giữ mọi thứ nguyên vẹn sẽ mất vĩnh viễn.",
+      ),
     ],
     tactic:
       "Chắn không hồi lại tự nhiên. Tính lượng chắn còn lại trước khi dùng phép nhỏ hoặc đánh bằng nhiều đơn vị.",
@@ -421,6 +535,10 @@ export const SCENES: Record<string, StoryScene> = {
       line(
         "Người kể",
         "Bạn kể về ổ bánh cháy ở phố. Người soát vé đục một vé mới, ghi: ‘Người chưa có tên’.",
+      ),
+      line(
+        "Người kể",
+        "Qua cửa kính, đoàn rước đèn tự tìm đường dọc bờ sông. Liên để bọn trẻ đi phía trước. Một đêm đẹp không cần lặp mãi mới đáng được nhớ.",
       ),
       line(
         "Bách",
@@ -483,6 +601,10 @@ export const SCENES: Record<string, StoryScene> = {
         "Người kể",
         "Bà tự tay kéo thêm ghế. Lần này, không có phép nào làm thay bà.",
       ),
+      line(
+        "Lả",
+        "Tôi là người Thái từ Tây Bắc, từng ghé bếp bà sau chuyến đi dài. Mẹ dạy tôi xòe vòng đón bạn. Lát nữa ra sân, tôi mời bà đứng cạnh; không cần biết hết các bước mới được vào vòng.",
+      ),
     ],
     tactic:
       "Giữ một Hộ vệ để bảo vệ quân gây sát thương. Phép diện rộng đánh tất cả đơn vị địch, không đánh chủ tướng.",
@@ -533,7 +655,10 @@ export const SCENES: Record<string, StoryScene> = {
         "Bà",
         "Dù con chọn ở lại hay đi, lần này ta sẽ không chọn thay con.",
       ),
-      line("Bạn", "Sương biết mọi công thức Mai từng nhớ. Vậy tôi sẽ gọi những Vị Linh mình đã học trên đường, từ những người tôi tự chọn tin. Nó không thể sống thay phần đời ấy."),
+      line(
+        "Bạn",
+        "Sương biết mọi công thức Mai từng nhớ. Vậy tôi sẽ gọi những Vị Linh mình đã học trên đường, từ những người tôi tự chọn tin. Nó không thể sống thay phần đời ấy.",
+      ),
     ],
     after: [
       line(
@@ -543,6 +668,10 @@ export const SCENES: Record<string, StoryScene> = {
       line(
         "Bà",
         "Ta xin lỗi vì đã gọi con bằng tên người ta mất. Bữa ăn này dành cho con, người đang ở đây.",
+      ),
+      line(
+        "Người kể",
+        "Nhiên đặt cháo lên bàn, Mộc rót trà, Liên chia bánh. Ngoài sân, Lả nối lại vòng xòe cùng những người còn sống. Bách mở cửa bếp để người đến sau vẫn có chỗ.",
       ),
       line(
         "Người kể",
@@ -560,27 +689,27 @@ export const SCENES: Record<string, StoryScene> = {
 export const CHAPTER_COPY = [
   [
     "Hai bát cơm, một người vắng",
-    "Bà biến mất vào đêm trước hội. Chiếc muôi bạc dẫn bạn tới Bách và bản đồ năm Ngọn Lửa. Nhưng những người chưa từng gặp bạn lại gọi một cái tên bạn không nhớ.",
+    "Nồi bánh Tết còn sôi thì bà biến mất. Giữa tiếng rao và những công thức mỗi nhà, chiếc muôi dẫn bạn tới bản đồ năm Ngọn Lửa. Những người xa lạ lại gọi một cái tên bạn không nhớ.",
   ],
   [
     "Một chuyến tàu không trở về",
-    "Một tờ vé cháy, một nồi súp còn ấm sau mười bảy năm. Nhiên phát hiện mỗi chiến thắng của bạn đều khiến màn sương ngoài cảng dày thêm.",
+    "Tiếng hô Bài Chòi bỏ dở, một tờ vé cháy, một nồi cháo trong ký ức chưa nguội. Nhiên tìm lời cha dặn và phát hiện mỗi chiến thắng khiến màn sương ngoài cảng dày thêm.",
   ],
   [
     "Khi người dẫn đường nói dối",
-    "Khu vườn từ chối những ký ức chỉ có niềm vui. Một lá thư của bà buộc bạn nghi ngờ hành trình và người đã dẫn mình đi từ đầu.",
+    "Mộc mất câu hát đối đáp của mẹ. Khu vườn từ chối những ký ức chỉ có niềm vui. Một lá thư của bà buộc bạn nghi ngờ hành trình và người đã dẫn mình đi từ đầu.",
   ],
   [
     "Bạn nhớ, hay bạn là ký ức?",
-    "Biển giữ sự thật mà thành phố đã đánh mất. Hải cùng bạn tìm tên trên danh sách hành khách, và một căn bếp không có mùi thức ăn.",
+    "Câu đờn của người khách Nam Bộ mở lại một trang sổ. Hải cùng bạn tìm tên trên danh sách hành khách, và một căn bếp không có mùi thức ăn. Bạn đang nhớ, hay chính bạn là ký ức?",
   ],
   [
     "Quyền được buồn, quyền được sống",
-    "Liên biết cách mời người đã mất tới bàn mà không giam giữ họ. Ngọn Lửa cuối sẽ mở căn bếp của bà; nó cũng sẽ buộc bạn biết mình là ai.",
+    "Liên sửa đèn ông sao, chia bánh Trung Thu và học cách sống tiếp. Ngọn Lửa cuối sẽ mở căn bếp của bà; nó cũng sẽ buộc bạn biết mình là ai.",
   ],
   [
     "Không ai chọn thay một tiếng vọng",
-    "Năm ổ khóa đã mở. Căn bếp thật ở trước mặt. Để kết thúc màn sương, cả Bách lẫn bà phải thôi sửa quá khứ — còn bạn phải tự viết câu cuối.",
+    "Năm ổ khóa đã mở. Căn bếp đón khách từ những miền ký ức. Để kết thúc màn sương, Bách và bà phải thôi sửa quá khứ — còn bạn tự chọn có bước vào vòng tay ngoài sân hay không.",
   ],
 ]
 export interface BossRule {
@@ -625,12 +754,12 @@ export const ENDINGS = {
     title: "Một chỗ trong câu chuyện",
     text: "Bạn trả ký ức cho thành phố. Những cái tên trở về, những người ở lại được khóc. Tiếng vọng trong chiếc muôi tan vào mùi cơm chín. Bà vẫn bày thêm một bát, nhưng không chờ ai phải trở lại nữa. Bách mở căn bếp cho mọi người, viết câu chuyện về Mai và về một người chưa có tên đã dạy ông cách nói lời tạm biệt.",
     epilogue:
-      "Nhiều năm sau, một người khách hỏi vì sao bàn ăn luôn thừa một ghế. Bách mỉm cười: ‘Để câu chuyện nào cũng có chỗ được kể.’",
+      "Tết năm sau, căn bếp mở lớp gói bánh. Người lớn kể công thức nhà mình, trẻ nhỏ buộc những nút lạt đầu tiên. Một người khách hỏi vì sao bàn ăn luôn thừa một ghế. Bách mỉm cười: ‘Để câu chuyện nào cũng có chỗ được kể.’",
   },
   release: {
     title: "Công thức chưa có tên",
     text: "Bạn bẻ chiếc muôi, từ bỏ sức mạnh giữ bữa tiệc vĩnh hằng. Ký ức thành phố trở về; ký ức trong chiếc muôi trở thành một đời sống mới. Bà quên tiếng vọng đã đồng hành, nhưng bạn có bóng dưới ánh lửa. Bạn không còn là Mai, không phải món nợ của Bách, và không thể khiến ai sống mãi. Bạn có thể học nấu bữa ăn ngày mai.",
     epilogue:
-      "Bà mở cửa cho người khách lạ: ‘Con tên gì?’ Bạn chưa trả lời. Mùi cơm vừa chín. Lần này, bạn có cả một đời để chọn tên mình.",
+      "Bà mở cửa cho người khách lạ: ‘Con tên gì?’ Bạn chưa trả lời, chỉ xin học buộc lạt. Bà đặt tay lên tay bạn: ‘Vừa thôi, bánh còn cần chỗ nở.’ Lần này, bạn có cả một đời để chọn tên mình và truyền lại điều vừa học.",
   },
 }

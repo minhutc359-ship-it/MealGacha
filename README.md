@@ -1,8 +1,15 @@
-# MealGacha v2.4 · Vị Linh và chiếc ghế trống
+# MealGacha v2.5 · Hương vị giữ người
 
 Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 3 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
+
+## Bản 2.5 · Hương vị Việt Nam được trao truyền
+
+- Gắn Tết, Bài Chòi, Quan họ, đờn ca tài tử, Trung Thu và Xòe Thái vào việc nhân vật cùng nấu, mời khách, tìm giọng người thân và truyền dạy. Bối cảnh, trận lũ và phép thuật là hư cấu.
+- **Sổ hành trình Việt Nam** có 6 trang mở theo màn, giới thiệu Việt/Anh, nguồn UNESCO/Vietnam Tourism và sao chép đoạn giới thiệu kèm nguồn để chia sẻ. Tiến trình cũ tự mở trang tương ứng; đọc sổ không đổi tài nguyên.
+- Tranh mới cho đêm gói bánh Tết và sân Bài Chòi; chỉnh phố Trung Thu với bánh nướng, bánh dẻo, đèn ông sao, trẻ em. Tám tranh đang dùng tổng khoảng **1.19 MiB**; ảnh sổ tải lazy, mặc định thu gọn.
+- [Chất liệu văn hóa và nguồn](docs/VIETNAMESE_CULTURE.md), [prompt minh họa mới](docs/CULTURE_ASSETS.md). Giữ 18 IDs màn, luật trận, 152 thẻ, pool 112 món của Rương và bản lưu v1.
 
 ## Bản 2.4 · Vị Linh và truyện có minh họa
 

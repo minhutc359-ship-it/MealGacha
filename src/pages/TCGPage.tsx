@@ -11,6 +11,7 @@ import { GameCardView } from "../components/game/GameCardView"
 import { StoryScene } from "../components/game/StoryScene"
 import { DuelBasics } from "../components/game/DuelBasics"
 import { MemoryJournal } from "../components/game/MemoryJournal"
+import { CultureJournal } from "../components/game/CultureJournal"
 import { SCENES, BOSS_RULES, WORLD_PRIMER } from "../game/narrative"
 import { stageArtId } from "../game/storyArt"
 import { BattleBoard } from "../components/game/BattleBoard"
@@ -573,6 +574,7 @@ export function TCGPage() {
                       <small>/18 MÀN</small>
                     </div>
                   </div>
+                  <CultureJournal />
                   <MemoryJournal />
                   <div className="tcg-chapter-grid">
                     {CHAPTERS.map((ch, i) => {
@@ -932,7 +934,7 @@ export function TCGPage() {
             <span>
               MEALGACHA <i>✦</i> Một thế giới được nấu bằng ký ức.
             </span>
-            <span>VỊ LINH · CHIẾC GHẾ TRỐNG · v2.4</span>
+            <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.5</span>
           </footer>
         </main>
       </div>

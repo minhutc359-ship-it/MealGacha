@@ -1,4 +1,6 @@
-# Minh họa truyện v2.4
+# Minh họa truyện v2.4 · nguồn nền cho v2.5
+
+**Cập nhật v2.5:** moon đã được chỉnh thành phố Trung Thu Việt Nam; thêm tet-kitchen và bai-choi. Tám tranh đang dùng tổng khoảng 1.19 MiB. Xem [prompt và file bản văn hóa](CULTURE_ASSETS.md). Nội dung dưới đây ghi lại quá trình tạo sáu tranh nền v2.4.
 
 Sáu ảnh được tạo bằng **imagegen tích hợp**, không dùng CLI/API bên ngoài. File game nằm trong `public/assets/tcg/story/`, WebP 1280×720, chất lượng 80, tổng 6 tranh. PNG gốc không là dependency của app. Chỉ tối ưu kích thước/định dạng khi đưa vào game. Thư mục asset được lưu như Git blob thường để preview phục vụ ảnh thật.
 

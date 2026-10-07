@@ -17,6 +17,7 @@ import type { BattleUnit, Combatant } from "../../game/types"
 import { GameCardView } from "./GameCardView"
 import { CombatEffects } from "./CombatEffects"
 import { StoryScene } from "./StoryScene"
+import { cultureForStage } from "../../game/culture"
 import { Dialog } from "./Dialog"
 import { getBattleHint } from "../../game/battleCoach"
 import { DuelBasics } from "./DuelBasics"
@@ -263,6 +264,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     if (selection && preview(uid)?.legal) execute({ ...selection, target: uid })
   }
   const stage = battle.stageId ? STAGE_MAP[battle.stageId] : null
+  const culturalPage = stage ? cultureForStage(stage.id) : undefined
   const rule = battle.stageId ? BOSS_RULES[battle.stageId] : null
   const school = battle.player.chainSchool
     ? SCHOOLS[battle.player.chainSchool]
@@ -973,6 +975,16 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                   )}
                 </div>
               )}
+            {stored.result === "win" && endRead && culturalPage && (
+              <aside className="tcg-culture-discovery">
+                <span className="tcg-kicker">TRANG VIỆT NAM ĐÃ MỞ</span>
+                <h3>{culturalPage.title}</h3>
+                <p>
+                  Trở về hành trình và mở sổ văn hóa để xem ký ức, giới thiệu
+                  Việt / Anh và nguồn khám phá ngoài đời.
+                </p>
+              </aside>
+            )}
             <div className="tcg-reward-row">
               <span>◉ +{stored.loot?.coins ?? 0} xu</span>
               <span>✧ +{stored.loot?.xp ?? 0} XP</span>

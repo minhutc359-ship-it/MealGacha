@@ -155,8 +155,12 @@ describe("beginner battle guidance", () => {
 
 describe("illustrated campaign assets", () => {
   it("serves actual WebP illustrations for every stage without LFS placeholders", () => {
-    for (const stage of STAGES)
-      expect(stage.chapter.art).toBe(STORY_ART[stageArtId(stage.id)].src)
+    for (const stage of STAGES) {
+      expect(STORY_ART[stageArtId(stage.id)]).toBeDefined()
+      expect(stage.chapter.art).toBe(
+        STORY_ART[stageArtId(stage.chapter.stages[0].id)].src,
+      )
+    }
     let bytes = 0
     for (const art of Object.values(STORY_ART)) {
       const path = resolve("public", art.src.slice(1))

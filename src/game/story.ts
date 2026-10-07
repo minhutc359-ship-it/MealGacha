@@ -20,7 +20,7 @@ const CHAPTER_LAYOUT = [
       {
         id: "lantern-2",
         title: "Chợ không tiếng cười",
-        opponent: "Bóng Sương ở chợ Đồng Xuân",
+        opponent: "Bóng Sương ở chợ Đèn Lồng",
         boss: false,
         rewardCard: "sugar-veil",
       },
