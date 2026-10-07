@@ -38,6 +38,7 @@ export function newGame(): GameSave {
     expedition: null,
     expeditionStats: { runs: 0, wins: 0, best: 0 },
     history: [],
+    storyEnding: null,
   }
 }
 export function rotateDay(save: GameSave, today = getDateKey()): GameSave {

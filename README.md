@@ -1,13 +1,22 @@
-# MealGacha v2.1 · Huyền thoại vị giác
+# MealGacha v2.2 · Huyền thoại vị giác
 
 Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 3 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
 
+## Bản 2.2 · Chiếc ghế trống
+
+- Viết lại 18 màn với đối thoại theo từng cảnh, hai cú lật được báo trước, 6 manh mối mở sau boss, kho đọc lại và hai đoạn kết do người chơi chọn.
+- Đổi tối đa 3 lá đầu trận. Chọn bất kỳ lá trên tay để đọc kỹ năng trước khi dùng; dự báo sát thương, phá chắn, phản đòn và đổi quân ngay trên mục tiêu.
+- **Cộng hưởng:** hai lá cùng hệ liên tiếp trong lượt giảm 1 chi phí lá thứ hai (có thể về 0), tối đa một lần mỗi lượt. Áp dụng cho cả bạn và AI.
+- Sáu boss có nội tại riêng, tăng hiệu lực dưới nửa máu. Luật boss hiển thị trước trận và trên sân.
+- Mở rộng bàn đấu để tập trung chơi; điện thoại tự dùng khung này. AI ra bài và tấn công từng hành động. Đường đòn đánh, vòng va chạm, số sát thương/hồi máu/phá chắn, hạ gục và âm thanh theo cài đặt. Có bỏ qua trình diễn và hỗ trợ giảm chuyển động.
+- Trạng thái cuối và phần thưởng được lưu trước hiệu ứng; tải lại không lặp sát thương hoặc thưởng. Bản lưu 2.1 tự nhận giá trị mặc định, giữ thẻ, bộ bài và màn đã thắng.
+
 ## Game thẻ bài
 
 - **Luật:** bộ bài đúng 18 lá, tối đa 2 bản/thẻ; 3 ô đồng minh, 8 lá trên tay; năng lượng tăng từ 1 đến 7. Hộ vệ, Xung phong, Lá chắn, Hút vị; triệu hồi đồng hệ nhận 1 lá chắn. Hết bộ bài chịu sát thương kiệt sức tăng dần.
-- **Cốt truyện:** giải cứu ký ức của thế giới qua năm Ngọn Lửa, gặp Bách, Nhiên, Mộc, Hải và Liên. Chọn Can đảm (34 máu / 4 lá) hoặc Thấu hiểu (32 máu / 5 lá) trước mỗi màn. Màn mở theo thứ tự; thưởng xu, XP và thẻ chỉ nhận lần đầu. Boss còn thưởng 1 vé.
+- **Cốt truyện:** lần theo bí mật của chiếc muôi và năm Ngọn Lửa, gặp Bách, Nhiên, Mộc, Hải và Liên. Chọn Can đảm (34 máu / 4 lá) hoặc Thấu hiểu (32 máu / 5 lá) trước mỗi màn. Màn mở theo thứ tự; thưởng xu, XP và thẻ chỉ nhận lần đầu. Boss còn thưởng 1 vé.
 - **Kinh tế:** mỗi gói 100 xu hoặc 1 vé, gồm 5 thẻ; ít nhất 1 Hiếm trở lên, ít nhất 1 Sử thi trở lên trong tối đa 8 gói. Tỉ lệ cơ bản mỗi lá: 63/25/10/2% cho Thường/Hiếm/Sử thi/Huyền thoại; bảo đảm có thể nâng độ hiếm lá cuối. Bản trùng quá 2 tự chuyển tinh chất.
 - **Trao đổi NPC:** 3 đề nghị đổi thẻ mỗi ngày. Chỉ dùng bản dư ngoài số thẻ cần trong tất cả bộ bài; giữ ít nhất 1 bản. Mỗi đề nghị nhận một lần/ngày.
 - **Lưu game:** `foodchest.tcg.v1` độc lập với hồ sơ cũ. Mỗi món cũ chuyển thành 1 thẻ một lần, không xóa lịch sử hoặc chìa. Trận đang đấu tiếp tục sau khi tải lại. Xuất/nhập JSON riêng ở Cài đặt game; backup JSON/ZIP chung cũng bao gồm TCG.

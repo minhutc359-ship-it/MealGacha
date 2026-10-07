@@ -1,0 +1,63 @@
+import { STAGES } from "../../game/story"
+import { SCENES, ENDINGS } from "../../game/narrative"
+import { useGameStore } from "../../game/useGameStore"
+import { StoryScene } from "./StoryScene"
+
+export function MemoryJournal() {
+  const cleared = useGameStore((s) => s.save.clearedStages)
+  const ending = useGameStore((s) => s.save.storyEnding)
+  const clues = STAGES.filter((stage) => SCENES[stage.id].clue)
+  return (
+    <section className="tcg-memory-journal tcg-panel">
+      <span className="tcg-kicker">HỒ SƠ CHIẾC GHẾ TRỐNG</span>
+      <h2>Những điều chưa khớp</h2>
+      <p>
+        Manh mối mở sau mỗi boss. Đọc lại khi một sự thật làm thay đổi ý nghĩa
+        của điều đã biết.
+      </p>
+      <div className="tcg-clue-grid">
+        {clues.map((stage, i) => {
+          const unlocked = cleared.includes(stage.id)
+          const clue = SCENES[stage.id].clue!
+          return (
+            <article key={stage.id} className={unlocked ? "" : "is-sealed"}>
+              <span>
+                0{i + 1} · {unlocked ? "ĐÃ GIẢI MÃ" : "CHƯA MỞ"}
+              </span>
+              <h3>{unlocked ? clue.title : "Một trang chưa được kể"}</h3>
+              <p>
+                {unlocked
+                  ? clue.text
+                  : `Hoàn thành ${stage.title} để mở trang này.`}
+              </p>
+            </article>
+          )
+        })}
+      </div>
+      {ending && (
+        <article className="tcg-epilogue">
+          <span className="tcg-kicker">ĐOẠN KẾT BẠN ĐÃ CHỌN</span>
+          <h3>{ENDINGS[ending].title}</h3>
+          <p>{ENDINGS[ending].text}</p>
+          <blockquote>{ENDINGS[ending].epilogue}</blockquote>
+        </article>
+      )}
+      <details className="tcg-story-archive">
+        <summary>Đọc lại hành trình · {cleared.length}/18 đoạn kết</summary>
+        {STAGES.filter((stage) => cleared.includes(stage.id)).map((stage) => (
+          <details key={stage.id}>
+            <summary>
+              {stage.chapter.title} · {stage.title}
+            </summary>
+            <StoryScene
+              lines={[...SCENES[stage.id].before, ...SCENES[stage.id].after]}
+            />
+          </details>
+        ))}
+        {!cleared.length && (
+          <p>Vượt màn đầu tiên để mở lại lời thoại và đoạn kết tại đây.</p>
+        )}
+      </details>
+    </section>
+  )
+}

@@ -10,6 +10,8 @@ interface Props {
   muted?: boolean
   foil?: boolean
   count?: number
+  cost?: number
+  playable?: boolean
   disabled?: boolean
 }
 export function GameCardView({
@@ -21,6 +23,8 @@ export function GameCardView({
   foil,
   count,
   disabled,
+  cost = card.cost,
+  playable,
 }: Props) {
   const content = (
     <>
@@ -40,8 +44,8 @@ export function GameCardView({
           </span>
         )}
       </span>
-      <span className="tcg-card-cost" aria-label={`${card.cost} năng lượng`}>
-        {card.cost}
+      <span className="tcg-card-cost" aria-label={`${cost} năng lượng`}>
+        {cost}
       </span>
       <span className="tcg-card-school" title={SCHOOLS[card.school].name}>
         {card.symbol}
@@ -75,7 +79,9 @@ export function GameCardView({
   )
   const className = `tcg-card tcg-rarity-${card.rarity} ${
     compact ? "is-compact" : ""
-  } ${selected ? "is-selected" : ""} ${muted ? "is-muted" : ""}`
+  } ${selected ? "is-selected" : ""} ${muted ? "is-muted" : ""} ${
+    playable ? "is-playable" : ""
+  }`
   const style = {
     "--school-color": SCHOOLS[card.school].color,
   } as CSSProperties
@@ -87,7 +93,7 @@ export function GameCardView({
       disabled={disabled}
       title={`${card.name} · ${card.text}`}
       aria-pressed={selected}
-      aria-label={`${card.name}, ${card.cost} năng lượng${
+      aria-label={`${card.name}, ${cost} năng lượng${
         count !== undefined ? `, sở hữu ${count}` : ""
       }`}
     >

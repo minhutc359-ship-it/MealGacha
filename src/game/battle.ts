@@ -1,5 +1,6 @@
 import { CARD_MAP, CARDS } from "./catalog"
 import { STAGE_MAP } from "./story"
+import { BOSS_RULES } from "./narrative"
 import type { Battle, BattleUnit, Combatant, GameCard } from "./types"
 
 export type Target = "hero" | string
@@ -13,10 +14,54 @@ interface AttackAction {
   uid: string
   target: Target
 }
-export type BattleAction = PlayAction | AttackAction | { type: "end" }
+interface MulliganAction {
+  type: "mulligan"
+  indices: number[]
+}
+export type BattleAction = PlayAction | AttackAction | MulliganAction | {
+  type: "end"
+}
+export interface BattleEvent {
+  kind: "play" | "attack" | "turn" | "rule" | "mulligan"
+  side: "player" | "enemy"
+  label: string
+  cardId?: string
+  source?: string
+  target?: string
+}
+export interface BattleFrame {
+  before: Battle
+  battle: Battle
+  event: BattleEvent
+}
+export interface BattlePresentation {
+  battleId: string
+  sequence: number
+  before: Battle
+  frames: BattleFrame[]
+}
+export function cardCost(p: Combatant, card: GameCard) {
+  return Math.max(
+    0,
+    card.cost - (p.chainSchool === card.school && !p.resonanceUsed ? 1 : 0),
+  )
+}
+export function playError(b: Battle, index: number): string | null {
+  const card = CARD_MAP[b.player.hand[index]]
+  if (!card) return "Lá bài không còn trên tay."
+  if (b.opening) return "Hãy xác nhận bài mở đầu."
+  if (b.result) return "Trận đấu đã kết thúc."
+  if (cardCost(b.player, card) > b.player.mana) return "Chưa đủ năng lượng."
+  if (card.kind === "unit" && b.player.board.length >= 3)
+    return "Sân đã đủ 3 đồng minh."
+  if (["buff", "ward"].includes(card.effect ?? "") && !b.player.board.length)
+    return "Cần một đồng minh trên sân."
+  return null
+}
 interface BattleResult {
   battle: Battle
   error: string | null
+  frames: BattleFrame[]
 }
 const clone = <T>(value: T): T => structuredClone(value)
 function shuffle<T>(items: T[], rng: () => number): T[] {
@@ -65,6 +110,8 @@ function combatant(deck: string[], health: number): Combatant {
     hand: [],
     board: [],
     fatigue: 0,
+    chainSchool: null,
+    resonanceUsed: false,
   }
 }
 export function opponentDeck(
@@ -111,6 +158,7 @@ export function startBattle(
   stageId: string | null,
   choice: "courage" | "wisdom" = "courage",
   rng = Math.random,
+  offerMulligan = false,
 ): Battle {
   const stage = stageId ? STAGE_MAP[stageId] : undefined
   const b: Battle = {
@@ -127,6 +175,7 @@ export function startBattle(
     result: null,
     settled: false,
     nextUid: 1,
+    opening: offerMulligan,
   }
   // Both sides get 1 energy on their first turn. The AI's first turn has not begun yet.
   b.enemy.mana = 0
@@ -153,7 +202,8 @@ function play(
   const id = p.hand[index],
     card = CARD_MAP[id]
   if (!Number.isInteger(index) || !card) return "Lá bài không còn trên tay."
-  if (card.cost > p.mana) return "Không đủ năng lượng."
+  const cost = cardCost(p, card)
+  if (cost > p.mana) return "Không đủ năng lượng."
   if (card.kind === "unit" && p.board.length >= 3)
     return "Sân đã đủ 3 đồng minh."
   if (
@@ -169,7 +219,10 @@ function play(
     !foe.board.some((u) => u.uid === target)
   )
     return "Hãy chọn một mục tiêu địch."
-  p.mana -= card.cost
+  const resonated = cost < card.cost
+  p.mana -= cost
+  if (resonated) p.resonanceUsed = true
+  p.chainSchool = card.school
   p.hand.splice(index, 1)
   const relics = side === "player" ? (b.expedition?.relics ?? []) : []
   const bonus =
@@ -240,6 +293,8 @@ function play(
       })
     log(b, `${side === "player" ? "Bạn" : b.opponent} dùng ${card.name}.`)
   }
+  if (resonated)
+    log(b, "✦ Cộng hưởng cùng hệ · Giảm 1 năng lượng (mỗi lượt một lần).")
   checkResult(b)
   return null
 }
@@ -282,6 +337,8 @@ function attack(
 }
 function nextTurn(b: Battle, side: "player" | "enemy") {
   const p = b[side]
+  p.chainSchool = null
+  p.resonanceUsed = false
   p.maxMana = Math.min(7, p.maxMana + 1)
   p.mana = p.maxMana
   p.board.forEach((u) => {
@@ -298,8 +355,47 @@ function chooseDamageTarget(card: GameCard, foe: Combatant): Target {
     .sort((a, z) => z.attack - a.attack)[0]
   return kill?.uid ?? "hero"
 }
-function enemyTurn(b: Battle) {
+function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
   nextTurn(b, "enemy")
+  record({
+    kind: "turn",
+    side: "enemy",
+    label: `${b.opponent} · Rút bài, hồi năng lượng`,
+  })
+  const rule = b.stageId ? BOSS_RULES[b.stageId] : undefined
+  if (rule && !b.result) {
+    const empowered = b.enemy.health <= b.enemy.maxHealth / 2
+    const strength = empowered ? 2 : 1
+    const effect =
+      rule.effect === "cycle"
+        ? ["burn", "heal", "draw"][(b.round - 1) % 3]
+        : rule.effect
+    if (effect === "burn") b.player.health -= strength
+    if (effect === "heal")
+      b.enemy.health = Math.min(
+        b.enemy.maxHealth,
+        b.enemy.health + strength * 2,
+      )
+    if (effect === "draw") draw(b, "enemy", strength)
+    if (effect === "shield")
+      b.enemy.board.forEach((u) => {
+        u.shield += strength
+      })
+    checkResult(b)
+    log(
+      b,
+      `${rule.name}${empowered ? " · THỨC TỈNH" : ""}: ${
+        effect === "burn"
+          ? `Gây ${strength} sát thương lên bạn`
+          : effect === "heal"
+            ? `Hồi ${strength * 2} máu cho boss`
+            : effect === "draw"
+              ? `Boss rút ${strength} lá`
+              : `Đồng minh boss nhận ${strength} lá chắn`
+      }.`,
+    )
+    record({ kind: "rule", side: "enemy", label: b.log[b.log.length - 1] })
+  }
   if (b.result) return
   for (let steps = 0; steps < 12 && !b.result; steps++) {
     const p = b.enemy
@@ -307,7 +403,7 @@ function enemyTurn(b: Battle) {
       .map((id, index) => ({ card: CARD_MAP[id], index }))
       .filter(
         ({ card }) =>
-          card.cost <= p.mana &&
+          cardCost(p, card) <= p.mana &&
           (card.kind !== "unit" || p.board.length < 3) &&
           ((card.effect !== "buff" && card.effect !== "ward") ||
             p.board.length > 0) &&
@@ -330,12 +426,18 @@ function enemyTurn(b: Battle) {
     })
     if (!options.length) break
     const { card, index } = options[0]
-    play(
-      b,
-      "enemy",
-      index,
-      card.effect === "damage" ? chooseDamageTarget(card, b.player) : undefined,
-    )
+    const source = card.kind === "unit" ? `u${b.nextUid}` : undefined
+    const target =
+      card.effect === "damage" ? chooseDamageTarget(card, b.player) : undefined
+    play(b, "enemy", index, target)
+    record({
+      kind: "play",
+      side: "enemy",
+      cardId: card.id,
+      source,
+      target,
+      label: `${b.opponent} dùng ${card.name}`,
+    })
   }
   for (const uid of b.enemy.board.filter((u) => u.ready).map((u) => u.uid)) {
     if (b.result) break
@@ -350,22 +452,163 @@ function enemyTurn(b: Battle) {
       guards.sort((a, z) => a.health - z.health)[0]?.uid ??
       (b.player.health <= attacker.attack ? "hero" : (kill?.uid ?? "hero"))
     attack(b, "enemy", uid, target)
+    record({
+      kind: "attack",
+      side: "enemy",
+      cardId: attacker.cardId,
+      source: uid,
+      target,
+      label: b.log[b.log.length - 1],
+    })
   }
   if (!b.result) {
     b.round++
     nextTurn(b, "player")
     log(b, `Lượt ${b.round} · Năng lượng được hồi đầy.`)
+    record({
+      kind: "turn",
+      side: "player",
+      label: `Lượt ${b.round} · Đến lượt bạn`,
+    })
   }
 }
-export function actBattle(current: Battle, action: BattleAction): BattleResult {
-  if (current.result || current.settled)
-    return { battle: current, error: "Trận đấu đã kết thúc." }
+export function actBattle(
+  current: Battle,
+  action: BattleAction,
+  rng = Math.random,
+): BattleResult {
+  const invalid = (error: string): BattleResult => ({
+    battle: current,
+    error,
+    frames: [],
+  })
+  if (current.result || current.settled) return invalid("Trận đấu đã kết thúc.")
+  if (current.opening && action.type !== "mulligan")
+    return invalid("Hãy xác nhận bài mở đầu.")
+  if (action.type === "mulligan" && !current.opening)
+    return invalid("Chỉ được đổi bài một lần trước trận.")
   const b = clone(current)
+  const frames: BattleFrame[] = []
+  let before = clone(current)
+  const record = (event: BattleEvent) => {
+    frames.push({ before, battle: clone(b), event })
+    before = clone(b)
+  }
   let error: string | null = null
-  if (action.type === "play")
+  if (action.type === "mulligan") {
+    const indices = action.indices
+    if (
+      indices.length > 3 ||
+      new Set(indices).size !== indices.length ||
+      indices.some(
+        (i) => !Number.isInteger(i) || i < 0 || i >= b.player.hand.length,
+      )
+    )
+      return invalid("Chọn tối đa 3 lá khác nhau để đổi.")
+    if (indices.length > b.player.deck.length)
+      return invalid("Không còn đủ bài để đổi.")
+    const returned = indices.map((i) => b.player.hand[i])
+    for (const i of indices) b.player.hand[i] = b.player.deck.shift()!
+    b.player.deck = shuffle([...b.player.deck, ...returned], rng)
+    b.opening = false
+    log(
+      b,
+      indices.length
+        ? `Đổi ${indices.length} lá · Bắt đầu lượt của bạn.`
+        : "Giữ bài mở đầu · Bắt đầu lượt của bạn.",
+    )
+    record({ kind: "mulligan", side: "player", label: b.log[b.log.length - 1] })
+  } else if (action.type === "play") {
+    const cardId = b.player.hand[action.index]
+    const source =
+      CARD_MAP[cardId]?.kind === "unit" ? `u${b.nextUid}` : undefined
     error = play(b, "player", action.index, action.target)
-  else if (action.type === "attack")
+    if (!error)
+      record({
+        kind: "play",
+        side: "player",
+        cardId,
+        source,
+        target: action.target,
+        label: `Bạn dùng ${CARD_MAP[cardId].name}`,
+      })
+  } else if (action.type === "attack") {
+    const cardId = b.player.board.find((u) => u.uid === action.uid)?.cardId
     error = attack(b, "player", action.uid, action.target)
-  else enemyTurn(b)
-  return error ? { battle: current, error } : { battle: b, error: null }
+    if (!error)
+      record({
+        kind: "attack",
+        side: "player",
+        cardId,
+        source: action.uid,
+        target: action.target,
+        label: b.log[b.log.length - 1],
+      })
+  } else enemyTurn(b, record)
+  return error ? invalid(error) : { battle: b, error: null, frames }
+}
+
+export interface TargetPreview {
+  legal: boolean
+  damage: number
+  counter: number
+  shield: number
+  defeated: boolean
+  attackerDefeated: boolean
+  text: string
+}
+export function previewTarget(
+  b: Battle,
+  action: PlayAction | Omit<AttackAction, "target">,
+  target: string,
+): TargetPreview {
+  const attempted = actBattle(b, { ...action, target })
+  if (attempted.error)
+    return {
+      legal: false,
+      damage: 0,
+      counter: 0,
+      shield: 0,
+      defeated: false,
+      attackerDefeated: false,
+      text: attempted.error,
+    }
+  const old =
+    target === "hero" ? b.enemy : b.enemy.board.find((u) => u.uid === target)!
+  const next =
+    target === "hero"
+      ? attempted.battle.enemy
+      : attempted.battle.enemy.board.find((u) => u.uid === target)
+  const damage = Math.min(old.health, old.health - (next?.health ?? 0))
+  const shield =
+    target === "hero"
+      ? 0
+      : (old as BattleUnit).shield -
+        ((next as BattleUnit | undefined)?.shield ?? 0)
+  const attacker =
+    action.type === "attack"
+      ? b.player.board.find((u) => u.uid === action.uid)
+      : undefined
+  const survivor = attacker
+    ? attempted.battle.player.board.find((u) => u.uid === attacker.uid)
+    : undefined
+  const counter = attacker
+    ? Math.min(attacker.health, attacker.health - (survivor?.health ?? 0))
+    : 0
+  const defeated = !next || next.health <= 0
+  const attackerDefeated = !!attacker && !survivor
+  const text = `${damage} sát thương${shield ? ` · Phá ${shield} chắn` : ""}${
+    counter ? ` · Nhận ${counter} phản đòn` : ""
+  }${defeated ? (target === "hero" ? " · Kết liễu" : " · Hạ gục") : ""}${
+    attackerDefeated ? " · Đồng minh cũng bị hạ" : ""
+  }`
+  return {
+    legal: true,
+    damage,
+    counter,
+    shield,
+    defeated,
+    attackerDefeated,
+    text,
+  }
 }
