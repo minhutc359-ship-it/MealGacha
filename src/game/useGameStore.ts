@@ -26,6 +26,16 @@ import {
   pickRunCard,
 } from "./expedition"
 import { loadGame, saveGame, parseGame } from "./storage"
+import { prepareEncounter } from "./encounters"
+import {
+  attachCompanion,
+  sideQuestUnlocked,
+  startSideQuest,
+  weeklyChallenge,
+  startWeekly,
+  emptyWeekly,
+} from "./journeys"
+import type { NpcId } from "./types"
 import { isStageUnlocked } from "./story"
 import { getDateKey } from "../domain/dateKey"
 import type { GameSave } from "./types"
@@ -34,6 +44,10 @@ interface Store {
   save: GameSave
   notice: string | null
   presentation: BattlePresentation | null
+  startSideQuest(id: NpcId, choice: "share" | "listen"): boolean
+  startWeekly(): boolean
+  equipCompanion(id: NpcId | null): void
+  acknowledgeScene(id: string): void
   chooseEnding(ending: "remember" | "release"): void
   dismiss(): void
   sync(): void
@@ -238,8 +252,8 @@ export const useGameStore = create<Store>((set, get) => {
         set({ notice: errors[0] })
         return false
       }
-      if (!save.decks.some((d) => d.id === id) && save.decks.length >= 3) {
-        set({ notice: "Tối đa 3 bộ bài. Hãy sửa một bộ bài hiện có." })
+      if (!save.decks.some((d) => d.id === id) && save.decks.length >= 6) {
+        set({ notice: "Tối đa 6 bộ bài. Hãy sửa một bộ bài hiện có." })
         return false
       }
       const decks = [
@@ -300,7 +314,71 @@ export const useGameStore = create<Store>((set, get) => {
         choices: stageId
           ? { ...save.choices, [stageId]: choice }
           : save.choices,
-        battle: startBattle(deck!.cards, stageId, choice, Math.random, true),
+        battle: attachCompanion(
+          save,
+          prepareEncounter(
+            startBattle(deck!.cards, stageId, choice, Math.random, true),
+          ),
+        ),
+      })
+    },
+    acknowledgeScene(id) {
+      const save = current(),
+        b = save.battle
+      if (!b?.pendingScenes?.includes(id)) return
+      commit({
+        ...save,
+        battle: {
+          ...b,
+          pendingScenes: b.pendingScenes.filter((scene) => scene !== id),
+          seenScenes: [...(b.seenScenes ?? []), id],
+        },
+      })
+    },
+    equipCompanion(id) {
+      const save = current()
+      if (save.battle && !save.battle.result) return
+      if (id && !save.bonds?.[id]?.completed) return
+      commit(
+        { ...save, companion: id },
+        id
+          ? "Đã mời người đồng hành. Họ hỗ trợ ở lượt 3."
+          : "Tự giữ bàn đấu trong chuyến đi kế tiếp.",
+      )
+    },
+    startSideQuest(id, choice) {
+      const save = current()
+      if (
+        !sideQuestUnlocked(save, id) ||
+        activeRun(save.expedition) ||
+        (save.battle && !save.battle.result)
+      )
+        return false
+      const deck = save.decks.find((d) => d.id === save.activeDeckId)
+      if (!deck || deckErrors(deck.cards, save.cards).length) return false
+      const completed = save.bonds?.[id]?.completed ?? false
+      return commit({
+        ...save,
+        bonds: completed
+          ? save.bonds
+          : { ...save.bonds, [id]: { choice, completed } },
+        battle: startSideQuest(deck.cards, id, choice),
+      })
+    },
+    startWeekly() {
+      const save = current()
+      if (activeRun(save.expedition) || (save.battle && !save.battle.result))
+        return false
+      const challenge = weeklyChallenge(),
+        record = save.weeklyRecords?.[challenge.week] ?? emptyWeekly()
+      return commit({
+        ...save,
+        weeklyRecords: Object.fromEntries(
+          Object.entries({ ...save.weeklyRecords, [challenge.week]: record })
+            .sort(([a], [b]) => b.localeCompare(a))
+            .slice(0, 12),
+        ),
+        battle: startWeekly(record.stage),
       })
     },
     act(action) {
@@ -368,7 +446,7 @@ export const useGameStore = create<Store>((set, get) => {
         },
         battle:
           run.status === "battle"
-            ? { ...startRunBattle(run), opening: true }
+            ? attachCompanion(save, { ...startRunBattle(run), opening: true })
             : null,
       })
     },
@@ -409,7 +487,9 @@ export const useGameStore = create<Store>((set, get) => {
         })
         return false
       }
-      return commit(save, "Đã khôi phục tiến trình TCG.")
+      const imported = commit(save, "Đã khôi phục tiến trình TCG.")
+      if (imported) set({ presentation: null })
+      return imported
     },
   }
 })

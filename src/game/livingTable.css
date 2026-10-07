@@ -1,0 +1,128 @@
+/* Living Table: original portraits and boards, bounded to the existing arena. */
+.tcg-portrait { display:block; width:64px; height:64px; flex-shrink:0; object-fit:cover; border-radius:50%; border:2px solid #c6aa77; background:#173d3e; }
+.tcg-speaker-row { display:flex; align-items:center; gap:12px; margin:5px 0 12px; }
+.tcg-speaker-row .tcg-portrait { width:64px; height:64px; box-shadow:0 5px 18px #132c3030; }
+.tcg-speaker-row .tcg-scene-speaker { margin:0; }
+.tcg-player>.tcg-portrait { width:36px; height:36px; }
+.tcg-hero .tcg-avatar { padding:0; overflow:hidden; }
+.tcg-hero .tcg-avatar>.tcg-portrait { width:100%; height:100%; border:0; border-radius:inherit; object-position:center 30%; }
+.tcg-living-table { isolation:isolate; }
+.tcg-board-art { position:absolute; inset:0; z-index:-2; background-size:cover; background-position:center; opacity:.62; animation:tcg-board-reveal .8s ease-out; pointer-events:none; }
+.tcg-board-art:after { content:""; position:absolute; inset:0; background:linear-gradient(#082629b3,#09282945 45%,#09272bab); }
+.tcg-living-table.has-recipe-aura { border-color:var(--table-color); box-shadow:inset 0 0 45px color-mix(in srgb,var(--table-color),transparent 84%),0 0 16px #0004; transition:border-color .4s,box-shadow .4s; }
+.tcg-table-weather { position:absolute; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
+.tcg-table-weather i { position:absolute; left:var(--drift); bottom:-6%; width:3px; height:3px; background:#ecc987; border-radius:50%; opacity:0; box-shadow:0 0 8px #e6c789; animation:tcg-table-mote 13s var(--wait) linear infinite; }
+.table-street .tcg-table-weather i { height:18px; width:1px; background:#9de3f5; box-shadow:none; animation-name:tcg-table-rain; }
+.table-tet .tcg-table-weather i { height:6px; width:6px; border-radius:60% 0 60% 0; background:#e9b15f; animation-name:tcg-table-petal; }
+.tcg-character-cut-in { position:absolute; left:2%; top:37%; display:flex; align-items:center; gap:12px; max-width:60%; z-index:22; pointer-events:none; background:linear-gradient(90deg,#102c32f2,#102c3288,transparent); padding:8px 35px 8px 8px; transform:skewX(-5deg); animation:tcg-portrait-cast 1s ease-out both; }
+.tcg-character-cut-in.is-enemy { left:auto; right:2%; flex-direction:row-reverse; background:linear-gradient(270deg,#302632f2,#30263288,transparent); }
+.tcg-character-cut-in .tcg-portrait { height:96px; width:96px; border-radius:8px; transform:skewX(5deg); }
+.tcg-character-cut-in strong { color:#f0d79a; font-size:12px; letter-spacing:2px; text-shadow:0 2px 8px #000; }
+.tcg-recipe-burst { position:absolute; left:50%; top:48%; width:min(62vw,340px); height:min(62vw,340px); transform:translate(-50%,-50%); z-index:24; pointer-events:none; display:grid; place-items:center; animation:tcg-combo-flash 1.1s ease-out both; }
+.tcg-recipe-burst>img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; animation:tcg-recipe-spin 1.1s ease-out both; filter:drop-shadow(0 0 9px var(--recipe-color)); }
+.recipe-home>img { filter:hue-rotate(50deg) drop-shadow(0 0 9px #a9d699); }
+.recipe-street>img { filter:hue-rotate(130deg) drop-shadow(0 0 9px #78d4ef); }
+.tcg-recipe-burst>div { position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; gap:5px; width:76%; padding:16px 10px; background:radial-gradient(#082b30f5,#082b3090,transparent); color:#f6e9be; text-shadow:0 2px 6px #000; }
+.tcg-recipe-burst strong { font:24px/1.15 Georgia,serif; color:var(--recipe-color); }
+.tcg-recipe-burst small { font-size:11px; line-height:1.5; max-width:210px; }
+.tcg-recipe-burst>div>span { font-size:29px; color:var(--recipe-color); }
+.tcg-recipe-burst>i { position:absolute; inset:4%; border:2px solid var(--recipe-color); border-radius:50%; opacity:0; animation:tcg-recipe-ring 1s ease-out both; }
+.tcg-recipe-burst>i:nth-last-child(2) { animation-delay:.15s; }
+.tcg-recipe-burst>i:last-child { animation-delay:.3s; }
+.tcg-hand .tcg-card.is-selected:after { content:""; position:absolute; inset:0; border:2px solid #f3cd82; border-radius:inherit; pointer-events:none; animation:tcg-choice-glow 1.8s ease-in-out infinite; }
+.tcg-strategy-panel { margin:20px 0; }
+.tcg-strategy-panel p { font-size:12px; line-height:1.6; }
+.tcg-strategy-options { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; margin:16px 0; }
+.tcg-strategy-options button { display:flex; flex-direction:column; gap:8px; padding:13px; text-align:left; border:1px solid #25443b40; border-radius:8px; background:#f4f0df; color:#26473d; }
+.tcg-strategy-options button.active { border-color:#927443; background:#e8d4aa; box-shadow:inset 0 0 0 1px #9d824b; }
+.tcg-strategy-options small { font-size:11px; line-height:1.5; }
+.tcg-deck-filters { flex-wrap:wrap; }
+.tcg-deck-filters input { min-width:140px; flex:1; padding:9px 12px; border:1px solid #27463940; border-radius:6px; background:#f7f4e8; color:#234437; }
+.tcg-deck-card-wrap { position:relative; min-width:0; }
+.tcg-deck-card-wrap>.tcg-card { width:100%; }
+.tcg-deck-card-wrap>.tcg-unit-info { top:5px; right:6px; }
+.tcg-deck-card-wrap>small { display:block; margin-top:7px; text-align:center; font-size:10px; color:#547061; }
+.tcg-deck-draft>p { font-size:11px; line-height:1.5; }
+.tcg-deck-recipes { margin:12px 0; }
+.tcg-deck-recipes details { border-bottom:1px solid #26453625; padding:9px 0; font-size:11px; }
+.tcg-deck-recipes summary { cursor:pointer; font-weight:700; color:#365641; }
+.tcg-deck-recipes p { margin:8px 0; line-height:1.5; }
+.tcg-deck-recipes small { display:block; line-height:1.5; }
+.tcg-new-journey { display:flex; gap:18px; align-items:center; margin-bottom:24px; background:#173e3d; color:#c8d5c4; }
+.tcg-new-journey h2 { color:#e9d19f; font:24px Georgia,serif; margin:8px 0; }
+.tcg-new-journey p { font-size:12px; line-height:1.6; }
+.tcg-new-journey>div { flex:1; }
+.tcg-new-journey>.tcg-portrait { width:90px; height:90px; }
+.tcg-weekly { display:flex; gap:30px; align-items:center; background:linear-gradient(120deg,#173f3c,#254438); color:#cbd5be; margin-bottom:30px; }
+.tcg-weekly>div { flex:1; min-width:0; }
+.tcg-weekly h2 { color:#edc985; font:30px Georgia,serif; margin:10px 0; }
+.tcg-weekly p { font-size:12px; line-height:1.7; }
+.tcg-weekly>.tcg-portrait { width:180px; height:180px; border-radius:12px; }
+.tcg-weekly-steps { display:flex; gap:8px; margin:16px 0; }
+.tcg-weekly-steps span { padding:10px; border:1px solid #c3d2a833; border-radius:6px; font-size:11px; flex:1; }
+.tcg-weekly-steps .done { color:#accda0; background:#527c3b30; }
+.tcg-weekly-steps .current { color:#efd290; border-color:#dcbd79; }
+.tcg-companion-heading { display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin:22px 0; }
+.tcg-companion-heading p { font-size:12px; }
+.tcg-companion-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.tcg-companion-card { display:flex; gap:16px; align-items:flex-start; }
+.tcg-companion-card>.tcg-portrait { width:80px; height:80px; border-radius:10px; }
+.tcg-companion-card>div { flex:1; min-width:0; }
+.tcg-companion-card h3 { font:22px Georgia,serif; margin:8px 0; }
+.tcg-companion-card p { font-size:12px; line-height:1.7; }
+.tcg-companion-card small { font-size:11px; line-height:1.6; }
+.tcg-companion-card.is-locked>.tcg-portrait { filter:grayscale(.8); opacity:.6; }
+.tcg-transfer p { font-size:12px; line-height:1.7; }
+.tcg-transfer label { display:block; margin:14px 0 8px; font-size:12px; color:inherit; }
+.tcg-transfer textarea,.tcg-postcard-invitation { width:100%; resize:vertical; min-height:100px; max-height:250px; border:1px solid #74917b66; border-radius:6px; padding:10px; background:#f6f2e7; color:#233e3e; font:12px/1.5 monospace; margin-top:8px; overflow-wrap:anywhere; }
+.tcg-transfer .tcg-transfer-option { display:flex; align-items:center; gap:8px; }
+.tcg-transfer .tcg-transfer-option input { width:16px; height:16px; }
+.tcg-transfer-preview { padding:15px; border:1px solid #84997066; border-radius:8px; margin:15px 0; background:#71885413; }
+.tcg-transfer hr { margin:20px 0; border:0; border-top:1px solid #6b856533; }
+.tcg-postcard-preview { display:block; width:min(100%,330px); height:auto; margin:18px auto; box-shadow:0 8px 20px #0003; }
+.tcg-postcard-invitation { min-height:60px; font-family:inherit; }
+@keyframes tcg-board-reveal { from { opacity:0; } to { opacity:.62; } }
+@keyframes tcg-table-mote { 0% { transform:translate3d(0,0,0); opacity:0; } 15% { opacity:.55; } 85% { opacity:.3; } 100% { transform:translate3d(40px,-650px,0); opacity:0; } }
+@keyframes tcg-table-rain { from { transform:translate3d(0,-700px,0); opacity:.15; } to { transform:translate3d(-60px,80px,0); opacity:0; } }
+@keyframes tcg-table-petal { 0% { transform:translate3d(0,-700px,0) rotate(0); opacity:0; } 25% { opacity:.45; } 100% { transform:translate3d(80px,50px,0) rotate(240deg); opacity:0; } }
+@keyframes tcg-portrait-cast { 0% { opacity:0; transform:translateX(-45px) skewX(-5deg); } 15%,65% { opacity:1; transform:translateX(0) skewX(-5deg); } 100% { opacity:0; transform:translateX(25px) skewX(-5deg); } }
+@keyframes tcg-combo-flash { 0% { opacity:0; transform:translate(-50%,-50%) scale(.6); } 18%,70% { opacity:1; transform:translate(-50%,-50%) scale(1); } 100% { opacity:0; transform:translate(-50%,-50%) scale(1.08); } }
+@keyframes tcg-recipe-spin { from { transform:rotate(-35deg) scale(.8); } to { transform:rotate(40deg) scale(1.08); } }
+@keyframes tcg-recipe-ring { 0% { opacity:.8; transform:scale(.65); } 100% { opacity:0; transform:scale(1.6); } }
+@keyframes tcg-choice-glow { 0%,100% { opacity:.35; } 50% { opacity:1; } }
+@media(max-width:980px) { .tcg-strategy-options { grid-template-columns:repeat(3,minmax(0,1fr)); } .tcg-companion-grid { grid-template-columns:1fr; } .tcg-weekly>.tcg-portrait { width:120px; height:120px; } }
+@media(max-width:600px) {
+ .tcg-new-journey { flex-wrap:wrap; gap:12px; padding:16px; }
+ .tcg-new-journey>.tcg-portrait { width:62px; height:62px; }
+ .tcg-new-journey h2 { font-size:20px; }
+ .tcg-new-journey p { font-size:11px; }
+ .tcg-new-journey>.tcg-button { width:100%; }
+ .tcg-weekly { padding:18px; gap:12px; }
+ .tcg-weekly>.tcg-portrait { display:none; }
+ .tcg-weekly h2 { font-size:25px; }
+ .tcg-weekly-steps { flex-direction:column; }
+ .tcg-strategy-options { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .tcg-strategy-options button { padding:10px; }
+ .tcg-companion-card { padding:15px; gap:12px; }
+ .tcg-companion-card>.tcg-portrait { width:62px; height:62px; }
+ .tcg-companion-card h3 { font-size:20px; }
+ .tcg-character-cut-in { padding:5px 15px 5px 5px; gap:8px; max-width:70%; }
+ .tcg-character-cut-in .tcg-portrait { width:65px; height:65px; }
+ .tcg-character-cut-in strong { font-size:8px; letter-spacing:1px; }
+ .tcg-recipe-burst strong { font-size:19px; }
+ .tcg-recipe-burst small { font-size:9px; }
+ .tcg-speaker-row .tcg-portrait { width:48px; height:48px; }
+ .tcg-battle-actions { gap:5px!important; flex-shrink:0; }
+ .tcg-viewport-battle .tcg-transfer-short { padding:4px 7px; }
+ .tcg-tactics-ribbon strong { max-width:40%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+ .tcg-sidebar nav button svg { width:16px; height:16px; }
+}
+@media(max-height:470px) and (orientation:landscape) { .tcg-character-cut-in .tcg-portrait { width:54px; height:54px; } .tcg-character-cut-in strong { font-size:9px; } .tcg-recipe-burst { width:190px; height:190px; } .tcg-recipe-burst strong { font-size:19px; } .tcg-recipe-burst small { font-size:9px; } }
+@media(prefers-reduced-motion:reduce) { .tcg-table-weather,.tcg-character-cut-in,.tcg-recipe-burst { display:none!important; } .tcg-board-art,.tcg-hand .tcg-card.is-selected:after { animation:none!important; } }
+html[data-tcg-reduced-motion="true"] .tcg-table-weather,html[data-tcg-reduced-motion="true"] .tcg-character-cut-in,html[data-tcg-reduced-motion="true"] .tcg-recipe-burst { display:none!important; }
+html[data-tcg-reduced-motion="true"] .tcg-board-art,html[data-tcg-reduced-motion="true"] .tcg-hand .tcg-card.is-selected:after { animation:none!important; }
+.tcg-weekly .tcg-button.ghost { color:#d8dfbf; border-color:#b1c1a666; }
+.tcg-npc-choices button { display:flex; flex-direction:column; gap:9px; min-width:0; color:#345740; }
+.tcg-npc-choices button strong { font-size:14px; line-height:1.5; font-weight:600; }
+.tcg-npc-choices button small { font-size:12px; line-height:1.6; }
+@media(max-width:600px) { .tcg-npc-choices { grid-template-columns:1fr; } }

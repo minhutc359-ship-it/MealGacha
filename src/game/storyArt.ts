@@ -1,4 +1,9 @@
 export const STORY_ART = {
+  "memory-flare": {
+    src: "/assets/tcg/story/memory-flare.webp",
+    title: "Bàn tay đang giữ chiếc muôi là của bạn",
+    alt: "Người giữ vị cầm muôi bạc giữa vòng hơi sáng; ký ức người bà gói bánh chưng hiện lên bên bàn đấu.",
+  },
   lantern: {
     src: "/assets/tcg/story/lantern.webp",
     title: "Mùi bánh đánh thức một cái tên",

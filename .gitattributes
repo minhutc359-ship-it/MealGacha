@@ -158,3 +158,9 @@ public/assets/tcg/story/** -filter -diff -merge -text
 
 # Original TCG music must be served as playable media by previews.
 public/assets/tcg/audio/** -filter -diff -merge -text
+
+# Original character, board and battle art must ship as real WebP bytes.
+public/assets/tcg/characters/** -filter -diff -merge -text
+public/assets/tcg/boards/** -filter -diff -merge -text
+public/assets/tcg/story/** -filter -diff -merge -text
+public/assets/tcg/fx/** -filter -diff -merge -text

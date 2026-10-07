@@ -1,7 +1,7 @@
 import { CARD_MAP } from "./catalog"
 import type { BattleFrame } from "./battle"
 import type { School } from "./types"
-import { BOSS_RULES } from "./narrative"
+import { battleRule } from "./encounters"
 
 export type EffectKind = "fire" | "water" | "strike" | "leaves" | "sparkle" | "heal" | "buff" | "shield" | "break" | "summon" | "draw" | "resonance" | "turn" | "vanish" | "awaken" | "finish"
 export interface EffectCue {
@@ -86,8 +86,7 @@ export function combatCues(frame: BattleFrame): EffectCue[] {
     add("heal", event.side, "hero")
   if (event.kind === "turn") add("turn", event.side, "hero")
   if (
-    battle.stageId &&
-    BOSS_RULES[battle.stageId] &&
+    battleRule(battle) &&
     before.enemy.health > before.enemy.maxHealth / 2 &&
     battle.enemy.health <= battle.enemy.maxHealth / 2 &&
     battle.enemy.health > 0

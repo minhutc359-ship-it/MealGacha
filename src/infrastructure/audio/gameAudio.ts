@@ -410,6 +410,10 @@ export class GameAudioEngine {
         )
       })
     switch (cue) {
+      case "combo":
+        chime([294, 392, 494, 587, 784], 0.6, 0.075, 0.06)
+        tone(98, 0.45, 0.035, "sine", 196)
+        break
       case "select":
         tone(600, 0.12, 0.055, "triangle", 900)
         break

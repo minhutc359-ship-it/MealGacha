@@ -6,6 +6,7 @@ import {
   type BattleAction,
 } from "./battle"
 import { CARD_MAP } from "./catalog"
+import { recipeReady } from "./recipes"
 import type { Battle } from "./types"
 
 type SuggestedAction = Extract<BattleAction, { type: "play" | "attack" }>
@@ -124,9 +125,17 @@ export function getBattleHint(battle: Battle): BattleHint | null {
             }. Phép vượt Hộ vệ và không nhận phản đòn.`
           : card.text
     }
+    if (action.type === "play") {
+      const recipe = recipeReady(battle.player, card)
+      if (recipe && attempt.frames.some((f) => f.event.kind === "combo")) {
+        score += 35
+        title = `Hoàn thành ${recipe.name}`
+        reason = `${recipe.reward} ${reason}`
+      }
+    }
     if (attempt.battle.result === "win") {
       score = 10000
-      reason = `Đủ sát thương để thắng ngay. ${reason}`
+      reason = `Nước đi này giúp thắng ngay. ${reason}`
     }
     if (score > 0) candidates.push({ title, reason, action, score })
   }

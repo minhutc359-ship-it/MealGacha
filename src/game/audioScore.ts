@@ -1,7 +1,7 @@
 import type { BattleFrame } from "./battle"
 import { CARD_MAP } from "./catalog"
 import { combatCues } from "./combatEffects"
-import { BOSS_RULES } from "./narrative"
+import { battleRule } from "./encounters"
 import type { StoryArtId } from "./storyArt"
 import type { Battle } from "./types"
 
@@ -12,14 +12,14 @@ export const MUSIC_TRACKS = {
   "story-mystery": "assets/tcg/audio/story-mystery.mp3",
 } as const
 export type MusicTrack = keyof typeof MUSIC_TRACKS
-export type GameSound = "select" | "deselect" | "confirm" | "cast" | "impact" | "fire" | "water" | "leaves" | "sparkle" | "heal" | "buff" | "shield" | "break" | "summon" | "draw" | "resonance" | "turn" | "awaken" | "vanish" | "victory" | "defeat" | "story-next"
+export type GameSound = "select" | "deselect" | "confirm" | "cast" | "impact" | "fire" | "water" | "leaves" | "sparkle" | "heal" | "buff" | "shield" | "break" | "summon" | "draw" | "resonance" | "turn" | "awaken" | "vanish" | "victory" | "defeat" | "story-next" | "combo"
 export interface TimedSound {
   cue: GameSound
   delay: number
 }
 
 export function battleMusic(battle: Battle): MusicTrack {
-  return (battle.stageId && BOSS_RULES[battle.stageId]) ||
+  return battleRule(battle) ||
     battle.player.health <= 8 ||
     (battle.expedition?.enemyBoost ?? 0) >= 2
     ? "boss"
@@ -27,7 +27,9 @@ export function battleMusic(battle: Battle): MusicTrack {
 }
 
 export function storyMusic(art: StoryArtId): MusicTrack {
-  return ["garden", "tide", "last-table", "harbor"].includes(art)
+  return ["garden", "tide", "last-table", "harbor", "memory-flare"].includes(
+    art,
+  )
     ? "story-mystery"
     : "story-warm"
 }
@@ -44,6 +46,8 @@ export function frameSounds(frame: BattleFrame): TimedSound[] {
   if (frame.event.kind === "play")
     add(card?.kind === "unit" ? "summon" : "cast", 0)
   if (frame.event.kind === "attack") add("impact", 0)
+  if (frame.event.kind === "combo") add("combo", 0)
+  if (frame.event.kind === "assist") add("resonance", 0)
   if (frame.event.kind === "mulligan") add("draw", 0)
   if (frame.event.kind === "turn" && frame.event.side === "player")
     add("turn", 0)

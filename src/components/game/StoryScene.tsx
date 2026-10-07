@@ -3,6 +3,8 @@ import type { StoryLine } from "../../game/narrative"
 import { STORY_ART, type StoryArtId } from "../../game/storyArt"
 import { storyMusic } from "../../game/audioScore"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
+import { speakerCharacter } from "../../game/characters"
+import { CharacterPortrait } from "./CharacterPortrait"
 import { AudioButton, useStoryMusic } from "./GameAudio"
 
 interface Props {
@@ -18,6 +20,7 @@ export function StoryScene({ lines, art = "lantern", onComplete }: Props) {
   const completed = useRef(false)
   const current = lines[Math.min(index, lines.length - 1)]
   const picture = STORY_ART[art]
+  const portrait = current ? speakerCharacter(current.speaker) : null
   const complete = () => {
     if (!completed.current) {
       completed.current = true
@@ -64,7 +67,10 @@ export function StoryScene({ lines, art = "lantern", onComplete }: Props) {
           aria-live="polite"
           aria-atomic="true"
         >
-          <span className="tcg-scene-speaker">{current.speaker}</span>
+          <div className="tcg-speaker-row">
+            {portrait && <CharacterPortrait id={portrait} decorative />}
+            <span className="tcg-scene-speaker">{current.speaker}</span>
+          </div>
           <p>{current.text}</p>
         </div>
         <div className="tcg-scene-controls">
