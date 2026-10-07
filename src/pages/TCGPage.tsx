@@ -17,6 +17,9 @@ import { SCENES, BOSS_RULES, WORLD_PRIMER } from "../game/narrative"
 import { stageArtId } from "../game/storyArt"
 import { BattleBoard } from "../components/game/BattleBoard"
 import { Collection } from "../components/game/Collection"
+import { JourneyHub } from "../components/game/JourneyHub"
+import { ProgressTransfer } from "../components/game/ProgressTransfer"
+import { CharacterPortrait } from "../components/game/CharacterPortrait"
 import { DeckBuilder } from "../components/game/DeckBuilder"
 import { Expedition } from "../components/game/Expedition"
 import { activeRun } from "../game/expedition"
@@ -27,10 +30,12 @@ import { gameAudio } from "../infrastructure/audio/gameAudio"
 import "../game/tcg.css"
 import "../game/combat.css"
 import "../game/story.css"
+import "../game/livingTable.css"
 
 const NAV = [
   { id: "home", name: "Sảnh hành trình", icon: "home" },
   { id: "story", name: "Cốt truyện", icon: "map" },
+  { id: "companions", name: "Lời hứa bên bếp", icon: "home" },
   { id: "expedition", name: "Thám hiểm", icon: "compass" },
   { id: "collection", name: "Thư viện thẻ", icon: "cards" },
   { id: "decks", name: "Bộ bài", icon: "deck" },
@@ -209,6 +214,7 @@ export function TCGPage() {
                 data-mobile-label={
                   ({
                     home: "Sảnh",
+                    companions: "Bạn bếp",
                     story: "Truyện",
                     expedition: "Thám hiểm",
                     collection: "Thẻ",
@@ -248,7 +254,7 @@ export function TCGPage() {
           </button>
           <Link to="/chest">◇ Rương vị giác</Link>
           <div className="tcg-player">
-            <span>✦</span>
+            <CharacterPortrait id="hero" decorative />
             <div>
               <strong>{legacy.displayName || "Nhà thám hiểm"}</strong>
               <small>NGƯỜI GIỮ VỊ · CẤP {level}</small>
@@ -298,9 +304,11 @@ export function TCGPage() {
                 setTab(
                   current.battle?.expedition
                     ? "expedition"
-                    : current.battle?.stageId
-                      ? "story"
-                      : "home",
+                    : current.battle?.sideQuest || current.battle?.weekly
+                      ? "companions"
+                      : current.battle?.stageId
+                        ? "story"
+                        : "home",
                 )
               }
             />
@@ -308,6 +316,25 @@ export function TCGPage() {
             <>
               {tab === "home" && (
                 <>
+                  <div className="tcg-panel tcg-new-journey">
+                    <CharacterPortrait id="hero" />
+                    <div>
+                      <span className="tcg-kicker">
+                        NHỮNG NGƯỜI CÙNG GIỮ BÀN
+                      </span>
+                      <h2>Lời hứa, công thức và bàn ăn tuần này</h2>
+                      <p>
+                        Gặp năm người bạn, chọn cách trợ chiến, ghép ba công
+                        thức và khám phá thử thách tuần.
+                      </p>
+                    </div>
+                    <button
+                      className="tcg-button gold"
+                      onClick={() => setTab("companions")}
+                    >
+                      Ghé bên bếp →
+                    </button>
+                  </div>
                   <div className="tcg-welcome">
                     <div>
                       <span className="tcg-kicker">
@@ -658,6 +685,7 @@ export function TCGPage() {
               )}
               {tab === "collection" && <Collection />}
               {tab === "workshop" && <Collection workshop />}
+              {tab === "companions" && <JourneyHub />}
               {tab === "decks" && <DeckBuilder />}
               {tab === "packs" && (
                 <>
@@ -854,7 +882,11 @@ export function TCGPage() {
                       <AudioControls />
                     </section>
                     <section className="tcg-panel">
-                      <h2>Sao lưu hành trình</h2>
+                      <h2>Copy & tiếp tục ở thiết bị khác</h2>
+                      <ProgressTransfer />
+                    </section>
+                    <section className="tcg-panel">
+                      <h2>Sao lưu file hành trình</h2>
                       <p>
                         Xuất file JSON để chuyển sang thiết bị khác. Bản lưu
                         chứa bộ sưu tập, bộ bài, cốt truyện, chuyến thám hiểm,
@@ -939,7 +971,7 @@ export function TCGPage() {
             <span>
               MEALGACHA <i>✦</i> Một thế giới được nấu bằng ký ức.
             </span>
-            <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.6</span>
+            <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.7</span>
           </footer>
         </main>
       </div>

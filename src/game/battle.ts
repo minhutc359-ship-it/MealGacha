@@ -1,6 +1,12 @@
 import { CARD_MAP, CARDS } from "./catalog"
 import { STAGE_MAP } from "./story"
-import { BOSS_RULES } from "./narrative"
+import {
+  battleRule,
+  updateEncounter,
+  awakenedScene,
+  queueScene,
+} from "./encounters"
+import { recipeReady } from "./recipes"
 import type { Battle, BattleUnit, Combatant, GameCard } from "./types"
 
 export type Target = "hero" | string
@@ -22,12 +28,15 @@ export type BattleAction = PlayAction | AttackAction | MulliganAction | {
   type: "end"
 }
 export interface BattleEvent {
-  kind: "play" | "attack" | "turn" | "rule" | "mulligan"
+  kind: "play" | "attack" | "turn" | "rule" | "mulligan" | "combo" | "objective" | "scene" | "assist"
   side: "player" | "enemy"
   label: string
   cardId?: string
   source?: string
   target?: string
+  recipeId?: import("./types").RecipeId
+  sceneId?: string
+  npcId?: import("./types").NpcId
 }
 export interface BattleFrame {
   before: Battle
@@ -112,6 +121,8 @@ function combatant(deck: string[], health: number): Combatant {
     fatigue: 0,
     chainSchool: null,
     resonanceUsed: false,
+    recipeTrail: [],
+    recipesUsed: [],
   }
 }
 export function opponentDeck(
@@ -176,6 +187,9 @@ export function startBattle(
     settled: false,
     nextUid: 1,
     opening: offerMulligan,
+    openingGiftUsed: false,
+    pendingScenes: [],
+    seenScenes: [],
   }
   // Both sides get 1 energy on their first turn. The AI's first turn has not begun yet.
   b.enemy.mana = 0
@@ -224,6 +238,7 @@ function play(
   if (resonated) p.resonanceUsed = true
   p.chainSchool = card.school
   p.hand.splice(index, 1)
+  p.recipeTrail = [...(p.recipeTrail ?? []), card.id].slice(-2)
   const relics = side === "player" ? (b.expedition?.relics ?? []) : []
   const bonus =
     relics.includes("old-recipe") &&
@@ -244,6 +259,14 @@ function play(
       (side === "enemy" ? (b.expedition?.enemyBoost ?? 0) : 0)
     const bootRush =
       relics.includes("traveler-boots") && b.expedition?.summoned === 0
+    const openingWard =
+      side === "player" &&
+      b.sideQuest &&
+      b.companion?.choice === "share" &&
+      !b.openingGiftUsed
+        ? 1
+        : 0
+    if (openingWard) b.openingGiftUsed = true
     p.board.push({
       uid: `u${b.nextUid++}`,
       cardId: id,
@@ -253,6 +276,7 @@ function play(
       shield:
         (card.keywords.includes("shield") ? 1 : 0) +
         (synergy ? 1 : 0) +
+        openingWard +
         (relics.includes("sugar-crystal") ? 1 : 0),
       ready: card.keywords.includes("rush") || bootRush,
       keywords: [
@@ -298,6 +322,101 @@ function play(
   checkResult(b)
   return null
 }
+function resolveRecipe(
+  b: Battle,
+  side: "player" | "enemy",
+  cardId: string,
+  record: (event: BattleEvent) => void,
+) {
+  if (b.result) return
+  const p = b[side],
+    foe = b[side === "player" ? "enemy" : "player"]
+  const recipe = recipeReady(
+    { ...p, recipeTrail: (p.recipeTrail ?? []).slice(0, -1) },
+    CARD_MAP[cardId],
+  )
+  if (!recipe) return
+  p.recipesUsed = [...(p.recipesUsed ?? []), recipe.id]
+  if (recipe.id === "home") {
+    p.health = Math.min(p.maxHealth, p.health + 3)
+    p.board.forEach((u) => u.shield++)
+  }
+  if (recipe.id === "street") {
+    foe.health--
+    draw(b, side, 1)
+  }
+  if (recipe.id === "tet")
+    p.board.forEach((u) => {
+      u.attack++
+      u.shield++
+    })
+  b.tableAura = { id: recipe.id, untilRound: b.round + 1 }
+  if (side === "player")
+    b.comboCounts = {
+      ...b.comboCounts,
+      [recipe.id]: (b.comboCounts?.[recipe.id] ?? 0) + 1,
+    }
+  log(b, `✦ COMBO ${recipe.name} · ${recipe.reward}`)
+  checkResult(b)
+  record({
+    kind: "combo",
+    side,
+    cardId,
+    recipeId: recipe.id,
+    label: `COMBO · ${recipe.name}`,
+  })
+}
+function assist(b: Battle, record: (event: BattleEvent) => void) {
+  const companion = b.companion
+  if (!companion || companion.used || b.round < 3 || b.result) return
+  companion.used = true
+  const p = b.player,
+    share = companion.choice === "share"
+  if (companion.id === "bach") {
+    if (share) p.board.forEach((u) => (u.shield += 2))
+    else p.health = Math.min(p.maxHealth, p.health + 3)
+  }
+  if (companion.id === "nhien") {
+    if (share) b.enemy.health -= 2
+    else {
+      p.board.forEach((u) => u.shield++)
+      draw(b, "player")
+    }
+  }
+  if (companion.id === "moc") {
+    p.health = Math.min(p.maxHealth, p.health + (share ? 4 : 2))
+    if (!share) p.board.forEach((u) => u.shield++)
+  }
+  if (companion.id === "hai") {
+    draw(b, "player", share ? 2 : 1)
+    if (!share) p.health = Math.min(p.maxHealth, p.health + 2)
+  }
+  if (companion.id === "lien") {
+    if (share) {
+      p.board.forEach((u) => u.shield++)
+      b.enemy.health--
+    } else {
+      p.health = Math.min(p.maxHealth, p.health + 2)
+      draw(b, "player")
+    }
+  }
+  checkResult(b)
+  record({
+    kind: "assist",
+    side: "player",
+    npcId: companion.id,
+    label: "Người đồng hành giữ một góc bàn cho bạn",
+  })
+  const sceneId = `assist:${companion.id}`
+  queueScene(b, sceneId)
+  record({
+    kind: "scene",
+    side: "player",
+    sceneId,
+    npcId: companion.id,
+    label: "Lời hứa bên bếp",
+  })
+}
 function attack(
   b: Battle,
   side: "player" | "enemy",
@@ -338,6 +457,8 @@ function attack(
 function nextTurn(b: Battle, side: "player" | "enemy") {
   const p = b[side]
   p.chainSchool = null
+  p.recipeTrail = []
+  p.recipesUsed = []
   p.resonanceUsed = false
   p.maxMana = Math.min(7, p.maxMana + 1)
   p.mana = p.maxMana
@@ -362,7 +483,7 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
     side: "enemy",
     label: `${b.opponent} · Rút bài, hồi năng lượng`,
   })
-  const rule = b.stageId ? BOSS_RULES[b.stageId] : undefined
+  const rule = battleRule(b)
   if (rule && !b.result) {
     const empowered = b.enemy.health <= b.enemy.maxHealth / 2
     const strength = empowered ? 2 : 1
@@ -438,6 +559,7 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
       target,
       label: `${b.opponent} dùng ${card.name}`,
     })
+    resolveRecipe(b, "enemy", card.id, record)
   }
   for (const uid of b.enemy.board.filter((u) => u.ready).map((u) => u.uid)) {
     if (b.result) break
@@ -465,11 +587,13 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
     b.round++
     nextTurn(b, "player")
     log(b, `Lượt ${b.round} · Năng lượng được hồi đầy.`)
+    if (b.tableAura && b.round > b.tableAura.untilRound) b.tableAura = undefined
     record({
       kind: "turn",
       side: "player",
       label: `Lượt ${b.round} · Đến lượt bạn`,
     })
+    assist(b, record)
   }
 }
 export function actBattle(
@@ -490,9 +614,33 @@ export function actBattle(
   const b = clone(current)
   const frames: BattleFrame[] = []
   let before = clone(current)
-  const record = (event: BattleEvent) => {
+  if (b.rngState !== undefined)
+    rng = () => {
+      b.rngState = (Math.imul(b.rngState!, 1664525) + 1013904223) >>> 0
+      return b.rngState / 4294967296
+    }
+  const append = (event: BattleEvent) => {
     frames.push({ before, battle: clone(b), event })
     before = clone(b)
+  }
+  const record = (event: BattleEvent) => {
+    const previous = before
+    append(event)
+    const objective = updateEncounter(b, previous, event)
+    if (objective) {
+      log(b, objective)
+      append({ kind: "objective", side: "player", label: objective })
+    }
+    const sceneId = awakenedScene(b, previous)
+    if (sceneId) {
+      queueScene(b, sceneId)
+      append({
+        kind: "scene",
+        side: "enemy",
+        sceneId,
+        label: "Ký ức bừng sáng giữa trận",
+      })
+    }
   }
   let error: string | null = null
   if (action.type === "mulligan") {
@@ -523,7 +671,7 @@ export function actBattle(
     const source =
       CARD_MAP[cardId]?.kind === "unit" ? `u${b.nextUid}` : undefined
     error = play(b, "player", action.index, action.target)
-    if (!error)
+    if (!error) {
       record({
         kind: "play",
         side: "player",
@@ -532,6 +680,8 @@ export function actBattle(
         target: action.target,
         label: `Bạn dùng ${CARD_MAP[cardId].name}`,
       })
+      resolveRecipe(b, "player", cardId, record)
+    }
   } else if (action.type === "attack") {
     const cardId = b.player.board.find((u) => u.uid === action.uid)?.cardId
     error = attack(b, "player", action.uid, action.target)

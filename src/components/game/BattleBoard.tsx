@@ -5,7 +5,7 @@ import { AudioButton, useGameMusic } from "./GameAudio"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
 import { RELIC_MAP } from "../../game/expedition"
 import { STAGE_MAP } from "../../game/story"
-import { SCENES, BOSS_RULES, ENDINGS } from "../../game/narrative"
+import { SCENES, ENDINGS } from "../../game/narrative"
 import {
   cardCost,
   playError,
@@ -23,6 +23,18 @@ import { cultureForStage } from "../../game/culture"
 import { Dialog } from "./Dialog"
 import { getBattleHint } from "../../game/battleCoach"
 import { DuelBasics } from "./DuelBasics"
+import { CharacterPortrait } from "./CharacterPortrait"
+import { TransferButton } from "./ProgressTransfer"
+import { ResultPostcard } from "./ResultPostcard"
+import { opponentCharacter, NPC_NAMES } from "../../game/characters"
+import { RECIPES, RECIPE_MAP, recipeReady } from "../../game/recipes"
+import {
+  battleRule,
+  bossIntent,
+  encounterLabel,
+  midScene,
+} from "../../game/encounters"
+import { SIDE_QUEST_MAP } from "../../game/journeys"
 import { stageArtId } from "../../game/storyArt"
 
 interface SpellSelection {
@@ -180,6 +192,13 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     frameIndex < replay.frames.length
   const frame = busy && frameIndex >= 0 ? replay!.frames[frameIndex] : undefined
   const battle = busy ? (frame?.battle ?? replay!.before) : stored
+  const sceneId = busy
+    ? frame?.event.sceneId &&
+      stored.pendingScenes?.includes(frame.event.sceneId)
+      ? frame.event.sceneId
+      : null
+    : stored.pendingScenes?.[0]
+  const cinematic = sceneId ? midScene(sceneId, stored) : null
   useGameMusic(
     battle.result && !busy
       ? battle.result === "loss"
@@ -210,12 +229,21 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
       inFlight.current = false
       return
     }
+    if (sceneId) return
     const timer = window.setTimeout(
       () => setPlayback({ sequence: replay.sequence, index: frameIndex + 1 }),
-      frameIndex < 0 ? 90 : frame?.event.kind === "attack" ? 820 : 690,
+      frameIndex < 0
+        ? 90
+        : frame?.event.kind === "combo"
+          ? 1100
+          : frame?.event.kind === "assist"
+            ? 1050
+            : frame?.event.kind === "attack"
+              ? 820
+              : 690,
     )
     return () => window.clearTimeout(timer)
-  }, [busy, replay, frameIndex, frame?.event.kind])
+  }, [busy, replay, frameIndex, frame?.event.kind, sceneId])
   useEffect(() => {
     setSelection(null)
     setReplace([])
@@ -252,10 +280,11 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     }
   }, [replay, reducedMotion, systemReduced])
   useEffect(() => {
-    if (!stored.result || busy || resultSound.current === stored.id) return
+    if (!stored.result || busy || sceneId || resultSound.current === stored.id)
+      return
     resultSound.current = stored.id
     gameAudio.play(stored.result === "win" ? "victory" : "defeat", 160)
-  }, [stored.id, stored.result, busy])
+  }, [stored.id, stored.result, busy, sceneId])
   useEffect(() => {
     const previous = document.body.style.overflow
     document.body.style.overflow = "hidden"
@@ -270,7 +299,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     }
   }, [])
   const execute = (action: BattleAction) => {
-    if (busy || inFlight.current) return
+    if (busy || sceneId || inFlight.current) return
     inFlight.current = true
     setSelection(null)
     setDetail(false)
@@ -299,7 +328,21 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
   }
   const stage = battle.stageId ? STAGE_MAP[battle.stageId] : null
   const culturalPage = stage ? cultureForStage(stage.id) : undefined
-  const rule = battle.stageId ? BOSS_RULES[battle.stageId] : null
+  const rule = battleRule(battle)
+  const intent = bossIntent(battle)
+  const objective = encounterLabel(battle)
+  const readyRecipe = selectedCard
+    ? recipeReady(battle.player, selectedCard)
+    : null
+  const aura = battle.tableAura ? RECIPE_MAP[battle.tableAura.id] : null
+  const table =
+    aura?.id ??
+    (battle.stageId?.startsWith("lantern") || battle.stageId?.startsWith("moon")
+      ? "street"
+      : battle.stageId?.startsWith("last-table")
+        ? "tet"
+        : "home")
+  const opponentPortrait = opponentCharacter(battle.stageId, battle.sideQuest)
   const school = battle.player.chainSchool
     ? SCHOOLS[battle.player.chainSchool]
     : null
@@ -405,6 +448,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </h1>
         </div>
         <div className="tcg-battle-actions">
+          <TransferButton compact />
           <AudioButton label="Âm thanh trận đấu" />
           <button
             className="tcg-button ghost"
@@ -437,12 +481,41 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
               : `◈ Thám hiểm · ${battle.expedition!.relics.length} di vật`}
           </strong>
           <span>
-            {rule?.text ?? "Máu giữ giữa các trận · Chạm để xem di vật"}
+            {objective
+              ? `${objective} · Sắp tới: ${intent?.text ?? "Đối thủ ra bài"}`
+              : intent
+                ? `Sắp tới: ${intent.text}`
+                : "Máu giữ giữa các trận · Chạm để xem di vật"}
           </span>
           <b>i</b>
         </button>
       )}
-      <div className={`tcg-arena ${busy ? "is-resolving" : ""}`} ref={arena}>
+      <div
+        className={`tcg-arena tcg-living-table table-${table} ${
+          aura ? "has-recipe-aura" : ""
+        } ${busy ? "is-resolving" : ""}`}
+        ref={arena}
+        style={{ "--table-color": aura?.color ?? "#9bcea6" } as CSSProperties}
+      >
+        <div
+          className="tcg-board-art"
+          key={table}
+          aria-hidden="true"
+          style={{ backgroundImage: `url(/assets/tcg/boards/${table}.webp)` }}
+        />
+        <div className="tcg-table-weather" aria-hidden="true">
+          {Array.from({ length: 6 }, (_, i) => (
+            <i
+              key={i}
+              style={
+                {
+                  "--drift": `${i * 17}%`,
+                  "--wait": `${i * -1.7}s`,
+                } as CSSProperties
+              }
+            />
+          ))}
+        </div>
         <div className="tcg-arena-top">
           <span>
             AI · {battle.enemy.hand.length} lá trên tay ·{" "}
@@ -475,7 +548,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             heroPreview ? `, ${heroPreview.text}` : ""
           }`}
         >
-          <span className="tcg-avatar">☽</span>
+          <span className="tcg-avatar">
+            <CharacterPortrait id={opponentPortrait} decorative />
+          </span>
           <span>
             <strong>{battle.opponent}</strong>
             <small>
@@ -543,9 +618,14 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           className={`tcg-hero ${playerDelta < 0 ? "is-hit" : ""}`}
           data-hero="player"
         >
-          <span className="tcg-avatar player">✦</span>
+          <span className="tcg-avatar player">
+            <CharacterPortrait id="hero" decorative />
+          </span>
           <span>
-            <strong>Người giữ vị</strong>
+            <strong>
+              Người giữ vị
+              {battle.companion ? ` · ${NPC_NAMES[battle.companion.id]}` : ""}
+            </strong>
             <small>
               {battle.player.deck.length} lá trong bộ ·{" "}
               {battle.player.hand.length}/8 trên tay
@@ -636,7 +716,11 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                     ` · ⚔ ${selectedCard.attack} · ♥ ${selectedCard.health}`}
                 </span>
                 <h3>{selectedCard.name}</h3>
-                <p>{selectedCard.text}</p>
+                <p>
+                  {readyRecipe
+                    ? `✦ Combo ${readyRecipe.name}: ${readyRecipe.reward}`
+                    : selectedCard.text}
+                </p>
                 <small>
                   {selectedCard.kind === "unit"
                     ? selectedCard.keywords.includes("rush")
@@ -741,7 +825,57 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           lượng · 8 lá trên tay
         </p>
         <CombatEffects arena={arena} frame={frame} stamp={stamp} />
-        {frame?.event.cardId && (
+        {frame &&
+          (["combo", "assist", "rule"].includes(frame.event.kind) ||
+            (frame.event.kind === "play" &&
+              !!frame.event.cardId &&
+              CARD_MAP[frame.event.cardId].kind === "spell" &&
+              CARD_MAP[frame.event.cardId].cost >= 3)) && (
+            <div
+              className={`tcg-character-cut-in is-${frame.event.side}`}
+              key={`portrait-${stamp}`}
+              aria-hidden="true"
+            >
+              <CharacterPortrait
+                id={
+                  frame.event.npcId ??
+                  (frame.event.side === "enemy" ? opponentPortrait : "hero")
+                }
+                decorative
+              />
+              <strong>
+                {frame.event.kind === "combo"
+                  ? "CÔNG THỨC THỨC TỈNH"
+                  : frame.event.kind === "assist"
+                    ? "LỜI HỨA TRỢ CHIẾN"
+                    : "Ý CHÍ BÙNG LÊN"}
+              </strong>
+            </div>
+          )}
+        {frame?.event.kind === "combo" && frame.event.recipeId && (
+          <div
+            className={`tcg-recipe-burst recipe-${frame.event.recipeId}`}
+            key={`recipe-${stamp}`}
+            aria-hidden="true"
+            data-effect="combo"
+            style={
+              {
+                "--recipe-color": RECIPE_MAP[frame.event.recipeId].color,
+              } as CSSProperties
+            }
+          >
+            <img src="/assets/tcg/fx/recipe-burst.webp" alt="" />
+            <div>
+              <span>{RECIPE_MAP[frame.event.recipeId].symbol}</span>
+              <strong>{RECIPE_MAP[frame.event.recipeId].name}</strong>
+              <small>{RECIPE_MAP[frame.event.recipeId].reward}</small>
+            </div>
+            <i />
+            <i />
+            <i />
+          </div>
+        )}
+        {frame?.event.cardId && frame.event.kind !== "combo" && (
           <div
             className={`tcg-action-card ${
               CARD_MAP[frame.event.cardId].kind === "spell" ? "is-skill" : ""
@@ -784,6 +918,20 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           {rule && (
             <div className="tcg-tactic">
               <p>{rule.text}</p>
+              {intent && (
+                <p>
+                  <strong>Lượt địch kế tiếp:</strong> {intent.text}.{" "}
+                  {intent.tip}
+                </p>
+              )}
+              {objective && (
+                <p>
+                  <strong>{objective}:</strong>{" "}
+                  {battle.encounter?.kind === "protect"
+                    ? "Qua 3 lượt địch khi lửa còn trên 0 để thắng. Hộ vệ còn sống khi lượt địch kết thúc giữ lửa; thiếu Hộ vệ mất 2 lửa. Lửa tắt vẫn có thể thắng bằng đánh chủ tướng."
+                    : "Hạ 3 đồng minh địch để giải cứu Vị Linh và thắng. Bạn cũng có thể đánh chủ tướng về 0."}
+                </p>
+              )}
               <strong>
                 Trạng thái:{" "}
                 {battle.enemy.health <= battle.enemy.maxHealth / 2
@@ -826,7 +974,8 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             </p>
             <DuelBasics />
             <p>
-              <strong>Mục tiêu:</strong> Đưa máu chủ tướng địch về 0. Mỗi lượt
+              <strong>Mục tiêu:</strong> Đưa ý chí chủ tướng địch về 0, hoặc
+              hoàn thành mục tiêu boss hiển thị trên dải chiến thuật. Mỗi lượt
               rút 1 lá, tăng 1 năng lượng tối đa và hồi đầy (trần 7).
             </p>
             <p>
@@ -848,6 +997,29 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
               <strong>Hút vị:</strong> Hồi máu chủ tướng bằng sát thương thực tế
               gây vào máu, kể cả phản đòn. Sát thương bị chắn không hồi máu.
             </p>
+            <p>
+              <strong>Combo công thức:</strong> Ra một món mở rồi phép kết liên
+              tiếp trong cùng lượt, mỗi công thức tối đa 1 lần/lượt. Đánh bằng
+              đơn vị không ngắt chuỗi.
+            </p>
+            {RECIPES.map((r) => (
+              <p key={r.id}>
+                <strong>
+                  {r.symbol} {r.name}:
+                </strong>{" "}
+                {r.foodIds
+                  .filter((id) => CARD_MAP[id])
+                  .map((id) => CARD_MAP[id].name)
+                  .join(", ")}{" "}
+                →{" "}
+                {r.finish === "heal"
+                  ? "phép hồi phục"
+                  : r.finish === "damage"
+                    ? "phép sát thương"
+                    : "phép cường hóa / lá chắn"}
+                . {r.reward}
+              </p>
+            ))}
             <p>
               <strong>Cạn bài:</strong> Không thể rút sẽ chịu kiệt sức 1, 2, 3…
               sát thương. Tay đầy 8 lá sẽ bỏ lá rút thêm.
@@ -884,7 +1056,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </div>
         </Dialog>
       )}
-      {stored.opening && !busy && (
+      {stored.opening && !busy && !sceneId && (
         <Dialog
           title="Bữa ăn bắt đầu từ lựa chọn"
           onClose={() => execute({ type: "mulligan", indices: replace })}
@@ -948,7 +1120,26 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </div>
         </Dialog>
       )}
-      {stored.result && !busy && (
+      {sceneId && cinematic && (
+        <Dialog
+          title={cinematic.title}
+          onClose={() => useGameStore.getState().acknowledgeScene(sceneId)}
+          wide
+        >
+          <StoryScene
+            key={sceneId}
+            lines={cinematic.lines}
+            art={cinematic.art}
+          />
+          <button
+            className="tcg-button primary"
+            onClick={() => useGameStore.getState().acknowledgeScene(sceneId)}
+          >
+            Tiếp tục trận →
+          </button>
+        </Dialog>
+      )}
+      {stored.result && !busy && !sceneId && (
         <Dialog
           title={
             stored.result === "win"
@@ -962,7 +1153,32 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             <span className="tcg-result-symbol">
               {stored.result === "win" ? "✦" : "☽"}
             </span>
-            {stored.result === "win" && stage ? (
+            {stored.result === "win" && stored.sideQuest ? (
+              <StoryScene
+                key={stored.id}
+                lines={[
+                  {
+                    speaker: NPC_NAMES[stored.sideQuest],
+                    text: SIDE_QUEST_MAP[stored.sideQuest][
+                      stored.companion?.choice ?? "share"
+                    ].ending,
+                  },
+                  {
+                    speaker: "Bạn",
+                    text: "Lời hứa đã giữ. Lần sau chúng ta có thể cùng đứng ở Bàn Ký Ức; người bạn ấy sẽ trợ chiến một lần ở lượt 3.",
+                  },
+                ]}
+                art={SIDE_QUEST_MAP[stored.sideQuest].art}
+              />
+            ) : stored.result === "win" && stored.weekly ? (
+              <p>
+                Chặng {stored.weekly.index + 1}/3 đã qua ·{" "}
+                {stored.weekly.score ?? 0} điểm chuỗi.{" "}
+                {stored.weekly.index === 2
+                  ? "Bạn đã giữ trọn bàn ăn tuần này. Kỷ lục đã được ghi ở Lời hứa bên bếp."
+                  : "Trở về Lời hứa bên bếp để tiếp tục chuỗi thử thách."}
+              </p>
+            ) : stored.result === "win" && stage ? (
               <StoryScene
                 key={stored.id}
                 lines={SCENES[stage.id].after}
@@ -1059,6 +1275,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                 </p>
               </div>
             )}
+            <ResultPostcard battle={stored} />
             <button className="tcg-button primary" onClick={exit}>
               Trở về hành trình →
             </button>

@@ -1,5 +1,6 @@
 import { CARD_MAP, CARDS, STARTER_DECK, STARTER_IDS, RARITIES } from "./catalog"
 import { settleRunCombat, expeditionRewardAvailable } from "./expedition"
+import { settleJourney } from "./journeys"
 import { STAGES } from "./story"
 import { getDateKey } from "../domain/dateKey"
 import type { GameSave, GameStats, School } from "./types"
@@ -39,6 +40,9 @@ export function newGame(): GameSave {
     expeditionStats: { runs: 0, wins: 0, best: 0 },
     history: [],
     storyEnding: null,
+    bonds: {},
+    companion: null,
+    weeklyRecords: {},
   }
 }
 export function rotateDay(save: GameSave, today = getDateKey()): GameSave {
@@ -163,6 +167,7 @@ export function openPack(
   return { save: next, cards: ids }
 }
 export function settleBattle(save: GameSave): GameSave {
+  if (save.battle?.sideQuest || save.battle?.weekly) return settleJourney(save)
   const battle = save.battle
   if (!battle?.result || battle.settled) return save
   const win = battle.result === "win"

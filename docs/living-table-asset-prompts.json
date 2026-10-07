@@ -1,0 +1,163 @@
+{
+  "version": "2.7",
+  "tool": "image_gen.imagegen",
+  "mode": "generate",
+  "assets": [
+    {
+      "id": "hero",
+      "path": "public/assets/tcg/characters/hero.webp",
+      "prompt": "Use case: illustration-story. Asset type: square portrait for a Vietnamese culinary fantasy trading card game, MealGacha. Create a polished original painterly semi-realistic character portrait, hand-painted cinematic storybook realism, textured brushwork, muted jade green and antique warm gold with amber rim lighting. Subject: the female young adult protagonist, the Keeper of Flavors, Vietnamese woman aged about 22, dark eyes, black hair in a loose bun with a few flyaway strands, practical beige rolled-sleeve linen shirt, worn brown cooking apron, jade teal scarf around neck, holding a weathered SILVER LADLE gently at her chest. Quiet courage and curiosity, face expressive, eyes looking slightly toward viewer's right. Bust/upper waist view, face clearly recognizable, no chibi, no exaggerated anime, no royal costume. Background: softly painted lantern kitchen mist, subdued and low contrast so face reads at 48px; portrait fills frame but all head/hair included with margin. Square 1024x1024. No lettering, no watermark, no card frame, no UI. This is an original fictional character inspired by the warmth of Vietnamese family kitchens.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 512,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "bach",
+      "path": "public/assets/tcg/characters/bach.webp",
+      "prompt": "Use case: illustration-story. Asset type: original square NPC portrait for MealGacha, Vietnamese culinary fantasy card game. Painterly cinematic storybook realism with visible soft brush texture, expressive Vietnamese faces, muted jade, aged gold and amber rim light, natural practical clothing. Chest-up framing with entire head and generous hair margin; person occupies 70 percent of frame, face readable in a small round avatar. Soft low-contrast contextual background. Square portrait. No lettering, logo, watermark, UI or card frame. No anime, no generic European armor, no royal costume. This is a fictional person, depicted warmly and respectfully. Bách, Vietnamese male cook about 55, salt-and-pepper hair swept back, light beard stubble, weathered face and worried but protective eyes. Faded burgundy linen shirt, brown cooking apron, one hand resting on an old recipe notebook. Background old lantern kitchen.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 512,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "nhien",
+      "path": "public/assets/tcg/characters/nhien.webp",
+      "prompt": "Use case: illustration-story. Asset type: original square NPC portrait for MealGacha, Vietnamese culinary fantasy card game. Painterly cinematic storybook realism with visible soft brush texture, expressive Vietnamese faces, muted jade, aged gold and amber rim light, natural practical clothing. Chest-up framing with entire head and generous hair margin; person occupies 70 percent of frame, face readable in a small round avatar. Soft low-contrast contextual background. Square portrait. No lettering, logo, watermark, UI or card frame. No anime, no generic European armor, no royal costume. This is a fictional person, depicted warmly and respectfully. Nhiên, Vietnamese young adult woman about 27, dark hair tied back, sun-touched skin, direct brave expression, indigo work shirt and dark apron, red cotton neck scarf. Holding a modest wooden kitchen paddle. Background warm fishing harbor and cooking steam, no burning disaster.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 512,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "moc",
+      "path": "public/assets/tcg/characters/moc.webp",
+      "prompt": "Use case: illustration-story. Asset type: original square NPC portrait for MealGacha, Vietnamese culinary fantasy card game. Painterly cinematic storybook realism with visible soft brush texture, expressive Vietnamese faces, muted jade, aged gold and amber rim light, natural practical clothing. Chest-up framing with entire head and generous hair margin; person occupies 70 percent of frame, face readable in a small round avatar. Soft low-contrast contextual background. Square portrait. No lettering, logo, watermark, UI or card frame. No anime, no generic European armor, no royal costume. This is a fictional person, depicted warmly and respectfully. Mộc, Vietnamese woman about 29, long dark hair braided over shoulder, soft determined eyes, simple moss-green blouse and linen apron. Holding a small ceramic teacup and an herb sprig. Background shaded garden courtyard with faint soft tea steam.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 512,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "hai",
+      "path": "public/assets/tcg/characters/hai.webp",
+      "prompt": "Use case: illustration-story. Asset type: original square NPC portrait for MealGacha, Vietnamese culinary fantasy card game. Painterly cinematic storybook realism with visible soft brush texture, expressive Vietnamese faces, muted jade, aged gold and amber rim light, natural practical clothing. Chest-up framing with entire head and generous hair margin; person occupies 70 percent of frame, face readable in a small round avatar. Soft low-contrast contextual background. Square portrait. No lettering, logo, watermark, UI or card frame. No anime, no generic European armor, no royal costume. This is a fictional person, depicted warmly and respectfully. Hải, Vietnamese male about 33, short black hair, kind observant face, faint beard, practical blue-gray shirt and rolled sleeves with warm brown waistcloth. Holding a little blue-and-white porcelain bowl. Background quiet river kitchen and reflected teal light.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 512,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "lien",
+      "path": "public/assets/tcg/characters/lien.webp",
+      "prompt": "Use case: illustration-story. Asset type: original square NPC portrait for MealGacha, Vietnamese culinary fantasy card game. Painterly cinematic storybook realism with visible soft brush texture, expressive Vietnamese faces, muted jade, aged gold and amber rim light, natural practical clothing. Chest-up framing with entire head and generous hair margin; person occupies 70 percent of frame, face readable in a small round avatar. Soft low-contrast contextual background. Square portrait. No lettering, logo, watermark, UI or card frame. No anime, no generic European armor, no royal costume. This is a fictional person, depicted warmly and respectfully. Liên, Vietnamese woman about 23, dark hair in a low ponytail, friendly mischievous smile, cream blouse and soft rose apron. Holding a small paper lantern beside her shoulder. Background muted warm Vietnamese Mid-Autumn bakery lanterns.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 512,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "grandmother",
+      "path": "public/assets/tcg/characters/grandmother.webp",
+      "prompt": "Use case: illustration-story. Asset type: original square NPC portrait for MealGacha, Vietnamese culinary fantasy card game. Painterly cinematic storybook realism with visible soft brush texture, expressive Vietnamese faces, muted jade, aged gold and amber rim light, natural practical clothing. Chest-up framing with entire head and generous hair margin; person occupies 70 percent of frame, face readable in a small round avatar. Soft low-contrast contextual background. Square portrait. No lettering, logo, watermark, UI or card frame. No anime, no generic European armor, no royal costume. This is a fictional person, depicted warmly and respectfully. The grandmother, Vietnamese woman about 72, gray hair in a neat low bun, deeply kind lined face, simple brown áo bà ba, gently wrapping a square bánh chưng with bamboo string. Background traditional family kitchen, green banana leaves and warm firelight. Natural respectful everyday clothing.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 512,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "mist",
+      "path": "public/assets/tcg/characters/mist.webp",
+      "prompt": "Use case: illustration-story. Asset type: original square NPC portrait for MealGacha, Vietnamese culinary fantasy card game. Painterly cinematic storybook realism with visible soft brush texture, expressive Vietnamese faces, muted jade, aged gold and amber rim light, natural practical clothing. Chest-up framing with entire head and generous hair margin; person occupies 70 percent of frame, face readable in a small round avatar. Soft low-contrast contextual background. Square portrait. No lettering, logo, watermark, UI or card frame. No anime, no generic European armor, no royal costume. This is a fictional person, depicted warmly and respectfully. The Mist Warden, a fictional spectral opponent from memories of a Vietnamese kitchen: an older humanoid silhouette with a dark indigo linen robe and apron, smoky jade wisps around shoulders, face partially visible and solemn, tiny warm gold eyes. A tarnished ladle held vertically. Background deep dark mist and one distant lantern. Poetic and mysterious, no gore, no monstrous teeth, no aggressive weapons.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 512,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "board-home",
+      "path": "public/assets/tcg/boards/home.webp",
+      "prompt": "Use case: stylized-concept. Asset type: full-screen combat table background for a Vietnamese culinary fantasy card game. Landscape painterly cinematic 1536x1024. Oblique overhead view of a large dark jade lacquered wooden family dining table. Large central 75% area quiet, empty, low contrast, dark desaturated texture for game cards layered on top. Along OUTER edges only: blue-white ceramic bowl, tea steam, herb sprigs, woven bamboo placemat, blurred old warm family kitchen and lantern light. Subtle gold memory threads around edges. No people, no cards, no interface, no text or logos. Beautiful atmospheric art, not a screenshot.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 1280,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "board-street",
+      "path": "public/assets/tcg/boards/street.webp",
+      "prompt": "Use case: stylized-concept. Asset type: full-screen combat table background for Vietnamese fantasy card game. Landscape painterly cinematic 1536x1024. Oblique overhead view of a long worn dark wooden street-food counter in a Vietnamese lantern night market after rain. Central 75% area completely empty dark teal wood, minimal details and low contrast for UI card overlays. Only at corners/edges: bamboo tray with a baguette, banana leaf, small condiment jar, blurred lantern reflections, soft jade water-light and warm gold steam wisps. No characters, no cards, no UI, no lettering, no logos. Rich atmosphere with practical table texture.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 1280,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "board-tet",
+      "path": "public/assets/tcg/boards/tet.webp",
+      "prompt": "Use case: stylized-concept. Asset type: full-screen combat table background for Vietnamese culinary fantasy card game. Landscape painterly cinematic 1536x1024. Oblique overhead view of a dark brown lacquered wooden kitchen table for Tết family bánh chưng preparation. Central 75% is empty, dark, low-contrast wood for readable battle cards. Edges only: a few square bánh chưng in banana leaves tied with bamboo string, kitchen herbs, one ceramic bowl, a small muted branch of yellow apricot blossoms, warm amber ember reflections and faint red lantern blur. Painterly semi-realistic cinematic storybook illustration in jade, antique gold and amber. No people, no UI, no cards, no text, no logos.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 1280,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "memory-flare",
+      "path": "public/assets/tcg/story/memory-flare.webp",
+      "prompt": "Use case: illustration-story. Asset type: mid-battle cinematic illustration for MealGacha Vietnamese culinary fantasy. Wide landscape 1536x1024, painterly cinematic storybook realism. Same original heroine: Vietnamese woman around 22, black hair loose bun, beige rolled linen sleeves, brown apron, teal jade scarf, holds a weathered silver ladle. She stands at a wooden memory table as a delicate gold-and-jade ring of steam blossoms from the ladle. Within the luminous mist, an older Vietnamese grandmother with gray low bun and simple brown áo bà ba gently guides a child tying bamboo string around a green square bánh chưng. This is a tender fragmented MEMORY, visually translucent, not a ghost attack. Far edge of scene dark blue-green mist contrasts with the warm hands in the memory. Heroine expression courage and emotion, visible face in three-quarter view. Dramatic yet gentle, original characters, no lettering, no logo, no watermark, no game UI.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 1280,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "id": "recipe-burst",
+      "path": "public/assets/tcg/fx/recipe-burst.webp",
+      "prompt": "Use case: stylized-concept. Asset type: transparent battle VFX sprite for a culinary fantasy card game. A single isolated circular magical combo burst centered on genuine transparent background: an elegant luminous wreath of GOLDEN STEAM and delicate JADE herb-leaf sparks, bright pale amber center halo with EMPTY TRANSPARENT center, curved wisps flowing outward, tiny rice-grain light particles and faint geometric cooking-seal accents. Soft luminous translucent edges, every shape entirely within square frame with generous transparent margin. Premium painterly game VFX, not an icon, no solid disk or backdrop, no text, no objects, no cards, no lettering, no watermark. 1024x1024.",
+      "transparent_background": true,
+      "optimization": {
+        "format": "WebP",
+        "width": 512,
+        "quality": 81
+      },
+      "original": "AI-generated original fictional game illustration"
+    }
+  ]
+}

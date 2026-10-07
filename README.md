@@ -1,8 +1,19 @@
-# MealGacha v2.6 · Nhịp bếp trong trận chiến
+# MealGacha v2.7 · Lời hứa bên bếp
 
-Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 3 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
+Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 6 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
+
+## Bản 2.7 · Lời hứa bên bếp
+
+- **Ba combo công thức**: Bữa cơm nhà, Quà phố và Bếp Tết. Ghép món → phép liên tiếp cùng lượt; hiệu quả thật, tiếng combo, vòng VFX riêng, chân dung cắt vào trận và đổi bàn đấu theo công thức.
+- **13 asset gốc mới**: nhân vật chính, năm NPC, người bà, người giữ bếp; ba bàn đấu, một cảnh ký ức giữa trận và một vòng hiệu ứng alpha. Portrait xuất hiện trong hội thoại và ở chủ tướng; bàn có chuyển động môi trường theo nền.
+- Boss báo hiệu lượt kế tiếp. Boss Phố Đèn Lồng có mục tiêu giữ bếp qua 3 lượt địch; boss Bến Cảng giải cứu 3 Vị Linh. Đánh chủ tướng về 0 vẫn là cách thắng. Boss thức tỉnh và bạn trợ chiến có **cutscene giữa trận**, dừng trình diễn; tải lại không mất đoạn chờ.
+- **Xưởng chiến thuật**: 6 bộ, 5 phong cách gợi ý từ thẻ đã sở hữu, tìm/lọc hệ/loại/vai trò/độ hiếm, đường năng lượng, phân tích vai trò và combo, thử tay mở đầu không tiêu tài nguyên.
+- **Năm truyện phụ** mở theo chiến dịch. Hai lựa chọn mỗi NPC thay đổi quà mở trận và cách trợ chiến ở lượt 3. Chơi lại có thể đổi nhánh sau khi thắng; quà chỉ nhận một lần.
+- **Thử thách tuần**: 3 chặng, bộ bài được mượn và xáo cố định theo tuần Việt Nam; tính điểm/kỷ lục cục bộ, quà tuần nhận một lần. Bưu thiếp PNG 1080×1350 cho bộ bài/kết quả, có điểm thử thách và lời mời chia sẻ.
+- **Không cần tài khoản**: Cài đặt → tạo mã → copy → dán trên thiết bị khác → kiểm tra → khôi phục. Mã AES-256-GCM có nén/tùy chọn tương thích, chứa cả trận/cutscene, NPC, deck và thám hiểm; giữ bản trước để quay lại. Ai có mã có thể đọc/khôi phục bản lưu.
+- Tiến trình v1, 152 thẻ và Rương 112 món vẫn tương thích. [Luật và hướng dẫn](docs/LIVING_TABLE.md), [asset/prompt](docs/LIVING_TABLE_ASSETS.md), [kiểm tra](docs/VERIFICATION_V27.md).
 
 ## Bản 2.6 · Nhịp bếp trong trận chiến
 

@@ -5,6 +5,23 @@ import { newGame, rotateDay } from "./progression"
 import type { GameSave } from "./types"
 
 export const GAME_KEY = "foodchest.tcg.v1"
+const npcId = z.enum(["bach", "nhien", "moc", "hai", "lien"])
+const recipeId = z.enum(["home", "street", "tet"])
+const sceneId = z
+  .string()
+  .max(60)
+  .regex(
+    /^(assist:(bach|nhien|moc|hai|lien)|awaken:(lantern|harbor|garden|tide|moon|last-table)-3)$/,
+  )
+const weekId = z.string().regex(/^\d{4}-\d{2}-\d{2}$/)
+const bossId = z.enum([
+  "lantern-3",
+  "harbor-3",
+  "garden-3",
+  "tide-3",
+  "moon-3",
+  "last-table-3",
+])
 const integer = z.number().int().nonnegative().max(1_000_000_000)
 const cardId = z.string().refine((id) => !!CARD_MAP[id], "Thẻ không hợp lệ")
 const stats = z.object({
@@ -36,6 +53,8 @@ const fighter = z.object({
     .enum(["ember", "tide", "grove", "hearth", "sugar"])
     .nullable()
     .default(null),
+  recipeTrail: z.array(cardId).max(2).default([]),
+  recipesUsed: z.array(recipeId).max(3).default([]),
   resonanceUsed: z.boolean().default(false),
 })
 const relicId = z
@@ -174,7 +193,7 @@ export const GameSaveSchema = z
         }),
       )
       .min(1)
-      .max(3),
+      .max(6),
     activeDeckId: z.string(),
     clearedStages: z.array(z.string()),
     choices: z.record(z.string(), z.enum(["courage", "wisdom"])),
@@ -191,12 +210,41 @@ export const GameSaveSchema = z
     expeditionStats: z
       .object({ runs: integer, wins: integer, best: integer.max(7) })
       .default({ runs: 0, wins: 0, best: 0 }),
+    bonds: z
+      .partialRecord(
+        npcId,
+        z.object({
+          choice: z.enum(["share", "listen"]),
+          completed: z.boolean(),
+        }),
+      )
+      .default({}),
+    companion: npcId.nullable().default(null),
+    weeklyRecords: z
+      .record(
+        weekId,
+        z.object({
+          stage: integer.max(2),
+          score: integer,
+          best: integer,
+          claimed: z.boolean(),
+          completions: integer,
+        }),
+      )
+      .refine((records) => Object.keys(records).length <= 12)
+      .default({}),
     storyEnding: z.enum(["remember", "release"]).nullable().default(null),
     history: z
       .array(
         z.object({
           id: z.string(),
-          mode: z.enum(["story", "practice", "expedition"]),
+          mode: z.enum([
+            "story",
+            "practice",
+            "expedition",
+            "sidequest",
+            "weekly",
+          ]),
           opponent: z.string(),
           result: z.enum(["win", "loss"]),
           rounds: integer,
@@ -220,6 +268,38 @@ export const GameSaveSchema = z
         settled: z.boolean(),
         nextUid: integer,
         opening: z.boolean().default(false),
+        openingGiftUsed: z.boolean().default(false),
+        encounter: z
+          .object({
+            kind: z.enum(["protect", "rescue"]),
+            progress: integer.max(3),
+            target: z.literal(3),
+            integrity: integer.max(6),
+            maxIntegrity: integer.max(6),
+          })
+          .optional(),
+        pendingScenes: z.array(sceneId).max(8).default([]),
+        seenScenes: z.array(sceneId).max(8).default([]),
+        companion: z
+          .object({
+            id: npcId,
+            choice: z.enum(["share", "listen"]),
+            used: z.boolean(),
+          })
+          .optional(),
+        sideQuest: npcId.optional(),
+        weekly: z
+          .object({
+            week: weekId,
+            index: integer.max(2),
+            seed: z.number().int().min(0).max(4294967295),
+            score: integer.optional(),
+          })
+          .optional(),
+        bossRuleId: bossId.optional(),
+        rngState: z.number().int().min(0).max(4294967295).optional(),
+        comboCounts: z.partialRecord(recipeId, integer.max(1000)).optional(),
+        tableAura: z.object({ id: recipeId, untilRound: integer }).optional(),
         loot: loot.optional(),
         expedition: z
           .object({
@@ -234,6 +314,44 @@ export const GameSaveSchema = z
       .nullable(),
   })
   .superRefine((save, ctx) => {
+    const b = save.battle
+    if (
+      b &&
+      [!!b.sideQuest, !!b.weekly, !!b.expedition].filter(Boolean).length > 1
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Trận đấu có nhiều chế độ không tương thích",
+      })
+    if (b && (b.sideQuest || b.weekly) && b.stageId !== null)
+      ctx.addIssue({
+        code: "custom",
+        message: "Truyện phụ và thử thách không mở chiến dịch",
+      })
+    if (save.companion && !save.bonds[save.companion]?.completed)
+      ctx.addIssue({
+        code: "custom",
+        message: "Chưa giữ lời hứa với người đồng hành",
+      })
+    if (
+      b &&
+      (new Set(b.pendingScenes).size !== b.pendingScenes.length ||
+        new Set(b.seenScenes).size !== b.seenScenes.length ||
+        b.pendingScenes.some((id) => b.seenScenes.includes(id)))
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Đoạn truyện đang chờ không nhất quán",
+      })
+    if (
+      b?.encounter &&
+      (b.encounter.integrity > b.encounter.maxIntegrity ||
+        b.encounter.progress > b.encounter.target)
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Mục tiêu trận đấu không nhất quán",
+      })
     if (
       save.expedition?.status === "battle" &&
       (!save.battle?.expedition || save.battle.settled)

@@ -1,3 +1,23 @@
+export type RecipeId = "home" | "street" | "tet"
+export type NpcId = "bach" | "nhien" | "moc" | "hai" | "lien"
+export interface Bond {
+  choice: "share" | "listen"
+  completed: boolean
+}
+export interface WeeklyRecord {
+  stage: number
+  score: number
+  best: number
+  claimed: boolean
+  completions: number
+}
+export interface EncounterState {
+  kind: "protect" | "rescue"
+  progress: number
+  target: number
+  integrity: number
+  maxIntegrity: number
+}
 export type School = "ember" | "tide" | "grove" | "hearth" | "sugar"
 export type CardRarity = "common" | "rare" | "epic" | "legendary"
 export type Keyword = "guard" | "rush" | "shield" | "drain"
@@ -47,6 +67,8 @@ export interface Combatant {
   board: BattleUnit[]
   fatigue: number
   chainSchool?: School | null
+  recipeTrail?: string[]
+  recipesUsed?: RecipeId[]
   resonanceUsed?: boolean
 }
 export interface Battle {
@@ -60,7 +82,30 @@ export interface Battle {
   result: "win" | "loss" | null
   settled: boolean
   nextUid: number
+  openingGiftUsed?: boolean
   opening?: boolean
+  encounter?: EncounterState
+  pendingScenes?: string[]
+  seenScenes?: string[]
+  companion?: {
+    id: NpcId
+    choice: "share" | "listen"
+    used: boolean
+  }
+  sideQuest?: NpcId
+  weekly?: {
+    week: string
+    index: number
+    seed: number
+    score?: number
+  }
+  bossRuleId?: string
+  rngState?: number
+  comboCounts?: Partial<Record<RecipeId, number>>
+  tableAura?: {
+    id: RecipeId
+    untilRound: number
+  }
   loot?: BattleLoot
   expedition?: ExpeditionCombat
 }
@@ -117,7 +162,7 @@ export interface ExpeditionStats {
 }
 export interface BattleRecord {
   id: string
-  mode: "story" | "practice" | "expedition"
+  mode: "story" | "practice" | "expedition" | "sidequest" | "weekly"
   opponent: string
   result: "win" | "loss"
   rounds: number
@@ -156,6 +201,9 @@ export interface GameSave {
   expedition: ExpeditionRun | null
   expeditionStats: ExpeditionStats
   history: BattleRecord[]
+  bonds?: Partial<Record<NpcId, Bond>>
+  companion?: NpcId | null
+  weeklyRecords?: Record<string, WeeklyRecord>
   storyEnding: "remember" | "release" | null
 }
 export interface Chapter {
