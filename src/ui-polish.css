@@ -173,3 +173,20 @@ html[data-title-theme="starter"] { --title-accent:#19c7e8; --title-glow:rgba(25,
 .profile-title-picker > span { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--gold-300); pointer-events:none; }
 .profile-title-picker option { color:#e8edf5; background:#081526; }
 .places-map { display:block; width:100%; height:230px; border:0; border-radius:12px; background:#10293b; }
+
+/* Chest contents use the same food illustrations as the card collection. */
+.odds-panel>header { position:sticky; top:0; z-index:2; background:#0b1b28; }
+.chest-catalog-summary { margin:0 0 12px; color:#9db0bb; text-align:center; font-size:11px; line-height:1.5; }
+.odds-food-library { margin:20px; padding-top:18px; border-top:1px solid #9ebacf30; }
+.odds-food-library h3 { color:#ead29a; font-size:14px; margin:0 0 8px; }
+.odds-food-library p { color:#9bb1c0; font-size:11px; line-height:1.7; }
+.odds-food-search { display:block; margin:12px 0; color:#b4c5cf; font-size:11px; }
+.odds-food-search>span { display:block; margin-bottom:6px; }
+.odds-food-search input { width:100%; min-height:38px; border:1px solid #7eaccb50; border-radius:8px; padding:8px 10px; background:#071a27; color:#f1e4c5; font-size:13px; }
+.odds-food-search input:focus-visible { outline:2px solid #e8c777; outline-offset:2px; }
+.odds-food-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; list-style:none; margin:0; padding:0; }
+.odds-food-grid li { min-width:0; overflow:hidden; border:1px solid #8caeb52b; border-radius:9px; background:#102330; }
+.odds-food-grid .food-image,.odds-food-grid .food-image-fallback { width:100%; height:auto; aspect-ratio:1; object-fit:cover; }
+.odds-food-grid strong { display:block; color:#efe2c3; padding:7px 8px 3px; font-size:11px; line-height:1.4; }
+.odds-food-grid small { display:block; color:#a8bbc7; padding:0 8px 8px; font-size:9px; }
+@media(max-width:420px) { .odds-food-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .odds-food-library { margin:16px; } }

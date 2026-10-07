@@ -4,12 +4,13 @@ Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 b�
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
 
-## Bản 2.3 · Bàn đấu trong một màn hình
+## Bản 2.3 · Bàn đấu và Rương Vị Giác
 
 - Bàn đấu chiếm viewport; máu, năng lượng, hai hàng quân, 8 lá trên tay và phần xác nhận luôn nằm trong khung. Điện thoại dọc chia tay bài thành tối đa hai hàng; điện thoại ngang đặt hai phe cạnh nhau.
 - Thanh mô tả bài giữ nguyên vị trí khi chọn. Có nút đọc đầy đủ; nhật ký, luật và di vật mở trong hộp thoại. Escape hủy chọn; điều hướng phía sau bàn đấu tạm ngừng nhận focus.
 - Asset alpha mới cho **lửa, nước, khiên**; animation riêng cho đạn bay, va chạm, tạo/vỡ chắn, hồi máu, cường hóa, triệu hồi, rút bài, cộng hưởng và đòn đánh theo hướng hai phe. Hiệu ứng dựa trên snapshot thật, kể cả phản đòn và Quét sân.
 - Giữ nút bỏ qua, cài đặt giảm chuyển động và bản lưu v1. Asset WebP tổng khoảng 345 KiB, tải trước khi dùng trong trận.
+- TCG và Rương dùng cùng nguồn **112 món**: 58 món quanh năm và 54 món giới hạn theo 9 sự kiện. Nạp cache/CSV vẫn bổ sung món cài sẵn còn thiếu; giữ món riêng và cấu hình thực đơn thường. Rương có nút **Xem món & tỉ lệ**, ảnh món và tìm kiếm không dấu theo đúng pool đang mở.
 - [Tóm tắt và đánh giá cốt truyện — có spoiler](docs/STORY_OVERVIEW.md). [Nguồn và prompt asset](docs/COMBAT_ASSETS.md).
 
 ## Bản 2.2 · Chiếc ghế trống

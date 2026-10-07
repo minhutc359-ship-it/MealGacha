@@ -126,3 +126,11 @@ Bàn đấu cố định theo `100dvh` và safe area, không yêu cầu cuộn t
 `src/game/combatEffects.ts` phân loại hiệu ứng từ cặp snapshot trước/sau: sát thương theo hệ, hồi máu, buff, tạo/vỡ chắn, triệu hồi, rút bài và cộng hưởng. `CombatEffects.tsx` đặt sprite/particle lên đúng chủ tướng, đơn vị hoặc tay bài; Quét sân có hiệu ứng ở từng nạn nhân và phản đòn vẫn hiện trên quân vừa bị hạ. Ba WebP alpha trong `public/assets/tcg/fx/` được tải trước và lưu như Git blob thường để deployment phục vụ đúng ảnh.
 
 Animation chỉ là trình diễn: save cuối cùng vẫn được ghi một lần trước playback. Bỏ qua, giảm chuyển động hoặc tải lại không xử lý sát thương/phần thưởng lần nữa. Không thay đổi mana, cost, luật chắn hay schema lưu trữ ở bản này.
+
+## Nguồn món chung với Rương Vị Giác
+
+`src/infrastructure/catalog/dishCatalog.ts` cung cấp `BUILT_IN_DISHES` cho thẻ món và `mergeDishCatalog` cho Rương. Hiện có 112 món: 58 quanh năm, 48 món theo 8 banner mùa và 6 món Tây Bắc theo banner local. Bí thuật và nhân vật TCG không phải món trong Rương.
+
+Nguồn cache/CSV được ghép trên toàn bộ món cài sẵn; món CSV có ID riêng được giữ, các ghi đè thực đơn thường vẫn được tôn trọng. Món curated/local giữ tên, ảnh và sự kiện theo source để cache cũ không đổi nhầm tính giới hạn. Ba luồng khởi tạo, nạp cache và tải CSV đều dùng cùng hàm ghép. Không đổi lịch sự kiện, storage key hay quyền rương vô hạn đã lưu.
+
+Nút **Xem món & tỉ lệ** trong Rương hiển thị ảnh, tên, bậc hiếm và tìm kiếm không phân biệt dấu/chữ hoa. Danh sách và số món lấy từ `buildPool`: đúng bữa, đúng sự kiện đang hoạt động và đã loại món gần đây khi pool đủ lớn. Thao tác xem/tìm không trừ chìa hay nhận phần thưởng.

@@ -4,7 +4,7 @@ import { repository } from "../infrastructure/storage/repository"
 import { applyCheckIn, canCheckIn } from "../domain/checkIn"
 import { applyOpenChest, buildPool, canOpenChest } from "../domain/drawReward"
 import { applyFuse, canFuse } from "../domain/fuseRewards"
-import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
+import { mergeDishCatalog } from "../infrastructure/catalog/dishCatalog"
 import { fetchCatalog } from "../infrastructure/catalog/csvAdapter"
 import { answerDailyQuestion, getDailyQuestions } from "../domain/dailyQuiz"
 import { getDateKey } from "../domain/dateKey"
@@ -12,19 +12,7 @@ import { syncTitles, TITLES } from "../domain/titles"
 import type { TimelinePost } from "../domain/models"
 import { deleteImage } from "../infrastructure/storage/imageRepository"
 import { clearImages } from "../infrastructure/storage/imageRepository"
-import { enrichDish } from "../infrastructure/catalog/enrichDish"
-import { EVENT_DISHES } from "../infrastructure/catalog/eventCatalog"
-import { CURATED_NORMAL_DISHES } from "../infrastructure/catalog/eventCatalog"
-import localDishes from "../infrastructure/catalog/localDishes.json"
 import { applyDailyQuest, getDailyQuests } from "../domain/dailyQuest"
-
-function withBuiltInDishes(dishes: Dish[]): Dish[] {
-  const merged = new Map(dishes.map((dish) => [dish.id, dish]))
-  // Curated dishes own their IDs even when a cached CSV still has old event assignments.
-  for (const dish of [...CURATED_NORMAL_DISHES, ...EVENT_DISHES]) merged.set(dish.id, dish)
-  for (const dish of localDishes as Dish[]) merged.set(dish.id, enrichDish(dish))
-  return [...merged.values()]
-}
 
 interface AppStore {
   user: UserState
@@ -72,7 +60,7 @@ interface AppStore {
 
 export const useAppStore = create<AppStore>((set, get) => ({
   user: repository.loadUser(),
-  dishes: withBuiltInDishes(SEED_DISHES),
+  dishes: mergeDishCatalog(),
   catalogLoading: false,
   catalogError: null,
   toast: null,
@@ -82,7 +70,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const user = repository.loadUser()
     const cached = repository.loadCatalog()
     const dishes = cached?.dishes?.length && cached.sourceUrl !== "local://catalog"
-      ? withBuiltInDishes(cached.dishes.map(enrichDish)) : withBuiltInDishes(SEED_DISHES)
+      ? mergeDishCatalog(cached.dishes) : mergeDishCatalog()
     const titled = syncTitles(user, dishes)
     if (titled !== user) repository.saveUser(titled)
     set({ user: titled, dishes })
@@ -280,7 +268,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
           dishes: result.dishes,
         }
         repository.saveCatalog(cache)
-        set({ dishes: withBuiltInDishes(result.dishes.map(enrichDish)) })
+        set({ dishes: mergeDishCatalog(result.dishes) })
       }
     } catch (e) {
       set({ catalogError: `Không thể tải catalog: ${(e as Error).message}` })
