@@ -5,11 +5,15 @@ export function Dialog({
   onClose,
   children,
   wide = false,
+  dismissible = true,
+  className = "",
 }: {
   title: string
   onClose: () => void
   children: ReactNode
   wide?: boolean
+  dismissible?: boolean
+  className?: string
 }) {
   const titleId = useId()
   const ref = useRef<HTMLDialogElement>(null)
@@ -26,23 +30,29 @@ export function Dialog({
   }, [])
   return (
     <dialog
-      className={`tcg-dialog ${wide ? "is-wide" : ""}`}
+      className={`tcg-dialog ${wide ? "is-wide" : ""} ${className}`}
       ref={ref}
       onCancel={(e) => {
         e.preventDefault()
         e.stopPropagation()
-        onClose()
+        if (dismissible) onClose()
       }}
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose()
+        if (dismissible && e.target === e.currentTarget) onClose()
       }}
       aria-labelledby={titleId}
     >
       <header>
         <h2 id={titleId}>{title}</h2>
-        <button className="tcg-icon-button" onClick={onClose} aria-label="Đóng">
-          ×
-        </button>
+        {dismissible && (
+          <button
+            className="tcg-icon-button"
+            onClick={onClose}
+            aria-label="Đóng"
+          >
+            ×
+          </button>
+        )}
       </header>
       {children}
     </dialog>

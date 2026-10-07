@@ -1,5 +1,8 @@
 import {
-  MUSIC_TRACKS,
+  musicAsset,
+  musicPath,
+  type MusicAsset,
+  type MusicStyle,
   type MusicTrack,
   type GameSound,
 } from "../../game/audioScore"
@@ -7,6 +10,7 @@ import {
 export interface AudioOptions {
   soundEnabled: boolean
   musicEnabled?: boolean
+  musicStyle?: MusicStyle
   musicVolume?: number
   effectsVolume?: number
 }
@@ -16,7 +20,7 @@ interface Request {
   order: number
 }
 interface MusicVoice {
-  track: MusicTrack
+  track: MusicAsset
   source: AudioBufferSourceNode
   gain: GainNode
   started: number
@@ -30,6 +34,7 @@ interface Dependencies {
 export interface AudioStatus {
   phase: "waiting" | "playing" | "muted" | "ready" | "error"
   track: MusicTrack | null
+  style: MusicStyle
 }
 
 const clamp = (value: number | undefined, fallback: number) =>
@@ -40,6 +45,7 @@ export class GameAudioEngine {
   private options: Required<AudioOptions> = {
     soundEnabled: true,
     musicEnabled: true,
+    musicStyle: "original",
     musicVolume: 0.38,
     effectsVolume: 0.7,
   }
@@ -47,8 +53,8 @@ export class GameAudioEngine {
   private musicBus: GainNode | null = null
   private effectsBus: GainNode | null = null
   private requests = new Map<symbol, Request>()
-  private buffers = new Map<MusicTrack, AudioBuffer>()
-  private offsets = new Map<MusicTrack, number>()
+  private buffers = new Map<MusicAsset, AudioBuffer>()
+  private offsets = new Map<MusicAsset, number>()
   private musicVoices = new Set<MusicVoice>()
   private current: MusicVoice | null = null
   private effects = new Set<AudioScheduledSourceNode>()
@@ -57,9 +63,13 @@ export class GameAudioEngine {
   private unlocked = false
   private serial = 0
   private epoch = 0
-  private loading: MusicTrack | null = null
+  private loading: MusicAsset | null = null
   private duckTimer: ReturnType<typeof setTimeout> | null = null
-  private status: AudioStatus = { phase: "waiting", track: null }
+  private status: AudioStatus = {
+    phase: "waiting",
+    track: null,
+    style: "original",
+  }
   private listeners = new Set<() => void>()
 
   constructor(
@@ -81,8 +91,14 @@ export class GameAudioEngine {
   }
   private notify(phase: AudioStatus["phase"]) {
     const track = this.desired()?.track ?? null
-    if (this.status.phase === phase && this.status.track === track) return
-    this.status = { phase, track }
+    const style = this.options.musicStyle
+    if (
+      this.status.phase === phase &&
+      this.status.track === track &&
+      this.status.style === style
+    )
+      return
+    this.status = { phase, track, style }
     this.listeners.forEach((listener) => listener())
   }
   private desired() {
@@ -108,6 +124,7 @@ export class GameAudioEngine {
     this.options = {
       soundEnabled: options.soundEnabled,
       musicEnabled: options.musicEnabled ?? true,
+      musicStyle: options.musicStyle === "8bit" ? "8bit" : "original",
       musicVolume: clamp(options.musicVolume, 0.38),
       effectsVolume: clamp(options.effectsVolume, 0.7),
     }
@@ -187,7 +204,10 @@ export class GameAudioEngine {
     this.current = null
   }
   private syncMusic() {
-    const desired = this.desired()?.track
+    const request = this.desired()?.track
+    const desired = request
+      ? musicAsset(request, this.options.musicStyle)
+      : undefined
     if (
       !this.mounted ||
       !this.options.soundEnabled ||
@@ -230,7 +250,9 @@ export class GameAudioEngine {
         if (
           epoch !== this.epoch ||
           context !== this.context ||
-          this.desired()?.track !== desired ||
+          !this.desired() ||
+          musicAsset(this.desired()!.track, this.options.musicStyle) !==
+            desired ||
           !this.deps.visible() ||
           !this.options.soundEnabled ||
           !this.options.musicEnabled
@@ -275,11 +297,11 @@ export class GameAudioEngine {
         }
       })
   }
-  private async loadMusic(track: MusicTrack, context: AudioContext) {
+  private async loadMusic(track: MusicAsset, context: AudioContext) {
     const cached = this.buffers.get(track)
     if (cached) return cached
     const data = await this.deps.load(
-      `${import.meta.env.BASE_URL}${MUSIC_TRACKS[track]}`,
+      `${import.meta.env.BASE_URL}${musicPath(track)}`,
     )
     const buffer = await context.decodeAudioData(data)
     if (context === this.context && this.mounted) {

@@ -1,6 +1,7 @@
 export interface StoryLine {
   speaker: string
   text: string
+  beat?: "reveal" | "resolve" | "tender"
 }
 export interface StoryClue {
   title: string
@@ -12,7 +13,11 @@ export interface StoryScene {
   tactic: string
   clue?: StoryClue
 }
-const line = (speaker: string, text: string): StoryLine => ({ speaker, text })
+const line = (
+  speaker: string,
+  text: string,
+  beat?: StoryLine["beat"],
+): StoryLine => ({ speaker, text, ...(beat ? { beat } : {}) })
 export const WORLD_PRIMER: StoryLine[] = [
   line(
     "Bạn",
@@ -434,6 +439,7 @@ export const SCENES: Record<string, StoryScene> = {
       line(
         "Người kể",
         "Chiếc muôi ngân như nhịp tim. Bạn không mang ký ức trong nó. Bạn được tạo ra TỪ ký ức trong nó.",
+        "reveal",
       ),
       line(
         "Bạn",
@@ -479,7 +485,7 @@ export const SCENES: Record<string, StoryScene> = {
     before: [
       line(
         "Liên",
-        "Sương giữ phố này trong một đêm Trung Thu. Tôi làm bánh nhớ người đã mất, rồi chia cho người đang ở đây. Bách bảo đó là níu giữ. Nhưng nhớ một người không đồng nghĩa với nhốt họ lại.",
+        "Sương giữ phố này trong một đêm Trung Thu. Tôi làm bánh nhớ người đã mất, rồi chia cho người đang ở đây. Cha tôi là Bách. Ông bảo đó là níu giữ. Nhưng nhớ một người không đồng nghĩa với nhốt họ lại.",
       ),
       line(
         "Người kể",
@@ -493,6 +499,10 @@ export const SCENES: Record<string, StoryScene> = {
       line(
         "Liên",
         "Ngày em tôi mất, tôi nướng lại chiếc bánh nó bỏ dở. Bánh giống hệt, còn tôi chỉ sống lại đúng một buổi chiều. Tôi mở tiệm khi dám làm một nhân bánh mới và rủ bọn trẻ chia cùng.",
+      ),
+      line(
+        "Liên",
+        "Tôi lên bờ sau trận lũ năm sáu tuổi. Cha nói sóng đưa tôi về. Nhưng cứ nghe nồi cháo sôi, tôi lại nhớ có một người đã bế mình. Vì sao chuyện ấy không có tên ai?",
       ),
     ],
     after: [
@@ -617,7 +627,12 @@ export const SCENES: Record<string, StoryScene> = {
       ),
       line(
         "Bách",
-        "Đứa bé ấy… là tôi. Tôi đã sống nhờ Mai, rồi dành mười bảy năm cố trả món nợ bằng cách giữ cô ấy không được yên.",
+        "Đứa bé ấy… là Liên, con gái tôi. Nó sáu tuổi khi Mai đưa nó lên thuyền cứu hộ. Tôi đã giấu cả tên người được cứu, rồi dành mười bảy năm cố trả món nợ bằng cách giữ Mai không được yên.",
+        "reveal",
+      ),
+      line(
+        "Liên",
+        "Cha đã kể rằng con được sóng đưa lên bờ. Con lớn lên với một câu chuyện không có người cứu mình. Xin trả tên Mai lại cho con — đừng dùng con để buộc cô ấy quay về.",
       ),
       line(
         "Bạn",
@@ -668,6 +683,7 @@ export const SCENES: Record<string, StoryScene> = {
       line(
         "Bà",
         "Ta xin lỗi vì đã gọi con bằng tên người ta mất. Bữa ăn này dành cho con, người đang ở đây.",
+        "tender",
       ),
       line(
         "Người kể",
@@ -682,7 +698,7 @@ export const SCENES: Record<string, StoryScene> = {
       "Boss luân phiên Đốt → Hồi → Rút mỗi lượt; hiệu ứng gấp đôi dưới nửa máu. Cân nhắc hồi máu và tích một lượt kết liễu.",
     clue: {
       title: "Người được cứu trên tàu",
-      text: "Bách là đứa trẻ Mai cứu. Sương giữ lại bữa ăn chờ một người không thể trở về. Chấm dứt nó cần cả sức mạnh lẫn quyền tự chọn của tiếng vọng.",
+      text: "Mai cứu Liên, con gái sáu tuổi của Bách, mười bảy năm trước. Bách giấu sự thật vì món nợ và nỗi sợ mất con. Sương giữ một bữa ăn chờ người không thể trở về; người sống cần quyền biết và tự chọn.",
     },
   },
 }

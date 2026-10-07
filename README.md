@@ -1,8 +1,17 @@
-# MealGacha v2.7 · Lời hứa bên bếp
+# MealGacha v2.8 · Công thức của riêng tôi
 
 Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 6 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
+
+## Bản 2.8 · Công thức của riêng tôi
+
+- **16 ảnh nhân vật phong cách anime 3D** cắt nền: tám nhân vật chính và tám vai phụ. Nhân vật đang nói hiện lớn trên sân khấu cutscene, đổi theo từng câu và có ảnh trong bản chép lời. Đây là ảnh render, chưa phải mô hình 3D chạy trực tiếp.
+- **Hai phong cách nhạc**: Bếp Việt giữ bản phối hiện tại; 8-bit phiêu lưu có bốn bản phối pulse/arpeggio/triangle/noise mới. Nút ♫ trong trận/cutscene hoặc Cài đặt cho đổi ngay và lưu lựa chọn; không dùng nhạc Pokémon/Nintendo.
+- **Ứng biến ở lượt 4**, một lần/trận, không tốn năng lượng: Đảo lửa +1 công cho quân hiện có; Giữ bếp hồi 3 ý chí và +1 chắn cho quân hiện có; Nếm ký ức rút tối đa 2 lá còn trong bộ và vừa chỗ tay. Có chân dung, vòng hiệu ứng và lời thoại riêng; trạng thái chờ/chọn theo mã tiến trình.
+- Thanh chiến thuật hiện công trên sân địch và năng lượng lượt tới. Đây là thông tin nhìn thấy, không đoán bài ẩn hoặc hứa chính xác tổng sát thương. Luật boss vẫn báo trước riêng.
+- **Sáu đoạn thức tỉnh boss riêng**, chỉ mở trong chiến dịch. Sửa mốc tuổi trong twist Bách/Liên, thêm manh mối trước cảnh tiết lộ; văn hóa Việt và hai đoạn kết giữ vai trò trong truyện.
+- Tương thích tiến trình v1 và trận cũ; không thêm tài khoản hoặc thư viện runtime. [Thiết kế và nguồn tham khảo](docs/ANIME_TACTICS_V28.md), [asset và prompt](docs/ANIME_ASSETS.md), [kiểm tra](docs/VERIFICATION_V28.md).
 
 ## Bản 2.7 · Lời hứa bên bếp
 

@@ -339,6 +339,14 @@ function seededRandom(seed: number) {
 function playJourneyBattle(initial: Battle): Battle {
   let b = initial
   for (let turn = 0; turn < 60 && !b.result; turn++) {
+    if (b.tactic?.status === "pending") {
+      const next = actBattle(b, {
+        type: "tactic",
+        id: b.player.board.length >= 2 ? "flame" : "shelter",
+      })
+      expect(next.error).toBeNull()
+      b = next.battle
+    }
     for (let i = 0; i < 12 && !b.result; i++) {
       const choices = b.player.hand
         .map((id, index) => ({ card: CARD_MAP[id], index }))

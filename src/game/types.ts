@@ -82,6 +82,10 @@ export interface Battle {
   result: "win" | "loss" | null
   settled: boolean
   nextUid: number
+  tactic?: {
+    status: "waiting" | "pending" | "chosen"
+    choice?: import("./tactics").TacticId
+  }
   openingGiftUsed?: boolean
   opening?: boolean
   encounter?: EncounterState

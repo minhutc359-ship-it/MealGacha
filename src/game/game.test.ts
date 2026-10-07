@@ -195,8 +195,11 @@ describe("turn combat rules", () => {
     b.enemy.deck = []
     b.player.hand = []
     b.enemy.hand = []
-    for (let i = 0; i < 20 && !b.result; i++)
+    for (let i = 0; i < 20 && !b.result; i++) {
+      if (b.tactic?.status === "pending")
+        b = actBattle(b, { type: "tactic", id: "shelter" }).battle
       b = actBattle(b, { type: "end" }).battle
+    }
     expect(b.result).not.toBeNull()
     expect(actBattle(b, { type: "end" }).battle).toBe(b)
   })
@@ -379,6 +382,14 @@ describe("store safeguards and persistence", () => {
 function autoPlay(initial: Battle): Battle {
   let b = initial
   for (let turns = 0; turns < 60 && !b.result; turns++) {
+    if (b.tactic?.status === "pending") {
+      const result = actBattle(b, {
+        type: "tactic",
+        id: b.player.board.length >= 2 ? "flame" : "shelter",
+      })
+      expect(result.error).toBeNull()
+      b = result.battle
+    }
     for (let plays = 0; plays < 12 && !b.result; plays++) {
       const choices = b.player.hand
         .map((id, index) => ({ c: CARD_MAP[id], index }))

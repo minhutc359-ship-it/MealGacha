@@ -36,6 +36,7 @@ import {
 } from "../../game/encounters"
 import { SIDE_QUEST_MAP } from "../../game/journeys"
 import { stageArtId } from "../../game/storyArt"
+import { TACTICS, tacticError, visibleThreat } from "../../game/tactics"
 
 interface SpellSelection {
   type: "play"
@@ -330,6 +331,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
   const culturalPage = stage ? cultureForStage(stage.id) : undefined
   const rule = battleRule(battle)
   const intent = bossIntent(battle)
+  const threat = visibleThreat(battle)
   const objective = encounterLabel(battle)
   const readyRecipe = selectedCard
     ? recipeReady(battle.player, selectedCard)
@@ -462,7 +464,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </button>
         </div>
       </header>
-      {(battle.expedition || rule) && (
+      {!battle.opening && (
         <button
           className={`tcg-tactics-ribbon ${
             rule && battle.enemy.health <= battle.enemy.maxHealth / 2
@@ -478,14 +480,18 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                     ? " · THỨC TỈNH"
                     : ""
                 }`
-              : `◈ Thám hiểm · ${battle.expedition!.relics.length} di vật`}
+              : `⚔ Công trên sân địch ${threat.attack} · Lượt tới ${threat.nextMana} năng lượng`}
           </strong>
           <span>
             {objective
               ? `${objective} · Sắp tới: ${intent?.text ?? "Đối thủ ra bài"}`
               : intent
                 ? `Sắp tới: ${intent.text}`
-                : "Máu giữ giữa các trận · Chạm để xem di vật"}
+                : `${
+                    threat.guards
+                      ? "Hộ vệ đang chặn đòn đánh"
+                      : "Chủ tướng đang trống Hộ vệ"
+                  } · Chạm để xem chiến thuật`}
           </span>
           <b>i</b>
         </button>
@@ -495,6 +501,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           aura ? "has-recipe-aura" : ""
         } ${busy ? "is-resolving" : ""}`}
         ref={arena}
+        data-tactic={frame?.event.tacticId}
         style={{ "--table-color": aura?.color ?? "#9bcea6" } as CSSProperties}
       >
         <div
@@ -825,8 +832,26 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           lượng · 8 lá trên tay
         </p>
         <CombatEffects arena={arena} frame={frame} stamp={stamp} />
+        {frame?.event.kind === "tactic" && frame.event.tacticId && (
+          <div
+            className={`tcg-tactic-burst burst-${frame.event.tacticId}`}
+            key={`tactic-${stamp}`}
+            aria-hidden="true"
+            data-effect="tactic"
+          >
+            <i />
+            <i />
+            <i />
+            <strong>
+              {TACTICS.find((t) => t.id === frame.event.tacticId)?.name}
+            </strong>
+            <span>
+              {TACTICS.find((t) => t.id === frame.event.tacticId)?.quote}
+            </span>
+          </div>
+        )}
         {frame &&
-          (["combo", "assist", "rule"].includes(frame.event.kind) ||
+          (["combo", "assist", "rule", "tactic"].includes(frame.event.kind) ||
             (frame.event.kind === "play" &&
               !!frame.event.cardId &&
               CARD_MAP[frame.event.cardId].kind === "spell" &&
@@ -848,7 +873,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                   ? "CÔNG THỨC THỨC TỈNH"
                   : frame.event.kind === "assist"
                     ? "LỜI HỨA TRỢ CHIẾN"
-                    : "Ý CHÍ BÙNG LÊN"}
+                    : frame.event.kind === "tactic"
+                      ? "CÔNG THỨC CỦA RIÊNG TÔI"
+                      : "Ý CHÍ BÙNG LÊN"}
               </strong>
             </div>
           )}
@@ -912,9 +939,28 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
       )}
       {showTactics && (
         <Dialog
-          title={rule ? rule.name : "Di vật hành trình"}
+          title={rule ? rule.name : "Đọc bàn đấu"}
           onClose={() => setShowTactics(false)}
         >
+          <div className="tcg-tactic">
+            <p>
+              <strong>Sân hiện tại:</strong> địch có tổng {threat.attack} công;
+              lượt tới nhận {threat.nextMana} năng lượng.{" "}
+              {threat.guards
+                ? "Hộ vệ của bạn chặn đòn đánh thường."
+                : "Bạn chưa có Hộ vệ trên sân."}
+            </p>
+            <p>
+              Đây là sức công đang thấy, không phải tổng sát thương lượt tới.
+              Bài địch ra thêm và mục tiêu đánh có thể đổi nguy cơ. Phép và luật
+              boss có thể vượt Hộ vệ.
+            </p>
+            <p>
+              <strong>Ứng biến:</strong> lượt 4 chọn một trong ba cách, không
+              tốn năng lượng, một lần mỗi trận. Tăng công hoặc chắn chỉ áp dụng
+              cho đồng minh đang trên sân.
+            </p>
+          </div>
           {rule && (
             <div className="tcg-tactic">
               <p>{rule.text}</p>
@@ -1139,6 +1185,50 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </button>
         </Dialog>
       )}
+      {stored.tactic?.status === "pending" &&
+        !busy &&
+        !sceneId &&
+        !stored.result && (
+          <Dialog
+            title="Ứng biến · Viết một công thức mới"
+            onClose={() => {}}
+            dismissible={false}
+            className="tcg-tactic-dialog"
+            wide
+          >
+            <div className="tcg-tactic-intro">
+              <CharacterPortrait id="hero" decorative />
+              <p>
+                <b>Lượt 4 · Một lần trong trận</b>Không tốn năng lượng.
+                Chọn hiệu ứng cho bàn đấu của bạn.
+              </p>
+            </div>
+            <div className="tcg-tactic-choices">
+              {TACTICS.map((tactic) => {
+                const error = tacticError(stored, tactic.id)
+                return (
+                  <button
+                    key={tactic.id}
+                    className={`tcg-tactic-choice tactic-${tactic.id}`}
+                    disabled={!!error}
+                    onClick={() => execute({ type: "tactic", id: tactic.id })}
+                  >
+                    <span className="tcg-tactic-symbol" aria-hidden="true">
+                      {tactic.symbol}
+                    </span>
+                    <strong>{tactic.name}</strong>
+                    <span>{tactic.text}</span>
+                    <small>{error ?? tactic.hint}</small>
+                  </button>
+                )
+              })}
+            </div>
+            <p className="tcg-tactic-quote">
+              “Tôi được tạo ra từ một ký ức. Cách tôi giữ bàn hôm nay là của
+              riêng tôi.”
+            </p>
+          </Dialog>
+        )}
       {stored.result && !busy && !sceneId && (
         <Dialog
           title={

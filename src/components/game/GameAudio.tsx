@@ -17,6 +17,7 @@ export function useGameAudio() {
     [
       prefs.soundEnabled,
       prefs.musicEnabled,
+      prefs.musicStyle,
       prefs.musicVolume,
       prefs.effectsVolume,
     ],
@@ -97,6 +98,30 @@ export function AudioControls() {
           onChange={(e) => update("soundEnabled", e.target.checked)}
         />
       </label>
+      <fieldset className="tcg-music-styles">
+        <legend>Phong cách nhạc</legend>
+        {(["original", "8bit"] as const).map((style) => (
+          <label key={style}>
+            <input
+              type="radio"
+              name="music-style"
+              value={style}
+              checked={(prefs.musicStyle ?? "original") === style}
+              onChange={() => update("musicStyle", style)}
+            />
+            <span>
+              <strong>
+                {style === "original" ? "Bếp Việt" : "8-bit phiêu lưu"}
+              </strong>
+              <small>
+                {style === "original"
+                  ? "Nhạc ấm áp như hiện tại"
+                  : "Giai điệu MealGacha · âm sắc retro"}
+              </small>
+            </span>
+          </label>
+        ))}
+      </fieldset>
       <label>
         <span>Nhạc nền trận đấu & cutscene</span>
         <input
@@ -142,7 +167,9 @@ export function AudioControls() {
             : status.phase === "error"
               ? "Chưa tải được nhạc. Phát thử để thử lại."
               : status.phase === "playing" && status.track
-                ? `Đang phát · ${trackNames[status.track]}`
+                ? `Đang phát · ${trackNames[status.track]} · ${
+                    status.style === "8bit" ? "8-bit" : "Bếp Việt"
+                  }`
                 : "Âm thanh đã sẵn sàng."}
       </p>
       <button

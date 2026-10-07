@@ -267,6 +267,16 @@ export const GameSaveSchema = z
         result: z.enum(["win", "loss"]).nullable(),
         settled: z.boolean(),
         nextUid: integer,
+        tactic: z
+          .object({
+            status: z.enum(["waiting", "pending", "chosen"]),
+            choice: z.enum(["flame", "shelter", "insight"]).optional(),
+          })
+          .refine(
+            (t) => (t.status === "chosen") === !!t.choice,
+            "Ứng biến không nhất quán",
+          )
+          .optional(),
         opening: z.boolean().default(false),
         openingGiftUsed: z.boolean().default(false),
         encounter: z
@@ -315,6 +325,11 @@ export const GameSaveSchema = z
   })
   .superRefine((save, ctx) => {
     const b = save.battle
+    if (
+      b?.tactic?.status === "pending" &&
+      (b.round < 4 || b.opening || b.result)
+    )
+      ctx.addIssue({ code: "custom", message: "Chưa đến lượt ứng biến" })
     if (
       b &&
       [!!b.sideQuest, !!b.weekly, !!b.expedition].filter(Boolean).length > 1

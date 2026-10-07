@@ -1,6 +1,6 @@
 import {
   CHARACTER_ART,
-  NPC_NAMES,
+  CHARACTER_NAMES,
   type CharacterId,
 } from "../../game/characters"
 export function CharacterPortrait({
@@ -26,7 +26,7 @@ export function CharacterPortrait({
               ? "Người bà bên bếp"
               : id === "mist"
                 ? "Người giữ bếp trong sương"
-                : NPC_NAMES[id]
+                : CHARACTER_NAMES[id]
       }
       width="512"
       height="512"
