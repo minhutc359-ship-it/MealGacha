@@ -3,7 +3,7 @@ import type { StoryLine } from "../../game/narrative"
 import { STORY_ART, type StoryArtId } from "../../game/storyArt"
 import { storyMusic } from "../../game/audioScore"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
-import { speakerCharacter } from "../../game/characters"
+import { CHARACTER_ART, speakerCharacter } from "../../game/characters"
 import { CharacterPortrait } from "./CharacterPortrait"
 import { AudioButton, useStoryMusic } from "./GameAudio"
 
@@ -36,19 +36,43 @@ export function StoryScene({ lines, art = "lantern", onComplete }: Props) {
   return (
     <section
       ref={root}
-      className="tcg-scene is-illustrated"
+      className={`tcg-scene is-illustrated tcg-anime-scene ${
+        portrait ? "has-speaker" : "is-narration"
+      }`}
       aria-label="Đoạn truyện"
+      data-beat={current.beat ?? "quiet"}
     >
-      <figure className="tcg-scene-art">
+      <figure
+        className="tcg-scene-art"
+        key={`${art}-${current.beat ?? "quiet"}`}
+      >
         <img
+          className="tcg-scene-backdrop"
           src={picture.src}
           alt={picture.alt}
           width="1280"
           height="720"
           decoding="async"
         />
+        {portrait && (
+          <div
+            className={`tcg-scene-actor actor-${portrait}`}
+            key={portrait}
+            data-character={portrait}
+          >
+            <img
+              src={CHARACTER_ART[portrait]}
+              alt={`${current.speaker} đang nói`}
+              width="640"
+              height="960"
+              decoding="async"
+            />
+          </div>
+        )}
         <figcaption>
-          <span>BÀN KÝ ỨC</span>
+          <span>
+            {portrait ? `ĐANG NÓI · ${current.speaker}` : "BÀN KÝ ỨC · LỜI DẪN"}
+          </span>
           {picture.title}
         </figcaption>
       </figure>
@@ -112,9 +136,17 @@ export function StoryScene({ lines, art = "lantern", onComplete }: Props) {
         <details className="tcg-scene-transcript">
           <summary>Xem toàn bộ lời thoại</summary>
           {lines.map((item, i) => (
-            <p key={i}>
-              <strong>{item.speaker}:</strong> {item.text}
-            </p>
+            <div key={i} className="tcg-transcript-line">
+              {speakerCharacter(item.speaker) && (
+                <CharacterPortrait
+                  id={speakerCharacter(item.speaker)!}
+                  decorative
+                />
+              )}
+              <p>
+                <strong>{item.speaker}:</strong> {item.text}
+              </p>
+            </div>
           ))}
         </details>
       </div>

@@ -1,14 +1,23 @@
 import type { NpcId } from "./types"
 import { STAGE_MAP } from "./story"
 export const CHARACTER_ART = {
-  hero: "/assets/tcg/characters/hero.webp",
-  bach: "/assets/tcg/characters/bach.webp",
-  nhien: "/assets/tcg/characters/nhien.webp",
-  moc: "/assets/tcg/characters/moc.webp",
-  hai: "/assets/tcg/characters/hai.webp",
-  lien: "/assets/tcg/characters/lien.webp",
-  grandmother: "/assets/tcg/characters/grandmother.webp",
-  mist: "/assets/tcg/characters/mist.webp",
+  hero: "/assets/tcg/characters/anime/hero.webp",
+  bach: "/assets/tcg/characters/anime/bach.webp",
+  nhien: "/assets/tcg/characters/anime/nhien.webp",
+  moc: "/assets/tcg/characters/anime/moc.webp",
+  hai: "/assets/tcg/characters/anime/hai.webp",
+  lien: "/assets/tcg/characters/anime/lien.webp",
+  grandmother: "/assets/tcg/characters/anime/grandmother.webp",
+  mist: "/assets/tcg/characters/anime/mist.webp",
+  echo: "/assets/tcg/characters/anime/hero.webp",
+  merchant: "/assets/tcg/characters/anime/merchant.webp",
+  sailor: "/assets/tcg/characters/anime/sailor.webp",
+  fisherman: "/assets/tcg/characters/anime/fisherman.webp",
+  hieu: "/assets/tcg/characters/anime/hieu.webp",
+  child: "/assets/tcg/characters/anime/child.webp",
+  guest: "/assets/tcg/characters/anime/guest.webp",
+  la: "/assets/tcg/characters/anime/la.webp",
+  conductor: "/assets/tcg/characters/anime/conductor.webp",
 } as const
 export type CharacterId = keyof typeof CHARACTER_ART
 export const NPC_NAMES: Record<NpcId, string> = {
@@ -18,14 +27,50 @@ export const NPC_NAMES: Record<NpcId, string> = {
   hai: "Hải",
   lien: "Liên",
 }
+export const CHARACTER_NAMES: Record<CharacterId, string> = {
+  ...NPC_NAMES,
+  hero: "Người giữ vị",
+  grandmother: "Bà",
+  mist: "Linh ảnh trong sương",
+  echo: "Sương Nhạt · Tiếng vọng",
+  merchant: "Người bán hàng",
+  sailor: "Thủy thủ",
+  fisherman: "Ngư dân",
+  hieu: "Nghệ nhân Hiệu",
+  child: "Em bé cầm đèn",
+  guest: "Người khách Nam Bộ",
+  la: "Lả",
+  conductor: "Người soát vé",
+}
 export function speakerCharacter(speaker: string): CharacterId | null {
-  if (speaker === "Bạn") return "hero"
-  if (speaker.includes("Bà") && !speaker.includes("Bài")) return "grandmother"
+  if (speaker.startsWith("Bạn")) return "hero"
+  if (speaker === "Người kể") return null
+  if (speaker.includes("Hiệu")) return "hieu"
+  if (/^Bà(?:$| ·)/.test(speaker)) return "grandmother"
+  if (speaker === "Sương Nhạt") return "echo"
+  if (speaker.includes("bán hàng")) return "merchant"
+  if (speaker.includes("Thủy thủ")) return "sailor"
+  if (speaker.includes("Ngư dân")) return "fisherman"
+  if (speaker === "Em bé") return "child"
+  if (speaker.toLowerCase().includes("soát vé")) return "conductor"
+  if (speaker.toLowerCase().includes("khách")) return "guest"
+  if (speaker === "Lả") return "la"
+  if (
+    /(Hỏa Linh|Hải Vương|Thiên Nga|Ký Ức Không Tên|Cổ Thụ|Canh Bếp)/i.test(
+      speaker,
+    )
+  )
+    return "mist"
   const id = (Object.keys(NPC_NAMES) as NpcId[]).find((id) =>
     speaker.includes(NPC_NAMES[id]),
   )
   return (
-    id ?? (/(Sương|Canh Bếp|Cổ Thụ|Ảo ảnh|Nuốt)/i.test(speaker) ? "mist" : null)
+    id ??
+    (/(Sương|Canh Bếp|Cổ Thụ|Ảo ảnh|Nuốt|Hỏa Linh|Hải Vương|Thiên Nga|Ký Ức)/i.test(
+      speaker,
+    )
+      ? "mist"
+      : null)
   )
 }
 export function opponentCharacter(

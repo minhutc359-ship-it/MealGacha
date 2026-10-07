@@ -3,6 +3,7 @@ import { NPC_NAMES } from "./characters"
 import type { Battle, NpcId } from "./types"
 import type { BattleEvent } from "./battle"
 import type { StoryArtId } from "./storyArt"
+import { DRAMATIC_BEATS } from "./dramaticBeats"
 
 export function battleRule(b: Battle) {
   return BOSS_RULES[b.bossRuleId ?? b.stageId ?? ""]
@@ -124,10 +125,7 @@ export function queueScene(b: Battle, id: string) {
   )
     b.pendingScenes = [...(b.pendingScenes ?? []), id]
 }
-export function midScene(
-  id: string,
-  battle?: Battle,
-): {
+export function midScene(id: string, battle?: Battle): {
   title: string
   art: StoryArtId
   lines: StoryLine[]
@@ -149,6 +147,11 @@ export function midScene(
       ],
     }
   }
+  const campaignBeat =
+    battle?.stageId && !battle.sideQuest && !battle.weekly && !battle.expedition
+      ? DRAMATIC_BEATS[battle.stageId]
+      : undefined
+  if (campaignBeat && id === `awaken:${battle!.stageId}`) return campaignBeat
   const harbor = battle?.encounter?.kind === "rescue"
   const protect = battle?.encounter?.kind === "protect"
   return {

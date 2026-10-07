@@ -1,0 +1,117 @@
+{
+  "mode": "built-in imagegen",
+  "assets": [
+    {
+      "id": "hero",
+      "prompt": "Use case: stylized-concept. Asset type: transparent speaking-character cutout for original Vietnamese game MealGacha. Create an unmistakably ANIME 3D cel-shaded character, a young adult Vietnamese female cook age 22. Strong stylization: very large brown anime eyes, simplified small nose, clean sculpted face, hand-painted smooth skin without pores, chunky sculpted hair locks, toon shader, saturated color blocks, subtle 3D ambient occlusion; like a high quality original anime JRPG 3D character render, NOT a photograph, NOT realistic human skin. Black hair loose bun with wooden hairpin, teal scarf, cream linen rolled sleeve blouse, brown apron. Silver ladle held at chest. Warm thoughtful determined expression, waist-up body, full arms visible, centered medium shot, no cropping on sides, portrait 2:3 aspect. Soft golden key and cool teal rim. Absolutely transparent background outside the character silhouette, no halo haze, no scenery, no ground, no card frame, no text or watermark. Original modest everyday Vietnamese character.",
+      "path": "public/assets/tcg/characters/anime/hero.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "bach",
+      "prompt": "Use case: stylized-concept. Asset type: MealGacha transparent visual-novel character cutout. Input image 1 is STYLE REFERENCE ONLY, use same unmistakably anime 3D cel-shaded sculpted rendering, large expressive eyes, smooth toon face and chunky hair, not photographic. New subject: Bách, Vietnamese male mentor cook age 55, short salt-and-pepper hair, neat short moustache and stubble, expressive tired brown eyes, weathered but stylized face, modest gray-beige shirt sleeves rolled, burgundy apron, a well-used small recipe notebook held at chest. Thoughtful slightly guilty expression yet warm. Waist-up centered medium shot including complete arms, portrait 2:3, soft warm key and teal rim, clean transparent silhouette with no glow haze. No background, scenery, ground, text, UI or watermark. Keep him visibly middle aged, distinctly different from young heroine. High quality original anime 3D game NPC.",
+      "path": "public/assets/tcg/characters/anime/bach.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "nhien",
+      "prompt": "Use case: stylized-concept. Asset type: MealGacha transparent waist-up visual-novel NPC. Image 1 is STYLE REFERENCE ONLY: match anime 3D toon sculpted face, large expressive eyes, chunky hair shapes, smooth skin and rendered cloth, not photorealism. New character Nhiên, Vietnamese woman age 27, short black bob tied partly back, confident brown anime eyes, indigo practical work jacket with rolled sleeves and a muted red neck scarf, harbor rescue worker. Hold a small folded nautical chart at chest; calm brave expression, slightly angled toward viewer. Modest contemporary everyday outfit. Centered portrait 2:3 waist-up including arms completely, warm amber key and teal rim, transparent background outside silhouette with no scenery, no haze, no floor, no text, no frame, no watermark. Original character clearly distinct from the heroine.",
+      "path": "public/assets/tcg/characters/anime/nhien.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "moc",
+      "prompt": "Use case: stylized-concept. Asset type: MealGacha transparent waist-up character cutout. Image 1 is STYLE reference only, matching polished anime 3D toon shading and large expressive eyes, smoothly sculpted face, no photoreal pores. Subject Mộc, Vietnamese young adult woman age 29, long black hair in a single braid hanging over one shoulder with green ribbon, gentle deep brown eyes, green modest linen blouse, simple cream apron, holds a small ceramic tea cup in both hands at chest. A quiet contemplative smile, distinct face with rounder cheeks than reference, slightly toward viewer. Waist-up centered medium shot full arms in frame, portrait 2:3. Warm golden key and cool teal rim, absolutely transparent background outside her silhouette, no scenery or ground, no haze halo, no writing/UI/watermark. Original anime 3D game NPC.",
+      "path": "public/assets/tcg/characters/anime/moc.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "hai",
+      "prompt": "Use case: stylized-concept. Asset type: MealGacha transparent waist-up NPC. Image 1 is style reference only, use polished anime 3D toon shader, smooth sculpted skin, big expressive eyes, chunky hair. New character Hải, Vietnamese male age 33, short wavy black hair, angular jaw and gentle narrow brown anime eyes, slightly sun-tanned skin, clean shaven, blue-gray collarless linen shirt with sleeves rolled, dark blue waist sash, holds a simple white porcelain bowl in his hands. Calm reflective expression, distinct masculine face. Centered waist-up including complete arms, portrait 2:3, warm key light and teal rim. Transparent outside silhouette, no background, ground or haze, no UI/text/watermark. Original modest Vietnamese river cook, unmistakably stylized anime 3D game render, not a photo.",
+      "path": "public/assets/tcg/characters/anime/hai.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "lien",
+      "prompt": "Use case: stylized-concept. Asset type: MealGacha transparent waist-up speaking NPC. Image 1 is STYLE REFERENCE ONLY: match unmistakably polished anime 3D toon sculpting, big expressive eyes, smooth stylized skin and detailed rendered cloth, not photographic. New character Liên, Vietnamese woman age 23, straight shoulder-length dark brown hair with blunt bangs, amber anime eyes, distinctly oval face and playful confident smile. Cream modest blouse and dusty rose cooking apron. Holds a small red five-point bamboo star lantern by its handle at her chest, lantern completely within frame. Centered waist-up medium shot with complete arms visible, portrait 2:3. Warm amber key light and cool teal rim. Entire exterior of silhouette truly transparent, no backdrop or scene, no haze halo, no floor, no UI/text/frame/watermark. Original Vietnamese game character.",
+      "path": "public/assets/tcg/characters/anime/lien.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "grandmother",
+      "prompt": "Use case: stylized-concept. Asset type: MealGacha transparent waist-up speaking NPC. Image 1 is STYLE REFERENCE ONLY: match unmistakably polished anime 3D toon sculpting, big expressive eyes, smooth stylized skin and detailed rendered cloth, not photographic. New character the Grandmother, Vietnamese elderly woman age 72, gray hair tied in low neat bun, visibly aged with gentle wrinkles rendered in anime style, kind large brown eyes, soft round face. Brown áo bà ba button-front blouse, cream cotton apron, holds a broad green banana leaf folded in her hands. Tender bittersweet smile, clearly an elderly woman not a young woman. Centered waist-up medium shot with complete arms visible, portrait 2:3. Warm amber key light and cool teal rim. Entire exterior of silhouette truly transparent, no backdrop or scene, no haze halo, no floor, no UI/text/frame/watermark. Original Vietnamese game character.",
+      "path": "public/assets/tcg/characters/anime/grandmother.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "mist",
+      "prompt": "Use case: stylized-concept. Asset type: MealGacha transparent waist-up speaking NPC. Image 1 is STYLE REFERENCE ONLY: match unmistakably polished anime 3D toon sculpting, big expressive eyes, smooth stylized skin and detailed rendered cloth, not photographic. New character the Mist Warden, an androgynous elderly Vietnamese spirit cook, silver-gray medium hair swept back, solemn expressive luminous teal eyes, long indigo modest cook coat and faded teal scarf. Hands fold together at chest holding a cracked ceramic bowl, subtle pale blue translucent wisps confined close to clothing silhouette. Face sculpted like an old anime NPC, calm mysterious presence, no horror gore. Centered waist-up medium shot with complete arms visible, portrait 2:3. Warm amber key light and cool teal rim. Entire exterior of silhouette truly transparent, no backdrop or scene, no haze halo, no floor, no UI/text/frame/watermark. Original Vietnamese game character.",
+      "path": "public/assets/tcg/characters/anime/mist.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "merchant",
+      "prompt": "Use case: stylized-concept. MealGacha original Vietnamese game NPC, transparent waist-up cutout, polished anime 3D cel shading, smooth sculpted toon face, large expressive brown anime eyes, chunky hair and rendered cloth. Style reference image is only rendering reference, subject must have a distinct face. Subject a Vietnamese male bánh mì vendor age 48, broad round face, close cropped black hair with gray at temples, friendly cheeky smile, beige short sleeve shirt and dark green apron. Holds a crusty bánh mì paper-wrapped in one hand and a small cup of tea in the other. Centered portrait 2:3 medium waist-up, full hands and arms inside frame. Warm key and teal rim. Truly transparent background outside silhouette. No scenery, no background haze, no floor, no UI/text/frame/watermark. Clearly stylized anime, not photo.",
+      "path": "public/assets/tcg/characters/anime/merchant.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "sailor",
+      "prompt": "Use case: stylized-concept. MealGacha original Vietnamese game NPC, transparent waist-up cutout, polished anime 3D cel shading, smooth sculpted toon face, large expressive brown anime eyes, chunky hair and rendered cloth. Style reference image is only rendering reference, subject must have a distinct face. Subject a Vietnamese male sailor age 44, broad square jaw, very short black hair, thick eyebrows, sun-tanned skin, small cheek scar, no hat, navy work vest over ivory shirt, red fabric band tied on wrist. Holds a coiled short rope at chest, sober kind expression. Centered portrait 2:3 medium waist-up, full hands and arms inside frame. Warm key and teal rim. Truly transparent background outside silhouette. No scenery, no background haze, no floor, no UI/text/frame/watermark. Clearly stylized anime, not photo.",
+      "path": "public/assets/tcg/characters/anime/sailor.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "hieu",
+      "prompt": "Use case: stylized-concept. MealGacha original Vietnamese game NPC, transparent waist-up cutout, polished anime 3D cel shading, smooth sculpted toon face, large expressive brown anime eyes, chunky hair and rendered cloth. Style reference image is only rendering reference, subject must have a distinct face. Subject bà nghệ nhân Hiệu, elderly Vietnamese woman age 68, slender face with expressive wrinkles, gray-black hair tied low with a muted purple headscarf, plum áo bà ba modest button-front blouse, simple linen sash. Holds a pair of plain small wooden rhythm clappers at chest, warmly invites a reply, distinctly different from a grandmother cook. No elaborate ceremonial costume. Centered portrait 2:3 medium waist-up, full hands and arms inside frame. Warm key and teal rim. Truly transparent background outside silhouette. No scenery, no background haze, no floor, no UI/text/frame/watermark. Clearly stylized anime, not photo.",
+      "path": "public/assets/tcg/characters/anime/hieu.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "child",
+      "prompt": "Use case: stylized-concept. MealGacha original Vietnamese game NPC, transparent waist-up cutout, polished anime 3D cel shading, smooth sculpted toon face, large expressive brown anime eyes, chunky hair and rendered cloth. Style reference image is only rendering reference, subject must have a distinct face. Subject a Vietnamese child age 8, round face, short neat dark hair, cheerful bright anime eyes, simple mustard yellow long sleeve shirt and green neck scarf. Holds a slightly crooked colorful bamboo five-point star lantern at chest, playful proud smile, child proportions and fully modest clothing. Centered portrait 2:3 medium waist-up, full hands and arms inside frame. Warm key and teal rim. Truly transparent background outside silhouette. No scenery, no background haze, no floor, no UI/text/frame/watermark. Clearly stylized anime, not photo.",
+      "path": "public/assets/tcg/characters/anime/child.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "fisherman",
+      "prompt": "Use case: stylized-concept. MealGacha original Vietnamese game NPC transparent waist-up character, anime 3D cel-shaded sculpted toon style, large expressive eyes and chunky hair, smooth stylized face, soft rendered fabric. Image1 only style reference, don't copy its face or clothing. New subject a Vietnamese elderly male fisherman age 61, slender face, deeply tanned skin, kind wrinkled eyes, cropped gray hair under a plain woven straw hat, short gray goatee. Simple dark teal cotton button shirt rolled sleeves, holds a small neatly folded fishing net at chest. Calm reflective expression. Centered waist-up portrait 2:3, hands and arms complete in frame, warm amber key and cool teal rim. Truly transparent background outside silhouette, no scene, floor, glow haze, writing, UI or watermark. Original modest culturally respectful character, unmistakably anime 3D game render.",
+      "path": "public/assets/tcg/characters/anime/fisherman.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "guest",
+      "prompt": "Use case: stylized-concept. MealGacha original Vietnamese game NPC transparent waist-up character, anime 3D cel-shaded sculpted toon style, large expressive eyes and chunky hair, smooth stylized face, soft rendered fabric. Image1 only style reference, don't copy its face or clothing. New subject a Vietnamese male traveler and amateur musician from southern Vietnam age 38, round face, light moustache, wavy short black hair, welcoming smile. Cream modest linen collarless shirt and a black-and-white checkered khăn rằn loosely around neck. Holds a small đàn kìm: long slender neck and circular flat wooden resonator, two strings and two tuning pegs, clearly not a guitar. Instrument entirely within frame. Centered waist-up portrait 2:3, hands and arms complete in frame, warm amber key and cool teal rim. Truly transparent background outside silhouette, no scene, floor, glow haze, writing, UI or watermark. Original modest culturally respectful character, unmistakably anime 3D game render.",
+      "path": "public/assets/tcg/characters/anime/guest.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "la",
+      "prompt": "Use case: stylized-concept. MealGacha original Vietnamese game NPC transparent waist-up character, anime 3D cel-shaded sculpted toon style, large expressive eyes and chunky hair, smooth stylized face, soft rendered fabric. Image1 only style reference, don't copy its face or clothing. New subject Lả, an adult Vietnamese Thái woman from northwest Vietnam age 30, long black hair in a low braid, graceful confident brown eyes, modest emerald fitted long sleeve blouse with simple row of small silver buttons at front, black waist wrap and muted woven sash, no invented giant headdress. Holds a small folded indigo woven cloth at chest, warmly inviting a guest into a circle. Distinct broad cheekbones and serene smile. Fictional everyday character, no claims of specific ceremonial dress. Centered waist-up portrait 2:3, hands and arms complete in frame, warm amber key and cool teal rim. Truly transparent background outside silhouette, no scene, floor, glow haze, writing, UI or watermark. Original modest culturally respectful character, unmistakably anime 3D game render.",
+      "path": "public/assets/tcg/characters/anime/la.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    },
+    {
+      "id": "conductor",
+      "prompt": "Use case: stylized-concept. MealGacha original Vietnamese game NPC transparent waist-up character, anime 3D cel-shaded sculpted toon style, large expressive eyes and chunky hair, smooth stylized face, soft rendered fabric. Image1 only style reference, don't copy its face or clothing. New subject a mysterious Vietnamese male train ticket inspector age 46, narrow long face, neat short dark hair, slim moustache, round spectacles, modest deep blue uniform vest over ivory long sleeve shirt, simple blue peaked cap without any insignia or writing. Holds a brass ticket punch and a blank small ticket. Thoughtful watchful expression, not frightening. Centered waist-up portrait 2:3, hands and arms complete in frame, warm amber key and cool teal rim. Truly transparent background outside silhouette, no scene, floor, glow haze, writing, UI or watermark. Original modest culturally respectful character, unmistakably anime 3D game render.",
+      "path": "public/assets/tcg/characters/anime/conductor.webp",
+      "mode": "built-in imagegen",
+      "use": "stylized-concept"
+    }
+  ]
+}

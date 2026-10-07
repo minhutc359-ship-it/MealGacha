@@ -26,7 +26,10 @@ export interface Dish {
   baseWeight?: number
   type?: "normal" | "limited"
   limitedEventId?: string
-  restaurantSearch?: { queries: string[]; cuisineTags?: string[] }
+  restaurantSearch?: {
+    queries: string[]
+    cuisineTags?: string[]
+  }
   fusion?: { enabled: boolean }
 }
 
@@ -83,6 +86,7 @@ export interface UserPreferences {
   language?: "vi" | "en"
   soundEnabled: boolean
   musicEnabled?: boolean
+  musicStyle?: "original" | "8bit"
   musicVolume?: number
   effectsVolume?: number
   reducedMotion: boolean
@@ -113,7 +117,10 @@ export interface UserState {
   unlockedTitleIds: string[]
   favoriteTasteTags: string[]
   tasteProfileUpdatedAt?: string
-  dailyQuiz?: { date: string; answers: Record<string, string> }
+  dailyQuiz?: {
+    date: string
+    answers: Record<string, string>
+  }
   tasteSwipeRewardDate?: string
   preferences: UserPreferences
   createdAt: string

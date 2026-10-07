@@ -31,6 +31,7 @@ import "../game/tcg.css"
 import "../game/combat.css"
 import "../game/story.css"
 import "../game/livingTable.css"
+import "../game/animeStage.css"
 
 const NAV = [
   { id: "home", name: "Sảnh hành trình", icon: "home" },
@@ -971,7 +972,7 @@ export function TCGPage() {
             <span>
               MEALGACHA <i>✦</i> Một thế giới được nấu bằng ký ức.
             </span>
-            <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.7</span>
+            <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.8</span>
           </footer>
         </main>
       </div>

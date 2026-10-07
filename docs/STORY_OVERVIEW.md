@@ -23,7 +23,7 @@ Quy tắc này xuất hiện ngay màn đầu và trong trợ giúp. Nó cũng d
 | Khi người dẫn đường nói dối | Mộc chỉ ra rằng ký ức bị gạt hết nỗi buồn không thể nuôi khu vườn. Lá thư của bà tiết lộ năm Ngọn Lửa thật ra là năm ổ khóa, chiếc muôi là chìa. Bách đã che giấu sự thật để mở phong ấn và cứu bà. |
 | Bạn nhớ, hay bạn là ký ức? | Hải tìm thấy tên Mai trong danh sách người không trở về. Căn bếp dưới nước không có mùi; người chơi không có bóng. Bạn là tiếng vọng của Mai được tạo từ ký ức và sự tiếc thương của bà. Những lựa chọn mới là của bạn, dù bạn không phải Mai sống lại. |
 | Quyền được buồn, quyền được sống | Liên phân biệt tưởng nhớ người đã mất với giam họ trong ký ức. Bách phải nhận trách nhiệm cho lời hứa sai và dành chỗ cho một người chưa có tên. Ổ khóa cuối dẫn tới người bà đã già đi mười bảy năm. |
-| Không ai chọn thay một tiếng vọng | Bàn tiệc chứa những chiếc ghế của các nạn nhân. Bà không gây ra tai nạn nhưng đã giữ thành phố trong sương để không phải chấp nhận mất cháu. Mai quay lại tàu cứu một em bé: chính là Bách. Món nợ cứu mạng giải thích sự lừa dối của người dẫn đường. Sương mang gương mặt người chơi và mời bạn ở lại bữa tiệc hoàn hảo, không ai già hay mất. Trận cuối giành lại quyền tự chọn. |
+| Không ai chọn thay một tiếng vọng | Bàn tiệc chứa những chiếc ghế của các nạn nhân. Bà không gây ra tai nạn nhưng đã giữ thành phố trong sương để không phải chấp nhận mất cháu. Mai quay lại tàu cứu một em bé: Liên, con gái Bách, lúc đó sáu tuổi. Món nợ cứu mạng của con giải thích sự lừa dối của người dẫn đường. Sương mang gương mặt người chơi và mời bạn ở lại bữa tiệc hoàn hảo, không ai già hay mất. Trận cuối giành lại quyền tự chọn. |
 
 ## Hai đoạn kết
 
@@ -34,12 +34,14 @@ Lựa chọn cuối đổi đoạn kết, không đổi phần thưởng trận.
 
 ## Đánh giá thiết kế
 
-**Đáng chơi như một chiến dịch thẻ bài indie ngắn.** Điểm mạnh là hình ảnh bàn ăn, món Việt và chiếc ghế trống gắn với chủ đề mất mát. Ba lần đổi cách hiểu — nhiệm vụ giải cứu thực ra mở phong ấn, người chơi là tiếng vọng, người dẫn đường là người được Mai cứu — có manh mối từ sớm. Bà và Bách có động cơ dễ hiểu dù hành động của họ gây tổn thương. Câu hỏi cuối là người chơi có quyền định nghĩa mình thế nào.
+**Đáng chơi như một chiến dịch thẻ bài indie ngắn.** Điểm mạnh là hình ảnh bàn ăn, món Việt và chiếc ghế trống gắn với chủ đề mất mát. Ba lần đổi cách hiểu — nhiệm vụ giải cứu thực ra mở phong ấn, người chơi là tiếng vọng, người dẫn đường là cha của Liên, đứa trẻ Mai cứu — có manh mối từ sớm. Bà và Bách có động cơ dễ hiểu dù hành động của họ gây tổn thương. Câu hỏi cuối là người chơi có quyền định nghĩa mình thế nào.
 
 Ở bản 2.4, Nhiên cần biết cha đã cứu ai thay vì tin ông bỏ đi; Mộc biết loại trà mẹ thích nhưng mất giọng mẹ; Hải từng để sương xóa sổ người mất tích để khỏi phải đọc; Liên thoát một buổi chiều lặp lại bằng cách nấu công thức em chưa từng biết. Họ có lý do riêng để khôi phục ký ức, cùng những cách đối mặt khác nhau. Truyện dùng sáu minh họa có chung ngôn ngữ hình ảnh thay cho banner lễ hội. Chương chưa mở giấu nội dung, tránh lộ các cú xoay ngay ở bản đồ.
 
 Lá thư ở chương 3 và lời Liên ở chương 5 báo trước quy tắc tiếng vọng biết tự chọn có thể nhận một đời sống mới, nếu bà buông lời ước và chiếc muôi bị phá. Ấn Vị làm neo tan đi, nên bà có thể không còn nhận ra bạn. Nút lựa chọn cuối nói rõ cái giá này. Cả hai kết thúc đều trả ký ức lại cho thành phố; khác biệt là tiếng vọng trở thành câu chuyện hay một người có ngày mai.
 
-Giới hạn hiện tại: truyện chủ yếu ở trước/sau trận, các quyết định trong trận chưa tạo nhánh; Can đảm/Thấu hiểu thay đổi chuẩn bị chiến đấu, không tạo tuyến truyện riêng. Bản 2.5 dùng tám tranh theo chương/cảnh, chưa phải hoạt hình/voice-over hoặc tranh riêng cho từng câu thoại. Gợi ý giúp người mới hiểu nước đi nhưng không biến AI thành đối thủ biết thích nghi dài hạn. Hai đoạn kết có ý nghĩa cảm xúc, song chưa thay đổi toàn bộ chiến dịch khi chơi lại.
+Bản 2.8 có 16 nhân vật anime 3D dạng ảnh trong sân khấu thoại, đổi người nói theo từng câu; sáu boss có đoạn thức tỉnh riêng giữa trận, và lượt 4 có lựa chọn Ứng biến cùng lời thoại. Bách 55 tuổi, Liên 23 tuổi ở hiện tại; cô được Mai cứu khi sáu tuổi, 17 năm trước.
+
+Giới hạn hiện tại: truyện chủ yếu ở trước/sau trận, các quyết định trong trận chưa tạo nhánh; Can đảm/Thấu hiểu thay đổi chuẩn bị chiến đấu, không tạo tuyến truyện riêng. Bản 2.8 dùng ảnh cắt nền có chuyển cảnh và chuyển động nhẹ, chưa có mô hình 3D chạy trực tiếp hoặc voice-over. Các linh ảnh boss dùng chung hình người giữ sương; Sương Nhạt dùng hình tiếng vọng của nhân vật chính. Gợi ý giúp người mới hiểu nước đi nhưng không biến AI thành đối thủ biết thích nghi dài hạn. Hai đoạn kết có ý nghĩa cảm xúc, song chưa thay đổi toàn bộ chiến dịch khi chơi lại.
 
 Đánh giá trên là nhận xét từ nội dung và cơ chế đã triển khai, không phải kết quả khảo sát người chơi. Bước tiếp theo có giá trị nhất là một quyết định giữa chiến dịch để lại hệ quả ở trận hoặc quan hệ nhân vật về sau, đồng thời gieo thêm manh mối cho quy tắc biến tiếng vọng thành đời sống.

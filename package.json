@@ -2,7 +2,7 @@
   "name": "meal-gacha",
   "packageManager": "pnpm@10.34.3",
   "private": true,
-  "version": "2.7.0",
+  "version": "2.8.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

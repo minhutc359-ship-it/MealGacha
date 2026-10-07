@@ -7,6 +7,7 @@ import {
   queueScene,
 } from "./encounters"
 import { recipeReady } from "./recipes"
+import { TACTICS, tacticError, type TacticId } from "./tactics"
 import type { Battle, BattleUnit, Combatant, GameCard } from "./types"
 
 export type Target = "hero" | string
@@ -26,9 +27,12 @@ interface MulliganAction {
 }
 export type BattleAction = PlayAction | AttackAction | MulliganAction | {
   type: "end"
+} | {
+  type: "tactic"
+  id: TacticId
 }
 export interface BattleEvent {
-  kind: "play" | "attack" | "turn" | "rule" | "mulligan" | "combo" | "objective" | "scene" | "assist"
+  kind: "play" | "attack" | "turn" | "rule" | "mulligan" | "combo" | "objective" | "scene" | "assist" | "tactic"
   side: "player" | "enemy"
   label: string
   cardId?: string
@@ -37,6 +41,7 @@ export interface BattleEvent {
   recipeId?: import("./types").RecipeId
   sceneId?: string
   npcId?: import("./types").NpcId
+  tacticId?: TacticId
 }
 export interface BattleFrame {
   before: Battle
@@ -59,6 +64,7 @@ export function playError(b: Battle, index: number): string | null {
   const card = CARD_MAP[b.player.hand[index]]
   if (!card) return "Lá bài không còn trên tay."
   if (b.opening) return "Hãy xác nhận bài mở đầu."
+  if (b.tactic?.status === "pending") return "Hãy chọn cách ứng biến trước."
   if (b.result) return "Trận đấu đã kết thúc."
   if (cardCost(b.player, card) > b.player.mana) return "Chưa đủ năng lượng."
   if (card.kind === "unit" && b.player.board.length >= 3)
@@ -186,6 +192,7 @@ export function startBattle(
     result: null,
     settled: false,
     nextUid: 1,
+    tactic: { status: "waiting" },
     opening: offerMulligan,
     openingGiftUsed: false,
     pendingScenes: [],
@@ -594,6 +601,15 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
       label: `Lượt ${b.round} · Đến lượt bạn`,
     })
     assist(b, record)
+    if (!b.result && b.round >= 4 && b.tactic?.status === "waiting") {
+      b.tactic.status = "pending"
+      log(b, "Lượt 4 · Chọn một cách ứng biến cho bàn đấu.")
+      record({
+        kind: "objective",
+        side: "player",
+        label: "Một công thức mới đang chờ bạn chọn",
+      })
+    }
   }
 }
 export function actBattle(
@@ -607,6 +623,12 @@ export function actBattle(
     frames: [],
   })
   if (current.result || current.settled) return invalid("Trận đấu đã kết thúc.")
+  if (current.tactic?.status === "pending" && action.type !== "tactic")
+    return invalid("Hãy chọn cách ứng biến trước.")
+  if (action.type === "tactic") {
+    const error = tacticError(current, action.id)
+    if (error) return invalid(error)
+  }
   if (current.opening && action.type !== "mulligan")
     return invalid("Hãy xác nhận bài mở đầu.")
   if (action.type === "mulligan" && !current.opening)
@@ -643,7 +665,28 @@ export function actBattle(
     }
   }
   let error: string | null = null
-  if (action.type === "mulligan") {
+  if (action.type === "tactic") {
+    b.tactic = { status: "chosen", choice: action.id }
+    if (action.id === "flame") b.player.board.forEach((u) => u.attack++)
+    if (action.id === "shelter") {
+      b.player.health = Math.min(b.player.maxHealth, b.player.health + 3)
+      b.player.board.forEach((u) => u.shield++)
+    }
+    if (action.id === "insight")
+      draw(
+        b,
+        "player",
+        Math.min(2, b.player.deck.length, 8 - b.player.hand.length),
+      )
+    const tactic = TACTICS.find((t) => t.id === action.id)!
+    log(b, `Bạn ứng biến · ${tactic.name}: ${tactic.text}`)
+    record({
+      kind: "tactic",
+      side: "player",
+      tacticId: action.id,
+      label: `ỨNG BIẾN · ${tactic.name}`,
+    })
+  } else if (action.type === "mulligan") {
     const indices = action.indices
     if (
       indices.length > 3 ||

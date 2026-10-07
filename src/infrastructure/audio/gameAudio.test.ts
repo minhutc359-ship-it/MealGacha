@@ -81,7 +81,11 @@ const settle = async () => {
   for (let i = 0; i < 8; i++) await Promise.resolve()
 }
 const disposers: Array<() => void> = []
-function fixture(load = vi.fn(async () => new ArrayBuffer(8))) {
+function fixture(
+  load: (url: string) => Promise<ArrayBuffer> = vi.fn(
+    async () => new ArrayBuffer(8),
+  ),
+) {
   vi.stubGlobal("window", new EventTarget())
   vi.stubGlobal("document", new EventTarget())
   let visible = true
@@ -114,6 +118,53 @@ afterEach(() => {
   vi.restoreAllMocks()
 })
 describe("game soundtrack lifecycle", () => {
+  it("switches styles during a priority cutscene and resumes each arrangement's own cursor", async () => {
+    const { engine, context, load } = fixture()
+    engine.acquire("battle", 5)
+    await engine.unlock()
+    await settle()
+    context.currentTime = 7
+    const release = engine.acquire("story-mystery", 30)
+    await settle()
+    engine.configure({ soundEnabled: true, musicStyle: "8bit" })
+    await settle()
+    expect(load).toHaveBeenLastCalledWith(
+      "/assets/tcg/audio/8bit-story-mystery.mp3",
+    )
+    expect(engine.getSnapshot()).toMatchObject({
+      track: "story-mystery",
+      style: "8bit",
+      phase: "playing",
+    })
+    release()
+    await settle()
+    expect(load).toHaveBeenLastCalledWith("/assets/tcg/audio/8bit-battle.mp3")
+    expect(context.voices.at(-1)?.starts[0][1]).toBe(0)
+    context.currentTime = 12
+    engine.configure({ soundEnabled: true, musicStyle: "original" })
+    await settle()
+    expect(context.voices.at(-1)?.starts[0][1]).toBe(7)
+  })
+  it("ignores an old style download that finishes after a switch and honors mute", async () => {
+    const resolvers = new Map<string, (data: ArrayBuffer) => void>()
+    const load = vi.fn(
+      (url: string) =>
+        new Promise<ArrayBuffer>((resolve) => resolvers.set(url, resolve)),
+    )
+    const { engine, context } = fixture(load)
+    engine.acquire("boss")
+    await engine.unlock()
+    engine.configure({ soundEnabled: true, musicStyle: "8bit" })
+    resolvers.get("/assets/tcg/audio/8bit-boss.mp3")!(new ArrayBuffer(8))
+    await settle()
+    expect(context.voices).toHaveLength(1)
+    resolvers.get("/assets/tcg/audio/boss.mp3")!(new ArrayBuffer(8))
+    await settle()
+    expect(context.voices).toHaveLength(1)
+    engine.configure({ soundEnabled: false, musicStyle: "8bit" })
+    expect(context.voices.every((v) => v.stopped)).toBe(true)
+    expect(engine.getSnapshot().phase).toBe("muted")
+  })
   it("waits for a gesture and honors an existing muted preference", async () => {
     const { engine, create, load } = fixture()
     engine.configure({ soundEnabled: false })
@@ -130,7 +181,11 @@ describe("game soundtrack lifecycle", () => {
     await settle()
     expect(create).toHaveBeenCalledOnce()
     expect(load).toHaveBeenCalledOnce()
-    expect(engine.getSnapshot()).toEqual({ phase: "playing", track: "battle" })
+    expect(engine.getSnapshot()).toEqual({
+      phase: "playing",
+      track: "battle",
+      style: "original",
+    })
   })
   it("gives cutscenes priority and restores the paused battle cursor", async () => {
     const { engine, context } = fixture()
@@ -151,7 +206,9 @@ describe("game soundtrack lifecycle", () => {
     expect(context.voices[context.voices.length - 1]?.starts[0][1]).toBe(9)
   })
   it("rejects late music after a reader closes or the route unmounts", async () => {
-    let finish: (data: ArrayBuffer) => void = () => { throw new Error("No pending download") }
+    let finish: (data: ArrayBuffer) => void = () => {
+      throw new Error("No pending download")
+    }
     const load = vi.fn(
       () =>
         new Promise<ArrayBuffer>((resolve) => {

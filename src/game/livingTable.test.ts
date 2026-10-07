@@ -388,7 +388,7 @@ describe("portable save codes and shipped art", () => {
     })
     let bytes = 0
     for (const src of [
-      ...Object.values(CHARACTER_ART),
+      ...new Set(Object.values(CHARACTER_ART)),
       ...["home", "street", "tet"].map((id) => `/assets/tcg/boards/${id}.webp`),
       "/assets/tcg/fx/recipe-burst.webp",
     ]) {
@@ -396,6 +396,6 @@ describe("portable save codes and shipped art", () => {
       expect(readFileSync(path).subarray(0, 4).toString()).toBe("RIFF")
       bytes += statSync(path).size
     }
-    expect(bytes).toBeLessThan(1.5 * 1024 * 1024)
+    expect(bytes).toBeLessThan(3 * 1024 * 1024)
   })
 })

@@ -12,6 +12,22 @@ export const MUSIC_TRACKS = {
   "story-mystery": "assets/tcg/audio/story-mystery.mp3",
 } as const
 export type MusicTrack = keyof typeof MUSIC_TRACKS
+export type MusicStyle = "original" | "8bit"
+export const RETRO_MUSIC_TRACKS: Record<MusicTrack, string> = {
+  battle: "assets/tcg/audio/8bit-battle.mp3",
+  boss: "assets/tcg/audio/8bit-boss.mp3",
+  "story-warm": "assets/tcg/audio/8bit-story-warm.mp3",
+  "story-mystery": "assets/tcg/audio/8bit-story-mystery.mp3",
+}
+export type MusicAsset = MusicTrack | `8bit-${MusicTrack}`
+export function musicAsset(track: MusicTrack, style: MusicStyle): MusicAsset {
+  return style === "8bit" ? `8bit-${track}` : track
+}
+export function musicPath(asset: MusicAsset): string {
+  return asset.startsWith("8bit-")
+    ? RETRO_MUSIC_TRACKS[(asset.slice(5) as MusicTrack)]
+    : MUSIC_TRACKS[(asset as MusicTrack)]
+}
 export type GameSound = "select" | "deselect" | "confirm" | "cast" | "impact" | "fire" | "water" | "leaves" | "sparkle" | "heal" | "buff" | "shield" | "break" | "summon" | "draw" | "resonance" | "turn" | "awaken" | "vanish" | "victory" | "defeat" | "story-next" | "combo"
 export interface TimedSound {
   cue: GameSound
@@ -48,6 +64,7 @@ export function frameSounds(frame: BattleFrame): TimedSound[] {
   if (frame.event.kind === "attack") add("impact", 0)
   if (frame.event.kind === "combo") add("combo", 0)
   if (frame.event.kind === "assist") add("resonance", 0)
+  if (frame.event.kind === "tactic") add("resonance", 0)
   if (frame.event.kind === "mulligan") add("draw", 0)
   if (frame.event.kind === "turn" && frame.event.side === "player")
     add("turn", 0)
