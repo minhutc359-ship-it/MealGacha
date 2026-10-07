@@ -1,4 +1,4 @@
-# MealGacha TCG v2.2 — Luật và bảo trì
+# MealGacha TCG v2.4 — Luật và bảo trì
 
 ## Nội dung đã triển khai
 
@@ -19,6 +19,8 @@ Sáu chương, mỗi chương ba màn, tổng cộng sáu boss:
 
 ## Luật chiến đấu
 
+Trong truyện, hương vị mang Ấn Vị, được công thức ghi thành thẻ. Chiếc muôi gọi dấu ký ức thành Vị Linh trên Bàn Ký Ức. Các đòn đánh làm linh ảnh tan và tháo nút thắt màn sương; ♥ của chủ tướng là ý chí giữ bàn, không phải thương tích của người ngoài đời. Cơ chế số học vẫn sử dụng trường `health` để giữ tương thích bản lưu.
+
 - Bộ bài đúng 18 lá, tối đa 2 bản mỗi ID, phải sở hữu đủ. Lưu tối đa ba bộ bài; có tự xếp, biểu đồ chi phí, đổi tên và chọn bộ hoạt động.
 - Chủ tướng người chơi có 34 máu / 4 lá (Can đảm) hoặc 32 máu / 5 lá (Thấu hiểu). Đối phương 25–38 máu tùy màn; luyện tập 30 máu.
 - Trước trận mới được đổi tối đa 3 lá một lần. Rút từ phần bộ bài còn lại trước, rồi trả các lá đã đổi vào bộ và xáo; có thể nhận cùng ID nếu bộ có bản thứ hai. Trận đang chơi từ bản cũ không buộc đổi lại.
@@ -34,6 +36,12 @@ Sáu chương, mỗi chương ba màn, tổng cộng sáu boss:
 - Hạ chủ tướng địch xuống 0 là thắng. Trận kết thúc chỉ được quyết toán một lần; kết quả và phần thưởng thực nhận lưu cùng trận.
 
 AI ưu tiên triệu hồi, tận dụng sát thương kết liễu, đánh Hộ vệ, chọn đổi có lợi và tránh rút phép khi tay đầy/bộ rỗng. Bộ đối thủ có 18 lá với đường cong năng lượng, tối đa 2 bản mỗi thẻ. Các vùng dùng hệ riêng; chương cuối kết hợp cả năm hệ.
+
+## Cutscene và hướng dẫn v2.4
+
+`storyArt.ts` ánh xạ sáu chương vào WebP thật trong `public/assets/tcg/story/`. `StoryScene` dùng chung ở trước trận, sau trận, nhật ký và đoạn kết, có alt mô tả, lời thoại live region, tiến độ, đọc nhanh và transcript. Giảm chuyển động tắt animation ảnh. Chương khóa không render ảnh/nội dung bí mật. Callback hoàn tất một reader chỉ chạy một lần; xem truyện không quyết toán trận.
+
+`battleCoach.ts` mô phỏng các hành động chơi bài/tấn công bằng `actBattle`, loại hành động sai hoặc thua ngay, rồi ưu tiên thắng, phá Hộ vệ/đổi có lợi, gọi quân và hồi phục. Không mô phỏng hoặc tự bấm kết thúc lượt, không đọc bài địch để quyết định, không ghi save. Đây là gợi ý ngắn theo tình huống, không bảo đảm chiến thuật tối ưu. `BattleBoard` memo hóa theo snapshot, nút Gợi ý chỉ chọn quân/bài và focus mục tiêu/xác nhận; người chơi tự xác nhận nước đi. Hướng dẫn ba bước xuất hiện ở đổi bài đầu trận, trợ giúp và luật đấu.
 
 ## Boss, lựa chọn và hiệu ứng
 
@@ -118,3 +126,19 @@ Kiểm tra giao diện thủ công hoặc Playwright: desktop 1440px và mobile 
 ## Phạm vi hiện tại
 
 Game đơn người với AI và thương nhân NPC, không có thanh toán. PvP, tài khoản máy chủ và trao đổi giữa người chơi cần backend xác thực, authoritative battle, inventory transaction và chống lặp request. Không trình bày chức năng này như đã có.
+
+## Trình diễn chiến đấu v2.3
+
+Bàn đấu cố định theo `100dvh` và safe area, không yêu cầu cuộn trang để chọn bài hoặc đánh mục tiêu. Dọc: hai hàng quân và tối đa hai hàng bài trên tay. Ngang trên màn hình thấp: hai phe cạnh nhau và tay bài một hàng. Phần xác nhận có ô riêng nên chọn bài không đẩy mục tiêu khỏi màn hình. Luật, nhật ký, di vật và toàn văn thẻ đọc trong dialog; Escape hủy chọn hoặc đóng dialog. Điều hướng nền dùng `inert` khi có trận.
+
+`src/game/combatEffects.ts` phân loại hiệu ứng từ cặp snapshot trước/sau: sát thương theo hệ, hồi máu, buff, tạo/vỡ chắn, triệu hồi, rút bài và cộng hưởng. `CombatEffects.tsx` đặt sprite/particle lên đúng chủ tướng, đơn vị hoặc tay bài; Quét sân có hiệu ứng ở từng nạn nhân và phản đòn vẫn hiện trên quân vừa bị hạ. Ba WebP alpha trong `public/assets/tcg/fx/` được tải trước và lưu như Git blob thường để deployment phục vụ đúng ảnh.
+
+Animation chỉ là trình diễn: save cuối cùng vẫn được ghi một lần trước playback. Bỏ qua, giảm chuyển động hoặc tải lại không xử lý sát thương/phần thưởng lần nữa. Không thay đổi mana, cost, luật chắn hay schema lưu trữ ở bản này.
+
+## Nguồn món chung với Rương Vị Giác
+
+`src/infrastructure/catalog/dishCatalog.ts` cung cấp `BUILT_IN_DISHES` cho thẻ món và `mergeDishCatalog` cho Rương. Hiện có 112 món: 58 quanh năm, 48 món theo 8 banner mùa và 6 món Tây Bắc theo banner local. Bí thuật và nhân vật TCG không phải món trong Rương.
+
+Nguồn cache/CSV được ghép trên toàn bộ món cài sẵn; món CSV có ID riêng được giữ, các ghi đè thực đơn thường vẫn được tôn trọng. Món curated/local giữ tên, ảnh và sự kiện theo source để cache cũ không đổi nhầm tính giới hạn. Ba luồng khởi tạo, nạp cache và tải CSV đều dùng cùng hàm ghép. Không đổi lịch sự kiện, storage key hay quyền rương vô hạn đã lưu.
+
+Nút **Xem món & tỉ lệ** trong Rương hiển thị ảnh, tên, bậc hiếm và tìm kiếm không phân biệt dấu/chữ hoa. Danh sách và số món lấy từ `buildPool`: đúng bữa, đúng sự kiện đang hoạt động và đã loại món gần đây khi pool đủ lớn. Thao tác xem/tìm không trừ chìa hay nhận phần thưởng.

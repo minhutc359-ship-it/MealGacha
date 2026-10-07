@@ -27,6 +27,7 @@ import { getVisibleRewards } from "../domain/rewardPresentation"
 import { hasUnlimitedChestAccess } from "../domain/achievements"
 import { getDailyQuestions } from "../domain/dailyQuiz"
 import { getFeaturedEvents } from "../domain/events"
+import { buildPool } from "../domain/drawReward"
 
 type ChestState =
   | "idle"
@@ -142,6 +143,9 @@ export function ChestPage() {
   const unlimited = hasUnlimitedChestAccess(user, dishes)
   const requestedEventId = params.get("event")
   const event = getFeaturedEvents(dishes).find((item) => item.id === requestedEventId && item.active)
+  const availableCount = buildPool(dishes, slot, user.recentDishIdsByMeal[slot], event?.id).length
+  const normalCount = dishes.filter(dish => dish.active && dish.type !== "limited").length
+  const limitedCount = dishes.filter(dish => dish.active && dish.type === "limited").length
   useEffect(() => {
     if (event && !event.dishIds.some((id) => dishes.find((dish) => dish.id === id)?.mealSlots.includes(slot))) {
       const first = dishes.find((dish) => event.dishIds.includes(dish.id))
@@ -339,6 +343,10 @@ export function ChestPage() {
       {event && <div className={`chest-event-banner ${event.themeClass}`}><span>{event.icon}</span><div><strong>{event.title}</strong><small>{event.dishIds.length} món trong banner sự kiện</small></div><Link to="/">Đóng ×</Link></div>}
       {!event && <Link className="chest-event-link" to="/events">{requestedEventId ? "Sự kiện đã kết thúc hoặc chưa bắt đầu · Xem danh sách →" : "✦ Khám phá các sự kiện ẩm thực →"}</Link>}
 
+      <p className="chest-catalog-summary">
+        {normalCount} món quanh năm · {limitedCount} món giới hạn theo sự kiện
+      </p>
+
       <div className="meal-banner-tabs" role="tablist" aria-label="Chọn bữa ăn">
         {(["breakfast", "lunch", "dinner"] as MealSlot[]).map((mealSlot) => {
           const selected = mealSlot === slot
@@ -460,9 +468,9 @@ export function ChestPage() {
           </span>
           <i />
           <span>
-            TỶ LỆ HIẾM <strong>28%</strong>
+            TRONG RƯƠNG <strong>{availableCount}</strong> MÓN
           </span>
-          <button onClick={() => setShowOdds(true)}>XEM TỈ LỆ</button>
+          <button onClick={() => setShowOdds(true)}>XEM MÓN & TỈ LỆ</button>
         </footer>
       </section>
 

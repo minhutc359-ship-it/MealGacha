@@ -1,0 +1,300 @@
+/* Battle is an application surface, not a scrolling document. */
+.tcg-viewport-battle {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: max(8px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  background: radial-gradient(ellipse at 50% 40%, #2c493d, #102825 85%);
+  color: #e8dfbd;
+  overflow: hidden;
+}
+.tcg-viewport-battle .tcg-battle-top {
+  width: min(100%, 1240px);
+  margin: 0 auto;
+  flex: 0 0 40px;
+  min-width: 0;
+  gap: 12px;
+}
+.tcg-viewport-battle .tcg-battle-top>div:first-child { min-width: 0; }
+.tcg-viewport-battle .tcg-battle-top h1 { color: #f1e2bd; font: 20px/1.2 Georgia, serif; margin: 3px 0 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tcg-viewport-battle .tcg-battle-top .tcg-kicker { font-size: 8px; color: #a8b49b; }
+.tcg-viewport-battle .tcg-battle-actions { flex-direction: row; }
+.tcg-viewport-battle .tcg-button { min-height: 30px; padding: 7px 12px; font-size: 10px; }
+.tcg-viewport-battle .tcg-button.ghost { color: #d4dbc0; border-color: #c5c9a744; }
+.tcg-tactics-ribbon { width: min(100%, 1240px); flex: 0 0 25px; align-self: center; display: flex; gap: 12px; align-items: center; padding: 3px 12px; background: #a9884820; border: 1px solid #c9b67b55; border-radius: 5px; color: #d8d7ad; text-align: left; min-width: 0; overflow: hidden; }
+.tcg-tactics-ribbon strong { color: #dfbf81; font-size: 10px; flex-shrink: 0; }
+.tcg-tactics-ribbon span { font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.tcg-tactics-ribbon.is-awakened { background: #af5a352e; border-color: #cf8455; }
+.tcg-tactics-ribbon>b { font-size: 15px; }
+.tcg-viewport-battle .tcg-arena {
+  --unit-width: clamp(88px, 12vh, 150px);
+  --hand-height: clamp(128px, 21vh, 190px);
+  --command-height: 64px;
+  flex: 1 1 0;
+  min-height: 0;
+  width: min(100%, 1240px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 25px 48px minmax(0, 1fr) 38px minmax(0, 1fr) 48px 22px var(--command-height) var(--hand-height);
+  grid-template-areas: 'toolbar' 'enemyhero' 'enemyfield' 'turn' 'playerfield' 'playerhero' 'resonance' 'command' 'hand';
+  gap: 3px;
+  padding: 9px 20px;
+  overflow: hidden;
+  border-color: #9da87a77;
+}
+.tcg-viewport-battle .tcg-arena-top { grid-area: toolbar; margin: 0; min-width: 0; font-size: 10px; }
+.tcg-viewport-battle .tcg-arena .tcg-button.ghost { font-size: 10px!important; padding: 4px 10px; }
+.tcg-viewport-battle .tcg-arena-top>span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tcg-viewport-battle .tcg-hero { grid-area: playerhero; margin: 0; align-self: center; justify-self: center; height: 44px; max-width: 100%; padding: 6px 16px; gap: 12px; flex-wrap: nowrap; min-width: 0; }
+.tcg-viewport-battle .tcg-hero.enemy { grid-area: enemyhero; }
+.tcg-viewport-battle .tcg-hero>span:not(.tcg-avatar):not(.tcg-mana):not(.tcg-float-number) { min-width: 0; }
+.tcg-viewport-battle .tcg-hero strong { font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: block; }
+.tcg-viewport-battle .tcg-hero small { font-size: 9px; }
+.tcg-viewport-battle .tcg-hero .tcg-avatar { height: 29px; width: 29px; font-size: 21px; flex-shrink: 0; }
+.tcg-viewport-battle .tcg-hero>b { font-size: 23px; white-space: nowrap; margin-left: 0; }
+.tcg-viewport-battle .tcg-hero>b small { font-size: 9px; }
+.tcg-viewport-battle .tcg-hero-preview { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); width: max-content; max-width: 100%; z-index: 10; color: #263d2f; background: #f0d9a3; padding: 2px 7px; border-radius: 4px; font-size: 9px; }
+.tcg-viewport-battle .tcg-field { grid-area: playerfield; min-height: 0; height: 100%; padding: 20px 0 4px; margin: 0; gap: 24px; align-items: center; }
+.tcg-viewport-battle .tcg-field.enemy { grid-area: enemyfield; }
+.tcg-viewport-battle .tcg-unit-wrap { height: 100%; max-height: 160px; width: var(--unit-width); min-height: 0; }
+.tcg-viewport-battle .tcg-unit { width: 100%; height: 100%; min-height: 0; }
+.tcg-viewport-battle .tcg-empty-slot { width: var(--unit-width); height: 100%; max-height: 160px; min-height: 0; }
+.tcg-viewport-battle .tcg-unit-name { font-size: 10px; bottom: 37px; }
+.tcg-viewport-battle .tcg-unit-stats { font-size: 14px; bottom: 18px; }
+.tcg-viewport-battle .tcg-unit small { bottom: 3px; font-size: 7px; }
+.tcg-viewport-battle .tcg-unit-stats .shield { font-size: 12px; }
+.tcg-viewport-battle .tcg-unit-info { width: 23px; height: 23px; }
+.tcg-viewport-battle .tcg-target-preview { top: -19px; padding: 3px 1px; font-size: 9px; line-height: 1.2; }
+.tcg-viewport-battle .tcg-target-preview small { position: static; font-size: 8px; margin-top: 1px; }
+.tcg-viewport-battle .tcg-turn-bar { grid-area: turn; min-height: 0; height: 100%; margin: 0; padding: 4px 12px; }
+.tcg-viewport-battle .tcg-turn-bar p { font-size: 11px; line-height: 1.3; margin: 0; min-width: 0; }
+.tcg-viewport-battle .tcg-turn-bar>span { font-size: 9px; }
+.tcg-viewport-battle .tcg-turn-bar>.tcg-button { flex-shrink: 0; }
+.tcg-viewport-battle .tcg-resonance { grid-area: resonance; min-width: 0; height: 100%; margin: 0; padding: 2px 8px; gap: 10px; flex-wrap: nowrap; }
+.tcg-viewport-battle .tcg-resonance p { font-size: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.tcg-viewport-battle .tcg-resonance>span { font-size: 8px; }
+.tcg-viewport-battle .tcg-command-dock { grid-area: command; min-height: 0; min-width: 0; display: flex; align-items: center; }
+.tcg-viewport-battle .tcg-selected-card { width: 100%; height: 100%; min-width: 0; margin: 0; padding: 7px 12px; gap: 12px; flex-wrap: nowrap; }
+.tcg-viewport-battle .tcg-selected-card>div { min-width: 0; }
+.tcg-viewport-battle .tcg-selection-symbol { font-size: 24px; width: 27px; }
+.tcg-viewport-battle .tcg-selected-card .tcg-kicker { font-size: 8px; }
+.tcg-viewport-battle .tcg-selected-card h3 { font: 15px/1.2 Georgia, serif; margin: 2px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tcg-viewport-battle .tcg-selected-card p { font-size: 11px; line-height: 1.3; margin: 1px 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.tcg-viewport-battle .tcg-selected-card small { display: none; }
+.tcg-viewport-battle .tcg-selected-card .tcg-button { flex-shrink: 0; }
+.tcg-card-detail-button { flex-shrink: 0; background: #315147; color: #e1d39e; border: 1px solid #afbc8866; width: 27px; height: 27px; border-radius: 50%; }
+.tcg-viewport-battle .tcg-play-error,.tcg-viewport-battle .tcg-select-target { font-size: 10px; max-width: 145px; }
+.tcg-command-idle { width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 8px; border: 1px dashed #a4b78a44; border-radius: 6px; color: #a6b99a; }
+.tcg-command-idle>span { font-size: 23px; color: #b9a477; }
+.tcg-command-idle p { font-size: 11px; line-height: 1.6; margin: 0; }
+.tcg-command-idle small { font-size: 9px; white-space: nowrap; }
+.tcg-coach { height:100%; justify-content:flex-start; }
+.tcg-coach>div { flex:1; min-width:0; }
+.tcg-coach strong { display:block; color:#e2d8b4; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.tcg-coach p { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; line-height:1.35; }
+.tcg-coach>.tcg-button { flex-shrink:0; }
+.tcg-viewport-battle .tcg-attack-guide { width: 100%; height: 100%; padding: 10px 12px; margin: 0; gap: 12px; flex-direction: row; }
+.tcg-viewport-battle .tcg-attack-guide span { font-size: 11px; line-height: 1.4; }
+.tcg-viewport-battle .tcg-hand { grid-area: hand; min-height: 0; min-width: 0; height: 100%; display: flex; justify-content: center; align-items: stretch; gap: 10px; padding: 5px 5px 3px; margin: 0; overflow: visible; }
+.tcg-viewport-battle .tcg-hand>.tcg-card { min-width: 0; flex: 0 1 125px; max-width: 145px; width: 100%; height: 100%; transform: none; }
+.tcg-viewport-battle .tcg-hand>.tcg-card.is-selected { transform: translateY(-3px); }
+.tcg-viewport-battle .tcg-hand>.tcg-card:hover { transform: translateY(-3px); }
+.tcg-viewport-battle .tcg-arena-hint { display: none; }
+.tcg-viewport-battle .tcg-action-card { top: 42%; padding: 7px 18px; min-width: 140px; }
+.tcg-viewport-battle .tcg-action-card>span { font-size: 24px; }
+.tcg-viewport-battle .tcg-action-card strong { font-size: 15px; }
+.tcg-live-log { padding-left: 22px; font-size: 13px; line-height: 1.9; color: #58694d; }
+
+@media(max-width:600px) {
+  .tcg-viewport-battle { padding: max(5px,env(safe-area-inset-top)) 7px max(5px,env(safe-area-inset-bottom)); gap: 4px; }
+  .tcg-viewport-battle .tcg-battle-top { flex-basis: 37px; align-items: center; }
+  .tcg-viewport-battle .tcg-battle-top h1 { font-size: 16px; }
+  .tcg-viewport-battle .tcg-battle-top .tcg-kicker { font-size: 6px; }
+  .tcg-viewport-battle .tcg-arena { --unit-width: 88px; --hand-height: 145px; --command-height: 65px; padding: 6px 9px; gap: 2px; grid-template-rows: 23px 42px minmax(0,1fr) 36px minmax(0,1fr) 42px 22px var(--command-height) var(--hand-height); }
+  .tcg-tactics-ribbon { flex-basis: 22px; padding: 3px 8px; gap: 6px; }
+  .tcg-tactics-ribbon strong { font-size: 9px; max-width: 58%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tcg-tactics-ribbon span { font-size: 8px; }
+  .tcg-viewport-battle .tcg-arena-top { font-size: 9px; }
+  .tcg-viewport-battle .tcg-arena .tcg-button.ghost { padding: 4px 6px; font-size: 9px!important; }
+  .tcg-viewport-battle .tcg-hero { height: 38px; padding: 4px 9px; gap: 9px; }
+  .tcg-viewport-battle .tcg-hero strong { font-size: 10px; }
+  .tcg-viewport-battle .tcg-hero small { font-size: 8px; }
+  .tcg-viewport-battle .tcg-hero>b { font-size: 21px; }
+  .tcg-viewport-battle .tcg-mana { gap: 2px; }
+  .tcg-viewport-battle .tcg-mana i { width: 5px; height: 8px; }
+  .tcg-viewport-battle .tcg-mana strong { margin-left: 3px; }
+  .tcg-viewport-battle .tcg-hero .tcg-avatar { width: 24px; height: 24px; font-size: 18px; }
+  .tcg-viewport-battle .tcg-field { gap: 16px; padding: 16px 0 4px; }
+  .tcg-viewport-battle .tcg-unit-wrap,.tcg-viewport-battle .tcg-empty-slot { max-height: 126px; }
+  .tcg-viewport-battle .tcg-unit-name { font-size: 9px; bottom: 34px; }
+  .tcg-viewport-battle .tcg-unit-stats { font-size: 13px; bottom: 16px; }
+  .tcg-viewport-battle .tcg-unit-stats .shield { font-size: 11px; }
+  .tcg-viewport-battle .tcg-unit small { font-size: 6px; }
+  .tcg-viewport-battle .tcg-unit-info { width: 20px; height: 20px; font-size: 13px; top: 2px; right: 2px; }
+  .tcg-viewport-battle .tcg-target-preview { top: -16px; font-size: 8px; padding: 2px; }
+  .tcg-viewport-battle .tcg-target-preview small { font-size: 7px; }
+  .tcg-viewport-battle .tcg-turn-bar { padding: 4px 5px; gap: 7px; }
+  .tcg-viewport-battle .tcg-turn-bar p { font-size: 9px; }
+  .tcg-viewport-battle .tcg-turn-bar>span { font-size: 7px; letter-spacing: 0; }
+  .tcg-viewport-battle .tcg-resonance { gap: 6px; }
+  .tcg-viewport-battle .tcg-resonance p { font-size: 8px; }
+  .tcg-viewport-battle .tcg-resonance>span,.tcg-viewport-battle .tcg-resonance>small { font-size: 7px; }
+  .tcg-viewport-battle .tcg-hand { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); grid-template-rows: minmax(0,1fr); width: 100%; gap: 5px; padding: 3px; }
+  .tcg-viewport-battle .tcg-hand:has(>.tcg-card:nth-child(5)) { grid-template-rows: repeat(2,minmax(0,1fr)); }
+  .tcg-viewport-battle .tcg-hand>.tcg-card { max-width: none; min-width: 0; width: 100%; height: 100%; position: relative; border-radius: 6px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-art { position: absolute; inset: 0; height: 100%; border-radius: 5px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-art:after { content:''; position:absolute; inset:0; background:linear-gradient(transparent 20%,#0e272bc9 65%,#0e272bfa); }
+  .tcg-viewport-battle .tcg-hand .tcg-card-body { position: absolute; inset: auto 0 0; padding: 4px; color: #f4e9c7; background: transparent; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-body>strong { color:#f4e9c7; font: 10px/1.15 Georgia,serif; min-height:0; margin:0 0 3px; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-eyebrow,.tcg-viewport-battle .tcg-hand .tcg-card-text { display:none; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-footer { padding:0; border:0; font-size:8px; color:#bdcfb2; margin:0; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-footer b { font-size:9px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-footer>span:last-child { display:none; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-cost { width:21px; height:21px; left:3px; top:3px; font-size:13px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-school { top:3px; right:3px; width:16px; height:16px; font-size:10px; }
+  .tcg-viewport-battle .tcg-selected-card { padding:5px 7px; gap:7px; }
+  .tcg-viewport-battle .tcg-selection-symbol { display:none; }
+  .tcg-viewport-battle .tcg-selected-card h3 { font-size:13px; }
+  .tcg-viewport-battle .tcg-selected-card .tcg-kicker { font-size:6px; }
+  .tcg-viewport-battle .tcg-selected-card p { font-size:10px; line-height:1.25; }
+  .tcg-viewport-battle .tcg-selected-card .tcg-button { font-size:9px; padding:6px 8px; }
+  .tcg-viewport-battle .tcg-selected-card>.tcg-button,.tcg-viewport-battle .tcg-selected-card>.tcg-select-target,.tcg-viewport-battle .tcg-selected-card>.tcg-play-error { margin-left:0; }
+  .tcg-viewport-battle .tcg-select-target { max-width:69px; font-size:8px; }
+  .tcg-viewport-battle .tcg-play-error { max-width:80px; font-size:9px; }
+  .tcg-card-detail-button { height:23px; width:23px; }
+  .tcg-command-idle { padding:7px; gap:8px; }
+  .tcg-command-idle p { font-size:10px; }
+  .tcg-coach strong { font-size:10px; }
+  .tcg-coach>span { display:none; }
+  .tcg-command-idle small { display:none; }
+  .tcg-viewport-battle .tcg-attack-guide { gap:7px; padding:6px; }
+  .tcg-viewport-battle .tcg-attack-guide strong { font-size:10px; max-width:100px; }
+  .tcg-viewport-battle .tcg-attack-guide span { font-size:10px; }
+}
+@media(max-height:700px) and (orientation:portrait) {
+  .tcg-viewport-battle .tcg-arena { --hand-height:110px; --command-height:55px; grid-template-rows:20px 34px minmax(0,1fr) 32px minmax(0,1fr) 34px 20px var(--command-height) var(--hand-height); padding:4px 8px; }
+  .tcg-viewport-battle .tcg-hero { height:32px; }
+  .tcg-viewport-battle .tcg-hero .tcg-avatar { width:22px; height:22px; }
+  .tcg-viewport-battle .tcg-hero small { font-size:7px; }
+  .tcg-viewport-battle .tcg-field { padding:15px 0 2px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-body>strong { font-size:9px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-footer { font-size:7px; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+  .tcg-viewport-battle { gap:3px; padding:4px 8px; }
+  .tcg-viewport-battle .tcg-battle-top { flex-basis:29px; }
+  .tcg-viewport-battle .tcg-battle-top h1 { font-size:15px; }
+  .tcg-viewport-battle .tcg-battle-top .tcg-kicker { display:none; }
+  .tcg-tactics-ribbon { flex-basis:20px; }
+  .tcg-viewport-battle .tcg-arena { --unit-width:78px; --hand-height:68px; --command-height:48px; grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:21px 32px minmax(0,1fr) 30px 48px 68px; grid-template-areas:'toolbar toolbar' 'enemyhero playerhero' 'enemyfield playerfield' 'turn turn' 'resonance command' 'hand hand'; padding:3px 8px; }
+  .tcg-viewport-battle .tcg-hero { height:30px; padding:3px 8px; gap:7px; }
+  .tcg-viewport-battle .tcg-hero .tcg-avatar { display:none; }
+  .tcg-viewport-battle .tcg-hero strong { font-size:10px; }
+  .tcg-viewport-battle .tcg-hero small { font-size:7px; }
+  .tcg-viewport-battle .tcg-hero>b { font-size:19px; }
+  .tcg-viewport-battle .tcg-field { gap:12px; padding:14px 0 2px; }
+  .tcg-viewport-battle .tcg-unit-name { font-size:8px; bottom:30px; }
+  .tcg-viewport-battle .tcg-unit-stats { font-size:11px; bottom:14px; gap:7px; }
+  .tcg-viewport-battle .tcg-unit small { font-size:6px; }
+  .tcg-viewport-battle .tcg-resonance { align-self:center; height:35px; }
+  .tcg-viewport-battle .tcg-resonance p { font-size:9px; white-space:normal; }
+  .tcg-viewport-battle .tcg-resonance>small { display:none; }
+  .tcg-viewport-battle .tcg-selected-card { padding:4px 7px; gap:7px; }
+  .tcg-viewport-battle .tcg-selected-card .tcg-kicker,.tcg-viewport-battle .tcg-selection-symbol { display:none; }
+  .tcg-viewport-battle .tcg-selected-card h3 { font-size:12px; }
+  .tcg-viewport-battle .tcg-selected-card p { font-size:9px; }
+  .tcg-viewport-battle .tcg-hand { display:flex; gap:6px; padding:2px 0; }
+  .tcg-viewport-battle .tcg-hand>.tcg-card { flex:1; max-width:95px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-art { position:absolute; inset:0; height:100%; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-art:after { content:''; position:absolute; inset:0; background:linear-gradient(transparent,#10292ae8); }
+  .tcg-viewport-battle .tcg-hand .tcg-card-body { position:absolute; inset:auto 0 0; padding:3px; background:transparent; color:#f3e5c1; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-body>strong { color:#f3e5c1; font-size:9px; line-height:1.1; margin:0; min-height:0; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-eyebrow,.tcg-viewport-battle .tcg-hand .tcg-card-text,.tcg-viewport-battle .tcg-hand .tcg-card-footer { display:none; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-cost { top:2px; left:2px; height:18px; width:18px; font-size:12px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-school { height:14px; width:14px; top:2px; right:2px; font-size:9px; }
+  .tcg-command-idle p { font-size:9px; }
+  .tcg-command-idle small,.tcg-command-idle>span { display:none; }
+}
+
+/* Alpha sprites and transform-only particles share the reducer's replay clock. */
+.tcg-elemental-fx { overflow:hidden; contain:layout paint; }
+.tcg-fx-anchor { position:absolute; width:0; height:0; color:var(--fx-color); }
+.tcg-fx-sprite { position:absolute; width:var(--fx-size); height:var(--fx-size); max-width:none; left:calc(var(--fx-size) / -2); top:calc(var(--fx-size) / -2); object-fit:contain; animation:tcg-element-impact .6s .08s ease-out both; }
+.tcg-fx-halo { position:absolute; width:var(--fx-size); height:var(--fx-size); left:calc(var(--fx-size) / -2); top:calc(var(--fx-size) / -2); border:2px solid currentColor; border-radius:50%; box-shadow:0 0 18px currentColor,inset 0 0 14px currentColor; animation:tcg-element-halo .6s .08s ease-out both; }
+.tcg-fx-glyph { position:absolute; left:-25px; top:-30px; width:50px; height:60px; display:grid; place-items:center; font:bold 54px Georgia,serif; text-shadow:0 0 10px currentColor; animation:tcg-element-glyph .6s ease-out both; }
+.tcg-fx-particle { position:absolute; width:5px; height:5px; margin:-3px; background:currentColor; border-radius:50%; box-shadow:0 0 8px currentColor; animation:tcg-element-particle .5s var(--delay) ease-out both; }
+.tcg-fx-projectile { position:absolute; width:15px; height:15px; left:-8px; top:-8px; border-radius:50%; background:#fff1ca; box-shadow:0 0 10px 5px currentColor,0 0 22px 8px currentColor; animation:tcg-element-flight .24s ease-in both; }
+.fx-fire .tcg-fx-sprite { animation-name:tcg-fire-impact; }
+.fx-water .tcg-fx-sprite { animation-name:tcg-water-impact; }
+.fx-water .tcg-fx-particle { width:5px; height:9px; border-radius:50% 50% 65% 65%; }
+.fx-shield .tcg-fx-sprite { animation:tcg-shield-form .65s ease-out both; }
+.fx-break .tcg-fx-sprite { animation:tcg-shield-break .55s .08s ease-out both; }
+.fx-break .tcg-fx-halo { border-style:dashed; }
+.fx-break .tcg-fx-particle { border-radius:0; width:7px; height:9px; }
+.fx-heal .tcg-fx-halo,.fx-buff .tcg-fx-halo { border-radius:40%; animation:tcg-heal-halo .65s ease-out both; }
+.fx-heal .tcg-fx-particle,.fx-leaves .tcg-fx-particle { border-radius:2px 12px; width:7px; height:12px; }
+.fx-summon .tcg-fx-halo { border-style:dotted; animation:tcg-summon-rune .65s ease-out both; }
+.fx-summon .tcg-fx-glyph { font-size:35px; }
+.fx-resonance .tcg-fx-halo { border:4px double currentColor; }
+.fx-draw .tcg-fx-glyph { animation:tcg-draw-glyph .65s ease-out both; }
+.fx-turn .tcg-fx-glyph { font-size:28px; }
+.tcg-fx-slash { position:absolute; height:5px; width:85px; left:-42px; top:-3px; border-radius:50%; background:#fff1ca; box-shadow:0 0 9px currentColor; animation:tcg-slash .5s ease-out both; }
+@keyframes tcg-element-flight { 0%{transform:translate(var(--from-x),var(--from-y)) scale(.55);opacity:0} 20%{opacity:1} 85%{opacity:1} 100%{transform:translate(0,0) scale(.35);opacity:0} }
+@keyframes tcg-element-impact { 0%{transform:scale(.2);opacity:0} 25%{transform:scale(1.05);opacity:1} 70%{opacity:.85} 100%{transform:scale(1.2);opacity:0} }
+@keyframes tcg-fire-impact { 0%{transform:scale(.15) rotate(-15deg);opacity:0} 25%{transform:scale(1) rotate(0);opacity:1} 100%{transform:scale(1.2) rotate(12deg);opacity:0} }
+@keyframes tcg-water-impact { 0%{transform:scale(.25) rotate(-55deg);opacity:0} 30%{transform:scale(1) rotate(-15deg);opacity:1} 100%{transform:scale(1.25) rotate(35deg);opacity:0} }
+@keyframes tcg-element-halo { 0%{transform:scale(.15);opacity:0} 25%{opacity:.8} 100%{transform:scale(1.4);opacity:0} }
+@keyframes tcg-element-particle { 0%{transform:rotate(var(--angle)) translateX(5px) scale(.3);opacity:0} 20%{opacity:1} 100%{transform:rotate(var(--angle)) translateX(var(--travel)) scale(.2);opacity:0} }
+@keyframes tcg-element-glyph { 0%{transform:translateY(15px) scale(.4);opacity:0} 30%{transform:translateY(0) scale(1);opacity:1} 100%{transform:translateY(-25px) scale(.8);opacity:0} }
+@keyframes tcg-shield-form { 0%{transform:scale(.15);opacity:0} 35%{transform:scale(1.05);opacity:1} 70%{transform:scale(1);opacity:.8} 100%{transform:scale(1);opacity:0} }
+@keyframes tcg-shield-break { 0%{transform:scale(1);opacity:1} 35%{transform:translateX(5px) scale(.9) rotate(-8deg);opacity:.9} 100%{transform:scale(1.4) rotate(18deg);opacity:0} }
+@keyframes tcg-heal-halo { 0%{transform:translateY(14px) scale(.4);opacity:0} 35%{opacity:.7} 100%{transform:translateY(-20px) scale(1.2);opacity:0} }
+@keyframes tcg-summon-rune { 0%{transform:scale(.2) rotate(0);opacity:0} 30%{opacity:.9} 100%{transform:scale(1.1) rotate(120deg);opacity:0} }
+@keyframes tcg-draw-glyph { 0%{transform:translateY(-30px) rotate(-20deg);opacity:0} 35%{transform:translateY(0) rotate(0);opacity:1} 100%{transform:translateY(15px) scale(.6);opacity:0} }
+@keyframes tcg-slash { 0%{transform:rotate(-35deg) scaleX(.1);opacity:0} 30%{transform:rotate(-35deg) scaleX(1);opacity:1} 100%{transform:rotate(-35deg) scaleX(1.4);opacity:0} }
+@media(prefers-reduced-motion:reduce) { .tcg-elemental-fx { display:none; } }
+
+.tcg-viewport-battle .tcg-turn-bar { flex-wrap:nowrap; }
+.tcg-viewport-battle .tcg-turn-bar p { order:0; width:auto; flex:1; }
+@media(min-width:601px) and (min-height:501px) and (max-height:800px) {
+  .tcg-viewport-battle .tcg-arena { --hand-height:120px; --command-height:55px; grid-template-rows:21px 36px minmax(0,1fr) 32px minmax(0,1fr) 36px 20px var(--command-height) var(--hand-height); gap:2px; padding:6px 16px; }
+  .tcg-viewport-battle .tcg-hero { height:34px; padding:3px 12px; }
+  .tcg-viewport-battle .tcg-hero .tcg-avatar { width:24px; height:24px; font-size:18px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-text,.tcg-viewport-battle .tcg-hand .tcg-card-eyebrow { display:none; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-body { padding:5px 7px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-body>strong { font-size:11px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-footer { margin-top:3px; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-art { inset:0 0 25%; }
+}
+@media(max-width:600px) {
+  .tcg-viewport-battle .tcg-hand .tcg-card-body>strong { font-size:10px!important; }
+  .tcg-viewport-battle .tcg-turn-bar .tcg-button { min-height:28px; padding:5px 8px!important; }
+}
+
+.tcg-viewport-battle .tcg-unit.is-summoned { animation:tcg-unit-arrive .6s ease-out both; }
+.tcg-viewport-battle .tcg-field.enemy .tcg-unit.is-acting { animation-name:tcg-enemy-lunge; }
+@keyframes tcg-unit-arrive { 0%{transform:translateY(16px) scale(.75);opacity:0} 65%{transform:translateY(-3px) scale(1.02);opacity:1} 100%{transform:translateY(0) scale(1);opacity:1} }
+@keyframes tcg-enemy-lunge { 0%,100%{transform:translateY(0)} 35%{transform:translateY(12px) scale(1.05)} }
+@media(max-width:600px) {
+  .tcg-viewport-battle .tcg-hand .tcg-card-body { min-height:0; border-top:0; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-sigil { font-size:44px; }
+}
+@media(max-width:600px) and (max-height:700px) and (orientation:portrait) {
+  .tcg-viewport-battle .tcg-hand:has(>.tcg-card:nth-child(5)) .tcg-card-footer { display:none; }
+  .tcg-viewport-battle .tcg-hand:has(>.tcg-card:nth-child(5)) .tcg-card-body { padding:3px; }
+  .tcg-viewport-battle .tcg-hand:has(>.tcg-card:nth-child(5)) .tcg-card-body>strong { font-size:9px!important; line-height:1.1; margin:0; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+  .tcg-viewport-battle .tcg-unit.is-acting { animation-name:tcg-left-lunge; }
+  .tcg-viewport-battle .tcg-field.enemy .tcg-unit.is-acting { animation-name:tcg-right-lunge; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-body { min-height:0; border-top:0; }
+  .tcg-viewport-battle .tcg-hand .tcg-card-sigil { font-size:40px; }
+}
+@keyframes tcg-left-lunge { 0%,100%{transform:translateX(0)} 35%{transform:translateX(-12px) scale(1.05)} }
+@keyframes tcg-right-lunge { 0%,100%{transform:translateX(0)} 35%{transform:translateX(12px) scale(1.05)} }
+.tcg-viewport-battle .tcg-hand>.tcg-empty { grid-column:1/-1; align-self:center; margin:0; font-size:11px; text-align:center; }

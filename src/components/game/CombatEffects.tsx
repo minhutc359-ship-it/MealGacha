@@ -1,87 +1,160 @@
-import { useEffect, useState, type RefObject } from "react"
-import { CARD_MAP, SCHOOLS } from "../../game/catalog"
+import {
+  useEffect,
+  useLayoutEffect,
+  useState,
+  type CSSProperties,
+  type RefObject,
+} from "react"
+import { SCHOOLS } from "../../game/catalog"
+import { combatCues, type EffectCue } from "../../game/combatEffects"
 import type { BattleFrame } from "../../game/battle"
 interface Props {
   arena: RefObject<HTMLDivElement | null>
   frame: BattleFrame | undefined
   stamp: string
 }
-interface Flight {
-  x1: number
-  y1: number
-  x2: number
-  y2: number
-  width: number
-  height: number
+interface Point {
+  x: number
+  y: number
+}
+interface PlacedCue extends EffectCue {
+  x: number
+  y: number
+  size: number
+}
+interface Layout {
+  source: Point
+  cues: PlacedCue[]
+}
+const SPRITES: Partial<Record<EffectCue["kind"], string>> = {
+  fire: "/assets/tcg/fx/fire-impact.webp",
+  water: "/assets/tcg/fx/water-impact.webp",
+  shield: "/assets/tcg/fx/shield.webp",
+  break: "/assets/tcg/fx/shield.webp",
+}
+const GLYPHS: Partial<Record<EffectCue["kind"], string>> = {
+  heal: "+",
+  buff: "↑",
+  summon: "✦",
+  draw: "▱",
+  resonance: "✧",
+  turn: "◆",
+  leaves: "❧",
+  sparkle: "✦",
+  strike: "╱",
 }
 export function CombatEffects({ arena, frame, stamp }: Props) {
-  const [flight, setFlight] = useState<Flight | null>(null)
+  const [layout, setLayout] = useState<Layout | null>(null)
   useEffect(() => {
+    for (const src of new Set(Object.values(SPRITES))) {
+      const image = new Image()
+      image.src = src
+    }
+  }, [])
+  useLayoutEffect(() => {
     const root = arena.current
-    if (!root || !frame || !["play", "attack"].includes(frame.event.kind)) {
-      setFlight(null)
+    if (!root || !frame) {
+      setLayout(null)
       return
     }
-    const { event } = frame
-    const side = event.side
-    const source = event.source
-      ? root.querySelector<HTMLElement>(`[data-unit="${event.source}"]`)
-      : root.querySelector<HTMLElement>(`[data-hero="${side}"]`)
-    const foe = side === "player" ? "enemy" : "player"
-    const target =
-      event.target === "hero"
-        ? root.querySelector<HTMLElement>(`[data-hero="${foe}"]`)
-        : event.target
-          ? root.querySelector<HTMLElement>(`[data-unit="${event.target}"]`)
-          : source
-    if (!source || !target) {
-      setFlight(null)
-      return
+    const place = () => {
+      const bounds = root.getBoundingClientRect()
+      const locate = (side: EffectCue["side"], target: string) =>
+        target === "hand"
+          ? root.querySelector<HTMLElement>(".tcg-hand")
+          : target === "hero"
+            ? root.querySelector<HTMLElement>(`[data-hero="${side}"]`)
+            : root.querySelector<HTMLElement>(`[data-unit="${target}"]`)
+      const position = (element: HTMLElement) => {
+        const r = element.getBoundingClientRect()
+        return {
+          x: r.left + r.width / 2 - bounds.left,
+          y: r.top + r.height / 2 - bounds.top,
+          size: Math.min(150, Math.max(75, r.height + 36)),
+        }
+      }
+      const source = locate(frame.event.side, frame.event.source ?? "hero")
+      if (!source) {
+        setLayout(null)
+        return
+      }
+      const cues = combatCues(frame).flatMap((cue) => {
+        const element = locate(cue.side, cue.target)
+        return element ? [{ ...cue, ...position(element) }] : []
+      })
+      setLayout({ source: position(source), cues })
     }
-    const a = root.getBoundingClientRect(),
-      s = source.getBoundingClientRect(),
-      t = target.getBoundingClientRect()
-    setFlight({
-      x1: s.left + s.width / 2 - a.left,
-      y1: s.top + s.height / 2 - a.top,
-      x2: t.left + t.width / 2 - a.left,
-      y2: t.top + t.height / 2 - a.top,
-      width: a.width,
-      height: a.height,
-    })
+    place()
+    const observer = new ResizeObserver(place)
+    observer.observe(root)
+    return () => observer.disconnect()
   }, [arena, frame, stamp])
-  if (!flight || !frame) return null
-  const color = frame.event.cardId
-    ? SCHOOLS[CARD_MAP[frame.event.cardId].school].color
-    : "#f4bf60"
+  if (!layout || !layout.cues.length) return null
   return (
-    <svg
-      className={`tcg-combat-fx fx-${frame.event.kind}`}
+    <div
+      className="tcg-combat-fx tcg-elemental-fx"
       key={stamp}
-      viewBox={`0 0 ${flight.width} ${flight.height}`}
       aria-hidden="true"
-      style={{ color }}
     >
-      <line
-        className="tcg-energy-trail"
-        x1={flight.x1}
-        y1={flight.y1}
-        x2={flight.x2}
-        y2={flight.y2}
-        pathLength="1"
-      />
-      <g transform={`translate(${flight.x2} ${flight.y2})`}>
-        <circle className="tcg-impact-ring" r="34" />
-        {Array.from({ length: 8 }, (_, i) => (
-          <line
-            key={i}
-            className="tcg-impact-ray"
-            x1="16"
-            x2="50"
-            transform={`rotate(${i * 45})`}
-          />
-        ))}
-      </g>
-    </svg>
+      {layout.cues.map((cue, i) => {
+        const color = ["heal", "leaves"].includes(cue.kind)
+          ? "#b4f08b"
+          : ["shield", "break", "water"].includes(cue.kind)
+            ? "#91eaff"
+            : SCHOOLS[cue.school].color
+        const style = {
+          left: cue.x,
+          top: cue.y,
+          "--fx-size": `${cue.size}px`,
+          "--fx-color": color,
+        } as CSSProperties
+        return (
+          <div
+            key={`${cue.kind}-${cue.side}-${cue.target}-${i}`}
+            className={`tcg-fx-anchor fx-${cue.kind}`}
+            data-effect={cue.kind}
+            data-effect-target={`${cue.side}:${cue.target}`}
+            style={style}
+          >
+            {cue.projectile && (
+              <span
+                className="tcg-fx-projectile"
+                style={
+                  {
+                    "--from-x": `${layout.source.x - cue.x}px`,
+                    "--from-y": `${layout.source.y - cue.y}px`,
+                  } as CSSProperties
+                }
+              />
+            )}
+            <span className="tcg-fx-halo" />
+            {SPRITES[cue.kind] ? (
+              <img
+                className="tcg-fx-sprite"
+                src={SPRITES[cue.kind]}
+                alt=""
+                draggable={false}
+              />
+            ) : (
+              <span className="tcg-fx-glyph">{GLYPHS[cue.kind]}</span>
+            )}
+            {Array.from({ length: 6 }, (_, n) => (
+              <span
+                className="tcg-fx-particle"
+                key={n}
+                style={
+                  {
+                    "--angle": `${n * 60}deg`,
+                    "--travel": `${cue.size * 0.45}px`,
+                    "--delay": `${80 + n * 15}ms`,
+                  } as CSSProperties
+                }
+              />
+            ))}
+            {cue.kind === "strike" && <span className="tcg-fx-slash" />}
+          </div>
+        )
+      })}
+    </div>
   )
 }

@@ -1,7 +1,5 @@
-import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
+import { BUILT_IN_DISHES } from "../infrastructure/catalog/dishCatalog"
 import { hasFoodAsset } from "../infrastructure/assets/foodAssets"
-import localDishes from "../infrastructure/catalog/localDishes.json"
-import type { Dish } from "../domain/models"
 import type { GameCard, School, CardRarity, Keyword, Effect } from "./types"
 
 export const SCHOOLS: Record<School, {
@@ -70,11 +68,7 @@ function schoolFor(category: string, tags: string[]): School {
     return "ember"
   return "hearth"
 }
-const dishCatalog = [
-  ...new Map(
-    [...SEED_DISHES, ...localDishes as Dish[]].map((d) => [d.id, d]),
-  ).values(),
-]
+const dishCatalog = BUILT_IN_DISHES
 const foods: GameCard[] = dishCatalog
   .filter(
     (d) =>

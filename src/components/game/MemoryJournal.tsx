@@ -2,6 +2,7 @@ import { STAGES } from "../../game/story"
 import { SCENES, ENDINGS } from "../../game/narrative"
 import { useGameStore } from "../../game/useGameStore"
 import { StoryScene } from "./StoryScene"
+import { stageArtId } from "../../game/storyArt"
 
 export function MemoryJournal() {
   const cleared = useGameStore((s) => s.save.clearedStages)
@@ -38,8 +39,14 @@ export function MemoryJournal() {
         <article className="tcg-epilogue">
           <span className="tcg-kicker">ĐOẠN KẾT BẠN ĐÃ CHỌN</span>
           <h3>{ENDINGS[ending].title}</h3>
-          <p>{ENDINGS[ending].text}</p>
-          <blockquote>{ENDINGS[ending].epilogue}</blockquote>
+          <StoryScene
+            key={ending}
+            art={ending === "remember" ? "last-table" : "lantern"}
+            lines={[
+              { speaker: "Người kể", text: ENDINGS[ending].text },
+              { speaker: "Nhiều năm sau", text: ENDINGS[ending].epilogue },
+            ]}
+          />
         </article>
       )}
       <details className="tcg-story-archive">
@@ -51,6 +58,7 @@ export function MemoryJournal() {
             </summary>
             <StoryScene
               lines={[...SCENES[stage.id].before, ...SCENES[stage.id].after]}
+              art={stageArtId(stage.id)}
             />
           </details>
         ))}

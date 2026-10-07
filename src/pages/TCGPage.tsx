@@ -9,8 +9,11 @@ import { GAME_KEY, parseGame } from "../game/storage"
 import { getDateKey } from "../domain/dateKey"
 import { GameCardView } from "../components/game/GameCardView"
 import { StoryScene } from "../components/game/StoryScene"
+import { DuelBasics } from "../components/game/DuelBasics"
 import { MemoryJournal } from "../components/game/MemoryJournal"
-import { SCENES, BOSS_RULES } from "../game/narrative"
+import { CultureJournal } from "../components/game/CultureJournal"
+import { SCENES, BOSS_RULES, WORLD_PRIMER } from "../game/narrative"
+import { stageArtId } from "../game/storyArt"
 import { BattleBoard } from "../components/game/BattleBoard"
 import { Collection } from "../components/game/Collection"
 import { DeckBuilder } from "../components/game/DeckBuilder"
@@ -24,6 +27,8 @@ import {
   preloadClickSounds,
 } from "../infrastructure/audio/soundEngine"
 import "../game/tcg.css"
+import "../game/combat.css"
+import "../game/story.css"
 
 const NAV = [
   { id: "home", name: "Sảnh hành trình", icon: "home" },
@@ -176,7 +181,7 @@ export function TCGPage() {
       <a href="#tcg-main" className="tcg-skip">
         Đến nội dung chính
       </a>
-      <aside className="tcg-sidebar">
+      <aside className="tcg-sidebar" inert={!!current.battle}>
         <button
           className="tcg-brand"
           onClick={() => setTab("home")}
@@ -251,7 +256,7 @@ export function TCGPage() {
         </div>
       </aside>
       <div className="tcg-content">
-        <header className="tcg-topbar">
+        <header className="tcg-topbar" inert={!!current.battle}>
           <div>
             <span className="tcg-topbar-label">MEALGACHA /</span>
             <strong>{NAV.find((n) => n.id === tab)?.name ?? "Cài đặt"}</strong>
@@ -283,6 +288,7 @@ export function TCGPage() {
         </header>
         <main
           id="tcg-main"
+          tabIndex={-1}
           className={`tcg-main ${current.battle ? "has-battle" : ""}`}
         >
           {current.battle ? (
@@ -568,6 +574,7 @@ export function TCGPage() {
                       <small>/18 MÀN</small>
                     </div>
                   </div>
+                  <CultureJournal />
                   <MemoryJournal />
                   <div className="tcg-chapter-grid">
                     {CHAPTERS.map((ch, i) => {
@@ -583,15 +590,28 @@ export function TCGPage() {
                           key={ch.id}
                         >
                           <div className="tcg-chapter-art">
-                            <img src={ch.art} alt="" />
+                            {unlocked && (
+                              <img
+                                src={ch.art}
+                                alt=""
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            )}
                             <span>CHƯƠNG 0{i + 1}</span>
                             <div>
-                              <small>{ch.subtitle}</small>
+                              <small>
+                                {unlocked ? ch.subtitle : "Một trang chưa mở"}
+                              </small>
                               <h2>{ch.title}</h2>
                             </div>
                             <b>{unlocked ? SCHOOLS[ch.school].symbol : "⚿"}</b>
                           </div>
-                          <p>{ch.intro}</p>
+                          <p>
+                            {unlocked
+                              ? ch.intro
+                              : "Hoàn thành chương trước để khám phá ký ức và minh họa tại đây."}
+                          </p>
                           <div className="tcg-stages">
                             {ch.stages.map((s, j) => (
                               <button
@@ -613,10 +633,12 @@ export function TCGPage() {
                                     : `${j + 1}`}
                                 </span>
                                 <div>
-                                  <strong>{s.title}</strong>
+                                  <strong>
+                                    {unlocked ? s.title : `Ký ức ${j + 1}`}
+                                  </strong>
                                   <small>
                                     {s.boss ? "BOSS · " : ""}
-                                    {s.opponent}
+                                    {unlocked ? s.opponent : "Nội dung chưa mở"}
                                   </small>
                                 </div>
                                 <b>
@@ -912,7 +934,7 @@ export function TCGPage() {
             <span>
               MEALGACHA <i>✦</i> Một thế giới được nấu bằng ký ức.
             </span>
-            <span>CHIẾC GHẾ TRỐNG · v2.2</span>
+            <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.5</span>
           </footer>
         </main>
       </div>
@@ -931,7 +953,6 @@ export function TCGPage() {
           wide
         >
           <div className="tcg-story-dialog">
-            <img src={STAGE_MAP[stageId].chapter.art} alt="" />
             <span className="tcg-kicker">
               {STAGE_MAP[stageId].chapter.title} ·{" "}
               {STAGE_MAP[stageId].boss ? "BOSS" : "THỬ THÁCH"}
@@ -939,6 +960,7 @@ export function TCGPage() {
             <StoryScene
               key={stageId}
               lines={SCENES[stageId].before}
+              art={stageArtId(stageId)}
               onComplete={() => setSceneRead(true)}
             />
             <div className="tcg-tactic">
@@ -1086,6 +1108,8 @@ export function TCGPage() {
           wide
         >
           <div className="tcg-help">
+            <StoryScene lines={WORLD_PRIMER} />
+            <DuelBasics />
             <div className="tcg-help-lead">
               <span>✦</span>
               <p>

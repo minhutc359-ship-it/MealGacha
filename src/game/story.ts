@@ -1,5 +1,6 @@
 import type { Chapter } from "./types"
 import { SCENES, CHAPTER_COPY } from "./narrative"
+import { STORY_ART, stageArtId } from "./storyArt"
 
 const CHAPTER_LAYOUT = [
   {
@@ -19,7 +20,7 @@ const CHAPTER_LAYOUT = [
       {
         id: "lantern-2",
         title: "Chợ không tiếng cười",
-        opponent: "Bóng Sương ở chợ Đồng Xuân",
+        opponent: "Bóng Sương ở chợ Đèn Lồng",
         boss: false,
         rewardCard: "sugar-veil",
       },
@@ -188,6 +189,7 @@ const CHAPTER_LAYOUT = [
 export const CHAPTERS: Chapter[] = CHAPTER_LAYOUT.map((chapter, index) => ({
   ...chapter,
   school: chapter.school as Chapter["school"],
+  art: STORY_ART[stageArtId(chapter.stages[0].id)].src,
   subtitle: CHAPTER_COPY[index][0],
   intro: CHAPTER_COPY[index][1],
   stages: chapter.stages.map((stage) => ({

@@ -1,0 +1,62 @@
+/* Illustrated scenes share the same reader before/after duels and in the journal. */
+.tcg-scene.is-illustrated { padding:0; overflow:hidden; border-color:#98a89077; background:#f0eddf; }
+.tcg-scene-art { position:relative; margin:0; width:100%; aspect-ratio:16/9; max-height:340px; overflow:hidden; background:#1d3636; }
+.tcg-scene-art img { width:100%; height:100%; display:block; object-fit:cover; animation:story-reveal .5s ease-out both; }
+.tcg-scene-art:after { content:''; position:absolute; inset:45% 0 0; background:linear-gradient(transparent,#102625e6); pointer-events:none; }
+.tcg-scene-art figcaption { position:absolute; z-index:1; bottom:15px; left:20px; right:20px; color:#f1e3bd; font:18px/1.4 Georgia,serif; }
+.tcg-scene-art figcaption span { display:block; margin-bottom:4px; font:700 8px/1.5 sans-serif; letter-spacing:2px; color:#bbd4c8; }
+.tcg-scene-copy { padding:18px 22px; }
+.tcg-scene-copy .tcg-scene-progress { margin-bottom:15px; }
+.tcg-scene-copy .tcg-scene-line { min-height:105px; }
+.tcg-scene-copy .tcg-scene-controls { flex-wrap:wrap; }
+.tcg-scene-copy .tcg-scene-controls small { color:#687b61; font-size:10px; margin-right:auto; }
+.tcg-scene-copy .tcg-scene-controls>button:first-child { margin-right:0; }
+.tcg-duel-basics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; padding:0; margin:16px 0; list-style:none; }
+.tcg-duel-basics li { padding:13px; border:1px solid #91a17f55; border-radius:8px; background:#ebe9d8; }
+.tcg-duel-basics b { display:block; color:#426854; font-size:12px; margin-bottom:7px; }
+.tcg-duel-basics p { margin:0; font-size:12px; color:#607257; line-height:1.7; }
+.tcg-help .tcg-duel-basics { margin:16px 0; padding:0; }
+.tcg-help .tcg-duel-basics li { padding:13px; margin:0; }
+.tcg-duel-meaning { border-left:3px solid #8a9f78; padding:10px 14px; background:#dce3d080; line-height:1.8; color:#586b51; font-size:12px; }
+@keyframes story-reveal { from { opacity:.5; transform:scale(1.025); } to { opacity:1; transform:scale(1); } }
+@media(max-width:600px) {
+  .tcg-scene-copy { padding:15px; }
+  .tcg-scene-art figcaption { left:15px; bottom:10px; font-size:15px; }
+  .tcg-scene-art { max-height:230px; }
+  .tcg-scene-copy .tcg-scene-line { min-height:135px; }
+  .tcg-duel-basics { grid-template-columns:1fr; }
+}
+@media(prefers-reduced-motion:reduce) { .tcg-scene-art img { animation:none; } }
+html[data-tcg-reduced-motion=true] .tcg-scene-art img { animation:none; }
+
+.tcg-culture-journal { margin-bottom:18px; }
+.tcg-culture-journal .tcg-kicker,.tcg-culture-discovery .tcg-kicker { font-size:10px; line-height:1.7; letter-spacing:.8px; color:#637459; }
+.tcg-culture-heading { display:flex; gap:12px; justify-content:space-between; align-items:center; }
+.tcg-culture-heading h2 { margin:8px 0; }
+.tcg-culture-heading>span { flex-shrink:0; color:#49644e; font-size:12px; }
+.tcg-culture-journal>p,.tcg-culture-guide { color:#607257; font-size:13px; line-height:1.8; }
+.tcg-culture-pages>summary { cursor:pointer; padding:13px 0 4px; font-size:13px; font-weight:700; color:#405c44; }
+.tcg-culture-language { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
+.tcg-culture-language button { min-height:38px; padding:7px 14px; border:1px solid #91a17f66; border-radius:6px; color:#52684a; background:#eeeada; cursor:pointer; }
+.tcg-culture-language button[aria-pressed=true] { background:#426854; color:#fff7df; }
+.tcg-culture-language button:focus-visible,.tcg-culture-sources a:focus-visible,.tcg-culture-pages summary:focus-visible { outline:2px solid #577b63; outline-offset:3px; }
+.tcg-culture-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:16px; }
+.tcg-culture-page,.tcg-culture-sealed { min-width:0; border:1px solid #91a17f55; border-radius:10px; overflow:hidden; background:#f0eddf; }
+.tcg-culture-page>img { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; }
+.tcg-culture-page-copy { padding:18px; }
+.tcg-culture-page h3 { color:#405c44; font:20px/1.45 Georgia,serif; margin:8px 0 15px; }
+.tcg-culture-page h4 { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#647258; margin:16px 0 7px; }
+.tcg-culture-page p,.tcg-culture-sealed p { margin:0; color:#576d50; font-size:13px; line-height:1.9; }
+.tcg-culture-page blockquote { margin:0; padding:10px 12px; border-left:3px solid #a49472; background:#e8e5d3; }
+.tcg-culture-page blockquote b { display:block; font-size:10px; color:#817151; margin-bottom:4px; }
+.tcg-culture-sources { display:flex; flex-direction:column; align-items:flex-start; gap:9px; margin-top:15px; }
+.tcg-culture-sources a { font-size:12px; line-height:1.7; color:#426854; text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; }
+.tcg-culture-copy { display:block; margin-top:18px; padding:8px 12px; min-height:38px; border:1px solid #91a17f77; border-radius:6px; color:#405c44; background:#e5e7d5; cursor:pointer; font-size:12px; }
+.tcg-culture-copy:focus-visible { outline:2px solid #577b63; outline-offset:3px; }
+.tcg-culture-page .tcg-culture-copy-status { margin-top:8px; font-size:11px; }
+.tcg-culture-sealed { padding:18px; background:#e5e4d680; }
+.tcg-culture-sealed h3 { color:#738267; font-size:15px; margin:10px 0; }
+.tcg-culture-discovery { margin:18px 0; padding:14px; border:1px solid #9caf82; border-radius:8px; background:#e5ead8; text-align:left; }
+.tcg-culture-discovery h3 { margin:8px 0; color:#405c44; font-size:16px; }
+.tcg-culture-discovery p { margin:0; font-size:12px; line-height:1.8; color:#5b7050; }
+@media(max-width:600px) { .tcg-culture-grid { grid-template-columns:1fr; } .tcg-culture-page-copy { padding:15px; } .tcg-culture-heading h2 { font-size:19px; } }
