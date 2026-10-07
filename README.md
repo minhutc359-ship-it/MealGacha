@@ -1,8 +1,16 @@
-# MealGacha v2.3 · Huyền thoại vị giác
+# MealGacha v2.4 · Vị Linh và chiếc ghế trống
 
 Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 3 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
+
+## Bản 2.4 · Vị Linh và truyện có minh họa
+
+- Sáu minh họa cinematic WebP gốc, tổng khoảng **924 KiB**, dùng trong cutscene trước/sau 18 màn, hai đoạn kết và nhật ký đọc lại. Chương chưa mở ẩn ảnh, lời giới thiệu và tên đối thủ để không lộ bí ẩn.
+- Luật thế giới: hương vị lưu **Ấn Vị**, thẻ gọi **Vị Linh** trên **Bàn Ký Ức**. ♥ chủ tướng biểu thị ý chí giữ bàn; chiến thắng tháo nút thắt của sương để ký ức trở về. Món ăn và con người ngoài bàn không bị đánh.
+- Nhiên, Mộc, Hải và Liên có mất mát và lý do đồng hành riêng. Lá thư của bà và lời Liên báo trước điều kiện/cái giá của đoạn kết mới; lựa chọn cuối nói rõ bà sẽ không còn nhận ra bạn.
+- Hướng dẫn ba bước **Gọi Vị Linh → Chọn mục tiêu → Nhường lượt**; gợi ý tình huống ngay trong thanh chiến thuật. Gợi ý chỉ chọn quân/bài và đưa focus tới xác nhận/mục tiêu, không tự tiêu bài hay chơi hộ. Tính từ hành động hợp lệ, có Hộ vệ, Chắn, phản đòn, Cộng hưởng và kiệt sức.
+- Giữ IDs 18 màn, luật chiến đấu, tài nguyên và schema lưu v1. [Nguồn/prompt minh họa](docs/STORY_ASSETS.md), [cốt truyện có spoiler](docs/STORY_OVERVIEW.md).
 
 ## Bản 2.3 · Bàn đấu và Rương Vị Giác
 

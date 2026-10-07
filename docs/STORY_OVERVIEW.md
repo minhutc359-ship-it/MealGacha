@@ -2,6 +2,12 @@
 
 Đây là nội dung đã xuất hiện trong 6 chương / 18 màn và hai đoạn kết của game; nguồn đối thoại là `src/game/narrative.ts`.
 
+## Vì sao món ăn có thể chiến đấu?
+
+Trong thế giới này, mỗi hương vị lưu lại một **Ấn Vị**: dấu ký ức về người nấu, người ăn và một khoảnh khắc. Công thức ghi nó thành thẻ, chiếc muôi bạc gọi nó ra thành **Vị Linh** trên **Bàn Ký Ức**. Các món ngoài đời vẫn nằm trong bát. Vị Linh chống lại linh ảnh mà Sương Nhạt đang giữ; khi nút thắt bị phá, ký ức thật tìm được đường về. ♥ của chủ tướng biểu thị ý chí giữ bàn đấu, không phải vết thương của người bán hàng hay người đồng hành.
+
+Quy tắc này xuất hiện ngay màn đầu và trong trợ giúp. Nó cũng dẫn tới bí ẩn lớn: Vị Linh thường quay về thẻ khi bàn khép lại, còn người cầm muôi vẫn tồn tại và tự tạo những Ấn Vị mới.
+
 ## Hành trình
 
 | Chương | Sự kiện và vai trò trong bí ẩn |
@@ -24,6 +30,10 @@ Lựa chọn cuối đổi đoạn kết, không đổi phần thưởng trận.
 
 **Đáng chơi như một chiến dịch thẻ bài indie ngắn.** Điểm mạnh là hình ảnh bàn ăn, món Việt và chiếc ghế trống gắn với chủ đề mất mát. Ba lần đổi cách hiểu — nhiệm vụ giải cứu thực ra mở phong ấn, người chơi là tiếng vọng, người dẫn đường là người được Mai cứu — có manh mối từ sớm. Bà và Bách có động cơ dễ hiểu dù hành động của họ gây tổn thương. Câu hỏi cuối là người chơi có quyền định nghĩa mình thế nào.
 
-Phần còn yếu là Nhiên, Mộc, Hải và Liên thường cung cấp thông tin hơn là có xung đột cá nhân đủ sâu. Truyện chủ yếu được đọc trước/sau trận; luật boss có liên hệ với ký ức nhưng các quyết định trong trận chưa tạo nhánh truyện. Đoạn kết tiếng vọng thành người sống cần được báo trước rõ hơn về quy tắc phép thuật. Hai đoạn kết có ý nghĩa cảm xúc nhưng chưa khiến toàn bộ chiến dịch thay đổi khi chơi lại.
+Ở bản 2.4, Nhiên cần biết cha đã cứu ai thay vì tin ông bỏ đi; Mộc biết loại trà mẹ thích nhưng mất giọng mẹ; Hải từng để sương xóa sổ người mất tích để khỏi phải đọc; Liên thoát một buổi chiều lặp lại bằng cách nấu công thức em chưa từng biết. Họ có lý do riêng để khôi phục ký ức, cùng những cách đối mặt khác nhau. Truyện dùng sáu minh họa có chung ngôn ngữ hình ảnh thay cho banner lễ hội. Chương chưa mở giấu nội dung, tránh lộ các cú xoay ngay ở bản đồ.
+
+Lá thư ở chương 3 và lời Liên ở chương 5 báo trước quy tắc tiếng vọng biết tự chọn có thể nhận một đời sống mới, nếu bà buông lời ước và chiếc muôi bị phá. Ấn Vị làm neo tan đi, nên bà có thể không còn nhận ra bạn. Nút lựa chọn cuối nói rõ cái giá này. Cả hai kết thúc đều trả ký ức lại cho thành phố; khác biệt là tiếng vọng trở thành câu chuyện hay một người có ngày mai.
+
+Giới hạn hiện tại: truyện chủ yếu ở trước/sau trận, các quyết định trong trận chưa tạo nhánh; Can đảm/Thấu hiểu thay đổi chuẩn bị chiến đấu, không tạo tuyến truyện riêng. Sáu tranh được dùng lại theo chương, chưa phải hoạt hình/voice-over hoặc tranh riêng cho từng câu thoại. Gợi ý giúp người mới hiểu nước đi nhưng không biến AI thành đối thủ biết thích nghi dài hạn. Hai đoạn kết có ý nghĩa cảm xúc, song chưa thay đổi toàn bộ chiến dịch khi chơi lại.
 
 Đánh giá trên là nhận xét từ nội dung và cơ chế đã triển khai, không phải kết quả khảo sát người chơi. Bước tiếp theo có giá trị nhất là một quyết định giữa chiến dịch để lại hệ quả ở trận hoặc quan hệ nhân vật về sau, đồng thời gieo thêm manh mối cho quy tắc biến tiếng vọng thành đời sống.

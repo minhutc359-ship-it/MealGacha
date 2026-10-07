@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { playSound } from "../../infrastructure/audio/soundEngine"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
 import { RELIC_MAP } from "../../game/expedition"
@@ -18,6 +18,9 @@ import { GameCardView } from "./GameCardView"
 import { CombatEffects } from "./CombatEffects"
 import { StoryScene } from "./StoryScene"
 import { Dialog } from "./Dialog"
+import { getBattleHint } from "../../game/battleCoach"
+import { DuelBasics } from "./DuelBasics"
+import { stageArtId } from "../../game/storyArt"
 
 interface SpellSelection {
   type: "play"
@@ -186,6 +189,11 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
   const [detail, setDetail] = useState(false)
   const [inspect, setInspect] = useState<string | null>(null)
   const [endRead, setEndRead] = useState(false)
+  const hint = useMemo(
+    () => (busy ? null : getBattleHint(battle)),
+    [battle, busy],
+  )
+  const readyCount = battle.player.board.filter((unit) => unit.ready).length
   useEffect(() => {
     if (!busy || !replay) {
       inFlight.current = false
@@ -466,7 +474,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                   ? "Chọn mục tiêu · Xem sát thương và phản đòn"
                   : selectedCard
                     ? "Đọc kỹ năng, rồi xác nhận dùng bài"
-                    : "LƯỢT CỦA BẠN · Chọn thẻ hoặc đồng minh"}
+                    : readyCount
+                      ? `${readyCount} đồng minh sẵn sàng · Chọn quân, rồi mục tiêu`
+                      : "LƯỢT CỦA BẠN · Gọi Vị Linh bằng thẻ trên tay"}
           </p>
           {busy ? (
             <button className="tcg-button ghost" onClick={skip}>
@@ -629,14 +639,56 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             </div>
           )}
           {!selection && (
-            <div className="tcg-command-idle">
+            <div className="tcg-command-idle tcg-coach" role="status">
               <span>✦</span>
-              <p>
-                {busy
-                  ? "Đang giải quyết hành động · Có thể bỏ qua hiệu ứng"
-                  : "Chọn bài trên tay để đọc kỹ năng. Chọn đồng minh để tấn công."}
-              </p>
-              <small>18 lá · 3 ô sân</small>
+              <div>
+                <strong>
+                  {busy
+                    ? "Vị Linh đang hành động"
+                    : (hint?.title ?? "Bàn Ký Ức")}
+                </strong>
+                <p>
+                  {busy
+                    ? "Có thể bỏ qua hiệu ứng"
+                    : (hint?.reason ??
+                      "Chọn bài trên tay hoặc đồng minh để bắt đầu.")}
+                </p>
+              </div>
+              {hint?.action && !busy && (
+                <button
+                  className="tcg-button ghost"
+                  onClick={() => {
+                    const action = hint.action!
+                    setSelection(
+                      action.type === "attack"
+                        ? { type: "attack", uid: action.uid }
+                        : { type: "play", index: action.index },
+                    )
+                    requestAnimationFrame(() => {
+                      const targetButton =
+                        action.target === "hero"
+                          ? arena.current?.querySelector<HTMLButtonElement>(
+                              '[data-hero="enemy"]',
+                            )
+                          : action.target
+                            ? Array.from(
+                                arena.current?.querySelectorAll<HTMLButtonElement>(
+                                  "[data-unit]",
+                                ) ?? [],
+                              ).find(
+                                (button) =>
+                                  button.dataset.unit === action.target,
+                              )
+                            : arena.current?.querySelector<HTMLButtonElement>(
+                                ".tcg-selected-card>.tcg-button",
+                              )
+                      targetButton?.focus({ preventScroll: true })
+                    })
+                  }}
+                >
+                  Gợi ý →
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -711,6 +763,12 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
       {showRules && (
         <Dialog title="Luật chiến đấu" onClose={() => setShowRules(false)}>
           <div className="tcg-rules-list">
+            <p className="tcg-duel-meaning">
+              <strong>Vì sao món ăn chiến đấu?</strong> Thẻ giữ Ấn Vị và gọi ra
+              Vị Linh trên Bàn Ký Ức. Dấu ♥ của chủ tướng là ý chí giữ bàn;
+              thắng giúp ký ức thoát khỏi sương.
+            </p>
+            <DuelBasics />
             <p>
               <strong>Mục tiêu:</strong> Đưa máu chủ tướng địch về 0. Mỗi lượt
               rút 1 lá, tăng 1 năng lượng tối đa và hồi đầy (trần 7).
@@ -781,6 +839,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             cùng hệ để Cộng hưởng. Lá trả lại sẽ vào bộ bài sau khi rút lá thay
             thế.
           </p>
+          <DuelBasics />
           <div className="tcg-mulligan-hand">
             {stored.player.hand.map((id, index) => (
               <div
@@ -851,6 +910,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
               <StoryScene
                 key={stored.id}
                 lines={SCENES[stage.id].after}
+                art={stageArtId(stage.id)}
                 onComplete={() => setEndRead(true)}
               />
             ) : (
@@ -890,7 +950,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                         <small>
                           {id === "remember"
                             ? "Tiếng vọng đi, câu chuyện ở lại."
-                            : "Từ bỏ chiếc muôi để sống một đời mới."}
+                            : "Bạn được sống; bà sẽ không còn nhận ra bạn."}
                         </small>
                       </button>
                     ))}
@@ -898,8 +958,17 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                   {ending && (
                     <article className="tcg-epilogue">
                       <h3>{ENDINGS[ending].title}</h3>
-                      <p>{ENDINGS[ending].text}</p>
-                      <blockquote>{ENDINGS[ending].epilogue}</blockquote>
+                      <StoryScene
+                        key={ending}
+                        art={ending === "remember" ? "last-table" : "lantern"}
+                        lines={[
+                          { speaker: "Người kể", text: ENDINGS[ending].text },
+                          {
+                            speaker: "Nhiều năm sau",
+                            text: ENDINGS[ending].epilogue,
+                          },
+                        ]}
+                      />
                     </article>
                   )}
                 </div>

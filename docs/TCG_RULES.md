@@ -1,4 +1,4 @@
-# MealGacha TCG v2.2 — Luật và bảo trì
+# MealGacha TCG v2.4 — Luật và bảo trì
 
 ## Nội dung đã triển khai
 
@@ -19,6 +19,8 @@ Sáu chương, mỗi chương ba màn, tổng cộng sáu boss:
 
 ## Luật chiến đấu
 
+Trong truyện, hương vị mang Ấn Vị, được công thức ghi thành thẻ. Chiếc muôi gọi dấu ký ức thành Vị Linh trên Bàn Ký Ức. Các đòn đánh làm linh ảnh tan và tháo nút thắt màn sương; ♥ của chủ tướng là ý chí giữ bàn, không phải thương tích của người ngoài đời. Cơ chế số học vẫn sử dụng trường `health` để giữ tương thích bản lưu.
+
 - Bộ bài đúng 18 lá, tối đa 2 bản mỗi ID, phải sở hữu đủ. Lưu tối đa ba bộ bài; có tự xếp, biểu đồ chi phí, đổi tên và chọn bộ hoạt động.
 - Chủ tướng người chơi có 34 máu / 4 lá (Can đảm) hoặc 32 máu / 5 lá (Thấu hiểu). Đối phương 25–38 máu tùy màn; luyện tập 30 máu.
 - Trước trận mới được đổi tối đa 3 lá một lần. Rút từ phần bộ bài còn lại trước, rồi trả các lá đã đổi vào bộ và xáo; có thể nhận cùng ID nếu bộ có bản thứ hai. Trận đang chơi từ bản cũ không buộc đổi lại.
@@ -34,6 +36,12 @@ Sáu chương, mỗi chương ba màn, tổng cộng sáu boss:
 - Hạ chủ tướng địch xuống 0 là thắng. Trận kết thúc chỉ được quyết toán một lần; kết quả và phần thưởng thực nhận lưu cùng trận.
 
 AI ưu tiên triệu hồi, tận dụng sát thương kết liễu, đánh Hộ vệ, chọn đổi có lợi và tránh rút phép khi tay đầy/bộ rỗng. Bộ đối thủ có 18 lá với đường cong năng lượng, tối đa 2 bản mỗi thẻ. Các vùng dùng hệ riêng; chương cuối kết hợp cả năm hệ.
+
+## Cutscene và hướng dẫn v2.4
+
+`storyArt.ts` ánh xạ sáu chương vào WebP thật trong `public/assets/tcg/story/`. `StoryScene` dùng chung ở trước trận, sau trận, nhật ký và đoạn kết, có alt mô tả, lời thoại live region, tiến độ, đọc nhanh và transcript. Giảm chuyển động tắt animation ảnh. Chương khóa không render ảnh/nội dung bí mật. Callback hoàn tất một reader chỉ chạy một lần; xem truyện không quyết toán trận.
+
+`battleCoach.ts` mô phỏng các hành động chơi bài/tấn công bằng `actBattle`, loại hành động sai hoặc thua ngay, rồi ưu tiên thắng, phá Hộ vệ/đổi có lợi, gọi quân và hồi phục. Không mô phỏng hoặc tự bấm kết thúc lượt, không đọc bài địch để quyết định, không ghi save. Đây là gợi ý ngắn theo tình huống, không bảo đảm chiến thuật tối ưu. `BattleBoard` memo hóa theo snapshot, nút Gợi ý chỉ chọn quân/bài và focus mục tiêu/xác nhận; người chơi tự xác nhận nước đi. Hướng dẫn ba bước xuất hiện ở đổi bài đầu trận, trợ giúp và luật đấu.
 
 ## Boss, lựa chọn và hiệu ứng
 

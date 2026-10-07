@@ -52,6 +52,7 @@ public/assets/audio/** -filter -diff -merge -text
 public/assets/food/** -filter -diff -merge -text
 public/assets/events/** -filter -diff -merge -text
 public/assets/tcg/fx/** -filter -diff -merge -text
+public/assets/tcg/story/** -filter -diff -merge -text
 
 # ---------------------------------------------------------------------------
 # 3D & Game Assets

@@ -93,6 +93,11 @@
 .tcg-command-idle>span { font-size: 23px; color: #b9a477; }
 .tcg-command-idle p { font-size: 11px; line-height: 1.6; margin: 0; }
 .tcg-command-idle small { font-size: 9px; white-space: nowrap; }
+.tcg-coach { height:100%; justify-content:flex-start; }
+.tcg-coach>div { flex:1; min-width:0; }
+.tcg-coach strong { display:block; color:#e2d8b4; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.tcg-coach p { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; line-height:1.35; }
+.tcg-coach>.tcg-button { flex-shrink:0; }
 .tcg-viewport-battle .tcg-attack-guide { width: 100%; height: 100%; padding: 10px 12px; margin: 0; gap: 12px; flex-direction: row; }
 .tcg-viewport-battle .tcg-attack-guide span { font-size: 11px; line-height: 1.4; }
 .tcg-viewport-battle .tcg-hand { grid-area: hand; min-height: 0; min-width: 0; height: 100%; display: flex; justify-content: center; align-items: stretch; gap: 10px; padding: 5px 5px 3px; margin: 0; overflow: visible; }
@@ -164,6 +169,8 @@
   .tcg-card-detail-button { height:23px; width:23px; }
   .tcg-command-idle { padding:7px; gap:8px; }
   .tcg-command-idle p { font-size:10px; }
+  .tcg-coach strong { font-size:10px; }
+  .tcg-coach>span { display:none; }
   .tcg-command-idle small { display:none; }
   .tcg-viewport-battle .tcg-attack-guide { gap:7px; padding:6px; }
   .tcg-viewport-battle .tcg-attack-guide strong { font-size:10px; max-width:100px; }
