@@ -1,8 +1,14 @@
-# MealGacha v2.8 · Công thức của riêng tôi
+# MealGacha v2.8.1 · Chơi gọn trong màn hình
 
 Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 6 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
+
+## Bản 2.8.1 · Chơi gọn trong màn hình
+
+Sảnh vào chơi nhanh; chiến dịch chọn từng chương; thư viện và xưởng phân trang theo kích thước màn hình. Bộ bài có hai chế độ thêm thẻ/xem nháp trên mobile, nút lưu luôn hiện. Đọc truyện và chuẩn bị trận là hai bước riêng; bản đồ, nhật ký, văn hóa và phân tích mở khi cần. Điều hướng mobile giữ năm nút chính cùng menu đầy đủ.
+
+[Thiết kế giao diện và kiểm chứng](docs/INTERFACE_V281.md).
 
 ## Bản 2.8 · Công thức của riêng tôi
 

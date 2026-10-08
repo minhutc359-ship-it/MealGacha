@@ -3,15 +3,15 @@ import { Link, useSearchParams } from "react-router-dom"
 import { useAppStore } from "../store/useAppStore"
 import { useGameStore } from "../game/useGameStore"
 import { CARDS, CARD_MAP, SCHOOLS, RARITIES } from "../game/catalog"
-import { CHAPTERS, STAGES, STAGE_MAP, isStageUnlocked } from "../game/story"
+import { STAGES, STAGE_MAP } from "../game/story"
 import { PACKS, QUESTS, DAILY_QUESTS, rotateDay } from "../game/progression"
 import { GAME_KEY, parseGame } from "../game/storage"
 import { getDateKey } from "../domain/dateKey"
 import { GameCardView } from "../components/game/GameCardView"
 import { StoryScene } from "../components/game/StoryScene"
 import { DuelBasics } from "../components/game/DuelBasics"
-import { MemoryJournal } from "../components/game/MemoryJournal"
-import { CultureJournal } from "../components/game/CultureJournal"
+import { HomeLobby } from "../components/game/HomeLobby"
+import { CampaignScreen } from "../components/game/CampaignScreen"
 import { AudioControls, useGameAudio } from "../components/game/GameAudio"
 import { SCENES, BOSS_RULES, WORLD_PRIMER } from "../game/narrative"
 import { stageArtId } from "../game/storyArt"
@@ -32,6 +32,7 @@ import "../game/combat.css"
 import "../game/story.css"
 import "../game/livingTable.css"
 import "../game/animeStage.css"
+import "../game/compactScreen.css"
 
 const NAV = [
   { id: "home", name: "Sảnh hành trình", icon: "home" },
@@ -57,22 +58,6 @@ const paths: Record<string, string> = {
   settings:
     "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2",
 }
-const CHAPTER_GUARDIANS = [
-  "bach",
-  "nhien",
-  "moc",
-  "hai",
-  "lien",
-  "hero",
-] as const
-const MAP_STOPS = [
-  { left: "19%", top: "22%" },
-  { left: "18%", top: "76%" },
-  { left: "49%", top: "40%" },
-  { left: "62%", top: "76%" },
-  { left: "79%", top: "44%" },
-  { left: "81%", top: "17%" },
-]
 function Icon({ name }: { name: string }) {
   return (
     <svg
@@ -95,14 +80,20 @@ export function TCGPage() {
   const tab = params.get("tab") ?? "home"
   const setTab = (id: string) => {
     setParams(id === "home" ? {} : { tab: id })
-    window.scrollTo({ top: 0, behavior: "instant" })
+    setMenuOpen(false)
   }
   const save = useGameStore((s) => s.save),
     notice = useGameStore((s) => s.notice),
     dismiss = useGameStore((s) => s.dismiss)
   const legacy = useAppStore((s) => s.user)
   const [help, setHelp] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [questView, setQuestView] = useState("daily")
+  const [settingsView, setSettingsView] = useState("audio")
+  const [packId, setPackId] = useState(PACKS[0].id)
+  const mainRef = useRef<HTMLElement>(null)
   const [sceneRead, setSceneRead] = useState(false)
+  const [preparing, setPreparing] = useState(false)
   const [stageId, setStageId] = useState<string | null>(null),
     [choice, setChoice] = useState<"courage" | "wisdom">("courage")
   const [revealed, setRevealed] = useState<string[]>([]),
@@ -113,7 +104,6 @@ export function TCGPage() {
   const current = rotateDay(save)
   const next = STAGES.find((s) => !current.clearedStages.includes(s.id))
   const level = Math.floor(current.xp / 100) + 1
-  const owned = Object.values(current.cards).filter((n) => n > 0).length
   const claims = [
     ...QUESTS.filter(
       (q) =>
@@ -127,6 +117,9 @@ export function TCGPage() {
     ),
   ].length
 
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0 })
+  }, [tab])
   useEffect(() => {
     useGameStore.getState().importLegacy(legacy.rewards.map((r) => r.dishId))
   }, [legacy.rewards])
@@ -160,6 +153,7 @@ export function TCGPage() {
   const goStage = (id: string) => {
     setChoice(current.choices[id] ?? "courage")
     setSceneRead(false)
+    setPreparing(false)
     setStageId(id)
   }
   const begin = () => {
@@ -186,7 +180,7 @@ export function TCGPage() {
 
   return (
     <div
-      className="tcg-app"
+      className="tcg-app tcg-compact-app"
       onClickCapture={(event) => {
         const target = event.target
         if (
@@ -265,11 +259,15 @@ export function TCGPage() {
           </button>
         </div>
         <div className="tcg-sidebar-bottom">
-          <button onClick={() => setHelp(true)}>ⓘ Hướng dẫn chơi</button>
+          <button onClick={() => setHelp(true)} title="Hướng dẫn chơi">
+            <Icon name="quest" />ⓘ Hướng dẫn chơi
+          </button>
           <button onClick={() => setTab("settings")}>
             <Icon name="settings" /> Cài đặt & bản lưu
           </button>
-          <Link to="/chest">◇ Rương vị giác</Link>
+          <Link to="/chest" title="Rương vị giác">
+            <Icon name="pack" />◇ Rương vị giác
+          </Link>
           <div className="tcg-player">
             <CharacterPortrait id="hero" decorative />
             <div>
@@ -279,6 +277,41 @@ export function TCGPage() {
           </div>
         </div>
       </aside>
+      {menuOpen && (
+        <Dialog
+          title="Khám phá MealGacha"
+          onClose={() => setMenuOpen(false)}
+          className="tcg-menu-dialog"
+        >
+          <div className="tcg-menu-grid">
+            {NAV.map((n) => (
+              <button
+                key={n.id}
+                aria-current={tab === n.id ? "page" : undefined}
+                onClick={() => setTab(n.id)}
+              >
+                <Icon name={n.icon} />
+                <span>{n.name}</span>
+              </button>
+            ))}
+            <button onClick={() => setTab("settings")}>
+              <Icon name="settings" />
+              <span>Cài đặt & bản lưu</span>
+            </button>
+            <button
+              onClick={() => {
+                setMenuOpen(false)
+                setHelp(true)
+              }}
+            >
+              <span>ⓘ Hướng dẫn chơi</span>
+            </button>
+            <Link to="/chest" title="Rương vị giác">
+              <Icon name="pack" />◇ Rương vị giác
+            </Link>
+          </div>
+        </Dialog>
+      )}
       <div className="tcg-content">
         <header className="tcg-topbar" inert={!!current.battle}>
           <div>
@@ -310,8 +343,40 @@ export function TCGPage() {
             </button>
           </div>
         </header>
+        <nav
+          className="tcg-mobile-nav"
+          aria-label="Điều hướng nhanh"
+          inert={!!current.battle}
+        >
+          {[
+            { id: "home", name: "Sảnh", icon: "home" },
+            { id: "story", name: "Truyện", icon: "map" },
+            { id: "collection", name: "Thẻ", icon: "cards" },
+            { id: "decks", name: "Bộ bài", icon: "deck" },
+          ].map((n) => (
+            <button
+              key={n.id}
+              aria-current={tab === n.id ? "page" : undefined}
+              onClick={() => setTab(n.id)}
+            >
+              <Icon name={n.icon} />
+              <span>{n.name}</span>
+            </button>
+          ))}
+          <button
+            aria-label="Mở menu game"
+            aria-haspopup="dialog"
+            onClick={() => setMenuOpen(true)}
+          >
+            <Icon name="settings" />
+            <span>Thêm</span>
+          </button>
+        </nav>
         <main
           id="tcg-main"
+          ref={mainRef}
+          key={tab}
+          data-screen={tab}
           tabIndex={-1}
           className={`tcg-main ${current.battle ? "has-battle" : ""}`}
         >
@@ -332,511 +397,17 @@ export function TCGPage() {
           ) : (
             <>
               {tab === "home" && (
-                <>
-                  <div className="tcg-panel tcg-new-journey">
-                    <CharacterPortrait id="hero" />
-                    <div>
-                      <span className="tcg-kicker">
-                        NHỮNG NGƯỜI CÙNG GIỮ BÀN
-                      </span>
-                      <h2>Lời hứa, công thức và bàn ăn tuần này</h2>
-                      <p>
-                        Gặp năm người bạn, chọn cách trợ chiến, ghép ba công
-                        thức và khám phá thử thách tuần.
-                      </p>
-                    </div>
-                    <button
-                      className="tcg-button gold"
-                      onClick={() => setTab("companions")}
-                    >
-                      Ghé bên bếp →
-                    </button>
-                  </div>
-                  <div className="tcg-welcome">
-                    <div>
-                      <span className="tcg-kicker">
-                        MỘT CHỖ Ở BÀN ĂN LUÔN DÀNH CHO BẠN
-                      </span>
-                      <h1>
-                        Chào mừng trở lại,{" "}
-                        {legacy.displayName || "Nhà thám hiểm"}
-                        <span>✦</span>
-                      </h1>
-                    </div>
-                    <button
-                      className="tcg-button ghost"
-                      onClick={() => useGameStore.getState().checkIn()}
-                      disabled={current.lastCheckIn === getDateKey()}
-                    >
-                      {current.lastCheckIn === getDateKey()
-                        ? "✓ Đã điểm danh"
-                        : "◉ Điểm danh · +100 xu"}
-                    </button>
-                  </div>
-                  <section className="tcg-hero-banner">
-                    <img
-                      className="tcg-hero-bg"
-                      src="/assets/events/hanoi-autumn/banner.webp"
-                      alt=""
-                    />
-                    <div className="tcg-hero-copy">
-                      <span className="tcg-hero-label">
-                        <i /> CHIẾN DỊCH · NĂM NGỌN LỬA
-                      </span>
-                      <h2>
-                        Mỗi hương vị.
-                        <br />
-                        Một <em>huyền thoại.</em>
-                      </h2>
-                      <p>
-                        Sương Nhạt đang nuốt lấy những ký ức. Thu thập thẻ vị
-                        giác, đồng hành cùng năm người giữ lửa và viết nên câu
-                        chuyện của bạn.
-                      </p>
-                      <div className="tcg-hero-actions">
-                        <button
-                          className="tcg-button gold"
-                          onClick={() =>
-                            next ? goStage(next.id) : setTab("story")
-                          }
-                        >
-                          {current.clearedStages.length
-                            ? "Tiếp tục hành trình"
-                            : "Bắt đầu hành trình"}{" "}
-                          <Icon name="arrow" />
-                        </button>
-                        <button
-                          className="tcg-button light"
-                          onClick={() => setHelp(true)}
-                        >
-                          Cách chơi
-                        </button>
-                      </div>
-                      <div className="tcg-hero-meta">
-                        <span>06 chương</span>
-                        <i />
-                        <span>18 thử thách</span>
-                        <i />
-                        <span>05 hệ vị giác</span>
-                      </div>
-                    </div>
-                    <div className="tcg-hero-cards" aria-hidden="true">
-                      <div className="back-card">
-                        <GameCardView card={CARD_MAP["chef-nhien"]} />
-                      </div>
-                      <div className="front-card">
-                        <GameCardView card={CARD_MAP["pho-bo"]} foil />
-                      </div>
-                      <span className="tcg-orbit">✦</span>
-                    </div>
-                  </section>
-                  <button
-                    className="tcg-expedition-teaser"
-                    onClick={() => setTab("expedition")}
-                  >
-                    <span>◈</span>
-                    <div>
-                      <small>CHẾ ĐỘ MỚI · CON ĐƯỜNG QUA SƯƠNG</small>
-                      <strong>
-                        {activeRun(current.expedition)
-                          ? `Tiếp tục thám hiểm · Chặng ${(current.expedition?.floor ?? 0) + 1}/7`
-                          : "Một chuyến đi. Những lựa chọn mới."}
-                      </strong>
-                      <p>
-                        7 chặng · 10 di vật · 6 cuộc gặp gỡ · Bộ thẻ Đoàn lữ
-                        hành
-                      </p>
-                    </div>
-                    <b>→</b>
-                  </button>
-                  <div className="tcg-stat-row">
-                    <div>
-                      <span className="tcg-stat-icon">▱</span>
-                      <strong>
-                        {owned}
-                        <small>/{CARDS.length}</small>
-                        <span>Thẻ đã sở hữu</span>
-                      </strong>
-                    </div>
-                    <div>
-                      <span className="tcg-stat-icon">⚑</span>
-                      <strong>
-                        {current.clearedStages.length}
-                        <small>/18</small>
-                        <span>Màn đã hoàn thành</span>
-                      </strong>
-                    </div>
-                    <div>
-                      <span className="tcg-stat-icon">✦</span>
-                      <strong>
-                        {current.stats.wins}
-                        <span>Trận thắng</span>
-                      </strong>
-                    </div>
-                    <div>
-                      <span className="tcg-stat-icon">⬡</span>
-                      <strong>
-                        {level}
-                        <span>Cấp người giữ vị</span>
-                      </strong>
-                      <div className="tcg-level-track">
-                        <i style={{ width: `${current.xp % 100}%` }} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="tcg-home-columns">
-                    <section>
-                      <div className="tcg-mini-heading">
-                        <h2>Chuyến đi tiếp theo</h2>
-                        <button onClick={() => setTab("story")}>
-                          Xem bản đồ <Icon name="arrow" />
-                        </button>
-                      </div>
-                      <button
-                        className="tcg-next-chapter"
-                        onClick={() =>
-                          next ? goStage(next.id) : setTab("story")
-                        }
-                      >
-                        <img
-                          src={next?.chapter.art ?? CHAPTERS[5].art}
-                          alt=""
-                        />
-                        <span className="tcg-chapter-number">
-                          {next ? `0${Math.floor(next.index / 3) + 1}` : "VI"}
-                        </span>
-                        <span className="tcg-next-copy">
-                          <small>
-                            {next
-                              ? `CHƯƠNG ${Math.floor(next.index / 3) + 1} · ${next.chapter.subtitle}`
-                              : "BÌNH MINH ĐÃ TRỞ LẠI"}
-                          </small>
-                          <strong>
-                            {next?.chapter.title ?? "Bữa tiệc bình minh"}
-                          </strong>
-                          <span>
-                            {next?.title ??
-                              "Bạn đã hoàn thành câu chuyện. Thử bộ bài mới ở phòng luyện tập."}
-                          </span>
-                        </span>
-                        <Icon name="arrow" />
-                      </button>
-                      <div className="tcg-mini-heading">
-                        <h2>Khám phá năm hệ</h2>
-                        <span>Chọn phong cách của bạn</span>
-                      </div>
-                      <div className="tcg-school-row">
-                        {Object.entries(SCHOOLS).map(([id, s]) => (
-                          <button
-                            key={id}
-                            style={
-                              { "--school-color": s.color } as CSSProperties
-                            }
-                            onClick={() => setTab("collection")}
-                          >
-                            <span>{s.symbol}</span>
-                            <strong>{s.name}</strong>
-                            <small>{s.identity.split(" · ")[0]}</small>
-                          </button>
-                        ))}
-                      </div>
-                    </section>
-                    <section className="tcg-panel tcg-home-side">
-                      <span className="tcg-kicker">
-                        SẴN SÀNG THỬ MỘT CÔNG THỨC MỚI?
-                      </span>
-                      <h2>Mở gói. Tìm cảm hứng.</h2>
-                      <div className="tcg-mini-pack">
-                        <span>✦</span>
-                        <strong>KHỞI NGUYÊN</strong>
-                        <small>5 THẺ VỊ GIÁC</small>
-                      </div>
-                      <p>
-                        {current.packTickets
-                          ? `Bạn có ${current.packTickets} vé mở gói đang chờ.`
-                          : "Mỗi gói có 5 thẻ, bảo đảm ít nhất một thẻ Hiếm."}
-                      </p>
-                      <button
-                        className="tcg-button primary"
-                        onClick={() => setTab("packs")}
-                      >
-                        Khám phá gói thẻ <Icon name="arrow" />
-                      </button>
-                      <button
-                        className="tcg-practice-link"
-                        onClick={() =>
-                          activeRun(current.expedition)
-                            ? setTab("expedition")
-                            : useGameStore.getState().start(null)
-                        }
-                      >
-                        {activeRun(current.expedition)
-                          ? "◈ Tiếp tục thám hiểm"
-                          : "⚔ Luyện tập với AI"}{" "}
-                        <span>→</span>
-                      </button>
-                    </section>
-                  </div>
-                  <section className="tcg-daily-strip">
-                    <div>
-                      <span className="tcg-stat-icon">☀</span>
-                      <div>
-                        <strong>Mỗi ngày, một chút tiến bộ</strong>
-                        <p>
-                          Điểm danh, luyện đấu và mở thẻ để nhận thêm phần
-                          thưởng.
-                        </p>
-                      </div>
-                    </div>
-                    <button
-                      className="tcg-button ghost"
-                      onClick={() => setTab("quests")}
-                    >
-                      {claims
-                        ? `${claims} phần thưởng đang chờ`
-                        : "Xem nhiệm vụ"}{" "}
-                      →
-                    </button>
-                  </section>
-                </>
+                <HomeLobby
+                  save={current}
+                  name={legacy.displayName || "Nhà thám hiểm"}
+                  claims={claims}
+                  onTab={setTab}
+                  onStage={goStage}
+                  onHelp={() => setHelp(true)}
+                />
               )}
               {tab === "expedition" && <Expedition />}
-              {tab === "story" && (
-                <>
-                  <div className="tcg-section-heading">
-                    <div>
-                      <span className="tcg-kicker">
-                        CHIẾN DỊCH · NĂM NGỌN LỬA
-                      </span>
-                      <h1>Bản đồ ký ức</h1>
-                      <p>
-                        Năm ngọn lửa đang chờ được đánh thức. Nhưng mỗi lần bạn
-                        thắng, màn sương lại dày thêm. Ai đang nói dối?
-                      </p>
-                    </div>
-                    <div className="tcg-number-badge">
-                      {current.clearedStages.length}
-                      <small>/18 MÀN</small>
-                    </div>
-                  </div>
-                  <CultureJournal />
-                  <MemoryJournal />
-                  <section
-                    className="tcg-world-map-panel"
-                    aria-label="Bản đồ chiến dịch"
-                  >
-                    <div className="tcg-world-map-heading">
-                      <div>
-                        <span className="tcg-kicker">ĐƯỜNG VỀ BÀN ĂN</span>
-                        <h2>Những ngọn lửa đang chờ</h2>
-                        <p>Chọn một điểm sáng để xem chương và ký ức tại đó.</p>
-                      </div>
-                      <strong>
-                        {current.clearedStages.length}
-                        <small> / 18 chặng</small>
-                      </strong>
-                    </div>
-                    <div className="tcg-world-map">
-                      <img
-                        className="tcg-world-map-art"
-                        src="/assets/tcg/map/meal-world-map.webp"
-                        alt="Bản đồ kỳ ảo nối phố đèn lồng, bến cảng, khu vườn, biển ký ức, thành phố đường sao và bàn tiệc bình minh"
-                        width="1024"
-                        height="1024"
-                        decoding="async"
-                      />
-                      <div className="tcg-world-map-shade" aria-hidden="true" />
-                      <svg
-                        className="tcg-world-map-route"
-                        viewBox="0 0 1000 1000"
-                        preserveAspectRatio="none"
-                        aria-hidden="true"
-                      >
-                        <defs>
-                          <linearGradient
-                            id="tcg-route-gradient"
-                            x1="0"
-                            y1="0"
-                            x2="1"
-                            y2="1"
-                          >
-                            <stop offset="0%" stopColor="#ffe9a3" />
-                            <stop offset="100%" stopColor="#efad62" />
-                          </linearGradient>
-                        </defs>
-                        <path
-                          className="tcg-route-underlay"
-                          pathLength="100"
-                          d="M190 220 C105 385 105 600 180 760 C285 760 385 575 490 400 C565 465 625 610 620 760 C705 720 765 580 790 440 C825 335 830 235 810 170"
-                        />
-                        <path
-                          className="tcg-route-progress"
-                          pathLength="100"
-                          d="M190 220 C105 385 105 600 180 760 C285 760 385 575 490 400 C565 465 625 610 620 760 C705 720 765 580 790 440 C825 335 830 235 810 170"
-                          style={{
-                            strokeDasharray: `${(current.clearedStages.length / 18) * 100} 100`,
-                          }}
-                        />
-                      </svg>
-                      {CHAPTERS.map((chapter, index) => {
-                        const cleared = chapter.stages.filter((stage) =>
-                          current.clearedStages.includes(stage.id),
-                        ).length
-                        const complete = cleared === chapter.stages.length
-                        const unlocked = isStageUnlocked(
-                          chapter.stages[0].id,
-                          current.clearedStages,
-                        )
-                        return (
-                          <button
-                            key={chapter.id}
-                            className={`tcg-map-stop ${
-                              complete
-                                ? "is-complete"
-                                : unlocked
-                                  ? "is-current"
-                                  : "is-locked"
-                            }`}
-                            style={MAP_STOPS[index]}
-                            disabled={!unlocked}
-                            aria-label={
-                              unlocked
-                                ? `Đến chương ${index + 1}: ${chapter.title}, ${cleared} trên 3 chặng đã vượt qua`
-                                : `Chương ${index + 1} chưa mở`
-                            }
-                            title={
-                              unlocked
-                                ? `${chapter.title} · ${cleared}/3 chặng`
-                                : `Chương ${index + 1} · chưa mở`
-                            }
-                            onClick={() =>
-                              document
-                                .getElementById(`chapter-${chapter.id}`)
-                                ?.scrollIntoView({
-                                  behavior: "smooth",
-                                  block: "center",
-                                })
-                            }
-                          >
-                            <span className="tcg-map-pin">
-                              {complete
-                                ? "✓"
-                                : unlocked
-                                  ? SCHOOLS[chapter.school].symbol
-                                  : "◇"}
-                            </span>
-                            <span className="tcg-map-stop-label">
-                              <small>CHƯƠNG 0{index + 1}</small>
-                              <strong>
-                                {unlocked
-                                  ? chapter.title
-                                  : `Ký ức ${index + 1}`}
-                              </strong>
-                            </span>
-                          </button>
-                        )
-                      })}
-                      <span className="tcg-map-end-mark" aria-hidden="true">
-                        ✦
-                      </span>
-                    </div>
-                    <div className="tcg-world-map-legend">
-                      <span>
-                        <i className="is-open" /> Điểm sáng · chương đã mở
-                      </span>
-                      <span>
-                        <i className="is-cleared" /> Đã hoàn thành
-                      </span>
-                      <span>Đường vàng · tiến trình chiến dịch</span>
-                    </div>
-                  </section>
-                  <div className="tcg-chapter-grid">
-                    {CHAPTERS.map((ch, i) => {
-                      const unlocked = isStageUnlocked(
-                        ch.stages[0].id,
-                        current.clearedStages,
-                      )
-                      return (
-                        <section
-                          id={`chapter-${ch.id}`}
-                          className={`tcg-chapter ${
-                            unlocked ? "" : "is-locked"
-                          }`}
-                          key={ch.id}
-                        >
-                          <div className="tcg-chapter-art">
-                            {unlocked && (
-                              <img
-                                src={ch.art}
-                                alt=""
-                                loading="lazy"
-                                decoding="async"
-                              />
-                            )}
-                            <span>CHƯƠNG 0{i + 1}</span>
-                            <div>
-                              <small>
-                                {unlocked ? ch.subtitle : "Một trang chưa mở"}
-                              </small>
-                              <h2>{ch.title}</h2>
-                            </div>
-                            <b>{unlocked ? SCHOOLS[ch.school].symbol : "⚿"}</b>
-                            {unlocked && (
-                              <CharacterPortrait
-                                id={CHAPTER_GUARDIANS[i]}
-                                decorative
-                                className="tcg-chapter-character"
-                              />
-                            )}
-                          </div>
-                          <p>
-                            {unlocked
-                              ? ch.intro
-                              : "Hoàn thành chương trước để khám phá ký ức và minh họa tại đây."}
-                          </p>
-                          <div className="tcg-stages">
-                            {ch.stages.map((s, j) => (
-                              <button
-                                key={s.id}
-                                disabled={
-                                  !isStageUnlocked(s.id, current.clearedStages)
-                                }
-                                onClick={() => goStage(s.id)}
-                              >
-                                <span
-                                  className={
-                                    current.clearedStages.includes(s.id)
-                                      ? "complete"
-                                      : ""
-                                  }
-                                >
-                                  {current.clearedStages.includes(s.id)
-                                    ? "✓"
-                                    : `${j + 1}`}
-                                </span>
-                                <div>
-                                  <strong>
-                                    {unlocked ? s.title : `Ký ức ${j + 1}`}
-                                  </strong>
-                                  <small>
-                                    {s.boss ? "BOSS · " : ""}
-                                    {unlocked ? s.opponent : "Nội dung chưa mở"}
-                                  </small>
-                                </div>
-                                <b>
-                                  {isStageUnlocked(s.id, current.clearedStages)
-                                    ? "→"
-                                    : "⚿"}
-                                </b>
-                              </button>
-                            ))}
-                          </div>
-                        </section>
-                      )
-                    })}
-                  </div>
-                </>
-              )}
+              {tab === "story" && <CampaignScreen onStage={goStage} />}
               {tab === "collection" && <Collection />}
               {tab === "workshop" && <Collection workshop />}
               {tab === "companions" && <JourneyHub />}
@@ -874,8 +445,23 @@ export function TCGPage() {
                       thoại 2%. Lá cuối được nâng độ hiếm khi áp dụng bảo đảm.
                     </small>
                   </div>
-                  <div className="tcg-pack-grid">
+                  <div
+                    className="tcg-pack-picker tcg-segmented"
+                    role="group"
+                    aria-label="Chọn gói thẻ"
+                  >
                     {PACKS.map((p) => (
+                      <button
+                        key={p.id}
+                        aria-pressed={packId === p.id}
+                        onClick={() => setPackId(p.id)}
+                      >
+                        {p.name}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="tcg-pack-grid">
+                    {PACKS.filter((p) => p.id === packId).map((p) => (
                       <section
                         className="tcg-pack-offer"
                         style={
@@ -913,7 +499,10 @@ export function TCGPage() {
                       </section>
                     ))}
                   </div>
-                  <Trader />
+                  <details className="tcg-trader-drawer">
+                    <summary>Trao đổi thẻ với thương nhân</summary>
+                    <Trader />
+                  </details>
                 </>
               )}
               {tab === "quests" && (
@@ -930,6 +519,24 @@ export function TCGPage() {
                         Việt Nam).
                       </p>
                     </div>
+                  </div>
+                  <div
+                    className="tcg-segmented"
+                    role="group"
+                    aria-label="Loại nhiệm vụ"
+                  >
+                    <button
+                      aria-pressed={questView === "daily"}
+                      onClick={() => setQuestView("daily")}
+                    >
+                      Việc hôm nay
+                    </button>
+                    <button
+                      aria-pressed={questView === "milestones"}
+                      onClick={() => setQuestView("milestones")}
+                    >
+                      Dấu mốc hành trình
+                    </button>
                   </div>
                   <section className="tcg-checkin-panel">
                     <span>☀</span>
@@ -950,72 +557,74 @@ export function TCGPage() {
                   {[
                     { title: "Việc hôm nay", list: DAILY_QUESTS, daily: true },
                     { title: "Dấu mốc hành trình", list: QUESTS, daily: false },
-                  ].map((group) => (
-                    <section key={group.title}>
-                      <div className="tcg-mini-heading">
-                        <h2>{group.title}</h2>
-                        <span>
-                          {group.daily
-                            ? getDateKey()
-                            : "Nhận một lần cho mỗi dấu mốc"}
-                        </span>
-                      </div>
-                      <div className="tcg-quest-grid">
-                        {group.list.map((q) => {
-                          const done = (
-                            group.daily
-                              ? current.claimedDailyQuests
-                              : current.claimedQuests
-                          ).includes(q.id)
-                          const progress = q.progress(current)
-                          return (
-                            <article
-                              className={`tcg-panel tcg-quest ${
-                                done ? "is-complete" : ""
-                              }`}
-                              key={q.id}
-                            >
-                              <span className="tcg-quest-icon">
-                                {done ? "✓" : "✦"}
-                              </span>
-                              <h3>{q.name}</h3>
-                              <p>{q.description}</p>
-                              <div className="tcg-progress">
-                                <i
-                                  style={{
-                                    width: `${Math.min(100, (progress / q.target) * 100)}%`,
-                                  }}
-                                />
-                              </div>
-                              <small>
-                                {Math.min(q.target, progress)}/{q.target}
-                              </small>
-                              <div className="tcg-quest-bottom">
-                                <span>
-                                  ◉ {q.coins} <i>✧ {q.dust}</i>
+                  ]
+                    .filter((group) => group.daily === (questView === "daily"))
+                    .map((group) => (
+                      <section key={group.title}>
+                        <div className="tcg-mini-heading">
+                          <h2>{group.title}</h2>
+                          <span>
+                            {group.daily
+                              ? getDateKey()
+                              : "Nhận một lần cho mỗi dấu mốc"}
+                          </span>
+                        </div>
+                        <div className="tcg-quest-grid">
+                          {group.list.map((q) => {
+                            const done = (
+                              group.daily
+                                ? current.claimedDailyQuests
+                                : current.claimedQuests
+                            ).includes(q.id)
+                            const progress = q.progress(current)
+                            return (
+                              <article
+                                className={`tcg-panel tcg-quest ${
+                                  done ? "is-complete" : ""
+                                }`}
+                                key={q.id}
+                              >
+                                <span className="tcg-quest-icon">
+                                  {done ? "✓" : "✦"}
                                 </span>
-                                <button
-                                  className="tcg-button ghost"
-                                  disabled={done || progress < q.target}
-                                  onClick={() =>
-                                    useGameStore
-                                      .getState()
-                                      .claimQuest(q.id, group.daily)
-                                  }
-                                >
-                                  {done
-                                    ? "Đã nhận"
-                                    : progress >= q.target
-                                      ? "Nhận thưởng"
-                                      : "Đang thực hiện"}
-                                </button>
-                              </div>
-                            </article>
-                          )
-                        })}
-                      </div>
-                    </section>
-                  ))}
+                                <h3>{q.name}</h3>
+                                <p>{q.description}</p>
+                                <div className="tcg-progress">
+                                  <i
+                                    style={{
+                                      width: `${Math.min(100, (progress / q.target) * 100)}%`,
+                                    }}
+                                  />
+                                </div>
+                                <small>
+                                  {Math.min(q.target, progress)}/{q.target}
+                                </small>
+                                <div className="tcg-quest-bottom">
+                                  <span>
+                                    ◉ {q.coins} <i>✧ {q.dust}</i>
+                                  </span>
+                                  <button
+                                    className="tcg-button ghost"
+                                    disabled={done || progress < q.target}
+                                    onClick={() =>
+                                      useGameStore
+                                        .getState()
+                                        .claimQuest(q.id, group.daily)
+                                    }
+                                  >
+                                    {done
+                                      ? "Đã nhận"
+                                      : progress >= q.target
+                                        ? "Nhận thưởng"
+                                        : "Đang thực hiện"}
+                                  </button>
+                                </div>
+                              </article>
+                            )
+                          })}
+                        </div>
+                      </section>
+                    ))}
                 </>
               )}
               {tab === "settings" && (
@@ -1030,76 +639,111 @@ export function TCGPage() {
                       </p>
                     </div>
                   </div>
+                  <div
+                    className="tcg-segmented"
+                    role="group"
+                    aria-label="Nhóm cài đặt"
+                  >
+                    <button
+                      aria-pressed={settingsView === "audio"}
+                      onClick={() => setSettingsView("audio")}
+                    >
+                      Âm thanh
+                    </button>
+                    <button
+                      aria-pressed={settingsView === "save"}
+                      onClick={() => setSettingsView("save")}
+                    >
+                      Tiến trình
+                    </button>
+                    <button
+                      aria-pressed={settingsView === "experience"}
+                      onClick={() => setSettingsView("experience")}
+                    >
+                      Trải nghiệm
+                    </button>
+                  </div>
                   <div className="tcg-settings-grid">
-                    <section className="tcg-panel">
-                      <h2>Âm thanh & âm nhạc</h2>
-                      <AudioControls />
-                    </section>
-                    <section className="tcg-panel">
-                      <h2>Copy & tiếp tục ở thiết bị khác</h2>
-                      <ProgressTransfer />
-                    </section>
-                    <section className="tcg-panel">
-                      <h2>Sao lưu file hành trình</h2>
-                      <p>
-                        Xuất file JSON để chuyển sang thiết bị khác. Bản lưu
-                        chứa bộ sưu tập, bộ bài, cốt truyện, chuyến thám hiểm,
-                        nhật ký và trận đang chơi.
-                      </p>
-                      <button
-                        className="tcg-button primary"
-                        onClick={exportSave}
-                      >
-                        ↓ Xuất bản lưu TCG
-                      </button>
-                      <button
-                        className="tcg-button ghost"
-                        onClick={() => importInput.current?.click()}
-                      >
-                        ↑ Nhập bản lưu TCG
-                      </button>
-                      <input
-                        hidden
-                        type="file"
-                        accept=".json,application/json"
-                        ref={importInput}
-                        onChange={async (e) => {
-                          const file = e.target.files?.[0]
-                          if (!file) return
-                          try {
-                            const parsed = parseGame(
-                              JSON.parse(await file.text()),
-                            )
-                            if (!parsed) throw new Error()
-                            setImported(parsed)
-                            setImportError("")
-                          } catch {
-                            setImportError(
-                              "File không hợp lệ. Tiến trình hiện tại vẫn được giữ.",
-                            )
-                          }
-                          e.target.value = ""
-                        }}
-                      />
-                      {importError && <p role="alert">{importError}</p>}
-                    </section>
-                    <section className="tcg-panel">
-                      <h2>Trải nghiệm & dữ liệu cũ</h2>
-                      <p>
-                        Đổi âm thanh, giảm chuyển động, tên hiển thị hoặc xuất
-                        ZIP đầy đủ tại phần cài đặt chung. Các món cũ được
-                        chuyển sang thẻ TCG một lần cho mỗi món.
-                      </p>
-                      <Link className="tcg-button ghost" to="/settings">
-                        Mở cài đặt chung →
-                      </Link>
-                      <button
-                        className="tcg-button ghost"
-                        onClick={() => setHelp(true)}
-                      >
-                        Đọc luật chơi
-                      </button>
-                    </section>
+                    {settingsView === "audio" && (
+                      <section className="tcg-panel">
+                        <h2>Âm thanh & âm nhạc</h2>
+                        <AudioControls />
+                      </section>
+                    )}
+                    {settingsView === "save" && (
+                      <section className="tcg-panel">
+                        <h2>Copy & tiếp tục ở thiết bị khác</h2>
+                        <ProgressTransfer />
+                      </section>
+                    )}
+                    {settingsView === "save" && (
+                      <details className="tcg-json-backup">
+                        <summary>Sao lưu file JSON</summary>
+                        <section className="tcg-panel">
+                          <h2>Sao lưu file hành trình</h2>
+                          <p>
+                            Xuất file JSON để chuyển sang thiết bị khác. Bản lưu
+                            chứa bộ sưu tập, bộ bài, cốt truyện, chuyến thám
+                            hiểm, nhật ký và trận đang chơi.
+                          </p>
+                          <button
+                            className="tcg-button primary"
+                            onClick={exportSave}
+                          >
+                            ↓ Xuất bản lưu TCG
+                          </button>
+                          <button
+                            className="tcg-button ghost"
+                            onClick={() => importInput.current?.click()}
+                          >
+                            ↑ Nhập bản lưu TCG
+                          </button>
+                          <input
+                            hidden
+                            type="file"
+                            accept=".json,application/json"
+                            ref={importInput}
+                            onChange={async (e) => {
+                              const file = e.target.files?.[0]
+                              if (!file) return
+                              try {
+                                const parsed = parseGame(
+                                  JSON.parse(await file.text()),
+                                )
+                                if (!parsed) throw new Error()
+                                setImported(parsed)
+                                setImportError("")
+                              } catch {
+                                setImportError(
+                                  "File không hợp lệ. Tiến trình hiện tại vẫn được giữ.",
+                                )
+                              }
+                              e.target.value = ""
+                            }}
+                          />
+                          {importError && <p role="alert">{importError}</p>}
+                        </section>
+                      </details>
+                    )}
+                    {settingsView === "experience" && (
+                      <section className="tcg-panel">
+                        <h2>Trải nghiệm & dữ liệu cũ</h2>
+                        <p>
+                          Đổi âm thanh, giảm chuyển động, tên hiển thị hoặc xuất
+                          ZIP đầy đủ tại phần cài đặt chung. Các món cũ được
+                          chuyển sang thẻ TCG một lần cho mỗi món.
+                        </p>
+                        <Link className="tcg-button ghost" to="/settings">
+                          Mở cài đặt chung →
+                        </Link>
+                        <button
+                          className="tcg-button ghost"
+                          onClick={() => setHelp(true)}
+                        >
+                          Đọc luật chơi
+                        </button>
+                      </section>
+                    )}
                   </div>
                   <div className="tcg-info-strip">
                     Chế độ hiện tại: chiến dịch và đấu với AI, chạy trên máy của
@@ -1125,7 +769,7 @@ export function TCGPage() {
             <span>
               MEALGACHA <i>✦</i> Một thế giới được nấu bằng ký ức.
             </span>
-            <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.8</span>
+            <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.8.1</span>
           </footer>
         </main>
       </div>
@@ -1142,78 +786,110 @@ export function TCGPage() {
           title={STAGE_MAP[stageId].title}
           onClose={() => setStageId(null)}
           wide
+          className={`tcg-story-flow ${
+            preparing ? "tcg-preparing-dialog" : ""
+          }`}
         >
-          <div className="tcg-story-dialog">
+          <div
+            className={`tcg-story-dialog ${preparing ? "is-preparing" : ""}`}
+          >
             <span className="tcg-kicker">
               {STAGE_MAP[stageId].chapter.title} ·{" "}
               {STAGE_MAP[stageId].boss ? "BOSS" : "THỬ THÁCH"}
             </span>
-            <StoryScene
-              key={stageId}
-              lines={SCENES[stageId].before}
-              art={stageArtId(stageId)}
-              onComplete={() => setSceneRead(true)}
-            />
-            <div className="tcg-tactic">
-              <strong>Gợi ý chiến thuật</strong>
-              <p>{SCENES[stageId].tactic}</p>
-            </div>
-            {BOSS_RULES[stageId] && (
-              <div className="tcg-boss-rule">
-                <strong>☽ {BOSS_RULES[stageId].name}</strong>
-                <p>{BOSS_RULES[stageId].text}</p>
-              </div>
+            {!preparing ? (
+              <>
+                <StoryScene
+                  key={stageId}
+                  lines={SCENES[stageId].before}
+                  art={stageArtId(stageId)}
+                  onComplete={() => setSceneRead(true)}
+                />
+                <div className="tcg-dialog-actions tcg-story-next-step">
+                  <span>
+                    {sceneRead
+                      ? "Ký ức đã mở. Chọn cách bước vào trận."
+                      : "Đọc lời thoại hoặc bỏ qua để tiếp tục."}
+                  </span>
+                  <button
+                    className="tcg-button primary"
+                    disabled={!sceneRead}
+                    onClick={() => setPreparing(true)}
+                  >
+                    Chọn cách nhập trận →
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <button
+                  className="tcg-text-button"
+                  onClick={() => setPreparing(false)}
+                >
+                  ← Đọc lại câu chuyện
+                </button>
+                <details className="tcg-tactic">
+                  <summary>Gợi ý chiến thuật</summary>
+                  <p>{SCENES[stageId].tactic}</p>
+                </details>
+                {BOSS_RULES[stageId] && (
+                  <details className="tcg-boss-rule">
+                    <summary>☽ {BOSS_RULES[stageId].name}</summary>
+                    <p>{BOSS_RULES[stageId].text}</p>
+                  </details>
+                )}
+                <p>Bạn mang điều gì vào trận chiến này?</p>
+                <div className="tcg-choice-row">
+                  <button
+                    className={choice === "courage" ? "active" : ""}
+                    onClick={() => setChoice("courage")}
+                    aria-pressed={choice === "courage"}
+                  >
+                    <span>✹</span>
+                    <strong>Can đảm</strong>
+                    <small>Bắt đầu với 34 máu, 4 lá</small>
+                  </button>
+                  <button
+                    className={choice === "wisdom" ? "active" : ""}
+                    onClick={() => setChoice("wisdom")}
+                    aria-pressed={choice === "wisdom"}
+                  >
+                    <span>◈</span>
+                    <strong>Thấu hiểu</strong>
+                    <small>Bắt đầu với 32 máu, 5 lá</small>
+                  </button>
+                </div>
+                <div className="tcg-story-reward">
+                  <span>
+                    {current.clearedStages.includes(stageId)
+                      ? "Đã nhận thưởng lần đầu · Chơi lại để thử bộ bài"
+                      : `Lần đầu: ${
+                          STAGE_MAP[stageId].boss ? 180 : 100
+                        } xu · 50 XP · ${CARD_MAP[STAGE_MAP[stageId].rewardCard].name}${
+                          STAGE_MAP[stageId].boss ? " · 1 vé gói" : ""
+                        }`}
+                  </span>
+                </div>
+                <div className="tcg-dialog-actions">
+                  <button
+                    className="tcg-button ghost"
+                    onClick={() => {
+                      setStageId(null)
+                      setTab("decks")
+                    }}
+                  >
+                    Chuẩn bị bộ bài
+                  </button>
+                  <button
+                    className="tcg-button primary"
+                    onClick={begin}
+                    disabled={!sceneRead}
+                  >
+                    Vào trận →
+                  </button>
+                </div>
+              </>
             )}
-            <p>Bạn mang điều gì vào trận chiến này?</p>
-            <div className="tcg-choice-row">
-              <button
-                className={choice === "courage" ? "active" : ""}
-                onClick={() => setChoice("courage")}
-                aria-pressed={choice === "courage"}
-              >
-                <span>✹</span>
-                <strong>Can đảm</strong>
-                <small>Bắt đầu với 34 máu, 4 lá</small>
-              </button>
-              <button
-                className={choice === "wisdom" ? "active" : ""}
-                onClick={() => setChoice("wisdom")}
-                aria-pressed={choice === "wisdom"}
-              >
-                <span>◈</span>
-                <strong>Thấu hiểu</strong>
-                <small>Bắt đầu với 32 máu, 5 lá</small>
-              </button>
-            </div>
-            <div className="tcg-story-reward">
-              <span>
-                {current.clearedStages.includes(stageId)
-                  ? "Đã nhận thưởng lần đầu · Chơi lại để thử bộ bài"
-                  : `Lần đầu: ${
-                      STAGE_MAP[stageId].boss ? 180 : 100
-                    } xu · 50 XP · ${CARD_MAP[STAGE_MAP[stageId].rewardCard].name}${
-                      STAGE_MAP[stageId].boss ? " · 1 vé gói" : ""
-                    }`}
-              </span>
-            </div>
-            <div className="tcg-dialog-actions">
-              <button
-                className="tcg-button ghost"
-                onClick={() => {
-                  setStageId(null)
-                  setTab("decks")
-                }}
-              >
-                Chuẩn bị bộ bài
-              </button>
-              <button
-                className="tcg-button primary"
-                onClick={begin}
-                disabled={!sceneRead}
-              >
-                Vào trận →
-              </button>
-            </div>
           </div>
         </Dialog>
       )}
