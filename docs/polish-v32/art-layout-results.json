@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "metrics": [
+    {
+      "label": "320x568 TCG deck",
+      "w": 320,
+      "h": 568,
+      "doc": 320,
+      "body": 568,
+      "controls": [],
+      "board": null
+    },
+    {
+      "label": "390x692 TCG deck",
+      "w": 390,
+      "h": 692,
+      "doc": 390,
+      "body": 692,
+      "controls": [],
+      "board": null
+    },
+    {
+      "label": "667x375 TCG deck",
+      "w": 667,
+      "h": 375,
+      "doc": 667,
+      "body": 375,
+      "controls": [],
+      "board": null
+    },
+    {
+      "label": "1366x768 TCG deck",
+      "w": 1366,
+      "h": 768,
+      "doc": 1366,
+      "body": 768,
+      "controls": [],
+      "board": null
+    }
+  ],
+  "frameSample": {
+    "count": 90,
+    "medianMs": 16.699999999999818,
+    "p95Ms": 16.799999999999727
+  },
+  "errors": []
+}

@@ -17,3 +17,42 @@ body.autochess-open{overflow:hidden;background:#101820}
 @media(max-width:600px){.ac-story-image{height:180px}.ac-story-speaker{width:145px}.ac-story-copy p{font-size:14px}.ac-story-dialog>footer>span{max-width:100px}.ac-unit-hero>.ac-portrait,.ac-unit-hero>.ac-monster-portrait{width:90px}.ac-stat-grid>span{padding:8px}.ac-food-memory img{width:80px}.ac-item-grid,.ac-reward-choices,.ac-traits-detail{grid-template-columns:1fr}.ac-reward-choices button>span{font-size:22px;margin:0;float:right}.ac-reward-choices p{margin-bottom:0}}
 @media(max-height:500px) and (orientation:landscape){.ac-story-image{height:100px}.ac-story-speaker{width:100px}.ac-story-copy{padding:10px 4px;min-height:65px}.ac-story-copy p{font-size:13px}}
 @media(max-height:640px) and (orientation:portrait){.ac-header{min-height:42px;padding:4px 8px}.ac-brand small{margin-top:3px}.ac-header-actions button{width:26px;height:26px}.ac-game{padding:4px 7px 6px;gap:3px}.ac-hud{min-height:32px}.ac-hud>.ac-portrait{width:30px}.ac-health{width:100px}.ac-round-heading{min-height:24px}.ac-round-heading>span>strong{font-size:11px}.ac-bench{min-height:28px}.ac-bench button{width:26px;height:26px}.ac-selection-bar{min-height:18px;font-size:8px}.ac-selection-bar button{padding:2px 6px}.ac-shop-art{height:42px}.ac-shop article>strong{font-size:8px;padding:4px}.ac-shop .ac-buy{padding:5px!important}.ac-shop article.is-empty{min-height:83px}.ac-controls{min-height:32px}.ac-controls .ac-button{padding:7px 6px}.ac-inventory-button{height:29px}}
+
+/* Measured atlas crops and a separate, non-scoring victory interlude. */
+.ac-sprite-portrait{position:relative;overflow:hidden}
+.ac-sprite-crop{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);overflow:hidden}
+.ac-sprite-crop img{position:absolute;max-width:none;object-fit:fill}
+.ac-cell-grid button[data-placement=available]{box-shadow:inset 0 0 0 1px #e6ce8580;background:#bfa15a14}
+.ac-cell-grid button[aria-pressed=true]{box-shadow:inset 0 0 0 2px #ffdf94;background:#e1b96c20}
+.ac-victory{position:absolute;inset:0;z-index:4;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:12px;gap:8px}
+.ac-victory-banner{text-align:center;border:1px solid #ecc77c99;background:linear-gradient(135deg,#163d36ed,#302931ed);border-radius:14px;padding:10px 22px;box-shadow:0 6px 24px #08151977;color:#ffedbf}
+.ac-victory-banner>span{color:#ffdb85;margin-right:8px;font-size:20px}
+.ac-victory-banner strong{font:800 clamp(13px,2vw,20px) Georgia,serif;letter-spacing:.08em;color:#fff0c8}
+.ac-victory-banner small{display:block;font-size:11px;color:#cfe8ce;margin-top:3px}
+.ac-victory>.ac-button{pointer-events:auto;background:#203c36f5;border-color:#e7c27d;color:#ffebbb;min-height:36px}
+.ac-selection-bar>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ac-selection-bar button{flex-shrink:0;min-height:26px}
+.ac-guide-intro{color:#e5d2aa;font-size:14px;line-height:1.7}
+.ac-guide-example{background:#35514855;border-left:3px solid #afd29e;border-radius:8px;padding:12px;margin:14px 0;font-size:13px}
+.ac-guide-example p{color:#c7d8ce;font-size:12px;line-height:1.6}
+.ac-guide-more{border-top:1px solid var(--ac-line);padding:11px 0;font-size:12px;line-height:1.7}
+.ac-guide-more summary{cursor:pointer;color:#f6d398;font-weight:700}
+.ac-guide-more p{color:#bfcfd0}
+.ac-guide-dialog>.ac-button{margin-top:12px}
+@media(max-width:700px){.ac-victory{padding:7px}.ac-victory-banner{padding:7px 12px}.ac-victory-banner small{font-size:9px}.ac-shop-art>small{font-size:6px;max-width:calc(100% - 8px);overflow:hidden;white-space:nowrap}.ac-selection-bar{gap:4px}.ac-selection-bar button{padding:3px 6px;font-size:9px}}
+@media(max-height:440px) and (orientation:landscape){.ac-victory{padding:5px;flex-direction:row;align-items:flex-end}.ac-victory-banner{padding:5px 10px}.ac-victory-banner small{display:none}.ac-victory>.ac-button{min-height:30px;padding:5px 10px}}
+/* Compact landscape controls use their actual column width, not text width. */
+@media(max-height:620px) and (orientation:landscape){
+ .ac-game.is-preparing .ac-controls{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) minmax(75px,1.8fr) 28px}
+ .ac-game.is-preparing .ac-controls .ac-button{min-width:0;width:100%;font-size:8.5px;padding:5px 2px;margin:0}
+ .ac-game.is-preparing .ac-controls .ac-begin small{font-size:8px;margin-left:2px}
+ .ac-game.is-preparing .ac-controls .ac-inventory-button{padding:0 2px;font-size:11px;width:28px;height:29px}
+ .ac-game.is-preparing .ac-controls .ac-inventory-button span{font-size:8px;margin-left:1px}
+ .ac-round-heading{display:block;position:relative;padding-right:35px;width:100%}
+ .ac-round-heading>span{display:block;min-width:0}
+ .ac-round-heading>span>strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4}
+ .ac-round-heading>span>small{display:block;font-size:8px}
+ .ac-trait-summary{position:absolute;right:0;top:0;width:31px;height:25px;max-width:none}
+ .ac-trait-summary>span{display:none}.ac-trait-summary:after{content:'✦ Hệ';font-size:9px;color:#e8cc92}
+}
+.ac-shop-art .ac-portrait{height:auto;aspect-ratio:1}

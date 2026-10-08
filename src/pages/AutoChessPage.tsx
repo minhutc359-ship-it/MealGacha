@@ -12,7 +12,8 @@ import { ProgressTransfer } from "../components/game/ProgressTransfer"
 import { Dialog } from "../components/game/Dialog"
 import { ModeSwitch } from "../components/layout/ModeSwitch"
 import { AutoBoard } from "../components/autochess/AutoBoard"
-import { AutoPortrait, WorldArt } from "../components/autochess/AutoArt"
+import { AutoVictory, useAutoVictory } from "../components/autochess/AutoVictory"
+import { AutoPortrait, AutoMonsterPortrait, WorldArt } from "../components/autochess/AutoArt"
 import {
   AutoGuide,
   AutoRoster,
@@ -36,6 +37,7 @@ import {
   capacity,
   copies,
   traitCounts,
+  unitRole,
 } from "../game/autochess/economy"
 import { enemyPlan, pressure } from "../game/autochess/combat"
 import { hasActiveAutoRun, type AutoAction } from "../game/autochess/reducer"
@@ -90,9 +92,10 @@ export function AutoChessPage() {
     playing = menu === null && !!run,
     preparing = run?.phase === "prepare"
   const sceneId = run?.combat?.pendingScene ?? run?.scene
+  const victory = useAutoVictory(run, playing && !modal && !inspect, prefs.reducedMotion)
   useGameAudio()
   useGameMusic(
-    sceneId
+    sceneId && !victory.pending
       ? "auto-story"
       : playing && run?.phase === "combat"
         ? (run.combat?.tick ?? 0) >= 500 || run.health < 35
@@ -123,6 +126,11 @@ export function AutoChessPage() {
           (p) =>
             p.star > (run?.roster.find((old) => old.uid === p.uid)?.star ?? 1),
         )
+      if (a.type === "buy" && fresh) {
+        const acquired = fresh.roster.find(p => !run?.roster.some(old => old.uid === p.uid))
+          ?? fresh.roster.find(p => p.star > (run?.roster.find(old => old.uid === p.uid)?.star ?? 1))
+        if (acquired) setSelected(acquired.uid)
+      }
       gameAudio.play(
         merged && mergedBefore
           ? "combo"
@@ -168,7 +176,7 @@ export function AutoChessPage() {
     }
   }
   const onCell = (cell: number, dragged?: string) => {
-    if (!run) return
+    if (!run || victory.pending) return
     if (!preparing) {
       const live = runtime
         .getFrame()
@@ -186,7 +194,7 @@ export function AutoChessPage() {
     if (chosen && chosen !== piece?.uid) {
       if (doAction({ type: "move", uid: chosen, cell })) setSelected(null)
     } else if (piece) {
-      setSelected(piece.uid)
+      setSelected(piece.uid === selected ? null : piece.uid)
       gameAudio.play("select")
     }
   }
@@ -360,12 +368,7 @@ export function AutoChessPage() {
                       key={m.id}
                       onClick={() => inspectUnit({ id: m.id })}
                     >
-                      <span
-                        className="ac-monster-portrait"
-                        style={{
-                          backgroundPosition: `0% ${(m.sprite / 13) * 100}%`,
-                        }}
-                      />
+                      <AutoMonsterPortrait row={m.sprite} label={m.name} />
                       <strong>{m.name}</strong>
                       <small>
                         {m.boss ? "BOSS" : AUTO_SCHOOLS[m.school].name}
@@ -584,7 +587,11 @@ export function AutoChessPage() {
               </strong>
               <small>
                 {preparing
-                  ? "CHUẨN BỊ · Xếp ba hàng phía bạn"
+                  ? "CHUẨN BỊ · Mua → xếp quân → xuất trận"
+                  : victory.pending
+                    ? "CHIẾN THẮNG · Vị Linh ăn mừng"
+                  : run.phase !== "combat"
+                    ? "VÒNG ĐÃ KẾT THÚC"
                   : run.paused
                     ? "ĐANG TẠM DỪNG"
                     : `GIAO CHIẾN · ${Math.floor((run.combat?.tick ?? 0) / 20)}/55 giây`}
@@ -605,7 +612,7 @@ export function AutoChessPage() {
                     }}
                   >
                     {AUTO_SCHOOLS[(id as keyof typeof AUTO_SCHOOLS)].name}{" "}
-                    {count}
+                    {count}/{count >= 2 ? 4 : 2}{count >= 2 ? " ✦" : ""}
                   </span>
                 ))}
             </button>
@@ -618,9 +625,11 @@ export function AutoChessPage() {
               selected={selected}
               reducedMotion={prefs.reducedMotion}
               lowQuality={lowQuality}
+              celebrating={victory.celebrating}
               onCell={onCell}
             />
-            {run.mode !== "campaign" && p && (
+            {victory.celebrating && <AutoVictory wave={run.wave} onFinish={victory.finish} />}
+            {run.mode !== "campaign" && p && !victory.pending && (
               <div className="ac-pressure">
                 Sương {p.level} · Địch ×{p.health.toFixed(2)} máu / ×
                 {p.attack.toFixed(2)} công
@@ -689,7 +698,7 @@ export function AutoChessPage() {
                           })
                           setSelected(null)
                         } else if (piece) {
-                          setSelected(piece.uid)
+                          setSelected(piece.uid === selected ? null : piece.uid)
                           gameAudio.play("select")
                         }
                       }}
@@ -709,8 +718,8 @@ export function AutoChessPage() {
               <div className="ac-selection-bar">
                 <span>
                   {selectedPiece
-                    ? `${UNIT_MAP[selectedPiece.id].name} · Chọn ô để di chuyển`
-                    : "Chọn quân → chọn ô · 3 bản tự ghép sao"}
+                    ? `${UNIT_MAP[selectedPiece.id].name} · ${unitRole(selectedPiece.id)} · Chạm ô sáng để xếp`
+                    : `Đội ${boardPieces(run).length}/${capacityNow} · 3 bản cùng quân tự lên ★★`}
                 </span>
                 {selectedPiece && (
                   <>
@@ -737,6 +746,7 @@ export function AutoChessPage() {
                     </button>
                   </>
                 )}
+                {!selectedPiece && <button className="ac-auto-place" onClick={() => doAction({ type: "auto-place" })}>Xếp nhanh</button>}
               </div>
               <section className="ac-shop" aria-label="Cửa hàng 5 quân">
                 {run.shop.map((id, i) => {
@@ -759,7 +769,7 @@ export function AutoChessPage() {
                             aria-label={`Xem ${def.name}`}
                           >
                             <AutoPortrait index={def.portrait} />
-                            <small>{AUTO_SCHOOLS[def.school].name}</small>
+                            <small>{unitRole(def.id)} · {AUTO_SCHOOLS[def.school].name}</small>
                             {count > 0 && <b>{count} bản</b>}
                           </button>
                           <strong title={def.name}>{def.name}</strong>
@@ -828,9 +838,11 @@ export function AutoChessPage() {
                 <button
                   className="ac-button"
                   disabled={run.gold < 4 || run.xp >= 62}
+                  aria-label={`Mua 4 XP giá 4 vàng. ${run.xp} XP, tối đa ${capacityNow} quân`}
+                  title={run.xp >= 62 ? "Đã mở tối đa 7 quân" : `${run.xp}/${[8, 20, 38, 62][capacityNow - 3]} XP để mở ${capacityNow + 1} quân`}
                   onClick={() => doAction({ type: "xp" })}
                 >
-                  ↑ <span>XP</span> · 4 ◉
+                  ↑ XP · 4 ◉
                 </button>
                 <button
                   className="ac-button primary ac-begin"
@@ -885,7 +897,7 @@ export function AutoChessPage() {
           </button>
         </div>
       )}
-      {sceneId && playing && !modal && !inspect && (
+      {sceneId && playing && !victory.pending && !modal && !inspect && (
         <AutoStory
           sceneId={sceneId}
           line={run!.sceneLine}
@@ -1063,6 +1075,7 @@ export function AutoChessPage() {
         !sceneId &&
         run.phase === "result" &&
         run.lastResult &&
+        !victory.pending &&
         !modal &&
         !inspect && (
           <Dialog
@@ -1104,6 +1117,7 @@ export function AutoChessPage() {
         )}
       {playing &&
         run?.phase === "reward" &&
+        !victory.pending &&
         run.reward &&
         !modal &&
         !inspect && (
@@ -1146,6 +1160,7 @@ export function AutoChessPage() {
       {playing &&
         run &&
         ["won", "lost", "abandoned"].includes(run.phase) &&
+        !victory.pending &&
         !sceneId &&
         !modal &&
         !inspect && (

@@ -338,7 +338,7 @@ export function TCGPage() {
       <div className="tcg-content">
         <header className="tcg-topbar" inert={!!current.battle}>
           <div>
-            <span className="tcg-mobile-brand"><BrandMark /></span>
+            <span className="tcg-mobile-brand"><BrandMark /><b>Soul<br />of Meal</b></span>
             <span className="tcg-topbar-label">SOUL OF MEAL /</span>
             <strong>{NAV.find((n) => n.id === tab)?.name ?? "Cài đặt"}</strong>
             <span className="tcg-offline-tag">

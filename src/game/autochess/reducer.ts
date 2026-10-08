@@ -1,6 +1,7 @@
 import { AUGMENTS, COSMETICS, RELICS } from "./catalog"
 import {
   buy,
+  autoArrange,
   move,
   sell,
   equip,
@@ -41,7 +42,7 @@ export type AutoAction = {
   item: string
 } | { type: "unequip"; uid: string; item: string } | { type: "reroll" } | {
   type: "lock"
-} | { type: "xp" } | { type: "battle" } | {
+} | { type: "xp" } | { type: "auto-place" } | { type: "battle" } | {
   type: "checkpoint"
   run: AutoRun
 } | { type: "pause"; value: boolean } | { type: "next" } | {
@@ -317,6 +318,9 @@ export function reduceAuto(
     return fail("Chỉ thay đổi đội hình ở vòng chuẩn bị.")
   let error: string | null = null
   switch (action.type) {
+    case "auto-place":
+      error = autoArrange(run)
+      break
     case "buy":
       error = buy(run, action.index)
       break

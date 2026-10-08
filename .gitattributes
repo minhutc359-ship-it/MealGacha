@@ -186,3 +186,5 @@ docs/autochess/screenshots/*.webp -filter -diff -merge -text
 public/assets/brand/* -filter -diff -merge -text
 public/favicon.ico -filter -diff -merge -text
 docs/branding/screenshots/* -filter -diff -merge -text
+
+docs/polish-v32/screenshots/* -filter -diff -merge -text

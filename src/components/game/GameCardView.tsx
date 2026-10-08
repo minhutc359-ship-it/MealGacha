@@ -29,7 +29,7 @@ export function GameCardView({
 }: Props) {
   const content = (
     <>
-      <span className="tcg-card-art">
+      <span className={`tcg-card-art ${card.art?.startsWith("/assets/food/") ? "is-food-art" : "is-character-art"}`}>
         {card.art ? (
           <img
             src={card.art}
