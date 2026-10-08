@@ -130,5 +130,236 @@
     "active": true,
     "type": "limited",
     "limitedEventId": "taybac-festival"
+  },
+  {
+    "id": "banh-dau-xanh",
+    "name": "Bánh đậu xanh",
+    "searchQuery": "Bánh đậu xanh Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "sweet",
+    "description": "Bánh đậu xanh bùi, mịn, thường được thưởng thức cùng trà.",
+    "imageUrl": "/assets/food/full/banh-dau-xanh.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 55,
+    "rarity": "rare",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
+  },
+  {
+    "id": "banh-khuc",
+    "name": "Bánh khúc",
+    "searchQuery": "Bánh khúc Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "rice",
+    "description": "Xôi bọc bánh nếp lá khúc, nhân đậu xanh và thịt thơm ấm.",
+    "imageUrl": "/assets/food/full/banh-khuc.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 85,
+    "rarity": "common",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
+  },
+  {
+    "id": "banh-can",
+    "name": "Bánh căn",
+    "searchQuery": "Bánh căn Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "food",
+    "description": "Bánh bột gạo nướng trong khuôn nhỏ, dùng cùng rau và nước chấm.",
+    "imageUrl": "/assets/food/full/banh-can.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 85,
+    "rarity": "common",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
+  },
+  {
+    "id": "banh-tom-ho-tay",
+    "name": "Bánh tôm Hồ Tây",
+    "searchQuery": "Bánh tôm Hồ Tây Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "food",
+    "description": "Bánh tôm chiên giòn dùng cùng rau sống và nước chấm chua ngọt.",
+    "imageUrl": "/assets/food/full/banh-tom-ho-tay.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 55,
+    "rarity": "rare",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
+  },
+  {
+    "id": "com-hen",
+    "name": "Cơm hến",
+    "searchQuery": "Cơm hến Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "rice",
+    "description": "Cơm hến Huế trộn rau, hến và gia vị, giòn thơm và cay nhẹ.",
+    "imageUrl": "/assets/food/full/com-hen.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 85,
+    "rarity": "common",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
+  },
+  {
+    "id": "che-lam",
+    "name": "Chè lam",
+    "searchQuery": "Chè lam Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "sweet",
+    "description": "Bánh dẻo từ bột nếp, mật, gừng và lạc, thơm ấm bên chén trà.",
+    "imageUrl": "/assets/food/full/che-lam.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 85,
+    "rarity": "common",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
+  },
+  {
+    "id": "chao-luon",
+    "name": "Cháo lươn",
+    "searchQuery": "Cháo lươn Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "soup",
+    "description": "Cháo lươn mềm thơm, dùng cùng hành và gia vị ấm.",
+    "imageUrl": "/assets/food/full/chao-luon.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 55,
+    "rarity": "rare",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
+  },
+  {
+    "id": "banh-it-la-gai",
+    "name": "Bánh ít lá gai",
+    "searchQuery": "Bánh ít lá gai Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "sweet",
+    "description": "Bánh nếp lá gai sẫm màu, nhân đậu xanh, gói bằng lá chuối.",
+    "imageUrl": "/assets/food/full/banh-it-la-gai.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 85,
+    "rarity": "common",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
+  },
+  {
+    "id": "banh-ram-it",
+    "name": "Bánh ram ít",
+    "searchQuery": "Bánh ram ít Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "food",
+    "description": "Bánh nếp mềm đặt trên bánh ram giòn, đặc sản xứ Huế.",
+    "imageUrl": "/assets/food/full/banh-ram-it.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 85,
+    "rarity": "common",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
+  },
+  {
+    "id": "keo-cu-do",
+    "name": "Kẹo cu đơ",
+    "searchQuery": "Kẹo cu đơ Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "sweet",
+    "description": "Kẹo lạc và mật thơm gừng, kẹp giữa hai lớp bánh tráng.",
+    "imageUrl": "/assets/food/full/keo-cu-do.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 55,
+    "rarity": "rare",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
+  },
+  {
+    "id": "banh-tet",
+    "name": "Bánh tét",
+    "searchQuery": "Bánh tét Việt Nam",
+    "mealSlots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "rice",
+    "description": "Bánh nếp gói lá chuối hình trụ, thường có nhân đậu xanh và thịt, gắn với ngày Tết.",
+    "imageUrl": "/assets/food/full/banh-tet.webp",
+    "tags": [
+      "vietnamese"
+    ],
+    "weight": 85,
+    "rarity": "common",
+    "priceTier": 2,
+    "active": true,
+    "type": "normal"
   }
 ]

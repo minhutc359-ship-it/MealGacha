@@ -1,10 +1,9 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { CARDS, SCHOOLS, RARITIES, KEYWORDS } from "../../game/catalog"
 import { useGameStore } from "../../game/useGameStore"
 import type { GameCard, School, CardRarity } from "../../game/types"
 import { GameCardView } from "./GameCardView"
 import { Dialog } from "./Dialog"
-import { CardShelf } from "./CardShelf"
 
 export function Collection({ workshop = false }: { workshop?: boolean }) {
   const save = useGameStore((s) => s.save)
@@ -18,6 +17,10 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
     [setName, setSetName] = useState("all")
   const [ownedOnly, setOwnedOnly] = useState(false),
     [selected, setSelected] = useState<GameCard | null>(null)
+  const list = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    list.current?.scrollTo({ top: 0 })
+  }, [query, school, rarity, kind, setName, ownedOnly])
   const normalize = (s: string) =>
     s.normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
@@ -133,24 +136,35 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
           </div>
         </details>
       </div>
-      <p className="tcg-filter-count">
+      <p className="tcg-filter-count" role="status" aria-live="polite">
         {cards.length} thẻ · Nhấn vào một lá để xem chi tiết
         {workshop ? " và chế tạo" : ""}.
       </p>
-      <CardShelf
-        label={workshop ? "Thẻ chế tạo" : "Thư viện thẻ"}
-        resetKey={[query, school, rarity, kind, setName, ownedOnly].join("|")}
-        items={cards.map((c) => (
-          <GameCardView
-            key={c.id}
-            card={c}
-            foil={save.foils.includes(c.id)}
-            count={save.cards[c.id] ?? 0}
-            muted={!save.cards[c.id]}
-            onClick={() => setSelected(c)}
-          />
-        ))}
-      />
+      <div
+        ref={list}
+        className="tcg-card-list"
+        role="region"
+        aria-label={workshop ? "Danh sách thẻ chế tạo" : "Danh sách thẻ"}
+        tabIndex={0}
+      >
+        <div className="tcg-card-page tcg-card-list-grid">
+          {cards.map((c) => (
+            <GameCardView
+              key={c.id}
+              card={c}
+              foil={save.foils.includes(c.id)}
+              count={save.cards[c.id] ?? 0}
+              muted={!save.cards[c.id]}
+              onClick={() => setSelected(c)}
+            />
+          ))}
+          {!cards.length && (
+            <p className="tcg-shelf-empty">
+              Không có thẻ phù hợp. Thử bỏ bớt bộ lọc.
+            </p>
+          )}
+        </div>
+      </div>
       {selected && (
         <Dialog title={selected.name} onClose={() => setSelected(null)} wide>
           <div className="tcg-card-detail">

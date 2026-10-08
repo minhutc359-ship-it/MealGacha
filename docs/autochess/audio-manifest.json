@@ -1,0 +1,92 @@
+[
+  {
+    "style": "original",
+    "name": "prepare",
+    "bpm": 94,
+    "duration": 40.851,
+    "bytes": 327546,
+    "sampleRate": 22050,
+    "peak": 0.6052,
+    "rms": 0.1625
+  },
+  {
+    "style": "8bit",
+    "name": "prepare",
+    "seconds": 39.184,
+    "bpm": 98,
+    "bytes": 314177,
+    "rms": 0.151
+  },
+  {
+    "style": "original",
+    "name": "battle",
+    "bpm": 128,
+    "duration": 30.0,
+    "bytes": 240818,
+    "sampleRate": 22050,
+    "peak": 0.6052,
+    "rms": 0.1427
+  },
+  {
+    "style": "8bit",
+    "name": "battle",
+    "seconds": 28.235,
+    "bpm": 136,
+    "bytes": 226613,
+    "rms": 0.1414
+  },
+  {
+    "style": "original",
+    "name": "boss",
+    "bpm": 142,
+    "duration": 27.042,
+    "bytes": 217201,
+    "sampleRate": 22050,
+    "peak": 0.6052,
+    "rms": 0.1124
+  },
+  {
+    "style": "8bit",
+    "name": "boss",
+    "seconds": 25.6,
+    "bpm": 150,
+    "bytes": 205504,
+    "rms": 0.1527
+  },
+  {
+    "style": "original",
+    "name": "story",
+    "bpm": 82,
+    "duration": 46.829,
+    "bytes": 375400,
+    "sampleRate": 22050,
+    "peak": 0.6052,
+    "rms": 0.1526
+  },
+  {
+    "style": "8bit",
+    "name": "story",
+    "seconds": 44.651,
+    "bpm": 86,
+    "bytes": 358061,
+    "rms": 0.1541
+  },
+  {
+    "style": "original",
+    "name": "pressure",
+    "bpm": 156,
+    "duration": 24.615,
+    "bytes": 197770,
+    "sampleRate": 22050,
+    "peak": 0.6052,
+    "rms": 0.1157
+  },
+  {
+    "style": "8bit",
+    "name": "pressure",
+    "seconds": 23.415,
+    "bpm": 164,
+    "bytes": 188163,
+    "rms": 0.1498
+  }
+]

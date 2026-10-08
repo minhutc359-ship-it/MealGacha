@@ -41,9 +41,10 @@ export function battleInvocation(frame: BattleFrame) {
 
 export function frameDuration(frame?: BattleFrame) {
   if (!frame) return 90
-  if (frame.event.kind === "combo") return 1100
-  if (["assist", "tactic"].includes(frame.event.kind)) return 1050
-  if (frame.event.kind === "attack") return 1040
-  if (frame.event.kind === "play") return 1000
-  return 690
+  // Hold captions for another half-second; projectile and impact speeds stay the same.
+  if (frame.event.kind === "combo") return 1600
+  if (["assist", "tactic"].includes(frame.event.kind)) return 1550
+  if (frame.event.kind === "attack") return 1540
+  if (["play", "rule"].includes(frame.event.kind)) return 1500
+  return 1190
 }

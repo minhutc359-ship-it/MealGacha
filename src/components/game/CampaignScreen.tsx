@@ -18,6 +18,7 @@ const STOPS: CSSProperties[] = [
 ]
 export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
   const cleared = useGameStore((s) => s.save.clearedStages)
+  const history = useGameStore((s) => s.save.history)
   const [selected, setSelected] = useState(() =>
     Math.min(5, Math.floor(cleared.length / 3)),
   )
@@ -127,6 +128,7 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
           <button
             key={ch.id}
             aria-pressed={selected === i}
+            disabled={!isStageUnlocked(ch.stages[0].id, cleared)}
             aria-label={`Xem chương ${i + 1}`}
             onClick={() => setSelected(i)}
           >
@@ -192,7 +194,13 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
                   <strong>{open ? s.title : `Ký ức ${i + 1}`}</strong>
                   <small>
                     {open
-                      ? `${s.boss ? "BOSS · " : ""}${s.opponent}`
+                      ? !cleared.includes(s.id) &&
+                        history.find(
+                          (item) =>
+                            item.mode === "story" && item.stageId === s.id,
+                        )?.result === "loss"
+                        ? "CHƯA VƯỢT MÀN · Thử lại để mở chặng kế tiếp"
+                        : `${s.boss ? "BOSS · " : ""}${s.opponent}`
                       : "Nội dung chưa mở"}
                   </small>
                 </div>

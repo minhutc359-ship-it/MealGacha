@@ -1,8 +1,21 @@
-# MealGacha v2.9 · Vị Linh xuất trận
+# Soul of Meal v3.1 · Huyền thoại vị giác
 
-Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 6 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
+Bản 3.1 đổi thương hiệu thành **Soul of Meal**, logo linh hỏa/bát cơm/lá bài, icon trình duyệt và ảnh chia sẻ; giữ tiến trình cũ. Tìm quán trong Rương được hoàn thiện không cần API key: chọn đúng khu vực, phân biệt mức khớp món, lọc/sắp quán, bản đồ, chỉ đường bằng tọa độ, liên hệ và fallback Maps luôn sẵn. [Chi tiết](docs/PLACES_V31.md) · [Logo/prompt](docs/branding/LOGO.md) · [Kiểm tra](docs/branding/VERIFICATION.md).
+
+Game thẻ bài ẩm thực trên React/Vite: **163 thẻ** (123 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 6 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Ba chế độ TCG, Rương Vị Giác (`/chest`) và Auto chess (`/autochess`) chuyển qua lại từ thanh trên, giữ tiến trình.
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
+
+## Bản 3.0 · Auto chess hoàn chỉnh
+
+- **Chợ Đêm Vị Linh**: chiến dịch 4 hồi/12 đợt với An, NPC, 4 boss, cutscene giữa trận và 2 lựa chọn kết truyện. Tịnh giữ một công thức duy nhất nhưng vô tình xóa ký ức người nấu; An mở lại chỗ cho nhiều giọng kể.
+- **32 quân, 10 quái, 4 boss**; bàn 6×6, 3–7 quân và 6 dự bị; shop 5 ô, pool hữu hạn, khóa/đổi/XP, ghép 2–3 sao; 5 hệ, 3 nghề, 6 di vật và 6 Lời hẹn.
+- **Survival Đêm Không Tắt Bếp**: địch mạnh theo đợt và thời gian đánh; cuồng nộ, giới hạn 55 giây/vòng, ghi high score local. Thử thách hằng ngày có seed chung, kỷ lục và ảnh kết quả tải về.
+- **Sprite anime 2.5D** đi/đánh/niệm/ngã, hit đúng tick, lửa/nước/lá/khiên/sao, tên phép và số sát thương; 6 chân dung NPC, 32 chân dung quân, 4 bối cảnh; 5 nhạc riêng ở hai phong cách original/8-bit.
+- **11 món có ảnh mới áp dụng cả Rương và TCG**; giữ bộ sưu tập và các mức giá 2.9.2. Mã tiến trình mới chuyển cả ba chế độ, trận đang chơi và kỷ lục, có bản dự phòng và rollback khi không ghi được.
+- Battle/prepare vừa `100dvh`, bố cục portrait/landscape; pause khi ẩn tab, ×2, đồ họa thấp và giảm chuyển động. Lưu TCG cũ và mã MGC1 cũ vẫn đọc được.
+
+[Luật, nội dung và asset](docs/autochess/IMPLEMENTATION.md) · [Kiểm chứng](docs/autochess/VERIFICATION.md) · [Cân bằng](docs/autochess/balance-results.json). Chạy `pnpm benchmark:autochess` để tái lập mô phỏng ba hướng build, không cấp tài nguyên ngoài luật.
 
 ## Bản 2.9 · Vị Linh xuất trận
 
@@ -130,7 +143,7 @@ pnpm validate:catalog
 ## Cấu hình
 
 - Tìm quán hoạt động không cần API key: xin quyền vị trí hoặc nhập khu vực; dùng Photon và OpenStreetMap/Overpass tìm quán gần đó, nhấn từng quán để mở bản đồ OpenStreetMap ngay bên dưới. Dữ liệu OSM không có sao/đánh giá nên ứng dụng ghi rõ điều này và nhắc kiểm tra thực đơn. Dữ liệu vị trí được gửi trực tiếp từ trình duyệt tới dịch vụ bản đồ để tìm kiếm, không lưu vị trí trong hồ sơ.
-- `VITE_GOOGLE_MAPS_API_KEY` (tùy chọn): khóa cho Places API (New) để lọc quán theo sao/số lượt đánh giá và giờ mở cửa. Giới hạn khóa theo HTTP referrer và chỉ bật API cần thiết; khi API lỗi, ứng dụng quay về nguồn OpenStreetMap không cần khóa.
+- Tìm quán 3.1 không gọi Google Places API và không cần khóa. Nguồn quán: OpenStreetMap qua Private.coffee, tìm khu vực/tên quán qua Photon. Link Google Maps dùng Maps URLs không khóa để xem thêm và chỉ đường. Xem [tài liệu tìm quán](docs/PLACES_V31.md).
 - `VITE_CATALOG_URL`: URL CSV của Google Sheet đã **Publish to web**. Người dùng cũng có thể cấu hình và xem trước nguồn trong trang Cài đặt.
 - `VITE_CHEST_OPENING_AUDIO_URL`: URL ghi đè cho âm thanh mở rương. Mặc định app dùng file `public/assets/audio/chest-opening.mp3` dài 4,284 giây và đồng bộ timeline 4,14 giây.
 - `VITE_DAILY_KEYS`, `VITE_CHEST_COST`: tham số kinh tế mặc định là 10 chìa/ngày và 1 chìa/lượt.

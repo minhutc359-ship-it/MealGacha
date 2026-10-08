@@ -1,4 +1,6 @@
 import { parseGame } from "./storage"
+import { migrateUserState } from "../infrastructure/storage/repository"
+import type { UserState } from "../domain/models"
 import type { GameSave } from "./types"
 
 const MAX_BYTES = 1_000_000
@@ -8,6 +10,7 @@ export const TRANSFER_BACKUP_KEY = "foodchest.tcg.transfer.previous"
 export interface SaveCodePreview {
   save: GameSave
   exportedAt: string
+  user?: UserState
 }
 function cryptoApi() {
   if (!globalThis.crypto?.subtle)
@@ -60,11 +63,19 @@ async function bounded(stream: ReadableStream<Uint8Array>) {
 export async function createSaveCode(
   save: GameSave,
   compress = true,
+  user?: UserState,
 ): Promise<string> {
   if (!parseGame(save)) throw new Error("Tiến trình hiện tại không hợp lệ.")
+  if (user && !migrateUserState(user))
+    throw new Error("Tiến trình Rương không hợp lệ.")
   const api = cryptoApi()
   let bytes: Uint8Array = new TextEncoder().encode(
-    JSON.stringify({ version: 1, exportedAt: new Date().toISOString(), save }),
+    JSON.stringify({
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      save,
+      ...(user ? { user } : {}),
+    }),
   )
   if (bytes.length > MAX_BYTES)
     throw new Error("Bản lưu vượt giới hạn dung lượng.")
@@ -188,5 +199,7 @@ export async function readSaveCode(input: string): Promise<SaveCodePreview> {
     throw new Error(
       "Tiến trình trong mã không hợp lệ. Bản lưu hiện tại được giữ nguyên.",
     )
-  return { save, exportedAt: raw.exportedAt }
+  const user = "user" in raw ? migrateUserState(raw.user) : undefined
+  if (user === null) throw new Error("Tiến trình Rương trong mã không hợp lệ.")
+  return { save, exportedAt: raw.exportedAt, ...(user ? { user } : {}) }
 }

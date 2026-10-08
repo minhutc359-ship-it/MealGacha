@@ -135,6 +135,9 @@
 .tcg-library-screen .tcg-info-strip { margin:0 0 8px; padding:8px 10px; font-size:10px; line-height:1.5; flex-shrink:0; }
 .tcg-card-shelf { flex:1; min-height:0; min-width:0; display:flex; flex-direction:column; gap:7px; }
 .tcg-card-page { flex:1; min-height:0; min-width:0; display:grid; grid-template-columns:repeat(var(--shelf-columns),minmax(0,1fr)); grid-auto-rows:var(--shelf-row-height); gap:10px; align-content:start; }
+.tcg-card-list { flex:1; min-height:0; min-width:0; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-gutter:stable; padding:4px 5px 8px; }
+.tcg-card-list:focus-visible { outline:2px solid #547a57; outline-offset:-2px; border-radius:6px; }
+.tcg-card-list-grid { grid-template-columns:repeat(auto-fill,minmax(min(140px,100%),1fr)); grid-auto-rows:240px; }
 .tcg-card-page .tcg-card { width:100%; height:100%; aspect-ratio:auto; min-height:0; }
 .tcg-card-page .tcg-card:disabled { opacity:.8; }
 .tcg-card-page .tcg-card-body { padding:8px; }

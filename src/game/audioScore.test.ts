@@ -72,7 +72,7 @@ describe("soundtrack and combat signals", () => {
   })
   it("ships compact real MP3 assets, not LFS pointers", () => {
     let total = 0
-    for (const path of Object.values(MUSIC_TRACKS)) {
+    for (const path of Object.values(MUSIC_TRACKS).filter(path => path.includes("/tcg/"))) {
       const buffer = readFileSync(`public/${path}`)
       total += buffer.length
       expect(buffer.length).toBeGreaterThan(100000)

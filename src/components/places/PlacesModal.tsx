@@ -1,518 +1,154 @@
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-import { DishSnapshot } from "../../domain/models"
+import type { DishSnapshot } from "../../domain/models"
 import { useAppStore } from "../../store/useAppStore"
-import {
-  PlaceResult,
-  geocodeOpenStreetMapArea,
-  searchNearbyPlaces,
-  searchOpenStreetMapPlaces,
-} from "../../infrastructure/places/placesGateway"
+import { FoodImage } from "../food/FoodImage"
+import { directionsUrl, embeddedMapUrl, findNearbyRestaurants, geocodeOpenStreetMapAreas, mapsSearchUrl, normalizePlaceText, phoneHref, type AreaResult, type PlaceResult, type PlaceSearchResult } from "../../infrastructure/places/placesGateway"
+import "./places.css"
 
-interface Props {
-  dish: DishSnapshot
-  onClose(): void
-}
-
-type LocationState = "idle" | "requesting" | "granted" | "denied" | "error"
-
-function getPriceDots(level?: number) {
-  if (!level) return null
-  return "💰".repeat(Math.min(level, 4))
-}
+interface Props { dish: DishSnapshot; onClose(): void }
+type Center = { lat: number; lng: number; label: string }
+type Phase = "idle" | "locating" | "area" | "searching"
+const PRESETS: Center[] = [
+  { label: "Trung tâm Hà Nội", lat: 21.02833, lng: 105.85404 },
+  { label: "Trung tâm TP.HCM", lat: 10.77689, lng: 106.70081 },
+  { label: "Trung tâm Đà Nẵng", lat: 16.06778, lng: 108.22083 },
+]
+function errorText(error: unknown): string { return error instanceof Error ? error.message : "Không thể tải quán lúc này. Hãy thử lại hoặc mở Google Maps." }
 
 export function PlacesModal({ dish, onClose }: Props) {
-  const prefs = useAppStore((s) => s.user.preferences)
-  const [locState, setLocState] = useState<LocationState>("idle")
-  const [manualInput, setManualInput] = useState("")
-  const [allPlaces, setAllPlaces] = useState<PlaceResult[]>([])
-  const [loading, setLoading] = useState(false)
+  const radiusPreference = useAppStore(s => s.user.preferences.searchRadiusMeters)
+  const [radius, setRadius] = useState<1 | 3 | 5>(radiusPreference <= 1000 ? 1 : radiusPreference >= 5000 ? 5 : 3)
+  const [phase, setPhase] = useState<Phase>("idle")
+  const [editingArea, setEditingArea] = useState(true)
+  const [input, setInput] = useState("")
+  const [center, setCenter] = useState<Center | null>(null)
+  const [areas, setAreas] = useState<AreaResult[]>([])
+  const [results, setResults] = useState<PlaceSearchResult | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [filterOpen, setFilterOpen] = useState(false)
-  const [filterNear, setFilterNear] = useState(false)
-  const [sortBy, setSortBy] = useState<"recommended" | "distance" | "rating">("recommended")
-  const [radiusKm, setRadiusKm] = useState<1 | 3 | 5>(prefs.searchRadiusMeters >= 5000 ? 5 : prefs.searchRadiusMeters <= 1000 ? 1 : 3)
-  const [dataSource, setDataSource] = useState<"google" | "osm" | null>(null)
-  const [expandedPlace, setExpandedPlace] = useState<string | null>(null)
-  const requestIdRef = useRef(0)
-  const locationRef = useRef<{ lat: number; lng: number } | null>(null)
-  const manualRef = useRef<HTMLInputElement>(null)
-  const closeRef = useRef<HTMLButtonElement>(null)
+  const [scope, setScope] = useState<"matches" | "all">("matches")
+  const [sort, setSort] = useState<"relevance" | "distance">("relevance")
+  const [filter, setFilter] = useState("")
+  const [expanded, setExpanded] = useState<string | null>(null)
+  const [visibleCount, setVisibleCount] = useState(40)
+  const [copied, setCopied] = useState<string | null>(null)
+  const dialog = useRef<HTMLDialogElement>(null)
+  const controller = useRef<AbortController | null>(null)
+  const sequence = useRef(0)
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const busy = phase !== "idle"
+  const fullDish = useAppStore.getState().dishes.find(d => d.id === dish.id)
+  const query = fullDish?.restaurantSearch?.queries[0] || dish.searchQuery || dish.name
 
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose()
+    const focus = document.activeElement as HTMLElement | null
+    const overflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    dialog.current?.showModal()
+    return () => {
+      sequence.current++; controller.current?.abort()
+      if (timer.current) clearTimeout(timer.current)
+      document.body.style.overflow = overflow
+      focus?.focus()
     }
-    document.addEventListener("keydown", handleKey)
-    closeRef.current?.focus()
-    return () => document.removeEventListener("keydown", handleKey)
-  }, [onClose])
-
-  const requestLocation = () => {
-    if (!navigator.geolocation) {
-      setLocState("denied")
-      return
-    }
-    setLocState("requesting")
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        locationRef.current = {
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-        }
-        setLocState("granted")
-        searchPlaces(pos.coords.latitude, pos.coords.longitude)
-      },
-      (err) => {
-        setLocState(err.code === 1 ? "denied" : "error")
-        setTimeout(() => manualRef.current?.focus(), 100)
-      },
-      { timeout: 10000, maximumAge: 60000 },
-    )
+  }, [])
+  function begin(next: Phase) {
+    controller.current?.abort()
+    const abort = new AbortController(); controller.current = abort
+    const id = ++sequence.current
+    setPhase(next); setError(null); setAreas([]); setExpanded(null)
+    return { id, signal: abort.signal }
   }
-
-  const searchPlaces = async (lat: number, lng: number) => {
-    const requestId = ++requestIdRef.current
-    setLoading(true)
-    setError(null)
-    setExpandedPlace(null)
+  function current(id: number) { return id === sequence.current && !controller.current?.signal.aborted }
+  function cancel() { sequence.current++; controller.current?.abort(); setPhase("idle") }
+  async function search(position: Center) {
+    const request = begin("searching")
+    setCenter(position); setResults(null); setFilter(""); setVisibleCount(40); setEditingArea(false)
     try {
-      const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-      const fullDish = useAppStore.getState().dishes.find((item) => item.id === dish.id)
-      const query = fullDish?.restaurantSearch?.queries?.[0] || dish.searchQuery
-      if (apiKey) {
-        try {
-          const places = await searchNearbyPlaces({ query, lat, lng, radiusMeters: 5000,
-            minRating: prefs.minRating, minReviews: prefs.minReviews, apiKey })
-          if (requestId !== requestIdRef.current) return
-          setAllPlaces(places)
-          setDataSource("google")
-          return
-        } catch { /* A valid OSM lookup remains available if Google is unavailable. */ }
-      }
-      const places = await searchOpenStreetMapPlaces({ query, lat, lng, radiusMeters: 5000 })
-      if (requestId !== requestIdRef.current) return
-      setAllPlaces(places)
-      setDataSource("osm")
-    } catch {
-      if (requestId === requestIdRef.current) {
-        setAllPlaces([])
-        setError("Không thể tải dữ liệu quán lúc này. Thử lại hoặc mở bản đồ.")
-      }
-    } finally {
-      if (requestId === requestIdRef.current) setLoading(false)
-    }
+      const data = await findNearbyRestaurants({ query, aliases: [dish.name, ...(fullDish?.restaurantSearch?.queries ?? [])], cuisineTags: fullDish?.restaurantSearch?.cuisineTags, ...position, radiusMeters: 5000, signal: request.signal })
+      if (!current(request.id)) return
+      setResults(data); setScope(data.places.some(p => p.match !== "nearby" && p.distanceKm <= radius) ? "matches" : "all")
+    } catch (e) { if (current(request.id)) setError(errorText(e)) }
+    finally { if (current(request.id)) setPhase("idle") }
   }
-
-  const searchManualArea = async () => {
-    const area = manualInput.trim()
-    if (!area) { manualRef.current?.focus(); return }
-    setLoading(true)
-    setError(null)
+  async function locate() {
+    const request = begin("locating")
+    setResults(null); setCenter(null)
+    if (!navigator.geolocation) { setError("Thiết bị không hỗ trợ vị trí. Nhập khu vực hoặc chọn trung tâm thành phố."); setPhase("idle"); return }
     try {
-      const position = await geocodeOpenStreetMapArea(area)
-      if (!position) { setError("Không tìm được khu vực này. Hãy thử ghi thêm tên thành phố."); return }
-      locationRef.current = position
-      setLocState("granted")
-      await searchPlaces(position.lat, position.lng)
-    } catch {
-      setError("Không thể tìm khu vực lúc này. Hãy thử lại hoặc mở bản đồ.")
-    } finally {
-      setLoading(false)
+      const position = await new Promise<GeolocationPosition>((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10_000, maximumAge: 60_000, enableHighAccuracy: false }))
+      if (current(request.id)) await search({ lat: position.coords.latitude, lng: position.coords.longitude, label: "vị trí hiện tại của bạn" })
+    } catch (e) {
+      if (current(request.id)) { setError((e as GeolocationPositionError).code === 1 ? "Bạn chưa cho phép vị trí. Hãy nhập khu vực hoặc chọn thành phố bên dưới." : "Chưa lấy được vị trí. Bạn có thể nhập khu vực để tiếp tục."); setPhase("idle") }
     }
   }
-
-  const openMapsSearch = () => {
-    const q = encodeURIComponent(
-      `${dish.searchQuery}${manualInput ? " " + manualInput : ""}`,
-    )
-    window.open(
-      `https://www.google.com/maps/search/?api=1&query=${q}`,
-      "_blank",
-      "noopener",
-    )
+  async function geocode(event: React.FormEvent) {
+    event.preventDefault()
+    const request = begin("area")
+    setCenter(null); setResults(null)
+    try {
+      const found = await geocodeOpenStreetMapAreas(input, request.signal)
+      if (!current(request.id)) return
+      setAreas(found)
+      if (!found.length) setError("Chưa tìm thấy khu vực tại Việt Nam. Thử thêm tên thành phố hoặc chọn trung tâm thành phố.")
+    } catch (e) { if (current(request.id)) setError(errorText(e)) }
+    finally { if (current(request.id)) setPhase("idle") }
   }
-
-  // Apply filter chips on top of scored results
-  const displayed = allPlaces
-    .filter((p) => !filterOpen || p.isOpen === true)
-    .filter((p) => p.distanceKm <= (filterNear ? 1 : radiusKm))
-    .sort((a, b) => sortBy === "distance" ? a.distanceKm - b.distanceKm : sortBy === "rating" ? (b.rating ?? 0) - (a.rating ?? 0) : (b._score ?? 0) - (a._score ?? 0))
-
+  async function copy(place: PlaceResult) {
+    const id = sequence.current
+    try {
+      await navigator.clipboard.writeText(`${place.name}\n${place.address}\n${place.lat},${place.lng}\n${place.mapsUrl}`)
+      if (id !== sequence.current) return
+      setCopied(place.id)
+      if (timer.current) clearTimeout(timer.current)
+      timer.current = setTimeout(() => setCopied(null), 2200)
+    } catch { if (id !== sequence.current) return; setError("Trình duyệt chưa cho phép sao chép. Bạn vẫn có thể mở bản đồ hoặc chỉ đường.") }
+  }
+  const withinRadius = results?.places.filter(p => p.distanceKm <= radius) ?? []
+  const matched = withinRadius.filter(p => p.match !== "nearby")
+  const places = (scope === "matches" ? matched : withinRadius)
+    .filter(p => normalizePlaceText(`${p.name} ${p.address}`).includes(normalizePlaceText(filter)))
+    .sort((a,b) => sort === "distance" ? a.distanceKm-b.distanceKm : b._score-a._score || a.distanceKm-b.distanceKm)
+  const mapsUrl = mapsSearchUrl(query, input, center ?? undefined)
   return createPortal(
-    <div
-      className="places-backdrop fixed inset-0 z-[100] flex items-center justify-center p-4"
-      style={{ background: "rgba(8,12,24,0.92)", backdropFilter: "blur(14px)" }}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose()
-      }}
-      role="dialog"
-      aria-modal="true"
-    >
-      <div
-        className="places-panel w-full max-w-sm rounded-3xl overflow-hidden flex flex-col"
-        style={{
-          background: "#0e1628",
-          border: "1.5px solid rgba(0,212,255,0.2)",
-          maxHeight: "88dvh",
-          boxShadow: "0 24px 80px rgba(0,0,0,0.6)",
-        }}
-      >
-        {/* Header */}
-        <div
-          className="flex items-center justify-between px-5 py-4 border-b flex-shrink-0"
-          style={{ borderColor: "rgba(0,212,255,0.1)" }}
-        >
-          <div>
-            <h3
-              className="font-extrabold text-base leading-tight"
-              style={{ fontFamily: "Exo 2, sans-serif" }}
-            >
-              Quán {dish.name}
-            </h3>
-            <p className="text-xs mt-0.5" style={{ color: "#6b7f99" }}>
-              Gần vị trí của bạn
-            </p>
-          </div>
-          <button
-            ref={closeRef}
-            onClick={onClose}
-            aria-label="Đóng danh sách quán"
-            className="w-8 h-8 rounded-full flex items-center justify-center text-lg transition-colors"
-            style={{ background: "rgba(107,127,153,0.1)", color: "#6b7f99" }}
-          >
-            ×
-          </button>
+    <dialog ref={dialog} className="places-dialog" aria-labelledby="places-title" onCancel={e => { e.preventDefault(); onClose() }} onClick={e => { if (e.target === e.currentTarget) onClose() }}>
+      <div className="places-shell">
+        <header className="places-heading">
+          <FoodImage className="places-dish-art" dishId={dish.id} name={dish.name} variant="full" />
+          <div><small>TỪ VỊ LINH ĐẾN BÀN ĂN</small><h2 id="places-title">Tìm quán {dish.name}</h2><p>Chọn nơi để thưởng thức món ngoài đời.</p></div>
+          <button type="button" className="places-close" aria-label="Đóng danh sách quán" onClick={onClose}>×</button>
+        </header>
+        <div className="places-scroll">
+          {(!center || editingArea) && <section className="places-location" aria-label="Chọn khu vực tìm quán">
+            <button className="places-primary" disabled={busy} onClick={() => void locate()}>◎ Dùng vị trí hiện tại</button>
+            <form onSubmit={e => void geocode(e)}><label htmlFor="places-area">Hoặc tìm khu vực tại Việt Nam</label><div><input id="places-area" maxLength={160} value={input} onChange={e => { setInput(e.target.value); setAreas([]) }} placeholder="VD: Cầu Giấy, Hà Nội" /><button type="submit" disabled={busy || input.trim().length < 2}>Tìm khu vực</button></div></form>
+            <div className="places-presets" aria-label="Chọn nhanh thành phố">{PRESETS.map(p => <button key={p.label} disabled={busy} onClick={() => void search(p)}>{p.label.replace("Trung tâm ", "")}</button>)}</div>
+            {!!areas.length && <div className="places-areas"><p>Chọn đúng khu vực của bạn:</p>{areas.map(area => <button key={area.id} onClick={() => void search({ ...area, label: area.label })}><span>→</span><span>{area.label}<small>Chọn khu vực này →</small></span></button>)}</div>}
+            <p className="places-privacy">Chỉ xin vị trí khi bạn bấm nút. Tọa độ được gửi tới nguồn bản đồ để tìm quán, không lưu vào tiến trình.</p>
+          </section>}
+          {busy && <div className="places-loading" role="status"><span className="places-spinner" /><p>{phase === "locating" ? "Đang lấy vị trí…" : phase === "area" ? "Đang tìm khu vực…" : "Đang tìm quán quanh khu vực…"}</p><button onClick={cancel}>Dừng tìm</button></div>}
+          {error && <div className="places-message is-error" role="alert"><p>{error}</p>{center && !busy && <button onClick={() => void search(center)}>Thử lại tìm quán</button>}</div>}
+          {center && <div className="places-center"><div className="places-center-copy"><span>Quanh <strong>{center.label}</strong></span><button aria-expanded={editingArea} onClick={() => { setEditingArea(v => !v); dialog.current?.querySelector(".places-scroll")?.scrollTo({ top: 0 }) }}>{editingArea ? "Ẩn chọn khu vực" : "Đổi khu vực"}</button></div><label>Bán kính<select aria-label="Bán kính tìm quán" value={radius} onChange={e => { setRadius(Number(e.target.value) as 1 | 3 | 5); setVisibleCount(40) }}><option value={1}>1 km</option><option value={3}>3 km</option><option value={5}>5 km</option></select></label></div>}
+          {results && !busy && <>
+            {results.warning && <p className="places-message" role="status">{results.warning}</p>}
+            <div className="places-filters"><div className="places-scopes"><button aria-pressed={scope === "matches"} onClick={() => { setScope("matches"); setVisibleCount(40) }}>Khớp món <b>{matched.length}</b></button><button aria-pressed={scope === "all"} onClick={() => { setScope("all"); setVisibleCount(40) }}>Tất cả quán <b>{withinRadius.length}</b></button></div><select aria-label="Sắp xếp quán" value={sort} onChange={e => setSort(e.target.value as typeof sort)}><option value="relevance">Liên quan đến món</option><option value="distance">Gần nhất</option></select></div>
+            {!!withinRadius.length && <input className="places-name-filter" aria-label="Lọc tên quán hoặc địa chỉ" placeholder="Lọc tên quán hoặc địa chỉ…" value={filter} onChange={e => { setFilter(e.target.value); setVisibleCount(40) }} />}
+            <p className="places-data-note">Tên/thông tin khớp chỉ là gợi ý, chưa xác nhận thực đơn. Nguồn này không có sao đánh giá hay trạng thái mở cửa trực tiếp.</p>
+            {!places.length && <div className="places-empty"><span>→</span><h3>{filter ? "Chưa có quán khớp bộ lọc" : scope === "matches" ? "Chưa có quán khớp từ khóa món" : "Chưa có quán trong bán kính này"}</h3><p>{scope === "matches" && withinRadius.length ? "Bạn có thể xem quán lân cận hoặc tìm thêm trên Google Maps." : "Dữ liệu cộng đồng có thể còn thiếu. Thử bán kính 5 km hoặc tìm thêm trên Google Maps."}</p>{(scope === "matches" && withinRadius.length > 0 || filter) && <button onClick={() => { setScope("all"); setFilter("") }}>Xem tất cả quán</button>}</div>}
+            <div className="places-results" aria-label="Danh sách quán">{places.slice(0,visibleCount).map(place => <article className="places-card" key={place.id}>
+              <div className="places-card-title"><h3>{place.name}</h3><strong>{place.distanceKm < 1 ? `${Math.round(place.distanceKm*1000)} m` : `${place.distanceKm.toFixed(1)} km`}</strong></div>
+              <span className={`places-match is-${place.match}`}>{place.matchLabel}</span><p>{place.address}</p>
+              {place.openingHours && <p className="places-hours">Giờ ghi trên OSM: {place.openingHours}</p>}
+              <div className="places-card-actions"><button aria-expanded={expanded === place.id} onClick={() => setExpanded(expanded === place.id ? null : place.id)}>{expanded === place.id ? "Ẩn bản đồ" : "Xem bản đồ"}</button><a href={directionsUrl(place)} target="_blank" rel="noopener noreferrer">Chỉ đường ↗</a><button onClick={() => void copy(place)}>{copied === place.id ? "Đã sao chép ✓" : "Sao chép"}</button></div>
+              <div className="places-contacts">{phoneHref(place.phone) && <a href={phoneHref(place.phone)}>Gọi quán</a>}{place.website && <a href={place.website} target="_blank" rel="noopener noreferrer">Website ↗</a>}<a href={place.mapsUrl} target="_blank" rel="noopener noreferrer">Thông tin OSM ↗</a><a href={directionsUrl(place,"walking")} target="_blank" rel="noopener noreferrer">Đi bộ ↗</a></div>
+              {expanded === place.id && <iframe className="places-map" src={embeddedMapUrl(place)} loading="lazy" title={`Bản đồ ${place.name}`} referrerPolicy="strict-origin-when-cross-origin" />}
+            </article>)}</div>
+            {places.length > visibleCount && <button className="places-more" onClick={() => setVisibleCount(v => v + 40)}>Xem thêm quán · đang hiện {visibleCount}/{places.length}</button>}
+            <p className="places-attribution">Dữ liệu © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> · Photon / Private.coffee<br />Khoảng cách đường chim bay · dữ liệu tạm lưu 10 phút.</p>
+          </>}
         </div>
-
-        <div className="overflow-y-auto flex-1 px-4 py-4 flex flex-col gap-3">
-          {/* Location prompt */}
-          {locState === "idle" && (
-            <button
-              onClick={requestLocation}
-              className="w-full py-3.5 rounded-2xl font-bold text-sm transition-all"
-              style={{
-                background: "linear-gradient(135deg, #00d4ff, #0088cc)",
-                color: "#080c18",
-                boxShadow: "0 4px 16px rgba(0,212,255,0.3)",
-              }}
-            >
-              📍 Dùng vị trí hiện tại của tôi
-            </button>
-          )}
-          {locState === "idle" && <div className="flex gap-2"><input ref={manualRef} value={manualInput} onChange={(event) => setManualInput(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") void searchManualArea() }} placeholder="Hoặc nhập khu vực: Cầu Giấy, Hà Nội" className="flex-1 min-w-0 px-3 py-2.5 rounded-xl text-sm bg-[#162b3c] text-white" /><button onClick={() => void searchManualArea()} className="px-3 text-[#00d4ff]">Tìm</button></div>}
-
-          {locState === "requesting" && (
-            <div
-              className="flex items-center justify-center gap-3 py-4 rounded-2xl"
-              style={{
-                background: "rgba(0,212,255,0.06)",
-                border: "1px solid rgba(0,212,255,0.15)",
-              }}
-            >
-              <span className="w-5 h-5 border-2 border-[#00d4ff] border-t-transparent rounded-full animate-spin" />
-              <span className="text-sm" style={{ color: "#00d4ff" }}>
-                Đang lấy vị trí...
-              </span>
-            </div>
-          )}
-          {locState === "granted" && <div className="flex items-center justify-between gap-2 text-xs text-[#8da2b4]"><span>📍 Đang tìm quanh {manualInput.trim() || "vị trí của bạn"}</span><button type="button" className="text-[#00d4ff]" onClick={() => { setLocState("idle"); setAllPlaces([]); setDataSource(null); setManualInput(""); requestIdRef.current++ }}>Đổi khu vực</button></div>}
-
-          {(locState === "denied" || locState === "error") && (
-            <>
-              <div
-                className="p-3 rounded-xl text-xs flex items-start justify-between gap-2"
-                style={{
-                  background: "rgba(239,68,68,0.08)",
-                  border: "1px solid rgba(239,68,68,0.2)",
-                  color: "#f87171",
-                }}
-              >
-                <span>
-                  {locState === "denied"
-                    ? "🚫 Quyền vị trí bị từ chối."
-                    : "⚠️ Không lấy được vị trí."}{" "}
-                  Nhập khu vực để tìm kiếm:
-                </span>
-                {locState === "error" && (
-                  <button
-                    onClick={requestLocation}
-                    className="flex-shrink-0 text-xs font-bold px-2 py-0.5 rounded-lg"
-                    style={{
-                      background: "rgba(239,68,68,0.15)",
-                      color: "#f87171",
-                    }}
-                  >
-                    Thử lại
-                  </button>
-                )}
-              </div>
-              <div className="flex gap-2">
-                <input
-                  ref={manualRef}
-                  value={manualInput}
-                  onChange={(e) => setManualInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") void searchManualArea()
-                  }}
-                  placeholder="Quận 1, TP.HCM..."
-                  className="flex-1 px-3 py-2.5 rounded-xl text-sm outline-none"
-                  style={{
-                    background: "rgba(22,32,64,0.8)",
-                    border: "1px solid rgba(0,212,255,0.2)",
-                    color: "#e8edf5",
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = "rgba(0,212,255,0.5)"
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = "rgba(0,212,255,0.2)"
-                  }}
-                />
-                <button
-                  onClick={() => void searchManualArea()}
-                  className="px-4 py-2 rounded-xl text-sm font-bold flex-shrink-0"
-                  style={{
-                    background: "rgba(0,212,255,0.15)",
-                    color: "#00d4ff",
-                    border: "1px solid rgba(0,212,255,0.3)",
-                  }}
-                >
-                  Tìm
-                </button>
-              </div>
-            </>
-          )}
-
-          {loading && (
-            <div className="flex flex-col items-center gap-3 py-6">
-              <div className="w-10 h-10 border-2 border-[#00d4ff] border-t-transparent rounded-full animate-spin" />
-              <p className="text-sm" style={{ color: "#6b7f99" }}>
-                Đang tìm quán ngon gần bạn...
-              </p>
-            </div>
-          )}
-
-          {error && (
-            <div
-              className="p-3 rounded-xl text-sm"
-              style={{
-                background: "rgba(239,68,68,0.08)",
-                border: "1px solid rgba(239,68,68,0.2)",
-                color: "#f87171",
-              }}
-            >
-              {error}
-              <button onClick={openMapsSearch} className="underline ml-2">
-                Mở Maps thay thế
-              </button>
-            </div>
-          )}
-
-          {/* Filter chips */}
-          {allPlaces.length > 0 && (
-            <>
-              <div className="flex items-center gap-2">
-                {dataSource === "google" && <FilterChip active={filterOpen} onClick={() => setFilterOpen(!filterOpen)} label="Đang mở" />}
-                <FilterChip
-                  active={filterNear}
-                  onClick={() => setFilterNear(!filterNear)}
-                  label="≤ 1 km"
-                />
-                <select aria-label="Sắp xếp quán" value={sortBy} onChange={(event) => setSortBy(event.target.value as typeof sortBy)} className="min-w-0 text-xs bg-[#10293b] text-[#b4d3de] p-2 rounded-xl"><option value="recommended">Gợi ý</option><option value="distance">Gần nhất</option>{dataSource === "google" && <option value="rating">Rating cao</option>}</select>
-                <select aria-label="Bán kính" value={radiusKm} onChange={(event) => setRadiusKm(Number(event.target.value) as 1 | 3 | 5)} className="text-xs bg-[#10293b] text-[#b4d3de] p-2 rounded-xl"><option value={1}>1 km</option><option value={3}>3 km</option><option value={5}>5 km</option></select>
-                <button
-                  onClick={openMapsSearch}
-                  className="ml-auto text-xs flex-shrink-0"
-                  style={{ color: "#00d4ff" }}
-                >
-                  Mở Maps →
-                </button>
-              </div>
-            </>
-          )}
-
-          {/* Place cards */}
-          {displayed.length > 0 && (
-            <>
-              {displayed.map((place) => (
-                <PlaceCard key={`${place.name}:${place.lat}:${place.lng}`} place={place} expanded={expandedPlace === `${place.name}:${place.lat}:${place.lng}`} onToggle={() => setExpandedPlace(expandedPlace === `${place.name}:${place.lat}:${place.lng}` ? null : `${place.name}:${place.lat}:${place.lng}`)} />
-              ))}
-
-              {/* Attribution — required by Google Maps Platform TOS */}
-              {dataSource === "google" && (
-                <div className="flex items-center justify-center gap-2 pt-1 pb-2">
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="w-3 h-3 fill-current"
-                    style={{ color: "#6b7f99" }}
-                  >
-                    <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z" />
-                  </svg>
-                  <span className="text-xs" style={{ color: "#6b7f99" }}>
-                    Dữ liệu từ{" "}
-                    <strong style={{ color: "#a8b8d0" }}>Google Maps</strong>
-                  </span>
-                </div>
-              )}
-              {dataSource === "osm" && <p className="text-xs text-center text-[#8da2b4] py-2">Dữ liệu © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="underline">OpenStreetMap contributors</a>. Chưa có điểm đánh giá; hãy kiểm tra thực đơn trước khi đến.</p>}
-            </>
-          )}
-
-          {allPlaces.length > 0 && displayed.length === 0 && !loading && (
-            <div className="text-center py-4">
-              <p className="text-sm mb-2" style={{ color: "#6b7f99" }}>
-                Không có quán khớp bộ lọc.
-              </p>
-              <button
-                onClick={() => {
-                  setFilterOpen(false)
-                  setFilterNear(false)
-                }}
-                className="text-sm"
-                style={{ color: "#00d4ff" }}
-              >
-                Bỏ bộ lọc
-              </button>
-            </div>
-          )}
-
-          {locState === "granted" &&
-            allPlaces.length === 0 &&
-            !loading &&
-            !error && (
-              <div className="text-center py-6">
-                <p className="text-sm mb-1" style={{ color: "#6b7f99" }}>
-                  Không tìm thấy quán đủ tiêu chí.
-                </p>
-                <button
-                  onClick={openMapsSearch}
-                  className="text-sm"
-                  style={{ color: "#00d4ff" }}
-                >
-                  Tìm trên Google Maps →
-                </button>
-              </div>
-            )}
-        </div>
+        <footer className="places-footer"><span>Muốn xem thêm quán và đánh giá?</span><a href={mapsUrl} target="_blank" rel="noopener noreferrer">Tìm trên Google Maps ↗</a></footer>
       </div>
-    </div>,
-    document.body,
-  )
-}
-
-function FilterChip({
-  active,
-  onClick,
-  label,
-}: {
-  active: boolean
-  onClick(): void
-  label: string
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className="px-2.5 py-1 rounded-full text-xs font-medium transition-all flex-shrink-0"
-      style={
-        active
-          ? {
-              background: "rgba(0,212,255,0.15)",
-              color: "#00d4ff",
-              border: "1px solid rgba(0,212,255,0.4)",
-            }
-          : {
-              background: "rgba(14,22,40,0.6)",
-              color: "#6b7f99",
-              border: "1px solid rgba(107,127,153,0.2)",
-            }
-      }
-    >
-      {label}
-    </button>
-  )
-}
-
-function PlaceCard({ place, expanded, onToggle }: { place: PlaceResult; expanded: boolean; onToggle(): void }) {
-  const box = [place.lng - 0.004, place.lat - 0.003, place.lng + 0.004, place.lat + 0.003].join(",")
-  const mapUrl = `https://www.openstreetmap.org/export/embed.html?${new URLSearchParams({ bbox: box, layer: "mapnik", marker: `${place.lat},${place.lng}` })}`
-  return (
-    <div
-      className="p-3.5 rounded-2xl transition-all"
-      onClick={(event) => { if (!(event.target as Element).closest("a, button, iframe")) onToggle() }}
-      style={{
-        background: "rgba(22,32,64,0.5)",
-        border: "1px solid rgba(0,212,255,0.08)",
-      }}
-    >
-      <div className="flex items-start justify-between gap-2 mb-1.5">
-        <button type="button" onClick={onToggle} aria-expanded={expanded} className="text-sm font-bold leading-tight flex-1 text-left">{place.name}</button>
-        {place.isOpen !== undefined && (
-          <span
-            className="text-[11px] px-2 py-0.5 rounded-full flex-shrink-0 font-medium"
-            style={
-              place.isOpen
-                ? { background: "rgba(34,197,94,0.12)", color: "#4ade80" }
-                : { background: "rgba(239,68,68,0.1)", color: "#f87171" }
-            }
-          >
-            {place.isOpen ? "Mở" : "Đóng"}
-          </span>
-        )}
-      </div>
-      <p className="text-xs mb-2 leading-relaxed" style={{ color: "#6b7f99" }}>
-        {place.address}
-      </p>
-      <div className="flex items-center gap-3 text-xs mb-3">
-        {place.rating !== undefined && place.rating > 0 ? (
-          <>
-            <span className="font-bold" style={{ color: "#f5a623" }}>
-              ★ {place.rating.toFixed(1)}
-            </span>
-            <span style={{ color: "#6b7f99" }}>
-              ({(place.userRatingCount ?? 0).toLocaleString()})
-            </span>
-          </>
-        ) : <span style={{ color: "#6b7f99" }}>Chưa có đánh giá</span>}
-        <span style={{ color: "#6b7f99" }}>
-          📍 {place.distanceKm.toFixed(1)} km
-        </span>
-        {place.priceLevel && (
-          <span style={{ color: "#6b7f99" }}>
-            {getPriceDots(place.priceLevel)}
-          </span>
-        )}
-      </div>
-      <div className="flex gap-2">
-        <button type="button" aria-expanded={expanded} onClick={onToggle} className="px-3 py-2 rounded-xl text-xs font-bold transition-all" style={{ background:"rgba(0,212,255,0.12)", color:"#00d4ff", border:"1px solid rgba(0,212,255,0.2)" }}>{expanded ? "Ẩn bản đồ ↑" : "Xem bản đồ ↓"}</button>
-        <a
-          href={place.mapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 block text-center py-2 rounded-xl text-xs font-bold transition-all"
-          style={{
-            background: "rgba(0,212,255,0.12)",
-            color: "#00d4ff",
-            border: "1px solid rgba(0,212,255,0.2)",
-          }}
-        >
-          Xem trên Maps
-        </a>
-        <a
-          href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(place.address)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-3 py-2 rounded-xl text-xs font-bold transition-all flex-shrink-0"
-          style={{
-            background: "rgba(245,166,35,0.12)",
-            color: "#f5a623",
-            border: "1px solid rgba(245,166,35,0.2)",
-          }}
-        >
-          Chỉ đường
-        </a>
-      </div>
-      {expanded && <div className="mt-3"><iframe className="places-map" src={mapUrl} loading="lazy" title={`Bản đồ quán ${place.name}`} referrerPolicy="no-referrer" /><p className="text-[11px] mt-1 text-[#8da2b4]">Bản đồ © OpenStreetMap contributors</p></div>}
-    </div>
+    </dialog>, document.body,
   )
 }

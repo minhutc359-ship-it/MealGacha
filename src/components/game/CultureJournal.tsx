@@ -18,7 +18,7 @@ export function CultureJournal() {
       english ? page.englishTitle : page.title,
       english ? page.englishFact : page.fact,
       ...page.sources.map((source) => `${source.label}: ${source.url}`),
-      `MealGacha · ${window.location.origin}/?tab=story`,
+      `Soul of Meal · ${window.location.origin}/?tab=story`,
     ].join("\n\n")
     try {
       await navigator.clipboard.writeText(text)

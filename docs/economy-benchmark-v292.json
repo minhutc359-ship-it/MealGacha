@@ -1,0 +1,122 @@
+{
+  "catalog": {
+    "cards": 152,
+    "byRarity": {
+      "common": 53,
+      "rare": 46,
+      "epic": 31,
+      "legendary": 22
+    }
+  },
+  "policy": "200 fixed seeds per scenario; paid origin packs only; craft cheapest missing card whenever affordable; unique cards, not two copies. No stage/quest/daily rewards or trades. Food-import scenario grants each food once using grantCard, as legacy import does.",
+  "scenarios": {
+    "starter": {
+      "old": {
+        "ownedStart": 9,
+        "targets": {
+          "1": {
+            "samples": 200,
+            "medianPacks": 184,
+            "medianCoins": 18400,
+            "p10Packs": 166,
+            "p90Packs": 204
+          },
+          "0.8": {
+            "samples": 200,
+            "medianPacks": 58,
+            "medianCoins": 5800,
+            "p10Packs": 53,
+            "p90Packs": 66
+          },
+          "0.9": {
+            "samples": 200,
+            "medianPacks": 95,
+            "medianCoins": 9500,
+            "p10Packs": 84,
+            "p90Packs": 110
+          }
+        }
+      },
+      "new": {
+        "ownedStart": 9,
+        "targets": {
+          "1": {
+            "samples": 200,
+            "medianPacks": 248,
+            "medianCoins": 62000,
+            "p10Packs": 215,
+            "p90Packs": 282
+          },
+          "0.8": {
+            "samples": 200,
+            "medianPacks": 64,
+            "medianCoins": 16000,
+            "p10Packs": 58,
+            "p90Packs": 73
+          },
+          "0.9": {
+            "samples": 200,
+            "medianPacks": 110,
+            "medianCoins": 27500,
+            "p10Packs": 95,
+            "p90Packs": 129
+          }
+        }
+      }
+    },
+    "all-foods-imported": {
+      "old": {
+        "ownedStart": 115,
+        "targets": {
+          "1": {
+            "samples": 200,
+            "medianPacks": 105,
+            "medianCoins": 10500,
+            "p10Packs": 91,
+            "p90Packs": 120
+          },
+          "0.8": {
+            "samples": 200,
+            "medianPacks": 4,
+            "medianCoins": 400,
+            "p10Packs": 3,
+            "p90Packs": 7
+          },
+          "0.9": {
+            "samples": 200,
+            "medianPacks": 26,
+            "medianCoins": 2600,
+            "p10Packs": 21,
+            "p90Packs": 33
+          }
+        }
+      },
+      "new": {
+        "ownedStart": 115,
+        "targets": {
+          "1": {
+            "samples": 200,
+            "medianPacks": 153,
+            "medianCoins": 38250,
+            "p10Packs": 128,
+            "p90Packs": 179
+          },
+          "0.8": {
+            "samples": 200,
+            "medianPacks": 6,
+            "medianCoins": 1500,
+            "p10Packs": 4,
+            "p90Packs": 9
+          },
+          "0.9": {
+            "samples": 200,
+            "medianPacks": 31,
+            "medianCoins": 7750,
+            "p10Packs": 24,
+            "p90Packs": 40
+          }
+        }
+      }
+    }
+  }
+}

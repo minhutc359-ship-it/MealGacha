@@ -1,3 +1,4 @@
+import { loadBrandImage } from "../brand/brandAssets"
 import type { RewardInstance } from "../../domain/models"
 import { getFoodAssetUrl } from "../assets/foodAssets"
 
@@ -24,7 +25,9 @@ export async function renderResultCard(reward: RewardInstance): Promise<File> {
   ctx.strokeStyle = color; ctx.lineWidth = rarity === "diamond" ? 12 : 5
   ctx.strokeRect(32, 32, 1016, 1286)
   ctx.fillStyle = "#e8c777"; ctx.font = "bold 40px sans-serif"; ctx.textAlign = "center"
-  ctx.fillText("MEAL GACHA", 540, 126)
+  ctx.fillText("SOUL OF MEAL", 540, 126)
+  const logo = await loadBrandImage()
+  if (logo) ctx.drawImage(logo, 85, 72, 90, 90)
   ctx.fillStyle = color; ctx.font = "bold 48px sans-serif"; ctx.fillText(rarity.toUpperCase(), 540, 205)
   const artUrl = getFoodAssetUrl(reward.dishId, "full") || reward.dish.imageUrl
   if (artUrl) {
@@ -41,15 +44,15 @@ export async function renderResultCard(reward: RewardInstance): Promise<File> {
   ctx.fillText(name, 540, 1000)
   ctx.fillStyle = color; ctx.font = "bold 32px sans-serif"; ctx.fillText(reward.source === "fusion" ? "⚡ DUNG HỢP THÀNH CÔNG" : "KHAI MỞ PHẦN THƯỞNG", 540, 1073)
   ctx.fillStyle = "#8eaebd"; ctx.font = "28px sans-serif"; ctx.fillText("Không biết ăn gì? Để nhân phẩm quyết định.", 540, 1185)
-  ctx.fillText("MEALGACHA", 540, 1260)
+  ctx.fillText("SOUL OF MEAL", 540, 1260)
   const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob((result) => result ? resolve(result) : reject(new Error("Không xuất được ảnh.")), "image/png"))
-  return new File([blob], `mealgacha-${reward.dishId}.png`, { type: "image/png" })
+  return new File([blob], `soul-of-meal-${reward.dishId}.png`, { type: "image/png" })
 }
 
 export async function shareResultCard(reward: RewardInstance): Promise<"shared" | "downloaded"> {
   const file = await renderResultCard(reward)
   if (navigator.share && navigator.canShare?.({ files: [file] })) {
-    await navigator.share({ files: [file], title: `MealGacha: ${reward.dish.name}`, text: "Hôm nay nhân phẩm chọn món này!" })
+    await navigator.share({ files: [file], title: `Soul of Meal: ${reward.dish.name}`, text: "Hôm nay nhân phẩm chọn món này!" })
     return "shared"
   }
   const url = URL.createObjectURL(file)

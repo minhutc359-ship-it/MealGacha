@@ -44,10 +44,10 @@ export const RARITIES: Record<CardRarity, {
   dust: number
   salvage: number
 }> = {
-  common: { name: "Thường", dust: 25, salvage: 5 },
-  rare: { name: "Hiếm", dust: 70, salvage: 15 },
-  epic: { name: "Sử thi", dust: 180, salvage: 40 },
-  legendary: { name: "Huyền thoại", dust: 400, salvage: 100 },
+  common: { name: "Thường", dust: 50, salvage: 5 },
+  rare: { name: "Hiếm", dust: 140, salvage: 15 },
+  epic: { name: "Sử thi", dust: 360, salvage: 40 },
+  legendary: { name: "Huyền thoại", dust: 800, salvage: 100 },
 }
 export const KEYWORDS: Record<Keyword, string> = {
   guard: "Hộ vệ: phải bị tấn công trước chủ tướng.",

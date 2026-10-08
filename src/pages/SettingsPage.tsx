@@ -44,7 +44,7 @@ export function SettingsPage() {
       const blob = await createFullBackup()
       const url = URL.createObjectURL(blob)
       const a = document.createElement("a")
-      a.href = url; a.download = `MealGachaBackup-${new Date().toISOString().slice(0, 10)}.zip`; a.click()
+      a.href = url; a.download = `Soul of MealBackup-${new Date().toISOString().slice(0, 10)}.zip`; a.click()
       setTimeout(() => URL.revokeObjectURL(url), 10_000)
       showToast("Đã xuất backup đầy đủ cùng ảnh.", "success")
     } catch (error) { showToast((error as Error).message, "error") }
@@ -172,28 +172,11 @@ export function SettingsPage() {
             unit="m"
             value={prefs.searchRadiusMeters}
             min={500}
-            max={10000}
+            max={5000}
             step={500}
             onChange={(v) => updatePref("searchRadiusMeters", v)}
           />
-          <NumberInput
-            label="Điểm đánh giá tối thiểu"
-            unit=""
-            value={prefs.minRating}
-            min={1}
-            max={5}
-            step={0.1}
-            onChange={(v) => updatePref("minRating", parseFloat(v.toFixed(1)))}
-          />
-          <NumberInput
-            label="Số lượt đánh giá tối thiểu"
-            unit="lượt"
-            value={prefs.minReviews}
-            min={0}
-            max={500}
-            step={10}
-            onChange={(v) => updatePref("minReviews", v)}
-          />
+          <p className="text-xs text-[#a9bcc7] leading-relaxed">Tìm quán dùng dữ liệu OpenStreetMap, không cần API key. Nguồn này không có sao đánh giá hoặc trạng thái mở cửa trực tiếp. Mở Google Maps trong danh sách quán để xem thêm thông tin.</p>
         </div>
       </Section>
 
@@ -410,7 +393,7 @@ export function SettingsPage() {
         />
       </Section>
 
-      <Section title="Dung lượng & quyền riêng tư"><p className="text-xs text-[#9db4c2]">Ảnh check-in: {imageUsage.count} ảnh · {(imageUsage.bytes / 1048576).toFixed(1)} MB trên thiết bị này.</p><button className="mt-3 text-xs text-[#f2b2a4] underline" onClick={async () => { if (!window.confirm("Xóa toàn bộ ảnh cục bộ? Ghi chú Timeline vẫn còn.")) return; await clearImages(); setImageUsage({ bytes: 0, count: 0 }); showToast("Đã xóa ảnh. Check-in và ghi chú vẫn được giữ.", "info") }}>Xóa tất cả ảnh đã lưu</button><p className="mt-4 text-xs text-[#9db4c2] leading-relaxed">Khẩu vị, Timeline, ảnh và tiến trình chỉ lưu trên thiết bị của bạn. Vị trí chỉ được dùng tạm thời khi bạn bấm Tìm quán; MealGacha không lưu tọa độ GPS.</p></Section>
+      <Section title="Dung lượng & quyền riêng tư"><p className="text-xs text-[#9db4c2]">Ảnh check-in: {imageUsage.count} ảnh · {(imageUsage.bytes / 1048576).toFixed(1)} MB trên thiết bị này.</p><button className="mt-3 text-xs text-[#f2b2a4] underline" onClick={async () => { if (!window.confirm("Xóa toàn bộ ảnh cục bộ? Ghi chú Timeline vẫn còn.")) return; await clearImages(); setImageUsage({ bytes: 0, count: 0 }); showToast("Đã xóa ảnh. Check-in và ghi chú vẫn được giữ.", "info") }}>Xóa tất cả ảnh đã lưu</button><p className="mt-4 text-xs text-[#9db4c2] leading-relaxed">Khẩu vị, Timeline, ảnh và tiến trình chỉ lưu trên thiết bị của bạn. Vị trí chỉ được dùng tạm thời khi bạn bấm Tìm quán; Soul of Meal không lưu tọa độ GPS.</p></Section>
 
       {/* Danger zone */}
       <Section title="Vùng nguy hiểm">
@@ -468,7 +451,7 @@ export function SettingsPage() {
       </Section>
 
       <p className="text-center text-xs pb-2 mt-1" style={{ color: "#6b7f99" }}>
-        Rương Vị Giác v1.0 · Mở rương, chốt món 🍴
+        Soul of Meal v3.1 · Rương vị giác · Chợ Đêm Vị Linh
       </p>
     </div>
   )

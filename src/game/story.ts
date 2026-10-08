@@ -216,6 +216,8 @@ export function isStageUnlocked(id: string, cleared: string[]) {
   const stage = STAGE_MAP[id]
   return (
     !!stage &&
-    (stage.index === 0 || cleared.includes(STAGES[stage.index - 1].id))
+    STAGES.slice(0, stage.index).every((previous) =>
+      cleared.includes(previous.id),
+    )
   )
 }

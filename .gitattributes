@@ -167,3 +167,22 @@ public/assets/tcg/fx/** -filter -diff -merge -text
 # Illustrated cards and memory spirits must also be served directly in previews.
 public/assets/tcg/cards/** -filter -diff -merge -text
 public/assets/tcg/spirits/** -filter -diff -merge -text
+# Auto chess atlases, music and new food illustrations must deploy as real media.
+public/assets/autochess/** -filter -diff -merge -text
+public/assets/food/full/banh-dau-xanh.webp -filter -diff -merge -text
+public/assets/food/full/banh-khuc.webp -filter -diff -merge -text
+public/assets/food/full/banh-can.webp -filter -diff -merge -text
+public/assets/food/full/banh-tom-ho-tay.webp -filter -diff -merge -text
+public/assets/food/full/com-hen.webp -filter -diff -merge -text
+public/assets/food/full/che-lam.webp -filter -diff -merge -text
+public/assets/food/full/chao-luon.webp -filter -diff -merge -text
+public/assets/food/full/banh-it-la-gai.webp -filter -diff -merge -text
+public/assets/food/full/banh-ram-it.webp -filter -diff -merge -text
+public/assets/food/full/keo-cu-do.webp -filter -diff -merge -text
+public/assets/food/full/banh-tet.webp -filter -diff -merge -text
+
+docs/autochess/screenshots/*.webp -filter -diff -merge -text
+
+public/assets/brand/* -filter -diff -merge -text
+public/favicon.ico -filter -diff -merge -text
+docs/branding/screenshots/* -filter -diff -merge -text

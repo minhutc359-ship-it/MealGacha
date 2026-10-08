@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
 import { useAppStore } from "../../store/useAppStore"
 import { hasUnlimitedChestAccess } from "../../domain/achievements"
+import { BrandMark } from "./BrandMark"
 import { ModeSwitch } from "./ModeSwitch"
 
 const links = [
@@ -27,14 +28,12 @@ export function TopNav() {
       <NavLink
         to="/chest"
         className="brand-lockup"
-        aria-label="Rương Vị Giác — Trang chủ"
+        aria-label="Soul of Meal — Rương vị giác"
       >
-        <span className="brand-mark" aria-hidden="true">
-          V
-        </span>
+        <BrandMark />
         <span>
-          <strong>RƯƠNG VỊ GIÁC</strong>
-          <small>Mở rương, chốt món</small>
+          <strong>SOUL OF MEAL</strong>
+          <small>RƯƠNG VỊ GIÁC</small>
         </span>
       </NavLink>
 

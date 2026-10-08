@@ -1,6 +1,6 @@
 {
-  "title": "MealGacha · Huyền thoại vị giác",
-  "description": "Game thẻ bài ẩm thực: khám phá 6 chương cốt truyện, thám hiểm 7 chặng với 10 di vật, xây bộ bài 152 thẻ và đánh thức những hương vị bị lãng quên.",
+  "title": "Soul of Meal · Huyền thoại vị giác",
+  "description": "Game ẩm thực Việt Nam: thức tỉnh Vị Linh, chiến đấu thẻ bài, giữ Chợ Đêm qua Auto chess và khám phá món ngon cùng Rương vị giác.",
   "language": "vi",
   "robots": {
     "index": false
@@ -8,5 +8,11 @@
   "accessibility": {
     "addBypassLinks": false,
     "ignoreReducedMotion": false
+  },
+  "icons": {
+    "icon": "/favicon.ico"
+  },
+  "openGraph": {
+    "image": "/assets/brand/icon-512.png"
   }
 }

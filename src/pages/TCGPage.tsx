@@ -1,3 +1,4 @@
+import { BrandMark } from "../components/layout/BrandMark"
 import { useEffect, useRef, useState, type CSSProperties } from "react"
 import { Link, useSearchParams } from "react-router-dom"
 import { useCompactPageSize } from "../components/game/useCompactPageSize"
@@ -186,7 +187,7 @@ export function TCGPage() {
     )
     const a = document.createElement("a")
     a.href = url
-    a.download = `mealgacha-tcg-${getDateKey()}.json`
+    a.download = `soul-of-meal-tcg-${getDateKey()}.json`
     a.click()
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
@@ -215,11 +216,11 @@ export function TCGPage() {
         <button
           className="tcg-brand"
           onClick={() => setTab("home")}
-          aria-label="MealGacha — Sảnh hành trình"
+          aria-label="Soul of Meal — Sảnh hành trình"
         >
-          <span className="tcg-brand-mark">✦</span>
+          <BrandMark />
           <span>
-            <strong>MEALGACHA</strong>
+            <strong>SOUL OF MEAL</strong>
             <small>HUYỀN THOẠI VỊ GIÁC</small>
           </span>
         </button>
@@ -301,7 +302,7 @@ export function TCGPage() {
       )}
       {menuOpen && (
         <Dialog
-          title="Khám phá MealGacha"
+          title="Khám phá Soul of Meal"
           onClose={() => setMenuOpen(false)}
           className="tcg-menu-dialog"
         >
@@ -337,7 +338,8 @@ export function TCGPage() {
       <div className="tcg-content">
         <header className="tcg-topbar" inert={!!current.battle}>
           <div>
-            <span className="tcg-topbar-label">MEALGACHA /</span>
+            <span className="tcg-mobile-brand"><BrandMark /></span>
+            <span className="tcg-topbar-label">SOUL OF MEAL /</span>
             <strong>{NAV.find((n) => n.id === tab)?.name ?? "Cài đặt"}</strong>
             <span className="tcg-offline-tag">
               <i /> ĐẤU VỚI AI
@@ -499,7 +501,7 @@ export function TCGPage() {
                         <div className="tcg-pack-art">
                           <div className="tcg-pack-box">
                             <span className="tcg-pack-border" />
-                            <small>MEALGACHA</small>
+                            <small>SOUL OF MEAL</small>
                             <span className="tcg-pack-symbol">{p.symbol}</span>
                             <strong>{p.name}</strong>
                             <small>5 THẺ VỊ GIÁC</small>
@@ -508,15 +510,19 @@ export function TCGPage() {
                           <span className="tcg-pack-spark two">✧</span>
                         </div>
                         <h2>{p.name}</h2>
-                        <p>{p.description}</p>
+                        <p>
+                          {p.description} · {p.coinCost} xu hoặc 1 vé
+                        </p>
                         <button
                           className="tcg-button primary"
-                          disabled={!current.packTickets && current.coins < 100}
+                          disabled={
+                            !current.packTickets && current.coins < p.coinCost
+                          }
                           onClick={() => open(p.id)}
                         >
                           {current.packTickets
                             ? "Mở bằng 1 vé"
-                            : "Mở gói · 100 ◉"}{" "}
+                            : `Mở gói · ${p.coinCost} ◉`}{" "}
                           <Icon name="arrow" />
                         </button>
                       </section>
@@ -835,7 +841,7 @@ export function TCGPage() {
           )}
           <footer className="tcg-footer">
             <span>
-              MEALGACHA <i>✦</i> Một thế giới được nấu bằng ký ức.
+              SOUL OF MEAL <i>✦</i> Một thế giới được nấu bằng ký ức.
             </span>
             <span>VỊ LINH · HƯƠNG VỊ VIỆT NAM · v2.8.1</span>
           </footer>
@@ -991,7 +997,7 @@ export function TCGPage() {
                   aria-label={`Lật thẻ ${i + 1}`}
                 >
                   <span>✦</span>
-                  <small>MEALGACHA</small>
+                  <small>SOUL OF MEAL</small>
                 </button>
               ),
             )}

@@ -1,0 +1,14 @@
+{
+  "name": "Soul of Meal · Huyền thoại vị giác",
+  "short_name": "Soul of Meal",
+  "description": "Vị Linh, game thẻ bài, Auto chess và Rương vị giác Việt Nam",
+  "start_url": "/",
+  "display": "standalone",
+  "lang": "vi",
+  "background_color": "#102a31",
+  "theme_color": "#102a31",
+  "icons": [
+    { "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

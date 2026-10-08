@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "checks": [
+    "19-actor renderer sample captured; low quality toggles; hidden-tab event pauses simulation until manual resume",
+    "Final ally labels and commander, all portraits, new unit inspector and illustrated story render without overflow"
+  ],
+  "metrics": [
+    {
+      "label": "19 actors headless software rendering",
+      "samples": 180,
+      "median": 16.699999999999818,
+      "p95": 16.799999999999727,
+      "canvas": [
+        372,
+        583
+      ]
+    },
+    {
+      "label": "desktop prepare final",
+      "width": 1366,
+      "height": 768,
+      "scrollH": 768,
+      "scrollW": 1366,
+      "board": {
+        "x": 229,
+        "y": 173.5,
+        "width": 908,
+        "height": 333.5,
+        "bottom": 507,
+        "right": 1137
+      },
+      "controls": {
+        "x": 229,
+        "y": 718,
+        "width": 908,
+        "height": 40,
+        "bottom": 758,
+        "right": 1137
+      },
+      "shop": {
+        "x": 368,
+        "y": 590,
+        "width": 630,
+        "height": 122,
+        "bottom": 712,
+        "right": 998
+      },
+      "grid": {
+        "x": 525.25,
+        "y": 182.5,
+        "width": 315.5,
+        "height": 315.5,
+        "bottom": 498,
+        "right": 840.75
+      }
+    }
+  ],
+  "errors": [],
+  "failedRequests": []
+}

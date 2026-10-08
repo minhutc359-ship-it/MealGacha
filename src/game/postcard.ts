@@ -1,3 +1,4 @@
+import { loadBrandImage } from "../infrastructure/brand/brandAssets"
 import { CARD_MAP } from "./catalog"
 import { CHARACTER_ART } from "./characters"
 import { RECIPES } from "./recipes"
@@ -64,7 +65,9 @@ export async function createPostcard({
     ctx.textAlign = "center"
     ctx.fillText(value, 540, y, max)
   }
-  text("MEALGACHA · BÀN KÝ ỨC", 115, 30, "#ddbd82")
+  text("SOUL OF MEAL · BÀN KÝ ỨC", 115, 30, "#ddbd82")
+  const logo = await loadBrandImage()
+  if (logo) ctx.drawImage(logo, 66, 65, 62, 62)
   text(
     deck
       ? "Công thức của tôi"

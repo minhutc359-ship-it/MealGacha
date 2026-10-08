@@ -49,6 +49,11 @@ const EventsPage = lazy(() =>
 const TCGPage = lazy(() =>
   import("./pages/TCGPage").then((module) => ({ default: module.TCGPage })),
 )
+const AutoChessPage = lazy(() =>
+  import("./pages/AutoChessPage").then((module) => ({
+    default: module.AutoChessPage,
+  })),
+)
 
 function AppInner() {
   const init = useAppStore((s) => s.init)
@@ -77,7 +82,11 @@ function AppInner() {
     return () => window.removeEventListener("nav:collection", handler)
   }, [navigate])
 
-  if (location.pathname === "/" || location.pathname === "/game")
+  if (
+    location.pathname === "/" ||
+    location.pathname === "/game" ||
+    location.pathname === "/autochess"
+  )
     return (
       <Suspense
         fallback={
@@ -87,7 +96,7 @@ function AppInner() {
           </div>
         }
       >
-        <TCGPage />
+        {location.pathname === "/autochess" ? <AutoChessPage /> : <TCGPage />}
       </Suspense>
     )
 
