@@ -74,6 +74,11 @@ export function useStoryMusic(
 }
 
 const trackNames: Record<MusicTrack, string> = {
+  "auto-prepare": "Đèn lên phiên chợ",
+  "auto-battle": "Vị Linh giữ bàn",
+  "auto-boss": "Tên gọi trong sương",
+  "auto-story": "Chuyện bên bếp",
+  "auto-pressure": "Đêm không tắt bếp",
   battle: "Bếp lửa lên nhịp",
   boss: "Năm ngọn lửa",
   "story-warm": "Lời mời bên bếp",

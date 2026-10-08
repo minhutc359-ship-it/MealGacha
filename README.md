@@ -1,8 +1,19 @@
-# MealGacha v2.9 · Vị Linh xuất trận
+# MealGacha v3.0 · Chợ Đêm Vị Linh
 
-Game thẻ bài ẩm thực trên React/Vite: **152 thẻ** (112 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 6 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Trang chủ mới là sảnh game; chế độ Rương Vị Giác vẫn truy cập được tại `/chest`.
+Game thẻ bài ẩm thực trên React/Vite: **163 thẻ** (123 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 6 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Ba chế độ TCG, Rương Vị Giác (`/chest`) và Auto chess (`/autochess`) chuyển qua lại từ thanh trên, giữ tiến trình.
 
 Người mới có bộ bài 18 lá, 300 xu, 50 tinh chất và 2 vé mở gói. Vòng chơi: **đấu cốt truyện → nhận thẻ/tài nguyên → mở gói/chế tạo/trao đổi → chỉnh bộ bài → đánh boss**. Chế độ hiện tại là chiến dịch, thám hiểm và luyện tập với AI; PvP và giao dịch giữa người chơi chưa được triển khai.
+
+## Bản 3.0 · Auto chess hoàn chỉnh
+
+- **Chợ Đêm Vị Linh**: chiến dịch 4 hồi/12 đợt với An, NPC, 4 boss, cutscene giữa trận và 2 lựa chọn kết truyện. Tịnh giữ một công thức duy nhất nhưng vô tình xóa ký ức người nấu; An mở lại chỗ cho nhiều giọng kể.
+- **32 quân, 10 quái, 4 boss**; bàn 6×6, 3–7 quân và 6 dự bị; shop 5 ô, pool hữu hạn, khóa/đổi/XP, ghép 2–3 sao; 5 hệ, 3 nghề, 6 di vật và 6 Lời hẹn.
+- **Survival Đêm Không Tắt Bếp**: địch mạnh theo đợt và thời gian đánh; cuồng nộ, giới hạn 55 giây/vòng, ghi high score local. Thử thách hằng ngày có seed chung, kỷ lục và ảnh kết quả tải về.
+- **Sprite anime 2.5D** đi/đánh/niệm/ngã, hit đúng tick, lửa/nước/lá/khiên/sao, tên phép và số sát thương; 6 chân dung NPC, 32 chân dung quân, 4 bối cảnh; 5 nhạc riêng ở hai phong cách original/8-bit.
+- **11 món có ảnh mới áp dụng cả Rương và TCG**; giữ bộ sưu tập và các mức giá 2.9.2. Mã tiến trình mới chuyển cả ba chế độ, trận đang chơi và kỷ lục, có bản dự phòng và rollback khi không ghi được.
+- Battle/prepare vừa `100dvh`, bố cục portrait/landscape; pause khi ẩn tab, ×2, đồ họa thấp và giảm chuyển động. Lưu TCG cũ và mã MGC1 cũ vẫn đọc được.
+
+[Luật, nội dung và asset](docs/autochess/IMPLEMENTATION.md) · [Kiểm chứng](docs/autochess/VERIFICATION.md) · [Cân bằng](docs/autochess/balance-results.json). Chạy `pnpm benchmark:autochess` để tái lập mô phỏng ba hướng build, không cấp tài nguyên ngoài luật.
 
 ## Bản 2.9 · Vị Linh xuất trận
 

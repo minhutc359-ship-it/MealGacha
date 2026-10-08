@@ -6,7 +6,8 @@ import {
   type SaveCodePreview,
 } from "../../game/saveCode"
 import { useGameStore } from "../../game/useGameStore"
-import { parseGame } from "../../game/storage"
+import { restoreProgress, readTransferBackup } from "../../game/transferBundle"
+import { useAppStore } from "../../store/useAppStore"
 import { Dialog } from "./Dialog"
 
 export function ProgressTransfer() {
@@ -39,6 +40,7 @@ export function ProgressTransfer() {
       const value = await createSaveCode(
         useGameStore.getState().save,
         !compatible,
+        useAppStore.getState().user,
       )
       if (token === epoch.current) {
         setCode(value)
@@ -66,16 +68,7 @@ export function ProgressTransfer() {
   }
   const restore = () => {
     if (!preview) return
-    try {
-      localStorage.setItem(
-        TRANSFER_BACKUP_KEY,
-        JSON.stringify(useGameStore.getState().save),
-      )
-    } catch {
-      setStatus("Không đủ chỗ giữ bản lưu dự phòng. Chưa thay đổi tiến trình.")
-      return
-    }
-    if (useGameStore.getState().importSave(preview.save)) {
+    if (restoreProgress(preview.save, preview.user)) {
       setPreview(null)
       setInput("")
       setCode("")
@@ -86,8 +79,9 @@ export function ProgressTransfer() {
   return (
     <div className="tcg-transfer">
       <p>
-        Chuyển cả thẻ, 6 bộ bài, lựa chọn truyện, bạn đồng hành, thử thách tuần
-        và trận đang chơi bằng một mã. Không cần tài khoản.
+        Chuyển tiến trình TCG, Rương vị giác và Auto chess bằng một mã: thẻ, bộ
+        bài, câu chuyện, đội hình, trận đang chơi và kỷ lục. Không cần tài
+        khoản.
       </p>
       <p className="tcg-builder-tip">
         Mã là bản chụp tại lúc tạo. Ai có mã có thể khôi phục tiến trình đó; hãy
@@ -175,6 +169,14 @@ export function ProgressTransfer() {
               : "Đang ở sảnh hành trình"}
           </p>
           <p>
+            {preview.save.autoChess
+              ? `Auto chess · ${preview.save.autoChess.campaignCleared}/12 màn · ${preview.save.autoChess.records.length} kỷ lục`
+              : "Mã cũ: chưa có Auto chess"}
+            {preview.user
+              ? ` · Rương: ${preview.user.rewards.length} phần thưởng`
+              : " · Mã cũ giữ Rương hiện tại"}
+          </p>
+          <p>
             Khôi phục sẽ thay tiến trình trên thiết bị này. Bản hiện tại được
             giữ làm dự phòng.
           </p>
@@ -188,10 +190,10 @@ export function ProgressTransfer() {
           className="tcg-text-button"
           onClick={() => {
             try {
-              const saved = parseGame(
+              const saved = readTransferBackup(
                 JSON.parse(localStorage.getItem(TRANSFER_BACKUP_KEY) ?? "null"),
               )
-              if (saved && useGameStore.getState().importSave(saved)) {
+              if (saved && restoreProgress(saved.save, saved.user, false)) {
                 setStatus("Đã quay lại bản lưu trước khi chuyển mã.")
                 setCode("")
                 setPreview(null)

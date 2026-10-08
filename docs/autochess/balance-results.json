@@ -1,0 +1,200 @@
+[
+  {
+    "mode": "campaign",
+    "strategy": 0,
+    "seed": 1,
+    "phase": "won",
+    "wave": 12,
+    "attempts": 12,
+    "health": 100,
+    "score": 3760,
+    "seconds": 246.15
+  },
+  {
+    "mode": "campaign",
+    "strategy": 0,
+    "seed": 42,
+    "phase": "lost",
+    "wave": 11,
+    "attempts": 18,
+    "health": 0,
+    "score": 3240,
+    "seconds": 449.6
+  },
+  {
+    "mode": "campaign",
+    "strategy": 0,
+    "seed": 987654321,
+    "phase": "lost",
+    "wave": 11,
+    "attempts": 16,
+    "health": 0,
+    "score": 3196,
+    "seconds": 457.8
+  },
+  {
+    "mode": "campaign",
+    "strategy": 1,
+    "seed": 1,
+    "phase": "won",
+    "wave": 12,
+    "attempts": 12,
+    "health": 100,
+    "score": 3778,
+    "seconds": 244.1
+  },
+  {
+    "mode": "campaign",
+    "strategy": 1,
+    "seed": 42,
+    "phase": "won",
+    "wave": 12,
+    "attempts": 13,
+    "health": 83,
+    "score": 3827,
+    "seconds": 219.1
+  },
+  {
+    "mode": "campaign",
+    "strategy": 1,
+    "seed": 987654321,
+    "phase": "won",
+    "wave": 12,
+    "attempts": 16,
+    "health": 66,
+    "score": 3788,
+    "seconds": 442.1
+  },
+  {
+    "mode": "campaign",
+    "strategy": 2,
+    "seed": 1,
+    "phase": "won",
+    "wave": 12,
+    "attempts": 12,
+    "health": 100,
+    "score": 3787,
+    "seconds": 237.4
+  },
+  {
+    "mode": "campaign",
+    "strategy": 2,
+    "seed": 42,
+    "phase": "won",
+    "wave": 12,
+    "attempts": 12,
+    "health": 100,
+    "score": 3818,
+    "seconds": 211.85
+  },
+  {
+    "mode": "campaign",
+    "strategy": 2,
+    "seed": 987654321,
+    "phase": "lost",
+    "wave": 11,
+    "attempts": 17,
+    "health": 0,
+    "score": 3147,
+    "seconds": 584.75
+  },
+  {
+    "mode": "survival",
+    "strategy": 0,
+    "seed": 1,
+    "phase": "lost",
+    "wave": 12,
+    "attempts": 17,
+    "health": 0,
+    "score": 2401,
+    "seconds": 407.9
+  },
+  {
+    "mode": "survival",
+    "strategy": 0,
+    "seed": 42,
+    "phase": "lost",
+    "wave": 8,
+    "attempts": 15,
+    "health": 0,
+    "score": 1865,
+    "seconds": 295.15
+  },
+  {
+    "mode": "survival",
+    "strategy": 0,
+    "seed": 987654321,
+    "phase": "lost",
+    "wave": 13,
+    "attempts": 18,
+    "health": 0,
+    "score": 3185,
+    "seconds": 351.55
+  },
+  {
+    "mode": "survival",
+    "strategy": 1,
+    "seed": 1,
+    "phase": "lost",
+    "wave": 12,
+    "attempts": 18,
+    "health": 0,
+    "score": 3163,
+    "seconds": 430.55
+  },
+  {
+    "mode": "survival",
+    "strategy": 1,
+    "seed": 42,
+    "phase": "lost",
+    "wave": 12,
+    "attempts": 17,
+    "health": 0,
+    "score": 2935,
+    "seconds": 340.5
+  },
+  {
+    "mode": "survival",
+    "strategy": 1,
+    "seed": 987654321,
+    "phase": "lost",
+    "wave": 13,
+    "attempts": 18,
+    "health": 0,
+    "score": 3466,
+    "seconds": 387.95
+  },
+  {
+    "mode": "survival",
+    "strategy": 2,
+    "seed": 1,
+    "phase": "lost",
+    "wave": 13,
+    "attempts": 18,
+    "health": 0,
+    "score": 3235,
+    "seconds": 471.25
+  },
+  {
+    "mode": "survival",
+    "strategy": 2,
+    "seed": 42,
+    "phase": "lost",
+    "wave": 14,
+    "attempts": 18,
+    "health": 0,
+    "score": 2884,
+    "seconds": 457.6
+  },
+  {
+    "mode": "survival",
+    "strategy": 2,
+    "seed": 987654321,
+    "phase": "lost",
+    "wave": 13,
+    "attempts": 18,
+    "health": 0,
+    "score": 2933,
+    "seconds": 495.4
+  }
+]

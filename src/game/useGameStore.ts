@@ -39,8 +39,10 @@ import type { NpcId } from "./types"
 import { isStageUnlocked } from "./story"
 import { getDateKey } from "../domain/dateKey"
 import type { GameSave } from "./types"
+import { reduceAuto, type AutoAction } from "./autochess/reducer"
 
 interface Store {
+  autoAction(action: AutoAction): boolean
   save: GameSave
   notice: string | null
   presentation: BattlePresentation | null
@@ -94,6 +96,11 @@ export const useGameStore = create<Store>((set, get) => {
     save: loadGame(),
     notice: null,
     presentation: null,
+    autoAction(action) {
+      const save = current(), result = reduceAuto(save.autoChess, action)
+      if (result.error) { set({ notice: result.error }); return false }
+      return commit({ ...save, autoChess: result.save })
+    },
     chooseEnding(ending) {
       const save = current()
       if (

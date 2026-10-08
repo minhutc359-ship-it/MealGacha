@@ -3,6 +3,7 @@ import { RELIC_MAP, EXPEDITION_EVENTS } from "./expedition"
 import { CARD_MAP } from "./catalog"
 import { newGame, rotateDay } from "./progression"
 import type { GameSave } from "./types"
+import { autoSaveSchema } from "./autochess/schema"
 
 export const GAME_KEY = "foodchest.tcg.v1"
 const npcId = z.enum(["bach", "nhien", "moc", "hai", "lien"])
@@ -234,6 +235,7 @@ export const GameSaveSchema = z
       .refine((records) => Object.keys(records).length <= 12)
       .default({}),
     storyEnding: z.enum(["remember", "release"]).nullable().default(null),
+    autoChess: autoSaveSchema.optional(),
     history: z
       .array(
         z.object({

@@ -1,6 +1,18 @@
 export type FoodImageVariant = "full" | "card" | "thumb"
 
 export const FOOD_ASSET_IDS = [
+  "banh-dau-xanh",
+  "banh-khuc",
+  "banh-can",
+  "banh-tom-ho-tay",
+  "com-hen",
+  "che-lam",
+  "chao-luon",
+  "banh-it-la-gai",
+  "banh-ram-it",
+  "keo-cu-do",
+  "banh-tet",
+
   "pho-bo",
   "pho-ga",
   "bun-rieu",

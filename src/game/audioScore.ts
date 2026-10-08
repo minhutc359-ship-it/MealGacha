@@ -6,6 +6,12 @@ import type { StoryArtId } from "./storyArt"
 import type { Battle } from "./types"
 
 export const MUSIC_TRACKS = {
+  "auto-prepare": "assets/autochess/audio/prepare.mp3",
+  "auto-battle": "assets/autochess/audio/battle.mp3",
+  "auto-boss": "assets/autochess/audio/boss.mp3",
+  "auto-story": "assets/autochess/audio/story.mp3",
+  "auto-pressure": "assets/autochess/audio/pressure.mp3",
+
   battle: "assets/tcg/audio/battle.mp3",
   boss: "assets/tcg/audio/boss.mp3",
   "story-warm": "assets/tcg/audio/story-warm.mp3",
@@ -14,6 +20,12 @@ export const MUSIC_TRACKS = {
 export type MusicTrack = keyof typeof MUSIC_TRACKS
 export type MusicStyle = "original" | "8bit"
 export const RETRO_MUSIC_TRACKS: Record<MusicTrack, string> = {
+  "auto-prepare": "assets/autochess/audio/8bit-prepare.mp3",
+  "auto-battle": "assets/autochess/audio/8bit-battle.mp3",
+  "auto-boss": "assets/autochess/audio/8bit-boss.mp3",
+  "auto-story": "assets/autochess/audio/8bit-story.mp3",
+  "auto-pressure": "assets/autochess/audio/8bit-pressure.mp3",
+
   battle: "assets/tcg/audio/8bit-battle.mp3",
   boss: "assets/tcg/audio/8bit-boss.mp3",
   "story-warm": "assets/tcg/audio/8bit-story-warm.mp3",

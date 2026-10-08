@@ -181,6 +181,7 @@ export interface GameStats {
   crafted: number
 }
 export interface GameSave {
+  autoChess?: import("./autochess/types").AutoSave
   version: 1
   coins: number
   dust: number

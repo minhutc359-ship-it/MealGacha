@@ -2,7 +2,7 @@
   "name": "meal-gacha",
   "packageManager": "pnpm@10.34.3",
   "private": true,
-  "version": "2.9.2",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,8 @@
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "validate:catalog": "node scripts/validate-catalog.mjs"
+    "validate:catalog": "node scripts/validate-catalog.mjs",
+    "benchmark:autochess": "node scripts/benchmark-autochess.mjs"
   },
   "dependencies": {
     "@types/papaparse": "^5.5.2",

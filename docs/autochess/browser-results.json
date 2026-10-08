@@ -1,0 +1,707 @@
+{
+  "passed": true,
+  "checks": [
+    "First start shows one tutorial modal, manual illustrated dialogue changes speaker and never advances automatically",
+    "Buying spends real gold; tapping a bench piece swaps at capacity; cell hit targets and unit inspector work",
+    "Real RAF battle resolves a win, manual pause freezes active time, ×2 works, only the victory unlocks wave two",
+    "A real UI defeat preserves the stage lock and retries the same campaign wave",
+    "Equip relics, actual boss phase stops for illustrated dialogue, reward → augment → next act chain works",
+    "Nine portrait/landscape viewport sizes keep preparation and battle inside the screen with all controls visible",
+    "Encrypted code imports a paused live battle and Chest resources into a clean browser context; reload preserves the exact tick",
+    "Winning epilogue choices persist; 32 units and 14 enemies browse; postcard downloads; cosmetics and all three mode switches preserve progress",
+    "Original and 8-bit auto-chess tracks really play through the audio controls; reduced-motion preference persists",
+    "19-actor renderer sample captured; low quality toggles; hidden-tab event pauses simulation until manual resume"
+  ],
+  "metrics": [
+    {
+      "label": "phone prepare",
+      "width": 390,
+      "height": 844,
+      "scrollH": 844,
+      "scrollW": 390,
+      "board": {
+        "x": 8,
+        "y": 148,
+        "width": 374,
+        "height": 468,
+        "bottom": 616,
+        "right": 382
+      },
+      "controls": {
+        "x": 8,
+        "y": 800,
+        "width": 374,
+        "height": 36,
+        "bottom": 836,
+        "right": 382
+      },
+      "shop": {
+        "x": 8,
+        "y": 686,
+        "width": 374,
+        "height": 110,
+        "bottom": 796,
+        "right": 382
+      },
+      "grid": {
+        "x": 17,
+        "y": 204,
+        "width": 356,
+        "height": 356,
+        "bottom": 560,
+        "right": 373
+      }
+    },
+    {
+      "label": "320x568 prepare",
+      "width": 320,
+      "height": 568,
+      "scrollH": 568,
+      "scrollW": 320,
+      "board": {
+        "x": 7,
+        "y": 130,
+        "width": 306,
+        "height": 249.5,
+        "bottom": 379.5,
+        "right": 313
+      },
+      "controls": {
+        "x": 7,
+        "y": 528,
+        "width": 306,
+        "height": 34,
+        "bottom": 562,
+        "right": 313
+      },
+      "shop": {
+        "x": 7,
+        "y": 434.5,
+        "width": 306,
+        "height": 90.5,
+        "bottom": 525,
+        "right": 313
+      },
+      "grid": {
+        "x": 44.25,
+        "y": 139,
+        "width": 231.5,
+        "height": 231.5,
+        "bottom": 370.5,
+        "right": 275.75
+      }
+    },
+    {
+      "label": "320x568 battle",
+      "width": 320,
+      "height": 568,
+      "scrollH": 568,
+      "scrollW": 320,
+      "board": {
+        "x": 7,
+        "y": 130,
+        "width": 306,
+        "height": 333,
+        "bottom": 463,
+        "right": 313
+      },
+      "controls": {
+        "x": 7,
+        "y": 528,
+        "width": 306,
+        "height": 34,
+        "bottom": 562,
+        "right": 313
+      },
+      "shop": null,
+      "grid": {
+        "x": 16,
+        "y": 152.5,
+        "width": 288,
+        "height": 288,
+        "bottom": 440.5,
+        "right": 304
+      }
+    },
+    {
+      "label": "360x640 prepare",
+      "width": 360,
+      "height": 640,
+      "scrollH": 640,
+      "scrollW": 360,
+      "board": {
+        "x": 7,
+        "y": 132,
+        "width": 346,
+        "height": 319.5,
+        "bottom": 451.5,
+        "right": 353
+      },
+      "controls": {
+        "x": 7,
+        "y": 600,
+        "width": 346,
+        "height": 34,
+        "bottom": 634,
+        "right": 353
+      },
+      "shop": {
+        "x": 7,
+        "y": 506.5,
+        "width": 346,
+        "height": 90.5,
+        "bottom": 597,
+        "right": 353
+      },
+      "grid": {
+        "x": 29.25,
+        "y": 141,
+        "width": 301.5,
+        "height": 301.5,
+        "bottom": 442.5,
+        "right": 330.75
+      }
+    },
+    {
+      "label": "360x640 battle",
+      "width": 360,
+      "height": 640,
+      "scrollH": 640,
+      "scrollW": 360,
+      "board": {
+        "x": 7,
+        "y": 132,
+        "width": 346,
+        "height": 403,
+        "bottom": 535,
+        "right": 353
+      },
+      "controls": {
+        "x": 7,
+        "y": 600,
+        "width": 346,
+        "height": 34,
+        "bottom": 634,
+        "right": 353
+      },
+      "shop": null,
+      "grid": {
+        "x": 16,
+        "y": 169.5,
+        "width": 328,
+        "height": 328,
+        "bottom": 497.5,
+        "right": 344
+      }
+    },
+    {
+      "label": "390x844 prepare",
+      "width": 390,
+      "height": 844,
+      "scrollH": 844,
+      "scrollW": 390,
+      "board": {
+        "x": 8,
+        "y": 148,
+        "width": 374,
+        "height": 468,
+        "bottom": 616,
+        "right": 382
+      },
+      "controls": {
+        "x": 8,
+        "y": 800,
+        "width": 374,
+        "height": 36,
+        "bottom": 836,
+        "right": 382
+      },
+      "shop": {
+        "x": 8,
+        "y": 686,
+        "width": 374,
+        "height": 110,
+        "bottom": 796,
+        "right": 382
+      },
+      "grid": {
+        "x": 17,
+        "y": 204,
+        "width": 356,
+        "height": 356,
+        "bottom": 560,
+        "right": 373
+      }
+    },
+    {
+      "label": "390x844 battle",
+      "width": 390,
+      "height": 844,
+      "scrollH": 844,
+      "scrollW": 390,
+      "board": {
+        "x": 8,
+        "y": 148,
+        "width": 374,
+        "height": 596,
+        "bottom": 744,
+        "right": 382
+      },
+      "controls": {
+        "x": 8,
+        "y": 800,
+        "width": 374,
+        "height": 36,
+        "bottom": 836,
+        "right": 382
+      },
+      "shop": null,
+      "grid": {
+        "x": 17,
+        "y": 268,
+        "width": 356,
+        "height": 356,
+        "bottom": 624,
+        "right": 373
+      }
+    },
+    {
+      "label": "430x932 prepare",
+      "width": 430,
+      "height": 932,
+      "scrollH": 932,
+      "scrollW": 430,
+      "board": {
+        "x": 8,
+        "y": 148,
+        "width": 414,
+        "height": 556,
+        "bottom": 704,
+        "right": 422
+      },
+      "controls": {
+        "x": 8,
+        "y": 888,
+        "width": 414,
+        "height": 36,
+        "bottom": 924,
+        "right": 422
+      },
+      "shop": {
+        "x": 8,
+        "y": 774,
+        "width": 414,
+        "height": 110,
+        "bottom": 884,
+        "right": 422
+      },
+      "grid": {
+        "x": 17,
+        "y": 228,
+        "width": 396,
+        "height": 396,
+        "bottom": 624,
+        "right": 413
+      }
+    },
+    {
+      "label": "430x932 battle",
+      "width": 430,
+      "height": 932,
+      "scrollH": 932,
+      "scrollW": 430,
+      "board": {
+        "x": 8,
+        "y": 148,
+        "width": 414,
+        "height": 684,
+        "bottom": 832,
+        "right": 422
+      },
+      "controls": {
+        "x": 8,
+        "y": 888,
+        "width": 414,
+        "height": 36,
+        "bottom": 924,
+        "right": 422
+      },
+      "shop": null,
+      "grid": {
+        "x": 17,
+        "y": 292,
+        "width": 396,
+        "height": 396,
+        "bottom": 688,
+        "right": 413
+      }
+    },
+    {
+      "label": "768x1024 prepare",
+      "width": 768,
+      "height": 1024,
+      "scrollH": 1024,
+      "scrollW": 768,
+      "board": {
+        "x": 16,
+        "y": 173.5,
+        "width": 736,
+        "height": 589.5,
+        "bottom": 763,
+        "right": 752
+      },
+      "controls": {
+        "x": 16,
+        "y": 974,
+        "width": 736,
+        "height": 40,
+        "bottom": 1014,
+        "right": 752
+      },
+      "shop": {
+        "x": 69,
+        "y": 846,
+        "width": 630,
+        "height": 122,
+        "bottom": 968,
+        "right": 699
+      },
+      "grid": {
+        "x": 98.25,
+        "y": 182.5,
+        "width": 571.5,
+        "height": 571.5,
+        "bottom": 754,
+        "right": 669.75
+      }
+    },
+    {
+      "label": "768x1024 battle",
+      "width": 768,
+      "height": 1024,
+      "scrollH": 1024,
+      "scrollW": 768,
+      "board": {
+        "x": 16,
+        "y": 173.5,
+        "width": 736,
+        "height": 738.5,
+        "bottom": 912,
+        "right": 752
+      },
+      "controls": {
+        "x": 16,
+        "y": 974,
+        "width": 736,
+        "height": 40,
+        "bottom": 1014,
+        "right": 752
+      },
+      "shop": null,
+      "grid": {
+        "x": 25,
+        "y": 183.75,
+        "width": 718,
+        "height": 718,
+        "bottom": 901.75,
+        "right": 743
+      }
+    },
+    {
+      "label": "1366x768 prepare",
+      "width": 1366,
+      "height": 768,
+      "scrollH": 768,
+      "scrollW": 1366,
+      "board": {
+        "x": 229,
+        "y": 173.5,
+        "width": 908,
+        "height": 333.5,
+        "bottom": 507,
+        "right": 1137
+      },
+      "controls": {
+        "x": 229,
+        "y": 718,
+        "width": 908,
+        "height": 40,
+        "bottom": 758,
+        "right": 1137
+      },
+      "shop": {
+        "x": 368,
+        "y": 590,
+        "width": 630,
+        "height": 122,
+        "bottom": 712,
+        "right": 998
+      },
+      "grid": {
+        "x": 525.25,
+        "y": 182.5,
+        "width": 315.5,
+        "height": 315.5,
+        "bottom": 498,
+        "right": 840.75
+      }
+    },
+    {
+      "label": "1366x768 battle",
+      "width": 1366,
+      "height": 768,
+      "scrollH": 768,
+      "scrollW": 1366,
+      "board": {
+        "x": 229,
+        "y": 173.5,
+        "width": 908,
+        "height": 482.5,
+        "bottom": 656,
+        "right": 1137
+      },
+      "controls": {
+        "x": 229,
+        "y": 718,
+        "width": 908,
+        "height": 40,
+        "bottom": 758,
+        "right": 1137
+      },
+      "shop": null,
+      "grid": {
+        "x": 450.75,
+        "y": 182.5,
+        "width": 464.5,
+        "height": 464.5,
+        "bottom": 647,
+        "right": 915.25
+      }
+    },
+    {
+      "label": "1920x1080 prepare",
+      "width": 1920,
+      "height": 1080,
+      "scrollH": 1080,
+      "scrollW": 1920,
+      "board": {
+        "x": 451,
+        "y": 173.5,
+        "width": 1018,
+        "height": 614.5,
+        "bottom": 788,
+        "right": 1469
+      },
+      "controls": {
+        "x": 451,
+        "y": 1030,
+        "width": 1018,
+        "height": 40,
+        "bottom": 1070,
+        "right": 1469
+      },
+      "shop": {
+        "x": 645,
+        "y": 877,
+        "width": 630,
+        "height": 147,
+        "bottom": 1024,
+        "right": 1275
+      },
+      "grid": {
+        "x": 661.75,
+        "y": 182.5,
+        "width": 596.5,
+        "height": 596.5,
+        "bottom": 779,
+        "right": 1258.25
+      }
+    },
+    {
+      "label": "1920x1080 battle",
+      "width": 1920,
+      "height": 1080,
+      "scrollH": 1080,
+      "scrollW": 1920,
+      "board": {
+        "x": 451,
+        "y": 173.5,
+        "width": 1018,
+        "height": 794.5,
+        "bottom": 968,
+        "right": 1469
+      },
+      "controls": {
+        "x": 451,
+        "y": 1030,
+        "width": 1018,
+        "height": 40,
+        "bottom": 1070,
+        "right": 1469
+      },
+      "shop": null,
+      "grid": {
+        "x": 571.75,
+        "y": 182.5,
+        "width": 776.5,
+        "height": 776.5,
+        "bottom": 959,
+        "right": 1348.25
+      }
+    },
+    {
+      "label": "667x375 prepare",
+      "width": 667,
+      "height": 375,
+      "scrollH": 375,
+      "scrollW": 667,
+      "board": {
+        "x": 10,
+        "y": 93,
+        "width": 402,
+        "height": 277,
+        "bottom": 370,
+        "right": 412
+      },
+      "controls": {
+        "x": 417,
+        "y": 338,
+        "width": 240,
+        "height": 32,
+        "bottom": 370,
+        "right": 657
+      },
+      "shop": {
+        "x": 417,
+        "y": 224,
+        "width": 240,
+        "height": 109,
+        "bottom": 333,
+        "right": 657
+      },
+      "grid": {
+        "x": 81.5,
+        "y": 102,
+        "width": 259,
+        "height": 259,
+        "bottom": 361,
+        "right": 340.5
+      }
+    },
+    {
+      "label": "667x375 battle",
+      "width": 667,
+      "height": 375,
+      "scrollH": 375,
+      "scrollW": 667,
+      "board": {
+        "x": 10,
+        "y": 93,
+        "width": 402,
+        "height": 277,
+        "bottom": 370,
+        "right": 412
+      },
+      "controls": {
+        "x": 417,
+        "y": 338,
+        "width": 240,
+        "height": 32,
+        "bottom": 370,
+        "right": 657
+      },
+      "shop": null,
+      "grid": {
+        "x": 81.5,
+        "y": 102,
+        "width": 259,
+        "height": 259,
+        "bottom": 361,
+        "right": 340.5
+      }
+    },
+    {
+      "label": "844x390 prepare",
+      "width": 844,
+      "height": 390,
+      "scrollH": 390,
+      "scrollW": 844,
+      "board": {
+        "x": 10,
+        "y": 100,
+        "width": 522.375,
+        "height": 285,
+        "bottom": 385,
+        "right": 532.375
+      },
+      "controls": {
+        "x": 537.375,
+        "y": 353,
+        "width": 296.625,
+        "height": 32,
+        "bottom": 385,
+        "right": 834
+      },
+      "shop": {
+        "x": 537.375,
+        "y": 249,
+        "width": 296.625,
+        "height": 99,
+        "bottom": 348,
+        "right": 834
+      },
+      "grid": {
+        "x": 137.6875,
+        "y": 109,
+        "width": 267,
+        "height": 267,
+        "bottom": 376,
+        "right": 404.6875
+      }
+    },
+    {
+      "label": "844x390 battle",
+      "width": 844,
+      "height": 390,
+      "scrollH": 390,
+      "scrollW": 844,
+      "board": {
+        "x": 10,
+        "y": 100,
+        "width": 522.375,
+        "height": 285,
+        "bottom": 385,
+        "right": 532.375
+      },
+      "controls": {
+        "x": 537.375,
+        "y": 353,
+        "width": 296.625,
+        "height": 32,
+        "bottom": 385,
+        "right": 834
+      },
+      "shop": null,
+      "grid": {
+        "x": 137.6875,
+        "y": 109,
+        "width": 267,
+        "height": 267,
+        "bottom": 376,
+        "right": 404.6875
+      }
+    },
+    {
+      "label": "19 actors headless software rendering",
+      "samples": 180,
+      "median": 16.699999999999818,
+      "p95": 16.700000000000273,
+      "canvas": [
+        372,
+        583
+      ]
+    }
+  ],
+  "errors": [],
+  "failedRequests": []
+}

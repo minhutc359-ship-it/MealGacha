@@ -1,3 +1,5 @@
+> Đã triển khai mode đầy đủ ở bản 3.0: xem [implementation](autochess/IMPLEMENTATION.md). Tài liệu bên dưới giữ nguyên nghiên cứu 2.9.2, một số số cân bằng/kiến trúc đã đổi khi playtest.
+
 # MealGacha: Chợ Đêm Vị Linh
 
 Thiết kế đề xuất ngày 08/10/2026, dựa trên mã và tài nguyên bản 2.9.2. **Đây là bản nghiên cứu để triển khai mode mới; auto chess và survival chưa có trong app.** Các con số combat bên dưới là điểm khởi đầu để thử nghiệm, chưa phải cân bằng đã được playtest.
