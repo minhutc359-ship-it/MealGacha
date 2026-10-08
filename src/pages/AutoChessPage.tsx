@@ -1,3 +1,4 @@
+import { BrandMark } from "../components/layout/BrandMark"
 import { useEffect, useState } from "react"
 import { useGameStore } from "../game/useGameStore"
 import { useAppStore } from "../store/useAppStore"
@@ -219,10 +220,10 @@ export function AutoChessPage() {
           onClick={lobby}
           aria-label="Về hội quán auto chess"
         >
-          <span>✦</span>
+          <BrandMark />
           <div>
-            <strong>CHỢ ĐÊM</strong>
-            <small>VỊ LINH · AUTO CHESS</small>
+            <strong>SOUL OF MEAL</strong>
+            <small>CHỢ ĐÊM · AUTO CHESS</small>
           </div>
         </button>
         <ModeSwitch mode="auto" />

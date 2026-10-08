@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "checks": [
+    "New brand/title/logo render; no automatic GPS/network; denied GPS leads to manual choice; two areas require explicit selection; real UI classifies matches without invented ratings",
+    "Radius/sort/name filters are local and accurate; directions and embedded map use exact coordinates when address missing; clipboard includes the pin",
+    "Four dialog viewports including short landscape fit with a fixed fallback footer; Escape closes and restores focus",
+    "Closing cancels a delayed old search; an outage never claims zero venues, and the Maps link remains available without an API key",
+    "All three modes use the logo; old storage namespaces retain Chest rewards/keys, TCG coins and active Auto chess through navigation and reload"
+  ],
+  "metrics": [
+    {
+      "width": 320,
+      "height": 568,
+      "dialog": {
+        "width": 306,
+        "scrollWidth": 306,
+        "top": 6,
+        "bottom": 562
+      },
+      "footer": 561,
+      "scrollArea": 368,
+      "scrollWidth": 306
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "dialog": {
+        "width": 364,
+        "scrollWidth": 364,
+        "top": 12,
+        "bottom": 832
+      },
+      "footer": 831,
+      "scrollArea": 615,
+      "scrollWidth": 364
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "dialog": {
+        "width": 618,
+        "scrollWidth": 618,
+        "top": 12,
+        "bottom": 378
+      },
+      "footer": 377,
+      "scrollArea": 178,
+      "scrollWidth": 618
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "dialog": {
+        "width": 618,
+        "scrollWidth": 618,
+        "top": 12,
+        "bottom": 756
+      },
+      "footer": 755,
+      "scrollArea": 556,
+      "scrollWidth": 618
+    }
+  ],
+  "liveVenueNames": [],
+  "errors": [],
+  "requestCount": 6,
+  "serviceData": "Controlled fixtures; live HTTP data verified separately in live-results.json",
+  "mapEmbed": "Controlled iframe fixture; marker URL separately verified"
+}

@@ -182,3 +182,7 @@ public/assets/food/full/keo-cu-do.webp -filter -diff -merge -text
 public/assets/food/full/banh-tet.webp -filter -diff -merge -text
 
 docs/autochess/screenshots/*.webp -filter -diff -merge -text
+
+public/assets/brand/* -filter -diff -merge -text
+public/favicon.ico -filter -diff -merge -text
+docs/branding/screenshots/* -filter -diff -merge -text

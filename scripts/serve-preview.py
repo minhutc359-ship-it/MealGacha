@@ -23,7 +23,7 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 server = ThreadingHTTPServer(("127.0.0.1", args.port), partial(Handler, directory=str(root)))
-print(f"MealGacha TCG: http://127.0.0.1:{args.port} — Ctrl+C để dừng", flush=True)
+print(f"Soul of Meal: http://127.0.0.1:{args.port} — Ctrl+C để dừng", flush=True)
 try:
     server.serve_forever()
 except KeyboardInterrupt:

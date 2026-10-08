@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "checks": [
+    "Final 320px Auto chess wordmark stays on one line and inside screen",
+    "Live Photon → chosen Hanoi area → real OSM/Photon data rendered (22 visible cards); HTTP transport forwarded through test proxy, no API keys"
+  ],
+  "metrics": [],
+  "liveVenueNames": [
+    "Bún Chả - Nem Cua Bê",
+    "Bún chả 17 Chương Dương Độ",
+    "Bún Chả Ta",
+    "Bún Chả",
+    "Bún Chả TA",
+    "Bún Chả Đắc Kim",
+    "Bún Chẳ Đắc Kim",
+    "Nhà Hàng Bún Chả - Nem Cua Bê",
+    "Cửa Hàng Bún Chả Hương Liên",
+    "Bún Chå Nem Cua Bê",
+    "Bún Chả - Nem Cua Bê",
+    "Bún chả 41",
+    "Cửa Hàng Bún Chả Hương Liên",
+    "Bún Chả - Nem Rán",
+    "Bún Chả Nem Cua Bể",
+    "Cửa Hàng Bún Chả 34",
+    "Bún Chả Quê",
+    "Bún chả que tre",
+    "Bún chả Việt Khiêm",
+    "Bún Chả Chan",
+    "Bún Chả Kim Oanh",
+    "Bún chả 29"
+  ],
+  "errors": [],
+  "requestCount": 3,
+  "liveTransport": "Executor HTTP proxy bridge; direct Chromium outbound transport timed out",
+  "mapEmbed": "Controlled iframe fixture; marker URL separately verified"
+}

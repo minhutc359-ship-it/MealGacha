@@ -50,7 +50,7 @@ export function ProfilePage() {
       <div className="profile-stats">{[
         [uniqueOpened, "Món đã mở"], [uniqueCheckin, "Món đã check-in"], [user.fusions.length, "Dung hợp"], [diamondCount, "Kim cương"], [user.rewards.filter((item) => item.source === "chest").length, "Rương đã mở"],
       ].map(([value, label]) => <div key={label}><strong>{value}</strong><small>{label}</small></div>)}</div>
-      <button className="profile-swipe-cta" onClick={() => navigate("/taste-swipe")}><span>💘</span><div><strong>Khám phá khẩu vị</strong><small>Vuốt vài món để MealGacha hiểu bạn thích gì. Hoàn tất hôm nay nhận thêm 2 chìa.</small></div><b>→</b></button>
+      <button className="profile-swipe-cta" onClick={() => navigate("/taste-swipe")}><span>💘</span><div><strong>Khám phá khẩu vị</strong><small>Vuốt vài món để Soul of Meal hiểu bạn thích gì. Hoàn tất hôm nay nhận thêm 2 chìa.</small></div><b>→</b></button>
       <section className="profile-ledger"><h2>Lịch sử chìa khóa</h2>{[...user.keyTransactions].reverse().slice(0, 30).map((tx) => <div key={tx.id}><span>{tx.reason === "daily_checkin" ? "Điểm danh" : tx.reason === "chest_open" ? "Mở rương" : tx.reason === "daily_quiz" ? "Đoán món" : tx.reason === "taste_swipe" ? "Taste Swipe" : "Điều chỉnh"}</span><b className={tx.amount > 0 ? "is-credit" : ""}>{tx.amount > 0 ? "+" : ""}{tx.amount}</b><small>{new Date(tx.createdAt).toLocaleDateString("vi-VN")}</small></div>)}{user.keyTransactions.length === 0 && <p>Chưa có giao dịch.</p>}</section>
     </div>}
     {tab === "timeline" && <Timeline initialDishId={params.get("dish") || undefined} />}

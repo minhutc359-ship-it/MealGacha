@@ -1,3 +1,4 @@
+import { loadBrandImage } from "../../infrastructure/brand/brandAssets"
 import type { AutoRun } from "./types"
 import { UNIT_MAP } from "./catalog"
 export async function downloadAutoPostcard(run: AutoRun) {
@@ -26,7 +27,9 @@ export async function downloadAutoPostcard(run: AutoRun) {
   ctx.strokeRect(24, 24, 912, 492)
   ctx.fillStyle = "#ebcc93"
   ctx.font = "24px sans-serif"
-  ctx.fillText("MEALGACHA · CHỢ ĐÊM VỊ LINH", 58, 80)
+  ctx.fillText("SOUL OF MEAL · CHỢ ĐÊM VỊ LINH", 110, 80)
+  const logo = await loadBrandImage()
+  if (logo) ctx.drawImage(logo, 55, 47, 42, 42)
   ctx.font = "bold 76px sans-serif"
   ctx.fillStyle = "#fff2cf"
   ctx.fillText(`${run.score.toLocaleString("vi-VN")} điểm`, 58, 182)
@@ -64,7 +67,7 @@ export async function downloadAutoPostcard(run: AutoRun) {
   const url = URL.createObjectURL(blob),
     a = document.createElement("a")
   a.href = url
-  a.download = "mealgacha-cho-dem-ky-luc.png"
+  a.download = "soul-of-meal-cho-dem-ky-luc.png"
   a.click()
   setTimeout(() => URL.revokeObjectURL(url), 1000)
 }

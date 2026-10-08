@@ -26,7 +26,7 @@ function PostcardDialog({
     url: string
   } | null>(null),
     [status, setStatus] = useState("Đang viết bưu thiếp…")
-  const invitation = `Mời bạn khám phá MealGacha: giữ bàn ăn, ghép công thức và tìm lại ký ức bên bếp Việt Nam. ${window.location.origin}/game`
+  const invitation = `Mời bạn khám phá Soul of Meal: giữ bàn ăn, ghép công thức và tìm lại ký ức bên bếp Việt Nam. ${window.location.origin}/game`
   useEffect(() => {
     let active = true,
       url = ""
@@ -54,13 +54,13 @@ function PostcardDialog({
           <img
             className="tcg-postcard-preview"
             src={result.url}
-            alt="Bưu thiếp MealGacha với chân dung người giữ vị và kết quả hành trình"
+            alt="Bưu thiếp Soul of Meal với chân dung người giữ vị và kết quả hành trình"
           />
           <div className="tcg-dialog-actions">
             <a
               className="tcg-button primary"
               href={result.url}
-              download="mealgacha-buu-thiep.png"
+              download="soul-of-meal-buu-thiep.png"
             >
               Tải ảnh PNG
             </a>
@@ -69,14 +69,14 @@ function PostcardDialog({
               onClick={async () => {
                 const file = new File(
                   [result.blob],
-                  "mealgacha-buu-thiep.png",
+                  "soul-of-meal-buu-thiep.png",
                   { type: "image/png" },
                 )
                 if (navigator.canShare?.({ files: [file] })) {
                   try {
                     await navigator.share({
                       files: [file],
-                      title: "MealGacha · Bàn Ký Ức",
+                      title: "Soul of Meal · Bàn Ký Ức",
                       text: invitation,
                     })
                   } catch (error) {
@@ -100,7 +100,7 @@ function PostcardDialog({
       )}
       <textarea
         className="tcg-postcard-invitation"
-        aria-label="Lời mời chơi MealGacha"
+        aria-label="Lời mời chơi Soul of Meal"
         value={invitation}
         readOnly
         onFocus={(e) => e.target.select()}

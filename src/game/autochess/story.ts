@@ -213,8 +213,8 @@ export const CULTURE_PAGES = [
   },
   {
     title: "Một món, nhiều ký ức",
-    vi: "Cách nấu có thể thay đổi giữa nhà này với nhà khác. Lore Vị Linh, phép và quái là sáng tạo của MealGacha; không phải mô tả thần linh hay thực hành truyền thống.",
-    en: "Recipes vary between families. Flavor spirits, magic and monsters are MealGacha fiction, not traditional deities or practices.",
+    vi: "Cách nấu có thể thay đổi giữa nhà này với nhà khác. Lore Vị Linh, phép và quái là sáng tạo của Soul of Meal; không phải mô tả thần linh hay thực hành truyền thống.",
+    en: "Recipes vary between families. Flavor spirits, magic and monsters are Soul of Meal fiction, not traditional deities or practices.",
     url: "https://vietnam.travel/things-to-do",
   },
 ]

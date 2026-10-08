@@ -121,7 +121,7 @@ export function AudioControls() {
               <small>
                 {style === "original"
                   ? "Nhạc ấm áp như hiện tại"
-                  : "Giai điệu MealGacha · âm sắc retro"}
+                  : "Giai điệu Soul of Meal · âm sắc retro"}
               </small>
             </span>
           </label>

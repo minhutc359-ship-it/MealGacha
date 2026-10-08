@@ -1,4 +1,6 @@
-# MealGacha v3.0 · Chợ Đêm Vị Linh
+# Soul of Meal v3.1 · Huyền thoại vị giác
+
+Bản 3.1 đổi thương hiệu thành **Soul of Meal**, logo linh hỏa/bát cơm/lá bài, icon trình duyệt và ảnh chia sẻ; giữ tiến trình cũ. Tìm quán trong Rương được hoàn thiện không cần API key: chọn đúng khu vực, phân biệt mức khớp món, lọc/sắp quán, bản đồ, chỉ đường bằng tọa độ, liên hệ và fallback Maps luôn sẵn. [Chi tiết](docs/PLACES_V31.md) · [Logo/prompt](docs/branding/LOGO.md) · [Kiểm tra](docs/branding/VERIFICATION.md).
 
 Game thẻ bài ẩm thực trên React/Vite: **163 thẻ** (123 món ăn, 20 bí thuật, 5 người giữ vị và 15 thẻ Đoàn lữ hành), **6 chương / 18 màn** với đối thoại và boss, đấu theo lượt với AI, xây 6 bộ bài, mở 6 loại gói, chế tạo/phân rã thẻ, viền ánh kim, thương nhân NPC và nhiệm vụ ngày. Ba chế độ TCG, Rương Vị Giác (`/chest`) và Auto chess (`/autochess`) chuyển qua lại từ thanh trên, giữ tiến trình.
 
@@ -141,7 +143,7 @@ pnpm validate:catalog
 ## Cấu hình
 
 - Tìm quán hoạt động không cần API key: xin quyền vị trí hoặc nhập khu vực; dùng Photon và OpenStreetMap/Overpass tìm quán gần đó, nhấn từng quán để mở bản đồ OpenStreetMap ngay bên dưới. Dữ liệu OSM không có sao/đánh giá nên ứng dụng ghi rõ điều này và nhắc kiểm tra thực đơn. Dữ liệu vị trí được gửi trực tiếp từ trình duyệt tới dịch vụ bản đồ để tìm kiếm, không lưu vị trí trong hồ sơ.
-- `VITE_GOOGLE_MAPS_API_KEY` (tùy chọn): khóa cho Places API (New) để lọc quán theo sao/số lượt đánh giá và giờ mở cửa. Giới hạn khóa theo HTTP referrer và chỉ bật API cần thiết; khi API lỗi, ứng dụng quay về nguồn OpenStreetMap không cần khóa.
+- Tìm quán 3.1 không gọi Google Places API và không cần khóa. Nguồn quán: OpenStreetMap qua Private.coffee, tìm khu vực/tên quán qua Photon. Link Google Maps dùng Maps URLs không khóa để xem thêm và chỉ đường. Xem [tài liệu tìm quán](docs/PLACES_V31.md).
 - `VITE_CATALOG_URL`: URL CSV của Google Sheet đã **Publish to web**. Người dùng cũng có thể cấu hình và xem trước nguồn trong trang Cài đặt.
 - `VITE_CHEST_OPENING_AUDIO_URL`: URL ghi đè cho âm thanh mở rương. Mặc định app dùng file `public/assets/audio/chest-opening.mp3` dài 4,284 giây và đồng bộ timeline 4,14 giây.
 - `VITE_DAILY_KEYS`, `VITE_CHEST_COST`: tham số kinh tế mặc định là 10 chìa/ngày và 1 chìa/lượt.
