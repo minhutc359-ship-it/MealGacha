@@ -13,10 +13,11 @@ export function battleInvocation(frame: BattleFrame) {
   if (!card) return null
   const spirit = foodSpirit(card)
   const attack = event.kind === "attack"
+  const kind: "attack" | "cast" | "summon" = attack ? "attack" : card.kind === "spell" ? "cast" : "summon"
   return {
     card,
     spirit,
-    kind: attack ? "attack" : card.kind === "spell" ? "cast" : "summon",
+    kind,
     title: attack
       ? "PHÁT ĐỘNG TẤN CÔNG"
       : card.kind === "spell"

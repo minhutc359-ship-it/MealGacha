@@ -1,4 +1,6 @@
-# Soul of Meal v3.2 · Huyền thoại vị giác
+# Soul of Meal v3.2.1 · Vị Linh chuyển động
+
+Bản 3.2.1 đưa sprite và chuyển động Auto chess vào TCG: đứng chờ, triệu hồi, ra đòn, tung phép, chịu đòn, ngã và ăn mừng. Quân trên sân, Vị Linh lao tới mục tiêu và nhân vật trong cảnh niệm phép dùng atlas chung; giữ ảnh món, tên thẻ và luật theo lượt. Giảm chuyển động dùng model đứng yên. [Thiết kế và kiểm chứng](docs/tcg-motion/VERIFICATION.md).
 
 Bản 3.2 sửa bộ bài thành danh sách cuộn, tăng tương phản tên game, giữ trọn ảnh nhân vật trên thẻ. Auto chess dùng vùng ảnh và điểm neo chân đã đo cho 308 frame, chuyển động xếp quân/đi/đánh mượt hơn, thắng có nhảy ăn mừng trước kết quả/cutscene/phần thưởng. Thêm Xếp nhanh, tự chọn quân vừa mua, vai trò trên shop và hướng dẫn ba bước; sửa nút tràn màn hình ngang. Giữ save cũ, luật và tài nguyên. [Chi tiết và kiểm chứng](docs/polish-v32/VERIFICATION.md).
 

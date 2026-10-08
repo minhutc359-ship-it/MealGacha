@@ -37,6 +37,7 @@ import "../game/livingTable.css"
 import "../game/animeStage.css"
 import "../game/compactScreen.css"
 import "../game/spiritArena.css"
+import "../game/characterMotion.css"
 
 const NAV = [
   { id: "home", name: "Sảnh hành trình", icon: "home" },

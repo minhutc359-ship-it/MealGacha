@@ -8,20 +8,11 @@ import {
 import { enemyPlan } from "../../game/autochess/combat"
 import type { Actor, AutoRun } from "../../game/autochess/types"
 import { actorPosition as position, actorFrame, SPRITE_SHEETS } from "../../game/autochess/presentation"
+import { characterImage as getImage } from "../../infrastructure/assets/characterSprites"
 
 const CELLS = Array.from({ length: 36 }, (_, i) => i)
 const paths = Object.fromEntries(Object.entries(SPRITE_SHEETS).map(([key, sheet]) => [key, sheet.path]))
 type Frames = () => { run: AutoRun | null; alpha: number }
-const imageCache = new Map<string, HTMLImageElement>()
-function getImage(path: string) {
-  if (!imageCache.has(path)) {
-    const image = new Image()
-    image.decoding = "async"
-    image.src = path
-    imageCache.set(path, image)
-  }
-  return imageCache.get(path)!
-}
 export function AutoBoard({
   run,
   getFrame,

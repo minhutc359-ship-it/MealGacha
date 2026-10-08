@@ -1,0 +1,809 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "six live spirits/people, both atlases decoded with painted pixels",
+      "passed": true,
+      "poses": [
+        {
+          "id": "banh-mi",
+          "sheet": "base",
+          "pose": "0",
+          "pixels": true
+        },
+        {
+          "id": "loc",
+          "sheet": "fresh",
+          "pose": "0",
+          "pixels": true
+        },
+        {
+          "id": "banh-it-la-gai",
+          "sheet": "fresh",
+          "pose": "0",
+          "pixels": true
+        },
+        {
+          "id": "pho-bo",
+          "sheet": "base",
+          "pose": "0",
+          "pixels": true
+        },
+        {
+          "id": "banh-dau-xanh",
+          "sheet": "fresh",
+          "pose": "0",
+          "pixels": true
+        },
+        {
+          "id": "chef-nhien",
+          "sheet": "base",
+          "pose": "0",
+          "pixels": true
+        }
+      ]
+    },
+    {
+      "name": "attack and spirit flight use animated model; skip applies damage once",
+      "passed": true
+    },
+    {
+      "name": "new food summon uses its dedicated moving model",
+      "passed": true
+    },
+    {
+      "name": "spell invocation has animated caster plus the actual spell illustration",
+      "passed": true
+    },
+    {
+      "name": "simultaneous trade animates both casualties without duplicating combat",
+      "passed": true
+    },
+    {
+      "name": "AI actions animate one by one and return to player input",
+      "passed": true
+    },
+    {
+      "name": "seven phone/desktop/landscape sizes keep slots, labels and controls in viewport",
+      "passed": true
+    },
+    {
+      "name": "surviving allies celebrate a TCG win",
+      "passed": true
+    },
+    {
+      "name": "reduced motion uses a still model and identical immediate combat results",
+      "passed": true
+    },
+    {
+      "name": "system reduced motion is respected",
+      "passed": true
+    },
+    {
+      "name": "Auto chess still paints using the shared image cache",
+      "passed": true
+    },
+    {
+      "name": "idle breathing actually repaints the canvas pixels",
+      "passed": true
+    },
+    {
+      "name": "actual attack and hit change source atlas frames on the canvas",
+      "passed": true,
+      "samples": {
+        "attack": [
+          "0",
+          "5",
+          "6",
+          "7"
+        ],
+        "hit": [
+          "0",
+          "11"
+        ]
+      }
+    },
+    {
+      "name": "switching TCG to Auto chess in the same app reuses both loaded atlases",
+      "passed": true
+    }
+  ],
+  "metrics": [
+    {
+      "label": "390 battle",
+      "w": 390,
+      "h": 692,
+      "doc": 390,
+      "body": 692,
+      "canvases": [
+        {
+          "x": 51,
+          "y": 153,
+          "w": 80,
+          "h": 86,
+          "parent": {
+            "x": 47,
+            "y": 150,
+            "w": 88,
+            "h": 125
+          },
+          "pose": "0"
+        },
+        {
+          "x": 155,
+          "y": 153,
+          "w": 80,
+          "h": 86,
+          "parent": {
+            "x": 151,
+            "y": 150,
+            "w": 88,
+            "h": 125
+          },
+          "pose": "0"
+        },
+        {
+          "x": 259,
+          "y": 153,
+          "w": 80,
+          "h": 86,
+          "parent": {
+            "x": 255,
+            "y": 150,
+            "w": 88,
+            "h": 125
+          },
+          "pose": "0"
+        },
+        {
+          "x": 51,
+          "y": 331,
+          "w": 80,
+          "h": 86,
+          "parent": {
+            "x": 47,
+            "y": 328,
+            "w": 88,
+            "h": 125
+          },
+          "pose": "0"
+        },
+        {
+          "x": 155,
+          "y": 331,
+          "w": 80,
+          "h": 86,
+          "parent": {
+            "x": 151,
+            "y": 328,
+            "w": 88,
+            "h": 125
+          },
+          "pose": "0"
+        },
+        {
+          "x": 259,
+          "y": 331,
+          "w": 80,
+          "h": 86,
+          "parent": {
+            "x": 255,
+            "y": 328,
+            "w": 88,
+            "h": 125
+          },
+          "pose": "0"
+        }
+      ],
+      "controls": [
+        {
+          "x": 275.203125,
+          "y": 281,
+          "w": 93.796875,
+          "h": 28
+        }
+      ]
+    },
+    {
+      "label": "320x568",
+      "w": 320,
+      "h": 568,
+      "doc": 320,
+      "body": 568,
+      "canvases": [
+        {
+          "x": 16,
+          "y": 153,
+          "w": 80,
+          "h": 24,
+          "parent": {
+            "x": 12,
+            "y": 150,
+            "w": 88,
+            "h": 63
+          },
+          "pose": "0"
+        },
+        {
+          "x": 120,
+          "y": 153,
+          "w": 80,
+          "h": 24,
+          "parent": {
+            "x": 116,
+            "y": 150,
+            "w": 88,
+            "h": 63
+          },
+          "pose": "0"
+        },
+        {
+          "x": 224,
+          "y": 153,
+          "w": 80,
+          "h": 24,
+          "parent": {
+            "x": 220,
+            "y": 150,
+            "w": 88,
+            "h": 63
+          },
+          "pose": "0"
+        },
+        {
+          "x": 16,
+          "y": 269,
+          "w": 80,
+          "h": 24,
+          "parent": {
+            "x": 12,
+            "y": 266,
+            "w": 88,
+            "h": 63
+          },
+          "pose": "0"
+        },
+        {
+          "x": 120,
+          "y": 269,
+          "w": 80,
+          "h": 24,
+          "parent": {
+            "x": 116,
+            "y": 266,
+            "w": 88,
+            "h": 63
+          },
+          "pose": "0"
+        },
+        {
+          "x": 224,
+          "y": 269,
+          "w": 80,
+          "h": 24,
+          "parent": {
+            "x": 220,
+            "y": 266,
+            "w": 88,
+            "h": 63
+          },
+          "pose": "0"
+        }
+      ],
+      "controls": [
+        {
+          "x": 205.203125,
+          "y": 219,
+          "w": 93.796875,
+          "h": 28
+        }
+      ]
+    },
+    {
+      "label": "375x667",
+      "w": 375,
+      "h": 667,
+      "doc": 375,
+      "body": 667,
+      "canvases": [
+        {
+          "x": 43.5,
+          "y": 153,
+          "w": 80,
+          "h": 73.5,
+          "parent": {
+            "x": 39.5,
+            "y": 150,
+            "w": 88,
+            "h": 112.5
+          },
+          "pose": "0"
+        },
+        {
+          "x": 147.5,
+          "y": 153,
+          "w": 80,
+          "h": 73.5,
+          "parent": {
+            "x": 143.5,
+            "y": 150,
+            "w": 88,
+            "h": 112.5
+          },
+          "pose": "0"
+        },
+        {
+          "x": 251.5,
+          "y": 153,
+          "w": 80,
+          "h": 73.5,
+          "parent": {
+            "x": 247.5,
+            "y": 150,
+            "w": 88,
+            "h": 112.5
+          },
+          "pose": "0"
+        },
+        {
+          "x": 43.5,
+          "y": 318.5,
+          "w": 80,
+          "h": 73.5,
+          "parent": {
+            "x": 39.5,
+            "y": 315.5,
+            "w": 88,
+            "h": 112.5
+          },
+          "pose": "0"
+        },
+        {
+          "x": 147.5,
+          "y": 318.5,
+          "w": 80,
+          "h": 73.5,
+          "parent": {
+            "x": 143.5,
+            "y": 315.5,
+            "w": 88,
+            "h": 112.5
+          },
+          "pose": "0"
+        },
+        {
+          "x": 251.5,
+          "y": 318.5,
+          "w": 80,
+          "h": 73.5,
+          "parent": {
+            "x": 247.5,
+            "y": 315.5,
+            "w": 88,
+            "h": 112.5
+          },
+          "pose": "0"
+        }
+      ],
+      "controls": [
+        {
+          "x": 260.203125,
+          "y": 268.5,
+          "w": 93.796875,
+          "h": 28
+        }
+      ]
+    },
+    {
+      "label": "430x760",
+      "w": 430,
+      "h": 760,
+      "doc": 430,
+      "body": 760,
+      "canvases": [
+        {
+          "x": 71,
+          "y": 167,
+          "w": 80,
+          "h": 80,
+          "parent": {
+            "x": 67,
+            "y": 164,
+            "w": 88,
+            "h": 119
+          },
+          "pose": "0"
+        },
+        {
+          "x": 175,
+          "y": 167,
+          "w": 80,
+          "h": 80,
+          "parent": {
+            "x": 171,
+            "y": 164,
+            "w": 88,
+            "h": 119
+          },
+          "pose": "0"
+        },
+        {
+          "x": 279,
+          "y": 167,
+          "w": 80,
+          "h": 80,
+          "parent": {
+            "x": 275,
+            "y": 164,
+            "w": 88,
+            "h": 119
+          },
+          "pose": "0"
+        },
+        {
+          "x": 71,
+          "y": 346,
+          "w": 80,
+          "h": 80,
+          "parent": {
+            "x": 67,
+            "y": 343,
+            "w": 88,
+            "h": 119
+          },
+          "pose": "0"
+        },
+        {
+          "x": 175,
+          "y": 346,
+          "w": 80,
+          "h": 80,
+          "parent": {
+            "x": 171,
+            "y": 343,
+            "w": 88,
+            "h": 119
+          },
+          "pose": "0"
+        },
+        {
+          "x": 279,
+          "y": 346,
+          "w": 80,
+          "h": 80,
+          "parent": {
+            "x": 275,
+            "y": 343,
+            "w": 88,
+            "h": 119
+          },
+          "pose": "0"
+        }
+      ],
+      "controls": [
+        {
+          "x": 314.203125,
+          "y": 293,
+          "w": 93.796875,
+          "h": 28
+        }
+      ]
+    },
+    {
+      "label": "1366x768",
+      "w": 1366,
+      "h": 768,
+      "doc": 1366,
+      "body": 768,
+      "canvases": [
+        {
+          "x": 524.765625,
+          "y": 176,
+          "w": 84.15625,
+          "h": 95.5,
+          "parent": {
+            "x": 520.765625,
+            "y": 173,
+            "w": 92.15625,
+            "h": 138.5
+          },
+          "pose": "0"
+        },
+        {
+          "x": 640.921875,
+          "y": 176,
+          "w": 84.15625,
+          "h": 95.5,
+          "parent": {
+            "x": 636.921875,
+            "y": 173,
+            "w": 92.15625,
+            "h": 138.5
+          },
+          "pose": "0"
+        },
+        {
+          "x": 757.078125,
+          "y": 176,
+          "w": 84.15625,
+          "h": 95.5,
+          "parent": {
+            "x": 753.078125,
+            "y": 173,
+            "w": 92.15625,
+            "h": 138.5
+          },
+          "pose": "0"
+        },
+        {
+          "x": 524.765625,
+          "y": 374.5,
+          "w": 84.15625,
+          "h": 95.5,
+          "parent": {
+            "x": 520.765625,
+            "y": 371.5,
+            "w": 92.15625,
+            "h": 138.5
+          },
+          "pose": "0"
+        },
+        {
+          "x": 640.921875,
+          "y": 374.5,
+          "w": 84.15625,
+          "h": 95.5,
+          "parent": {
+            "x": 636.921875,
+            "y": 371.5,
+            "w": 92.15625,
+            "h": 138.5
+          },
+          "pose": "0"
+        },
+        {
+          "x": 757.078125,
+          "y": 374.5,
+          "w": 84.15625,
+          "h": 95.5,
+          "parent": {
+            "x": 753.078125,
+            "y": 371.5,
+            "w": 92.15625,
+            "h": 138.5
+          },
+          "pose": "0"
+        }
+      ],
+      "controls": [
+        {
+          "x": 1172.203125,
+          "y": 315.5,
+          "w": 101.796875,
+          "h": 36
+        }
+      ]
+    },
+    {
+      "label": "667x375",
+      "w": 667,
+      "h": 375,
+      "doc": 667,
+      "body": 375,
+      "canvases": [
+        {
+          "x": 49.5,
+          "y": 146,
+          "w": 70,
+          "h": 32,
+          "parent": {
+            "x": 45.5,
+            "y": 143,
+            "w": 78,
+            "h": 67
+          },
+          "pose": "0"
+        },
+        {
+          "x": 139.5,
+          "y": 146,
+          "w": 70,
+          "h": 32,
+          "parent": {
+            "x": 135.5,
+            "y": 143,
+            "w": 78,
+            "h": 67
+          },
+          "pose": "0"
+        },
+        {
+          "x": 229.5,
+          "y": 146,
+          "w": 70,
+          "h": 32,
+          "parent": {
+            "x": 225.5,
+            "y": 143,
+            "w": 78,
+            "h": 67
+          },
+          "pose": "0"
+        },
+        {
+          "x": 367.5,
+          "y": 146,
+          "w": 70,
+          "h": 32,
+          "parent": {
+            "x": 363.5,
+            "y": 143,
+            "w": 78,
+            "h": 67
+          },
+          "pose": "0"
+        },
+        {
+          "x": 457.5,
+          "y": 146,
+          "w": 70,
+          "h": 32,
+          "parent": {
+            "x": 453.5,
+            "y": 143,
+            "w": 78,
+            "h": 67
+          },
+          "pose": "0"
+        },
+        {
+          "x": 547.5,
+          "y": 146,
+          "w": 70,
+          "h": 32,
+          "parent": {
+            "x": 543.5,
+            "y": 143,
+            "w": 78,
+            "h": 67
+          },
+          "pose": "0"
+        }
+      ],
+      "controls": [
+        {
+          "x": 536.203125,
+          "y": 212,
+          "w": 101.796875,
+          "h": 36
+        }
+      ]
+    },
+    {
+      "label": "844x390",
+      "w": 844,
+      "h": 390,
+      "doc": 844,
+      "body": 390,
+      "canvases": [
+        {
+          "x": 93.75,
+          "y": 146,
+          "w": 70,
+          "h": 47,
+          "parent": {
+            "x": 89.75,
+            "y": 143,
+            "w": 78,
+            "h": 82
+          },
+          "pose": "0"
+        },
+        {
+          "x": 183.75,
+          "y": 146,
+          "w": 70,
+          "h": 47,
+          "parent": {
+            "x": 179.75,
+            "y": 143,
+            "w": 78,
+            "h": 82
+          },
+          "pose": "0"
+        },
+        {
+          "x": 273.75,
+          "y": 146,
+          "w": 70,
+          "h": 47,
+          "parent": {
+            "x": 269.75,
+            "y": 143,
+            "w": 78,
+            "h": 82
+          },
+          "pose": "0"
+        },
+        {
+          "x": 500.25,
+          "y": 146,
+          "w": 70,
+          "h": 47,
+          "parent": {
+            "x": 496.25,
+            "y": 143,
+            "w": 78,
+            "h": 82
+          },
+          "pose": "0"
+        },
+        {
+          "x": 590.25,
+          "y": 146,
+          "w": 70,
+          "h": 47,
+          "parent": {
+            "x": 586.25,
+            "y": 143,
+            "w": 78,
+            "h": 82
+          },
+          "pose": "0"
+        },
+        {
+          "x": 680.25,
+          "y": 146,
+          "w": 70,
+          "h": 47,
+          "parent": {
+            "x": 676.25,
+            "y": 143,
+            "w": 78,
+            "h": 82
+          },
+          "pose": "0"
+        }
+      ],
+      "controls": [
+        {
+          "x": 713.203125,
+          "y": 227,
+          "w": 101.796875,
+          "h": 36
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/world.webp",
+    "http://127.0.0.1:8478/assets/autochess/portraits.webp",
+    "http://127.0.0.1:8478/assets/autochess/roster.webp",
+    "http://127.0.0.1:8478/assets/autochess/movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/new-movement.webp",
+    "http://127.0.0.1:8478/assets/autochess/monsters.webp"
+  ]
+}

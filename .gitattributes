@@ -188,3 +188,5 @@ public/favicon.ico -filter -diff -merge -text
 docs/branding/screenshots/* -filter -diff -merge -text
 
 docs/polish-v32/screenshots/* -filter -diff -merge -text
+
+docs/tcg-motion/screenshots/* -filter -diff -merge -text

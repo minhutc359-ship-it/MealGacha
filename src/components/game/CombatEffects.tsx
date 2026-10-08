@@ -9,11 +9,14 @@ import { CARD_MAP, SCHOOLS } from "../../game/catalog"
 import { combatCues, type EffectCue } from "../../game/combatEffects"
 import { FLAVOR_SPIRITS } from "../../game/flavorSpirits"
 import { battleInvocation } from "../../game/combatDirection"
+import { tcgCharacter } from "../../game/tcgCharacterMotion"
+import { CharacterSprite } from "./CharacterSprite"
 import type { BattleFrame } from "../../game/battle"
 interface Props {
   arena: RefObject<HTMLDivElement | null>
   frame: BattleFrame | undefined
   stamp: string
+  quiet?: boolean
 }
 interface Point {
   x: number
@@ -48,7 +51,7 @@ const GLYPHS: Partial<Record<EffectCue["kind"], string>> = {
   awaken: "☾",
   finish: "✺",
 }
-export function CombatEffects({ arena, frame, stamp }: Props) {
+export function CombatEffects({ arena, frame, stamp, quiet = false }: Props) {
   const [layout, setLayout] = useState<Layout | null>(null)
   useEffect(() => {
     for (const src of new Set([
@@ -101,6 +104,7 @@ export function CombatEffects({ arena, frame, stamp }: Props) {
   if (!layout || !layout.cues.length) return null
   const card = frame?.event.cardId ? CARD_MAP[frame.event.cardId] : undefined
   const invocation = frame ? battleInvocation(frame) : null
+  const attacker = invocation ? tcgCharacter(invocation.card) : null
   const contact = layout.cues.find(
     (cue) => cue.projectile && cue.side !== frame?.event.side,
   )
@@ -124,7 +128,9 @@ export function CombatEffects({ arena, frame, stamp }: Props) {
             } as CSSProperties
           }
         >
-          <img src={invocation.art} alt="" draggable={false} />
+          {attacker ? <CharacterSprite model={attacker} motion="attack" stamp={stamp}
+            flip={contact.x < layout.source.x || (Math.abs(contact.x - layout.source.x) < 5 && frame?.event.side === "enemy")}
+            quiet={quiet} fallback={invocation.art} /> : <img src={invocation.art} alt="" draggable={false} />}
         </div>
       )}
       {frame?.event.kind === "play" && card?.kind === "spell" && (
