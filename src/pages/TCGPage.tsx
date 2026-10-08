@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react"
 import { Link, useSearchParams } from "react-router-dom"
+import { useCompactPageSize } from "../components/game/useCompactPageSize"
+import { ModeSwitch } from "../components/layout/ModeSwitch"
 import { useAppStore } from "../store/useAppStore"
 import { useGameStore } from "../game/useGameStore"
 import { CARDS, CARD_MAP, SCHOOLS, RARITIES } from "../game/catalog"
@@ -33,6 +35,7 @@ import "../game/story.css"
 import "../game/livingTable.css"
 import "../game/animeStage.css"
 import "../game/compactScreen.css"
+import "../game/spiritArena.css"
 
 const NAV = [
   { id: "home", name: "Sảnh hành trình", icon: "home" },
@@ -88,7 +91,17 @@ export function TCGPage() {
   const legacy = useAppStore((s) => s.user)
   const [help, setHelp] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [traderOpen, setTraderOpen] = useState(false)
+  const [questPage, setQuestPage] = useState(0)
+  const questPageSize = useCompactPageSize()
   const [questView, setQuestView] = useState("daily")
+  const questPages = Math.max(
+    1,
+    Math.ceil(
+      (questView === "daily" ? DAILY_QUESTS : QUESTS).length / questPageSize,
+    ),
+  )
+  const visibleQuestPage = Math.min(questPage, questPages - 1)
   const [settingsView, setSettingsView] = useState("audio")
   const [packId, setPackId] = useState(PACKS[0].id)
   const mainRef = useRef<HTMLElement>(null)
@@ -277,6 +290,15 @@ export function TCGPage() {
           </div>
         </div>
       </aside>
+      {traderOpen && (
+        <Dialog
+          title="Thương nhân ký ức"
+          onClose={() => setTraderOpen(false)}
+          wide
+        >
+          <Trader />
+        </Dialog>
+      )}
       {menuOpen && (
         <Dialog
           title="Khám phá MealGacha"
@@ -322,6 +344,7 @@ export function TCGPage() {
             </span>
           </div>
           <div className="tcg-wallet">
+            <ModeSwitch mode="tcg" />
             <span title="Xu để mở gói thẻ">
               <i>◉</i>
               <b>{current.coins.toLocaleString("vi-VN")}</b>
@@ -499,10 +522,12 @@ export function TCGPage() {
                       </section>
                     ))}
                   </div>
-                  <details className="tcg-trader-drawer">
-                    <summary>Trao đổi thẻ với thương nhân</summary>
-                    <Trader />
-                  </details>
+                  <button
+                    className="tcg-button ghost tcg-trader-launch"
+                    onClick={() => setTraderOpen(true)}
+                  >
+                    Trao đổi thẻ với thương nhân →
+                  </button>
                 </>
               )}
               {tab === "quests" && (
@@ -513,6 +538,15 @@ export function TCGPage() {
                         NHỮNG BƯỚC NHỎ, MỘT HÀNH TRÌNH LỚN
                       </span>
                       <h1>Sổ nhiệm vụ</h1>
+                      <button
+                        className="tcg-button ghost tcg-checkin-quick"
+                        disabled={current.lastCheckIn === getDateKey()}
+                        onClick={() => useGameStore.getState().checkIn()}
+                      >
+                        {current.lastCheckIn === getDateKey()
+                          ? "Đã điểm danh ✓"
+                          : "Điểm danh · +100 xu"}
+                      </button>
                       <p>
                         Nhận thưởng để mở thêm thẻ và hoàn thiện bộ bài. Nhiệm
                         vụ ngày đổi lúc 00:00 theo múi giờ ứng dụng (mặc định
@@ -527,13 +561,19 @@ export function TCGPage() {
                   >
                     <button
                       aria-pressed={questView === "daily"}
-                      onClick={() => setQuestView("daily")}
+                      onClick={() => {
+                        setQuestView("daily")
+                        setQuestPage(0)
+                      }}
                     >
                       Việc hôm nay
                     </button>
                     <button
                       aria-pressed={questView === "milestones"}
-                      onClick={() => setQuestView("milestones")}
+                      onClick={() => {
+                        setQuestView("milestones")
+                        setQuestPage(0)
+                      }}
                     >
                       Dấu mốc hành trình
                     </button>
@@ -570,61 +610,89 @@ export function TCGPage() {
                           </span>
                         </div>
                         <div className="tcg-quest-grid">
-                          {group.list.map((q) => {
-                            const done = (
-                              group.daily
-                                ? current.claimedDailyQuests
-                                : current.claimedQuests
-                            ).includes(q.id)
-                            const progress = q.progress(current)
-                            return (
-                              <article
-                                className={`tcg-panel tcg-quest ${
-                                  done ? "is-complete" : ""
-                                }`}
-                                key={q.id}
-                              >
-                                <span className="tcg-quest-icon">
-                                  {done ? "✓" : "✦"}
-                                </span>
-                                <h3>{q.name}</h3>
-                                <p>{q.description}</p>
-                                <div className="tcg-progress">
-                                  <i
-                                    style={{
-                                      width: `${Math.min(100, (progress / q.target) * 100)}%`,
-                                    }}
-                                  />
-                                </div>
-                                <small>
-                                  {Math.min(q.target, progress)}/{q.target}
-                                </small>
-                                <div className="tcg-quest-bottom">
-                                  <span>
-                                    ◉ {q.coins} <i>✧ {q.dust}</i>
-                                  </span>
-                                  <button
-                                    className="tcg-button ghost"
-                                    disabled={done || progress < q.target}
-                                    onClick={() =>
-                                      useGameStore
-                                        .getState()
-                                        .claimQuest(q.id, group.daily)
-                                    }
-                                  >
-                                    {done
-                                      ? "Đã nhận"
-                                      : progress >= q.target
-                                        ? "Nhận thưởng"
-                                        : "Đang thực hiện"}
-                                  </button>
-                                </div>
-                              </article>
+                          {group.list
+                            .slice(
+                              visibleQuestPage * questPageSize,
+                              (visibleQuestPage + 1) * questPageSize,
                             )
-                          })}
+                            .map((q) => {
+                              const done = (
+                                group.daily
+                                  ? current.claimedDailyQuests
+                                  : current.claimedQuests
+                              ).includes(q.id)
+                              const progress = q.progress(current)
+                              return (
+                                <article
+                                  className={`tcg-panel tcg-quest ${
+                                    done ? "is-complete" : ""
+                                  }`}
+                                  key={q.id}
+                                >
+                                  <span className="tcg-quest-icon">
+                                    {done ? "✓" : "✦"}
+                                  </span>
+                                  <h3>{q.name}</h3>
+                                  <p>{q.description}</p>
+                                  <div className="tcg-progress">
+                                    <i
+                                      style={{
+                                        width: `${Math.min(100, (progress / q.target) * 100)}%`,
+                                      }}
+                                    />
+                                  </div>
+                                  <small>
+                                    {Math.min(q.target, progress)}/{q.target}
+                                  </small>
+                                  <div className="tcg-quest-bottom">
+                                    <span>
+                                      ◉ {q.coins} <i>✧ {q.dust}</i>
+                                    </span>
+                                    <button
+                                      className="tcg-button ghost"
+                                      disabled={done || progress < q.target}
+                                      onClick={() =>
+                                        useGameStore
+                                          .getState()
+                                          .claimQuest(q.id, group.daily)
+                                      }
+                                    >
+                                      {done
+                                        ? "Đã nhận"
+                                        : progress >= q.target
+                                          ? "Nhận thưởng"
+                                          : "Đang thực hiện"}
+                                    </button>
+                                  </div>
+                                </article>
+                              )
+                            })}
                         </div>
                       </section>
                     ))}
+                  <nav className="tcg-pagination" aria-label="Trang nhiệm vụ">
+                    <button
+                      className="tcg-button ghost"
+                      disabled={visibleQuestPage === 0}
+                      onClick={() => setQuestPage(visibleQuestPage - 1)}
+                      aria-label="Trang nhiệm vụ trước"
+                    >
+                      ←
+                    </button>
+                    <span role="status">
+                      {visibleQuestPage + 1}/{questPages} ·{" "}
+                      {(questView === "daily" ? DAILY_QUESTS : QUESTS).length}{" "}
+                      nhiệm vụ
+                    </span>
+                    <button
+                      className="tcg-button ghost"
+                      disabled={visibleQuestPage + 1 === questPages}
+                      onClick={() => setQuestPage(visibleQuestPage + 1)}
+                      aria-label="Trang nhiệm vụ tiếp"
+                    >
+                      →
+                    </button>
+                  </nav>
                 </>
               )}
               {tab === "settings" && (

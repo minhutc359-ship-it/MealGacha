@@ -1,0 +1,70 @@
+/* Readable memory spirits and three-beat action direction, inside the battle viewport. */
+.tcg-viewport-battle .tcg-unit.is-flavor-spirit { background:radial-gradient(ellipse at 60% 30%,#657c6855,transparent 65%),linear-gradient(140deg,#163a3c,#18262a); }
+.tcg-viewport-battle .tcg-unit .tcg-unit-memory { position:absolute; top:5px; left:5px; width:29%; height:30%; object-fit:cover; border:1px solid #f5deb588; border-radius:50%; opacity:1; z-index:2; box-shadow:0 2px 8px #0008; }
+.tcg-viewport-battle .tcg-unit .tcg-unit-spirit { position:absolute; top:-3%; left:20%; width:76%; height:84%; object-fit:contain; opacity:1; filter:drop-shadow(0 0 7px #c2e9c855); }
+.tcg-unit-spirit-tag { position:absolute; top:5px; right:5px; font-size:6px; color:#edd9aa; letter-spacing:.6px; z-index:2; }
+.tcg-viewport-battle .is-ready .tcg-unit-spirit { animation:tcg-spirit-breathe 2.8s ease-in-out infinite; }
+.tcg-viewport-battle .is-summoned .tcg-unit-spirit { animation:tcg-spirit-materialize .8s ease-out both; }
+.tcg-viewport-battle .is-acting .tcg-unit-spirit { animation:tcg-spirit-launch .7s ease-in-out both; }
+.tcg-spirit-explanation { padding:12px; border-left:3px solid #9dbf8f; background:#ebefe1; font-size:12px; line-height:1.7; }
+.tcg-invocation { position:absolute; inset:0; z-index:24; overflow:hidden; pointer-events:none; isolation:isolate; }
+.tcg-invocation:before { content:''; position:absolute; inset:26% 0 40%; background:linear-gradient(90deg,#071e26ee,#12253277,transparent); transform:skewY(-3deg); animation:tcg-invoke-strip 1s ease-out both; }
+.tcg-invocation-commander { position:absolute; left:2%; top:28%; width:47%; display:flex; align-items:center; gap:8px; animation:tcg-commander-order 1s ease-out both; }
+.tcg-invocation-commander>img { width:clamp(80px,12vw,155px); height:clamp(110px,16vw,190px); object-fit:contain; object-position:center bottom; flex-shrink:0; filter:drop-shadow(0 4px 8px #0009); }
+.tcg-invocation-commander>div { min-width:0; }
+.tcg-invocation-commander small { display:block; color:var(--invoke-color); font-size:9px; font-weight:700; letter-spacing:.7px; margin-bottom:7px; }
+.tcg-invocation-commander strong { color:#fff1d0; font-size:clamp(12px,1.35vw,18px); line-height:1.45; text-shadow:0 2px 5px #000; }
+.tcg-invocation-art { position:absolute; left:60%; top:30%; width:clamp(90px,17vw,185px); height:clamp(125px,23vw,220px); transform:translateX(-50%); animation:tcg-manifest-action 1s ease-out both; }
+.tcg-invocation-art>img:first-child { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 0 15px var(--invoke-color)); }
+.invocation-cast .tcg-invocation-art>img:first-child { object-fit:cover; border-radius:12px; border:2px solid var(--invoke-color); box-shadow:0 0 22px var(--invoke-color); }
+.tcg-invocation-art .tcg-memory-dish { position:absolute; width:38%; aspect-ratio:1; object-fit:cover; left:-14%; bottom:7%; border:2px solid #f3daaa; border-radius:50%; }
+.tcg-invocation-art>i { position:absolute; inset:25% -16%; border:2px solid var(--invoke-color); border-radius:50%; transform:rotateX(60deg); animation:tcg-chant-orbit .85s ease-out both; }
+.tcg-invocation-art>i:nth-of-type(2) { inset:31% -23%; animation-delay:.09s; }
+.tcg-invocation-art>i:nth-of-type(3) { inset:39% -32%; animation-delay:.18s; }
+.tcg-invocation-label { position:absolute; top:55%; left:48%; width:min(46%,360px); color:#f7e5c1; text-shadow:0 2px 5px #000; animation:tcg-action-outcome 1s ease-out both; padding:8px 10px; background:#09222ae0; border-left:2px solid var(--invoke-color); border-radius:4px; }
+.tcg-invocation-label strong,.tcg-invocation-label span { display:block; }
+.tcg-invocation-label strong { font-size:12px; color:var(--invoke-color); }
+.tcg-invocation-label span { font-size:10px; line-height:1.5; margin-top:4px; }
+.tcg-invocation.is-enemy:before { background:linear-gradient(90deg,#301927ee,#30203977,transparent); }
+.tcg-attack-manifest { position:absolute; width:100px; height:130px; margin:-65px 0 0 -50px; filter:drop-shadow(0 0 12px var(--flight-color)); animation:tcg-spirit-flight .75s cubic-bezier(.5,0,.7,1) .12s both; }
+.tcg-attack-manifest img { width:100%; height:100%; object-fit:contain; }
+.tcg-attack-manifest:after { content:''; position:absolute; left:20%; top:45%; width:70%; height:25%; background:var(--flight-color); filter:blur(14px); border-radius:50%; opacity:.7; }
+@keyframes tcg-spirit-breathe { 50% { transform:translateY(-3px) scale(1.03); } }
+@keyframes tcg-spirit-materialize { 0% { opacity:0; transform:translateY(22px) scale(.35); filter:brightness(2); } 65% { opacity:1; transform:translateY(-4px) scale(1.06); } 100% { transform:none; } }
+@keyframes tcg-spirit-launch { 0%,100% { transform:none; } 35% { transform:translateY(8px) scale(.9); } 65% { transform:translateY(-10px) scale(1.08); } }
+@keyframes tcg-invoke-strip { 0% { opacity:0; transform:translateX(-100%) skewY(-3deg); } 15%,75% { opacity:1; transform:translateX(0) skewY(-3deg); } 100% { opacity:0; transform:translateX(20%) skewY(-3deg); } }
+@keyframes tcg-commander-order { 0% { opacity:0; transform:translateX(-70px); } 18%,62% { opacity:1; transform:none; } 100% { opacity:0; transform:translateX(-15px); } }
+@keyframes tcg-manifest-action { 0%,15% { opacity:0; transform:translateX(-50%) scale(.3) rotate(-8deg); } 38%,70% { opacity:1; transform:translateX(-50%) scale(1); } 100% { opacity:0; transform:translateX(-50%) scale(1.15); } }
+@keyframes tcg-chant-orbit { from { opacity:0; transform:rotateX(60deg) scale(.3); } 45% { opacity:.9; } to { opacity:0; transform:rotateX(60deg) rotateZ(65deg) scale(1.3); } }
+@keyframes tcg-action-outcome { 0%,32% { opacity:0; transform:translateY(10px); } 50%,90% { opacity:1; transform:none; } 100% { opacity:0; } }
+@keyframes tcg-spirit-flight { 0%,10% { opacity:0; transform:scale(.7); } 25% { opacity:1; transform:scale(1.05); } 85% { opacity:1; transform:translate(var(--flight-x),var(--flight-y)) scale(.75); } 100% { opacity:0; transform:translate(var(--flight-x),var(--flight-y)) scale(1.25); } }
+@media(max-width:740px) {
+ .tcg-invocation-commander { left:0; top:27%; width:62%; gap:3px; }
+ .tcg-invocation-commander>img { width:82px; height:125px; }
+ .tcg-invocation-commander small { font-size:7px; }
+ .tcg-invocation-commander strong { font-size:11px; }
+ .tcg-invocation-art { left:78%; top:31%; width:92px; height:125px; }
+ .tcg-invocation-label { top:54%; left:5%; width:90%; max-width:none; padding:5px 8px; }
+ .tcg-invocation-label strong { font-size:10px; }
+ .tcg-invocation-label span { font-size:9px; }
+ .tcg-attack-manifest { width:65px; height:90px; margin:-45px 0 0 -32px; }
+}
+@media(max-height:470px) and (orientation:landscape) {
+ .tcg-invocation-commander { top:26%; width:48%; }
+ .tcg-invocation-commander>img { width:70px; height:95px; }
+ .tcg-invocation-art { top:23%; left:65%; width:75px; height:100px; }
+ .tcg-invocation-label { top:56%; left:43%; width:53%; }
+ .tcg-invocation-label span { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .tcg-invocation,.tcg-attack-manifest { display:none; }
+ .tcg-viewport-battle .tcg-unit .tcg-unit-spirit { animation:none!important; }
+}
+html[data-tcg-reduced-motion=true] .tcg-invocation,html[data-tcg-reduced-motion=true] .tcg-attack-manifest { display:none; }
+html[data-tcg-reduced-motion=true] .tcg-viewport-battle .tcg-unit .tcg-unit-spirit { animation:none!important; }
+
+/* The impact follows the visible charge, instead of competing with it. */
+.action-attack .tcg-fx-projectile,.action-attack .tcg-fx-beam { display:none; }
+.action-attack .tcg-fx-sprite,.action-attack .tcg-fx-halo,.action-attack .tcg-fx-glyph,.action-attack .tcg-fx-particle,.action-attack .tcg-fx-contact,.action-attack .tcg-fx-slash { animation-delay:.56s!important; animation-duration:.42s; }
+.tcg-arena[data-action=attack] .tcg-float-number { animation-delay:.56s; animation-duration:.46s; animation-fill-mode:both; }
+.tcg-arena[data-action=attack] .tcg-unit.is-hit { animation-delay:.56s; }

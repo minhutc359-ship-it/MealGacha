@@ -340,7 +340,7 @@ export function ChestPage() {
         </div>
       </div>
 
-      {event && <div className={`chest-event-banner ${event.themeClass}`}><span>{event.icon}</span><div><strong>{event.title}</strong><small>{event.dishIds.length} món trong banner sự kiện</small></div><Link to="/">Đóng ×</Link></div>}
+      {event && <div className={`chest-event-banner ${event.themeClass}`}><span>{event.icon}</span><div><strong>{event.title}</strong><small>{event.dishIds.length} món trong banner sự kiện</small></div><Link to="/chest">Đóng ×</Link></div>}
       {!event && <Link className="chest-event-link" to="/events">{requestedEventId ? "Sự kiện đã kết thúc hoặc chưa bắt đầu · Xem danh sách →" : "✦ Khám phá các sự kiện ẩm thực →"}</Link>}
 
       <p className="chest-catalog-summary">

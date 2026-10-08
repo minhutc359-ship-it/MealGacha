@@ -18,6 +18,9 @@ import { useAppStore } from "../../store/useAppStore"
 import type { BattleUnit, Combatant } from "../../game/types"
 import { GameCardView } from "./GameCardView"
 import { CombatEffects } from "./CombatEffects"
+import { BattleInvocation } from "./BattleInvocation"
+import { foodSpirit } from "../../game/flavorSpirits"
+import { frameDuration } from "../../game/combatDirection"
 import { StoryScene } from "./StoryScene"
 import { cultureForStage } from "../../game/culture"
 import { Dialog } from "./Dialog"
@@ -80,24 +83,33 @@ function UnitTile({
   onInspect,
 }: UnitProps) {
   const card = CARD_MAP[u.cardId]
+  const spirit = foodSpirit(card)
   return (
     <div className={`tcg-unit-wrap ${ghost ? "is-fallen" : ""}`}>
       <button
-        className={`tcg-unit ${!enemy && u.ready ? "is-ready" : ""} ${
-          selected ? "is-selected" : ""
-        } ${preview?.legal ? "is-target" : ""} ${hit ? "is-hit" : ""} ${
-          source ? "is-acting" : ""
-        } ${summoned ? "is-summoned" : ""}`}
+        className={`tcg-unit ${spirit ? "is-flavor-spirit" : ""} ${
+          !enemy && u.ready ? "is-ready" : ""
+        } ${selected ? "is-selected" : ""} ${
+          preview?.legal ? "is-target" : ""
+        } ${hit ? "is-hit" : ""} ${source ? "is-acting" : ""} ${
+          summoned ? "is-summoned" : ""
+        }`}
         data-unit={u.uid}
         onClick={onClick}
         disabled={disabled || ghost}
-        aria-label={`${
-          enemy ? "Địch" : "Đồng minh"
-        } ${card.name}, công ${u.attack}, máu ${
-          ghost ? 0 : u.health
-        }, chắn ${u.shield}${preview ? `, ${preview.text}` : ""}`}
+        aria-label={`${enemy ? "Địch" : "Đồng minh"} ${card.name}${
+          spirit ? `, Vị Linh ${spirit.name}` : ""
+        }, công ${u.attack}, máu ${ghost ? 0 : u.health}, chắn ${u.shield}${
+          preview ? `, ${preview.text}` : ""
+        }`}
       >
-        {card.art ? (
+        {spirit ? (
+          <>
+            <img className="tcg-unit-memory" src={card.art} alt="" />
+            <img className="tcg-unit-spirit" src={spirit.art} alt="" />
+            <span className="tcg-unit-spirit-tag">VỊ LINH</span>
+          </>
+        ) : card.art ? (
           <img src={card.art} alt="" />
         ) : (
           <span className="tcg-unit-symbol">{card.symbol}</span>
@@ -233,15 +245,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     if (sceneId) return
     const timer = window.setTimeout(
       () => setPlayback({ sequence: replay.sequence, index: frameIndex + 1 }),
-      frameIndex < 0
-        ? 90
-        : frame?.event.kind === "combo"
-          ? 1100
-          : frame?.event.kind === "assist"
-            ? 1050
-            : frame?.event.kind === "attack"
-              ? 820
-              : 690,
+      frameDuration(frame),
     )
     return () => window.clearTimeout(timer)
   }, [busy, replay, frameIndex, frame?.event.kind, sceneId])
@@ -502,6 +506,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
         } ${busy ? "is-resolving" : ""}`}
         ref={arena}
         data-tactic={frame?.event.tacticId}
+        data-action={frame?.event.kind}
         style={{ "--table-color": aura?.color ?? "#9bcea6" } as CSSProperties}
       >
         <div
@@ -832,6 +837,11 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           lượng · 8 lá trên tay
         </p>
         <CombatEffects arena={arena} frame={frame} stamp={stamp} />
+        <BattleInvocation
+          frame={frame}
+          opponent={opponentPortrait}
+          stamp={stamp}
+        />
         {frame?.event.kind === "tactic" && frame.event.tacticId && (
           <div
             className={`tcg-tactic-burst burst-${frame.event.tacticId}`}
@@ -851,11 +861,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </div>
         )}
         {frame &&
-          (["combo", "assist", "rule", "tactic"].includes(frame.event.kind) ||
-            (frame.event.kind === "play" &&
-              !!frame.event.cardId &&
-              CARD_MAP[frame.event.cardId].kind === "spell" &&
-              CARD_MAP[frame.event.cardId].cost >= 3)) && (
+          ["combo", "assist", "rule", "tactic"].includes(frame.event.kind) && (
             <div
               className={`tcg-character-cut-in is-${frame.event.side}`}
               key={`portrait-${stamp}`}
@@ -900,31 +906,6 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             <i />
             <i />
             <i />
-          </div>
-        )}
-        {frame?.event.cardId && frame.event.kind !== "combo" && (
-          <div
-            className={`tcg-action-card ${
-              CARD_MAP[frame.event.cardId].kind === "spell" ? "is-skill" : ""
-            }`}
-            style={
-              {
-                "--skill-color":
-                  SCHOOLS[CARD_MAP[frame.event.cardId].school].color,
-              } as CSSProperties
-            }
-            key={stamp}
-            aria-hidden="true"
-          >
-            <span>{CARD_MAP[frame.event.cardId].symbol}</span>
-            <strong>{CARD_MAP[frame.event.cardId].name}</strong>
-            <small>
-              {frame.event.kind === "attack"
-                ? "TẤN CÔNG"
-                : frame.event.side === "enemy"
-                  ? "ĐỐI THỦ THI TRIỂN"
-                  : "THI TRIỂN"}
-            </small>
           </div>
         )}
       </div>
@@ -1007,6 +988,13 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             <GameCardView card={selectedCard} />
             <p>{selectedCard.text}</p>
             <blockquote>{selectedCard.lore}</blockquote>
+            {foodSpirit(selectedCard) && (
+              <p className="tcg-spirit-explanation">
+                <strong>Món ăn giữ Ấn Vị.</strong>{" "}
+                {foodSpirit(selectedCard)!.memory} Chủ tướng gọi Vị Linh chiến
+                đấu trên Bàn Ký Ức; món ăn là nơi lưu ký ức.
+              </p>
+            )}
           </div>
         </Dialog>
       )}
@@ -1079,6 +1067,13 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             <GameCardView card={CARD_MAP[inspect]} />
             <p>{CARD_MAP[inspect].text}</p>
             <blockquote>{CARD_MAP[inspect].lore}</blockquote>
+            {foodSpirit(CARD_MAP[inspect]) && (
+              <p className="tcg-spirit-explanation">
+                <strong>Món ăn giữ Ấn Vị.</strong>{" "}
+                {foodSpirit(CARD_MAP[inspect])!.memory} Chủ tướng gọi Vị Linh
+                chiến đấu trên Bàn Ký Ức; món ăn là nơi lưu ký ức.
+              </p>
+            )}
           </div>
         </Dialog>
       )}
@@ -1199,8 +1194,8 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             <div className="tcg-tactic-intro">
               <CharacterPortrait id="hero" decorative />
               <p>
-                <b>Lượt 4 · Một lần trong trận</b>Không tốn năng lượng.
-                Chọn hiệu ứng cho bàn đấu của bạn.
+                <b>Lượt 4 · Một lần trong trận</b>Không tốn năng lượng. Chọn
+                hiệu ứng cho bàn đấu của bạn.
               </p>
             </div>
             <div className="tcg-tactic-choices">

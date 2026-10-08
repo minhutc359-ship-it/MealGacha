@@ -1,0 +1,334 @@
+{
+  "mode": "built-in imagegen",
+  "assets": [
+    {
+      "id": "spark",
+      "scene": "A Vietnamese cook's silver ladle releasing one bright ember phoenix spark over a clay kitchen stove, close up, amber fire, dramatic magical trails",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/spark.webp",
+      "prompt": "Use case: stylized-concept. Create one standalone portrait 2:3 trading card illustration for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D cel shaded sculpting, saturated painted surfaces, expressive stylized forms, warm cinematic lighting, sophisticated depth, distinctly not photorealistic. Scene: A Vietnamese cook's silver ladle releasing one bright ember phoenix spark over a clay kitchen stove, close up, amber fire, dramatic magical trails. Strong single focal subject in center with readable silhouette even at card thumbnail size, detailed magical atmosphere, Vietnamese material culture, no generic medieval European armor. Full bleed scene, NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark. Original visual IP, no recognizable copyrighted characters.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "wok-storm",
+      "scene": "A black steel wok sending a spiraling storm of scarlet flame ribbons above a Vietnamese harbor kitchen, dynamic tilted composition",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/wok-storm.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A black steel wok sending a spiraling storm of scarlet flame ribbons above a Vietnamese harbor kitchen, dynamic tilted composition. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "dragon-breath",
+      "scene": "A majestic original dragon formed entirely of crimson fire and cooking steam curling out of an ancient bronze cooking vessel, epic magic",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/dragon-breath.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A majestic original dragon formed entirely of crimson fire and cooking steam curling out of an ancient bronze cooking vessel, epic magic. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "last-flame",
+      "scene": "A young Vietnamese woman with short black bob, indigo jacket and red scarf guarding a single brilliant ember cupped in her hands against a vast dark mist, emotional legendary spell",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/last-flame.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A young Vietnamese woman with short black bob, indigo jacket and red scarf guarding a single brilliant ember cupped in her hands against a vast dark mist, emotional legendary spell. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "tea-break",
+      "scene": "A floating Vietnamese porcelain teacup with jade tea, a serene ring of turquoise water and glowing memory pages, quiet blue courtyard atmosphere",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/tea-break.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A floating Vietnamese porcelain teacup with jade tea, a serene ring of turquoise water and glowing memory pages, quiet blue courtyard atmosphere. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "recipe-scroll",
+      "scene": "An old unlettered bamboo recipe scroll unfurling into luminous blue magical ribbons above a Vietnamese wooden kitchen table, no legible writing",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/recipe-scroll.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An old unlettered bamboo recipe scroll unfurling into luminous blue magical ribbons above a Vietnamese wooden kitchen table, no legible writing. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "tidal-cut",
+      "scene": "A silver chef's knife slicing a towering crescent of sapphire water against dark sea fog, energetic anime spell illustration",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/tidal-cut.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A silver chef's knife slicing a towering crescent of sapphire water against dark sea fog, energetic anime spell illustration. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "sea-memory",
+      "scene": "A radiant pearl orb showing tiny Vietnamese fishing boats and an ancestral riverside kitchen suspended inside turquoise ocean waves, magical memory",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/sea-memory.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A radiant pearl orb showing tiny Vietnamese fishing boats and an ancestral riverside kitchen suspended inside turquoise ocean waves, magical memory. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "herb",
+      "scene": "A glowing medicinal leaf sprig resting in gentle Vietnamese hands, emerald healing motes and a warm forest apothecary, close up",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/herb.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A glowing medicinal leaf sprig resting in gentle Vietnamese hands, emerald healing motes and a warm forest apothecary, close up. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "spring-feast",
+      "scene": "A small Vietnamese spring meal beneath flowering peach branches, joyful jade life magic swirling around ceramic bowls and chopsticks, no characters in foreground",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/spring-feast.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A small Vietnamese spring meal beneath flowering peach branches, joyful jade life magic swirling around ceramic bowls and chopsticks, no characters in foreground. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "forest-oath",
+      "scene": "Several Vietnamese travelers raising their hands as emerald roots form a protective arch and translucent green shields in a forest, hopeful original fantasy",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/forest-oath.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: Several Vietnamese travelers raising their hands as emerald roots form a protective arch and translucent green shields in a forest, hopeful original fantasy. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "rebloom",
+      "scene": "A tiny jade seed blossoming into a luminous giant banyan tree across a mist covered Vietnamese village, epic green restoration magic",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/rebloom.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A tiny jade seed blossoming into a luminous giant banyan tree across a mist covered Vietnamese village, epic green restoration magic. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "seasoning",
+      "scene": "A cook sprinkling golden spice from fingertips into a small clay pot, tiny gold lights becoming a courageous lion shaped aura, warm kitchen magic",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/seasoning.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A cook sprinkling golden spice from fingertips into a small clay pot, tiny gold lights becoming a courageous lion shaped aura, warm kitchen magic. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "family-table",
+      "scene": "A warm Vietnamese wooden family dining table with four empty inviting seats, ceramic shared dishes, glowing golden threads linking seats, dusk outside",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/family-table.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A warm Vietnamese wooden family dining table with four empty inviting seats, ceramic shared dishes, glowing golden threads linking seats, dusk outside. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "iron-ladle",
+      "scene": "An ancient silver iron ladle with a worn wooden handle floating inside an amber protective shield, dramatic relic close up over dark kitchen embers",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/iron-ladle.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An ancient silver iron ladle with a worn wooden handle floating inside an amber protective shield, dramatic relic close up over dark kitchen embers. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "hearth-legacy",
+      "scene": "An elderly Vietnamese grandmother's hands passing an old cooking ladle to a young cook, layered golden silhouettes of remembered kitchens, intimate warm legendary spell",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/hearth-legacy.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An elderly Vietnamese grandmother's hands passing an old cooking ladle to a young cook, layered golden silhouettes of remembered kitchens, intimate warm legendary spell. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "sugar-veil",
+      "scene": "A spectacular rose pink translucent crystalline sugar shield hovering in a Vietnamese moonlit lantern courtyard, prismatic shards protecting a little candle",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/sugar-veil.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A spectacular rose pink translucent crystalline sugar shield hovering in a Vietnamese moonlit lantern courtyard, prismatic shards protecting a little candle. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "sweet-dream",
+      "scene": "A Vietnamese young woman with shoulder length dark hair and rose apron telling a bedtime story to a luminous small lost spirit under a moon and soft pink stars",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/sweet-dream.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A Vietnamese young woman with shoulder length dark hair and rose apron telling a bedtime story to a luminous small lost spirit under a moon and soft pink stars. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "starlight",
+      "scene": "A radiant violet shooting star breaking into pink sugar crystal spears above a Vietnamese lantern rooftop, forceful magic, diagonal action",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/starlight.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A radiant violet shooting star breaking into pink sugar crystal spears above a Vietnamese lantern rooftop, forceful magic, diagonal action. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "moon-banquet",
+      "scene": "A luminous full moon over Vietnamese lanterns and a small festive table with mooncakes, large silver pink protective dome, epic dreamy shield spell",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/moon-banquet.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A luminous full moon over Vietnamese lanterns and a small festive table with mooncakes, large silver pink protective dome, epic dreamy shield spell. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-scout",
+      "scene": "An original adult Vietnamese female scout, short dark hair, rust red practical tunic, carrying a small glowing ember lantern, running along a misty village path, heroic anime RPG adventurer",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-scout.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original adult Vietnamese female scout, short dark hair, rust red practical tunic, carrying a small glowing ember lantern, running along a misty village path, heroic anime RPG adventurer. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-smith",
+      "scene": "An original sturdy adult Vietnamese male smith with rolled brown sleeves, red apron and black hair, forging a silver cooking ladle amid scarlet sparks, heroic anime RPG",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-smith.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original sturdy adult Vietnamese male smith with rolled brown sleeves, red apron and black hair, forging a silver cooking ladle amid scarlet sparks, heroic anime RPG. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-letter",
+      "scene": "An original young adult Vietnamese male sea messenger, blue linen jacket and brown satchel, holding a sealed letter while stepping across a turquoise wave bridge, anime RPG",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-letter.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original young adult Vietnamese male sea messenger, blue linen jacket and brown satchel, holding a sealed letter while stepping across a turquoise wave bridge, anime RPG. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-ferryman",
+      "scene": "An original elderly Vietnamese male ferryman in simple indigo linen clothes and woven conical hat, guiding a wooden river boat through silver fog with a glowing blue oar, anime RPG",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-ferryman.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original elderly Vietnamese male ferryman in simple indigo linen clothes and woven conical hat, guiding a wooden river boat through silver fog with a glowing blue oar, anime RPG. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-herbalist",
+      "scene": "An original adult Vietnamese female herbalist, braided black hair, modest jade green blouse, wicker basket of medicinal leaves, casting gentle green healing magic in a lush garden, anime RPG",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-herbalist.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original adult Vietnamese female herbalist, braided black hair, modest jade green blouse, wicker basket of medicinal leaves, casting gentle green healing magic in a lush garden, anime RPG. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-gardener",
+      "scene": "An original adult Vietnamese male gardener in moss green linen shirt with sleeves rolled, planting a radiant seed that grows into an emerald protective tree at dawn, anime RPG",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-gardener.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original adult Vietnamese male gardener in moss green linen shirt with sleeves rolled, planting a radiant seed that grows into an emerald protective tree at dawn, anime RPG. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-porter",
+      "scene": "An original adult Vietnamese male porter wearing a brown ao ba ba and woven conical hat, carrying a shoulder pole with a cooking pot and provisions, golden shield aura, heroic anime RPG",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-porter.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original adult Vietnamese male porter wearing a brown ao ba ba and woven conical hat, carrying a shoulder pole with a cooking pot and provisions, golden shield aura, heroic anime RPG. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-cook",
+      "scene": "An original adult Vietnamese female traveling cook with a black bun and ochre apron, cooking on a three stone campfire, golden sparks forming a shield, heroic anime RPG",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-cook.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original adult Vietnamese female traveling cook with a black bun and ochre apron, cooking on a three stone campfire, golden sparks forming a shield, heroic anime RPG. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-pastry",
+      "scene": "An original adult Vietnamese female pastry maker in a lavender apron, holding a glowing mooncake under a moonlit window with pink protective magic, anime RPG",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-pastry.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original adult Vietnamese female pastry maker in a lavender apron, holding a glowing mooncake under a moonlit window with pink protective magic, anime RPG. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-cartographer",
+      "scene": "An original adult Vietnamese female cartographer, dark braid and indigo traveling coat, drawing a map of luminous violet constellations with a silver brush, anime RPG",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-cartographer.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original adult Vietnamese female cartographer, dark braid and indigo traveling coat, drawing a map of luminous violet constellations with a silver brush, anime RPG. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-flare",
+      "scene": "A confident Vietnamese woman with short black bob and indigo jacket tossing a wok as a wide phoenix shaped wall of flame sweeps across a foggy battle road, bold scarlet spell action",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-flare.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A confident Vietnamese woman with short black bob and indigo jacket tossing a wok as a wide phoenix shaped wall of flame sweeps across a foggy battle road, bold scarlet spell action. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-rain",
+      "scene": "A silver blue magical rain of salt crystals falling onto dark shadow silhouettes beside Vietnamese fishing boats, wide sweeping spell, turquoise glow",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-rain.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A silver blue magical rain of salt crystals falling onto dark shadow silhouettes beside Vietnamese fishing boats, wide sweeping spell, turquoise glow. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-thorns",
+      "scene": "Giant emerald roots tearing through a wall of violet fog around a Vietnamese village banyan tree, wide sweeping nature spell, strong diagonal energy",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-thorns.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: Giant emerald roots tearing through a wall of violet fog around a Vietnamese village banyan tree, wide sweeping nature spell, strong diagonal energy. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-banquet",
+      "scene": "A group of original modest Vietnamese adult travelers sharing steaming rice around a cloth picnic table beside a campfire, golden healing threads uniting them, hopeful anime RPG scene",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-banquet.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A group of original modest Vietnamese adult travelers sharing steaming rice around a cloth picnic table beside a campfire, golden healing threads uniting them, hopeful anime RPG scene. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "caravan-map",
+      "scene": "A floating unlettered indigo star map showing a luminous ladle constellation and a path toward a warmly lit Vietnamese village kitchen, violet discovery magic",
+      "transparent": false,
+      "path": "public/assets/tcg/cards/caravan-map.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: A floating unlettered indigo star map showing a luminous ladle constellation and a path toward a warmly lit Vietnamese village kitchen, violet discovery magic. One standalone portrait 2:3 full bleed trading card illustration, strong central focal subject readable at thumbnail size, Vietnamese setting details, atmospheric painted scene. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "spirit-ember",
+      "scene": "An original small fierce flame fox spirit, made of amber cooking fire and glowing steam, curled red tail, expressive gold anime eyes, floating dynamic attack pose, tiny silver ladle charm",
+      "transparent": true,
+      "path": "public/assets/tcg/spirits/ember.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original small fierce flame fox spirit, made of amber cooking fire and glowing steam, curled red tail, expressive gold anime eyes, floating dynamic attack pose, tiny silver ladle charm. One isolated character/creature with clean transparent background outside silhouette, NO scene, NO floor, NO outside glow haze. Portrait 2:3, complete silhouette inside canvas. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "spirit-tide",
+      "scene": "An original elegant turquoise koi dragon spirit formed of soup steam and water, friendly expressive blue anime eyes, flowing translucent fins, floating dynamic curling pose, ceramic bowl charm",
+      "transparent": true,
+      "path": "public/assets/tcg/spirits/tide.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original elegant turquoise koi dragon spirit formed of soup steam and water, friendly expressive blue anime eyes, flowing translucent fins, floating dynamic curling pose, ceramic bowl charm. One isolated character/creature with clean transparent background outside silhouette, NO scene, NO floor, NO outside glow haze. Portrait 2:3, complete silhouette inside canvas. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "spirit-grove",
+      "scene": "An original small jade leaf deer spirit formed of fragrant herbs and cooking steam, leaf antlers, expressive green anime eyes, floating protective pose, bamboo leaf charm",
+      "transparent": true,
+      "path": "public/assets/tcg/spirits/grove.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original small jade leaf deer spirit formed of fragrant herbs and cooking steam, leaf antlers, expressive green anime eyes, floating protective pose, bamboo leaf charm. One isolated character/creature with clean transparent background outside silhouette, NO scene, NO floor, NO outside glow haze. Portrait 2:3, complete silhouette inside canvas. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "spirit-hearth",
+      "scene": "An original courageous golden rice lion spirit formed of warm rice steam, grain shaped mane, expressive amber anime eyes, floating protective pose, woven rice basket charm",
+      "transparent": true,
+      "path": "public/assets/tcg/spirits/hearth.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original courageous golden rice lion spirit formed of warm rice steam, grain shaped mane, expressive amber anime eyes, floating protective pose, woven rice basket charm. One isolated character/creature with clean transparent background outside silhouette, NO scene, NO floor, NO outside glow haze. Portrait 2:3, complete silhouette inside canvas. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "spirit-sugar",
+      "scene": "An original small lavender moon rabbit spirit formed of sweet fragrant steam, glowing pink ears and crystalline star ribbons, expressive anime eyes, floating nimble pose, mooncake charm",
+      "transparent": true,
+      "path": "public/assets/tcg/spirits/sugar.webp",
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: An original small lavender moon rabbit spirit formed of sweet fragrant steam, glowing pink ears and crystalline star ribbons, expressive anime eyes, floating nimble pose, mooncake charm. One isolated character/creature with clean transparent background outside silhouette, NO scene, NO floor, NO outside glow haze. Portrait 2:3, complete silhouette inside canvas. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    },
+    {
+      "id": "hero-command",
+      "scene": "The SAME young adult Vietnamese heroine from the input reference, same black loose bun, teal scarf, cream rolled sleeve blouse and brown apron. She confidently commands her team: left arm extended toward the right, silver ladle raised diagonally in right hand, determined open mouth calling to allies, dynamic forward leaning waist up action pose, complete arms within frame. Preserve her recognizable face, clothing and sculpted anime 3D cel shaded rendering.",
+      "transparent": true,
+      "path": "public/assets/tcg/characters/anime/hero-command.webp",
+      "reference": true,
+      "prompt": "Use case: stylized-concept. Asset for original Vietnamese culinary fantasy game MealGacha, anime RPG with polished 3D CEL SHADED sculpting, saturated painted surfaces, simplified smooth toon materials, expressive stylized forms and cinematic light. NOT a photograph. Scene: The SAME young adult Vietnamese heroine from the input reference, same black loose bun, teal scarf, cream rolled sleeve blouse and brown apron. She confidently commands her team: left arm extended toward the right, silver ladle raised diagonally in right hand, determined open mouth calling to allies, dynamic forward leaning waist up action pose, complete arms within frame. Preserve her recognizable face, clothing and sculpted anime 3D cel shaded rendering.. One isolated character/creature with clean transparent background outside silhouette, NO scene, NO floor, NO outside glow haze. Portrait 2:3, complete silhouette inside canvas. NO card border, NO UI, NO text, NO letters, NO numbers, NO logos, NO watermark, original visual IP.",
+      "mode": "built-in imagegen"
+    }
+  ]
+}

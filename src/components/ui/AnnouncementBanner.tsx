@@ -72,7 +72,7 @@ export function AnnouncementBanner() {
           {banner.title && <div className="announcement-banner-heading"><small>✦ SỰ KIỆN ĐANG DIỄN RA</small><h2>{banner.title}</h2></div>}
         </div>
         <div className="announcement-banner-actions">
-          <Link to={banner.eventId ? `/?event=${encodeURIComponent(banner.eventId)}` : "/events"} onClick={closeBanner}>{banner.eventId ? "Mở rương sự kiện →" : "Xem sự kiện →"}</Link>
+          <Link to={banner.eventId ? `/chest?event=${encodeURIComponent(banner.eventId)}` : "/events"} onClick={closeBanner}>{banner.eventId ? "Mở rương sự kiện →" : "Xem sự kiện →"}</Link>
           <label>
             <input
               type="checkbox"

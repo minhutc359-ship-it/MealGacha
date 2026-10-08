@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom"
 import { useAppStore } from "../../store/useAppStore"
 import { hasUnlimitedChestAccess } from "../../domain/achievements"
+import { ModeSwitch } from "./ModeSwitch"
 
 const links = [
   { to: "/", label: "Game thẻ bài" },
@@ -16,13 +17,15 @@ export function TopNav() {
   const user = useAppStore((state) => state.user)
   const dishes = useAppStore((state) => state.dishes)
   const unlimited = hasUnlimitedChestAccess(user, dishes)
-  const soundEnabled = useAppStore((state) => state.user.preferences.soundEnabled)
+  const soundEnabled = useAppStore(
+    (state) => state.user.preferences.soundEnabled,
+  )
   const updatePreference = useAppStore((state) => state.updatePreference)
 
   return (
     <header className="client-topbar">
       <NavLink
-        to="/"
+        to="/chest"
         className="brand-lockup"
         aria-label="Rương Vị Giác — Trang chủ"
       >
@@ -45,7 +48,11 @@ export function TopNav() {
         ))}
       </nav>
 
-      <div className={`topbar-wallet ${unlimited ? "is-unlimited" : ""}`} aria-label={unlimited ? "Rương vô hạn" : `${keys} chìa khóa`}>
+      <div
+        className={`topbar-wallet ${unlimited ? "is-unlimited" : ""}`}
+        aria-label={unlimited ? "Rương vô hạn" : `${keys} chìa khóa`}
+      >
+        <ModeSwitch mode="chest" />
         <button
           className="quick-sound-toggle"
           onClick={() => updatePreference("soundEnabled", !soundEnabled)}
