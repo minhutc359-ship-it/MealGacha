@@ -335,6 +335,8 @@ button.tcg-hero { text-align:left; }
 .tcg-unit-stats .shield { color:#a0d3d6; font-size:10px; }
 .tcg-unit small { z-index:2; position:absolute; bottom:5px; width:100%; font-size:6px; color:#b4c4a0; }
 .tcg-unit.is-ready { border-color:#e6c886; box-shadow:0 0 14px #c5bd5326; }
+.tcg-unit.is-ready img { filter:saturate(1.08) brightness(1.04); }
+.tcg-unit.is-acting { filter:drop-shadow(0 0 10px #f3d68b70); }
 .tcg-unit.is-selected { outline:2px solid #f0d388; outline-offset:3px; }
 .tcg-hero.is-target,.tcg-unit.is-target { border-color:#e9a686; cursor:crosshair; }
 .tcg-turn-bar { display:flex; align-items:center; justify-content:space-between; gap:14px; border-top:1px solid #d5dcb328; border-bottom:1px solid #d5dcb328; padding:11px 0; }
@@ -573,10 +575,10 @@ html[data-tcg-reduced-motion='true'] .tcg-app * { animation:none!important; tran
 .tcg-unit.is-acting { animation:tcg-lunge .45s ease-in-out; }
 .tcg-unit-wrap.is-fallen { pointer-events:none; animation:tcg-fall .8s ease-in both; }
 .tcg-combat-fx { position:absolute; inset:0; width:100%; height:100%; z-index:20; pointer-events:none; overflow:visible; }
-.tcg-energy-trail { stroke:currentColor; stroke-width:5; stroke-linecap:round; stroke-dasharray:.15 .85; animation:tcg-trail .42s ease-out both; opacity:.9; }
-.fx-attack .tcg-energy-trail { stroke:#f2ddac; stroke-width:3; }
-.tcg-impact-ring { fill:none; stroke:currentColor; stroke-width:3; animation:tcg-ring .6s .17s ease-out both; }
-.tcg-impact-ray { stroke:currentColor; stroke-width:3; stroke-linecap:round; animation:tcg-rays .55s .2s ease-out both; }
+.tcg-energy-trail { stroke:currentColor; stroke-width:5; stroke-linecap:round; stroke-dasharray:.15 .85; animation:tcg-trail .42s ease-out both; opacity:.95; filter:drop-shadow(0 0 5px currentColor); }
+.fx-attack .tcg-energy-trail { stroke:#f2ddac; stroke-width:3.5; }
+.tcg-impact-ring { fill:none; stroke:currentColor; stroke-width:3; animation:tcg-ring .6s .17s ease-out both; filter:drop-shadow(0 0 5px currentColor); }
+.tcg-impact-ray { stroke:currentColor; stroke-width:3; stroke-linecap:round; animation:tcg-rays .55s .2s ease-out both; filter:drop-shadow(0 0 4px currentColor); }
 .tcg-action-card { position:absolute; left:50%; top:40%; transform:translate(-50%,-50%); background:#122b28f2; border:1px solid #e7c988; border-radius:8px; padding:11px 23px; display:flex; align-items:center; flex-direction:column; gap:5px; color:#f5e5bd; box-shadow:0 10px 35px #071b1977; z-index:19; pointer-events:none; animation:tcg-action-reveal .68s ease-out both; min-width:180px; }
 .tcg-action-card>span { font-size:30px; }
 .tcg-action-card strong { font:17px Georgia,serif; text-align:center; }
@@ -708,3 +710,79 @@ html[data-tcg-reduced-motion='true'] .tcg-combat-fx,html[data-tcg-reduced-motion
   .tcg-dialog>header h2 { font-size:21px; line-height:1.35; }
   .tcg-dialog>header .tcg-icon-button { flex-shrink:0; }
 }
+
+/* Campaign atlas: a living route layered over the illustrated world map. */
+.tcg-world-map-panel { margin:22px 0 30px; padding:clamp(16px,3vw,28px); overflow:hidden; background:linear-gradient(145deg,#f6f1df,#eee9d6); border:1px solid #d6cda9; border-radius:12px; box-shadow:0 12px 28px #34513b0d; }
+.tcg-world-map-heading { display:flex; justify-content:space-between; align-items:flex-end; gap:16px; margin-bottom:18px; }
+.tcg-world-map-heading h2 { margin:8px 0 0; color:#365744; font:clamp(22px,3vw,30px)/1.15 Georgia,serif; }
+.tcg-world-map-heading p { margin:7px 0 0; color:#7a846e; font-size:10px; line-height:1.6; }
+.tcg-world-map-heading>strong { flex-shrink:0; color:#9c7841; font:32px/1 Georgia,serif; }
+.tcg-world-map-heading>strong small { color:#9a987e; font:8px 'Be Vietnam Pro',sans-serif; }
+.tcg-world-map { position:relative; isolation:isolate; width:min(100%,820px); aspect-ratio:1.32/1; min-height:270px; margin:0 auto; overflow:hidden; border:5px solid #e7d8ae; border-radius:10px; background:#183c37; box-shadow:0 8px 22px #243d3533,inset 0 0 0 1px #fff8d0; }
+.tcg-world-map-art { position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:fill; }
+.tcg-world-map-shade { position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg,#132c231c,#122e2b0a 48%,#102b2540); pointer-events:none; }
+.tcg-world-map-route { position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; }
+.tcg-route-underlay,.tcg-route-progress { fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.tcg-route-underlay { stroke:#fff3ca9c; stroke-width:10; stroke-dasharray:1.2 1.8; filter:drop-shadow(0 1px 2px #263729c9); }
+.tcg-route-progress { stroke:url(#tcg-route-gradient); stroke-width:5; stroke-linecap:round; filter:drop-shadow(0 0 5px #fff1ad); transition:stroke-dasharray .8s cubic-bezier(.2,.8,.2,1); }
+.tcg-map-stop { position:absolute; z-index:2; display:flex; flex-direction:column; align-items:center; width:124px; padding:0; border:0; background:none; color:#fff6dc; transform:translate(-50%,-50%); text-align:center; cursor:pointer; }
+.tcg-map-stop:disabled { cursor:not-allowed; }
+.tcg-map-pin { position:relative; display:grid; place-items:center; width:42px; height:42px; border:2px solid #f9e9b8; border-radius:50%; background:linear-gradient(145deg,#315749ed,#173b35ed); color:#f2d28c; box-shadow:0 3px 12px #122821a6,0 0 0 4px #ede0b959; font:20px Georgia,serif; transition:transform .2s,box-shadow .2s,background .2s; }
+.tcg-map-stop.is-current .tcg-map-pin { border-color:#fff0b5; background:linear-gradient(145deg,#916b36,#60492e); box-shadow:0 0 0 5px #e9c77966,0 0 24px #f4ce7b; animation:tcg-map-pulse 2.8s ease-in-out infinite; }
+.tcg-map-stop.is-complete .tcg-map-pin { border-color:#f4dda1; background:linear-gradient(145deg,#527950,#274d42); color:#fff3bb; }
+.tcg-map-stop.is-locked { opacity:.8; }
+.tcg-map-stop.is-locked .tcg-map-pin { border-color:#e5d6aeaa; background:#263b36dc; color:#d4ccb1; box-shadow:0 2px 8px #172a27a8; }
+.tcg-map-stop-label { display:flex; flex-direction:column; gap:3px; max-width:100%; margin-top:7px; padding:5px 9px 6px; border:1px solid #f5e6c44a; border-radius:6px; background:#173b35e8; box-shadow:0 3px 9px #17282065; line-height:1.2; }
+.tcg-map-stop-label small { color:#e6c77f; font-size:6px; letter-spacing:1px; }
+.tcg-map-stop-label strong { overflow:hidden; color:#fff5db; font:11px/1.2 Georgia,serif; text-overflow:ellipsis; white-space:nowrap; }
+.tcg-map-stop.is-locked .tcg-map-stop-label { background:#1c302fdb; }
+.tcg-map-stop.is-locked .tcg-map-stop-label small,.tcg-map-stop.is-locked .tcg-map-stop-label strong { color:#d6d2be; }
+.tcg-map-stop:not(:disabled):hover .tcg-map-pin,.tcg-map-stop:focus-visible .tcg-map-pin { transform:translateY(-3px) scale(1.08); box-shadow:0 0 0 5px #f2d4887a,0 0 25px #f5d589; }
+.tcg-map-stop:focus-visible { outline:2px solid #fff4c4; outline-offset:5px; border-radius:9px; }
+.tcg-map-end-mark { position:absolute; left:87%; top:10%; z-index:1; color:#fff0ad; font-size:20px; text-shadow:0 0 12px #ffe28d; animation:tcg-map-star 3s ease-in-out infinite; pointer-events:none; }
+.tcg-world-map-legend { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px 22px; margin-top:14px; color:#82856e; font-size:8px; }
+.tcg-world-map-legend>span { display:flex; align-items:center; gap:6px; }
+.tcg-world-map-legend i { width:9px; height:9px; border:1px solid #9d8958; border-radius:50%; background:#b28d4d; }
+.tcg-world-map-legend i.is-cleared { border-color:#5a8058; background:#5a8058; }
+.tcg-chapter { scroll-margin-top:24px; transition:transform .22s,box-shadow .22s; }
+.tcg-chapter:hover { transform:translateY(-3px); box-shadow:0 12px 28px #314d3918; }
+.tcg-chapter-art { overflow:hidden; }
+.tcg-chapter-art img:not(.tcg-portrait) { transition:transform .7s cubic-bezier(.2,.7,.25,1),filter .4s; }
+.tcg-chapter:hover .tcg-chapter-art img:not(.tcg-portrait) { transform:scale(1.045); }
+.tcg-chapter-art:after { background:linear-gradient(180deg,#112d2910 0%,#112d2940 35%,#102a29ed 100%); }
+.tcg-chapter-art>b { top:19px; right:20px; bottom:auto; z-index:2; display:grid; place-items:center; width:35px; height:35px; border:1px solid #ead28d8a; border-radius:50%; background:#183b36b8; font-size:16px; }
+.tcg-chapter-art>.tcg-chapter-character { position:absolute; z-index:2; right:20px; bottom:20px; width:59px; height:59px; border:2px solid #f1d899; box-shadow:0 3px 14px #10251fcc,0 0 0 4px #e5c67736; object-position:center 16%; animation:tcg-portrait-float 5s ease-in-out infinite; }
+.tcg-chapter-art h2 { max-width:calc(100% - 52px); text-shadow:0 3px 14px #0b211ee0; }
+.tcg-stages>button { transition:padding .18s,background .18s,color .18s; }
+.tcg-stages>button:not(:disabled):hover { padding-inline:8px; background:#f3f1e6; color:#264e3d; }
+.tcg-stages>button:disabled { opacity:.58; }
+@keyframes tcg-map-pulse { 0%,100% { box-shadow:0 0 0 4px #e9c77955,0 0 17px #f4ce7b99; } 50% { box-shadow:0 0 0 7px #e9c77933,0 0 27px #f4ce7b; } }
+@keyframes tcg-map-star { 0%,100% { transform:scale(.85) rotate(-8deg); opacity:.72; } 50% { transform:scale(1.15) rotate(8deg); opacity:1; } }
+@keyframes tcg-portrait-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
+@media(max-width:700px) {
+  .tcg-world-map-panel { padding:15px; }
+  .tcg-world-map { min-height:260px; border-width:3px; }
+  .tcg-map-stop { width:93px; }
+  .tcg-map-pin { width:34px; height:34px; font-size:16px; }
+  .tcg-map-stop-label { margin-top:5px; padding:4px 6px; }
+  .tcg-map-stop-label small { font-size:5px; }
+  .tcg-map-stop-label strong { font-size:9px; }
+  .tcg-chapter-art>.tcg-chapter-character { width:48px; height:48px; right:14px; bottom:14px; }
+  .tcg-chapter-art>b { right:15px; top:15px; width:30px; height:30px; }
+}
+@media(max-width:430px) {
+  .tcg-world-map-panel { padding:12px; }
+  .tcg-world-map { min-height:250px; }
+  .tcg-map-stop { width:78px; }
+  .tcg-map-pin { width:30px; height:30px; border-width:1px; }
+  .tcg-map-stop-label { max-width:86px; padding:3px 5px; }
+  .tcg-map-stop-label strong { font-size:8px; }
+  .tcg-world-map-legend { gap:7px 12px; font-size:7px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .tcg-map-stop.is-current .tcg-map-pin,.tcg-map-end-mark,.tcg-chapter-art>.tcg-chapter-character { animation:none; }
+  .tcg-chapter,.tcg-stages>button,.tcg-map-stop .tcg-map-pin { transition:none; }
+  .tcg-world-map-route .tcg-route-progress { transition:none; }
+}
+html[data-tcg-reduced-motion='true'] .tcg-map-stop.is-current .tcg-map-pin,html[data-tcg-reduced-motion='true'] .tcg-map-end-mark,html[data-tcg-reduced-motion='true'] .tcg-chapter-art>.tcg-chapter-character { animation:none; }
+html[data-tcg-reduced-motion='true'] .tcg-chapter,html[data-tcg-reduced-motion='true'] .tcg-stages>button,html[data-tcg-reduced-motion='true'] .tcg-map-stop .tcg-map-pin { transition:none; }
