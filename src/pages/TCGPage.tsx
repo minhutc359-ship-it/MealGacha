@@ -57,6 +57,22 @@ const paths: Record<string, string> = {
   settings:
     "M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2",
 }
+const CHAPTER_GUARDIANS = [
+  "bach",
+  "nhien",
+  "moc",
+  "hai",
+  "lien",
+  "hero",
+] as const
+const MAP_STOPS = [
+  { left: "19%", top: "22%" },
+  { left: "18%", top: "76%" },
+  { left: "49%", top: "40%" },
+  { left: "62%", top: "76%" },
+  { left: "79%", top: "44%" },
+  { left: "81%", top: "17%" },
+]
 function Icon({ name }: { name: string }) {
   return (
     <svg
@@ -605,6 +621,135 @@ export function TCGPage() {
                   </div>
                   <CultureJournal />
                   <MemoryJournal />
+                  <section
+                    className="tcg-world-map-panel"
+                    aria-label="Bản đồ chiến dịch"
+                  >
+                    <div className="tcg-world-map-heading">
+                      <div>
+                        <span className="tcg-kicker">ĐƯỜNG VỀ BÀN ĂN</span>
+                        <h2>Những ngọn lửa đang chờ</h2>
+                        <p>Chọn một điểm sáng để xem chương và ký ức tại đó.</p>
+                      </div>
+                      <strong>
+                        {current.clearedStages.length}
+                        <small> / 18 chặng</small>
+                      </strong>
+                    </div>
+                    <div className="tcg-world-map">
+                      <img
+                        className="tcg-world-map-art"
+                        src="/assets/tcg/map/meal-world-map.webp"
+                        alt="Bản đồ kỳ ảo nối phố đèn lồng, bến cảng, khu vườn, biển ký ức, thành phố đường sao và bàn tiệc bình minh"
+                        width="1024"
+                        height="1024"
+                        decoding="async"
+                      />
+                      <div className="tcg-world-map-shade" aria-hidden="true" />
+                      <svg
+                        className="tcg-world-map-route"
+                        viewBox="0 0 1000 1000"
+                        preserveAspectRatio="none"
+                        aria-hidden="true"
+                      >
+                        <defs>
+                          <linearGradient
+                            id="tcg-route-gradient"
+                            x1="0"
+                            y1="0"
+                            x2="1"
+                            y2="1"
+                          >
+                            <stop offset="0%" stopColor="#ffe9a3" />
+                            <stop offset="100%" stopColor="#efad62" />
+                          </linearGradient>
+                        </defs>
+                        <path
+                          className="tcg-route-underlay"
+                          pathLength="100"
+                          d="M190 220 C105 385 105 600 180 760 C285 760 385 575 490 400 C565 465 625 610 620 760 C705 720 765 580 790 440 C825 335 830 235 810 170"
+                        />
+                        <path
+                          className="tcg-route-progress"
+                          pathLength="100"
+                          d="M190 220 C105 385 105 600 180 760 C285 760 385 575 490 400 C565 465 625 610 620 760 C705 720 765 580 790 440 C825 335 830 235 810 170"
+                          style={{
+                            strokeDasharray: `${(current.clearedStages.length / 18) * 100} 100`,
+                          }}
+                        />
+                      </svg>
+                      {CHAPTERS.map((chapter, index) => {
+                        const cleared = chapter.stages.filter((stage) =>
+                          current.clearedStages.includes(stage.id),
+                        ).length
+                        const complete = cleared === chapter.stages.length
+                        const unlocked = isStageUnlocked(
+                          chapter.stages[0].id,
+                          current.clearedStages,
+                        )
+                        return (
+                          <button
+                            key={chapter.id}
+                            className={`tcg-map-stop ${
+                              complete
+                                ? "is-complete"
+                                : unlocked
+                                  ? "is-current"
+                                  : "is-locked"
+                            }`}
+                            style={MAP_STOPS[index]}
+                            disabled={!unlocked}
+                            aria-label={
+                              unlocked
+                                ? `Đến chương ${index + 1}: ${chapter.title}, ${cleared} trên 3 chặng đã vượt qua`
+                                : `Chương ${index + 1} chưa mở`
+                            }
+                            title={
+                              unlocked
+                                ? `${chapter.title} · ${cleared}/3 chặng`
+                                : `Chương ${index + 1} · chưa mở`
+                            }
+                            onClick={() =>
+                              document
+                                .getElementById(`chapter-${chapter.id}`)
+                                ?.scrollIntoView({
+                                  behavior: "smooth",
+                                  block: "center",
+                                })
+                            }
+                          >
+                            <span className="tcg-map-pin">
+                              {complete
+                                ? "✓"
+                                : unlocked
+                                  ? SCHOOLS[chapter.school].symbol
+                                  : "◇"}
+                            </span>
+                            <span className="tcg-map-stop-label">
+                              <small>CHƯƠNG 0{index + 1}</small>
+                              <strong>
+                                {unlocked
+                                  ? chapter.title
+                                  : `Ký ức ${index + 1}`}
+                              </strong>
+                            </span>
+                          </button>
+                        )
+                      })}
+                      <span className="tcg-map-end-mark" aria-hidden="true">
+                        ✦
+                      </span>
+                    </div>
+                    <div className="tcg-world-map-legend">
+                      <span>
+                        <i className="is-open" /> Điểm sáng · chương đã mở
+                      </span>
+                      <span>
+                        <i className="is-cleared" /> Đã hoàn thành
+                      </span>
+                      <span>Đường vàng · tiến trình chiến dịch</span>
+                    </div>
+                  </section>
                   <div className="tcg-chapter-grid">
                     {CHAPTERS.map((ch, i) => {
                       const unlocked = isStageUnlocked(
@@ -613,6 +758,7 @@ export function TCGPage() {
                       )
                       return (
                         <section
+                          id={`chapter-${ch.id}`}
                           className={`tcg-chapter ${
                             unlocked ? "" : "is-locked"
                           }`}
@@ -635,6 +781,13 @@ export function TCGPage() {
                               <h2>{ch.title}</h2>
                             </div>
                             <b>{unlocked ? SCHOOLS[ch.school].symbol : "⚿"}</b>
+                            {unlocked && (
+                              <CharacterPortrait
+                                id={CHAPTER_GUARDIANS[i]}
+                                decorative
+                                className="tcg-chapter-character"
+                              />
+                            )}
                           </div>
                           <p>
                             {unlocked

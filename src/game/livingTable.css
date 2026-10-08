@@ -1,10 +1,12 @@
 /* Living Table: original portraits and boards, bounded to the existing arena. */
-.tcg-portrait { display:block; width:64px; height:64px; flex-shrink:0; object-fit:cover; border-radius:50%; border:2px solid #c6aa77; background:#173d3e; }
+.tcg-portrait { display:block; width:64px; height:64px; flex-shrink:0; object-fit:cover; object-position:center 18%; border-radius:50%; border:2px solid #c6aa77; background:#173d3e; box-shadow:0 4px 13px #102e2c45; }
 .tcg-speaker-row { display:flex; align-items:center; gap:12px; margin:5px 0 12px; }
 .tcg-speaker-row .tcg-portrait { width:64px; height:64px; box-shadow:0 5px 18px #132c3030; }
 .tcg-speaker-row .tcg-scene-speaker { margin:0; }
 .tcg-player>.tcg-portrait { width:36px; height:36px; }
-.tcg-hero .tcg-avatar { padding:0; overflow:hidden; }
+.tcg-hero .tcg-avatar { padding:0; overflow:hidden; box-shadow:0 0 0 3px #d7c37a21,0 0 15px #e0c37528; }
+.tcg-hero.enemy .tcg-avatar { border-color:#d99c7e; box-shadow:0 0 0 3px #d99c7e20,0 0 15px #dd89642a; }
+.tcg-hero .tcg-avatar>.tcg-portrait { animation:tcg-portrait-float 4.5s ease-in-out infinite; }
 .tcg-hero .tcg-avatar>.tcg-portrait { width:100%; height:100%; border:0; border-radius:inherit; object-position:center 30%; }
 .tcg-living-table { isolation:isolate; }
 .tcg-board-art { position:absolute; inset:0; z-index:-2; background-size:cover; background-position:center; opacity:.62; animation:tcg-board-reveal .8s ease-out; pointer-events:none; }
