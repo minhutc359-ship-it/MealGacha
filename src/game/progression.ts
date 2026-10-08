@@ -1,6 +1,7 @@
 import { CARD_MAP, CARDS, STARTER_DECK, STARTER_IDS, RARITIES } from "./catalog"
 import { settleRunCombat, expeditionRewardAvailable } from "./expedition"
 import { settleJourney } from "./journeys"
+import { battleOutcome } from "./battleOutcome"
 import { STAGES } from "./story"
 import { getDateKey } from "../domain/dateKey"
 import type { GameSave, GameStats, School } from "./types"
@@ -64,12 +65,14 @@ export const PACKS: {
   school?: School
   description: string
   symbol: string
+  coinCost: number
 }[] = [
   {
     id: "origin",
     name: "Khởi nguyên",
     description: "Mọi hệ · Món ăn và bí thuật",
     symbol: "⬡",
+    coinCost: 250,
   },
   {
     id: "ember",
@@ -77,6 +80,7 @@ export const PACKS: {
     school: "ember",
     description: "Hỏa vị · Tấn công và xung phong",
     symbol: "✹",
+    coinCost: 350,
   },
   {
     id: "tide",
@@ -84,6 +88,7 @@ export const PACKS: {
     school: "tide",
     description: "Hải vị · Rút bài và kiểm soát",
     symbol: "◈",
+    coinCost: 350,
   },
   {
     id: "grove",
@@ -91,6 +96,7 @@ export const PACKS: {
     school: "grove",
     description: "Thanh vị · Bảo vệ và hồi phục",
     symbol: "❧",
+    coinCost: 350,
   },
   {
     id: "hearth",
@@ -98,6 +104,7 @@ export const PACKS: {
     school: "hearth",
     description: "Gia vị · Hộ vệ và cường hóa",
     symbol: "⬡",
+    coinCost: 350,
   },
   {
     id: "sugar",
@@ -105,6 +112,7 @@ export const PACKS: {
     school: "sugar",
     description: "Ngọt vị · Lá chắn và phép thuật",
     symbol: "✧",
+    coinCost: 350,
   },
 ]
 interface PackResult {
@@ -119,12 +127,16 @@ export function openPack(
 ): PackResult {
   const pack = PACKS.find((p) => p.id === packId)
   if (!pack) return { save, cards: [], error: "Gói thẻ không tồn tại." }
-  if (!save.packTickets && save.coins < 100)
-    return { save, cards: [], error: "Cần 100 xu hoặc 1 vé gói thẻ." }
+  if (!save.packTickets && save.coins < pack.coinCost)
+    return {
+      save,
+      cards: [],
+      error: `Cần ${pack.coinCost} xu hoặc 1 vé gói thẻ.`,
+    }
   let next = {
     ...save,
     packTickets: Math.max(0, save.packTickets - 1),
-    coins: save.packTickets ? save.coins : save.coins - 100,
+    coins: save.packTickets ? save.coins : save.coins - pack.coinCost,
     pity: save.pity + 1,
   }
   const pool = CARDS.filter((c) => !pack.school || c.school === pack.school)
@@ -167,9 +179,15 @@ export function openPack(
   return { save: next, cards: ids }
 }
 export function settleBattle(save: GameSave): GameSave {
-  if (save.battle?.sideQuest || save.battle?.weekly) return settleJourney(save)
-  const battle = save.battle
-  if (!battle?.result || battle.settled) return save
+  let battle = save.battle
+  if (!battle || battle.settled) return save
+  const result = battleOutcome(battle)
+  if (!result) return save
+  if (battle.result !== result) {
+    battle = { ...battle, result }
+    save = { ...save, battle }
+  }
+  if (battle.sideQuest || battle.weekly) return settleJourney(save)
   const win = battle.result === "win"
   const firstClear =
     win &&
@@ -376,9 +394,9 @@ export function dailyTrades(day: string): TradeOffer[] {
   const seed =
     [...day].reduce((sum, char) => sum * 17 + char.charCodeAt(0), 0) >>> 0
   return [
-    { id: "recipe", from: "common", to: "rare", coins: 20, dust: 0 },
-    { id: "memory", from: "rare", to: "epic", coins: 50, dust: 0 },
-    { id: "legacy", from: "epic", to: "legendary", coins: 0, dust: 150 },
+    { id: "recipe", from: "common", to: "rare", coins: 60, dust: 0 },
+    { id: "memory", from: "rare", to: "epic", coins: 150, dust: 0 },
+    { id: "legacy", from: "epic", to: "legendary", coins: 0, dust: 450 },
   ].map((offer, index) => {
     const input = CARDS.filter((c) => c.rarity === offer.from)
     const output = CARDS.filter((c) => c.rarity === offer.to)

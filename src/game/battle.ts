@@ -8,6 +8,7 @@ import {
 } from "./encounters"
 import { recipeReady } from "./recipes"
 import { TACTICS, tacticError, type TacticId } from "./tactics"
+import { battleOutcome } from "./battleOutcome"
 import type { Battle, BattleUnit, Combatant, GameCard } from "./types"
 
 export type Target = "hero" | string
@@ -93,9 +94,7 @@ function log(b: Battle, message: string) {
 function checkResult(b: Battle) {
   b.player.board = b.player.board.filter((u) => u.health > 0)
   b.enemy.board = b.enemy.board.filter((u) => u.health > 0)
-  // The attacker loses a simultaneous lethal (including fatigue).
-  if (b.player.health <= 0) b.result = "loss"
-  else if (b.enemy.health <= 0) b.result = "win"
+  b.result = battleOutcome(b)
 }
 function draw(b: Battle, side: "player" | "enemy", count = 1) {
   const p = b[side]

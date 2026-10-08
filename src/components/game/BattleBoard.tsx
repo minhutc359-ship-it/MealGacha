@@ -1273,7 +1273,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             ) : (
               <p>
                 {stored.result === "loss"
-                  ? "Mỗi thất bại là một công thức cần nêm lại. Thử thêm thẻ giá thấp, Hộ vệ hoặc phép hồi máu."
+                  ? stage
+                    ? "Lần thử này chưa vượt qua màn. Trận thua không mở chặng hoặc chương mới và không nhận thưởng vượt màn. Những màn đã thắng trước đó vẫn được giữ. Hãy thử thêm thẻ giá thấp, Hộ vệ hoặc phép hồi phục rồi thử lại."
+                    : "Mỗi thất bại là một công thức cần nêm lại. Thử thêm thẻ giá thấp, Hộ vệ hoặc phép hồi máu."
                   : stored.expedition
                     ? stored.opponent === "Kẻ Nuốt Ký Ức"
                       ? "Bạn đã vượt màn sương cuối. Trở về đọc đoạn kết và nhận những người lạc đường vào bàn ăn."

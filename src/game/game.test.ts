@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeEach } from "vitest"
 import { existsSync } from "node:fs"
 import { resolve } from "node:path"
-import { CARDS, CARD_MAP, STARTER_DECK, deckErrors } from "./catalog"
+import { CARDS, CARD_MAP, RARITIES, STARTER_DECK, deckErrors } from "./catalog"
 import { actBattle, startBattle } from "./battle"
 import {
   newGame,
@@ -12,6 +12,7 @@ import {
   QUESTS,
   dailyTrades,
   tradeError,
+  PACKS,
 } from "./progression"
 import { CHAPTERS, STAGES, isStageUnlocked } from "./story"
 import { GameSaveSchema, parseGame, GAME_KEY } from "./storage"
@@ -220,11 +221,11 @@ describe("progression and economy", () => {
         ["epic", "legendary"].includes(CARD_MAP[id].rarity),
       ),
     ).toBe(true)
-    expect(result.save.coins).toBe(900)
+    expect(result.save.coins).toBe(750)
     expect(result.save.pity).toBe(0)
     expect(result.save.dust).toBeGreaterThan(save.dust)
-    expect(openPack({ ...save, coins: 99 }, "origin").save).toBeDefined()
-    expect(openPack({ ...save, coins: 99 }, "origin").cards).toEqual([])
+    expect(openPack({ ...save, coins: 249 }, "origin").save).toBeDefined()
+    expect(openPack({ ...save, coins: 249 }, "origin").cards).toEqual([])
     expect(openPack(save, "invalid").error).toBeDefined()
   })
   it("each school pack supports all rarity guarantees", () => {
@@ -232,6 +233,43 @@ describe("progression and economy", () => {
       const result = openPack({ ...newGame(), pity: 7 }, id, () => 0.99)
       expect(result.cards.every((c) => CARD_MAP[c].school === id)).toBe(true)
       expect(result.cards.some((c) => CARD_MAP[c].rarity === "epic")).toBe(true)
+    }
+  })
+  it("requires the increased crafting price at every rarity without changing owned cards on failure", () => {
+    for (const rarity of ["common", "rare", "epic", "legendary"] as const) {
+      const card = CARDS.find((c) => c.rarity === rarity)!
+      const save = {
+        ...newGame(),
+        dust: RARITIES[rarity].dust - 1,
+        cards: { ...newGame().cards, [card.id]: 0 },
+      }
+      useGameStore.setState({ save, notice: null })
+      useGameStore.getState().craft(card.id)
+      expect(useGameStore.getState().save).toBe(save)
+      useGameStore.setState({ save: { ...save, dust: RARITIES[rarity].dust } })
+      useGameStore.getState().craft(card.id)
+      expect(useGameStore.getState().save.cards[card.id]).toBe(1)
+      expect(useGameStore.getState().save.dust).toBe(0)
+      useGameStore.getState().craft(card.id)
+      expect(useGameStore.getState().save.cards[card.id]).toBe(1)
+    }
+  })
+  it("charges the displayed pack price exactly once and preserves the save when unaffordable", () => {
+    for (const pack of PACKS) {
+      expect(pack.coinCost).toBe(pack.school ? 350 : 250)
+      const poor = { ...newGame(), packTickets: 0, coins: pack.coinCost - 1 }
+      const failed = openPack(poor, pack.id)
+      expect(failed.error).toContain(String(pack.coinCost))
+      expect(failed.save).toBe(poor)
+      expect(failed.cards).toEqual([])
+      const exact = openPack({ ...poor, coins: pack.coinCost }, pack.id)
+      expect(exact.save.coins).toBe(0)
+      expect(exact.save.stats.packs).toBe(1)
+      expect(exact.cards).toHaveLength(5)
+      const ticket = openPack({ ...poor, packTickets: 1, coins: 0 }, pack.id)
+      expect(ticket.save.packTickets).toBe(0)
+      expect(ticket.save.coins).toBe(0)
+      expect(ticket.cards).toHaveLength(5)
     }
   })
   it("pays story rewards once, settlement is idempotent, and locks sequentially", () => {
@@ -304,9 +342,9 @@ describe("progression and economy", () => {
     const after = useGameStore.getState().save
     expect(after.cards[offer.inputId]).toBe(1)
     expect(after.cards[offer.outputId]).toBe(1)
-    expect(after.coins).toBe(280)
+    expect(after.coins).toBe(240)
     useGameStore.getState().trade(offer.id)
-    expect(useGameStore.getState().save.coins).toBe(280)
+    expect(useGameStore.getState().save.coins).toBe(240)
     expect(tradeError(after, offer)).toContain("đã đổi")
   })
 })
@@ -350,8 +388,9 @@ describe("store safeguards and persistence", () => {
     expect(useGameStore.getState().save.coins).toBe(500)
   })
   it("crafts only affordable cards and never exceeds two copies", () => {
+    useGameStore.setState({ save: { ...newGame(), dust: 100 } })
     useGameStore.getState().craft("spark")
-    expect(useGameStore.getState().save.dust).toBe(50)
+    expect(useGameStore.getState().save.dust).toBe(100)
     useGameStore.getState().craft("sugar-veil")
     expect(useGameStore.getState().save.cards["sugar-veil"]).toBe(1)
     useGameStore.getState().craft("sugar-veil")

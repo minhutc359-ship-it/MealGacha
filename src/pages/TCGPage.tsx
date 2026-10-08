@@ -508,15 +508,19 @@ export function TCGPage() {
                           <span className="tcg-pack-spark two">✧</span>
                         </div>
                         <h2>{p.name}</h2>
-                        <p>{p.description}</p>
+                        <p>
+                          {p.description} · {p.coinCost} xu hoặc 1 vé
+                        </p>
                         <button
                           className="tcg-button primary"
-                          disabled={!current.packTickets && current.coins < 100}
+                          disabled={
+                            !current.packTickets && current.coins < p.coinCost
+                          }
                           onClick={() => open(p.id)}
                         >
                           {current.packTickets
                             ? "Mở bằng 1 vé"
-                            : "Mở gói · 100 ◉"}{" "}
+                            : `Mở gói · ${p.coinCost} ◉`}{" "}
                           <Icon name="arrow" />
                         </button>
                       </section>
