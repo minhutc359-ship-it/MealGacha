@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react"
 import { SCHOOLS, RARITIES } from "../../game/catalog"
+import { foodSpirit } from "../../game/flavorSpirits"
 import type { GameCard } from "../../game/types"
 
 interface Props {
@@ -52,7 +53,11 @@ export function GameCardView({
       </span>
       <span className="tcg-card-body">
         <span className="tcg-card-eyebrow">
-          {card.kind === "unit" ? "ĐỒNG MINH" : "BÍ THUẬT"}{" "}
+          {card.kind === "unit"
+            ? foodSpirit(card)
+              ? "MÓN ĂN · ẤN VỊ"
+              : "ĐỒNG MINH"
+            : "BÍ THUẬT"}{" "}
           <span>{RARITIES[card.rarity].name}</span>
         </span>
         <strong>{card.name}</strong>

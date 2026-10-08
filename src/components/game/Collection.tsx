@@ -4,6 +4,7 @@ import { useGameStore } from "../../game/useGameStore"
 import type { GameCard, School, CardRarity } from "../../game/types"
 import { GameCardView } from "./GameCardView"
 import { Dialog } from "./Dialog"
+import { CardShelf } from "./CardShelf"
 
 export function Collection({ workshop = false }: { workshop?: boolean }) {
   const save = useGameStore((s) => s.save)
@@ -37,7 +38,7 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
   )
   const owned = Object.values(save.cards).filter((n) => n > 0).length
   return (
-    <>
+    <section className="tcg-library-screen">
       <div className="tcg-section-heading">
         <div>
           <span className="tcg-kicker">
@@ -63,7 +64,7 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
           mạo, giữ nguyên sức mạnh.
         </div>
       )}
-      <div className="tcg-filters">
+      <div className="tcg-library-controls">
         <label className="tcg-search">
           <span>⌕</span>
           <input
@@ -73,66 +74,73 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
             onChange={(e) => setQuery(e.target.value)}
           />
         </label>
-        <select
-          aria-label="Lọc theo hệ"
-          value={school}
-          onChange={(e) => setSchool(e.target.value)}
-        >
-          <option value="all">Tất cả hệ</option>
-          {Object.entries(SCHOOLS).map(([id, s]) => (
-            <option value={id} key={id}>
-              {s.name}
-            </option>
-          ))}
-        </select>
-        <select
-          aria-label="Lọc độ hiếm"
-          value={rarity}
-          onChange={(e) => setRarity(e.target.value)}
-        >
-          <option value="all">Mọi độ hiếm</option>
-          {Object.entries(RARITIES).map(([id, r]) => (
-            <option value={id} key={id}>
-              {r.name}
-            </option>
-          ))}
-        </select>
-        <select
-          aria-label="Loại thẻ"
-          value={kind}
-          onChange={(e) => setKind(e.target.value)}
-        >
-          <option value="all">Mọi loại</option>
-          <option value="unit">Đồng minh</option>
-          <option value="spell">Bí thuật</option>
-        </select>
-        <select
-          aria-label="Bộ thẻ"
-          value={setName}
-          onChange={(e) => setSetName(e.target.value)}
-        >
-          <option value="all">Tất cả bộ thẻ</option>
-          {[...new Set(CARDS.map((c) => c.set))].map((name) => (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
-        <label className="tcg-checkbox">
-          <input
-            type="checkbox"
-            checked={ownedOnly}
-            onChange={(e) => setOwnedOnly(e.target.checked)}
-          />{" "}
-          Đã có
-        </label>
+        <details className="tcg-advanced-filters">
+          <summary>Bộ lọc</summary>
+          <div className="tcg-filters">
+            <select
+              aria-label="Lọc theo hệ"
+              value={school}
+              onChange={(e) => setSchool(e.target.value)}
+            >
+              <option value="all">Tất cả hệ</option>
+              {Object.entries(SCHOOLS).map(([id, s]) => (
+                <option value={id} key={id}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
+            <select
+              aria-label="Lọc độ hiếm"
+              value={rarity}
+              onChange={(e) => setRarity(e.target.value)}
+            >
+              <option value="all">Mọi độ hiếm</option>
+              {Object.entries(RARITIES).map(([id, r]) => (
+                <option value={id} key={id}>
+                  {r.name}
+                </option>
+              ))}
+            </select>
+            <select
+              aria-label="Loại thẻ"
+              value={kind}
+              onChange={(e) => setKind(e.target.value)}
+            >
+              <option value="all">Mọi loại</option>
+              <option value="unit">Đồng minh</option>
+              <option value="spell">Bí thuật</option>
+            </select>
+            <select
+              aria-label="Bộ thẻ"
+              value={setName}
+              onChange={(e) => setSetName(e.target.value)}
+            >
+              <option value="all">Tất cả bộ thẻ</option>
+              {[...new Set(CARDS.map((c) => c.set))].map((name) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+            <label className="tcg-checkbox">
+              <input
+                type="checkbox"
+                checked={ownedOnly}
+                onChange={(e) => setOwnedOnly(e.target.checked)}
+              />{" "}
+              Đã có
+            </label>
+          </div>
+        </details>
       </div>
       <p className="tcg-filter-count">
         {cards.length} thẻ · Nhấn vào một lá để xem chi tiết
         {workshop ? " và chế tạo" : ""}.
       </p>
-      <div className="tcg-card-grid">
-        {cards.map((c) => (
+      <CardShelf
+        label={workshop ? "Thẻ chế tạo" : "Thư viện thẻ"}
+        resetKey={[query, school, rarity, kind, setName, ownedOnly].join("|")}
+        items={cards.map((c) => (
           <GameCardView
             key={c.id}
             card={c}
@@ -142,12 +150,7 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
             onClick={() => setSelected(c)}
           />
         ))}
-      </div>
-      {!cards.length && (
-        <div className="tcg-empty">
-          Không có thẻ phù hợp. Thử bỏ bớt bộ lọc.
-        </div>
-      )}
+      />
       {selected && (
         <Dialog title={selected.name} onClose={() => setSelected(null)} wide>
           <div className="tcg-card-detail">
@@ -207,6 +210,6 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
           </div>
         </Dialog>
       )}
-    </>
+    </section>
   )
 }

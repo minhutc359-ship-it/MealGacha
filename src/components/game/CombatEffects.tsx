@@ -7,6 +7,8 @@ import {
 } from "react"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
 import { combatCues, type EffectCue } from "../../game/combatEffects"
+import { FLAVOR_SPIRITS } from "../../game/flavorSpirits"
+import { battleInvocation } from "../../game/combatDirection"
 import type { BattleFrame } from "../../game/battle"
 interface Props {
   arena: RefObject<HTMLDivElement | null>
@@ -49,7 +51,11 @@ const GLYPHS: Partial<Record<EffectCue["kind"], string>> = {
 export function CombatEffects({ arena, frame, stamp }: Props) {
   const [layout, setLayout] = useState<Layout | null>(null)
   useEffect(() => {
-    for (const src of new Set(Object.values(SPRITES))) {
+    for (const src of new Set([
+      ...Object.values(SPRITES),
+      ...Object.values(FLAVOR_SPIRITS).map((spirit) => spirit.art),
+      "/assets/tcg/characters/anime/hero-command.webp",
+    ])) {
       const image = new Image()
       image.src = src
     }
@@ -94,12 +100,33 @@ export function CombatEffects({ arena, frame, stamp }: Props) {
   }, [arena, frame, stamp])
   if (!layout || !layout.cues.length) return null
   const card = frame?.event.cardId ? CARD_MAP[frame.event.cardId] : undefined
+  const invocation = frame ? battleInvocation(frame) : null
+  const contact = layout.cues.find(
+    (cue) => cue.projectile && cue.side !== frame?.event.side,
+  )
   return (
     <div
-      className="tcg-combat-fx tcg-elemental-fx"
+      className={`tcg-combat-fx tcg-elemental-fx action-${frame?.event.kind ?? "idle"}`}
       key={stamp}
       aria-hidden="true"
     >
+      {invocation?.kind === "attack" && contact && (
+        <div
+          className="tcg-attack-manifest"
+          data-effect="spirit-flight"
+          style={
+            {
+              left: layout.source.x,
+              top: layout.source.y,
+              "--flight-x": `${contact.x - layout.source.x}px`,
+              "--flight-y": `${contact.y - layout.source.y}px`,
+              "--flight-color": SCHOOLS[invocation.card.school].color,
+            } as CSSProperties
+          }
+        >
+          <img src={invocation.art} alt="" draggable={false} />
+        </div>
+      )}
       {frame?.event.kind === "play" && card?.kind === "spell" && (
         <div
           className="tcg-cast-rune"

@@ -131,7 +131,7 @@ const foods: GameCard[] = dishCatalog
       effect,
       power: effect === "heal" ? 2 : 1,
       text,
-      lore: `${d.description ?? d.name}. Khi Sương Nhạt nuốt lấy ký ức, hương vị này vẫn dẫn người lữ khách trở về nhà.`,
+      lore: `${d.description ?? d.name}. Tâm huyết người nấu lưu thành Ấn Vị trong món ăn. Chủ tướng gọi Vị Linh từ hương thơm để bảo vệ ký ức bếp nhà trước Sương Nhạt.`,
       art: d.imageUrl?.startsWith("/assets/food/")
         ? d.imageUrl
         : `/assets/food/full/${d.id}.webp`,
@@ -711,7 +711,19 @@ const caravan: GameCard[] = [
     set: "Đoàn lữ hành",
   },
 ]
-export const CARDS: GameCard[] = [...foods, ...extras, ...champions, ...caravan]
+const chefPortraits: Record<string, string> = {
+  "chef-nhien": "nhien",
+  "chef-moc": "moc",
+  "chef-lien": "lien",
+  "chef-bach": "bach",
+  "chef-hai": "hai",
+}
+export const CARDS: GameCard[] = [...foods, ...extras, ...champions, ...caravan].map((card) => ({
+  ...card,
+  art: card.art ?? (chefPortraits[card.id]
+    ? `/assets/tcg/characters/anime/${chefPortraits[card.id]}.webp`
+    : `/assets/tcg/cards/${card.id}.webp`),
+}))
 export const CARD_MAP = Object.fromEntries(
   CARDS.map((c) => [c.id, c]),
 ) as Record<string, GameCard>

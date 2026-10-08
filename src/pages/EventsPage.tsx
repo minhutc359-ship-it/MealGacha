@@ -24,7 +24,7 @@ export function EventsPage() {
       const past = event.endsAt ? new Date(event.endsAt).getTime() < Date.now() : false
       return <article className={`event-card ${event.themeClass}`} key={event.id}>
         <div className="event-art" style={{ backgroundImage: `linear-gradient(90deg,rgba(2,9,20,.94),rgba(2,9,20,.27)),${event.bannerImage ? `url(${event.bannerImage})` : "linear-gradient(125deg,#243e54,#11162f)"}` }}><span>{event.icon}</span><small>{event.active ? "ĐANG DIỄN RA" : past ? "ĐÃ KẾT THÚC" : "SẮP DIỄN RA"}</small><h2>{event.title}</h2><p>{event.description}</p></div>
-        <div className="event-content"><strong>{unlocked}/{eventDishes.length} món đã mở</strong><div>{eventDishes.map((dish) => dish && <span key={dish.id} title={dish.name}><FoodImage dishId={dish.id} name={dish.name} imageUrl={dish.imageUrl} variant="thumb" /></span>)}</div><button disabled={!event.active || eventDishes.length === 0} onClick={() => navigate(`/?event=${event.id}`)}>{event.active ? "Mở banner sự kiện →" : `${dateLabel(event.startsAt)} – ${dateLabel(event.endsAt)}`}</button></div>
+        <div className="event-content"><strong>{unlocked}/{eventDishes.length} món đã mở</strong><div>{eventDishes.map((dish) => dish && <span key={dish.id} title={dish.name}><FoodImage dishId={dish.id} name={dish.name} imageUrl={dish.imageUrl} variant="thumb" /></span>)}</div><button disabled={!event.active || eventDishes.length === 0} onClick={() => navigate(`/chest?event=${event.id}`)}>{event.active ? "Mở banner sự kiện →" : `${dateLabel(event.startsAt)} – ${dateLabel(event.endsAt)}`}</button></div>
       </article>
     })}</div>
     <Link className="event-collection-link" to="/achievements?tab=collection&banner=events">Xem thành tựu sự kiện →</Link>

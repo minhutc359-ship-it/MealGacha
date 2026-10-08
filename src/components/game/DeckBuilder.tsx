@@ -17,6 +17,7 @@ import {
 } from "../../game/deckStrategy"
 import { GameCardView } from "./GameCardView"
 import { Dialog } from "./Dialog"
+import { CardShelf } from "./CardShelf"
 import { ResultPostcard } from "./ResultPostcard"
 
 export function DeckBuilder() {
@@ -34,6 +35,8 @@ export function DeckBuilder() {
   const [style, setStyle] = useState<DeckStyle>("balanced"),
     [hand, setHand] = useState<string[] | null>(null),
     [inspect, setInspect] = useState<string | null>(null)
+  const [tool, setTool] = useState<"strategy" | "analysis" | null>(null)
+  const [mobileView, setMobileView] = useState<"cards" | "draft">("cards")
   const counts = useMemo(
     () =>
       Object.fromEntries(
@@ -77,7 +80,7 @@ export function DeckBuilder() {
       return next
     })
   return (
-    <>
+    <section className="tcg-deck-screen">
       <div className="tcg-section-heading">
         <div>
           <span className="tcg-kicker">MỖI BỘ BÀI LÀ MỘT CÁCH GIỮ BÀN</span>
@@ -111,101 +114,121 @@ export function DeckBuilder() {
           + Bộ mới ({save.decks.length}/6)
         </button>
       </div>
-      <section className="tcg-strategy-panel tcg-panel">
-        <div>
-          <h2>Chọn nhịp chơi</h2>
-          <p>
-            Gợi ý chỉ dùng thẻ bạn sở hữu. Bạn có thể sửa nháp trước khi lưu.
-          </p>
-        </div>
-        <div className="tcg-strategy-options">
-          {DECK_STYLES.map((plan) => (
-            <button
-              key={plan.id}
-              className={style === plan.id ? "active" : ""}
-              aria-pressed={style === plan.id}
-              onClick={() => setStyle(plan.id)}
-            >
-              <strong>{plan.name}</strong>
-              <small>{plan.text}</small>
-            </button>
-          ))}
-        </div>
+      <div className="tcg-screen-tools">
+        <button
+          className="tcg-button ghost"
+          onClick={() => setTool("strategy")}
+        >
+          Gợi ý chiến thuật
+        </button>
+        <button
+          className="tcg-button ghost"
+          onClick={() => setTool("analysis")}
+        >
+          Phân tích & combo
+        </button>
         <button
           className="tcg-button primary"
-          onClick={() => {
-            setDraft(suggestDeck(save.cards, style))
-            setName(DECK_STYLES.find((p) => p.id === style)!.name)
-          }}
+          disabled={!!errors.length}
+          onClick={() => useGameStore.getState().saveDeck(id, name, draft)}
         >
-          Gợi ý bộ bài theo chiến thuật
+          Lưu & trang bị · {draft.length}/18
         </button>
-      </section>
-      <div className="tcg-deck-layout">
-        <section>
-          <div className="tcg-filters tcg-deck-filters">
+      </div>
+      <div
+        className="tcg-deck-view-tabs"
+        role="group"
+        aria-label="Khu vực bộ bài"
+      >
+        <button
+          aria-pressed={mobileView === "cards"}
+          onClick={() => setMobileView("cards")}
+        >
+          Thêm thẻ
+        </button>
+        <button
+          aria-pressed={mobileView === "draft"}
+          onClick={() => setMobileView("draft")}
+        >
+          Trong bộ · {draft.length}/18
+        </button>
+      </div>
+      <div className="tcg-deck-layout" data-view={mobileView}>
+        <section className="tcg-deck-catalog">
+          <div className="tcg-library-controls">
             <input
               aria-label="Tìm thẻ xây deck"
               placeholder="Tìm tên / kỹ năng…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <select
-              aria-label="Hệ thẻ"
-              value={school}
-              onChange={(e) => setSchool(e.target.value)}
-            >
-              <option value="all">Tất cả hệ</option>
-              {Object.entries(SCHOOLS).map(([id, s]) => (
-                <option key={id} value={id}>
-                  {s.name}
-                </option>
-              ))}
-            </select>
-            <select
-              aria-label="Loại thẻ"
-              value={kind}
-              onChange={(e) => setKind(e.target.value)}
-            >
-              <option value="all">Món & phép</option>
-              <option value="unit">Đồng minh</option>
-              <option value="spell">Bí thuật</option>
-            </select>
-            <select
-              aria-label="Vai trò thẻ"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-            >
-              <option value="all">Mọi vai trò</option>
-              {[
-                "Áp lực",
-                "Giữ bàn",
-                "Hồi phục",
-                "Rút bài",
-                "Dọn sân",
-                "Hỗ trợ",
-                "Đồng minh",
-              ].map((r) => (
-                <option key={r}>{r}</option>
-              ))}
-            </select>
-            <select
-              aria-label="Độ hiếm thẻ"
-              value={rarity}
-              onChange={(e) => setRarity(e.target.value)}
-            >
-              <option value="all">Mọi độ hiếm</option>
-              <option value="common">Thường</option>
-              <option value="rare">Hiếm</option>
-              <option value="epic">Sử thi</option>
-              <option value="legendary">Huyền thoại</option>
-            </select>
+            <details className="tcg-advanced-filters">
+              <summary>Bộ lọc</summary>
+              <div className="tcg-filters tcg-deck-filters">
+                <select
+                  aria-label="Hệ thẻ"
+                  value={school}
+                  onChange={(e) => setSchool(e.target.value)}
+                >
+                  <option value="all">Tất cả hệ</option>
+                  {Object.entries(SCHOOLS).map(([id, s]) => (
+                    <option key={id} value={id}>
+                      {s.name}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  aria-label="Loại thẻ"
+                  value={kind}
+                  onChange={(e) => setKind(e.target.value)}
+                >
+                  <option value="all">Món & phép</option>
+                  <option value="unit">Đồng minh</option>
+                  <option value="spell">Bí thuật</option>
+                </select>
+                <select
+                  aria-label="Vai trò thẻ"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                >
+                  <option value="all">Mọi vai trò</option>
+                  {[
+                    "Áp lực",
+                    "Giữ bàn",
+                    "Hồi phục",
+                    "Rút bài",
+                    "Dọn sân",
+                    "Hỗ trợ",
+                    "Đồng minh",
+                  ].map((r) => (
+                    <option key={r}>{r}</option>
+                  ))}
+                </select>
+                <select
+                  aria-label="Độ hiếm thẻ"
+                  value={rarity}
+                  onChange={(e) => setRarity(e.target.value)}
+                >
+                  <option value="all">Mọi độ hiếm</option>
+                  <option value="common">Thường</option>
+                  <option value="rare">Hiếm</option>
+                  <option value="epic">Sử thi</option>
+                  <option value="legendary">Huyền thoại</option>
+                </select>
+              </div>
+            </details>
           </div>
           <p className="tcg-filter-count">
-            {cards.length} thẻ phù hợp · Nhấn để thêm; nút i để đọc kỹ năng.
+            {cards.length} thẻ ·{" "}
+            {draft.length === DECK_SIZE
+              ? "Bộ đủ 18 lá. Sang Trong bộ để bỏ lá."
+              : "Nhấn để thêm; nút i để đọc kỹ năng."}
           </p>
-          <div className="tcg-card-grid deck-cards">
-            {cards.map((c) => (
+          <CardShelf
+            compact
+            label="Thẻ xây bộ bài"
+            resetKey={[search, school, kind, role, rarity].join("|")}
+            items={cards.map((c) => (
               <div className="tcg-deck-card-wrap" key={c.id}>
                 <GameCardView
                   card={c}
@@ -230,12 +253,7 @@ export function DeckBuilder() {
                 </small>
               </div>
             ))}
-          </div>
-          {!cards.length && (
-            <p className="tcg-empty">
-              Không có thẻ phù hợp. Thử bỏ một bộ lọc.
-            </p>
-          )}
+          />
         </section>
         <aside className="tcg-panel tcg-deck-draft">
           <label>
@@ -258,52 +276,6 @@ export function DeckBuilder() {
               {analysis.spells} bí thuật
             </span>
           </div>
-          <p>
-            ◈ Giá trung bình {analysis.average.toFixed(1)} · {analysis.cheap} lá
-            giá 1–2 · {analysis.guards} Hộ vệ
-          </p>
-          <div className="tcg-curve" aria-label="Phân bố năng lượng">
-            {Array.from({ length: 7 }, (_, i) => {
-              const n = draft.filter((id) => CARD_MAP[id].cost === i + 1).length
-              return (
-                <div key={i}>
-                  <span>{n}</span>
-                  <i style={{ height: `${8 + n * 7}px` }} />
-                  <small>{i + 1}</small>
-                </div>
-              )
-            })}
-          </div>
-          <div className="tcg-deck-recipes">
-            {analysis.combos.map(({ recipe, anchors, finishers }) => (
-              <details key={recipe.id}>
-                <summary>
-                  {recipe.symbol} {recipe.name} ·{" "}
-                  {anchors.length && finishers.length
-                    ? "Có combo"
-                    : "Thiếu cặp"}
-                </summary>
-                <p>
-                  {anchors.length} món mở · {finishers.length} phép kết
-                </p>
-                <p>
-                  {[...new Set(anchors)]
-                    .map((id) => CARD_MAP[id].name)
-                    .join(", ") || "Chưa có món mở"}{" "}
-                  →{" "}
-                  {[...new Set(finishers)]
-                    .map((id) => CARD_MAP[id].name)
-                    .join(", ") || "Chưa có phép kết"}
-                </p>
-                <small>{recipe.reward} Mỗi công thức 1 lần/lượt.</small>
-              </details>
-            ))}
-          </div>
-          {analysis.tips.map((t) => (
-            <p className="tcg-builder-tip" key={t}>
-              {t}
-            </p>
-          ))}
           <div className="tcg-draft-list">
             {Object.entries(counts)
               .sort(([a], [b]) => CARD_MAP[a].cost - CARD_MAP[b].cost)
@@ -321,13 +293,6 @@ export function DeckBuilder() {
               ))}
           </div>
           {errors.length > 0 && <p className="tcg-builder-tip">{errors[0]}</p>}
-          <button
-            className="tcg-button primary"
-            disabled={!!errors.length}
-            onClick={() => useGameStore.getState().saveDeck(id, name, draft)}
-          >
-            Lưu & trang bị
-          </button>
           <div className="tcg-deck-tools">
             <button
               disabled={draft.length < 4}
@@ -359,6 +324,99 @@ export function DeckBuilder() {
           )}
         </aside>
       </div>
+      {tool && (
+        <Dialog
+          title={tool === "strategy" ? "Gợi ý chiến thuật" : "Phân tích bộ bài"}
+          onClose={() => setTool(null)}
+          wide
+        >
+          {tool === "strategy" ? (
+            <section className="tcg-strategy-panel tcg-panel">
+              <div>
+                <h2>Chọn nhịp chơi</h2>
+                <p>
+                  Gợi ý chỉ dùng thẻ bạn sở hữu. Bạn có thể sửa nháp trước khi
+                  lưu.
+                </p>
+              </div>
+              <div className="tcg-strategy-options">
+                {DECK_STYLES.map((plan) => (
+                  <button
+                    key={plan.id}
+                    className={style === plan.id ? "active" : ""}
+                    aria-pressed={style === plan.id}
+                    onClick={() => setStyle(plan.id)}
+                  >
+                    <strong>{plan.name}</strong>
+                    <small>{plan.text}</small>
+                  </button>
+                ))}
+              </div>
+              <button
+                className="tcg-button primary"
+                onClick={() => {
+                  setDraft(suggestDeck(save.cards, style))
+                  setName(DECK_STYLES.find((p) => p.id === style)!.name)
+                  setTool(null)
+                }}
+              >
+                Gợi ý bộ bài theo chiến thuật
+              </button>
+            </section>
+          ) : (
+            <div className="tcg-deck-analysis">
+              <p>
+                ◈ Giá trung bình {analysis.average.toFixed(1)} ·{" "}
+                {analysis.cheap} lá giá 1–2 · {analysis.guards} Hộ vệ
+              </p>
+              <div className="tcg-curve" aria-label="Phân bố năng lượng">
+                {Array.from({ length: 7 }, (_, i) => {
+                  const n = draft.filter(
+                    (id) => CARD_MAP[id].cost === i + 1,
+                  ).length
+                  return (
+                    <div key={i}>
+                      <span>{n}</span>
+                      <i style={{ height: `${8 + n * 7}px` }} />
+                      <small>{i + 1}</small>
+                    </div>
+                  )
+                })}
+              </div>
+              <div className="tcg-deck-recipes">
+                {analysis.combos.map(({ recipe, anchors, finishers }) => (
+                  <details key={recipe.id}>
+                    <summary>
+                      {recipe.symbol} {recipe.name} ·{" "}
+                      {anchors.length && finishers.length
+                        ? "Có combo"
+                        : "Thiếu cặp"}
+                    </summary>
+                    <p>
+                      {anchors.length} món mở · {finishers.length} phép kết
+                    </p>
+                    <p>
+                      {[...new Set(anchors)]
+                        .map((id) => CARD_MAP[id].name)
+                        .join(", ") || "Chưa có món mở"}{" "}
+                      →{" "}
+                      {[...new Set(finishers)]
+                        .map((id) => CARD_MAP[id].name)
+                        .join(", ") || "Chưa có phép kết"}
+                    </p>
+                    <small>{recipe.reward} Mỗi công thức 1 lần/lượt.</small>
+                  </details>
+                ))}
+              </div>
+              {analysis.tips.map((t) => (
+                <p className="tcg-builder-tip" key={t}>
+                  {t}
+                </p>
+              ))}
+            </div>
+          )}
+        </Dialog>
+      )}
       {hand && (
         <Dialog
           title="Thử tay mở đầu · 4 lá"
@@ -391,6 +449,6 @@ export function DeckBuilder() {
           </div>
         </Dialog>
       )}
-    </>
+    </section>
   )
 }

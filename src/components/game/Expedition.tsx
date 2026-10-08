@@ -21,6 +21,8 @@ export function Expedition() {
   const store = useGameStore.getState()
   const [confirm, setConfirm] = useState(false)
   const [guide, setGuide] = useState(false)
+  const [mapOpen, setMapOpen] = useState(false)
+  const [journalOpen, setJournalOpen] = useState(false)
   const [selectedCard, setSelectedCard] = useState<string | null>(null)
   const [removeIndex, setRemoveIndex] = useState(0)
   const [record, setRecord] = useState<BattleRecord | null>(null)
@@ -33,6 +35,50 @@ export function Expedition() {
   const active = activeRun(run)
   const deck = save.decks.find((d) => d.id === save.activeDeckId)
   const available = expeditionRewardAvailable(save)
+  const routeMap = (full: boolean) => (
+    <div className="tcg-route-map">
+      {run?.nodes.map((row, floor) =>
+        full || floor === run.floor ? (
+          <div
+            className={`tcg-route-row ${floor === run.floor ? "current" : ""}`}
+            key={floor}
+          >
+            <div className="tcg-route-number">
+              <span>{String(floor + 1).padStart(2, "0")}</span>
+            </div>
+            <div className="tcg-route-branches">
+              {row.map((n) => (
+                <button
+                  key={n.id}
+                  className={`tcg-route-node ${
+                    run.route.includes(n.id) ? "visited" : ""
+                  } ${n.kind === "elite" || n.kind === "boss" ? "danger" : ""}`}
+                  disabled={run.status !== "path" || floor !== run.floor}
+                  onClick={() => {
+                    setMapOpen(false)
+                    store.enterExpedition(n.id)
+                  }}
+                  aria-label={`Chặng ${floor + 1}: ${NODE_KIND[n.kind].name}, ${n.title}`}
+                >
+                  <span className="tcg-route-symbol">
+                    {run.route.includes(n.id) ? "✓" : NODE_KIND[n.kind].symbol}
+                  </span>
+                  <span>
+                    <small>
+                      {NODE_KIND[n.kind].name} · {SCHOOLS[n.school].name}
+                    </small>
+                    <strong>{n.title}</strong>
+                    <p>{NODE_KIND[n.kind].detail}</p>
+                  </span>
+                  <b>{floor > run.floor ? "◇" : "→"}</b>
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null,
+      )}
+    </div>
+  )
   return (
     <section className="tcg-expedition">
       <div className="tcg-section-heading">
@@ -41,11 +87,27 @@ export function Expedition() {
           <h1>Con đường qua sương</h1>
           <p>Một bộ bài. Bảy chặng đường. Mỗi lựa chọn để lại một hương vị.</p>
         </div>
-        <button className="tcg-button ghost" onClick={() => setGuide(true)}>
-          Di vật & luật hành trình
-        </button>
+        <div className="tcg-expedition-tools">
+          {run && active && (
+            <button
+              className="tcg-button ghost"
+              onClick={() => setMapOpen(true)}
+            >
+              Bản đồ · {run.floor + 1}/7
+            </button>
+          )}
+          <button
+            className="tcg-button ghost"
+            onClick={() => setJournalOpen(true)}
+          >
+            Hành trang & nhật ký
+          </button>
+          <button className="tcg-button ghost" onClick={() => setGuide(true)}>
+            Luật & di vật
+          </button>
+        </div>
       </div>
-      {!active && (
+      {!active && !run && (
         <section className="tcg-expedition-intro">
           <img src="/assets/events/cooling-summer-vietnam/banner.webp" alt="" />
           <div>
@@ -93,6 +155,12 @@ export function Expedition() {
               ? "Kẻ Nuốt Ký Ức đặt xuống chiếc bát trống. Nó không đói hương vị; nó chỉ quên mất lần cuối có người chờ mình. Bạn kéo thêm một chiếc ghế vào bàn ăn. Sương tan từ bên trong."
               : "Những di vật trở về với đường xa. Bộ sưu tập và bộ bài chính vẫn ở đây, chờ bạn thử một công thức khác."}
           </p>
+          <button
+            className="tcg-button primary"
+            onClick={() => store.beginExpedition()}
+          >
+            Bắt đầu chuyến mới →
+          </button>
           <div className="tcg-reward-row">
             <span>{run.route.length}/7 chặng</span>
             <span>{run.wins} trận thắng</span>
@@ -100,35 +168,6 @@ export function Expedition() {
           </div>
         </section>
       )}
-      <div className="tcg-expedition-stats">
-        <span>
-          <b>{save.expeditionStats.runs}</b> chuyến đã bắt đầu
-        </span>
-        <span>
-          <b>{save.expeditionStats.wins}</b> chuyến hoàn thành
-        </span>
-        <span>
-          <b>{save.expeditionStats.best}/7</b> chặng xa nhất
-        </span>
-        <span>
-          <b>
-            {Math.max(
-              0,
-              3 -
-                save.claimedDailyQuests.filter((id) =>
-                  id.startsWith("expedition:reward:"),
-                ).length,
-            )}
-            /3
-          </b>{" "}
-          lượt thưởng còn hôm nay
-        </span>
-      </div>
-      <p className="tcg-expedition-reward-note">
-        Hoàn thành: 200 xu · 40 tinh chất · 100 XP · 1 vé gói. Nhận thưởng tối
-        đa 3 chuyến mỗi ngày.
-        {!available && " Bạn vẫn có thể chơi tiếp để thử chiến thuật."}
-      </p>
       {run && active && (
         <>
           <section className="tcg-run-dashboard tcg-panel">
@@ -223,7 +262,12 @@ export function Expedition() {
             >
               <span className="tcg-kicker">CÔNG THỨC MỚI CHO ĐƯỜNG XA</span>
               <h2>Nêm lại hành trang</h2>
-              <p>Các lựa chọn dưới đây chỉ dùng cho chuyến đi này.</p>
+              <p>
+                {run.reward.relicPicked
+                  ? "Bước 2/2 · Thay một lá hoặc giữ bộ bài hiện tại."
+                  : "Bước 1/2 · Chọn di vật, sau đó chọn thẻ."}{" "}
+                Chỉ dùng cho chuyến đi này.
+              </p>
               {!run.reward.relicPicked && (
                 <>
                   <h3>Chọn một di vật</h3>
@@ -248,21 +292,35 @@ export function Expedition() {
                   </button>
                 </>
               )}
-              {!run.reward.cardPicked && (
+              {run.reward.relicPicked && !run.reward.cardPicked && (
                 <>
                   <h3>Chọn một thẻ để thay vào bộ bài 18 lá</h3>
-                  <div className="tcg-run-card-offers">
-                    {run.reward.cards.map((id) => (
-                      <GameCardView
-                        key={id}
-                        card={CARD_MAP[id]}
-                        onClick={() => setSelectedCard(id)}
-                        selected={selectedCard === id}
-                      />
-                    ))}
-                  </div>
+                  {!selectedCard && (
+                    <div className="tcg-run-card-offers">
+                      {run.reward.cards.map((id) => (
+                        <GameCardView
+                          key={id}
+                          card={CARD_MAP[id]}
+                          compact
+                          onClick={() => setSelectedCard(id)}
+                          selected={selectedCard === id}
+                        />
+                      ))}
+                    </div>
+                  )}
                   {selectedCard && (
                     <div className="tcg-run-replace">
+                      <button
+                        className="tcg-button ghost"
+                        onClick={() => setSelectedCard(null)}
+                      >
+                        ← Chọn thẻ khác
+                      </button>
+                      <img
+                        className="tcg-run-replace-art"
+                        src={CARD_MAP[selectedCard].art}
+                        alt=""
+                      />
                       <p className="tcg-run-card-description">
                         <strong>{CARD_MAP[selectedCard].name}</strong>
                         <span>{CARD_MAP[selectedCard].text}</span>
@@ -316,117 +374,130 @@ export function Expedition() {
               )}
             </section>
           )}
-          <div className="tcg-mini-heading">
-            <h2>Bản đồ qua sương</h2>
-            <span>
-              {run.status === "path"
-                ? "Chọn một điểm dừng sáng đèn"
-                : "Hoàn thành điểm dừng hiện tại"}
-            </span>
-          </div>
-          <div className="tcg-route-map">
-            {run.nodes.map((row, floor) => (
-              <div
-                className={`tcg-route-row ${
-                  floor === run.floor ? "current" : ""
-                }`}
-                key={floor}
-              >
-                <div className="tcg-route-number">
-                  <span>{String(floor + 1).padStart(2, "0")}</span>
-                </div>
-                <div className="tcg-route-branches">
-                  {row.map((n) => (
-                    <button
-                      key={n.id}
-                      className={`tcg-route-node ${
-                        run.route.includes(n.id) ? "visited" : ""
-                      } ${
-                        n.kind === "elite" || n.kind === "boss" ? "danger" : ""
-                      }`}
-                      disabled={run.status !== "path" || floor !== run.floor}
-                      onClick={() => store.enterExpedition(n.id)}
-                      aria-label={`Chặng ${floor + 1}: ${NODE_KIND[n.kind].name}, ${n.title}`}
-                    >
-                      <span className="tcg-route-symbol">
-                        {run.route.includes(n.id)
-                          ? "✓"
-                          : NODE_KIND[n.kind].symbol}
-                      </span>
-                      <span>
-                        <small>
-                          {NODE_KIND[n.kind].name} · {SCHOOLS[n.school].name}
-                        </small>
-                        <strong>{n.title}</strong>
-                        <p>{NODE_KIND[n.kind].detail}</p>
-                      </span>
-                      <b>{floor > run.floor ? "◇" : "→"}</b>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <details className="tcg-panel tcg-run-deck">
-            <summary>Bộ bài hành trình · 18 lá</summary>
-            <div>
-              {Object.entries(
-                run.deck.reduce<Record<string, number>>(
-                  (counts, id) => ({ ...counts, [id]: (counts[id] ?? 0) + 1 }),
-                  {},
-                ),
-              )
-                .sort(([a], [b]) => CARD_MAP[a].cost - CARD_MAP[b].cost)
-                .map(([id, count]) => (
-                  <span key={id}>
-                    <b>{CARD_MAP[id].cost}</b>
-                    {CARD_MAP[id].name}
-                    <small>×{count}</small>
-                  </span>
-                ))}
+          {run.status === "path" && (
+            <div className="tcg-mini-heading">
+              <h2>Chọn điểm dừng tiếp theo</h2>
+              <span>
+                {run.status === "path"
+                  ? "Chọn một điểm dừng sáng đèn"
+                  : "Hoàn thành điểm dừng hiện tại"}
+              </span>
             </div>
-          </details>
-          <details className="tcg-panel tcg-run-log">
-            <summary>Nhật ký chuyến đi</summary>
-            <ol>
-              {run.log.map((line, index) => (
-                <li key={index}>{line}</li>
-              ))}
-            </ol>
-          </details>
+          )}
+          {run.status === "path" && routeMap(false)}
         </>
       )}
-      <details className="tcg-panel tcg-history">
-        <summary>
-          Nhật ký chiến đấu · {save.history.length} trận gần nhất
-        </summary>
-        {save.history.length ? (
-          <div className="tcg-history-list">
-            {save.history.map((item) => (
-              <button key={item.id} onClick={() => setRecord(item)}>
-                <span className={item.result}>
-                  {item.result === "win" ? "✦" : "☽"}
-                </span>
-                <div>
-                  <strong>{item.opponent}</strong>
-                  <small>
-                    {item.mode === "expedition"
-                      ? "Thám hiểm"
-                      : item.mode === "story"
-                        ? "Cốt truyện"
-                        : "Luyện tập"}{" "}
-                    · {item.rounds} lượt ·{" "}
-                    {new Date(item.date).toLocaleDateString("vi-VN")}
-                  </small>
-                </div>
-                <b>{item.result === "win" ? "Thắng" : "Thua"}</b>
-              </button>
-            ))}
+      {mapOpen && run && (
+        <Dialog
+          title="Bảy chặng qua sương"
+          onClose={() => setMapOpen(false)}
+          wide
+        >
+          {routeMap(true)}
+        </Dialog>
+      )}
+      {journalOpen && (
+        <Dialog
+          title="Hành trang & nhật ký"
+          onClose={() => setJournalOpen(false)}
+          wide
+        >
+          <div className="tcg-expedition-stats">
+            <span>
+              <b>{save.expeditionStats.runs}</b> chuyến đã bắt đầu
+            </span>
+            <span>
+              <b>{save.expeditionStats.wins}</b> chuyến hoàn thành
+            </span>
+            <span>
+              <b>{save.expeditionStats.best}/7</b> chặng xa nhất
+            </span>
+            <span>
+              <b>
+                {Math.max(
+                  0,
+                  3 -
+                    save.claimedDailyQuests.filter((id) =>
+                      id.startsWith("expedition:reward:"),
+                    ).length,
+                )}
+                /3
+              </b>{" "}
+              lượt thưởng còn hôm nay
+            </span>
           </div>
-        ) : (
-          <p>Trận đấu hoàn thành sẽ được ghi lại tại đây.</p>
-        )}
-      </details>
+          <p className="tcg-expedition-reward-note">
+            Hoàn thành: 200 xu · 40 tinh chất · 100 XP · 1 vé gói. Nhận thưởng
+            tối đa 3 chuyến mỗi ngày.
+            {!available && " Bạn vẫn có thể chơi tiếp để thử chiến thuật."}
+          </p>
+          {run && active && (
+            <>
+              <details className="tcg-panel tcg-run-deck">
+                <summary>Bộ bài hành trình · 18 lá</summary>
+                <div>
+                  {Object.entries(
+                    run.deck.reduce<Record<string, number>>(
+                      (counts, id) => ({
+                        ...counts,
+                        [id]: (counts[id] ?? 0) + 1,
+                      }),
+                      {},
+                    ),
+                  )
+                    .sort(([a], [b]) => CARD_MAP[a].cost - CARD_MAP[b].cost)
+                    .map(([id, count]) => (
+                      <span key={id}>
+                        <b>{CARD_MAP[id].cost}</b>
+                        {CARD_MAP[id].name}
+                        <small>×{count}</small>
+                      </span>
+                    ))}
+                </div>
+              </details>
+              <details className="tcg-panel tcg-run-log">
+                <summary>Nhật ký chuyến đi</summary>
+                <ol>
+                  {run.log.map((line, index) => (
+                    <li key={index}>{line}</li>
+                  ))}
+                </ol>
+              </details>
+            </>
+          )}
+          <details className="tcg-panel tcg-history">
+            <summary>
+              Nhật ký chiến đấu · {save.history.length} trận gần nhất
+            </summary>
+            {save.history.length ? (
+              <div className="tcg-history-list">
+                {save.history.map((item) => (
+                  <button key={item.id} onClick={() => setRecord(item)}>
+                    <span className={item.result}>
+                      {item.result === "win" ? "✦" : "☽"}
+                    </span>
+                    <div>
+                      <strong>{item.opponent}</strong>
+                      <small>
+                        {item.mode === "expedition"
+                          ? "Thám hiểm"
+                          : item.mode === "story"
+                            ? "Cốt truyện"
+                            : "Luyện tập"}{" "}
+                        · {item.rounds} lượt ·{" "}
+                        {new Date(item.date).toLocaleDateString("vi-VN")}
+                      </small>
+                    </div>
+                    <b>{item.result === "win" ? "Thắng" : "Thua"}</b>
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <p>Trận đấu hoàn thành sẽ được ghi lại tại đây.</p>
+            )}
+          </details>
+        </Dialog>
+      )}
       {record && (
         <Dialog
           title={`Nhật ký · ${record.opponent}`}

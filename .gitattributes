@@ -164,3 +164,6 @@ public/assets/tcg/characters/** -filter -diff -merge -text
 public/assets/tcg/boards/** -filter -diff -merge -text
 public/assets/tcg/story/** -filter -diff -merge -text
 public/assets/tcg/fx/** -filter -diff -merge -text
+# Illustrated cards and memory spirits must also be served directly in previews.
+public/assets/tcg/cards/** -filter -diff -merge -text
+public/assets/tcg/spirits/** -filter -diff -merge -text
