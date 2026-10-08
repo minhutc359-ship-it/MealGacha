@@ -324,7 +324,7 @@
 .fx-vanish .tcg-fx-halo { border-style:dotted; animation:tcg-vanish-halo .6s ease-out both; }
 .fx-vanish .tcg-fx-glyph { animation:tcg-vanish-glyph .6s ease-out both; }
 .fx-awaken .tcg-fx-halo { border-color:#e19b63; box-shadow:0 0 25px #d78d56; animation:tcg-awaken .65s ease-out both; }
-.tcg-fx-awaken-label { position:absolute; left:-60px; top:-12px; width:120px; text-align:center; font:700 11px/20px sans-serif; letter-spacing:2px; color:#ffe1b5; text-shadow:0 1px 4px #14292b; animation:tcg-element-glyph .65s ease-out both; }
+.tcg-fx-awaken-label { position:absolute; left:-60px; top:-12px; width:120px; text-align:center; font:700 11px/20px sans-serif; letter-spacing:2px; color:#ffe1b5; text-shadow:0 1px 4px #14292b; animation:tcg-element-glyph 1.15s ease-out both; }
 .fx-finish .tcg-fx-halo { border-width:3px; box-shadow:0 0 22px #edcd7d; animation:tcg-finish .65s ease-out both; }
 .fx-finish .tcg-fx-contact>i { width:90px; left:-45px; }
 .tcg-viewport-battle .tcg-action-card.is-skill { border-color:var(--skill-color); box-shadow:0 0 16px color-mix(in srgb,var(--skill-color),transparent 40%); animation:tcg-skill-title .65s ease-out both; }
