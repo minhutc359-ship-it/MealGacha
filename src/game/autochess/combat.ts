@@ -46,7 +46,7 @@ export function enemyPlan(run: AutoRun) {
     return Array.from({ length: count }, (_, i) => {
       rng = (Math.imul(rng, 1664525) + 1013904223) >>> 0
       // Alternate frontline, ranged damage and support when those roles unlock.
-      // Several simultaneous heal/shield loops turn a 55s round into a stalemate.
+      // Limit simultaneous heal/shield loops so rounds can resolve naturally.
       const allowed = normals.filter(m => !supportive.has(m.skill) || supports < (run.mode === "campaign" ? 1 : 2))
       const role = allowed.filter(m => i === 0 ? m.range === 1 : i === 1 ? m.range > 1 && !supportive.has(m.skill) : i === 2 ? supportive.has(m.skill) : true)
       const candidates = role.length ? role : allowed
@@ -663,7 +663,6 @@ function step(run: AutoRun) {
   }
   if (!living(b, "ally").length) b.result = "loss"
   else if (!living(b, "enemy").length) b.result = "win"
-  else if (b.tick >= 1100) b.result = "loss"
   if (b.result) {
     b.pendingScene = null
     run.phase = "result"

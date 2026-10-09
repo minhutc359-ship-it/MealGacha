@@ -4,6 +4,7 @@ import { SCENES } from "./story"
 import { capacity, copies, poolSize } from "./economy"
 import { BENCH_SLOTS, MAX_LEVEL } from "./config"
 import { ITEM_MAP } from "./items"
+import { normalizeAutoOutcome } from "./outcomes"
 const int = z.number().int().nonnegative().max(1_000_000_000)
 const real = z.number().finite().nonnegative().max(1_000_000_000)
 const uint32 = z.number().int().min(0).max(4294967295)
@@ -93,7 +94,7 @@ const actor = z.object({
 })
 const combat = z.object({
   id,
-  tick: int.max(1100),
+  tick: int,
   actors: z.array(actor).min(1).max(60),
   events: z
     .array(
@@ -135,7 +136,7 @@ const result = z.object({
   id,
   wave: int.min(1),
   result: z.enum(["win", "loss"]),
-  seconds: real.max(55),
+  seconds: real,
   survivors: int.max(MAX_LEVEL),
   points: int,
   damage: int.max(25),
@@ -332,3 +333,4 @@ export const autoSaveSchema = z
     if (save.ending && save.campaignCleared !== 12)
       ctx.addIssue({ code: "custom", message: "Chưa hoàn thành câu chuyện" })
   })
+  .transform(normalizeAutoOutcome)

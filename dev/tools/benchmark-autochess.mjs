@@ -167,6 +167,8 @@ for (const mode of ["campaign", "survival"])
         health: save.run.health,
         score: save.run.score,
         seconds: save.run.activeTicks / 20,
+        finished: save.run.finished,
+        recorded: save.records.some(record => record.id === save.run.id),
       })
       if (mode === "campaign" && save.run.phase === "won")
         writeFileSync(
@@ -176,18 +178,14 @@ for (const mode of ["campaign", "survival"])
     }
 if (process.argv[2]) writeFileSync(process.argv[2], JSON.stringify(results, null, 2))
 console.log(JSON.stringify(results, null, 2))
-for (let strategy = 0; strategy < 3; strategy++)
-  if (
-    !results.some(
-      (r) =>
-        r.mode === "campaign" && r.strategy === strategy && r.phase === "won",
-    )
-  )
-    throw Error(`No campaign clear for strategy ${strategy}`)
+// Defeat now ends a run immediately, including with willpower left.
+// Validate terminal recording; old clear targets relied on retrying lost rounds.
+if (results.some(r => !["won", "lost"].includes(r.phase) || !r.finished || !r.recorded))
+  throw Error("A simulated run did not finish and record its score")
 if (
   results
     .filter((r) => r.mode === "survival")
-    .some((r) => r.phase !== "lost" || r.health !== 0)
+    .some((r) => r.phase !== "lost")
 )
   throw Error("Survival did not terminate")
 await server.close()

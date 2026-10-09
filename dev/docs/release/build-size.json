@@ -1,11 +1,11 @@
 {
-  "version": "3.4.0",
-  "bytes": 38007076,
+  "version": "3.4.1",
+  "bytes": 38008396,
   "files": 296,
   "byType": {
     "js": {
       "files": 37,
-      "bytes": 1565382
+      "bytes": 1566702
     },
     "css": {
       "files": 6,
@@ -41,7 +41,7 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 1915757,
+    "Application JS/CSS": 1917077,
     "Auto chess art/audio": 6471127,
     "Brand": 465507,
     "Shared character atlases": 9061632,
@@ -50,7 +50,7 @@
     "TCG art/audio": 10513266,
     "Other and legal": 72503
   },
-  "js_gzip": 499816,
+  "js_gzip": 500255,
   "css_gzip": 74012,
   "largest": [
     {

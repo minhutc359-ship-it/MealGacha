@@ -58,6 +58,7 @@ import { downloadAutoPostcard } from "../game/autochess/postcard"
 import "../game/tcg.css"
 import "../game/autochess/autochess.css"
 import "../game/autochess/marketHud.css"
+import { battleSpeed, OVERTIME_SECONDS, OVERTIME_TICKS } from "../game/autochess/config"
 
 const EMPTY = emptyAutoSave()
 const modeNames: Record<AutoMode, string> = {
@@ -218,6 +219,8 @@ export function AutoChessPage() {
   const selectedPiece = run?.roster.find((p) => p.uid === selected)
   const traits = run ? traitCounts(boardPieces(run)) : {}
   const capacityNow = run ? capacity(run.xp) : 3
+  const overtime = run?.phase === "combat" && (run.combat?.tick ?? 0) >= OVERTIME_TICKS
+  const effectiveSpeed = battleSpeed(run?.combat?.tick ?? 0, speed)
   const drag = useFormationDrag({
     enabled: playing && preparing && !sceneId && !victory.pending && !modal && !inspect && !replace && !journal,
     peekEnabled: playing && !sceneId && !victory.pending && !modal && !inspect && !replace && !journal,
@@ -653,7 +656,7 @@ export function AutoChessPage() {
                     ? "VÒNG ĐÃ KẾT THÚC"
                   : run.paused
                     ? "ĐANG TẠM DỪNG"
-                    : `GIAO CHIẾN · ${Math.floor((run.combat?.tick ?? 0) / 20)}/55 giây`}
+                    : `GIAO CHIẾN · ${Math.floor((run.combat?.tick ?? 0) / 20)} giây${overtime ? " · TĂNG TỐC ×3" : ""}`}
               </small>
             </span>
             <button onClick={() => openModal("traits")} className="ac-trait-summary" aria-label="Tộc hệ và tỉ lệ cửa hàng">Hệ</button>
@@ -711,7 +714,9 @@ export function AutoChessPage() {
                 <AutoPortrait index={0} npc />
                 <span><strong>{run.combat?.boss ? MONSTER_MAP[run.combat.boss].name : "Vị Linh đang giữ bàn"}</strong><small>{commanderLine}</small></span>
                 <button className="ac-button" onClick={() => runtime.pause(!run.paused)} disabled={run.phase !== "combat"}>{run.paused ? "Tiếp tục" : "Tạm dừng"}</button>
-                <button className="ac-button" onClick={() => setSpeed(speed === 1 ? 2 : 1)} aria-label="Đổi tốc độ chiến đấu">×{speed}</button>
+                <button className="ac-button" onClick={() => setSpeed(speed === 1 ? 2 : 1)} disabled={overtime}
+                  aria-label={overtime ? `Tự động tăng tốc ×3 sau ${OVERTIME_SECONDS} giây` : "Đổi tốc độ chiến đấu"}
+                  title={overtime ? "Trận tiếp tục đến khi một đội bị hạ; tốc độ cố định ×3" : "Chọn ×1 hoặc ×2; sau 55 giây tự chuyển ×3"}>×{effectiveSpeed}</button>
               </div>
               <footer className="ac-controls">
                 <span className="ac-team-caption">{boardPieces(run).length} Vị Linh · {(run.activeTicks / 20) | 0}s · Cấp {capacityNow} · {run.xp} XP</span>
@@ -940,17 +945,13 @@ export function AutoChessPage() {
               <span>{run.score} điểm tổng</span>
             </div>
             <p className="ac-muted">
-              {run.lastResult.result === "loss" && run.mode === "campaign"
-                ? "Màn này chưa hoàn thành. Chuẩn bị để thử lại; màn tiếp theo vẫn khóa."
-                : "Di vật, đội hình và lợi tức mở thêm cách giữ bàn."}
+              Di vật, đội hình và lợi tức mở thêm cách giữ bàn.
             </p>
             <button
               className="ac-button primary"
               onClick={() => doAction({ type: "next" })}
             >
-              {run.lastResult.result === "loss" && run.mode === "campaign"
-                ? "Chuẩn bị thử lại →"
-                : "Qua đợt tiếp theo →"}
+              Qua đợt tiếp theo →
             </button>
           </Dialog>
         )}
@@ -1023,8 +1024,11 @@ export function AutoChessPage() {
             <p>
               {run.phase === "won"
                 ? "Những tên gọi đã trở lại. An để một chiếc ghế cho người đến sau."
-                : "Lượt đã kết thúc. Kỷ lục và bộ sưu tập được giữ; thử một hướng đội hình khác ở phiên sau."}
+                : run.phase === "lost"
+                  ? `Đội hình bị hạ ở đợt ${run.wave}. Lượt đã kết thúc và điểm đã lưu; bắt đầu phiên mới để thử hướng đội hình khác.`
+                  : "Lượt đã kết thúc. Kỷ lục và bộ sưu tập được giữ; thử một hướng đội hình khác ở phiên sau."}
             </p>
+            {run.phase === "lost" && run.lastResult && <p className="ac-muted">{run.lastResult.reason}</p>}
             {run.phase === "won" && (
               <div className="ac-ending-choices">
                 <button

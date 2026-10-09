@@ -27,6 +27,7 @@ import {
   type AutoSave,
 } from "./types"
 import { SCENES } from "./story"
+import { finishRun as finish, normalizeAutoOutcome } from "./outcomes"
 
 export type AutoAction = {
   type: "start"
@@ -60,38 +61,6 @@ export type AutoAction = {
 const active = (run: AutoRun | null) =>
   !!run && !["won", "lost", "abandoned"].includes(run.phase)
 export const hasActiveAutoRun = active
-function finish(save: AutoSave, run: AutoRun) {
-  if (run.finished || !["won", "lost", "abandoned"].includes(run.phase)) return
-  run.finished = true
-  const records = [
-    {
-      id: run.id,
-      mode: run.mode,
-      seed: run.seed,
-      rulesVersion: run.rulesVersion,
-      day: run.day,
-      score: run.score,
-      wave: run.bestWave,
-      seconds: Math.floor(run.activeTicks / 20),
-      result: run.phase as "won" | "lost" | "abandoned",
-      team: boardPieces(run).map((p) => `${p.id}:${p.star}`),
-    },
-    ...save.records.filter((r) => r.id !== run.id),
-  ].sort((a, b) => b.score - a.score || b.wave - a.wave)
-  save.records = (["campaign", "survival", "daily"] as const).flatMap(
-    (mode) => {
-      const days = new Set<string>()
-      return records
-        .filter((r) => {
-          if (r.mode !== mode || (mode === "daily" && days.has(r.day)))
-            return false
-          days.add(r.day)
-          return true
-        })
-        .slice(0, 20)
-    },
-  )
-}
 function settle(save: AutoSave, run: AutoRun) {
   const b = run.combat
   if (!b || b.settled) return
@@ -101,9 +70,7 @@ function settle(save: AutoSave, run: AutoRun) {
     ? "loss"
     : !enemies
       ? "win"
-      : b.tick >= 1100 || b.result === "loss"
-        ? "loss"
-        : null
+      : null
   if (!result) {
     b.result = null
     run.phase = "combat"
@@ -133,9 +100,7 @@ function settle(save: AutoSave, run: AutoRun) {
   const rat = b.actors.some((a) => a.id === "rat" && a.hp > 0)
   const reason = won
     ? "Vị Linh giữ được bàn. Quân bị hạ sẽ trở lại ở vòng chuẩn bị."
-    : b.tick >= 1100
-      ? "Hết 55 giây: vòng thua. Tăng sát thương, ghép sao hoặc đổi hướng build để kết thúc trước cuồng nộ."
-      : rat
+    : rat
         ? "Chuột Tro còn sống và săn tuyến sau. Đặt hộ vệ cạnh carry hoặc đảo vị trí trước trận."
         : "Đội hình đã bị hạ. Ghép sao tuyến trước, dùng khiên/hồi phục và giữ carry sau hộ vệ."
   run.lastResult = {
@@ -160,8 +125,11 @@ function settle(save: AutoSave, run: AutoRun) {
           ...(b.boss ? ["augment" as const] : []),
         ]
       : []
-  if (run.health <= 0) {
+  if (!won) {
     run.phase = "lost"
+    run.paused = false
+    run.scene = null
+    run.reward = null
     finish(save, run)
   } else if (won && run.mode === "campaign" && run.wave === 12) {
     run.phase = "won"
@@ -292,7 +260,12 @@ export function reduceAuto(
   if (action.type === "next") {
     if (run.phase !== "result" || !run.combat?.settled || !run.lastResult)
       return fail("Vòng chưa được chốt.")
-    if (run.mode !== "campaign" || run.lastResult.result === "win") run.wave++
+    if (run.lastResult.result !== "win") {
+      normalizeAutoOutcome(save)
+      if (save.run?.phase === "result") return fail("Chưa có kết quả thắng để qua đợt tiếp theo.")
+      return { save, error: null }
+    }
+    run.wave++
     offerReward(run)
     return { save, error: null }
   }

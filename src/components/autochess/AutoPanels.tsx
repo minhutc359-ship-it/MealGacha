@@ -169,7 +169,7 @@ export function UnitInspector({
 export function AutoGuide({ onClose }: { onClose: () => void }) {
   return (
     <Dialog title="Một vòng chơi trong ba bước" onClose={onClose} className="ac-guide-dialog">
-      <p className="ac-guide-intro">Bạn chọn đội hình; Vị Linh tự di chuyển, đánh và tung kỹ năng. Hạ hết phe địch trong 55 giây để thắng.</p>
+      <p className="ac-guide-intro">Bạn chọn đội hình; Vị Linh tự di chuyển, đánh và tung kỹ năng. Hạ hết phe địch để thắng. Sau 55 giây trận tự tăng tốc ×3 và tiếp tục đến khi phân thắng thua. Đội hình bị hạ: lượt kết thúc, điểm được lưu; chỉ thắng mới qua đợt tiếp theo.</p>
       <div className="ac-guide-steps">
         <article><strong>1 · Mua & ghép quân</strong><p>Chạm lá trong cửa hàng để mua. 3 bản cùng quân tự ghép ★★; 3 quân ★★ ghép ★★★. Dự bị có 9 ô; dù đầy, vẫn mua được bản thứ ba để tự ghép. Mua quân không tự chọn hoặc đổi chỗ quân khác. Quân mới nằm ở ghế dự bị.</p></article>
         <article><strong>2 · Xếp đội hình</strong><p>Kéo thả quân giữa các ô bàn và dự bị bằng chuột hoặc ngón tay; thả lên một quân để đổi chỗ. Trên PC có thể chọn quân → chọn ô; trên mobile chạm nhẹ không đổi chỗ. Giữ 0,3 giây để xem nhanh, thả tay để đóng. Kéo vào khay Bán ở hai cạnh để nhận vàng. Đỡ đòn đứng trước; tầm xa/hồi phục đứng sau.</p></article>

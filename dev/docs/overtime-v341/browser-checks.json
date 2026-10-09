@@ -1,0 +1,56 @@
+{
+  "checks": [
+    {
+      "name": "Crossing 55 seconds overrides manual ×2 with real ×3, not ×6, and keeps fighting",
+      "startTick": 1100,
+      "pausedTick": 1179,
+      "elapsedMs": 1039,
+      "ticksPerSecond": 76.03464870067373,
+      "note": "Threshold sampling starts from the persisted checkpoint; calibrated resumed clock timing is recorded separately."
+    },
+    {
+      "name": "Pause and production reload preserve the overtime snapshot and forced ×3"
+    },
+    {
+      "name": "Overtime HUD fits portrait",
+      "w": 390,
+      "h": 720,
+      "dw": 390,
+      "dh": 720
+    },
+    {
+      "name": "Overtime HUD fits landscape",
+      "w": 844,
+      "h": 390,
+      "dw": 844,
+      "dh": 390
+    },
+    {
+      "name": "An old 55-second timeout reloads paused, resumes the same battle and rolls back the payout once"
+    },
+    {
+      "name": "survival: real attacks defeat the team, end immediately, record score once and never advance the wave"
+    },
+    {
+      "name": "daily: real attacks defeat the team, end immediately, record score once and never advance the wave"
+    },
+    {
+      "name": "campaign: real attacks defeat the team, end immediately, record score once and never advance the wave"
+    },
+    {
+      "name": "A post-55-second win still celebrates, pays once and advances to the next preparation"
+    },
+    {
+      "name": "No client errors or missing local production assets"
+    },
+    {
+      "name": "Resuming a saved overtime battle runs at 60 ticks/s with a calibrated paused starting snapshot",
+      "initialTick": 1337,
+      "finalTick": 1410,
+      "elapsedMs": 1316,
+      "ticksPerSecond": 55.471124620060785
+    }
+  ],
+  "errors": [],
+  "missing": []
+}
