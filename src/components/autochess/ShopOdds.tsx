@@ -7,7 +7,7 @@ export function ShopOdds({ level, rulesVersion }: { level: number; rulesVersion:
     <h3>Tỉ lệ mỗi ô cửa hàng</h3>
     <table>
       <thead><tr><th>Cấp</th>{[1, 2, 3, 4, 5].map(cost => <th key={cost}>{cost} ◉</th>)}</tr></thead>
-      <tbody>{[3, 4, 5, 6, 7].map(value => <tr key={value} className={value === level ? "is-current" : ""} aria-current={value === level ? "true" : undefined}>
+      <tbody>{[3, 4, 5, 6, 7, 8, 9].map(value => <tr key={value} className={value === level ? "is-current" : ""} aria-current={value === level ? "true" : undefined}>
         <th>{value === level ? "▸ " : ""}{value}</th>{shopOdds(value, rulesVersion).map((chance, index) => <td key={index}>{chance}%</td>)}
       </tr>)}</tbody>
       <tfoot><tr><th>Loại quân</th>{[1, 2, 3, 4, 5].map(cost => <td key={cost}>{units.filter(u => u.cost === cost).length}</td>)}</tr></tfoot>

@@ -33,7 +33,7 @@ describe("PC shortcuts use the real economy guards", () => {
     expect(save.run!.roster.find(p => p.uid === "p1")!.cell).toBeNull()
     save = reduceAuto(save, shortcutAction(save.run!, "w", bench.uid)!).save as typeof save
     expect(save.run!.roster.find(p => p.uid === bench.uid)!.cell).toBeGreaterThanOrEqual(30)
-    for (const id of ["banh-mi", "bun-rieu", "bun-cha", "xoi", "che-buoi"]) add(save.run!, id)
+    for (const id of ["banh-mi", "bun-rieu", "bun-cha", "xoi", "che-buoi", "banh-chung", "com-ga", "dua-hanh"]) add(save.run!, id)
     const full = reduceAuto(save, shortcutAction(save.run!, "w", bench.uid)!)
     expect(full.error).toContain("đầy"); expect(full.save).toBe(save)
     expect(autoRunSchema.safeParse(save.run).success).toBe(true)
@@ -49,7 +49,7 @@ describe("PC shortcuts use the real economy guards", () => {
     expect(save.run!.xp).toBe(4); expect(save.run!.gold).toBe(gold + 5)
     save = reduceAuto(save, shortcutAction(save.run!, "d", null)!).save as typeof save
     expect(save.run!.gold).toBe(gold + 3)
-    save.run!.xp = 62
+    save.run!.xp = 128
     expect(reduceAuto(save, shortcutAction(save.run!, "f", null)!).save).toBe(save)
     save.run!.gold = 0
     expect(reduceAuto(save, shortcutAction(save.run!, "d", null)!).save).toBe(save)
@@ -96,7 +96,7 @@ describe("star awakening is cosmetic and handles chained merges", () => {
 describe("finite level-based recruitment", () => {
   it("provides a diverse 1–5 gold roster and matches advertised odds over 50,000 slots per level", () => {
     expect([1, 2, 3, 4, 5].map(cost => AUTO_UNITS.filter(u => u.cost === cost).length)).toEqual([8, 11, 10, 8, 7])
-    for (const [index, xp] of [0, 8, 20, 38, 62].entries()) {
+    for (const [index, xp] of [0, 8, 20, 38, 62, 92, 128].entries()) {
       const run = initial(); run.xp = xp
       const counts = [0, 0, 0, 0, 0]
       for (let i = 0; i < 10000; i++) { refreshShop(run); for (const id of run.shop) counts[UNIT_MAP[id!].cost - 1]++ }

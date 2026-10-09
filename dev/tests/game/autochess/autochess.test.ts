@@ -163,7 +163,7 @@ describe("finite pool, economy and formation", () => {
     const anchor = r.roster[0]
     anchor.items = ["herbs", "lantern"]
     piece(r, anchor.id, 1, null, ["herbs"])
-    for (let i = 0; i < 5; i++) piece(r, "banh-mi")
+    for (let i = 0; i < 8; i++) piece(r, "banh-mi")
     shop(r, [anchor.id])
     expect(buy(r, 0)).toBeNull()
     expect(r.roster.find((p) => p.uid === anchor.uid)).toMatchObject({
@@ -171,13 +171,13 @@ describe("finite pool, economy and formation", () => {
       cell: 20,
       items: ["herbs", "lantern"],
     })
-    expect(r.inventory).toEqual(["herbs"])
+    expect(r.inventory).toEqual(["spark", "dew", "herbs"])
     valid(r)
   })
   it("rejects full bench and insufficient gold without consuming a shop unit", () => {
     const r = run()
     shop(r, ["banh-mi"])
-    for (let i = 0; i < 6; i++) piece(r, "banh-dau-xanh")
+    for (let i = 0; i < 9; i++) piece(r, "banh-dau-xanh")
     const before = JSON.stringify(r)
     expect(buy(r, 0)).toContain("đầy")
     expect(JSON.stringify(r)).toBe(before)

@@ -25,6 +25,8 @@ export function AutoBoard({
   upgrades,
   onCell,
   onPiecePointerDown,
+  onCellPointerDown,
+  onInspectCell,
 }: {
   run: AutoRun
   getFrame: Frames
@@ -33,8 +35,10 @@ export function AutoBoard({
   lowQuality: boolean
   celebrating: boolean
   upgrades: StarUpgrade[]
-  onCell: (cell: number, dragged?: string) => void
+  onCell: (cell: number, dragged?: string, keyboard?: boolean) => void
   onPiecePointerDown?: (uid: string, event: PointerEvent<HTMLElement>) => void
+  onCellPointerDown?: (cell: number, event: PointerEvent<HTMLElement>) => void
+  onInspectCell?: (cell: number) => void
 }) {
   const root = useRef<HTMLDivElement>(null),
     canvas = useRef<HTMLCanvasElement>(null)
@@ -269,6 +273,11 @@ export function AutoBoard({
             (actor.side === "enemy" && MONSTER_MAP[actor.id].boss ? .9 : .75) * (actor.side === "ally" ? starScale(actor.star) : 1),
           color = AUTO_SCHOOLS[def.school].color
         ctx.globalAlpha = actor.hp <= 0 ? Math.max(0, 1 - deadAge / 20) : 1
+        if (actor.hp > 0) {
+          const aura = ctx.createRadialGradient(x, y - cell * .25, 0, x, y - cell * .25, cell * .55)
+          aura.addColorStop(0, `${color}38`); aura.addColorStop(.6, `${color}16`); aura.addColorStop(1, `${color}00`)
+          ctx.fillStyle = aura; ctx.beginPath(); ctx.ellipse(x, y - cell * .25, cell * .46, cell * .53, 0, 0, Math.PI * 2); ctx.fill()
+        }
         ctx.fillStyle = "rgba(0,0,0,.46)"
         ctx.beginPath()
         ctx.ellipse(x, y + 2, cell * 0.33, cell * 0.11, 0, 0, Math.PI * 2)
@@ -508,7 +517,7 @@ export function AutoBoard({
       <div
         className="ac-cell-grid"
         role="group"
-        aria-label="Bàn 6 nhân 6. Chọn quân rồi chọn ô để di chuyển."
+        aria-label="Bàn 6 nhân 6. Kéo quân để xếp; giữ 0,3 giây để xem. PC có thể chọn quân rồi chọn ô."
       >
         {CELLS.map((cell) => {
           const piece = run.roster.find((p) => p.cell === cell),
@@ -540,8 +549,8 @@ export function AutoBoard({
               data-star={piece?.star}
               data-star-scale={piece ? starScale(piece.star) : undefined}
               aria-keyshortcuts={run.phase === "prepare" && piece ? "W E" : undefined}
-              onPointerDown={e => { if (run.phase === "prepare" && piece) onPiecePointerDown?.(piece.uid, e) }}
-              onContextMenu={e => { if (piece && run.phase === "prepare") e.preventDefault() }}
+              onPointerDown={e => { if (run.phase === "prepare" && piece) onPiecePointerDown?.(piece.uid, e); else onCellPointerDown?.(cell, e) }}
+              onContextMenu={e => { e.preventDefault(); onInspectCell?.(cell) }}
               aria-pressed={piece ? piece.uid === selected : undefined}
               data-placement={run.phase === "prepare" && cell >= 18 && !!selected ? "available" : undefined}
               onDragStart={(e) => {
@@ -554,7 +563,7 @@ export function AutoBoard({
                 e.preventDefault()
                 onCell(cell, e.dataTransfer.getData("text/plain"))
               }}
-              onClick={() => onCell(cell)}
+              onClick={e => onCell(cell, undefined, e.detail === 0)}
               onKeyDown={(e) => {
                 const delta = ({
                   ArrowUp: -6,

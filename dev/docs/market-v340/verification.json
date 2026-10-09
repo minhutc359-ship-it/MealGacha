@@ -1,0 +1,72 @@
+{
+  "version": "3.4.0",
+  "baseCommit": "ffcb8b7ef3d7c1ccb368a0f64e022f6d312fb50d",
+  "request": "REQUEST.md",
+  "boundary": "UI -> reducer -> localStorage -> parseGame -> render (production build and reload); pure MGC1 transfer tests",
+  "backend": "No backend added; game state is local to the browser",
+  "checks": {
+    "typecheck": "passed",
+    "devTypecheck": "passed",
+    "vitest": {
+      "files": 24,
+      "passed": 283,
+      "failed": 0
+    },
+    "catalog": {
+      "meals": 123,
+      "tags": 35,
+      "events": 9
+    },
+    "releaseRecords": {
+      "dependencies": 23,
+      "assets": 245
+    },
+    "browser": {
+      "passed": 42,
+      "errors": 0,
+      "missingLocalAssets": 0,
+      "report": "browser-checks.json",
+      "engine": "Chromium + CDP touch gestures + Vite production preview",
+      "viewports": [
+        "1440x900",
+        "390x720",
+        "844x390",
+        "320x568",
+        "568x320"
+      ],
+      "productionCombatViewports": [
+        "390x720",
+        "844x390"
+      ],
+      "maxTeam": 9,
+      "benchSlots": 9,
+      "productionPersistedRoster": 18,
+      "haptics": "API stub verifies opt-in patterns, once per event, disabled and unsupported paths"
+    },
+    "benchmark": {
+      "samples": 18,
+      "campaignWins": 7,
+      "campaignSamples": 9,
+      "survivalLosses": 9,
+      "survivalTerminalWaveRange": [
+        7,
+        13
+      ],
+      "report": "balance-results.json",
+      "limitation": "Bot smoke test; not a human win-rate or controlled comparison against the previous version"
+    },
+    "build": {
+      "bytes": 38007076,
+      "files": 296,
+      "js_gzip": 499816,
+      "css_gzip": 74012,
+      "leaks": []
+    }
+  },
+  "limitations": [
+    "No real iOS/Safari or Android hardware test",
+    "No physical haptic measurement",
+    "External fonts aborted in browser harness",
+    "Protected Vercel preview requires an authorized signed-in account; local production build verified"
+  ]
+}

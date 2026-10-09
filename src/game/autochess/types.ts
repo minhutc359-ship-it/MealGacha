@@ -1,4 +1,4 @@
-export const RULES_VERSION = 3
+export const RULES_VERSION = 4
 export const TICKS_PER_SECOND = 20
 export type AutoMode = "campaign" | "survival" | "daily"
 export type AutoSchool = "ember" | "tide" | "grove" | "hearth" | "sugar"

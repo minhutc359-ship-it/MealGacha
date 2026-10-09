@@ -85,17 +85,17 @@ describe("formation editing and visible level progress", () => {
   })
   it("refuses invalid slots, forbidden deployments and dragging during combat atomically", () => {
     const r=withBench(), uid=r.roster[3].uid, before=structuredClone(r)
-    expect(move(r,uid,null,undefined,6)).toBeTruthy(); expect(r).toEqual(before)
+    expect(move(r,uid,null,undefined,9)).toBeTruthy(); expect(r).toEqual(before)
     expect(move(r,uid,18)).toBeTruthy(); expect(r).toEqual(before)
     const started=reduceAuto({...emptyAutoSave(),run:r},{type:"battle"}).save
     const out=reduceAuto(started,{type:"move",uid,cell:null,benchSlot:4})
     expect(out.error).toBeTruthy(); expect(out.save).toBe(started)
   })
   it("shows the exact remaining XP at every level boundary and caps the final bar", () => {
-    const samples=[0,7,8,19,20,37,38,61,62,1000].map(levelProgress)
-    expect(samples.map(s=>s.remaining)).toEqual([8,1,12,1,18,1,24,1,0,0])
-    expect(samples.map(s=>s.level)).toEqual([3,3,4,4,5,5,6,6,7,7])
-    expect(samples[2].percent).toBe(0); expect(samples[8].percent).toBe(100)
+    const samples=[0,7,8,19,20,37,38,61,62,91,92,127,128,1000].map(levelProgress)
+    expect(samples.map(s=>s.remaining)).toEqual([8,1,12,1,18,1,24,1,30,1,36,1,0,0])
+    expect(samples.map(s=>s.level)).toEqual([3,3,4,4,5,5,6,6,7,7,8,8,9,9])
+    expect(samples[2].percent).toBe(0); expect(samples[12].percent).toBe(100)
   })
 })
 describe("recognizable shared models and mirrored fitting", () => {

@@ -19,6 +19,8 @@ const { UNIT_MAP } = await server.ssrLoadModule(
 const { capacity, boardPieces, copies } = await server.ssrLoadModule(
   "/src/game/autochess/economy.ts",
 )
+const { BENCH_SLOTS, MAX_LEVEL } = await server.ssrLoadModule("/src/game/autochess/config.ts")
+const { equipPreview } = await server.ssrLoadModule("/src/game/autochess/items.ts")
 const { autoSaveSchema } = await server.ssrLoadModule(
   "/src/game/autochess/schema.ts",
 )
@@ -73,7 +75,7 @@ for (const mode of ["campaign", "survival"])
         let r = save.run
         // Spend enough to add slots gradually; avoid chasing exact shop contents.
         while (
-          capacity(r.xp) < Math.min(7, 3 + Math.floor(r.wave / 2)) &&
+          capacity(r.xp) < Math.min(MAX_LEVEL, 3 + Math.floor(r.wave / 2)) &&
           r.gold >= 8
         ) {
           act({ type: "xp" })
@@ -94,7 +96,7 @@ for (const mode of ["campaign", "survival"])
             )
               continue
             if (
-              r.roster.filter((p) => p.cell === null).length >= 6 &&
+              r.roster.filter((p) => p.cell === null).length >= BENCH_SLOTS &&
               r.roster.filter((p) => p.id === id && p.star === 1).length < 2
             )
               continue
@@ -116,24 +118,28 @@ for (const mode of ["campaign", "survival"])
         ].slice(0, capacity(r.xp))
         for (const old of boardPieces(save.run))
           if (!best.some((p) => p.uid === old.uid)) {
-            if (save.run.roster.filter((p) => p.cell === null).length >= 6)
+            if (save.run.roster.filter((p) => p.cell === null).length >= BENCH_SLOTS)
               act({ type: "sell", uid: old.uid })
             else act({ type: "move", uid: old.uid, cell: null })
           }
-        let front = 18,
-          back = 30
+        const positioned = new Set()
+        const front = [...Array(18)].map((_, i) => i + 18)
+        const back = [...front.slice(12), ...front.slice(6, 12), ...front.slice(0, 6)]
         for (const p of best) {
           if (!save.run.roster.some((q) => q.uid === p.uid)) continue
+          const order = UNIT_MAP[p.id].profession === "keeper" ? front : back
+          const cell = order.find(cell => !positioned.has(cell))
+          positioned.add(cell)
           act({
             type: "move",
             uid: p.uid,
-            cell: UNIT_MAP[p.id].profession === "keeper" ? front++ : back++,
+            cell,
           })
         }
         for (const id of [...save.run.inventory]) {
           const target = best.find((p) => {
             const x = save.run.roster.find((q) => q.uid === p.uid)
-            return x && x.items.length < 2 && !x.items.includes(id)
+            return x && equipPreview(x, id).valid
           })
           if (target) act({ type: "equip", uid: target.uid, item: id })
         }

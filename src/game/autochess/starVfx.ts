@@ -1,5 +1,13 @@
 import type { StarUpgrade } from "./presentation"
 import { STAR_UPGRADE_MS } from "./presentation"
+import { BENCH_SLOTS } from "./config"
+import type { Piece } from "./types"
+
+export function starSourcePosition(source: Pick<Piece, "cell" | "benchSlot">, cell: number, left: number, top: number) {
+  return source.cell === null
+    ? { x: left + ((source.benchSlot ?? Math.floor(BENCH_SLOTS / 2)) + .5) / BENCH_SLOTS * 6 * cell, y: top + 6 * cell }
+    : { x: left + (source.cell % 6 + .5) * cell, y: top + (Math.floor(source.cell / 6) + .82) * cell }
+}
 
 // A bounded presentation-only effect; no timers or game-state changes in Canvas.
 export function drawStarUpgrade(ctx: CanvasRenderingContext2D, upgrade: StarUpgrade, now: number,
@@ -19,8 +27,7 @@ export function drawStarUpgrade(ctx: CanvasRenderingContext2D, upgrade: StarUpgr
     }
     const converge = Math.min(1, t / .38)
     if (converge < 1) for (const source of upgrade.sources) {
-      const sx = source.cell === null ? left + ((source.benchSlot ?? 2) + .5) * cell : left + (source.cell % 6 + .5) * cell
-      const sy = source.cell === null ? top + 6 * cell : top + (Math.floor(source.cell / 6) + .82) * cell
+      const { x: sx, y: sy } = starSourcePosition(source, cell, left, top)
       const px = sx + (x - sx) * converge, py = sy + (y - cell * .4 - sy) * converge
       ctx.globalAlpha = fade * (1 - converge)
       ctx.beginPath(); ctx.moveTo(sx, sy); ctx.quadraticCurveTo((sx + x) / 2, Math.min(sy, y) - cell, px, py); ctx.stroke()

@@ -137,6 +137,9 @@ export function createCombat(run: AutoRun): AutoCombat {
       a.shield += traits.hearth >= 4 ? 220 : 100
     if (p.items.includes("herbs")) a.maxHp += 100
     if (p.items.includes("basket")) a.maxHp += 180
+    if (p.items.includes("fiber")) a.maxHp += 60
+    if (p.items.includes("spark")) a.baseAttack += 6
+    if (p.items.includes("dew")) a.mana = Math.min(100, a.mana + 10)
     if (p.items.includes("bell") && adjacent) a.baseAttack *= 1.18
     if (run.augments.includes("guests") && distinctSchools >= 3)
       a.maxHp = Math.round(a.maxHp * 1.15)

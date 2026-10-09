@@ -1,0 +1,706 @@
+{
+  "checks": [
+    {
+      "name": "Hide shop frees portrait board space",
+      "openHeight": 345,
+      "closedHeight": 432
+    },
+    {
+      "name": "Trait rail expands without changing the viewport"
+    },
+    {
+      "name": "Buy never preselects or swaps another unit"
+    },
+    {
+      "name": "9/9 bench buys and merges to two stars"
+    },
+    {
+      "name": "9/9 bench chains a shop copy into three stars"
+    },
+    {
+      "name": "Mouse drag supports board and last bench slot"
+    },
+    {
+      "name": "Drag-to-sell refunds gold and removes only the dragged unit"
+    },
+    {
+      "name": "Inventory crafting previews the exact result and consumes two shards"
+    },
+    {
+      "name": "A full relic can be dragged onto a board unit"
+    },
+    {
+      "name": "A mobile tap neither selects nor swaps a unit"
+    },
+    {
+      "name": "300ms hold opens quick stats and release closes without moving"
+    },
+    {
+      "name": "Real touch drag moves a unit without scrolling the document"
+    },
+    {
+      "name": "Touch drag-to-sell uses the left sale zone"
+    },
+    {
+      "name": "Holding a shop card inspects it without buying"
+    },
+    {
+      "name": "Tapping a shop card buys directly"
+    },
+    {
+      "name": "Nine-unit board/bench fit desktop",
+      "width": 1440,
+      "height": 900,
+      "docWidth": 1440,
+      "docHeight": 900,
+      "board": {
+        "x": 158,
+        "y": 167,
+        "width": 1169,
+        "height": 436,
+        "bottom": 603,
+        "right": 1327
+      },
+      "market": {
+        "x": 112,
+        "y": 610,
+        "width": 1216,
+        "height": 282,
+        "bottom": 892,
+        "right": 1328
+      },
+      "slots": [
+        {
+          "x": 402,
+          "y": 618,
+          "width": 71.4375,
+          "height": 44,
+          "right": 473.4375,
+          "bottom": 662
+        },
+        {
+          "x": 478.4375,
+          "y": 618,
+          "width": 71.4375,
+          "height": 44,
+          "right": 549.875,
+          "bottom": 662
+        },
+        {
+          "x": 554.875,
+          "y": 618,
+          "width": 71.453125,
+          "height": 44,
+          "right": 626.328125,
+          "bottom": 662
+        },
+        {
+          "x": 631.328125,
+          "y": 618,
+          "width": 71.4375,
+          "height": 44,
+          "right": 702.765625,
+          "bottom": 662
+        },
+        {
+          "x": 707.765625,
+          "y": 618,
+          "width": 71.453125,
+          "height": 44,
+          "right": 779.21875,
+          "bottom": 662
+        },
+        {
+          "x": 784.21875,
+          "y": 618,
+          "width": 71.4375,
+          "height": 44,
+          "right": 855.65625,
+          "bottom": 662
+        },
+        {
+          "x": 860.65625,
+          "y": 618,
+          "width": 71.453125,
+          "height": 44,
+          "right": 932.109375,
+          "bottom": 662
+        },
+        {
+          "x": 937.109375,
+          "y": 618,
+          "width": 71.4375,
+          "height": 44,
+          "right": 1008.546875,
+          "bottom": 662
+        },
+        {
+          "x": 1013.546875,
+          "y": 618,
+          "width": 71.4375,
+          "height": 44,
+          "right": 1084.984375,
+          "bottom": 662
+        }
+      ],
+      "controls": [
+        {
+          "x": 441,
+          "right": 631.703125
+        },
+        {
+          "x": 637.703125,
+          "right": 981
+        },
+        {
+          "x": 987,
+          "right": 1023
+        },
+        {
+          "x": 1029,
+          "right": 1085
+        }
+      ]
+    },
+    {
+      "name": "Nine-unit board/bench fit portrait",
+      "width": 390,
+      "height": 720,
+      "docWidth": 390,
+      "docHeight": 720,
+      "board": {
+        "x": 44,
+        "y": 145,
+        "width": 339,
+        "height": 345,
+        "bottom": 490,
+        "right": 383
+      },
+      "market": {
+        "x": 6,
+        "y": 495,
+        "width": 378,
+        "height": 219,
+        "bottom": 714,
+        "right": 384
+      },
+      "slots": [
+        {
+          "x": 46,
+          "y": 501,
+          "width": 34.21875,
+          "height": 35,
+          "right": 80.21875,
+          "bottom": 536
+        },
+        {
+          "x": 83.21875,
+          "y": 501,
+          "width": 34.21875,
+          "height": 35,
+          "right": 117.4375,
+          "bottom": 536
+        },
+        {
+          "x": 120.4375,
+          "y": 501,
+          "width": 34.21875,
+          "height": 35,
+          "right": 154.65625,
+          "bottom": 536
+        },
+        {
+          "x": 157.65625,
+          "y": 501,
+          "width": 34.21875,
+          "height": 35,
+          "right": 191.875,
+          "bottom": 536
+        },
+        {
+          "x": 194.875,
+          "y": 501,
+          "width": 34.234375,
+          "height": 35,
+          "right": 229.109375,
+          "bottom": 536
+        },
+        {
+          "x": 232.109375,
+          "y": 501,
+          "width": 34.21875,
+          "height": 35,
+          "right": 266.328125,
+          "bottom": 536
+        },
+        {
+          "x": 269.328125,
+          "y": 501,
+          "width": 34.21875,
+          "height": 35,
+          "right": 303.546875,
+          "bottom": 536
+        },
+        {
+          "x": 306.546875,
+          "y": 501,
+          "width": 34.21875,
+          "height": 35,
+          "right": 340.765625,
+          "bottom": 536
+        },
+        {
+          "x": 343.765625,
+          "y": 501,
+          "width": 34.21875,
+          "height": 35,
+          "right": 377.984375,
+          "bottom": 536
+        }
+      ],
+      "controls": [
+        {
+          "x": 74,
+          "right": 156.953125
+        },
+        {
+          "x": 160.953125,
+          "right": 302
+        },
+        {
+          "x": 306,
+          "right": 334
+        },
+        {
+          "x": 338,
+          "right": 378
+        }
+      ]
+    },
+    {
+      "name": "Nine-unit board/bench fit landscape",
+      "width": 844,
+      "height": 390,
+      "docWidth": 844,
+      "docHeight": 390,
+      "board": {
+        "x": 42,
+        "y": 116.796875,
+        "width": 458.203125,
+        "height": 269.203125,
+        "bottom": 386,
+        "right": 500.203125
+      },
+      "market": {
+        "x": 505.203125,
+        "y": 86.796875,
+        "width": 332.796875,
+        "height": 300.203125,
+        "bottom": 387,
+        "right": 838
+      },
+      "slots": [
+        {
+          "x": 539.203125,
+          "y": 183.109375,
+          "width": 29.859375,
+          "height": 31,
+          "right": 569.0625,
+          "bottom": 214.109375
+        },
+        {
+          "x": 572.0625,
+          "y": 183.109375,
+          "width": 29.859375,
+          "height": 31,
+          "right": 601.921875,
+          "bottom": 214.109375
+        },
+        {
+          "x": 604.921875,
+          "y": 183.109375,
+          "width": 29.875,
+          "height": 31,
+          "right": 634.796875,
+          "bottom": 214.109375
+        },
+        {
+          "x": 637.796875,
+          "y": 183.109375,
+          "width": 29.859375,
+          "height": 31,
+          "right": 667.65625,
+          "bottom": 214.109375
+        },
+        {
+          "x": 670.65625,
+          "y": 183.109375,
+          "width": 29.875,
+          "height": 31,
+          "right": 700.53125,
+          "bottom": 214.109375
+        },
+        {
+          "x": 703.53125,
+          "y": 183.109375,
+          "width": 29.859375,
+          "height": 31,
+          "right": 733.390625,
+          "bottom": 214.109375
+        },
+        {
+          "x": 736.390625,
+          "y": 183.109375,
+          "width": 29.875,
+          "height": 31,
+          "right": 766.265625,
+          "bottom": 214.109375
+        },
+        {
+          "x": 769.265625,
+          "y": 183.109375,
+          "width": 29.859375,
+          "height": 31,
+          "right": 799.125,
+          "bottom": 214.109375
+        },
+        {
+          "x": 802.125,
+          "y": 183.109375,
+          "width": 29.875,
+          "height": 31,
+          "right": 832,
+          "bottom": 214.109375
+        }
+      ],
+      "controls": [
+        {
+          "x": 560.203125,
+          "right": 637.8125
+        },
+        {
+          "x": 640.8125,
+          "right": 765
+        },
+        {
+          "x": 768,
+          "right": 793
+        },
+        {
+          "x": 796,
+          "right": 832
+        }
+      ]
+    },
+    {
+      "name": "Nine-unit board/bench fit small",
+      "width": 320,
+      "height": 568,
+      "docWidth": 320,
+      "docHeight": 568,
+      "board": {
+        "x": 44,
+        "y": 133,
+        "width": 269,
+        "height": 218,
+        "bottom": 351,
+        "right": 313
+      },
+      "market": {
+        "x": 6,
+        "y": 356,
+        "width": 308,
+        "height": 206,
+        "bottom": 562,
+        "right": 314
+      },
+      "slots": [
+        {
+          "x": 38,
+          "y": 362,
+          "width": 28.21875,
+          "height": 31,
+          "right": 66.21875,
+          "bottom": 393
+        },
+        {
+          "x": 68.21875,
+          "y": 362,
+          "width": 28.21875,
+          "height": 31,
+          "right": 96.4375,
+          "bottom": 393
+        },
+        {
+          "x": 98.4375,
+          "y": 362,
+          "width": 28.21875,
+          "height": 31,
+          "right": 126.65625,
+          "bottom": 393
+        },
+        {
+          "x": 128.65625,
+          "y": 362,
+          "width": 28.21875,
+          "height": 31,
+          "right": 156.875,
+          "bottom": 393
+        },
+        {
+          "x": 158.875,
+          "y": 362,
+          "width": 28.234375,
+          "height": 31,
+          "right": 187.109375,
+          "bottom": 393
+        },
+        {
+          "x": 189.109375,
+          "y": 362,
+          "width": 28.21875,
+          "height": 31,
+          "right": 217.328125,
+          "bottom": 393
+        },
+        {
+          "x": 219.328125,
+          "y": 362,
+          "width": 28.21875,
+          "height": 31,
+          "right": 247.546875,
+          "bottom": 393
+        },
+        {
+          "x": 249.546875,
+          "y": 362,
+          "width": 28.21875,
+          "height": 31,
+          "right": 277.765625,
+          "bottom": 393
+        },
+        {
+          "x": 279.765625,
+          "y": 362,
+          "width": 28.21875,
+          "height": 31,
+          "right": 307.984375,
+          "bottom": 393
+        }
+      ],
+      "controls": [
+        {
+          "x": 60,
+          "right": 126.28125
+        },
+        {
+          "x": 129.28125,
+          "right": 242
+        },
+        {
+          "x": 245,
+          "right": 270
+        },
+        {
+          "x": 273,
+          "right": 308
+        }
+      ]
+    },
+    {
+      "name": "Nine-unit board/bench fit short-landscape",
+      "width": 568,
+      "height": 320,
+      "docWidth": 568,
+      "docHeight": 320,
+      "board": {
+        "x": 40,
+        "y": 114,
+        "width": 232,
+        "height": 202,
+        "bottom": 316,
+        "right": 272
+      },
+      "market": {
+        "x": 277,
+        "y": 84,
+        "width": 285,
+        "height": 233,
+        "bottom": 317,
+        "right": 562
+      },
+      "slots": [
+        {
+          "x": 311,
+          "y": 124.3125,
+          "width": 24.546875,
+          "height": 31,
+          "right": 335.546875,
+          "bottom": 155.3125
+        },
+        {
+          "x": 338.546875,
+          "y": 124.3125,
+          "width": 24.5625,
+          "height": 31,
+          "right": 363.109375,
+          "bottom": 155.3125
+        },
+        {
+          "x": 366.109375,
+          "y": 124.3125,
+          "width": 24.546875,
+          "height": 31,
+          "right": 390.65625,
+          "bottom": 155.3125
+        },
+        {
+          "x": 393.65625,
+          "y": 124.3125,
+          "width": 24.5625,
+          "height": 31,
+          "right": 418.21875,
+          "bottom": 155.3125
+        },
+        {
+          "x": 421.21875,
+          "y": 124.3125,
+          "width": 24.546875,
+          "height": 31,
+          "right": 445.765625,
+          "bottom": 155.3125
+        },
+        {
+          "x": 448.765625,
+          "y": 124.3125,
+          "width": 24.5625,
+          "height": 31,
+          "right": 473.328125,
+          "bottom": 155.3125
+        },
+        {
+          "x": 476.328125,
+          "y": 124.3125,
+          "width": 24.546875,
+          "height": 31,
+          "right": 500.875,
+          "bottom": 155.3125
+        },
+        {
+          "x": 503.875,
+          "y": 124.3125,
+          "width": 24.5625,
+          "height": 31,
+          "right": 528.4375,
+          "bottom": 155.3125
+        },
+        {
+          "x": 531.4375,
+          "y": 124.3125,
+          "width": 24.546875,
+          "height": 31,
+          "right": 555.984375,
+          "bottom": 155.3125
+        }
+      ],
+      "controls": [
+        {
+          "x": 332,
+          "right": 384
+        },
+        {
+          "x": 387,
+          "right": 489
+        },
+        {
+          "x": 492,
+          "right": 517
+        },
+        {
+          "x": 520,
+          "right": 556
+        }
+      ]
+    },
+    {
+      "name": "Touch drops combine a second shard on the equipped unit"
+    },
+    {
+      "name": "Invalid duplicate crafting shows a preview and retains the ingredient"
+    },
+    {
+      "name": "F and D still use the same XP and roll economy"
+    },
+    {
+      "name": "W uses hovered unit; E ignores empty pointer positions"
+    },
+    {
+      "name": "Modal blocks shortcuts and exposes optional haptics setting"
+    },
+    {
+      "name": "In-game odds display all levels 3 through 9"
+    },
+    {
+      "name": "Story scenes block formation/market shortcuts"
+    },
+    {
+      "name": "Opt-in two-star haptics fire once and do not repeat on expiry"
+    },
+    {
+      "name": "Three-star haptics use the advertised pattern once"
+    },
+    {
+      "name": "Haptics preference disables vibration without disabling star effects"
+    },
+    {
+      "name": "Unsupported vibration is explained and the toggle is disabled"
+    },
+    {
+      "name": "Cancelling a touch drag removes the ghost without moving or selling"
+    },
+    {
+      "name": "Latest layout screenshots include the corrected single trait label"
+    },
+    {
+      "name": "Production build craft persists all 18 units and three inventory items"
+    },
+    {
+      "name": "Production reload restores a level-nine board, bench and crafted item"
+    },
+    {
+      "name": "Production full-bench rejection leaves persisted gold and roster intact"
+    },
+    {
+      "name": "Production drag-sell and buy commit the refund, roster and cleared selection"
+    },
+    {
+      "name": "Final production CSS fits portrait and has one trait label",
+      "w": 390,
+      "h": 720,
+      "dw": 390,
+      "dh": 720
+    },
+    {
+      "name": "Production starts and pauses combat with nine actual allied actors"
+    },
+    {
+      "name": "Nine-unit production combat fits portrait",
+      "w": 390,
+      "h": 720,
+      "dw": 390,
+      "dh": 720
+    },
+    {
+      "name": "Nine-unit production combat fits landscape",
+      "w": 844,
+      "h": 390,
+      "dw": 844,
+      "dh": 390
+    },
+    {
+      "name": "No client errors or missing local runtime assets"
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

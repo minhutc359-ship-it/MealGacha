@@ -8,7 +8,7 @@ export const AUTO_SCHOOLS: Record<AutoSchool, {
 }> = {
   ember: {
     name: "Hỏa vị",
-    color: "#ffae70",
+    color: "#ff8479",
     text: "2: đòn đánh đốt 8/s · 4: đốt 16/s",
   },
   tide: {
@@ -28,7 +28,7 @@ export const AUTO_SCHOOLS: Record<AutoSchool, {
   },
   sugar: {
     name: "Ngọt vị",
-    color: "#e2b4f3",
+    color: "#98de9b",
     text: "2: cast cho 70 khiên · 4: cho 150 khiên",
   },
 }
@@ -891,6 +891,8 @@ export const LEGACY_SHOP_ODDS = [
   [35, 35, 25, 5, 0],
   [20, 30, 35, 13, 2],
   [10, 20, 35, 25, 10],
+  [10, 20, 25, 35, 10],
+  [5, 10, 20, 40, 25],
 ]
 export const SHOP_ODDS = [
   [75, 25, 0, 0, 0],
@@ -898,6 +900,8 @@ export const SHOP_ODDS = [
   [40, 35, 23, 2, 0],
   [25, 35, 30, 10, 0],
   [15, 25, 30, 25, 5],
+  [10, 20, 25, 35, 10],
+  [5, 10, 20, 40, 25],
 ]
 export const shopOdds = (level: number, rulesVersion: number) =>
-  (rulesVersion >= 3 ? SHOP_ODDS : LEGACY_SHOP_ODDS)[Math.max(0, Math.min(4, level - 3))]
+  (rulesVersion >= 3 ? SHOP_ODDS : LEGACY_SHOP_ODDS)[Math.max(0, Math.min(6, level - 3))]

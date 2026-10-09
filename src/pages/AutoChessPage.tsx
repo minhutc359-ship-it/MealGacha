@@ -1,5 +1,5 @@
 import { BrandMark } from "../components/layout/BrandMark"
-import { useEffect, useState, type CSSProperties } from "react"
+import { useEffect, useRef, useState, type CSSProperties } from "react"
 import { useGameStore } from "../game/useGameStore"
 import { useAppStore } from "../store/useAppStore"
 import { getDateKey } from "../domain/dateKey"
@@ -12,11 +12,14 @@ import { ProgressTransfer } from "../components/game/ProgressTransfer"
 import { Dialog } from "../components/game/Dialog"
 import { ModeSwitch } from "../components/layout/ModeSwitch"
 import { AutoBoard } from "../components/autochess/AutoBoard"
+import { AutoPreparation } from "../components/autochess/AutoPreparation"
+import { AutoTraits } from "../components/autochess/AutoTraits"
+import { QuickUnitInfo } from "../components/autochess/QuickUnitInfo"
 import { useFormationDrag } from "../components/autochess/useFormationDrag"
 import { useAutoShortcuts } from "../components/autochess/useAutoShortcuts"
 import { useStarUpgrades } from "../components/autochess/useStarUpgrades"
 import { ShopOdds } from "../components/autochess/ShopOdds"
-import { starScale } from "../game/autochess/presentation"
+import { ITEM_MAP, ITEM_RECIPES, itemPreview, equipPreview, isComponent } from "../game/autochess/items"
 import { AutoVictory, useAutoVictory } from "../components/autochess/AutoVictory"
 import { AutoPortrait, AutoMonsterPortrait, WorldArt } from "../components/autochess/AutoArt"
 import {
@@ -29,7 +32,6 @@ import { useAutoBattle } from "../components/autochess/useAutoBattle"
 import {
   AUTO_SCHOOLS,
   UNIT_MAP,
-  RELICS,
   AUGMENTS,
   COSMETICS,
   PROFESSIONS,
@@ -41,9 +43,6 @@ import {
   capacity,
   copies,
   traitCounts,
-  unitRole,
-  benchLayout,
-  levelProgress,
 } from "../game/autochess/economy"
 import { enemyPlan, pressure } from "../game/autochess/combat"
 import { hasActiveAutoRun, type AutoAction } from "../game/autochess/reducer"
@@ -58,6 +57,7 @@ import { gameAudio } from "../infrastructure/audio/gameAudio"
 import { downloadAutoPostcard } from "../game/autochess/postcard"
 import "../game/tcg.css"
 import "../game/autochess/autochess.css"
+import "../game/autochess/marketHud.css"
 
 const EMPTY = emptyAutoSave()
 const modeNames: Record<AutoMode, string> = {
@@ -93,6 +93,11 @@ export function AutoChessPage() {
     [recordMode, setRecordMode] = useState<AutoMode>("survival"),
     [journal, setJournal] = useState<string | null>(null),
     [language, setLanguage] = useState<"vi" | "en">("vi")
+  const [shopOpen, setShopOpen] = useState(true), [inventoryOpen, setInventoryOpen] = useState(false), [traitsOpen, setTraitsOpen] = useState(false)
+  const [haptics, setHaptics] = useState(() => {
+    try { return localStorage.getItem("som.auto.haptics") === "true" } catch { return false }
+  })
+  const hapticsSupported = typeof navigator.vibrate === "function"
   const run = auto.run,
     runtime = useAutoBattle(run, speed),
     playing = menu === null && !!run,
@@ -100,6 +105,14 @@ export function AutoChessPage() {
   const sceneId = run?.combat?.pendingScene ?? run?.scene
   const victory = useAutoVictory(run, playing && !modal && !inspect, prefs.reducedMotion)
   const upgrades = useStarUpgrades(run)
+  const lastHaptic = useRef(0)
+  useEffect(() => { try { localStorage.setItem("som.auto.haptics", String(haptics)) } catch { /* Cosmetic preference only. */ } }, [haptics])
+  useEffect(() => {
+    const fresh = upgrades.filter(u => u.at > lastHaptic.current)
+    if (!fresh.length) return
+    lastHaptic.current = Math.max(...fresh.map(u => u.at))
+    if (haptics && hapticsSupported) navigator.vibrate(fresh.some(u => u.to === 3) ? [20, 40, 30] : 18)
+  }, [haptics, hapticsSupported, upgrades])
   useGameAudio()
   useGameMusic(
     sceneId && !victory.pending
@@ -122,6 +135,7 @@ export function AutoChessPage() {
       gameAudio.play(run.lastResult.result === "win" ? "victory" : "defeat")
   }, [run?.lastResult?.id])
   const doAction = (a: AutoAction) => {
+    if (a.type === "buy") setSelected(null)
     const mergedBefore =
       run?.roster.map((p) => p.star).reduce((a, b) => a + b, 0) ?? 0
     const ok = action(a)
@@ -133,13 +147,8 @@ export function AutoChessPage() {
           (p) =>
             p.star > (run?.roster.find((old) => old.uid === p.uid)?.star ?? 1),
         )
-      if (a.type === "buy" && fresh) {
-        const acquired = fresh.roster.find(p => !run?.roster.some(old => old.uid === p.uid))
-          ?? fresh.roster.find(p => p.star > (run?.roster.find(old => old.uid === p.uid)?.star ?? 1))
-        if (acquired) setSelected(acquired.uid)
-      }
       gameAudio.play(
-        merged && mergedBefore
+        merged && mergedBefore || a.type === "craft"
           ? "combo"
           : a.type === "battle"
             ? "summon"
@@ -182,8 +191,9 @@ export function AutoChessPage() {
       if (!auto.tutorialSeen) setModal("guide")
     }
   }
-  const onCell = (cell: number, dragged?: string) => {
+  const onCell = (cell: number, dragged?: string, keyboard = false) => {
     if (!run || victory.pending || drag.ignoreClick()) return
+    if (!dragged && !keyboard && drag.touchTap()) return
     if (!preparing) {
       const live = runtime
         .getFrame()
@@ -208,18 +218,36 @@ export function AutoChessPage() {
   const selectedPiece = run?.roster.find((p) => p.uid === selected)
   const traits = run ? traitCounts(boardPieces(run)) : {}
   const capacityNow = run ? capacity(run.xp) : 3
-  const progress = levelProgress(run?.xp ?? 0)
-  const bench = run ? benchLayout(run) : []
   const drag = useFormationDrag({
-    enabled: playing && preparing && !run?.scene && !victory.pending && !modal && !inspect,
+    enabled: playing && preparing && !sceneId && !victory.pending && !modal && !inspect && !replace && !journal,
+    peekEnabled: playing && !sceneId && !victory.pending && !modal && !inspect && !replace && !journal,
     onSelect: setSelected,
     onDrop: (uid, target) => {
       if (doAction({ type: "move", uid, ...target })) setSelected(null)
     },
+    onSell: uid => { doAction({ type: "sell", uid }); setSelected(null) },
+    inspectPiece: uid => { const piece = run?.roster.find(p => p.uid === uid); return piece ? { id: piece.id, uid } : null },
+    previewItem: (index, target) => itemPreview(run!, index, target),
+    onItemDrop: (index, target) => {
+      if (!run) return
+      if (target.kind === "craft") doAction({ type: "craft", index, target: target.index })
+      else doAction({ type: "equip", uid: target.uid, item: run.inventory[index] })
+      setSelected(null)
+    },
   })
   const draggedPiece = run?.roster.find(piece => piece.uid === drag.dragging)
+  const draggedItem = drag.itemIndex === null ? null : ITEM_MAP[run?.inventory[drag.itemIndex] ?? ""]
+  const inspectCell = (cell: number) => {
+    if (!run) return null
+    if (preparing) {
+      const piece = run.roster.find(p => p.cell === cell), enemy = enemyPlan(run).find(p => p.cell === cell)
+      return piece ? { id: piece.id, uid: piece.uid } : enemy ? { id: enemy.def.id } : null
+    }
+    const actor = runtime.getFrame().run?.combat?.actors.find(a => a.cell === cell && a.hp > 0)
+    return actor ? { id: actor.id, uid: actor.uid } : null
+  }
   useAutoShortcuts({
-    enabled: playing && preparing && !sceneId && !victory.pending && !modal && !inspect && !replace && !journal && !drag.dragging,
+    enabled: playing && preparing && !sceneId && !victory.pending && !modal && !inspect && !replace && !journal && !drag.dragging && drag.itemIndex === null && !drag.peek,
     run,
     onAction: value => {
       if (doAction(value) && (value.type === "move" || value.type === "sell"))
@@ -245,11 +273,13 @@ export function AutoChessPage() {
         ? `${(UNIT_MAP[castingUnit.id] ?? MONSTER_MAP[castingUnit.id]).name} · ${SKILL_LABELS[castingUnit.skill]}`
         : "Kỹ năng tự tung khi đủ mana · nhấn một ô để xem quân"
   return (
-    <div className="ac-shell">
+    <div className={`ac-shell ${prefs.reducedMotion ? "is-reduced" : ""}`}>
       {draggedPiece && <div className="ac-drag-ghost" ref={drag.ghostRef} aria-hidden="true">
         <AutoPortrait index={UNIT_MAP[draggedPiece.id].portrait} />
         <strong>{UNIT_MAP[draggedPiece.id].name}</strong><small>{"★".repeat(draggedPiece.star)}</small>
       </div>}
+      {draggedItem && <div className="ac-drag-ghost ac-item-ghost" ref={drag.ghostRef} aria-hidden="true" style={{ "--item": draggedItem.color } as CSSProperties}><i>{draggedItem.icon}</i><strong>{draggedItem.name}</strong></div>}
+      {drag.preview && <div className={`ac-item-preview ${drag.preview.valid ? "is-valid" : "is-invalid"}`} role="status" style={{ borderColor: drag.preview.color }}><strong>{drag.preview.name}</strong><span>{drag.preview.text}</span><small>{drag.preview.valid ? "Thả để xác nhận" : "Trang bị sẽ được giữ trong kho"}</small></div>}
       <WorldArt scene={sceneIndex} className="ac-backdrop" />
       <header className="ac-header">
         <button
@@ -626,26 +656,10 @@ export function AutoChessPage() {
                     : `GIAO CHIẾN · ${Math.floor((run.combat?.tick ?? 0) / 20)}/55 giây`}
               </small>
             </span>
-            <button
-              onClick={() => openModal("traits")}
-              className="ac-trait-summary"
-            >
-              {Object.entries(traits)
-                .filter(([id]) => id in AUTO_SCHOOLS)
-                .map(([id, count]) => (
-                  <span
-                    key={id}
-                    style={{
-                      color:
-                        AUTO_SCHOOLS[(id as keyof typeof AUTO_SCHOOLS)].color,
-                    }}
-                  >
-                    {AUTO_SCHOOLS[(id as keyof typeof AUTO_SCHOOLS)].name}{" "}
-                    {count}/{count >= 2 ? 4 : 2}{count >= 2 ? " ✦" : ""}
-                  </span>
-                ))}
-            </button>
+            <button onClick={() => openModal("traits")} className="ac-trait-summary" aria-label="Tộc hệ và tỉ lệ cửa hàng">Hệ</button>
           </div>
+          <div className="ac-battle-layout">
+            <AutoTraits counts={traits} expanded={traitsOpen} onToggle={() => setTraitsOpen(!traitsOpen)} onDetails={() => openModal("traits")} />
           <section className="ac-arena" aria-label="Trận auto chess">
             <WorldArt scene={sceneIndex} />
             <AutoBoard
@@ -658,6 +672,8 @@ export function AutoChessPage() {
               upgrades={upgrades}
               onCell={onCell}
               onPiecePointerDown={drag.start}
+              onCellPointerDown={(cell, event) => { const target = inspectCell(cell); if (target) drag.startPeek(target, event) }}
+              onInspectCell={cell => { const target = inspectCell(cell); if (target && !drag.touchTap()) inspectUnit(target) }}
             />
             {victory.celebrating && <AutoVictory wave={run.wave} onFinish={victory.finish} />}
             {run.mode !== "campaign" && p && !victory.pending && (
@@ -684,258 +700,31 @@ export function AutoChessPage() {
                 </div>
               )}
           </section>
+          </div>
           {preparing ? (
-            <>
-              <div className="ac-bench" role="group" aria-label="Ghế dự bị">
-                <span>DỰ BỊ</span>
-                {Array.from({ length: 6 }, (_, i) => {
-                  const piece = bench[i]
-                  const upgrade = upgrades.find(u => u.uid === piece?.uid)
-                  return (
-                    <button
-                      key={i}
-                      data-bench-slot={i}
-                      data-piece={piece?.uid}
-                      className={`${piece?.uid === selected ? "is-selected" : ""} ${upgrade ? "is-star-upgrade" : ""}`}
-                      data-star={piece?.star}
-                      data-star-scale={piece ? starScale(piece.star) : undefined}
-                      style={piece ? { "--star-scale": starScale(piece.star) } as CSSProperties : undefined}
-                      aria-keyshortcuts={piece ? "W E" : undefined}
-                      aria-label={
-                        piece
-                          ? `Chọn ${UNIT_MAP[piece.id].name} ${piece.star} sao ở dự bị`
-                          : "Đưa quân đã chọn về dự bị"
-                      }
-                      draggable={false}
-                      onPointerDown={e => { if (piece) drag.start(piece.uid, e) }}
-                      onContextMenu={e => { if (piece) e.preventDefault() }}
-                      onDragStart={(e) => {
-                        if (piece)
-                          e.dataTransfer.setData("text/plain", piece.uid)
-                      }}
-                      onDragOver={(e) => e.preventDefault()}
-                      onDrop={(e) => {
-                        e.preventDefault()
-                        doAction({
-                          type: "move",
-                          uid: e.dataTransfer.getData("text/plain"),
-                          cell: null,
-                          swapUid: piece?.uid,
-                          benchSlot: i,
-                        })
-                        setSelected(null)
-                      }}
-                      onClick={() => {
-                        if (drag.ignoreClick()) return
-                        if (
-                          selected &&
-                          selected !== piece?.uid
-                        ) {
-                          doAction({
-                            type: "move",
-                            uid: selected,
-                            cell: null,
-                            swapUid: piece?.uid,
-                            benchSlot: i,
-                          })
-                          setSelected(null)
-                        } else if (piece) {
-                          setSelected(piece.uid === selected ? null : piece.uid)
-                          gameAudio.play("select")
-                        }
-                      }}
-                    >
-                      {piece ? (
-                        <>
-                          <AutoPortrait index={UNIT_MAP[piece.id].portrait} />
-                          <small>{"★".repeat(piece.star)}</small>
-                          {upgrade && <span key={upgrade.to} className={`ac-bench-awaken ${prefs.reducedMotion ? "is-quiet" : ""}`} aria-hidden="true">✦</span>}
-                        </>
-                      ) : (
-                        "+"
-                      )}
-                    </button>
-                  )
-                })}
-              </div>
-              <div className="ac-selection-bar">
-                <span>
-                  {selectedPiece
-                    ? `${UNIT_MAP[selectedPiece.id].name} · ${unitRole(selectedPiece.id)} · Chạm ô sáng để xếp`
-                    : `Đội ${boardPieces(run).length}/${capacityNow} · Kéo thả để đổi chỗ · 3 bản ghép sao`}
-                </span>
-                {selectedPiece && (
-                  <>
-                    <button
-                      onClick={() =>
-                        inspectUnit({
-                          id: selectedPiece.id,
-                          uid: selectedPiece.uid,
-                        })
-                      }
-                    >
-                      Chi tiết
-                    </button>
-                    <button
-                      onClick={() => {
-                        doAction({ type: "sell", uid: selectedPiece.uid })
-                        setSelected(null)
-                      }}
-                    >
-                      Bán ·{" "}
-                      {UNIT_MAP[selectedPiece.id].cost *
-                        copies(selectedPiece.star)}{" "}
-                      ◉
-                    </button>
-                  </>
-                )}
-                {!selectedPiece && <button className="ac-auto-place" onClick={() => doAction({ type: "auto-place" })}>Xếp nhanh</button>}
-              </div>
-              <section className="ac-shop" aria-label="Cửa hàng 5 quân">
-                {run.shop.map((id, i) => {
-                  const def = id ? UNIT_MAP[id] : null,
-                    count = id
-                      ? run.roster
-                          .filter((p) => p.id === id)
-                          .reduce((n, p) => n + copies(p.star), 0)
-                      : 0
-                  const mergeReady = !!id && run.roster.filter(piece => piece.id === id && piece.star === 1).length >= 2
-                  return (
-                    <article
-                      key={i}
-                      className={def ? `tier-${def.cost} ${count > 0 ? "is-owned" : ""} ${mergeReady ? "is-merge-ready" : ""}` : "is-empty"}
-                    >
-                      {def ? (
-                        <>
-                          <button
-                            className="ac-shop-art"
-                            onClick={() => inspectUnit({ id: def.id, shop: i })}
-                            aria-label={`Xem ${def.name}${count > 0 ? `, đang có ${count} bản trên bàn và dự bị` : ""}${mergeReady ? ", mua để ghép sao" : ""}`}
-                          >
-                            <AutoPortrait index={def.portrait} />
-                            <small>{unitRole(def.id)} · {AUTO_SCHOOLS[def.school].name}</small>
-                            {count > 0 && <b>{mergeReady ? "✦ Ghép sao" : `✓ ${count} bản`}</b>}
-                          </button>
-                          <strong title={def.name}>{def.name}</strong>
-                          <button
-                            className="ac-buy"
-                            disabled={run.gold < def.cost}
-                            onClick={() => doAction({ type: "buy", index: i })}
-                            aria-label={`Mua ${def.name} giá ${def.cost} vàng`}
-                          >
-                            Mua · {def.cost} ◉
-                          </button>
-                        </>
-                      ) : (
-                        <span>Đã mua</span>
-                      )}
-                    </article>
-                  )
-                })}
-              </section>
-            </>
+            <AutoPreparation run={run} selected={selected} onSelect={setSelected} upgrades={upgrades} reducedMotion={prefs.reducedMotion}
+              drag={drag} onAction={doAction} onInspect={inspectUnit} shopOpen={shopOpen} onToggleShop={() => setShopOpen(!shopOpen)}
+              inventoryOpen={inventoryOpen} onToggleInventory={() => setInventoryOpen(!inventoryOpen)} onInventoryDetails={() => openModal("inventory")} />
           ) : (
-            <div className="ac-combat-strip">
-              <AutoPortrait index={0} npc />
-              <span>
-                <strong>
-                  {run.combat?.boss
-                    ? MONSTER_MAP[run.combat.boss].name
-                    : "Vị Linh đang giữ bàn"}
-                </strong>
-                <small>{commanderLine}</small>
-              </span>
-              <button
-                className="ac-button"
-                onClick={() => runtime.pause(!run.paused)}
-                disabled={run.phase !== "combat"}
-              >
-                {run.paused ? "Tiếp tục" : "Tạm dừng"}
-              </button>
-              <button
-                className="ac-button"
-                onClick={() => setSpeed(speed === 1 ? 2 : 1)}
-                aria-label="Đổi tốc độ chiến đấu"
-              >
-                ×{speed}
-              </button>
+            <div className="ac-fight-controls">
+              <div className="ac-combat-strip">
+                <AutoPortrait index={0} npc />
+                <span><strong>{run.combat?.boss ? MONSTER_MAP[run.combat.boss].name : "Vị Linh đang giữ bàn"}</strong><small>{commanderLine}</small></span>
+                <button className="ac-button" onClick={() => runtime.pause(!run.paused)} disabled={run.phase !== "combat"}>{run.paused ? "Tiếp tục" : "Tạm dừng"}</button>
+                <button className="ac-button" onClick={() => setSpeed(speed === 1 ? 2 : 1)} aria-label="Đổi tốc độ chiến đấu">×{speed}</button>
+              </div>
+              <footer className="ac-controls">
+                <span className="ac-team-caption">{boardPieces(run).length} Vị Linh · {(run.activeTicks / 20) | 0}s · Cấp {capacityNow} · {run.xp} XP</span>
+                <button className="ac-button" onClick={() => setLowQuality(!lowQuality)}>{lowQuality ? "Đồ họa thấp" : "Đồ họa cao"}</button>
+                <button className="ac-button" onClick={() => openModal("abandon")}>Kết thúc lượt</button>
+                <button className="ac-inventory-button" onClick={() => openModal("inventory")} aria-label="Di vật và Lời hẹn">✧<span>{run.inventory.length}</span></button>
+              </footer>
             </div>
           )}
-          <footer className="ac-controls">
-            {preparing ? (
-              <>
-                <button
-                  className="ac-button"
-                  onClick={() => doAction({ type: "reroll" })}
-                  aria-keyshortcuts="D"
-                  title="D · Làm mới 5 ô shop (2 vàng, hoặc miễn phí từ Lời hẹn)"
-                  disabled={run.gold < 2 && !run.freeReroll}
-                >
-                  ↻ <span>Đổi</span> <kbd>D</kbd> · {run.freeReroll ? "0" : "2"} ◉
-                </button>
-                <button
-                  className="ac-button"
-                  aria-pressed={run.locked}
-                  onClick={() => doAction({ type: "lock" })}
-                >
-                  {run.locked ? "🔒" : "◇"}
-                  <span>{run.locked ? "Đã khóa" : "Khóa"}</span>
-                </button>
-                <button
-                  className="ac-button ac-xp-control"
-                  aria-keyshortcuts="F"
-                  disabled={run.gold < 4 || run.xp >= 62}
-                  aria-label={`Cấp ${capacityNow}. ${run.xp}${progress.next === null ? " XP, cấp tối đa" : `/${progress.next} XP, còn ${progress.remaining} XP để lên cấp`}. Mua 4 XP giá 4 vàng`}
-                  title={progress.next === null ? "Đã mở tối đa 7 quân" : `Còn ${progress.remaining} XP để mở ${capacityNow + 1} quân. Mỗi vòng nhận 2 XP; mua 4 XP với 4 vàng.`}
-                  onClick={() => doAction({ type: "xp" })}
-                >
-                  <strong>Cấp {capacityNow}{progress.next !== null ? " · 4 ◉" : " · MAX"}<kbd>F</kbd></strong>
-                  <small>{run.xp}{progress.next !== null ? `/${progress.next}` : ""} XP</small>
-                  <i className="ac-xp-track" aria-hidden="true"><i style={{ width: `${progress.percent}%` }} /></i>
-                </button>
-                <button
-                  className="ac-button primary ac-begin"
-                  disabled={!boardPieces(run).length || !!run.scene}
-                  onClick={() => {
-                    setSelected(null)
-                    doAction({ type: "battle" })
-                  }}
-                >
-                  Xuất trận{" "}
-                  <small>
-                    {boardPieces(run).length}/{capacityNow}
-                  </small>{" "}
-                  →
-                </button>
-              </>
-            ) : (
-              <>
-                <span className="ac-team-caption">
-                  {boardPieces(run).length} Vị Linh ·{" "}
-                  {(run.activeTicks / 20) | 0}s · Cấp {capacityNow} · {run.xp} XP
-                </span>
-                <button
-                  className="ac-button"
-                  onClick={() => setLowQuality(!lowQuality)}
-                >
-                  {lowQuality ? "Đồ họa thấp" : "Đồ họa cao"}
-                </button>
-                <button
-                  className="ac-button"
-                  onClick={() => openModal("abandon")}
-                >
-                  Kết thúc lượt
-                </button>
-              </>
-            )}
-            <button
-              className="ac-inventory-button"
-              onClick={() => openModal("inventory")}
-              aria-label="Di vật và Lời hẹn"
-            >
-              ✧<span>{run.inventory.length}</span>
-            </button>
-          </footer>
+          {draggedPiece && <div className="ac-sell-zones" aria-label="Kéo quân vào đây để bán">
+            {["left", "right"].map(side => <div key={side} data-sell-zone={side} className={`ac-sell-zone is-${side}`}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M9 6V3h6v3M7 6l1 15h8l1-15M10 10v7M14 10v7" /></svg><strong>Bán</strong><span>+{UNIT_MAP[draggedPiece.id].cost * copies(draggedPiece.star)} ◉</span></div>)}
+          </div>}
+
         </main>
       )}
       {notice && (
@@ -957,6 +746,7 @@ export function AutoChessPage() {
       {journal && (
         <JournalReader sceneId={journal} onClose={() => setJournal(null)} />
       )}
+      {drag.peek && run && <QuickUnitInfo id={drag.peek.id} piece={run.roster.find(p => p.uid === drag.peek?.uid)} actor={run.phase === "combat" ? runtime.getFrame().run?.combat?.actors.find(a => a.uid === drag.peek?.uid) : undefined} />}
       {modal === "guide" && (
         <AutoGuide
           onClose={() => {
@@ -980,6 +770,8 @@ export function AutoChessPage() {
             />{" "}
             Giảm chuyển động
           </label>
+          <label className="ac-motion-toggle"><input type="checkbox" checked={haptics} disabled={!hapticsSupported} onChange={e => setHaptics(e.target.checked)} /> Rung nhẹ khi lên sao</label>
+          {!hapticsSupported && <p className="ac-muted">Trình duyệt này chưa hỗ trợ rung. Hiệu ứng hình ảnh và âm thanh vẫn hoạt động.</p>}
         </Dialog>
       )}
       {modal === "transfer" && (
@@ -1017,19 +809,18 @@ export function AutoChessPage() {
           <p>
             {selectedPiece && preparing
               ? `Trao di vật cho ${UNIT_MAP[selectedPiece.id].name}`
-              : "Ở vòng chuẩn bị, chọn một quân rồi mở túi để trao di vật."}
+              : "Ở vòng chuẩn bị, mở Túi cạnh nút Xuất trận. Kéo trang bị lên quân; kéo hai mảnh đè lên nhau để ghép. Giữ quân 0,3 giây để xem, thả tay để đóng."}
           </p>
           <div className="ac-item-grid">
             {run.inventory.map((id, i) => {
-              const item = RELICS.find((r) => r.id === id)!
+              const item = ITEM_MAP[id]
               return (
                 <button
                   key={`${id}-${i}`}
                   disabled={
                     !selectedPiece ||
                     !preparing ||
-                    selectedPiece.items.length >= 2 ||
-                    selectedPiece.items.includes(id)
+                    !equipPreview(selectedPiece, id).valid
                   }
                   onClick={() =>
                     doAction({
@@ -1048,6 +839,8 @@ export function AutoChessPage() {
           {!run.inventory.length && (
             <p className="ac-muted">Thắng mỗi ba đợt để chọn một di vật.</p>
           )}
+          <h3>Công thức · hai mảnh thành một di vật</h3>
+          <div className="ac-recipe-list">{ITEM_RECIPES.map(({ parts, result }) => <article key={result}><span>{parts.map(part => ITEM_MAP[part].name).join(" + ")}</span><strong>→ {ITEM_MAP[result].name}</strong><small>{ITEM_MAP[result].text}</small></article>)}</div>
           <h3>Lời hẹn đang giữ</h3>
           {run.augments.map((id) => {
             const a = AUGMENTS.find((a) => a.id === id)!
@@ -1099,7 +892,7 @@ export function AutoChessPage() {
         <UnitInspector
           id={inspect.id}
           piece={run?.roster.find((p) => p.uid === inspect.uid)}
-          actor={run?.combat?.actors.find((p) => p.uid === inspect.uid)}
+          actor={run?.phase === "combat" ? run.combat?.actors.find((p) => p.uid === inspect.uid) : undefined}
           onClose={() => setInspect(null)}
           onBuy={
             inspect.shop !== undefined && preparing
@@ -1180,7 +973,7 @@ export function AutoChessPage() {
             <p>Chọn một cách bổ trợ đội hình. Mỗi lựa chọn giữ đến hết lượt.</p>
             <div className="ac-reward-choices">
               {run.reward.choices.map((id) => {
-                const item = [...RELICS, ...AUGMENTS].find((r) => r.id === id)!
+                const item = ITEM_MAP[id] ?? AUGMENTS.find(r => r.id === id)!
                 return (
                   <button
                     key={id}
@@ -1189,6 +982,7 @@ export function AutoChessPage() {
                     <span>✧</span>
                     <strong>{item.name}</strong>
                     <p>{item.text}</p>
+                    {isComponent(id) && <small>Nhận 2 mảnh · có thể ghép trong kho hoặc trên quân</small>}
                   </button>
                 )
               })}

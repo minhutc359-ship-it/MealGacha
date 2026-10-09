@@ -1,15 +1,15 @@
 {
-  "version": "3.3.1",
-  "bytes": 37973066,
+  "version": "3.4.0",
+  "bytes": 38007076,
   "files": 296,
   "byType": {
     "js": {
       "files": 37,
-      "bytes": 1549686
+      "bytes": 1565382
     },
     "css": {
       "files": 6,
-      "bytes": 332061
+      "bytes": 350375
     },
     "mp3": {
       "files": 18,
@@ -41,7 +41,7 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 1881747,
+    "Application JS/CSS": 1915757,
     "Auto chess art/audio": 6471127,
     "Brand": 465507,
     "Shared character atlases": 9061632,
@@ -50,8 +50,8 @@
     "TCG art/audio": 10513266,
     "Other and legal": 72503
   },
-  "js_gzip": 494799,
-  "css_gzip": 70603,
+  "js_gzip": 499816,
+  "css_gzip": 74012,
   "largest": [
     {
       "path": "assets/characters/rosterB.webp",

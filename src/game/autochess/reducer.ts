@@ -1,4 +1,6 @@
 import { AUGMENTS, COSMETICS, RELICS } from "./catalog"
+import { MAX_LEVEL } from "./config"
+import { craft, isComponent } from "./items"
 import {
   buy,
   autoArrange,
@@ -9,6 +11,7 @@ import {
   createAutoRun,
   refreshShop,
   boardPieces,
+  capacity,
   seedForDay,
 } from "./economy"
 import {
@@ -41,7 +44,7 @@ export type AutoAction = {
   type: "equip"
   uid: string
   item: string
-} | { type: "unequip"; uid: string; item: string } | { type: "reroll" } | {
+} | { type: "craft"; index: number; target: number } | { type: "unequip"; uid: string; item: string } | { type: "reroll" } | {
   type: "lock"
 } | { type: "xp" } | { type: "auto-place" } | { type: "battle" } | {
   type: "checkpoint"
@@ -299,7 +302,7 @@ export function reduceAuto(
     if (run.reward.kind === "augment") {
       run.augments.push(action.id)
       if (action.id === "another") run.relicReroll = true
-    } else if (run.inventory.length < 120) run.inventory.push(action.id)
+    } else if (run.inventory.length < 120) run.inventory.push(...(isComponent(action.id) ? [action.id, action.id] : [action.id]))
     else save.seals += 2
     offerReward(run)
     return { save, error: null }
@@ -334,6 +337,9 @@ export function reduceAuto(
     case "equip":
       error = equip(run, action.uid, action.item)
       break
+    case "craft":
+      error = craft(run, action.index, action.target)
+      break
     case "unequip": {
       const p = run.roster.find((p) => p.uid === action.uid),
         i = p?.items.indexOf(action.item) ?? -1
@@ -355,7 +361,7 @@ export function reduceAuto(
       run.locked = !run.locked
       break
     case "xp":
-      if (run.xp >= 62) error = "Bàn đã đạt tối đa 7 quân."
+      if (capacity(run.xp) >= MAX_LEVEL) error = "Bàn đã đạt tối đa 9 quân."
       else if (run.gold < 4) error = "Cần 4 vàng để mua 4 XP."
       else {
         run.gold -= 4
