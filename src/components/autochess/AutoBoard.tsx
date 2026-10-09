@@ -7,82 +7,19 @@ import {
 } from "../../game/autochess/catalog"
 import { enemyPlan } from "../../game/autochess/combat"
 import type { Actor, AutoRun } from "../../game/autochess/types"
+import { actorPosition as position, actorFrame, SPRITE_SHEETS } from "../../game/autochess/presentation"
+import { characterImage as getImage } from "../../infrastructure/assets/characterSprites"
 
 const CELLS = Array.from({ length: 36 }, (_, i) => i)
-const paths = {
-  base: "/assets/autochess/movement.webp",
-  fresh: "/assets/autochess/new-movement.webp",
-  enemy: "/assets/autochess/monsters.webp",
-}
+const paths = Object.fromEntries(Object.entries(SPRITE_SHEETS).map(([key, sheet]) => [key, sheet.path]))
 type Frames = () => { run: AutoRun | null; alpha: number }
-const imageCache = new Map<string, HTMLImageElement>()
-function getImage(path: string) {
-  if (!imageCache.has(path)) {
-    const image = new Image()
-    image.decoding = "async"
-    image.src = path
-    imageCache.set(path, image)
-  }
-  return imageCache.get(path)!
-}
-function position(actor: Actor, time: number) {
-  const a = actor.action,
-    t =
-      a?.kind === "move"
-        ? Math.min(1, Math.max(0, (time - a.start) / (a.end - a.start)))
-        : 0
-  return {
-    x:
-      a?.kind === "move"
-        ? (a.from % 6) + ((a.to % 6) - (a.from % 6)) * t
-        : actor.cell % 6,
-    y:
-      a?.kind === "move"
-        ? Math.floor(a.from / 6) +
-          (Math.floor(a.to / 6) - Math.floor(a.from / 6)) * t
-        : Math.floor(actor.cell / 6),
-  }
-}
-function frameIndex(
-  actor: Actor,
-  time: number,
-  fresh: boolean,
-  result: string | null,
-  events: AutoRun["combat"],
-) {
-  if (actor.hp <= 0) return fresh ? 6 : 12
-  if (result === "win" && actor.side === "ally") return fresh ? 5 : 13
-  const a = actor.action
-  if (
-    !a &&
-    events?.events.some(
-      (e) =>
-        e.target === actor.uid &&
-        e.kind === "hit" &&
-        time - e.tick >= 0 &&
-        time - e.tick < 3,
-    )
-  )
-    return fresh ? 4 : 11
-  if (!a) return 0
-  const fraction = Math.min(
-    0.99,
-    Math.max(0, (time - a.start) / (a.end - a.start)),
-  )
-  if (a.kind === "move")
-    return fresh
-      ? 1 + (Math.floor(fraction * 4) % 2)
-      : 1 + Math.floor(fraction * 4)
-  if (a.kind === "cast")
-    return fresh ? (fraction < 0.4 ? 3 : 5) : 8 + Math.floor(fraction * 3)
-  return fresh ? (fraction < 0.4 ? 3 : 4) : 5 + Math.floor(fraction * 3)
-}
 export function AutoBoard({
   run,
   getFrame,
   selected,
   reducedMotion,
   lowQuality,
+  celebrating,
   onCell,
 }: {
   run: AutoRun
@@ -90,14 +27,15 @@ export function AutoBoard({
   selected: string | null
   reducedMotion: boolean
   lowQuality: boolean
+  celebrating: boolean
   onCell: (cell: number, dragged?: string) => void
 }) {
   const root = useRef<HTMLDivElement>(null),
     canvas = useRef<HTMLCanvasElement>(null)
-  const options = useRef({ selected, reducedMotion, lowQuality })
+  const options = useRef({ selected, reducedMotion, lowQuality, celebrating })
   useEffect(() => {
-    options.current = { selected, reducedMotion, lowQuality }
-  }, [selected, reducedMotion, lowQuality])
+    options.current = { selected, reducedMotion, lowQuality, celebrating }
+  }, [selected, reducedMotion, lowQuality, celebrating])
   useEffect(() => {
     const element = root.current!,
       surface = canvas.current!,
@@ -110,6 +48,9 @@ export function AutoBoard({
       top = 0,
       handle = 0
     const frozen = new Map<string, { x: number; y: number }>()
+    const facing = new Map<string, boolean>()
+    const placements = new Map<string, { x: number; y: number; fromX: number; fromY: number; start: number }>()
+    let endedAt: number | null = null
     let currentBattle = "",
       lastLowQuality = lowQuality
     const images = Object.fromEntries(
@@ -126,6 +67,8 @@ export function AutoBoard({
       surface.width = Math.max(1, Math.round(width * dpr))
       surface.height = Math.max(1, Math.round(height * dpr))
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      ctx.imageSmoothingEnabled = true
+      ctx.imageSmoothingQuality = "high"
       cell = Math.max(1, Math.min((width - 16) / 6, (height - 16) / 6))
       left = (width - cell * 6) / 2
       top = (height - cell * 6) / 2
@@ -137,7 +80,7 @@ export function AutoBoard({
     observer.observe(element)
     resize()
     const px = (x: number) => left + (x + 0.5) * cell,
-      py = (y: number) => top + (y + 0.72) * cell
+      py = (y: number) => top + (y + 0.82) * cell
     const orb = (x: number, y: number, r: number, color: string, alpha = 1) => {
       ctx.globalAlpha = alpha
       ctx.fillStyle = color
@@ -161,8 +104,13 @@ export function AutoBoard({
         time = b ? b.tick + (opts.reducedMotion ? 0 : alpha) : now / 50
       if ((b?.id ?? "prepare") !== currentBattle) {
         frozen.clear()
+        facing.clear()
+        endedAt = null
         currentBattle = b?.id ?? "prepare"
       }
+      if (!b?.result) endedAt = null
+      else endedAt ??= now
+      const visualTime = time + (endedAt === null ? 0 : (now - endedAt) / 50)
       ctx.clearRect(0, 0, width, height)
       const wash = ctx.createLinearGradient(0, top, 0, top + cell * 6)
       wash.addColorStop(0, "rgba(9,28,40,.6)")
@@ -232,7 +180,21 @@ export function AutoBoard({
                 }) as Actor,
             ),
           ]
-      const coords = new Map(actors.map((a) => [a.uid, position(a, time)]))
+      const coords = new Map(actors.map((a) => {
+        const pos = position(a, time)
+        if (b || opts.reducedMotion) return [a.uid, pos] as const
+        const last = placements.get(a.uid)
+        if (!last) placements.set(a.uid, { ...pos, fromX: pos.x, fromY: pos.y, start: now })
+        else if (last.x !== pos.x || last.y !== pos.y) {
+          const t = Math.min(1, (now - last.start) / 220)
+          const ease = t * t * (3 - 2 * t)
+          placements.set(a.uid, { ...pos, fromX: last.fromX + (last.x - last.fromX) * ease, fromY: last.fromY + (last.y - last.fromY) * ease, start: now })
+        }
+        const motion = placements.get(a.uid)!
+        const t = Math.min(1, (now - motion.start) / 220), ease = t * t * (3 - 2 * t)
+        return [a.uid, { x: motion.fromX + (pos.x - motion.fromX) * ease, y: motion.fromY + (pos.y - motion.fromY) * ease }] as const
+      }))
+      if (b) placements.clear()
       // Telegraph the actual skill target while the caster winds up.
       if (b)
         for (const a of actors.filter(
@@ -288,26 +250,21 @@ export function AutoBoard({
             : fresh
               ? images.fresh
               : images.base
-        const columns = fresh ? 7 : 14,
-          rows = fresh ? 14 : 8
-        const row =
-          actor.side === "enemy"
-            ? MONSTER_MAP[actor.id].sprite
-            : fresh
-              ? UNIT_MAP[actor.id].portrait - 18
-              : UNIT_MAP[actor.id].sprite
+        const spriteKey = actor.side === "enemy" ? "enemy" : fresh ? "fresh" : "base"
+        const row = actor.side === "enemy" ? MONSTER_MAP[actor.id].sprite : fresh ? UNIT_MAP[actor.id].portrait - 18 : UNIT_MAP[actor.id].sprite
+        const spriteRow = SPRITE_SHEETS[spriteKey].rows[row]
         let p = coords.get(actor.uid)!
         if (actor.hp <= 0) {
           if (!frozen.has(actor.uid)) frozen.set(actor.uid, p)
           p = frozen.get(actor.uid)!
         }
-        const deadAge = actor.diedAt === null ? 0 : time - actor.diedAt
+        const deadAge = actor.diedAt === null ? 0 : visualTime - actor.diedAt
         if (actor.hp <= 0 && deadAge > 20) continue
         const x = px(p.x),
           y = py(p.y),
           size =
             cell *
-            (actor.side === "enemy" && MONSTER_MAP[actor.id].boss ? 1.6 : 1.28),
+            (actor.side === "enemy" && MONSTER_MAP[actor.id].boss ? .9 : .75),
           color = AUTO_SCHOOLS[def.school].color
         ctx.globalAlpha = actor.hp <= 0 ? Math.max(0, 1 - deadAge / 20) : 1
         ctx.fillStyle = "rgba(0,0,0,.46)"
@@ -338,65 +295,51 @@ export function AutoBoard({
           ctx.stroke()
           ctx.globalAlpha = 1
         }
-        const index = frameIndex(actor, time, fresh, b?.result ?? null, b)
-        const breath =
-          !opts.reducedMotion &&
-          !actor.action &&
-          actor.hp > 0 &&
-          !current.paused
-            ? Math.sin(time / 10 + row) * cell * 0.014
-            : 0
-        if (sheet.complete && sheet.naturalWidth) {
-          const sw = sheet.naturalWidth / columns,
-            sh = sheet.naturalHeight / rows
+        const dancing = opts.celebrating && actor.side === "ally" && actor.hp > 0
+        const beat = visualTime * .38 + row * .28
+        const index = dancing
+          ? opts.reducedMotion ? (fresh ? 0 : 13) : (fresh ? [0, 1, 2, 1] : [13, 1, 13, 3])[Math.floor(visualTime / 5 + row * .2) % 4]
+          : actorFrame(actor, time, fresh, b)
+        const breath = !opts.reducedMotion && !actor.action && actor.hp > 0 && !current.paused
+          ? Math.sin(visualTime / 10 + row) * cell * .009 : 0
+        if (sheet.complete && sheet.naturalWidth && spriteRow) {
+          const [sx, sy, sw, sh, anchorX, anchorY] = spriteRow.frames[index]
+          const scale = size / spriteRow.height
           ctx.save()
-          const target = actors.find((a) => a.uid === actor.action?.target),
-            flip =
-              !!target &&
-              position(target, time).x < p.x !== (actor.side === "enemy")
-          let lungeX = 0,
-            lungeY = 0
-          if (
-            !opts.reducedMotion &&
-            actor.action &&
-            actor.action.kind !== "move" &&
-            target
-          ) {
-            const phase =
-                (time - actor.action.start) /
-                (actor.action.end - actor.action.start),
-              dest = coords.get(target.uid)!
-            const dx = dest.x - p.x,
-              dy = dest.y - p.y,
-              length = Math.max(1, Math.hypot(dx, dy))
-            const lunge =
-              Math.sin(
-                Math.max(0, Math.min(1, (phase - 0.15) / 0.7)) * Math.PI,
-              ) *
-              cell *
-              (actor.range === 1 ? 0.28 : 0.08)
-            lungeX = (dx / length) * lunge
-            lungeY = (dy / length) * lunge
+          const target = actors.find(a => a.uid === actor.action?.target)
+          if (target && Math.abs(position(target, time).x - p.x) > .05)
+            facing.set(actor.uid, (position(target, time).x < p.x) !== (actor.side === "enemy"))
+          else if (actor.action?.kind === "move" && actor.action.to % 6 !== actor.action.from % 6)
+            facing.set(actor.uid, (actor.action.to % 6 < actor.action.from % 6) !== (actor.side === "enemy"))
+          const flip = facing.get(actor.uid) ?? false
+          let lungeX = 0, lungeY = 0, gait = 0
+          if (!opts.reducedMotion && actor.action && !dancing) {
+            const progress = Math.max(0, Math.min(1, (time - actor.action.start) / Math.max(1, actor.action.end - actor.action.start)))
+            if (actor.action.kind === "move") gait = -Math.abs(Math.sin(progress * Math.PI * 2)) * cell * .018
+            else if (target) {
+              const dest = coords.get(target.uid)!, dx = dest.x - p.x, dy = dest.y - p.y
+              const length = Math.max(1, Math.hypot(dx, dy))
+              const lunge = Math.sin(Math.max(0, Math.min(1, (progress - .12) / .78)) * Math.PI) * cell * (actor.range === 1 ? .2 : .055)
+              lungeX = dx / length * lunge
+              lungeY = dy / length * lunge
+            }
           }
-          ctx.translate(x + lungeX, y + breath + lungeY)
+          const hop = dancing && !opts.reducedMotion ? -Math.abs(Math.sin(beat)) * cell * .075 : 0
+          const sway = dancing && !opts.reducedMotion ? Math.sin(beat) * cell * .045 : 0
+          ctx.translate(x + lungeX + sway, y + breath + lungeY + gait + hop)
           if (flip) ctx.scale(-1, 1)
-          ctx.drawImage(
-            sheet,
-            index * sw,
-            row * sh,
-            sw,
-            sh,
-            -size / 2,
-            -size * 0.94,
-            size,
-            size,
-          )
+          if (dancing && !opts.reducedMotion) {
+            ctx.rotate(Math.sin(beat) * .065)
+            const stretch = Math.cos(beat * 2) * .018
+            ctx.scale(1 - stretch, 1 + stretch)
+          }
+          ctx.drawImage(sheet, sx, sy, sw, sh, -anchorX * scale, -anchorY * scale, sw * scale, sh * scale)
           ctx.restore()
-        } else orb(x, y - cell * 0.5, cell * 0.25, color)
+        } else orb(x, y - cell * .5, cell * .25, color)
         ctx.globalAlpha = 1
         if (actor.hp > 0) {
           const bw = cell * 0.86,
-            by = y - size * 0.88
+            by = Math.max(top + p.y * cell + 2, y - size - cell * .05)
           ctx.fillStyle = "#101b21"
           ctx.fillRect(x - bw / 2, by, bw, 4)
           ctx.fillStyle = actor.side === "ally" ? "#a6e0b0" : "#ed9c91"
@@ -409,9 +352,9 @@ export function AutoBoard({
           if (actor.side === "ally") {
             const title = def.name.length > (cell < 45 ? 8 : 12) ? def.name.slice(0, cell < 45 ? 7 : 11) + "…" : def.name
             ctx.font = `bold ${Math.max(7,cell * .16)}px sans-serif`
-            ctx.fillStyle = "rgba(10,24,32,.8)"; ctx.fillRect(x - cell * .46,y + cell * .035,cell * .92,cell * .18)
-            ctx.fillStyle = "#f5e4c2"; ctx.fillText(title,x,y + cell * .17,cell * .88)
-            ctx.fillStyle = "#ffd880"; ctx.fillText("★".repeat(actor.star),x,y + cell * .31)
+            ctx.fillStyle = "rgba(10,24,32,.8)"; ctx.fillRect(x - cell * .46,y + cell * -.025,cell * .92,cell * .18)
+            ctx.fillStyle = "#f5e4c2"; ctx.fillText(title,x,y + cell * .1,cell * .88)
+            ctx.fillStyle = "#ffd880"; ctx.fillText("★".repeat(actor.star),x,y + cell * .18)
           }
           if (actor.stunnedUntil > time) ctx.fillText("✦", x, y - size)
           if (actor.sealedUntil > time) {
@@ -457,7 +400,7 @@ export function AutoBoard({
         for (const e of b.events.filter(
           (e) => e.kind !== "move" && e.kind !== "attack",
         )) {
-          const age = (time - e.tick) / 20
+          const age = (visualTime - e.tick) / 20
           if (age < 0 || age > 1.6) continue
           const point = coords.get(e.target) ?? {
               x: e.cell % 6,
@@ -607,6 +550,21 @@ export function AutoBoard({
           }
         }
       }
+      if (opts.celebrating && !opts.reducedMotion) {
+        const count = opts.lowQuality ? 8 : 24
+        for (let k = 0; k < count; k++) {
+          const t = ((visualTime / 45 + k / count) % 1)
+          const cx = left + ((k * .61803) % 1) * cell * 6
+          const cy = top + t * cell * 6
+          ctx.save()
+          ctx.globalAlpha = Math.sin(t * Math.PI) * .8
+          ctx.translate(cx + Math.sin(t * 6 + k) * cell * .18, cy)
+          ctx.rotate(t * 6 + k)
+          ctx.fillStyle = ["#ffd381", "#91dfbf", "#eea6b3"][k % 3]
+          ctx.fillRect(-2, -3, 4, 6)
+          ctx.restore()
+        }
+      }
       handle = requestAnimationFrame(draw)
     }
     handle = requestAnimationFrame(draw)
@@ -650,6 +608,8 @@ export function AutoBoard({
                 run.phase === "prepare" && cell >= 18 ? "can-place" : ""
               }
               draggable={run.phase === "prepare" && !!piece}
+              aria-pressed={piece ? piece.uid === selected : undefined}
+              data-placement={run.phase === "prepare" && cell >= 18 && !!selected ? "available" : undefined}
               onDragStart={(e) => {
                 if (piece) e.dataTransfer.setData("text/plain", piece.uid)
               }}

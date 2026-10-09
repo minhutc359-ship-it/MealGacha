@@ -19,6 +19,10 @@ import type { BattleUnit, Combatant } from "../../game/types"
 import { GameCardView } from "./GameCardView"
 import { CombatEffects } from "./CombatEffects"
 import { BattleInvocation } from "./BattleInvocation"
+import { CharacterSprite } from "./CharacterSprite"
+import { tcgCharacter, tcgUnitMotion, type MotionCue } from "../../game/tcgCharacterMotion"
+import { characterImage } from "../../infrastructure/assets/characterSprites"
+import { SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { foodSpirit } from "../../game/flavorSpirits"
 import { frameDuration } from "../../game/combatDirection"
 import { StoryScene } from "./StoryScene"
@@ -63,6 +67,9 @@ interface UnitProps {
   summoned: boolean
   hit: boolean
   stamp: string
+  motion: MotionCue
+  quiet: boolean
+  paused: boolean
   onClick(): void
   onInspect(): void
 }
@@ -79,15 +86,19 @@ function UnitTile({
   summoned,
   hit,
   stamp,
+  motion,
+  quiet,
+  paused,
   onClick,
   onInspect,
 }: UnitProps) {
   const card = CARD_MAP[u.cardId]
   const spirit = foodSpirit(card)
+  const model = tcgCharacter(card)
   return (
     <div className={`tcg-unit-wrap ${ghost ? "is-fallen" : ""}`}>
       <button
-        className={`tcg-unit ${spirit ? "is-flavor-spirit" : ""} ${
+        className={`tcg-unit ${model ? "is-animated-character" : ""} ${spirit ? "is-flavor-spirit" : ""} ${
           !enemy && u.ready ? "is-ready" : ""
         } ${selected ? "is-selected" : ""} ${
           preview?.legal ? "is-target" : ""
@@ -98,16 +109,18 @@ function UnitTile({
         onClick={onClick}
         disabled={disabled || ghost}
         aria-label={`${enemy ? "Địch" : "Đồng minh"} ${card.name}${
-          spirit ? `, Vị Linh ${spirit.name}` : ""
+          spirit ? `, Vị Linh ${model?.name ?? spirit.name}` : ""
         }, công ${u.attack}, máu ${ghost ? 0 : u.health}, chắn ${u.shield}${
           preview ? `, ${preview.text}` : ""
         }`}
       >
-        {spirit ? (
+        {model ? (
           <>
             <img className="tcg-unit-memory" src={card.art} alt="" />
-            <img className="tcg-unit-spirit" src={spirit.art} alt="" />
-            <span className="tcg-unit-spirit-tag">VỊ LINH</span>
+            <CharacterSprite model={model} motion={motion.kind} delay={motion.delay}
+              lead={motion.lead} stamp={stamp} flip={enemy} quiet={quiet} paused={paused}
+              fallback={spirit?.art ?? card.art} />
+            <span className="tcg-unit-spirit-tag">{spirit ? "ẤN VỊ" : "ĐỒNG MINH"}</span>
           </>
         ) : card.art ? (
           <img src={card.art} alt="" />
@@ -179,6 +192,10 @@ function healthDelta(
 }
 
 export function BattleBoard({ onExit }: { onExit: () => void }) {
+  useEffect(() => {
+    characterImage(SPRITE_SHEETS.base.path)
+    characterImage(SPRITE_SHEETS.fresh.path)
+  }, [])
   const stored = useGameStore((s) => s.save.battle)!
   const presentation = useGameStore((s) => s.presentation)
   const ending = useGameStore((s) => s.save.storyEnding)
@@ -402,6 +419,10 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
               summoned={!!frame && !previous && !!next}
               hit={delta < 0 || shieldDelta < 0}
               stamp={stamp}
+              motion={!busy && stored.result === "win" && side === "player"
+                ? { kind: "victory", delay: 0 } : tcgUnitMotion(frame, u.uid, side)}
+              quiet={reducedMotion || systemReduced}
+              paused={!!sceneId || !!battle.opening}
               onInspect={() => {
                 if (!busy && !stored.result) setInspect(u.cardId)
               }}
@@ -836,11 +857,12 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           Hộ vệ chặn đòn đánh, không chặn phép · Tối đa 3 đồng minh · 7 năng
           lượng · 8 lá trên tay
         </p>
-        <CombatEffects arena={arena} frame={frame} stamp={stamp} />
+        <CombatEffects arena={arena} frame={frame} stamp={stamp} quiet={reducedMotion || systemReduced} />
         <BattleInvocation
           frame={frame}
           opponent={opponentPortrait}
           stamp={stamp}
+          quiet={reducedMotion || systemReduced}
         />
         {frame?.event.kind === "tactic" && frame.event.tacticId && (
           <div

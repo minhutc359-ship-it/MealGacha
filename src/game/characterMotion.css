@@ -1,0 +1,19 @@
+/* Character movement stays inside the existing battle slots. */
+.tcg-character-sprite{position:relative;display:block;width:100%;height:100%;pointer-events:none;overflow:hidden}
+.tcg-character-sprite>canvas{display:block;width:100%;height:100%;opacity:0}
+.tcg-character-sprite.is-loaded>canvas{opacity:1}
+.tcg-character-sprite .tcg-character-fallback{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;opacity:1;filter:none!important}
+.tcg-character-sprite.is-loaded>.tcg-character-fallback{display:none}
+.tcg-viewport-battle .tcg-unit.is-animated-character{background:radial-gradient(ellipse at 50% 25%,#799b8140,transparent 70%),linear-gradient(140deg,#163a3c,#18262a)}
+.tcg-viewport-battle .tcg-unit>.tcg-character-sprite{position:absolute;inset:2px 3px 39px;width:auto;height:auto;z-index:1}
+.tcg-viewport-battle .tcg-unit.is-animated-character:after{background:linear-gradient(transparent 50%,#152e2be8 85%);z-index:1}
+.tcg-viewport-battle .tcg-unit.is-animated-character.is-acting,.tcg-viewport-battle .tcg-unit.is-animated-character.is-hit,.tcg-viewport-battle .tcg-unit.is-animated-character.is-summoned{animation:none}
+.tcg-viewport-battle .tcg-unit-wrap.is-fallen:has(.tcg-character-sprite){animation:none}
+.tcg-viewport-battle .tcg-unit.is-animated-character .tcg-unit-memory{inset:4px auto auto 4px;width:25%;height:25%;border-radius:50%;z-index:3}
+.tcg-viewport-battle .tcg-unit.is-animated-character .tcg-unit-spirit-tag{top:5px;right:26px;font-size:6px}
+.tcg-attack-manifest>.tcg-character-sprite{filter:drop-shadow(0 0 7px var(--flight-color))}
+.tcg-attack-manifest:after{z-index:-1}
+.tcg-invocation-art>.tcg-character-sprite{filter:drop-shadow(0 0 10px var(--invoke-color))}
+.tcg-invocation-art>.tcg-invocation-spell-card{position:absolute;right:-14%;top:5%;width:40%;height:45%;object-fit:cover;border:1px solid var(--invoke-color);border-radius:8px;box-shadow:0 0 12px #0006;z-index:2}
+@media(max-width:740px){.tcg-viewport-battle .tcg-unit>.tcg-character-sprite{bottom:35px}}
+@media(max-height:470px) and (orientation:landscape){.tcg-viewport-battle .tcg-unit>.tcg-character-sprite{bottom:31px}.tcg-viewport-battle .tcg-unit.is-animated-character .tcg-unit-spirit-tag{display:none}}

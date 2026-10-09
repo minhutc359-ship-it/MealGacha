@@ -1,4 +1,15 @@
 import type { CSSProperties } from "react"
+import { SPRITE_SHEETS } from "../../game/autochess/presentation"
+export function AutoMonsterPortrait({ row, label }: { row: number; label: string }) {
+  const sheet = SPRITE_SHEETS.enemy
+  const [x, y, width, height] = sheet.rows[row].frames[0]
+  const fit = 100 / Math.max(width, height)
+  return <span className="ac-portrait ac-sprite-portrait" role="img" aria-label={label}>
+    <span className="ac-sprite-crop" style={{ width: `${width * fit}%`, height: `${height * fit}%` }}>
+      <img alt="" loading="lazy" src={sheet.path} style={{ width: `${sheet.width / width * 100}%`, height: `${sheet.height / height * 100}%`, left: `${-x / width * 100}%`, top: `${-y / height * 100}%` }} />
+    </span>
+  </span>
+}
 export function AutoPortrait({
   index,
   npc = false,

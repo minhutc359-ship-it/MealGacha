@@ -225,9 +225,8 @@ export function DeckBuilder() {
               : "Nhấn để thêm; nút i để đọc kỹ năng."}
           </p>
           <CardShelf
-            compact
             label="Thẻ xây bộ bài"
-            resetKey={[search, school, kind, role, rarity].join("|")}
+            resetKey={[search, school, kind, role, rarity, mobileView].join("|")}
             items={cards.map((c) => (
               <div className="tcg-deck-card-wrap" key={c.id}>
                 <GameCardView

@@ -6,6 +6,27 @@ export const capacity = (xp: number) =>
   3 + [8, 20, 38, 62].filter((n) => xp >= n).length
 export const boardPieces = (run: AutoRun) =>
   run.roster.filter((p) => p.cell !== null)
+export function unitRole(id: string) {
+  const unit = UNIT_MAP[id]
+  if (["heal", "leaves", "feast", "ginger"].includes(unit.skill)) return "Hồi phục"
+  if (["shield", "shell", "lantern"].includes(unit.skill) || (unit.range === 1 && unit.armor >= 10)) return "Đỡ đòn"
+  return unit.range > 1 ? "Tầm xa" : "Cận chiến"
+}
+export function autoArrange(run: AutoRun): string | null {
+  if (!run.roster.length) return "Mua ít nhất một Vị Linh trước khi xếp đội."
+  const rank = (p: Piece) => p.star * 1000 + UNIT_MAP[p.id].cost * 10 + p.items.length * 3
+  const team = [...run.roster].sort((a, b) => rank(b) - rank(a) || a.uid.localeCompare(b.uid)).slice(0, capacity(run.xp))
+  const front = [20, 21, 19, 22, 18, 23, 26, 27, 25, 28, 24, 29, 32, 33, 31, 34, 30, 35]
+  const back = [32, 33, 31, 34, 30, 35, 26, 27, 25, 28, 24, 29, 20, 21, 19, 22, 18, 23]
+  const occupied = new Set<number>()
+  for (const p of run.roster) p.cell = null
+  for (const p of team) {
+    const order = UNIT_MAP[p.id].range === 1 && unitRole(p.id) !== "Hồi phục" ? front : back
+    p.cell = order.find(cell => !occupied.has(cell))!
+    occupied.add(p.cell)
+  }
+  return null
+}
 export function random(run: AutoRun) {
   run.rng = (Math.imul(run.rng, 1664525) + 1013904223) >>> 0
   return run.rng / 4294967296

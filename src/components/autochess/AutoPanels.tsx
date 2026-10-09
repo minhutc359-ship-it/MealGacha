@@ -1,5 +1,5 @@
 import { Dialog } from "../game/Dialog"
-import { AutoPortrait, WorldArt } from "./AutoArt"
+import { AutoPortrait, AutoMonsterPortrait, WorldArt } from "./AutoArt"
 import {
   AUTO_SCHOOLS,
   AUTO_UNITS,
@@ -93,12 +93,7 @@ export function UnitInspector({
         {unit ? (
           <AutoPortrait index={unit.portrait} label={unit.spirit} />
         ) : (
-          <span
-            className="ac-monster-portrait"
-            role="img"
-            aria-label={monster.name}
-            style={{ backgroundPosition: `0% ${(monster.sprite / 13) * 100}%` }}
-          />
+          <AutoMonsterPortrait row={monster.sprite} label={monster.name} />
         )}
         <div>
           <small>
@@ -172,45 +167,17 @@ export function UnitInspector({
 }
 export function AutoGuide({ onClose }: { onClose: () => void }) {
   return (
-    <Dialog
-      title="Giữ bàn trong ba bước"
-      onClose={onClose}
-      className="ac-guide-dialog"
-    >
-      <ol>
-        <li>
-          <strong>Chuẩn bị:</strong> mua quân bằng vàng trong lượt chơi. Chọn
-          quân rồi chọn ô ở ba hàng phía bạn; kéo thả cũng được. Tank đứng
-          trước, carry và hồi phục đứng sau.
-        </li>
-        <li>
-          <strong>Ghép và phối:</strong> 3 bản cùng quân lên 2 sao, 9 bản lên 3
-          sao. Quân khác ID kích mốc hệ/nghề; hai bản cùng ID không tính hai
-          lần. Chọn di vật để bổ trợ cách đánh.
-        </li>
-        <li>
-          <strong>Xuất trận:</strong> đội tự đi, đánh và dùng phép khi đầy mana.
-          Xem vòng niệm, đạn, số sát thương và khiên để biết ai đang làm gì. Giữ
-          10/20/30 vàng nhận 1/2/3 lợi tức sau vòng.
-        </li>
-      </ol>
-      <p>
-        4 vàng mua 4 XP; cấp bàn mở 3 → 7 quân. Thua mất ý chí. Chiến dịch chỉ
-        mở màn sau khi thắng; survival tiếp tục đợt mới cho đến khi hết 100 ý
-        chí.
-      </p>
-      <p>
-        Survival: mỗi 30 giây giao chiến, địch mạnh hơn. Sau 25 giây mỗi vòng có
-        cuồng nộ; 55 giây chưa hạ hết địch tính thua. Chuẩn bị, pause, thoại và
-        tab ẩn không tính thời gian. Điểm chỉ nhận ở vòng thắng.
-      </p>
-      <p className="ac-muted">
-        Vàng và pool auto chess độc lập với thẻ/xu TCG. Không cần tài khoản; mã
-        tiến trình giữ cả trận đang chơi và kỷ lục.
-      </p>
-      <button className="ac-button primary" onClick={onClose}>
-        Đã hiểu · Giữ bàn!
-      </button>
+    <Dialog title="Một vòng chơi trong ba bước" onClose={onClose} className="ac-guide-dialog">
+      <p className="ac-guide-intro">Bạn chọn đội hình; Vị Linh tự di chuyển, đánh và tung kỹ năng. Hạ hết phe địch trong 55 giây để thắng.</p>
+      <div className="ac-guide-steps">
+        <article><strong>1 · Mua & ghép quân</strong><p>Chạm Mua trong cửa hàng. 3 bản cùng quân tự ghép ★★; 3 quân ★★ ghép ★★★. Quân mới nằm ở ghế dự bị.</p></article>
+        <article><strong>2 · Xếp đội hình</strong><p>Chọn quân → chạm ô sáng ở ba hàng phía bạn. Đỡ đòn/cận chiến đứng trước; tầm xa/hồi phục đứng sau. Dùng Xếp nhanh rồi chỉnh theo ý bạn.</p></article>
+        <article><strong>3 · Xuất trận</strong><p>Đội tự đánh. Đủ 100 mana sẽ tung phép. Thắng → nhảy ăn mừng → kết quả → chọn thưởng nếu có → chuẩn bị vòng mới.</p></article>
+      </div>
+      <div className="ac-guide-example"><strong>Đội khởi đầu dễ hiểu</strong><p>Cơm tấm giữ tuyến trước · Phở bò gây sát thương từ xa · Bánh cuốn hồi phục ở phía sau.</p></div>
+      <details className="ac-guide-more"><summary>Vàng, XP và phối hệ</summary><p>Mỗi vòng nhận 5 vàng, thêm 1 khi thắng. Giữ 10/20/30 vàng nhận thêm 1/2/3 lợi tức. 4 vàng mua 4 XP; các mốc 8/20/38/62 XP mở tối đa 4/5/6/7 quân.</p><p>Quân khác tên cùng hệ kích mốc 2/4; cùng nghề kích 2/3. Bản trùng tên chỉ tính một lần. Ba hệ khác nhau kích Mâm chung để hồi máu. Chọn quân → mở túi ✧ để trao tối đa hai di vật khác nhau.</p></details>
+      <details className="ac-guide-more"><summary>Thua, survival và lưu tiến trình</summary><p>Thua mất ý chí; chiến dịch phải chơi lại đúng màn đó. Survival chuyển sang đợt mới đến khi hết 100 ý chí; chỉ vòng thắng cho điểm.</p><p>Survival: cứ 30 giây giao chiến địch mạnh hơn; sau 25 giây trong một vòng có cuồng nộ. Chuẩn bị, tạm dừng, thoại và ăn mừng không tính thời gian.</p><p>Vàng Auto chess độc lập với xu TCG. Mã tiến trình giữ cả trận, tài nguyên và kỷ lục; không cần tài khoản.</p></details>
+      <button className="ac-button primary" onClick={onClose}>Đã hiểu · Giữ bàn!</button>
     </Dialog>
   )
 }
