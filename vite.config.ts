@@ -43,7 +43,7 @@ export default defineConfig({
   base: "/",
   plugins: [react(), tailwindcss(), appMetadata(), productionDevPanel()],
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
-  build: { sourcemap: false, minify: true },
+  build: { sourcemap: false, minify: true, emptyOutDir: true },
   server: { host: "0.0.0.0", port: 8443, strictPort: true },
   preview: { host: "0.0.0.0", port: 8443 },
 })

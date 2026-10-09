@@ -1,4 +1,4 @@
-import { AUTO_UNITS, UNIT_MAP, SHOP_ODDS, RELICS, AUGMENTS } from "./catalog"
+import { AUTO_UNITS, UNIT_MAP, shopOdds, LEGACY_UNIT_IDS, RELICS, AUGMENTS } from "./catalog"
 import { RULES_VERSION, type AutoMode, type AutoRun, type Piece } from "./types"
 export const copies = (star: number) => 3 ** (star - 1)
 export const poolSize = (cost: number) => [0, 18, 16, 12, 10, 9][cost]
@@ -65,23 +65,24 @@ export function seedForDay(day: string) {
 export function refreshShop(run: AutoRun) {
   for (const id of run.shop) if (id) run.pool[id]++
   run.shop = []
-  const odds = SHOP_ODDS[capacity(run.xp) - 3]
+  const odds = shopOdds(capacity(run.xp), run.rulesVersion)
+  const catalog = run.rulesVersion >= 3 ? AUTO_UNITS : AUTO_UNITS.filter(u => LEGACY_UNIT_IDS.has(u.id))
   for (let i = 0; i < 5; i++) {
-    const roll = random(run) * 100
+    // Reweight only permitted, nonempty tiers. Exhaustion cannot unlock a tier.
+    const available = odds.map((chance, k) => catalog.some(u => u.cost === k + 1 && run.pool[u.id] > 0) ? chance : 0)
+    const roll = random(run) * available.reduce((a, b) => a + b, 0)
     let threshold = 0,
-      tier = 1
+      tier = 0
     for (let k = 0; k < 5; k++) {
-      threshold += odds[k]
+      threshold += available[k]
       if (roll < threshold) {
         tier = k + 1
         break
       }
     }
-    let eligible = AUTO_UNITS.filter(
+    const eligible = catalog.filter(
       (u) => u.cost === tier && run.pool[u.id] > 0,
     )
-    if (!eligible.length)
-      eligible = AUTO_UNITS.filter((u) => run.pool[u.id] > 0)
     const weight = eligible.reduce((sum, u) => sum + run.pool[u.id], 0)
     let draw = random(run) * weight
     const picked = eligible.find((u) => {

@@ -1,5 +1,5 @@
 import { BrandMark } from "../components/layout/BrandMark"
-import { useEffect, useState } from "react"
+import { useEffect, useState, type CSSProperties } from "react"
 import { useGameStore } from "../game/useGameStore"
 import { useAppStore } from "../store/useAppStore"
 import { getDateKey } from "../domain/dateKey"
@@ -13,6 +13,10 @@ import { Dialog } from "../components/game/Dialog"
 import { ModeSwitch } from "../components/layout/ModeSwitch"
 import { AutoBoard } from "../components/autochess/AutoBoard"
 import { useFormationDrag } from "../components/autochess/useFormationDrag"
+import { useAutoShortcuts } from "../components/autochess/useAutoShortcuts"
+import { useStarUpgrades } from "../components/autochess/useStarUpgrades"
+import { ShopOdds } from "../components/autochess/ShopOdds"
+import { starScale } from "../game/autochess/presentation"
 import { AutoVictory, useAutoVictory } from "../components/autochess/AutoVictory"
 import { AutoPortrait, AutoMonsterPortrait, WorldArt } from "../components/autochess/AutoArt"
 import {
@@ -29,7 +33,6 @@ import {
   AUGMENTS,
   COSMETICS,
   PROFESSIONS,
-  SHOP_ODDS,
   MONSTER_MAP,
   SKILL_LABELS,
 } from "../game/autochess/catalog"
@@ -96,6 +99,7 @@ export function AutoChessPage() {
     preparing = run?.phase === "prepare"
   const sceneId = run?.combat?.pendingScene ?? run?.scene
   const victory = useAutoVictory(run, playing && !modal && !inspect, prefs.reducedMotion)
+  const upgrades = useStarUpgrades(run)
   useGameAudio()
   useGameMusic(
     sceneId && !victory.pending
@@ -214,6 +218,14 @@ export function AutoChessPage() {
     },
   })
   const draggedPiece = run?.roster.find(piece => piece.uid === drag.dragging)
+  useAutoShortcuts({
+    enabled: playing && preparing && !sceneId && !victory.pending && !modal && !inspect && !replace && !journal && !drag.dragging,
+    run,
+    onAction: value => {
+      if (doAction(value) && (value.type === "move" || value.type === "sell"))
+        setSelected(value.type === "move" ? value.uid : null)
+    },
+  })
   const sceneIndex =
     playing && run?.mode === "campaign"
       ? actIndex(run.wave)
@@ -385,7 +397,7 @@ export function AutoChessPage() {
                       key={m.id}
                       onClick={() => inspectUnit({ id: m.id })}
                     >
-                      <AutoMonsterPortrait row={m.sprite} label={m.name} />
+                      <AutoMonsterPortrait id={m.id} label={m.name} />
                       <strong>{m.name}</strong>
                       <small>
                         {m.boss ? "BOSS" : AUTO_SCHOOLS[m.school].name}
@@ -643,6 +655,7 @@ export function AutoChessPage() {
               reducedMotion={prefs.reducedMotion}
               lowQuality={lowQuality}
               celebrating={victory.celebrating}
+              upgrades={upgrades}
               onCell={onCell}
               onPiecePointerDown={drag.start}
             />
@@ -677,12 +690,17 @@ export function AutoChessPage() {
                 <span>DỰ BỊ</span>
                 {Array.from({ length: 6 }, (_, i) => {
                   const piece = bench[i]
+                  const upgrade = upgrades.find(u => u.uid === piece?.uid)
                   return (
                     <button
                       key={i}
                       data-bench-slot={i}
                       data-piece={piece?.uid}
-                      className={piece?.uid === selected ? "is-selected" : ""}
+                      className={`${piece?.uid === selected ? "is-selected" : ""} ${upgrade ? "is-star-upgrade" : ""}`}
+                      data-star={piece?.star}
+                      data-star-scale={piece ? starScale(piece.star) : undefined}
+                      style={piece ? { "--star-scale": starScale(piece.star) } as CSSProperties : undefined}
+                      aria-keyshortcuts={piece ? "W E" : undefined}
                       aria-label={
                         piece
                           ? `Chọn ${UNIT_MAP[piece.id].name} ${piece.star} sao ở dự bị`
@@ -731,6 +749,7 @@ export function AutoChessPage() {
                         <>
                           <AutoPortrait index={UNIT_MAP[piece.id].portrait} />
                           <small>{"★".repeat(piece.star)}</small>
+                          {upgrade && <span key={upgrade.to} className={`ac-bench-awaken ${prefs.reducedMotion ? "is-quiet" : ""}`} aria-hidden="true">✦</span>}
                         </>
                       ) : (
                         "+"
@@ -780,21 +799,22 @@ export function AutoChessPage() {
                           .filter((p) => p.id === id)
                           .reduce((n, p) => n + copies(p.star), 0)
                       : 0
+                  const mergeReady = !!id && run.roster.filter(piece => piece.id === id && piece.star === 1).length >= 2
                   return (
                     <article
                       key={i}
-                      className={def ? `tier-${def.cost}` : "is-empty"}
+                      className={def ? `tier-${def.cost} ${count > 0 ? "is-owned" : ""} ${mergeReady ? "is-merge-ready" : ""}` : "is-empty"}
                     >
                       {def ? (
                         <>
                           <button
                             className="ac-shop-art"
                             onClick={() => inspectUnit({ id: def.id, shop: i })}
-                            aria-label={`Xem ${def.name}`}
+                            aria-label={`Xem ${def.name}${count > 0 ? `, đang có ${count} bản trên bàn và dự bị` : ""}${mergeReady ? ", mua để ghép sao" : ""}`}
                           >
                             <AutoPortrait index={def.portrait} />
                             <small>{unitRole(def.id)} · {AUTO_SCHOOLS[def.school].name}</small>
-                            {count > 0 && <b>{count} bản</b>}
+                            {count > 0 && <b>{mergeReady ? "✦ Ghép sao" : `✓ ${count} bản`}</b>}
                           </button>
                           <strong title={def.name}>{def.name}</strong>
                           <button
@@ -847,9 +867,11 @@ export function AutoChessPage() {
                 <button
                   className="ac-button"
                   onClick={() => doAction({ type: "reroll" })}
+                  aria-keyshortcuts="D"
+                  title="D · Làm mới 5 ô shop (2 vàng, hoặc miễn phí từ Lời hẹn)"
                   disabled={run.gold < 2 && !run.freeReroll}
                 >
-                  ↻ <span>Đổi</span> · {run.freeReroll ? "0" : "2"} ◉
+                  ↻ <span>Đổi</span> <kbd>D</kbd> · {run.freeReroll ? "0" : "2"} ◉
                 </button>
                 <button
                   className="ac-button"
@@ -861,12 +883,13 @@ export function AutoChessPage() {
                 </button>
                 <button
                   className="ac-button ac-xp-control"
+                  aria-keyshortcuts="F"
                   disabled={run.gold < 4 || run.xp >= 62}
                   aria-label={`Cấp ${capacityNow}. ${run.xp}${progress.next === null ? " XP, cấp tối đa" : `/${progress.next} XP, còn ${progress.remaining} XP để lên cấp`}. Mua 4 XP giá 4 vàng`}
                   title={progress.next === null ? "Đã mở tối đa 7 quân" : `Còn ${progress.remaining} XP để mở ${capacityNow + 1} quân. Mỗi vòng nhận 2 XP; mua 4 XP với 4 vàng.`}
                   onClick={() => doAction({ type: "xp" })}
                 >
-                  <strong>Cấp {capacityNow}{progress.next !== null ? " · 4 ◉" : " · MAX"}</strong>
+                  <strong>Cấp {capacityNow}{progress.next !== null ? " · 4 ◉" : " · MAX"}<kbd>F</kbd></strong>
                   <small>{run.xp}{progress.next !== null ? `/${progress.next}` : ""} XP</small>
                   <i className="ac-xp-track" aria-hidden="true"><i style={{ width: `${progress.percent}%` }} /></i>
                 </button>
@@ -986,10 +1009,7 @@ export function AutoChessPage() {
             Ba hệ khác nhau kích Mâm chung: hồi 2% máu mỗi 5 giây. Bản trùng ID
             không cộng thêm mốc.
           </p>
-          <p>
-            Cấp bàn {capacityNow} · {run.xp} XP · cơ hội quân giá 1–5:{" "}
-            {SHOP_ODDS[capacityNow - 3].join("% / ")}%.
-          </p>
+          <ShopOdds level={capacityNow} rulesVersion={run.rulesVersion} />
         </Dialog>
       )}
       {modal === "inventory" && run && (

@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "name": "TCG lethal animation keeps original slots then compacts surviving models"
+    },
+    {
+      "name": "TCG labels and stats stay in separate strips",
+      "hud": [
+        {
+          "uid": "middle",
+          "nameBottom": 228,
+          "statsTop": 230.40625
+        },
+        {
+          "uid": "right",
+          "nameBottom": 228,
+          "statsTop": 230.40625
+        },
+        {
+          "uid": "attacker",
+          "nameBottom": 387,
+          "statsTop": 389.40625
+        },
+        {
+          "uid": "support",
+          "nameBottom": 387,
+          "statsTop": 389.40625
+        }
+      ]
+    },
+    {
+      "name": "No client exceptions or missing local runtime assets"
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

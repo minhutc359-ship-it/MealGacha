@@ -19,7 +19,6 @@ import {
 } from "./combat"
 import {
   emptyAutoSave,
-  RULES_VERSION,
   type AutoMode,
   type AutoRun,
   type AutoSave,
@@ -368,7 +367,9 @@ export function reduceAuto(
         error =
           "Đặt ít nhất một quân lên bàn và đọc hết thoại trước khi xuất trận."
       else {
-        run.rulesVersion = RULES_VERSION
+        // Preserve the recruitment/enemy rules of an active legacy session.
+        // Version 1 keeps the previous upgrade to the +30% version 2 challenge.
+        run.rulesVersion = Math.max(2, run.rulesVersion)
         run.rounds++
         run.phase = "combat"
         run.paused = false

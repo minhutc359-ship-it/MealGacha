@@ -44,7 +44,7 @@ describe("challenge without changing existing battles", () => {
   it("gives Auto chess a 1.3 durability × output budget without weakening 3-star allies", () => {
     for (const mode of ["campaign","survival","daily"] as const) {
       const run = initial(); run.mode=mode; run.wave=12; run.activeTicks=1200
-      const old=createCombat({...run,rulesVersion:1}), next=createCombat(run)
+      const old=createCombat({...run,rulesVersion:1}), next=createCombat({...run,rulesVersion:2})
       const enemies=old.actors.filter(a=>a.side==="enemy")
       for (const enemy of enemies) {
         const boosted=next.actors.find(a=>a.uid===enemy.uid)!
@@ -102,7 +102,7 @@ describe("recognizable shared models and mirrored fitting", () => {
   it("assigns a unique real atlas row to every Auto chess unit and shares it with its TCG card", () => {
     const keys=AUTO_UNITS.map(u=>{const m=unitCharacter(u.id); return `${m.sheet}:${m.row}`})
     expect(new Set(keys).size).toBe(AUTO_UNITS.length)
-    expect(Object.keys(DISTINCT_MODELS)).toHaveLength(16)
+    expect(Object.keys(DISTINCT_MODELS)).toHaveLength(28)
     for (const u of AUTO_UNITS) if(CARD_MAP[u.id]) expect(tcgCharacter(CARD_MAP[u.id])).toEqual(unitCharacter(u.id))
     expect(tcgCharacter(CARD_MAP["caravan-herbalist"])?.row).not.toBe(tcgCharacter(CARD_MAP["caravan-gardener"])?.row)
   })

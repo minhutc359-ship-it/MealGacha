@@ -21,7 +21,7 @@ import { GameCardView } from "./GameCardView"
 import { CombatEffects } from "./CombatEffects"
 import { BattleInvocation } from "./BattleInvocation"
 import { CharacterSprite } from "./CharacterSprite"
-import { tcgCharacter, tcgUnitMotion, type MotionCue } from "../../game/tcgCharacterMotion"
+import { tcgCharacter, tcgUnitMotion, tcgFieldUnits, type MotionCue } from "../../game/tcgCharacterMotion"
 import { characterImage } from "../../infrastructure/assets/characterSprites"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { foodSpirit } from "../../game/flavorSpirits"
@@ -381,14 +381,10 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     inFlight.current = false
   }
   const field = (side: "player" | "enemy") => {
-    const units = [...battle[side].board]
-    const ghosts =
-      frame?.before[side].board.filter(
-        (u) => !units.some((next) => next.uid === u.uid),
-      ) ?? []
+    const slots = tcgFieldUnits(frame?.before[side].board, battle[side].board)
     return (
       <div className={`tcg-field ${side === "enemy" ? "enemy" : ""}`}>
-        {[...units, ...ghosts].map((u) => {
+        {slots.map((u) => {
           const previous = frame?.before[side].board.find(
             (old) => old.uid === u.uid,
           )
@@ -445,7 +441,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           )
         })}
         {Array.from(
-          { length: Math.max(0, 3 - units.length - ghosts.length) },
+          { length: Math.max(0, 3 - slots.length) },
           (_, i) => (
             <span className="tcg-empty-slot" key={`empty-${i}`}>
               ◇

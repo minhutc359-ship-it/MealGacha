@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-09",
+  "browser": "Chromium headless, single context; CSS viewports, not real Safari or mobile hardware",
+  "flow": "UI hover/click/keydown → game reducer → persisted save/pool/XP → board/shop Canvas and HUD",
+  "boundaryStatus": {
+    "ui": "passed",
+    "economy_and_formation_reducer": "passed",
+    "legacy_save_and_transfer": "266-test suite includes migration and MGC1 round-trip",
+    "assets": "no missing local runtime assets; measured full-pose bounds",
+    "rendering": "passed at 1440x900,390x720,844x390,320x568",
+    "backend": "not used; these game flows are local client state"
+  },
+  "parts": [
+    "browser-checks.json",
+    "browser-layout.json",
+    "browser-tcg.json"
+  ],
+  "screenshots": [
+    "auto-landscape.webp",
+    "auto-portrait.webp",
+    "auto-small.webp",
+    "new-units-enemies-desktop.webp",
+    "shop-odds.webp",
+    "shop-owned-desktop.webp",
+    "star-three-desktop.webp",
+    "star-two-desktop.webp",
+    "tcg-after-casualty.webp",
+    "tcg-death-slots.webp",
+    "tcg-landscape.webp"
+  ],
+  "balance": "18 samples, 5/9 campaign clears across all 3 strategies; 9/9 Survival eventually lost",
+  "limitations": [
+    "Not a proof of balance for all teams",
+    "No Safari/WKWebView/Android device test in this session"
+  ]
+}

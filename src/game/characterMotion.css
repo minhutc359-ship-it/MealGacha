@@ -22,3 +22,9 @@
 .tcg-viewport-battle .tcg-float-number{animation-delay:var(--battle-contact,0ms)}
 .tcg-fx-anchor .tcg-fx-sprite,.tcg-fx-anchor .tcg-fx-halo,.tcg-fx-anchor .tcg-fx-glyph{animation-delay:var(--fx-contact,80ms)}
 .tcg-fx-anchor .tcg-fx-particle{animation-delay:calc(var(--fx-contact,80ms) + var(--delay,0ms))}
+
+/* HUD text has its own bottom strip, including after a casualty compacts a row. */
+.tcg-viewport-battle .tcg-unit-wrap{flex:0 0 var(--unit-width);min-width:0}
+.tcg-viewport-battle .tcg-unit-name{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;z-index:3;line-height:1.3}
+.tcg-viewport-battle .tcg-unit-stats{left:4px;right:4px;width:auto;align-items:center;gap:clamp(4px,1vw,8px);white-space:nowrap;z-index:3;line-height:1.2;font-variant-numeric:tabular-nums}
+.tcg-viewport-battle .tcg-unit-stats b{flex:0 0 auto}

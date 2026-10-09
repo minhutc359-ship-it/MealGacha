@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { UNIT_MAP, AUTO_UNITS, MONSTER_MAP, RELICS, AUGMENTS } from "./catalog"
+import { UNIT_MAP, AUTO_UNITS, LEGACY_UNIT_IDS, MONSTER_MAP, RELICS, AUGMENTS } from "./catalog"
 import { SCENES } from "./story"
 import { capacity, copies, poolSize } from "./economy"
 const int = z.number().int().nonnegative().max(1_000_000_000)
@@ -140,11 +140,11 @@ const result = z.object({
   gold: int,
   reason: z.string().max(600),
 })
-export const autoRunSchema = z
+const currentRunSchema = z
   .object({
     id,
     mode,
-    rulesVersion: z.union([z.literal(1), z.literal(2)]),
+    rulesVersion: z.union([z.literal(1), z.literal(2), z.literal(3)]),
     seed: uint32,
     rng: uint32,
     day: z.string().max(16),
@@ -283,6 +283,17 @@ export const autoRunSchema = z
         invalid("Lịch đòn đánh không hợp lệ")
     }
   })
+// Expand old pool snapshots without repairing corrupt counts or changing RNG.
+export const autoRunSchema = z.preprocess(raw => {
+  if (!raw || typeof raw !== "object") return raw
+  const value = raw as Record<string, unknown>
+  if (![1, 2].includes(value.rulesVersion as number) || !value.pool ||
+    typeof value.pool !== "object" || Array.isArray(value.pool)) return raw
+  const pool = { ...value.pool as Record<string, unknown> }
+  for (const unit of AUTO_UNITS) if (!LEGACY_UNIT_IDS.has(unit.id) && !(unit.id in pool))
+    pool[unit.id] = poolSize(unit.cost)
+  return { ...value, pool }
+}, currentRunSchema)
 export const autoSaveSchema = z
   .object({
     version: z.literal(1),

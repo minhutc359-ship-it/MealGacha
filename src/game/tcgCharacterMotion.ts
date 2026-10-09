@@ -1,6 +1,6 @@
 import { UNIT_MAP } from "./autochess/catalog"
 import type { BattleFrame } from "./battle"
-import type { GameCard, School } from "./types"
+import type { BattleUnit, GameCard, School } from "./types"
 import { DISTINCT_MODELS, unitCharacter, type CharacterModel } from "../infrastructure/assets/characterSprites"
 import { TCG_IMPACT_MS } from "./battleVfx"
 
@@ -24,6 +24,15 @@ const COMPANIONS: Record<string, string> = {
   "caravan-letter": "tinh", "caravan-cartographer": "recorder",
 }
 const IDLE: MotionCue = { kind: "idle", delay: 0 }
+
+// Keep death ghosts in their original slots until the action finishes.
+// Reordering them after survivors changes the target anchors mid-animation.
+export function tcgFieldUnits(before: BattleUnit[] | undefined, after: BattleUnit[]) {
+  if (!before) return after
+  const live = new Map(after.map(unit => [unit.uid, unit]))
+  const previous = new Set(before.map(unit => unit.uid))
+  return [...before.map(unit => live.get(unit.uid) ?? unit), ...after.filter(unit => !previous.has(unit.uid))]
+}
 
 function model(id: string): CharacterModel {
   return unitCharacter(id)

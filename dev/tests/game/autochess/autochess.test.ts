@@ -525,11 +525,11 @@ describe("outcomes, progress and persistence", () => {
   })
 })
 describe("complete content and assets", () => {
-  it("has 32 distinct units, 14 enemies, all skills, valid sprites, manual story and two epilogues", () => {
-    expect(AUTO_UNITS).toHaveLength(32)
-    expect(new Set(AUTO_UNITS.map((u) => u.id)).size).toBe(32)
-    expect(MONSTERS).toHaveLength(14)
-    expect(MONSTERS.filter((m) => m.boss)).toHaveLength(4)
+  it("has 44 distinct units, 22 enemies, all skills, valid sprites, manual story and two epilogues", () => {
+    expect(AUTO_UNITS).toHaveLength(44)
+    expect(new Set(AUTO_UNITS.map((u) => u.id)).size).toBe(44)
+    expect(MONSTERS).toHaveLength(22)
+    expect(MONSTERS.filter((m) => m.boss)).toHaveLength(6)
     expect(RELICS).toHaveLength(6)
     expect(AUGMENTS).toHaveLength(6)
     expect(Object.keys(SCENES)).toHaveLength(9)
@@ -537,7 +537,7 @@ describe("complete content and assets", () => {
       expect(scene.lines.length).toBeGreaterThanOrEqual(2)
     for (const u of AUTO_UNITS) {
       expect(existsSync("public" + u.art)).toBe(true)
-      expect(u.portrait).toBeLessThan(32)
+      expect(u.portrait).toBeLessThan(AUTO_UNITS.length)
     }
     for (const path of [
       "movement",
