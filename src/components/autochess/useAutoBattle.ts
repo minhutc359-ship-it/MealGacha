@@ -4,6 +4,7 @@ import type { AutoRun } from "../../game/autochess/types"
 import { useGameStore } from "../../game/useGameStore"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
 import type { GameSound } from "../../game/audioScore"
+import { battleSpeed, OVERTIME_TICKS } from "../../game/autochess/config"
 
 export function useAutoBattle(run: AutoRun | null, speed: number) {
   const frame = useRef<{ run: AutoRun | null; alpha: number }>({ run, alpha: 0 })
@@ -57,8 +58,9 @@ export function useAutoBattle(run: AutoRun | null, speed: number) {
         pause(true)
         return
       }
-      accumulator += dt * speedRef.current
       let local = frame.current.run!
+      const beforeTick = local.combat?.tick ?? 0
+      accumulator += dt * battleSpeed(beforeTick, speedRef.current)
       let count = 0
       while (
         accumulator >= 50 &&
@@ -96,7 +98,8 @@ export function useAutoBattle(run: AutoRun | null, speed: number) {
       // Cap overlapping voices; sound never changes the simulation.
       ;[...cues].slice(0, 3).forEach((cue) => gameAudio.play(cue))
       const stopped = local.phase !== "combat" || !!local.combat?.pendingScene
-      if (stopped || now - savedAt >= 1000) {
+      const overtimeStarted = beforeTick < OVERTIME_TICKS && (local.combat?.tick ?? 0) >= OVERTIME_TICKS
+      if (stopped || overtimeStarted || now - savedAt >= 1000) {
         if (
           !useGameStore
             .getState()

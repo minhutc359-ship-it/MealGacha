@@ -1,0 +1,51 @@
+{
+  "version": "3.4.1",
+  "flow": "production browser -> useAutoBattle -> reducer -> localStorage -> parseGame -> UI/history",
+  "backend": "none",
+  "typecheck": "passed",
+  "devTypecheck": "passed",
+  "tests": {
+    "passed": 293,
+    "files": 25
+  },
+  "browser": {
+    "passed": 11,
+    "errors": 0,
+    "missingLocalAssets": 0,
+    "report": "browser-checks.json",
+    "engine": "Chromium, Vite production preview",
+    "calibratedOvertime": {
+      "name": "Resuming a saved overtime battle runs at 60 ticks/s with a calibrated paused starting snapshot",
+      "initialTick": 1337,
+      "finalTick": 1410,
+      "elapsedMs": 1316,
+      "ticksPerSecond": 55.471124620060785
+    }
+  },
+  "benchmark": {
+    "samples": 18,
+    "terminalAndRecorded": 18,
+    "campaignClears": 0,
+    "campaignSamples": 9,
+    "campaignBestWaveRange": [
+      5,
+      11
+    ],
+    "survivalBestWaveRange": [
+      6,
+      10
+    ],
+    "limitation": "single-defeat policy is stricter; bot smoke test, not human balancing evidence"
+  },
+  "build": {
+    "bytes": 38008396,
+    "files": 296,
+    "js_gzip": 500255,
+    "css_gzip": 74012,
+    "leaks": []
+  },
+  "limitations": [
+    "No physical iOS/Safari or Android QA",
+    "External fonts blocked in browser harness"
+  ]
+}

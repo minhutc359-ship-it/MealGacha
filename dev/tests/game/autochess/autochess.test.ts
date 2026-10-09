@@ -304,7 +304,7 @@ describe("fixed-step combat", () => {
     expect(result.combat!.result).toBe("loss")
     expect(result.combat!.actors.every((a) => a.hp === 0)).toBe(true)
   })
-  it("freezes battle time during pause and story; limits a stalled battle to 55 seconds", () => {
+  it("freezes battle time during pause and story; keeps both teams fighting past 55 seconds", () => {
     const r = fight(run())
     r.paused = true
     expect(advanceCombat(r, 40)).toBe(r)
@@ -316,10 +316,13 @@ describe("fixed-step combat", () => {
       a.stunnedUntil = 2000
       a.shield = 0
     }
-    const end = finish(r)
-    expect(end.combat!.tick).toBe(1100)
-    expect(end.activeTicks).toBe(1100)
-    expect(end.combat!.result).toBe("loss")
+    r.combat!.tick = 1099
+    r.activeTicks = 1099
+    const ongoing = advanceCombat(r, 40)
+    expect(ongoing.combat!.tick).toBe(1139)
+    expect(ongoing.activeTicks).toBe(1139)
+    expect(ongoing.phase).toBe("combat")
+    expect(ongoing.combat!.result).toBeNull()
   })
   it("strengthens survival with active time while preserving wounded enemy HP ratios", () => {
     const r = fight(run())
@@ -427,10 +430,11 @@ describe("outcomes, progress and persistence", () => {
     expect(s.campaignCleared).toBe(0)
     expect(s.run.score).toBe(0)
     expect(s.seals).toBe(0)
-    const hp = s.run.health
-    s = dispatch(s, { type: "next" })
+    expect(s.run.phase).toBe("lost")
+    expect(s.run.finished).toBe(true)
+    expect(s.records).toHaveLength(1)
+    expect(reduceAuto(s, { type: "next" }).error).toBeTruthy()
     expect(s.run.wave).toBe(1)
-    expect(s.run.health).toBe(hp)
   })
   it("rejects a claimed victory while enemies are still alive", () => {
     let s = { ...emptyAutoSave(), run: run() }
