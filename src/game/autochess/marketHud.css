@@ -117,3 +117,43 @@
 @media(hover:none),(pointer:coarse){.ac-market-toolbar kbd{display:none}}
 @media(prefers-reduced-motion:reduce){.ac-trait-rail,.ac-sell-zone{transition:none}}
 .ac-shell.is-reduced .ac-trait-rail,.ac-shell.is-reduced .ac-sell-zone{transition:none}
+/* Compact, persistent profession labels also remain visible in landscape. */
+.ac-shell .ac-shop-profession { display: block; padding: 0 5px 4px; color: #e6d9ba; font-size: 10px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ac-item-art { display: inline-block; flex: 0 0 auto; width: 52px; height: 52px; border-radius: 10px; background: url('/assets/autochess/items-rpg-v350.webp') var(--item-x) var(--item-y) / 300% 300% no-repeat; vertical-align: middle; }
+.ac-shell .ac-item-token .ac-item-art { width: 34px; height: 34px; }
+.ac-item-ghost .ac-item-art { width: 72px; height: 72px; }
+.ac-item-grid .ac-item-art, .ac-reward-choices .ac-item-art { width: 72px; height: 72px; margin-bottom: 5px; }
+.ac-equipped-items .ac-button { display: flex; align-items: center; gap: 10px; text-align: left; }
+.ac-equipped-items .ac-button span { display: grid; gap: 4px; }
+.ac-equipped-items .ac-button small { font-size: 11px; white-space: normal; }
+.ac-quick-items, .ac-recipe-parts, .ac-recipe-result { display: flex; align-items: center; gap: 5px; }
+.ac-quick-items > span, .ac-recipe-parts > span { display: flex; align-items: center; gap: 4px; }
+.ac-quick-items .ac-item-art { width: 32px; height: 32px; }
+.ac-recipe-list .ac-item-art { width: 42px; height: 42px; }
+@media (max-height: 620px) and (orientation: landscape) {
+  .ac-shell .ac-shop-profession { display: block; font-size: 8px; padding: 0 3px 2px; }
+  .ac-shop-card .ac-shop-art { min-height: 42px; }
+}
+.ac-arena.is-boss { border-color: #c18baf; }
+.ac-arena.is-overtime { border-color: #f7ad65; box-shadow: inset 0 0 20px #ed824b24, 0 0 12px #ed824b1a; }
+.ac-victory-banner { background-image: linear-gradient(105deg, transparent 30%, #fff6c629 50%, transparent 70%); background-size: 220% 100%; animation: ac-victory-sheen 2.8s ease-in-out infinite; }
+@keyframes ac-victory-sheen { from { background-position: 200% 0; } to { background-position: -50% 0; } }
+.ac-shell.is-reduced .ac-victory-banner { animation: none; }
+@media (prefers-reduced-motion: reduce) { .ac-victory-banner { animation: none; } }
+@media (max-height: 620px) and (orientation: landscape) {
+  .ac-shell .ac-game.is-fighting { grid-template-columns: minmax(0,1fr) clamp(190px,28vw,260px); grid-template-rows: 30px 25px minmax(0,1fr); }
+  .ac-shell .ac-game.is-fighting .ac-hud { grid-column: 1 / 3; }
+  .ac-shell .is-fighting .ac-fight-controls { grid-column: 2; grid-row: 2 / 4; display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 6px; border: 1px solid #49606a; border-radius: 10px; background: #142b32df; }
+  .ac-shell .is-fighting .ac-combat-strip { display: grid; grid-template-columns: 34px minmax(0,1fr); gap: 6px; padding: 0; border: 0; }
+  .ac-shell .is-fighting .ac-combat-strip > .ac-portrait { width: 34px; height: 34px; }
+  .ac-shell .is-fighting .ac-combat-strip > span { flex-basis: auto; }
+  .ac-shell .is-fighting .ac-combat-strip strong { font-size: 11px; }
+  .ac-shell .is-fighting .ac-combat-strip small { font-size: 9px; }
+  .ac-shell .is-fighting .ac-combat-strip > button { grid-column: 1 / 3; min-height: 30px; }
+  .ac-shell .ac-fight-controls .ac-controls { display: grid; grid-template-columns: minmax(0,1fr) 40px; }
+  .ac-shell .is-fighting .ac-team-caption { grid-column: 1 / 3; font-size: 9px; }
+  .ac-shell .is-fighting .ac-controls > button:first-of-type { grid-column: 1 / 3; }
+  .ac-shell .is-fighting .ac-controls > button { min-height: 30px; font-size: 10px; }
+}
+
+.ac-shell .ac-item-grid button:disabled, .ac-shell .ac-equipped-items button:disabled { opacity: 1; filter: none; cursor: default; }

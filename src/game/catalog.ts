@@ -1,3 +1,4 @@
+import { foodProfile, specializeCard } from "./cardAbilities"
 import { BUILT_IN_DISHES } from "../infrastructure/catalog/dishCatalog"
 import { hasFoodAsset } from "../infrastructure/assets/foodAssets"
 import type { GameCard, School, CardRarity, Keyword, Effect } from "./types"
@@ -118,7 +119,7 @@ const foods: GameCard[] = dishCatalog
         .filter(Boolean)
         .join(" ") ||
       "Đồng hệ: nhận 1 lá chắn nếu trên sân có đồng minh cùng hệ."
-    return {
+    return foodProfile({
       id: d.id,
       name: d.name,
       school,
@@ -137,7 +138,7 @@ const foods: GameCard[] = dishCatalog
         : `/assets/food/full/${d.id}.webp`,
       symbol: SCHOOLS[school].symbol,
       set: d.limitedEventId ? "Di sản thế giới" : "Khởi nguyên",
-    }
+    }, h)
   })
 
 type Extra = [string, string, School, CardRarity, number, Effect, number, string, string]
@@ -719,7 +720,7 @@ const chefPortraits: Record<string, string> = {
   "chef-hai": "hai",
 }
 export const CARDS: GameCard[] = [...foods, ...extras, ...champions, ...caravan].map((card) => ({
-  ...card,
+  ...specializeCard(card),
   art: card.art ?? (chefPortraits[card.id]
     ? `/assets/tcg/characters/anime/${chefPortraits[card.id]}.webp`
     : `/assets/tcg/cards/${card.id}.webp`),

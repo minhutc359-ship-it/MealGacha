@@ -1,4 +1,4 @@
-export type RecipeId = "home" | "street" | "tet"
+export type RecipeId = "home" | "street" | "tet" | "coast" | "garden" | "moon"
 export type NpcId = "bach" | "nhien" | "moc" | "hai" | "lien"
 export interface Bond {
   choice: "share" | "listen"
@@ -22,6 +22,8 @@ export type School = "ember" | "tide" | "grove" | "hearth" | "sugar"
 export type CardRarity = "common" | "rare" | "epic" | "legendary"
 export type Keyword = "guard" | "rush" | "shield" | "drain"
 export type Effect = "damage" | "heal" | "draw" | "buff" | "ward" | "sweep"
+export type Ability = "ambush" | "spellfire" | "scout" | "snare" | "mender" | "bloom" | "host" | "pantry" | "farewell" | "weaver" | "welcome"
+  | "wok" | "pierce" | "desperation" | "insight" | "wash" | "revive" | "mend" | "feast" | "root" | "rebloom" | "sharp" | "diverse" | "bulwark" | "offering" | "veil" | "dream" | "starlight" | "moonward"
 
 export interface GameCard {
   id: string
@@ -34,6 +36,7 @@ export interface GameCard {
   health: number
   keywords: Keyword[]
   effect?: Effect
+  ability?: Ability
   power?: number
   text: string
   lore: string
@@ -56,6 +59,8 @@ export interface BattleUnit {
   shield: number
   ready: boolean
   keywords: Keyword[]
+  triggers?: number
+  frozen?: boolean
 }
 export interface Combatant {
   health: number
@@ -70,6 +75,8 @@ export interface Combatant {
   recipeTrail?: string[]
   recipesUsed?: RecipeId[]
   resonanceUsed?: boolean
+  graveyard?: string[]
+  spellsThisTurn?: number
 }
 export interface Battle {
   id: string

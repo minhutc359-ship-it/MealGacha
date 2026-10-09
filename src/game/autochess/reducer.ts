@@ -26,6 +26,7 @@ import {
   type AutoRun,
   type AutoSave,
 } from "./types"
+import { canRetry, lossDamage } from "./willpower"
 import { SCENES } from "./story"
 import { finishRun as finish, normalizeAutoOutcome } from "./outcomes"
 
@@ -85,7 +86,7 @@ function settle(save: AutoSave, run: AutoRun) {
   const interest = Math.min(3, Math.floor(run.gold / 10))
   const gold =
     5 + (won ? 1 : 0) + interest + (run.augments.includes("another") ? 2 : 0)
-  const damage = won ? 0 : Math.min(25, 5 + 2 * enemies)
+  const damage = won ? 0 : lossDamage(run.mode, enemies)
   run.gold += gold
   run.xp = Math.min(1000, run.xp + 2)
   run.health = Math.max(0, run.health - damage)
@@ -126,7 +127,7 @@ function settle(save: AutoSave, run: AutoRun) {
         ]
       : []
   if (!won) {
-    run.phase = "lost"
+    run.phase = canRetry(run) ? "result" : "lost"
     run.paused = false
     run.scene = null
     run.reward = null
@@ -175,7 +176,7 @@ export function reduceAuto(
 ): { save: AutoSave; error: string | null } {
   const original = input ?? emptyAutoSave(),
     fail = (error: string) => ({ save: original, error })
-  const save = structuredClone(original)
+  const save = normalizeAutoOutcome(structuredClone(original))
   if (action.type === "tutorial") {
     save.tutorialSeen = true
     return { save, error: null }
@@ -261,8 +262,10 @@ export function reduceAuto(
     if (run.phase !== "result" || !run.combat?.settled || !run.lastResult)
       return fail("Vòng chưa được chốt.")
     if (run.lastResult.result !== "win") {
-      normalizeAutoOutcome(save)
-      if (save.run?.phase === "result") return fail("Chưa có kết quả thắng để qua đợt tiếp theo.")
+      if (!canRetry(run)) return fail("Ý chí đã hết; lượt chơi đã kết thúc.")
+      run.pendingRewards = []
+      prepare(run)
+      run.log = [`Chơi lại đợt ${run.wave} · còn ${run.health} ý chí.`, ...run.log].slice(0, 20)
       return { save, error: null }
     }
     run.wave++

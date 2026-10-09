@@ -3,7 +3,7 @@ import { advanceCombat } from "../../game/autochess/combat"
 import type { AutoRun } from "../../game/autochess/types"
 import { useGameStore } from "../../game/useGameStore"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
-import type { GameSound } from "../../game/audioScore"
+import { AutoSoundscape } from "../../game/autochess/soundscape"
 import { battleSpeed, OVERTIME_TICKS } from "../../game/autochess/config"
 
 export function useAutoBattle(run: AutoRun | null, speed: number) {
@@ -50,7 +50,7 @@ export function useAutoBattle(run: AutoRun | null, speed: number) {
       previous = performance.now(),
       accumulator = 0,
       savedAt = previous
-    let lastSound = run.combat?.nextEvent ? run.combat.nextEvent - 1 : 0
+    const soundscape = new AutoSoundscape((run.combat?.nextEvent ?? 1) - 1)
     const update = (now: number) => {
       const dt = now - previous
       previous = now
@@ -73,32 +73,10 @@ export function useAutoBattle(run: AutoRun | null, speed: number) {
         count++
       }
       frame.current = { run: local, alpha: Math.min(1, accumulator / 50) }
-      const cues = new Set<GameSound>()
-      for (const event of local.combat?.events ?? []) {
-        if (event.id <= lastSound) continue
-        lastSound = event.id
-        if (event.kind === "cast" && event.amount === 0) {
-          cues.add("cast")
-          cues.add(
-            ({
-              ember: "fire",
-              tide: "water",
-              grove: "leaves",
-              hearth: "shield",
-              sugar: "sparkle",
-            } as const)[event.school],
-          )
-        }
-        if (event.kind === "hit") cues.add("impact")
-        if (event.kind === "heal") cues.add("heal")
-        if (event.kind === "shield") cues.add("shield")
-        if (event.kind === "phase") cues.add("awaken")
-        if (event.kind === "death") cues.add("vanish")
-      }
-      // Cap overlapping voices; sound never changes the simulation.
-      ;[...cues].slice(0, 3).forEach((cue) => gameAudio.play(cue))
+      for (const cue of soundscape.collect(local.combat?.events ?? [], local.combat?.actors ?? [], now)) gameAudio.play(cue.cue, 0, cue.pan)
       const stopped = local.phase !== "combat" || !!local.combat?.pendingScene
       const overtimeStarted = beforeTick < OVERTIME_TICKS && (local.combat?.tick ?? 0) >= OVERTIME_TICKS
+      if (overtimeStarted) gameAudio.play("auto-overtime")
       if (stopped || overtimeStarted || now - savedAt >= 1000) {
         if (
           !useGameStore

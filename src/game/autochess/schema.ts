@@ -115,6 +115,7 @@ const combat = z.object({
           "mana",
           "stun",
         ]),
+        skill: skill.optional(),
         source: id,
         target: id,
         cell,
@@ -147,7 +148,7 @@ const currentRunSchema = z
   .object({
     id,
     mode,
-    rulesVersion: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
+    rulesVersion: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5)]),
     seed: uint32,
     rng: uint32,
     day: z.string().max(16),
@@ -164,6 +165,7 @@ const currentRunSchema = z
     rounds: int,
     bestWave: int,
     health: int.max(100),
+    willpowerVersion: z.literal(1).optional(),
     gold: int,
     xp: int.max(1000),
     score: int,
@@ -215,6 +217,8 @@ const currentRunSchema = z
   .superRefine((run, ctx) => {
     const invalid = (message: string) =>
       ctx.addIssue({ code: "custom", message })
+    if (run.mode === "survival" && run.willpowerVersion === 1 && run.health > 3)
+      invalid("Survival chỉ có tối đa 3 ý chí")
     const board = run.roster.filter((p) => p.cell !== null)
     const placedBench = run.roster.filter(p => p.cell === null && p.benchSlot !== undefined)
     if (

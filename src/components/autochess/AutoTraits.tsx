@@ -1,7 +1,7 @@
 import { AUTO_SCHOOLS, PROFESSIONS } from "../../game/autochess/catalog"
 
 export const SCHOOL_ICONS: Record<string, string> = { ember: "♨", tide: "≈", grove: "❧", hearth: "⌂", sugar: "✿" }
-const PROFESSION_ICONS: Record<string, string> = { keeper: "⚒", traveler: "➶", storyteller: "✎" }
+export const PROFESSION_ICONS: Record<string, string> = { keeper: "⚒", traveler: "➶", storyteller: "✎" }
 export function traitTier(count: number, steps: readonly number[]) {
   return ["inactive", "bronze", "silver", "gold"][Math.min(3, steps.filter(step => count >= step).length)]
 }

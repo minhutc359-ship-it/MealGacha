@@ -1,0 +1,44 @@
+[
+  {
+    "asset": "public/assets/autochess/audio/8bit-battle.mp3",
+    "seconds": 58.182,
+    "peak": 0.6328,
+    "rms": 0.1297,
+    "clippedSamples": 0
+  },
+  {
+    "asset": "public/assets/autochess/audio/8bit-boss.mp3",
+    "seconds": 51.892,
+    "peak": 0.6322,
+    "rms": 0.132,
+    "clippedSamples": 0
+  },
+  {
+    "asset": "public/assets/autochess/audio/8bit-pressure.mp3",
+    "seconds": 23.704,
+    "peak": 0.6381,
+    "rms": 0.1422,
+    "clippedSamples": 0
+  },
+  {
+    "asset": "public/assets/autochess/audio/battle.mp3",
+    "seconds": 61.935,
+    "peak": 0.6088,
+    "rms": 0.1231,
+    "clippedSamples": 0
+  },
+  {
+    "asset": "public/assets/autochess/audio/boss.mp3",
+    "seconds": 54.857,
+    "peak": 0.5802,
+    "rms": 0.1148,
+    "clippedSamples": 0
+  },
+  {
+    "asset": "public/assets/autochess/audio/pressure.mp3",
+    "seconds": 24.935,
+    "peak": 0.5727,
+    "rms": 0.1173,
+    "clippedSamples": 0
+  }
+]

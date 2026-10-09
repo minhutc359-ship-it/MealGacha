@@ -30,7 +30,9 @@ function legacyLoss(timeout: boolean): AutoSave {
     survivors: timeout ? 3 : 0, points: 0, damage: 9, gold: 5, reason: "Kết quả bản cũ." }
   run.gold += 5
   run.xp += 2
-  run.health -= 9
+  run.health = 91
+  run.rulesVersion = 4
+  delete run.willpowerVersion
   run.log.unshift("Thua đợt 2 · 0 điểm · 5 vàng")
   return save
 }
@@ -91,8 +93,8 @@ describe("overtime has no automatic defeat", () => {
   })
 })
 
-describe("one defeat ends the run and records accumulated score", () => {
-  it.each(["campaign", "survival", "daily"] as const)("ends %s on actual defeat with positive willpower", mode => {
+describe("defeat respects mode willpower and records only a terminal run", () => {
+  it.each(["daily"] as const)("ends %s on actual defeat with positive willpower", mode => {
     const save = battle(mode), run = save.run!
     run.combat!.tick = 1260
     run.activeTicks = 2460
@@ -114,17 +116,17 @@ describe("one defeat ends the run and records accumulated score", () => {
     expect(restored.records).toHaveLength(1)
     expect(restored.run!.wave).toBe(2)
   })
-  it("normalizes an old genuine defeat to a terminal result without double payouts or mutation", () => {
+  it("normalizes an old genuine defeat to a retry result without double payouts or mutation", () => {
     const old = legacyLoss(false), before = structuredClone(old)
     const parsed = autoSaveSchema.parse(old)
-    expect(parsed.run).toMatchObject({ phase: "lost", finished: true, wave: 2, score: 314 })
+    expect(parsed.run).toMatchObject({ phase: "result", finished: false, wave: 2, score: 314, health: 2, willpowerVersion: 1 })
     expect(parsed.run!.gold).toBe(old.run!.gold)
     expect(parsed.run!.xp).toBe(old.run!.xp)
-    expect(parsed.records).toHaveLength(1)
-    expect(autoSaveSchema.parse(parsed).records).toHaveLength(1)
+    expect(parsed.records).toHaveLength(0)
+    expect(autoSaveSchema.parse(parsed)).toEqual(parsed)
     expect(old).toEqual(before)
     expect(reduceAuto(old, { type: "next" }).save.run!.wave).toBe(2)
-    expect(reduceAuto(old, { type: "next" }).save.run!.phase).toBe("lost")
+    expect(reduceAuto(old, { type: "next" }).save.run!.phase).toBe("prepare")
   })
   it("resumes an old unacknowledged timeout and rolls back its old payout/penalty exactly once", () => {
     const old = legacyLoss(true), before = structuredClone(old)
@@ -133,7 +135,7 @@ describe("one defeat ends the run and records accumulated score", () => {
     expect(parsed.run!.combat).toMatchObject({ tick: 1100, result: null, settled: false })
     expect(parsed.run!.gold).toBe(old.run!.gold - 5)
     expect(parsed.run!.xp).toBe(old.run!.xp - 2)
-    expect(parsed.run!.health).toBe(100)
+    expect(parsed.run!.health).toBe(3)
     expect(parsed.run!.pool).toEqual(old.run!.pool)
     expect(parsed.run!.roster).toEqual(old.run!.roster)
     expect(parsed.run!.rng).toBe(old.run!.rng)
@@ -143,6 +145,8 @@ describe("one defeat ends the run and records accumulated score", () => {
   })
   it("keeps already finished records and already acknowledged preparation unchanged", () => {
     const finished = legacyLoss(false)
+    finished.run!.phase = "lost"
+    finished.run!.finished = true
     const ended = autoSaveSchema.parse(finished)
     expect(autoSaveSchema.parse(ended)).toEqual(ended)
     const prepared = battle(); prepared.run!.phase = "prepare"; prepared.run!.combat = null

@@ -1,4 +1,4 @@
-export const RULES_VERSION = 4
+export const RULES_VERSION = 5
 export const TICKS_PER_SECOND = 20
 export type AutoMode = "campaign" | "survival" | "daily"
 export type AutoSchool = "ember" | "tide" | "grove" | "hearth" | "sugar"
@@ -83,6 +83,7 @@ export interface CombatEvent {
   cell: number
   amount: number
   school: AutoSchool
+  skill?: Skill
 }
 export interface AutoCombat {
   id: string
@@ -120,6 +121,7 @@ export interface AutoRun {
   wave: number
   rounds: number
   bestWave: number
+  willpowerVersion?: 1
   health: number
   gold: number
   xp: number

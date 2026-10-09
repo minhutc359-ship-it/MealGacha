@@ -8,7 +8,8 @@ export interface Recipe {
   color: string
   symbol: string
   foodIds: string[]
-  finish: "heal" | "damage" | "buff" | "ward"
+  finish: "heal" | "damage" | "buff" | "ward" | "draw"
+  board?: "home" | "street" | "tet"
   reward: string
   flavor: string
 }
@@ -45,7 +46,7 @@ export const RECIPES: Recipe[] = [
       "bun-cha",
       "banh-xeo",
       "banh-khot",
-      "goi-cuon",
+      "goi-cuon-tom-thit",
       "banh-cuon",
       "bun-bo-hue",
     ],
@@ -73,6 +74,24 @@ export const RECIPES: Recipe[] = [
     finish: "buff",
     reward: "Mọi đồng minh +1 công và 1 chắn.",
     flavor: "Mỗi nhà một công thức; ai đến cũng có một chỗ bên bếp.",
+  },
+  {
+    id: "coast", name: "Bến nước ký ức", subtitle: "Giữ nhịp · khóa đòn", color: "#83d8ed", symbol: "≈", board: "street",
+    foodIds: ["pho-bo", "bun-rieu", "bun-ca", "bun-thang", "mi-van-than", "banh-da-cua"], finish: "draw",
+    reward: "Đóng băng quân địch có công cao nhất, bỏ đòn đánh lượt kế tiếp. Nếu không có địch, rút 1 lá.",
+    flavor: "Con đò chờ người chậm bước, để mọi người cùng về một bến.",
+  },
+  {
+    id: "garden", name: "Vườn sau cơn mưa", subtitle: "Nuôi quân · phản công", color: "#a7e591", symbol: "❧", board: "home",
+    foodIds: ["goi-cuon-tom-thit", "nom-sua-xoai", "dua-hanh", "som-tam", "banner-tay-bac-goi-rau-don"], finish: "heal",
+    reward: "Hồi 2 máu cho mọi đồng minh; quân ít máu nhất nhận +1 công.",
+    flavor: "Gánh rau từ vườn nhỏ nuôi cả một bàn người xa lạ.",
+  },
+  {
+    id: "moon", name: "Đêm rước đèn", subtitle: "Dệt khiên · giữ bài", color: "#ddb0ee", symbol: "☾", board: "tet",
+    foodIds: ["xoi", "che-lam", "che-buoi", "che-khuc-bach", "banh-com-hang-than", "banh-it-la-gai"], finish: "ward",
+    reward: "Mọi đồng minh nhận 1 chắn, rút 1 lá.",
+    flavor: "Ánh đèn của người đi trước giúp những bước chân nhỏ tìm đường.",
   },
 ]
 export const RECIPE_MAP = Object.fromEntries(

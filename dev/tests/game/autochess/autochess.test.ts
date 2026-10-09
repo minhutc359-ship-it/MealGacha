@@ -430,10 +430,12 @@ describe("outcomes, progress and persistence", () => {
     expect(s.campaignCleared).toBe(0)
     expect(s.run.score).toBe(0)
     expect(s.seals).toBe(0)
-    expect(s.run.phase).toBe("lost")
-    expect(s.run.finished).toBe(true)
-    expect(s.records).toHaveLength(1)
-    expect(reduceAuto(s, { type: "next" }).error).toBeTruthy()
+    expect(s.run.phase).toBe("result")
+    expect(s.run.finished).toBe(false)
+    expect(s.records).toHaveLength(0)
+    const retry = reduceAuto(s, { type: "next" })
+    expect(retry.error).toBeNull()
+    expect(retry.save.run).toMatchObject({ phase: "prepare", wave: 1 })
     expect(s.run.wave).toBe(1)
   })
   it("rejects a claimed victory while enemies are still alive", () => {
@@ -588,6 +590,7 @@ describe("complete content and assets", () => {
         expect(file.length).toBeGreaterThan(100000)
         total += file.length
       }
-    expect(total).toBeLessThan(2800000)
+    // Combat and boss loops now have 32 bars in both styles.
+    expect(total).toBeLessThan(3800000)
   })
 })

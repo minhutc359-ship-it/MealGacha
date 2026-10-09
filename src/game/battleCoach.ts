@@ -101,7 +101,8 @@ export function getBattleHint(battle: Battle): BattleHint | null {
         score += battle.player.board.reduce((sum, unit) => {
           const other = next.player.board.find(
             (after) => after.uid === unit.uid,
-          )!
+          )
+          if (!other) return sum - unit.attack * 2 - unit.health
           return (
             sum + (other.attack - unit.attack) * 3 + other.health - unit.health
           )
@@ -110,6 +111,15 @@ export function getBattleHint(battle: Battle): BattleHint | null {
         score +=
           next.player.board.reduce((sum, unit) => sum + unit.shield, 0) -
           battle.player.board.reduce((sum, unit) => sum + unit.shield, 0)
+      const revived = next.player.board.filter(unit => !battle.player.board.some(old => old.uid === unit.uid))
+      score += revived.reduce((sum, unit) => sum + 20 + unit.attack * 3 + unit.health, 0)
+      score += next.enemy.board.filter(unit => unit.frozen && !battle.enemy.board.find(old => old.uid === unit.uid)?.frozen)
+        .reduce((sum, unit) => sum + 12 + unit.attack * 5, 0)
+      if (card.effect === "heal") score += battle.player.board.reduce((sum, unit) => {
+        const healedUnit = next.player.board.find(other => other.uid === unit.uid)
+        return sum + Math.max(0, (healedUnit?.health ?? unit.health) - unit.health) * 3
+      }, 0)
+      if (!battle.player.board.some(unit => unit.keywords.includes("guard")) && next.player.board.some(unit => unit.keywords.includes("guard"))) score += 15
       if (healed < 0) score += healed * 15
       title = `Dùng ${card.name}`
       reason =

@@ -58,6 +58,7 @@ export class GameAudioEngine {
   private musicVoices = new Set<MusicVoice>()
   private current: MusicVoice | null = null
   private effects = new Set<AudioScheduledSourceNode>()
+  private effectPanners = new Set<StereoPannerNode>()
   private noise: AudioBuffer | null = null
   private mounted = false
   private unlocked = false
@@ -328,11 +329,13 @@ export class GameAudioEngine {
       source.disconnect()
     }
     this.effects.clear()
+    for (const panner of this.effectPanners) panner.disconnect()
+    this.effectPanners.clear()
     if (this.duckTimer) clearTimeout(this.duckTimer)
     this.duckTimer = null
     this.updateVolumes()
   }
-  play(cue: GameSound, delay = 0) {
+  play(cue: GameSound, delay = 0, pan = 0) {
     const context = this.context
     if (
       !context ||
@@ -342,10 +345,15 @@ export class GameAudioEngine {
       this.options.effectsVolume <= 0 ||
       !this.deps.visible() ||
       context.state !== "running" ||
-      this.effects.size > 48
+      this.effects.size >= 48
     )
       return
     const now = context.currentTime + Math.max(0, delay) / 1000
+    const panner = pan && typeof context.createStereoPanner === "function" ? context.createStereoPanner() : null
+    if (panner) { panner.pan.setValueAtTime(Math.max(-1, Math.min(1, pan)), now); panner.connect(this.effectsBus!); this.effectPanners.add(panner) }
+    const output = panner ?? this.effectsBus!
+    let voices = 0
+    const release = () => { if (--voices <= 0 && panner) { panner.disconnect(); this.effectPanners.delete(panner) } }
     const tone = (
       frequency: number,
       duration: number,
@@ -354,6 +362,7 @@ export class GameAudioEngine {
       end?: number,
       at = now,
     ) => {
+      if (this.effects.size >= 48) return
       const source = context.createOscillator(),
         gain = context.createGain()
       source.type = type
@@ -363,12 +372,14 @@ export class GameAudioEngine {
       gain.gain.linearRampToValueAtTime(volume, at + 0.008)
       gain.gain.exponentialRampToValueAtTime(0.0001, at + duration)
       source.connect(gain)
-      gain.connect(this.effectsBus!)
+      gain.connect(output)
       this.effects.add(source)
+      voices++
       source.onended = () => {
         source.disconnect()
         gain.disconnect()
         this.effects.delete(source)
+        release()
       }
       source.start(at)
       source.stop(at + duration + 0.02)
@@ -379,6 +390,7 @@ export class GameAudioEngine {
       cutoff: number,
       end: number,
     ) => {
+      if (this.effects.size >= 48) return
       if (!this.noise) {
         this.noise = context.createBuffer(
           1,
@@ -403,13 +415,15 @@ export class GameAudioEngine {
       gain.gain.exponentialRampToValueAtTime(0.0001, now + duration)
       source.connect(filter)
       filter.connect(gain)
-      gain.connect(this.effectsBus!)
+      gain.connect(output)
       this.effects.add(source)
+      voices++
       source.onended = () => {
         source.disconnect()
         filter.disconnect()
         gain.disconnect()
         this.effects.delete(source)
+        release()
       }
       source.start(now)
       source.stop(now + duration)
@@ -432,6 +446,21 @@ export class GameAudioEngine {
         )
       })
     switch (cue) {
+      case "auto-slash": noise(.11, .045, 6800, 850); tone(310, .1, .025, "triangle", 120); break
+      case "auto-shot": tone(820, .12, .033, "triangle", 310); noise(.07, .025, 4000, 1600); break
+      case "auto-contact": tone(115, .16, .065, "sine", 48); noise(.095, .052, 2000, 350); break
+      case "auto-channel": tone(220, .28, .033, "triangle", 660); tone(330, .32, .025, "sine", 990); break
+      case "auto-fall": noise(.27, .035, 3400, 300); tone(520, .3, .025, "sine", 130); break
+      case "auto-boss": tone(65, .7, .075, "triangle", 42); noise(.48, .07, 900, 280); chime([196, 233, 294], .48, .12, .035); break
+      case "auto-overtime": chime([294, 392, 587], .25, .12, .045); tone(82, .3, .055, "sine", 52); break
+      case "auto-victory": case "auto-defeat": {
+        this.updateVolumes(.35)
+        if (this.duckTimer) clearTimeout(this.duckTimer)
+        this.duckTimer = setTimeout(() => { this.duckTimer = null; this.updateVolumes() }, 1800)
+        chime(cue === "auto-victory" ? [294, 392, 440, 587, 784] : [392, 330, 294, 220], .65, .17, .055)
+        tone(82, .35, .045, "sine", 52)
+        break
+      }
       case "combo":
         chime([294, 392, 494, 587, 784], 0.6, 0.075, 0.06)
         tone(98, 0.45, 0.035, "sine", 196)
@@ -527,6 +556,7 @@ export class GameAudioEngine {
         break
       }
     }
+    if (!voices && panner) { panner.disconnect(); this.effectPanners.delete(panner) }
   }
   dispose() {
     this.mounted = false
