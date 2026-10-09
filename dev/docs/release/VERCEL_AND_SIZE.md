@@ -47,7 +47,7 @@ Giữ framework Vite, build `pnpm build`, output `dist`. `vercel.json` thêm rou
 
 `.vercelignore` giảm source upload CLI bằng cách bỏ `dev/`, `rights/` và node_modules; notices runtime nằm trong `public/legal/` nên vẫn có. Git integration vẫn checkout repo, nhưng chỉ output của build được phục vụ. Không cần xóa tài liệu bằng chứng khỏi Git để giảm dung lượng app.
 
-Theo [Vercel Limits](https://vercel.com/docs/limits), giới hạn **source upload qua CLI** là 100 MB Hobby / 1 GB Pro; đó không phải giới hạn tổng dung lượng static output. Gói nguồn sản phẩm có 420 file / 32,713,359 byte trước nén (ZIP khoảng 31.49 MB); dist khoảng 33 MB, chưa gần mốc source upload này. Tài nguyên static được phục vụ qua CDN; không nên dùng giới hạn bundle của serverless function để đánh giá app này.
+Theo [Vercel Limits](https://vercel.com/docs/limits), giới hạn **source upload qua CLI** là 100 MB Hobby / 1 GB Pro; đó không phải giới hạn tổng dung lượng static output. Gói nguồn sản phẩm có 420 file / 32,713,485 byte trước nén (ZIP khoảng 31.49 MB); dist khoảng 33 MB, chưa gần mốc source upload này. Tài nguyên static được phục vụ qua CDN; không nên dùng giới hạn bundle của serverless function để đánh giá app này.
 
 **Hobby chỉ dành cho mục đích cá nhân phi thương mại.** Nếu bán app/thu tiền hoặc triển khai thương mại, cần Pro/Enterprise theo [Fair Use](https://vercel.com/docs/limits/fair-use-guidelines). Chưa xác định gói tài khoản của người dùng từ repo; báo cáo không khẳng định hiện đang vi phạm hay phải đổi gói ngay cho bản thử cá nhân.
 

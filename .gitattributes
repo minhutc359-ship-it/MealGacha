@@ -202,3 +202,6 @@ dev/** -filter !diff !merge -text
 public/legal/THIRD_PARTY_LICENSES.txt whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 rights/fonts/* whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 rights/vendor/* whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+
+# The world map is a release asset already tracked as actual WebP bytes.
+public/assets/tcg/map/** -filter -diff -merge -text
