@@ -12,6 +12,7 @@ import { ProgressTransfer } from "../components/game/ProgressTransfer"
 import { Dialog } from "../components/game/Dialog"
 import { ModeSwitch } from "../components/layout/ModeSwitch"
 import { AutoBoard } from "../components/autochess/AutoBoard"
+import { useFormationDrag } from "../components/autochess/useFormationDrag"
 import { AutoVictory, useAutoVictory } from "../components/autochess/AutoVictory"
 import { AutoPortrait, AutoMonsterPortrait, WorldArt } from "../components/autochess/AutoArt"
 import {
@@ -38,6 +39,8 @@ import {
   copies,
   traitCounts,
   unitRole,
+  benchLayout,
+  levelProgress,
 } from "../game/autochess/economy"
 import { enemyPlan, pressure } from "../game/autochess/combat"
 import { hasActiveAutoRun, type AutoAction } from "../game/autochess/reducer"
@@ -176,7 +179,7 @@ export function AutoChessPage() {
     }
   }
   const onCell = (cell: number, dragged?: string) => {
-    if (!run || victory.pending) return
+    if (!run || victory.pending || drag.ignoreClick()) return
     if (!preparing) {
       const live = runtime
         .getFrame()
@@ -201,12 +204,22 @@ export function AutoChessPage() {
   const selectedPiece = run?.roster.find((p) => p.uid === selected)
   const traits = run ? traitCounts(boardPieces(run)) : {}
   const capacityNow = run ? capacity(run.xp) : 3
+  const progress = levelProgress(run?.xp ?? 0)
+  const bench = run ? benchLayout(run) : []
+  const drag = useFormationDrag({
+    enabled: playing && preparing && !run?.scene && !victory.pending && !modal && !inspect,
+    onSelect: setSelected,
+    onDrop: (uid, target) => {
+      if (doAction({ type: "move", uid, ...target })) setSelected(null)
+    },
+  })
+  const draggedPiece = run?.roster.find(piece => piece.uid === drag.dragging)
   const sceneIndex =
     playing && run?.mode === "campaign"
       ? actIndex(run.wave)
       : (COSMETICS.find((c) => c.id === auto.board)?.scene ?? 0)
   const records = auto.records.filter((r) => r.mode === recordMode)
-  const p = run ? pressure(run.wave, run.activeTicks) : null
+  const p = run ? pressure(run.wave, run.activeTicks, run.rulesVersion) : null
   const latestCast = run?.combat?.events
     .filter((e) => e.kind === "cast" && e.amount > 0)
     .slice(-1)[0]
@@ -221,6 +234,10 @@ export function AutoChessPage() {
         : "Kỹ năng tự tung khi đủ mana · nhấn một ô để xem quân"
   return (
     <div className="ac-shell">
+      {draggedPiece && <div className="ac-drag-ghost" ref={drag.ghostRef} aria-hidden="true">
+        <AutoPortrait index={UNIT_MAP[draggedPiece.id].portrait} />
+        <strong>{UNIT_MAP[draggedPiece.id].name}</strong><small>{"★".repeat(draggedPiece.star)}</small>
+      </div>}
       <WorldArt scene={sceneIndex} className="ac-backdrop" />
       <header className="ac-header">
         <button
@@ -627,6 +644,7 @@ export function AutoChessPage() {
               lowQuality={lowQuality}
               celebrating={victory.celebrating}
               onCell={onCell}
+              onPiecePointerDown={drag.start}
             />
             {victory.celebrating && <AutoVictory wave={run.wave} onFinish={victory.finish} />}
             {run.mode !== "campaign" && p && !victory.pending && (
@@ -658,17 +676,21 @@ export function AutoChessPage() {
               <div className="ac-bench" role="group" aria-label="Ghế dự bị">
                 <span>DỰ BỊ</span>
                 {Array.from({ length: 6 }, (_, i) => {
-                  const piece = run.roster.filter((p) => p.cell === null)[i]
+                  const piece = bench[i]
                   return (
                     <button
                       key={i}
+                      data-bench-slot={i}
+                      data-piece={piece?.uid}
                       className={piece?.uid === selected ? "is-selected" : ""}
                       aria-label={
                         piece
                           ? `Chọn ${UNIT_MAP[piece.id].name} ${piece.star} sao ở dự bị`
                           : "Đưa quân đã chọn về dự bị"
                       }
-                      draggable={!!piece}
+                      draggable={false}
+                      onPointerDown={e => { if (piece) drag.start(piece.uid, e) }}
+                      onContextMenu={e => { if (piece) e.preventDefault() }}
                       onDragStart={(e) => {
                         if (piece)
                           e.dataTransfer.setData("text/plain", piece.uid)
@@ -681,20 +703,22 @@ export function AutoChessPage() {
                           uid: e.dataTransfer.getData("text/plain"),
                           cell: null,
                           swapUid: piece?.uid,
+                          benchSlot: i,
                         })
                         setSelected(null)
                       }}
                       onClick={() => {
+                        if (drag.ignoreClick()) return
                         if (
                           selected &&
-                          selected !== piece?.uid &&
-                          selectedPiece?.cell !== null
+                          selected !== piece?.uid
                         ) {
                           doAction({
                             type: "move",
                             uid: selected,
                             cell: null,
                             swapUid: piece?.uid,
+                            benchSlot: i,
                           })
                           setSelected(null)
                         } else if (piece) {
@@ -719,7 +743,7 @@ export function AutoChessPage() {
                 <span>
                   {selectedPiece
                     ? `${UNIT_MAP[selectedPiece.id].name} · ${unitRole(selectedPiece.id)} · Chạm ô sáng để xếp`
-                    : `Đội ${boardPieces(run).length}/${capacityNow} · 3 bản cùng quân tự lên ★★`}
+                    : `Đội ${boardPieces(run).length}/${capacityNow} · Kéo thả để đổi chỗ · 3 bản ghép sao`}
                 </span>
                 {selectedPiece && (
                   <>
@@ -836,13 +860,15 @@ export function AutoChessPage() {
                   <span>{run.locked ? "Đã khóa" : "Khóa"}</span>
                 </button>
                 <button
-                  className="ac-button"
+                  className="ac-button ac-xp-control"
                   disabled={run.gold < 4 || run.xp >= 62}
-                  aria-label={`Mua 4 XP giá 4 vàng. ${run.xp} XP, tối đa ${capacityNow} quân`}
-                  title={run.xp >= 62 ? "Đã mở tối đa 7 quân" : `${run.xp}/${[8, 20, 38, 62][capacityNow - 3]} XP để mở ${capacityNow + 1} quân`}
+                  aria-label={`Cấp ${capacityNow}. ${run.xp}${progress.next === null ? " XP, cấp tối đa" : `/${progress.next} XP, còn ${progress.remaining} XP để lên cấp`}. Mua 4 XP giá 4 vàng`}
+                  title={progress.next === null ? "Đã mở tối đa 7 quân" : `Còn ${progress.remaining} XP để mở ${capacityNow + 1} quân. Mỗi vòng nhận 2 XP; mua 4 XP với 4 vàng.`}
                   onClick={() => doAction({ type: "xp" })}
                 >
-                  ↑ XP · 4 ◉
+                  <strong>Cấp {capacityNow}{progress.next !== null ? " · 4 ◉" : " · MAX"}</strong>
+                  <small>{run.xp}{progress.next !== null ? `/${progress.next}` : ""} XP</small>
+                  <i className="ac-xp-track" aria-hidden="true"><i style={{ width: `${progress.percent}%` }} /></i>
                 </button>
                 <button
                   className="ac-button primary ac-begin"
@@ -863,7 +889,7 @@ export function AutoChessPage() {
               <>
                 <span className="ac-team-caption">
                   {boardPieces(run).length} Vị Linh ·{" "}
-                  {(run.activeTicks / 20) | 0}s giao chiến
+                  {(run.activeTicks / 20) | 0}s · Cấp {capacityNow} · {run.xp} XP
                 </span>
                 <button
                   className="ac-button"

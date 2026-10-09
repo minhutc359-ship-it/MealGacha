@@ -13,7 +13,7 @@
 .tcg-viewport-battle .tcg-unit.is-animated-character .tcg-unit-spirit-tag{top:5px;right:26px;font-size:6px}
 .tcg-attack-manifest>.tcg-character-sprite{filter:drop-shadow(0 0 7px var(--flight-color))}
 .tcg-attack-manifest:after{z-index:-1}
-.tcg-invocation-art>.tcg-character-sprite{filter:drop-shadow(0 0 10px var(--invoke-color))}
+.tcg-invocation-art>.tcg-character-sprite{filter:drop-shadow(0 2px 3px #06182070) drop-shadow(0 0 2px var(--invoke-color))}
 .tcg-invocation-art>.tcg-invocation-spell-card{position:absolute;right:-14%;top:5%;width:40%;height:45%;object-fit:cover;border:1px solid var(--invoke-color);border-radius:8px;box-shadow:0 0 12px #0006;z-index:2}
 @media(max-width:740px){.tcg-viewport-battle .tcg-unit>.tcg-character-sprite{bottom:35px}}
 @media(max-height:470px) and (orientation:landscape){.tcg-viewport-battle .tcg-unit>.tcg-character-sprite{bottom:31px}.tcg-viewport-battle .tcg-unit.is-animated-character .tcg-unit-spirit-tag{display:none}}

@@ -102,7 +102,7 @@ const rows: Row[] = [
   [
     "bun-rieu",
     "Bún riêu",
-    "Long Ngư Cà Chua",
+    "Giáp Cua Cà Chua",
     2,
     "tide",
     "storyteller",
@@ -117,7 +117,7 @@ const rows: Row[] = [
   [
     "banh-xeo",
     "Bánh xèo",
-    "Hồ Ly Vầng Giòn",
+    "Hỏa Điểu Vầng Giòn",
     3,
     "ember",
     "traveler",
@@ -132,7 +132,7 @@ const rows: Row[] = [
   [
     "banh-cuon",
     "Bánh cuốn",
-    "Linh Lộc Hơi Mỏng",
+    "Ngọc Thố Hơi Mỏng",
     1,
     "grove",
     "storyteller",
@@ -162,7 +162,7 @@ const rows: Row[] = [
   [
     "xoi",
     "Xôi mặn",
-    "Sư Tử Nếp Mới",
+    "Gấu Nếp Mới",
     2,
     "hearth",
     "keeper",
@@ -177,7 +177,7 @@ const rows: Row[] = [
   [
     "com-ga",
     "Cơm gà",
-    "Sư Tử Cánh Nắng",
+    "Kim Kê Cánh Nắng",
     3,
     "hearth",
     "traveler",
@@ -192,7 +192,7 @@ const rows: Row[] = [
   [
     "banh-chung",
     "Bánh chưng",
-    "Sư Tử Lá Vuông",
+    "Linh Quy Lá Vuông",
     4,
     "hearth",
     "keeper",

@@ -24,6 +24,7 @@ const { autoSaveSchema } = await server.ssrLoadModule(
 )
 const { newGame } = await server.ssrLoadModule("/src/game/progression.ts")
 const results = []
+const supports = new Set(["heal", "leaves", "ginger", "feast"])
 const focusSets = [
   ["ember", "hearth"],
   ["tide", "grove"],
@@ -88,6 +89,7 @@ for (const mode of ["campaign", "survival"])
             if (
               !owned &&
               !focusSets[strategy].includes(u.school) &&
+              !(supports.has(u.skill) && !r.roster.some(p => supports.has(UNIT_MAP[p.id].skill))) &&
               r.roster.length >= capacity(r.xp)
             )
               continue
@@ -106,9 +108,11 @@ for (const mode of ["campaign", "survival"])
         // Choose highest ranked pieces with at least a front-line keeper.
         const sorted = [...r.roster].sort((a, b) => rank(b) - rank(a)),
           keep = sorted.find((p) => UNIT_MAP[p.id].profession === "keeper")
+        const support = sorted.find(p => p.uid !== keep?.uid && supports.has(UNIT_MAP[p.id].skill))
         const best = [
           ...(keep ? [keep] : []),
-          ...sorted.filter((p) => p.uid !== keep?.uid),
+          ...(support ? [support] : []),
+          ...sorted.filter((p) => p.uid !== keep?.uid && p.uid !== support?.uid),
         ].slice(0, capacity(r.xp))
         for (const old of boardPieces(save.run))
           if (!best.some((p) => p.uid === old.uid)) {
@@ -164,6 +168,8 @@ for (const mode of ["campaign", "survival"])
           JSON.stringify({ ...newGame(), autoChess: save }),
         )
     }
+if (process.argv[2]) writeFileSync(process.argv[2], JSON.stringify(results, null, 2))
+console.log(JSON.stringify(results, null, 2))
 for (let strategy = 0; strategy < 3; strategy++)
   if (
     !results.some(
@@ -178,5 +184,4 @@ if (
     .some((r) => r.phase !== "lost" || r.health !== 0)
 )
   throw Error("Survival did not terminate")
-console.log(JSON.stringify(results, null, 2))
 await server.close()

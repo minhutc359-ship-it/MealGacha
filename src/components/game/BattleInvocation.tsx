@@ -53,7 +53,7 @@ export function BattleInvocation({
       </div>
       <div className="tcg-invocation-art">
         {model ? <CharacterSprite model={model} motion={action.kind} stamp={stamp}
-          quiet={quiet} flip={enemy} fallback={action.art} /> : <img src={action.art} alt="" draggable={false} />}
+          quiet={quiet} flip={enemy} cinematic fallback={action.art} /> : <img src={action.art} alt="" draggable={false} />}
         {action.kind === "cast" && <img className="tcg-invocation-spell-card" src={action.card.art} alt="" draggable={false} />}
         {action.spirit && (
           <img className="tcg-memory-dish" src={action.card.art} alt="" />
@@ -63,7 +63,7 @@ export function BattleInvocation({
         <i />
       </div>
       <div className="tcg-invocation-label">
-        <strong>{action.detail}</strong>
+        <strong>{action.spirit && model ? `${action.card.name} → ${model.name}` : action.detail}</strong>
         <span>
           {action.spirit && action.kind === "summon"
             ? action.spirit.memory

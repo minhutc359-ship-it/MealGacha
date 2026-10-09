@@ -1,4 +1,13 @@
 /* Auto chess owns the viewport. Libraries and dialogs scroll inside it. */
+/* Touch formation editing and compact, always-readable level progress. */
+.ac-cell-grid button[data-piece],.ac-bench button[data-piece]{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:grab}
+.ac-cell-grid button[data-drag-over],.ac-bench button[data-drag-over]{box-shadow:inset 0 0 0 2px #95ecbf!important;background:#81cba52c!important}
+.ac-drag-ghost{position:fixed;left:0;top:0;width:64px;z-index:1000;pointer-events:none;will-change:transform;text-align:center;border:2px solid #ecc579;border-radius:12px;background:#193332e8;box-shadow:0 6px 18px #0008;padding:3px;color:#ffedc7}
+.ac-drag-ghost[data-valid=false]{border-color:#ef9393}.ac-drag-ghost>.ac-portrait{width:54px;height:54px}.ac-drag-ghost>strong{display:block;font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ac-drag-ghost>small{font-size:10px;color:#ffdb80}
+.ac-controls .ac-xp-control{display:grid;grid-template-columns:1fr;gap:2px;min-width:72px;padding:5px 8px;text-align:center}
+.ac-xp-control>strong{font-size:10px;font-weight:600;white-space:nowrap}.ac-xp-control>small{display:block;font-size:10px;color:#d6edc4;white-space:nowrap}
+.ac-xp-track{display:block;height:3px;width:100%;border-radius:3px;background:#9bafb82e;overflow:hidden}.ac-xp-track>i{display:block;height:100%;background:linear-gradient(90deg,#7bd3aa,#e5d799)}
+@media(max-width:700px),(max-height:620px){.ac-controls .ac-xp-control{padding:3px 5px;gap:1px}.ac-xp-control>strong,.ac-xp-control>small{font-size:8px}}
 body.autochess-open{overflow:hidden;background:#101820}
 .ac-shell{--ac-gold:#f6cf86;--ac-muted:#a7b4bb;--ac-line:#d6b17338;height:100dvh;min-height:0;overflow:hidden;position:relative;isolation:isolate;color:#f2ece0;background:#101b23;font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column}
 .ac-shell *{box-sizing:border-box}.ac-shell button{font-family:inherit;cursor:pointer;color:inherit}.ac-shell button:disabled{cursor:default;opacity:.42}.ac-shell button:focus-visible{outline:2px solid #ffdb93;outline-offset:2px}.ac-shell button,.ac-shell a{-webkit-tap-highlight-color:transparent}
@@ -48,6 +57,8 @@ body.autochess-open{overflow:hidden;background:#101820}
  .ac-game.is-preparing .ac-controls .ac-begin small{font-size:8px;margin-left:2px}
  .ac-game.is-preparing .ac-controls .ac-inventory-button{padding:0 2px;font-size:11px;width:28px;height:29px}
  .ac-game.is-preparing .ac-controls .ac-inventory-button span{font-size:8px;margin-left:1px}
+ .ac-game.is-preparing .ac-controls .ac-xp-control{height:29px;min-height:0;padding:1px 2px;gap:0;line-height:1}
+ .ac-game.is-preparing .ac-controls .ac-xp-control>strong,.ac-game.is-preparing .ac-controls .ac-xp-control>small{font-size:7.5px;line-height:1.1}
  .ac-round-heading{display:block;position:relative;padding-right:35px;width:100%}
  .ac-round-heading>span{display:block;min-width:0}
  .ac-round-heading>span>strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4}

@@ -88,7 +88,7 @@ describe("victory presentation and preparation", () => {
     expect(run.pool).toEqual(before.pool)
     expect(run.gold).toBe(before.gold)
     expect(run.score).toBe(before.score)
-    expect(run.roster.map(({ cell, ...piece }) => piece)).toEqual(before.roster.map(({ cell, ...piece }) => piece))
+    expect(run.roster.map(({ cell, benchSlot, ...piece }) => piece)).toEqual(before.roster.map(({ cell, benchSlot, ...piece }) => piece))
     expect(autoRunSchema.safeParse(run).success).toBe(true)
   })
   it("prioritizes a merged unit and refuses to rearrange a running battle or cutscene", () => {

@@ -1,5 +1,6 @@
 import { CARD_MAP, CARDS } from "./catalog"
 import { startBattle } from "./battle"
+import { challengeStat } from "./difficulty"
 import { CHAPTERS } from "./story"
 import type {
   Battle,
@@ -406,7 +407,7 @@ export function startRunBattle(run: ExpeditionRun, rng = Math.random): Battle {
   b.player.health = run.health
   b.player.maxHealth = run.maxHealth
   b.enemy.health = b.enemy.maxHealth =
-    24 + run.floor + (node.kind === "elite" ? 4 : node.kind === "boss" ? 6 : 0)
+    challengeStat(24 + run.floor + (node.kind === "elite" ? 4 : node.kind === "boss" ? 6 : 0), b.enemyChallenge)
   b.expedition = {
     runId: run.id,
     nodeId: node.id,

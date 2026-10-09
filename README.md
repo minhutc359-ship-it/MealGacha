@@ -1,4 +1,6 @@
-# Soul of Meal v3.2.1 · Vị Linh chuyển động
+# Soul of Meal v3.2.2 · Đội hình có gương mặt
+
+Bản 3.2.2 tạo **16 model anime 2.5D mới / 112 tư thế** dùng chung TCG và Auto chess, giúp cả 32 quân Auto chess có ngoại hình riêng. Cảnh chỉ huy TCG giữ độ phân giải canvas trong animation và dùng ảnh Vị Linh lớn hơn. TCG tăng 30% ý chí chủ tướng địch; Auto chess tăng khoảng 30% ngân sách sức mạnh (máu × sát thương), chia ~14% cho mỗi chỉ số để tránh cộng dồn 69%. Thêm thanh cấp/EXP và kéo thả chuột/cảm ứng giữa bàn, dự bị và từng ghế; vị trí lưu theo tiến trình. Sửa neo ngang/mirrored theo cả chiều rộng và chiều cao. [Chi tiết, asset và kiểm chứng](docs/challenge-v322/VERIFICATION.md).
 
 Bản 3.2.1 đưa sprite và chuyển động Auto chess vào TCG: đứng chờ, triệu hồi, ra đòn, tung phép, chịu đòn, ngã và ăn mừng. Quân trên sân, Vị Linh lao tới mục tiêu và nhân vật trong cảnh niệm phép dùng atlas chung; giữ ảnh món, tên thẻ và luật theo lượt. Giảm chuyển động dùng model đứng yên. [Thiết kế và kiểm chứng](docs/tcg-motion/VERIFICATION.md).
 

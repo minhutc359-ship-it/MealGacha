@@ -1,4 +1,5 @@
 import { startBattle } from "./battle"
+import { challengeStat } from "./difficulty"
 import { prepareEncounter } from "./encounters"
 import { NPC_NAMES } from "./characters"
 import { suggestDeck } from "./deckStrategy"
@@ -196,7 +197,7 @@ export function startSideQuest(
     )
   b.sideQuest = id
   b.opponent = `Linh ảnh · ${quest.title}`
-  b.enemy.health = b.enemy.maxHealth = 24
+  b.enemy.health = b.enemy.maxHealth = challengeStat(24, b.enemyChallenge)
   if (id === "bach") b.bossRuleId = "lantern-3"
   if (id === "nhien") b.bossRuleId = "harbor-3"
   prepareEncounter(b)
@@ -266,7 +267,7 @@ export function startWeekly(index: number, day = getDateKey()): Battle {
   b.opponent = challenge.stages[index]
   b.weekly = { week: challenge.week, index, seed: challenge.seed }
   b.rngState = random.state()
-  b.enemy.health = b.enemy.maxHealth = 24 + index * 4
+  b.enemy.health = b.enemy.maxHealth = challengeStat(24 + index * 4, b.enemyChallenge)
   if (index === 2)
     b.bossRuleId = challenge.seed % 2 === 0 ? "lantern-3" : "harbor-3"
   prepareEncounter(b)

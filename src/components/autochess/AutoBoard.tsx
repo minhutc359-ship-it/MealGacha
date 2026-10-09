@@ -1,4 +1,4 @@
-import { useEffect, useRef, type CSSProperties } from "react"
+import { useEffect, useRef, type CSSProperties, type PointerEvent } from "react"
 import {
   AUTO_SCHOOLS,
   MONSTER_MAP,
@@ -8,7 +8,7 @@ import {
 import { enemyPlan } from "../../game/autochess/combat"
 import type { Actor, AutoRun } from "../../game/autochess/types"
 import { actorPosition as position, actorFrame, SPRITE_SHEETS } from "../../game/autochess/presentation"
-import { characterImage as getImage } from "../../infrastructure/assets/characterSprites"
+import { characterImage as getImage, unitCharacter, fitCharacter, type CharacterModel } from "../../infrastructure/assets/characterSprites"
 
 const CELLS = Array.from({ length: 36 }, (_, i) => i)
 const paths = Object.fromEntries(Object.entries(SPRITE_SHEETS).map(([key, sheet]) => [key, sheet.path]))
@@ -21,6 +21,7 @@ export function AutoBoard({
   lowQuality,
   celebrating,
   onCell,
+  onPiecePointerDown,
 }: {
   run: AutoRun
   getFrame: Frames
@@ -29,6 +30,7 @@ export function AutoBoard({
   lowQuality: boolean
   celebrating: boolean
   onCell: (cell: number, dragged?: string) => void
+  onPiecePointerDown?: (uid: string, event: PointerEvent<HTMLElement>) => void
 }) {
   const root = useRef<HTMLDivElement>(null),
     canvas = useRef<HTMLCanvasElement>(null)
@@ -54,7 +56,7 @@ export function AutoBoard({
     let currentBattle = "",
       lastLowQuality = lowQuality
     const images = Object.fromEntries(
-      Object.entries(paths).map(([k, path]) => [k, getImage(path)]),
+      Object.entries(paths).filter(([key]) => ["base", "fresh", "enemy"].includes(key)).map(([k, path]) => [k, getImage(path)]),
     )
     const resize = () => {
       const bounds = element.getBoundingClientRect()
@@ -241,17 +243,10 @@ export function AutoBoard({
       )) {
         const def =
             actor.side === "ally" ? UNIT_MAP[actor.id] : MONSTER_MAP[actor.id],
-          fresh =
-            actor.side === "enemy" ||
-            (actor.side === "ally" && UNIT_MAP[actor.id].portrait >= 18)
-        const sheet =
-          actor.side === "enemy"
-            ? images.enemy
-            : fresh
-              ? images.fresh
-              : images.base
-        const spriteKey = actor.side === "enemy" ? "enemy" : fresh ? "fresh" : "base"
-        const row = actor.side === "enemy" ? MONSTER_MAP[actor.id].sprite : fresh ? UNIT_MAP[actor.id].portrait - 18 : UNIT_MAP[actor.id].sprite
+          model: CharacterModel = actor.side === "enemy" ? { sheet: "enemy", row: MONSTER_MAP[actor.id].sprite, id: actor.id, name: def.name } : unitCharacter(actor.id),
+          fresh = model.sheet !== "base"
+        const spriteKey = model.sheet, row = model.row
+        const sheet = images[spriteKey] ??= getImage(paths[spriteKey])
         const spriteRow = SPRITE_SHEETS[spriteKey].rows[row]
         let p = coords.get(actor.uid)!
         if (actor.hp <= 0) {
@@ -298,13 +293,12 @@ export function AutoBoard({
         const dancing = opts.celebrating && actor.side === "ally" && actor.hp > 0
         const beat = visualTime * .38 + row * .28
         const index = dancing
-          ? opts.reducedMotion ? (fresh ? 0 : 13) : (fresh ? [0, 1, 2, 1] : [13, 1, 13, 3])[Math.floor(visualTime / 5 + row * .2) % 4]
+          ? opts.reducedMotion ? (fresh ? 0 : 13) : (spriteKey.startsWith("roster") ? [5, 1, 5, 2] : fresh ? [0, 1, 2, 1] : [13, 1, 13, 3])[Math.floor(visualTime / 5 + row * .2) % 4]
           : actorFrame(actor, time, fresh, b)
         const breath = !opts.reducedMotion && !actor.action && actor.hp > 0 && !current.paused
           ? Math.sin(visualTime / 10 + row) * cell * .009 : 0
         if (sheet.complete && sheet.naturalWidth && spriteRow) {
           const [sx, sy, sw, sh, anchorX, anchorY] = spriteRow.frames[index]
-          const scale = size / spriteRow.height
           ctx.save()
           const target = actors.find(a => a.uid === actor.action?.target)
           if (target && Math.abs(position(target, time).x - p.x) > .05)
@@ -312,6 +306,7 @@ export function AutoBoard({
           else if (actor.action?.kind === "move" && actor.action.to % 6 !== actor.action.from % 6)
             facing.set(actor.uid, (actor.action.to % 6 < actor.action.from % 6) !== (actor.side === "enemy"))
           const flip = facing.get(actor.uid) ?? false
+          const { scale, offsetX, offsetY } = fitCharacter(model, cell * .9, size, flip)
           let lungeX = 0, lungeY = 0, gait = 0
           if (!opts.reducedMotion && actor.action && !dancing) {
             const progress = Math.max(0, Math.min(1, (time - actor.action.start) / Math.max(1, actor.action.end - actor.action.start)))
@@ -326,7 +321,7 @@ export function AutoBoard({
           }
           const hop = dancing && !opts.reducedMotion ? -Math.abs(Math.sin(beat)) * cell * .075 : 0
           const sway = dancing && !opts.reducedMotion ? Math.sin(beat) * cell * .045 : 0
-          ctx.translate(x + lungeX + sway, y + breath + lungeY + gait + hop)
+          ctx.translate(x + offsetX + lungeX + sway, y + offsetY + breath + lungeY + gait + hop)
           if (flip) ctx.scale(-1, 1)
           if (dancing && !opts.reducedMotion) {
             ctx.rotate(Math.sin(beat) * .065)
@@ -607,7 +602,10 @@ export function AutoBoard({
               className={
                 run.phase === "prepare" && cell >= 18 ? "can-place" : ""
               }
-              draggable={run.phase === "prepare" && !!piece}
+              draggable={false}
+              data-piece={run.phase === "prepare" ? piece?.uid : undefined}
+              onPointerDown={e => { if (run.phase === "prepare" && piece) onPiecePointerDown?.(piece.uid, e) }}
+              onContextMenu={e => { if (piece && run.phase === "prepare") e.preventDefault() }}
               aria-pressed={piece ? piece.uid === selected : undefined}
               data-placement={run.phase === "prepare" && cell >= 18 && !!selected ? "available" : undefined}
               onDragStart={(e) => {

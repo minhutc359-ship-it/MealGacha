@@ -262,6 +262,7 @@ export const GameSaveSchema = z
         id: z.string(),
         stageId: z.string().nullable(),
         opponent: z.string(),
+        enemyChallenge: z.union([z.literal(1), z.literal(1.3)]).optional(),
         round: integer,
         player: fighter,
         enemy: fighter,

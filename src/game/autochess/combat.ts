@@ -1,5 +1,7 @@
 import { UNIT_MAP, MONSTERS, MONSTER_MAP } from "./catalog"
 import { boardPieces, capacity, traitCounts } from "./economy"
+import { challengeForRules } from "../difficulty"
+import { RULES_VERSION } from "./types"
 import type {
   Actor,
   AutoCombat,
@@ -11,12 +13,12 @@ import type {
 
 export const distance = (a: number, b: number) =>
   Math.abs((a % 6) - (b % 6)) + Math.abs(Math.floor(a / 6) - Math.floor(b / 6))
-export function pressure(wave: number, activeTicks: number) {
+export function pressure(wave: number, activeTicks: number, rulesVersion = RULES_VERSION) {
   const level = Math.floor(activeTicks / 600)
   return {
     level,
-    health: (1 + 0.08 * (wave - 1)) * (1 + 0.05 * level),
-    attack: (1 + 0.06 * (wave - 1)) * (1 + 0.04 * level),
+    health: challengeForRules(rulesVersion) * (1 + 0.08 * (wave - 1)) * (1 + 0.05 * level),
+    attack: challengeForRules(rulesVersion) * (1 + 0.06 * (wave - 1)) * (1 + 0.04 * level),
   }
 }
 export function enemyPlan(run: AutoRun) {
@@ -124,7 +126,8 @@ export function createCombat(run: AutoRun): AutoCombat {
     return a
   })
   const plan = enemyPlan(run),
-    p = pressure(run.wave, run.activeTicks),
+    p = pressure(run.wave, run.activeTicks, run.rulesVersion),
+    challenge = challengeForRules(run.rulesVersion),
     campaignScale = 1 + 0.055 * (run.wave - 1)
   for (const { def, cell } of plan) {
     const a = baseActor(
@@ -135,15 +138,15 @@ export function createCombat(run: AutoRun): AutoCombat {
     )
     Object.assign(a, {
       maxHp: Math.round(
-        def.hp * (run.mode === "campaign" ? campaignScale : p.health),
+        def.hp * (run.mode === "campaign" ? campaignScale * challenge : p.health),
       ),
       baseAttack:
         def.attack *
-        (run.mode === "campaign" ? campaignScale : 1 + 0.06 * (run.wave - 1)),
+        challenge * (run.mode === "campaign" ? campaignScale : 1 + 0.06 * (run.wave - 1)),
       armor: def.armor,
       range: def.range,
       skill: def.skill,
-      power: def.power * campaignScale,
+      power: def.power * campaignScale * challenge,
     })
     a.attack = a.baseAttack * (run.mode === "campaign" ? 1 : 1 + 0.04 * p.level)
     a.hp = a.maxHp
@@ -468,16 +471,17 @@ function summon(run: AutoRun, b: AutoCombat, source: Actor) {
   if (cell === undefined) return
   const d = MONSTER_MAP.mist,
     a = baseActor(`summon-${b.nextEvent}`, d.id, "enemy", cell),
-    p = pressure(run.wave, run.activeTicks)
+    p = pressure(run.wave, run.activeTicks, run.rulesVersion),
+    challenge = challengeForRules(run.rulesVersion)
   a.maxHp = Math.round(
-    d.hp * (run.mode === "campaign" ? 1 + 0.055 * (run.wave - 1) : p.health),
+    d.hp * (run.mode === "campaign" ? (1 + 0.055 * (run.wave - 1)) * challenge : p.health),
   )
   a.hp = a.maxHp
   a.baseAttack =
-    d.attack * (run.mode === "campaign" ? 1 : 1 + 0.06 * (run.wave - 1))
+    d.attack * challenge * (run.mode === "campaign" ? 1 : 1 + 0.06 * (run.wave - 1))
   a.attack = a.baseAttack
   a.skill = d.skill
-  a.power = d.power
+  a.power = d.power * challenge
   b.actors.push(a)
   emit(b, "summon", source, a)
 }
@@ -488,7 +492,7 @@ function step(run: AutoRun) {
   run.activeTicks++
   b.events = b.events.filter((e) => b.tick - e.tick <= 32).slice(-120)
   const traits = traitCounts(boardPieces(run)),
-    level = pressure(run.wave, run.activeTicks).level
+    level = pressure(run.wave, run.activeTicks, run.rulesVersion).level
   const enrage = 1 + Math.max(0, Math.floor((b.tick - 500) / 100) + 1) * 0.15
   for (const u of b.actors.filter((a) => a.hp > 0)) {
     if (u.side === "enemy") {

@@ -190,3 +190,7 @@ docs/branding/screenshots/* -filter -diff -merge -text
 docs/polish-v32/screenshots/* -filter -diff -merge -text
 
 docs/tcg-motion/screenshots/* -filter -diff -merge -text
+
+# Shared character atlases and QA evidence deploy as actual image bytes.
+public/assets/characters/** -filter -diff -merge -text
+docs/challenge-v322/screenshots/** -filter -diff -merge -text

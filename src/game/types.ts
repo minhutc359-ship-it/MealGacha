@@ -73,6 +73,7 @@ export interface Combatant {
 }
 export interface Battle {
   id: string
+  enemyChallenge?: number
   stageId: string | null
   opponent: string
   round: number

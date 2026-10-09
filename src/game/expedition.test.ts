@@ -469,5 +469,6 @@ it("resolves 30 starter encounters and 20 complete journeys with real turns, hea
     }
   }
   expect(starterWins).toBeGreaterThanOrEqual(10)
-  expect(completed).toBeGreaterThanOrEqual(5)
+  // Harder leaders reduce this fixed greedy policy's clears; full journeys must remain viable.
+  expect(completed).toBeGreaterThanOrEqual(3)
 })
