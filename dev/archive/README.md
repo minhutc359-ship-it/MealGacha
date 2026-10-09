@@ -1,0 +1,1 @@
+Các chân dung cũ đã được thay bằng bộ anime. MP3 Rương/click/spin và banner upload cũ chưa có hồ sơ quyền sử dụng trong repo nên được giữ để kiểm tra, không đưa vào product build. Không suy diễn rằng chúng vi phạm; chỉ chưa đủ chứng cứ cấp phép. Không đưa lại vào public trước khi xác nhận quyền.

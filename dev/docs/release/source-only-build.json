@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "productionSourceFiles": 420,
+  "typecheck": "passed",
+  "build": "passed",
+  "sourceContainsDev": false,
+  "publicAssetHashesIdentical": true,
+  "runtimeSourceHashesIdentical": true,
+  "compiledCssHashesIdentical": true,
+  "distBytes": 32975834,
+  "sourceOnlyDistBytes": 32975834,
+  "note": "Compiled JS chunk names/hashes vary with checkout location/module IDs; source, public assets and compiled CSS match. Exact JS output hash equality is not required for reproducible product behavior."
+}

@@ -64,7 +64,5 @@ html[data-tcg-reduced-motion=true] .tcg-invocation,html[data-tcg-reduced-motion=
 html[data-tcg-reduced-motion=true] .tcg-viewport-battle .tcg-unit .tcg-unit-spirit { animation:none!important; }
 
 /* The impact follows the visible charge, instead of competing with it. */
-.action-attack .tcg-fx-projectile,.action-attack .tcg-fx-beam { display:none; }
-.action-attack .tcg-fx-sprite,.action-attack .tcg-fx-halo,.action-attack .tcg-fx-glyph,.action-attack .tcg-fx-particle,.action-attack .tcg-fx-contact,.action-attack .tcg-fx-slash { animation-delay:.56s!important; animation-duration:.42s; }
 .tcg-arena[data-action=attack] .tcg-float-number { animation-delay:.56s; animation-duration:.46s; animation-fill-mode:both; }
 .tcg-arena[data-action=attack] .tcg-unit.is-hit { animation-delay:.56s; }

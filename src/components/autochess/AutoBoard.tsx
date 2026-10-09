@@ -6,6 +6,7 @@ import {
   UNIT_MAP,
 } from "../../game/autochess/catalog"
 import { enemyPlan } from "../../game/autochess/combat"
+import { drawChannel, drawProjectile, drawImpact, skillVfx } from "../../game/battleVfx"
 import type { Actor, AutoRun } from "../../game/autochess/types"
 import { actorPosition as position, actorFrame, SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { characterImage as getImage, unitCharacter, fitCharacter, type CharacterModel } from "../../infrastructure/assets/characterSprites"
@@ -55,9 +56,7 @@ export function AutoBoard({
     let endedAt: number | null = null
     let currentBattle = "",
       lastLowQuality = lowQuality
-    const images = Object.fromEntries(
-      Object.entries(paths).filter(([key]) => ["base", "fresh", "enemy"].includes(key)).map(([k, path]) => [k, getImage(path)]),
-    )
+    const images: Partial<Record<string, HTMLImageElement>> = {}
     const resize = () => {
       const bounds = element.getBoundingClientRect()
       width = bounds.width
@@ -359,38 +358,24 @@ export function AutoBoard({
         }
       }
       if (b) {
-        for (const u of actors.filter(
-          (a) =>
-            a.hp > 0 &&
-            a.action &&
-            a.action.kind !== "move" &&
-            time < a.action.hit,
-        )) {
-          const a = u.action!,
-            target = actors.find((t) => t.uid === a.target)
-          if (!target) continue
-          const origin = coords.get(u.uid)!,
-            end = coords.get(target.uid)!,
-            t = Math.max(0, (time - a.start) / (a.hit - a.start))
-          if (a.kind === "attack" && u.range <= 1) continue
-          const color =
-            AUTO_SCHOOLS[
-              (u.side === "ally" ? UNIT_MAP[u.id] : MONSTER_MAP[u.id]).school
-            ].color
-          const x = px(origin.x + (end.x - origin.x) * t),
-            y =
-              py(origin.y + (end.y - origin.y) * t) -
-              cell * 0.5 -
-              Math.sin(t * Math.PI) * cell * 0.15
-          orb(x, y, a.kind === "cast" ? 4 + t * 4 : 3, color)
-          ctx.strokeStyle = color
-          ctx.lineWidth = 1.5
-          ctx.globalAlpha = 0.45
-          ctx.beginPath()
-          ctx.moveTo(px(origin.x), py(origin.y) - cell * 0.5)
-          ctx.lineTo(x, y)
-          ctx.stroke()
-          ctx.globalAlpha = 1
+        for (const u of actors.filter(a => a.hp > 0 && a.action && a.action.kind !== "move" && time < a.action.hit)) {
+          const action = u.action!, origin = coords.get(u.uid)!
+          const target = actors.find(a => a.uid === action.target)
+          const end = target ? coords.get(target.uid)! : origin
+          const t = Math.max(0, Math.min(1, (time - action.start) / Math.max(1, action.hit - action.start)))
+          const school = (u.side === "ally" ? UNIT_MAP[u.id] : MONSTER_MAP[u.id]).school
+          const kind = action.kind === "cast" ? skillVfx(action.skill ?? u.skill, u.range) : u.range <= 1 ? "slash" : "projectile"
+          const from = { x:px(origin.x), y:py(origin.y)-cell*.48 }, to = { x:px(end.x), y:py(end.y)-cell*.48 }
+          if (opts.reducedMotion) continue
+          if (action.kind === "cast") drawChannel(ctx, { x:from.x,y:py(origin.y) },school,t,cell*.48,opts.lowQuality)
+          // Support recipients are selected at resolution. Never send a healing
+          // projectile to the enemy held in the action's generic target field.
+          if (action.kind === "cast" && ["heal", "shield"].includes(kind)) continue
+          if (kind === "slash") {
+            if(t>.72) drawImpact(ctx,to,school,(t-.72)*.3,cell*.45,"slash",opts.lowQuality)
+          } else if (["shield","summon"].includes(kind) || !target || target.uid === u.uid) {
+            if(t>.4) drawImpact(ctx,from,school,(t-.4)*.6,cell*.42,kind,opts.lowQuality)
+          } else if(t>.25) drawProjectile(ctx,from,to,school,(t-.25)/.75,cell*(action.kind === "cast" ? .22 : .16),opts.lowQuality,kind)
         }
         for (const e of b.events.filter(
           (e) => e.kind !== "move" && e.kind !== "attack",
@@ -409,107 +394,19 @@ export function AutoBoard({
               : e.kind === "burn"
                 ? "#ff9b62"
                 : AUTO_SCHOOLS[e.school].color
-          const sparkCount = opts.reducedMotion ? 2 : opts.lowQuality ? 5 : 12
-          if (
-            ["hit", "cast", "shield", "phase", "summon"].includes(e.kind) &&
-            age < 0.7
-          ) {
-            for (let k = 0; k < sparkCount; k++) {
-              const angle = (k / sparkCount) * Math.PI * 2 + e.id,
-                radius = age * cell * (e.kind === "phase" ? 1.7 : 0.7)
-              orb(
-                x + Math.cos(angle) * radius,
-                y + Math.sin(angle) * radius,
-                Math.max(1, 3 * (1 - age)),
-                color,
-                Math.max(0, 0.85 - age),
-              )
+          if (!opts.reducedMotion && age < .7 && ["hit","shield","heal","phase","summon","burn"].includes(e.kind)) {
+            const source = actors.find(a=>a.uid===e.source)
+            const kind = e.kind === "heal" ? "heal" : e.kind === "shield" ? "shield" : e.kind === "summon" ? "summon"
+              : e.kind === "hit" && source?.range === 1 ? "slash" : "projectile"
+            drawImpact(ctx,{x,y},e.school,age,cell*(e.kind === "phase" ? .75 : .4),kind,opts.lowQuality)
+            const art = kind === "shield" ? "shield" : e.school === "ember" ? "fire-impact" : e.school === "tide" ? "water-impact" : null
+            if(art && !opts.lowQuality) {
+              const texture = getImage(`/assets/tcg/fx/${art}.webp`)
+              if(texture.complete && texture.naturalWidth) {
+                ctx.save();ctx.globalAlpha=(1-age/.7)*.65
+                const extent=cell*(.7+age*.65);ctx.drawImage(texture,x-extent/2,y-extent/2,extent,extent);ctx.restore()
+              }
             }
-          }
-          if (
-            ((e.kind === "cast" && e.amount > 0) ||
-              e.kind === "shield" ||
-              e.kind === "heal" ||
-              e.kind === "phase") &&
-            age < 0.8
-          ) {
-            ctx.save()
-            ctx.translate(x, y)
-            ctx.globalAlpha = Math.max(0, 0.8 - age)
-            ctx.strokeStyle = color
-            ctx.fillStyle = color
-            ctx.lineWidth = opts.lowQuality ? 2 : 3
-            const radius = cell * (0.18 + age * 0.65)
-            if (e.kind === "shield" || e.school === "hearth") {
-              ctx.beginPath()
-              ctx.moveTo(0, -radius)
-              ctx.lineTo(radius * 0.7, -radius * 0.7)
-              ctx.lineTo(radius * 0.6, radius * 0.4)
-              ctx.lineTo(0, radius)
-              ctx.lineTo(-radius * 0.6, radius * 0.4)
-              ctx.lineTo(-radius * 0.7, -radius * 0.7)
-              ctx.closePath()
-              ctx.stroke()
-            } else if (e.school === "ember") {
-              for (let k = 0; k < (opts.lowQuality ? 3 : 5); k++) {
-                const dx = (k - 2) * radius * 0.32,
-                  dy = -age * cell * 0.5
-                ctx.beginPath()
-                ctx.moveTo(dx - radius * 0.2, dy + radius * 0.3)
-                ctx.quadraticCurveTo(
-                  dx - radius * 0.3,
-                  dy - radius * 0.1,
-                  dx,
-                  dy - radius * (0.6 + (k % 2) * 0.3),
-                )
-                ctx.quadraticCurveTo(
-                  dx + radius * 0.3,
-                  dy,
-                  dx + radius * 0.2,
-                  dy + radius * 0.3,
-                )
-                ctx.fill()
-              }
-            } else if (e.school === "tide") {
-              for (let k = 0; k < 3; k++) {
-                ctx.beginPath()
-                ctx.ellipse(
-                  0,
-                  0,
-                  radius + k * cell * 0.08,
-                  radius * 0.45 + k * cell * 0.04,
-                  age * 2 + k * 0.4,
-                  0,
-                  Math.PI * 1.7,
-                )
-                ctx.stroke()
-              }
-            } else if (e.school === "grove" || e.kind === "heal") {
-              for (let k = 0; k < 4; k++) {
-                ctx.save()
-                ctx.rotate((k * Math.PI) / 2 + age * 2)
-                ctx.beginPath()
-                ctx.moveTo(radius * 0.3, 0)
-                ctx.quadraticCurveTo(radius, -radius * 0.35, radius * 1.2, 0)
-                ctx.quadraticCurveTo(radius, radius * 0.35, radius * 0.3, 0)
-                ctx.fill()
-                ctx.restore()
-              }
-            } else {
-              ctx.rotate(age)
-              ctx.beginPath()
-              for (let k = 0; k < 10; k++) {
-                const r = radius * (k % 2 ? 0.4 : 1),
-                  angle = (k * Math.PI) / 5 - Math.PI / 2
-                const dx = Math.cos(angle) * r,
-                  dy = Math.sin(angle) * r
-                if (k) ctx.lineTo(dx, dy)
-                else ctx.moveTo(dx, dy)
-              }
-              ctx.closePath()
-              ctx.stroke()
-            }
-            ctx.restore()
           }
           if (
             ["hit", "heal", "burn"].includes(e.kind) &&

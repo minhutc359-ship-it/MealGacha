@@ -10,6 +10,8 @@ import { combatCues, type EffectCue } from "../../game/combatEffects"
 import { FLAVOR_SPIRITS } from "../../game/flavorSpirits"
 import { battleInvocation } from "../../game/combatDirection"
 import { tcgCharacter } from "../../game/tcgCharacterMotion"
+import { BattleVfxCanvas } from "./BattleVfxCanvas"
+import { TCG_IMPACT_MS } from "../../game/battleVfx"
 import { CharacterSprite } from "./CharacterSprite"
 import type { BattleFrame } from "../../game/battle"
 interface Props {
@@ -114,6 +116,8 @@ export function CombatEffects({ arena, frame, stamp, quiet = false }: Props) {
       key={stamp}
       aria-hidden="true"
     >
+      <BattleVfxCanvas source={layout.source} cues={layout.cues} school={invocation?.card.school ?? "hearth"}
+        action={frame?.event.kind ?? "idle"} stamp={stamp} quiet={quiet} />
       {invocation?.kind === "attack" && contact && (
         <div
           className="tcg-attack-manifest"
@@ -170,6 +174,7 @@ export function CombatEffects({ arena, frame, stamp, quiet = false }: Props) {
           top: cue.y,
           "--fx-size": `${cue.size}px`,
           "--fx-color": color,
+          "--fx-contact": `${["attack","play"].includes(frame?.event.kind ?? "") ? TCG_IMPACT_MS : 80}ms`,
         } as CSSProperties
         return (
           <div
@@ -179,30 +184,6 @@ export function CombatEffects({ arena, frame, stamp, quiet = false }: Props) {
             data-effect-target={`${cue.side}:${cue.target}`}
             style={style}
           >
-            {cue.projectile && (
-              <>
-                <span
-                  className="tcg-fx-beam"
-                  style={
-                    {
-                      left: layout.source.x - cue.x,
-                      top: layout.source.y - cue.y,
-                      "--beam-length": `${Math.hypot(cue.x - layout.source.x, cue.y - layout.source.y)}px`,
-                      "--beam-angle": `${(Math.atan2(cue.y - layout.source.y, cue.x - layout.source.x) * 180) / Math.PI}deg`,
-                    } as CSSProperties
-                  }
-                />
-                <span
-                  className="tcg-fx-projectile"
-                  style={
-                    {
-                      "--from-x": `${layout.source.x - cue.x}px`,
-                      "--from-y": `${layout.source.y - cue.y}px`,
-                    } as CSSProperties
-                  }
-                />
-              </>
-            )}
             <span className="tcg-fx-halo" />
             {SPRITES[cue.kind] ? (
               <img
@@ -227,7 +208,6 @@ export function CombatEffects({ arena, frame, stamp, quiet = false }: Props) {
                 }
               />
             ))}
-            {cue.kind === "strike" && <span className="tcg-fx-slash" />}
             {["fire", "water", "strike", "finish"].includes(cue.kind) && (
               <span className="tcg-fx-contact">
                 <i />

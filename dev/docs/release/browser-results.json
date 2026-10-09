@@ -1,0 +1,1535 @@
+{
+  "passed": true,
+  "checks": [
+    "All five school casts draw actual curved geometry and impact after flight at DPR 2; no old dot/line DOM, real cards and mana are spent once",
+    "Resize during attack preserves impact timeline; reduced motion suppresses canvas and gives identical damage",
+    "Real paused Auto cast snapshot renders windup and shaped missiles without advancing battle",
+    "Live Auto combat advances real damage/heal/shield events and loads shared original alpha textures",
+    "Both battle screens fit five portrait/landscape sizes with no page scrolling",
+    "All policy routes and JavaScript-free HTML copies render, with accessible support and distributed third-party notices",
+    "Chest settings policy link works and production omits development content panel"
+  ],
+  "geometry": [
+    {
+      "mode": "tcg",
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 8,
+          "y": 66,
+          "right": 836,
+          "bottom": 386,
+          "w": 828,
+          "h": 320
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 17,
+          "y": 314,
+          "right": 827,
+          "bottom": 382,
+          "w": 810,
+          "h": 68
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 17,
+          "y": 230,
+          "right": 827,
+          "bottom": 260,
+          "w": 810,
+          "h": 30
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 320,
+      "height": 568,
+      "scrollWidth": 320,
+      "scrollHeight": 568,
+      "boxes": [
+        {
+          "selector": ".ac-arena",
+          "x": 7,
+          "y": 130,
+          "right": 313,
+          "bottom": 463,
+          "w": 306,
+          "h": 333
+        },
+        {
+          "selector": ".ac-board",
+          "x": 8,
+          "y": 131,
+          "right": 312,
+          "bottom": 462,
+          "w": 304,
+          "h": 331
+        },
+        {
+          "selector": ".ac-cell-grid",
+          "x": 16,
+          "y": 152.5,
+          "right": 304,
+          "bottom": 440.5,
+          "w": 288,
+          "h": 288
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 7,
+          "y": 528,
+          "right": 313,
+          "bottom": 562,
+          "w": 306,
+          "h": 34
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 320,
+      "height": 568,
+      "scrollWidth": 320,
+      "scrollHeight": 568,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 7,
+          "y": 72,
+          "right": 313,
+          "bottom": 563,
+          "w": 306,
+          "h": 491
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 16,
+          "y": 448,
+          "right": 304,
+          "bottom": 558,
+          "w": 288,
+          "h": 110
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 16,
+          "y": 217,
+          "right": 304,
+          "bottom": 249,
+          "w": 288,
+          "h": 32
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "boxes": [
+        {
+          "selector": ".ac-arena",
+          "x": 8,
+          "y": 148,
+          "right": 382,
+          "bottom": 744,
+          "w": 374,
+          "h": 596
+        },
+        {
+          "selector": ".ac-board",
+          "x": 9,
+          "y": 149,
+          "right": 381,
+          "bottom": 743,
+          "w": 372,
+          "h": 594
+        },
+        {
+          "selector": ".ac-cell-grid",
+          "x": 17,
+          "y": 268,
+          "right": 373,
+          "bottom": 624,
+          "w": 356,
+          "h": 356
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 8,
+          "y": 800,
+          "right": 382,
+          "bottom": 836,
+          "w": 374,
+          "h": 36
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 7,
+          "y": 72,
+          "right": 383,
+          "bottom": 839,
+          "w": 376,
+          "h": 767
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 17,
+          "y": 687,
+          "right": 373,
+          "bottom": 832,
+          "w": 356,
+          "h": 145
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 17,
+          "y": 331,
+          "right": 373,
+          "bottom": 367,
+          "w": 356,
+          "h": 36
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 667,
+      "height": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375,
+      "boxes": [
+        {
+          "selector": ".ac-arena",
+          "x": 10,
+          "y": 93,
+          "right": 412,
+          "bottom": 370,
+          "w": 402,
+          "h": 277
+        },
+        {
+          "selector": ".ac-board",
+          "x": 11,
+          "y": 94,
+          "right": 411,
+          "bottom": 369,
+          "w": 400,
+          "h": 275
+        },
+        {
+          "selector": ".ac-cell-grid",
+          "x": 81.5,
+          "y": 102,
+          "right": 340.5,
+          "bottom": 361,
+          "w": 259,
+          "h": 259
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 417,
+          "y": 338,
+          "right": 657,
+          "bottom": 370,
+          "w": 240,
+          "h": 32
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 667,
+      "height": 375,
+      "scrollWidth": 667,
+      "scrollHeight": 375,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 8,
+          "y": 66,
+          "right": 659,
+          "bottom": 371,
+          "w": 651,
+          "h": 305
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 17,
+          "y": 299,
+          "right": 650,
+          "bottom": 367,
+          "w": 633,
+          "h": 68
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 17,
+          "y": 215,
+          "right": 650,
+          "bottom": 245,
+          "w": 633,
+          "h": 30
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390,
+      "boxes": [
+        {
+          "selector": ".ac-arena",
+          "x": 10,
+          "y": 95.796875,
+          "right": 532.375,
+          "bottom": 385,
+          "w": 522.375,
+          "h": 289.203125
+        },
+        {
+          "selector": ".ac-board",
+          "x": 11,
+          "y": 96.796875,
+          "right": 531.375,
+          "bottom": 384,
+          "w": 520.375,
+          "h": 287.203125
+        },
+        {
+          "selector": ".ac-cell-grid",
+          "x": 135.578125,
+          "y": 104.796875,
+          "right": 406.78125,
+          "bottom": 376,
+          "w": 271.203125,
+          "h": 271.203125
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 537.375,
+          "y": 353,
+          "right": 834,
+          "bottom": 385,
+          "w": 296.625,
+          "h": 32
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 8,
+          "y": 66,
+          "right": 836,
+          "bottom": 386,
+          "w": 828,
+          "h": 320
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 17,
+          "y": 314,
+          "right": 827,
+          "bottom": 382,
+          "w": 810,
+          "h": 68
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 17,
+          "y": 230,
+          "right": 827,
+          "bottom": 260,
+          "w": 810,
+          "h": 30
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 900,
+      "boxes": [
+        {
+          "selector": ".ac-arena",
+          "x": 211,
+          "y": 171,
+          "right": 1229,
+          "bottom": 788,
+          "w": 1018,
+          "h": 617
+        },
+        {
+          "selector": ".ac-board",
+          "x": 212,
+          "y": 172,
+          "right": 1228,
+          "bottom": 787,
+          "w": 1016,
+          "h": 615
+        },
+        {
+          "selector": ".ac-cell-grid",
+          "x": 420.5,
+          "y": 180,
+          "right": 1019.5,
+          "bottom": 779,
+          "w": 599,
+          "h": 599
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 211,
+          "y": 850,
+          "right": 1229,
+          "bottom": 890,
+          "w": 1018,
+          "h": 40
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 900,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 100,
+          "y": 85,
+          "right": 1340,
+          "bottom": 892,
+          "w": 1240,
+          "h": 807
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 121,
+          "y": 693,
+          "right": 1319,
+          "bottom": 882,
+          "w": 1198,
+          "h": 189
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 121,
+          "y": 341.5,
+          "right": 1319,
+          "bottom": 379.5,
+          "w": 1198,
+          "h": 38
+        }
+      ]
+    }
+  ],
+  "effects": [
+    {
+      "school": "ember",
+      "card": "spark",
+      "bezier": 300,
+      "quad": 110,
+      "fill": 254,
+      "colors": [
+        "#fff6d0",
+        "#000000",
+        "#ff7938",
+        "#ffda78"
+      ]
+    },
+    {
+      "school": "tide",
+      "card": "tidal-cut",
+      "bezier": 102,
+      "quad": 272,
+      "fill": 265,
+      "colors": [
+        "#edfaff",
+        "#000000",
+        "#44a8df"
+      ]
+    },
+    {
+      "school": "grove",
+      "card": "herb",
+      "bezier": 507,
+      "quad": 96,
+      "fill": 234,
+      "colors": [
+        "#b7ec8a",
+        "#000000",
+        "#fbffe0"
+      ]
+    },
+    {
+      "school": "hearth",
+      "card": "seasoning",
+      "bezier": 66,
+      "quad": 264,
+      "fill": 204,
+      "colors": [
+        "#fff8d7",
+        "#000000",
+        "#d89b43"
+      ]
+    },
+    {
+      "school": "sugar",
+      "card": "starlight",
+      "bezier": 60,
+      "quad": 104,
+      "fill": 207,
+      "colors": [
+        "#fff2fd",
+        "#000000",
+        "#efbfff"
+      ]
+    },
+    {
+      "mode": "auto-frozen",
+      "bezier": 884,
+      "quad": 208,
+      "fill": 1584,
+      "colors": [
+        "rgba(0, 0, 0, 0.46)",
+        "#ffae70",
+        "#e2b4f3",
+        "#79d9ed",
+        "#f8d284",
+        "#a4e1af",
+        "#edfaff",
+        "#ffd880",
+        "#44a8df",
+        "#fff6d0",
+        "#b7ec8a",
+        "#fff8d7",
+        "#efbfff",
+        "#fff2fd"
+      ],
+      "textures": []
+    },
+    {
+      "mode": "auto-live",
+      "bezier": 3507,
+      "quad": 1092,
+      "fill": 4150,
+      "colors": [
+        "rgba(0, 0, 0, 0.46)",
+        "#e2b4f3",
+        "#ffae70",
+        "#79d9ed",
+        "#a4e1af",
+        "#f8d284",
+        "#edfaff",
+        "#ffd880",
+        "#b7ec8a",
+        "#efbfff",
+        "#fff2fd",
+        "#44a8df",
+        "#fff6d0",
+        "#ff7938",
+        "#ffda78",
+        "#fff8d7",
+        "#92ecff",
+        "#d89b43",
+        "#be7de1",
+        "#ffe08a",
+        "#fbffe0"
+      ],
+      "textures": [
+        "http://127.0.0.1:8491/assets/tcg/fx/water-impact.webp",
+        "http://127.0.0.1:8491/assets/tcg/fx/fire-impact.webp",
+        "http://127.0.0.1:8491/assets/tcg/fx/shield.webp"
+      ],
+      "events": [
+        "hit",
+        "death",
+        "hit",
+        "attack",
+        "move",
+        "move",
+        "attack",
+        "hit",
+        "hit",
+        "move",
+        "move",
+        "burn",
+        "death",
+        "attack",
+        "move",
+        "move",
+        "hit",
+        "move",
+        "move",
+        "attack",
+        "move",
+        "move",
+        "hit",
+        "attack",
+        "move",
+        "attack",
+        "move",
+        "move",
+        "hit",
+        "hit",
+        "attack",
+        "attack",
+        "attack",
+        "move",
+        "burn",
+        "hit",
+        "hit",
+        "attack",
+        "hit",
+        "death"
+      ]
+    }
+  ],
+  "network": [
+    {
+      "route": "/",
+      "cache": "cold",
+      "requests": 17,
+      "transfer": 1369051,
+      "encoded": 1363951,
+      "resources": [
+        {
+          "path": "/assets/index-VndOLUWV.js",
+          "transfer": 203545,
+          "encoded": 203245,
+          "decoded": 203245,
+          "ms": 13.300000000745058
+        },
+        {
+          "path": "/assets/chunk-B3K2TuZy.js",
+          "transfer": 858,
+          "encoded": 558,
+          "decoded": 558,
+          "ms": 9.700000001117587
+        },
+        {
+          "path": "/assets/preload-helper-D4M6sveU.js",
+          "transfer": 1493,
+          "encoded": 1193,
+          "decoded": 1193,
+          "ms": 10.199999999254942
+        },
+        {
+          "path": "/assets/jsx-runtime-BQXCR5OR.js",
+          "transfer": 8188,
+          "encoded": 7888,
+          "decoded": 7888,
+          "ms": 14.5
+        },
+        {
+          "path": "/assets/useAppStore-Dh8kFewe.js",
+          "transfer": 314134,
+          "encoded": 313834,
+          "decoded": 313834,
+          "ms": 17.199999999254942
+        },
+        {
+          "path": "/assets/chunk-OB3PAWPO-CP3WsYD8.js",
+          "transfer": 42652,
+          "encoded": 42352,
+          "decoded": 42352,
+          "ms": 14.199999999254942
+        },
+        {
+          "path": "/assets/index-CDPyeCIo.css",
+          "transfer": 116825,
+          "encoded": 116525,
+          "decoded": 116525,
+          "ms": 13.900000000372529
+        },
+        {
+          "path": "/assets/TCGPage-BP54r7iu.js",
+          "transfer": 142090,
+          "encoded": 141790,
+          "decoded": 141790,
+          "ms": 8
+        },
+        {
+          "path": "/assets/tcg-DFctybA3.js",
+          "transfer": 73200,
+          "encoded": 72900,
+          "decoded": 72900,
+          "ms": 11.700000001117587
+        },
+        {
+          "path": "/assets/tcg-BrFLFacW.css",
+          "transfer": 74930,
+          "encoded": 74630,
+          "decoded": 74630,
+          "ms": 11.800000000745058
+        },
+        {
+          "path": "/assets/brandAssets-CrJk3QZD.js",
+          "transfer": 459,
+          "encoded": 159,
+          "decoded": 159,
+          "ms": 17.09999999962747
+        },
+        {
+          "path": "/assets/LegalLinks-uIh3Z2_t.js",
+          "transfer": 725,
+          "encoded": 425,
+          "decoded": 425,
+          "ms": 17.40000000037253
+        },
+        {
+          "path": "/assets/LegalLinks-DspzEEh7.css",
+          "transfer": 1648,
+          "encoded": 1348,
+          "decoded": 1348,
+          "ms": 16.40000000037253
+        },
+        {
+          "path": "/assets/TCGPage-K1I6Q8Wx.css",
+          "transfer": 98340,
+          "encoded": 98040,
+          "decoded": 98040,
+          "ms": 14.900000000372529
+        },
+        {
+          "path": "/assets/brand/soul-of-meal.webp",
+          "transfer": 65044,
+          "encoded": 64744,
+          "decoded": 64744,
+          "ms": 4.5
+        },
+        {
+          "path": "/assets/tcg/characters/anime/hero.webp",
+          "transfer": 73402,
+          "encoded": 73102,
+          "decoded": 73102,
+          "ms": 7.099999999627471
+        },
+        {
+          "path": "/assets/tcg/story/lantern.webp",
+          "transfer": 151518,
+          "encoded": 151218,
+          "decoded": 151218,
+          "ms": 7.599999999627471
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "cache": "warm",
+      "requests": 17,
+      "transfer": 1369051,
+      "encoded": 1363951,
+      "resources": [
+        {
+          "path": "/assets/chunk-B3K2TuZy.js",
+          "transfer": 858,
+          "encoded": 558,
+          "decoded": 558,
+          "ms": 7.699999999254942
+        },
+        {
+          "path": "/assets/index-VndOLUWV.js",
+          "transfer": 203545,
+          "encoded": 203245,
+          "decoded": 203245,
+          "ms": 9.799999998882413
+        },
+        {
+          "path": "/assets/preload-helper-D4M6sveU.js",
+          "transfer": 1493,
+          "encoded": 1193,
+          "decoded": 1193,
+          "ms": 12.700000001117587
+        },
+        {
+          "path": "/assets/jsx-runtime-BQXCR5OR.js",
+          "transfer": 8188,
+          "encoded": 7888,
+          "decoded": 7888,
+          "ms": 12
+        },
+        {
+          "path": "/assets/chunk-OB3PAWPO-CP3WsYD8.js",
+          "transfer": 42652,
+          "encoded": 42352,
+          "decoded": 42352,
+          "ms": 15.200000001117587
+        },
+        {
+          "path": "/assets/useAppStore-Dh8kFewe.js",
+          "transfer": 314134,
+          "encoded": 313834,
+          "decoded": 313834,
+          "ms": 16.90000000037253
+        },
+        {
+          "path": "/assets/index-CDPyeCIo.css",
+          "transfer": 116825,
+          "encoded": 116525,
+          "decoded": 116525,
+          "ms": 14.299999998882413
+        },
+        {
+          "path": "/assets/TCGPage-BP54r7iu.js",
+          "transfer": 142090,
+          "encoded": 141790,
+          "decoded": 141790,
+          "ms": 8.900000000372529
+        },
+        {
+          "path": "/assets/tcg-DFctybA3.js",
+          "transfer": 73200,
+          "encoded": 72900,
+          "decoded": 72900,
+          "ms": 9.100000001490116
+        },
+        {
+          "path": "/assets/tcg-BrFLFacW.css",
+          "transfer": 74930,
+          "encoded": 74630,
+          "decoded": 74630,
+          "ms": 5.399999998509884
+        },
+        {
+          "path": "/assets/brandAssets-CrJk3QZD.js",
+          "transfer": 459,
+          "encoded": 159,
+          "decoded": 159,
+          "ms": 8.5
+        },
+        {
+          "path": "/assets/LegalLinks-uIh3Z2_t.js",
+          "transfer": 725,
+          "encoded": 425,
+          "decoded": 425,
+          "ms": 12.400000000372529
+        },
+        {
+          "path": "/assets/LegalLinks-DspzEEh7.css",
+          "transfer": 1648,
+          "encoded": 1348,
+          "decoded": 1348,
+          "ms": 13.300000000745058
+        },
+        {
+          "path": "/assets/TCGPage-K1I6Q8Wx.css",
+          "transfer": 98340,
+          "encoded": 98040,
+          "decoded": 98040,
+          "ms": 14.599999999627471
+        },
+        {
+          "path": "/assets/brand/soul-of-meal.webp",
+          "transfer": 65044,
+          "encoded": 64744,
+          "decoded": 64744,
+          "ms": 7.5
+        },
+        {
+          "path": "/assets/tcg/story/lantern.webp",
+          "transfer": 151518,
+          "encoded": 151218,
+          "decoded": 151218,
+          "ms": 8.299999998882413
+        },
+        {
+          "path": "/assets/tcg/characters/anime/hero.webp",
+          "transfer": 73402,
+          "encoded": 73102,
+          "decoded": 73102,
+          "ms": 7.5
+        }
+      ]
+    },
+    {
+      "route": "/autochess",
+      "cache": "cold",
+      "requests": 17,
+      "transfer": 1579795,
+      "encoded": 1574695,
+      "resources": [
+        {
+          "path": "/assets/index-VndOLUWV.js",
+          "transfer": 203545,
+          "encoded": 203245,
+          "decoded": 203245,
+          "ms": 5.099999999627471
+        },
+        {
+          "path": "/assets/chunk-B3K2TuZy.js",
+          "transfer": 858,
+          "encoded": 558,
+          "decoded": 558,
+          "ms": 12.700000001117587
+        },
+        {
+          "path": "/assets/preload-helper-D4M6sveU.js",
+          "transfer": 1493,
+          "encoded": 1193,
+          "decoded": 1193,
+          "ms": 10.100000001490116
+        },
+        {
+          "path": "/assets/jsx-runtime-BQXCR5OR.js",
+          "transfer": 8188,
+          "encoded": 7888,
+          "decoded": 7888,
+          "ms": 14.100000001490116
+        },
+        {
+          "path": "/assets/useAppStore-Dh8kFewe.js",
+          "transfer": 314134,
+          "encoded": 313834,
+          "decoded": 313834,
+          "ms": 19.799999998882413
+        },
+        {
+          "path": "/assets/chunk-OB3PAWPO-CP3WsYD8.js",
+          "transfer": 42652,
+          "encoded": 42352,
+          "decoded": 42352,
+          "ms": 18.40000000037253
+        },
+        {
+          "path": "/assets/index-CDPyeCIo.css",
+          "transfer": 116825,
+          "encoded": 116525,
+          "decoded": 116525,
+          "ms": 17.300000000745058
+        },
+        {
+          "path": "/assets/AutoChessPage-X3BYgCRD.js",
+          "transfer": 53304,
+          "encoded": 53004,
+          "decoded": 53004,
+          "ms": 16
+        },
+        {
+          "path": "/assets/tcg-DFctybA3.js",
+          "transfer": 73200,
+          "encoded": 72900,
+          "decoded": 72900,
+          "ms": 16.40000000037253
+        },
+        {
+          "path": "/assets/tcg-BrFLFacW.css",
+          "transfer": 74930,
+          "encoded": 74630,
+          "decoded": 74630,
+          "ms": 13.300000000745058
+        },
+        {
+          "path": "/assets/brandAssets-CrJk3QZD.js",
+          "transfer": 459,
+          "encoded": 159,
+          "decoded": 159,
+          "ms": 7.699999999254942
+        },
+        {
+          "path": "/assets/LegalLinks-uIh3Z2_t.js",
+          "transfer": 725,
+          "encoded": 425,
+          "decoded": 425,
+          "ms": 6.599999999627471
+        },
+        {
+          "path": "/assets/LegalLinks-DspzEEh7.css",
+          "transfer": 1648,
+          "encoded": 1348,
+          "decoded": 1348,
+          "ms": 11.800000000745058
+        },
+        {
+          "path": "/assets/AutoChessPage-CeTVCtf7.css",
+          "transfer": 31602,
+          "encoded": 31302,
+          "decoded": 31302,
+          "ms": 15
+        },
+        {
+          "path": "/assets/brand/soul-of-meal.webp",
+          "transfer": 65044,
+          "encoded": 64744,
+          "decoded": 64744,
+          "ms": 5.300000000745058
+        },
+        {
+          "path": "/assets/autochess/world.webp",
+          "transfer": 385658,
+          "encoded": 385358,
+          "decoded": 385358,
+          "ms": 20.90000000037253
+        },
+        {
+          "path": "/assets/autochess/portraits.webp",
+          "transfer": 205530,
+          "encoded": 205230,
+          "decoded": 205230,
+          "ms": 19.199999999254942
+        }
+      ]
+    },
+    {
+      "route": "/autochess",
+      "cache": "warm",
+      "requests": 17,
+      "transfer": 1579795,
+      "encoded": 1574695,
+      "resources": [
+        {
+          "path": "/assets/index-VndOLUWV.js",
+          "transfer": 203545,
+          "encoded": 203245,
+          "decoded": 203245,
+          "ms": 22.799999998882413
+        },
+        {
+          "path": "/assets/chunk-B3K2TuZy.js",
+          "transfer": 858,
+          "encoded": 558,
+          "decoded": 558,
+          "ms": 6.599999999627471
+        },
+        {
+          "path": "/assets/preload-helper-D4M6sveU.js",
+          "transfer": 1493,
+          "encoded": 1193,
+          "decoded": 1193,
+          "ms": 16.59999999962747
+        },
+        {
+          "path": "/assets/jsx-runtime-BQXCR5OR.js",
+          "transfer": 8188,
+          "encoded": 7888,
+          "decoded": 7888,
+          "ms": 8.799999998882413
+        },
+        {
+          "path": "/assets/useAppStore-Dh8kFewe.js",
+          "transfer": 314134,
+          "encoded": 313834,
+          "decoded": 313834,
+          "ms": 17.90000000037253
+        },
+        {
+          "path": "/assets/chunk-OB3PAWPO-CP3WsYD8.js",
+          "transfer": 42652,
+          "encoded": 42352,
+          "decoded": 42352,
+          "ms": 12.399999998509884
+        },
+        {
+          "path": "/assets/index-CDPyeCIo.css",
+          "transfer": 116825,
+          "encoded": 116525,
+          "decoded": 116525,
+          "ms": 21.09999999962747
+        },
+        {
+          "path": "/assets/AutoChessPage-X3BYgCRD.js",
+          "transfer": 53304,
+          "encoded": 53004,
+          "decoded": 53004,
+          "ms": 6.899999998509884
+        },
+        {
+          "path": "/assets/tcg-DFctybA3.js",
+          "transfer": 73200,
+          "encoded": 72900,
+          "decoded": 72900,
+          "ms": 14.699999999254942
+        },
+        {
+          "path": "/assets/tcg-BrFLFacW.css",
+          "transfer": 74930,
+          "encoded": 74630,
+          "decoded": 74630,
+          "ms": 10
+        },
+        {
+          "path": "/assets/brandAssets-CrJk3QZD.js",
+          "transfer": 459,
+          "encoded": 159,
+          "decoded": 159,
+          "ms": 14
+        },
+        {
+          "path": "/assets/LegalLinks-uIh3Z2_t.js",
+          "transfer": 725,
+          "encoded": 425,
+          "decoded": 425,
+          "ms": 7.599999999627471
+        },
+        {
+          "path": "/assets/LegalLinks-DspzEEh7.css",
+          "transfer": 1648,
+          "encoded": 1348,
+          "decoded": 1348,
+          "ms": 10.599999999627471
+        },
+        {
+          "path": "/assets/AutoChessPage-CeTVCtf7.css",
+          "transfer": 31602,
+          "encoded": 31302,
+          "decoded": 31302,
+          "ms": 13.099999999627471
+        },
+        {
+          "path": "/assets/brand/soul-of-meal.webp",
+          "transfer": 65044,
+          "encoded": 64744,
+          "decoded": 64744,
+          "ms": 6.300000000745058
+        },
+        {
+          "path": "/assets/autochess/world.webp",
+          "transfer": 385658,
+          "encoded": 385358,
+          "decoded": 385358,
+          "ms": 21.09999999962747
+        },
+        {
+          "path": "/assets/autochess/portraits.webp",
+          "transfer": 205530,
+          "encoded": 205230,
+          "decoded": 205230,
+          "ms": 20.200000001117587
+        }
+      ]
+    },
+    {
+      "route": "/chest",
+      "cache": "cold",
+      "requests": 26,
+      "transfer": 1591283,
+      "encoded": 1583483,
+      "resources": [
+        {
+          "path": "/assets/index-VndOLUWV.js",
+          "transfer": 203545,
+          "encoded": 203245,
+          "decoded": 203245,
+          "ms": 13.5
+        },
+        {
+          "path": "/assets/chunk-B3K2TuZy.js",
+          "transfer": 858,
+          "encoded": 558,
+          "decoded": 558,
+          "ms": 8.300000000745058
+        },
+        {
+          "path": "/assets/jsx-runtime-BQXCR5OR.js",
+          "transfer": 8188,
+          "encoded": 7888,
+          "decoded": 7888,
+          "ms": 10.400000000372529
+        },
+        {
+          "path": "/assets/preload-helper-D4M6sveU.js",
+          "transfer": 1493,
+          "encoded": 1193,
+          "decoded": 1193,
+          "ms": 12.800000000745058
+        },
+        {
+          "path": "/assets/chunk-OB3PAWPO-CP3WsYD8.js",
+          "transfer": 42652,
+          "encoded": 42352,
+          "decoded": 42352,
+          "ms": 13.200000001117587
+        },
+        {
+          "path": "/assets/useAppStore-Dh8kFewe.js",
+          "transfer": 314134,
+          "encoded": 313834,
+          "decoded": 313834,
+          "ms": 17.200000001117587
+        },
+        {
+          "path": "/assets/index-CDPyeCIo.css",
+          "transfer": 116825,
+          "encoded": 116525,
+          "decoded": 116525,
+          "ms": 15.5
+        },
+        {
+          "path": "/assets/ChestPage-D-YAKklU.js",
+          "transfer": 90588,
+          "encoded": 90288,
+          "decoded": 90288,
+          "ms": 8.900000000372529
+        },
+        {
+          "path": "/assets/RevealModal-tr58YuwC.js",
+          "transfer": 8319,
+          "encoded": 8019,
+          "decoded": 8019,
+          "ms": 11.800000000745058
+        },
+        {
+          "path": "/assets/RarityFrame-CNHFwyWW.js",
+          "transfer": 20019,
+          "encoded": 19719,
+          "decoded": 19719,
+          "ms": 10.400000000372529
+        },
+        {
+          "path": "/assets/RarityFrame-B4U5LzPS.css",
+          "transfer": 7489,
+          "encoded": 7189,
+          "decoded": 7189,
+          "ms": 19.299999998882413
+        },
+        {
+          "path": "/assets/brandAssets-CrJk3QZD.js",
+          "transfer": 459,
+          "encoded": 159,
+          "decoded": 159,
+          "ms": 19.800000000745058
+        },
+        {
+          "path": "/assets/brand/soul-of-meal.webp",
+          "transfer": 65044,
+          "encoded": 64744,
+          "decoded": 64744,
+          "ms": 17.09999999962747
+        },
+        {
+          "path": "/assets/events/hanoi-autumn/banner.webp",
+          "transfer": 212442,
+          "encoded": 212142,
+          "decoded": 212142,
+          "ms": 6.699999999254942
+        },
+        {
+          "path": "/assets/lib-DfpztMe9.js",
+          "transfer": 6089,
+          "encoded": 5789,
+          "decoded": 5789,
+          "ms": 13.599999999627471
+        },
+        {
+          "path": "/assets/Geometry-jWm-w74p.js",
+          "transfer": 104390,
+          "encoded": 104090,
+          "decoded": 104090,
+          "ms": 15
+        },
+        {
+          "path": "/assets/RenderTargetSystem-Bxs_tybe.js",
+          "transfer": 84886,
+          "encoded": 84586,
+          "decoded": 84586,
+          "ms": 18.199999999254942
+        },
+        {
+          "path": "/assets/FederatedEventTarget-B2Fst14h.js",
+          "transfer": 42937,
+          "encoded": 42637,
+          "decoded": 42637,
+          "ms": 22.59999999962747
+        },
+        {
+          "path": "/assets/CanvasRenderer-Dim0rLkI.js",
+          "transfer": 82655,
+          "encoded": 82355,
+          "decoded": 82355,
+          "ms": 33.80000000074506
+        },
+        {
+          "path": "/assets/getTextureBatchBindGroup-BDyydCoR.js",
+          "transfer": 642,
+          "encoded": 342,
+          "decoded": 342,
+          "ms": 23.40000000037253
+        },
+        {
+          "path": "/assets/canvasUtils-C-n5v6Vk.js",
+          "transfer": 6322,
+          "encoded": 6022,
+          "decoded": 6022,
+          "ms": 30.59999999962747
+        },
+        {
+          "path": "/assets/CanvasPool-Ckj7LD_x.js",
+          "transfer": 1069,
+          "encoded": 769,
+          "decoded": 769,
+          "ms": 30
+        },
+        {
+          "path": "/assets/FilterSystem-JbeOm8aw.js",
+          "transfer": 40778,
+          "encoded": 40478,
+          "decoded": 40478,
+          "ms": 33.09999999962747
+        },
+        {
+          "path": "/assets/WebGLRenderer-Ds_g2quE.js",
+          "transfer": 72097,
+          "encoded": 71797,
+          "decoded": 71797,
+          "ms": 38.30000000074506
+        },
+        {
+          "path": "/assets/BufferResource-OeTmkb2Z.js",
+          "transfer": 11344,
+          "encoded": 11044,
+          "decoded": 11044,
+          "ms": 37.30000000074506
+        },
+        {
+          "path": "/assets/WebGPURenderer-CK3qp4mJ.js",
+          "transfer": 46019,
+          "encoded": 45719,
+          "decoded": 45719,
+          "ms": 38.399999998509884
+        }
+      ]
+    },
+    {
+      "route": "/chest",
+      "cache": "warm",
+      "requests": 28,
+      "transfer": 1592257,
+      "encoded": 1583857,
+      "resources": [
+        {
+          "path": "/assets/index-VndOLUWV.js",
+          "transfer": 203545,
+          "encoded": 203245,
+          "decoded": 203245,
+          "ms": 16.09999999962747
+        },
+        {
+          "path": "/assets/chunk-B3K2TuZy.js",
+          "transfer": 858,
+          "encoded": 558,
+          "decoded": 558,
+          "ms": 12.599999999627471
+        },
+        {
+          "path": "/assets/preload-helper-D4M6sveU.js",
+          "transfer": 1493,
+          "encoded": 1193,
+          "decoded": 1193,
+          "ms": 15.800000000745058
+        },
+        {
+          "path": "/assets/jsx-runtime-BQXCR5OR.js",
+          "transfer": 8188,
+          "encoded": 7888,
+          "decoded": 7888,
+          "ms": 16.199999999254942
+        },
+        {
+          "path": "/assets/chunk-OB3PAWPO-CP3WsYD8.js",
+          "transfer": 42652,
+          "encoded": 42352,
+          "decoded": 42352,
+          "ms": 17.5
+        },
+        {
+          "path": "/assets/useAppStore-Dh8kFewe.js",
+          "transfer": 314134,
+          "encoded": 313834,
+          "decoded": 313834,
+          "ms": 20.700000001117587
+        },
+        {
+          "path": "/assets/index-CDPyeCIo.css",
+          "transfer": 116825,
+          "encoded": 116525,
+          "decoded": 116525,
+          "ms": 19.399999998509884
+        },
+        {
+          "path": "/assets/ChestPage-D-YAKklU.js",
+          "transfer": 90588,
+          "encoded": 90288,
+          "decoded": 90288,
+          "ms": 10.099999999627471
+        },
+        {
+          "path": "/assets/RevealModal-tr58YuwC.js",
+          "transfer": 8319,
+          "encoded": 8019,
+          "decoded": 8019,
+          "ms": 12.599999999627471
+        },
+        {
+          "path": "/assets/RarityFrame-CNHFwyWW.js",
+          "transfer": 20019,
+          "encoded": 19719,
+          "decoded": 19719,
+          "ms": 12.800000000745058
+        },
+        {
+          "path": "/assets/RarityFrame-B4U5LzPS.css",
+          "transfer": 7489,
+          "encoded": 7189,
+          "decoded": 7189,
+          "ms": 9.399999998509884
+        },
+        {
+          "path": "/assets/brandAssets-CrJk3QZD.js",
+          "transfer": 459,
+          "encoded": 159,
+          "decoded": 159,
+          "ms": 13.199999999254942
+        },
+        {
+          "path": "/assets/brand/soul-of-meal.webp",
+          "transfer": 65044,
+          "encoded": 64744,
+          "decoded": 64744,
+          "ms": 10.299999998882413
+        },
+        {
+          "path": "/assets/events/hanoi-autumn/banner.webp",
+          "transfer": 212442,
+          "encoded": 212142,
+          "decoded": 212142,
+          "ms": 9.900000000372529
+        },
+        {
+          "path": "/assets/lib-DfpztMe9.js",
+          "transfer": 6089,
+          "encoded": 5789,
+          "decoded": 5789,
+          "ms": 11.400000000372529
+        },
+        {
+          "path": "/assets/Geometry-jWm-w74p.js",
+          "transfer": 104390,
+          "encoded": 104090,
+          "decoded": 104090,
+          "ms": 11.5
+        },
+        {
+          "path": "/assets/RenderTargetSystem-Bxs_tybe.js",
+          "transfer": 84886,
+          "encoded": 84586,
+          "decoded": 84586,
+          "ms": 29.200000001117587
+        },
+        {
+          "path": "/assets/FederatedEventTarget-B2Fst14h.js",
+          "transfer": 42937,
+          "encoded": 42637,
+          "decoded": 42637,
+          "ms": 21.5
+        },
+        {
+          "path": "/assets/CanvasRenderer-Dim0rLkI.js",
+          "transfer": 82655,
+          "encoded": 82355,
+          "decoded": 82355,
+          "ms": 22.90000000037253
+        },
+        {
+          "path": "/assets/getTextureBatchBindGroup-BDyydCoR.js",
+          "transfer": 642,
+          "encoded": 342,
+          "decoded": 342,
+          "ms": 27.300000000745058
+        },
+        {
+          "path": "/assets/canvasUtils-C-n5v6Vk.js",
+          "transfer": 6322,
+          "encoded": 6022,
+          "decoded": 6022,
+          "ms": 27.40000000037253
+        },
+        {
+          "path": "/assets/FilterSystem-JbeOm8aw.js",
+          "transfer": 40778,
+          "encoded": 40478,
+          "decoded": 40478,
+          "ms": 27.300000000745058
+        },
+        {
+          "path": "/assets/CanvasPool-Ckj7LD_x.js",
+          "transfer": 1069,
+          "encoded": 769,
+          "decoded": 769,
+          "ms": 31.799999998882413
+        },
+        {
+          "path": "/assets/WebGLRenderer-Ds_g2quE.js",
+          "transfer": 72097,
+          "encoded": 71797,
+          "decoded": 71797,
+          "ms": 32.19999999925494
+        },
+        {
+          "path": "/assets/BufferResource-OeTmkb2Z.js",
+          "transfer": 11344,
+          "encoded": 11044,
+          "decoded": 11044,
+          "ms": 33.5
+        },
+        {
+          "path": "/assets/WebGPURenderer-CK3qp4mJ.js",
+          "transfer": 46019,
+          "encoded": 45719,
+          "decoded": 45719,
+          "ms": 34.40000000037253
+        },
+        {
+          "path": "/assets/browserAll-Ct3LSEQ-.js",
+          "transfer": 549,
+          "encoded": 249,
+          "decoded": 249,
+          "ms": 7.199999999254942
+        },
+        {
+          "path": "/assets/init-CDrYbJXP.js",
+          "transfer": 425,
+          "encoded": 125,
+          "decoded": 125,
+          "ms": 8.800000000745058
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "environment": {
+    "browser": "Headless Chromium; mobile viewport emulation; DPR 2",
+    "server": "Local production dist served over uncompressed HTTP; external fonts blocked",
+    "cacheNote": "Local server has no production asset cache policy. Warm navigation did not reduce measured transfer; these numbers do not predict Vercel caching.",
+    "nativeDevicesTested": false
+  }
+}

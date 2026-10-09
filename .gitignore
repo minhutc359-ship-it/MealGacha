@@ -21,3 +21,7 @@ logs/
 /.plugins/
 /.opencode-skills/
 /.asset-work/
+
+# Local build/packaging output (including symlinked dependencies).
+node_modules
+/dev/artifacts/

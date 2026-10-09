@@ -1,0 +1,285 @@
+{
+  "version": "3.3.0",
+  "generatedOn": "2026-10-09",
+  "packages": [
+    {
+      "name": "@pixi/colord",
+      "version": "2.9.6",
+      "license": "MIT",
+      "repository": "omgovich/colord",
+      "files": [
+        "rights/vendor/colord-LICENSE.md"
+      ]
+    },
+    {
+      "name": "@types/earcut",
+      "version": "3.0.0",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/earcut"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "@webgpu/types",
+      "version": "0.1.72",
+      "license": "BSD-3-Clause",
+      "repository": "gpuweb/types",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "@xmldom/xmldom",
+      "version": "0.8.15",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/xmldom/xmldom.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "cookie",
+      "version": "1.1.1",
+      "license": "MIT",
+      "repository": "jshttp/cookie",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "earcut",
+      "version": "3.2.3",
+      "license": "ISC",
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/mapbox/earcut.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "eventemitter3",
+      "version": "5.0.4",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/primus/eventemitter3.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "gifuct-js",
+      "version": "2.1.2",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/matt-way/gifuct-js.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "gsap",
+      "version": "3.15.0",
+      "license": "Standard 'no charge' license: https://gsap.com/standard-license.",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/greensock/GSAP.git"
+      },
+      "files": []
+    },
+    {
+      "name": "ismobilejs",
+      "version": "1.1.1",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/kaimallea/isMobile.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "js-binary-schema-parser",
+      "version": "2.0.3",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/matt-way/jsBinarySchemaParser.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "papaparse",
+      "version": "5.7.0",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mholt/PapaParse.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "parse-svg-path",
+      "version": "0.2.0",
+      "license": "MIT",
+      "repository": "git://github.com/jkroso/parse-svg-path.git",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "pixi.js",
+      "version": "8.20.1",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/pixijs/pixijs.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "react",
+      "version": "19.2.4",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/facebook/react.git",
+        "directory": "packages/react"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "react-dom",
+      "version": "19.2.4",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/facebook/react.git",
+        "directory": "packages/react-dom"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "react-router",
+      "version": "7.18.4",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/remix-run/react-router",
+        "directory": "packages/react-router"
+      },
+      "files": [
+        "LICENSE.md"
+      ]
+    },
+    {
+      "name": "react-router-dom",
+      "version": "7.18.4",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/remix-run/react-router",
+        "directory": "packages/react-router-dom"
+      },
+      "files": [
+        "LICENSE.md"
+      ]
+    },
+    {
+      "name": "scheduler",
+      "version": "0.27.0",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/facebook/react.git",
+        "directory": "packages/scheduler"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "set-cookie-parser",
+      "version": "2.7.2",
+      "license": "MIT",
+      "repository": "nfriedly/set-cookie-parser",
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "tiny-lru",
+      "version": "11.4.7",
+      "license": "BSD-3-Clause",
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/avoidwork/tiny-lru.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "zod",
+      "version": "4.6.5",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/colinhacks/zod.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    },
+    {
+      "name": "zustand",
+      "version": "5.0.15",
+      "license": "MIT",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pmndrs/zustand.git"
+      },
+      "files": [
+        "LICENSE"
+      ]
+    }
+  ],
+  "fonts": [
+    {
+      "name": "Be Vietnam Pro",
+      "license": "OFL-1.1",
+      "source": "https://github.com/google/fonts/blob/main/ofl/bevietnampro/OFL.txt",
+      "licenseBlob": "9e2c1177b1e7b9b2f63e122d37f8c21bc5dddc65"
+    },
+    {
+      "name": "Exo 2",
+      "license": "OFL-1.1",
+      "source": "https://github.com/google/fonts/blob/main/ofl/exo2/OFL.txt",
+      "licenseBlob": "5bec9840d2e0df42d80d6fac55279d1d5e5b9199"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "archive": "dev/artifacts/soul-of-meal-3.3.0-source.zip",
+    "files": 420,
+    "uncompressedBytes": 32713359,
+    "zipBytes": 31489006,
+    "sha256": "c9dc5a23b7ca912b5537b0bc1d58f169a36f676565c1eb552fcfb17c48cc459f"
+  },
+  {
+    "archive": "dev/artifacts/soul-of-meal-3.3.0-web.zip",
+    "files": 291,
+    "uncompressedBytes": 32975834,
+    "zipBytes": 31575075,
+    "sha256": "9dd1b0f36b93b4ca54cc9a1f7d77a4db212a8dd705b68ffb9e1f51c6b744afd2"
+  }
+]

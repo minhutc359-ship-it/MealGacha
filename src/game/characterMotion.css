@@ -17,3 +17,8 @@
 .tcg-invocation-art>.tcg-invocation-spell-card{position:absolute;right:-14%;top:5%;width:40%;height:45%;object-fit:cover;border:1px solid var(--invoke-color);border-radius:8px;box-shadow:0 0 12px #0006;z-index:2}
 @media(max-width:740px){.tcg-viewport-battle .tcg-unit>.tcg-character-sprite{bottom:35px}}
 @media(max-height:470px) and (orientation:landscape){.tcg-viewport-battle .tcg-unit>.tcg-character-sprite{bottom:31px}.tcg-viewport-battle .tcg-unit.is-animated-character .tcg-unit-spirit-tag{display:none}}
+
+.tcg-battle-vfx-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.tcg-viewport-battle .tcg-float-number{animation-delay:var(--battle-contact,0ms)}
+.tcg-fx-anchor .tcg-fx-sprite,.tcg-fx-anchor .tcg-fx-halo,.tcg-fx-anchor .tcg-fx-glyph{animation-delay:var(--fx-contact,80ms)}
+.tcg-fx-anchor .tcg-fx-particle{animation-delay:calc(var(--fx-contact,80ms) + var(--delay,0ms))}

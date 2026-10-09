@@ -635,8 +635,8 @@ const RAW_SEED_DISHES: Dish[] = [
   },
   {
     id: "haidilao-hotpot",
-    name: "Lẩu Haidilao",
-    searchQuery: "Haidilao hotpot",
+    name: "Lẩu Tứ Xuyên",
+    searchQuery: "Sichuan hotpot",
     mealSlots: ["dinner"],
     category: "chinese-premium-hotpot",
     description: "Bữa lẩu cao cấp cho nhóm và dịp đặc biệt",

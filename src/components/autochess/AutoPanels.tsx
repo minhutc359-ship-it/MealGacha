@@ -12,6 +12,7 @@ import {
 import { SCENES, SPEAKERS } from "../../game/autochess/story"
 import type { Piece, Actor } from "../../game/autochess/types"
 import { useGameMusic } from "../game/GameAudio"
+import { LegalLinks } from "../../legal/LegalLinks"
 export function AutoStory({
   sceneId,
   line,
@@ -177,6 +178,7 @@ export function AutoGuide({ onClose }: { onClose: () => void }) {
       <div className="ac-guide-example"><strong>Đội khởi đầu dễ hiểu</strong><p>Cơm tấm giữ tuyến trước · Phở bò gây sát thương từ xa · Bánh cuốn hồi phục ở phía sau.</p></div>
       <details className="ac-guide-more"><summary>Vàng, XP và phối hệ</summary><p>Mỗi vòng nhận 2 XP và 5 vàng, thêm 1 vàng khi thắng. Nút Cấp luôn hiện EXP hiện tại/mốc kế tiếp và thanh tiến độ. 4 vàng mua 4 XP; các mốc 8/20/38/62 XP mở tối đa 4/5/6/7 quân. Giữ 10/20/30 vàng nhận 1/2/3 lợi tức.</p><p>Quân khác tên cùng hệ kích mốc 2/4; cùng nghề kích 2/3. Bản trùng tên chỉ tính một lần. Ba hệ khác nhau kích Mâm chung để hồi máu. Chọn quân → mở túi ✧ để trao tối đa hai di vật khác nhau. Phe địch có sức mạnh tổng hợp tăng 30%: máu, công và kỹ năng tăng khoảng 14% mỗi phần. Ba sao vẫn cần đội hình hỗ trợ.</p></details>
       <details className="ac-guide-more"><summary>Thua, survival và lưu tiến trình</summary><p>Thua mất ý chí; chiến dịch phải chơi lại đúng màn đó. Survival chuyển sang đợt mới đến khi hết 100 ý chí; chỉ vòng thắng cho điểm.</p><p>Survival: cứ 30 giây giao chiến địch mạnh hơn; sau 25 giây trong một vòng có cuồng nộ. Chuẩn bị, tạm dừng, thoại và ăn mừng không tính thời gian.</p><p>Vàng Auto chess độc lập với xu TCG. Mã tiến trình giữ cả trận, tài nguyên và kỷ lục; không cần tài khoản.</p></details>
+      <LegalLinks />
       <button className="ac-button primary" onClick={onClose}>Đã hiểu · Giữ bàn!</button>
     </Dialog>
   )

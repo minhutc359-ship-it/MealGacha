@@ -1,0 +1,18 @@
+{
+  "title": "Soul of Meal · Huyền thoại vị giác",
+  "description": "Game ẩm thực Việt Nam: thức tỉnh Vị Linh, chiến đấu thẻ bài, giữ Chợ Đêm qua Auto chess và khám phá món ngon cùng Rương vị giác.",
+  "language": "vi",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  },
+  "icons": {
+    "icon": "/favicon.ico"
+  },
+  "openGraph": {
+    "image": "/assets/brand/icon-512.png"
+  }
+}

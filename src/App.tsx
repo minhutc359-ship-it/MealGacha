@@ -11,7 +11,8 @@ import { useAppStore } from "./store/useAppStore"
 import { ClientShell } from "./components/layout/ClientShell"
 import { Toast } from "./components/ui/Toast"
 import { AnnouncementBanner } from "./components/ui/AnnouncementBanner"
-import { ChestPage } from "./pages/ChestPage"
+
+const ChestPage = lazy(() => import("./pages/ChestPage").then(module => ({ default: module.ChestPage })))
 
 const ProfilePage = lazy(() =>
   import("./pages/ProfilePage").then((module) => ({
@@ -55,6 +56,8 @@ const AutoChessPage = lazy(() =>
   })),
 )
 
+const LegalPage = lazy(() => import("./pages/LegalPage").then(module => ({ default: module.LegalPage })))
+
 function AppInner() {
   const init = useAppStore((s) => s.init)
   const navigate = useNavigate()
@@ -81,6 +84,8 @@ function AppInner() {
     window.addEventListener("nav:collection", handler)
     return () => window.removeEventListener("nav:collection", handler)
   }, [navigate])
+
+  if (location.pathname.startsWith("/legal/")) return <Suspense fallback={<div className="route-loading">Đang mở chính sách…</div>}><LegalPage /></Suspense>
 
   if (
     location.pathname === "/" ||

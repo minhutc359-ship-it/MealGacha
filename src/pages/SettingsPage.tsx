@@ -7,8 +7,9 @@ import { Dish } from "../domain/models"
 import { clearImages, listImages } from "../infrastructure/storage/imageRepository"
 import { createFullBackup, restoreFullBackup } from "../infrastructure/backup/fullBackup"
 import { getDevEventOverride, EVENTS, LOCAL_EVENTS, setDevEventOverride } from "../domain/events"
+import { LegalLinks } from "../legal/LegalLinks"
 
-const DevContentPanel = lazy(() => import("../components/dev/DevContentPanel").then((module) => ({ default: module.DevContentPanel })))
+const DevContentPanel = import.meta.env.DEV ? lazy(() => import("virtual:dev-content-panel").then((module) => ({ default: module.DevContentPanel }))) : null
 
 interface CatalogPreview {
   url: string
@@ -347,7 +348,7 @@ export function SettingsPage() {
         </div>
       </Section>
 
-      {import.meta.env.DEV && <><Section title="Sự kiện (DEV)"><label className="event-dev">Xem thử banner <select value={devEvent} onChange={(event) => { setDevEvent(event.target.value); setDevEventOverride(event.target.value) }}><option value="auto">Theo thời gian</option><option value="none">Không có sự kiện</option>{LOCAL_EVENTS.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}{EVENTS.map((item) => <option key={item.id} value={item.id}>{item.name.vi}</option>)}</select></label></Section><Suspense fallback={<p>Đang tải công cụ dev...</p>}><DevContentPanel /></Suspense></>}
+      {import.meta.env.DEV && <><Section title="Sự kiện (DEV)"><label className="event-dev">Xem thử banner <select value={devEvent} onChange={(event) => { setDevEvent(event.target.value); setDevEventOverride(event.target.value) }}><option value="auto">Theo thời gian</option><option value="none">Không có sự kiện</option>{LOCAL_EVENTS.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}{EVENTS.map((item) => <option key={item.id} value={item.id}>{item.name.vi}</option>)}</select></label></Section><Suspense fallback={<p>Đang tải công cụ dev...</p>}>{DevContentPanel && <DevContentPanel />}</Suspense></>}
 
       {/* Backup */}
       <Section title="Backup & Khôi phục">
@@ -450,8 +451,9 @@ export function SettingsPage() {
         )}
       </Section>
 
+      <LegalLinks />
       <p className="text-center text-xs pb-2 mt-1" style={{ color: "#6b7f99" }}>
-        Soul of Meal v3.1 · Rương vị giác · Chợ Đêm Vị Linh
+        Soul of Meal v3.3 · Rương vị giác · Chợ Đêm Vị Linh
       </p>
     </div>
   )

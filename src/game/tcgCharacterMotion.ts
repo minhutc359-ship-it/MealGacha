@@ -2,6 +2,7 @@ import { UNIT_MAP } from "./autochess/catalog"
 import type { BattleFrame } from "./battle"
 import type { GameCard, School } from "./types"
 import { DISTINCT_MODELS, unitCharacter, type CharacterModel } from "../infrastructure/assets/characterSprites"
+import { TCG_IMPACT_MS } from "./battleVfx"
 
 export type CharacterMotion = "idle" | "summon" | "attack" | "cast" | "hit" | "fall" | "victory"
 export interface MotionCue {
@@ -41,7 +42,7 @@ export function tcgUnitMotion(frame: BattleFrame | undefined, uid: string, side:
   const before = frame.before[side].board.find(u => u.uid === uid)
   const after = frame.battle[side].board.find(u => u.uid === uid)
   const attacking = frame.event.kind === "attack" && frame.event.side === side && frame.event.source === uid
-  const contact = frame.event.kind === "attack" ? 560 : 140
+  const contact = ["attack", "play"].includes(frame.event.kind) ? TCG_IMPACT_MS : 140
   if (before && !after) return { kind: "fall", delay: contact, lead: attacking ? "attack" : undefined }
   if (!before && after) return { kind: "summon", delay: 0 }
   if (attacking) return { kind: "attack", delay: 0 }

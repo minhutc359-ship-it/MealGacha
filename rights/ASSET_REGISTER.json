@@ -1,0 +1,2779 @@
+{
+  "version": "3.3.0",
+  "generatedOn": "2026-10-09",
+  "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
+  "assets": [
+    {
+      "path": "public/assets/autochess/audio/8bit-battle.mp3",
+      "bytes": 226613,
+      "sha256": "cfaa294e44858bc61aa441fb1bb2026721e76293ba6e7a46dd2fcbec10e6cd52",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-autochess-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/autochess/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/audio/8bit-boss.mp3",
+      "bytes": 205504,
+      "sha256": "a196609befc45e6affd35207140e1b9b7d11d16453bd17bfd003002b76619570",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-autochess-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/autochess/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/audio/8bit-prepare.mp3",
+      "bytes": 314177,
+      "sha256": "cea394f41adbba1fc14ab2a0b6b2a5f66e60f7f59578b65059a9b642207b02b2",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-autochess-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/autochess/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/audio/8bit-pressure.mp3",
+      "bytes": 188163,
+      "sha256": "e38b32b8331239e8269bdf409f5589ff2395805bdb56c0100ce6328cef37e1ce",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-autochess-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/autochess/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/audio/8bit-story.mp3",
+      "bytes": 358061,
+      "sha256": "7d79471b1e80b33bb1894fc81b2f9179de663681c2e162bf09c7c803444108b7",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-autochess-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/autochess/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/audio/battle.mp3",
+      "bytes": 240818,
+      "sha256": "4714d578d2914abc7059c7a72625a2af4a57ea3b18ca73221bd966c10f8c9d5f",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-autochess-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/autochess/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/audio/boss.mp3",
+      "bytes": 217201,
+      "sha256": "cb9bcf97d53be9254e2946894fbf37bc414d518a3a5d3b6603a37293d9338c53",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-autochess-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/autochess/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/audio/prepare.mp3",
+      "bytes": 327546,
+      "sha256": "2e15218233677d564f7224c050a3ac146b445a77fc8495b64a99d1c835b67252",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-autochess-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/autochess/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/audio/pressure.mp3",
+      "bytes": 197770,
+      "sha256": "67b901c21718e4c666101e17ce1bb1a4daf885588a7787c8e949dd5daedb61c6",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-autochess-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/autochess/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/audio/story.mp3",
+      "bytes": 375400,
+      "sha256": "d99391aebb9bec0b0ad542068250e0da31dcfa080a4f01fb123bf968516d46e5",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-autochess-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/autochess/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/monsters.webp",
+      "bytes": 929036,
+      "sha256": "5c178c5fa66b8180e77441adcaebea7efabbbd0dd9be9238313c8c28efa143b5",
+      "origin": "AI-assisted art and measured sprite atlas",
+      "evidence": [
+        "dev/docs/autochess/image-prompts.json",
+        "dev/tools/build-autochess-sprites.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/movement.webp",
+      "bytes": 1005956,
+      "sha256": "6477612cf57442a34e9c6302d371963ee982605228bfc32083553af0023d7317",
+      "origin": "AI-assisted art and measured sprite atlas",
+      "evidence": [
+        "dev/docs/autochess/image-prompts.json",
+        "dev/tools/build-autochess-sprites.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/new-movement.webp",
+      "bytes": 933930,
+      "sha256": "653db4a962b3655647af5a49f1798aeb6725b4aff9def04ee325c39a868f428f",
+      "origin": "AI-assisted art and measured sprite atlas",
+      "evidence": [
+        "dev/docs/autochess/image-prompts.json",
+        "dev/tools/build-autochess-sprites.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/portraits.webp",
+      "bytes": 205230,
+      "sha256": "eceeb43faa16d8047bfd819bc72d50b1874b524d4d70dae26258b1fddb5906bb",
+      "origin": "AI-assisted art and measured sprite atlas",
+      "evidence": [
+        "dev/docs/autochess/image-prompts.json",
+        "dev/tools/build-autochess-sprites.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/roster.webp",
+      "bytes": 360364,
+      "sha256": "fa2e52d0f652e47df3db8c5ec648010e9cf24e670ee4d1ada8591abfd718f9d0",
+      "origin": "AI-assisted art and measured sprite atlas",
+      "evidence": [
+        "dev/docs/autochess/image-prompts.json",
+        "dev/tools/build-autochess-sprites.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/world.webp",
+      "bytes": 385358,
+      "sha256": "b54dc79f8aeb4e6b99ea7e31aa8f665816343ea568221bf905f0dcdc8a1dbc49",
+      "origin": "AI-assisted art and measured sprite atlas",
+      "evidence": [
+        "dev/docs/autochess/image-prompts.json",
+        "dev/tools/build-autochess-sprites.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/brand/apple-touch-icon.png",
+      "bytes": 47545,
+      "sha256": "89276b3131fb6675ebd6d4ebf0d16c3ff5196b5a106309dbfd3d2e9e0c5e3c4d",
+      "origin": "AI-assisted original brand; derivatives resized from project artwork",
+      "evidence": [
+        "dev/docs/branding/LOGO.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/brand/icon-192.png",
+      "bytes": 53113,
+      "sha256": "52356897acbc43e7d28d73c0c5b90f7766d81d42ecec6da0a79f9b6dea45c6e3",
+      "origin": "AI-assisted original brand; derivatives resized from project artwork",
+      "evidence": [
+        "dev/docs/branding/LOGO.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/brand/icon-512.png",
+      "bytes": 300105,
+      "sha256": "18c696cfa6e6442d2d44b27c0fcdd62a963fcf3e23df9a35b36abda88bbc7f78",
+      "origin": "AI-assisted original brand; derivatives resized from project artwork",
+      "evidence": [
+        "dev/docs/branding/LOGO.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/brand/soul-of-meal.webp",
+      "bytes": 64744,
+      "sha256": "e6433eb78518efd372f22f97fb80dea774ad9344f74898c1f932d40ba0eb9d94",
+      "origin": "AI-assisted original brand; derivatives resized from project artwork",
+      "evidence": [
+        "dev/docs/branding/LOGO.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rosterA.webp",
+      "bytes": 945964,
+      "sha256": "38de8faacd04428d39bda79b7db95d53b0adba866fdd9803c37a5581b5a25639",
+      "origin": "AI-assisted sprite art",
+      "evidence": [
+        "dev/docs/challenge-v322/prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rosterB.webp",
+      "bytes": 1125838,
+      "sha256": "815717d8a81821bd85561b427093710a98a500255723462f4803e98d97bf8c5a",
+      "origin": "AI-assisted sprite art",
+      "evidence": [
+        "dev/docs/challenge-v322/prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rosterC.webp",
+      "bytes": 1025512,
+      "sha256": "57ee6c2fcd7858c7fa62f76aa0671a9c7fc7b93c3bdce2b59b9e77becd9dec71",
+      "origin": "AI-assisted sprite art",
+      "evidence": [
+        "dev/docs/challenge-v322/prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rosterD.webp",
+      "bytes": 990090,
+      "sha256": "c4f0ab1667fefdcae6e2395cea41b0126f24c8c3b2cc9fdc8dcd8c6ceb457227",
+      "origin": "AI-assisted sprite art",
+      "evidence": [
+        "dev/docs/challenge-v322/prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/events/bangkok-street-heat/banner.webp",
+      "bytes": 177980,
+      "sha256": "4253bf8e8b3fcbcfd54cec2ed326e4488bb4f391e63785237bddd75a598492cb",
+      "origin": "Project event artwork; provenance declared in implementation, retain generation records before commercial transfer",
+      "evidence": [
+        "dev/docs/VIETNAMESE_CULTURE.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/events/christmas-feast/banner.webp",
+      "bytes": 196860,
+      "sha256": "241402810c856b6f4657b9b6bbe0b327ea3eaa1850efc75a3a085fe2077726c3",
+      "origin": "Project event artwork; provenance declared in implementation, retain generation records before commercial transfer",
+      "evidence": [
+        "dev/docs/VIETNAMESE_CULTURE.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/events/cooling-summer/banner-vietnam.webp",
+      "bytes": 219692,
+      "sha256": "a381f2d3639e5faf2c62242ebd275c6c9d999a90fae762f66ac57edb05cc94ba",
+      "origin": "Project event artwork; provenance declared in implementation, retain generation records before commercial transfer",
+      "evidence": [
+        "dev/docs/VIETNAMESE_CULTURE.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/events/cooling-summer/banner.webp",
+      "bytes": 195940,
+      "sha256": "82176d12b890fea7793fef8687cb3bfc6d330e87e4caa987445f3ef090bf7b34",
+      "origin": "Project event artwork; provenance declared in implementation, retain generation records before commercial transfer",
+      "evidence": [
+        "dev/docs/VIETNAMESE_CULTURE.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/events/dolce-vita/banner.webp",
+      "bytes": 199914,
+      "sha256": "2faaf5271814535fbb021d172fe5bb5c2253944010f388295889c24f478bcc9c",
+      "origin": "Project event artwork; provenance declared in implementation, retain generation records before commercial transfer",
+      "evidence": [
+        "dev/docs/VIETNAMESE_CULTURE.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/events/hanoi-autumn/banner.webp",
+      "bytes": 212142,
+      "sha256": "587aa317bb49727728559834550a4b9e9885b725607156d6048f11b015f435ba",
+      "origin": "Project event artwork; provenance declared in implementation, retain generation records before commercial transfer",
+      "evidence": [
+        "dev/docs/VIETNAMESE_CULTURE.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/events/new-year-feast/banner-tet.webp",
+      "bytes": 243530,
+      "sha256": "5819e6727df31840d5b2280a01ceaddff651a075364f880114c154ace28496b3",
+      "origin": "Project event artwork; provenance declared in implementation, retain generation records before commercial transfer",
+      "evidence": [
+        "dev/docs/VIETNAMESE_CULTURE.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/events/new-year-feast/banner.webp",
+      "bytes": 184048,
+      "sha256": "1b72d161defce41a1b6cb3d6dc1aa949946748b629060eead5fce51b906f1a9e",
+      "origin": "Project event artwork; provenance declared in implementation, retain generation records before commercial transfer",
+      "evidence": [
+        "dev/docs/VIETNAMESE_CULTURE.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/events/seoul-midnight/banner.webp",
+      "bytes": 199284,
+      "sha256": "fbfcd6f01766086c0dd4ded1c8eb4849fe870ec359afbe87bad362bec5f5796c",
+      "origin": "Project event artwork; provenance declared in implementation, retain generation records before commercial transfer",
+      "evidence": [
+        "dev/docs/VIETNAMESE_CULTURE.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/events/tokyo-matsuri/banner.webp",
+      "bytes": 187432,
+      "sha256": "b5f2275de6e034e7d32c01b3128cc77c906c6faf45bbe46b1ab30be66b95401a",
+      "origin": "Project event artwork; provenance declared in implementation, retain generation records before commercial transfer",
+      "evidence": [
+        "dev/docs/VIETNAMESE_CULTURE.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/food/full/arancini.webp",
+      "bytes": 121668,
+      "sha256": "4e2c908f53c71e55cdb6051e85cc57a1971ddee874eeeabc9186329436f83d1e",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-can.webp",
+      "bytes": 31732,
+      "sha256": "01b6ea2bfc255cc6be88b37df844a528e515a0061b6c99ffe694eb951bc80ec4",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-chung.webp",
+      "bytes": 100892,
+      "sha256": "b841a8e1e9e20edef6b9443917a2450026d27bdaf04d3ba60ccbfde41483d3d6",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-com-hang-than.webp",
+      "bytes": 79442,
+      "sha256": "01e23842024038d417e3650f6f067f1027a313b5c231edb2a1093b0e6c195416",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-cuon.webp",
+      "bytes": 29010,
+      "sha256": "f6908765f4d2edcdaf95a82aaf39f55cd42b5bb51b6b43918f9f9ae5e5dc32f3",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-da-cua.webp",
+      "bytes": 30562,
+      "sha256": "040a136fea6d3f628e4a798fac6d987ade40fd08c848fbcecf7891820e7eb1f7",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-dau-xanh.webp",
+      "bytes": 19478,
+      "sha256": "dbf7c624aa0d9b265a2086d334dcd8bf5ac895aa7591beefaecb2550e0f78b00",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-it-la-gai.webp",
+      "bytes": 25216,
+      "sha256": "a59eccbd7671b903ec8c1bb0a3225284a97cdb4a6136b4e82c4bac71cf977fae",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-khuc.webp",
+      "bytes": 27892,
+      "sha256": "b40fa0799ae6bdaf5a7335b19dcbfac2b9533733ee8c116c95eb1964816bf08e",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-mi.webp",
+      "bytes": 29664,
+      "sha256": "b2dc1c5cfed84650477e6296cd89d36412d459fd623647dac766680ae0d83f6a",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-ram-it.webp",
+      "bytes": 25252,
+      "sha256": "31046ee0ce8ede01074c4821d83933628095f331f032ba90e1ffd4e374b49589",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-tet.webp",
+      "bytes": 72466,
+      "sha256": "ff6b316b07170ec6cef52de654b9f3abab97143fe244a745561605cdf6670f11",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-tom-ho-tay.webp",
+      "bytes": 29804,
+      "sha256": "8aae515760d5a8dce81853293e7318d5d23166d1d902c9908763da48d074ce3b",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banh-xeo.webp",
+      "bytes": 30046,
+      "sha256": "1e073e4a102661792a847058502a2c5cb5cf5c43e5cf92674d5da5f2f243be1e",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banner-tay-bac-com-lam.webp",
+      "bytes": 65992,
+      "sha256": "b239b900360e8aebf443a898c18d1a67758aa1a0da7437c3e86a0c8afa924d0f",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banner-tay-bac-ga-nuong-mac-khen.webp",
+      "bytes": 83226,
+      "sha256": "0b9b03ca7151d520f776339163177c5c24e5c5ffd8b040a6c7db2a022bed9632",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banner-tay-bac-goi-rau-don.webp",
+      "bytes": 72186,
+      "sha256": "edcaeb172503c273e1a2320f3af1d0e0c6bdbf099709486a65a200bb32822c61",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banner-tay-bac-thang-co.webp",
+      "bytes": 70558,
+      "sha256": "4ace8bd232fda0ca688dc0439df830ab1ed094ec2401eb4c1308d23a51790d6a",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banner-tay-bac-thit-trau-gac-bep.webp",
+      "bytes": 58386,
+      "sha256": "19af13287080243e3a177bd9d6701a38185c905cdd0a222d1ad8968cb2dd234f",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/banner-tay-bac-xoi-ngu-sac.webp",
+      "bytes": 75358,
+      "sha256": "4b74ce546a643de6dfbc3f2357f3598785699caba7981387d5bdda6259d203f2",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/beef-wellington.webp",
+      "bytes": 88324,
+      "sha256": "b63171274f6e6faa9f18f9d83db422ea82ede58e1bcad9c121b583153f25ec95",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/bibimbap.webp",
+      "bytes": 40422,
+      "sha256": "75f81bfa0ac7a309e11d4fc806ae6dc5b32d1ec6943aaf42a8a716510d10a8e8",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/bingsu.webp",
+      "bytes": 62226,
+      "sha256": "49d9875a2badb0eef92df6877c64250475243832cc178ab5a722a0fc95704b3e",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/bistecca-fiorentina.webp",
+      "bytes": 46464,
+      "sha256": "c78055f362c999967f2501bc5c8236994a8629225dc0a1a2695ed04a930cba59",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/boat-noodles.webp",
+      "bytes": 75132,
+      "sha256": "4d84a9dfc18c67880ea03f724400e243dfffc4dcbacf0d9c7ce51fff35c3babe",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/bun-bo-hue.webp",
+      "bytes": 31272,
+      "sha256": "9c3c45a4256aa898adcbb36f2d2ca49504e574b05e7716230bc161b085ee7c6b",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/bun-ca.webp",
+      "bytes": 29844,
+      "sha256": "d567ef0e4d06bd1ef5b23ae617e94c9f93ea21004daf945c60e4758d25fee239",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/bun-cha.webp",
+      "bytes": 32874,
+      "sha256": "b0c1e07c4b01664f51f4e93c74c0202481249aee7e20c50479243b38e59c4b21",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/bun-dau.webp",
+      "bytes": 32224,
+      "sha256": "5deaa38ab6ecc1d9bd6289ba78cfaa536811f195dc9a3e1251ce965525075a1b",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/bun-moc.webp",
+      "bytes": 30620,
+      "sha256": "631934d25e61ae09c7fa38945fbf85a198690a12d894f7d88685c872e59e0b2b",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/bun-rieu.webp",
+      "bytes": 31638,
+      "sha256": "7c0bedfceeebd9fcefbc18ff3b192ec85bbcfc778ced9a654c993d1912fd3040",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/bun-thang.webp",
+      "bytes": 65480,
+      "sha256": "13e4d6980f7e15bec0db3b913602d45b56c7b1f8897701f7aaad76dc266045c8",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/ca-phe-trung.webp",
+      "bytes": 41350,
+      "sha256": "3d083726e8d17813815e0fc41adb5efb2edeba6193902628634ae8af20e78d11",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/canh-mang-mien.webp",
+      "bytes": 112470,
+      "sha256": "3a21cd4e5a1e9ebf652c9accc86f523a5d9805a409d18d9ded80a39dca95fcad",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/carbonara.webp",
+      "bytes": 66118,
+      "sha256": "30fed9d0da47806aeab0d4deab6c0218e5076a4e2bff27aa047d22ce58c878f1",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/cha-ca-la-vong.webp",
+      "bytes": 73166,
+      "sha256": "8fa0747d7417374ab5aa7454342e441c1c35df7bd1e68df50049bafd59f1f04a",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/cha-ruoi.webp",
+      "bytes": 121500,
+      "sha256": "c1e85926e5cf5489397a5c816a92a5ba712b342d6c81312f88fe01c6d76be8e1",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/chao-luon.webp",
+      "bytes": 29596,
+      "sha256": "e807f2b57bf2f7eb85059761cfee1aed66f84d53fbc27d3a334c42327d35ea63",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/chao-suon.webp",
+      "bytes": 27566,
+      "sha256": "e12ad721f7618c64c689cb7b2b60743259d9ffe50e767a0c1182f37136de801b",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/che-buoi.webp",
+      "bytes": 119478,
+      "sha256": "f100bde65ee3cc51d53ac28a1514bf28af035e5c62b1fd65df8688819c7bc38c",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/che-khuc-bach.webp",
+      "bytes": 105768,
+      "sha256": "8eab8848909ac923f58146dbedb549c3a60caa45cc79518c4bb75542bbd931a7",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/che-lam.webp",
+      "bytes": 28342,
+      "sha256": "a4db92571f7199fa2fa161840d885bfc93c3a2ad66d9ffa047f0e4d79ad98d69",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/christmas-pudding.webp",
+      "bytes": 62630,
+      "sha256": "7778843ea3ee4512e120158b64eb65a54221a8a92e9743467daa8887fb492105",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/classic-burger.webp",
+      "bytes": 38126,
+      "sha256": "c4fa5d998d7e2aff85d169dde475c2ac176f56e6935c7b082f3e3bb9e18fa397",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/com-ga.webp",
+      "bytes": 30560,
+      "sha256": "113dcfe631261a1300a7b4900b5c30aca076a34f1e5384889b4dfe687243e9a0",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/com-hen.webp",
+      "bytes": 32208,
+      "sha256": "0ed1bb0fed2aee05e80dc957092170407ea1a8ae403c2572fa6c42991c32f609",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/com-lang-vong.webp",
+      "bytes": 48342,
+      "sha256": "45ee5289ef1e91681d671267791e17e2f2d12c5985de82f21cd33dafa352bdba",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/com-nieu.webp",
+      "bytes": 28522,
+      "sha256": "f860269bf6a3af0786ea6815fc57055a21151fbc7a2d380a35ba31fdbb049990",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/com-rang-dua-bo.webp",
+      "bytes": 32468,
+      "sha256": "28a8993b50c2b2bfbb7ab8eba5d8bfe5990536d113fa40324336a5966e8dd2a6",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/com-tam.webp",
+      "bytes": 35322,
+      "sha256": "0bb8cf94fd7ddbae2a8e2c54d4187382dd07106ae6561ccb5f5f2b41f0433f3d",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/croissant.webp",
+      "bytes": 39086,
+      "sha256": "fdaa630d1316ec59f77e768167b3b082227bc848a9f05ffb574a5cb1bdf24dc5",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/dua-hanh.webp",
+      "bytes": 88824,
+      "sha256": "b7c1cc5813547b560315231602dccf11717497d8dffe0a3edebec75f9fe69ee5",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/duck-confit.webp",
+      "bytes": 39290,
+      "sha256": "69b8b0fe9ea6bde5252a8d9d0199e378427d298c7ae4738c5d4123cfc5b62905",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/french-tasting.webp",
+      "bytes": 37584,
+      "sha256": "22744a550c2f606923e1f4a3b4f03f7d6d766bf79c0681028b970597a2a108b5",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/ga-ran.webp",
+      "bytes": 30844,
+      "sha256": "8ce978ac6241de4c5aca526edaa7205d726cb3e8f9dd686fae07d7f7cdcbc9ee",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/ganjang-gejang.webp",
+      "bytes": 120456,
+      "sha256": "ce898ddc391427c4917a14df17439c4122177c45b6b45334ce5e503b3cd18cca",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/gelato.webp",
+      "bytes": 64140,
+      "sha256": "f9caea6cf33fc18160a2ff960b6a75ecd29ed4d4c651399ab7b86a53ea7d58b4",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/gingerbread.webp",
+      "bytes": 70738,
+      "sha256": "bec4a0f036ad16ef7fabfc5966d93acabc11707c3ad1eb4ae1128f4ad7e503d7",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/gio-xao.webp",
+      "bytes": 115614,
+      "sha256": "700f041318a51e4994ee8304875408a27d83e4a17104f7f12f2f31eecd4d8a42",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/goi-cuon-tom-thit.webp",
+      "bytes": 95686,
+      "sha256": "17a640f53661830a42c756818b01997504d46c120ed4ae5a082e16962ec751a9",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/gopchang-gui.webp",
+      "bytes": 137748,
+      "sha256": "50e104a252271ef6f3380c188e71a99d856c11045be17ba89322c1d2933da1d8",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/green-curry.webp",
+      "bytes": 76170,
+      "sha256": "fa7e97c566896670e147d4ca51ea0b4fa5a38d91bef0b5d0bb97ad4df1b5b396",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/haidilao-hotpot.webp",
+      "bytes": 46898,
+      "sha256": "0de0cdaeb6d87d4905cab39389b0caa0faf2a1f6e07eb49bffce45289519a24f",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/hanwoo-bbq.webp",
+      "bytes": 45334,
+      "sha256": "7335d0e1cab21a44515a5affc0d3eb30f2a6ac5cb9881376b403359dbe555d92",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/honey-glazed-ham.webp",
+      "bytes": 88086,
+      "sha256": "23dcb213027798c63220a5895c9c00fe1bbf2c6749d7c5d560b1bdb6c0711ec1",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/hot-chocolate.webp",
+      "bytes": 74280,
+      "sha256": "9692f2b762d37fdf0b827d7bd0dff034e0437f97e3cedf11e72524dcdfa9d70b",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/hotteok.webp",
+      "bytes": 78152,
+      "sha256": "c9d0729721ee7d0329a53aeacbfd5a8e81bf3f3c9a73757751224517e4e8218b",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/jjajangmyeon.webp",
+      "bytes": 72116,
+      "sha256": "62273cebf637e6d59439180f3cee23c2643672c1875151210b4d074c7a8fbc4a",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/kem-bo-da-lat.webp",
+      "bytes": 89900,
+      "sha256": "4b278f7110e181be64820d853995364e810283efb64ca90d452d5e28d9ab9ecb",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/keo-cu-do.webp",
+      "bytes": 29234,
+      "sha256": "a369e8af6a22807885feada965f207f2087288a213f1868f2d18c7186bf9b38f",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/khao-soi.webp",
+      "bytes": 120876,
+      "sha256": "3469e6a1c484a9974a720927ae2e11acb20b0bb4fdb1969e306f2c7e332b5509",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/kimchi-jjigae.webp",
+      "bytes": 64310,
+      "sha256": "b60a0cf2b3d4a0009cbc396358599f12cabb48dbd9f13931f3d48c0e34ec971a",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/korean-fried-chicken.webp",
+      "bytes": 82348,
+      "sha256": "ced3470e46b3fe5e4107945d9a27c30f3767bf289e81ebe3a4d158dc3c38a6f0",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/lasagna.webp",
+      "bytes": 38424,
+      "sha256": "98cd7ed4ecec733b6923461491040d598c0c65c302e4b9503cbff2007d97e98d",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/lau-rieu-cua.webp",
+      "bytes": 26568,
+      "sha256": "041855de2033896541d4f98e9b73a969ea699fdbf984c74fff167b5812d1a7e2",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/lau-thai.webp",
+      "bytes": 28474,
+      "sha256": "ea0a312f2ea6f386bcc6c319f30f18a362a6715ccc44f4136ca5fc70f87389f1",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/mango-sticky-rice.webp",
+      "bytes": 29804,
+      "sha256": "546c88740add968a1ed854c5dcebc085aaa3afc0134ac12dbf7b2144b8861547",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/mashed-potato.webp",
+      "bytes": 56466,
+      "sha256": "51265bd43310c7b0c88eb7ddef0445bd786a1d1678953ef9a7cdae6f0cd07247",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/matcha-parfait.webp",
+      "bytes": 44894,
+      "sha256": "c05ccf59a44157d745f6241f1de8942439af07f03300fe8df49ec63bb133fff5",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/mi-cay.webp",
+      "bytes": 30086,
+      "sha256": "d2784e3e8682beb24ec5d3ed36e1f4c5941cde1347b2b8b7ff20329dc835b6c7",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/mi-van-than.webp",
+      "bytes": 29838,
+      "sha256": "3a4ca83a2acd32feebd416d02a82603e587ad0b2040c121802242cce03a8dd41",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/mien-ga.webp",
+      "bytes": 28780,
+      "sha256": "e6036ea3111084967dea62ed04d0f5271d4b76058b69f211ba496fa484e08b8a",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/moo-ping.webp",
+      "bytes": 74234,
+      "sha256": "fe562ce0d5175bef1cb7e8e7bc58ef9275be208428b498f7c86044f3b2e03982",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/nom-sua-xoai.webp",
+      "bytes": 136114,
+      "sha256": "f4a6dccd6a2572c57f7065eadcb96e3fb63d3111eea59bde0f98e62b424203dc",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/nuong-bbq.webp",
+      "bytes": 31544,
+      "sha256": "e124c668360129ff923435a874e8be06af676b1c5b880e6a213147be89e07652",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/okonomiyaki.webp",
+      "bytes": 73212,
+      "sha256": "5f99945255e75ec12b77a8a28d3283387520a45709e8e7b29e84905235033120",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/omakase.webp",
+      "bytes": 39408,
+      "sha256": "4e83c1624a8edb84f97e9df77403470dac5a326f6f3ffd200c7f66a788534c1d",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/ossobuco.webp",
+      "bytes": 78794,
+      "sha256": "b99e075438ea7f17ee95e290e252d0989fb388ba953901b98ae667ebe65e36bc",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/pad-kra-pao.webp",
+      "bytes": 74994,
+      "sha256": "465d34b79f0e7c153d6d248ed556492ca72c013839495447f366c6565417ef49",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/pad-thai.webp",
+      "bytes": 40138,
+      "sha256": "85b389bd0cb9a24c8a6338a30d96ff3f436351a582216be0cbdfe7f6da56df81",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/pappardelle-cinghiale.webp",
+      "bytes": 142294,
+      "sha256": "9bf56ec987e3464f739eddab236a1b52e2d057a084ed38fc06352ea0020e6413",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/pasta.webp",
+      "bytes": 28154,
+      "sha256": "36b8606fbc9fea9700b313bf46c74a6702f806b9b2e49455d585e7b1ac466da0",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/peking-duck.webp",
+      "bytes": 38510,
+      "sha256": "ad9b73fae1e3fea0971d94dcdd654638ac5bd565ed64ec1709cd2553da49df8e",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/pho-bo.webp",
+      "bytes": 30636,
+      "sha256": "5d0a15e9c9ad46850fa99d9f0e6a65d2c6d2b93a6bc313b6dbcb89b1ece8f352",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/pho-ga.webp",
+      "bytes": 28982,
+      "sha256": "22fe07c0596d60ffbaab3f8a313ad9a6b743d948d6c08960de590ae4cada8e6d",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/pizza.webp",
+      "bytes": 31900,
+      "sha256": "9f245d04a2ad49002ab59aaf64eb3636a181fad26d8a05a0a97db7706b095d1e",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/porchetta.webp",
+      "bytes": 170442,
+      "sha256": "5d57e21781e9809498c7545c6ba92b178bd810f7ead9dd0e663b39fa5c7b3024",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/roast-turkey.webp",
+      "bytes": 93730,
+      "sha256": "7635a3129a183a821c757599a150255e96edd5ae1404923e4b107b45acda7f66",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/saltimbocca.webp",
+      "bytes": 124868,
+      "sha256": "99a1d775844731a9f052aed9638e77d6165e24495e141d5d44534d681d60ecfd",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/samgyeopsal.webp",
+      "bytes": 45792,
+      "sha256": "363d35fed55ca20de11ade945b3945bd688c2d7862f5c2d190a92c3783931999",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/shoyu-ramen.webp",
+      "bytes": 40296,
+      "sha256": "4533071569ccad658132644d88b30b292d4ba93d39f7f62d636f2fde43e4cd8a",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/smoked-brisket.webp",
+      "bytes": 44220,
+      "sha256": "3c9e0ad1cbfd3877e87bd8dbdf4d57713c4360147c1a8eec5e7a61f3d216826e",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/som-tam.webp",
+      "bytes": 71898,
+      "sha256": "fdf562ccb14cca2056999880b52ad2ba68477c4958fbfcdfaf8896143d2534fd",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/sua-chua-mit.webp",
+      "bytes": 101612,
+      "sha256": "a4170af27ee4414a9c910b72ac25718061ceb826703f223b11de8d62b29d15f3",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/sundae-guk.webp",
+      "bytes": 128466,
+      "sha256": "da18624bab08dcbd0e36bd7c7e9902cb95c6a8b8ff2cfb5d17bab7b522a42e97",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/sushi.webp",
+      "bytes": 24596,
+      "sha256": "3bdf7352a6dea800116b00a266345c49db32143f2296be1b689e6d91179a8a7c",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/taiyaki.webp",
+      "bytes": 116658,
+      "sha256": "02b6d85aa72b52c35e2b74150ceeb680304d4baa966f58fe614066fcc1080f03",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/takoyaki.webp",
+      "bytes": 65270,
+      "sha256": "c3f431b6fef03c397a503a5bd01d3f1303cab9d1e38eaa360043f831550c49ab",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/thit-dong.webp",
+      "bytes": 112946,
+      "sha256": "1e5e1e1870f5d6e69c696b8c678e5c723ac65fe20434b06efa8da17a8b8a3618",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/thit-kho-trung.webp",
+      "bytes": 108140,
+      "sha256": "c4242a10d92c953c72d704025cb14e3c58c67f4893c4e78ecba0f50984ed4e7e",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/tiramisu.webp",
+      "bytes": 80628,
+      "sha256": "1289aa0e4f78135ed7542495a5e05f2f727b874765413cb4af9e3ba960b79e94",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/tokbokki.webp",
+      "bytes": 25424,
+      "sha256": "ef295b80b245fa136cc4fb8279039c98f13f3d333a0b9d2286098c37f707f96e",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/tom-yum-goong.webp",
+      "bytes": 37648,
+      "sha256": "46b472519adebdf8571147bacb3ff64f474c889a3c1ffe823e3b7a1acef048c5",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/tonkatsu.webp",
+      "bytes": 80026,
+      "sha256": "398081381a8608e2667390603a0815942e3c548d3c4dc0e97d68fab1f4874058",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/tonkotsu-ramen.webp",
+      "bytes": 73444,
+      "sha256": "938b14c2f5c5c68fb17c93a17c67bf08398336ffcf15595e252f65deb3a04716",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/truffle-risotto.webp",
+      "bytes": 39980,
+      "sha256": "68170a151352125fae716ee27b8885defeeabcc1c1e26c5cf8519dd9b916cc47",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/unagi-don.webp",
+      "bytes": 37502,
+      "sha256": "aa56e097f5d3c14ee8120b98c4d4ea59a4e9beae76204c247a662a673514f44a",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/vit-quay.webp",
+      "bytes": 28594,
+      "sha256": "e80568dff19d890cba0c5b20fa2d3f011654c99478567cd5798ceee33b8ab56d",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/xiaolongbao.webp",
+      "bytes": 29818,
+      "sha256": "0559e64c1126dc8b83e040a16903cdaadf580e29f76bf8144effdd8f37ee7f16",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/xoi-xeo.webp",
+      "bytes": 55272,
+      "sha256": "3c47cf28bb4aee842f2aea7bf126c8bb483683bf4771b4ab815be433263f502e",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/xoi.webp",
+      "bytes": 31240,
+      "sha256": "6fc6e558207a9a29b2f819f5f674957643ec98938d050d3b0005e8ca93e8f054",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/yakitori.webp",
+      "bytes": 80868,
+      "sha256": "612d4d73eac6867ea42a6e0810e1dcf5bb873ff37047ea32dacff036c4a0dc22",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/food/full/yule-log.webp",
+      "bytes": 92240,
+      "sha256": "78d1d2a4a3fbc80d08dd2268648569405ea9f9e3c62712ae1547e976c91cf657",
+      "origin": "AI-assisted dish art; initial 30 cropped from project atlases, later additions recorded by release",
+      "evidence": [
+        "dev/docs/art-direction/README.md",
+        "dev/docs/PROGRESSION_ECONOMY_V292.md",
+        "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/audio/8bit-battle.mp3",
+      "bytes": 265693,
+      "sha256": "b5ece04f1c09345381c98e2bbff8738be16d54c4882aa00db9fdfc08acb754c9",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-game-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/AUDIO_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/audio/8bit-boss.mp3",
+      "bytes": 230164,
+      "sha256": "d9bb921562461c122e4d6f85a1f33dbdefc786cc9fd24452d3752d1349bb6682",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-game-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/AUDIO_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/audio/8bit-story-mystery.mp3",
+      "bytes": 240831,
+      "sha256": "13d12cc607862e7b099edd34071cc39ee04db798da03ecfa5613a0e6546d5287",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-game-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/AUDIO_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/audio/8bit-story-warm.mp3",
+      "bytes": 203003,
+      "sha256": "5f6fb9518c12ba5b4b39b8c8603645f3a450e92523207d24e7d9d1d3b59558a0",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-game-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/AUDIO_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/audio/battle.mp3",
+      "bytes": 285331,
+      "sha256": "d3e25bc26b980413a2f77317eaacf32dec8bee53c9c3a25f9c4e611a8a353dfc",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-game-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/AUDIO_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/audio/boss.mp3",
+      "bytes": 244578,
+      "sha256": "d3319599636ed459ebe6df83e4334ba63d2b9c4c34e5c34ce14b18b4bca09f27",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-game-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/AUDIO_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/audio/story-mystery.mp3",
+      "bytes": 256707,
+      "sha256": "8de1f0d2a38db6985191d91a01a05ac4dbf7c627f38d2e4529066b16bebab41b",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-game-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/AUDIO_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/audio/story-warm.mp3",
+      "bytes": 214073,
+      "sha256": "78fa4bfb1c14129ea326ada94730f745f8f18b63bc8a7870522b135c61cba3df",
+      "origin": "Original procedural composition",
+      "evidence": [
+        "dev/tools/compose-game-music.py",
+        "dev/tools/compose-retro-music.py",
+        "dev/docs/AUDIO_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/boards/home.webp",
+      "bytes": 175818,
+      "sha256": "62dd5d9fa10ecdd48a2f50e5b6b031c8a91293aead3f4b0d7e42b83d73024862",
+      "origin": "AI-assisted original battle backgrounds",
+      "evidence": [
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/boards/street.webp",
+      "bytes": 181578,
+      "sha256": "3e84b13ef6e969f1b7ef26b30d6c9659970bd281d6d633d15912e2d54d402438",
+      "origin": "AI-assisted original battle backgrounds",
+      "evidence": [
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/boards/tet.webp",
+      "bytes": 167602,
+      "sha256": "86ba19078e163a66a72f70d5ed7e8b54ba7c669c497f6465bb911062cc444d77",
+      "origin": "AI-assisted original battle backgrounds",
+      "evidence": [
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-banquet.webp",
+      "bytes": 114482,
+      "sha256": "b829938f9fb04ba7a322dbb7f8f2915c3e03b054d00384adbe34fa5b72c64261",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-cartographer.webp",
+      "bytes": 106200,
+      "sha256": "dbe8b39048c899dc14e9405f6f23e6ff3b661c461c9f7c829b6849b916d62b4d",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-cook.webp",
+      "bytes": 118852,
+      "sha256": "82621affb7367e8e1b697cf590f88ad65f996669d43941339ad6e292d8022f65",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-ferryman.webp",
+      "bytes": 88276,
+      "sha256": "bd59d5fd55e1abed85f130262448682edcb05d1220cb2c42342e9cddb2ceba1d",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-flare.webp",
+      "bytes": 107300,
+      "sha256": "ed5601eae61bcf86585613145f2e07eeff5e7d5289844f53700990cab8d978cc",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-gardener.webp",
+      "bytes": 122564,
+      "sha256": "6c23c3d4c68e08d0552f6676b2b0db28613dfcee5dfdfc1f1a9fbeb087a679b1",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-herbalist.webp",
+      "bytes": 120148,
+      "sha256": "68296b13a056eb042c298db3865b4c157dcb01d5dd3dba39185fe70611232f90",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-letter.webp",
+      "bytes": 128340,
+      "sha256": "ad97fe8b864ba94dde69bfb73bb51191faf5415f60ec850b3d03822aa3cc263e",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-map.webp",
+      "bytes": 115436,
+      "sha256": "f295b5f4c2955d9e40eef0044f5e96cec51a959d224f22145ee371912e89d167",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-pastry.webp",
+      "bytes": 87158,
+      "sha256": "12986ec6926eb695b2d9aa6c0814953a18e4106b521f79301c96df9803b53148",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-porter.webp",
+      "bytes": 111346,
+      "sha256": "e0580faac06d8a327c1a769b61964a68f6ed9e1f71d91baa12b193fd31baf9ea",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-rain.webp",
+      "bytes": 129048,
+      "sha256": "2a93b5cd81cc4d659ab33734c257a31b78096b13480c7803dbd9d892db9bd24b",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-scout.webp",
+      "bytes": 99574,
+      "sha256": "d572418b42f2fab4c969d1b531067266ff500d541f28c422a950c924deaf2ff5",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-smith.webp",
+      "bytes": 102606,
+      "sha256": "852b362f8ad416f9fa975425963166566f143da201e52896d9479493afad50db",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/caravan-thorns.webp",
+      "bytes": 113840,
+      "sha256": "f8bc75b06bb0fbf833852c8d070b6587c2cd3b2edae9cdfec7548f536c4d9bb1",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/dragon-breath.webp",
+      "bytes": 125170,
+      "sha256": "b3db045e4b79035a52a0c59845c9ff43a6c54a596363c1378faaad402d717c20",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/family-table.webp",
+      "bytes": 99584,
+      "sha256": "795ae17130fdc513473572a222eb884aeea7fcd5ecc544a6be5245a6b8b8e27f",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/forest-oath.webp",
+      "bytes": 120278,
+      "sha256": "fa5dc1e0543318bda0426b2ce7efd08dbf2e94a803a46721265972b79e501f93",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/hearth-legacy.webp",
+      "bytes": 88906,
+      "sha256": "47053cfae44458b2f2cb842d0008ad1f40919e0f38d7cb14d01e9b8691cd1413",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/herb.webp",
+      "bytes": 93494,
+      "sha256": "1aa71be870111b20ed0660d777704bf396ad7113c1e2e076e61464188f0ab561",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/iron-ladle.webp",
+      "bytes": 85152,
+      "sha256": "d924ba67cd7d2eb6d1e79454fbe14788c47f613f18e2d7c859934385474dc4cc",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/last-flame.webp",
+      "bytes": 60038,
+      "sha256": "18691958b2a67a57187fcf80da1d3a11658b7e50d18ea8ac1e93348980b4b9aa",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/moon-banquet.webp",
+      "bytes": 112072,
+      "sha256": "04b07191d5085933af75b5156f94e0b2d8acfaf85e141c2ac6c6b253966bb77f",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/rebloom.webp",
+      "bytes": 132292,
+      "sha256": "b60bb0a87826c7b856142151df0b83231e2f5c016fc34c0b924596f0fa1eab89",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/recipe-scroll.webp",
+      "bytes": 105256,
+      "sha256": "c814b6fbf3109963e7a6569315d94e2172c102d056fbdee8be762f4719fa63eb",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/sea-memory.webp",
+      "bytes": 114884,
+      "sha256": "b5aa1d234df8724621a9d7738c32966375a36502bc4ddf352c46ccb66d5a02a3",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/seasoning.webp",
+      "bytes": 105958,
+      "sha256": "c89e447ca41d130b60694a571c787c211115256ddaee503d5f9560148d8c65ee",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/spark.webp",
+      "bytes": 99626,
+      "sha256": "81568407cd7bc5faa7085d6ce0ce5d7f42ec90597c4951a09f167838096048d5",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/spring-feast.webp",
+      "bytes": 116856,
+      "sha256": "be998ddd90e9a355976f837e8032ee04ad906955f0c0a8a7265302623688d34b",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/starlight.webp",
+      "bytes": 120758,
+      "sha256": "c0adfb89774271c5347994c3321425d8f455d35a4a7f7bd8ee9936452748b0ef",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/sugar-veil.webp",
+      "bytes": 111660,
+      "sha256": "cb94bbd2280485ab71f5ca6b22088220dfb0f54fa002bee9c7835655ba864ec1",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/sweet-dream.webp",
+      "bytes": 86936,
+      "sha256": "44210d3c6c06ac2845ea9e2a882f8ac888de0331c1e4766a4d5e4d2efce0fd87",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/tea-break.webp",
+      "bytes": 105928,
+      "sha256": "7f8d2af01012e6a32682d72f883993b97b15145a5d43fd4f248ef9a6dceea34a",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/tidal-cut.webp",
+      "bytes": 129154,
+      "sha256": "700173359706c261fff9fea2bc8c613deb388cbb47a0f5e0aa48603e73825ee3",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/wok-storm.webp",
+      "bytes": 126636,
+      "sha256": "9f26fb353e0c08e0c00a0270a74804c30111009bc8d2f82608f137fc91ebcce4",
+      "origin": "AI-assisted original card illustrations",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json",
+        "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/bach.webp",
+      "bytes": 65210,
+      "sha256": "7ba506cae21fafbaa80164aed366c8db3da92963eafbbf41fa42d7a64084d708",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/child.webp",
+      "bytes": 86432,
+      "sha256": "1a454ab615fae2260d72a5eb6fba677ea4e2ce83ee13382436fe0cb0b0f71473",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/conductor.webp",
+      "bytes": 66322,
+      "sha256": "c2080d19fc211209150db2863b818ff4cbcaa2ec1ca15bfef988a61cf3c377d3",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/fisherman.webp",
+      "bytes": 107922,
+      "sha256": "0425a9f16fd58636a08f258f6decf876a0298938b849b8d26a16e6c90df1de87",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/grandmother.webp",
+      "bytes": 82352,
+      "sha256": "e66bd923208fcc34954f1fc517bb10f0830134a4d95cb65c1ba9a7ced6228e84",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/guest.webp",
+      "bytes": 86886,
+      "sha256": "42a07b91e921e7d95ed9d0e168b26418db071a19f93e1943c2fd5de74b3f28b9",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/hai.webp",
+      "bytes": 80610,
+      "sha256": "c5dbf9837eda0faa07fdffe6c3007cb9b98fb8eefb3bb2007ed15967d242e206",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/hero-command.webp",
+      "bytes": 75358,
+      "sha256": "203a7e3bbf1814fd5e025c7bc6d461021870e7325da7ed316c6d3d40dd225504",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/hero.webp",
+      "bytes": 73102,
+      "sha256": "b5fb177f27ae01f20d39b449793fe03205a6eb18f43b1b3362bd259bc0e76b31",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/hieu.webp",
+      "bytes": 80584,
+      "sha256": "19e9439cb99cfac51116020146cba1e8da21f1f9b3172e607d572eb7bb16a6ff",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/la.webp",
+      "bytes": 92090,
+      "sha256": "9fdd08a4a35ce15655ef2af08ec451e9bca8127d6f24d2316804dd4127b46f9b",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/lien.webp",
+      "bytes": 80792,
+      "sha256": "280a66bbad0fe71fe046e5a941c78941392fedd7e779e9d54495aac1364f3d8a",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/merchant.webp",
+      "bytes": 73950,
+      "sha256": "a02905a70e5c6f7d7f542c38c73967c86a76bc60dfe4afeb7a89dd3440e9acbc",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/mist.webp",
+      "bytes": 117590,
+      "sha256": "02ccc71b64c0ad154505e4e02f3663c80dbaf0fd11bcbce55d515baafa8e017b",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/moc.webp",
+      "bytes": 81654,
+      "sha256": "bc2e66fec30bd2b04e99d7127d5a8340199501dccea8b25f9b47c6c43f426e7b",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/nhien.webp",
+      "bytes": 91774,
+      "sha256": "ef90a4d7595c85e7d30bd0254cb089b97aab4058a92c4874eeb87108d7c37eff",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/sailor.webp",
+      "bytes": 82360,
+      "sha256": "7113fe4fd4ca0d399688b9469ef5f1b829c16175bc8701c250bdf685f3e62bc7",
+      "origin": "AI-assisted character art; style reference recorded",
+      "evidence": [
+        "dev/docs/anime-asset-prompts.json",
+        "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/fx/fire-impact.webp",
+      "bytes": 111298,
+      "sha256": "7697568c7e602870bb7d7388b530ae03b58c5ad6a7c678acb70f5354cd55b920",
+      "origin": "AI-assisted original combat textures",
+      "evidence": [
+        "dev/docs/COMBAT_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/fx/recipe-burst.webp",
+      "bytes": 102236,
+      "sha256": "81d7d9e0994771362fa11960ffc5fb0b325789267ed2efad7798a72bd1be525e",
+      "origin": "AI-assisted original combat textures",
+      "evidence": [
+        "dev/docs/COMBAT_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/fx/shield.webp",
+      "bytes": 103944,
+      "sha256": "dafe304f14be5570b8f8602a441115d932e4ef16174deae247f8be2d82fbffd0",
+      "origin": "AI-assisted original combat textures",
+      "evidence": [
+        "dev/docs/COMBAT_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/fx/water-impact.webp",
+      "bytes": 137242,
+      "sha256": "84ced612ca8b214ba8fd23af056b05870033a3b3ec784695840409722a1ec8f3",
+      "origin": "AI-assisted original combat textures",
+      "evidence": [
+        "dev/docs/COMBAT_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/map/meal-world-map.webp",
+      "bytes": 412492,
+      "sha256": "afc3b8b919b95c21b77ab76badbcc304483f9e3fec07f85d31ec999585b6a23c",
+      "origin": "Project world map; generation session not fully archived",
+      "evidence": [
+        "README.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/tcg/spirits/ember.webp",
+      "bytes": 109396,
+      "sha256": "cee21e40ac084cf0417398258e538c0135bd10f6bbbfec68930b71db191a460b",
+      "origin": "AI-assisted original flavor spirits",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/spirits/grove.webp",
+      "bytes": 101306,
+      "sha256": "e55743442c8772766127b3d0af327c1d090ef41cc49d3a348eb616ba15927958",
+      "origin": "AI-assisted original flavor spirits",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/spirits/hearth.webp",
+      "bytes": 102408,
+      "sha256": "96a438a0defb500bf944ab1d624c72592687e80bf0f28d940b7f7862da3f5f4c",
+      "origin": "AI-assisted original flavor spirits",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/spirits/sugar.webp",
+      "bytes": 95206,
+      "sha256": "1f2e7fc3504bc73a9c37d30f4b0c094db08e876523c570ca113dbb2bf81c4cb8",
+      "origin": "AI-assisted original flavor spirits",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/spirits/tide.webp",
+      "bytes": 135660,
+      "sha256": "da27840b1cc686df38403591d3ce604e11555e4e322317a150a72b03cd8eeaee",
+      "origin": "AI-assisted original flavor spirits",
+      "evidence": [
+        "dev/docs/spirit-arena-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/story/bai-choi.webp",
+      "bytes": 139168,
+      "sha256": "3e55550a9c46a4274705e3599a810e4ceb6af834417a69981c22cbc316a702d9",
+      "origin": "AI-assisted original story illustration",
+      "evidence": [
+        "dev/docs/STORY_ASSETS.md",
+        "dev/docs/CULTURE_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/story/garden.webp",
+      "bytes": 190404,
+      "sha256": "d846bcd69661cd5617da3e4dc1f72df528e3052444edab872259b351ffa61de4",
+      "origin": "AI-assisted original story illustration",
+      "evidence": [
+        "dev/docs/STORY_ASSETS.md",
+        "dev/docs/CULTURE_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/story/harbor.webp",
+      "bytes": 144550,
+      "sha256": "1b87f157fc00a898d31f0503b10f0528b02bbd9960a2dedf4f2d7426afec55e4",
+      "origin": "AI-assisted original story illustration",
+      "evidence": [
+        "dev/docs/STORY_ASSETS.md",
+        "dev/docs/CULTURE_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/story/lantern.webp",
+      "bytes": 151218,
+      "sha256": "2b481f6aecf5c00681c3d888ddf80f53e73ed1df979a354774b2c1e2ffa578ca",
+      "origin": "AI-assisted original story illustration",
+      "evidence": [
+        "dev/docs/STORY_ASSETS.md",
+        "dev/docs/CULTURE_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/story/last-table.webp",
+      "bytes": 149594,
+      "sha256": "519890550e235fa6905ae6458930c463c56731d2e4041b485613524a481a3dc0",
+      "origin": "AI-assisted original story illustration",
+      "evidence": [
+        "dev/docs/STORY_ASSETS.md",
+        "dev/docs/CULTURE_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/story/memory-flare.webp",
+      "bytes": 154892,
+      "sha256": "fcbcc84c9b847f528f82808e4181b6d5f4aa24a87fae6d8317e237fcfda4eb77",
+      "origin": "AI-assisted original story illustration",
+      "evidence": [
+        "dev/docs/STORY_ASSETS.md",
+        "dev/docs/CULTURE_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/story/moon.webp",
+      "bytes": 202548,
+      "sha256": "a4d264a5b7ae41f49b59d0af4a5269c0ede4a6e6b9f2126b4ecc65adb3582203",
+      "origin": "AI-assisted original story illustration",
+      "evidence": [
+        "dev/docs/STORY_ASSETS.md",
+        "dev/docs/CULTURE_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/story/tet-kitchen.webp",
+      "bytes": 137884,
+      "sha256": "6237671b8a6d66ed86e48308f25bb05cce63d487753409975ac5a438d572b6e9",
+      "origin": "AI-assisted original story illustration",
+      "evidence": [
+        "dev/docs/STORY_ASSETS.md",
+        "dev/docs/CULTURE_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/story/tide.webp",
+      "bytes": 135646,
+      "sha256": "0f183e77f0ccdf2b769abd9507d2ef0c40f2a31a1f5efacb2efd4c3fd752f385",
+      "origin": "AI-assisted original story illustration",
+      "evidence": [
+        "dev/docs/STORY_ASSETS.md",
+        "dev/docs/CULTURE_ASSETS.md",
+        "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/favicon.ico",
+      "bytes": 16574,
+      "sha256": "e759fbdf7bc385e3e1288b403b3cd3e8d0af947c30f920b6ad0e88149b1cd509",
+      "origin": "Derivative of project brand",
+      "evidence": [
+        "dev/docs/branding/LOGO.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    }
+  ]
+}

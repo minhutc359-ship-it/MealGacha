@@ -8,7 +8,7 @@ export interface BannerConfig {
 }
 
 export const BANNER_CONFIG: BannerConfig = {
-  "id": "local-1789710746346",
-  "imageUrl": "/assets/banners/local-1789710746346.jpg",
+  "id": "soul-of-meal-release",
+  "imageUrl": "/assets/brand/soul-of-meal.webp",
   "enabled": true
 }
