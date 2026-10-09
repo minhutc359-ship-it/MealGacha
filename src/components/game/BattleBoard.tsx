@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
 import { battleMusic, frameSounds } from "../../game/audioScore"
+import { TCG_IMPACT_MS } from "../../game/battleVfx"
 import { AudioButton, useGameMusic } from "./GameAudio"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
 import { RELIC_MAP } from "../../game/expedition"
@@ -459,7 +460,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     : 0
   const enemyDelta = frame ? healthDelta(frame.before.enemy, battle.enemy) : 0
   return (
-    <section className="tcg-battle tcg-viewport-battle">
+    <section className="tcg-battle tcg-viewport-battle" style={{ "--battle-contact": `${frame && ["play", "attack"].includes(frame.event.kind) ? TCG_IMPACT_MS : 0}ms` } as CSSProperties}>
       <header className="tcg-battle-top">
         <div>
           <span className="tcg-kicker">

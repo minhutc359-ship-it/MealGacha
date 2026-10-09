@@ -1,4 +1,6 @@
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
+import { UNIT_MAP } from "../../game/autochess/catalog"
+import { FLAVOR_SPIRITS } from "../../game/flavorSpirits"
 
 export type CharacterSheet = keyof typeof SPRITE_SHEETS
 export interface CharacterModel {
@@ -6,6 +8,33 @@ export interface CharacterModel {
   row: number
   id: string
   name: string
+  showcase?: string
+}
+
+export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
+  "chef-nhien": ["rosterA", 0], "chef-hai": ["rosterA", 1],
+  "chef-moc": ["rosterA", 2], "chef-bach": ["rosterA", 3],
+  "chef-lien": ["rosterB", 0], ferry: ["rosterB", 1],
+  "bun-cha": ["rosterB", 2], "bun-rieu": ["rosterB", 3],
+  "banh-xeo": ["rosterC", 0], "banh-cuon": ["rosterC", 1],
+  xoi: ["rosterC", 2], "com-ga": ["rosterC", 3],
+  "banh-chung": ["rosterD", 0], "banh-tet": ["rosterD", 1],
+  "caravan-herbalist": ["rosterD", 2], "caravan-gardener": ["rosterD", 3],
+}
+export function unitCharacter(id: string): CharacterModel {
+  const unit = UNIT_MAP[id], custom = DISTINCT_MODELS[id]
+  const [sheet, row] = custom ?? (unit.portrait >= 18
+    ? ["fresh", unit.portrait - 18] : ["base", unit.sprite])
+  return { sheet, row, id, name: unit?.spirit ?? (id === "caravan-herbalist" ? "Người hái thuốc" : "Người gieo vườn"),
+    showcase: sheet === "base" ? FLAVOR_SPIRITS[unit.school].art : undefined }
+}
+
+// Fit around the measured feet and account for mirrored, asymmetric poses.
+export function fitCharacter(model: CharacterModel, width: number, height: number, flip = false) {
+  const bounds = characterBounds(model)!
+  const scale = Math.min(width / (bounds.right - bounds.left), height / (bounds.bottom - bounds.top))
+  return { scale, offsetX: -(flip ? -1 : 1) * (bounds.left + bounds.right) * scale / 2,
+    offsetY: -bounds.bottom * scale, bounds }
 }
 
 // Shared browser cache: changing game modes does not decode the atlases again.

@@ -2,17 +2,23 @@
   "name": "soul-of-meal",
   "packageManager": "pnpm@10.34.3",
   "private": true,
-  "version": "3.2.1",
+  "version": "3.3.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config dev/vite.dev.config.ts",
     "build": "vite build",
     "preview": "vite preview",
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "validate:catalog": "node scripts/validate-catalog.mjs",
-    "benchmark:autochess": "node scripts/benchmark-autochess.mjs"
+    "test": "vitest run --config dev/vitest.config.ts",
+    "validate:catalog": "node dev/tools/validate-catalog.mjs",
+    "benchmark:autochess": "node dev/tools/benchmark-autochess.mjs",
+    "typecheck:dev": "tsc --noEmit -p dev/tsconfig.json",
+    "release:records": "node dev/tools/release-records.mjs",
+    "release:verify": "node dev/tools/release-records.mjs --check",
+    "release:size": "node dev/tools/release-size.mjs",
+    "release:source": "python3 dev/tools/pack-release.py",
+    "release:web": "python3 dev/tools/pack-release.py --dist"
   },
   "dependencies": {
     "@types/papaparse": "^5.5.2",

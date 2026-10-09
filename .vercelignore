@@ -1,0 +1,5 @@
+dev/
+rights/
+node_modules/
+*.log
+*.tsbuildinfo

@@ -4,6 +4,30 @@ export const copies = (star: number) => 3 ** (star - 1)
 export const poolSize = (cost: number) => [0, 18, 16, 12, 10, 9][cost]
 export const capacity = (xp: number) =>
   3 + [8, 20, 38, 62].filter((n) => xp >= n).length
+export function levelProgress(xp: number) {
+  const level = capacity(xp), gates = [0, 8, 20, 38, 62], start = gates[level - 3]
+  const next = gates[level - 2] ?? null
+  return { level, xp, next, remaining: next === null ? 0 : Math.max(0, next - xp),
+    percent: next === null ? 100 : Math.max(0, Math.min(100, (xp - start) / (next - start) * 100)) }
+}
+// Old saves have no slot field; assign their existing order without mutating them.
+export function benchLayout(run: Pick<AutoRun, "roster">): (Piece | undefined)[] {
+  const slots: (Piece | undefined)[] = Array(6).fill(undefined)
+  const pending: Piece[] = []
+  for (const p of run.roster.filter(p => p.cell === null)) {
+    if (p.benchSlot !== undefined && !slots[p.benchSlot]) slots[p.benchSlot] = p
+    else pending.push(p)
+  }
+  for (const p of pending) {
+    const index = slots.findIndex(p => !p)
+    if (index >= 0) slots[index] = p
+  }
+  return slots
+}
+function rememberBench(run: AutoRun) {
+  benchLayout(run).forEach((p, index) => { if (p) p.benchSlot = index })
+  for (const p of boardPieces(run)) delete p.benchSlot
+}
 export const boardPieces = (run: AutoRun) =>
   run.roster.filter((p) => p.cell !== null)
 export function unitRole(id: string) {
@@ -19,12 +43,13 @@ export function autoArrange(run: AutoRun): string | null {
   const front = [20, 21, 19, 22, 18, 23, 26, 27, 25, 28, 24, 29, 32, 33, 31, 34, 30, 35]
   const back = [32, 33, 31, 34, 30, 35, 26, 27, 25, 28, 24, 29, 20, 21, 19, 22, 18, 23]
   const occupied = new Set<number>()
-  for (const p of run.roster) p.cell = null
+  for (const p of run.roster) { p.cell = null; delete p.benchSlot }
   for (const p of team) {
     const order = UNIT_MAP[p.id].range === 1 && unitRole(p.id) !== "Hồi phục" ? front : back
     p.cell = order.find(cell => !occupied.has(cell))!
     occupied.add(p.cell)
   }
+  rememberBench(run)
   return null
 }
 export function random(run: AutoRun) {
@@ -167,9 +192,11 @@ export function buy(run: AutoRun, index: number): string | null {
     id: def.id,
     star: 1,
     cell: null,
+    benchSlot: benchLayout(run).findIndex(p => !p) >= 0 ? benchLayout(run).findIndex(p => !p) : undefined,
     items: [],
   })
   merge(run)
+  rememberBench(run)
   return null
 }
 export function move(
@@ -177,17 +204,23 @@ export function move(
   uid: string,
   cell: number | null,
   swapUid?: string,
+  benchSlot?: number,
 ): string | null {
   const piece = run.roster.find((p) => p.uid === uid)
   if (
     !piece ||
-    (cell !== null && (!Number.isInteger(cell) || cell < 18 || cell > 35))
+    (cell !== null && (!Number.isInteger(cell) || cell < 18 || cell > 35)) ||
+    (benchSlot !== undefined && (!Number.isInteger(benchSlot) || benchSlot < 0 || benchSlot > 5))
   )
     return "Chỉ xếp quân trong ba hàng phía bạn."
+  const slots = benchLayout(run)
+  const sourceSlot = slots.findIndex(p => p?.uid === uid)
+  const requestedSlot = benchSlot ?? (swapUid ? slots.findIndex(p => p?.uid === swapUid) : undefined)
+  const destinationSlot = requestedSlot !== undefined && requestedSlot >= 0 ? requestedSlot : sourceSlot >= 0 ? sourceSlot : slots.findIndex(p => !p)
   const other =
     cell !== null
       ? run.roster.find((p) => p.cell === cell && p.uid !== uid)
-      : run.roster.find((p) => p.uid === swapUid && p.cell === null)
+      : slots[destinationSlot]?.uid !== uid ? slots[destinationSlot] : undefined
   if (
     piece.cell === null &&
     cell !== null &&
@@ -202,8 +235,15 @@ export function move(
     run.roster.filter((p) => p.cell === null).length >= 6
   )
     return "Ghế dự bị đầy."
-  if (other) other.cell = piece.cell
+  rememberBench(run)
+  if (other) {
+    other.cell = piece.cell
+    if (piece.cell === null) other.benchSlot = sourceSlot
+    else delete other.benchSlot
+  }
   piece.cell = cell
+  if (cell === null) piece.benchSlot = destinationSlot
+  else delete piece.benchSlot
   return null
 }
 export function sell(run: AutoRun, uid: string) {

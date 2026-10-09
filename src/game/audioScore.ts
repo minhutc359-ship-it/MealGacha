@@ -4,6 +4,7 @@ import { combatCues } from "./combatEffects"
 import { battleRule } from "./encounters"
 import type { StoryArtId } from "./storyArt"
 import type { Battle } from "./types"
+import { TCG_IMPACT_MS } from "./battleVfx"
 
 export const MUSIC_TRACKS = {
   "auto-prepare": "assets/autochess/audio/prepare.mp3",
@@ -73,7 +74,10 @@ export function frameSounds(frame: BattleFrame): TimedSound[] {
   }
   if (frame.event.kind === "play")
     add(card?.kind === "unit" ? "summon" : "cast", 0)
-  if (frame.event.kind === "attack") add("impact", 0)
+  if (frame.event.kind === "attack") {
+    add("cast", 0)
+    add("impact", TCG_IMPACT_MS)
+  }
   if (frame.event.kind === "combo") add("combo", 0)
   if (frame.event.kind === "assist") add("resonance", 0)
   if (frame.event.kind === "tactic") add("resonance", 0)
@@ -84,7 +88,7 @@ export function frameSounds(frame: BattleFrame): TimedSound[] {
     if (cue.kind === "finish" || cue.kind === "turn") continue
     add(
       cue.kind === "strike" ? "impact" : cue.kind,
-      cue.kind === "resonance" ? 60 : 130,
+      cue.kind === "resonance" ? 60 : ["play", "attack"].includes(frame.event.kind) ? TCG_IMPACT_MS : 130,
     )
   }
   return sounds.slice(0, 5)

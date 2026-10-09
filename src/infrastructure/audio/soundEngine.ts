@@ -27,196 +27,119 @@ const cueConfig: Record<SoundCue, {
   tick: { frequency: 420, duration: 0.035, type: "square", gain: 0.018 },
 }
 
+// Original procedural cues: no third-party recordings or network downloads.
 let context: AudioContext | null = null
-let preloadedTrack: HTMLAudioElement | null = null
-let activeTrack: HTMLAudioElement | null = null
-let preloadedSpinTrack: HTMLAudioElement | null = null
-let activeSpinTrack: HTMLAudioElement | null = null
-let preloadedSpinResultTrack: HTMLAudioElement | null = null
-let activeSpinResultTrack: HTMLAudioElement | null = null
-const preloadedClickTracks: Partial<Record<ClickSound, HTMLAudioElement>> = {}
-let activeClickTrack: HTMLAudioElement | null = null
-
-const clickSoundUrls: Record<ClickSound, string> = {
-  normal: "assets/audio/clicks/normal_click.mp3",
-  choose: "assets/audio/clicks/choose_click.mp3",
-  function: "assets/audio/clicks/function_click.mp3",
+type Lane = { timers: Set<ReturnType<typeof setTimeout>>; voices: Set<OscillatorNode> }
+const lanes: Record<"spin" | "reward" | "chest", Lane> = {
+  spin: { timers: new Set(), voices: new Set() },
+  reward: { timers: new Set(), voices: new Set() },
+  chest: { timers: new Set(), voices: new Set() },
 }
 
-function getPublicAssetUrl(path: string): string {
-  return `${import.meta.env.BASE_URL}${path}`
+function audioContext(): AudioContext | null {
+  if (typeof window === "undefined") return null
+  try {
+    const Audio = window.AudioContext ?? (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+    if (!Audio) return null
+    context ??= new Audio()
+    if (context.state === "suspended") void context.resume().catch(() => {})
+    return context
+  } catch { return null }
 }
 
-function getChestTrackUrl(): string {
-  return import.meta.env.VITE_CHEST_OPENING_AUDIO_URL?.trim()
-    || getPublicAssetUrl("assets/audio/chest-opening.mp3")
-}
-
-function getSpinTrackUrl(): string {
-  return getPublicAssetUrl("assets/audio/spin.mp3")
-}
-
-function getSpinResultTrackUrl(): string {
-  return getPublicAssetUrl("assets/audio/result_spin.mp3")
-}
-
-export function preloadRewardReceivedTrack(): void {
-  if (typeof window === "undefined" || preloadedSpinResultTrack) return
-  const resultAudio = new Audio(getSpinResultTrackUrl())
-  resultAudio.preload = "auto"
-  resultAudio.load()
-  preloadedSpinResultTrack = resultAudio
-}
-
-export function preloadClickSounds(): void {
-  if (typeof window === "undefined") return
-  for (const sound of Object.keys(clickSoundUrls) as ClickSound[]) {
-    if (preloadedClickTracks[sound]) continue
-    const audio = new Audio(getPublicAssetUrl(clickSoundUrls[sound]))
-    audio.preload = "auto"
-    audio.load()
-    preloadedClickTracks[sound] = audio
+function tone(cue: SoundCue, gainScale: number, lane?: Lane, pitch = 1): void {
+  const ctx = audioContext()
+  if (!ctx || (typeof document !== "undefined" && document.hidden)) return
+  const cfg = cueConfig[cue]
+  const oscillator = ctx.createOscillator()
+  const gain = ctx.createGain()
+  const now = ctx.currentTime
+  oscillator.type = cfg.type
+  oscillator.frequency.setValueAtTime(cfg.frequency * pitch, now)
+  if (cfg.endFrequency) oscillator.frequency.exponentialRampToValueAtTime(cfg.endFrequency * pitch, now + cfg.duration)
+  gain.gain.setValueAtTime(cfg.gain * Math.max(0, Math.min(1.5, gainScale)), now)
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + cfg.duration)
+  oscillator.connect(gain)
+  gain.connect(ctx.destination)
+  lane?.voices.add(oscillator)
+  oscillator.onended = () => {
+    oscillator.disconnect()
+    gain.disconnect()
+    lane?.voices.delete(oscillator)
   }
+  oscillator.start(now)
+  oscillator.stop(now + cfg.duration)
 }
 
-export function preloadChestOpeningTrack(): void {
-  if (typeof window === "undefined" || preloadedTrack) return
-  const url = getChestTrackUrl()
-  if (!url) return
-  preloadedTrack = new Audio(url)
-  preloadedTrack.preload = "auto"
-  preloadedTrack.load()
+function stop(lane: Lane): void {
+  for (const timer of lane.timers) clearTimeout(timer)
+  lane.timers.clear()
+  for (const voice of lane.voices) {
+    try { voice.stop() } catch { /* Already ended. */ }
+  }
+  lane.voices.clear()
 }
 
-export function preloadSpinTrack(): void {
-  if (typeof window === "undefined" || preloadedSpinTrack) return
-  const audio = new Audio(getSpinTrackUrl())
-  audio.preload = "auto"
-  audio.load()
-  preloadedSpinTrack = audio
-
-  preloadRewardReceivedTrack()
+function later(lane: Lane, callback: () => void, delay: number): void {
+  const timer = setTimeout(() => { lane.timers.delete(timer); callback() }, delay)
+  lane.timers.add(timer)
 }
+
+// Kept for callers; synthesis needs no preload and starts only after interaction.
+export function preloadRewardReceivedTrack(): void {}
+export function preloadClickSounds(): void {}
+export function preloadChestOpeningTrack(): void {}
+export function preloadSpinTrack(): void {}
 
 export function startSpinTrack(enabled: boolean): boolean {
-  if (typeof window === "undefined") return false
-
   stopSpinTrack()
-  if (!enabled) return false
-  const audio = preloadedSpinTrack ?? new Audio(getSpinTrackUrl())
-  preloadedSpinTrack = null
-  audio.currentTime = 0
-  audio.volume = 0.72
-  activeSpinTrack = audio
-  void audio.play().catch(() => {
-    if (activeSpinTrack === audio) activeSpinTrack = null
-  })
+  if (!enabled || !audioContext()) return false
+  let beat = 0
+  const phrase = () => {
+    tone("tick", 0.65, lanes.spin, 1 + (beat++ % 8) * 0.075)
+    later(lanes.spin, phrase, 135)
+  }
+  phrase()
   return true
 }
-
-export function stopSpinTrack(): void {
-  if (!activeSpinTrack) return
-  activeSpinTrack.pause()
-  activeSpinTrack.currentTime = 0
-  activeSpinTrack = null
-}
+export function stopSpinTrack(): void { stop(lanes.spin) }
 
 export function startSpinResultTrack(enabled: boolean): boolean {
-  if (typeof window === "undefined") return false
-
   stopSpinResultTrack()
-  if (!enabled) return false
-  const audio = preloadedSpinResultTrack ?? new Audio(getSpinResultTrackUrl())
-  preloadedSpinResultTrack = null
-  audio.currentTime = 0
-  audio.volume = 0.72
-  activeSpinResultTrack = audio
-  audio.addEventListener("ended", () => {
-    if (activeSpinResultTrack === audio) activeSpinResultTrack = null
-  }, { once: true })
-  void audio.play().catch(() => {
-    if (activeSpinResultTrack === audio) activeSpinResultTrack = null
-  })
+  if (!enabled || !audioContext()) return false
+  const lane = lanes.reward
+  tone("fusion", 0.7, lane)
+  later(lane, () => tone("reveal", 0.65, lane, 1.125), 180)
+  later(lane, () => tone("reveal", 0.5, lane, 1.5), 360)
   return true
 }
-
-export function stopSpinResultTrack(): void {
-  if (!activeSpinResultTrack) return
-  activeSpinResultTrack.pause()
-  activeSpinResultTrack.currentTime = 0
-  activeSpinResultTrack = null
-}
+export function stopSpinResultTrack(): void { stop(lanes.reward) }
 
 export function startChestOpeningTrack(enabled: boolean): boolean {
-  if (!enabled || typeof window === "undefined") return false
-  const url = getChestTrackUrl()
-  if (!url) return false
-
   stopChestOpeningTrack()
-  const audio = preloadedTrack ?? new Audio(url)
-  preloadedTrack = null
-  audio.currentTime = 0
-  audio.volume = 0.72
-  activeTrack = audio
-  audio.addEventListener("ended", () => {
-    if (activeTrack === audio) activeTrack = null
-  }, { once: true })
-  void audio.play().catch(() => {
-    if (activeTrack === audio) activeTrack = null
-  })
+  if (!enabled || !audioContext()) return false
+  const lane = lanes.chest
+  tone("lock", 0.65, lane)
+  for (let step = 0; step < 6; step++) {
+    later(lane, () => tone(step % 2 ? "pulse" : "charge", 0.5, lane, 1 + step * 0.05), 220 + step * 260)
+  }
   return true
 }
-
-export function stopChestOpeningTrack(): void {
-  if (!activeTrack) return
-  activeTrack.pause()
-  activeTrack.currentTime = 0
-  activeTrack = null
-}
+export function stopChestOpeningTrack(): void { stop(lanes.chest) }
 
 export function playClickSound(sound: ClickSound, enabled: boolean): void {
-  if (!enabled || typeof window === "undefined") return
-  const audio = preloadedClickTracks[sound] ?? new Audio(getPublicAssetUrl(clickSoundUrls[sound]))
-  preloadedClickTracks[sound] = audio
-  if (activeClickTrack && activeClickTrack !== audio) {
-    activeClickTrack.pause()
-    activeClickTrack.currentTime = 0
-  }
-  audio.currentTime = 0
-  audio.volume = 0.55
-  activeClickTrack = audio
-  void audio.play().catch(() => {
-    if (activeClickTrack === audio) activeClickTrack = null
-  })
+  playSound(sound === "normal" ? "tick" : sound === "choose" ? "key" : "lock", enabled, 0.6)
 }
 
-export function playSound(
-  cue: SoundCue,
-  enabled: boolean,
-  gainScale = 1,
-): void {
-  if (!enabled || typeof window === "undefined") return
-  try {
-    context ??= new AudioContext()
-    const cfg = cueConfig[cue]
-    const oscillator = context.createOscillator()
-    const gain = context.createGain()
-    const now = context.currentTime
-    oscillator.type = cfg.type
-    oscillator.frequency.setValueAtTime(cfg.frequency, now)
-    if (cfg.endFrequency) {
-      oscillator.frequency.exponentialRampToValueAtTime(
-        cfg.endFrequency,
-        now + cfg.duration,
-      )
-    }
-    gain.gain.setValueAtTime(cfg.gain * gainScale, now)
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + cfg.duration)
-    oscillator.connect(gain)
-    gain.connect(context.destination)
-    oscillator.start(now)
-    oscillator.stop(now + cfg.duration)
-  } catch {
-    // Audio feedback is progressive enhancement only.
-  }
+export function playSound(cue: SoundCue, enabled: boolean, gainScale = 1): void {
+  if (!enabled) return
+  try { tone(cue, gainScale) } catch { /* Audio is progressive enhancement. */ }
+}
+
+if (typeof window !== "undefined") {
+  window.addEventListener("pagehide", () => {
+    stopSpinTrack()
+    stopSpinResultTrack()
+    stopChestOpeningTrack()
+  })
 }

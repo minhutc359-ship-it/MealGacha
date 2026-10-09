@@ -19,6 +19,7 @@ import {
 } from "./combat"
 import {
   emptyAutoSave,
+  RULES_VERSION,
   type AutoMode,
   type AutoRun,
   type AutoSave,
@@ -36,6 +37,7 @@ export type AutoAction = {
   uid: string
   cell: number | null
   swapUid?: string
+  benchSlot?: number
 } | { type: "sell"; uid: string } | {
   type: "equip"
   uid: string
@@ -325,7 +327,7 @@ export function reduceAuto(
       error = buy(run, action.index)
       break
     case "move":
-      error = move(run, action.uid, action.cell, action.swapUid)
+      error = move(run, action.uid, action.cell, action.swapUid, action.benchSlot)
       break
     case "sell":
       sell(run, action.uid)
@@ -366,6 +368,7 @@ export function reduceAuto(
         error =
           "Đặt ít nhất một quân lên bàn và đọc hết thoại trước khi xuất trận."
       else {
+        run.rulesVersion = RULES_VERSION
         run.rounds++
         run.phase = "combat"
         run.paused = false

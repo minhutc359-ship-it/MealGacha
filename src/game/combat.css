@@ -228,7 +228,6 @@
 .tcg-fx-halo { position:absolute; width:var(--fx-size); height:var(--fx-size); left:calc(var(--fx-size) / -2); top:calc(var(--fx-size) / -2); border:2px solid currentColor; border-radius:50%; box-shadow:0 0 18px currentColor,inset 0 0 14px currentColor; animation:tcg-element-halo .6s .08s ease-out both; }
 .tcg-fx-glyph { position:absolute; left:-25px; top:-30px; width:50px; height:60px; display:grid; place-items:center; font:bold 54px Georgia,serif; text-shadow:0 0 10px currentColor; animation:tcg-element-glyph .6s ease-out both; }
 .tcg-fx-particle { position:absolute; width:5px; height:5px; margin:-3px; background:currentColor; border-radius:50%; box-shadow:0 0 8px currentColor; animation:tcg-element-particle .5s var(--delay) ease-out both; }
-.tcg-fx-projectile { position:absolute; width:15px; height:15px; left:-8px; top:-8px; border-radius:50%; background:#fff1ca; box-shadow:0 0 10px 5px currentColor,0 0 22px 8px currentColor; animation:tcg-element-flight .24s ease-in both; }
 .fx-fire .tcg-fx-sprite { animation-name:tcg-fire-impact; }
 .fx-water .tcg-fx-sprite { animation-name:tcg-water-impact; }
 .fx-water .tcg-fx-particle { width:5px; height:9px; border-radius:50% 50% 65% 65%; }
@@ -243,8 +242,6 @@
 .fx-resonance .tcg-fx-halo { border:4px double currentColor; }
 .fx-draw .tcg-fx-glyph { animation:tcg-draw-glyph .65s ease-out both; }
 .fx-turn .tcg-fx-glyph { font-size:28px; }
-.tcg-fx-slash { position:absolute; height:5px; width:85px; left:-42px; top:-3px; border-radius:50%; background:#fff1ca; box-shadow:0 0 9px currentColor; animation:tcg-slash .5s ease-out both; }
-@keyframes tcg-element-flight { 0%{transform:translate(var(--from-x),var(--from-y)) scale(.55);opacity:0} 20%{opacity:1} 85%{opacity:1} 100%{transform:translate(0,0) scale(.35);opacity:0} }
 @keyframes tcg-element-impact { 0%{transform:scale(.2);opacity:0} 25%{transform:scale(1.05);opacity:1} 70%{opacity:.85} 100%{transform:scale(1.2);opacity:0} }
 @keyframes tcg-fire-impact { 0%{transform:scale(.15) rotate(-15deg);opacity:0} 25%{transform:scale(1) rotate(0);opacity:1} 100%{transform:scale(1.2) rotate(12deg);opacity:0} }
 @keyframes tcg-water-impact { 0%{transform:scale(.25) rotate(-55deg);opacity:0} 30%{transform:scale(1) rotate(-15deg);opacity:1} 100%{transform:scale(1.25) rotate(35deg);opacity:0} }
@@ -309,7 +306,6 @@
 .tcg-cast-rune>i { position:absolute; width:110px; height:110px; left:-55px; top:-55px; border:2px solid currentColor; border-radius:50%; box-shadow:0 0 18px currentColor,inset 0 0 12px currentColor; animation:tcg-cast-ring .55s ease-out both; }
 .tcg-cast-rune>i:nth-child(2) { width:86px; height:86px; left:-43px; top:-43px; border-style:dashed; animation-name:tcg-cast-inner; }
 .tcg-cast-rune>b { position:absolute; width:50px; left:-25px; top:-25px; text-align:center; font:38px/50px Georgia,serif; text-shadow:0 0 14px currentColor; animation:tcg-cast-symbol .4s ease-out both; }
-.tcg-fx-beam { position:absolute; height:3px; width:var(--beam-length); transform-origin:0 50%; background:linear-gradient(90deg,transparent,currentColor,#fff4c9); box-shadow:0 0 8px currentColor; animation:tcg-beam .3s ease-out both; }
 .tcg-fx-contact { position:absolute; width:0; height:0; }
 .tcg-fx-contact>i { position:absolute; width:50px; height:3px; left:-25px; top:-2px; background:#fff3c6; border-radius:100%; box-shadow:0 0 10px currentColor; animation:tcg-contact .32s .12s ease-out both; }
 .tcg-fx-contact>i:nth-child(2) { --contact-angle:45deg; }
@@ -334,7 +330,6 @@
 @keyframes tcg-cast-ring { 0% { transform:scale(.2) rotate(-35deg);opacity:0; } 35% { opacity:.8; } 100% { transform:scale(1.25) rotate(30deg);opacity:0; } }
 @keyframes tcg-cast-inner { 0% { transform:scale(.3) rotate(45deg);opacity:0; } 35% { opacity:.8; } 100% { transform:scale(1) rotate(-45deg);opacity:0; } }
 @keyframes tcg-cast-symbol { from { transform:translateY(8px) scale(.6);opacity:0; } 40% { opacity:.8; } to { transform:translateY(-12px) scale(1.1);opacity:0; } }
-@keyframes tcg-beam { 0% { transform:rotate(var(--beam-angle)) scaleX(.01);opacity:0; } 45% { opacity:.8; } 80% { transform:rotate(var(--beam-angle)) scaleX(1);opacity:.8; } 100% { transform:rotate(var(--beam-angle)) scaleX(1);opacity:0; } }
 @keyframes tcg-contact { 0% { transform:rotate(var(--contact-angle,0deg)) scale(.1);opacity:0; } 35% { opacity:.8; } 100% { transform:rotate(var(--contact-angle,0deg)) scale(1.3);opacity:0; } }
 @keyframes tcg-sweep { 0% { transform:scaleX(.1) scaleY(.3);opacity:0; } 40% { opacity:.7; } 100% { transform:scaleX(1.1) scaleY(1.3);opacity:0; } }
 @keyframes tcg-draw-fan { from { transform:translate(0,-20px) rotate(0);opacity:0; } 35% { opacity:.9; } to { transform:translate(var(--fan-x,0px),14px) rotate(var(--fan-turn,0deg));opacity:0; } }

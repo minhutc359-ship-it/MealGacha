@@ -22,7 +22,8 @@ const SCHOOL_HIT: Record<School, EffectKind> = {
 // Presentation derives from reducer snapshots; it never changes the saved battle.
 export function combatCues(frame: BattleFrame): EffectCue[] {
   const { before, battle, event } = frame
-  const card = event.cardId ? CARD_MAP[event.cardId] : undefined
+  const cardId = event.cardId ?? (event.kind === "attack" ? before[event.side].board.find(unit => unit.uid === event.source)?.cardId : undefined)
+  const card = cardId ? CARD_MAP[cardId] : undefined
   const school = card?.school ?? "ember"
   const cues: EffectCue[] = []
   const add = (

@@ -1,0 +1,1738 @@
+{
+  "passed": true,
+  "checks": [
+    "Visible XP 6/8 -> 10/20 crosses level 3 -> 4; buying spends exactly 4 gold",
+    "Native touch drags board/bench, bench/empty slot, bench swaps and board positions; forbidden drop/cancel are atomic; reload keeps slots and all currencies",
+    "Mouse drag swaps at full capacity and moves to an empty board cell",
+    "Auto chess and TCG fit seven portrait/landscape sizes without page scrolling or clipped controls",
+    "All 32 units really draw different atlas rows in portrait and landscape; measured sprite rectangles stay inside the board",
+    "A real horizontal move flips a new sprite around measured feet; live battle blocks formation dragging",
+    "TCG commander invocation uses actual 480x720 spirit art instead of enlarging a ~100px sprite",
+    "TCG summons the new Mộc model, matching Auto chess and retaining real battle stats",
+    "Reduced motion keeps the exact damage result and suppresses the cinematic overlay",
+    "Keyboard Enter selects a bench unit and swaps it into a full board; new portraits and XP render together on mobile"
+  ],
+  "geometry": [
+    {
+      "mode": "auto",
+      "width": 390,
+      "height": 844,
+      "scrollW": 390,
+      "scrollH": 844,
+      "boxes": [
+        {
+          "selector": ".ac-cell-grid",
+          "x": 17,
+          "y": 195,
+          "w": 356,
+          "h": 356,
+          "right": 373,
+          "bottom": 551
+        },
+        {
+          "selector": ".ac-bench",
+          "x": 8,
+          "y": 602,
+          "w": 374,
+          "h": 36,
+          "right": 382,
+          "bottom": 638
+        },
+        {
+          "selector": ".ac-shop",
+          "x": 8,
+          "y": 672,
+          "w": 374,
+          "h": 110,
+          "right": 382,
+          "bottom": 782
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 8,
+          "y": 786,
+          "w": 374,
+          "h": 50,
+          "right": 382,
+          "bottom": 836
+        },
+        {
+          "selector": ".ac-xp-control",
+          "x": 96.046875,
+          "y": 789,
+          "w": 72,
+          "h": 47,
+          "right": 168.046875,
+          "bottom": 836
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 320,
+      "height": 568,
+      "scrollW": 320,
+      "scrollH": 568,
+      "boxes": [
+        {
+          "selector": ".ac-cell-grid",
+          "x": 55.25,
+          "y": 139,
+          "w": 209.5,
+          "h": 209.5,
+          "right": 264.75,
+          "bottom": 348.5
+        },
+        {
+          "selector": ".ac-bench",
+          "x": 7,
+          "y": 360.5,
+          "w": 306,
+          "h": 28,
+          "right": 313,
+          "bottom": 388.5
+        },
+        {
+          "selector": ".ac-shop",
+          "x": 7,
+          "y": 420.5,
+          "w": 306,
+          "h": 90.5,
+          "right": 313,
+          "bottom": 511
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 7,
+          "y": 514,
+          "w": 306,
+          "h": 48,
+          "right": 313,
+          "bottom": 562
+        },
+        {
+          "selector": ".ac-xp-control",
+          "x": 91.046875,
+          "y": 517,
+          "w": 72,
+          "h": 45,
+          "right": 163.046875,
+          "bottom": 562
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 320,
+      "height": 568,
+      "scrollW": 320,
+      "scrollH": 568,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 7,
+          "y": 72,
+          "w": 306,
+          "h": 491,
+          "right": 313,
+          "bottom": 563
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 16,
+          "y": 135,
+          "w": 288,
+          "h": 80,
+          "right": 304,
+          "bottom": 215
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 16,
+          "y": 251,
+          "w": 288,
+          "h": 80,
+          "right": 304,
+          "bottom": 331
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 16,
+          "y": 217,
+          "w": 288,
+          "h": 32,
+          "right": 304,
+          "bottom": 249
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 16,
+          "y": 448,
+          "w": 288,
+          "h": 110,
+          "right": 304,
+          "bottom": 558
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 12,
+          "y": 150,
+          "w": 88,
+          "h": 63,
+          "right": 100,
+          "bottom": 213
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 116,
+          "y": 150,
+          "w": 88,
+          "h": 63,
+          "right": 204,
+          "bottom": 213
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 220,
+          "y": 150,
+          "w": 88,
+          "h": 63,
+          "right": 308,
+          "bottom": 213
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 16,
+          "y": 266,
+          "w": 88,
+          "h": 63,
+          "right": 104,
+          "bottom": 329
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 120,
+          "y": 266,
+          "w": 88,
+          "h": 63,
+          "right": 208,
+          "bottom": 329
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 375,
+      "height": 667,
+      "scrollW": 375,
+      "scrollH": 667,
+      "boxes": [
+        {
+          "selector": ".ac-cell-grid",
+          "x": 60,
+          "y": 157,
+          "w": 255,
+          "h": 255,
+          "right": 315,
+          "bottom": 412
+        },
+        {
+          "selector": ".ac-bench",
+          "x": 8,
+          "y": 425,
+          "w": 359,
+          "h": 36,
+          "right": 367,
+          "bottom": 461
+        },
+        {
+          "selector": ".ac-shop",
+          "x": 8,
+          "y": 495,
+          "w": 359,
+          "h": 110,
+          "right": 367,
+          "bottom": 605
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 8,
+          "y": 609,
+          "w": 359,
+          "h": 50,
+          "right": 367,
+          "bottom": 659
+        },
+        {
+          "selector": ".ac-xp-control",
+          "x": 96.046875,
+          "y": 612,
+          "w": 72,
+          "h": 47,
+          "right": 168.046875,
+          "bottom": 659
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 375,
+      "height": 667,
+      "scrollW": 375,
+      "scrollH": 667,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 7,
+          "y": 72,
+          "w": 361,
+          "h": 590,
+          "right": 368,
+          "bottom": 662
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 16,
+          "y": 135,
+          "w": 343,
+          "h": 129.5,
+          "right": 359,
+          "bottom": 264.5
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 16,
+          "y": 300.5,
+          "w": 343,
+          "h": 129.5,
+          "right": 359,
+          "bottom": 430
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 16,
+          "y": 266.5,
+          "w": 343,
+          "h": 32,
+          "right": 359,
+          "bottom": 298.5
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 16,
+          "y": 547,
+          "w": 343,
+          "h": 110,
+          "right": 359,
+          "bottom": 657
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 39.5,
+          "y": 150,
+          "w": 88,
+          "h": 112.5,
+          "right": 127.5,
+          "bottom": 262.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 143.5,
+          "y": 150,
+          "w": 88,
+          "h": 112.5,
+          "right": 231.5,
+          "bottom": 262.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 247.5,
+          "y": 150,
+          "w": 88,
+          "h": 112.5,
+          "right": 335.5,
+          "bottom": 262.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 39.5,
+          "y": 315.5,
+          "w": 88,
+          "h": 112.5,
+          "right": 127.5,
+          "bottom": 428
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 143.5,
+          "y": 315.5,
+          "w": 88,
+          "h": 112.5,
+          "right": 231.5,
+          "bottom": 428
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 390,
+      "height": 844,
+      "scrollW": 390,
+      "scrollH": 844,
+      "boxes": [
+        {
+          "selector": ".ac-cell-grid",
+          "x": 17,
+          "y": 195,
+          "w": 356,
+          "h": 356,
+          "right": 373,
+          "bottom": 551
+        },
+        {
+          "selector": ".ac-bench",
+          "x": 8,
+          "y": 602,
+          "w": 374,
+          "h": 36,
+          "right": 382,
+          "bottom": 638
+        },
+        {
+          "selector": ".ac-shop",
+          "x": 8,
+          "y": 672,
+          "w": 374,
+          "h": 110,
+          "right": 382,
+          "bottom": 782
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 8,
+          "y": 786,
+          "w": 374,
+          "h": 50,
+          "right": 382,
+          "bottom": 836
+        },
+        {
+          "selector": ".ac-xp-control",
+          "x": 96.046875,
+          "y": 789,
+          "w": 72,
+          "h": 47,
+          "right": 168.046875,
+          "bottom": 836
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 390,
+      "height": 844,
+      "scrollW": 390,
+      "scrollH": 844,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 7,
+          "y": 72,
+          "w": 376,
+          "h": 767,
+          "right": 383,
+          "bottom": 839
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 17,
+          "y": 148,
+          "w": 356,
+          "h": 181,
+          "right": 373,
+          "bottom": 329
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 17,
+          "y": 369,
+          "w": 356,
+          "h": 181,
+          "right": 373,
+          "bottom": 550
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 17,
+          "y": 331,
+          "w": 356,
+          "h": 36,
+          "right": 373,
+          "bottom": 367
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 17,
+          "y": 687,
+          "w": 356,
+          "h": 145,
+          "right": 373,
+          "bottom": 832
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 47,
+          "y": 181.5,
+          "w": 88,
+          "h": 126,
+          "right": 135,
+          "bottom": 307.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 151,
+          "y": 181.5,
+          "w": 88,
+          "h": 126,
+          "right": 239,
+          "bottom": 307.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 255,
+          "y": 181.5,
+          "w": 88,
+          "h": 126,
+          "right": 343,
+          "bottom": 307.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 47,
+          "y": 402.5,
+          "w": 88,
+          "h": 126,
+          "right": 135,
+          "bottom": 528.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 151,
+          "y": 402.5,
+          "w": 88,
+          "h": 126,
+          "right": 239,
+          "bottom": 528.5
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 667,
+      "height": 375,
+      "scrollW": 667,
+      "scrollH": 375,
+      "boxes": [
+        {
+          "selector": ".ac-cell-grid",
+          "x": 81.5,
+          "y": 102,
+          "w": 259,
+          "h": 259,
+          "right": 340.5,
+          "bottom": 361
+        },
+        {
+          "selector": ".ac-bench",
+          "x": 417,
+          "y": 129,
+          "w": 240,
+          "h": 36,
+          "right": 657,
+          "bottom": 165
+        },
+        {
+          "selector": ".ac-shop",
+          "x": 417,
+          "y": 224,
+          "w": 240,
+          "h": 109,
+          "right": 657,
+          "bottom": 333
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 417,
+          "y": 338,
+          "w": 240,
+          "h": 32,
+          "right": 657,
+          "bottom": 370
+        },
+        {
+          "selector": ".ac-xp-control",
+          "x": 492.78125,
+          "y": 339.5,
+          "w": 45.796875,
+          "h": 29,
+          "right": 538.578125,
+          "bottom": 368.5
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 667,
+      "height": 375,
+      "scrollW": 667,
+      "scrollH": 375,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 8,
+          "y": 66,
+          "w": 651,
+          "h": 305,
+          "right": 659,
+          "bottom": 371
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 17,
+          "y": 129,
+          "w": 315,
+          "h": 83,
+          "right": 332,
+          "bottom": 212
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 335,
+          "y": 129,
+          "w": 315,
+          "h": 83,
+          "right": 650,
+          "bottom": 212
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 17,
+          "y": 215,
+          "w": 633,
+          "h": 30,
+          "right": 650,
+          "bottom": 245
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 17,
+          "y": 299,
+          "w": 633,
+          "h": 68,
+          "right": 650,
+          "bottom": 367
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 45.5,
+          "y": 143,
+          "w": 78,
+          "h": 67,
+          "right": 123.5,
+          "bottom": 210
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 135.5,
+          "y": 143,
+          "w": 78,
+          "h": 67,
+          "right": 213.5,
+          "bottom": 210
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 225.5,
+          "y": 143,
+          "w": 78,
+          "h": 67,
+          "right": 303.5,
+          "bottom": 210
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 363.5,
+          "y": 143,
+          "w": 78,
+          "h": 67,
+          "right": 441.5,
+          "bottom": 210
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 453.5,
+          "y": 143,
+          "w": 78,
+          "h": 67,
+          "right": 531.5,
+          "bottom": 210
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 844,
+      "height": 390,
+      "scrollW": 844,
+      "scrollH": 390,
+      "boxes": [
+        {
+          "selector": ".ac-cell-grid",
+          "x": 135.578125,
+          "y": 104.796875,
+          "w": 271.203125,
+          "h": 271.203125,
+          "right": 406.78125,
+          "bottom": 376
+        },
+        {
+          "selector": ".ac-bench",
+          "x": 537.375,
+          "y": 131.796875,
+          "w": 296.625,
+          "h": 42,
+          "right": 834,
+          "bottom": 173.796875
+        },
+        {
+          "selector": ".ac-shop",
+          "x": 537.375,
+          "y": 249,
+          "w": 296.625,
+          "h": 99,
+          "right": 834,
+          "bottom": 348
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 537.375,
+          "y": 353,
+          "w": 296.625,
+          "h": 32,
+          "right": 834,
+          "bottom": 385
+        },
+        {
+          "selector": ".ac-xp-control",
+          "x": 628.0625,
+          "y": 354.5,
+          "w": 60.6875,
+          "h": 29,
+          "right": 688.75,
+          "bottom": 383.5
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 844,
+      "height": 390,
+      "scrollW": 844,
+      "scrollH": 390,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 8,
+          "y": 66,
+          "w": 828,
+          "h": 320,
+          "right": 836,
+          "bottom": 386
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 17,
+          "y": 129,
+          "w": 403.5,
+          "h": 98,
+          "right": 420.5,
+          "bottom": 227
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 423.5,
+          "y": 129,
+          "w": 403.5,
+          "h": 98,
+          "right": 827,
+          "bottom": 227
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 17,
+          "y": 230,
+          "w": 810,
+          "h": 30,
+          "right": 827,
+          "bottom": 260
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 17,
+          "y": 314,
+          "w": 810,
+          "h": 68,
+          "right": 827,
+          "bottom": 382
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 89.75,
+          "y": 143,
+          "w": 78,
+          "h": 82,
+          "right": 167.75,
+          "bottom": 225
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 179.75,
+          "y": 143,
+          "w": 78,
+          "h": 82,
+          "right": 257.75,
+          "bottom": 225
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 269.75,
+          "y": 143,
+          "w": 78,
+          "h": 82,
+          "right": 347.75,
+          "bottom": 225
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 496.25,
+          "y": 143,
+          "w": 78,
+          "h": 82,
+          "right": 574.25,
+          "bottom": 225
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 586.25,
+          "y": 143,
+          "w": 78,
+          "h": 82,
+          "right": 664.25,
+          "bottom": 225
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 1024,
+      "height": 768,
+      "scrollW": 1024,
+      "scrollH": 768,
+      "boxes": [
+        {
+          "selector": ".ac-cell-grid",
+          "x": 364.5,
+          "y": 180,
+          "w": 295,
+          "h": 295,
+          "right": 659.5,
+          "bottom": 475
+        },
+        {
+          "selector": ".ac-bench",
+          "x": 58,
+          "y": 490,
+          "w": 908,
+          "h": 42,
+          "right": 966,
+          "bottom": 532
+        },
+        {
+          "selector": ".ac-shop",
+          "x": 197,
+          "y": 570,
+          "w": 630,
+          "h": 122,
+          "right": 827,
+          "bottom": 692
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 58,
+          "y": 698,
+          "w": 908,
+          "h": 60,
+          "right": 966,
+          "bottom": 758
+        },
+        {
+          "selector": ".ac-xp-control",
+          "x": 228.34375,
+          "y": 701,
+          "w": 85.640625,
+          "h": 57,
+          "right": 313.984375,
+          "bottom": 758
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 1024,
+      "height": 768,
+      "scrollW": 1024,
+      "scrollH": 768,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 12,
+          "y": 85,
+          "w": 1000,
+          "h": 675,
+          "right": 1012,
+          "bottom": 760
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 29,
+          "y": 153,
+          "w": 966,
+          "h": 162.5,
+          "right": 995,
+          "bottom": 315.5
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 29,
+          "y": 351.5,
+          "w": 966,
+          "h": 162.5,
+          "right": 995,
+          "bottom": 514
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 29,
+          "y": 317.5,
+          "w": 966,
+          "h": 32,
+          "right": 995,
+          "bottom": 349.5
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 29,
+          "y": 633,
+          "w": 966,
+          "h": 120,
+          "right": 995,
+          "bottom": 753
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 349.765625,
+          "y": 173,
+          "w": 92.15625,
+          "h": 138.5,
+          "right": 441.921875,
+          "bottom": 311.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 465.921875,
+          "y": 173,
+          "w": 92.15625,
+          "h": 138.5,
+          "right": 558.078125,
+          "bottom": 311.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 582.078125,
+          "y": 173,
+          "w": 92.15625,
+          "h": 138.5,
+          "right": 674.234375,
+          "bottom": 311.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 349.765625,
+          "y": 371.5,
+          "w": 92.15625,
+          "h": 138.5,
+          "right": 441.921875,
+          "bottom": 510
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 465.921875,
+          "y": 371.5,
+          "w": 92.15625,
+          "h": 138.5,
+          "right": 558.078125,
+          "bottom": 510
+        }
+      ]
+    },
+    {
+      "mode": "auto",
+      "width": 1440,
+      "height": 900,
+      "scrollW": 1440,
+      "scrollH": 900,
+      "boxes": [
+        {
+          "selector": ".ac-cell-grid",
+          "x": 522,
+          "y": 180,
+          "w": 396,
+          "h": 396,
+          "right": 918,
+          "bottom": 576
+        },
+        {
+          "selector": ".ac-bench",
+          "x": 211,
+          "y": 591,
+          "w": 1018,
+          "h": 48,
+          "right": 1229,
+          "bottom": 639
+        },
+        {
+          "selector": ".ac-shop",
+          "x": 405,
+          "y": 677,
+          "w": 630,
+          "h": 147,
+          "right": 1035,
+          "bottom": 824
+        },
+        {
+          "selector": ".ac-controls",
+          "x": 211,
+          "y": 830,
+          "w": 1018,
+          "h": 60,
+          "right": 1229,
+          "bottom": 890
+        },
+        {
+          "selector": ".ac-xp-control",
+          "x": 381.34375,
+          "y": 833,
+          "w": 85.640625,
+          "h": 57,
+          "right": 466.984375,
+          "bottom": 890
+        }
+      ]
+    },
+    {
+      "mode": "tcg",
+      "width": 1440,
+      "height": 900,
+      "scrollW": 1440,
+      "scrollH": 900,
+      "boxes": [
+        {
+          "selector": ".tcg-arena",
+          "x": 100,
+          "y": 85,
+          "w": 1240,
+          "h": 807,
+          "right": 1340,
+          "bottom": 892
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 121,
+          "y": 174,
+          "w": 1198,
+          "h": 164.5,
+          "right": 1319,
+          "bottom": 338.5
+        },
+        {
+          "selector": ".tcg-field",
+          "x": 121,
+          "y": 382.5,
+          "w": 1198,
+          "h": 164.5,
+          "right": 1319,
+          "bottom": 547
+        },
+        {
+          "selector": ".tcg-turn-bar",
+          "x": 121,
+          "y": 341.5,
+          "w": 1198,
+          "h": 38,
+          "right": 1319,
+          "bottom": 379.5
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 121,
+          "y": 693,
+          "w": 1198,
+          "h": 189,
+          "right": 1319,
+          "bottom": 882
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 534,
+          "y": 194,
+          "w": 108,
+          "h": 140.5,
+          "right": 642,
+          "bottom": 334.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 666,
+          "y": 194,
+          "w": 108,
+          "h": 140.5,
+          "right": 774,
+          "bottom": 334.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 798,
+          "y": 194,
+          "w": 108,
+          "h": 140.5,
+          "right": 906,
+          "bottom": 334.5
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 534,
+          "y": 402.5,
+          "w": 108,
+          "h": 140.5,
+          "right": 642,
+          "bottom": 543
+        },
+        {
+          "selector": ".tcg-unit",
+          "x": 666,
+          "y": 402.5,
+          "w": 108,
+          "h": 140.5,
+          "right": 774,
+          "bottom": 543
+        }
+      ]
+    }
+  ],
+  "paints": [
+    {
+      "width": 390,
+      "height": 844,
+      "ids": [
+        "pho-bo",
+        "banh-mi",
+        "com-tam",
+        "bun-cha",
+        "bun-rieu",
+        "banh-xeo",
+        "banh-cuon"
+      ],
+      "rendered": [
+        {
+          "src": "autochess/movement.webp",
+          "sx": 5,
+          "sy": 115,
+          "sw": 110,
+          "sh": 116
+        },
+        {
+          "src": "autochess/movement.webp",
+          "sx": 2,
+          "sy": 4,
+          "sw": 95,
+          "sh": 103
+        },
+        {
+          "src": "autochess/movement.webp",
+          "sx": 11,
+          "sy": 357,
+          "sw": 95,
+          "sh": 108
+        },
+        {
+          "src": "characters/rosterB.webp",
+          "sx": 4,
+          "sy": 637,
+          "sw": 175,
+          "sh": 254
+        },
+        {
+          "src": "characters/rosterB.webp",
+          "sx": 3,
+          "sy": 954,
+          "sw": 176,
+          "sh": 242
+        },
+        {
+          "src": "characters/rosterC.webp",
+          "sx": 6,
+          "sy": 54,
+          "sw": 173,
+          "sh": 243
+        },
+        {
+          "src": "characters/rosterC.webp",
+          "sx": 11,
+          "sy": 337,
+          "sw": 168,
+          "sh": 278
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "ids": [
+        "goi-cuon",
+        "xoi",
+        "com-ga",
+        "banh-chung",
+        "banh-tet",
+        "chef-nhien",
+        "chef-hai"
+      ],
+      "rendered": [
+        {
+          "src": "autochess/movement.webp",
+          "sx": 21,
+          "sy": 238,
+          "sw": 97,
+          "sh": 113
+        },
+        {
+          "src": "characters/rosterC.webp",
+          "sx": 7,
+          "sy": 678,
+          "sw": 172,
+          "sh": 223
+        },
+        {
+          "src": "characters/rosterC.webp",
+          "sx": 5,
+          "sy": 940,
+          "sw": 174,
+          "sh": 271
+        },
+        {
+          "src": "characters/rosterD.webp",
+          "sx": 6,
+          "sy": 88,
+          "sw": 173,
+          "sh": 214
+        },
+        {
+          "src": "characters/rosterD.webp",
+          "sx": 10,
+          "sy": 338,
+          "sw": 169,
+          "sh": 277
+        },
+        {
+          "src": "characters/rosterA.webp",
+          "sx": 4,
+          "sy": 71,
+          "sw": 175,
+          "sh": 255
+        },
+        {
+          "src": "characters/rosterA.webp",
+          "sx": 6,
+          "sy": 357,
+          "sw": 173,
+          "sh": 286
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "ids": [
+        "chef-moc",
+        "chef-bach",
+        "chef-lien",
+        "ferry",
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can"
+      ],
+      "rendered": [
+        {
+          "src": "characters/rosterA.webp",
+          "sx": 8,
+          "sy": 681,
+          "sw": 171,
+          "sh": 261
+        },
+        {
+          "src": "characters/rosterA.webp",
+          "sx": 3,
+          "sy": 980,
+          "sw": 176,
+          "sh": 244
+        },
+        {
+          "src": "characters/rosterB.webp",
+          "sx": 7,
+          "sy": 67,
+          "sw": 172,
+          "sh": 237
+        },
+        {
+          "src": "characters/rosterB.webp",
+          "sx": 12,
+          "sy": 351,
+          "sw": 164,
+          "sh": 249
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 9,
+          "sy": 7,
+          "sw": 118,
+          "sh": 105
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 21,
+          "sy": 122,
+          "sw": 95,
+          "sh": 103
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 13,
+          "sy": 235,
+          "sw": 101,
+          "sh": 99
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "ids": [
+        "banh-tom-ho-tay",
+        "com-hen",
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "rendered": [
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 10,
+          "sy": 344,
+          "sw": 112,
+          "sh": 109
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 16,
+          "sy": 461,
+          "sw": 103,
+          "sh": 119
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 21,
+          "sy": 586,
+          "sw": 95,
+          "sh": 118
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 8,
+          "sy": 711,
+          "sw": 119,
+          "sh": 117
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 8,
+          "sy": 842,
+          "sw": 119,
+          "sh": 100
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 12,
+          "sy": 957,
+          "sw": 115,
+          "sh": 95
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 8,
+          "sy": 1071,
+          "sw": 119,
+          "sh": 107
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "ids": [
+        "loc",
+        "tinh",
+        "sen",
+        "recorder"
+      ],
+      "rendered": [
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 28,
+          "sy": 1189,
+          "sw": 99,
+          "sh": 127
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 26,
+          "sy": 1324,
+          "sw": 99,
+          "sh": 145
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 18,
+          "sy": 1479,
+          "sw": 109,
+          "sh": 133
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 17,
+          "sy": 1622,
+          "sw": 96,
+          "sh": 139
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "ids": [
+        "pho-bo",
+        "banh-mi",
+        "com-tam",
+        "bun-cha",
+        "bun-rieu",
+        "banh-xeo",
+        "banh-cuon"
+      ],
+      "rendered": [
+        {
+          "src": "autochess/movement.webp",
+          "sx": 5,
+          "sy": 115,
+          "sw": 110,
+          "sh": 116
+        },
+        {
+          "src": "autochess/movement.webp",
+          "sx": 2,
+          "sy": 4,
+          "sw": 95,
+          "sh": 103
+        },
+        {
+          "src": "autochess/movement.webp",
+          "sx": 11,
+          "sy": 357,
+          "sw": 95,
+          "sh": 108
+        },
+        {
+          "src": "characters/rosterB.webp",
+          "sx": 4,
+          "sy": 637,
+          "sw": 175,
+          "sh": 254
+        },
+        {
+          "src": "characters/rosterB.webp",
+          "sx": 3,
+          "sy": 954,
+          "sw": 176,
+          "sh": 242
+        },
+        {
+          "src": "characters/rosterC.webp",
+          "sx": 6,
+          "sy": 54,
+          "sw": 173,
+          "sh": 243
+        },
+        {
+          "src": "characters/rosterC.webp",
+          "sx": 11,
+          "sy": 337,
+          "sw": 168,
+          "sh": 278
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "ids": [
+        "goi-cuon",
+        "xoi",
+        "com-ga",
+        "banh-chung",
+        "banh-tet",
+        "chef-nhien",
+        "chef-hai"
+      ],
+      "rendered": [
+        {
+          "src": "autochess/movement.webp",
+          "sx": 21,
+          "sy": 238,
+          "sw": 97,
+          "sh": 113
+        },
+        {
+          "src": "characters/rosterC.webp",
+          "sx": 7,
+          "sy": 678,
+          "sw": 172,
+          "sh": 223
+        },
+        {
+          "src": "characters/rosterC.webp",
+          "sx": 5,
+          "sy": 940,
+          "sw": 174,
+          "sh": 271
+        },
+        {
+          "src": "characters/rosterD.webp",
+          "sx": 6,
+          "sy": 88,
+          "sw": 173,
+          "sh": 214
+        },
+        {
+          "src": "characters/rosterD.webp",
+          "sx": 10,
+          "sy": 338,
+          "sw": 169,
+          "sh": 277
+        },
+        {
+          "src": "characters/rosterA.webp",
+          "sx": 4,
+          "sy": 71,
+          "sw": 175,
+          "sh": 255
+        },
+        {
+          "src": "characters/rosterA.webp",
+          "sx": 6,
+          "sy": 357,
+          "sw": 173,
+          "sh": 286
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "ids": [
+        "chef-moc",
+        "chef-bach",
+        "chef-lien",
+        "ferry",
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can"
+      ],
+      "rendered": [
+        {
+          "src": "characters/rosterA.webp",
+          "sx": 8,
+          "sy": 681,
+          "sw": 171,
+          "sh": 261
+        },
+        {
+          "src": "characters/rosterA.webp",
+          "sx": 3,
+          "sy": 980,
+          "sw": 176,
+          "sh": 244
+        },
+        {
+          "src": "characters/rosterB.webp",
+          "sx": 7,
+          "sy": 67,
+          "sw": 172,
+          "sh": 237
+        },
+        {
+          "src": "characters/rosterB.webp",
+          "sx": 12,
+          "sy": 351,
+          "sw": 164,
+          "sh": 249
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 9,
+          "sy": 7,
+          "sw": 118,
+          "sh": 105
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 21,
+          "sy": 122,
+          "sw": 95,
+          "sh": 103
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 13,
+          "sy": 235,
+          "sw": 101,
+          "sh": 99
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "ids": [
+        "banh-tom-ho-tay",
+        "com-hen",
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "rendered": [
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 10,
+          "sy": 344,
+          "sw": 112,
+          "sh": 109
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 16,
+          "sy": 461,
+          "sw": 103,
+          "sh": 119
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 21,
+          "sy": 586,
+          "sw": 95,
+          "sh": 118
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 8,
+          "sy": 711,
+          "sw": 119,
+          "sh": 117
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 8,
+          "sy": 842,
+          "sw": 119,
+          "sh": 100
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 12,
+          "sy": 957,
+          "sw": 115,
+          "sh": 95
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 8,
+          "sy": 1071,
+          "sw": 119,
+          "sh": 107
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "ids": [
+        "loc",
+        "tinh",
+        "sen",
+        "recorder"
+      ],
+      "rendered": [
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 28,
+          "sy": 1189,
+          "sw": 99,
+          "sh": 127
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 26,
+          "sy": 1324,
+          "sw": 99,
+          "sh": 145
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 18,
+          "sy": 1479,
+          "sw": 109,
+          "sh": 133
+        },
+        {
+          "src": "autochess/new-movement.webp",
+          "sx": 17,
+          "sy": 1622,
+          "sw": 96,
+          "sh": 139
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "requests": []
+}

@@ -1,4 +1,5 @@
 import { BrandMark } from "../components/layout/BrandMark"
+import { LegalLinks } from "../legal/LegalLinks"
 import { useEffect, useRef, useState, type CSSProperties } from "react"
 import { Link, useSearchParams } from "react-router-dom"
 import { useCompactPageSize } from "../components/game/useCompactPageSize"
@@ -803,6 +804,7 @@ export function TCGPage() {
                     {settingsView === "experience" && (
                       <section className="tcg-panel">
                         <h2>Trải nghiệm & dữ liệu cũ</h2>
+                        <LegalLinks />
                         <p>
                           Đổi âm thanh, giảm chuyển động, tên hiển thị hoặc xuất
                           ZIP đầy đủ tại phần cài đặt chung. Các món cũ được

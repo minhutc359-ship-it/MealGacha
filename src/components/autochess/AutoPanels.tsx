@@ -12,6 +12,7 @@ import {
 import { SCENES, SPEAKERS } from "../../game/autochess/story"
 import type { Piece, Actor } from "../../game/autochess/types"
 import { useGameMusic } from "../game/GameAudio"
+import { LegalLinks } from "../../legal/LegalLinks"
 export function AutoStory({
   sceneId,
   line,
@@ -171,12 +172,13 @@ export function AutoGuide({ onClose }: { onClose: () => void }) {
       <p className="ac-guide-intro">Bạn chọn đội hình; Vị Linh tự di chuyển, đánh và tung kỹ năng. Hạ hết phe địch trong 55 giây để thắng.</p>
       <div className="ac-guide-steps">
         <article><strong>1 · Mua & ghép quân</strong><p>Chạm Mua trong cửa hàng. 3 bản cùng quân tự ghép ★★; 3 quân ★★ ghép ★★★. Quân mới nằm ở ghế dự bị.</p></article>
-        <article><strong>2 · Xếp đội hình</strong><p>Chọn quân → chạm ô sáng ở ba hàng phía bạn. Đỡ đòn/cận chiến đứng trước; tầm xa/hồi phục đứng sau. Dùng Xếp nhanh rồi chỉnh theo ý bạn.</p></article>
+        <article><strong>2 · Xếp đội hình</strong><p>Kéo thả quân giữa các ô bàn và dự bị bằng chuột hoặc ngón tay; thả lên một quân để đổi chỗ. Bạn cũng có thể chọn quân → chạm ô sáng. Đỡ đòn đứng trước; tầm xa/hồi phục đứng sau.</p></article>
         <article><strong>3 · Xuất trận</strong><p>Đội tự đánh. Đủ 100 mana sẽ tung phép. Thắng → nhảy ăn mừng → kết quả → chọn thưởng nếu có → chuẩn bị vòng mới.</p></article>
       </div>
       <div className="ac-guide-example"><strong>Đội khởi đầu dễ hiểu</strong><p>Cơm tấm giữ tuyến trước · Phở bò gây sát thương từ xa · Bánh cuốn hồi phục ở phía sau.</p></div>
-      <details className="ac-guide-more"><summary>Vàng, XP và phối hệ</summary><p>Mỗi vòng nhận 5 vàng, thêm 1 khi thắng. Giữ 10/20/30 vàng nhận thêm 1/2/3 lợi tức. 4 vàng mua 4 XP; các mốc 8/20/38/62 XP mở tối đa 4/5/6/7 quân.</p><p>Quân khác tên cùng hệ kích mốc 2/4; cùng nghề kích 2/3. Bản trùng tên chỉ tính một lần. Ba hệ khác nhau kích Mâm chung để hồi máu. Chọn quân → mở túi ✧ để trao tối đa hai di vật khác nhau.</p></details>
+      <details className="ac-guide-more"><summary>Vàng, XP và phối hệ</summary><p>Mỗi vòng nhận 2 XP và 5 vàng, thêm 1 vàng khi thắng. Nút Cấp luôn hiện EXP hiện tại/mốc kế tiếp và thanh tiến độ. 4 vàng mua 4 XP; các mốc 8/20/38/62 XP mở tối đa 4/5/6/7 quân. Giữ 10/20/30 vàng nhận 1/2/3 lợi tức.</p><p>Quân khác tên cùng hệ kích mốc 2/4; cùng nghề kích 2/3. Bản trùng tên chỉ tính một lần. Ba hệ khác nhau kích Mâm chung để hồi máu. Chọn quân → mở túi ✧ để trao tối đa hai di vật khác nhau. Phe địch có sức mạnh tổng hợp tăng 30%: máu, công và kỹ năng tăng khoảng 14% mỗi phần. Ba sao vẫn cần đội hình hỗ trợ.</p></details>
       <details className="ac-guide-more"><summary>Thua, survival và lưu tiến trình</summary><p>Thua mất ý chí; chiến dịch phải chơi lại đúng màn đó. Survival chuyển sang đợt mới đến khi hết 100 ý chí; chỉ vòng thắng cho điểm.</p><p>Survival: cứ 30 giây giao chiến địch mạnh hơn; sau 25 giây trong một vòng có cuồng nộ. Chuẩn bị, tạm dừng, thoại và ăn mừng không tính thời gian.</p><p>Vàng Auto chess độc lập với xu TCG. Mã tiến trình giữ cả trận, tài nguyên và kỷ lục; không cần tài khoản.</p></details>
+      <LegalLinks />
       <button className="ac-button primary" onClick={onClose}>Đã hiểu · Giữ bàn!</button>
     </Dialog>
   )

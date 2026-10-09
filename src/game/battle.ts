@@ -9,6 +9,7 @@ import {
 import { recipeReady } from "./recipes"
 import { TACTICS, tacticError, type TacticId } from "./tactics"
 import { battleOutcome } from "./battleOutcome"
+import { ENEMY_CHALLENGE, challengeStat } from "./difficulty"
 import type { Battle, BattleUnit, Combatant, GameCard } from "./types"
 
 export type Target = "hero" | string
@@ -179,15 +180,16 @@ export function startBattle(
   const stage = stageId ? STAGE_MAP[stageId] : undefined
   const b: Battle = {
     id: crypto.randomUUID(),
+    enemyChallenge: ENEMY_CHALLENGE,
     stageId,
     opponent: stage?.opponent ?? "Đầu bếp du hành",
     round: 1,
     player: combatant(shuffle(deck, rng), choice === "courage" ? 34 : 32),
     enemy: combatant(
       shuffle(opponentDeck(stageId, rng), rng),
-      stage ? 25 + Math.floor(stage.index / 3) * 2 + (stage.boss ? 3 : 0) : 30,
+      challengeStat(stage ? 25 + Math.floor(stage.index / 3) * 2 + (stage.boss ? 3 : 0) : 30),
     ),
-    log: ["Trận đấu bắt đầu. Triệu hồi thẻ, chọn mục tiêu rồi kết thúc lượt."],
+    log: ["Thử thách +30% ý chí chủ tướng địch. Triệu hồi thẻ, chọn mục tiêu rồi kết thúc lượt."],
     result: null,
     settled: false,
     nextUid: 1,

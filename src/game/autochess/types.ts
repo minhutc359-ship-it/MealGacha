@@ -1,4 +1,4 @@
-export const RULES_VERSION = 1
+export const RULES_VERSION = 2
 export const TICKS_PER_SECOND = 20
 export type AutoMode = "campaign" | "survival" | "daily"
 export type AutoSchool = "ember" | "tide" | "grove" | "hearth" | "sugar"
@@ -30,6 +30,7 @@ export interface Piece {
   id: string
   star: 1 | 2 | 3
   cell: number | null
+  benchSlot?: number
   items: string[]
 }
 export interface Action {

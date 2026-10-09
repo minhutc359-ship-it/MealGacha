@@ -1,0 +1,106 @@
+{
+  "version": "3.3.0",
+  "bytes": 32975834,
+  "files": 291,
+  "byType": {
+    "js": {
+      "files": 37,
+      "bytes": 1529709
+    },
+    "css": {
+      "files": 6,
+      "bytes": 329034
+    },
+    "mp3": {
+      "files": 18,
+      "bytes": 4591633
+    },
+    "webp": {
+      "files": 218,
+      "bytes": 26052192
+    },
+    "png": {
+      "files": 3,
+      "bytes": 400763
+    },
+    "ico": {
+      "files": 1,
+      "bytes": 16574
+    },
+    "html": {
+      "files": 4,
+      "bytes": 17985
+    },
+    "txt": {
+      "files": 3,
+      "bytes": 37411
+    },
+    "webmanifest": {
+      "files": 1,
+      "bytes": 533
+    }
+  },
+  "groups": {
+    "Application JS/CSS": 1858743,
+    "Auto chess art/audio": 6471127,
+    "Brand": 465507,
+    "Shared character atlases": 4087404,
+    "Event art": 2016822,
+    "Food art": 7490462,
+    "TCG art/audio": 10513266,
+    "Other and legal": 72503
+  },
+  "js_gzip": 487921,
+  "css_gzip": 69804,
+  "largest": [
+    {
+      "path": "assets/characters/rosterB.webp",
+      "bytes": 1125838
+    },
+    {
+      "path": "assets/characters/rosterC.webp",
+      "bytes": 1025512
+    },
+    {
+      "path": "assets/autochess/movement.webp",
+      "bytes": 1005956
+    },
+    {
+      "path": "assets/characters/rosterD.webp",
+      "bytes": 990090
+    },
+    {
+      "path": "assets/characters/rosterA.webp",
+      "bytes": 945964
+    },
+    {
+      "path": "assets/autochess/new-movement.webp",
+      "bytes": 933930
+    },
+    {
+      "path": "assets/autochess/monsters.webp",
+      "bytes": 929036
+    },
+    {
+      "path": "assets/tcg/map/meal-world-map.webp",
+      "bytes": 412492
+    },
+    {
+      "path": "assets/autochess/world.webp",
+      "bytes": 385358
+    },
+    {
+      "path": "assets/autochess/audio/story.mp3",
+      "bytes": 375400
+    },
+    {
+      "path": "assets/autochess/roster.webp",
+      "bytes": 360364
+    },
+    {
+      "path": "assets/autochess/audio/8bit-story.mp3",
+      "bytes": 358061
+    }
+  ],
+  "leaks": []
+}

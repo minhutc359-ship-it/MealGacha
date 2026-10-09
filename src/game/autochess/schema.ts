@@ -42,6 +42,7 @@ const piece = z.object({
   id: unitId,
   star,
   cell: cell.min(18).nullable(),
+  benchSlot: int.max(5).optional(),
   items: z
     .array(relicId)
     .max(2)
@@ -143,7 +144,7 @@ export const autoRunSchema = z
   .object({
     id,
     mode,
-    rulesVersion: z.literal(1),
+    rulesVersion: z.union([z.literal(1), z.literal(2)]),
     seed: uint32,
     rng: uint32,
     day: z.string().max(16),
@@ -212,9 +213,12 @@ export const autoRunSchema = z
     const invalid = (message: string) =>
       ctx.addIssue({ code: "custom", message })
     const board = run.roster.filter((p) => p.cell !== null)
+    const placedBench = run.roster.filter(p => p.cell === null && p.benchSlot !== undefined)
     if (
       new Set(run.roster.map((p) => p.uid)).size !== run.roster.length ||
       new Set(board.map((p) => p.cell)).size !== board.length ||
+      new Set(placedBench.map(p => p.benchSlot)).size !== placedBench.length ||
+      board.some(p => p.benchSlot !== undefined) ||
       board.length > capacity(run.xp) ||
       run.roster.length - board.length > 6
     )

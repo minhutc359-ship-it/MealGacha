@@ -16,15 +16,17 @@ interface Props {
   quiet?: boolean
   paused?: boolean
   fallback?: string
+  cinematic?: boolean
 }
 
 export const CharacterSprite = memo(function CharacterSprite({
   model, motion = "idle", delay = 0, lead, stamp, flip = false,
-  quiet = false, paused = false, fallback,
+  quiet = false, paused = false, fallback, cinematic = false,
 }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null)
   const [loadedPath, setLoadedPath] = useState("")
-  const path = SPRITE_SHEETS[model.sheet].path
+  const showcase = cinematic ? model.showcase : undefined
+  const path = showcase ?? SPRITE_SHEETS[model.sheet].path
   useEffect(() => {
     const surface = canvas.current!, ctx = surface.getContext("2d")
     const bounds = characterBounds(model)
@@ -38,11 +40,12 @@ export const CharacterSprite = memo(function CharacterSprite({
       const current = age < delay ? lead ?? "idle" : motion
       const poseAge = age < delay ? age : age - delay
       const fresh = model.sheet !== "base"
-      const frame = bounds.row.frames[characterPose(current, poseAge, fresh, quiet)]
+      const pose = characterPose(current, poseAge, fresh, quiet, model.sheet.startsWith("roster"))
+      const frame = showcase ? [0, 0, image.naturalWidth, image.naturalHeight, image.naturalWidth / 2, image.naturalHeight] : bounds.row.frames[pose]
       const [sx, sy, sw, sh, ax, ay] = frame
-      const scale = Math.min(width * .86 / (bounds.right - bounds.left), height * .88 / (bounds.bottom - bounds.top))
+      const scale = showcase ? Math.min(width * .94 / sw, height * .94 / sh) : Math.min(width * .86 / (bounds.right - bounds.left), height * .88 / (bounds.bottom - bounds.top))
       const direction = flip ? -1 : 1
-      const center = width / 2 - direction * (bounds.left + bounds.right) * scale / 2
+      const center = width / 2 - (showcase ? 0 : direction * (bounds.left + bounds.right) * scale / 2)
       let x = 0, y = 0, stretch = 0, alpha = 1, rotation = 0
       if (!quiet && !paused) {
         if (current === "idle") y = Math.sin((now - visibleSince) / 500 + model.row) * height * .012
@@ -63,20 +66,23 @@ export const CharacterSprite = memo(function CharacterSprite({
       ctx.fillStyle = "#061820"
       ctx.beginPath(); ctx.ellipse(width / 2, height * .96, width * .28, height * .035, 0, 0, Math.PI * 2); ctx.fill()
       ctx.globalAlpha = alpha
-      ctx.translate(center + x, height * .94 - bounds.bottom * scale + y)
+      ctx.translate(center + x, height * .94 - (showcase ? 0 : bounds.bottom * scale) + y)
       ctx.rotate(rotation)
       ctx.scale(direction * (1 - stretch), 1 + stretch)
       ctx.drawImage(image, sx, sy, sw, sh, -ax * scale, -ay * scale, sw * scale, sh * scale)
       ctx.restore()
-      surface.dataset.pose = String(characterPose(current, poseAge, fresh, quiet))
+      surface.dataset.pose = String(pose)
+      surface.dataset.source = showcase ? "showcase" : "atlas"
     }
     const resize = () => {
-      const box = surface.getBoundingClientRect()
-      width = Math.max(1, box.width); height = Math.max(1, box.height)
+      // Entrance transforms start at 30% scale. Measure the layout box so the
+      // canvas keeps its full resolution after that animation grows to 100%.
+      width = Math.max(1, surface.clientWidth); height = Math.max(1, surface.clientHeight)
       const dpr = Math.min(2, window.devicePixelRatio || 1)
       surface.width = Math.round(width * dpr); surface.height = Math.round(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.imageSmoothingEnabled = true
+      ctx.imageSmoothingQuality = "high"
       draw(performance.now())
     }
     const ready = () => { setLoadedPath(path); resize() }
@@ -99,7 +105,7 @@ export const CharacterSprite = memo(function CharacterSprite({
       unsubscribe(); observer.disconnect(); image.removeEventListener("load", ready)
       document.removeEventListener("visibilitychange", visibility)
     }
-  }, [path, model.sheet, model.row, motion, delay, lead, stamp, flip, quiet, paused])
+  }, [path, showcase, model.sheet, model.row, motion, delay, lead, stamp, flip, quiet, paused])
   return <span className={`tcg-character-sprite${loadedPath === path ? " is-loaded" : ""}`}
     data-character={model.id} data-motion={motion} data-sheet={model.sheet}
     data-quiet={quiet || paused} aria-hidden="true">
