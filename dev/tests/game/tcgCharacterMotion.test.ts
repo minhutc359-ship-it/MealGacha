@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest"
 import { actBattle, startBattle } from "@/game/battle"
 import { CARDS, CARD_MAP, STARTER_DECK } from "@/game/catalog"
 import { SPRITE_SHEETS } from "@/game/autochess/presentation"
-import { tcgCharacter, tcgCaster, tcgUnitMotion, characterPose, type CharacterMotion } from "@/game/tcgCharacterMotion"
+import { tcgCharacter, tcgCaster, tcgUnitMotion, tcgFieldUnits, characterPose, type CharacterMotion } from "@/game/tcgCharacterMotion"
 import { characterBounds } from "@/infrastructure/assets/characterSprites"
 import type { BattleUnit, School } from "@/game/types"
 
@@ -16,6 +16,32 @@ function battle() {
   return b
 }
 describe("shared characters in TCG", () => {
+  it("retains original target slots during first/middle deaths and compacts only after their real attack frame", () => {
+    for (const target of ["left", "middle"]) {
+      const b = battle()
+      b.player.board = [unit("attacker", "banh-mi", 3, 9)]
+      b.enemy.board = [unit("left", "banh-cuon", 2, 0), unit("middle", "pho-bo", 2, 0), unit("right", "com-tam", 2, 0)]
+      const out = actBattle(b, { type: "attack", uid: "attacker", target })
+      const frame = out.frames.find(f => f.event.kind === "attack")!
+      expect(frame.battle.enemy.board.some(u => u.uid === target)).toBe(false)
+      const slots = tcgFieldUnits(frame.before.enemy.board, frame.battle.enemy.board)
+      expect(slots.map(u => u.uid)).toEqual(["left", "middle", "right"])
+      expect(tcgUnitMotion(frame, target, "enemy").kind).toBe("fall")
+      const survivor = frame.battle.enemy.board.find(u => u.uid === "right")!
+      expect(slots[2]).toBe(survivor)
+      expect(tcgFieldUnits(undefined, frame.battle.enemy.board).map(u => u.uid)).toEqual(["left", "middle", "right"].filter(uid => uid !== target))
+    }
+  })
+  it("keeps mutually defeated units in both original rows, and appends summons after existing slots", () => {
+    const b = battle(); b.player.board = [unit("attacker", "banh-mi", 1, 9), unit("support", "pho-bo")]
+    b.enemy.board = [unit("target", "com-tam", 1, 9), unit("right", "banh-cuon")]
+    const out = actBattle(b, { type: "attack", uid: "attacker", target: "target" })
+    const frame = out.frames.find(f => f.event.kind === "attack")!
+    expect(tcgFieldUnits(frame.before.player.board, frame.battle.player.board).map(u => u.uid)).toEqual(["attacker", "support"])
+    expect(tcgFieldUnits(frame.before.enemy.board, frame.battle.enemy.board).map(u => u.uid)).toEqual(["target", "right"])
+    const next = unit("new", "bun-ca")
+    expect(tcgFieldUnits([b.player.board[1]], [b.player.board[1], next]).map(u => u.uid)).toEqual(["support", "new"])
+  })
   it("every summonable card has a real measured row and valid poses, while spells use the matching caster", () => {
     const kinds: CharacterMotion[] = ["idle", "summon", "attack", "cast", "hit", "fall", "victory"]
     for (const card of CARDS) {

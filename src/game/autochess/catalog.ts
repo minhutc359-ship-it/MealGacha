@@ -8,7 +8,7 @@ export const AUTO_SCHOOLS: Record<AutoSchool, {
 }> = {
   ember: {
     name: "Hỏa vị",
-    color: "#ffae70",
+    color: "#ff8479",
     text: "2: đòn đánh đốt 8/s · 4: đốt 16/s",
   },
   tide: {
@@ -28,7 +28,7 @@ export const AUTO_SCHOOLS: Record<AutoSchool, {
   },
   sugar: {
     name: "Ngọt vị",
-    color: "#e2b4f3",
+    color: "#98de9b",
     text: "2: cast cho 70 khiên · 4: cho 150 khiên",
   },
 }
@@ -510,6 +510,22 @@ const rows: Row[] = [
     5,
   ],
 ]
+// Stable IDs keep earlier sessions on their original recruitment pool.
+export const LEGACY_UNIT_IDS = new Set(rows.map(row => row[0]))
+rows.push(
+  ["xoi-xeo", "Xôi xéo", "Tê Tê Nếp Vàng", 1, "hearth", "keeper", "stun", 1, 135, "Húc 135 vật lý, làm choáng mục tiêu 1 giây.", "Gói lá chuối giữ bữa sáng ấm của người đi làm.", 3, "xoi-xeo"],
+  ["dua-hanh", "Dưa hành", "Ngọc Thố Muối Xuân", 1, "grove", "storyteller", "ginger", 3, 120, "Hồi 120 máu và giải choáng trong vùng quanh đồng minh yếu nhất.", "Một đĩa nhỏ làm mâm Tết bớt ngấy và lời chuyện thêm dài.", 2, "dua-hanh"],
+  ["bun-bo-hue", "Bún bò Huế", "Ngưu Vương Sả Ớt", 2, "ember", "keeper", "cleave", 1, 185, "Quét địch cạnh mình, gây 185 sát thương vật lý.", "Hương sả gọi về những buổi sáng bên dòng Hương.", 0, "bun-bo-hue"],
+  ["che-buoi", "Chè bưởi", "Hải Ly Hương Bưởi", 2, "sugar", "storyteller", "mana", 3, 175, "Bắn 175 phép; hai đồng minh yếu máu nhất nhận 20 mana.", "Cùi bưởi giòn và nước cốt dừa giữ một lời mời ngày nắng.", 4, "che-buoi"],
+  ["bun-ca", "Bún cá", "Bói Cá Sóng Bạc", 3, "tide", "storyteller", "frost", 3, 240, "Gây 240 phép lên mục tiêu và làm choáng 1 giây.", "Mùi thì là theo gió từ bến cá vào phố chợ.", 1, "bun-ca"],
+  ["cha-ruoi", "Chả rươi", "Sóc Lá Thu", 3, "ember", "traveler", "dash", 1, 255, "Chém xuyên một hàng địch, gây 255 sát thương phép.", "Mùa rươi ngắn; những cuộc gặp mùa thu ở lại lâu hơn.", 0, "cha-ruoi"],
+  ["cha-ca-la-vong", "Chả cá Lã Vọng", "Lão Ngư Thì Là", 4, "tide", "keeper", "steam", 2, 315, "Hơi thơm xuyên một cột, gây 315 sát thương phép.", "Chảo cá còn nóng là lời mời mọi người cùng ngồi xuống.", 1, "cha-ca-la-vong"],
+  ["thit-kho-trung", "Thịt kho trứng", "Huyền Quy Nồi Tết", 4, "hearth", "keeper", "shield", 1, 450, "Tạo 450 khiên cho hai đồng minh yếu máu nhất.", "Nồi kho để dành giữ chỗ cho người nhà trở về.", 3, "thit-kho-trung"],
+  ["bun-thang", "Bún thang", "Bạch Hạc Chỉ Vàng", 5, "tide", "storyteller", "steam", 4, 390, "Hơi nước xuyên một cột, gây 390 sát thương phép.", "Nhiều nguyên liệu nhỏ cùng làm nên một bát hài hòa.", 1, "bun-thang"],
+  ["com-lang-vong", "Cốm Làng Vòng", "Kỳ Lân Lúa Non", 5, "grove", "keeper", "feast", 2, 370, "Vùng lá cốm hồi 370 máu và tạo 130 khiên cho đồng minh.", "Lá sen và lúa non giữ ký ức mùa thu Hà Nội.", 2, "com-lang-vong"],
+  ["banh-com-hang-than", "Bánh cốm Hàng Than", "Yến Ngọc Tơ Duyên", 5, "sugar", "traveler", "copy", 3, 360, "Dùng kỹ năng đồng đội vừa tung với 65% sức mạnh.", "Hộp bánh trao tay giữ lời chúc đôi lứa và ngày sum họp.", 4, "banh-com-hang-than"],
+  ["ca-phe-trung", "Cà phê trứng", "Cầy Hương Mây Kem", 5, "hearth", "storyteller", "rhythm", 3, 345, "Gõ nhịp 345 phép; +25 mana cho đồng đội cạnh mình.", "Một chiếc phin nhỏ nối nhịp trò chuyện giữa phố đông.", 3, "ca-phe-trung"],
+)
 export const AUTO_UNITS: UnitDef[] = rows.map(
   (
     [
@@ -643,6 +659,7 @@ export interface MonsterDef {
   sprite: number
   text: string
   boss?: boolean
+  unlockWave?: number
 }
 export const MONSTERS: MonsterDef[] = [
   {
@@ -832,6 +849,17 @@ export const MONSTERS: MonsterDef[] = [
     boss: true,
   },
 ]
+export const LEGACY_MONSTER_COUNT = MONSTERS.length
+MONSTERS.push(
+  { id: "ink-crab", name: "Cua Mực Nhạt", hp: 720, attack: 42, range: 1, armor: 30, skill: "shell", power: 210, school: "tide", sprite: 0, unlockWave: 3, text: "Khép vỏ tạo khiên. Dùng sát thương phép để vượt giáp." },
+  { id: "char-hound", name: "Chó Than", hp: 610, attack: 59, range: 1, armor: 9, skill: "cone", power: 190, school: "ember", sprite: 1, unlockWave: 4, text: "Lửa hình nón phạt đội hình đứng sát. Tách carry khỏi tuyến trước." },
+  { id: "silk-moth", name: "Bướm Chỉ Lạc", hp: 560, attack: 38, range: 3, armor: 10, skill: "drain", power: 165, school: "sugar", sprite: 2, unlockWave: 5, text: "Hút mana mục tiêu. Dùng Lữ khách áp sát trước khi niệm phép." },
+  { id: "bamboo-wraith", name: "Trúc Khô", hp: 790, attack: 40, range: 2, armor: 24, skill: "leaves", power: 180, school: "grove", sprite: 3, unlockWave: 6, text: "Bọc lá tiếp sức đồng đội. Hạ quân hỗ trợ trước khi đánh tank." },
+  { id: "rival-ladle", name: "Người Bếp Không Tên", hp: 850, attack: 56, range: 1, armor: 20, skill: "lantern", power: 230, school: "hearth", sprite: 0, unlockWave: 7, text: "Đối thủ giữ bếp trao khiên cả hàng. Tấn công từ nhiều tuyến." },
+  { id: "rival-flute", name: "Kẻ Giấu Tiếng Sáo", hp: 650, attack: 47, range: 3, armor: 12, skill: "rhythm", power: 205, school: "tide", sprite: 1, unlockWave: 8, text: "Nhịp sáo gây phép và tiếp mana. Chặn nhịp bằng choáng hoặc khóa phép." },
+  { id: "boss-drum", name: "Vọng Trống Lạc Nhịp", hp: 2600, attack: 84, range: 1, armor: 28, skill: "stun", power: 345, school: "hearth", sprite: 2, boss: true, text: "Boss Survival: tiếng vọng bị sương làm lệch nhịp, choáng tuyến trước. Thanh vị giảm thời gian choáng." },
+  { id: "boss-lotus", name: "Sen Sương Khép Cánh", hp: 3100, attack: 81, range: 3, armor: 22, skill: "seal", power: 320, school: "grove", sprite: 3, boss: true, text: "Boss Survival: khóa phép người đứng trước, chuyển pha dưới nửa máu. Cần cả đòn đánh và phép." },
+)
 export const MONSTER_MAP = Object.fromEntries(MONSTERS.map((m) => [m.id, m]))
 export const SKILL_LABELS: Record<Skill, string> = {
   flame: "Bùng hương",
@@ -857,10 +885,23 @@ export const SKILL_LABELS: Record<Skill, string> = {
   seal: "Một màu",
   frost: "Hơi lạnh",
 }
-export const SHOP_ODDS = [
+export const LEGACY_SHOP_ODDS = [
   [75, 25, 0, 0, 0],
   [55, 35, 10, 0, 0],
   [35, 35, 25, 5, 0],
   [20, 30, 35, 13, 2],
   [10, 20, 35, 25, 10],
+  [10, 20, 25, 35, 10],
+  [5, 10, 20, 40, 25],
 ]
+export const SHOP_ODDS = [
+  [75, 25, 0, 0, 0],
+  [55, 30, 15, 0, 0],
+  [40, 35, 23, 2, 0],
+  [25, 35, 30, 10, 0],
+  [15, 25, 30, 25, 5],
+  [10, 20, 25, 35, 10],
+  [5, 10, 20, 40, 25],
+]
+export const shopOdds = (level: number, rulesVersion: number) =>
+  (rulesVersion >= 3 ? SHOP_ODDS : LEGACY_SHOP_ODDS)[Math.max(0, Math.min(6, level - 3))]

@@ -6,6 +6,7 @@ import { createCombat, advanceCombat } from "@/game/autochess/combat"
 import { reduceAuto } from "@/game/autochess/reducer"
 import { emptyAutoSave } from "@/game/autochess/types"
 import { autoRunSchema } from "@/game/autochess/schema"
+import { unitCharacter, monsterCharacter } from "@/infrastructure/assets/characterSprites"
 
 const initial = () => createAutoRun("survival", 42, "2026-10-09", "presentation")
 
@@ -24,11 +25,13 @@ describe("measured sprite rendering", () => {
       }
     }
     for (const unit of AUTO_UNITS) {
-      const sheet = unit.portrait >= 18 ? SPRITE_SHEETS.fresh : SPRITE_SHEETS.base
-      const row = unit.portrait >= 18 ? unit.portrait - 18 : unit.sprite
-      expect(sheet.rows[row].frames).toHaveLength(unit.portrait >= 18 ? 7 : 14)
+      const model = unitCharacter(unit.id)
+      expect(SPRITE_SHEETS[model.sheet].rows[model.row].frames).toHaveLength(model.sheet === "base" ? 14 : 7)
     }
-    for (const monster of MONSTERS) expect(SPRITE_SHEETS.enemy.rows[monster.sprite].frames).toHaveLength(7)
+    for (const monster of MONSTERS) {
+      const model = monsterCharacter(monster.id)
+      expect(SPRITE_SHEETS[model.sheet].rows[model.row].frames).toHaveLength(7)
+    }
     // Regression: hats/feet are in an uneven 310–424px band, not 380–507px.
     expect(SPRITE_SHEETS.enemy.rows[3].frames[0][1]).toBeLessThan(380)
   })

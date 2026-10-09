@@ -1,0 +1,48 @@
+{
+  "checks": [
+    {
+      "name": "Auto chess fits portrait",
+      "width": 390,
+      "height": 720,
+      "docWidth": 390,
+      "docHeight": 720,
+      "board": {
+        "x": 9,
+        "y": 149,
+        "width": 372,
+        "height": 316
+      }
+    },
+    {
+      "name": "Auto chess fits landscape",
+      "width": 844,
+      "height": 390,
+      "docWidth": 844,
+      "docHeight": 390,
+      "board": {
+        "x": 11,
+        "y": 96.796875,
+        "width": 520.375,
+        "height": 287.203125
+      }
+    },
+    {
+      "name": "Auto chess fits small",
+      "width": 320,
+      "height": 568,
+      "docWidth": 320,
+      "docHeight": 568,
+      "board": {
+        "x": 8,
+        "y": 143,
+        "width": 304,
+        "height": 192
+      }
+    },
+    {
+      "name": "No client exceptions or missing local runtime assets"
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

@@ -1,10 +1,14 @@
-# Soul of Meal 3.3 · Vị Linh vào trận
+# Soul of Meal 3.4.0 · Chín chỗ giữ bàn
 
 Game ẩm thực và ký ức Việt Nam gồm **TCG**, **Chợ Đêm Auto chess** và **Rương vị giác**, chạy trên React 19 / Vite 8 / TypeScript. Không cần tài khoản; có mã MGC1 để chuyển tiến trình giữa thiết bị.
 
-TCG có 163 thẻ, 6 chương/18 màn, xây bộ bài, AI, thám hiểm, chế tạo và nhiệm vụ. Auto chess có 32 quân, 10 quái/4 boss, chiến dịch, Survival, Daily, shop/pool hữu hạn, ghép sao, hệ/nghề/di vật, XP và kéo thả bàn/dự bị. Rương dùng catalog chung 123 món và tìm quán từ OpenStreetMap không cần API key. Model anime 2.5D dùng chung hai chế độ; không phải rig 3D chạy trực tiếp.
+TCG có 163 thẻ, 6 chương/18 màn, xây bộ bài, AI, thám hiểm, chế tạo và nhiệm vụ. Auto chess có 44 quân, 16 quái/đối thủ thường và 6 boss, chiến dịch, Survival, Daily, shop/pool hữu hạn, ghép sao, hệ/nghề/di vật, XP và kéo thả bàn/dự bị. Rương dùng catalog chung 123 món và tìm quán từ OpenStreetMap không cần API key. Model anime 2.5D dùng chung hai chế độ; không phải rig 3D chạy trực tiếp.
 
 Bản 3.3 thêm niệm phép, đạn có hình lửa/nước/lá/tinh quang, vệt chém cong, khiên và sóng va chạm. VFX đọc sự kiện thực của trận, dùng cùng bộ renderer ở TCG/Auto chess, giữ reduced motion/preset nhẹ. Đồng bộ âm thanh và pose chịu đòn TCG tại mốc tiếp xúc. Giữ mức thử thách +30%, EXP, đội hình và save từ 3.2.2.
+
+Bản 3.4 mở cấp 9, bàn tối đa 9 quân và đúng 9 ô dự bị; mua không tự chọn quân, dự bị đầy vẫn mua được bản đủ ghép sao. Mobile dùng kéo thả để xếp/bán, giữ 0,3 giây để xem nhanh rồi thả để đóng. Thêm 3 mảnh đồ, 6 công thức ghép, kéo trang bị có xem trước; HUD hệ bên trái, màu hệ, giá 1–5 vàng, ví vàng và XP ngay trong shop. Có nút ẩn/hiện shop và tùy chọn rung khi lên sao trên trình duyệt hỗ trợ. Giao diện vừa khung mobile dọc/ngang; save và mã MGC1 cũ tiếp tục được. Xem [chi tiết và kiểm chứng 3.4](dev/docs/market-v340/UPDATE.md).
+
+Bản 3.3.1 sửa vị trí lá bị hạ trong TCG; thêm phím **W/E/F/D**, shop đánh dấu quân đã có/đủ ghép, hiệu ứng thức tỉnh và kích thước +7% mỗi sao. Có 20 nhân vật mới với 140 pose trong 5 atlas WebP; 12 linh vị món Việt dùng chung model ở TCG. Phiên cũ giữ pool và seed đã lưu; phiên mới 3.4 dùng luật 4. Xem [thay đổi 3.3.1](dev/docs/market-v331/UPDATE.md).
 
 ## Chạy và kiểm tra
 

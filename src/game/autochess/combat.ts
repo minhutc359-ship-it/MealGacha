@@ -36,6 +36,28 @@ export function enemyPlan(run: AutoRun) {
   )
   let rng = (run.seed ^ Math.imul(run.wave, 2654435761)) >>> 0
   const cells = [8, 9, 7, 10, 2, 3, 1, 4, 0, 5, 6, 11]
+  if (run.rulesVersion >= 3) {
+    const normals = MONSTERS.filter((m, index) => !m.boss && (m.unlockWave ?? index + 1) <= run.wave)
+    const bosses = MONSTERS.filter(m => m.boss)
+    const boss = bosses[run.mode === "campaign" ? bossIndex : (Math.floor(run.wave / 5) - 1) % bosses.length]
+    const occupied = new Set<number>()
+    const supportive = new Set(["leaves", "lantern", "rhythm", "heal", "feast", "ginger"])
+    let supports = 0
+    return Array.from({ length: count }, (_, i) => {
+      rng = (Math.imul(rng, 1664525) + 1013904223) >>> 0
+      // Alternate frontline, ranged damage and support when those roles unlock.
+      // Several simultaneous heal/shield loops turn a 55s round into a stalemate.
+      const allowed = normals.filter(m => !supportive.has(m.skill) || supports < (run.mode === "campaign" ? 1 : 2))
+      const role = allowed.filter(m => i === 0 ? m.range === 1 : i === 1 ? m.range > 1 && !supportive.has(m.skill) : i === 2 ? supportive.has(m.skill) : true)
+      const candidates = role.length ? role : allowed
+      const def = i === 0 && bossWave ? boss : candidates[rng % candidates.length]
+      if (supportive.has(def.skill)) supports++
+      const order = def.range === 1 ? [8, 9, 7, 10, 6, 11, 2, 3, 1, 4, 0, 5] : [2, 3, 1, 4, 0, 5, 8, 9, 7, 10, 6, 11]
+      const cell = order.find(cell => !occupied.has(cell))!
+      occupied.add(cell)
+      return { def, cell }
+    })
+  }
   return Array.from({ length: count }, (_, i) => {
     rng = (Math.imul(rng, 1664525) + 1013904223) >>> 0
     const index =
@@ -115,6 +137,9 @@ export function createCombat(run: AutoRun): AutoCombat {
       a.shield += traits.hearth >= 4 ? 220 : 100
     if (p.items.includes("herbs")) a.maxHp += 100
     if (p.items.includes("basket")) a.maxHp += 180
+    if (p.items.includes("fiber")) a.maxHp += 60
+    if (p.items.includes("spark")) a.baseAttack += 6
+    if (p.items.includes("dew")) a.mana = Math.min(100, a.mana + 10)
     if (p.items.includes("bell") && adjacent) a.baseAttack *= 1.18
     if (run.augments.includes("guests") && distinctSchools >= 3)
       a.maxHp = Math.round(a.maxHp * 1.15)

@@ -1,5 +1,5 @@
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
-import { UNIT_MAP } from "../../game/autochess/catalog"
+import { UNIT_MAP, MONSTER_MAP } from "../../game/autochess/catalog"
 import { FLAVOR_SPIRITS } from "../../game/flavorSpirits"
 
 export type CharacterSheet = keyof typeof SPRITE_SHEETS
@@ -20,6 +20,23 @@ export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
   xoi: ["rosterC", 2], "com-ga": ["rosterC", 3],
   "banh-chung": ["rosterD", 0], "banh-tet": ["rosterD", 1],
   "caravan-herbalist": ["rosterD", 2], "caravan-gardener": ["rosterD", 3],
+  "xoi-xeo": ["rosterE", 0], "dua-hanh": ["rosterE", 1],
+  "bun-bo-hue": ["rosterE", 2], "che-buoi": ["rosterE", 3],
+  "bun-ca": ["rosterF", 0], "cha-ruoi": ["rosterF", 1],
+  "cha-ca-la-vong": ["rosterF", 2], "thit-kho-trung": ["rosterF", 3],
+  "bun-thang": ["rosterG", 0], "com-lang-vong": ["rosterG", 1],
+  "banh-com-hang-than": ["rosterG", 2], "ca-phe-trung": ["rosterG", 3],
+}
+const ENEMY_MODELS: Record<string, [CharacterSheet, number]> = {
+  "ink-crab": ["nightA", 0], "char-hound": ["nightA", 1],
+  "silk-moth": ["nightA", 2], "bamboo-wraith": ["nightA", 3],
+  "rival-ladle": ["nightB", 0], "rival-flute": ["nightB", 1],
+  "boss-drum": ["nightB", 2], "boss-lotus": ["nightB", 3],
+}
+export function monsterCharacter(id: string): CharacterModel {
+  const def = MONSTER_MAP[id]
+  const [sheet, row] = ENEMY_MODELS[id] ?? ["enemy", def.sprite]
+  return { sheet, row, id, name: def.name }
 }
 export function unitCharacter(id: string): CharacterModel {
   const unit = UNIT_MAP[id], custom = DISTINCT_MODELS[id]

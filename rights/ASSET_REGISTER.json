@@ -1,5 +1,5 @@
 {
-  "version": "3.3.0",
+  "version": "3.4.0",
   "generatedOn": "2026-10-09",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -230,12 +230,38 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/characters/nightA.webp",
+      "bytes": 896596,
+      "sha256": "89ad2365afa0827b4fbf4950b1d38de8d6472d5ad25a1bb27273f8749e65e1bf",
+      "origin": "AI-assisted sprite art",
+      "evidence": [
+        "dev/docs/challenge-v322/prompts.json",
+        "dev/docs/market-v331/atlas-prompts.json",
+        "dev/tools/register-market-atlases.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/nightB.webp",
+      "bytes": 1083090,
+      "sha256": "0ad2a361eb075076f225c082b0fb563dc330aca7330e9ffba684a9176d580058",
+      "origin": "AI-assisted sprite art",
+      "evidence": [
+        "dev/docs/challenge-v322/prompts.json",
+        "dev/docs/market-v331/atlas-prompts.json",
+        "dev/tools/register-market-atlases.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/characters/rosterA.webp",
       "bytes": 945964,
       "sha256": "38de8faacd04428d39bda79b7db95d53b0adba866fdd9803c37a5581b5a25639",
       "origin": "AI-assisted sprite art",
       "evidence": [
-        "dev/docs/challenge-v322/prompts.json"
+        "dev/docs/challenge-v322/prompts.json",
+        "dev/docs/market-v331/atlas-prompts.json",
+        "dev/tools/register-market-atlases.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -245,7 +271,9 @@
       "sha256": "815717d8a81821bd85561b427093710a98a500255723462f4803e98d97bf8c5a",
       "origin": "AI-assisted sprite art",
       "evidence": [
-        "dev/docs/challenge-v322/prompts.json"
+        "dev/docs/challenge-v322/prompts.json",
+        "dev/docs/market-v331/atlas-prompts.json",
+        "dev/tools/register-market-atlases.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -255,7 +283,9 @@
       "sha256": "57ee6c2fcd7858c7fa62f76aa0671a9c7fc7b93c3bdce2b59b9e77becd9dec71",
       "origin": "AI-assisted sprite art",
       "evidence": [
-        "dev/docs/challenge-v322/prompts.json"
+        "dev/docs/challenge-v322/prompts.json",
+        "dev/docs/market-v331/atlas-prompts.json",
+        "dev/tools/register-market-atlases.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -265,7 +295,45 @@
       "sha256": "c4f0ab1667fefdcae6e2395cea41b0126f24c8c3b2cc9fdc8dcd8c6ceb457227",
       "origin": "AI-assisted sprite art",
       "evidence": [
-        "dev/docs/challenge-v322/prompts.json"
+        "dev/docs/challenge-v322/prompts.json",
+        "dev/docs/market-v331/atlas-prompts.json",
+        "dev/tools/register-market-atlases.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rosterE.webp",
+      "bytes": 1037958,
+      "sha256": "f2e78c4683b2b3b3b5511118598a73613c8ed74b1b76d8eb76b04a6f8eaa4627",
+      "origin": "AI-assisted sprite art",
+      "evidence": [
+        "dev/docs/challenge-v322/prompts.json",
+        "dev/docs/market-v331/atlas-prompts.json",
+        "dev/tools/register-market-atlases.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rosterF.webp",
+      "bytes": 892104,
+      "sha256": "f9015ae26d70d9259ff0b57d80bca50c7677aeef5c030dede289a1fde8106e08",
+      "origin": "AI-assisted sprite art",
+      "evidence": [
+        "dev/docs/challenge-v322/prompts.json",
+        "dev/docs/market-v331/atlas-prompts.json",
+        "dev/tools/register-market-atlases.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rosterG.webp",
+      "bytes": 1064480,
+      "sha256": "e127d0ffbbfef5d63ea50c847c6da96cf64fbafe74321e7bef458b950557804c",
+      "origin": "AI-assisted sprite art",
+      "evidence": [
+        "dev/docs/challenge-v322/prompts.json",
+        "dev/docs/market-v331/atlas-prompts.json",
+        "dev/tools/register-market-atlases.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

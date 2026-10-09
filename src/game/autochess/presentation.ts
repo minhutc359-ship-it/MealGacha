@@ -1,9 +1,20 @@
 import frames from "./spriteFrames.json"
-import type { Actor, AutoRun } from "./types"
+import type { Actor, AutoRun, Piece } from "./types"
 
 export const SPRITE_SHEETS = frames
 export const VICTORY_DURATION = 3200
 export const QUIET_VICTORY_DURATION = 1000
+export const STAR_UPGRADE_MS = 1700
+export const starScale = (star: number) => 1.07 ** (Math.max(1, Math.min(3, star)) - 1)
+export interface StarUpgrade { uid: string; id: string; from: number; to: number; at: number; sources: Piece[] }
+export function starUpgrades(before: Piece[], after: Piece[], at: number): StarUpgrade[] {
+  const owned = new Map(before.map(p => [p.uid, p]))
+  return after.flatMap(p => {
+    const old = owned.get(p.uid)
+    return old && p.star > old.star ? [{ uid: p.uid, id: p.id, from: old.star, to: p.star, at,
+      sources: before.filter(source => source.id === p.id && source.uid !== p.uid && !after.some(next => next.uid === source.uid)) }] : []
+  })
+}
 
 // Presentation never advances combat, awards gold or changes a saved phase.
 export function victoryKey(run: AutoRun | null) {
@@ -17,9 +28,10 @@ export function actorPosition(actor: Actor, time: number) {
   const a = actor.action
   const t = a?.kind === "move"
     ? Math.min(1, Math.max(0, (time - a.start) / Math.max(1, a.end - a.start))) : 0
+  const ease = t * t * (3 - 2 * t)
   return {
-    x: a?.kind === "move" ? (a.from % 6) + ((a.to % 6) - (a.from % 6)) * t : actor.cell % 6,
-    y: a?.kind === "move" ? Math.floor(a.from / 6) + (Math.floor(a.to / 6) - Math.floor(a.from / 6)) * t : Math.floor(actor.cell / 6),
+    x: a?.kind === "move" ? (a.from % 6) + ((a.to % 6) - (a.from % 6)) * ease : actor.cell % 6,
+    y: a?.kind === "move" ? Math.floor(a.from / 6) + (Math.floor(a.to / 6) - Math.floor(a.from / 6)) * ease : Math.floor(actor.cell / 6),
   }
 }
 

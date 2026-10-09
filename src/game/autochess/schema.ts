@@ -1,13 +1,15 @@
 import { z } from "zod"
-import { UNIT_MAP, AUTO_UNITS, MONSTER_MAP, RELICS, AUGMENTS } from "./catalog"
+import { UNIT_MAP, AUTO_UNITS, LEGACY_UNIT_IDS, MONSTER_MAP, RELICS, AUGMENTS } from "./catalog"
 import { SCENES } from "./story"
 import { capacity, copies, poolSize } from "./economy"
+import { BENCH_SLOTS, MAX_LEVEL } from "./config"
+import { ITEM_MAP } from "./items"
 const int = z.number().int().nonnegative().max(1_000_000_000)
 const real = z.number().finite().nonnegative().max(1_000_000_000)
 const uint32 = z.number().int().min(0).max(4294967295)
 const id = z.string().max(160)
 const unitId = id.refine((v) => !!UNIT_MAP[v])
-const relicId = id.refine((v) => RELICS.some((r) => r.id === v))
+const relicId = id.refine((v) => Object.prototype.hasOwnProperty.call(ITEM_MAP, v))
 const augmentId = id.refine((v) => AUGMENTS.some((r) => r.id === v))
 const sceneId = id.refine((v) => !!SCENES[v])
 const mode = z.enum(["campaign", "survival", "daily"])
@@ -42,7 +44,7 @@ const piece = z.object({
   id: unitId,
   star,
   cell: cell.min(18).nullable(),
-  benchSlot: int.max(5).optional(),
+  benchSlot: int.max(BENCH_SLOTS - 1).optional(),
   items: z
     .array(relicId)
     .max(2)
@@ -134,17 +136,17 @@ const result = z.object({
   wave: int.min(1),
   result: z.enum(["win", "loss"]),
   seconds: real.max(55),
-  survivors: int.max(7),
+  survivors: int.max(MAX_LEVEL),
   points: int,
   damage: int.max(25),
   gold: int,
   reason: z.string().max(600),
 })
-export const autoRunSchema = z
+const currentRunSchema = z
   .object({
     id,
     mode,
-    rulesVersion: z.union([z.literal(1), z.literal(2)]),
+    rulesVersion: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
     seed: uint32,
     rng: uint32,
     day: z.string().max(16),
@@ -165,7 +167,7 @@ export const autoRunSchema = z
     xp: int.max(1000),
     score: int,
     activeTicks: int,
-    roster: z.array(piece).max(13),
+    roster: z.array(piece).max(MAX_LEVEL + BENCH_SLOTS),
     shop: z.array(unitId.nullable()).length(5),
     pool: z.record(unitId, int.max(18)),
     locked: z.boolean(),
@@ -181,7 +183,7 @@ export const autoRunSchema = z
           .array(
             id.refine(
               (v) =>
-                RELICS.some((r) => r.id === v) ||
+                Object.prototype.hasOwnProperty.call(ITEM_MAP, v) ||
                 AUGMENTS.some((r) => r.id === v),
             ),
           )
@@ -220,7 +222,7 @@ export const autoRunSchema = z
       new Set(placedBench.map(p => p.benchSlot)).size !== placedBench.length ||
       board.some(p => p.benchSlot !== undefined) ||
       board.length > capacity(run.xp) ||
-      run.roster.length - board.length > 6
+      run.roster.length - board.length > BENCH_SLOTS
     )
       invalid("Đội hình không nhất quán")
     if (
@@ -283,6 +285,17 @@ export const autoRunSchema = z
         invalid("Lịch đòn đánh không hợp lệ")
     }
   })
+// Expand old pool snapshots without repairing corrupt counts or changing RNG.
+export const autoRunSchema = z.preprocess(raw => {
+  if (!raw || typeof raw !== "object") return raw
+  const value = raw as Record<string, unknown>
+  if (![1, 2].includes(value.rulesVersion as number) || !value.pool ||
+    typeof value.pool !== "object" || Array.isArray(value.pool)) return raw
+  const pool = { ...value.pool as Record<string, unknown> }
+  for (const unit of AUTO_UNITS) if (!LEGACY_UNIT_IDS.has(unit.id) && !(unit.id in pool))
+    pool[unit.id] = poolSize(unit.cost)
+  return { ...value, pool }
+}, currentRunSchema)
 export const autoSaveSchema = z
   .object({
     version: z.literal(1),
@@ -301,7 +314,7 @@ export const autoSaveSchema = z
           wave: int,
           seconds: int,
           result: z.enum(["won", "lost", "abandoned"]),
-          team: z.array(z.string().max(160)).max(7),
+          team: z.array(z.string().max(160)).max(MAX_LEVEL),
         }),
       )
       .max(60),

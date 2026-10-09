@@ -65,7 +65,7 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
-  ["assets/characters/", "AI-assisted sprite art", ["dev/docs/challenge-v322/prompts.json"]],
+  ["assets/characters/", "AI-assisted sprite art", ["dev/docs/challenge-v322/prompts.json", "dev/docs/market-v331/atlas-prompts.json", "dev/tools/register-market-atlases.py"]],
   ["assets/autochess/audio/", "Original procedural composition", ["dev/tools/compose-autochess-music.py", "dev/tools/compose-retro-music.py", "dev/docs/autochess/audio-manifest.json"]],
   ["assets/autochess/", "AI-assisted art and measured sprite atlas", ["dev/docs/autochess/image-prompts.json", "dev/tools/build-autochess-sprites.py"]],
   ["assets/tcg/audio/", "Original procedural composition", ["dev/tools/compose-game-music.py", "dev/tools/compose-retro-music.py", "dev/docs/AUDIO_ASSETS.md"]],

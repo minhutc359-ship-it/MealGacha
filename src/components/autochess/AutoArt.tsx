@@ -1,9 +1,10 @@
 import type { CSSProperties } from "react"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { AUTO_UNITS } from "../../game/autochess/catalog"
-import { unitCharacter } from "../../infrastructure/assets/characterSprites"
-export function AutoMonsterPortrait({ row, label }: { row: number; label: string }) {
-  const sheet = SPRITE_SHEETS.enemy
+import { unitCharacter, monsterCharacter } from "../../infrastructure/assets/characterSprites"
+export function AutoMonsterPortrait({ id, label }: { id: string; label: string }) {
+  const model = monsterCharacter(id)
+  const sheet = SPRITE_SHEETS[model.sheet], row = model.row
   const [x, y, width, height] = sheet.rows[row].frames[0]
   const fit = 100 / Math.max(width, height)
   return <span className="ac-portrait ac-sprite-portrait" role="img" aria-label={label}>

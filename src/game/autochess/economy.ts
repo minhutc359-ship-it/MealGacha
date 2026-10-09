@@ -1,18 +1,20 @@
-import { AUTO_UNITS, UNIT_MAP, SHOP_ODDS, RELICS, AUGMENTS } from "./catalog"
+import { AUTO_UNITS, UNIT_MAP, shopOdds, LEGACY_UNIT_IDS, RELICS, AUGMENTS } from "./catalog"
 import { RULES_VERSION, type AutoMode, type AutoRun, type Piece } from "./types"
+import { BENCH_SLOTS, LEVEL_XP } from "./config"
+import { ITEM_COMPONENTS, equipPreview, mergedEquipment } from "./items"
 export const copies = (star: number) => 3 ** (star - 1)
 export const poolSize = (cost: number) => [0, 18, 16, 12, 10, 9][cost]
 export const capacity = (xp: number) =>
-  3 + [8, 20, 38, 62].filter((n) => xp >= n).length
+  3 + LEVEL_XP.slice(1).filter((n) => xp >= n).length
 export function levelProgress(xp: number) {
-  const level = capacity(xp), gates = [0, 8, 20, 38, 62], start = gates[level - 3]
+  const level = capacity(xp), gates = LEVEL_XP, start = gates[level - 3]
   const next = gates[level - 2] ?? null
   return { level, xp, next, remaining: next === null ? 0 : Math.max(0, next - xp),
     percent: next === null ? 100 : Math.max(0, Math.min(100, (xp - start) / (next - start) * 100)) }
 }
 // Old saves have no slot field; assign their existing order without mutating them.
 export function benchLayout(run: Pick<AutoRun, "roster">): (Piece | undefined)[] {
-  const slots: (Piece | undefined)[] = Array(6).fill(undefined)
+  const slots: (Piece | undefined)[] = Array(BENCH_SLOTS).fill(undefined)
   const pending: Piece[] = []
   for (const p of run.roster.filter(p => p.cell === null)) {
     if (p.benchSlot !== undefined && !slots[p.benchSlot]) slots[p.benchSlot] = p
@@ -65,23 +67,24 @@ export function seedForDay(day: string) {
 export function refreshShop(run: AutoRun) {
   for (const id of run.shop) if (id) run.pool[id]++
   run.shop = []
-  const odds = SHOP_ODDS[capacity(run.xp) - 3]
+  const odds = shopOdds(capacity(run.xp), run.rulesVersion)
+  const catalog = run.rulesVersion >= 3 ? AUTO_UNITS : AUTO_UNITS.filter(u => LEGACY_UNIT_IDS.has(u.id))
   for (let i = 0; i < 5; i++) {
-    const roll = random(run) * 100
+    // Reweight only permitted, nonempty tiers. Exhaustion cannot unlock a tier.
+    const available = odds.map((chance, k) => catalog.some(u => u.cost === k + 1 && run.pool[u.id] > 0) ? chance : 0)
+    const roll = random(run) * available.reduce((a, b) => a + b, 0)
     let threshold = 0,
-      tier = 1
+      tier = 0
     for (let k = 0; k < 5; k++) {
-      threshold += odds[k]
+      threshold += available[k]
       if (roll < threshold) {
         tier = k + 1
         break
       }
     }
-    let eligible = AUTO_UNITS.filter(
+    const eligible = catalog.filter(
       (u) => u.cost === tier && run.pool[u.id] > 0,
     )
-    if (!eligible.length)
-      eligible = AUTO_UNITS.filter((u) => run.pool[u.id] > 0)
     const weight = eligible.reduce((sum, u) => sum + run.pool[u.id], 0)
     let draw = random(run) * weight
     const picked = eligible.find((u) => {
@@ -118,7 +121,7 @@ export function createAutoRun(
     shop: [],
     pool: Object.fromEntries(AUTO_UNITS.map((u) => [u.id, poolSize(u.cost)])),
     locked: false,
-    inventory: [],
+    inventory: ["spark", "dew"],
     augments: [],
     reward: null,
     pendingRewards: [],
@@ -162,11 +165,10 @@ function merge(run: AutoRun) {
         if (matching.length < 3) continue
         const trio = matching.slice(0, 3),
           keep = trio[0],
-          items = trio.flatMap((p) => p.items)
+          equipment = mergedEquipment(trio.flatMap((p) => p.items))
         keep.star = star === 1 ? 2 : 3
-        keep.items = [...new Set(items)].slice(0, 2)
-        for (const item of keep.items) items.splice(items.indexOf(item), 1)
-        run.inventory.push(...items)
+        keep.items = equipment.kept
+        run.inventory.push(...equipment.overflow)
         run.roster = run.roster.filter(
           (p) => !trio.slice(1).some((t) => t.uid === p.uid),
         )
@@ -183,7 +185,7 @@ export function buy(run: AutoRun, index: number): string | null {
   const spare = run.roster.filter((p) => p.cell === null).length
   const willMerge =
     run.roster.filter((p) => p.id === id && p.star === 1).length >= 2
-  if (spare >= 6 && !willMerge)
+  if (spare >= BENCH_SLOTS && !willMerge)
     return "Ghế dự bị đầy. Bán hoặc ghép quân trước."
   run.gold -= def.cost
   run.shop[index] = null
@@ -210,7 +212,7 @@ export function move(
   if (
     !piece ||
     (cell !== null && (!Number.isInteger(cell) || cell < 18 || cell > 35)) ||
-    (benchSlot !== undefined && (!Number.isInteger(benchSlot) || benchSlot < 0 || benchSlot > 5))
+    (benchSlot !== undefined && (!Number.isInteger(benchSlot) || benchSlot < 0 || benchSlot >= BENCH_SLOTS))
   )
     return "Chỉ xếp quân trong ba hàng phía bạn."
   const slots = benchLayout(run)
@@ -232,7 +234,7 @@ export function move(
     piece.cell !== null &&
     cell === null &&
     !other &&
-    run.roster.filter((p) => p.cell === null).length >= 6
+    run.roster.filter((p) => p.cell === null).length >= BENCH_SLOTS
   )
     return "Ghế dự bị đầy."
   rememberBench(run)
@@ -257,14 +259,17 @@ export function sell(run: AutoRun, uid: string) {
 export function equip(run: AutoRun, uid: string, item: string): string | null {
   const p = run.roster.find((p) => p.uid === uid),
     index = run.inventory.indexOf(item)
-  if (!p || index < 0 || p.items.length >= 2 || p.items.includes(item))
-    return "Mỗi quân giữ tối đa hai di vật khác nhau."
-  p.items.push(item)
+  if (index < 0) return "Trang bị không còn trong kho."
+  const preview = equipPreview(p, item)
+  if (!preview.valid) return preview.text
+  if (preview.combine) p!.items.splice(p!.items.indexOf(preview.combine), 1)
+  p!.items.push(preview.result!)
   run.inventory.splice(index, 1)
+  if (preview.combine) run.log = [`Ghép thành ${preview.name}.`, ...run.log].slice(0, 20)
   return null
 }
 export function choices(run: AutoRun, kind: "relic" | "augment") {
-  const options = (kind === "relic" ? RELICS : AUGMENTS)
+  const options = (kind === "relic" ? [...RELICS, ...(run.rulesVersion >= 3 ? ITEM_COMPONENTS : [])] : AUGMENTS)
     .filter((o) => kind === "relic" || !run.augments.includes(o.id))
     .map((o) => o.id)
   const picked: string[] = []

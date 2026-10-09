@@ -1,0 +1,27 @@
+{
+  "checks": [
+    {
+      "name": "Mouse-hover W/E and global F/D use the reducer"
+    },
+    {
+      "name": "Shortcuts suppressed while reading modal or typing"
+    },
+    {
+      "name": "Shortcuts suppressed during narrative scene"
+    },
+    {
+      "name": "Owned/merge-ready shop highlight; visible 2-star awakening and 7% growth"
+    },
+    {
+      "name": "Chained 1→3-star awakening retains board UID; 14.49% total growth"
+    },
+    {
+      "name": "Odds table and level highlight shown in game"
+    },
+    {
+      "name": "Economy shortcuts suppressed during combat"
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

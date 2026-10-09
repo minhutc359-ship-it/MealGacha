@@ -1,0 +1,65 @@
+{
+  "version": "3.3.1",
+  "generatedOn": "2026-10-09",
+  "tool": "image_gen.imagegen",
+  "transparent_background": true,
+  "referenced_images": [],
+  "commonPrompt": "Create a high-quality original game SPRITE ATLAS, transparent RGBA background, square image. STRICT GRID: EXACTLY 7 COLUMNS by 4 ROWS, 28 separate full-body sprites, one sprite centered within each equally sized cell, generous clear transparent gutters, no character crosses a cell boundary. Each row is ONE consistent character in seven different poses, same outfit, same proportions and scale through its row. Columns left to right: (1) neutral ready idle facing three-quarter right, (2) walk stride left foot forward, (3) walk stride right foot forward, (4) distinct attack/casting WINDUP, (5) distinct attack/cast RELEASE aimed to the right, (6) joyful triumphant raised-arms victory pose, (7) defeated crouch/collapse, no gore. Fully show ears, hands, weapons, tails and feet in EVERY cell. Feet at consistent baseline; absolutely no merged/overlapping sprites. Polished anime RPG 3D-looking chibi characters with rich material shading, clean readable silhouettes, warm cinematic rim light, sharp detail at small size, coherent art direction. No words, no letters, no numbers, no watermarks, no background scenery, no UI, no cast shadows outside each sprite cell. Separate isolated transparent cutouts, not a contact sheet of illustrations. ",
+  "atlases": [
+    {
+      "sheet": "rosterE",
+      "source": "exec-532158eb-fbea-4aa0-a7a2-e3af497b3c49.png",
+      "unitIds": [
+        "xoi-xeo",
+        "dua-hanh",
+        "bun-bo-hue",
+        "che-buoi"
+      ],
+      "prompt": "ROW 1: Xôi xéo spirit, cheerful golden sticky-rice pangolin guardian wearing a yellow scarf with tiny copper bowl, hearth keeper. ROW 2: Dưa hành spirit, petite jade pickle/onion rabbit herbalist with a white onion bulb crown and leaf cape. ROW 3: Bún bò Huế spirit, red-orange buffalo warrior with a bronze ladle spear, inspired by central Vietnam broth spices, strong warm silhouette. ROW 4: Chè bưởi spirit, playful cream and pale green pomelo otter mage holding a sweet soup cup, pink lotus sash."
+    },
+    {
+      "sheet": "rosterF",
+      "source": "exec-dd834ea1-c498-4118-80d0-54ba04e9ff42.png",
+      "unitIds": [
+        "bun-ca",
+        "cha-ruoi",
+        "cha-ca-la-vong",
+        "thit-kho-trung"
+      ],
+      "prompt": "ROW 1: Bún cá spirit, turquoise kingfisher archer with silver fish ornaments and wave ribbons. ROW 2: Chả rươi spirit, russet squirrel autumn traveler with a small frying-pan shield and orange leaf scarf. ROW 3: Chả cá Lã Vọng spirit, noble teal carp elder in a traditional Vietnamese indigo áo dài, dill-green robes, golden skillet staff. ROW 4: Thịt kho trứng spirit, amber turtle guardian wearing a round egg-white shell medallion and caramel-brown armor, warm family feast mood."
+    },
+    {
+      "sheet": "rosterG",
+      "source": "exec-fc08f050-486e-42cf-8b2f-64842cd2e390.png",
+      "unitIds": [
+        "bun-thang",
+        "com-lang-vong",
+        "banh-com-hang-than",
+        "ca-phe-trung"
+      ],
+      "prompt": "ROW 1: Bún thang spirit, elegant white crane master wearing pale yellow áo dài, delicate bowl staff and egg/thread motif, water magic. ROW 2: Cốm Làng Vòng spirit, jade green qilin/fawn with young-rice horns, lotus leaf cape, gold bell, compassionate guardian. ROW 3: Bánh cốm Hàng Than spirit, charming lavender and mint swallow fairy wearing a Vietnamese áo dài with square green cake ornament and silk wing ribbons. ROW 4: Cà phê trứng spirit, cream-gold civet scholar in a brown Vietnamese vest and round spectacles, small copper coffee filter staff, confident coffee steam magic."
+    },
+    {
+      "sheet": "nightA",
+      "source": "exec-f093c5ae-bbdf-4d11-a3f4-43bf1b5a5fdd.png",
+      "unitIds": [
+        "ink-crab",
+        "char-hound",
+        "silk-moth",
+        "bamboo-wraith"
+      ],
+      "prompt": "ROW 1: Cua Mực Nhạt, sinister but charming violet ink crab knight with translucent blue shell shield. ROW 2: Chó Than, charcoal-black hound with vivid orange ember mane and floating smoky tail. ROW 3: Bướm Chỉ Lạc, plum moth sorcerer, pale cyan silky wings, dangling silver thread spools. ROW 4: Trúc Khô, haunted bamboo golem with angular dark green segments, warm violet cracks, leaf spear. These are fantasy mist creatures, clear distinct silhouettes, no gore."
+    },
+    {
+      "sheet": "nightB",
+      "source": "exec-dbba43a2-42ad-46db-ae5c-adb0f79b9c5d.png",
+      "unitIds": [
+        "rival-ladle",
+        "rival-flute",
+        "boss-drum",
+        "boss-lotus"
+      ],
+      "prompt": "ROW 1: Người Bếp Không Tên, mysterious young adult masked rival chef wearing charcoal Vietnamese wrap tunic, copper ladle sword and cyan flame scarf. ROW 2: Kẻ Giấu Tiếng Sáo, adult rival wanderer in deep indigo áo dài and conical hat, silver bamboo flute, fluid water aura, face visible. ROW 3: Vọng Trống Lạc Nhịp, large fantasy bronze drum golem boss with bright purple mist core and drumstick arms, original circular armor design inspired by ancient Vietnamese drum craftsmanship but no copied ceremonial symbol. ROW 4: Sen Sương Khép Cánh, large majestic violet lotus serpent boss with long coiled body, pale cyan blossom crown, spectral leaf wings. Mist corruption is fictional, Vietnamese people and culture are portrayed respectfully."
+    }
+  ]
+}

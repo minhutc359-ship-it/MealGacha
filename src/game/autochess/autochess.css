@@ -67,3 +67,27 @@ body.autochess-open{overflow:hidden;background:#101820}
  .ac-trait-summary>span{display:none}.ac-trait-summary:after{content:'✦ Hệ';font-size:9px;color:#e8cc92}
 }
 .ac-shop-art .ac-portrait{height:auto;aspect-ratio:1}
+
+/* Owned shop copies and an immediate merge remain readable in the compact shop. */
+.ac-shop article.is-owned{border:2px solid #85cfb7;box-shadow:inset 0 0 0 1px #103f38,0 0 10px #81dbb421;background:linear-gradient(160deg,#284c47,#1a2c35)}
+.ac-shop article.is-owned .ac-shop-art>b{background:#214e43;color:#d5ffee;border:1px solid #8ed8bc;border-radius:4px;padding:2px 4px;line-height:1.15;z-index:3}
+.ac-shop article.is-merge-ready{border-color:#ffdd8d;box-shadow:0 0 14px #ffd0784a,inset 0 0 0 1px #af8439}
+.ac-shop article.is-merge-ready .ac-shop-art>b{background:#634923;border-color:#ffdc8c;color:#fff0bf}
+.ac-bench button{isolation:isolate;overflow:visible}
+.ac-bench button>.ac-portrait{transform:scale(var(--star-scale,1));transform-origin:50% 80%;transition:transform .35s cubic-bezier(.2,.9,.3,1.2);border-radius:7px}
+.ac-bench button>small{z-index:4;text-shadow:0 1px 3px #001b22}
+.ac-bench button.is-star-upgrade{border-color:#ffe6a0;box-shadow:0 0 16px #ffdb85b0}
+.ac-bench-awaken{position:absolute;inset:-8px;border:2px solid #ffe29a;border-radius:50%;color:#fff0b5;font-size:22px;display:grid;place-items:center;pointer-events:none;z-index:3;animation:ac-awaken 1.7s ease-out both}
+.ac-bench-awaken.is-quiet{animation:none;font-size:14px;inset:-3px;background:#674b2588}
+@keyframes ac-awaken{0%{transform:scale(.35) rotate(-40deg);opacity:0}20%{transform:scale(1.2) rotate(0);opacity:1}45%{transform:scale(1.5) rotate(25deg);opacity:.8}100%{transform:scale(2) rotate(50deg);opacity:0}}
+.ac-controls kbd,.ac-keyboard-help kbd{display:inline-grid;place-items:center;min-width:17px;height:18px;padding:0 4px;border:1px solid #8b9b9b;border-radius:4px;font:10px/1 monospace;background:#122932;color:#e3eadf;box-shadow:0 1px 0 #00131a;margin-left:5px}
+.ac-keyboard-help{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;line-height:1.8;padding:12px 0}
+.ac-shop-odds table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;text-align:center;margin:10px 0}
+.ac-shop-odds th,.ac-shop-odds td{border-bottom:1px solid #54706d66;padding:7px 2px}
+.ac-shop-odds th:first-child{width:22%}
+.ac-shop-odds .is-current{background:#3d5a49;color:#ffe4a1;font-weight:700}
+.ac-shop-odds tfoot{font-size:11px;color:#c5d0bd}
+.ac-shop-odds p{font-size:12px;line-height:1.8;color:#c4d0cb}
+@media(hover:none),(pointer:coarse){.ac-controls kbd{display:none}}
+@media(max-height:620px) and (orientation:landscape){.ac-controls kbd{display:none}.ac-xp-control>strong{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media(prefers-reduced-motion:reduce){.ac-bench-awaken{animation:none!important}.ac-bench button>.ac-portrait{transition:none}}

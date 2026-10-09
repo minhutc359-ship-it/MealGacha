@@ -8,8 +8,9 @@ import {
 import { enemyPlan } from "../../game/autochess/combat"
 import { drawChannel, drawProjectile, drawImpact, skillVfx } from "../../game/battleVfx"
 import type { Actor, AutoRun } from "../../game/autochess/types"
-import { actorPosition as position, actorFrame, SPRITE_SHEETS } from "../../game/autochess/presentation"
-import { characterImage as getImage, unitCharacter, fitCharacter, type CharacterModel } from "../../infrastructure/assets/characterSprites"
+import { actorPosition as position, actorFrame, SPRITE_SHEETS, starScale, type StarUpgrade } from "../../game/autochess/presentation"
+import { drawStarUpgrade } from "../../game/autochess/starVfx"
+import { characterImage as getImage, unitCharacter, monsterCharacter, fitCharacter } from "../../infrastructure/assets/characterSprites"
 
 const CELLS = Array.from({ length: 36 }, (_, i) => i)
 const paths = Object.fromEntries(Object.entries(SPRITE_SHEETS).map(([key, sheet]) => [key, sheet.path]))
@@ -21,8 +22,11 @@ export function AutoBoard({
   reducedMotion,
   lowQuality,
   celebrating,
+  upgrades,
   onCell,
   onPiecePointerDown,
+  onCellPointerDown,
+  onInspectCell,
 }: {
   run: AutoRun
   getFrame: Frames
@@ -30,15 +34,18 @@ export function AutoBoard({
   reducedMotion: boolean
   lowQuality: boolean
   celebrating: boolean
-  onCell: (cell: number, dragged?: string) => void
+  upgrades: StarUpgrade[]
+  onCell: (cell: number, dragged?: string, keyboard?: boolean) => void
   onPiecePointerDown?: (uid: string, event: PointerEvent<HTMLElement>) => void
+  onCellPointerDown?: (cell: number, event: PointerEvent<HTMLElement>) => void
+  onInspectCell?: (cell: number) => void
 }) {
   const root = useRef<HTMLDivElement>(null),
     canvas = useRef<HTMLCanvasElement>(null)
-  const options = useRef({ selected, reducedMotion, lowQuality, celebrating })
+  const options = useRef({ selected, reducedMotion, lowQuality, celebrating, upgrades })
   useEffect(() => {
-    options.current = { selected, reducedMotion, lowQuality, celebrating }
-  }, [selected, reducedMotion, lowQuality, celebrating])
+    options.current = { selected, reducedMotion, lowQuality, celebrating, upgrades }
+  }, [selected, reducedMotion, lowQuality, celebrating, upgrades])
   useEffect(() => {
     const element = root.current!,
       surface = canvas.current!,
@@ -50,6 +57,7 @@ export function AutoBoard({
       left = 0,
       top = 0,
       handle = 0
+    let lastDraw = -Infinity
     const frozen = new Map<string, { x: number; y: number }>()
     const facing = new Map<string, boolean>()
     const placements = new Map<string, { x: number; y: number; fromX: number; fromY: number; start: number }>()
@@ -91,6 +99,10 @@ export function AutoBoard({
       ctx.globalAlpha = 1
     }
     const draw = (now: number) => {
+      // Interpolate the 20Hz simulation at 30fps, like the shared TCG sprites.
+      // Full transparent atlases should not consume 120 draws/s on fast screens.
+      if (now - lastDraw < 1000 / 30 - 1) { handle = requestAnimationFrame(draw); return }
+      lastDraw = now
       const { run: current, alpha } = getFrame()
       if (!current) {
         handle = requestAnimationFrame(draw)
@@ -242,7 +254,7 @@ export function AutoBoard({
       )) {
         const def =
             actor.side === "ally" ? UNIT_MAP[actor.id] : MONSTER_MAP[actor.id],
-          model: CharacterModel = actor.side === "enemy" ? { sheet: "enemy", row: MONSTER_MAP[actor.id].sprite, id: actor.id, name: def.name } : unitCharacter(actor.id),
+          model = actor.side === "enemy" ? monsterCharacter(actor.id) : unitCharacter(actor.id),
           fresh = model.sheet !== "base"
         const spriteKey = model.sheet, row = model.row
         const sheet = images[spriteKey] ??= getImage(paths[spriteKey])
@@ -258,13 +270,23 @@ export function AutoBoard({
           y = py(p.y),
           size =
             cell *
-            (actor.side === "enemy" && MONSTER_MAP[actor.id].boss ? .9 : .75),
+            (actor.side === "enemy" && MONSTER_MAP[actor.id].boss ? .9 : .75) * (actor.side === "ally" ? starScale(actor.star) : 1),
           color = AUTO_SCHOOLS[def.school].color
         ctx.globalAlpha = actor.hp <= 0 ? Math.max(0, 1 - deadAge / 20) : 1
+        if (actor.hp > 0) {
+          const aura = ctx.createRadialGradient(x, y - cell * .25, 0, x, y - cell * .25, cell * .55)
+          aura.addColorStop(0, `${color}38`); aura.addColorStop(.6, `${color}16`); aura.addColorStop(1, `${color}00`)
+          ctx.fillStyle = aura; ctx.beginPath(); ctx.ellipse(x, y - cell * .25, cell * .46, cell * .53, 0, 0, Math.PI * 2); ctx.fill()
+        }
         ctx.fillStyle = "rgba(0,0,0,.46)"
         ctx.beginPath()
         ctx.ellipse(x, y + 2, cell * 0.33, cell * 0.11, 0, 0, Math.PI * 2)
         ctx.fill()
+        if (actor.hp > 0 && actor.star >= 2 && actor.side === "ally") {
+          ctx.save(); ctx.globalAlpha = actor.star === 3 ? .48 : .28
+          ctx.strokeStyle = actor.star === 3 ? "#ffe49b" : "#b9d8ec"; ctx.lineWidth = actor.star === 3 ? 2 : 1
+          ctx.beginPath(); ctx.ellipse(x, y, cell * .38, cell * .14, 0, 0, Math.PI * 2); ctx.stroke(); ctx.restore()
+        }
         if (actor.uid === opts.selected) {
           ctx.strokeStyle = "#ffe5a8"
           ctx.lineWidth = 2.5
@@ -300,12 +322,17 @@ export function AutoBoard({
           const [sx, sy, sw, sh, anchorX, anchorY] = spriteRow.frames[index]
           ctx.save()
           const target = actors.find(a => a.uid === actor.action?.target)
+          // The original enemy atlas faces left; the newer sheets face right.
+          const nativeLeft = spriteKey === "enemy"
           if (target && Math.abs(position(target, time).x - p.x) > .05)
-            facing.set(actor.uid, (position(target, time).x < p.x) !== (actor.side === "enemy"))
+            facing.set(actor.uid, (position(target, time).x < p.x) !== nativeLeft)
           else if (actor.action?.kind === "move" && actor.action.to % 6 !== actor.action.from % 6)
-            facing.set(actor.uid, (actor.action.to % 6 < actor.action.from % 6) !== (actor.side === "enemy"))
+            facing.set(actor.uid, (actor.action.to % 6 < actor.action.from % 6) !== nativeLeft)
           const flip = facing.get(actor.uid) ?? false
-          const { scale, offsetX, offsetY } = fitCharacter(model, cell * .9, size, flip)
+          const upgrade = opts.upgrades.find(u => u.uid === actor.uid)
+          const age = upgrade ? (now - upgrade.at) / 1000 : 10
+          const awaken = !opts.reducedMotion && age < .7 ? 1 + Math.sin(Math.min(1, age / .7) * Math.PI) * .09 : 1
+          const { scale, offsetX, offsetY } = fitCharacter(model, cell * .9 * (actor.side === "ally" ? starScale(actor.star) : 1), size, flip)
           let lungeX = 0, lungeY = 0, gait = 0
           if (!opts.reducedMotion && actor.action && !dancing) {
             const progress = Math.max(0, Math.min(1, (time - actor.action.start) / Math.max(1, actor.action.end - actor.action.start)))
@@ -313,14 +340,30 @@ export function AutoBoard({
             else if (target) {
               const dest = coords.get(target.uid)!, dx = dest.x - p.x, dy = dest.y - p.y
               const length = Math.max(1, Math.hypot(dx, dy))
-              const lunge = Math.sin(Math.max(0, Math.min(1, (progress - .12) / .78)) * Math.PI) * cell * (actor.range === 1 ? .2 : .055)
+              const contact = Math.max(.1, Math.min(.9, (actor.action.hit - actor.action.start) / Math.max(1, actor.action.end - actor.action.start)))
+              const reach = progress < contact ? progress < .22 ? -Math.sin(progress / .22 * Math.PI) * .16 : Math.sin((progress - .22) / Math.max(.01, contact - .22) * Math.PI / 2)
+                : Math.cos((progress - contact) / (1 - contact) * Math.PI / 2)
+              const lunge = reach * cell * (actor.range === 1 ? .2 : .055)
               lungeX = dx / length * lunge
               lungeY = dy / length * lunge
             }
           }
           const hop = dancing && !opts.reducedMotion ? -Math.abs(Math.sin(beat)) * cell * .075 : 0
           const sway = dancing && !opts.reducedMotion ? Math.sin(beat) * cell * .045 : 0
-          ctx.translate(x + offsetX + lungeX + sway, y + offsetY + breath + lungeY + gait + hop)
+          let recoilX = 0, recoilY = 0
+          let hit = null
+          if (!opts.reducedMotion && b) for (let i = b.events.length - 1; i >= 0; i--) {
+            const event = b.events[i]
+            if (time - event.tick >= 3) break
+            if (event.kind === "hit" && event.target === actor.uid && time >= event.tick) { hit = event; break }
+          }
+          if (hit) {
+            const origin = coords.get(hit.source), delta = origin ? { x: p.x - origin.x, y: p.y - origin.y } : { x: 0, y: 1 }
+            const length = Math.max(1, Math.hypot(delta.x, delta.y)), amount = Math.sin((time - hit.tick) / 3 * Math.PI) * cell * .055
+            recoilX = delta.x / length * amount; recoilY = delta.y / length * amount
+          }
+          ctx.translate(x + offsetX + lungeX + sway + recoilX, y + offsetY + breath + lungeY + gait + hop + recoilY)
+          ctx.scale(awaken, awaken)
           if (flip) ctx.scale(-1, 1)
           if (dancing && !opts.reducedMotion) {
             ctx.rotate(Math.sin(beat) * .065)
@@ -331,6 +374,8 @@ export function AutoBoard({
           ctx.restore()
         } else orb(x, y - cell * .5, cell * .25, color)
         ctx.globalAlpha = 1
+        const upgrade = opts.upgrades.find(u => u.uid === actor.uid)
+        if (upgrade) drawStarUpgrade(ctx, upgrade, now, x, y, cell, left, top, opts.reducedMotion, opts.lowQuality)
         if (actor.hp > 0) {
           const bw = cell * 0.86,
             by = Math.max(top + p.y * cell + 2, y - size - cell * .05)
@@ -472,7 +517,7 @@ export function AutoBoard({
       <div
         className="ac-cell-grid"
         role="group"
-        aria-label="Bàn 6 nhân 6. Chọn quân rồi chọn ô để di chuyển."
+        aria-label="Bàn 6 nhân 6. Kéo quân để xếp; giữ 0,3 giây để xem. PC có thể chọn quân rồi chọn ô."
       >
         {CELLS.map((cell) => {
           const piece = run.roster.find((p) => p.cell === cell),
@@ -501,8 +546,11 @@ export function AutoBoard({
               }
               draggable={false}
               data-piece={run.phase === "prepare" ? piece?.uid : undefined}
-              onPointerDown={e => { if (run.phase === "prepare" && piece) onPiecePointerDown?.(piece.uid, e) }}
-              onContextMenu={e => { if (piece && run.phase === "prepare") e.preventDefault() }}
+              data-star={piece?.star}
+              data-star-scale={piece ? starScale(piece.star) : undefined}
+              aria-keyshortcuts={run.phase === "prepare" && piece ? "W E" : undefined}
+              onPointerDown={e => { if (run.phase === "prepare" && piece) onPiecePointerDown?.(piece.uid, e); else onCellPointerDown?.(cell, e) }}
+              onContextMenu={e => { e.preventDefault(); onInspectCell?.(cell) }}
               aria-pressed={piece ? piece.uid === selected : undefined}
               data-placement={run.phase === "prepare" && cell >= 18 && !!selected ? "available" : undefined}
               onDragStart={(e) => {
@@ -515,7 +563,7 @@ export function AutoBoard({
                 e.preventDefault()
                 onCell(cell, e.dataTransfer.getData("text/plain"))
               }}
-              onClick={() => onCell(cell)}
+              onClick={e => onCell(cell, undefined, e.detail === 0)}
               onKeyDown={(e) => {
                 const delta = ({
                   ArrowUp: -6,

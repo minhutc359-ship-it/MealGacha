@@ -163,7 +163,7 @@ describe("finite pool, economy and formation", () => {
     const anchor = r.roster[0]
     anchor.items = ["herbs", "lantern"]
     piece(r, anchor.id, 1, null, ["herbs"])
-    for (let i = 0; i < 5; i++) piece(r, "banh-mi")
+    for (let i = 0; i < 8; i++) piece(r, "banh-mi")
     shop(r, [anchor.id])
     expect(buy(r, 0)).toBeNull()
     expect(r.roster.find((p) => p.uid === anchor.uid)).toMatchObject({
@@ -171,13 +171,13 @@ describe("finite pool, economy and formation", () => {
       cell: 20,
       items: ["herbs", "lantern"],
     })
-    expect(r.inventory).toEqual(["herbs"])
+    expect(r.inventory).toEqual(["spark", "dew", "herbs"])
     valid(r)
   })
   it("rejects full bench and insufficient gold without consuming a shop unit", () => {
     const r = run()
     shop(r, ["banh-mi"])
-    for (let i = 0; i < 6; i++) piece(r, "banh-dau-xanh")
+    for (let i = 0; i < 9; i++) piece(r, "banh-dau-xanh")
     const before = JSON.stringify(r)
     expect(buy(r, 0)).toContain("đầy")
     expect(JSON.stringify(r)).toBe(before)
@@ -525,11 +525,11 @@ describe("outcomes, progress and persistence", () => {
   })
 })
 describe("complete content and assets", () => {
-  it("has 32 distinct units, 14 enemies, all skills, valid sprites, manual story and two epilogues", () => {
-    expect(AUTO_UNITS).toHaveLength(32)
-    expect(new Set(AUTO_UNITS.map((u) => u.id)).size).toBe(32)
-    expect(MONSTERS).toHaveLength(14)
-    expect(MONSTERS.filter((m) => m.boss)).toHaveLength(4)
+  it("has 44 distinct units, 22 enemies, all skills, valid sprites, manual story and two epilogues", () => {
+    expect(AUTO_UNITS).toHaveLength(44)
+    expect(new Set(AUTO_UNITS.map((u) => u.id)).size).toBe(44)
+    expect(MONSTERS).toHaveLength(22)
+    expect(MONSTERS.filter((m) => m.boss)).toHaveLength(6)
     expect(RELICS).toHaveLength(6)
     expect(AUGMENTS).toHaveLength(6)
     expect(Object.keys(SCENES)).toHaveLength(9)
@@ -537,7 +537,7 @@ describe("complete content and assets", () => {
       expect(scene.lines.length).toBeGreaterThanOrEqual(2)
     for (const u of AUTO_UNITS) {
       expect(existsSync("public" + u.art)).toBe(true)
-      expect(u.portrait).toBeLessThan(32)
+      expect(u.portrait).toBeLessThan(AUTO_UNITS.length)
     }
     for (const path of [
       "movement",
