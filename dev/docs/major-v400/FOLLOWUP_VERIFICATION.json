@@ -1,0 +1,438 @@
+{
+  "documentKind": "research-followup-and-policy-runtime-verification-not-v4-implementation",
+  "auditDate": "2026-10-10",
+  "repository": "https://github.com/minhutc359-ship-it/MealGacha",
+  "baseline": {
+    "branch": "master",
+    "sha": "79d3aeb3ae40ce846df31910d6c40de9b8efb938",
+    "productVersion": "3.5.0"
+  },
+  "researchBranch": {
+    "branch": "research/soul-of-meal-v4-major-update",
+    "parentSha": "098e0decfda5681b7cbf7dc779c74b050e0d858e",
+    "prNumber": 23,
+    "prUrl": "https://github.com/minhutc359-ship-it/MealGacha/pull/23",
+    "observedStateBeforePush": "open",
+    "merged": false
+  },
+  "changes": {
+    "implemented": [
+      "Expanded shared terms/privacy/rights text",
+      "Independent policy version/date in React and generated HTML",
+      "Regenerated public/legal pages and measured build-size record"
+    ],
+    "researchOnly": [
+      "3 chapters / 9 TCG stages and 6 Auto campaign waves",
+      "Nêm vị / Ủ vị, proposed cards, augment and encounter designs",
+      "3 arena art briefs, prioritized animation clips, 6 soundtrack cue families, adaptive stems and event VFX",
+      "Save recovery/versioning and web/native transfer architecture",
+      "Android feasibility and 10–18 developer-day beta estimate"
+    ],
+    "notImplemented": [
+      "Gameplay 4.0",
+      "New art/music assets",
+      "Save migrations or storage changes",
+      "Android project/APK/AAB",
+      "Deployment or store publication",
+      "Pull request merge"
+    ]
+  },
+  "checks": [
+    {
+      "command": "pnpm install --frozen-lockfile",
+      "result": "passed",
+      "lockfileUnchanged": true
+    },
+    {
+      "command": "pnpm typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm typecheck:dev",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm test",
+      "result": "passed",
+      "tests": 315,
+      "testFiles": 28
+    },
+    {
+      "command": "pnpm validate:catalog",
+      "result": "passed",
+      "foods": 123,
+      "tags": 35,
+      "events": 9
+    },
+    {
+      "command": "pnpm release:records",
+      "result": "passed",
+      "registeredRuntimeDependencies": 23,
+      "registeredAssets": 246,
+      "staticPolicies": 3
+    },
+    {
+      "command": "pnpm release:verify",
+      "result": "passed"
+    },
+    {
+      "command": "pnpm build",
+      "result": "passed",
+      "modules": 991
+    },
+    {
+      "command": "pnpm release:size",
+      "result": "passed",
+      "staticBudgetBytes": 45000000,
+      "jsGzipBudgetBytes": 650000
+    },
+    {
+      "command": "production browser QA",
+      "result": "passed",
+      "checks": 38,
+      "detailFile": "browser-policy-results.json",
+      "viewports": [
+        [
+          320,
+          568
+        ],
+        [
+          390,
+          844
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          1366,
+          768
+        ]
+      ],
+      "saveFixtures": [
+        "remember",
+        "release"
+      ],
+      "saveComparison": "Exact raw foodchest.tcg.v1 JSON equality after every legal navigation; coins 1234, dust 321, pity 7, 18 cleared stages and active Survival health 1",
+      "staticPolicyNoJavaScript": true,
+      "localHttpFailures": 0,
+      "pageErrors": 0
+    }
+  ],
+  "toolchain": {
+    "node": "24.19.0",
+    "pnpmUsed": "11.25.0",
+    "repositoryPackageManager": "pnpm@10.34.3",
+    "browser": "153.0.8010.0",
+    "dependencyResolution": "Existing lockfile installed frozen; package.json and lockfile unchanged"
+  },
+  "webBuild": {
+    "version": "3.5.0",
+    "bytes": 39200366,
+    "files": 297,
+    "byType": {
+      "js": {
+        "files": 37,
+        "bytes": 1604403
+      },
+      "css": {
+        "files": 6,
+        "bytes": 353906
+      },
+      "mp3": {
+        "files": 18,
+        "bytes": 5524311
+      },
+      "webp": {
+        "files": 224,
+        "bytes": 31231828
+      },
+      "png": {
+        "files": 3,
+        "bytes": 400763
+      },
+      "ico": {
+        "files": 1,
+        "bytes": 16574
+      },
+      "html": {
+        "files": 4,
+        "bytes": 30637
+      },
+      "txt": {
+        "files": 3,
+        "bytes": 37411
+      },
+      "webmanifest": {
+        "files": 1,
+        "bytes": 533
+      }
+    },
+    "js_gzip": 511915,
+    "css_gzip": 74713,
+    "leaks": []
+  },
+  "coldRouteObservations": [
+    {
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "fresh valid save, audio disabled, no clicks",
+      "requestedLocalFiles": 18,
+      "localRawFileBytes": 1400117,
+      "equivalentBytesWithGzipText": 611982,
+      "byType": {
+        ".html": 1706,
+        ".js": 817942,
+        ".css": 291405,
+        ".webp": 289064
+      },
+      "externalFontsBlocked": true,
+      "method": "unique observed local requests at networkidle; stat files, gzip text level9; not production CDN transfer/LCP/ready"
+    },
+    {
+      "route": "/autochess",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "fresh valid save, audio disabled, no clicks",
+      "requestedLocalFiles": 18,
+      "localRawFileBytes": 1660723,
+      "equivalentBytesWithGzipText": 955066,
+      "byType": {
+        ".html": 1706,
+        ".js": 755454,
+        ".css": 248231,
+        ".webp": 655332
+      },
+      "externalFontsBlocked": true,
+      "method": "unique observed local requests at networkidle; stat files, gzip text level9; not production CDN transfer/LCP/ready"
+    },
+    {
+      "route": "/chest",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "fresh valid save, audio disabled, no clicks",
+      "requestedLocalFiles": 27,
+      "localRawFileBytes": 1609076,
+      "equivalentBytesWithGzipText": 685125,
+      "byType": {
+        ".html": 1706,
+        ".js": 1206770,
+        ".css": 123714,
+        ".webp": 276886
+      },
+      "externalFontsBlocked": true,
+      "method": "unique observed local requests at networkidle; stat files, gzip text level9; not production CDN transfer/LCP/ready"
+    }
+  ],
+  "browserMethod": "Production Vite preview localhost; legal SPA document rewrites emulated from vercel.json because Vite extensionless static HTML resolution differs. Synthetic fixtures, isolated contexts, external Google Fonts blocked. Screenshot visually inspected.",
+  "android": {
+    "feasibleArchitecture": "Capacitor stable v8 with bundled Vite dist",
+    "nativeProjectPresent": false,
+    "apkBuilt": false,
+    "aabBuilt": false,
+    "environmentObserved": {
+      "nodeAvailable": true,
+      "javaRuntimeMajor": 17,
+      "adbOnPath": false,
+      "sdkmanagerOnPath": false,
+      "gradleOnPath": false,
+      "androidSdkEnvironmentConfigured": false
+    },
+    "proposedMinimumApi": 29,
+    "compileTargetApi": 36,
+    "webSaveTransfer": "Manual MGC1/ZIP transfer; origins do not share storage; native adapter needs hydration/recovery/lifecycle QA"
+  },
+  "protectedFilesUnchangedFromMaster": [
+    {
+      "path": "src/game/storage.ts",
+      "sha256": "677962b888c4463f2e065a369a17c3a267b43b45bd8bd70d5fa37f181102f3ea",
+      "bytes": 12776
+    },
+    {
+      "path": "src/game/saveCode.ts",
+      "sha256": "ba104aa4af9107c2719dd024b96535239e781872d3070e389e261c501b9046e1",
+      "bytes": 6275
+    },
+    {
+      "path": "src/game/progression.ts",
+      "sha256": "d0e14e9d507e40843f02c40eacd49c9fe49364777d6dba32cda2e4169dab4b6e",
+      "bytes": 11837
+    },
+    {
+      "path": "src/game/story.ts",
+      "sha256": "60cb1c74ab80b898963c6c040626a045bd04621eefc42458a63dc7fe442591bf",
+      "bytes": 5813
+    },
+    {
+      "path": "src/infrastructure/storage/repository.ts",
+      "sha256": "920487f580d71746ae97948a8e0979f1399ef7c2bd695c017c5a2427802c263c",
+      "bytes": 8767
+    },
+    {
+      "path": "src/infrastructure/storage/imageRepository.ts",
+      "sha256": "7e47d41f9fe8f8d58191af511a5b717200a8e911017d8a92ca5763dc706333e4",
+      "bytes": 4048
+    },
+    {
+      "path": "src/game/autochess/types.ts",
+      "sha256": "45e3708059858df422a4fe86cb291245a90eb96fe0323312ea34321f1753cb58",
+      "bytes": 4028
+    },
+    {
+      "path": "src/game/autochess/economy.ts",
+      "sha256": "334d0b6fcb28a78ba3a3693a909d9f65e6f762bba0138be3f7ef0e20767c6d20",
+      "bytes": 10702
+    },
+    {
+      "path": "package.json",
+      "sha256": "94c0a6cc5b86177a0e21e59552519817640a12589f16f55f3cb06cef4e9d8894",
+      "bytes": 1452
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "4faeb96f85a9e79b0d23af3f9a58a4fa76f40b43203c54f3448ff28b55b322cd",
+      "bytes": 42454
+    },
+    {
+      "path": "dev/tools/release-size.mjs",
+      "sha256": "9c185d0fd870aa4eb1363d543d54a78679b87248bb8fe448a86a0ea5f3ff6ebf",
+      "bytes": 2633
+    }
+  ],
+  "runtimePolicyAndEvidenceDigests": [
+    {
+      "path": "src/legal/policies.ts",
+      "sha256": "b9d251ae6c829e5a6671afc8d441ed3528ee41701c251d01408cdf47c1d42857",
+      "bytes": 27523
+    },
+    {
+      "path": "src/pages/LegalPage.tsx",
+      "sha256": "c581b63d663928832588937c33c95b7a561f001958ee74a7c2e57887426408a1",
+      "bytes": 1465
+    },
+    {
+      "path": "dev/tools/release-records.mjs",
+      "sha256": "6d8f199e58371b9a054f52dc9ab0c336e568d069d064e8c4bb64e7be1383a74b",
+      "bytes": 10712
+    },
+    {
+      "path": "public/legal/terms.html",
+      "sha256": "2e16038dec5a97eebe4b2d13779f674f008d1cfa7240c890a93fb3eda7dbed65",
+      "bytes": 11159
+    },
+    {
+      "path": "public/legal/privacy.html",
+      "sha256": "fd02cf5c6b3681df3a61f8738b5bc7797875717999782e7bc6cc530394dd8bed",
+      "bytes": 12525
+    },
+    {
+      "path": "public/legal/rights.html",
+      "sha256": "7f8b317c783618e1954c789a0f56866c772886da93ae48a1b2db9026659cc25b",
+      "bytes": 5247
+    },
+    {
+      "path": "dev/docs/release/build-size.json",
+      "sha256": "1119313ac25272c23c6049380466b04991257fcd1be860c50ceda546f2570372",
+      "bytes": 1975
+    },
+    {
+      "path": "dev/docs/major-v400/browser-policy-results.json",
+      "sha256": "1e132a93e3d48e4b903941becada25fb164c7da60ff3305e85cc00025485f078",
+      "bytes": 7791
+    },
+    {
+      "path": "dev/docs/major-v400/privacy-phone.jpg",
+      "sha256": "26c1f72dad8ad7a02469b1536a42468530d2518a11d91ec8a3d62ac600595450",
+      "bytes": 76757
+    }
+  ],
+  "primarySourcesAdded": [
+    {
+      "url": "https://capacitorjs.com/docs/android",
+      "usedFor": "Stable v8 Android architecture and API 24 minimum"
+    },
+    {
+      "url": "https://capacitorjs.com/docs/getting-started/environment-setup",
+      "usedFor": "Node 22+, Android Studio 2025.2.1+, SDK prerequisites"
+    },
+    {
+      "url": "https://capacitorjs.com/docs/updating/8-0",
+      "usedFor": "Stable v8 compile/target SDK 36; keep separate from /next v9"
+    },
+    {
+      "url": "https://capacitorjs.com/docs/apis/preferences",
+      "usedFor": "OS may clear WebView localStorage; Preferences is lightweight, not a database"
+    },
+    {
+      "url": "https://support.google.com/googleplay/android-developer/answer/11926878?hl=en",
+      "usedFor": "Current Play target API 36 deadline, 2026-08-31"
+    },
+    {
+      "url": "https://support.google.com/googleplay/android-developer/answer/9859372?hl=en-en",
+      "usedFor": "Current compressed app bundle base-module limit 500 MB; actual download size measured by bundletool/Play"
+    },
+    {
+      "url": "https://support.google.com/googleplay/android-developer/answer/14151465?hl=en-GB",
+      "usedFor": "New personal account testing requirements conditional on account creation date"
+    },
+    {
+      "url": "https://support.google.com/googleplay/android-developer/answer/10144311?hl=en",
+      "usedFor": "Privacy policy, user data and conditional account deletion requirements"
+    },
+    {
+      "url": "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en",
+      "usedFor": "Data Safety definitions; device-only processing is distinct from off-device network requests"
+    },
+    {
+      "url": "https://developer.android.com/about/versions/16/behavior-changes-16",
+      "usedFor": "Edge-to-edge, predictive back and adaptive layout QA"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer",
+      "usedFor": "Decoded PCM float buffer memory, not MP3 compressed size"
+    },
+    {
+      "url": "https://vercel.com/docs/limits",
+      "usedFor": "CLI upload size and plan limits differ from project dist budget"
+    },
+    {
+      "url": "https://vercel.com/legal/terms",
+      "usedFor": "Hobby non-commercial personal use restrictions"
+    },
+    {
+      "url": "https://vanban.chinhphu.vn/?docid=214590&pageid=27160",
+      "usedFor": "Law 91/2025/QH15 effective 2026-01-01"
+    },
+    {
+      "url": "https://vanban.chinhphu.vn/?classid=0&docid=211654&pageid=27160",
+      "usedFor": "Decree 147/2024 on network services/game distribution"
+    },
+    {
+      "url": "https://chinhsachonline.chinhphu.vn/dieu-kien-cung-cap-dich-vu-tro-choi-dien-tu-tren-mang-91976.htm",
+      "usedFor": "Official explanation of electronic game service requirements; classification not determined for this project"
+    }
+  ],
+  "limits": [
+    "Story/mechanics/art/audio designs are proposals; no proof of playtest balance or appeal yet",
+    "No physical-device FPS/RAM/thermal/audio listening/Safari/Android QA",
+    "Local route gzip equivalents exclude remote font bytes and are not actual production CDN transfer, network-throttled ready time or full-match load",
+    "No live deployment/store account/Data Safety submission verified",
+    "Legal publisher identity and private support/contact channel are not confirmed; policy text alone does not complete release obligations",
+    "Asset provenance still needs ownership/rights review before commercial distribution",
+    "All milestones and native/web budgets are estimates, not measured v4 binaries",
+    "Original AUDIT.json remains the historical first research snapshot; this file records the runtime-policy follow-up"
+  ],
+  "documentationValidation": {
+    "internalLinksChecked": 39,
+    "allRecordedSourceDigestsMatch": true,
+    "jsonDocumentsParse": true,
+    "stagedDiffCheck": "passed after removing Markdown hard-break trailing spaces"
+  }
+}

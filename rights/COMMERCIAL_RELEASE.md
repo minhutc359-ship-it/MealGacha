@@ -1,6 +1,6 @@
 # Chuẩn bị quyền sử dụng và chuyển nhượng
 
-Rà soát ngày 09/10/2026 cho Soul of Meal 3.3. Đây là hồ sơ vận hành và dự thảo chính sách; không phải chứng nhận rằng toàn bộ ứng dụng không thể có tranh chấp quyền sở hữu.
+Rà soát gốc ngày 09/10/2026; bổ sung ngày 10/10/2026 theo Soul of Meal 3.5. [Policy review mới](../dev/docs/major-v400/POLICY_REVIEW.md) ghi những mục đã hoàn thiện và thông tin pháp lý/liên hệ còn thiếu. Đây là hồ sơ vận hành và dự thảo chính sách; không phải chứng nhận rằng toàn bộ ứng dụng không thể có tranh chấp quyền sở hữu.
 
 ## “No copyright” được xử lý thế nào
 

@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import { useEffect } from "react"
-import { POLICIES, POLICY_DATE, SUPPORT_URL, type PolicyId } from "../legal/policies"
+import { POLICIES, POLICY_DATE, POLICY_VERSION, SUPPORT_URL, type PolicyId } from "../legal/policies"
 import { LegalLinks } from "../legal/LegalLinks"
 
 export function LegalPage() {
@@ -12,7 +12,7 @@ export function LegalPage() {
   return <main className="legal-page">
     <header><Link className="legal-home" to="/">← Soul of Meal</Link><LegalLinks /></header>
     <article>
-      <p className="legal-date">Phiên bản 3.3 · Hiệu lực {POLICY_DATE}</p>
+      <p className="legal-date">Chính sách {POLICY_VERSION} · Cập nhật {POLICY_DATE}</p>
       <h1>{policy.title}</h1><p className="legal-intro">{policy.intro}</p>
       {policy.sections.map(section => <section key={section.title}>
         <h2>{section.title}</h2>
