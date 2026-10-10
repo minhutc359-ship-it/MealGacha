@@ -89,6 +89,8 @@ export interface UserPreferences {
   musicStyle?: "original" | "8bit"
   musicVolume?: number
   effectsVolume?: number
+  graphicsQuality?: "normal" | "low"
+  ambienceVolume?: number
   reducedMotion: boolean
   hiddenDishIds: string[]
   searchRadiusMeters: number

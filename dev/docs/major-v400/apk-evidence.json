@@ -1,0 +1,20 @@
+{
+  "file": "Soul-of-Meal-4.0-beta.apk",
+  "bytes": 57255166,
+  "sha256": "f3966a834eb58917c3031471367f39f60df50be089650d3967aa16939f65b475",
+  "buildType": "debug",
+  "sourceTreeBeforeEvidence": "014a8378a0ab54137e01efbf5baf62c215ff4936",
+  "applicationId": "io.github.minhutc359.soulofmeal",
+  "versionCode": 40001,
+  "versionName": "4.0.0-beta.1",
+  "minimumSdk": 29,
+  "targetSdk": 36,
+  "bundledFilesComparedToDist": 370,
+  "mismatches": [],
+  "typescriptTests": 351,
+  "robolectricTests": 4,
+  "lintErrors": 0,
+  "nativeBrowserMockChecks": 4,
+  "hardwareQA": false,
+  "PlayPublished": false
+}

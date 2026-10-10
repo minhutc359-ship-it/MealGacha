@@ -1,0 +1,198 @@
+{
+  "agent": "fixed-three-unit-board-v1",
+  "scope": "12 boards × 100 seeds, Survival wave6, alternating starting row. Not pairwise PvP or 200-seed TCG balance; economy smoke runs are separate.",
+  "results": [
+    {
+      "team": [
+        "banh-mi",
+        "banh-mi",
+        "chef-nhien"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-relay",
+      "seeds": 100,
+      "wins": 87,
+      "losses": 13,
+      "meanSeconds": 18.562,
+      "maxSeconds": 29.05
+    },
+    {
+      "team": [
+        "pho-bo",
+        "bun-rieu",
+        "chef-hai"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-heal-strike",
+      "seeds": 100,
+      "wins": 96,
+      "losses": 4,
+      "meanSeconds": 18.201,
+      "maxSeconds": 30.35
+    },
+    {
+      "team": [
+        "goi-cuon",
+        "chef-moc",
+        "banh-cuon"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-last-guard",
+      "seeds": 100,
+      "wins": 96,
+      "losses": 4,
+      "meanSeconds": 27.235000000000003,
+      "maxSeconds": 58.2
+    },
+    {
+      "team": [
+        "com-tam",
+        "xoi",
+        "chef-bach"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-market-deal",
+      "seeds": 100,
+      "wins": 100,
+      "losses": 0,
+      "meanSeconds": 26.0745,
+      "maxSeconds": 43.5
+    },
+    {
+      "team": [
+        "che-lam",
+        "chef-lien",
+        "com-ga"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-third-cast",
+      "seeds": 100,
+      "wins": 100,
+      "losses": 0,
+      "meanSeconds": 17.109,
+      "maxSeconds": 36.1
+    },
+    {
+      "team": [
+        "bun-cha",
+        "banh-xeo",
+        "ferry"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-many-flavors",
+      "seeds": 100,
+      "wins": 100,
+      "losses": 0,
+      "meanSeconds": 12.0455,
+      "maxSeconds": 18.05
+    },
+    {
+      "team": [
+        "com-tam",
+        "pho-bo",
+        "goi-cuon"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-relay",
+      "seeds": 100,
+      "wins": 100,
+      "losses": 0,
+      "meanSeconds": 29.1505,
+      "maxSeconds": 46.95
+    },
+    {
+      "team": [
+        "chef-nhien",
+        "chef-hai",
+        "chef-moc"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-heal-strike",
+      "seeds": 100,
+      "wins": 100,
+      "losses": 0,
+      "meanSeconds": 12.879,
+      "maxSeconds": 16.25
+    },
+    {
+      "team": [
+        "com-tam",
+        "com-tam",
+        "xoi"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-last-guard",
+      "seeds": 100,
+      "wins": 100,
+      "losses": 0,
+      "meanSeconds": 37.495999999999995,
+      "maxSeconds": 95.95
+    },
+    {
+      "team": [
+        "banh-mi",
+        "banh-mi",
+        "bun-cha"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-market-deal",
+      "seeds": 100,
+      "wins": 100,
+      "losses": 0,
+      "meanSeconds": 19.645,
+      "maxSeconds": 35.65
+    },
+    {
+      "team": [
+        "chef-bach",
+        "chef-lien",
+        "ferry"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-third-cast",
+      "seeds": 100,
+      "wins": 100,
+      "losses": 0,
+      "meanSeconds": 12.3765,
+      "maxSeconds": 17.8
+    },
+    {
+      "team": [
+        "com-ga",
+        "banh-cuon",
+        "bun-rieu"
+      ],
+      "wave": 6,
+      "star": 2,
+      "items": [],
+      "augment": "v4-many-flavors",
+      "seeds": 100,
+      "wins": 100,
+      "losses": 0,
+      "meanSeconds": 16.5315,
+      "maxSeconds": 23.95
+    }
+  ]
+}

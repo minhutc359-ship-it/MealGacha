@@ -1,27 +1,31 @@
 {
-  "version": "3.5.0",
-  "bytes": 39200366,
-  "files": 297,
+  "version": "4.0.0",
+  "bytes": 44887931,
+  "files": 370,
   "byType": {
     "js": {
-      "files": 37,
-      "bytes": 1604403
+      "files": 63,
+      "bytes": 1722342
     },
     "css": {
-      "files": 6,
-      "bytes": 353906
+      "files": 7,
+      "bytes": 360027
     },
     "mp3": {
-      "files": 18,
-      "bytes": 5524311
+      "files": 36,
+      "bytes": 7829801
     },
     "webp": {
-      "files": 224,
-      "bytes": 31231828
+      "files": 240,
+      "bytes": 34393266
     },
     "png": {
       "files": 3,
-      "bytes": 400763
+      "bytes": 164790
+    },
+    "woff2": {
+      "files": 11,
+      "bytes": 285956
     },
     "ico": {
       "files": 1,
@@ -29,11 +33,11 @@
     },
     "html": {
       "files": 4,
-      "bytes": 30637
+      "bytes": 31646
     },
     "txt": {
-      "files": 3,
-      "bytes": 37411
+      "files": 4,
+      "bytes": 82996
     },
     "webmanifest": {
       "files": 1,
@@ -41,17 +45,17 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 1958309,
+    "Application JS/CSS": 2082369,
     "Auto chess art/audio": 7609213,
-    "Brand": 465507,
+    "Brand": 229534,
     "Shared character atlases": 9061632,
     "Event art": 2016822,
+    "Other and legal": 5884633,
     "Food art": 7490462,
-    "TCG art/audio": 10513266,
-    "Other and legal": 85155
+    "TCG art/audio": 10513266
   },
-  "js_gzip": 511915,
-  "css_gzip": 74713,
+  "js_gzip": 554812,
+  "css_gzip": 76144,
   "largest": [
     {
       "path": "assets/characters/rosterB.webp",

@@ -1,3 +1,4 @@
+import { AutoPortrait } from "../autochess/AutoArt"
 import {
   CHARACTER_ART,
   CHARACTER_NAMES,
@@ -12,6 +13,7 @@ export function CharacterPortrait({
   className?: string
   decorative?: boolean
 }) {
+  if (id === "an" || id === "sen" || id === "tinh") return <AutoPortrait index={id === "an" ? 0 : id === "sen" ? 2 : 3} npc className={`tcg-portrait ${className}`} label={decorative ? "" : CHARACTER_NAMES[id]} />
   const character = CHARACTER_ART[id]
   return (
     <img

@@ -66,7 +66,7 @@ describe("shared characters in TCG", () => {
     expect(tcgCharacter(CARD_MAP["banh-dau-xanh"])).toMatchObject({ id: "banh-dau-xanh", sheet: "fresh", row: 0 })
     expect(tcgCharacter(CARD_MAP["caravan-ferryman"])).toMatchObject({ id: "ferry" })
     expect(tcgCharacter(CARD_MAP["caravan-porter"])).toMatchObject({ id: "loc", sheet: "fresh" })
-    expect(tcgCharacter(CARD_MAP["chef-nhien"])).toMatchObject({ id: "chef-nhien", sheet: "rosterA", row: 0 })
+    expect(tcgCharacter(CARD_MAP["chef-nhien"])).toMatchObject({ id: "chef-nhien", sheet: "living-chef-nhien", row: 0 })
     // A food without a dedicated Auto chess unit still has a valid school spirit.
     const other = CARDS.find(c => c.kind === "unit" && c.school === "tide" && c.art?.startsWith("/assets/food/") && c.id !== "pho-bo" && !["bun-rieu", "chao-luon", "banh-tom-ho-tay"].includes(c.id))!
     expect(tcgCharacter(other)?.sheet).toBeDefined()

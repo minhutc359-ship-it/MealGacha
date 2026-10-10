@@ -17,6 +17,7 @@ import { Dialog } from "./Dialog"
 
 export function Expedition() {
   const save = useGameStore((s) => s.save)
+  const [promise,setPromise]=useState<"safe"|"bold">(save.story400?.decisions?.["rain-harbor"] === "short" ? "bold" : "safe")
   const run = save.expedition
   const store = useGameStore.getState()
   const [confirm, setConfirm] = useState(false)
@@ -107,6 +108,8 @@ export function Expedition() {
           </button>
         </div>
       </div>
+      {!active && <fieldset className="tcg-panel"><legend>Lời hẹn cho chuyến mới</legend><label><input type="radio" name="promise" checked={promise==="safe"} onChange={()=>setPromise("safe")}/> Đường an toàn · hồi 2 ý chí khi vào trận, giữ thưởng cơ bản</label><label><input type="radio" name="promise" checked={promise==="bold"} onChange={()=>setPromise("bold")}/> Đường thử thách · địch thêm 12% ý chí, thắng nhận thêm 8 tiếp tế</label><p>Lựa chọn chỉ áp dụng khi bắt đầu chuyến mới; không đổi bộ sưu tập.</p></fieldset>}
+      {active && run?.promise && <p>Lời hẹn: {run.promise === "safe" ? "Đường an toàn" : "Đường thử thách"}</p>}
       {!active && !run && (
         <section className="tcg-expedition-intro">
           <img src="/assets/events/cooling-summer-vietnam/banner.webp" alt="" />
@@ -126,7 +129,7 @@ export function Expedition() {
             </p>
             <button
               className="tcg-button gold"
-              onClick={() => store.beginExpedition()}
+              onClick={() => store.beginExpedition(promise)}
             >
               Bắt đầu thám hiểm →
             </button>
@@ -157,7 +160,7 @@ export function Expedition() {
           </p>
           <button
             className="tcg-button primary"
-            onClick={() => store.beginExpedition()}
+            onClick={() => store.beginExpedition(promise)}
           >
             Bắt đầu chuyến mới →
           </button>

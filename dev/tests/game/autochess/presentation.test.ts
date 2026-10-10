@@ -26,11 +26,11 @@ describe("measured sprite rendering", () => {
     }
     for (const unit of AUTO_UNITS) {
       const model = unitCharacter(unit.id)
-      expect(SPRITE_SHEETS[model.sheet].rows[model.row].frames).toHaveLength(model.sheet === "base" ? 14 : 7)
+      expect(SPRITE_SHEETS[model.sheet].rows[model.row].frames).toHaveLength(model.sheet.startsWith("living-") ? 24 : model.sheet === "base" ? 14 : 7)
     }
     for (const monster of MONSTERS) {
       const model = monsterCharacter(monster.id)
-      expect(SPRITE_SHEETS[model.sheet].rows[model.row].frames).toHaveLength(7)
+      expect(SPRITE_SHEETS[model.sheet].rows[model.row].frames).toHaveLength(model.sheet.startsWith("living-") ? 24 : 7)
     }
     // Regression: hats/feet are in an uneven 310–424px band, not 380–507px.
     expect(SPRITE_SHEETS.enemy.rows[3].frames[0][1]).toBeLessThan(380)

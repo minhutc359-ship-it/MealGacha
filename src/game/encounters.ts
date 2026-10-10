@@ -1,4 +1,4 @@
-import { BOSS_RULES, type StoryLine } from "./narrative"
+import { BOSS_RULES, LIVING_BOSS_RULES, type StoryLine } from "./narrative"
 import { NPC_NAMES } from "./characters"
 import type { Battle, NpcId } from "./types"
 import type { BattleEvent } from "./battle"
@@ -6,7 +6,8 @@ import type { StoryArtId } from "./storyArt"
 import { DRAMATIC_BEATS } from "./dramaticBeats"
 
 export function battleRule(b: Battle) {
-  return BOSS_RULES[b.bossRuleId ?? b.stageId ?? ""]
+  const id = b.bossRuleId ?? b.stageId ?? ""
+  return (b.livingRulesVersion === 2 ? LIVING_BOSS_RULES[id] : undefined) ?? BOSS_RULES[id]
 }
 export function prepareEncounter(b: Battle): Battle {
   const ruleId = b.bossRuleId ?? b.stageId
@@ -46,6 +47,7 @@ export function bossIntent(b: Battle) {
       ? ["burn", "heal", "draw"][(b.round - 1) % 3]
       : rule.effect
   const text =
+    effect === "steep" ? "Đặt Chậu mầm bên bếp: hồi 4 ở lượt địch kế" : effect === "edit" ? `Gỡ một Ủ vị lâu nhất của bạn, rút ${strength} lá` :
     effect === "burn"
       ? `Gây ${strength} sát thương lên bạn`
       : effect === "heal"
@@ -56,6 +58,7 @@ export function bossIntent(b: Battle) {
   return {
     text,
     tip:
+      effect === "steep" ? "Mở nắp đúng lúc hủy đúng một lời hứa trước khi mầm nở." : effect === "edit" ? "Giữ một phép Ủ vị để dùng sau khi boss sửa trang." :
       effect === "shield"
         ? "Dồn sát thương hoặc phép vượt Hộ vệ."
         : effect === "heal"
@@ -138,11 +141,11 @@ export function midScene(id: string, battle?: Battle): {
       lines: [
         {
           speaker: NPC_NAMES[npc],
-          text: "Lần trước, bạn đã ngồi lại khi tôi không biết phải bắt đầu câu chuyện từ đâu. Hôm nay để tôi giữ một góc bàn cho bạn.",
+          text: "Lần trước, bạn đã ngồi lại khi tôi không biết phải bắt đầu câu chuyện từ đâu. Hôm nay đến lượt tôi giúp bạn trong trận này.",
         },
         {
           speaker: "Bạn",
-          text: "Tôi nhận ra tiếng ấy giữa màn sương. Bàn Ký Ức không còn chỉ có một người giữ lửa.",
+          text: "Tôi nhận ra tiếng ấy giữa màn sương. Lần này tôi có người cùng chiến đấu.",
         },
       ],
     }
@@ -152,6 +155,24 @@ export function midScene(id: string, battle?: Battle): {
       ? DRAMATIC_BEATS[battle.stageId]
       : undefined
   if (campaignBeat && id === `awaken:${battle!.stageId}`) return campaignBeat
+  if (
+    battle?.stageId &&
+    /^(living-market|rain-harbor|tomorrow-table)-/.test(battle.stageId)
+  )
+    return {
+      title: "Không viết hộ một lựa chọn",
+      art: battle.stageId.startsWith("living-market")
+        ? "living-market"
+        : battle.stageId.startsWith("rain-harbor")
+          ? "rain-harbor"
+          : "tomorrow-table",
+      lines: [
+        {
+          speaker: "An",
+          text: "Đối thủ đã mạnh hơn. Hãy xem hiệu ứng của địch rồi chọn lá bài để ứng phó; chúng mình vẫn có thể đổi cách đánh.",
+        },
+      ],
+    }
   const harbor = battle?.encounter?.kind === "rescue"
   const protect = battle?.encounter?.kind === "protect"
   return {
@@ -161,7 +182,7 @@ export function midScene(id: string, battle?: Battle): {
       ? [
           {
             speaker: "Nhiên",
-            text: "Sương đang cháy mạnh hơn! Nó dùng tiếng gọi của cha để giữ những Vị Linh ở lại. Phá ba linh ảnh trên sân, hoặc tháo nút thắt ở chủ tướng.",
+            text: "Sương đang cháy mạnh hơn! Nó dùng tiếng gọi của cha để giữ những Vị Linh ở lại. Hạ ba quân địch để giải cứu Vị Linh, hoặc đưa ý chí chủ tướng địch về 0.",
           },
           {
             speaker: "Bạn",
@@ -172,7 +193,7 @@ export function midScene(id: string, battle?: Battle): {
           {
             speaker: "Bách",
             text: protect
-              ? "Boss đã thức tỉnh. Giữ lửa qua ba lần nhường lượt để thắng; Hộ vệ còn trên bàn sẽ che bếp khỏi gió sương."
+              ? "Boss đã thức tỉnh. Giữ ít nhất một Hộ vệ trên sân khi lượt địch kết thúc. Bảo vệ bếp thành công ba lần sẽ thắng trận."
               : "Boss đã thức tỉnh, nhưng sức mạnh ấy đến từ nỗi sợ mất ký ức. Đừng để nó giữ bạn mãi trong một ngày cũ. Chúng ta còn người đang đợi ở bàn ăn.",
           },
           {

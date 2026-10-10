@@ -1,4 +1,4 @@
-export const RULES_VERSION = 5
+export const RULES_VERSION = 7
 export const TICKS_PER_SECOND = 20
 export type AutoMode = "campaign" | "survival" | "daily"
 export type AutoSchool = "ember" | "tide" | "grove" | "hearth" | "sugar"
@@ -44,6 +44,7 @@ export interface Action {
   skill?: Skill
 }
 export interface Actor {
+  talent?: { relayAt: number; healAt: number; guardUsed: boolean; attackCharge: number; chargeUntil: number }
   uid: string
   id: string
   side: "ally" | "enemy"
@@ -85,7 +86,10 @@ export interface CombatEvent {
   school: AutoSchool
   skill?: Skill
 }
+export interface CombatStats { damage: number; healing: number; shielding: number; blocked: number }
 export interface AutoCombat {
+  augments?: string[]
+  recap?: Record<string, CombatStats>
   id: string
   tick: number
   actors: Actor[]

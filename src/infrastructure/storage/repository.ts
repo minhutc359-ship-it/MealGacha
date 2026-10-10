@@ -2,6 +2,7 @@ import { z } from "zod"
 import { UserState, CatalogCache, UserPreferences } from "../../domain/models"
 import type { BannerConfig } from "../banner/bannerConfig"
 import { GAME_KEY, parseGame } from "../../game/storage"
+import { loadProtected, writeProtectedBatch, clearProtectedState } from "./protectedStorage"
 
 const KEYS = {
   user: "foodchest.user.v1",
@@ -19,6 +20,8 @@ const defaultPrefs: UserPreferences = {
   musicStyle: "original",
   musicVolume: 0.38,
   effectsVolume: 0.7,
+  graphicsQuality: "normal",
+  ambienceVolume: 0.18,
   reducedMotion: false,
   hiddenDishIds: [],
   searchRadiusMeters: 3000,
@@ -72,6 +75,8 @@ const StoredUserSchema = z
       musicStyle: z.enum(["original", "8bit"]).catch("original").optional(),
       musicVolume: z.number().min(0).max(1).catch(0.38).optional(),
       effectsVolume: z.number().min(0).max(1).catch(0.7).optional(),
+      graphicsQuality: z.enum(["normal", "low"]).catch("normal").optional(),
+      ambienceVolume: z.number().min(0).max(1).catch(0.18).optional(),
       reducedMotion: z.boolean().optional(),
       hiddenDishIds: z.array(z.string()).optional(),
       searchRadiusMeters: z.number().optional(),
@@ -173,17 +178,11 @@ function safeSet(key: string, value: unknown): void {
 
 export const repository = {
   loadUser(): UserState {
-    return safeGet(KEYS.user, defaultUserState(), (raw) => {
-      const state = migrateUserState(raw)
-      if (!state) return defaultUserState()
-      if ((raw as { schemaVersion?: number }).schemaVersion !== 2)
-        safeSet(KEYS.user, state)
-      return state
-    })
+    return loadProtected(KEYS.user, migrateUserState, defaultUserState)
   },
 
   saveUser(state: UserState): void {
-    safeSet(KEYS.user, state)
+    writeProtectedBatch([{ key: KEYS.user, value: state }])
   },
 
   loadCatalog(): CatalogCache | null {
@@ -247,6 +246,7 @@ export const repository = {
   },
 
   clearAll(): void {
+    clearProtectedState()
     Object.values(KEYS).forEach((k) => localStorage.removeItem(k))
     localStorage.removeItem("mealgacha.profile.name")
     localStorage.removeItem(GAME_KEY)
@@ -275,14 +275,14 @@ export const repository = {
       // Validate all sections before changing any existing save.
       const tcg = parsed.data.tcg ? parseGame(parsed.data.tcg) : null
       if (parsed.data.tcg && !tcg) return false
-      if (parsed.data.user) {
-        const migrated = migrateUserState(parsed.data.user)
-        if (!migrated) return false
-        this.saveUser(migrated)
-      }
+      const migrated = parsed.data.user ? migrateUserState(parsed.data.user) : null
+      if (parsed.data.user && !migrated) return false
+      writeProtectedBatch([
+        ...(migrated ? [{ key: KEYS.user, value: migrated }] : []),
+        ...(tcg ? [{ key: GAME_KEY, value: tcg }] : []),
+      ], true)
       if (parsed.data.catalog)
         this.saveCatalog(parsed.data.catalog as unknown as CatalogCache)
-      if (tcg) localStorage.setItem(GAME_KEY, JSON.stringify(tcg))
       return true
     } catch {
       return false

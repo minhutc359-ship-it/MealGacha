@@ -1,4 +1,4 @@
-import { CARD_MAP, CARDS, STARTER_DECK, STARTER_IDS, RARITIES } from "./catalog"
+import { CARD_MAP, CARDS, LEGACY_CARDS, STARTER_DECK, STARTER_IDS, RARITIES } from "./catalog"
 import { settleRunCombat, expeditionRewardAvailable } from "./expedition"
 import { settleJourney } from "./journeys"
 import { battleOutcome } from "./battleOutcome"
@@ -251,6 +251,7 @@ export function settleBattle(save: GameSave): GameSave {
       ...save.history,
     ].slice(0, 20),
     packTickets: save.packTickets + loot.tickets,
+    ...(firstClear && stage && stage.index >= 18 ? { story400: {version: 1 as const, giftClaimed: false, originEnding: save.storyEnding ?? null, choices: {}, seenScenes: [], ...save.story400, claimedRewards: [...(save.story400?.claimedRewards ?? []), `stage:${stage.id}`] } } : {}),
     clearedStages: firstClear
       ? [...save.clearedStages, battle.stageId!]
       : save.clearedStages,
@@ -398,8 +399,8 @@ export function dailyTrades(day: string): TradeOffer[] {
     { id: "memory", from: "rare", to: "epic", coins: 150, dust: 0 },
     { id: "legacy", from: "epic", to: "legendary", coins: 0, dust: 450 },
   ].map((offer, index) => {
-    const input = CARDS.filter((c) => c.rarity === offer.from)
-    const output = CARDS.filter((c) => c.rarity === offer.to)
+    const input = LEGACY_CARDS.filter((c) => c.rarity === offer.from)
+    const output = LEGACY_CARDS.filter((c) => c.rarity === offer.to)
     return {
       id: offer.id,
       inputId: input[(seed + index * 7) % input.length].id,

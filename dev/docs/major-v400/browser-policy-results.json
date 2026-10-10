@@ -175,11 +175,11 @@
     {
       "label": "preserve-remember",
       "rawGameEqual": true,
-      "sha256": "1aef6c3e363c9ce705d70d448dd25f8c057fe3e8d0ba10270f929b31678c74ce",
+      "sha256": "34dc37115b0250965aae427ae1a6dd73bf2cc5bd65d68ef3871c2ee6bcd6b4f7",
       "coins": 1234,
       "dust": 321,
       "pity": 7,
-      "cleared": 18,
+      "cleared": 27,
       "willpower": 1
     },
     {
@@ -269,11 +269,11 @@
     {
       "label": "preserve-release",
       "rawGameEqual": true,
-      "sha256": "aaa1247d700fdf1e7de2fed193b95f6c9fd0abea23b7b04e8f8bb1100589d272",
+      "sha256": "ff0168d95e672f0459baa6cd000755537d85e27c95b3751ffa309fd8a41194ed",
       "coins": 1234,
       "dust": 321,
       "pity": 7,
-      "cleared": 18,
+      "cleared": 27,
       "willpower": 1
     }
   ],
@@ -285,13 +285,13 @@
         "height": 844
       },
       "state": "fresh valid save, audio disabled, no clicks",
-      "requestedLocalFiles": 18,
-      "localRawFileBytes": 1400117,
-      "equivalentBytesWithGzipText": 611982,
+      "requestedLocalFiles": 19,
+      "localRawFileBytes": 1441972,
+      "equivalentBytesWithGzipText": 626011,
       "byType": {
-        ".html": 1706,
-        ".js": 817942,
-        ".css": 291405,
+        ".html": 1705,
+        ".js": 858181,
+        ".css": 293022,
         ".webp": 289064
       },
       "externalFontsBlocked": true,
@@ -304,13 +304,13 @@
         "height": 844
       },
       "state": "fresh valid save, audio disabled, no clicks",
-      "requestedLocalFiles": 18,
-      "localRawFileBytes": 1660723,
-      "equivalentBytesWithGzipText": 955066,
+      "requestedLocalFiles": 19,
+      "localRawFileBytes": 1699599,
+      "equivalentBytesWithGzipText": 968153,
       "byType": {
-        ".html": 1706,
-        ".js": 755454,
-        ".css": 248231,
+        ".html": 1705,
+        ".js": 793070,
+        ".css": 249492,
         ".webp": 655332
       },
       "externalFontsBlocked": true,
@@ -324,12 +324,12 @@
       },
       "state": "fresh valid save, audio disabled, no clicks",
       "requestedLocalFiles": 27,
-      "localRawFileBytes": 1609076,
-      "equivalentBytesWithGzipText": 685125,
+      "localRawFileBytes": 1641541,
+      "equivalentBytesWithGzipText": 695773,
       "byType": {
-        ".html": 1706,
-        ".js": 1206770,
-        ".css": 123714,
+        ".html": 1705,
+        ".js": 1237975,
+        ".css": 124975,
         ".webp": 276886
       },
       "externalFontsBlocked": true,

@@ -609,7 +609,7 @@ export const RELICS = [
     color: "#e2b4f3",
   },
 ]
-export const AUGMENTS = [
+export const LEGACY_AUGMENTS = [
   {
     id: "guests",
     name: "Bếp có khách",
@@ -641,6 +641,15 @@ export const AUGMENTS = [
     text: "Được đổi một lựa chọn di vật và +2 vàng mỗi vòng.",
   },
 ]
+export const V4_AUGMENTS = [
+ {id: "v4-slow-fire", name: "Lửa nhỏ bền lâu", text: "Toàn đội +12% máu và +6 giáp khi xuất trận."},
+ {id: "v4-front-apron", name: "Tạp dề tuyến trước", text: "Quân tuyến trước nhận 180 khiên khi xuất trận."},
+ {id: "v4-back-lantern", name: "Đèn cho tuyến sau", text: "Quân tuyến sau +12% công khi xuất trận."},
+ {id: "v4-quiet-seat", name: "Ghế yên tĩnh", text: "Quân không sát đồng minh có thêm 20 mana đầu trận."},
+ {id: "v4-common-table", name: "Mâm đủ vị", text: "Có 3 hệ: toàn đội nhận 110 khiên đầu trận."},
+ {id: "v4-second-breath", name: "Một hơi thở nữa", text: "Ý chí dưới nửa: toàn đội +18% máu khi xuất trận."},
+]
+export const AUGMENTS = [...LEGACY_AUGMENTS, ...V4_AUGMENTS]
 export const COSMETICS = [
   { id: "river", name: "Sân bếp bên sông", cost: 60, scene: 1 },
   { id: "archive", name: "Thư quán trong sương", cost: 120, scene: 2 },
@@ -860,6 +869,10 @@ MONSTERS.push(
   { id: "boss-drum", name: "Vọng Trống Lạc Nhịp", hp: 2600, attack: 84, range: 1, armor: 28, skill: "stun", power: 345, school: "hearth", sprite: 2, boss: true, text: "Boss Survival: tiếng vọng bị sương làm lệch nhịp, choáng tuyến trước. Thanh vị giảm thời gian choáng." },
   { id: "boss-lotus", name: "Sen Sương Khép Cánh", hp: 3100, attack: 81, range: 3, armor: 22, skill: "seal", power: 320, school: "grove", sprite: 3, boss: true, text: "Boss Survival: khóa phép người đứng trước, chuyển pha dưới nửa máu. Cần cả đòn đánh và phép." },
 )
+MONSTERS.push(
+ {id: "v4-tide-lock", name: "Nắp Nồi Con Nước", hp: 2850, attack: 80, range: 2, armor: 25, skill: "frost", power: 310, school: "tide", sprite: 3, boss: true, text: "Gây sát thương phép và làm choáng một mục tiêu trong 1 giây. Trang bị Lá thuốc hoặc 4 Thanh vị giảm thời gian choáng một nửa. Thức tỉnh dưới nửa máu."},
+ {id: "v4-last-page", name: "Trang Giấy Chưa Viết", hp: 3200, attack: 84, range: 3, armor: 22, skill: "copy", power: 320, school: "sugar", sprite: 2, boss: true, text: "Phản chiếu kỹ năng đồng minh vừa dùng với 65% sức mạnh. Thức tỉnh dưới nửa máu."},
+)
 export const MONSTER_MAP = Object.fromEntries(MONSTERS.map((m) => [m.id, m]))
 export const SKILL_LABELS: Record<Skill, string> = {
   flame: "Bùng hương",
@@ -903,5 +916,18 @@ export const SHOP_ODDS = [
   [10, 20, 25, 35, 10],
   [5, 10, 20, 40, 25],
 ]
+export const TACTICAL_AUGMENTS = [
+ {id:"v4-relay",name:"Đội chuyền bếp",text:"Sau khi niệm phép, truyền tối đa 12 mana cho đồng minh khác ít mana nhất. Mỗi quân chờ 8 giây giữa hai lần truyền."},
+ {id:"v4-heal-strike",name:"Bếp sau cơn mưa",text:"Hồi máu thực cho đồng minh cường hóa đòn thường kế tiếp thêm 35% trong 6 giây. Mỗi quân nhận tối đa một lần mỗi 5 giây; không cộng dồn."},
+ {id:"v4-last-guard",name:"Hộ vệ bàn trống",text:"Khi đồng minh bị hạ, mỗi Hộ vệ còn sống nhận tối đa 160 chắn. Một lần mỗi Hộ vệ mỗi trận."},
+ {id:"v4-market-deal",name:"Chợ chớp đèn",text:"Bỏ lợi tức vàng để nhận một lần làm mới cửa hàng miễn phí ở mỗi đợt mới. Thử lại cùng đợt không cấp thêm lượt."},
+ {id:"v4-third-cast",name:"Đêm kể chuyện",text:"Mỗi phép thứ ba đã giải quyết của từng quân gây thêm 45% sức mạnh phép lên mục tiêu hiện tại. Không tính lượt chuẩn bị niệm bị ngắt."},
+ {id:"v4-many-flavors",name:"Mâm nhiều vị",text:"Có ít nhất 3 hệ và 2 nghề: quân khác hệ được hồi tối đa 2% máu mỗi 5 giây; mỗi hệ chỉ chọn quân thấp máu nhất."},
+]
+AUGMENTS.push(...TACTICAL_AUGMENTS)
+export function augmentsForRules(rules: number) {
+ return rules >= 7 ? AUGMENTS : rules >= 6 ? AUGMENTS.filter(a => !TACTICAL_AUGMENTS.some(t => t.id === a.id)) : AUGMENTS.filter(a => !a.id.startsWith("v4-"))
+}
+
 export const shopOdds = (level: number, rulesVersion: number) =>
   (rulesVersion >= 3 ? SHOP_ODDS : LEGACY_SHOP_ODDS)[Math.max(0, Math.min(6, level - 3))]

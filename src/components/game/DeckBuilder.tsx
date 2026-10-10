@@ -8,7 +8,7 @@ import {
 } from "../../game/catalog"
 import { useGameStore } from "../../game/useGameStore"
 import {
-  DECK_STYLES,
+  DECK_STYLES, deckRoleMap, openingReport, DECK_ROLES, strategicRoles,
   analyzeDeck,
   cardRole,
   sampleHand,
@@ -35,6 +35,7 @@ export function DeckBuilder() {
   const [style, setStyle] = useState<DeckStyle>("balanced"),
     [hand, setHand] = useState<string[] | null>(null),
     [inspect, setInspect] = useState<string | null>(null)
+  const [handSeed,setHandSeed]=useState(350)
   const [tool, setTool] = useState<"strategy" | "analysis" | null>(null)
   const [mobileView, setMobileView] = useState<"cards" | "draft">("cards")
   const counts = useMemo(
@@ -53,7 +54,7 @@ export function DeckBuilder() {
       save.cards[c.id] &&
       (school === "all" || c.school === school) &&
       (kind === "all" || c.kind === kind) &&
-      (role === "all" || cardRole(c) === role) &&
+      (role === "all" || cardRole(c) === role || strategicRoles(c).includes(role as typeof DECK_ROLES[number])) &&
       (rarity === "all" || c.rarity === rarity) &&
       `${c.name} ${c.text}`
         .toLocaleLowerCase("vi")
@@ -192,15 +193,7 @@ export function DeckBuilder() {
                   onChange={(e) => setRole(e.target.value)}
                 >
                   <option value="all">Mọi vai trò</option>
-                  {[
-                    "Áp lực",
-                    "Giữ bàn",
-                    "Hồi phục",
-                    "Rút bài",
-                    "Dọn sân",
-                    "Hỗ trợ",
-                    "Đồng minh",
-                  ].map((r) => (
+                  {[...new Set([...DECK_ROLES,...CARDS.map(cardRole)])].map((r) => (
                     <option key={r}>{r}</option>
                   ))}
                 </select>
@@ -295,7 +288,7 @@ export function DeckBuilder() {
           <div className="tcg-deck-tools">
             <button
               disabled={draft.length < 4}
-              onClick={() => setHand(sampleHand(draft))}
+              onClick={() => setHand(openingReport(draft,handSeed).hand)}
             >
               Thử tay bài
             </button>
@@ -364,6 +357,10 @@ export function DeckBuilder() {
             </section>
           ) : (
             <div className="tcg-deck-analysis">
+              <h3>Bản đồ vai trò</h3><div className="deck-role-map">{deckRoleMap(draft).map(r=><article key={r.role}><strong>{r.role} · {r.cards.length}</strong><small>{[...new Set(r.cards)].map(id=>CARD_MAP[id].name).join(" · ") || "Chưa có lá thuộc vai trò này"}</small></article>)}</div>
+              <label>Seed tay mở đầu<input type="number" aria-label="Seed tay mở đầu" value={handSeed} min={0} max={4294967295} onChange={e=>setHandSeed(Math.max(0,Math.min(4294967295,Number(e.target.value)||0)))}/></label>
+              <button className="tcg-button ghost" onClick={()=>setHand(openingReport(draft,handSeed).hand)}>Thử cùng seed {handSeed}</button><p>{openingReport(draft,handSeed).text}</p>
+
               <p>
                 ◈ Giá trung bình {analysis.average.toFixed(1)} ·{" "}
                 {analysis.cheap} lá giá 1–2 · {analysis.guards} Hộ vệ
@@ -433,7 +430,7 @@ export function DeckBuilder() {
           </div>
           <button
             className="tcg-button primary"
-            onClick={() => setHand(sampleHand(draft))}
+            onClick={() => setHand(openingReport(draft,handSeed).hand)}
           >
             Rút thử lần nữa
           </button>

@@ -1,6 +1,6 @@
 # Roadmap và nghiệm thu 4.0
 
-**Các ticket gameplay/asset dưới đây là thiết kế, chưa hoàn thành trong runtime.** Chính sách web hiện có đã được bổ sung ở PR nghiên cứu, độc lập các ticket 4.0. Không đổi phiên bản sản phẩm thành 4.0 chỉ vì có tài liệu. Mỗi PR nhắm `master` sau khi dependency đã được người dùng merge; nhánh phụ thuộc PR chưa merge phải ghi rõ base/dependency. Không tự merge.
+**Roadmap nghiên cứu được giữ để đối chiếu acceptance.** Trạng thái triển khai hiện tại xem [IMPLEMENTATION.md](IMPLEMENTATION.md); các gate máy thật/nghe thật/Play không được tính đạt chỉ từ build và headless. Auto mới dùng rules7 để giữ nguyên run rules6 đã lưu. Không tự merge.
 
 ## Mẫu đầu cần chơi được
 
@@ -91,7 +91,7 @@ Fixture chứa dữ liệu giả lập, không commit save thật hoặc thông 
 | Cache/context | Missing/corrupt/slow asset, đổi mode 20 lần, WebGL init fail/loss, điều khiển vẫn dùng được khi fallback; giới hạn byte thực |
 | Hiệu năng | 15 phút Survival/boss trên máy thật; frame distribution, memory, cold/warm transfer theo profile, nhiệt/pin nếu công cụ hỗ trợ |
 
-Headless screenshot/FPS và ffmpeg decode có thể bổ sung, không thay cho chạm/nghe thật hoặc Safari. Chưa có các bằng chứng 4.0 này trong PR nghiên cứu.
+Headless screenshot/FPS và ffmpeg decode có thể bổ sung, không thay cho chạm/nghe thật hoặc Safari. Bằng chứng tự động mới được nối ở IMPLEMENTATION.md; nghiệm thu thiết bị vẫn còn chờ.
 
 ## Ước lượng và điều kiện giảm phạm vi
 
@@ -138,4 +138,4 @@ Nếu thêm/đổi asset/dependency, chạy `pnpm release:records` trước `rel
 | H02 | Beta storage/backup/offline/permissions | S01–S03, H01; hydrate trước autosave, web↔native round-trip, kill/update cùng key giữ save |
 | H03 | Hồ sơ Play và QA thiết bị | H02 + chủ thể/contact/quyền/thị trường; Data Safety theo SDK thật, signed AAB/closed test khi áp dụng; không tự phát hành |
 
-N01–N03 nằm trong phần tăng7–12 ngày ở tổng trên. H01–H02 khoảng10–18 ngày công riêng; H03 có thời gian store/testing ngoài công kỹ thuật. Chi tiết ở [STORY_AND_SYSTEMS](STORY_AND_SYSTEMS.md), [AUDIO_VISUAL_PLAN](AUDIO_VISUAL_PLAN.md), [WEB_AND_ANDROID](WEB_AND_ANDROID.md), [POLICY_REVIEW](POLICY_REVIEW.md). Chưa ticket nào trong bảng được tính là đã triển khai.
+N01–N03 nằm trong phần tăng7–12 ngày ở tổng trên. H01–H02 khoảng10–18 ngày công riêng; H03 có thời gian store/testing ngoài công kỹ thuật. Chi tiết ở [STORY_AND_SYSTEMS](STORY_AND_SYSTEMS.md), [AUDIO_VISUAL_PLAN](AUDIO_VISUAL_PLAN.md), [WEB_AND_ANDROID](WEB_AND_ANDROID.md), [POLICY_REVIEW](POLICY_REVIEW.md). Trạng thái từng nhóm và giới hạn nghiệm thu được cập nhật ở IMPLEMENTATION.md.

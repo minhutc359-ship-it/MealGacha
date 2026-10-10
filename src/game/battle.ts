@@ -1,5 +1,7 @@
-import { CARD_MAP, CARDS } from "./catalog"
+import { CARD_MAP } from "./catalog"
 import { STAGE_MAP } from "./story"
+import { cardBranches, flavoredCard } from "./v4Cards"
+import { cardsForRules } from "./catalog"
 import {
   battleRule,
   updateEncounter,
@@ -17,6 +19,7 @@ interface PlayAction {
   type: "play"
   index: number
   target?: Target
+  branch?: "first" | "second"
 }
 interface AttackAction {
   type: "attack"
@@ -62,18 +65,51 @@ export function cardCost(p: Combatant, card: GameCard) {
     card.cost - (p.chainSchool === card.school && !p.resonanceUsed ? 1 : 0),
   )
 }
-export function playError(b: Battle, index: number): string | null {
-  const card = CARD_MAP[b.player.hand[index]]
-  if (!card) return "Lá bài không còn trên tay."
+export function playError(b: Battle, index: number, branch?: PlayAction["branch"]): string | null {
+  const original = CARD_MAP[b.player.hand[index]]
+  if (!original) return "Lá bài không còn trên tay."
   if (b.opening) return "Hãy xác nhận bài mở đầu."
   if (b.tactic?.status === "pending") return "Hãy chọn cách ứng biến trước."
   if (b.result) return "Trận đấu đã kết thúc."
-  if (cardCost(b.player, card) > b.player.mana) return "Chưa đủ năng lượng."
-  if (card.kind === "unit" && b.player.board.length >= 3)
-    return "Sân đã đủ 3 đồng minh."
-  if (["buff", "ward"].includes(card.effect ?? "") && !b.player.board.length)
-    return "Cần một đồng minh trên sân."
-  return abilityError(b.player, card)
+  const errors = (branch ? [branch] : cardBranches(original)).map(option => {
+    const card = flavoredCard(original, option)
+    if (cardCost(b.player, card) > b.player.mana) return "Chưa đủ năng lượng."
+    if (card.kind === "unit" && b.player.board.length >= 3) return "Sân đã đủ 3 đồng minh."
+    if (["buff", "ward"].includes(card.effect ?? "") && !b.player.board.length) return "Cần một đồng minh trên sân."
+    return abilityError(b.player, card) ?? flavorError(b, "player", card)
+  })
+  return errors.some(error => error === null) ? null : errors[0]
+}
+function flavorError(b: Battle, side: "player" | "enemy", card: GameCard): string | null {
+  if (card.contentVersion === 400 && (b.rulesVersion ?? 350) < 400) return "Trận cũ giữ luật 3.5; thẻ này dùng trong trận mới."
+  const pending = b.pendingFlavors ?? []
+  if (card.ability?.startsWith("steep-") && pending.filter(effect => effect.owner === side).length >= 2) return "Phe bạn đã có 2 Ủ vị đang chờ."
+  if (card.ability === "unsteep" && !pending.some(effect => effect.owner !== side)) return "Địch chưa có Ủ vị để gỡ."
+  if (card.ability === "thaw" && !b[side].board.length) return "Cần một đồng minh để dùng khăn ấm."
+  return null
+}
+function steep(b: Battle, side: "player" | "enemy", card: GameCard) {
+  const sequence = (b.flavorSequence ?? 0) + 1
+  b.flavorSequence = sequence
+  const target = card.ability === "steep-unit" ? weakest(b[side]) : undefined
+  b.pendingFlavors = [...(b.pendingFlavors ?? []), { id: `${b.id}:flavor:${sequence}`, owner: side, cardId: card.id,
+    effect: card.ability === "steep-unit" ? "buff" : "heal", power: card.power ?? 0,
+    ...(target ? { targetUid: target.uid } : {}), executeRound: b.round + 1, sequence }]
+  log(b, `♨ ${card.name} · chờ đến đầu lượt sau${target ? `, giữ ${CARD_MAP[target.cardId].name} trên sân` : ""}.`)
+}
+function resolveSteeping(b: Battle, side: "player" | "enemy", record?: (event: BattleEvent) => void) {
+  const due = (b.pendingFlavors ?? []).filter(effect => effect.owner === side && effect.executeRound <= b.round)
+    .sort((a, z) => a.executeRound - z.executeRound || a.sequence - z.sequence)
+  for (const effect of due) {
+    if (b.result) break
+    b.pendingFlavors = b.pendingFlavors!.filter(other => other.id !== effect.id)
+    const target = b[side].board.find(unit => unit.uid === effect.targetUid && unit.health > 0)
+    if (effect.effect === "buff" && target) empower(target, effect.power, effect.power)
+    if (effect.effect === "heal") { restore(b, side, effect.power + (side === "player" && b.expedition?.relics.includes("v4-pot-lid") ? 1 : 0)); mendUnits(b[side], 2) }
+    const label = `♨ ${CARD_MAP[effect.cardId].name} · ${effect.effect === "buff" && !target ? "mục tiêu đã rời sân" : "Ủ vị đã nở"}`
+    log(b, label); checkResult(b)
+    record?.({ kind: "rule", side, cardId: effect.cardId, target: target?.uid, label })
+  }
 }
 interface BattleResult {
   battle: Battle
@@ -165,6 +201,10 @@ function spellAbility(b: Battle, side: "player" | "enemy", card: GameCard, targe
     else { const u = foe.board.find(u => u.uid === target)!; if (pierce) u.health -= amount; else hurt(u, amount) }
   }
   switch (card.ability) {
+    case "tea-mend": restore(b, side, power); mendUnits(p, 1); break
+    case "steep-unit": case "steep-heal": steep(b, side, card); break
+    case "unsteep": b.pendingFlavors = (b.pendingFlavors ?? []).filter(effect => effect.id !== target); break
+    case "thaw": if (side === "player" && b.expedition?.relics.includes("v4-dry-towel")) draw(b, side); p.board.forEach(unit => { unit.health = Math.min(unit.maxHealth, unit.health + power); if (unit.icedThisTurn) unit.ready = true; unit.frozen = false; unit.icedThisTurn = false }); break
     case "wok": {
       strike(power)
       const splash = [...foe.board].filter(u => u.health > 0 && u.uid !== target).sort((a, z) => a.health - z.health)[0]
@@ -201,13 +241,15 @@ function spellAbility(b: Battle, side: "player" | "enemy", card: GameCard, targe
   }
   return true
 }
-function afterSpell(b: Battle, side: "player" | "enemy") {
+function afterSpell(b: Battle, side: "player" | "enemy", card: GameCard) {
+  if (card.choices && side === "player" && b.expedition?.relics.includes("v4-menu")) { const target = weakest(b.player); if (target) target.shield++ }
   const p = b[side]
   p.spellsThisTurn = (p.spellsThisTurn ?? 0) + 1
   for (const u of p.board.filter(u => u.health > 0 && (u.triggers ?? 0) < 2)) {
     const ability = CARD_MAP[u.cardId].ability
     if (ability === "spellfire") u.attack++
     else if (ability === "weaver") { const target = weakest(p); if (target) target.shield++ }
+    else if (ability === "season-host" && card.choices && (u.triggers ?? 0) < 1) draw(b, side)
     else continue
     u.triggers = (u.triggers ?? 0) + 1
     log(b, `✦ ${CARD_MAP[u.cardId].name} · cộng hưởng phép.`)
@@ -252,19 +294,21 @@ function combatant(deck: string[], health: number): Combatant {
 export function opponentDeck(
   stageId: string | null,
   rng: () => number,
+  rulesVersion = 350,
 ): string[] {
   const stage = stageId ? STAGE_MAP[stageId] : undefined
+  const catalog = cardsForRules(stage && stage.index >= 18 ? rulesVersion : 350)
   const school = stage?.chapter.school ?? "ember"
   const maxCost = stage ? Math.min(6, 3 + Math.floor(stage.index / 3)) : 5
   const finale = stage?.chapter.id === "last-table"
-  const themed = CARDS.filter(
+  const themed = catalog.filter(
     (c) =>
       c.cost <= maxCost &&
       (finale || c.school === school) &&
       c.rarity !== "legendary",
   )
   const low = shuffle(
-    CARDS.filter((c) => c.kind === "unit" && c.cost <= 2),
+    catalog.filter((c) => c.kind === "unit" && c.cost <= 2),
     rng,
   ).slice(0, 3)
   const units = shuffle(
@@ -276,7 +320,7 @@ export function opponentDeck(
     rng,
   ).slice(0, 2)
   const list = [...low, ...units, ...spells]
-  for (const card of CARDS)
+  for (const card of catalog)
     if (
       list.length < 9 &&
       card.cost <= maxCost &&
@@ -294,9 +338,14 @@ export function startBattle(
   choice: "courage" | "wisdom" = "courage",
   rng = Math.random,
   offerMulligan = false,
+  rulesVersion: 350 | 400 = 400,
 ): Battle {
   const stage = stageId ? STAGE_MAP[stageId] : undefined
   const b: Battle = {
+    rulesVersion,
+    ...(stage && stage.index >= 18 ? { livingRulesVersion: 2 as const } : {}),
+    pendingFlavors: [],
+    flavorSequence: 0,
     id: crypto.randomUUID(),
     enemyChallenge: ENEMY_CHALLENGE,
     stageId,
@@ -304,7 +353,7 @@ export function startBattle(
     round: 1,
     player: combatant(shuffle(deck, rng), choice === "courage" ? 34 : 32),
     enemy: combatant(
-      shuffle(opponentDeck(stageId, rng), rng),
+      shuffle(opponentDeck(stageId, rng, rulesVersion), rng),
       challengeStat(stage ? 25 + Math.floor(stage.index / 3) * 2 + (stage.boss ? 3 : 0) : 30),
     ),
     log: ["Thử thách +30% ý chí chủ tướng địch. Triệu hồi thẻ, chọn mục tiêu rồi kết thúc lượt."],
@@ -336,12 +385,17 @@ function play(
   side: "player" | "enemy",
   index: number,
   target?: Target,
+  branch?: PlayAction["branch"],
 ): string | null {
   const p = b[side],
     foe = b[side === "player" ? "enemy" : "player"]
-  const id = p.hand[index],
-    card = CARD_MAP[id]
-  if (!Number.isInteger(index) || !card) return "Lá bài không còn trên tay."
+  const id = p.hand[index], original = CARD_MAP[id]
+  if (!Number.isInteger(index) || !original) return "Lá bài không còn trên tay."
+  if (original.choices && !branch) return "Hãy chọn một nhánh Nêm vị trước khi xác nhận."
+  const card = flavoredCard(original, branch)
+  const flavorIssue = flavorError(b, side, card)
+  if (flavorIssue) return flavorIssue
+  if (card.ability === "unsteep" && !(b.pendingFlavors ?? []).some(effect => effect.id === target && effect.owner !== side)) return "Hãy chọn đúng một Ủ vị đang chờ của địch."
   const cost = cardCost(p, card)
   if (cost > p.mana) return "Không đủ năng lượng."
   if (card.kind === "unit" && p.board.length >= 3)
@@ -446,7 +500,7 @@ function play(
           u.shield += power
         })
     }
-    afterSpell(b, side)
+    afterSpell(b, side, card)
     log(b, `${side === "player" ? "Bạn" : b.opponent} dùng ${card.name}.`)
   }
   if (resonated)
@@ -459,13 +513,14 @@ function resolveRecipe(
   side: "player" | "enemy",
   cardId: string,
   record: (event: BattleEvent) => void,
+  playedCard = CARD_MAP[cardId],
 ) {
   if (b.result) return
   const p = b[side],
     foe = b[side === "player" ? "enemy" : "player"]
   const recipe = recipeReady(
     { ...p, recipeTrail: (p.recipeTrail ?? []).slice(0, -1) },
-    CARD_MAP[cardId],
+    playedCard,
   )
   if (!recipe) return
   p.recipesUsed = [...(p.recipesUsed ?? []), recipe.id]
@@ -597,7 +652,7 @@ function attack(
   checkResult(b)
   return null
 }
-function nextTurn(b: Battle, side: "player" | "enemy") {
+function nextTurn(b: Battle, side: "player" | "enemy", record?: (event: BattleEvent) => void) {
   const p = b[side]
   p.chainSchool = null
   p.recipeTrail = []
@@ -607,13 +662,15 @@ function nextTurn(b: Battle, side: "player" | "enemy") {
   p.maxMana = Math.min(7, p.maxMana + 1)
   p.mana = p.maxMana
   p.board.forEach((u) => {
+    if ((b.rulesVersion ?? 350) >= 400) u.icedThisTurn = !!u.frozen
     u.ready = !u.frozen
     u.frozen = false
     u.triggers = 0
   })
   if (side === "player" && b.expedition?.relics.includes("grove-seed"))
     restore(b, side, 1)
-  draw(b, side)
+  resolveSteeping(b, side, record)
+  if (!b.result) draw(b, side)
 }
 function chooseDamageTarget(card: GameCard, foe: Combatant, caster: Combatant): Target {
   const power = (card.power ?? 0) + (card.ability === "desperation" && caster.health <= caster.maxHealth / 2 ? 4 : 0)
@@ -626,7 +683,7 @@ function chooseDamageTarget(card: GameCard, foe: Combatant, caster: Combatant): 
   return kill?.uid ?? "hero"
 }
 function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
-  nextTurn(b, "enemy")
+  nextTurn(b, "enemy", record)
   record({
     kind: "turn",
     side: "enemy",
@@ -644,6 +701,13 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
     if (effect === "heal")
       restore(b, "enemy", strength * 2)
     if (effect === "draw") draw(b, "enemy", strength)
+    if (effect === "steep" && (b.pendingFlavors ?? []).filter(e=>e.owner === "enemy").length < 2)
+      steep(b,"enemy",CARD_MAP["v4-rain-seed"])
+    if (effect === "edit") {
+      const oldest=(b.pendingFlavors ?? []).filter(e=>e.owner === "player").sort((a,z)=>a.sequence-z.sequence)[0]
+      if(oldest) b.pendingFlavors=b.pendingFlavors!.filter(e=>e.id !== oldest.id)
+      draw(b,"enemy",strength)
+    }
     if (effect === "shield")
       b.enemy.board.forEach((u) => {
         u.shield += strength
@@ -652,7 +716,7 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
     log(
       b,
       `${rule.name}${empowered ? " · THỨC TỈNH" : ""}: ${
-        effect === "burn"
+        effect === "steep" ? "Đặt Chậu mầm bên bếp; hồi 4 ở lượt địch kế nếu không bị gỡ" : effect === "edit" ? `Gỡ một Ủ vị lâu nhất của bạn; rút ${strength} lá` : effect === "burn"
           ? `Gây ${strength} sát thương lên bạn`
           : effect === "heal"
             ? `Hồi ${strength * 2} máu cho boss`
@@ -667,10 +731,10 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
   for (let steps = 0; steps < 12 && !b.result; steps++) {
     const p = b.enemy
     const options = p.hand
-      .map((id, index) => ({ card: CARD_MAP[id], index }))
+      .flatMap((id, index) => cardBranches(CARD_MAP[id]).map(branch => ({ card: flavoredCard(CARD_MAP[id], branch), index, branch })))
       .filter(
         ({ card }) =>
-          !abilityError(p, card) &&
+          !abilityError(p, card) && !flavorError(b, "enemy", card) &&
           cardCost(p, card) <= p.mana &&
           (card.kind !== "unit" || p.board.length < 3) &&
           ((card.effect !== "buff" && card.effect !== "ward") ||
@@ -695,11 +759,11 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
       return score(z.card) - score(a.card)
     })
     if (!options.length) break
-    const { card, index } = options[0]
+    const { card, index, branch } = options[0]
     const source = card.kind === "unit" ? `u${b.nextUid}` : undefined
     const target =
-      card.effect === "damage" ? chooseDamageTarget(card, b.player, p) : undefined
-    if (play(b, "enemy", index, target)) break
+      card.ability === "unsteep" ? b.pendingFlavors?.find(effect => effect.owner === "player")?.id : card.effect === "damage" ? chooseDamageTarget(card, b.player, p) : undefined
+    if (play(b, "enemy", index, target, branch)) break
     record({
       kind: "play",
       side: "enemy",
@@ -708,7 +772,7 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
       target,
       label: `${b.opponent} dùng ${card.name}`,
     })
-    resolveRecipe(b, "enemy", card.id, record)
+    resolveRecipe(b, "enemy", card.id, record, card)
   }
   for (const uid of b.enemy.board.filter((u) => u.ready).map((u) => u.uid)) {
     if (b.result) break
@@ -734,7 +798,7 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
   }
   if (!b.result) {
     b.round++
-    nextTurn(b, "player")
+    nextTurn(b, "player", record)
     log(b, `Lượt ${b.round} · Năng lượng được hồi đầy.`)
     if (b.tableAura && b.round > b.tableAura.untilRound) b.tableAura = undefined
     record({
@@ -855,7 +919,7 @@ export function actBattle(
     const cardId = b.player.hand[action.index]
     const source =
       CARD_MAP[cardId]?.kind === "unit" ? `u${b.nextUid}` : undefined
-    error = play(b, "player", action.index, action.target)
+    error = play(b, "player", action.index, action.target, action.branch)
     if (!error) {
       record({
         kind: "play",
@@ -865,7 +929,7 @@ export function actBattle(
         target: action.target,
         label: `Bạn dùng ${CARD_MAP[cardId].name}`,
       })
-      resolveRecipe(b, "player", cardId, record)
+      resolveRecipe(b, "player", cardId, record, flavoredCard(CARD_MAP[cardId], action.branch))
     }
   } else if (action.type === "attack") {
     const cardId = b.player.board.find((u) => u.uid === action.uid)?.cardId

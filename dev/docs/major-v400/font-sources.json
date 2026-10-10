@@ -1,0 +1,68 @@
+[
+  {
+    "source": "https://fonts.gstatic.com/s/bevietnampro/v12/QdVMSTAyLFyeg_IDWvOJmVES_HScJ18y.ttf",
+    "path": "public/assets/fonts/font-1.woff2",
+    "bytes": 31576,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  },
+  {
+    "source": "https://fonts.gstatic.com/s/bevietnampro/v12/QdVPSTAyLFyeg_IDWvOJmVES_Eww.ttf",
+    "path": "public/assets/fonts/font-2.woff2",
+    "bytes": 29968,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  },
+  {
+    "source": "https://fonts.gstatic.com/s/bevietnampro/v12/QdVMSTAyLFyeg_IDWvOJmVES_HTEJl8y.ttf",
+    "path": "public/assets/fonts/font-3.woff2",
+    "bytes": 31592,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  },
+  {
+    "source": "https://fonts.gstatic.com/s/bevietnampro/v12/QdVMSTAyLFyeg_IDWvOJmVES_HToIV8y.ttf",
+    "path": "public/assets/fonts/font-4.woff2",
+    "bytes": 31704,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  },
+  {
+    "source": "https://fonts.gstatic.com/s/exo2/v26/7cH3v4okm5zmbtYtMeA0FKq0Jjg2drGTetC6.ttf",
+    "path": "public/assets/fonts/font-5.woff2",
+    "bytes": 24108,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  },
+  {
+    "source": "https://fonts.gstatic.com/s/exo2/v26/7cH1v4okm5zmbvwkAx_sfcEuiD8jvvKcPg.ttf",
+    "path": "public/assets/fonts/font-6.woff2",
+    "bytes": 22216,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  },
+  {
+    "source": "https://fonts.gstatic.com/s/exo2/v26/7cH1v4okm5zmbvwkAx_sfcEuiD8jjPKcPg.ttf",
+    "path": "public/assets/fonts/font-7.woff2",
+    "bytes": 23072,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  },
+  {
+    "source": "https://fonts.gstatic.com/s/exo2/v26/7cH1v4okm5zmbvwkAx_sfcEuiD8jYPWcPg.ttf",
+    "path": "public/assets/fonts/font-8.woff2",
+    "bytes": 23240,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  },
+  {
+    "source": "https://fonts.gstatic.com/s/exo2/v26/7cH1v4okm5zmbvwkAx_sfcEuiD8jWfWcPg.ttf",
+    "path": "public/assets/fonts/font-9.woff2",
+    "bytes": 23220,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  },
+  {
+    "source": "https://fonts.gstatic.com/s/exo2/v26/7cH1v4okm5zmbvwkAx_sfcEuiD8jPvWcPg.ttf",
+    "path": "public/assets/fonts/font-10.woff2",
+    "bytes": 23200,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  },
+  {
+    "source": "https://fonts.gstatic.com/s/exo2/v26/7cH1v4okm5zmbvwkAx_sfcEuiD8jF_WcPg.ttf",
+    "path": "public/assets/fonts/font-11.woff2",
+    "bytes": 22060,
+    "processing": "OFL font, Vietnamese/Latin subset, WOFF2 compression"
+  }
+]

@@ -25,3 +25,14 @@ logs/
 # Local build/packaging output (including symlinked dependencies).
 node_modules
 /dev/artifacts/
+/android/local.properties
+/android/.gradle/
+/android/**/build/
+/android/app/src/main/assets/public/
+/android/app/src/main/assets/capacitor.config.json
+/android/app/src/main/assets/capacitor.plugins.json
+*.keystore
+*.jks
+
+__pycache__/
+*.pyc

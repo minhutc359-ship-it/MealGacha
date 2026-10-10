@@ -1,3 +1,4 @@
+import { cardBranches, flavoredCard } from "./v4Cards"
 import {
   actBattle,
   cardCost,
@@ -29,12 +30,12 @@ export function getBattleHint(battle: Battle): BattleHint | null {
     const attempt = actBattle(battle, action)
     if (attempt.error || attempt.battle.result === "loss") return
     const next = attempt.battle
-    const card =
+    const card = flavoredCard(
       CARD_MAP[
         action.type === "play"
           ? battle.player.hand[action.index]
           : battle.player.board.find((unit) => unit.uid === action.uid)!.cardId
-      ]
+      ], action.type === "play" ? action.branch : undefined)
     const removed = battle.enemy.board.filter(
       (unit) => !next.enemy.board.some((other) => other.uid === unit.uid),
     )
@@ -88,6 +89,8 @@ export function getBattleHint(battle: Battle): BattleHint | null {
         fieldDamage * 3 +
         removed.length * 30 +
         removed.filter((unit) => unit.keywords.includes("guard")).length * 20
+      if (card.ability?.startsWith("steep-")) score += card.power! * 8 + 10
+      if (card.ability === "unsteep") score += 45
       if (card.effect === "heal")
         score +=
           healed > 0
@@ -153,11 +156,15 @@ export function getBattleHint(battle: Battle): BattleHint | null {
     for (const target of targets)
       evaluate({ type: "attack", uid: unit.uid, target })
   battle.player.hand.forEach((id, index) => {
-    if (playError(battle, index)) return
-    const card = CARD_MAP[id]
-    if (card.kind === "spell" && card.effect === "damage")
-      for (const target of targets) evaluate({ type: "play", index, target })
-    else evaluate({ type: "play", index })
+    for (const branch of cardBranches(CARD_MAP[id])) {
+      if (playError(battle, index, branch)) continue
+      const card = flavoredCard(CARD_MAP[id], branch)
+      if (card.ability === "unsteep") {
+        for (const effect of battle.pendingFlavors ?? []) if (effect.owner === "enemy") evaluate({ type: "play", index, branch, target: effect.id })
+      } else if (card.kind === "spell" && card.effect === "damage") {
+        for (const target of targets) evaluate({ type: "play", index, branch, target })
+      } else evaluate({ type: "play", index, branch })
+    }
   })
   const best = candidates.sort((a, b) => b.score - a.score)[0]
   return (

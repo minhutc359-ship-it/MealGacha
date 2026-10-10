@@ -11,6 +11,7 @@ import { useAppStore } from "./store/useAppStore"
 import { ClientShell } from "./components/layout/ClientShell"
 import { Toast } from "./components/ui/Toast"
 import { AnnouncementBanner } from "./components/ui/AnnouncementBanner"
+import { StorageRecovery } from "./components/layout/StorageRecovery"
 
 const ChestPage = lazy(() => import("./pages/ChestPage").then(module => ({ default: module.ChestPage })))
 
@@ -136,7 +137,7 @@ function AppInner() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppInner />
+      <StorageRecovery><AppInner /></StorageRecovery>
     </BrowserRouter>
   )
 }

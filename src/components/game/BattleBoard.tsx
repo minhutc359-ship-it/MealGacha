@@ -1,8 +1,11 @@
+import { ArenaScene, arenaRegion } from "./ArenaScene"
+import { livingChoiceLines } from "../../game/livingChoices"
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
 import { battleMusic, frameSounds } from "../../game/audioScore"
 import { TCG_IMPACT_MS } from "../../game/battleVfx"
 import { AudioButton, useGameMusic } from "./GameAudio"
+import { flavoredCard } from "../../game/v4Cards"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
 import { RELIC_MAP } from "../../game/expedition"
 import { STAGE_MAP } from "../../game/story"
@@ -47,6 +50,7 @@ import { stageArtId } from "../../game/storyArt"
 import { TACTICS, tacticError, visibleThreat } from "../../game/tactics"
 
 interface SpellSelection {
+  branch?: "first" | "second"
   type: "play"
   index: number
 }
@@ -199,6 +203,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     characterImage(SPRITE_SHEETS.base.path)
     characterImage(SPRITE_SHEETS.fresh.path)
   }, [])
+  const storySave = useGameStore((s) => s.save)
   const stored = useGameStore((s) => s.save.battle)!
   const presentation = useGameStore((s) => s.presentation)
   const ending = useGameStore((s) => s.save.storyEnding)
@@ -238,8 +243,15 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
         ? "story-mystery"
         : null
       : battleMusic(battle),
+    5, Math.max(battle.bossRuleId ? .35 : 0, 1-battle.player.health/battle.player.maxHealth),
   )
   const stamp = `${replay?.sequence}-${frameIndex}`
+  const [visible,setVisible]=useState(!document.hidden)
+  useEffect(()=>{
+    const update=()=>setVisible(!document.hidden), pause=()=>setVisible(false), resume=()=>setVisible(!document.hidden)
+    document.addEventListener("visibilitychange",update);window.addEventListener("meal:native-pause",pause);window.addEventListener("meal:native-resume",resume)
+    return ()=>{document.removeEventListener("visibilitychange",update);window.removeEventListener("meal:native-pause",pause);window.removeEventListener("meal:native-resume",resume)}
+  },[])
   const arena = useRef<HTMLDivElement>(null)
   const inFlight = useRef(false)
   const [selection, setSelection] = useState<Selection | null>(null)
@@ -259,6 +271,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
   )
   const readyCount = battle.player.board.filter((unit) => unit.ready).length
   useEffect(() => {
+    if(!visible)return
     if (!busy || !replay) {
       inFlight.current = false
       return
@@ -269,7 +282,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
       frameDuration(frame),
     )
     return () => window.clearTimeout(timer)
-  }, [busy, replay, frameIndex, frame?.event.kind, sceneId])
+  }, [busy, replay, frameIndex, frame?.event.kind, sceneId,visible])
   useEffect(() => {
     setSelection(null)
     setReplace([])
@@ -336,16 +349,18 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     selection?.type === "attack"
       ? battle.player.board.find((u) => u.uid === selection.uid)
       : null
-  const selectedCard =
+  const baseSelectedCard =
     selection?.type === "play"
       ? CARD_MAP[battle.player.hand[selection.index]]
       : null
+  const selectedCard = baseSelectedCard ? flavoredCard(baseSelectedCard, selection?.type === "play" ? selection.branch : undefined) : undefined
+  const needsChoice = !!baseSelectedCard?.choices && selection?.type === "play" && !selection.branch
   const selectedError =
-    selection?.type === "play" ? playError(battle, selection.index) : null
+    selection?.type === "play" ? playError(battle, selection.index, selection.branch) : null
   const targeting =
     !!selection &&
     (selection.type === "attack" || selectedCard?.effect === "damage") &&
-    !selectedError &&
+    !selectedError && !needsChoice &&
     !busy
   const preview = (uid: string) =>
     targeting ? previewTarget(battle, selection!, uid) : undefined
@@ -530,12 +545,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
         data-action={frame?.event.kind}
         style={{ "--table-color": aura?.color ?? "#9bcea6" } as CSSProperties}
       >
-        <div
-          className="tcg-board-art"
-          key={table}
-          aria-hidden="true"
-          style={{ backgroundImage: `url(/assets/tcg/boards/${table}.webp)` }}
-        />
+        {battle.stageId && STAGE_MAP[battle.stageId]?.index >= 18
+          ? <ArenaScene region={arenaRegion(battle.stageId)} pressure={battle.player.health <= 8 || !!battle.bossRuleId}/>
+          : <div className="tcg-board-art" key={table} aria-hidden="true" style={{backgroundImage:`url(/assets/tcg/boards/${table}.webp)`}}/>}
         <div className="tcg-table-weather" aria-hidden="true">
           {Array.from({ length: 6 }, (_, i) => (
             <i
@@ -738,6 +750,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             </p>
           )}
         </div>
+        {(battle.pendingFlavors?.length ?? 0) > 0 && <div className="tcg-pending-stack" aria-live="polite">{battle.pendingFlavors?.map(f => <span key={f.id}>◷ {f.owner === "player" ? "Bạn" : "Địch"}: {CARD_MAP[f.cardId].name} · đầu lượt {f.executeRound}</span>)}</div>}
         <div className="tcg-command-dock" aria-label="Lựa chọn chiến thuật">
           {selectedCard && !busy && (
             <div className="tcg-selected-card">
@@ -776,9 +789,10 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
               </button>
               {selectedError ? (
                 <span className="tcg-play-error">{selectedError}</span>
-              ) : selectedCard.effect !== "damage" ? (
+              ) : selectedCard.effect !== "damage" && selectedCard.ability !== "unsteep" ? (
                 <button
                   className="tcg-button primary"
+                  disabled={needsChoice}
                   onClick={() =>
                     selection?.type === "play" && execute(selection)
                   }
@@ -826,7 +840,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                     setSelection(
                       action.type === "attack"
                         ? { type: "attack", uid: action.uid }
-                        : { type: "play", index: action.index },
+                        : { type: "play", index: action.index, branch: action.branch },
                     )
                     requestAnimationFrame(() => {
                       const targetButton =
@@ -1007,6 +1021,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           )}
         </Dialog>
       )}
+
+      {!busy && selection?.type === "play" && baseSelectedCard?.choices && needsChoice && <Dialog title={`Nêm vị · ${baseSelectedCard.name}`} onClose={() => setSelection(null)}><p>Chọn đúng một nhánh. Chưa tốn năng lượng cho đến khi xác nhận hoặc chọn mục tiêu.</p><div className="tcg-v4-choices">{baseSelectedCard.choices.map((c, i) => <button className="tcg-button ghost" key={c.label} onClick={() => setSelection({...selection, branch: i === 0 ? "first" : "second"})}>{c.label} · {c.text}</button>)}</div></Dialog>}
+      {!busy && selection?.type === "play" && selectedCard?.ability === "unsteep" && !selectedError && <Dialog title="Mở nắp · chọn Ủ vị của địch" onClose={() => setSelection(null)}><div className="tcg-v4-choices">{battle.pendingFlavors?.filter(f => f.owner === "enemy").map(f => <button key={f.id} className="tcg-button primary" onClick={() => execute({...selection, target: f.id})}>Gỡ {CARD_MAP[f.cardId].name} · đầu lượt {f.executeRound}</button>)}</div></Dialog>}
       {detail && selectedCard && (
         <Dialog title={selectedCard.name} onClose={() => setDetail(false)}>
           <div className="tcg-inspect-card">
@@ -1301,7 +1318,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             ) : stored.result === "win" && stage ? (
               <StoryScene
                 key={stored.id}
-                lines={SCENES[stage.id].after}
+                lines={[...SCENES[stage.id].after,...livingChoiceLines(stage.id,storySave,true)]}
                 art={stageArtId(stage.id)}
                 onComplete={() => setEndRead(true)}
               />

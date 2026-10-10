@@ -1,8 +1,10 @@
-# Soul of Meal 3.5.0 · Ký ức trở lại
+# Soul of Meal 4.0.0 · Chợ Ký Ức Sống
 
 Game ẩm thực và ký ức Việt Nam gồm **TCG**, **Chợ Đêm Auto chess** và **Rương vị giác**, chạy trên React 19 / Vite 8 / TypeScript. Không cần tài khoản; có mã MGC1 để chuyển tiến trình giữa thiết bị.
 
-TCG có 163 thẻ, 6 chương/18 màn, xây bộ bài, AI, thám hiểm, chế tạo và nhiệm vụ. Auto chess có 44 quân, 16 quái/đối thủ thường và 6 boss, chiến dịch, Survival, Daily, shop/pool hữu hạn, ghép sao, hệ/nghề/di vật, XP và kéo thả bàn/dự bị. Rương dùng catalog chung 123 món và tìm quán từ OpenStreetMap không cần API key. Model anime 2.5D dùng chung hai chế độ; không phải rig 3D chạy trực tiếp.
+TCG có 171 thẻ, 9 chương/27 màn, xây bộ bài, AI, thám hiểm, chế tạo và nhiệm vụ. Auto chess có 44 quân, 16 quái/đối thủ thường và 8 boss, chiến dịch, Survival, Daily, shop/pool hữu hạn, ghép sao, hệ/nghề/di vật, XP và kéo thả bàn/dự bị. Rương dùng catalog chung 123 món và tìm quán từ OpenStreetMap không cần API key. Model anime 2.5D dùng chung hai chế độ; không phải rig 3D chạy trực tiếp.
+
+Bản 4.0 thêm Nêm vị/Ủ vị, 8 thẻ nhận qua gói khởi hành tự nguyện, 3 chương tiếp nối đúng hai kết thúc cũ, 4 sự kiện/4 di vật thám hiểm, chiến dịch Auto 18 đợt và 6 nâng cấp mới. Có 3 nền mới, 12 bản nhạc nguyên gốc, profile chuyển động và bảng đóng góp thực tế. Ghi save có journal/checkpoint và giao diện phục hồi; trận đang chơi giữ luật cũ. Xem [triển khai và giới hạn QA 4.0](dev/docs/major-v400/IMPLEMENTATION.md).
 
 Bản 3.5.0 phân hóa nội tại quân và phép TCG, thêm hy sinh/tái triệu hồi/đóng băng, 6 combo công thức và 7 gợi ý bộ bài. Auto chess có VFX niệm phép, đòn diện rộng, khiên, hiệu ứng tan biến, nhạc chiến đấu/boss mới trong hai phong cách và ảnh RPG cho cả 9 trang bị. Cửa hàng luôn hiện nghề cạnh hệ. Survival bắt đầu với **3 ý chí**, thua mất 1 và chơi lại đúng đợt; thắng không hồi. Chiến dịch giữ 100 ý chí và mức trừ theo địch còn sống; còn ý chí thì chơi lại cùng đợt. Daily vẫn kết thúc ở lần thua đầu. Điểm/kỷ lục chỉ chốt khi lượt kết thúc. Xem [thay đổi và kiểm chứng](dev/docs/depth-v350/UPDATE.md).
 

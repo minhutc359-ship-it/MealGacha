@@ -1,3 +1,5 @@
+import { ArenaScene } from "../components/game/ArenaScene"
+import { livingMusic } from "../game/audioScore"
 import { BrandMark } from "../components/layout/BrandMark"
 import { useEffect, useRef, useState, type CSSProperties } from "react"
 import { useGameStore } from "../game/useGameStore"
@@ -92,10 +94,11 @@ export function AutoChessPage() {
     } | null>(null)
   const [replace, setReplace] = useState<AutoMode | null>(null),
     [speed, setSpeed] = useState(1),
-    [lowQuality, setLowQuality] = useState(false),
     [recordMode, setRecordMode] = useState<AutoMode>("survival"),
     [journal, setJournal] = useState<string | null>(null),
     [language, setLanguage] = useState<"vi" | "en">("vi")
+  const lowQuality = prefs.graphicsQuality === "low"
+  const setLowQuality = (low:boolean) => useAppStore.getState().updatePreference("graphicsQuality",low?"low":"normal")
   const [shopOpen, setShopOpen] = useState(true), [inventoryOpen, setInventoryOpen] = useState(false), [traitsOpen, setTraitsOpen] = useState(false)
   const [haptics, setHaptics] = useState(() => {
     try { return localStorage.getItem("som.auto.haptics") === "true" } catch { return false }
@@ -118,7 +121,7 @@ export function AutoChessPage() {
   }, [haptics, hapticsSupported, upgrades])
   useGameAudio()
   useGameMusic(
-    sceneId && !victory.pending
+    run && run.rulesVersion >= 6 && run.wave >= 13 ? livingMusic(run.wave <= 15 ? "rain-harbor" : "tomorrow-table", run.phase === "combat" && !sceneId) : sceneId && !victory.pending
       ? "auto-story"
       : playing && run?.phase === "combat"
         ? (run.combat?.tick ?? 0) >= 500 || willpowerRatio(run) < .35
@@ -127,7 +130,7 @@ export function AutoChessPage() {
             ? "auto-boss"
             : "auto-battle"
         : "auto-prepare",
-    5,
+    5, run?.combat?.boss ? .75 : Math.max(1-(run ? willpowerRatio(run) : 1),(run?.combat?.tick ?? 0)>=1100?.9:.35),
   )
   useEffect(() => {
     document.body.classList.add("autochess-open")
@@ -261,7 +264,7 @@ export function AutoChessPage() {
   })
   const sceneIndex =
     playing && run?.mode === "campaign"
-      ? actIndex(run.wave)
+      ? Math.min(3, actIndex(run.wave))
       : (COSMETICS.find((c) => c.id === auto.board)?.scene ?? 0)
   const records = auto.records.filter((r) => r.mode === recordMode)
   const p = run ? pressure(run.wave, run.activeTicks, run.rulesVersion) : null
@@ -355,7 +358,7 @@ export function AutoChessPage() {
                       chợ qua sương, hoặc sống sót lâu hơn để vượt kỷ lục.
                     </p>
                     <span className="ac-seals">
-                      ✧ {auto.seals} Ấn Chợ · {auto.campaignCleared}/12 màn
+                      ✧ {auto.seals} Ấn Chợ · {auto.campaignCleared}/18 màn
                     </span>
                   </div>
                   <AutoPortrait
@@ -378,11 +381,11 @@ export function AutoChessPage() {
                   {(["campaign", "survival", "daily"] as const).map(
                     (mode, i) => (
                       <article key={mode}>
-                        <WorldArt scene={i} />
+                        <WorldArt scene={Math.min(3, i)} />
                         <div>
                           <small>
                             {i === 0
-                              ? "4 HỒI · 12 ĐỢT"
+                              ? "6 HỒI · 18 ĐỢT"
                               : i === 1
                                 ? "SURVIVAL · ÁP LỰC TĂNG DẦN"
                                 : `SEED CHUNG · ${getDateKey()}`}
@@ -454,7 +457,7 @@ export function AutoChessPage() {
                 <div className="ac-act-cards">
                   {AUTO_ACTS.map((act, i) => (
                     <article key={act.title}>
-                      <WorldArt scene={i} />
+                      <WorldArt scene={Math.min(3, i)} />
                       <div>
                         <small>
                           HỒI {i + 1} ·{" "}
@@ -628,7 +631,7 @@ export function AutoChessPage() {
             </div>
             <div className="ac-hud-number">
               <small>
-                ĐỢT {run.mode === "campaign" ? `${run.wave}/12` : run.wave}
+                ĐỢT {run.mode === "campaign" ? `${run.wave}/${run.rulesVersion >= 6 ? 18 : 12}` : run.wave}
               </small>
               <strong>
                 {run.score.toLocaleString("vi-VN")} <small>điểm</small>
@@ -666,7 +669,7 @@ export function AutoChessPage() {
           <div className="ac-battle-layout">
             <AutoTraits counts={traits} expanded={traitsOpen} onToggle={() => setTraitsOpen(!traitsOpen)} onDetails={() => openModal("traits")} />
           <section className={`ac-arena ${run.combat?.boss ? "is-boss" : ""} ${overtime ? "is-overtime" : ""}`} aria-label="Trận auto chess">
-            <WorldArt scene={sceneIndex} />
+            {run.rulesVersion >= 6 && run.wave >= 13 ? <ArenaScene region={run.wave <= 15 ? "harbor" : "kitchen"} pressure={run.phase === "combat" && !!run.combat?.boss} /> : <WorldArt scene={sceneIndex} />}
             <AutoBoard
               run={run}
               getFrame={runtime.getFrame}
@@ -941,6 +944,7 @@ export function AutoChessPage() {
                 : `−${run.lastResult.damage} ý chí`}
             </h2>
             <p>{run.lastResult.reason}</p>
+            {run.combat?.recap && <details><summary>Đóng góp thực tế của đội</summary><table><thead><tr><th>Vị Linh</th><th>Sát thương máu</th><th>Hồi</th><th>Trao chắn</th><th>Đỡ bằng chắn</th></tr></thead><tbody>{run.combat.actors.filter(a => a.side === "ally").map(a => { const s = run.combat!.recap![a.uid]; return <tr key={a.uid}><td>{UNIT_MAP[a.id]?.name ?? a.id}</td><td>{s?.damage ?? 0}</td><td>{s?.healing ?? 0}</td><td>{s?.shielding ?? 0}</td><td>{s?.blocked ?? 0}</td></tr> })}</tbody></table><p>Hồi và chắn do kỹ năng thực sự trao; chắn ban đầu của trang bị/nâng cấp không tính là kỹ năng hồi.</p></details>}
             <div className="ac-result-stats">
               <span>+{run.lastResult.gold} vàng</span>
               <span>{run.health}/{maxWillpower(run)} ý chí</span>

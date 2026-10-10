@@ -20,6 +20,18 @@ export const AUTO_ACTS = [
     scene: 3,
   },
 ]
+AUTO_ACTS.push(
+  {
+    title: "Bến sau cơn mưa",
+    subtitle: "Không viết hộ một lời xin lỗi",
+    scene: 1,
+  },
+  {
+    title: "Bữa cơm ngày mai",
+    subtitle: "Trả lại tên những người bị xóa khỏi sổ",
+    scene: 3,
+  },
+)
 export type Speaker = "an" | "loc" | "sen" | "tinh" | "recorder" | "memory"
 export const SPEAKERS: Record<Speaker, { name: string; portrait: number }> = {
   an: { name: "An", portrait: 0 },
@@ -48,7 +60,7 @@ export const SCENES: Record<string, {
       },
       {
         speaker: "loc",
-        text: "Những sạp không còn tên trong Sổ Công Thức đang chìm vào sương. Cháu hãy thắp lại một lời mời.",
+        text: "Những sạp không còn tên trong Sổ Công Thức đang chìm vào sương. Cháu hãy tìm người từng bán ở đó, giúp họ nhớ tên mình và món mình nấu.",
       },
       { speaker: "an", text: "Tại sao món ăn có thể chiến đấu?" },
       {
@@ -85,7 +97,7 @@ export const SCENES: Record<string, {
     lines: [
       {
         speaker: "tinh",
-        text: "Một món, một công thức. Khi mọi thứ rõ ràng, sẽ không còn ai bị quên.",
+        text: "Ta chỉ giữ một công thức cho mỗi món. Ta tưởng chép thống nhất như thế thì sẽ dễ nhớ, không còn sót ai.",
       },
       {
         speaker: "an",
@@ -111,7 +123,7 @@ export const SCENES: Record<string, {
     lines: [
       {
         speaker: "recorder",
-        text: "Trang này là chữ của gia đình cháu, An. Họ từng góp một công thức rồi tự gạch tên để được chấp nhận.",
+        text: "Trang này là chữ của gia đình cháu, An. Họ đã góp công thức, nhưng phải bỏ tên mình vì cách nấu khác bản Tịnh cho phép giữ trong sổ.",
       },
       {
         speaker: "an",
@@ -119,7 +131,7 @@ export const SCENES: Record<string, {
       },
       {
         speaker: "sen",
-        text: "Một món có thể khác mà vẫn là một lời thương. Bàn này còn chỗ cho người đến sau.",
+        text: "Mỗi nhà có thể nấu khác nhau mà vẫn muốn chăm sóc người ăn. Bà muốn sổ giữ cả cách nấu của nhà cháu.",
       },
     ],
   },
@@ -143,7 +155,7 @@ export const SCENES: Record<string, {
     lines: [
       {
         speaker: "memory",
-        text: "Tôi chép lại từng động tác. Nếu giống người được nhớ… có ai nhận ra tôi không?",
+        text: "Tôi bắt chước cách nấu của người khác. Nếu làm giống hệt họ, liệu có ai nhớ đến tôi không?",
       },
       {
         speaker: "sen",
@@ -157,7 +169,7 @@ export const SCENES: Record<string, {
     lines: [
       {
         speaker: "tinh",
-        text: "Ta khóa một hệ… nhưng các vị khác vẫn nâng nhau đứng dậy.",
+        text: "Ta đã khóa sức mạnh một hệ của các cháu. Vậy mà những quân thuộc hệ khác vẫn giúp cả đội chiến đấu tiếp.",
       },
       {
         speaker: "an",
@@ -171,11 +183,11 @@ export const SCENES: Record<string, {
     lines: [
       {
         speaker: "memory",
-        text: "Tôi là những lời mời chưa từng được nói. Những bữa cơm chưa có người ngồi.",
+        text: "Tôi giữ ký ức về những bữa cơm không ai đến. Người nấu chờ mãi, rồi cả tên họ cũng bị quên.",
       },
       {
         speaker: "an",
-        text: "Ta không cần tìm công thức đầu tiên. Ta cần để người sống viết trang tiếp theo. Cả đội, giữ bàn đến bình minh!",
+        text: "Mình không cần bắt mọi người nấu theo một công thức gốc. Mình cần trả cho họ quyền ghi lại cách nấu của chính họ. Cả đội, giữ bàn đến bình minh!",
       },
     ],
   },
@@ -189,7 +201,7 @@ export const SCENES: Record<string, {
       },
       {
         speaker: "recorder",
-        text: "Chúng ta giữ những chú giải bên công thức, hay dựng hội quán để truyền nghề?",
+        text: "Ta sẽ ghi thêm các cách nấu bên từng công thức, hay mở hội quán để mọi người dạy nhau trực tiếp?",
       },
       {
         speaker: "an",
@@ -197,6 +209,63 @@ export const SCENES: Record<string, {
       },
     ],
   },
+}
+// Separate exchanges keep each chapter's conflict and battle advice concrete.
+SCENES["intro-13"] = {
+  title: "Bến sau cơn mưa",
+  art: 1,
+  lines: [
+    {
+      speaker: "an",
+      text: "Chợ đã sáng lại, nhưng vẫn còn những trang ghi sai tên. Chúng mình mang sổ về bến để hỏi từng người nhé.",
+    },
+    {
+      speaker: "tinh",
+      text: "Ta sẽ trả lại những tên mình đã xóa. Nếu họ muốn nói về việc ấy, ta sẽ ở lại nghe.",
+    },
+  ],
+}
+SCENES["boss-15"] = {
+  title: "Nắp nồi con nước",
+  art: 1,
+  lines: [
+    {
+      speaker: "sen",
+      text: "Nắp Nồi Con Nước gây sát thương phép và làm choáng quân bị nhắm tới. Hãy để quân chịu đòn ở phía trước, quân gây sát thương ở phía sau.",
+    },
+    {
+      speaker: "an",
+      text: "Trước trận tiếp theo, mình sẽ xem lại vị trí và trang bị. Mình không chọn từng đòn khi trận đã bắt đầu, nhưng có thể chuẩn bị đội hình tốt hơn.",
+    },
+  ],
+}
+SCENES["intro-16"] = {
+  title: "Bữa cơm ngày mai",
+  art: 3,
+  lines: [
+    {
+      speaker: "tinh",
+      text: "Ta không sửa được chuyện đã xảy ra. Nhưng ta có thể ghi lại các tên đã xóa và để mỗi người tự kể cách nấu của họ.",
+    },
+    {
+      speaker: "recorder",
+      text: "Tôi sẽ chừa chỗ cho từng bản ghi. Có điều chưa rõ, chúng ta hỏi người đã nấu, thay vì tự sửa lời họ.",
+    },
+  ],
+}
+SCENES["boss-18"] = {
+  title: "Trang giấy chưa viết",
+  art: 3,
+  lines: [
+    {
+      speaker: "an",
+      text: "Trang Giấy Chưa Viết sao chép kỹ năng đội mình vừa dùng, với 65% sức mạnh. Cả đội vẫn cần quân chịu đòn và cách hồi phục, đừng chỉ dồn vào sát thương.",
+    },
+    {
+      speaker: "loc",
+      text: "Chuẩn bị trước trận, rồi quan sát xem quân nào cần được bảo vệ. Nếu chưa thắng, ta còn có thể xếp lại đội để thử tiếp.",
+    },
+  ],
 }
 export const CULTURE_PAGES = [
   {
@@ -219,5 +288,5 @@ export const CULTURE_PAGES = [
   },
 ]
 export function actIndex(wave: number) {
-  return Math.min(3, Math.floor((wave - 1) / 3))
+  return Math.min(5, Math.floor((wave - 1) / 3))
 }

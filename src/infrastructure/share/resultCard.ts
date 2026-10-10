@@ -1,3 +1,4 @@
+import {saveFile} from "./saveFile"
 import { loadBrandImage } from "../brand/brandAssets"
 import type { RewardInstance } from "../../domain/models"
 import { getFoodAssetUrl } from "../assets/foodAssets"
@@ -55,8 +56,6 @@ export async function shareResultCard(reward: RewardInstance): Promise<"shared" 
     await navigator.share({ files: [file], title: `Soul of Meal: ${reward.dish.name}`, text: "Hôm nay nhân phẩm chọn món này!" })
     return "shared"
   }
-  const url = URL.createObjectURL(file)
-  const link = document.createElement("a"); link.href = url; link.download = file.name; link.click()
-  setTimeout(() => URL.revokeObjectURL(url), 10_000)
+  await saveFile(file,file.name)
   return "downloaded"
 }

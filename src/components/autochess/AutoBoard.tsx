@@ -1,3 +1,5 @@
+import {livingActorFrame} from "../../game/livingClips"
+import { motionAccent } from "../../game/motionProfiles"
 import { useEffect, useRef, type CSSProperties, type PointerEvent } from "react"
 import {
   AUTO_SCHOOLS,
@@ -11,7 +13,7 @@ import type { Actor, AutoRun } from "../../game/autochess/types"
 import { actorPosition as position, actorFrame, SPRITE_SHEETS, starScale, type StarUpgrade } from "../../game/autochess/presentation"
 import { arenaTheme, drawArena, drawCastAura, drawWard, drawSkillBurst, drawDeparture } from "../../game/autochess/arenaVfx"
 import { drawStarUpgrade } from "../../game/autochess/starVfx"
-import { characterImage as getImage, unitCharacter, monsterCharacter, fitCharacter } from "../../infrastructure/assets/characterSprites"
+import { characterImage as getImage, acquireCharacterImage, unitCharacter, monsterCharacter, fitCharacter } from "../../infrastructure/assets/characterSprites"
 
 const CELLS = Array.from({ length: 36 }, (_, i) => i)
 const paths = Object.fromEntries(Object.entries(SPRITE_SHEETS).map(([key, sheet]) => [key, sheet.path]))
@@ -67,6 +69,11 @@ export function AutoBoard({
     let currentBattle = "",
       lastLowQuality = lowQuality
     const images: Partial<Record<string, HTMLImageElement>> = {}
+    const leases = new Map<string, ReturnType<typeof acquireCharacterImage>>()
+    const leased = (key:string, path:string) => {
+      let lease=leases.get(key); if(!lease){lease=acquireCharacterImage(path);leases.set(key,lease)}
+      return lease.image
+    }
     const resize = () => {
       const bounds = element.getBoundingClientRect()
       width = bounds.width
@@ -256,7 +263,7 @@ export function AutoBoard({
           model = actor.side === "enemy" ? monsterCharacter(actor.id) : unitCharacter(actor.id),
           fresh = model.sheet !== "base"
         const spriteKey = model.sheet, row = model.row
-        const sheet = images[spriteKey] ??= getImage(paths[spriteKey])
+        const sheet = images[spriteKey] ??= leased(spriteKey,paths[spriteKey])
         const spriteRow = SPRITE_SHEETS[spriteKey].rows[row]
         let p = coords.get(actor.uid)!
         if (actor.hp <= 0) {
@@ -313,7 +320,7 @@ export function AutoBoard({
         if (actor.shield > 0 && actor.hp > 0) drawWard(ctx, x, y, size, visualTime, opts.reducedMotion || current.paused)
         const dancing = opts.celebrating && actor.side === "ally" && actor.hp > 0
         const beat = visualTime * .38 + row * .28
-        const index = dancing
+        const index = spriteKey.startsWith("living-") ? livingActorFrame(actor,time,b,opts.reducedMotion,dancing) : dancing
           ? opts.reducedMotion ? (fresh ? 0 : 13) : (spriteKey.startsWith("roster") ? [5, 1, 5, 2] : fresh ? [0, 1, 2, 1] : [13, 1, 13, 3])[Math.floor(visualTime / 5 + row * .2) % 4]
           : actorFrame(actor, time, fresh, b)
         const breath = !opts.reducedMotion && !actor.action && actor.hp > 0 && !current.paused
@@ -364,6 +371,9 @@ export function AutoBoard({
           }
           ctx.translate(x + offsetX + lungeX + sway + recoilX, y + offsetY + breath + lungeY + gait + hop + recoilY)
           const departure = actor.hp <= 0 && !opts.reducedMotion ? Math.max(.6, 1 - deadAge / 60) : 1
+          const action = actor.action
+          const accent = motionAccent(actor.id, action ? (time - action.start) / Math.max(1, action.end - action.start) : 0, action?.kind === "cast", opts.reducedMotion || opts.lowQuality || current.rulesVersion < 6 || !action || action.kind === "move")
+          ctx.translate(0, accent.lift * cell); ctx.rotate(accent.rotation); ctx.scale(1 - accent.stretch, 1 + accent.stretch)
           ctx.scale(awaken * departure, awaken * departure)
           if (flip) ctx.scale(-1, 1)
           if (dancing && !opts.reducedMotion) {
@@ -530,6 +540,7 @@ export function AutoBoard({
     return () => {
       cancelAnimationFrame(handle)
       observer.disconnect()
+      leases.forEach(lease=>lease.release())
     }
   }, [getFrame])
   const preview = enemyPlan(run)

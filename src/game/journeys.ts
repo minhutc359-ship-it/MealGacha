@@ -38,7 +38,7 @@ export const SIDE_QUESTS: SideQuest[] = [
       },
       {
         speaker: "Bạn",
-        text: "Nếu ký ức chỉ giữ đồ vật, ai sẽ được mời ngồi lại? Ngoài sân, một linh ảnh đang lặp lại tiếng bát vỡ.",
+        text: "Ông vẫn có thể giữ chiếc bát, rồi hỏi thăm người con đã ghé bếp. Ngoài sân, một linh ảnh đang lặp lại tiếng bát vỡ.",
       },
     ],
     share: {
@@ -97,7 +97,7 @@ export const SIDE_QUESTS: SideQuest[] = [
       },
       {
         speaker: "Bạn",
-        text: "Mẹ bạn mời khách để họ cùng ngồi, hay để chén nào cũng giống nhau? Sương đang buộc những rễ cây quanh một ngày không được phép thay đổi.",
+        text: "Có lẽ mẹ bạn muốn khách thấy được đón tiếp. Mình có thể hỏi người khách hôm nay thích uống trà thế nào. Sương đang buộc những rễ cây quanh một ngày không được phép thay đổi.",
       },
     ],
     share: {
@@ -127,7 +127,7 @@ export const SIDE_QUESTS: SideQuest[] = [
       },
       {
         speaker: "Bạn",
-        text: "Chiếc bàn có thể rộng thêm trước khi ai đó phải quên vị quê mình. Linh ảnh đang kéo mọi chiếc ghế về đúng chỗ cũ.",
+        text: "Ta có thể chừa một chỗ nấu món của họ, thay vì bắt họ đổi sang món ở bến này. Linh ảnh đang kéo mọi chiếc ghế về đúng chỗ cũ.",
       },
     ],
     share: {
@@ -157,7 +157,7 @@ export const SIDE_QUESTS: SideQuest[] = [
       },
       {
         speaker: "Bạn",
-        text: "Có lẽ điều em ấy muốn mang đi rước là bàn tay của mình, không phải một chiếc đèn hoàn hảo. Linh ảnh đang xóa những mảng màu khác nhau.",
+        text: "Em ấy muốn mang đi rước chiếc đèn có phần mình tự tô. Mình thử vá lại mà giữ phần ấy nhé. Linh ảnh đang xóa những mảng màu khác nhau.",
       },
     ],
     share: {
@@ -267,7 +267,10 @@ export function startWeekly(index: number, day = getDateKey()): Battle {
   b.opponent = challenge.stages[index]
   b.weekly = { week: challenge.week, index, seed: challenge.seed }
   b.rngState = random.state()
-  b.enemy.health = b.enemy.maxHealth = challengeStat(24 + index * 4, b.enemyChallenge)
+  b.enemy.health = b.enemy.maxHealth = challengeStat(
+    24 + index * 4,
+    b.enemyChallenge,
+  )
   if (index === 2)
     b.bossRuleId = challenge.seed % 2 === 0 ? "lantern-3" : "harbor-3"
   prepareEncounter(b)

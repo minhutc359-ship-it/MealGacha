@@ -1,6 +1,12 @@
 import type { Ability, GameCard, School } from "./types"
 
 export const ABILITY_TEXT: Record<Ability, string> = {
+  "tea-mend": "Hồi ý chí và 1 máu mỗi đồng minh.",
+  "steep-unit": "Ủ vị: tăng sức mạnh đồng minh ở đầu lượt sau.",
+  "steep-heal": "Ủ vị: hồi ý chí và đội bạn ở đầu lượt sau.",
+  unsteep: "Gỡ một Ủ vị địch đang chờ.",
+  thaw: "Giải đóng băng và hồi máu đội bạn.",
+  "season-host": "Sau một Nêm vị, rút 1 lá; tối đa một lần mỗi lượt.",
   ambush: "Vào sân: gây 2 sát thương lên quân địch đã mất máu có máu thấp nhất.",
   spellfire: "Sau khi bạn dùng phép: quân này +1 công (tối đa 2 lần mỗi lượt).",
   scout: "Vào sân: rút 1 lá nếu tay có tối đa 3 lá.",

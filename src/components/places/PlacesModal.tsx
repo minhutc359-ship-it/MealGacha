@@ -1,3 +1,4 @@
+import {Capacitor} from "@capacitor/core"
 import { useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import type { DishSnapshot } from "../../domain/models"
@@ -74,9 +75,9 @@ export function PlacesModal({ dish, onClose }: Props) {
   async function locate() {
     const request = begin("locating")
     setResults(null); setCenter(null)
-    if (!navigator.geolocation) { setError("Thiết bị không hỗ trợ vị trí. Nhập khu vực hoặc chọn trung tâm thành phố."); setPhase("idle"); return }
+    if (!Capacitor.isNativePlatform() && !navigator.geolocation) { setError("Thiết bị không hỗ trợ vị trí. Nhập khu vực hoặc chọn trung tâm thành phố."); setPhase("idle"); return }
     try {
-      const position = await new Promise<GeolocationPosition>((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10_000, maximumAge: 60_000, enableHighAccuracy: false }))
+      const position = Capacitor.isNativePlatform() ? await import("@capacitor/geolocation").then(({Geolocation})=>Geolocation.getCurrentPosition({timeout:10000,maximumAge:60000,enableHighAccuracy:false})) : await new Promise<GeolocationPosition>((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10_000, maximumAge: 60_000, enableHighAccuracy: false }))
       if (current(request.id)) await search({ lat: position.coords.latitude, lng: position.coords.longitude, label: "vị trí hiện tại của bạn" })
     } catch (e) {
       if (current(request.id)) { setError((e as GeolocationPositionError).code === 1 ? "Bạn chưa cho phép vị trí. Hãy nhập khu vực hoặc chọn thành phố bên dưới." : "Chưa lấy được vị trí. Bạn có thể nhập khu vực để tiếp tục."); setPhase("idle") }
@@ -141,7 +142,7 @@ export function PlacesModal({ dish, onClose }: Props) {
               {place.openingHours && <p className="places-hours">Giờ ghi trên OSM: {place.openingHours}</p>}
               <div className="places-card-actions"><button aria-expanded={expanded === place.id} onClick={() => setExpanded(expanded === place.id ? null : place.id)}>{expanded === place.id ? "Ẩn bản đồ" : "Xem bản đồ"}</button><a href={directionsUrl(place)} target="_blank" rel="noopener noreferrer">Chỉ đường ↗</a><button onClick={() => void copy(place)}>{copied === place.id ? "Đã sao chép ✓" : "Sao chép"}</button></div>
               <div className="places-contacts">{phoneHref(place.phone) && <a href={phoneHref(place.phone)}>Gọi quán</a>}{place.website && <a href={place.website} target="_blank" rel="noopener noreferrer">Website ↗</a>}<a href={place.mapsUrl} target="_blank" rel="noopener noreferrer">Thông tin OSM ↗</a><a href={directionsUrl(place,"walking")} target="_blank" rel="noopener noreferrer">Đi bộ ↗</a></div>
-              {expanded === place.id && <iframe className="places-map" src={embeddedMapUrl(place)} loading="lazy" title={`Bản đồ ${place.name}`} referrerPolicy="strict-origin-when-cross-origin" />}
+              {expanded === place.id && (Capacitor.isNativePlatform() ? <a className="places-map" href={directionsUrl(place)} target="_blank" rel="noopener noreferrer">Mở bản đồ trong trình duyệt</a> : <iframe className="places-map" src={embeddedMapUrl(place)} loading="lazy" title={`Bản đồ ${place.name}`} referrerPolicy="strict-origin-when-cross-origin" />)}
             </article>)}</div>
             {places.length > visibleCount && <button className="places-more" onClick={() => setVisibleCount(v => v + 40)}>Xem thêm quán · đang hiện {visibleCount}/{places.length}</button>}
             <p className="places-attribution">Dữ liệu © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> · Photon / Private.coffee<br />Khoảng cách đường chim bay · dữ liệu tạm lưu 10 phút.</p>

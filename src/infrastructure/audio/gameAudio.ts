@@ -1,4 +1,11 @@
 import {
+  usesStems,
+  stemPaths,
+  pressureGains,
+  nextBar,
+  STEM_LOOP,
+} from "../../game/adaptiveScore"
+import {
   musicAsset,
   musicPath,
   type MusicAsset,
@@ -13,11 +20,13 @@ export interface AudioOptions {
   musicStyle?: MusicStyle
   musicVolume?: number
   effectsVolume?: number
+  ambienceVolume?: number
 }
 interface Request {
   track: MusicTrack
   priority: number
   order: number
+  pressure: number
 }
 interface MusicVoice {
   track: MusicAsset
@@ -25,6 +34,8 @@ interface MusicVoice {
   gain: GainNode
   started: number
   offset: number
+  layers?: MusicVoice[]
+  pressure?: number
 }
 interface Dependencies {
   context: () => AudioContext
@@ -48,12 +59,17 @@ export class GameAudioEngine {
     musicStyle: "original",
     musicVolume: 0.38,
     effectsVolume: 0.7,
+    ambienceVolume: 0.18,
   }
   private context: AudioContext | null = null
   private musicBus: GainNode | null = null
   private effectsBus: GainNode | null = null
+  private ambienceBus: GainNode | null = null
+  private ambience: AudioBufferSourceNode | null = null
+  private nativeVisible = true
   private requests = new Map<symbol, Request>()
-  private buffers = new Map<MusicAsset, AudioBuffer>()
+  private buffers = new Map<string, AudioBuffer>()
+  private inFlight = new Map<string, Promise<AudioBuffer>>()
   private offsets = new Map<MusicAsset, number>()
   private musicVoices = new Set<MusicVoice>()
   private current: MusicVoice | null = null
@@ -128,28 +144,43 @@ export class GameAudioEngine {
       musicStyle: options.musicStyle === "8bit" ? "8bit" : "original",
       musicVolume: clamp(options.musicVolume, 0.38),
       effectsVolume: clamp(options.effectsVolume, 0.7),
+      ambienceVolume: clamp(options.ambienceVolume, 0.18),
     }
     if (!this.options.soundEnabled) this.stopEffects()
     this.updateVolumes()
     this.syncMusic()
   }
-  acquire(track: MusicTrack, priority = 5) {
+  acquire(track: MusicTrack, priority = 5, pressure = 0) {
     const id = Symbol(track)
-    this.requests.set(id, { track, priority, order: ++this.serial })
+    this.requests.set(id, { track, priority, order: ++this.serial, pressure })
     this.syncMusic()
     return () => {
       this.requests.delete(id)
       this.syncMusic()
     }
   }
+  updatePressure(pressure: number, track?: MusicTrack | null) {
+    for (const request of this.requests.values())
+      if (!track || request.track === track)
+        request.pressure = Math.max(0, Math.min(1, pressure))
+    this.schedulePressure()
+  }
+  setNativeVisible(visible: boolean) {
+    this.nativeVisible = visible
+    this.visibilityChanged()
+  }
+  private visible() {
+    return this.nativeVisible && this.deps.visible()
+  }
   async unlock() {
-    if (!this.mounted || !this.options.soundEnabled || !this.deps.visible())
-      return
+    if (!this.mounted || !this.options.soundEnabled || !this.visible()) return
     try {
       if (!this.context) {
         this.context = this.deps.context()
         this.musicBus = this.context.createGain()
         this.effectsBus = this.context.createGain()
+        this.ambienceBus = this.context.createGain()
+        this.ambienceBus.connect(this.context.destination)
         this.musicBus.connect(this.context.destination)
         this.effectsBus.connect(this.context.destination)
         this.updateVolumes()
@@ -173,6 +204,10 @@ export class GameAudioEngine {
           : 0,
       ],
       [
+        this.ambienceBus,
+        this.options.soundEnabled ? this.options.ambienceVolume * 0.1 : 0,
+      ],
+      [
         this.effectsBus,
         this.options.soundEnabled ? this.options.effectsVolume : 0,
       ],
@@ -187,8 +222,89 @@ export class GameAudioEngine {
       this.offsets.set(
         voice.track,
         (voice.offset + this.context.currentTime - voice.started) %
-          voice.source.buffer.duration,
+          (usesStems(voice.track) ? STEM_LOOP : voice.source.buffer.duration),
       )
+  }
+  private trimBuffers() {
+    const leased = new Set([...this.musicVoices].map((v) => v.source.buffer))
+    for (const [key, buffer] of this.buffers) {
+      if (this.resourceStats().bytes <= 48 * 1024 * 1024) break
+      if (!leased.has(buffer)) this.buffers.delete(key)
+    }
+  }
+  private schedulePressure() {
+    const voice = this.current,
+      context = this.context
+    if (!voice?.layers || !context) return
+    const level = this.desired()?.pressure ?? 0
+    const gains = pressureGains(level),
+      previous = voice.pressure
+    // Discrete levels prevent noisy HP changes from continually cancelling an audio bar.
+    const key = gains[1] + gains[2]
+    if (previous === key) return
+    voice.pressure = key
+    const at = nextBar(context.currentTime, voice.started)
+    voice.layers.forEach((layer, i) => {
+      layer.gain.gain.cancelScheduledValues(context.currentTime)
+      layer.gain.gain.setValueAtTime(layer.gain.gain.value, context.currentTime)
+      layer.gain.gain.setValueAtTime(layer.gain.gain.value, at)
+      layer.gain.gain.linearRampToValueAtTime(gains[i + 1], at + 0.15)
+    })
+  }
+  private syncAmbience() {
+    const track = this.desired()?.track ?? ""
+    if (
+      !track.startsWith("v4-") ||
+      !this.visible() ||
+      !this.options.soundEnabled
+    ) {
+      if (this.ambience) {
+        try {
+          this.ambience.stop()
+        } catch {}
+        this.ambience.disconnect()
+        this.ambience = null
+      }
+      return
+    }
+    if (this.ambience || !this.context || !this.unlocked) return
+    const context = this.context,
+      source = context.createBufferSource()
+    const buffer = context.createBuffer(
+        1,
+        context.sampleRate * 4,
+        context.sampleRate,
+      ),
+      data = buffer.getChannelData(0)
+    let seed = 397,
+      smooth = 0
+    for (let i = 0; i < data.length; i++) {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0
+      smooth = 0.995 * smooth + 0.005 * (seed / 2147483648 - 1)
+      data[i] = smooth * Math.sin((Math.PI * i) / data.length) ** 2
+    }
+    source.buffer = buffer
+    source.loop = true
+    source.connect(this.ambienceBus!)
+    source.start()
+    this.ambience = source
+  }
+  resourceStats() {
+    const unique = new Set(this.buffers.values())
+    for (const voice of this.musicVoices)
+      if (voice.source.buffer) unique.add(voice.source.buffer)
+    if (this.noise) unique.add(this.noise)
+    if (this.ambience?.buffer) unique.add(this.ambience.buffer)
+    return {
+      bytes: [...unique].reduce(
+        (sum, b) => sum + (b.length || 0) * (b.numberOfChannels || 1) * 4,
+        0,
+      ),
+      buffers: unique.size,
+      musicVoices: this.musicVoices.size,
+      effects: this.effects.size,
+      budget: 48 * 1024 * 1024,
+    }
   }
   private stopMusic() {
     if (this.current) this.remember(this.current)
@@ -203,6 +319,14 @@ export class GameAudioEngine {
     }
     this.musicVoices.clear()
     this.current = null
+    this.trimBuffers()
+    if (this.ambience) {
+      try {
+        this.ambience.stop()
+      } catch {}
+      this.ambience.disconnect()
+      this.ambience = null
+    }
   }
   private syncMusic() {
     const request = this.desired()?.track
@@ -213,7 +337,7 @@ export class GameAudioEngine {
       !this.mounted ||
       !this.options.soundEnabled ||
       !this.options.musicEnabled ||
-      !this.deps.visible() ||
+      !this.visible() ||
       !this.unlocked ||
       this.context?.state !== "running"
     ) {
@@ -239,6 +363,8 @@ export class GameAudioEngine {
         ++this.epoch
         this.loading = null
       }
+      this.schedulePressure()
+      this.syncAmbience()
       this.notify("playing")
       return
     }
@@ -246,15 +372,19 @@ export class GameAudioEngine {
     const epoch = ++this.epoch
     const context = this.context
     this.loading = desired
-    void this.loadMusic(desired, context)
-      .then((buffer) => {
+    const adaptive = usesStems(desired)
+    const paths = adaptive
+      ? stemPaths(this.options.musicStyle)
+      : [musicPath(desired)]
+    void Promise.all(paths.map((path) => this.loadMusic(path, context)))
+      .then(([buffer, ...stems]) => {
         if (
           epoch !== this.epoch ||
           context !== this.context ||
           !this.desired() ||
           musicAsset(this.desired()!.track, this.options.musicStyle) !==
             desired ||
-          !this.deps.visible() ||
+          !this.visible() ||
           !this.options.soundEnabled ||
           !this.options.musicEnabled
         )
@@ -264,20 +394,69 @@ export class GameAudioEngine {
         const gain = context.createGain()
         source.buffer = buffer
         source.loop = true
+        if (adaptive) {
+          source.loopStart = 0
+          source.loopEnd = STEM_LOOP
+        }
         source.connect(gain)
         gain.connect(this.musicBus!)
-        const now = context.currentTime
+        const now = context.currentTime + (adaptive ? 0.02 : 0)
         const offset = (this.offsets.get(desired) ?? 0) % buffer.duration
         gain.gain.setValueAtTime(0, now)
         gain.gain.linearRampToValueAtTime(1, now + 0.45)
-        const voice = { track: desired, source, gain, offset, started: now }
+        const voice: MusicVoice = {
+          track: desired,
+          source,
+          gain,
+          offset,
+          started: now,
+        }
         this.musicVoices.add(voice)
         source.onended = () => {
           source.disconnect()
           gain.disconnect()
           this.musicVoices.delete(voice)
+          this.trimBuffers()
+        }
+        if (stems.length) {
+          const levels = pressureGains(this.desired()?.pressure ?? 0)
+          voice.pressure = levels[1] + levels[2]
+          voice.layers = stems.map((stem, i) => {
+            const source = context.createBufferSource(),
+              gain = context.createGain()
+            source.buffer = stem
+            source.loop = true
+            source.loopStart = 0
+            source.loopEnd = STEM_LOOP
+            source.connect(gain)
+            gain.connect(this.musicBus!)
+            gain.gain.setValueAtTime(0, now)
+            gain.gain.linearRampToValueAtTime(levels[i + 1], now + 0.45)
+            const layer: MusicVoice = {
+              track: desired,
+              source,
+              gain,
+              offset,
+              started: now,
+            }
+            this.musicVoices.add(layer)
+            source.onended = () => {
+              source.disconnect()
+              gain.disconnect()
+              this.musicVoices.delete(layer)
+              this.trimBuffers()
+            }
+            source.start(now, offset % STEM_LOOP)
+            return layer
+          })
         }
         if (this.current) {
+          for (const layer of this.current.layers ?? []) {
+            layer.gain.gain.cancelScheduledValues(now)
+            layer.gain.gain.setValueAtTime(layer.gain.gain.value, now)
+            layer.gain.gain.linearRampToValueAtTime(0, now + 0.4)
+            layer.source.stop(now + 0.45)
+          }
           this.remember(this.current)
           this.current.gain.gain.cancelScheduledValues(now)
           this.current.gain.gain.setValueAtTime(
@@ -288,7 +467,8 @@ export class GameAudioEngine {
           this.current.source.stop(now + 0.45)
         }
         this.current = voice
-        source.start(now, offset)
+        source.start(now, adaptive ? offset % STEM_LOOP : offset)
+        this.syncAmbience()
         this.notify("playing")
       })
       .catch(() => {
@@ -298,22 +478,42 @@ export class GameAudioEngine {
         }
       })
   }
-  private async loadMusic(track: MusicAsset, context: AudioContext) {
-    const cached = this.buffers.get(track)
-    if (cached) return cached
-    const data = await this.deps.load(
-      `${import.meta.env.BASE_URL}${musicPath(track)}`,
-    )
-    const buffer = await context.decodeAudioData(data)
-    if (context === this.context && this.mounted) {
-      if (this.buffers.size >= 2)
-        this.buffers.delete(this.buffers.keys().next().value!)
-      this.buffers.set(track, buffer)
+  private loadMusic(path: string, context: AudioContext): Promise<AudioBuffer> {
+    const cached = this.buffers.get(path)
+    if (cached) {
+      this.buffers.delete(path)
+      this.buffers.set(path, cached)
+      return Promise.resolve(cached)
     }
-    return buffer
+    const pending = this.inFlight.get(path)
+    if (pending) return pending
+    const load = (async () => {
+      const data = await this.deps.load(`${import.meta.env.BASE_URL}${path}`)
+      const buffer = await context.decodeAudioData(data)
+      if (context === this.context && this.mounted) {
+        const bytes = (b: AudioBuffer) =>
+          (b.length || 0) * (b.numberOfChannels || 1) * 4
+        const leased = new Set(
+          [...this.musicVoices].map((v) => v.source.buffer),
+        )
+        for (const [key, item] of this.buffers) {
+          if (this.resourceStats().bytes + bytes(buffer) <= 48 * 1024 * 1024)
+            break
+          if (!leased.has(item)) this.buffers.delete(key)
+        }
+        if (this.resourceStats().bytes + bytes(buffer) > 64 * 1024 * 1024)
+          throw new Error("Audio memory budget exceeded")
+        this.buffers.set(path, buffer)
+      }
+      return buffer
+    })().finally(() => {
+      if (this.inFlight.get(path) === load) this.inFlight.delete(path)
+    })
+    this.inFlight.set(path, load)
+    return load
   }
   visibilityChanged() {
-    if (!this.deps.visible()) {
+    if (!this.visible()) {
       this.stopEffects()
       this.syncMusic()
       void this.context?.suspend().catch(() => {})
@@ -343,17 +543,30 @@ export class GameAudioEngine {
       !this.mounted ||
       !this.options.soundEnabled ||
       this.options.effectsVolume <= 0 ||
-      !this.deps.visible() ||
+      !this.visible() ||
       context.state !== "running" ||
       this.effects.size >= 48
     )
       return
     const now = context.currentTime + Math.max(0, delay) / 1000
-    const panner = pan && typeof context.createStereoPanner === "function" ? context.createStereoPanner() : null
-    if (panner) { panner.pan.setValueAtTime(Math.max(-1, Math.min(1, pan)), now); panner.connect(this.effectsBus!); this.effectPanners.add(panner) }
+    const variation = [0.98, 1, 1.02][++this.serial % 3]
+    const panner =
+      pan && typeof context.createStereoPanner === "function"
+        ? context.createStereoPanner()
+        : null
+    if (panner) {
+      panner.pan.setValueAtTime(Math.max(-1, Math.min(1, pan)), now)
+      panner.connect(this.effectsBus!)
+      this.effectPanners.add(panner)
+    }
     const output = panner ?? this.effectsBus!
     let voices = 0
-    const release = () => { if (--voices <= 0 && panner) { panner.disconnect(); this.effectPanners.delete(panner) } }
+    const release = () => {
+      if (--voices <= 0 && panner) {
+        panner.disconnect()
+        this.effectPanners.delete(panner)
+      }
+    }
     const tone = (
       frequency: number,
       duration: number,
@@ -366,8 +579,12 @@ export class GameAudioEngine {
       const source = context.createOscillator(),
         gain = context.createGain()
       source.type = type
-      source.frequency.setValueAtTime(frequency, at)
-      if (end) source.frequency.exponentialRampToValueAtTime(end, at + duration)
+      source.frequency.setValueAtTime(frequency * variation, at)
+      if (end)
+        source.frequency.exponentialRampToValueAtTime(
+          end * variation,
+          at + duration,
+        )
       gain.gain.setValueAtTime(0.0001, at)
       gain.gain.linearRampToValueAtTime(volume, at + 0.008)
       gain.gain.exponentialRampToValueAtTime(0.0001, at + duration)
@@ -446,19 +663,52 @@ export class GameAudioEngine {
         )
       })
     switch (cue) {
-      case "auto-slash": noise(.11, .045, 6800, 850); tone(310, .1, .025, "triangle", 120); break
-      case "auto-shot": tone(820, .12, .033, "triangle", 310); noise(.07, .025, 4000, 1600); break
-      case "auto-contact": tone(115, .16, .065, "sine", 48); noise(.095, .052, 2000, 350); break
-      case "auto-channel": tone(220, .28, .033, "triangle", 660); tone(330, .32, .025, "sine", 990); break
-      case "auto-fall": noise(.27, .035, 3400, 300); tone(520, .3, .025, "sine", 130); break
-      case "auto-boss": tone(65, .7, .075, "triangle", 42); noise(.48, .07, 900, 280); chime([196, 233, 294], .48, .12, .035); break
-      case "auto-overtime": chime([294, 392, 587], .25, .12, .045); tone(82, .3, .055, "sine", 52); break
-      case "auto-victory": case "auto-defeat": {
-        this.updateVolumes(.35)
+      case "auto-slash":
+        noise(0.11, 0.045, 6800, 850)
+        tone(310, 0.1, 0.025, "triangle", 120)
+        break
+      case "auto-shot":
+        tone(820, 0.12, 0.033, "triangle", 310)
+        noise(0.07, 0.025, 4000, 1600)
+        break
+      case "auto-contact":
+        tone(115, 0.16, 0.065, "sine", 48)
+        noise(0.095, 0.052, 2000, 350)
+        break
+      case "auto-channel":
+        tone(220, 0.28, 0.033, "triangle", 660)
+        tone(330, 0.32, 0.025, "sine", 990)
+        break
+      case "auto-fall":
+        noise(0.27, 0.035, 3400, 300)
+        tone(520, 0.3, 0.025, "sine", 130)
+        break
+      case "auto-boss":
+        tone(65, 0.7, 0.075, "triangle", 42)
+        noise(0.48, 0.07, 900, 280)
+        chime([196, 233, 294], 0.48, 0.12, 0.035)
+        break
+      case "auto-overtime":
+        chime([294, 392, 587], 0.25, 0.12, 0.045)
+        tone(82, 0.3, 0.055, "sine", 52)
+        break
+      case "auto-victory":
+      case "auto-defeat": {
+        this.updateVolumes(0.35)
         if (this.duckTimer) clearTimeout(this.duckTimer)
-        this.duckTimer = setTimeout(() => { this.duckTimer = null; this.updateVolumes() }, 1800)
-        chime(cue === "auto-victory" ? [294, 392, 440, 587, 784] : [392, 330, 294, 220], .65, .17, .055)
-        tone(82, .35, .045, "sine", 52)
+        this.duckTimer = setTimeout(() => {
+          this.duckTimer = null
+          this.updateVolumes()
+        }, 1800)
+        chime(
+          cue === "auto-victory"
+            ? [294, 392, 440, 587, 784]
+            : [392, 330, 294, 220],
+          0.65,
+          0.17,
+          0.055,
+        )
+        tone(82, 0.35, 0.045, "sine", 52)
         break
       }
       case "combo":
@@ -556,7 +806,10 @@ export class GameAudioEngine {
         break
       }
     }
-    if (!voices && panner) { panner.disconnect(); this.effectPanners.delete(panner) }
+    if (!voices && panner) {
+      panner.disconnect()
+      this.effectPanners.delete(panner)
+    }
   }
   dispose() {
     this.mounted = false
@@ -567,10 +820,11 @@ export class GameAudioEngine {
     this.stopEffects()
     this.requests.clear()
     this.buffers.clear()
+    this.inFlight.clear()
     this.offsets.clear()
     const context = this.context
     this.context = null
-    this.musicBus = this.effectsBus = null
+    this.musicBus = this.effectsBus = this.ambienceBus = null
     this.noise = null
     void context?.close().catch(() => {})
     this.notify("waiting")

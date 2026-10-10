@@ -43,6 +43,7 @@ export function HomeLobby({
             : "+100 xu · Điểm danh"}
         </button>
       </div>
+      {!save.story400?.giftClaimed && <div className="tcg-lobby-actions"><button className="tcg-button gold" onClick={() => useGameStore.getState().claimV4Gift()}>Nhận gói khởi hành 4.0 · 8 thẻ mới × 2</button><span>Nêm vị chọn một nhánh; Ủ vị giữ hiệu ứng sang lượt sau. Nhận quà rồi thêm thẻ vào bộ bài trong Bộ sưu tập.</span></div>}
       <div className="tcg-lobby-hero">
         <img
           className="tcg-lobby-background"
@@ -83,7 +84,7 @@ export function HomeLobby({
             </button>
           </div>
           <span className="tcg-lobby-progress">
-            {save.clearedStages.length}/18 màn · {owned}/{CARDS.length} thẻ ·{" "}
+            {save.clearedStages.length}/27 màn · {owned}/{CARDS.length} thẻ ·{" "}
             {save.stats.wins} trận thắng
           </span>
         </div>
