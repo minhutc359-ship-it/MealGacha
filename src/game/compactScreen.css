@@ -497,3 +497,18 @@
  .tcg-compact-app .tcg-topbar .tcg-wallet b{font-size:10px}
  .tcg-compact-app .tcg-topbar .meal-mode-switch{padding-inline:5px;font-size:9px}
 }
+
+/* Campaign atlas pages share the same navigation on web and Android. */
+.tcg-map-regions { display:flex; flex-shrink:0; gap:6px; margin-bottom:8px; }
+.tcg-map-regions button { flex:1; min-height:44px; border:1px solid #a7b5a0; border-radius:7px; padding:8px; background:#eeefe3; color:#345647; font-size:11px; cursor:pointer; }
+.tcg-map-regions button[aria-pressed=true] { background:#294b45; color:#f6e4b4; border-color:#ba984d; }
+.tcg-map-regions button:focus-visible { outline:2px solid #ba984d; outline-offset:2px; }
+.tcg-map-stop[aria-current=location] .tcg-map-pin { outline:2px solid #fff4c4; outline-offset:5px; }
+.tcg-map-stop.is-coming-soon .tcg-map-pin { background:#31454e; border-style:dashed; color:#e0dcc8; box-shadow:none; }
+.tcg-map-stop.is-coming-soon .tcg-map-stop-label { background:#213844; border-style:dashed; }
+.tcg-campaign-atlas .tcg-world-map { max-height:calc(100% - 90px); }
+.tcg-journal-dialog .tcg-map-regions { width:min(100%,570px); margin:0 auto 12px; }
+.tcg-world-map > svg { width:100%; height:100%; }
+.tcg-map-stop.is-coming-soon { opacity:1; }
+.tcg-living-map .tcg-map-stop-label strong { font-size:10px; white-space:normal; }
+.tcg-living-map .tcg-map-stop-label small { font-size:7px; }

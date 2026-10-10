@@ -1,5 +1,6 @@
 import { LivingJournal } from "./LivingJournal"
-import { useState, type CSSProperties } from "react"
+import { useState } from "react"
+import { CampaignMap } from "./CampaignMap"
 import { CHAPTERS, isStageUnlocked } from "../../game/story"
 import { SCHOOLS } from "../../game/catalog"
 import { useGameStore } from "../../game/useGameStore"
@@ -9,14 +10,6 @@ import { CultureJournal } from "./CultureJournal"
 import { Dialog } from "./Dialog"
 
 const GUARDIANS = ["bach", "nhien", "moc", "hai", "lien", "hero", "an", "hai", "an"] as const
-const STOPS: CSSProperties[] = [
-  { left: "19%", top: "22%" },
-  { left: "18%", top: "76%" },
-  { left: "49%", top: "40%" },
-  { left: "62%", top: "76%" },
-  { left: "79%", top: "44%" },
-  { left: "81%", top: "17%" },
-]
 export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
   const ending = useGameStore(s => s.save.storyEnding)
   const cleared = useGameStore((s) => s.save.clearedStages)
@@ -29,72 +22,14 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
   )
   const chapter = CHAPTERS[selected]
   const open = isStageUnlocked(chapter.stages[0].id, cleared, ending)
-  const map = (
-    <div className="tcg-world-map">
-      <img
-        className="tcg-world-map-art"
-        src="/assets/tcg/map/meal-world-map.webp"
-        alt="Bản đồ kỳ ảo của sáu miền ký ức"
-        width="1024"
-        height="1024"
-        decoding="async"
-      />
-      <div className="tcg-world-map-shade" aria-hidden="true" />
-      <svg
-        className="tcg-world-map-route"
-        viewBox="0 0 1000 1000"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path
-          className="tcg-route-underlay"
-          pathLength="100"
-          d="M190 220 C105 385 105 600 180 760 C285 760 385 575 490 400 C565 465 625 610 620 760 C705 720 765 580 790 440 C825 335 830 235 810 170"
-        />
-        <path
-          className="tcg-route-progress"
-          pathLength="100"
-          d="M190 220 C105 385 105 600 180 760 C285 760 385 575 490 400 C565 465 625 610 620 760 C705 720 765 580 790 440 C825 335 830 235 810 170"
-          style={{ strokeDasharray: `${(Math.min(18, cleared.length) / 18) * 100} 100` }}
-        />
-      </svg>
-      {CHAPTERS.slice(0, 6).map((ch, i) => {
-        const unlocked = isStageUnlocked(ch.stages[0].id, cleared, ending)
-        const count = ch.stages.filter((s) => cleared.includes(s.id)).length
-        return (
-          <button
-            key={ch.id}
-            className={`tcg-map-stop ${
-              count === 3
-                ? "is-complete"
-                : unlocked
-                  ? "is-current"
-                  : "is-locked"
-            }`}
-            style={STOPS[i]}
-            disabled={!unlocked}
-            aria-label={
-              unlocked
-                ? `Đến chương ${i + 1}: ${ch.title}, ${count} trên 3 chặng đã vượt qua`
-                : `Chương ${i + 1} chưa mở`
-            }
-            onClick={() => {
-              setSelected(i)
-              setReader(null)
-            }}
-          >
-            <span className="tcg-map-pin">
-              {count === 3 ? "✓" : unlocked ? SCHOOLS[ch.school].symbol : "◇"}
-            </span>
-            <span className="tcg-map-stop-label">
-              <small>CHƯƠNG 0{i + 1}</small>
-              <strong>{unlocked ? ch.title : `Ký ức ${i + 1}`}</strong>
-            </span>
-          </button>
-        )
-      })}
-    </div>
-  )
+  const [mapRegion, setMapRegion] = useState(() => selected >= 6 ? 1 : 0)
+  const selectChapter = (index: number) => {
+    setSelected(index)
+    setMapRegion(index >= 6 ? 1 : 0)
+    setReader(null)
+  }
+  const map = <CampaignMap region={mapRegion} onRegion={setMapRegion}
+    selected={selected} onChapter={selectChapter} cleared={cleared} ending={ending} />
   return (
     <section className="tcg-campaign-screen">
       <div className="tcg-section-heading">
@@ -133,7 +68,7 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
             aria-pressed={selected === i}
             disabled={!isStageUnlocked(ch.stages[0].id, cleared, ending)}
             aria-label={`Xem chương ${i + 1}`}
-            onClick={() => setSelected(i)}
+            onClick={() => selectChapter(i)}
           >
             <b>{String(i + 1).padStart(2, "0")}</b>
             <span>
@@ -144,11 +79,12 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
             </small>
           </button>
         ))}
+
       </div>
       <div className="tcg-campaign-layout">
         <div className="tcg-campaign-atlas" aria-label="Bản đồ chiến dịch">
           {map}
-          <p>Chọn điểm sáng để chuyển chương.</p>
+          <p>Chọn miền và điểm sáng để chuyển chương. 10–12: Coming soon.</p>
         </div>
         <section
           id={`chapter-${chapter.id}`}
