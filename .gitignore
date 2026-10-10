@@ -25,3 +25,6 @@ logs/
 # Local build/packaging output (including symlinked dependencies).
 node_modules
 /dev/artifacts/
+
+__pycache__/
+*.pyc

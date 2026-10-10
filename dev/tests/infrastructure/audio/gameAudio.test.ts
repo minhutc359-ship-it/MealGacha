@@ -312,3 +312,19 @@ it("dense auto-chess audio respects the 48-voice cap", async () => {
   for (let n = 0; n < 50; n++) engine.play("auto-boss", 0, .3)
   expect(context.voices.length + context.oscillators.length).toBeLessThanOrEqual(48)
 })
+
+it("starts three matching stems together, dedupes loads and stops every voice on native background",async()=>{
+ const {engine,context,load}=fixture()
+ engine.acquire("v4-market-tension",5,.8)
+ await engine.unlock();await settle();await settle()
+ const stems=context.voices.filter(v=>v.loop && v.buffer)
+ expect(stems).toHaveLength(4) // three music stems plus procedural ambience
+ expect(stems.slice(0,3).map(v=>v.starts[0])).toEqual([[.02,0],[.02,0],[.02,0]])
+ expect(load).toHaveBeenCalledTimes(3)
+ engine.updatePressure(.1,"v4-market-tension")
+ expect(context.gains.slice(-3).map(g=>g.gain.value)).toContain(0)
+ engine.setNativeVisible(false)
+ expect(stems.every(v=>v.stopped)).toBe(true)
+ engine.setNativeVisible(true);await settle();await settle()
+ expect(load).toHaveBeenCalledTimes(3)
+})

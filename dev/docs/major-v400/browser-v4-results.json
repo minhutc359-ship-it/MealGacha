@@ -11,6 +11,12 @@
       "branchOpening": true
     },
     {
+      "width": 320,
+      "height": 568,
+      "choiceHit": true,
+      "scroll": 320
+    },
+    {
       "width": 390,
       "height": 844,
       "choiceHit": true,
@@ -27,6 +33,34 @@
       "height": 768,
       "choiceHit": true,
       "scroll": 1366
+    },
+    {
+      "layeredScene": true,
+      "renderer": "webgl",
+      "preferences": {},
+      "contextLoss": true,
+      "clipLoaded": true,
+      "selfHostedFonts": true
+    },
+    {
+      "layeredScene": true,
+      "renderer": "canvas",
+      "preferences": {
+        "graphicsQuality": "low"
+      },
+      "contextLoss": false,
+      "clipLoaded": true,
+      "selfHostedFonts": true
+    },
+    {
+      "layeredScene": true,
+      "renderer": "canvas",
+      "preferences": {
+        "reducedMotion": true
+      },
+      "contextLoss": false,
+      "clipLoaded": true,
+      "selfHostedFonts": true
     },
     {
       "corruptionKept": true

@@ -1,3 +1,5 @@
+import { ArenaScene, arenaRegion } from "./ArenaScene"
+import { livingChoiceLines } from "../../game/livingChoices"
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
 import { battleMusic, frameSounds } from "../../game/audioScore"
@@ -201,6 +203,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     characterImage(SPRITE_SHEETS.base.path)
     characterImage(SPRITE_SHEETS.fresh.path)
   }, [])
+  const storySave = useGameStore((s) => s.save)
   const stored = useGameStore((s) => s.save.battle)!
   const presentation = useGameStore((s) => s.presentation)
   const ending = useGameStore((s) => s.save.storyEnding)
@@ -240,8 +243,15 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
         ? "story-mystery"
         : null
       : battleMusic(battle),
+    5, Math.max(battle.bossRuleId ? .35 : 0, 1-battle.player.health/battle.player.maxHealth),
   )
   const stamp = `${replay?.sequence}-${frameIndex}`
+  const [visible,setVisible]=useState(!document.hidden)
+  useEffect(()=>{
+    const update=()=>setVisible(!document.hidden), pause=()=>setVisible(false), resume=()=>setVisible(!document.hidden)
+    document.addEventListener("visibilitychange",update);window.addEventListener("meal:native-pause",pause);window.addEventListener("meal:native-resume",resume)
+    return ()=>{document.removeEventListener("visibilitychange",update);window.removeEventListener("meal:native-pause",pause);window.removeEventListener("meal:native-resume",resume)}
+  },[])
   const arena = useRef<HTMLDivElement>(null)
   const inFlight = useRef(false)
   const [selection, setSelection] = useState<Selection | null>(null)
@@ -261,6 +271,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
   )
   const readyCount = battle.player.board.filter((unit) => unit.ready).length
   useEffect(() => {
+    if(!visible)return
     if (!busy || !replay) {
       inFlight.current = false
       return
@@ -271,7 +282,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
       frameDuration(frame),
     )
     return () => window.clearTimeout(timer)
-  }, [busy, replay, frameIndex, frame?.event.kind, sceneId])
+  }, [busy, replay, frameIndex, frame?.event.kind, sceneId,visible])
   useEffect(() => {
     setSelection(null)
     setReplace([])
@@ -534,12 +545,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
         data-action={frame?.event.kind}
         style={{ "--table-color": aura?.color ?? "#9bcea6" } as CSSProperties}
       >
-        <div
-          className="tcg-board-art"
-          key={table}
-          aria-hidden="true"
-          style={{ backgroundImage: battle.stageId && STAGE_MAP[battle.stageId]?.index >= 18 ? `url(${STAGE_MAP[battle.stageId].chapter.art})` : `url(/assets/tcg/boards/${table}.webp)` }}
-        />
+        {battle.stageId && STAGE_MAP[battle.stageId]?.index >= 18
+          ? <ArenaScene region={arenaRegion(battle.stageId)} pressure={battle.player.health <= 8 || !!battle.bossRuleId}/>
+          : <div className="tcg-board-art" key={table} aria-hidden="true" style={{backgroundImage:`url(/assets/tcg/boards/${table}.webp)`}}/>}
         <div className="tcg-table-weather" aria-hidden="true">
           {Array.from({ length: 6 }, (_, i) => (
             <i
@@ -1310,7 +1318,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             ) : stored.result === "win" && stage ? (
               <StoryScene
                 key={stored.id}
-                lines={SCENES[stage.id].after}
+                lines={[...SCENES[stage.id].after,...livingChoiceLines(stage.id,storySave,true)]}
                 art={stageArtId(stage.id)}
                 onComplete={() => setEndRead(true)}
               />

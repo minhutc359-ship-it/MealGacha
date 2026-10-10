@@ -65,8 +65,10 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/v4/characters/", "Original AI-assisted 24-pose animations using existing project character references", ["dev/docs/major-v400/clip-assets.json", "dev/docs/major-v400/clip-prompts.json", "dev/tools/register-v4-clips.py"]],
+ ["assets/fonts/", "Google Fonts OFL 1.1, Vietnamese/Latin subsets", ["dev/docs/major-v400/font-sources.json", "rights/fonts/BeVietnamPro-OFL.txt", "rights/fonts/Exo2-OFL.txt"]],
  ["assets/v4/arenas/", "Original AI-assisted living-market environments", ["dev/docs/major-v400/arena-prompts.json"]],
- ["assets/v4/audio/", "Original deterministic procedural score, no samples", ["dev/tools/compose-v4-music.py", "dev/docs/major-v400/audio-v4.json"]],
+ ["assets/v4/audio/", "Original deterministic procedural score, no samples", ["dev/tools/compose-v4-music.py", "dev/docs/major-v400/audio-v4.json", "dev/tools/compose-v4-stems.py", "dev/docs/major-v400/audio-stems.json"]],
   ["assets/characters/", "AI-assisted sprite art", ["dev/docs/challenge-v322/prompts.json", "dev/docs/market-v331/atlas-prompts.json", "dev/tools/register-market-atlases.py"]],
   ["assets/autochess/items-rpg-v350.webp", "Original AI-assisted RPG inventory art", ["dev/docs/depth-v350/item-prompts.json"]],
   ["assets/autochess/audio/", "Original procedural composition", ["dev/tools/compose-autochess-music.py", "dev/tools/compose-retro-music.py", "dev/docs/autochess/audio-manifest.json", "dev/docs/depth-v350/audio-manifest.json"]],
@@ -85,7 +87,7 @@ const origins = [
   ["assets/tcg/map/", "Project world map; generation session not fully archived", ["README.md"]],
 ]
 const assets = []
-function walk(dir) { for (const file of readdirSync(dir)) { const full = path.join(dir, file); if (statSync(full).isDirectory()) walk(full); else if (/\.(webp|png|jpg|jpeg|svg|mp3|ico)$/i.test(file)) {
+function walk(dir) { for (const file of readdirSync(dir)) { const full = path.join(dir, file); if (statSync(full).isDirectory()) walk(full); else if (/\.(webp|png|jpg|jpeg|svg|mp3|ico|woff2)$/i.test(file)) {
   const relative = path.relative(path.join(root, "public"), full).split(path.sep).join("/")
   const origin = origins.find(([prefix]) => relative.startsWith(prefix))
   if (!origin) throw Error(`No provenance category: ${relative}`)

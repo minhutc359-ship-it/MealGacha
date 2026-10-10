@@ -231,8 +231,8 @@
     },
     {
       "path": "public/assets/brand/icon-512.png",
-      "bytes": 300105,
-      "sha256": "18c696cfa6e6442d2d44b27c0fcdd62a963fcf3e23df9a35b36abda88bbc7f78",
+      "bytes": 64132,
+      "sha256": "9fb723cc5495d615ae578bfa072aeac4db288d724f92f473e10ba7814c350fb3",
       "origin": "AI-assisted original brand; derivatives resized from project artwork",
       "evidence": [
         "dev/docs/branding/LOGO.md"
@@ -466,6 +466,138 @@
         "dev/docs/PROGRESSION_ECONOMY_V292.md"
       ],
       "review": "owner-verification-required"
+    },
+    {
+      "path": "public/assets/fonts/font-1.woff2",
+      "bytes": 31576,
+      "sha256": "5821695cfa2f6fed3efc61dccea4fb1b5ab4a7b2b94a15bd6f6671c759635abd",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/fonts/font-10.woff2",
+      "bytes": 23200,
+      "sha256": "54e97b552c52b0a92b37ee743fb461f40210b4401e320f52220adf454e7c40af",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/fonts/font-11.woff2",
+      "bytes": 22060,
+      "sha256": "74a0f385bfee2fc1a42f0a34db7488fa080b958710ed4a26c17c9f880cc66213",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/fonts/font-2.woff2",
+      "bytes": 29968,
+      "sha256": "67958657b5c3dc8bbacb4b1a12a5b57b3e0534d49b7bf50cb3e9d95d038b6f88",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/fonts/font-3.woff2",
+      "bytes": 31592,
+      "sha256": "63b8a06e91328774e55afe9c198bc8b73496e03c4e251606f39edccfa1f9986a",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/fonts/font-4.woff2",
+      "bytes": 31704,
+      "sha256": "d1e98c3bf2aa6af2f4e4e145a181dc536685313adfdb5866229794eb3bef4598",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/fonts/font-5.woff2",
+      "bytes": 24108,
+      "sha256": "574ff3546aa3461d1edf53e5c4de52fa2ebd4cf2620761ffc9b264f2198f1395",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/fonts/font-6.woff2",
+      "bytes": 22216,
+      "sha256": "b78c3ef0e0779916d5525079929165e17adb95cbc35100dae46fb1c44e8d2e24",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/fonts/font-7.woff2",
+      "bytes": 23072,
+      "sha256": "ef57acb59316c03629f0c7e1a2eeed84c532f14a49fc93b21383daa3fe01c75f",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/fonts/font-8.woff2",
+      "bytes": 23240,
+      "sha256": "58fe905bc3b00d8c8db38b86d6f9eefafe11254a296678d29ac6055179e4812a",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/fonts/font-9.woff2",
+      "bytes": 23220,
+      "sha256": "0ee5dd79767169244f9816c9387e29a10fe95bb3fcab74fcba39f36d3628d2da",
+      "origin": "Google Fonts OFL 1.1, Vietnamese/Latin subsets",
+      "evidence": [
+        "dev/docs/major-v400/font-sources.json",
+        "rights/fonts/BeVietnamPro-OFL.txt",
+        "rights/fonts/Exo2-OFL.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
       "path": "public/assets/food/full/arancini.webp",
@@ -2890,7 +3022,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2901,7 +3035,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2912,7 +3048,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2923,7 +3061,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2934,7 +3074,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2945,7 +3087,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2956,7 +3100,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2967,7 +3113,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2978,7 +3126,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2989,7 +3139,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -3000,7 +3152,9 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -3011,7 +3165,243 @@
       "origin": "Original deterministic procedural score, no samples",
       "evidence": [
         "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json"
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/stem-8bit-base.mp3",
+      "bytes": 160749,
+      "sha256": "dbf2a3a68e7d659e0be3766b44aded967196a6f7c6022a65893fbfff77919476",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/stem-8bit-pressure.mp3",
+      "bytes": 80475,
+      "sha256": "4d64b501c385c2f89208211371a26145a2fc2f62194ff41bcd1422793dc7cf9a",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/stem-8bit-rhythm.mp3",
+      "bytes": 80475,
+      "sha256": "c27d87f1831da3b96534018ecd039f4dd4e5266f48e397dfe27e30b320184211",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/stem-original-base.mp3",
+      "bytes": 160749,
+      "sha256": "290dc66ced50a529de1b7ab681b1cfceb4a625e8b4eca6a0bf020f7eb71dc313",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/stem-original-pressure.mp3",
+      "bytes": 80475,
+      "sha256": "517accf974b50039ca1f15dc6e284c2a2be04f74984744b782383b57ae4fb12c",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/stem-original-rhythm.mp3",
+      "bytes": 80475,
+      "sha256": "d3bda4cdca7c742460fb7b996a43edf63d5e9df7b0faf276e63d9f3f1f7d34c8",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json",
+        "dev/tools/compose-v4-stems.py",
+        "dev/docs/major-v400/audio-stems.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/banh-cuon.webp",
+      "bytes": 188260,
+      "sha256": "36901e9ea0aa275efe47085ec4b81fd5e4f0a71bf54c16807369f98d08f2668c",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/banh-xeo.webp",
+      "bytes": 172532,
+      "sha256": "277a5b7c9c8e6b01455bad61746c02a0fcf2b1f8c0325b767501066f9c7301c6",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/bosses.webp",
+      "bytes": 378580,
+      "sha256": "03ce20072d80577d87fbb722ba001a0d789ec728e6d1ce7c965242ed547a7fde",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/bun-cha.webp",
+      "bytes": 151982,
+      "sha256": "18848bf8ee0cd810043e5e0b935eefd4c96144c17bd373e4bcdb1ebbd8ecb3d1",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/bun-rieu.webp",
+      "bytes": 166298,
+      "sha256": "b01a8f9aebf6919c09e8807a614d5ecb15665577562f40dfe7afa7ef6524982f",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/chef-bach.webp",
+      "bytes": 139758,
+      "sha256": "dac57c26e14fb957077d5dc68a998434b36d6f64ee440e7a21669c32ef71bc7c",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/chef-hai.webp",
+      "bytes": 172896,
+      "sha256": "bb49a12196b4c615061932a8b12e396e3e084db699215190403369658d298e09",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/chef-lien.webp",
+      "bytes": 178032,
+      "sha256": "82a57cbb0dce1037914ad67484caa43de8d987a851b57712ec750c377e09ac64",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/chef-moc.webp",
+      "bytes": 156152,
+      "sha256": "77e8c33c4eab3dafbc5f2c256650c02490d964e54fcbd8a6b3dc134026da3806",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/chef-nhien.webp",
+      "bytes": 148186,
+      "sha256": "5f5c887fe658164f26d25fe0d2ca03a83e7c9f30b4dfaca0d8bd28eee1437cb8",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/com-ga.webp",
+      "bytes": 182646,
+      "sha256": "80401e2e98fb89de8bc613391423d7a5c2c81c6fd6432db704440b5e324a32f6",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/ferry.webp",
+      "bytes": 143778,
+      "sha256": "78aec90630e0ebcca563f198e4c271bc71e42327048ec3bfc26f906ae6d98506",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/characters/xoi.webp",
+      "bytes": 161844,
+      "sha256": "15d74d4208166a4de195cc506450f34c59c026b90084cd3852898bfe6bc5a305",
+      "origin": "Original AI-assisted 24-pose animations using existing project character references",
+      "evidence": [
+        "dev/docs/major-v400/clip-assets.json",
+        "dev/docs/major-v400/clip-prompts.json",
+        "dev/tools/register-v4-clips.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

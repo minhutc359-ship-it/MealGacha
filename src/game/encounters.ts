@@ -1,4 +1,4 @@
-import { BOSS_RULES, type StoryLine } from "./narrative"
+import { BOSS_RULES, LIVING_BOSS_RULES, type StoryLine } from "./narrative"
 import { NPC_NAMES } from "./characters"
 import type { Battle, NpcId } from "./types"
 import type { BattleEvent } from "./battle"
@@ -6,7 +6,8 @@ import type { StoryArtId } from "./storyArt"
 import { DRAMATIC_BEATS } from "./dramaticBeats"
 
 export function battleRule(b: Battle) {
-  return BOSS_RULES[b.bossRuleId ?? b.stageId ?? ""]
+  const id = b.bossRuleId ?? b.stageId ?? ""
+  return (b.livingRulesVersion === 2 ? LIVING_BOSS_RULES[id] : undefined) ?? BOSS_RULES[id]
 }
 export function prepareEncounter(b: Battle): Battle {
   const ruleId = b.bossRuleId ?? b.stageId
@@ -46,6 +47,7 @@ export function bossIntent(b: Battle) {
       ? ["burn", "heal", "draw"][(b.round - 1) % 3]
       : rule.effect
   const text =
+    effect === "steep" ? "Đặt Chậu mầm bên bếp: hồi 4 ở lượt địch kế" : effect === "edit" ? `Gỡ một Ủ vị lâu nhất của bạn, rút ${strength} lá` :
     effect === "burn"
       ? `Gây ${strength} sát thương lên bạn`
       : effect === "heal"
@@ -56,6 +58,7 @@ export function bossIntent(b: Battle) {
   return {
     text,
     tip:
+      effect === "steep" ? "Mở nắp đúng lúc hủy đúng một lời hứa trước khi mầm nở." : effect === "edit" ? "Giữ một phép Ủ vị để dùng sau khi boss sửa trang." :
       effect === "shield"
         ? "Dồn sát thương hoặc phép vượt Hộ vệ."
         : effect === "heal"

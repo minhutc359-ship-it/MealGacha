@@ -1,3 +1,4 @@
+import { validLivingDecision } from "./livingChoices"
 import { z } from "zod"
 import { RELIC_MAP, EXPEDITION_EVENTS } from "./expedition"
 import { CARD_MAP } from "./catalog"
@@ -87,6 +88,7 @@ const node = z.object({
 })
 const expedition = z
   .object({
+    promise: z.enum(["safe","bold"]).optional(),
     rulesVersion: z.union([z.literal(350), z.literal(400)]).default(350),
     id: z.string(),
     seed: z.number().int().min(0).max(4294967295),
@@ -191,6 +193,7 @@ export const GameSaveSchema = z
     story400: z.object({
       version: z.literal(1),
       giftClaimed: z.boolean(),
+      decisions: z.record(z.string().max(40), z.string().max(40)).refine(v=>Object.entries(v).every(([k,d])=>validLivingDecision(k,d))).optional(),
       originEnding: z.enum(["remember", "release"]).nullable(),
       choices: z.record(z.string().max(80), z.enum(["courage", "wisdom"])),
       seenScenes: z.array(z.string().max(80)).max(32),
@@ -333,6 +336,7 @@ export const GameSaveSchema = z
             score: integer.optional(),
           })
           .optional(),
+        livingRulesVersion: z.literal(2).optional(),
         bossRuleId: bossId.optional(),
         rngState: z.number().int().min(0).max(4294967295).optional(),
         comboCounts: z.partialRecord(recipeId, integer.max(1000)).optional(),

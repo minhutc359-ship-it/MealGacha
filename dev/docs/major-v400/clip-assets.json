@@ -1,0 +1,218 @@
+{
+  "tool": "Imagegen",
+  "method": "original roster pose references; new handpainted pose atlases, measured row gaps and alpha-preserving WebP encoding",
+  "models": [
+    {
+      "id": "chef-nhien",
+      "sourceSHA256": "5f20a05059692701c24334c99bf515d521c6f19fcc2773cb8b495afd0478f3c5",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        273,
+        524,
+        768,
+        1024
+      ],
+      "path": "public/assets/v4/characters/chef-nhien.webp",
+      "bytes": 148186,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "chef-hai",
+      "sourceSHA256": "a546cdc8cdb4e42610d9dfa13ba46bb9842b3488d9bb4fbc600c8982bfddeec2",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        258,
+        510,
+        763,
+        1024
+      ],
+      "path": "public/assets/v4/characters/chef-hai.webp",
+      "bytes": 172896,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "chef-moc",
+      "sourceSHA256": "be7d1b129e67ca8c7d1c56b0e75bcf5c79d7b8b4ef2bc89d9871fb8fdd009204",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        263,
+        510,
+        765,
+        1024
+      ],
+      "path": "public/assets/v4/characters/chef-moc.webp",
+      "bytes": 156152,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "chef-bach",
+      "sourceSHA256": "6d4b63e2653f228b75786ff3ee70cdc616925aabec2973bf81f0dae6ba2d6fc8",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        253,
+        504,
+        761,
+        1024
+      ],
+      "path": "public/assets/v4/characters/chef-bach.webp",
+      "bytes": 139758,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "chef-lien",
+      "sourceSHA256": "cc73dd241cc91898b36b7e5bbc24c30f33fecf91a34c27f32b718df1708d59ad",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        263,
+        513,
+        762,
+        1024
+      ],
+      "path": "public/assets/v4/characters/chef-lien.webp",
+      "bytes": 178032,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "ferry",
+      "sourceSHA256": "3ec62e0cceb79beceab74e2b91a5fccf512ba8c3b08814a3ecf3147cc8a1ead6",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        260,
+        505,
+        769,
+        1024
+      ],
+      "path": "public/assets/v4/characters/ferry.webp",
+      "bytes": 143778,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "bun-cha",
+      "sourceSHA256": "0a58ff24e0804d2e9b2e715543ed522709de4631598132319d67b4e671a30126",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        269,
+        532,
+        779,
+        1024
+      ],
+      "path": "public/assets/v4/characters/bun-cha.webp",
+      "bytes": 151982,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "bun-rieu",
+      "sourceSHA256": "38d24bbfb643b3d4cd80e3e8d89cf934b03d8a5c57a52a3bb7481dab0f951e93",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        255,
+        499,
+        748,
+        1024
+      ],
+      "path": "public/assets/v4/characters/bun-rieu.webp",
+      "bytes": 166298,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "banh-xeo",
+      "sourceSHA256": "8c47b7c2f8871c53c4b263df0eb4b083de63a152f9b9015fa119dad56d8698ec",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        260,
+        510,
+        762,
+        1024
+      ],
+      "path": "public/assets/v4/characters/banh-xeo.webp",
+      "bytes": 172532,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "banh-cuon",
+      "sourceSHA256": "09954f168a0d28fbb7901332f6d5213d0376328add03ca4bc0711851876641cd",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        256,
+        507,
+        766,
+        1024
+      ],
+      "path": "public/assets/v4/characters/banh-cuon.webp",
+      "bytes": 188260,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "xoi",
+      "sourceSHA256": "9729fdba6077649c454942064aa125d829e94de950ede7f211ebd616dd82684e",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        256,
+        511,
+        767,
+        1024
+      ],
+      "path": "public/assets/v4/characters/xoi.webp",
+      "bytes": 161844,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "com-ga",
+      "sourceSHA256": "60bd197b7e9b227476e784f42e26a62cb898e71da07b83843bbc1a7aa4101812",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        254,
+        506,
+        775,
+        1024
+      ],
+      "path": "public/assets/v4/characters/com-ga.webp",
+      "bytes": 182646,
+      "decodedBytes": 1572864
+    },
+    {
+      "id": "bosses",
+      "sourceSHA256": "a8c14e0c48f57dd7672dc6958a19ce325f445652aff1ce36e908a0a5957bcf5e",
+      "posesPerModel": 24,
+      "grid": "6x4 per model",
+      "rowCuts": [
+        0,
+        183,
+        360,
+        556,
+        720,
+        905,
+        1078,
+        1263,
+        1448
+      ],
+      "path": "public/assets/v4/characters/bosses.webp",
+      "bytes": 378580,
+      "decodedBytes": 3145728
+    }
+  ]
+}

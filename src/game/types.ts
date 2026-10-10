@@ -135,6 +135,7 @@ export interface Battle {
     seed: number
     score?: number
   }
+  livingRulesVersion?: 2
   bossRuleId?: string
   rngState?: number
   comboCounts?: Partial<Record<RecipeId, number>>
@@ -174,6 +175,7 @@ export interface ExpeditionReward {
   relicPicked: boolean
 }
 export interface ExpeditionRun {
+  promise?: "safe" | "bold"
   rulesVersion?: 350 | 400
   id: string
   seed: number
@@ -219,6 +221,7 @@ export interface GameSave {
     version: 1
     giftClaimed: boolean
     originEnding: "remember" | "release" | null
+    decisions?: Record<string, string>
     choices: Record<string, "courage" | "wisdom">
     seenScenes: string[]
     claimedRewards: string[]

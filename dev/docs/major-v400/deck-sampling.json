@@ -1,0 +1,172 @@
+{
+  "agent": "coach-v1 versus built-in enemy AI; 400-action guard; full ownership suggested decks",
+  "scope": "6 pairs × 200 seeds. Unequal agent policies and no human playtest; rates are diagnostic, not competitive balance certification.",
+  "decks": {
+    "seasoning": [
+      "bun-rieu",
+      "bun-rieu",
+      "v4-moon-token",
+      "v4-moon-token",
+      "v4-market-host",
+      "v4-market-host",
+      "pho-bo",
+      "pho-bo",
+      "com-ga",
+      "com-ga",
+      "bun-cha",
+      "bun-cha",
+      "v4-crossroads-tea",
+      "v4-crossroads-tea",
+      "v4-two-spices",
+      "v4-two-spices",
+      "herb",
+      "herb"
+    ],
+    "steeping": [
+      "bun-rieu",
+      "bun-rieu",
+      "v4-unseal-recipe",
+      "v4-unseal-recipe",
+      "pho-bo",
+      "pho-bo",
+      "banh-da-cua",
+      "banh-da-cua",
+      "bun-ca",
+      "bun-ca",
+      "bun-thang",
+      "bun-thang",
+      "v4-banked-coals",
+      "v4-banked-coals",
+      "v4-warm-towel",
+      "v4-warm-towel",
+      "v4-rain-seed",
+      "v4-rain-seed"
+    ],
+    "rebirth": [
+      "bun-rieu",
+      "bun-rieu",
+      "sea-memory",
+      "sea-memory",
+      "banner-tay-bac-ga-nuong-mac-khen",
+      "banner-tay-bac-ga-nuong-mac-khen",
+      "peking-duck",
+      "peking-duck",
+      "sua-chua-mit",
+      "sua-chua-mit",
+      "che-khuc-bach",
+      "che-khuc-bach",
+      "hearth-legacy",
+      "hearth-legacy",
+      "rebloom",
+      "rebloom",
+      "tea-break",
+      "tea-break"
+    ],
+    "spellcraft": [
+      "banh-it-la-gai",
+      "banh-it-la-gai",
+      "sugar-veil",
+      "sugar-veil",
+      "kem-bo-da-lat",
+      "kem-bo-da-lat",
+      "tom-yum-goong",
+      "tom-yum-goong",
+      "hotteok",
+      "hotteok",
+      "saltimbocca",
+      "saltimbocca",
+      "iron-ladle",
+      "iron-ladle",
+      "v4-two-spices",
+      "v4-two-spices",
+      "herb",
+      "herb"
+    ]
+  },
+  "results": [
+    {
+      "pair": [
+        "seasoning",
+        "steeping"
+      ],
+      "seeds": 200,
+      "alternatingSides": true,
+      "firstDeckWins": 41,
+      "firstDeckLosses": 159,
+      "guardStops": 0,
+      "meanRounds": 9.71,
+      "playerSeasonings": 588,
+      "playerSteepings": 329
+    },
+    {
+      "pair": [
+        "seasoning",
+        "rebirth"
+      ],
+      "seeds": 200,
+      "alternatingSides": true,
+      "firstDeckWins": 2,
+      "firstDeckLosses": 198,
+      "guardStops": 0,
+      "meanRounds": 11.08,
+      "playerSeasonings": 598,
+      "playerSteepings": 0
+    },
+    {
+      "pair": [
+        "seasoning",
+        "spellcraft"
+      ],
+      "seeds": 200,
+      "alternatingSides": true,
+      "firstDeckWins": 10,
+      "firstDeckLosses": 190,
+      "guardStops": 0,
+      "meanRounds": 10.695,
+      "playerSeasonings": 767,
+      "playerSteepings": 0
+    },
+    {
+      "pair": [
+        "steeping",
+        "rebirth"
+      ],
+      "seeds": 200,
+      "alternatingSides": true,
+      "firstDeckWins": 33,
+      "firstDeckLosses": 167,
+      "guardStops": 0,
+      "meanRounds": 9.52,
+      "playerSeasonings": 0,
+      "playerSteepings": 364
+    },
+    {
+      "pair": [
+        "steeping",
+        "spellcraft"
+      ],
+      "seeds": 200,
+      "alternatingSides": true,
+      "firstDeckWins": 40,
+      "firstDeckLosses": 160,
+      "guardStops": 0,
+      "meanRounds": 9.12,
+      "playerSeasonings": 158,
+      "playerSteepings": 342
+    },
+    {
+      "pair": [
+        "rebirth",
+        "spellcraft"
+      ],
+      "seeds": 200,
+      "alternatingSides": true,
+      "firstDeckWins": 38,
+      "firstDeckLosses": 162,
+      "guardStops": 0,
+      "meanRounds": 11.85,
+      "playerSeasonings": 191,
+      "playerSteepings": 0
+    }
+  ]
+}

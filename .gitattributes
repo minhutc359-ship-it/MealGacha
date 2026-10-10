@@ -209,3 +209,5 @@ public/assets/tcg/map/** -filter -diff -merge -text
 # V4 product media is small and must serve real bytes in a normal checkout.
 public/assets/v4/** -filter -diff -merge -text
 dev/docs/major-v400/*.jpg -filter -diff -merge -text
+# Offline fonts must be available as actual bytes in a clean deployment checkout.
+public/assets/fonts/** -filter -diff -merge -text

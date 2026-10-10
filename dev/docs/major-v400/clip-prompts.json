@@ -1,0 +1,54 @@
+{
+  "chef-nhien": {
+    "generated": "exec-5a8799ee-217e-413a-a2bc-599fc2412800.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "chef-hai": {
+    "generated": "exec-1e44239b-5479-43b7-8808-1f2bfcd55767.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "chef-moc": {
+    "generated": "exec-90519b7e-b528-4536-ab0b-21ccc3ea6423.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "chef-bach": {
+    "generated": "exec-79f3622a-28dd-494c-a184-dc7087578b47.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "chef-lien": {
+    "generated": "exec-69353734-ca89-4cd3-a22f-623a2f3abedd.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "ferry": {
+    "generated": "exec-9b4ab0cf-78d7-49c2-affb-441a1048c7a4.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "bun-cha": {
+    "generated": "exec-6c8dd4aa-0cc7-4e3d-a6ad-667e4a2bd139.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "bun-rieu": {
+    "generated": "exec-918c6c14-b349-4194-bd7e-0c1956aa58ee.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "banh-xeo": {
+    "generated": "exec-e2c052b6-1b44-40b4-9919-6ca93101ade0.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "banh-cuon": {
+    "generated": "exec-066ee1ac-1159-4993-a6d1-b66286ee697e.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "xoi": {
+    "generated": "exec-996be80d-8e98-46fa-b4da-e0580906d241.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "com-ga": {
+    "generated": "exec-2d83930f-2b85-4bf2-a56f-503b90d5e3a7.png",
+    "prompt": "Single-character 6x4 24-pose atlas; reference is first measured pose from original roster A/B/C. Idle2/walk6/attack4/cast4/hurt2/death4/victory2; true alpha and transparent padding."
+  },
+  "bosses": {
+    "generated": "exec-878e505e-1e3c-4870-bf1e-37618c25e4b9.png",
+    "prompt": "Transparent 6x8 atlas, 24 poses each: jade pot-lid water guardian and ivory self-editing book/quill. Per model: idle2, walk6, attack4, cast4, hurt2, death4, victory2. Original hand-painted style; no external character reference."
+  }
+}

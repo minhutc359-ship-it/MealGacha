@@ -1,3 +1,4 @@
+import { validLivingDecision, LIVING_CHOICES, type LivingChapter, type LivingDecision } from "./livingChoices"
 import { create } from "zustand"
 import { V4_CARDS } from "./v4Cards"
 import { STAGE_MAP } from "./story"
@@ -53,6 +54,7 @@ interface Store {
   equipCompanion(id: NpcId | null): void
   acknowledgeScene(id: string): void
   claimV4Gift(): void
+  chooseLivingPath(chapter: LivingChapter, decision: LivingDecision): void
   chooseEnding(ending: "remember" | "release"): void
   dismiss(): void
   sync(): void
@@ -70,7 +72,7 @@ interface Store {
   start(stageId: string | null, choice?: "courage" | "wisdom"): boolean
   act(action: BattleAction): boolean
   leaveBattle(): void
-  beginExpedition(): boolean
+  beginExpedition(promise?: "safe" | "bold"): boolean
   enterExpedition(id: string): void
   chooseEvent(id: string): void
   chooseRelic(id: string | null): void
@@ -110,6 +112,13 @@ export const useGameStore = create<Store>((set, get) => {
       const cards = { ...save.cards }
       for (const card of V4_CARDS) cards[card.id] = Math.max(2, cards[card.id] ?? 0)
       commit({ ...save, contentVersion: 400, cards, story400: { version: 1, originEnding: null, choices: {}, seenScenes: [], claimedRewards: [], ...save.story400, giftClaimed: true } }, "Đã nhận 8 thẻ 4.0, mỗi thẻ ít nhất 2 bản. Bộ bài hiện tại được giữ nguyên.")
+    },
+    chooseLivingPath(chapter, decision) {
+      const save=current(), definition=LIVING_CHOICES.find(c=>c.id===chapter)
+      if(!definition || !validLivingDecision(chapter,decision) || !isStageUnlocked(definition.stage,save.clearedStages,save.storyEnding) || (save.battle && !save.battle.result)) return
+      const story={version:1 as const,giftClaimed:false,originEnding:save.storyEnding ?? null,choices:{},seenScenes:[],claimedRewards:[],...save.story400}
+      const seen=`choice:${chapter}:${decision}`
+      commit({...save,contentVersion:400,story400:{...story, decisions:{...story.decisions,[chapter]:decision},seenScenes:[...new Set([...story.seenScenes,seen])]}},"Đã ghi cách kể vào Sổ Chợ Sống. Phần thưởng và tiến trình cũ giữ nguyên.")
     },
     chooseEnding(ending) {
       const save = current()
@@ -427,7 +436,7 @@ export const useGameStore = create<Store>((set, get) => {
         : settleBattle({ ...save, battle: { ...save.battle, result: "loss" } })
       if (commit({ ...settled, battle: null })) set({ presentation: null })
     },
-    beginExpedition() {
+    beginExpedition(promise) {
       const save = current()
       if (activeRun(save.expedition) || (save.battle && !save.battle.result))
         return false
@@ -441,7 +450,7 @@ export const useGameStore = create<Store>((set, get) => {
         {
           ...save,
           battle: null,
-          expedition: createExpedition(deck!.cards),
+          expedition: createExpedition(deck!.cards,undefined,promise),
           expeditionStats: {
             ...save.expeditionStats,
             runs: save.expeditionStats.runs + 1,

@@ -393,6 +393,7 @@ const schools: School[] = ["ember", "tide", "grove", "hearth", "sugar"]
 export function createExpedition(
   deck: string[],
   seed = Math.floor(Math.random() * 4294967296),
+  promise?: "safe" | "bold",
 ): ExpeditionRun {
   const rng = random(seed)
   const kinds: ExpeditionNode["kind"][][] = [
@@ -433,6 +434,7 @@ export function createExpedition(
     }),
   )
   return {
+    ...(promise ? {promise} : {}),
     rulesVersion: 400,
     id: crypto.randomUUID(),
     seed,
@@ -531,6 +533,8 @@ export function startRunBattle(run: ExpeditionRun, rng = Math.random): Battle {
     24 + run.floor + (node.kind === "elite" ? 4 : node.kind === "boss" ? 6 : 0),
     b.enemyChallenge,
   )
+  if(run.promise === "bold") b.enemy.health=b.enemy.maxHealth=Math.round(b.enemy.maxHealth*1.12)
+  if(run.promise === "safe") b.player.health=Math.min(b.player.maxHealth,b.player.health+2)
   b.expedition = {
     runId: run.id,
     nodeId: node.id,
@@ -571,7 +575,7 @@ export function settleRunCombat(
       ...run,
       health: Math.min(run.maxHealth, Math.max(1, battle.player.health)),
       wins: run.wins + 1,
-      supplies: run.supplies + (node.kind === "elite" ? 40 : 25),
+      supplies: run.supplies + (node.kind === "elite" ? 40 : 25) + (run.promise === "bold" ? 8 : 0),
     },
     `Chiến thắng · Giữ lại ${battle.player.health} máu.`,
   )

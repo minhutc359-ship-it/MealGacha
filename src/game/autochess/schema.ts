@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { UNIT_MAP, AUTO_UNITS, LEGACY_UNIT_IDS, MONSTER_MAP, RELICS, AUGMENTS } from "./catalog"
+import { UNIT_MAP, AUTO_UNITS, LEGACY_UNIT_IDS, MONSTER_MAP, RELICS, AUGMENTS, augmentsForRules } from "./catalog"
 import { SCENES } from "./story"
 import { capacity, copies, poolSize } from "./economy"
 import { BENCH_SLOTS, MAX_LEVEL } from "./config"
@@ -52,6 +52,7 @@ const piece = z.object({
     .refine((a) => new Set(a).size === a.length),
 })
 const actor = z.object({
+  talent: z.object({relayAt:int, healAt:int, guardUsed:z.boolean(), attackCharge:real.max(1), chargeUntil:int}).optional(),
   uid: id,
   id: id.refine((v) => !!UNIT_MAP[v] || !!MONSTER_MAP[v]),
   side: z.enum(["ally", "enemy"]),
@@ -93,6 +94,7 @@ const actor = z.object({
   sealedUntil: int,
 })
 const combat = z.object({
+  augments: z.array(augmentId).max(6).optional(),
   id,
   tick: int,
   actors: z.array(actor).min(1).max(60),
@@ -149,7 +151,7 @@ const currentRunSchema = z
   .object({
     id,
     mode,
-    rulesVersion: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5), z.literal(6)]),
+    rulesVersion: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5), z.literal(6), z.literal(7)]),
     seed: uint32,
     rng: uint32,
     day: z.string().max(16),
@@ -220,6 +222,7 @@ const currentRunSchema = z
       ctx.addIssue({ code: "custom", message })
     if (run.mode === "survival" && run.willpowerVersion === 1 && run.health > 3)
       invalid("Survival chỉ có tối đa 3 ý chí")
+    if (run.augments.some(a => !augmentsForRules(run.rulesVersion).some(v => v.id === a))) invalid("Nâng cấp không thuộc phiên bản luật")
     const board = run.roster.filter((p) => p.cell !== null)
     const placedBench = run.roster.filter(p => p.cell === null && p.benchSlot !== undefined)
     if (

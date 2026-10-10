@@ -1,3 +1,4 @@
+import { LivingJournal } from "./LivingJournal"
 import { useState, type CSSProperties } from "react"
 import { CHAPTERS, isStageUnlocked } from "../../game/story"
 import { SCHOOLS } from "../../game/catalog"
@@ -23,7 +24,7 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
   const [selected, setSelected] = useState(() =>
     Math.min(CHAPTERS.length - 1, Math.floor(cleared.length / 3)),
   )
-  const [reader, setReader] = useState<"memory" | "culture" | "map" | null>(
+  const [reader, setReader] = useState<"memory" | "culture" | "map" | "living" | null>(
     null,
   )
   const chapter = CHAPTERS[selected]
@@ -111,6 +112,7 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
         </button>
       </div>
       <div className="tcg-screen-tools" aria-label="Sổ hành trình">
+        <button className="tcg-button ghost" onClick={()=>setReader("living")}>Sổ Chợ Sống</button>
         <button
           className="tcg-button ghost"
           onClick={() => setReader("memory")}
@@ -214,7 +216,7 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
       {reader && (
         <Dialog
           title={
-            reader === "memory"
+            reader === "living" ? "Sổ Chợ Sống" : reader === "memory"
               ? "Nhật ký ký ức"
               : reader === "culture"
                 ? "Văn hóa Việt Nam"
@@ -224,7 +226,7 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
           wide
           className="tcg-journal-dialog"
         >
-          {reader === "memory" ? (
+          {reader === "living" ? <LivingJournal /> : reader === "memory" ? (
             <MemoryJournal />
           ) : reader === "culture" ? (
             <CultureJournal />

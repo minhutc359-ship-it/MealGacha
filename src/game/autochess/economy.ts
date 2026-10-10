@@ -1,4 +1,4 @@
-import { AUTO_UNITS, UNIT_MAP, shopOdds, LEGACY_UNIT_IDS, RELICS, AUGMENTS, LEGACY_AUGMENTS } from "./catalog"
+import { AUTO_UNITS, UNIT_MAP, shopOdds, LEGACY_UNIT_IDS, RELICS, AUGMENTS, LEGACY_AUGMENTS, augmentsForRules } from "./catalog"
 import { RULES_VERSION, type AutoMode, type AutoRun, type Piece } from "./types"
 import { startingWillpower } from "./willpower"
 import { BENCH_SLOTS, LEVEL_XP } from "./config"
@@ -271,12 +271,16 @@ export function equip(run: AutoRun, uid: string, item: string): string | null {
   return null
 }
 export function choices(run: AutoRun, kind: "relic" | "augment") {
-  const options = (kind === "relic" ? [...RELICS, ...(run.rulesVersion >= 3 ? ITEM_COMPONENTS : [])] : (run.rulesVersion >= 6 ? AUGMENTS : LEGACY_AUGMENTS))
+  const options = (kind === "relic" ? [...RELICS, ...(run.rulesVersion >= 3 ? ITEM_COMPONENTS : [])] : (run.rulesVersion >= 6 ? augmentsForRules(run.rulesVersion) : LEGACY_AUGMENTS))
     .filter((o) => kind === "relic" || !run.augments.includes(o.id))
     .map((o) => o.id)
   const picked: string[] = []
   while (options.length && picked.length < 3)
     picked.push(options.splice(Math.floor(random(run) * options.length), 1)[0])
+  if (kind === "augment" && run.rulesVersion >= 7) {
+    const universal=["another","v4-third-cast","shift"].find(id=>!run.augments.includes(id))
+    if(universal && !picked.some(id=>["another","v4-third-cast","shift"].includes(id))) picked[picked.length-1]=universal
+  }
   return picked
 }
 export function traitCounts(pieces: Piece[]) {

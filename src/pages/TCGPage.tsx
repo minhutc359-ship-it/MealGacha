@@ -1,3 +1,5 @@
+import { livingChoiceLines } from "../game/livingChoices"
+import { LivingJournal } from "../components/game/LivingJournal"
 import { livingOpening } from "../game/livingStory"
 import { BrandMark } from "../components/layout/BrandMark"
 import { LegalLinks } from "../legal/LegalLinks"
@@ -18,7 +20,7 @@ import { DuelBasics } from "../components/game/DuelBasics"
 import { HomeLobby } from "../components/game/HomeLobby"
 import { CampaignScreen } from "../components/game/CampaignScreen"
 import { AudioControls, useGameAudio } from "../components/game/GameAudio"
-import { SCENES, BOSS_RULES, WORLD_PRIMER } from "../game/narrative"
+import { LIVING_BOSS_RULES, SCENES, BOSS_RULES, WORLD_PRIMER } from "../game/narrative"
 import { stageArtId } from "../game/storyArt"
 import { BattleBoard } from "../components/game/BattleBoard"
 import { Collection } from "../components/game/Collection"
@@ -879,7 +881,7 @@ export function TCGPage() {
               <>
                 <StoryScene
                   key={stageId}
-                  lines={STAGE_MAP[stageId].index >= 18 ? [livingOpening(current.story400?.originEnding ?? current.storyEnding), ...SCENES[stageId].before] : SCENES[stageId].before}
+                  lines={STAGE_MAP[stageId].index >= 18 ? [livingOpening(current.story400?.originEnding ?? current.storyEnding), ...livingChoiceLines(stageId,current), ...SCENES[stageId].before] : SCENES[stageId].before}
                   art={stageArtId(stageId)}
                   onComplete={() => setSceneRead(true)}
                 />
@@ -910,10 +912,11 @@ export function TCGPage() {
                   <summary>Gợi ý chiến thuật</summary>
                   <p>{SCENES[stageId].tactic}</p>
                 </details>
-                {BOSS_RULES[stageId] && (
+                {STAGE_MAP[stageId].index >= 18 && <LivingJournal chapter={STAGE_MAP[stageId].chapter.id} />}
+                {(LIVING_BOSS_RULES[stageId] ?? BOSS_RULES[stageId]) && (
                   <details className="tcg-boss-rule">
-                    <summary>☽ {BOSS_RULES[stageId].name}</summary>
-                    <p>{BOSS_RULES[stageId].text}</p>
+                    <summary>☽ {(LIVING_BOSS_RULES[stageId] ?? BOSS_RULES[stageId]).name}</summary>
+                    <p>{(LIVING_BOSS_RULES[stageId] ?? BOSS_RULES[stageId]).text}</p>
                   </details>
                 )}
                 <p>Bạn mang điều gì vào trận chiến này?</p>

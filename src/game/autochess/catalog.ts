@@ -870,7 +870,7 @@ MONSTERS.push(
   { id: "boss-lotus", name: "Sen Sương Khép Cánh", hp: 3100, attack: 81, range: 3, armor: 22, skill: "seal", power: 320, school: "grove", sprite: 3, boss: true, text: "Boss Survival: khóa phép người đứng trước, chuyển pha dưới nửa máu. Cần cả đòn đánh và phép." },
 )
 MONSTERS.push(
- {id: "v4-tide-lock", name: "Nắp Nồi Con Nước", hp: 2850, attack: 80, range: 2, armor: 25, skill: "frost", power: 310, school: "tide", sprite: 3, boss: true, text: "Đóng băng tuyến gần; tách carry và dùng Thanh vị. Thức tỉnh dưới nửa máu."},
+ {id: "v4-tide-lock", name: "Nắp Nồi Con Nước", hp: 2850, attack: 80, range: 2, armor: 25, skill: "frost", power: 310, school: "tide", sprite: 3, boss: true, text: "Gây sát thương phép và làm choáng một mục tiêu trong 1 giây. Trang bị Lá thuốc hoặc 4 Thanh vị giảm thời gian choáng một nửa. Thức tỉnh dưới nửa máu."},
  {id: "v4-last-page", name: "Trang Giấy Chưa Viết", hp: 3200, attack: 84, range: 3, armor: 22, skill: "copy", power: 320, school: "sugar", sprite: 2, boss: true, text: "Phản chiếu kỹ năng đồng minh vừa dùng với 65% sức mạnh. Thức tỉnh dưới nửa máu."},
 )
 export const MONSTER_MAP = Object.fromEntries(MONSTERS.map((m) => [m.id, m]))
@@ -916,5 +916,18 @@ export const SHOP_ODDS = [
   [10, 20, 25, 35, 10],
   [5, 10, 20, 40, 25],
 ]
+export const TACTICAL_AUGMENTS = [
+ {id:"v4-relay",name:"Đội chuyền bếp",text:"Sau khi niệm phép, truyền tối đa 12 mana cho đồng minh khác ít mana nhất. Mỗi quân chờ 8 giây giữa hai lần truyền."},
+ {id:"v4-heal-strike",name:"Bếp sau cơn mưa",text:"Hồi máu thực cho đồng minh cường hóa đòn thường kế tiếp thêm 35% trong 6 giây. Mỗi quân nhận tối đa một lần mỗi 5 giây; không cộng dồn."},
+ {id:"v4-last-guard",name:"Hộ vệ bàn trống",text:"Khi đồng minh bị hạ, mỗi Hộ vệ còn sống nhận tối đa 160 chắn. Một lần mỗi Hộ vệ mỗi trận."},
+ {id:"v4-market-deal",name:"Chợ chớp đèn",text:"Bỏ lợi tức vàng để nhận một lần làm mới cửa hàng miễn phí ở mỗi đợt mới. Thử lại cùng đợt không cấp thêm lượt."},
+ {id:"v4-third-cast",name:"Đêm kể chuyện",text:"Mỗi phép thứ ba đã giải quyết của từng quân gây thêm 45% sức mạnh phép lên mục tiêu hiện tại. Không tính lượt chuẩn bị niệm bị ngắt."},
+ {id:"v4-many-flavors",name:"Mâm nhiều vị",text:"Có ít nhất 3 hệ và 2 nghề: quân khác hệ được hồi tối đa 2% máu mỗi 5 giây; mỗi hệ chỉ chọn quân thấp máu nhất."},
+]
+AUGMENTS.push(...TACTICAL_AUGMENTS)
+export function augmentsForRules(rules: number) {
+ return rules >= 7 ? AUGMENTS : rules >= 6 ? AUGMENTS.filter(a => !TACTICAL_AUGMENTS.some(t => t.id === a.id)) : AUGMENTS.filter(a => !a.id.startsWith("v4-"))
+}
+
 export const shopOdds = (level: number, rulesVersion: number) =>
   (rulesVersion >= 3 ? SHOP_ODDS : LEGACY_SHOP_ODDS)[Math.max(0, Math.min(6, level - 3))]

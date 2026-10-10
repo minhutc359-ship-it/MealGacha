@@ -733,7 +733,7 @@ export const CHAPTER_COPY = [
 export interface BossRule {
   name: string
   text: string
-  effect: "shield" | "burn" | "heal" | "draw" | "cycle"
+  effect: "shield" | "burn" | "heal" | "draw" | "cycle" | "steep" | "edit"
 }
 export const BOSS_RULES: Record<string, BossRule> = {
   "living-market-3": {
@@ -795,4 +795,10 @@ export const ENDINGS = {
     epilogue:
       "Bà mở cửa cho người khách lạ: ‘Con tên gì?’ Bạn chưa trả lời, chỉ xin học buộc lạt. Bà đặt tay lên tay bạn: ‘Vừa thôi, bánh còn cần chỗ nở.’ Lần này, bạn có cả một đời để chọn tên mình và truyền lại điều vừa học.",
   },
+}
+
+/** New battles opt in; a saved battle without the marker keeps its old rule. */
+export const LIVING_BOSS_RULES: Record<string, BossRule> = {
+  "rain-harbor-3": { name:"Nồi chờ con nước", effect:"steep", text:"Đầu lượt địch: đặt Chậu mầm bên bếp vào hàng Ủ vị nếu còn chỗ; hồi 4 ở lượt địch kế. Bạn có một lượt để gỡ bằng Mở nắp đúng lúc." },
+  "tomorrow-table-3": { name:"Mực sửa lời", effect:"edit", text:"Đầu lượt địch: gỡ đúng một Ủ vị lâu nhất của bạn rồi rút 1 lá; thức tỉnh rút 2. Đừng xếp cả hai lời hứa vào cùng một lượt." },
 }

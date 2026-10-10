@@ -537,7 +537,7 @@ describe("complete content and assets", () => {
     expect(MONSTERS).toHaveLength(24)
     expect(MONSTERS.filter((m) => m.boss)).toHaveLength(8)
     expect(RELICS).toHaveLength(6)
-    expect(AUGMENTS).toHaveLength(12)
+    expect(AUGMENTS).toHaveLength(18)
     expect(Object.keys(SCENES)).toHaveLength(13)
     for (const scene of Object.values(SCENES))
       expect(scene.lines.length).toBeGreaterThanOrEqual(2)

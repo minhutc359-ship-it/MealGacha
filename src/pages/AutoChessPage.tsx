@@ -1,3 +1,4 @@
+import { ArenaScene } from "../components/game/ArenaScene"
 import { livingMusic } from "../game/audioScore"
 import { BrandMark } from "../components/layout/BrandMark"
 import { useEffect, useRef, useState, type CSSProperties } from "react"
@@ -93,10 +94,11 @@ export function AutoChessPage() {
     } | null>(null)
   const [replace, setReplace] = useState<AutoMode | null>(null),
     [speed, setSpeed] = useState(1),
-    [lowQuality, setLowQuality] = useState(false),
     [recordMode, setRecordMode] = useState<AutoMode>("survival"),
     [journal, setJournal] = useState<string | null>(null),
     [language, setLanguage] = useState<"vi" | "en">("vi")
+  const lowQuality = prefs.graphicsQuality === "low"
+  const setLowQuality = (low:boolean) => useAppStore.getState().updatePreference("graphicsQuality",low?"low":"normal")
   const [shopOpen, setShopOpen] = useState(true), [inventoryOpen, setInventoryOpen] = useState(false), [traitsOpen, setTraitsOpen] = useState(false)
   const [haptics, setHaptics] = useState(() => {
     try { return localStorage.getItem("som.auto.haptics") === "true" } catch { return false }
@@ -128,7 +130,7 @@ export function AutoChessPage() {
             ? "auto-boss"
             : "auto-battle"
         : "auto-prepare",
-    5,
+    5, run?.combat?.boss ? .75 : Math.max(1-(run ? willpowerRatio(run) : 1),(run?.combat?.tick ?? 0)>=1100?.9:.35),
   )
   useEffect(() => {
     document.body.classList.add("autochess-open")
@@ -667,7 +669,7 @@ export function AutoChessPage() {
           <div className="ac-battle-layout">
             <AutoTraits counts={traits} expanded={traitsOpen} onToggle={() => setTraitsOpen(!traitsOpen)} onDetails={() => openModal("traits")} />
           <section className={`ac-arena ${run.combat?.boss ? "is-boss" : ""} ${overtime ? "is-overtime" : ""}`} aria-label="Trận auto chess">
-            {run.rulesVersion >= 6 && run.wave >= 13 ? <div className="ac-world-art" aria-hidden="true" style={{backgroundImage: `url(/assets/v4/arenas/${run.wave <= 15 ? "harbor" : "kitchen"}.webp)`, backgroundSize: "cover", backgroundPosition: "center"}} /> : <WorldArt scene={sceneIndex} />}
+            {run.rulesVersion >= 6 && run.wave >= 13 ? <ArenaScene region={run.wave <= 15 ? "harbor" : "kitchen"} pressure={run.phase === "combat" && !!run.combat?.boss} /> : <WorldArt scene={sceneIndex} />}
             <AutoBoard
               run={run}
               getFrame={runtime.getFrame}

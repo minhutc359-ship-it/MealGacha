@@ -116,7 +116,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
       {
         "title": "4. Lưu lượng web và liên kết",
         "paragraphs": [
-          "Vercel phân phối trang, hình và nhạc nên có thể xử lý địa chỉ IP, thông tin yêu cầu và nhật ký kỹ thuật theo chính sách của dịch vụ lưu trữ. Kiểu chữ hiện tại được tải từ Google Fonts; Google có thể nhận địa chỉ IP và thông tin yêu cầu tải font. Bản hiện tại không cài SDK quảng cáo hoặc công cụ phân tích hành vi của nhà phát hành.",
+          "Vercel phân phối trang, hình và nhạc nên có thể xử lý địa chỉ IP, thông tin yêu cầu và nhật ký kỹ thuật theo chính sách của dịch vụ lưu trữ. Kiểu chữ Be Vietnam Pro và Exo 2 được đóng gói cùng game theo OFL; việc hiển thị chữ không gửi yêu cầu đến Google Fonts. Bản hiện tại không cài SDK quảng cáo hoặc công cụ phân tích hành vi của nhà phát hành.",
           "Nếu bạn cấu hình danh mục CSV hoặc URL bên ngoài, trình duyệt kết nối đến địa chỉ đó và dịch vụ tương ứng có thể nhận thông tin yêu cầu. Khi bạn gửi phản hồi công khai qua GitHub, thông tin bạn đăng chịu chính sách của GitHub và có thể được người khác xem.",
           "Source hiện tại không cài Vercel Analytics/Speed Insights hoặc cookie quảng cáo của ứng dụng. localStorage/IndexedDB phục vụ lưu trò chơi. Dịch vụ ngoài/hosting vẫn có cách xử lý log/cookie riêng; không đồng nghĩa mọi lưu lượng web đều không có dữ liệu cá nhân. Các dịch vụ có thể vận hành hạ tầng ngoài Việt Nam; không cam kết dữ liệu mạng chỉ được xử lý trong một quốc gia."
         ]
@@ -153,7 +153,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
       {
         "title": "9. Chính sách của nhà cung cấp",
         "paragraphs": [
-          "Vercel: https://vercel.com/legal/privacy-policy. Google Maps/Fonts: https://policies.google.com/privacy. OpenStreetMap: https://osmfoundation.org/wiki/Privacy_Policy. GitHub: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement. Photon và Overpass truy cập tại các địa chỉ nêu trong mục tìm quán. Nhà phát hành chưa xác nhận một thời hạn lưu log thống nhất cho các dịch vụ này."
+          "Vercel: https://vercel.com/legal/privacy-policy. Google Maps: https://policies.google.com/privacy. OpenStreetMap: https://osmfoundation.org/wiki/Privacy_Policy. GitHub: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement. Photon và Overpass truy cập tại các địa chỉ nêu trong mục tìm quán. Nhà phát hành chưa xác nhận một thời hạn lưu log thống nhất cho các dịch vụ này."
         ]
       },
       {
@@ -179,7 +179,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
         "title": "2. Thư viện và dữ liệu địa điểm",
         "paragraphs": [
           "React, React Router, Zustand, Zod, Papa Parse, PixiJS và các phụ thuộc được sử dụng theo giấy phép riêng. GSAP sử dụng Standard License của GSAP/Webflow, không phải MIT. Các thông báo và điều kiện bắt buộc được giữ trong hồ sơ giấy phép của bản phát hành.",
-          "Dữ liệu địa điểm © OpenStreetMap contributors, được cung cấp theo Open Database License (ODbL). Việc sử dụng và phân phối dữ liệu này phải tuân thủ ghi công và nghĩa vụ của ODbL khi áp dụng. Google Fonts và các dịch vụ liên kết có giấy phép hoặc điều khoản riêng."
+          "Dữ liệu địa điểm © OpenStreetMap contributors, được cung cấp theo Open Database License (ODbL). Việc sử dụng và phân phối dữ liệu này phải tuân thủ ghi công và nghĩa vụ của ODbL khi áp dụng. Font Be Vietnam Pro và Exo 2 dùng giấy phép SIL OFL 1.1; bản font phân phối cùng game đã được nén và giữ chữ Latin/Vietnamese. Các dịch vụ liên kết có điều khoản riêng."
         ]
       },
       {

@@ -1,9 +1,10 @@
+import {livingClipFrame} from "../../game/livingClips"
 import { motionAccent } from "../../game/motionProfiles"
 import { memo, useEffect, useRef, useState } from "react"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { characterPose, type CharacterMotion } from "../../game/tcgCharacterMotion"
 import {
-  characterBounds, characterImage, subscribeCharacterClock,
+  characterBounds, acquireCharacterImage, subscribeCharacterClock,
   type CharacterModel,
 } from "../../infrastructure/assets/characterSprites"
 
@@ -32,7 +33,7 @@ export const CharacterSprite = memo(function CharacterSprite({
     const surface = canvas.current!, ctx = surface.getContext("2d")
     const bounds = characterBounds(model)
     if (!ctx || !bounds) return
-    const image = characterImage(path)
+    const lease = acquireCharacterImage(path), image = lease.image
     let width = 1, height = 1, start = performance.now(), visibleSince = start
     let hiddenAt: number | null = document.hidden ? start : null
     const draw = (now: number) => {
@@ -41,7 +42,7 @@ export const CharacterSprite = memo(function CharacterSprite({
       const current = age < delay ? lead ?? "idle" : motion
       const poseAge = age < delay ? age : age - delay
       const fresh = model.sheet !== "base"
-      const pose = characterPose(current, poseAge, fresh, quiet, model.sheet.startsWith("roster"))
+      const pose = model.sheet.startsWith("living-") ? livingClipFrame(current,poseAge,quiet) : characterPose(current, poseAge, fresh, quiet, model.sheet.startsWith("roster"))
       const frame = showcase ? [0, 0, image.naturalWidth, image.naturalHeight, image.naturalWidth / 2, image.naturalHeight] : bounds.row.frames[pose]
       const [sx, sy, sw, sh, ax, ay] = frame
       const scale = showcase ? Math.min(width * .94 / sw, height * .94 / sh) : Math.min(width * .86 / (bounds.right - bounds.left), height * .88 / (bounds.bottom - bounds.top))
@@ -106,7 +107,7 @@ export const CharacterSprite = memo(function CharacterSprite({
     else resize()
     const unsubscribe = !quiet && !paused ? subscribeCharacterClock(draw) : () => {}
     return () => {
-      unsubscribe(); observer.disconnect(); image.removeEventListener("load", ready)
+      lease.release(); unsubscribe(); observer.disconnect(); image.removeEventListener("load", ready)
       document.removeEventListener("visibilitychange", visibility)
     }
   }, [path, showcase, model.sheet, model.row, motion, delay, lead, stamp, flip, quiet, paused])

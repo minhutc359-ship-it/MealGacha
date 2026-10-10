@@ -1,32 +1,38 @@
-# Soul of Meal 4.0.0 — Chợ Ký Ức Sống
+# Soul of Meal 4.0 — trạng thái triển khai để review
 
-Bản triển khai web để review, dựa trên PR #23 (chính sách/nghiên cứu), không tự merge hoặc tự quảng bá là đã qua QA điện thoại thật.
+Nhánh web `feat/v4-complete-release`; nhánh Android `feat/android-v4-beta` phụ thuộc nhánh web. Không tự merge hoặc thay production. Các tài liệu nghiên cứu còn giữ số đo lịch sử; báo cáo này và các JSON QA là trạng thái mới nhất.
 
-## Nội dung chạy được
+## Đã triển khai
 
-- 171 thẻ TCG, gồm 8 thẻ mới. Nêm vị yêu cầu chọn đúng một nhánh trước khi trả năng lượng; AI và huấn luyện viên chọn nhánh cụ thể. Ủ vị có ID/đích/lượt/sequence được lưu, tối đa hai hiệu ứng mỗi phe, giải quyết một lần đầu lượt sau; Mở nắp chỉ gỡ đích địch hợp lệ. Mục tiêu đã rời sân thì buff không tìm một quân khác thay thế. Khăn ấm giải băng; Người kể rút một lá sau Nêm vị, tối đa một lần/lượt.
-- Gói khởi hành tự nguyện cấp mỗi thẻ mới tối thiểu hai bản, một lần. Không đổi bộ bài, xu, bụi, pity, thẻ cũ hay tiến trình cũ. Người chơi tự thêm thẻ vào bộ bài.
-- 3 chương/9 màn TCG sau 18 màn cũ. Cần hoàn thành 18 màn và chọn kết thúc cũ. Mai không hồi sinh; nhánh nhớ giữ tiếng vọng, nhánh tiễn để An nói. Ending gốc được ghim khi bắt đầu nội dung mới. Reward màn mới có receipt trong namespace story400; clearedStages và settled tiếp tục chặn nhận lặp.
-- Thám hiểm mới có 4 sự kiện và 4 di vật bổ sung. Chuyến đang chơi giữ luật/pool thưởng 350. Các node đã sinh và reward đang chờ giữ nguyên.
-- Auto Chess mới dùng luật 6: 18 đợt, 6 augment bổ sung, hai boss chiến dịch ở 15/18 dùng frost/copy và chuyển pha. Lượt luật 1–5 giữ pool augment/boss Survival, kết thúc chiến dịch ở 12. Nếu phiên chiến dịch 3.5 thắng ở 12 vẫn còn lưu, bắt đầu chiến dịch sẽ tiếp tục 13 với đội hình, shop/pool, đồ, vàng, XP, ý chí và receipt đợt cũ; không mở lại record cũ. Nếu phiên đó đã được thay thế, chiến dịch mới đi từ đợt 1. Đây không phải đồng bộ đội hình từ record.
-- Bảng đóng góp Auto theo sự kiện thực: sát thương mất máu, hồi thực, chắn trao từ kỹ năng, chắn thực sự hấp thụ. Không suy đoán từ thanh máu và không cộng chắn ban đầu thành kỹ năng.
-- 3 arena WebP gốc (820.494 byte) nối vào chương/trận TCG mới và arena Auto 13–18. 14 profile chuyển động thủ tục riêng phủ trên atlas có sẵn; không phải 14 sprite sheet hay rig 3D mới. Reduced motion giữ thông tin và bỏ chuyển động thêm.
-- 6 cue vùng × hai cách phối thường/8-bit, 12 MP3 gốc (1.829.779 byte), tác giả bằng score thủ tục tái lập, không dùng sample ngoài. Chuyển cue ấm/căng theo vùng và trận, dùng mixer/crossfade có sẵn; chưa triển khai mixer ba stem đồng bộ như đề xuất nghiên cứu. Cache decoded music tối đa hai buffer/48 MiB (voice đang phát/crossfade còn giữ tham chiếu riêng). Cache atlas LRU soft target 16 ảnh/64 MiB; canvas đang mount giữ tham chiếu riêng. Không cam kết hard cap tổng RAM trình duyệt.
+- Giữ 163 thẻ cũ, thêm 8 thẻ Nêm vị/Ủ vị/đối sách, quà khởi hành tự nguyện với receipt. Không đổi deck hoặc ending gốc. Pending effects có owner/sequence/lượt đích; cancel không tiêu bài/mana; preview, AI và coach dùng luật thật.
+- 3 chương/9 màn và 6 lựa chọn lưu trong `story400`. Nhớ/tiễn tiếp tục thành lời thoại riêng; lựa chọn mới đổi lời dẫn, gợi ý chuyến và lời kết. Sổ lưu các lựa chọn; replay không trả thưởng lần nữa. Hai boss TCG mới có Ủ vị và gỡ pending; checkpoint trước thay đổi giữ luật nhờ marker tùy chọn.
+- Deck roles gồm mở bài/động cơ/nối phép/kết thúc/đối sách; thêm bộ gợi ý Nêm hai đường và Ủ dưới mưa, thử tay đầu có seed. Thám hiểm thêm 4 sự kiện/4 di vật và lời hứa an toàn hoặc mạo hiểm. Chuyến cũ thiếu lời hứa giữ hành vi cũ.
+- Auto mới chạy rules7: 18 đợt, 12 augment trước và 6 augment chiến thuật (tiếp mana, hồi→đánh, chắn khi mất đồng minh, bỏ lãi lấy reroll, mỗi lần cast thứ ba, hồi đa hệ). Có cooldown/cap/trạng thái lưu. Rules1–6 đang chơi giữ catalog, RNG và luật của mình; chiến dịch cũ đã thắng có thể tiếp tục đợt13 với đội hình và receipt cũ. Recap lấy damage/heal/shield/blocked thực; boss báo chiêu và gợi ý vị trí.
+- 3 sân nhiều lớp: nền/depth/light/atmosphere/foreground. Pixi WebGL lazy-load, Canvas fallback khi init fail/context loss, chế độ nhẹ và reduced motion. Actor/input canvas vẫn giữ tọa độ của engine. DPR2/1; dọn observer/ticker/resource khi unmount.
+- 12 model ưu tiên và 2 boss có 24 pose mỗi model: 336 raster pose thật; atlas WebP alpha đăng ký theo khoảng trống thực. Idle2/walk6/attack4/cast4/hurt2/death4/victory2, được dùng ở TCG/Auto; không gọi chuyển động thủ tục là clip mới. Cache ảnh dùng lease và đo decoded RGBA, mục tiêu64MiB.
+- 6 họ cue vùng × original/8-bit; một họ nhạc căng ba stem đồng bộ 96BPM/8bars, tăng lớp theo HP/boss/áp lực ở ranh giới bar. ×3 không đổi BPM. Một AudioContext, ambience slider riêng, biến thiên SFX nhẹ, mute/ẩn tab/native pause dừng voices. Ngân sách decoded gồm buffer cache và nguồn đang giữ:48MiB steady/64MiB transient; đây không phải tổng RAM ứng dụng.
+- Font Latin/Vietnamese OFL tự host WOFF2; mở game offline không gọi Google Fonts. Register quyền/nguồn và policy được tái sinh từ nội dung thực.
 
-## Bảo vệ tiến trình
+## Đối chiếu ticket
 
-Hai khóa gốc `foodchest.tcg.v1`, `foodchest.user.v1` giữ nguyên. Trận/chuyến thiếu rulesVersion đọc là 350; nội dung mới được nối thêm, không cân lại định nghĩa 163 thẻ cũ. Các trade hàng ngày dùng catalog cũ để giữ lời chào hàng theo ngày. Auto đang chơi giữ rulesVersion/seed/pool.
+| Ticket | Trạng thái | Bằng chứng chính |
+| --- | --- | --- |
+| S01–S03 | Runtime + regression đạt | `protectedStorage.test.ts`, schema, journal/recovery; rules cũ và MGC1 |
+| R01–R04 | Runtime + Chromium đạt | `ArenaScene`, lease cache, `livingClips`, manifest; browser context-loss/low/reduced |
+| T01–T04 | Runtime + regression đạt | Nêm/Ủ/AI/coach/deck roles/seeded opening/expedition promises |
+| A01–A02 | Runtime + regression đạt | Rules7 catalog/combat/reducer; cooldown, shield-once, third cast, recap/telegraph |
+| U01–U02 | Mixer/asset + kiểm thử đạt; nghe thật còn chờ | `adaptiveScore`, `compose-v4-stems.py`, `audio-stems.json`, audio tests |
+| C01, N01–N03 | Nội dung/asset nối vào game | 9 màn/6 đợt, story400 choices, 14 model×24, 3 sân, cue/stems provenance |
+| Q01 | Tự động đạt; nghiệm thu thiết bị/người chơi còn chờ | Browser10 checks; Auto1200 fixed-board samples +18 economy runs; TCG sampling; size/rights gates |
+| H01–H02 | Nhánh Android riêng; code/build và kiểm thử native | Xem `ANDROID_BETA.md` trong nhánh Android; APK không dùng remote server |
+| H03 | Chưa phát hành Play | Chủ thể/email/appId dài hạn/upload key/Play Console và QA máy thật cần chủ dự án chốt |
 
-Ghi có journal, checkpoint mới nhất/bản trước, raw comparison và writer lease đồng bộ best effort. JSON lỗi, schema tương lai, ghi gián đoạn, storage không dùng được và ghi đè bởi tab cũ mở giao diện phục hồi, không tự tạo rồi ghi save thay thế. Có xuất raw và xem trước JSON/MGC1 trước phục hồi. Save/quota lỗi không cập nhật store giả là đã ghi thành công. Lease không phải atomic CAS giữa hai process; bản 3.5 không biết lease và có thể ghi đè, checkpoint phát hiện ở lần đọc kế tiếp. Không gộp tự động trạng thái trận. Giữ backup riêng; ảnh timeline vẫn ở IndexedDB và cần ZIP backup.
+## Kiểm chứng và giới hạn
 
-## Kiểm chứng
+Web: app/dev TypeScript, catalog validation, 345 kiểm thử/30 files; production build và rights verification. Browser production Chromium: giữ hai ending/quà/deck, Nêm chọn rồi mới trả mana, viewport320×568/390×844/844×390/1366×768, corrupt raw giữ nguyên, atlas mới tải, WebGL→Canvas khi mất context, low/reduced dùng Canvas, font không gọi bên ngoài. Kết quả `browser-v4-results.json`; ảnh `v4-layered-arena-phone.jpg`.
 
-- `pnpm typecheck`, `pnpm typecheck:dev`: đạt.
-- `pnpm test`: 334 tests/30 files đạt, gồm kiểm tra tiếp tục đợt 13 và receipt cả 9 màn mới.
-- Production build khoảng 41,725 MB; tổng JS gzip khoảng 525,550 KB; giữ gate 45.000.000 byte và 650.000 byte.
-- Browser production headless: quà nhận một lần/reload và raw ending/inventory/deck giữ nguyên ở remember/release; mở lời dẫn đúng nhánh; Nêm vị đánh đúng mục tiêu, một spell, không tiêu trước khi chọn; 390×844/844×390/1366×768 không tràn ngang; raw corrupt giữ nguyên và hiện phục hồi. Kết quả `browser-v4-results.json`.
-- Asset provenance: `arena-prompts.json`, `audio-v4.json`, `rights/ASSET_REGISTER.json`. Luật/card hiện thực trong `src/game/v4Cards.ts`; policy của PR #23 tiếp tục áp dụng, cập nhật phạm vi bản web 4.0.
+Dung lượng đo mới nhất trong `../release/build-size.json`; giữ nguyên gate45.000.000B static/650.000B JS gzip. Clip provenance: `clip-prompts.json`, `clip-assets.json`; âm thanh: `audio-v4.json`, `audio-stems.json`; font: `font-sources.json`; quyền: `rights/ASSET_REGISTER.json`.
 
-## Giới hạn trước phát hành rộng
+Các phép lấy mẫu cân bằng dùng heuristic, không chứng minh độ khó cho người. `build-sampling.json` là12 đội×100 seed ở wave6, sao2/3quân, không phải toàn bộ pairwise PvP; `auto-v4-benchmark.json` là18 phiên kinh tế. `deck-sampling.json` nêu rõ agent và guard. Không ép win rate thành50% hoặc chỉnh thẻ cũ để làm đẹp số.
 
-Cần playtest cân bằng người thật toàn bộ 9 màn/6 đợt và kiểm tra trên Android tầm trung (âm thanh, FPS/frame-time, RAM, background/resume, export/import ảnh). Headless không chứng minh nghe nhạc hay FPS điện thoại. Giữ Canvas hiện tại để tránh đổi toàn bộ renderer trong cùng migration save; WebGL/rig, ba stem, 24 quân minh họa mới và thư viện boss animation đầy đủ nằm ở đợt tiếp theo của roadmap. Không có backend/cloud save/IAP. Các thông tin chủ thể phát hành/contact pháp lý còn cần chủ repo xác nhận như checklist PR #23.
+Chưa có máy Android RAM4GB, iPhone/Safari, nghe loa/tai nghe/Bluetooth, cuộc gọi, nhiệt/pin hoặc Play tester trong phiên này. Cần profile15phút/OS kill/update cùng khóa, chạm kéo ngang/dọc và playtest5–8 người. Một vài FX sát mép ô atlas cần duyệt thẩm mỹ trên máy thật. Không gọi headless frame time là FPS Android. Không có cloud save/backend/IAP; chưa công bố store hoặc production.

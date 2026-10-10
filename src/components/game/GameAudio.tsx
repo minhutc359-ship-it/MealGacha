@@ -20,15 +20,17 @@ export function useGameAudio() {
       prefs.musicStyle,
       prefs.musicVolume,
       prefs.effectsVolume,
+      prefs.ambienceVolume,
     ],
   )
 }
 
-export function useGameMusic(track: MusicTrack | null, priority = 5) {
+export function useGameMusic(track: MusicTrack | null, priority = 5, pressure = 0) {
   useEffect(
     () => (track ? gameAudio.acquire(track, priority) : undefined),
     [track, priority],
   )
+  useEffect(()=>gameAudio.updatePressure(pressure,track),[track,pressure])
 }
 
 // Closed journal details and off-screen readers must not claim the soundtrack.
@@ -171,6 +173,9 @@ export function AudioControls() {
           onChange={(e) => update("effectsVolume", Number(e.target.value))}
         />
       </label>
+      <label><span>Âm lượng môi trường · {Math.round((prefs.ambienceVolume ?? .18)*100)}%</span>
+        <input type="range" min="0" max="1" step=".01" value={prefs.ambienceVolume ?? .18} disabled={!prefs.soundEnabled} onChange={e=>update("ambienceVolume",Number(e.target.value))}/></label>
+      <label><span>Đồ họa nhẹ</span><input type="checkbox" checked={prefs.graphicsQuality === "low"} onChange={e=>update("graphicsQuality",e.target.checked?"low":"normal")}/></label>
       <p role="status">
         {!prefs.soundEnabled
           ? "Đang tắt mọi âm thanh."

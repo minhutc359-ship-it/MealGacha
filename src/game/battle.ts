@@ -343,6 +343,7 @@ export function startBattle(
   const stage = stageId ? STAGE_MAP[stageId] : undefined
   const b: Battle = {
     rulesVersion,
+    ...(stage && stage.index >= 18 ? { livingRulesVersion: 2 as const } : {}),
     pendingFlavors: [],
     flavorSequence: 0,
     id: crypto.randomUUID(),
@@ -700,6 +701,13 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
     if (effect === "heal")
       restore(b, "enemy", strength * 2)
     if (effect === "draw") draw(b, "enemy", strength)
+    if (effect === "steep" && (b.pendingFlavors ?? []).filter(e=>e.owner === "enemy").length < 2)
+      steep(b,"enemy",CARD_MAP["v4-rain-seed"])
+    if (effect === "edit") {
+      const oldest=(b.pendingFlavors ?? []).filter(e=>e.owner === "player").sort((a,z)=>a.sequence-z.sequence)[0]
+      if(oldest) b.pendingFlavors=b.pendingFlavors!.filter(e=>e.id !== oldest.id)
+      draw(b,"enemy",strength)
+    }
     if (effect === "shield")
       b.enemy.board.forEach((u) => {
         u.shield += strength
@@ -708,7 +716,7 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
     log(
       b,
       `${rule.name}${empowered ? " · THỨC TỈNH" : ""}: ${
-        effect === "burn"
+        effect === "steep" ? "Đặt Chậu mầm bên bếp; hồi 4 ở lượt địch kế nếu không bị gỡ" : effect === "edit" ? `Gỡ một Ủ vị lâu nhất của bạn; rút ${strength} lá` : effect === "burn"
           ? `Gây ${strength} sát thương lên bạn`
           : effect === "heal"
             ? `Hồi ${strength * 2} máu cho boss`

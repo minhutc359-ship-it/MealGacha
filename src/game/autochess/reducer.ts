@@ -83,7 +83,7 @@ function settle(save: AutoSave, run: AutoRun) {
   const won = result === "win",
     alreadyPaid = run.paidWaves.includes(run.wave)
   const points = won && !alreadyPaid ? combatScore(run) : 0
-  const interest = Math.min(3, Math.floor(run.gold / 10))
+  const interest = run.rulesVersion >= 7 && run.augments.includes("v4-market-deal") ? 0 : Math.min(3, Math.floor(run.gold / 10))
   const gold =
     5 + (won ? 1 : 0) + interest + (run.augments.includes("another") ? 2 : 0)
   const damage = won ? 0 : lossDamage(run.mode, enemies)
@@ -145,7 +145,7 @@ function prepare(run: AutoRun) {
   run.reward = null
   run.paused = false
   if (!run.locked) refreshShop(run)
-  run.freeReroll = run.augments.includes("shift")
+  run.freeReroll = run.augments.includes("shift") || (run.rulesVersion >= 7 && run.augments.includes("v4-market-deal") && run.lastResult?.result === "win")
   const scene = `intro-${run.wave}`
   if (
     run.mode === "campaign" &&
@@ -210,7 +210,7 @@ export function reduceAuto(
     )
     if (action.mode === "campaign" && previous?.mode === "campaign" && previous.phase === "won" && previous.wave === 12 && previous.rulesVersion < 6) {
       const next = save.run
-      save.run = { ...structuredClone(previous), id: next.id, rulesVersion: 6, seed: next.seed, rng: next.rng, wave: 13, phase: "prepare", combat: null, lastResult: null, scene: "intro-13", sceneLine: 0, finished: false, paused: false, reward: null, pendingRewards: [] }
+      save.run = { ...structuredClone(previous), id: next.id, rulesVersion: next.rulesVersion, seed: next.seed, rng: next.rng, wave: 13, phase: "prepare", combat: null, lastResult: null, scene: "intro-13", sceneLine: 0, finished: false, paused: false, reward: null, pendingRewards: [] }
     }
     return { save, error: null }
   }
