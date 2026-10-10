@@ -16,4 +16,8 @@ Mọi tài liệu thiết kế, prompt, ảnh kiểm chứng, test, script tạo
 
 Giữ thư mục này trong Git để không mất prompt, lịch sử và test. Chỉ exclude ở bước đóng gói/deploy, không cần thêm `dev/` vào `.gitignore`. Bản nguồn dùng để bán app nên bàn giao cả hồ sơ bằng chứng ở đây dù chúng không nằm trong game cài đặt.
 
+## Nghiên cứu bản nâng cấp tiếp theo
+
+[Soul of Meal 4.0 — Chợ Ký Ức Sống](docs/major-v400/PROPOSAL.md) đề xuất đồ họa 2.5D, gameplay TCG/Auto chess, âm thanh và VFX dựa trên `master` 3.5.0. [Kế hoạch kỹ thuật](docs/major-v400/TECHNICAL_PLAN.md), [roadmap và nghiệm thu](docs/major-v400/ROADMAP.md), [audit/nguồn/số đo](docs/major-v400/AUDIT.json) nằm cùng thư mục. Đây là thiết kế để review, chưa có thay đổi runtime hoặc bản phát hành 4.0.
+
 Các tài liệu cũ có thể nhắc đường dẫn `scripts/` hoặc `docs/` trước 3.3. Chúng nay lần lượt là `dev/tools/` và `dev/docs/`. `vite.legacy.config.ts` là bản tham khảo không còn dùng; `platform/` chưa được chuyển thành một tích hợp Figma Make mới.

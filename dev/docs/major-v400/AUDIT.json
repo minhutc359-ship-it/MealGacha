@@ -1,0 +1,335 @@
+{
+  "documentKind": "research-audit-not-v4-runtime-verification",
+  "auditDate": "2026-10-10",
+  "generatedAtUtc": "2026-10-10T03:33:20.959062+00:00",
+  "repository": "https://github.com/minhutc359-ship-it/MealGacha",
+  "baseline": {
+    "branch": "master",
+    "sha": "79d3aeb3ae40ce846df31910d6c40de9b8efb938",
+    "productVersion": "3.5.0"
+  },
+  "githubSnapshot": {
+    "defaultBranch": "master",
+    "masterSha": "79d3aeb3ae40ce846df31910d6c40de9b8efb938",
+    "priorPullRequest": {
+      "number": 22,
+      "url": "https://github.com/minhutc359-ship-it/MealGacha/pull/22",
+      "state": "closed",
+      "merged": true,
+      "mergedAtUtc": "2026-10-10T00:08:25Z",
+      "mergedAtVietnam": "2026-10-10T07:08:25+07:00",
+      "headBranch": "feat/deeper-decks-and-willpower",
+      "headSha": "b55bc1b729e6faf9a8b1e55bfeb124b4b0e213ce"
+    },
+    "openPullRequestsBeforeResearchPr": 0,
+    "actionsWorkflowRunsReturned": 0,
+    "checkRunsOnMasterReturned": 0,
+    "commitStatuses": [
+      {
+        "context": "Vercel",
+        "state": "success",
+        "target": "https://vercel.com/minmin-s-app/meal-gacha/Gm1zP5AykuKsHXTgqvkhdWjH91tJ"
+      }
+    ],
+    "meaning": "Observed GitHub state, not independent verification of a live deployment or of the historical test run"
+  },
+  "currentResearchChecks": [
+    {
+      "command": "git ls-remote https://github.com/minhutc359-ship-it/MealGacha.git HEAD refs/heads/main refs/heads/master refs/heads/feat/deeper-decks-and-willpower",
+      "result": "HEAD and master match baseline; v3.5 branch head matches prior PR; no main ref returned"
+    },
+    {
+      "command": "node dev/tools/validate-catalog.mjs",
+      "result": "passed",
+      "foods": 123,
+      "tags": 35,
+      "events": 9
+    }
+  ],
+  "reportedBaselineChecksNotRerun": {
+    "tests": 315,
+    "testFiles": 28,
+    "source": "dev/docs/depth-v350/verification.json",
+    "appTypecheck": "passed in prior release record",
+    "devTypecheck": "passed in prior release record",
+    "productionBuild": "passed in prior release record",
+    "distBytes": 39175032,
+    "jsGzipBytes": 508415,
+    "cssGzipBytes": 74713,
+    "distFileCount": 297
+  },
+  "currentFileMeasurements": {
+    "method": "stat byte counts and Pillow image dimensions; no raster editing",
+    "publicFileBytes": 37227673,
+    "sharedCharacterAtlasFiles": [
+      {
+        "path": "public/assets/characters/nightA.webp",
+        "fileBytes": 896596,
+        "width": 1254,
+        "height": 1254,
+        "estimatedRgbaBytes": 6290064
+      },
+      {
+        "path": "public/assets/characters/nightB.webp",
+        "fileBytes": 1083090,
+        "width": 1254,
+        "height": 1254,
+        "estimatedRgbaBytes": 6290064
+      },
+      {
+        "path": "public/assets/characters/rosterA.webp",
+        "fileBytes": 945964,
+        "width": 1254,
+        "height": 1254,
+        "estimatedRgbaBytes": 6290064
+      },
+      {
+        "path": "public/assets/characters/rosterB.webp",
+        "fileBytes": 1125838,
+        "width": 1254,
+        "height": 1254,
+        "estimatedRgbaBytes": 6290064
+      },
+      {
+        "path": "public/assets/characters/rosterC.webp",
+        "fileBytes": 1025512,
+        "width": 1254,
+        "height": 1254,
+        "estimatedRgbaBytes": 6290064
+      },
+      {
+        "path": "public/assets/characters/rosterD.webp",
+        "fileBytes": 990090,
+        "width": 1254,
+        "height": 1254,
+        "estimatedRgbaBytes": 6290064
+      },
+      {
+        "path": "public/assets/characters/rosterE.webp",
+        "fileBytes": 1037958,
+        "width": 1254,
+        "height": 1254,
+        "estimatedRgbaBytes": 6290064
+      },
+      {
+        "path": "public/assets/characters/rosterF.webp",
+        "fileBytes": 892104,
+        "width": 1254,
+        "height": 1254,
+        "estimatedRgbaBytes": 6290064
+      },
+      {
+        "path": "public/assets/characters/rosterG.webp",
+        "fileBytes": 1064480,
+        "width": 1254,
+        "height": 1254,
+        "estimatedRgbaBytes": 6290064
+      }
+    ],
+    "sharedCharacterAtlasCompressedBytes": 9061632,
+    "sharedCharacterAtlasEstimatedRgbaBytesIfAllDecoded": 56610576,
+    "audioFiles": [
+      {
+        "path": "public/assets/autochess/audio/battle.mp3",
+        "fileBytes": 496191,
+        "durationSeconds": 61.988571,
+        "sourceSampleRate": 22050,
+        "channels": 2,
+        "estimatedPcmFloatBytesAt48kHz": 23803611
+      },
+      {
+        "path": "public/assets/autochess/audio/boss.mp3",
+        "fileBytes": 439556,
+        "durationSeconds": 54.909388,
+        "sourceSampleRate": 22050,
+        "channels": 2,
+        "estimatedPcmFloatBytesAt48kHz": 21085205
+      },
+      {
+        "path": "public/assets/autochess/audio/pressure.mp3",
+        "fileBytes": 200278,
+        "durationSeconds": 24.999184,
+        "sourceSampleRate": 22050,
+        "channels": 2,
+        "estimatedPcmFloatBytesAt48kHz": 9599687
+      }
+    ]
+  },
+  "budgets": {
+    "existingStaticBytesLimit": 45000000,
+    "existingJsGzipBytesLimit": 650000,
+    "staticHeadroomFromReportedBaselineBytes": 5824968,
+    "jsGzipHeadroomFromReportedBaselineBytes": 141585,
+    "proposedNetAssetGrowthBytes": 4400000
+  },
+  "reviewedSourceDigests": [
+    {
+      "path": "dev/AGENTS.md",
+      "sha256": "977113fedb2fecd71bc0301f758281d9b05a36ddaaf642920df77797432e027a"
+    },
+    {
+      "path": "dev/docs/depth-v350/UPDATE.md",
+      "sha256": "56cda7be14d193bebdcb6224bb7b417ebf58695b8c1165937f51da2861feab07"
+    },
+    {
+      "path": "README.md",
+      "sha256": "73337da4ed5a2db8352935a610010c6f0c19cd97ba193ff784553e71fe416962"
+    },
+    {
+      "path": "package.json",
+      "sha256": "94c0a6cc5b86177a0e21e59552519817640a12589f16f55f3cb06cef4e9d8894"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "ab378fafdb2fd4bbf3293bd59c6a09047ad07b898d3582eb38eb86ad637a93ee"
+    },
+    {
+      "path": "vercel.json",
+      "sha256": "4075b3855ffa3d653c063ab9b6885baabb486b219dded0297797b02552e52e6b"
+    },
+    {
+      "path": "src/game/storage.ts",
+      "sha256": "677962b888c4463f2e065a369a17c3a267b43b45bd8bd70d5fa37f181102f3ea"
+    },
+    {
+      "path": "src/game/transferBundle.ts",
+      "sha256": "d2e0dddc4ebc162c9d4839f5fb1d3aa7daf48d8b6f29670743848087bcc755c4"
+    },
+    {
+      "path": "src/game/saveCode.ts",
+      "sha256": "ba104aa4af9107c2719dd024b96535239e781872d3070e389e261c501b9046e1"
+    },
+    {
+      "path": "src/game/useGameStore.ts",
+      "sha256": "b44527551e8723f32235c16a8021e2b8f5e3177cad5d0c366dc69bea47d7f4d6"
+    },
+    {
+      "path": "src/game/autochess/schema.ts",
+      "sha256": "97634d352eae2012dd869bc6568905b4d1ad048055cd1245eed341540ea45de4"
+    },
+    {
+      "path": "src/game/autochess/outcomes.ts",
+      "sha256": "187453eff543516b7a094a5278fb495bf34662bdd314a211d458bd95526652e6"
+    },
+    {
+      "path": "src/game/autochess/willpower.ts",
+      "sha256": "8401132ba8f92e54316aec5ed1d76f692d73126edcf46ebc2cdcb9d886434108"
+    },
+    {
+      "path": "src/game/autochess/types.ts",
+      "sha256": "45e3708059858df422a4fe86cb291245a90eb96fe0323312ea34321f1753cb58"
+    },
+    {
+      "path": "src/game/autochess/catalog.ts",
+      "sha256": "5c1c2a306f40417cd2d5d0e098d8346ae82db72aa1a25625299d3e914d74e253"
+    },
+    {
+      "path": "src/game/autochess/economy.ts",
+      "sha256": "334d0b6fcb28a78ba3a3693a909d9f65e6f762bba0138be3f7ef0e20767c6d20"
+    },
+    {
+      "path": "src/game/autochess/reducer.ts",
+      "sha256": "e5d15084f1d46287a6615f75e099b70cb61ee578d1049e9dec64c5af482ad6b3"
+    },
+    {
+      "path": "src/game/autochess/presentation.ts",
+      "sha256": "638e697f634aa4327d85f3f9c08cbc7fc24c81100d855b06bd25a1252cd2614e"
+    },
+    {
+      "path": "src/game/autochess/soundscape.ts",
+      "sha256": "6752ec5890b9ea057e76daeadebd899b9a168e364915afb4e53f8ce02e13c30a"
+    },
+    {
+      "path": "src/components/autochess/AutoBoard.tsx",
+      "sha256": "579a60bf4e109d2cd206e5644de304cdbb5607fd1f64e0481f9b2517c17e2ca4"
+    },
+    {
+      "path": "src/components/autochess/useAutoBattle.ts",
+      "sha256": "21166ddafc8a4d5460f281ab0399755805d742cfa68aec46073038311a348848"
+    },
+    {
+      "path": "src/components/chest/LootVfxCanvas.tsx",
+      "sha256": "5fb8c6c26e518ee3ff339153ea0a366ba82bd29329d55d7af46197e9bd8410f7"
+    },
+    {
+      "path": "src/infrastructure/assets/characterSprites.ts",
+      "sha256": "7a3e94f36e05224c6b6e89912b30b662276b35735a7b959d4d0e12a99e291648"
+    },
+    {
+      "path": "src/infrastructure/audio/gameAudio.ts",
+      "sha256": "22e1354c473ba164428e0fc831d957e91a77f88a25c284c5cd524ab568ff8d98"
+    },
+    {
+      "path": "src/game/cardAbilities.ts",
+      "sha256": "76e3497b621d451010c0966288c72380ffb654e7dd534f79d169a7c9d88dee5b"
+    },
+    {
+      "path": "src/game/recipes.ts",
+      "sha256": "600d66adf71dbb114c1dc052db49b0a6008a455df0e0ded3d6094b9ebf4d9aed"
+    },
+    {
+      "path": "src/game/deckStrategy.ts",
+      "sha256": "4cd2120d0215ba6bfb8d08f108fbc12885c8ab47fa3085bb91a88f4e0f528854"
+    },
+    {
+      "path": "src/game/expedition.ts",
+      "sha256": "250b1996826be9fdff3d9f5cfb3ac6287818680ebd601e1ca9d0a6951ce9d39d"
+    },
+    {
+      "path": "src/infrastructure/backup/fullBackup.ts",
+      "sha256": "b382b177a66699b448492010bdc79bddf6b18afd95ff872108ee7479adc4d2c2"
+    },
+    {
+      "path": "dev/docs/release/build-size.json",
+      "sha256": "ee2f05e830f4c6f3eca020613017549c7f90e19b80bfd5908e3730a506217373"
+    }
+  ],
+  "primaryResearchSources": [
+    {
+      "url": "https://pixijs.com/8.x/guides/components/renderers",
+      "appliesTo": "WebGL vs WebGPU and Canvas fallback decision"
+    },
+    {
+      "url": "https://pixijs.com/8.x/guides/concepts/render-layers",
+      "appliesTo": "render priority for HUD vs actors"
+    },
+    {
+      "url": "https://pixijs.com/8.x/guides/concepts/performance-tips",
+      "appliesTo": "atlases, filter cost and resource lifecycle"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices",
+      "appliesTo": "gesture unlock and user sound controls"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion",
+      "appliesTo": "system motion preference"
+    },
+    {
+      "url": "https://teamfighttactics.leagueoflegends.com/en-us/news/dev/talking-tactics-game-analysis-team-gat/",
+      "appliesTo": "carry paths, matchup simulation and augment constraints"
+    },
+    {
+      "url": "https://teamfighttactics.leagueoflegends.com/en-au/news/dev/dev-teamfight-tactics-gizmos-gadgets-learnings/",
+      "appliesTo": "bounded complexity and meaningful choice"
+    },
+    {
+      "url": "https://www.megacrit.com/press-kits/slay-the-spire/",
+      "appliesTo": "deck, encounter and relic design reference"
+    }
+  ],
+  "limits": [
+    "This branch proposes v4.0; it does not implement new gameplay, art, audio, migration or cache behavior.",
+    "No production build, full test suite, release verification, browser or physical-device QA was rerun for this documentation change.",
+    "Image RGBA and audio PCM values are arithmetic estimates, not observed browser memory; image totals do not assert simultaneous residency.",
+    "No external playtest, player-retention data, final balance results or listening QA for v4.0 exists yet.",
+    "Effort and performance budgets are proposed targets and require a measured vertical slice."
+  ],
+  "researchValidation": {
+    "markdownLocalLinksChecked": 15,
+    "brokenLocalLinks": 0,
+    "baselineSourceDigestsChecked": 30,
+    "baselineSourceDigestMismatches": 0,
+    "changeScope": "dev/README.md and four files in dev/docs/major-v400 only; no runtime, assets, dependencies or player data changed"
+  }
+}
