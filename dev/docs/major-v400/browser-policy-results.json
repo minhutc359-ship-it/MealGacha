@@ -1,0 +1,347 @@
+{
+  "date": "2026-10-10",
+  "productVersion": "3.5.0",
+  "browser": "153.0.8010.0",
+  "environment": "isolated Chromium headless, Vite production preview localhost with exact legal SPA document rewrites matching vercel.json, not Safari/Android",
+  "checks": [
+    {
+      "label": "static-terms-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "static-privacy-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "static-rights-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "static-terms-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "static-privacy-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "static-rights-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "static-terms-844",
+      "width": 844,
+      "scrollWidth": 844,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "static-privacy-844",
+      "width": 844,
+      "scrollWidth": 844,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "static-rights-844",
+      "width": 844,
+      "scrollWidth": 844,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "static-terms-1366",
+      "width": 1366,
+      "scrollWidth": 1366,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "static-privacy-1366",
+      "width": 1366,
+      "scrollWidth": 1366,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "static-rights-1366",
+      "width": 1366,
+      "scrollWidth": 1366,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "spa-remember-terms-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-remember-privacy-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-remember-rights-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "spa-remember-terms-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-remember-privacy-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-remember-rights-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "spa-remember-terms-844",
+      "width": 844,
+      "scrollWidth": 844,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-remember-privacy-844",
+      "width": 844,
+      "scrollWidth": 844,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-remember-rights-844",
+      "width": 844,
+      "scrollWidth": 844,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "spa-remember-terms-1366",
+      "width": 1366,
+      "scrollWidth": 1366,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-remember-privacy-1366",
+      "width": 1366,
+      "scrollWidth": 1366,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-remember-rights-1366",
+      "width": 1366,
+      "scrollWidth": 1366,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "preserve-remember",
+      "rawGameEqual": true,
+      "sha256": "1aef6c3e363c9ce705d70d448dd25f8c057fe3e8d0ba10270f929b31678c74ce",
+      "coins": 1234,
+      "dust": 321,
+      "pity": 7,
+      "cleared": 18,
+      "willpower": 1
+    },
+    {
+      "label": "spa-release-terms-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-release-privacy-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-release-rights-320",
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "spa-release-terms-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-release-privacy-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-release-rights-390",
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "spa-release-terms-844",
+      "width": 844,
+      "scrollWidth": 844,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-release-privacy-844",
+      "width": 844,
+      "scrollWidth": 844,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-release-rights-844",
+      "width": 844,
+      "scrollWidth": 844,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "spa-release-terms-1366",
+      "width": 1366,
+      "scrollWidth": 1366,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-release-privacy-1366",
+      "width": 1366,
+      "scrollWidth": 1366,
+      "h1": true,
+      "sections": 10
+    },
+    {
+      "label": "spa-release-rights-1366",
+      "width": 1366,
+      "scrollWidth": 1366,
+      "h1": true,
+      "sections": 5
+    },
+    {
+      "label": "preserve-release",
+      "rawGameEqual": true,
+      "sha256": "aaa1247d700fdf1e7de2fed193b95f6c9fd0abea23b7b04e8f8bb1100589d272",
+      "coins": 1234,
+      "dust": 321,
+      "pity": 7,
+      "cleared": 18,
+      "willpower": 1
+    }
+  ],
+  "traces": [
+    {
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "fresh valid save, audio disabled, no clicks",
+      "requestedLocalFiles": 18,
+      "localRawFileBytes": 1400117,
+      "equivalentBytesWithGzipText": 611982,
+      "byType": {
+        ".html": 1706,
+        ".js": 817942,
+        ".css": 291405,
+        ".webp": 289064
+      },
+      "externalFontsBlocked": true,
+      "method": "unique observed local requests at networkidle; stat files, gzip text level9; not production CDN transfer/LCP/ready"
+    },
+    {
+      "route": "/autochess",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "fresh valid save, audio disabled, no clicks",
+      "requestedLocalFiles": 18,
+      "localRawFileBytes": 1660723,
+      "equivalentBytesWithGzipText": 955066,
+      "byType": {
+        ".html": 1706,
+        ".js": 755454,
+        ".css": 248231,
+        ".webp": 655332
+      },
+      "externalFontsBlocked": true,
+      "method": "unique observed local requests at networkidle; stat files, gzip text level9; not production CDN transfer/LCP/ready"
+    },
+    {
+      "route": "/chest",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "fresh valid save, audio disabled, no clicks",
+      "requestedLocalFiles": 27,
+      "localRawFileBytes": 1609076,
+      "equivalentBytesWithGzipText": 685125,
+      "byType": {
+        ".html": 1706,
+        ".js": 1206770,
+        ".css": 123714,
+        ".webp": 276886
+      },
+      "externalFontsBlocked": true,
+      "method": "unique observed local requests at networkidle; stat files, gzip text level9; not production CDN transfer/LCP/ready"
+    }
+  ],
+  "errors": [],
+  "failedRequests": [],
+  "limitations": [
+    "External Google Fonts blocked for repeatability",
+    "No physical-device FPS/audio/Android build or CDN/network-throttled test",
+    "Fixture saves are synthetic, not player data"
+  ],
+  "screenshot": "privacy-phone.jpg"
+}

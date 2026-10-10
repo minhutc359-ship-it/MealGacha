@@ -117,7 +117,7 @@ Texture còn có thể có bản upload GPU, mipmap và overhead. Giới hạn t
 
 ### Phân bổ phần tăng asset
 
-Từ baseline còn **5,824,968 byte** tới threshold static, JS gzip còn **141,585 byte**. Phân bổ dưới đây là **net growth** sau tối ưu/thay asset, không phải tổng dung lượng asset được tạo mới.
+Từ build sau bổ sung chính sách còn **5,799,634 byte** tới threshold static, JS gzip còn **138,085 byte**. Baseline 3.5 trước chính sách lần lượt còn 5,824,968/141,585 byte. Phân bổ dưới đây là **net growth** sau tối ưu/thay asset, không phải tổng dung lượng asset được tạo mới.
 
 | Nhóm | Budget tăng thử nghiệm |
 | --- | ---: |
@@ -127,7 +127,9 @@ Từ baseline còn **5,824,968 byte** tới threshold static, JS gzip còn **141
 | Ảnh 8 thẻ hỗ trợ | 350,000 byte |
 | Nhạc/cue/ambience | 850,000 byte |
 | Tổng asset tăng | **4,400,000 byte** |
-| Còn lại cho code/CSS/dự phòng | **1,424,968 byte static** |
+| Còn lại cho code/CSS/dự phòng | **1,399,634 byte static** |
+
+Budget này là giả thuyết cho phạm vi gọn, chưa chứng minh đủ cho toàn bộ clip/truyện/soundtrack mới. Một họ nhạc 8 bar/20 s/3 stem/2 style minh họa đã khoảng 640 kB; ba họ khoảng1.92 MB. Giữ 45 MB cho mẫu đầu và reuse; pack đầy đủ chỉ xem xét 50–55 MB sau profile như [WEB_AND_ANDROID](WEB_AND_ANDROID.md). Script release:size vẫn giữ45 MB, không tăng trong PR này.
 
 Không xóa asset còn được manifest hoặc renderer legacy tham chiếu để đạt budget. Chốt 4 nhân vật mẫu và compression ở kích thước hiển thị thật trước khi đặt brief sản xuất toàn bộ.
 

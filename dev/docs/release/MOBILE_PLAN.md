@@ -1,6 +1,6 @@
 # Soul of Meal — kế hoạch iOS và Android
 
-Lập ngày **09/10/2026** dựa trên bản 3.3. Đây là kế hoạch triển khai, chưa phải IPA/AAB đã build hoặc kết quả thử trên iPhone thật.
+Lập ngày **09/10/2026** dựa trên bản 3.3; cập nhật đánh giá Android **10/10/2026** theo 3.5. Đây là kế hoạch, chưa phải IPA/AAB đã build hoặc kết quả thử trên điện thoại thật. Xem [đánh giá web/Android mới](../major-v400/WEB_AND_ANDROID.md) và [policy](../major-v400/POLICY_REVIEW.md) để biết số đo, scope Android beta và điều kiện phát hành hiện tại; lịch5–7 tuần dưới đây là kế hoạch hai nền tảng cũ.
 
 ## Kiến trúc đề xuất
 
@@ -67,7 +67,7 @@ Kiểm kê SDK/plugin native, Privacy Manifest và required-reason APIs theo API
 
 Đặt mục tiêu ban đầu (cần đo trên máy thật): 60 FPS trên máy tầm trung, chế độ nhẹ 30 FPS khi cần; input phản hồi dưới 100 ms; cold start local khoảng dưới 3 giây ở thiết bị mục tiêu. Đây là mục tiêu, chưa phải kết quả đã đạt.
 
-Kiểm tra 4 atlas roster 1254×1254: mỗi ảnh giải mã RGBA khoảng 6 MB dù WebP khoảng 1 MB. Thử tải/xóa cache theo màn, gộp lại khi bộ nhớ ổn định; DPR tối đa 2 và preset nhẹ DPR 1. Profile Canvas fill rate, GC, decode ảnh và audio buffer, không chỉ nhìn dung lượng tải. Không nâng texture lên 4K chỉ để tăng độ nét.
+Kiểm tra 9 shared atlas1254×1254 hiện có: mỗi ảnh giải mã RGBA khoảng6MiB dù WebP khoảng1MB; tất cả khoảng54MiB nếu cùng resident, không giả định luôn được tải đồng thời. Thử tải/xóa cache theo màn, gộp lại khi bộ nhớ ổn định; DPR tối đa 2 và preset nhẹ DPR 1. Profile Canvas fill rate, GC, decode ảnh và audio buffer, không chỉ nhìn dung lượng tải. Không nâng texture lên 4K chỉ để tăng độ nét.
 
 ## Các lệnh dự kiến khi bắt đầu triển khai
 
@@ -91,7 +91,7 @@ Config release có `webDir: "dist"`; không có remote `server.url`, cleartext, 
 
 | Nhóm | Thử nghiệm |
 | --- | --- |
-| Thiết bị | iPhone iOS 17.7.x, iPhone iOS mới, iPhone màn nhỏ, iPad nếu khai báo hỗ trợ; Android RAM 4 GB và máy tầm trung Android 16/API36. OS tối thiểu của sản phẩm cần máy/emulator riêng. |
+| Thiết bị | iPhone iOS 17.7.x, iPhone iOS mới, iPhone màn nhỏ, iPad nếu khai báo hỗ trợ; Android RAM 4 GB và máy tầm trung Android 16/API 36. OS tối thiểu của sản phẩm cần máy/emulator riêng. |
 | Game | TCG thắng/thua/đấu boss, gói thẻ, bộ bài, đọc truyện; Auto mua/ghép/XP/drag/drop, cả campaign/Survival/Daily, thắng→dance→reward; Rương/vòng quay/tìm quán và từ chối quyền. |
 | Presentation | Projectile/slash/shield/heal/channel, original/8bit, mute, reduced motion, low quality; 320×568, 390×844, 667×375, 844×390 và tablet; xoay ở giữa action. |
 | Vòng đời | Home/lockscreen/cuộc gọi khi đang đánh, background 5 phút, OS kill, mở lại, update đè bản cũ; không nhân đôi thưởng hay cộng thời gian nền. |

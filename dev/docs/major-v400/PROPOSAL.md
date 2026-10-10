@@ -17,7 +17,7 @@ Nâng cảm giác chơi của ba chế độ hiện có bằng nhân vật chuy�
 | Runtime | React 19, Vite 8, TypeScript; Canvas 2D cho trận; PixiJS 8 đã dùng ở Rương; Web Audio; local save/MGC1 |
 | Nội dung | 163 thẻ TCG, 123 món, 44 quân Auto chess; 18 màn TCG và 12 đợt chiến dịch Auto chess |
 
-Đã đọc [UPDATE 3.5.0](../depth-v350/UPDATE.md), `dev/AGENTS.md` và source liên quan trước mọi chỉnh sửa. Các số đo và nguồn nằm trong [AUDIT.json](AUDIT.json). Đây là PR tài liệu; phiên bản sản phẩm vẫn là **3.5.0**.
+Đã đọc [UPDATE 3.5.0](../depth-v350/UPDATE.md), `dev/AGENTS.md` và source liên quan trước mọi chỉnh sửa. Các số đo và nguồn nằm trong [AUDIT.json](AUDIT.json). Gameplay/asset 4.0 vẫn là thiết kế để review; phiên bản sản phẩm giữ **3.5.0**. Phần bổ sung của PR đã cập nhật chính sách runtime/HTML cho hành vi hiện có, chưa triển khai gameplay 4.0.
 
 ## Vì sao cần bước nâng cấp này
 
@@ -193,9 +193,17 @@ Không dừng simulation để tạo hit-stop trong Auto chess. Nếu thử hit-
 
 Thứ tự triển khai: **bảo vệ save → mẫu sân/nhân vật/VFX → gameplay → adaptive audio → mở rộng asset → QA thiết bị**. [ROADMAP.md](ROADMAP.md) chia thành PR có điều kiện đạt; [TECHNICAL_PLAN.md](TECHNICAL_PLAN.md) quy định resolver, cache, migration và rollback.
 
-Mẫu đầu khoảng 2–3 tuần làm một sân, 4 nhân vật, 1 boss, 2 keyword thử nghiệm và một theme âm thanh; có thể dùng lại model 3.5 để test adapter trước khi clip hoàn chỉnh. Chỉ mở rộng nếu khác biệt dễ thấy/nghe và không phá save. Bản hoàn chỉnh ước lượng **6–10 tuần cho một developer toàn thời gian với asset được chuẩn bị/duyệt đúng tiến độ**; đây là ước lượng, cần hiệu chỉnh sau mẫu đầu, không phải deadline đã cam kết.
+Mẫu đầu khoảng 2–3 tuần làm một sân, 4 nhân vật, 1 boss, 2 keyword thử nghiệm và một theme âm thanh; có thể dùng lại model 3.5 để test adapter trước khi clip hoàn chỉnh. Chỉ mở rộng nếu khác biệt dễ thấy/nghe và không phá save. Bản đầy đủ, gồm phần truyện bổ sung, ước lượng **38–61 ngày công / 8–13 tuần cho một developer toàn thời gian với asset được chuẩn bị/duyệt đúng tiến độ**; đây là ước lượng, cần hiệu chỉnh sau mẫu đầu, không phải deadline đã cam kết.
 
-Đợt này chưa đưa PvP, backend/account, IAP, full 3D hoặc IPA/AAB vào lộ trình 4.0. Các phần đó có chi phí kiến trúc và QA riêng; [kế hoạch mobile](../release/MOBILE_PLAN.md) tiếp tục là tài liệu độc lập. Bộ giấy phép/provenance asset mới dùng cùng hồ sơ release sẵn có.
+PvP, backend/account, IAP và full 3D tiếp tục ngoài mốc này. Android đã được bổ sung đánh giá riêng: hướng Capacitor 8 khả thi, khoảng 10–18 ngày công cho beta với môi trường/thiết bị sẵn sàng, chưa tạo APK/AAB. Không tự merge hoặc phát hành store. Bộ giấy phép/provenance asset mới dùng cùng hồ sơ release sẵn có.
+
+## Phần nghiên cứu bổ sung theo yêu cầu
+
+- [Cốt truyện và cơ chế](STORY_AND_SYSTEMS.md): 3 chương/9 màn TCG, chiến dịch Auto nối 6 đợt, giữ cả hai ending, lựa chọn không ép gacha và Sổ Chợ Sống.
+- [Soundtrack/background/VFX](AUDIO_VISUAL_PLAN.md): 6 họ cue, 3 sân dùng nhiều lớp, timing và RAM của stem/clip; làm một mẫu trước khi mở pack.
+- [Dung lượng web và Android](WEB_AND_ANDROID.md): build mới 39.20 MB, ngân sách 45 MB cho mẫu/50–55 MB chỉ đề xuất cho pack, native storage/lifecycle/Play requirements.
+- [Rà soát chính sách](POLICY_REVIEW.md): đã mở rộng 3 chính sách thực; danh tính pháp lý/kênh riêng/điều kiện phát hành còn cần xác nhận.
+- [Kiểm chứng phần bổ sung](FOLLOWUP_VERIFICATION.json): số đo và phạm vi kiểm tra của lần cập nhật này; audit ban đầu trong AUDIT.json là lịch sử của commit nghiên cứu đầu.
 
 ## Nguồn và cách áp dụng
 

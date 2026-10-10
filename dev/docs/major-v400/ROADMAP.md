@@ -1,6 +1,6 @@
 # Roadmap và nghiệm thu 4.0
 
-**Thiết kế để triển khai sau PR nghiên cứu; chưa có ticket nào dưới đây hoàn thành trong runtime.** Không đổi phiên bản sản phẩm thành 4.0 chỉ vì có tài liệu. Mỗi PR nhắm `master` sau khi dependency đã được người dùng merge; nhánh phụ thuộc PR chưa merge phải ghi rõ base/dependency. Không tự merge.
+**Các ticket gameplay/asset dưới đây là thiết kế, chưa hoàn thành trong runtime.** Chính sách web hiện có đã được bổ sung ở PR nghiên cứu, độc lập các ticket 4.0. Không đổi phiên bản sản phẩm thành 4.0 chỉ vì có tài liệu. Mỗi PR nhắm `master` sau khi dependency đã được người dùng merge; nhánh phụ thuộc PR chưa merge phải ghi rõ base/dependency. Không tự merge.
 
 ## Mẫu đầu cần chơi được
 
@@ -17,7 +17,7 @@ Mẫu này cần giữ save 3.5, có switch Canvas/Pixi, seed tái lập và ngh
 | 2 | `feat/tcg-seasoning-and-steeping` | Lookup rules 350/400, 2 keyword và 2 lá mẫu, preview/AI/coach | Trận/chuyến cũ tiếp tục đúng luật; lựa chọn/trigger/load không lặp |
 | 3 | `feat/autochess-tactical-promises` | Rules 6, 2 augment mẫu, offer/boss recap | Pool/RNG/ý chí/retry/điểm đúng; có matchup và gợi ý dựa event thật |
 | 4 | `feat/adaptive-market-audio` | Mixer theo byte, 3 stem, SFX variants/ambience | Nghe thật, autoplay/lifecycle, clipping/cache/×3 đạt |
-| 5 | `feat/v4-content-and-art-pack` | Đủ 8 thẻ hỗ trợ, 6 augment mới, 12 model/2 boss/3 sân ưu tiên | Mỗi phần đi qua budget và playtest; không làm chết đường build cũ |
+| 5 | `feat/v4-content-and-art-pack` | 8 thẻ hỗ trợ, 6 augment mới, 12 model/2 boss/3 sân, 9 màn truyện + 6 đợt Auto nối | Mỗi phần đi qua budget và playtest; không làm chết đường build cũ |
 | 6 | `release/v4-acceptance` | Release notes, hồ sơ asset, production QA, benchmark và migration matrix | Các gate bên dưới đều có bằng chứng; lúc này mới bump 4.0 |
 
 Mốc 1–4 có thể review theo phần nhưng không bỏ mốc 0. Không dùng PR đồ họa để đổi kinh tế/ngẫu nhiên/schema gameplay; không dùng PR cân bằng để tăng budget mà không có profile. Âm thanh/VFX chỉ trình diễn state đã commit.
@@ -104,7 +104,9 @@ Headless screenshot/FPS và ffmpeg decode có thể bổ sung, không thay cho c
 | Mixer/content audio | 3–5 ngày |
 | Mở rộng asset/content | 5–8 ngày |
 | QA/cân bằng/release | 4–7 ngày |
-| Tổng | **31–49 ngày công**, khoảng 6–10 tuần |
+| Nền gameplay/presentation | **31–49 ngày công** |
+| Truyện nối, lựa chọn và sổ mới | **7–12 ngày công** |
+| Tổng mở rộng | **38–61 ngày công**, khoảng 8–13 tuần |
 
 Ước lượng đã gồm chỉnh sửa kỹ thuật thông thường, chưa gồm chờ thiết bị/tester hoặc vòng sản xuất/duyệt tranh và nhạc kéo dài. Asset clip có thể cần hỗ trợ họa sĩ/animator nếu generator không giữ thiết kế. Mẫu đầu khoảng 2–3 tuần là cơ sở hiệu chỉnh; có thể dùng lại model 3.5 để test adapter trước khi clip hoàn chỉnh.
 
@@ -124,3 +126,16 @@ pnpm release:size
 ```
 
 Nếu thêm/đổi asset/dependency, chạy `pnpm release:records` trước `release:verify` và review diff notices/manifest. Browser harness hiện có nằm ở `dev/tools/verify-depth.mjs`; phải mở rộng cho rules/keyword mới và chạy sau build production. Không thêm test chỉ để kiểm tra một đoạn văn của PR tài liệu.
+
+## Backlog bổ sung truyện và native
+
+| ID | Phạm vi | Dependency và gate |
+| --- | --- | --- |
+| N01 | Namespace story400, content version, choices/seen scenes/receipt | S01–S03; save cũ không tự chọn ending, Zod/MGC1/ZIP giữ trường mới, replay không thưởng lặp |
+| N02 | Mẫu Chợ có hai giọng rồi 3 chương/9 màn | N01, T01–T02; giữ remember/release, skip/recap, boss báo đúng luật, starter qua được |
+| N03 | Chiến dịch Auto nối 6 đợt và trang sổ | N01, A01–A02; không thay run rules5 đang chạy, không khóa nội dung theo chế độ kia |
+| H01 | Spike Capacitor Android (nhánh riêng) | Môi trường/app ID thật; APK debug có trận/audio/rotation/lifecycle, không gọi web build là native build |
+| H02 | Beta storage/backup/offline/permissions | S01–S03, H01; hydrate trước autosave, web↔native round-trip, kill/update cùng key giữ save |
+| H03 | Hồ sơ Play và QA thiết bị | H02 + chủ thể/contact/quyền/thị trường; Data Safety theo SDK thật, signed AAB/closed test khi áp dụng; không tự phát hành |
+
+N01–N03 nằm trong phần tăng7–12 ngày ở tổng trên. H01–H02 khoảng10–18 ngày công riêng; H03 có thời gian store/testing ngoài công kỹ thuật. Chi tiết ở [STORY_AND_SYSTEMS](STORY_AND_SYSTEMS.md), [AUDIO_VISUAL_PLAN](AUDIO_VISUAL_PLAN.md), [WEB_AND_ANDROID](WEB_AND_ANDROID.md), [POLICY_REVIEW](POLICY_REVIEW.md). Chưa ticket nào trong bảng được tính là đã triển khai.
