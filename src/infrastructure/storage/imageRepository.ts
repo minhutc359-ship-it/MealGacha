@@ -1,3 +1,4 @@
+import { Capacitor } from "@capacitor/core"
 export interface StoredImage {
   id: string
   blob: Blob
@@ -35,6 +36,7 @@ async function run<T>(mode: IDBTransactionMode, operation: (store: IDBObjectStor
 }
 
 export function getImage(id: string): Promise<StoredImage | null> {
+  if(Capacitor.isNativePlatform())return import("../native/photos").then(module=>module.nativeGetImage(id))
   return run("readonly", (store, resolve, reject) => {
     const req = store.get(id)
     req.onsuccess = () => resolve(req.result ?? null)
@@ -43,10 +45,12 @@ export function getImage(id: string): Promise<StoredImage | null> {
 }
 
 export function deleteImage(id: string): Promise<void> {
+  if(Capacitor.isNativePlatform())return import("../native/photos").then(module=>module.nativeDeleteImage(id))
   return run("readwrite", (store, resolve) => { store.delete(id); resolve(undefined) })
 }
 
 export function listImages(): Promise<StoredImage[]> {
+  if(Capacitor.isNativePlatform())return import("../native/photos").then(module=>module.nativeListImages())
   return run("readonly", (store, resolve, reject) => {
     const req = store.getAll()
     req.onsuccess = () => resolve(req.result)
@@ -55,10 +59,12 @@ export function listImages(): Promise<StoredImage[]> {
 }
 
 export function putImage(image: StoredImage): Promise<void> {
+  if(Capacitor.isNativePlatform())return import("../native/photos").then(module=>module.nativePutImage(image))
   return run("readwrite", (store, resolve) => { store.put(image); resolve(undefined) })
 }
 
 export async function clearImages(): Promise<void> {
+  if(Capacitor.isNativePlatform())return import("../native/photos").then(module=>module.nativeClearImages())
   return run("readwrite", (store, resolve) => { store.clear(); resolve(undefined) })
 }
 

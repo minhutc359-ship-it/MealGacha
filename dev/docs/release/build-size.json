@@ -1,15 +1,15 @@
 {
   "version": "4.0.0",
-  "bytes": 44804373,
-  "files": 343,
+  "bytes": 44887931,
+  "files": 370,
   "byType": {
     "js": {
-      "files": 38,
-      "bytes": 1686073
+      "files": 63,
+      "bytes": 1722342
     },
     "css": {
-      "files": 6,
-      "bytes": 359213
+      "files": 7,
+      "bytes": 360027
     },
     "mp3": {
       "files": 36,
@@ -33,11 +33,11 @@
     },
     "html": {
       "files": 4,
-      "bytes": 30756
+      "bytes": 31646
     },
     "txt": {
-      "files": 3,
-      "bytes": 37411
+      "files": 4,
+      "bytes": 82996
     },
     "webmanifest": {
       "files": 1,
@@ -45,17 +45,17 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2045286,
+    "Application JS/CSS": 2082369,
     "Auto chess art/audio": 7609213,
     "Brand": 229534,
     "Shared character atlases": 9061632,
     "Event art": 2016822,
-    "Other and legal": 5838158,
+    "Other and legal": 5884633,
     "Food art": 7490462,
     "TCG art/audio": 10513266
   },
-  "js_gzip": 535686,
-  "css_gzip": 75755,
+  "js_gzip": 554812,
+  "css_gzip": 76144,
   "largest": [
     {
       "path": "assets/characters/rosterB.webp",

@@ -1,3 +1,4 @@
+import {saveFile} from "../infrastructure/share/saveFile"
 import { lazy, Suspense, useState, useRef, useEffect } from "react"
 import { useAppStore } from "../store/useAppStore"
 import { repository } from "../infrastructure/storage/repository"
@@ -43,10 +44,7 @@ export function SettingsPage() {
   const handleFullExport = async () => {
     try {
       const blob = await createFullBackup()
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement("a")
-      a.href = url; a.download = `Soul of MealBackup-${new Date().toISOString().slice(0, 10)}.zip`; a.click()
-      setTimeout(() => URL.revokeObjectURL(url), 10_000)
+      await saveFile(blob,`Soul-of-Meal-Backup-${new Date().toISOString().slice(0,10)}.zip`)
       showToast("Đã xuất backup đầy đủ cùng ảnh.", "success")
     } catch (error) { showToast((error as Error).message, "error") }
   }
@@ -111,16 +109,13 @@ export function SettingsPage() {
     showToast("Đã xóa override. Dùng dữ liệu gốc.", "info")
   }
 
-  const handleExport = () => {
+  const handleExport = async () => {
+    try {
     const json = repository.exportBackup()
     const blob = new Blob([json], { type: "application/json" })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = `foodchest-backup-${new Date().toISOString().slice(0, 10)}.json`
-    a.click()
-    URL.revokeObjectURL(url)
+    await saveFile(blob,`foodchest-backup-${new Date().toISOString().slice(0,10)}.json`)
     showToast("Đã xuất backup!", "success")
+    } catch(error){showToast(error instanceof Error ? error.message : "Chưa xuất được backup.","error")}
   }
 
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {

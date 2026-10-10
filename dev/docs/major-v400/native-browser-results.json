@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "hydrateBeforeStore": true,
+      "restartPreserved": true,
+      "framePolicy": true
+    },
+    {
+      "externalLinksStayOutsideGame": true
+    },
+    {
+      "nativeBackgroundFlushesAndPauses": true,
+      "resumeRequiresPlayerAction": true
+    },
+    {
+      "invalidNativeDataBlocksBootstrap": true,
+      "rawExportOffered": true
+    }
+  ],
+  "errors": [],
+  "scope": "Chromium production bundle + mock bridge; native AtomicFile tested separately with Robolectric. No hardware/WebView/offline network claims."
+}

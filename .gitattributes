@@ -211,3 +211,5 @@ public/assets/v4/** -filter -diff -merge -text
 dev/docs/major-v400/*.jpg -filter -diff -merge -text
 # Offline fonts must be available as actual bytes in a clean deployment checkout.
 public/assets/fonts/** -filter -diff -merge -text
+# Native resources/wrapper must build without a separate LFS fetch.
+android/** -filter !diff !merge -text

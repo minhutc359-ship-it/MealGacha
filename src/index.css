@@ -820,3 +820,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .ac-header .ac-brand strong{white-space:nowrap;letter-spacing:.06em}
 @media(max-width:700px){.ac-header .ac-brand strong{font-size:10px;letter-spacing:.02em}.ac-header .ac-brand small{letter-spacing:.05em}}
 @media(max-width:350px){.ac-header .ac-brand strong{font-size:9px}}
+
+.native-app body {padding-top:var(--safe-area-inset-top,env(safe-area-inset-top));padding-right:var(--safe-area-inset-right,env(safe-area-inset-right));padding-bottom:var(--safe-area-inset-bottom,env(safe-area-inset-bottom));padding-left:var(--safe-area-inset-left,env(safe-area-inset-left));overscroll-behavior:none}
+.native-app .mobile-bottom-nav {padding-bottom:var(--safe-area-inset-bottom,env(safe-area-inset-bottom));padding-left:var(--safe-area-inset-left,env(safe-area-inset-left));padding-right:var(--safe-area-inset-right,env(safe-area-inset-right))}
+.native-app .tcg-dialog {max-height:calc(100dvh - var(--safe-area-inset-top,env(safe-area-inset-top)) - var(--safe-area-inset-bottom,env(safe-area-inset-bottom)) - 24px)}

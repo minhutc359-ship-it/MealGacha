@@ -103,11 +103,13 @@ export function useAutoBattle(run: AutoRun | null, speed: number) {
     const leaving = () => pause(true)
     document.addEventListener("visibilitychange", hidden)
     window.addEventListener("pagehide", leaving)
+    window.addEventListener("meal:native-pause", leaving)
     handle = requestAnimationFrame(update)
     return () => {
       cancelAnimationFrame(handle)
       document.removeEventListener("visibilitychange", hidden)
       window.removeEventListener("pagehide", leaving)
+      window.removeEventListener("meal:native-pause", leaving)
       const saved = useGameStore.getState().save.autoChess?.run
       if (saved?.id === run.id && saved.phase === "combat") {
         if (flush() && !saved.paused && !saved.combat?.pendingScene)
