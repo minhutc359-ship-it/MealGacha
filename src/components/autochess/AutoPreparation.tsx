@@ -1,5 +1,5 @@
 import type { CSSProperties, PointerEvent } from "react"
-import { AUTO_SCHOOLS, UNIT_MAP } from "../../game/autochess/catalog"
+import { AUTO_SCHOOLS, UNIT_MAP, PROFESSIONS } from "../../game/autochess/catalog"
 import { BENCH_SLOTS, MAX_LEVEL } from "../../game/autochess/config"
 import { benchLayout, boardPieces, capacity, copies, levelProgress, unitRole } from "../../game/autochess/economy"
 import { ITEM_MAP, equipPreview } from "../../game/autochess/items"
@@ -8,7 +8,8 @@ import type { AutoRun } from "../../game/autochess/types"
 import type { AutoAction } from "../../game/autochess/reducer"
 import type { useFormationDrag, PeekTarget } from "./useFormationDrag"
 import { AutoPortrait } from "./AutoArt"
-import { SCHOOL_ICONS } from "./AutoTraits"
+import { ItemArt } from "./ItemArt"
+import { SCHOOL_ICONS, PROFESSION_ICONS } from "./AutoTraits"
 
 type Props = {
   run: AutoRun; selected: string | null; onSelect: (uid: string | null) => void; upgrades: StarUpgrade[]; reducedMotion: boolean
@@ -61,7 +62,7 @@ export function AutoPreparation({ run, selected, onSelect, upgrades, reducedMoti
           style={{ "--item": item.color } as CSSProperties} title={`${item.name} · ${item.text}`} aria-label={`${item.name}. ${item.text}. Kéo lên quân hoặc mảnh khác.`}
           onPointerDown={event => drag.startItem(index, event)} onContextMenu={event => event.preventDefault()}
           onClick={() => { if (!drag.ignoreClick() && selectedPiece) onAction({ type: "equip", uid: selectedPiece.uid, item: id }) }}>
-          <i>{item.icon}</i><span>{item.name}</span>
+          <ItemArt id={id} decorative /><span>{item.name}</span>
         </button>
       })}
       {selectedPiece && <small>{run.inventory.some(id => equipPreview(selectedPiece, id).valid) ? "Chạm đồ để trao cho quân đang chọn" : "Quân chưa nhận thêm được trang bị"}</small>}
@@ -92,12 +93,12 @@ function AutoShop({ run, onBuy, onInspect, onPointerStart }: { run: AutoRun; onB
       return <button key={index} data-shop-index={index} className={`ac-shop-card tier-${def.cost} ${count ? "is-owned" : ""} ${mergeReady ? "is-merge-ready" : ""} ${run.gold < def.cost ? "is-unaffordable" : ""}`}
         style={{ "--school": AUTO_SCHOOLS[def.school].color } as CSSProperties} onClick={() => onBuy(index)}
         onPointerDown={event => onPointerStart(def.id, index, event)} onContextMenu={event => { event.preventDefault(); onInspect({ id: def.id, shop: index }) }}
-        aria-label={`Mua ${def.name}, ${def.cost} vàng, ${AUTO_SCHOOLS[def.school].name}${count ? `, đang có ${count} bản` : ""}${mergeReady ? ", mua để ghép sao" : ""}. Giữ để xem thông tin.`}>
+        aria-label={`Mua ${def.name}, ${def.cost} vàng, ${AUTO_SCHOOLS[def.school].name}, ${PROFESSIONS[def.profession].name}${count ? `, đang có ${count} bản` : ""}${mergeReady ? ", mua để ghép sao" : ""}. Giữ để xem thông tin.`}>
         <div className="ac-shop-art"><AutoPortrait index={def.portrait} /><span className="ac-shop-cost">{def.cost} ◉</span>
           {!!count && <b className="ac-shop-owned">{mergeReady ? "✦ Ghép" : `✓ ${count}`}</b>}
           <span className="ac-shop-school" title={AUTO_SCHOOLS[def.school].name}>{SCHOOL_ICONS[def.school]}<small>{AUTO_SCHOOLS[def.school].name}</small></span>
         </div>
-        <strong title={def.name}>{def.name}</strong><small className="ac-shop-role">{unitRole(def.id)}</small>
+        <strong title={def.name}>{def.name}</strong><small className="ac-shop-profession" title={PROFESSIONS[def.profession].text}>{PROFESSION_ICONS[def.profession]} {PROFESSIONS[def.profession].name}</small><small className="ac-shop-role">{unitRole(def.id)}</small>
       </button>
     })}
   </div>

@@ -1,7 +1,7 @@
 import { CARDS, CARD_MAP, DECK_SIZE } from "./catalog"
 import { recipeCoverage, recipeFinishers, RECIPES } from "./recipes"
 import type { GameCard, RecipeId } from "./types"
-export type DeckStyle = "balanced" | "rush" | "guard" | "sustain" | "cycle"
+export type DeckStyle = "balanced" | "rush" | "guard" | "sustain" | "cycle" | "rebirth" | "spellcraft"
 export const DECK_STYLES: {
   id: DeckStyle
   name: string
@@ -38,8 +38,15 @@ export const DECK_STYLES: {
     text: "Rút bài, phép giá thấp và chuỗi liên tiếp.",
     recipe: "street",
   },
+  { id: "rebirth", name: "Ký ức trở lại", text: "Hy sinh, hiệu ứng khi bị hạ và tái triệu hồi để giữ tài nguyên.", recipe: "coast" },
+  { id: "spellcraft", name: "Dệt phép dưới trăng", text: "Giữ quân tăng công/dệt chắn sau phép, nối phép rẻ với Sao băng.", recipe: "moon" },
 ]
 export function cardRole(card: GameCard): string {
+  if (["revive", "rebloom"].includes(card.ability ?? "")) return "Tái triệu hồi"
+  if (["pantry", "farewell", "offering"].includes(card.ability ?? "")) return "Ký ức khi bị hạ"
+  if (["spellfire", "weaver", "starlight"].includes(card.ability ?? "")) return "Chuỗi phép"
+  if (["snare", "dream"].includes(card.ability ?? "")) return "Kiểm soát"
+  if (card.ability === "bloom") return "Hồi phục → tăng công"
   if (card.keywords.includes("rush")) return "Áp lực"
   if (card.keywords.includes("guard")) return "Giữ bàn"
   if (card.effect === "draw") return "Rút bài"
@@ -72,7 +79,9 @@ export function suggestDeck(
     (c.effect === "heal" || c.keywords.includes("drain"))
       ? 7
       : 0) +
-    (style === "cycle" && c.effect === "draw" ? 8 : 0)
+    (style === "cycle" && c.effect === "draw" ? 8 : 0) +
+    (style === "rebirth" && ["pantry", "farewell", "offering", "revive", "rebloom"].includes(c.ability ?? "") ? 12 : 0) +
+    (style === "spellcraft" && (["spellfire", "weaver", "starlight", "veil"].includes(c.ability ?? "") || c.kind === "spell" && c.cost <= 2) ? 12 : 0)
   const available = CARDS.flatMap((c) =>
     Array.from({ length: Math.min(2, Math.max(0, owned[c.id] ?? 0)) }, () => c),
   ).sort(
@@ -119,6 +128,11 @@ export function analyzeDeck(ids: string[]) {
   if (units > 13)
     tips.push("Nhiều đồng minh: sân chỉ có 3 chỗ; thêm phép để tránh kẹt tay.")
   if (!guards) tips.push("Chưa có Hộ vệ; cân nhắc một lá giữ bếp trước boss.")
+  const abilities = new Set(cards.map(c => c.ability))
+  if ((abilities.has("revive") || abilities.has("rebloom")) && !cards.some(c => c.kind === "unit" && c.cost <= 4)) tips.push("Tái triệu hồi cần đồng minh giá tối đa 4; thêm quân thấp giá để có ký ức trở lại.")
+  if (abilities.has("offering") && units < 10) tips.push("Hy sinh cần ít nhất 2 quân; thêm đồng minh hoặc hiệu ứng khi bị hạ.")
+  if (abilities.has("bloom") && !cards.some(c => c.effect === "heal" || c.keywords.includes("drain"))) tips.push("Quân nở công cần hồi máu chủ tướng thật sự; ghép phép hồi hoặc Hút vị.")
+  if ((abilities.has("spellfire") || abilities.has("weaver")) && cards.filter(c => c.kind === "spell" && c.cost <= 2).length < 4) tips.push("Động cơ chuỗi phép cần khoảng 4 phép giá 1–2 để kích nội tại đều hơn.")
   const combos = recipeCoverage(ids)
   if (!combos.some((c) => c.anchors.length && c.finishers.length))
     tips.push("Chưa có chuỗi món + phép hoàn chỉnh để kích hoạt combo.")

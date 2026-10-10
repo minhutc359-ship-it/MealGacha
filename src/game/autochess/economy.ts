@@ -1,5 +1,6 @@
 import { AUTO_UNITS, UNIT_MAP, shopOdds, LEGACY_UNIT_IDS, RELICS, AUGMENTS } from "./catalog"
 import { RULES_VERSION, type AutoMode, type AutoRun, type Piece } from "./types"
+import { startingWillpower } from "./willpower"
 import { BENCH_SLOTS, LEVEL_XP } from "./config"
 import { ITEM_COMPONENTS, equipPreview, mergedEquipment } from "./items"
 export const copies = (star: number) => 3 ** (star - 1)
@@ -112,7 +113,8 @@ export function createAutoRun(
     wave: 1,
     rounds: 0,
     bestWave: 0,
-    health: 100,
+    health: startingWillpower(mode),
+    willpowerVersion: 1,
     gold: 10,
     xp: 0,
     score: 0,

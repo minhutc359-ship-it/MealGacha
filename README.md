@@ -1,10 +1,12 @@
-# Soul of Meal 3.4.1 · Chín chỗ giữ bàn
+# Soul of Meal 3.5.0 · Ký ức trở lại
 
 Game ẩm thực và ký ức Việt Nam gồm **TCG**, **Chợ Đêm Auto chess** và **Rương vị giác**, chạy trên React 19 / Vite 8 / TypeScript. Không cần tài khoản; có mã MGC1 để chuyển tiến trình giữa thiết bị.
 
 TCG có 163 thẻ, 6 chương/18 màn, xây bộ bài, AI, thám hiểm, chế tạo và nhiệm vụ. Auto chess có 44 quân, 16 quái/đối thủ thường và 6 boss, chiến dịch, Survival, Daily, shop/pool hữu hạn, ghép sao, hệ/nghề/di vật, XP và kéo thả bàn/dự bị. Rương dùng catalog chung 123 món và tìm quán từ OpenStreetMap không cần API key. Model anime 2.5D dùng chung hai chế độ; không phải rig 3D chạy trực tiếp.
 
-Bản 3.4.1 bỏ xử thua Auto chess ở giây 55: trận chuyển sang tốc độ ×3 và tiếp tục đến khi phân thắng thua. Đội hình bị hạ thì kết thúc phiên, lưu điểm/lịch sử ngay, không chuyển sang đợt quái mạnh hơn; chỉ thắng mới qua đợt. Áp dụng Campaign/Survival/Daily. Save cũ đang chờ kết quả thua được xử lý, mã MGC1 hỗ trợ trận dài hơn 55 giây. Xem [bản sửa và kiểm chứng](dev/docs/overtime-v341/UPDATE.md).
+Bản 3.5.0 phân hóa nội tại quân và phép TCG, thêm hy sinh/tái triệu hồi/đóng băng, 6 combo công thức và 7 gợi ý bộ bài. Auto chess có VFX niệm phép, đòn diện rộng, khiên, hiệu ứng tan biến, nhạc chiến đấu/boss mới trong hai phong cách và ảnh RPG cho cả 9 trang bị. Cửa hàng luôn hiện nghề cạnh hệ. Survival bắt đầu với **3 ý chí**, thua mất 1 và chơi lại đúng đợt; thắng không hồi. Chiến dịch giữ 100 ý chí và mức trừ theo địch còn sống; còn ý chí thì chơi lại cùng đợt. Daily vẫn kết thúc ở lần thua đầu. Điểm/kỷ lục chỉ chốt khi lượt kết thúc. Xem [thay đổi và kiểm chứng](dev/docs/depth-v350/UPDATE.md).
+
+Cơ chế tăng tốc ×3 sau giây 55 từ 3.4.1 được giữ; trận tiếp tục đến khi phân thắng thua. Các phiên đã kết thúc từ bản cũ và kỷ lục cũ không bị mở lại.
 
 Bản 3.3 thêm niệm phép, đạn có hình lửa/nước/lá/tinh quang, vệt chém cong, khiên và sóng va chạm. VFX đọc sự kiện thực của trận, dùng cùng bộ renderer ở TCG/Auto chess, giữ reduced motion/preset nhẹ. Đồng bộ âm thanh và pose chịu đòn TCG tại mốc tiếp xúc. Giữ mức thử thách +30%, EXP, đội hình và save từ 3.2.2.
 

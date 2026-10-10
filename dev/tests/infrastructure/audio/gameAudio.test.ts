@@ -18,6 +18,8 @@ class Param {
   }
 }
 class Node {
+  pan = new Param()
+  disconnections = 0
   gain = new Param()
   frequency = new Param()
   buffer: AudioBuffer | null = null
@@ -27,7 +29,7 @@ class Node {
   starts: number[][] = []
   stopped = false
   connect() {}
-  disconnect() {}
+  disconnect() { this.disconnections++ }
   start(...args: number[]) {
     this.starts.push(args)
   }
@@ -43,6 +45,8 @@ class Context {
   voices: Node[] = []
   gains: Node[] = []
   oscillators: Node[] = []
+  panners: Node[] = []
+  createStereoPanner() { const node = new Node(); this.panners.push(node); return node }
   createGain() {
     const node = new Node()
     this.gains.push(node)
@@ -288,4 +292,23 @@ describe("game soundtrack lifecycle", () => {
     expect(engine.getSnapshot().phase).toBe("playing")
     expect(load).toHaveBeenCalledTimes(2)
   })
+})
+
+it("auto-chess pans combat sounds and cleans panners on completion and mute", async () => {
+  const { engine, context } = fixture()
+  await engine.unlock()
+  engine.play("auto-shot", 0, .7)
+  expect(context.panners[0].pan.value).toBe(.7)
+  context.oscillators.at(-1)!.onended!()
+  context.voices.at(-1)!.onended!()
+  expect(context.panners[0].disconnections).toBe(1)
+  engine.play("auto-channel", 0, -.7)
+  engine.configure({ soundEnabled: false })
+  expect(context.panners[1].disconnections).toBe(1)
+})
+it("dense auto-chess audio respects the 48-voice cap", async () => {
+  const { engine, context } = fixture()
+  await engine.unlock()
+  for (let n = 0; n < 50; n++) engine.play("auto-boss", 0, .3)
+  expect(context.voices.length + context.oscillators.length).toBeLessThanOrEqual(48)
 })

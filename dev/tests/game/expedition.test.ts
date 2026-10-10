@@ -1,3 +1,4 @@
+import { getBattleHint } from "@/game/battleCoach"
 import { beforeEach, describe, expect, it } from "vitest"
 import { CARDS, CARD_MAP, STARTER_DECK } from "@/game/catalog"
 import { actBattle } from "@/game/battle"
@@ -347,59 +348,12 @@ function playJourneyBattle(initial: Battle): Battle {
       expect(next.error).toBeNull()
       b = next.battle
     }
-    for (let i = 0; i < 12 && !b.result; i++) {
-      const choices = b.player.hand
-        .map((id, index) => ({ card: CARD_MAP[id], index }))
-        .filter(
-          ({ card: c }) =>
-            c.cost <= b.player.mana &&
-            (c.kind !== "unit" || b.player.board.length < 3) &&
-            (!["ward", "buff"].includes(c.effect ?? "") ||
-              b.player.board.length > 0) &&
-            (c.kind === "unit" ||
-              c.effect !== "heal" ||
-              b.player.health < b.player.maxHealth) &&
-            (c.effect !== "draw" || b.player.deck.length > 0) &&
-            (c.effect !== "sweep" || b.enemy.board.length > 0),
-        )
-      choices.sort(
-        (a, z) =>
-          (z.card.kind === "unit" ? z.card.cost + 5 : z.card.cost) -
-          (a.card.kind === "unit" ? a.card.cost + 5 : a.card.cost),
-      )
-      if (!choices.length) break
-      const { card, index } = choices[0]
-      const target =
-        b.enemy.health <= (card.power ?? 0)
-          ? "hero"
-          : (b.enemy.board.find((u) => u.health + u.shield <= (card.power ?? 0))
-              ?.uid ?? "hero")
-      const next = actBattle(b, {
-        type: "play",
-        index,
-        target: card.effect === "damage" ? target : undefined,
-      })
-      expect(next.error).toBeNull()
-      b = next.battle
-    }
-    for (const uid of b.player.board.filter((u) => u.ready).map((u) => u.uid)) {
-      if (b.result) break
-      const attacker = b.player.board.find((u) => u.uid === uid)!
-      const guard = b.enemy.board
-        .filter((u) => u.keywords.includes("guard"))
-        .sort((a, z) => a.health + a.shield - z.health - z.shield)[0]
-      const trade = b.enemy.board.find(
-        (u) =>
-          u.health + u.shield <= attacker.attack &&
-          u.attack < attacker.health + attacker.shield,
-      )
-      const result = actBattle(b, {
-        type: "attack",
-        uid,
-        target:
-          guard?.uid ??
-          (b.enemy.health <= attacker.attack ? "hero" : (trade?.uid ?? "hero")),
-      })
+    // Exercise the actual in-game coach: card effects now include sacrifice,
+    // revival, unit healing and frozen turns rather than just numeric power.
+    for (let i = 0; i < 30 && !b.result; i++) {
+      const hint = getBattleHint(b)
+      if (!hint?.action) break
+      const result = actBattle(b, hint.action)
       expect(result.error).toBeNull()
       b = result.battle
     }
@@ -469,6 +423,6 @@ it("resolves 30 starter encounters and 20 complete journeys with real turns, hea
     }
   }
   expect(starterWins).toBeGreaterThanOrEqual(10)
-  // Harder leaders reduce this fixed greedy policy's clears; full journeys must remain viable.
+  // Full journeys must remain viable with legal moves suggested by the game.
   expect(completed).toBeGreaterThanOrEqual(3)
 })

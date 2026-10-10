@@ -1,0 +1,26 @@
+{
+  "asset": "public/assets/autochess/items-rpg-v350.webp",
+  "generator": "Built-in image_gen.imagegen",
+  "date": "2026-10-09",
+  "original": true,
+  "layout": [
+    [
+      "lantern",
+      "ladle",
+      "herbs"
+    ],
+    [
+      "bell",
+      "basket",
+      "book"
+    ],
+    [
+      "spark",
+      "dew",
+      "fiber"
+    ]
+  ],
+  "prompt": "Create a square 3x3 production inventory illustration atlas for Soul of Meal, original Vietnamese culinary fantasy RPG. Nine equal cells on dark teal #10262e, no writing or borders. Central 72%, generous padding, centered 3/4 isometric view, anime RPG painted 3D materials, luminous edges, recognizable at 48px. Row 1: brass red silk lantern, ornate golden soup ladle with blue wave, green medicinal herbs tied with bamboo string. Row 2: bronze temple bell with red ribbons, woven Vietnamese bamboo market basket with jade charm, open magical cookbook with purple light and blank pages. Row 3: orange charcoal ember crystal, cyan dew gem on silver lotus stand, pale green bamboo fibres in a loop. Objects only, no people, no food, no scene, no extra items, no text, no watermark, avoid recognizable franchises.",
+  "processing": "Rescaled to 1200x1200 with ffmpeg, WebP quality 82; rendered as CSS atlas with 300% background sizing. No third-party bitmap used.",
+  "legal": "Project-generated provenance is recorded; owner review before release/transfer remains required by existing asset policy."
+}

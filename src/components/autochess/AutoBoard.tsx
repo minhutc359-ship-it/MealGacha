@@ -9,6 +9,7 @@ import { enemyPlan } from "../../game/autochess/combat"
 import { drawChannel, drawProjectile, drawImpact, skillVfx } from "../../game/battleVfx"
 import type { Actor, AutoRun } from "../../game/autochess/types"
 import { actorPosition as position, actorFrame, SPRITE_SHEETS, starScale, type StarUpgrade } from "../../game/autochess/presentation"
+import { arenaTheme, drawArena, drawCastAura, drawWard, drawSkillBurst, drawDeparture } from "../../game/autochess/arenaVfx"
 import { drawStarUpgrade } from "../../game/autochess/starVfx"
 import { characterImage as getImage, unitCharacter, monsterCharacter, fitCharacter } from "../../infrastructure/assets/characterSprites"
 
@@ -59,6 +60,7 @@ export function AutoBoard({
       handle = 0
     let lastDraw = -Infinity
     const frozen = new Map<string, { x: number; y: number }>()
+    const healthTrails = new Map<string, { hp: number; from: number; at: number }>()
     const facing = new Map<string, boolean>()
     const placements = new Map<string, { x: number; y: number; fromX: number; fromY: number; start: number }>()
     let endedAt: number | null = null
@@ -99,11 +101,10 @@ export function AutoBoard({
       ctx.globalAlpha = 1
     }
     const draw = (now: number) => {
-      // Interpolate the 20Hz simulation at 30fps, like the shared TCG sprites.
-      // Full transparent atlases should not consume 120 draws/s on fast screens.
-      if (now - lastDraw < 1000 / 30 - 1) { handle = requestAnimationFrame(draw); return }
-      lastDraw = now
       const { run: current, alpha } = getFrame()
+      const fps = current?.paused && current.phase === "combat" ? 15 : options.current.lowQuality || options.current.reducedMotion ? 30 : 60
+      if (document.hidden || now - lastDraw < 1000 / fps - 1) { handle = requestAnimationFrame(draw); return }
+      lastDraw = now
       if (!current) {
         handle = requestAnimationFrame(draw)
         return
@@ -116,6 +117,7 @@ export function AutoBoard({
         opts = options.current,
         time = b ? b.tick + (opts.reducedMotion ? 0 : alpha) : now / 50
       if ((b?.id ?? "prepare") !== currentBattle) {
+        healthTrails.clear()
         frozen.clear()
         facing.clear()
         endedAt = null
@@ -125,18 +127,14 @@ export function AutoBoard({
       else endedAt ??= now
       const visualTime = time + (endedAt === null ? 0 : (now - endedAt) / 50)
       ctx.clearRect(0, 0, width, height)
-      const wash = ctx.createLinearGradient(0, top, 0, top + cell * 6)
-      wash.addColorStop(0, "rgba(9,28,40,.6)")
-      wash.addColorStop(1, "rgba(35,39,36,.84)")
-      ctx.fillStyle = wash
-      ctx.fillRect(left, top, cell * 6, cell * 6)
+      drawArena(ctx, left, top, cell * 6, arenaTheme(current), visualTime, opts.reducedMotion || current.paused, opts.lowQuality, (b?.tick ?? 0) >= 1100)
       for (const i of CELLS) {
         const x = left + (i % 6) * cell,
           y = top + Math.floor(i / 6) * cell
         ctx.fillStyle =
           ((i % 6) + Math.floor(i / 6)) % 2
-            ? "rgba(237,207,153,.045)"
-            : "rgba(2,15,24,.15)"
+            ? "rgba(237,207,153,.035)"
+            : "rgba(2,15,24,.055)"
         ctx.fillRect(x, y, cell, cell)
         ctx.strokeStyle =
           i < 18 ? "rgba(232,143,112,.2)" : "rgba(235,209,164,.25)"
@@ -193,6 +191,7 @@ export function AutoBoard({
                 }) as Actor,
             ),
           ]
+      const actorMap = new Map(actors.map(a => [a.uid, a]))
       const coords = new Map(actors.map((a) => {
         const pos = position(a, time)
         if (b || opts.reducedMotion) return [a.uid, pos] as const
@@ -213,7 +212,7 @@ export function AutoBoard({
         for (const a of actors.filter(
           (a) => a.hp > 0 && a.action?.kind === "cast" && time <= a.action.hit,
         )) {
-          const target = actors.find((t) => t.uid === a.action!.target),
+          const target = actorMap.get(a.action!.target ?? ""),
             pos = target ? coords.get(target.uid)! : coords.get(a.uid)!
           const skill = a.action!.skill ?? a.skill
           if (["steam", "dash", "charge"].includes(skill)) {
@@ -311,6 +310,7 @@ export function AutoBoard({
           ctx.stroke()
           ctx.globalAlpha = 1
         }
+        if (actor.shield > 0 && actor.hp > 0) drawWard(ctx, x, y, size, visualTime, opts.reducedMotion || current.paused)
         const dancing = opts.celebrating && actor.side === "ally" && actor.hp > 0
         const beat = visualTime * .38 + row * .28
         const index = dancing
@@ -321,7 +321,7 @@ export function AutoBoard({
         if (sheet.complete && sheet.naturalWidth && spriteRow) {
           const [sx, sy, sw, sh, anchorX, anchorY] = spriteRow.frames[index]
           ctx.save()
-          const target = actors.find(a => a.uid === actor.action?.target)
+          const target = actorMap.get(actor.action?.target ?? "")
           // The original enemy atlas faces left; the newer sheets face right.
           const nativeLeft = spriteKey === "enemy"
           if (target && Math.abs(position(target, time).x - p.x) > .05)
@@ -363,7 +363,8 @@ export function AutoBoard({
             recoilX = delta.x / length * amount; recoilY = delta.y / length * amount
           }
           ctx.translate(x + offsetX + lungeX + sway + recoilX, y + offsetY + breath + lungeY + gait + hop + recoilY)
-          ctx.scale(awaken, awaken)
+          const departure = actor.hp <= 0 && !opts.reducedMotion ? Math.max(.6, 1 - deadAge / 60) : 1
+          ctx.scale(awaken * departure, awaken * departure)
           if (flip) ctx.scale(-1, 1)
           if (dancing && !opts.reducedMotion) {
             ctx.rotate(Math.sin(beat) * .065)
@@ -381,6 +382,15 @@ export function AutoBoard({
             by = Math.max(top + p.y * cell + 2, y - size - cell * .05)
           ctx.fillStyle = "#101b21"
           ctx.fillRect(x - bw / 2, by, bw, 4)
+          const lastHp = healthTrails.get(actor.uid)
+          if (!lastHp) healthTrails.set(actor.uid, { hp: actor.hp, from: actor.hp, at: now })
+          else if (lastHp.hp !== actor.hp) {
+            const old = lastHp.from + (lastHp.hp - lastHp.from) * Math.min(1, (now - lastHp.at) / 280)
+            healthTrails.set(actor.uid, { hp: actor.hp, from: Math.max(old, actor.hp), at: now })
+          }
+          const trail = healthTrails.get(actor.uid)!
+          const tail = opts.reducedMotion ? actor.hp : trail.from + (actor.hp - trail.from) * Math.min(1, (now - trail.at) / 280)
+          ctx.fillStyle = "#e6c77e"; ctx.fillRect(x - bw / 2, by, bw * tail / actor.maxHp, 4)
           ctx.fillStyle = actor.side === "ally" ? "#a6e0b0" : "#ed9c91"
           ctx.fillRect(x - bw / 2, by, (bw * actor.hp) / actor.maxHp, 4)
           ctx.fillStyle = "#8dd6ec"
@@ -405,14 +415,17 @@ export function AutoBoard({
       if (b) {
         for (const u of actors.filter(a => a.hp > 0 && a.action && a.action.kind !== "move" && time < a.action.hit)) {
           const action = u.action!, origin = coords.get(u.uid)!
-          const target = actors.find(a => a.uid === action.target)
+          const target = actorMap.get(action.target ?? "")
           const end = target ? coords.get(target.uid)! : origin
           const t = Math.max(0, Math.min(1, (time - action.start) / Math.max(1, action.hit - action.start)))
           const school = (u.side === "ally" ? UNIT_MAP[u.id] : MONSTER_MAP[u.id]).school
           const kind = action.kind === "cast" ? skillVfx(action.skill ?? u.skill, u.range) : u.range <= 1 ? "slash" : "projectile"
           const from = { x:px(origin.x), y:py(origin.y)-cell*.48 }, to = { x:px(end.x), y:py(end.y)-cell*.48 }
           if (opts.reducedMotion) continue
-          if (action.kind === "cast") drawChannel(ctx, { x:from.x,y:py(origin.y) },school,t,cell*.48,opts.lowQuality)
+          if (action.kind === "cast") {
+            drawChannel(ctx, { x:from.x,y:py(origin.y) },school,t,cell*.48,opts.lowQuality)
+            drawCastAura(ctx, from.x, py(origin.y), cell, school, t, opts.lowQuality)
+          }
           // Support recipients are selected at resolution. Never send a healing
           // projectile to the enemy held in the action's generic target field.
           if (action.kind === "cast" && ["heal", "shield"].includes(kind)) continue
@@ -422,6 +435,9 @@ export function AutoBoard({
             if(t>.4) drawImpact(ctx,from,school,(t-.4)*.6,cell*.42,kind,opts.lowQuality)
           } else if(t>.25) drawProjectile(ctx,from,to,school,(t-.25)/.75,cell*(action.kind === "cast" ? .22 : .16),opts.lowQuality,kind)
         }
+        const popup = new Map<string, number>()
+        for (const event of b.events) if (visualTime >= event.tick && visualTime - event.tick < 32) popup.set(event.kind === "cast" ? `cast:${event.source}` : `${event.kind === "heal" ? "heal" : "damage"}:${event.target}`, event.id)
+        const labels = new Set([...popup.keys()].filter(key => key.startsWith("cast:")).sort((a,b) => popup.get(b)! - popup.get(a)!).slice(0, 4))
         for (const e of b.events.filter(
           (e) => e.kind !== "move" && e.kind !== "attack",
         )) {
@@ -439,8 +455,14 @@ export function AutoBoard({
               : e.kind === "burn"
                 ? "#ff9b62"
                 : AUTO_SCHOOLS[e.school].color
+          const sourceActor = actorMap.get(e.source)
+          if (e.kind === "cast" && e.amount > 0 && sourceActor) {
+            const sourcePos = coords.get(e.source)!
+            drawSkillBurst(ctx, px(sourcePos.x), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
+          }
+          if (e.kind === "death") drawDeparture(ctx, x, y, cell, e.school, age, opts.reducedMotion, opts.lowQuality)
           if (!opts.reducedMotion && age < .7 && ["hit","shield","heal","phase","summon","burn"].includes(e.kind)) {
-            const source = actors.find(a=>a.uid===e.source)
+            const source = actorMap.get(e.source)
             const kind = e.kind === "heal" ? "heal" : e.kind === "shield" ? "shield" : e.kind === "summon" ? "summon"
               : e.kind === "hit" && source?.range === 1 ? "slash" : "projectile"
             drawImpact(ctx,{x,y},e.school,age,cell*(e.kind === "phase" ? .75 : .4),kind,opts.lowQuality)
@@ -456,33 +478,33 @@ export function AutoBoard({
           if (
             ["hit", "heal", "burn"].includes(e.kind) &&
             e.amount > 0 &&
-            age < 1.1
+            age < 1.1 && popup.get(`${e.kind === "heal" ? "heal" : "damage"}:${e.target}`) === e.id
           ) {
             ctx.globalAlpha = Math.min(1, (1.1 - age) * 2)
-            ctx.font = `bold ${Math.max(10, cell * 0.27)}px sans-serif`
+            ctx.font = `bold ${Math.max(8, cell * .2)}px sans-serif`
             ctx.textAlign = "center"
             ctx.fillStyle = e.kind === "heal" ? "#b6f2a8" : "#fff1d3"
             ctx.strokeStyle = "#172430"
             ctx.lineWidth = 3
             const label = `${e.kind === "heal" ? "+" : "−"}${e.amount}`
-            ctx.strokeText(label, x, y - age * 20)
-            ctx.fillText(label, x, y - age * 20)
+            ctx.strokeText(label, x, y - (opts.reducedMotion ? 0 : age * 20))
+            ctx.fillText(label, x, y - (opts.reducedMotion ? 0 : age * 20))
             ctx.globalAlpha = 1
           }
-          if (e.kind === "cast" && e.amount > 0) {
-            const u = actors.find((a) => a.uid === e.source)
+          if (e.kind === "cast" && e.amount > 0 && popup.get(`cast:${e.source}`) === e.id && labels.has(`cast:${e.source}`)) {
+            const u = actorMap.get(e.source)
             if (u) {
               const pos = coords.get(u.uid)!
-              ctx.font = `bold ${Math.max(9, cell * 0.22)}px sans-serif`
+              ctx.font = `bold ${Math.max(8, cell * .16)}px sans-serif`
               ctx.textAlign = "center"
               ctx.fillStyle = color
               ctx.strokeStyle = "#172430"
               ctx.lineWidth = 3
-              const label = SKILL_LABELS[u.skill]
+              const label = SKILL_LABELS[e.skill ?? u.skill]
               const cx = Math.min(width - 48, Math.max(48, px(pos.x))),
                 cy = py(pos.y) - cell * 1.1
-              ctx.strokeText(label, cx, cy)
-              ctx.fillText(label, cx, cy)
+              ctx.strokeText(label, cx, cy, cell * 1.6)
+              ctx.fillText(label, cx, cy, cell * 1.6)
             }
           }
         }

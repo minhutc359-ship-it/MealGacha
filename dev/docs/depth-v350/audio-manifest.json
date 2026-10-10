@@ -1,24 +1,6 @@
 [
   {
     "style": "original",
-    "name": "prepare",
-    "bpm": 94,
-    "duration": 40.851,
-    "bytes": 327546,
-    "sampleRate": 22050,
-    "peak": 0.6052,
-    "rms": 0.1625
-  },
-  {
-    "style": "8bit",
-    "name": "prepare",
-    "seconds": 39.184,
-    "bpm": 98,
-    "bytes": 314177,
-    "rms": 0.151
-  },
-  {
-    "style": "original",
     "name": "battle",
     "bpm": 124,
     "duration": 61.935,
@@ -52,24 +34,6 @@
     "bpm": 148,
     "bytes": 415947,
     "rms": 0.1389
-  },
-  {
-    "style": "original",
-    "name": "story",
-    "bpm": 82,
-    "duration": 46.829,
-    "bytes": 375400,
-    "sampleRate": 22050,
-    "peak": 0.6052,
-    "rms": 0.1526
-  },
-  {
-    "style": "8bit",
-    "name": "story",
-    "seconds": 44.651,
-    "bpm": 86,
-    "bytes": 358061,
-    "rms": 0.1541
   },
   {
     "style": "original",

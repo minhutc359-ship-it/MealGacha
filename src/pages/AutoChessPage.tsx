@@ -19,6 +19,8 @@ import { useFormationDrag } from "../components/autochess/useFormationDrag"
 import { useAutoShortcuts } from "../components/autochess/useAutoShortcuts"
 import { useStarUpgrades } from "../components/autochess/useStarUpgrades"
 import { ShopOdds } from "../components/autochess/ShopOdds"
+import { ItemArt } from "../components/autochess/ItemArt"
+import { maxWillpower, willpowerRatio, willpowerHelp } from "../game/autochess/willpower"
 import { ITEM_MAP, ITEM_RECIPES, itemPreview, equipPreview, isComponent } from "../game/autochess/items"
 import { AutoVictory, useAutoVictory } from "../components/autochess/AutoVictory"
 import { AutoPortrait, AutoMonsterPortrait, WorldArt } from "../components/autochess/AutoArt"
@@ -119,7 +121,7 @@ export function AutoChessPage() {
     sceneId && !victory.pending
       ? "auto-story"
       : playing && run?.phase === "combat"
-        ? (run.combat?.tick ?? 0) >= 500 || run.health < 35
+        ? (run.combat?.tick ?? 0) >= 500 || willpowerRatio(run) < .35
           ? "auto-pressure"
           : run.combat?.boss
             ? "auto-boss"
@@ -133,7 +135,7 @@ export function AutoChessPage() {
   }, [])
   useEffect(() => {
     if (run?.lastResult && run.phase !== "combat" && run.phase !== "prepare")
-      gameAudio.play(run.lastResult.result === "win" ? "victory" : "defeat")
+      gameAudio.play(run.lastResult.result === "win" ? "auto-victory" : "auto-defeat")
   }, [run?.lastResult?.id])
   const doAction = (a: AutoAction) => {
     if (a.type === "buy") setSelected(null)
@@ -273,7 +275,7 @@ export function AutoChessPage() {
     run?.phase === "combat" && (run.combat?.tick ?? 0) < 60
       ? Object.keys(traits).filter(id => id in AUTO_SCHOOLS).length >= 3 ? "An: Cả đội, giữ tuyến trước! Mâm chung sẽ tiếp sức." : "An: Giữ tuyến trước, che carry phía sau!"
       : castingUnit
-        ? `${(UNIT_MAP[castingUnit.id] ?? MONSTER_MAP[castingUnit.id]).name} · ${SKILL_LABELS[castingUnit.skill]}`
+        ? `${(UNIT_MAP[castingUnit.id] ?? MONSTER_MAP[castingUnit.id]).name} · ${SKILL_LABELS[latestCast?.skill ?? castingUnit.skill]}`
         : "Kỹ năng tự tung khi đủ mana · nhấn một ô để xem quân"
   return (
     <div className={`ac-shell ${prefs.reducedMotion ? "is-reduced" : ""}`}>
@@ -281,7 +283,7 @@ export function AutoChessPage() {
         <AutoPortrait index={UNIT_MAP[draggedPiece.id].portrait} />
         <strong>{UNIT_MAP[draggedPiece.id].name}</strong><small>{"★".repeat(draggedPiece.star)}</small>
       </div>}
-      {draggedItem && <div className="ac-drag-ghost ac-item-ghost" ref={drag.ghostRef} aria-hidden="true" style={{ "--item": draggedItem.color } as CSSProperties}><i>{draggedItem.icon}</i><strong>{draggedItem.name}</strong></div>}
+      {draggedItem && <div className="ac-drag-ghost ac-item-ghost" ref={drag.ghostRef} aria-hidden="true" style={{ "--item": draggedItem.color } as CSSProperties}><ItemArt id={draggedItem.id} decorative /><strong>{draggedItem.name}</strong></div>}
       {drag.preview && <div className={`ac-item-preview ${drag.preview.valid ? "is-valid" : "is-invalid"}`} role="status" style={{ borderColor: drag.preview.color }}><strong>{drag.preview.name}</strong><span>{drag.preview.text}</span><small>{drag.preview.valid ? "Thả để xác nhận" : "Trang bị sẽ được giữ trong kho"}</small></div>}
       <WorldArt scene={sceneIndex} className="ac-backdrop" />
       <header className="ac-header">
@@ -388,9 +390,9 @@ export function AutoChessPage() {
                           <h2>{modeNames[mode]}</h2>
                           <p>
                             {i === 0
-                              ? "Đi tìm tên của những ký ức bị xóa. Bốn boss, lựa chọn kết truyện và một chiếc ghế để lại."
+                              ? "100 ý chí để đi tìm tên những ký ức bị xóa. Thua còn ý chí thì chơi lại cùng đợt. Bốn boss và lựa chọn kết truyện."
                               : i === 1
-                                ? "Quái mạnh dần theo đợt và thời gian đánh. Điểm thưởng cho giữ đội và kết thúc vòng nhanh."
+                                ? "3 ý chí, thua mất 1 và chơi lại cùng đợt. Thắng không hồi ý chí. Quái mạnh dần theo thời gian; hết ý chí ghi kỷ lục."
                                 : "Cùng một cửa hàng và địch khởi đầu cho mọi lượt hôm nay. Thử đội hình khác để vượt chính mình."}
                           </p>
                           <button
@@ -419,7 +421,7 @@ export function AutoChessPage() {
             {menu === "roster" && (
               <>
                 <div className="ac-menu-title">
-                  <h1>32 Vị Linh</h1>
+                  <h1>44 Vị Linh</h1>
                   <p>Chọn quân để xem kỹ năng, nghề, hệ và ký ức món ăn.</p>
                 </div>
                 <AutoRoster onInspect={(id) => inspectUnit({ id })} />
@@ -614,10 +616,10 @@ export function AutoChessPage() {
         >
           <div className="ac-hud">
             <AutoPortrait index={0} npc label="An" />
-            <div className="ac-health">
-              <span>AN · {run.health}/100 ý chí</span>
+            <div className="ac-health" title={willpowerHelp(run.mode)}>
+              <span>AN · {run.health}/{maxWillpower(run)} ý chí</span>
               <div>
-                <i style={{ width: `${run.health}%` }} />
+                <i style={{ width: `${willpowerRatio(run) * 100}%` }} />
               </div>
             </div>
             <div className="ac-hud-number">
@@ -663,7 +665,7 @@ export function AutoChessPage() {
           </div>
           <div className="ac-battle-layout">
             <AutoTraits counts={traits} expanded={traitsOpen} onToggle={() => setTraitsOpen(!traitsOpen)} onDetails={() => openModal("traits")} />
-          <section className="ac-arena" aria-label="Trận auto chess">
+          <section className={`ac-arena ${run.combat?.boss ? "is-boss" : ""} ${overtime ? "is-overtime" : ""}`} aria-label="Trận auto chess">
             <WorldArt scene={sceneIndex} />
             <AutoBoard
               run={run}
@@ -720,7 +722,7 @@ export function AutoChessPage() {
               </div>
               <footer className="ac-controls">
                 <span className="ac-team-caption">{boardPieces(run).length} Vị Linh · {(run.activeTicks / 20) | 0}s · Cấp {capacityNow} · {run.xp} XP</span>
-                <button className="ac-button" onClick={() => setLowQuality(!lowQuality)}>{lowQuality ? "Đồ họa thấp" : "Đồ họa cao"}</button>
+                <button className="ac-button" aria-label="Chất lượng đồ họa Auto chess" aria-pressed={!lowQuality} onClick={() => setLowQuality(!lowQuality)}>{lowQuality ? "Đồ họa thấp" : "Đồ họa cao"}</button>
                 <button className="ac-button" onClick={() => openModal("abandon")}>Kết thúc lượt</button>
                 <button className="ac-inventory-button" onClick={() => openModal("inventory")} aria-label="Di vật và Lời hẹn">✧<span>{run.inventory.length}</span></button>
               </footer>
@@ -835,7 +837,7 @@ export function AutoChessPage() {
                     })
                   }
                 >
-                  <strong>{item.name}</strong>
+                  <ItemArt id={id} decorative /><strong>{item.name}</strong>
                   <small>{item.text}</small>
                 </button>
               )
@@ -845,7 +847,7 @@ export function AutoChessPage() {
             <p className="ac-muted">Thắng mỗi ba đợt để chọn một di vật.</p>
           )}
           <h3>Công thức · hai mảnh thành một di vật</h3>
-          <div className="ac-recipe-list">{ITEM_RECIPES.map(({ parts, result }) => <article key={result}><span>{parts.map(part => ITEM_MAP[part].name).join(" + ")}</span><strong>→ {ITEM_MAP[result].name}</strong><small>{ITEM_MAP[result].text}</small></article>)}</div>
+          <div className="ac-recipe-list">{ITEM_RECIPES.map(({ parts, result }) => <article key={result}><span className="ac-recipe-parts">{parts.map((part, index) => <span key={index}><ItemArt id={part} /><small>{ITEM_MAP[part].name}</small>{index === 0 && " + "}</span>)}</span><strong className="ac-recipe-result">→ <ItemArt id={result} />{ITEM_MAP[result].name}</strong><small>{ITEM_MAP[result].text}</small></article>)}</div>
           <h3>Lời hẹn đang giữ</h3>
           {run.augments.map((id) => {
             const a = AUGMENTS.find((a) => a.id === id)!
@@ -941,17 +943,17 @@ export function AutoChessPage() {
             <p>{run.lastResult.reason}</p>
             <div className="ac-result-stats">
               <span>+{run.lastResult.gold} vàng</span>
-              <span>{run.health}/100 ý chí</span>
+              <span>{run.health}/{maxWillpower(run)} ý chí</span>
               <span>{run.score} điểm tổng</span>
             </div>
             <p className="ac-muted">
-              Di vật, đội hình và lợi tức mở thêm cách giữ bàn.
+              {run.lastResult.result === "win" ? "Di vật, đội hình và lợi tức mở thêm cách giữ bàn." : `Còn ${run.health} ý chí. Giữ đội hình, nhận vàng và XP để chuẩn bị lại; đợt ${run.wave} chưa hoàn thành.`}
             </p>
             <button
               className="ac-button primary"
               onClick={() => doAction({ type: "next" })}
             >
-              Qua đợt tiếp theo →
+              {run.lastResult.result === "win" ? "Qua đợt tiếp theo →" : `Chuẩn bị lại đợt ${run.wave} →`}
             </button>
           </Dialog>
         )}
@@ -980,7 +982,7 @@ export function AutoChessPage() {
                     key={id}
                     onClick={() => doAction({ type: "reward", id })}
                   >
-                    <span>✧</span>
+                    {ITEM_MAP[id] ? <ItemArt id={id} decorative /> : <span>✧</span>}
                     <strong>{item.name}</strong>
                     <p>{item.text}</p>
                     {isComponent(id) && <small>Nhận 2 mảnh · có thể ghép trong kho hoặc trên quân</small>}
@@ -1025,7 +1027,7 @@ export function AutoChessPage() {
               {run.phase === "won"
                 ? "Những tên gọi đã trở lại. An để một chiếc ghế cho người đến sau."
                 : run.phase === "lost"
-                  ? `Đội hình bị hạ ở đợt ${run.wave}. Lượt đã kết thúc và điểm đã lưu; bắt đầu phiên mới để thử hướng đội hình khác.`
+                  ? `An ${run.mode === "daily" ? "đã hết lượt thử thách" : "đã hết ý chí"} ở đợt ${run.wave}. Điểm các đợt đã thắng được lưu; bắt đầu phiên mới để thử đội hình khác.`
                   : "Lượt đã kết thúc. Kỷ lục và bộ sưu tập được giữ; thử một hướng đội hình khác ở phiên sau."}
             </p>
             {run.phase === "lost" && run.lastResult && <p className="ac-muted">{run.lastResult.reason}</p>}

@@ -1,29 +1,31 @@
 {
-  "version": "3.4.1",
+  "version": "3.5.0",
   "generatedOn": "2026-10-09",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
     {
       "path": "public/assets/autochess/audio/8bit-battle.mp3",
-      "bytes": 226613,
-      "sha256": "cfaa294e44858bc61aa441fb1bb2026721e76293ba6e7a46dd2fcbec10e6cd52",
+      "bytes": 466313,
+      "sha256": "8356f76141331ef0f3d82a68bf8ff1c091ccd4a9760b440829c8b17e9ae0a13f",
       "origin": "Original procedural composition",
       "evidence": [
         "dev/tools/compose-autochess-music.py",
         "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json"
+        "dev/docs/autochess/audio-manifest.json",
+        "dev/docs/depth-v350/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
       "path": "public/assets/autochess/audio/8bit-boss.mp3",
-      "bytes": 205504,
-      "sha256": "a196609befc45e6affd35207140e1b9b7d11d16453bd17bfd003002b76619570",
+      "bytes": 415947,
+      "sha256": "5e63333729a862d92e866b38bfc335766137724e0b0286104dee66ac9b88fb75",
       "origin": "Original procedural composition",
       "evidence": [
         "dev/tools/compose-autochess-music.py",
         "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json"
+        "dev/docs/autochess/audio-manifest.json",
+        "dev/docs/depth-v350/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -35,19 +37,21 @@
       "evidence": [
         "dev/tools/compose-autochess-music.py",
         "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json"
+        "dev/docs/autochess/audio-manifest.json",
+        "dev/docs/depth-v350/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
       "path": "public/assets/autochess/audio/8bit-pressure.mp3",
-      "bytes": 188163,
-      "sha256": "e38b32b8331239e8269bdf409f5589ff2395805bdb56c0100ce6328cef37e1ce",
+      "bytes": 190462,
+      "sha256": "290b67c884eaf04578bff96d485fdad044b7713f892988ef852b76069630f1f0",
       "origin": "Original procedural composition",
       "evidence": [
         "dev/tools/compose-autochess-music.py",
         "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json"
+        "dev/docs/autochess/audio-manifest.json",
+        "dev/docs/depth-v350/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -59,31 +63,34 @@
       "evidence": [
         "dev/tools/compose-autochess-music.py",
         "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json"
+        "dev/docs/autochess/audio-manifest.json",
+        "dev/docs/depth-v350/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
       "path": "public/assets/autochess/audio/battle.mp3",
-      "bytes": 240818,
-      "sha256": "4714d578d2914abc7059c7a72625a2af4a57ea3b18ca73221bd966c10f8c9d5f",
+      "bytes": 496191,
+      "sha256": "a98f73217749a4ce6f78497ec657193a0ea453d14dc1a242f0e768baa81386d4",
       "origin": "Original procedural composition",
       "evidence": [
         "dev/tools/compose-autochess-music.py",
         "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json"
+        "dev/docs/autochess/audio-manifest.json",
+        "dev/docs/depth-v350/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
       "path": "public/assets/autochess/audio/boss.mp3",
-      "bytes": 217201,
-      "sha256": "cb9bcf97d53be9254e2946894fbf37bc414d518a3a5d3b6603a37293d9338c53",
+      "bytes": 439556,
+      "sha256": "5d660963774a50a201c0869a25a8af6fa12c694aaad695563e1fd6bf7a0c1123",
       "origin": "Original procedural composition",
       "evidence": [
         "dev/tools/compose-autochess-music.py",
         "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json"
+        "dev/docs/autochess/audio-manifest.json",
+        "dev/docs/depth-v350/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -95,19 +102,21 @@
       "evidence": [
         "dev/tools/compose-autochess-music.py",
         "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json"
+        "dev/docs/autochess/audio-manifest.json",
+        "dev/docs/depth-v350/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
       "path": "public/assets/autochess/audio/pressure.mp3",
-      "bytes": 197770,
-      "sha256": "67b901c21718e4c666101e17ce1bb1a4daf885588a7787c8e949dd5daedb61c6",
+      "bytes": 200278,
+      "sha256": "a4dfa74969c51602ad3d357977597fba2e427732074e1511ad8984016812a8a7",
       "origin": "Original procedural composition",
       "evidence": [
         "dev/tools/compose-autochess-music.py",
         "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json"
+        "dev/docs/autochess/audio-manifest.json",
+        "dev/docs/depth-v350/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -119,7 +128,18 @@
       "evidence": [
         "dev/tools/compose-autochess-music.py",
         "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json"
+        "dev/docs/autochess/audio-manifest.json",
+        "dev/docs/depth-v350/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/autochess/items-rpg-v350.webp",
+      "bytes": 205408,
+      "sha256": "0bda570c882d7751aad21ae9a47dfaca44b5a0d6ce243584298b4af8093f0cdc",
+      "origin": "Original AI-assisted RPG inventory art",
+      "evidence": [
+        "dev/docs/depth-v350/item-prompts.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

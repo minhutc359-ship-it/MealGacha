@@ -137,6 +137,8 @@ function UnitTile({
         <small>
           {ghost
             ? "BỊ HẠ GỤC"
+            : u.frozen
+              ? "ĐÓNG BĂNG · BỎ ĐÒN"
             : u.keywords.includes("guard")
               ? "HỘ VỆ"
               : u.keywords.includes("drain")
@@ -245,6 +247,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
   const [openingInspect, setOpeningInspect] = useState<number | null>(null)
   const [confirm, setConfirm] = useState(false)
   const [showLog, setShowLog] = useState(false)
+  const [showMemories, setShowMemories] = useState(false)
   const [showRules, setShowRules] = useState(false)
   const [showTactics, setShowTactics] = useState(false)
   const [detail, setDetail] = useState(false)
@@ -360,7 +363,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     : null
   const aura = battle.tableAura ? RECIPE_MAP[battle.tableAura.id] : null
   const table =
-    aura?.id ??
+    (aura?.board ?? aura?.id) ??
     (battle.stageId?.startsWith("lantern") || battle.stageId?.startsWith("moon")
       ? "street"
       : battle.stageId?.startsWith("last-table")
@@ -661,6 +664,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
               {battle.player.hand.length}/8 trên tay
             </small>
           </span>
+          <button className="tcg-memory-count" onClick={() => setShowMemories(true)} aria-label={`Ký ức đã mất: ${battle.player.graveyard?.length ?? 0} đồng minh`}>
+            ◇ {battle.player.graveyard?.length ?? 0}
+          </button>
           <b>
             ♥ {Math.max(0, battle.player.health)}
             <small>/{battle.player.maxHealth}</small>
@@ -1017,6 +1023,13 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           </div>
         </Dialog>
       )}
+      {showMemories && <Dialog title="Ký ức đã mất" onClose={() => setShowMemories(false)}>
+        <p>Đồng minh bị hạ được giữ ở đây. Ký ức đại dương và Nở lại hồi sinh quân giá tối đa 4 bị hạ gần nhất; cần ô trống, quân trở lại với 2 máu và chưa được đánh.</p>
+        <div className="tcg-memory-list">{[...(battle.player.graveyard ?? [])].reverse().map((id, index) => <article key={`${id}-${index}`}>
+          <img src={CARD_MAP[id].art} alt="" /><span><strong>{CARD_MAP[id].name}</strong><small>{CARD_MAP[id].cost} năng lượng · {CARD_MAP[id].cost <= 4 ? "Có thể tái triệu hồi" : "Vượt giới hạn tái triệu hồi"}</small></span>
+        </article>)}</div>
+        {!battle.player.graveyard?.length && <p>Chưa mất đồng minh nào.</p>}
+      </Dialog>}
       {showRules && (
         <Dialog title="Luật chiến đấu" onClose={() => setShowRules(false)}>
           <div className="tcg-rules-list">
@@ -1069,10 +1082,13 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                   ? "phép hồi phục"
                   : r.finish === "damage"
                     ? "phép sát thương"
-                    : "phép cường hóa / lá chắn"}
+                    : r.finish === "draw" ? "phép rút bài / tái triệu hồi" : "phép cường hóa / lá chắn"}
                 . {r.reward}
               </p>
             ))}
+            <p>
+              <strong>Giữ quân làm động cơ:</strong> Quân có nội tại “sau khi dùng phép” hoặc “khi hồi máu” có thể tăng công, dệt chắn. Các nội tại này tối đa 2 lần mỗi lượt của chủ nhân; hồi ở mức đầy máu không kích hoạt. Đóng băng bỏ một đòn ở lượt kế tiếp. Hy sinh vẫn kích hiệu ứng khi bị hạ; tái triệu hồi dùng ký ức đã mất và không kích hiệu ứng vào sân.
+            </p>
             <p>
               <strong>Cạn bài:</strong> Không thể rút sẽ chịu kiệt sức 1, 2, 3…
               sát thương. Tay đầy 8 lá sẽ bỏ lá rút thêm.

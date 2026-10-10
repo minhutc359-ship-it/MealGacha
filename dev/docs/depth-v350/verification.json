@@ -1,0 +1,14 @@
+{
+  "version": "3.5.0",
+  "tests": 315,
+  "testFiles": 28,
+  "appTypecheck": "passed",
+  "devTypecheck": "passed",
+  "catalog": "123 foods; 163 TCG cards; 44 Auto chess units",
+  "releaseRecords": "246 assets; 3 policies; passed",
+  "productionBuild": "passed",
+  "browser": "browser-results.json",
+  "audio": "audio-decoded.json",
+  "buildSize": "../release/build-size.json",
+  "limits": "Chromium desktop simulation; no physical Safari/iOS/Android QA; browser ran before final import-zero-willpower/AI-target fixes, which have regression coverage"
+}

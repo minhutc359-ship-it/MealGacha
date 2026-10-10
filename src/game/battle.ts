@@ -73,7 +73,7 @@ export function playError(b: Battle, index: number): string | null {
     return "Sân đã đủ 3 đồng minh."
   if (["buff", "ward"].includes(card.effect ?? "") && !b.player.board.length)
     return "Cần một đồng minh trên sân."
-  return null
+  return abilityError(b.player, card)
 }
 interface BattleResult {
   battle: Battle
@@ -93,9 +93,125 @@ function log(b: Battle, message: string) {
   b.log = [...b.log, message].slice(-40)
 }
 function checkResult(b: Battle) {
-  b.player.board = b.player.board.filter((u) => u.health > 0)
-  b.enemy.board = b.enemy.board.filter((u) => u.health > 0)
+  const fallen = (["player", "enemy"] as const).flatMap(side =>
+    b[side].board.filter(u => u.health <= 0).map(unit => ({ side, unit })))
+  // Remove both sides first: death-trigger draws cannot process a corpse twice.
+  for (const side of ["player", "enemy"] as const) {
+    const p = b[side]
+    p.graveyard = [...(p.graveyard ?? []), ...p.board.filter(u => u.health <= 0).map(u => u.cardId)].slice(-36)
+    p.board = p.board.filter(u => u.health > 0)
+  }
+  for (const { side, unit } of fallen) {
+    const card = CARD_MAP[unit.cardId]
+    if (card.ability === "pantry") restore(b, side, 3)
+    if (card.ability === "farewell") draw(b, side, 1)
+    if (["pantry", "farewell"].includes(card.ability ?? "")) log(b, `✦ ${card.name} · kích ký ức khi bị hạ.`)
+  }
   b.result = battleOutcome(b)
+}
+function restore(b: Battle, side: "player" | "enemy", amount: number) {
+  const p = b[side], actual = Math.max(0, Math.min(amount, p.maxHealth - p.health))
+  p.health += actual
+  if (actual) for (const u of p.board) {
+    if (u.health > 0 && CARD_MAP[u.cardId].ability === "bloom" && (u.triggers ?? 0) < 2) {
+      u.attack++; u.triggers = (u.triggers ?? 0) + 1
+      log(b, `✦ ${CARD_MAP[u.cardId].name} · hồi phục nở +1 công.`)
+    }
+  }
+}
+const weakest = (p: Combatant) => [...p.board].filter(u => u.health > 0).sort((a, z) => a.health - z.health || a.uid.localeCompare(z.uid))[0]
+const diverseSchools = (p: Combatant) => new Set(p.board.filter(u => u.health > 0).map(u => CARD_MAP[u.cardId].school)).size
+function memoryIndex(p: Combatant) {
+  const memories = p.graveyard ?? []
+  for (let index = memories.length - 1; index >= 0; index--) if (CARD_MAP[memories[index]]?.kind === "unit" && CARD_MAP[memories[index]].cost <= 4) return index
+  return -1
+}
+function abilityError(p: Combatant, card: GameCard): string | null {
+  if (card.ability === "offering" && p.board.length < 2) return "Cần ít nhất 2 đồng minh để hy sinh và giữ lại người nhận sức mạnh."
+  if (card.ability === "revive" && (p.board.length >= 3 || memoryIndex(p) < 0)) return "Cần một ô trống và đồng minh giá tối đa 4 đã bị hạ."
+  return null
+}
+function revive(b: Battle, side: "player" | "enemy") {
+  const p = b[side], index = memoryIndex(p)
+  if (p.board.length >= 3 || index < 0) return
+  const id = p.graveyard!.splice(index, 1)[0], card = CARD_MAP[id]
+  p.board.push({ uid: `u${b.nextUid++}`, cardId: id, attack: card.attack, health: Math.min(2, card.health),
+    maxHealth: card.health, shield: card.keywords.includes("shield") ? 1 : 0, ready: false, keywords: [...card.keywords] })
+  log(b, `✦ Tái triệu hồi ${card.name} · ký ức trở lại, không kích hiệu ứng vào sân.`)
+}
+function mendUnits(p: Combatant, amount: number) {
+  p.board.filter(u => u.health > 0).forEach(u => { u.health = Math.min(u.maxHealth, u.health + amount) })
+}
+function empower(u: BattleUnit, attack: number, health: number) { u.attack += attack; u.health += health; u.maxHealth += health }
+function unitAbility(b: Battle, side: "player" | "enemy", card: GameCard) {
+  const p = b[side], foe = b[side === "player" ? "enemy" : "player"], entered = p.board.at(-1)!
+  if (card.ability === "ambush") {
+    const target = [...foe.board].filter(u => u.health < u.maxHealth).sort((a, z) => a.health - z.health)[0]
+    if (target) hurt(target, 2)
+  }
+  if (card.ability === "scout" && p.hand.length <= 3) draw(b, side)
+  if (card.ability === "snare") {
+    const target = [...foe.board].sort((a, z) => z.attack - a.attack)[0]
+    if (target) target.attack = Math.max(0, target.attack - 1)
+  }
+  if (card.ability === "mender") mendUnits(p, 2)
+  if (card.ability === "host") p.board.filter(u => u.uid !== entered.uid).forEach(u => u.shield++)
+  if (card.ability === "welcome" && diverseSchools(p) >= 3) p.board.forEach(u => u.attack++)
+}
+function spellAbility(b: Battle, side: "player" | "enemy", card: GameCard, target: Target | undefined, power: number): boolean {
+  const p = b[side], foe = b[side === "player" ? "enemy" : "player"], ally = weakest(p)
+  const strike = (amount: number, pierce = false) => {
+    if (target === "hero") foe.health -= amount
+    else { const u = foe.board.find(u => u.uid === target)!; if (pierce) u.health -= amount; else hurt(u, amount) }
+  }
+  switch (card.ability) {
+    case "wok": {
+      strike(power)
+      const splash = [...foe.board].filter(u => u.health > 0 && u.uid !== target).sort((a, z) => a.health - z.health)[0]
+      if (splash) hurt(splash, 1)
+      break
+    }
+    case "pierce": strike(power, true); break
+    case "desperation": strike(power + (p.health <= p.maxHealth / 2 ? 4 : 0)); break
+    case "wash": if (target !== "hero") foe.board.find(u => u.uid === target)!.shield = 0; strike(power); break
+    case "starlight": strike(power + Math.min(2, p.spellsThisTurn ?? 0) * 2); break
+    case "insight": draw(b, side, power); if (diverseSchools(p) >= 3) p.mana = Math.min(p.maxMana, p.mana + 1); break
+    case "revive": revive(b, side); break
+    case "mend": case "feast": restore(b, side, power); mendUnits(p, card.ability === "mend" ? 2 : 3); break
+    case "rebloom": restore(b, side, power); revive(b, side); break
+    case "root": {
+      p.board.forEach(u => u.shield += power)
+      const guard = [...p.board].sort((a, z) => z.health - a.health)[0]
+      if (!guard.keywords.includes("guard")) guard.keywords.push("guard")
+      break
+    }
+    case "sharp": empower([...p.board].sort((a, z) => a.attack - z.attack)[0], power, power); break
+    case "diverse": { const schools = diverseSchools(p), bonus = schools >= 2 ? 1 : 0; p.board.forEach(u => { empower(u, power + bonus, power + bonus); if (schools >= 3) u.shield++ }); break }
+    case "bulwark": ally.shield += power; if (!ally.keywords.includes("guard")) ally.keywords.push("guard"); break
+    case "offering": ally.health = 0; checkResult(b); p.board.forEach(u => empower(u, power, 3)); break
+    case "veil": p.board.forEach(u => u.shield += power); if ((p.spellsThisTurn ?? 0) > 0) draw(b, side); break
+    case "dream": {
+      restore(b, side, power)
+      const sleeper = [...foe.board].sort((a, z) => z.attack - a.attack)[0]
+      if (sleeper) sleeper.frozen = true
+      break
+    }
+    case "moonward": p.board.forEach(u => u.shield += power); if (p.board.length === 3) draw(b, side); break
+    default: return false
+  }
+  return true
+}
+function afterSpell(b: Battle, side: "player" | "enemy") {
+  const p = b[side]
+  p.spellsThisTurn = (p.spellsThisTurn ?? 0) + 1
+  for (const u of p.board.filter(u => u.health > 0 && (u.triggers ?? 0) < 2)) {
+    const ability = CARD_MAP[u.cardId].ability
+    if (ability === "spellfire") u.attack++
+    else if (ability === "weaver") { const target = weakest(p); if (target) target.shield++ }
+    else continue
+    u.triggers = (u.triggers ?? 0) + 1
+    log(b, `✦ ${CARD_MAP[u.cardId].name} · cộng hưởng phép.`)
+  }
 }
 function draw(b: Battle, side: "player" | "enemy", count = 1) {
   const p = b[side]
@@ -129,6 +245,8 @@ function combatant(deck: string[], health: number): Combatant {
     resonanceUsed: false,
     recipeTrail: [],
     recipesUsed: [],
+    graveyard: [],
+    spellsThisTurn: 0,
   }
 }
 export function opponentDeck(
@@ -241,6 +359,8 @@ function play(
     !foe.board.some((u) => u.uid === target)
   )
     return "Hãy chọn một mục tiêu địch."
+  const abilityIssue = abilityError(p, card)
+  if (abilityIssue) return abilityIssue
   const resonated = cost < card.cost
   p.mana -= cost
   if (resonated) p.resonanceUsed = true
@@ -296,8 +416,9 @@ function play(
     })
     if (side === "player" && b.expedition) b.expedition.summoned++
     if (card.effect === "heal")
-      p.health = Math.min(p.maxHealth, p.health + power)
+      restore(b, side, power)
     if (card.effect === "draw") draw(b, side, power)
+    unitAbility(b, side, card)
     log(
       b,
       `${side === "player" ? "Bạn" : b.opponent} triệu hồi ${card.name}${
@@ -305,24 +426,27 @@ function play(
       }.`,
     )
   } else {
-    if (card.effect === "sweep") foe.board.forEach((u) => hurt(u, power))
-    if (card.effect === "damage") {
-      if (target === "hero") foe.health -= power
-      else hurt(foe.board.find((u) => u.uid === target)!, power)
+    if (!spellAbility(b, side, card, target, power)) {
+      if (card.effect === "sweep") foe.board.forEach((u) => hurt(u, power))
+      if (card.effect === "damage") {
+        if (target === "hero") foe.health -= power
+        else hurt(foe.board.find((u) => u.uid === target)!, power)
+      }
+      if (card.effect === "heal")
+        restore(b, side, power)
+      if (card.effect === "draw") draw(b, side, power)
+      if (card.effect === "buff")
+        p.board.forEach((u) => {
+          u.attack += power
+          u.health += power
+          u.maxHealth += power
+        })
+      if (card.effect === "ward")
+        p.board.forEach((u) => {
+          u.shield += power
+        })
     }
-    if (card.effect === "heal")
-      p.health = Math.min(p.maxHealth, p.health + power)
-    if (card.effect === "draw") draw(b, side, power)
-    if (card.effect === "buff")
-      p.board.forEach((u) => {
-        u.attack += power
-        u.health += power
-        u.maxHealth += power
-      })
-    if (card.effect === "ward")
-      p.board.forEach((u) => {
-        u.shield += power
-      })
+    afterSpell(b, side)
     log(b, `${side === "player" ? "Bạn" : b.opponent} dùng ${card.name}.`)
   }
   if (resonated)
@@ -346,7 +470,7 @@ function resolveRecipe(
   if (!recipe) return
   p.recipesUsed = [...(p.recipesUsed ?? []), recipe.id]
   if (recipe.id === "home") {
-    p.health = Math.min(p.maxHealth, p.health + 3)
+    restore(b, side, 3)
     p.board.forEach((u) => u.shield++)
   }
   if (recipe.id === "street") {
@@ -358,6 +482,17 @@ function resolveRecipe(
       u.attack++
       u.shield++
     })
+  if (recipe.id === "coast") {
+    const sleeper = [...foe.board].sort((a, z) => z.attack - a.attack)[0]
+    if (sleeper) sleeper.frozen = true
+    else draw(b, side)
+  }
+  if (recipe.id === "garden") {
+    mendUnits(p, 2)
+    const ally = weakest(p)
+    if (ally) ally.attack++
+  }
+  if (recipe.id === "moon") { p.board.forEach(u => u.shield++); draw(b, side) }
   b.tableAura = { id: recipe.id, untilRound: b.round + 1 }
   if (side === "player")
     b.comboCounts = {
@@ -382,7 +517,7 @@ function assist(b: Battle, record: (event: BattleEvent) => void) {
     share = companion.choice === "share"
   if (companion.id === "bach") {
     if (share) p.board.forEach((u) => (u.shield += 2))
-    else p.health = Math.min(p.maxHealth, p.health + 3)
+    else restore(b, "player", 3)
   }
   if (companion.id === "nhien") {
     if (share) b.enemy.health -= 2
@@ -392,19 +527,19 @@ function assist(b: Battle, record: (event: BattleEvent) => void) {
     }
   }
   if (companion.id === "moc") {
-    p.health = Math.min(p.maxHealth, p.health + (share ? 4 : 2))
+    restore(b, "player", share ? 4 : 2)
     if (!share) p.board.forEach((u) => u.shield++)
   }
   if (companion.id === "hai") {
     draw(b, "player", share ? 2 : 1)
-    if (!share) p.health = Math.min(p.maxHealth, p.health + 2)
+    if (!share) restore(b, "player", 2)
   }
   if (companion.id === "lien") {
     if (share) {
       p.board.forEach((u) => u.shield++)
       b.enemy.health--
     } else {
-      p.health = Math.min(p.maxHealth, p.health + 2)
+      restore(b, "player", 2)
       draw(b, "player")
     }
   }
@@ -446,13 +581,13 @@ function attack(
     actual = hurt(defender, attacker.attack)
     const counter = hurt(attacker, defender.attack)
     if (defender.keywords.includes("drain"))
-      foe.health = Math.min(foe.maxHealth, foe.health + counter)
+      restore(b, side === "player" ? "enemy" : "player", counter)
   } else {
     actual = Math.min(foe.health, attacker.attack)
     foe.health -= attacker.attack
   }
   if (attacker.keywords.includes("drain"))
-    p.health = Math.min(p.maxHealth, p.health + actual)
+    restore(b, side, actual)
   log(
     b,
     `${CARD_MAP[attacker.cardId].name} đánh ${
@@ -468,19 +603,25 @@ function nextTurn(b: Battle, side: "player" | "enemy") {
   p.recipeTrail = []
   p.recipesUsed = []
   p.resonanceUsed = false
+  p.spellsThisTurn = 0
   p.maxMana = Math.min(7, p.maxMana + 1)
   p.mana = p.maxMana
   p.board.forEach((u) => {
-    u.ready = true
+    u.ready = !u.frozen
+    u.frozen = false
+    u.triggers = 0
   })
   if (side === "player" && b.expedition?.relics.includes("grove-seed"))
-    p.health = Math.min(p.maxHealth, p.health + 1)
+    restore(b, side, 1)
   draw(b, side)
 }
-function chooseDamageTarget(card: GameCard, foe: Combatant): Target {
-  if (foe.health <= (card.power ?? 0)) return "hero"
+function chooseDamageTarget(card: GameCard, foe: Combatant, caster: Combatant): Target {
+  const power = (card.power ?? 0) + (card.ability === "desperation" && caster.health <= caster.maxHealth / 2 ? 4 : 0)
+    + (card.ability === "starlight" ? Math.min(2, caster.spellsThisTurn ?? 0) * 2 : 0)
+  if (foe.health <= power) return "hero"
+  const bypassesShield = card.ability === "pierce" || card.ability === "wash"
   const kill = foe.board
-    .filter((u) => u.health + u.shield <= (card.power ?? 0))
+    .filter((u) => u.health + (bypassesShield ? 0 : u.shield) <= power)
     .sort((a, z) => z.attack - a.attack)[0]
   return kill?.uid ?? "hero"
 }
@@ -501,10 +642,7 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
         : rule.effect
     if (effect === "burn") b.player.health -= strength
     if (effect === "heal")
-      b.enemy.health = Math.min(
-        b.enemy.maxHealth,
-        b.enemy.health + strength * 2,
-      )
+      restore(b, "enemy", strength * 2)
     if (effect === "draw") draw(b, "enemy", strength)
     if (effect === "shield")
       b.enemy.board.forEach((u) => {
@@ -532,16 +670,19 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
       .map((id, index) => ({ card: CARD_MAP[id], index }))
       .filter(
         ({ card }) =>
+          !abilityError(p, card) &&
           cardCost(p, card) <= p.mana &&
           (card.kind !== "unit" || p.board.length < 3) &&
           ((card.effect !== "buff" && card.effect !== "ward") ||
             p.board.length > 0) &&
           (card.kind !== "spell" ||
-            card.effect !== "draw" ||
+            card.effect !== "draw" || card.ability === "revive" ||
             (p.hand.length <= 5 && p.deck.length > 0)) &&
           (card.kind === "unit" ||
             card.effect !== "heal" ||
-            p.health < p.maxHealth) &&
+            p.health < p.maxHealth || card.ability === "dream" && b.player.board.length > 0 ||
+            ["mend", "feast"].includes(card.ability ?? "") && p.board.some(u => u.health < u.maxHealth) ||
+            card.ability === "rebloom" && p.board.length < 3 && memoryIndex(p) >= 0) &&
           (card.effect !== "sweep" || b.player.board.length > 0),
       )
     options.sort((a, z) => {
@@ -557,8 +698,8 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
     const { card, index } = options[0]
     const source = card.kind === "unit" ? `u${b.nextUid}` : undefined
     const target =
-      card.effect === "damage" ? chooseDamageTarget(card, b.player) : undefined
-    play(b, "enemy", index, target)
+      card.effect === "damage" ? chooseDamageTarget(card, b.player, p) : undefined
+    if (play(b, "enemy", index, target)) break
     record({
       kind: "play",
       side: "enemy",
@@ -670,7 +811,7 @@ export function actBattle(
     b.tactic = { status: "chosen", choice: action.id }
     if (action.id === "flame") b.player.board.forEach((u) => u.attack++)
     if (action.id === "shelter") {
-      b.player.health = Math.min(b.player.maxHealth, b.player.health + 3)
+      restore(b, "player", 3)
       b.player.board.forEach((u) => u.shield++)
     }
     if (action.id === "insight")

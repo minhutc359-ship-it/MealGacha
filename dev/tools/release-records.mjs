@@ -66,7 +66,8 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 
 const origins = [
   ["assets/characters/", "AI-assisted sprite art", ["dev/docs/challenge-v322/prompts.json", "dev/docs/market-v331/atlas-prompts.json", "dev/tools/register-market-atlases.py"]],
-  ["assets/autochess/audio/", "Original procedural composition", ["dev/tools/compose-autochess-music.py", "dev/tools/compose-retro-music.py", "dev/docs/autochess/audio-manifest.json"]],
+  ["assets/autochess/items-rpg-v350.webp", "Original AI-assisted RPG inventory art", ["dev/docs/depth-v350/item-prompts.json"]],
+  ["assets/autochess/audio/", "Original procedural composition", ["dev/tools/compose-autochess-music.py", "dev/tools/compose-retro-music.py", "dev/docs/autochess/audio-manifest.json", "dev/docs/depth-v350/audio-manifest.json"]],
   ["assets/autochess/", "AI-assisted art and measured sprite atlas", ["dev/docs/autochess/image-prompts.json", "dev/tools/build-autochess-sprites.py"]],
   ["assets/tcg/audio/", "Original procedural composition", ["dev/tools/compose-game-music.py", "dev/tools/compose-retro-music.py", "dev/docs/AUDIO_ASSETS.md"]],
   ["assets/tcg/characters/anime/", "AI-assisted character art; style reference recorded", ["dev/docs/anime-asset-prompts.json", "dev/docs/ANIME_ASSETS.md"]],

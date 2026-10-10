@@ -7,7 +7,7 @@ import { autoSaveSchema } from "./autochess/schema"
 
 export const GAME_KEY = "foodchest.tcg.v1"
 const npcId = z.enum(["bach", "nhien", "moc", "hai", "lien"])
-const recipeId = z.enum(["home", "street", "tet"])
+const recipeId = z.enum(["home", "street", "tet", "coast", "garden", "moon"])
 const sceneId = z
   .string()
   .max(60)
@@ -39,6 +39,8 @@ const unit = z.object({
   maxHealth: integer,
   shield: integer,
   ready: z.boolean(),
+  frozen: z.boolean().optional(),
+  triggers: integer.max(2).optional(),
   keywords: z.array(z.enum(["guard", "rush", "shield", "drain"])),
 })
 const fighter = z.object({
@@ -55,8 +57,10 @@ const fighter = z.object({
     .nullable()
     .default(null),
   recipeTrail: z.array(cardId).max(2).default([]),
-  recipesUsed: z.array(recipeId).max(3).default([]),
+  recipesUsed: z.array(recipeId).max(6).default([]),
   resonanceUsed: z.boolean().default(false),
+  graveyard: z.array(cardId).max(36).default([]),
+  spellsThisTurn: integer.max(40).default(0),
 })
 const relicId = z
   .string()

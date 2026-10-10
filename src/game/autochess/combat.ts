@@ -1,6 +1,7 @@
 import { UNIT_MAP, MONSTERS, MONSTER_MAP } from "./catalog"
 import { boardPieces, capacity, traitCounts } from "./economy"
 import { challengeForRules } from "../difficulty"
+import { willpowerRatio } from "./willpower"
 import { RULES_VERSION } from "./types"
 import type {
   Actor,
@@ -145,7 +146,7 @@ export function createCombat(run: AutoRun): AutoCombat {
       a.maxHp = Math.round(a.maxHp * 1.15)
     if (run.augments.includes("seat") && !adjacent) a.baseAttack *= 1.25
     if (run.augments.includes("together") && adjacent) a.shield += 120
-    if (run.augments.includes("last-light") && run.health < 45) a.shield += 180
+    if (run.augments.includes("last-light") && willpowerRatio(run) < .45) a.shield += 180
     a.attack = a.baseAttack
     a.hp = a.maxHp
     return a
@@ -346,6 +347,7 @@ function skillHit(
   }
   u.casts++
   emit(b, "cast", u, target, power)
+  b.events[b.events.length - 1].skill = skill
   const allies = living(b, u.side).sort(
       (a, c) => a.hp / a.maxHp - c.hp / c.maxHp || a.uid.localeCompare(c.uid),
     ),

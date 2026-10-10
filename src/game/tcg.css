@@ -787,3 +787,10 @@ html[data-tcg-reduced-motion='true'] .tcg-combat-fx,html[data-tcg-reduced-motion
 }
 html[data-tcg-reduced-motion='true'] .tcg-map-stop.is-current .tcg-map-pin,html[data-tcg-reduced-motion='true'] .tcg-map-end-mark,html[data-tcg-reduced-motion='true'] .tcg-chapter-art>.tcg-chapter-character { animation:none; }
 html[data-tcg-reduced-motion='true'] .tcg-chapter,html[data-tcg-reduced-motion='true'] .tcg-stages>button,html[data-tcg-reduced-motion='true'] .tcg-map-stop .tcg-map-pin { transition:none; }
+
+.tcg-memory-count { flex: 0 0 auto; border: 1px solid #b4c9c0; border-radius: 8px; padding: 4px 7px; color: inherit; background: #96b6b61f; font-size: 11px; cursor: pointer; }
+.tcg-memory-list { display: grid; gap: 8px; }
+.tcg-memory-list article { display: flex; align-items: center; gap: 12px; }
+.tcg-memory-list img { width: 56px; height: 56px; object-fit: cover; border-radius: 9px; }
+.tcg-memory-list span { display: grid; gap: 3px; }
+.tcg-memory-list small { font-size: 12px; }
