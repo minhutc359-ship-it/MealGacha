@@ -1,3 +1,4 @@
+import { motionAccent } from "../../game/motionProfiles"
 import { memo, useEffect, useRef, useState } from "react"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { characterPose, type CharacterMotion } from "../../game/tcgCharacterMotion"
@@ -67,7 +68,10 @@ export const CharacterSprite = memo(function CharacterSprite({
       ctx.beginPath(); ctx.ellipse(width / 2, height * .96, width * .28, height * .035, 0, 0, Math.PI * 2); ctx.fill()
       ctx.globalAlpha = alpha
       ctx.translate(center + x, height * .94 - (showcase ? 0 : bounds.bottom * scale) + y)
-      ctx.rotate(rotation)
+      const accent = motionAccent(model.id, poseAge / 780, current === "cast", quiet || paused || !["attack", "cast"].includes(current))
+      ctx.translate(0, accent.lift * height)
+      ctx.rotate(rotation + accent.rotation)
+      stretch += accent.stretch
       ctx.scale(direction * (1 - stretch), 1 + stretch)
       ctx.drawImage(image, sx, sy, sw, sh, -ax * scale, -ay * scale, sw * scale, sh * scale)
       ctx.restore()

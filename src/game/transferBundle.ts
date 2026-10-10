@@ -5,6 +5,7 @@ import { useGameStore } from "./useGameStore"
 import { useAppStore } from "../store/useAppStore"
 import type { GameSave } from "./types"
 import type { UserState } from "../domain/models"
+import { writeProtectedBatch } from "../infrastructure/storage/protectedStorage"
 const USER_KEY = "foodchest.user.v1"
 export function restoreProgress(
   rawSave: unknown,
@@ -32,8 +33,7 @@ export function restoreProgress(
           user: useAppStore.getState().user,
         }),
       )
-    localStorage.setItem(GAME_KEY, JSON.stringify(save))
-    if (user) localStorage.setItem(USER_KEY, JSON.stringify(user))
+    writeProtectedBatch([{ key: GAME_KEY, value: save }, ...(user ? [{ key: USER_KEY, value: user }] : [])], true)
   } catch {
     for (let i = 0; i < keys.length; i++) {
       try {

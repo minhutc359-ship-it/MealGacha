@@ -306,8 +306,13 @@ export class GameAudioEngine {
     )
     const buffer = await context.decodeAudioData(data)
     if (context === this.context && this.mounted) {
-      if (this.buffers.size >= 2)
-        this.buffers.delete(this.buffers.keys().next().value!)
+      const bytes = (item: AudioBuffer) => item.length * item.numberOfChannels * 4
+      let held = [...this.buffers.values()].reduce((sum, item) => sum + bytes(item), 0)
+      while (this.buffers.size && (this.buffers.size >= 2 || held + bytes(buffer) > 48 * 1024 * 1024)) {
+        const oldest = this.buffers.keys().next().value!
+        held -= bytes(this.buffers.get(oldest)!)
+        this.buffers.delete(oldest)
+      }
       this.buffers.set(track, buffer)
     }
     return buffer

@@ -74,6 +74,13 @@ export function useStoryMusic(
 }
 
 const trackNames: Record<MusicTrack, string> = {
+ "v4-market-warm": "Chợ có hai giọng · Lời mời",
+ "v4-market-tension": "Chợ có hai giọng · Giữ bàn",
+ "v4-harbor-warm": "Bến sau mưa · Lời mời",
+ "v4-harbor-tension": "Bến sau mưa · Giữ bàn",
+ "v4-kitchen-warm": "Bữa cơm ngày mai · Lời mời",
+ "v4-kitchen-tension": "Bữa cơm ngày mai · Giữ bàn",
+
   "auto-prepare": "Đèn lên phiên chợ",
   "auto-battle": "Vị Linh giữ bàn",
   "auto-boss": "Tên gọi trong sương",

@@ -184,7 +184,7 @@ describe("bosses, revelations and save compatibility", () => {
       expect(SCENES[stage.id].tactic.length).toBeGreaterThan(30)
       expect(!!BOSS_RULES[stage.id]).toBe(stage.boss)
     }
-    expect(Object.values(SCENES).filter((s) => s.clue)).toHaveLength(6)
+    expect(Object.values(SCENES).filter((s) => s.clue)).toHaveLength(15)
     expect(ENDINGS.remember.text).not.toEqual(ENDINGS.release.text)
   })
   it("loads a 2.1 save and active battle with defaults and preserves existing inventory and progress", () => {

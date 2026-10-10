@@ -1,3 +1,4 @@
+import { livingOpening } from "../game/livingStory"
 import { BrandMark } from "../components/layout/BrandMark"
 import { LegalLinks } from "../legal/LegalLinks"
 import { useEffect, useRef, useState, type CSSProperties } from "react"
@@ -878,7 +879,7 @@ export function TCGPage() {
               <>
                 <StoryScene
                   key={stageId}
-                  lines={SCENES[stageId].before}
+                  lines={STAGE_MAP[stageId].index >= 18 ? [livingOpening(current.story400?.originEnding ?? current.storyEnding), ...SCENES[stageId].before] : SCENES[stageId].before}
                   art={stageArtId(stageId)}
                   onComplete={() => setSceneRead(true)}
                 />

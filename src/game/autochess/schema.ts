@@ -129,6 +129,7 @@ const combat = z.object({
   settled: z.boolean(),
   boss: id.refine((v) => !!MONSTER_MAP[v]?.boss).nullable(),
   pendingScene: sceneId.nullable(),
+  recap: z.record(id, z.object({damage:int, healing:int, shielding:int, blocked:int})).optional(),
   lastAllySkill: skill.nullable(),
   lastAllyPower: real,
   pressure: int,
@@ -148,7 +149,7 @@ const currentRunSchema = z
   .object({
     id,
     mode,
-    rulesVersion: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5)]),
+    rulesVersion: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5), z.literal(6)]),
     seed: uint32,
     rng: uint32,
     day: z.string().max(16),
@@ -243,7 +244,7 @@ const currentRunSchema = z
       )
     )
       invalid("Pool quân không nhất quán")
-    if (run.mode === "campaign" && run.wave > 12)
+    if (run.mode === "campaign" && run.wave > (run.rulesVersion >= 6 ? 18 : 12))
       invalid("Màn chiến dịch không hợp lệ")
     if (run.bestWave > run.wave || run.paidWaves.some((w) => w > run.wave))
       invalid("Tiến trình đợt không hợp lệ")
@@ -305,7 +306,7 @@ export const autoSaveSchema = z
   .object({
     version: z.literal(1),
     run: autoRunSchema.nullable(),
-    campaignCleared: int.max(12),
+    campaignCleared: int.max(18),
     ending: z.enum(["annotations", "hall"]).nullable(),
     records: z
       .array(
@@ -334,7 +335,7 @@ export const autoSaveSchema = z
   .superRefine((save, ctx) => {
     if (!save.cosmetics.includes(save.board))
       ctx.addIssue({ code: "custom", message: "Bàn chưa sở hữu" })
-    if (save.ending && save.campaignCleared !== 12)
+    if (save.ending && save.campaignCleared < 12)
       ctx.addIssue({ code: "custom", message: "Chưa hoàn thành câu chuyện" })
   })
   .transform(normalizeAutoOutcome)

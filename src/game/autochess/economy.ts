@@ -1,4 +1,4 @@
-import { AUTO_UNITS, UNIT_MAP, shopOdds, LEGACY_UNIT_IDS, RELICS, AUGMENTS } from "./catalog"
+import { AUTO_UNITS, UNIT_MAP, shopOdds, LEGACY_UNIT_IDS, RELICS, AUGMENTS, LEGACY_AUGMENTS } from "./catalog"
 import { RULES_VERSION, type AutoMode, type AutoRun, type Piece } from "./types"
 import { startingWillpower } from "./willpower"
 import { BENCH_SLOTS, LEVEL_XP } from "./config"
@@ -271,7 +271,7 @@ export function equip(run: AutoRun, uid: string, item: string): string | null {
   return null
 }
 export function choices(run: AutoRun, kind: "relic" | "augment") {
-  const options = (kind === "relic" ? [...RELICS, ...(run.rulesVersion >= 3 ? ITEM_COMPONENTS : [])] : AUGMENTS)
+  const options = (kind === "relic" ? [...RELICS, ...(run.rulesVersion >= 3 ? ITEM_COMPONENTS : [])] : (run.rulesVersion >= 6 ? AUGMENTS : LEGACY_AUGMENTS))
     .filter((o) => kind === "relic" || !run.augments.includes(o.id))
     .map((o) => o.id)
   const picked: string[] = []

@@ -1,6 +1,6 @@
 {
-  "version": "3.5.0",
-  "generatedOn": "2026-10-09",
+  "version": "4.0.0",
+  "generatedOn": "2026-10-10",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
     {
@@ -2850,6 +2850,168 @@
         "dev/docs/STORY_ASSETS.md",
         "dev/docs/CULTURE_ASSETS.md",
         "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/arenas/harbor.webp",
+      "bytes": 280576,
+      "sha256": "b9597df9bd5df9bda65c8c305aa3ba05a068d0a50489bb6fef37e9a7e6eb4119",
+      "origin": "Original AI-assisted living-market environments",
+      "evidence": [
+        "dev/docs/major-v400/arena-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/arenas/kitchen.webp",
+      "bytes": 226736,
+      "sha256": "0134b58a818a43e35dead810a72759f7de6a39749e86f0d3eeeb00f4ea2c4104",
+      "origin": "Original AI-assisted living-market environments",
+      "evidence": [
+        "dev/docs/major-v400/arena-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/arenas/market.webp",
+      "bytes": 313182,
+      "sha256": "747cb0a8285797aa29bbd3824038dcaad0df7a9826188357994035bdc8039752",
+      "origin": "Original AI-assisted living-market environments",
+      "evidence": [
+        "dev/docs/major-v400/arena-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/8bit-harbor-tension.mp3",
+      "bytes": 128819,
+      "sha256": "d6d5f7021e367ad07ea63ea5a8eb16a4be6512f3c76429a614bad9c7de74c218",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/8bit-harbor-warm.mp3",
+      "bytes": 167686,
+      "sha256": "76bd8009088f3ac6ddcec8d4e0bff4a1a1edfdcb1fac2cc631028f038cea605d",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/8bit-kitchen-tension.mp3",
+      "bytes": 128820,
+      "sha256": "fbda6fa0e1d9b47d2e0052b51ace21b8befa3784963a49da1edfe8ef8e32fd93",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/8bit-kitchen-warm.mp3",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/8bit-market-tension.mp3",
+      "bytes": 128819,
+      "sha256": "850cbed7ba0af9b2a8cd55191cb9926ffd3f298df2cd5a69e5b89eec9dacee99",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/8bit-market-warm.mp3",
+      "bytes": 167686,
+      "sha256": "67cbbe377380a54c73c520672b02a399eff90a7a0ca31d8961ffb13c812fbf68",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/harbor-tension.mp3",
+      "bytes": 138008,
+      "sha256": "811a545a467125171e36ba58b29e7ff071af279cd76aa246be3ea0871421c6ff",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/harbor-warm.mp3",
+      "bytes": 175412,
+      "sha256": "c2c7a7f2e3d77d0c676b86d308f12f3054dbe4ba36f5402fa38b9dfb869190b2",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/kitchen-tension.mp3",
+      "bytes": 138009,
+      "sha256": "76a7d2a33119c31bea9a3fef7b3c67eb2a98ded06e6f175df2f01d8d39ab74c2",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/kitchen-warm.mp3",
+      "bytes": 175413,
+      "sha256": "0dc48155407b56a629a5e8ada613a2aa2060ac20dd2df1eeee0c147e981f499b",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/market-tension.mp3",
+      "bytes": 138008,
+      "sha256": "db30668f2f0e9f4514d3f1c92302e5e31ded0aba42d2e52560e905e23b73aa65",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/market-warm.mp3",
+      "bytes": 175412,
+      "sha256": "45c6e4d5ad790529d7fa0352a873d8493a10a6d118d4d2ddd0976d445660e1de",
+      "origin": "Original deterministic procedural score, no samples",
+      "evidence": [
+        "dev/tools/compose-v4-music.py",
+        "dev/docs/major-v400/audio-v4.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

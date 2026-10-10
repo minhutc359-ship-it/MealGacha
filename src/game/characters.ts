@@ -1,6 +1,7 @@
 import type { NpcId } from "./types"
 import { STAGE_MAP } from "./story"
 export const CHARACTER_ART = {
+ an: "/assets/autochess/portraits.webp", sen: "/assets/autochess/portraits.webp", tinh: "/assets/autochess/portraits.webp",
   hero: "/assets/tcg/characters/anime/hero.webp",
   bach: "/assets/tcg/characters/anime/bach.webp",
   nhien: "/assets/tcg/characters/anime/nhien.webp",
@@ -29,6 +30,7 @@ export const NPC_NAMES: Record<NpcId, string> = {
 }
 export const CHARACTER_NAMES: Record<CharacterId, string> = {
   ...NPC_NAMES,
+ an: "An", sen: "Bà Sen", tinh: "Tịnh",
   hero: "Người giữ vị",
   grandmother: "Bà",
   mist: "Linh ảnh trong sương",
@@ -43,6 +45,11 @@ export const CHARACTER_NAMES: Record<CharacterId, string> = {
   conductor: "Người soát vé",
 }
 export function speakerCharacter(speaker: string): CharacterId | null {
+  if (speaker === "An") return "an"
+  if (speaker === "Bà Sen") return "sen"
+  if (speaker === "Tịnh") return "tinh"
+  if (speaker.startsWith("Mai")) return "echo"
+  if (/Sổ Tự Sửa|Người Giữ Con Nước/.test(speaker)) return "mist"
   if (speaker.startsWith("Bạn")) return "hero"
   if (speaker === "Người kể") return null
   if (speaker.includes("Hiệu")) return "hieu"

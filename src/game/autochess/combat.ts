@@ -39,7 +39,8 @@ export function enemyPlan(run: AutoRun) {
   const cells = [8, 9, 7, 10, 2, 3, 1, 4, 0, 5, 6, 11]
   if (run.rulesVersion >= 3) {
     const normals = MONSTERS.filter((m, index) => !m.boss && (m.unlockWave ?? index + 1) <= run.wave)
-    const bosses = MONSTERS.filter(m => m.boss)
+    const bosses = MONSTERS.filter(m => m.boss && !m.id.startsWith("v4-"))
+    if (run.rulesVersion >= 6 && run.mode === "campaign") bosses.splice(4, 2, MONSTER_MAP["v4-tide-lock"], MONSTER_MAP["v4-last-page"])
     const boss = bosses[run.mode === "campaign" ? bossIndex : (Math.floor(run.wave / 5) - 1) % bosses.length]
     const occupied = new Set<number>()
     const supportive = new Set(["leaves", "lantern", "rhythm", "heal", "feast", "ginger"])
@@ -147,6 +148,14 @@ export function createCombat(run: AutoRun): AutoCombat {
     if (run.augments.includes("seat") && !adjacent) a.baseAttack *= 1.25
     if (run.augments.includes("together") && adjacent) a.shield += 120
     if (run.augments.includes("last-light") && willpowerRatio(run) < .45) a.shield += 180
+    if (run.rulesVersion >= 6) {
+      if (run.augments.includes("v4-slow-fire")) { a.maxHp = Math.round(a.maxHp * 1.12); a.armor += 6 }
+      if (run.augments.includes("v4-front-apron") && p.cell! < 24) a.shield += 180
+      if (run.augments.includes("v4-back-lantern") && p.cell! >= 24) a.baseAttack *= 1.12
+      if (run.augments.includes("v4-quiet-seat") && !adjacent) a.mana = Math.min(100, a.mana + 20)
+      if (run.augments.includes("v4-common-table") && distinctSchools >= 3) a.shield += 110
+      if (run.augments.includes("v4-second-breath") && willpowerRatio(run) < .5) a.maxHp = Math.round(a.maxHp * 1.18)
+    }
     a.attack = a.baseAttack
     a.hp = a.maxHp
     return a
@@ -188,6 +197,7 @@ export function createCombat(run: AutoRun): AutoCombat {
     settled: false,
     boss: plan.find((p) => p.def.boss)?.def.id ?? null,
     pendingScene: null,
+    ...(run.rulesVersion >= 6 ? {recap: {}} : {}),
     lastAllySkill: null,
     lastAllyPower: 0,
     pressure: p.level,
@@ -202,6 +212,7 @@ function emit(
   target: Actor,
   amount = 0,
 ) {
+  if (b.recap && (kind === "heal" || kind === "shield")) { const stats = b.recap[source.uid] ??= {damage:0, healing:0, shielding:0, blocked:0}; stats[kind === "heal" ? "healing" : "shielding"] += Math.round(amount) }
   b.events.push({
     id: b.nextEvent++,
     tick: b.tick,
@@ -228,6 +239,10 @@ function damage(
   )
   const absorbed = Math.min(target.shield, reduced),
     actual = Math.min(target.hp, reduced - absorbed)
+  if (b.recap) {
+    const sourceStats = b.recap[source.uid] ??= {damage:0, healing:0, shielding:0, blocked:0}; sourceStats.damage += actual
+    const targetStats = b.recap[target.uid] ??= {damage:0, healing:0, shielding:0, blocked:0}; targetStats.blocked += absorbed
+  }
   target.shield -= absorbed
   target.hp = Math.max(0, target.hp - actual)
   target.mana = Math.min(100, target.mana + 8)

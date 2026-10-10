@@ -23,9 +23,18 @@ export type CardRarity = "common" | "rare" | "epic" | "legendary"
 export type Keyword = "guard" | "rush" | "shield" | "drain"
 export type Effect = "damage" | "heal" | "draw" | "buff" | "ward" | "sweep"
 export type Ability = "ambush" | "spellfire" | "scout" | "snare" | "mender" | "bloom" | "host" | "pantry" | "farewell" | "weaver" | "welcome"
-  | "wok" | "pierce" | "desperation" | "insight" | "wash" | "revive" | "mend" | "feast" | "root" | "rebloom" | "sharp" | "diverse" | "bulwark" | "offering" | "veil" | "dream" | "starlight" | "moonward"
+  | "wok" | "pierce" | "desperation" | "insight" | "wash" | "revive" | "mend" | "feast" | "root" | "rebloom" | "sharp" | "diverse" | "bulwark" | "offering" | "veil" | "dream" | "starlight" | "moonward" | "tea-mend" | "steep-unit" | "steep-heal" | "unsteep" | "thaw" | "season-host"
 
+export interface CardChoice {
+  label: string
+  text: string
+  effect: Effect
+  ability?: Ability
+  power: number
+}
 export interface GameCard {
+  contentVersion?: 400
+  choices?: [CardChoice, CardChoice]
   id: string
   name: string
   school: School
@@ -51,6 +60,7 @@ export interface Deck {
   cards: string[]
 }
 export interface BattleUnit {
+  icedThisTurn?: boolean
   uid: string
   cardId: string
   attack: number
@@ -78,7 +88,21 @@ export interface Combatant {
   graveyard?: string[]
   spellsThisTurn?: number
 }
+export interface PendingFlavor {
+  id: string
+  owner: "player" | "enemy"
+  cardId: string
+  effect: "buff" | "heal"
+  power: number
+  targetUid?: string
+  executeRound: number
+  sequence: number
+  delayed?: boolean
+}
 export interface Battle {
+  rulesVersion?: 350 | 400
+  pendingFlavors?: PendingFlavor[]
+  flavorSequence?: number
   id: string
   enemyChallenge?: number
   stageId: string | null
@@ -150,6 +174,7 @@ export interface ExpeditionReward {
   relicPicked: boolean
 }
 export interface ExpeditionRun {
+  rulesVersion?: 350 | 400
   id: string
   seed: number
   status: "path" | "battle" | "event" | "reward" | "won" | "lost" | "abandoned"
@@ -189,6 +214,15 @@ export interface GameStats {
   crafted: number
 }
 export interface GameSave {
+  contentVersion?: 350 | 400
+  story400?: {
+    version: 1
+    giftClaimed: boolean
+    originEnding: "remember" | "release" | null
+    choices: Record<string, "courage" | "wisdom">
+    seenScenes: string[]
+    claimedRewards: string[]
+  }
   autoChess?: import("./autochess/types").AutoSave
   version: 1
   coins: number

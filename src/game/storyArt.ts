@@ -1,4 +1,7 @@
 export const STORY_ART = {
+  "living-market": {src: "/assets/v4/arenas/market.webp", title: "Chợ có hai giọng", alt: "Chợ đêm và bàn ăn mở giữa những quầy hàng."},
+  "rain-harbor": {src: "/assets/v4/arenas/harbor.webp", title: "Bến sau cơn mưa", alt: "Bến sông yên tĩnh sau mưa."},
+  "tomorrow-table": {src: "/assets/v4/arenas/kitchen.webp", title: "Bữa cơm ngày mai", alt: "Bếp ấm và chiếc bàn dành cho người đang sống."},
   "memory-flare": {
     src: "/assets/tcg/story/memory-flare.webp",
     title: "Bàn tay đang giữ chiếc muôi là của bạn",
@@ -49,6 +52,7 @@ export const STORY_ART = {
 export type StoryArtId = keyof typeof STORY_ART
 
 export function stageArtId(stageId: string): StoryArtId {
+  for (const id of ["living-market", "rain-harbor", "tomorrow-table"] as const) if (stageId.startsWith(`${id}-`)) return id
   if (stageId === "lantern-2") return "tet-kitchen"
   if (stageId === "harbor-1") return "bai-choi"
   if (stageId.startsWith("last-table-")) return "last-table"

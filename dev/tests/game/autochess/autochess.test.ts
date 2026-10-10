@@ -534,11 +534,11 @@ describe("complete content and assets", () => {
   it("has 44 distinct units, 22 enemies, all skills, valid sprites, manual story and two epilogues", () => {
     expect(AUTO_UNITS).toHaveLength(44)
     expect(new Set(AUTO_UNITS.map((u) => u.id)).size).toBe(44)
-    expect(MONSTERS).toHaveLength(22)
-    expect(MONSTERS.filter((m) => m.boss)).toHaveLength(6)
+    expect(MONSTERS).toHaveLength(24)
+    expect(MONSTERS.filter((m) => m.boss)).toHaveLength(8)
     expect(RELICS).toHaveLength(6)
-    expect(AUGMENTS).toHaveLength(6)
-    expect(Object.keys(SCENES)).toHaveLength(9)
+    expect(AUGMENTS).toHaveLength(12)
+    expect(Object.keys(SCENES)).toHaveLength(13)
     for (const scene of Object.values(SCENES))
       expect(scene.lines.length).toBeGreaterThanOrEqual(2)
     for (const u of AUTO_UNITS) {

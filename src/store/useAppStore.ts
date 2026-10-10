@@ -58,7 +58,12 @@ interface AppStore {
   resetData(): Promise<void>
 }
 
-export const useAppStore = create<AppStore>((set, get) => ({
+export const useAppStore = create<AppStore>((set, get) => {
+  const persist = (user: UserState) => {
+    try { repository.saveUser(user); return true }
+    catch (error) { set({ toast: { message: error instanceof Error ? error.message : "Không thể lưu tiến trình. Hãy xuất bản sao lưu.", type: "error" } }); return false }
+  }
+  return ({
   user: repository.loadUser(),
   dishes: mergeDishCatalog(),
   catalogLoading: false,
@@ -72,7 +77,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const dishes = cached?.dishes?.length && cached.sourceUrl !== "local://catalog"
       ? mergeDishCatalog(cached.dishes) : mergeDishCatalog()
     const titled = syncTitles(user, dishes)
-    if (titled !== user) repository.saveUser(titled)
+    if (titled !== user && !persist(titled)) return
     set({ user: titled, dishes })
     const overrideUrl = repository.loadAdminOverrideUrl()
     const catalogUrl = overrideUrl || import.meta.env.VITE_CATALOG_URL
@@ -83,7 +88,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const { user } = get()
     if (!canCheckIn(user)) return false
     const newUser = applyCheckIn(user)
-    repository.saveUser(newUser)
+    if (!persist(newUser)) return false
     set({ user: newUser })
     get().showToast(`+${newUser.keys - user.keys} chìa khóa! Mở rương thôi nào 🔑`, "success")
     return true
@@ -127,7 +132,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
       keyTransactions: bonus ? [...user.keyTransactions, { id: crypto.randomUUID(), amount: bonus, balanceAfter: user.keys + bonus, reason: "taste_swipe" as const, createdAt: now }] : user.keyTransactions,
       updatedAt: now,
     }
-    repository.saveUser(next)
+    if (!persist(next)) return
     set({ user: next })
     get().showToast(bonus ? "Đã lưu khẩu vị! +2 chìa khóa hôm nay." : "Đã cập nhật khẩu vị.", "success")
   },
@@ -135,7 +140,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   resetTasteProfile() {
     const user = get().user
     const next = { ...user, favoriteTasteTags: [], updatedAt: new Date().toISOString() }
-    repository.saveUser(next)
+    if (!persist(next)) return
     set({ user: next })
   },
 
@@ -143,7 +148,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const { user, dishes } = get()
     const posts = [...user.timelinePosts.filter((item) => item.id !== post.id), post]
     const next = syncTitles({ ...user, timelinePosts: posts, updatedAt: new Date().toISOString() }, dishes)
-    repository.saveUser(next)
+    if (!persist(next)) return
     set({ user: next })
     if (next.unlockedTitleIds.length > user.unlockedTitleIds.length) get().showToast("Danh hiệu mới đã mở khóa!", "success")
   },
@@ -153,7 +158,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const post = user.timelinePosts.find((item) => item.id === id)
     if (!post) return
     const next = syncTitles({ ...user, timelinePosts: user.timelinePosts.filter((item) => item.id !== id), updatedAt: new Date().toISOString() }, dishes)
-    repository.saveUser(next)
+    if (!persist(next)) return
     set({ user: next })
     if (post.imageId && !next.timelinePosts.some((item) => item.imageId === post.imageId)) await deleteImage(post.imageId).catch(() => undefined)
   },
@@ -162,14 +167,14 @@ export const useAppStore = create<AppStore>((set, get) => ({
     const user = get().user
     if (!user.unlockedTitleIds.includes(id) || !TITLES.some((title) => title.id === id)) return
     const next = { ...user, equippedTitleId: id, updatedAt: new Date().toISOString() }
-    repository.saveUser(next)
+    if (!persist(next)) return
     set({ user: next })
   },
 
   setDisplayName(name) {
     const user = get().user
     const next = { ...user, displayName: name.slice(0, 32), updatedAt: new Date().toISOString() }
-    repository.saveUser(next)
+    if (!persist(next)) return
     set({ user: next })
   },
 
@@ -180,7 +185,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
     if (err) return { reward: null, error: err, unlockedUnlimited: false }
     const { state: newUser, reward, unlockedUnlimited } = applyOpenChest(user, dishes, slot, eventId, drawTime)
     const titled = syncTitles(newUser, dishes)
-    repository.saveUser(titled)
+    if (!persist(titled)) return { reward: null, error: "Không thể lưu tiến trình.", unlockedUnlimited: false }
     set({ user: titled, pendingRevealRewardId: reward.id })
     if (unlockedUnlimited) {
       get().showToast("◆ Hoàn thành toàn bộ món — đã mở khóa rương vô hạn!", "success")
@@ -205,7 +210,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
       fusionTime,
     )
     const titled = syncTitles(newUser, dishes)
-    repository.saveUser(titled)
+    if (!persist(titled)) return { reward: null, error: "Không thể lưu tiến trình.", unlockedUnlimited: false }
     set({ user: titled })
     if (unlockedUnlimited) {
       get().showToast("◆ Hoàn thành toàn bộ món — đã mở khóa rương vô hạn!", "success")
@@ -223,7 +228,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
       rewards: newRewards,
       updatedAt: new Date().toISOString(),
     }
-    repository.saveUser(newUser)
+    if (!persist(newUser)) return
     set({ user: newUser })
   },
 
@@ -247,7 +252,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
       preferences: { ...user.preferences, [key]: value },
       updatedAt: new Date().toISOString(),
     }
-    repository.saveUser(newUser)
+    if (!persist(newUser)) return
     set({ user: newUser })
   },
 
@@ -282,5 +287,5 @@ export const useAppStore = create<AppStore>((set, get) => ({
     repository.clearAll()
     localStorage.removeItem("mealgacha.profile.name")
     window.location.reload()
-  },
-}))
+  },})
+})

@@ -1,3 +1,4 @@
+import { LIVING_SCENES } from "./livingStory"
 export interface StoryLine {
   speaker: string
   text: string
@@ -37,6 +38,7 @@ export const WORLD_PRIMER: StoryLine[] = [
   ),
 ]
 export const SCENES: Record<string, StoryScene> = {
+  ...LIVING_SCENES,
   "lantern-1": {
     before: [
       line(
@@ -734,6 +736,9 @@ export interface BossRule {
   effect: "shield" | "burn" | "heal" | "draw" | "cycle"
 }
 export const BOSS_RULES: Record<string, BossRule> = {
+ "living-market-3": {name: "Mực sửa lời", effect: "draw", text: "Đầu lượt địch: rút 1 lá; thức tỉnh rút 2. Giữ lựa chọn phản chế."},
+ "rain-harbor-3": {name: "Con nước lên", effect: "shield", text: "Đầu lượt địch: đội địch nhận 1 chắn; thức tỉnh nhận 2."},
+ "tomorrow-table-3": {name: "Trang chưa viết", effect: "cycle", text: "Luân phiên đốt, hồi và rút. Dưới nửa ý chí, hiệu ứng mạnh gấp đôi."},
   "lantern-3": {
     name: "Bếp không nguội",
     effect: "shield",

@@ -1,4 +1,4 @@
-Soul of Meal 3.5.0 · third-party notices
+Soul of Meal 4.0.0 · third-party notices
 Generated from installed lockfile dependencies. Includes the declared runtime dependency graph; some packages can be tree-shaken from a particular build. Development tooling is not shipped. App-owned content is governed by the root LICENSE, not by these library licenses.
 
 === @pixi/colord@2.9.6 · MIT ===

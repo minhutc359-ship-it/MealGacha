@@ -340,3 +340,5 @@
 @keyframes tcg-skill-title { 0%{transform:translate(-50%,-50%) scale(.85);opacity:0} 20%{transform:translate(-50%,-50%) scale(1);opacity:1} 80%{opacity:1} 100%{transform:translate(-50%,-56%) scale(1.02);opacity:0} }
 @media(prefers-reduced-motion:reduce) { .tcg-card-selection-fx>i { animation:none; } }
 html[data-tcg-reduced-motion=true] .tcg-card-selection-fx>i { animation:none; }
+
+.tcg-v4-choices {display:grid;gap:12px}.tcg-v4-choices .tcg-button {min-height:48px;white-space:normal;text-align:left;padding:12px}.tcg-pending-stack {position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-wrap:wrap;gap:6px;max-width:75%;font-size:10px;background:#102925e8;padding:5px;border-radius:8px;pointer-events:none}

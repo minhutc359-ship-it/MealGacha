@@ -1,4 +1,6 @@
 import { create } from "zustand"
+import { V4_CARDS } from "./v4Cards"
+import { STAGE_MAP } from "./story"
 import { CARD_MAP, deckErrors, RARITIES } from "./catalog"
 import {
   actBattle,
@@ -50,6 +52,7 @@ interface Store {
   startWeekly(): boolean
   equipCompanion(id: NpcId | null): void
   acknowledgeScene(id: string): void
+  claimV4Gift(): void
   chooseEnding(ending: "remember" | "release"): void
   dismiss(): void
   sync(): void
@@ -100,6 +103,13 @@ export const useGameStore = create<Store>((set, get) => {
       const save = current(), result = reduceAuto(save.autoChess, action)
       if (result.error) { set({ notice: result.error }); return false }
       return commit({ ...save, autoChess: result.save })
+    },
+    claimV4Gift() {
+      const save = current()
+      if (save.story400?.giftClaimed) return
+      const cards = { ...save.cards }
+      for (const card of V4_CARDS) cards[card.id] = Math.max(2, cards[card.id] ?? 0)
+      commit({ ...save, contentVersion: 400, cards, story400: { version: 1, originEnding: null, choices: {}, seenScenes: [], claimedRewards: [], ...save.story400, giftClaimed: true } }, "Đã nhận 8 thẻ 4.0, mỗi thẻ ít nhất 2 bản. Bộ bài hiện tại được giữ nguyên.")
     },
     chooseEnding(ending) {
       const save = current()
@@ -309,7 +319,7 @@ export const useGameStore = create<Store>((set, get) => {
         })
         return false
       }
-      if (stageId && !isStageUnlocked(stageId, save.clearedStages)) return false
+      if (stageId && !isStageUnlocked(stageId, save.clearedStages, save.storyEnding)) return false
       const deck = save.decks.find((d) => d.id === save.activeDeckId)
       const error = deckErrors(deck?.cards ?? [], save.cards)[0]
       if (error) {
@@ -318,6 +328,7 @@ export const useGameStore = create<Store>((set, get) => {
       }
       return commit({
         ...save,
+        ...(stageId && STAGE_MAP[stageId].index >= 18 ? { contentVersion: 400 as const, story400: { version: 1 as const, giftClaimed: false, seenScenes: [], claimedRewards: [], ...save.story400, originEnding: save.story400?.originEnding ?? save.storyEnding ?? null, choices: { ...save.story400?.choices, [stageId]: choice } } } : {}),
         choices: stageId
           ? { ...save.choices, [stageId]: choice }
           : save.choices,

@@ -60,13 +60,13 @@ export function StoryScene({ lines, art = "lantern", onComplete }: Props) {
             key={portrait}
             data-character={portrait}
           >
-            <img
+            {portrait === "an" || portrait === "sen" || portrait === "tinh" ? <CharacterPortrait id={portrait} /> : <img
               src={CHARACTER_ART[portrait]}
               alt={`${current.speaker} đang nói`}
               width="640"
               height="960"
               decoding="async"
-            />
+            />}
           </div>
         )}
         <figcaption>
