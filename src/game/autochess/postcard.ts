@@ -1,3 +1,4 @@
+import {saveFile} from "../../infrastructure/share/saveFile"
 import { loadBrandImage } from "../../infrastructure/brand/brandAssets"
 import type { AutoRun } from "./types"
 import { UNIT_MAP } from "./catalog"
@@ -64,10 +65,5 @@ export async function downloadAutoPostcard(run: AutoRun) {
       "image/png",
     ),
   )
-  const url = URL.createObjectURL(blob),
-    a = document.createElement("a")
-  a.href = url
-  a.download = "soul-of-meal-cho-dem-ky-luc.png"
-  a.click()
-  setTimeout(() => URL.revokeObjectURL(url), 1000)
+  await saveFile(blob,"soul-of-meal-cho-dem-ky-luc.png")
 }

@@ -1,3 +1,4 @@
+import {saveFile} from "../../infrastructure/share/saveFile"
 import { useState, useSyncExternalStore, type ReactNode } from "react"
 import { useLocation } from "react-router-dom"
 import { parseGame, GAME_KEY } from "../../game/storage"
@@ -29,16 +30,9 @@ export function StorageRecovery({ children }: { children: ReactNode }) {
   }[] | null>(null)
   const location = useLocation()
   if (!issues.length || location.pathname.startsWith("/legal/")) return children
-  const download = () => {
+  const download = async () => {
     try {
-      const url = URL.createObjectURL(
-        new Blob([exportRecovery()], { type: "application/json" }),
-      )
-      const a = document.createElement("a")
-      a.href = url
-      a.download = "SoulOfMeal-phuc-hoi.json"
-      a.click()
-      setTimeout(() => URL.revokeObjectURL(url), 1000)
+      await saveFile(new Blob([exportRecovery()],{type:"application/json"}),"SoulOfMeal-phuc-hoi.json")
       setExported(true)
     } catch {
       setMessage(
