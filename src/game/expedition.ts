@@ -72,13 +72,35 @@ export const LEGACY_RELICS = [
     text: "Bắt đầu mỗi trận với 2 năng lượng thay vì 1.",
   },
 ]
-export const RELICS = [...LEGACY_RELICS,
- {id:"v4-pot-lid", name:"Nắp nồi vừa vặn", symbol:"♨", text:"Ủ vị hồi phục của bạn hồi thêm 1 ý chí khi nở."},
- {id:"v4-menu", name:"Thực đơn hai giọng", symbol:"✧", text:"Mỗi Nêm vị đã dùng trao 1 chắn cho đồng minh ít máu nhất."},
- {id:"v4-dry-towel", name:"Khăn khô dự phòng", symbol:"◈", text:"Dùng Khăn ấm sau mưa rút thêm 1 lá."},
- {id:"v4-rain-lamp", name:"Đèn qua mưa", symbol:"✦", text:"Bắt đầu mỗi trận hồi 3 ý chí, không vượt ý chí tối đa."},
+export const RELICS = [
+  ...LEGACY_RELICS,
+  {
+    id: "v4-pot-lid",
+    name: "Nắp nồi vừa vặn",
+    symbol: "♨",
+    text: "Ủ vị hồi phục của bạn hồi thêm 1 ý chí khi nở.",
+  },
+  {
+    id: "v4-menu",
+    name: "Thực đơn hai giọng",
+    symbol: "✧",
+    text: "Mỗi Nêm vị đã dùng trao 1 chắn cho đồng minh ít máu nhất.",
+  },
+  {
+    id: "v4-dry-towel",
+    name: "Khăn khô dự phòng",
+    symbol: "◈",
+    text: "Dùng Khăn ấm sau mưa rút thêm 1 lá.",
+  },
+  {
+    id: "v4-rain-lamp",
+    name: "Đèn qua mưa",
+    symbol: "✦",
+    text: "Bắt đầu mỗi trận hồi 3 ý chí, không vượt ý chí tối đa.",
+  },
 ]
-const relicsForRules = (run: ExpeditionRun) => (run.rulesVersion ?? 350) >= 400 ? RELICS : LEGACY_RELICS
+const relicsForRules = (run: ExpeditionRun) =>
+  (run.rulesVersion ?? 350) >= 400 ? RELICS : LEGACY_RELICS
 export const RELIC_MAP = Object.fromEntries(RELICS.map((r) => [r.id, r]))
 export interface EventOption {
   id: string
@@ -278,11 +300,94 @@ function choose<T>(items: T[], rng: () => number, count: number): T[] {
     result.push(pool.splice(Math.floor(rng() * pool.length), 1)[0])
   return result
 }
-export const EXPEDITION_EVENTS: ExpeditionEvent[] = [...LEGACY_EXPEDITION_EVENTS,
- {id:"v4-two-voices", title:"Quầy có hai giọng", speaker:"Bà Sen", story:"Một người cần lời xin lỗi, người kia cần một bữa cơm. Không ai muốn được viết hộ câu trả lời.", choices:[{id:"meal", label:"Mời cả hai ngồi lại", detail:"15 lương thực · hồi 9 ý chí", cost:15, heal:9}, {id:"listen", label:"Giữ hai công thức", detail:"Mất 3 ý chí · chọn thẻ", damage:3, cards:true}]},
- {id:"v4-rain-letter", title:"Thư qua cơn mưa", speaker:"Hải", story:"Thư đã nhòe. Người nhận vẫn đang đợi ở bến.", choices:[{id:"carry", label:"Đưa thư qua bến", detail:"Mất 4 ý chí · thêm 22 lương thực", damage:4, supplies:22}, {id:"shelter", label:"Đợi dưới hiên", detail:"10 lương thực · hồi 6 ý chí", cost:10, heal:6}]},
- {id:"v4-seed", title:"Mầm cây không mang tên cũ", speaker:"Mộc", story:"Cây này sẽ lớn theo cách của nó. Mộc cần thêm một chậu đất.", choices:[{id:"pot", label:"Góp chậu đất", detail:"18 lương thực · chọn di vật", cost:18, relic:true}, {id:"water", label:"Cùng tưới mầm", detail:"Hồi 4 ý chí", heal:4}]},
- {id:"v4-wash", title:"Người rửa bát", speaker:"Tịnh", story:"Tịnh không xin xóa những gì mình đã làm. Ông nhận phần việc còn lại sau bữa cơm.", choices:[{id:"help", label:"Rửa cùng ông", detail:"Mất 2 ý chí · thêm 18 lương thực", damage:2, supplies:18}, {id:"share", label:"Để ông kể trước", detail:"12 lương thực · hồi 7 ý chí", cost:12, heal:7}]},
+export const EXPEDITION_EVENTS: ExpeditionEvent[] = [
+  ...LEGACY_EXPEDITION_EVENTS,
+  {
+    id: "v4-two-voices",
+    title: "Quầy có hai giọng",
+    speaker: "Bà Sen",
+    story:
+      "Bà Sen mời hai người đang giận nhau ngồi xuống: “Ăn một bữa rồi nghe nhau nói. Có tha thứ hay không là do mỗi người tự chọn.”",
+    choices: [
+      {
+        id: "meal",
+        label: "Mời cả hai ngồi lại",
+        detail: "15 lương thực · hồi 9 ý chí",
+        cost: 15,
+        heal: 9,
+      },
+      {
+        id: "listen",
+        label: "Giữ hai công thức",
+        detail: "Mất 3 ý chí · chọn thẻ",
+        damage: 3,
+        cards: true,
+      },
+    ],
+  },
+  {
+    id: "v4-rain-letter",
+    title: "Thư qua cơn mưa",
+    speaker: "Hải",
+    story:
+      "Hải cầm lá thư ướt: “Đây là lời xin lỗi ta chưa gửi. Chữ đã nhòe, nhưng người nhận còn ở bến. Ta phải mang đến và tự nói với họ.”",
+    choices: [
+      {
+        id: "carry",
+        label: "Đưa thư qua bến",
+        detail: "Mất 4 ý chí · thêm 22 lương thực",
+        damage: 4,
+        supplies: 22,
+      },
+      {
+        id: "shelter",
+        label: "Đợi dưới hiên",
+        detail: "10 lương thực · hồi 6 ý chí",
+        cost: 10,
+        heal: 6,
+      },
+    ],
+  },
+  {
+    id: "v4-seed",
+    title: "Mầm cây không mang tên cũ",
+    speaker: "Mộc",
+    story:
+      "Mộc nâng mầm cây: “Tôi muốn trồng cây mới, không ép nó phải giống cây của mẹ. Bạn giúp tôi tìm một chậu đất nhé?”",
+    choices: [
+      {
+        id: "pot",
+        label: "Góp chậu đất",
+        detail: "18 lương thực · chọn di vật",
+        cost: 18,
+        relic: true,
+      },
+      { id: "water", label: "Cùng tưới mầm", detail: "Hồi 4 ý chí", heal: 4 },
+    ],
+  },
+  {
+    id: "v4-wash",
+    title: "Người rửa bát",
+    speaker: "Tịnh",
+    story:
+      "Tịnh xắn tay áo: “Ta đã xóa tên người khác khỏi sổ. Việc ấy phải sửa, không thể xin mọi người quên đi. Tối nay, để ta rửa bát trước.”",
+    choices: [
+      {
+        id: "help",
+        label: "Rửa cùng ông",
+        detail: "Mất 2 ý chí · thêm 18 lương thực",
+        damage: 2,
+        supplies: 18,
+      },
+      {
+        id: "share",
+        label: "Để ông kể trước",
+        detail: "12 lương thực · hồi 7 ý chí",
+        cost: 12,
+        heal: 7,
+      },
+    ],
+  },
 ]
 const schools: School[] = ["ember", "tide", "grove", "hearth", "sugar"]
 export function createExpedition(
@@ -422,8 +527,10 @@ export function startRunBattle(run: ExpeditionRun, rng = Math.random): Battle {
   b.opponent = node.title
   b.player.health = run.health
   b.player.maxHealth = run.maxHealth
-  b.enemy.health = b.enemy.maxHealth =
-    challengeStat(24 + run.floor + (node.kind === "elite" ? 4 : node.kind === "boss" ? 6 : 0), b.enemyChallenge)
+  b.enemy.health = b.enemy.maxHealth = challengeStat(
+    24 + run.floor + (node.kind === "elite" ? 4 : node.kind === "boss" ? 6 : 0),
+    b.enemyChallenge,
+  )
   b.expedition = {
     runId: run.id,
     nodeId: node.id,
@@ -434,7 +541,8 @@ export function startRunBattle(run: ExpeditionRun, rng = Math.random): Battle {
   if (run.relics.includes("lantern")) b.player.mana = b.player.maxMana = 2
   if (run.relics.includes("tide-compass"))
     b.player.hand.push(b.player.deck.shift()!)
-  if (run.relics.includes("v4-rain-lamp")) b.player.health = Math.min(b.player.maxHealth, b.player.health + 3)
+  if (run.relics.includes("v4-rain-lamp"))
+    b.player.health = Math.min(b.player.maxHealth, b.player.health + 3)
   b.log = [
     `Thám hiểm · Chặng ${run.floor + 1}. Máu được giữ giữa các trận.`,
     ...run.relics.map((id) => `${RELIC_MAP[id].name}: ${RELIC_MAP[id].text}`),

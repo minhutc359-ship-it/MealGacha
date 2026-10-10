@@ -15,12 +15,12 @@ export const DRAMATIC_BEATS: Record<string, DramaticBeat> = {
     lines: [
       {
         speaker: "Kẻ Canh Bếp",
-        text: "Ta che nồi bánh, không che lời nói dối. Vì sao người giữ vị không có tên trên chiếc ghế của mình?",
+        text: "Ta bảo vệ căn bếp này, nhưng sẽ không giấu chuyện thay Bách. Vì sao chiếc ghế dành cho con lại không ghi tên?",
         beat: "reveal",
       },
       {
         speaker: "Bách",
-        text: "Ta sẽ trả lời khi bếp qua cơn gió này. Giữ Hộ vệ còn trên bàn lúc lượt địch kết thúc; ba lần giữ lửa sẽ mở nút thắt.",
+        text: "Qua trận này ta sẽ trả lời. Hãy giữ ít nhất một Hộ vệ trên sân khi lượt địch kết thúc. Bảo vệ bếp thành công ba lần sẽ thắng trận.",
       },
       {
         speaker: "Bạn",
@@ -39,7 +39,7 @@ export const DRAMATIC_BEATS: Record<string, DramaticBeat> = {
       },
       {
         speaker: "Nhiên",
-        text: "Cha gọi để người ta lên bờ, không để họ ở lại tàu. Giải cứu ba Vị Linh bằng hạ quân địch; cháo còn phần cho người trở về.",
+        text: "Cha gọi để người ta lên bờ, không để họ ở lại tàu. Hạ ba quân địch để giải cứu ba Vị Linh; cháo còn phần cho người trở về.",
         beat: "resolve",
       },
       {
@@ -63,7 +63,7 @@ export const DRAMATIC_BEATS: Record<string, DramaticBeat> = {
       },
       {
         speaker: "Bạn",
-        text: "Boss đang hồi bốn ý chí mỗi lượt. Tôi sẽ gom quân và cường hóa để phá nút thắt trong một nhịp.",
+        text: "Boss đang hồi bốn ý chí mỗi lượt. Tôi sẽ triệu hồi thêm quân, cường hóa rồi dồn sát thương trong cùng một lượt.",
       },
     ],
   },
@@ -116,7 +116,7 @@ export const DRAMATIC_BEATS: Record<string, DramaticBeat> = {
       },
       {
         speaker: "Liên",
-        text: "Cô ấy biết chiếc đèn tôi sửa hôm nay. Chuyện đó Mai chưa từng sống, và ngươi chưa từng được mời vào.",
+        text: "Cô ấy biết chiếc đèn tôi sửa hôm nay. Mai chưa từng thấy chiếc đèn ấy, nên ký ức của ngươi không thể biết chuyện vừa xảy ra.",
       },
       {
         speaker: "Bạn",
