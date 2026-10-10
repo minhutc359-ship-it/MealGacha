@@ -1,7 +1,8 @@
+import { clearProtectedState } from "@/infrastructure/storage/protectedStorage"
 import { describe, expect, it, beforeEach } from "vitest"
 import { existsSync } from "node:fs"
 import { resolve } from "node:path"
-import { CARDS, CARD_MAP, RARITIES, STARTER_DECK, deckErrors } from "@/game/catalog"
+import { LEGACY_CARDS, CARDS, CARD_MAP, RARITIES, STARTER_DECK, deckErrors } from "@/game/catalog"
 import { actBattle, startBattle } from "@/game/battle"
 import {
   newGame,
@@ -31,6 +32,7 @@ beforeEach(() => {
       removeItem: (key: string) => memory.delete(key),
     },
   })
+  clearProtectedState()
   useGameStore.setState({ save: newGame(), notice: null })
 })
 function rng(seed: number) {
@@ -72,7 +74,8 @@ describe("card catalog and decks", () => {
     expect(CARDS.filter((c) => c.set === "Người giữ vị")).toHaveLength(5)
     expect(new Set(CARDS.map((c) => c.school)).size).toBe(5)
     expect(deckErrors(STARTER_DECK, newGame().cards)).toEqual([])
-    expect(CARDS).toHaveLength(163)
+    expect(LEGACY_CARDS).toHaveLength(163)
+    expect(CARDS).toHaveLength(171)
     for (const card of CARDS)
       if (card.art)
         expect(existsSync(resolve("public", card.art.slice(1))), card.id).toBe(
@@ -273,8 +276,8 @@ describe("progression and economy", () => {
     }
   })
   it("pays story rewards once, settlement is idempotent, and locks sequentially", () => {
-    expect(CHAPTERS).toHaveLength(6)
-    expect(STAGES).toHaveLength(18)
+    expect(CHAPTERS).toHaveLength(9)
+    expect(STAGES).toHaveLength(27)
     expect(isStageUnlocked("lantern-2", [])).toBe(false)
     expect(isStageUnlocked("missing", [])).toBe(false)
     const b = { ...arena(), stageId: "lantern-1", result: "win" as const }
@@ -525,7 +528,7 @@ describe("campaign playthrough", () => {
       "dragon-breath",
     ]
     let save = newGame()
-    for (const stage of STAGES) {
+    for (const stage of STAGES.slice(0, 18)) {
       let winning: Battle | undefined
       for (let seed = 1; seed <= 10; seed++) {
         const battle = autoPlay(

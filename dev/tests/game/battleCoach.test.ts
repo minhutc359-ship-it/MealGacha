@@ -168,6 +168,6 @@ describe("illustrated campaign assets", () => {
       expect(readFileSync(path).subarray(0, 4).toString()).toBe("RIFF")
       bytes += statSync(path).size
     }
-    expect(bytes).toBeLessThan(1.4 * 1024 * 1024)
+    expect(bytes).toBeLessThan(2.2 * 1024 * 1024)
   })
 })

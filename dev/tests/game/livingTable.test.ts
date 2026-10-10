@@ -1,3 +1,4 @@
+import { clearProtectedState } from "@/infrastructure/storage/protectedStorage"
 import { beforeEach, describe, expect, it } from "vitest"
 import { readFileSync, statSync } from "node:fs"
 import { actBattle, startBattle } from "@/game/battle"
@@ -72,6 +73,7 @@ beforeEach(() => {
       removeItem: (key: string) => memory.delete(key),
     },
   })
+  clearProtectedState()
   useGameStore.setState({ save: newGame(), notice: null, presentation: null })
 })
 describe("recipe combat", () => {

@@ -1,3 +1,4 @@
+import { clearProtectedState } from "@/infrastructure/storage/protectedStorage"
 import { beforeEach, describe, expect, it } from "vitest"
 import { actBattle, startBattle } from "@/game/battle"
 import { CARD_MAP, STARTER_DECK } from "@/game/catalog"
@@ -20,6 +21,7 @@ beforeEach(() => {
       removeItem: (key: string) => memory.delete(key),
     },
   })
+  clearProtectedState()
   useGameStore.setState({ save: newGame(), notice: null, presentation: null })
 })
 const guard = (): BattleUnit => ({
@@ -35,7 +37,7 @@ const guard = (): BattleUnit => ({
 
 describe("defeat and campaign gates", () => {
   it("actual lethal enemy turns in all 18 stages never clear a stage or open the next one", () => {
-    for (const stage of STAGES) {
+    for (const stage of STAGES.slice(0, 18)) {
       const save = newGame()
       save.clearedStages = STAGES.slice(0, stage.index).map((s) => s.id)
       const battle = prepareEncounter(startBattle(STARTER_DECK, stage.id))

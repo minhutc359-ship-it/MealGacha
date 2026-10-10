@@ -153,7 +153,7 @@ describe("legacy progress and broader enemies", () => {
       for (const { def, cell } of plan) { seen.add(def.id); expect(cell).toBeLessThan(18); expect(cell).toBeGreaterThanOrEqual(0); if (def.unlockWave) expect(wave).toBeGreaterThanOrEqual(def.unlockWave) }
       if (wave % 5 === 0) expect(plan.filter(p => p.def.boss)).toHaveLength(1)
     }
-    expect(seen.size).toBe(MONSTERS.length)
+    expect(seen.size).toBe(MONSTERS.filter(m => !m.id.startsWith("v4-")).length)
     for (const id of ["ink-crab", "char-hound", "silk-moth", "bamboo-wraith", "rival-ladle", "rival-flute", "boss-drum", "boss-lotus"]) {
       let run = initial(); run.wave = id === "boss-lotus" ? 30 : 25; run.phase = "combat"
       run.combat = createCombat(run)

@@ -8,7 +8,7 @@ export interface Policy { title: string; intro: string; sections: { title: strin
 export const POLICIES: Record<PolicyId, Policy> = {
   "terms": {
     "title": "Điều khoản sử dụng",
-    "intro": "Áp dụng cho bản web Soul of Meal 3.5, gồm TCG, Chợ Đêm Auto chess và Rương vị giác, khi chính sách này được công bố cùng trò chơi. Đọc điều khoản và chính sách quyền riêng tư trước khi sử dụng. Đồng ý điều khoản không thay thế sự đồng ý riêng cho vị trí hoặc xử lý dữ liệu mới; quyền bắt buộc theo pháp luật luôn được giữ.",
+    "intro": "Áp dụng cho bản web Soul of Meal 4.0, gồm TCG, Chợ Đêm Auto chess và Rương vị giác, khi chính sách này được công bố cùng trò chơi. Đọc điều khoản và chính sách quyền riêng tư trước khi sử dụng. Đồng ý điều khoản không thay thế sự đồng ý riêng cho vị trí hoặc xử lý dữ liệu mới; quyền bắt buộc theo pháp luật luôn được giữ.",
     "sections": [
       {
         "title": "1. Sản phẩm và liên hệ",
@@ -88,7 +88,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
   },
   "privacy": {
     "title": "Chính sách quyền riêng tư",
-    "intro": "Chính sách này mô tả bản web Soul of Meal 3.5. Trò chơi không yêu cầu tài khoản máy chủ; tiến trình và ảnh tự nhập lưu trên thiết bị. Tìm quán, hosting, phông chữ và các liên kết ngoài có thể gửi dữ liệu ra khỏi thiết bị như mô tả dưới đây.",
+    "intro": "Chính sách này mô tả bản web Soul of Meal 4.0. Trò chơi không yêu cầu tài khoản máy chủ; tiến trình và ảnh tự nhập lưu trên thiết bị. Tìm quán, hosting, phông chữ và các liên kết ngoài có thể gửi dữ liệu ra khỏi thiết bị như mô tả dưới đây.",
     "sections": [
       {
         "title": "1. Phạm vi và người tiếp nhận yêu cầu",

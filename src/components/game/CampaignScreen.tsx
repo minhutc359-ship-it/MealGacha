@@ -7,7 +7,7 @@ import { MemoryJournal } from "./MemoryJournal"
 import { CultureJournal } from "./CultureJournal"
 import { Dialog } from "./Dialog"
 
-const GUARDIANS = ["bach", "nhien", "moc", "hai", "lien", "hero"] as const
+const GUARDIANS = ["bach", "nhien", "moc", "hai", "lien", "hero", "an", "hai", "an"] as const
 const STOPS: CSSProperties[] = [
   { left: "19%", top: "22%" },
   { left: "18%", top: "76%" },
@@ -17,16 +17,17 @@ const STOPS: CSSProperties[] = [
   { left: "81%", top: "17%" },
 ]
 export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
+  const ending = useGameStore(s => s.save.storyEnding)
   const cleared = useGameStore((s) => s.save.clearedStages)
   const history = useGameStore((s) => s.save.history)
   const [selected, setSelected] = useState(() =>
-    Math.min(5, Math.floor(cleared.length / 3)),
+    Math.min(CHAPTERS.length - 1, Math.floor(cleared.length / 3)),
   )
   const [reader, setReader] = useState<"memory" | "culture" | "map" | null>(
     null,
   )
   const chapter = CHAPTERS[selected]
-  const open = isStageUnlocked(chapter.stages[0].id, cleared)
+  const open = isStageUnlocked(chapter.stages[0].id, cleared, ending)
   const map = (
     <div className="tcg-world-map">
       <img
@@ -53,11 +54,11 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
           className="tcg-route-progress"
           pathLength="100"
           d="M190 220 C105 385 105 600 180 760 C285 760 385 575 490 400 C565 465 625 610 620 760 C705 720 765 580 790 440 C825 335 830 235 810 170"
-          style={{ strokeDasharray: `${(cleared.length / 18) * 100} 100` }}
+          style={{ strokeDasharray: `${(Math.min(18, cleared.length) / 18) * 100} 100` }}
         />
       </svg>
-      {CHAPTERS.map((ch, i) => {
-        const unlocked = isStageUnlocked(ch.stages[0].id, cleared)
+      {CHAPTERS.slice(0, 6).map((ch, i) => {
+        const unlocked = isStageUnlocked(ch.stages[0].id, cleared, ending)
         const count = ch.stages.filter((s) => cleared.includes(s.id)).length
         return (
           <button
@@ -98,7 +99,7 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
       <div className="tcg-section-heading">
         <div>
           <span className="tcg-kicker">
-            CHIẾN DỊCH · {cleared.length}/18 MÀN
+            CHIẾN DỊCH · {cleared.length}/27 MÀN
           </span>
           <h1>Bản đồ ký ức</h1>
         </div>
@@ -128,13 +129,13 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
           <button
             key={ch.id}
             aria-pressed={selected === i}
-            disabled={!isStageUnlocked(ch.stages[0].id, cleared)}
+            disabled={!isStageUnlocked(ch.stages[0].id, cleared, ending)}
             aria-label={`Xem chương ${i + 1}`}
             onClick={() => setSelected(i)}
           >
             <b>{String(i + 1).padStart(2, "0")}</b>
             <span>
-              {isStageUnlocked(ch.stages[0].id, cleared) ? ch.title : "Chưa mở"}
+              {isStageUnlocked(ch.stages[0].id, cleared, ending) ? ch.title : "Chưa mở"}
             </span>
             <small>
               {ch.stages.filter((s) => cleared.includes(s.id)).length}/3
@@ -184,7 +185,7 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
             {chapter.stages.map((s, i) => (
               <button
                 key={s.id}
-                disabled={!isStageUnlocked(s.id, cleared)}
+                disabled={!isStageUnlocked(s.id, cleared, ending)}
                 onClick={() => onStage(s.id)}
               >
                 <span className={cleared.includes(s.id) ? "complete" : ""}>
@@ -204,7 +205,7 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
                       : "Nội dung chưa mở"}
                   </small>
                 </div>
-                <b>{isStageUnlocked(s.id, cleared) ? "→" : "⚿"}</b>
+                <b>{isStageUnlocked(s.id, cleared, ending) ? "→" : "⚿"}</b>
               </button>
             ))}
           </div>

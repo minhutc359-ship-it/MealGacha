@@ -64,6 +64,14 @@ export function characterImage(path: string) {
     image.src = path
     images.set(path, image)
   }
+  // Soft decoded-cache budget. Mounted canvases keep their own live references.
+  images.delete(path); images.set(path, image)
+  let bytes = [...images.values()].reduce((sum, item) => sum + item.naturalWidth * item.naturalHeight * 4, 0)
+  for (const [key, item] of images) {
+    if (images.size <= 16 && bytes <= 64 * 1024 * 1024) break
+    if (key === path) continue
+    bytes -= item.naturalWidth * item.naturalHeight * 4; images.delete(key)
+  }
   return image
 }
 

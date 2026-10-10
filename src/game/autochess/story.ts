@@ -1,4 +1,5 @@
 export const AUTO_ACTS = [
+
   {
     title: "Chợ còn sáng",
     subtitle: "Một ngọn đèn cho người chưa tới",
@@ -20,6 +21,7 @@ export const AUTO_ACTS = [
     scene: 3,
   },
 ]
+AUTO_ACTS.push({ title: "Bến sau cơn mưa", subtitle: "Không viết hộ một lời xin lỗi", scene: 1 }, { title: "Bữa cơm ngày mai", subtitle: "Tịnh sửa hậu quả, không sửa người", scene: 3 })
 export type Speaker = "an" | "loc" | "sen" | "tinh" | "recorder" | "memory"
 export const SPEAKERS: Record<Speaker, { name: string; portrait: number }> = {
   an: { name: "An", portrait: 0 },
@@ -198,6 +200,12 @@ export const SCENES: Record<string, {
     ],
   },
 }
+for (const [id, title, speaker, text] of [
+ ["intro-13", "Bến sau cơn mưa", "an", "Chợ đã sáng. Nhưng lời xin lỗi trong những trang cũ vẫn chưa đến đúng người. Chúng mình mang nó về bến nhé."],
+ ["boss-15", "Nắp nồi con nước", "sen", "Tách người giữ đèn khỏi tuyến trước. Nắp nồi này khóa bước chân ở gần; đừng để cả đội cùng chịu lạnh."],
+ ["intro-16", "Bữa cơm ngày mai", "tinh", "Ta không xin viết lại quá khứ. Ta sẽ hỏi từng người còn sống muốn giữ điều gì, rồi sửa hậu quả mình gây ra."],
+ ["boss-18", "Trang giấy chưa viết", "an", "Nó phản chiếu kỹ năng vừa dùng. Hãy nhìn dấu mục tiêu trước lúc niệm phép; đừng để một giọng nói quyết định cả bàn."],
+] as const) SCENES[id] = {title, art: id.endsWith("13") || id.endsWith("15") ? 1 : 3, lines: [{speaker, text}, {speaker: "an", text: "Chúng mình tự chọn người giữ tuyến trước và người kể tiếp. Không có công thức nào thay được quyết định ấy."}]}
 export const CULTURE_PAGES = [
   {
     title: "Lời mời bên bếp",
@@ -219,5 +227,5 @@ export const CULTURE_PAGES = [
   },
 ]
 export function actIndex(wave: number) {
-  return Math.min(3, Math.floor((wave - 1) / 3))
+  return Math.min(5, Math.floor((wave - 1) / 3))
 }

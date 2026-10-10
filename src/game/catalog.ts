@@ -1,3 +1,4 @@
+import { V4_CARDS } from "./v4Cards"
 import { foodProfile, specializeCard } from "./cardAbilities"
 import { BUILT_IN_DISHES } from "../infrastructure/catalog/dishCatalog"
 import { hasFoodAsset } from "../infrastructure/assets/foodAssets"
@@ -719,12 +720,14 @@ const chefPortraits: Record<string, string> = {
   "chef-bach": "bach",
   "chef-hai": "hai",
 }
-export const CARDS: GameCard[] = [...foods, ...extras, ...champions, ...caravan].map((card) => ({
+export const LEGACY_CARDS: GameCard[] = [...foods, ...extras, ...champions, ...caravan].map((card) => ({
   ...specializeCard(card),
   art: card.art ?? (chefPortraits[card.id]
     ? `/assets/tcg/characters/anime/${chefPortraits[card.id]}.webp`
     : `/assets/tcg/cards/${card.id}.webp`),
 }))
+export const CARDS: GameCard[] = [...LEGACY_CARDS, ...V4_CARDS]
+export const cardsForRules = (version = 350) => version >= 400 ? CARDS : LEGACY_CARDS
 export const CARD_MAP = Object.fromEntries(
   CARDS.map((c) => [c.id, c]),
 ) as Record<string, GameCard>

@@ -7,6 +7,13 @@ import type { Battle } from "./types"
 import { TCG_IMPACT_MS } from "./battleVfx"
 
 export const MUSIC_TRACKS = {
+  "v4-market-warm": "assets/v4/audio/market-warm.mp3",
+  "v4-market-tension": "assets/v4/audio/market-tension.mp3",
+  "v4-harbor-warm": "assets/v4/audio/harbor-warm.mp3",
+  "v4-harbor-tension": "assets/v4/audio/harbor-tension.mp3",
+  "v4-kitchen-warm": "assets/v4/audio/kitchen-warm.mp3",
+  "v4-kitchen-tension": "assets/v4/audio/kitchen-tension.mp3",
+
   "auto-prepare": "assets/autochess/audio/prepare.mp3",
   "auto-battle": "assets/autochess/audio/battle.mp3",
   "auto-boss": "assets/autochess/audio/boss.mp3",
@@ -21,6 +28,13 @@ export const MUSIC_TRACKS = {
 export type MusicTrack = keyof typeof MUSIC_TRACKS
 export type MusicStyle = "original" | "8bit"
 export const RETRO_MUSIC_TRACKS: Record<MusicTrack, string> = {
+  "v4-market-warm": "assets/v4/audio/8bit-market-warm.mp3",
+  "v4-market-tension": "assets/v4/audio/8bit-market-tension.mp3",
+  "v4-harbor-warm": "assets/v4/audio/8bit-harbor-warm.mp3",
+  "v4-harbor-tension": "assets/v4/audio/8bit-harbor-tension.mp3",
+  "v4-kitchen-warm": "assets/v4/audio/8bit-kitchen-warm.mp3",
+  "v4-kitchen-tension": "assets/v4/audio/8bit-kitchen-tension.mp3",
+
   "auto-prepare": "assets/autochess/audio/8bit-prepare.mp3",
   "auto-battle": "assets/autochess/audio/8bit-battle.mp3",
   "auto-boss": "assets/autochess/audio/8bit-boss.mp3",
@@ -48,6 +62,8 @@ export interface TimedSound {
 }
 
 export function battleMusic(battle: Battle): MusicTrack {
+  if (battle.stageId && /^(living-market|rain-harbor|tomorrow-table)-/.test(battle.stageId)) return livingMusic(battle.stageId, !!battleRule(battle) || battle.player.health <= 8)
+
   return battleRule(battle) ||
     battle.player.health <= 8 ||
     (battle.expedition?.enemyBoost ?? 0) >= 2
@@ -55,7 +71,12 @@ export function battleMusic(battle: Battle): MusicTrack {
     : "battle"
 }
 
+export function livingMusic(id: string, tension = false): MusicTrack {
+ const region = id.startsWith("living-market") ? "market" : id.startsWith("rain-harbor") ? "harbor" : "kitchen"
+ return `v4-${region}-${tension ? "tension" : "warm"}`
+}
 export function storyMusic(art: StoryArtId): MusicTrack {
+ if (["living-market", "rain-harbor", "tomorrow-table"].includes(art)) return livingMusic(art)
   return ["garden", "tide", "last-table", "harbor", "memory-flare"].includes(
     art,
   )

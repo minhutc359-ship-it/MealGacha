@@ -1,3 +1,4 @@
+import { clearProtectedState } from "@/infrastructure/storage/protectedStorage"
 import { getBattleHint } from "@/game/battleCoach"
 import { beforeEach, describe, expect, it } from "vitest"
 import { CARDS, CARD_MAP, STARTER_DECK } from "@/game/catalog"
@@ -30,6 +31,7 @@ beforeEach(() => {
       removeItem: (key: string) => memory.delete(key),
     },
   })
+  clearProtectedState()
   useGameStore.setState({ save: newGame(), notice: null })
 })
 function fight(run: ExpeditionRun) {
@@ -92,8 +94,8 @@ describe("expedition journey and rewards", () => {
     expect(createExpedition(STARTER_DECK, 13).nodes).not.toEqual(
       createExpedition(STARTER_DECK, 12).nodes,
     )
-    expect(EXPEDITION_EVENTS).toHaveLength(6)
-    expect(new Set(RELICS.map((r) => r.id)).size).toBe(10)
+    expect(EXPEDITION_EVENTS).toHaveLength(10)
+    expect(new Set(RELICS.map((r) => r.id)).size).toBe(14)
     expect(CARDS.filter((c) => c.set === "Đoàn lữ hành")).toHaveLength(15)
     for (let seed = 0; seed < 100; seed++) {
       const run = createExpedition(STARTER_DECK, seed)

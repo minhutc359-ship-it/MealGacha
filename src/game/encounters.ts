@@ -152,6 +152,7 @@ export function midScene(id: string, battle?: Battle): {
       ? DRAMATIC_BEATS[battle.stageId]
       : undefined
   if (campaignBeat && id === `awaken:${battle!.stageId}`) return campaignBeat
+  if (battle?.stageId && /^(living-market|rain-harbor|tomorrow-table)-/.test(battle.stageId)) return {title: "Không viết hộ một lựa chọn", art: battle.stageId.startsWith("living-market") ? "living-market" : battle.stageId.startsWith("rain-harbor") ? "rain-harbor" : "tomorrow-table", lines: [{speaker: "An", text: "Mực đang đổi màu. Nhìn ý đồ của địch rồi chọn cách giữ bàn; câu chuyện này vẫn cần quyết định của chúng mình."}]}
   const harbor = battle?.encounter?.kind === "rescue"
   const protect = battle?.encounter?.kind === "protect"
   return {

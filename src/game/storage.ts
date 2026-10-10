@@ -4,6 +4,7 @@ import { CARD_MAP } from "./catalog"
 import { newGame, rotateDay } from "./progression"
 import type { GameSave } from "./types"
 import { autoSaveSchema } from "./autochess/schema"
+import { loadProtected, writeProtectedBatch } from "../infrastructure/storage/protectedStorage"
 
 export const GAME_KEY = "foodchest.tcg.v1"
 const npcId = z.enum(["bach", "nhien", "moc", "hai", "lien"])
@@ -12,10 +13,11 @@ const sceneId = z
   .string()
   .max(60)
   .regex(
-    /^(assist:(bach|nhien|moc|hai|lien)|awaken:(lantern|harbor|garden|tide|moon|last-table)-3)$/,
+    /^(assist:(bach|nhien|moc|hai|lien)|awaken:(lantern|harbor|garden|tide|moon|last-table|living-market|rain-harbor|tomorrow-table)-3)$/,
   )
 const weekId = z.string().regex(/^\d{4}-\d{2}-\d{2}$/)
 const bossId = z.enum([
+ "living-market-3", "rain-harbor-3", "tomorrow-table-3",
   "lantern-3",
   "harbor-3",
   "garden-3",
@@ -40,6 +42,7 @@ const unit = z.object({
   shield: integer,
   ready: z.boolean(),
   frozen: z.boolean().optional(),
+  icedThisTurn: z.boolean().optional(),
   triggers: integer.max(2).optional(),
   keywords: z.array(z.enum(["guard", "rush", "shield", "drain"])),
 })
@@ -84,6 +87,7 @@ const node = z.object({
 })
 const expedition = z
   .object({
+    rulesVersion: z.union([z.literal(350), z.literal(400)]).default(350),
     id: z.string(),
     seed: z.number().int().min(0).max(4294967295),
     status: z.enum([
@@ -183,6 +187,15 @@ const expedition = z
 export const GameSaveSchema = z
   .object({
     version: z.literal(1),
+    contentVersion: z.union([z.literal(350), z.literal(400)]).optional(),
+    story400: z.object({
+      version: z.literal(1),
+      giftClaimed: z.boolean(),
+      originEnding: z.enum(["remember", "release"]).nullable(),
+      choices: z.record(z.string().max(80), z.enum(["courage", "wisdom"])),
+      seenScenes: z.array(z.string().max(80)).max(32),
+      claimedRewards: z.array(z.string().max(100)).max(32),
+    }).optional(),
     coins: integer,
     dust: integer,
     xp: integer,
@@ -263,6 +276,13 @@ export const GameSaveSchema = z
       .default([]),
     battle: z
       .object({
+        rulesVersion: z.union([z.literal(350), z.literal(400)]).default(350),
+        flavorSequence: integer.optional(),
+        pendingFlavors: z.array(z.object({
+          id: z.string().max(100), owner: z.enum(["player", "enemy"]), cardId,
+          effect: z.enum(["buff", "heal"]), power: integer.max(10), targetUid: z.string().max(80).optional(),
+          executeRound: integer, sequence: integer, delayed: z.boolean().optional(),
+        })).max(4).optional(),
         id: z.string(),
         stageId: z.string().nullable(),
         opponent: z.string(),
@@ -330,8 +350,19 @@ export const GameSaveSchema = z
       })
       .nullable(),
   })
+  .passthrough()
   .superRefine((save, ctx) => {
     const b = save.battle
+    if (b) {
+      const pending = b.pendingFlavors ?? []
+      if (new Set(pending.map(effect => effect.id)).size !== pending.length || new Set(pending.map(effect => effect.sequence)).size !== pending.length || ["player", "enemy"].some(side => pending.filter(effect => effect.owner === side).length > 2) || pending.some(effect => !CARD_MAP[effect.cardId].ability?.startsWith("steep-") || effect.sequence > (b.flavorSequence ?? 0) || effect.power !== CARD_MAP[effect.cardId].power || effect.effect !== (CARD_MAP[effect.cardId].ability === "steep-unit" ? "buff" : "heal") || (effect.effect === "buff" ? !effect.targetUid : !!effect.targetUid)))
+        ctx.addIssue({ code: "custom", message: "Hiệu ứng Ủ vị không nhất quán" })
+      const battleCards = [b.player, b.enemy].flatMap(side => [...side.deck, ...side.hand, ...side.board.map(unit => unit.cardId), ...(side.graveyard ?? [])])
+      if (b.rulesVersion < 400 && (pending.length || battleCards.some(id => CARD_MAP[id].contentVersion === 400)))
+        ctx.addIssue({ code: "custom", message: "Trận 3.5 không nhận luật/thẻ 4.0" })
+    }
+    if (save.expedition && save.expedition.rulesVersion < 400 && save.expedition.deck.some(id => CARD_MAP[id].contentVersion === 400))
+      ctx.addIssue({ code: "custom", message: "Chuyến cũ không nhận thẻ mới giữa hành trình" })
     if (
       b?.tactic?.status === "pending" &&
       (b.round < 4 || b.opening || b.result)
@@ -395,16 +426,8 @@ export function parseGame(raw: unknown): GameSave | null {
   return parsed.success ? rotateDay(parsed.data) : null
 }
 export function loadGame(): GameSave {
-  try {
-    const raw = localStorage.getItem(GAME_KEY)
-    return raw ? (parseGame(JSON.parse(raw)) ?? newGame()) : newGame()
-  } catch {
-    return newGame()
-  }
+  return loadProtected(GAME_KEY, parseGame, newGame)
 }
 export function saveGame(save: GameSave) {
-  localStorage.setItem(
-    GAME_KEY,
-    JSON.stringify({ ...save, updatedAt: new Date().toISOString() }),
-  )
+  writeProtectedBatch([{ key: GAME_KEY, value: { ...save, updatedAt: new Date().toISOString() } }])
 }

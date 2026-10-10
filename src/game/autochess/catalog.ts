@@ -609,7 +609,7 @@ export const RELICS = [
     color: "#e2b4f3",
   },
 ]
-export const AUGMENTS = [
+export const LEGACY_AUGMENTS = [
   {
     id: "guests",
     name: "Bếp có khách",
@@ -641,6 +641,15 @@ export const AUGMENTS = [
     text: "Được đổi một lựa chọn di vật và +2 vàng mỗi vòng.",
   },
 ]
+export const V4_AUGMENTS = [
+ {id: "v4-slow-fire", name: "Lửa nhỏ bền lâu", text: "Toàn đội +12% máu và +6 giáp khi xuất trận."},
+ {id: "v4-front-apron", name: "Tạp dề tuyến trước", text: "Quân tuyến trước nhận 180 khiên khi xuất trận."},
+ {id: "v4-back-lantern", name: "Đèn cho tuyến sau", text: "Quân tuyến sau +12% công khi xuất trận."},
+ {id: "v4-quiet-seat", name: "Ghế yên tĩnh", text: "Quân không sát đồng minh có thêm 20 mana đầu trận."},
+ {id: "v4-common-table", name: "Mâm đủ vị", text: "Có 3 hệ: toàn đội nhận 110 khiên đầu trận."},
+ {id: "v4-second-breath", name: "Một hơi thở nữa", text: "Ý chí dưới nửa: toàn đội +18% máu khi xuất trận."},
+]
+export const AUGMENTS = [...LEGACY_AUGMENTS, ...V4_AUGMENTS]
 export const COSMETICS = [
   { id: "river", name: "Sân bếp bên sông", cost: 60, scene: 1 },
   { id: "archive", name: "Thư quán trong sương", cost: 120, scene: 2 },
@@ -859,6 +868,10 @@ MONSTERS.push(
   { id: "rival-flute", name: "Kẻ Giấu Tiếng Sáo", hp: 650, attack: 47, range: 3, armor: 12, skill: "rhythm", power: 205, school: "tide", sprite: 1, unlockWave: 8, text: "Nhịp sáo gây phép và tiếp mana. Chặn nhịp bằng choáng hoặc khóa phép." },
   { id: "boss-drum", name: "Vọng Trống Lạc Nhịp", hp: 2600, attack: 84, range: 1, armor: 28, skill: "stun", power: 345, school: "hearth", sprite: 2, boss: true, text: "Boss Survival: tiếng vọng bị sương làm lệch nhịp, choáng tuyến trước. Thanh vị giảm thời gian choáng." },
   { id: "boss-lotus", name: "Sen Sương Khép Cánh", hp: 3100, attack: 81, range: 3, armor: 22, skill: "seal", power: 320, school: "grove", sprite: 3, boss: true, text: "Boss Survival: khóa phép người đứng trước, chuyển pha dưới nửa máu. Cần cả đòn đánh và phép." },
+)
+MONSTERS.push(
+ {id: "v4-tide-lock", name: "Nắp Nồi Con Nước", hp: 2850, attack: 80, range: 2, armor: 25, skill: "frost", power: 310, school: "tide", sprite: 3, boss: true, text: "Đóng băng tuyến gần; tách carry và dùng Thanh vị. Thức tỉnh dưới nửa máu."},
+ {id: "v4-last-page", name: "Trang Giấy Chưa Viết", hp: 3200, attack: 84, range: 3, armor: 22, skill: "copy", power: 320, school: "sugar", sprite: 2, boss: true, text: "Phản chiếu kỹ năng đồng minh vừa dùng với 65% sức mạnh. Thức tỉnh dưới nửa máu."},
 )
 export const MONSTER_MAP = Object.fromEntries(MONSTERS.map((m) => [m.id, m]))
 export const SKILL_LABELS: Record<Skill, string> = {

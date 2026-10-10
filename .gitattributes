@@ -205,3 +205,7 @@ rights/vendor/* whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 
 # The world map is a release asset already tracked as actual WebP bytes.
 public/assets/tcg/map/** -filter -diff -merge -text
+
+# V4 product media is small and must serve real bytes in a normal checkout.
+public/assets/v4/** -filter -diff -merge -text
+dev/docs/major-v400/*.jpg -filter -diff -merge -text

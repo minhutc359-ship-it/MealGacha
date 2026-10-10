@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-10",
+  "kind": "production-v4-generated-arena-provenance",
+  "records": [
+    {
+      "id": "market",
+      "prompt": "Use case: stylized-concept. Asset type: production background illustration for the original Vietnamese fantasy web game Soul of Meal 4.0. Hand-painted anime environment, richly composed but readable at phone size, painterly cel shading, navy shadows and warm copper highlights, Vietnamese bamboo, ceramic, timber details, original art without borrowed franchise designs. Wide landscape 1536x1024. No characters, no text, no logo, no watermark, no UI, no grid lines. Keep the central lower 60 percent as a calm dark open floor with subtle texture for game actors and overlays, reserve intricate detail for edges and distance, stable frontal slightly elevated viewpoint. Scene: Chợ Đêm, a night market courtyard between humble Vietnamese food stalls under softly glowing lanterns and bamboo awnings; pots, steam and woven baskets only around the edge. Indigo evening, invitation and living memories, cozy rather than ominous. A clear broad stone floor in the central lower area.",
+      "method": "Built-in imagegen; new original environment illustration",
+      "generatedSource": "/workspace/scratch/b3de12b4faac/generated_images/exec-b1d29e10-a533-419b-b6cc-a71ca743a01b.png",
+      "runtimePath": "public/assets/v4/arenas/market.webp",
+      "width": 1440,
+      "height": 960,
+      "sourceSha256": "fb5dcf9f9d70af1e70baf1415627f1726b1cd1c1fd013fa5b05e5f7c6ea7d814",
+      "runtimeSha256": "747cb0a8285797aa29bbd3824038dcaad0df7a9826188357994035bdc8039752",
+      "runtimeBytes": 313182,
+      "conversion": "Format conversion and downscale only, Pillow WebP quality82 method6"
+    },
+    {
+      "id": "harbor",
+      "prompt": "Use case: stylized-concept. Asset type: production background illustration for the original Vietnamese fantasy web game Soul of Meal 4.0. Hand-painted anime environment, richly composed but readable at phone size, painterly cel shading, navy shadows and warm copper highlights, Vietnamese bamboo, ceramic, timber details, original art without borrowed franchise designs. Wide landscape 1536x1024. No characters, no text, no logo, no watermark, no UI, no grid lines. Keep the central lower 60 percent as a calm dark open floor with subtle texture for game actors and overlays, reserve intricate detail for edges and distance, stable frontal slightly elevated viewpoint. Scene: Bến Ký Ức, quiet Vietnamese riverside landing just after rain, wooden jetty and broad stone courtyard, water and distant moored boats beyond, reed baskets and blue ceramic bowls at the sides. Teal mist, amber lantern reflections, calm bittersweet renewal. The central lower area is stable clear pavement, not water.",
+      "method": "Built-in imagegen; new original environment illustration",
+      "generatedSource": "/workspace/scratch/b3de12b4faac/generated_images/exec-3d2557a5-f0ec-4b39-bb25-aecde7fe2c15.png",
+      "runtimePath": "public/assets/v4/arenas/harbor.webp",
+      "width": 1440,
+      "height": 960,
+      "sourceSha256": "43636d58356d097233504c1ed3a17e31e6b26d472bb39b7a7f8647ad5c6d74a6",
+      "runtimeSha256": "b9597df9bd5df9bda65c8c305aa3ba05a068d0a50489bb6fef37e9a7e6eb4119",
+      "runtimeBytes": 280576,
+      "conversion": "Format conversion and downscale only, Pillow WebP quality82 method6"
+    },
+    {
+      "id": "kitchen",
+      "prompt": "Use case: stylized-concept. Asset type: production background illustration for the original Vietnamese fantasy web game Soul of Meal 4.0. Hand-painted anime environment, richly composed but readable at phone size, painterly cel shading, navy shadows and warm copper highlights, Vietnamese bamboo, ceramic, timber details, original art without borrowed franchise designs. Wide landscape 1536x1024. No characters, no text, no logo, no watermark, no UI, no grid lines. Keep the central lower 60 percent as a calm dark open floor with subtle texture for game actors and overlays, reserve intricate detail for edges and distance, stable frontal slightly elevated viewpoint. Scene: Bếp Đoàn Viên, a warm Vietnamese communal kitchen opening onto a broad terracotta courtyard, timber rafters, banana leaves, humble clay stove and cooking utensils arranged at the edges, a distant round family table with empty bowls. Dawn light, soft gold, sage and navy, hopeful ordinary life. The central lower area is an open dark terracotta floor.",
+      "method": "Built-in imagegen; new original environment illustration",
+      "generatedSource": "/workspace/scratch/b3de12b4faac/generated_images/exec-02c43009-745d-4d78-95c4-2d34cbf9a1ee.png",
+      "runtimePath": "public/assets/v4/arenas/kitchen.webp",
+      "width": 1440,
+      "height": 960,
+      "sourceSha256": "10c9e1131c11a0e092c573a00bd3119799caf96a2d245bffa3a95082ddf3aeb2",
+      "runtimeSha256": "0134b58a818a43e35dead810a72759f7de6a39749e86f0d3eeeb00f4ea2c4104",
+      "runtimeBytes": 226736,
+      "conversion": "Format conversion and downscale only, Pillow WebP quality82 method6"
+    }
+  ]
+}

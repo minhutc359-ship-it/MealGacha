@@ -142,7 +142,7 @@ describe("speaking characters and original retro score", () => {
     expect(speakerCharacter("Bạn · Ký ức")).toBe("hero")
     expect(speakerCharacter("Hải Vương")).toBe("mist")
     expect(speakerCharacter("Sương Nhạt")).toBe("echo")
-    expect(new Set(Object.values(CHARACTER_ART)).size).toBe(16)
+    expect(new Set(Object.values(CHARACTER_ART)).size).toBe(17)
   })
   it("gives six campaign bosses distinct reveals without exposing them in other modes", () => {
     const titles = new Set<string>()
@@ -163,7 +163,7 @@ describe("speaking characters and original retro score", () => {
   })
   it("ships four separate playable MP3 arrangements and migrates music style safely", () => {
     let bytes = 0
-    for (const [track, src] of Object.entries(RETRO_MUSIC_TRACKS).filter(([track]) => !track.startsWith("auto-"))) {
+    for (const [track, src] of Object.entries(RETRO_MUSIC_TRACKS).filter(([track]) => !track.startsWith("auto-") && !track.startsWith("v4-"))) {
       const file = readFileSync(`public/${src}`)
       expect(file.subarray(0, 3).toString()).toBe("ID3")
       expect(file.length).toBeGreaterThan(150000)

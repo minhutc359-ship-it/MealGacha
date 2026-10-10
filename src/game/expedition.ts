@@ -1,4 +1,4 @@
-import { CARD_MAP, CARDS } from "./catalog"
+import { CARD_MAP, CARDS, cardsForRules } from "./catalog"
 import { startBattle } from "./battle"
 import { challengeStat } from "./difficulty"
 import { CHAPTERS } from "./story"
@@ -10,7 +10,7 @@ import type {
   School,
 } from "./types"
 
-export const RELICS = [
+export const LEGACY_RELICS = [
   {
     id: "ember-pin",
     name: "Trâm than hồng",
@@ -72,6 +72,13 @@ export const RELICS = [
     text: "Bắt đầu mỗi trận với 2 năng lượng thay vì 1.",
   },
 ]
+export const RELICS = [...LEGACY_RELICS,
+ {id:"v4-pot-lid", name:"Nắp nồi vừa vặn", symbol:"♨", text:"Ủ vị hồi phục của bạn hồi thêm 1 ý chí khi nở."},
+ {id:"v4-menu", name:"Thực đơn hai giọng", symbol:"✧", text:"Mỗi Nêm vị đã dùng trao 1 chắn cho đồng minh ít máu nhất."},
+ {id:"v4-dry-towel", name:"Khăn khô dự phòng", symbol:"◈", text:"Dùng Khăn ấm sau mưa rút thêm 1 lá."},
+ {id:"v4-rain-lamp", name:"Đèn qua mưa", symbol:"✦", text:"Bắt đầu mỗi trận hồi 3 ý chí, không vượt ý chí tối đa."},
+]
+const relicsForRules = (run: ExpeditionRun) => (run.rulesVersion ?? 350) >= 400 ? RELICS : LEGACY_RELICS
 export const RELIC_MAP = Object.fromEntries(RELICS.map((r) => [r.id, r]))
 export interface EventOption {
   id: string
@@ -91,7 +98,7 @@ export interface ExpeditionEvent {
   story: string
   choices: EventOption[]
 }
-export const EXPEDITION_EVENTS: ExpeditionEvent[] = [
+export const LEGACY_EXPEDITION_EVENTS: ExpeditionEvent[] = [
   {
     id: "empty-bowl",
     title: "Chiếc bát còn ấm",
@@ -271,6 +278,12 @@ function choose<T>(items: T[], rng: () => number, count: number): T[] {
     result.push(pool.splice(Math.floor(rng() * pool.length), 1)[0])
   return result
 }
+export const EXPEDITION_EVENTS: ExpeditionEvent[] = [...LEGACY_EXPEDITION_EVENTS,
+ {id:"v4-two-voices", title:"Quầy có hai giọng", speaker:"Bà Sen", story:"Một người cần lời xin lỗi, người kia cần một bữa cơm. Không ai muốn được viết hộ câu trả lời.", choices:[{id:"meal", label:"Mời cả hai ngồi lại", detail:"15 lương thực · hồi 9 ý chí", cost:15, heal:9}, {id:"listen", label:"Giữ hai công thức", detail:"Mất 3 ý chí · chọn thẻ", damage:3, cards:true}]},
+ {id:"v4-rain-letter", title:"Thư qua cơn mưa", speaker:"Hải", story:"Thư đã nhòe. Người nhận vẫn đang đợi ở bến.", choices:[{id:"carry", label:"Đưa thư qua bến", detail:"Mất 4 ý chí · thêm 22 lương thực", damage:4, supplies:22}, {id:"shelter", label:"Đợi dưới hiên", detail:"10 lương thực · hồi 6 ý chí", cost:10, heal:6}]},
+ {id:"v4-seed", title:"Mầm cây không mang tên cũ", speaker:"Mộc", story:"Cây này sẽ lớn theo cách của nó. Mộc cần thêm một chậu đất.", choices:[{id:"pot", label:"Góp chậu đất", detail:"18 lương thực · chọn di vật", cost:18, relic:true}, {id:"water", label:"Cùng tưới mầm", detail:"Hồi 4 ý chí", heal:4}]},
+ {id:"v4-wash", title:"Người rửa bát", speaker:"Tịnh", story:"Tịnh không xin xóa những gì mình đã làm. Ông nhận phần việc còn lại sau bữa cơm.", choices:[{id:"help", label:"Rửa cùng ông", detail:"Mất 2 ý chí · thêm 18 lương thực", damage:2, supplies:18}, {id:"share", label:"Để ông kể trước", detail:"12 lương thực · hồi 7 ý chí", cost:12, heal:7}]},
+]
 const schools: School[] = ["ember", "tide", "grove", "hearth", "sugar"]
 export function createExpedition(
   deck: string[],
@@ -315,6 +328,7 @@ export function createExpedition(
     }),
   )
   return {
+    rulesVersion: 400,
     id: crypto.randomUUID(),
     seed,
     status: "path",
@@ -347,10 +361,10 @@ function offers(
   const rng = random(
     (run.seed + run.floor * 7919 + run.route.length * 97) >>> 0,
   )
-  const pool = CARDS.filter(
+  const pool = cardsForRules(run.rulesVersion ?? 350).filter(
     (c) => c.cost <= 5 && (c.rarity !== "common" || c.set === "Đoàn lữ hành"),
   )
-  if (!cards && (!relics || run.relics.length === RELICS.length))
+  if (!cards && (!relics || run.relics.length === relicsForRules(run).length))
     return nextRunFloor(run)
   return {
     ...run,
@@ -359,13 +373,13 @@ function offers(
       cards: cards ? choose(pool, rng, 3).map((c) => c.id) : [],
       relics: relics
         ? choose(
-            RELICS.filter((r) => !run.relics.includes(r.id)),
+            relicsForRules(run).filter((r) => !run.relics.includes(r.id)),
             rng,
             3,
           ).map((r) => r.id)
         : [],
       cardPicked: !cards,
-      relicPicked: !relics || run.relics.length === RELICS.length,
+      relicPicked: !relics || run.relics.length === relicsForRules(run).length,
     },
   }
 }
@@ -401,6 +415,8 @@ export function startRunBattle(run: ExpeditionRun, rng = Math.random): Battle {
     chapter.stages[Math.min(2, Math.floor(run.floor / 3))].id,
     "courage",
     rng,
+    false,
+    run.rulesVersion ?? 350,
   )
   b.stageId = null
   b.opponent = node.title
@@ -418,6 +434,7 @@ export function startRunBattle(run: ExpeditionRun, rng = Math.random): Battle {
   if (run.relics.includes("lantern")) b.player.mana = b.player.maxMana = 2
   if (run.relics.includes("tide-compass"))
     b.player.hand.push(b.player.deck.shift()!)
+  if (run.relics.includes("v4-rain-lamp")) b.player.health = Math.min(b.player.maxHealth, b.player.health + 3)
   b.log = [
     `Thám hiểm · Chặng ${run.floor + 1}. Máu được giữ giữa các trận.`,
     ...run.relics.map((id) => `${RELIC_MAP[id].name}: ${RELIC_MAP[id].text}`),

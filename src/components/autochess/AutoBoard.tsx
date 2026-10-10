@@ -1,3 +1,4 @@
+import { motionAccent } from "../../game/motionProfiles"
 import { useEffect, useRef, type CSSProperties, type PointerEvent } from "react"
 import {
   AUTO_SCHOOLS,
@@ -364,6 +365,9 @@ export function AutoBoard({
           }
           ctx.translate(x + offsetX + lungeX + sway + recoilX, y + offsetY + breath + lungeY + gait + hop + recoilY)
           const departure = actor.hp <= 0 && !opts.reducedMotion ? Math.max(.6, 1 - deadAge / 60) : 1
+          const action = actor.action
+          const accent = motionAccent(actor.id, action ? (time - action.start) / Math.max(1, action.end - action.start) : 0, action?.kind === "cast", opts.reducedMotion || opts.lowQuality || current.rulesVersion < 6 || !action || action.kind === "move")
+          ctx.translate(0, accent.lift * cell); ctx.rotate(accent.rotation); ctx.scale(1 - accent.stretch, 1 + accent.stretch)
           ctx.scale(awaken * departure, awaken * departure)
           if (flip) ctx.scale(-1, 1)
           if (dancing && !opts.reducedMotion) {

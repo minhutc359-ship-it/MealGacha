@@ -1,3 +1,4 @@
+import { LIVING_CHAPTERS } from "./livingStory"
 import type { Chapter } from "./types"
 import { SCENES, CHAPTER_COPY } from "./narrative"
 import { STORY_ART, stageArtId } from "./storyArt"
@@ -186,7 +187,7 @@ const CHAPTER_LAYOUT = [
 ]
 
 // IDs, unlock order and card rewards are unchanged for existing players.
-export const CHAPTERS: Chapter[] = CHAPTER_LAYOUT.map((chapter, index) => ({
+export const LEGACY_CHAPTERS: Chapter[] = CHAPTER_LAYOUT.map((chapter, index) => ({
   ...chapter,
   school: chapter.school as Chapter["school"],
   art: STORY_ART[stageArtId(chapter.stages[0].id)].src,
@@ -202,6 +203,7 @@ export const CHAPTERS: Chapter[] = CHAPTER_LAYOUT.map((chapter, index) => ({
       .join("\n\n"),
   })),
 }))
+export const CHAPTERS = [...LEGACY_CHAPTERS, ...LIVING_CHAPTERS]
 export const STAGES = CHAPTERS.flatMap((chapter, chapterIndex) =>
   chapter.stages.map((stage, stageIndex) => ({
     ...stage,
@@ -212,10 +214,11 @@ export const STAGES = CHAPTERS.flatMap((chapter, chapterIndex) =>
 export const STAGE_MAP = Object.fromEntries(
   STAGES.map((stage) => [stage.id, stage]),
 )
-export function isStageUnlocked(id: string, cleared: string[]) {
+export function isStageUnlocked(id: string, cleared: string[], ending?: "remember" | "release" | null) {
   const stage = STAGE_MAP[id]
   return (
     !!stage &&
+    (stage.index < 18 || !!ending) &&
     STAGES.slice(0, stage.index).every((previous) =>
       cleared.includes(previous.id),
     )
