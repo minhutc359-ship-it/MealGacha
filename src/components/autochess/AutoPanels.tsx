@@ -1,4 +1,5 @@
 import { AutoPractice } from "./AutoPractice"
+import { ModeIntroButton } from "../layout/ModeIntroButton"
 import { Dialog } from "../game/Dialog"
 import { AutoPortrait, AutoMonsterPortrait, WorldArt } from "./AutoArt"
 import {
@@ -170,9 +171,10 @@ export function UnitInspector({
     </Dialog>
   )
 }
-export function AutoGuide({ onClose }: { onClose: () => void }) {
+export function AutoGuide({ onClose, onIntro }: { onClose: () => void; onIntro?: () => void }) {
   return (
     <Dialog title="Một vòng chơi trong ba bước" onClose={onClose} className="ac-guide-dialog">
+      <ModeIntroButton mode="auto" beforeOpen={onIntro ?? onClose} />
       <p className="ac-guide-intro">Bạn chọn đội hình; Vị Linh tự di chuyển, đánh và tung kỹ năng. Hạ hết phe địch để thắng. Sau 55 giây trận tự tăng tốc ×3 và tiếp tục đến khi phân thắng thua. Thua mất ý chí; còn ý chí thì chỉnh đội hình và chơi lại cùng đợt. Hết ý chí mới kết thúc, ghi điểm. Chỉ thắng mới qua đợt tiếp theo.</p>
       <div className="ac-guide-steps">
         <article><strong>1 · Mua & ghép quân</strong><p>Chạm lá trong cửa hàng để mua. 3 bản cùng quân tự ghép ★★; 3 quân ★★ ghép ★★★. Dự bị có 9 ô; dù đầy, vẫn mua được bản thứ ba để tự ghép. Mua quân không tự chọn hoặc đổi chỗ quân khác. Quân mới nằm ở ghế dự bị.</p></article>

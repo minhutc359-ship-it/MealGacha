@@ -18,6 +18,7 @@ import { getDateKey } from "../domain/dateKey"
 import { GameCardView } from "../components/game/GameCardView"
 import { StoryScene } from "../components/game/StoryScene"
 import { DuelBasics } from "../components/game/DuelBasics"
+import { ModeIntroButton } from "../components/layout/ModeIntroButton"
 import { HomeLobby } from "../components/game/HomeLobby"
 import { CampaignScreen } from "../components/game/CampaignScreen"
 import { AudioControls, useGameAudio, useGameMusic } from "../components/game/GameAudio"
@@ -1081,6 +1082,7 @@ export function TCGPage() {
           wide
         >
           <div className="tcg-help">
+            <ModeIntroButton mode="tcg" beforeOpen={() => setHelp(false)} />
             <StoryScene lines={WORLD_PRIMER} />
             <PracticeTable />
             <DuelBasics />

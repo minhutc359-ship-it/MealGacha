@@ -809,7 +809,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .meal-mode-selector{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .meal-mode-intro-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:8px 12px;border:1px solid #b89b57;border-radius:7px;background:linear-gradient(135deg,#f5df9c,#d3b46e);color:#243f34;font-size:11px;font-weight:800;white-space:nowrap;cursor:pointer;box-shadow:0 2px 12px #b99f4824}
 .meal-mode-intro-button:focus-visible{outline:3px solid #75c8ce;outline-offset:3px}.meal-mode-intro-button:disabled{opacity:.5;cursor:default}
-@media(max-width:1000px){.meal-mode-selector{display:grid;grid-template-columns:repeat(3,max-content);gap:4px;justify-content:center}.meal-mode-intro-button{grid-column:1/-1;justify-self:stretch;min-height:44px;padding:6px 10px;font-size:10px}body .tcg-topbar:has(.meal-mode-intro-button),body .ac-header:has(.meal-mode-intro-button),body .adv-header:has(.meal-mode-intro-button){height:auto;min-height:98px;padding-block:8px}body .client-topbar:has(.meal-mode-intro-button){height:auto;min-height:98px}body .adv-header .meal-mode-selector{max-height:none}}
 @media(max-width:480px){.meal-mode-selector .meal-mode-switch{font-size:9px;padding:5px 6px}.meal-mode-selector .meal-mode-switch span{display:none}}
 
 /* Soul of Meal: shared emblem across the three game modes. */
@@ -827,3 +826,5 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .native-app body {padding-top:var(--safe-area-inset-top,env(safe-area-inset-top));padding-right:var(--safe-area-inset-right,env(safe-area-inset-right));padding-bottom:var(--safe-area-inset-bottom,env(safe-area-inset-bottom));padding-left:var(--safe-area-inset-left,env(safe-area-inset-left));overscroll-behavior:none}
 .native-app .mobile-bottom-nav {padding-bottom:var(--safe-area-inset-bottom,env(safe-area-inset-bottom));padding-left:var(--safe-area-inset-left,env(safe-area-inset-left));padding-right:var(--safe-area-inset-right,env(safe-area-inset-right))}
 .native-app .tcg-dialog {max-height:calc(100dvh - var(--safe-area-inset-top,env(safe-area-inset-top)) - var(--safe-area-inset-bottom,env(safe-area-inset-bottom)) - 24px)}
+
+.chest-play-guide{width:min(700px,calc(100% - 28px));margin:8px auto 12px;padding:10px 14px;border:1px solid #b8a16440;border-radius:8px;background:#15313a;color:#d4dcc7;font-size:12px}.chest-play-guide summary{cursor:pointer;min-height:28px;line-height:28px;color:#efd598}.chest-play-guide p{line-height:1.7;margin:10px 0}.chest-play-guide .meal-mode-intro-button{margin-bottom:6px}

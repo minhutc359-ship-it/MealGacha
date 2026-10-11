@@ -20,11 +20,16 @@ describe("25-second isolated mode introductions", () => {
     const frames = buildModeIntro("tcg").frames
     const scenes = frames.map(frame => frame.scene).filter(scene => scene.mode === "tcg")
     expect(scenes[0].battle.player.health).toBe(12)
-    expect(scenes[2].battle.comboCounts?.home).toBe(1)
-    expect(scenes[2].battle.player.board.every(unit => unit.shield > 0)).toBe(true)
-    expect(scenes[2].battle.player.health).toBeGreaterThan(12)
-    expect(scenes[3].battle.enemy.board).toHaveLength(0)
-    expect(scenes[4].battle.result).toBe("win")
+    const combo = scenes.find(scene => scene.battle.comboCounts?.home === 1)!
+    expect(combo.battle.player.board.every(unit => unit.shield > 0)).toBe(true)
+    expect(combo.battle.player.health).toBeGreaterThan(12)
+    const opened = scenes.find(scene => !scene.battle.enemy.board.length)!
+    expect(opened).toBeDefined()
+    const counter = scenes.filter(scene => scene.frame?.event.side === "enemy")
+    expect(counter.some(scene => scene.frame?.event.kind === "rule")).toBe(true)
+    expect(counter.some(scene => scene.frame?.event.kind === "play")).toBe(true)
+    expect(counter.some(scene => scene.battle.player.health < combo.battle.player.health)).toBe(true)
+    expect(scenes[scenes.length - 1].battle.result).toBe("win")
     expect(scenes[0].battle.enemy.board).toHaveLength(1)
   })
   it("Auto chess really merges three copies, spends gold, triggers skills and wins", () => {
@@ -32,27 +37,44 @@ describe("25-second isolated mode introductions", () => {
     const merged = scenes.find(scene => scene.run.roster.some(piece => piece.id === "pho-bo" && piece.star === 2))!
     expect(merged.run.gold).toBe(8)
     expect(merged.run.roster.filter(piece => piece.id === "pho-bo")).toHaveLength(1)
-    expect(traitCounts(merged.run.roster).tide).toBe(1)
-    expect(traitCounts(merged.run.roster).storyteller).toBe(2)
+    expect(traitCounts(merged.run.roster).tide).toBe(2)
+    expect(traitCounts(merged.run.roster).storyteller).toBe(3)
     const last = scenes[scenes.length - 1].run
     expect(last.combat?.result).toBe("win")
+    const boss = last.combat!.actors.find(actor => actor.id === last.combat!.boss)!
+    expect(boss.casts).toBeGreaterThan(0)
+    expect(boss.phase).toBeGreaterThan(0)
+    expect(scenes.some(scene => scene.run.combat?.actors.some(actor => actor.side === "ally" && actor.hp < actor.maxHp))).toBe(true)
     expect(last.combat?.actors.filter(actor => actor.side === "ally").every(actor => actor.casts > 0)).toBe(true)
     expect(scenes[0].run.gold).toBe(10)
     expect(scenes[0].run.roster.find(piece => piece.id === "pho-bo")?.star).toBe(1)
   })
-  it("Adventure uses PP, changes type, lowers HP and captures using the live reducer", () => {
+  it("Adventure shows resistance, switching, rooted combo and keeper counterattacks", () => {
     const scenes = buildModeIntro("adventure").frames.map(frame => frame.scene).filter(scene => scene.mode === "adventure")
-    const attack = scenes.find(scene => scene.save.team[0].pp?.["grove-leaf"] === 17)!
-    expect(attack).toBeDefined()
-    const wave = scenes.find(scene => scene.save.team.find(member => member.uid === "intro-pho")?.pp?.["tide-wave"] === 17)!
-    expect(wave.opponent!.hp).toBeLessThan(wave.opponent!.maxHp)
-    expect(wave.opponent!.activeUid).toBe("intro-pho")
+    const first = scenes[0].save
+    const attack = scenes.find(scene => scene.save.team[0].pp?.["hearth-bowl"] === 17)!
+    expect(attack.save.team[0].hp).toBeLessThan(first.team[0].hp)
+    const rooted = scenes.find(scene => scene.save.encounter?.enemyStatus === "rooted")!
+    expect(rooted.save.encounter?.activeUid).toBe("intro-grove")
+    expect(rooted.save.encounter!.hp).toBeLessThan(rooted.save.encounter!.maxHp)
+    expect(rooted.save.team.find(member => member.uid === "intro-grove")!.pp!["grove-root"]).toBe(9)
     const last = scenes[scenes.length - 1].save
     expect(last.encounter).toBeNull()
-    expect(last.team.map(member => member.cardId)).toContain("banh-mi")
-    expect(last.aromaSeals).toBe(5)
-    expect(scenes[0].save.team).toHaveLength(2)
-    expect(scenes[0].save.aromaSeals).toBe(6)
+    expect(last.badges).toHaveLength(1)
+    expect(last.team).toHaveLength(2)
+    expect(first.badges).toHaveLength(0)
+    expect(first.aromaSeals).toBe(6)
+  })
+  it("intro controls stay in guides and the TCG view cannot call the live save store", () => {
+    expect(readFileSync("src/components/layout/ModeSwitch.tsx", "utf8")).not.toContain("ModeIntroButton")
+    const board = readFileSync("src/components/game/BattleBoard.tsx", "utf8").split("export function BattleBoardView")[1]
+    expect(board).not.toContain("useGameStore")
+    const scenes = readFileSync("src/components/game/ModeIntroScenes.tsx", "utf8")
+    expect(scenes).toContain("<BattleBoardView")
+    expect(scenes).toContain("<AutoBoard")
+    expect(scenes).toContain("<AdventureBattle")
+    expect(scenes).toContain("<ChestScene")
+    expect(scenes).not.toMatch(/useGameStore|useAppStore|localStorage|sessionStorage/)
   })
   it("opening/replaying/closing cannot write save state or invoke live store actions", () => {
     const source = readFileSync("src/game/modeIntro.ts", "utf8") + readFileSync("src/game/modeIntroState.ts", "utf8")

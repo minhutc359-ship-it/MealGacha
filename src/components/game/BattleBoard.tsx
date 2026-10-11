@@ -16,10 +16,12 @@ import {
   previewTarget,
   type BattleAction,
   type TargetPreview,
+  type BattleFrame,
+  type BattlePresentation,
 } from "../../game/battle"
 import { useGameStore } from "../../game/useGameStore"
 import { useAppStore } from "../../store/useAppStore"
-import type { BattleUnit, Combatant } from "../../game/types"
+import type { Battle, GameSave, BattleUnit, Combatant } from "../../game/types"
 import { GameCardView } from "./GameCardView"
 import { CombatEffects } from "./CombatEffects"
 import { BattleInvocation } from "./BattleInvocation"
@@ -198,17 +200,39 @@ function healthDelta(
     : 0
 }
 
+interface BattleBoardViewProps {
+  stored: Battle
+  presentation: BattlePresentation | null
+  storySave: GameSave
+  ending: GameSave["storyEnding"]
+  act: (action: BattleAction) => boolean
+  leaveBattle: () => void
+  acknowledgeScene: (id: string) => void
+  chooseEnding: (ending: "remember" | "release") => void
+  onExit: () => void
+  demo?: { frame?: BattleFrame; sequence: number; paused: boolean }
+}
+
 export function BattleBoard({ onExit }: { onExit: () => void }) {
+  const storySave = useGameStore(s => s.save)
+  const presentation = useGameStore(s => s.presentation)
+  const act = useGameStore(s => s.act)
+  const leaveBattle = useGameStore(s => s.leaveBattle)
+  const acknowledgeScene = useGameStore(s => s.acknowledgeScene)
+  const chooseEnding = useGameStore(s => s.chooseEnding)
+  return <BattleBoardView stored={storySave.battle!} storySave={storySave}
+    presentation={presentation} ending={storySave.storyEnding} act={act}
+    leaveBattle={leaveBattle} acknowledgeScene={acknowledgeScene}
+    chooseEnding={chooseEnding} onExit={onExit} />
+}
+
+/** The same field, cards, arena and VFX, driven by either live or isolated data. */
+export function BattleBoardView({ stored, presentation, storySave, ending, act,
+  leaveBattle, acknowledgeScene, chooseEnding, onExit, demo }: BattleBoardViewProps) {
   useEffect(() => {
     characterImage(SPRITE_SHEETS.base.path)
     characterImage(SPRITE_SHEETS.fresh.path)
   }, [])
-  const storySave = useGameStore((s) => s.save)
-  const stored = useGameStore((s) => s.save.battle)!
-  const presentation = useGameStore((s) => s.presentation)
-  const ending = useGameStore((s) => s.save.storyEnding)
-  const act = useGameStore((s) => s.act)
-  const leaveBattle = useGameStore((s) => s.leaveBattle)
   const playedSound = useRef("")
   const compactSound = useRef(presentation?.sequence ?? 0)
   const resultSound = useRef("")
@@ -220,17 +244,17 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     sequence: presentation?.sequence ?? 0,
     index: presentation?.frames.length ?? 0,
   })
-  const replay = presentation?.battleId === stored.id ? presentation : null
+  const replay = !demo && presentation?.battleId === stored.id ? presentation : null
   const frameIndex =
     replay && playback.sequence === replay.sequence ? playback.index : -1
-  const busy =
+  const busy = demo ? !!demo.frame :
     !!replay &&
     !reducedMotion &&
     !systemReduced &&
     frameIndex < replay.frames.length
-  const frame = busy && frameIndex >= 0 ? replay!.frames[frameIndex] : undefined
-  const battle = busy ? (frame?.battle ?? replay!.before) : stored
-  const sceneId = busy
+  const frame = demo ? demo.frame : busy && frameIndex >= 0 ? replay!.frames[frameIndex] : undefined
+  const battle = demo ? stored : busy ? (frame?.battle ?? replay!.before) : stored
+  const sceneId = demo ? null : busy
     ? frame?.event.sceneId &&
       stored.pendingScenes?.includes(frame.event.sceneId)
       ? frame.event.sceneId
@@ -245,7 +269,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
       : battleMusic(battle),
     5, Math.max(battle.bossRuleId ? .35 : 0, 1-battle.player.health/battle.player.maxHealth),
   )
-  const stamp = `${replay?.sequence}-${frameIndex}`
+  const stamp = demo ? `demo-${demo.sequence}` : `${replay?.sequence}-${frameIndex}`
   const [visible,setVisible]=useState(!document.hidden)
   useEffect(()=>{
     const update=()=>setVisible(!document.hidden), pause=()=>setVisible(false), resume=()=>setVisible(!document.hidden)
@@ -289,11 +313,11 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     setEndRead(false)
   }, [stored.id])
   useEffect(() => {
-    if (!frame || playedSound.current === stamp) return
+    if (!frame || demo?.paused || playedSound.current === stamp) return
     playedSound.current = stamp
-    compactSound.current = replay!.sequence
+    compactSound.current = replay?.sequence ?? 0
     frameSounds(frame).forEach(({ cue, delay }) => gameAudio.play(cue, delay))
-  }, [frame, stamp, replay])
+  }, [frame, stamp, replay, demo?.paused])
   useEffect(() => {
     if (
       !(reducedMotion || systemReduced) ||
@@ -325,6 +349,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     gameAudio.play(stored.result === "win" ? "victory" : "defeat", 160)
   }, [stored.id, stored.result, busy, sceneId])
   useEffect(() => {
+    if (demo) return
     const previous = document.body.style.overflow
     document.body.style.overflow = "hidden"
     const escape = (event: KeyboardEvent) => {
@@ -336,9 +361,9 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
       document.body.style.overflow = previous
       window.removeEventListener("keydown", escape)
     }
-  }, [])
+  }, [!!demo])
   const execute = (action: BattleAction) => {
-    if (busy || sceneId || inFlight.current) return
+    if (demo || busy || sceneId || inFlight.current) return
     inFlight.current = true
     setSelection(null)
     setDetail(false)
@@ -390,7 +415,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     : null
   const heroPreview = preview("hero")
   const exit = () => {
-    leaveBattle()
+    if (!demo) leaveBattle()
     onExit()
   }
   const skip = () => {
@@ -436,8 +461,8 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
               stamp={stamp}
               motion={!busy && stored.result === "win" && side === "player"
                 ? { kind: "victory", delay: 0 } : tcgUnitMotion(frame, u.uid, side)}
-              quiet={reducedMotion || systemReduced}
-              paused={!!sceneId || !!battle.opening}
+              quiet={reducedMotion || systemReduced || !!demo?.paused}
+              paused={!!demo?.paused || !!sceneId || !!battle.opening}
               onInspect={() => {
                 if (!busy && !stored.result) setInspect(u.cardId)
               }}
@@ -474,7 +499,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
     : 0
   const enemyDelta = frame ? healthDelta(frame.before.enemy, battle.enemy) : 0
   return (
-    <section className="tcg-battle tcg-viewport-battle" style={{ "--battle-contact": `${frame && ["play", "attack"].includes(frame.event.kind) ? TCG_IMPACT_MS : 0}ms` } as CSSProperties}>
+    <section inert={!!demo} className="tcg-battle tcg-viewport-battle" style={{ "--battle-contact": `${frame && ["play", "attack"].includes(frame.event.kind) ? TCG_IMPACT_MS : 0}ms` } as CSSProperties}>
       <header className="tcg-battle-top">
         <div>
           <span className="tcg-kicker">
@@ -874,12 +899,12 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           Hộ vệ chặn đòn đánh, không chặn phép · Tối đa 3 đồng minh · 7 năng
           lượng · 8 lá trên tay
         </p>
-        <CombatEffects arena={arena} frame={frame} stamp={stamp} quiet={reducedMotion || systemReduced} />
+        <CombatEffects arena={arena} frame={frame} stamp={stamp} quiet={reducedMotion || systemReduced || !!demo?.paused} />
         <BattleInvocation
           frame={frame}
           opponent={opponentPortrait}
           stamp={stamp}
-          quiet={reducedMotion || systemReduced}
+          quiet={reducedMotion || systemReduced || !!demo?.paused}
         />
         {frame?.event.kind === "tactic" && frame.event.tacticId && (
           <div
@@ -1216,7 +1241,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
       {sceneId && cinematic && (
         <Dialog
           title={cinematic.title}
-          onClose={() => useGameStore.getState().acknowledgeScene(sceneId)}
+          onClose={() => acknowledgeScene(sceneId)}
           wide
         >
           <StoryScene
@@ -1226,7 +1251,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
           />
           <button
             className="tcg-button primary"
-            onClick={() => useGameStore.getState().acknowledgeScene(sceneId)}
+            onClick={() => acknowledgeScene(sceneId)}
           >
             Tiếp tục trận →
           </button>
@@ -1276,7 +1301,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             </p>
           </Dialog>
         )}
-      {stored.result && !busy && !sceneId && (
+      {!demo && stored.result && !busy && !sceneId && (
         <Dialog
           title={
             stored.result === "win"
@@ -1349,7 +1374,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
                       <button
                         key={id}
                         className={ending === id ? "active" : ""}
-                        onClick={() => useGameStore.getState().chooseEnding(id)}
+                        onClick={() => chooseEnding(id)}
                         aria-pressed={ending === id}
                       >
                         <span>{id === "remember" ? "◈" : "✦"}</span>

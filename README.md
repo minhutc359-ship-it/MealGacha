@@ -1,3 +1,7 @@
+## Web 4.3.2 · Giới thiệu trong Hướng dẫn chơi
+
+Nút **Giới thiệu** nằm trong Hướng dẫn chơi của từng chế độ, không chiếm thanh chuyển chế độ. Demo 25 giây dùng đúng giao diện trận/map/rương hiện tại, tự nối combo và cho boss phản kích. Dữ liệu mẫu độc lập với save thật. Xem [bản sửa và kiểm chứng](dev/docs/web-v432/UPDATE.md).
+
 ## Web 4.3.1 · Giới thiệu tự chơi cho từng chế độ
 
 Chọn **▶ Giới thiệu** ở thanh chế độ của TCG, Auto chess, Phiêu lưu hoặc Rương để xem kịch bản 25 giây với mô hình, highlight kỹ năng/combo, nhạc và chú thích từng pha. Có tạm dừng, xem lại, bỏ qua và vào chơi; trận mẫu không tiêu vật phẩm, không nhận thưởng, không sửa tiến trình. Xem [kịch bản và kiểm chứng](dev/docs/web-v431/UPDATE.md). Cập nhật web, ngân sách 100 MB.
