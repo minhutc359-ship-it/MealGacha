@@ -5,6 +5,7 @@ import { CARD_MAP } from "./catalog"
 import { newGame, rotateDay } from "./progression"
 import type { GameSave } from "./types"
 import { autoSaveSchema } from "./autochess/schema"
+import { ADVENTURE_AREA_MAP } from "./adventure"
 import { loadProtected, writeProtectedBatch } from "../infrastructure/storage/protectedStorage"
 
 export const GAME_KEY = "foodchest.tcg.v1"
@@ -28,6 +29,60 @@ const bossId = z.enum([
 ])
 const integer = z.number().int().nonnegative().max(1_000_000_000)
 const cardId = z.string().refine((id) => !!CARD_MAP[id], "Thẻ không hợp lệ")
+const adventureCardId = cardId.refine((id) => CARD_MAP[id].kind === "unit", "Vị Linh không hợp lệ")
+const adventureAreaId = z.enum(["lantern-quarter", "rain-harbor", "herb-garden", "tide-pier", "moon-table"])
+const adventureMember = z.object({
+  uid: z.string().min(1).max(80),
+  cardId: adventureCardId,
+  level: z.number().int().min(1).max(30),
+  xp: z.number().int().min(0).max(10000),
+  hp: z.number().int().min(0).max(10000),
+})
+const adventureEncounter = z.object({
+  id: z.string().min(1).max(120),
+  kind: z.enum(["wild", "keeper"]),
+  cardId: adventureCardId,
+  level: z.number().int().min(1).max(30),
+  hp: z.number().int().min(0).max(10000),
+  maxHp: z.number().int().min(1).max(10000),
+  activeUid: z.string().min(1).max(80),
+  turn: z.number().int().min(1).max(10000),
+  playerGuard: z.number().int().min(0).max(100),
+  enemyGuard: z.number().int().min(0).max(100),
+  enemyWeaken: z.number().int().min(0).max(100),
+  attempts: z.number().int().min(0).max(100),
+  log: z.array(z.string().max(180)).max(8),
+})
+const adventure = z.object({
+  version: z.literal(1),
+  started: z.boolean(),
+  areaId: adventureAreaId,
+  x: z.number().int().min(0).max(11),
+  y: z.number().int().min(0).max(8),
+  facing: z.enum(["up", "down", "left", "right"]),
+  steps: integer,
+  aromaSeals: z.number().int().min(0).max(999),
+  team: z.array(adventureMember).max(4),
+  reserve: z.array(adventureMember).max(20),
+  discovered: z.array(adventureCardId).max(171),
+  badges: z.array(z.enum(["lantern", "harbor", "garden", "tide", "moon"])).max(5),
+  completedQuests: z.array(z.string().max(80)).max(32),
+  claimedFinds: z.array(z.string().max(80)).max(16),
+  encounter: adventureEncounter.nullable(),
+  message: z.string().max(400).nullable(),
+  completed: z.boolean(),
+}).superRefine((save, ctx) => {
+  const area = ADVENTURE_AREA_MAP[save.areaId]
+  const members = [...save.team, ...save.reserve]
+  if (new Set(members.map((member) => member.uid)).size !== members.length)
+    ctx.addIssue({ code: "custom", message: "Vị Linh trùng mã" })
+  if (save.started !== (save.team.length > 0))
+    ctx.addIssue({ code: "custom", message: "Đội phiêu lưu không nhất quán" })
+  if (!area.grid[save.y]?.[save.x] || area.grid[save.y][save.x] === "#")
+    ctx.addIssue({ code: "custom", message: "Vị trí phiêu lưu không hợp lệ" })
+  if (save.encounter && (!save.team.some((member) => member.uid === save.encounter!.activeUid && member.hp > 0) || save.encounter.hp > save.encounter.maxHp))
+    ctx.addIssue({ code: "custom", message: "Cuộc chạm trán không nhất quán" })
+})
 const stats = z.object({
   wins: integer,
   battles: integer,
@@ -256,6 +311,7 @@ export const GameSaveSchema = z
       .default({}),
     storyEnding: z.enum(["remember", "release"]).nullable().default(null),
     autoChess: autoSaveSchema.optional(),
+    adventure: adventure.optional(),
     history: z
       .array(
         z.object({

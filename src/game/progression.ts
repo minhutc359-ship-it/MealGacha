@@ -4,6 +4,7 @@ import { settleJourney } from "./journeys"
 import { battleOutcome } from "./battleOutcome"
 import { STAGES } from "./story"
 import { getDateKey } from "../domain/dateKey"
+import { newAdventure } from "./adventure"
 import type { GameSave, GameStats, School } from "./types"
 
 export const emptyStats = (): GameStats => ({
@@ -44,6 +45,7 @@ export function newGame(): GameSave {
     bonds: {},
     companion: null,
     weeklyRecords: {},
+    adventure: newAdventure(),
   }
 }
 export function rotateDay(save: GameSave, today = getDateKey()): GameSave {

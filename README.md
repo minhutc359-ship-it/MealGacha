@@ -1,8 +1,8 @@
-# Soul of Meal 4.1.0 · Chợ lên đèn
+# Soul of Meal 4.2.0 · Phiêu lưu Vị Linh
 
 Game ẩm thực và ký ức Việt Nam gồm **TCG**, **Chợ Đêm Auto chess** và **Rương vị giác**, chạy trên React 19 / Vite 8 / TypeScript. Không cần tài khoản; có mã MGC1 để chuyển tiến trình giữa thiết bị.
 
-Bản 4.1 chỉ cập nhật web: ngân sách tổng build 100 MB, 9 chủ đề nhạc dài trong hai phong cách và stem riêng cho ba vùng; nhạc dài phát streaming. Thêm bàn tập TCG/Auto độc lập save, gợi ý sau trận từ số liệu thực, không khí mưa/đèn/hơi bếp và cải thiện độ đọc thẻ. Web có cache offline theo tài nguyên đã dùng, cập nhật thủ công trong Cài đặt và xuất dữ liệu gốc khi giao diện lỗi. Android CI chỉ chạy thủ công; không sync/build native trong đợt này. Bản đồ vẫn truy cập nhanh chương 7–9, chương 10–12 Coming soon. Xem [chi tiết và kiểm chứng 4.1](dev/docs/web-v410/UPDATE.md).
+Bản 4.2 chỉ cập nhật web và thêm **Phiêu lưu Vị Linh** tại `/adventure`: 5 vùng liên thông, chạm trán theo bước chân, thu phục bằng Hương Ấn, đội 4 Vị Linh + tủ dự bị, chiến đấu theo lượt, khắc hệ, lên cấp và 5 thử thách giữ ấn. Chế độ dùng lại hình, nhân vật, bối cảnh và soundtrack hiện có; tiến trình nằm trong cùng save và mã chuyển dữ liệu. Android CI vẫn chỉ chạy thủ công; không sync/build native trong đợt này. Xem [chi tiết và kiểm chứng 4.2](dev/docs/web-v420/UPDATE.md) và [kiểm chứng nền 4.1](dev/docs/web-v410/UPDATE.md).
 
 TCG có 171 thẻ, 9 chương/27 màn, xây bộ bài, AI, thám hiểm, chế tạo và nhiệm vụ. Auto chess có 44 quân, 16 quái/đối thủ thường và 8 boss, chiến dịch, Survival, Daily, shop/pool hữu hạn, ghép sao, hệ/nghề/di vật, XP và kéo thả bàn/dự bị. Rương dùng catalog chung 123 món và tìm quán từ OpenStreetMap không cần API key. Model anime 2.5D dùng chung hai chế độ; không phải rig 3D chạy trực tiếp.
 
