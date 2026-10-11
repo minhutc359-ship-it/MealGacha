@@ -1,0 +1,11 @@
+{
+  "archive": "soul-of-meal-4.1.0-source.zip",
+  "files": 557,
+  "bytes": 61029805,
+  "sha256": "499afe92a103b765d7f56dc751f06cf2e93ab8b07619a55c812a8b99df156184",
+  "noDev": true,
+  "typecheck": "pass",
+  "productionBuild": "pass",
+  "dependencyInstall": "Reused lockfile-installed node_modules; no fresh network install",
+  "scope": "Product source archive builds without dev/; all archive files match the reviewed working tree"
+}

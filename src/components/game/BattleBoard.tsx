@@ -1,5 +1,5 @@
 import { ArenaScene, arenaRegion } from "./ArenaScene"
-import { livingChoiceLines } from "../../game/livingChoices"
+import { storyLines } from "../../game/storyPresentation"
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
 import { battleMusic, frameSounds } from "../../game/audioScore"
@@ -1318,7 +1318,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
             ) : stored.result === "win" && stage ? (
               <StoryScene
                 key={stored.id}
-                lines={[...SCENES[stage.id].after,...livingChoiceLines(stage.id,storySave,true)]}
+                lines={storyLines(stage.id,storySave,"after")}
                 art={stageArtId(stage.id)}
                 onComplete={() => setEndRead(true)}
               />

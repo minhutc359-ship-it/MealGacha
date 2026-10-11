@@ -1,5 +1,7 @@
 # Vercel và dung lượng Soul of Meal 3.3
 
+**Cập nhật ngân sách web 4.1 ngày 11/10/2026:** chủ dự án đã xác nhận 100.000.000 byte tổng `dist/`, cảnh báo từ 80 MB; JS gzip vẫn tối đa 650.000 byte. [Số đo hiện tại](build-size.json) và [kiểm chứng 4.1](../web-v410/UPDATE.md) thay cho số đo lịch sử bên dưới. Đây là ngân sách chất lượng của dự án, không phải giới hạn dung lượng Vercel. Native đang tạm dừng cập nhật.
+
 Đo ngày 09/10/2026. **Tiếp tục dùng Vercel là phù hợp**: đây là app Vite static, gameplay/AI/save chạy trong trình duyệt, không cần serverless function cho trận chiến. Dung lượng hiện tại chưa phải lý do để chuyển engine hoặc hosting.
 
 ## Bản build thực tế

@@ -8,7 +8,7 @@ import path from 'node:path';
 import { spawn } from 'node:child_process';
 const { chromium }=await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const Chromium=process.env.CHROMIUM_MODULE ? (await import(process.env.CHROMIUM_MODULE)).default : null;
-const root=path.resolve(path.dirname(new URL(import.meta.url).pathname),'../..'), out=root+'/dev/docs/major-v400';
+const root=path.resolve(path.dirname(new URL(import.meta.url).pathname),'../..'), out=process.env.QA_OUTPUT_DIR || root+'/dev/docs/major-v400';
 const require=createRequire(root+'/package.json');
 const { createServer }=await import(require.resolve('vite'));
 const vite=await createServer({root,server:{middlewareMode:true},appType:'custom',logLevel:'error'});

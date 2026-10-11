@@ -1,0 +1,199 @@
+{
+  "checks": [
+    {
+      "width": 320,
+      "height": 568,
+      "name": "home",
+      "scroll": 320,
+      "broken": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "name": "collection",
+      "scroll": 320,
+      "broken": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "name": "decks",
+      "scroll": 320,
+      "broken": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "name": "expedition",
+      "scroll": 320,
+      "broken": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "name": "story",
+      "scroll": 320,
+      "broken": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "name": "settings",
+      "scroll": 320,
+      "broken": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "name": "home",
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "name": "collection",
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "name": "decks",
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "name": "expedition",
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "name": "story",
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "name": "settings",
+      "scroll": 390,
+      "broken": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "name": "home",
+      "scroll": 844,
+      "broken": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "name": "collection",
+      "scroll": 844,
+      "broken": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "name": "decks",
+      "scroll": 844,
+      "broken": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "name": "expedition",
+      "scroll": 844,
+      "broken": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "name": "story",
+      "scroll": 844,
+      "broken": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "name": "settings",
+      "scroll": 844,
+      "broken": []
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "name": "home",
+      "scroll": 1366,
+      "broken": []
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "name": "collection",
+      "scroll": 1366,
+      "broken": []
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "name": "decks",
+      "scroll": 1366,
+      "broken": []
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "name": "expedition",
+      "scroll": 1366,
+      "broken": []
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "name": "story",
+      "scroll": 1366,
+      "broken": []
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "name": "settings",
+      "scroll": 1366,
+      "broken": []
+    },
+    {
+      "practiceTCG": 3,
+      "saveUnchanged": true
+    },
+    {
+      "announcementFocusAndEscape": true
+    },
+    {
+      "practiceAuto": true,
+      "realSimulation": true,
+      "saveUnchanged": true
+    },
+    {
+      "offlineReload": true,
+      "offlineAudioSeek": true,
+      "saveUnchanged": true
+    },
+    {
+      "manualUpdate": true,
+      "saveUnchanged": true
+    },
+    {
+      "streamingBothStyles": true,
+      "mute": true
+    }
+  ],
+  "errors": [],
+  "scope": "Local production Chromium, responsive web; no physical Safari/device/audio listening approval"
+}

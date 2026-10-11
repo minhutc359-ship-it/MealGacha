@@ -1,0 +1,81 @@
+/* Web 4.1: readable controls and presentation-only motion. */
+.web-readiness,.web-error-recovery {margin:16px 0;padding:20px;border:1px solid #8cbcaf55;border-radius:16px;background:#10252d;color:#e5eee9;font:14px/1.65 'Be Vietnam Pro',sans-serif}
+.web-readiness h2,.web-error-recovery h1 {font-size:20px;color:#f2d69d}
+.web-readiness button,.web-error-recovery button {min-height:44px;padding:10px 14px;margin:8px 8px 0 0;border-radius:9px;background:#315b54;color:#fff;border:1px solid #93c2a855;cursor:pointer}
+.web-error-recovery {max-width:680px;margin:12vh auto}
+dialog.announcement-banner-backdrop {width:min(680px,calc(100vw - 24px));max-width:none;max-height:94dvh;margin:auto;padding:0;border:0;border-radius:20px;background:transparent;color:inherit;overflow:auto}
+dialog.announcement-banner-backdrop:not([open]) {display:none}
+dialog.announcement-banner-backdrop::backdrop {background:#020914db;backdrop-filter:blur(6px)}
+.announcement-banner-panel {width:100%;max-height:none}
+.announcement-banner-actions a,.announcement-banner-actions button {min-height:44px;font-size:13px}
+.announcement-banner-actions button {min-width:44px}
+.announcement-banner-actions label {font-size:13px}
+.soundtrack-room {margin-top:16px;border-top:1px solid #8cbcaf55;padding-top:12px;font:13px/1.6 'Be Vietnam Pro',sans-serif}
+.soundtrack-room summary {min-height:40px;cursor:pointer;color:#f2d69d}
+.soundtrack-room>div {display:grid;gap:8px;margin-top:12px}
+.soundtrack-room button {display:flex;align-items:center;gap:12px;min-height:60px;border:1px solid #84b6ab44;border-radius:9px;padding:10px 12px;text-align:left;color:#d9ece4;background:#17332f;cursor:pointer}
+.soundtrack-room button[aria-pressed=true] {border-color:#efc978;background:#355143}
+.soundtrack-room button small {display:block;font-size:12px;color:#b2c8c1}
+.soundtrack-room button:disabled {opacity:.5;cursor:default}
+.tcg-library-screen .tcg-card-list-grid {grid-template-columns:repeat(auto-fill,minmax(165px,1fr))}
+.tcg-library-screen .tcg-card-eyebrow {font-size:10px;line-height:1.4}
+.tcg-library-screen .tcg-card-text {font-size:12px;line-height:1.5;min-height:3em}
+.tcg-library-screen .tcg-card-body>strong {font-size:15px}
+.tcg-library-screen .tcg-card-footer {font-size:11px}
+.tcg-library-screen .tcg-card {height:auto;min-height:275px}
+.tcg-card-detail .tcg-card-text {font-size:14px;line-height:1.65}
+.tcg-card-detail .tcg-card-eyebrow {font-size:11px}
+.tcg-dialog .tcg-button,.tcg-library-controls button,.tcg-deck-screen button {min-height:36px}
+.tcg-map-stop-label small,.tcg-living-map .tcg-map-stop-label small {font-size:10px}
+.tcg-scene {position:relative}
+.tcg-scene-line {animation:web410-line .22s ease-out both}
+.tcg-scene-actor {animation:web410-actor .45s cubic-bezier(.2,.8,.2,1) both}
+.scene-atmosphere {position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.scene-atmosphere i {position:absolute;display:block;pointer-events:none}
+.scene-atmosphere.is-fireflies i {width:4px;height:4px;border-radius:50%;background:#f8df95;box-shadow:0 0 10px #ffcf7999;animation:web410-firefly 6s ease-in-out infinite}
+.scene-atmosphere.is-rain i {width:1px;height:42px;background:linear-gradient(transparent,#a6d9e94d);animation:web410-rain 1.5s linear infinite}
+.scene-atmosphere.is-steam i {width:28px;height:75px;border-radius:50%;background:radial-gradient(ellipse,#e5e0c722,transparent 70%);animation:web410-steam 6s ease-out infinite}
+.tcg-scene-art figcaption,.tcg-scene-actor {z-index:2}
+.tcg-lobby-hero::after {content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 80% 15%,#efd29322,transparent 50%);animation:web410-lamp 8s ease-in-out infinite}
+.tcg-app .tcg-open-map,.tcg-deck-tools button {min-height:36px}
+.tcg-deck-cards .tcg-card-text {font-size:11px;line-height:1.5}
+[data-web-hidden=true] .scene-atmosphere i,[data-web-hidden=true] .tcg-lobby-hero::after {animation-play-state:paused}
+@keyframes web410-line {from {opacity:0;transform:translateY(5px)}to {opacity:1;transform:translateY(0)}}
+@keyframes web410-actor {from {opacity:0;transform:translateX(12px)}to {opacity:1;transform:translateX(0)}}
+@keyframes web410-firefly {0%,100% {opacity:.1;transform:translate(0,0)}50% {opacity:.7;transform:translate(22px,-24px)}}
+@keyframes web410-rain {from {transform:translate(0,-100px);opacity:0}20% {opacity:.7}to {transform:translate(-70px,300px);opacity:0}}
+@keyframes web410-steam {from {opacity:0;transform:translateY(50px) scale(.5)}40% {opacity:.7}to {opacity:0;transform:translateY(-100px) scale(1.8)}}
+@keyframes web410-lamp {50% {opacity:.4}}
+@media (max-width:600px) {
+ .tcg-library-screen .tcg-card-list-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .tcg-library-screen .tcg-card-eyebrow {font-size:9px}
+ .tcg-library-screen .tcg-card-text {font-size:11px}
+ .tcg-library-screen .tcg-card-body>strong {font-size:13px}
+ .tcg-dialog .tcg-button,.tcg-deck-tools button {min-height:44px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce) {.scene-atmosphere {display:none}.tcg-scene-line,.tcg-scene-actor,.tcg-lobby-hero::after {animation:none!important}}
+.tcg-app.is-reduced-motion .scene-atmosphere,.tcg-app.is-low-quality .scene-atmosphere {display:none}
+
+.practice-table {padding:18px;border:1px solid #98a990;border-radius:12px;background:#eef1e6;color:#29473d;margin-bottom:20px;font:14px/1.6 'Be Vietnam Pro',sans-serif}
+.practice-table h2 {font-size:22px}.practice-table h3 {font-size:17px}
+.practice-table button {min-height:44px;border:1px solid #688e7755;border-radius:8px;padding:9px 12px;background:#dfe9da;color:#244b3e;font-size:13px;cursor:pointer;text-align:left}
+.practice-table button[aria-pressed=true] {background:#335c4e;color:#fff1cd;border-color:#c49c4c}.practice-table button:disabled {opacity:.5;cursor:default}
+.practice-tabs,.practice-actions,.practice-hand,.practice-allies,.practice-enemy,.practice-selection {display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.practice-selection p {flex-basis:100%}.practice-enemy button {background:#e5d5cc}.practice-hint {padding:12px;border-left:3px solid #b38d47}
+.ac-recap-advice article {background:#213c37;border:1px solid #809e7055;border-radius:10px;padding:12px;margin:10px 0;text-align:left}.ac-recap-advice h3 {font-size:14px;color:#f2d8a2}.ac-recap-advice p {font-size:13px;line-height:1.6}
+
+.auto-practice {padding:16px;border:1px solid #a9c69b66;border-radius:12px;margin:16px 0;background:#172f2c;color:#d8e9df;font-size:13px;line-height:1.6}.auto-practice h3 {font-size:18px;color:#f2d8a2}.auto-practice button {min-height:44px;padding:9px;border:1px solid #6d998d88;border-radius:7px;background:#31534a;color:#e8eee3;font-size:12px;cursor:pointer}.auto-practice button[aria-pressed=true] {border-color:#f2d8a2;background:#536741}.auto-practice button:disabled {opacity:.5}.auto-practice button small {display:block}.auto-practice-grid {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}.auto-practice-grid button {min-height:54px;padding:5px;font-size:11px;overflow-wrap:anywhere}.auto-practice>button {margin:6px 6px 0 0}
+.tcg-app .tcg-library-screen .tcg-card-list-grid {grid-auto-rows:minmax(320px,auto)}
+.tcg-app .tcg-deck-card-list .tcg-card-list-grid {grid-auto-rows:minmax(310px,auto)}
+.tcg-app .tcg-library-screen .tcg-card-text,.tcg-app .tcg-library-screen .tcg-card-eyebrow {display:block}
+.tcg-app .tcg-library-screen .tcg-card-text {font-size:12px;line-height:1.5}.tcg-app .tcg-library-screen .tcg-card-eyebrow {font-size:10px}
+.tcg-app .tcg-library-screen .tcg-card-page .tcg-card {min-height:320px;height:100%}
+.tcg-app .tcg-deck-screen .tcg-card-page .tcg-card-text {display:block;font-size:11px;line-height:1.5}.tcg-app .tcg-deck-screen .tcg-card-page .tcg-card-eyebrow {display:block;font-size:9px}
+.tcg-app .tcg-deck-screen .tcg-card-page .tcg-card-body>strong {font-size:14px}
+.tcg-app .tcg-deck-screen .tcg-card-page .tcg-card-footer {font-size:11px}
+.tcg-app .tcg-deck-screen .tcg-card-page .tcg-card-art {bottom:44%}
+.tcg-app .tcg-deck-screen .tcg-card-page .tcg-deck-card-wrap>.tcg-card {min-height:275px}
+.tcg-app .tcg-deck-screen .tcg-screen-tools>.tcg-button {min-height:40px;font-size:12px!important}
+.tcg-app .tcg-scene-controls button {min-height:40px;font-size:12px!important}
+
+[data-tcg-reduced-motion=true] .tcg-scene-line,[data-tcg-reduced-motion=true] .tcg-scene-actor,[data-tcg-reduced-motion=true] .tcg-lobby-hero::after {animation:none!important}

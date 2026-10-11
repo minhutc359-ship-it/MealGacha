@@ -52,6 +52,6 @@ try {
  const page=await context.newPage();await page.goto('http://127.0.0.1:4176/?tab=story');await page.locator('.tcg-open-map').click();
  const atlas=page.getByRole('dialog');await atlas.getByRole('button',{name:'Chợ Sống · 07–12'}).click();assert.equal(await atlas.locator('.tcg-map-stop:disabled').count(),6);await context.close();
  checks.push({newPlayerLocked:true});assert.deepEqual(errors,[]);
- writeFileSync('dev/docs/major-v400/chapter-map-qa.json',JSON.stringify({checks,errors,scope:'Production Chromium; mobile viewports, not a physical Android installation'},null,2));
+ writeFileSync(process.env.MAP_QA_OUTPUT || 'dev/docs/major-v400/chapter-map-qa.json',JSON.stringify({checks,errors,scope:'Production Chromium; mobile viewports, not a physical Android installation'},null,2));
  console.log(JSON.stringify({checks:checks.length,errors}));
 } finally {await browser.close();server.kill()}

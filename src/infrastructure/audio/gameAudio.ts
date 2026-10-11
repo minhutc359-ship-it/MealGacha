@@ -13,6 +13,8 @@ import {
   type MusicTrack,
   type GameSound,
 } from "../../game/audioScore"
+import { Capacitor } from "@capacitor/core"
+import { streamingMusicPath } from "../../game/webSoundtrack"
 
 export interface AudioOptions {
   soundEnabled: boolean
@@ -41,6 +43,15 @@ interface Dependencies {
   context: () => AudioContext
   load: (url: string) => Promise<ArrayBuffer>
   visible: () => boolean
+  media?: () => HTMLAudioElement
+}
+interface StreamVoice {
+  track: MusicAsset
+  element: HTMLAudioElement
+  source: MediaElementAudioSourceNode
+  gain: GainNode
+  retire?: ReturnType<typeof setTimeout>
+  error: () => void
 }
 export interface AudioStatus {
   phase: "waiting" | "playing" | "muted" | "ready" | "error"
@@ -73,6 +84,9 @@ export class GameAudioEngine {
   private offsets = new Map<MusicAsset, number>()
   private musicVoices = new Set<MusicVoice>()
   private current: MusicVoice | null = null
+  private stream: StreamVoice | null = null
+  private streams = new Set<StreamVoice>()
+  private failedStreams = new Set<MusicAsset>()
   private effects = new Set<AudioScheduledSourceNode>()
   private effectPanners = new Set<StereoPannerNode>()
   private noise: AudioBuffer | null = null
@@ -98,6 +112,7 @@ export class GameAudioEngine {
         return response.arrayBuffer()
       },
       visible: () => typeof document !== "undefined" && !document.hidden,
+      media: () => new Audio(),
     },
   ) {}
 
@@ -302,11 +317,13 @@ export class GameAudioEngine {
       ),
       buffers: unique.size,
       musicVoices: this.musicVoices.size,
+      streamingVoices: this.streams.size,
       effects: this.effects.size,
       budget: 48 * 1024 * 1024,
     }
   }
   private stopMusic() {
+    for (const stream of [...this.streams]) this.stopStream(stream)
     if (this.current) this.remember(this.current)
     for (const voice of this.musicVoices) {
       try {
@@ -327,6 +344,66 @@ export class GameAudioEngine {
       this.ambience.disconnect()
       this.ambience = null
     }
+  }
+  private stopStream(voice: StreamVoice) {
+    if (!this.streams.has(voice)) return
+    if (Number.isFinite(voice.element.currentTime)) this.offsets.set(voice.track, voice.element.currentTime)
+    clearTimeout(voice.retire)
+    voice.element.removeEventListener("error", voice.error)
+    voice.element.pause()
+    voice.element.removeAttribute("src")
+    voice.element.load()
+    voice.source.disconnect(); voice.gain.disconnect()
+    this.streams.delete(voice)
+    if (this.stream === voice) this.stream = null
+  }
+  private fadeStream(voice: StreamVoice) {
+    if (!this.context) return this.stopStream(voice)
+    voice.gain.gain.cancelScheduledValues(this.context.currentTime)
+    voice.gain.gain.setValueAtTime(voice.gain.gain.value, this.context.currentTime)
+    voice.gain.gain.linearRampToValueAtTime(0, this.context.currentTime + .4)
+    voice.retire = setTimeout(() => this.stopStream(voice), 450)
+    if (this.stream === voice) this.stream = null
+  }
+  private startStream(track: MusicAsset, path: string, epoch: number, context: AudioContext) {
+    const element = this.deps.media!(), gain = context.createGain()
+    element.loop = true; element.preload = "auto"
+    element.src = `${import.meta.env.BASE_URL}${path}`
+    const source = context.createMediaElementSource(element)
+    source.connect(gain); gain.connect(this.musicBus!)
+    gain.gain.setValueAtTime(0, context.currentTime)
+    const valid = () => this.mounted && epoch === this.epoch && context === this.context && this.visible() && this.options.soundEnabled && this.options.musicEnabled
+    const error = () => {
+      const wasCurrent = this.stream === voice
+      this.stopStream(voice)
+      if (!valid() && !(wasCurrent && this.mounted && this.visible() && this.options.soundEnabled && this.options.musicEnabled)) return
+      this.failedStreams.add(track); this.loading = null
+      this.syncMusic() // Existing compact score remains a fallback.
+    }
+    const voice: StreamVoice = { track, element, source, gain, error }
+    this.streams.add(voice)
+    element.addEventListener("error", error)
+    const offset = this.offsets.get(track) ?? 0
+    if (offset > 0) element.currentTime = offset
+    void element.play().then(() => {
+      if (!valid()) { this.stopStream(voice); return }
+      this.loading = null
+      // Commit the new voice before retiring old ones. Never decode long scores.
+      for (const old of [...this.streams]) if (old !== voice) this.fadeStream(old)
+      if (this.current) {
+        this.remember(this.current)
+        for (const old of [this.current, ...(this.current.layers ?? [])]) {
+          old.gain.gain.cancelScheduledValues(context.currentTime)
+          old.gain.gain.setValueAtTime(old.gain.gain.value, context.currentTime)
+          old.gain.gain.linearRampToValueAtTime(0, context.currentTime + .4)
+          old.source.stop(context.currentTime + .45)
+        }
+        this.current = null
+      }
+      this.stream = voice
+      gain.gain.linearRampToValueAtTime(1, context.currentTime + .45)
+      this.syncAmbience(); this.notify("playing")
+    }).catch(error)
   }
   private syncMusic() {
     const request = this.desired()?.track
@@ -358,6 +435,10 @@ export class GameAudioEngine {
       this.notify("ready")
       return
     }
+    if (this.stream?.track === desired) {
+      if (this.loading && this.loading !== desired) { ++this.epoch; this.loading = null }
+      this.notify("playing"); return
+    }
     if (this.current?.track === desired) {
       if (this.loading && this.loading !== desired) {
         ++this.epoch
@@ -370,11 +451,17 @@ export class GameAudioEngine {
     }
     if (this.loading === desired) return
     const epoch = ++this.epoch
+    for (const stream of [...this.streams]) if (stream !== this.stream) this.stopStream(stream)
     const context = this.context
     this.loading = desired
     const adaptive = usesStems(desired)
+    const streamPath = streamingMusicPath(desired)
+    if (!adaptive && streamPath && this.deps.media && !Capacitor.isNativePlatform() && !this.failedStreams.has(desired)) {
+      this.startStream(desired, streamPath, epoch, context)
+      return
+    }
     const paths = adaptive
-      ? stemPaths(this.options.musicStyle)
+      ? stemPaths(this.options.musicStyle, this.deps.media && !Capacitor.isNativePlatform() ? desired : undefined)
       : [musicPath(desired)]
     void Promise.all(paths.map((path) => this.loadMusic(path, context)))
       .then(([buffer, ...stems]) => {
@@ -390,6 +477,7 @@ export class GameAudioEngine {
         )
           return
         this.loading = null
+        for (const stream of [...this.streams]) this.fadeStream(stream)
         const source = context.createBufferSource()
         const gain = context.createGain()
         source.buffer = buffer
@@ -822,6 +910,7 @@ export class GameAudioEngine {
     this.buffers.clear()
     this.inFlight.clear()
     this.offsets.clear()
+    this.failedStreams.clear()
     const context = this.context
     this.context = null
     this.musicBus = this.effectsBus = this.ambienceBus = null

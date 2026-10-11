@@ -1,0 +1,16 @@
+{
+  "cold": {
+    "timingBodyBytes": null,
+    "requests": 35,
+    "audio": 0,
+    "external": [],
+    "requestedFileBytes": 1625402
+  },
+  "warm": {
+    "timingTransferBytes": null,
+    "requests": 35
+  },
+  "corePrecacheBytes": 2424238,
+  "corePrecacheRequests": 86,
+  "scope": "Local Chromium production preview; SW blocked for isolated page load, music off by default. requestedFileBytes sums distinct requested dist assets plus HTML; excludes HTTP compression and worker precache. Resource Timing byte values unavailable/zero are null, so warm network savings are not claimed. Core precache counted separately from filesystem. No network throttling, bandwidth billing or real-user speed measurement."
+}

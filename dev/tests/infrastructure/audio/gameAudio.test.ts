@@ -46,6 +46,7 @@ class Context {
   gains: Node[] = []
   oscillators: Node[] = []
   panners: Node[] = []
+  createMediaElementSource() { return new Node() }
   createStereoPanner() { const node = new Node(); this.panners.push(node); return node }
   createGain() {
     const node = new Node()
@@ -89,6 +90,7 @@ function fixture(
   load: (url: string) => Promise<ArrayBuffer> = vi.fn(
     async () => new ArrayBuffer(8),
   ),
+  media?: () => HTMLAudioElement,
 ) {
   vi.stubGlobal("window", new EventTarget())
   vi.stubGlobal("document", new EventTarget())
@@ -99,6 +101,7 @@ function fixture(
     context: create,
     load,
     visible: () => visible,
+    media,
   })
   disposers.push(engine.mount())
   return {
@@ -120,6 +123,48 @@ afterEach(() => {
   disposers.splice(0).forEach((fn) => fn())
   vi.unstubAllGlobals()
   vi.restoreAllMocks()
+})
+
+class Media extends EventTarget {
+  src="";loop=false;preload="";currentTime=0;paused=true
+  async play() {this.paused=false}
+  pause() {this.paused=true}
+  load() {}
+  removeAttribute(name:string) {if(name==="src")this.src=""}
+}
+describe("web long-score streaming",()=>{
+  it("waits for a gesture and streams a long score without decoding it into the buffer cache",async()=>{
+    const elements:Media[]=[],media=vi.fn(()=>{const element=new Media();elements.push(element);return element as unknown as HTMLAudioElement})
+    const f=fixture(undefined,media),decode=vi.spyOn(f.context,"decodeAudioData")
+    f.engine.acquire("lobby")
+    expect(media).not.toHaveBeenCalled()
+    await f.engine.unlock();await settle()
+    expect(elements[0].src).toBe("/assets/v4/audio/web410/original-lobby.mp3")
+    expect(decode).not.toHaveBeenCalled();expect(f.load).not.toHaveBeenCalled()
+    expect(f.engine.resourceStats().streamingVoices).toBe(1)
+    expect(f.engine.getSnapshot().phase).toBe("playing")
+    elements[0].currentTime=7
+    f.hide();expect(elements[0].paused).toBe(true);expect(f.engine.resourceStats().streamingVoices).toBe(0)
+    f.show();await settle();expect(elements[1].currentTime).toBe(7)
+  })
+  it("bounds stream voices while changing styles and releases all of them on mute",async()=>{
+    const elements:Media[]=[],f=fixture(undefined,()=>{const element=new Media();elements.push(element);return element as unknown as HTMLAudioElement})
+    f.engine.acquire("lobby");await f.engine.unlock();await settle()
+    f.engine.configure({soundEnabled:true,musicStyle:"8bit"});await settle()
+    expect(elements.at(-1)!.src).toContain("8bit-lobby")
+    f.engine.configure({soundEnabled:true,musicStyle:"original"});await settle()
+    expect(f.engine.resourceStats().streamingVoices).toBeLessThanOrEqual(2)
+    f.engine.configure({soundEnabled:false})
+    expect(f.engine.resourceStats().streamingVoices).toBe(0);expect(elements.every(e=>e.paused)).toBe(true)
+  })
+  it("falls back to the existing compact score if the media stream fails",async()=>{
+    const element=new Media(),f=fixture(undefined,()=>element as unknown as HTMLAudioElement)
+    f.engine.acquire("lobby");await f.engine.unlock();await settle()
+    element.dispatchEvent(new Event("error"));await settle()
+    expect(f.load).toHaveBeenCalledWith("/assets/tcg/audio/story-warm.mp3")
+    expect(f.engine.resourceStats().streamingVoices).toBe(0)
+    expect(f.engine.getSnapshot().phase).toBe("playing")
+  })
 })
 describe("game soundtrack lifecycle", () => {
   it("switches styles during a priority cutscene and resumes each arrangement's own cursor", async () => {

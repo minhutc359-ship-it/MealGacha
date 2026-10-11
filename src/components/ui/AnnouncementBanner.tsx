@@ -6,6 +6,23 @@ import { repository } from "../../infrastructure/storage/repository"
 import { getAnnouncementEvent } from "../../domain/events"
 import { useAppStore } from "../../store/useAppStore"
 
+function AnnouncementDialog({ children, onClose }: { children: React.ReactNode; onClose: () => void }) {
+  const ref = useRef<HTMLDialogElement>(null)
+  useEffect(() => {
+    const el = ref.current!, previous = document.activeElement as HTMLElement | null
+    el.showModal()
+    el.querySelector<HTMLButtonElement>('button')?.focus({preventScroll: true})
+    return () => { el.close(); if (previous?.isConnected) previous.focus({preventScroll: true}) }
+  }, [])
+  return <dialog ref={ref} className="announcement-banner-backdrop" aria-label="Thông báo mới" onKeyDown={e => {
+    if (e.key !== 'Tab') return
+    const controls = [...e.currentTarget.querySelectorAll<HTMLElement>('a[href],button:not(:disabled),input:not(:disabled)')]
+    const first = controls[0], last = controls.at(-1)
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus() }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus() }
+  }} onCancel={e => { e.preventDefault(); onClose() }} onClick={e => { if (e.target === e.currentTarget) onClose() }}>{children}</dialog>
+}
+
 interface AnnouncementContent {
   id: string
   imageUrl: string
@@ -65,7 +82,7 @@ export function AnnouncementBanner() {
   }
 
   return createPortal(
-    <div className="announcement-banner-backdrop" role="dialog" aria-modal="true" aria-label="Thông báo mới">
+    <AnnouncementDialog onClose={closeBanner}>
       <div className={`announcement-banner-panel ${banner.eventId ? "is-event" : ""}`}>
         <div className="announcement-banner-visual">
           <img src={banner.imageUrl} alt={banner.title ? `Ảnh sự kiện ${banner.title}` : "Thông báo mới"} />
@@ -84,7 +101,7 @@ export function AnnouncementBanner() {
           <button onClick={closeBanner} aria-label="Tắt thông báo">×</button>
         </div>
       </div>
-    </div>,
+    </AnnouncementDialog>,
     document.body,
   )
 }

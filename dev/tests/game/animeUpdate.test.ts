@@ -163,11 +163,13 @@ describe("speaking characters and original retro score", () => {
   })
   it("ships four separate playable MP3 arrangements and migrates music style safely", () => {
     let bytes = 0
+    const counted = new Set<string>()
     for (const [track, src] of Object.entries(RETRO_MUSIC_TRACKS).filter(([track]) => !track.startsWith("auto-") && !track.startsWith("v4-"))) {
       const file = readFileSync(`public/${src}`)
       expect(file.subarray(0, 3).toString()).toBe("ID3")
       expect(file.length).toBeGreaterThan(150000)
-      bytes += file.length
+      if (!counted.has(src)) bytes += file.length
+      counted.add(src)
       expect(
         musicPath(musicAsset(track as keyof typeof RETRO_MUSIC_TRACKS, "8bit")),
       ).toBe(src)

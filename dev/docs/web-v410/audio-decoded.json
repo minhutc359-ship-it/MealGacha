@@ -1,0 +1,332 @@
+{
+  "decoder": "ffmpeg pcm_f32le; ffprobe metadata",
+  "files": [
+    {
+      "file": "original-lobby.mp3",
+      "duration": 91.4286,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.62685,
+      "rms": 0.11302,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-lobby.mp3",
+      "duration": 91.4286,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.61707,
+      "rms": 0.09232,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-expedition.mp3",
+      "duration": 76.8,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.62881,
+      "rms": 0.09921,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-expedition.mp3",
+      "duration": 76.8,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.58993,
+      "rms": 0.09193,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-story-warm.mp3",
+      "duration": 101.0526,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.62723,
+      "rms": 0.11346,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-story-warm.mp3",
+      "duration": 101.0526,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.623,
+      "rms": 0.09144,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-story-mystery.mp3",
+      "duration": 112.9412,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.62655,
+      "rms": 0.1029,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-story-mystery.mp3",
+      "duration": 112.9412,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.61666,
+      "rms": 0.0983,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-auto-prepare.mp3",
+      "duration": 83.4783,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.62782,
+      "rms": 0.10052,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-auto-prepare.mp3",
+      "duration": 83.4783,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.64063,
+      "rms": 0.10229,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-auto-story.mp3",
+      "duration": 96.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.62709,
+      "rms": 0.10943,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-auto-story.mp3",
+      "duration": 96.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.60233,
+      "rms": 0.0909,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-market-warm.mp3",
+      "duration": 80.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.6276,
+      "rms": 0.11234,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-market-warm.mp3",
+      "duration": 80.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.60507,
+      "rms": 0.09599,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-harbor-warm.mp3",
+      "duration": 106.6667,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.62866,
+      "rms": 0.11135,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-harbor-warm.mp3",
+      "duration": 106.6667,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.62382,
+      "rms": 0.10068,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-kitchen-warm.mp3",
+      "duration": 87.2727,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.62849,
+      "rms": 0.11223,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-kitchen-warm.mp3",
+      "duration": 87.2727,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.63293,
+      "rms": 0.10148,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-stem-market-base.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.33605,
+      "rms": 0.07189,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-stem-market-rhythm.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.22393,
+      "rms": 0.05008,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-stem-market-pressure.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.11071,
+      "rms": 0.05654,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-stem-market-base.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.31374,
+      "rms": 0.06538,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-stem-market-rhythm.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.18257,
+      "rms": 0.04261,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-stem-market-pressure.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.12271,
+      "rms": 0.03494,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-stem-harbor-base.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.31145,
+      "rms": 0.0691,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-stem-harbor-rhythm.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.21566,
+      "rms": 0.04821,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-stem-harbor-pressure.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.10845,
+      "rms": 0.05442,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-stem-harbor-base.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.32545,
+      "rms": 0.06696,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-stem-harbor-rhythm.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.18742,
+      "rms": 0.04375,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-stem-harbor-pressure.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.13337,
+      "rms": 0.03573,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-stem-kitchen-base.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.34036,
+      "rms": 0.07262,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-stem-kitchen-rhythm.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.22662,
+      "rms": 0.05067,
+      "clippedSamples": 0
+    },
+    {
+      "file": "original-stem-kitchen-pressure.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.11344,
+      "rms": 0.05723,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-stem-kitchen-base.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 2,
+      "peak": 0.32253,
+      "rms": 0.07009,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-stem-kitchen-rhythm.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.19869,
+      "rms": 0.04577,
+      "clippedSamples": 0
+    },
+    {
+      "file": "8bit-stem-kitchen-pressure.mp3",
+      "duration": 20.0,
+      "sampleRate": 44100,
+      "channels": 1,
+      "peak": 0.13306,
+      "rms": 0.03742,
+      "clippedSamples": 0
+    }
+  ],
+  "maximumPeak": 0.64063,
+  "clippedSamples": 0,
+  "scope": "Decoded PCM integrity, duration, levels; subjective listening and physical speakers not verified"
+}

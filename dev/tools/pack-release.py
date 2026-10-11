@@ -22,7 +22,7 @@ if args.dist:
     files = [p for p in base.rglob("*") if p.is_file()]
 else:
     base = ROOT
-    names = ["README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "package.json", "pnpm-lock.yaml", "tsconfig.json", "vite.config.ts", "index.html", "vercel.json", ".env.example", ".gitignore", ".gitattributes", ".vercelignore"]
+    names = ["README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "package.json", "pnpm-lock.yaml", "tsconfig.json", "vite.config.ts", "webOffline.ts", "web-service-worker.js", "index.html", "vercel.json", ".env.example", ".gitignore", ".gitattributes", ".vercelignore"]
     files = [ROOT / name for name in names]
     for directory in ["src", "public", "rights"]:
         files.extend(p for p in (ROOT / directory).rglob("*") if p.is_file())

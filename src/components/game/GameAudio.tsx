@@ -1,3 +1,4 @@
+import { SoundtrackRoom } from "./SoundtrackRoom"
 import {
   useEffect,
   useState,
@@ -76,6 +77,8 @@ export function useStoryMusic(
 }
 
 const trackNames: Record<MusicTrack, string> = {
+ lobby: "Chợ lên đèn",
+ expedition: "Bước qua sương",
  "v4-market-warm": "Chợ có hai giọng · Lời mời",
  "v4-market-tension": "Chợ có hai giọng · Giữ bàn",
  "v4-harbor-warm": "Bến sau mưa · Lời mời",
@@ -176,6 +179,7 @@ export function AudioControls() {
       <label><span>Âm lượng môi trường · {Math.round((prefs.ambienceVolume ?? .18)*100)}%</span>
         <input type="range" min="0" max="1" step=".01" value={prefs.ambienceVolume ?? .18} disabled={!prefs.soundEnabled} onChange={e=>update("ambienceVolume",Number(e.target.value))}/></label>
       <label><span>Đồ họa nhẹ</span><input type="checkbox" checked={prefs.graphicsQuality === "low"} onChange={e=>update("graphicsQuality",e.target.checked?"low":"normal")}/></label>
+      <SoundtrackRoom />
       <p role="status">
         {!prefs.soundEnabled
           ? "Đang tắt mọi âm thanh."

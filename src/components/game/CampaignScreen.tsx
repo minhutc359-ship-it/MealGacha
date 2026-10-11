@@ -8,11 +8,13 @@ import { CharacterPortrait } from "./CharacterPortrait"
 import { MemoryJournal } from "./MemoryJournal"
 import { CultureJournal } from "./CultureJournal"
 import { Dialog } from "./Dialog"
+import { campaignProgress } from "../../game/storyPresentation"
 
 const GUARDIANS = ["bach", "nhien", "moc", "hai", "lien", "hero", "an", "hai", "an"] as const
 export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
   const ending = useGameStore(s => s.save.storyEnding)
   const cleared = useGameStore((s) => s.save.clearedStages)
+  const progress = campaignProgress(cleared)
   const history = useGameStore((s) => s.save.history)
   const [selected, setSelected] = useState(() =>
     Math.min(CHAPTERS.length - 1, Math.floor(cleared.length / 3)),
@@ -35,7 +37,7 @@ export function CampaignScreen({ onStage }: { onStage: (id: string) => void }) {
       <div className="tcg-section-heading">
         <div>
           <span className="tcg-kicker">
-            CHIẾN DỊCH · {cleared.length}/27 MÀN
+            CHIẾN DỊCH · {progress.cleared}/{progress.total} MÀN
           </span>
           <h1>Bản đồ ký ức</h1>
         </div>

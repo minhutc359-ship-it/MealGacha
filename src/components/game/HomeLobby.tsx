@@ -1,5 +1,6 @@
 import { CARDS } from "../../game/catalog"
 import { getDateKey } from "../../domain/dateKey"
+import { campaignProgress } from "../../game/storyPresentation"
 import { STAGES } from "../../game/story"
 import { activeRun } from "../../game/expedition"
 import { useGameStore } from "../../game/useGameStore"
@@ -21,6 +22,7 @@ export function HomeLobby({
   onStage: (id: string) => void
   onHelp: () => void
 }) {
+  const progress = campaignProgress(save.clearedStages)
   const next = STAGES.find((s) => !save.clearedStages.includes(s.id))
   const run = activeRun(save.expedition)
   const owned = Object.values(save.cards).filter((n) => n > 0).length
@@ -43,7 +45,7 @@ export function HomeLobby({
             : "+100 xu · Điểm danh"}
         </button>
       </div>
-      {!save.story400?.giftClaimed && <div className="tcg-lobby-actions"><button className="tcg-button gold" onClick={() => useGameStore.getState().claimV4Gift()}>Nhận gói khởi hành 4.0 · 8 thẻ mới × 2</button><span>Nêm vị chọn một nhánh; Ủ vị giữ hiệu ứng sang lượt sau. Nhận quà rồi thêm thẻ vào bộ bài trong Bộ sưu tập.</span></div>}
+      {!save.story400?.giftClaimed && <div className="tcg-lobby-actions"><button className="tcg-button gold" onClick={() => useGameStore.getState().claimV4Gift()}>Nhận gói khởi hành 4.0 · 8 thẻ mới × 2</button><span>Nêm vị chọn một nhánh; Ủ vị giữ hiệu ứng sang lượt sau. Nhận quà rồi thêm thẻ vào bộ bài trong Bộ bài.</span></div>}
       <div className="tcg-lobby-hero">
         <img
           className="tcg-lobby-background"
@@ -84,7 +86,7 @@ export function HomeLobby({
             </button>
           </div>
           <span className="tcg-lobby-progress">
-            {save.clearedStages.length}/27 màn · {owned}/{CARDS.length} thẻ ·{" "}
+            {progress.cleared}/{progress.total} màn · {owned}/{CARDS.length} thẻ ·{" "}
             {save.stats.wins} trận thắng
           </span>
         </div>
