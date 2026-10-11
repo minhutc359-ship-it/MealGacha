@@ -5,6 +5,7 @@ import { useGameStore } from "../../game/useGameStore"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
 import { AutoSoundscape } from "../../game/autochess/soundscape"
 import { battleSpeed, OVERTIME_TICKS } from "../../game/autochess/config"
+import { useModeIntroStore } from "../../game/modeIntroState"
 
 export function useAutoBattle(run: AutoRun | null, speed: number) {
   const frame = useRef<{ run: AutoRun | null; alpha: number }>({ run, alpha: 0 })
@@ -54,6 +55,13 @@ export function useAutoBattle(run: AutoRun | null, speed: number) {
     const update = (now: number) => {
       const dt = now - previous
       previous = now
+      // Freeze the live simulation while a separate showcase plays. Do not
+      // persist a pause flag or spend the time accumulated behind the dialog.
+      if (useModeIntroStore.getState().mode) {
+        savedAt = now
+        handle = requestAnimationFrame(update)
+        return
+      }
       if (document.hidden || dt > 1500) {
         pause(true)
         return

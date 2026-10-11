@@ -15,6 +15,7 @@ import { ClientShell } from "./components/layout/ClientShell"
 import { Toast } from "./components/ui/Toast"
 import { AnnouncementBanner } from "./components/ui/AnnouncementBanner"
 import { StorageRecovery } from "./components/layout/StorageRecovery"
+import { ModeIntroHost } from "./components/game/ModeIntroHost"
 
 const ChestPage = lazy(() => import("./pages/ChestPage").then(module => ({ default: module.ChestPage })))
 
@@ -147,7 +148,7 @@ function AppInner() {
 export default function App() {
   return (
     <BrowserRouter>
-      <GameErrorBoundary><StorageRecovery><AppInner /></StorageRecovery></GameErrorBoundary>
+      <GameErrorBoundary><StorageRecovery><AppInner /><ModeIntroHost /></StorageRecovery></GameErrorBoundary>
     </BrowserRouter>
   )
 }

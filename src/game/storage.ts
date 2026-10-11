@@ -5,8 +5,17 @@ import { CARD_MAP } from "./catalog"
 import { newGame, rotateDay } from "./progression"
 import type { GameSave } from "./types"
 import { autoSaveSchema } from "./autochess/schema"
-import { ADVENTURE_AREA_MAP } from "./adventure"
-import { loadProtected, writeProtectedBatch } from "../infrastructure/storage/protectedStorage"
+import {
+  ADVENTURE_AREA_MAP,
+  migrateAdventure,
+  type AdventureSave,
+} from "./adventure"
+import { ADVENTURE_MAP_BY_ID, canWalk } from "./adventureWorld"
+import { skillsFor, spiritMaxHp } from "./adventureSkills"
+import {
+  loadProtected,
+  writeProtectedBatch,
+} from "../infrastructure/storage/protectedStorage"
 
 export const GAME_KEY = "foodchest.tcg.v1"
 const npcId = z.enum(["bach", "nhien", "moc", "hai", "lien"])
@@ -19,7 +28,9 @@ const sceneId = z
   )
 const weekId = z.string().regex(/^\d{4}-\d{2}-\d{2}$/)
 const bossId = z.enum([
- "living-market-3", "rain-harbor-3", "tomorrow-table-3",
+  "living-market-3",
+  "rain-harbor-3",
+  "tomorrow-table-3",
   "lantern-3",
   "harbor-3",
   "garden-3",
@@ -29,8 +40,17 @@ const bossId = z.enum([
 ])
 const integer = z.number().int().nonnegative().max(1_000_000_000)
 const cardId = z.string().refine((id) => !!CARD_MAP[id], "Thẻ không hợp lệ")
-const adventureCardId = cardId.refine((id) => CARD_MAP[id].kind === "unit", "Vị Linh không hợp lệ")
-const adventureAreaId = z.enum(["lantern-quarter", "rain-harbor", "herb-garden", "tide-pier", "moon-table"])
+const adventureCardId = cardId.refine(
+  (id) => CARD_MAP[id]?.kind === "unit",
+  "Vị Linh không hợp lệ",
+)
+const adventureAreaId = z.enum([
+  "lantern-quarter",
+  "rain-harbor",
+  "herb-garden",
+  "tide-pier",
+  "moon-table",
+])
 const adventureMember = z.object({
   uid: z.string().min(1).max(80),
   cardId: adventureCardId,
@@ -53,36 +73,200 @@ const adventureEncounter = z.object({
   attempts: z.number().int().min(0).max(100),
   log: z.array(z.string().max(180)).max(8),
 })
-const adventure = z.object({
-  version: z.literal(1),
-  started: z.boolean(),
-  areaId: adventureAreaId,
-  x: z.number().int().min(0).max(11),
-  y: z.number().int().min(0).max(8),
-  facing: z.enum(["up", "down", "left", "right"]),
-  steps: integer,
-  aromaSeals: z.number().int().min(0).max(999),
-  team: z.array(adventureMember).max(4),
-  reserve: z.array(adventureMember).max(20),
-  discovered: z.array(adventureCardId).max(171),
-  badges: z.array(z.enum(["lantern", "harbor", "garden", "tide", "moon"])).max(5),
-  completedQuests: z.array(z.string().max(80)).max(32),
-  claimedFinds: z.array(z.string().max(80)).max(16),
-  encounter: adventureEncounter.nullable(),
-  message: z.string().max(400).nullable(),
-  completed: z.boolean(),
-}).superRefine((save, ctx) => {
-  const area = ADVENTURE_AREA_MAP[save.areaId]
-  const members = [...save.team, ...save.reserve]
-  if (new Set(members.map((member) => member.uid)).size !== members.length)
-    ctx.addIssue({ code: "custom", message: "Vị Linh trùng mã" })
-  if (save.started !== (save.team.length > 0))
-    ctx.addIssue({ code: "custom", message: "Đội phiêu lưu không nhất quán" })
-  if (!area.grid[save.y]?.[save.x] || area.grid[save.y][save.x] === "#")
-    ctx.addIssue({ code: "custom", message: "Vị trí phiêu lưu không hợp lệ" })
-  if (save.encounter && (!save.team.some((member) => member.uid === save.encounter!.activeUid && member.hp > 0) || save.encounter.hp > save.encounter.maxHp))
-    ctx.addIssue({ code: "custom", message: "Cuộc chạm trán không nhất quán" })
+const legacyAdventure = z
+  .object({
+    version: z.literal(1),
+    started: z.boolean(),
+    areaId: adventureAreaId,
+    x: z.number().int().min(0).max(11),
+    y: z.number().int().min(0).max(8),
+    facing: z.enum(["up", "down", "left", "right"]),
+    steps: integer,
+    aromaSeals: z.number().int().min(0).max(999),
+    team: z.array(adventureMember).max(4),
+    reserve: z.array(adventureMember).max(20),
+    discovered: z.array(adventureCardId).max(171),
+    badges: z
+      .array(z.enum(["lantern", "harbor", "garden", "tide", "moon"]))
+      .max(5),
+    completedQuests: z.array(z.string().max(80)).max(32),
+    claimedFinds: z.array(z.string().max(80)).max(16),
+    encounter: adventureEncounter.nullable(),
+    message: z.string().max(400).nullable(),
+    completed: z.boolean(),
+  })
+  .superRefine((save, ctx) => {
+    const area = ADVENTURE_AREA_MAP[save.areaId]
+    const members = [...save.team, ...save.reserve]
+    if (new Set(members.map((member) => member.uid)).size !== members.length)
+      ctx.addIssue({ code: "custom", message: "Vị Linh trùng mã" })
+    if (save.started !== save.team.length > 0)
+      ctx.addIssue({ code: "custom", message: "Đội phiêu lưu không nhất quán" })
+    if (!area.grid[save.y]?.[save.x] || area.grid[save.y][save.x] === "#")
+      ctx.addIssue({ code: "custom", message: "Vị trí phiêu lưu không hợp lệ" })
+    if (
+      save.encounter &&
+      (!save.team.some(
+        (member) => member.uid === save.encounter!.activeUid && member.hp > 0,
+      ) ||
+        save.encounter.hp > save.encounter.maxHp)
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Cuộc chạm trán không nhất quán",
+      })
+  })
+  .transform((save) => migrateAdventure(save as unknown as AdventureSave))
+const statusId = z.enum(["burn", "soaked", "rooted", "drowsy"]).nullable()
+const memberV2 = adventureMember.extend({
+  level: z.number().int().min(1).max(50),
+  pp: z.record(z.string().max(40), z.number().int().min(0).max(30)),
+  status: statusId,
+  statusTurns: z.number().int().min(0).max(4),
 })
+const encounterV2 = adventureEncounter.extend({
+  kind: z.enum(["wild", "keeper", "trainer"]),
+  level: z.number().int().min(1).max(50),
+  npcId: z.string().max(80).optional(),
+  roster: z
+    .array(
+      z.object({
+        cardId: adventureCardId,
+        level: z.number().int().min(1).max(50),
+      }),
+    )
+    .max(6)
+    .optional(),
+  wave: z.number().int().min(0).max(5).optional(),
+  enemyPP: z.record(z.string().max(40), z.number().int().min(0).max(30)),
+  enemyStatus: statusId,
+  enemyStatusTurns: z.number().int().min(0).max(4),
+  participants: z.array(z.string().min(1).max(80)).max(6),
+})
+const adventureV2 = z
+  .object({
+    version: z.literal(2),
+    started: z.boolean(),
+    areaId: adventureAreaId,
+    mapId: z
+      .string()
+      .max(80)
+      .refine((id) => !!ADVENTURE_MAP_BY_ID[id], "Bản đồ không hợp lệ"),
+    x: z.number().int().min(0).max(23),
+    y: z.number().int().min(0).max(17),
+    facing: z.enum(["up", "down", "left", "right"]),
+    steps: integer,
+    aromaSeals: z.number().int().min(0).max(999),
+    coins: z.number().int().min(0).max(99999),
+    inventory: z.object({
+      potion: z.number().int().min(0).max(99),
+      revive: z.number().int().min(0).max(99),
+    }),
+    team: z.array(memberV2).max(6),
+    reserve: z.array(memberV2).max(60),
+    discovered: z.array(adventureCardId).max(171),
+    badges: z
+      .array(z.enum(["lantern", "harbor", "garden", "tide", "moon"]))
+      .max(5),
+    completedQuests: z.array(z.string().max(80)).max(64),
+    claimedFinds: z.array(z.string().max(80)).max(32),
+    defeatedTrainers: z.array(z.string().max(80)).max(32),
+    visitedMaps: z.array(z.string().max(80)).max(20),
+    encounter: encounterV2.nullable(),
+    message: z.string().max(400).nullable(),
+    speaker: z
+      .enum([
+        "hero",
+        "bach",
+        "hai",
+        "nhien",
+        "moc",
+        "lien",
+        "grandmother",
+        "merchant",
+        "child",
+        "la",
+      ])
+      .nullable(),
+    service: z.enum(["shop", "storage"]).nullable(),
+    follower: z
+      .object({
+        x: z.number().int().min(0).max(23),
+        y: z.number().int().min(0).max(17),
+      })
+      .nullable(),
+    completed: z.boolean(),
+  })
+  .superRefine((save, ctx) => {
+    const invalid = (message: string) =>
+      ctx.addIssue({ code: "custom", message })
+    const map = ADVENTURE_MAP_BY_ID[save.mapId],
+      members = [...save.team, ...save.reserve]
+    if (!map || map.areaId !== save.areaId || !canWalk(map, save.x, save.y))
+      invalid("Vị trí phiêu lưu không hợp lệ")
+    if (save.follower && map && !canWalk(map, save.follower.x, save.follower.y))
+      invalid("Vị trí đồng hành không hợp lệ")
+    if (
+      save.started !== save.team.length > 0 ||
+      new Set(members.map((m) => m.uid)).size !== members.length
+    )
+      invalid("Đội phiêu lưu không nhất quán")
+    if (
+      (save.service === "shop" && !save.mapId.endsWith(":shop")) ||
+      (save.service === "storage" && !save.mapId.endsWith(":clinic"))
+    )
+      invalid("Dịch vụ không đúng vị trí")
+    const validPP = (
+      card: string,
+      level: number,
+      pp: Record<string, number>,
+    ) => {
+      const skills = skillsFor(card, level)
+      return (
+        Object.keys(pp).length === skills.length &&
+        skills.every(
+          (skill) =>
+            Number.isInteger(pp[skill.id]) &&
+            pp[skill.id] >= 0 &&
+            pp[skill.id] <= skill.pp,
+        )
+      )
+    }
+    for (const member of members)
+      if (
+        CARD_MAP[member.cardId] &&
+        (member.hp > spiritMaxHp(member.cardId, member.level) ||
+          !validPP(member.cardId, member.level, member.pp))
+      )
+        invalid("Sinh lực hoặc PP không hợp lệ")
+    const e = save.encounter
+    if (
+      e &&
+      (!save.team.some((m) => m.uid === e.activeUid && m.hp > 0) ||
+        e.hp < 1 ||
+        e.hp > e.maxHp ||
+        !e.participants.every((uid) => save.team.some((m) => m.uid === uid)))
+    )
+      invalid("Cuộc chạm trán không nhất quán")
+    if (
+      e &&
+      CARD_MAP[e.cardId] &&
+      (!validPP(e.cardId, e.level, e.enemyPP) ||
+        e.maxHp !== spiritMaxHp(e.cardId, e.level))
+    )
+      invalid("Đối thủ không hợp lệ")
+    if (
+      e?.roster &&
+      (!e.roster[e.wave ?? 0] ||
+        e.roster[e.wave ?? 0].cardId !== e.cardId ||
+        e.roster[e.wave ?? 0].level !== e.level)
+    )
+      invalid("Đội đối thủ không nhất quán")
+    if (save.visitedMaps.some((id) => !ADVENTURE_MAP_BY_ID[id]))
+      invalid("Vùng đã đến không hợp lệ")
+  })
+  .transform((save) => save as AdventureSave)
+const adventure = z.union([adventureV2, legacyAdventure])
 const stats = z.object({
   wins: integer,
   battles: integer,
@@ -143,7 +327,7 @@ const node = z.object({
 })
 const expedition = z
   .object({
-    promise: z.enum(["safe","bold"]).optional(),
+    promise: z.enum(["safe", "bold"]).optional(),
     rulesVersion: z.union([z.literal(350), z.literal(400)]).default(350),
     id: z.string(),
     seed: z.number().int().min(0).max(4294967295),
@@ -245,15 +429,22 @@ export const GameSaveSchema = z
   .object({
     version: z.literal(1),
     contentVersion: z.union([z.literal(350), z.literal(400)]).optional(),
-    story400: z.object({
-      version: z.literal(1),
-      giftClaimed: z.boolean(),
-      decisions: z.record(z.string().max(40), z.string().max(40)).refine(v=>Object.entries(v).every(([k,d])=>validLivingDecision(k,d))).optional(),
-      originEnding: z.enum(["remember", "release"]).nullable(),
-      choices: z.record(z.string().max(80), z.enum(["courage", "wisdom"])),
-      seenScenes: z.array(z.string().max(80)).max(32),
-      claimedRewards: z.array(z.string().max(100)).max(32),
-    }).optional(),
+    story400: z
+      .object({
+        version: z.literal(1),
+        giftClaimed: z.boolean(),
+        decisions: z
+          .record(z.string().max(40), z.string().max(40))
+          .refine((v) =>
+            Object.entries(v).every(([k, d]) => validLivingDecision(k, d)),
+          )
+          .optional(),
+        originEnding: z.enum(["remember", "release"]).nullable(),
+        choices: z.record(z.string().max(80), z.enum(["courage", "wisdom"])),
+        seenScenes: z.array(z.string().max(80)).max(32),
+        claimedRewards: z.array(z.string().max(100)).max(32),
+      })
+      .optional(),
     coins: integer,
     dust: integer,
     xp: integer,
@@ -337,11 +528,22 @@ export const GameSaveSchema = z
       .object({
         rulesVersion: z.union([z.literal(350), z.literal(400)]).default(350),
         flavorSequence: integer.optional(),
-        pendingFlavors: z.array(z.object({
-          id: z.string().max(100), owner: z.enum(["player", "enemy"]), cardId,
-          effect: z.enum(["buff", "heal"]), power: integer.max(10), targetUid: z.string().max(80).optional(),
-          executeRound: integer, sequence: integer, delayed: z.boolean().optional(),
-        })).max(4).optional(),
+        pendingFlavors: z
+          .array(
+            z.object({
+              id: z.string().max(100),
+              owner: z.enum(["player", "enemy"]),
+              cardId,
+              effect: z.enum(["buff", "heal"]),
+              power: integer.max(10),
+              targetUid: z.string().max(80).optional(),
+              executeRound: integer,
+              sequence: integer,
+              delayed: z.boolean().optional(),
+            }),
+          )
+          .max(4)
+          .optional(),
         id: z.string(),
         stageId: z.string().nullable(),
         opponent: z.string(),
@@ -415,14 +617,55 @@ export const GameSaveSchema = z
     const b = save.battle
     if (b) {
       const pending = b.pendingFlavors ?? []
-      if (new Set(pending.map(effect => effect.id)).size !== pending.length || new Set(pending.map(effect => effect.sequence)).size !== pending.length || ["player", "enemy"].some(side => pending.filter(effect => effect.owner === side).length > 2) || pending.some(effect => !CARD_MAP[effect.cardId].ability?.startsWith("steep-") || effect.sequence > (b.flavorSequence ?? 0) || effect.power !== CARD_MAP[effect.cardId].power || effect.effect !== (CARD_MAP[effect.cardId].ability === "steep-unit" ? "buff" : "heal") || (effect.effect === "buff" ? !effect.targetUid : !!effect.targetUid)))
-        ctx.addIssue({ code: "custom", message: "Hiệu ứng Ủ vị không nhất quán" })
-      const battleCards = [b.player, b.enemy].flatMap(side => [...side.deck, ...side.hand, ...side.board.map(unit => unit.cardId), ...(side.graveyard ?? [])])
-      if (b.rulesVersion < 400 && (pending.length || battleCards.some(id => CARD_MAP[id].contentVersion === 400)))
-        ctx.addIssue({ code: "custom", message: "Trận 3.5 không nhận luật/thẻ 4.0" })
+      if (
+        new Set(pending.map((effect) => effect.id)).size !== pending.length ||
+        new Set(pending.map((effect) => effect.sequence)).size !==
+          pending.length ||
+        ["player", "enemy"].some(
+          (side) =>
+            pending.filter((effect) => effect.owner === side).length > 2,
+        ) ||
+        pending.some(
+          (effect) =>
+            !CARD_MAP[effect.cardId].ability?.startsWith("steep-") ||
+            effect.sequence > (b.flavorSequence ?? 0) ||
+            effect.power !== CARD_MAP[effect.cardId].power ||
+            effect.effect !==
+              (CARD_MAP[effect.cardId].ability === "steep-unit"
+                ? "buff"
+                : "heal") ||
+            (effect.effect === "buff" ? !effect.targetUid : !!effect.targetUid),
+        )
+      )
+        ctx.addIssue({
+          code: "custom",
+          message: "Hiệu ứng Ủ vị không nhất quán",
+        })
+      const battleCards = [b.player, b.enemy].flatMap((side) => [
+        ...side.deck,
+        ...side.hand,
+        ...side.board.map((unit) => unit.cardId),
+        ...(side.graveyard ?? []),
+      ])
+      if (
+        b.rulesVersion < 400 &&
+        (pending.length ||
+          battleCards.some((id) => CARD_MAP[id].contentVersion === 400))
+      )
+        ctx.addIssue({
+          code: "custom",
+          message: "Trận 3.5 không nhận luật/thẻ 4.0",
+        })
     }
-    if (save.expedition && save.expedition.rulesVersion < 400 && save.expedition.deck.some(id => CARD_MAP[id].contentVersion === 400))
-      ctx.addIssue({ code: "custom", message: "Chuyến cũ không nhận thẻ mới giữa hành trình" })
+    if (
+      save.expedition &&
+      save.expedition.rulesVersion < 400 &&
+      save.expedition.deck.some((id) => CARD_MAP[id].contentVersion === 400)
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Chuyến cũ không nhận thẻ mới giữa hành trình",
+      })
     if (
       b?.tactic?.status === "pending" &&
       (b.round < 4 || b.opening || b.result)
@@ -489,5 +732,7 @@ export function loadGame(): GameSave {
   return loadProtected(GAME_KEY, parseGame, newGame)
 }
 export function saveGame(save: GameSave) {
-  writeProtectedBatch([{ key: GAME_KEY, value: { ...save, updatedAt: new Date().toISOString() } }])
+  writeProtectedBatch([
+    { key: GAME_KEY, value: { ...save, updatedAt: new Date().toISOString() } },
+  ])
 }

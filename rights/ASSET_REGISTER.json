@@ -1,8 +1,19 @@
 {
-  "version": "4.2.0",
+  "version": "4.3.1",
   "generatedOn": "2026-10-10",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
+    {
+      "path": "public/assets/adventure/world.svg",
+      "bytes": 73202,
+      "sha256": "6673e3ccdaa6bb9695061208f859e191330fd8d76817a3564ad5f382599b713a",
+      "origin": "Original code-authored vector world and four-direction character sprites; no external art or samples",
+      "evidence": [
+        "dev/tools/build-adventure-assets.mjs",
+        "dev/docs/web-v430/UPDATE.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
     {
       "path": "public/assets/autochess/audio/8bit-battle.mp3",
       "bytes": 466313,

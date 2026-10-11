@@ -1,26 +1,51 @@
-import { CARD_MAP, SCHOOLS } from "./catalog"
+import { CARD_MAP } from "./catalog"
 import type { CharacterId } from "./characters"
-import type { School } from "./types"
-
-export type AdventureAreaId =
-  | "lantern-quarter"
-  | "rain-harbor"
-  | "herb-garden"
-  | "tide-pier"
-  | "moon-table"
+import {
+  ADVENTURE_AREAS,
+  ADVENTURE_AREA_MAP,
+  ADVENTURE_STARTERS,
+  type AdventureAreaId,
+} from "./adventureRegions"
+import { ADVENTURE_MAP_BY_ID, canWalk, type MapNpc } from "./adventureWorld"
+import {
+  fullPP,
+  skillsFor,
+  SKILL_MAP,
+  schoolMultiplier,
+  spiritMaxHp,
+  spiritAttack,
+  spiritSpeed,
+  xpForNext,
+  type AdventureStatus,
+  type AdventureSkill,
+} from "./adventureSkills"
+export {
+  ADVENTURE_AREAS,
+  ADVENTURE_AREA_MAP,
+  ADVENTURE_STARTERS,
+  schoolMultiplier,
+  spiritMaxHp,
+  spiritAttack,
+  spiritSpeed,
+  xpForNext,
+}
+export type { AdventureAreaId }
 export type AdventureDirection = "up" | "down" | "left" | "right"
-export type AdventureBattleMove = "strike" | "skill" | "guard" | "befriend" | "flee" | "switch"
-
+export type AdventureBattleMove = "strike" | "skill" | "guard" | "befriend" | "flee" | "switch" | "item"
+export type AdventureItem = "potion" | "revive" | "seal"
 export interface AdventureSpirit {
   uid: string
   cardId: string
   level: number
   xp: number
   hp: number
+  pp?: Record<string, number>
+  status?: AdventureStatus
+  statusTurns?: number
 }
 export interface AdventureEncounter {
   id: string
-  kind: "wild" | "keeper"
+  kind: "wild" | "keeper" | "trainer"
   cardId: string
   level: number
   hp: number
@@ -32,354 +57,985 @@ export interface AdventureEncounter {
   enemyWeaken: number
   attempts: number
   log: string[]
+  npcId?: string
+  roster?: { cardId: string; level: number }[]
+  wave?: number
+  enemyPP?: Record<string, number>
+  enemyStatus?: AdventureStatus
+  enemyStatusTurns?: number
+  participants?: string[]
 }
 export interface AdventureSave {
-  version: 1
+  version: 1 | 2
   started: boolean
   areaId: AdventureAreaId
+  mapId: string
   x: number
   y: number
   facing: AdventureDirection
   steps: number
   aromaSeals: number
+  coins: number
+  inventory: { potion: number; revive: number }
   team: AdventureSpirit[]
   reserve: AdventureSpirit[]
   discovered: string[]
   badges: string[]
   completedQuests: string[]
   claimedFinds: string[]
+  defeatedTrainers: string[]
+  visitedMaps: string[]
   encounter: AdventureEncounter | null
   message: string | null
+  speaker: CharacterId | null
+  service: "shop" | "storage" | null
+  follower: { x: number; y: number } | null
   completed: boolean
 }
-
-interface AdventureExit {
-  x: number
-  y: number
-  to: AdventureAreaId
-  toX: number
-  toY: number
-  requires?: string
-}
-interface AdventureFind {
-  id: string
-  x: number
-  y: number
-  seals: number
-  text: string
-}
-export interface AdventureArea {
-  id: AdventureAreaId
-  chapter: number
-  name: string
-  region: string
-  summary: string
-  objective: string
-  art: string
-  music: "v4-market-warm" | "v4-harbor-warm" | "story-warm" | "story-mystery"
-  grid: string[]
-  spawn: { x: number; y: number }
-  encounters: string[]
-  npc: { id: CharacterId; x: number; y: number; before: string; after: string }
-  keeper: { cardId: string; level: number; x: number; y: number; title: string; badge: string; badgeName: string }
-  exits: AdventureExit[]
-  finds: AdventureFind[]
-}
-
-export const ADVENTURE_STARTERS = ["pho-bo", "com-tam", "goi-cuon-tom-thit"] as const
-
-export const ADVENTURE_AREAS: AdventureArea[] = [
+export const ADVENTURE_SHOP = [
   {
-    id: "lantern-quarter", chapter: 1, name: "Phố Đèn Lồng", region: "Khu chợ thức giấc",
-    summary: "Bách nhờ bạn đánh thức những Vị Linh đang lạc giữa mùi khói sớm.",
-    objective: "Gặp Bách, rèn đội hình rồi thách Người Giữ Đèn.", art: "/assets/tcg/story/lantern.webp", music: "v4-market-warm",
-    grid: ["############", "#....gg...b#", "#.##.gg.##.#", "#.g......g.#", "#.g.####.g.#", "#...i..g...#", "#.n....g...#", "#h........e#", "############"],
-    spawn: { x: 2, y: 7 }, encounters: ["banh-mi", "xoi", "banh-cuon", "chao-suon"],
-    npc: { id: "bach", x: 2, y: 6, before: "Đừng vội đi xa. Hãy lắng nghe nhịp chân của Vị Linh và giữ Hương Ấn cho lúc chúng yếu đi.", after: "Ấn Đèn đã sáng. Con đường ra bến mưa đang mở; cứ để món ăn dẫn lối." },
-    keeper: { cardId: "bun-cha", level: 7, x: 10, y: 1, title: "Người Giữ Đèn", badge: "lantern", badgeName: "Ấn Đèn" },
-    exits: [{ x: 10, y: 7, to: "rain-harbor", toX: 2, toY: 7, requires: "lantern" }],
-    finds: [{ id: "lantern-basket", x: 4, y: 5, seals: 3, text: "Một giỏ lá thơm còn ấm · nhận 3 Hương Ấn." }],
+    id: "seal" as const,
+    name: "Hương Ấn",
+    price: 18,
+    description: "Mời Vị Linh hoang dã về cùng đội.",
   },
   {
-    id: "rain-harbor", chapter: 2, name: "Bến Sau Mưa", region: "Những mái chèo ký ức",
-    summary: "Nước triều mang theo tên món đã mất. Hải chờ một người đủ kiên nhẫn để nghe.",
-    objective: "Tìm Hải và vượt thử thách của Người Canh Con Nước.", art: "/assets/tcg/story/harbor.webp", music: "v4-harbor-warm",
-    grid: ["############", "#e..gg.....#", "#.##gg.##b.#", "#..g....g..#", "#..g.##.g..#", "#....i.....#", "#..n...gg..#", "#e....h....#", "############"],
-    spawn: { x: 2, y: 7 }, encounters: ["pho-ga", "bun-rieu", "bun-ca", "mi-van-than"],
-    npc: { id: "hai", x: 3, y: 6, before: "Biển không quên; chỉ có người trên bờ ngừng gọi tên. Hãy để đội của bạn nghe con nước trước khi ra cầu cảng.", after: "Bạn đã nghe được khoảng lặng giữa hai con sóng. Mang Ấn Mưa về phía vườn xanh." },
-    keeper: { cardId: "sushi", level: 10, x: 9, y: 2, title: "Người Canh Con Nước", badge: "harbor", badgeName: "Ấn Mưa" },
-    exits: [
-      { x: 1, y: 7, to: "lantern-quarter", toX: 9, toY: 7 },
-      { x: 1, y: 1, to: "herb-garden", toX: 9, toY: 7, requires: "harbor" },
-    ],
-    finds: [{ id: "harbor-crate", x: 5, y: 5, seals: 3, text: "Trong thùng gỗ là ba Hương Ấn còn khô." }],
+    id: "potion" as const,
+    name: "Canh Ấm",
+    price: 12,
+    description: "Hồi 30 HP và gỡ trạng thái.",
   },
   {
-    id: "herb-garden", chapter: 3, name: "Vườn Lá Thơm", region: "Lối nhỏ dưới tán xanh",
-    summary: "Sương Nhạt làm cây quên mùa. Mộc cần bạn khôi phục vòng tuần hoàn của khu vườn.",
-    objective: "Đọc lời nhắn của Mộc và đánh thức Linh Gốc Cổ Thụ.", art: "/assets/tcg/story/garden.webp", music: "story-warm",
-    grid: ["############", "#....g....b#", "#.gg.g.gg..#", "#....#.....#", "#gg..#..gg.#", "#..i....g..#", "#.n..gg....#", "#e.h.....e.#", "############"],
-    spawn: { x: 9, y: 7 }, encounters: ["goi-cuon-tom-thit", "banh-cuon", "nom-sua-xoai", "dua-hanh"],
-    npc: { id: "moc", x: 2, y: 6, before: "Mỗi chiếc lá nhớ một bữa cơm. Đi chậm thôi, bạn sẽ thấy khu vườn tự chỉ đường.", after: "Rễ cây đã nhớ lại mùa mưa. Ấn Lá sẽ dẫn bạn tới cầu triều." },
-    keeper: { cardId: "goi-cuon-tom-thit", level: 13, x: 10, y: 1, title: "Linh Gốc Cổ Thụ", badge: "garden", badgeName: "Ấn Lá" },
-    exits: [{ x: 9, y: 7, to: "rain-harbor", toX: 2, toY: 1 }, { x: 1, y: 7, to: "tide-pier", toX: 9, toY: 7, requires: "garden" }],
-    finds: [{ id: "garden-satchel", x: 3, y: 5, seals: 4, text: "Mộc để lại một túi hạt thơm · nhận 4 Hương Ấn." }],
-  },
-  {
-    id: "tide-pier", chapter: 4, name: "Cầu Triều Lửa", region: "Gió mặn và bếp đỏ",
-    summary: "Nhiên giữ một ngọn lửa không tắt giữa gió biển, nhưng lối lên bàn trăng đã bị khóa.",
-    objective: "Hợp sức với Nhiên, chiến thắng Chủ Bếp Triều Lửa.", art: "/assets/tcg/story/tide.webp", music: "story-mystery",
-    grid: ["############", "#e..g.....b#", "#.##g.###..#", "#..gg......#", "#.....gg...#", "#..i.###...#", "#....n..g..#", "#e.......h.#", "############"],
-    spawn: { x: 9, y: 7 }, encounters: ["bun-bo-hue", "banh-xeo", "com-tam", "mi-cay"],
-    npc: { id: "nhien", x: 5, y: 6, before: "Lửa mạnh không phải lửa cháy lớn nhất. Đó là ngọn lửa biết chờ đúng món, đúng người.", after: "Giữ lấy Ấn Than. Liên đang chờ trên Bàn Trăng, nơi Sương Nhạt dày nhất." },
-    keeper: { cardId: "bun-bo-hue", level: 16, x: 10, y: 1, title: "Chủ Bếp Triều Lửa", badge: "tide", badgeName: "Ấn Than" },
-    exits: [{ x: 1, y: 7, to: "herb-garden", toX: 8, toY: 7 }, { x: 1, y: 1, to: "moon-table", toX: 9, toY: 7, requires: "tide" }],
-    finds: [{ id: "tide-chest", x: 3, y: 5, seals: 4, text: "Một hộp gia vị chống ẩm · nhận 4 Hương Ấn." }],
-  },
-  {
-    id: "moon-table", chapter: 5, name: "Bàn Trăng", region: "Bữa cơm trên tầng mây",
-    summary: "Liên đã dọn một chỗ trống. Chỉ còn Tiếng Vọng Nuốt Tên đứng giữa bạn và bữa cơm ngày mai.",
-    objective: "Chuẩn bị đội hình cuối và hoàn thành Giao Ước Năm Vị.", art: "/assets/tcg/story/moon.webp", music: "story-mystery",
-    grid: ["############", "#....gg...b#", "#.##.gg.##.#", "#..g......g#", "#..g.##...g#", "#....i.....#", "#..n..gg...#", "#e.......h.#", "############"],
-    spawn: { x: 9, y: 7 }, encounters: ["banh-tet", "che-buoi", "croissant", "xiaolongbao"],
-    npc: { id: "lien", x: 3, y: 6, before: "Một chỗ trống không phải là thiếu vắng. Đó là lời mời. Hãy đưa cả đội tới bàn ăn bằng tên thật của từng món.", after: "Bàn đã đủ người. Từ đây, mọi con đường đều có thể trở thành một công thức mới." },
-    keeper: { cardId: "banh-tet", level: 20, x: 10, y: 1, title: "Tiếng Vọng Nuốt Tên", badge: "moon", badgeName: "Giao Ước Năm Vị" },
-    exits: [{ x: 1, y: 7, to: "tide-pier", toX: 2, toY: 1 }],
-    finds: [{ id: "moon-gift", x: 5, y: 5, seals: 5, text: "Một gói Hương Ấn đặt cạnh chỗ trống · nhận 5." }],
+    id: "revive" as const,
+    name: "Lá Tỉnh",
+    price: 35,
+    description: "Hồi sinh Vị Linh với 50% HP.",
   },
 ]
-
-export const ADVENTURE_AREA_MAP = Object.fromEntries(ADVENTURE_AREAS.map((area) => [area.id, area])) as Record<AdventureAreaId, AdventureArea>
-const DELTAS: Record<AdventureDirection, [number, number]> = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] }
-const advantage: Partial<Record<School, School>> = { ember: "grove", grove: "tide", tide: "ember", hearth: "sugar", sugar: "hearth" }
-
-export type AdventureAction =
-  | { type: "start"; cardId: string }
-  | { type: "move"; direction: AdventureDirection }
-  | { type: "interact" }
-  | { type: "dismiss" }
-  | { type: "battle"; move: AdventureBattleMove; uid?: string }
-  | { type: "lead"; uid: string }
-  | { type: "deposit"; uid: string }
-  | { type: "withdraw"; uid: string }
-  | { type: "heal" }
-
-export interface AdventureResult { save: AdventureSave; error?: string; event?: "move" | "battle" | "win" | "capture" | "heal" }
-
+export type AdventureAction = { type: "start"; cardId: string } | {
+  type: "move"
+  direction: AdventureDirection
+} | { type: "interact" } | { type: "dismiss" } | {
+  type: "battle"
+  move: AdventureBattleMove
+  uid?: string
+  skillId?: string
+  item?: AdventureItem
+} | { type: "lead" | "deposit" | "withdraw"; uid: string } | { type: "heal" } | {
+  type: "buy"
+  item: AdventureItem
+} | { type: "item"; item: AdventureItem; uid: string } | {
+  type: "travel"
+  areaId: AdventureAreaId
+}
+export interface AdventureResult {
+  save: AdventureSave
+  error?: string
+  event?: "move" | "battle" | "win" | "capture" | "heal"
+}
+export const DELTAS: Record<AdventureDirection, [number, number]> = {
+  up: [0, -1],
+  down: [0, 1],
+  left: [-1, 0],
+  right: [1, 0],
+}
+const hash = (value: string) =>
+  [...value].reduce(
+    (n, char) => (Math.imul(n, 31) + char.charCodeAt(0)) >>> 0,
+    2166136261,
+  )
+const unique = (values: string[], value: string) => {
+  if (!values.includes(value)) values.push(value)
+}
 export function newAdventure(): AdventureSave {
-  const area = ADVENTURE_AREAS[0]
-  return { version: 1, started: false, areaId: area.id, ...area.spawn, facing: "up", steps: 0, aromaSeals: 6, team: [], reserve: [], discovered: [], badges: [], completedQuests: [], claimedFinds: [], encounter: null, message: null, completed: false }
+  return {
+    version: 2,
+    started: false,
+    areaId: "lantern-quarter",
+    mapId: "lantern-quarter",
+    x: 2,
+    y: 14,
+    facing: "up",
+    steps: 0,
+    aromaSeals: 6,
+    coins: 80,
+    inventory: { potion: 3, revive: 1 },
+    team: [],
+    reserve: [],
+    discovered: [],
+    badges: [],
+    completedQuests: [],
+    claimedFinds: [],
+    defeatedTrainers: [],
+    visitedMaps: ["lantern-quarter"],
+    encounter: null,
+    message: null,
+    speaker: null,
+    service: null,
+    follower: null,
+    completed: false,
+  }
 }
-
-export function spiritMaxHp(cardId: string, level: number) {
-  return 12 + (CARD_MAP[cardId]?.health ?? 3) * 2 + level * 2
+/** Called once by save parsing and defensively by the reducer. v1 coordinates belong to the old 12x9 maps. */
+export function migrateAdventure(current: AdventureSave): AdventureSave {
+  const save = { ...newAdventure(), ...structuredClone(current) }
+  if (current.version === 1) {
+    save.version = 2
+    save.mapId = save.areaId
+    save.x = 2
+    save.y = 14
+    save.follower = null
+    save.visitedMaps = ADVENTURE_AREAS.filter(
+      (area, i) =>
+        i === 0 || save.badges.includes(ADVENTURE_AREAS[i - 1].keeper.badge),
+    ).map((area) => area.id)
+  }
+  for (const member of [...save.team, ...save.reserve]) {
+    member.pp = { ...fullPP(member.cardId, member.level), ...member.pp }
+    member.status ??= null
+    member.statusTurns ??= 0
+  }
+  if (save.encounter) {
+    save.encounter.enemyPP ??= fullPP(
+      save.encounter.cardId,
+      save.encounter.level,
+    )
+    save.encounter.enemyStatus ??= null
+    save.encounter.enemyStatusTurns ??= 0
+    save.encounter.participants ??= [save.encounter.activeUid]
+  }
+  return save
 }
-export function spiritAttack(cardId: string, level: number) {
-  return 2 + (CARD_MAP[cardId]?.attack ?? 2) + Math.floor(level / 2)
+function makeMember(
+  cardId: string,
+  level: number,
+  uid: string,
+): AdventureSpirit {
+  return {
+    uid,
+    cardId,
+    level,
+    xp: 0,
+    hp: spiritMaxHp(cardId, level),
+    pp: fullPP(cardId, level),
+    status: null,
+    statusTurns: 0,
+  }
 }
-export function xpForNext(level: number) { return 10 + level * 4 }
-export function schoolMultiplier(attacker: School, defender: School) {
-  return advantage[attacker] === defender ? 1.35 : advantage[defender] === attacker ? 0.78 : 1
+function say(
+  save: AdventureSave,
+  text: string,
+  speaker: CharacterId | null = null,
+) {
+  save.message = text
+  save.speaker = speaker
 }
-export function captureChance(encounter: AdventureEncounter) {
-  if (encounter.kind === "keeper") return 0
-  return Math.min(.94, .3 + (1 - encounter.hp / encounter.maxHp) * .68)
-}
-
-function hash(value: string) { return [...value].reduce((n, char) => (Math.imul(n, 31) + char.charCodeAt(0)) >>> 0, 2166136261) }
-function clone(save: AdventureSave): AdventureSave { return structuredClone(save) }
-function tile(area: AdventureArea, x: number, y: number) { return area.grid[y]?.[x] ?? "#" }
-function currentMember(save: AdventureSave) { return save.team.find((member) => member.uid === save.encounter?.activeUid) }
-function aliveMember(save: AdventureSave) { return save.team.find((member) => member.hp > 0) }
-function appendLog(encounter: AdventureEncounter, text: string) { encounter.log = [...encounter.log.slice(-5), text] }
-function addUnique(values: string[], value: string) { if (!values.includes(value)) values.push(value) }
-function makeMember(cardId: string, level: number, uid: string, hpRatio = 1): AdventureSpirit {
-  return { uid, cardId, level, xp: 0, hp: Math.max(1, Math.round(spiritMaxHp(cardId, level) * hpRatio)) }
+function log(encounter: AdventureEncounter, text: string) {
+  encounter.log = [...encounter.log.slice(-6), text]
 }
 function healTeam(save: AdventureSave) {
-  for (const member of save.team) member.hp = spiritMaxHp(member.cardId, member.level)
+  for (const member of save.team) {
+    member.hp = spiritMaxHp(member.cardId, member.level)
+    member.pp = fullPP(member.cardId, member.level)
+    member.status = null
+    member.statusTurns = 0
+  }
 }
 function gainXp(member: AdventureSpirit, amount: number) {
   member.xp += amount
-  while (member.level < 30 && member.xp >= xpForNext(member.level)) {
+  while (member.level < 50 && member.xp >= xpForNext(member.level)) {
     const oldMax = spiritMaxHp(member.cardId, member.level)
     member.xp -= xpForNext(member.level)
     member.level++
-    member.hp += spiritMaxHp(member.cardId, member.level) - oldMax
+    if (member.hp > 0)
+      member.hp += spiritMaxHp(member.cardId, member.level) - oldMax
+    member.pp = { ...fullPP(member.cardId, member.level), ...member.pp }
   }
+  if (member.level === 50) member.xp = 0
 }
-function beginEncounter(save: AdventureSave, cardId: string, level: number, kind: "wild" | "keeper") {
-  const lead = aliveMember(save)
-  if (!lead || !CARD_MAP[cardId]) return
-  const maxHp = spiritMaxHp(cardId, level)
-  save.encounter = { id: `${save.areaId}-${save.steps}-${cardId}-${kind}`, kind, cardId, level, hp: maxHp, maxHp, activeUid: lead.uid, turn: 1, playerGuard: 0, enemyGuard: 0, enemyWeaken: 0, attempts: 0, log: [kind === "keeper" ? `${ADVENTURE_AREA_MAP[save.areaId].keeper.title} nhận lời thách đấu!` : `${CARD_MAP[cardId].name} xuất hiện trong làn hương!`] }
-  addUnique(save.discovered, cardId)
+export function captureChance(encounter: AdventureEncounter) {
+  if (encounter.kind !== "wild") return 0
+  return Math.min(
+    0.96,
+    0.25 +
+      (1 - encounter.hp / encounter.maxHp) * 0.65 +
+      (encounter.enemyStatus ? 0.12 : 0),
+  )
+}
+function active(save: AdventureSave) {
+  return save.team.find((member) => member.uid === save.encounter?.activeUid)
+}
+function startEncounter(
+  save: AdventureSave,
+  cardId: string,
+  level: number,
+  kind: AdventureEncounter["kind"],
+  npc?: MapNpc,
+) {
+  const member = save.team.find((member) => member.hp > 0)
+  if (!member) {
+    say(save, "Cả đội cần nghỉ tại Bếp Nghỉ trước khi tiếp tục.")
+    return
+  }
+  save.encounter = {
+    id: `${save.mapId}-${save.steps}-${cardId}-${kind}`,
+    kind,
+    cardId,
+    level,
+    hp: spiritMaxHp(cardId, level),
+    maxHp: spiritMaxHp(cardId, level),
+    activeUid: member.uid,
+    turn: 1,
+    playerGuard: 0,
+    enemyGuard: 0,
+    enemyWeaken: 0,
+    attempts: 0,
+    log: [
+      npc
+        ? `${npc.name} nhận lời thách đấu!`
+        : `${CARD_MAP[cardId].name} xuất hiện trong bãi hương!`,
+    ],
+    npcId: npc?.id,
+    roster: npc?.roster,
+    wave: 0,
+    enemyPP: fullPP(cardId, level),
+    enemyStatus: null,
+    enemyStatusTurns: 0,
+    participants: [member.uid],
+  }
+  unique(save.discovered, cardId)
   save.message = null
+  save.service = null
 }
 function respawn(save: AdventureSave) {
-  const area = ADVENTURE_AREA_MAP[save.areaId]
-  healTeam(save); save.encounter = null; save.x = area.spawn.x; save.y = area.spawn.y
-  save.message = "Cả đội đã kiệt sức. Người trong vùng đưa bạn về Bếp Nghỉ và hồi phục Vị Linh."
-}
-function enemyTurn(save: AdventureSave) {
-  const encounter = save.encounter
-  const member = currentMember(save)
-  if (!encounter || !member) return
-  const enemyCard = CARD_MAP[encounter.cardId], memberCard = CARD_MAP[member.cardId]
-  const special = encounter.turn % 3 === 0
-  const raw = Math.max(1, Math.round(spiritAttack(encounter.cardId, encounter.level) * (special ? 1.25 : .82) * schoolMultiplier(enemyCard.school, memberCard.school)) - encounter.enemyWeaken)
-  const damage = Math.max(1, raw - encounter.playerGuard)
-  member.hp = Math.max(0, member.hp - damage)
-  encounter.playerGuard = 0; encounter.enemyWeaken = 0
-  appendLog(encounter, `${enemyCard.name} ${special ? "bung hương thức" : "phản công"} · ${damage} sát thương.`)
-  if (!member.hp) {
-    const next = aliveMember(save)
-    if (!next) { respawn(save); return }
-    encounter.activeUid = next.uid
-    appendLog(encounter, `${memberCard.name} lùi lại. ${CARD_MAP[next.cardId].name} tiếp sức!`)
-  }
-  encounter.turn++
-}
-function finishVictory(save: AdventureSave) {
-  const encounter = save.encounter!
-  const member = currentMember(save)!
-  const card = CARD_MAP[encounter.cardId]
-  gainXp(member, encounter.kind === "keeper" ? 18 + encounter.level * 2 : 7 + encounter.level)
-  if (encounter.kind === "keeper") {
-    const area = ADVENTURE_AREA_MAP[save.areaId]
-    addUnique(save.badges, area.keeper.badge); addUnique(save.completedQuests, `keeper:${area.id}`)
-    save.aromaSeals += 4
-    if (area.id === "moon-table") save.completed = true
-    save.message = area.id === "moon-table"
-      ? "Giao Ước Năm Vị đã hoàn thành. Bàn Trăng sáng lên và mọi vùng đường đều mở để bạn tiếp tục sưu tầm."
-      : `Nhận ${area.keeper.badgeName} và 4 Hương Ấn. Lối sang vùng kế tiếp đã mở.`
-  } else save.message = `${card.name} trở về làn hương. ${CARD_MAP[member.cardId].name} nhận kinh nghiệm.`
+  healTeam(save)
   save.encounter = null
+  save.mapId = `${save.areaId}:clinic`
+  save.x = 5
+  save.y = 7
+  save.follower = null
+  save.service = null
+  unique(save.visitedMaps, save.mapId)
+  say(
+    save,
+    "Cả đội kiệt sức. Bà đưa bạn về Bếp Nghỉ và hồi HP, PP cùng trạng thái. Xu và Vị Linh vẫn được giữ.",
+    "grandmother",
+  )
 }
-function battle(save: AdventureSave, action: Extract<AdventureAction, { type: "battle" }>): AdventureResult {
-  const encounter = save.encounter
-  const member = currentMember(save)
-  if (!encounter || !member) return { save, error: "Không có cuộc chạm trán đang diễn ra." }
-  const card = CARD_MAP[member.cardId], enemy = CARD_MAP[encounter.cardId]
+function settleFaint(save: AdventureSave) {
+  const encounter = save.encounter!,
+    member = active(save)!
+  if (member.hp > 0) return false
+  const next = save.team.find((candidate) => candidate.hp > 0)
+  if (!next) {
+    respawn(save)
+    return true
+  }
+  encounter.activeUid = next.uid
+  unique(encounter.participants!, next.uid)
+  encounter.playerGuard = 0
+  log(
+    encounter,
+    `${CARD_MAP[member.cardId].name} kiệt sức. ${CARD_MAP[next.cardId].name} tiếp sức!`,
+  )
+  return true
+}
+/** Returns true when a wave ended, so the incoming opponent cannot attack in the same action. */
+function settleEnemy(save: AdventureSave) {
+  const encounter = save.encounter!
+  if (encounter.hp > 0) return false
+  const participants = save.team.filter((member) =>
+    encounter.participants?.includes(member.uid),
+  )
+  for (const member of participants)
+    gainXp(
+      member,
+      Math.ceil((8 + encounter.level * 2) / Math.max(1, participants.length)),
+    )
+  const nextWave = (encounter.wave ?? 0) + 1,
+    next = encounter.roster?.[nextWave]
+  if (next) {
+    encounter.wave = nextWave
+    encounter.cardId = next.cardId
+    encounter.level = next.level
+    encounter.maxHp = spiritMaxHp(next.cardId, next.level)
+    encounter.hp = encounter.maxHp
+    encounter.enemyStatus = null
+    encounter.enemyStatusTurns = 0
+    encounter.enemyPP = fullPP(next.cardId, next.level)
+    encounter.enemyGuard = 0
+    unique(save.discovered, next.cardId)
+    log(encounter, `Đối thủ đưa ${CARD_MAP[next.cardId].name} vào sân!`)
+    encounter.turn++
+    return true
+  }
+  const area = ADVENTURE_AREA_MAP[save.areaId],
+    reward =
+      encounter.kind === "wild" ? 8 + encounter.level : 35 + encounter.level * 4
+  save.coins = Math.min(99999, save.coins + reward)
+  if (encounter.kind === "keeper") {
+    unique(save.badges, area.keeper.badge)
+    unique(save.completedQuests, `keeper:${area.id}`)
+    save.aromaSeals = Math.min(999, save.aromaSeals + 4)
+    if (area.id === "moon-table") save.completed = true
+    say(
+      save,
+      save.completed
+        ? `Giao Ước Năm Vị hoàn tất! Nhận ${reward} xu. Bạn có thể tiếp tục khám phá và sưu tầm.`
+        : `Nhận ${area.keeper.badgeName}, 4 Hương Ấn và ${reward} xu. Đường sang vùng tiếp theo đã mở!`,
+      area.npc.id,
+    )
+  } else {
+    if (encounter.npcId) unique(save.defeatedTrainers, encounter.npcId)
+    say(
+      save,
+      `Chiến thắng! Đội nhận kinh nghiệm và ${reward} xu${
+        encounter.kind === "trainer" ? ". Lả ghi nhớ cuộc đấu này" : ""
+      }.`,
+    )
+  }
+  save.encounter = null
+  return true
+}
+function statusTick(
+  member: { hp: number; status?: AdventureStatus; statusTurns?: number },
+  max: number,
+) {
+  if ((member.status === "burn" || member.status === "rooted") && member.hp > 0)
+    member.hp = Math.max(0, member.hp - Math.max(1, Math.floor(max / 12)))
+  member.statusTurns = Math.max(0, (member.statusTurns ?? 0) - 1)
+  if (!member.statusTurns) member.status = null
+}
+function endRound(save: AdventureSave) {
+  if (!save.encounter) return
+  const e = save.encounter,
+    member = active(save)!
+  const enemy = {
+    hp: e.hp,
+    status: e.enemyStatus,
+    statusTurns: e.enemyStatusTurns,
+  }
+  const oldHP = member.hp,
+    oldEnemyHP = e.hp
+  statusTick(member, spiritMaxHp(member.cardId, member.level))
+  statusTick(enemy, e.maxHp)
+  e.hp = enemy.hp
+  e.enemyStatus = enemy.status
+  e.enemyStatusTurns = enemy.statusTurns
+  if (oldHP > member.hp || oldEnemyHP > e.hp)
+    log(e, "Trạng thái rút sinh lực cuối lượt.")
+  // Simultaneous exhaustion favours the player's earned victory; then check remaining team.
+  if (!e.hp) {
+    settleEnemy(save)
+    if (save.encounter) settleFaint(save)
+    else if (!save.team.some((item) => item.hp > 0)) respawn(save)
+    return
+  }
+  if (settleFaint(save)) {
+    if (save.encounter) save.encounter.turn++
+    return
+  }
+  e.turn++
+}
+function damage(
+  attacker: string,
+  level: number,
+  skill: AdventureSkill,
+  defender: string,
+  status: AdventureStatus | undefined,
+  guard: number,
+) {
+  const multiplier = skill.school
+    ? schoolMultiplier(skill.school, CARD_MAP[defender].school)
+    : 1
+  const raw =
+    spiritAttack(attacker, level) *
+    skill.power *
+    multiplier *
+    (status === "burn" ? 0.8 : 1)
+  return skill.power ? Math.max(1, Math.round(raw) - guard) : 0
+}
+function playerSkill(
+  save: AdventureSave,
+  skill: AdventureSkill,
+  spendPP = true,
+) {
+  const e = save.encounter!,
+    member = active(save)!
+  if (
+    member.status === "drowsy" &&
+    hash(`${e.id}:${e.turn}:sleep:player`) % 3 === 0
+  ) {
+    log(e, `${CARD_MAP[member.cardId].name} mơ màng, bỏ lượt.`)
+    return
+  }
+  if (spendPP) member.pp![skill.id]--
+  const dealt = damage(
+    member.cardId,
+    member.level,
+    skill,
+    e.cardId,
+    member.status,
+    e.enemyGuard,
+  )
+  e.hp = Math.max(0, e.hp - dealt)
+  if (dealt) e.enemyGuard = 0
+  if (skill.effect === "shield")
+    e.playerGuard = 8 + Math.floor(member.level / 2)
+  else if (skill.effect === "heal")
+    member.hp = Math.min(
+      spiritMaxHp(member.cardId, member.level),
+      member.hp + Math.ceil(spiritMaxHp(member.cardId, member.level) * 0.25),
+    )
+  else if (skill.effect === "cleanse") {
+    member.status = null
+    member.statusTurns = 0
+    member.hp = Math.min(
+      spiritMaxHp(member.cardId, member.level),
+      member.hp + Math.ceil(spiritMaxHp(member.cardId, member.level) * 0.15),
+    )
+  } else if (skill.effect && e.hp > 0) {
+    e.enemyStatus = skill.effect
+    e.enemyStatusTurns = 4
+  }
+  const effectiveness = skill.school
+    ? schoolMultiplier(skill.school, CARD_MAP[e.cardId].school)
+    : 1
+  log(
+    e,
+    `${CARD_MAP[member.cardId].name}: ${skill.name}${
+      dealt ? ` · ${dealt} sát thương` : " · dựng khiên"
+    }${
+      effectiveness > 1
+        ? " · rất hiệu quả!"
+        : effectiveness < 1
+          ? " · bị kháng"
+          : ""
+    }.`,
+  )
+}
+function enemyAction(save: AdventureSave) {
+  const e = save.encounter!,
+    member = active(save)!
+  if (
+    e.enemyStatus === "drowsy" &&
+    hash(`${e.id}:${e.turn}:sleep:enemy`) % 3 === 0
+  ) {
+    log(e, "Đối thủ mơ màng, bỏ lượt.")
+    return
+  }
+  const available = skillsFor(e.cardId, e.level).filter(
+    (skill) => (e.enemyPP?.[skill.id] ?? 0) > 0,
+  )
+  const skill = available.length
+    ? available[e.turn % available.length]
+    : SKILL_MAP.ladle
+  if (available.length) e.enemyPP![skill.id]--
+  const dealt = Math.max(
+    0,
+    damage(
+      e.cardId,
+      e.level,
+      skill,
+      member.cardId,
+      e.enemyStatus,
+      e.playerGuard,
+    ) - e.enemyWeaken,
+  )
+  e.enemyWeaken = 0
+  if (dealt) {
+    member.hp = Math.max(0, member.hp - dealt)
+    e.playerGuard = 0
+  }
+  if (skill.effect === "shield") e.enemyGuard = 8 + Math.floor(e.level / 2)
+  else if (skill.effect === "heal")
+    e.hp = Math.min(e.maxHp, e.hp + Math.ceil(e.maxHp * 0.25))
+  else if (skill.effect === "cleanse") {
+    e.enemyStatus = null
+    e.enemyStatusTurns = 0
+    e.hp = Math.min(e.maxHp, e.hp + Math.ceil(e.maxHp * 0.15))
+  } else if (skill.effect && member.hp > 0) {
+    member.status = skill.effect
+    member.statusTurns = 4
+  }
+  log(
+    e,
+    `${CARD_MAP[e.cardId].name}: ${skill.name}${
+      dealt ? ` · ${dealt} sát thương` : " · dựng khiên"
+    }.`,
+  )
+}
+function useItem(
+  save: AdventureSave,
+  item: AdventureItem,
+  uid: string,
+): string | undefined {
+  const member = save.team.find((candidate) => candidate.uid === uid)
+  if (!member || item === "seal")
+    return "Chọn một Vị Linh và vật phẩm hồi phục hợp lệ."
+  if (!save.inventory[item]) return "Bạn đã hết vật phẩm này."
+  const max = spiritMaxHp(member.cardId, member.level)
+  if (item === "revive" && member.hp > 0)
+    return "Lá Tỉnh chỉ dùng cho Vị Linh kiệt sức."
+  if (item === "potion" && !member.hp) return "Vị Linh kiệt sức cần Lá Tỉnh."
+  if (item === "potion" && member.hp === max && !member.status)
+    return "Vị Linh đang khỏe mạnh."
+  save.inventory[item]--
+  member.hp =
+    item === "revive" ? Math.ceil(max / 2) : Math.min(max, member.hp + 30)
+  member.status = null
+  member.statusTurns = 0
+}
+function battle(
+  save: AdventureSave,
+  action: Extract<AdventureAction, { type: "battle" }>,
+): AdventureResult {
+  const e = save.encounter,
+    member = active(save)
+  if (!e || !member)
+    return { save, error: "Không có cuộc chạm trán đang diễn ra." }
   if (action.move === "switch") {
-    const next = save.team.find((candidate) => candidate.uid === action.uid && candidate.hp > 0)
-    if (!next) return { save, error: "Vị Linh này chưa thể vào trận." }
-    if (next.uid === encounter.activeUid) return { save, error: "Vị Linh này đang ở trên sân." }
-    encounter.activeUid = next.uid
-    appendLog(encounter, `${CARD_MAP[next.cardId].name} vào thay và đón lượt phản công.`)
-    enemyTurn(save)
+    const next = save.team.find(
+      (candidate) => candidate.uid === action.uid && candidate.hp > 0,
+    )
+    if (!next || next.uid === e.activeUid)
+      return { save, error: "Vị Linh này chưa thể vào thay." }
+    e.activeUid = next.uid
+    e.playerGuard = 0
+    unique(e.participants!, next.uid)
+    log(e, `${CARD_MAP[next.cardId].name} vào thay!`)
+    enemyAction(save)
+    endRound(save)
     return { save, event: "battle" }
   }
   if (action.move === "flee") {
-    if (encounter.kind === "keeper") return { save, error: "Người giữ ấn muốn thấy cuộc đấu đi đến cùng." }
-    if ((hash(`${encounter.id}:flee:${encounter.turn}`) % 100) < 72) { save.encounter = null; save.message = "Cả đội đã rút lui an toàn."; return { save, event: "move" } }
-    appendLog(encounter, "Đường lui bị chặn."); enemyTurn(save); return { save, event: "battle" }
+    if (e.kind !== "wild")
+      return { save, error: "Hãy hoàn thành cuộc đấu với người trong vùng." }
+    if (hash(`${e.id}:flee:${e.turn}`) % 100 < 75) {
+      save.encounter = null
+      say(save, "Đã rút lui an toàn.")
+      return { save, event: "move" }
+    }
+    log(e, "Đường lui bị chặn!")
+    enemyAction(save)
+    endRound(save)
+    return { save, event: "battle" }
   }
   if (action.move === "befriend") {
-    if (encounter.kind === "keeper") return { save, error: "Vị Linh giữ ấn không thể được mời khi đang làm nhiệm vụ." }
-    if (save.aromaSeals < 1) return { save, error: "Bạn đã hết Hương Ấn." }
-    save.aromaSeals--; encounter.attempts++
-    const chance = captureChance(encounter), roll = (hash(`${encounter.id}:seal:${encounter.attempts}`) % 1000) / 1000
-    if (roll <= chance) {
-      const caught = makeMember(encounter.cardId, encounter.level, `adv-${save.steps}-${encounter.attempts}-${hash(encounter.id).toString(36)}`, Math.max(.35, encounter.hp / encounter.maxHp))
-      const destination = save.team.length < 4 ? save.team : save.reserve
-      if (destination === save.reserve && save.reserve.length >= 20) return { save, error: "Tủ Vị Linh đã đầy 20 chỗ." }
-      destination.push(caught); addUnique(save.discovered, caught.cardId); save.encounter = null
-      save.message = `${enemy.name} nhận lời về cùng bạn${destination === save.reserve ? " và đang nghỉ trong Tủ Vị Linh" : ""}.`
+    if (e.kind !== "wild")
+      return { save, error: "Không thể thu phục Vị Linh thuộc đội NPC." }
+    if (!save.aromaSeals) return { save, error: "Bạn đã hết Hương Ấn." }
+    if (save.team.length >= 6 && save.reserve.length >= 60)
+      return { save, error: "Đội và Tủ Vị Linh đã đầy." }
+    save.aromaSeals--
+    e.attempts++
+    if (
+      (hash(`${e.id}:seal:${e.attempts}`) % 1000) / 1000 <=
+      captureChance(e)
+    ) {
+      const caught = makeMember(
+        e.cardId,
+        e.level,
+        `adv-${save.steps}-${e.attempts}-${hash(e.id).toString(36)}`,
+      )
+      caught.hp = Math.max(1, e.hp)
+      caught.status = e.enemyStatus
+      caught.statusTurns = e.enemyStatusTurns
+      const destination = save.team.length < 6 ? save.team : save.reserve
+      destination.push(caught)
+      unique(save.discovered, caught.cardId)
+      save.encounter = null
+      say(
+        save,
+        `${CARD_MAP[caught.cardId].name} nhận lời đồng hành${
+          destination === save.reserve ? " và nghỉ tại Tủ Vị Linh" : ""
+        }!`,
+      )
       return { save, event: "capture" }
     }
-    appendLog(encounter, `${enemy.name} chưa sẵn sàng nhận lời mời.`); enemyTurn(save); return { save, event: "battle" }
+    log(e, "Hương Ấn tan ra. Vị Linh chưa sẵn sàng!")
+    enemyAction(save)
+    endRound(save)
+    return { save, event: "battle" }
+  }
+  if (action.move === "item") {
+    const error = useItem(
+      save,
+      action.item ?? "potion",
+      action.uid ?? member.uid,
+    )
+    if (error) return { save, error }
+    log(e, "Đội dùng vật phẩm, đối thủ đón lượt.")
+    enemyAction(save)
+    endRound(save)
+    return { save, event: "heal" }
   }
   if (action.move === "guard") {
-    encounter.playerGuard = 5 + Math.floor(member.level / 5); appendLog(encounter, `${card.name} giữ mâm, giảm đòn kế tiếp.`)
-    enemyTurn(save); return { save, event: "battle" }
+    e.playerGuard = 6 + Math.floor(member.level / 2)
+    log(e, `${CARD_MAP[member.cardId].name} giữ mâm!`)
+    enemyAction(save)
+    endRound(save)
+    return { save, event: "battle" }
   }
-  if (action.move === "skill") {
-    let power = spiritAttack(member.cardId, member.level) + 3
-    if (card.school === "ember") power += 2
-    const damage = Math.max(1, Math.round(power * schoolMultiplier(card.school, enemy.school)) - encounter.enemyGuard)
-    encounter.enemyGuard = 0; encounter.hp = Math.max(0, encounter.hp - damage)
-    if (card.school === "grove" || card.school === "sugar") member.hp = Math.min(spiritMaxHp(member.cardId, member.level), member.hp + 3 + Math.floor(member.level / 4))
-    if (card.school === "hearth" || card.school === "sugar") encounter.playerGuard += 3
-    if (card.school === "tide") encounter.enemyWeaken = 3
-    appendLog(encounter, `${card.name} dùng Hương thức ${SCHOOLS[card.school].name} · ${damage} sát thương.`)
+  const skillId =
+    action.move === "strike"
+      ? "ladle"
+      : (action.skillId ??
+        skillsFor(member.cardId, member.level).find((skill) => skill.school)
+          ?.id)
+  const skill = skillsFor(member.cardId, member.level).find(
+    (candidate) => candidate.id === skillId,
+  )
+  if (!skill) return { save, error: "Vị Linh chưa học kỹ năng này." }
+  const struggle =
+    action.move === "strike" &&
+    !skillsFor(member.cardId, member.level).some(
+      (candidate) => (member.pp?.[candidate.id] ?? 0) > 0,
+    )
+  if (!struggle && !(member.pp?.[skill.id] ?? 0))
+    return { save, error: "Kỹ năng đã hết PP. Ghé Bếp Nghỉ để hồi PP." }
+  const playerFirst =
+    spiritSpeed(member.cardId, member.level, member.status) >=
+    spiritSpeed(e.cardId, e.level, e.enemyStatus)
+  if (playerFirst) {
+    playerSkill(save, skill, !struggle)
+    if (settleEnemy(save))
+      return { save, event: save.encounter ? "battle" : "win" }
+    enemyAction(save)
+    if (member.hp === 0) {
+      endRound(save)
+      return { save, event: "battle" }
+    }
   } else {
-    const damage = Math.max(1, Math.round(spiritAttack(member.cardId, member.level) * .9 * schoolMultiplier(card.school, enemy.school)) - encounter.enemyGuard)
-    encounter.enemyGuard = 0; encounter.hp = Math.max(0, encounter.hp - damage)
-    appendLog(encounter, `${card.name} đánh Nhịp Muôi · ${damage} sát thương.`)
+    enemyAction(save)
+    if (member.hp === 0) {
+      endRound(save)
+      return { save, event: "battle" }
+    }
+    playerSkill(save, skill, !struggle)
+    if (settleEnemy(save))
+      return { save, event: save.encounter ? "battle" : "win" }
   }
-  if (!encounter.hp) { finishVictory(save); return { save, event: "win" } }
-  enemyTurn(save)
-  return { save, event: "battle" }
+  if (struggle) {
+    member.hp = Math.max(
+      0,
+      member.hp - Math.ceil(spiritMaxHp(member.cardId, member.level) / 12),
+    )
+    log(e, "Cố Sức: mất một phần HP vì đã hết PP.")
+  }
+  endRound(save)
+  return { save, event: save.encounter ? "battle" : "win" }
 }
-
-export function reduceAdventure(current: AdventureSave | undefined, action: AdventureAction): AdventureResult {
-  const save = clone(current ?? newAdventure())
+function interactNpc(save: AdventureSave, npc: MapNpc): AdventureResult {
+  const area = ADVENTURE_AREA_MAP[save.areaId]
+  if (npc.role === "healer") {
+    healTeam(save)
+    say(
+      save,
+      "Cả đội đã hồi đầy HP, PP và gỡ mọi trạng thái. Tủ Vị Linh ở bên phải bếp.",
+      npc.character,
+    )
+    return { save, event: "heal" }
+  }
+  if (npc.role === "merchant") {
+    save.service = "shop"
+    say(save, npc.text, npc.character)
+    return { save }
+  }
+  if (npc.role === "trainer" || npc.role === "keeper") {
+    if (
+      save.defeatedTrainers.includes(npc.id) ||
+      (npc.role === "keeper" && save.badges.includes(area.keeper.badge))
+    ) {
+      say(
+        save,
+        "Một cuộc đấu đẹp! Hãy đi tiếp; những người ở vùng sau đang chờ bạn.",
+        npc.character,
+      )
+      return { save }
+    }
+    const first = npc.roster![0]
+    startEncounter(
+      save,
+      first.cardId,
+      first.level,
+      npc.role === "keeper" ? "keeper" : "trainer",
+      npc,
+    )
+    return { save, event: "battle" }
+  }
+  if (npc.role === "quest") {
+    const quest = `memory:${area.id}`,
+      required = area.chapter + 2
+    if (save.completedQuests.includes(quest))
+      say(
+        save,
+        "Cảm ơn bạn đã kể lại tên những món ăn. Ký ức của ngôi nhà đã sáng lên.",
+        npc.character,
+      )
+    else if (save.discovered.length >= required) {
+      unique(save.completedQuests, quest)
+      save.coins = Math.min(99999, save.coins + 60)
+      save.inventory.revive = Math.min(99, save.inventory.revive + 1)
+      say(
+        save,
+        "Bạn đã mang đủ tên món về Nhà Ký Ức! Nhận 60 xu và 1 Lá Tỉnh.",
+        npc.character,
+      )
+    } else
+      say(
+        save,
+        `${npc.text} Tiến độ: ${save.discovered.length}/${required} loài.`,
+        npc.character,
+      )
+    return { save, event: "capture" }
+  }
+  unique(save.completedQuests, `talk:${area.id}`)
+  say(
+    save,
+    npc.role === "guide" && save.badges.includes(area.keeper.badge)
+      ? area.npc.after
+      : npc.text,
+    npc.character,
+  )
+  return { save }
+}
+export function reduceAdventure(
+  current: AdventureSave | undefined,
+  action: AdventureAction,
+): AdventureResult {
+  const save = current ? migrateAdventure(current) : newAdventure()
   if (action.type === "start") {
-    if (save.started) return { save, error: "Chuyến phiêu lưu đã bắt đầu." }
-    if (!ADVENTURE_STARTERS.includes(action.cardId as typeof ADVENTURE_STARTERS[number]) || !CARD_MAP[action.cardId]) return { save, error: "Vị Linh khởi hành không hợp lệ." }
-    save.started = true; save.team = [makeMember(action.cardId, 5, `starter-${action.cardId}`)]; addUnique(save.discovered, action.cardId)
-    save.message = `${CARD_MAP[action.cardId].name} đã chọn đồng hành. Hãy gặp Bách ở phía trên và tìm Người Giữ Đèn.`
+    if (
+      save.started ||
+      !ADVENTURE_STARTERS.includes(
+        action.cardId as typeof ADVENTURE_STARTERS[number],
+      )
+    )
+      return {
+        save,
+        error: "Vị Linh khởi hành không hợp lệ hoặc chuyến đi đã bắt đầu.",
+      }
+    save.started = true
+    save.team = [makeMember(action.cardId, 5, `starter-${action.cardId}`)]
+    unique(save.discovered, action.cardId)
+    say(
+      save,
+      `${CARD_MAP[action.cardId].name} chọn đồng hành! Gặp Bách cạnh đường, vào Bếp Nghỉ và ghé Tiệm Hương trước khi ra bãi cỏ.`,
+      "grandmother",
+    )
     return { save, event: "capture" }
   }
   if (!save.started) return { save, error: "Hãy chọn Vị Linh đồng hành trước." }
-  if (action.type === "dismiss") { save.message = null; return { save } }
+  if (action.type === "dismiss") {
+    save.message = null
+    save.service = null
+    save.speaker = null
+    return { save }
+  }
   if (action.type === "battle") return battle(save, action)
-  if (save.encounter) return { save, error: "Hãy giải quyết cuộc chạm trán trước." }
-  if (action.type === "heal") { healTeam(save); save.message = "Cả đội đã được hồi phục tại Bếp Nghỉ."; return { save, event: "heal" } }
+  if (save.encounter)
+    return { save, error: "Hãy giải quyết cuộc chạm trán trước." }
+  const map = ADVENTURE_MAP_BY_ID[save.mapId],
+    area = ADVENTURE_AREA_MAP[save.areaId]
+  if (action.type === "heal") {
+    if (!map.id.endsWith(":clinic"))
+      return { save, error: "Vào Bếp Nghỉ và gặp Bà để hồi HP, PP." }
+    healTeam(save)
+    say(save, "Cả đội đã hồi phục hoàn toàn.", "grandmother")
+    return { save, event: "heal" }
+  }
+  if (action.type === "buy") {
+    if (save.service !== "shop" || !map.id.endsWith(":shop"))
+      return { save, error: "Hãy nói chuyện với chủ Tiệm Hương." }
+    const item = ADVENTURE_SHOP.find(
+      (candidate) => candidate.id === action.item,
+    )!
+    if (save.coins < item.price) return { save, error: "Bạn chưa đủ xu." }
+    if (
+      action.item === "seal"
+        ? save.aromaSeals >= 999
+        : save.inventory[action.item] >= 99
+    )
+      return { save, error: "Túi vật phẩm này đã đầy." }
+    save.coins -= item.price
+    if (action.item === "seal") save.aromaSeals++
+    else save.inventory[action.item]++
+    say(save, `Đã mua ${item.name}.`, "merchant")
+    return { save }
+  }
+  if (action.type === "item") {
+    const error = useItem(save, action.item, action.uid)
+    return { save, error, event: error ? undefined : "heal" }
+  }
   if (action.type === "lead") {
-    const index = save.team.findIndex((member) => member.uid === action.uid)
-    if (index < 0) return { save, error: "Vị Linh không ở trong đội." }
-    save.team = [save.team[index], ...save.team.slice(0, index), ...save.team.slice(index + 1)]
-    save.message = `${CARD_MAP[save.team[0].cardId].name} đang dẫn đội.`; return { save }
+    const index = save.team.findIndex(
+      (member) => member.uid === action.uid && member.hp > 0,
+    )
+    if (index < 0) return { save, error: "Vị Linh cần còn HP để dẫn đội." }
+    save.team = [
+      save.team[index],
+      ...save.team.slice(0, index),
+      ...save.team.slice(index + 1),
+    ]
+    say(save, `${CARD_MAP[save.team[0].cardId].name} đang đi theo bạn.`)
+    return { save }
   }
-  if (action.type === "deposit") {
-    if (save.team.length <= 1) return { save, error: "Đội phải còn ít nhất một Vị Linh." }
-    if (save.reserve.length >= 20) return { save, error: "Tủ Vị Linh đã đầy." }
-    const index = save.team.findIndex((member) => member.uid === action.uid)
-    if (index < 0) return { save, error: "Vị Linh không ở trong đội." }
-    save.reserve.push(save.team[index]); save.team.splice(index, 1); return { save }
+  if (action.type === "deposit" || action.type === "withdraw") {
+    if (save.service !== "storage" || !map.id.endsWith(":clinic"))
+      return {
+        save,
+        error: "Dùng Tủ Vị Linh trong Bếp Nghỉ để đổi đội và dự bị.",
+      }
+    const from = action.type === "deposit" ? save.team : save.reserve,
+      to = action.type === "deposit" ? save.reserve : save.team
+    if (
+      to.length >= (action.type === "deposit" ? 60 : 6) ||
+      (action.type === "deposit" && from.length <= 1)
+    )
+      return { save, error: "Đội cần 1–6 Vị Linh; tủ chứa tối đa 60." }
+    const index = from.findIndex((member) => member.uid === action.uid)
+    if (index < 0) return { save, error: "Không tìm thấy Vị Linh." }
+    if (
+      action.type === "deposit" &&
+      from[index].hp > 0 &&
+      !from.some((member, i) => i !== index && member.hp > 0)
+    )
+      return { save, error: "Đội cần còn một Vị Linh có thể chiến đấu." }
+    to.push(from[index])
+    from.splice(index, 1)
+    return { save }
   }
-  if (action.type === "withdraw") {
-    if (save.team.length >= 4) return { save, error: "Đội hiện tại đã đủ 4 Vị Linh." }
-    const index = save.reserve.findIndex((member) => member.uid === action.uid)
-    if (index < 0) return { save, error: "Không tìm thấy Vị Linh trong tủ." }
-    save.team.push(save.reserve[index]); save.reserve.splice(index, 1); return { save }
+  if (action.type === "travel") {
+    if (map.interior || !save.visitedMaps.includes(action.areaId))
+      return { save, error: "Chỉ đi nhanh tới vùng đã đến, từ ngoài trời." }
+    save.areaId = action.areaId
+    save.mapId = action.areaId
+    save.x = 2
+    save.y = 14
+    save.follower = null
+    save.service = null
+    say(save, `Đã trở về ${ADVENTURE_AREA_MAP[action.areaId].name}.`)
+    return { save, event: "move" }
   }
-  const area = ADVENTURE_AREA_MAP[save.areaId]
   if (action.type === "interact") {
-    const [dx, dy] = DELTAS[save.facing], x = save.x + dx, y = save.y + dy
-    if (area.npc.x === x && area.npc.y === y) { save.message = save.badges.includes(area.keeper.badge) ? area.npc.after : area.npc.before; addUnique(save.completedQuests, `talk:${area.id}`); return { save } }
-    if (area.keeper.x === x && area.keeper.y === y) {
-      if (save.badges.includes(area.keeper.badge)) { save.message = `${area.keeper.title} đã trao ${area.keeper.badgeName}. Lối đi phía trước đang mở.`; return { save } }
-      beginEncounter(save, area.keeper.cardId, area.keeper.level, "keeper"); return { save, event: "battle" }
+    const [dx, dy] = DELTAS[save.facing],
+      x = save.x + dx,
+      y = save.y + dy
+    const npc = map.npcs.find(
+      (candidate) => candidate.x === x && candidate.y === y,
+    )
+    if (npc) return interactNpc(save, npc)
+    const sign = map.signs.find(
+      (candidate) => candidate.x === x && candidate.y === y,
+    )
+    if (sign) {
+      say(save, sign.text)
+      return { save }
     }
-    if (tile(area, save.x, save.y) === "h" || tile(area, x, y) === "h") { healTeam(save); save.message = "Bếp Nghỉ tỏa hơi ấm. Cả đội đã hồi phục hoàn toàn."; return { save, event: "heal" } }
-    save.message = "Chỉ có tiếng gió và mùi bếp thoảng qua."; return { save }
+    if (map.grid[y]?.[x] === "r" || map.grid[save.y]?.[save.x] === "r") {
+      save.service = "storage"
+      say(
+        save,
+        "Tủ Vị Linh đã mở. Dùng bảng Đội hình để gửi hoặc nhận bạn đồng hành.",
+        "grandmother",
+      )
+      return { save }
+    }
+    if (save.follower?.x === x && save.follower.y === y) {
+      say(
+        save,
+        `${CARD_MAP[save.team[0].cardId].name} ${
+          save.team[0].hp <
+          spiritMaxHp(save.team[0].cardId, save.team[0].level) / 3
+            ? "mệt rồi, muốn ghé Bếp Nghỉ"
+            : "vui vẻ đi quanh bạn và ngửi mùi bếp mới"
+        }.`,
+      )
+      return { save }
+    }
+    say(
+      save,
+      "Đứng cạnh NPC, biển chỉ dẫn hoặc Tủ Vị Linh rồi quay mặt về phía đó và bấm E.",
+    )
+    return { save }
   }
   if (action.type === "move") {
     save.facing = action.direction
-    const [dx, dy] = DELTAS[action.direction], x = save.x + dx, y = save.y + dy, target = tile(area, x, y)
-    if (target === "#" || target === "n" || target === "b") return { save }
-    save.x = x; save.y = y; save.steps++; save.message = null
-    const exit = area.exits.find((candidate) => candidate.x === x && candidate.y === y)
-    if (exit) {
-      if (exit.requires && !save.badges.includes(exit.requires)) { save.x -= dx; save.y -= dy; save.message = "Con đường vẫn phủ sương. Hãy nhận ấn của vùng này trước."; return { save } }
-      save.areaId = exit.to; save.x = exit.toX; save.y = exit.toY; save.message = `Đã tới ${ADVENTURE_AREA_MAP[exit.to].name}.`; return { save, event: "move" }
+    const [dx, dy] = DELTAS[action.direction],
+      x = save.x + dx,
+      y = save.y + dy
+    if (!canWalk(map, x, y)) return { save }
+    const exit = map.exits.find(
+      (candidate) => candidate.x === x && candidate.y === y,
+    )
+    if (exit?.requires && !save.badges.includes(exit.requires)) {
+      say(save, "Đường còn phủ sương. Nhận ấn của vùng này trước.")
+      return { save }
     }
-    const find = area.finds.find((candidate) => candidate.x === x && candidate.y === y)
-    if (find && !save.claimedFinds.includes(find.id)) { addUnique(save.claimedFinds, find.id); save.aromaSeals += find.seals; save.message = find.text; return { save, event: "capture" } }
-    if (target === "h") { healTeam(save); save.message = "Bếp Nghỉ đã hồi phục cả đội."; return { save, event: "heal" } }
-    if (target === "g" && (hash(`${save.areaId}:${x}:${y}:${save.steps}`) % 100) < 27) {
-      const index = hash(`${save.areaId}:${save.steps}:spirit`) % area.encounters.length
-      beginEncounter(save, area.encounters[index], 3 + area.chapter * 3 + (hash(`${x}:${y}`) % 3), "wild")
+    save.follower = { x: save.x, y: save.y }
+    save.x = x
+    save.y = y
+    save.steps++
+    save.message = null
+    save.speaker = null
+    save.service = null
+    if (exit) {
+      const next = ADVENTURE_MAP_BY_ID[exit.to]
+      save.mapId = next.id
+      save.areaId = next.areaId
+      save.x = exit.toX
+      save.y = exit.toY
+      save.follower = null
+      unique(save.visitedMaps, next.id)
+      say(save, `Đã tới ${next.name}.`)
+      return { save, event: "move" }
+    }
+    const find = map.finds.find(
+      (candidate) => candidate.x === x && candidate.y === y,
+    )
+    if (find && !save.claimedFinds.includes(find.id)) {
+      unique(save.claimedFinds, find.id)
+      save.aromaSeals = Math.min(999, save.aromaSeals + find.seals)
+      save.coins = Math.min(99999, save.coins + find.coins)
+      say(save, `Tìm thấy ${find.seals} Hương Ấn và ${find.coins} xu!`)
+      return { save, event: "capture" }
+    }
+    if (
+      map.grid[y][x] === "g" &&
+      hash(`${map.id}:${x}:${y}:${save.steps}`) % 100 < 18
+    ) {
+      startEncounter(
+        save,
+        area.encounters[
+          hash(`${map.id}:${save.steps}:spirit`) % area.encounters.length
+        ],
+        3 + (area.chapter - 1) * 3 + (hash(`${x}:${y}`) % 3),
+        "wild",
+      )
       return { save, event: "battle" }
     }
     return { save, event: "move" }
   }
   return { save }
 }
-
-export function tileLabel(tileId: string) {
-  return ({ "#": "Vật cản", ".": "Lối đi", g: "Bãi hương · có thể gặp Vị Linh", h: "Bếp Nghỉ", n: "Người dẫn đường", b: "Người giữ ấn", e: "Lối sang vùng", i: "Điểm tìm kiếm" } as Record<string, string>)[tileId] ?? "Ô bản đồ"
+export function tileLabel(id: string) {
+  return (
+    ({
+      "#": "Nhà",
+      t: "Cây",
+      w: "Nước",
+      f: "Nội thất",
+      c: "Bàn",
+      ".": "Nền",
+      p: "Đường",
+      g: "Cỏ hương · chạm trán",
+      n: "Nhân vật",
+      d: "Cửa nhà",
+      e: "Lối sang vùng",
+      i: "Túi quà",
+      s: "Biển chỉ dẫn",
+      r: "Tủ Vị Linh",
+    } as Record<string, string>)[id] ?? "Ô bản đồ"
+  )
 }

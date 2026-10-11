@@ -1,3 +1,13 @@
+## Web 4.3.1 · Giới thiệu tự chơi cho từng chế độ
+
+Chọn **▶ Giới thiệu** ở thanh chế độ của TCG, Auto chess, Phiêu lưu hoặc Rương để xem kịch bản 25 giây với mô hình, highlight kỹ năng/combo, nhạc và chú thích từng pha. Có tạm dừng, xem lại, bỏ qua và vào chơi; trận mẫu không tiêu vật phẩm, không nhận thưởng, không sửa tiến trình. Xem [kịch bản và kiểm chứng](dev/docs/web-v431/UPDATE.md). Cập nhật web, ngân sách 100 MB.
+
+## Web 4.3 · Adventure World
+
+Phiêu lưu có 5 vùng ngoài trời và 15 nội thất, nhân vật 4 hướng, camera theo người chơi, đi bằng bàn phím hoặc chọn điểm, Vị Linh đi theo, cửa hàng, Tủ Vị Linh, nhiệm vụ Nhà Ký Ức và các trận NPC nhiều đối thủ. Đội 6 Vị Linh dùng 16 kỹ năng có PP, tương khắc 5 hệ, tốc độ, trạng thái và vật phẩm. Nội dung/mô hình là thiết kế gốc Soul of Meal, lấy cảm hứng từ RPG thu phục sinh vật.
+
+Mở `/adventure` hoặc chọn **Phiêu lưu** trên thanh chế độ. WASD / phím mũi tên để đi, Shift để chạy, E để tương tác. Đọc [bản cập nhật](dev/docs/web-v430/UPDATE.md). Đây là cập nhật web; không thay đổi native/mobile. Ngân sách giữ ở 100 MB.
+
 # Soul of Meal 4.2.0 · Phiêu lưu Vị Linh
 
 Game ẩm thực và ký ức Việt Nam gồm **TCG**, **Chợ Đêm Auto chess** và **Rương vị giác**, chạy trên React 19 / Vite 8 / TypeScript. Không cần tài khoản; có mã MGC1 để chuyển tiến trình giữa thiết bị.

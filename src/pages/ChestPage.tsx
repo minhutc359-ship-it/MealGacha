@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Link, useNavigate, useSearchParams } from "react-router-dom"
 import gsap from "gsap"
 import { useAppStore } from "../store/useAppStore"
+import { useModeIntroStore } from "../game/modeIntroState"
 import {
   MealSlot,
   RewardInstance,
@@ -294,6 +295,7 @@ export function ChestPage() {
 
   useEffect(() => {
     const handleShortcut = (event: KeyboardEvent) => {
+      if (useModeIntroStore.getState().mode) return
       const target = event.target as HTMLElement | null
       if (target?.matches("input, textarea, select, button, a")) return
       if (event.code === "Space" && !isAnimating && !showReveal && !showOdds) {
