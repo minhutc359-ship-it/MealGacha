@@ -6,6 +6,7 @@ import { activeRun } from "../../game/expedition"
 import { useGameStore } from "../../game/useGameStore"
 import { CharacterPortrait } from "./CharacterPortrait"
 import type { GameSave } from "../../game/types"
+import { Link } from "react-router-dom"
 
 export function HomeLobby({
   save,
@@ -97,6 +98,12 @@ export function HomeLobby({
         />
       </div>
       <div className="tcg-lobby-modes">
+        <Link className="tcg-lobby-mode-link" to="/adventure">
+          <span>⌁</span>
+          <strong>Phiêu lưu Vị Linh</strong>
+          <small>Khám phá · thu phục · đấu giữ ấn</small>
+          <b>→</b>
+        </Link>
         <button
           onClick={() =>
             run ? onTab("expedition") : useGameStore.getState().start(null)

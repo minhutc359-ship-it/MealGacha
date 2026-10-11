@@ -227,6 +227,7 @@ export interface GameSave {
     claimedRewards: string[]
   }
   autoChess?: import("./autochess/types").AutoSave
+  adventure?: import("./adventure").AdventureSave
   version: 1
   coins: number
   dust: number

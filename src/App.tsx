@@ -59,6 +59,11 @@ const AutoChessPage = lazy(() =>
     default: module.AutoChessPage,
   })),
 )
+const AdventurePage = lazy(() =>
+  import("./pages/AdventurePage").then((module) => ({
+    default: module.AdventurePage,
+  })),
+)
 
 const LegalPage = lazy(() => import("./pages/LegalPage").then(module => ({ default: module.LegalPage })))
 
@@ -95,7 +100,8 @@ function AppInner() {
   if (
     location.pathname === "/" ||
     location.pathname === "/game" ||
-    location.pathname === "/autochess"
+    location.pathname === "/autochess" ||
+    location.pathname === "/adventure"
   )
     return (
       <Suspense
@@ -106,7 +112,7 @@ function AppInner() {
           </div>
         }
       >
-        {location.pathname === "/autochess" ? <AutoChessPage /> : <TCGPage />}
+        {location.pathname === "/autochess" ? <AutoChessPage /> : location.pathname === "/adventure" ? <AdventurePage /> : <TCGPage />}
       </Suspense>
     )
 

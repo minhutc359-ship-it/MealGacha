@@ -43,9 +43,11 @@ import { isStageUnlocked } from "./story"
 import { getDateKey } from "../domain/dateKey"
 import type { GameSave } from "./types"
 import { reduceAuto, type AutoAction } from "./autochess/reducer"
+import { reduceAdventure, type AdventureAction } from "./adventure"
 
 interface Store {
   autoAction(action: AutoAction): boolean
+  adventureAction(action: AdventureAction): boolean
   save: GameSave
   notice: string | null
   presentation: BattlePresentation | null
@@ -105,6 +107,11 @@ export const useGameStore = create<Store>((set, get) => {
       const save = current(), result = reduceAuto(save.autoChess, action)
       if (result.error) { set({ notice: result.error }); return false }
       return commit({ ...save, autoChess: result.save })
+    },
+    adventureAction(action) {
+      const save = current(), result = reduceAdventure(save.adventure, action)
+      if (result.error) { set({ notice: result.error }); return false }
+      return commit({ ...save, adventure: result.save })
     },
     claimV4Gift() {
       const save = current()

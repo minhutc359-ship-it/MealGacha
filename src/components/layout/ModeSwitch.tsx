@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-export function ModeSwitch({ mode }: { mode: "tcg" | "chest" | "auto" }) {
+export function ModeSwitch({ mode }: { mode: "tcg" | "chest" | "auto" | "adventure" }) {
   return (
     <nav className="meal-mode-selector" aria-label="Chuyển chế độ game">
       {([
@@ -11,6 +11,12 @@ export function ModeSwitch({ mode }: { mode: "tcg" | "chest" | "auto" }) {
           label: "Auto chess",
           name: "Auto chess",
           url: "/autochess",
+        },
+        {
+          id: "adventure",
+          label: "Phiêu lưu",
+          name: "Phiêu lưu Vị Linh",
+          url: "/adventure",
         },
       ] as const)
         .filter((m) => m.id !== mode)
