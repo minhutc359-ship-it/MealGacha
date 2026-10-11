@@ -6,7 +6,7 @@ Phạm vi phát hành này chỉ dành cho web. Không sync Capacitor, không t�
 
 - Route độc lập `/adventure`, được lazy-load khỏi TCG, Auto chess và Rương vị giác.
 - Năm vùng liên thông: Phố Đèn Lồng, Bến Sau Mưa, Vườn Lá Thơm, Cầu Triều Lửa và Bàn Trăng.
-- Ba Vị Linh khởi hành, 20 loài trong quần thể vùng và năm Người Giữ Ấn.
+- Ba Vị Linh khởi hành, 21 loài xuất hiện trong quần thể vùng và năm Người Giữ Ấn.
 - Điều khiển bàn phím WASD/phím mũi tên, tương tác bằng E/Enter/Space, D-pad và chọn ô kề bằng chuột.
 - Chạm trán theo bước chân; Nhịp Muôi, Hương thức, Giữ mâm, đổi Vị Linh, rút lui và thu phục bằng Hương Ấn.
 - Vòng tương khắc năm hệ, kỹ năng theo bản sắc hệ, kinh nghiệm/cấp độ, sinh lực giữ qua các trận và Bếp Nghỉ hồi đội.
