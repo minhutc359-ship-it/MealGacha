@@ -1,3 +1,9 @@
+## Web 4.3 · Adventure World
+
+Phiêu lưu có 5 vùng ngoài trời và 15 nội thất, nhân vật 4 hướng, camera theo người chơi, đi bằng bàn phím hoặc chọn điểm, Vị Linh đi theo, cửa hàng, Tủ Vị Linh, nhiệm vụ Nhà Ký Ức và các trận NPC nhiều đối thủ. Đội 6 Vị Linh dùng 16 kỹ năng có PP, tương khắc 5 hệ, tốc độ, trạng thái và vật phẩm. Nội dung/mô hình là thiết kế gốc Soul of Meal, lấy cảm hứng từ RPG thu phục sinh vật.
+
+Mở `/adventure` hoặc chọn **Phiêu lưu** trên thanh chế độ. WASD / phím mũi tên để đi, Shift để chạy, E để tương tác. Đọc [bản cập nhật](dev/docs/web-v430/UPDATE.md). Đây là cập nhật web; không thay đổi native/mobile. Ngân sách giữ ở 100 MB.
+
 # Soul of Meal 4.2.0 · Phiêu lưu Vị Linh
 
 Game ẩm thực và ký ức Việt Nam gồm **TCG**, **Chợ Đêm Auto chess** và **Rương vị giác**, chạy trên React 19 / Vite 8 / TypeScript. Không cần tài khoản; có mã MGC1 để chuyển tiến trình giữa thiết bị.
