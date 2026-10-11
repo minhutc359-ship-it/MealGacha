@@ -12,6 +12,7 @@ import {
 } from "../../game/adventure"
 import { HumanSprite, SpiritSprite, WorldAsset } from "./AdventureArt"
 import { CharacterPortrait } from "./CharacterPortrait"
+import { useModeIntroStore } from "../../game/modeIntroState"
 
 const directionTo = (
   from: { x: number; y: number },
@@ -78,6 +79,7 @@ export function AdventureWorld({
   const map = ADVENTURE_MAP_BY_ID[save.mapId],
     stage = useRef<HTMLDivElement>(null)
   const [tileSize, setTileSize] = useState(48)
+  const introOpen = useModeIntroStore(state => !!state.mode)
   const [goal, setGoal] = useState<{
     mapId: string
     x: number
@@ -94,7 +96,7 @@ export function AdventureWorld({
     return () => resize.disconnect()
   }, [])
   useEffect(() => {
-    if (!goal || save.encounter || save.service || goal.mapId !== map.id) {
+    if (introOpen || !goal || save.encounter || save.service || goal.mapId !== map.id) {
       if (goal) setGoal(null)
       return
     }
@@ -112,6 +114,7 @@ export function AdventureWorld({
       return
     }
     const timer = window.setTimeout(() => {
+      if (useModeIntroStore.getState().mode) return
       useGameStore
         .getState()
         .adventureAction({
@@ -123,7 +126,7 @@ export function AdventureWorld({
         setGoal(null)
     }, 160)
     return () => clearTimeout(timer)
-  }, [goal, map, save.x, save.y, save.encounter, save.service])
+  }, [goal, map, save.x, save.y, save.encounter, save.service, introOpen])
   useEffect(() => {
     const cancel = (event: KeyboardEvent) => {
       if (

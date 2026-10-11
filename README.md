@@ -1,3 +1,7 @@
+## Web 4.3.1 · Giới thiệu tự chơi cho từng chế độ
+
+Chọn **▶ Giới thiệu** ở thanh chế độ của TCG, Auto chess, Phiêu lưu hoặc Rương để xem kịch bản 25 giây với mô hình, highlight kỹ năng/combo, nhạc và chú thích từng pha. Có tạm dừng, xem lại, bỏ qua và vào chơi; trận mẫu không tiêu vật phẩm, không nhận thưởng, không sửa tiến trình. Xem [kịch bản và kiểm chứng](dev/docs/web-v431/UPDATE.md). Cập nhật web, ngân sách 100 MB.
+
 ## Web 4.3 · Adventure World
 
 Phiêu lưu có 5 vùng ngoài trời và 15 nội thất, nhân vật 4 hướng, camera theo người chơi, đi bằng bàn phím hoặc chọn điểm, Vị Linh đi theo, cửa hàng, Tủ Vị Linh, nhiệm vụ Nhà Ký Ức và các trận NPC nhiều đối thủ. Đội 6 Vị Linh dùng 16 kỹ năng có PP, tương khắc 5 hệ, tốc độ, trạng thái và vật phẩm. Nội dung/mô hình là thiết kế gốc Soul of Meal, lấy cảm hứng từ RPG thu phục sinh vật.

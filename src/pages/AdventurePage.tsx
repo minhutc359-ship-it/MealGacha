@@ -7,6 +7,7 @@ import {
   useGameMusic,
 } from "../components/game/GameAudio"
 import { useGameStore } from "../game/useGameStore"
+import { useModeIntroStore } from "../game/modeIntroState"
 import { useAppStore } from "../store/useAppStore"
 import { CARD_MAP, SCHOOLS } from "../game/catalog"
 import {
@@ -254,6 +255,7 @@ export function AdventurePage() {
   }, [save.service])
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
+      if (useModeIntroStore.getState().mode) return
       const current = useGameStore.getState().save.adventure
       const target = event.target as HTMLElement | null
       if (

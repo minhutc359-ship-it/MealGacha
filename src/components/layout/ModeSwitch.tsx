@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
+import { ModeIntroButton } from "./ModeIntroButton"
 
 export function ModeSwitch({ mode }: { mode: "tcg" | "chest" | "auto" | "adventure" }) {
   return (
-    <nav className="meal-mode-selector" aria-label="Chuyển chế độ game">
+    <nav className="meal-mode-selector" aria-label="Chế độ game và giới thiệu">
+      <ModeIntroButton mode={mode} />
       {([
         { id: "tcg", label: "TCG", name: "TCG", url: "/?tab=home" },
         { id: "chest", label: "Rương", name: "Rương vị giác", url: "/chest" },
