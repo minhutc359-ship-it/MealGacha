@@ -15,6 +15,13 @@ import {
   STATUS_NAMES,
 } from "../../game/adventureSkills"
 import { SpiritSprite } from "./AdventureArt"
+import { useGameStore } from "../../game/useGameStore"
+
+function DialogNotice() {
+  const notice = useGameStore(state => state.notice)
+  const dismiss = useGameStore(state => state.dismiss)
+  return notice ? <div className="adv-dialog-notice" role="alert"><span>{notice}</span><button type="button" aria-label="Đóng thông báo" onClick={dismiss}>×</button></div> : null
+}
 
 export function AdventureDialog({
   children,
@@ -47,6 +54,7 @@ export function AdventureDialog({
         dismiss?.()
       }}
     >
+      <DialogNotice />
       {children}
     </dialog>
   )

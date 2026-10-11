@@ -35,4 +35,4 @@ Save Adventure v2 có bản đồ nội thất, PP, trạng thái, túi đồ, x
 
 Nhân vật dùng hoạt ảnh đi bộ hai frame mỗi hướng; mô hình Vị Linh là vector 2D. Chưa có mô hình 3D, chu kỳ ngày/đêm, tiến hóa, multiplayer hoặc toàn bộ quy mô hệ thống của một game thương mại như SoulSilver. Nội dung hiện tại là chiến dịch 5 vùng có thể chơi, tiếp tục mở rộng trên cấu trúc map/skill/NPC dữ liệu.
 
-Kết quả release: **63.744.637 byte / 413 file**, tổng JS gzip **588.890 byte**, CSS gzip **84.241 byte**, không rò rỉ file; 328 asset đã đăng ký nguồn gốc. Build đạt giới hạn 100 MB và JS gzip 650 KB.
+Kết quả release: **63.745.281 byte / 413 file**, tổng JS gzip **588.922 byte**, CSS gzip **84.313 byte**, không rò rỉ file; 328 asset đã đăng ký nguồn gốc. Build đạt giới hạn 100 MB và JS gzip 650 KB.

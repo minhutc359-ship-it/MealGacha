@@ -603,7 +603,7 @@ export function AdventurePage() {
           ))}
         </AdventureDialog>
       )}
-      {notice && (
+      {notice && !save.encounter && save.service !== "shop" && (
         <div className="adv-toast" role="alert">
           <span>{notice}</span>
           <button
