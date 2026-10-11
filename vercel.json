@@ -3,11 +3,65 @@
   "framework": "vite",
   "buildCommand": "pnpm build",
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/((?!assets/|legal/.*\\.(?:txt|html)$|favicon\\.ico|manifest\\.webmanifest|robots\\.txt).*)", "destination": "/index.html" }],
+  "rewrites": [
+    {
+      "source": "/((?!assets/|legal/.*\\.(?:txt|html)$|sw\\.js|favicon\\.ico|manifest\\.webmanifest|robots\\.txt).*)",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
-    { "source": "/assets/:path*", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }] },
-    { "source": "/index.html", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
-    { "source": "/legal/:path*", "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }] },
-    { "source": "/:path*", "headers": [{ "key": "X-Content-Type-Options", "value": "nosniff" }, { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }] }
+    {
+      "source": "/assets/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/legal/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    }
   ]
 }

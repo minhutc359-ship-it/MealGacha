@@ -1,0 +1,77 @@
+{
+  "checks": [
+    {
+      "width": 320,
+      "height": 568,
+      "fastTravel": [
+        7,
+        8,
+        9
+      ],
+      "comingSoon": [
+        10,
+        11,
+        12
+      ],
+      "regionSwitch": true,
+      "progressPreserved": true,
+      "scroll": 320
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "fastTravel": [
+        7,
+        8,
+        9
+      ],
+      "comingSoon": [
+        10,
+        11,
+        12
+      ],
+      "regionSwitch": true,
+      "progressPreserved": true,
+      "scroll": 390
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "fastTravel": [
+        7,
+        8,
+        9
+      ],
+      "comingSoon": [
+        10,
+        11,
+        12
+      ],
+      "regionSwitch": true,
+      "progressPreserved": true,
+      "scroll": 844
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "fastTravel": [
+        7,
+        8,
+        9
+      ],
+      "comingSoon": [
+        10,
+        11,
+        12
+      ],
+      "regionSwitch": true,
+      "progressPreserved": true,
+      "scroll": 1366
+    },
+    {
+      "newPlayerLocked": true
+    }
+  ],
+  "errors": [],
+  "scope": "Production Chromium; mobile viewports, not a physical Android installation"
+}

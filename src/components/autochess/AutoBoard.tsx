@@ -1,5 +1,5 @@
 import {livingActorFrame} from "../../game/livingClips"
-import { motionAccent } from "../../game/motionProfiles"
+import { motionAccent, drawMotionTrail } from "../../game/motionProfiles"
 import { useEffect, useRef, type CSSProperties, type PointerEvent } from "react"
 import {
   AUTO_SCHOOLS,
@@ -381,6 +381,7 @@ export function AutoBoard({
             const stretch = Math.cos(beat * 2) * .018
             ctx.scale(1 - stretch, 1 + stretch)
           }
+          drawMotionTrail(ctx, cell, action ? (time-action.start)/Math.max(1,action.end-action.start) : 0, action?.kind === "cast", color, opts.reducedMotion || opts.lowQuality || current.paused || actor.hp<=0 || !action || action.kind === "move")
           ctx.drawImage(sheet, sx, sy, sw, sh, -anchorX * scale, -anchorY * scale, sw * scale, sh * scale)
           ctx.restore()
         } else orb(x, y - cell * .5, cell * .25, color)

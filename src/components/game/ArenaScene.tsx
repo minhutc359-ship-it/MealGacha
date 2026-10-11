@@ -59,13 +59,13 @@ export function ArenaScene({
       draw()
     }
     const shapes = () =>
-      Array.from({ length: low ? 5 : 12 }, (_, i) => {
+      Array.from({ length: low ? 5 : region === "harbor" ? 18 : 12 }, (_, i) => {
         const t = reduced ? 0 : visibleTime / 1000
         return {
           x: width * ((i * 0.173 + 0.1) % 1),
-          y: height * (0.28 + ((i * 0.117 + t * 0.018) % 0.58)),
-          r: 8 + (i % 4) * 5,
-          alpha: pressureRef.current ? 0.075 : 0.04,
+          y: region === "harbor" ? height * ((i*.173+t*.55)%1) : height * (0.28 + ((i * 0.117 + t * 0.018) % 0.58)),
+          r: region === "market" ? 2 + i%3 : 8 + (i % 4) * 5,
+          alpha: reduced ? .025 : (pressureRef.current ? .16 : .1) * (.65+.35*Math.sin(t+i)),
           wind: reduced ? 0 : Math.sin(t * 0.8 + i) * 12,
         }
       })
@@ -81,13 +81,17 @@ export function ArenaScene({
         if (!context || cancelled) return
         context.clearRect(0, 0, width, height)
         for (const p of shapes()) {
+          if(region === "harbor") {
+            context.strokeStyle = `rgba(151,213,232,${p.alpha})`;context.lineWidth = 1
+            context.beginPath();context.moveTo(p.x+p.wind,p.y);context.lineTo(p.x+p.wind-8,p.y+23);context.stroke();continue
+          }
           context.fillStyle = `rgba(241,229,200,${p.alpha})`
           context.beginPath()
           context.ellipse(
             p.x + p.wind,
             p.y,
-            p.r * 2,
-            p.r * 0.7,
+            p.r * (region === "market" ? 1 : 2),
+            p.r * (region === "market" ? 1 : 0.7),
             0,
             0,
             Math.PI * 2,
@@ -173,10 +177,10 @@ export function ArenaScene({
         draw = () => {
           if (!graphics || !app || cancelled) return
           graphics.clear()
-          for (const p of shapes())
-            graphics
-              .ellipse(p.x + p.wind, p.y, p.r * 2, p.r * 0.7)
-              .fill({ color: 0xf1e5c8, alpha: p.alpha })
+          for (const p of shapes()) {
+            if (region === "harbor") graphics.moveTo(p.x+p.wind,p.y).lineTo(p.x+p.wind-8,p.y+23).stroke({color:0x97d5e8,alpha:p.alpha,width:1})
+            else graphics.ellipse(p.x+p.wind,p.y,p.r*(region === "market" ? 1 : 2),p.r*(region === "market" ? 1 : .7)).fill({color:0xf1e5c8,alpha:p.alpha})
+          }
           if (region === "harbor")
             for (let i = 0; i < 3; i++)
               graphics

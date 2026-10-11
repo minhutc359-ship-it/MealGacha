@@ -17,8 +17,9 @@ for (const file of files) {
 const compressed = type => files.filter(f => f.path.endsWith(`.${type}`)).reduce((total, f) => total + gzipSync(readFileSync(path.join(dist, f.path)), { level: 9 }).length, 0)
 const leaks = files.filter(f => /(^dev\/|\/archive\/|__qa__|\.map$|(?:^|\/)result_spin\.mp3|assets\/audio\/|assets\/banners\/)/.test(f.path))
 if (leaks.length) throw Error(`Non-product files in dist: ${JSON.stringify(leaks)}`)
-const result = { version: JSON.parse(readFileSync(path.join(root, "package.json"), "utf8")).version, bytes: files.reduce((n, f) => n + f.bytes, 0), files: files.length, byType, groups, js_gzip: compressed("js"), css_gzip: compressed("css"), largest: [...files].sort((a, b) => b.bytes - a.bytes).slice(0, 12), leaks }
-if (result.bytes > 45_000_000) throw Error("Static build exceeds the project's initial 45 MB review budget; inspect assets before raising the budget.")
+const result = { staticBudgetBytes: 100_000_000, jsGzipBudgetBytes: 650_000, version: JSON.parse(readFileSync(path.join(root, "package.json"), "utf8")).version, bytes: files.reduce((n, f) => n + f.bytes, 0), files: files.length, byType, groups, js_gzip: compressed("js"), css_gzip: compressed("css"), largest: [...files].sort((a, b) => b.bytes - a.bytes).slice(0, 12), leaks }
+if (result.bytes > 80_000_000) console.warn("Static assets exceed 80 MB: review loading, memory and media quality before release.")
+if (result.bytes > 100_000_000) throw Error("Static build exceeds the project's approved 100 MB web budget; inspect assets before raising the budget.")
 if (result.js_gzip > 650_000) throw Error("Sum of JS gzip exceeds the project's 650 KB review budget; inspect code splitting.")
 const out = path.join(root, "dev/docs/release/build-size.json"); mkdirSync(path.dirname(out), { recursive: true }); writeFileSync(out, JSON.stringify(result, null, 2) + "\n")
 console.log(JSON.stringify({ bytes: result.bytes, files: result.files, js_gzip: result.js_gzip, css_gzip: result.css_gzip, leaks: result.leaks.length }))

@@ -1,3 +1,4 @@
+import { AutoPractice } from "./AutoPractice"
 import { Dialog } from "../game/Dialog"
 import { AutoPortrait, AutoMonsterPortrait, WorldArt } from "./AutoArt"
 import {
@@ -178,6 +179,7 @@ export function AutoGuide({ onClose }: { onClose: () => void }) {
         <article><strong>2 · Xếp đội hình</strong><p>Kéo thả quân giữa các ô bàn và dự bị bằng chuột hoặc ngón tay; thả lên một quân để đổi chỗ. Trên PC có thể chọn quân → chọn ô; trên mobile chạm nhẹ không đổi chỗ. Giữ 0,3 giây để xem nhanh, thả tay để đóng. Kéo vào khay Bán ở hai cạnh để nhận vàng. Đỡ đòn đứng trước; tầm xa/hồi phục đứng sau.</p></article>
         <article><strong>3 · Xuất trận</strong><p>Đội tự đánh. Đủ 100 mana sẽ tung phép. Thắng → nhảy ăn mừng → kết quả → chọn thưởng nếu có → chuẩn bị vòng mới.</p></article>
       </div>
+      <AutoPractice />
       <div className="ac-guide-example"><strong>Đội khởi đầu dễ hiểu</strong><p>Cơm tấm giữ tuyến trước · Phở bò gây sát thương từ xa · Bánh cuốn hồi phục ở phía sau.</p></div>
       <details className="ac-guide-more"><summary>Phím tắt PC & tìm bản ghép</summary><p>Đặt con trỏ lên quân: W chuyển bàn ↔ dự bị; E bán quân. F mua 4 XP, D đổi cửa hàng. Phím chỉ hoạt động lúc chuẩn bị, không chạy khi đang mở thoại/hộp thoại hay nhập chữ. HUD trái: chưa đủ mốc có màu tối, mốc đầu màu đồng, mốc thứ hai màu bạc. Hỏa vị nền đỏ, Hải vị xanh biển, Ngọt vị xanh lá. Viền giá 1–5 vàng, badge hệ và dòng nghề giúp đọc shop; dấu ✓ là quân đã có; viền vàng “Ghép sao” là đã có hai bản ★. Quân lớn thêm 7% mỗi bậc sao và phát vòng sáng khi hợp nhất. Mở Hệ ở tiêu đề trận để xem bảng tỉ lệ theo cấp.</p></details>
       <details className="ac-guide-more"><summary>Vàng, XP và phối hệ</summary><p>Mỗi vòng nhận 2 XP và 5 vàng, thêm 1 vàng khi thắng. Nút Cấp luôn hiện EXP hiện tại/mốc kế tiếp và thanh tiến độ. 4 vàng mua 4 XP; các mốc 8/20/38/62/92/128 XP mở 4/5/6/7/8/9 quân. Cấp 9 là tối đa. Giữ 10/20/30 vàng nhận 1/2/3 lợi tức.</p><p>Quân khác tên cùng hệ kích mốc 2/4; cùng nghề kích 2/3. Bản trùng tên chỉ tính một lần. Ba hệ khác nhau kích Mâm chung để hồi máu. Mở Túi → kéo trang bị lên quân. Than Hồng, Giọt Sương và Sợi Tre ghép từng đôi thành sáu di vật; preview hiện trước khi thả, cũng ghép được với mảnh đã đeo trên quân. Mỗi quân giữ hai trang bị; bán hoặc tháo trả đồ về kho. Shop có nút Ẩn/Hiện; rung lên sao bật trong Âm thanh nếu trình duyệt hỗ trợ. Phe địch có sức mạnh tổng hợp tăng 30%: máu, công và kỹ năng tăng khoảng 14% mỗi phần. Ba sao vẫn cần đội hình hỗ trợ.</p></details>

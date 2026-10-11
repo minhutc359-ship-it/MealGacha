@@ -1,3 +1,4 @@
+import { WebReadiness } from "../components/layout/WebReadiness"
 import {saveFile} from "../infrastructure/share/saveFile"
 import { lazy, Suspense, useState, useRef, useEffect } from "react"
 import { useAppStore } from "../store/useAppStore"
@@ -145,6 +146,7 @@ export function SettingsPage() {
         Cài đặt
       </h1>
 
+      <WebReadiness />
       {/* Preferences */}
       <Section title="Tuỳ chọn">
         <ToggleRow

@@ -1,4 +1,5 @@
 import { STAGES } from "../../game/story"
+import { storyLines, campaignProgress } from "../../game/storyPresentation"
 import { SCENES, ENDINGS } from "../../game/narrative"
 import { useGameStore } from "../../game/useGameStore"
 import { StoryScene } from "./StoryScene"
@@ -6,7 +7,9 @@ import { stageArtId } from "../../game/storyArt"
 
 export function MemoryJournal() {
   const cleared = useGameStore((s) => s.save.clearedStages)
-  const ending = useGameStore((s) => s.save.storyEnding)
+  const save = useGameStore((s) => s.save)
+  const ending = save.storyEnding
+  const progress = campaignProgress(cleared)
   const clues = STAGES.filter((stage) => SCENES[stage.id].clue)
   return (
     <section className="tcg-memory-journal tcg-panel">
@@ -50,14 +53,15 @@ export function MemoryJournal() {
         </article>
       )}
       <details className="tcg-story-archive">
-        <summary>Đọc lại hành trình · {cleared.length}/18 đoạn kết</summary>
+        <summary>Đọc lại hành trình · {progress.cleared}/{progress.total} màn</summary>
+        <p>Lời thoại theo lựa chọn đang lưu trong Sổ Chợ Sống; xem lại không nhận thêm phần thưởng.</p>
         {STAGES.filter((stage) => cleared.includes(stage.id)).map((stage) => (
           <details key={stage.id}>
             <summary>
               {stage.chapter.title} · {stage.title}
             </summary>
             <StoryScene
-              lines={[...SCENES[stage.id].before, ...SCENES[stage.id].after]}
+              lines={[...storyLines(stage.id, save, "before"), ...storyLines(stage.id, save, "after")]}
               art={stageArtId(stage.id)}
             />
           </details>

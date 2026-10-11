@@ -1,5 +1,5 @@
 import {livingClipFrame} from "../../game/livingClips"
-import { motionAccent } from "../../game/motionProfiles"
+import { motionAccent, drawMotionTrail } from "../../game/motionProfiles"
 import { memo, useEffect, useRef, useState } from "react"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { characterPose, type CharacterMotion } from "../../game/tcgCharacterMotion"
@@ -74,6 +74,7 @@ export const CharacterSprite = memo(function CharacterSprite({
       ctx.rotate(rotation + accent.rotation)
       stretch += accent.stretch
       ctx.scale(direction * (1 - stretch), 1 + stretch)
+      drawMotionTrail(ctx, height, poseAge / 780, current === "cast", "#efd9a1", quiet || paused || !["attack", "cast"].includes(current))
       ctx.drawImage(image, sx, sy, sw, sh, -ax * scale, -ay * scale, sw * scale, sh * scale)
       ctx.restore()
       surface.dataset.pose = String(pose)

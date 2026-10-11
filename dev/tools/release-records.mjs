@@ -65,6 +65,7 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/v4/audio/web410/", "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples", ["dev/tools/compose-web410.py", "dev/docs/web-v410/audio-manifest.json"]],
  ["assets/v4/characters/", "Original AI-assisted 24-pose animations using existing project character references", ["dev/docs/major-v400/clip-assets.json", "dev/docs/major-v400/clip-prompts.json", "dev/tools/register-v4-clips.py"]],
  ["assets/fonts/", "Google Fonts OFL 1.1, Vietnamese/Latin subsets", ["dev/docs/major-v400/font-sources.json", "rights/fonts/BeVietnamPro-OFL.txt", "rights/fonts/Exo2-OFL.txt"]],
  ["assets/v4/arenas/", "Original AI-assisted living-market environments", ["dev/docs/major-v400/arena-prompts.json"]],

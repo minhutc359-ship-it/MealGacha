@@ -112,7 +112,7 @@ export function Expedition() {
       {active && run?.promise && <p>Lời hẹn: {run.promise === "safe" ? "Đường an toàn" : "Đường thử thách"}</p>}
       {!active && !run && (
         <section className="tcg-expedition-intro">
-          <img src="/assets/events/cooling-summer-vietnam/banner.webp" alt="" />
+          <img src="/assets/events/cooling-summer/banner-vietnam.webp" alt="" />
           <div>
             <span className="tcg-kicker">
               THÁM HIỂM · CHƠI LẠI VỚI ĐƯỜNG ĐI MỚI

@@ -1,3 +1,4 @@
+import { recapAdvice } from "../game/autochess/recapAdvice"
 import { ArenaScene } from "../components/game/ArenaScene"
 import { livingMusic } from "../game/audioScore"
 import { BrandMark } from "../components/layout/BrandMark"
@@ -944,6 +945,7 @@ export function AutoChessPage() {
                 : `−${run.lastResult.damage} ý chí`}
             </h2>
             <p>{run.lastResult.reason}</p>
+            <div className="ac-recap-advice">{recapAdvice(run).map(advice => <article key={advice.title}><h3>{advice.title}</h3><p>{advice.text}</p></article>)}</div>
             {run.combat?.recap && <details><summary>Đóng góp thực tế của đội</summary><table><thead><tr><th>Vị Linh</th><th>Sát thương máu</th><th>Hồi</th><th>Trao chắn</th><th>Đỡ bằng chắn</th></tr></thead><tbody>{run.combat.actors.filter(a => a.side === "ally").map(a => { const s = run.combat!.recap![a.uid]; return <tr key={a.uid}><td>{UNIT_MAP[a.id]?.name ?? a.id}</td><td>{s?.damage ?? 0}</td><td>{s?.healing ?? 0}</td><td>{s?.shielding ?? 0}</td><td>{s?.blocked ?? 0}</td></tr> })}</tbody></table><p>Hồi và chắn do kỹ năng thực sự trao; chắn ban đầu của trang bị/nâng cấp không tính là kỹ năng hồi.</p></details>}
             <div className="ac-result-stats">
               <span>+{run.lastResult.gold} vàng</span>

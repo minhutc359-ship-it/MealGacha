@@ -1,3 +1,4 @@
+import { webOffline } from "./webOffline"
 import { defineConfig, type Plugin } from "vite"
 import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
@@ -41,7 +42,7 @@ function productionDevPanel(): Plugin {
 
 export default defineConfig({
   base: "/",
-  plugins: [react(), tailwindcss(), appMetadata(), productionDevPanel()],
+  plugins: [react(), tailwindcss(), appMetadata(), productionDevPanel(), webOffline()],
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
   build: { sourcemap: false, minify: true, emptyOutDir: true },
   server: { host: "0.0.0.0", port: 8443, strictPort: true },

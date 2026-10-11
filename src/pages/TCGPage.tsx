@@ -1,7 +1,7 @@
+import { PracticeTable } from "../components/game/PracticeTable"
 import { saveFile } from "../infrastructure/share/saveFile"
-import { livingChoiceLines } from "../game/livingChoices"
+import { storyLines, campaignProgress } from "../game/storyPresentation"
 import { LivingJournal } from "../components/game/LivingJournal"
-import { livingOpening } from "../game/livingStory"
 import { BrandMark } from "../components/layout/BrandMark"
 import { LegalLinks } from "../legal/LegalLinks"
 import { useEffect, useRef, useState, type CSSProperties } from "react"
@@ -20,7 +20,7 @@ import { StoryScene } from "../components/game/StoryScene"
 import { DuelBasics } from "../components/game/DuelBasics"
 import { HomeLobby } from "../components/game/HomeLobby"
 import { CampaignScreen } from "../components/game/CampaignScreen"
-import { AudioControls, useGameAudio } from "../components/game/GameAudio"
+import { AudioControls, useGameAudio, useGameMusic } from "../components/game/GameAudio"
 import {
   LIVING_BOSS_RULES,
   SCENES,
@@ -97,6 +97,8 @@ export function TCGPage() {
     setParams(id === "home" ? {} : { tab: id })
     setMenuOpen(false)
   }
+  const inBattle = useGameStore(s => !!s.save.battle)
+  useGameMusic(!inBattle ? tab === "expedition" ? "expedition" : "lobby" : null, 1)
   const save = useGameStore((s) => s.save),
     notice = useGameStore((s) => s.notice),
     dismiss = useGameStore((s) => s.dismiss)
@@ -278,10 +280,10 @@ export function TCGPage() {
           <strong>{next ? next.chapter.title : "Bữa tiệc hoàn thành"}</strong>
           <div className="tcg-progress">
             <i
-              style={{ width: `${(current.clearedStages.length / 18) * 100}%` }}
+              style={{ width: `${(campaignProgress(current.clearedStages).cleared / STAGES.length) * 100}%` }}
             />
           </div>
-          <small>{current.clearedStages.length}/18 màn đã vượt qua</small>
+          <small>{campaignProgress(current.clearedStages).cleared}/{STAGES.length} màn đã vượt qua</small>
           <button onClick={() => setTab("story")}>
             Xem hành trình <Icon name="arrow" />
           </button>
@@ -897,18 +899,7 @@ export function TCGPage() {
               <>
                 <StoryScene
                   key={stageId}
-                  lines={
-                    STAGE_MAP[stageId].index >= 18
-                      ? [
-                          livingOpening(
-                            current.story400?.originEnding ??
-                              current.storyEnding,
-                          ),
-                          ...livingChoiceLines(stageId, current),
-                          ...SCENES[stageId].before,
-                        ]
-                      : SCENES[stageId].before
-                  }
+                  lines={storyLines(stageId, current, "before")}
                   art={stageArtId(stageId)}
                   onComplete={() => setSceneRead(true)}
                 />
@@ -1091,6 +1082,7 @@ export function TCGPage() {
         >
           <div className="tcg-help">
             <StoryScene lines={WORLD_PRIMER} />
+            <PracticeTable />
             <DuelBasics />
             <div className="tcg-help-lead">
               <span>✦</span>

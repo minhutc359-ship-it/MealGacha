@@ -7,6 +7,8 @@ import type { Battle } from "./types"
 import { TCG_IMPACT_MS } from "./battleVfx"
 
 export const MUSIC_TRACKS = {
+  lobby: "assets/tcg/audio/story-warm.mp3",
+  expedition: "assets/tcg/audio/battle.mp3",
   "v4-market-warm": "assets/v4/audio/market-warm.mp3",
   "v4-market-tension": "assets/v4/audio/market-tension.mp3",
   "v4-harbor-warm": "assets/v4/audio/harbor-warm.mp3",
@@ -28,6 +30,8 @@ export const MUSIC_TRACKS = {
 export type MusicTrack = keyof typeof MUSIC_TRACKS
 export type MusicStyle = "original" | "8bit"
 export const RETRO_MUSIC_TRACKS: Record<MusicTrack, string> = {
+  lobby: "assets/tcg/audio/8bit-story-warm.mp3",
+  expedition: "assets/tcg/audio/8bit-battle.mp3",
   "v4-market-warm": "assets/v4/audio/8bit-market-warm.mp3",
   "v4-market-tension": "assets/v4/audio/8bit-market-tension.mp3",
   "v4-harbor-warm": "assets/v4/audio/8bit-harbor-warm.mp3",

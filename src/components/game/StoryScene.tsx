@@ -1,3 +1,4 @@
+import { SceneAtmosphere } from "./SceneAtmosphere"
 import { useRef, useState } from "react"
 import type { StoryLine } from "../../game/narrative"
 import { STORY_ART, type StoryArtId } from "../../game/storyArt"
@@ -54,6 +55,7 @@ export function StoryScene({ lines, art = "lantern", onComplete }: Props) {
           height="720"
           decoding="async"
         />
+        <SceneAtmosphere art={art} />
         {portrait && (
           <div
             className={`tcg-scene-actor actor-${portrait}`}

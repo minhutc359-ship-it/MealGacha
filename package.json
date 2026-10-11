@@ -2,7 +2,7 @@
   "name": "soul-of-meal",
   "packageManager": "pnpm@10.34.3",
   "private": true,
-  "version": "4.0.0",
+  "version": "4.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite --config dev/vite.dev.config.ts",
@@ -18,7 +18,8 @@
     "release:verify": "node dev/tools/release-records.mjs --check",
     "release:size": "node dev/tools/release-size.mjs",
     "release:source": "python3 dev/tools/pack-release.py",
-    "release:web": "python3 dev/tools/pack-release.py --dist"
+    "release:web": "python3 dev/tools/pack-release.py --dist",
+    "validate:assets": "node dev/tools/validate-assets.mjs"
   },
   "dependencies": {
     "@capacitor/android": "8.5.3",

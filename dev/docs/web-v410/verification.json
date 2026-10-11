@@ -1,0 +1,56 @@
+{
+  "version": "4.1.0",
+  "date": "2026-10-11",
+  "platform": "web only",
+  "staticBudgetBytes": 100000000,
+  "staticBytes": 63586058,
+  "jsGzipBytes": 567076,
+  "cssGzipBytes": 78405,
+  "files": 408,
+  "leaks": [],
+  "tests": {
+    "passed": 365,
+    "files": 34
+  },
+  "typecheck": [
+    "app pass",
+    "dev pass"
+  ],
+  "catalog": {
+    "dishes": 123,
+    "tags": 35,
+    "events": 9
+  },
+  "literalAssets": {
+    "checked": 131,
+    "missing": 0
+  },
+  "rights": {
+    "dependencies": 32,
+    "assets": 327,
+    "staticPolicies": 3
+  },
+  "browser": {
+    "web410Checks": 30,
+    "regression400Checks": 10,
+    "chapterMapChecks": 5,
+    "errors": []
+  },
+  "decodedAudio": {
+    "files": 36,
+    "maximumPeak": 0.64063,
+    "clippedSamples": 0
+  },
+  "native": {
+    "sourceChanged": false,
+    "syncOrBuild": false,
+    "androidCI": "manual only"
+  },
+  "chapters10to12": "Coming soon",
+  "productionMerge": false,
+  "unverified": [
+    "Physical devices/Safari/WebKit",
+    "Subjective soundtrack listening",
+    "Whole-browser RAM/FPS and real-user network speed"
+  ]
+}

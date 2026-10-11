@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0",
+  "version": "4.1.0",
   "generatedOn": "2026-10-10",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -3246,6 +3246,402 @@
         "dev/docs/major-v400/audio-v4.json",
         "dev/tools/compose-v4-stems.py",
         "dev/docs/major-v400/audio-stems.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-auto-prepare.mp3",
+      "bytes": 668410,
+      "sha256": "04aa48a4f1dd81d9cce527a869a71cb311fcc6b2fda857447e19b33feac253e8",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-auto-story.mp3",
+      "bytes": 768509,
+      "sha256": "b7d7eeecca38fd3f1949399f2bdf77232769b8b573e4154a5ca86b2fcd3d1b57",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-expedition.mp3",
+      "bytes": 614909,
+      "sha256": "c715aa676970f7d4211b71cb3b71981438aa82962058d20a5ce5c6c89b1718ec",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-harbor-warm.mp3",
+      "bytes": 853983,
+      "sha256": "f0ed0e37fe57bf9822a33573218c7017fd8d484e5e11139ac3ca6e2a537b948e",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-kitchen-warm.mp3",
+      "bytes": 698712,
+      "sha256": "0cd850dc52440c16fa23eccd24867978a0077036c6a60d4e68e673d1e3558ff6",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-lobby.mp3",
+      "bytes": 731933,
+      "sha256": "bbb373dbf1219b3b19ad11a08f895a1129e70deaacf2477754e5f2867e4b568d",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-market-warm.mp3",
+      "bytes": 640615,
+      "sha256": "3e26e259c675df8319b353a126b8a6213225cf982912f36fd2e7aa26dd6a7b29",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-stem-harbor-base.mp3",
+      "bytes": 160594,
+      "sha256": "f057347707d0b7d2af46f24836c81274eca59b3f4ad50fb52ba1812b0e9ba082",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-stem-harbor-pressure.mp3",
+      "bytes": 80429,
+      "sha256": "cd412750ac099e2f481e08ba8a1a8d27378218717e4bf6ea4d607692b52410cd",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-stem-harbor-rhythm.mp3",
+      "bytes": 80427,
+      "sha256": "db4746982cbbe169e76a553557881e2b7d1e7de337f57bda5ff39667bf1f437b",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-stem-kitchen-base.mp3",
+      "bytes": 160595,
+      "sha256": "835880ae5f41d270f9d7937c5028f2fb398bed3fbebe6f6c68626779e817f9d6",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-stem-kitchen-pressure.mp3",
+      "bytes": 80430,
+      "sha256": "6e720ffb11bc78ae7f7b2f1282fb250247f96daf157fc9dacb759539a522b19d",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-stem-kitchen-rhythm.mp3",
+      "bytes": 80428,
+      "sha256": "f5622304b4862f5dca49d335cb43bb2bbf81dc8c6b587914122b41e1c0bae10f",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-stem-market-base.mp3",
+      "bytes": 160594,
+      "sha256": "41b8aaca905df1421ff5093edcf6876f36da8e71b906fe9df52fef83d77168e5",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-stem-market-pressure.mp3",
+      "bytes": 80429,
+      "sha256": "1a4440482492c176fda81b1a457fe8bcadafff35adf86e2c98273acf53e1d881",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-stem-market-rhythm.mp3",
+      "bytes": 80427,
+      "sha256": "4db075e7135c42c75e9d13eff116e205ab927832a54eb9514c18b9356699658b",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-story-mystery.mp3",
+      "bytes": 904140,
+      "sha256": "f8919d7f8523c7f31be96d330834a23b030f943868d3a07ee822db704bd3aa63",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/8bit-story-warm.mp3",
+      "bytes": 809052,
+      "sha256": "7e6459b81c41147f9bad118542bbba2def95f42b8133f96e8142cf8ffe933267",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-auto-prepare.mp3",
+      "bytes": 1002574,
+      "sha256": "93512714ec0c23d227cb0bed7db250a4cbdf2d742db1bd252b444b457925867c",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-auto-story.mp3",
+      "bytes": 1152723,
+      "sha256": "05b4f1fdde3bc9696126ae03acc106ed865d574652ae6cfbf3dc8617fdb8fb2c",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-expedition.mp3",
+      "bytes": 922323,
+      "sha256": "f1485c92f5fb062681163c790f489ff3f998dcfeef45503c19c2f5109aa4a651",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-harbor-warm.mp3",
+      "bytes": 1280933,
+      "sha256": "f5bb72318e0c83296055bd18fc194ae3c19bf7c63ce00ea61dba271ee4256808",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-kitchen-warm.mp3",
+      "bytes": 1048027,
+      "sha256": "eb483fd6d74a4db0e0b073eec41457f7eef8dde698f786fe33f8e493a8392266",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-lobby.mp3",
+      "bytes": 1097861,
+      "sha256": "5de28fe8fca26a5c8146bf39fa28825998cb95cd38ff743a0416ef3f53c357e8",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-market-warm.mp3",
+      "bytes": 960881,
+      "sha256": "13594fcdb8ff6e0fe3dad937bbc99a59ca624bef95249c90969e9b512c67fd3f",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-stem-harbor-base.mp3",
+      "bytes": 160598,
+      "sha256": "34e98e1d96d827c2d5baca84305c82eb217440171b7eb12770e153125616980a",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-stem-harbor-pressure.mp3",
+      "bytes": 80433,
+      "sha256": "6d60037d66ebfc904fcd48660b0fd1870983a025c2783f11b60b51741f32e947",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-stem-harbor-rhythm.mp3",
+      "bytes": 80431,
+      "sha256": "4bd48498cf6abcf458b41888539cee80f92c3a0681eb8da937e829fca403718b",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-stem-kitchen-base.mp3",
+      "bytes": 160599,
+      "sha256": "d88c9c9d0da733691cbb47aee916b1aecb1ec7b1e23802b985236f535c511e65",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-stem-kitchen-pressure.mp3",
+      "bytes": 80434,
+      "sha256": "0df976f31343a822eee0d1672579417d1fd8bdf1b48e7cd1bc3fac9c19735510",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-stem-kitchen-rhythm.mp3",
+      "bytes": 80432,
+      "sha256": "215ca2e0c1c390eac28cba4105c49f9ac150a53ae5205e9fa04bc2bf83952da8",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-stem-market-base.mp3",
+      "bytes": 160598,
+      "sha256": "97a12fa5809af88bf4573836160451637f3a16774e322af8551eb10c047197b1",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-stem-market-pressure.mp3",
+      "bytes": 80433,
+      "sha256": "7ca728a23124d34bd0d416e9f14afdaed63826d220afbbbbc3f128c7205fa333",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-stem-market-rhythm.mp3",
+      "bytes": 80431,
+      "sha256": "c71a3f61be31b7e4b68bf1814623d49ed1dc6e6627ac881fb0fc2a5aea0f01e2",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-story-mystery.mp3",
+      "bytes": 1356168,
+      "sha256": "bd8e1c02a33cec86c6bfa92fc3c19609cc2c5a44b05f59a7b879f3759875acf3",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/v4/audio/web410/original-story-warm.mp3",
+      "bytes": 1213537,
+      "sha256": "2833fd1d0166e16a6c07fce77866793302e5da78ace0bdfd15e4821375e2d71c",
+      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
+      "evidence": [
+        "dev/tools/compose-web410.py",
+        "dev/docs/web-v410/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

@@ -1,0 +1,71 @@
+{
+  "checks": [
+    {
+      "ending": "remember",
+      "giftPreserved": true,
+      "branchOpening": true
+    },
+    {
+      "ending": "release",
+      "giftPreserved": true,
+      "branchOpening": true
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "choiceHit": true,
+      "scroll": 320
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "choiceHit": true,
+      "scroll": 390
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "choiceHit": true,
+      "scroll": 844
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "choiceHit": true,
+      "scroll": 1366
+    },
+    {
+      "layeredScene": true,
+      "renderer": "webgl",
+      "preferences": {},
+      "contextLoss": true,
+      "clipLoaded": true,
+      "selfHostedFonts": true
+    },
+    {
+      "layeredScene": true,
+      "renderer": "canvas",
+      "preferences": {
+        "graphicsQuality": "low"
+      },
+      "contextLoss": false,
+      "clipLoaded": true,
+      "selfHostedFonts": true
+    },
+    {
+      "layeredScene": true,
+      "renderer": "canvas",
+      "preferences": {
+        "reducedMotion": true
+      },
+      "contextLoss": false,
+      "clipLoaded": true,
+      "selfHostedFonts": true
+    },
+    {
+      "corruptionKept": true
+    }
+  ],
+  "errors": [],
+  "scope": "Production Chromium headless UI; no physical-device FPS or subjective sound judgment"
+}

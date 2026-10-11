@@ -1,3 +1,6 @@
+import { GameErrorBoundary } from "./components/layout/GameErrorBoundary"
+import "./game/web410.css"
+import { startWebOffline } from "./infrastructure/web/offline"
 import { lazy, Suspense, useEffect } from "react"
 import {
   BrowserRouter,
@@ -66,6 +69,7 @@ function AppInner() {
 
   useEffect(() => {
     init()
+    startWebOffline()
   }, [])
 
   // Cross-tab sync: reload user state when another tab mutates localStorage
@@ -137,7 +141,7 @@ function AppInner() {
 export default function App() {
   return (
     <BrowserRouter>
-      <StorageRecovery><AppInner /></StorageRecovery>
+      <GameErrorBoundary><StorageRecovery><AppInner /></StorageRecovery></GameErrorBoundary>
     </BrowserRouter>
   )
 }
