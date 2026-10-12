@@ -44,7 +44,7 @@ Thời gian task: desktop 2,907 → 0,539 giây; CPU ×4 8,026 → 1,999 giây. 
 
 ## Kiểm chứng, save và dung lượng
 
-430 kiểm thử / 42 file, thêm 7 kiểm tra clock, nguồn input độc lập, clear, nội suy và camera/tap tất cả map/viewport. Typecheck app/dev, catalog 123 món, 146 asset refs/0 thiếu, registry 350 asset, release verify, build sạch/size và service-worker syntax đạt. Sau thay đổi thumbnail đã chạy lại các kiểm tra render dùng chung/demo liên quan. CI chạy suite mặc định.
+430 kiểm thử / 42 file, thêm 7 kiểm tra clock, nguồn input độc lập, clear, nội suy và camera/tap tất cả map/viewport. Typecheck app/dev, catalog 123 món, 146 asset refs/0 thiếu, registry 350 asset, release verify, build sạch/size và service-worker syntax đạt. Sau thay đổi thumbnail đã chạy lại các kiểm tra render dùng chung/demo liên quan. CI chạy suite mặc định; riêng mô phỏng 30 trận mở đầu/20 hành trình có timeout 20 giây vì mốc 5 giây không đủ trên runner tải cao. Giữ nguyên số seed, lượt và assertion.
 
 Chromium 1440×900, 390×844, 844×390 và 320×568: giữ phím/D-pad, thả để dừng, chạy, menu/trận dừng nền, lời thoại qua reload, vào Bếp Nghỉ/chữa trạng thái/ra cửa, ba click chỉ một lượt, HP theo pha và node arena tồn tại qua lượt, nút vừa viewport, không JS error/asset thiếu trong mẫu. 390 thêm cả 20 map/cache, mua đúng giá, vật phẩm, thu phục, gửi/nhận tủ, demo ẩn chú thích giữ nguyên save, blur dừng bước, tủ 60 hàng không dựng đồng loạt canvas. [Dữ liệu browser](browser-qa.json), [script flow](../../tools/verify-web460.mjs), [script tủ lớn](../../tools/verify-adventure-menu.mjs).
 

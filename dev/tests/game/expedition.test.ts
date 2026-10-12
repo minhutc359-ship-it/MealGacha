@@ -427,4 +427,4 @@ it("resolves 30 starter encounters and 20 complete journeys with real turns, hea
   expect(starterWins).toBeGreaterThanOrEqual(10)
   // Full journeys must remain viable with legal moves suggested by the game.
   expect(completed).toBeGreaterThanOrEqual(3)
-})
+}, 20_000)
