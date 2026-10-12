@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react"
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react"
 import { useGameStore } from "../../game/useGameStore"
 import {
   ADVENTURE_MAP_BY_ID,
@@ -6,6 +6,7 @@ import {
   type AdventureMap,
 } from "../../game/adventureWorld"
 import {
+  ADVENTURE_AREA_MAP,
   tileLabel,
   type AdventureDirection,
   type AdventureSave,
@@ -80,19 +81,33 @@ export function AdventureWorld({
 }) {
   const map = ADVENTURE_MAP_BY_ID[save.mapId],
     stage = useRef<HTMLDivElement>(null)
-  const [tileSize, setTileSize] = useState(48)
+  const [viewport, setViewport] = useState({ width: 624, height: 432 })
+  const tileSize = Math.max(20, viewport.width / 13, viewport.height / 12)
+  const columns = viewport.width / tileSize, rows = viewport.height / tileSize
+  const heldMove = useRef<number | null>(null)
+  const stopHeldMove = () => {
+    if (heldMove.current !== null) clearInterval(heldMove.current)
+    heldMove.current = null
+  }
+  useEffect(() => {
+    stopHeldMove()
+    const hidden = () => { if (document.hidden) stopHeldMove() }
+    document.addEventListener("visibilitychange", hidden)
+    window.addEventListener("blur", stopHeldMove)
+    return () => { stopHeldMove(); document.removeEventListener("visibilitychange", hidden); window.removeEventListener("blur", stopHeldMove) }
+  }, [save.mapId, save.encounter, save.service, readOnly])
   const introOpen = useModeIntroStore(state => !!state.mode)
   const [goal, setGoal] = useState<{
     mapId: string
     x: number
     y: number
   } | null>(null)
-  const cameraX = Math.max(0, Math.min(save.x - 6, map.grid[0].length - 13)),
-    cameraY = Math.max(0, Math.min(save.y - 4, map.grid.length - 9))
+  const cameraX = Math.max(0, Math.min(save.x + .5 - columns / 2, map.grid[0].length - columns)),
+    cameraY = Math.max(0, Math.min(save.y + .5 - rows / 2, map.grid.length - rows))
   useEffect(() => {
     if (!stage.current) return
     const resize = new ResizeObserver(([entry]) =>
-      setTileSize(entry.contentRect.width / 13),
+      setViewport({width: entry.contentRect.width, height: entry.contentRect.height}),
     )
     resize.observe(stage.current)
     return () => resize.disconnect()
@@ -154,6 +169,17 @@ export function AdventureWorld({
     setGoal(null)
     move(direction)
   }
+  const holdMove = (event: PointerEvent<HTMLButtonElement>, direction: AdventureDirection) => {
+    if (readOnly || event.button !== 0 || save.encounter || save.service === "shop") return
+    event.preventDefault()
+    event.currentTarget.setPointerCapture(event.pointerId)
+    stopHeldMove()
+    onMove(direction)
+    heldMove.current = window.setInterval(() => {
+      if (document.hidden || useModeIntroStore.getState().mode) { stopHeldMove(); return }
+      onMove(direction)
+    }, 160)
+  }
   return (
     <>
       <div
@@ -164,6 +190,7 @@ export function AdventureWorld({
         <div className="adv-world-heading">
           <span>{map.interior ? "NỘI THẤT" : "KHÁM PHÁ"}</span>
           <strong>{map.name}</strong>
+          <span className="adv-objective-hud">{ADVENTURE_AREA_MAP[save.areaId].objective}</span>
           <small>
             {goal
               ? "Đang đi tới điểm chọn…"
@@ -176,13 +203,13 @@ export function AdventureWorld({
           tabIndex={0}
           role="region"
           aria-label={`Bản đồ ${map.name}. Dùng phím mũi tên để di chuyển.`}
-          style={
-            { height: tileSize * 9, "--tile": `${tileSize}px` } as CSSProperties
-          }
+          style={{ "--tile": `${tileSize}px` } as CSSProperties}
         >
           <div
             className="adv-world-canvas"
             style={{
+              left: Math.max(0, (viewport.width - tileSize * map.grid[0].length) / 2),
+              top: Math.max(0, (viewport.height - tileSize * map.grid.length) / 2),
               width: tileSize * map.grid[0].length,
               height: tileSize * map.grid.length,
               transform: `translate(${-cameraX * tileSize}px, ${-cameraY * tileSize}px)`,
@@ -259,7 +286,7 @@ export function AdventureWorld({
                   top: save.follower.y * tileSize,
                 }}
               >
-                <SpiritSprite cardId={save.team[0].cardId} />
+                <SpiritSprite cardId={save.team[0].cardId} back={save.facing === "left"} stamp={`${save.steps}`} />
               </div>
             )}
             <div
@@ -287,7 +314,11 @@ export function AdventureWorld({
           type="button"
           className="up"
           aria-label="Đi lên"
-          onClick={() => onMove("up")}
+          onPointerDown={event => holdMove(event, "up")}
+          onPointerUp={stopHeldMove}
+          onPointerCancel={stopHeldMove}
+          onLostPointerCapture={stopHeldMove}
+          onClick={event => { if (event.detail === 0) onMove("up") }}
         >
           ▲
         </button>
@@ -295,7 +326,11 @@ export function AdventureWorld({
           type="button"
           className="left"
           aria-label="Đi trái"
-          onClick={() => onMove("left")}
+          onPointerDown={event => holdMove(event, "left")}
+          onPointerUp={stopHeldMove}
+          onPointerCancel={stopHeldMove}
+          onLostPointerCapture={stopHeldMove}
+          onClick={event => { if (event.detail === 0) onMove("left") }}
         >
           ◀
         </button>
@@ -307,13 +342,17 @@ export function AdventureWorld({
             interact()
           }}
         >
-          TƯƠNG TÁC · E
+          TƯƠNG TÁC
         </button>
         <button
           type="button"
           className="right"
           aria-label="Đi phải"
-          onClick={() => onMove("right")}
+          onPointerDown={event => holdMove(event, "right")}
+          onPointerUp={stopHeldMove}
+          onPointerCancel={stopHeldMove}
+          onLostPointerCapture={stopHeldMove}
+          onClick={event => { if (event.detail === 0) onMove("right") }}
         >
           ▶
         </button>
@@ -321,7 +360,11 @@ export function AdventureWorld({
           type="button"
           className="down"
           aria-label="Đi xuống"
-          onClick={() => onMove("down")}
+          onPointerDown={event => holdMove(event, "down")}
+          onPointerUp={stopHeldMove}
+          onPointerCancel={stopHeldMove}
+          onLostPointerCapture={stopHeldMove}
+          onClick={event => { if (event.detail === 0) onMove("down") }}
         >
           ▼
         </button>
@@ -338,7 +381,7 @@ export function AdventureWorld({
             type="button"
             aria-label="Đóng lời nhắn"
             onClick={() =>
-              useGameStore.getState().adventureAction({ type: "dismiss" })
+              !readOnly && useGameStore.getState().adventureAction({ type: "dismiss" })
             }
           >
             ×

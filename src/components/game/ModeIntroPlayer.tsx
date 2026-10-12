@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, useId } from "react"
 import { buildModeIntro, introAt } from "../../game/modeIntro"
 import { INTRO_DURATION, INTRO_NAMES, introTime, type IntroMode } from "../../game/modeIntroState"
+import { tcgCharacter } from "../../game/tcgCharacterMotion"
 import { CARD_MAP } from "../../game/catalog"
 import { unitCharacter, monsterCharacter, acquireCharacterImage } from "../../infrastructure/assets/characterSprites"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
@@ -9,14 +10,22 @@ import { useGameAudio, useGameMusic } from "./GameAudio"
 import { ModeIntroScene } from "./ModeIntroScenes"
 import { useAppStore } from "../../store/useAppStore"
 import "../../game/tcg.css"
+import "../../game/combat.css"
+import "../../game/livingTable.css"
+import "../../game/animeStage.css"
+import "../../game/compactScreen.css"
+import "../../game/spiritArena.css"
+import "../../game/characterMotion.css"
 import "../../game/adventure.css"
 import "../../game/autochess/autochess.css"
+import "../../game/autochess/marketHud.css"
 import "../../game/modeIntro.css"
 
 export default function ModeIntroPlayer({ mode, onClose }: { mode: IntroMode; onClose: () => void }) {
   const dialog = useRef<HTMLDialogElement>(null), titleId = useId()
   const clip = useMemo(() => buildModeIntro(mode), [mode])
   const [elapsed, setElapsed] = useState(0), [paused, setPaused] = useState(false), [replay, setReplay] = useState(0)
+  const [captions, setCaptions] = useState(true)
   const [hidden, setHidden] = useState(document.hidden)
   const [ready, setReady] = useState(false)
   const [reduceMotion, setReduceMotion] = useState(() => matchMedia("(prefers-reduced-motion: reduce)").matches)
@@ -50,7 +59,14 @@ export default function ModeIntroPlayer({ mode, onClose }: { mode: IntroMode; on
       } else if (scene.mode === "auto") {
         for (const piece of scene.run.roster) character(piece.id)
         for (const actor of scene.run.combat?.actors ?? []) character(actor.id, actor.side === "enemy")
-      } else if (scene.mode === "adventure") paths.add("/assets/adventure/world.svg")
+      } else if (scene.mode === "adventure") {
+        paths.add("/assets/adventure/world.svg")
+        for (const id of [...scene.save.team.map(member => member.cardId), ...(scene.save.encounter ? [scene.save.encounter.cardId] : [])]) {
+          const model = tcgCharacter(CARD_MAP[id])
+          if (model) paths.add(SPRITE_SHEETS[model.sheet].path)
+          else if (CARD_MAP[id].art) paths.add(CARD_MAP[id].art!)
+        }
+      }
       else { const art = CARD_MAP[scene.dishId].art; if (art) paths.add(art) }
     }
     const leases = [...paths].map(path => acquireCharacterImage(path))
@@ -96,11 +112,12 @@ export default function ModeIntroPlayer({ mode, onClose }: { mode: IntroMode; on
     clock.current = 0; played.current = -1; lastSound.current = -1000
     setElapsed(0); setPaused(false); setReplay(value => value + 1)
   }
-  return <dialog ref={dialog} className={`mode-live-demo mode-${mode} ${quiet ? "is-quiet" : ""} ${!running ? "is-paused" : ""}`} aria-labelledby={titleId}
+  return <dialog ref={dialog} className={`mode-live-demo mode-${mode} ${quiet ? "is-quiet" : ""} ${!running ? "is-paused" : ""} ${!captions ? "is-immersive" : ""}`} aria-label={`${INTRO_NAMES[mode]} · Giới thiệu tự chơi`}
     onCancel={event => { event.preventDefault(); onClose() }}>
     <header className="live-demo-toolbar">
       <div className="live-demo-caption"><small>GIỚI THIỆU TỰ CHƠI · {Math.floor(elapsed / 1000)} / 25s</small><strong id={titleId}>{finished ? "Hoàn tất · Bạn đã sẵn sàng" : beat.title}</strong></div>
       <div className="live-demo-controls">
+        <button type="button" aria-pressed={!captions} aria-label={captions ? "Ẩn chú thích" : "Hiện chú thích"} onClick={() => setCaptions(value => !value)}>{captions ? "Ẩn chú thích" : "Hiện chú thích"}</button>
         {finished ? <button type="button" onClick={onClose}>Vào chơi →</button> : <button type="button" onClick={() => setPaused(value => !value)} disabled={!ready} aria-pressed={paused}>{paused ? "Tiếp tục" : "Tạm dừng"}</button>}
         <button type="button" onClick={restart} aria-label="Xem lại giới thiệu">↻</button>
         <button type="button" onClick={onClose} aria-label="Đóng giới thiệu">×</button>

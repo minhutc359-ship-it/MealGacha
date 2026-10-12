@@ -34,6 +34,7 @@ import {
 import { AdventureWorld } from "../components/game/AdventureWorld"
 import { SpiritSprite } from "../components/game/AdventureArt"
 import { gameAudio } from "../infrastructure/audio/gameAudio"
+import "../game/characterMotion.css"
 import "../game/adventure.css"
 
 function SpiritImage({ cardId }: { cardId: string }) {
@@ -205,7 +206,7 @@ export function AdventurePage() {
     notice = useGameStore((state) => state.notice),
     dismissNotice = useGameStore((state) => state.dismiss)
   const prefs = useAppStore((state) => state.user.preferences)
-  const [panel, setPanel] = useState<"journey" | "team" | "archive">("team")
+  const [panel, setPanel] = useState<"journey" | "team" | "archive" | "help" | null>(null)
   const lastMove = useRef(0),
     area = ADVENTURE_AREA_MAP[save.areaId],
     map = ADVENTURE_MAP_BY_ID[save.mapId]
@@ -261,7 +262,7 @@ export function AdventurePage() {
   }, [save.service])
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
-      if (useModeIntroStore.getState().mode) return
+      if (panel || useModeIntroStore.getState().mode) return
       const current = useGameStore.getState().save.adventure
       const target = event.target as HTMLElement | null
       if (
@@ -312,7 +313,11 @@ export function AdventurePage() {
     }
     window.addEventListener("keydown", key)
     return () => window.removeEventListener("keydown", key)
-  }, [move, interact])
+  }, [move, interact, panel])
+  const closePanel = () => {
+    setPanel(null)
+    if (save.service === "storage") act({ type: "dismiss" })
+  }
   const allSpecies = [
     ...new Set([
       ...ADVENTURE_STARTERS,
@@ -355,27 +360,29 @@ export function AdventurePage() {
       ) : (
         <>
           <nav className="adv-panel-tabs" aria-label="Bảng phiêu lưu">
-            {(["journey", "team", "archive"] as const).map((id) => (
+            {(["journey", "team", "archive", "help"] as const).map((id) => (
               <button
                 type="button"
                 key={id}
                 aria-pressed={panel === id}
-                onClick={() => setPanel(id)}
+                onClick={() => setPanel(current => current === id ? null : id)}
               >
                 {id === "journey"
                   ? "Hành trình & bản đồ"
                   : id === "team"
                     ? "Đội hình & túi đồ"
-                    : "Sổ Vị Linh"}
+                    : id === "archive" ? "Sổ Vị Linh" : "Hướng dẫn"}
               </button>
             ))}
           </nav>
           <main className="adv-layout">
-            <section className="adv-world" aria-label="Khám phá thế giới">
-              <AdventureWorld save={save} move={move} interact={interact} />
+            <section className="adv-world" inert={!!panel} aria-label="Khám phá thế giới">
+              <AdventureWorld save={save} move={move} interact={interact} readOnly={!!panel} />
             </section>
-            <aside className="adv-sidebar">
-              {panel === "journey" ? (
+            {panel && <AdventureDialog className="adv-panel-dialog" titleId="adv-panel-title" dismiss={closePanel}>
+              <header className="adv-panel-heading"><h2 id="adv-panel-title">{panel === "team" ? "Đội hình & túi đồ" : panel === "journey" ? "Hành trình" : panel === "archive" ? "Sổ Vị Linh" : "Hướng dẫn chơi"}</h2><button type="button" aria-label="Đóng bảng phiêu lưu" onClick={closePanel}>×</button></header>
+              <aside className="adv-sidebar">
+              {panel === "help" ? <><ModeIntroButton mode="adventure" beforeOpen={closePanel} /><p>Chạm một ô để đi tới; chạm NPC hoặc cửa nhà để tiến lại tương tác. Các nút ▲ ◀ ▶ ▼ và Tương tác luôn ở dưới bản đồ.</p><p>Bếp Nghỉ hồi HP/PP và mở tủ. Tiệm Hương bán vật phẩm. Nhà Ký Ức giao nhiệm vụ. Theo Hành trình để nhận đủ năm ấn.</p><p>Trong trận, chọn kỹ năng theo tương khắc, đổi Vị Linh hoặc mở Túi đồ để dùng Hương Ấn. Mỗi thao tác chiến đấu cho đối thủ cơ hội phản kích.</p><SchoolChart /></> : panel === "journey" ? (
                 <>
                   <span className="adv-kicker">NHIỆM VỤ CHÍNH</span>
                   <h1>{area.objective}</h1>
@@ -458,7 +465,7 @@ export function AdventurePage() {
                   <SchoolChart />
                   <details className="adv-help">
                     <summary>Hướng dẫn chơi · Điều khiển & địa điểm</summary>
-                    <ModeIntroButton mode="adventure" />
+                    <ModeIntroButton mode="adventure" beforeOpen={closePanel} />
                     <p>
                       WASD / mũi tên: di chuyển. Giữ Shift: chạy. E: tương tác
                       theo hướng nhìn. Chọn một điểm trên bản đồ để tự đi đến.
@@ -569,6 +576,7 @@ export function AdventurePage() {
                 </>
               )}
             </aside>
+            </AdventureDialog>}
           </main>
         </>
       )}

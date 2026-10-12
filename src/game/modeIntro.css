@@ -14,3 +14,9 @@ dialog.mode-live-demo{--demo-toolbar-height:96px;position:fixed;inset:0;width:10
 @media(max-width:620px){dialog.mode-live-demo{--demo-toolbar-height:126px}.live-demo-toolbar{gap:4px 7px;padding:8px 9px 11px}.live-demo-caption strong{font-size:12px;line-height:1.5}.live-demo-caption small{font-size:8px;letter-spacing:0}.live-demo-controls{gap:4px}.live-demo-controls button{font-size:10px;min-width:44px;padding:7px}.live-demo-note{font-size:10px;line-height:1.6;-webkit-line-clamp:3}.mode-live-demo .adv-battle{padding:10px}.mode-live-demo .adv-battle-arena{height:min(270px,45dvh)}}
 @media(max-height:540px) and (min-width:621px){dialog.mode-live-demo{--demo-toolbar-height:82px}.live-demo-toolbar{padding-block:5px}.live-demo-caption strong{font-size:13px}.live-demo-controls button{min-height:36px}.live-demo-note{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.mode-live-demo *{animation:none!important;transition:none!important}}
+/* Immersive demo: the game regains the full viewport. Controls remain recoverable. */
+dialog.mode-live-demo.is-immersive{--demo-toolbar-height:0px}
+.is-immersive .live-demo-toolbar{inset:auto max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) auto;width:auto;height:auto;padding:5px;border:1px solid #d1b97455;border-radius:9px;background:#102e27e8;display:block;opacity:.8}
+.is-immersive .live-demo-toolbar:focus-within,.is-immersive .live-demo-toolbar:hover{opacity:1}
+.is-immersive .live-demo-caption,.is-immersive .live-demo-note,.is-immersive .live-demo-progress{display:none}
+.is-immersive .live-demo-controls button{min-height:44px}
