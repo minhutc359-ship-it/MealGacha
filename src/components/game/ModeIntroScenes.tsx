@@ -72,11 +72,11 @@ function AutoDemo({ scene, paused, quiet }: { scene: Extract<IntroScene, { mode:
   </div>
 }
 
-function AdventureDemo({ scene }: { scene: Extract<IntroScene, { mode: "adventure" }> }) {
+function AdventureDemo({ scene, paused, quiet }: { scene: Extract<IntroScene, { mode: "adventure" }>; paused: boolean; quiet: boolean }) {
   const save = scene.save
   if (scene.exploring) return <div className="adv-app" inert><AdventureWorld save={save} move={noop} interact={noop} readOnly /></div>
   const presented = save.encounter ? save : { ...save, encounter: scene.opponent ? { ...scene.opponent, hp: 0, log: [...scene.opponent.log, save.message ?? "Chiến thắng!"] } : null }
-  return <div className="adv-app" inert><AdventureBattle save={presented} act={noop} embedded /></div>
+  return <div className="adv-app" inert><AdventureBattle save={presented} act={noop} embedded paused={paused} quiet={quiet} /></div>
 }
 
 function ChestDemo({ scene, elapsed, quiet }: { scene: Extract<IntroScene, { mode: "chest" }>; elapsed: number; quiet: boolean }) {
@@ -98,7 +98,7 @@ export function ModeIntroScene({ frame, elapsed, paused, quiet }: { frame: Intro
   switch (frame.scene.mode) {
     case "tcg": return <TcgDemo frame={frame} paused={paused} />
     case "auto": return <AutoDemo scene={frame.scene} paused={paused} quiet={quiet} />
-    case "adventure": return <AdventureDemo scene={frame.scene} />
+    case "adventure": return <AdventureDemo scene={frame.scene} paused={paused} quiet={quiet} />
     case "chest": return <ChestDemo scene={frame.scene} elapsed={elapsed} quiet={quiet} />
   }
 }

@@ -1,0 +1,59 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "controlsFit": true,
+    "dialogKeyboardIsolated": true,
+    "immersiveDemoFit": true,
+    "sharedSprites": true,
+    "savePreserved": true
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "controlsFit": true,
+    "dialogKeyboardIsolated": true,
+    "immersiveDemoFit": true,
+    "sharedSprites": true,
+    "savePreserved": true
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "controlsFit": true,
+    "dialogKeyboardIsolated": true,
+    "immersiveDemoFit": true,
+    "sharedSprites": true,
+    "savePreserved": true
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "controlsFit": true,
+    "dialogKeyboardIsolated": true,
+    "immersiveDemoFit": true,
+    "sharedSprites": true,
+    "savePreserved": true
+  },
+  {
+    "liveBattle": true,
+    "guardAdvancesTurn": true,
+    "sharedAtlasLoaded": true,
+    "teamAndBagAvailable": true
+  },
+  {
+    "mode": "tcg",
+    "captionToggle": true,
+    "savePreserved": true
+  },
+  {
+    "mode": "auto",
+    "captionToggle": true,
+    "savePreserved": true
+  },
+  {
+    "mode": "chest",
+    "captionToggle": true,
+    "savePreserved": true
+  }
+]

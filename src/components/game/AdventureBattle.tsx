@@ -14,6 +14,8 @@ import {
   SCHOOL_ORDER,
   STATUS_NAMES,
 } from "../../game/adventureSkills"
+import type { CharacterMotion } from "../../game/tcgCharacterMotion"
+import { useAppStore } from "../../store/useAppStore"
 import { SpiritSprite } from "./AdventureArt"
 import { useGameStore } from "../../game/useGameStore"
 
@@ -132,10 +134,14 @@ export function AdventureBattle({
   save,
   act,
   embedded = false,
+  paused = false,
+  quiet = false,
 }: {
   save: AdventureSave
   act: (action: AdventureAction) => void
   embedded?: boolean
+  paused?: boolean
+  quiet?: boolean
 }) {
   const e = save.encounter!,
     member = save.team.find((item) => item.uid === e.activeUid)!
@@ -145,6 +151,20 @@ export function AdventureBattle({
   const skills = skillsFor(member.cardId, member.level),
     exhausted = skills.every((skill) => !(member.pp?.[skill.id] ?? 0))
   const [target, setTarget] = useState(member.uid)
+  const reduced = useAppStore(state => state.user.preferences.reducedMotion || state.user.preferences.graphicsQuality === "low")
+  const previous = useRef({ turn: e.turn, uid: member.uid, hp: member.hp, enemy: e.hp, card: e.cardId, pp: JSON.stringify(member.pp) })
+  const [cue, setCue] = useState<{ally: CharacterMotion; enemy: CharacterMotion; allyDelay: number; enemyDelay: number; stamp: string}>({ally: "idle", enemy: "idle", allyDelay: 0, enemyDelay: 0, stamp: "start"})
+  useEffect(() => {
+    const before = previous.current
+    previous.current = { turn: e.turn, uid: member.uid, hp: member.hp, enemy: e.hp, card: e.cardId, pp: JSON.stringify(member.pp) }
+    if (before.turn === e.turn && before.uid === member.uid && before.card === e.cardId) return
+    const fast = spiritSpeed(member.cardId, member.level, member.status) >= spiritSpeed(e.cardId, e.level, e.enemyStatus)
+    setCue({ ally: before.uid !== member.uid ? "summon" : before.pp !== JSON.stringify(member.pp) ? "cast" : before.enemy > e.hp ? "attack" : before.hp > member.hp ? "hit" : "idle",
+      enemy: before.card !== e.cardId ? "summon" : before.hp > member.hp ? "attack" : before.enemy > e.hp ? "hit" : "idle",
+      allyDelay: fast ? 0 : 650, enemyDelay: fast ? 650 : 0, stamp: `${e.turn}-${member.uid}-${e.cardId}` })
+    const timer = window.setTimeout(() => setCue(value => ({...value, ally: "idle", enemy: "idle", allyDelay: 0, enemyDelay: 0})), 1600)
+    return () => clearTimeout(timer)
+  }, [e.turn, e.cardId, e.hp, e.level, e.enemyStatus, member.uid, member.hp, member.pp, member.cardId, member.level, member.status])
   const cast = (skillId: string) =>
     act({ type: "battle", move: "skill", skillId })
   const playerFast =
@@ -201,10 +221,10 @@ export function AdventureBattle({
           </small>
         </section>
         <div className={`adv-battle-model enemy school-${enemy.school}`}>
-          <SpiritSprite cardId={e.cardId} />
+          <SpiritSprite cardId={e.cardId} motion={cue.enemy} stamp={cue.stamp} delay={cue.enemyDelay} quiet={quiet || reduced} paused={paused} />
         </div>
         <div className={`adv-battle-model ally school-${ally.school}`}>
-          <SpiritSprite cardId={member.cardId} back />
+          <SpiritSprite cardId={member.cardId} back motion={cue.ally} stamp={cue.stamp} delay={cue.allyDelay} quiet={quiet || reduced} paused={paused} />
         </div>
         <section className={`adv-combatant ally school-${ally.school}`}>
           <span>
