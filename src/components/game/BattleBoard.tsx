@@ -1,3 +1,5 @@
+import { boardLimit, nextFatigueDamage } from "../../game/tcgRules"
+import "../../game/tcg470.css"
 import { TrapSlot, TrapDecision, TrapReveal } from "./TrapZone"
 import { trapReady } from "../../game/traps"
 import "../../game/tcg450.css"
@@ -17,6 +19,7 @@ import { STAGE_MAP } from "../../game/story"
 import { SCENES, ENDINGS } from "../../game/narrative"
 import {
   cardCost,
+  playDrawRisk,
   playError,
   previewTarget,
   type BattleAction,
@@ -375,6 +378,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
     if (!act(action)) inFlight.current = false
     else gameAudio.play("confirm")
   }
+  const capacity = boardLimit(battle)
   const ownTrapCard = battle.player.trap?.cardId
   const selectedAttacker =
     selection?.type === "attack"
@@ -388,6 +392,8 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
   const needsChoice = !!baseSelectedCard?.choices && selection?.type === "play" && !selection.branch
   const selectedError =
     selection?.type === "play" ? playError(battle, selection.index, selection.branch) : null
+  const drawRisk = useMemo(() => selection?.type === "play" && baseSelectedCard && !selectedError && (!baseSelectedCard?.choices || selection.branch) && !busy
+    ? playDrawRisk(battle, selection.index, selection.branch) : null, [battle, selection, busy, baseSelectedCard, selectedError])
   const targeting =
     !!selection &&
     (selection.type === "attack" || selectedCard?.effect === "damage") &&
@@ -432,7 +438,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
   const field = (side: "player" | "enemy") => {
     const slots = tcgFieldUnits(frame?.before[side].board, battle[side].board)
     return (
-      <div className={`tcg-field ${side === "enemy" ? "enemy" : ""} ${(battle.rulesVersion??350)>=450 ? "has-trap-slot" : ""}`}>
+      <div style={{"--field-slots": capacity} as CSSProperties} className={`tcg-field ${side === "enemy" ? "enemy" : ""} ${(battle.rulesVersion??350)>=450 ? "has-trap-slot" : ""}`}>
         {slots.map((u) => {
           const previous = frame?.before[side].board.find(
             (old) => old.uid === u.uid,
@@ -490,7 +496,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
           )
         })}
         {Array.from(
-          { length: Math.max(0, 3 - slots.length) },
+          { length: Math.max(0, capacity - slots.length) },
           (_, i) => (
             <span className="tcg-empty-slot" key={`empty-${i}`}>
               ◇
@@ -506,7 +512,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
     : 0
   const enemyDelta = frame ? healthDelta(frame.before.enemy, battle.enemy) : 0
   return (
-    <section inert={!!demo} className="tcg-battle tcg-viewport-battle tcg-450-battle" style={{ "--battle-contact": `${frame && ["play", "attack"].includes(frame.event.kind) ? TCG_IMPACT_MS : 0}ms` } as CSSProperties}>
+    <section inert={!!demo} className={`tcg-battle tcg-viewport-battle tcg-450-battle ${(battle.rulesVersion ?? 350) >= 470 ? "tcg-470-battle" : ""}`} style={{ "--battle-contact": `${frame && ["play", "attack"].includes(frame.event.kind) ? TCG_IMPACT_MS : 0}ms` } as CSSProperties}>
       <header className="tcg-battle-top">
         <div>
           <span className="tcg-kicker">
@@ -656,7 +662,14 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
           )}
         </button>
         {field("enemy")}
-        <div className="tcg-match-hud" aria-label="Tình trạng lượt"><span className={battle.pendingReaction?"is-reaction":battle.enemyPhase?"is-enemy":"is-player"}>{battle.pendingReaction?"◇ Chờ phản ứng":battle.enemyPhase?"Lượt địch":busy?"Đang giải quyết":"Lượt của bạn"}</span><b>◈ {battle.player.mana}/{battle.player.maxMana}</b><span>⚔ {readyCount}/3 sẵn sàng</span><span>{(battle.rulesVersion??350)<450?"Luật trận đang lưu":battle.player.trap?trapReady(battle,battle.player.trap)?"Bẫy sẵn sàng":"Bẫy chờ lượt kế":"Ô bẫy trống"}</span></div>
+        <div className="tcg-resource-hud"><div className="tcg-deck-status" aria-label="Bài còn lại và kiệt sức">
+          {(["player", "enemy"] as const).map(side => <span key={side} className={battle[side].deck.length <= 3 ? "is-low" : ""}>
+            <b>{side === "player" ? "Bạn" : "Địch"} · ▤ {battle[side].deck.length} lá</b>
+            <small>{battle[side].deck.length === 0 ? `Rút hụt kế: −${nextFatigueDamage(battle, battle[side])} ♥` : battle[side].deck.length <= 3 ? "Sắp hết bài" : `Tay: ${battle[side].hand.length}/8`}</small>
+          </span>)}
+        </div>
+        <div className="tcg-match-hud" aria-label="Tình trạng lượt"><span className={battle.pendingReaction?"is-reaction":battle.enemyPhase?"is-enemy":"is-player"}>{battle.pendingReaction?"◇ Chờ phản ứng":battle.enemyPhase?"Lượt địch":busy?"Đang giải quyết":"Lượt của bạn"}</span><b>◈ {battle.player.mana}/{battle.player.maxMana}</b><span>⚔ {readyCount}/{capacity} sẵn sàng</span><span>{(battle.rulesVersion??350)<450?"Luật trận đang lưu":battle.player.trap?trapReady(battle,battle.player.trap)?"Bẫy sẵn sàng":"Bẫy chờ lượt kế":"Ô bẫy trống"}</span></div>
+        </div>
         <div className={`tcg-turn-bar ${busy ? "enemy-turn" : ""}`}>
           <span>LƯỢT {battle.round}</span>
           <p role="status">
@@ -791,7 +804,8 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
         {(battle.pendingFlavors?.length ?? 0) > 0 && <div className="tcg-pending-stack" aria-live="polite">{battle.pendingFlavors?.map(f => <span key={f.id}>◷ {f.owner === "player" ? "Bạn" : "Địch"}: {CARD_MAP[f.cardId].name} · đầu lượt {f.executeRound}</span>)}</div>}
         <div className="tcg-command-dock" aria-label="Lựa chọn chiến thuật">
           {selectedCard && !busy && (
-            <div className="tcg-selected-card">
+            <div className={`tcg-selected-card ${drawRisk ? "has-draw-risk" : ""}`}>
+              {drawRisk && <p className="tcg-draw-warning" role="status">⚠ Có thể rút hụt {drawRisk.missed} lá · chịu {drawRisk.damage} sát thương kiệt sức{drawRisk.lethal ? " · Có thể khiến bạn thua!" : ""}</p>}
               <span className="tcg-selection-symbol">
                 {selectedCard.symbol}
               </span>
@@ -911,7 +925,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
           )}
         </div>
         <p className="tcg-arena-hint">
-          Hộ vệ chặn đòn đánh, không chặn phép · Tối đa 3 đồng minh · 7 năng
+          Hộ vệ chặn đòn đánh, không chặn phép · Tối đa {capacity} đồng minh · 7 năng
           lượng · 8 lá trên tay
         </p>
         <TrapReveal frame={frame} quiet={reducedMotion||systemReduced||!!demo?.paused}/>
@@ -1097,13 +1111,14 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               thắng giúp ký ức thoát khỏi sương.
             </p>
             <DuelBasics />
+            <p><strong>Bộ bài và kiệt sức:</strong> Trận mới dùng 24 lá, tối đa 2 bản mỗi thẻ; tay tối đa 8 lá. Khi bộ trống, mỗi lần rút hụt chịu {(battle.rulesVersion ?? 350) >= 470 ? "1 → 2 → 3 sát thương, rồi giữ ở 3" : "sát thương tăng dần 1 → 2 → 3 → 4… theo luật cũ"}. Hết bài không tự động xử thua. Đồng minh, phép và combo rút bài đều có thể gây kiệt sức.</p>
             <p>
               <strong>Mục tiêu:</strong> Đưa ý chí chủ tướng địch về 0, hoặc
               hoàn thành mục tiêu boss hiển thị trên dải chiến thuật. Mỗi lượt
               rút 1 lá, tăng 1 năng lượng tối đa và hồi đầy (trần 7).
             </p>
             <p>
-              <strong>Ra bài:</strong> Mỗi bên có 3 ô. Đồng minh chờ lượt sau;
+              <strong>Ra bài:</strong> Mỗi bên có {capacity} ô đồng minh và {(battle.rulesVersion ?? 350) >= 450 ? "1 ô bẫy riêng" : "không có ô bẫy"}. Đồng minh chờ lượt sau;
               Xung phong đánh ngay. Đồng hệ với một quân trên sân: quân mới +1
               chắn.
             </p>
@@ -1148,7 +1163,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               <strong>Giữ quân làm động cơ:</strong> Quân có nội tại “sau khi dùng phép” hoặc “khi hồi máu” có thể tăng công, dệt chắn. Các nội tại này tối đa 2 lần mỗi lượt của chủ nhân; hồi ở mức đầy máu không kích hoạt. Đóng băng bỏ một đòn ở lượt kế tiếp. Hy sinh vẫn kích hiệu ứng khi bị hạ; tái triệu hồi dùng ký ức đã mất và không kích hiệu ứng vào sân.
             </p>
             <p>
-              <strong>Bẫy Hương:</strong> Có 1 ô riêng cho mỗi phe; không chiếm 3 chỗ đồng minh. Trả năng lượng khi úp, sẵn sàng từ lượt kế. Khi đủ điều kiện chọn Kích hoạt hoặc Giữ bẫy. Bẫy dùng một lần. Gỡ/lộ bẫy bằng phép đối sách; bẫy úp địch có thể đổi kết quả dự báo.
+              <strong>Bẫy Hương:</strong> Có 1 ô riêng cho mỗi phe; không chiếm {capacity} chỗ đồng minh. Trả năng lượng khi úp, sẵn sàng từ lượt kế. Khi đủ điều kiện chọn Kích hoạt hoặc Giữ bẫy. Bẫy dùng một lần. Gỡ/lộ bẫy bằng phép đối sách; bẫy úp địch có thể đổi kết quả dự báo.
             </p>
             <p>
               <strong>Cạn bài:</strong> Không thể rút sẽ chịu kiệt sức 1, 2, 3…

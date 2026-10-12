@@ -1,0 +1,40 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "cpuRate": 1,
+    "steps": 36,
+    "mutations": 36,
+    "writes": 144,
+    "synchronousStepMeanMs": 0.8916666666692536,
+    "synchronousStepP95Ms": 1.1000000000931323,
+    "worldElements": 1,
+    "worldTileButtons": 0,
+    "scriptSeconds": 0.279781,
+    "layoutSeconds": 0,
+    "recalcSeconds": 0,
+    "taskSeconds": 0.53893,
+    "layoutCount": 0,
+    "recalcCount": 0,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "cpuRate": 4,
+    "steps": 36,
+    "mutations": 36,
+    "writes": 144,
+    "synchronousStepMeanMs": 4.483333333330746,
+    "synchronousStepP95Ms": 6.199999999720603,
+    "worldElements": 1,
+    "worldTileButtons": 0,
+    "scriptSeconds": 1.077081,
+    "layoutSeconds": 0,
+    "recalcSeconds": 0,
+    "taskSeconds": 1.998584,
+    "layoutCount": 0,
+    "recalcCount": 0,
+    "errors": []
+  }
+]

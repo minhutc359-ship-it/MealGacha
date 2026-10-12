@@ -1,3 +1,4 @@
+import "../../game/tcg470.css"
 import { useMemo, useState } from "react"
 import {
   CARDS,
@@ -13,6 +14,7 @@ import {
   cardRole,
   sampleHand,
   suggestDeck,
+  completeDeck,
   type DeckStyle,
 } from "../../game/deckStrategy"
 import { GameCardView } from "./GameCardView"
@@ -87,11 +89,19 @@ export function DeckBuilder() {
           <span className="tcg-kicker">MỖI BỘ BÀI LÀ MỘT CÁCH GIỮ BÀN</span>
           <h1>Xưởng chiến thuật</h1>
           <p>
-            18 lá · tối đa 2 bản mỗi thẻ · 6 bộ bài. Ghép món và phép liên tiếp
+            24 lá · tối đa 2 bản mỗi thẻ · 6 bộ bài. Ghép món và phép liên tiếp
             trong cùng lượt để mở công thức.
           </p>
         </div>
       </div>
+      {(!save.tcg470?.giftClaimed || draft.length < DECK_SIZE) && <div className="tcg-deck-upgrade" role="region" aria-label="Bổ sung bộ bài 24 lá">
+        <div><strong>Bàn đấu mới · 4 đồng minh, 24 lá</strong><p>Bộ cũ giữ nguyên. Bổ sung các lá bạn sở hữu, rồi Lưu & trang bị. Trận và hành trình đang chơi giữ luật cũ.</p></div>
+        {!save.tcg470?.giftClaimed && <button className="tcg-button ghost" onClick={() => useGameStore.getState().claimTcg470Gift()}>Nhận 6 lá bổ sung</button>}
+        {draft.length < DECK_SIZE && <button className="tcg-button primary" onClick={() => {
+          if (!useGameStore.getState().claimTcg470Gift()) return
+          setDraft(completeDeck(draft, useGameStore.getState().save.cards))
+        }}>Bổ sung đủ 24 lá</button>}
+      </div>}
       <div className="tcg-deck-tabs">
         {save.decks.map((d) => (
           <button
@@ -133,7 +143,7 @@ export function DeckBuilder() {
           disabled={!!errors.length}
           onClick={() => useGameStore.getState().saveDeck(id, name, draft)}
         >
-          Lưu & trang bị · {draft.length}/18
+          Lưu & trang bị · {draft.length}/{DECK_SIZE}
         </button>
       </div>
       <div
@@ -151,7 +161,7 @@ export function DeckBuilder() {
           aria-pressed={mobileView === "draft"}
           onClick={() => setMobileView("draft")}
         >
-          Trong bộ · {draft.length}/18
+          Trong bộ · {draft.length}/{DECK_SIZE}
         </button>
       </div>
       <div className="tcg-deck-layout" data-view={mobileView}>
@@ -215,7 +225,7 @@ export function DeckBuilder() {
           <p className="tcg-filter-count">
             {cards.length} thẻ ·{" "}
             {draft.length === DECK_SIZE
-              ? "Bộ đủ 18 lá. Sang Trong bộ để bỏ lá."
+              ? "Bộ đủ 24 lá. Sang Trong bộ để bỏ lá."
               : "Nhấn để thêm; nút i để đọc kỹ năng."}
           </p>
           <CardShelf

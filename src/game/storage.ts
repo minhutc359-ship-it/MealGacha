@@ -1,3 +1,4 @@
+import { boardLimit, deckSizeForRules } from "./tcgRules"
 import { trapStateIssue } from "./traps"
 import { validLivingDecision } from "./livingChoices"
 import { z } from "zod"
@@ -299,9 +300,9 @@ const fighter = z.object({
   maxHealth: integer,
   mana: integer.max(7),
   maxMana: integer.max(7),
-  deck: z.array(cardId).max(18),
+  deck: z.array(cardId).max(24),
   hand: z.array(cardId).max(8),
-  board: z.array(unit).max(3),
+  board: z.array(unit).max(4),
   fatigue: integer,
   chainSchool: z
     .enum(["ember", "tide", "grove", "hearth", "sugar"])
@@ -336,7 +337,7 @@ const node = z.object({
 const expedition = z
   .object({
     promise: z.enum(["safe", "bold"]).optional(),
-    rulesVersion: z.union([z.literal(350), z.literal(400), z.literal(450)]).default(350),
+    rulesVersion: z.union([z.literal(350), z.literal(400), z.literal(450), z.literal(470)]).default(350),
     id: z.string(),
     seed: z.number().int().min(0).max(4294967295),
     status: z.enum([
@@ -354,7 +355,7 @@ const expedition = z
     supplies: integer,
     deck: z
       .array(cardId)
-      .length(18)
+      .max(24)
       .refine((ids) =>
         ids.every((id) => ids.filter((c) => c === id).length <= 2),
       ),
@@ -390,6 +391,8 @@ const expedition = z
       ctx.addIssue({ code: "custom", message: "Điểm dừng không hợp lệ" })
     if (run.status === "reward" && !run.reward)
       ctx.addIssue({ code: "custom", message: "Thiếu phần thưởng hành trình" })
+    if (run.deck.length !== deckSizeForRules(run.rulesVersion))
+      ctx.addIssue({code:"custom",message:"Số lá không khớp luật hành trình"})
     const currentNode = run.nodes[run.floor]?.find(
       (n) => n.id === run.currentNode,
     )
@@ -436,8 +439,9 @@ const expedition = z
 export const GameSaveSchema = z
   .object({
     version: z.literal(1),
+    tcg470:z.object({giftClaimed:z.boolean()}).optional(),
     traps450:z.object({giftClaimed:z.boolean()}).optional(),
-    contentVersion: z.union([z.literal(350), z.literal(400), z.literal(450)]).optional(),
+    contentVersion: z.union([z.literal(350), z.literal(400), z.literal(450), z.literal(470)]).optional(),
     story400: z
       .object({
         version: z.literal(1),
@@ -465,7 +469,7 @@ export const GameSaveSchema = z
         z.object({
           id: z.string(),
           name: z.string().max(40),
-          cards: z.array(cardId).max(18),
+          cards: z.array(cardId).max(24),
         }),
       )
       .min(1)
@@ -535,9 +539,9 @@ export const GameSaveSchema = z
       .default([]),
     battle: z
       .object({
-        rulesVersion: z.union([z.literal(350), z.literal(400), z.literal(450)]).default(350),
+        rulesVersion: z.union([z.literal(350), z.literal(400), z.literal(450), z.literal(470)]).default(350),
         turnSerial:integer.min(1).optional(),turnSide:z.enum(["player","enemy"]).optional(),
-        enemyPhase:z.object({phase:z.enum(["plays","attacks"]),steps:integer.max(12),attacks:z.array(z.string().max(80)).max(3),cursor:integer.max(3)}).optional(),
+        enemyPhase:z.object({phase:z.enum(["plays","attacks"]),steps:integer.max(12),attacks:z.array(z.string().max(80)).max(4),cursor:integer.max(4)}).optional(),
         pendingReaction:z.object({id:z.string().min(1).max(140),trapUid:z.string().max(30),intent:trapIntent}).optional(),
         flavorSequence: integer.optional(),
         pendingFlavors: z
@@ -655,6 +659,9 @@ export const GameSaveSchema = z
           code: "custom",
           message: "Hiệu ứng Ủ vị không nhất quán",
         })
+      const limit = boardLimit(b), size = deckSizeForRules(b.rulesVersion)
+      if ([b.player,b.enemy].some(side => side.board.length > limit || side.deck.length > size) || (b.enemyPhase && (b.enemyPhase.attacks.length > limit || b.enemyPhase.cursor > limit)))
+        ctx.addIssue({code:"custom",message:"Sân hoặc bộ bài vượt luật trận đang lưu"})
       const battleCards = [b.player, b.enemy].flatMap((side) => [
         ...side.deck,
         ...side.hand,
@@ -729,7 +736,8 @@ export const GameSaveSchema = z
     if (
       save.battle?.expedition &&
       (save.expedition?.id !== save.battle.expedition.runId ||
-        save.expedition.currentNode !== save.battle.expedition.nodeId)
+        save.expedition.currentNode !== save.battle.expedition.nodeId ||
+        save.expedition.rulesVersion !== save.battle.rulesVersion)
     )
       ctx.addIssue({
         code: "custom",

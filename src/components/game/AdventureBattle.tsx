@@ -1,5 +1,9 @@
 import { SceneAtmosphere } from "./SceneAtmosphere"
-import { ADVENTURE_SCENES, ELEMENTAL_BOARDS, SCENE_WEATHER } from "../../game/visualPack"
+import {
+  ADVENTURE_SCENES,
+  ELEMENTAL_BOARDS,
+  SCENE_WEATHER,
+} from "../../game/visualPack"
 import { AdventureEffects } from "./AdventureEffects"
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
@@ -23,9 +27,16 @@ import { SpiritSprite } from "./AdventureArt"
 import { useGameStore } from "../../game/useGameStore"
 
 function DialogNotice() {
-  const notice = useGameStore(state => state.notice)
-  const dismiss = useGameStore(state => state.dismiss)
-  return notice ? <div className="adv-dialog-notice" role="alert"><span>{notice}</span><button type="button" aria-label="Đóng thông báo" onClick={dismiss}>×</button></div> : null
+  const notice = useGameStore((state) => state.notice)
+  const dismiss = useGameStore((state) => state.dismiss)
+  return notice ? (
+    <div className="adv-dialog-notice" role="alert">
+      <span>{notice}</span>
+      <button type="button" aria-label="Đóng thông báo" onClick={dismiss}>
+        ×
+      </button>
+    </div>
+  ) : null
 }
 
 export function AdventureDialog({
@@ -141,7 +152,7 @@ export function AdventureBattle({
   quiet = false,
 }: {
   save: AdventureSave
-  act: (action: AdventureAction) => void
+  act: (action: AdventureAction) => boolean | void
   embedded?: boolean
   paused?: boolean
   quiet?: boolean
@@ -150,26 +161,155 @@ export function AdventureBattle({
     member = save.team.find((item) => item.uid === e.activeUid)!
   const ally = CARD_MAP[member.cardId],
     enemy = CARD_MAP[e.cardId]
-  const [tab, setTab] = useState<"skills" | "bag" | "team">("skills")
+  const [tab, setTab] = useState<"command" | "skills" | "bag" | "team">(
+    embedded ? "skills" : "command",
+  )
+  const [busy, setBusy] = useState(false),
+    busyRef = useRef(false),
+    commandTimer = useRef<number | null>(null)
+  const [health, setHealth] = useState({ ally: member.hp, enemy: e.hp })
+  useEffect(
+    () => () => {
+      if (commandTimer.current !== null) clearTimeout(commandTimer.current)
+    },
+    [],
+  )
+  const chooseBattle = (action: AdventureAction) => {
+    if (busyRef.current || paused || embedded) return
+    busyRef.current = true
+    setBusy(true)
+    commandTimer.current = window.setTimeout(
+      () => {
+        busyRef.current = false
+        setBusy(false)
+      },
+      quiet || reduced ? 120 : 1600,
+    )
+    if (act(action) === false) {
+      busyRef.current = false
+      setBusy(false)
+      clearTimeout(commandTimer.current)
+    }
+  }
   const skills = skillsFor(member.cardId, member.level),
     exhausted = skills.every((skill) => !(member.pp?.[skill.id] ?? 0))
   const [target, setTarget] = useState(member.uid)
-  const reduced = useAppStore(state => state.user.preferences.reducedMotion || state.user.preferences.graphicsQuality === "low")
-  const previous = useRef({ turn: e.turn, uid: member.uid, hp: member.hp, enemy: e.hp, card: e.cardId, pp: JSON.stringify(member.pp) })
-  const [cue, setCue] = useState<{ally: CharacterMotion; enemy: CharacterMotion; allyDelay: number; enemyDelay: number; stamp: string}>({ally: "idle", enemy: "idle", allyDelay: 0, enemyDelay: 0, stamp: "start"})
+  const reduced = useAppStore(
+    (state) =>
+      state.user.preferences.reducedMotion ||
+      state.user.preferences.graphicsQuality === "low",
+  )
+  const previous = useRef({
+    turn: e.turn,
+    uid: member.uid,
+    hp: member.hp,
+    enemy: e.hp,
+    card: e.cardId,
+    pp: JSON.stringify(member.pp),
+  })
+  const [cue, setCue] = useState<{
+    ally: CharacterMotion
+    enemy: CharacterMotion
+    allyDelay: number
+    enemyDelay: number
+    stamp: string
+  }>({
+    ally: "idle",
+    enemy: "idle",
+    allyDelay: 0,
+    enemyDelay: 0,
+    stamp: "start",
+  })
   useEffect(() => {
     const before = previous.current
-    previous.current = { turn: e.turn, uid: member.uid, hp: member.hp, enemy: e.hp, card: e.cardId, pp: JSON.stringify(member.pp) }
-    if (before.turn === e.turn && before.uid === member.uid && before.card === e.cardId) return
-    const fast = spiritSpeed(member.cardId, member.level, member.status) >= spiritSpeed(e.cardId, e.level, e.enemyStatus)
-    setCue({ ally: before.uid !== member.uid ? "summon" : before.pp !== JSON.stringify(member.pp) ? "cast" : before.enemy > e.hp ? "attack" : before.hp > member.hp ? "hit" : "idle",
-      enemy: before.card !== e.cardId ? "summon" : before.hp > member.hp ? "attack" : before.enemy > e.hp ? "hit" : "idle",
-      allyDelay: fast ? 0 : 650, enemyDelay: fast ? 650 : 0, stamp: `${e.turn}-${member.uid}-${e.cardId}` })
-    const timer = window.setTimeout(() => setCue(value => ({...value, ally: "idle", enemy: "idle", allyDelay: 0, enemyDelay: 0})), 1600)
-    return () => clearTimeout(timer)
-  }, [e.turn, e.cardId, e.hp, e.level, e.enemyStatus, member.uid, member.hp, member.pp, member.cardId, member.level, member.status])
+    previous.current = {
+      turn: e.turn,
+      uid: member.uid,
+      hp: member.hp,
+      enemy: e.hp,
+      card: e.cardId,
+      pp: JSON.stringify(member.pp),
+    }
+    if (
+      before.turn === e.turn &&
+      before.uid === member.uid &&
+      before.card === e.cardId
+    )
+      return
+    const fast =
+      spiritSpeed(member.cardId, member.level, member.status) >=
+      spiritSpeed(e.cardId, e.level, e.enemyStatus)
+    setCue({
+      ally:
+        before.uid !== member.uid
+          ? "summon"
+          : before.pp !== JSON.stringify(member.pp)
+            ? "cast"
+            : before.enemy > e.hp
+              ? "attack"
+              : before.hp > member.hp
+                ? "hit"
+                : "idle",
+      enemy:
+        before.card !== e.cardId
+          ? "summon"
+          : before.hp > member.hp
+            ? "attack"
+            : before.enemy > e.hp
+              ? "hit"
+              : "idle",
+      allyDelay: fast ? 0 : 650,
+      enemyDelay: fast ? 650 : 0,
+      stamp: `${e.turn}-${member.uid}-${e.cardId}`,
+    })
+    if (!embedded) setTab("command")
+    setHealth({
+      ally: before.uid === member.uid ? before.hp : member.hp,
+      enemy: before.card === e.cardId ? before.enemy : e.hp,
+    })
+    const silent = quiet || reduced
+    const allyHealth = window.setTimeout(
+      () => setHealth((value) => ({ ...value, ally: member.hp })),
+      silent ? 0 : (fast ? 650 : 0) + 620,
+    )
+    const enemyHealth = window.setTimeout(
+      () => setHealth((value) => ({ ...value, enemy: e.hp })),
+      silent ? 0 : (fast ? 0 : 650) + 620,
+    )
+    const timer = window.setTimeout(
+      () => {
+        setCue((value) => ({
+          ...value,
+          ally: "idle",
+          enemy: "idle",
+          allyDelay: 0,
+          enemyDelay: 0,
+        }))
+        busyRef.current = false
+        setBusy(false)
+      },
+      silent ? 120 : 1600,
+    )
+    return () => {
+      clearTimeout(timer)
+      clearTimeout(allyHealth)
+      clearTimeout(enemyHealth)
+    }
+  }, [
+    e.turn,
+    e.cardId,
+    e.hp,
+    e.level,
+    e.enemyStatus,
+    member.uid,
+    member.hp,
+    member.pp,
+    member.cardId,
+    member.level,
+    member.status,
+  ])
   const cast = (skillId: string) =>
-    act({ type: "battle", move: "skill", skillId })
+    chooseBattle({ type: "battle", move: "skill", skillId })
   const playerFast =
     spiritSpeed(member.cardId, member.level, member.status) >=
     spiritSpeed(e.cardId, e.level, e.enemyStatus)
@@ -202,11 +342,25 @@ export function AdventureBattle({
       <div
         className="adv-battle-arena"
         data-scene={ADVENTURE_SCENES[save.areaId]}
-        style={{backgroundImage:`linear-gradient(180deg,#09292b18,#0f282422),url(${ELEMENTAL_BOARDS[ADVENTURE_SCENES[save.areaId]]})`}}
-        key={`${e.cardId}-${e.activeUid}-${e.turn}`}
+        style={{
+          backgroundImage: `linear-gradient(180deg,#09292b18,#0f282422),url(${ELEMENTAL_BOARDS[ADVENTURE_SCENES[save.areaId]]})`,
+        }}
       >
-        <SceneAtmosphere kind={SCENE_WEATHER[ADVENTURE_SCENES[save.areaId]]} paused={paused} />
-        <AdventureEffects ally={cue.ally} enemy={cue.enemy} allySchool={ally.school} enemySchool={enemy.school} stamp={cue.stamp} allyDelay={cue.allyDelay} enemyDelay={cue.enemyDelay} quiet={quiet || reduced} paused={paused} />
+        <SceneAtmosphere
+          kind={SCENE_WEATHER[ADVENTURE_SCENES[save.areaId]]}
+          paused={paused}
+        />
+        <AdventureEffects
+          ally={cue.ally}
+          enemy={cue.enemy}
+          allySchool={ally.school}
+          enemySchool={enemy.school}
+          stamp={cue.stamp}
+          allyDelay={cue.allyDelay}
+          enemyDelay={cue.enemyDelay}
+          quiet={quiet || reduced}
+          paused={paused}
+        />
         <section className={`adv-combatant enemy school-${enemy.school}`}>
           <span>
             {enemy.symbol} {SCHOOLS[enemy.school].name}
@@ -217,21 +371,36 @@ export function AdventureBattle({
             {spiritSpeed(e.cardId, e.level, e.enemyStatus)}
           </small>
           <AdventureMeter
-            value={e.hp}
+            value={embedded ? e.hp : health.enemy}
             max={e.maxHp}
             label={`HP ${enemy.name}`}
           />
           <small>
-            {e.hp}/{e.maxHp} HP{" "}
+            {embedded ? e.hp : health.enemy}/{e.maxHp} HP{" "}
             {e.enemyStatus &&
               `· ${STATUS_NAMES[e.enemyStatus]} ${e.enemyStatusTurns} lượt`}
           </small>
         </section>
         <div className={`adv-battle-model enemy school-${enemy.school}`}>
-          <SpiritSprite cardId={e.cardId} motion={cue.enemy} stamp={cue.stamp} delay={cue.enemyDelay} quiet={quiet || reduced} paused={paused} />
+          <SpiritSprite
+            cardId={e.cardId}
+            motion={cue.enemy}
+            stamp={cue.stamp}
+            delay={cue.enemyDelay}
+            quiet={quiet || reduced}
+            paused={paused}
+          />
         </div>
         <div className={`adv-battle-model ally school-${ally.school}`}>
-          <SpiritSprite cardId={member.cardId} back motion={cue.ally} stamp={cue.stamp} delay={cue.allyDelay} quiet={quiet || reduced} paused={paused} />
+          <SpiritSprite
+            cardId={member.cardId}
+            back
+            motion={cue.ally}
+            stamp={cue.stamp}
+            delay={cue.allyDelay}
+            quiet={quiet || reduced}
+            paused={paused}
+          />
         </div>
         <section className={`adv-combatant ally school-${ally.school}`}>
           <span>
@@ -243,12 +412,13 @@ export function AdventureBattle({
             {spiritSpeed(member.cardId, member.level, member.status)}
           </small>
           <AdventureMeter
-            value={member.hp}
+            value={embedded ? member.hp : health.ally}
             max={spiritMaxHp(member.cardId, member.level)}
             label={`HP ${ally.name}`}
           />
           <small>
-            {member.hp}/{spiritMaxHp(member.cardId, member.level)} HP{" "}
+            {embedded ? member.hp : health.ally}/
+            {spiritMaxHp(member.cardId, member.level)} HP{" "}
             {member.status &&
               `· ${STATUS_NAMES[member.status]} ${member.statusTurns} lượt`}
           </small>
@@ -269,171 +439,221 @@ export function AdventureBattle({
           ))}
         </div>
         <section className="adv-battle-menu">
-          <nav aria-label="Hành động chiến đấu">
-            {(["skills", "bag", "team"] as const).map((id) => (
-              <button
-                type="button"
-                key={id}
-                aria-pressed={tab === id}
-                onClick={() => setTab(id)}
-              >
-                {id === "skills"
-                  ? "Kỹ năng"
-                  : id === "bag"
-                    ? "Túi đồ"
-                    : "Đổi Vị Linh"}
-              </button>
-            ))}
-          </nav>
-          {tab === "skills" && (
-            <div className="adv-skill-grid">
-              {skills.map((skill) => {
-                const multiplier = skill.school
-                  ? schoolMultiplier(skill.school, enemy.school)
-                  : 1
-                return (
-                  <button
-                    type="button"
-                    key={skill.id}
-                    className={
-                      multiplier > 1
-                        ? "is-strong"
-                        : multiplier < 1
-                          ? "is-weak"
-                          : ""
-                    }
-                    disabled={!(member.pp?.[skill.id] ?? 0)}
-                    onClick={() => cast(skill.id)}
-                    title={skill.description}
-                  >
-                    <strong>{skill.name}</strong>
-                    <small>
-                      {skill.school ? SCHOOLS[skill.school].name : "Thường"} ·
-                      PP {member.pp?.[skill.id] ?? 0}/{skill.pp}
-                    </small>
-                    <span>
-                      {skill.power
-                        ? `Lực ×${skill.power} · hiệu quả ×${multiplier}`
-                        : skill.description}
-                    </span>
-                    {skill.effect && <small>{skill.description}</small>}
-                  </button>
-                )
-              })}
-              {exhausted && (
+          {busy ? (
+            <div className="adv-turn-playing" role="status">
+              Đang diễn ra lượt đấu…
+            </div>
+          ) : (
+            <>
+              {tab !== "command" && !embedded && (
                 <button
                   type="button"
-                  onClick={() => act({ type: "battle", move: "strike" })}
+                  className="adv-battle-back"
+                  onClick={() => setTab("command")}
                 >
-                  <strong>Cố Sức</strong>
-                  <small>Hết PP · đánh thường, mất HP</small>
+                  ← Lựa chọn hành động
                 </button>
               )}
-              <button
-                type="button"
-                onClick={() => act({ type: "battle", move: "guard" })}
-              >
-                <strong>Giữ mâm</strong>
-                <small>Ưu tiên phòng thủ</small>
-              </button>
-              <button
-                type="button"
-                disabled={e.kind !== "wild"}
-                onClick={() => act({ type: "battle", move: "flee" })}
-              >
-                <strong>Rút lui</strong>
-                <small>
-                  {e.kind === "wild" ? "75% thoát" : "Hoàn thành cuộc đấu NPC"}
-                </small>
-              </button>
-            </div>
-          )}
-          {tab === "bag" && (
-            <div className="adv-battle-bag">
-              <button
-                type="button"
-                disabled={e.kind !== "wild" || !save.aromaSeals}
-                onClick={() => act({ type: "battle", move: "befriend" })}
-              >
-                <strong>Hương Ấn · {save.aromaSeals}</strong>
-                <small>
-                  {e.kind === "wild"
-                    ? `${Math.round(captureChance(e) * 100)}% · yếu HP / trạng thái dễ kết bạn hơn`
-                    : "Vị Linh thuộc đội NPC"}
-                </small>
-              </button>
-              <label>
-                Vị Linh nhận vật phẩm
-                <select
-                  value={target}
-                  onChange={(event) => setTarget(event.target.value)}
-                >
-                  {save.team.map((item) => (
-                    <option key={item.uid} value={item.uid}>
-                      {CARD_MAP[item.cardId].name} · {item.hp} HP
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <button
-                type="button"
-                disabled={!save.inventory.potion}
-                onClick={() =>
-                  act({
-                    type: "battle",
-                    move: "item",
-                    item: "potion",
-                    uid: target,
-                  })
-                }
-              >
-                Canh Ấm · {save.inventory.potion}{" "}
-                <small>Hồi 30 HP · gỡ trạng thái · dùng một lượt</small>
-              </button>
-              <button
-                type="button"
-                disabled={!save.inventory.revive}
-                onClick={() =>
-                  act({
-                    type: "battle",
-                    move: "item",
-                    item: "revive",
-                    uid: target,
-                  })
-                }
-              >
-                Lá Tỉnh · {save.inventory.revive}
-                <small>Hồi sinh 50% HP · dùng một lượt</small>
-              </button>
-            </div>
-          )}
-          {tab === "team" && (
-            <div className="adv-switch-team">
-              {save.team.map((item) => (
-                <button
-                  type="button"
-                  key={item.uid}
-                  disabled={!item.hp || item.uid === member.uid}
-                  onClick={() =>
-                    act({ type: "battle", move: "switch", uid: item.uid })
-                  }
-                >
-                  <SpiritSprite cardId={item.cardId} />
-                  <span>
-                    <strong>{CARD_MAP[item.cardId].name}</strong>
+              {tab === "command" && (
+                <>
+                  <p className="adv-battle-prompt">
+                    Bạn muốn {ally.name} làm gì?
+                  </p>
+                  <div className="adv-battle-command-grid">
+                    <button type="button" onClick={() => setTab("skills")}>
+                      <b>Chiến đấu</b>
+                      <small>Kỹ năng · PP · tương khắc</small>
+                    </button>
+                    <button type="button" onClick={() => setTab("bag")}>
+                      <b>Túi đồ</b>
+                      <small>Hương Ấn · hồi phục</small>
+                    </button>
+                    <button type="button" onClick={() => setTab("team")}>
+                      <b>Đổi Vị Linh</b>
+                      <small>Chọn đồng hành khác</small>
+                    </button>
+                    <button
+                      type="button"
+                      disabled={e.kind !== "wild"}
+                      onClick={() =>
+                        chooseBattle({ type: "battle", move: "flee" })
+                      }
+                    >
+                      <b>Rút lui</b>
+                      <small>
+                        {e.kind === "wild"
+                          ? "Thử thoát khỏi chạm trán"
+                          : "Đang đấu với NPC"}
+                      </small>
+                    </button>
+                  </div>
+                </>
+              )}
+              {tab === "skills" && (
+                <div className="adv-skill-grid">
+                  {skills.map((skill) => {
+                    const multiplier = skill.school
+                      ? schoolMultiplier(skill.school, enemy.school)
+                      : 1
+                    return (
+                      <button
+                        type="button"
+                        key={skill.id}
+                        className={
+                          multiplier > 1
+                            ? "is-strong"
+                            : multiplier < 1
+                              ? "is-weak"
+                              : ""
+                        }
+                        disabled={!(member.pp?.[skill.id] ?? 0)}
+                        onClick={() => cast(skill.id)}
+                        title={skill.description}
+                      >
+                        <strong>{skill.name}</strong>
+                        <small>
+                          {skill.school ? SCHOOLS[skill.school].name : "Thường"}{" "}
+                          · PP {member.pp?.[skill.id] ?? 0}/{skill.pp}
+                        </small>
+                        <span>
+                          {skill.power
+                            ? `Lực ×${skill.power} · hiệu quả ×${multiplier}`
+                            : skill.description}
+                        </span>
+                        {skill.effect && <small>{skill.description}</small>}
+                      </button>
+                    )
+                  })}
+                  {exhausted && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        chooseBattle({ type: "battle", move: "strike" })
+                      }
+                    >
+                      <strong>Cố Sức</strong>
+                      <small>Hết PP · đánh thường, mất HP</small>
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      chooseBattle({ type: "battle", move: "guard" })
+                    }
+                  >
+                    <strong>Giữ mâm</strong>
+                    <small>Ưu tiên phòng thủ</small>
+                  </button>
+                </div>
+              )}
+              {tab === "bag" && (
+                <div className="adv-battle-bag">
+                  <button
+                    type="button"
+                    disabled={e.kind !== "wild" || !save.aromaSeals}
+                    onClick={() =>
+                      chooseBattle({ type: "battle", move: "befriend" })
+                    }
+                  >
+                    <strong>Hương Ấn · {save.aromaSeals}</strong>
                     <small>
-                      Cấp {item.level} · {item.hp} HP
+                      {e.kind === "wild"
+                        ? `${Math.round(captureChance(e) * 100)}% · yếu HP / trạng thái dễ kết bạn hơn`
+                        : "Vị Linh thuộc đội NPC"}
                     </small>
-                  </span>
-                </button>
-              ))}
-            </div>
+                  </button>
+                  <label>
+                    Vị Linh nhận vật phẩm
+                    <select
+                      value={target}
+                      onChange={(event) => setTarget(event.target.value)}
+                    >
+                      {save.team.map((item) => (
+                        <option key={item.uid} value={item.uid}>
+                          {CARD_MAP[item.cardId].name} · {item.hp} HP
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <button
+                    type="button"
+                    disabled={!save.inventory.potion}
+                    onClick={() =>
+                      chooseBattle({
+                        type: "battle",
+                        move: "item",
+                        item: "potion",
+                        uid: target,
+                      })
+                    }
+                  >
+                    Canh Ấm · {save.inventory.potion}{" "}
+                    <small>Hồi 30 HP · gỡ trạng thái · dùng một lượt</small>
+                  </button>
+                  <button
+                    type="button"
+                    disabled={!save.inventory.revive}
+                    onClick={() =>
+                      chooseBattle({
+                        type: "battle",
+                        move: "item",
+                        item: "revive",
+                        uid: target,
+                      })
+                    }
+                  >
+                    Lá Tỉnh · {save.inventory.revive}
+                    <small>Hồi sinh 50% HP · dùng một lượt</small>
+                  </button>
+                </div>
+              )}
+              {tab === "team" && (
+                <div className="adv-switch-team">
+                  {save.team.map((item) => (
+                    <button
+                      type="button"
+                      key={item.uid}
+                      disabled={!item.hp || item.uid === member.uid}
+                      onClick={() =>
+                        chooseBattle({
+                          type: "battle",
+                          move: "switch",
+                          uid: item.uid,
+                        })
+                      }
+                    >
+                      <SpiritSprite cardId={item.cardId} quiet lazy />
+                      <span>
+                        <strong>{CARD_MAP[item.cardId].name}</strong>
+                        <small>
+                          Cấp {item.level} · {item.hp} HP
+                        </small>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </section>
       </div>
       <SchoolChart />
     </>
   )
-  return embedded ? <section className={`adv-battle is-${e.kind}`} inert aria-labelledby="adv-battle-title">{content}</section>
-    : <AdventureDialog className={`adv-battle is-${e.kind}`} titleId="adv-battle-title">{content}</AdventureDialog>
+  return embedded ? (
+    <section
+      className={`adv-battle is-${e.kind}`}
+      inert
+      aria-labelledby="adv-battle-title"
+    >
+      {content}
+    </section>
+  ) : (
+    <AdventureDialog
+      className={`adv-battle is-${e.kind}`}
+      titleId="adv-battle-title"
+    >
+      {content}
+    </AdventureDialog>
+  )
 }

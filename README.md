@@ -1,3 +1,11 @@
+# Soul of Meal · Web 4.7 · Bàn đấu TCG rộng hơn
+
+Trận mới có 4 đồng minh + 1 ô bẫy, bộ 24 lá cho cả hai bên và kiệt sức tối đa 3 sát thương mỗi lần rút hụt. Theo dõi số bài còn lại và cảnh báo rút hụt trực tiếp trên bàn. Bộ cũ giữ nguyên: vào **Bộ bài → Bổ sung đủ 24 lá → Lưu & trang bị**; có 6 lá khởi đầu bổ sung miễn phí. Trận và hành trình đang chơi tiếp tục theo luật cũ. [Cơ chế, bảo toàn tiến trình và kiểm chứng](dev/docs/web-v470/UPDATE.md).
+
+## Web 4.6 · Adventure nhẹ hơn và điều khiển theo ô
+
+Bản đồ dùng Canvas/cache từ atlas và SVG chung; giảm cập nhật DOM, ngừng vẽ sau menu/trận. Giữ D-pad/WASD để đi, nút chạy, A tương tác và X mở menu. Trận đấu có bốn lựa chọn chính, HP theo nhịp đòn, khóa click lặp và giữ arena qua lượt; tủ/sổ chỉ mount sprite gần viewport. Tiến trình và 20 map giữ nguyên, chỉ web. Mẫu 36 bước Chromium giảm JavaScript 82–84%; xem [nghiên cứu Black/White, số đo và kiểm chứng](dev/docs/web-v460/UPDATE.md).
+
 ## Web 4.5 · Một ô bẫy và giao diện TCG rõ hơn
 
 Mỗi bên có một ô bẫy riêng ngoài ba ô quân; 8 bẫy và 2 phép đối sách, úp trước rồi chọn Kích hoạt/Giữ khi địch hành động. HUD, tay bài cuộn ngang, cửa sổ phản ứng và animation lật bẫy dễ theo dõi trên màn dọc/ngang. Gói thẻ nhận tự nguyện; trận/run cũ tiếp tục đúng luật cũ, giữ tiến trình. Chỉ web, phần tăng toàn build 4.289.381 byte trong ngân sách thêm 10 MB. Xem [cơ chế, nguồn tham khảo, ảnh và kiểm chứng](dev/docs/web-v450/UPDATE.md).

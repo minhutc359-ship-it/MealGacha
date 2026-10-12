@@ -1,3 +1,4 @@
+import { boardLimit, deckSizeForRules, fatigueDamage, CURRENT_TCG_RULES, type TcgRulesVersion } from "./tcgRules"
 import { trapMatches, publicBattle } from "./traps"
 import type { BattleSide, TrapIntent } from "./types"
 import { CARD_MAP } from "./catalog"
@@ -78,9 +79,9 @@ export function playError(b: Battle, index: number, branch?: PlayAction["branch"
     const card = flavoredCard(original, option)
     if (card.kind === "trap" && b.player.trap) return "Ô bẫy đang có bài. Bỏ bẫy cũ trước khi úp bẫy mới."
     if (cardCost(b.player, card) > b.player.mana) return "Chưa đủ năng lượng."
-    if (card.kind === "unit" && b.player.board.length >= 3) return "Sân đã đủ 3 đồng minh."
+    if (card.kind === "unit" && b.player.board.length >= boardLimit(b)) return `Sân đã đủ ${boardLimit(b)} đồng minh.`
     if (["buff", "ward"].includes(card.effect ?? "") && !b.player.board.length) return "Cần một đồng minh trên sân."
-    return abilityError(b.player, card) ?? flavorError(b, "player", card)
+    return abilityError(b, b.player, card) ?? flavorError(b, "player", card)
   })
   return errors.some(error => error === null) ? null : errors[0]
 }
@@ -167,14 +168,14 @@ function memoryIndex(p: Combatant) {
   for (let index = memories.length - 1; index >= 0; index--) if (CARD_MAP[memories[index]]?.kind === "unit" && CARD_MAP[memories[index]].cost <= 4) return index
   return -1
 }
-function abilityError(p: Combatant, card: GameCard): string | null {
+function abilityError(b: Battle, p: Combatant, card: GameCard): string | null {
   if (card.ability === "offering" && p.board.length < 2) return "Cần ít nhất 2 đồng minh để hy sinh và giữ lại người nhận sức mạnh."
-  if (card.ability === "revive" && (p.board.length >= 3 || memoryIndex(p) < 0)) return "Cần một ô trống và đồng minh giá tối đa 4 đã bị hạ."
+  if (card.ability === "revive" && (p.board.length >= boardLimit(b) || memoryIndex(p) < 0)) return "Cần một ô trống và đồng minh giá tối đa 4 đã bị hạ."
   return null
 }
 function revive(b: Battle, side: "player" | "enemy") {
   const p = b[side], index = memoryIndex(p)
-  if (p.board.length >= 3 || index < 0) return
+  if (p.board.length >= boardLimit(b) || index < 0) return
   const id = p.graveyard!.splice(index, 1)[0], card = CARD_MAP[id]
   p.board.push({ uid: `u${b.nextUid++}`, cardId: id, attack: card.attack, health: Math.min(2, card.health),
     maxHealth: card.health, shield: card.keywords.includes("shield") ? 1 : 0, ready: false, keywords: [...card.keywords] })
@@ -241,7 +242,7 @@ function spellAbility(b: Battle, side: "player" | "enemy", card: GameCard, targe
       if (sleeper) sleeper.frozen = true
       break
     }
-    case "moonward": p.board.forEach(u => u.shield += power); if (p.board.length === 3) draw(b, side); break
+    case "moonward": p.board.forEach(u => u.shield += power); if (p.board.length === boardLimit(b)) draw(b, side); break
     default: return false
   }
   return true
@@ -266,12 +267,13 @@ function draw(b: Battle, side: "player" | "enemy", count = 1) {
     const id = p.deck.shift()
     if (!id) {
       p.fatigue++
-      p.health -= p.fatigue
+      const damage = fatigueDamage(b, p.fatigue)
+      p.health -= damage
       log(
         b,
         `${
           side === "player" ? "Bạn" : b.opponent
-        } chịu ${p.fatigue} sát thương kiệt sức.`,
+        } chịu ${damage} sát thương kiệt sức.`,
       )
     } else if (p.hand.length < 8) p.hand.push(id)
     else log(b, `${CARD_MAP[id].name} bị bỏ vì tay bài đã đủ 8 lá.`)
@@ -303,6 +305,7 @@ export function opponentDeck(
 ): string[] {
   const stage = stageId ? STAGE_MAP[stageId] : undefined
   const catalog = cardsForRules(rulesVersion >= 450 ? rulesVersion : stage && stage.index >= 18 ? rulesVersion : 350)
+  const size = deckSizeForRules(rulesVersion)
   const school = stage?.chapter.school ?? "ember"
   const maxCost = stage ? Math.min(6, 3 + Math.floor(stage.index / 3)) : 5
   const finale = stage?.chapter.id === "last-table"
@@ -319,22 +322,22 @@ export function opponentDeck(
   const units = shuffle(
     themed.filter((c) => c.kind === "unit" && !low.some((l) => l.id === c.id)),
     rng,
-  ).slice(0, 4)
+  ).slice(0, rulesVersion >= 470 ? 5 : 4)
   const spells = shuffle(
     themed.filter((c) => c.kind === "spell"),
     rng,
-  ).slice(0, 2)
-  const traps = rulesVersion >= 450 ? shuffle(themed.filter(c => c.kind === "trap"), rng).slice(0,1) : []
-  const list = [...low, ...units, ...spells.slice(0,traps.length?1:2), ...traps]
+  ).slice(0, rulesVersion >= 470 ? 3 : 2)
+  const traps = rulesVersion >= 450 ? shuffle(themed.filter(c => c.kind === "trap"), rng).slice(0,rulesVersion >= 470 ? 2 : 1) : []
+  const list = [...low, ...units, ...spells.slice(0,rulesVersion >= 470 ? 2 : traps.length?1:2), ...traps]
   for (const card of catalog)
     if (
-      list.length < 9 &&
+      list.length < size / 2 &&
       card.cost <= maxCost &&
       !list.some((c) => c.id === card.id)
     )
       list.push(card)
-  const ids = list.flatMap((c) => [c.id, c.id]).slice(0, 18)
-  if (stage?.boss && CARD_MAP[stage.rewardCard])
+  const ids = list.flatMap((c) => [c.id, c.id]).slice(0, size)
+  if (stage?.boss && CARD_MAP[stage.rewardCard] && (rulesVersion < 470 || ids.filter(id => id === stage.rewardCard).length < 2))
     ids[ids.length - 1] = stage.rewardCard
   return ids
 }
@@ -344,7 +347,7 @@ export function startBattle(
   choice: "courage" | "wisdom" = "courage",
   rng = Math.random,
   offerMulligan = false,
-  rulesVersion: 350 | 400 | 450 = 450,
+  rulesVersion: TcgRulesVersion = CURRENT_TCG_RULES,
 ): Battle {
   const stage = stageId ? STAGE_MAP[stageId] : undefined
   const b: Battle = {
@@ -407,8 +410,8 @@ function play(
   if (card.ability === "unsteep" && !(b.pendingFlavors ?? []).some(effect => effect.id === target && effect.owner !== side)) return "Hãy chọn đúng một Ủ vị đang chờ của địch."
   const cost = cardCost(p, card)
   if (cost > p.mana) return "Không đủ năng lượng."
-  if (card.kind === "unit" && p.board.length >= 3)
-    return "Sân đã đủ 3 đồng minh."
+  if (card.kind === "unit" && p.board.length >= boardLimit(b))
+    return `Sân đã đủ ${boardLimit(b)} đồng minh.`
   if (
     card.kind === "spell" &&
     (card.effect === "ward" || card.effect === "buff") &&
@@ -422,7 +425,7 @@ function play(
     !foe.board.some((u) => u.uid === target)
   )
     return "Hãy chọn một mục tiêu địch."
-  const abilityIssue = abilityError(p, card)
+  const abilityIssue = abilityError(b, p, card)
   if (abilityIssue) return abilityIssue
   const resonated = cost < card.cost
   p.mana -= cost
@@ -763,9 +766,9 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
       .flatMap((id, index) => cardBranches(CARD_MAP[id]).map(branch => ({ card: flavoredCard(CARD_MAP[id], branch), index, branch })))
       .filter(
         ({ card }) =>
-          !abilityError(p, card) && !flavorError(b, "enemy", card) &&
+          !abilityError(b, p, card) && !flavorError(b, "enemy", card) &&
           cardCost(p, card) <= p.mana &&
-          (card.kind !== "unit" || p.board.length < 3) &&
+          (card.kind !== "unit" || p.board.length < boardLimit(b)) &&
           ((card.effect !== "buff" && card.effect !== "ward") ||
             p.board.length > 0) &&
           (card.kind !== "spell" ||
@@ -775,7 +778,7 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
             card.effect !== "heal" ||
             p.health < p.maxHealth || card.ability === "dream" && b.player.board.length > 0 ||
             ["mend", "feast"].includes(card.ability ?? "") && p.board.some(u => u.health < u.maxHealth) ||
-            card.ability === "rebloom" && p.board.length < 3 && memoryIndex(p) >= 0) &&
+            card.ability === "rebloom" && p.board.length < boardLimit(b) && memoryIndex(p) >= 0) &&
           (card.effect !== "sweep" || b.player.board.length > 0),
       )
     options.sort((a, z) => {
@@ -875,7 +878,7 @@ function resolveTrap(b: Battle, owner: BattleSide, intent: TrapIntent, record: (
   if(def.effect==="negate")cancel=true
   if(def.effect==="ward")p.board.forEach(u=>u.shield+=(card.power??2))
   if(def.effect==="reserve"){restore(b,owner,3);draw(b,owner,2)}
-  if(def.effect==="recall"&&intent.fallenCardId&&p.board.length<3){
+  if(def.effect==="recall"&&intent.fallenCardId&&p.board.length<boardLimit(b)){
     const index=p.graveyard.lastIndexOf(intent.fallenCardId),revived=CARD_MAP[intent.fallenCardId]
     if(index>=0){p.graveyard.splice(index,1);p.board.push({uid:`u${b.nextUid++}`,cardId:revived.id,attack:revived.attack,health:Math.min(2,revived.health),maxHealth:revived.health,shield:revived.keywords.includes("shield")?1:0,ready:false,keywords:[...revived.keywords]})}
   }
@@ -921,13 +924,13 @@ function finishAttack450(b: Battle, side: BattleSide, uid: string, target: strin
 function enemyOptions450(b: Battle) {
   const p=b.enemy
   return p.hand.flatMap((id,index)=>cardBranches(CARD_MAP[id]).map(branch=>({card:flavoredCard(CARD_MAP[id],branch),index,branch})))
-    .filter(({card})=>!abilityError(p,card)&&!flavorError(b,"enemy",card)&&cardCost(p,card)<=p.mana
-      &&(card.kind!=="unit"||p.board.length<3)&&(card.kind!=="trap"||!p.trap)
+    .filter(({card})=>!abilityError(b,p,card)&&!flavorError(b,"enemy",card)&&cardCost(p,card)<=p.mana
+      &&(card.kind!=="unit"||p.board.length<boardLimit(b))&&(card.kind!=="trap"||!p.trap)
       &&((card.effect!=="buff"&&card.effect!=="ward")||p.board.length>0)
       &&(card.kind!=="spell"||card.effect!=="draw"||card.ability==="revive"||card.ability==="disarm"||(p.hand.length<=5&&p.deck.length>0))
       &&(card.kind==="unit"||card.effect!=="heal"||p.health<p.maxHealth||card.ability==="dream"&&b.player.board.length>0
         ||["mend","feast"].includes(card.ability??"")&&p.board.some(u=>u.health<u.maxHealth)
-        ||card.ability==="rebloom"&&p.board.length<3&&memoryIndex(p)>=0)
+        ||card.ability==="rebloom"&&p.board.length<boardLimit(b)&&memoryIndex(p)>=0)
       &&(card.effect!=="sweep"||b.player.board.length>0))
     .sort((a,z)=>{
       // The AI sees an occupied face-down slot, never its private card identity.
@@ -1188,4 +1191,18 @@ export function previewTarget(
     attackerDefeated,
     text: text + (ownHealthLoss ? ` · Mất ${ownHealthLoss} ý chí` : "") + (hiddenTrap ? " · Có bẫy úp: kết quả có thể thay đổi" : ""),
   }
+}
+
+/** Preview public effects only. A hidden counter-trap can still prevent the play. */
+export function playDrawRisk(b: Battle, index: number, branch?: PlayAction["branch"]) {
+  const original = CARD_MAP[b.player.hand[index]]
+  if (!original) return null
+  const card = flavoredCard(original, branch)
+  const target = card.ability === "unsteep" ? b.pendingFlavors?.find(f => f.owner === "enemy")?.id : card.effect === "damage" ? "hero" : undefined
+  const attempt = actBattle(publicBattle(b), {type:"play",index,branch,target})
+  if (attempt.error) return null
+  const missed = attempt.battle.player.fatigue - b.player.fatigue
+  if (missed <= 0) return null
+  const damage = Array.from({length: missed}, (_, i) => fatigueDamage(b, b.player.fatigue + i + 1)).reduce((sum, n) => sum + n, 0)
+  return {missed, damage, lethal: attempt.battle.result === "loss"}
 }

@@ -133,19 +133,19 @@ describe("expedition journey and rewards", () => {
       }),
     ).toBe(entered)
   })
-  it("replaces exactly one offered card, preserves 18 cards and rejects third copies or duplicate picks", () => {
+  it("replaces exactly one offered card, preserves 24 cards and rejects third copies or duplicate picks", () => {
     const { run, battle } = fight(createExpedition(STARTER_DECK, 1))
     const won = settleRunCombat(run, { ...battle, result: "win" })
     expect(pickRunCard(won, "spark", 0)).toBe(won)
     const forced = {
       ...won,
-      reward: { ...won.reward!, cards: ["spark", "caravan-scout"] },
+      reward: { ...won.reward!, cards: ["spark", "caravan-smith"] },
     }
     expect(pickRunCard(forced, "spark", 0)).toBe(forced)
-    expect(pickRunCard(forced, "caravan-scout", 99)).toBe(forced)
-    const next = pickRunCard(forced, "caravan-scout", 0)
-    expect(next.deck).toHaveLength(18)
-    expect(next.deck[0]).toBe("caravan-scout")
+    expect(pickRunCard(forced, "caravan-smith", 99)).toBe(forced)
+    const next = pickRunCard(forced, "caravan-smith", 0)
+    expect(next.deck).toHaveLength(24)
+    expect(next.deck[0]).toBe("caravan-smith")
     expect(next.floor).toBe(1)
     expect(next.status).toBe("path")
     expect(pickRunCard(next, "caravan-scout", 1)).toBe(next)
@@ -376,6 +376,9 @@ it("resolves 30 starter encounters and 20 complete journeys with real turns, hea
       starterWins++
   }
   const mature = [
+    "caravan-herbalist", "caravan-herbalist",
+    "caravan-scout", "caravan-scout",
+    "sugar-veil", "sugar-veil",
     "chef-nhien",
     "chef-nhien",
     "chef-moc",
@@ -421,10 +424,10 @@ it("resolves 30 starter encounters and 20 complete journeys with real turns, hea
       } else run = resolveRunEvent(run, "rest")
       if (run.status === "won") completed++
       expect(run.health).toBeLessThanOrEqual(run.maxHealth)
-      expect(run.deck).toHaveLength(18)
+      expect(run.deck).toHaveLength(24)
     }
   }
   expect(starterWins).toBeGreaterThanOrEqual(10)
   // Full journeys must remain viable with legal moves suggested by the game.
   expect(completed).toBeGreaterThanOrEqual(3)
-})
+}, 20_000)

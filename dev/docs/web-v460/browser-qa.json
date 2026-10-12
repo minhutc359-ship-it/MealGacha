@@ -1,0 +1,84 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "heldPointer": true,
+    "heldKeyboard": true,
+    "runToggle": true,
+    "pauseMenuAndBattle": true,
+    "dialogueReload": true,
+    "clinicHealsAndExit": true,
+    "turnOneUse": true,
+    "arenaPreserved": true,
+    "viewport": true,
+    "errors": [],
+    "missing": []
+  },
+  {
+    "maps": 20,
+    "cachedLayers": true,
+    "layerBudgetBytes": 16777216
+  },
+  {
+    "shopPurchase": true
+  },
+  {
+    "capture": true,
+    "storageDepositWithdraw": true
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "heldPointer": true,
+    "heldKeyboard": true,
+    "runToggle": true,
+    "pauseMenuAndBattle": true,
+    "dialogueReload": true,
+    "clinicHealsAndExit": true,
+    "turnOneUse": true,
+    "arenaPreserved": true,
+    "viewport": true,
+    "errors": [],
+    "missing": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "heldPointer": true,
+    "heldKeyboard": true,
+    "runToggle": true,
+    "pauseMenuAndBattle": true,
+    "dialogueReload": true,
+    "clinicHealsAndExit": true,
+    "turnOneUse": true,
+    "arenaPreserved": true,
+    "viewport": true,
+    "errors": [],
+    "missing": []
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "heldPointer": true,
+    "heldKeyboard": true,
+    "runToggle": true,
+    "pauseMenuAndBattle": true,
+    "dialogueReload": true,
+    "clinicHealsAndExit": true,
+    "turnOneUse": true,
+    "arenaPreserved": true,
+    "viewport": true,
+    "errors": [],
+    "missing": []
+  },
+  {
+    "focusBlurStopsMovement": true,
+    "menu": {
+      "reserveRows": 60,
+      "visibleCanvasesTop": 5,
+      "visibleCanvasesBottom": 5,
+      "offscreenCanvasesUnmounted": true,
+      "errors": []
+    }
+  }
+]

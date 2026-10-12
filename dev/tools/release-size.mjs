@@ -3,7 +3,7 @@ import { gzipSync } from "node:zlib"
 import { fileURLToPath } from "node:url"
 import path from "node:path"
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../.."), dist = path.join(root, "dist")
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../.."), dist = path.resolve(root, process.argv[2] || "dist")
 const files = []
 function walk(dir) { for (const name of readdirSync(dir)) { const file = path.join(dir, name); if (statSync(file).isDirectory()) walk(file); else files.push({ path: path.relative(dist, file).split(path.sep).join("/"), bytes: statSync(file).size }) } }
 walk(dist)
@@ -19,8 +19,8 @@ const leaks = files.filter(f => /(^dev\/|\/archive\/|__qa__|\.map$|(?:^|\/)resul
 if (leaks.length) throw Error(`Non-product files in dist: ${JSON.stringify(leaks)}`)
 const result = { staticBudgetBytes: 100_000_000, jsGzipBudgetBytes: 650_000, version: JSON.parse(readFileSync(path.join(root, "package.json"), "utf8")).version, bytes: files.reduce((n, f) => n + f.bytes, 0), files: files.length, byType, groups, js_gzip: compressed("js"), css_gzip: compressed("css"), largest: [...files].sort((a, b) => b.bytes - a.bytes).slice(0, 12), leaks }
 // Each update also keeps its explicitly approved total build delta.
-if (["4.4.1","4.5.0"].includes(result.version)) {
-  const visualBudget = JSON.parse(readFileSync(path.join(root, `dev/docs/${result.version === "4.5.0" ? "web-v450" : "web-v441"}/visual-budget.json`), "utf8"))
+if (["4.4.1","4.5.0","4.6.0","4.7.0"].includes(result.version)) {
+  const visualBudget = JSON.parse(readFileSync(path.join(root, `dev/docs/${{"4.4.1":"web-v441","4.5.0":"web-v450","4.6.0":"web-v460","4.7.0":"web-v470"}[result.version]}/visual-budget.json`), "utf8"))
   result.visualUpdate = { ...visualBudget, addedBytes: result.bytes - visualBudget.baselineBytes, remainingBytes: visualBudget.baselineBytes + visualBudget.additionalBudgetBytes - result.bytes }
   if (result.visualUpdate.remainingBytes < 0) throw Error(`Web ${result.version} exceeds the approved additional ${visualBudget.additionalBudgetBytes / 1_000_000} MB budget.`)
 }
