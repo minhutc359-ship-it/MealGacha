@@ -1,3 +1,4 @@
+import { renderIsLight, renderDpr, subscribeRenderQuality } from "../../infrastructure/presentation/renderQuality"
 import { useEffect, useRef } from "react"
 import type { Application as PixiApplication } from "pixi.js"
 
@@ -34,6 +35,8 @@ export function LootVfxCanvas({ state, accent, reducedMotion, rarity }: Props) {
     const host = hostRef.current
     if (!host || reducedMotion) return
 
+    let qualityCleanup = () => {}
+    let visibilityCleanup = () => {}
     let disposed = false
     let app: PixiApplication | null = null
 
@@ -46,7 +49,7 @@ export function LootVfxCanvas({ state, accent, reducedMotion, rarity }: Props) {
           backgroundAlpha: 0,
           antialias: true,
           autoDensity: true,
-          resolution: Math.min(window.devicePixelRatio || 1, 2),
+          resolution: renderDpr(),
           preference: "webgl",
           powerPreference: "high-performance",
         })
@@ -56,7 +59,11 @@ export function LootVfxCanvas({ state, accent, reducedMotion, rarity }: Props) {
         }
 
         app = nextApp
-        nextApp.ticker.maxFPS = 30
+        nextApp.ticker.maxFPS = renderIsLight() ? 24 : 60
+        qualityCleanup = subscribeRenderQuality(() => { nextApp.ticker.maxFPS = renderIsLight() ? 24 : 60 })
+        const visibility = () => { if (document.hidden) nextApp.ticker.stop(); else nextApp.ticker.start() }
+        document.addEventListener("visibilitychange",visibility);visibility()
+        visibilityCleanup = () => document.removeEventListener("visibilitychange",visibility)
         nextApp.canvas.setAttribute("aria-hidden", "true")
         host.appendChild(nextApp.canvas)
 
@@ -134,6 +141,7 @@ export function LootVfxCanvas({ state, accent, reducedMotion, rarity }: Props) {
         let pulseStartedAt = 0
         let elapsed = 0
         nextApp.ticker.add((ticker) => {
+          if (document.hidden) return
           elapsed += ticker.deltaMS
           scene.position.set(
             nextApp.renderer.width / 2,
@@ -257,6 +265,7 @@ export function LootVfxCanvas({ state, accent, reducedMotion, rarity }: Props) {
 
     return () => {
       disposed = true
+      qualityCleanup();visibilityCleanup()
       app?.destroy({ removeView: true }, { children: true })
     }
   }, [accent, reducedMotion])

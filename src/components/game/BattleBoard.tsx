@@ -1,3 +1,4 @@
+import { SceneAtmosphere } from "./SceneAtmosphere"
 import { ArenaScene, arenaRegion } from "./ArenaScene"
 import { storyLines } from "../../game/storyPresentation"
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
@@ -586,6 +587,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
             />
           ))}
         </div>
+        <SceneAtmosphere kind={battleRule(battle) ? "embers" : "motes"} paused={demo?.paused ?? false} />
         <div className="tcg-arena-top">
           <span>
             AI · {battle.enemy.hand.length} lá trên tay ·{" "}

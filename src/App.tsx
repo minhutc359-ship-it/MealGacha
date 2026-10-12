@@ -1,3 +1,5 @@
+import { PresentationSettings } from "./components/game/PresentationSettings"
+import "./game/presentation440.css"
 import { GameErrorBoundary } from "./components/layout/GameErrorBoundary"
 import "./game/web410.css"
 import { startWebOffline } from "./infrastructure/web/offline"
@@ -148,6 +150,7 @@ function AppInner() {
 export default function App() {
   return (
     <BrowserRouter>
+      <PresentationSettings />
       <GameErrorBoundary><StorageRecovery><AppInner /><ModeIntroHost /></StorageRecovery></GameErrorBoundary>
     </BrowserRouter>
   )

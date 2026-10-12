@@ -1,3 +1,4 @@
+import { renderDpr, renderIsLight } from "../../infrastructure/presentation/renderQuality"
 import { useEffect, useRef } from "react"
 import type { EffectCue } from "../../game/combatEffects"
 import type { School } from "../../game/types"
@@ -24,24 +25,26 @@ export function BattleVfxCanvas({ source, cues, school, action, stamp, quiet }: 
     if (timeline.current.stamp !== stamp) timeline.current = { stamp, start: performance.now(), hiddenAt: null }
     const clock = timeline.current
     const contact = ["attack", "play"].includes(action) ? TCG_IMPACT_MS : 140
+    let unsubscribe = () => {}
     const draw = (now: number) => {
       ctx.clearRect(0, 0, width, height)
       const age = now - clock.start
-      if (document.hidden || age > contact + 760) return
+      if (age > contact + 760) { unsubscribe(); surface.dataset.phase = "complete"; return }
+      if (document.hidden) return
       surface.dataset.phase = age < contact * .4 ? "windup" : age < contact ? "flight" : "impact"
-      if (action === "play" && age < contact) drawChannel(ctx,source,school,age/contact,34)
+      if (action === "play" && age < contact) drawChannel(ctx,source,school,age/contact,34, renderIsLight())
       for (const cue of cues) {
         if (["draw","turn","awaken","resonance"].includes(cue.kind)) continue
         const point = { x:cue.x,y:cue.y }, kind = kindFor(cue,action === "attack")
         const support = action === "play" && ["heal", "shield", "buff", "summon"].includes(cue.kind)
         if((cue.projectile || support) && age > contact*.25 && age < contact)
-          drawProjectile(ctx,source,point,cue.school,(age-contact*.25)/(contact*.75),Math.min(19,cue.size*.16),false,kind)
-        drawImpact(ctx,point,cue.school,(age-contact)/1000,Math.min(48,cue.size*.4),kind)
+          drawProjectile(ctx,source,point,cue.school,(age-contact*.25)/(contact*.75),Math.min(19,cue.size*.16),renderIsLight(),kind)
+        drawImpact(ctx,point,cue.school,(age-contact)/1000,Math.min(48,cue.size*.4),kind,renderIsLight())
       }
     }
     const resize = () => {
       width = Math.max(1,surface.clientWidth);height = Math.max(1,surface.clientHeight)
-      const dpr = Math.min(2,window.devicePixelRatio||1)
+      const dpr = renderDpr()
       surface.width=Math.round(width*dpr);surface.height=Math.round(height*dpr)
       ctx.setTransform(dpr,0,0,dpr,0,0);draw(performance.now())
     }
@@ -51,7 +54,7 @@ export function BattleVfxCanvas({ source, cues, school, action, stamp, quiet }: 
       else if(clock.hiddenAt!==null){clock.start+=now-clock.hiddenAt;clock.hiddenAt=null}
     }
     const observer=new ResizeObserver(resize);observer.observe(surface);resize()
-    const unsubscribe=subscribeCharacterClock(draw)
+    unsubscribe=subscribeCharacterClock(draw,true)
     document.addEventListener("visibilitychange",visibility)
     return ()=>{observer.disconnect();unsubscribe();document.removeEventListener("visibilitychange",visibility)}
   },[source,cues,school,action,stamp,quiet])

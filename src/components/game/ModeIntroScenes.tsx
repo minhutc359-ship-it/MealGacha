@@ -74,7 +74,7 @@ function AutoDemo({ scene, paused, quiet }: { scene: Extract<IntroScene, { mode:
 
 function AdventureDemo({ scene, paused, quiet }: { scene: Extract<IntroScene, { mode: "adventure" }>; paused: boolean; quiet: boolean }) {
   const save = scene.save
-  if (scene.exploring) return <div className="adv-app" inert><AdventureWorld save={save} move={noop} interact={noop} readOnly /></div>
+  if (scene.exploring) return <div className="adv-app" inert><AdventureWorld save={save} move={noop} interact={noop} readOnly paused={paused} /></div>
   const presented = save.encounter ? save : { ...save, encounter: scene.opponent ? { ...scene.opponent, hp: 0, log: [...scene.opponent.log, save.message ?? "Chiến thắng!"] } : null }
   return <div className="adv-app" inert><AdventureBattle save={presented} act={noop} embedded paused={paused} quiet={quiet} /></div>
 }

@@ -61,6 +61,8 @@ export default function ModeIntroPlayer({ mode, onClose }: { mode: IntroMode; on
         for (const actor of scene.run.combat?.actors ?? []) character(actor.id, actor.side === "enemy")
       } else if (scene.mode === "adventure") {
         paths.add("/assets/adventure/world.svg")
+        paths.add("/assets/adventure/hero-v440.webp")
+        paths.add("/assets/tcg/boards/courtyard-v440.webp")
         for (const id of [...scene.save.team.map(member => member.cardId), ...(scene.save.encounter ? [scene.save.encounter.cardId] : [])]) {
           const model = tcgCharacter(CARD_MAP[id])
           if (model) paths.add(SPRITE_SHEETS[model.sheet].path)

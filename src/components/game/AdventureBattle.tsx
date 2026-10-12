@@ -1,3 +1,5 @@
+import { SceneAtmosphere } from "./SceneAtmosphere"
+import { AdventureEffects } from "./AdventureEffects"
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
 import {
@@ -200,6 +202,8 @@ export function AdventureBattle({
         className="adv-battle-arena"
         key={`${e.cardId}-${e.activeUid}-${e.turn}`}
       >
+        <SceneAtmosphere kind="motes" paused={paused} />
+        <AdventureEffects ally={cue.ally} enemy={cue.enemy} allySchool={ally.school} enemySchool={enemy.school} stamp={cue.stamp} allyDelay={cue.allyDelay} enemyDelay={cue.enemyDelay} quiet={quiet || reduced} paused={paused} />
         <section className={`adv-combatant enemy school-${enemy.school}`}>
           <span>
             {enemy.symbol} {SCHOOLS[enemy.school].name}

@@ -1,3 +1,4 @@
+import { renderDpr, subscribeRenderQuality } from "../../infrastructure/presentation/renderQuality"
 import {livingClipFrame} from "../../game/livingClips"
 import { motionAccent, drawMotionTrail } from "../../game/motionProfiles"
 import { memo, useEffect, useRef, useState } from "react"
@@ -34,11 +35,15 @@ export const CharacterSprite = memo(function CharacterSprite({
     const bounds = characterBounds(model)
     if (!ctx || !bounds) return
     const lease = acquireCharacterImage(path), image = lease.image
+    let onscreen = true, drewStatic = false
     let width = 1, height = 1, start = performance.now(), visibleSince = start
     let hiddenAt: number | null = document.hidden ? start : null
     const draw = (now: number) => {
-      if (!image.complete || !image.naturalWidth || document.hidden) return
-      const age = quiet || paused ? 0 : Math.max(0, now - start)
+      if (!image.complete || !image.naturalWidth || document.hidden || !onscreen) return
+      const staticMotion = quiet || paused || document.body.classList.contains("presentation-quiet")
+      if (staticMotion && drewStatic) return
+      drewStatic = staticMotion
+      const age = staticMotion ? 0 : Math.max(0, now - start)
       const current = age < delay ? lead ?? "idle" : motion
       const poseAge = age < delay ? age : age - delay
       const fresh = model.sheet !== "base"
@@ -49,7 +54,7 @@ export const CharacterSprite = memo(function CharacterSprite({
       const direction = flip ? -1 : 1
       const center = width / 2 - (showcase ? 0 : direction * (bounds.left + bounds.right) * scale / 2)
       let x = 0, y = 0, stretch = 0, alpha = 1, rotation = 0
-      if (!quiet && !paused) {
+      if (!staticMotion) {
         if (current === "idle") y = Math.sin((now - visibleSince) / 500 + model.row) * height * .012
         if (["attack", "cast"].includes(current)) x = Math.sin(Math.min(1, poseAge / 780) * Math.PI) * width * .055 * direction
         if (current === "summon") { alpha = Math.min(1, poseAge / 170); y = (1 - Math.min(1, poseAge / 300)) * height * .15 }
@@ -83,8 +88,9 @@ export const CharacterSprite = memo(function CharacterSprite({
     const resize = () => {
       // Entrance transforms start at 30% scale. Measure the layout box so the
       // canvas keeps its full resolution after that animation grows to 100%.
+      drewStatic = false
       width = Math.max(1, surface.clientWidth); height = Math.max(1, surface.clientHeight)
-      const dpr = Math.min(2, window.devicePixelRatio || 1)
+      const dpr = renderDpr()
       surface.width = Math.round(width * dpr); surface.height = Math.round(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.imageSmoothingEnabled = true
@@ -106,9 +112,12 @@ export const CharacterSprite = memo(function CharacterSprite({
     document.addEventListener("visibilitychange", visibility)
     if (image.complete && image.naturalWidth) ready()
     else resize()
-    const unsubscribe = !quiet && !paused ? subscribeCharacterClock(draw) : () => {}
+    const qualityRelease = subscribeRenderQuality(resize)
+    const intersection = new IntersectionObserver(([entry]) => { onscreen = entry.isIntersecting; if (onscreen) draw(performance.now()) })
+    intersection.observe(surface)
+    const unsubscribe = !quiet && !paused ? subscribeCharacterClock(draw, motion !== "idle") : () => {}
     return () => {
-      lease.release(); unsubscribe(); observer.disconnect(); image.removeEventListener("load", ready)
+      lease.release(); unsubscribe(); observer.disconnect(); intersection.disconnect(); qualityRelease(); image.removeEventListener("load", ready)
       document.removeEventListener("visibilitychange", visibility)
     }
   }, [path, showcase, model.sheet, model.row, motion, delay, lead, stamp, flip, quiet, paused])

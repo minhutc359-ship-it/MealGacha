@@ -1,3 +1,7 @@
+## Web 4.4 · Âm thanh, hình ảnh & độ mượt
+
+Nhân vật chính Adventure có atlas đi bộ bốn hướng, sân đấu mới và VFX theo hệ; cây/cỏ/nhà và giao diện được đồng bộ. Mixer có môi trường, tiếng bước/cửa/thu phục, stereo và compressor; hoạt ảnh chiến đấu ưu tiên 60 Hz và tự giảm chi tiết khi tải chậm. Save cũ giữ nguyên; chỉ web. Xem [bản cập nhật và kiểm chứng](dev/docs/web-v440/UPDATE.md).
+
 ## Web 4.3.3 · Adventure vừa màn hình & demo ẩn chú thích
 
 Giới thiệu có nút **Ẩn/Hiện chú thích** để xem màn chơi toàn màn hình. Adventure dùng hoạt ảnh Vị Linh chung TCG/Auto, giữ D-pad/Tương tác trên màn hình và mở hành trình/đội/sổ/hướng dẫn bằng bảng nổi; giữ nút hướng để đi liên tục. Save cũ giữ nguyên, chỉ cập nhật web. Xem [thay đổi và kiểm chứng](dev/docs/web-v433/UPDATE.md).

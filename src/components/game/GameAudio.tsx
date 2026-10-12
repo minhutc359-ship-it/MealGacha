@@ -179,6 +179,7 @@ export function AudioControls() {
       <label><span>Âm lượng môi trường · {Math.round((prefs.ambienceVolume ?? .18)*100)}%</span>
         <input type="range" min="0" max="1" step=".01" value={prefs.ambienceVolume ?? .18} disabled={!prefs.soundEnabled} onChange={e=>update("ambienceVolume",Number(e.target.value))}/></label>
       <label><span>Đồ họa nhẹ</span><input type="checkbox" checked={prefs.graphicsQuality === "low"} onChange={e=>update("graphicsQuality",e.target.checked?"low":"normal")}/></label>
+      <p>Game tự giảm chi tiết trang trí khi tải chậm. Bật Đồ họa nhẹ để ưu tiên sự ổn định; Giảm chuyển động dành cho hiệu ứng tĩnh.</p>
       <SoundtrackRoom />
       <p role="status">
         {!prefs.soundEnabled

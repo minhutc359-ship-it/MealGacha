@@ -1,3 +1,4 @@
+import { ambienceFor, fillAmbience, type AmbienceKind } from "../../game/soundDesign"
 import {
   usesStems,
   stemPaths,
@@ -77,6 +78,12 @@ export class GameAudioEngine {
   private effectsBus: GainNode | null = null
   private ambienceBus: GainNode | null = null
   private ambience: AudioBufferSourceNode | null = null
+  private ambienceKind: AmbienceKind | null = null
+  private compressor: DynamicsCompressorNode | null = null
+  private master: GainNode | null = null
+  private spaceNodes: AudioNode[] = []
+  private cooldowns = new Map<GameSound, number>()
+  private mounts = 0
   private nativeVisible = true
   private requests = new Map<symbol, Request>()
   private buffers = new Map<string, AudioBuffer>()
@@ -105,7 +112,7 @@ export class GameAudioEngine {
 
   constructor(
     private deps: Dependencies = {
-      context: () => new AudioContext(),
+      context: () => new AudioContext({ latencyHint: "interactive" }),
       load: async (url) => {
         const response = await fetch(url)
         if (!response.ok) throw new Error("Music could not load")
@@ -139,19 +146,25 @@ export class GameAudioEngine {
     )[0]
   }
   mount() {
-    this.mounted = true
-    const gesture = () => void this.unlock()
-    const visibility = () => this.visibilityChanged()
-    window.addEventListener("pointerdown", gesture, true)
-    window.addEventListener("keydown", gesture, true)
-    document.addEventListener("visibilitychange", visibility)
+    this.mounts++
+    if (this.mounts === 1) {
+      this.mounted = true
+      window.addEventListener("pointerdown", this.gesture, true)
+      window.addEventListener("keydown", this.gesture, true)
+      document.addEventListener("visibilitychange", this.visibilityEvent)
+    }
+    let active = true
     return () => {
-      window.removeEventListener("pointerdown", gesture, true)
-      window.removeEventListener("keydown", gesture, true)
-      document.removeEventListener("visibilitychange", visibility)
+      if (!active) return; active = false
+      if (--this.mounts > 0) return
+      window.removeEventListener("pointerdown", this.gesture, true)
+      window.removeEventListener("keydown", this.gesture, true)
+      document.removeEventListener("visibilitychange", this.visibilityEvent)
       this.dispose()
     }
   }
+  private gesture = () => { void this.unlock() }
+  private visibilityEvent = () => { this.visibilityChanged() }
   configure(options: AudioOptions) {
     this.options = {
       soundEnabled: options.soundEnabled,
@@ -195,9 +208,28 @@ export class GameAudioEngine {
         this.musicBus = this.context.createGain()
         this.effectsBus = this.context.createGain()
         this.ambienceBus = this.context.createGain()
-        this.ambienceBus.connect(this.context.destination)
-        this.musicBus.connect(this.context.destination)
-        this.effectsBus.connect(this.context.destination)
+        const context = this.context
+        this.master = context.createGain()
+        this.master.gain.setValueAtTime(.72, context.currentTime)
+        this.master.connect(context.destination)
+        if (typeof context.createDynamicsCompressor === "function") {
+          this.compressor = context.createDynamicsCompressor()
+          for (const [param, value] of [[this.compressor.threshold,-12],[this.compressor.knee,8],[this.compressor.ratio,12],[this.compressor.attack,.003],[this.compressor.release,.16]] as const) param.setValueAtTime(value,context.currentTime)
+          this.compressor.connect(this.master)
+        }
+        const output = this.compressor ?? this.master
+        this.ambienceBus.connect(output)
+        this.musicBus.connect(output)
+        this.effectsBus.connect(output)
+        // A short, quiet room reflection for skill/chime depth. No feedback loop.
+        if (typeof context.createDelay === "function") {
+          const delay=context.createDelay(.3), filter=context.createBiquadFilter(), wet=context.createGain()
+          delay.delayTime.setValueAtTime(.085,context.currentTime)
+          filter.type="lowpass";filter.frequency.setValueAtTime(3500,context.currentTime)
+          wet.gain.setValueAtTime(.12,context.currentTime)
+          this.effectsBus.connect(delay);delay.connect(filter);filter.connect(wet);wet.connect(output)
+          this.spaceNodes=[delay,filter,wet]
+        }
         this.updateVolumes()
       }
       const context = this.context
@@ -220,7 +252,7 @@ export class GameAudioEngine {
       ],
       [
         this.ambienceBus,
-        this.options.soundEnabled ? this.options.ambienceVolume * 0.1 : 0,
+        this.options.soundEnabled ? this.options.ambienceVolume * 0.3 : 0,
       ],
       [
         this.effectsBus,
@@ -267,9 +299,9 @@ export class GameAudioEngine {
     })
   }
   private syncAmbience() {
-    const track = this.desired()?.track ?? ""
+    const kind = ambienceFor(this.desired()?.track)
     if (
-      !track.startsWith("v4-") ||
+      !kind ||
       !this.visible() ||
       !this.options.soundEnabled
     ) {
@@ -282,7 +314,10 @@ export class GameAudioEngine {
       }
       return
     }
-    if (this.ambience || !this.context || !this.unlocked) return
+    if (this.ambience && this.ambienceKind !== kind) {
+      this.ambience.stop(); this.ambience.disconnect(); this.ambience = null
+    }
+    if (this.ambience || !this.context || !this.unlocked || this.context.state !== "running" || this.options.ambienceVolume <= 0) return
     const context = this.context,
       source = context.createBufferSource()
     const buffer = context.createBuffer(
@@ -291,18 +326,13 @@ export class GameAudioEngine {
         context.sampleRate,
       ),
       data = buffer.getChannelData(0)
-    let seed = 397,
-      smooth = 0
-    for (let i = 0; i < data.length; i++) {
-      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0
-      smooth = 0.995 * smooth + 0.005 * (seed / 2147483648 - 1)
-      data[i] = smooth * Math.sin((Math.PI * i) / data.length) ** 2
-    }
+    fillAmbience(data,context.sampleRate,kind)
     source.buffer = buffer
     source.loop = true
     source.connect(this.ambienceBus!)
     source.start()
     this.ambience = source
+    this.ambienceKind = kind
   }
   resourceStats() {
     const unique = new Set(this.buffers.values())
@@ -421,6 +451,7 @@ export class GameAudioEngine {
       ++this.epoch
       this.loading = null
       this.stopMusic()
+      if (this.options.soundEnabled && !this.options.musicEnabled) this.syncAmbience()
       this.notify(
         !this.options.soundEnabled || !this.options.musicEnabled
           ? "muted"
@@ -437,7 +468,7 @@ export class GameAudioEngine {
     }
     if (this.stream?.track === desired) {
       if (this.loading && this.loading !== desired) { ++this.epoch; this.loading = null }
-      this.notify("playing"); return
+      this.syncAmbience(); this.notify("playing"); return
     }
     if (this.current?.track === desired) {
       if (this.loading && this.loading !== desired) {
@@ -636,7 +667,12 @@ export class GameAudioEngine {
       this.effects.size >= 48
     )
       return
-    const now = context.currentTime + Math.max(0, delay) / 1000
+    const time = context.currentTime
+    const previous = this.cooldowns.get(cue) ?? -Infinity
+    const cooldown = cue === "footstep" ? .105 : cue === "select" ? .065 : .025
+    if (time - previous < cooldown) return
+    this.cooldowns.set(cue,time)
+    const now = time + Math.max(0, delay) / 1000
     const variation = [0.98, 1, 1.02][++this.serial % 3]
     const panner =
       pan && typeof context.createStereoPanner === "function"
@@ -751,6 +787,15 @@ export class GameAudioEngine {
         )
       })
     switch (cue) {
+      case "footstep":
+        noise(.045,.018,850,250);tone(145,.035,.012,"sine",90)
+        break
+      case "door":
+        tone(170,.18,.035,"triangle",95);noise(.1,.016,1300,300)
+        break
+      case "capture":
+        chime([294,440,587,880],.4,.09,.045);tone(110,.3,.03,"sine",220)
+        break
       case "auto-slash":
         noise(0.11, 0.045, 6800, 850)
         tone(310, 0.1, 0.025, "triangle", 120)
@@ -911,6 +956,11 @@ export class GameAudioEngine {
     this.inFlight.clear()
     this.offsets.clear()
     this.failedStreams.clear()
+    this.cooldowns.clear()
+    for (const node of this.spaceNodes) node.disconnect()
+    this.spaceNodes = []
+    this.compressor?.disconnect(); this.master?.disconnect()
+    this.compressor = null; this.master = null; this.ambienceKind = null
     const context = this.context
     this.context = null
     this.musicBus = this.effectsBus = this.ambienceBus = null

@@ -373,3 +373,27 @@ it("starts three matching stems together, dedupes loads and stops every voice on
  engine.setNativeVisible(true);await settle();await settle()
  expect(load).toHaveBeenCalledTimes(3)
 })
+
+it("closing an introduction does not dispose the live game's shared mixer",async()=>{
+ const {engine,context}=fixture()
+ engine.acquire("story-warm");await engine.unlock();await settle()
+ const closeDemo=engine.mount()
+ engine.acquire("boss",50);await settle();closeDemo()
+ expect(context.state).toBe("running")
+ engine.play("confirm");expect(engine.resourceStats().effects).toBeGreaterThan(0)
+})
+it("ambience remains independently controllable with music off and mute stops it",async()=>{
+ const {engine,context}=fixture()
+ engine.configure({soundEnabled:true,musicEnabled:false,ambienceVolume:.3})
+ engine.acquire("story-warm");await engine.unlock();await settle()
+ expect(context.voices.some(v=>v.loop)).toBe(true)
+ engine.configure({soundEnabled:false,musicEnabled:false})
+ expect(context.voices.filter(v=>v.loop).every(v=>v.stopped)).toBe(true)
+})
+it("coalesces duplicate footstep/click bursts without silencing later steps",async()=>{
+ const {engine,context}=fixture();await engine.unlock()
+ engine.play("footstep");const count=context.voices.length+context.oscillators.length
+ engine.play("footstep");expect(context.voices.length+context.oscillators.length).toBe(count)
+ context.currentTime=.16;engine.play("footstep")
+ expect(context.voices.length+context.oscillators.length).toBeGreaterThan(count)
+})

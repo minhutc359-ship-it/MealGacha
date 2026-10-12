@@ -1,12 +1,22 @@
 {
-  "version": "4.3.3",
+  "version": "4.4.0",
   "generatedOn": "2026-10-10",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
     {
+      "path": "public/assets/adventure/hero-v440.webp",
+      "bytes": 285672,
+      "sha256": "afce3e25f6684113b4777e6a58a2cffe0e06de26b523d4c80aa12bf4c24ed3f6",
+      "origin": "AI-assisted original heroine walking atlas, using existing project heroine as identity reference",
+      "evidence": [
+        "dev/docs/web-v440/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/adventure/world.svg",
-      "bytes": 73202,
-      "sha256": "6673e3ccdaa6bb9695061208f859e191330fd8d76817a3564ad5f382599b713a",
+      "bytes": 75375,
+      "sha256": "795e3bb1f5542f0199c0207ecbc7801472b0ff7bd1213ca08d8df955418099db",
       "origin": "Original code-authored vector world and four-direction character sprites; no external art or samples",
       "evidence": [
         "dev/tools/build-adventure-assets.mjs",
@@ -2179,6 +2189,16 @@
         "dev/tools/compose-game-music.py",
         "dev/tools/compose-retro-music.py",
         "dev/docs/AUDIO_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/boards/courtyard-v440.webp",
+      "bytes": 311166,
+      "sha256": "b80b210c90d4b817ad894f1a777ef9df22770ac1410248691be9de70d444ebe1",
+      "origin": "AI-assisted original battle backgrounds",
+      "evidence": [
+        "dev/docs/living-table-asset-prompts.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

@@ -1,29 +1,29 @@
 {
   "staticBudgetBytes": 100000000,
   "jsGzipBudgetBytes": 650000,
-  "version": "4.3.3",
-  "bytes": 63788611,
-  "files": 425,
+  "version": "4.4.0",
+  "bytes": 64407117,
+  "files": 429,
   "byType": {
     "js": {
-      "files": 77,
-      "bytes": 1852060
+      "files": 79,
+      "bytes": 1862358
     },
     "css": {
       "files": 11,
-      "bytes": 403661
+      "bytes": 412858
+    },
+    "webp": {
+      "files": 242,
+      "bytes": 34990104
     },
     "svg": {
       "files": 1,
-      "bytes": 73202
+      "bytes": 75375
     },
     "mp3": {
       "files": 72,
       "bytes": 26483833
-    },
-    "webp": {
-      "files": 240,
-      "bytes": 34393266
     },
     "png": {
       "files": 3,
@@ -51,17 +51,17 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2255721,
-    "Other and legal": 24611961,
+    "Application JS/CSS": 2275216,
+    "Other and legal": 24899806,
     "Auto chess art/audio": 7609213,
     "Brand": 229534,
     "Shared character atlases": 9061632,
     "Event art": 2016822,
     "Food art": 7490462,
-    "TCG art/audio": 10513266
+    "TCG art/audio": 10824432
   },
-  "js_gzip": 605540,
-  "css_gzip": 88141,
+  "js_gzip": 609995,
+  "css_gzip": 90578,
   "largest": [
     {
       "path": "assets/v4/audio/web410/original-story-mystery.mp3",

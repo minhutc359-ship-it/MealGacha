@@ -1,3 +1,4 @@
+import { SceneAtmosphere } from "../game/SceneAtmosphere"
 import { useMemo } from "react"
 import type React from "react"
 import type { RewardRarity } from "../../domain/models"
@@ -46,6 +47,7 @@ export function ChestScene({
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
     >
+      <SceneAtmosphere kind="embers" paused={reducedMotion} />
       <LootVfxCanvas
         state={state}
         accent={accent}

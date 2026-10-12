@@ -65,6 +65,7 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/adventure/hero-v440.webp", "AI-assisted original heroine walking atlas, using existing project heroine as identity reference", ["dev/docs/web-v440/artwork.json"]],
  ["assets/adventure/", "Original code-authored vector world and four-direction character sprites; no external art or samples", ["dev/tools/build-adventure-assets.mjs", "dev/docs/web-v430/UPDATE.md"]],
  ["assets/v4/audio/web410/", "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples", ["dev/tools/compose-web410.py", "dev/docs/web-v410/audio-manifest.json"]],
  ["assets/v4/characters/", "Original AI-assisted 24-pose animations using existing project character references", ["dev/docs/major-v400/clip-assets.json", "dev/docs/major-v400/clip-prompts.json", "dev/tools/register-v4-clips.py"]],

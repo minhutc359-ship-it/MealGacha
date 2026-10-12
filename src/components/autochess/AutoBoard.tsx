@@ -1,3 +1,4 @@
+import { renderIsLight, sampleRenderFrame } from "../../infrastructure/presentation/renderQuality"
 import {livingActorFrame} from "../../game/livingClips"
 import { motionAccent, drawMotionTrail } from "../../game/motionProfiles"
 import { useEffect, useRef, type CSSProperties, type PointerEvent } from "react"
@@ -60,6 +61,7 @@ export function AutoBoard({
       left = 0,
       top = 0,
       handle = 0
+    let lastFrame = 0
     let lastDraw = -Infinity
     const frozen = new Map<string, { x: number; y: number }>()
     const healthTrails = new Map<string, { hp: number; from: number; at: number }>()
@@ -79,7 +81,7 @@ export function AutoBoard({
       width = bounds.width
       height = bounds.height
       const dpr = Math.min(
-        options.current.lowQuality ? 1 : 2,
+        options.current.lowQuality || renderIsLight() ? 1 : 2,
         window.devicePixelRatio || 1,
       )
       surface.width = Math.max(1, Math.round(width * dpr))
@@ -108,20 +110,22 @@ export function AutoBoard({
       ctx.globalAlpha = 1
     }
     const draw = (now: number) => {
+      const gap = lastFrame ? now - lastFrame : 16.7; lastFrame = now
+      if (!document.hidden) sampleRenderFrame(gap)
       const { run: current, alpha } = getFrame()
-      const fps = current?.paused && current.phase === "combat" ? 15 : options.current.lowQuality || options.current.reducedMotion ? 30 : 60
+      const fps = current?.paused && current.phase === "combat" ? 15 : options.current.lowQuality || options.current.reducedMotion || renderIsLight() ? 30 : 60
       if (document.hidden || now - lastDraw < 1000 / fps - 1) { handle = requestAnimationFrame(draw); return }
       lastDraw = now
       if (!current) {
         handle = requestAnimationFrame(draw)
         return
       }
-      if (lastLowQuality !== options.current.lowQuality) {
-        lastLowQuality = options.current.lowQuality
+      if (lastLowQuality !== (options.current.lowQuality || renderIsLight())) {
+        lastLowQuality = options.current.lowQuality || renderIsLight()
         resize()
       }
       const b = current.combat,
-        opts = options.current,
+        opts = { ...options.current, lowQuality: options.current.lowQuality || renderIsLight() },
         time = b ? b.tick + (opts.reducedMotion ? 0 : alpha) : now / 50
       if ((b?.id ?? "prepare") !== currentBattle) {
         healthTrails.clear()

@@ -1,5 +1,4 @@
 import { CharacterSprite } from "./CharacterSprite"
-import { CharacterPortrait } from "./CharacterPortrait"
 import { tcgCharacter, type CharacterMotion } from "../../game/tcgCharacterMotion"
 import { unitCharacter } from "../../infrastructure/assets/characterSprites"
 import { useAppStore } from "../../store/useAppStore"
@@ -40,10 +39,14 @@ export function HumanSprite({
   frame?: number
 }) {
   const quiet = useAppStore(state => state.user.preferences.reducedMotion || state.user.preferences.graphicsQuality === "low")
+  if (character === "hero") {
+    const row = {down:0,left:1,right:2,up:3}[direction]
+    return <span className="adv-human-sprite adv-hero-atlas" data-facing={direction} role="img" aria-label="Người giữ vị" style={{backgroundImage:"url(/assets/adventure/hero-v440.webp)",backgroundSize:"400% 400%",backgroundPosition:`${(quiet ? 0 : frame % 4) * 100 / 3}% ${row * 100 / 3}%`}} />
+  }
   const chef = ["bach", "hai", "moc", "nhien", "lien"].includes(character)
   return <span className="adv-human-sprite" data-facing={direction}>
     {chef ? <CharacterSprite model={unitCharacter(`chef-${character}`)} motion="idle" stamp={`${character}-${frame}`} flip={direction === "left"} quiet={quiet} />
-      : <><WorldAsset id={`${character}-${direction}-${frame % 2}`} /><CharacterPortrait id={character} decorative className="adv-world-face" /></>}
+      : <WorldAsset id={`${character}-${direction}-${frame % 2}`} />}
   </span>
 }
 /** Shared animated atlas renderer used by TCG and Auto chess. */
