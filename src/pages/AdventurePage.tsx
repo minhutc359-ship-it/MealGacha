@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { BrandMark } from "../components/layout/BrandMark"
 import { ModeSwitch } from "../components/layout/ModeSwitch"
 import { ModeIntroButton } from "../components/layout/ModeIntroButton"
@@ -8,7 +8,6 @@ import {
   useGameMusic,
 } from "../components/game/GameAudio"
 import { useGameStore } from "../game/useGameStore"
-import { useModeIntroStore } from "../game/modeIntroState"
 import { useAppStore } from "../store/useAppStore"
 import { CARD_MAP, SCHOOLS } from "../game/catalog"
 import {
@@ -36,6 +35,7 @@ import { SpiritSprite } from "../components/game/AdventureArt"
 import { gameAudio } from "../infrastructure/audio/gameAudio"
 import "../game/characterMotion.css"
 import "../game/adventure.css"
+import "../game/adventure460.css"
 
 function SpiritImage({ cardId }: { cardId: string }) {
   const card = CARD_MAP[cardId]
@@ -96,7 +96,10 @@ function StarterChoice({ choose }: { choose: (id: string) => void }) {
         </div>
         <details className="adv-help">
           <summary>Hướng dẫn chơi</summary>
-          <p>WASD / mũi tên để đi, E tương tác với NPC và cửa nhà. Đổi Vị Linh, chọn kỹ năng theo hệ và nhìn HP/PP trong trận.</p>
+          <p>
+            WASD / mũi tên để đi, E tương tác với NPC và cửa nhà. Đổi Vị Linh,
+            chọn kỹ năng theo hệ và nhìn HP/PP trong trận.
+          </p>
           <ModeIntroButton mode="adventure" />
         </details>
       </section>
@@ -123,7 +126,7 @@ function SpiritRow({
       }`}
     >
       <div className="adv-spirit-summary">
-        <SpiritSprite cardId={member.cardId} />
+        <SpiritSprite cardId={member.cardId} quiet lazy />
         <div>
           <strong>{card.name}</strong>
           <small>
@@ -206,9 +209,9 @@ export function AdventurePage() {
     notice = useGameStore((state) => state.notice),
     dismissNotice = useGameStore((state) => state.dismiss)
   const prefs = useAppStore((state) => state.user.preferences)
-  const [panel, setPanel] = useState<"journey" | "team" | "archive" | "help" | null>(null)
-  const lastMove = useRef(0),
-    area = ADVENTURE_AREA_MAP[save.areaId],
+  const [panel, setPanel] =
+    useState<"menu" | "journey" | "team" | "archive" | "help" | null>(null)
+  const area = ADVENTURE_AREA_MAP[save.areaId],
     map = ADVENTURE_MAP_BY_ID[save.mapId]
   useGameMusic(
     save.encounter
@@ -221,7 +224,7 @@ export function AdventurePage() {
   const act = useCallback(
     (action: AdventureAction) => {
       const before = useGameStore.getState().save.adventure
-      if (!dispatch(action)) return
+      if (!dispatch(action)) return false
       const after = useGameStore.getState().save.adventure
       if (before?.encounter && !after?.encounter)
         gameAudio.play(
@@ -241,12 +244,11 @@ export function AdventurePage() {
               ? "shield"
               : "select",
         )
-      else if (before?.mapId !== after?.mapId) gameAudio.play("door")
-      else if (action.type === "move") { if (before?.steps !== after?.steps) gameAudio.play("footstep",0,after?.facing === "left" ? -.2 : .2) }
-      else
+      else if (action.type !== "move" && before?.mapId === after?.mapId)
         gameAudio.play(
           action.type === "heal" || action.type === "item" ? "heal" : "select",
         )
+      return true
     },
     [dispatch],
   )
@@ -254,7 +256,16 @@ export function AdventurePage() {
     (direction: AdventureDirection) => act({ type: "move", direction }),
     [act],
   )
-  const interact = useCallback(() => act({ type: "interact" }), [act])
+  const interact = useCallback(
+    () =>
+      act({
+        type: useGameStore.getState().save.adventure?.message
+          ? "dismiss"
+          : "interact",
+      }),
+    [act],
+  )
+  const openMenu = useCallback(() => setPanel("menu"), [])
   useEffect(() => {
     document.body.classList.add("adventure-open")
     return () => document.body.classList.remove("adventure-open")
@@ -262,60 +273,6 @@ export function AdventurePage() {
   useEffect(() => {
     if (save.service === "storage") setPanel("team")
   }, [save.service])
-  useEffect(() => {
-    const key = (event: KeyboardEvent) => {
-      if (panel || useModeIntroStore.getState().mode) return
-      const current = useGameStore.getState().save.adventure
-      const target = event.target as HTMLElement | null
-      if (
-        !current?.started ||
-        current.encounter ||
-        current.service === "shop" ||
-        event.ctrlKey ||
-        event.metaKey ||
-        event.altKey ||
-        target?.closest(
-          "input, textarea, select, [contenteditable=true], dialog",
-        )
-      )
-        return
-      // Native button/link activation remains available with Enter and Space.
-      if (
-        ["Enter", " "].includes(event.key) &&
-        target?.closest("button,a,summary")
-      )
-        return
-      const direction = ({
-        ArrowUp: "up",
-        w: "up",
-        W: "up",
-        ArrowDown: "down",
-        s: "down",
-        S: "down",
-        ArrowLeft: "left",
-        a: "left",
-        A: "left",
-        ArrowRight: "right",
-        d: "right",
-        D: "right",
-      } as Record<string, AdventureDirection>)[event.key]
-      if (direction) {
-        event.preventDefault()
-        const now = performance.now()
-        if (now - lastMove.current < (event.shiftKey ? 85 : 155)) return
-        lastMove.current = now
-        move(direction)
-      } else if (
-        ["e", "E", "Enter", " "].includes(event.key) &&
-        !event.repeat
-      ) {
-        event.preventDefault()
-        interact()
-      }
-    }
-    window.addEventListener("keydown", key)
-    return () => window.removeEventListener("keydown", key)
-  }, [move, interact, panel])
   const closePanel = () => {
     setPanel(null)
     if (save.service === "storage") act({ type: "dismiss" })
@@ -367,218 +324,332 @@ export function AdventurePage() {
                 type="button"
                 key={id}
                 aria-pressed={panel === id}
-                onClick={() => setPanel(current => current === id ? null : id)}
+                onClick={() =>
+                  setPanel((current) => (current === id ? null : id))
+                }
               >
                 {id === "journey"
                   ? "Hành trình & bản đồ"
                   : id === "team"
                     ? "Đội hình & túi đồ"
-                    : id === "archive" ? "Sổ Vị Linh" : "Hướng dẫn"}
+                    : id === "archive"
+                      ? "Sổ Vị Linh"
+                      : "Hướng dẫn"}
               </button>
             ))}
           </nav>
           <main className="adv-layout">
-            <section className="adv-world" inert={!!panel} aria-label="Khám phá thế giới">
-              <AdventureWorld save={save} move={move} interact={interact} readOnly={!!panel} />
+            <section
+              className="adv-world"
+              inert={!!panel}
+              aria-label="Khám phá thế giới"
+            >
+              <AdventureWorld
+                save={save}
+                move={move}
+                interact={interact}
+                onMenu={openMenu}
+                readOnly={!!panel}
+                paused={!!panel || !!save.encounter}
+              />
             </section>
-            {panel && <AdventureDialog className="adv-panel-dialog" titleId="adv-panel-title" dismiss={closePanel}>
-              <header className="adv-panel-heading"><h2 id="adv-panel-title">{panel === "team" ? "Đội hình & túi đồ" : panel === "journey" ? "Hành trình" : panel === "archive" ? "Sổ Vị Linh" : "Hướng dẫn chơi"}</h2><button type="button" aria-label="Đóng bảng phiêu lưu" onClick={closePanel}>×</button></header>
-              <aside className="adv-sidebar">
-              {panel === "help" ? <><ModeIntroButton mode="adventure" beforeOpen={closePanel} /><p>Chạm một ô để đi tới; chạm NPC hoặc cửa nhà để tiến lại tương tác. Các nút ▲ ◀ ▶ ▼ và Tương tác luôn ở dưới bản đồ.</p><p>Bếp Nghỉ hồi HP/PP và mở tủ. Tiệm Hương bán vật phẩm. Nhà Ký Ức giao nhiệm vụ. Theo Hành trình để nhận đủ năm ấn.</p><p>Trong trận, chọn kỹ năng theo tương khắc, đổi Vị Linh hoặc mở Túi đồ để dùng Hương Ấn. Mỗi thao tác chiến đấu cho đối thủ cơ hội phản kích.</p><SchoolChart /></> : panel === "journey" ? (
-                <>
-                  <span className="adv-kicker">NHIỆM VỤ CHÍNH</span>
-                  <h1>{area.objective}</h1>
-                  <p>{area.summary}</p>
-                  <ol className="adv-route-list">
-                    {ADVENTURE_AREAS.map((zone) => (
-                      <li
-                        key={zone.id}
-                        className={zone.id === area.id ? "is-current" : ""}
-                      >
-                        <span>
-                          {save.badges.includes(zone.keeper.badge)
-                            ? "✓"
-                            : zone.chapter}
-                        </span>
-                        <div>
-                          <strong>{zone.name}</strong>
-                          <small>
-                            {save.badges.includes(zone.keeper.badge)
-                              ? zone.keeper.badgeName
-                              : "Chưa nhận ấn"}
-                          </small>
-                        </div>
-                        <button
-                          type="button"
-                          disabled={
-                            map.interior ||
-                            !save.visitedMaps.includes(zone.id) ||
-                            zone.id === save.areaId
-                          }
-                          onClick={() =>
-                            act({ type: "travel", areaId: zone.id })
-                          }
-                        >
-                          Đến
-                        </button>
-                      </li>
-                    ))}
-                  </ol>
-                  <h2>Trong vùng này</h2>
-                  <ul className="adv-checklist">
-                    <li>
-                      {save.completedQuests.includes(`talk:${area.id}`)
-                        ? "✓"
-                        : "○"}{" "}
-                      Gặp{" "}
-                      {area.npc.id === "bach"
-                        ? "Bách"
-                        : area.npc.id === "hai"
-                          ? "Hải"
-                          : area.npc.id === "moc"
-                            ? "Mộc"
-                            : area.npc.id === "nhien"
-                              ? "Nhiên"
-                              : "Liên"}
-                    </li>
-                    <li>
-                      {save.defeatedTrainers.includes(`trainer:${area.id}`)
-                        ? "✓"
-                        : "○"}{" "}
-                      Thắng Lả (2 Vị Linh)
-                    </li>
-                    <li>
-                      {save.completedQuests.includes(`memory:${area.id}`)
-                        ? "✓"
-                        : "○"}{" "}
-                      Kể tên {area.chapter + 2} loài tại Nhà Ký Ức
-                    </li>
-                    <li>
-                      {save.claimedFinds.includes(area.finds[0].id) ? "✓" : "○"}{" "}
-                      Tìm túi quà trong bãi hương
-                    </li>
-                  </ul>
-                  {save.completed && (
-                    <p className="adv-complete">
-                      Giao Ước Năm Vị hoàn tất. Tiếp tục thu phục và khám phá tự
-                      do.
-                    </p>
-                  )}
-                  <SchoolChart />
-                  <details className="adv-help">
-                    <summary>Hướng dẫn chơi · Điều khiển & địa điểm</summary>
-                    <ModeIntroButton mode="adventure" beforeOpen={closePanel} />
-                    <p>
-                      WASD / mũi tên: di chuyển. Giữ Shift: chạy. E: tương tác
-                      theo hướng nhìn. Chọn một điểm trên bản đồ để tự đi đến.
-                    </p>
-                    <p>
-                      Bếp Nghỉ: hồi HP, PP và đổi dự bị ở tủ. Tiệm Hương: mua
-                      vật phẩm. Nhà Ký Ức: nhiệm vụ sưu tầm. NPC có ⚔: cuộc đấu
-                      theo lượt.
-                    </p>
-                  </details>
-                </>
-              ) : panel === "team" ? (
-                <>
-                  <span className="adv-kicker">BẠN ĐỒNG HÀNH</span>
-                  <div className="adv-party-title">
-                    <h1>Đội {save.team.length}/6</h1>
-                    <span>Tủ {save.reserve.length}/60</span>
-                  </div>
-                  <div className="adv-bag-summary">
-                    <span>Canh Ấm {save.inventory.potion}</span>
-                    <span>Lá Tỉnh {save.inventory.revive}</span>
-                  </div>
-                  <p>
-                    {save.service === "storage"
-                      ? "Tủ đang mở: gửi và nhận Vị Linh bên dưới."
-                      : "Đổi người dẫn đội hoặc dùng vật phẩm. Ghé Bếp Nghỉ để hồi PP và mở tủ dự bị."}
-                  </p>
-                  <div className="adv-party-list">
-                    {save.team.map((member, index) => (
-                      <SpiritRow
-                        key={member.uid}
-                        member={member}
-                        active={index === 0}
-                        storage={
-                          save.service === "storage" ? "team" : undefined
-                        }
-                        act={act}
-                      />
-                    ))}
-                  </div>
-                  {save.service === "storage" && (
-                    <details open className="adv-reserve">
-                      <summary>Tủ Vị Linh · {save.reserve.length}/60</summary>
-                      {save.reserve.map((member) => (
-                        <SpiritRow
-                          key={member.uid}
-                          member={member}
-                          storage="reserve"
-                          act={act}
-                        />
-                      ))}
-                      {!save.reserve.length && (
-                        <p>Tủ hiện trống. Vị Linh thứ 7 trở đi sẽ về đây.</p>
+            {panel && (
+              <AdventureDialog
+                className="adv-panel-dialog"
+                titleId="adv-panel-title"
+                dismiss={closePanel}
+              >
+                <header className="adv-panel-heading">
+                  <h2 id="adv-panel-title">
+                    {panel === "menu"
+                      ? "Menu phiêu lưu"
+                      : panel === "team"
+                        ? "Đội hình & túi đồ"
+                        : panel === "journey"
+                          ? "Hành trình"
+                          : panel === "archive"
+                            ? "Sổ Vị Linh"
+                            : "Hướng dẫn chơi"}
+                  </h2>
+                  <button
+                    type="button"
+                    aria-label="Đóng bảng phiêu lưu"
+                    onClick={closePanel}
+                  >
+                    ×
+                  </button>
+                </header>
+                <aside className="adv-sidebar">
+                  {panel === "menu" ? (
+                    <div className="adv-field-menu">
+                      <p>
+                        Chọn việc muốn làm, hoặc đóng menu để tiếp tục hành
+                        trình.
+                      </p>
+                      {(["team", "journey", "archive", "help"] as const).map(
+                        (id) => (
+                          <button
+                            type="button"
+                            key={id}
+                            onClick={() => setPanel(id)}
+                          >
+                            <b>
+                              {id === "team"
+                                ? "Đội hình & túi đồ"
+                                : id === "journey"
+                                  ? "Bản đồ & mục tiêu"
+                                  : id === "archive"
+                                    ? "Sổ Vị Linh"
+                                    : "Hướng dẫn"}
+                            </b>
+                            <span>
+                              {id === "team"
+                                ? `${save.team.length}/6 đồng hành · ${save.inventory.potion} Canh Ấm`
+                                : id === "journey"
+                                  ? `${save.badges.length}/5 ấn · ${map.name}`
+                                  : id === "archive"
+                                    ? `${save.discovered.length} loài đã gặp`
+                                    : "Điều khiển, tương khắc và giới thiệu"}
+                            </span>
+                          </button>
+                        ),
                       )}
-                      <button
-                        type="button"
-                        onClick={() => act({ type: "dismiss" })}
-                      >
-                        Đóng tủ
+                      <button type="button" onClick={closePanel}>
+                        Tiếp tục phiêu lưu →
                       </button>
-                    </details>
-                  )}
-                </>
-              ) : (
-                <>
-                  <span className="adv-kicker">SỔ VỊ LINH</span>
-                  <h1>
-                    {save.discovered.length}/{allSpecies.length} loài đã gặp
-                  </h1>
-                  <p>
-                    {save.team.length + save.reserve.length} bạn đồng hành ·{" "}
-                    {save.visitedMaps.length}/20 địa điểm đã tới
-                  </p>
-                  <div className="adv-codex">
-                    {allSpecies.map((id) => {
-                      const known = save.discovered.includes(id),
-                        caught = [...save.team, ...save.reserve].some(
-                          (member) => member.cardId === id,
-                        )
-                      return (
-                        <article
-                          key={id}
-                          className={
-                            known
-                              ? `school-${CARD_MAP[id].school}`
-                              : "is-unknown"
-                          }
-                        >
-                          {known ? (
-                            <>
-                              <SpiritSprite cardId={id} />
-                              <strong>{CARD_MAP[id].name}</strong>
+                    </div>
+                  ) : panel === "help" ? (
+                    <>
+                      <ModeIntroButton
+                        mode="adventure"
+                        beforeOpen={closePanel}
+                      />
+                      <p>
+                        Giữ D-pad hoặc WASD/mũi tên để đi liên tục. Nút Đi
+                        bộ/Chạy đổi tốc độ; Shift để chạy trên bàn phím. A hoặc
+                        E/Z để tương tác, X mở Menu. Khi có lời thoại, chọn Tiếp
+                        tục trước khi đi. Chạm điểm, NPC hoặc nhà để tự đi tới.
+                      </p>
+                      <p>
+                        Bếp Nghỉ hồi HP/PP và mở tủ. Tiệm Hương bán vật phẩm.
+                        Nhà Ký Ức giao nhiệm vụ. Theo Hành trình để nhận đủ năm
+                        ấn.
+                      </p>
+                      <p>
+                        Trong trận, chọn kỹ năng theo tương khắc, đổi Vị Linh
+                        hoặc mở Túi đồ để dùng Hương Ấn. Mỗi thao tác chiến đấu
+                        cho đối thủ cơ hội phản kích.
+                      </p>
+                      <SchoolChart />
+                    </>
+                  ) : panel === "journey" ? (
+                    <>
+                      <span className="adv-kicker">NHIỆM VỤ CHÍNH</span>
+                      <h1>{area.objective}</h1>
+                      <p>{area.summary}</p>
+                      <ol className="adv-route-list">
+                        {ADVENTURE_AREAS.map((zone) => (
+                          <li
+                            key={zone.id}
+                            className={zone.id === area.id ? "is-current" : ""}
+                          >
+                            <span>
+                              {save.badges.includes(zone.keeper.badge)
+                                ? "✓"
+                                : zone.chapter}
+                            </span>
+                            <div>
+                              <strong>{zone.name}</strong>
                               <small>
-                                {SCHOOLS[CARD_MAP[id].school].name} ·{" "}
-                                {caught ? "Đã kết bạn" : "Đã gặp"}
+                                {save.badges.includes(zone.keeper.badge)
+                                  ? zone.keeper.badgeName
+                                  : "Chưa nhận ấn"}
                               </small>
-                            </>
-                          ) : (
-                            <>
-                              <span>?</span>
-                              <strong>Chưa gặp</strong>
-                            </>
+                            </div>
+                            <button
+                              type="button"
+                              disabled={
+                                map.interior ||
+                                !save.visitedMaps.includes(zone.id) ||
+                                zone.id === save.areaId
+                              }
+                              onClick={() =>
+                                act({ type: "travel", areaId: zone.id })
+                              }
+                            >
+                              Đến
+                            </button>
+                          </li>
+                        ))}
+                      </ol>
+                      <h2>Trong vùng này</h2>
+                      <ul className="adv-checklist">
+                        <li>
+                          {save.completedQuests.includes(`talk:${area.id}`)
+                            ? "✓"
+                            : "○"}{" "}
+                          Gặp{" "}
+                          {area.npc.id === "bach"
+                            ? "Bách"
+                            : area.npc.id === "hai"
+                              ? "Hải"
+                              : area.npc.id === "moc"
+                                ? "Mộc"
+                                : area.npc.id === "nhien"
+                                  ? "Nhiên"
+                                  : "Liên"}
+                        </li>
+                        <li>
+                          {save.defeatedTrainers.includes(`trainer:${area.id}`)
+                            ? "✓"
+                            : "○"}{" "}
+                          Thắng Lả (2 Vị Linh)
+                        </li>
+                        <li>
+                          {save.completedQuests.includes(`memory:${area.id}`)
+                            ? "✓"
+                            : "○"}{" "}
+                          Kể tên {area.chapter + 2} loài tại Nhà Ký Ức
+                        </li>
+                        <li>
+                          {save.claimedFinds.includes(area.finds[0].id)
+                            ? "✓"
+                            : "○"}{" "}
+                          Tìm túi quà trong bãi hương
+                        </li>
+                      </ul>
+                      {save.completed && (
+                        <p className="adv-complete">
+                          Giao Ước Năm Vị hoàn tất. Tiếp tục thu phục và khám
+                          phá tự do.
+                        </p>
+                      )}
+                      <SchoolChart />
+                      <details className="adv-help">
+                        <summary>
+                          Hướng dẫn chơi · Điều khiển & địa điểm
+                        </summary>
+                        <ModeIntroButton
+                          mode="adventure"
+                          beforeOpen={closePanel}
+                        />
+                        <p>
+                          WASD / mũi tên: di chuyển. Giữ Shift: chạy. E: tương
+                          tác theo hướng nhìn. Chọn một điểm trên bản đồ để tự
+                          đi đến.
+                        </p>
+                        <p>
+                          Bếp Nghỉ: hồi HP, PP và đổi dự bị ở tủ. Tiệm Hương:
+                          mua vật phẩm. Nhà Ký Ức: nhiệm vụ sưu tầm. NPC có ⚔:
+                          cuộc đấu theo lượt.
+                        </p>
+                      </details>
+                    </>
+                  ) : panel === "team" ? (
+                    <>
+                      <span className="adv-kicker">BẠN ĐỒNG HÀNH</span>
+                      <div className="adv-party-title">
+                        <h1>Đội {save.team.length}/6</h1>
+                        <span>Tủ {save.reserve.length}/60</span>
+                      </div>
+                      <div className="adv-bag-summary">
+                        <span>Canh Ấm {save.inventory.potion}</span>
+                        <span>Lá Tỉnh {save.inventory.revive}</span>
+                      </div>
+                      <p>
+                        {save.service === "storage"
+                          ? "Tủ đang mở: gửi và nhận Vị Linh bên dưới."
+                          : "Đổi người dẫn đội hoặc dùng vật phẩm. Ghé Bếp Nghỉ để hồi PP và mở tủ dự bị."}
+                      </p>
+                      <div className="adv-party-list">
+                        {save.team.map((member, index) => (
+                          <SpiritRow
+                            key={member.uid}
+                            member={member}
+                            active={index === 0}
+                            storage={
+                              save.service === "storage" ? "team" : undefined
+                            }
+                            act={act}
+                          />
+                        ))}
+                      </div>
+                      {save.service === "storage" && (
+                        <details open className="adv-reserve">
+                          <summary>
+                            Tủ Vị Linh · {save.reserve.length}/60
+                          </summary>
+                          {save.reserve.map((member) => (
+                            <SpiritRow
+                              key={member.uid}
+                              member={member}
+                              storage="reserve"
+                              act={act}
+                            />
+                          ))}
+                          {!save.reserve.length && (
+                            <p>
+                              Tủ hiện trống. Vị Linh thứ 7 trở đi sẽ về đây.
+                            </p>
                           )}
-                        </article>
-                      )
-                    })}
-                  </div>
-                </>
-              )}
-            </aside>
-            </AdventureDialog>}
+                          <button
+                            type="button"
+                            onClick={() => act({ type: "dismiss" })}
+                          >
+                            Đóng tủ
+                          </button>
+                        </details>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <span className="adv-kicker">SỔ VỊ LINH</span>
+                      <h1>
+                        {save.discovered.length}/{allSpecies.length} loài đã gặp
+                      </h1>
+                      <p>
+                        {save.team.length + save.reserve.length} bạn đồng hành ·{" "}
+                        {save.visitedMaps.length}/20 địa điểm đã tới
+                      </p>
+                      <div className="adv-codex">
+                        {allSpecies.map((id) => {
+                          const known = save.discovered.includes(id),
+                            caught = [...save.team, ...save.reserve].some(
+                              (member) => member.cardId === id,
+                            )
+                          return (
+                            <article
+                              key={id}
+                              className={
+                                known
+                                  ? `school-${CARD_MAP[id].school}`
+                                  : "is-unknown"
+                              }
+                            >
+                              {known ? (
+                                <>
+                                  <SpiritSprite cardId={id} quiet lazy />
+                                  <strong>{CARD_MAP[id].name}</strong>
+                                  <small>
+                                    {SCHOOLS[CARD_MAP[id].school].name} ·{" "}
+                                    {caught ? "Đã kết bạn" : "Đã gặp"}
+                                  </small>
+                                </>
+                              ) : (
+                                <>
+                                  <span>?</span>
+                                  <strong>Chưa gặp</strong>
+                                </>
+                              )}
+                            </article>
+                          )
+                        })}
+                      </div>
+                    </>
+                  )}
+                </aside>
+              </AdventureDialog>
+            )}
           </main>
         </>
       )}
