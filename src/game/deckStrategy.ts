@@ -1,3 +1,4 @@
+import { deckSizeForRules } from "./tcgRules"
 import { CARDS, CARD_MAP, DECK_SIZE } from "./catalog"
 import { recipeCoverage, recipeFinishers, RECIPES } from "./recipes"
 import type { GameCard, RecipeId } from "./types"
@@ -8,7 +9,7 @@ export const DECK_STYLES: {
   text: string
   recipe: RecipeId
 }[] = [
-  {id:"traps",name:"Bẫy Hương phản công",text:"10 đồng minh, 4 bẫy và phép đối sách. Một ô bẫy: đọc điều kiện trước khi úp.",recipe:"coast"},
+  {id:"traps",name:"Bẫy Hương phản công",text:"14 đồng minh, 4 bẫy và phép đối sách. Một ô bẫy: đọc điều kiện trước khi úp.",recipe:"coast"},
   {
     id: "balanced",
     name: "Bàn đủ vị",
@@ -91,7 +92,9 @@ export function cardRole(card: GameCard): string {
 export function suggestDeck(
   owned: Record<string, number>,
   style: DeckStyle,
+  rulesVersion = 470,
 ): string[] {
+  const size = deckSizeForRules(rulesVersion)
   const plan = DECK_STYLES.find((s) => s.id === style)!,
     recipe = RECIPES.find((r) => r.id === plan.recipe)!
   const finishers = new Set(recipeFinishers(recipe).map((c) => c.id))
@@ -132,7 +135,7 @@ export function suggestDeck(
       (c.kind === "spell" && c.cost <= 2))
       ? 12
       : 0)
-  const available = CARDS.flatMap((c) =>
+  const available = CARDS.filter(c => (c.contentVersion ?? 350) <= rulesVersion).flatMap((c) =>
     Array.from({ length: Math.min(2, Math.max(0, owned[c.id] ?? 0)) }, () => c),
   ).sort(
     (a, b) => score(b) - score(a) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0),
@@ -156,17 +159,17 @@ export function suggestDeck(
     .forEach(take)
   if(style==="traps")for(const c of available.filter(c=>c.kind==="trap"))if(selected.filter(x=>x.kind==="trap").length<4)take(c)
   for (const c of available.filter((c) => c.kind === "unit"))
-    if (selected.filter((x) => x.kind === "unit").length < 10) take(c)
+    if (selected.filter((x) => x.kind === "unit").length < (rulesVersion >= 470 ? 14 : 10)) take(c)
   for (const c of available.filter((c) => c.kind === "spell"))
-    if (selected.length<DECK_SIZE && selected.filter((x) => x.kind === "spell").length < 8) take(c)
+    if (selected.length<size && selected.filter((x) => x.kind === "spell").length < (rulesVersion >= 470 ? style === "traps" ? 6 : 10 : 8)) take(c)
   for (const c of available)
     if (
-      selected.length < DECK_SIZE &&
+      selected.length < size &&
       selected.filter((x) => x.id === c.id).length <
         Math.min(2, owned[c.id] ?? 0)
     )
       selected.push(c)
-  return selected.slice(0, DECK_SIZE).map((c) => c.id)
+  return selected.slice(0, size).map((c) => c.id)
 }
 export function analyzeDeck(ids: string[]) {
   const cards = ids.map((id) => CARD_MAP[id]).filter(Boolean),
@@ -174,11 +177,11 @@ export function analyzeDeck(ids: string[]) {
   const cheap = cards.filter((c) => c.cost <= 2).length,
     guards = cards.filter((c) => c.keywords.includes("guard")).length
   const tips: string[] = []
-  if (cheap < 5) tips.push("Thêm khoảng 5 lá giá 1–2 để ít bỏ trống lượt đầu.")
-  if (units < 8) tips.push("Ít đồng minh: khó giữ sân và kích hoạt công thức.")
-  if (units > 13)
-    tips.push("Nhiều đồng minh: sân chỉ có 3 chỗ; thêm phép để tránh kẹt tay.")
-  if(cards.filter(c=>c.kind==="trap").length>4)tips.push("Chỉ có 1 ô bẫy: quá 4 bẫy trong bộ 18 lá có thể làm kẹt tay.")
+  if (cheap < 7) tips.push("Thêm khoảng 7 lá giá 1–2 để ít bỏ trống lượt đầu.")
+  if (units < 10) tips.push("Ít đồng minh: khó giữ sân và kích hoạt công thức.")
+  if (units > 17)
+    tips.push("Nhiều đồng minh: sân chỉ có 4 chỗ; thêm phép để tránh kẹt tay.")
+  if(cards.filter(c=>c.kind==="trap").length>4)tips.push("Chỉ có 1 ô bẫy: quá 4 bẫy trong bộ 24 lá có thể làm kẹt tay.")
   if (!guards) tips.push("Chưa có Hộ vệ; cân nhắc một lá giữ bếp trước boss.")
   const abilities = new Set(cards.map((c) => c.ability))
   if (
@@ -304,4 +307,16 @@ export function openingReport(ids: string[], seed: number) {
       ? "Có quân giá 1–2 để mở bàn. Giữ một phép nối cho lượt kế tiếp."
       : "Tay này thiếu quân giá 1–2. Cân nhắc đổi bài mở đầu; Ủ vị cần thời gian và đồng minh sống sót.",
   }
+}
+
+/** Keep every existing choice and order; only append legal owned copies. */
+export function completeDeck(ids: string[], owned: Record<string, number>): string[] {
+  const result = [...ids]
+  const preferred = [...suggestDeck(owned, "balanced"), ...CARDS.map(c => c.id)]
+  for (const id of preferred) {
+    if (result.length >= DECK_SIZE) break
+    const count = result.filter(existing => existing === id).length
+    if (count < Math.min(2, owned[id] ?? 0)) result.push(id)
+  }
+  return result
 }

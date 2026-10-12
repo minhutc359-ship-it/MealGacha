@@ -130,7 +130,7 @@ export interface Battle {
   enemyPhase?: EnemyPhase
   pendingReaction?: TrapReaction
 
-  rulesVersion?: 350 | 400 | 450
+  rulesVersion?: 350 | 400 | 450 | 470
   pendingFlavors?: PendingFlavor[]
   flavorSequence?: number
   id: string
@@ -206,7 +206,7 @@ export interface ExpeditionReward {
 }
 export interface ExpeditionRun {
   promise?: "safe" | "bold"
-  rulesVersion?: 350 | 400 | 450
+  rulesVersion?: 350 | 400 | 450 | 470
   id: string
   seed: number
   status: "path" | "battle" | "event" | "reward" | "won" | "lost" | "abandoned"
@@ -246,8 +246,9 @@ export interface GameStats {
   crafted: number
 }
 export interface GameSave {
+  tcg470?: { giftClaimed: boolean }
   traps450?: { giftClaimed: boolean }
-  contentVersion?: 350 | 400 | 450
+  contentVersion?: 350 | 400 | 450 | 470
   story400?: {
     version: 1
     giftClaimed: boolean

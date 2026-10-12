@@ -1,3 +1,4 @@
+import { boardLimit } from "./tcgRules"
 import { CARD_MAP } from "./catalog"
 import type { Battle, BattleSide, SetTrap, TrapIntent } from "./types"
 export function trapReady(b: Battle, trap?: SetTrap | null) {
@@ -37,7 +38,7 @@ export function trapMatches(b: Battle, owner: BattleSide, intent: TrapIntent) {
       !!intent.fallenCardId &&
       CARD_MAP[intent.fallenCardId]?.kind === "unit" &&
       CARD_MAP[intent.fallenCardId].cost <= 4 &&
-      b[owner].board.length < 3 &&
+      b[owner].board.length < boardLimit(b) &&
       !!b[owner].graveyard?.includes(intent.fallenCardId)
     )
   return true

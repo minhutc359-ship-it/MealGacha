@@ -47,7 +47,7 @@ describe("opening choices", () => {
     expect(
       [...result.battle.player.hand, ...result.battle.player.deck].sort(),
     ).toEqual(before)
-    expect(result.battle.player.deck).toHaveLength(13)
+    expect(result.battle.player.deck).toHaveLength(19)
     expect(result.battle.opening).toBe(false)
     expect(
       actBattle(result.battle, { type: "mulligan", indices: [] }).error,

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest"
 import { actBattle, startBattle } from "@/game/battle"
-import { CARD_MAP, STARTER_DECK } from "@/game/catalog"
+import { CARD_MAP, LEGACY_STARTER_DECK } from "@/game/catalog"
 import { reduceAuto } from "@/game/autochess/reducer"
 import { emptyAutoSave } from "@/game/autochess/types"
 import { settleBattle, newGame } from "@/game/progression"
@@ -13,7 +13,7 @@ import { enemyPlan, createCombat } from "@/game/autochess/combat"
 import { autoRunSchema } from "@/game/autochess/schema"
 import { livingOpening } from "@/game/livingStory"
 const arena = () => {
-  const b = startBattle(STARTER_DECK, null, "courage", () => 0.5, false, 400)
+  const b = startBattle(LEGACY_STARTER_DECK, null, "courage", () => 0.5, false, 400)
   b.player.mana = b.player.maxMana = 7
   b.enemy.hand = []
   b.enemy.deck = Array(18).fill("banh-mi")
@@ -212,7 +212,7 @@ it("pays each new story stage once and preserves both old ending and old rewards
   }
   const oldCoins = save.coins
   for (const stage of STAGES.slice(18)) {
-    const b = startBattle(STARTER_DECK, stage.id, "wisdom", () => 0.5)
+    const b = startBattle(LEGACY_STARTER_DECK, stage.id, "wisdom", () => 0.5)
     b.enemy.health = 0
     b.result = "win"
     save = (settleBattle({ ...save, battle: b }) as typeof save)
@@ -359,7 +359,7 @@ it("adds third-cast damage only after an actual resolved third cast", () => {
   )
 })
 it("opts only new boss battles into delayed brewing and keeps old checkpoints", () => {
-  const fresh = startBattle(STARTER_DECK, "rain-harbor-3", "courage", () => 0.5)
+  const fresh = startBattle(LEGACY_STARTER_DECK, "rain-harbor-3", "courage", () => 0.5)
   fresh.player.board = []
   fresh.enemy.hand = []
   fresh.enemy.deck = []
@@ -374,9 +374,9 @@ it("opts only new boss battles into delayed brewing and keeps old checkpoints", 
 })
 it("repeats seeded hands and maps new card roles from the real catalog", async () => {
   const { seededHand, strategicRoles } = await import("@/game/deckStrategy")
-  expect(seededHand(STARTER_DECK, 400)).toEqual(seededHand(STARTER_DECK, 400))
-  expect(seededHand(STARTER_DECK, 401)).not.toEqual(
-    seededHand(STARTER_DECK, 400),
+  expect(seededHand(LEGACY_STARTER_DECK, 400)).toEqual(seededHand(LEGACY_STARTER_DECK, 400))
+  expect(seededHand(LEGACY_STARTER_DECK, 401)).not.toEqual(
+    seededHand(LEGACY_STARTER_DECK, 400),
   )
   expect(strategicRoles(CARD_MAP["v4-rain-seed"])).toContain("Nối phép")
 })
@@ -479,8 +479,8 @@ it("offers the two new deck paths with their actual keyword engines", async () =
   const owned = Object.fromEntries(CARDS.map((c) => [c.id, 2]))
   const seasoning = suggestDeck(owned, "seasoning"),
     steeping = suggestDeck(owned, "steeping")
-  expect(seasoning).toHaveLength(18)
-  expect(steeping).toHaveLength(18)
+  expect(seasoning).toHaveLength(24)
+  expect(steeping).toHaveLength(24)
   expect(seasoning.some((id) => CARD_MAP[id].choices)).toBe(true)
   expect(seasoning.some((id) => CARD_MAP[id].ability === "season-host")).toBe(
     true,
@@ -493,7 +493,7 @@ it("keeps optional expedition promises distinct and older unmarked runs unchange
   const { createExpedition, enterRunNode, startRunBattle, settleRunCombat } =
     await import("@/game/expedition")
   const create = (promise?: "safe" | "bold") => {
-    let run = createExpedition(STARTER_DECK, 400, promise)
+    let run = createExpedition(LEGACY_STARTER_DECK, 400, promise)
     run.health = 10
     return enterRunNode(run, run.nodes[0][0].id)
   }

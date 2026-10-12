@@ -1089,7 +1089,7 @@ export function TCGPage() {
             <div className="tcg-help-lead">
               <span>✦</span>
               <p>
-                Đưa máu chủ tướng đối phương về 0 bằng một bộ bài 18 lá. Không
+                Đưa máu chủ tướng đối phương về 0 bằng một bộ bài 24 lá. Không
                 cần mua gì: bạn có sẵn bộ khởi đầu, 2 vé gói và 300 xu.
               </p>
             </div>
@@ -1106,7 +1106,7 @@ export function TCGPage() {
                 <strong>Triệu hồi đồng minh</strong>
                 <p>
                   Đổi tối đa 3 lá trước trận. Chọn thẻ để đọc hiệu ứng, rồi xác
-                  nhận dùng năng lượng. Mỗi bên có 3 ô sân. Đồng minh đợi tới
+                  nhận dùng năng lượng. Mỗi bên có 4 ô đồng minh và 1 ô bẫy riêng. Đồng minh đợi tới
                   lượt sau để đánh; Xung phong được đánh ngay.
                 </p>
               </li>
@@ -1132,7 +1132,7 @@ export function TCGPage() {
                 <p>
                   Triệu hồi vào sân có đồng minh cùng hệ nhận 1 lá chắn. Lá chắn
                   chặn sát thương và mất dần. Tay tối đa 8 lá; lá rút dư bị bỏ.
-                  Hết bộ bài sẽ chịu kiệt sức 1, 2, 3… máu mỗi lần rút.
+                  Mỗi lần rút khi bộ trống chịu kiệt sức 1 → 2 → 3 máu, rồi giữ ở 3. Trận và hành trình đang lưu giữ luật cũ.
                 </p>
               </li>
               <li>

@@ -16,6 +16,7 @@ export const emptyStats = (): GameStats => ({
 export function newGame(): GameSave {
   return {
     version: 1,
+    tcg470: { giftClaimed: true },
     coins: 300,
     dust: 50,
     xp: 0,

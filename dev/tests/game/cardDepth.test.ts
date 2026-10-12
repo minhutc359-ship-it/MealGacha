@@ -30,7 +30,7 @@ describe("distinct card engines and tactical decisions", () => {
   it("distributes all eleven unit abilities and preserves the starter curve", () => {
     for (const id of ["ambush", "spellfire", "scout", "snare", "mender", "bloom", "host", "pantry", "farewell", "weaver", "welcome"] as Ability[]) expect(abilityCard(id), id).toBeDefined()
     expect(new Set(CARDS.filter(c => c.kind === "spell").map(c => `${c.effect}:${c.ability ?? "basic"}`)).size).toBeGreaterThanOrEqual(20)
-    expect(STARTER_DECK).toHaveLength(18)
+    expect(STARTER_DECK).toHaveLength(24)
     expect(analyzeDeck(STARTER_DECK).cheap).toBeGreaterThanOrEqual(6)
   })
   it("casts activate spellfire/weaver only twice and actual healing alone activates bloom", () => {
@@ -120,7 +120,7 @@ describe("distinct card engines and tactical decisions", () => {
     const rebirth = suggestDeck(owned, "rebirth"), spells = suggestDeck(owned, "spellcraft")
     expect(rebirth.some(id => ["revive", "rebloom", "offering"].includes(CARD_MAP[id].ability ?? ""))).toBe(true)
     expect(spells.some(id => ["spellfire", "weaver", "starlight"].includes(CARD_MAP[id].ability ?? ""))).toBe(true)
-    for (const deck of [rebirth, spells]) { expect(deck).toHaveLength(18); for (const id of deck) expect(deck.filter(c => c === id).length).toBeLessThanOrEqual(2) }
+    for (const deck of [rebirth, spells]) { expect(deck).toHaveLength(24); for (const id of deck) expect(deck.filter(c => c === id).length).toBeLessThanOrEqual(2) }
   })
 })
 
