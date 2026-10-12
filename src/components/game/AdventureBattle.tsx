@@ -131,9 +131,11 @@ export function SchoolChart() {
 export function AdventureBattle({
   save,
   act,
+  embedded = false,
 }: {
   save: AdventureSave
   act: (action: AdventureAction) => void
+  embedded?: boolean
 }) {
   const e = save.encounter!,
     member = save.team.find((item) => item.uid === e.activeUid)!
@@ -148,11 +150,8 @@ export function AdventureBattle({
   const playerFast =
     spiritSpeed(member.cardId, member.level, member.status) >=
     spiritSpeed(e.cardId, e.level, e.enemyStatus)
-  return (
-    <AdventureDialog
-      className={`adv-battle is-${e.kind}`}
-      titleId="adv-battle-title"
-    >
+  const content = (
+    <>
       <div
         className="adv-battle-bg"
         style={{
@@ -406,6 +405,8 @@ export function AdventureBattle({
         </section>
       </div>
       <SchoolChart />
-    </AdventureDialog>
+    </>
   )
+  return embedded ? <section className={`adv-battle is-${e.kind}`} inert aria-labelledby="adv-battle-title">{content}</section>
+    : <AdventureDialog className={`adv-battle is-${e.kind}`} titleId="adv-battle-title">{content}</AdventureDialog>
 }

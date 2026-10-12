@@ -12,6 +12,7 @@ import { useAppStore } from "../../store/useAppStore"
 import { shareResultCard } from "../../infrastructure/share/resultCard"
 
 interface Props {
+  embedded?: boolean
   reward: RewardInstance
   canOpenAgain: boolean
   onClose(): void
@@ -21,6 +22,7 @@ interface Props {
 }
 
 export function RevealModal({
+  embedded = false,
   reward,
   canOpenAgain,
   onClose,
@@ -40,6 +42,7 @@ export function RevealModal({
   const occurrences = useAppStore((state) => state.user.rewards.filter((item) => item.dishId === reward.dishId && item.acquiredAt <= reward.acquiredAt).length)
 
   useEffect(() => {
+    if (embedded) return
     const handleKey = (e: KeyboardEvent) => {
       if (showPlaces) return
       if (e.key === "Escape") onClose()
@@ -61,9 +64,9 @@ export function RevealModal({
       }
     }
     document.addEventListener("keydown", handleKey)
-    setTimeout(() => firstFocusRef.current?.focus(), 50)
-    return () => document.removeEventListener("keydown", handleKey)
-  }, [onClose, showPlaces])
+    const focusTimer = setTimeout(() => firstFocusRef.current?.focus(), 50)
+    return () => { clearTimeout(focusTimer); document.removeEventListener("keydown", handleKey) }
+  }, [onClose, showPlaces, embedded])
 
   const dish = reward.dish
   const rarity = reward.rarity ?? "common"
@@ -80,7 +83,7 @@ export function RevealModal({
 
   return (
     <>
-      {createPortal(<div
+      {(embedded ? (content: React.ReactNode) => <div inert>{content}</div> : (content: React.ReactNode) => createPortal(content, document.body))(<div
         className={`reward-reveal-backdrop rarity-${rarity} fixed inset-0 z-50 flex items-center justify-center p-4`}
         style={{
           background: "rgba(8,12,24,0.88)",
@@ -261,7 +264,7 @@ export function RevealModal({
             )}
           </div>
         </div>
-      </div>, document.body)}
+      </div>)}
 
       {showPlaces && (
         <PlacesModal dish={dish} onClose={() => setShowPlaces(false)} />

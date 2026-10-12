@@ -760,6 +760,7 @@ export function AutoChessPage() {
       {drag.peek && run && <QuickUnitInfo id={drag.peek.id} piece={run.roster.find(p => p.uid === drag.peek?.uid)} actor={run.phase === "combat" ? runtime.getFrame().run?.combat?.actors.find(a => a.uid === drag.peek?.uid) : undefined} />}
       {modal === "guide" && (
         <AutoGuide
+          onIntro={() => setModal(null)}
           onClose={() => {
             action({ type: "tutorial" })
             setModal(null)

@@ -71,10 +71,12 @@ export function AdventureWorld({
   save,
   move,
   interact,
+  readOnly = false,
 }: {
   save: AdventureSave
   move: (direction: AdventureDirection) => void
   interact: () => void
+  readOnly?: boolean
 }) {
   const map = ADVENTURE_MAP_BY_ID[save.mapId],
     stage = useRef<HTMLDivElement>(null)
@@ -96,7 +98,7 @@ export function AdventureWorld({
     return () => resize.disconnect()
   }, [])
   useEffect(() => {
-    if (introOpen || !goal || save.encounter || save.service || goal.mapId !== map.id) {
+    if (readOnly || introOpen || !goal || save.encounter || save.service || goal.mapId !== map.id) {
       if (goal) setGoal(null)
       return
     }
@@ -114,7 +116,7 @@ export function AdventureWorld({
       return
     }
     const timer = window.setTimeout(() => {
-      if (useModeIntroStore.getState().mode) return
+      if (readOnly || useModeIntroStore.getState().mode) return
       useGameStore
         .getState()
         .adventureAction({
@@ -126,7 +128,7 @@ export function AdventureWorld({
         setGoal(null)
     }, 160)
     return () => clearTimeout(timer)
-  }, [goal, map, save.x, save.y, save.encounter, save.service, introOpen])
+  }, [goal, map, save.x, save.y, save.encounter, save.service, introOpen, readOnly])
   useEffect(() => {
     const cancel = (event: KeyboardEvent) => {
       if (
@@ -148,6 +150,7 @@ export function AdventureWorld({
     return () => window.removeEventListener("keydown", cancel)
   }, [])
   const onMove = (direction: AdventureDirection) => {
+    if (readOnly) return
     setGoal(null)
     move(direction)
   }

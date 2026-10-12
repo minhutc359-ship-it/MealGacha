@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { BrandMark } from "../components/layout/BrandMark"
 import { ModeSwitch } from "../components/layout/ModeSwitch"
+import { ModeIntroButton } from "../components/layout/ModeIntroButton"
 import {
   AudioButton,
   useGameAudio,
@@ -92,6 +93,11 @@ function StarterChoice({ choose }: { choose: (id: string) => void }) {
           <span>Nhà · NPC · cửa hàng</span>
           <span>PP · trạng thái · tương khắc</span>
         </div>
+        <details className="adv-help">
+          <summary>Hướng dẫn chơi</summary>
+          <p>WASD / mũi tên để đi, E tương tác với NPC và cửa nhà. Đổi Vị Linh, chọn kỹ năng theo hệ và nhìn HP/PP trong trận.</p>
+          <ModeIntroButton mode="adventure" />
+        </details>
       </section>
     </main>
   )
@@ -451,7 +457,8 @@ export function AdventurePage() {
                   )}
                   <SchoolChart />
                   <details className="adv-help">
-                    <summary>Điều khiển & địa điểm</summary>
+                    <summary>Hướng dẫn chơi · Điều khiển & địa điểm</summary>
+                    <ModeIntroButton mode="adventure" />
                     <p>
                       WASD / mũi tên: di chuyển. Giữ Shift: chạy. E: tương tác
                       theo hướng nhìn. Chọn một điểm trên bản đồ để tự đi đến.
