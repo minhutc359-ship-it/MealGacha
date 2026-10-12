@@ -63,6 +63,8 @@ const requireValid = (error: string | null | undefined) => {
 function tcgIntro(): IntroClip {
   let battle = practiceBattle(2)
   battle.id = "intro-tcg-boss"
+  battle.round=2;battle.turnSerial=3;battle.turnSide="player"
+  battle.player.trap={uid:`t${battle.nextUid++}`,cardId:"trap-seal",setTurn:1}
   battle.stageId = "harbor-3"
   battle.opponent = STAGE_MAP["harbor-3"].opponent
   battle.seenScenes = ["awaken:harbor-3"]
@@ -81,9 +83,15 @@ function tcgIntro(): IntroClip {
     const result = actBattle(battle, action, () => .41)
     requireValid(result.error)
     battle = result.battle
-    for (let i = 0; i < result.frames.length; i++) {
-      const frame = result.frames[i]
-      frames.push({ at: at + i * window / result.frames.length, scene: { mode: "tcg", battle: frame.battle, event: frame.event, frame } })
+    const resolvedFrames=[...result.frames]
+    for(let steps=0;battle.pendingReaction&&steps<8;steps++){
+      const response=actBattle(battle,{type:"react",id:battle.pendingReaction.id,activate:true},()=>.41)
+      requireValid(response.error);resolvedFrames.push(...response.frames);battle=response.battle
+    }
+    requireValid(battle.pendingReaction?"unresolved trap response":null)
+    for (let i = 0; i < resolvedFrames.length; i++) {
+      const frame = resolvedFrames[i]
+      frames.push({ at: at + i * window / resolvedFrames.length, scene: { mode: "tcg", battle: frame.battle, event: frame.event, frame } })
     }
     frames.push({ at: at + window, scene: { mode: "tcg", battle: structuredClone(battle) } })
   }
@@ -95,13 +103,13 @@ function tcgIntro(): IntroClip {
   requireValid(battle.result === "win" ? null : "TCG boss introduction must win")
   return {
     mode: "tcg", duration: INTRO_DURATION, frames, music: "boss",
-    takeaway: "Triệu hồi → cộng hưởng/công thức → hạ Hộ vệ → kết thúc lượt → đọc phản kích → đánh chủ tướng.",
+    takeaway: "Triệu hồi → cộng hưởng/công thức → hạ Hộ vệ → kết thúc lượt → đọc phản kích / lật bẫy → đánh chủ tướng.",
     beats: [
-      beat(0, "Đối đầu Hỏa Linh", "Trận mẫu giữa ván: 7 năng lượng và Cơm tấm đã cường hóa. Hộ vệ đang chặn đường tới boss.", "TRẬN BOSS"),
+      beat(0, "Đối đầu Hỏa Linh", "Trận mẫu giữa ván: 7 năng lượng, Cơm tấm đã cường hóa và một bẫy úp từ lượt trước. Hộ vệ đang chặn đường tới boss.", "TRẬN BOSS"),
       beat(2_000, "Gọi Phở bò", "Ra thẻ tốn năng lượng; quân mới thường chờ lượt sau. Phở bò mở điểm nối cho Bữa cơm nhà.", "TRIỆU HỒI"),
       beat(6_000, "Phở bò → Ấm trà ngã rẽ", "Mời ngồi lại hồi ý chí. Cộng hưởng Hải giảm 1 năng lượng và công thức Bữa cơm nhà cho thêm hồi/ chắn.", "COMBO"),
       beat(10_000, "Dậy lửa hạ Hộ vệ", "Chọn đúng nhánh phép và mục tiêu: Hai nhúm gia vị gây 3 sát thương, mở đường đánh chủ tướng.", "MỞ ĐƯỜNG"),
-      beat(13_000, "Boss phản kích", "Kết thúc lượt: Than còn cháy gây sát thương, rồi boss tự ra phép. HP thay đổi theo luật trận thật.", "LƯỢT ĐỊCH"),
+      beat(13_000, "Boss phản kích", "Boss tự ra phép. Bẫy Niêm Phong chặn một phép; boss vẫn có thể dùng lá tiếp theo. HP và năng lượng thay đổi theo luật thật.", "LƯỢT ĐỊCH"),
       beat(19_000, "Đến lượt bạn trở lại", "Năng lượng hồi, đồng minh sẵn sàng. Hãy quan sát đòn phản kích trước khi quyết định lượt tiếp theo.", "HỒI LƯỢT"),
       beat(21_000, "Cơm tấm kết thúc trận", "Hộ vệ đã bị hạ, Cơm tấm dùng 8 công đã cường hóa để đưa ý chí Hỏa Linh về 0.", "CHIẾN THẮNG"),
     ],

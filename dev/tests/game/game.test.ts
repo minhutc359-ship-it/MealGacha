@@ -75,7 +75,7 @@ describe("card catalog and decks", () => {
     expect(new Set(CARDS.map((c) => c.school)).size).toBe(5)
     expect(deckErrors(STARTER_DECK, newGame().cards)).toEqual([])
     expect(LEGACY_CARDS).toHaveLength(163)
-    expect(CARDS).toHaveLength(171)
+    expect(CARDS).toHaveLength(181)
     for (const card of CARDS)
       if (card.art)
         expect(existsSync(resolve("public", card.art.slice(1))), card.id).toBe(
@@ -469,7 +469,8 @@ function autoPlay(initial: Battle): Battle {
     }
     for (const uid of b.player.board.filter((u) => u.ready).map((u) => u.uid)) {
       if (b.result) break
-      const attacker = b.player.board.find((u) => u.uid === uid)!
+      const attacker = b.player.board.find((u) => u.uid === uid)
+      if(!attacker?.ready)continue
       const guards = b.enemy.board
         .filter((u) => u.keywords.includes("guard"))
         .sort((a, z) => a.health + a.shield - z.health - z.shield)
@@ -487,6 +488,7 @@ function autoPlay(initial: Battle): Battle {
       b = result.battle
     }
     if (!b.result) b = actBattle(b, { type: "end" }).battle
+    while(b.pendingReaction&&!b.result){const response=actBattle(b,{type:"react",id:b.pendingReaction.id,activate:true});expect(response.error).toBeNull();b=response.battle}
     expect(b.player.board.length).toBeLessThanOrEqual(3)
     expect(b.enemy.board.length).toBeLessThanOrEqual(3)
     expect(b.player.hand.length).toBeLessThanOrEqual(8)

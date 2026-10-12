@@ -435,7 +435,7 @@ export function createExpedition(
   )
   return {
     ...(promise ? {promise} : {}),
-    rulesVersion: 400,
+    rulesVersion: 450,
     id: crypto.randomUUID(),
     seed,
     status: "path",

@@ -49,6 +49,13 @@ describe("25-second isolated mode introductions", () => {
     expect(scenes[0].run.gold).toBe(10)
     expect(scenes[0].run.roster.find(piece => piece.id === "pho-bo")?.star).toBe(1)
   })
+  it("TCG demonstrates a real one-use trap and resumes the boss turn",()=>{
+    const frames=buildModeIntro("tcg").frames.flatMap(f=>f.scene.mode==="tcg"&&f.scene.frame?[f.scene.frame]:[])
+    expect(frames.some(f=>f.event.kind==="trap-window")).toBe(true)
+    expect(frames.some(f=>f.event.kind==="trap"&&f.event.cardId==="trap-seal")).toBe(true)
+    expect(frames.some(f=>f.event.kind==="negated")).toBe(true)
+    expect(frames.some(f=>f.event.kind==="play"&&f.event.side==="enemy")).toBe(true)
+  })
   it("Adventure shows resistance, switching, rooted combo and keeper counterattacks", () => {
     const scenes = buildModeIntro("adventure").frames.map(frame => frame.scene).filter(scene => scene.mode === "adventure")
     const first = scenes[0].save

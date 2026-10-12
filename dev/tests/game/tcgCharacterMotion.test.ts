@@ -46,7 +46,7 @@ describe("shared characters in TCG", () => {
     const kinds: CharacterMotion[] = ["idle", "summon", "attack", "cast", "hit", "fall", "victory"]
     for (const card of CARDS) {
       const model = tcgCharacter(card)
-      if (card.kind === "spell") { expect(model).toBeNull(); continue }
+      if (card.kind !== "unit") { expect(model).toBeNull(); continue }
       expect(model).not.toBeNull()
       const row = SPRITE_SHEETS[model!.sheet].rows[model!.row]
       expect(row.frames.length).toBeGreaterThanOrEqual(7)

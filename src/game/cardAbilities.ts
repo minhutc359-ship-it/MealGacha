@@ -1,6 +1,8 @@
 import type { Ability, GameCard, School } from "./types"
 
 export const ABILITY_TEXT: Record<Ability, string> = {
+  disarm: "Gỡ bẫy úp hoặc bẫy đã lộ.",
+  "reveal-trap": "Lộ bẫy địch và rút một lá.",
   "tea-mend": "Hồi ý chí và 1 máu mỗi đồng minh.",
   "steep-unit": "Ủ vị: tăng sức mạnh đồng minh ở đầu lượt sau.",
   "steep-heal": "Ủ vị: hồi ý chí và đội bạn ở đầu lượt sau.",

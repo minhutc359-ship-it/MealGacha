@@ -1,3 +1,4 @@
+import { TRAP_PACK } from "./trapCards"
 import { validLivingDecision, LIVING_CHOICES, type LivingChapter, type LivingDecision } from "./livingChoices"
 import { create } from "zustand"
 import { V4_CARDS } from "./v4Cards"
@@ -55,6 +56,7 @@ interface Store {
   startWeekly(): boolean
   equipCompanion(id: NpcId | null): void
   acknowledgeScene(id: string): void
+  claimTrapGift(): void
   claimV4Gift(): void
   chooseLivingPath(chapter: LivingChapter, decision: LivingDecision): void
   chooseEnding(ending: "remember" | "release"): void
@@ -112,6 +114,13 @@ export const useGameStore = create<Store>((set, get) => {
       const save = current(), result = reduceAdventure(save.adventure, action)
       if (result.error) { set({ notice: result.error }); return false }
       return commit({ ...save, adventure: result.save })
+    },
+    claimTrapGift() {
+      const save=current()
+      if(save.traps450?.giftClaimed)return
+      const cards={...save.cards}
+      for(const card of TRAP_PACK)cards[card.id]=Math.max(2,cards[card.id]??0)
+      commit({...save,cards,traps450:{giftClaimed:true}},"Đã nhận 8 bẫy và 2 phép đối sách × 2. Thêm vào bộ bài để dùng từ trận mới; bộ hiện tại giữ nguyên.")
     },
     claimV4Gift() {
       const save = current()

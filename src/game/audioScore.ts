@@ -97,6 +97,9 @@ export function frameSounds(frame: BattleFrame): TimedSound[] {
   const add = (cue: GameSound, delay: number) => {
     if (!sounds.some((sound) => sound.cue === cue)) sounds.push({ cue, delay })
   }
+  if(frame.event.kind==="set-trap")add("confirm",0)
+  if(frame.event.kind==="trap") {add("resonance",0);add("cast",180)}
+  if(frame.event.kind==="negated")add("break",100)
   if (frame.event.kind === "play")
     add(card?.kind === "unit" ? "summon" : "cast", 0)
   if (frame.event.kind === "attack") {

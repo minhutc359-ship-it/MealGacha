@@ -1,0 +1,6 @@
+{
+  "baselineVersion": "4.4.1",
+  "baselineBytes": 69956770,
+  "additionalBudgetBytes": 10000000,
+  "definition": "Decimal MB; includes code and every new build asset"
+}

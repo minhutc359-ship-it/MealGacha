@@ -1,3 +1,5 @@
+import { trapMatches, publicBattle } from "./traps"
+import type { BattleSide, TrapIntent } from "./types"
 import { CARD_MAP } from "./catalog"
 import { STAGE_MAP } from "./story"
 import { cardBranches, flavoredCard } from "./v4Cards"
@@ -30,14 +32,14 @@ interface MulliganAction {
   type: "mulligan"
   indices: number[]
 }
-export type BattleAction = PlayAction | AttackAction | MulliganAction | {
+export type BattleAction = PlayAction | AttackAction | MulliganAction | { type: "react"; id: string; activate: boolean } | { type: "clear-trap" } | {
   type: "end"
 } | {
   type: "tactic"
   id: TacticId
 }
 export interface BattleEvent {
-  kind: "play" | "attack" | "turn" | "rule" | "mulligan" | "combo" | "objective" | "scene" | "assist" | "tactic"
+  kind: "set-trap" | "trap" | "trap-window" | "trap-pass" | "negated" | "clear-trap" | "play" | "attack" | "turn" | "rule" | "mulligan" | "combo" | "objective" | "scene" | "assist" | "tactic"
   side: "player" | "enemy"
   label: string
   cardId?: string
@@ -68,11 +70,13 @@ export function cardCost(p: Combatant, card: GameCard) {
 export function playError(b: Battle, index: number, branch?: PlayAction["branch"]): string | null {
   const original = CARD_MAP[b.player.hand[index]]
   if (!original) return "Lá bài không còn trên tay."
+  if (b.pendingReaction || b.enemyPhase) return "Đang ở lượt địch; hãy quyết định phản ứng bẫy nếu có."
   if (b.opening) return "Hãy xác nhận bài mở đầu."
   if (b.tactic?.status === "pending") return "Hãy chọn cách ứng biến trước."
   if (b.result) return "Trận đấu đã kết thúc."
   const errors = (branch ? [branch] : cardBranches(original)).map(option => {
     const card = flavoredCard(original, option)
+    if (card.kind === "trap" && b.player.trap) return "Ô bẫy đang có bài. Bỏ bẫy cũ trước khi úp bẫy mới."
     if (cardCost(b.player, card) > b.player.mana) return "Chưa đủ năng lượng."
     if (card.kind === "unit" && b.player.board.length >= 3) return "Sân đã đủ 3 đồng minh."
     if (["buff", "ward"].includes(card.effect ?? "") && !b.player.board.length) return "Cần một đồng minh trên sân."
@@ -81,7 +85,8 @@ export function playError(b: Battle, index: number, branch?: PlayAction["branch"
   return errors.some(error => error === null) ? null : errors[0]
 }
 function flavorError(b: Battle, side: "player" | "enemy", card: GameCard): string | null {
-  if (card.contentVersion === 400 && (b.rulesVersion ?? 350) < 400) return "Trận cũ giữ luật 3.5; thẻ này dùng trong trận mới."
+  if ((card.contentVersion ?? 350) > (b.rulesVersion ?? 350)) return "Trận đang chơi giữ luật cũ; thẻ này dùng trong trận mới."
+  if (card.ability === "disarm" && !b[side === "player" ? "enemy" : "player"].trap) return "Địch chưa có bẫy để gỡ."
   const pending = b.pendingFlavors ?? []
   if (card.ability?.startsWith("steep-") && pending.filter(effect => effect.owner === side).length >= 2) return "Phe bạn đã có 2 Ủ vị đang chờ."
   if (card.ability === "unsteep" && !pending.some(effect => effect.owner !== side)) return "Địch chưa có Ủ vị để gỡ."
@@ -297,7 +302,7 @@ export function opponentDeck(
   rulesVersion = 350,
 ): string[] {
   const stage = stageId ? STAGE_MAP[stageId] : undefined
-  const catalog = cardsForRules(stage && stage.index >= 18 ? rulesVersion : 350)
+  const catalog = cardsForRules(rulesVersion >= 450 ? rulesVersion : stage && stage.index >= 18 ? rulesVersion : 350)
   const school = stage?.chapter.school ?? "ember"
   const maxCost = stage ? Math.min(6, 3 + Math.floor(stage.index / 3)) : 5
   const finale = stage?.chapter.id === "last-table"
@@ -319,7 +324,8 @@ export function opponentDeck(
     themed.filter((c) => c.kind === "spell"),
     rng,
   ).slice(0, 2)
-  const list = [...low, ...units, ...spells]
+  const traps = rulesVersion >= 450 ? shuffle(themed.filter(c => c.kind === "trap"), rng).slice(0,1) : []
+  const list = [...low, ...units, ...spells.slice(0,traps.length?1:2), ...traps]
   for (const card of catalog)
     if (
       list.length < 9 &&
@@ -338,11 +344,12 @@ export function startBattle(
   choice: "courage" | "wisdom" = "courage",
   rng = Math.random,
   offerMulligan = false,
-  rulesVersion: 350 | 400 = 400,
+  rulesVersion: 350 | 400 | 450 = 450,
 ): Battle {
   const stage = stageId ? STAGE_MAP[stageId] : undefined
   const b: Battle = {
     rulesVersion,
+    ...(rulesVersion >= 450 ? {turnSerial:1,turnSide:"player" as const} : {}),
     ...(stage && stage.index >= 18 ? { livingRulesVersion: 2 as const } : {}),
     pendingFlavors: [],
     flavorSequence: 0,
@@ -386,6 +393,7 @@ function play(
   index: number,
   target?: Target,
   branch?: PlayAction["branch"],
+  negated = false,
 ): string | null {
   const p = b[side],
     foe = b[side === "player" ? "enemy" : "player"]
@@ -393,6 +401,7 @@ function play(
   if (!Number.isInteger(index) || !original) return "Lá bài không còn trên tay."
   if (original.choices && !branch) return "Hãy chọn một nhánh Nêm vị trước khi xác nhận."
   const card = flavoredCard(original, branch)
+  if(card.kind === "trap" && p.trap) return "Ô bẫy đang có bài."
   const flavorIssue = flavorError(b, side, card)
   if (flavorIssue) return flavorIssue
   if (card.ability === "unsteep" && !(b.pendingFlavors ?? []).some(effect => effect.id === target && effect.owner !== side)) return "Hãy chọn đúng một Ủ vị đang chờ của địch."
@@ -420,6 +429,16 @@ function play(
   if (resonated) p.resonanceUsed = true
   p.chainSchool = card.school
   p.hand.splice(index, 1)
+  if (card.kind === "trap") {
+    p.trap = {uid:`t${b.nextUid++}`,cardId:id,setTurn:b.turnSerial ?? 1}
+    log(b, side === "player" ? `Bạn úp ${card.name} · sẵn sàng từ lượt kế tiếp.` : `${b.opponent} úp một bẫy · danh tính đang kín.`)
+    return null
+  }
+  if (negated) {
+    p.graveyard = [...(p.graveyard ?? []),id].slice(-36)
+    log(b,`${card.name} bị vô hiệu; vẫn tiêu lá bài và ${cost} năng lượng.`)
+    return null
+  }
   p.recipeTrail = [...(p.recipeTrail ?? []), card.id].slice(-2)
   const relics = side === "player" ? (b.expedition?.relics ?? []) : []
   const bonus =
@@ -480,7 +499,12 @@ function play(
       }.`,
     )
   } else {
-    if (!spellAbility(b, side, card, target, power)) {
+    if (card.ability === "disarm") {
+      if (foe.trap) { foe.graveyard = [...(foe.graveyard ?? []),foe.trap.cardId].slice(-36); foe.trap = null }
+    } else if (card.ability === "reveal-trap") {
+      if (foe.trap) foe.trap.revealed = true
+      draw(b,side,1)
+    } else if (!spellAbility(b, side, card, target, power)) {
       if (card.effect === "sweep") foe.board.forEach((u) => hurt(u, power))
       if (card.effect === "damage") {
         if (target === "hero") foe.health -= power
@@ -653,6 +677,7 @@ function attack(
   return null
 }
 function nextTurn(b: Battle, side: "player" | "enemy", record?: (event: BattleEvent) => void) {
+  if ((b.rulesVersion ?? 350) >= 450) {b.turnSerial=(b.turnSerial ?? 1)+1;b.turnSide=side}
   const p = b[side]
   p.chainSchool = null
   p.recipeTrail = []
@@ -682,7 +707,7 @@ function chooseDamageTarget(card: GameCard, foe: Combatant, caster: Combatant): 
     .sort((a, z) => z.attack - a.attack)[0]
   return kill?.uid ?? "hero"
 }
-function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
+function beginEnemyTurn(b: Battle, record: (event: BattleEvent) => void) {
   nextTurn(b, "enemy", record)
   record({
     kind: "turn",
@@ -728,6 +753,10 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
     record({ kind: "rule", side: "enemy", label: b.log[b.log.length - 1] })
   }
   if (b.result) return
+}
+function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
+  beginEnemyTurn(b,record)
+  if(b.result)return
   for (let steps = 0; steps < 12 && !b.result; steps++) {
     const p = b.enemy
     const options = p.hand
@@ -796,6 +825,9 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
       label: b.log[b.log.length - 1],
     })
   }
+  finishEnemyTurn(b,record)
+}
+function finishEnemyTurn(b: Battle, record: (event: BattleEvent) => void) {
   if (!b.result) {
     b.round++
     nextTurn(b, "player", record)
@@ -818,6 +850,118 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
     }
   }
 }
+// Every reaction is a persisted pause in the enemy turn, not a presentation timer.
+function attackIssue(b: Battle, side: BattleSide, uid: string, target: string) {
+  const actor=b[side].board.find(u=>u.uid===uid), foe=b[side==="player"?"enemy":"player"]
+  if(!actor?.ready)return "Đồng minh chưa sẵn sàng tấn công."
+  const defender=foe.board.find(u=>u.uid===target)
+  if(target!=="hero"&&!defender)return "Mục tiêu không còn trên sân."
+  if(foe.board.some(u=>u.keywords.includes("guard"))&&!defender?.keywords.includes("guard"))return "Phải đánh Hộ vệ trước."
+  return null
+}
+function resolveTrap(b: Battle, owner: BattleSide, intent: TrapIntent, record: (event: BattleEvent)=>void) {
+  const p=b[owner],foe=b[intent.actor],slot=p.trap!,card=CARD_MAP[slot.cardId],def=card.trap!
+  p.trap=null
+  p.graveyard=[...(p.graveyard??[]),card.id].slice(-36)
+  const actor=foe.board.find(u=>u.uid===intent.source)
+  let cancel=false
+  if(def.effect==="block"||def.effect==="reflect") {
+    if(actor)actor.ready=false
+    cancel=true
+    if(def.effect==="reflect")foe.health-=Math.min(card.power??4,actor?.attack??0)
+  }
+  if(def.effect==="embers")foe.board.filter(u=>u.ready).forEach(u=>hurt(u,card.power??2))
+  if(def.effect==="bind"&&actor){hurt(actor,card.power??2);actor.frozen=true;actor.ready=false}
+  if(def.effect==="negate")cancel=true
+  if(def.effect==="ward")p.board.forEach(u=>u.shield+=(card.power??2))
+  if(def.effect==="reserve"){restore(b,owner,3);draw(b,owner,2)}
+  if(def.effect==="recall"&&intent.fallenCardId&&p.board.length<3){
+    const index=p.graveyard.lastIndexOf(intent.fallenCardId),revived=CARD_MAP[intent.fallenCardId]
+    if(index>=0){p.graveyard.splice(index,1);p.board.push({uid:`u${b.nextUid++}`,cardId:revived.id,attack:revived.attack,health:Math.min(2,revived.health),maxHealth:revived.health,shield:revived.keywords.includes("shield")?1:0,ready:false,keywords:[...revived.keywords]})}
+  }
+  checkResult(b)
+  if(intent.trigger==="attack"&&!foe.board.some(u=>u.uid===intent.source))cancel=true
+  const label=`◇ ${owner==="player"?"Bạn":b.opponent} lật ${card.name} · ${cancel?"chặn hành động":card.text}`
+  log(b,label);record({kind:"trap",side:owner,cardId:card.id,source:slot.uid,target:intent.trigger==="attack"&&def.effect==="reflect"?"hero":intent.source,label})
+  return cancel
+}
+function offerTrap(b: Battle, owner: BattleSide, intent: TrapIntent, record: (event: BattleEvent)=>void): "none"|"wait"|"cancel"|"continue" {
+  if(!trapMatches(b,owner,intent))return "none"
+  if(owner==="enemy")return resolveTrap(b,owner,intent,record)?"cancel":"continue"
+  const slot=b.player.trap!
+  b.pendingReaction={id:`${slot.uid}:${b.turnSerial}:${b.enemyPhase?.steps??0}:${b.enemyPhase?.cursor??0}:${intent.trigger}`,trapUid:slot.uid,intent}
+  record({kind:"trap-window",side:"player",cardId:slot.cardId,source:slot.uid,target:intent.source,label:`Bẫy có thể phản ứng với ${CARD_MAP[intent.cardId].name}`})
+  return "wait"
+}
+function afterActionTraps(b: Battle, actor: BattleSide, cardId: string, source: string|undefined, target: string|undefined, oldBoard: BattleUnit[], record: (event: BattleEvent)=>void, summon=false) {
+  if(b.result||(b.rulesVersion??350)<450)return
+  const owner=actor==="player"?"enemy":"player"
+  const fallen=oldBoard.find(u=>!b[owner].board.some(next=>next.uid===u.uid)&&CARD_MAP[u.cardId].cost<=4)
+  if(fallen&&offerTrap(b,owner,{trigger:"fallen",actor,cardId,source,target,fallenCardId:fallen.cardId,resume:"continue"},record)!=="none")return
+  if(summon)offerTrap(b,owner,{trigger:"summon",actor,cardId,source,target,resume:"continue"},record)
+}
+function finishPlay450(b: Battle, side: BattleSide, index: number, target: string|undefined, branch: PlayAction["branch"], record:(event:BattleEvent)=>void, negated=false) {
+  const cardId=b[side].hand[index],card=CARD_MAP[cardId],owner=side==="player"?"enemy":"player"
+  const source=card?.kind==="unit"?`u${b.nextUid}`:undefined,oldBoard=clone(b[owner].board)
+  const error=play(b,side,index,target,branch,negated)
+  if(error)return error
+  const kind=card.kind==="trap"?"set-trap":negated?"negated":"play"
+  record({kind,side,...(side==="enemy"&&kind==="set-trap"?{}:{cardId}),source,target,label:kind==="set-trap"?b.log.at(-1)!:negated?`${card.name} bị vô hiệu`:`${side==="player"?"Bạn":b.opponent} dùng ${card.name}`})
+  if(card.kind!=="trap"&&!negated){resolveRecipe(b,side,cardId,record,flavoredCard(card,branch));afterActionTraps(b,side,cardId,source,target,oldBoard,record,card.kind==="unit")}
+  return null
+}
+function finishAttack450(b: Battle, side: BattleSide, uid: string, target: string, record:(event:BattleEvent)=>void) {
+  const cardId=b[side].board.find(u=>u.uid===uid)?.cardId,oldBoard=clone(b[side==="player"?"enemy":"player"].board)
+  const error=attack(b,side,uid,target)
+  if(error)return error
+  record({kind:"attack",side,cardId,source:uid,target,label:b.log.at(-1)!})
+  if(cardId)afterActionTraps(b,side,cardId,uid,target,oldBoard,record)
+  return null
+}
+function enemyOptions450(b: Battle) {
+  const p=b.enemy
+  return p.hand.flatMap((id,index)=>cardBranches(CARD_MAP[id]).map(branch=>({card:flavoredCard(CARD_MAP[id],branch),index,branch})))
+    .filter(({card})=>!abilityError(p,card)&&!flavorError(b,"enemy",card)&&cardCost(p,card)<=p.mana
+      &&(card.kind!=="unit"||p.board.length<3)&&(card.kind!=="trap"||!p.trap)
+      &&((card.effect!=="buff"&&card.effect!=="ward")||p.board.length>0)
+      &&(card.kind!=="spell"||card.effect!=="draw"||card.ability==="revive"||card.ability==="disarm"||(p.hand.length<=5&&p.deck.length>0))
+      &&(card.kind==="unit"||card.effect!=="heal"||p.health<p.maxHealth||card.ability==="dream"&&b.player.board.length>0
+        ||["mend","feast"].includes(card.ability??"")&&p.board.some(u=>u.health<u.maxHealth)
+        ||card.ability==="rebloom"&&p.board.length<3&&memoryIndex(p)>=0)
+      &&(card.effect!=="sweep"||b.player.board.length>0))
+    .sort((a,z)=>{
+      // The AI sees an occupied face-down slot, never its private card identity.
+      const score=(c:GameCard)=>c.ability==="disarm"&&b.player.trap?20:c.kind==="trap"?c.cost+2+(b.player.board.length?2:0):c.kind==="unit"?c.cost+3:c.effect==="damage"?c.cost+2:c.cost
+      return score(z.card)-score(a.card)
+    })
+}
+function advanceEnemyTurn(b: Battle, record:(event:BattleEvent)=>void) {
+  if(!b.enemyPhase){b.enemyPhase={phase:"plays",steps:0,attacks:[],cursor:0};beginEnemyTurn(b,record)}
+  const phase=b.enemyPhase
+  while(!b.result&&!b.pendingReaction&&phase.phase==="plays") {
+    const option=phase.steps<12?enemyOptions450(b)[0]:undefined
+    if(!option){phase.phase="attacks";phase.attacks=b.enemy.board.filter(u=>u.ready).map(u=>u.uid);break}
+    phase.steps++
+    const {card,index,branch}=option
+    const target=card.ability==="unsteep"?b.pendingFlavors?.find(f=>f.owner==="player")?.id:card.effect==="damage"?chooseDamageTarget(card,b.player,b.enemy):undefined
+    if(card.kind==="spell"&&offerTrap(b,"player",{trigger:"spell",actor:"enemy",cardId:card.id,index,target,branch,resume:"play"},record)==="wait")return
+    if(finishPlay450(b,"enemy",index,target,branch,record)){phase.phase="attacks";phase.attacks=b.enemy.board.filter(u=>u.ready).map(u=>u.uid);break}
+  }
+  while(!b.result&&!b.pendingReaction&&phase.phase==="attacks"&&phase.cursor<phase.attacks.length){
+    const uid=phase.attacks[phase.cursor++],attacker=b.enemy.board.find(u=>u.uid===uid)
+    if(!attacker?.ready)continue
+    const guards=b.player.board.filter(u=>u.keywords.includes("guard")).sort((a,z)=>a.health-z.health)
+    const kill=b.player.board.find(u=>u.health+u.shield<=attacker.attack&&u.attack<attacker.health+attacker.shield)
+    const target=guards[0]?.uid??(b.player.health<=attacker.attack?"hero":kill?.uid??"hero")
+    if(offerTrap(b,"player",{trigger:"attack",actor:"enemy",cardId:attacker.cardId,source:uid,target,resume:"attack"},record)==="wait")return
+    finishAttack450(b,"enemy",uid,target,record)
+  }
+  if(b.pendingReaction)return
+  delete b.enemyPhase
+  if(b.result)return
+  finishEnemyTurn(b,record)
+}
+
 export function actBattle(
   current: Battle,
   action: BattleAction,
@@ -829,6 +973,10 @@ export function actBattle(
     frames: [],
   })
   if (current.result || current.settled) return invalid("Trận đấu đã kết thúc.")
+  if(current.pendingReaction&&action.type!=="react")return invalid("Hãy kích hoạt hoặc giữ bẫy trước khi tiếp tục.")
+  if(action.type==="react"&&(!current.pendingReaction||action.id!==current.pendingReaction.id||typeof action.activate!=="boolean"))return invalid("Cửa sổ phản ứng này đã kết thúc.")
+  if(current.enemyPhase&&!current.pendingReaction)return invalid("Lượt địch chưa được giải quyết đầy đủ.")
+  if(action.type==="clear-trap"&&((current.rulesVersion??350)<450||!current.player.trap||current.enemyPhase))return invalid("Chỉ bỏ bẫy của bạn trong lượt của bạn.")
   if (current.tactic?.status === "pending" && action.type !== "tactic")
     return invalid("Hãy chọn cách ứng biến trước.")
   if (action.type === "tactic") {
@@ -871,7 +1019,19 @@ export function actBattle(
     }
   }
   let error: string | null = null
-  if (action.type === "tactic") {
+  if(action.type === "react") {
+    const reaction=b.pendingReaction!,intent=reaction.intent
+    if(!b.enemyPhase||reaction.trapUid!==b.player.trap?.uid||!trapMatches(b,"player",intent))return invalid("Bẫy không còn đủ điều kiện phản ứng.")
+    delete b.pendingReaction
+    const cancel=action.activate?resolveTrap(b,"player",intent,record):false
+    if(!action.activate)record({kind:"trap-pass",side:"player",label:"Giữ bẫy cho hành động tiếp theo."})
+    if(!b.result&&intent.resume==="play")error=finishPlay450(b,"enemy",intent.index!,intent.target,intent.branch,record,cancel)
+    if(!b.result&&intent.resume==="attack"&&!cancel)error=finishAttack450(b,"enemy",intent.source!,intent.target!,record)
+    if(!error)advanceEnemyTurn(b,record)
+  } else if(action.type === "clear-trap") {
+    const slot=b.player.trap!;b.player.trap=null;b.player.graveyard=[...(b.player.graveyard??[]),slot.cardId].slice(-36)
+    log(b,"Bạn bỏ bẫy cũ; không hoàn lại năng lượng.");record({kind:"clear-trap",side:"player",cardId:slot.cardId,label:b.log.at(-1)!})
+  } else if (action.type === "tactic") {
     b.tactic = { status: "chosen", choice: action.id }
     if (action.id === "flame") b.player.board.forEach((u) => u.attack++)
     if (action.id === "shelter") {
@@ -915,6 +1075,21 @@ export function actBattle(
         : "Giữ bài mở đầu · Bắt đầu lượt của bạn.",
     )
     record({ kind: "mulligan", side: "player", label: b.log[b.log.length - 1] })
+  } else if(action.type === "play"&&(b.rulesVersion??350)>=450) {
+    const cardId=b.player.hand[action.index],card=CARD_MAP[cardId]
+    // Validate the announced move before a hidden enemy trap can spend itself.
+    const probe=clone(b);error=play(probe,"player",action.index,action.target,action.branch)
+    if(!error){
+      const response=card.kind==="spell"?offerTrap(b,"enemy",{trigger:"spell",actor:"player",cardId,index:action.index,target:action.target,branch:action.branch,resume:"play"},record):"none"
+      if(!b.result)error=finishPlay450(b,"player",action.index,action.target,action.branch,record,response==="cancel")
+    }
+  } else if(action.type === "attack"&&(b.rulesVersion??350)>=450) {
+    error=attackIssue(b,"player",action.uid,action.target)
+    if(!error){
+      const cardId=b.player.board.find(u=>u.uid===action.uid)!.cardId
+      const response=offerTrap(b,"enemy",{trigger:"attack",actor:"player",cardId,source:action.uid,target:action.target,resume:"attack"},record)
+      if(!b.result&&response!=="cancel")error=finishAttack450(b,"player",action.uid,action.target,record)
+    }
   } else if (action.type === "play") {
     const cardId = b.player.hand[action.index]
     const source =
@@ -943,7 +1118,8 @@ export function actBattle(
         target: action.target,
         label: b.log[b.log.length - 1],
       })
-  } else enemyTurn(b, record)
+  } else if((b.rulesVersion??350)>=450)advanceEnemyTurn(b,record)
+  else enemyTurn(b, record)
   return error ? invalid(error) : { battle: b, error: null, frames }
 }
 
@@ -961,7 +1137,8 @@ export function previewTarget(
   action: PlayAction | Omit<AttackAction, "target">,
   target: string,
 ): TargetPreview {
-  const attempted = actBattle(b, { ...action, target })
+  const hiddenTrap = !!b.enemy.trap && !b.enemy.trap.revealed
+  const attempted = actBattle(publicBattle(b), { ...action, target })
   if (attempted.error)
     return {
       legal: false,
@@ -978,7 +1155,7 @@ export function previewTarget(
     target === "hero"
       ? attempted.battle.enemy
       : attempted.battle.enemy.board.find((u) => u.uid === target)
-  const damage = Math.min(old.health, old.health - (next?.health ?? 0))
+  const damage = Math.max(0, Math.min(old.health, old.health - (next?.health ?? 0)))
   const shield =
     target === "hero"
       ? 0
@@ -996,6 +1173,7 @@ export function previewTarget(
     : 0
   const defeated = !next || next.health <= 0
   const attackerDefeated = !!attacker && !survivor
+  const ownHealthLoss=Math.max(0,b.player.health-attempted.battle.player.health)
   const text = `${damage} sát thương${shield ? ` · Phá ${shield} chắn` : ""}${
     counter ? ` · Nhận ${counter} phản đòn` : ""
   }${defeated ? (target === "hero" ? " · Kết liễu" : " · Hạ gục") : ""}${
@@ -1008,6 +1186,6 @@ export function previewTarget(
     shield,
     defeated,
     attackerDefeated,
-    text,
+    text: text + (ownHealthLoss ? ` · Mất ${ownHealthLoss} ý chí` : "") + (hiddenTrap ? " · Có bẫy úp: kết quả có thể thay đổi" : ""),
   }
 }

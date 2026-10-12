@@ -112,6 +112,7 @@ export function Collection({ workshop = false }: { workshop?: boolean }) {
               <option value="all">Mọi loại</option>
               <option value="unit">Đồng minh</option>
               <option value="spell">Bí thuật</option>
+                  <option value="trap">Bẫy</option>
             </select>
             <select
               aria-label="Bộ thẻ"

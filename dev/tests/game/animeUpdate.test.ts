@@ -17,7 +17,7 @@ import {
 } from "@/infrastructure/storage/repository"
 
 function pending() {
-  const b = startBattle(STARTER_DECK, null)
+  const b = startBattle(STARTER_DECK, null, "courage", Math.random, false, 400)
   b.round = 4
   b.tactic = { status: "pending" }
   b.player.board = [

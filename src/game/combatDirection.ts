@@ -42,6 +42,9 @@ export function battleInvocation(frame: BattleFrame) {
 
 export function frameDuration(frame?: BattleFrame) {
   if (!frame) return 90
+  if(frame.event.kind === "trap-pass")return 350
+  if(frame.event.kind === "trap")return 1250
+  if(["set-trap","clear-trap","negated","trap-window"].includes(frame.event.kind))return 650
   // Hold captions for another half-second; projectile and impact speeds stay the same.
   if (frame.event.kind === "combo") return 1600
   if (["assist", "tactic"].includes(frame.event.kind)) return 1550

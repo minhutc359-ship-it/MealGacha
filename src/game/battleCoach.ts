@@ -1,3 +1,4 @@
+import { publicBattle } from "./traps"
 import { cardBranches, flavoredCard } from "./v4Cards"
 import {
   actBattle,
@@ -22,7 +23,10 @@ interface Candidate extends BattleHint {
 }
 
 // A small, deterministic coach. It previews legal moves; it never plays or saves.
-export function getBattleHint(battle: Battle): BattleHint | null {
+export function getBattleHint(visible: Battle): BattleHint | null {
+  if(visible.pendingReaction||visible.enemyPhase)return null
+  const hiddenTrap=!!visible.enemy.trap&&!visible.enemy.trap.revealed
+  const battle=publicBattle(visible)
   if (battle.opening || battle.result || battle.settled) return null
   const candidates: Candidate[] = []
   const targets = ["hero", ...battle.enemy.board.map((unit) => unit.uid)]
@@ -61,8 +65,10 @@ export function getBattleHint(battle: Battle): BattleHint | null {
       title = `Cho ${card.name} tấn công`
       reason =
         action.target === "hero"
-          ? `Nhấn chủ tướng địch: gây ${forecast.damage} sát thương, không tốn năng lượng.`
+          ? `Nhấn chủ tướng địch: dự kiến ${forecast.damage} sát thương, không tốn năng lượng.${hiddenTrap?" Có bẫy úp nên kết quả có thể đổi.":""}`
           : `Nhấn ${CARD_MAP[battle.enemy.board.find((unit) => unit.uid === action.target)!.cardId].name}: ${forecast.text.toLocaleLowerCase("vi")}.`
+    } else if(card.kind === "trap") {
+      score=25+(battle.player.health<12?15:0);title=`Úp ${card.name}`;reason=card.text+" Chuẩn bị từ lượt này; sẵn sàng ở lượt địch kế tiếp."
     } else if (card.kind === "unit") {
       const cost = cardCost(battle.player, card)
       score =
@@ -148,7 +154,7 @@ export function getBattleHint(battle: Battle): BattleHint | null {
     }
     if (attempt.battle.result === "win") {
       score = 10000
-      reason = `Nước đi này giúp thắng ngay. ${reason}`
+      reason = `${hiddenTrap ? "Dự kiến kết thúc trận nếu bẫy úp không ngăn cản." : "Nước đi này giúp thắng ngay."} ${reason}`
     }
     if (score > 0) candidates.push({ title, reason, action, score })
   }
@@ -186,8 +192,9 @@ export const DUEL_BASICS = [
     title: "2 · Chọn mục tiêu",
     text: "Chọn đồng minh sẵn sàng, rồi nhấn mục tiêu sáng. Quân mới chờ lượt sau; Xung phong đánh ngay.",
   },
+  {title:"3 · Úp bẫy",text:"Bẫy có một ô riêng. Trả năng lượng khi úp, chờ lượt kế. Khi đủ điều kiện, chọn Kích hoạt hoặc Giữ bẫy cho đòn tiếp theo; dùng một lần."},
   {
-    title: "3 · Nhường lượt",
+    title: "4 · Nhường lượt",
     text: "Kết thúc lượt để đối thủ chơi. Lượt sau bạn rút 1 lá, tăng và hồi đầy năng lượng.",
   },
 ] as const

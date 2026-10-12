@@ -183,9 +183,10 @@ export function DeckBuilder() {
                   value={kind}
                   onChange={(e) => setKind(e.target.value)}
                 >
-                  <option value="all">Món & phép</option>
+                  <option value="all">Món, phép & bẫy</option>
                   <option value="unit">Đồng minh</option>
                   <option value="spell">Bí thuật</option>
+                  <option value="trap">Bẫy</option>
                 </select>
                 <select
                   aria-label="Vai trò thẻ"
@@ -265,7 +266,7 @@ export function DeckBuilder() {
             <span>
               {analysis.units} đồng minh
               <br />
-              {analysis.spells} bí thuật
+              {analysis.spells} bí thuật · {analysis.traps} bẫy
             </span>
           </div>
           <div className="tcg-draft-list">

@@ -1,3 +1,6 @@
+import { TrapSlot, TrapDecision, TrapReveal } from "./TrapZone"
+import { trapReady } from "../../game/traps"
+import "../../game/tcg450.css"
 import { SceneAtmosphere } from "./SceneAtmosphere"
 import { ELEMENTAL_BOARDS, SCENE_WEATHER, tcgSceneSchool } from "../../game/visualPack"
 import { ArenaScene, arenaRegion } from "./ArenaScene"
@@ -372,6 +375,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
     if (!act(action)) inFlight.current = false
     else gameAudio.play("confirm")
   }
+  const ownTrapCard = battle.player.trap?.cardId
   const selectedAttacker =
     selection?.type === "attack"
       ? battle.player.board.find((u) => u.uid === selection.uid)
@@ -428,7 +432,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
   const field = (side: "player" | "enemy") => {
     const slots = tcgFieldUnits(frame?.before[side].board, battle[side].board)
     return (
-      <div className={`tcg-field ${side === "enemy" ? "enemy" : ""}`}>
+      <div className={`tcg-field ${side === "enemy" ? "enemy" : ""} ${(battle.rulesVersion??350)>=450 ? "has-trap-slot" : ""}`}>
         {slots.map((u) => {
           const previous = frame?.before[side].board.find(
             (old) => old.uid === u.uid,
@@ -447,7 +451,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               ghost={!next}
               selected={selection?.type === "attack" && selection.uid === u.uid}
               disabled={
-                busy ||
+                !!battle.enemyPhase || busy ||
                 !!battle.result ||
                 !!battle.opening ||
                 (side === "enemy" && !!selection && !projected?.legal)
@@ -493,6 +497,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
             </span>
           ),
         )}
+        {(battle.rulesVersion??350)>=450&&<TrapSlot battle={battle} side={side} onInspect={id=>id?setInspect(id):setShowRules(true)} onSet={()=>{const index=battle.player.hand.findIndex((id,i)=>CARD_MAP[id].kind==="trap"&&!playError(battle,i));if(index>=0)setSelection({type:"play",index});else setShowRules(true)}}/>}
       </div>
     )
   }
@@ -501,7 +506,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
     : 0
   const enemyDelta = frame ? healthDelta(frame.before.enemy, battle.enemy) : 0
   return (
-    <section inert={!!demo} className="tcg-battle tcg-viewport-battle" style={{ "--battle-contact": `${frame && ["play", "attack"].includes(frame.event.kind) ? TCG_IMPACT_MS : 0}ms` } as CSSProperties}>
+    <section inert={!!demo} className="tcg-battle tcg-viewport-battle tcg-450-battle" style={{ "--battle-contact": `${frame && ["play", "attack"].includes(frame.event.kind) ? TCG_IMPACT_MS : 0}ms` } as CSSProperties}>
       <header className="tcg-battle-top">
         <div>
           <span className="tcg-kicker">
@@ -531,6 +536,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
           </button>
         </div>
       </header>
+      {!demo&&!busy&&!sceneId&&stored.pendingReaction&&<TrapDecision battle={stored} onDecision={activate=>execute({type:"react",id:stored.pendingReaction!.id,activate})}/>}
       {!battle.opening && (
         <button
           className={`tcg-tactics-ribbon ${
@@ -650,11 +656,14 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
           )}
         </button>
         {field("enemy")}
+        <div className="tcg-match-hud" aria-label="Tình trạng lượt"><span className={battle.pendingReaction?"is-reaction":battle.enemyPhase?"is-enemy":"is-player"}>{battle.pendingReaction?"◇ Chờ phản ứng":battle.enemyPhase?"Lượt địch":busy?"Đang giải quyết":"Lượt của bạn"}</span><b>◈ {battle.player.mana}/{battle.player.maxMana}</b><span>⚔ {readyCount}/3 sẵn sàng</span><span>{(battle.rulesVersion??350)<450?"Luật trận đang lưu":battle.player.trap?trapReady(battle,battle.player.trap)?"Bẫy sẵn sàng":"Bẫy chờ lượt kế":"Ô bẫy trống"}</span></div>
         <div className={`tcg-turn-bar ${busy ? "enemy-turn" : ""}`}>
           <span>LƯỢT {battle.round}</span>
           <p role="status">
             {battle.opening
               ? "Chuẩn bị bài mở đầu"
+              : battle.pendingReaction
+                ? "Bẫy đủ điều kiện · Chọn Kích hoạt hoặc Giữ bẫy"
               : busy
                 ? (frame?.event.label ?? "Đang thực hiện hành động…")
                 : targeting
@@ -680,7 +689,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
             <button
               className="tcg-button gold"
               onClick={() => execute({ type: "end" })}
-              disabled={!!battle.result || !!battle.opening}
+              disabled={!!battle.result || !!battle.opening || !!battle.enemyPhase}
             >
               Kết thúc lượt →
             </button>
@@ -747,7 +756,8 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
           <small>1 lần/lượt</small>
         </div>
 
-        <div className="tcg-hand">
+        <div className="tcg-hand-browser" aria-label="Duyệt bài trên tay"><strong>Bài trên tay · {battle.player.hand.length}/8</strong><div><button type="button" aria-label="Xem bài phía trước" onClick={()=>arena.current?.querySelector(".tcg-hand")?.scrollBy({left:-180,behavior:reducedMotion||systemReduced?"instant":"smooth"})}>‹</button><button type="button" aria-label="Xem bài phía sau" onClick={()=>arena.current?.querySelector(".tcg-hand")?.scrollBy({left:180,behavior:reducedMotion||systemReduced?"instant":"smooth"})}>›</button></div></div>
+        <div className="tcg-hand" onKeyDown={event=>{if(!["ArrowLeft","ArrowRight"].includes(event.key))return;const cards=Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>("button"));const at=cards.indexOf(document.activeElement as HTMLButtonElement);if(at<0)return;event.preventDefault();cards[(at+cards.length+(event.key==="ArrowRight"?1:-1))%cards.length]?.focus()}}>
           {battle.player.hand.map((id, index) => (
             <GameCardView
               key={`${index}-${id}`}
@@ -757,7 +767,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               playable={!playError(battle, index) && !busy}
               muted={!!playError(battle, index)}
               selected={selection?.type === "play" && selection.index === index}
-              disabled={busy || !!battle.result || !!battle.opening}
+              disabled={busy || !!battle.result || !!battle.opening || !!battle.enemyPhase}
               onClick={() => {
                 gameAudio.play(
                   selection?.type === "play" && selection.index === index
@@ -803,6 +813,8 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
                     ? selectedCard.keywords.includes("rush")
                       ? "Được tấn công ngay khi vào sân."
                       : "Chờ đến lượt sau để tấn công."
+                    : selectedCard.kind === "trap"
+                      ? "Úp vào ô bẫy riêng; chờ lượt kế để phản ứng."
                     : selectedCard.effect === "damage"
                       ? "Chọn đơn vị địch hoặc chủ tướng · Vượt Hộ vệ."
                       : "Hiệu ứng áp dụng ngay sau khi xác nhận."}
@@ -825,7 +837,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
                     selection?.type === "play" && execute(selection)
                   }
                 >
-                  {selectedCard.kind === "unit" ? "Triệu hồi" : "Thi triển"} ·{" "}
+                  {selectedCard.kind === "unit" ? "Triệu hồi" : selectedCard.kind === "trap" ? "Úp bẫy" : "Thi triển"} ·{" "}
                   {cardCost(battle.player, selectedCard)} ◈
                 </button>
               ) : (
@@ -902,6 +914,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
           Hộ vệ chặn đòn đánh, không chặn phép · Tối đa 3 đồng minh · 7 năng
           lượng · 8 lá trên tay
         </p>
+        <TrapReveal frame={frame} quiet={reducedMotion||systemReduced||!!demo?.paused}/>
         <CombatEffects arena={arena} frame={frame} stamp={stamp} quiet={reducedMotion || systemReduced || !!demo?.paused} />
         <BattleInvocation
           frame={frame}
@@ -1135,6 +1148,9 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               <strong>Giữ quân làm động cơ:</strong> Quân có nội tại “sau khi dùng phép” hoặc “khi hồi máu” có thể tăng công, dệt chắn. Các nội tại này tối đa 2 lần mỗi lượt của chủ nhân; hồi ở mức đầy máu không kích hoạt. Đóng băng bỏ một đòn ở lượt kế tiếp. Hy sinh vẫn kích hiệu ứng khi bị hạ; tái triệu hồi dùng ký ức đã mất và không kích hiệu ứng vào sân.
             </p>
             <p>
+              <strong>Bẫy Hương:</strong> Có 1 ô riêng cho mỗi phe; không chiếm 3 chỗ đồng minh. Trả năng lượng khi úp, sẵn sàng từ lượt kế. Khi đủ điều kiện chọn Kích hoạt hoặc Giữ bẫy. Bẫy dùng một lần. Gỡ/lộ bẫy bằng phép đối sách; bẫy úp địch có thể đổi kết quả dự báo.
+            </p>
+            <p>
               <strong>Cạn bài:</strong> Không thể rút sẽ chịu kiệt sức 1, 2, 3…
               sát thương. Tay đầy 8 lá sẽ bỏ lá rút thêm.
             </p>
@@ -1155,6 +1171,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               </p>
             )}
           </div>
+        {inspect===ownTrapCard&&!busy&&!battle.enemyPhase&&<button className="tcg-button ghost" onClick={()=>{setInspect(null);execute({type:"clear-trap"})}}>Bỏ bẫy cũ · Không hoàn năng lượng</button>}
         </Dialog>
       )}
       {confirm && (

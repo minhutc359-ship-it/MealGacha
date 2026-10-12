@@ -1,3 +1,4 @@
+import { TRAP_PACK } from "./trapCards"
 import { V4_CARDS } from "./v4Cards"
 import { foodProfile, specializeCard } from "./cardAbilities"
 import { BUILT_IN_DISHES } from "../infrastructure/catalog/dishCatalog"
@@ -726,8 +727,8 @@ export const LEGACY_CARDS: GameCard[] = [...foods, ...extras, ...champions, ...c
     ? `/assets/tcg/characters/anime/${chefPortraits[card.id]}.webp`
     : `/assets/tcg/cards/${card.id}.webp`),
 }))
-export const CARDS: GameCard[] = [...LEGACY_CARDS, ...V4_CARDS]
-export const cardsForRules = (version = 350) => version >= 400 ? CARDS : LEGACY_CARDS
+export const CARDS: GameCard[] = [...LEGACY_CARDS, ...V4_CARDS, ...TRAP_PACK]
+export const cardsForRules = (version = 350) => CARDS.filter(card => (card.contentVersion ?? 350) <= version)
 export const CARD_MAP = Object.fromEntries(
   CARDS.map((c) => [c.id, c]),
 ) as Record<string, GameCard>

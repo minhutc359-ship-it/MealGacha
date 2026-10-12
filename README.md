@@ -1,3 +1,7 @@
+## Web 4.5 · Một ô bẫy và giao diện TCG rõ hơn
+
+Mỗi bên có một ô bẫy riêng ngoài ba ô quân; 8 bẫy và 2 phép đối sách, úp trước rồi chọn Kích hoạt/Giữ khi địch hành động. HUD, tay bài cuộn ngang, cửa sổ phản ứng và animation lật bẫy dễ theo dõi trên màn dọc/ngang. Gói thẻ nhận tự nguyện; trận/run cũ tiếp tục đúng luật cũ, giữ tiến trình. Chỉ web, phần tăng toàn build 4.289.381 byte trong ngân sách thêm 10 MB. Xem [cơ chế, nguồn tham khảo, ảnh và kiểm chứng](dev/docs/web-v450/UPDATE.md).
+
 ## Web 4.4.1 · Gói hình ảnh dùng chung trong ngân sách thêm 5,59 MB
 
 Năm đấu trường theo hệ/vùng dùng chung TCG, Auto chess và Adventure; atlas trúng đòn 5 hệ × 5 frame có chuyển pha mềm, NPC Lả/người bán hàng/Bà giữ bếp dùng atlas bốn hướng theo chân dung hiện có. VFX dùng cùng cache ảnh, giới hạn bốn burst bitmap cùng lúc trong Auto và giữ hiệu ứng thủ tục ở đồ họa nhẹ. Build có guard riêng cho phần tăng thêm 5,59 MB; save/gameplay giữ nguyên, chỉ web. Xem [thay đổi, nguồn ảnh và kiểm chứng](dev/docs/web-v441/UPDATE.md).
@@ -30,7 +34,7 @@ Game ẩm thực và ký ức Việt Nam gồm **TCG**, **Chợ Đêm Auto chess
 
 Bản 4.2 chỉ cập nhật web và thêm **Phiêu lưu Vị Linh** tại `/adventure`: 5 vùng liên thông, chạm trán theo bước chân, thu phục bằng Hương Ấn, đội 4 Vị Linh + tủ dự bị, chiến đấu theo lượt, khắc hệ, lên cấp và 5 thử thách giữ ấn. Chế độ dùng lại hình, nhân vật, bối cảnh và soundtrack hiện có; tiến trình nằm trong cùng save và mã chuyển dữ liệu. Android CI vẫn chỉ chạy thủ công; không sync/build native trong đợt này. Xem [chi tiết và kiểm chứng 4.2](dev/docs/web-v420/UPDATE.md) và [kiểm chứng nền 4.1](dev/docs/web-v410/UPDATE.md).
 
-TCG có 171 thẻ, 9 chương/27 màn, xây bộ bài, AI, thám hiểm, chế tạo và nhiệm vụ. Auto chess có 44 quân, 16 quái/đối thủ thường và 8 boss, chiến dịch, Survival, Daily, shop/pool hữu hạn, ghép sao, hệ/nghề/di vật, XP và kéo thả bàn/dự bị. Rương dùng catalog chung 123 món và tìm quán từ OpenStreetMap không cần API key. Model anime 2.5D dùng chung hai chế độ; không phải rig 3D chạy trực tiếp.
+TCG có 181 thẻ, 9 chương/27 màn, xây bộ bài, AI, thám hiểm, chế tạo và nhiệm vụ. Auto chess có 44 quân, 16 quái/đối thủ thường và 8 boss, chiến dịch, Survival, Daily, shop/pool hữu hạn, ghép sao, hệ/nghề/di vật, XP và kéo thả bàn/dự bị. Rương dùng catalog chung 123 món và tìm quán từ OpenStreetMap không cần API key. Model anime 2.5D dùng chung hai chế độ; không phải rig 3D chạy trực tiếp.
 
 Bản 4.0 thêm Nêm vị/Ủ vị, 8 thẻ nhận qua gói khởi hành tự nguyện, 3 chương tiếp nối đúng hai kết thúc cũ, 4 sự kiện/4 di vật thám hiểm, chiến dịch Auto 18 đợt và 6 nâng cấp mới. Có 3 nền mới, 12 bản nhạc nguyên gốc, profile chuyển động và bảng đóng góp thực tế. Ghi save có journal/checkpoint và giao diện phục hồi; trận đang chơi giữ luật cũ. Xem [triển khai và giới hạn QA 4.0](dev/docs/major-v400/IMPLEMENTATION.md).
 
