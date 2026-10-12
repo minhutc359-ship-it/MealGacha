@@ -732,8 +732,9 @@ export const cardsForRules = (version = 350) => CARDS.filter(card => (card.conte
 export const CARD_MAP = Object.fromEntries(
   CARDS.map((c) => [c.id, c]),
 ) as Record<string, GameCard>
-export const DECK_SIZE = 18
-// Nine different cards, two copies each. A playable curve without grinding first.
+export { DECK_SIZE } from "./tcgRules"
+import { DECK_SIZE } from "./tcgRules"
+// Twelve different cards, two copies each. Six free additions support old collections.
 const starterFood = [
   "banh-mi",
   "pho-bo",
@@ -742,7 +743,10 @@ const starterFood = [
   "bun-cha",
   "xoi",
 ].filter((id) => CARD_MAP[id])
-export const STARTER_IDS = [...starterFood, "spark", "herb", "seasoning"]
+export const TCG470_GIFT_IDS = ["caravan-scout", "caravan-herbalist", "sugar-veil"]
+export const LEGACY_STARTER_IDS = [...starterFood, "spark", "herb", "seasoning"]
+export const STARTER_IDS = [...LEGACY_STARTER_IDS, ...TCG470_GIFT_IDS]
+export const LEGACY_STARTER_DECK = LEGACY_STARTER_IDS.flatMap(id => [id,id])
 export const STARTER_DECK = STARTER_IDS.flatMap((id) => [id, id])
 export function deckErrors(
   cards: string[],

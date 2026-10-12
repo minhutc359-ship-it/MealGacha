@@ -112,15 +112,16 @@ describe("turn combat rules", () => {
     expect(result.battle).toEqual(before)
     expect(b).toEqual(before)
   })
-  it("enforces the three-unit limit and summon sickness", () => {
+  it("enforces the four-unit limit and summon sickness", () => {
     const b = arena()
     b.player.hand = ["pho-bo"]
     b.player.board = [
       unit("a", "pho-bo"),
       unit("b", "pho-bo"),
       unit("c", "pho-bo"),
+      unit("d", "pho-bo"),
     ]
-    expect(actBattle(b, { type: "play", index: 0 }).error).toContain("3")
+    expect(actBattle(b, { type: "play", index: 0 }).error).toContain("4")
     b.player.board = []
     const played = actBattle(b, { type: "play", index: 0 }).battle
     expect(played.player.board[0].ready).toBe(false)
@@ -391,7 +392,7 @@ describe("store safeguards and persistence", () => {
     expect(useGameStore.getState().save.coins).toBe(500)
   })
   it("crafts only affordable cards and never exceeds two copies", () => {
-    useGameStore.setState({ save: { ...newGame(), dust: 100 } })
+    useGameStore.setState({ save: { ...newGame(), cards: {...newGame().cards, "sugar-veil": 0}, dust: 100 } })
     useGameStore.getState().craft("spark")
     expect(useGameStore.getState().save.dust).toBe(100)
     useGameStore.getState().craft("sugar-veil")
@@ -438,7 +439,7 @@ function autoPlay(initial: Battle): Battle {
         .filter(
           ({ c }) =>
             c.cost <= b.player.mana &&
-            (c.kind !== "unit" || b.player.board.length < 3) &&
+            (c.kind !== "unit" || b.player.board.length < 4) &&
             ((c.effect !== "buff" && c.effect !== "ward") ||
               b.player.board.length > 0) &&
             (c.effect !== "heal" ||
@@ -489,8 +490,8 @@ function autoPlay(initial: Battle): Battle {
     }
     if (!b.result) b = actBattle(b, { type: "end" }).battle
     while(b.pendingReaction&&!b.result){const response=actBattle(b,{type:"react",id:b.pendingReaction.id,activate:true});expect(response.error).toBeNull();b=response.battle}
-    expect(b.player.board.length).toBeLessThanOrEqual(3)
-    expect(b.enemy.board.length).toBeLessThanOrEqual(3)
+    expect(b.player.board.length).toBeLessThanOrEqual(4)
+    expect(b.enemy.board.length).toBeLessThanOrEqual(4)
     expect(b.player.hand.length).toBeLessThanOrEqual(8)
     expect(b.enemy.hand.length).toBeLessThanOrEqual(8)
     expect(b.player.mana).toBeGreaterThanOrEqual(0)
@@ -510,6 +511,9 @@ describe("campaign playthrough", () => {
     }
     expect(starterWins).toBeGreaterThanOrEqual(10)
     const advanced = [
+      "chef-bach", "chef-bach",
+      "caravan-porter", "caravan-porter",
+      "caravan-cook", "caravan-cook",
       "chef-nhien",
       "chef-nhien",
       "chef-moc",

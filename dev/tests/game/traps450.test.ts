@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest"
 import { actBattle, startBattle, previewTarget } from "@/game/battle"
-import { CARD_MAP, CARDS, STARTER_DECK, cardsForRules } from "@/game/catalog"
+import { CARD_MAP, CARDS, LEGACY_STARTER_DECK, cardsForRules } from "@/game/catalog"
 import { trapReady } from "@/game/traps"
 import { getBattleHint } from "@/game/battleCoach"
 import { newGame } from "@/game/progression"
@@ -28,7 +28,7 @@ const piece = (
   keywords: guard ? ["guard"] : [],
 })
 function arena(): Battle {
-  const b = startBattle(STARTER_DECK, null, "courage", () => 0.41, false, 450)
+  const b = startBattle(LEGACY_STARTER_DECK, null, "courage", () => 0.41, false, 450)
   b.player.mana = b.player.maxMana = 7
   b.enemy.maxMana = 0
   b.enemy.mana = 0
@@ -372,7 +372,7 @@ describe("hidden information and progress safety", () => {
     "keeps a %i battle and expedition pool on its original rules",
     (version) => {
       const b = startBattle(
-          STARTER_DECK,
+          LEGACY_STARTER_DECK,
           null,
           "courage",
           () => 0.41,
@@ -403,14 +403,14 @@ describe("hidden information and progress safety", () => {
     useGameStore.getState().claimTrapGift()
     expect(useGameStore.getState().save).toEqual(first)
   })
-  it("builds an 18-card trap deck with distinct type accounting and a legal curve", () => {
+  it("builds a 24-card trap deck with distinct type accounting and a legal curve", () => {
     const owned = Object.fromEntries(CARDS.map((c) => [c.id, 2]))
     const deck = suggestDeck(owned, "traps"),
       analysis = analyzeDeck(deck)
-    expect(deck).toHaveLength(18)
+    expect(deck).toHaveLength(24)
     expect(analysis.traps).toBe(4)
-    expect(analysis.units).toBe(10)
-    expect(analysis.spells).toBe(4)
+    expect(analysis.units).toBe(14)
+    expect(analysis.spells).toBe(6)
     expect(TRAP_CARDS).toHaveLength(8)
     for (const id of deck)
       expect(deck.filter((v) => v === id).length).toBeLessThanOrEqual(2)
@@ -420,7 +420,7 @@ describe("hidden information and progress safety", () => {
 describe("modern trap-deck campaign simulation", () => {
   it("resolves 30 deterministic games with both AI and optional player reactions while every snapshot remains loadable", () => {
     const owned = Object.fromEntries(CARDS.map((c) => [c.id, 2])),
-      deck = suggestDeck(owned, "traps")
+      deck = suggestDeck(owned, "traps", 450)
     let windows = 0,
       flips = 0
     for (let seed = 1; seed <= 30; seed++) {

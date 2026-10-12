@@ -3,7 +3,7 @@ import { validLivingDecision, LIVING_CHOICES, type LivingChapter, type LivingDec
 import { create } from "zustand"
 import { V4_CARDS } from "./v4Cards"
 import { STAGE_MAP } from "./story"
-import { CARD_MAP, deckErrors, RARITIES } from "./catalog"
+import { CARD_MAP, deckErrors, RARITIES, TCG470_GIFT_IDS } from "./catalog"
 import {
   actBattle,
   startBattle,
@@ -56,6 +56,7 @@ interface Store {
   startWeekly(): boolean
   equipCompanion(id: NpcId | null): void
   acknowledgeScene(id: string): void
+  claimTcg470Gift(): boolean
   claimTrapGift(): void
   claimV4Gift(): void
   chooseLivingPath(chapter: LivingChapter, decision: LivingDecision): void
@@ -114,6 +115,13 @@ export const useGameStore = create<Store>((set, get) => {
       const save = current(), result = reduceAdventure(save.adventure, action)
       if (result.error) { set({ notice: result.error }); return false }
       return commit({ ...save, adventure: result.save })
+    },
+    claimTcg470Gift() {
+      const save = current()
+      if (save.tcg470?.giftClaimed) return true
+      const cards = {...save.cards}
+      for (const id of TCG470_GIFT_IDS) cards[id] = Math.max(2,cards[id] ?? 0)
+      return commit({...save,cards,tcg470:{giftClaimed:true}},"Đã nhận 3 thẻ bổ sung × 2. Bộ bài cũ giữ nguyên; bổ sung lên 24 lá trong Xưởng chiến thuật.")
     },
     claimTrapGift() {
       const save=current()

@@ -37,7 +37,7 @@ export const ABILITY_TEXT: Record<Ability, string> = {
   veil: "Mọi đồng minh nhận 1 chắn. Nếu đã dùng phép trong lượt này, rút thêm 1 lá.",
   dream: "Hồi 3 máu chủ tướng. Đóng băng quân địch có công cao nhất: bỏ lần tấn công ở lượt kế tiếp của nó.",
   starlight: "Gây 2 sát thương lên mục tiêu địch, thêm 2 cho mỗi phép đã dùng trong lượt này (tối đa +4).",
-  moonward: "Mọi đồng minh nhận 2 chắn. Nếu có đủ 3 quân, rút 1 lá.",
+  moonward: "Mọi đồng minh nhận 2 chắn. Nếu lấp đầy sân, rút 1 lá.",
 }
 const SCHOOL_ABILITIES: Record<School, Ability[]> = {
   ember: ["ambush", "spellfire"], tide: ["scout", "snare"], grove: ["mender", "bloom"],

@@ -297,7 +297,7 @@ export function Expedition() {
               )}
               {run.reward.relicPicked && !run.reward.cardPicked && (
                 <>
-                  <h3>Chọn một thẻ để thay vào bộ bài 18 lá</h3>
+                  <h3>Chọn một thẻ để thay vào bộ bài {run.deck.length} lá</h3>
                   {!selectedCard && (
                     <div className="tcg-run-card-offers">
                       {run.reward.cards.map((id) => (
@@ -437,7 +437,7 @@ export function Expedition() {
           {run && active && (
             <>
               <details className="tcg-panel tcg-run-deck">
-                <summary>Bộ bài hành trình · 18 lá</summary>
+                <summary>Bộ bài hành trình · {run.deck.length} lá</summary>
                 <div>
                   {Object.entries(
                     run.deck.reduce<Record<string, number>>(
@@ -560,7 +560,7 @@ export function Expedition() {
             Miễn phí bắt đầu với bản sao bộ bài đang trang bị. Máu được giữ giữa
             các trận; năng lượng và tay bài được tạo lại. Thua hoặc đầu hàng kết
             thúc chuyến đi. Thắng trận sẽ cho lương thực và thẻ tạm thời. Chọn
-            thẻ mới phải thay một lá, bộ bài luôn có 18 lá và tối đa 2 bản mỗi
+            thẻ mới phải thay một lá, bộ bài giữ nguyên số lá theo luật hành trình và tối đa 2 bản mỗi
             thẻ. Di vật chỉ có hiệu lực trong chuyến đi.
           </p>
           <h3>10 di vật</h3>

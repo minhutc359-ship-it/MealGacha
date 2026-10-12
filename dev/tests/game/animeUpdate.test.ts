@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest"
 import { readFileSync } from "node:fs"
 import { actBattle, startBattle } from "@/game/battle"
-import { STARTER_DECK } from "@/game/catalog"
+import { LEGACY_STARTER_DECK } from "@/game/catalog"
 import { newGame } from "@/game/progression"
 import { parseGame } from "@/game/storage"
 import { createSaveCode, readSaveCode } from "@/game/saveCode"
@@ -17,7 +17,7 @@ import {
 } from "@/infrastructure/storage/repository"
 
 function pending() {
-  const b = startBattle(STARTER_DECK, null, "courage", Math.random, false, 400)
+  const b = startBattle(LEGACY_STARTER_DECK, null, "courage", Math.random, false, 400)
   b.round = 4
   b.tactic = { status: "pending" }
   b.player.board = [
@@ -36,7 +36,7 @@ function pending() {
 }
 describe("turn-four tactical choice", () => {
   it("opens only at turn four, blocks ordinary actions and consumes the choice once", () => {
-    let b = startBattle(STARTER_DECK, null)
+    let b = startBattle(LEGACY_STARTER_DECK, null)
     b.enemy.hand = []
     b.enemy.deck = Array(12).fill("herb")
     for (let i = 0; i < 2; i++) {
@@ -147,7 +147,7 @@ describe("speaking characters and original retro score", () => {
   it("gives six campaign bosses distinct reveals without exposing them in other modes", () => {
     const titles = new Set<string>()
     for (const [id, beat] of Object.entries(DRAMATIC_BEATS)) {
-      const battle = startBattle(STARTER_DECK, id)
+      const battle = startBattle(LEGACY_STARTER_DECK, id)
       expect(midScene(`awaken:${id}`, battle)).toEqual(beat)
       titles.add(beat.title)
       battle.weekly = { week: "2026-10-05", index: 2, seed: 1 }

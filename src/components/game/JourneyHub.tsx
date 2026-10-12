@@ -274,7 +274,7 @@ export function JourneyHub() {
       )}
       {deckOpen && (
         <Dialog
-          title="Bộ bài tuần · 18 lá cố định"
+          title={`Bộ bài tuần · ${challenge.deck.length} lá cố định`}
           onClose={() => setDeckOpen(false)}
           wide
         >

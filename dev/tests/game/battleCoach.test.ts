@@ -70,12 +70,13 @@ describe("beginner battle guidance", () => {
       target: "hero",
     })
   })
-  it("does not suggest exhausted units or a unit when all three slots are occupied", () => {
+  it("does not suggest exhausted units or a unit when all four slots are occupied", () => {
     const battle = fixture()
     battle.player.board = [
       unit("a", "pho-bo", false),
       unit("b", "pho-bo", false),
       unit("c", "pho-bo", false),
+      unit("d", "pho-bo", false),
     ]
     battle.player.hand = ["pho-bo"]
     expect(getBattleHint(battle)!.action).toBeNull()
