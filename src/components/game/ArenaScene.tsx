@@ -15,9 +15,11 @@ export function arenaRegion(id?: string | null): ArenaRegion {
 export function ArenaScene({
   region,
   pressure = false,
+  art,
 }: {
   region: ArenaRegion
   pressure?: boolean
+  art?: string
 }) {
   const host = useRef<HTMLDivElement>(null),
     pressureRef = useRef(pressure)
@@ -219,7 +221,7 @@ export function ArenaScene({
     >
       <img
         className="arena-far"
-        src={`/assets/v4/arenas/${region}.webp`}
+        src={art ?? `/assets/v4/arenas/${region}.webp`}
         alt=""
         decoding="async"
       />

@@ -1,0 +1,68 @@
+[
+  {
+    "path": "public/assets/adventure/grandmother-v441.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 558398,
+    "frameCoverageMin": 0.2857925270802061,
+    "frameCoverageMax": 0.34178871353807455,
+    "nearTransparentPixelFraction": 0.6918059975224418
+  },
+  {
+    "path": "public/assets/adventure/la-v441.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 411108,
+    "frameCoverageMin": 0.30400276754644795,
+    "frameCoverageMax": 0.3317682123937164,
+    "nearTransparentPixelFraction": 0.6830391550864984
+  },
+  {
+    "path": "public/assets/adventure/merchant-v441.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 426440,
+    "frameCoverageMin": 0.30885634305651344,
+    "frameCoverageMax": 0.389939154677357,
+    "nearTransparentPixelFraction": 0.6501612702191901
+  },
+  {
+    "path": "public/assets/tcg/boards/ember-v441.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 738124
+  },
+  {
+    "path": "public/assets/tcg/boards/grove-v441.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 764620
+  },
+  {
+    "path": "public/assets/tcg/boards/hearth-v441.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 732476
+  },
+  {
+    "path": "public/assets/tcg/boards/sugar-v441.webp",
+    "width": 1672,
+    "height": 941,
+    "bytes": 636834
+  },
+  {
+    "path": "public/assets/tcg/boards/tide-v441.webp",
+    "width": 1672,
+    "height": 940,
+    "bytes": 678316
+  },
+  {
+    "path": "public/assets/tcg/fx/elemental-impacts-v441.webp",
+    "width": 1000,
+    "height": 1000,
+    "bytes": 600398,
+    "frameCoverageMin": 0.28405,
+    "frameCoverageMax": 0.736125,
+    "nearTransparentPixelFraction": 0.478479
+  }
+]

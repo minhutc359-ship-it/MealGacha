@@ -1,4 +1,5 @@
 import { SceneAtmosphere } from "./SceneAtmosphere"
+import { ADVENTURE_SCENES, ELEMENTAL_BOARDS, SCENE_WEATHER } from "../../game/visualPack"
 import { AdventureEffects } from "./AdventureEffects"
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { CARD_MAP, SCHOOLS } from "../../game/catalog"
@@ -200,9 +201,11 @@ export function AdventureBattle({
       </header>
       <div
         className="adv-battle-arena"
+        data-scene={ADVENTURE_SCENES[save.areaId]}
+        style={{backgroundImage:`linear-gradient(180deg,#09292b18,#0f282422),url(${ELEMENTAL_BOARDS[ADVENTURE_SCENES[save.areaId]]})`}}
         key={`${e.cardId}-${e.activeUid}-${e.turn}`}
       >
-        <SceneAtmosphere kind="motes" paused={paused} />
+        <SceneAtmosphere kind={SCENE_WEATHER[ADVENTURE_SCENES[save.areaId]]} paused={paused} />
         <AdventureEffects ally={cue.ally} enemy={cue.enemy} allySchool={ally.school} enemySchool={enemy.school} stamp={cue.stamp} allyDelay={cue.allyDelay} enemyDelay={cue.enemyDelay} quiet={quiet || reduced} paused={paused} />
         <section className={`adv-combatant enemy school-${enemy.school}`}>
           <span>

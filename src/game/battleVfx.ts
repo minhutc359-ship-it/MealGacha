@@ -1,3 +1,4 @@
+import { IMPACT_ROWS } from "./visualPack"
 import type { School } from "./types"
 
 export type VfxKind = "projectile" | "slash" | "wave" | "heal" | "shield" | "summon" | "shatter"
@@ -127,7 +128,7 @@ export function drawProjectile(ctx: CanvasRenderingContext2D, from: VfxPoint, to
   ctx.restore()
 }
 
-export function drawImpact(ctx: CanvasRenderingContext2D, point: VfxPoint, school: School, age: number, size: number, kind: VfxKind = "projectile", low = false) {
+export function drawImpact(ctx: CanvasRenderingContext2D, point: VfxPoint, school: School, age: number, size: number, kind: VfxKind = "projectile", low = false, texture?: HTMLImageElement) {
   if (age < 0 || age > .7) return
   const t = age / .7, colors = VFX_COLORS[school], radius = size * (.3 + t * .8)
   ctx.save(); ctx.translate(point.x, point.y); ctx.globalAlpha = (1 - t) * .9
@@ -174,6 +175,24 @@ export function drawImpact(ctx: CanvasRenderingContext2D, point: VfxPoint, schoo
       ctx.save(); ctx.rotate(i * Math.PI * 2 / 7 + t); ctx.translate(radius, 0); star(ctx, size * (.25 - t * .1), colors[i % 2 + 1]); ctx.restore()
     }
     star(ctx, size * (1 - t), colors[2])
+  }
+  ctx.restore()
+  if (!low && texture) drawImpactTexture(ctx, point, school, age, size, texture)
+}
+
+/** Blend adjacent atlas frames; keep the procedural core as the loading/light fallback. */
+export function drawImpactTexture(ctx: CanvasRenderingContext2D, point: VfxPoint, school: School, age: number, size: number, image: HTMLImageElement) {
+  if (!image.complete || !image.naturalWidth || age < 0 || age >= .7) return
+  const t = age / .7, phase = t * 4, first = Math.floor(phase), mix = phase - first
+  const w = image.naturalWidth / 5, h = image.naturalHeight / 5, gutter = Math.min(w, h) * .025
+  const extent = size * (2.35 + t * .8)
+  ctx.save()
+  // Round aperture keeps peripheral glow inside the burst instead of exposing cell edges.
+  ctx.beginPath(); ctx.arc(point.x, point.y, extent * .46, 0, Math.PI * 2); ctx.clip()
+  for (const [frame, weight] of [[first, 1 - mix], [Math.min(4, first + 1), mix]]) {
+    if (weight <= .001) continue
+    ctx.globalAlpha = weight * (1 - t) * .78
+    ctx.drawImage(image, frame * w + gutter, IMPACT_ROWS[school] * h + gutter, w - gutter * 2, h - gutter * 2, point.x - extent / 2, point.y - extent / 2, extent, extent)
   }
   ctx.restore()
 }

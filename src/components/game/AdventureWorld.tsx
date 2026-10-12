@@ -14,6 +14,7 @@ import {
   type AdventureSave,
 } from "../../game/adventure"
 import { HumanSprite, SpiritSprite, WorldAsset } from "./AdventureArt"
+import { faceToward } from "../../game/visualPack"
 import { CharacterPortrait } from "./CharacterPortrait"
 import { useModeIntroStore } from "../../game/modeIntroState"
 
@@ -282,7 +283,7 @@ export function AdventureWorld({
                 aria-label={`${npc.name} · nhấn để đến tương tác`}
                 onClick={() => setGoal({ mapId: map.id, x: npc.x, y: npc.y })}
               >
-                <HumanSprite character={npc.character} />
+                <HumanSprite character={npc.character} direction={Math.abs(npc.x-save.x)+Math.abs(npc.y-save.y)<=3 ? faceToward(npc,save) : "down"} />
                 <small>
                   {npc.role === "trainer" || npc.role === "keeper" ? "⚔" : "…"}
                 </small>

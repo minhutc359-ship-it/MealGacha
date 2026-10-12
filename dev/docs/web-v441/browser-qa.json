@@ -1,0 +1,209 @@
+[
+  {
+    "impactDraws": {
+      "adventure": 118,
+      "tcg": 0,
+      "auto": 948,
+      "chest": 0
+    },
+    "width": 1440,
+    "height": 900,
+    "viewport": true,
+    "newBackdropDecoded": true,
+    "sharedSprites": true,
+    "lowQuality": true,
+    "allDemos": true,
+    "savePreserved": true,
+    "decoded": [
+      {
+        "key": "ember",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "tide",
+        "width": 1672,
+        "height": 940
+      },
+      {
+        "key": "grove",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "hearth",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "sugar",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "impacts",
+        "width": 1000,
+        "height": 1000
+      },
+      {
+        "key": "la",
+        "width": 1254,
+        "height": 1254
+      },
+      {
+        "key": "merchant",
+        "width": 1254,
+        "height": 1254
+      },
+      {
+        "key": "grandmother",
+        "width": 1254,
+        "height": 1254
+      }
+    ],
+    "npcs": [
+      "merchant",
+      "grandmother"
+    ],
+    "errors": []
+  },
+  {
+    "atlasPixels": 36060
+  },
+  {
+    "impactDraws": {
+      "adventure": 202,
+      "tcg": 84,
+      "auto": 1277,
+      "chest": 0
+    },
+    "width": 390,
+    "height": 844,
+    "viewport": true,
+    "newBackdropDecoded": true,
+    "sharedSprites": true,
+    "lowQuality": true,
+    "allDemos": true,
+    "savePreserved": true,
+    "decoded": [
+      {
+        "key": "ember",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "tide",
+        "width": 1672,
+        "height": 940
+      },
+      {
+        "key": "grove",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "hearth",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "sugar",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "impacts",
+        "width": 1000,
+        "height": 1000
+      },
+      {
+        "key": "la",
+        "width": 1254,
+        "height": 1254
+      },
+      {
+        "key": "merchant",
+        "width": 1254,
+        "height": 1254
+      },
+      {
+        "key": "grandmother",
+        "width": 1254,
+        "height": 1254
+      }
+    ],
+    "npcs": [
+      "merchant",
+      "grandmother"
+    ],
+    "errors": []
+  },
+  {
+    "impactDraws": {
+      "adventure": 189,
+      "tcg": 78,
+      "auto": 2026,
+      "chest": 0
+    },
+    "width": 844,
+    "height": 390,
+    "viewport": true,
+    "newBackdropDecoded": true,
+    "sharedSprites": true,
+    "lowQuality": true,
+    "allDemos": true,
+    "savePreserved": true,
+    "decoded": [
+      {
+        "key": "ember",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "tide",
+        "width": 1672,
+        "height": 940
+      },
+      {
+        "key": "grove",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "hearth",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "sugar",
+        "width": 1672,
+        "height": 941
+      },
+      {
+        "key": "impacts",
+        "width": 1000,
+        "height": 1000
+      },
+      {
+        "key": "la",
+        "width": 1254,
+        "height": 1254
+      },
+      {
+        "key": "merchant",
+        "width": 1254,
+        "height": 1254
+      },
+      {
+        "key": "grandmother",
+        "width": 1254,
+        "height": 1254
+      }
+    ],
+    "npcs": [
+      "merchant",
+      "grandmother"
+    ],
+    "errors": []
+  }
+]

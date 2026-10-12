@@ -1,8 +1,18 @@
 {
-  "version": "4.4.0",
-  "generatedOn": "2026-10-10",
+  "version": "4.4.1",
+  "generatedOn": "2026-10-12",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
+    {
+      "path": "public/assets/adventure/grandmother-v441.webp",
+      "bytes": 558398,
+      "sha256": "26ac18f0a8b5117d5921bb6369bdf9594ba7822522d1312c1b8e469a6456199c",
+      "origin": "AI-assisted original four-direction NPC atlas using the project character portrait reference",
+      "evidence": [
+        "dev/docs/web-v441/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
     {
       "path": "public/assets/adventure/hero-v440.webp",
       "bytes": 285672,
@@ -10,6 +20,26 @@
       "origin": "AI-assisted original heroine walking atlas, using existing project heroine as identity reference",
       "evidence": [
         "dev/docs/web-v440/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/adventure/la-v441.webp",
+      "bytes": 411108,
+      "sha256": "8aa448d0bcff50f274b7b6ee4add026a3f42a161aa71fbba76454fb847ebc5db",
+      "origin": "AI-assisted original four-direction NPC atlas using the project character portrait reference",
+      "evidence": [
+        "dev/docs/web-v441/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/adventure/merchant-v441.webp",
+      "bytes": 426440,
+      "sha256": "222912770c45ba46cae881ec8d6d2114647fb20c298f10efd3fcf18523a53658",
+      "origin": "AI-assisted original four-direction NPC atlas using the project character portrait reference",
+      "evidence": [
+        "dev/docs/web-v441/artwork.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2203,6 +2233,36 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/tcg/boards/ember-v441.webp",
+      "bytes": 738124,
+      "sha256": "6e8adcb510afb617d2e3072531dcae7d7ddd3bbfe2886b7cce875e068c0a6a38",
+      "origin": "AI-assisted original shared regional battle environment",
+      "evidence": [
+        "dev/docs/web-v441/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/boards/grove-v441.webp",
+      "bytes": 764620,
+      "sha256": "58b05bf68b37cf6c5758579a1415b591ebb936b944260da055ae6b44a969b14d",
+      "origin": "AI-assisted original shared regional battle environment",
+      "evidence": [
+        "dev/docs/web-v441/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/boards/hearth-v441.webp",
+      "bytes": 732476,
+      "sha256": "d194124e5125ad35503d2233dcf26bfd15144610f2091926d89fa70823a4e7d0",
+      "origin": "AI-assisted original shared regional battle environment",
+      "evidence": [
+        "dev/docs/web-v441/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/tcg/boards/home.webp",
       "bytes": 175818,
       "sha256": "62dd5d9fa10ecdd48a2f50e5b6b031c8a91293aead3f4b0d7e42b83d73024862",
@@ -2223,12 +2283,32 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/tcg/boards/sugar-v441.webp",
+      "bytes": 636834,
+      "sha256": "3efb9c8a8011c37cd4d836eff51747f6d06045f3dfd6718c2a7d15b750949ff8",
+      "origin": "AI-assisted original shared regional battle environment",
+      "evidence": [
+        "dev/docs/web-v441/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/tcg/boards/tet.webp",
       "bytes": 167602,
       "sha256": "86ba19078e163a66a72f70d5ed7e8b54ba7c669c497f6465bb911062cc444d77",
       "origin": "AI-assisted original battle backgrounds",
       "evidence": [
         "dev/docs/living-table-asset-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/boards/tide-v441.webp",
+      "bytes": 678316,
+      "sha256": "36a9123d7e00f8566c369aa7d08d6339c5a1086c0970f25005755ff59c1bccf5",
+      "origin": "AI-assisted original shared regional battle environment",
+      "evidence": [
+        "dev/docs/web-v441/artwork.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2801,6 +2881,16 @@
       "evidence": [
         "dev/docs/anime-asset-prompts.json",
         "dev/docs/ANIME_ASSETS.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/fx/elemental-impacts-v441.webp",
+      "bytes": 600398,
+      "sha256": "b8f56e951648f32320cef06bbed69e47dcc39923487c6d0a997567323f3cfefd",
+      "origin": "AI-assisted original five-school, five-frame impact atlas shared by all games",
+      "evidence": [
+        "dev/docs/web-v441/artwork.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

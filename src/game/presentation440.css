@@ -39,3 +39,12 @@
 .adv-app .adv-world-asset{image-rendering:auto}.adv-app .adv-world-tile.cell-t{background:linear-gradient(130deg,#809963,#96aa70)!important}.adv-app .adv-world-tile:nth-child(7n){background-color:transparent}
 .adv-app .adv-world-tile.cell-floor:nth-child(7n){background:radial-gradient(ellipse at 75% 68%,#dcd6a723 0 7%,transparent 14%),linear-gradient(145deg,#9ead7e,#94a875)}
 .adv-world-player .adv-human-sprite.adv-hero-atlas{width:130%;height:130%;left:-15%;bottom:0;background-repeat:no-repeat;filter:drop-shadow(0 3px 2px #17362955);image-rendering:auto}
+
+/* Shared 4.4.1 regional art sits behind inputs; scene changes follow player choices. */
+.ac-board{background-position:center;background-size:cover}
+.tcg-living-table .tcg-board-art{opacity:.5;background-position:center 57%}
+.adv-world-person .adv-human-sprite.adv-npc-atlas{position:relative;width:145%;height:145%;left:-22.5%;bottom:14%;background-repeat:no-repeat;filter:drop-shadow(0 3px 2px #17362955);image-rendering:auto}
+.adv-world-person .adv-npc-atlas{animation:adv-npc-breathe 3.2s ease-in-out infinite}
+@keyframes adv-npc-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-1px)}}
+.presentation-quiet .adv-world-person .adv-npc-atlas,.presentation-light .adv-world-person .adv-npc-atlas{animation:none}
+@media(prefers-reduced-motion:reduce){.adv-world-person .adv-npc-atlas{animation:none}}

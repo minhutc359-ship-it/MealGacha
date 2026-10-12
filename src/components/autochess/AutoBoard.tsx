@@ -1,3 +1,4 @@
+import { ELEMENTAL_BOARDS, ELEMENTAL_IMPACTS } from "../../game/visualPack"
 import { renderIsLight, sampleRenderFrame } from "../../infrastructure/presentation/renderQuality"
 import {livingActorFrame} from "../../game/livingClips"
 import { motionAccent, drawMotionTrail } from "../../game/motionProfiles"
@@ -452,6 +453,10 @@ export function AutoBoard({
         }
         const popup = new Map<string, number>()
         for (const event of b.events) if (visualTime >= event.tick && visualTime - event.tick < 32) popup.set(event.kind === "cast" ? `cast:${event.source}` : `${event.kind === "heal" ? "heal" : "damage"}:${event.target}`, event.id)
+        let texturedImpacts = 0
+        const impactTexture = opts.lowQuality || opts.reducedMotion ? undefined : leased("elemental-impacts", ELEMENTAL_IMPACTS)
+        const textureStatus = impactTexture?.naturalWidth ? "ready" : "fallback"
+        if(surface.dataset.texture !== textureStatus) surface.dataset.texture = textureStatus
         const labels = new Set([...popup.keys()].filter(key => key.startsWith("cast:")).sort((a,b) => popup.get(b)! - popup.get(a)!).slice(0, 4))
         for (const e of b.events.filter(
           (e) => e.kind !== "move" && e.kind !== "attack",
@@ -480,15 +485,7 @@ export function AutoBoard({
             const source = actorMap.get(e.source)
             const kind = e.kind === "heal" ? "heal" : e.kind === "shield" ? "shield" : e.kind === "summon" ? "summon"
               : e.kind === "hit" && source?.range === 1 ? "slash" : "projectile"
-            drawImpact(ctx,{x,y},e.school,age,cell*(e.kind === "phase" ? .75 : .4),kind,opts.lowQuality)
-            const art = kind === "shield" ? "shield" : e.school === "ember" ? "fire-impact" : e.school === "tide" ? "water-impact" : null
-            if(art && !opts.lowQuality) {
-              const texture = getImage(`/assets/tcg/fx/${art}.webp`)
-              if(texture.complete && texture.naturalWidth) {
-                ctx.save();ctx.globalAlpha=(1-age/.7)*.65
-                const extent=cell*(.7+age*.65);ctx.drawImage(texture,x-extent/2,y-extent/2,extent,extent);ctx.restore()
-              }
-            }
+            drawImpact(ctx,{x,y},e.school,age,cell*(e.kind === "phase" ? .75 : .4),kind,opts.lowQuality,texturedImpacts++ < 4 ? impactTexture : undefined)
           }
           if (
             ["hit", "heal", "burn"].includes(e.kind) &&
@@ -550,7 +547,7 @@ export function AutoBoard({
   }, [getFrame])
   const preview = enemyPlan(run)
   return (
-    <div className="ac-board" ref={root}>
+    <div className="ac-board" data-scene={arenaTheme(run)} style={{backgroundImage:`linear-gradient(180deg,#051c2928,#08201f66),url(${ELEMENTAL_BOARDS[arenaTheme(run)]})`}} ref={root}>
       <canvas ref={canvas} aria-hidden="true" />
       <div
         className="ac-cell-grid"

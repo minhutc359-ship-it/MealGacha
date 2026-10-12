@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react"
 import type { School } from "../../game/types"
 import { drawChannel, drawImpact, drawProjectile } from "../../game/battleVfx"
-import { subscribeCharacterClock } from "../../infrastructure/assets/characterSprites"
+import { ELEMENTAL_IMPACTS } from "../../game/visualPack"
+import { acquireCharacterImage, subscribeCharacterClock } from "../../infrastructure/assets/characterSprites"
 import { renderDpr, renderIsLight } from "../../infrastructure/presentation/renderQuality"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
 import type { CharacterMotion } from "../../game/tcgCharacterMotion"
@@ -18,10 +19,13 @@ export function AdventureEffects({ally,enemy,allySchool,enemySchool,stamp,allyDe
   if(clock.stamp!==stamp){clock.stamp=stamp;clock.start=now;clock.pausedAt=0;clock.sounded.clear()}
   if(paused){clock.pausedAt ||= now;return}
   if(clock.pausedAt){clock.start+=now-clock.pausedAt;clock.pausedAt=0}
+  const texture = quiet || renderIsLight() ? null : acquireCharacterImage(ELEMENTAL_IMPACTS)
   let width=1,height=1,release=()=>{}
   const draw=(now:number)=>{
    ctx.clearRect(0,0,width,height)
    const age=now-clock.start,low=renderIsLight()
+   const textureStatus = texture?.image.naturalWidth ? "ready" : "fallback"
+   if(surface.dataset.texture !== textureStatus) surface.dataset.texture = textureStatus
    if(age>1900){release();return}
    for(const [side,motion,school,delay] of [["ally",ally,allySchool,allyDelay],["enemy",enemy,enemySchool,enemyDelay]] as const){
     if(!["attack","cast","summon"].includes(motion))continue
@@ -29,7 +33,7 @@ export function AdventureEffects({ally,enemy,allySchool,enemySchool,stamp,allyDe
     const kind=motion==="summon"?"summon":motion==="cast"?"projectile":"slash"
     if(t>=0&&t<360&&!quiet)drawChannel(ctx,from,school,t/360,25,low)
     if(t>=200&&t<560&&!quiet&&motion!=="summon")drawProjectile(ctx,from,to,school,(t-200)/360,Math.min(18,width*.045),low,kind)
-    if(t>=560&&t<1050){if(!quiet)drawImpact(ctx,motion==="summon"?from:to,school,(t-560)/1000,36,kind,low)
+    if(t>=560&&t<1050){if(!quiet)drawImpact(ctx,motion==="summon"?from:to,school,(t-560)/1000,36,kind,low,texture?.image)
      if(!clock.sounded.has(side)){clock.sounded.add(side);gameAudio.play(motion==="summon"?"summon":soundFor[school],0,side==="ally"?.25:-.25)}
     }
    }
@@ -38,7 +42,7 @@ export function AdventureEffects({ally,enemy,allySchool,enemySchool,stamp,allyDe
   const observer=new ResizeObserver(resize);observer.observe(surface);resize();release=subscribeCharacterClock(draw,true)
   const visibility=()=>{const now=performance.now();if(document.hidden)clock.pausedAt ||= now;else if(clock.pausedAt){clock.start+=now-clock.pausedAt;clock.pausedAt=0}}
   document.addEventListener("visibilitychange",visibility)
-  return()=>{release();observer.disconnect();document.removeEventListener("visibilitychange",visibility)}
+  return()=>{texture?.release();release();observer.disconnect();document.removeEventListener("visibilitychange",visibility)}
  },[ally,enemy,allySchool,enemySchool,stamp,allyDelay,enemyDelay,quiet,paused])
  return <canvas ref={canvas} className="adv-elemental-effects" aria-hidden="true"/>
 }

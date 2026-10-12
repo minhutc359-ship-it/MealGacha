@@ -1,0 +1,77 @@
+{
+  "version": "4.4.1",
+  "tool": "image_gen.imagegen (built-in)",
+  "date": "2026-10-12",
+  "prompts": {
+    "ember": "Use case: stylized-concept. Asset type: production 16:9 landscape battle background for a Vietnamese food-spirit game. Reference image sets the painterly polished cinematic style and arena composition only. Create a new distinct environment. Wide empty playable stone courtyard occupying the lower 60% of the composition, horizon at upper 38%, readable low contrast floor, decorative story scenery only at perimeter and upper background. Rich handmade textures, refined warm/cool lighting, game concept art polish, atmospheric depth. No characters, creatures, lettering, logos, UI, cards, grids or watermark. Landscape 1536x864. Fire / EMBER: Vietnamese open-air charcoal cooking pavilion at sunset, glowing brick stoves, hanging copper pots, warm terracotta courtyard, golden sun rays and drifting smoke behind the arena, restrained orange embers at edges, red lanterns and dark jade foliage. A welcoming strong fiery kitchen, not a burning disaster.",
+    "tide": "Use case: stylized-concept. Asset type: production 16:9 landscape battle background for a Vietnamese food-spirit game. Reference image sets the painterly polished cinematic style and arena composition only. Create a new distinct environment. Wide empty playable stone courtyard occupying the lower 60% of the composition, horizon at upper 38%, readable low contrast floor, decorative story scenery only at perimeter and upper background. Rich handmade textures, refined warm/cool lighting, game concept art polish, atmospheric depth. No characters, creatures, lettering, logos, UI, cards, grids or watermark. Landscape 1536x864. Water / TIDE: Vietnamese riverside harbor courtyard at blue hour after rain, old wooden fishing boats moored behind a balustrade, lotus water and ceramic blue jars, wet pale blue stone floor with subtle reflections, misty river and distant tiled rooftops, small golden lanterns against navy and turquoise.",
+    "grove": "Use case: stylized-concept. Asset type: production 16:9 landscape battle background for a Vietnamese food-spirit game. Reference image sets the painterly polished cinematic style and arena composition only. Create a new distinct environment. Wide empty playable stone courtyard occupying the lower 60% of the composition, horizon at upper 38%, readable low contrast floor, decorative story scenery only at perimeter and upper background. Rich handmade textures, refined warm/cool lighting, game concept art polish, atmospheric depth. No characters, creatures, lettering, logos, UI, cards, grids or watermark. Landscape 1536x864. Nature / GROVE: Vietnamese medicinal herb and bamboo garden at gentle morning light, terraced fern beds, emerald leaves, softly blooming white flowers, rustic herb drying racks and woven baskets behind the arena, moss-jade stone floor, lush arching trees at both edges and luminous deep forest behind.",
+    "hearth": "Use case: stylized-concept. Asset type: production 16:9 landscape battle background for a Vietnamese food-spirit game. Reference image sets the painterly polished cinematic style and arena composition only. Create a new distinct environment. Wide empty playable stone courtyard occupying the lower 60% of the composition, horizon at upper 38%, readable low contrast floor, decorative story scenery only at perimeter and upper background. Rich handmade textures, refined warm/cool lighting, game concept art polish, atmospheric depth. No characters, creatures, lettering, logos, UI, cards, grids or watermark. Landscape 1536x864. Earth / HEARTH: Vietnamese communal village courtyard beside rice terraces at golden dawn, a traditional wooden hall and ancient bronze Dong Son drum visible in background, carved stone border, warm sandstone floor, ochre earthen jars, distant karst hills and swaying golden rice. Quiet grounding ochre and jade, no people.",
+    "sugar": "Use case: stylized-concept. Asset type: production 16:9 landscape battle background for a Vietnamese food-spirit game. Reference image sets the painterly polished cinematic style and arena composition only. Create a new distinct environment. Wide empty playable stone courtyard occupying the lower 60% of the composition, horizon at upper 38%, readable low contrast floor, decorative story scenery only at perimeter and upper background. Rich handmade textures, refined warm/cool lighting, game concept art polish, atmospheric depth. No characters, creatures, lettering, logos, UI, cards, grids or watermark. Landscape 1536x864. Sweet / SUGAR: Vietnamese moon festival dessert courtyard at lilac twilight, graceful flowering peach and lotus foliage framing the edges, pink and cream paper lanterns above, distant river and pagoda roofs, plum-and-rose stone floor with subtle pearl moonlight, small ceramic tea and dessert stands in background. Elegant magical delicacy, not a candy theme park.",
+    "la": "Use case: stylized-concept. Asset type: a single production transparent character sprite atlas for an overhead adventure game. Exactly 4 columns x 4 rows, square 1024x1024 canvas, equal 256x256 cells, absolutely no visible cell dividers. In each cell one full-body chibi person, facing slightly overhead camera with large head and detailed softly painted clothing. Feet aligned at the same height in every cell, character centered, generous transparent padding, no cast floor shadow. Row 1 facing DOWN toward viewer, row 2 LEFT true side view, row 3 RIGHT true side view, row 4 UP back view. Every row columns: 1 neutral standing, 2 small left foot walking step, 3 neutral standing, 4 small right foot walking step. All sixteen figures same scale/proportions/identity, head-to-toe, no cropping or overlapping cells. Match the provided character portrait identity, outfit colors and face as a chibi miniature. Reference portrait only, not a portrait cutout. Empty hands for clean walking animation. No text, labels, grid lines, background, checkerboard, cards, UI or watermark. Actual alpha transparency. Young Vietnamese woman with gentle face, long dark braid, teal-green button blouse, dark brown long skirt and a colorful woven waist sash, simple brown sandals.",
+    "merchant": "Use case: stylized-concept. Asset type: a single production transparent character sprite atlas for an overhead adventure game. Exactly 4 columns x 4 rows, square 1024x1024 canvas, equal 256x256 cells, absolutely no visible cell dividers. In each cell one full-body chibi person, facing slightly overhead camera with large head and detailed softly painted clothing. Feet aligned at the same height in every cell, character centered, generous transparent padding, no cast floor shadow. Row 1 facing DOWN toward viewer, row 2 LEFT true side view, row 3 RIGHT true side view, row 4 UP back view. Every row columns: 1 neutral standing, 2 small left foot walking step, 3 neutral standing, 4 small right foot walking step. All sixteen figures same scale/proportions/identity, head-to-toe, no cropping or overlapping cells. Match the provided character portrait identity, outfit colors and face as a chibi miniature. Reference portrait only, not a portrait cutout. Empty hands for clean walking animation. No text, labels, grid lines, background, checkerboard, cards, UI or watermark. Actual alpha transparency. Friendly stocky Vietnamese middle-aged man with short dark hair and gray temples, small moustache and stubble, cream short sleeves, dark green apron over dark trousers, brown shoes.",
+    "grandmother": "Use case: stylized-concept. Asset type: a single production transparent character sprite atlas for an overhead adventure game. Exactly 4 columns x 4 rows, square 1024x1024 canvas, equal 256x256 cells, absolutely no visible cell dividers. In each cell one full-body chibi person, facing slightly overhead camera with large head and detailed softly painted clothing. Feet aligned at the same height in every cell, character centered, generous transparent padding, no cast floor shadow. Row 1 facing DOWN toward viewer, row 2 LEFT true side view, row 3 RIGHT true side view, row 4 UP back view. Every row columns: 1 neutral standing, 2 small left foot walking step, 3 neutral standing, 4 small right foot walking step. All sixteen figures same scale/proportions/identity, head-to-toe, no cropping or overlapping cells. Match the provided character portrait identity, outfit colors and face as a chibi miniature. Reference portrait only, not a portrait cutout. Empty hands for clean walking animation. No text, labels, grid lines, background, checkerboard, cards, UI or watermark. Actual alpha transparency. Kind elderly Vietnamese woman, silver hair in a bun, warm smile, brown blouse with rolled sleeves, cream apron over dark trousers, brown sandals.",
+    "fx": "Use case: stylized-concept. Asset type: one production transparent ELEMENTAL IMPACT animation atlas for a polished Vietnamese food-spirit game. Exactly FIVE columns by FIVE rows on a square 1536x1536 transparent canvas, equal square cells, no visible borders, no labels. Each cell contains one single centered isolated circular burst, occupying about 75% of cell, generous transparent gutters, all cells same center. The five columns are successive frames of the same animation: 1 compact bright core, 2 expanding tight ring, 3 rich full bloom, 4 scattered fading ribbons, 5 sparse delicate dissipating fragments. Row 1 ORANGE FIRE: curling flame petals, gold sparks. Row 2 CYAN WATER: spiral water splash with droplets and pearly white arcs. Row 3 EMERALD NATURE: spiraling leaves and green light petals. Row 4 GOLD EARTH: sandstone chips, engraved bronze geometric rings and gold dust. Row 5 PINK SWEET: rosy pearl sparkles, soft flower/star petals. No characters, icons, objects, floor, text, checkerboard or painted background; genuine alpha transparency around every burst and in all cell gaps. Painterly glowing fantasy game VFX, brilliant centers and clean silhouettes, not photographs. Strictly preserve equal 5x5 grid alignment and separate every cell, avoid effects crossing cells. No watermark."
+  },
+  "references": {
+    "boards": "public/assets/tcg/boards/courtyard-v440.webp",
+    "npc": [
+      "public/assets/tcg/characters/anime/la.webp",
+      "public/assets/tcg/characters/anime/merchant.webp",
+      "public/assets/tcg/characters/anime/grandmother.webp"
+    ]
+  },
+  "encoding": "ffmpeg libwebp, compression level 6; ember/tide/hearth/sugar boards quality 95, grove/NPC/FX quality 92; original board/NPC dimensions; FX 1000x1000; preserve alpha",
+  "assets": {
+    "ember": "/workspace/scratch/d0b642d9ffbf/generated_images/ember-v441-recovered.png",
+    "tide": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-e1a1f0d4-a681-4f6b-b242-e6bde479f861.png",
+    "grove": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-7c3bc8a1-7a22-43fa-be50-30541b52c58c.png",
+    "hearth": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-59ede253-0fe3-4cf2-af9d-8bd2621a6111.png",
+    "sugar": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-3a9af80f-9095-47b2-a872-3626211ef82d.png",
+    "la": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-fe0688d3-ad11-4fd9-aaa7-06182dbef7bc.png",
+    "merchant": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-34b7afd4-ff52-421f-a559-c7102a3776eb.png",
+    "grandmother": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-ef8c8657-1fc5-4e1a-ad2a-198b6382d6a0.png",
+    "fx": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-9eae3111-6f20-480b-a616-8fda07f77603.png"
+  },
+  "packedAssetBytes": 5546714,
+  "outputs": [
+    {
+      "path": "public/assets/adventure/grandmother-v441.webp",
+      "bytes": 558398
+    },
+    {
+      "path": "public/assets/adventure/la-v441.webp",
+      "bytes": 411108
+    },
+    {
+      "path": "public/assets/adventure/merchant-v441.webp",
+      "bytes": 426440
+    },
+    {
+      "path": "public/assets/tcg/boards/ember-v441.webp",
+      "bytes": 738124
+    },
+    {
+      "path": "public/assets/tcg/boards/grove-v441.webp",
+      "bytes": 764620
+    },
+    {
+      "path": "public/assets/tcg/boards/hearth-v441.webp",
+      "bytes": 732476
+    },
+    {
+      "path": "public/assets/tcg/boards/sugar-v441.webp",
+      "bytes": 636834
+    },
+    {
+      "path": "public/assets/tcg/boards/tide-v441.webp",
+      "bytes": 678316
+    },
+    {
+      "path": "public/assets/tcg/fx/elemental-impacts-v441.webp",
+      "bytes": 600398
+    }
+  ],
+  "refinementPrompt": "Use case: precise-object-edit. Asset type: production transparent five-school impact animation atlas. EDIT the supplied atlas: preserve all five row colors, all five sequential frame designs, painterly texture and glow style. Fix cell overflow only. Output exactly 5 columns x 5 rows, equal 200x200 cells on a 1000x1000 transparent canvas. Shrink EACH individual burst uniformly to fit wholly inside the central 140x140 area of its own cell, including all sparks and glow; leave at least 30px of completely transparent empty space along every edge of every cell. Centers precisely at x100,300,500,700,900 and y100,300,500,700,900. No artwork, colored halos, noise, pixels or checkerboard in the transparent gutters. Do not simply shrink the whole sheet; individually re-center all 25 bursts in their exact equal cells. Keep row order orange fire, cyan water, green leaves, bronze earth, pink sweet. Keep column order core, ring, bloom, scatter, dissipate. Every burst self-contained and fully visible, never clipped. Truly transparent alpha background, clean transparent gutters. No text, no visible grid, no added labels or watermark.",
+  "refinementSource": "public/assets/tcg/fx/elemental-impacts-v441.webp (initial atlas)"
+}
