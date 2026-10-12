@@ -13,7 +13,7 @@ import { enemyPlan, createCombat } from "@/game/autochess/combat"
 import { autoRunSchema } from "@/game/autochess/schema"
 import { livingOpening } from "@/game/livingStory"
 const arena = () => {
-  const b = startBattle(STARTER_DECK, null, "courage", () => 0.5)
+  const b = startBattle(STARTER_DECK, null, "courage", () => 0.5, false, 400)
   b.player.mana = b.player.maxMana = 7
   b.enemy.hand = []
   b.enemy.deck = Array(18).fill("banh-mi")

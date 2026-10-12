@@ -1,13 +1,14 @@
 import { CARDS, CARD_MAP, DECK_SIZE } from "./catalog"
 import { recipeCoverage, recipeFinishers, RECIPES } from "./recipes"
 import type { GameCard, RecipeId } from "./types"
-export type DeckStyle = "balanced" | "rush" | "guard" | "sustain" | "cycle" | "rebirth" | "spellcraft" | "seasoning" | "steeping"
+export type DeckStyle = "balanced" | "rush" | "guard" | "sustain" | "cycle" | "rebirth" | "spellcraft" | "seasoning" | "steeping" | "traps"
 export const DECK_STYLES: {
   id: DeckStyle
   name: string
   text: string
   recipe: RecipeId
 }[] = [
+  {id:"traps",name:"Bẫy Hương phản công",text:"10 đồng minh, 4 bẫy và phép đối sách. Một ô bẫy: đọc điều kiện trước khi úp.",recipe:"coast"},
   {
     id: "balanced",
     name: "Bàn đủ vị",
@@ -64,6 +65,8 @@ export const DECK_STYLES: {
   },
 ]
 export function cardRole(card: GameCard): string {
+  if(card.kind==="trap")return "Bẫy · phản ứng"
+  if(["disarm","reveal-trap"].includes(card.ability??""))return "Đối sách bẫy"
   if (card.choices) return "Nêm vị · lựa chọn"
   if (["steep-unit", "steep-heal"].includes(card.ability ?? ""))
     return "Ủ vị · chuẩn bị"
@@ -95,6 +98,8 @@ export function suggestDeck(
   const score = (c: GameCard) =>
     10 -
     c.cost +
+    (style === "traps" && c.kind === "trap" ? 20 : 0) +
+    (style === "traps" && ["disarm","reveal-trap"].includes(c.ability??"") ? 16 : 0) +
     (recipe.foodIds.includes(c.id) ? 6 : 0) +
     (finishers.has(c.id) ? 6 : 0) +
     (style === "rush" && (c.keywords.includes("rush") || c.effect === "damage")
@@ -149,10 +154,11 @@ export function suggestDeck(
     .filter((c) => finishers.has(c.id))
     .slice(0, 2)
     .forEach(take)
+  if(style==="traps")for(const c of available.filter(c=>c.kind==="trap"))if(selected.filter(x=>x.kind==="trap").length<4)take(c)
   for (const c of available.filter((c) => c.kind === "unit"))
     if (selected.filter((x) => x.kind === "unit").length < 10) take(c)
   for (const c of available.filter((c) => c.kind === "spell"))
-    if (selected.filter((x) => x.kind === "spell").length < 8) take(c)
+    if (selected.length<DECK_SIZE && selected.filter((x) => x.kind === "spell").length < 8) take(c)
   for (const c of available)
     if (
       selected.length < DECK_SIZE &&
@@ -172,6 +178,7 @@ export function analyzeDeck(ids: string[]) {
   if (units < 8) tips.push("Ít đồng minh: khó giữ sân và kích hoạt công thức.")
   if (units > 13)
     tips.push("Nhiều đồng minh: sân chỉ có 3 chỗ; thêm phép để tránh kẹt tay.")
+  if(cards.filter(c=>c.kind==="trap").length>4)tips.push("Chỉ có 1 ô bẫy: quá 4 bẫy trong bộ 18 lá có thể làm kẹt tay.")
   if (!guards) tips.push("Chưa có Hộ vệ; cân nhắc một lá giữ bếp trước boss.")
   const abilities = new Set(cards.map((c) => c.ability))
   if (
@@ -204,7 +211,8 @@ export function analyzeDeck(ids: string[]) {
     tips.push("Chưa có chuỗi món + phép hoàn chỉnh để kích hoạt combo.")
   return {
     units,
-    spells: cards.length - units,
+    spells: cards.filter(c=>c.kind==="spell").length,
+    traps: cards.filter(c=>c.kind==="trap").length,
     cheap,
     guards,
     average: cards.length
@@ -233,6 +241,7 @@ export const DECK_ROLES = [
 export type DeckRole = typeof DECK_ROLES[number]
 export function strategicRoles(card: GameCard): DeckRole[] {
   const roles: DeckRole[] = []
+  if(card.kind==="trap"||["disarm","reveal-trap"].includes(card.ability??""))roles.push("Đối sách")
   if (card.kind === "unit" && card.cost <= 2) roles.push("Mở bài")
   if (
     [

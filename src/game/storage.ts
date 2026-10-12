@@ -1,3 +1,4 @@
+import { trapStateIssue } from "./traps"
 import { validLivingDecision } from "./livingChoices"
 import { z } from "zod"
 import { RELIC_MAP, EXPEDITION_EVENTS } from "./expedition"
@@ -286,7 +287,14 @@ const unit = z.object({
   triggers: integer.max(2).optional(),
   keywords: z.array(z.enum(["guard", "rush", "shield", "drain"])),
 })
+const trapSlot = z.object({uid:z.string().regex(/^t[1-9]\d*$/).max(30),cardId:cardId.refine(id=>CARD_MAP[id].kind==="trap"),setTurn:integer.min(1),revealed:z.boolean().optional()})
+const trapIntent = z.object({
+  trigger:z.enum(["attack","spell","summon","fallen"]),actor:z.literal("enemy"),cardId,
+  source:z.string().max(80).optional(),target:z.string().max(100).optional(),index:integer.max(7).optional(),
+  branch:z.enum(["first","second"]).optional(),fallenCardId:cardId.optional(),resume:z.enum(["play","attack","continue"]),
+})
 const fighter = z.object({
+  trap:trapSlot.nullable().optional(),
   health: z.number().int().min(-100).max(10000),
   maxHealth: integer,
   mana: integer.max(7),
@@ -328,7 +336,7 @@ const node = z.object({
 const expedition = z
   .object({
     promise: z.enum(["safe", "bold"]).optional(),
-    rulesVersion: z.union([z.literal(350), z.literal(400)]).default(350),
+    rulesVersion: z.union([z.literal(350), z.literal(400), z.literal(450)]).default(350),
     id: z.string(),
     seed: z.number().int().min(0).max(4294967295),
     status: z.enum([
@@ -428,7 +436,8 @@ const expedition = z
 export const GameSaveSchema = z
   .object({
     version: z.literal(1),
-    contentVersion: z.union([z.literal(350), z.literal(400)]).optional(),
+    traps450:z.object({giftClaimed:z.boolean()}).optional(),
+    contentVersion: z.union([z.literal(350), z.literal(400), z.literal(450)]).optional(),
     story400: z
       .object({
         version: z.literal(1),
@@ -526,7 +535,10 @@ export const GameSaveSchema = z
       .default([]),
     battle: z
       .object({
-        rulesVersion: z.union([z.literal(350), z.literal(400)]).default(350),
+        rulesVersion: z.union([z.literal(350), z.literal(400), z.literal(450)]).default(350),
+        turnSerial:integer.min(1).optional(),turnSide:z.enum(["player","enemy"]).optional(),
+        enemyPhase:z.object({phase:z.enum(["plays","attacks"]),steps:integer.max(12),attacks:z.array(z.string().max(80)).max(3),cursor:integer.max(3)}).optional(),
+        pendingReaction:z.object({id:z.string().min(1).max(140),trapUid:z.string().max(30),intent:trapIntent}).optional(),
         flavorSequence: integer.optional(),
         pendingFlavors: z
           .array(
@@ -616,6 +628,8 @@ export const GameSaveSchema = z
   .superRefine((save, ctx) => {
     const b = save.battle
     if (b) {
+      const trapIssue=trapStateIssue(b)
+      if(trapIssue)ctx.addIssue({code:"custom",message:trapIssue})
       const pending = b.pendingFlavors ?? []
       if (
         new Set(pending.map((effect) => effect.id)).size !== pending.length ||
@@ -646,11 +660,10 @@ export const GameSaveSchema = z
         ...side.hand,
         ...side.board.map((unit) => unit.cardId),
         ...(side.graveyard ?? []),
+        ...(side.trap ? [side.trap.cardId] : []),
       ])
       if (
-        b.rulesVersion < 400 &&
-        (pending.length ||
-          battleCards.some((id) => CARD_MAP[id].contentVersion === 400))
+        (b.rulesVersion < 400 && pending.length) || battleCards.some((id) => (CARD_MAP[id].contentVersion ?? 350) > b.rulesVersion)
       )
         ctx.addIssue({
           code: "custom",
@@ -659,8 +672,7 @@ export const GameSaveSchema = z
     }
     if (
       save.expedition &&
-      save.expedition.rulesVersion < 400 &&
-      save.expedition.deck.some((id) => CARD_MAP[id].contentVersion === 400)
+      save.expedition.deck.some((id) => (CARD_MAP[id].contentVersion ?? 350) > save.expedition!.rulesVersion)
     )
       ctx.addIssue({
         code: "custom",

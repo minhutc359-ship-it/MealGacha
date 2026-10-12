@@ -1,5 +1,5 @@
 {
-  "version": "4.4.1",
+  "version": "4.5.0",
   "generatedOn": "2026-10-12",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -2683,6 +2683,116 @@
       "evidence": [
         "dev/docs/spirit-arena-prompts.json",
         "dev/docs/SPIRIT_ARENA_V29.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-back-v450.webp",
+      "bytes": 552158,
+      "sha256": "1c83d29e156b02395d4699da4a69d9c1e4d48f51d7b007e23138efa5054bc99b",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-embers-v450.webp",
+      "bytes": 375916,
+      "sha256": "5609a0bb5e375c4d65d1152db8e33d2314906e497dc1dc4bad7843c1f714bc14",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-lid-v450.webp",
+      "bytes": 356364,
+      "sha256": "761fbc36a28b233f4b1acb1f2572658f4bbbd57a9ca8d396034e70d5bc7c3134",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-mirror-v450.webp",
+      "bytes": 401216,
+      "sha256": "ba04fdaa7554caef14c4fae7054c6654d3e77b9d16673e3f28859663ada6113c",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-pantry-v450.webp",
+      "bytes": 442042,
+      "sha256": "b58a23a0951225af5b846e12363dba743fc9114bd4fb056c63d30d095174c2d7",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-recall-v450.webp",
+      "bytes": 313470,
+      "sha256": "2557142ebab6b6c64eec6c84d1ef5e19d7173172e1696cc796ce8fc64cd08470",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-root-v450.webp",
+      "bytes": 432992,
+      "sha256": "6887177c71b4187c338eb0b2e38e2b3086841ed238ef29c6f74e8c7ad29a4c22",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-seal-v450.webp",
+      "bytes": 344546,
+      "sha256": "1939fdfa840ef2f4142ff71678b6c078cf8f4d5e973a78a736a9054aba3b9e1d",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-ward-v450.webp",
+      "bytes": 392504,
+      "sha256": "62ac7d88578a4442b4bf5676f9a80ad5bb2aeabe8c26e01db5bba4f366e28708",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/v45-taste-v450.webp",
+      "bytes": 288010,
+      "sha256": "b6ea17f9ce3f8fdd960a663081d934ec6f642af3847abb6baac02a3e1198f0f5",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/cards/v45-uncover-v450.webp",
+      "bytes": 345028,
+      "sha256": "4508f70294d939768ee55f0f4a6d19fdb14aa45c65c7b261a8b0fc62c633461a",
+      "origin": "AI-assisted original Soul of Meal trap/counter-card illustration",
+      "evidence": [
+        "dev/docs/web-v450/artwork.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

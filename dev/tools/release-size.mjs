@@ -18,11 +18,11 @@ const compressed = type => files.filter(f => f.path.endsWith(`.${type}`)).reduce
 const leaks = files.filter(f => /(^dev\/|\/archive\/|__qa__|\.map$|(?:^|\/)result_spin\.mp3|assets\/audio\/|assets\/banners\/)/.test(f.path))
 if (leaks.length) throw Error(`Non-product files in dist: ${JSON.stringify(leaks)}`)
 const result = { staticBudgetBytes: 100_000_000, jsGzipBudgetBytes: 650_000, version: JSON.parse(readFileSync(path.join(root, "package.json"), "utf8")).version, bytes: files.reduce((n, f) => n + f.bytes, 0), files: files.length, byType, groups, js_gzip: compressed("js"), css_gzip: compressed("css"), largest: [...files].sort((a, b) => b.bytes - a.bytes).slice(0, 12), leaks }
-// This visual update has a tighter, explicitly approved delta than the overall ceiling.
-if (result.version === "4.4.1") {
-  const visualBudget = JSON.parse(readFileSync(path.join(root, "dev/docs/web-v441/visual-budget.json"), "utf8"))
+// Each update also keeps its explicitly approved total build delta.
+if (["4.4.1","4.5.0"].includes(result.version)) {
+  const visualBudget = JSON.parse(readFileSync(path.join(root, `dev/docs/${result.version === "4.5.0" ? "web-v450" : "web-v441"}/visual-budget.json`), "utf8"))
   result.visualUpdate = { ...visualBudget, addedBytes: result.bytes - visualBudget.baselineBytes, remainingBytes: visualBudget.baselineBytes + visualBudget.additionalBudgetBytes - result.bytes }
-  if (result.visualUpdate.remainingBytes < 0) throw Error("Web 4.4.1 exceeds the approved additional 5.59 MB visual budget.")
+  if (result.visualUpdate.remainingBytes < 0) throw Error(`Web ${result.version} exceeds the approved additional ${visualBudget.additionalBudgetBytes / 1_000_000} MB budget.`)
 }
 if (result.bytes > 80_000_000) console.warn("Static assets exceed 80 MB: review loading, memory and media quality before release.")
 if (result.bytes > 100_000_000) throw Error("Static build exceeds the project's approved 100 MB web budget; inspect assets before raising the budget.")

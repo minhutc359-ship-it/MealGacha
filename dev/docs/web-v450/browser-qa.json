@@ -1,0 +1,189 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "fit": true,
+    "hiddenTrapIdentity": true,
+    "setTrap": true,
+    "holdThenActivate": true,
+    "reloadPending": true,
+    "oneUse": true,
+    "economyPreserved": true,
+    "errors": [],
+    "missingAssets": []
+  },
+  {
+    "decoded": [
+      {
+        "src": "/assets/tcg/cards/trap-lid-v450.webp",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "src": "/assets/tcg/cards/trap-mirror-v450.webp",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "src": "/assets/tcg/cards/trap-embers-v450.webp",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "src": "/assets/tcg/cards/trap-root-v450.webp",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "src": "/assets/tcg/cards/trap-seal-v450.webp",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "src": "/assets/tcg/cards/trap-ward-v450.webp",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "src": "/assets/tcg/cards/trap-recall-v450.webp",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "src": "/assets/tcg/cards/trap-pantry-v450.webp",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "src": "/assets/tcg/cards/v45-uncover-v450.webp",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "src": "/assets/tcg/cards/v45-taste-v450.webp",
+        "width": 900,
+        "height": 1200
+      },
+      {
+        "src": "/assets/tcg/cards/trap-back-v450.webp",
+        "width": 900,
+        "height": 1200
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "fit": true,
+    "hiddenTrapIdentity": true,
+    "setTrap": true,
+    "holdThenActivate": true,
+    "reloadPending": true,
+    "oneUse": true,
+    "economyPreserved": true,
+    "errors": [],
+    "missingAssets": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "reactionVariants": [
+      {
+        "id": "trap-lid",
+        "fit": true
+      },
+      {
+        "id": "trap-mirror",
+        "fit": true
+      },
+      {
+        "id": "trap-embers",
+        "fit": true
+      },
+      {
+        "id": "trap-root",
+        "fit": true
+      },
+      {
+        "id": "trap-seal",
+        "fit": true
+      },
+      {
+        "id": "trap-ward",
+        "fit": true
+      },
+      {
+        "id": "trap-recall",
+        "fit": true
+      },
+      {
+        "id": "trap-pantry",
+        "fit": true
+      }
+    ]
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "fit": true,
+    "hiddenTrapIdentity": true,
+    "setTrap": true,
+    "holdThenActivate": true,
+    "reloadPending": true,
+    "oneUse": true,
+    "economyPreserved": true,
+    "errors": [],
+    "missingAssets": []
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "reactionVariants": [
+      {
+        "id": "trap-lid",
+        "fit": true
+      },
+      {
+        "id": "trap-mirror",
+        "fit": true
+      },
+      {
+        "id": "trap-embers",
+        "fit": true
+      },
+      {
+        "id": "trap-root",
+        "fit": true
+      },
+      {
+        "id": "trap-seal",
+        "fit": true
+      },
+      {
+        "id": "trap-ward",
+        "fit": true
+      },
+      {
+        "id": "trap-recall",
+        "fit": true
+      },
+      {
+        "id": "trap-pantry",
+        "fit": true
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "fit": true,
+    "hiddenTrapIdentity": true,
+    "setTrap": true,
+    "holdThenActivate": true,
+    "reloadPending": true,
+    "oneUse": true,
+    "economyPreserved": true,
+    "errors": [],
+    "missingAssets": []
+  }
+]

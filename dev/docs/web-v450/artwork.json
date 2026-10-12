@@ -1,0 +1,146 @@
+{
+  "version": "4.5.0",
+  "tool": "image_gen.imagegen (built-in)",
+  "prompts": {
+    "trap-lid": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. A glowing antique brass pot lid hovering protectively over a humble steaming soup pot, a ring of golden light stopping incoming sparks, warm hearth kitchen at dusk, calm invulnerable protection.",
+    "trap-mirror": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. A circular water mirror above a blue porcelain bowl, a fiery orange bolt reflected back along a cyan crescent of water, lotus petals and moonlit rain, beautiful contrast and clear reflected arc.",
+    "trap-embers": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. A low Vietnamese charcoal brazier releases a controlled circular crown of red orange embers around the courtyard, magical fire petals and copper sparks, lively dangerous counterstrike without a disaster.",
+    "trap-root": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. An elegant enchanted bundle of green bamboo and medicinal leaves uncoils into luminous vines grasping the ground of an ancient herb garden, emerald soft light, white flowers, a clear binding loop.",
+    "trap-seal": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. A closed Vietnamese recipe scroll bound with plum silk and a luminous bronze seal, swirling blue magical lettering-like symbols broken into abstract shapes around it, no actual written text, a suspended spell being stopped.",
+    "trap-ward": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. An ornate Dong Son bronze communal serving tray levitates over jade tableware, three translucent golden protective domes and warm concentric ripples, a refined ancient hearth courtyard, safe warm shelter.",
+    "trap-recall": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. A small blank ivory letter tied with pink silk opens beside a lantern, a warm golden spirit wisp rises from its folded paper, comforting kitchen hearth and gentle floral petals, returning memory.",
+    "trap-pantry": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. A beautifully woven bamboo basket of Vietnamese aromatic herbs, rice bundles and small ceramic jars, jade leaves surrounded by restorative green light, a generous reserve of ingredients, peaceful garden.",
+    "v45-uncover": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. A flowing teal table cloth being lifted by an invisible magical breeze, revealing a hidden plum-colored paper talisman under a brass bowl, turquoise ripples dissolve the talisman seal, clear discovery and disarm.",
+    "v45-taste": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. A jade ceramic tasting spoon above two small fragrant tea bowls, a single teal eye-like ripple formed from steam reveals the reflection of a hidden purple charm, calm anticipation and insight, no text.",
+    "trap-back": "Use case: stylized-concept. Asset type: one original full-art vertical illustration for a Vietnamese food-spirit tactical card game, portrait 3:4 composition. Polished painterly fantasy art, cinematic light, jade and antique brass with magical plum accents, refined materials, strong central focal point, atmospheric kitchen/village background. This is the illustration only: NO card frame, borders, UI, numbers, lettering, labels, watermark, or copied franchise characters. The effect needs to read clearly even on a small card. No people. A premium ornamental card back design, portrait rectangle fully filled edge to edge: deep plum silk with fine jade/burnished brass Vietnamese Dong Son geometric patterns, central closed bronze lotus seal, symmetrical luminous rings, sophisticated tactile embossing, no letters, no numbers, no card front, no spiral copied from another franchise."
+  },
+  "originals": {
+    "trap-lid": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-71bd2afc-b865-4670-a5bf-bee0f87d9bf1.png",
+    "trap-mirror": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-a41b8051-3542-4e6a-9aa3-bc9a799c8e73.png",
+    "trap-embers": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-86862644-1a15-419a-8398-0224af66afe9.png",
+    "trap-root": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-ddf6294a-0c9e-4314-ab18-e9f245c16df7.png",
+    "trap-seal": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-71dd9306-7c23-4cb0-ab71-bf3a2f837087.png",
+    "trap-ward": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-95efa163-3c28-41a6-b6c6-71e9eabe3924.png",
+    "trap-recall": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-8c68ef63-e038-4820-b1a7-1baf2c1529df.png",
+    "trap-pantry": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-c2282505-aca3-4a6d-9b45-ca6a43d87998.png",
+    "v45-uncover": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-7a0b6164-0967-43c3-a1cc-9119d1e67c01.png",
+    "v45-taste": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-c88f8652-8a0c-41b3-98f7-f4b88c2fa376.png",
+    "trap-back": "/workspace/scratch/d0b642d9ffbf/generated_images/exec-ceff2ccf-28f8-4a86-afbd-cd4de3ba8619.png"
+  },
+  "outputs": [
+    "public/assets/tcg/cards/trap-lid-v450.webp",
+    "public/assets/tcg/cards/trap-mirror-v450.webp",
+    "public/assets/tcg/cards/trap-embers-v450.webp",
+    "public/assets/tcg/cards/trap-root-v450.webp",
+    "public/assets/tcg/cards/trap-seal-v450.webp",
+    "public/assets/tcg/cards/trap-ward-v450.webp",
+    "public/assets/tcg/cards/trap-recall-v450.webp",
+    "public/assets/tcg/cards/trap-pantry-v450.webp",
+    "public/assets/tcg/cards/v45-uncover-v450.webp",
+    "public/assets/tcg/cards/v45-taste-v450.webp",
+    "public/assets/tcg/cards/trap-back-v450.webp"
+  ],
+  "encoding": "ffmpeg libwebp quality 94, compression level 6, 900x1200 (3:4). All original project illustrations, no Yu-Gi-Oh imagery.",
+  "assetRecords": [
+    {
+      "path": "public/assets/tcg/cards/trap-lid-v450.webp",
+      "bytes": 356364,
+      "sha256": "761fbc36a28b233f4b1acb1f2572658f4bbbd57a9ca8d396034e70d5bc7c3134",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-mirror-v450.webp",
+      "bytes": 401216,
+      "sha256": "ba04fdaa7554caef14c4fae7054c6654d3e77b9d16673e3f28859663ada6113c",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-embers-v450.webp",
+      "bytes": 375916,
+      "sha256": "5609a0bb5e375c4d65d1152db8e33d2314906e497dc1dc4bad7843c1f714bc14",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-root-v450.webp",
+      "bytes": 432992,
+      "sha256": "6887177c71b4187c338eb0b2e38e2b3086841ed238ef29c6f74e8c7ad29a4c22",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-seal-v450.webp",
+      "bytes": 344546,
+      "sha256": "1939fdfa840ef2f4142ff71678b6c078cf8f4d5e973a78a736a9054aba3b9e1d",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-ward-v450.webp",
+      "bytes": 392504,
+      "sha256": "62ac7d88578a4442b4bf5676f9a80ad5bb2aeabe8c26e01db5bba4f366e28708",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-recall-v450.webp",
+      "bytes": 313470,
+      "sha256": "2557142ebab6b6c64eec6c84d1ef5e19d7173172e1696cc796ce8fc64cd08470",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-pantry-v450.webp",
+      "bytes": 442042,
+      "sha256": "b58a23a0951225af5b846e12363dba743fc9114bd4fb056c63d30d095174c2d7",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    },
+    {
+      "path": "public/assets/tcg/cards/v45-uncover-v450.webp",
+      "bytes": 345028,
+      "sha256": "4508f70294d939768ee55f0f4a6d19fdb14aa45c65c7b261a8b0fc62c633461a",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    },
+    {
+      "path": "public/assets/tcg/cards/v45-taste-v450.webp",
+      "bytes": 288010,
+      "sha256": "b6ea17f9ce3f8fdd960a663081d934ec6f642af3847abb6baac02a3e1198f0f5",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    },
+    {
+      "path": "public/assets/tcg/cards/trap-back-v450.webp",
+      "bytes": 552158,
+      "sha256": "1c83d29e156b02395d4699da4a69d9c1e4d48f51d7b007e23138efa5054bc99b",
+      "width": 900,
+      "height": 1200,
+      "format": "WEBP",
+      "mode": "RGB"
+    }
+  ],
+  "totalAssetBytes": 4244246
+}

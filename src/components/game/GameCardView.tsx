@@ -57,7 +57,7 @@ export function GameCardView({
             ? foodSpirit(card)
               ? "MÓN ĂN · ẤN VỊ"
               : "ĐỒNG MINH"
-            : "BÍ THUẬT"}{" "}
+            : card.kind === "trap" ? "BẪY HƯƠNG" : "BÍ THUẬT"}{" "}
           <span>{RARITIES[card.rarity].name}</span>
         </span>
         <strong>{card.name}</strong>
@@ -69,7 +69,7 @@ export function GameCardView({
               <b title="Máu">♥ {card.health}</b>
             </>
           ) : (
-            <span>✧ Phép thuật</span>
+            <span>{card.kind === "trap" ? "◇ Bẫy · úp trước" : "✧ Phép thuật"}</span>
           )}
           <span>{SCHOOLS[card.school].name}</span>
         </span>
@@ -89,7 +89,7 @@ export function GameCardView({
       )}
     </>
   )
-  const className = `tcg-card tcg-rarity-${card.rarity} ${
+  const className = `tcg-card tcg-kind-${card.kind} tcg-rarity-${card.rarity} ${
     compact ? "is-compact" : ""
   } ${selected ? "is-selected" : ""} ${muted ? "is-muted" : ""} ${
     playable ? "is-playable" : ""

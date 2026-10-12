@@ -46,7 +46,10 @@ export function HomeLobby({
             : "+100 xu · Điểm danh"}
         </button>
       </div>
+      {(!save.story400?.giftClaimed||!save.traps450?.giftClaimed)&&<div className="tcg-starter-gifts">
       {!save.story400?.giftClaimed && <div className="tcg-lobby-actions"><button className="tcg-button gold" onClick={() => useGameStore.getState().claimV4Gift()}>Nhận gói khởi hành 4.0 · 8 thẻ mới × 2</button><span>Nêm vị chọn một nhánh; Ủ vị giữ hiệu ứng sang lượt sau. Nhận quà rồi thêm thẻ vào bộ bài trong Bộ bài.</span></div>}
+      {!save.traps450?.giftClaimed&&<div className="tcg-trap-gift"><span>◇ BẪY HƯƠNG</span><div><strong>Một ô kín, một nhịp phản công.</strong><p>8 bẫy + 2 đối sách × 2 bản. Nhận miễn phí rồi thêm vào bộ bài; dùng từ trận mới.</p></div><button className="tcg-button gold" onClick={()=>useGameStore.getState().claimTrapGift()}>Nhận bộ bẫy 4.5</button></div>}
+      </div>}
       <div className="tcg-lobby-hero">
         <img
           className="tcg-lobby-background"

@@ -23,7 +23,7 @@ export type CardRarity = "common" | "rare" | "epic" | "legendary"
 export type Keyword = "guard" | "rush" | "shield" | "drain"
 export type Effect = "damage" | "heal" | "draw" | "buff" | "ward" | "sweep"
 export type Ability = "ambush" | "spellfire" | "scout" | "snare" | "mender" | "bloom" | "host" | "pantry" | "farewell" | "weaver" | "welcome"
-  | "wok" | "pierce" | "desperation" | "insight" | "wash" | "revive" | "mend" | "feast" | "root" | "rebloom" | "sharp" | "diverse" | "bulwark" | "offering" | "veil" | "dream" | "starlight" | "moonward" | "tea-mend" | "steep-unit" | "steep-heal" | "unsteep" | "thaw" | "season-host"
+  | "wok" | "pierce" | "desperation" | "insight" | "wash" | "revive" | "mend" | "feast" | "root" | "rebloom" | "sharp" | "diverse" | "bulwark" | "offering" | "veil" | "dream" | "starlight" | "moonward" | "tea-mend" | "steep-unit" | "steep-heal" | "unsteep" | "thaw" | "season-host" | "disarm" | "reveal-trap"
 
 export interface CardChoice {
   label: string
@@ -33,13 +33,14 @@ export interface CardChoice {
   power: number
 }
 export interface GameCard {
-  contentVersion?: 400
+  contentVersion?: 400 | 450
+  trap?: TrapDefinition
   choices?: [CardChoice, CardChoice]
   id: string
   name: string
   school: School
   rarity: CardRarity
-  kind: "unit" | "spell"
+  kind: "unit" | "spell" | "trap"
   cost: number
   attack: number
   health: number
@@ -73,6 +74,7 @@ export interface BattleUnit {
   frozen?: boolean
 }
 export interface Combatant {
+  trap?: SetTrap | null
   health: number
   maxHealth: number
   mana: number
@@ -99,8 +101,36 @@ export interface PendingFlavor {
   sequence: number
   delayed?: boolean
 }
+export type BattleSide = "player" | "enemy"
+export type TrapTrigger = "attack" | "spell" | "summon" | "fallen"
+export type TrapEffect = "block" | "reflect" | "embers" | "bind" | "negate" | "ward" | "recall" | "reserve"
+export interface TrapDefinition {
+  trigger: TrapTrigger
+  effect: TrapEffect
+  target?: "hero" | "unit"
+  minCost?: number
+}
+export interface SetTrap { uid: string; cardId: string; setTurn: number; revealed?: boolean }
+export interface TrapIntent {
+  trigger: TrapTrigger
+  actor: BattleSide
+  cardId: string
+  source?: string
+  target?: string
+  index?: number
+  branch?: "first" | "second"
+  fallenCardId?: string
+  resume: "play" | "attack" | "continue"
+}
+export interface TrapReaction { id: string; trapUid: string; intent: TrapIntent }
+export interface EnemyPhase { phase: "plays" | "attacks"; steps: number; attacks: string[]; cursor: number }
 export interface Battle {
-  rulesVersion?: 350 | 400
+  turnSerial?: number
+  turnSide?: BattleSide
+  enemyPhase?: EnemyPhase
+  pendingReaction?: TrapReaction
+
+  rulesVersion?: 350 | 400 | 450
   pendingFlavors?: PendingFlavor[]
   flavorSequence?: number
   id: string
@@ -176,7 +206,7 @@ export interface ExpeditionReward {
 }
 export interface ExpeditionRun {
   promise?: "safe" | "bold"
-  rulesVersion?: 350 | 400
+  rulesVersion?: 350 | 400 | 450
   id: string
   seed: number
   status: "path" | "battle" | "event" | "reward" | "won" | "lost" | "abandoned"
@@ -216,7 +246,8 @@ export interface GameStats {
   crafted: number
 }
 export interface GameSave {
-  contentVersion?: 350 | 400
+  traps450?: { giftClaimed: boolean }
+  contentVersion?: 350 | 400 | 450
   story400?: {
     version: 1
     giftClaimed: boolean
