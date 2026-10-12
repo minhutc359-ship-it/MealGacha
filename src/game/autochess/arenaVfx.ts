@@ -14,7 +14,7 @@ export function drawArena(ctx: CanvasRenderingContext2D, left: number, top: numb
   const colors = VFX_COLORS[school], x = left + size / 2, y = top + size / 2
   ctx.save(); ctx.beginPath(); ctx.rect(left, top, size, size); ctx.clip()
   const floor = ctx.createLinearGradient(left, top, left + size, top + size)
-  floor.addColorStop(0, "rgba(8,24,32,.88)"); floor.addColorStop(.5, "rgba(24,44,43,.86)"); floor.addColorStop(1, "rgba(9,22,31,.93)")
+  floor.addColorStop(0, "rgba(8,24,32,.62)"); floor.addColorStop(.5, "rgba(24,44,43,.46)"); floor.addColorStop(1, "rgba(9,22,31,.68)")
   ctx.fillStyle = floor; ctx.fillRect(left, top, size, size)
   const light = ctx.createRadialGradient(x, y, 0, x, y, size * .65)
   light.addColorStop(0, `${colors[0]}22`); light.addColorStop(1, `${colors[0]}00`)

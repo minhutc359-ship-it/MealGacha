@@ -1,3 +1,5 @@
+import { SceneAtmosphere } from "./SceneAtmosphere"
+import { ELEMENTAL_BOARDS, SCENE_WEATHER, tcgSceneSchool } from "../../game/visualPack"
 import { ArenaScene, arenaRegion } from "./ArenaScene"
 import { storyLines } from "../../game/storyPresentation"
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
@@ -571,8 +573,8 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
         style={{ "--table-color": aura?.color ?? "#9bcea6" } as CSSProperties}
       >
         {battle.stageId && STAGE_MAP[battle.stageId]?.index >= 18
-          ? <ArenaScene region={arenaRegion(battle.stageId)} pressure={battle.player.health <= 8 || !!battle.bossRuleId}/>
-          : <div className="tcg-board-art" key={table} aria-hidden="true" style={{backgroundImage:`url(/assets/tcg/boards/${table}.webp)`}}/>}
+          ? <ArenaScene region={arenaRegion(battle.stageId)} art={ELEMENTAL_BOARDS[tcgSceneSchool(battle.stageId, aura?.id)]} pressure={battle.player.health <= 8 || !!battle.bossRuleId}/>
+          : <div className="tcg-board-art" key={`${table}-${battle.stageId}`} data-scene={tcgSceneSchool(battle.stageId, aura?.id)} aria-hidden="true" style={{backgroundImage:`url(${ELEMENTAL_BOARDS[tcgSceneSchool(battle.stageId, aura?.id)]})`}}/>}
         <div className="tcg-table-weather" aria-hidden="true">
           {Array.from({ length: 6 }, (_, i) => (
             <i
@@ -586,6 +588,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
             />
           ))}
         </div>
+        <SceneAtmosphere kind={SCENE_WEATHER[tcgSceneSchool(battle.stageId, aura?.id)]} paused={demo?.paused ?? false} />
         <div className="tcg-arena-top">
           <span>
             AI · {battle.enemy.hand.length} lá trên tay ·{" "}

@@ -1,11 +1,18 @@
 import { CharacterSprite } from "./CharacterSprite"
-import { CharacterPortrait } from "./CharacterPortrait"
 import { tcgCharacter, type CharacterMotion } from "../../game/tcgCharacterMotion"
 import { unitCharacter } from "../../infrastructure/assets/characterSprites"
 import { useAppStore } from "../../store/useAppStore"
 import { CARD_MAP } from "../../game/catalog"
 import type { CharacterId } from "../../game/characters"
 import type { AdventureDirection } from "../../game/adventure"
+import { atlasPosition } from "../../game/visualPack"
+
+const WALK_ATLASES: Partial<Record<CharacterId, string>> = {
+  hero: "/assets/adventure/hero-v440.webp",
+  la: "/assets/adventure/la-v441.webp",
+  merchant: "/assets/adventure/merchant-v441.webp",
+  grandmother: "/assets/adventure/grandmother-v441.webp",
+}
 
 export function WorldAsset({
   id,
@@ -40,10 +47,14 @@ export function HumanSprite({
   frame?: number
 }) {
   const quiet = useAppStore(state => state.user.preferences.reducedMotion || state.user.preferences.graphicsQuality === "low")
+  const atlas = WALK_ATLASES[character]
+  if (atlas) {
+    return <span className={`adv-human-sprite adv-walk-atlas ${character === "hero" ? "adv-hero-atlas" : "adv-npc-atlas"}`} data-character={character} data-facing={direction} aria-hidden="true" style={{backgroundImage:`url(${atlas})`,backgroundSize:"400% 400%",backgroundPosition:atlasPosition(direction, quiet ? 0 : frame)}} />
+  }
   const chef = ["bach", "hai", "moc", "nhien", "lien"].includes(character)
   return <span className="adv-human-sprite" data-facing={direction}>
     {chef ? <CharacterSprite model={unitCharacter(`chef-${character}`)} motion="idle" stamp={`${character}-${frame}`} flip={direction === "left"} quiet={quiet} />
-      : <><WorldAsset id={`${character}-${direction}-${frame % 2}`} /><CharacterPortrait id={character} decorative className="adv-world-face" /></>}
+      : <WorldAsset id={`${character}-${direction}-${frame % 2}`} />}
   </span>
 }
 /** Shared animated atlas renderer used by TCG and Auto chess. */

@@ -228,7 +228,7 @@ export function AdventurePage() {
           after?.mapId.endsWith(":clinic")
             ? "defeat"
             : action.type === "battle" && action.move === "befriend"
-              ? "summon"
+              ? "capture"
               : action.type === "battle" && action.move === "flee"
                 ? "vanish"
                 : "victory",
@@ -241,6 +241,8 @@ export function AdventurePage() {
               ? "shield"
               : "select",
         )
+      else if (before?.mapId !== after?.mapId) gameAudio.play("door")
+      else if (action.type === "move") { if (before?.steps !== after?.steps) gameAudio.play("footstep",0,after?.facing === "left" ? -.2 : .2) }
       else
         gameAudio.play(
           action.type === "heal" || action.type === "item" ? "heal" : "select",

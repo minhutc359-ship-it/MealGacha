@@ -20,3 +20,7 @@ dialog.mode-live-demo.is-immersive{--demo-toolbar-height:0px}
 .is-immersive .live-demo-toolbar:focus-within,.is-immersive .live-demo-toolbar:hover{opacity:1}
 .is-immersive .live-demo-caption,.is-immersive .live-demo-note,.is-immersive .live-demo-progress{display:none}
 .is-immersive .live-demo-controls button{min-height:44px}
+.live-demo-scene>.loot-stage-page{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:5px;padding:8px;box-sizing:border-box;overflow:hidden}
+.live-demo-scene>.loot-stage-page>.chest-cinematic{min-height:0;height:100%;display:grid;place-items:center;overflow:hidden}
+.live-demo-scene .chest-cinematic>.chest-scene{min-height:0;height:100%;width:min(510px,100%);transform:scale(.75);transform-origin:center}
+@media(max-height:500px){.live-demo-scene .chest-cinematic>.chest-scene{transform:scale(.62)}.live-demo-scene .meal-banner-tabs button{min-height:36px;padding:5px}.live-demo-scene .chest-action-zone{min-height:36px}}

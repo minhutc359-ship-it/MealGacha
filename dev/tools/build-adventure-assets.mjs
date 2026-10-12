@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs"
+import { readFileSync, writeFileSync } from "node:fs"
 // Original vector sprites. Pixel coordinates are deliberate: no external sprites or image samples.
 const palette = {
   hero: ["#293e3b", "#f1c39b", "#547b71", "#f3d67e"],
@@ -78,8 +78,10 @@ for (const [kind, roof, emblem] of [
   symbols.push(
     `<symbol id="house-${kind}" viewBox="0 0 128 128"><path fill="#3c493d" opacity=".25" d="M7 42h114v78H7z"/><path fill="#e5cd9b" d="M10 42h108v69H10z"/><path fill="#927548" d="M10 98h108v13H10z"/><path fill="${roof}" d="M7 22h114v12h7v18H0V34h7z"/><path stroke="#3e4a3d" opacity=".3" stroke-width="3" d="M7 30h114M0 40h128"/><path fill="#425e56" d="M19 63h21v20H19zm70 0h21v20H89z"/><path stroke="#e7ce95" stroke-width="3" d="M30 63v20m70-20v20"/><path fill="#886343" d="M43 80h30v31H43z"/><path fill="#304940" d="M48 84h20v27H48z"/><path fill="#f0dfa5" d="M48 53h30v22H48z"/><text x="63" y="70" text-anchor="middle" fill="#64533a" font-size="17">${emblem}</text></symbol>`,
   )
+const presentation=JSON.parse(readFileSync(new URL("../docs/web-v440/world-symbols.json",import.meta.url),"utf8"))
+const enhanced=symbols.map(symbol=>{const id=symbol.match(/id="([^"]+)"/)?.[1];return presentation.symbols[id] ?? symbol})
 writeFileSync(
   "public/assets/adventure/world.svg",
-  `<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><defs>${symbols.join("\n")}</defs></svg>\n`,
+  `<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"><defs>${presentation.gradients}${enhanced.join("\n")}</defs></svg>\n`,
 )
 console.log(`Generated ${symbols.length} original SVG sprite symbols.`)

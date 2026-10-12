@@ -1,3 +1,5 @@
+import { SceneAtmosphere } from "./SceneAtmosphere"
+import { gameAudio } from "../../infrastructure/audio/gameAudio"
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react"
 import { useGameStore } from "../../game/useGameStore"
 import {
@@ -12,6 +14,7 @@ import {
   type AdventureSave,
 } from "../../game/adventure"
 import { HumanSprite, SpiritSprite, WorldAsset } from "./AdventureArt"
+import { faceToward } from "../../game/visualPack"
 import { CharacterPortrait } from "./CharacterPortrait"
 import { useModeIntroStore } from "../../game/modeIntroState"
 
@@ -73,12 +76,21 @@ export function AdventureWorld({
   move,
   interact,
   readOnly = false,
+  paused = false,
 }: {
   save: AdventureSave
   move: (direction: AdventureDirection) => void
   interact: () => void
   readOnly?: boolean
+  paused?: boolean
 }) {
+  const before = useRef({steps:save.steps,map:save.mapId})
+  useEffect(()=>{
+    const prior = before.current;before.current={steps:save.steps,map:save.mapId}
+    if(readOnly)return
+    if(prior.map !== save.mapId)gameAudio.play("door")
+    else if(prior.steps !== save.steps)gameAudio.play("footstep",0,save.facing === "left" ? -.2 : .2)
+  },[save.steps,save.mapId,save.facing,readOnly])
   const map = ADVENTURE_MAP_BY_ID[save.mapId],
     stage = useRef<HTMLDivElement>(null)
   const [viewport, setViewport] = useState({ width: 624, height: 432 })
@@ -271,7 +283,7 @@ export function AdventureWorld({
                 aria-label={`${npc.name} · nhấn để đến tương tác`}
                 onClick={() => setGoal({ mapId: map.id, x: npc.x, y: npc.y })}
               >
-                <HumanSprite character={npc.character} />
+                <HumanSprite character={npc.character} direction={Math.abs(npc.x-save.x)+Math.abs(npc.y-save.y)<=3 ? faceToward(npc,save) : "down"} />
                 <small>
                   {npc.role === "trainer" || npc.role === "keeper" ? "⚔" : "…"}
                 </small>
@@ -307,6 +319,7 @@ export function AdventureWorld({
             )}
           </div>
         </div>
+        <SceneAtmosphere kind={save.areaId === "rain-harbor" ? "rain" : save.areaId === "herb-garden" ? "leaves" : "motes"} paused={paused} />
         <Minimap map={map} save={save} />
       </div>
       <div className="adv-controls" aria-label="Điều khiển di chuyển">

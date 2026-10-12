@@ -1,0 +1,48 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "viewport": true,
+    "newBackdropDecoded": true,
+    "sharedSprites": true,
+    "lowQuality": true,
+    "allDemos": true,
+    "savePreserved": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "viewport": true,
+    "newBackdropDecoded": true,
+    "sharedSprites": true,
+    "lowQuality": true,
+    "allDemos": true,
+    "savePreserved": true,
+    "errors": []
+  },
+  {
+    "offlineMixedAudio": {
+      "peak": 0.2801952660083771,
+      "rms": 0.02077899796853939,
+      "finite": true
+    }
+  },
+  {
+    "sharedAnimationClock": {
+      "fps": 32.49350129974157,
+      "durationMs": 2000.3999999999069
+    }
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "viewport": true,
+    "newBackdropDecoded": true,
+    "sharedSprites": true,
+    "lowQuality": true,
+    "allDemos": true,
+    "savePreserved": true,
+    "errors": []
+  }
+]

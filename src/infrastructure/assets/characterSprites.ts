@@ -1,3 +1,4 @@
+import { renderIsLight, sampleRenderFrame, resetRenderSampling } from "../presentation/renderQuality"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { UNIT_MAP, MONSTER_MAP } from "../../game/autochess/catalog"
 import { FLAVOR_SPIRITS } from "../../game/flavorSpirits"
@@ -168,24 +169,32 @@ export function characterCacheStats() {
 }
 
 // One 30fps clock for every TCG sprite. No React state changes per frame.
-const listeners = new Set<(now: number) => void>()
+const listeners = new Map<(now: number) => void, boolean>()
 let handle = 0,
-  last = 0
+  last = 0,
+  previousFrame = 0
 function tick(now: number) {
-  if (now - last >= 1000 / 30 - 1) {
+  const gap = previousFrame ? now - previousFrame : 16.7
+  previousFrame = now
+  const active = [...listeners.values()].some(Boolean)
+  const fps = !renderIsLight() && active ? 60 : 30
+  if (now - last >= 1000 / fps - 1) {
     last = now
-    for (const draw of listeners) draw(now)
+    const start = performance.now()
+    for (const draw of listeners.keys()) draw(now)
+    sampleRenderFrame(gap, performance.now() - start)
   }
   handle = listeners.size && !document.hidden ? requestAnimationFrame(tick) : 0
 }
 function visibility() {
+  previousFrame = last = 0; resetRenderSampling()
   cancelAnimationFrame(handle)
   handle = 0
   if (!document.hidden && listeners.size) handle = requestAnimationFrame(tick)
 }
-export function subscribeCharacterClock(draw: (now: number) => void) {
+export function subscribeCharacterClock(draw: (now: number) => void, active = false) {
   if (!listeners.size) document.addEventListener("visibilitychange", visibility)
-  listeners.add(draw)
+  listeners.set(draw, active)
   if (!handle && !document.hidden) handle = requestAnimationFrame(tick)
   return () => {
     listeners.delete(draw)

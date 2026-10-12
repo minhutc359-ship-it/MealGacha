@@ -1,0 +1,50 @@
+/* Shared visual language: jade, warm brass, clear silhouettes and restrained light. */
+.scene-atmosphere,.adv-elemental-effects{position:absolute!important;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
+.adv-elemental-effects{z-index:7}.adv-battle .adv-battle-arena{isolation:isolate;background:linear-gradient(180deg,#09292b18,#0f282422),url('/assets/tcg/boards/courtyard-v440.webp') center 55%/cover;border-color:#c8ba807a;box-shadow:inset 0 0 55px #09232055,0 9px 28px #041e2566}
+.adv-battle .adv-battle-model{z-index:5;filter:drop-shadow(0 8px 5px #06191488)}
+.adv-battle .adv-battle-model:before{content:'';position:absolute;left:8%;right:8%;bottom:4%;height:12%;border:1px solid #c5edc877;border-radius:50%;background:radial-gradient(ellipse,#b6ebaf44,#85ada319 60%,transparent);transform:rotate(-4deg);z-index:-1}
+.adv-battle .adv-combatant{z-index:9;background:linear-gradient(125deg,#f8f3e0f5,#e6e8d8ec);border:1px solid #e0ca92a6;box-shadow:0 6px 14px #07262360,inset 0 1px #fff8}
+.adv-battle .adv-meter{box-shadow:inset 0 1px 3px #21453555;overflow:hidden}.adv-battle .adv-meter i{background:linear-gradient(90deg,#5cab84,#b5de97);transition:width .42s cubic-bezier(.2,.7,.3,1)}.adv-battle .adv-meter.is-low i{background:linear-gradient(90deg,#bd6c65,#e9b18b)}
+.adv-battle .adv-battle-console{background:linear-gradient(120deg,#102e2cf5,#17382ded);border-color:#c0aa7277;box-shadow:inset 0 1px #f8dda912,0 4px 16px #011a2333}
+.adv-battle .adv-skill-grid button{background:linear-gradient(130deg,#305b49,#244a40);border-color:#9bba8277;box-shadow:inset 0 1px #d8eebf1a;transition:transform .16s ease,background .16s ease,border-color .16s ease}.adv-battle .adv-skill-grid button:hover:not(:disabled){transform:translateY(-1px);border-color:#efd994;background:linear-gradient(130deg,#416c51,#325744)}.adv-battle .adv-skill-grid button.is-strong{background:linear-gradient(130deg,#676e43,#495b38);border-color:#edda8c}
+.adv-app .adv-map-frame{border:2px solid #8fa17888;box-shadow:0 10px 30px #071d2466,inset 0 0 0 1px #dbca9118;border-radius:14px}
+.adv-app .adv-world-heading{background:linear-gradient(110deg,#133d34,#254b3b);border-bottom:1px solid #dbbe7777;color:#f7eac1}
+.adv-app .adv-world-viewport{background:#90a575}.adv-app .adv-world-tile.cell-floor{background:radial-gradient(ellipse at 23% 68%,#7e9c6422 0 8%,transparent 12%),radial-gradient(ellipse at 80% 15%,#e3d7a622 0 7%,transparent 14%),linear-gradient(145deg,#9faf7b,#95aa70);box-shadow:none}
+.adv-app .adv-world-tile.cell-p,.adv-app .adv-world-tile.cell-d,.adv-app .adv-world-tile.cell-e{background:linear-gradient(115deg,#dccba5,#c0b286)!important;border:1px solid #b8a77a22;box-shadow:inset 0 1px #f0dcbb55,inset 1px 0 #d6c69944;border-radius:2px}
+.adv-app .adv-world-tile.cell-g{background:radial-gradient(ellipse at 25% 20%,#6f9d6644,transparent 60%),linear-gradient(130deg,#82a664,#6d945a)!important}.adv-app .adv-world-tile.cell-g .adv-world-asset{opacity:.85;filter:drop-shadow(0 2px 1px #36573955)}
+.adv-app .adv-world-tile.cell-w{background:repeating-linear-gradient(175deg,#91b6b822 0 2px,transparent 3px 16px),linear-gradient(130deg,#5b9ca4,#376e83)!important;animation:none;box-shadow:inset 0 3px #c9d3a055}
+.adv-app .adv-house{filter:drop-shadow(0 7px 3px #263d4460)}.adv-app .adv-house:after{content:'';position:absolute;left:35%;bottom:8%;width:30%;height:40%;background:radial-gradient(ellipse,#ffdfa647,transparent 68%);pointer-events:none}.adv-app .adv-house span{background:#273f38ee;color:#f9e5b5;border-color:#c5b17a99;box-shadow:0 2px 3px #233a3833}
+.adv-app .adv-world-player,.adv-app .adv-world-follower,.adv-app .adv-world-canvas{transition-timing-function:cubic-bezier(.18,.6,.38,1);transition-duration:.16s}.adv-app .adv-world-player:after{content:'';position:absolute;bottom:-4%;left:5%;width:90%;height:22%;border:1px solid #ecd59888;border-radius:50%;background:#f3d39717;z-index:-1}
+.adv-app .adv-controls button{background:linear-gradient(150deg,#3c6651,#264b3e);border:1px solid #b0bd8580;border-bottom:3px solid #112f2a;box-shadow:inset 0 1px #f2eac51f;transition:background .15s}.adv-app .adv-controls button:active{background:#718864;transform:translateY(1px)}.adv-app .adv-controls .interact{background:linear-gradient(120deg,#89723d,#5d552f);color:#ffebbd}
+.adv-app .adv-message{background:linear-gradient(130deg,#faf4e3,#e7e9d4);border-color:#bdac76;box-shadow:0 8px 25px #0c28295c}
+.adv-app .adv-panel-tabs{background:linear-gradient(90deg,#143a31,#284b3b)}.adv-app .adv-panel-tabs button{border-color:#acc28a55;background:#2b5340}.adv-app .adv-panel-tabs button[aria-pressed=true]{background:#ebd79b;color:#284439}
+.tcg-viewport-battle .tcg-arena{box-shadow:inset 0 0 80px #0a293336,0 8px 30px #001a2544;border-color:#b4c89c88}
+.tcg-viewport-battle .tcg-unit{box-shadow:0 6px 10px #041c2966,inset 0 1px #f6e7b91a;transition:transform .18s ease,border-color .18s ease}.tcg-viewport-battle .tcg-unit.is-ready{border-color:#d7cd8ecc}.tcg-viewport-battle .tcg-unit:hover{transform:translateY(-2px)}
+.tcg-viewport-battle .tcg-combat-fx .tcg-fx-halo{opacity:.7}.tcg-viewport-battle .tcg-fx-sprite{mix-blend-mode:screen;max-width:165px}.tcg-viewport-battle .tcg-cast-rune{filter:none}.tcg-viewport-battle .tcg-fx-contact{mix-blend-mode:screen}
+.ac-shell .ac-arena{border-color:#c8ba83a6;box-shadow:inset 0 0 65px #10233838,0 10px 32px #06172388}.ac-shell .ac-trait-rail{background:linear-gradient(160deg,#203d37f2,#10252aee);border-color:#a0ad786b}.ac-shell .ac-hud{color:#f5e9c4}.ac-shell .ac-health i{background:linear-gradient(90deg,#59aa91,#c7e5a1)}.ac-shell .ac-market{background:linear-gradient(130deg,#132e2bee,#16362fee);border-color:#b4a7755c}
+.loot-stage-page .chest-cinematic{background:radial-gradient(ellipse at 50% 60%,#3d796925,transparent 70%)}.loot-stage-page .chest-scene{isolation:isolate}.loot-stage-page .chest-model{filter:drop-shadow(0 18px 12px #091f2b70)}.loot-stage-page .chest-open-button{background:linear-gradient(130deg,#ddbf7e,#b08a4b);color:#263d33;box-shadow:0 6px 20px #071e324d,inset 0 1px #fff2bc;transition:transform .16s ease}.loot-stage-page .chest-open-button:active{transform:translateY(1px)}
+.presentation-light .scene-atmosphere,.presentation-quiet .scene-atmosphere{display:none}.presentation-light .tcg-fx-particle:nth-child(n+3){display:none}.presentation-light .tcg-fx-sprite{display:none}.presentation-light .tcg-attack-manifest{filter:none!important}.presentation-light .adv-house,.presentation-light .adv-battle-model{filter:none!important}.presentation-light .tcg-arena,.presentation-light .ac-arena{box-shadow:none}
+.presentation-quiet .adv-world-canvas,.presentation-quiet .adv-world-player,.presentation-quiet .adv-world-follower,.presentation-quiet .adv-meter i{transition:none!important}.presentation-quiet .tcg-combat-fx .tcg-fx-particle{display:none}.presentation-quiet .tcg-combat-fx *{animation:none!important}.presentation-quiet .adv-elemental-effects{display:none}
+@media(prefers-reduced-motion:reduce){.scene-atmosphere,.adv-elemental-effects{display:none}.adv-world-canvas,.adv-world-player,.adv-world-follower,.adv-meter i{transition:none!important}}
+@media(max-height:500px) and (min-width:621px){
+ .adv-battle{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:7px;padding:8px}
+ .adv-battle>.adv-battle-head{grid-column:1/-1;grid-row:1}.adv-battle>.adv-battle-arena{grid-column:1;grid-row:2;min-height:0!important;height:100%}
+ .adv-battle>.adv-battle-console{grid-column:2;grid-row:2;max-height:none;height:100%;display:flex;flex-direction:column;gap:4px;padding:5px;min-height:0}
+ .adv-battle .adv-battle-log{flex-shrink:0;max-height:36px}.adv-battle .adv-battle-log p:not(:last-child){display:none}.adv-battle .adv-battle-menu{flex:1}
+ .adv-battle>.adv-type-chart{grid-column:1/-1;grid-row:3;max-height:none;height:28px}.adv-battle>.adv-type-chart[open]{height:100px;overflow:auto}
+ .adv-battle .adv-combatant{width:45%;min-width:0;padding:5px}.adv-battle .adv-combatant>strong{font-size:15px}.adv-battle .adv-combatant small{font-size:10px}
+ .adv-battle .adv-battle-model.enemy{right:7%;top:5%;width:100px;height:100px}.adv-battle .adv-battle-model.ally{left:4%;bottom:5%;width:115px;height:115px}
+ .adv-battle .adv-skill-grid{gap:4px}.adv-battle .adv-skill-grid button{min-height:48px;font-size:11px;padding:5px}
+}
+.adv-app .adv-world-asset{image-rendering:auto}.adv-app .adv-world-tile.cell-t{background:linear-gradient(130deg,#809963,#96aa70)!important}.adv-app .adv-world-tile:nth-child(7n){background-color:transparent}
+.adv-app .adv-world-tile.cell-floor:nth-child(7n){background:radial-gradient(ellipse at 75% 68%,#dcd6a723 0 7%,transparent 14%),linear-gradient(145deg,#9ead7e,#94a875)}
+.adv-world-player .adv-human-sprite.adv-hero-atlas{width:130%;height:130%;left:-15%;bottom:0;background-repeat:no-repeat;filter:drop-shadow(0 3px 2px #17362955);image-rendering:auto}
+
+/* Shared 4.4.1 regional art sits behind inputs; scene changes follow player choices. */
+.ac-board{background-position:center;background-size:cover}
+.tcg-living-table .tcg-board-art{opacity:.5;background-position:center 57%}
+.adv-world-person .adv-human-sprite.adv-npc-atlas{position:relative;width:145%;height:145%;left:-22.5%;bottom:14%;background-repeat:no-repeat;filter:drop-shadow(0 3px 2px #17362955);image-rendering:auto}
+.adv-world-person .adv-npc-atlas{animation:adv-npc-breathe 3.2s ease-in-out infinite}
+@keyframes adv-npc-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-1px)}}
+.presentation-quiet .adv-world-person .adv-npc-atlas,.presentation-light .adv-world-person .adv-npc-atlas{animation:none}
+@media(prefers-reduced-motion:reduce){.adv-world-person .adv-npc-atlas{animation:none}}

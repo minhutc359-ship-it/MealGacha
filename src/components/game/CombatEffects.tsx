@@ -1,5 +1,4 @@
 import {
-  useEffect,
   useLayoutEffect,
   useState,
   type CSSProperties,
@@ -55,16 +54,6 @@ const GLYPHS: Partial<Record<EffectCue["kind"], string>> = {
 }
 export function CombatEffects({ arena, frame, stamp, quiet = false }: Props) {
   const [layout, setLayout] = useState<Layout | null>(null)
-  useEffect(() => {
-    for (const src of new Set([
-      ...Object.values(SPRITES),
-      ...Object.values(FLAVOR_SPIRITS).map((spirit) => spirit.art),
-      "/assets/tcg/characters/anime/hero-command.webp",
-    ])) {
-      const image = new Image()
-      image.src = src
-    }
-  }, [])
   useLayoutEffect(() => {
     const root = arena.current
     if (!root || !frame) {
@@ -195,7 +184,7 @@ export function CombatEffects({ arena, frame, stamp, quiet = false }: Props) {
             ) : (
               <span className="tcg-fx-glyph">{GLYPHS[cue.kind]}</span>
             )}
-            {Array.from({ length: 6 }, (_, n) => (
+            {Array.from({ length: quiet ? 0 : 4 }, (_, n) => (
               <span
                 className="tcg-fx-particle"
                 key={n}

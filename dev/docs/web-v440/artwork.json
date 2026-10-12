@@ -1,0 +1,31 @@
+{
+  "version": "4.4.0",
+  "tool": "image_gen.imagegen",
+  "mode": "generate",
+  "assets": [
+    {
+      "path": "public/assets/tcg/boards/courtyard-v440.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original landscape background for Soul of Meal web game battles. Create a beautiful hand-painted anime RPG environment, wide 16:9 composition: an old Vietnamese village kitchen courtyard at blue hour, jade stone courtyard as a broad uncluttered arena in foreground occupying lower 60 percent, bamboo and lotus pond along the sides, small warm glowing lanterns, distant tiled-roof cooking pavilion with faint steam and misty limestone mountains. Sophisticated emerald, deep teal, warm amber lighting. Refined painted textures and gentle depth, luminous yet calm, compatible with stylized food-spirit creatures composited by the game. Keep the center and lower foreground clean for combatants and UI. No people, no creatures, no letters, no logos, no text, no watermark, no UI, no frame. Landscape 1536x1024 or wider.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 1536,
+        "quality": 85
+      },
+      "original": "Original Soul of Meal environment; no reference images supplied"
+    },
+    {
+      "path": "public/assets/adventure/hero-v440.webp",
+      "prompt": "Use case: stylized-concept. Asset type: GAME SPRITE ATLAS for Soul of Meal overworld, original main heroine. The supplied image is ONLY a character identity/style reference. Preserve her cream rolled-sleeve shirt, brown cooking apron, teal scarf, dark hair in a bun and warm expressive face. Create a square 1024x1024 image consisting of EXACTLY 4 columns by 4 rows of equal 256x256 cells, no borders, on fully transparent background. Each cell contains the SAME complete full-body chibi heroine, 3-heads-tall proportions, softly shaded polished anime 3D-style sprite matching food-spirit characters, centered horizontally, feet at the same baseline near 90% cell height, all limbs and scarf inside the cell. Row 1: facing DOWN toward viewer, four walking poses: neutral, left foot forward, neutral, right foot forward. Row 2: facing LEFT, the same four walking poses. Row 3: facing RIGHT, the same four walking poses. Row 4: facing UP away from viewer, back view, the same four walking poses. Top-down RPG camera angle about 25 degrees, clearly show full body and both feet. Consistent lighting, consistent scale of every character, no held objects needed, ladle attached at waist. Do not blend across cell boundaries. No labels, no letters, no numbers, no watermark, no ground, no shadows outside feet, no background scene.",
+      "transparent_background": true,
+      "optimization": {
+        "format": "WebP",
+        "width": 1024,
+        "quality": 88
+      },
+      "reference": "public/assets/tcg/characters/anime/hero.webp",
+      "layout": "4 columns × 4 rows; down/left/right/up; neutral/left-step/neutral/right-step",
+      "original": "AI-assisted original heroine atlas preserving established project identity"
+    }
+  ]
+}

@@ -29,6 +29,13 @@ const cueConfig: Record<SoundCue, {
 
 // Original procedural cues: no third-party recordings or network downloads.
 let context: AudioContext | null = null
+let output: AudioNode | null = null
+let effectsVolume = .7
+let soundOn = true
+export function configureSoundEffects(enabled: boolean, volume = .7) {
+ soundOn = enabled; effectsVolume = Number.isFinite(volume) ? Math.max(0,Math.min(1,volume)) : .7
+ if(!enabled){for(const lane of Object.values(lanes))stop(lane)}
+}
 type Lane = { timers: Set<ReturnType<typeof setTimeout>>; voices: Set<OscillatorNode> }
 const lanes: Record<"spin" | "reward" | "chest", Lane> = {
   spin: { timers: new Set(), voices: new Set() },
@@ -41,15 +48,23 @@ function audioContext(): AudioContext | null {
   try {
     const Audio = window.AudioContext ?? (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
     if (!Audio) return null
-    context ??= new Audio()
+    if (!context) {
+      context = new Audio({latencyHint:"interactive"})
+      if (typeof context.createDynamicsCompressor === "function") {
+        const compressor=context.createDynamicsCompressor()
+        compressor.threshold.setValueAtTime(-14,context.currentTime);compressor.ratio.setValueAtTime(8,context.currentTime)
+        compressor.connect(context.destination);output=compressor
+      } else output=context.destination
+    }
     if (context.state === "suspended") void context.resume().catch(() => {})
     return context
   } catch { return null }
 }
 
 function tone(cue: SoundCue, gainScale: number, lane?: Lane, pitch = 1): void {
+  if (!soundOn || effectsVolume <= 0) return
   const ctx = audioContext()
-  if (!ctx || (typeof document !== "undefined" && document.hidden)) return
+  if (!ctx || !soundOn || effectsVolume<=0 || (typeof document !== "undefined" && document.hidden)) return
   const cfg = cueConfig[cue]
   const oscillator = ctx.createOscillator()
   const gain = ctx.createGain()
@@ -57,10 +72,12 @@ function tone(cue: SoundCue, gainScale: number, lane?: Lane, pitch = 1): void {
   oscillator.type = cfg.type
   oscillator.frequency.setValueAtTime(cfg.frequency * pitch, now)
   if (cfg.endFrequency) oscillator.frequency.exponentialRampToValueAtTime(cfg.endFrequency * pitch, now + cfg.duration)
-  gain.gain.setValueAtTime(cfg.gain * Math.max(0, Math.min(1.5, gainScale)), now)
+  gain.gain.setValueAtTime(.0001, now)
+  gain.gain.linearRampToValueAtTime?.(cfg.gain * effectsVolume * Math.max(0, Math.min(1.5, gainScale)), now+.007)
+  if (!gain.gain.linearRampToValueAtTime) gain.gain.setValueAtTime(cfg.gain * effectsVolume * Math.max(0, Math.min(1.5, gainScale)),now)
   gain.gain.exponentialRampToValueAtTime(0.0001, now + cfg.duration)
   oscillator.connect(gain)
-  gain.connect(ctx.destination)
+  gain.connect(output ?? ctx.destination)
   lane?.voices.add(oscillator)
   oscillator.onended = () => {
     oscillator.disconnect()

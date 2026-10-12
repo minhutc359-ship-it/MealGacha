@@ -19,10 +19,10 @@ it("every Adventure species renders the same model as TCG without mutating save"
  }
  expect(JSON.stringify(useGameStore.getState().save)).toBe(save)
 })
-it("keepers share the animated chef atlas and player retains directional world sprite",()=>{
+it("keepers share the animated chef atlas and player uses the four-direction heroine atlas",()=>{
  for(const character of ["bach","hai","moc","nhien","lien"] as const){
   expect(renderToStaticMarkup(createElement(HumanSprite,{character}))).toContain(`data-character="chef-${character}"`)
  }
  const html=renderToStaticMarkup(createElement(HumanSprite,{character:"hero",direction:"up",frame:3}))
- expect(html).toContain('hero-up-1');expect(html).toContain('/assets/tcg/characters/anime/hero.webp')
+ expect(html).toContain('data-facing="up"');expect(html).toContain('/assets/adventure/hero-v440.webp');expect(html).toContain('background-position:100% 100%')
 })

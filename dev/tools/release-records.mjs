@@ -51,7 +51,7 @@ const packages = [...seen.values()].sort((a, b) => a.name.localeCompare(b.name))
 const header = `Soul of Meal ${pkg.version} · third-party notices\nGenerated from installed lockfile dependencies. Includes the declared runtime dependency graph; some packages can be tree-shaken from a particular build. Development tooling is not shipped. App-owned content is governed by the root LICENSE, not by these library licenses.\n\n`
 const fontTexts = ["BeVietnamPro-OFL.txt", "Exo2-OFL.txt"].map(file => `=== Font: ${file} ===\n${readFileSync(path.join(root, "rights/fonts", file), "utf8")}`)
 write(path.join(root, "public/legal/THIRD_PARTY_LICENSES.txt"), header + packages.map(p => `=== ${p.name}@${p.version} · ${typeof p.license === "string" ? p.license : JSON.stringify(p.license)} ===\n${p.notice}`).join("\n\n") + "\n\n" + fontTexts.join("\n\n") + "\n\nPlace data © OpenStreetMap contributors. ODbL 1.0: https://www.openstreetmap.org/copyright · https://opendatacommons.org/licenses/odbl/1-0/\nExternal map data is fetched when requested; it is not bundled in this app.\n" + (existsSync(path.join(root, "public/legal/NATIVE_SDK_NOTICES.txt")) ? "\n\n" + readFileSync(path.join(root, "public/legal/NATIVE_SDK_NOTICES.txt"), "utf8") : ""))
-write(path.join(root, "rights/DEPENDENCIES.json"), JSON.stringify({ version: pkg.version, generatedOn: "2026-10-10", packages: packages.map(({ notice, ...p }) => p), fonts: [{ name: "Be Vietnam Pro", license: "OFL-1.1", source: "https://github.com/google/fonts/blob/main/ofl/bevietnampro/OFL.txt", licenseBlob: "9e2c1177b1e7b9b2f63e122d37f8c21bc5dddc65" }, { name: "Exo 2", license: "OFL-1.1", source: "https://github.com/google/fonts/blob/main/ofl/exo2/OFL.txt", licenseBlob: "5bec9840d2e0df42d80d6fac55279d1d5e5b9199" }] }, null, 2) + "\n")
+write(path.join(root, "rights/DEPENDENCIES.json"), JSON.stringify({ version: pkg.version, generatedOn: "2026-10-12", packages: packages.map(({ notice, ...p }) => p), fonts: [{ name: "Be Vietnam Pro", license: "OFL-1.1", source: "https://github.com/google/fonts/blob/main/ofl/bevietnampro/OFL.txt", licenseBlob: "9e2c1177b1e7b9b2f63e122d37f8c21bc5dddc65" }, { name: "Exo 2", license: "OFL-1.1", source: "https://github.com/google/fonts/blob/main/ofl/exo2/OFL.txt", licenseBlob: "5bec9840d2e0df42d80d6fac55279d1d5e5b9199" }] }, null, 2) + "\n")
 
 // One policy source drives in-app and standalone, JavaScript-free store URLs.
 const source = readFileSync(path.join(root, "src/legal/policies.ts"), "utf8")
@@ -65,6 +65,12 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/adventure/la-v441.webp", "AI-assisted original four-direction NPC atlas using the project character portrait reference", ["dev/docs/web-v441/artwork.json"]],
+ ["assets/adventure/merchant-v441.webp", "AI-assisted original four-direction NPC atlas using the project character portrait reference", ["dev/docs/web-v441/artwork.json"]],
+ ["assets/adventure/grandmother-v441.webp", "AI-assisted original four-direction NPC atlas using the project character portrait reference", ["dev/docs/web-v441/artwork.json"]],
+ ["assets/tcg/fx/elemental-impacts-v441.webp", "AI-assisted original five-school, five-frame impact atlas shared by all games", ["dev/docs/web-v441/artwork.json"]],
+ ...["ember", "tide", "grove", "hearth", "sugar"].map(school => [`assets/tcg/boards/${school}-v441.webp`, "AI-assisted original shared regional battle environment", ["dev/docs/web-v441/artwork.json"]]),
+ ["assets/adventure/hero-v440.webp", "AI-assisted original heroine walking atlas, using existing project heroine as identity reference", ["dev/docs/web-v440/artwork.json"]],
  ["assets/adventure/", "Original code-authored vector world and four-direction character sprites; no external art or samples", ["dev/tools/build-adventure-assets.mjs", "dev/docs/web-v430/UPDATE.md"]],
  ["assets/v4/audio/web410/", "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples", ["dev/tools/compose-web410.py", "dev/docs/web-v410/audio-manifest.json"]],
  ["assets/v4/characters/", "Original AI-assisted 24-pose animations using existing project character references", ["dev/docs/major-v400/clip-assets.json", "dev/docs/major-v400/clip-prompts.json", "dev/tools/register-v4-clips.py"]],
@@ -99,5 +105,5 @@ function walk(dir) { for (const file of readdirSync(dir)) { const full = path.jo
 } } }
 walk(path.join(root, "public"))
 assets.sort((a, b) => a.path.localeCompare(b.path))
-write(path.join(root, "rights/ASSET_REGISTER.json"), JSON.stringify({ version: pkg.version, generatedOn: "2026-10-10", disclaimer: "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.", assets }, null, 2) + "\n")
+write(path.join(root, "rights/ASSET_REGISTER.json"), JSON.stringify({ version: pkg.version, generatedOn: "2026-10-12", disclaimer: "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.", assets }, null, 2) + "\n")
 console.log(JSON.stringify({ runtimeDependencies: packages.length, registeredAssets: assets.length, staticPolicies: 3 }))

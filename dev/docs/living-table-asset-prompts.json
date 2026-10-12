@@ -158,6 +158,17 @@
         "quality": 81
       },
       "original": "AI-generated original fictional game illustration"
+    },
+    {
+      "path": "public/assets/tcg/boards/courtyard-v440.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original landscape background for Soul of Meal web game battles. Create a beautiful hand-painted anime RPG environment, wide 16:9 composition: an old Vietnamese village kitchen courtyard at blue hour, jade stone courtyard as a broad uncluttered arena in foreground occupying lower 60 percent, bamboo and lotus pond along the sides, small warm glowing lanterns, distant tiled-roof cooking pavilion with faint steam and misty limestone mountains. Sophisticated emerald, deep teal, warm amber lighting. Refined painted textures and gentle depth, luminous yet calm, compatible with stylized food-spirit creatures composited by the game. Keep the center and lower foreground clean for combatants and UI. No people, no creatures, no letters, no logos, no text, no watermark, no UI, no frame. Landscape 1536x1024 or wider.",
+      "transparent_background": false,
+      "optimization": {
+        "format": "WebP",
+        "width": 1536,
+        "quality": 85
+      },
+      "original": "Original Soul of Meal environment; no reference images supplied"
     }
   ]
 }

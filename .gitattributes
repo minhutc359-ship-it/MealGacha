@@ -213,3 +213,6 @@ dev/docs/major-v400/*.jpg -filter -diff -merge -text
 public/assets/fonts/** -filter -diff -merge -text
 # Native resources/wrapper must build without a separate LFS fetch.
 android/** -filter !diff !merge -text
+
+# Adventure media must deploy as actual bytes without a separate LFS download.
+public/assets/adventure/** -filter -diff -merge -text
