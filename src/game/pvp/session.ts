@@ -131,7 +131,7 @@ export class RoomSession {
           },
           onConnection: (wire) => this.connected(wire),
           onError: (notice) => {
-            if (!this.wire?.open)
+            if (!this.wire?.open && this.state.status !== "closed")
               this.emit({ status: "disconnected", pending: false, notice })
           },
         },
@@ -210,6 +210,13 @@ export class RoomSession {
   private lost(wire: Wire) {
     if (this.disposed || this.wire !== wire) return
     this.wire = null
+    if (this.state.status === "closed") return
+    if (!this.room && this.state.view) {
+      const v = this.state.view
+      this.emit({
+        view: { ...v, connected: [v.connected[0], false], canAct: false },
+      })
+    }
     if (this.room) {
       setGuestConnected(this.room, false)
       this.publish()

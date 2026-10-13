@@ -254,7 +254,10 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
     sequence: presentation?.sequence ?? 0,
     index: presentation?.frames.length ?? 0,
   })
-  const replay = !demo && presentation?.battleId === stored.id ? presentation : null
+  // A room republishes the same sequence during cooldown/presence updates.
+  // Keep its frame reference stable so the current animation timer keeps running.
+  const replay = useMemo(() => !demo && presentation?.battleId === stored.id ? presentation : null,
+    [!!demo, presentation?.battleId, presentation?.sequence, stored.id])
   const frameIndex =
     replay && playback.sequence === replay.sequence ? playback.index : -1
   const busy = demo ? !!demo.frame :
@@ -459,7 +462,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               ghost={!next}
               selected={selection?.type === "attack" && selection.uid === u.uid}
               disabled={
-                !!network?.locked || !!battle.enemyPhase || busy ||
+                !!battle.enemyPhase || busy ||
                 !!battle.result ||
                 !!battle.opening ||
                 (side === "enemy" && !!selection && !projected?.legal)
@@ -484,7 +487,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
                 if (side === "enemy") {
                   if (targeting) target(u.uid)
                   else setInspect(u.cardId)
-                } else if (!u.ready) setInspect(u.cardId)
+                } else if (!u.ready || network?.locked) setInspect(u.cardId)
                 else {
                   gameAudio.play("select")
                   setSelection(
@@ -526,7 +529,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
           </span>
           <h1>
             {stage?.title ??
-              (battle.expedition ? battle.opponent : "Bàn ăn thử thách")}
+              (network ? `${stored.pvp?.names.player} / ${stored.pvp?.names.enemy}` : battle.expedition ? battle.opponent : "Bàn ăn thử thách")}
           </h1>
         </div>
         <div className="tcg-battle-actions">
@@ -544,7 +547,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
           </button>
         </div>
       </header>
-      {!demo&&!busy&&!sceneId&&stored.pendingReaction&&<TrapDecision battle={stored} onDecision={activate=>execute({type:"react",id:stored.pendingReaction!.id,activate})}/>}
+      {!demo&&!busy&&!sceneId&&stored.pendingReaction&&<TrapDecision battle={stored} disabled={!!network?.locked} onDecision={activate=>execute({type:"react",id:stored.pendingReaction!.id,activate})}/>}
       {!battle.opening && (
         <button
           className={`tcg-tactics-ribbon ${
@@ -781,11 +784,12 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               card={CARD_MAP[id]}
               cost={cardCost(battle.player, CARD_MAP[id])}
               compact
-              playable={!playError(battle, index) && !busy}
+              playable={!network?.locked && !playError(battle, index) && !busy}
               muted={!!playError(battle, index)}
               selected={selection?.type === "play" && selection.index === index}
-              disabled={!!network?.locked || busy || !!battle.result || !!battle.opening || !!battle.enemyPhase}
+              disabled={busy || !!battle.result || !!battle.opening || !!battle.enemyPhase}
               onClick={() => {
+                if(network?.locked){setInspect(id);return}
                 gameAudio.play(
                   selection?.type === "play" && selection.index === index
                     ? "deselect"

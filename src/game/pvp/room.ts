@@ -182,7 +182,7 @@ export function validCommand(input: unknown): input is RoomCommand {
 export function createHostRoom(
   mode: RoomMode,
   profile: Profile,
-  id = crypto.randomUUID(),
+  id: string = crypto.randomUUID(),
 ): HostRoom {
   if (!validProfile(profile, mode))
     throw Error(
@@ -373,7 +373,9 @@ export function applyRoomCommand(
       }
       room.tcg = result.battle
       room.actionReadyAt =
-        now + result.frames.reduce((sum, f) => sum + frameDuration(f), 0)
+        now +
+        frameDuration(undefined) +
+        result.frames.reduce((sum, f) => sum + frameDuration(f), 0)
       if (room.tcg.result) {
         room.phase = "finished"
         room.winner =

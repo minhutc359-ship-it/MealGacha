@@ -1,3 +1,4 @@
+import { RECIPE_MAP } from "../recipes"
 import { CARD_MAP } from "../catalog"
 import { UNIT_MAP, MONSTER_MAP } from "../autochess/catalog"
 import { ITEM_MAP } from "../autochess/items"
@@ -36,6 +37,21 @@ function battle(b: unknown): boolean {
     !side(b.turnSide) ||
     b.stageId !== null ||
     !num(b.round) ||
+    !list(
+      b.pendingFlavors ?? [],
+      4,
+      (f) =>
+        obj(f) &&
+        text(f.id) &&
+        card(f.cardId) &&
+        side(f.owner) &&
+        ["buff", "heal"].includes(f.effect) &&
+        num(f.power) &&
+        num(f.executeRound),
+    ) ||
+    (b.tableAura !== undefined &&
+      (!obj(b.tableAura) || !known(RECIPE_MAP, b.tableAura.id))) ||
+    (b.pendingScenes?.length ?? 0) > 0 ||
     !list(b.log, 40, (x) => text(x, 500))
   )
     return false
@@ -56,13 +72,17 @@ function battle(b: unknown): boolean {
           obj(u) &&
           text(u.uid) &&
           card(u.cardId) &&
-          ["attack", "health", "maxHealth", "shield"].every((k) => num(u[k])),
+          ["attack", "health", "maxHealth", "shield"].every((k) => num(u[k])) &&
+          list(u.keywords, 12, (k) => text(k, 30)) &&
+          typeof u.ready === "boolean",
       )
     )
       return false
     if (
       c.trap &&
       (!obj(c.trap) ||
+        !text(c.trap.uid) ||
+        !num(c.trap.setTurn) ||
         !(s === "enemy" && !c.trap.revealed
           ? c.trap.cardId === "hidden"
           : card(c.trap.cardId)))
@@ -74,7 +94,11 @@ function battle(b: unknown): boolean {
     (!obj(b.pendingReaction) ||
       !text(b.pendingReaction.id) ||
       !obj(b.pendingReaction.intent) ||
-      !side(b.pendingReaction.intent.actor))
+      !side(b.pendingReaction.intent.actor) ||
+      !card(b.pendingReaction.intent.cardId) ||
+      !["attack", "spell", "summon", "fallen"].includes(
+        b.pendingReaction.intent.trigger,
+      ))
   )
     return false
   return b.result === null || b.result === "win" || b.result === "loss"
@@ -84,9 +108,10 @@ function run(r: unknown): boolean {
     !obj(r) ||
     !text(r.id) ||
     !["prepare", "combat", "result"].includes(r.phase) ||
-    !["health", "gold", "xp", "wave", "rounds", "rng", "nextUid"].every((k) =>
+    !["health", "gold", "xp", "wave", "rounds", "nextUid"].every((k) =>
       num(r[k]),
     ) ||
+    !num(r.rng, 4294967295) ||
     !list(r.roster, 18, piece) ||
     !list(r.shop, 5, (id) => id === null || known(UNIT_MAP, id)) ||
     r.shop.length !== 5 ||
@@ -101,6 +126,8 @@ function run(r: unknown): boolean {
     obj(b) &&
     text(b.id) &&
     num(b.tick, 2000) &&
+    [null, "win", "loss"].includes(b.result) &&
+    (b.boss === null || known(MONSTER_MAP, b.boss)) &&
     list(
       b.actors,
       60,
@@ -137,6 +164,20 @@ function run(r: unknown): boolean {
       120,
       (e) =>
         obj(e) &&
+        [
+          "move",
+          "attack",
+          "cast",
+          "hit",
+          "heal",
+          "shield",
+          "death",
+          "phase",
+          "summon",
+          "burn",
+          "mana",
+          "stun",
+        ].includes(e.kind) &&
         text(e.source) &&
         text(e.target) &&
         num(e.cell) &&
@@ -180,7 +221,26 @@ export function validRoomView(v: unknown): v is RoomView {
             obj(f) &&
             obj(f.event) &&
             side(f.event.side) &&
-            text(f.event.kind) &&
+            [
+              "set-trap",
+              "trap",
+              "trap-window",
+              "trap-pass",
+              "negated",
+              "clear-trap",
+              "play",
+              "attack",
+              "turn",
+              "rule",
+              "mulligan",
+              "combo",
+              "objective",
+              "scene",
+              "assist",
+              "tactic",
+            ].includes(f.event.kind) &&
+            (f.event.recipeId === undefined ||
+              known(RECIPE_MAP, f.event.recipeId)) &&
             text(f.event.label, 500) &&
             (f.event.cardId === undefined || card(f.event.cardId)) &&
             battle(f.before) &&

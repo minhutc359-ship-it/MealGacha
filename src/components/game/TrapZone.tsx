@@ -71,8 +71,10 @@ export function TrapSlot({
 export function TrapDecision({
   battle,
   onDecision,
+  disabled = false,
 }: {
   battle: Battle
+  disabled?: boolean
   onDecision: (activate: boolean) => void
 }) {
   const reaction = battle.pendingReaction,
@@ -135,6 +137,7 @@ export function TrapDecision({
         <button
           type="button"
           className="tcg-button primary"
+          disabled={disabled}
           onClick={() => onDecision(true)}
         >
           ◇ Kích hoạt bẫy
@@ -142,6 +145,7 @@ export function TrapDecision({
         <button
           type="button"
           className="tcg-button ghost"
+          disabled={disabled}
           onClick={() => onDecision(false)}
         >
           Giữ bẫy

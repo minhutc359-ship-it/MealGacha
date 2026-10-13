@@ -212,7 +212,8 @@ function ConnectedRoom({
   const [atRoom, setAtRoom] = useState(false),
     [confirm, setConfirm] = useState(false),
     [copy, setCopy] = useState("")
-  const playing = !!v && v.phase !== "lobby" && !atRoom
+  const playing =
+    !!v && v.phase !== "lobby" && !atRoom && state.status !== "closed"
   useGameMusic(v?.auto?.phase === "combat" ? "auto-battle" : "auto-prepare", 1)
   useEffect(() => {
     const prevent = (e: BeforeUnloadEvent) => {
@@ -227,7 +228,7 @@ function ConnectedRoom({
   }, [v?.phase])
   const status = !v?.connected.every(Boolean)
     ? "Tạm dừng · chờ đủ hai người kết nối"
-    : v.tcg?.pendingReaction
+    : v.tcg?.pvp?.reactionOwner
       ? "Chờ quyết định của người có bẫy"
       : v.canAct
         ? "Lượt của bạn"
