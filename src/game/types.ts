@@ -125,6 +125,8 @@ export interface TrapIntent {
 export interface TrapReaction { id: string; trapUid: string; intent: TrapIntent }
 export interface EnemyPhase { phase: "plays" | "attacks"; steps: number; attacks: string[]; cursor: number }
 export interface Battle {
+  /** Ephemeral friendly rooms; never written into the solo save. */
+  pvp?: { names: Record<BattleSide, string>; reactionOwner?: BattleSide }
   turnSerial?: number
   turnSide?: BattleSide
   enemyPhase?: EnemyPhase

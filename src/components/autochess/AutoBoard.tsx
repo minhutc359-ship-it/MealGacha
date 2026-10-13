@@ -11,7 +11,7 @@ import {
 } from "../../game/autochess/catalog"
 import { enemyPlan } from "../../game/autochess/combat"
 import { drawChannel, drawProjectile, drawImpact, skillVfx } from "../../game/battleVfx"
-import type { Actor, AutoRun } from "../../game/autochess/types"
+import type { Actor, AutoRun, Piece } from "../../game/autochess/types"
 import { actorPosition as position, actorFrame, SPRITE_SHEETS, starScale, type StarUpgrade } from "../../game/autochess/presentation"
 import { arenaTheme, drawArena, drawCastAura, drawWard, drawSkillBurst, drawDeparture } from "../../game/autochess/arenaVfx"
 import { drawStarUpgrade } from "../../game/autochess/starVfx"
@@ -32,8 +32,10 @@ export function AutoBoard({
   onPiecePointerDown,
   onCellPointerDown,
   onInspectCell,
+  opponentPieces,
 }: {
   run: AutoRun
+  opponentPieces?: Piece[]
   getFrame: Frames
   selected: string | null
   reducedMotion: boolean
@@ -47,10 +49,10 @@ export function AutoBoard({
 }) {
   const root = useRef<HTMLDivElement>(null),
     canvas = useRef<HTMLCanvasElement>(null)
-  const options = useRef({ selected, reducedMotion, lowQuality, celebrating, upgrades })
+  const options = useRef({ selected, reducedMotion, lowQuality, celebrating, upgrades, opponentPieces })
   useEffect(() => {
-    options.current = { selected, reducedMotion, lowQuality, celebrating, upgrades }
-  }, [selected, reducedMotion, lowQuality, celebrating, upgrades])
+    options.current = { selected, reducedMotion, lowQuality, celebrating, upgrades, opponentPieces }
+  }, [selected, reducedMotion, lowQuality, celebrating, upgrades, opponentPieces])
   useEffect(() => {
     const element = root.current!,
       surface = canvas.current!,
@@ -185,14 +187,14 @@ export function AutoBoard({
                     phase: 0,
                   }) as Actor,
               ),
-            ...enemyPlan(current).map(
-              ({ def, cell }, i) =>
+            ...(opts.opponentPieces ? opts.opponentPieces.filter(p=>p.cell!==null).map(p=>({def:UNIT_MAP[p.id],cell:35-p.cell!,star:p.star})) : enemyPlan(current)).map(
+              ({ def, cell, ...detail }, i) =>
                 ({
                   uid: `preview${i}`,
                   id: def.id,
                   side: "enemy",
                   cell,
-                  star: 1,
+                  star: "star" in detail ? detail.star : 1,
                   hp: def.hp,
                   maxHp: def.hp,
                   mana: 0,
@@ -264,8 +266,8 @@ export function AutoBoard({
         (a, c) => (coords.get(a.uid)?.y ?? 0) - (coords.get(c.uid)?.y ?? 0),
       )) {
         const def =
-            actor.side === "ally" ? UNIT_MAP[actor.id] : MONSTER_MAP[actor.id],
-          model = actor.side === "enemy" ? monsterCharacter(actor.id) : unitCharacter(actor.id),
+            (UNIT_MAP[actor.id] ?? MONSTER_MAP[actor.id]),
+          model = UNIT_MAP[actor.id] ? unitCharacter(actor.id) : monsterCharacter(actor.id),
           fresh = model.sheet !== "base"
         const spriteKey = model.sheet, row = model.row
         const sheet = images[spriteKey] ??= leased(spriteKey,paths[spriteKey])
@@ -281,7 +283,7 @@ export function AutoBoard({
           y = py(p.y),
           size =
             cell *
-            (actor.side === "enemy" && MONSTER_MAP[actor.id].boss ? .9 : .75) * (actor.side === "ally" ? starScale(actor.star) : 1),
+            (actor.side === "enemy" && MONSTER_MAP[actor.id]?.boss ? .9 : .75) * (UNIT_MAP[actor.id] ? starScale(actor.star) : 1),
           color = AUTO_SCHOOLS[def.school].color
         ctx.globalAlpha = actor.hp <= 0 ? Math.max(0, 1 - deadAge / 20) : 1
         if (actor.hp > 0) {
@@ -293,7 +295,7 @@ export function AutoBoard({
         ctx.beginPath()
         ctx.ellipse(x, y + 2, cell * 0.33, cell * 0.11, 0, 0, Math.PI * 2)
         ctx.fill()
-        if (actor.hp > 0 && actor.star >= 2 && actor.side === "ally") {
+        if (actor.hp > 0 && actor.star >= 2 && !!UNIT_MAP[actor.id]) {
           ctx.save(); ctx.globalAlpha = actor.star === 3 ? .48 : .28
           ctx.strokeStyle = actor.star === 3 ? "#ffe49b" : "#b9d8ec"; ctx.lineWidth = actor.star === 3 ? 2 : 1
           ctx.beginPath(); ctx.ellipse(x, y, cell * .38, cell * .14, 0, 0, Math.PI * 2); ctx.stroke(); ctx.restore()
@@ -344,7 +346,7 @@ export function AutoBoard({
           const upgrade = opts.upgrades.find(u => u.uid === actor.uid)
           const age = upgrade ? (now - upgrade.at) / 1000 : 10
           const awaken = !opts.reducedMotion && age < .7 ? 1 + Math.sin(Math.min(1, age / .7) * Math.PI) * .09 : 1
-          const { scale, offsetX, offsetY } = fitCharacter(model, cell * .9 * (actor.side === "ally" ? starScale(actor.star) : 1), size, flip)
+          const { scale, offsetX, offsetY } = fitCharacter(model, cell * .9 * (UNIT_MAP[actor.id] ? starScale(actor.star) : 1), size, flip)
           let lungeX = 0, lungeY = 0, gait = 0
           if (!opts.reducedMotion && actor.action && !dancing) {
             const progress = Math.max(0, Math.min(1, (time - actor.action.start) / Math.max(1, actor.action.end - actor.action.start)))
@@ -434,7 +436,7 @@ export function AutoBoard({
           const target = actorMap.get(action.target ?? "")
           const end = target ? coords.get(target.uid)! : origin
           const t = Math.max(0, Math.min(1, (time - action.start) / Math.max(1, action.hit - action.start)))
-          const school = (u.side === "ally" ? UNIT_MAP[u.id] : MONSTER_MAP[u.id]).school
+          const school = (UNIT_MAP[u.id] ?? MONSTER_MAP[u.id]).school
           const kind = action.kind === "cast" ? skillVfx(action.skill ?? u.skill, u.range) : u.range <= 1 ? "slash" : "projectile"
           const from = { x:px(origin.x), y:py(origin.y)-cell*.48 }, to = { x:px(end.x), y:py(end.y)-cell*.48 }
           if (opts.reducedMotion) continue
@@ -545,7 +547,7 @@ export function AutoBoard({
       leases.forEach(lease=>lease.release())
     }
   }, [getFrame])
-  const preview = enemyPlan(run)
+  const preview = opponentPieces ? opponentPieces.filter(p=>p.cell!==null).map(p=>({def:UNIT_MAP[p.id],cell:35-p.cell!})) : enemyPlan(run)
   return (
     <div className="ac-board" data-scene={arenaTheme(run)} style={{backgroundImage:`linear-gradient(180deg,#051c2928,#08201f66),url(${ELEMENTAL_BOARDS[arenaTheme(run)]})`}} ref={root}>
       <canvas ref={canvas} aria-hidden="true" />

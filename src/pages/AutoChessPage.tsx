@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { recapAdvice } from "../game/autochess/recapAdvice"
 import { ArenaScene } from "../components/game/ArenaScene"
 import { livingMusic } from "../game/audioScore"
@@ -303,6 +304,7 @@ export function AutoChessPage() {
           </div>
         </button>
         <ModeSwitch mode="auto" />
+        <Link className="ac-pvp-entry" to="/pvp?mode=auto">⚔ PvP</Link>
         <div className="ac-header-actions">
           <button
             onClick={() => openModal("guide")}

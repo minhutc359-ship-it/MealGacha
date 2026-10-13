@@ -243,6 +243,7 @@ export function TCGPage() {
         </button>
         <div className="tcg-sidebar-label">THẾ GIỚI CỦA BẠN</div>
         <nav aria-label="Điều hướng game">
+          <Link className="tcg-pvp-entry" to="/pvp?mode=tcg">⚔ Phòng PvP</Link>
           {NAV.map((n) => (
             <button
               key={n.id}
@@ -324,6 +325,7 @@ export function TCGPage() {
           className="tcg-menu-dialog"
         >
           <div className="tcg-menu-grid">
+            <Link className="tcg-pvp-entry" to="/pvp?mode=tcg">⚔ Phòng PvP</Link>
             {NAV.map((n) => (
               <button
                 key={n.id}

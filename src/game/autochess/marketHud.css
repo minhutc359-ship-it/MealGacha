@@ -157,3 +157,5 @@
 }
 
 .ac-shell .ac-item-grid button:disabled, .ac-shell .ac-equipped-items button:disabled { opacity: 1; filter: none; cursor: default; }
+
+.ac-pvp-entry{color:#eccb93;text-decoration:none;border:1px solid #c3a77555;border-radius:7px;padding:6px 10px;font-size:11px;white-space:nowrap}

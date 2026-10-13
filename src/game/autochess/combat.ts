@@ -205,8 +205,20 @@ export function createCombat(run: AutoRun): AutoCombat {
     pressure: p.level,
   }
 }
-const schoolOf = (u: Actor) =>
-  (u.side === "ally" ? UNIT_MAP[u.id] : MONSTER_MAP[u.id]).school
+const schoolOf = (u: Actor) => (UNIT_MAP[u.id] ?? MONSTER_MAP[u.id]).school
+const unitRules = (b: AutoCombat, u: Actor) => u.side === "ally" || !!b.pvp
+const augmentsFor = (b: AutoCombat, u: Actor) => b.pvp?.augments[u.side] ?? (u.side === "ally" ? b.augments : []) ?? []
+const traitsFor = (b: AutoCombat, u: Actor, fallback: Record<string, number>) => b.pvp?.traits[u.side] ?? fallback
+/** Build both armies with identical star, item and trait formulas. */
+export function createPvpCombat(first: AutoRun, second: AutoRun): AutoCombat {
+  const b=createCombat(first)
+  b.actors=b.actors.filter(a=>a.side==="ally").map(a=>({...a,uid:`h:${a.uid}`}))
+  b.actors.push(...createCombat(second).actors.filter(a=>a.side==="ally").map(a=>({...a,uid:`g:${a.uid}`,side:"enemy" as const,cell:35-a.cell})))
+  b.boss=null;b.pressure=0;b.augments=[]
+  b.pvp={traits:{ally:traitCounts(boardPieces(first)),enemy:traitCounts(boardPieces(second))},augments:{ally:[...first.augments],enemy:[...second.augments]},lastSkill:{ally:null,enemy:null},lastPower:{ally:0,enemy:0}}
+  if(Math.floor(first.rounds/4)%2===0)b.actors.reverse()
+  return b
+}
 function emit(
   b: AutoCombat,
   kind: EventKind,
@@ -261,8 +273,8 @@ function damage(
   if (target.hp === 0) {
     target.diedAt = b.tick
     emit(b, "death", source, target)
-    if (target.side === "ally" && b.augments?.includes("v4-last-guard")) {
-      for (const guard of b.actors.filter(a => a.side === "ally" && a.hp > 0 && UNIT_MAP[a.id]?.profession === "keeper" && a.talent && !a.talent.guardUsed)) {
+    if (unitRules(b,target) && augmentsFor(b,target).includes("v4-last-guard")) {
+      for (const guard of b.actors.filter(a => a.side === target.side && a.hp > 0 && UNIT_MAP[a.id]?.profession === "keeper" && a.talent && !a.talent.guardUsed)) {
         guard.talent!.guardUsed = true
         ward(b, guard, guard, 160)
       }
@@ -282,7 +294,7 @@ function heal(b: AutoCombat, source: Actor, target: Actor, power: number) {
   if (amount > 0) {
     target.hp += amount
     emit(b, "heal", source, target, amount)
-    if (target.side === "ally" && target.talent && b.augments?.includes("v4-heal-strike") && b.tick >= target.talent.healAt) {
+    if (unitRules(b,target) && target.talent && augmentsFor(b,target).includes("v4-heal-strike") && b.tick >= target.talent.healAt) {
       target.talent.attackCharge = .35; target.talent.chargeUntil = b.tick + 120; target.talent.healAt = b.tick + 100
     }
   }
@@ -306,7 +318,7 @@ function stun(
 ) {
   const resistant =
     target.items.includes("herbs") ||
-    (target.side === "ally" && (traits.grove ?? 0) >= 4)
+    (unitRules(b,target) && (traitsFor(b,target,traits).grove ?? 0) >= 4)
   // Repeated control cannot cancel every action forever.
   const duration = Math.round(ticks * (resistant ? 0.5 : 1))
   target.stunnedUntil = Math.max(target.stunnedUntil, b.tick + duration)
@@ -364,9 +376,10 @@ function skillHit(
     power = u.power * multiplier
   if (skill === "copy") {
     skill =
-      b.lastAllySkill && b.lastAllySkill !== "copy" ? b.lastAllySkill : "steam"
-    power = (b.lastAllyPower || u.power) * 0.65 * multiplier
+      (b.pvp ? b.pvp.lastSkill[u.side] : b.lastAllySkill) || "steam"
+    power = ((b.pvp ? b.pvp.lastPower[u.side] : b.lastAllyPower) || u.power) * 0.65 * multiplier
   }
+  if (b.pvp && u.skill !== "copy") { b.pvp.lastSkill[u.side]=skill; b.pvp.lastPower[u.side]=power }
   if (u.side === "ally" && u.skill !== "copy") {
     b.lastAllySkill = skill
     b.lastAllyPower = power
@@ -505,14 +518,14 @@ function skillHit(
     }
   }
   if (u.items.includes("ladle")) u.mana = Math.min(100, u.mana + 20)
-  if (u.side === "ally" && (traits.sugar ?? 0) >= 2)
+  if (unitRules(b,u) && (traits.sugar ?? 0) >= 2)
     ward(b, u, allies[0] ?? u, traits.sugar >= 4 ? 150 : 70)
-  if (u.side === "ally" && u.talent) {
-    if (b.augments?.includes("v4-relay") && b.tick >= u.talent.relayAt) {
-      const recipient = living(b,"ally").filter(a => a.uid !== u.uid && a.mana < 100).sort((a,c) => a.mana-c.mana || a.uid.localeCompare(c.uid))[0]
+  if (unitRules(b,u) && u.talent) {
+    if (augmentsFor(b,u).includes("v4-relay") && b.tick >= u.talent.relayAt) {
+      const recipient = living(b,u.side).filter(a => a.uid !== u.uid && a.mana < 100).sort((a,c) => a.mana-c.mana || a.uid.localeCompare(c.uid))[0]
       if (recipient) { const amount=Math.min(12,100-recipient.mana); recipient.mana+=amount; u.talent.relayAt=b.tick+160; emit(b,"mana",u,recipient,amount) }
     }
-    if (b.augments?.includes("v4-third-cast") && u.casts % 3 === 0 && target.hp > 0) damage(b,u,target,power*.45,true)
+    if (augmentsFor(b,u).includes("v4-third-cast") && u.casts % 3 === 0 && target.hp > 0) damage(b,u,target,power*.45,true)
   }
 
 }
@@ -556,7 +569,8 @@ function step(run: AutoRun) {
     level = pressure(run.wave, run.activeTicks, run.rulesVersion).level
   const enrage = 1 + Math.max(0, Math.floor((b.tick - 500) / 100) + 1) * 0.15
   for (const u of b.actors.filter((a) => a.hp > 0)) {
-    if (u.side === "enemy") {
+    if(b.pvp) u.attack=u.baseAttack*enrage
+    else if (u.side === "enemy") {
       if (run.mode !== "campaign" && level !== b.pressure) {
         const factor = (1 + 0.05 * level) / (1 + 0.05 * b.pressure)
         u.maxHp = Math.round(u.maxHp * factor)
@@ -570,7 +584,8 @@ function step(run: AutoRun) {
     }
     if (u.burnUntil > b.tick && b.tick % 20 === 0)
       damage(b, u, u, u.burnPower, true, "burn")
-    if (u.side === "ally" && b.tick % 100 === 0 && u.hp > 0) {
+    if (unitRules(b,u) && b.tick % 100 === 0 && u.hp > 0) {
+      const traits=traitsFor(b,u,traitCounts(boardPieces(run)))
       const schools = Object.keys(traits).filter((t) =>
         ["ember", "tide", "grove", "hearth", "sugar"].includes(t),
       ).length
@@ -600,7 +615,8 @@ function step(run: AutoRun) {
     const a = u.action!,
       target = b.actors.find((t) => t.uid === a.target)
     if (!target || target.hp <= 0 || u.stunnedUntil > b.tick) continue
-    if (a.kind === "cast") skillHit(run, b, u, target, traits)
+    const ownTraits=traitsFor(b,u,traits)
+    if (a.kind === "cast") skillHit(run, b, u, target, ownTraits)
     else {
       const charge = u.talent && u.talent.chargeUntil >= b.tick ? u.talent.attackCharge : 0
       damage(b, u, target, u.attack * (1 + charge))
@@ -609,21 +625,21 @@ function step(run: AutoRun) {
         100,
         u.mana +
           10 +
-          (u.side === "ally" &&
+          (unitRules(b,u) &&
           schoolOf(u) === "tide" &&
-          (traits.tide ?? 0) >= 2
-            ? traits.tide >= 4
+          (ownTraits.tide ?? 0) >= 2
+            ? ownTraits.tide >= 4
               ? 8
               : 4
             : 0),
       )
       if (
-        u.side === "ally" &&
+        unitRules(b,u) &&
         schoolOf(u) === "ember" &&
-        (traits.ember ?? 0) >= 2
+        (ownTraits.ember ?? 0) >= 2
       ) {
         target.burnUntil = b.tick + 80
-        target.burnPower = traits.ember >= 4 ? 16 : 8
+        target.burnPower = ownTraits.ember >= 4 ? 16 : 8
       }
     }
   }
@@ -649,7 +665,7 @@ function step(run: AutoRun) {
       if (to !== null) {
         const ticks =
           u.items.includes("basket") ||
-          (u.side === "ally" && (traits.traveler ?? 0) >= 2)
+          (unitRules(b,u) && (traitsFor(b,u,traits).traveler ?? 0) >= 2)
             ? 5
             : 7
         u.action = {

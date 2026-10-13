@@ -435,7 +435,7 @@ function play(
   p.hand.splice(index, 1)
   if (card.kind === "trap") {
     p.trap = {uid:`t${b.nextUid++}`,cardId:id,setTurn:b.turnSerial ?? 1}
-    log(b, side === "player" ? `Bạn úp ${card.name} · sẵn sàng từ lượt kế tiếp.` : `${b.opponent} úp một bẫy · danh tính đang kín.`)
+    log(b, b.pvp ? `${b.pvp.names[side]} úp một bẫy · danh tính đang kín.` : side === "player" ? `Bạn úp ${card.name} · sẵn sàng từ lượt kế tiếp.` : `${b.opponent} úp một bẫy · danh tính đang kín.`)
     return null
   }
   if (negated) {
@@ -891,6 +891,13 @@ function resolveTrap(b: Battle, owner: BattleSide, intent: TrapIntent, record: (
 }
 function offerTrap(b: Battle, owner: BattleSide, intent: TrapIntent, record: (event: BattleEvent)=>void): "none"|"wait"|"cancel"|"continue" {
   if(!trapMatches(b,owner,intent))return "none"
+  if(b.pvp){
+    const slot=b[owner].trap!
+    b.pvp.reactionOwner=owner
+    b.pendingReaction={id:`${slot.uid}:${b.turnSerial}:${intent.trigger}`,trapUid:slot.uid,intent}
+    record({kind:"trap-window",side:owner,cardId:slot.cardId,source:slot.uid,target:intent.source,label:`${b.pvp.names[owner]} đang chọn phản ứng.`})
+    return "wait"
+  }
   if(owner==="enemy")return resolveTrap(b,owner,intent,record)?"cancel":"continue"
   const slot=b.player.trap!
   b.pendingReaction={id:`${slot.uid}:${b.turnSerial}:${b.enemyPhase?.steps??0}:${b.enemyPhase?.cursor??0}:${intent.trigger}`,trapUid:slot.uid,intent}
@@ -971,6 +978,7 @@ export function actBattle(
   action: BattleAction,
   rng = Math.random,
 ): BattleResult {
+  if(current.pvp)return actPvpBattle(current,"player",action)
   const invalid = (error: string): BattleResult => ({
     battle: current,
     error,
@@ -1125,6 +1133,70 @@ export function actBattle(
   } else if((b.rulesVersion??350)>=450)advanceEnemyTurn(b,record)
   else enemyTurn(b, record)
   return error ? invalid(error) : { battle: b, error: null, frames }
+}
+
+/** Same effect engine, with explicit owners and no AI/campaign bonuses. */
+export function startPvpBattle(decks: [string[], string[]], names: [string, string], rng = Math.random): Battle {
+  decks.forEach(deck => assertDeckForRules(deck,CURRENT_TCG_RULES))
+  const b=startBattle(decks[0],null,"courage",rng,false,CURRENT_TCG_RULES)
+  b.player=combatant(shuffle(decks[0],rng),34)
+  b.enemy=combatant(shuffle(decks[1],rng),34)
+  b.pvp={names:{player:names[0],enemy:names[1]}}
+  b.opponent=names[1];delete b.enemyChallenge;delete b.tactic
+  b.turnSide=rng()<.5?"player":"enemy";b.turnSerial=1
+  b[b.turnSide==="player"?"enemy":"player"].mana=0
+  b[b.turnSide==="player"?"enemy":"player"].maxMana=0
+  draw(b,"player",4);draw(b,"enemy",4)
+  b.log=[`Giao hữu · ${names[0]} / ${names[1]}. ${b.pvp.names[b.turnSide]} đi trước.`]
+  return b
+}
+export function actPvpBattle(current: Battle, side: BattleSide, action: BattleAction): BattleResult {
+  const fail=(error:string):BattleResult=>({battle:current,error,frames:[]})
+  if(!current.pvp||current.result)return fail("Trận giao hữu đã kết thúc.")
+  if(action.type==="mulligan"||action.type==="tactic")return fail("Lệnh này không dùng trong phòng giao hữu.")
+  if(current.pendingReaction){
+    if(action.type!=="react"||current.pvp.reactionOwner!==side||action.id!==current.pendingReaction.id)return fail("Đang chờ người giữ bẫy chọn phản ứng.")
+  }else if(action.type==="react"||current.turnSide!==side)return fail("Chưa đến lượt của bạn.")
+  const b=clone(current),frames:BattleFrame[]=[]
+  let before=clone(current)
+  const record=(event:BattleEvent)=>{frames.push({before,battle:clone(b),event});before=clone(b)}
+  let error:string|null=null
+  if(action.type==="react"){
+    const intent=b.pendingReaction!.intent
+    if(!trapMatches(b,side,intent))return fail("Bẫy không còn đủ điều kiện.")
+    delete b.pendingReaction;delete b.pvp!.reactionOwner
+    const cancel=action.activate?resolveTrap(b,side,intent,record):false
+    if(!action.activate)record({kind:"trap-pass",side,label:`${b.pvp!.names[side]} giữ bẫy.`})
+    if(!b.result&&intent.resume==="play")error=finishPlay450(b,intent.actor,intent.index!,intent.target,intent.branch,record,cancel)
+    if(!b.result&&intent.resume==="attack"&&!cancel)error=finishAttack450(b,intent.actor,intent.source!,intent.target!,record)
+  }else if(action.type==="clear-trap"){
+    const slot=b[side].trap
+    if(!slot)return fail("Ô bẫy đang trống.")
+    b[side].trap=null;b[side].graveyard=[...(b[side].graveyard??[]),slot.cardId].slice(-36)
+    log(b,`${b.pvp!.names[side]} bỏ bẫy cũ.`)
+    record({kind:"clear-trap",side,source:slot.uid,label:b.log.at(-1)!})
+  }else if(action.type==="play"){
+    error=play(clone(b),side,action.index,action.target,action.branch)
+    if(!error){
+      const cardId=b[side].hand[action.index],card=CARD_MAP[cardId],owner=side==="player"?"enemy":"player"
+      const response=card.kind==="spell"?offerTrap(b,owner,{trigger:"spell",actor:side,cardId,index:action.index,target:action.target,branch:action.branch,resume:"play"},record):"none"
+      if(response!=="wait"&&!b.result)error=finishPlay450(b,side,action.index,action.target,action.branch,record)
+    }
+  }else if(action.type==="attack"){
+    error=attackIssue(b,side,action.uid,action.target)
+    if(!error){
+      const cardId=b[side].board.find(u=>u.uid===action.uid)!.cardId,owner=side==="player"?"enemy":"player"
+      if(offerTrap(b,owner,{trigger:"attack",actor:side,cardId,source:action.uid,target:action.target,resume:"attack"},record)!=="wait"&&!b.result)error=finishAttack450(b,side,action.uid,action.target,record)
+    }
+  }else if(action.type==="end"){
+    const next=side==="player"?"enemy":"player"
+    if((b.turnSerial??1)%2===0)b.round++
+    nextTurn(b,next,record)
+    if(b.tableAura&&b.round>b.tableAura.untilRound)delete b.tableAura
+    log(b,`Lượt ${b.round} · ${b.pvp!.names[next]} rút bài, hồi năng lượng.`)
+    record({kind:"turn",side:next,label:b.log.at(-1)!})
+  }
+  return error?fail(error):{battle:b,error:null,frames}
 }
 
 export interface TargetPreview {

@@ -1,6 +1,6 @@
 export type PolicyId = "terms" | "privacy" | "rights"
-export const POLICY_DATE = "10/10/2026"
-export const POLICY_VERSION = "2026-10-10"
+export const POLICY_DATE = "13/10/2026"
+export const POLICY_VERSION = "2026-10-13"
 export const SUPPORT_URL =
   "https://github.com/minhutc359-ship-it/MealGacha/issues"
 export interface Policy {
@@ -42,7 +42,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
       {
         title: "4. Tiến trình và vật phẩm ảo",
         paragraphs: [
-          "Bản hiện tại chạy trên thiết bị, không có tài khoản, giao dịch giữa người chơi hoặc thanh toán trong ứng dụng. Xu, vàng, chìa khóa, thẻ và điểm số là tài nguyên giải trí, không phải tiền, tài sản đầu tư hay quyền nhận tiền thưởng và không đổi thành tiền mặt.",
+          "Bản hiện tại chạy trên thiết bị, có phòng PvP giao hữu trên web, không có tài khoản, giao dịch giữa người chơi hoặc thanh toán trong ứng dụng. Xu, vàng, chìa khóa, thẻ và điểm số là tài nguyên giải trí, không phải tiền, tài sản đầu tư hay quyền nhận tiền thưởng và không đổi thành tiền mặt.",
           "Tiến trình được lưu cục bộ. Xóa dữ liệu trình duyệt, đổi thiết bị hoặc gỡ ứng dụng có thể làm mất tiến trình. Bạn nên xuất bản lưu trước khi chuyển thiết bị; người giữ nguyên mã tiến trình có thể nhập và sử dụng dữ liệu đó. Cập nhật cân bằng có thể thay đổi chỉ số và cách chơi, nhưng không làm mất các quyền bắt buộc theo pháp luật.",
           "Nếu bổ sung giao dịch trả phí, ứng dụng phải công bố giá, xác suất phần thưởng ngẫu nhiên nếu có, chính sách hoàn tiền và điều khoản thanh toán tương ứng trước khi giao dịch được thực hiện.",
           "Rương, gói thẻ và một số lựa chọn có kết quả ngẫu nhiên theo quy tắc của từng chế độ. Chơi nhiều không bảo đảm nhận đúng món/thẻ mong muốn, trừ cơ chế bảo đảm được mô tả cụ thể trong trò chơi. Không có phần thưởng tiền hoặc hiện vật bên ngoài; trò chơi không hỗ trợ mua bán tài nguyên ảo giữa người chơi.",
@@ -98,8 +98,16 @@ export const POLICIES: Record<PolicyId, Policy> = {
   privacy: {
     title: "Chính sách quyền riêng tư",
     intro:
-      "Chính sách này mô tả bản web Soul of Meal 4.0. Trò chơi không yêu cầu tài khoản máy chủ; tiến trình và ảnh tự nhập lưu trên thiết bị. Tìm quán, hosting, phông chữ và các liên kết ngoài có thể gửi dữ liệu ra khỏi thiết bị như mô tả dưới đây.",
+      "Chính sách này mô tả bản web Soul of Meal 4.9. Trò chơi không yêu cầu tài khoản máy chủ; tiến trình và ảnh tự nhập lưu trên thiết bị. Tìm quán, hosting, phông chữ và các liên kết ngoài có thể gửi dữ liệu ra khỏi thiết bị như mô tả dưới đây.",
     sections: [
+      {
+        title: "Phòng PvP giao hữu trên web 4.9",
+        paragraphs: [
+          "Khi bạn bấm Tạo phòng hoặc Vào phòng, web kết nối dịch vụ báo hiệu PeerServer Cloud (0.peerjs.com) để trao đổi mã thiết bị và thông tin SDP/ICE. Dịch vụ này và Google STUN (stun.l.google.com) nhận địa chỉ IP và thông tin kết nối mạng. Không kết nối các dịch vụ phòng khi bạn chỉ chơi đơn. Người vận hành có thể cấu hình máy báo hiệu hoặc TURN riêng; dữ liệu chuyển tiếp khi đó đi qua dịch vụ đã cấu hình.",
+          "Tên hiển thị, bộ bài được chọn, lệnh chơi và trạng thái trận truyền qua kênh WebRTC được mã hóa giữa hai thiết bị. Thiết bị chủ phòng giữ và tính toàn bộ trận trong bộ nhớ, gồm danh tính bài/bẫy. Giao diện đối thủ che bài trên tay, thứ tự rút và bẫy úp; người quản lý thiết bị chủ phòng vẫn có thể kiểm tra trạng thái đầy đủ. Đây là chế độ giao hữu, không phải giải đấu có máy chủ chống gian lận.",
+          "Phòng không gửi toàn bộ bản lưu, ví tài nguyên, ảnh cá nhân hoặc vị trí quán cho người bạn. Không dùng camera, micro hoặc chat. Mã nối lại của khách được giữ trong sessionStorage của tab để khôi phục ghế khi mất mạng hoặc tải lại; rời phòng chủ động xóa mã này. Tải lại hoặc đóng tab chủ phòng kết thúc phòng. Tiến trình chơi đơn không bị thay đổi bởi trận giao hữu.",
+        ],
+      },
       {
         title: "1. Phạm vi và người tiếp nhận yêu cầu",
         paragraphs: [

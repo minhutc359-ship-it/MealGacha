@@ -1,0 +1,79 @@
+{
+  "nativeWebRtc": true,
+  "signal": "local official PeerServer 1.0.2",
+  "qaStun": true,
+  "notTested": [
+    "cross-network NAT/TURN",
+    "Safari",
+    "physical mobile performance"
+  ],
+  "results": [
+    {
+      "viewport": "390x844",
+      "thirdSeatRejected": true,
+      "wrongModeRejected": true,
+      "disconnectPaused": true,
+      "resumeSameMatch": true,
+      "guestReloadResumed": true,
+      "cycle": "farm,farm,farm,pvp",
+      "cycleAccelerated": true
+    },
+    {
+      "viewport": "390x844",
+      "fourthUnitSummoned": true,
+      "trapSetAnimation": true,
+      "trapSetSoundOnce": true,
+      "trapHiddenInAllGuestFrames": true,
+      "manualTrapActivated": true,
+      "trapRevealMs": [
+        2273.3000000002794,
+        2289.2000000001863
+      ]
+    },
+    {
+      "viewport": "390x844",
+      "intentionalGuestLeaveForfeits": true,
+      "guestSeatFreed": true,
+      "rematchRejoined": true,
+      "hostCloseNotified": true
+    },
+    {
+      "viewport": "390x844",
+      "nativeTcg": true,
+      "manualEndTurn": true,
+      "soloSaveUnchanged": true
+    },
+    {
+      "viewport": "1440x900",
+      "nativeAuto": true
+    },
+    {
+      "viewport": "1440x900",
+      "nativeTcg": true,
+      "manualEndTurn": true,
+      "soloSaveUnchanged": true
+    },
+    {
+      "viewport": "844x390",
+      "nativeAuto": true
+    },
+    {
+      "viewport": "844x390",
+      "nativeTcg": true,
+      "manualEndTurn": true,
+      "soloSaveUnchanged": true
+    },
+    {
+      "viewport": "320x568",
+      "nativeAuto": true
+    },
+    {
+      "viewport": "320x568",
+      "nativeTcg": true,
+      "manualEndTurn": true,
+      "soloSaveUnchanged": true
+    }
+  ],
+  "errors": [],
+  "assets": []
+}

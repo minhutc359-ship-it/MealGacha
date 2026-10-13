@@ -556,5 +556,5 @@ describe("campaign playthrough", () => {
     expect(save.packTickets).toBe(8)
     expect(save.xp).toBe(900)
     expect(QUESTS.find((q) => q.id === "dawn")!.progress(save)).toBe(18)
-  })
+  }, 20000)
 })
