@@ -12,11 +12,13 @@ import { ItemArt } from "./ItemArt"
 import { SCHOOL_ICONS, PROFESSION_ICONS } from "./AutoTraits"
 
 type Props = {
+  beginLabel?: string
+
   run: AutoRun; selected: string | null; onSelect: (uid: string | null) => void; upgrades: StarUpgrade[]; reducedMotion: boolean
   drag: ReturnType<typeof useFormationDrag>; onAction: (action: AutoAction) => boolean; onInspect: (target: PeekTarget) => void
   shopOpen: boolean; onToggleShop: () => void; inventoryOpen: boolean; onToggleInventory: () => void; onInventoryDetails: () => void
 }
-export function AutoPreparation({ run, selected, onSelect, upgrades, reducedMotion, drag, onAction, onInspect, shopOpen, onToggleShop, inventoryOpen, onToggleInventory, onInventoryDetails }: Props) {
+export function AutoPreparation({ run, selected, onSelect, upgrades, reducedMotion, drag, onAction, onInspect, shopOpen, onToggleShop, inventoryOpen, onToggleInventory, onInventoryDetails, beginLabel }: Props) {
   const bench = benchLayout(run), selectedPiece = run.roster.find(p => p.uid === selected), progress = levelProgress(run.xp)
   const moveToBench = (index: number, keyboard: boolean) => {
     if (drag.ignoreClick() || !keyboard && drag.touchTap()) return
@@ -51,7 +53,7 @@ export function AutoPreparation({ run, selected, onSelect, upgrades, reducedMoti
       {selectedPiece && <button onClick={() => { onAction({ type: "sell", uid: selectedPiece.uid }); onSelect(null) }}>Bán · {UNIT_MAP[selectedPiece.id].cost * copies(selectedPiece.star)} ◉</button>}
       {!selectedPiece && <button onClick={() => onAction({ type: "auto-place" })}>Xếp nhanh</button>}
       <button aria-expanded={inventoryOpen} aria-controls="ac-item-tray" onClick={onToggleInventory} title="Mở kho để kéo trang bị lên quân hoặc ghép hai mảnh">✧ <span>Túi</span> {run.inventory.length}</button>
-      <button className="ac-begin" onClick={() => { onSelect(null); onAction({ type: "battle" }) }} disabled={!boardPieces(run).length || !!run.scene}>Xuất trận {boardPieces(run).length}/{capacity(run.xp)} →</button>
+      <button className="ac-begin" onClick={() => { onSelect(null); onAction({ type: "battle" }) }} disabled={!boardPieces(run).length || !!run.scene}>{beginLabel ?? "Xuất trận"} {boardPieces(run).length}/{capacity(run.xp)} →</button>
     </div>
     {inventoryOpen && <div className="ac-item-tray" id="ac-item-tray" role="group" aria-label="Kho trang bị kéo thả">
       <button className="ac-item-help" onClick={onInventoryDetails} aria-label="Công thức và hướng dẫn trang bị">?</button>

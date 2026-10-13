@@ -88,6 +88,12 @@ export interface CombatEvent {
 }
 export interface CombatStats { damage: number; healing: number; shielding: number; blocked: number }
 export interface AutoCombat {
+  pvp?: {
+    traits: Record<Actor["side"], Record<string, number>>
+    augments: Record<Actor["side"], string[]>
+    lastSkill: Record<Actor["side"], Skill | null>
+    lastPower: Record<Actor["side"], number>
+  }
   augments?: string[]
   recap?: Record<string, CombatStats>
   id: string

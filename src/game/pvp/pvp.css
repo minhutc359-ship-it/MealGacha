@@ -1,0 +1,575 @@
+.pvp-screen {
+  height: 100dvh;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: radial-gradient(ellipse at top, #26433a, #111c1d 65%);
+  color: #f0e5cf;
+  font-family: var(--font-body, sans-serif);
+  font-size: 13px;
+}
+.pvp-screen * {
+  box-sizing: border-box;
+}
+.pvp-screen button,
+.pvp-screen input {
+  font: inherit;
+}
+.pvp-screen button {
+  border: 1px solid #ac947552;
+  border-radius: 8px;
+  background: #273c35;
+  color: #f4e6cc;
+  min-height: 30px;
+  padding: 7px 12px;
+  cursor: pointer;
+}
+.pvp-screen button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.pvp-screen a {
+  color: #efd19b;
+  text-decoration: none;
+}
+.pvp-screen button:focus-visible,
+.pvp-screen input:focus-visible {
+  outline: 2px solid #f2ce90;
+  outline-offset: 2px;
+}
+.pvp-header {
+  height: 44px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 16px;
+  border-bottom: 1px solid #cfb99130;
+  background: #102221e6;
+}
+.pvp-header strong {
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.pvp-header button {
+  padding: 4px 9px;
+}
+.pvp-lobby {
+  width: min(100%, 680px);
+  margin: auto;
+  overflow: auto;
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+.pvp-lobby h1 {
+  font-size: 26px;
+  margin: 3px 0;
+  color: #ffe6b6;
+}
+.pvp-lobby p {
+  margin: 5px 0;
+  line-height: 1.55;
+}
+.pvp-hero {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.pvp-hero .tcg-portrait {
+  width: 68px;
+  height: 82px;
+  flex: none;
+}
+.pvp-hero small {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #d6b786;
+}
+.pvp-mode-tabs {
+  display: flex;
+  gap: 10px;
+}
+.pvp-mode-tabs button {
+  flex: 1;
+}
+.pvp-mode-tabs button[aria-pressed="true"] {
+  border-color: #d6b078;
+  background: #4e4933;
+}
+.pvp-lobby label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 11px;
+  color: #d5c7ad;
+}
+.pvp-lobby input {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid #bba67b5e;
+  border-radius: 8px;
+  background: #0d211f;
+  color: #ffe9c7;
+  padding: 9px 12px;
+  font-size: 15px;
+}
+.pvp-rules {
+  border: 1px solid #bba67b3b;
+  background: #24403785;
+  border-radius: 12px;
+  padding: 13px 16px;
+}
+.pvp-screen .pvp-primary {
+  background: linear-gradient(#d7b987, #b89561);
+  color: #1d302b;
+  border-color: #e6c994;
+  font-weight: 800;
+  min-height: 42px;
+}
+.pvp-join {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+}
+.pvp-join label {
+  flex: 1;
+  min-width: 0;
+}
+.pvp-join button {
+  height: 40px;
+  flex: none;
+}
+.pvp-footnote {
+  color: #b6c6b6;
+  font-size: 11px;
+  line-height: 1.55;
+}
+.pvp-notice {
+  flex: none;
+  margin: 0;
+  padding: 6px 16px;
+  font-size: 11px;
+  background: #604e2a94;
+  color: #ffe7a7;
+  text-align: center;
+}
+.pvp-reconnect {
+  align-self: center;
+}
+.pvp-room-bar {
+  height: 32px;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 12px;
+  background: #172f28;
+  border-bottom: 1px solid #cdb78024;
+  gap: 6px;
+}
+.pvp-room-bar span {
+  font-size: 10px;
+  letter-spacing: 0.4px;
+}
+.pvp-room-bar button {
+  font-size: 10px;
+  min-height: 25px;
+  padding: 4px 10px;
+}
+.pvp-code {
+  letter-spacing: 2px;
+  text-align: center;
+}
+.pvp-seats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.pvp-seats article {
+  border: 1px solid #bda57c3b;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 7px;
+  padding: 16px;
+  background: #19372f;
+}
+.pvp-seats .tcg-portrait {
+  width: 64px;
+  height: 78px;
+}
+.pvp-seats small {
+  color: #bfcdb5;
+}
+.pvp-tcg {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  position: relative;
+}
+.pvp-tcg > .tcg-viewport-battle {
+  position: relative;
+  inset: auto;
+  flex: 1;
+  min-height: 0;
+  height: auto;
+  width: 100%;
+  margin: 0;
+}
+.pvp-auto.ac-game {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  grid-template-rows: 40px 28px 28px minmax(0, 1fr);
+  padding: 7px 12px;
+  gap: 5px 12px;
+  position: relative;
+  overflow: hidden;
+}
+.pvp-auto-hud {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid #e0c89628;
+  background: #182e26;
+  border-radius: 9px;
+  padding: 4px 12px;
+}
+.pvp-auto-hud span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.pvp-auto-hud b {
+  font-size: 11px;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pvp-auto-hud strong {
+  color: #e9bc88;
+}
+.pvp-auto-hud small {
+  font-size: 11px;
+}
+.pvp-round-track {
+  grid-column: 1/-1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 10px;
+}
+.pvp-round-track span {
+  border-radius: 5px;
+  padding: 4px 12px;
+  color: #b3bfaf;
+  border: 1px solid #93a59025;
+}
+.pvp-round-track .is-current {
+  background: #806139;
+  color: #ffe8bc;
+  border-color: #cbac70;
+}
+.pvp-auto-status {
+  grid-column: 1/-1;
+  margin: 0;
+  font-size: 11px;
+  text-align: center;
+  line-height: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.pvp-auto-arena {
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  container-type: size;
+  position: relative;
+}
+.pvp-auto-arena .ac-board {
+  width: min(100cqw, 100cqh);
+  height: min(100cqw, 100cqh);
+  max-height: 100%;
+  max-width: 100%;
+  aspect-ratio: 1;
+}
+.pvp-auto-controls {
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pvp-auto-controls fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+.pvp-auto .ac-market {
+  position: static;
+  min-width: 0;
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+}
+.pvp-auto .ac-bench-line {
+  gap: 4px;
+}
+.pvp-auto .ac-bench button {
+  width: 27px;
+  height: 32px;
+  flex: none;
+  min-height: 0;
+}
+.pvp-auto .ac-shop {
+  gap: 4px;
+}
+.pvp-auto .ac-shop-art {
+  height: 70px;
+}
+.pvp-auto .ac-shop-card strong {
+  font-size: 9px;
+}
+.pvp-auto .ac-shop-card > small {
+  font-size: 8px;
+}
+.pvp-auto .ac-market-toolbar {
+  gap: 4px;
+}
+.pvp-auto .ac-formation-toolbar {
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.pvp-auto .ac-formation-toolbar span {
+  font-size: 9px;
+}
+.pvp-auto .ac-formation-toolbar button {
+  font-size: 10px;
+  padding: 4px 7px;
+}
+.pvp-auto .ac-cell-grid button {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+.pvp-auto .ac-cell-grid button:hover:not(:disabled) {
+  background: #ffde9a18;
+}
+.pvp-auto .ac-cell-grid button:focus-visible {
+  outline: 2px solid #ffd28a;
+  outline-offset: -2px;
+}
+.pvp-auto .ac-bench button,
+.pvp-auto .ac-shop-card {
+  padding: 0;
+}
+.pvp-auto .ac-trait-rail,
+.pvp-auto-dialog .ac-trait-rail {
+  position: static;
+  transform: none;
+  width: auto;
+  max-height: none;
+}
+.pvp-auto .ac-trait-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.pvp-auto .ac-trait-chip {
+  width: auto;
+}
+.pvp-auto-result {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 12px;
+  border: 1px solid #b89a6b57;
+  border-radius: 12px;
+  background: #1e352b;
+}
+.pvp-auto-result p {
+  font-size: 11px;
+  text-align: center;
+  margin: 0;
+}
+.pvp-auto-dialog .ac-quick-info {
+  position: static;
+  width: 100%;
+  max-width: none;
+  transform: none;
+}
+.pvp-auto-dialog p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pvp-screen .tcg-modal-layer {
+  z-index: 90;
+}
+@media (max-width: 700px) and (orientation: portrait) {
+  .pvp-auto.ac-game {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 32px 25px 24px minmax(120px, 1fr) auto;
+    gap: 3px;
+    padding: 4px 7px;
+  }
+  .pvp-auto-controls {
+    overflow: auto;
+    max-height: 265px;
+  }
+  .pvp-auto .ac-trait-rail {
+    display: none;
+  }
+  .pvp-auto .ac-shop-art {
+    height: 46px;
+  }
+  .pvp-auto .ac-market {
+    padding: 5px;
+  }
+  .pvp-auto .ac-bench button {
+    width: 25px;
+    height: 28px;
+  }
+  .pvp-auto-hud {
+    padding: 3px 7px;
+    gap: 4px;
+  }
+  .pvp-auto-hud span {
+    gap: 5px;
+  }
+  .pvp-auto-hud b {
+    max-width: 95px;
+    font-size: 10px;
+  }
+  .pvp-auto-hud small {
+    font-size: 9px;
+  }
+  .pvp-auto-status {
+    font-size: 10px;
+    line-height: 24px;
+  }
+  .pvp-round-track span {
+    padding: 3px 8px;
+  }
+  .pvp-lobby {
+    padding: 16px;
+    gap: 11px;
+  }
+  .pvp-lobby h1 {
+    font-size: 23px;
+  }
+  .pvp-hero .tcg-portrait {
+    width: 48px;
+    height: 62px;
+  }
+  .pvp-hero {
+    gap: 12px;
+  }
+  .pvp-seats article {
+    padding: 12px;
+  }
+  .pvp-seats .tcg-portrait {
+    width: 48px;
+    height: 60px;
+  }
+  .pvp-lobby input {
+    font-size: 13px;
+  }
+  .pvp-join {
+    gap: 7px;
+  }
+  .pvp-join button {
+    padding: 5px 9px;
+  }
+}
+@media (max-height: 620px) {
+  .pvp-header {
+    height: 34px;
+    padding: 2px 10px;
+  }
+  .pvp-room-bar {
+    height: 26px;
+  }
+  .pvp-lobby {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+  .pvp-hero .tcg-portrait {
+    width: 40px;
+    height: 50px;
+  }
+  .pvp-auto .ac-shop-art {
+    height: 34px;
+  }
+  .pvp-auto .ac-bench button {
+    width: 23px;
+    height: 25px;
+  }
+  .pvp-auto .ac-market {
+    padding: 4px;
+  }
+  .pvp-auto-hud {
+    font-size: 11px;
+  }
+  .pvp-auto.ac-game {
+    grid-template-rows: 30px 23px 23px minmax(0, 1fr);
+  }
+}
+@media (max-height: 620px) and (orientation: portrait) {
+  .pvp-auto.ac-game {
+    grid-template-rows: 30px 23px 23px minmax(100px, 1fr) auto;
+  }
+  .pvp-auto-controls {
+    max-height: 226px;
+  }
+  .pvp-auto .ac-shop-role {
+    display: none;
+  }
+  .pvp-auto .ac-formation-toolbar button {
+    min-height: 24px;
+    padding: 2px 5px;
+  }
+  .pvp-auto .ac-formation-toolbar span {
+    font-size: 8px;
+  }
+}
+@media (max-height: 620px) and (orientation: landscape) {
+  .pvp-auto.ac-game {
+    grid-template-columns: minmax(0, 1fr) 310px;
+    padding: 3px 9px;
+    gap: 3px 8px;
+  }
+  .pvp-auto-controls {
+    grid-column: 2;
+    grid-row: 2/-1;
+  }
+  .pvp-auto-arena {
+    grid-column: 1;
+    grid-row: 4;
+  }
+  .pvp-round-track,
+  .pvp-auto-status {
+    grid-column: 1;
+  }
+  .pvp-auto .ac-shop-role {
+    display: none;
+  }
+}

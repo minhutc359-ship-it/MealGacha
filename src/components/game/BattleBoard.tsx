@@ -210,6 +210,7 @@ function healthDelta(
 }
 
 interface BattleBoardViewProps {
+  network?: { locked: boolean; status: string; draw?: boolean }
   stored: Battle
   presentation: BattlePresentation | null
   storySave: GameSave
@@ -237,7 +238,7 @@ export function BattleBoard({ onExit }: { onExit: () => void }) {
 
 /** The same field, cards, arena and VFX, driven by either live or isolated data. */
 export function BattleBoardView({ stored, presentation, storySave, ending, act,
-  leaveBattle, acknowledgeScene, chooseEnding, onExit, demo }: BattleBoardViewProps) {
+  leaveBattle, acknowledgeScene, chooseEnding, onExit, demo, network }: BattleBoardViewProps) {
   useEffect(() => {
     characterImage(SPRITE_SHEETS.base.path)
     characterImage(SPRITE_SHEETS.fresh.path)
@@ -299,8 +300,8 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
   const [inspect, setInspect] = useState<string | null>(null)
   const [endRead, setEndRead] = useState(false)
   const hint = useMemo(
-    () => (busy ? null : getBattleHint(battle)),
-    [battle, busy],
+    () => (busy || network?.locked ? null : getBattleHint(battle)),
+    [battle, busy, network?.locked],
   )
   const readyCount = battle.player.board.filter((unit) => unit.ready).length
   useEffect(() => {
@@ -372,7 +373,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
     }
   }, [!!demo])
   const execute = (action: BattleAction) => {
-    if (demo || busy || sceneId || inFlight.current) return
+    if (demo || busy || sceneId || inFlight.current || network?.locked) return
     inFlight.current = true
     setSelection(null)
     setDetail(false)
@@ -458,7 +459,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               ghost={!next}
               selected={selection?.type === "attack" && selection.uid === u.uid}
               disabled={
-                !!battle.enemyPhase || busy ||
+                !!network?.locked || !!battle.enemyPhase || busy ||
                 !!battle.result ||
                 !!battle.opening ||
                 (side === "enemy" && !!selection && !projected?.legal)
@@ -521,7 +522,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               ? "CON ĐƯỜNG QUA SƯƠNG · THÁM HIỂM"
               : stage
                 ? stage.chapter.title
-                : "LUYỆN TẬP · ĐẤU VỚI AI"}
+                : network ? "GIAO HỮU · PVP" : "LUYỆN TẬP · ĐẤU VỚI AI"}
           </span>
           <h1>
             {stage?.title ??
@@ -604,7 +605,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
         <SceneAtmosphere kind={SCENE_WEATHER[tcgSceneSchool(battle.stageId, aura?.id)]} paused={demo?.paused ?? false} />
         <div className="tcg-arena-top">
           <span>
-            AI · {battle.enemy.hand.length} lá trên tay ·{" "}
+            {network ? "PvP" : "AI"} · {battle.enemy.hand.length} lá trên tay ·{" "}
             {battle.enemy.deck.length} trong bộ
           </span>
           <div>
@@ -674,7 +675,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
         <div className={`tcg-turn-bar ${busy ? "enemy-turn" : ""}`}>
           <span>LƯỢT {battle.round}</span>
           <p role="status">
-            {battle.opening
+            {network?.locked && !busy ? network.status : battle.opening
               ? "Chuẩn bị bài mở đầu"
               : battle.pendingReaction
                 ? "Bẫy đủ điều kiện · Chọn Kích hoạt hoặc Giữ bẫy"
@@ -705,7 +706,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               key="end-turn"
               className="tcg-button gold"
               onClick={() => execute({ type: "end" })}
-              disabled={!!battle.result || !!battle.opening || !!battle.enemyPhase}
+              disabled={!!network?.locked || !!battle.result || !!battle.opening || !!battle.enemyPhase}
             >
               Kết thúc lượt →
             </button>
@@ -783,7 +784,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               playable={!playError(battle, index) && !busy}
               muted={!!playError(battle, index)}
               selected={selection?.type === "play" && selection.index === index}
-              disabled={busy || !!battle.result || !!battle.opening || !!battle.enemyPhase}
+              disabled={!!network?.locked || busy || !!battle.result || !!battle.opening || !!battle.enemyPhase}
               onClick={() => {
                 gameAudio.play(
                   selection?.type === "play" && selection.index === index
@@ -849,7 +850,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               ) : selectedCard.effect !== "damage" && selectedCard.ability !== "unsteep" ? (
                 <button
                   className="tcg-button primary"
-                  disabled={needsChoice}
+                  disabled={needsChoice || !!network?.locked}
                   onClick={() =>
                     selection?.type === "play" && execute(selection)
                   }
@@ -1342,7 +1343,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
       {!demo && stored.result && !busy && !sceneId && (
         <Dialog
           title={
-            stored.result === "win"
+            network?.draw ? "Trận hòa" : stored.result === "win"
               ? "Hương vị chiến thắng"
               : "Ngọn lửa vẫn còn"
           }
@@ -1353,7 +1354,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
             <span className="tcg-result-symbol">
               {stored.result === "win" ? "✦" : "☽"}
             </span>
-            {stored.result === "win" && stored.sideQuest ? (
+            {network ? <p>{network.draw ? "Hai người hòa." : stored.result === "win" ? "Bạn thắng trận giao hữu." : `${stored.pvp?.names.enemy ?? "Đối thủ"} thắng trận giao hữu.`} Bộ sưu tập và tiến trình của bạn được giữ nguyên.</p> : stored.result === "win" && stored.sideQuest ? (
               <StoryScene
                 key={stored.id}
                 lines={[
@@ -1457,7 +1458,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
                 </p>
               </aside>
             )}
-            <div className="tcg-reward-row">
+            {!network && <div className="tcg-reward-row">
               <span>◉ +{stored.loot?.coins ?? 0} xu</span>
               <span>✧ +{stored.loot?.xp ?? 0} XP</span>
               {!!stored.loot?.dust && (
@@ -1467,6 +1468,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
                 <span>▱ +{stored.loot.tickets} vé</span>
               )}
             </div>
+            }
             {stored.loot?.cardId && (
               <div className="tcg-result-card">
                 <GameCardView card={CARD_MAP[stored.loot.cardId]} compact />
@@ -1479,7 +1481,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
             )}
             <ResultPostcard battle={stored} />
             <button className="tcg-button primary" onClick={exit}>
-              Trở về hành trình →
+              {network ? "Trở về phòng →" : "Trở về hành trình →"}
             </button>
           </div>
         </Dialog>

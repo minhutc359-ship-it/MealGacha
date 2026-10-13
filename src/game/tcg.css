@@ -794,3 +794,5 @@ html[data-tcg-reduced-motion='true'] .tcg-chapter,html[data-tcg-reduced-motion='
 .tcg-memory-list img { width: 56px; height: 56px; object-fit: cover; border-radius: 9px; }
 .tcg-memory-list span { display: grid; gap: 3px; }
 .tcg-memory-list small { font-size: 12px; }
+
+.tcg-pvp-entry{display:block;padding:10px 14px;color:#e1bd80;text-decoration:none;border:1px solid #b699593b;border-radius:8px;margin:3px 0}
