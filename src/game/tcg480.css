@@ -1,0 +1,18 @@
+/* The table uses a quiet frame; details remain available through inspection/ARIA. */
+.tcg-trap-slot{padding:2px;border-color:#b1a0c488;background:linear-gradient(145deg,#182e2b99,#38253899)}
+.tcg-trap-slot.is-empty{background:#14292b55;border-color:#a9bac066}
+.tcg-trap-slot.is-armed{box-shadow:inset 0 0 12px #a891bd22;border-color:#bba2ce88}
+.tcg-trap-slot button{padding:0;isolation:isolate}
+.tcg-trap-slot img{border-radius:4px;opacity:.92}
+.tcg-trap-slot.is-setting{overflow:visible}
+.tcg-trap-slot.is-setting img{animation:trap-set-card 620ms cubic-bezier(.2,.7,.2,1) both;transform-origin:center 75%}
+.tcg-trap-set-ring{position:absolute;inset:-5px;border:2px solid #e5c6ff;border-radius:9px;pointer-events:none;animation:trap-set-ring 620ms ease-out both;box-shadow:0 0 14px #d2a7eb88}
+.tcg-trap-slot.is-setting::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:6px;background:linear-gradient(125deg,transparent 25%,#f0d7ff88 45%,transparent 62%);animation:trap-set-light 620ms ease-out both}
+@keyframes trap-set-card{0%{opacity:0;transform:perspective(500px) translateY(-26px) rotateY(-100deg) scale(.8)}55%{opacity:1;transform:perspective(500px) translateY(2px) rotateY(8deg) scale(1.04)}100%{opacity:1;transform:perspective(500px) translateY(0) rotateY(0) scale(1)}}
+@keyframes trap-set-ring{0%{opacity:0;transform:scale(.75)}40%{opacity:1;transform:scale(1.02)}100%{opacity:0;transform:scale(1.22)}}
+@keyframes trap-set-light{0%{opacity:0;transform:translateX(-40%)}35%{opacity:.9}100%{opacity:0;transform:translateX(35%)}}
+.presentation-quiet .tcg-trap-slot.is-setting img,.presentation-quiet .tcg-trap-set-ring,.presentation-quiet .tcg-trap-slot.is-setting::after{animation:none}
+.presentation-quiet .tcg-trap-set-ring,.presentation-quiet .tcg-trap-slot.is-setting::after{display:none}
+@media(prefers-reduced-motion:reduce){.tcg-trap-slot.is-setting img,.tcg-trap-set-ring,.tcg-trap-slot.is-setting::after{animation:none}.tcg-trap-set-ring,.tcg-trap-slot.is-setting::after{display:none}}
+/* Show the full effect while the reveal frame is held; no three-line truncation. */
+.tcg-trap-reveal p{display:block;-webkit-line-clamp:unset;overflow:visible}

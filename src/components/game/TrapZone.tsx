@@ -9,11 +9,15 @@ export function TrapSlot({
   side,
   onInspect,
   onSet,
+  setting = false,
+  stamp = "",
 }: {
   battle: Battle
   side: BattleSide
   onInspect: (id?: string) => void
   onSet: () => void
+  setting?: boolean
+  stamp?: string
 }) {
   const slot = battle[side].trap,
     visible = side === "player" || !!slot?.revealed
@@ -23,7 +27,7 @@ export function TrapSlot({
     <div
       className={`tcg-trap-slot ${slot ? "has-trap" : "is-empty"} ${
         ready ? "is-armed" : ""
-      }`}
+      } ${setting ? "is-setting" : ""}`}
       data-side={side}
       data-state={
         !slot
@@ -57,10 +61,9 @@ export function TrapSlot({
         {slot ? (
           <img src={card?.art ?? TRAP_BACK} alt="" decoding="async" />
         ) : (
-          <span aria-hidden="true">◇</span>
+          null
         )}
-        <small>{!slot ? "Ô BẪY" : card ? card.name : "Bẫy úp"}</small>
-        <b>{!slot ? "1 chỗ" : ready ? "Sẵn sàng" : "Chờ lượt kế"}</b>
+        {setting && <i key={stamp} className="tcg-trap-set-ring" aria-hidden="true" />}
       </button>
     </div>
   )

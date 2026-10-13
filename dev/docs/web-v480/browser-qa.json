@@ -1,0 +1,214 @@
+[
+  {
+    "width": 1440,
+    "height": 900,
+    "upgrade24": true,
+    "oldPrefixPreserved": true,
+    "fourthSummonReload": true,
+    "fourthAttackerReactionReload": true,
+    "drawWarningAndDamage": true,
+    "emptyDeckCap": true,
+    "legacy450": true,
+    "trapSetAnimation": true,
+    "trapSetSound": true,
+    "revealMs": 2308.8000000002794,
+    "fitReport": {
+      "overflow": false,
+      "boxes": [
+        {
+          "selector": ".tcg-resource-hud",
+          "x": 115,
+          "y": 315,
+          "width": 1210,
+          "height": 26,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-deck-status",
+          "x": 115,
+          "y": 315,
+          "width": 280,
+          "height": 26,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-field:not(.enemy)",
+          "x": 410,
+          "y": 385,
+          "width": 620,
+          "height": 146,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 115,
+          "y": 712,
+          "width": 1210,
+          "height": 171,
+          "inside": true
+        }
+      ]
+    },
+    "errors": [],
+    "missing": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "upgrade24": true,
+    "oldPrefixPreserved": true,
+    "fourthSummonReload": true,
+    "fourthAttackerReactionReload": true,
+    "drawWarningAndDamage": true,
+    "emptyDeckCap": true,
+    "legacy450": true,
+    "trapSetAnimation": true,
+    "trapSetSound": true,
+    "revealMs": 2272.100000000093,
+    "fitReport": {
+      "overflow": false,
+      "boxes": [
+        {
+          "selector": ".tcg-resource-hud",
+          "x": 13,
+          "y": 299.5,
+          "width": 364,
+          "height": 24,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-deck-status",
+          "x": 13,
+          "y": 299.5,
+          "width": 304,
+          "height": 24,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-field:not(.enemy)",
+          "x": 13,
+          "y": 373.5,
+          "width": 364,
+          "height": 148.5,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 13,
+          "y": 699,
+          "width": 364,
+          "height": 132,
+          "inside": true
+        }
+      ]
+    },
+    "errors": [],
+    "missing": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "upgrade24": true,
+    "oldPrefixPreserved": true,
+    "fourthSummonReload": true,
+    "fourthAttackerReactionReload": true,
+    "drawWarningAndDamage": true,
+    "emptyDeckCap": true,
+    "legacy450": true,
+    "trapSetAnimation": true,
+    "trapSetSound": true,
+    "revealMs": 2283.5,
+    "fitReport": {
+      "overflow": false,
+      "boxes": [
+        {
+          "selector": ".tcg-resource-hud",
+          "x": 19,
+          "y": 194,
+          "width": 482.421875,
+          "height": 24,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-deck-status",
+          "x": 19,
+          "y": 194,
+          "width": 414.421875,
+          "height": 24,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-field:not(.enemy)",
+          "x": 19,
+          "y": 262,
+          "width": 482.421875,
+          "height": 79,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 511.421875,
+          "y": 221,
+          "width": 313.578125,
+          "height": 158,
+          "inside": true
+        }
+      ]
+    },
+    "errors": [],
+    "missing": []
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "upgrade24": true,
+    "oldPrefixPreserved": true,
+    "fourthSummonReload": true,
+    "fourthAttackerReactionReload": true,
+    "drawWarningAndDamage": true,
+    "emptyDeckCap": true,
+    "legacy450": true,
+    "trapSetAnimation": true,
+    "trapSetSound": true,
+    "revealMs": 2279.2000000001863,
+    "fitReport": {
+      "overflow": false,
+      "boxes": [
+        {
+          "selector": ".tcg-resource-hud",
+          "x": 13,
+          "y": 194,
+          "width": 294,
+          "height": 24,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-deck-status",
+          "x": 13,
+          "y": 194,
+          "width": 234,
+          "height": 24,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-field:not(.enemy)",
+          "x": 13,
+          "y": 256,
+          "width": 294,
+          "height": 83,
+          "inside": true
+        },
+        {
+          "selector": ".tcg-hand",
+          "x": 13,
+          "y": 463,
+          "width": 294,
+          "height": 92,
+          "inside": true
+        }
+      ]
+    },
+    "errors": [],
+    "missing": []
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "method": "Built-in image_gen, original Soul of Meal environment art",
+  "assets": [
+    {
+      "path": "public/assets/adventure/world-props-v480.webp",
+      "bytes": 1830856,
+      "width": 1254,
+      "height": 1254,
+      "sourceSha256": "c40624493c0d6ae2a8503ef483b844e0d960f4f3231f784adc91d18d3c3cf01b",
+      "sha256": "da302535a3ead9f0594777a37ec2d1d657c54751ad53a1cd9d83c147a98b025e",
+      "alpha": true,
+      "processing": "Lossless WebP encoding only; decoded visible colors and alpha verified against original PNG",
+      "cells": {
+        "columns": 4,
+        "rows": 4
+      },
+      "prompt": "dev/docs/web-v480/prompts.json"
+    },
+    {
+      "path": "public/assets/adventure/terrain-v480.webp",
+      "bytes": 2330964,
+      "width": 1254,
+      "height": 1254,
+      "sourceSha256": "66303c41ecdc10c92dc2cbfe1b730ccc20a810af0c970f456d30869f16dbef38",
+      "sha256": "c7969067085cb9f11633dfad2bfc104b4a1f14f8a73bb68be2cb4faceee2cef7",
+      "alpha": false,
+      "processing": "Lossless WebP encoding only; decoded visible colors and alpha verified against original PNG",
+      "cells": {
+        "columns": 4,
+        "rows": 4
+      },
+      "prompt": "dev/docs/web-v480/prompts.json"
+    }
+  ],
+  "totalBytes": 4161820
+}

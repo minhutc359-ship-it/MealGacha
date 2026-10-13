@@ -406,14 +406,15 @@ export const useGameStore = create<Store>((set, get) => {
       )
         return false
       const deck = save.decks.find((d) => d.id === save.activeDeckId)
-      if (!deck || deckErrors(deck.cards, save.cards).length) return false
+      const error = deckErrors(deck?.cards ?? [], save.cards)[0]
+      if (error) { set({notice:error}); return false }
       const completed = save.bonds?.[id]?.completed ?? false
       return commit({
         ...save,
         bonds: completed
           ? save.bonds
           : { ...save.bonds, [id]: { choice, completed } },
-        battle: startSideQuest(deck.cards, id, choice),
+        battle: startSideQuest(deck!.cards, id, choice),
       })
     },
     startWeekly() {

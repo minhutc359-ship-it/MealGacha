@@ -1,7 +1,7 @@
 import { boardLimit, deckSizeForRules, fatigueDamage, CURRENT_TCG_RULES, type TcgRulesVersion } from "./tcgRules"
 import { trapMatches, publicBattle } from "./traps"
 import type { BattleSide, TrapIntent } from "./types"
-import { CARD_MAP } from "./catalog"
+import { CARD_MAP, assertDeckForRules } from "./catalog"
 import { STAGE_MAP } from "./story"
 import { cardBranches, flavoredCard } from "./v4Cards"
 import { cardsForRules } from "./catalog"
@@ -349,6 +349,7 @@ export function startBattle(
   offerMulligan = false,
   rulesVersion: TcgRulesVersion = CURRENT_TCG_RULES,
 ): Battle {
+  assertDeckForRules(deck, rulesVersion)
   const stage = stageId ? STAGE_MAP[stageId] : undefined
   const b: Battle = {
     rulesVersion,

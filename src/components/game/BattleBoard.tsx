@@ -1,8 +1,9 @@
-import { boardLimit, nextFatigueDamage } from "../../game/tcgRules"
+import { boardLimit, nextFatigueDamage, deckSizeForRules } from "../../game/tcgRules"
 import "../../game/tcg470.css"
 import { TrapSlot, TrapDecision, TrapReveal } from "./TrapZone"
 import { trapReady } from "../../game/traps"
 import "../../game/tcg450.css"
+import "../../game/tcg480.css"
 import { SceneAtmosphere } from "./SceneAtmosphere"
 import { ELEMENTAL_BOARDS, SCENE_WEATHER, tcgSceneSchool } from "../../game/visualPack"
 import { ArenaScene, arenaRegion } from "./ArenaScene"
@@ -503,7 +504,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
             </span>
           ),
         )}
-        {(battle.rulesVersion??350)>=450&&<TrapSlot battle={battle} side={side} onInspect={id=>id?setInspect(id):setShowRules(true)} onSet={()=>{const index=battle.player.hand.findIndex((id,i)=>CARD_MAP[id].kind==="trap"&&!playError(battle,i));if(index>=0)setSelection({type:"play",index});else setShowRules(true)}}/>}
+        {(battle.rulesVersion??350)>=450&&<TrapSlot battle={battle} side={side} setting={frame?.event.kind === "set-trap" && frame.event.side === side} stamp={stamp} onInspect={id=>id?setInspect(id):setShowRules(true)} onSet={()=>{const index=battle.player.hand.findIndex((id,i)=>CARD_MAP[id].kind==="trap"&&!playError(battle,i));if(index>=0)setSelection({type:"play",index});else setShowRules(true)}}/>}
       </div>
     )
   }
@@ -688,11 +689,12 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
                       : "LƯỢT CỦA BẠN · Gọi Vị Linh bằng thẻ trên tay"}
           </p>
           {busy ? (
-            <button className="tcg-button ghost" onClick={skip}>
+            <button key="skip-playback" className="tcg-button ghost" onClick={skip}>
               Bỏ qua ⏩
             </button>
           ) : selection ? (
             <button
+              key="cancel-selection"
               className="tcg-button ghost"
               onClick={() => setSelection(null)}
             >
@@ -700,6 +702,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
             </button>
           ) : (
             <button
+              key="end-turn"
               className="tcg-button gold"
               onClick={() => execute({ type: "end" })}
               disabled={!!battle.result || !!battle.opening || !!battle.enemyPhase}
@@ -1111,7 +1114,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
               thắng giúp ký ức thoát khỏi sương.
             </p>
             <DuelBasics />
-            <p><strong>Bộ bài và kiệt sức:</strong> Trận mới dùng 24 lá, tối đa 2 bản mỗi thẻ; tay tối đa 8 lá. Khi bộ trống, mỗi lần rút hụt chịu {(battle.rulesVersion ?? 350) >= 470 ? "1 → 2 → 3 sát thương, rồi giữ ở 3" : "sát thương tăng dần 1 → 2 → 3 → 4… theo luật cũ"}. Hết bài không tự động xử thua. Đồng minh, phép và combo rút bài đều có thể gây kiệt sức.</p>
+            <p><strong>Bộ bài và kiệt sức:</strong> Trận này dùng {deckSizeForRules(battle.rulesVersion)} lá, tối đa 2 bản mỗi thẻ; tay tối đa 8 lá. Khi bộ trống, mỗi lần rút hụt chịu {(battle.rulesVersion ?? 350) >= 470 ? "1 → 2 → 3 sát thương, rồi giữ ở 3" : "sát thương tăng dần 1 → 2 → 3 → 4… theo luật cũ"}. Hết bài không tự động xử thua. Đồng minh, phép và combo rút bài đều có thể gây kiệt sức.</p>
             <p>
               <strong>Mục tiêu:</strong> Đưa ý chí chủ tướng địch về 0, hoặc
               hoàn thành mục tiêu boss hiển thị trên dải chiến thuật. Mỗi lượt

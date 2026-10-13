@@ -1,3 +1,4 @@
+import { ADVENTURE_ART_480, propCellFor } from "../../game/adventure480"
 import { useEffect, useRef, useState } from "react"
 import { CharacterSprite } from "./CharacterSprite"
 import {
@@ -20,6 +21,8 @@ export function WorldAsset({
   id: string
   className?: string
 }) {
+  const cell = propCellFor(id)
+  if (cell !== undefined) return <span className={`adv-world-asset ${className}`} aria-hidden="true" style={{display:"block",backgroundImage:`url(${ADVENTURE_ART_480.props})`,backgroundSize:"400% 400%",backgroundPosition:`${(cell % 4) * 100 / 3}% ${Math.floor(cell / 4) * 100 / 3}%`}} />
   return (
     <svg
       className={`adv-world-asset ${className}`}

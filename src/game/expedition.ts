@@ -1,4 +1,5 @@
-import { CARD_MAP, CARDS, cardsForRules } from "./catalog"
+import { CURRENT_TCG_RULES, type TcgRulesVersion } from "./tcgRules"
+import { CARD_MAP, CARDS, cardsForRules, assertDeckForRules } from "./catalog"
 import { startBattle } from "./battle"
 import { challengeStat } from "./difficulty"
 import { CHAPTERS } from "./story"
@@ -394,7 +395,9 @@ export function createExpedition(
   deck: string[],
   seed = Math.floor(Math.random() * 4294967296),
   promise?: "safe" | "bold",
+  rulesVersion: TcgRulesVersion = CURRENT_TCG_RULES,
 ): ExpeditionRun {
+  assertDeckForRules(deck, rulesVersion)
   const rng = random(seed)
   const kinds: ExpeditionNode["kind"][][] = [
     ["battle", "battle"],
@@ -435,7 +438,7 @@ export function createExpedition(
   )
   return {
     ...(promise ? {promise} : {}),
-    rulesVersion: 470,
+    rulesVersion,
     id: crypto.randomUUID(),
     seed,
     status: "path",

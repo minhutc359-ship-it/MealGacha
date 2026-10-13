@@ -1,5 +1,5 @@
 {
-  "version": "4.7.0",
+  "version": "4.8.0",
   "generatedOn": "2026-10-12",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -40,6 +40,26 @@
       "origin": "AI-assisted original four-direction NPC atlas using the project character portrait reference",
       "evidence": [
         "dev/docs/web-v441/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/adventure/terrain-v480.webp",
+      "bytes": 2330964,
+      "sha256": "c7969067085cb9f11633dfad2bfc104b4a1f14f8a73bb68be2cb4faceee2cef7",
+      "origin": "AI-assisted original terrain material atlas for Soul of Meal",
+      "evidence": [
+        "dev/docs/web-v480/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/adventure/world-props-v480.webp",
+      "bytes": 1830856,
+      "sha256": "da302535a3ead9f0594777a37ec2d1d657c54751ad53a1cd9d83c147a98b025e",
+      "origin": "AI-assisted original transparent environment prop atlas for Soul of Meal",
+      "evidence": [
+        "dev/docs/web-v480/artwork.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

@@ -1,0 +1,6 @@
+{
+  "baselineVersion": "4.7.0",
+  "baselineBytes": 74274916,
+  "additionalBudgetBytes": 5000000,
+  "definition": "User approved 5 MB more for Adventure art. The complete patch, including code and assets, stays within this extra 5,000,000 bytes; no new dependencies."
+}
