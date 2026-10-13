@@ -2,10 +2,10 @@ import type { AdventureDirection, AdventureSave } from "./adventure"
 import type { AdventureMap } from "./adventureWorld"
 import type { CharacterId } from "./characters"
 export const WALK_ATLASES: Partial<Record<CharacterId, string>> = {
-  hero: "/assets/adventure/hero-v440.webp",
-  la: "/assets/adventure/la-v441.webp",
-  merchant: "/assets/adventure/merchant-v441.webp",
-  grandmother: "/assets/adventure/grandmother-v441.webp",
+  hero: "/dev/archive/legacy-adventure-v490/assets/hero-v440.webp",
+  la: "/dev/archive/legacy-adventure-v490/assets/la-v441.webp",
+  merchant: "/dev/archive/legacy-adventure-v490/assets/merchant-v441.webp",
+  grandmother: "/dev/archive/legacy-adventure-v490/assets/grandmother-v441.webp",
 }
 export const WALK_STEP_MS = 170
 export const RUN_STEP_MS = 100

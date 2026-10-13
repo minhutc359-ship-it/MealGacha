@@ -13,7 +13,7 @@ describe("the live game renderers used in introductions", () => {
   for (const [mode, at, classes] of [
     ["tcg", 6500, ["tcg-viewport-battle", "tcg-field", "tcg-hand"]],
     ["auto", 16000, ["ac-cell-grid", "ac-battle-layout", "ac-hud"]],
-    ["adventure", 14000, ["adv-battle-arena", "adv-skill-grid", "adv-combatant"]],
+    ["adventure", 14000, ["rpg-arena", "rpg-burst-deck", "rpg-combatant"]],
     ["chest", 6000, ["chest-model", "chest-scene", "taste-key"]],
     ["chest", 13000, ["reward-reveal-card", "reward-art-frame", "reward-shine"]],
   ] as const) {

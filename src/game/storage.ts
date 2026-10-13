@@ -7,6 +7,7 @@ import { CARD_MAP } from "./catalog"
 import { newGame, rotateDay } from "./progression"
 import type { GameSave } from "./types"
 import { autoSaveSchema } from "./autochess/schema"
+import { rpgSaveSchema } from "./adventureRpg/schema"
 import {
   ADVENTURE_AREA_MAP,
   migrateAdventure,
@@ -516,6 +517,7 @@ export const GameSaveSchema = z
     storyEnding: z.enum(["remember", "release"]).nullable().default(null),
     autoChess: autoSaveSchema.optional(),
     adventure: adventure.optional(),
+    adventureRpg: rpgSaveSchema.optional(),
     history: z
       .array(
         z.object({

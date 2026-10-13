@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react"
 import { BrandMark } from "../components/layout/BrandMark"
 import { ModeSwitch } from "../components/layout/ModeSwitch"
 import { ModeIntroButton } from "../components/layout/ModeIntroButton"
@@ -7,705 +7,921 @@ import {
   useGameAudio,
   useGameMusic,
 } from "../components/game/GameAudio"
+import { CharacterPortrait } from "../components/game/CharacterPortrait"
+import { RpgBattleView, RpgMeter } from "../components/game/RpgBattleView"
+import { CARD_MAP, SCHOOLS } from "../game/catalog"
+import { CHARACTER_NAMES } from "../game/characters"
+import { RPG_MAPS, RPG_DUNGEONS, rpgStage } from "../game/adventureRpg/content"
+import {
+  newRpgSave,
+  heroPower,
+  heroRole,
+  heroSkills,
+  heroStats,
+  heroXpNext,
+  stageUnlocked,
+  dungeonTierCap,
+  upgradeCost,
+  RPG_ROLE_NAMES,
+} from "../game/adventureRpg/engine"
+import type {
+  RpgAction,
+  RpgHero,
+  RpgLine,
+  RpgResources,
+  RpgSave,
+} from "../game/adventureRpg/types"
 import { useGameStore } from "../game/useGameStore"
 import { useAppStore } from "../store/useAppStore"
-import { CARD_MAP, SCHOOLS } from "../game/catalog"
-import {
-  ADVENTURE_AREAS,
-  ADVENTURE_AREA_MAP,
-  ADVENTURE_STARTERS,
-  ADVENTURE_SHOP,
-  newAdventure,
-  spiritMaxHp,
-  xpForNext,
-  type AdventureAction,
-  type AdventureDirection,
-  type AdventureSpirit,
-} from "../game/adventure"
-import { ADVENTURE_MAP_BY_ID } from "../game/adventureWorld"
-import { skillsFor, STATUS_NAMES } from "../game/adventureSkills"
-import {
-  AdventureBattle,
-  AdventureDialog,
-  AdventureMeter,
-  SchoolChart,
-} from "../components/game/AdventureBattle"
-import { AdventureWorld } from "../components/game/AdventureWorld"
-import { SpiritSprite } from "../components/game/AdventureArt"
 import { gameAudio } from "../infrastructure/audio/gameAudio"
-import "../game/characterMotion.css"
-import "../game/adventure.css"
-import "../game/adventure460.css"
+import { ELEMENTAL_BOARDS } from "../game/visualPack"
+import "../game/adventureRpg/rpg.css"
 
-function SpiritImage({ cardId }: { cardId: string }) {
-  const card = CARD_MAP[cardId]
-  return (
-    <img
-      src={card.art}
-      alt={card.name}
-      width="320"
-      height="220"
-      loading="lazy"
-      decoding="async"
-    />
+const RESOURCE_NAMES: Record<keyof RpgResources, string> = {
+  coins: "Xu",
+  experience: "Sổ KN",
+  books: "Sách kỹ năng",
+  ore: "Quặng",
+  essence: "Tinh hương",
+  broth: "Canh Ấm",
+  leaves: "Lá Tỉnh",
+  seals: "Hương Ấn",
+}
+function costText(cost: Partial<RpgResources>) {
+  return Object.entries(cost)
+    .map(
+      ([key, value]) =>
+        `${value} ${RESOURCE_NAMES[(key as keyof RpgResources)]}`,
+    )
+    .join(" · ")
+}
+function canPay(save: RpgSave, cost: Partial<RpgResources>) {
+  return Object.entries(cost).every(
+    ([key, value]) => save.resources[(key as keyof RpgResources)] >= value,
   )
 }
-function StarterChoice({ choose }: { choose: (id: string) => void }) {
+
+function RpgModal({ children, label, onClose }: { children: ReactNode
+  label: string
+  onClose: () => void }) {
+  const dialog = useRef<HTMLDialogElement>(null)
+  useEffect(() => {
+    const previous = document.activeElement as HTMLElement | null
+    dialog.current?.showModal()
+    return () => { dialog.current?.close(); if (previous?.isConnected) previous.focus() }
+  }, [])
+  return <dialog ref={dialog} className="rpg-modal" aria-label={label} onCancel={e => { e.preventDefault(); onClose() }}>{children}</dialog>
+}
+
+function StoryDialog({
+  lines,
+  onClose,
+  onCancel,
+}: {
+  lines: RpgLine[]
+  onClose: () => void
+  onCancel: () => void
+}) {
+  const dialog = useRef<HTMLDialogElement>(null),
+    [index, setIndex] = useState(0)
+  useEffect(() => {
+    const previous = document.activeElement as HTMLElement | null
+    dialog.current?.showModal()
+    return () => {
+      dialog.current?.close()
+      previous?.isConnected && previous.focus()
+    }
+  }, [])
+  const line = lines[index]
   return (
-    <main className="adv-starter">
-      <div className="adv-starter-art">
-        <img
-          src="/assets/tcg/map/meal-world-map.webp"
-          alt="Thế giới Soul of Meal"
-        />
+    <dialog
+      ref={dialog}
+      className="rpg-story"
+      aria-label="Câu chuyện"
+      onCancel={(e) => {
+        e.preventDefault()
+        onCancel()
+      }}
+    >
+      <CharacterPortrait id={line.speaker} decorative />
+      <div>
+        <small>
+          CÂU CHUYỆN · {index + 1}/{lines.length}
+        </small>
+        <h2>{CHARACTER_NAMES[line.speaker]}</h2>
+        <p>{line.text}</p>
+        <button
+          type="button"
+          className="rpg-primary"
+          onClick={() => {
+            gameAudio.play("story-next")
+            index < lines.length - 1 ? setIndex(index + 1) : onClose()
+          }}
+        >
+          {index < lines.length - 1 ? "Tiếp câu chuyện" : "Tiếp tục →"}
+        </button>
       </div>
-      <section>
-        <span className="adv-kicker">CHUYẾN PHIÊU LƯU ĐẦU TIÊN</span>
-        <h1>
-          Một món ăn.
-          <br />
-          Một người bạn.
-          <br />
-          Cả thế giới đang chờ.
-        </h1>
-        <p>
-          Chọn Vị Linh đi theo bạn qua năm vùng đất. Khám phá những ngôi nhà,
-          gặp người giữ ký ức và thu thập Giao Ước Năm Vị.
-        </p>
-        <div className="adv-starter-grid">
-          {ADVENTURE_STARTERS.map((id) => (
-            <button
-              type="button"
-              key={id}
-              className={`school-${CARD_MAP[id].school}`}
-              onClick={() => choose(id)}
-            >
-              <SpiritImage cardId={id} />
-              <span>{SCHOOLS[CARD_MAP[id].school].name}</span>
-              <strong>{CARD_MAP[id].name}</strong>
-              <small>{CARD_MAP[id].lore.split(".")[0]}.</small>
-              <b>Chọn đồng hành →</b>
-            </button>
-          ))}
-        </div>
-        <div className="adv-rules-strip">
-          <span>20 bản đồ</span>
-          <span>6 Vị Linh trong đội</span>
-          <span>Nhà · NPC · cửa hàng</span>
-          <span>PP · trạng thái · tương khắc</span>
-        </div>
-        <details className="adv-help">
-          <summary>Hướng dẫn chơi</summary>
-          <p>
-            WASD / mũi tên để đi, E tương tác với NPC và cửa nhà. Đổi Vị Linh,
-            chọn kỹ năng theo hệ và nhìn HP/PP trong trận.
-          </p>
-          <ModeIntroButton mode="adventure" />
-        </details>
-      </section>
-    </main>
+    </dialog>
   )
 }
-function SpiritRow({
-  member,
-  active,
-  storage,
+function HeroDetails({
+  hero,
+  save,
   act,
 }: {
-  member: AdventureSpirit
-  active?: boolean
-  storage?: "team" | "reserve"
-  act: (action: AdventureAction) => void
+  hero: RpgHero
+  save: RpgSave
+  act: (a: RpgAction) => boolean
 }) {
-  const card = CARD_MAP[member.cardId],
-    max = spiritMaxHp(member.cardId, member.level)
+  const card = CARD_MAP[hero.cardId],
+    stats = heroStats(hero),
+    rankCost = upgradeCost(hero, "rank")
   return (
-    <article
-      className={`adv-spirit-row school-${card.school} ${
-        active ? "is-active" : ""
-      }`}
-    >
-      <div className="adv-spirit-summary">
-        <SpiritSprite cardId={member.cardId} quiet lazy />
+    <section className="rpg-hero-details" aria-label={`Chi tiết ${card.name}`}>
+      <div className="rpg-hero-overview">
+        <img src={card.art} alt={card.name} decoding="async" />
         <div>
-          <strong>{card.name}</strong>
           <small>
-            Cấp {member.level} · {SCHOOLS[card.school].name}
-            {member.status && ` · ${STATUS_NAMES[member.status]}`}
+            {SCHOOLS[card.school].name} ·{" "}
+            {RPG_ROLE_NAMES[heroRole(hero.cardId)]}
           </small>
-          <AdventureMeter
-            value={member.hp}
-            max={max}
-            label={`HP ${card.name}`}
-          />
-          <small>
-            {member.hp}/{max} HP · {member.xp}/{xpForNext(member.level)} KN
-          </small>
+          <h2>{card.name}</h2>
+          <p>
+            Cấp {hero.level}/50 · Bậc {hero.rank}/5 · Lực chiến{" "}
+            {heroPower(hero)}
+          </p>
+          <p>
+            HP {stats.hp} · Công {stats.attack} · Giáp {stats.armor}
+          </p>
         </div>
       </div>
-      <details>
-        <summary>Kỹ năng và vật phẩm</summary>
-        <div className="adv-member-skills">
-          {skillsFor(member.cardId, member.level).map((skill) => (
-            <p key={skill.id} title={skill.description}>
-              <span>{skill.name}</span>
-              <b>
-                {member.pp?.[skill.id] ?? 0}/{skill.pp} PP
-              </b>
-            </p>
-          ))}
-        </div>
-        <div className="adv-row-actions">
-          {storage !== "reserve" && (
-            <>
-              <button
-                type="button"
-                disabled={active || !member.hp}
-                onClick={() => act({ type: "lead", uid: member.uid })}
-              >
-                Dẫn đội
-              </button>
-              <button
-                type="button"
-                onClick={() =>
-                  act({ type: "item", item: "potion", uid: member.uid })
-                }
-              >
-                Canh Ấm
-              </button>
-              <button
-                type="button"
-                onClick={() =>
-                  act({ type: "item", item: "revive", uid: member.uid })
-                }
-              >
-                Lá Tỉnh
-              </button>
-            </>
-          )}
-          {storage && (
-            <button
-              type="button"
-              onClick={() =>
-                act({
-                  type: storage === "team" ? "deposit" : "withdraw",
-                  uid: member.uid,
-                })
-              }
-            >
-              {storage === "team" ? "Gửi vào tủ" : "Nhận vào đội"}
-            </button>
-          )}
-        </div>
-      </details>
-    </article>
-  )
-}
-export function AdventurePage() {
-  useGameAudio()
-  const raw = useGameStore((state) => state.save.adventure),
-    save = raw ?? newAdventure()
-  const dispatch = useGameStore((state) => state.adventureAction),
-    notice = useGameStore((state) => state.notice),
-    dismissNotice = useGameStore((state) => state.dismiss)
-  const prefs = useAppStore((state) => state.user.preferences)
-  const [panel, setPanel] =
-    useState<"menu" | "journey" | "team" | "archive" | "help" | null>(null)
-  const area = ADVENTURE_AREA_MAP[save.areaId],
-    map = ADVENTURE_MAP_BY_ID[save.mapId]
-  useGameMusic(
-    save.encounter
-      ? save.encounter.kind === "keeper"
-        ? "boss"
-        : "battle"
-      : area.music,
-    8,
-  )
-  const act = useCallback(
-    (action: AdventureAction) => {
-      const before = useGameStore.getState().save.adventure
-      if (!dispatch(action)) return false
-      const after = useGameStore.getState().save.adventure
-      if (before?.encounter && !after?.encounter)
-        gameAudio.play(
-          after?.mapId.endsWith(":clinic")
-            ? "defeat"
-            : action.type === "battle" && action.move === "befriend"
-              ? "capture"
-              : action.type === "battle" && action.move === "flee"
-                ? "vanish"
-                : "victory",
-        )
-      else if (action.type === "battle")
-        gameAudio.play(
-          action.move === "skill" || action.move === "strike"
-            ? "cast"
-            : action.move === "guard"
-              ? "shield"
-              : "select",
-        )
-      else if (action.type !== "move" && before?.mapId === after?.mapId)
-        gameAudio.play(
-          action.type === "heal" || action.type === "item" ? "heal" : "select",
-        )
-      return true
-    },
-    [dispatch],
-  )
-  const move = useCallback(
-    (direction: AdventureDirection) => act({ type: "move", direction }),
-    [act],
-  )
-  const interact = useCallback(
-    () =>
-      act({
-        type: useGameStore.getState().save.adventure?.message
-          ? "dismiss"
-          : "interact",
-      }),
-    [act],
-  )
-  const openMenu = useCallback(() => setPanel("menu"), [])
-  useEffect(() => {
-    document.body.classList.add("adventure-open")
-    return () => document.body.classList.remove("adventure-open")
-  }, [])
-  useEffect(() => {
-    if (save.service === "storage") setPanel("team")
-  }, [save.service])
-  const closePanel = () => {
-    setPanel(null)
-    if (save.service === "storage") act({ type: "dismiss" })
-  }
-  const allSpecies = [
-    ...new Set([
-      ...ADVENTURE_STARTERS,
-      ...ADVENTURE_AREAS.flatMap((zone) => [
-        ...zone.encounters,
-        zone.keeper.cardId,
-      ]),
-    ]),
-  ]
-  return (
-    <div
-      className={`adv-app ${prefs.reducedMotion ? "is-reduced-motion" : ""}`}
-    >
-      <header className="adv-header">
-        <a href="/adventure" className="adv-brand">
-          <BrandMark />
-          <span>
-            <strong>SOUL OF MEAL</strong>
-            <small>PHIÊU LƯU VỊ LINH</small>
-          </span>
-        </a>
-        {save.started && (
-          <>
-            <div className="adv-location">
-              <span>VÙNG {area.chapter} / 5</span>
-              <strong>{map.name}</strong>
-            </div>
-            <div className="adv-resources">
-              <span title="Xu">◉ {save.coins}</span>
-              <span title="Hương Ấn">✦ {save.aromaSeals}</span>
-              <span title="Ấn đã nhận">◇ {save.badges.length}/5</span>
-            </div>
-          </>
-        )}
-        <AudioButton label="Âm thanh" />
-        <ModeSwitch mode="adventure" />
-      </header>
-      {!save.started ? (
-        <StarterChoice choose={(cardId) => act({ type: "start", cardId })} />
-      ) : (
-        <>
-          <nav className="adv-panel-tabs" aria-label="Bảng phiêu lưu">
-            {(["journey", "team", "archive", "help"] as const).map((id) => (
-              <button
-                type="button"
-                key={id}
-                aria-pressed={panel === id}
-                onClick={() =>
-                  setPanel((current) => (current === id ? null : id))
-                }
-              >
-                {id === "journey"
-                  ? "Hành trình & bản đồ"
-                  : id === "team"
-                    ? "Đội hình & túi đồ"
-                    : id === "archive"
-                      ? "Sổ Vị Linh"
-                      : "Hướng dẫn"}
-              </button>
-            ))}
-          </nav>
-          <main className="adv-layout">
-            <section
-              className="adv-world"
-              inert={!!panel}
-              aria-label="Khám phá thế giới"
-            >
-              <AdventureWorld
-                save={save}
-                move={move}
-                interact={interact}
-                onMenu={openMenu}
-                readOnly={!!panel}
-                paused={!!panel || !!save.encounter}
-              />
-            </section>
-            {panel && (
-              <AdventureDialog
-                className="adv-panel-dialog"
-                titleId="adv-panel-title"
-                dismiss={closePanel}
-              >
-                <header className="adv-panel-heading">
-                  <h2 id="adv-panel-title">
-                    {panel === "menu"
-                      ? "Menu phiêu lưu"
-                      : panel === "team"
-                        ? "Đội hình & túi đồ"
-                        : panel === "journey"
-                          ? "Hành trình"
-                          : panel === "archive"
-                            ? "Sổ Vị Linh"
-                            : "Hướng dẫn chơi"}
-                  </h2>
-                  <button
-                    type="button"
-                    aria-label="Đóng bảng phiêu lưu"
-                    onClick={closePanel}
-                  >
-                    ×
-                  </button>
-                </header>
-                <aside className="adv-sidebar">
-                  {panel === "menu" ? (
-                    <div className="adv-field-menu">
-                      <p>
-                        Chọn việc muốn làm, hoặc đóng menu để tiếp tục hành
-                        trình.
-                      </p>
-                      {(["team", "journey", "archive", "help"] as const).map(
-                        (id) => (
-                          <button
-                            type="button"
-                            key={id}
-                            onClick={() => setPanel(id)}
-                          >
-                            <b>
-                              {id === "team"
-                                ? "Đội hình & túi đồ"
-                                : id === "journey"
-                                  ? "Bản đồ & mục tiêu"
-                                  : id === "archive"
-                                    ? "Sổ Vị Linh"
-                                    : "Hướng dẫn"}
-                            </b>
-                            <span>
-                              {id === "team"
-                                ? `${save.team.length}/6 đồng hành · ${save.inventory.potion} Canh Ấm`
-                                : id === "journey"
-                                  ? `${save.badges.length}/5 ấn · ${map.name}`
-                                  : id === "archive"
-                                    ? `${save.discovered.length} loài đã gặp`
-                                    : "Điều khiển, tương khắc và giới thiệu"}
-                            </span>
-                          </button>
-                        ),
-                      )}
-                      <button type="button" onClick={closePanel}>
-                        Tiếp tục phiêu lưu →
-                      </button>
-                    </div>
-                  ) : panel === "help" ? (
-                    <>
-                      <ModeIntroButton
-                        mode="adventure"
-                        beforeOpen={closePanel}
-                      />
-                      <p>
-                        Giữ D-pad hoặc WASD/mũi tên để đi liên tục. Nút Đi
-                        bộ/Chạy đổi tốc độ; Shift để chạy trên bàn phím. A hoặc
-                        E/Z để tương tác, X mở Menu. Khi có lời thoại, chọn Tiếp
-                        tục trước khi đi. Chạm điểm, NPC hoặc nhà để tự đi tới.
-                      </p>
-                      <p>
-                        Bếp Nghỉ hồi HP/PP và mở tủ. Tiệm Hương bán vật phẩm.
-                        Nhà Ký Ức giao nhiệm vụ. Theo Hành trình để nhận đủ năm
-                        ấn.
-                      </p>
-                      <p>
-                        Trong trận, chọn kỹ năng theo tương khắc, đổi Vị Linh
-                        hoặc mở Túi đồ để dùng Hương Ấn. Mỗi thao tác chiến đấu
-                        cho đối thủ cơ hội phản kích.
-                      </p>
-                      <SchoolChart />
-                    </>
-                  ) : panel === "journey" ? (
-                    <>
-                      <span className="adv-kicker">NHIỆM VỤ CHÍNH</span>
-                      <h1>{area.objective}</h1>
-                      <p>{area.summary}</p>
-                      <ol className="adv-route-list">
-                        {ADVENTURE_AREAS.map((zone) => (
-                          <li
-                            key={zone.id}
-                            className={zone.id === area.id ? "is-current" : ""}
-                          >
-                            <span>
-                              {save.badges.includes(zone.keeper.badge)
-                                ? "✓"
-                                : zone.chapter}
-                            </span>
-                            <div>
-                              <strong>{zone.name}</strong>
-                              <small>
-                                {save.badges.includes(zone.keeper.badge)
-                                  ? zone.keeper.badgeName
-                                  : "Chưa nhận ấn"}
-                              </small>
-                            </div>
-                            <button
-                              type="button"
-                              disabled={
-                                map.interior ||
-                                !save.visitedMaps.includes(zone.id) ||
-                                zone.id === save.areaId
-                              }
-                              onClick={() =>
-                                act({ type: "travel", areaId: zone.id })
-                              }
-                            >
-                              Đến
-                            </button>
-                          </li>
-                        ))}
-                      </ol>
-                      <h2>Trong vùng này</h2>
-                      <ul className="adv-checklist">
-                        <li>
-                          {save.completedQuests.includes(`talk:${area.id}`)
-                            ? "✓"
-                            : "○"}{" "}
-                          Gặp{" "}
-                          {area.npc.id === "bach"
-                            ? "Bách"
-                            : area.npc.id === "hai"
-                              ? "Hải"
-                              : area.npc.id === "moc"
-                                ? "Mộc"
-                                : area.npc.id === "nhien"
-                                  ? "Nhiên"
-                                  : "Liên"}
-                        </li>
-                        <li>
-                          {save.defeatedTrainers.includes(`trainer:${area.id}`)
-                            ? "✓"
-                            : "○"}{" "}
-                          Thắng Lả (2 Vị Linh)
-                        </li>
-                        <li>
-                          {save.completedQuests.includes(`memory:${area.id}`)
-                            ? "✓"
-                            : "○"}{" "}
-                          Kể tên {area.chapter + 2} loài tại Nhà Ký Ức
-                        </li>
-                        <li>
-                          {save.claimedFinds.includes(area.finds[0].id)
-                            ? "✓"
-                            : "○"}{" "}
-                          Tìm túi quà trong bãi hương
-                        </li>
-                      </ul>
-                      {save.completed && (
-                        <p className="adv-complete">
-                          Giao Ước Năm Vị hoàn tất. Tiếp tục thu phục và khám
-                          phá tự do.
-                        </p>
-                      )}
-                      <SchoolChart />
-                      <details className="adv-help">
-                        <summary>
-                          Hướng dẫn chơi · Điều khiển & địa điểm
-                        </summary>
-                        <ModeIntroButton
-                          mode="adventure"
-                          beforeOpen={closePanel}
-                        />
-                        <p>
-                          WASD / mũi tên: di chuyển. Giữ Shift: chạy. E: tương
-                          tác theo hướng nhìn. Chọn một điểm trên bản đồ để tự
-                          đi đến.
-                        </p>
-                        <p>
-                          Bếp Nghỉ: hồi HP, PP và đổi dự bị ở tủ. Tiệm Hương:
-                          mua vật phẩm. Nhà Ký Ức: nhiệm vụ sưu tầm. NPC có ⚔:
-                          cuộc đấu theo lượt.
-                        </p>
-                      </details>
-                    </>
-                  ) : panel === "team" ? (
-                    <>
-                      <span className="adv-kicker">BẠN ĐỒNG HÀNH</span>
-                      <div className="adv-party-title">
-                        <h1>Đội {save.team.length}/6</h1>
-                        <span>Tủ {save.reserve.length}/60</span>
-                      </div>
-                      <div className="adv-bag-summary">
-                        <span>Canh Ấm {save.inventory.potion}</span>
-                        <span>Lá Tỉnh {save.inventory.revive}</span>
-                      </div>
-                      <p>
-                        {save.service === "storage"
-                          ? "Tủ đang mở: gửi và nhận Vị Linh bên dưới."
-                          : "Đổi người dẫn đội hoặc dùng vật phẩm. Ghé Bếp Nghỉ để hồi PP và mở tủ dự bị."}
-                      </p>
-                      <div className="adv-party-list">
-                        {save.team.map((member, index) => (
-                          <SpiritRow
-                            key={member.uid}
-                            member={member}
-                            active={index === 0}
-                            storage={
-                              save.service === "storage" ? "team" : undefined
-                            }
-                            act={act}
-                          />
-                        ))}
-                      </div>
-                      {save.service === "storage" && (
-                        <details open className="adv-reserve">
-                          <summary>
-                            Tủ Vị Linh · {save.reserve.length}/60
-                          </summary>
-                          {save.reserve.map((member) => (
-                            <SpiritRow
-                              key={member.uid}
-                              member={member}
-                              storage="reserve"
-                              act={act}
-                            />
-                          ))}
-                          {!save.reserve.length && (
-                            <p>
-                              Tủ hiện trống. Vị Linh thứ 7 trở đi sẽ về đây.
-                            </p>
-                          )}
-                          <button
-                            type="button"
-                            onClick={() => act({ type: "dismiss" })}
-                          >
-                            Đóng tủ
-                          </button>
-                        </details>
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      <span className="adv-kicker">SỔ VỊ LINH</span>
-                      <h1>
-                        {save.discovered.length}/{allSpecies.length} loài đã gặp
-                      </h1>
-                      <p>
-                        {save.team.length + save.reserve.length} bạn đồng hành ·{" "}
-                        {save.visitedMaps.length}/20 địa điểm đã tới
-                      </p>
-                      <div className="adv-codex">
-                        {allSpecies.map((id) => {
-                          const known = save.discovered.includes(id),
-                            caught = [...save.team, ...save.reserve].some(
-                              (member) => member.cardId === id,
-                            )
-                          return (
-                            <article
-                              key={id}
-                              className={
-                                known
-                                  ? `school-${CARD_MAP[id].school}`
-                                  : "is-unknown"
-                              }
-                            >
-                              {known ? (
-                                <>
-                                  <SpiritSprite cardId={id} quiet lazy />
-                                  <strong>{CARD_MAP[id].name}</strong>
-                                  <small>
-                                    {SCHOOLS[CARD_MAP[id].school].name} ·{" "}
-                                    {caught ? "Đã kết bạn" : "Đã gặp"}
-                                  </small>
-                                </>
-                              ) : (
-                                <>
-                                  <span>?</span>
-                                  <strong>Chưa gặp</strong>
-                                </>
-                              )}
-                            </article>
-                          )
-                        })}
-                      </div>
-                    </>
-                  )}
-                </aside>
-              </AdventureDialog>
-            )}
-          </main>
-        </>
-      )}
-      {save.service === "shop" && (
-        <AdventureDialog
-          className="adv-shop-dialog"
-          titleId="adv-shop-title"
-          dismiss={() => act({ type: "dismiss" })}
+      <RpgMeter
+        value={hero.xp}
+        max={heroXpNext(hero.level)}
+        label="Kinh nghiệm nhân vật"
+      />
+      <div className="rpg-upgrade-actions">
+        <button
+          type="button"
+          className="rpg-primary"
+          disabled={hero.level >= 50 || !save.resources.experience}
+          onClick={() => act({ type: "train", uid: hero.uid })}
         >
-          <header>
-            <span className="adv-kicker">TIỆM HƯƠNG · {save.coins} XU</span>
-            <h2 id="adv-shop-title">Chuẩn bị cho chuyến đi</h2>
-            <button
-              type="button"
-              aria-label="Đóng cửa hàng"
-              onClick={() => act({ type: "dismiss" })}
-            >
-              ×
-            </button>
-          </header>
-          {ADVENTURE_SHOP.map((item) => (
-            <article key={item.id}>
+          +180 KN · 1 Sổ KN
+        </button>
+        <button
+          type="button"
+          disabled={
+            hero.rank >= 5 ||
+            hero.level < hero.rank * 5 ||
+            !canPay(save, rankCost)
+          }
+          title={costText(rankCost)}
+          onClick={() => act({ type: "rank", uid: hero.uid })}
+        >
+          Thăng bậc {hero.rank + 1} · cần cấp {hero.rank * 5}
+          <small>{costText(rankCost)}</small>
+        </button>
+      </div>
+      <h3>Bốn kỹ năng</h3>
+      <div className="rpg-skill-list">
+        {heroSkills(hero).map((skill, index) => {
+          const cost = upgradeCost(hero, "skill", index)
+          return (
+            <article key={index} className={!skill.ready ? "is-locked" : ""}>
               <div>
-                <strong>{item.name}</strong>
-                <p>{item.description}</p>
                 <small>
-                  Đang có:{" "}
-                  {item.id === "seal"
-                    ? save.aromaSeals
-                    : save.inventory[item.id]}
+                  {skill.tag} · Cấp {skill.level}/10
                 </small>
+                <strong>{skill.name}</strong>
+                <p>{skill.text}</p>
+                {!skill.ready && (
+                  <b>{index === 3 ? "Mở ở bậc 2" : "Mở ở cấp 5"}</b>
+                )}
               </div>
               <button
                 type="button"
-                disabled={save.coins < item.price}
-                onClick={() => act({ type: "buy", item: item.id })}
+                disabled={
+                  !skill.ready ||
+                  skill.level >= Math.min(10, hero.level) ||
+                  !canPay(save, cost)
+                }
+                onClick={() => act({ type: "skill", uid: hero.uid, index })}
               >
-                Mua · {item.price} xu
+                Nâng<small>{costText(cost)}</small>
               </button>
             </article>
-          ))}
-        </AdventureDialog>
+          )
+        })}
+      </div>
+      <h3>Trang bị</h3>
+      <div className="rpg-gear-list">
+        {[
+          "Muôi chiến · Công",
+          "Tạp dề · HP + Giáp",
+          "Hương phù · Năng lượng",
+        ].map((name, index) => {
+          const cost = upgradeCost(hero, "gear", index)
+          return (
+            <button
+              type="button"
+              key={name}
+              disabled={hero.gear[index] >= 10 || !canPay(save, cost)}
+              onClick={() => act({ type: "gear", uid: hero.uid, index })}
+            >
+              <strong>{name}</strong>
+              <span>+{hero.gear[index]}/10</span>
+              <small>{costText(cost)}</small>
+            </button>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
+export function AdventurePage() {
+  useGameAudio()
+  const game = useGameStore((s) => s.save),
+    raw = game.adventureRpg
+  const seeded = useMemo(() => newRpgSave(game), [game.adventure, game.cards])
+  const save = raw ?? seeded,
+    run = save.run,
+    b = run?.battle
+  const dispatch = useGameStore((s) => s.rpgAction),
+    notice = useGameStore((s) => s.notice),
+    dismiss = useGameStore((s) => s.dismiss)
+  const prefs = useAppStore((s) => s.user.preferences)
+  const [tab, setTab] = useState<"campaign" | "dungeon" | "heroes" | "help">(
+    "campaign",
+  )
+  const [mapIndex, setMapIndex] = useState(() =>
+    Math.min(3, RPG_MAPS.filter((m) => save.stars[`${m.id}-6`]).length),
+  )
+  const [selected, setSelected] = useState(save.formation[0]),
+    [slot, setSlot] = useState(0),
+    [tier, setTier] = useState(1),
+    [filter, setFilter] = useState("")
+  const [story, setStory] = useState<{
+    lines: RpgLine[]
+    start?: string
+  } | null>(null)
+  const [confirmExit, setConfirmExit] = useState(false)
+  const [hidden, setHidden] = useState(document.hidden)
+  const sound = useRef({ battle: "", serial: 0, result: "" })
+  const map = RPG_MAPS[mapIndex],
+    activeStage = run?.stageId ? rpgStage(run.stageId) : null
+  const dungeon = run?.dungeon
+    ? RPG_DUNGEONS.find((d) => d.id === run.dungeon!.kind)
+    : null
+  const art =
+    ELEMENTAL_BOARDS[
+      activeStage?.map.school ??
+        (run?.dungeon?.kind === "skills"
+          ? "sugar"
+          : run?.dungeon?.kind === "forge"
+            ? "ember"
+            : "hearth")
+    ]
+  useGameMusic(
+    run
+      ? b?.actors.some((a) => a.boss && a.hp > 0)
+        ? "auto-boss"
+        : "auto-battle"
+      : map.music,
+    8,
+  )
+  const act = useCallback(
+    (a: RpgAction) => {
+      const ok = dispatch(a)
+      if (ok && a.type !== "tick" && a.type !== "settle" && a.type !== "sync")
+        gameAudio.play(a.type === "burst" ? "auto-channel" : "confirm")
+      return ok
+    },
+    [dispatch],
+  )
+  useEffect(() => {
+    dispatch({ type: "sync" })
+  }, [dispatch])
+  useEffect(() => {
+    const flush = () => useGameStore.getState().flushRpg()
+    const visibility = () => {
+      setHidden(document.hidden)
+      if (document.hidden) flush()
+    }
+    document.addEventListener("visibilitychange", visibility)
+    window.addEventListener("pagehide", flush)
+    return () => {
+      flush()
+      document.removeEventListener("visibilitychange", visibility)
+      window.removeEventListener("pagehide", flush)
+    }
+  }, [])
+  useEffect(() => {
+    if (!b || b.result || b.paused || hidden || story || confirmExit) return
+    const handle = window.setInterval(() => {
+      if (!document.hidden) dispatch({ type: "tick", steps: b.speed })
+    }, 250)
+    return () => clearInterval(handle)
+  }, [
+    b?.id,
+    b?.result,
+    b?.paused,
+    b?.speed,
+    hidden,
+    story,
+    confirmExit,
+    dispatch,
+  ])
+  useEffect(() => {
+    if (b?.result && !b.settled) dispatch({ type: "settle" })
+  }, [b?.result, b?.settled, dispatch])
+  useEffect(() => {
+    if (!b) return
+    if (sound.current.battle !== b.id)
+      sound.current = { battle: b.id, serial: b.serial, result: "" }
+    const events = b.events.filter((e) => e.serial > sound.current.serial)
+    sound.current.serial = b.serial
+    const e =
+      events.find((e) => e.kind === "burst") ??
+      events.find((e) =>
+        ["boss", "heal", "shield", "skill"].includes(e.kind),
+      ) ??
+      events[0]
+    if (e && !hidden)
+      gameAudio.play(
+        e.kind === "burst"
+          ? "combo"
+          : e.kind === "heal"
+            ? "heal"
+            : e.kind === "shield"
+              ? "shield"
+              : e.kind === "boss"
+                ? "auto-boss"
+                : e.kind === "skill"
+                  ? "auto-channel"
+                  : "auto-contact",
+      )
+    if (b.result && sound.current.result !== b.id) {
+      sound.current.result = b.id
+      gameAudio.play(b.result === "win" ? "auto-victory" : "auto-defeat")
+    }
+  }, [b?.serial, b?.id, b?.result, hidden])
+  const teamPower = save.formation.reduce(
+    (total, uid) => total + heroPower(save.roster.find((h) => h.uid === uid)!),
+    0,
+  )
+  const hero = save.roster.find((h) => h.uid === selected) ?? save.roster[0]
+  const startStage = (id: string) => {
+    const s = rpgStage(id)!
+    setStory({ lines: [s.stage.before], start: id })
+  }
+  const closeRun = () => {
+    act({ type: "close" })
+    setConfirmExit(false)
+    if (activeStage?.boss && b?.result === "win") {
+      setMapIndex(activeStage.mapIndex)
+      setStory({ lines: activeStage.map.ending })
+    }
+  }
+  const putHero = () => {
+    const ids = [...save.formation],
+      existing = ids.indexOf(hero.uid)
+    if (existing >= 0) [ids[slot], ids[existing]] = [ids[existing], ids[slot]]
+    else ids[slot] = hero.uid
+    act({ type: "formation", uids: ids.filter(Boolean) })
+  }
+  return (
+    <div className="rpg-app">
+      <header className="rpg-header">
+        <a href="/" className="rpg-brand">
+          <BrandMark />
+          <span>
+            SOUL OF MEAL<small>GIAO ƯỚC VỊ LINH</small>
+          </span>
+        </a>
+        <div>
+          <ModeSwitch mode="adventure" />
+          <AudioButton />
+        </div>
+      </header>
+      {run && b ? (
+        <main className="rpg-play-screen">
+          <RpgBattleView
+            battle={b}
+            title={
+              activeStage
+                ? `${activeStage.map.name} · ${activeStage.stage.name}`
+                : `${dungeon?.name} · Tầng ${run.dungeon?.floor}/5`
+            }
+            art={art}
+            quiet={prefs.reducedMotion || prefs.graphicsQuality === "low"}
+            paused={hidden || !!story || confirmExit}
+            onAction={act}
+          />
+          <footer className="rpg-run-footer">
+            <span>
+              {run.kind === "dungeon"
+                ? "HP và năng lượng được giữ giữa các tầng"
+                : "Đội hình 5 Vị Linh · Thắng để mở màn tiếp"}
+            </span>
+            <button
+              type="button"
+              onClick={() => (b.result ? closeRun() : setConfirmExit(true))}
+            >
+              {b.result ? "Về bản đồ" : "Rút lui"}
+            </button>
+          </footer>
+          {b.result && b.settled && (
+            <RpgModal label="Kết quả trận" onClose={closeRun}>
+              <div className="rpg-result-card">
+                <small>
+                  {run.dungeon?.status === "complete"
+                    ? "HOÀN THÀNH DUNGEON"
+                    : "KẾT QUẢ"}
+                </small>
+                <h2>
+                  {b.result === "win"
+                    ? "Đã giữ được hương vị"
+                    : "Nghỉ một chút, rồi thử lại"}
+                </h2>
+                {run.kind === "campaign" && b.result === "win" && (
+                  <strong className="rpg-stars">
+                    {"★".repeat(b.stars)}
+                    {"☆".repeat(3 - b.stars)}
+                  </strong>
+                )}
+                <p>
+                  {b.reward
+                    ? `Đã nhận: ${costText(b.reward)} · cả đội nhận KN`
+                    : "Nâng cấp đội và thử lại. Tài nguyên đã có được giữ nguyên."}
+                </p>
+                {activeStage && b.result === "win" && (
+                  <blockquote>
+                    {activeStage.stage.after.text}
+                    <cite>
+                      — {CHARACTER_NAMES[activeStage.stage.after.speaker]}
+                    </cite>
+                  </blockquote>
+                )}
+                {run.dungeon?.status === "camp" && (
+                  <div className="rpg-choice-actions">
+                    <button
+                      type="button"
+                      onClick={() => act({ type: "camp", choice: "rest" })}
+                    >
+                      Nghỉ · Hồi 40% HP
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => act({ type: "camp", choice: "power" })}
+                    >
+                      Tiếp sức · +12% công
+                    </button>
+                  </div>
+                )}
+                {run.dungeon &&
+                  ["camp", "ready"].includes(run.dungeon.status) && (
+                    <div className="rpg-dungeon-health">
+                      {b.actors
+                        .filter((a) => a.side === "ally")
+                        .map((a) => (
+                          <span key={a.uid}>
+                            {a.name}: {run.dungeon!.health[a.uid]?.hp ?? a.hp}{" "}
+                            HP
+                          </span>
+                        ))}
+                      <button
+                        type="button"
+                        disabled={!save.resources.broth}
+                        onClick={() => act({ type: "broth" })}
+                      >
+                        Canh Ấm ×{save.resources.broth} · hồi 35%
+                      </button>
+                      {b.actors
+                        .filter(
+                          (a) =>
+                            a.side === "ally" &&
+                            run.dungeon!.health[a.uid]?.hp === 0,
+                        )
+                        .map((a) => (
+                          <button
+                            type="button"
+                            key={`revive:${a.uid}`}
+                            disabled={!save.resources.leaves}
+                            onClick={() => act({ type: "revive", uid: a.uid })}
+                          >
+                            Lá Tỉnh · {a.name}
+                          </button>
+                        ))}
+                    </div>
+                  )}
+                <div className="rpg-result-actions">
+                  {run.dungeon?.status === "ready" && (
+                    <button
+                      type="button"
+                      className="rpg-primary"
+                      onClick={() => act({ type: "next" })}
+                    >
+                      Lên tầng {run.dungeon.floor + 1} →
+                    </button>
+                  )}
+                  {activeStage &&
+                    b.result === "win" &&
+                    activeStage.index < 5 && (
+                      <button
+                        type="button"
+                        className="rpg-primary"
+                        onClick={() => {
+                          act({ type: "close" })
+                          startStage(
+                            `${activeStage.map.id}-${activeStage.index + 2}`,
+                          )
+                        }}
+                      >
+                        Màn tiếp →
+                      </button>
+                    )}
+                  <button type="button" onClick={closeRun}>
+                    {run.dungeon?.status === "complete"
+                      ? "Mang tài nguyên về bếp"
+                      : "Về bản đồ"}
+                  </button>
+                </div>
+              </div>
+            </RpgModal>
+          )}
+          {confirmExit && (
+            <RpgModal label="Rút khỏi chuyến đi" onClose={() => setConfirmExit(false)}>
+              <div className="rpg-result-card">
+                <h2>Rút khỏi chuyến đi?</h2>
+                <p>
+                  Phần thưởng các tầng đã nhận vẫn được giữ. Màn đang đánh sẽ
+                  bắt đầu lại lần sau.
+                </p>
+                <div className="rpg-choice-actions">
+                  <button type="button" onClick={() => setConfirmExit(false)}>
+                    Tiếp tục trận
+                  </button>
+                  <button type="button" onClick={closeRun}>
+                    Rút lui
+                  </button>
+                </div>
+              </div>
+            </RpgModal>
+          )}
+        </main>
+      ) : (
+        <main className="rpg-home-screen">
+          <div className="rpg-resource-bar">
+            {(["coins", "experience", "books", "ore", "essence"] as const).map(
+              (key) => (
+                <span key={key}>
+                  <small>{RESOURCE_NAMES[key]}</small>
+                  <strong>{save.resources[key]}</strong>
+                </span>
+              ),
+            )}
+          </div>
+          <nav className="rpg-tabs" aria-label="Adventure">
+            {([
+              ["campaign", "Đi map"],
+              ["dungeon", "Dungeon"],
+              ["heroes", "Đội hình"],
+              ["help", "Hướng dẫn"],
+            ] as const).map(([id, label]) => (
+              <button
+                type="button"
+                key={id}
+                aria-current={tab === id ? "page" : undefined}
+                onClick={() => setTab(id)}
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+          {tab === "campaign" && (
+            <section className="rpg-campaign-screen">
+              <nav className="rpg-map-tabs" aria-label="Chọn map">
+                {RPG_MAPS.map((m, i) => (
+                  <button
+                    type="button"
+                    key={m.id}
+                    className={mapIndex === i ? "is-selected" : ""}
+                    onClick={() => setMapIndex(i)}
+                  >
+                    <b>{i + 1}</b>
+                    <span>{m.name}</span>
+                    <small>
+                      {
+                        m.stages.filter(
+                          (_, j) => save.stars[`${m.id}-${j + 1}`],
+                        ).length
+                      }
+                      /6
+                    </small>
+                  </button>
+                ))}
+              </nav>
+              <section
+                className="rpg-map-card"
+                style={{
+                  backgroundImage: `linear-gradient(90deg,#14292cee,#14292c20),url(${map.art})`,
+                }}
+              >
+                <div>
+                  <small>
+                    CHƯƠNG {mapIndex + 1} · {map.subtitle}
+                  </small>
+                  <h1>{map.name}</h1>
+                  <p>
+                    {save.choices[map.id] === undefined
+                      ? "Sương Nhạt đang phủ lên những bữa cơm. Cùng các Vị Linh tìm lại câu chuyện của từng vùng."
+                      : `Ký ức bạn đã chọn: ${map.choices[save.choices[map.id]]}.`}
+                  </p>
+                  <span>Đội hiện tại · Lực chiến {teamPower}</span>
+                </div>
+                <CharacterPortrait id={map.guide} decorative />
+              </section>
+              <div className="rpg-stage-path">
+                {map.stages.map((stage, i) => {
+                  const id = `${map.id}-${i + 1}`,
+                    open = stageUnlocked(save, id)
+                  return (
+                    <button
+                      type="button"
+                      key={id}
+                      className={`rpg-stage-node ${i === 5 ? "is-boss" : ""} ${
+                        save.stars[id] ? "is-cleared" : ""
+                      }`}
+                      disabled={!open}
+                      onClick={() => startStage(id)}
+                    >
+                      <span className="rpg-node-number">
+                        {open ? (i === 5 ? "♛" : i + 1) : "🔒"}
+                      </span>
+                      <strong>{stage.name}</strong>
+                      <small>
+                        {save.stars[id]
+                          ? "★".repeat(save.stars[id])
+                          : i === 5
+                            ? "BOSS · 3 đợt"
+                            : "2 đợt"}
+                      </small>
+                    </button>
+                  )
+                })}
+              </div>
+              <div className="rpg-map-footer">
+                <button type="button" onClick={() => setTab("heroes")}>
+                  Chuẩn bị đội →
+                </button>
+                <span>
+                  5 màn nhỏ + 1 boss ·{" "}
+                  {Object.values(save.stars).reduce((a, n) => a + n, 0)}/72 sao
+                </span>
+              </div>
+              {!!save.stars[`${map.id}-6`] && (
+                <div className="rpg-map-choice">
+                  <strong>Viết tiếp câu chuyện</strong>
+                  {map.choices.map((choice, i) => (
+                    <button
+                      type="button"
+                      key={choice}
+                      aria-pressed={save.choices[map.id] === i}
+                      onClick={() =>
+                        act({
+                          type: "choice",
+                          mapId: map.id,
+                          choice: i as 0 | 1,
+                        })
+                      }
+                    >
+                      {choice}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </section>
+          )}
+          {tab === "dungeon" && (
+            <section className="rpg-dungeon-screen">
+              <div className="rpg-section-title">
+                <div>
+                  <small>FARM → NÂNG CẤP → VƯỢT MAP</small>
+                  <h1>Kho tài nguyên ký ức</h1>
+                  <p>
+                    Không tốn vé vào. Nhận tài nguyên sau từng tầng, kể cả khi
+                    rút lui.
+                  </p>
+                </div>
+                <label>
+                  Độ khó
+                  <select
+                    value={tier}
+                    onChange={(e) => setTier(Number(e.target.value))}
+                  >
+                    {[1, 2, 3].map((t) => (
+                      <option
+                        key={t}
+                        value={t}
+                        disabled={t > dungeonTierCap(save)}
+                      >
+                        Bậc {t}
+                        {t > dungeonTierCap(save)
+                          ? " · thắng thêm boss để mở"
+                          : ""}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+              <div className="rpg-dungeon-grid">
+                {RPG_DUNGEONS.map((d) => (
+                  <article
+                    key={d.id}
+                    style={{
+                      backgroundImage: `linear-gradient(0deg,#132e31f5,#132e3110),url(${d.art})`,
+                    }}
+                  >
+                    <small>5 TẦNG · BOSS Ở TẦNG 5</small>
+                    <h2>{d.name}</h2>
+                    <strong>{d.resource}</strong>
+                    <p>{d.text}</p>
+                    <span>
+                      Đã vượt: {save.dungeonClears[`${d.id}:${tier}`] ?? 0} lần
+                    </span>
+                    <button
+                      type="button"
+                      className="rpg-primary"
+                      onClick={() => act({ type: "dungeon", kind: d.id, tier })}
+                    >
+                      Vào dungeon →
+                    </button>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+          {tab === "heroes" && (
+            <section className="rpg-roster-screen">
+              <div className="rpg-formation">
+                {Array.from({ length: 5 }, (_, i) => {
+                  const m = save.roster.find((h) => h.uid === save.formation[i])
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      className={slot === i ? "is-selected" : ""}
+                      disabled={i > save.formation.length}
+                      onClick={() => {
+                        setSlot(i)
+                        if (m) setSelected(m.uid)
+                      }}
+                    >
+                      <small>
+                        {i < 2 ? "Tuyến trước" : "Tuyến sau"} · {i + 1}
+                      </small>
+                      {m ? (
+                        <>
+                          <img src={CARD_MAP[m.cardId].art} alt="" />
+                          <strong>{CARD_MAP[m.cardId].name}</strong>
+                          <span>Cấp {m.level}</span>
+                        </>
+                      ) : (
+                        <b>＋</b>
+                      )}
+                    </button>
+                  )
+                })}
+              </div>
+              <div className="rpg-roster-layout">
+                <aside>
+                  <input
+                    aria-label="Tìm Vị Linh"
+                    placeholder="Tìm Vị Linh…"
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value)}
+                  />
+                  <div className="rpg-roster-list">
+                    {save.roster
+                      .filter((m) =>
+                        CARD_MAP[m.cardId].name
+                          .toLocaleLowerCase("vi")
+                          .includes(filter.toLocaleLowerCase("vi")),
+                      )
+                      .map((m) => (
+                        <button
+                          type="button"
+                          key={m.uid}
+                          className={hero.uid === m.uid ? "is-selected" : ""}
+                          onClick={() => setSelected(m.uid)}
+                        >
+                          <img
+                            src={CARD_MAP[m.cardId].art}
+                            alt=""
+                            loading="lazy"
+                          />
+                          <span>
+                            <strong>{CARD_MAP[m.cardId].name}</strong>
+                            <small>
+                              Cấp {m.level} ·{" "}
+                              {RPG_ROLE_NAMES[heroRole(m.cardId)]}
+                            </small>
+                          </span>
+                          {save.formation.includes(m.uid) && <b>✓</b>}
+                        </button>
+                      ))}
+                  </div>
+                  <button
+                    type="button"
+                    className="rpg-primary"
+                    onClick={putHero}
+                  >
+                    Đặt vào ô {slot + 1}
+                  </button>
+                </aside>
+                <HeroDetails hero={hero} save={save} act={act} />
+              </div>
+            </section>
+          )}
+          {tab === "help" && (
+            <section className="rpg-help-screen">
+              <h1>Giao ước Vị Linh</h1>
+              <p>
+                Đi map để tìm lại ký ức, vào dungeon để farm, rồi nâng đội vượt
+                boss tiếp theo.
+              </p>
+              <ModeIntroButton mode="adventure" />
+              <div className="rpg-help-grid">
+                <article>
+                  <h2>Đội 5 người</h2>
+                  <p>
+                    Hai ô đầu là tuyến trước, ba ô sau là tuyến sau. Đặt người
+                    Giữ tuyến phía trước, Hồi phục và Pháp vị phía sau. Mỗi Vị
+                    Linh có hai kỹ năng tự động, một tuyệt kỹ và một nội tại.
+                  </p>
+                </article>
+                <article>
+                  <h2>Canh nhịp kỹ năng</h2>
+                  <p>
+                    Đòn thường và kỹ năng cho năng lượng. Đầy 100: chạm tên nhân
+                    vật để tung tuyệt kỹ. AUTO tự dùng tuyệt kỹ; tốc độ ×2 giúp
+                    farm nhanh. Boss báo tuyến trước/sau trước 2 giây: che đúng
+                    tuyến giảm 65% sát thương trong 3 giây, hồi sau 12 giây.
+                  </p>
+                </article>
+                <article>
+                  <h2>Nuôi nhân vật</h2>
+                  <p>
+                    Sổ KN cho 180 kinh nghiệm. Sách kỹ năng + xu nâng kỹ năng,
+                    tối đa bằng cấp nhân vật và cấp 10. Kỹ năng thứ hai mở ở cấp
+                    5; thăng bậc 2 mở nội tại. Quặng nâng ba ô trang bị; Tinh
+                    hương dùng để thăng bậc. Cấp nhân vật tối đa 50.
+                  </p>
+                </article>
+                <article>
+                  <h2>Dungeon và số sao</h2>
+                  <p>
+                    Dungeon có 5 tầng, HP/năng lượng giữ qua trận. Tầng 2/4 chọn
+                    hồi 40% HP hoặc +12% công; Canh Ấm hồi thêm 35%. Gục thì
+                    không tự hồi ở tầng kế. Chiến dịch: thắng 1 sao, không ai
+                    gục 2 sao, đủ người và dưới 90s được 3 sao. Thua không trừ
+                    tài nguyên.
+                  </p>
+                </article>
+              </div>
+              <p>
+                {save.legacy.imported
+                  ? `Đã chuyển ${save.legacy.discoveries} khám phá và ${save.legacy.badges.length} huy hiệu cũ. Cấp/KN các Vị Linh được giữ.`
+                  : "Vị Linh trong bộ sưu tập TCG cũng có thể đồng hành. Mở thêm thẻ rồi quay lại Adventure để cập nhật đội."}{" "}
+                Canh Ấm ×{save.resources.broth} · Lá Tỉnh ×
+                {save.resources.leaves} · Hương Ấn ×{save.resources.seals}. Bản
+                lưu cũ vẫn được giữ trong sao lưu.
+              </p>
+            </section>
+          )}
+        </main>
       )}
-      {notice && !save.encounter && save.service !== "shop" && (
-        <div className="adv-toast" role="alert">
-          <span>{notice}</span>
-          <button
-            type="button"
-            aria-label="Đóng thông báo"
-            onClick={dismissNotice}
-          >
+      {notice && (
+        <div className="rpg-toast" role="alert">
+          {notice}
+          <button type="button" aria-label="Đóng thông báo" onClick={dismiss}>
             ×
           </button>
         </div>
       )}
-      {save.encounter && <AdventureBattle save={save} act={act} />}
+      {story && (
+        <StoryDialog
+          key={story.start ?? story.lines[0].text}
+          lines={story.lines}
+          onCancel={() => setStory(null)}
+          onClose={() => {
+            if (story.start) act({ type: "start", stageId: story.start })
+            setStory(null)
+          }}
+        />
+      )}
     </div>
   )
 }

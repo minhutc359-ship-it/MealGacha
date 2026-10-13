@@ -262,6 +262,7 @@ export interface GameSave {
   }
   autoChess?: import("./autochess/types").AutoSave
   adventure?: import("./adventure").AdventureSave
+  adventureRpg?: import("./adventureRpg/types").RpgSave
   version: 1
   coins: number
   dust: number

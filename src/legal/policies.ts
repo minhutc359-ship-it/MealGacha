@@ -98,7 +98,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
   privacy: {
     title: "Chính sách quyền riêng tư",
     intro:
-      "Chính sách này mô tả bản web Soul of Meal 4.9. Trò chơi không yêu cầu tài khoản máy chủ; tiến trình và ảnh tự nhập lưu trên thiết bị. Tìm quán, hosting, phông chữ và các liên kết ngoài có thể gửi dữ liệu ra khỏi thiết bị như mô tả dưới đây.",
+      "Chính sách này mô tả bản web Soul of Meal 5.0. Trò chơi không yêu cầu tài khoản máy chủ; tiến trình và ảnh tự nhập lưu trên thiết bị. Tìm quán, hosting, phông chữ và các liên kết ngoài có thể gửi dữ liệu ra khỏi thiết bị như mô tả dưới đây.",
     sections: [
       {
         title: "Phòng PvP giao hữu trên web 4.9",

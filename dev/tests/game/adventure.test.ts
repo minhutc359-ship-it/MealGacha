@@ -68,7 +68,7 @@ describe("Adventure world", () => {
   it("has five regions and fifteen accessible furnished houses, with original vector sprites", () => {
     expect(ADVENTURE_AREAS).toHaveLength(5)
     expect(ADVENTURE_MAPS).toHaveLength(20)
-    expect(existsSync("public/assets/adventure/world.svg")).toBe(true)
+    expect(existsSync("dev/archive/legacy-adventure-v490/assets/world.svg")).toBe(true)
     for (const map of ADVENTURE_MAPS) {
       expect(canWalk(map, map.spawn.x, map.spawn.y)).toBe(true)
       expect(map.grid.every((row) => row.length === map.grid[0].length)).toBe(

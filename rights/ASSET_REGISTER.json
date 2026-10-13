@@ -1,79 +1,8 @@
 {
-  "version": "4.9.0",
+  "version": "5.0.0",
   "generatedOn": "2026-10-12",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
-    {
-      "path": "public/assets/adventure/grandmother-v441.webp",
-      "bytes": 558398,
-      "sha256": "26ac18f0a8b5117d5921bb6369bdf9594ba7822522d1312c1b8e469a6456199c",
-      "origin": "AI-assisted original four-direction NPC atlas using the project character portrait reference",
-      "evidence": [
-        "dev/docs/web-v441/artwork.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/adventure/hero-v440.webp",
-      "bytes": 285672,
-      "sha256": "afce3e25f6684113b4777e6a58a2cffe0e06de26b523d4c80aa12bf4c24ed3f6",
-      "origin": "AI-assisted original heroine walking atlas, using existing project heroine as identity reference",
-      "evidence": [
-        "dev/docs/web-v440/artwork.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/adventure/la-v441.webp",
-      "bytes": 411108,
-      "sha256": "8aa448d0bcff50f274b7b6ee4add026a3f42a161aa71fbba76454fb847ebc5db",
-      "origin": "AI-assisted original four-direction NPC atlas using the project character portrait reference",
-      "evidence": [
-        "dev/docs/web-v441/artwork.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/adventure/merchant-v441.webp",
-      "bytes": 426440,
-      "sha256": "222912770c45ba46cae881ec8d6d2114647fb20c298f10efd3fcf18523a53658",
-      "origin": "AI-assisted original four-direction NPC atlas using the project character portrait reference",
-      "evidence": [
-        "dev/docs/web-v441/artwork.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/adventure/terrain-v480.webp",
-      "bytes": 2330964,
-      "sha256": "c7969067085cb9f11633dfad2bfc104b4a1f14f8a73bb68be2cb4faceee2cef7",
-      "origin": "AI-assisted original terrain material atlas for Soul of Meal",
-      "evidence": [
-        "dev/docs/web-v480/artwork.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/adventure/world-props-v480.webp",
-      "bytes": 1830856,
-      "sha256": "da302535a3ead9f0594777a37ec2d1d657c54751ad53a1cd9d83c147a98b025e",
-      "origin": "AI-assisted original transparent environment prop atlas for Soul of Meal",
-      "evidence": [
-        "dev/docs/web-v480/artwork.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/adventure/world.svg",
-      "bytes": 75375,
-      "sha256": "795e3bb1f5542f0199c0207ecbc7801472b0ff7bd1213ca08d8df955418099db",
-      "origin": "Original code-authored vector world and four-direction character sprites; no external art or samples",
-      "evidence": [
-        "dev/tools/build-adventure-assets.mjs",
-        "dev/docs/web-v430/UPDATE.md"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
     {
       "path": "public/assets/autochess/audio/8bit-battle.mp3",
       "bytes": 466313,
