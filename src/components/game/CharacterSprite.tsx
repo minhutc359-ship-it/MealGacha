@@ -1,3 +1,4 @@
+import { blendPose, type PoseBlend } from "../../game/poseBlend"
 import { renderDpr, subscribeRenderQuality } from "../../infrastructure/presentation/renderQuality"
 import {livingClipFrame} from "../../game/livingClips"
 import { motionAccent, drawMotionTrail } from "../../game/motionProfiles"
@@ -26,6 +27,14 @@ export const CharacterSprite = memo(function CharacterSprite({
   model, motion = "idle", delay = 0, lead, stamp, flip = false,
   quiet = false, paused = false, fallback, cinematic = false,
 }: Props) {
+  const cue = useRef({motion, delay, lead, stamp, flip, quiet, paused, start: performance.now(), frozenAt: paused ? performance.now() : null as number | null, revision: 0})
+  useEffect(() => {
+    const old = cue.current, now = performance.now()
+    const changed = old.stamp !== stamp || old.motion !== motion
+    let start = changed ? now : old.start
+    if (!changed && old.frozenAt !== null && !paused) start += now - old.frozenAt
+    cue.current = {motion, delay, lead, stamp, flip, quiet, paused, start, frozenAt: paused ? old.frozenAt ?? now : null, revision: old.revision + 1}
+  }, [motion, delay, lead, stamp, flip, quiet, paused])
   const canvas = useRef<HTMLCanvasElement>(null)
   const [loadedPath, setLoadedPath] = useState("")
   const showcase = cinematic ? model.showcase : undefined
@@ -35,15 +44,18 @@ export const CharacterSprite = memo(function CharacterSprite({
     const bounds = characterBounds(model)
     if (!ctx || !bounds) return
     const lease = acquireCharacterImage(path), image = lease.image
-    let onscreen = true, drewStatic = false
-    let width = 1, height = 1, start = performance.now(), visibleSince = start
-    let hiddenAt: number | null = document.hidden ? start : null
+    let onscreen = true, drewStatic = false, revision = -1
+    const blend: PoseBlend = {pose: 0, previous: 0, at: performance.now()}
+    let width = 1, height = 1, visibleSince = performance.now()
+    let hiddenAt: number | null = document.hidden ? performance.now() : null
     const draw = (now: number) => {
       if (!image.complete || !image.naturalWidth || document.hidden || !onscreen) return
+      const {motion, delay, lead, flip, quiet, paused, start, frozenAt} = cue.current
+      if (revision !== cue.current.revision) {drewStatic = false; revision = cue.current.revision}
       const staticMotion = quiet || paused || document.body.classList.contains("presentation-quiet")
       if (staticMotion && drewStatic) return
       drewStatic = staticMotion
-      const age = staticMotion ? 0 : Math.max(0, now - start)
+      const age = quiet ? 0 : Math.max(0, (frozenAt ?? now) - start)
       const current = age < delay ? lead ?? "idle" : motion
       const poseAge = age < delay ? age : age - delay
       const fresh = model.sheet !== "base"
@@ -80,10 +92,18 @@ export const CharacterSprite = memo(function CharacterSprite({
       stretch += accent.stretch
       ctx.scale(direction * (1 - stretch), 1 + stretch)
       drawMotionTrail(ctx, height, poseAge / 780, current === "cast", "#efd9a1", quiet || paused || !["attack", "cast"].includes(current))
-      ctx.drawImage(image, sx, sy, sw, sh, -ax * scale, -ay * scale, sw * scale, sh * scale)
+      const dissolve = blendPose(blend, pose, now, staticMotion || !!showcase)
+      const paint = (f: number[], opacity: number) => {
+        const [fx,fy,fw,fh,fa,fb] = f
+        ctx.globalAlpha = alpha * opacity
+        ctx.drawImage(image,fx,fy,fw,fh,-fa*scale,-fb*scale,fw*scale,fh*scale)
+      }
+      if (dissolve.mix < 1 && !showcase) paint(bounds.row.frames[dissolve.previous], 1-dissolve.mix)
+      paint([sx,sy,sw,sh,ax,ay], dissolve.mix)
       ctx.restore()
-      surface.dataset.pose = String(pose)
-      surface.dataset.source = showcase ? "showcase" : "atlas"
+      if (surface.dataset.pose !== String(pose)) surface.dataset.pose = String(pose)
+      const source = showcase ? "showcase" : "atlas"
+      if (surface.dataset.source !== source) surface.dataset.source = source
     }
     const resize = () => {
       // Entrance transforms start at 30% scale. Measure the layout box so the
@@ -102,7 +122,7 @@ export const CharacterSprite = memo(function CharacterSprite({
       const now = performance.now()
       if (document.hidden) hiddenAt ??= now
       else {
-        if (hiddenAt !== null) start += now - hiddenAt
+        if (hiddenAt !== null && cue.current.frozenAt === null) cue.current.start += now - hiddenAt
         hiddenAt = null; visibleSince = now; draw(now)
       }
     }
@@ -115,12 +135,12 @@ export const CharacterSprite = memo(function CharacterSprite({
     const qualityRelease = subscribeRenderQuality(resize)
     const intersection = new IntersectionObserver(([entry]) => { onscreen = entry.isIntersecting; if (onscreen) draw(performance.now()) })
     intersection.observe(surface)
-    const unsubscribe = !quiet && !paused ? subscribeCharacterClock(draw, motion !== "idle") : () => {}
+    const unsubscribe = subscribeCharacterClock(draw, () => !cue.current.quiet && !cue.current.paused && cue.current.motion !== "idle")
     return () => {
       lease.release(); unsubscribe(); observer.disconnect(); intersection.disconnect(); qualityRelease(); image.removeEventListener("load", ready)
       document.removeEventListener("visibilitychange", visibility)
     }
-  }, [path, showcase, model.sheet, model.row, motion, delay, lead, stamp, flip, quiet, paused])
+  }, [path, showcase, model.sheet, model.row])
   return <span className={`tcg-character-sprite${loadedPath === path ? " is-loaded" : ""}`}
     data-character={model.id} data-motion={motion} data-sheet={model.sheet}
     data-quiet={quiet || paused} aria-hidden="true">

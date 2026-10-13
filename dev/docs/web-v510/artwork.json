@@ -1,0 +1,1210 @@
+{
+  "version": "5.1.0",
+  "generator": "Built-in imagegen",
+  "mediaBytes": 5797504,
+  "assets": [
+    {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 502556,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe",
+      "layout": "4x4"
+    },
+    {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 524470,
+      "sha256": "3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891",
+      "layout": "4x4"
+    },
+    {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 507860,
+      "sha256": "bacc5bf57479298d97e8e8bb1fd43a6da95f28117fa2e5b53dda7f3b1baf6d8e",
+      "layout": "4x4"
+    },
+    {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 576382,
+      "sha256": "33b370606ef7be4d708d4211dee46826f9ca09db770f701265c5bb973371cc2a",
+      "layout": "4x4"
+    },
+    {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 553992,
+      "sha256": "bd5b104f7cdbe94a3bf259b55653cada715b43951eec7b5809ca8363fe7313be",
+      "layout": "4x4"
+    },
+    {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 558212,
+      "sha256": "c546608de090b33d119066e68e2cf6022dedbb8281f463bd68c04e39e988da92",
+      "layout": "4x4"
+    },
+    {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 517792,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518",
+      "layout": "4x4"
+    },
+    {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 549710,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a",
+      "layout": "4x4"
+    },
+    {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 460034,
+      "sha256": "5783ab8d3e60a484690a31e64495429dcbb86caf0703e1f6deac34ca54c8e1ff",
+      "layout": "4x4"
+    },
+    {
+      "path": "/assets/rpg/spirit510/skills.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 530668,
+      "sha256": "c79dc51e37e9c637e262f076bca72e1aab7ee5bc596a61681e272efb2ca252b4",
+      "layout": "8x8"
+    },
+    {
+      "path": "/assets/rpg/spirit510/ultimates.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 515828,
+      "sha256": "ad76606311fd79d624475fd09f02f87562fffe276a26c16e8d6c408e2cac807f",
+      "layout": "2x3"
+    }
+  ],
+  "portraits": [
+    {
+      "id": "pho-bo",
+      "name": "Phở bò",
+      "sheet": 1,
+      "cell": 0,
+      "row": 0,
+      "column": 0
+    },
+    {
+      "id": "pho-ga",
+      "name": "Phở gà",
+      "sheet": 1,
+      "cell": 1,
+      "row": 0,
+      "column": 1
+    },
+    {
+      "id": "bun-rieu",
+      "name": "Bún riêu",
+      "sheet": 1,
+      "cell": 2,
+      "row": 0,
+      "column": 2
+    },
+    {
+      "id": "bun-bo-hue",
+      "name": "Bún bò Huế",
+      "sheet": 1,
+      "cell": 3,
+      "row": 0,
+      "column": 3
+    },
+    {
+      "id": "banh-mi",
+      "name": "Bánh mì",
+      "sheet": 1,
+      "cell": 4,
+      "row": 1,
+      "column": 0
+    },
+    {
+      "id": "xoi",
+      "name": "Xôi mặn",
+      "sheet": 1,
+      "cell": 5,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "id": "banh-cuon",
+      "name": "Bánh cuốn",
+      "sheet": 1,
+      "cell": 6,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "id": "chao-suon",
+      "name": "Cháo sườn",
+      "sheet": 1,
+      "cell": 7,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "id": "mien-ga",
+      "name": "Miến gà",
+      "sheet": 1,
+      "cell": 8,
+      "row": 2,
+      "column": 0
+    },
+    {
+      "id": "bun-moc",
+      "name": "Bún mọc",
+      "sheet": 1,
+      "cell": 9,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "id": "banh-da-cua",
+      "name": "Bánh đa cua",
+      "sheet": 1,
+      "cell": 10,
+      "row": 2,
+      "column": 2
+    },
+    {
+      "id": "bun-cha",
+      "name": "Bún chả",
+      "sheet": 1,
+      "cell": 11,
+      "row": 2,
+      "column": 3
+    },
+    {
+      "id": "bun-dau",
+      "name": "Bún đậu mắm tôm",
+      "sheet": 1,
+      "cell": 12,
+      "row": 3,
+      "column": 0
+    },
+    {
+      "id": "com-tam",
+      "name": "Cơm tấm",
+      "sheet": 1,
+      "cell": 13,
+      "row": 3,
+      "column": 1
+    },
+    {
+      "id": "com-ga",
+      "name": "Cơm gà",
+      "sheet": 1,
+      "cell": 14,
+      "row": 3,
+      "column": 2
+    },
+    {
+      "id": "com-rang-dua-bo",
+      "name": "Cơm rang dưa bò",
+      "sheet": 1,
+      "cell": 15,
+      "row": 3,
+      "column": 3
+    },
+    {
+      "id": "com-nieu",
+      "name": "Cơm niêu",
+      "sheet": 2,
+      "cell": 0,
+      "row": 0,
+      "column": 0
+    },
+    {
+      "id": "bun-ca",
+      "name": "Bún cá",
+      "sheet": 2,
+      "cell": 1,
+      "row": 0,
+      "column": 1
+    },
+    {
+      "id": "mi-van-than",
+      "name": "Mì vằn thắn",
+      "sheet": 2,
+      "cell": 2,
+      "row": 0,
+      "column": 2
+    },
+    {
+      "id": "mi-cay",
+      "name": "Mì cay",
+      "sheet": 2,
+      "cell": 3,
+      "row": 0,
+      "column": 3
+    },
+    {
+      "id": "ga-ran",
+      "name": "Gà rán",
+      "sheet": 2,
+      "cell": 4,
+      "row": 1,
+      "column": 0
+    },
+    {
+      "id": "pizza",
+      "name": "Pizza",
+      "sheet": 2,
+      "cell": 5,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "id": "pasta",
+      "name": "Mì Ý",
+      "sheet": 2,
+      "cell": 6,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "id": "sushi",
+      "name": "Sushi",
+      "sheet": 2,
+      "cell": 7,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "id": "tokbokki",
+      "name": "Tokbokki",
+      "sheet": 2,
+      "cell": 8,
+      "row": 2,
+      "column": 0
+    },
+    {
+      "id": "lau-thai",
+      "name": "Lẩu Thái",
+      "sheet": 2,
+      "cell": 9,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "id": "lau-rieu-cua",
+      "name": "Lẩu riêu cua",
+      "sheet": 2,
+      "cell": 10,
+      "row": 2,
+      "column": 2
+    },
+    {
+      "id": "nuong-bbq",
+      "name": "Nướng BBQ",
+      "sheet": 2,
+      "cell": 11,
+      "row": 2,
+      "column": 3
+    },
+    {
+      "id": "vit-quay",
+      "name": "Vịt quay",
+      "sheet": 2,
+      "cell": 12,
+      "row": 3,
+      "column": 0
+    },
+    {
+      "id": "banh-xeo",
+      "name": "Bánh xèo",
+      "sheet": 2,
+      "cell": 13,
+      "row": 3,
+      "column": 1
+    },
+    {
+      "id": "bibimbap",
+      "name": "Bibimbap",
+      "sheet": 2,
+      "cell": 14,
+      "row": 3,
+      "column": 2
+    },
+    {
+      "id": "samgyeopsal",
+      "name": "Samgyeopsal",
+      "sheet": 2,
+      "cell": 15,
+      "row": 3,
+      "column": 3
+    },
+    {
+      "id": "hanwoo-bbq",
+      "name": "Hanwoo BBQ",
+      "sheet": 3,
+      "cell": 0,
+      "row": 0,
+      "column": 0
+    },
+    {
+      "id": "shoyu-ramen",
+      "name": "Shoyu Ramen",
+      "sheet": 3,
+      "cell": 1,
+      "row": 0,
+      "column": 1
+    },
+    {
+      "id": "unagi-don",
+      "name": "Unagi Don",
+      "sheet": 3,
+      "cell": 2,
+      "row": 0,
+      "column": 2
+    },
+    {
+      "id": "omakase",
+      "name": "Omakase",
+      "sheet": 3,
+      "cell": 3,
+      "row": 0,
+      "column": 3
+    },
+    {
+      "id": "lasagna",
+      "name": "Lasagna",
+      "sheet": 3,
+      "cell": 4,
+      "row": 1,
+      "column": 0
+    },
+    {
+      "id": "truffle-risotto",
+      "name": "Risotto nấm Truffle",
+      "sheet": 3,
+      "cell": 5,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "id": "bistecca-fiorentina",
+      "name": "Bistecca Fiorentina",
+      "sheet": 3,
+      "cell": 6,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "id": "croissant",
+      "name": "Croissant bơ",
+      "sheet": 3,
+      "cell": 7,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "id": "duck-confit",
+      "name": "Duck Confit",
+      "sheet": 3,
+      "cell": 8,
+      "row": 2,
+      "column": 0
+    },
+    {
+      "id": "french-tasting",
+      "name": "French Tasting Menu",
+      "sheet": 3,
+      "cell": 9,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "id": "classic-burger",
+      "name": "Classic Cheeseburger",
+      "sheet": 3,
+      "cell": 10,
+      "row": 2,
+      "column": 2
+    },
+    {
+      "id": "smoked-brisket",
+      "name": "Smoked Brisket",
+      "sheet": 3,
+      "cell": 11,
+      "row": 2,
+      "column": 3
+    },
+    {
+      "id": "xiaolongbao",
+      "name": "Xiaolongbao",
+      "sheet": 3,
+      "cell": 12,
+      "row": 3,
+      "column": 0
+    },
+    {
+      "id": "peking-duck",
+      "name": "Vịt quay Bắc Kinh",
+      "sheet": 3,
+      "cell": 13,
+      "row": 3,
+      "column": 1
+    },
+    {
+      "id": "haidilao-hotpot",
+      "name": "Lẩu Tứ Xuyên",
+      "sheet": 3,
+      "cell": 14,
+      "row": 3,
+      "column": 2
+    },
+    {
+      "id": "pad-thai",
+      "name": "Pad Thai",
+      "sheet": 3,
+      "cell": 15,
+      "row": 3,
+      "column": 3
+    },
+    {
+      "id": "tom-yum-goong",
+      "name": "Tom Yum Goong",
+      "sheet": 4,
+      "cell": 0,
+      "row": 0,
+      "column": 0
+    },
+    {
+      "id": "mango-sticky-rice",
+      "name": "Xôi xoài Thái",
+      "sheet": 4,
+      "cell": 1,
+      "row": 0,
+      "column": 1
+    },
+    {
+      "id": "xoi-xeo",
+      "name": "Xôi xéo",
+      "sheet": 4,
+      "cell": 2,
+      "row": 0,
+      "column": 2
+    },
+    {
+      "id": "korean-fried-chicken",
+      "name": "Gà rán Hàn Quốc",
+      "sheet": 4,
+      "cell": 3,
+      "row": 0,
+      "column": 3
+    },
+    {
+      "id": "bingsu",
+      "name": "Bingsu",
+      "sheet": 4,
+      "cell": 4,
+      "row": 1,
+      "column": 0
+    },
+    {
+      "id": "tonkotsu-ramen",
+      "name": "Tonkotsu Ramen",
+      "sheet": 4,
+      "cell": 5,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "id": "carbonara",
+      "name": "Carbonara",
+      "sheet": 4,
+      "cell": 6,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "id": "gelato",
+      "name": "Gelato",
+      "sheet": 4,
+      "cell": 7,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "id": "mashed-potato",
+      "name": "Khoai tây nghiền",
+      "sheet": 4,
+      "cell": 8,
+      "row": 2,
+      "column": 0
+    },
+    {
+      "id": "hot-chocolate",
+      "name": "Sô cô la nóng",
+      "sheet": 4,
+      "cell": 9,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "id": "cha-ca-la-vong",
+      "name": "Chả cá Lã Vọng",
+      "sheet": 4,
+      "cell": 10,
+      "row": 2,
+      "column": 2
+    },
+    {
+      "id": "bun-thang",
+      "name": "Bún thang",
+      "sheet": 4,
+      "cell": 11,
+      "row": 2,
+      "column": 3
+    },
+    {
+      "id": "com-lang-vong",
+      "name": "Cốm Làng Vòng",
+      "sheet": 4,
+      "cell": 12,
+      "row": 3,
+      "column": 0
+    },
+    {
+      "id": "ca-phe-trung",
+      "name": "Cà phê trứng",
+      "sheet": 4,
+      "cell": 13,
+      "row": 3,
+      "column": 1
+    },
+    {
+      "id": "cha-ruoi",
+      "name": "Chả rươi",
+      "sheet": 4,
+      "cell": 14,
+      "row": 3,
+      "column": 2
+    },
+    {
+      "id": "banh-com-hang-than",
+      "name": "Bánh cốm Hàng Than",
+      "sheet": 4,
+      "cell": 15,
+      "row": 3,
+      "column": 3
+    },
+    {
+      "id": "jjajangmyeon",
+      "name": "Mì tương đen Jjajangmyeon",
+      "sheet": 5,
+      "cell": 0,
+      "row": 0,
+      "column": 0
+    },
+    {
+      "id": "kimchi-jjigae",
+      "name": "Canh kimchi Jjigae",
+      "sheet": 5,
+      "cell": 1,
+      "row": 0,
+      "column": 1
+    },
+    {
+      "id": "hotteok",
+      "name": "Bánh Hotteok",
+      "sheet": 5,
+      "cell": 2,
+      "row": 0,
+      "column": 2
+    },
+    {
+      "id": "ganjang-gejang",
+      "name": "Cua ngâm tương Ganjang Gejang",
+      "sheet": 5,
+      "cell": 3,
+      "row": 0,
+      "column": 3
+    },
+    {
+      "id": "gopchang-gui",
+      "name": "Lòng bò nướng Gopchang",
+      "sheet": 5,
+      "cell": 4,
+      "row": 1,
+      "column": 0
+    },
+    {
+      "id": "sundae-guk",
+      "name": "Canh Sundae Guk",
+      "sheet": 5,
+      "cell": 5,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "id": "takoyaki",
+      "name": "Takoyaki",
+      "sheet": 5,
+      "cell": 6,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "id": "okonomiyaki",
+      "name": "Okonomiyaki",
+      "sheet": 5,
+      "cell": 7,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "id": "yakitori",
+      "name": "Yakitori",
+      "sheet": 5,
+      "cell": 8,
+      "row": 2,
+      "column": 0
+    },
+    {
+      "id": "tonkatsu",
+      "name": "Tonkatsu",
+      "sheet": 5,
+      "cell": 9,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "id": "matcha-parfait",
+      "name": "Matcha Parfait",
+      "sheet": 5,
+      "cell": 10,
+      "row": 2,
+      "column": 2
+    },
+    {
+      "id": "taiyaki",
+      "name": "Bánh cá Taiyaki",
+      "sheet": 5,
+      "cell": 11,
+      "row": 2,
+      "column": 3
+    },
+    {
+      "id": "som-tam",
+      "name": "Gỏi đu đủ Som Tam",
+      "sheet": 5,
+      "cell": 12,
+      "row": 3,
+      "column": 0
+    },
+    {
+      "id": "pad-kra-pao",
+      "name": "Cơm húng quế Pad Kra Pao",
+      "sheet": 5,
+      "cell": 13,
+      "row": 3,
+      "column": 1
+    },
+    {
+      "id": "boat-noodles",
+      "name": "Mì thuyền Boat Noodles",
+      "sheet": 5,
+      "cell": 14,
+      "row": 3,
+      "column": 2
+    },
+    {
+      "id": "green-curry",
+      "name": "Cà ri xanh",
+      "sheet": 5,
+      "cell": 15,
+      "row": 3,
+      "column": 3
+    },
+    {
+      "id": "moo-ping",
+      "name": "Thịt xiên Moo Ping",
+      "sheet": 6,
+      "cell": 0,
+      "row": 0,
+      "column": 0
+    },
+    {
+      "id": "khao-soi",
+      "name": "Mì cà ri Khao Soi",
+      "sheet": 6,
+      "cell": 1,
+      "row": 0,
+      "column": 1
+    },
+    {
+      "id": "ossobuco",
+      "name": "Ossobuco",
+      "sheet": 6,
+      "cell": 2,
+      "row": 0,
+      "column": 2
+    },
+    {
+      "id": "tiramisu",
+      "name": "Tiramisu",
+      "sheet": 6,
+      "cell": 3,
+      "row": 0,
+      "column": 3
+    },
+    {
+      "id": "arancini",
+      "name": "Cơm viên Arancini",
+      "sheet": 6,
+      "cell": 4,
+      "row": 1,
+      "column": 0
+    },
+    {
+      "id": "saltimbocca",
+      "name": "Thịt bê Saltimbocca",
+      "sheet": 6,
+      "cell": 5,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "id": "pappardelle-cinghiale",
+      "name": "Pappardelle sốt lợn rừng",
+      "sheet": 6,
+      "cell": 6,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "id": "porchetta",
+      "name": "Heo quay Porchetta",
+      "sheet": 6,
+      "cell": 7,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "id": "roast-turkey",
+      "name": "Gà tây quay",
+      "sheet": 6,
+      "cell": 8,
+      "row": 2,
+      "column": 0
+    },
+    {
+      "id": "beef-wellington",
+      "name": "Beef Wellington",
+      "sheet": 6,
+      "cell": 9,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "id": "honey-glazed-ham",
+      "name": "Thịt nguội nướng mật ong",
+      "sheet": 6,
+      "cell": 10,
+      "row": 2,
+      "column": 2
+    },
+    {
+      "id": "gingerbread",
+      "name": "Bánh gừng",
+      "sheet": 6,
+      "cell": 11,
+      "row": 2,
+      "column": 3
+    },
+    {
+      "id": "christmas-pudding",
+      "name": "Christmas Pudding",
+      "sheet": 6,
+      "cell": 12,
+      "row": 3,
+      "column": 0
+    },
+    {
+      "id": "yule-log",
+      "name": "Bánh khúc cây Yule Log",
+      "sheet": 6,
+      "cell": 13,
+      "row": 3,
+      "column": 1
+    },
+    {
+      "id": "banh-chung",
+      "name": "Bánh chưng",
+      "sheet": 6,
+      "cell": 14,
+      "row": 3,
+      "column": 2
+    },
+    {
+      "id": "canh-mang-mien",
+      "name": "Canh măng miến",
+      "sheet": 6,
+      "cell": 15,
+      "row": 3,
+      "column": 3
+    },
+    {
+      "id": "gio-xao",
+      "name": "Giò xào",
+      "sheet": 7,
+      "cell": 0,
+      "row": 0,
+      "column": 0
+    },
+    {
+      "id": "thit-dong",
+      "name": "Thịt đông",
+      "sheet": 7,
+      "cell": 1,
+      "row": 0,
+      "column": 1
+    },
+    {
+      "id": "thit-kho-trung",
+      "name": "Thịt kho trứng",
+      "sheet": 7,
+      "cell": 2,
+      "row": 0,
+      "column": 2
+    },
+    {
+      "id": "dua-hanh",
+      "name": "Dưa hành",
+      "sheet": 7,
+      "cell": 3,
+      "row": 0,
+      "column": 3
+    },
+    {
+      "id": "che-khuc-bach",
+      "name": "Chè khúc bạch",
+      "sheet": 7,
+      "cell": 4,
+      "row": 1,
+      "column": 0
+    },
+    {
+      "id": "che-buoi",
+      "name": "Chè bưởi",
+      "sheet": 7,
+      "cell": 5,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "id": "sua-chua-mit",
+      "name": "Sữa chua mít",
+      "sheet": 7,
+      "cell": 6,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "id": "kem-bo-da-lat",
+      "name": "Kem bơ Đà Lạt",
+      "sheet": 7,
+      "cell": 7,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "id": "nom-sua-xoai",
+      "name": "Nộm sứa xoài xanh",
+      "sheet": 7,
+      "cell": 8,
+      "row": 2,
+      "column": 0
+    },
+    {
+      "id": "goi-cuon-tom-thit",
+      "name": "Gỏi cuốn tôm thịt",
+      "sheet": 7,
+      "cell": 9,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "id": "banner-tay-bac-goi-rau-don",
+      "name": "Gỏi rau dơn",
+      "sheet": 7,
+      "cell": 10,
+      "row": 2,
+      "column": 2
+    },
+    {
+      "id": "banner-tay-bac-com-lam",
+      "name": "Cơm lam",
+      "sheet": 7,
+      "cell": 11,
+      "row": 2,
+      "column": 3
+    },
+    {
+      "id": "banner-tay-bac-thang-co",
+      "name": "Thắng cố",
+      "sheet": 7,
+      "cell": 12,
+      "row": 3,
+      "column": 0
+    },
+    {
+      "id": "banner-tay-bac-thit-trau-gac-bep",
+      "name": "Thịt trâu gác bếp",
+      "sheet": 7,
+      "cell": 13,
+      "row": 3,
+      "column": 1
+    },
+    {
+      "id": "banner-tay-bac-ga-nuong-mac-khen",
+      "name": "Gà nướng mắc khén",
+      "sheet": 7,
+      "cell": 14,
+      "row": 3,
+      "column": 2
+    },
+    {
+      "id": "banner-tay-bac-xoi-ngu-sac",
+      "name": "Xôi ngũ sắc",
+      "sheet": 7,
+      "cell": 15,
+      "row": 3,
+      "column": 3
+    },
+    {
+      "id": "banh-dau-xanh",
+      "name": "Bánh đậu xanh",
+      "sheet": 8,
+      "cell": 0,
+      "row": 0,
+      "column": 0
+    },
+    {
+      "id": "banh-khuc",
+      "name": "Bánh khúc",
+      "sheet": 8,
+      "cell": 1,
+      "row": 0,
+      "column": 1
+    },
+    {
+      "id": "banh-can",
+      "name": "Bánh căn",
+      "sheet": 8,
+      "cell": 2,
+      "row": 0,
+      "column": 2
+    },
+    {
+      "id": "banh-tom-ho-tay",
+      "name": "Bánh tôm Hồ Tây",
+      "sheet": 8,
+      "cell": 3,
+      "row": 0,
+      "column": 3
+    },
+    {
+      "id": "com-hen",
+      "name": "Cơm hến",
+      "sheet": 8,
+      "cell": 4,
+      "row": 1,
+      "column": 0
+    },
+    {
+      "id": "che-lam",
+      "name": "Chè lam",
+      "sheet": 8,
+      "cell": 5,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "id": "chao-luon",
+      "name": "Cháo lươn",
+      "sheet": 8,
+      "cell": 6,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "id": "banh-it-la-gai",
+      "name": "Bánh ít lá gai",
+      "sheet": 8,
+      "cell": 7,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "id": "banh-ram-it",
+      "name": "Bánh ram ít",
+      "sheet": 8,
+      "cell": 8,
+      "row": 2,
+      "column": 0
+    },
+    {
+      "id": "keo-cu-do",
+      "name": "Kẹo cu đơ",
+      "sheet": 8,
+      "cell": 9,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "id": "banh-tet",
+      "name": "Bánh tét",
+      "sheet": 8,
+      "cell": 10,
+      "row": 2,
+      "column": 2
+    },
+    {
+      "id": "chef-nhien",
+      "name": "Nhiên · Giữ lửa",
+      "sheet": 8,
+      "cell": 11,
+      "row": 2,
+      "column": 3
+    },
+    {
+      "id": "chef-moc",
+      "name": "Mộc · Mầm sống",
+      "sheet": 8,
+      "cell": 12,
+      "row": 3,
+      "column": 0
+    },
+    {
+      "id": "chef-lien",
+      "name": "Liên · Dệt sao",
+      "sheet": 8,
+      "cell": 13,
+      "row": 3,
+      "column": 1
+    },
+    {
+      "id": "chef-bach",
+      "name": "Bách · Bếp trưởng",
+      "sheet": 8,
+      "cell": 14,
+      "row": 3,
+      "column": 2
+    },
+    {
+      "id": "chef-hai",
+      "name": "Hải · Nghe sóng",
+      "sheet": 8,
+      "cell": 15,
+      "row": 3,
+      "column": 3
+    },
+    {
+      "id": "caravan-scout",
+      "name": "Trinh sát than hồng",
+      "sheet": 9,
+      "cell": 0,
+      "row": 0,
+      "column": 0
+    },
+    {
+      "id": "caravan-smith",
+      "name": "Thợ rèn lửa đỏ",
+      "sheet": 9,
+      "cell": 1,
+      "row": 0,
+      "column": 1
+    },
+    {
+      "id": "caravan-letter",
+      "name": "Người đưa thư biển",
+      "sheet": 9,
+      "cell": 2,
+      "row": 0,
+      "column": 2
+    },
+    {
+      "id": "caravan-ferryman",
+      "name": "Lái đò sương bạc",
+      "sheet": 9,
+      "cell": 3,
+      "row": 0,
+      "column": 3
+    },
+    {
+      "id": "caravan-herbalist",
+      "name": "Cô hái lá thuốc",
+      "sheet": 9,
+      "cell": 4,
+      "row": 1,
+      "column": 0
+    },
+    {
+      "id": "caravan-gardener",
+      "name": "Người trồng bình minh",
+      "sheet": 9,
+      "cell": 5,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "id": "caravan-porter",
+      "name": "Người gánh bếp",
+      "sheet": 9,
+      "cell": 6,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "id": "caravan-cook",
+      "name": "Bếp trưởng đường xa",
+      "sheet": 9,
+      "cell": 7,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "id": "caravan-pastry",
+      "name": "Thợ bánh mặt trăng",
+      "sheet": 9,
+      "cell": 8,
+      "row": 2,
+      "column": 0
+    },
+    {
+      "id": "caravan-cartographer",
+      "name": "Người vẽ đường sao",
+      "sheet": 9,
+      "cell": 9,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "id": "v4-market-host",
+      "name": "Người kể bên bàn",
+      "sheet": 9,
+      "cell": 10,
+      "row": 2,
+      "column": 2
+    }
+  ],
+  "note": "All original generated artwork. Row-major cells; fractional CSS atlas positions preserve the actual 1254px dimensions. Lossy WebP encoding only; no replacement by vector stand-ins. The last five portrait cells are decorative smoke. Portraits load near the viewport."
+}

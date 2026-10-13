@@ -12,6 +12,7 @@ export interface RpgHero {
   rank: number
   skills: [number, number, number, number]
   gear: [number, number, number]
+  path?: "assault" | "support"
 }
 export interface RpgResources {
   coins: number
@@ -80,18 +81,24 @@ export interface RpgActor {
   phase: number
   motion: "idle" | "attack" | "cast" | "hit" | "fall" | "victory"
   motionAt: number
+  path?: "assault" | "support"
+  mark?: {school: School; until: number}
 }
 export interface RpgEvent {
   serial: number
   tick: number
-  kind: "hit" | "skill" | "burst" | "heal" | "shield" | "boss" | "wave" | "guard"
+  kind: "hit" | "skill" | "burst" | "heal" | "shield" | "boss" | "wave" | "guard" | "reaction"
   source: string
   targets: string[]
   value: number
+  values?: Record<string, number>
   text: string
   school: School
 }
 export interface RpgBattle {
+  rulesVersion?: 510
+  focus?: string | null
+  chain?: {source: string; until: number; count: number}
   id: string
   tick: number
   wave: number
@@ -149,7 +156,7 @@ export interface RpgSave {
     completed: boolean
   }
 }
-export type RpgAction = { type: "sync" } | {
+export type RpgAction = { type: "sync" } | {type: "path"; uid: string; path: "assault" | "support"} | {type: "focus"; uid: string | null} | {
   type: "formation"
   uids: string[]
 } | { type: "train"

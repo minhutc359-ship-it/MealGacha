@@ -32,6 +32,7 @@ const hero = z.object({
   xp: bounded,
   rank: z.number().int().min(1).max(5),
   skills,
+  path: z.enum(["assault", "support"]).optional(),
   gear: z.tuple([
     z.number().int().min(0).max(10),
     z.number().int().min(0).max(10),
@@ -76,8 +77,13 @@ const actor = z.object({
   phase: z.number().int().min(0).max(1),
   motion: z.enum(["idle", "attack", "cast", "hit", "fall", "victory"]),
   motionAt: bounded,
+  path: z.enum(["assault", "support"]).optional(),
+  mark: z.object({school, until: bounded}).optional(),
 })
 const battle = z.object({
+  rulesVersion: z.literal(510).optional(),
+  focus: uid.nullable().optional(),
+  chain: z.object({source: uid, until: bounded, count: bounded.max(3)}).optional(),
   id: uid,
   tick: bounded.max(720),
   wave: bounded.max(2),
@@ -97,10 +103,12 @@ const battle = z.object({
           "boss",
           "wave",
           "guard",
+          "reaction",
         ]),
         source: uid,
         targets: z.array(uid).max(5),
         value: bounded,
+        values: z.record(uid, bounded).optional(),
         text: z.string().max(180),
         school,
       }),
@@ -173,7 +181,7 @@ export const rpgSaveSchema = z
         save.formation.length
     )
       invalid("Đội hình Adventure không hợp lệ")
-    if (save.roster.some((h) => h.skills.some((level) => level > h.level)))
+    if (save.roster.some((h) => h.skills.some((level) => level > h.level) || (h.path && h.level < 10)))
       invalid("Cấp kỹ năng vượt cấp nhân vật")
     for (const id of Object.keys(save.stars)) {
       const s = rpgStage(id)!

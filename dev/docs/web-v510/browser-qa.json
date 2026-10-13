@@ -1,0 +1,79 @@
+{
+  "version": "5.1.0",
+  "engine": "Chromium headless / SwiftShader",
+  "note": "Observed real-time ticks before engine acceleration; not a device FPS benchmark. No Safari or physical device test.",
+  "checks": [
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "realTimeTicks": 3,
+      "importedLevel": 8,
+      "campaignStars": 3,
+      "rewardsIdempotentAfterReload": true,
+      "dungeonHpEnergyCarried": true,
+      "campReload": true,
+      "introUsesLiveViewAndPreservesSave": true,
+      "controlsFit": true,
+      "manualBossFlow": false,
+      "accountAndLegacyUnchanged": true,
+      "errors": [],
+      "missing": []
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "realTimeTicks": 6,
+      "importedLevel": 8,
+      "campaignStars": 3,
+      "rewardsIdempotentAfterReload": true,
+      "dungeonHpEnergyCarried": true,
+      "campReload": true,
+      "introUsesLiveViewAndPreservesSave": true,
+      "controlsFit": true,
+      "manualBossFlow": true,
+      "accountAndLegacyUnchanged": true,
+      "errors": [],
+      "missing": []
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "realTimeTicks": 6,
+      "importedLevel": 8,
+      "campaignStars": 3,
+      "rewardsIdempotentAfterReload": true,
+      "dungeonHpEnergyCarried": true,
+      "campReload": true,
+      "introUsesLiveViewAndPreservesSave": true,
+      "controlsFit": true,
+      "manualBossFlow": false,
+      "accountAndLegacyUnchanged": true,
+      "errors": [],
+      "missing": []
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "realTimeTicks": 5,
+      "importedLevel": 8,
+      "campaignStars": 3,
+      "rewardsIdempotentAfterReload": true,
+      "dungeonHpEnergyCarried": true,
+      "campReload": true,
+      "introUsesLiveViewAndPreservesSave": true,
+      "controlsFit": true,
+      "manualBossFlow": false,
+      "accountAndLegacyUnchanged": true,
+      "errors": [],
+      "missing": []
+    }
+  ]
+}

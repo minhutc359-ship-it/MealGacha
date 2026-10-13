@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0",
+  "version": "5.1.0",
   "generatedOn": "2026-10-12",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -2072,6 +2072,138 @@
         "dev/docs/art-direction/README.md",
         "dev/docs/PROGRESSION_ECONOMY_V292.md",
         "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/portraits-1.webp",
+      "bytes": 502556,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/portraits-2.webp",
+      "bytes": 524470,
+      "sha256": "3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/portraits-3.webp",
+      "bytes": 507860,
+      "sha256": "bacc5bf57479298d97e8e8bb1fd43a6da95f28117fa2e5b53dda7f3b1baf6d8e",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/portraits-4.webp",
+      "bytes": 576382,
+      "sha256": "33b370606ef7be4d708d4211dee46826f9ca09db770f701265c5bb973371cc2a",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/portraits-5.webp",
+      "bytes": 553992,
+      "sha256": "bd5b104f7cdbe94a3bf259b55653cada715b43951eec7b5809ca8363fe7313be",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/portraits-6.webp",
+      "bytes": 558212,
+      "sha256": "c546608de090b33d119066e68e2cf6022dedbb8281f463bd68c04e39e988da92",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/portraits-7.webp",
+      "bytes": 517792,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/portraits-8.webp",
+      "bytes": 549710,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/portraits-9.webp",
+      "bytes": 460034,
+      "sha256": "5783ab8d3e60a484690a31e64495429dcbb86caf0703e1f6deac34ca54c8e1ff",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/skills.webp",
+      "bytes": 530668,
+      "sha256": "c79dc51e37e9c637e262f076bca72e1aab7ee5bc596a61681e272efb2ca252b4",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/spirit510/ultimates.webp",
+      "bytes": 515828,
+      "sha256": "ad76606311fd79d624475fd09f02f87562fffe276a26c16e8d6c408e2cac807f",
+      "origin": "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art",
+      "evidence": [
+        "dev/docs/web-v510/art-prompts.json",
+        "dev/docs/web-v510/skill-art-prompt.txt",
+        "dev/docs/web-v510/ultimate-art-prompt.txt"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

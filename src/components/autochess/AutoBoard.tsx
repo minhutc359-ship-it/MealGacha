@@ -1,4 +1,5 @@
 import { ELEMENTAL_BOARDS, ELEMENTAL_IMPACTS } from "../../game/visualPack"
+import { blendPose, type PoseBlend } from "../../game/poseBlend"
 import { renderIsLight, sampleRenderFrame } from "../../infrastructure/presentation/renderQuality"
 import {livingActorFrame} from "../../game/livingClips"
 import { motionAccent, drawMotionTrail } from "../../game/motionProfiles"
@@ -67,6 +68,9 @@ export function AutoBoard({
     let lastFrame = 0
     let lastDraw = -Infinity
     const frozen = new Map<string, { x: number; y: number }>()
+    const poseBlends = new Map<string, PoseBlend>()
+    const grid = document.createElement("canvas")
+    let gridKey = ""
     const healthTrails = new Map<string, { hp: number; from: number; at: number }>()
     const facing = new Map<string, boolean>()
     const placements = new Map<string, { x: number; y: number; fromX: number; fromY: number; start: number }>()
@@ -132,6 +136,7 @@ export function AutoBoard({
         time = b ? b.tick + (opts.reducedMotion ? 0 : alpha) : now / 50
       if ((b?.id ?? "prepare") !== currentBattle) {
         healthTrails.clear()
+        poseBlends.clear()
         frozen.clear()
         facing.clear()
         endedAt = null
@@ -142,29 +147,37 @@ export function AutoBoard({
       const visualTime = time + (endedAt === null ? 0 : (now - endedAt) / 50)
       ctx.clearRect(0, 0, width, height)
       drawArena(ctx, left, top, cell * 6, arenaTheme(current), visualTime, opts.reducedMotion || current.paused, opts.lowQuality, (b?.tick ?? 0) >= 1100)
+      const key = `${width}:${height}:${surface.width}`
+      if (key !== gridKey) {
+        gridKey = key; grid.width = surface.width; grid.height = surface.height
+        const gridCtx = grid.getContext("2d")!
+        const dpr = surface.width / Math.max(1,width)
+        gridCtx.setTransform(dpr,0,0,dpr,0,0)
       for (const i of CELLS) {
         const x = left + (i % 6) * cell,
           y = top + Math.floor(i / 6) * cell
-        ctx.fillStyle =
+        gridCtx.fillStyle =
           ((i % 6) + Math.floor(i / 6)) % 2
             ? "rgba(237,207,153,.035)"
             : "rgba(2,15,24,.055)"
-        ctx.fillRect(x, y, cell, cell)
-        ctx.strokeStyle =
+        gridCtx.fillRect(x, y, cell, cell)
+        gridCtx.strokeStyle =
           i < 18 ? "rgba(232,143,112,.2)" : "rgba(235,209,164,.25)"
-        ctx.lineWidth = 0.7
-        ctx.strokeRect(x, y, cell, cell)
+        gridCtx.lineWidth = 0.7
+        gridCtx.strokeRect(x, y, cell, cell)
       }
-      ctx.strokeStyle = "#e7bd73"
-      ctx.lineWidth = 2
-      ctx.strokeRect(left, top, cell * 6, cell * 6)
-      ctx.setLineDash([4, 6])
-      ctx.strokeStyle = "rgba(236,201,151,.55)"
-      ctx.beginPath()
-      ctx.moveTo(left, top + cell * 3)
-      ctx.lineTo(left + cell * 6, top + cell * 3)
-      ctx.stroke()
-      ctx.setLineDash([])
+      gridCtx.strokeStyle = "#e7bd73"
+      gridCtx.lineWidth = 2
+      gridCtx.strokeRect(left, top, cell * 6, cell * 6)
+      gridCtx.setLineDash([4, 6])
+      gridCtx.strokeStyle = "rgba(236,201,151,.55)"
+      gridCtx.beginPath()
+      gridCtx.moveTo(left, top + cell * 3)
+      gridCtx.lineTo(left + cell * 6, top + cell * 3)
+      gridCtx.stroke()
+      gridCtx.setLineDash([])
+      }
+      ctx.drawImage(grid,0,0,width,height)
       const actors: Actor[] = b
         ? b.actors
         : [
@@ -389,6 +402,16 @@ export function AutoBoard({
             ctx.scale(1 - stretch, 1 + stretch)
           }
           drawMotionTrail(ctx, cell, action ? (time-action.start)/Math.max(1,action.end-action.start) : 0, action?.kind === "cast", color, opts.reducedMotion || opts.lowQuality || current.paused || actor.hp<=0 || !action || action.kind === "move")
+          let blend = poseBlends.get(actor.uid)
+          if (!blend) {blend = {pose: index, previous: index, at: now}; poseBlends.set(actor.uid,blend)}
+          const dissolve = blendPose(blend,index,now,opts.reducedMotion || opts.lowQuality || current.paused)
+          const opacity = ctx.globalAlpha
+          if (dissolve.mix < 1) {
+            const [fx,fy,fw,fh,fa,fb] = spriteRow.frames[dissolve.previous]
+            ctx.globalAlpha = opacity * (1-dissolve.mix)
+            ctx.drawImage(sheet,fx,fy,fw,fh,-fa*scale,-fb*scale,fw*scale,fh*scale)
+          }
+          ctx.globalAlpha = opacity * dissolve.mix
           ctx.drawImage(sheet, sx, sy, sw, sh, -anchorX * scale, -anchorY * scale, sw * scale, sh * scale)
           ctx.restore()
         } else orb(x, y - cell * .5, cell * .25, color)
