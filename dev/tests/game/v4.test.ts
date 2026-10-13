@@ -212,7 +212,7 @@ it("pays each new story stage once and preserves both old ending and old rewards
   }
   const oldCoins = save.coins
   for (const stage of STAGES.slice(18)) {
-    const b = startBattle(LEGACY_STARTER_DECK, stage.id, "wisdom", () => 0.5)
+    const b = startBattle(LEGACY_STARTER_DECK, stage.id, "wisdom", () => 0.5, false, 400)
     b.enemy.health = 0
     b.result = "win"
     save = (settleBattle({ ...save, battle: b }) as typeof save)
@@ -359,7 +359,7 @@ it("adds third-cast damage only after an actual resolved third cast", () => {
   )
 })
 it("opts only new boss battles into delayed brewing and keeps old checkpoints", () => {
-  const fresh = startBattle(LEGACY_STARTER_DECK, "rain-harbor-3", "courage", () => 0.5)
+  const fresh = startBattle(LEGACY_STARTER_DECK, "rain-harbor-3", "courage", () => 0.5, false, 400)
   fresh.player.board = []
   fresh.enemy.hand = []
   fresh.enemy.deck = []
@@ -493,7 +493,7 @@ it("keeps optional expedition promises distinct and older unmarked runs unchange
   const { createExpedition, enterRunNode, startRunBattle, settleRunCombat } =
     await import("@/game/expedition")
   const create = (promise?: "safe" | "bold") => {
-    let run = createExpedition(LEGACY_STARTER_DECK, 400, promise)
+    let run = createExpedition(LEGACY_STARTER_DECK, 400, promise, 400)
     run.health = 10
     return enterRunNode(run, run.nodes[0][0].id)
   }

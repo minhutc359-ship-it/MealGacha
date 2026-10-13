@@ -59,7 +59,7 @@ export function musicPath(asset: MusicAsset): string {
     ? RETRO_MUSIC_TRACKS[(asset.slice(5) as MusicTrack)]
     : MUSIC_TRACKS[(asset as MusicTrack)]
 }
-export type GameSound = "footstep" | "door" | "capture" | "select" | "deselect" | "confirm" | "cast" | "impact" | "fire" | "water" | "leaves" | "sparkle" | "heal" | "buff" | "shield" | "break" | "summon" | "draw" | "resonance" | "turn" | "awaken" | "vanish" | "victory" | "defeat" | "story-next" | "combo" | "auto-slash" | "auto-shot" | "auto-contact" | "auto-channel" | "auto-fall" | "auto-boss" | "auto-overtime" | "auto-victory" | "auto-defeat"
+export type GameSound = "trap-set" | "footstep" | "door" | "capture" | "select" | "deselect" | "confirm" | "cast" | "impact" | "fire" | "water" | "leaves" | "sparkle" | "heal" | "buff" | "shield" | "break" | "summon" | "draw" | "resonance" | "turn" | "awaken" | "vanish" | "victory" | "defeat" | "story-next" | "combo" | "auto-slash" | "auto-shot" | "auto-contact" | "auto-channel" | "auto-fall" | "auto-boss" | "auto-overtime" | "auto-victory" | "auto-defeat"
 export interface TimedSound {
   cue: GameSound
   delay: number
@@ -97,7 +97,7 @@ export function frameSounds(frame: BattleFrame): TimedSound[] {
   const add = (cue: GameSound, delay: number) => {
     if (!sounds.some((sound) => sound.cue === cue)) sounds.push({ cue, delay })
   }
-  if(frame.event.kind==="set-trap")add("confirm",0)
+  if(frame.event.kind==="set-trap")add("trap-set",0)
   if(frame.event.kind==="trap") {add("resonance",0);add("cast",180)}
   if(frame.event.kind==="negated")add("break",100)
   if (frame.event.kind === "play")

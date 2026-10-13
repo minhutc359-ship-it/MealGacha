@@ -733,7 +733,7 @@ export const CARD_MAP = Object.fromEntries(
   CARDS.map((c) => [c.id, c]),
 ) as Record<string, GameCard>
 export { DECK_SIZE } from "./tcgRules"
-import { DECK_SIZE } from "./tcgRules"
+import { DECK_SIZE, deckSizeForRules, CURRENT_TCG_RULES } from "./tcgRules"
 // Twelve different cards, two copies each. Six free additions support old collections.
 const starterFood = [
   "banh-mi",
@@ -751,10 +751,12 @@ export const STARTER_DECK = STARTER_IDS.flatMap((id) => [id, id])
 export function deckErrors(
   cards: string[],
   owned: Record<string, number>,
+  rulesVersion = CURRENT_TCG_RULES as number,
 ): string[] {
   const errors: string[] = []
-  if (cards.length !== DECK_SIZE)
-    errors.push(`Bộ bài cần đúng ${DECK_SIZE} lá (hiện ${cards.length}).`)
+  const size = deckSizeForRules(rulesVersion)
+  if (cards.length !== size)
+    errors.push(`Bộ bài cần đúng ${size} lá (hiện ${cards.length}).`)
   const counts: Record<string, number> = {}
   for (const id of cards) counts[id] = (counts[id] ?? 0) + 1
   for (const [id, count] of Object.entries(counts)) {
@@ -763,4 +765,11 @@ export function deckErrors(
       errors.push(`${CARD_MAP[id].name}: tối đa 2 lá và phải sở hữu đủ.`)
   }
   return errors
+}
+
+/** Constructors enforce the same count/copy rules as the editor before dealing any cards. */
+export function assertDeckForRules(cards: string[], rulesVersion: number) {
+  const errors = deckErrors(cards, Object.fromEntries(cards.map(id => [id,2])), rulesVersion)
+  if (cards.some(id => CARD_MAP[id] && (CARD_MAP[id].contentVersion ?? 350) > rulesVersion)) errors.push("Bộ bài có thẻ mới hơn luật của trận.")
+  if (errors.length) throw new Error(errors[0])
 }

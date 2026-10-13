@@ -854,6 +854,11 @@ export class GameAudioEngine {
       case "deselect":
         tone(570, 0.1, 0.035, "sine", 420)
         break
+      case "trap-set":
+        noise(.12, .032, 3400, 1700)
+        tone(245, .24, .025, "triangle", 490)
+        chime([392, 587, 784], .2, .032, .025)
+        break
       case "confirm":
         chime([392, 587], 0.16, 0.055)
         break

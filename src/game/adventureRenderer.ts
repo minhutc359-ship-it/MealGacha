@@ -1,3 +1,4 @@
+import { ADVENTURE_ART_480, atlasCellRect, propCellFor, terrainCellFor } from "./adventure480"
 import { CARD_MAP } from "./catalog"
 import { tcgCharacter } from "./tcgCharacterMotion"
 import { SPRITE_SHEETS } from "./autochess/presentation"
@@ -42,6 +43,7 @@ interface Layer {
   feet: number
 }
 export interface WorldRendererStats {
+  artReady: boolean
   draws: number
   groundBuilds: number
   layerBytes: number
@@ -119,6 +121,7 @@ export function mountAdventureRenderer(
 ) {
   const ctx = canvas.getContext("2d", { alpha: false })!,
     stats: WorldRendererStats = {
+      artReady: false,
       draws: 0,
       groundBuilds: 0,
       layerBytes: 0,
@@ -145,6 +148,7 @@ export function mountAdventureRenderer(
     releases: Array<() => void> = []
   let ground = surface(map.grid[0].length * BASE, map.grid.length * BASE),
     layers: Layer[] = []
+  let terrainImage: HTMLImageElement | null = null
   const retain = async (path: string) => {
     const lease = acquireCharacterImage(path)
     let released = false
@@ -271,6 +275,13 @@ export function mountAdventureRenderer(
               ? palette[1]
               : palette[0]
         g.fillRect(px, py, BASE, BASE)
+        if (terrainImage) {
+          const rect = atlasCellRect(terrainCellFor(cell, inside, map.areaId), terrainImage.naturalWidth, terrainImage.naturalHeight)
+          // One source tile spans four world tiles, avoiding noisy repeated mini-patterns.
+          const w = (rect.width - 2) / 4, h = (rect.height - 2) / 4
+          g.drawImage(terrainImage, rect.x + 1 + (x % 4) * w, rect.y + 1 + (y % 4) * h, w, h, px, py, BASE, BASE)
+          continue
+        }
         if (inside && cell === "#") {
           g.fillStyle = "#796b5a"
           g.fillRect(px, py, BASE, BASE)
@@ -343,6 +354,10 @@ export function mountAdventureRenderer(
                 ? "sign"
                 : cell === "r"
                   ? "storage"
+                  : cell === "c"
+                    ? "counter"
+                    : cell === "f"
+                      ? map.id.endsWith(":clinic") ? "bench" : map.id.endsWith(":shop") ? "planter" : "lantern"
                   : null,
           icon = id && icons.get(id)
         if (icon)
@@ -432,13 +447,29 @@ export function mountAdventureRenderer(
         ),
       )
       if (disposed) return
-      for (const [id, icon] of loaded) if (icon) icons.set(id, icon)
+      for (const [id, icon] of loaded) if (icon && !icons.has(id)) icons.set(id, icon)
       buildLayers()
     })
     .catch(() => {
       stats.assetFailures.push("world.svg")
       dirty = true
     })
+  Promise.all([retain(ADVENTURE_ART_480.props), retain(ADVENTURE_ART_480.terrain)]).then(([props, terrain]) => {
+    if (disposed) return
+    if (terrain) terrainImage = terrain
+    if (props) for (const id of ["tree", "sign", "storage", "gift", "counter", "bench", "planter", "lantern", ...map.houses.map(h => `house-${h.kind}`)]) {
+      const index = propCellFor(id, map.areaId)
+      if (index === undefined) continue
+      const rect = atlasCellRect(index, props.naturalWidth, props.naturalHeight)
+      const house = id.startsWith("house-"), tree = id === "tree"
+      const width = house ? BASE * 4 : tree ? BASE * 1.4 : BASE, height = house ? BASE * 4 : tree ? BASE * 2.1 : BASE
+      const image = surface(width, height)
+      image.getContext("2d")!.drawImage(props, rect.x, rect.y, rect.width, rect.height, 0, 0, width, height)
+      icons.set(id, {image, width, height})
+    }
+    stats.artReady = !!props && !!terrain
+    buildGround(); buildLayers()
+  })
   Promise.all(
     [
       ...new Set(["hero" as CharacterId, ...map.npcs.map((n) => n.character)]),
@@ -722,6 +753,7 @@ export function mountAdventureRenderer(
       ground.width = ground.height = 1
       layers.forEach((l) => (l.image.width = l.image.height = 1))
       layers = []
+      terrainImage = null
       humans.clear()
       spirits.clear()
       icons.clear()

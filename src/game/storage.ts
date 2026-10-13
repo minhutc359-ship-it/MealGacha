@@ -1,4 +1,4 @@
-import { boardLimit, deckSizeForRules } from "./tcgRules"
+import { boardLimit, deckSizeForRules, DECK_SIZE } from "./tcgRules"
 import { trapStateIssue } from "./traps"
 import { validLivingDecision } from "./livingChoices"
 import { z } from "zod"
@@ -300,7 +300,7 @@ const fighter = z.object({
   maxHealth: integer,
   mana: integer.max(7),
   maxMana: integer.max(7),
-  deck: z.array(cardId).max(24),
+  deck: z.array(cardId).max(DECK_SIZE),
   hand: z.array(cardId).max(8),
   board: z.array(unit).max(4),
   fatigue: integer,
@@ -355,7 +355,7 @@ const expedition = z
     supplies: integer,
     deck: z
       .array(cardId)
-      .max(24)
+      .max(DECK_SIZE)
       .refine((ids) =>
         ids.every((id) => ids.filter((c) => c === id).length <= 2),
       ),
@@ -469,7 +469,7 @@ export const GameSaveSchema = z
         z.object({
           id: z.string(),
           name: z.string().max(40),
-          cards: z.array(cardId).max(24),
+          cards: z.array(cardId).max(DECK_SIZE),
         }),
       )
       .min(1)

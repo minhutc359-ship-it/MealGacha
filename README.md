@@ -1,3 +1,7 @@
+# Soul of Meal · Web 4.8 · Bẫy và art Adventure
+
+Ô bẫy chỉ có khung/hình bài; úp có animation và âm thanh riêng, kích hoạt giữ mô tả đầy đủ 2,25 giây. Bộ mới thống nhất 24 lá ở Xưởng và mọi đường vào trận. Hai atlas Adventure nguyên bản, 4,16 MB lossless, dùng Canvas/cache cho 20 map. Tiến trình và luật trận/run cũ giữ nguyên. Bản này hướng về master và mang theo cập nhật 4.6/4.7. [Thay đổi, prompt, ngân sách và kiểm chứng](dev/docs/web-v480/UPDATE.md).
+
 # Soul of Meal · Web 4.7 · Bàn đấu TCG rộng hơn
 
 Trận mới có 4 đồng minh + 1 ô bẫy, bộ 24 lá cho cả hai bên và kiệt sức tối đa 3 sát thương mỗi lần rút hụt. Theo dõi số bài còn lại và cảnh báo rút hụt trực tiếp trên bàn. Bộ cũ giữ nguyên: vào **Bộ bài → Bổ sung đủ 24 lá → Lưu & trang bị**; có 6 lá khởi đầu bổ sung miễn phí. Trận và hành trình đang chơi tiếp tục theo luật cũ. [Cơ chế, bảo toàn tiến trình và kiểm chứng](dev/docs/web-v470/UPDATE.md).

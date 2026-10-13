@@ -36,7 +36,7 @@ function pending() {
 }
 describe("turn-four tactical choice", () => {
   it("opens only at turn four, blocks ordinary actions and consumes the choice once", () => {
-    let b = startBattle(LEGACY_STARTER_DECK, null)
+    let b = startBattle(LEGACY_STARTER_DECK, null, "courage", Math.random, false, 400)
     b.enemy.hand = []
     b.enemy.deck = Array(12).fill("herb")
     for (let i = 0; i < 2; i++) {
@@ -147,7 +147,7 @@ describe("speaking characters and original retro score", () => {
   it("gives six campaign bosses distinct reveals without exposing them in other modes", () => {
     const titles = new Set<string>()
     for (const [id, beat] of Object.entries(DRAMATIC_BEATS)) {
-      const battle = startBattle(LEGACY_STARTER_DECK, id)
+      const battle = startBattle(LEGACY_STARTER_DECK, id, "courage", Math.random, false, 400)
       expect(midScene(`awaken:${id}`, battle)).toEqual(beat)
       titles.add(beat.title)
       battle.weekly = { week: "2026-10-05", index: 2, seed: 1 }

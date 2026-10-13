@@ -40,7 +40,7 @@ describe("4.7 battle rules and preservation", () => {
     expect(parseGame({...newGame(),battle:corrupt})).toBeNull()
   })
   it.each([350,400,450] as TcgRulesVersion[])("keeps the %i expedition deck and future encounters at 18 cards", version => {
-    const run = {...createExpedition(LEGACY_STARTER_DECK,7),rulesVersion:version}
+    const run = {...createExpedition(LEGACY_STARTER_DECK,7,undefined,version),rulesVersion:version}
     const save = {...newGame(),expedition:run}
     expect(parseGame(save)?.expedition?.deck).toEqual(LEGACY_STARTER_DECK)
     const b = startRunBattle(enterRunNode(run,"0-0"),random(9))
