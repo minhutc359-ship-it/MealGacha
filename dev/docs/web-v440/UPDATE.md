@@ -34,8 +34,6 @@ Browser QA gồm desktop 1440×900, dọc 390×844 và ngang 844×390; xem dữ 
 
 Dữ liệu browser: [browser-qa.json](browser-qa.json). Mẫu nhiều SFX: peak **0,2802**, RMS **0,0208**, hữu hạn và dưới 1. Mẫu clock chung trong cảnh đang có trên software-render Chromium: **32,5 callback/giây**; đây không phải bằng chứng toàn bộ game chạy 60 FPS.
 
-![Adventure: nhân vật và cây/cỏ mới](map-390.webp)
-
-![Trận Adventure trên màn hình ngang](battle-landscape.webp)
+Ảnh chụp QA bản đồ Adventure và trận màn ngang có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.
 
 Build sạch cuối: **64.407.117 byte / 100 MB**, JS gzip **609.995 / 650.000 byte**, CSS gzip **90.578 byte**, 429 file, 0 leak. Có 330 asset được ghi trong registry; kiểm tra 134 tham chiếu không thiếu file. Hai ảnh game mới thêm khoảng 583 KB dữ liệu nén; SVG bản đồ giữ nguồn dựng lại.

@@ -13,10 +13,4 @@
 
 [Live JSON](live-results.json): các request không khóa tới Photon/Private.coffee trả dữ liệu thật; chọn Hà Nội và render 22 quán bún chả. HTTP live được chuyển qua proxy outbound của executor vào request Playwright; Chromium gọi trực tiếp từ môi trường kiểm tra bị timeout. Đây là kiểm tra dữ liệu/contract/render live, không tuyên bố direct browser networking đã qua. Request HTTP với Origin của app trả 200 và CORS `*`; `lang=vi` trả 400, đã loại bỏ tham số này. Dịch vụ public có thể chậm hoặc thiếu quán; fallback Maps là phần của chức năng, không dữ liệu giả.
 
-| Tìm quán mobile | Branding Auto chess |
-|---|---|
-| ![Tìm quán](screenshots/places-phone.webp) | ![Auto chess](screenshots/autochess-brand.webp) |
-
-| Dữ liệu quán thật | Branding TCG |
-|---|---|
-| ![Quán thật](screenshots/places-live.webp) | ![TCG](screenshots/tcg-brand.webp) |
+Ảnh chụp QA cho Tìm quán, Auto chess và TCG có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

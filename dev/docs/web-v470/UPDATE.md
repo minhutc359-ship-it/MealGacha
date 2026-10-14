@@ -30,10 +30,4 @@ Build cuối **74.274.916 byte**, tăng **9.026 byte** so với 4.6 (74.265.890)
 
 Nhánh riêng dựa trên [PR #36](https://github.com/minhutc359-ship-it/MealGacha/pull/36), kế thừa [PR #35](https://github.com/minhutc359-ship-it/MealGacha/pull/35). Không tự merge.
 
-![Bốn đồng minh và ô bẫy riêng](four-390.webp)
-
-![Cảnh báo rút hụt trước khi thi triển](warning-390.webp)
-
-![Màn hình nhỏ: giữ bộ đếm và nút dùng bài](warning-320.webp)
-
-![Bàn đấu ngang](four-844.webp)
+Ảnh chụp QA cho đội hình, cảnh báo và bàn ngang có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

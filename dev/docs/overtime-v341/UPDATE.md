@@ -35,6 +35,4 @@ Clock giữ simulation 20 tick/giây, sau mốc 55 dùng 3× thời gian thực 
 
 Kiểm tra browser dùng Chromium và bản Vite production local; chưa thử iPhone/Safari hoặc Android thật. Font bên ngoài bị chặn trong harness. Game không dùng backend mới. Hồ sơ và ảnh kiểm chứng nằm trong `dev/`, không phân phối trong app.
 
-![Trận sau 55 giây ở tốc độ ×3](overtime-active.webp)
-
-![Thua chốt điểm và kết thúc phiên](defeat-recorded.webp)
+Ảnh chụp QA cho overtime và kết thúc phiên có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

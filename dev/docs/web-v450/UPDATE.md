@@ -52,10 +52,4 @@ Chromium 1440×900, 390×844, 844×390, 320×568: sảnh nhận gói và trận 
 
 Chỉ web; không sửa/sync/build Android/iOS. PR riêng đặt trên nhánh 4.4.1 của [PR #34](https://github.com/minhutc359-ship-it/MealGacha/pull/34), phụ thuộc bản đó; không tự merge.
 
-![TCG: bàn và tay bài điện thoại](board-390.webp)
-
-![TCG: lựa chọn phản ứng](response-390.webp)
-
-![TCG: lật bẫy khi kích hoạt](reveal-390.webp)
-
-![TCG: bố cục ngang](board-844.webp)
+Ảnh chụp QA cho bàn, phản ứng, bẫy và bố cục ngang có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

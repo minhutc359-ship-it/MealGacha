@@ -47,8 +47,4 @@ Asset runtime ở `public/assets/characters/roster{A,B,C,D}.webp`: kích thướ
 
 ## Ảnh kiểm chứng
 
-![EXP và đội hình trên điện thoại](screenshots/autochess-phone.webp)
-![Bố cục ngang](screenshots/autochess-landscape.webp)
-![Ngoại hình riêng](screenshots/distinct-models-landscape.webp)
-![Vị Linh chỉ huy sắc nét](screenshots/tcg-sharp-command-phone.webp)
-![Model Mộc dùng chung trong TCG](screenshots/tcg-distinct-summon-phone.webp)
+Ảnh chụp QA cho đội hình, bố cục, model và TCG có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

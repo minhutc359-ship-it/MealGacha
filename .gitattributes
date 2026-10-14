@@ -216,6 +216,7 @@ android/** -filter !diff !merge -text
 
 # Adventure media must deploy as actual bytes without a separate LFS download.
 public/assets/adventure/** -filter -diff -merge -text
+public/assets/loading/v560/** -filter -diff -merge -text
 
 # Small browser QA evidence is tracked as real bytes for PR review.
 dev/docs/web-v490/*.jpg -filter -diff -merge -text

@@ -36,3 +36,10 @@ node_modules
 
 __pycache__/
 *.pyc
+# Generated visual-QA captures are reproducible and should stay local.
+dev/docs/**/*.png
+dev/docs/**/*.jpg
+dev/docs/**/*.jpeg
+dev/docs/**/*.webp
+!dev/docs/art-direction/*.webp
+!dev/docs/web-v530/environments.webp

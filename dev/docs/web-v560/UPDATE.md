@@ -15,6 +15,12 @@ Web 5.6 hoàn thiện lớp trình bày cho Adventure mà không thay save schem
 - Trận mới bắt đầu bằng hai đội chạy từ hai phía, sau đó hiện **Sẵn sàng** và **Bắt đầu**. Khi đổi đợt, trận dừng ở đúng biên đợt để hiện **Đợt hoàn tất**, quân địch mới tiến vào rồi mới tiếp tục tick.
 - Advance theo ×2 hoặc khi tab vừa hoạt động lại không thể cho đợt mới đánh sau lớp thông báo. Input chiến thuật bị khóa trong nghi thức vào trận.
 
+## Nhạc nền và tuyệt kỹ
+
+- Làng dùng nhạc của bản đồ hiện tại; trận thường chuyển sang **Vị Linh giữ bàn**, còn khi boss sống chuyển sang **Tên gọi trong sương**. Nhạc nền tiếp tục xuyên suốt cinematic để không tạo khoảng lặng.
+- Mỗi một trong 139 Vị Linh có clip MP3 mono 24 kHz dài khoảng 2,4 giây, đồng bộ với video tuyệt kỹ và phát qua mixer hiệu ứng chung. Clip dừng khi pause/ẩn trang, tôn trọng mute và âm lượng hiệu ứng; Video OFF hoặc chế độ giảm chuyển động vẫn phát đúng âm của nhân vật.
+- Không thêm thoại. Đòn thường, kỹ năng, khiên, hồi phục và va chạm tiếp tục dùng lớp SFX chiến đấu hiện có; media tuyệt kỹ chỉ được làm nóng cho tối đa năm thành viên đội hình để giữ ngân sách bộ nhớ.
+
 ## Bản đồ TCG 07–12
 
 - Chợ Sống được vẽ lại bằng SVG nguyên bản: sông ngọc, ruộng, cầu, nhà chợ, đèn chỉ đường và lộ trình riêng cho chương 07–12.
@@ -25,5 +31,6 @@ Web 5.6 hoàn thiện lớp trình bày cho Adventure mà không thay save schem
 - Không đổi local-storage key, save schema, battle snapshot hay migration. Trạng thái làng, ảnh chuyển cảnh và timer trình bày chỉ nằm trong React state.
 - Save giữa trận cũ vẫn hợp lệ. Khi tải lại, nghi thức vào trận có thể phát lại, nhưng tick, HP, năng lượng, phần thưởng và trạng thái cinematic không bị ghi lại hoặc nhân đôi.
 - Chỉ web; không build/sync Android hoặc iOS. Không thêm runtime dependency.
+- Ảnh chụp QA có thể tái tạo từ harness được giữ ngoài Git; JSON kết quả và asset nguồn cần để tái tạo vẫn nằm trong repository.
 
 Xem [BUDGET.md](BUDGET.md), [VERIFICATION.md](VERIFICATION.md), [artwork.json](artwork.json) và [browser-qa.json](browser-qa.json).

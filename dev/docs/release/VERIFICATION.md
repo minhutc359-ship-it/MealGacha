@@ -50,10 +50,7 @@ Sau kiểm chứng browser, chỉ làm rõ một đoạn văn quyền sử dụn
 
 Ảnh TCG lấy trong lúc thi triển thực; Auto là snapshot cast có pause để nhìn rõ projectile, đã ẩn lớp pause trong ảnh. Ảnh không phải đo FPS.
 
-![Lửa va chạm](screenshots/tcg-fire-impact.webp)
-![Nước va chạm](screenshots/tcg-water-impact.webp)
-![Đòn đánh TCG ngang](screenshots/tcg-slash-landscape.webp)
-![Channel và đạn Auto](screenshots/auto-channel-projectiles.webp)
+Ảnh chụp QA cho va chạm, đòn đánh và projectile có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.
 
 ## Giới hạn và bước native
 

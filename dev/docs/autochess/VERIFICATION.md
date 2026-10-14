@@ -28,12 +28,4 @@ Dữ liệu chi tiết: [browser-results.json](browser-results.json). Không có
 
 ## Kiểm tra hình ảnh cuối
 
-[render-results.json](render-results.json) ghi lần kiểm tra production cuối sau khi bổ sung tên Vị Linh trên bàn và câu chỉ huy phù hợp trait thực tế. Bàn 19 actor, thư viện 32 chân dung, inspector quân mới và cutscene đều render không lỗi; desktop chuẩn bị vẫn vừa viewport.
-
-| Chuẩn bị desktop | Chiến đấu mobile |
-|---|---|
-| ![Chuẩn bị](screenshots/prepare-desktop.webp) | ![Chiến đấu](screenshots/battle-phone.webp) |
-
-| Cutscene theo nhân vật | Chi tiết quân mới |
-|---|---|
-| ![Cutscene](screenshots/story-phone.webp) | ![Vị Linh](screenshots/unit-phone.webp) |
+[render-results.json](render-results.json) ghi lần kiểm tra production cuối sau khi bổ sung tên Vị Linh trên bàn và câu chỉ huy phù hợp trait thực tế. Bàn 19 actor, thư viện 32 chân dung, inspector quân mới và cutscene đều render không lỗi; desktop chuẩn bị vẫn vừa viewport. Ảnh chụp QA có thể tái tạo từ harness và không được lưu trong cây mã nguồn.
