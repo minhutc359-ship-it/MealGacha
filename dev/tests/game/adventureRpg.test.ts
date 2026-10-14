@@ -384,7 +384,7 @@ describe("farm loop and schema guards", () => {
     expect(dungeonTierCap(s)).toBe(3)
     expect(farms).toBeGreaterThan(0)
     expect(Object.values(s.resources).every(value => value >= 0)).toBe(true)
-  })
+  }, 30_000) // Simulates all 24 stages plus earned-loot farming on shared CI workers.
   for (const kind of ["experience", "skills", "forge"] as const)
     it(`${kind}: farms all five floors with carried HP/energy and two exclusive camp decisions`, () => {
       let s = act(trained(), { type: "dungeon", kind, tier: 1 })

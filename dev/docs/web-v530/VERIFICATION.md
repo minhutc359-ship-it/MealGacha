@@ -5,6 +5,7 @@ Luồng cần xác minh: mở rương bằng UI → ghi chìa/phần thưởng/t
 ## Kết quả
 
 - **540 test / 49 file** qua. Bao gồm toàn bộ bộ cũ và kiểm tra mới cho 139 recipe, các mốc 15/25/35/45, rương lịch sử đã dùng, loại fusion, sổ độc lập mảnh tiêu hao, Ước hẹn, giữ roster/UID/tài nguyên, độ hiếm vừa phải, cấp/bậc Chân ước, mana địch, thanh tẩy/giáp/né/tái sinh, hút đúng năng lượng thật, nội tại hồi đúng người và xóa phản đòn mạnh đã hết hạn.
+- Bài mô phỏng trọn 24 màn và farm bằng tài nguyên kiếm được có timeout riêng 30 giây: máy CI mất khoảng 6.7 giây, vượt mặc định 5 giây. Giữ đủ vòng lặp và mọi assertion; không đổi timeout chung hay logic game.
 - Tính chiêu một lần, chặn chiêu thứ hai trong phim, tick dừng, reload chính xác, sự kiện phim phải khớp serial/source, chuyển đợt/kết quả sau phim, AUTO dừng tại chiêu đầu, OFF giữ qua reload, thưởng một lần; luật undefined/510/520 không có gate video và tiếp tục logic cũ.
 - Typecheck app/dev; catalog **123 món**; asset refs **143 / 0 thiếu**; registry **635**; release verify; build; guard dung lượng; cú pháp service worker và diff checks qua.
 - [Media QA](media-qa.json): giải mã toàn bộ **139 MP4 H264 + 139 MP3**, kiểm codec/kích thước/fps/thời lượng và hash, không dùng LFS pointer hoặc file chỉ có header. 139 video khác hash; 139 âm khác hash. Script dựng dùng tệp tạm rồi đổi tên sau khi encoder hoàn tất.
