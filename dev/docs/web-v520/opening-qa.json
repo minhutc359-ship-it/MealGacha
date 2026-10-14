@@ -1,0 +1,13 @@
+{
+  "freshLevel": 1,
+  "gear": 0,
+  "skills": 1,
+  "firstStage": {
+    "result": "win",
+    "seconds": 39.75
+  },
+  "unpreparedBoss": {
+    "result": "loss",
+    "seconds": 180
+  }
+}

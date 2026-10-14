@@ -4,6 +4,7 @@ import type { School } from "../types"
 
 export type RpgRole = "guardian" | "striker" | "mage" | "healer" | "trickster"
 export type DungeonKind = "experience" | "skills" | "forge"
+export type EnemyStyle = "bulwark" | "raider" | "hexer" | "mender"
 export interface RpgHero {
   uid: string
   cardId: string
@@ -47,12 +48,15 @@ export interface RpgMap {
   choices: [string, string]
 }
 export interface RpgEnemy {
+  strength?: number
   uid: string
   id: string
   name: string
   school: School
   boss: boolean
   level: number
+  elite?: boolean
+  style?: EnemyStyle
 }
 export interface RpgActor {
   uid: string
@@ -74,6 +78,7 @@ export interface RpgActor {
   burn: number
   weaken: number
   stun: number
+  wither?: number
   nextAttack: number
   nextSkill: number
   nextSupport: number
@@ -83,6 +88,8 @@ export interface RpgActor {
   motionAt: number
   path?: "assault" | "support"
   mark?: {school: School; until: number}
+  elite?: boolean
+  style?: EnemyStyle
 }
 export interface RpgEvent {
   serial: number
@@ -94,9 +101,10 @@ export interface RpgEvent {
   values?: Record<string, number>
   text: string
   school: School
+  animation?: "attack" | "primary" | "support" | "ultimate" | "enemy"
 }
 export interface RpgBattle {
-  rulesVersion?: 510
+  rulesVersion?: 510 | 520
   focus?: string | null
   chain?: {source: string; until: number; count: number}
   id: string
@@ -119,10 +127,12 @@ export interface RpgBattle {
     until: number
     source: string
     row: "front" | "back"
+    skill?: string
   } | null
   reward: Partial<RpgResources> | null
 }
 export interface RpgDungeon {
+  scaling?: { average: number; baseLevel: number }
   kind: DungeonKind
   tier: number
   floor: number

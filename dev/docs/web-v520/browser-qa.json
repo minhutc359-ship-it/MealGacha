@@ -1,0 +1,584 @@
+{
+  "version": "5.2.0",
+  "engine": "Chromium / SwiftShader, not device FPS",
+  "reports": [
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "geometry": {
+        "arena": {
+          "x": 12,
+          "y": 199.5,
+          "width": 1416,
+          "height": 402.515625
+        },
+        "hudBottom": 192.5,
+        "actors": [
+          {
+            "uid": "card:com-tam",
+            "x": 508.265625,
+            "y": 361.140625,
+            "right": 592.359375,
+            "bottom": 471.234375
+          },
+          {
+            "uid": "card:banh-mi",
+            "x": 494.125,
+            "y": 436.4375,
+            "right": 578.21875,
+            "bottom": 546.53125
+          },
+          {
+            "uid": "card:pho-bo",
+            "x": 168.90625,
+            "y": 338.546875,
+            "right": 253,
+            "bottom": 448.640625
+          },
+          {
+            "uid": "card:banh-cuon",
+            "x": 183.046875,
+            "y": 406.3125,
+            "right": 267.140625,
+            "bottom": 516.40625
+          },
+          {
+            "uid": "card:chef-lien",
+            "x": 310.3125,
+            "y": 447.734375,
+            "right": 394.40625,
+            "bottom": 557.828125
+          },
+          {
+            "uid": "e:3:0",
+            "x": 847.625,
+            "y": 361.140625,
+            "right": 931.71875,
+            "bottom": 467.234375
+          },
+          {
+            "uid": "e:3:1",
+            "x": 861.765625,
+            "y": 436.4375,
+            "right": 945.859375,
+            "bottom": 542.53125
+          },
+          {
+            "uid": "e:3:2",
+            "x": 1186.984375,
+            "y": 338.546875,
+            "right": 1271.078125,
+            "bottom": 444.640625
+          },
+          {
+            "uid": "e:3:3",
+            "x": 1172.84375,
+            "y": 406.3125,
+            "right": 1256.9375,
+            "bottom": 512.40625
+          },
+          {
+            "uid": "e:3:4",
+            "x": 1045.578125,
+            "y": 447.734375,
+            "right": 1129.671875,
+            "bottom": 553.828125
+          },
+          {
+            "uid": "e:3:boss",
+            "x": 998.125,
+            "y": 339.75,
+            "right": 1092.3125,
+            "bottom": 455.9375
+          }
+        ]
+      },
+      "actorsFit": true,
+      "hudSeparate": true,
+      "manualBursts": [
+        "guardian",
+        "striker",
+        "mage",
+        "healer",
+        "trickster"
+      ],
+      "canvas": {
+        "kept": true,
+        "resizeWrites": 0
+      },
+      "pauseReloadExact": true,
+      "ordinaryAttackCue": true,
+      "noStretchedSvg": true,
+      "controlsFit": true,
+      "reducedMotion": true,
+      "dungeonEntry": null,
+      "errors": [],
+      "missing": []
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "geometry": {
+        "arena": {
+          "x": 8,
+          "y": 167.890625,
+          "width": 374,
+          "height": 428.828125
+        },
+        "hudBottom": 162.890625,
+        "actors": [
+          {
+            "uid": "card:com-tam",
+            "x": 118.7421875,
+            "y": 367.484375,
+            "right": 181.9765625,
+            "bottom": 451.71875
+          },
+          {
+            "uid": "card:banh-mi",
+            "x": 115.0078125,
+            "y": 448.046875,
+            "right": 178.2421875,
+            "bottom": 532.28125
+          },
+          {
+            "uid": "card:pho-bo",
+            "x": 29.4609375,
+            "y": 343.3125,
+            "right": 92.6953125,
+            "bottom": 427.546875
+          },
+          {
+            "uid": "card:banh-cuon",
+            "x": 33.1796875,
+            "y": 415.828125,
+            "right": 96.4140625,
+            "bottom": 500.0625
+          },
+          {
+            "uid": "card:chef-lien",
+            "x": 66.6484375,
+            "y": 460.140625,
+            "right": 129.8828125,
+            "bottom": 544.375
+          },
+          {
+            "uid": "e:3:0",
+            "x": 208.0078125,
+            "y": 367.484375,
+            "right": 271.2421875,
+            "bottom": 447.71875
+          },
+          {
+            "uid": "e:3:1",
+            "x": 211.7421875,
+            "y": 448.046875,
+            "right": 274.9765625,
+            "bottom": 528.28125
+          },
+          {
+            "uid": "e:3:2",
+            "x": 297.2890625,
+            "y": 343.3125,
+            "right": 360.5234375,
+            "bottom": 423.546875
+          },
+          {
+            "uid": "e:3:3",
+            "x": 293.5703125,
+            "y": 415.828125,
+            "right": 356.8046875,
+            "bottom": 496.0625
+          },
+          {
+            "uid": "e:3:4",
+            "x": 260.1015625,
+            "y": 460.140625,
+            "right": 323.3359375,
+            "bottom": 540.375
+          },
+          {
+            "uid": "e:3:boss",
+            "x": 245.1328125,
+            "y": 347.8125,
+            "right": 315.9609375,
+            "bottom": 435.640625
+          }
+        ]
+      },
+      "actorsFit": true,
+      "hudSeparate": true,
+      "manualBursts": [
+        "guardian",
+        "striker",
+        "mage",
+        "healer",
+        "trickster"
+      ],
+      "canvas": {
+        "kept": true,
+        "resizeWrites": 0
+      },
+      "pauseReloadExact": true,
+      "ordinaryAttackCue": true,
+      "noStretchedSvg": true,
+      "controlsFit": true,
+      "reducedMotion": true,
+      "dungeonEntry": null,
+      "errors": [],
+      "missing": []
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "geometry": {
+        "arena": {
+          "x": 12,
+          "y": 132.890625,
+          "width": 820,
+          "height": 85
+        },
+        "hudBottom": 129.890625,
+        "actors": [
+          {
+            "uid": "card:com-tam",
+            "x": 325.6640625,
+            "y": 165.515625,
+            "right": 354.7109375,
+            "bottom": 204.5625
+          },
+          {
+            "uid": "card:banh-mi",
+            "x": 260.2265625,
+            "y": 165.515625,
+            "right": 289.2734375,
+            "bottom": 204.5625
+          },
+          {
+            "uid": "card:pho-bo",
+            "x": 72.0859375,
+            "y": 165.515625,
+            "right": 101.1328125,
+            "bottom": 204.5625
+          },
+          {
+            "uid": "card:banh-cuon",
+            "x": 137.5234375,
+            "y": 165.515625,
+            "right": 166.5703125,
+            "bottom": 204.5625
+          },
+          {
+            "uid": "card:chef-lien",
+            "x": 194.7890625,
+            "y": 165.515625,
+            "right": 223.8359375,
+            "bottom": 204.5625
+          },
+          {
+            "uid": "e:3:0",
+            "x": 464.7265625,
+            "y": 165.515625,
+            "right": 493.7734375,
+            "bottom": 202.5625
+          },
+          {
+            "uid": "e:3:1",
+            "x": 521.9921875,
+            "y": 165.515625,
+            "right": 551.0390625,
+            "bottom": 202.5625
+          },
+          {
+            "uid": "e:3:2",
+            "x": 579.2421875,
+            "y": 165.515625,
+            "right": 608.2890625,
+            "bottom": 202.5625
+          },
+          {
+            "uid": "e:3:3",
+            "x": 636.5078125,
+            "y": 165.515625,
+            "right": 665.5546875,
+            "bottom": 202.5625
+          },
+          {
+            "uid": "e:3:4",
+            "x": 693.7734375,
+            "y": 165.515625,
+            "right": 722.8203125,
+            "bottom": 202.5625
+          },
+          {
+            "uid": "e:3:boss",
+            "x": 749.28125,
+            "y": 162.03125,
+            "right": 781.8125,
+            "bottom": 202.5625
+          }
+        ]
+      },
+      "actorsFit": true,
+      "hudSeparate": true,
+      "manualBursts": [
+        "guardian",
+        "striker",
+        "mage",
+        "healer",
+        "trickster"
+      ],
+      "canvas": {
+        "kept": true,
+        "resizeWrites": 0
+      },
+      "pauseReloadExact": true,
+      "ordinaryAttackCue": true,
+      "noStretchedSvg": true,
+      "controlsFit": true,
+      "reducedMotion": true,
+      "dungeonEntry": null,
+      "errors": [],
+      "missing": []
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "geometry": {
+        "arena": {
+          "x": 8,
+          "y": 196.28125,
+          "width": 304,
+          "height": 140
+        },
+        "hudBottom": 191.28125,
+        "actors": [
+          {
+            "uid": "card:com-tam",
+            "x": 109.265625,
+            "y": 242.40625,
+            "right": 138.234375,
+            "bottom": 292.375
+          },
+          {
+            "uid": "card:banh-mi",
+            "x": 106.25,
+            "y": 265.203125,
+            "right": 135.21875,
+            "bottom": 315.171875
+          },
+          {
+            "uid": "card:pho-bo",
+            "x": 36.78125,
+            "y": 235.5625,
+            "right": 65.75,
+            "bottom": 285.53125
+          },
+          {
+            "uid": "card:banh-cuon",
+            "x": 39.8125,
+            "y": 256.078125,
+            "right": 68.78125,
+            "bottom": 306.046875
+          },
+          {
+            "uid": "card:chef-lien",
+            "x": 66.984375,
+            "y": 268.625,
+            "right": 95.953125,
+            "bottom": 318.59375
+          },
+          {
+            "uid": "e:3:0",
+            "x": 181.75,
+            "y": 242.40625,
+            "right": 210.71875,
+            "bottom": 288.375
+          },
+          {
+            "uid": "e:3:1",
+            "x": 184.765625,
+            "y": 265.203125,
+            "right": 213.734375,
+            "bottom": 311.171875
+          },
+          {
+            "uid": "e:3:2",
+            "x": 254.234375,
+            "y": 235.5625,
+            "right": 283.203125,
+            "bottom": 281.53125
+          },
+          {
+            "uid": "e:3:3",
+            "x": 251.203125,
+            "y": 256.078125,
+            "right": 280.171875,
+            "bottom": 302.046875
+          },
+          {
+            "uid": "e:3:4",
+            "x": 224.03125,
+            "y": 268.625,
+            "right": 253,
+            "bottom": 314.59375
+          },
+          {
+            "uid": "e:3:boss",
+            "x": 213.2265625,
+            "y": 235.5,
+            "right": 245.6796875,
+            "bottom": 284.953125
+          }
+        ]
+      },
+      "actorsFit": true,
+      "hudSeparate": true,
+      "manualBursts": [
+        "guardian",
+        "striker",
+        "mage",
+        "healer",
+        "trickster"
+      ],
+      "canvas": {
+        "kept": true,
+        "resizeWrites": 0
+      },
+      "pauseReloadExact": true,
+      "ordinaryAttackCue": true,
+      "noStretchedSvg": true,
+      "controlsFit": true,
+      "reducedMotion": true,
+      "dungeonEntry": null,
+      "errors": [],
+      "missing": []
+    },
+    {
+      "viewport": [
+        390,
+        700
+      ],
+      "geometry": {
+        "arena": {
+          "x": 8,
+          "y": 167.890625,
+          "width": 374,
+          "height": 284.828125
+        },
+        "hudBottom": 162.890625,
+        "actors": [
+          {
+            "uid": "card:com-tam",
+            "x": 120.6640625,
+            "y": 277.734375,
+            "right": 180.0546875,
+            "bottom": 358.125
+          },
+          {
+            "uid": "card:banh-mi",
+            "x": 116.9296875,
+            "y": 329.5,
+            "right": 176.3203125,
+            "bottom": 409.890625
+          },
+          {
+            "uid": "card:pho-bo",
+            "x": 31.3828125,
+            "y": 262.203125,
+            "right": 90.7734375,
+            "bottom": 342.59375
+          },
+          {
+            "uid": "card:banh-cuon",
+            "x": 35.1015625,
+            "y": 308.796875,
+            "right": 94.4921875,
+            "bottom": 389.1875
+          },
+          {
+            "uid": "card:chef-lien",
+            "x": 68.5703125,
+            "y": 337.265625,
+            "right": 127.9609375,
+            "bottom": 417.65625
+          },
+          {
+            "uid": "e:3:0",
+            "x": 209.9296875,
+            "y": 277.734375,
+            "right": 269.3203125,
+            "bottom": 354.125
+          },
+          {
+            "uid": "e:3:1",
+            "x": 213.6640625,
+            "y": 329.5,
+            "right": 273.0546875,
+            "bottom": 405.890625
+          },
+          {
+            "uid": "e:3:2",
+            "x": 299.2109375,
+            "y": 262.203125,
+            "right": 358.6015625,
+            "bottom": 338.59375
+          },
+          {
+            "uid": "e:3:3",
+            "x": 295.4921875,
+            "y": 308.796875,
+            "right": 354.8828125,
+            "bottom": 385.1875
+          },
+          {
+            "uid": "e:3:4",
+            "x": 262.0234375,
+            "y": 337.265625,
+            "right": 321.4140625,
+            "bottom": 413.65625
+          },
+          {
+            "uid": "e:3:boss",
+            "x": 247.2890625,
+            "y": 262.84375,
+            "right": 313.8046875,
+            "bottom": 346.359375
+          }
+        ]
+      },
+      "actorsFit": true,
+      "hudSeparate": true,
+      "manualBursts": [
+        "guardian",
+        "striker",
+        "mage",
+        "healer",
+        "trickster"
+      ],
+      "canvas": {
+        "kept": true,
+        "resizeWrites": 0
+      },
+      "pauseReloadExact": true,
+      "ordinaryAttackCue": true,
+      "noStretchedSvg": true,
+      "controlsFit": true,
+      "reducedMotion": true,
+      "dungeonEntry": {
+        "average": 35,
+        "baseLevel": 38
+      },
+      "errors": [],
+      "missing": []
+    }
+  ]
+}

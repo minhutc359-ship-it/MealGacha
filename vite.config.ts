@@ -44,7 +44,13 @@ export default defineConfig({
   base: "/",
   plugins: [react(), tailwindcss(), appMetadata(), productionDevPanel(), webOffline()],
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
-  build: { sourcemap: false, minify: true, emptyOutDir: true },
+  build: {
+    sourcemap: false, minify: true, emptyOutDir: true,
+    // Pixi is still imported on demand; one renderer chunk avoids repeated helpers.
+    rolldownOptions: { output: { codeSplitting: { groups: [
+      { name: "pixi-renderer", test: /[\/]node_modules[\/].*pixi\.js[\/]/, priority: 10 },
+    ] } } },
+  },
   server: { host: "0.0.0.0", port: 8443, strictPort: true },
   preview: { host: "0.0.0.0", port: 8443 },
 })

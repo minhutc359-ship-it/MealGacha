@@ -30,6 +30,8 @@ function fight(s: RpgSave) {
   if (!s.run!.battle.auto) s = act(s, { type: "auto" })
   for (let i = 0; i < 720 && !s.run!.battle.result; i++) {
     const b = s.run!.battle
+    const priority = b.actors.find(a=>a.side === "enemy" && a.hp > 0 && a.style === "mender") ?? b.actors.find(a=>a.side === "enemy" && a.hp > 0 && a.style === "hexer")
+    if (b.rulesVersion === 520 && priority && b.focus !== priority.uid) s = act(s,{type:"focus",uid:priority.uid})
     if (b.warning && b.tick >= b.guardReady)
       s = act(s, { type: "guard", row: b.warning.row })
     s = act(s, { type: "tick", steps: 4 })
@@ -255,7 +257,7 @@ describe("party, growth and real combat", () => {
   })
   it("cancels a defeated boss warning while other enemies remain, keeping the mid-battle save importable", () => {
     let s = openBoss(trained(8))
-    while (s.run!.battle.wave < 2) s = act(s, { type: "tick", steps: 1 })
+    while (!s.run!.battle.result && s.run!.battle.wave < s.run!.battle.waves.length - 1) s = act(s, { type: "tick", steps: 1 })
     const b = s.run!.battle, boss = b.actors.find(a => a.boss)!, striker = b.actors.find(a => a.side === "ally" && a.role === "striker")!
     boss.hp = 1; striker.energy = 100
     b.warning = { source: boss.uid, row: "front", until: b.tick + 8 }
@@ -337,8 +339,19 @@ describe("party, growth and real combat", () => {
 })
 
 describe("farm loop and schema guards", () => {
-  it("a fresh account can complete all 24 campaign stages using only earned experience and dungeon loot", () => {
+  it("a fresh account clears 24 stages by upgrading from earned loot and farming early floors before tackling bosses", () => {
     let s = newRpgSave(game), farms = 0
+    const improve = () => {
+      const heroes=s.roster.filter(h=>s.formation.includes(h.uid))
+      for(let level=1;level<3;level++)for(const h of heroes)for(const index of [0,2]) {
+        if(h.skills[index]!==level)continue
+        const r=reduceRpg(s,{type:"skill",uid:h.uid,index},game);if(!r.error)s=r.save
+      }
+      for(let level=0;level<2;level++)for(const h of heroes)for(const index of [0,1]) {
+        if(h.gear[index]!==level)continue
+        const r=reduceRpg(s,{type:"gear",uid:h.uid,index},game);if(!r.error)s=r.save
+      }
+    }
     for (const id of RPG_STAGE_IDS) {
       const target = rpgStage(id)!.level
       for (let guard = 0; guard < 200; guard++) {
@@ -346,9 +359,10 @@ describe("farm loop and schema guards", () => {
         if (heroes[0].level >= target) break
         if (s.resources.experience > 0) s = act(s, { type: "train", uid: heroes[0].uid })
         else {
+          improve()
           s = fight(act(s, { type: "dungeon", kind: "experience", tier: 1 }))
           expect(s.run!.battle.result).toBe("win")
-          for (let floor = 2; floor <= 5; floor++) {
+          for (let floor = 2; floor <= 4; floor++) {
             if (s.run!.dungeon!.status === "camp") s = act(s, { type: "camp", choice: "rest" })
             s = act(s, { type: "next" }); s = fight(s)
             expect(s.run!.battle.result).toBe("win")
@@ -357,6 +371,7 @@ describe("farm loop and schema guards", () => {
           expect(farms).toBeLessThan(50)
         }
       }
+      improve()
       s = fight(act(s, { type: "start", stageId: id }))
       expect(s.run!.battle.result, id).toBe("win")
       s = act(s, { type: "close" })
@@ -475,6 +490,6 @@ describe("farm loop and schema guards", () => {
     expect(readFileSync("src/game/storage.ts", "utf8")).toContain(
       "adventure: adventure.optional()",
     )
-    expect(rpgStage("tide-6")!.level).toBe(27)
+    expect(rpgStage("tide-6")!.level).toBe(41)
   })
 })

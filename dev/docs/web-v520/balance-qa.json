@@ -1,0 +1,37 @@
+[
+  {
+    "id": "lantern-1",
+    "level": 1,
+    "result": "win",
+    "seconds": 26.5,
+    "survivors": 5
+  },
+  {
+    "id": "lantern-6",
+    "level": 11,
+    "result": "win",
+    "seconds": 61.25,
+    "survivors": 5
+  },
+  {
+    "id": "harbor-6",
+    "level": 21,
+    "result": "win",
+    "seconds": 53.75,
+    "survivors": 5
+  },
+  {
+    "id": "garden-6",
+    "level": 31,
+    "result": "win",
+    "seconds": 69.5,
+    "survivors": 5
+  },
+  {
+    "id": "tide-6",
+    "level": 41,
+    "result": "win",
+    "seconds": 61.75,
+    "survivors": 5
+  }
+]

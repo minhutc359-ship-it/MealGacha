@@ -379,7 +379,7 @@ export function rpgStage(id: string) {
         index,
         stage: map.stages[index],
         boss: index === 5,
-        level: 1 + mapIndex * 7 + index,
+        level: 1 + mapIndex * 10 + index * 2,
       }
   }
   return null
