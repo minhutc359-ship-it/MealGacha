@@ -397,3 +397,20 @@ it("coalesces duplicate footstep/click bursts without silencing later steps",asy
  context.currentTime=.16;engine.play("footstep")
  expect(context.voices.length+context.oscillators.length).toBeGreaterThan(count)
 })
+
+describe("5.3 cinematic sound mixer",()=>{
+  it("starts a decoded clip at the movie's current offset and cancels it on pause",async()=>{
+    const f=fixture();f.engine.configure({soundEnabled:true,musicEnabled:false,ambienceVolume:0});await f.engine.unlock()
+    const clip=f.engine.playClip("/assets/rpg/awakening530/sounds/com-tam.mp3",()=>.8);await settle()
+    expect(f.context.voices.at(-1)!.starts[0]).toEqual([0,.8]);expect(f.engine.resourceStats().effects).toBe(1)
+    clip.stop();expect(f.context.voices.at(-1)!.stopped).toBe(true);expect(f.engine.resourceStats().effects).toBe(0)
+  })
+  it("never plays a late decode after the movie closes or the user mutes",async()=>{
+    let resolve!:(b:ArrayBuffer)=>void
+    const f=fixture(()=>new Promise(r=>resolve=r));await f.engine.unlock()
+    const clip=f.engine.playClip("/assets/rpg/awakening530/sounds/pho-bo.mp3",()=>0);clip.stop()
+    resolve(new ArrayBuffer(8));await settle();expect(f.engine.resourceStats().effects).toBe(0)
+    f.engine.configure({soundEnabled:false});f.engine.playClip("/assets/rpg/awakening530/sounds/com-tam.mp3",()=>0);await settle()
+    expect(f.engine.resourceStats().effects).toBe(0)
+  })
+})

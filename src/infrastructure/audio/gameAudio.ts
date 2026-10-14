@@ -631,6 +631,23 @@ export class GameAudioEngine {
     this.inFlight.set(path, load)
     return load
   }
+  /** A bounded original SFX clip through the existing effects mixer, never a second audio element. */
+  playClip(path: string, offset: () => number) {
+    let cancelled = false, source: AudioBufferSourceNode | null = null
+    const stop = () => { cancelled = true; if (source) { try { source.stop() } catch { /* ended */ } source.disconnect(); this.effects.delete(source) } }
+    const context = this.context
+    if (context && this.mounted && this.unlocked && this.options.soundEnabled && this.options.effectsVolume > 0 && this.visible()) {
+      void this.loadMusic(path.replace(/^\//, ""), context).then(buffer => {
+        const at = offset()
+        if (cancelled || context !== this.context || !this.visible() || !this.options.soundEnabled || context.state !== "running" || at >= buffer.duration || this.effects.size >= 48) return
+        source = context.createBufferSource(); source.buffer = buffer
+        source.connect(this.effectsBus!); this.effects.add(source)
+        source.onended = () => { if (source) { this.effects.delete(source); source.disconnect() } }
+        source.start(0, Math.max(0, at))
+      }).catch(() => { /* The movie remains playable without sound. */ })
+    }
+    return {stop}
+  }
   visibilityChanged() {
     if (!this.visible()) {
       this.stopEffects()

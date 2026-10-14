@@ -1,3 +1,5 @@
+import { AWAKENING_MEDIA, awakenedKit } from "../../game/adventureRpg/awakening"
+import { RpgCinematic } from "./RpgCinematic"
 import {useEffect} from "react"
 import { actorAnchor } from "../../game/adventureRpg/formationLayout"
 import { BOSS_SKILLS, ENEMY_STYLES } from "../../game/adventureRpg/enemies"
@@ -55,14 +57,16 @@ export function RpgBattleView({
   paused = false,
   onAction,
   readOnly = false,
+  reduced = false,
 }: {
   battle: RpgBattle
   title: string
   art: string
   quiet?: boolean
   paused?: boolean
-  onAction: (action: RpgAction) => void
+  onAction: (action: RpgAction) => boolean | void
   readOnly?: boolean
+  reduced?: boolean
 }) {
   useEffect(()=>{const lease = acquireCharacterImage("/assets/rpg/spirit510/ultimates.webp");return ()=>lease.release()},[])
   const allies = b.actors.filter((a) => a.side === "ally"),
@@ -73,10 +77,18 @@ export function RpgBattleView({
   const boss = b.actors.find((a) => a.boss && a.hp > 0)
   const warningSource = b.actors.find(a=>a.uid === b.warning?.source)
   const warningSupport = warningSource && !warningSource.boss && ["bulwark","mender"].includes(warningSource.style ?? "")
-  const blocked = readOnly || b.paused || paused || !!b.result
+  const partyKey = allies.map(a=>a.id).join(":")
+  useEffect(()=>{
+    if(readOnly || b.rulesVersion!==530 || b.cinematics===false)return
+    const controller=new AbortController()
+    // Only five short movies / sounds; normal browser + service-worker caches own the bytes.
+    for(const id of partyKey.split(":"))for(const [folder,ext] of [["movies","mp4"],["sounds","mp3"]]){if(reduced && folder==="movies")continue;void fetch(`${AWAKENING_MEDIA}/${folder}/${id}.${ext}`,{signal:controller.signal,cache:"force-cache"}).catch(()=>{})}
+    return ()=>controller.abort()
+  },[partyKey,b.rulesVersion,b.cinematics,readOnly,reduced])
+  const blocked = readOnly || b.paused || paused || !!b.result || !!b.cinematic
   return (
     <section
-      className={`rpg-battle ${quiet ? "is-quiet" : ""} ${b.paused || paused ? "is-paused" : ""}`}
+      className={`rpg-battle ${quiet ? "is-quiet" : ""} ${b.paused || paused || b.cinematic ? "is-paused" : ""}`}
       aria-label="Trận Adventure"
       inert={readOnly || undefined}
     >
@@ -109,7 +121,8 @@ export function RpgBattleView({
           </button>
         </div>
       </header>
-      {!b.rulesVersion && <small>Trận lưu 5.0 giữ luật kỹ năng cũ. Liên hương và phản ứng mở từ trận tiếp theo.</small>}
+      {!readOnly && b.rulesVersion!==530 && <small>Trận đang lưu giữ bộ kỹ năng cũ. Video và kỹ năng 5.3 mở từ chuyến tiếp theo.</small>}
+      {b.rulesVersion === 530 && !readOnly && <button type="button" className="rpg-cinema-toggle" aria-pressed={b.cinematics!==false} onClick={()=>onAction({type:"cinematics"})}>Video tuyệt kỹ {b.cinematics===false?"OFF":"ON"}</button>}
       <div className="rpg-arena-hud">
         {boss && <div className="rpg-boss-health"><strong>{boss.name} {boss.phase ? "· Cuồng nộ" : ""}</strong><RpgMeter value={boss.hp} max={boss.maxHp} label="HP boss" /></div>}
         <div className={`rpg-warning ${b.warning ? "is-active" : ""}`} role="status">{b.warning ? `⚠ ${b.warning.skill ?? "Đòn lớn"} · ${warningSupport ? "Ngắt chiêu để chặn hỗ trợ" : `Tuyến ${b.warning.row === "front" ? "trước" : "sau"}`} · ${Math.max(0,(b.warning.until-b.tick)/4).toFixed(1)}s` : "Ưu tiên người hồi phục / dệt sương · Giữ Che chắn cho đòn báo trước"}</div>
@@ -161,7 +174,7 @@ export function RpgBattleView({
                 motion={motion}
                 stamp={`${b.id}:${motionStamp}:${motion}`}
                 quiet={quiet}
-                paused={paused || b.paused}
+                paused={paused || b.paused || !!b.cinematic}
                 flip={a.side === "enemy"}
               /></div>
               {a.side === "enemy" && a.hp > 0 && !!b.rulesVersion && <button className={`rpg-focus ${b.focus === a.uid ? "is-selected" : ""}`} type="button" disabled={blocked} aria-pressed={b.focus === a.uid} title={a.boss ? BOSS_SKILLS[a.id]?.text : a.style ? ENEMY_STYLES[a.style].text : "Ưu tiên mục tiêu"} aria-label={`Ưu tiên ${a.boss ? "boss" : a.name} ${a.slot + 1}`} onClick={() => onAction({type: "focus", uid: b.focus === a.uid ? null : a.uid})}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/></svg></button>}
@@ -174,7 +187,7 @@ export function RpgBattleView({
               <div className="rpg-actor-caption">
                 <strong>{a.boss ? "BOSS" : a.elite ? "✦ " + a.name : a.name}</strong>
                 <RpgMeter value={a.hp} max={a.maxHp} label={`HP ${a.name}`} />
-                {a.side === "ally" && (
+                {(a.side === "ally" || b.rulesVersion===530) && (
                   <RpgMeter
                     value={a.energy}
                     max={100}
@@ -183,10 +196,10 @@ export function RpgBattleView({
                   />
                 )}
                 {a.mark && a.mark.until >= b.tick && <small className={`rpg-mark school-${a.mark.school}`} title="Dấu nguyên tố">✧ {a.mark.school === "ember" ? "Hỏa" : a.mark.school === "tide" ? "Thủy" : a.mark.school === "grove" ? "Mộc" : a.mark.school === "hearth" ? "Bếp" : "Ngọt"}</small>}
-                {(a.burn > 0 || a.stun > 0 || a.weaken > 0 || !!a.wither) && (
+                {(a.burn > 0 || a.stun > 0 || a.weaken > 0 || !!a.wither || !!a.traits?.regen || !!a.traits?.taunt || !!a.traits?.fracture) && (
                   <small>
                     {a.burn ? "♨" : ""} {a.stun ? "✦" : ""}{" "}
-                    {a.weaken ? "↓" : ""} {a.wither ? "✚↓" : ""}
+                    {a.weaken ? "↓" : ""} {a.wither ? "✚↓" : ""} {a.traits?.regen ? "✚↑" : ""} {a.traits?.taunt ? "⌾" : ""} {a.traits?.fracture ? "◇↓" : ""}
                   </small>
                 )}
               </div>
@@ -194,9 +207,9 @@ export function RpgBattleView({
           )
         })}
         </div>
-        <RpgBattleVfx battle={b} quiet={quiet} paused={paused || b.paused} />
+        <RpgBattleVfx battle={b} quiet={quiet} paused={paused || b.paused || !!b.cinematic} />
         {b.events.filter(e=>e.kind === "reaction" && b.tick-e.tick < 4).slice(-1).map(e=><div key={`reaction:${e.serial}`} className={`rpg-reaction-pill school-${e.school}`} role="status"><SkillArt index={60 + ["Bốc hơi","Nở rộ","Sinh trưởng","Mộng ấm"].indexOf(e.text)} />{e.text}</div>)}
-        {burst && !quiet && (
+        {burst && !quiet && !b.cinematic && (
           <div
             className={`rpg-burst-banner school-${burst.school}`}
             key={burst.serial}
@@ -207,11 +220,12 @@ export function RpgBattleView({
             <strong>{burst.text}</strong>
           </div>
         )}
-        {(b.paused || paused) && !readOnly && (
+        {b.cinematic && <RpgCinematic key={`${b.id}:${b.cinematic.serial}`} id={b.actors.find(a=>a.uid===b.cinematic!.source)!.id} reduced={reduced} paused={paused || b.paused} onTogglePause={()=>onAction({type:"pause"})} onDone={()=>onAction({type:"cinematicDone",serial:b.cinematic!.serial})}/>}
+        {(b.paused || paused) && !readOnly && !b.cinematic && (
           <div className="rpg-pause-mark">Trận đang tạm dừng</div>
         )}
       </div>
-      {!!b.rulesVersion && <details className="rpg-strategy"><summary>Liên hương {b.chain && b.chain.until >= b.tick ? `×${b.chain.count} · ${((b.chain.until-b.tick)/4).toFixed(1)}s` : "· Chạm ⌖ để ưu tiên mục tiêu"}</summary><p>{REACTION_HELP}</p></details>}
+      {!!b.rulesVersion && <details className="rpg-strategy"><summary>Liên hương {b.chain && b.chain.until >= b.tick ? `×${b.chain.count} · ${((b.chain.until-b.tick)/4).toFixed(1)}s` : "· Chạm ⌖ để ưu tiên mục tiêu"}</summary><p>{REACTION_HELP}</p>{b.rulesVersion===530 && <p>Địch thường cần 60 năng lượng, boss cần 80 để dùng kỹ năng. Hút năng lượng trước khi niệm hoặc khi đang tụ lực có thể trì hoãn / ngắt chiêu. Boss chịu nửa thời gian choáng.</p>}</details>}
       <div className="rpg-tactical">
         <span>
           {last?.text ??
@@ -246,7 +260,7 @@ export function RpgBattleView({
             onClick={() => onAction({ type: "burst", uid: a.uid })}
           >
             <SpiritArt id={a.id} />
-            <SkillArt index={spiritKit(a.id, a.role).icon + 1} />
+            <SkillArt index={b.rulesVersion===530?64+awakenedKit(a.id).iconCell:spiritKit(a.id, a.role).icon + 1} />
             <strong>{a.name}</strong>
             <small>{RPG_ROLE_NAMES[a.role]}</small>
             <RpgMeter value={a.hp} max={a.maxHp} label={`HP ${a.name}`} />

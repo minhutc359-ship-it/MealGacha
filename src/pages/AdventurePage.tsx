@@ -1,3 +1,9 @@
+import { useSpiritDetails } from "../hooks/useSpiritDetails"
+import { useSearchParams } from "react-router-dom"
+import { SPIRIT_IDS } from "../game/adventureRpg/spiritArt"
+import { SPIRIT_RARITY, SPIRIT_RARITY_NAMES, SPIRIT_THRESHOLDS } from "../domain/spiritSummons"
+import { collectedSpiritCards, spiritProgress } from "../domain/spiritCollection"
+import { RpgCinematic } from "../components/game/RpgCinematic"
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react"
 import { SpiritArt, SkillArt } from "../components/game/SpiritArt"
 import { REACTION_HELP } from "../game/adventureRpg/skills"
@@ -131,11 +137,21 @@ function HeroDetails({
   hero,
   save,
   act,
+  cards,
+  locked,
 }: {
+  cards: Record<string, number>
+  locked: boolean
   hero: RpgHero
   save: RpgSave
   act: (a: RpgAction) => boolean
 }) {
+  const [preview, setPreview] = useState(false)
+  const wish = useAppStore(s=>s.user.spiritWish)
+  const chooseWish = useAppStore(s=>s.setSpiritWish)
+  const reduced = useAppStore(s=>s.user.preferences.reducedMotion)
+  const {details,error:detailsError,retry} = useSpiritDetails()
+  const progress = spiritProgress(hero.cardId,cards)
   const card = CARD_MAP[hero.cardId],
     stats = heroStats(hero),
     rankCost = upgradeCost(hero, "rank")
@@ -158,7 +174,10 @@ function HeroDetails({
           </p>
         </div>
       </div>
-      <RpgMeter
+      <div className="rpg-unlock-progress" data-spirit={hero.cardId}><small>{SPIRIT_RARITY_NAMES[card.rarity]} · {locked ? "CHƯA HỘI NGỘ" : "ĐÃ HỘI NGỘ"}</small><strong>{progress.collected} / {progress.needed} thẻ Vị Linh</strong><RpgMeter value={Math.min(progress.collected,progress.needed)} max={progress.needed} label="Tiến trình mở khóa Vị Linh"/><p>{locked ? "Mở Rương vị giác để nhận thẻ. Đủ mốc sẽ tự hội ngộ; không tiêu hao thẻ." : progress.ready ? "Đã đủ giao ước. Thẻ và mảnh món ăn vẫn được giữ." : "Vị Linh đồng hành đã được giữ lại; tiếp tục thu thập từ rương."}</p><a href="/chest">Mở Rương vị giác ↗</a><button type="button" aria-pressed={wish===hero.cardId} onClick={()=>chooseWish(hero.cardId)}>{wish===hero.cardId?"♥ Đang ước hẹn":"♡ Ước hẹn nhân vật này"}</button><small>Ước hẹn bảo đảm 1 thẻ nhân vật đã chọn mỗi 5 lần mở rương. Đổi người không đặt lại nhịp.</small></div>
+      <button type="button" className="rpg-preview-button" onClick={()=>setPreview(true)}>▶ Xem video tuyệt kỹ</button>
+      {preview && <RpgModal label="Xem tuyệt kỹ" onClose={()=>setPreview(false)}><div className="rpg-cinematic-preview"><RpgCinematic id={hero.cardId} reduced={reduced} paused={false} onDone={()=>setPreview(false)}/></div></RpgModal>}
+      {!locked && <><RpgMeter
         value={hero.xp}
         max={heroXpNext(hero.level)}
         label="Kinh nghiệm nhân vật"
@@ -192,9 +211,11 @@ function HeroDetails({
         {(["assault", "support"] as const).map(path => <button type="button" key={path} aria-pressed={hero.path === path} disabled={hero.level < 10 || !!save.run} onClick={() => act({type: "path", uid: hero.uid, path})}>{path === "assault" ? "Phá sương · công +20%, hồi/khiên −15%" : "Dưỡng linh · hồi/khiên +50%, công −15%"}</button>)}
       </div>
       <details className="rpg-strategy"><summary>Phản ứng & cộng hưởng đội hình</summary><p>{REACTION_HELP}</p><p>Ba hệ khác nhau: +10 năng lượng đầu trận. Ba Vị Linh cùng hệ: +12 giáp cho nhóm cùng hệ. Cộng hưởng áp dụng lúc bắt đầu trận.</p></details>
+      </>}
       <h3>Bốn kỹ năng</h3>
+      {detailsError && <p role="status">Chưa tải được mô tả kỹ năng. <button type="button" onClick={retry}>Thử lại</button></p>}
       <div className="rpg-skill-list">
-        {heroSkills(hero).map((skill, index) => {
+        {heroSkills(hero,details).map((skill, index) => {
           const cost = upgradeCost(hero, "skill", index)
           return (
             <article key={index} className={!skill.ready ? "is-locked" : ""}>
@@ -212,7 +233,7 @@ function HeroDetails({
               <button
                 type="button"
                 disabled={
-                  !skill.ready ||
+                  locked || !skill.ready ||
                   skill.level >= Math.min(10, hero.level) ||
                   !canPay(save, cost)
                 }
@@ -224,8 +245,8 @@ function HeroDetails({
           )
         })}
       </div>
-      <h3>Trang bị</h3>
-      <div className="rpg-gear-list">
+      {!locked && <h3>Trang bị</h3>}
+      {!locked && <div className="rpg-gear-list">
         {[
           "Muôi chiến · Công",
           "Tạp dề · HP + Giáp",
@@ -245,7 +266,7 @@ function HeroDetails({
             </button>
           )
         })}
-      </div>
+      </div>}
     </section>
   )
 }
@@ -261,14 +282,19 @@ export function AdventurePage() {
   const dispatch = useGameStore((s) => s.rpgAction),
     notice = useGameStore((s) => s.notice),
     dismiss = useGameStore((s) => s.dismiss)
-  const prefs = useAppStore((s) => s.user.preferences)
+  const user = useAppStore((s) => s.user)
+  const prefs = user.preferences
+  const cards = useMemo(()=>collectedSpiritCards(user),[user.spiritCards,user.rewards])
+  const [params] = useSearchParams()
+  const requestedHero = params.get("hero")
+  const allRoster = useMemo(()=>run ? save.roster : [...save.roster,...SPIRIT_IDS.filter(id=>!save.roster.some(h=>h.cardId===id)).map(id=>({uid:`card:${id}`,cardId:id,level:1,xp:0,rank:1,skills:[1,1,1,1] as [number,number,number,number],gear:[0,0,0] as [number,number,number]}))],[save.roster,!!run])
   const [tab, setTab] = useState<"campaign" | "dungeon" | "heroes" | "help">(
-    "campaign",
+    requestedHero ? "heroes" : "campaign",
   )
   const [mapIndex, setMapIndex] = useState(() =>
     Math.min(3, RPG_MAPS.filter((m) => save.stars[`${m.id}-6`]).length),
   )
-  const [selected, setSelected] = useState(save.formation[0]),
+  const [selected, setSelected] = useState(requestedHero && SPIRIT_IDS.includes(requestedHero as typeof SPIRIT_IDS[number]) ? `card:${requestedHero}` : save.formation[0]),
     [slot, setSlot] = useState(0),
     [tier, setTier] = useState(1),
     [filter, setFilter] = useState("")
@@ -278,6 +304,9 @@ export function AdventurePage() {
   } | null>(null)
   const [confirmExit, setConfirmExit] = useState(false)
   const [hidden, setHidden] = useState(document.hidden)
+  const shortSound = useRef<ReturnType<typeof gameAudio.playClip> | null>(null)
+  useEffect(()=>()=>shortSound.current?.stop(),[])
+  useEffect(()=>{if(b?.paused||hidden)shortSound.current?.stop()},[b?.paused,hidden])
   const sound = useRef({ battle: "", serial: 0, result: "" })
   const map = RPG_MAPS[mapIndex],
     activeStage = run?.stageId ? rpgStage(run.stageId) : null
@@ -306,15 +335,15 @@ export function AdventurePage() {
   const act = useCallback(
     (a: RpgAction) => {
       const ok = dispatch(a)
-      if (ok && a.type !== "tick" && a.type !== "settle" && a.type !== "sync")
+      if (ok && !["tick","settle","sync","cinematicDone","burst"].includes(a.type))
         gameAudio.play(a.type === "burst" ? "auto-channel" : "confirm")
       return ok
     },
     [dispatch],
   )
   useEffect(() => {
-    dispatch({ type: "sync" })
-  }, [dispatch])
+    dispatch({ type: "sync", cards })
+  }, [dispatch, cards])
   useEffect(() => {
     const flush = () => useGameStore.getState().flushRpg()
     const visibility = () => {
@@ -330,7 +359,7 @@ export function AdventurePage() {
     }
   }, [])
   useEffect(() => {
-    if (!b || b.result || b.paused || hidden || story || confirmExit) return
+    if (!b || b.result || b.paused || b.cinematic || hidden || story || confirmExit) return
     const handle = window.setInterval(() => {
       if (!document.hidden) dispatch({ type: "tick", steps: b.speed })
     }, 250)
@@ -339,6 +368,7 @@ export function AdventurePage() {
     b?.id,
     b?.result,
     b?.paused,
+    b?.cinematic?.serial,
     b?.speed,
     hidden,
     story,
@@ -360,7 +390,10 @@ export function AdventurePage() {
         ["boss", "heal", "shield", "skill"].includes(e.kind),
       ) ??
       events[0]
-    if (e && !hidden)
+    if(e && !hidden && b.rulesVersion===530 && e.kind==="burst" && !b.cinematic){
+      const id=b.actors.find(a=>a.uid===e.source)?.id
+      if(id){shortSound.current?.stop();const at=performance.now();shortSound.current=gameAudio.playClip(`/assets/rpg/awakening530/sounds/${id}.mp3`,()=> (performance.now()-at)/1000)}
+    } else if (e && !hidden && !(b.rulesVersion===530 && e.kind==="burst" && b.cinematic))
       gameAudio.play(
         e.kind === "burst"
           ? "combo"
@@ -383,7 +416,8 @@ export function AdventurePage() {
     (total, uid) => total + heroPower(save.roster.find((h) => h.uid === uid)!),
     0,
   )
-  const hero = save.roster.find((h) => h.uid === selected) ?? save.roster[0]
+  const hero = allRoster.find((h) => h.uid === selected || h.cardId === selected.replace(/^card:/,"")) ?? save.roster[0]
+  const locked = !save.roster.some(h=>h.uid===hero.uid)
   const startStage = (id: string) => {
     const s = rpgStage(id)!
     setStory({ lines: [s.stage.before], start: id })
@@ -428,6 +462,7 @@ export function AdventurePage() {
             }
             art={art}
             quiet={prefs.reducedMotion || prefs.graphicsQuality === "low"}
+            reduced={prefs.reducedMotion || window.matchMedia("(prefers-reduced-motion: reduce)").matches}
             paused={hidden || !!story || confirmExit}
             onAction={act}
           />
@@ -808,6 +843,7 @@ export function AdventurePage() {
                   )
                 })}
               </div>
+              <p className="rpg-roster-intro">139 giao ước · Đủ 15/25/35/45 thẻ rương theo độ hiếm sẽ tự hội ngộ. Thẻ không bị tiêu hao; đội đồng hành và nhân vật cũ được giữ. Hiếm/Sử thi/Huyền thoại tăng 4%/8%/12% HP và công cơ bản; cấp, kỹ năng và trang bị vẫn quyết định sức mạnh.</p>
               <div className="rpg-resonance-summary">✧ {new Set(teamSchools).size >= 3 ? "Đa vị: +10 năng lượng đầu trận" : "Đa vị cần 3 hệ khác nhau"}{sharedSchool ? ` · ${SCHOOLS[sharedSchool].name}: +12 giáp cho nhóm cùng hệ` : " · Đồng vị cần 3 người cùng hệ"}</div>
               <div className="rpg-roster-layout">
                 <aside>
@@ -818,7 +854,7 @@ export function AdventurePage() {
                     onChange={(e) => setFilter(e.target.value)}
                   />
                   <div className="rpg-roster-list">
-                    {save.roster
+                    {allRoster
                       .filter((m) =>
                         CARD_MAP[m.cardId].name
                           .toLocaleLowerCase("vi")
@@ -835,8 +871,7 @@ export function AdventurePage() {
                           <span>
                             <strong>{CARD_MAP[m.cardId].name}</strong>
                             <small>
-                              Cấp {m.level} ·{" "}
-                              {RPG_ROLE_NAMES[heroRole(m.cardId)]}
+                              {save.roster.some(h=>h.uid===m.uid) ? `Cấp ${m.level}` : `${cards[m.cardId]??0}/${SPIRIT_THRESHOLDS[SPIRIT_RARITY[m.cardId]]} thẻ`} · {SPIRIT_RARITY_NAMES[CARD_MAP[m.cardId].rarity]}
                             </small>
                           </span>
                           {save.formation.includes(m.uid) && <b>✓</b>}
@@ -846,12 +881,13 @@ export function AdventurePage() {
                   <button
                     type="button"
                     className="rpg-primary"
+                    disabled={locked}
                     onClick={putHero}
                   >
                     Đặt vào ô {slot + 1}
                   </button>
                 </aside>
-                <HeroDetails hero={hero} save={save} act={act} />
+                <HeroDetails hero={hero} save={save} act={act} cards={cards} locked={locked} />
               </div>
             </section>
           )}
@@ -864,6 +900,8 @@ export function AdventurePage() {
               </p>
               <ModeIntroButton mode="adventure" />
               <div className="rpg-help-grid">
+                <article><h2>Hội ngộ từ rương</h2><p>Mỗi rương thêm một thẻ Vị Linh. Cần 15/25/35/45 thẻ cùng người theo độ hiếm. Xem tiến độ và chọn Ước hẹn trong hồ sơ: mỗi 5 rương bảo đảm một thẻ đã chọn. Nhân vật đã có được giữ nguyên.</p></article>
+                <article><h2>Video tuyệt kỹ</h2><p>Trận mới có đoạn phim riêng và âm thanh khi tung chiêu. Đồng hồ trận dừng trong phim; có thể dừng, bỏ qua hoặc tắt video để farm nhanh. Sử thi/Huyền thoại có hiệu ứng liên hương; Chân ước cần cấp 10, bậc 2, tuyệt kỹ cấp 3.</p></article>
                 <article>
                   <h2>Đội 5 người</h2>
                   <p>
@@ -906,7 +944,7 @@ export function AdventurePage() {
               <p>
                 {save.legacy.imported
                   ? `Đã chuyển ${save.legacy.discoveries} khám phá và ${save.legacy.badges.length} huy hiệu cũ. Cấp/KN các Vị Linh được giữ.`
-                  : "Vị Linh trong bộ sưu tập TCG cũng có thể đồng hành. Mở thêm thẻ rồi quay lại Adventure để cập nhật đội."}{" "}
+                  : "Mở Rương vị giác để thu thập thẻ Vị Linh: 15/25/35/45 theo độ hiếm. Đủ mốc sẽ hội ngộ, không trừ thẻ; nhân vật cũ được giữ."}{" "}
                 Canh Ấm ×{save.resources.broth} · Lá Tỉnh ×
                 {save.resources.leaves} · Hương Ấn ×{save.resources.seals}. Bản
                 lưu cũ vẫn được giữ trong sao lưu.

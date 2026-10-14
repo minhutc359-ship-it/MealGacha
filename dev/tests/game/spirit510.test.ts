@@ -3,7 +3,7 @@ import {existsSync, statSync} from "node:fs"
 import {CARDS} from "@/game/catalog"
 import {newGame} from "@/game/progression"
 import {parseGame} from "@/game/storage"
-import {newRpgSave, reduceRpg, heroRole, heroSkills, advanceRpgBattle} from "@/game/adventureRpg/engine"
+import {newRpgSave, reduceRpg, heroRole, heroSkills, advanceRpgBattle, syncRoster} from "@/game/adventureRpg/engine"
 import {SPIRIT_IDS, spiritArt} from "@/game/adventureRpg/spiritArt"
 import {reactionName} from "@/game/adventureRpg/skills"
 import type {RpgSave} from "@/game/adventureRpg/types"
@@ -12,7 +12,7 @@ function battle(): RpgSave {
  const s = newRpgSave(game)
  for (const h of s.roster) h.level = 10
  const r = reduceRpg(s,{type:"start",stageId:"lantern-1"},game).save
- const b = r.run!.battle
+ const b = r.run!.battle; b.rulesVersion=520
  for (const a of b.actors) {a.hp=a.maxHp=10000; a.energy=100; a.nextAttack=a.nextSkill=a.nextSupport=1000}
  return r
 }
@@ -30,8 +30,9 @@ describe("Spirit 5.1 art and skill coverage",()=>{
  })
  it("covers all four skills for every owned card with valid icons and distinct elemental kits",()=>{
   const all = newRpgSave({...game,cards:Object.fromEntries(CARDS.filter(c=>c.kind==="unit").map(c=>[c.id,1]))})
+  syncRoster(all,Object.fromEntries(CARDS.filter(c=>c.kind==="unit").map(c=>[c.id,45])))
   const kits = new Set<string>()
-  for(const h of all.roster){const skills=heroSkills(h);expect(skills).toHaveLength(4);for(const s of skills){expect(s.icon).toBeGreaterThanOrEqual(0);expect(s.icon).toBeLessThan(64)}kits.add(`${heroRole(h.cardId)}:${skills[2].name}`)}
+  for(const h of all.roster){const skills=heroSkills(h);expect(skills).toHaveLength(4);for(const s of skills){expect(s.icon).toBeGreaterThanOrEqual(0);expect(s.icon).toBeLessThan(208)}kits.add(`${heroRole(h.cardId)}:${skills[2].name}`)}
   expect(kits.size).toBeGreaterThanOrEqual(17)
  })
 })
@@ -68,7 +69,7 @@ describe("Spirit tactics and save compatibility",()=>{
   expect(reactionName("tide","tide")).toBeNull()
  })
  it("resolves offensive, control and ward reactions with per-recipient amounts",()=>{
-  function encounter(){const s=newRpgSave({...game,cards:{...game.cards,"chef-nhien":1,"chef-lien":1}});for(const h of s.roster)h.level=10;s.formation=["com-tam","chef-nhien","banh-cuon","pho-bo","chef-lien"].map(id=>s.roster.find(h=>h.cardId===id)!.uid);const r=reduceRpg(s,{type:"start",stageId:"lantern-1"},game).save;for(const a of r.run!.battle.actors){a.hp=a.maxHp=10000;a.energy=100}r.run!.battle.focus=r.run!.battle.actors.find(a=>a.side==="enemy")!.uid;return r}
+  function encounter(){const s=newRpgSave({...game,cards:{...game.cards,"chef-nhien":1,"chef-lien":1}});syncRoster(s,{"chef-nhien":45,"chef-lien":45});for(const h of s.roster)h.level=10;s.formation=["com-tam","chef-nhien","banh-cuon","pho-bo","chef-lien"].map(id=>s.roster.find(h=>h.cardId===id)!.uid);const r=reduceRpg(s,{type:"start",stageId:"lantern-1"},game).save;r.run!.battle.rulesVersion=520;for(const a of r.run!.battle.actors){a.hp=a.maxHp=10000;a.energy=100}r.run!.battle.focus=r.run!.battle.actors.find(a=>a.side==="enemy")!.uid;return r}
   let s=encounter();s.run!.battle.actors.find(a=>a.side==="enemy")!.mark={school:"ember",until:20}
   const base=structuredClone(s);delete base.run!.battle.actors.find(a=>a.side==="enemy")!.mark
   const vapor=burst(s,"pho-bo").run!.battle, normal=burst(base,"pho-bo").run!.battle

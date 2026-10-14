@@ -3,6 +3,7 @@ import { UserState, CatalogCache, UserPreferences } from "../../domain/models"
 import type { BannerConfig } from "../banner/bannerConfig"
 import { GAME_KEY, parseGame } from "../../game/storage"
 import { loadProtected, writeProtectedBatch, clearProtectedState } from "./protectedStorage"
+import { collectedSpiritCards } from "../../domain/spiritCollection"
 
 const KEYS = {
   user: "foodchest.user.v1",
@@ -60,6 +61,9 @@ const StoredUserSchema = z
       )
       .optional(),
     fragments: z.record(z.string(), z.number().int().nonnegative()).optional(),
+    spiritWish: z.string().max(100).optional(),
+    spiritPity: z.number().int().min(0).max(4).optional(),
+    spiritCards: z.record(z.string(), z.number().int().min(0).max(1_000_000_000)).optional(),
     equippedTitleId: z.string().optional(),
     unlockedTitleIds: z.array(z.string()).optional(),
     favoriteTasteTags: z.array(z.string()).optional(),
@@ -119,6 +123,7 @@ function defaultUserState(): UserState {
     keyTransactions: [],
     timelinePosts: [],
     fragments: {},
+    spiritCards: {},
     equippedTitleId: "newbie",
     unlockedTitleIds: ["newbie"],
     favoriteTasteTags: [],
@@ -149,6 +154,7 @@ export function migrateUserState(raw: unknown): UserState | null {
     completedDailyQuestIds: state.completedDailyQuestIds ?? [],
     timelinePosts: state.timelinePosts ?? [],
     fragments: state.fragments ?? {},
+    spiritCards: collectedSpiritCards(state as unknown as UserState),
     unlockedTitleIds: Array.from(
       new Set(["newbie", ...(state.unlockedTitleIds ?? [])]),
     ),

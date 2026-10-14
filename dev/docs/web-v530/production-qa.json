@@ -1,0 +1,56 @@
+{
+  "reports": [
+    {
+      "route": "adventure",
+      "renderer": [],
+      "canvas": true,
+      "saveUnchanged": true
+    },
+    {
+      "route": "game",
+      "renderer": [],
+      "canvas": true,
+      "saveUnchanged": true
+    },
+    {
+      "route": "autochess",
+      "renderer": [],
+      "canvas": true,
+      "saveUnchanged": true
+    },
+    {
+      "route": "chest",
+      "renderer": [],
+      "canvas": true,
+      "saveUnchanged": true
+    },
+    {
+      "route": "actual-rpg",
+      "video": {
+        "width": 512,
+        "height": 288,
+        "ready": 4,
+        "time": 0.212845,
+        "src": "http://127.0.0.1:4255/assets/rpg/awakening530/movies/com-tam.mp4"
+      },
+      "customSoundWithVideo": true,
+      "customSoundWithoutVideo": true,
+      "offlineVideoRange": {
+        "status": 206,
+        "range": "bytes 0-23/50934",
+        "bytes": 24,
+        "signature": "ftyp"
+      }
+    },
+    {
+      "route": "production-profile",
+      "loadedSkillJson": true,
+      "lockedProgress": true
+    }
+  ],
+  "chunks": [
+    "http://127.0.0.1:4255/assets/pixi-renderer-o5MQlodL.js"
+  ],
+  "errors": [],
+  "missing": []
+}

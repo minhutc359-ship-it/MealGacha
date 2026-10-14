@@ -62,6 +62,7 @@ export interface RewardInstance {
   fusionId?: string
   favorite: boolean
   rarity?: RewardRarity
+  spiritCardId?: string
 }
 
 export interface FusionTransaction {
@@ -115,6 +116,10 @@ export interface UserState {
   unlimitedChestUnlockedAt?: string
   timelinePosts: TimelinePost[]
   fragments: Record<string, number>
+  /** Lifetime chest-card ledger, independent of the spendable food fragments. */
+  spiritCards?: Record<string, number>
+  spiritWish?: string
+  spiritPity?: number
   equippedTitleId: string
   unlockedTitleIds: string[]
   favoriteTasteTags: string[]

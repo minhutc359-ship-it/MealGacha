@@ -58,7 +58,9 @@ export interface RpgEnemy {
   elite?: boolean
   style?: EnemyStyle
 }
+export type RpgTrait = "vulnerable" | "regen" | "haste" | "taunt" | "thorns" | "fracture" | "barrier" | "evade" | "attacks" | "rescue" | "vigilReady" | "thornsPower"
 export interface RpgActor {
+  traits?: Partial<Record<RpgTrait, number>>
   uid: string
   id: string
   name: string
@@ -104,7 +106,9 @@ export interface RpgEvent {
   animation?: "attack" | "primary" | "support" | "ultimate" | "enemy"
 }
 export interface RpgBattle {
-  rulesVersion?: 510 | 520
+  rulesVersion?: 510 | 520 | 530
+  cinematics?: boolean
+  cinematic?: {source: string; serial: number}
   focus?: string | null
   chain?: {source: string; until: number; count: number}
   id: string
@@ -151,6 +155,7 @@ export interface RpgRun {
 }
 export interface RpgSave {
   version: 1
+  cinematics?: boolean
   roster: RpgHero[]
   formation: string[]
   resources: RpgResources
@@ -166,7 +171,7 @@ export interface RpgSave {
     completed: boolean
   }
 }
-export type RpgAction = { type: "sync" } | {type: "path"; uid: string; path: "assault" | "support"} | {type: "focus"; uid: string | null} | {
+export type RpgAction = { type: "sync"; cards?: Record<string, number> } | {type: "cinematicDone"; serial: number} | {type: "cinematics"} | {type: "path"; uid: string; path: "assault" | "support"} | {type: "focus"; uid: string | null} | {
   type: "formation"
   uids: string[]
 } | { type: "train"

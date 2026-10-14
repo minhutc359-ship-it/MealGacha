@@ -1,0 +1,46 @@
+{
+  "version": "5.3.0",
+  "tool": "Built-in image_gen",
+  "generatedOn": "2026-10-14",
+  "originalArt": true,
+  "artworks": [
+    {
+      "purpose": "Six original spirit realms for the film renderer; source only, excluded from the product build",
+      "sourcePng": "exec-a41031fc-5f3c-423c-bd85-5e4c148b2784.png",
+      "file": "dev/docs/web-v530/environments.webp",
+      "prompt": "Use case: stylized-concept. Asset type: ORIGINAL Soul of Meal fantasy RPG ultimate cinematic environment atlas. Create a polished painterly anime fantasy landscape sheet, exactly THREE columns by TWO rows, six completely separate equal rectangular scenes, no gutters, each cell a panoramic world with a dramatic quiet central stage for a spirit character and magical attack. Canvas landscape 1536x1024. Row 1: left golden celestial Vietnamese hearth citadel with bronze lion reliefs, middle vermilion phoenix sky above volcanic terraces, right jade bamboo grove with floating lotus islands and enchanted roots. Row 2: left azure dragon tide in a moonlit harbor with luminous spiraling water, middle violet crescent dream palace with stars and crystal sugar-like formations (not actual food), right cosmic amber constellation temple uniting five elements. Each scene has coherent depth, beautiful cinematic lighting, atmospheric layered clouds, small decorative magical details at edges, uncluttered central 60 percent. Clear equal cell boundaries. No people, no characters, no letters, no text, no UI, no borders, no logo, no copied intellectual property. High quality original fantasy game background concept art.",
+      "columns": 3,
+      "rows": 2,
+      "width": 1536,
+      "height": 1024,
+      "encoding": "WebP quality 83, method 6; no repainting",
+      "bytes": 523312,
+      "sha256": "04b50dfdbab1b971a282798c9f0092641929f08eee41b6915297926c03dd8d18"
+    },
+    {
+      "purpose": "144 original ultimate sigils, 139 immutable assigned cells",
+      "sourcePng": "exec-2cf46d3d-2abc-4f43-987c-324adc6de4c0.png",
+      "file": "public/assets/rpg/awakening530/sigils.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original Soul of Meal RPG ultimate skill icon atlas. Create exactly 12 columns by 12 rows of 144 equal square icons in a perfect regular grid, full square 1536x1536 canvas, no gutters or frames. Each icon has its own beautiful intricate unique magical emblem clearly centered in its cell, sculpted light on deep midnight teal, clean readable silhouette occupying 65 percent of its cell. Row 1 golden lion guardians, row 2 amber citadel shields and bronze bells, row 3 orange phoenix feathers and swords, row 4 crimson fire constellations and lightning, row 5 jade leaves and lotus healing blooms, row 6 emerald roots and bamboo talismans, row 7 azure dragon water spears and whirlpools, row 8 sapphire waves and frost snow crystals, row 9 violet moon butterflies and mirrors, row 10 lavender star harps and magical chains, row 11 pearly five-element mandalas and spirit seals, row 12 ruby-gold legendary celestial weapons. ALL twelve icons within a row MUST have visibly different motifs, silhouettes and design. Painterly refined anime fantasy game icon craftsmanship, ornamental curves, radiant restrained edges. No letters, no numbers, no labels, no text, no food photographs, no UI, no external intellectual property. Maintain strict grid and consistent empty dark breathing room around each icon; no emblem crosses a cell boundary.",
+      "columns": 12,
+      "rows": 12,
+      "width": 1254,
+      "height": 1254,
+      "encoding": "WebP quality 83, method 6; no repainting",
+      "bytes": 449332,
+      "sha256": "9cb8b94bd8a3587cf9670d96adc8eef48f5a974b9197197b2deaae5b546303e8"
+    }
+  ],
+  "composition": {
+    "movies": "139 original 2.4-second H264 movies composed by render-spirit530.ts: existing 139 spirit portraits, project cast poses, new realms, individual sigils, named effect patterns and character constellations. Twenty shared visual families, individual combinations; not 139 hand-drawn character animation sets.",
+    "sounds": "139 original motifs and synthetic impact textures; no third-party music, voice or effect samples.",
+    "sample": "dev/docs/web-v530/com-tam-sample.mp4 combines one shipped MP4 and its paired original cue for review; excluded from dist."
+  },
+  "references": [
+    "dev/docs/web-v510/art-prompts.json",
+    "dev/docs/web-v530/movie-manifest.json",
+    "dev/docs/web-v530/audio-manifest.json",
+    "dev/tools/render-spirit530.ts",
+    "dev/tools/compose-spirit530.py"
+  ]
+}

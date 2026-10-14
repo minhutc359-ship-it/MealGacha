@@ -6,12 +6,11 @@ const ROLES: RpgRole[] = ["guardian", "striker", "mage", "healer", "trickster"]
 const THEMES = ["Kim sư", "Hỏa phượng", "Ngọc lâm", "Long triều", "Nguyệt mộng"]
 const MOVES = ["Hộ trận", "Liên trảm", "Pháp ấn", "Sinh hoa", "Ảo ảnh"]
 const FINISH = ["Thiên thành", "Phá quân", "Vạn tượng", "Đoàn viên", "Phong nguyệt"]
-const EFFECTS = ["khiên 12% HP cho người yếu nhất", "Bỏng hương 4s", "hồi 8% HP cho người yếu nhất", "+8 năng lượng cho đồng đội", "làm yếu mục tiêu 4s"]
 export function spiritKit(id: string, role: RpgRole) {
  const s = SPIRIT_SCHOOLS.indexOf(CARD_MAP[id].school), ri = ROLES.indexOf(role)
  const variant = [...id].reduce((n,c)=>n+c.charCodeAt(0),0) % 3
  const style = ["Cân bằng", "Tập kích", "Tiếp sức"][variant]
- return {variant, style, school: s, icon: (s * 5 + ri) * 2, primary: `${THEMES[s]} · ${MOVES[ri]}`, burst: `${THEMES[s]} · ${FINISH[ri]} · ${style}`, effect: EFFECTS[s]}
+ return {variant, style, school: s, icon: (s * 5 + ri) * 2, primary: `${THEMES[s]} · ${MOVES[ri]}`, burst: `${THEMES[s]} · ${FINISH[ri]} · ${style}`}
 }
 export function reactionName(from: School, to: School) {
  const pair = [from, to].sort().join(":")

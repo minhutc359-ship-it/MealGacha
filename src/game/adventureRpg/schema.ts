@@ -55,6 +55,7 @@ const enemy = z.object({
 })
 const actor = z.object({
   ...enemyTraits,
+  traits: z.partialRecord(z.enum(["vulnerable","regen","haste","taunt","thorns","fracture","barrier","evade","attacks","rescue","vigilReady","thornsPower"]), bounded).optional(),
   uid,
   id: z.string().max(80),
   name: z.string().max(120),
@@ -86,7 +87,9 @@ const actor = z.object({
   mark: z.object({school, until: bounded}).optional(),
 })
 const battle = z.object({
-  rulesVersion: z.union([z.literal(510), z.literal(520)]).optional(),
+  rulesVersion: z.union([z.literal(510), z.literal(520), z.literal(530)]).optional(),
+  cinematics: z.boolean().optional(),
+  cinematic: z.object({source: uid, serial: count}).optional(),
   focus: uid.nullable().optional(),
   chain: z.object({source: uid, until: bounded, count: bounded.max(3)}).optional(),
   id: uid,
@@ -148,7 +151,8 @@ const stageId = z.string().refine((id) => RPG_STAGE_IDS.includes(id))
 export const rpgSaveSchema = z
   .object({
     version: z.literal(1),
-    roster: z.array(hero).min(1).max(250),
+    cinematics: z.boolean().optional(),
+    roster: z.array(hero).min(1).max(389),
     formation: z.array(uid).min(1).max(5),
     resources,
     stars: z.record(stageId, z.number().int().min(1).max(3)),
@@ -220,6 +224,7 @@ export const rpgSaveSchema = z
       b.events.some((e) => e.tick > b.tick || e.serial > b.serial)
     )
       invalid("Nhịp trận không hợp lệ")
+    if (b.cinematic && (b.rulesVersion !== 530 || b.result || b.settled || b.cinematics === false || !allies.some(a=>a.uid===b.cinematic!.source) || !b.events.some(e=>e.kind==="burst" && e.serial===b.cinematic!.serial && e.source===b.cinematic!.source))) invalid("Đoạn tuyệt kỹ không khớp sự kiện")
     if (
       b.actors.some((a) =>
         a.side === "ally"
@@ -231,7 +236,7 @@ export const rpgSaveSchema = z
     if (
       b.warning &&
       (!b.actors.some(
-        (a) => a.uid === b.warning!.source && (a.boss || (b.rulesVersion === 520 && a.elite)) && a.hp > 0,
+        (a) => a.uid === b.warning!.source && (a.boss || ((b.rulesVersion ?? 0) >= 520 && a.elite)) && a.hp > 0,
       ) ||
         b.warning.until < b.tick)
     )
@@ -259,7 +264,7 @@ export const rpgSaveSchema = z
         d.tier > dungeonTierCap(save) ||
         Object.entries(d.health).some(
           ([id, h]) =>
-            !save.formation.includes(id) || h.hp > heroStats(byUid.get(id)!).hp,
+            !save.formation.includes(id) || h.hp > heroStats(byUid.get(id)!, b.rulesVersion === 530).hp,
         )
       )
         invalid("Tiến trình dungeon không hợp lệ")

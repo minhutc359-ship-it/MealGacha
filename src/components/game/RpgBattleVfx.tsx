@@ -1,8 +1,9 @@
+import { awakenedKit } from "../../game/adventureRpg/awakening";
 import { useEffect, useRef } from "react";
 import { drawChannel, drawProjectile, drawImpact, VFX_COLORS, type VfxKind, type VfxPoint } from "../../game/battleVfx";
 import { actorAnchor } from "../../game/adventureRpg/formationLayout";
 import { spiritKit } from "../../game/adventureRpg/skills";
-import type { RpgActor, RpgBattle, RpgEvent } from "../../game/adventureRpg/types";
+import type { RpgActor, RpgBattle, RpgEvent, RpgRole } from "../../game/adventureRpg/types";
 import { ELEMENTAL_IMPACTS } from "../../game/visualPack";
 import { acquireCharacterImage, subscribeCharacterClock } from "../../infrastructure/assets/characterSprites";
 import { renderDpr, renderIsLight, subscribeRenderQuality } from "../../infrastructure/presentation/renderQuality";
@@ -12,8 +13,10 @@ type Cue = {
     targets: RpgActor[];
     start: number;
     variant: number;
+    awakened: boolean;
 };
 function effectKind(c: Cue, target: RpgActor): VfxKind {
+    if (c.awakened && c.event.animation === "support") return target.side!==c.actor.side?"shatter":c.actor.role==="healer"?"heal":c.actor.role==="guardian"?"shield":"summon";
     if (c.event.animation === "support")
         return c.actor.school === "tide" ? "summon" : c.actor.school === "grove" ? "heal" : c.actor.school === "hearth" ? "shield" : "projectile";
     if (c.event.animation === "attack")
@@ -125,7 +128,11 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             const targets = battle.actors.filter(a => e.targets.includes(a.uid));
             if (!targets.length)
                 continue;
-            s.cues.push({ event: e, actor: { ...actor }, targets: targets.map(a => ({ ...a })), start: s.frozen ?? now, variant: actor.side === "ally" ? spiritKit(actor.id, actor.role).variant : actor.phase });
+            const awakened=battle.rulesVersion===530 && actor.side==="ally";
+            const kit=awakened?awakenedKit(actor.id):null;
+            let role=actor.role;
+            if(kit && e.animation!=="attack")role=(e.animation==="ultimate"?(["guardian","mage","mage","healer","trickster","trickster","guardian","striker","mage","healer","trickster","trickster","guardian","mage","striker","healer","mage","healer","guardian","striker"] as RpgRole[])[kit.ultimate]:e.animation==="support"?(["guardian","healer","healer","mage","mage","trickster","trickster","striker","trickster","mage","guardian","mage","guardian","healer","striker","healer"] as RpgRole[])[kit.support]:kit.primary>=20?"trickster":kit.primary>=15?"healer":kit.primary>=9?"mage":kit.primary>=6?"guardian":"striker");
+            s.cues.push({ awakened, event: e, actor: { ...actor, role }, targets: targets.map(a => ({ ...a })), start: s.frozen ?? now, variant: kit?kit.motif:actor.side === "ally" ? spiritKit(actor.id, actor.role).variant : actor.phase });
         }
         s.serial = battle.serial;
         s.cues = s.cues.slice(-32);

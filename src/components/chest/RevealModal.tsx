@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react"
+import { chestSpiritCard } from "../../domain/spiritCollection"
+import { lazy, Suspense, useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import {
   RewardInstance,
@@ -10,6 +11,8 @@ import { FoodImage } from "../food/FoodImage"
 import { RarityFrame, RARITY_LABELS } from "../ui/RarityFrame"
 import { useAppStore } from "../../store/useAppStore"
 import { shareResultCard } from "../../infrastructure/share/resultCard"
+
+const ChestSpiritCard = lazy(()=>import("./ChestSpiritCard"))
 
 interface Props {
   embedded?: boolean
@@ -197,6 +200,7 @@ export function RevealModal({
               </p>
             )}
 
+            {chestSpiritCard(reward) && <Suspense fallback={<p>Đang mở thẻ Vị Linh…</p>}><ChestSpiritCard id={chestSpiritCard(reward)!}/></Suspense>}
             <div className="reward-utility-actions">
               <button onClick={() => toggleFavorite(reward.id)} aria-pressed={favorite}>
                 {favorite ? "♥ Đã yêu thích" : "♡ Yêu thích"}

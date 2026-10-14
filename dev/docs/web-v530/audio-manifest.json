@@ -1,0 +1,2504 @@
+[
+  {
+    "id": "pho-bo",
+    "path": "/assets/rpg/awakening530/sounds/pho-bo.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2699614864390729,
+    "notes": [
+      5,
+      0,
+      7,
+      2,
+      21,
+      17
+    ],
+    "school": "tide",
+    "ultimate": 8
+  },
+  {
+    "id": "pho-ga",
+    "path": "/assets/rpg/awakening530/sounds/pho-ga.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.27710408487025234,
+    "notes": [
+      5,
+      0,
+      7,
+      2,
+      21,
+      17
+    ],
+    "school": "tide",
+    "ultimate": 8
+  },
+  {
+    "id": "bun-rieu",
+    "path": "/assets/rpg/awakening530/sounds/bun-rieu.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2368467781863574,
+    "notes": [
+      5,
+      9,
+      2,
+      7,
+      12,
+      17
+    ],
+    "school": "tide",
+    "ultimate": 4
+  },
+  {
+    "id": "bun-bo-hue",
+    "path": "/assets/rpg/awakening530/sounds/bun-bo-hue.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2520280634628525,
+    "notes": [
+      7,
+      9,
+      0,
+      2,
+      17,
+      19
+    ],
+    "school": "tide",
+    "ultimate": 0
+  },
+  {
+    "id": "banh-mi",
+    "path": "/assets/rpg/awakening530/sounds/banh-mi.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.28605956784865993,
+    "notes": [
+      0,
+      4,
+      9,
+      2,
+      19,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 7
+  },
+  {
+    "id": "xoi",
+    "path": "/assets/rpg/awakening530/sounds/xoi.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.31925208868913446,
+    "notes": [
+      2,
+      4,
+      7,
+      9,
+      12,
+      14
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "banh-cuon",
+    "path": "/assets/rpg/awakening530/sounds/banh-cuon.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2787256676585839,
+    "notes": [
+      11,
+      0,
+      2,
+      4,
+      19,
+      23
+    ],
+    "school": "grove",
+    "ultimate": 9
+  },
+  {
+    "id": "chao-suon",
+    "path": "/assets/rpg/awakening530/sounds/chao-suon.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2749629446201105,
+    "notes": [
+      9,
+      0,
+      2,
+      4,
+      19,
+      21
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "mien-ga",
+    "path": "/assets/rpg/awakening530/sounds/mien-ga.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.24824167675713057,
+    "notes": [
+      5,
+      0,
+      7,
+      2,
+      21,
+      17
+    ],
+    "school": "tide",
+    "ultimate": 14
+  },
+  {
+    "id": "bun-moc",
+    "path": "/assets/rpg/awakening530/sounds/bun-moc.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.27226505289798075,
+    "notes": [
+      0,
+      5,
+      9,
+      2,
+      19,
+      12
+    ],
+    "school": "tide",
+    "ultimate": 16
+  },
+  {
+    "id": "banh-da-cua",
+    "path": "/assets/rpg/awakening530/sounds/banh-da-cua.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2697670002081464,
+    "notes": [
+      5,
+      0,
+      7,
+      2,
+      21,
+      17
+    ],
+    "school": "tide",
+    "ultimate": 2
+  },
+  {
+    "id": "bun-cha",
+    "path": "/assets/rpg/awakening530/sounds/bun-cha.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2552100896907252,
+    "notes": [
+      5,
+      7,
+      9,
+      0,
+      14,
+      17
+    ],
+    "school": "tide",
+    "ultimate": 18
+  },
+  {
+    "id": "bun-dau",
+    "path": "/assets/rpg/awakening530/sounds/bun-dau.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2620420723677273,
+    "notes": [
+      9,
+      0,
+      2,
+      4,
+      19,
+      21
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "com-tam",
+    "path": "/assets/rpg/awakening530/sounds/com-tam.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3031467539222201,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      21,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "com-ga",
+    "path": "/assets/rpg/awakening530/sounds/com-ga.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.28441316362097924,
+    "notes": [
+      7,
+      0,
+      4,
+      9,
+      14,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 7
+  },
+  {
+    "id": "com-rang-dua-bo",
+    "path": "/assets/rpg/awakening530/sounds/com-rang-dua-bo.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.29813914202185005,
+    "notes": [
+      7,
+      9,
+      0,
+      2,
+      16,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 18
+  },
+  {
+    "id": "com-nieu",
+    "path": "/assets/rpg/awakening530/sounds/com-nieu.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.30673818870283687,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "bun-ca",
+    "path": "/assets/rpg/awakening530/sounds/bun-ca.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2711076503984172,
+    "notes": [
+      2,
+      9,
+      5,
+      0,
+      19,
+      14
+    ],
+    "school": "tide",
+    "ultimate": 14
+  },
+  {
+    "id": "mi-van-than",
+    "path": "/assets/rpg/awakening530/sounds/mi-van-than.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2696751624560771,
+    "notes": [
+      9,
+      2,
+      7,
+      0,
+      17,
+      21
+    ],
+    "school": "tide",
+    "ultimate": 16
+  },
+  {
+    "id": "mi-cay",
+    "path": "/assets/rpg/awakening530/sounds/mi-cay.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2600516150288121,
+    "notes": [
+      2,
+      9,
+      5,
+      0,
+      19,
+      14
+    ],
+    "school": "tide",
+    "ultimate": 2
+  },
+  {
+    "id": "ga-ran",
+    "path": "/assets/rpg/awakening530/sounds/ga-ran.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.317751156666319,
+    "notes": [
+      7,
+      9,
+      0,
+      2,
+      16,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "pizza",
+    "path": "/assets/rpg/awakening530/sounds/pizza.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.28085352892490323,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      21,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "pasta",
+    "path": "/assets/rpg/awakening530/sounds/pasta.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.35586601151543307,
+    "notes": [
+      2,
+      4,
+      7,
+      9,
+      12,
+      14
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "sushi",
+    "path": "/assets/rpg/awakening530/sounds/sushi.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2737530904157146,
+    "notes": [
+      7,
+      9,
+      0,
+      2,
+      16,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "tokbokki",
+    "path": "/assets/rpg/awakening530/sounds/tokbokki.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3506983396471604,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 13
+  },
+  {
+    "id": "lau-thai",
+    "path": "/assets/rpg/awakening530/sounds/lau-thai.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.34383020105988005,
+    "notes": [
+      3,
+      7,
+      0,
+      5,
+      22,
+      15
+    ],
+    "school": "ember",
+    "ultimate": 19
+  },
+  {
+    "id": "lau-rieu-cua",
+    "path": "/assets/rpg/awakening530/sounds/lau-rieu-cua.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.321695825378906,
+    "notes": [
+      9,
+      0,
+      2,
+      4,
+      19,
+      21
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "nuong-bbq",
+    "path": "/assets/rpg/awakening530/sounds/nuong-bbq.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.33128292882368904,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 1
+  },
+  {
+    "id": "vit-quay",
+    "path": "/assets/rpg/awakening530/sounds/vit-quay.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.36361158483139217,
+    "notes": [
+      3,
+      7,
+      0,
+      5,
+      22,
+      15
+    ],
+    "school": "ember",
+    "ultimate": 13
+  },
+  {
+    "id": "banh-xeo",
+    "path": "/assets/rpg/awakening530/sounds/banh-xeo.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2804863704527647,
+    "notes": [
+      7,
+      0,
+      4,
+      9,
+      14,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 19
+  },
+  {
+    "id": "bibimbap",
+    "path": "/assets/rpg/awakening530/sounds/bibimbap.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2821761860772696,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      21,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 18
+  },
+  {
+    "id": "samgyeopsal",
+    "path": "/assets/rpg/awakening530/sounds/samgyeopsal.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.31399488571781603,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "hanwoo-bbq",
+    "path": "/assets/rpg/awakening530/sounds/hanwoo-bbq.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.300872763591045,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      21,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "shoyu-ramen",
+    "path": "/assets/rpg/awakening530/sounds/shoyu-ramen.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.25788486124997945,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 18
+  },
+  {
+    "id": "unagi-don",
+    "path": "/assets/rpg/awakening530/sounds/unagi-don.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3149065784220981,
+    "notes": [
+      9,
+      0,
+      2,
+      4,
+      19,
+      21
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "omakase",
+    "path": "/assets/rpg/awakening530/sounds/omakase.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.30407403533190763,
+    "notes": [
+      2,
+      4,
+      7,
+      9,
+      12,
+      14
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "lasagna",
+    "path": "/assets/rpg/awakening530/sounds/lasagna.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.30950957630193043,
+    "notes": [
+      9,
+      0,
+      2,
+      4,
+      19,
+      21
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "truffle-risotto",
+    "path": "/assets/rpg/awakening530/sounds/truffle-risotto.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.27814342685502025,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      21,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "bistecca-fiorentina",
+    "path": "/assets/rpg/awakening530/sounds/bistecca-fiorentina.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.29690562027196654,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "croissant",
+    "path": "/assets/rpg/awakening530/sounds/croissant.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.26089323047595775,
+    "notes": [
+      7,
+      0,
+      10,
+      3,
+      24,
+      19
+    ],
+    "school": "sugar",
+    "ultimate": 5
+  },
+  {
+    "id": "duck-confit",
+    "path": "/assets/rpg/awakening530/sounds/duck-confit.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.31752468207487833,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "french-tasting",
+    "path": "/assets/rpg/awakening530/sounds/french-tasting.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3080334706429315,
+    "notes": [
+      9,
+      0,
+      2,
+      4,
+      19,
+      21
+    ],
+    "school": "hearth",
+    "ultimate": 18
+  },
+  {
+    "id": "classic-burger",
+    "path": "/assets/rpg/awakening530/sounds/classic-burger.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.25185450288535544,
+    "notes": [
+      2,
+      4,
+      7,
+      9,
+      12,
+      14
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "smoked-brisket",
+    "path": "/assets/rpg/awakening530/sounds/smoked-brisket.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.28212508487426813,
+    "notes": [
+      7,
+      9,
+      0,
+      2,
+      16,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "xiaolongbao",
+    "path": "/assets/rpg/awakening530/sounds/xiaolongbao.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2976151632089582,
+    "notes": [
+      9,
+      0,
+      2,
+      4,
+      19,
+      21
+    ],
+    "school": "hearth",
+    "ultimate": 18
+  },
+  {
+    "id": "peking-duck",
+    "path": "/assets/rpg/awakening530/sounds/peking-duck.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2607772561243638,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "haidilao-hotpot",
+    "path": "/assets/rpg/awakening530/sounds/haidilao-hotpot.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3338654974685628,
+    "notes": [
+      9,
+      0,
+      2,
+      4,
+      19,
+      21
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "pad-thai",
+    "path": "/assets/rpg/awakening530/sounds/pad-thai.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.32371449656194645,
+    "notes": [
+      2,
+      4,
+      7,
+      9,
+      12,
+      14
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "tom-yum-goong",
+    "path": "/assets/rpg/awakening530/sounds/tom-yum-goong.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3172560852883666,
+    "notes": [
+      0,
+      5,
+      10,
+      3,
+      19,
+      12
+    ],
+    "school": "ember",
+    "ultimate": 1
+  },
+  {
+    "id": "mango-sticky-rice",
+    "path": "/assets/rpg/awakening530/sounds/mango-sticky-rice.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.26475495374440855,
+    "notes": [
+      7,
+      12,
+      3,
+      10,
+      12,
+      19
+    ],
+    "school": "sugar",
+    "ultimate": 10
+  },
+  {
+    "id": "xoi-xeo",
+    "path": "/assets/rpg/awakening530/sounds/xoi-xeo.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3263160473113853,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "korean-fried-chicken",
+    "path": "/assets/rpg/awakening530/sounds/korean-fried-chicken.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.33600478179833654,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 7
+  },
+  {
+    "id": "bingsu",
+    "path": "/assets/rpg/awakening530/sounds/bingsu.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2444897235289868,
+    "notes": [
+      3,
+      12,
+      7,
+      0,
+      22,
+      15
+    ],
+    "school": "sugar",
+    "ultimate": 11
+  },
+  {
+    "id": "tonkotsu-ramen",
+    "path": "/assets/rpg/awakening530/sounds/tonkotsu-ramen.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.28644465808144176,
+    "notes": [
+      2,
+      9,
+      5,
+      0,
+      19,
+      14
+    ],
+    "school": "tide",
+    "ultimate": 8
+  },
+  {
+    "id": "carbonara",
+    "path": "/assets/rpg/awakening530/sounds/carbonara.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.29117714697298475,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "gelato",
+    "path": "/assets/rpg/awakening530/sounds/gelato.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2587993216894825,
+    "notes": [
+      3,
+      10,
+      0,
+      7,
+      24,
+      15
+    ],
+    "school": "sugar",
+    "ultimate": 4
+  },
+  {
+    "id": "mashed-potato",
+    "path": "/assets/rpg/awakening530/sounds/mashed-potato.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.26279660304384694,
+    "notes": [
+      7,
+      2,
+      11,
+      4,
+      12,
+      19
+    ],
+    "school": "grove",
+    "ultimate": 14
+  },
+  {
+    "id": "hot-chocolate",
+    "path": "/assets/rpg/awakening530/sounds/hot-chocolate.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.26144459855631624,
+    "notes": [
+      3,
+      10,
+      0,
+      7,
+      24,
+      15
+    ],
+    "school": "sugar",
+    "ultimate": 10
+  },
+  {
+    "id": "cha-ca-la-vong",
+    "path": "/assets/rpg/awakening530/sounds/cha-ca-la-vong.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.28930913550544524,
+    "notes": [
+      9,
+      0,
+      2,
+      5,
+      19,
+      21
+    ],
+    "school": "tide",
+    "ultimate": 12
+  },
+  {
+    "id": "bun-thang",
+    "path": "/assets/rpg/awakening530/sounds/bun-thang.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.25742914267755984,
+    "notes": [
+      5,
+      0,
+      7,
+      2,
+      21,
+      17
+    ],
+    "school": "tide",
+    "ultimate": 2
+  },
+  {
+    "id": "com-lang-vong",
+    "path": "/assets/rpg/awakening530/sounds/com-lang-vong.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.23833834632285045,
+    "notes": [
+      7,
+      10,
+      12,
+      0,
+      15,
+      19
+    ],
+    "school": "sugar",
+    "ultimate": 18
+  },
+  {
+    "id": "ca-phe-trung",
+    "path": "/assets/rpg/awakening530/sounds/ca-phe-trung.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3050912022973199,
+    "notes": [
+      0,
+      10,
+      3,
+      12,
+      19,
+      12
+    ],
+    "school": "sugar",
+    "ultimate": 11
+  },
+  {
+    "id": "cha-ruoi",
+    "path": "/assets/rpg/awakening530/sounds/cha-ruoi.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3545494280114048,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 13
+  },
+  {
+    "id": "banh-com-hang-than",
+    "path": "/assets/rpg/awakening530/sounds/banh-com-hang-than.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2640940208647372,
+    "notes": [
+      12,
+      3,
+      10,
+      0,
+      19,
+      24
+    ],
+    "school": "sugar",
+    "ultimate": 4
+  },
+  {
+    "id": "jjajangmyeon",
+    "path": "/assets/rpg/awakening530/sounds/jjajangmyeon.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.28669726434598386,
+    "notes": [
+      0,
+      7,
+      2,
+      9,
+      17,
+      12
+    ],
+    "school": "tide",
+    "ultimate": 8
+  },
+  {
+    "id": "kimchi-jjigae",
+    "path": "/assets/rpg/awakening530/sounds/kimchi-jjigae.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2695517844099525,
+    "notes": [
+      5,
+      0,
+      7,
+      2,
+      21,
+      17
+    ],
+    "school": "tide",
+    "ultimate": 14
+  },
+  {
+    "id": "hotteok",
+    "path": "/assets/rpg/awakening530/sounds/hotteok.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2536272781432558,
+    "notes": [
+      0,
+      10,
+      3,
+      12,
+      19,
+      12
+    ],
+    "school": "sugar",
+    "ultimate": 5
+  },
+  {
+    "id": "ganjang-gejang",
+    "path": "/assets/rpg/awakening530/sounds/ganjang-gejang.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.24300852308939505,
+    "notes": [
+      0,
+      5,
+      9,
+      2,
+      19,
+      12
+    ],
+    "school": "tide",
+    "ultimate": 16
+  },
+  {
+    "id": "gopchang-gui",
+    "path": "/assets/rpg/awakening530/sounds/gopchang-gui.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.36061182650927287,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 1
+  },
+  {
+    "id": "sundae-guk",
+    "path": "/assets/rpg/awakening530/sounds/sundae-guk.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.24553399888799998,
+    "notes": [
+      7,
+      2,
+      9,
+      5,
+      12,
+      19
+    ],
+    "school": "tide",
+    "ultimate": 2
+  },
+  {
+    "id": "takoyaki",
+    "path": "/assets/rpg/awakening530/sounds/takoyaki.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2774758191219057,
+    "notes": [
+      0,
+      7,
+      2,
+      9,
+      17,
+      12
+    ],
+    "school": "tide",
+    "ultimate": 14
+  },
+  {
+    "id": "okonomiyaki",
+    "path": "/assets/rpg/awakening530/sounds/okonomiyaki.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.33303419857925265,
+    "notes": [
+      5,
+      10,
+      3,
+      7,
+      12,
+      17
+    ],
+    "school": "ember",
+    "ultimate": 7
+  },
+  {
+    "id": "yakitori",
+    "path": "/assets/rpg/awakening530/sounds/yakitori.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3587262756027667,
+    "notes": [
+      5,
+      10,
+      3,
+      7,
+      12,
+      17
+    ],
+    "school": "ember",
+    "ultimate": 13
+  },
+  {
+    "id": "tonkatsu",
+    "path": "/assets/rpg/awakening530/sounds/tonkatsu.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3678029553100535,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 19
+  },
+  {
+    "id": "matcha-parfait",
+    "path": "/assets/rpg/awakening530/sounds/matcha-parfait.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2584628648415281,
+    "notes": [
+      7,
+      12,
+      3,
+      10,
+      12,
+      19
+    ],
+    "school": "sugar",
+    "ultimate": 10
+  },
+  {
+    "id": "taiyaki",
+    "path": "/assets/rpg/awakening530/sounds/taiyaki.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.28228540318896783,
+    "notes": [
+      10,
+      0,
+      7,
+      12,
+      15,
+      22
+    ],
+    "school": "sugar",
+    "ultimate": 4
+  },
+  {
+    "id": "som-tam",
+    "path": "/assets/rpg/awakening530/sounds/som-tam.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3115930521576848,
+    "notes": [
+      11,
+      2,
+      7,
+      0,
+      16,
+      23
+    ],
+    "school": "grove",
+    "ultimate": 16
+  },
+  {
+    "id": "pad-kra-pao",
+    "path": "/assets/rpg/awakening530/sounds/pad-kra-pao.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.39691155484445567,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 1
+  },
+  {
+    "id": "boat-noodles",
+    "path": "/assets/rpg/awakening530/sounds/boat-noodles.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.25137483639731356,
+    "notes": [
+      5,
+      0,
+      7,
+      2,
+      21,
+      17
+    ],
+    "school": "tide",
+    "ultimate": 2
+  },
+  {
+    "id": "green-curry",
+    "path": "/assets/rpg/awakening530/sounds/green-curry.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3541246625718915,
+    "notes": [
+      5,
+      10,
+      3,
+      7,
+      12,
+      17
+    ],
+    "school": "ember",
+    "ultimate": 13
+  },
+  {
+    "id": "moo-ping",
+    "path": "/assets/rpg/awakening530/sounds/moo-ping.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3678811643390143,
+    "notes": [
+      0,
+      5,
+      10,
+      3,
+      19,
+      12
+    ],
+    "school": "ember",
+    "ultimate": 19
+  },
+  {
+    "id": "khao-soi",
+    "path": "/assets/rpg/awakening530/sounds/khao-soi.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.29254605593878064,
+    "notes": [
+      9,
+      5,
+      0,
+      7,
+      14,
+      21
+    ],
+    "school": "tide",
+    "ultimate": 8
+  },
+  {
+    "id": "ossobuco",
+    "path": "/assets/rpg/awakening530/sounds/ossobuco.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.37188769112805903,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 1
+  },
+  {
+    "id": "tiramisu",
+    "path": "/assets/rpg/awakening530/sounds/tiramisu.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.27198578633585224,
+    "notes": [
+      0,
+      10,
+      3,
+      12,
+      19,
+      12
+    ],
+    "school": "sugar",
+    "ultimate": 5
+  },
+  {
+    "id": "arancini",
+    "path": "/assets/rpg/awakening530/sounds/arancini.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3085426086894656,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      21,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "saltimbocca",
+    "path": "/assets/rpg/awakening530/sounds/saltimbocca.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.34834944564341735,
+    "notes": [
+      7,
+      0,
+      5,
+      10,
+      15,
+      19
+    ],
+    "school": "ember",
+    "ultimate": 7
+  },
+  {
+    "id": "pappardelle-cinghiale",
+    "path": "/assets/rpg/awakening530/sounds/pappardelle-cinghiale.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3041992150206919,
+    "notes": [
+      7,
+      9,
+      0,
+      2,
+      16,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "porchetta",
+    "path": "/assets/rpg/awakening530/sounds/porchetta.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3636354475171575,
+    "notes": [
+      3,
+      7,
+      0,
+      5,
+      22,
+      15
+    ],
+    "school": "ember",
+    "ultimate": 13
+  },
+  {
+    "id": "roast-turkey",
+    "path": "/assets/rpg/awakening530/sounds/roast-turkey.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.367629494339032,
+    "notes": [
+      0,
+      5,
+      10,
+      3,
+      19,
+      12
+    ],
+    "school": "ember",
+    "ultimate": 1
+  },
+  {
+    "id": "beef-wellington",
+    "path": "/assets/rpg/awakening530/sounds/beef-wellington.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3255872969034055,
+    "notes": [
+      3,
+      7,
+      0,
+      5,
+      22,
+      15
+    ],
+    "school": "ember",
+    "ultimate": 7
+  },
+  {
+    "id": "honey-glazed-ham",
+    "path": "/assets/rpg/awakening530/sounds/honey-glazed-ham.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.35824072504438936,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 13
+  },
+  {
+    "id": "gingerbread",
+    "path": "/assets/rpg/awakening530/sounds/gingerbread.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.24088434590383087,
+    "notes": [
+      7,
+      12,
+      3,
+      10,
+      12,
+      19
+    ],
+    "school": "sugar",
+    "ultimate": 10
+  },
+  {
+    "id": "christmas-pudding",
+    "path": "/assets/rpg/awakening530/sounds/christmas-pudding.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2357411827045405,
+    "notes": [
+      12,
+      7,
+      0,
+      10,
+      15,
+      24
+    ],
+    "school": "sugar",
+    "ultimate": 11
+  },
+  {
+    "id": "yule-log",
+    "path": "/assets/rpg/awakening530/sounds/yule-log.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2894706483269594,
+    "notes": [
+      0,
+      7,
+      12,
+      3,
+      22,
+      12
+    ],
+    "school": "sugar",
+    "ultimate": 4
+  },
+  {
+    "id": "banh-chung",
+    "path": "/assets/rpg/awakening530/sounds/banh-chung.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3047943602422819,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      21,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 18
+  },
+  {
+    "id": "canh-mang-mien",
+    "path": "/assets/rpg/awakening530/sounds/canh-mang-mien.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.29780238806171605,
+    "notes": [
+      5,
+      0,
+      7,
+      2,
+      21,
+      17
+    ],
+    "school": "tide",
+    "ultimate": 14
+  },
+  {
+    "id": "gio-xao",
+    "path": "/assets/rpg/awakening530/sounds/gio-xao.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3669006551270864,
+    "notes": [
+      7,
+      0,
+      5,
+      10,
+      15,
+      19
+    ],
+    "school": "ember",
+    "ultimate": 19
+  },
+  {
+    "id": "thit-dong",
+    "path": "/assets/rpg/awakening530/sounds/thit-dong.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3538075803314829,
+    "notes": [
+      0,
+      5,
+      10,
+      3,
+      19,
+      12
+    ],
+    "school": "ember",
+    "ultimate": 1
+  },
+  {
+    "id": "thit-kho-trung",
+    "path": "/assets/rpg/awakening530/sounds/thit-kho-trung.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.382336218177053,
+    "notes": [
+      5,
+      7,
+      10,
+      0,
+      15,
+      17
+    ],
+    "school": "ember",
+    "ultimate": 0
+  },
+  {
+    "id": "dua-hanh",
+    "path": "/assets/rpg/awakening530/sounds/dua-hanh.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.25694442718233,
+    "notes": [
+      11,
+      4,
+      0,
+      7,
+      14,
+      23
+    ],
+    "school": "grove",
+    "ultimate": 2
+  },
+  {
+    "id": "che-khuc-bach",
+    "path": "/assets/rpg/awakening530/sounds/che-khuc-bach.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.26613897826122207,
+    "notes": [
+      3,
+      10,
+      0,
+      7,
+      24,
+      15
+    ],
+    "school": "sugar",
+    "ultimate": 10
+  },
+  {
+    "id": "che-buoi",
+    "path": "/assets/rpg/awakening530/sounds/che-buoi.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.23093442671170616,
+    "notes": [
+      10,
+      3,
+      12,
+      7,
+      12,
+      22
+    ],
+    "school": "sugar",
+    "ultimate": 11
+  },
+  {
+    "id": "sua-chua-mit",
+    "path": "/assets/rpg/awakening530/sounds/sua-chua-mit.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2871499809220126,
+    "notes": [
+      0,
+      7,
+      12,
+      3,
+      22,
+      12
+    ],
+    "school": "sugar",
+    "ultimate": 4
+  },
+  {
+    "id": "kem-bo-da-lat",
+    "path": "/assets/rpg/awakening530/sounds/kem-bo-da-lat.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2692946303902345,
+    "notes": [
+      7,
+      0,
+      10,
+      3,
+      24,
+      19
+    ],
+    "school": "sugar",
+    "ultimate": 5
+  },
+  {
+    "id": "nom-sua-xoai",
+    "path": "/assets/rpg/awakening530/sounds/nom-sua-xoai.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.32234576959559513,
+    "notes": [
+      4,
+      0,
+      7,
+      2,
+      23,
+      16
+    ],
+    "school": "grove",
+    "ultimate": 8
+  },
+  {
+    "id": "goi-cuon-tom-thit",
+    "path": "/assets/rpg/awakening530/sounds/goi-cuon-tom-thit.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.286271550957127,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      23,
+      12
+    ],
+    "school": "grove",
+    "ultimate": 3
+  },
+  {
+    "id": "banner-tay-bac-goi-rau-don",
+    "path": "/assets/rpg/awakening530/sounds/banner-tay-bac-goi-rau-don.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2841091485223624,
+    "notes": [
+      7,
+      9,
+      0,
+      2,
+      16,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "banner-tay-bac-com-lam",
+    "path": "/assets/rpg/awakening530/sounds/banner-tay-bac-com-lam.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2783362561088342,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      21,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "banner-tay-bac-thang-co",
+    "path": "/assets/rpg/awakening530/sounds/banner-tay-bac-thang-co.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.27335551069359004,
+    "notes": [
+      7,
+      9,
+      0,
+      2,
+      16,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "banner-tay-bac-thit-trau-gac-bep",
+    "path": "/assets/rpg/awakening530/sounds/banner-tay-bac-thit-trau-gac-bep.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.4097237633330426,
+    "notes": [
+      3,
+      7,
+      0,
+      5,
+      22,
+      15
+    ],
+    "school": "ember",
+    "ultimate": 13
+  },
+  {
+    "id": "banner-tay-bac-ga-nuong-mac-khen",
+    "path": "/assets/rpg/awakening530/sounds/banner-tay-bac-ga-nuong-mac-khen.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2855813050360529,
+    "notes": [
+      2,
+      4,
+      7,
+      9,
+      12,
+      14
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "banner-tay-bac-xoi-ngu-sac",
+    "path": "/assets/rpg/awakening530/sounds/banner-tay-bac-xoi-ngu-sac.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.30515406205646184,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "banh-dau-xanh",
+    "path": "/assets/rpg/awakening530/sounds/banh-dau-xanh.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2880479316945539,
+    "notes": [
+      2,
+      4,
+      7,
+      9,
+      12,
+      14
+    ],
+    "school": "hearth",
+    "ultimate": 18
+  },
+  {
+    "id": "banh-khuc",
+    "path": "/assets/rpg/awakening530/sounds/banh-khuc.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.32346205760366564,
+    "notes": [
+      7,
+      9,
+      0,
+      2,
+      16,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "banh-can",
+    "path": "/assets/rpg/awakening530/sounds/banh-can.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.28596974980415246,
+    "notes": [
+      9,
+      2,
+      7,
+      0,
+      16,
+      21
+    ],
+    "school": "hearth",
+    "ultimate": 19
+  },
+  {
+    "id": "banh-tom-ho-tay",
+    "path": "/assets/rpg/awakening530/sounds/banh-tom-ho-tay.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.27980025058093705,
+    "notes": [
+      2,
+      7,
+      0,
+      4,
+      21,
+      14
+    ],
+    "school": "hearth",
+    "ultimate": 1
+  },
+  {
+    "id": "com-hen",
+    "path": "/assets/rpg/awakening530/sounds/com-hen.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.32077537304005616,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "che-lam",
+    "path": "/assets/rpg/awakening530/sounds/che-lam.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2711200659895273,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      21,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 18
+  },
+  {
+    "id": "chao-luon",
+    "path": "/assets/rpg/awakening530/sounds/chao-luon.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2922894101247093,
+    "notes": [
+      2,
+      9,
+      5,
+      0,
+      19,
+      14
+    ],
+    "school": "tide",
+    "ultimate": 14
+  },
+  {
+    "id": "banh-it-la-gai",
+    "path": "/assets/rpg/awakening530/sounds/banh-it-la-gai.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.29060998415823647,
+    "notes": [
+      4,
+      9,
+      2,
+      7,
+      12,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 7
+  },
+  {
+    "id": "banh-ram-it",
+    "path": "/assets/rpg/awakening530/sounds/banh-ram-it.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.29570272887499244,
+    "notes": [
+      0,
+      2,
+      4,
+      7,
+      21,
+      12
+    ],
+    "school": "hearth",
+    "ultimate": 0
+  },
+  {
+    "id": "keo-cu-do",
+    "path": "/assets/rpg/awakening530/sounds/keo-cu-do.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2919682762576085,
+    "notes": [
+      4,
+      7,
+      9,
+      0,
+      14,
+      16
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "banh-tet",
+    "path": "/assets/rpg/awakening530/sounds/banh-tet.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.323835017220162,
+    "notes": [
+      9,
+      0,
+      2,
+      4,
+      19,
+      21
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "chef-nhien",
+    "path": "/assets/rpg/awakening530/sounds/chef-nhien.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.38554178683753826,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 13
+  },
+  {
+    "id": "chef-moc",
+    "path": "/assets/rpg/awakening530/sounds/chef-moc.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.27783177289817185,
+    "notes": [
+      7,
+      11,
+      0,
+      2,
+      16,
+      19
+    ],
+    "school": "grove",
+    "ultimate": 15
+  },
+  {
+    "id": "chef-lien",
+    "path": "/assets/rpg/awakening530/sounds/chef-lien.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.24627420496484942,
+    "notes": [
+      0,
+      7,
+      12,
+      3,
+      22,
+      12
+    ],
+    "school": "sugar",
+    "ultimate": 10
+  },
+  {
+    "id": "chef-bach",
+    "path": "/assets/rpg/awakening530/sounds/chef-bach.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.29385533569414657,
+    "notes": [
+      2,
+      4,
+      7,
+      9,
+      12,
+      14
+    ],
+    "school": "hearth",
+    "ultimate": 18
+  },
+  {
+    "id": "chef-hai",
+    "path": "/assets/rpg/awakening530/sounds/chef-hai.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.33189836721361154,
+    "notes": [
+      9,
+      2,
+      7,
+      0,
+      17,
+      21
+    ],
+    "school": "tide",
+    "ultimate": 16
+  },
+  {
+    "id": "caravan-scout",
+    "path": "/assets/rpg/awakening530/sounds/caravan-scout.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.33385362510097794,
+    "notes": [
+      5,
+      10,
+      3,
+      7,
+      12,
+      17
+    ],
+    "school": "ember",
+    "ultimate": 1
+  },
+  {
+    "id": "caravan-smith",
+    "path": "/assets/rpg/awakening530/sounds/caravan-smith.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.35512780088854184,
+    "notes": [
+      10,
+      3,
+      7,
+      0,
+      17,
+      22
+    ],
+    "school": "ember",
+    "ultimate": 7
+  },
+  {
+    "id": "caravan-letter",
+    "path": "/assets/rpg/awakening530/sounds/caravan-letter.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2710882428055858,
+    "notes": [
+      9,
+      5,
+      0,
+      7,
+      14,
+      21
+    ],
+    "school": "tide",
+    "ultimate": 2
+  },
+  {
+    "id": "caravan-ferryman",
+    "path": "/assets/rpg/awakening530/sounds/caravan-ferryman.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2439935591335735,
+    "notes": [
+      2,
+      9,
+      5,
+      0,
+      19,
+      14
+    ],
+    "school": "tide",
+    "ultimate": 14
+  },
+  {
+    "id": "caravan-herbalist",
+    "path": "/assets/rpg/awakening530/sounds/caravan-herbalist.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.26315704984030247,
+    "notes": [
+      7,
+      0,
+      4,
+      11,
+      14,
+      19
+    ],
+    "school": "grove",
+    "ultimate": 16
+  },
+  {
+    "id": "caravan-gardener",
+    "path": "/assets/rpg/awakening530/sounds/caravan-gardener.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.25174050925572233,
+    "notes": [
+      0,
+      7,
+      2,
+      11,
+      16,
+      12
+    ],
+    "school": "grove",
+    "ultimate": 2
+  },
+  {
+    "id": "caravan-porter",
+    "path": "/assets/rpg/awakening530/sounds/caravan-porter.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.267963778818867,
+    "notes": [
+      2,
+      4,
+      7,
+      9,
+      12,
+      14
+    ],
+    "school": "hearth",
+    "ultimate": 6
+  },
+  {
+    "id": "caravan-cook",
+    "path": "/assets/rpg/awakening530/sounds/caravan-cook.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.3208466741610656,
+    "notes": [
+      7,
+      9,
+      0,
+      2,
+      16,
+      19
+    ],
+    "school": "hearth",
+    "ultimate": 12
+  },
+  {
+    "id": "caravan-pastry",
+    "path": "/assets/rpg/awakening530/sounds/caravan-pastry.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.2706330765792903,
+    "notes": [
+      0,
+      7,
+      12,
+      3,
+      22,
+      12
+    ],
+    "school": "sugar",
+    "ultimate": 4
+  },
+  {
+    "id": "caravan-cartographer",
+    "path": "/assets/rpg/awakening530/sounds/caravan-cartographer.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.26939217381941244,
+    "notes": [
+      3,
+      12,
+      7,
+      0,
+      22,
+      15
+    ],
+    "school": "sugar",
+    "ultimate": 5
+  },
+  {
+    "id": "v4-market-host",
+    "path": "/assets/rpg/awakening530/sounds/v4-market-host.mp3",
+    "bytes": 10029,
+    "seconds": 2.4,
+    "sampleRate": 24000,
+    "peak": 0.26872300415895406,
+    "notes": [
+      10,
+      0,
+      7,
+      12,
+      15,
+      22
+    ],
+    "school": "sugar",
+    "ultimate": 10
+  }
+]

@@ -1,0 +1,836 @@
+[
+  {
+    "id": "pho-bo",
+    "name": "Phở bò",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "pho-ga",
+    "name": "Phở gà",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "bun-rieu",
+    "name": "Bún riêu",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "bun-bo-hue",
+    "name": "Bún bò Huế",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "banh-mi",
+    "name": "Bánh mì",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "xoi",
+    "name": "Xôi mặn",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "banh-cuon",
+    "name": "Bánh cuốn",
+    "school": "grove",
+    "rarity": "common"
+  },
+  {
+    "id": "chao-suon",
+    "name": "Cháo sườn",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "mien-ga",
+    "name": "Miến gà",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "bun-moc",
+    "name": "Bún mọc",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "banh-da-cua",
+    "name": "Bánh đa cua",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "bun-cha",
+    "name": "Bún chả",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "bun-dau",
+    "name": "Bún đậu mắm tôm",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "com-tam",
+    "name": "Cơm tấm",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "com-ga",
+    "name": "Cơm gà",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "com-rang-dua-bo",
+    "name": "Cơm rang dưa bò",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "com-nieu",
+    "name": "Cơm niêu",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "bun-ca",
+    "name": "Bún cá",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "mi-van-than",
+    "name": "Mì vằn thắn",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "mi-cay",
+    "name": "Mì cay",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "ga-ran",
+    "name": "Gà rán",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "pizza",
+    "name": "Pizza",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "pasta",
+    "name": "Mì Ý",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "sushi",
+    "name": "Sushi",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "tokbokki",
+    "name": "Tokbokki",
+    "school": "ember",
+    "rarity": "common"
+  },
+  {
+    "id": "lau-thai",
+    "name": "Lẩu Thái",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "lau-rieu-cua",
+    "name": "Lẩu riêu cua",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "nuong-bbq",
+    "name": "Nướng BBQ",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "vit-quay",
+    "name": "Vịt quay",
+    "school": "ember",
+    "rarity": "common"
+  },
+  {
+    "id": "banh-xeo",
+    "name": "Bánh xèo",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "bibimbap",
+    "name": "Bibimbap",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "samgyeopsal",
+    "name": "Samgyeopsal",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "hanwoo-bbq",
+    "name": "Hanwoo BBQ",
+    "school": "hearth",
+    "rarity": "legendary"
+  },
+  {
+    "id": "shoyu-ramen",
+    "name": "Shoyu Ramen",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "unagi-don",
+    "name": "Unagi Don",
+    "school": "hearth",
+    "rarity": "epic"
+  },
+  {
+    "id": "omakase",
+    "name": "Omakase",
+    "school": "hearth",
+    "rarity": "legendary"
+  },
+  {
+    "id": "lasagna",
+    "name": "Lasagna",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "truffle-risotto",
+    "name": "Risotto nấm Truffle",
+    "school": "hearth",
+    "rarity": "epic"
+  },
+  {
+    "id": "bistecca-fiorentina",
+    "name": "Bistecca Fiorentina",
+    "school": "hearth",
+    "rarity": "legendary"
+  },
+  {
+    "id": "croissant",
+    "name": "Croissant bơ",
+    "school": "sugar",
+    "rarity": "common"
+  },
+  {
+    "id": "duck-confit",
+    "name": "Duck Confit",
+    "school": "hearth",
+    "rarity": "epic"
+  },
+  {
+    "id": "french-tasting",
+    "name": "French Tasting Menu",
+    "school": "hearth",
+    "rarity": "legendary"
+  },
+  {
+    "id": "classic-burger",
+    "name": "Classic Cheeseburger",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "smoked-brisket",
+    "name": "Smoked Brisket",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "xiaolongbao",
+    "name": "Xiaolongbao",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "peking-duck",
+    "name": "Vịt quay Bắc Kinh",
+    "school": "hearth",
+    "rarity": "epic"
+  },
+  {
+    "id": "haidilao-hotpot",
+    "name": "Lẩu Tứ Xuyên",
+    "school": "hearth",
+    "rarity": "legendary"
+  },
+  {
+    "id": "pad-thai",
+    "name": "Pad Thai",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "tom-yum-goong",
+    "name": "Tom Yum Goong",
+    "school": "ember",
+    "rarity": "epic"
+  },
+  {
+    "id": "mango-sticky-rice",
+    "name": "Xôi xoài Thái",
+    "school": "sugar",
+    "rarity": "rare"
+  },
+  {
+    "id": "xoi-xeo",
+    "name": "Xôi xéo",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "korean-fried-chicken",
+    "name": "Gà rán Hàn Quốc",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "bingsu",
+    "name": "Bingsu",
+    "school": "sugar",
+    "rarity": "epic"
+  },
+  {
+    "id": "tonkotsu-ramen",
+    "name": "Tonkotsu Ramen",
+    "school": "tide",
+    "rarity": "rare"
+  },
+  {
+    "id": "carbonara",
+    "name": "Carbonara",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "gelato",
+    "name": "Gelato",
+    "school": "sugar",
+    "rarity": "common"
+  },
+  {
+    "id": "mashed-potato",
+    "name": "Khoai tây nghiền",
+    "school": "grove",
+    "rarity": "common"
+  },
+  {
+    "id": "hot-chocolate",
+    "name": "Sô cô la nóng",
+    "school": "sugar",
+    "rarity": "common"
+  },
+  {
+    "id": "cha-ca-la-vong",
+    "name": "Chả cá Lã Vọng",
+    "school": "tide",
+    "rarity": "epic"
+  },
+  {
+    "id": "bun-thang",
+    "name": "Bún thang",
+    "school": "tide",
+    "rarity": "epic"
+  },
+  {
+    "id": "com-lang-vong",
+    "name": "Cốm Làng Vòng",
+    "school": "sugar",
+    "rarity": "rare"
+  },
+  {
+    "id": "ca-phe-trung",
+    "name": "Cà phê trứng",
+    "school": "sugar",
+    "rarity": "legendary"
+  },
+  {
+    "id": "cha-ruoi",
+    "name": "Chả rươi",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "banh-com-hang-than",
+    "name": "Bánh cốm Hàng Than",
+    "school": "sugar",
+    "rarity": "rare"
+  },
+  {
+    "id": "jjajangmyeon",
+    "name": "Mì tương đen Jjajangmyeon",
+    "school": "tide",
+    "rarity": "rare"
+  },
+  {
+    "id": "kimchi-jjigae",
+    "name": "Canh kimchi Jjigae",
+    "school": "tide",
+    "rarity": "rare"
+  },
+  {
+    "id": "hotteok",
+    "name": "Bánh Hotteok",
+    "school": "sugar",
+    "rarity": "common"
+  },
+  {
+    "id": "ganjang-gejang",
+    "name": "Cua ngâm tương Ganjang Gejang",
+    "school": "tide",
+    "rarity": "legendary"
+  },
+  {
+    "id": "gopchang-gui",
+    "name": "Lòng bò nướng Gopchang",
+    "school": "ember",
+    "rarity": "epic"
+  },
+  {
+    "id": "sundae-guk",
+    "name": "Canh Sundae Guk",
+    "school": "tide",
+    "rarity": "rare"
+  },
+  {
+    "id": "takoyaki",
+    "name": "Takoyaki",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "okonomiyaki",
+    "name": "Okonomiyaki",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "yakitori",
+    "name": "Yakitori",
+    "school": "ember",
+    "rarity": "common"
+  },
+  {
+    "id": "tonkatsu",
+    "name": "Tonkatsu",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "matcha-parfait",
+    "name": "Matcha Parfait",
+    "school": "sugar",
+    "rarity": "epic"
+  },
+  {
+    "id": "taiyaki",
+    "name": "Bánh cá Taiyaki",
+    "school": "sugar",
+    "rarity": "rare"
+  },
+  {
+    "id": "som-tam",
+    "name": "Gỏi đu đủ Som Tam",
+    "school": "grove",
+    "rarity": "common"
+  },
+  {
+    "id": "pad-kra-pao",
+    "name": "Cơm húng quế Pad Kra Pao",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "boat-noodles",
+    "name": "Mì thuyền Boat Noodles",
+    "school": "tide",
+    "rarity": "rare"
+  },
+  {
+    "id": "green-curry",
+    "name": "Cà ri xanh",
+    "school": "ember",
+    "rarity": "epic"
+  },
+  {
+    "id": "moo-ping",
+    "name": "Thịt xiên Moo Ping",
+    "school": "ember",
+    "rarity": "common"
+  },
+  {
+    "id": "khao-soi",
+    "name": "Mì cà ri Khao Soi",
+    "school": "tide",
+    "rarity": "epic"
+  },
+  {
+    "id": "ossobuco",
+    "name": "Ossobuco",
+    "school": "ember",
+    "rarity": "legendary"
+  },
+  {
+    "id": "tiramisu",
+    "name": "Tiramisu",
+    "school": "sugar",
+    "rarity": "epic"
+  },
+  {
+    "id": "arancini",
+    "name": "Cơm viên Arancini",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "saltimbocca",
+    "name": "Thịt bê Saltimbocca",
+    "school": "ember",
+    "rarity": "epic"
+  },
+  {
+    "id": "pappardelle-cinghiale",
+    "name": "Pappardelle sốt lợn rừng",
+    "school": "hearth",
+    "rarity": "epic"
+  },
+  {
+    "id": "porchetta",
+    "name": "Heo quay Porchetta",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "roast-turkey",
+    "name": "Gà tây quay",
+    "school": "ember",
+    "rarity": "epic"
+  },
+  {
+    "id": "beef-wellington",
+    "name": "Beef Wellington",
+    "school": "ember",
+    "rarity": "legendary"
+  },
+  {
+    "id": "honey-glazed-ham",
+    "name": "Thịt nguội nướng mật ong",
+    "school": "ember",
+    "rarity": "epic"
+  },
+  {
+    "id": "gingerbread",
+    "name": "Bánh gừng",
+    "school": "sugar",
+    "rarity": "rare"
+  },
+  {
+    "id": "christmas-pudding",
+    "name": "Christmas Pudding",
+    "school": "sugar",
+    "rarity": "epic"
+  },
+  {
+    "id": "yule-log",
+    "name": "Bánh khúc cây Yule Log",
+    "school": "sugar",
+    "rarity": "epic"
+  },
+  {
+    "id": "banh-chung",
+    "name": "Bánh chưng",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "canh-mang-mien",
+    "name": "Canh măng miến",
+    "school": "tide",
+    "rarity": "epic"
+  },
+  {
+    "id": "gio-xao",
+    "name": "Giò xào",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "thit-dong",
+    "name": "Thịt đông",
+    "school": "ember",
+    "rarity": "epic"
+  },
+  {
+    "id": "thit-kho-trung",
+    "name": "Thịt kho trứng",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "dua-hanh",
+    "name": "Dưa hành",
+    "school": "grove",
+    "rarity": "common"
+  },
+  {
+    "id": "che-khuc-bach",
+    "name": "Chè khúc bạch",
+    "school": "sugar",
+    "rarity": "rare"
+  },
+  {
+    "id": "che-buoi",
+    "name": "Chè bưởi",
+    "school": "sugar",
+    "rarity": "common"
+  },
+  {
+    "id": "sua-chua-mit",
+    "name": "Sữa chua mít",
+    "school": "sugar",
+    "rarity": "common"
+  },
+  {
+    "id": "kem-bo-da-lat",
+    "name": "Kem bơ Đà Lạt",
+    "school": "sugar",
+    "rarity": "rare"
+  },
+  {
+    "id": "nom-sua-xoai",
+    "name": "Nộm sứa xoài xanh",
+    "school": "grove",
+    "rarity": "epic"
+  },
+  {
+    "id": "goi-cuon-tom-thit",
+    "name": "Gỏi cuốn tôm thịt",
+    "school": "grove",
+    "rarity": "rare"
+  },
+  {
+    "id": "banner-tay-bac-goi-rau-don",
+    "name": "Gỏi rau dơn",
+    "school": "hearth",
+    "rarity": "epic"
+  },
+  {
+    "id": "banner-tay-bac-com-lam",
+    "name": "Cơm lam",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "banner-tay-bac-thang-co",
+    "name": "Thắng cố",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "banner-tay-bac-thit-trau-gac-bep",
+    "name": "Thịt trâu gác bếp",
+    "school": "ember",
+    "rarity": "legendary"
+  },
+  {
+    "id": "banner-tay-bac-ga-nuong-mac-khen",
+    "name": "Gà nướng mắc khén",
+    "school": "hearth",
+    "rarity": "legendary"
+  },
+  {
+    "id": "banner-tay-bac-xoi-ngu-sac",
+    "name": "Xôi ngũ sắc",
+    "school": "hearth",
+    "rarity": "legendary"
+  },
+  {
+    "id": "banh-dau-xanh",
+    "name": "Bánh đậu xanh",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "banh-khuc",
+    "name": "Bánh khúc",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "banh-can",
+    "name": "Bánh căn",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "banh-tom-ho-tay",
+    "name": "Bánh tôm Hồ Tây",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "com-hen",
+    "name": "Cơm hến",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "che-lam",
+    "name": "Chè lam",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "chao-luon",
+    "name": "Cháo lươn",
+    "school": "tide",
+    "rarity": "rare"
+  },
+  {
+    "id": "banh-it-la-gai",
+    "name": "Bánh ít lá gai",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "banh-ram-it",
+    "name": "Bánh ram ít",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "keo-cu-do",
+    "name": "Kẹo cu đơ",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "banh-tet",
+    "name": "Bánh tét",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "chef-nhien",
+    "name": "Nhiên · Giữ lửa",
+    "school": "ember",
+    "rarity": "legendary"
+  },
+  {
+    "id": "chef-moc",
+    "name": "Mộc · Mầm sống",
+    "school": "grove",
+    "rarity": "legendary"
+  },
+  {
+    "id": "chef-lien",
+    "name": "Liên · Dệt sao",
+    "school": "sugar",
+    "rarity": "legendary"
+  },
+  {
+    "id": "chef-bach",
+    "name": "Bách · Bếp trưởng",
+    "school": "hearth",
+    "rarity": "legendary"
+  },
+  {
+    "id": "chef-hai",
+    "name": "Hải · Nghe sóng",
+    "school": "tide",
+    "rarity": "legendary"
+  },
+  {
+    "id": "caravan-scout",
+    "name": "Trinh sát than hồng",
+    "school": "ember",
+    "rarity": "common"
+  },
+  {
+    "id": "caravan-smith",
+    "name": "Thợ rèn lửa đỏ",
+    "school": "ember",
+    "rarity": "rare"
+  },
+  {
+    "id": "caravan-letter",
+    "name": "Người đưa thư biển",
+    "school": "tide",
+    "rarity": "rare"
+  },
+  {
+    "id": "caravan-ferryman",
+    "name": "Lái đò sương bạc",
+    "school": "tide",
+    "rarity": "common"
+  },
+  {
+    "id": "caravan-herbalist",
+    "name": "Cô hái lá thuốc",
+    "school": "grove",
+    "rarity": "common"
+  },
+  {
+    "id": "caravan-gardener",
+    "name": "Người trồng bình minh",
+    "school": "grove",
+    "rarity": "epic"
+  },
+  {
+    "id": "caravan-porter",
+    "name": "Người gánh bếp",
+    "school": "hearth",
+    "rarity": "common"
+  },
+  {
+    "id": "caravan-cook",
+    "name": "Bếp trưởng đường xa",
+    "school": "hearth",
+    "rarity": "rare"
+  },
+  {
+    "id": "caravan-pastry",
+    "name": "Thợ bánh mặt trăng",
+    "school": "sugar",
+    "rarity": "common"
+  },
+  {
+    "id": "caravan-cartographer",
+    "name": "Người vẽ đường sao",
+    "school": "sugar",
+    "rarity": "epic"
+  },
+  {
+    "id": "v4-market-host",
+    "name": "Người kể bên bàn",
+    "school": "sugar",
+    "rarity": "rare"
+  }
+]
