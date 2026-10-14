@@ -1,29 +1,25 @@
 {
   "staticBudgetBytes": 100000000,
   "jsGzipBudgetBytes": 650000,
-  "version": "4.9.0",
-  "bytes": 78502429,
-  "files": 457,
+  "version": "5.1.0",
+  "bytes": 78386786,
+  "files": 461,
   "byType": {
     "js": {
       "files": 84,
-      "bytes": 1960967
+      "bytes": 1971971
     },
     "css": {
       "files": 12,
-      "bytes": 455134
-    },
-    "webp": {
-      "files": 264,
-      "bytes": 48942884
-    },
-    "svg": {
-      "files": 1,
-      "bytes": 75375
+      "bytes": 449700
     },
     "mp3": {
       "files": 72,
       "bytes": 26483833
+    },
+    "webp": {
+      "files": 269,
+      "bytes": 48896950
     },
     "png": {
       "files": 3,
@@ -39,7 +35,7 @@
     },
     "html": {
       "files": 4,
-      "bytes": 33387
+      "bytes": 33483
     },
     "txt": {
       "files": 4,
@@ -51,26 +47,18 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2416101,
-    "Other and legal": 30459219,
+    "Application JS/CSS": 2421671,
     "Auto chess art/audio": 7609213,
     "Brand": 229534,
     "Shared character atlases": 9061632,
     "Event art": 2016822,
+    "Other and legal": 30338006,
     "Food art": 7490462,
     "TCG art/audio": 19219446
   },
-  "js_gzip": 644598,
-  "css_gzip": 98501,
+  "js_gzip": 647855,
+  "css_gzip": 97101,
   "largest": [
-    {
-      "path": "assets/adventure/terrain-v480.webp",
-      "bytes": 2330964
-    },
-    {
-      "path": "assets/adventure/world-props-v480.webp",
-      "bytes": 1830856
-    },
     {
       "path": "assets/v4/audio/web410/original-story-mystery.mp3",
       "bytes": 1356168
@@ -110,15 +98,23 @@
     {
       "path": "assets/characters/rosterE.webp",
       "bytes": 1037958
+    },
+    {
+      "path": "assets/characters/rosterC.webp",
+      "bytes": 1025512
+    },
+    {
+      "path": "assets/autochess/movement.webp",
+      "bytes": 1005956
     }
   ],
   "leaks": [],
   "visualUpdate": {
-    "baselineVersion": "4.8.0",
-    "baselineBytes": 78440998,
-    "additionalBudgetBytes": 833918,
-    "originalBudget": "4.7 + 5,000,000 bytes; 4.8 used 4,166,082. PvP shares existing art and adds no media.",
-    "addedBytes": 61431,
-    "remainingBytes": 772487
+    "baselineVersion": "5.0.0",
+    "baselineBytes": 72566051,
+    "additionalBudgetBytes": 6000000,
+    "originalBudget": "New spirit art and presentation within 6 MB, also below original 79,274,916 byte cap.",
+    "addedBytes": 5820735,
+    "remainingBytes": 179265
   }
 }

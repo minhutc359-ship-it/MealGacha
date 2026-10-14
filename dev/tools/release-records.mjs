@@ -65,6 +65,7 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/rpg/spirit510/", "AI-assisted original spirit character portraits, spell icons and ultimate illustrations created with built-in image generation; no third-party game art", ["dev/docs/web-v510/art-prompts.json", "dev/docs/web-v510/skill-art-prompt.txt", "dev/docs/web-v510/ultimate-art-prompt.txt"]],
  ["assets/adventure/world-props-v480.webp", "AI-assisted original transparent environment prop atlas for Soul of Meal", ["dev/docs/web-v480/artwork.json"]],
  ["assets/adventure/terrain-v480.webp", "AI-assisted original terrain material atlas for Soul of Meal", ["dev/docs/web-v480/artwork.json"]],
  ...["trap-lid","trap-mirror","trap-embers","trap-root","trap-seal","trap-ward","trap-recall","trap-pantry","v45-uncover","v45-taste","trap-back"].map(id=>[`assets/tcg/cards/${id}-v450.webp`,"AI-assisted original Soul of Meal trap/counter-card illustration",["dev/docs/web-v450/artwork.json"]]),

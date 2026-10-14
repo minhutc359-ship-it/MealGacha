@@ -56,21 +56,20 @@ describe("25-second isolated mode introductions", () => {
     expect(frames.some(f=>f.event.kind==="negated")).toBe(true)
     expect(frames.some(f=>f.event.kind==="play"&&f.event.side==="enemy")).toBe(true)
   })
-  it("Adventure shows resistance, switching, rooted combo and keeper counterattacks", () => {
-    const scenes = buildModeIntro("adventure").frames.map(frame => frame.scene).filter(scene => scene.mode === "adventure")
-    const first = scenes[0].save
-    const attack = scenes.find(scene => scene.save.team[0].pp?.["hearth-bowl"] === 17)!
-    expect(attack.save.team[0].hp).toBeLessThan(first.team[0].hp)
-    const rooted = scenes.find(scene => scene.save.encounter?.enemyStatus === "rooted")!
-    expect(rooted.save.encounter?.activeUid).toBe("intro-grove")
-    expect(rooted.save.encounter!.hp).toBeLessThan(rooted.save.encounter!.maxHp)
-    expect(rooted.save.team.find(member => member.uid === "intro-grove")!.pp!["grove-root"]).toBe(9)
-    const last = scenes[scenes.length - 1].save
-    expect(last.encounter).toBeNull()
-    expect(last.badges).toHaveLength(1)
-    expect(last.team).toHaveLength(2)
-    expect(first.badges).toHaveLength(0)
-    expect(first.aromaSeals).toBe(6)
+  it("Adventure uses squad skills, manual bursts, boss warnings and a real victory", () => {
+    const scenes = buildModeIntro("adventure").frames.map(f => f.scene).filter(s => s.mode === "adventure")
+    const first = scenes[0].save.run!.battle, last = scenes.at(-1)!.save.run!.battle
+    expect(first.actors.filter(a => a.side === "ally")).toHaveLength(5)
+    const events = scenes.flatMap(s => s.save.run!.battle.events)
+    expect(events.some(e => e.kind === "skill")).toBe(true)
+    expect(events.some(e => e.kind === "burst")).toBe(true)
+    expect(events.some(e => e.kind === "guard")).toBe(true)
+    expect(events.some(e => e.kind === "boss")).toBe(true)
+    expect(scenes.some(s => s.save.run!.battle.warning)).toBe(true)
+    expect(last.result).toBe("win")
+    expect(last.settled).toBe(true)
+    expect(first.result).toBeNull()
+    expect(scenes[0].save.stars["lantern-6"]).toBeUndefined()
   })
   it("intro controls stay in guides and the TCG view cannot call the live save store", () => {
     expect(readFileSync("src/components/layout/ModeSwitch.tsx", "utf8")).not.toContain("ModeIntroButton")
@@ -79,7 +78,7 @@ describe("25-second isolated mode introductions", () => {
     const scenes = readFileSync("src/components/game/ModeIntroScenes.tsx", "utf8")
     expect(scenes).toContain("<BattleBoardView")
     expect(scenes).toContain("<AutoBoard")
-    expect(scenes).toContain("<AdventureBattle")
+    expect(scenes).toContain("<RpgBattleView")
     expect(scenes).toContain("<ChestScene")
     expect(scenes).not.toMatch(/useGameStore|useAppStore|localStorage|sessionStorage/)
   })

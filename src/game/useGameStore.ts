@@ -44,11 +44,13 @@ import { isStageUnlocked } from "./story"
 import { getDateKey } from "../domain/dateKey"
 import type { GameSave } from "./types"
 import { reduceAuto, type AutoAction } from "./autochess/reducer"
-import { reduceAdventure, type AdventureAction } from "./adventure"
+import { reduceRpg } from "./adventureRpg/engine"
+import type { RpgAction } from "./adventureRpg/types"
 
 interface Store {
   autoAction(action: AutoAction): boolean
-  adventureAction(action: AdventureAction): boolean
+  rpgAction(action: RpgAction): boolean
+  flushRpg(): void
   save: GameSave
   notice: string | null
   presentation: BattlePresentation | null
@@ -111,11 +113,18 @@ export const useGameStore = create<Store>((set, get) => {
       if (result.error) { set({ notice: result.error }); return false }
       return commit({ ...save, autoChess: result.save })
     },
-    adventureAction(action) {
-      const save = current(), result = reduceAdventure(save.adventure, action)
+    rpgAction(action) {
+      const save = get().save, result = reduceRpg(save.adventureRpg, action, save)
       if (result.error) { set({ notice: result.error }); return false }
-      return commit({ ...save, adventure: result.save })
+      if (result.changed === false) return true
+      const next = { ...save, adventureRpg: result.save }
+      // Simulate at 4 Hz; checkpoint once a second. Commands and lifecycle exits flush immediately.
+      if (action.type === "tick" && result.save.run && result.save.run.battle.tick % 4 !== 0 && !result.save.run.battle.result) {
+        set({ save: next }); return true
+      }
+      return commit(next)
     },
+    flushRpg() { commit(get().save) },
     claimTcg470Gift() {
       const save = current()
       if (save.tcg470?.giftClaimed) return true

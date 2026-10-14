@@ -1,0 +1,65 @@
+Use case: stylized-concept. Asset type: fantasy RPG spell ICON ATLAS. One perfectly square image, EXACTLY 8 columns by 8 rows, 64 equally sized square cells. Each cell dark charcoal background, one centered luminous ornate spell symbol with broad recognizable silhouette, vibrant painted enamel, luminous edges, Vietnamese fantasy motifs, premium polished fantasy game UI. No text, numbers, border, gutters or lettering. Every symbol within its own cell with safe 15% margin, no crossing boundaries. Read strictly row-major:
+Cell 1: amber hearth guardian shield active compact spell symbol
+Cell 2: amber hearth guardian shield ultimate grand cosmic sigil
+Cell 3: amber hearth striker twin blades active compact spell symbol
+Cell 4: amber hearth striker twin blades ultimate grand cosmic sigil
+Cell 5: amber hearth mage staff active compact spell symbol
+Cell 6: amber hearth mage staff ultimate grand cosmic sigil
+Cell 7: amber hearth healer blossom active compact spell symbol
+Cell 8: amber hearth healer blossom ultimate grand cosmic sigil
+Cell 9: amber hearth trickster crescent active compact spell symbol
+Cell 10: amber hearth trickster crescent ultimate grand cosmic sigil
+Cell 11: vermilion ember guardian shield active compact spell symbol
+Cell 12: vermilion ember guardian shield ultimate grand cosmic sigil
+Cell 13: vermilion ember striker twin blades active compact spell symbol
+Cell 14: vermilion ember striker twin blades ultimate grand cosmic sigil
+Cell 15: vermilion ember mage staff active compact spell symbol
+Cell 16: vermilion ember mage staff ultimate grand cosmic sigil
+Cell 17: vermilion ember healer blossom active compact spell symbol
+Cell 18: vermilion ember healer blossom ultimate grand cosmic sigil
+Cell 19: vermilion ember trickster crescent active compact spell symbol
+Cell 20: vermilion ember trickster crescent ultimate grand cosmic sigil
+Cell 21: emerald grove guardian shield active compact spell symbol
+Cell 22: emerald grove guardian shield ultimate grand cosmic sigil
+Cell 23: emerald grove striker twin blades active compact spell symbol
+Cell 24: emerald grove striker twin blades ultimate grand cosmic sigil
+Cell 25: emerald grove mage staff active compact spell symbol
+Cell 26: emerald grove mage staff ultimate grand cosmic sigil
+Cell 27: emerald grove healer blossom active compact spell symbol
+Cell 28: emerald grove healer blossom ultimate grand cosmic sigil
+Cell 29: emerald grove trickster crescent active compact spell symbol
+Cell 30: emerald grove trickster crescent ultimate grand cosmic sigil
+Cell 31: cyan tide guardian shield active compact spell symbol
+Cell 32: cyan tide guardian shield ultimate grand cosmic sigil
+Cell 33: cyan tide striker twin blades active compact spell symbol
+Cell 34: cyan tide striker twin blades ultimate grand cosmic sigil
+Cell 35: cyan tide mage staff active compact spell symbol
+Cell 36: cyan tide mage staff ultimate grand cosmic sigil
+Cell 37: cyan tide healer blossom active compact spell symbol
+Cell 38: cyan tide healer blossom ultimate grand cosmic sigil
+Cell 39: cyan tide trickster crescent active compact spell symbol
+Cell 40: cyan tide trickster crescent ultimate grand cosmic sigil
+Cell 41: violet sugar guardian shield active compact spell symbol
+Cell 42: violet sugar guardian shield ultimate grand cosmic sigil
+Cell 43: violet sugar striker twin blades active compact spell symbol
+Cell 44: violet sugar striker twin blades ultimate grand cosmic sigil
+Cell 45: violet sugar mage staff active compact spell symbol
+Cell 46: violet sugar mage staff ultimate grand cosmic sigil
+Cell 47: violet sugar healer blossom active compact spell symbol
+Cell 48: violet sugar healer blossom ultimate grand cosmic sigil
+Cell 49: violet sugar trickster crescent active compact spell symbol
+Cell 50: violet sugar trickster crescent ultimate grand cosmic sigil
+Cell 51: amber dome shield
+Cell 52: fire phoenix feather
+Cell 53: cyan energy fountain
+Cell 54: green healing tree
+Cell 55: violet sleep moth
+Cell 56: amber lion talisman
+Cell 57: fire dragon talisman
+Cell 58: green deer talisman
+Cell 59: cyan koi talisman
+Cell 60: violet moon talisman
+Cell 61: fire and water steam reaction
+Cell 62: fire and green blooming reaction
+Cell 63: cyan water green roots reaction
+Cell 64: amber violet dream resonance

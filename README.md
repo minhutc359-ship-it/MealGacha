@@ -1,3 +1,15 @@
+# Soul of Meal · Web 5.1 · Linh vị & liên hương
+
+Giao ước Vị Linh có minh hoạ linh thú riêng cho đủ 139 nhân vật, icon kỹ năng, cảnh tuyệt kỹ năm hệ và liên hương. Chọn hướng tuyệt kỹ ở cấp 10, ưu tiên mục tiêu, nối tuyệt kỹ và phản ứng nguyên tố để xây đội. TCG/RPG giữ canvas khi đổi động tác; Auto chess chuyển pose và cache lớp bàn. [Nội dung, bảo toàn save và kiểm chứng](dev/docs/web-v510/UPDATE.md) · [Ngân sách 6 MB](dev/docs/web-v510/BUDGET.md).
+
+Bản 5.1 dựa trên 5.0 (PR #41); chỉ web, không tự merge. Bộ sưu tập, tài nguyên, tiến trình cũ và luật trận 5.0 đang lưu được giữ. Các phần dưới là lịch sử phát hành.
+
+# Soul of Meal · Web 5.0 · Giao ước Vị Linh
+
+Adventure trở thành RPG đội 5 người: 4 map, mỗi map 5 màn nhỏ + 1 boss; tự đánh/kỹ năng thường, canh tuyệt kỹ và che chắn đòn boss. Ba dungeon 5 tầng farm Sổ KN, Sách kỹ năng, Quặng/Tinh hương; giữ HP/năng lượng giữa tầng và chọn điểm nghỉ. Nhân vật có cấp, bốn kỹ năng, thăng bậc và ba ô trang bị. Dùng chung sprite/nhạc/art TCG + Auto chess; bỏ renderer và media đi ô khỏi bản web. Cấp/KN, huy hiệu, tài nguyên và save Adventure cũ được giữ. [Thiết kế, chuyển dữ liệu và kiểm chứng](dev/docs/web-v500/UPDATE.md).
+
+PR #39/#40 đã merge trước cập nhật này. TCG/PvP 4.9 giữ nguyên. Chỉ web; không build/sync Android/iOS và không tự merge. Các phần 4.x dưới đây là lịch sử phát hành.
+
 # Soul of Meal · Web 4.8 · Bẫy và art Adventure
 
 Ô bẫy chỉ có khung/hình bài; úp có animation và âm thanh riêng, kích hoạt giữ mô tả đầy đủ 2,25 giây. Bộ mới thống nhất 24 lá ở Xưởng và mọi đường vào trận. Hai atlas Adventure nguyên bản, 4,16 MB lossless, dùng Canvas/cache cho 20 map. Tiến trình và luật trận/run cũ giữ nguyên. Bản này hướng về master và mang theo cập nhật 4.6/4.7. [Thay đổi, prompt, ngân sách và kiểm chứng](dev/docs/web-v480/UPDATE.md).
@@ -112,4 +124,4 @@ Không tuyên bố “không có bản quyền”, CC0 hoặc bảo đảm khôn
 - [Kiểm chứng 3.3 và ảnh trận](dev/docs/release/VERIFICATION.md)
 - [Cấu trúc dev](dev/README.md), [lịch sử trước 3.3](dev/docs/HISTORY_BEFORE_33.md), [thay đổi 3.2.2](dev/docs/challenge-v322/VERIFICATION.md)
 
-Bản hiện tại chơi với AI, không có PvP, giao dịch người chơi, quảng cáo, IAP hay đồng bộ tài khoản. Browser QA dùng Chromium; Safari/WKWebView và Android native cần được thử trên máy thật theo kế hoạch mobile.
+Bản web có PvP giao hữu hai người qua WebRTC cho TCG/Auto chess; chủ phòng tính trận. Chưa có PvP xếp hạng, giao dịch người chơi, quảng cáo, IAP hay đồng bộ tài khoản. Browser QA dùng Chromium; Safari/WKWebView và Android native cần được thử trên máy thật theo kế hoạch mobile.

@@ -5,8 +5,9 @@ import { STAGE_MAP } from "./story"
 import { createAutoRun, buy, move } from "./autochess/economy"
 import { advanceCombat, createCombat } from "./autochess/combat"
 import type { AutoRun } from "./autochess/types"
-import { newAdventure, reduceAdventure, spiritMaxHp, type AdventureAction, type AdventureSave, type AdventureEncounter } from "./adventure"
-import { fullPP } from "./adventureSkills"
+import { newRpgSave, createRpgBattle, reduceRpg } from "./adventureRpg/engine"
+import type { RpgSave } from "./adventureRpg/types"
+import { newGame } from "./progression"
 import { buildPool, getDishRarity } from "../domain/drawReward"
 import { SEED_DISHES } from "../infrastructure/catalog/seedCatalog"
 import type { RewardRarity } from "../domain/models"
@@ -30,9 +31,7 @@ export type IntroScene = {
   run: AutoRun
 } | {
   mode: "adventure"
-  save: AdventureSave
-  opponent?: AdventureEncounter
-  exploring: boolean
+  save: RpgSave
 } | {
   mode: "chest"
   phase: "choose" | "unlock" | "reveal" | "collect"
@@ -166,52 +165,39 @@ function autoIntro(): IntroClip {
 }
 
 function adventureIntro(): IntroClip {
-  let save = reduceAdventure(newAdventure(), { type: "start", cardId: "com-tam" }).save
-  save.message = null
-  save.team[0].level = 8
-  save.team[0].hp = spiritMaxHp(save.team[0].cardId, 8)
-  save.team[0].pp = fullPP(save.team[0].cardId, 8)
-  save.team.push({ uid: "intro-grove", cardId: "goi-cuon-tom-thit", level: 12, xp: 0, hp: spiritMaxHp("goi-cuon-tom-thit", 12), pp: fullPP("goi-cuon-tom-thit", 12), status: null, statusTurns: 0 })
-  const frames: IntroFrame[] = []
-  let opponent: AdventureEncounter | undefined
-  const snapshot = (at: number, exploring: boolean, effect?: IntroEffect, sound?: GameSound) => {
-    if (save.encounter) opponent = structuredClone(save.encounter)
-    frames.push({ at, scene: { mode: "adventure", save: structuredClone(save), opponent, exploring }, effect, sound })
+  const game = newGame()
+  let save = newRpgSave(game)
+  for (const hero of save.roster) { hero.level = 8; hero.rank = 2; hero.skills = [3, 3, 3, 2] }
+  for (let i = 1; i <= 5; i++) save.stars[`lantern-${i}`] = 1
+  save = reduceRpg(save, { type: "start", stageId: "lantern-6" }, game).save
+  const waves = save.run!.battle.waves.slice(-1)
+  save.run!.battle = createRpgBattle(save, waves, "intro-rpg-boss")
+  const frames: IntroFrame[] = [{ at: 0, scene: { mode: "adventure", save: structuredClone(save) } }]
+  const simulation: { save: RpgSave; sound?: GameSound }[] = []
+  let guarded = false
+  for (let step = 0; step < 720 && !save.run!.battle.result; step++) {
+    const b = save.run!.battle
+    if (b.warning && b.tick >= b.guardReady) { save = reduceRpg(save, { type: "guard", row: b.warning.row }, game).save; guarded = true }
+    const ready = save.run!.battle.actors.find(a => a.side === "ally" && a.hp > 0 && a.energy >= 100 && !a.stun)
+    if (ready) save = reduceRpg(save, { type: "burst", uid: ready.uid }, game).save
+    save = reduceRpg(save, { type: "tick", steps: 1 }, game).save
+    const latest = save.run!.battle.events.filter(e => e.tick === save.run!.battle.tick)
+    simulation.push({ save: structuredClone(save), sound: latest.some(e => e.kind === "burst") ? "combo" : latest.some(e => e.kind === "boss") ? "auto-boss" : latest.some(e => e.kind === "skill") ? "auto-channel" : undefined })
   }
-  const act = (action: AdventureAction) => {
-    const result = reduceAdventure(save, action)
-    requireValid(result.error); save = result.save
-  }
-  snapshot(0, true)
-  act({ type: "move", direction: "right" }); snapshot(1_000, true)
-  act({ type: "move", direction: "right" }); snapshot(2_000, true)
-  act({ type: "move", direction: "up" }); snapshot(3_000, true)
-  save.encounter = {
-    id: "intro-adventure-keeper", kind: "keeper", cardId: "pho-bo", level: 8,
-    roster: [{ cardId: "pho-bo", level: 8 }], wave: 0,
-    hp: spiritMaxHp("pho-bo", 8), maxHp: spiritMaxHp("pho-bo", 8),
-    activeUid: save.team[0].uid, turn: 1, playerGuard: 0, enemyGuard: 0, enemyWeaken: 0,
-    attempts: 0, log: ["Người Giữ Ấn đưa Phở bò vào sân!"], enemyPP: fullPP("pho-bo", 8),
-    enemyStatus: null, enemyStatusTurns: 0, participants: [save.team[0].uid],
-  }
-  snapshot(5_000, false, "summon", "summon")
-  act({ type: "battle", move: "skill", skillId: "hearth-bowl" }); snapshot(7_000, false, "heal", "cast")
-  act({ type: "battle", move: "switch", uid: "intro-grove" }); snapshot(10_000, false, "summon", "summon")
-  act({ type: "battle", move: "skill", skillId: "grove-root" }); snapshot(14_000, false, "heal", "leaves")
-  act({ type: "battle", move: "guard" }); snapshot(18_000, false, "heal", "shield")
-  act({ type: "battle", move: "skill", skillId: "grove-leaf" }); snapshot(22_000, false, "victory", "victory")
-  requireValid(!save.encounter ? null : "Adventure keeper introduction must finish its battle")
+  requireValid(save.run!.battle.result === "win" && guarded ? null : "Adventure squad demo must guard a boss attack and win")
+  save = reduceRpg(save, { type: "settle" }, game).save
+  simulation[simulation.length - 1] = { save: structuredClone(save), sound: "auto-victory" }
+  for (let i = 0; i < simulation.length; i++) frames.push({ at: 1_500 + i / simulation.length * 21_000, scene: { mode: "adventure", save: simulation[i].save }, sound: simulation[i].sound })
   return {
-    mode: "adventure", duration: INTRO_DURATION, frames, music: "battle",
-    takeaway: "Đi bằng WASD/mũi tên hoặc chọn điểm trên map; E tương tác. Trong trận: kỹ năng, đổi đội, vật phẩm, Hương Ấn.",
+    mode: "adventure", duration: INTRO_DURATION, frames, music: "auto-boss",
+    takeaway: "Xếp 2 người tuyến trước + 3 người tuyến sau → canh tuyệt kỹ và che chắn boss → farm dungeon → nâng cấp đội.",
     beats: [
-      beat(0, "Đồng hành qua Chợ Đèn", "Đi trên bản đồ cùng Vị Linh dẫn đội. Gặp NPC, vào nhà, nghỉ và chuẩn bị vật phẩm trước khi khám phá bãi cỏ.", "KHÁM PHÁ"),
-      beat(5_000, "Người Giữ Ấn xuất trận", "Chiến đấu theo lượt với NPC. Chọn kỹ năng, đổi Vị Linh hoặc dùng vật phẩm; mỗi lựa chọn cho đối thủ cơ hội hành động.", "CHẠM TRÁN"),
-      beat(7_000, "Gia vị gặp Hải vị", "Mâm Đồng bị kháng: sát thương ×0,67. Kỹ năng tiêu 1 PP; đừng chỉ chọn đòn mạnh nhất.", "TƯƠNG KHẮC HỆ"),
-      beat(10_000, "Đổi sang Gỏi cuốn", "Gỏi cuốn hệ Thanh khắc Hải. Đổi Vị Linh cũng tốn một lượt, nên cần nhìn HP trước khi đổi.", "ĐỔI ĐỘI"),
-      beat(14_000, "Rễ Giữ Vị ×1,5", "Kỹ năng Thanh đánh vào Hải có lợi thế, kèm Bám rễ rút HP cuối lượt. Người Giữ Ấn dùng lượt của mình để phản kích.", "LỢI THẾ HỆ"),
-      beat(18_000, "Giữ mâm trước phản kích", "Boss cũng dùng kỹ năng và PP. Giữ mâm giảm sát thương của lượt này, bảo vệ Gỏi cuốn trước đòn tiếp theo.", "PHÒNG THỦ"),
-      beat(22_000, "Lá Xoáy kết thúc thử thách", "Đòn Thanh nối sát thương Bám rễ kết thúc trận. NPC không thể thu phục; dùng Hương Ấn cho Vị Linh hoang dã và nghỉ để hồi HP/PP.", "CHIẾN THẮNG"),
+      beat(0, "Năm Vị Linh, một giao ước", "Trận mẫu dùng đúng đội hình và sân đấu Adventure. Cơm tấm giữ tuyến trước; Phở bò và người hồi phục hỗ trợ phía sau.", "ĐỘI HÌNH"),
+      beat(4_000, "Kỹ năng vận hành theo nhịp", "Đòn thường và hai kỹ năng tự động giúp tích năng lượng. Mỗi vai trò có kỹ năng hồi phục, tạo khiên hoặc gây sát thương khác nhau.", "TỰ ĐỘNG"),
+      beat(8_000, "Boss báo trước đòn lớn", "Boss đánh dấu tuyến trước khi tấn công. Che đúng tuyến giảm 65% sát thương trong 3 giây; lần tiếp theo cần chờ hồi 12 giây.", "BOSS PHẢN KÍCH"),
+      beat(12_000, "Nối tuyệt kỹ", "Đầy 100 năng lượng: chạm Vị Linh để dùng tuyệt kỹ. Hồi phục, khiên và đòn diện rộng nối nhau giữ đội đứng vững.", "COMBO ĐỘI"),
+      beat(17_000, "Con nước đổi hướng", "Boss đổi pha ở nửa HP và nhắm tuyến sau. Theo cảnh báo để đổi che chắn, giữ tuyệt kỹ hồi phục cho người đang cần.", "ĐỔI PHA"),
+      beat(22_500, "Farm rồi viết tiếp câu chuyện", "Chiến thắng mở màn kế. Ba dungeon cung cấp Sổ kinh nghiệm, Sách kỹ năng và nguyên liệu trang bị; mọi thưởng trong demo đều là dữ liệu mẫu.", "PHÁT TRIỂN ĐỘI"),
     ],
   }
 }

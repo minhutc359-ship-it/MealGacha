@@ -1,0 +1,6 @@
+{
+  "baselineVersion": "4.9.0",
+  "baselineBytes": 78502429,
+  "additionalBudgetBytes": 772487,
+  "originalBudget": "4.7 + 5,000,000 bytes; 5.0 removes legacy overworld media from the web and reuses TCG/Auto assets. No new media or runtime dependency."
+}

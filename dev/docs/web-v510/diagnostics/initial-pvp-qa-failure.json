@@ -1,0 +1,7 @@
+{
+  "error": "TimeoutError: locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Nối lại phòng trước', exact: true })\u001b[22m\n",
+  "errors": [],
+  "assets": [],
+  "serverLog": "\n  VITE v8.0.5  ready in 530 ms\n\n  ➜  Local:   http://127.0.0.1:4193/\n",
+  "results": []
+}

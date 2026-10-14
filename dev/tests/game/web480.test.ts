@@ -73,6 +73,6 @@ describe("Adventure atlas bounds and map semantics",()=>{
   for(const map of ADVENTURE_MAPS)for(const row of map.grid)for(const cell of row){const index=terrainCellFor(cell,map.interior,map.areaId);expect(index).toBeGreaterThanOrEqual(0);expect(index).toBeLessThan(16)}
   expect(JSON.stringify(ADVENTURE_MAPS)).toBe(before)
   expect(propCellFor("tree","moon-table")).toBe(2);expect(propCellFor("tree","tide-pier")).toBe(3)
-  expect(existsSync("public/assets/adventure/world-props-v480.webp")).toBe(true);expect(existsSync("public/assets/adventure/terrain-v480.webp")).toBe(true)
+  expect(existsSync("dev/archive/legacy-adventure-v490/assets/world-props-v480.webp")).toBe(true);expect(existsSync("dev/archive/legacy-adventure-v490/assets/terrain-v480.webp")).toBe(true)
  })
 })

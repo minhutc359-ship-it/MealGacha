@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState, useId } from "react"
 import { buildModeIntro, introAt } from "../../game/modeIntro"
 import { INTRO_DURATION, INTRO_NAMES, introTime, type IntroMode } from "../../game/modeIntroState"
-import { tcgCharacter } from "../../game/tcgCharacterMotion"
 import { CARD_MAP } from "../../game/catalog"
+import { tcgCharacter } from "../../game/tcgCharacterMotion"
 import { unitCharacter, monsterCharacter, acquireCharacterImage } from "../../infrastructure/assets/characterSprites"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { gameAudio } from "../../infrastructure/audio/gameAudio"
@@ -16,7 +16,7 @@ import "../../game/animeStage.css"
 import "../../game/compactScreen.css"
 import "../../game/spiritArena.css"
 import "../../game/characterMotion.css"
-import "../../game/adventure.css"
+import "../../game/adventureRpg/rpg.css"
 import "../../game/autochess/autochess.css"
 import "../../game/autochess/marketHud.css"
 import "../../game/modeIntro.css"
@@ -60,13 +60,9 @@ export default function ModeIntroPlayer({ mode, onClose }: { mode: IntroMode; on
         for (const piece of scene.run.roster) character(piece.id)
         for (const actor of scene.run.combat?.actors ?? []) character(actor.id, actor.side === "enemy")
       } else if (scene.mode === "adventure") {
-        paths.add("/assets/adventure/world.svg")
-        paths.add("/assets/adventure/hero-v440.webp")
-        paths.add("/assets/tcg/boards/courtyard-v440.webp")
-        for (const id of [...scene.save.team.map(member => member.cardId), ...(scene.save.encounter ? [scene.save.encounter.cardId] : [])]) {
-          const model = tcgCharacter(CARD_MAP[id])
+        for (const a of scene.save.run!.battle.actors) {
+          const model = a.side === "enemy" ? monsterCharacter(a.id) : tcgCharacter(CARD_MAP[a.id])
           if (model) paths.add(SPRITE_SHEETS[model.sheet].path)
-          else if (CARD_MAP[id].art) paths.add(CARD_MAP[id].art!)
         }
       }
       else { const art = CARD_MAP[scene.dishId].art; if (art) paths.add(art) }

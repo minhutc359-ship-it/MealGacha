@@ -1,7 +1,7 @@
 import type { AdventureAreaId } from "./adventureRegions"
 export const ADVENTURE_ART_480 = {
-  props: "/assets/adventure/world-props-v480.webp",
-  terrain: "/assets/adventure/terrain-v480.webp",
+  props: "/dev/archive/legacy-adventure-v490/assets/world-props-v480.webp",
+  terrain: "/dev/archive/legacy-adventure-v490/assets/terrain-v480.webp",
 } as const
 /** Integer boundaries prevent atlas drift when generated dimensions are not divisible by four. */
 export function atlasCellRect(index: number, width: number, height: number) {

@@ -9,8 +9,8 @@ import { itemPreview } from "../../game/autochess/items"
 import { SEED_DISHES } from "../../infrastructure/catalog/seedCatalog"
 import type { RewardInstance } from "../../domain/models"
 import { BattleBoardView } from "./BattleBoard"
-import { AdventureBattle } from "./AdventureBattle"
-import { AdventureWorld } from "./AdventureWorld"
+import { RpgBattleView } from "./RpgBattleView"
+import { ELEMENTAL_BOARDS } from "../../game/visualPack"
 import { AutoBoard } from "../autochess/AutoBoard"
 import { AutoPortrait, WorldArt } from "../autochess/AutoArt"
 import { AutoTraits } from "../autochess/AutoTraits"
@@ -73,10 +73,7 @@ function AutoDemo({ scene, paused, quiet }: { scene: Extract<IntroScene, { mode:
 }
 
 function AdventureDemo({ scene, paused, quiet }: { scene: Extract<IntroScene, { mode: "adventure" }>; paused: boolean; quiet: boolean }) {
-  const save = scene.save
-  if (scene.exploring) return <div className="adv-app" inert><AdventureWorld save={save} move={noop} interact={noop} readOnly paused={paused} /></div>
-  const presented = save.encounter ? save : { ...save, encounter: scene.opponent ? { ...scene.opponent, hp: 0, log: [...scene.opponent.log, save.message ?? "Chiến thắng!"] } : null }
-  return <div className="adv-app" inert><AdventureBattle save={presented} act={noop} embedded paused={paused} quiet={quiet} /></div>
+  return <div className="rpg-battle-demo" inert><RpgBattleView battle={scene.save.run!.battle} title="Sân đình · Trống Rỗng" art={ELEMENTAL_BOARDS.hearth} paused={paused} quiet={quiet} readOnly onAction={noop} /></div>
 }
 
 function ChestDemo({ scene, elapsed, quiet }: { scene: Extract<IntroScene, { mode: "chest" }>; elapsed: number; quiet: boolean }) {

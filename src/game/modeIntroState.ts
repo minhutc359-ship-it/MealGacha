@@ -5,7 +5,7 @@ export const INTRO_DURATION = 25_000
 export const INTRO_NAMES: Record<IntroMode, string> = {
   tcg: "TCG · Nối vị thành combo",
   auto: "Auto chess · Xếp đội, giữ bàn",
-  adventure: "Phiêu lưu · Gặp gỡ Vị Linh",
+  adventure: "Adventure · Giao ước Vị Linh",
   chest: "Rương · Mở món, sưu tầm",
 }
 
