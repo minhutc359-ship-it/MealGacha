@@ -39,7 +39,10 @@ const hero = z.object({
     z.number().int().min(0).max(10),
   ]),
 })
+const enemyTraits = { elite: z.boolean().optional(), style: z.enum(["bulwark", "raider", "hexer", "mender"]).optional() }
 const enemy = z.object({
+  strength: z.number().min(1).max(1.5).optional(),
+  ...enemyTraits,
   uid,
   id: z
     .string()
@@ -51,6 +54,7 @@ const enemy = z.object({
   level: z.number().int().min(1).max(50),
 })
 const actor = z.object({
+  ...enemyTraits,
   uid,
   id: z.string().max(80),
   name: z.string().max(120),
@@ -70,6 +74,7 @@ const actor = z.object({
   burn: bounded.max(20),
   weaken: bounded.max(20),
   stun: bounded.max(6),
+  wither: bounded.max(20).optional(),
   nextAttack: bounded,
   nextSkill: bounded,
   nextSupport: bounded,
@@ -81,14 +86,14 @@ const actor = z.object({
   mark: z.object({school, until: bounded}).optional(),
 })
 const battle = z.object({
-  rulesVersion: z.literal(510).optional(),
+  rulesVersion: z.union([z.literal(510), z.literal(520)]).optional(),
   focus: uid.nullable().optional(),
   chain: z.object({source: uid, until: bounded, count: bounded.max(3)}).optional(),
   id: uid,
   tick: bounded.max(720),
-  wave: bounded.max(2),
-  waves: z.array(z.array(enemy).min(1).max(5)).min(1).max(3),
-  actors: z.array(actor).min(2).max(10),
+  wave: bounded.max(3),
+  waves: z.array(z.array(enemy).min(1).max(6)).min(1).max(4),
+  actors: z.array(actor).min(2).max(11),
   events: z
     .array(
       z.object({
@@ -106,11 +111,12 @@ const battle = z.object({
           "reaction",
         ]),
         source: uid,
-        targets: z.array(uid).max(5),
+        targets: z.array(uid).max(11),
         value: bounded,
         values: z.record(uid, bounded).optional(),
         text: z.string().max(180),
         school,
+        animation: z.enum(["attack", "primary", "support", "ultimate", "enemy"]).optional(),
       }),
     )
     .max(24),
@@ -125,11 +131,12 @@ const battle = z.object({
   guardReady: bounded,
   guardRow: z.enum(["front", "back"]),
   warning: z
-    .object({ until: bounded, source: uid, row: z.enum(["front", "back"]) })
+    .object({ until: bounded, source: uid, row: z.enum(["front", "back"]), skill: z.string().max(100).optional() })
     .nullable(),
   reward: resources.partial().nullable(),
 })
 const dungeon = z.object({
+  scaling: z.object({ average: z.number().min(1).max(50), baseLevel: z.number().int().min(1).max(50) }).optional(),
   kind: z.enum(["experience", "skills", "forge"]),
   tier: z.number().int().min(1).max(3),
   floor: z.number().int().min(1).max(5),
@@ -224,7 +231,7 @@ export const rpgSaveSchema = z
     if (
       b.warning &&
       (!b.actors.some(
-        (a) => a.uid === b.warning!.source && a.boss && a.hp > 0,
+        (a) => a.uid === b.warning!.source && (a.boss || (b.rulesVersion === 520 && a.elite)) && a.hp > 0,
       ) ||
         b.warning.until < b.tick)
     )

@@ -33,6 +33,7 @@ import type {
   RpgResources,
   RpgSave,
 } from "../game/adventureRpg/types"
+import { dungeonScaling, formationAverage } from "../game/adventureRpg/enemies"
 import { useGameStore } from "../game/useGameStore"
 import { useAppStore } from "../store/useAppStore"
 import { gameAudio } from "../infrastructure/audio/gameAudio"
@@ -423,7 +424,7 @@ export function AdventurePage() {
             title={
               activeStage
                 ? `${activeStage.map.name} · ${activeStage.stage.name}`
-                : `${dungeon?.name} · Tầng ${run.dungeon?.floor}/5`
+                : `${dungeon?.name} · Tầng ${run.dungeon?.floor}/5${run.dungeon?.scaling ? ` · Đội cấp TB ${run.dungeon.scaling.average}` : ""}`
             }
             art={art}
             quiet={prefs.reducedMotion || prefs.graphicsQuality === "low"}
@@ -672,12 +673,13 @@ export function AdventurePage() {
                         {open ? (i === 5 ? "♛" : i + 1) : "🔒"}
                       </span>
                       <strong>{stage.name}</strong>
+                      <small>Cấp gợi ý {rpgStage(id)!.level}</small>
                       <small>
                         {save.stars[id]
                           ? "★".repeat(save.stars[id])
                           : i === 5
-                            ? "BOSS · 3 đợt"
-                            : "2 đợt"}
+                            ? "BOSS · 4 đợt"
+                            : "3 đợt"}
                       </small>
                     </button>
                   )
@@ -723,7 +725,7 @@ export function AdventurePage() {
                   <h1>Kho tài nguyên ký ức</h1>
                   <p>
                     Không tốn vé vào. Nhận tài nguyên sau từng tầng, kể cả khi
-                    rút lui.
+                    rút lui. Địch tính theo cấp trung bình {formationAverage(save)} của đội mang vào, cộng độ khó bậc và tầng; giữ mức này suốt chuyến đi.
                   </p>
                 </div>
                 <label>
@@ -755,7 +757,7 @@ export function AdventurePage() {
                       backgroundImage: `linear-gradient(0deg,#132e31f5,#132e3110),url(${d.art})`,
                     }}
                   >
-                    <small>5 TẦNG · BOSS Ở TẦNG 5</small>
+                    <small>5 TẦNG · ĐỊCH CẤP {dungeonScaling(save,tier).baseLevel}–{Math.min(50,dungeonScaling(save,tier).baseLevel+4)} · BOSS TẦNG 5</small>
                     <h2>{d.name}</h2>
                     <strong>{d.resource}</strong>
                     <p>{d.text}</p>
@@ -876,7 +878,7 @@ export function AdventurePage() {
                     Đòn thường và kỹ năng cho năng lượng. Đầy 100: chạm tên nhân
                     vật để tung tuyệt kỹ. AUTO tự dùng tuyệt kỹ; tốc độ ×2 giúp
                     farm nhanh. Boss báo tuyến trước/sau trước 2 giây: che đúng
-                    tuyến giảm 65% sát thương trong 3 giây, hồi sau 12 giây.
+                    tuyến giảm 65% sát thương trong 3 giây, hồi sau 12 giây. Dệt sương hút năng lượng và giảm hồi phục; ưu tiên nó và người giữ sương. Tuyệt kỹ Hồi phục thanh tẩy Khóa hồi phục.
                   </p>
                 </article>
                 <article>

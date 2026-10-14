@@ -1,3 +1,7 @@
+# Soul of Meal · Web 5.2 · Sân đấu & chiến thuật Vị Linh
+
+Sân không còn kéo giãn nhân vật / vòng phép trên điện thoại; đánh thường dùng FX TCG, tuyệt kỹ có động tác/pháp trận theo vai trò và hệ. Campaign 3–4 đợt, 4–6 địch/đợt; tinh anh và năm boss có kỹ năng riêng. Dungeon chốt mức khó theo cấp trung bình đội mang vào, tăng theo bậc/tầng; trận lưu cũ giữ luật cũ. [Thay đổi / chứng cứ](dev/docs/web-v520/UPDATE.md). Chỉ web, không tự merge.
+
 # Soul of Meal · Web 5.1 · Linh vị & liên hương
 
 Giao ước Vị Linh có minh hoạ linh thú riêng cho đủ 139 nhân vật, icon kỹ năng, cảnh tuyệt kỹ năm hệ và liên hương. Chọn hướng tuyệt kỹ ở cấp 10, ưu tiên mục tiêu, nối tuyệt kỹ và phản ứng nguyên tố để xây đội. TCG/RPG giữ canvas khi đổi động tác; Auto chess chuyển pose và cache lớp bàn. [Nội dung, bảo toàn save và kiểm chứng](dev/docs/web-v510/UPDATE.md) · [Ngân sách 6 MB](dev/docs/web-v510/BUDGET.md).

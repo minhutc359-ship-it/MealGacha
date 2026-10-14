@@ -1,4 +1,5 @@
 import { spiritKit, reactionName } from "./skills"
+import { encounterWaves, dungeonScaling, ENEMY_STYLES, BOSS_SKILLS } from "./enemies"
 import { CARD_MAP } from "../catalog"
 import { UNIT_MAP } from "../autochess/catalog"
 import type { GameSave, School } from "../types"
@@ -97,7 +98,7 @@ export function heroSkills(hero: RpgHero) {
       "Dồn sát thương vào địch ít HP nhất; mạnh hơn khi địch đang bỏng.",
     ],
     mage: ["Đại tiệc hương", "Gây sát thương lớn lên mọi kẻ địch."],
-    healer: ["Bữa cơm đoàn tụ", "Hồi HP toàn đội, gỡ bỏng, choáng và làm yếu."],
+    healer: ["Bữa cơm đoàn tụ", "Hồi HP toàn đội, gỡ bỏng, choáng, làm yếu và Khóa hồi phục."],
     trickster: ["Khúc ru ký ức", "Đánh tuyến sau và gây choáng toàn bộ địch."],
   }[role]
   const kit = spiritKit(hero.cardId, role)
@@ -311,6 +312,7 @@ export function createRpgBattle(
     energy: number
   }>,
   bonus = 0,
+  rulesVersion: RpgBattle["rulesVersion"] | null = 520,
 ): RpgBattle {
   const actors: RpgActor[] = save.formation.map((uid, slot) => {
     const hero = save.roster.find((m) => m.uid === uid)!,
@@ -349,11 +351,12 @@ export function createRpgBattle(
   const schools = actors.map(a => a.school)
   const diverse = new Set(schools).size >= 3
   for (const a of actors) {
+    if (!rulesVersion) continue
     if (diverse && !carried) a.energy = Math.min(100, a.energy + 10)
     if (schools.filter(s => s === a.school).length >= 3) a.armor += 12
   }
   const battle: RpgBattle = {
-    rulesVersion: 510,
+    rulesVersion: rulesVersion ?? undefined,
     id,
     tick: 0,
     wave: 0,
@@ -380,7 +383,10 @@ function loadEnemies(b: RpgBattle) {
   b.actors = b.actors.filter((a) => a.side === "ally")
   b.warning = null
   for (const [slot, e] of b.waves[b.wave].entries()) {
-    const hp = Math.round((140 + e.level * 22) * (e.boss ? 6.8 : 1))
+    const modern = b.rulesVersion === 520
+    const hp = modern
+      ? Math.round((510 + e.level * 87) * (e.boss ? 12 : e.elite ? 1.65 : 1) * (e.style === "bulwark" ? 1.2 : 1) * (e.strength ?? 1))
+      : Math.round((140 + e.level * 22) * (e.boss ? 6.8 : 1))
     b.actors.push({
       uid: e.uid,
       id: e.id,
@@ -394,17 +400,19 @@ function loadEnemies(b: RpgBattle) {
       skills: [1, 1, 1, 1],
       hp,
       maxHp: hp,
-      attack: Math.round((15 + e.level * 2.5) * (e.boss ? 1.7 : 1)),
-      armor: e.boss ? 18 : 5,
+      attack: modern ? Math.round((16 + e.level * 2.8) * (e.boss ? 1.9 : e.elite ? 1.25 : 1) * Math.sqrt(e.strength ?? 1)) : Math.round((15 + e.level * 2.5) * (e.boss ? 1.7 : 1)),
+      armor: modern ? e.boss ? 26 : e.style === "bulwark" ? 22 : e.elite ? 14 : 7 : e.boss ? 18 : 5,
       energy: 0,
       shield: 0,
       burn: 0,
       weaken: 0,
       stun: 0,
       nextAttack: b.tick + 6 + slot * 2,
-      nextSkill: b.tick + (e.boss ? 8 : 36),
+      nextSkill: b.tick + (e.boss ? 8 : modern ? 24 + slot * 5 : 36),
       nextSupport: 0,
       boss: e.boss,
+      ...(e.style ? {style: e.style} : {}),
+      ...(e.elite ? {elite: true} : {}),
       phase: 0,
       motion: "idle",
       motionAt: b.tick,
@@ -435,7 +443,7 @@ function event(
   })
   b.events = b.events.slice(-24)
 }
-function damage(b: RpgBattle, a: RpgActor, target: RpgActor, power: number) {
+function damage(b: RpgBattle, a: RpgActor, target: RpgActor, power: number, attack = false) {
   const beats: Record<School, School> = {
     ember: "grove",
     grove: "tide",
@@ -463,6 +471,7 @@ function damage(b: RpgBattle, a: RpgActor, target: RpgActor, power: number) {
   target.motion = target.hp ? "hit" : "fall"
   target.motionAt = b.tick
   event(b, a, "hit", [target], amount - absorbed, `${a.name} → ${target.name}`)
+  if (attack) b.events[b.events.length - 1].animation = "attack"
 }
 function heal(
   b: RpgBattle,
@@ -474,14 +483,14 @@ function heal(
   let total = 0
   const values: Record<string, number> = {}
   for (const t of targets) {
-    const gain = Math.min(t.maxHp - t.hp, Math.round(t.maxHp * fraction))
+    const gain = Math.min(t.maxHp - t.hp, Math.round(t.maxHp * fraction * (b.rulesVersion === 520 && t.wither ? .5 : 1)))
     values[t.uid] = gain
     t.hp += gain
     t.burn = 0
     total += gain
   }
   event(b, a, "heal", targets, total, text)
-  if (b.rulesVersion === 510) b.events[b.events.length-1].values = values
+  if ((b.rulesVersion === 510 || b.rulesVersion === 520)) b.events[b.events.length-1].values = values
 }
 function shield(
   b: RpgBattle,
@@ -497,17 +506,17 @@ function shield(
     values[t.uid] = t.shield - before
   }
   event(b, a, "shield", targets, amount, text)
-  if (b.rulesVersion === 510) b.events[b.events.length-1].values = values
+  if ((b.rulesVersion === 510 || b.rulesVersion === 520)) b.events[b.events.length-1].values = values
 }
 function targetFor(b: RpgBattle, a: RpgActor, back = false) {
   const enemies = alive(b, opposing(a)).sort((x, y) => x.slot - y.slot)
-  const focus = a.side === "ally" && b.rulesVersion === 510 ? enemies.find(e => e.uid === b.focus) : undefined
+  const focus = a.side === "ally" && (b.rulesVersion === 510 || b.rulesVersion === 520) ? enemies.find(e => e.uid === b.focus) : undefined
   return (
     focus ?? (back ? enemies.find((t) => rowOf(t) === "back") : enemies[0]) ?? enemies[0]
   )
 }
 function cast(b: RpgBattle, a: RpgActor, burst: boolean, support = false) {
-  if (b.rulesVersion === 510 && a.side === "ally") {castSpirit(b, a, burst, support); return}
+  if ((b.rulesVersion === 510 || b.rulesVersion === 520) && a.side === "ally") {castSpirit(b, a, burst, support); return}
   const friends = alive(b, a.side),
     enemies = alive(b, opposing(a)),
     target = targetFor(b, a, a.role === "trickster")
@@ -608,6 +617,8 @@ function castSpirit(b: RpgBattle, a: RpgActor, burst: boolean, support: boolean)
  if (kit.variant === 1 && burst) target.shield = Math.floor(target.shield * .7)
  a.motion = "cast"; a.motionAt = b.tick
  event(b, a, burst ? "burst" : "skill", a.role === "healer" ? burst ? friends : [weak] : a.role === "guardian" ? burst ? friends : [a] : [target], 0, name)
+ const cue = b.events[b.events.length - 1]
+ cue.animation = burst ? "ultimate" : support ? "support" : "primary"
  if (support) {
   if (a.school === "hearth") shield(b,a,friends.filter(f=>f.slot<2),a.maxHp*.15*care,name)
   if (a.school === "grove") heal(b,a,friends,.1*care,name)
@@ -615,6 +626,7 @@ function castSpirit(b: RpgBattle, a: RpgActor, burst: boolean, support: boolean)
   if (a.school === "sugar") for (const e of enemies) e.weaken=20
   if (a.school === "ember") {damage(b,a,target,damageBoost);target.burn=20}
  } else if (a.role === "healer") {
+  if (burst && b.rulesVersion === 520) for (const f of friends) f.wither = 0
   heal(b,a,burst ? friends : [weak],(burst ? .34 : .25)*care,name)
   if (burst) for (const f of friends) {f.stun=0;f.weaken=0}
  } else if (a.role === "guardian") {
@@ -654,10 +666,49 @@ function castSpirit(b: RpgBattle, a: RpgActor, burst: boolean, support: boolean)
   } else target.mark={school:a.school,until:b.tick+20}
  }
  if (!burst) a.energy=Math.min(100,a.energy+12)
+ // Presentation follows the actual recipients, including AoE and support effects.
+ const recipients = b.events.filter(e => e.serial > cue.serial && e.source === a.uid && ["hit", "heal", "shield"].includes(e.kind)).flatMap(e => e.targets)
+ cue.targets = [...new Set(recipients.length ? recipients : support ? a.school === "sugar" ? enemies.map(e=>e.uid) : friends.map(f=>f.uid) : cue.targets)]
+}
+
+function enemySkill(b: RpgBattle, a: RpgActor, row: "front" | "back") {
+  const friends = alive(b, "enemy"), foes = alive(b, "ally")
+  let targets = foes.filter(t => rowOf(t) === row)
+  if (!targets.length) targets = foes
+  if (!targets.length) return
+  a.motion = "cast"; a.motionAt = b.tick
+  const name = a.boss ? BOSS_SKILLS[a.id]?.name ?? "Sương quét tuyến" : ENEMY_STYLES[a.style ?? "raider"].skill
+  event(b, a, a.boss ? "boss" : "skill", targets, 0, name)
+  const cue = b.events[b.events.length - 1]; cue.animation = "enemy"
+  if (a.boss) {
+    if (a.id === "v4-tide-lock" && a.phase) targets = foes
+    for (const t of targets) {
+      if (a.id === "char-hound" && a.phase) t.shield = Math.round(t.shield * .75)
+      damage(b, a, t, 2.5 + a.phase * .45)
+      if (a.id === "char-hound") t.burn = 20
+      if (a.id === "bamboo-wraith") {t.stun = 4; t.wither = 16}
+      if (["v4-tide-lock", "boss-lotus"].includes(a.id)) { t.energy = Math.max(0, t.energy - 25); t.weaken = 12; if(a.id === "boss-lotus")t.wither=20 }
+    }
+    if (a.id === "boss-drum") shield(b, a, friends, a.maxHp * .035, name)
+    if (a.id === "bamboo-wraith") heal(b, a, [a], .045, name)
+    if (a.id === "boss-lotus") { heal(b, a, friends, .07, name); shield(b, a, friends.filter(f=>!f.boss), a.attack * 1.5, name) }
+  } else if (a.style === "bulwark") {
+    const weak = [...friends].sort((x,y)=>x.hp/x.maxHp-y.hp/y.maxHp)[0]
+    shield(b,a,[...new Set([a,weak])],a.maxHp * .13,name)
+  } else if (a.style === "mender") {
+    heal(b,a,[...friends].sort((x,y)=>x.hp/x.maxHp-y.hp/y.maxHp).slice(0,2),.1,name)
+  } else {
+    for (const t of targets.slice(0, a.style === "hexer" ? 3 : 2)) {
+      damage(b,a,t,a.style === "hexer" ? 1.4 : 1.8)
+      if (a.style === "hexer") { t.energy = Math.max(0,t.energy-18); t.weaken=16; t.wither=12 }
+      else t.burn = 12
+    }
+  }
+  cue.targets = [...new Set(b.events.filter(e=>e.serial>cue.serial && e.source===a.uid && ["hit","heal","shield"].includes(e.kind)).flatMap(e=>e.targets))]
 }
 
 function checkResult(b: RpgBattle) {
-  if (b.rulesVersion === 510 && b.focus && !alive(b,"enemy").some(a=>a.uid===b.focus)) b.focus = null
+  if ((b.rulesVersion === 510 || b.rulesVersion === 520) && b.focus && !alive(b,"enemy").some(a=>a.uid===b.focus)) b.focus = null
   if (b.warning && !b.actors.some(a => a.uid === b.warning!.source && a.hp > 0)) b.warning = null
   if (!alive(b, "ally").length || b.tick >= 720) {
     b.result = "loss"
@@ -698,7 +749,8 @@ export function advanceRpgBattle(current: RpgBattle, steps = 1): RpgBattle {
     b.tick++
     if (b.warning && b.tick >= b.warning.until) {
       const boss = b.actors.find((a) => a.uid === b.warning!.source)
-      if (boss?.hp && !boss.stun) {
+      if (boss?.hp && !boss.stun && b.rulesVersion === 520) enemySkill(b, boss, b.warning.row)
+      else if (boss?.hp && !boss.stun) {
         let targets = alive(b, "ally").filter(
           (a) => rowOf(a) === b.warning!.row,
         )
@@ -737,6 +789,7 @@ export function advanceRpgBattle(current: RpgBattle, steps = 1): RpgBattle {
       a.burn = Math.max(0, a.burn - 1)
       a.weaken = Math.max(0, a.weaken - 1)
       a.stun = Math.max(0, a.stun - 1)
+      if (b.rulesVersion === 520 && a.wither) a.wither = Math.max(0,a.wither-1)
       if (!a.hp || a.stun) continue
       if (a.side === "enemy" && a.boss) {
         if (a.hp <= a.maxHp / 2 && !a.phase) {
@@ -749,8 +802,9 @@ export function advanceRpgBattle(current: RpgBattle, steps = 1): RpgBattle {
             until: b.tick + 8,
             source: a.uid,
             row: a.phase ? "back" : "front",
+            ...(b.rulesVersion === 520 ? {skill: BOSS_SKILLS[a.id]?.name ?? "Sương quét tuyến"} : {}),
           }
-          a.nextSkill = b.tick + 40
+          a.nextSkill = b.tick + (b.rulesVersion === 520 ? a.phase ? 40 : 48 : 40)
           a.motion = "cast"
           a.motionAt = b.tick
           event(
@@ -763,21 +817,29 @@ export function advanceRpgBattle(current: RpgBattle, steps = 1): RpgBattle {
           )
         }
       }
-      if (a.side === "ally" && b.auto && a.energy >= 100) cast(b, a, true)
+      if (b.rulesVersion === 520 && a.side === "enemy" && !a.boss && b.tick >= a.nextSkill) {
+        const row = a.style === "raider" || a.style === "hexer" ? "back" : "front"
+        if (a.elite && !b.warning) {
+          b.warning = {until: b.tick + 8, source: a.uid, row, skill: ENEMY_STYLES[a.style ?? "raider"].skill}
+          a.motion = "cast"; a.motionAt = b.tick
+        } else if (!a.elite) enemySkill(b, a, row)
+        else continue
+        a.nextSkill = b.tick + 44
+      } else if (a.side === "ally" && b.auto && a.energy >= 100) cast(b, a, true)
       else if (a.side === "ally" && a.level >= 5 && b.tick >= a.nextSupport) {
         cast(b, a, false, true)
         a.nextSupport = b.tick + 36
       } else if (a.side === "ally" && b.tick >= a.nextSkill) {
         cast(b, a, false)
         a.nextSkill = b.tick + 28
-      } else if (b.tick >= a.nextAttack) {
+      } else if (b.tick >= a.nextAttack && !(b.rulesVersion === 520 && b.warning?.source === a.uid)) {
         const target = targetFor(b, a)
         if (target) {
-          damage(b, a, target, 1)
+          damage(b, a, target, 1, true)
           a.motion = "attack"
           a.motionAt = b.tick
           a.energy = Math.min(100, a.energy + 10)
-          a.nextAttack = b.tick + (a.role === "striker" ? 7 : 9)
+          a.nextAttack = b.tick + (b.rulesVersion === 520 && a.side === "enemy" ? 10 : a.role === "striker" ? 7 : 9)
         }
       }
       // A completed wave must not load new enemies in the middle of this turn order.
@@ -911,11 +973,11 @@ export function reduceRpg(
     if (!stage || !stageUnlocked(save, action.stageId))
       return error("Hoàn thành màn trước để mở đường.")
     save.serial++
-    const waves = enemyWaves(
+    const waves = encounterWaves(
       stage.map.school,
       stage.level,
+      stage.boss ? 4 : 3,
       stage.boss ? { id: stage.map.boss, name: stage.map.bossName } : undefined,
-      stage.boss ? 3 : 2,
     )
     save.run = {
       kind: "campaign",
@@ -932,6 +994,7 @@ export function reduceRpg(
     )
       return error("Độ khó dungeon chưa được mở.")
     save.serial++
+    const scaling = dungeonScaling(save, action.tier)
     const school: School =
       action.kind === "experience"
         ? "hearth"
@@ -944,6 +1007,7 @@ export function reduceRpg(
       dungeon: {
         kind: action.kind,
         tier: action.tier,
+        scaling,
         floor: 1,
         status: "battle",
         health: {},
@@ -951,7 +1015,7 @@ export function reduceRpg(
       },
       battle: createRpgBattle(
         save,
-        enemyWaves(school, 1 + (action.tier - 1) * 8, undefined, 1),
+        encounterWaves(school, scaling.baseLevel, 1, undefined, true, 1+(action.tier-1)*.14),
         `rpg:${save.serial}:1`,
       ),
     }
@@ -971,7 +1035,7 @@ export function reduceRpg(
       if (b.paused || b.result) return { save: current ?? save, changed: false }
       run.battle = advanceRpgBattle(b, action.steps)
     } else if (action.type === "focus") {
-      if (b.rulesVersion !== 510 || b.result || b.paused || (action.uid && !b.actors.some(a=>a.side==="enemy" && a.hp>0 && a.uid===action.uid))) return error("Chọn kẻ địch còn sống trong trận mới.")
+      if (!(b.rulesVersion === 510 || b.rulesVersion === 520) || b.result || b.paused || (action.uid && !b.actors.some(a=>a.side==="enemy" && a.hp>0 && a.uid===action.uid))) return error("Chọn kẻ địch còn sống trong trận mới.")
       b.focus = action.uid
     } else if (action.type === "burst") {
       const actor = b.actors.find(
@@ -1024,18 +1088,19 @@ export function reduceRpg(
         if (run.kind === "campaign") {
           const stage = rpgStage(run.stageId!)!,
             first = !save.stars[run.stageId!]
+          const level = b.rulesVersion === 520 ? stage.level : 1 + stage.mapIndex * 7 + stage.index
           save.stars[run.stageId!] = Math.max(
             save.stars[run.stageId!] ?? 0,
             b.stars,
           )
           loot = {
-            coins: 20 + stage.level * 3 + (first ? 45 : 0),
+            coins: 20 + level * 3 + (first ? 45 : 0),
             experience: first ? 2 : 1,
             books: stage.boss ? 3 : 1,
             ore: stage.boss ? 5 : 1,
             essence: stage.boss ? 2 : 0,
           }
-          xp = 50 + stage.level * 8
+          xp = 50 + level * 8
         } else {
           const d = run.dungeon!
           loot = {
@@ -1139,7 +1204,8 @@ export function reduceRpg(
           : d.kind === "skills"
             ? "sugar"
             : "ember"
-      const waves = enemyWaves(
+      const boss = d.floor === 5 ? { id: "boss-lotus", name: "Sen Sương Giữ Kho" } : undefined
+      const waves = d.scaling ? encounterWaves(school, Math.min(50, d.scaling.baseLevel + d.floor - 1), d.floor === 5 ? 2 : 1, boss, true, 1+(d.tier-1)*.14+(d.floor-1)*.035) : enemyWaves(
         school,
         d.floor + (d.tier - 1) * 8,
         d.floor === 5
@@ -1153,7 +1219,9 @@ export function reduceRpg(
         `rpg:${save.serial}:${d.floor}`,
         d.health,
         d.bonus,
+        b.rulesVersion ?? null,
       )
+      if (!b.rulesVersion) delete run.battle.rulesVersion
       run.battle.auto = b.auto
       run.battle.speed = b.speed
     } else if (action.type === "close") save.run = null

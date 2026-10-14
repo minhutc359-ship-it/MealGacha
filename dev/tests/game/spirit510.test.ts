@@ -68,7 +68,7 @@ describe("Spirit tactics and save compatibility",()=>{
   expect(reactionName("tide","tide")).toBeNull()
  })
  it("resolves offensive, control and ward reactions with per-recipient amounts",()=>{
-  function encounter(){const s=newRpgSave({...game,cards:{...game.cards,"chef-nhien":1,"chef-lien":1}});for(const h of s.roster)h.level=10;s.formation=["com-tam","chef-nhien","banh-cuon","pho-bo","chef-lien"].map(id=>s.roster.find(h=>h.cardId===id)!.uid);const r=reduceRpg(s,{type:"start",stageId:"lantern-1"},game).save;for(const a of r.run!.battle.actors){a.hp=a.maxHp=10000;a.energy=100}return r}
+  function encounter(){const s=newRpgSave({...game,cards:{...game.cards,"chef-nhien":1,"chef-lien":1}});for(const h of s.roster)h.level=10;s.formation=["com-tam","chef-nhien","banh-cuon","pho-bo","chef-lien"].map(id=>s.roster.find(h=>h.cardId===id)!.uid);const r=reduceRpg(s,{type:"start",stageId:"lantern-1"},game).save;for(const a of r.run!.battle.actors){a.hp=a.maxHp=10000;a.energy=100}r.run!.battle.focus=r.run!.battle.actors.find(a=>a.side==="enemy")!.uid;return r}
   let s=encounter();s.run!.battle.actors.find(a=>a.side==="enemy")!.mark={school:"ember",until:20}
   const base=structuredClone(s);delete base.run!.battle.actors.find(a=>a.side==="enemy")!.mark
   const vapor=burst(s,"pho-bo").run!.battle, normal=burst(base,"pho-bo").run!.battle

@@ -1,0 +1,36 @@
+{
+  "reports": [
+    {
+      "route": "adventure",
+      "renderer": [],
+      "canvas": true,
+      "saveUnchanged": true
+    },
+    {
+      "route": "game",
+      "renderer": [],
+      "canvas": true,
+      "saveUnchanged": true
+    },
+    {
+      "route": "autochess",
+      "renderer": [],
+      "canvas": true,
+      "saveUnchanged": true
+    },
+    {
+      "route": "chest",
+      "renderer": [],
+      "canvas": true,
+      "saveUnchanged": true
+    }
+  ],
+  "chunks": [
+    "http://127.0.0.1:4201/assets/pixi-renderer-BYojv_jR.js",
+    "http://127.0.0.1:4201/assets/pixi-renderer-BYojv_jR.js",
+    "http://127.0.0.1:4201/assets/pixi-renderer-BYojv_jR.js",
+    "http://127.0.0.1:4201/assets/pixi-renderer-BYojv_jR.js"
+  ],
+  "errors": [],
+  "missing": []
+}

@@ -24,3 +24,7 @@ dialog.mode-live-demo.is-immersive{--demo-toolbar-height:0px}
 .live-demo-scene>.loot-stage-page>.chest-cinematic{min-height:0;height:100%;display:grid;place-items:center;overflow:hidden}
 .live-demo-scene .chest-cinematic>.chest-scene{min-height:0;height:100%;width:min(510px,100%);transform:scale(.75);transform-origin:center}
 @media(max-height:500px){.live-demo-scene .chest-cinematic>.chest-scene{transform:scale(.62)}.live-demo-scene .meal-banner-tabs button{min-height:36px;padding:5px}.live-demo-scene .chest-action-zone{min-height:36px}}
+
+/* The RPG demo keeps its dock below the burst deck in immersive view. */
+.mode-adventure.is-immersive .live-demo-scene{inset:env(safe-area-inset-top) 0 calc(64px + env(safe-area-inset-bottom))}
+.mode-adventure.is-immersive .live-demo-toolbar{left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:max(8px,env(safe-area-inset-bottom));display:flex;justify-content:flex-end}
