@@ -1,5 +1,5 @@
 {
-  "version": "5.3.0",
+  "version": "5.6.0",
   "generatedOn": "2026-10-14",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -2072,6 +2072,56 @@
         "dev/docs/art-direction/README.md",
         "dev/docs/PROGRESSION_ECONOMY_V292.md",
         "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/loading/v560/intro-auto-chess.webp",
+      "bytes": 147092,
+      "sha256": "4396898746d05812626f496035502fe91d33a39bdb922c88e180912abe6b6fc6",
+      "origin": "Original AI-assisted Soul of Meal loading illustrations selected from the project Library and optimized to WebP",
+      "evidence": [
+        "dev/docs/web-v560/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/loading/v560/intro-card-collection.webp",
+      "bytes": 174652,
+      "sha256": "efcafcd82a37fdd459306a6339ebb0326fef781cd1c0446636094b86413b108a",
+      "origin": "Original AI-assisted Soul of Meal loading illustrations selected from the project Library and optimized to WebP",
+      "evidence": [
+        "dev/docs/web-v560/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/loading/v560/intro-card-duel.webp",
+      "bytes": 176642,
+      "sha256": "68d923635b941c225d5f4c650c6ee513a82b08bcbacc74b2a6fdde1ca1c2313e",
+      "origin": "Original AI-assisted Soul of Meal loading illustrations selected from the project Library and optimized to WebP",
+      "evidence": [
+        "dev/docs/web-v560/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/loading/v560/intro-jade-adventure.webp",
+      "bytes": 205528,
+      "sha256": "3f1a9691764c6790b1286398bc853a982ee198b016d6ed9e476ff494cb7a2ccf",
+      "origin": "Original AI-assisted Soul of Meal loading illustrations selected from the project Library and optimized to WebP",
+      "evidence": [
+        "dev/docs/web-v560/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/loading/v560/intro-lantern-market.webp",
+      "bytes": 167642,
+      "sha256": "3bfdee02301a4b563a230c211e951ff5fc41df1060a84d1dd9aac1c654bb7462",
+      "origin": "Original AI-assisted Soul of Meal loading illustrations selected from the project Library and optimized to WebP",
+      "evidence": [
+        "dev/docs/web-v560/artwork.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -6474,6 +6524,16 @@
         "dev/docs/living-table-asset-prompts.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/tcg/map/living-chapters-7-12-v560.svg",
+      "bytes": 4902,
+      "sha256": "3f4f810f1edaf39ab815590b8d4cd2aa1a8a0b476f8c452c92d6a494e79869ec",
+      "origin": "Original code-authored Soul of Meal chapter 7–12 jade-market map",
+      "evidence": [
+        "dev/docs/web-v560/artwork.json"
+      ],
+      "review": "owner-verification-required"
     },
     {
       "path": "public/assets/tcg/map/meal-world-map.webp",

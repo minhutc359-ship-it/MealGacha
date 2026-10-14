@@ -668,6 +668,7 @@ export function advanceRpgBattle(current: RpgBattle, steps = 1): RpgBattle {
     step++
   ) {
     if (b.result || b.cinematic) break
+    const waveAtStepStart = b.wave
     b.tick++
     if (b.warning && b.tick >= b.warning.until) {
       const boss = b.actors.find((a) => a.uid === b.warning!.source)
@@ -771,6 +772,9 @@ export function advanceRpgBattle(current: RpgBattle, steps = 1): RpgBattle {
       if (b.cinematic || !alive(b, "ally").length || !alive(b, "enemy").length) break
     }
     if (!b.cinematic) checkResult(b)
+    // Stop a batched ×2/slow-tab advance at the wave boundary so the
+    // next wave cannot act behind its entrance ceremony.
+    if (b.wave !== waveAtStepStart) break
   }
   return b
 }

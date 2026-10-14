@@ -65,6 +65,8 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/loading/v560/", "Original AI-assisted Soul of Meal loading illustrations selected from the project Library and optimized to WebP", ["dev/docs/web-v560/artwork.json"]],
+ ["assets/tcg/map/living-chapters-7-12-v560.svg", "Original code-authored Soul of Meal chapter 7–12 jade-market map", ["dev/docs/web-v560/artwork.json"]],
  ["assets/rpg/awakening530/movies/", "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art", ["dev/docs/web-v530/artwork.json", "dev/docs/web-v530/movie-manifest.json", "dev/tools/render-spirit530.ts", "dev/tools/build-spirit-movies530.mjs"]],
  ["assets/rpg/awakening530/sounds/", "Original procedural character leitmotifs and synthetic effects without external samples", ["dev/tools/compose-spirit530.py", "dev/docs/web-v530/audio-manifest.json"]],
  ["assets/rpg/awakening530/sigils.webp", "Original AI-assisted ultimate sigil atlas created with built-in image generation", ["dev/docs/web-v530/artwork.json"]],
