@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-14T16:46:00Z",
+  "preview": "https://meal-gacha-git-feat-web-v560-adventure-pres-d970b0-minmin-s-app.vercel.app",
+  "deployment": {
+    "provider": "Vercel",
+    "status": "READY",
+    "githubCommitStatus": "success"
+  },
+  "githubActions": {
+    "workflow": "Web quality",
+    "run": 38,
+    "conclusion": "success"
+  },
+  "browser": {
+    "engine": "Chromium cloud browser",
+    "result": "blocked-before-application",
+    "observedPage": "Vercel · You Need Access",
+    "reason": "Deployment Protection requires approval from a team owner",
+    "requestAccessSubmitted": false,
+    "liveVisualQaCompleted": false
+  },
+  "localEvidence": {
+    "tests": "50 files / 543 tests passed",
+    "typecheck": "app and dev passed",
+    "productionBuild": "passed",
+    "assetValidation": "149 checked / 0 missing",
+    "releaseRecords": "32 dependencies / 641 assets / 3 policies",
+    "releaseSize": "88,153,474 bytes; JavaScript gzip 648,283 bytes; 0 leaks"
+  },
+  "limitation": "The deployed application UI was not visually inspected because this session lacks access to the protected Vercel team. No protection setting was changed and no access request was sent."
+}

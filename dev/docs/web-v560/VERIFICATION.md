@@ -15,4 +15,6 @@ Ngày kiểm tra: 14/10/2026 (UTC).
 
 Test 5.6 kiểm tra đủ năm ảnh chuyển cảnh, bốn điểm đến, thứ tự nghi thức đầu trận/đổi đợt, chế độ giảm chuyển động, save schema hiện tại và việc advance nhiều tick dừng chính xác tại biên đợt.
 
-Build còn cảnh báo thông tin cho chunk `rpg-presentation` lớn hơn 500 KB sau minify; tổng JavaScript gzip vẫn dưới guard 650 KB. Xem [browser-qa.json](browser-qa.json) cho kiểm tra preview sau khi nhánh được triển khai.
+GitHub Actions `Web quality` run 38 và Vercel deployment đều thành công. Preview trực tiếp chuyển tới màn Deployment Protection “You Need Access”; phiên này không có quyền team nên không gửi Request Access và không thay đổi protection. Vì vậy UI đã triển khai chưa được xác minh trực quan; trạng thái và giới hạn được ghi trong [browser-qa.json](browser-qa.json).
+
+Build còn cảnh báo thông tin cho chunk `rpg-presentation` lớn hơn 500 KB sau minify; tổng JavaScript gzip vẫn dưới guard 650 KB.
