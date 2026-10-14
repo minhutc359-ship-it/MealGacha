@@ -1,25 +1,25 @@
 {
   "staticBudgetBytes": 100000000,
   "jsGzipBudgetBytes": 650000,
-  "version": "5.2.0",
-  "bytes": 78398477,
-  "files": 448,
+  "version": "5.3.0",
+  "bytes": 87262374,
+  "files": 708,
   "byType": {
     "js": {
-      "files": 71,
-      "bytes": 1978742
+      "files": 55,
+      "bytes": 2005821
     },
     "css": {
-      "files": 12,
-      "bytes": 454525
+      "files": 8,
+      "bytes": 460832
     },
     "mp3": {
-      "files": 72,
-      "bytes": 26483833
+      "files": 211,
+      "bytes": 27877864
     },
     "webp": {
-      "files": 269,
-      "bytes": 48896950
+      "files": 270,
+      "bytes": 49346282
     },
     "png": {
       "files": 3,
@@ -29,13 +29,21 @@
       "files": 11,
       "bytes": 285956
     },
+    "mp4": {
+      "files": 139,
+      "bytes": 6980153
+    },
+    "json": {
+      "files": 1,
+      "bytes": 6983
+    },
     "ico": {
       "files": 1,
       "bytes": 16574
     },
     "html": {
       "files": 4,
-      "bytes": 33578
+      "bytes": 33590
     },
     "txt": {
       "files": 4,
@@ -47,17 +55,18 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2433267,
+    "Application JS/CSS": 2466653,
     "Auto chess art/audio": 7609213,
     "Brand": 229534,
     "Shared character atlases": 9061632,
     "Event art": 2016822,
-    "Other and legal": 30338101,
+    "Other and legal": 24540609,
     "Food art": 7490462,
+    "Spirit RPG art/audio/video": 14628003,
     "TCG art/audio": 19219446
   },
-  "js_gzip": 644328,
-  "css_gzip": 98026,
+  "js_gzip": 646796,
+  "css_gzip": 95823,
   "largest": [
     {
       "path": "assets/v4/audio/web410/original-story-mystery.mp3",
@@ -110,11 +119,11 @@
   ],
   "leaks": [],
   "visualUpdate": {
-    "baselineVersion": "5.0.0",
-    "baselineBytes": 72566051,
-    "additionalBudgetBytes": 6000000,
-    "originalBudget": "New spirit art and presentation within 6 MB, also below original 79,274,916 byte cap.",
-    "addedBytes": 5832426,
-    "remainingBytes": 167574
+    "baselineVersion": "5.2.0",
+    "baselineBytes": 78398477,
+    "additionalBudgetBytes": 10000000,
+    "originalBudget": "User-approved 5–10 MB of new assets, sound, effects and animation. Includes application code and legal registry delta.",
+    "addedBytes": 8863897,
+    "remainingBytes": 1136103
   }
 }

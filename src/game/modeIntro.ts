@@ -171,7 +171,7 @@ function adventureIntro(): IntroClip {
   for (let i = 1; i <= 5; i++) save.stars[`lantern-${i}`] = 1
   save = reduceRpg(save, { type: "start", stageId: "lantern-6" }, game).save
   const waves = save.run!.battle.waves.slice(-1)
-  save.run!.battle = createRpgBattle(save, waves, "intro-rpg-boss")
+  save.run!.battle = createRpgBattle(save, waves, "intro-rpg-boss", undefined, 0, 520)
   const frames: IntroFrame[] = [{ at: 0, scene: { mode: "adventure", save: structuredClone(save) } }]
   const simulation: { save: RpgSave; sound?: GameSound }[] = []
   let guarded = false

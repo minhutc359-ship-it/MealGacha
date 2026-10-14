@@ -1,0 +1,507 @@
+{
+  "date": "2026-10-14T07:16:24.888Z",
+  "browser": "Chromium / SwiftShader",
+  "reports": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "geometry": {
+        "arena": {
+          "x": 12,
+          "y": 220.390625,
+          "right": 1428,
+          "bottom": 602.015625,
+          "height": 381.625
+        },
+        "hudBottom": 213.390625,
+        "actors": [
+          {
+            "uid": "card:com-tam",
+            "x": 510.453125,
+            "y": 372.828125,
+            "right": 590.171875,
+            "bottom": 478.546875
+          },
+          {
+            "uid": "card:banh-mi",
+            "x": 496.3125,
+            "y": 443.953125,
+            "right": 576.03125,
+            "bottom": 549.671875
+          },
+          {
+            "uid": "card:pho-bo",
+            "x": 171.09375,
+            "y": 351.484375,
+            "right": 250.8125,
+            "bottom": 457.203125
+          },
+          {
+            "uid": "card:banh-cuon",
+            "x": 185.234375,
+            "y": 415.5,
+            "right": 264.953125,
+            "bottom": 521.21875
+          },
+          {
+            "uid": "card:chef-lien",
+            "x": 312.5,
+            "y": 454.609375,
+            "right": 392.21875,
+            "bottom": 560.328125
+          },
+          {
+            "uid": "e:0:0",
+            "x": 861.0762939453125,
+            "y": 372.828125,
+            "right": 940.7950439453125,
+            "bottom": 478.546875
+          },
+          {
+            "uid": "e:0:1",
+            "x": 875.2169189453125,
+            "y": 443.953125,
+            "right": 954.9356689453125,
+            "bottom": 549.671875
+          },
+          {
+            "uid": "e:0:2",
+            "x": 1200.4356689453125,
+            "y": 351.484375,
+            "right": 1280.1544189453125,
+            "bottom": 457.203125
+          },
+          {
+            "uid": "e:0:3",
+            "x": 1186.2950439453125,
+            "y": 415.5,
+            "right": 1266.0137939453125,
+            "bottom": 521.21875
+          }
+        ]
+      },
+      "playing": {
+        "time": 0.175821,
+        "ready": 4,
+        "width": 512,
+        "height": 288,
+        "codec": "probably"
+      },
+      "pausedDelta": 0,
+      "reloadedWithoutRecast": true
+    },
+    {
+      "naturalMovieCompletion": "banh-mi"
+    },
+    {
+      "soundDuringCinematic": {
+        "bytes": 23120900,
+        "buffers": 4,
+        "musicVoices": 1,
+        "streamingVoices": 0,
+        "effects": 1,
+        "budget": 50331648
+      }
+    },
+    {
+      "naturalMovieCompletion": "pho-bo"
+    },
+    {
+      "naturalMovieCompletion": "banh-cuon"
+    },
+    {
+      "naturalMovieCompletion": "chef-lien"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "geometry": {
+        "arena": {
+          "x": 8,
+          "y": 189.78125,
+          "right": 382,
+          "bottom": 596.71875,
+          "height": 406.9375
+        },
+        "hudBottom": 184.78125,
+        "actors": [
+          {
+            "uid": "card:com-tam",
+            "x": 118.7421875,
+            "y": 375.15625,
+            "right": 181.9765625,
+            "bottom": 459.390625
+          },
+          {
+            "uid": "card:banh-mi",
+            "x": 115.0078125,
+            "y": 451.34375,
+            "right": 178.2421875,
+            "bottom": 535.578125
+          },
+          {
+            "uid": "card:pho-bo",
+            "x": 29.4609375,
+            "y": 352.296875,
+            "right": 92.6953125,
+            "bottom": 436.53125
+          },
+          {
+            "uid": "card:banh-cuon",
+            "x": 33.1796875,
+            "y": 420.859375,
+            "right": 96.4140625,
+            "bottom": 505.09375
+          },
+          {
+            "uid": "card:chef-lien",
+            "x": 66.6484375,
+            "y": 462.765625,
+            "right": 129.8828125,
+            "bottom": 547
+          },
+          {
+            "uid": "e:0:0",
+            "x": 219.27442932128906,
+            "y": 375.15625,
+            "right": 282.5087890625,
+            "bottom": 459.390625
+          },
+          {
+            "uid": "e:0:1",
+            "x": 223.00880432128906,
+            "y": 451.34375,
+            "right": 286.2431640625,
+            "bottom": 535.578125
+          },
+          {
+            "uid": "e:0:2",
+            "x": 308.5556945800781,
+            "y": 352.296875,
+            "right": 371.7900695800781,
+            "bottom": 436.53125
+          },
+          {
+            "uid": "e:0:3",
+            "x": 304.8369445800781,
+            "y": 420.859375,
+            "right": 368.0713195800781,
+            "bottom": 505.09375
+          }
+        ]
+      },
+      "playing": {
+        "time": 0.164479,
+        "ready": 4,
+        "width": 512,
+        "height": 288,
+        "codec": "probably"
+      },
+      "pausedDelta": 0,
+      "reloadedWithoutRecast": true
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "geometry": {
+        "arena": {
+          "x": 12,
+          "y": 143.390625,
+          "right": 832,
+          "bottom": 228.390625,
+          "height": 85
+        },
+        "hudBottom": 140.390625,
+        "actors": [
+          {
+            "uid": "card:com-tam",
+            "x": 325.6640625,
+            "y": 176.015625,
+            "right": 354.7109375,
+            "bottom": 215.0625
+          },
+          {
+            "uid": "card:banh-mi",
+            "x": 260.2265625,
+            "y": 176.015625,
+            "right": 289.2734375,
+            "bottom": 215.0625
+          },
+          {
+            "uid": "card:pho-bo",
+            "x": 72.0859375,
+            "y": 176.015625,
+            "right": 101.1328125,
+            "bottom": 215.0625
+          },
+          {
+            "uid": "card:banh-cuon",
+            "x": 137.5234375,
+            "y": 176.015625,
+            "right": 166.5703125,
+            "bottom": 215.0625
+          },
+          {
+            "uid": "card:chef-lien",
+            "x": 194.7890625,
+            "y": 176.015625,
+            "right": 223.8359375,
+            "bottom": 215.0625
+          },
+          {
+            "uid": "e:0:0",
+            "x": 476.7265625,
+            "y": 176.015625,
+            "right": 505.7734375,
+            "bottom": 215.0625
+          },
+          {
+            "uid": "e:0:1",
+            "x": 533.9921875,
+            "y": 176.015625,
+            "right": 563.0390625,
+            "bottom": 215.0625
+          },
+          {
+            "uid": "e:0:2",
+            "x": 591.2421875,
+            "y": 176.015625,
+            "right": 620.2890625,
+            "bottom": 215.0625
+          },
+          {
+            "uid": "e:0:3",
+            "x": 648.5078125,
+            "y": 176.015625,
+            "right": 677.5546875,
+            "bottom": 215.0625
+          }
+        ]
+      },
+      "playing": {
+        "time": 0.161472,
+        "ready": 4,
+        "width": 512,
+        "height": 288,
+        "codec": "probably"
+      },
+      "pausedDelta": 0,
+      "reloadedWithoutRecast": true
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "geometry": {
+        "arena": {
+          "x": 8,
+          "y": 191.390625,
+          "right": 312,
+          "bottom": 331.390625,
+          "height": 140
+        },
+        "hudBottom": 186.390625,
+        "actors": [
+          {
+            "uid": "card:com-tam",
+            "x": 109.265625,
+            "y": 237.515625,
+            "right": 138.234375,
+            "bottom": 287.484375
+          },
+          {
+            "uid": "card:banh-mi",
+            "x": 106.25,
+            "y": 260.3125,
+            "right": 135.21875,
+            "bottom": 310.28125
+          },
+          {
+            "uid": "card:pho-bo",
+            "x": 36.78125,
+            "y": 230.671875,
+            "right": 65.75,
+            "bottom": 280.640625
+          },
+          {
+            "uid": "card:banh-cuon",
+            "x": 39.8125,
+            "y": 251.1875,
+            "right": 68.78125,
+            "bottom": 301.15625
+          },
+          {
+            "uid": "card:chef-lien",
+            "x": 66.984375,
+            "y": 263.734375,
+            "right": 95.953125,
+            "bottom": 313.703125
+          },
+          {
+            "uid": "e:0:0",
+            "x": 193.0133819580078,
+            "y": 237.515625,
+            "right": 221.9821319580078,
+            "bottom": 287.484375
+          },
+          {
+            "uid": "e:0:1",
+            "x": 196.0290069580078,
+            "y": 260.3125,
+            "right": 224.9977569580078,
+            "bottom": 310.28125
+          },
+          {
+            "uid": "e:0:2",
+            "x": 265.49774169921875,
+            "y": 230.671875,
+            "right": 294.46649169921875,
+            "bottom": 280.640625
+          },
+          {
+            "uid": "e:0:3",
+            "x": 262.46649169921875,
+            "y": 251.1875,
+            "right": 291.43524169921875,
+            "bottom": 301.15625
+          }
+        ]
+      },
+      "playing": {
+        "time": 0.161783,
+        "ready": 4,
+        "width": 512,
+        "height": 288,
+        "codec": "probably"
+      },
+      "pausedDelta": 0,
+      "reloadedWithoutRecast": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 700
+      },
+      "geometry": {
+        "arena": {
+          "x": 8,
+          "y": 189.78125,
+          "right": 382,
+          "bottom": 452.71875,
+          "height": 262.9375
+        },
+        "hudBottom": 184.78125,
+        "actors": [
+          {
+            "uid": "card:com-tam",
+            "x": 122.9609375,
+            "y": 289.984375,
+            "right": 177.7578125,
+            "bottom": 365.78125
+          },
+          {
+            "uid": "card:banh-mi",
+            "x": 119.2265625,
+            "y": 337.375,
+            "right": 174.0234375,
+            "bottom": 413.171875
+          },
+          {
+            "uid": "card:pho-bo",
+            "x": 33.6796875,
+            "y": 275.765625,
+            "right": 88.4765625,
+            "bottom": 351.5625
+          },
+          {
+            "uid": "card:banh-cuon",
+            "x": 37.3984375,
+            "y": 318.421875,
+            "right": 92.1953125,
+            "bottom": 394.21875
+          },
+          {
+            "uid": "card:chef-lien",
+            "x": 70.8671875,
+            "y": 344.484375,
+            "right": 125.6640625,
+            "bottom": 420.28125
+          },
+          {
+            "uid": "e:0:0",
+            "x": 224.2265625,
+            "y": 289.984375,
+            "right": 279.0234375,
+            "bottom": 365.78125
+          },
+          {
+            "uid": "e:0:1",
+            "x": 227.9609375,
+            "y": 337.375,
+            "right": 282.7578125,
+            "bottom": 413.171875
+          },
+          {
+            "uid": "e:0:2",
+            "x": 313.5078125,
+            "y": 275.765625,
+            "right": 368.3046875,
+            "bottom": 351.5625
+          },
+          {
+            "uid": "e:0:3",
+            "x": 309.7890625,
+            "y": 318.421875,
+            "right": 364.5859375,
+            "bottom": 394.21875
+          }
+        ]
+      },
+      "playing": {
+        "time": 0.171748,
+        "ready": 4,
+        "width": 512,
+        "height": 288,
+        "codec": "probably"
+      },
+      "pausedDelta": 0,
+      "reloadedWithoutRecast": true
+    },
+    {
+      "chestFlow": {
+        "before": 44,
+        "after": 45,
+        "keysBefore": 30,
+        "keysAfter": 29,
+        "unlockedOnce": true,
+        "trainedLevel": 2,
+        "retainedAfterReload": true
+      }
+    },
+    {
+      "fallback": "missing",
+      "completed": true
+    },
+    {
+      "fallback": "reduced",
+      "completed": true
+    },
+    {
+      "completionWriteFailure": "retryable without a second cast"
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "limits": [
+    "Not a real-device FPS measurement",
+    "Safari not tested",
+    "Vercel scope blocks live-preview validation"
+  ]
+}

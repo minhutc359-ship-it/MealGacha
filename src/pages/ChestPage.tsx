@@ -470,6 +470,7 @@ export function ChestPage() {
           )}
         </div>
 
+        <p className="chest-spirit-note">Mỗi lần mở nhận thêm 1 thẻ Vị Linh: Thường 15 · Hiếm 25 · Sử thi 35 · Huyền thoại 45 thẻ để hội ngộ. Tỉ lệ thẻ ngẫu nhiên: 71% · 22% · 6% · 1%; chia đều trong từng độ hiếm. <a href={user.spiritWish?`/adventure?hero=${encodeURIComponent(user.spiritWish)}`:"/adventure?hero=chef-nhien"}>{user.spiritWish?`Ước hẹn ${user.spiritPity??0}/5 · lần thứ 5 bảo đảm thẻ đã chọn`:"Chọn Vị Linh ước hẹn: bảo đảm mỗi 5 rương"} ↗</a></p>
         <footer className="stage-footer">
           <span>
             HÔM NAY <strong>{todayCount}</strong> MÓN

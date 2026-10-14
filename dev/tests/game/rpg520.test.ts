@@ -2,11 +2,19 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { newGame } from "@/game/progression";
 import { parseGame } from "@/game/storage";
-import { newRpgSave, reduceRpg, advanceRpgBattle } from "@/game/adventureRpg/engine";
+import { newRpgSave, reduceRpg as currentReduceRpg, createRpgBattle, advanceRpgBattle } from "@/game/adventureRpg/engine";
 import { RPG_STAGE_IDS, rpgStage } from "@/game/adventureRpg/content";
 import { dungeonScaling } from "@/game/adventureRpg/enemies";
 import type { RpgSave } from "@/game/adventureRpg/types";
 const game = newGame();
+const reduceRpg: typeof currentReduceRpg = (current, action, g) => {
+  const result=currentReduceRpg(current,action,g)
+  if(!result.error && result.save.run && ["start","dungeon"].includes(action.type)) {
+    const b=result.save.run.battle
+    result.save.run.battle=createRpgBattle(result.save,b.waves,b.id,undefined,0,520)
+  }
+  return result
+};
 function prepared(level: number, geared = true) {
     const s = newRpgSave(game);
     for (const h of s.roster) {

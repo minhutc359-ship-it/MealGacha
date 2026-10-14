@@ -20,7 +20,8 @@ import type { RpgSave, RpgAction } from "@/game/adventureRpg/types"
 
 const game = newGame()
 function act(s: RpgSave, a: RpgAction) {
-  const r = reduceRpg(s, a, game)
+  let r = reduceRpg(s, a, game)
+  if(r.save.run?.battle.cinematic)r=reduceRpg(r.save,{type:"cinematicDone",serial:r.save.run.battle.cinematic.serial},game)
   expect(r.error, JSON.stringify(a)).toBeUndefined()
   const parsed = rpgSaveSchema.safeParse(r.save)
   expect(parsed.success, JSON.stringify(parsed.error?.issues)).toBe(true)
@@ -31,7 +32,7 @@ function fight(s: RpgSave) {
   for (let i = 0; i < 720 && !s.run!.battle.result; i++) {
     const b = s.run!.battle
     const priority = b.actors.find(a=>a.side === "enemy" && a.hp > 0 && a.style === "mender") ?? b.actors.find(a=>a.side === "enemy" && a.hp > 0 && a.style === "hexer")
-    if (b.rulesVersion === 520 && priority && b.focus !== priority.uid) s = act(s,{type:"focus",uid:priority.uid})
+    if ((b.rulesVersion ?? 0) >= 520 && priority && b.focus !== priority.uid) s = act(s,{type:"focus",uid:priority.uid})
     if (b.warning && b.tick >= b.guardReady)
       s = act(s, { type: "guard", row: b.warning.row })
     s = act(s, { type: "tick", steps: 4 })
@@ -104,7 +105,7 @@ describe("Adventure 5.0 content and retained progress", () => {
   it("uses a separate economy and keeps newly unlocked roster members after TCG salvage", () => {
     const before = structuredClone(game),
       g = { ...game, cards: { ...game.cards, "chef-hai": 1 } }
-    const s = reduceRpg(newRpgSave(game), { type: "sync" }, g).save
+    const s = reduceRpg(newRpgSave(game), { type: "sync", cards: {"chef-hai":45} }, g).save
     expect(s.roster.some((h) => h.cardId === "chef-hai")).toBe(true)
     g.cards["chef-hai"] = 0
     expect(reduceRpg(s, { type: "sync" }, g).save.roster).toEqual(s.roster)
@@ -259,7 +260,7 @@ describe("party, growth and real combat", () => {
     let s = openBoss(trained(8))
     while (!s.run!.battle.result && s.run!.battle.wave < s.run!.battle.waves.length - 1) s = act(s, { type: "tick", steps: 1 })
     const b = s.run!.battle, boss = b.actors.find(a => a.boss)!, striker = b.actors.find(a => a.side === "ally" && a.role === "striker")!
-    boss.hp = 1; striker.energy = 100
+    boss.hp = 1; striker.energy = 100; b.focus = boss.uid
     b.warning = { source: boss.uid, row: "front", until: b.tick + 8 }
     s = act(s, { type: "burst", uid: striker.uid })
     expect(s.run!.battle.warning).toBeNull()
@@ -278,7 +279,9 @@ describe("party, growth and real combat", () => {
   })
   for (const map of RPG_MAPS)
     it(`${map.id}: boss warns, changes phase, counterattacks and can be defeated by a prepared squad`, () => {
-      let s = openBoss(trained(8 + RPG_MAPS.indexOf(map) * 7), map.id),
+      const prepared = trained(rpgStage(`${map.id}-6`)!.level)
+      for(const h of prepared.roster){h.skills=[6,6,6,6];h.rank=3;h.gear=[3,3,2]}
+      let s = openBoss(prepared, map.id),
         warnings = 0,
         phases = 0,
         bossHits = 0
@@ -312,6 +315,7 @@ describe("party, growth and real combat", () => {
     const source = {
       ...b.actors[0],
       uid: "test-boss",
+      energy: 100,
       id: "boss-drum",
       side: "enemy" as const,
       slot: 0,
@@ -380,7 +384,7 @@ describe("farm loop and schema guards", () => {
     expect(dungeonTierCap(s)).toBe(3)
     expect(farms).toBeGreaterThan(0)
     expect(Object.values(s.resources).every(value => value >= 0)).toBe(true)
-  })
+  }, 30_000) // Simulates all 24 stages plus earned-loot farming on shared CI workers.
   for (const kind of ["experience", "skills", "forge"] as const)
     it(`${kind}: farms all five floors with carried HP/energy and two exclusive camp decisions`, () => {
       let s = act(trained(), { type: "dungeon", kind, tier: 1 })

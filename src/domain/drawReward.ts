@@ -10,6 +10,8 @@ import {
 import { getDateKey } from "./dateKey"
 import { hasUnlimitedChestAccess, isCatalogComplete } from "./achievements"
 import { getFeaturedEvents } from "./events"
+import { collectedSpiritCards } from "./spiritCollection"
+import { drawSpiritCard, SPIRIT_RARITY } from "./spiritSummons"
 
 const CHEST_COST = parseInt(import.meta.env.VITE_CHEST_COST || "1", 10)
 const RECENT_EXCLUSION = 3
@@ -117,6 +119,8 @@ export function applyOpenChest(
   const unlimitedBeforeDraw = hasUnlimitedChestAccess(state, dishes)
   const cost = unlimitedBeforeDraw ? 0 : CHEST_COST
   const rewardId = crypto.randomUUID()
+  const spiritCardId = state.spiritWish && SPIRIT_RARITY[state.spiritWish] && (state.spiritPity ?? 0) >= 4 ? state.spiritWish : drawSpiritCard(secureRandom)
+  const previousSpiritCards = collectedSpiritCards(state)
   const snapshot: DishSnapshot = {
     id: dish.id,
     name: dish.name,
@@ -135,6 +139,7 @@ export function applyOpenChest(
     acquiredDate: getDateKey(drawTime),
     favorite: false,
     rarity: getDishRarity(dish),
+    spiritCardId,
   }
   const tx: KeyTransaction = {
     id: crypto.randomUUID(),
@@ -156,6 +161,8 @@ export function applyOpenChest(
     ...state,
     keys: state.keys - cost,
     rewards,
+    spiritPity: ((state.spiritPity ?? 0) + 1) % 5,
+    spiritCards: { ...previousSpiritCards, [spiritCardId]: Math.min(1_000_000_000, (previousSpiritCards[spiritCardId] ?? 0) + 1) },
     fragments: duplicate ? { ...state.fragments, [dish.id]: (state.fragments[dish.id] || 0) + 1 } : state.fragments,
     keyTransactions: cost > 0 ? [...state.keyTransactions, tx] : state.keyTransactions,
     recentDishIdsByMeal: { ...state.recentDishIdsByMeal, [slot]: recent },

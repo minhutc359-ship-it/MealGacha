@@ -119,7 +119,7 @@ export const useGameStore = create<Store>((set, get) => {
       if (result.changed === false) return true
       const next = { ...save, adventureRpg: result.save }
       // Simulate at 4 Hz; checkpoint once a second. Commands and lifecycle exits flush immediately.
-      if (action.type === "tick" && result.save.run && result.save.run.battle.tick % 4 !== 0 && !result.save.run.battle.result) {
+      if (action.type === "tick" && result.save.run && result.save.run.battle.tick % 4 !== 0 && !result.save.run.battle.result && !result.save.run.battle.cinematic) {
         set({ save: next }); return true
       }
       return commit(next)

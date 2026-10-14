@@ -1,3 +1,4 @@
+import { SPIRIT_RARITY } from "../domain/spiritSummons"
 import { create } from "zustand"
 import { UserState, Dish, MealSlot, RewardInstance } from "../domain/models"
 import { repository } from "../infrastructure/storage/repository"
@@ -32,6 +33,7 @@ interface AppStore {
   deleteTimelinePost(id: string): Promise<void>
   equipTitle(id: string): void
   setDisplayName(name: string): void
+  setSpiritWish(id: string): void
   openChest(slot: MealSlot, eventId?: string): {
     reward: RewardInstance
     error: null
@@ -171,6 +173,11 @@ export const useAppStore = create<AppStore>((set, get) => {
     set({ user: next })
   },
 
+  setSpiritWish(id) {
+    if(!SPIRIT_RARITY[id])return
+    const next={...get().user,spiritWish:id,updatedAt:new Date().toISOString()}
+    if(persist(next))set({user:next})
+  },
   setDisplayName(name) {
     const user = get().user
     const next = { ...user, displayName: name.slice(0, 32), updatedAt: new Date().toISOString() }

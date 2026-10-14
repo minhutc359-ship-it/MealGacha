@@ -225,3 +225,7 @@ public/assets/rpg/** -filter -diff -merge -text
 
 # Web 5.2 browser evidence remains reviewable without LFS.
 dev/docs/web-v520/*.jpg -filter -diff -merge -text
+
+# Web 5.3 review evidence and the source realm atlas remain actual bytes.
+dev/docs/web-v530/*.jpg -filter -diff -merge -text
+dev/docs/web-v530/*.webp -filter -diff -merge -text

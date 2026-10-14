@@ -1,0 +1,90 @@
+{
+  "excludesCinematicWallTime": true,
+  "manualFocusAndGuard": true,
+  "rows": [
+    {
+      "id": "lantern-1",
+      "prepared": false,
+      "level": 1,
+      "skills": 1,
+      "gear": [
+        0,
+        0,
+        0
+      ],
+      "result": "win",
+      "simulatedSeconds": 49,
+      "survivors": 5
+    },
+    {
+      "id": "lantern-6",
+      "prepared": false,
+      "level": 1,
+      "skills": 1,
+      "gear": [
+        0,
+        0,
+        0
+      ],
+      "result": "loss",
+      "simulatedSeconds": 180,
+      "survivors": 5
+    },
+    {
+      "id": "lantern-6",
+      "prepared": true,
+      "level": 11,
+      "skills": 6,
+      "gear": [
+        3,
+        3,
+        2
+      ],
+      "result": "win",
+      "simulatedSeconds": 83,
+      "survivors": 5
+    },
+    {
+      "id": "harbor-6",
+      "prepared": true,
+      "level": 21,
+      "skills": 6,
+      "gear": [
+        3,
+        3,
+        2
+      ],
+      "result": "win",
+      "simulatedSeconds": 83.5,
+      "survivors": 5
+    },
+    {
+      "id": "garden-6",
+      "prepared": true,
+      "level": 31,
+      "skills": 6,
+      "gear": [
+        3,
+        3,
+        2
+      ],
+      "result": "win",
+      "simulatedSeconds": 102.5,
+      "survivors": 5
+    },
+    {
+      "id": "tide-6",
+      "prepared": true,
+      "level": 41,
+      "skills": 6,
+      "gear": [
+        3,
+        3,
+        2
+      ],
+      "result": "win",
+      "simulatedSeconds": 99,
+      "survivors": 5
+    }
+  ]
+}
