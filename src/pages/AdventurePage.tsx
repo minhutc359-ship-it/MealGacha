@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react"
+import { SpiritArt, SkillArt } from "../components/game/SpiritArt"
+import { REACTION_HELP } from "../game/adventureRpg/skills"
 import { BrandMark } from "../components/layout/BrandMark"
 import { ModeSwitch } from "../components/layout/ModeSwitch"
 import { ModeIntroButton } from "../components/layout/ModeIntroButton"
@@ -139,7 +141,7 @@ function HeroDetails({
   return (
     <section className="rpg-hero-details" aria-label={`Chi tiết ${card.name}`}>
       <div className="rpg-hero-overview">
-        <img src={card.art} alt={card.name} decoding="async" />
+        <SpiritArt id={hero.cardId} label={`Vị Linh ${card.name}`} />
         <div>
           <small>
             {SCHOOLS[card.school].name} ·{" "}
@@ -183,12 +185,19 @@ function HeroDetails({
           <small>{costText(rankCost)}</small>
         </button>
       </div>
+      <div className="rpg-paths" aria-label="Hướng tuyệt kỹ">
+        <h3>Hướng tuyệt kỹ · Cấp 10</h3>
+        <p>Đổi miễn phí ngoài chuyến đi. Lựa chọn chỉ áp dụng cho trận mới.</p>
+        {(["assault", "support"] as const).map(path => <button type="button" key={path} aria-pressed={hero.path === path} disabled={hero.level < 10 || !!save.run} onClick={() => act({type: "path", uid: hero.uid, path})}>{path === "assault" ? "Phá sương · công +20%, hồi/khiên −15%" : "Dưỡng linh · hồi/khiên +50%, công −15%"}</button>)}
+      </div>
+      <details className="rpg-strategy"><summary>Phản ứng & cộng hưởng đội hình</summary><p>{REACTION_HELP}</p><p>Ba hệ khác nhau: +10 năng lượng đầu trận. Ba Vị Linh cùng hệ: +12 giáp cho nhóm cùng hệ. Cộng hưởng áp dụng lúc bắt đầu trận.</p></details>
       <h3>Bốn kỹ năng</h3>
       <div className="rpg-skill-list">
         {heroSkills(hero).map((skill, index) => {
           const cost = upgradeCost(hero, "skill", index)
           return (
             <article key={index} className={!skill.ready ? "is-locked" : ""}>
+              <SkillArt index={skill.icon} />
               <div>
                 <small>
                   {skill.tag} · Cấp {skill.level}/10
@@ -274,6 +283,8 @@ export function AdventurePage() {
   const dungeon = run?.dungeon
     ? RPG_DUNGEONS.find((d) => d.id === run.dungeon!.kind)
     : null
+  const teamSchools = save.formation.map(uid=>CARD_MAP[save.roster.find(h=>h.uid===uid)!.cardId].school)
+  const sharedSchool = teamSchools.find(s=>teamSchools.filter(t=>t===s).length>=3)
   const art =
     ELEMENTAL_BOARDS[
       activeStage?.map.school ??
@@ -784,7 +795,7 @@ export function AdventurePage() {
                       </small>
                       {m ? (
                         <>
-                          <img src={CARD_MAP[m.cardId].art} alt="" />
+                          <SpiritArt id={m.cardId} />
                           <strong>{CARD_MAP[m.cardId].name}</strong>
                           <span>Cấp {m.level}</span>
                         </>
@@ -795,6 +806,7 @@ export function AdventurePage() {
                   )
                 })}
               </div>
+              <div className="rpg-resonance-summary">✧ {new Set(teamSchools).size >= 3 ? "Đa vị: +10 năng lượng đầu trận" : "Đa vị cần 3 hệ khác nhau"}{sharedSchool ? ` · ${SCHOOLS[sharedSchool].name}: +12 giáp cho nhóm cùng hệ` : " · Đồng vị cần 3 người cùng hệ"}</div>
               <div className="rpg-roster-layout">
                 <aside>
                   <input
@@ -817,11 +829,7 @@ export function AdventurePage() {
                           className={hero.uid === m.uid ? "is-selected" : ""}
                           onClick={() => setSelected(m.uid)}
                         >
-                          <img
-                            src={CARD_MAP[m.cardId].art}
-                            alt=""
-                            loading="lazy"
-                          />
+                          <SpiritArt id={m.cardId} />
                           <span>
                             <strong>{CARD_MAP[m.cardId].name}</strong>
                             <small>
@@ -890,6 +898,8 @@ export function AdventurePage() {
                     tài nguyên.
                   </p>
                 </article>
+                <article><h2>Liên hương & phản ứng</h2><p>{REACTION_HELP}</p></article>
+                <article><h2>Chuẩn bị chiến thuật</h2><p>Chạm ⌖ trên địch để ưu tiên đòn tập trung. Ba hệ khác nhau thêm 10 năng lượng đầu trận; ba Vị Linh cùng hệ thêm 12 giáp cho nhóm đó. Cấp 10 chọn hướng tuyệt kỹ Phá sương hoặc Dưỡng linh, đổi miễn phí ngoài chuyến đi.</p></article>
               </div>
               <p>
                 {save.legacy.imported

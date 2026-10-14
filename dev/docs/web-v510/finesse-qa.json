@@ -1,0 +1,142 @@
+{
+  "version": "5.1.0",
+  "engine": "Chromium headless / SwiftShader",
+  "note": "RAF gap samples in a software-rendered container; not physical-device FPS, not a claim of 9/10.",
+  "reports": [
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "pathPersists": true,
+      "focusWorks": true,
+      "chain": 2,
+      "reaction": "Sinh trưởng",
+      "battleReloadExact": true,
+      "controlsFit": true,
+      "frames": {
+        "frames": 54,
+        "p50": 16.700000000000728,
+        "p95": 150.10000000000036,
+        "poses": [
+          "0",
+          "10",
+          "13",
+          "14",
+          "15",
+          "1"
+        ],
+        "canvasKept": true,
+        "resizeWrites": 0
+      },
+      "errors": [],
+      "missing": []
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "pathPersists": true,
+      "focusWorks": true,
+      "chain": 2,
+      "reaction": "Sinh trưởng",
+      "battleReloadExact": true,
+      "controlsFit": true,
+      "frames": {
+        "frames": 69,
+        "p50": 16.699999999999818,
+        "p95": 100,
+        "poses": [
+          "0",
+          "10",
+          "13",
+          "14",
+          "15",
+          "1"
+        ],
+        "canvasKept": true,
+        "resizeWrites": 0
+      },
+      "errors": [],
+      "missing": []
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "pathPersists": true,
+      "focusWorks": true,
+      "chain": 2,
+      "reaction": "Sinh trưởng",
+      "battleReloadExact": true,
+      "controlsFit": true,
+      "frames": {
+        "frames": 61,
+        "p50": 16.699999999999818,
+        "p95": 133.30000000000018,
+        "poses": [
+          "0",
+          "10",
+          "13",
+          "14",
+          "15",
+          "1"
+        ],
+        "canvasKept": true,
+        "resizeWrites": 0
+      },
+      "errors": [],
+      "missing": []
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "pathPersists": true,
+      "focusWorks": true,
+      "chain": 2,
+      "reaction": "Sinh trưởng",
+      "battleReloadExact": true,
+      "controlsFit": true,
+      "frames": {
+        "frames": 68,
+        "p50": 16.699999999999818,
+        "p95": 66.69999999999982,
+        "poses": [
+          "0",
+          "9",
+          "12",
+          "13",
+          "10",
+          "14",
+          "15",
+          "1"
+        ],
+        "canvasKept": true,
+        "resizeWrites": 0
+      },
+      "errors": [],
+      "missing": []
+    }
+  ],
+  "demos": [
+    {
+      "mode": "tcg",
+      "canvas": 6,
+      "saveUnchanged": true
+    },
+    {
+      "mode": "auto",
+      "canvas": 1,
+      "saveUnchanged": true
+    },
+    {
+      "mode": "adventure",
+      "canvas": 8,
+      "saveUnchanged": true
+    }
+  ]
+}

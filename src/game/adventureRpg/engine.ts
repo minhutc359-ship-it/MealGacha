@@ -1,3 +1,4 @@
+import { spiritKit, reactionName } from "./skills"
 import { CARD_MAP } from "../catalog"
 import { UNIT_MAP } from "../autochess/catalog"
 import type { GameSave, School } from "../types"
@@ -99,16 +100,19 @@ export function heroSkills(hero: RpgHero) {
     healer: ["Bữa cơm đoàn tụ", "Hồi HP toàn đội, gỡ bỏng, choáng và làm yếu."],
     trickster: ["Khúc ru ký ức", "Đánh tuyến sau và gây choáng toàn bộ địch."],
   }[role]
+  const kit = spiritKit(hero.cardId, role)
   return [
     {
-      name: `${primary[0]} · ${card.name}`,
-      text: primary[1],
+      icon: kit.icon,
+      name: `${kit.primary} · ${card.name}`,
+      text: `${role === "mage" && card.school !== "tide" ? "Gây sát thương mạnh lên mục tiêu ưu tiên." : primary[1]} Thêm ${kit.effect}. ${kit.variant === 1 ? "Tập kích: công +15%, hồi/khiên −10%; tuyệt kỹ phá 30% khiên mục tiêu." : kit.variant === 2 ? "Tiếp sức: hồi/khiên +15%, công −10%; tặng 6 năng lượng và tuyệt kỹ rút 2s hồi kỹ năng đồng đội." : "Cân bằng: giữ trọn hiệu lực công và hồi/khiên."}`,
       unlock: 1,
       ready: true,
       level: hero.skills[0],
       tag: "Tự động · 7s",
     },
     {
+      icon: 50 + kit.school,
       name: support[0],
       text: support[1],
       unlock: 5,
@@ -117,14 +121,16 @@ export function heroSkills(hero: RpgHero) {
       tag: "Tự động · 9s",
     },
     {
-      name: burst[0],
-      text: burst[1],
+      icon: kit.icon + 1,
+      name: kit.burst,
+      text: `${burst[1]} Thêm ${kit.effect}. ${hero.path === "support" ? "Dưỡng linh: hồi/khiên +50%, sát thương −15%." : hero.path === "assault" ? "Phá sương: sát thương +20%, hồi/khiên −15%." : "Cấp 10 mở hai hướng tuyệt kỹ."}`,
       unlock: 1,
       ready: true,
       level: hero.skills[2],
       tag: "Tuyệt kỹ · 100 năng lượng",
     },
     {
+      icon: 55 + kit.school,
       name: "Giao ước đồng hành",
       text: "Tăng HP và công khi bắt đầu trận; thăng bậc để mở nội tại.",
       unlock: 2,
@@ -320,6 +326,7 @@ export function createRpgBattle(
       level: hero.level,
       rank: hero.rank,
       skills: [...hero.skills],
+      ...(hero.path ? {path: hero.path} : {}),
       hp: carried?.[uid]?.hp ?? stats.hp,
       maxHp: stats.hp,
       attack: Math.round(stats.attack * (1 + bonus)),
@@ -338,7 +345,15 @@ export function createRpgBattle(
       motionAt: 0,
     }
   })
+  // New battles opt in; snapshots saved by 5.0 retain their original rules.
+  const schools = actors.map(a => a.school)
+  const diverse = new Set(schools).size >= 3
+  for (const a of actors) {
+    if (diverse && !carried) a.energy = Math.min(100, a.energy + 10)
+    if (schools.filter(s => s === a.school).length >= 3) a.armor += 12
+  }
   const battle: RpgBattle = {
+    rulesVersion: 510,
     id,
     tick: 0,
     wave: 0,
@@ -457,13 +472,16 @@ function heal(
   text: string,
 ) {
   let total = 0
+  const values: Record<string, number> = {}
   for (const t of targets) {
     const gain = Math.min(t.maxHp - t.hp, Math.round(t.maxHp * fraction))
+    values[t.uid] = gain
     t.hp += gain
     t.burn = 0
     total += gain
   }
   event(b, a, "heal", targets, total, text)
+  if (b.rulesVersion === 510) b.events[b.events.length-1].values = values
 }
 function shield(
   b: RpgBattle,
@@ -472,17 +490,24 @@ function shield(
   amount: number,
   text: string,
 ) {
-  for (const t of targets)
+  const values: Record<string, number> = {}
+  for (const t of targets) {
+    const before = t.shield
     t.shield = Math.min(t.maxHp, t.shield + Math.round(amount))
+    values[t.uid] = t.shield - before
+  }
   event(b, a, "shield", targets, amount, text)
+  if (b.rulesVersion === 510) b.events[b.events.length-1].values = values
 }
 function targetFor(b: RpgBattle, a: RpgActor, back = false) {
   const enemies = alive(b, opposing(a)).sort((x, y) => x.slot - y.slot)
+  const focus = a.side === "ally" && b.rulesVersion === 510 ? enemies.find(e => e.uid === b.focus) : undefined
   return (
-    (back ? enemies.find((t) => rowOf(t) === "back") : enemies[0]) ?? enemies[0]
+    focus ?? (back ? enemies.find((t) => rowOf(t) === "back") : enemies[0]) ?? enemies[0]
   )
 }
 function cast(b: RpgBattle, a: RpgActor, burst: boolean, support = false) {
+  if (b.rulesVersion === 510 && a.side === "ally") {castSpirit(b, a, burst, support); return}
   const friends = alive(b, a.side),
     enemies = alive(b, opposing(a)),
     target = targetFor(b, a, a.role === "trickster")
@@ -563,7 +588,76 @@ function cast(b: RpgBattle, a: RpgActor, burst: boolean, support = false) {
   }
   if (!burst) a.energy = Math.min(100, a.energy + 12)
 }
+function castSpirit(b: RpgBattle, a: RpgActor, burst: boolean, support: boolean) {
+ const friends = alive(b, a.side), enemies = alive(b, opposing(a))
+ const target = targetFor(b, a, a.role === "trickster")
+ if (!target) return
+ const weak = [...friends].sort((x,y) => x.hp/x.maxHp-y.hp/y.maxHp)[0]
+ const kit = spiritKit(a.id, a.role)
+ let boost = 1 + (a.skills[burst ? 2 : support ? 1 : 0] - 1) * .09
+ if (burst) {
+  const chain = b.chain
+  const count = chain && chain.until >= b.tick && chain.source !== a.uid ? Math.min(3, chain.count + 1) : 1
+  b.chain = {source: a.uid, until: b.tick + 12, count}
+  boost *= 1 + (count - 1) * .15
+  a.energy = 0
+ }
+ const damageBoost = boost * (kit.variant === 1 ? 1.15 : kit.variant === 2 ? .9 : 1) * (burst && a.path === "assault" ? 1.2 : burst && a.path === "support" ? .85 : 1)
+ const care = boost * (kit.variant === 2 ? 1.15 : kit.variant === 1 ? .9 : 1) * (burst && a.path === "support" ? 1.5 : burst && a.path === "assault" ? .85 : 1)
+ const name = support ? ["Mái bếp chung", "Than hồng", "Mùa xanh", "Dòng hồi ức", "Mộng ngọt"][kit.school] : burst ? kit.burst : kit.primary
+ if (kit.variant === 1 && burst) target.shield = Math.floor(target.shield * .7)
+ a.motion = "cast"; a.motionAt = b.tick
+ event(b, a, burst ? "burst" : "skill", a.role === "healer" ? burst ? friends : [weak] : a.role === "guardian" ? burst ? friends : [a] : [target], 0, name)
+ if (support) {
+  if (a.school === "hearth") shield(b,a,friends.filter(f=>f.slot<2),a.maxHp*.15*care,name)
+  if (a.school === "grove") heal(b,a,friends,.1*care,name)
+  if (a.school === "tide") for (const f of friends) f.energy = Math.min(100,f.energy+Math.round(14*boost))
+  if (a.school === "sugar") for (const e of enemies) e.weaken=20
+  if (a.school === "ember") {damage(b,a,target,damageBoost);target.burn=20}
+ } else if (a.role === "healer") {
+  heal(b,a,burst ? friends : [weak],(burst ? .34 : .25)*care,name)
+  if (burst) for (const f of friends) {f.stun=0;f.weaken=0}
+ } else if (a.role === "guardian") {
+  shield(b,a,burst ? friends : [...new Set([a,weak])],a.maxHp*(burst ? .27 : .18)*care,name)
+  for (const e of burst ? enemies : [target]) damage(b,a,e,(burst ? 1.8 : 1.3)*damageBoost)
+ } else if (a.role === "mage") {
+  // Each element changes the target pattern as well as its secondary effect.
+  const targets = burst ? enemies : a.school === "tide" ? enemies.filter(e=>e.slot<2) : a.school === "sugar" ? enemies.filter(e=>e.slot>=2).slice(0,2) : [target]
+  for (const e of targets.length ? targets : [target]) damage(b,a,e,(burst ? 3.2 : a.school === "tide" ? 1.6 : 2.4)*damageBoost)
+ } else if (a.role === "trickster") {
+  damage(b,a,target,(burst ? 3.5 : 2.1)*damageBoost)
+  for (const e of burst ? enemies : [target]) {e.stun=burst ? 6 : 4;e.weaken=16}
+ } else {
+  const victim = burst && !enemies.some(e=>e.uid===b.focus) ? [...enemies].sort((x,y)=>x.hp-y.hp)[0] : target
+  damage(b,a,victim,(burst ? 5*(victim.burn ? 1.25 : 1) : 2.1)*damageBoost)
+ }
+ if (kit.variant === 2 && !support) for (const f of friends.filter(f=>f.uid!==a.uid)) {
+  f.energy = Math.min(100,f.energy+6)
+  if (burst && f.nextSkill > b.tick) f.nextSkill = Math.max(b.tick+1,f.nextSkill-8)
+ }
+ if (!support) {
+  if (a.school === "hearth") shield(b,a,[weak],weak.maxHp*.12*care,name)
+  if (a.school === "ember") target.burn=16
+  if (a.school === "grove") heal(b,a,[weak],.08*care,name)
+  if (a.school === "tide") for (const f of friends.filter(f=>f.uid!==a.uid)) f.energy=Math.min(100,f.energy+8)
+  if (a.school === "sugar") target.weaken=16
+ }
+ if (target.hp > 0) {
+  const reaction = target.mark && target.mark.until >= b.tick ? reactionName(target.mark.school,a.school) : null
+  if (reaction) {
+   delete target.mark
+   if (reaction === "Bốc hơi") damage(b,a,target,.8)
+   if (reaction === "Nở rộ") {target.burn=20;target.weaken=20}
+   if (reaction === "Sinh trưởng") heal(b,a,friends,.1,reaction)
+   if (reaction === "Mộng ấm") for (const f of friends) shield(b,a,[f],f.maxHp*.12,reaction)
+   event(b,a,"reaction",[target],0,reaction)
+  } else target.mark={school:a.school,until:b.tick+20}
+ }
+ if (!burst) a.energy=Math.min(100,a.energy+12)
+}
+
 function checkResult(b: RpgBattle) {
+  if (b.rulesVersion === 510 && b.focus && !alive(b,"enemy").some(a=>a.uid===b.focus)) b.focus = null
   if (b.warning && !b.actors.some(a => a.uid === b.warning!.source && a.hp > 0)) b.warning = null
   if (!alive(b, "ally").length || b.tick >= 720) {
     b.result = "loss"
@@ -750,6 +844,7 @@ export function reduceRpg(
   if (
     [
       "formation",
+      "path",
       "train",
       "skill",
       "gear",
@@ -762,7 +857,11 @@ export function reduceRpg(
     return error(
       "Kết thúc hoặc rút khỏi chuyến đi trước khi đổi đội và nâng cấp.",
     )
-  if (action.type === "formation") {
+  if (action.type === "path") {
+    const hero = save.roster.find(h=>h.uid===action.uid)
+    if (!hero || hero.level < 10 || !["assault", "support"].includes(action.path)) return error("Hướng tuyệt kỹ mở ở cấp 10.")
+    hero.path = action.path
+  } else if (action.type === "formation") {
     const heroes = action.uids.map((uid) =>
       save.roster.find((m) => m.uid === uid),
     )
@@ -871,6 +970,9 @@ export function reduceRpg(
         return error("Nhịp trận không hợp lệ.")
       if (b.paused || b.result) return { save: current ?? save, changed: false }
       run.battle = advanceRpgBattle(b, action.steps)
+    } else if (action.type === "focus") {
+      if (b.rulesVersion !== 510 || b.result || b.paused || (action.uid && !b.actors.some(a=>a.side==="enemy" && a.hp>0 && a.uid===action.uid))) return error("Chọn kẻ địch còn sống trong trận mới.")
+      b.focus = action.uid
     } else if (action.type === "burst") {
       const actor = b.actors.find(
         (a) => a.uid === action.uid && a.side === "ally",

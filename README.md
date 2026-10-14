@@ -1,3 +1,9 @@
+# Soul of Meal · Web 5.1 · Linh vị & liên hương
+
+Giao ước Vị Linh có minh hoạ linh thú riêng cho đủ 139 nhân vật, icon kỹ năng, cảnh tuyệt kỹ năm hệ và liên hương. Chọn hướng tuyệt kỹ ở cấp 10, ưu tiên mục tiêu, nối tuyệt kỹ và phản ứng nguyên tố để xây đội. TCG/RPG giữ canvas khi đổi động tác; Auto chess chuyển pose và cache lớp bàn. [Nội dung, bảo toàn save và kiểm chứng](dev/docs/web-v510/UPDATE.md) · [Ngân sách 6 MB](dev/docs/web-v510/BUDGET.md).
+
+Bản 5.1 dựa trên 5.0 (PR #41); chỉ web, không tự merge. Bộ sưu tập, tài nguyên, tiến trình cũ và luật trận 5.0 đang lưu được giữ. Các phần dưới là lịch sử phát hành.
+
 # Soul of Meal · Web 5.0 · Giao ước Vị Linh
 
 Adventure trở thành RPG đội 5 người: 4 map, mỗi map 5 màn nhỏ + 1 boss; tự đánh/kỹ năng thường, canh tuyệt kỹ và che chắn đòn boss. Ba dungeon 5 tầng farm Sổ KN, Sách kỹ năng, Quặng/Tinh hương; giữ HP/năng lượng giữa tầng và chọn điểm nghỉ. Nhân vật có cấp, bốn kỹ năng, thăng bậc và ba ô trang bị. Dùng chung sprite/nhạc/art TCG + Auto chess; bỏ renderer và media đi ô khỏi bản web. Cấp/KN, huy hiệu, tài nguyên và save Adventure cũ được giữ. [Thiết kế, chuyển dữ liệu và kiểm chứng](dev/docs/web-v500/UPDATE.md).

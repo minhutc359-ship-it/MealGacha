@@ -168,15 +168,15 @@ export function characterCacheStats() {
   }
 }
 
-// One 30fps clock for every TCG sprite. No React state changes per frame.
-const listeners = new Map<(now: number) => void, boolean>()
+// One adaptive 30/60fps clock for all shared sprites. No React state changes per frame.
+const listeners = new Map<(now: number) => void, boolean | (() => boolean)>()
 let handle = 0,
   last = 0,
   previousFrame = 0
 function tick(now: number) {
   const gap = previousFrame ? now - previousFrame : 16.7
   previousFrame = now
-  const active = [...listeners.values()].some(Boolean)
+  const active = [...listeners.values()].some(a => typeof a === "function" ? a() : a)
   const fps = !renderIsLight() && active ? 60 : 30
   if (now - last >= 1000 / fps - 1) {
     last = now
@@ -192,7 +192,7 @@ function visibility() {
   handle = 0
   if (!document.hidden && listeners.size) handle = requestAnimationFrame(tick)
 }
-export function subscribeCharacterClock(draw: (now: number) => void, active = false) {
+export function subscribeCharacterClock(draw: (now: number) => void, active: boolean | (() => boolean) = false) {
   if (!listeners.size) document.addEventListener("visibilitychange", visibility)
   listeners.set(draw, active)
   if (!handle && !document.hidden) handle = requestAnimationFrame(tick)
@@ -207,14 +207,19 @@ export function subscribeCharacterClock(draw: (now: number) => void, active = fa
 }
 
 // Use the full set of measured poses, including wide attack frames, for fitting.
+const boundsCache = new Map<string, {left: number; right: number; top: number; bottom: number; row: typeof SPRITE_SHEETS[keyof typeof SPRITE_SHEETS]["rows"][number]}>()
 export function characterBounds(model: CharacterModel) {
+  const key = `${model.sheet}:${model.row}`, cached = boundsCache.get(key)
+  if (cached) return cached
   const row = SPRITE_SHEETS[model.sheet].rows[model.row]
   if (!row) return null
-  return {
+  const bounds = {
     left: Math.min(...row.frames.map((f) => -f[4])),
     right: Math.max(...row.frames.map((f) => f[2] - f[4])),
     top: Math.min(...row.frames.map((f) => -f[5])),
     bottom: Math.max(...row.frames.map((f) => f[3] - f[5])),
     row,
   }
+  boundsCache.set(key, bounds)
+  return bounds
 }

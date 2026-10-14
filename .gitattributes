@@ -219,3 +219,6 @@ public/assets/adventure/** -filter -diff -merge -text
 
 # Small browser QA evidence is tracked as real bytes for PR review.
 dev/docs/web-v490/*.jpg -filter -diff -merge -text
+
+# Spirit portraits, skill icons and ultimate panels must ship as real WebP bytes.
+public/assets/rpg/** -filter -diff -merge -text

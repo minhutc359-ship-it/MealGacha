@@ -1,6 +1,9 @@
+import {useEffect} from "react"
+import { SpiritArt, SkillArt } from "./SpiritArt"
+import { spiritKit, REACTION_HELP, SPIRIT_SCHOOLS } from "../../game/adventureRpg/skills"
 import { CARD_MAP } from "../../game/catalog"
 import { tcgCharacter } from "../../game/tcgCharacterMotion"
-import { monsterCharacter } from "../../infrastructure/assets/characterSprites"
+import { monsterCharacter, acquireCharacterImage } from "../../infrastructure/assets/characterSprites"
 import { RPG_ROLE_NAMES } from "../../game/adventureRpg/engine"
 import { ELEMENTAL_IMPACTS, IMPACT_ROWS } from "../../game/visualPack"
 import type {
@@ -73,6 +76,7 @@ export function RpgBattleView({
   onAction: (action: RpgAction) => void
   readOnly?: boolean
 }) {
+  useEffect(()=>{const lease = acquireCharacterImage("/assets/rpg/spirit510/ultimates.webp");return ()=>lease.release()},[])
   const allies = b.actors.filter((a) => a.side === "ally"),
     burst = [...b.events]
       .reverse()
@@ -82,7 +86,7 @@ export function RpgBattleView({
   const blocked = readOnly || b.paused || paused || !!b.result
   return (
     <section
-      className={`rpg-battle ${quiet ? "is-quiet" : ""}`}
+      className={`rpg-battle ${quiet ? "is-quiet" : ""} ${b.paused || paused ? "is-paused" : ""}`}
       aria-label="Trận Adventure"
       inert={readOnly || undefined}
     >
@@ -114,6 +118,7 @@ export function RpgBattleView({
           </button>
         </div>
       </header>
+      {b.rulesVersion !== 510 && <small>Trận lưu 5.0 giữ luật kỹ năng cũ. Liên hương và phản ứng mở từ trận tiếp theo.</small>}
       <div
         className="rpg-arena"
         style={{
@@ -148,6 +153,7 @@ export function RpgBattleView({
                 ["hit", "heal", "shield"].includes(e.kind) &&
                 b.tick - e.tick < 3,
             )
+          const shownValue = hit ? hit.values?.[a.uid] ?? hit.value : 0
           const guarding =
             b.tick < b.guardUntil &&
             a.side === "ally" &&
@@ -177,8 +183,8 @@ export function RpgBattleView({
                 quiet={quiet}
                 paused={paused || b.paused}
                 flip={a.side === "enemy"}
-                fallback={CARD_MAP[a.id]?.art}
               />
+              {a.side === "enemy" && a.hp > 0 && b.rulesVersion === 510 && <button className={`rpg-focus ${b.focus === a.uid ? "is-selected" : ""}`} type="button" disabled={blocked} aria-pressed={b.focus === a.uid} aria-label={`Ưu tiên ${a.boss ? "boss" : a.name} ${a.slot + 1}`} onClick={() => onAction({type: "focus", uid: b.focus === a.uid ? null : a.uid})}>⌖</button>}
               {!quiet && hit && (
                 <span
                   key={`fx:${hit.serial}`}
@@ -190,10 +196,10 @@ export function RpgBattleView({
                   aria-hidden="true"
                 />
               )}
-              {hit && hit.value > 0 && (
+              {hit && shownValue > 0 && (
                 <b key={hit.serial} className={`rpg-number kind-${hit.kind}`}>
                   {hit.kind === "hit" ? "−" : "+"}
-                  {hit.value}
+                  {shownValue}
                 </b>
               )}
               <div className="rpg-actor-caption">
@@ -207,6 +213,7 @@ export function RpgBattleView({
                     energy
                   />
                 )}
+                {a.mark && a.mark.until >= b.tick && <small className={`rpg-mark school-${a.mark.school}`} title="Dấu nguyên tố">✧ {a.mark.school === "ember" ? "Hỏa" : a.mark.school === "tide" ? "Thủy" : a.mark.school === "grove" ? "Mộc" : a.mark.school === "hearth" ? "Bếp" : "Ngọt"}</small>}
                 {(a.burn > 0 || a.stun > 0 || a.weaken > 0) && (
                   <small>
                     {a.burn ? "♨" : ""} {a.stun ? "✦" : ""}{" "}
@@ -217,12 +224,21 @@ export function RpgBattleView({
             </div>
           )
         })}
+        {!quiet && b.events.filter(e => ["skill", "burst"].includes(e.kind) && b.tick-e.tick < 3).slice(-3).map(e => {
+          const source = b.actors.find(a=>a.uid===e.source), target = b.actors.find(a=>a.uid===e.targets[0])
+          if (!source || !target) return null
+          const p = position(source), q = position(target), x = parseFloat(p.left), y = parseFloat(p.top)-10, tx = parseFloat(q.left), ty = parseFloat(q.top)-10
+          return <svg key={`spell:${e.serial}`} className={`rpg-spell-fx school-${e.school}`} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path className="spell-path" d={`M${x},${y} Q${(x+tx)/2},${Math.max(8,Math.min(y,ty)-18)} ${tx},${ty}`} /><circle className="spell-ring" cx={tx} cy={ty} r={e.kind === "burst" ? 10 : 5} /></svg>
+        })}
+        {b.events.filter(e=>e.kind === "reaction" && b.tick-e.tick < 4).slice(-1).map(e=><div key={`reaction:${e.serial}`} className={`rpg-reaction-pill school-${e.school}`} role="status"><SkillArt index={60 + ["Bốc hơi","Nở rộ","Sinh trưởng","Mộng ấm"].indexOf(e.text)} />{e.text}</div>)}
         {burst && (
           <div
             className={`rpg-burst-banner school-${burst.school}`}
             key={burst.serial}
           >
-            <span>✦ TUYỆT KỸ</span>
+            <span className="rpg-ultimate-art" aria-hidden="true" style={{backgroundPosition: `${(b.chain?.count === 3 ? 5 : SPIRIT_SCHOOLS.indexOf(burst.school)) % 2 * 100}% ${Math.floor((b.chain?.count === 3 ? 5 : SPIRIT_SCHOOLS.indexOf(burst.school)) / 2) * 50}%`}} />
+            <SpiritArt id={b.actors.find(a=>a.uid===burst.source)?.id ?? ""} />
+            <span>✦ TUYỆT KỸ {b.chain && b.chain.count > 1 ? `· LIÊN HƯƠNG ×${b.chain.count}` : ""}</span>
             <strong>{burst.text}</strong>
           </div>
         )}
@@ -230,6 +246,7 @@ export function RpgBattleView({
           <div className="rpg-pause-mark">Trận đang tạm dừng</div>
         )}
       </div>
+      {b.rulesVersion === 510 && <details className="rpg-strategy"><summary>Liên hương {b.chain && b.chain.until >= b.tick ? `×${b.chain.count} · ${((b.chain.until-b.tick)/4).toFixed(1)}s` : "· Chạm ⌖ để ưu tiên mục tiêu"}</summary><p>{REACTION_HELP}</p></details>}
       <div className="rpg-tactical">
         <span>
           {last?.text ??
@@ -263,6 +280,8 @@ export function RpgBattleView({
             disabled={blocked || a.energy < 100 || !a.hp || a.stun > 0}
             onClick={() => onAction({ type: "burst", uid: a.uid })}
           >
+            <SpiritArt id={a.id} />
+            <SkillArt index={spiritKit(a.id, a.role).icon + 1} />
             <strong>{a.name}</strong>
             <small>{RPG_ROLE_NAMES[a.role]}</small>
             <RpgMeter value={a.hp} max={a.maxHp} label={`HP ${a.name}`} />
