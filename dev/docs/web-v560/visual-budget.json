@@ -1,0 +1,6 @@
+{
+  "baselineVersion": "5.3.0",
+  "baselineBytes": 87262374,
+  "additionalBudgetBytes": 2000000,
+  "originalBudget": "Web 5.6 presentation guard: up to 2 MB above the verified Web 5.3 build, while retaining the existing 100 MB static and 650 KB JavaScript gzip ceilings."
+}

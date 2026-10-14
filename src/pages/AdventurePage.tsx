@@ -4,6 +4,8 @@ import { SPIRIT_IDS } from "../game/adventureRpg/spiritArt"
 import { SPIRIT_RARITY, SPIRIT_RARITY_NAMES, SPIRIT_THRESHOLDS } from "../domain/spiritSummons"
 import { collectedSpiritCards, spiritProgress } from "../domain/spiritCollection"
 import { RpgCinematic } from "../components/game/RpgCinematic"
+import { AdventureTransition } from "../components/game/AdventureTransition"
+import { AdventureVillage } from "../components/game/AdventureVillage"
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react"
 import { SpiritArt, SkillArt } from "../components/game/SpiritArt"
 import { REACTION_HELP } from "../game/adventureRpg/skills"
@@ -44,6 +46,11 @@ import { useGameStore } from "../game/useGameStore"
 import { useAppStore } from "../store/useAppStore"
 import { gameAudio } from "../infrastructure/audio/gameAudio"
 import { ELEMENTAL_BOARDS } from "../game/visualPack"
+import {
+  battlePresentationSequence,
+  type AdventureHomeTab,
+  type BattlePresentationPhase,
+} from "../game/adventureV560"
 import "../game/adventureRpg/rpg.css"
 
 const RESOURCE_NAMES: Record<keyof RpgResources, string> = {
@@ -288,8 +295,8 @@ export function AdventurePage() {
   const [params] = useSearchParams()
   const requestedHero = params.get("hero")
   const allRoster = useMemo(()=>run ? save.roster : [...save.roster,...SPIRIT_IDS.filter(id=>!save.roster.some(h=>h.cardId===id)).map(id=>({uid:`card:${id}`,cardId:id,level:1,xp:0,rank:1,skills:[1,1,1,1] as [number,number,number,number],gear:[0,0,0] as [number,number,number]}))],[save.roster,!!run])
-  const [tab, setTab] = useState<"campaign" | "dungeon" | "heroes" | "help">(
-    requestedHero ? "heroes" : "campaign",
+  const [tab, setTab] = useState<AdventureHomeTab>(
+    requestedHero ? "heroes" : "village",
   )
   const [mapIndex, setMapIndex] = useState(() =>
     Math.min(3, RPG_MAPS.filter((m) => save.stars[`${m.id}-6`]).length),
@@ -304,6 +311,12 @@ export function AdventurePage() {
   } | null>(null)
   const [confirmExit, setConfirmExit] = useState(false)
   const [hidden, setHidden] = useState(document.hidden)
+  const [transition, setTransition] = useState<{
+    label: string
+    complete: () => void
+  } | null>(null)
+  const [battlePresentation, setBattlePresentation] =
+    useState<BattlePresentationPhase>("fight")
   const shortSound = useRef<ReturnType<typeof gameAudio.playClip> | null>(null)
   useEffect(()=>()=>shortSound.current?.stop(),[])
   useEffect(()=>{if(b?.paused||hidden)shortSound.current?.stop()},[b?.paused,hidden])
@@ -324,6 +337,47 @@ export function AdventurePage() {
             ? "ember"
             : "hearth")
     ]
+  const quiet =
+    prefs.reducedMotion ||
+    prefs.graphicsQuality === "low" ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  const beginTransition = useCallback((label: string, complete: () => void) => {
+    setTransition((current) => current ?? { label, complete })
+  }, [])
+  const visitVillage = useCallback(
+    (next: Exclude<AdventureHomeTab, "village">, name: string) =>
+      beginTransition(`Đang tới ${name}`, () => setTab(next)),
+    [beginTransition],
+  )
+  useEffect(() => {
+    if (!transition) return
+    const handle = window.setTimeout(() => {
+      const complete = transition.complete
+      setTransition(null)
+      complete()
+    }, quiet ? 480 : 1_150)
+    return () => clearTimeout(handle)
+  }, [transition, quiet])
+  useEffect(() => {
+    if (!b || b.result) {
+      setBattlePresentation("fight")
+      return
+    }
+    const sequence = battlePresentationSequence(b.wave, quiet)
+    const timers: number[] = []
+    let elapsed = 0
+    setBattlePresentation(sequence[0].phase)
+    for (let index = 1; index < sequence.length; index++) {
+      elapsed += sequence[index - 1].duration
+      timers.push(
+        window.setTimeout(
+          () => setBattlePresentation(sequence[index].phase),
+          elapsed,
+        ),
+      )
+    }
+    return () => timers.forEach(clearTimeout)
+  }, [b?.id, b?.wave, !!b?.result, quiet])
   useGameMusic(
     run
       ? b?.actors.some((a) => a.boss && a.hp > 0)
@@ -359,7 +413,7 @@ export function AdventurePage() {
     }
   }, [])
   useEffect(() => {
-    if (!b || b.result || b.paused || b.cinematic || hidden || story || confirmExit) return
+    if (!b || b.result || b.paused || b.cinematic || hidden || story || confirmExit || transition || battlePresentation !== "fight") return
     const handle = window.setInterval(() => {
       if (!document.hidden) dispatch({ type: "tick", steps: b.speed })
     }, 250)
@@ -373,6 +427,8 @@ export function AdventurePage() {
     hidden,
     story,
     confirmExit,
+    transition,
+    battlePresentation,
     dispatch,
   ])
   useEffect(() => {
@@ -461,9 +517,10 @@ export function AdventurePage() {
                 : `${dungeon?.name} · Tầng ${run.dungeon?.floor}/5${run.dungeon?.scaling ? ` · Đội cấp TB ${run.dungeon.scaling.average}` : ""}`
             }
             art={art}
-            quiet={prefs.reducedMotion || prefs.graphicsQuality === "low"}
-            reduced={prefs.reducedMotion || window.matchMedia("(prefers-reduced-motion: reduce)").matches}
+            quiet={quiet}
+            reduced={quiet}
             paused={hidden || !!story || confirmExit}
+            presentation={battlePresentation}
             onAction={act}
           />
           <footer className="rpg-run-footer">
@@ -568,7 +625,12 @@ export function AdventurePage() {
                     <button
                       type="button"
                       className="rpg-primary"
-                      onClick={() => act({ type: "next" })}
+                      onClick={() =>
+                        beginTransition(
+                          `Lên tầng ${run.dungeon!.floor + 1}`,
+                          () => act({ type: "next" }),
+                        )
+                      }
                     >
                       Lên tầng {run.dungeon.floor + 1} →
                     </button>
@@ -630,23 +692,33 @@ export function AdventurePage() {
               ),
             )}
           </div>
-          <nav className="rpg-tabs" aria-label="Adventure">
-            {([
-              ["campaign", "Đi map"],
-              ["dungeon", "Dungeon"],
-              ["heroes", "Đội hình"],
-              ["help", "Hướng dẫn"],
-            ] as const).map(([id, label]) => (
+          {tab !== "village" && (
+            <nav className="rpg-tabs rpg-place-bar" aria-label="Địa điểm hiện tại">
               <button
                 type="button"
-                key={id}
-                aria-current={tab === id ? "page" : undefined}
-                onClick={() => setTab(id)}
+                onClick={() => beginTransition("Trở về Làng Giao Ước", () => setTab("village"))}
               >
-                {label}
+                ← Về làng
               </button>
-            ))}
-          </nav>
+              <strong>
+                {tab === "campaign"
+                  ? "Cổng Ký Ức"
+                  : tab === "dungeon"
+                    ? "Kho Sương"
+                    : tab === "heroes"
+                      ? "Nhà Giao Ước"
+                      : "Đình Đèn"}
+              </strong>
+              <small>Muốn đổi chức năng, hãy trở về làng và đi tới địa điểm khác.</small>
+            </nav>
+          )}
+          {tab === "village" && (
+            <AdventureVillage
+              save={save}
+              quiet={quiet}
+              onVisit={visitVillage}
+            />
+          )}
           {tab === "campaign" && (
             <section className="rpg-campaign-screen">
               <nav className="rpg-map-tabs" aria-label="Chọn map">
@@ -721,7 +793,12 @@ export function AdventurePage() {
                 })}
               </div>
               <div className="rpg-map-footer">
-                <button type="button" onClick={() => setTab("heroes")}>
+                <button
+                  type="button"
+                  onClick={() =>
+                    beginTransition("Đang tới Nhà Giao Ước", () => setTab("heroes"))
+                  }
+                >
                   Chuẩn bị đội →
                 </button>
                 <span>
@@ -802,7 +879,11 @@ export function AdventurePage() {
                     <button
                       type="button"
                       className="rpg-primary"
-                      onClick={() => act({ type: "dungeon", kind: d.id, tier })}
+                      onClick={() =>
+                        beginTransition(`Đang mở ${d.name}`, () =>
+                          act({ type: "dungeon", kind: d.id, tier }),
+                        )
+                      }
                     >
                       Vào dungeon →
                     </button>
@@ -961,13 +1042,19 @@ export function AdventurePage() {
           </button>
         </div>
       )}
+      {transition && (
+        <AdventureTransition save={save} label={transition.label} quiet={quiet} />
+      )}
       {story && (
         <StoryDialog
           key={story.start ?? story.lines[0].text}
           lines={story.lines}
           onCancel={() => setStory(null)}
           onClose={() => {
-            if (story.start) act({ type: "start", stageId: story.start })
+            if (story.start)
+              beginTransition("Vị Linh đang tiến vào chiến địa", () =>
+                act({ type: "start", stageId: story.start! }),
+              )
             setStory(null)
           }}
         />

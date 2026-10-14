@@ -1,0 +1,32 @@
+{
+  "release": "5.6.0",
+  "source": "Soul of Meal project images previously created and retained in the user's ChatGPT Library",
+  "processing": "Converted to 960 x 960 WebP at quality 76; no third-party game imagery or external downloads",
+  "assets": [
+    {
+      "path": "public/assets/loading/v560/intro-lantern-market.webp",
+      "libraryTitle": "Culinary Spirits at the Lantern Market.png"
+    },
+    {
+      "path": "public/assets/loading/v560/intro-jade-adventure.webp",
+      "libraryTitle": "Soul of Meal: Jade path adventure.png"
+    },
+    {
+      "path": "public/assets/loading/v560/intro-card-duel.webp",
+      "libraryTitle": "Culinary card duel under lantern glow.png"
+    },
+    {
+      "path": "public/assets/loading/v560/intro-auto-chess.webp",
+      "libraryTitle": "Jade Courtyard Auto Chess.png"
+    },
+    {
+      "path": "public/assets/loading/v560/intro-card-collection.webp",
+      "libraryTitle": "Magical lantern market card collection.png"
+    },
+    {
+      "path": "public/assets/tcg/map/living-chapters-7-12-v560.svg",
+      "source": "Original code-authored SVG for Web 5.6"
+    }
+  ],
+  "review": "Project provenance recorded; publisher should complete the normal input/reference-rights review before commercial transfer."
+}

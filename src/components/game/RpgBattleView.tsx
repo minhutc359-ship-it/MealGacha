@@ -10,6 +10,7 @@ import { CARD_MAP } from "../../game/catalog"
 import { tcgCharacter } from "../../game/tcgCharacterMotion"
 import { monsterCharacter, acquireCharacterImage } from "../../infrastructure/assets/characterSprites"
 import { RPG_ROLE_NAMES } from "../../game/adventureRpg/engine"
+import type { BattlePresentationPhase } from "../../game/adventureV560"
 import type {
   RpgAction,
   RpgActor,
@@ -58,6 +59,7 @@ export function RpgBattleView({
   onAction,
   readOnly = false,
   reduced = false,
+  presentation = "fight",
 }: {
   battle: RpgBattle
   title: string
@@ -67,6 +69,7 @@ export function RpgBattleView({
   onAction: (action: RpgAction) => boolean | void
   readOnly?: boolean
   reduced?: boolean
+  presentation?: BattlePresentationPhase
 }) {
   useEffect(()=>{const lease = acquireCharacterImage("/assets/rpg/spirit510/ultimates.webp");return ()=>lease.release()},[])
   const allies = b.actors.filter((a) => a.side === "ally"),
@@ -85,10 +88,10 @@ export function RpgBattleView({
     for(const id of partyKey.split(":"))for(const [folder,ext] of [["movies","mp4"],["sounds","mp3"]]){if(reduced && folder==="movies")continue;void fetch(`${AWAKENING_MEDIA}/${folder}/${id}.${ext}`,{signal:controller.signal,cache:"force-cache"}).catch(()=>{})}
     return ()=>controller.abort()
   },[partyKey,b.rulesVersion,b.cinematics,readOnly,reduced])
-  const blocked = readOnly || b.paused || paused || !!b.result || !!b.cinematic
+  const blocked = readOnly || b.paused || paused || !!b.result || !!b.cinematic || presentation !== "fight"
   return (
     <section
-      className={`rpg-battle ${quiet ? "is-quiet" : ""} ${b.paused || paused || b.cinematic ? "is-paused" : ""}`}
+      className={`rpg-battle ${quiet ? "is-quiet" : ""} ${b.paused || paused || b.cinematic ? "is-paused" : ""} presentation-${presentation}`}
       aria-label="Trận Adventure"
       inert={readOnly || undefined}
     >
@@ -155,7 +158,8 @@ export function RpgBattleView({
             (a.slot < 2 ? "front" : "back") === b.guardRow
           const ownCue = [...b.events].reverse().find(e=>e.source===a.uid && (e.animation || e.kind === "burst" || e.kind === "skill") && b.tick-e.tick<4)
           const charging = b.warning?.source === a.uid && !a.stun
-          const motion = !a.hp ? "fall" : b.result === "win" ? "victory" : charging || ownCue && ownCue.animation !== "attack" ? "cast" : ownCue?.animation === "attack" ? "attack" : b.tick-a.motionAt<4 ? a.motion : "idle"
+          const arriving = ["enter", "wave-enter", "start"].includes(presentation)
+          const motion = arriving && a.hp ? "victory" : !a.hp ? "fall" : b.result === "win" ? "victory" : charging || ownCue && ownCue.animation !== "attack" ? "cast" : ownCue?.animation === "attack" ? "attack" : b.tick-a.motionAt<4 ? a.motion : "idle"
           const motionStamp = motion === "fall" || motion === "victory" ? String(a.motionAt) : charging ? `charge:${b.warning!.until}` : ownCue ? `cue:${ownCue.serial}` : String(a.motionAt)
           return (
             <div
@@ -208,6 +212,21 @@ export function RpgBattleView({
         })}
         </div>
         <RpgBattleVfx battle={b} quiet={quiet} paused={paused || b.paused || !!b.cinematic} />
+        {presentation !== "fight" && (
+          <div className={`rpg-battle-opening phase-${presentation}`} role="status" aria-live="polite">
+            {presentation === "wave-clear" ? (
+              <><small>HƯƠNG VỊ ĐÃ ĐƯỢC GIỮ</small><strong>ĐỢT {b.wave} HOÀN TẤT</strong></>
+            ) : presentation === "ready" ? (
+              <><small>HAI ĐỘI ĐÃ VÀO VỊ TRÍ</small><strong>SẴN SÀNG</strong></>
+            ) : presentation === "start" ? (
+              <><small>GIỮ NHỊP · PHỐI HỢP TUYỆT KỸ</small><strong>BẮT ĐẦU!</strong></>
+            ) : presentation === "wave-enter" ? (
+              <><small>ĐỊCH MỚI ĐANG TIẾN VÀO</small><strong>ĐỢT {b.wave + 1}</strong></>
+            ) : (
+              <><small>HAI PHE TIẾN VÀO CHIẾN ĐỊA</small><strong>GIAO ƯỚC XUẤT TRẬN</strong></>
+            )}
+          </div>
+        )}
         {b.events.filter(e=>e.kind === "reaction" && b.tick-e.tick < 4).slice(-1).map(e=><div key={`reaction:${e.serial}`} className={`rpg-reaction-pill school-${e.school}`} role="status"><SkillArt index={60 + ["Bốc hơi","Nở rộ","Sinh trưởng","Mộng ấm"].indexOf(e.text)} />{e.text}</div>)}
         {burst && !quiet && !b.cinematic && (
           <div
