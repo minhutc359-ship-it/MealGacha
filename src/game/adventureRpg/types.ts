@@ -4,6 +4,7 @@ import type { School } from "../types"
 
 export type RpgRole = "guardian" | "striker" | "mage" | "healer" | "trickster"
 export type DungeonKind = "experience" | "skills" | "forge"
+export type RpgDifficulty = "normal" | "hard" | "extreme"
 export type EnemyStyle = "bulwark" | "raider" | "hexer" | "mender"
 export interface RpgHero {
   uid: string
@@ -49,6 +50,7 @@ export interface RpgMap {
 }
 export interface RpgEnemy {
   strength?: number
+  difficultyMultiplier?: 1 | 3 | 8
   uid: string
   id: string
   name: string
@@ -106,6 +108,7 @@ export interface RpgEvent {
   animation?: "attack" | "primary" | "support" | "ultimate" | "enemy"
 }
 export interface RpgBattle {
+  difficulty?: RpgDifficulty
   rulesVersion?: 510 | 520 | 530
   cinematics?: boolean
   cinematic?: {source: string; serial: number}
@@ -148,6 +151,7 @@ export interface RpgDungeon {
   bonus: number
 }
 export interface RpgRun {
+  difficulty?: RpgDifficulty
   kind: "campaign" | "dungeon"
   stageId: string | null
   battle: RpgBattle
@@ -160,6 +164,8 @@ export interface RpgSave {
   formation: string[]
   resources: RpgResources
   stars: Record<string, number>
+  /** Independent hard/extreme clear stars; normal keeps legacy stars untouched. */
+  modeStars?: Record<string, number>
   choices: Record<string, 0 | 1>
   dungeonClears: Record<string, number>
   run: RpgRun | null
@@ -188,6 +194,7 @@ export type RpgAction = { type: "sync"; cards?: Record<string, number> } | {type
   uid: string
 } | { type: "start"
   stageId: string
+  difficulty?: RpgDifficulty
 } | {
   type: "dungeon"
   kind: DungeonKind

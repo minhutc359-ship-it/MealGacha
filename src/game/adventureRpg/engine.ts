@@ -7,6 +7,7 @@ import { CARD_MAP } from "../catalog"
 import { UNIT_MAP } from "../autochess/catalog"
 import type { GameSave, School } from "../types"
 import { RPG_MAPS, rpgStage } from "./content"
+import { nearestRpgOpponent } from "./autoTarget"
 import type {
   RpgAction,
   RpgActor,
@@ -179,13 +180,14 @@ export function syncRoster(save: RpgSave, cards: Record<string, number>) {
       have.add(id)
     }
 }
-export function stageUnlocked(save: RpgSave, id: string) {
+export function stageUnlocked(save: RpgSave, id: string, difficulty: "normal" | "hard" | "extreme" = "normal") {
   const stage = rpgStage(id)
   if (!stage) return false
-  if (stage.index > 0) return !!save.stars[`${stage.map.id}-${stage.index}`]
-  return (
-    stage.mapIndex === 0 || !!save.stars[`${RPG_MAPS[stage.mapIndex - 1].id}-6`]
-  )
+  if (stage.index > 0) {
+    const previous = `${stage.map.id}-${stage.index}`
+    return difficulty === "normal" ? !!save.stars[previous] : !!save.modeStars?.[`${difficulty}:${previous}`]
+  }
+  return stage.mapIndex === 0 || !!save.stars[`${RPG_MAPS[stage.mapIndex - 1].id}-6`]
 }
 export const dungeonTierCap = (save: RpgSave) =>
   Math.min(3, 1 + RPG_MAPS.filter((map) => save.stars[`${map.id}-6`]).length)
@@ -303,7 +305,7 @@ function loadEnemies(b: RpgBattle) {
   for (const [slot, e] of b.waves[b.wave].entries()) {
     const modern = (b.rulesVersion ?? 0) >= 520
     const hp = modern
-      ? Math.round((510 + e.level * 87) * (e.boss ? 12 : e.elite ? 1.65 : 1) * (e.style === "bulwark" ? 1.2 : 1) * (e.strength ?? 1))
+      ? Math.round((510 + e.level * 87) * (e.boss ? 12 : e.elite ? 1.65 : 1) * (e.style === "bulwark" ? 1.2 : 1) * (e.strength ?? 1)) * (e.difficultyMultiplier ?? 1)
       : Math.round((140 + e.level * 22) * (e.boss ? 6.8 : 1))
     b.actors.push({
       uid: e.uid,
@@ -318,8 +320,8 @@ function loadEnemies(b: RpgBattle) {
       skills: [1, 1, 1, 1],
       hp,
       maxHp: hp,
-      attack: modern ? Math.round((16 + e.level * 2.8) * (e.boss ? 1.9 : e.elite ? 1.25 : 1) * Math.sqrt(e.strength ?? 1)) : Math.round((15 + e.level * 2.5) * (e.boss ? 1.7 : 1)),
-      armor: modern ? e.boss ? 26 : e.style === "bulwark" ? 22 : e.elite ? 14 : 7 : e.boss ? 18 : 5,
+      attack: modern ? Math.round((16 + e.level * 2.8) * (e.boss ? 1.9 : e.elite ? 1.25 : 1) * Math.sqrt(e.strength ?? 1)) * (e.difficultyMultiplier ?? 1) : Math.round((15 + e.level * 2.5) * (e.boss ? 1.7 : 1)),
+      armor: (modern ? e.boss ? 26 : e.style === "bulwark" ? 22 : e.elite ? 14 : 7 : e.boss ? 18 : 5) * (e.difficultyMultiplier ?? 1),
       energy: b.rulesVersion === 530 ? e.boss ? 80 : 60 : 0,
       shield: 0,
       burn: 0,
@@ -439,7 +441,7 @@ function targetFor(b: RpgBattle, a: RpgActor, back = false) {
   const taunt = b.rulesVersion === 530 && a.side === "enemy" ? enemies.find(t=>t.traits?.taunt) : undefined
   const focus = a.side === "ally" && ((b.rulesVersion ?? 0) >= 510) ? enemies.find(e => e.uid === b.focus) : undefined
   return (
-    taunt ?? focus ?? (back ? enemies.find((t) => rowOf(t) === "back") : enemies[0]) ?? enemies[0]
+    taunt ?? focus ?? (a.side === "ally" && b.rulesVersion === 530 ? nearestRpgOpponent(a, enemies) : undefined) ?? (back ? enemies.find((t) => rowOf(t) === "back") : enemies[0]) ?? enemies[0]
   )
 }
 function cast(b: RpgBattle, a: RpgActor, burst: boolean, support = false) {
@@ -614,6 +616,10 @@ function enemySkill(b: RpgBattle, a: RpgActor, row: "front" | "back") {
     if (a.id === "boss-drum") shield(b, a, friends, a.maxHp * .035, name)
     if (a.id === "bamboo-wraith") heal(b, a, [a], .045, name)
     if (a.id === "boss-lotus") { heal(b, a, friends, .07, name); shield(b, a, friends.filter(f=>!f.boss), a.attack * 1.5, name) }
+    if (a.id === "boss-blue-root") { heal(b, a, [a], .05, name); shield(b, a, friends, a.maxHp * .025, name) }
+    if (a.id === "boss-mirror-sugar") { const fragile = [...foes].sort((x,y)=>x.hp/x.maxHp-y.hp/y.maxHp)[0]; if(fragile){damage(b,a,fragile,1.15);fragile.energy=Math.max(0,fragile.energy-20)}; shield(b,a,[a],a.maxHp*.04,name) }
+    if (a.id === "boss-char-clock") { for(const t of targets){t.burn=20;t.weaken=16;if(a.phase)damage(b,a,t,.75)} }
+    if (a.id === "boss-last-banquet") { for(const t of targets){t.wither=20;t.weaken=16};shield(b,a,friends,a.maxHp*.025,name) }
   } else if (a.style === "bulwark") {
     const weak = [...friends].sort((x,y)=>x.hp/x.maxHp-y.hp/y.maxHp)[0]
     shield(b,a,[...new Set([a,weak])],a.maxHp * .13,name)
@@ -625,6 +631,11 @@ function enemySkill(b: RpgBattle, a: RpgActor, row: "front" | "back") {
       if (a.style === "hexer") { t.energy = Math.max(0,t.energy-18); t.weaken=16; t.wither=12 }
       else t.burn = 12
     }
+  }
+  if (b.difficulty && b.difficulty !== "normal" && (a.elite || a.boss)) {
+    const extreme = b.difficulty === "extreme"
+    for(const t of targets) { t.energy = Math.max(0,t.energy-(extreme?16:8)); if(extreme)t.weaken=Math.max(t.weaken,12) }
+    if(extreme && a.boss && a.phase) shield(b,a,[a],a.maxHp*.025,"Phản ấn cực hạn")
   }
   cue.targets = [...new Set(b.events.filter(e=>e.serial>cue.serial && e.source===a.uid && ["hit","heal","shield"].includes(e.kind)).flatMap(e=>e.targets))]
 }
@@ -906,7 +917,9 @@ export function reduceRpg(
     }
   } else if (action.type === "start") {
     const stage = rpgStage(action.stageId)
-    if (!stage || !stageUnlocked(save, action.stageId))
+    const difficulty = action.difficulty ?? "normal"
+    if (!["normal", "hard", "extreme"].includes(difficulty)) return error("Độ khó không hợp lệ.")
+    if (!stage || !stageUnlocked(save, action.stageId, difficulty))
       return error("Hoàn thành màn trước để mở đường.")
     save.serial++
     const waves = encounterWaves(
@@ -914,12 +927,14 @@ export function reduceRpg(
       stage.level,
       stage.boss ? 4 : 3,
       stage.boss ? { id: stage.map.boss, name: stage.map.bossName } : undefined,
+      false, 1, stage.map.id, difficulty,
     )
     save.run = {
       kind: "campaign",
+      difficulty,
       stageId: action.stageId,
       dungeon: null,
-      battle: createRpgBattle(save, waves, `rpg:${save.serial}`),
+      battle: { ...createRpgBattle(save, waves, `rpg:${save.serial}`), difficulty },
     }
   } else if (action.type === "dungeon") {
     if (
@@ -1025,14 +1040,20 @@ export function reduceRpg(
         let xp: number
         if (run.kind === "campaign") {
           const stage = rpgStage(run.stageId!)!,
-            first = !save.stars[run.stageId!]
+            difficulty = run.difficulty ?? "normal",
+            clearKey = `${difficulty}:${run.stageId!}`,
+            first = difficulty === "normal" ? !save.stars[run.stageId!] : !save.modeStars?.[clearKey]
           const level = (b.rulesVersion ?? 0) >= 520 ? stage.level : 1 + stage.mapIndex * 7 + stage.index
-          save.stars[run.stageId!] = Math.max(
+          if (difficulty === "normal") save.stars[run.stageId!] = Math.max(
             save.stars[run.stageId!] ?? 0,
             b.stars,
           )
+          else {
+            save.modeStars ??= {}
+            save.modeStars[clearKey] = Math.max(save.modeStars[clearKey] ?? 0, b.stars)
+          }
           loot = {
-            coins: 20 + level * 3 + (first ? 45 : 0),
+            coins: (20 + level * 3 + (first ? 45 : 0)) * (difficulty === "extreme" ? 4 : difficulty === "hard" ? 2 : 1),
             experience: first ? 2 : 1,
             books: stage.boss ? 3 : 1,
             ore: stage.boss ? 5 : 1,

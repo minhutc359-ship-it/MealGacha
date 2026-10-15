@@ -365,6 +365,90 @@ export const RPG_MAPS: RpgMap[] = [
     choices: ["Nấu lại công thức của cha", "Mời bạn bè cùng viết món mới"],
   },
 ]
+
+/** Bốn hồi hậu truyện. Giữ nguyên ID và thứ tự bốn map gốc để không đổi save. */
+const ADVANCED_CHAPTERS: {
+  id: string; name: string; subtitle: string; art: string
+  music: RpgMap["music"]; school: RpgMap["school"]; guide: RpgMap["guide"]
+  boss: string; bossName: string; stages: [string, string, string][]
+  ending: [string, string]; choices: [string, string]
+}[] = [
+  {
+    id: "mistwood", name: "Rừng Bếp Sương Lam", subtitle: "Lắng nghe những mầm cây từng bị lãng quên",
+    art: "/assets/events/cooling-summer/banner-vietnam.webp", music: "v4-market-warm", school: "grove", guide: "moc",
+    boss: "boss-blue-root", bossName: "Rễ Vương Không Ngủ",
+    stages: [
+      ["Bàn mầm đầu tiên", "Những hạt giống này không nảy mầm vì chẳng ai nhớ người từng gieo chúng.", "Một hạt đã thức. Hóa ra nó chỉ chờ tiếng gọi tên."],
+      ["Lối mòn lá bạc", "Thợ săn sương đặt bẫy phía sau đội hình. Đừng để người hồi phục bị cô lập.", "Lá bạc hướng về bếp cũ. Đường đã mở, chỉ còn vượt qua đám sương chặn cổng."],
+      ["Giếng nước cạn", "Đào sâu chưa chắc tìm được nước. Hãy tìm người còn nhớ mạch ngầm.", "Người giữ giếng đã kể lại đường nước chảy."],
+      ["Nhà hạt giống", "Tinh anh Dây Trói Đêm đang chiếm kho. Chuẩn bị thanh tẩy và giữ năng lượng.", "Những chiếc lọ chứa tên từng mùa vụ, không chỉ hạt giống."],
+      ["Hương từ gốc cổ", "Rễ Vương lấy ký ức làm lớp giáp. Phá hộ vệ để đối đầu nó.", "Dưới gốc cây còn một lời hẹn với người trồng đầu tiên."],
+      ["Gốc cổ · Rễ Vương", "Boss rút sinh lực và dựng khiên cho đồng minh. Ngắt tụ lực trước khi nó phục hồi.", "Rễ đã buông những ký ức không thuộc về mình. Cây sẽ lớn theo mùa mới."],
+    ],
+    ending: ["Ta có thể trồng khu vườn như cũ, hoặc để trẻ nhỏ thử giống cây mới.", "Ký ức được chăm sóc khi người sau được góp tay."],
+    choices: ["Gieo lại khu vườn cũ", "Mở vườn chung cho mọi người"],
+  },
+  {
+    id: "sugartower", name: "Tháp Đường Phân Kỳ", subtitle: "Tìm vị ngọt thật giữa hàng nghìn chiếc gương",
+    art: "/assets/events/dolce-vita/banner.webp", music: "story-mystery", school: "sugar", guide: "lien",
+    boss: "boss-mirror-sugar", bossName: "Nữ Chúa Gương Đường",
+    stages: [
+      ["Cầu thang phản chiếu", "Một bước sai sẽ dẫn về đúng căn phòng ta vừa rời. Nhìn đèn, đừng nhìn gương.", "Ánh đèn chỉ về chiếc cầu thang thật, nơi những người thợ đang chờ chúng ta."],
+      ["Quán bánh không vị", "Những chiếc bánh này đẹp hoàn hảo nhưng không có ai muốn ăn.", "Một miếng bánh được làm lại cho đúng sở thích của người nhận."],
+      ["Vũ hội hương", "Tiếng hát làm đội ta quên cách phối hợp. Giữ Vị Linh thanh tẩy ở tuyến an toàn.", "Khi tiếng hát dừng, mỗi người đã nhớ lại nhịp riêng."],
+      ["Gian gương khóa", "Tinh anh Kính Vỡ hút năng lượng để nhân bản phép. Hạ nó trước.", "Không còn phép nào phản chiếu được mùi hương thật."],
+      ["Tầng cao nhất", "Nữ Chúa sẽ đổi mục tiêu sau khi mất nửa máu. Chú ý cảnh báo trên sân.", "Sau cánh cửa là chiếc bàn chưa từng có khách."],
+      ["Điện gương · Nữ Chúa", "Boss sao chép khiên và dồn phép vào tuyến yếu. Đừng dùng hết tuyệt kỹ cùng lúc.", "Đường ngọt ngào nhất không giống nhau với tất cả mọi người."],
+    ],
+    ending: ["Bản công thức chuẩn có thể giúp người mới học, nhưng không nên trói mọi người.", "Một món ngon bắt đầu bằng người ta muốn mời ăn."],
+    choices: ["Lưu công thức gốc của tháp", "Cho mỗi người sáng tạo biến thể"],
+  },
+  {
+    id: "ashalley", name: "Hẻm Than Thiên Tinh", subtitle: "Giành lại ngọn lửa không thiêu rụi lời hứa",
+    art: "/assets/events/christmas-feast/banner.webp", music: "v4-harbor-warm", school: "ember", guide: "nhien",
+    boss: "boss-char-clock", bossName: "Thợ Rèn Đồng Hồ Tro",
+    stages: [
+      ["Ngõ bếp đỏ", "Lửa trong hẻm bùng lên mỗi khi người ta giận nhau. Đi sát nhau.", "Mọi người cùng tắt một bếp than trước khi cứu bếp tiếp theo."],
+      ["Chuông bảy nhịp", "Chuông báo bẫy chỉ vang một lần. Giữ nhịp và che chắn đúng tuyến.", "Nhịp chuông thứ bảy dẫn tới một xưởng bỏ hoang."],
+      ["Than hồng ký ức", "Có lửa dùng để đốt; có lửa giữ ấm. Đừng đánh nhầm người giữ bếp.", "Lửa đã được chia ra đủ cho cả ngõ. Không căn bếp nào còn phải chịu lạnh."],
+      ["Cổng lò sét", "Tinh anh Tro Kẹp đang chặn lối. Nhiều khiên nhưng dễ vỡ trước phép phối hệ.", "Cửa lò mở ra, nhưng chiếc đồng hồ trên tường vẫn tiếp tục quay ngược."],
+      ["Xưởng phút cuối", "Thợ Rèn muốn giữ mãi khoảnh khắc món ăn vừa chín. Điều đó sẽ khiến mọi bữa tiếp theo cháy.", "Không ai có thể dừng lửa bằng cách ngừng cả thời gian."],
+      ["Lò tro · Thợ Rèn", "Boss nung cháy cả tuyến, đốt năng lượng và giáng đòn thứ hai ở Extreme.", "Một ngọn lửa vừa đủ sẽ chờ bữa ăn ngày mai."],
+    ],
+    ending: ["Ta có thể giữ chiếc chuông cũ làm mốc, nhưng hãy cho bếp được thay đổi.", "Người mới đến sẽ mang theo ngọn lửa của mình."],
+    choices: ["Giữ nhịp bếp truyền thống", "Đón một nhịp bếp mới"],
+  },
+  {
+    id: "lasttable", name: "Mâm Cơm Hồi Quy", subtitle: "Đối diện câu hỏi ai được ngồi bên mâm",
+    art: "/assets/events/new-year-feast/banner.webp", music: "story-mystery", school: "hearth", guide: "bach",
+    boss: "boss-last-banquet", bossName: "Chủ Tiệc Không Bóng",
+    stages: [
+      ["Ghế trống đầu bàn", "Căn phòng đủ món nhưng thiếu một chiếc ghế. Có người vẫn đứng ngoài cửa.", "Chúng ta kê thêm một chiếc ghế trước khi dọn món. Ai cũng có chỗ ngồi."],
+      ["Người không tên", "Không ai được nhớ vì đã thắng một trận. Hãy nghe lời những người bị bỏ quên.", "Người khách đã nói tên mình. Đó là bước đầu của bữa cơm."],
+      ["Nồi canh chia đôi", "Hai nồi cùng ngon, nhưng cả hai bếp đều sợ phải thừa nhận điều đó.", "Mọi người thử nếm canh của nhau và cùng sửa lại công thức."],
+      ["Sân tiệc sương", "Tinh anh Bóng Cạn bảo vệ Chủ Tiệc. Phá hộ vệ trước, giữ phép thanh tẩy.", "Chiếc bàn bớt lạnh khi không còn ai gác cửa."],
+      ["Bài học sau cùng", "Chủ Tiệc chỉ giữ lại những người không bao giờ thất bại. Ta phải chứng minh điều ngược lại.", "Ai cũng từng sai; nhờ vậy bữa ăn mới có câu chuyện."],
+      ["Mâm cuối · Chủ Tiệc", "Boss khóa hồi phục, đổi tuyến và dựng khiên cho bóng hầu. Extreme sẽ phản đòn khi mất nửa máu.", "Cánh cửa đã mở. Bữa cơm này không còn cần một người quyết định ai xứng đáng."],
+    ],
+    ending: ["Ký ức chỉ sống khi có người kể tiếp, kể cả với một kết thúc khác.", "Bữa cơm của ngày mai bắt đầu bằng việc mời thêm một người."],
+    choices: ["Ghi lại toàn bộ hành trình", "Mở bàn tiệc không giới hạn ghế"],
+  },
+]
+RPG_MAPS.push(...ADVANCED_CHAPTERS.map((chapter): RpgMap => ({
+  id: chapter.id, name: chapter.name, subtitle: chapter.subtitle, art: chapter.art,
+  music: chapter.music, school: chapter.school, guide: chapter.guide,
+  boss: chapter.boss, bossName: chapter.bossName,
+  stages: chapter.stages.map(([name, before, after]) => ({
+    name, before: { speaker: chapter.guide, text: before },
+    after: { speaker: "grandmother", text: after },
+  })),
+  ending: [
+    { speaker: chapter.guide, text: chapter.ending[0] },
+    { speaker: "grandmother", text: chapter.ending[1] },
+  ],
+  choices: chapter.choices,
+})))
+
 export const RPG_STAGE_IDS = RPG_MAPS.flatMap((map) =>
   map.stages.map((_, i) => `${map.id}-${i + 1}`),
 )
@@ -379,7 +463,7 @@ export function rpgStage(id: string) {
         index,
         stage: map.stages[index],
         boss: index === 5,
-        level: 1 + mapIndex * 10 + index * 2,
+        level: Math.min(50, 1 + mapIndex * 10 + index * 2),
       }
   }
   return null

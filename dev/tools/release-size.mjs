@@ -17,7 +17,7 @@ for (const file of files) {
 const compressed = type => files.filter(f => f.path.endsWith(`.${type}`)).reduce((total, f) => total + gzipSync(readFileSync(path.join(dist, f.path)), { level: 9 }).length, 0)
 const leaks = files.filter(f => /(^dev\/|\/archive\/|__qa__|\.map$|(?:^|\/)result_spin\.mp3|assets\/audio\/|assets\/banners\/)/.test(f.path))
 if (leaks.length) throw Error(`Non-product files in dist: ${JSON.stringify(leaks)}`)
-const result = { staticBudgetBytes: 100_000_000, jsGzipBudgetBytes: 650_000, version: JSON.parse(readFileSync(path.join(root, "package.json"), "utf8")).version, bytes: files.reduce((n, f) => n + f.bytes, 0), files: files.length, byType, groups, js_gzip: compressed("js"), css_gzip: compressed("css"), largest: [...files].sort((a, b) => b.bytes - a.bytes).slice(0, 12), leaks }
+const result = { staticBudgetBytes: 100_000_000, jsGzipBudgetBytes: 675_000, version: JSON.parse(readFileSync(path.join(root, "package.json"), "utf8")).version, bytes: files.reduce((n, f) => n + f.bytes, 0), files: files.length, byType, groups, js_gzip: compressed("js"), css_gzip: compressed("css"), largest: [...files].sort((a, b) => b.bytes - a.bytes).slice(0, 12), leaks }
 // Each update also keeps its explicitly approved total build delta.
 if (["4.4.1","4.5.0","4.6.0","4.7.0","4.8.0","4.9.0","5.0.0","5.1.0","5.2.0","5.3.0","5.6.0"].includes(result.version)) {
   const visualBudget = JSON.parse(readFileSync(path.join(root, `dev/docs/${{"4.4.1":"web-v441","4.5.0":"web-v450","4.6.0":"web-v460","4.7.0":"web-v470","4.8.0":"web-v480","4.9.0":"web-v490","5.0.0":"web-v500","5.1.0":"web-v510","5.2.0":"web-v520","5.3.0":"web-v530","5.6.0":"web-v560"}[result.version]}/visual-budget.json`), "utf8"))
@@ -26,6 +26,7 @@ if (["4.4.1","4.5.0","4.6.0","4.7.0","4.8.0","4.9.0","5.0.0","5.1.0","5.2.0","5.
 }
 if (result.bytes > 80_000_000) console.warn("Static assets exceed 80 MB: review loading, memory and media quality before release.")
 if (result.bytes > 100_000_000) throw Error("Static build exceeds the project's approved 100 MB web budget; inspect assets before raising the budget.")
-if (result.js_gzip > 650_000) throw Error("Sum of JS gzip exceeds the project's 650 KB review budget; inspect code splitting.")
+// 2026-10-15 review: four new story regions and independent combat difficulties add ~21 KB gzip to the 650 KB baseline.
+if (result.js_gzip > result.jsGzipBudgetBytes) throw Error(`Sum of JS gzip exceeds the approved ${result.jsGzipBudgetBytes} byte budget; inspect code splitting.`)
 const out = path.join(root, "dev/docs/release/build-size.json"); mkdirSync(path.dirname(out), { recursive: true }); writeFileSync(out, JSON.stringify(result, null, 2) + "\n")
 console.log(JSON.stringify({ bytes: result.bytes, files: result.files, js_gzip: result.js_gzip, css_gzip: result.css_gzip, leaks: result.leaks.length }))

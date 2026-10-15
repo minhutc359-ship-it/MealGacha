@@ -6,6 +6,8 @@ import { heroStats, dungeonTierCap } from "./engine"
 
 const count = z.number().int().min(0).max(1_000_000_000)
 const bounded = z.number().int().min(0).max(100_000)
+const combatHp = z.number().int().min(0).max(1_000_000)
+const difficulty = z.enum(["normal", "hard", "extreme"])
 const uid = z.string().min(1).max(100)
 const cardId = z.string().refine((id) => CARD_MAP[id]?.kind === "unit")
 const school = z.enum(["hearth", "ember", "tide", "grove", "sugar"])
@@ -42,6 +44,7 @@ const hero = z.object({
 const enemyTraits = { elite: z.boolean().optional(), style: z.enum(["bulwark", "raider", "hexer", "mender"]).optional() }
 const enemy = z.object({
   strength: z.number().min(1).max(1.5).optional(),
+  difficultyMultiplier: z.union([z.literal(1),z.literal(3),z.literal(8)]).optional(),
   ...enemyTraits,
   uid,
   id: z
@@ -66,12 +69,12 @@ const actor = z.object({
   level: z.number().int().min(1).max(50),
   rank: z.number().int().min(1).max(5),
   skills,
-  hp: bounded,
-  maxHp: bounded.min(1),
+  hp: combatHp,
+  maxHp: combatHp.min(1),
   attack: bounded.min(1),
   armor: bounded,
   energy: bounded.max(100),
-  shield: bounded,
+  shield: combatHp,
   burn: bounded.max(20),
   weaken: bounded.max(20),
   stun: bounded.max(6),
@@ -87,6 +90,7 @@ const actor = z.object({
   mark: z.object({school, until: bounded}).optional(),
 })
 const battle = z.object({
+  difficulty: difficulty.optional(),
   rulesVersion: z.union([z.literal(510), z.literal(520), z.literal(530)]).optional(),
   cinematics: z.boolean().optional(),
   cinematic: z.object({source: uid, serial: count}).optional(),
@@ -156,6 +160,7 @@ export const rpgSaveSchema = z
     formation: z.array(uid).min(1).max(5),
     resources,
     stars: z.record(stageId, z.number().int().min(1).max(3)),
+    modeStars: z.record(z.string().refine(key => /^(hard|extreme):/.test(key) && RPG_STAGE_IDS.includes(key.replace(/^(hard|extreme):/, ""))), z.number().int().min(1).max(3)).optional(),
     choices: z.record(
       z.string().refine((id) => RPG_MAPS.some((m) => m.id === id)),
       z.union([z.literal(0), z.literal(1)]),
@@ -167,6 +172,7 @@ export const rpgSaveSchema = z
     run: z
       .object({
         kind: z.enum(["campaign", "dungeon"]),
+        difficulty: difficulty.optional(),
         stageId: stageId.nullable(),
         battle,
         dungeon: dungeon.nullable(),
@@ -205,6 +211,7 @@ export const rpgSaveSchema = z
       invalid("Lựa chọn chưa mở")
     const run = save.run
     if (!run) return
+    if (run.kind === "campaign" && (run.difficulty ?? "normal") !== (run.battle.difficulty ?? "normal")) invalid("Độ khó trận không khớp màn")
     const b = run.battle,
       allies = b.actors.filter((a) => a.side === "ally")
     if (
