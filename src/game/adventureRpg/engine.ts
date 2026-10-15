@@ -304,7 +304,7 @@ function loadEnemies(b: RpgBattle) {
   for (const [slot, e] of b.waves[b.wave].entries()) {
     const modern = (b.rulesVersion ?? 0) >= 520
     const hp = modern
-      ? Math.round((510 + e.level * 87) * (e.boss ? 12 : e.elite ? 1.65 : 1) * (e.style === "bulwark" ? 1.2 : 1) * (e.strength ?? 1) * (e.difficultyMultiplier ?? 1))
+      ? Math.round((510 + e.level * 87) * (e.boss ? 12 : e.elite ? 1.65 : 1) * (e.style === "bulwark" ? 1.2 : 1) * (e.strength ?? 1)) * (e.difficultyMultiplier ?? 1)
       : Math.round((140 + e.level * 22) * (e.boss ? 6.8 : 1))
     b.actors.push({
       uid: e.uid,
@@ -319,7 +319,7 @@ function loadEnemies(b: RpgBattle) {
       skills: [1, 1, 1, 1],
       hp,
       maxHp: hp,
-      attack: modern ? Math.round((16 + e.level * 2.8) * (e.boss ? 1.9 : e.elite ? 1.25 : 1) * Math.sqrt(e.strength ?? 1) * (e.difficultyMultiplier ?? 1)) : Math.round((15 + e.level * 2.5) * (e.boss ? 1.7 : 1)),
+      attack: modern ? Math.round((16 + e.level * 2.8) * (e.boss ? 1.9 : e.elite ? 1.25 : 1) * Math.sqrt(e.strength ?? 1)) * (e.difficultyMultiplier ?? 1) : Math.round((15 + e.level * 2.5) * (e.boss ? 1.7 : 1)),
       armor: (modern ? e.boss ? 26 : e.style === "bulwark" ? 22 : e.elite ? 14 : 7 : e.boss ? 18 : 5) * (e.difficultyMultiplier ?? 1),
       energy: b.rulesVersion === 530 ? e.boss ? 80 : 60 : 0,
       shield: 0,
