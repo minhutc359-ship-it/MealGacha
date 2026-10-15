@@ -873,8 +873,8 @@ MONSTERS.push(
  {id: "v4-tide-lock", name: "Nắp Nồi Con Nước", hp: 2850, attack: 80, range: 2, armor: 25, skill: "frost", power: 310, school: "tide", sprite: 3, boss: true, text: "Gây sát thương phép và làm choáng một mục tiêu trong 1 giây. Trang bị Lá thuốc hoặc 4 Thanh vị giảm thời gian choáng một nửa. Thức tỉnh dưới nửa máu."},
  {id: "v4-last-page", name: "Trang Giấy Chưa Viết", hp: 3200, attack: 84, range: 3, armor: 22, skill: "copy", power: 320, school: "sugar", sprite: 2, boss: true, text: "Phản chiếu kỹ năng đồng minh vừa dùng với 65% sức mạnh. Thức tỉnh dưới nửa máu."},
 )
-// Original campaign identities reuse existing atlas rows; no new runtime media required.
-MONSTERS.push(
+// Campaign-only identities use existing atlas rows, but MUST NOT change Auto Chess monster pools.
+const ADVANCED_RPG_MONSTERS: MonsterDef[] = [
   {id:"mist-vine-elite",name:"Dây Trói Đêm",hp:1180,attack:74,range:2,armor:28,skill:"leaves",power:250,school:"grove",sprite:3,unlockWave:9,text:"Tinh anh: giữ chân tuyến sau và tiếp sức đồng bọn."},
   {id:"sugar-echo-elite",name:"Kính Vỡ",hp:1130,attack:79,range:3,armor:18,skill:"drain",power:265,school:"sugar",sprite:2,unlockWave:9,text:"Tinh anh: hút năng lượng trước khi tạo lá chắn."},
   {id:"char-ash-elite",name:"Tro Kẹp",hp:1360,attack:84,range:1,armor:31,skill:"cone",power:260,school:"ember",sprite:1,unlockWave:9,text:"Tinh anh: sát thương liên tiếp kèm Bỏng hương."},
@@ -883,8 +883,8 @@ MONSTERS.push(
   {id:"boss-mirror-sugar",name:"Nữ Chúa Gương Đường",hp:3300,attack:105,range:3,armor:27,skill:"copy",power:395,school:"sugar",sprite:2,boss:true,text:"Boss hậu truyện: phản chiếu khiên, đánh mục tiêu yếu."},
   {id:"boss-char-clock",name:"Thợ Rèn Đồng Hồ Tro",hp:3750,attack:102,range:1,armor:31,skill:"cone",power:410,school:"ember",sprite:1,boss:true,text:"Boss hậu truyện: đòn lửa đốt tuyến và ngắt hồi năng lượng."},
   {id:"boss-last-banquet",name:"Chủ Tiệc Không Bóng",hp:4000,attack:101,range:3,armor:36,skill:"seal",power:430,school:"hearth",sprite:0,boss:true,text:"Boss cuối: khóa hồi phục, bảo vệ bóng hầu, phản công khi cuồng nộ."},
-)
-export const MONSTER_MAP = Object.fromEntries(MONSTERS.map((m) => [m.id, m]))
+]
+export const MONSTER_MAP = Object.fromEntries([...MONSTERS, ...ADVANCED_RPG_MONSTERS].map((m) => [m.id, m]))
 export const SKILL_LABELS: Record<Skill, string> = {
   flame: "Bùng hương",
   steam: "Hơi nhớ",
