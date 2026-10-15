@@ -10,25 +10,27 @@ const PARTY = [
 export function VillageParty({
   compact = false,
   moving = false,
-  flip = false,
+  direction = "right",
   quiet = false,
   stamp,
 }: {
   compact?: boolean
   moving?: boolean
-  flip?: boolean
+  direction?: "up" | "down" | "left" | "right"
   quiet?: boolean
   stamp: string
 }) {
   return (
-    <span className={`village-party-sprites ${compact ? "is-compact" : ""}`}>
+    <span
+      className={`village-party-sprites facing-${direction} ${compact ? "is-compact" : ""} ${moving ? "is-moving" : ""}`}
+    >
       {PARTY.map(([id, className]) => (
         <span className={`village-party-actor ${className}`} key={id}>
           <CharacterSprite
             model={unitCharacter(id)}
-            motion={moving && !quiet ? "victory" : "idle"}
+            motion={moving && !quiet ? "walk" : "idle"}
             stamp={`${stamp}:${id}:${moving ? "walk" : "idle"}`}
-            flip={flip}
+            flip={direction === "left"}
             quiet={quiet}
           />
         </span>

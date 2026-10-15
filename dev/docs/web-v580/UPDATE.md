@@ -11,6 +11,7 @@ Web 5.8 hoàn thiện các yêu cầu giao diện và nội dung Adventure, thay
 
 ## Adventure mở rộng
 
+- Sảnh làng giữ nguyên toàn bộ khung ảnh 3:2 thay vì dùng `cover`; phần dư của viewport dùng nền mờ riêng nên biển địa điểm và tọa độ chạm vẫn bám đúng bản đồ. Nhân vật cùng hai Vị Linh có motion đi bộ, đội hình theo bốn hướng và thời gian di chuyển theo quãng đường.
 - Thêm bốn vùng có art chiến trường và hệ địch riêng: **Đỉnh Trà Mây**, **Lò Muối Đỏ**, **Đầm Sen Nguyệt** và **Điện Vạn Hương**. Mỗi vùng có sáu màn, bốn quái thường mới, một tinh anh và một boss riêng; tổng cộng 16 model địch mới được phân bố theo chiến dịch.
 - Trước khi vào màn, người chơi chọn `NORMAL`, `HARD` hoặc `EXTREME`. HP, công và giáp địch nhân lần lượt `×1`, `×3`, `×8`; sao và tiến trình mở màn được lưu riêng cho từng chế độ. Tinh anh và boss ở Hard/Extreme có thêm hiệu ứng rút năng lượng, khống chế, phá giáp hoặc phản kích theo đặc trưng vùng.
 - Không còn nút chọn mục tiêu trong trận hiện tại. Vị Linh tự tìm kẻ địch sống gần nhất theo tọa độ đội hình; save trận 5.1/5.2 vẫn đọc được mục tiêu cũ để tiếp tục đúng trạng thái.
@@ -18,9 +19,9 @@ Web 5.8 hoàn thiện các yêu cầu giao diện và nội dung Adventure, thay
 
 ## Trình bày và media
 
-- Dùng asset được duyệt cho làng, đội đồng hành, bốn chiến trường và các nhịp `READY`, `START`, `NEXT WAVE`, `WIN`, `FAIL`. Khi thua, đồng minh chuyển sang pose gục; kết quả chỉ được quyết toán sau nhịp thắng/thua.
+- Dùng asset được duyệt cho làng, đội đồng hành, bốn chiến trường và các nhịp `READY`, `START`, `NEXT WAVE`, `WIN`, `FAIL`. Art nghi thức co theo cả chiều rộng và chiều cao arena để không bị phóng lớn hoặc cắt ở màn hình thấp. Khi thua, đồng minh chuyển sang pose gục; kết quả chỉ được quyết toán sau nhịp thắng/thua.
 - Mỗi lần chuyển giữa TCG, Rương, Auto chess và Adventure đều hiện một màn chuyển cảnh chọn ngẫu nhiên từ năm minh họa. Loading trong Adventure dùng cùng bộ ảnh; tất cả dùng `object-fit: contain` để không phóng/cắt ảnh.
-- Cả 139 video tuyệt kỹ được dựng lại ở **1280 × 720**, H.264. Caption thay câu “Đồng hồ trận tạm dừng trong tuyệt kỹ” bằng mô tả ngắn riêng cho từng kỹ năng.
+- Cả 139 video tuyệt kỹ được dựng lại ở **1280 × 720**, H.264 High Profile, CRF 18. Renderer chuyển khung PNG lossless vào encoder, dùng preset chậm và lọc nét nhẹ thay cho chuỗi JPEG + CRF 23 trước đây. Caption thay câu “Đồng hồ trận tạm dừng trong tuyệt kỹ” bằng mô tả ngắn riêng cho từng kỹ năng.
 
 ## Nhạc nền
 

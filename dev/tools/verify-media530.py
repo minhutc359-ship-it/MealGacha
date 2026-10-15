@@ -13,7 +13,7 @@ def check(id):
         assert decoded.returncode==0 and not decoded.stderr,(id,decoded.stderr.decode())
         duration=float(meta['format']['duration']);assert 2.3<duration<2.7,(id,duration)
         stream=meta['streams'][0]
-        if ext=='mp4':assert stream['codec_name']=='h264' and stream['width']==512 and stream['height']==288 and stream['r_frame_rate']=='24/1',stream
+        if ext=='mp4':assert stream['codec_name']=='h264' and stream['width']==1280 and stream['height']==720 and stream['r_frame_rate']=='24/1',stream
         else:assert stream['codec_name']=='mp3' and stream['sample_rate']=='24000' and stream['channels']==1,stream
         result[kind]={'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'duration':duration,'stream':stream}
     return result

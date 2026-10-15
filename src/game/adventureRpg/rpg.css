@@ -194,3 +194,112 @@
   margin:0;
   transform:translate(-50%,-50%);
 }
+
+/* Web 5.8.1: full village framing, RPG travel cadence and safe ceremony art. */
+.rpg-village-map {
+  display:grid;
+  place-items:center;
+  container-type:size;
+  cursor:crosshair;
+}
+.rpg-village-backdrop {
+  position:absolute;
+  inset:-18px;
+  z-index:0;
+  width:calc(100% + 36px);
+  height:calc(100% + 36px);
+  object-fit:cover;
+  filter:blur(14px) saturate(.72) brightness(.38);
+  transform:scale(1.04);
+  pointer-events:none;
+}
+.rpg-village-world {
+  position:relative;
+  z-index:1;
+  width:min(100cqw,150cqh);
+  aspect-ratio:3/2;
+  flex:none;
+  overflow:hidden;
+  isolation:isolate;
+  box-shadow:0 0 0 1px #ead08b33,0 10px 35px #020d16b8;
+}
+.rpg-village-world .rpg-village-art {
+  position:absolute;
+  inset:0;
+  z-index:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  filter:saturate(.94) contrast(1.03) brightness(.82);
+}
+.rpg-village-world .rpg-village-vignette { z-index:1; }
+.rpg-village-world .rpg-village-paths { z-index:2; }
+.rpg-village-map::after { content:none; }
+.rpg-village-world::after {
+  content:"";
+  position:absolute;
+  left:var(--touch-x,50%);
+  top:var(--touch-y,50%);
+  z-index:3;
+  width:24px;
+  height:12px;
+  translate:-50% -50%;
+  border:1px solid #f5d98870;
+  border-radius:50%;
+  box-shadow:0 0 9px #f4d9874d;
+  pointer-events:none;
+}
+.rpg-village-party {
+  width:clamp(66px,12cqw,118px);
+  height:clamp(62px,20cqh,112px);
+  translate:-50% -88%;
+  transition:left var(--travel-ms,780ms) linear,top var(--travel-ms,780ms) linear;
+}
+.rpg-village-party::after {
+  content:"";
+  position:absolute;
+  left:24%;
+  right:24%;
+  bottom:3%;
+  height:8%;
+  border-radius:50%;
+  background:#d5b77275;
+  filter:blur(3px);
+  opacity:0;
+}
+.rpg-village-map.is-walking .rpg-village-party::after {
+  opacity:.48;
+  animation:rpg-village-dust .28s ease-in-out infinite alternate;
+}
+.village-party-sprites.facing-up .companion-one { left:-7%;bottom:-2%; }
+.village-party-sprites.facing-up .companion-two { right:-7%;bottom:-3%; }
+.village-party-sprites.facing-down .leader { inset:2% 21% -8%; }
+.village-party-sprites.facing-down .companion-one { left:-4%;bottom:24%; }
+.village-party-sprites.facing-down .companion-two { right:-4%;bottom:22%; }
+.village-party-sprites.facing-left .companion-one { left:1%;bottom:12%; }
+.village-party-sprites.facing-left .companion-two { right:-8%;bottom:-3%; }
+.village-party-sprites.facing-right .companion-one { left:-8%;bottom:-3%; }
+.village-party-sprites.facing-right .companion-two { right:1%;bottom:12%; }
+@keyframes rpg-village-dust {
+  from { scale:.65;opacity:.22; }
+  to { scale:1.2;opacity:.55; }
+}
+
+.rpg-battle-opening { overflow:hidden; }
+.rpg-ceremony-art {
+  width:min(38cqw,56cqh,260px);
+  max-width:none;
+  flex:0 0 auto;
+}
+@media(max-width:740px) {
+  .rpg-village-party { width:clamp(58px,18cqw,78px);height:clamp(56px,24cqh,82px); }
+  .rpg-ceremony-art { width:min(40cqw,52cqh,200px); }
+}
+@media(max-height:500px) and (orientation:landscape) {
+  .rpg-village-party { width:clamp(54px,11cqw,76px);height:clamp(50px,25cqh,70px); }
+  .rpg-ceremony-art { width:min(34cqw,48cqh,180px); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .rpg-village-map.is-walking .rpg-village-party::after { animation:none; }
+}

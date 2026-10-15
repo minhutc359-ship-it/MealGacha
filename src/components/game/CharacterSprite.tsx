@@ -68,6 +68,12 @@ export const CharacterSprite = memo(function CharacterSprite({
       let x = 0, y = 0, stretch = 0, alpha = 1, rotation = 0
       if (!staticMotion) {
         if (current === "idle") y = Math.sin((now - visibleSince) / 500 + model.row) * height * .012
+        if (current === "walk") {
+          const beat = poseAge / 125 + model.row
+          y = -Math.abs(Math.sin(beat)) * height * .018
+          rotation = Math.sin(beat) * .016
+          stretch = Math.cos(beat * 2) * .008
+        }
         if (["attack", "cast"].includes(current)) x = Math.sin(Math.min(1, poseAge / 780) * Math.PI) * width * .055 * direction
         if (current === "summon") { alpha = Math.min(1, poseAge / 170); y = (1 - Math.min(1, poseAge / 300)) * height * .15 }
         if (current === "hit") x = -Math.sin(Math.min(1, poseAge / 260) * Math.PI) * width * .04 * direction

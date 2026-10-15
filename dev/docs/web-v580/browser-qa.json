@@ -1,6 +1,6 @@
 {
   "version": "5.8.0",
-  "date": "2026-10-15T07:15:10.202Z",
+  "date": "2026-10-15T14:05:46.681Z",
   "engine": "Chromium headless / SwiftShader",
   "checks": [
     {
@@ -39,10 +39,10 @@
       "loadingFit": "contain",
       "imagePool": 5,
       "selectedImages": [
+        "/assets/loading/v560/intro-card-duel.webp",
+        "/assets/loading/v560/intro-auto-chess.webp",
         "/assets/loading/v560/intro-card-collection.webp",
-        "/assets/loading/v560/intro-auto-chess.webp",
-        "/assets/loading/v560/intro-auto-chess.webp",
-        "/assets/loading/v560/intro-card-collection.webp"
+        "/assets/loading/v560/intro-auto-chess.webp"
       ]
     },
     {
@@ -65,7 +65,23 @@
         "hard": 3,
         "extreme": 8
       },
-      "storyCentered": true
+      "storyCentered": true,
+      "villageFullMap": {
+        "map": {
+          "width": 374,
+          "height": 650.5
+        },
+        "world": {
+          "width": 372,
+          "height": 248,
+          "inside": true
+        },
+        "art": {
+          "fit": "contain",
+          "naturalWidth": 1536,
+          "naturalHeight": 1024
+        }
+      }
     },
     {
       "area": "adventure-map",
@@ -87,7 +103,23 @@
         "hard": 3,
         "extreme": 8
       },
-      "storyCentered": true
+      "storyCentered": true,
+      "villageFullMap": {
+        "map": {
+          "width": 1200,
+          "height": 642.609375
+        },
+        "world": {
+          "width": 960.90625,
+          "height": 640.59375,
+          "inside": true
+        },
+        "art": {
+          "fit": "contain",
+          "naturalWidth": 1536,
+          "naturalHeight": 1024
+        }
+      }
     },
     {
       "area": "adventure-battle",
@@ -96,6 +128,11 @@
         900
       ],
       "readyArt": true,
+      "readyCeremony": {
+        "width": 199.74169921875,
+        "height": 199.74169921875,
+        "inside": true
+      },
       "manualTargetControls": 0,
       "targeting": "nearest",
       "cinematic": {
@@ -104,7 +141,12 @@
         "fit": "contain"
       },
       "skillDescription": "Tạo khiên cho đội, phản đòn và đánh tuyến trước.",
-      "winArt": true
+      "winArt": true,
+      "winCeremony": {
+        "width": 116.91796875,
+        "height": 116.91796875,
+        "inside": true
+      }
     }
   ],
   "pageErrors": [],
