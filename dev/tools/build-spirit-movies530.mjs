@@ -17,7 +17,7 @@ try{
   const page=await browser.newPage();page.on('pageerror',e=>console.error(e.message));await page.goto(url+'/dev/tools/movie530.html');await page.waitForFunction(()=>window.prepareSpiritMovie)
   for(const [index,id] of ids.entries()){
     const info=await page.evaluate(async(id)=>{window.movie=await window.prepareSpiritMovie(id);return {pattern:window.movie.pattern,motif:window.movie.motif,title:window.movie.title}},id)
-    const file=path.join(out,id+'.mp4'),tempFile=path.join(temporary,id+'.mp4'),encoder=spawn('ffmpeg',['-loglevel','error','-y','-f','image2pipe','-vcodec','mjpeg','-r','24','-i','pipe:0','-an','-c:v','libx264','-preset','medium','-crf','23','-pix_fmt','yuv420p','-movflags','+faststart','-t','2.4',tempFile],{stdio:['pipe','ignore','pipe']})
+    const file=path.join(out,id+'.mp4'),tempFile=path.join(temporary,id+'.mp4'),encoder=spawn('ffmpeg',['-loglevel','error','-y','-f','image2pipe','-vcodec','png','-r','24','-i','pipe:0','-an','-vf','unsharp=5:5:0.8:5:5:0.0','-c:v','libx264','-preset','slow','-tune','animation','-crf','18','-profile:v','high','-level','4.1','-pix_fmt','yuv420p','-movflags','+faststart','-t','2.4',tempFile],{stdio:['pipe','ignore','pipe']})
     let errors='';encoder.stderr.on('data',b=>errors+=b);const exited=once(encoder,'exit')
     for(let first=0;first<58;first+=10){const frames=await page.evaluate(({first})=>Array.from({length:Math.min(10,58-first)},(_,i)=>window.movie.draw((first+i)/24)),{first});for(const frame of frames){if(!encoder.stdin.write(Buffer.from(frame,'base64')))await once(encoder.stdin,'drain')}}
     encoder.stdin.end();const [code]=await exited;if(code)throw Error(errors);renameSync(tempFile,file)

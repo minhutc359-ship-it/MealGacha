@@ -2141,8 +2141,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/arancini.mp4",
-      "bytes": 652906,
-      "sha256": "effc20391e63936328d8ebbfb69cebc1c710cec58cba9ec69879c664fcc75435",
+      "bytes": 1388109,
+      "sha256": "ddcd4617d9d314935381d6580979543c337b6bc8d3749204696a734109352fe6",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2154,8 +2154,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-can.mp4",
-      "bytes": 608385,
-      "sha256": "12e72d7f2d9f1e5caebf128bd632409ae3fe3a7f6e731c1dcdf88cb5f0efab63",
+      "bytes": 1205234,
+      "sha256": "aebaf005d49a4b959f96ea83e58b239a51dc446fb6d03965dca98c714b1d7444",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2167,8 +2167,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-chung.mp4",
-      "bytes": 669097,
-      "sha256": "9ff565c9ba43f744c52a3c0ee93abb91775859530b8d5eb97e8603b69bc249a4",
+      "bytes": 1415358,
+      "sha256": "8b1f7a4878ecb17c1659721650e9c4112e35029bd34d1043bd6ec884abb4ba2f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2180,8 +2180,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-com-hang-than.mp4",
-      "bytes": 637736,
-      "sha256": "cc9316c62eb7e5d580946bc7b278ffd43bdde1e88ae413a58d9506db3f8dd603",
+      "bytes": 1356719,
+      "sha256": "56e326e84fb7b75eac9cc70bc84c9b80d95cf901376a3b06992bad4b2f30de42",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2193,8 +2193,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-cuon.mp4",
-      "bytes": 597586,
-      "sha256": "2e087cce2545ecf09f2c8f00f2385bff7dd92f19642b91946f8770378f6f5753",
+      "bytes": 1215674,
+      "sha256": "9eea7c506e010d132952576fad20199d189071181946ff4bb0cdd12115deb321",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2206,8 +2206,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-da-cua.mp4",
-      "bytes": 679246,
-      "sha256": "dbab7f761f424fcb32edc8a51316d05817fe31d23c732f70e3c0f07fb249df67",
+      "bytes": 1473793,
+      "sha256": "63bdde5321940a2430c9c5f7345c61ec2662916ab93df4a873189d00f0be0f25",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2219,8 +2219,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-dau-xanh.mp4",
-      "bytes": 631264,
-      "sha256": "2c47126b032a91f03f3a4a35bd187d86c1f58b2cc31eb4d8681c3db30f28549c",
+      "bytes": 1294329,
+      "sha256": "4a3e84007e7139b76bd9b56b87772d7c9091bb0b2937982122697b8b8af8afac",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2232,8 +2232,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-it-la-gai.mp4",
-      "bytes": 621447,
-      "sha256": "dfe7754b48fbdfd9f1e77caf24517d497832f80229a32aee57c2c2f347d71781",
+      "bytes": 1236075,
+      "sha256": "8995f4b4465483c46a2c615d41f2ce51d5cf6d358e571b84f4775ccfc0fbeaa7",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2245,8 +2245,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-khuc.mp4",
-      "bytes": 624437,
-      "sha256": "b5716ff083eda65d43df487b5c550c5c4c0d5b31b541e98424010e97c9cbb388",
+      "bytes": 1318384,
+      "sha256": "da5902315958c0b98f4a1688fac3b565226e4182b42eb459485bdaaac1daca95",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2258,8 +2258,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-mi.mp4",
-      "bytes": 629839,
-      "sha256": "949e6fae4a98e9754e25287a1efb0f0fa755019afcdf3687750768a7df01ae57",
+      "bytes": 1278410,
+      "sha256": "c4d317c6856b5c47095124fc513445e72d72416763a15cd0b24117c82e6fade2",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2271,8 +2271,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-ram-it.mp4",
-      "bytes": 660138,
-      "sha256": "65b0ab3b0b29ab391532f36bec82175374a2ee90b928ef17906bfe37c0874dd3",
+      "bytes": 1400990,
+      "sha256": "f724fefff35b4c954104f87973adcc000789f5c05e2e4a467fb607bb1871aa22",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2284,8 +2284,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-tet.mp4",
-      "bytes": 644955,
-      "sha256": "cb52bbfee765ad8ba62f2c5917b9d3c27d2fc5dad0743b3ea414e1428124223c",
+      "bytes": 1404889,
+      "sha256": "0435d7e2bcb421c84cb93c3806ee16a856b3d63304621a6d14e7251ca23cc3a3",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2297,8 +2297,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-tom-ho-tay.mp4",
-      "bytes": 637799,
-      "sha256": "647e28dec829989bcfbe611d269fb04f2a4b62f9a1b265fa8169d5911046bfde",
+      "bytes": 1292305,
+      "sha256": "cfdb2eedfaf641bce8da69f4ca0afa9833df2faca8fa61191caa11a0d9f90282",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2310,8 +2310,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-xeo.mp4",
-      "bytes": 650125,
-      "sha256": "c1ecb9acae4ea05c8b9ce96b1922b4c002a1b31b1bf02c874827bd637354150d",
+      "bytes": 1293671,
+      "sha256": "4d1e0f169c871a2c34681827813d7e139b7a24d72549fbeba8e73871355e66de",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2323,8 +2323,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-com-lam.mp4",
-      "bytes": 643386,
-      "sha256": "b92cd59f31297b584e6d93b270c25c4ad4d21253421a4202a0e33faa4518f251",
+      "bytes": 1315116,
+      "sha256": "84e5208858061897d877c94f1043888c3ab61642656df1c13a12aeea08493669",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2336,8 +2336,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-ga-nuong-mac-khen.mp4",
-      "bytes": 648961,
-      "sha256": "e70c156651ec3aba2c21b33e7d4a2356b419a6e4017e125b2d65e8b0dc2f7008",
+      "bytes": 1333834,
+      "sha256": "11cb097ca5e9be6e989505c86b605e7f3c459482930547ed4e8f26e921895686",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2349,8 +2349,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-goi-rau-don.mp4",
-      "bytes": 632269,
-      "sha256": "daa70a80f3ee139f23e1e8f85babb80671a80e7b65f17fbbc1a57fd244b99c53",
+      "bytes": 1320931,
+      "sha256": "fb30f79a73fd6f1060c76f918653d06d171343c3b8a1685ed6f125e09a45c2b8",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2362,8 +2362,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-thang-co.mp4",
-      "bytes": 638925,
-      "sha256": "2a5382aa1ca17c51ed64e914e6bbd8adc53f4a43b4d3341cf83c9ceb50207b14",
+      "bytes": 1333475,
+      "sha256": "e2df26c324a490a6d84cf66a3e2ed8d288061f00ce7aa7773128deed506645e1",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2375,8 +2375,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-thit-trau-gac-bep.mp4",
-      "bytes": 588119,
-      "sha256": "fd707c90a6db924caab02423cd3be40619d2ef6f701d35f26e07d7fda93cd661",
+      "bytes": 1149911,
+      "sha256": "532f421f413ff0edf2a861aed32855892dbf29ffafaaea6a3dcb49a70852d116",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2388,8 +2388,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-xoi-ngu-sac.mp4",
-      "bytes": 673134,
-      "sha256": "b846636f0d38a0c276fbd94af178d861472aab7207ef087859e07fe2c1bfa25f",
+      "bytes": 1392623,
+      "sha256": "30d81589cfc0cfa911042f3095c327fc2dbccd233966a63b4f160193ece6a0ff",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2401,8 +2401,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/beef-wellington.mp4",
-      "bytes": 546378,
-      "sha256": "4ab67ff6eeace0e76cddf13e8183d5c13b4bbf135dfad0046191d3b816876123",
+      "bytes": 1027905,
+      "sha256": "ea6d21ea6d0fa46dc27405f9a7aa362d755c1c2e49194d30b1ef3757dda42dbf",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2414,8 +2414,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bibimbap.mp4",
-      "bytes": 636756,
-      "sha256": "5cc45216265ce1861f582f394e78930f56e05580e2f4dfd1b4000d030e02c40e",
+      "bytes": 1305242,
+      "sha256": "115c320777be0495027f82e519db03d969c53b955e817ab02842f14523236213",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2427,8 +2427,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bingsu.mp4",
-      "bytes": 609931,
-      "sha256": "03d9f5b6ab78297667eaec3a141e89e04e7238dc94cf6b56c6f91563717e7739",
+      "bytes": 1286407,
+      "sha256": "eaa29ac2d264d33107a7306ca2519950ff2a0c26c18a9952a27d803fdbdbda54",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2440,8 +2440,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bistecca-fiorentina.mp4",
-      "bytes": 659841,
-      "sha256": "40ebe587fa7f6ce79ac64a64eaecf258e65948d0fbcbed6e4464df9c65a77736",
+      "bytes": 1396492,
+      "sha256": "cb77684cb997662955a90bd73c55f446f5348429dcfb4d660cba58d9d4171b85",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2453,8 +2453,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/boat-noodles.mp4",
-      "bytes": 689279,
-      "sha256": "0768279abcb7305e7f17ecba7ea3180b88eff4dfd931bf41b312729af882da64",
+      "bytes": 1480039,
+      "sha256": "924a8bfd56329f7c90921ffe22d7998f64eda7354d9dfd3d70bba74567aa6ad2",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2466,8 +2466,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-bo-hue.mp4",
-      "bytes": 714719,
-      "sha256": "13ad0338e0381bb3616de56b33415e8654848a41d9c302812c42bf2252af0960",
+      "bytes": 1524357,
+      "sha256": "428bd501464c005ca369d6036de7536f7b0d0a8490fdfbac310e792aea7034ff",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2479,8 +2479,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-ca.mp4",
-      "bytes": 622266,
-      "sha256": "222db9e2de2fff1b77a14b498a638e1e26c66422afadf22f2fa84a1f4c9f44fa",
+      "bytes": 1297798,
+      "sha256": "73bfeb704b54170a171a643e50e3806f226ca45651978b8fd278b7af59234ed5",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2492,8 +2492,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-cha.mp4",
-      "bytes": 708185,
-      "sha256": "5978b8edd10055016d14a276de32c0e8ae900912ccf63d0498af3e36b242a083",
+      "bytes": 1506337,
+      "sha256": "f40cf47767e1bef2d83ab0b4f6e966ac01984c1488bb52e2ea680fa00b113cb7",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2505,8 +2505,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-dau.mp4",
-      "bytes": 647766,
-      "sha256": "43919990b221e52fe4d9555a95c15931d7061f7fe1f04aed5a7088c0c5404a3b",
+      "bytes": 1336745,
+      "sha256": "4a13a223a5115d9aff89aedfef1bf97fa1e07d1621f94e82c89f9167c35e8bba",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2518,8 +2518,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-moc.mp4",
-      "bytes": 733121,
-      "sha256": "26409e0b321082a55b77235baef11a210bb12270895665d5b38b4bce71e9adc2",
+      "bytes": 1555673,
+      "sha256": "55a4cb5db6e27e0cdde55c9fe0fbddbfdd1d8da3a1b80d7d062e6bd8e628befa",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2531,8 +2531,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-rieu.mp4",
-      "bytes": 669563,
-      "sha256": "40bed9a7fdea248d597170e3a191fc1b8c7d2a31e88ecb98b9d3baa66371a192",
+      "bytes": 1412857,
+      "sha256": "3b5572f68b6a7f032c84125d17783c2a367cf7cede7661fd609c0a83a2658253",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2544,8 +2544,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-thang.mp4",
-      "bytes": 725944,
-      "sha256": "76882b9f8d0a154cc4cc15c402051099003658d2634b710f4250d12ec5177d6f",
+      "bytes": 1585513,
+      "sha256": "f8137f6695006e7b0b05debbd162c6237a7a76845eb8b4dbb52469d2c243ff85",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2557,8 +2557,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/ca-phe-trung.mp4",
-      "bytes": 622268,
-      "sha256": "9b50c000b44176f921d9f5539b6eeee36a0ba7df656d3bf267383793c2d6c00e",
+      "bytes": 1336213,
+      "sha256": "123fbf8acc732c1605ccd1f76b74e64599defb8bc920a0edd944d2d7ab603f31",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2570,8 +2570,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/canh-mang-mien.mp4",
-      "bytes": 640407,
-      "sha256": "8741d3098dc631d3136ed672f2c051cb757e922112bcccb3c2e9e273d1f5a336",
+      "bytes": 1336266,
+      "sha256": "8b659ea8c1bef6e59dff84cfd04baa3be226efc36709248a3f1f4f7b5bead20c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2583,8 +2583,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-cartographer.mp4",
-      "bytes": 606655,
-      "sha256": "abc75d2eba95b55b0b6479e68cd9c653ff4611f42486b71cd146cd13ed6075ff",
+      "bytes": 1239042,
+      "sha256": "fa5d2de9386c2fd203be6f6dc9e863e7994bb8fac1b4d3ecd0c588a49f1f1485",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2596,8 +2596,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-cook.mp4",
-      "bytes": 671563,
-      "sha256": "4da744386e7b6160e9dceef95e89f83354d7574f542e00aab6c3ada0443379e4",
+      "bytes": 1385232,
+      "sha256": "241f5ac58128d7be3e4d1cea114ca8b8dae2cb555acef50b08b2a3f4c7945ed4",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2609,8 +2609,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-ferryman.mp4",
-      "bytes": 647900,
-      "sha256": "b67f48822ef1915a3c16ec9dcce4f6b2063da668de9f604b6665dd9456605c48",
+      "bytes": 1337060,
+      "sha256": "dddcb5d1a8680510ee0f002647bff5e22d4e3ab35a32262913640ec67d5d0f45",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2622,8 +2622,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-gardener.mp4",
-      "bytes": 663068,
-      "sha256": "aa67348822f935fd756d5f5d143730dfed64997dab04fe9f754f2df64d0e9abf",
+      "bytes": 1415935,
+      "sha256": "afe7979a9871f8d05e423e7e1ffe81e14951616e7aef0d0f1061704b6819a21b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2635,8 +2635,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-herbalist.mp4",
-      "bytes": 702794,
-      "sha256": "daf262aba7add104878ad8b376755c008a6ef1f86913e5ddf6f0c33a40c36b82",
+      "bytes": 1485982,
+      "sha256": "b264f012b77e9e0c6cf0b2579b5211d8f2840b39f96cd683af2533d35b5cf984",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2648,8 +2648,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-letter.mp4",
-      "bytes": 655434,
-      "sha256": "59c3e01d64ba2f789d0232f2c25762bb5d7a4870e001f2a0f08c76e44dc3f2c3",
+      "bytes": 1408156,
+      "sha256": "869eb737a3a6015218bb4c420247f851c61aeb418ffad45bc02750876c441e3f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2661,8 +2661,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-pastry.mp4",
-      "bytes": 605532,
-      "sha256": "f2495b256fec1dfe2b8680d05fc4ea6567b91dc63b44077774a6a88476621148",
+      "bytes": 1267217,
+      "sha256": "3da06c8312c254f65ad706b0136ab02116547757983b86b77cfa80fa8cc64087",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2674,8 +2674,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-porter.mp4",
-      "bytes": 622538,
-      "sha256": "463203e4aabf07db53c49f24aa309f88d0ba00c007be0fdb77a8ae7f33ab53cf",
+      "bytes": 1301343,
+      "sha256": "f279bb7e287346fa5e7fa0b27abe170ce9ba4f6b00c93a02808c0c5645b29072",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2687,8 +2687,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-scout.mp4",
-      "bytes": 599350,
-      "sha256": "19d96c91fc7c43472a7ebc7818eb16f287644595dde707e7984e7d13cc46e91f",
+      "bytes": 1159931,
+      "sha256": "ed9ab856293f25244800d573070c2fae68aa5c07eb855d6cfdf16168e1500724",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2700,8 +2700,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-smith.mp4",
-      "bytes": 609427,
-      "sha256": "c96cec3c519707a9fdb936da23af1e83afca273337533722bab2ee30f734bbc8",
+      "bytes": 1174322,
+      "sha256": "ebc1fa18a1841d796bef546c86e5006b21d01036f8930ae3e27207e7f2dddbf2",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2713,8 +2713,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/carbonara.mp4",
-      "bytes": 657744,
-      "sha256": "24ebdcf1e93f4f28d02e462ef768ef87409d256c1bf24b27a7d4c1d804e16463",
+      "bytes": 1393251,
+      "sha256": "7ab55361e8a6e275030b953bae2e2a0ef52f868be7c5ed9cd192b67c0eabad56",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2726,8 +2726,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/cha-ca-la-vong.mp4",
-      "bytes": 716698,
-      "sha256": "3fc6111c1b329147db5bc7ef6a85bc111e881b56268451be193f1e329aa8d9a9",
+      "bytes": 1530396,
+      "sha256": "dc94b5cca8a95ae0feb59535fc09c2267a3e753c64d2adf0d5f8a81897c4c10f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2739,8 +2739,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/cha-ruoi.mp4",
-      "bytes": 622235,
-      "sha256": "cc7e730033ae84eba822ebdc6db58c322e3e6eb3ec0e987bb42bf051db97d6d6",
+      "bytes": 1240080,
+      "sha256": "7f165bee4df410cccef68033a267aa38f98b7eabc37339cfcc1cd935cec0d839",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2752,8 +2752,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chao-luon.mp4",
-      "bytes": 640665,
-      "sha256": "c45a2a807a5935f68b5cde18f8e7fcaab8a09d4d2c0987fc333f1b43eb64d3a1",
+      "bytes": 1345466,
+      "sha256": "b7a5e90652aeb0b69f1c19335d1d7d600bf53fc0a4dd5935b02601a8fb7cd62b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2765,8 +2765,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chao-suon.mp4",
-      "bytes": 660796,
-      "sha256": "924bf0f7a824632090a1e89e3652cda26507b9a3e1205fba047de85b2dcdba9e",
+      "bytes": 1361932,
+      "sha256": "f49eca443d536e2139bc4912d341af20febae8dcfc9a67b218dc5bab01b35520",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2778,8 +2778,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/che-buoi.mp4",
-      "bytes": 617281,
-      "sha256": "3f2857e3d967081d673fc16b6bbebbd7288beacfd089b26778fea8b4d609491f",
+      "bytes": 1288478,
+      "sha256": "fadf3d68ad82792dac338f248d35cc37fb2e11e3388e25c8fb53a340d6bad8b1",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2791,8 +2791,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/che-khuc-bach.mp4",
-      "bytes": 618836,
-      "sha256": "8d69ac73ece304d7220122ba23cb94d2179a8d127d60299e1f8a8b6573a7110f",
+      "bytes": 1324359,
+      "sha256": "3348092fa02ef12fbc53e789645e001cb5f4afb971fc0021102ba06b623df79a",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2804,8 +2804,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/che-lam.mp4",
-      "bytes": 657644,
-      "sha256": "2939af7f70aac38778f59a5dea74fcd19910149ad603574756e354683863eb92",
+      "bytes": 1363380,
+      "sha256": "cfc4bad8de4e5c5428d33f0088a46af88db49ac7ac383622da7b32068443b271",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2817,8 +2817,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chef-bach.mp4",
-      "bytes": 671327,
-      "sha256": "4e884beecb9f45de533dda3310ba07a0d7ccfa30ac66a6332ecbb0ce3c36245b",
+      "bytes": 1390501,
+      "sha256": "54e0a3514b1b7a0b2570e28a502e11e726c939a3c8523b4fcda2c3d2e2640e8c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2830,8 +2830,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chef-hai.mp4",
-      "bytes": 786184,
-      "sha256": "f0a5908be1e5f4d9073a0007e82bbbef154b3f26bc2eebd62f1fedb82e4d7729",
+      "bytes": 1656466,
+      "sha256": "1bb44cd5f7cf765c1d95625afaa25ff857c2bb74bccd70de126a3e4af3ed50b6",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2843,8 +2843,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chef-lien.mp4",
-      "bytes": 649799,
-      "sha256": "0bc0713112bb4976626e11dd3f0a5496887e68bf453991bf785a737e4ff451dd",
+      "bytes": 1369869,
+      "sha256": "90002137b769e4470303b79334d2d86f22b4623870ec8f00e9b96b1b51cef10c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2856,8 +2856,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chef-moc.mp4",
-      "bytes": 613368,
-      "sha256": "b09ee1981377ba9bd6d927befaed4e44d2093bfaf4f0494f4066a28b970ef78d",
+      "bytes": 1268577,
+      "sha256": "1f626ad1498bf273643e2f47ff753da36fa830ae761a7f5d2dc698d528bb069f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2869,8 +2869,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chef-nhien.mp4",
-      "bytes": 628184,
-      "sha256": "d8d8a3042111021dbc1432ea6f3008087a1ea29c82d1256c2b3eb0be51f32f00",
+      "bytes": 1216162,
+      "sha256": "50f4692bbd7c7dc9053f0e047ba0f159007f02de74c15eb5c45981a0e5ea8b2d",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2882,8 +2882,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/christmas-pudding.mp4",
-      "bytes": 637769,
-      "sha256": "20480d4649306df6da634c22595a63bb301333923637dbcac47f343fc0775ffe",
+      "bytes": 1363599,
+      "sha256": "0abe45c614277c975f307d73ae9cdfab73da133f46c6b6fb06583f190f8b94f5",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2895,8 +2895,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/classic-burger.mp4",
-      "bytes": 664490,
-      "sha256": "aa932cef00007bff81c05ab3b7bf4593ab3872b99331c438b1462d023a3e8ab8",
+      "bytes": 1350492,
+      "sha256": "71365fda8aed19d031f45ab6a9dc32637b1764232d7c572b5bfe83d16126a819",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2908,8 +2908,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-ga.mp4",
-      "bytes": 637197,
-      "sha256": "f3a24f5cc509021dcbcc53f87ec60290aa3708de9d80c4576601bffb32b64f9f",
+      "bytes": 1290071,
+      "sha256": "d44056fb4dcd5d27b372e61634e0bef818a24b707df25e7b94777377919cdc01",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2921,8 +2921,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-hen.mp4",
-      "bytes": 629477,
-      "sha256": "dd26c6fca0fa3da81c057205b56c04b2880901247ec0df716a02e6b7240e79d5",
+      "bytes": 1310328,
+      "sha256": "45ba3d7605d2e9f25c3acc05bba3a414ebbd453416e8575b2282a12b48fd0dbf",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2934,8 +2934,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-lang-vong.mp4",
-      "bytes": 638230,
-      "sha256": "f027d93b6ff995dde652441b92420828fd8820e6b7cfc8b7984c1da3729c4a6d",
+      "bytes": 1361678,
+      "sha256": "eac4d5e27df210063f87bb6a65c2f38717ba507b60f2c35645dc44c14c2621ff",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2947,8 +2947,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-nieu.mp4",
-      "bytes": 648802,
-      "sha256": "140ad885907901eced108aa4fb88b319dbe29c4753f2feb5a2412377b67c27fc",
+      "bytes": 1333099,
+      "sha256": "41bed8d21923d7d57dfb5afbd850f757bf39a750edba5dd2a295bcf81a994393",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2960,8 +2960,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-rang-dua-bo.mp4",
-      "bytes": 654336,
-      "sha256": "fbce5e2bf6d576b974f8507bfa8ce2e73b314baa03653760b908eed0463744df",
+      "bytes": 1346851,
+      "sha256": "1768e18b028b34b38c20993acdc0c7a0d0c9bc875391dc945b035db6d8ed5402",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2973,8 +2973,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-tam.mp4",
-      "bytes": 656510,
-      "sha256": "980573295dff7d7ea44443a81595386a59d2c8656b5c69e9fdb2942f728a2038",
+      "bytes": 1344522,
+      "sha256": "3340d11a8e14c9b0527518d4125ad2dfaac31cd6d2d182b438393934b068b9ec",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2986,8 +2986,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/croissant.mp4",
-      "bytes": 620227,
-      "sha256": "16a20e35028a0d9220b76058bca78dac090c721d061a73e82837579f55b0f985",
+      "bytes": 1292009,
+      "sha256": "3e4c1ac6ac504d9c6dba36ee892460b5451acd6bf97a26fe31fa9b285e0fafa7",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2999,8 +2999,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/dua-hanh.mp4",
-      "bytes": 628134,
-      "sha256": "fb0993f5aa896650ac268091216a06296373ad16745bc78dd20657effb579a52",
+      "bytes": 1336611,
+      "sha256": "874141d37b6257f59f238b442844e121dd7f113c5796c250bd74f28a6b150914",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3012,8 +3012,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/duck-confit.mp4",
-      "bytes": 644353,
-      "sha256": "86a2e994fd9b14950010475a476b9414e5e4b4a497c64f5892e2ae813c2bc053",
+      "bytes": 1347571,
+      "sha256": "f8f9f7f718dc21f426e79a6e0ec10052e0930217c224a21ff566fc2061865712",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3025,8 +3025,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/french-tasting.mp4",
-      "bytes": 639464,
-      "sha256": "6c952dbf2803e36b10b421f0c0b878564cbd7114d8eda75a30d0d70013b6d78a",
+      "bytes": 1314964,
+      "sha256": "aadafdd903a2f84906faba1f84bfbba47f14066d0556924d5b1a5d4f2426c5e7",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3038,8 +3038,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/ga-ran.mp4",
-      "bytes": 647851,
-      "sha256": "f66f7216c572aa6543d58def610872714bd6c7e4da982a24b34b928f140aed5b",
+      "bytes": 1343254,
+      "sha256": "599431462e7408d8edb0007c2f2430ad47583efcae17e491fbeae57621a124a8",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3051,8 +3051,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/ganjang-gejang.mp4",
-      "bytes": 768499,
-      "sha256": "56a099c9d97d3ef7e3ac8745c29633406138e53d5c7e333feced5f4e13665db8",
+      "bytes": 1617250,
+      "sha256": "29316dfc5754a00f1e82b8e502bd08fcccaebb1a11740d04cfd97052629f3d76",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3064,8 +3064,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/gelato.mp4",
-      "bytes": 630981,
-      "sha256": "1dbbd74e05353716af2ee2ccb918f08623210a55d1e4506289319ee3a8cd33b2",
+      "bytes": 1352772,
+      "sha256": "61656a02b3385c15e010cfa4d414d402428c1dce11644097ceb5a3c30c42415f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3077,8 +3077,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/gingerbread.mp4",
-      "bytes": 607650,
-      "sha256": "5fa78b6d0171dcf82bd0976fad6e92e8ad9d7e7449a545389e7a2f3673e38030",
+      "bytes": 1284904,
+      "sha256": "a362b959bf49c54162a6a627ca8cbbda758331457067b1a14871432f4d9048ff",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3090,8 +3090,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/gio-xao.mp4",
-      "bytes": 552203,
-      "sha256": "93ec98f6dcb7fbef41c59f5a66720bb5a7e276bf36a1d284f40b4afabc8641b5",
+      "bytes": 1045035,
+      "sha256": "73fb53e6d4023bbc3a01da0aefa317eaaaabbd48b8bce54cc8a38efbd1f46a7d",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3103,8 +3103,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/goi-cuon-tom-thit.mp4",
-      "bytes": 608362,
-      "sha256": "036963bcc78bb81cda94cad7eac774538c02fd5083d94f8f0be9f77174d9af2d",
+      "bytes": 1273902,
+      "sha256": "e648f793f42533b0e8df18d0cae6927d7b7919e2a1e78fd41fcedceb398c0403",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3116,8 +3116,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/gopchang-gui.mp4",
-      "bytes": 566284,
-      "sha256": "8b9fcd319a8672ae9a5857dc9e0b5a0cb393f06ce525035b663a4880d129be9a",
+      "bytes": 1071278,
+      "sha256": "b409a06a2c0b73a05e949b98ff13944410c00eb2ca79d473f7cfc4297ebacb48",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3129,8 +3129,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/green-curry.mp4",
-      "bytes": 605663,
-      "sha256": "3e6608aa59e2c0ea1104be64ab443d0d0c090e70797ffa7376cbc375c48458ce",
+      "bytes": 1197220,
+      "sha256": "7183fb084b7b24e5e66cf10458581f38b9aa175e65a5213418709bbc67b4262b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3142,8 +3142,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/haidilao-hotpot.mp4",
-      "bytes": 652991,
-      "sha256": "8a99e24e191ed34fc026ad67005fd29eb584d5c38c626b3bd1b6ec26d79f2cad",
+      "bytes": 1346132,
+      "sha256": "027eddf139e5a172124fceff2c80d3fd28af8874e5ed1440323af488ee674b9c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3155,8 +3155,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/hanwoo-bbq.mp4",
-      "bytes": 644632,
-      "sha256": "fb22471764b0153178423b11814b588065ca651ff6fe717065975c2b24712591",
+      "bytes": 1328391,
+      "sha256": "390160a7d371003005a1161af9aa9fd631c6b8429d0052851efedb7282318756",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3168,8 +3168,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/honey-glazed-ham.mp4",
-      "bytes": 606762,
-      "sha256": "7c2f4523b805eb12a79cd11837e766163daa0b8f0182754ec4c5243d3649ef21",
+      "bytes": 1197740,
+      "sha256": "ac9e0c8b8348e1b259f945815888f11d568297144ce798b9ad791851d4fd8374",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3181,8 +3181,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/hot-chocolate.mp4",
-      "bytes": 623199,
-      "sha256": "900208db8e97c506609f2b7bd90b7e10beac6114657b5f08d1a758efc4da6af4",
+      "bytes": 1353559,
+      "sha256": "9e1161bfa95e22efbfc0f27561278868f8c87dd3db78e51d77413d5b5286aada",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3194,8 +3194,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/hotteok.mp4",
-      "bytes": 622301,
-      "sha256": "39dcf0f9899b9a05e3908a6b3dbc635c9933d1b38173dabca97ad79713ffd31c",
+      "bytes": 1296346,
+      "sha256": "c7e8567164aac2b4c256610ddc9e5186785f499c67471fcaf5c5bf62a27294a1",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3207,8 +3207,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/jjajangmyeon.mp4",
-      "bytes": 618428,
-      "sha256": "3f90d06c8a0008cb85e938eba8cdbd8e877032b2eafcaed5c76fe6623301c5ee",
+      "bytes": 1298636,
+      "sha256": "d3e2c1f0f3027b8a767c78706047d67ad6fdeb97ffcafc1ce6af29d16d3692e3",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3220,8 +3220,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/kem-bo-da-lat.mp4",
-      "bytes": 625719,
-      "sha256": "eb2269935dd655e2111dbbbc542d9854cda427689aa738ce1ebe10b8e447aadc",
+      "bytes": 1317304,
+      "sha256": "272e68f89cfcdf414b8822ea44b37105258c55add80d00a6fc9b9b6ca2e3578b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3233,8 +3233,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/keo-cu-do.mp4",
-      "bytes": 643461,
-      "sha256": "334d5d466501d94e69b725c59bdbc5646ff910ca38c87fe5a4301cafee5da8cf",
+      "bytes": 1317738,
+      "sha256": "4685c4d5b20c7b81d8805d19eefb01d9e10e41546155c77b72b9c4244acb8890",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3246,8 +3246,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/khao-soi.mp4",
-      "bytes": 600491,
-      "sha256": "e5ea07f4857a30036d05a2004703830dc6917987f1f8528e7a8347d2de862b7b",
+      "bytes": 1282434,
+      "sha256": "4f6c9ad1dab14d4d0e88021af6c46630c0fe7b6ad0e1a1ca3223818d7621e188",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3259,8 +3259,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/kimchi-jjigae.mp4",
-      "bytes": 629437,
-      "sha256": "3d5d160c2eb9fec3cfdf75c22fd97a6f4a485633a003301f60c1ac5a84d04300",
+      "bytes": 1304387,
+      "sha256": "1ee80eda32907ce7dcff5cdec83ac0686c89b9a3870ec7848abbcdf080f9b931",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3272,8 +3272,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/korean-fried-chicken.mp4",
-      "bytes": 561569,
-      "sha256": "003ff7b2da229a737dbac07d86c7dd9f2a2b344611b0a40eff8884fafce1fe5b",
+      "bytes": 1072480,
+      "sha256": "d0b985baf843ff0a84d9458c137b4db1395bd500be78555300f0582b8ee6c06d",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3285,8 +3285,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/lasagna.mp4",
-      "bytes": 640111,
-      "sha256": "8ff003c17093156d9874542d01e5458f6d2d20ffa5a4cb4b8155619e944616d2",
+      "bytes": 1329053,
+      "sha256": "5a800ce20b18e11ad058e6ac70301d4acd03f31bf833fae592583dd77435096a",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3298,8 +3298,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/lau-rieu-cua.mp4",
-      "bytes": 640419,
-      "sha256": "6ef6c52373531f65b0f0bf80860698511b6497dc2ff256a48d5f12fff333f51d",
+      "bytes": 1320953,
+      "sha256": "6e467802fdbbc706fc63173e5f05e2481e139cb5c33d70feedace3dbefaad6a5",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3311,8 +3311,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/lau-thai.mp4",
-      "bytes": 555660,
-      "sha256": "30f8da26f1f763917bba6aa60cf33bc35d7c7f706e789ae11d114979ba2fc1c5",
+      "bytes": 1036361,
+      "sha256": "f6357dc2c42ddbdf44882a2bf77bf8385310d4f29950deedfb37740d328309aa",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3324,8 +3324,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/mango-sticky-rice.mp4",
-      "bytes": 620431,
-      "sha256": "75361981feb0c3d3d61cac8aabaec4153c288cd6adbd52ca8e30a3ed63ca767a",
+      "bytes": 1361237,
+      "sha256": "8a0ba4fe5f3ebaf579a17025cf6190332f17ad52c2d6c41fad038363847fdf98",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3337,8 +3337,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/mashed-potato.mp4",
-      "bytes": 594973,
-      "sha256": "43e7e21f68c4adc66191586fa83412e55e98fa6ce4e8803ce94cf3fbc39b5517",
+      "bytes": 1210765,
+      "sha256": "73f5a03db041a2f867114236f1acc86c0e27ec8f972bee3d6edf01733d248c83",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3350,8 +3350,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/matcha-parfait.mp4",
-      "bytes": 603846,
-      "sha256": "5e6782acef5b4eae917abd7cf3e00f869ad8b53919d42a23f433105edc46ff43",
+      "bytes": 1276235,
+      "sha256": "def32f89d0a96c523ba62b50abe63798c1a9348d085951904a2630bbd106939e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3363,8 +3363,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/mi-cay.mp4",
-      "bytes": 699837,
-      "sha256": "a96bd372136a453405f342b8c6493daad5a3297e17bf18c2e61afaa0b4871f69",
+      "bytes": 1511735,
+      "sha256": "17c15419cb9513bb840cc4114ef07ffc0a43bdf4fdcb95528d4fea8563e22940",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3376,8 +3376,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/mi-van-than.mp4",
-      "bytes": 762070,
-      "sha256": "cbb932503bca2a0ad6dcc9ed3102ad94542b2c2f9bc5e764239576cc329cdff8",
+      "bytes": 1583054,
+      "sha256": "8be853ecd020f01095b623bc47a75e612b83a7e2e1e3b675a1add2a651e33f5a",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3389,8 +3389,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/mien-ga.mp4",
-      "bytes": 635976,
-      "sha256": "4ab76bfa086cc60ba147aab431215235683652b37ebc9a57a99ebc702c91e34b",
+      "bytes": 1321634,
+      "sha256": "e5529ba797897ec61d3ee77d23c097768c2c5724f3d9c06e91e9631e316721d2",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3402,8 +3402,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/moo-ping.mp4",
-      "bytes": 576603,
-      "sha256": "a603d2fcc9db298c947f99846f50cdf5f2ba6fef1cb366b754fe15f227d7b4c6",
+      "bytes": 1099825,
+      "sha256": "db8352318ca8a569e3479a64be0c6f087ddd1141edc748a834a8cc77d8349c8e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3415,8 +3415,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/nom-sua-xoai.mp4",
-      "bytes": 565499,
-      "sha256": "bdb9a8041b477c2bf81de781d3d73a770c0765f3c582fcd117a9775a36d3bb06",
+      "bytes": 1142133,
+      "sha256": "afc584c3e7148b38938c6b536222d78375f892288224a45e2dc5376125d88282",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3428,8 +3428,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/nuong-bbq.mp4",
-      "bytes": 559179,
-      "sha256": "306248429b39438afa4273971d15a9b1d6cddef787b8762aa04f4eae68d91350",
+      "bytes": 1055784,
+      "sha256": "13e3dfe2d5e2871f6e55749f3b15ceca546e614ef53212549b036f938675d786",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3441,8 +3441,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/okonomiyaki.mp4",
-      "bytes": 576578,
-      "sha256": "3be2937d49a1b2d6af301c41a76a977fdb854e756106a4dddbc3bc2191948150",
+      "bytes": 1088498,
+      "sha256": "f0a689237cf9400b50decfde8740ac34d3f4579ebda5b58546d30998c356c949",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3454,8 +3454,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/omakase.mp4",
-      "bytes": 643055,
-      "sha256": "d79ee085e209615778c84fb11d88fe1d9e23d928cec6612d682f5e6366e9f1e6",
+      "bytes": 1347126,
+      "sha256": "4a6b48ff45736926bf442817ece7bf30fa530d7dbef6371b3e3161b3da1ef623",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3467,8 +3467,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/ossobuco.mp4",
-      "bytes": 544962,
-      "sha256": "020a1ef5b5596938daa6599b8972bc5008ffb1079e274d1207c93e89952a001e",
+      "bytes": 1039471,
+      "sha256": "bd736730b156ee3fdb26d67d4cdffa6fe2b24424076ccf88f106e3237ee53ade",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3480,8 +3480,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pad-kra-pao.mp4",
-      "bytes": 577571,
-      "sha256": "cccac47ebeae5e157e3aa30df906acb04471be58bd3d43fb05b0b0a064f999fd",
+      "bytes": 1128777,
+      "sha256": "efce28d9c0f0b9e9c0678f941497dfd6c4f4fb653d0a6c4fffbea01103e67213",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3493,8 +3493,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pad-thai.mp4",
-      "bytes": 667826,
-      "sha256": "aae8e1246d0959caf917a53dae0fc883f28da178547f963fddaea847ad323ae5",
+      "bytes": 1366411,
+      "sha256": "c8618123dd5a6a269ecdc8010fd07e1933dbedbba7ce6f8754bd8be398cbc1a9",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3506,8 +3506,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pappardelle-cinghiale.mp4",
-      "bytes": 662658,
-      "sha256": "b26aa96c495fcb631316f3223e5b799b69f0b2df2a559a31db6e1e946ba3919c",
+      "bytes": 1404434,
+      "sha256": "09fa984d47290ecbe6369a1ddc0cd652198802b7a2efe72fe98358c0946349c8",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3519,8 +3519,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pasta.mp4",
-      "bytes": 669865,
-      "sha256": "528e2954b895e536ceb07109e9fbd1ccaae7a5dda535f1ce4af03b28c36ad245",
+      "bytes": 1378846,
+      "sha256": "efb4567d0c5d301691989006d36b4fb7def2d5862de6f49ef976ee9472ce4713",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3532,8 +3532,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/peking-duck.mp4",
-      "bytes": 658124,
-      "sha256": "dbdb7d55ff4e3d006c67a5b32584cad6fcd1b19bfc10d3e24253c5cd4a004d75",
+      "bytes": 1378331,
+      "sha256": "feb8e9dc167d841f7deed317c1f13e11ced548ff92f4a4e9777d02d8f082c888",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3545,8 +3545,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pho-bo.mp4",
-      "bytes": 621599,
-      "sha256": "e6b1b05ab8ed2a18d747ce2b119b98c16b727c59126b8dd86d02c46020f40d82",
+      "bytes": 1315912,
+      "sha256": "f64f3f36f862e100e714320d2361f7a451110f91c77d3330de3f5d256fcdbfb3",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3558,8 +3558,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pho-ga.mp4",
-      "bytes": 615787,
-      "sha256": "c7d32bffa32932de9963aee9733b4a9a53f364c591b067f9676c7984416b1e05",
+      "bytes": 1293153,
+      "sha256": "3aa351ed02c164ce1afe3fe604dbc1acb2f53a4a6ad8a85a2ca8b40fd9e5d4e8",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3571,8 +3571,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pizza.mp4",
-      "bytes": 653500,
-      "sha256": "908bcc2ac98c0eee46d7d80d578f5309c6ddffb9be0a7804f05bf94939056bbb",
+      "bytes": 1352740,
+      "sha256": "0505cfb465c92afff9f1f3b67ae4db6953456a7d9b410233b20a19692ee1935c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3584,8 +3584,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/porchetta.mp4",
-      "bytes": 596871,
-      "sha256": "2fdf4a62ef430eaf7793b3e8e788595cb9c63faa97bba3817b7e0e39c3e43f4e",
+      "bytes": 1164828,
+      "sha256": "2eccba9f71f3bb8f7636d5de88af99087732bff0f2c1fc3997acf8fb03477c3e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3597,8 +3597,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/roast-turkey.mp4",
-      "bytes": 548238,
-      "sha256": "baa934dc3866b1b133bb8626065d09a7cf3adfba648934e1d9803dc853b23dec",
+      "bytes": 1066632,
+      "sha256": "46491973053c31ed1718d8f4a91c84e7025524b1dc68854a0726af92644742cf",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3610,8 +3610,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/saltimbocca.mp4",
-      "bytes": 551051,
-      "sha256": "e54b97b2b6c0d7b5bbe6a271633f634f127a34c33c5b0d879a8202ffc667c3e5",
+      "bytes": 1035335,
+      "sha256": "f953c279cb07f903a04f58c2eb7b602013e75082d9bee7db3ddc83f2f9776879",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3623,8 +3623,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/samgyeopsal.mp4",
-      "bytes": 645786,
-      "sha256": "184ccc3174316d7791c74f3245c48603e599d35be8a4588b1faa34fd83933028",
+      "bytes": 1326168,
+      "sha256": "911ab3d5bf83df1464a3c19e62ae40420c87ba17ae9b807de9bae202973ebd8a",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3636,8 +3636,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/shoyu-ramen.mp4",
-      "bytes": 639075,
-      "sha256": "f2063d4a01200b937179f9ffe105294518a232dccaf4bf2983da6e036417c9fd",
+      "bytes": 1309109,
+      "sha256": "389ba6e8d88bcf4d94401c19c7fb47c8cc7ed7b9b74baf2ad5e7720fe1d470c3",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3649,8 +3649,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/smoked-brisket.mp4",
-      "bytes": 652583,
-      "sha256": "42e9490c50eb4e4980af1ec53fcf0a6b97186574b59d8ac282efc9b7a653cb40",
+      "bytes": 1341671,
+      "sha256": "bd3255fb9d02bc1f945aad6f4c9bb44ae123a8e5b27532dd2c3bbb6950e888ef",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3662,8 +3662,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/som-tam.mp4",
-      "bytes": 705464,
-      "sha256": "b3ebb10c4df17b1dd7258bec69170aa2358b59fddc809b0e9a5abb6488463314",
+      "bytes": 1481363,
+      "sha256": "9d3c9c587d6738d1ca0f9644699da2f63e2f34d584c9a2bc6d5ce592787a04a2",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3675,8 +3675,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/sua-chua-mit.mp4",
-      "bytes": 602960,
-      "sha256": "83251b2b2b59b08bfc1279c81af1583a2e01f7d33c6111af06e10ea5fdc86312",
+      "bytes": 1290819,
+      "sha256": "1400271dd8875d03c70d903bf8e3372cb0c511c04a8abd3da3ccb73c82f3fd71",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3688,8 +3688,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/sundae-guk.mp4",
-      "bytes": 681632,
-      "sha256": "70e1a3cd2ca39b44fc274e513325056669cf810bc32abd8f862b92fd742b50ed",
+      "bytes": 1464540,
+      "sha256": "3d5866cb797b019cd3fbe35289bdfe191ff96fc0f7784c7564785a14c6536d72",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3701,8 +3701,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/sushi.mp4",
-      "bytes": 648506,
-      "sha256": "0d20998875c9b9509b1204b940c6dc08680ea57a57eec965aab083959bda990d",
+      "bytes": 1340191,
+      "sha256": "1cc29b54e8b5117505a05d49337e394a8b848fa398332b42192031c5f06200a4",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3714,8 +3714,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/taiyaki.mp4",
-      "bytes": 628457,
-      "sha256": "f3db3181caab779cfdb4acf4b8153d4e88386cdd227633ee5c656a20c8926108",
+      "bytes": 1326310,
+      "sha256": "c6b5ae1af1f6923acfd97a1b62fd8acb28b47ab2360c312b4aa52a18a7ffbaaa",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3727,8 +3727,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/takoyaki.mp4",
-      "bytes": 627037,
-      "sha256": "b8935afd384fb3a95373db34b104e7dbcd6c4d1153b05036876295c78dfe596a",
+      "bytes": 1305521,
+      "sha256": "216e647a6e5b9b33bf588265ea6c852b4b41148052232df9e2fff4eb85e82b6e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3740,8 +3740,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/thit-dong.mp4",
-      "bytes": 533899,
-      "sha256": "3cbde431b6e83414d5fb35ece32aad4dbc19816a093d45d3c0510d881a55396d",
+      "bytes": 1008094,
+      "sha256": "f40044f00b69b46e9a3f955e3465f58d9d99ebfea2a94762b5e40a001cc2cf12",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3753,8 +3753,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/thit-kho-trung.mp4",
-      "bytes": 595149,
-      "sha256": "db1cd1365b79889c88ce39d6d2d7416f22bc23b83f4c4e3beeece98934fe3a0c",
+      "bytes": 1207201,
+      "sha256": "8cc61a4d698fcd8729f1af30933e38dc6428a0d466596992faeb612d70058e84",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3766,8 +3766,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/tiramisu.mp4",
-      "bytes": 618406,
-      "sha256": "8b06aac02e884ece248111b03be8f92aabe310dd0020f296b8c6ed2d2c10193c",
+      "bytes": 1330247,
+      "sha256": "977b5b7f42a44e854819f062554c5d0b8a4334354dbe510c54ab1051fae111dd",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3779,8 +3779,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/tokbokki.mp4",
-      "bytes": 595462,
-      "sha256": "dc920209b01c514f84eca81190cab2095f99a633b5c8fdaa877f4500589b7529",
+      "bytes": 1146967,
+      "sha256": "55207089927bf9af3d0658774e1344baaa40ef77524cf5b0d3b2abd1affbc6bb",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3792,8 +3792,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/tom-yum-goong.mp4",
-      "bytes": 582462,
-      "sha256": "c7a946e5451ca330f0a35d9bf7055998d4dce431cfa1e2025c92141dc2009388",
+      "bytes": 1115142,
+      "sha256": "0fb4895f64c11c0adc76e0c2b77bbd9bf710b7178440884704f1991d6871efad",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3805,8 +3805,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/tonkatsu.mp4",
-      "bytes": 556432,
-      "sha256": "99a1e741c778b1261fa2f7b50ff483d242eee88437a81494172b9b2a5d372652",
+      "bytes": 1046767,
+      "sha256": "c57b830a05dd7a9460a19b5e32f740627b41d5558e13f124157234a3c985ef2e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3818,8 +3818,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/tonkotsu-ramen.mp4",
-      "bytes": 623910,
-      "sha256": "9bf7d93e34c4f9388300469123996fc38bd7c707d03fb33a73a99a5e7c16840a",
+      "bytes": 1303895,
+      "sha256": "27d2988c0dc7bde9e7a5d453574ce46742d74f2503ebbde319e85b6d55f51318",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3831,8 +3831,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/truffle-risotto.mp4",
-      "bytes": 650481,
-      "sha256": "17d68ce141bb8ca3b4cdf7c397f25f446ee2c69014c130a87d8c05e147282419",
+      "bytes": 1340786,
+      "sha256": "6d7ebd90a494dfc7b13475be7084313a0630000536a6037d8db368b127a0aac9",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3844,8 +3844,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/unagi-don.mp4",
-      "bytes": 639887,
-      "sha256": "cf3ec6e369738cfd645e8f33a8afef4d3580064124fb1f21a93ec55f52f5ba7a",
+      "bytes": 1329696,
+      "sha256": "50755320a40719aecf819362b871b4d154cc99a937c655c0ca970e36a9f4eb73",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3857,8 +3857,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/v4-market-host.mp4",
-      "bytes": 604520,
-      "sha256": "4275124a4d8e5076b99ff3e80da46ecb246f965e60b08acad481ef518ba44526",
+      "bytes": 1265591,
+      "sha256": "fead44e3ae038631a2558a33118d64132baec78923ac4ff82f211cc0d15e996e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3870,8 +3870,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/vit-quay.mp4",
-      "bytes": 616549,
-      "sha256": "bb0d9cf982f2f2a2b7761b61a54ddc3de92f8b69ad86e37a4fab3ed3a7680c29",
+      "bytes": 1205648,
+      "sha256": "0dc461a5b56febb677aaf8ebf7b79dad71f1c441dcc762c405784ad479ea6c80",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3883,8 +3883,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/xiaolongbao.mp4",
-      "bytes": 646781,
-      "sha256": "3f6658f7496ffcbe33e7816088f457c3b7e279842261b06ba84a94da10456b3b",
+      "bytes": 1339172,
+      "sha256": "308b8bcd2913edc96bd2a76218c7130984bfe695ba662a0379f120ca2084eedf",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3896,8 +3896,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/xoi-xeo.mp4",
-      "bytes": 662595,
-      "sha256": "7b0cf63c391211c54dc0ef3836e0295a0a55dd200a034f1b688c09ff94aa188e",
+      "bytes": 1383702,
+      "sha256": "04d0b6d083e5854434f8dbf302b8c49857050e61ed18980e60f9277fdf379e1f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3909,8 +3909,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/xoi.mp4",
-      "bytes": 683074,
-      "sha256": "819c6d20e7addd0cc4254f47d62abd6617f6b48d6162699fa8fa559227521339",
+      "bytes": 1416186,
+      "sha256": "d2d9cb7e96a3eb774db5f84b888b4e55421a1acab9b81c895132605317ad5fb9",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3922,8 +3922,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/yakitori.mp4",
-      "bytes": 582904,
-      "sha256": "a77a4963cad9fe57a3c9bfb31ff2acb4b8f57b11cc02f7e9b245a9e379685598",
+      "bytes": 1135251,
+      "sha256": "30beef1797bc4a608f9bf481ca73d7e5398d878eb5f8b02a2e5c6df79f72d441",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3935,8 +3935,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/yule-log.mp4",
-      "bytes": 631192,
-      "sha256": "8d607f2a4b298f59d2bd7028454256eccca6a76bc8d9a53dc78c22abe94eb452",
+      "bytes": 1360692,
+      "sha256": "78689a3bf323a6c13cfb4cc0ffe8bbb66e68ec3312c7fdf499bc018737911980",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",

@@ -1,17 +1,17 @@
 {
-  "staticBudgetBytes": 170000000,
+  "staticBudgetBytes": 260000000,
   "jsGzipBudgetBytes": 675000,
   "version": "5.8.0",
-  "bytes": 161813409,
+  "bytes": 255436263,
   "files": 664,
   "byType": {
     "js": {
       "files": 55,
-      "bytes": 2035413
+      "bytes": 2036308
     },
     "css": {
       "files": 8,
-      "bytes": 480291
+      "bytes": 483054
     },
     "webp": {
       "files": 284,
@@ -31,7 +31,7 @@
     },
     "mp4": {
       "files": 139,
-      "bytes": 88134164
+      "bytes": 181753360
     },
     "json": {
       "files": 1,
@@ -59,7 +59,7 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2515704,
+    "Application JS/CSS": 2519362,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
     "Shared character atlases": 9061632,
@@ -67,11 +67,11 @@
     "Other and legal": 13021131,
     "Food art": 7490462,
     "Adventure presentation art": 1400332,
-    "Spirit RPG art/audio/video": 104768542,
+    "Spirit RPG art/audio/video": 198387738,
     "TCG art/audio": 17283968
   },
-  "js_gzip": 656610,
-  "css_gzip": 99924,
+  "js_gzip": 656981,
+  "css_gzip": 100433,
   "largest": [
     {
       "path": "assets/rpg/campaign580/battle-ceremony.webp",
@@ -86,48 +86,48 @@
       "bytes": 2153792
     },
     {
-      "path": "assets/characters/rosterB.webp",
-      "bytes": 1125838
+      "path": "assets/rpg/awakening530/movies/chef-hai.mp4",
+      "bytes": 1656466
     },
     {
-      "path": "assets/characters/nightB.webp",
-      "bytes": 1083090
+      "path": "assets/rpg/awakening530/movies/ganjang-gejang.mp4",
+      "bytes": 1617250
     },
     {
-      "path": "assets/characters/rosterG.webp",
-      "bytes": 1064480
+      "path": "assets/rpg/awakening530/movies/bun-thang.mp4",
+      "bytes": 1585513
     },
     {
-      "path": "assets/characters/rosterE.webp",
-      "bytes": 1037958
+      "path": "assets/rpg/awakening530/movies/mi-van-than.mp4",
+      "bytes": 1583054
     },
     {
-      "path": "assets/characters/rosterC.webp",
-      "bytes": 1025512
+      "path": "assets/rpg/awakening530/movies/bun-moc.mp4",
+      "bytes": 1555673
     },
     {
-      "path": "assets/autochess/movement.webp",
-      "bytes": 1005956
+      "path": "assets/rpg/awakening530/movies/cha-ca-la-vong.mp4",
+      "bytes": 1530396
     },
     {
-      "path": "assets/characters/rosterD.webp",
-      "bytes": 990090
+      "path": "assets/rpg/awakening530/movies/bun-bo-hue.mp4",
+      "bytes": 1524357
     },
     {
-      "path": "assets/characters/rosterA.webp",
-      "bytes": 945964
+      "path": "assets/rpg/awakening530/movies/mi-cay.mp4",
+      "bytes": 1511735
     },
     {
-      "path": "assets/autochess/new-movement.webp",
-      "bytes": 933930
+      "path": "assets/rpg/awakening530/movies/bun-cha.mp4",
+      "bytes": 1506337
     }
   ],
   "leaks": [],
   "visualUpdate": {
     "baselineBytes": 88153474,
-    "additionalBudgetBytes": 80000000,
-    "reason": "Web 5.8 replaces 139 low-resolution ultimate clips with clear 1280 x 720 H.264 video and adds four campaigns, supplied battle/village art, and 13 original music themes.",
-    "addedBytes": 73659935,
-    "remainingBytes": 6340065
+    "additionalBudgetBytes": 172000000,
+    "reason": "Web 5.8 replaces 139 low-resolution ultimate clips with high-detail 1280 x 720 H.264 video encoded from lossless frames and adds four campaigns, supplied battle/village art, and 13 original music themes.",
+    "addedBytes": 167282789,
+    "remainingBytes": 4717211
   }
 }

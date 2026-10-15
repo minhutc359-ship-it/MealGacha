@@ -18,6 +18,8 @@ async function load(path: string) { let im = cache.get(path); if (!im) {
 const ease = (n: number) => { n = Math.max(0, Math.min(1, n)); return n * n * (3 - 2 * n); };
 export async function prepareSpiritMovie(id: string) {
     const canvas = document.querySelector('canvas')!, ctx = canvas.getContext('2d')!;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
     const kit = awakenedKit(id), card = CARD_MAP[id], s = SCHOOL.indexOf(card.school), pattern = ULTIMATE_MOVES[kit.ultimate][2];
     const model = tcgCharacter(card)!, bounds = characterBounds(model)!, sheet = SPRITE_SHEETS[model.sheet], portrait = spiritArt(id)!;
     const [env, art, sprite, sigils] = await Promise.all([load('/dev/docs/web-v530/environments.webp'), load(portrait.path), load(sheet.path), load('/assets/rpg/awakening530/sigils.webp')]);
@@ -171,7 +173,9 @@ export async function prepareSpiritMovie(id: string) {
             ctx.fillText(kit.title + ' · ' + ULTIMATE_MOVES[kit.ultimate][0], 20, 265);
             ctx.fillStyle = accent;
             ctx.fillRect(20, 276, Math.min(472, 472 * p), 1.5);
-            return canvas.toDataURL('image/jpeg', .96).split(',')[1];
+            // Keep authored pixels lossless until the final H.264 pass. JPEG here used
+            // to soften every frame before the video encoder saw it.
+            return canvas.toDataURL('image/png').split(',')[1];
         }, pattern, motif: kit.motif, id, title: kit.title,
     };
 }

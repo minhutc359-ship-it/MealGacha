@@ -241,6 +241,39 @@ async function verifyAdventure(width, height, cinematic = false) {
   await page.goto(`${url}/adventure`)
   await page.getByRole("region", { name: /Bản đồ làng/ }).waitFor()
   await seedAdventure(page)
+  const village = await page.locator(".rpg-village-map").evaluate((map) => {
+    const world = map.querySelector(".rpg-village-world")
+    const art = map.querySelector(".rpg-village-art")
+    const mapBox = map.getBoundingClientRect()
+    const worldBox = world.getBoundingClientRect()
+    return {
+      map: { width: mapBox.width, height: mapBox.height },
+      world: {
+        width: worldBox.width,
+        height: worldBox.height,
+        inside:
+          worldBox.left >= mapBox.left - 1 &&
+          worldBox.top >= mapBox.top - 1 &&
+          worldBox.right <= mapBox.right + 1 &&
+          worldBox.bottom <= mapBox.bottom + 1,
+      },
+      art: {
+        fit: getComputedStyle(art).objectFit,
+        naturalWidth: art.naturalWidth,
+        naturalHeight: art.naturalHeight,
+      },
+    }
+  })
+  assert.equal(village.world.inside, true)
+  assert(Math.abs(village.world.width / village.world.height - 1.5) < 0.01)
+  assert.deepEqual(village.art, {
+    fit: "contain",
+    naturalWidth: 1536,
+    naturalHeight: 1024,
+  })
+  await page.screenshot({
+    path: path.join(captures, `village-${width}x${height}.png`),
+  })
   await page.getByRole("button", { name: /Cổng Ký Ức/ }).click()
   const transition = page.locator(".rpg-transition")
   await transition.waitFor()
@@ -321,6 +354,7 @@ async function verifyAdventure(width, height, cinematic = false) {
     guideOpacity: 1,
     difficulties: { normal: 1, hard: 3, extreme: 8 },
     storyCentered: true,
+    villageFullMap: village,
   })
   if (!cinematic) {
     await context.close()
@@ -350,6 +384,21 @@ async function verifyAdventure(width, height, cinematic = false) {
         .evaluate((node) => getComputedStyle(node).backgroundImage)
     ).includes("battle-ceremony.webp"),
   )
+  const readyCeremony = await page.locator(".rpg-ceremony-art").evaluate((node) => {
+    const box = node.getBoundingClientRect()
+    const arena = node.closest(".rpg-arena").getBoundingClientRect()
+    return {
+      width: box.width,
+      height: box.height,
+      inside:
+        box.left >= arena.left - 1 &&
+        box.top >= arena.top - 1 &&
+        box.right <= arena.right + 1 &&
+        box.bottom <= arena.bottom + 1,
+    }
+  })
+  assert.equal(readyCeremony.inside, true)
+  assert(Math.abs(readyCeremony.width - readyCeremony.height) <= 1)
   await page.screenshot({
     path: path.join(captures, "battle-ready-1440x900.png"),
   })
@@ -419,6 +468,20 @@ async function verifyAdventure(width, height, cinematic = false) {
     useGameStore.getState().dismiss()
   })
   await page.getByRole("status", { name: /Win · Chiến thắng/ }).waitFor()
+  const winCeremony = await page.locator(".rpg-ceremony-art").evaluate((node) => {
+    const box = node.getBoundingClientRect()
+    const arena = node.closest(".rpg-arena").getBoundingClientRect()
+    return {
+      width: box.width,
+      height: box.height,
+      inside:
+        box.left >= arena.left - 1 &&
+        box.top >= arena.top - 1 &&
+        box.right <= arena.right + 1 &&
+        box.bottom <= arena.bottom + 1,
+    }
+  })
+  assert.equal(winCeremony.inside, true)
   await page.screenshot({
     path: path.join(captures, "battle-win-1440x900.png"),
   })
@@ -426,11 +489,13 @@ async function verifyAdventure(width, height, cinematic = false) {
     area: "adventure-battle",
     viewport: [width, height],
     readyArt: true,
+    readyCeremony,
     manualTargetControls: 0,
     targeting: "nearest",
     cinematic: movie,
     skillDescription: caption,
     winArt: true,
+    winCeremony,
   })
   await context.close()
 }

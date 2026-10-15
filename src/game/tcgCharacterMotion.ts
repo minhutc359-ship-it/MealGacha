@@ -4,7 +4,7 @@ import type { BattleUnit, GameCard, School } from "./types"
 import { DISTINCT_MODELS, unitCharacter, type CharacterModel } from "../infrastructure/assets/characterSprites"
 import { TCG_IMPACT_MS } from "./battleVfx"
 
-export type CharacterMotion = "idle" | "summon" | "attack" | "cast" | "hit" | "fall" | "victory"
+export type CharacterMotion = "idle" | "walk" | "summon" | "attack" | "cast" | "hit" | "fall" | "victory"
 export interface MotionCue {
   kind: CharacterMotion
   delay: number
@@ -63,6 +63,10 @@ export function tcgUnitMotion(frame: BattleFrame | undefined, uid: string, side:
 export function characterPose(motion: CharacterMotion, age: number, fresh: boolean, quiet: boolean, distinct = false) {
   if (quiet) return motion === "fall" ? fresh ? 6 : 12 : 0
   const ms = Math.max(0, age)
+  if (motion === "walk") {
+    const poses = distinct || fresh ? [0, 1, 2, 3, 2, 1] : [1, 2, 3, 2]
+    return poses[Math.floor(ms / 125) % poses.length]
+  }
   if (motion === "fall") return fresh ? ms < 180 ? 4 : 6 : ms < 180 ? 11 : 12
   if (motion === "hit") return ms < 260 ? fresh ? 4 : 11 : 0
   if (motion === "victory") return (distinct ? [5, 1, 5, 2] : fresh ? [0, 1, 2, 1] : [13, 1, 13, 3])[Math.floor(ms / 180) % 4]

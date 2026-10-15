@@ -43,7 +43,7 @@ describe("shared characters in TCG", () => {
     expect(tcgFieldUnits([b.player.board[1]], [b.player.board[1], next]).map(u => u.uid)).toEqual(["support", "new"])
   })
   it("every summonable card has a real measured row and valid poses, while spells use the matching caster", () => {
-    const kinds: CharacterMotion[] = ["idle", "summon", "attack", "cast", "hit", "fall", "victory"]
+    const kinds: CharacterMotion[] = ["idle", "walk", "summon", "attack", "cast", "hit", "fall", "victory"]
     for (const card of CARDS) {
       const model = tcgCharacter(card)
       if (card.kind !== "unit") { expect(model).toBeNull(); continue }

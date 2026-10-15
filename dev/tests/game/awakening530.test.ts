@@ -241,7 +241,7 @@ describe("5.3 media payload", () => {
         expect(movieHashes.size).toBe(139);
         expect(soundHashes.size).toBe(139);
         expect(total).toBeGreaterThan(5000000);
-        expect(total).toBeLessThan(100000000);
+        expect(total).toBeLessThan(190000000);
         expect(readdirSync(`${root}/movies`).length).toBe(139);
         expect(readdirSync(`${root}/sounds`).length).toBe(139);
     });

@@ -8,6 +8,7 @@ export function livingClipFrame(
 ) {
   if (quiet) return motion === "fall" ? 20 : 0
   const ms = Math.max(0, age)
+  if (motion === "walk") return 2 + (Math.floor(ms / 100) % 6)
   if (motion === "idle") return Math.floor(ms / 650) % 2
   if (motion === "victory") return 22 + (Math.floor(ms / 180) % 2)
   if (motion === "fall") return 18 + Math.min(3, Math.floor(ms / 200))
