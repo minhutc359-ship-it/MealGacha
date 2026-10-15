@@ -375,7 +375,7 @@ const ADVANCED_CHAPTERS: {
 }[] = [
   {
     id: "mistwood", name: "Rừng Bếp Sương Lam", subtitle: "Lắng nghe những mầm cây từng bị lãng quên",
-    art: "/assets/events/hanoi-autumn/banner.webp", music: "v4-market-warm", school: "grove", guide: "moc",
+    art: "/assets/events/cooling-summer/banner-vietnam.webp", music: "v4-market-warm", school: "grove", guide: "moc",
     boss: "boss-blue-root", bossName: "Rễ Vương Không Ngủ",
     stages: [
       ["Bàn mầm đầu tiên", "Những hạt giống này không nảy mầm vì chẳng ai nhớ người từng gieo chúng.", "Một hạt đã thức. Hóa ra nó chỉ chờ tiếng gọi tên."],
@@ -390,7 +390,7 @@ const ADVANCED_CHAPTERS: {
   },
   {
     id: "sugartower", name: "Tháp Đường Phân Kỳ", subtitle: "Tìm vị ngọt thật giữa hàng nghìn chiếc gương",
-    art: "/assets/events/seoul-midnight/banner.webp", music: "story-mystery", school: "sugar", guide: "lien",
+    art: "/assets/events/dolce-vita/banner.webp", music: "story-mystery", school: "sugar", guide: "lien",
     boss: "boss-mirror-sugar", bossName: "Nữ Chúa Gương Đường",
     stages: [
       ["Cầu thang phản chiếu", "Một bước sai sẽ dẫn về đúng căn phòng ta vừa rời. Nhìn đèn, đừng nhìn gương.", "Ánh đèn chỉ về chiếc cầu thang thật, nơi những người thợ đang chờ chúng ta."],
@@ -405,7 +405,7 @@ const ADVANCED_CHAPTERS: {
   },
   {
     id: "ashalley", name: "Hẻm Than Thiên Tinh", subtitle: "Giành lại ngọn lửa không thiêu rụi lời hứa",
-    art: "/assets/events/bangkok-street-heat/banner.webp", music: "v4-harbor-warm", school: "ember", guide: "nhien",
+    art: "/assets/events/christmas-feast/banner.webp", music: "v4-harbor-warm", school: "ember", guide: "nhien",
     boss: "boss-char-clock", bossName: "Thợ Rèn Đồng Hồ Tro",
     stages: [
       ["Ngõ bếp đỏ", "Lửa trong hẻm bùng lên mỗi khi người ta giận nhau. Đi sát nhau.", "Mọi người cùng tắt một bếp than trước khi cứu bếp tiếp theo."],
@@ -420,7 +420,7 @@ const ADVANCED_CHAPTERS: {
   },
   {
     id: "lasttable", name: "Mâm Cơm Hồi Quy", subtitle: "Đối diện câu hỏi ai được ngồi bên mâm",
-    art: "/assets/events/tokyo-matsuri/banner.webp", music: "story-mystery", school: "hearth", guide: "bach",
+    art: "/assets/events/new-year-feast/banner.webp", music: "story-mystery", school: "hearth", guide: "bach",
     boss: "boss-last-banquet", bossName: "Chủ Tiệc Không Bóng",
     stages: [
       ["Ghế trống đầu bàn", "Căn phòng đủ món nhưng thiếu một chiếc ghế. Có người vẫn đứng ngoài cửa.", "Chúng ta kê thêm một chiếc ghế trước khi dọn món. Ai cũng có chỗ ngồi."],
