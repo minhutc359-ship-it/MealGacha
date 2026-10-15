@@ -18,6 +18,7 @@ interface Props {
   embedded?: boolean
   reward: RewardInstance
   canOpenAgain: boolean
+  showSpiritCard?: boolean
   onClose(): void
   onOpenAgain(): void
   onGoCollection(): void
@@ -28,6 +29,7 @@ export function RevealModal({
   embedded = false,
   reward,
   canOpenAgain,
+  showSpiritCard = false,
   onClose,
   onOpenAgain,
   onGoCollection,
@@ -73,6 +75,7 @@ export function RevealModal({
 
   const dish = reward.dish
   const rarity = reward.rarity ?? "common"
+  const spiritCardId = chestSpiritCard(reward)
   const particleCount = rarity === "diamond" ? 34 : rarity === "epic" ? 24 : rarity === "rare" ? 16 : 9
 
   const shareReward = async () => {
@@ -131,14 +134,20 @@ export function RevealModal({
                   "radial-gradient(circle at 50% 60%, rgba(0,212,255,0.12) 0%, transparent 70%)",
               }}
             />
-            <RarityFrame rarity={rarity} className="reward-art-frame">
-              <FoodImage
-                dishId={dish.id}
-                name={dish.name}
-                imageUrl={dish.imageUrl}
-                variant="full"
-                eager
-              />
+            <RarityFrame rarity={rarity} className={`reward-art-frame ${showSpiritCard && spiritCardId ? "reward-spirit-frame" : ""}`}>
+              {showSpiritCard && spiritCardId ? (
+                <Suspense fallback={<span className="reward-spirit-loading">Đang mở thẻ Vị Linh…</span>}>
+                  <ChestSpiritCard id={spiritCardId} />
+                </Suspense>
+              ) : (
+                <FoodImage
+                  dishId={dish.id}
+                  name={dish.name}
+                  imageUrl={dish.imageUrl}
+                  variant="full"
+                  eager
+                />
+              )}
             </RarityFrame>
             {/* Badges */}
             <div className="absolute top-3 left-3 flex gap-2">
@@ -200,7 +209,7 @@ export function RevealModal({
               </p>
             )}
 
-            {chestSpiritCard(reward) && <Suspense fallback={<p>Đang mở thẻ Vị Linh…</p>}><ChestSpiritCard id={chestSpiritCard(reward)!}/></Suspense>}
+            {spiritCardId && !showSpiritCard && <p className="reward-spirit-summary">+1 thẻ Vị Linh đã được cộng vào hồ sơ. Bật “Hiện thẻ Vị Linh ở kết quả” để xem thẻ thay cho ảnh món ăn.</p>}
             <div className="reward-utility-actions">
               <button onClick={() => toggleFavorite(reward.id)} aria-pressed={favorite}>
                 {favorite ? "♥ Đã yêu thích" : "♡ Yêu thích"}
