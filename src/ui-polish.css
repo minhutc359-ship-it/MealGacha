@@ -190,3 +190,46 @@ html[data-title-theme="starter"] { --title-accent:#19c7e8; --title-glow:rgba(25,
 .odds-food-grid strong { display:block; color:#efe2c3; padding:7px 8px 3px; font-size:11px; line-height:1.4; }
 .odds-food-grid small { display:block; color:#a8bbc7; padding:0 8px 8px; font-size:9px; }
 @media(max-width:420px) { .odds-food-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .odds-food-library { margin:16px; } }
+
+/* 2026-10-15: Chest controls & reveal layout; no saved-game state is affected. */
+.chest-help { position:relative; z-index:35; margin:0 auto 8px; width:max-content; max-width:100%; }
+.chest-help-trigger { display:grid; place-items:center; width:32px; height:32px; margin:auto; padding:0; border:1px solid #a4c5c575; border-radius:50%; background:#122d3e; color:#d6e9db; font-size:19px; cursor:pointer; }
+.chest-help-popover { position:absolute; top:calc(100% + 8px); left:50%; width:min(320px, calc(100vw - 32px)); max-height:min(60dvh, 480px); overflow:auto; padding:15px; border:1px solid #d5bb8485; border-radius:14px; background:#071b2b; box-shadow:0 22px 48px #000b; color:#c1d3d6; font-size:12px; line-height:1.6; text-align:left; transform:translateX(-50%); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .16s ease, visibility .16s ease; }
+.chest-help:is(:hover,:focus-within) .chest-help-popover { opacity:1; visibility:visible; pointer-events:auto; }
+.chest-help-popover strong { display:block; margin-bottom:7px; color:#ecd59b; font-size:13px; }
+.chest-help-popover p { margin:7px 0; }
+.chest-help-popover a { display:block; margin:7px 0 10px; color:#f0d28b; }
+.chest-display-options { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:6px 14px; width:100%; margin-top:8px; }
+.chest-display-options .skip-action,.chest-display-options .skip-toggle { margin:0; min-height:30px; font-size:10px; color:#c6d7dd; }
+.chest-display-options .skip-toggle { gap:6px; }
+.chest-display-options input { width:15px; height:15px; }
+.chest-spirit-toggle { padding:5px 9px; border:1px solid #bca47b50; border-radius:9px; background:#112838d6; }
+.stage-actions:has(.chest-display-options) { width:min(440px,100%); min-height:110px; }
+.reward-reveal-card { grid-template-columns:minmax(0, .94fr) minmax(0, 1.06fr); }
+.reward-reveal-card > div:first-child { min-width:0; }
+.reward-reveal-card > div:nth-child(2) { justify-content:flex-start; gap:4px; }
+.reward-reveal-card > div:nth-child(2) > button { margin-top:4px; }
+.reward-reveal-card .reward-spirit-frame { display:grid; place-items:center; padding:9px; width:min(94%,350px); height:min(350px,84%); }
+.reward-spirit-frame .chest-spirit-card { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:9px; width:100%; height:100%; min-height:0; margin:0; padding:11px; overflow:hidden; text-align:center; }
+.reward-spirit-frame .chest-spirit-card > .rpg-spirit-art { width:min(100%,150px); height:min(42%,150px); flex:0 1 auto; }
+.reward-spirit-frame .chest-spirit-card > span { display:grid; gap:3px; min-width:0; width:100%; }
+.reward-spirit-frame .chest-spirit-card small { font-size:9px; }
+.reward-spirit-frame .chest-spirit-card strong { font-size:clamp(12px,1.8vw,17px); }
+.reward-spirit-frame .chest-spirit-card b { font-size:10px; }
+.reward-spirit-loading,.reward-spirit-summary { color:#d8c58f; font-size:11px; line-height:1.5; }
+.reward-spirit-summary { margin:4px 0; }
+@media(max-width:700px) {
+  .reward-reveal-card { grid-template-columns:minmax(0,1fr); }
+  .reward-reveal-card > div:first-child { min-height:0; }
+  .reward-reveal-card .reward-spirit-frame { width:min(90%,270px); height:94%; }
+  .reward-spirit-frame .chest-spirit-card { flex-direction:row; text-align:left; }
+  .reward-spirit-frame .chest-spirit-card > .rpg-spirit-art { width:72px; height:72px; flex:0 0 72px; }
+  .reward-spirit-frame .chest-spirit-card strong { font-size:13px; }
+  .reward-spirit-frame .chest-spirit-card small { font-size:8px; }
+  .chest-display-options { gap:5px 10px; }
+}
+@media(max-height:550px) and (orientation:landscape) {
+  .reward-reveal-card { max-height:92dvh; }
+  .reward-reveal-card > div:first-child { min-height:230px; }
+  .chest-help-popover { max-height:60dvh; }
+}

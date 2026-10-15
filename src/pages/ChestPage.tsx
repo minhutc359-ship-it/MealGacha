@@ -123,6 +123,7 @@ export function ChestPage() {
   const [showReveal, setShowReveal] = useState(false)
   const [showOdds, setShowOdds] = useState(false)
   const [skipAnimation, setSkipAnimation] = useState(false)
+  const [showSpiritCard, setShowSpiritCard] = useState(false)
   const [ritualRarity, setRitualRarity] = useState<RewardRarity | null>(null)
   const processingRef = useRef(false)
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
@@ -349,11 +350,18 @@ export function ChestPage() {
       <p className="chest-catalog-summary">
         {normalCount} món quanh năm · {limitedCount} món giới hạn theo sự kiện
       </p>
-      <details className="chest-play-guide">
-        <summary>Hướng dẫn chơi</summary>
-        <p>Chọn bữa Sáng, Trưa hoặc Tối, mở rương bằng chìa rồi xem món nhận được. Món nằm trong Hồ sơ vị giác; xem Tỷ lệ để biết nhóm món và độ hiếm.</p>
-        <ModeIntroButton mode="chest" />
-      </details>
+      <div className="chest-help">
+        <button type="button" className="chest-help-trigger" aria-label="Hướng dẫn mở rương và thẻ Vị Linh" aria-describedby="chest-help-content">ⓘ</button>
+        <div className="chest-help-popover" id="chest-help-content">
+          <strong>Hướng dẫn mở rương</strong>
+          <p>Chọn bữa Sáng, Trưa hoặc Tối, dùng một chìa để nhận món ăn. Xem tỷ lệ bên dưới để biết độ hiếm.</p>
+          <p>Mỗi rương còn nhận một thẻ Vị Linh: cần 15 / 25 / 35 / 45 thẻ theo độ hiếm để mở khóa. Tỷ lệ Thường / Hiếm / Sử thi / Huyền thoại lần lượt 71% / 22% / 6% / 1%.</p>
+          <a href={user.spiritWish ? `/adventure?hero=${encodeURIComponent(user.spiritWish)}` : "/adventure?hero=chef-nhien"}>
+            {user.spiritWish ? `Ước hẹn ${user.spiritPity ?? 0}/5 · lần thứ năm bảo đảm` : "Chọn Vị Linh ước hẹn"} ↗
+          </a>
+          <ModeIntroButton mode="chest" />
+        </div>
+      </div>
 
       <div className="meal-banner-tabs" role="tablist" aria-label="Chọn bữa ăn">
         {(["breakfast", "lunch", "dinner"] as MealSlot[]).map((mealSlot) => {
@@ -454,23 +462,32 @@ export function ChestPage() {
             </small>
           </button>
 
-          {isAnimating ? (
-            <button className="skip-action" onClick={skipCurrentAnimation}>
-              Bỏ qua hoạt cảnh
-            </button>
-          ) : (
-            <label className="skip-toggle">
+          <div className="chest-display-options">
+            {isAnimating ? (
+              <button type="button" className="skip-action" onClick={skipCurrentAnimation}>
+                Bỏ qua hoạt cảnh
+              </button>
+            ) : (
+              <label className="skip-toggle">
+                <input
+                  type="checkbox"
+                  checked={skipAnimation}
+                  onChange={(event) => setSkipAnimation(event.target.checked)}
+                />
+                <span>Bỏ qua hoạt cảnh lần sau</span>
+              </label>
+            )}
+            <label className="skip-toggle chest-spirit-toggle">
               <input
                 type="checkbox"
-                checked={skipAnimation}
-                onChange={(event) => setSkipAnimation(event.target.checked)}
+                checked={showSpiritCard}
+                onChange={(event) => setShowSpiritCard(event.target.checked)}
               />
-              <span>Bỏ qua hoạt cảnh lần sau</span>
+              <span>Hiện thẻ Vị Linh ở kết quả</span>
             </label>
-          )}
+          </div>
         </div>
 
-        <p className="chest-spirit-note">Mỗi lần mở nhận thêm 1 thẻ Vị Linh: Thường 15 · Hiếm 25 · Sử thi 35 · Huyền thoại 45 thẻ để hội ngộ. Tỉ lệ thẻ ngẫu nhiên: 71% · 22% · 6% · 1%; chia đều trong từng độ hiếm. <a href={user.spiritWish?`/adventure?hero=${encodeURIComponent(user.spiritWish)}`:"/adventure?hero=chef-nhien"}>{user.spiritWish?`Ước hẹn ${user.spiritPity??0}/5 · lần thứ 5 bảo đảm thẻ đã chọn`:"Chọn Vị Linh ước hẹn: bảo đảm mỗi 5 rương"} ↗</a></p>
         <footer className="stage-footer">
           <span>
             HÔM NAY <strong>{todayCount}</strong> MÓN
@@ -486,6 +503,7 @@ export function ChestPage() {
       {showReveal && reward && (
         <RevealModal
           reward={reward}
+          showSpiritCard={showSpiritCard}
           canOpenAgain={unlimited || user.keys >= 1}
           onClose={closeReveal}
           onOpenAgain={openAgain}
