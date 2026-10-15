@@ -1,3 +1,4 @@
+import { nearestRpgOpponent } from "./autoTarget";
 import { awakenedKit, OATHS, PRIMARY_MOVES, SUPPORT_MOVES, ULTIMATE_MOVES, PASSIVE_MOVES } from "./awakening";
 import { SPIRIT_RARITY } from "../../domain/spiritSummons";
 import { reactionName } from "./skills";
@@ -30,7 +31,7 @@ export function castAwakened(b: RpgBattle, a: RpgActor, burst: boolean, support:
     const k = awakenedKit(a.id), index = burst ? k.ultimate : support ? k.support : k.primary;
     const weak = weakFirst(friends), focus = foes.find(e => e.uid === b.focus);
     const back = foes.filter(e => e.slot >= 2), front = foes.filter(e => e.slot < 2);
-    const target = focus ?? (a.role === "trickster" ? back[0] : undefined) ?? foes[0];
+    const target = focus ?? nearestRpgOpponent(a, foes) ?? (a.role === "trickster" ? back[0] : undefined) ?? foes[0];
     let boost = 1 + (a.skills[burst ? 2 : support ? 1 : 0] - 1) * .09;
     if (burst) {
         const old = b.chain;
