@@ -151,7 +151,7 @@ function autoIntro(): IntroClip {
   }
   snapshot(22_000, "victory", "auto-victory")
   return {
-    mode: "auto", duration: INTRO_DURATION, frames, music: "auto-battle",
+    mode: "auto", duration: INTRO_DURATION, frames, music: "mode-autochess",
     takeaway: "Mua 3 bản sao cùng sao để ghép → xếp quân trong 3 hàng của bạn → bắt đầu giao chiến tự động.",
     beats: [
       beat(0, "Chuẩn bị quyết định trận đấu", "Đội mẫu giữa ván đã có 5 Vị Linh. Dùng vàng của lượt chơi mua thêm Phở bò ở cửa hàng.", "MUA QUÂN"),
@@ -189,7 +189,7 @@ function adventureIntro(): IntroClip {
   simulation[simulation.length - 1] = { save: structuredClone(save), sound: "auto-victory" }
   for (let i = 0; i < simulation.length; i++) frames.push({ at: 1_500 + i / simulation.length * 21_000, scene: { mode: "adventure", save: simulation[i].save }, sound: simulation[i].sound })
   return {
-    mode: "adventure", duration: INTRO_DURATION, frames, music: "auto-boss",
+    mode: "adventure", duration: INTRO_DURATION, frames, music: "boss",
     takeaway: "Xếp 2 người tuyến trước + 3 người tuyến sau → canh tuyệt kỹ và che chắn boss → farm dungeon → nâng cấp đội.",
     beats: [
       beat(0, "Năm Vị Linh, một giao ước", "Trận mẫu dùng đúng đội hình và sân đấu Adventure. Cơm tấm giữ tuyến trước; Phở bò và người hồi phục hỗ trợ phía sau.", "ĐỘI HÌNH"),
@@ -208,7 +208,7 @@ function chestIntro(): IntroClip {
   const rarity = getDishRarity(dish), cost = Number(import.meta.env.VITE_CHEST_COST || 1)
   const scene = (phase: "choose" | "unlock" | "reveal" | "collect"): IntroScene => ({ mode: "chest", phase, dishId: dish.id, rarity, keys: phase === "choose" ? 3 : 3 - cost })
   return {
-    mode: "chest", duration: INTRO_DURATION, music: "story-warm",
+    mode: "chest", duration: INTRO_DURATION, music: "mode-chest",
     takeaway: "Chọn bữa → mở rương bằng chìa → xem món/độ hiếm → quản lý trong Hồ sơ vị giác. Rương tập trung vào sưu tầm.",
     frames: [
       { at: 0, scene: scene("choose") },

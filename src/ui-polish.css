@@ -233,3 +233,14 @@ html[data-title-theme="starter"] { --title-accent:#19c7e8; --title-glow:rgba(25,
   .reward-reveal-card > div:first-child { min-height:230px; }
   .chest-help-popover { max-height:60dvh; }
 }
+
+/* Keep chest controls and the result card in separate layout rows. */
+.stage-actions:has(.chest-display-options) { gap:9px; height:auto; min-height:126px; justify-content:flex-start; }
+.chest-display-options { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+.chest-display-options .skip-action,.chest-display-options .skip-toggle { justify-content:center; width:100%; min-width:0; padding:6px 8px; text-align:center; line-height:1.35; }
+.reward-reveal-card { max-height:min(92dvh,720px); overflow:auto; overscroll-behavior:contain; }
+@media(max-width:700px){
+ .reward-reveal-card{max-height:calc(100dvh - 24px)}
+ .reward-reveal-card>div:nth-child(2){padding:15px 17px 17px}
+ .reward-reveal-card .reward-spirit-frame{height:min(210px,92%)}
+}

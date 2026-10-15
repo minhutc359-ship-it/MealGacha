@@ -75,7 +75,7 @@ export function RpgCinematic({ id, paused, reduced = false, onDone, onTogglePaus
       {!fallback ? <video ref={video} src={`${AWAKENING_MEDIA}/movies/${id}.mp4`} muted playsInline preload="auto" aria-label={`Video ${kit.title}`} onEnded={finish} onError={() => setFallback(true)} onTimeUpdate={() => setProgress(Math.min(1, (video.current?.currentTime ?? 0) / CINEMATIC_SECONDS))} onPlaying={() => { audio.current?.stop(); audio.current = gameAudio.playClip(`${AWAKENING_MEDIA}/sounds/${id}.mp3`, () => video.current?.currentTime ?? CINEMATIC_SECONDS); }} onPause={() => { audio.current?.stop(); audio.current = null; }}/> : <div className="rpg-cinematic-poster"><SpiritArt id={id}/><SkillArt index={64 + kit.iconCell}/></div>}
       <div className="rpg-cinematic-shade"/>
     </div>
-    <div className="rpg-cinematic-caption"><SkillArt index={64 + kit.iconCell}/><div><small>{CARD_MAP[id].name}</small><strong>{kit.title} · {ULTIMATE_MOVES[kit.ultimate][0]}</strong><span>{paused ? "Tạm dừng hoạt ảnh" : "Đồng hồ trận tạm dừng trong tuyệt kỹ"}</span></div></div>
+    <div className="rpg-cinematic-caption"><SkillArt index={64 + kit.iconCell}/><div><small>{CARD_MAP[id].name}</small><strong>{kit.title} · {ULTIMATE_MOVES[kit.ultimate][0]}</strong><span>{paused ? `Tạm dừng · ${ULTIMATE_MOVES[kit.ultimate][1]}` : ULTIMATE_MOVES[kit.ultimate][1]}</span></div></div>
     {failed && <p className="rpg-cinematic-error" role="alert">Chưa lưu được kết thúc hoạt ảnh. Thử lại sau khi kiểm tra dung lượng. <a href="/settings">Sao lưu & lưu trữ ↗</a></p>}
     <div className="rpg-cinematic-progress" style={{ width: `${progress * 100}%` }}/>
   </aside>;

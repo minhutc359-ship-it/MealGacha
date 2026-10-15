@@ -277,7 +277,7 @@ export function BattleBoardView({ stored, presentation, storySave, ending, act,
   useGameMusic(
     battle.result && !busy
       ? battle.result === "loss"
-        ? "story-mystery"
+        ? "map-tide"
         : null
       : battleMusic(battle),
     5, Math.max(battle.bossRuleId ? .35 : 0, 1-battle.player.health/battle.player.maxHealth),

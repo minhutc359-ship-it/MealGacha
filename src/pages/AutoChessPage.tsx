@@ -124,14 +124,14 @@ export function AutoChessPage() {
   useGameAudio()
   useGameMusic(
     run && run.rulesVersion >= 6 && run.wave >= 13 ? livingMusic(run.wave <= 15 ? "rain-harbor" : "tomorrow-table", run.phase === "combat" && !sceneId) : sceneId && !victory.pending
-      ? "auto-story"
+      ? "mode-autochess"
       : playing && run?.phase === "combat"
         ? (run.combat?.tick ?? 0) >= 500 || willpowerRatio(run) < .35
-          ? "auto-pressure"
+          ? run.combat?.boss ? "boss" : "mode-autochess"
           : run.combat?.boss
-            ? "auto-boss"
-            : "auto-battle"
-        : "auto-prepare",
+            ? "boss"
+            : "mode-autochess"
+        : "mode-autochess",
     5, run?.combat?.boss ? .75 : Math.max(1-(run ? willpowerRatio(run) : 1),(run?.combat?.tick ?? 0)>=1100?.9:.35),
   )
   useEffect(() => {

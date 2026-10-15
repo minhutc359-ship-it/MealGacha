@@ -13,6 +13,9 @@ export interface CharacterModel {
 }
 
 export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
+  "village-hero": ["villageParty", 0],
+  "village-flame": ["villageParty", 1],
+  "village-dragon": ["villageParty", 2],
   "chef-nhien": ["living-chef-nhien", 0],
   "chef-hai": ["living-chef-hai", 0],
   "chef-moc": ["living-chef-moc", 0],
@@ -53,6 +56,22 @@ const ENEMY_MODELS: Record<string, [CharacterSheet, number]> = {
   "rival-flute": ["nightB", 1],
   "boss-drum": ["nightB", 2],
   "boss-lotus": ["nightB", 3],
+  "tea-moth": ["campaignA", 0],
+  "jade-sentinel": ["campaignA", 1],
+  "tea-oracle": ["campaignA", 2],
+  "cloud-teapot": ["campaignA", 3],
+  "salt-scarab": ["campaignA", 4],
+  "kiln-knight": ["campaignA", 5],
+  "salt-alchemist": ["campaignA", 6],
+  "salt-colossus": ["campaignA", 7],
+  "moon-jelly": ["campaignB", 0],
+  "lotus-mantis": ["campaignB", 1],
+  "moon-priestess": ["campaignB", 2],
+  "moon-heron": ["campaignB", 3],
+  "spice-kite": ["campaignB", 4],
+  "bronze-warden": ["campaignB", 5],
+  "aroma-conductor": ["campaignB", 6],
+  "aroma-regent": ["campaignB", 7],
 }
 export function monsterCharacter(id: string): CharacterModel {
   const def = MONSTER_MAP[id]

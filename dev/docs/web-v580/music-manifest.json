@@ -1,0 +1,106 @@
+[
+  {
+    "id": "mode-chest",
+    "title": "Lời Mời Khai Vị",
+    "path": "/assets/music580/mode-chest.mp3",
+    "bpm": 82,
+    "seconds": 70.244,
+    "bytes": 843904
+  },
+  {
+    "id": "mode-tcg",
+    "title": "Ván Bài Bên Bếp",
+    "path": "/assets/music580/mode-tcg.mp3",
+    "bpm": 104,
+    "seconds": 55.385,
+    "bytes": 665540
+  },
+  {
+    "id": "mode-autochess",
+    "title": "Bày Mâm Xuất Trận",
+    "path": "/assets/music580/mode-autochess.mp3",
+    "bpm": 112,
+    "seconds": 51.429,
+    "bytes": 617893
+  },
+  {
+    "id": "mode-adventure",
+    "title": "Đường Qua Sương",
+    "path": "/assets/music580/mode-adventure.mp3",
+    "bpm": 92,
+    "seconds": 62.609,
+    "bytes": 752058
+  },
+  {
+    "id": "map-lantern",
+    "title": "Phố Đèn Gọi Tên",
+    "path": "/assets/music580/map-lantern.mp3",
+    "bpm": 96,
+    "seconds": 60.0,
+    "bytes": 720711
+  },
+  {
+    "id": "map-harbor",
+    "title": "Than Hồng Sau Mưa",
+    "path": "/assets/music580/map-harbor.mp3",
+    "bpm": 100,
+    "seconds": 57.6,
+    "bytes": 691871
+  },
+  {
+    "id": "map-garden",
+    "title": "Lời Hứa Dưới Tán",
+    "path": "/assets/music580/map-garden.mp3",
+    "bpm": 78,
+    "seconds": 73.846,
+    "bytes": 886849
+  },
+  {
+    "id": "map-tide",
+    "title": "Trăng Trên Lòng Chảo",
+    "path": "/assets/music580/map-tide.mp3",
+    "bpm": 84,
+    "seconds": 68.571,
+    "bytes": 823529
+  },
+  {
+    "id": "map-tea",
+    "title": "Mây Qua Đỉnh Trà",
+    "path": "/assets/music580/map-tea.mp3",
+    "bpm": 88,
+    "seconds": 65.455,
+    "bytes": 786226
+  },
+  {
+    "id": "map-salt",
+    "title": "Nhịp Lò Muối Đỏ",
+    "path": "/assets/music580/map-salt.mp3",
+    "bpm": 116,
+    "seconds": 49.655,
+    "bytes": 596577
+  },
+  {
+    "id": "map-lotus",
+    "title": "Sen Nguyệt Thức Giấc",
+    "path": "/assets/music580/map-lotus.mp3",
+    "bpm": 80,
+    "seconds": 72.0,
+    "bytes": 864907
+  },
+  {
+    "id": "map-aroma",
+    "title": "Vũ Khúc Vạn Hương",
+    "path": "/assets/music580/map-aroma.mp3",
+    "bpm": 108,
+    "seconds": 53.333,
+    "bytes": 640776
+  },
+  {
+    "id": "boss",
+    "title": "Ngũ Vị Quyết Chiến",
+    "path": "/assets/music580/boss.mp3",
+    "bpm": 126,
+    "seconds": 45.714,
+    "bytes": 549243
+  }
+]

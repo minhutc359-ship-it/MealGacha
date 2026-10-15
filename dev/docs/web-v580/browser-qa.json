@@ -1,0 +1,116 @@
+{
+  "version": "5.8.0",
+  "date": "2026-10-15T07:15:10.202Z",
+  "engine": "Chromium headless / SwiftShader",
+  "checks": [
+    {
+      "area": "chest",
+      "viewport": [
+        1440,
+        900
+      ],
+      "compactHelp": true,
+      "optionsDoNotOverlap": true,
+      "spiritCardDefault": false,
+      "foodResult": true,
+      "spiritResult": true,
+      "resultFitsViewport": true
+    },
+    {
+      "area": "chest",
+      "viewport": [
+        390,
+        844
+      ],
+      "compactHelp": true,
+      "optionsDoNotOverlap": true,
+      "spiritCardDefault": false,
+      "foodResult": true,
+      "spiritResult": true,
+      "resultFitsViewport": true
+    },
+    {
+      "area": "mode-switch",
+      "viewport": [
+        1280,
+        800
+      ],
+      "routes": 4,
+      "loadingFit": "contain",
+      "imagePool": 5,
+      "selectedImages": [
+        "/assets/loading/v560/intro-card-collection.webp",
+        "/assets/loading/v560/intro-auto-chess.webp",
+        "/assets/loading/v560/intro-auto-chess.webp",
+        "/assets/loading/v560/intro-card-collection.webp"
+      ]
+    },
+    {
+      "area": "adventure-map",
+      "viewport": [
+        390,
+        844
+      ],
+      "loadingFit": "contain",
+      "mapCount": 8,
+      "advancedMaps": [
+        "Đỉnh Trà Mây",
+        "Lò Muối Đỏ",
+        "Đầm Sen Nguyệt",
+        "Điện Vạn Hương"
+      ],
+      "guideOpacity": 1,
+      "difficulties": {
+        "normal": 1,
+        "hard": 3,
+        "extreme": 8
+      },
+      "storyCentered": true
+    },
+    {
+      "area": "adventure-map",
+      "viewport": [
+        1440,
+        900
+      ],
+      "loadingFit": "contain",
+      "mapCount": 8,
+      "advancedMaps": [
+        "Đỉnh Trà Mây",
+        "Lò Muối Đỏ",
+        "Đầm Sen Nguyệt",
+        "Điện Vạn Hương"
+      ],
+      "guideOpacity": 1,
+      "difficulties": {
+        "normal": 1,
+        "hard": 3,
+        "extreme": 8
+      },
+      "storyCentered": true
+    },
+    {
+      "area": "adventure-battle",
+      "viewport": [
+        1440,
+        900
+      ],
+      "readyArt": true,
+      "manualTargetControls": 0,
+      "targeting": "nearest",
+      "cinematic": {
+        "width": 1280,
+        "height": 720,
+        "fit": "contain"
+      },
+      "skillDescription": "Tạo khiên cho đội, phản đòn và đánh tuyến trước.",
+      "winArt": true
+    }
+  ],
+  "pageErrors": [],
+  "missingAssets": [],
+  "limits": [
+    "Not a physical-device FPS measurement",
+    "Safari not tested"
+  ]
+}

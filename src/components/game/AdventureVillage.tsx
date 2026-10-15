@@ -1,5 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react"
-import { CARD_MAP } from "../../game/catalog"
+import { useEffect, useRef, useState } from "react"
 import {
   ADVENTURE_VILLAGE_PLACES,
   nearbyVillagePlace,
@@ -7,9 +6,7 @@ import {
   type AdventureVillagePlace,
 } from "../../game/adventureV560"
 import type { RpgSave } from "../../game/adventureRpg/types"
-import { tcgCharacter } from "../../game/tcgCharacterMotion"
-import { CharacterSprite } from "./CharacterSprite"
-import { SpiritArt } from "./SpiritArt"
+import { VillageParty } from "./VillageParty"
 
 type Point = {
   x: number
@@ -31,16 +28,7 @@ export function AdventureVillage({
   const [destination, setDestination] = useState<AdventureVillagePlace | null>(
     null,
   )
-  const party = useMemo(() => {
-    const heroes = save.formation
-      .map((uid) => save.roster.find((hero) => hero.uid === uid))
-      .filter((hero) => !!hero)
-    return {
-      leader: heroes[0]?.cardId ?? "com-tam",
-      spirits: [heroes[1]?.cardId ?? "banh-mi", heroes[2]?.cardId ?? "pho-bo"],
-    }
-  }, [save.formation, save.roster])
-  const model = tcgCharacter(CARD_MAP[party.leader])
+  const [flip, setFlip] = useState(false)
 
   useEffect(() => {
     if (!destination) return
@@ -56,6 +44,7 @@ export function AdventureVillage({
   }, [destination, onVisit, quiet])
 
   const walkTo = (point: Point, place = nearbyVillagePlace(point)) => {
+    setFlip(point.x < position.x)
     setPosition({
       x: Math.max(8, Math.min(92, point.x)),
       y: Math.max(17, Math.min(88, point.y)),
@@ -112,7 +101,7 @@ export function AdventureVillage({
       >
         <img
           className="rpg-village-art"
-          src="/assets/loading/v560/intro-jade-adventure.webp"
+          src="/assets/rpg/village580/crossroads.webp"
           alt=""
           width="960"
           height="960"
@@ -148,23 +137,11 @@ export function AdventureVillage({
           className="rpg-village-party"
           style={{ left: `${position.x}%`, top: `${position.y}%` }}
         >
-          <SpiritArt
-            id={party.spirits[0]}
-            className="rpg-village-spirit spirit-one"
-          />
-          {model && (
-            <span className="rpg-village-leader">
-              <CharacterSprite
-                model={model}
-                motion={destination && !quiet ? "victory" : "idle"}
-                stamp={`village:${party.leader}:${destination?.id ?? "idle"}`}
-                quiet={quiet}
-              />
-            </span>
-          )}
-          <SpiritArt
-            id={party.spirits[1]}
-            className="rpg-village-spirit spirit-two"
+          <VillageParty
+            moving={!!destination}
+            flip={flip}
+            quiet={quiet}
+            stamp={`village:${destination?.id ?? "idle"}`}
           />
         </div>
         <div className="rpg-village-touch-hint" aria-hidden="true">

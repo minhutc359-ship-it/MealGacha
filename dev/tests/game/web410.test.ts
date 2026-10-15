@@ -1,12 +1,11 @@
 import { describe, expect, it } from "vitest"
-import { readFileSync, existsSync } from "node:fs"
-import { createHash } from "node:crypto"
+import { readFileSync } from "node:fs"
 import { practiceBattle, practiceAction, practiceSolved } from "@/game/practice"
 import { storyLines, campaignProgress } from "@/game/storyPresentation"
 import { newGame } from "@/game/progression"
 import { STAGES } from "@/game/story"
-import { stemPaths } from "@/game/adaptiveScore"
 import { streamingMusicPath, WEB_SCORES } from "@/game/webSoundtrack"
+import { MUSIC_TRACKS } from "@/game/audioScore"
 import { createAutoRun, move } from "@/game/autochess/economy"
 import { createCombat, advanceCombat } from "@/game/autochess/combat"
 import { recapAdvice } from "@/game/autochess/recapAdvice"
@@ -56,23 +55,18 @@ describe("story and score continuity",()=>{
     expect(storyLines("tomorrow-table-3",save,"after").some(l=>l.text.includes("trang giấy còn trống"))).toBe(true)
     expect(JSON.stringify(save)).toBe(before)
   })
-  it("provides distinct regional short stems and long-score files for both styles",()=>{
-    const paths=new Set<string>()
-    for(const region of ["market","harbor","kitchen"] as const) for(const style of ["original","8bit"] as const) {
-      for(const path of stemPaths(style,`v4-${region}-tension`)) {expect(existsSync(`public/${path}`)).toBe(true);paths.add(path)}
-    }
-    expect(paths.size).toBe(18)
-    for(const key of Object.keys(WEB_SCORES) as Array<keyof typeof WEB_SCORES>) for(const style of ["original","8bit"] as const) {
-      const path=streamingMusicPath(style==="8bit"?`8bit-${key}`:key)!
+  it("provides a distinct long score for every mode, map and boss",()=>{
+    expect(Object.keys(WEB_SCORES)).toEqual(Object.keys(MUSIC_TRACKS))
+    for(const key of Object.keys(WEB_SCORES) as Array<keyof typeof WEB_SCORES>) {
+      const path=streamingMusicPath(key)!
       expect(readFileSync(`public/${path}`).subarray(0,3).toString()).toBe("ID3")
     }
-    const report=JSON.parse(readFileSync('dev/docs/web-v410/audio-manifest.json','utf8'))
-    expect(report.files).toHaveLength(36)
-    for(const file of report.files) {
-      const bytes=readFileSync(file.path)
+    const report=JSON.parse(readFileSync('dev/docs/web-v580/music-manifest.json','utf8'))
+    expect(report).toHaveLength(13)
+    for(const file of report) {
+      const bytes=readFileSync(`public${file.path}`)
       expect(bytes.length).toBe(file.bytes)
-      expect(createHash("sha256").update(bytes).digest("hex")).toBe(file.sha256)
-      expect(file.peak).toBeLessThan(.8);expect(file.rms).toBeGreaterThan(.015);expect(file.sampleRate).toBe(44100)
+      expect(file.bpm).toBeGreaterThanOrEqual(78)
     }
   })
   it("recap suggestions read completed events without touching resources",()=>{

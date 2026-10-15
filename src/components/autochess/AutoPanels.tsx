@@ -31,7 +31,7 @@ export function AutoStory({
   const scene = SCENES[sceneId],
     text = scene.lines[line] ?? scene.lines[0],
     speaker = SPEAKERS[text.speaker]
-  useGameMusic("auto-story", 30)
+  useGameMusic("mode-autochess", 30)
   return (
     <Dialog
       title={scene.title}

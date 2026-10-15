@@ -1,138 +1,8 @@
 {
-  "version": "5.6.0",
-  "generatedOn": "2026-10-14",
+  "version": "5.8.0",
+  "generatedOn": "2026-10-15",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
-    {
-      "path": "public/assets/autochess/audio/8bit-battle.mp3",
-      "bytes": 466313,
-      "sha256": "8356f76141331ef0f3d82a68bf8ff1c091ccd4a9760b440829c8b17e9ae0a13f",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-autochess-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json",
-        "dev/docs/depth-v350/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/autochess/audio/8bit-boss.mp3",
-      "bytes": 415947,
-      "sha256": "5e63333729a862d92e866b38bfc335766137724e0b0286104dee66ac9b88fb75",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-autochess-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json",
-        "dev/docs/depth-v350/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/autochess/audio/8bit-prepare.mp3",
-      "bytes": 314177,
-      "sha256": "cea394f41adbba1fc14ab2a0b6b2a5f66e60f7f59578b65059a9b642207b02b2",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-autochess-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json",
-        "dev/docs/depth-v350/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/autochess/audio/8bit-pressure.mp3",
-      "bytes": 190462,
-      "sha256": "290b67c884eaf04578bff96d485fdad044b7713f892988ef852b76069630f1f0",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-autochess-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json",
-        "dev/docs/depth-v350/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/autochess/audio/8bit-story.mp3",
-      "bytes": 358061,
-      "sha256": "7d79471b1e80b33bb1894fc81b2f9179de663681c2e162bf09c7c803444108b7",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-autochess-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json",
-        "dev/docs/depth-v350/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/autochess/audio/battle.mp3",
-      "bytes": 496191,
-      "sha256": "a98f73217749a4ce6f78497ec657193a0ea453d14dc1a242f0e768baa81386d4",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-autochess-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json",
-        "dev/docs/depth-v350/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/autochess/audio/boss.mp3",
-      "bytes": 439556,
-      "sha256": "5d660963774a50a201c0869a25a8af6fa12c694aaad695563e1fd6bf7a0c1123",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-autochess-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json",
-        "dev/docs/depth-v350/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/autochess/audio/prepare.mp3",
-      "bytes": 327546,
-      "sha256": "2e15218233677d564f7224c050a3ac146b445a77fc8495b64a99d1c835b67252",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-autochess-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json",
-        "dev/docs/depth-v350/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/autochess/audio/pressure.mp3",
-      "bytes": 200278,
-      "sha256": "a4dfa74969c51602ad3d357977597fba2e427732074e1511ad8984016812a8a7",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-autochess-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json",
-        "dev/docs/depth-v350/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/autochess/audio/story.mp3",
-      "bytes": 375400,
-      "sha256": "d99391aebb9bec0b0ad542068250e0da31dcfa080a4f01fb123bf968516d46e5",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-autochess-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/autochess/audio-manifest.json",
-        "dev/docs/depth-v350/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
     {
       "path": "public/assets/autochess/items-rpg-v350.webp",
       "bytes": 205408,
@@ -2107,11 +1977,12 @@
     },
     {
       "path": "public/assets/loading/v560/intro-jade-adventure.webp",
-      "bytes": 205528,
-      "sha256": "3f1a9691764c6790b1286398bc853a982ee198b016d6ed9e476ff494cb7a2ccf",
-      "origin": "Original AI-assisted Soul of Meal loading illustrations selected from the project Library and optimized to WebP",
+      "bytes": 734304,
+      "sha256": "723f95c2d597f26a4205e2de3c166bca7ac019f1d9a54c1e11a9b4bbaf808762",
+      "origin": "Project-owner supplied original Web 5.8 world illustration optimized as fitted loading art",
       "evidence": [
-        "dev/docs/web-v560/artwork.json"
+        "dev/docs/web-v580/source/village-world.jpg",
+        "dev/tools/prepare-campaign580-assets.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2126,9 +1997,152 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/music580/boss.mp3",
+      "bytes": 549243,
+      "sha256": "686dfca91bca83850f265e7e209b15153d8c19718315e6ebc6b12de9b2e2bfd9",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/map-aroma.mp3",
+      "bytes": 640776,
+      "sha256": "ca4c318e222e63d3c3095cf2831b21971f3650cd60460a4c0de8273fd8569297",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/map-garden.mp3",
+      "bytes": 886849,
+      "sha256": "5a07a1710bae3c376a1d87440fc9911c499dbdfd603d336b1eed559c74f9d4b7",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/map-harbor.mp3",
+      "bytes": 691871,
+      "sha256": "175df86308d90753b07430b60d8d5f03e5d290779cf21c6dd94924ddaa6e91e6",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/map-lantern.mp3",
+      "bytes": 720711,
+      "sha256": "af4e89a470ca2eb8f812e42ff744c9b3402963b04a0be82dbcb40724dd086cff",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/map-lotus.mp3",
+      "bytes": 864907,
+      "sha256": "2b623ea8ea849adc680b5c66de53172e3714e54728679d826248f317641dc71f",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/map-salt.mp3",
+      "bytes": 596577,
+      "sha256": "0d9b08539151127f91381c58272616e4638d2083859f9729f6115461646d165e",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/map-tea.mp3",
+      "bytes": 786226,
+      "sha256": "5b414441d850e658e0c6b18f1f924fd166f9abe385d7827d5552142c915e63b4",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/map-tide.mp3",
+      "bytes": 823529,
+      "sha256": "8f3aa329fcb386f1540d95fffb4708ae3b9755a951abfe47cb7ca3617938ef07",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/mode-adventure.mp3",
+      "bytes": 752058,
+      "sha256": "60bc5ea169284a91988ea2d69ad8a967e1c42c8bc56b4703eb9f430772cb6121",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/mode-autochess.mp3",
+      "bytes": 617893,
+      "sha256": "196385d53ef851fb779fe163962cd2dd8f12ed0ab4da8b4eb8e490322c75140f",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/mode-chest.mp3",
+      "bytes": 843904,
+      "sha256": "55d9c9531575b5621c4ef8358638c2ed9020c8ce7234ff35a66b11d874eedcdd",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/music580/mode-tcg.mp3",
+      "bytes": 665540,
+      "sha256": "738246f3d2ec9357bcff92c5273fe2ff3a72212590eab0896aefa2a29c7be036",
+      "origin": "Original deterministic Web 5.8 score composed without external samples",
+      "evidence": [
+        "dev/tools/compose-music580.py",
+        "dev/docs/web-v580/music-manifest.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/rpg/awakening530/movies/arancini.mp4",
-      "bytes": 51876,
-      "sha256": "8425f219d61037a89f0a8ab74c49415c590d18d14fbfb681977eac16e48eb6b8",
+      "bytes": 652906,
+      "sha256": "effc20391e63936328d8ebbfb69cebc1c710cec58cba9ec69879c664fcc75435",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2140,8 +2154,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-can.mp4",
-      "bytes": 50120,
-      "sha256": "9b63c8ed85e08419960cbe71d2800ebcf5f53c1078e24b6a592583bf3aa4c6aa",
+      "bytes": 608385,
+      "sha256": "12e72d7f2d9f1e5caebf128bd632409ae3fe3a7f6e731c1dcdf88cb5f0efab63",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2153,8 +2167,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-chung.mp4",
-      "bytes": 53625,
-      "sha256": "c8840d467e4e4ad745bc37de9fb01ffed50bc70271a800f4854ebb63231a51ac",
+      "bytes": 669097,
+      "sha256": "9ff565c9ba43f744c52a3c0ee93abb91775859530b8d5eb97e8603b69bc249a4",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2166,8 +2180,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-com-hang-than.mp4",
-      "bytes": 49766,
-      "sha256": "7bad1bc82d525bdceb28f33cbaee3ee6c519100d37017fb6b0748d6a4ab289dc",
+      "bytes": 637736,
+      "sha256": "cc9316c62eb7e5d580946bc7b278ffd43bdde1e88ae413a58d9506db3f8dd603",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2179,8 +2193,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-cuon.mp4",
-      "bytes": 46933,
-      "sha256": "1a2b0da018e39a49fa495c27ebc8d2d42d06774c5fff05fc3539e1f083e7779b",
+      "bytes": 597586,
+      "sha256": "2e087cce2545ecf09f2c8f00f2385bff7dd92f19642b91946f8770378f6f5753",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2192,8 +2206,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-da-cua.mp4",
-      "bytes": 54322,
-      "sha256": "68d310f489b608258703f34d6356ae0e9ae917743cc8c21450caaae2d50a3de0",
+      "bytes": 679246,
+      "sha256": "dbab7f761f424fcb32edc8a51316d05817fe31d23c732f70e3c0f07fb249df67",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2205,8 +2219,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-dau-xanh.mp4",
-      "bytes": 50632,
-      "sha256": "0f6c8bc255cc6af47db475f4bf94cb94996de4bf66d7f3f38fce0def98063e68",
+      "bytes": 631264,
+      "sha256": "2c47126b032a91f03f3a4a35bd187d86c1f58b2cc31eb4d8681c3db30f28549c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2218,8 +2232,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-it-la-gai.mp4",
-      "bytes": 49180,
-      "sha256": "1e6174fc14f7ca382a63b7c016b28544642fe17a56f551fafd644e637a00339d",
+      "bytes": 621447,
+      "sha256": "dfe7754b48fbdfd9f1e77caf24517d497832f80229a32aee57c2c2f347d71781",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2231,8 +2245,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-khuc.mp4",
-      "bytes": 50476,
-      "sha256": "e402b0e79c5a82d969ef707b0f884712ee94be5ecac972d081c324ff289d75d8",
+      "bytes": 624437,
+      "sha256": "b5716ff083eda65d43df487b5c550c5c4c0d5b31b541e98424010e97c9cbb388",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2244,8 +2258,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-mi.mp4",
-      "bytes": 49333,
-      "sha256": "83b8d0312c8cd8d746418865f38024e24a8888ef0c48f9ad7e016e423e2c4c27",
+      "bytes": 629839,
+      "sha256": "949e6fae4a98e9754e25287a1efb0f0fa755019afcdf3687750768a7df01ae57",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2257,8 +2271,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-ram-it.mp4",
-      "bytes": 51550,
-      "sha256": "dc6678313772ad022df4aee68147885d1c24ab8433647fe4c4ef4870fdecbfad",
+      "bytes": 660138,
+      "sha256": "65b0ab3b0b29ab391532f36bec82175374a2ee90b928ef17906bfe37c0874dd3",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2270,8 +2284,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-tet.mp4",
-      "bytes": 50193,
-      "sha256": "3e9254ebed901c0fdae1a1a8efedda5e83a3a1bac4b9347a6ae8a37f99a894b1",
+      "bytes": 644955,
+      "sha256": "cb52bbfee765ad8ba62f2c5917b9d3c27d2fc5dad0743b3ea414e1428124223c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2283,8 +2297,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-tom-ho-tay.mp4",
-      "bytes": 50664,
-      "sha256": "1cb72d66af8239bddc38619061662ade7e327327226d2719fd5d1abb49d7e637",
+      "bytes": 637799,
+      "sha256": "647e28dec829989bcfbe611d269fb04f2a4b62f9a1b265fa8169d5911046bfde",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2296,8 +2310,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banh-xeo.mp4",
-      "bytes": 52326,
-      "sha256": "177abdc4124f939687947fa500fc6105568a13fbd18787c5a63ede659435f3f0",
+      "bytes": 650125,
+      "sha256": "c1ecb9acae4ea05c8b9ce96b1922b4c002a1b31b1bf02c874827bd637354150d",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2309,8 +2323,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-com-lam.mp4",
-      "bytes": 50961,
-      "sha256": "d28739a39795117599b722e687ec481ce7d8df3c4f970c9a74a4469590636cc0",
+      "bytes": 643386,
+      "sha256": "b92cd59f31297b584e6d93b270c25c4ad4d21253421a4202a0e33faa4518f251",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2322,8 +2336,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-ga-nuong-mac-khen.mp4",
-      "bytes": 51194,
-      "sha256": "de7303c415e06c94a6ec997e0ecd31f0be5d2d28b8aa14d91438142cc42a6a51",
+      "bytes": 648961,
+      "sha256": "e70c156651ec3aba2c21b33e7d4a2356b419a6e4017e125b2d65e8b0dc2f7008",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2335,8 +2349,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-goi-rau-don.mp4",
-      "bytes": 50486,
-      "sha256": "986d84988b6173d8c745cb17a390e1de163517225e69495bf15dd8c666c5d739",
+      "bytes": 632269,
+      "sha256": "daa70a80f3ee139f23e1e8f85babb80671a80e7b65f17fbbc1a57fd244b99c53",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2348,8 +2362,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-thang-co.mp4",
-      "bytes": 51020,
-      "sha256": "5bbc5c96a0558d0fffd0d5e84fa2e12a731f5bf6b8e1ec6434e6f62b39f8e884",
+      "bytes": 638925,
+      "sha256": "2a5382aa1ca17c51ed64e914e6bbd8adc53f4a43b4d3341cf83c9ceb50207b14",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2361,8 +2375,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-thit-trau-gac-bep.mp4",
-      "bytes": 44391,
-      "sha256": "556400e3d9d64ddd9184922abf737bdcb222335f2636bc45d2b00578b2c446cd",
+      "bytes": 588119,
+      "sha256": "fd707c90a6db924caab02423cd3be40619d2ef6f701d35f26e07d7fda93cd661",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2374,8 +2388,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-xoi-ngu-sac.mp4",
-      "bytes": 51452,
-      "sha256": "aa82e6a799c520f8db48b7357833427a179c1e647c25459daea75e294bf6441e",
+      "bytes": 673134,
+      "sha256": "b846636f0d38a0c276fbd94af178d861472aab7207ef087859e07fe2c1bfa25f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2387,8 +2401,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/beef-wellington.mp4",
-      "bytes": 42753,
-      "sha256": "9267029831c37f93b63bfc817877e0f651baa39872195e54954da8f80100f67b",
+      "bytes": 546378,
+      "sha256": "4ab67ff6eeace0e76cddf13e8183d5c13b4bbf135dfad0046191d3b816876123",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2400,8 +2414,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bibimbap.mp4",
-      "bytes": 50395,
-      "sha256": "d47f9ba686887b2421671d6f9c6a3d3dc67593168831fe1aaf1b0fbae0fceab0",
+      "bytes": 636756,
+      "sha256": "5cc45216265ce1861f582f394e78930f56e05580e2f4dfd1b4000d030e02c40e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2413,8 +2427,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bingsu.mp4",
-      "bytes": 49732,
-      "sha256": "e6dce0294a085c8684fa9ea190295f843c44c223c9896785c1085c94693efbf2",
+      "bytes": 609931,
+      "sha256": "03d9f5b6ab78297667eaec3a141e89e04e7238dc94cf6b56c6f91563717e7739",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2426,8 +2440,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bistecca-fiorentina.mp4",
-      "bytes": 53458,
-      "sha256": "02275192cdde6e15c80f9dc1c0e01f6d8de0ebce9c7045776c064b2f3e73988b",
+      "bytes": 659841,
+      "sha256": "40ebe587fa7f6ce79ac64a64eaecf258e65948d0fbcbed6e4464df9c65a77736",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2439,8 +2453,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/boat-noodles.mp4",
-      "bytes": 54437,
-      "sha256": "d6700e0906642f281861a7c287618eb8fc34caa0d69a739d0bf73aa52dd364d8",
+      "bytes": 689279,
+      "sha256": "0768279abcb7305e7f17ecba7ea3180b88eff4dfd931bf41b312729af882da64",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2452,8 +2466,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-bo-hue.mp4",
-      "bytes": 56151,
-      "sha256": "bb9d1157e1a74f0621b37330b6eb741e623ae984b8c366cc230ff705f673a46b",
+      "bytes": 714719,
+      "sha256": "13ad0338e0381bb3616de56b33415e8654848a41d9c302812c42bf2252af0960",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2465,8 +2479,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-ca.mp4",
-      "bytes": 48583,
-      "sha256": "13ad8fa5c657a081a8bd0dd7ee08541d5ac4f998e2a39c8d65835267ece12447",
+      "bytes": 622266,
+      "sha256": "222db9e2de2fff1b77a14b498a638e1e26c66422afadf22f2fa84a1f4c9f44fa",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2478,8 +2492,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-cha.mp4",
-      "bytes": 57583,
-      "sha256": "e57316f0495b2471124ce1be137124274064583e58459f30e7042cbc3588e29b",
+      "bytes": 708185,
+      "sha256": "5978b8edd10055016d14a276de32c0e8ae900912ccf63d0498af3e36b242a083",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2491,8 +2505,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-dau.mp4",
-      "bytes": 51523,
-      "sha256": "5976de986cd47c063a2349afd8a712672bf187d7560116b358a1ae86318f7599",
+      "bytes": 647766,
+      "sha256": "43919990b221e52fe4d9555a95c15931d7061f7fe1f04aed5a7088c0c5404a3b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2504,8 +2518,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-moc.mp4",
-      "bytes": 58416,
-      "sha256": "30e2e559f626c208a462e43d6554de366e66550719b129f7366c4fe5456a6a3a",
+      "bytes": 733121,
+      "sha256": "26409e0b321082a55b77235baef11a210bb12270895665d5b38b4bce71e9adc2",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2517,8 +2531,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-rieu.mp4",
-      "bytes": 54304,
-      "sha256": "83cff27f4f56bf28bc4bd81693f90823a87e5c05e63edf57ed4a51e3f0fa8d55",
+      "bytes": 669563,
+      "sha256": "40bed9a7fdea248d597170e3a191fc1b8c7d2a31e88ecb98b9d3baa66371a192",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2530,8 +2544,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/bun-thang.mp4",
-      "bytes": 58241,
-      "sha256": "dac6799b4ec80a087e0d59ea357e007890b193b4bc8e7a2bf406b5278b58b975",
+      "bytes": 725944,
+      "sha256": "76882b9f8d0a154cc4cc15c402051099003658d2634b710f4250d12ec5177d6f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2543,8 +2557,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/ca-phe-trung.mp4",
-      "bytes": 51553,
-      "sha256": "39ad572eae89013d6b09757141851f8986136353249c11070b4c5d98d2635f36",
+      "bytes": 622268,
+      "sha256": "9b50c000b44176f921d9f5539b6eeee36a0ba7df656d3bf267383793c2d6c00e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2556,8 +2570,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/canh-mang-mien.mp4",
-      "bytes": 51261,
-      "sha256": "759ebe0c6fb94f5bc90559d9c8290a63647cdcd75836bca51ba6d09638434155",
+      "bytes": 640407,
+      "sha256": "8741d3098dc631d3136ed672f2c051cb757e922112bcccb3c2e9e273d1f5a336",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2569,8 +2583,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-cartographer.mp4",
-      "bytes": 47923,
-      "sha256": "ec2f54d6f076a0f4dada020bd5f97119e6932520fc7203cc45c657d98a3f6f0e",
+      "bytes": 606655,
+      "sha256": "abc75d2eba95b55b0b6479e68cd9c653ff4611f42486b71cd146cd13ed6075ff",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2582,8 +2596,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-cook.mp4",
-      "bytes": 54804,
-      "sha256": "ee99c266d6d95a3c7b179925460410c4e97e117b209608c454ebdc7072f17041",
+      "bytes": 671563,
+      "sha256": "4da744386e7b6160e9dceef95e89f83354d7574f542e00aab6c3ada0443379e4",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2595,8 +2609,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-ferryman.mp4",
-      "bytes": 51558,
-      "sha256": "ae1dda050d6cd3e9a9ca265406ea9c0fe134257dc1a33ec92c2dd32944fe7ab7",
+      "bytes": 647900,
+      "sha256": "b67f48822ef1915a3c16ec9dcce4f6b2063da668de9f604b6665dd9456605c48",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2608,8 +2622,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-gardener.mp4",
-      "bytes": 53266,
-      "sha256": "f49c7354ee96106830b48f53ac9176d25279a4d29ceaaf549760a0a0ebb0d47d",
+      "bytes": 663068,
+      "sha256": "aa67348822f935fd756d5f5d143730dfed64997dab04fe9f754f2df64d0e9abf",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2621,8 +2635,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-herbalist.mp4",
-      "bytes": 57139,
-      "sha256": "f53652ff59537a4777ee21a4925770e1db81e564815e8c42af981ca6cf181df6",
+      "bytes": 702794,
+      "sha256": "daf262aba7add104878ad8b376755c008a6ef1f86913e5ddf6f0c33a40c36b82",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2634,8 +2648,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-letter.mp4",
-      "bytes": 53155,
-      "sha256": "8f0f44a4ac9750c92d49274e30b52ce3a1ff9e4f7946ac1bc6005efb4eb602c4",
+      "bytes": 655434,
+      "sha256": "59c3e01d64ba2f789d0232f2c25762bb5d7a4870e001f2a0f08c76e44dc3f2c3",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2647,8 +2661,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-pastry.mp4",
-      "bytes": 48256,
-      "sha256": "85c76663e0689cbf95655c0f2249d16d4fb21affd09635bd0defc8be4da2d910",
+      "bytes": 605532,
+      "sha256": "f2495b256fec1dfe2b8680d05fc4ea6567b91dc63b44077774a6a88476621148",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2660,8 +2674,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-porter.mp4",
-      "bytes": 48911,
-      "sha256": "76d851cc3811563e695ed4427defb0412e6b3ba21b91bc3f4c9522c47d7959f5",
+      "bytes": 622538,
+      "sha256": "463203e4aabf07db53c49f24aa309f88d0ba00c007be0fdb77a8ae7f33ab53cf",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2673,8 +2687,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-scout.mp4",
-      "bytes": 46320,
-      "sha256": "519b1178d1c532c8fc90a5a5829508a444c07d71b829b21790b579d46e53237f",
+      "bytes": 599350,
+      "sha256": "19d96c91fc7c43472a7ebc7818eb16f287644595dde707e7984e7d13cc46e91f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2686,8 +2700,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/caravan-smith.mp4",
-      "bytes": 46942,
-      "sha256": "73fc3a18f002e13a67a0622376012ef763d7f509058b5a0070393b9afa488deb",
+      "bytes": 609427,
+      "sha256": "c96cec3c519707a9fdb936da23af1e83afca273337533722bab2ee30f734bbc8",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2699,8 +2713,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/carbonara.mp4",
-      "bytes": 52036,
-      "sha256": "a5ce6e5c5e5af47f43544d0f678cba32604a29d05a53874242f625fb30907c5d",
+      "bytes": 657744,
+      "sha256": "24ebdcf1e93f4f28d02e462ef768ef87409d256c1bf24b27a7d4c1d804e16463",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2712,8 +2726,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/cha-ca-la-vong.mp4",
-      "bytes": 54866,
-      "sha256": "91e1425dedf981983bc14b8da8c6811a36708f9e0879e7584dba3c9f85775a5c",
+      "bytes": 716698,
+      "sha256": "3fc6111c1b329147db5bc7ef6a85bc111e881b56268451be193f1e329aa8d9a9",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2725,8 +2739,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/cha-ruoi.mp4",
-      "bytes": 47648,
-      "sha256": "99c56ae144717b6f426bab87feeac42da70082c60345380924fd25dd1a2bf226",
+      "bytes": 622235,
+      "sha256": "cc7e730033ae84eba822ebdc6db58c322e3e6eb3ec0e987bb42bf051db97d6d6",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2738,8 +2752,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chao-luon.mp4",
-      "bytes": 50343,
-      "sha256": "9c5ebb91380d7a4f88f1cd192852d883041681bb1fb902895974191876e80013",
+      "bytes": 640665,
+      "sha256": "c45a2a807a5935f68b5cde18f8e7fcaab8a09d4d2c0987fc333f1b43eb64d3a1",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2751,8 +2765,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chao-suon.mp4",
-      "bytes": 51495,
-      "sha256": "cfc8f36037d27cedda0b8b04b809584dfc0dca66a87eba4eb649050228cc9312",
+      "bytes": 660796,
+      "sha256": "924bf0f7a824632090a1e89e3652cda26507b9a3e1205fba047de85b2dcdba9e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2764,8 +2778,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/che-buoi.mp4",
-      "bytes": 49097,
-      "sha256": "446836301a8c1d55f1364b62da0d3904a2fe0e6b4db549e2330603b9f41f6f8d",
+      "bytes": 617281,
+      "sha256": "3f2857e3d967081d673fc16b6bbebbd7288beacfd089b26778fea8b4d609491f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2777,8 +2791,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/che-khuc-bach.mp4",
-      "bytes": 48615,
-      "sha256": "0e8cc2d01156d2d26bfd02402ee9660ccd3f3b1f51bdd716c7704496738e09cc",
+      "bytes": 618836,
+      "sha256": "8d69ac73ece304d7220122ba23cb94d2179a8d127d60299e1f8a8b6573a7110f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2790,8 +2804,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/che-lam.mp4",
-      "bytes": 50877,
-      "sha256": "05d814a3c52719cc71e43dbc8dddf405366b6bc22adfcf91df7a33b826808082",
+      "bytes": 657644,
+      "sha256": "2939af7f70aac38778f59a5dea74fcd19910149ad603574756e354683863eb92",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2803,8 +2817,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chef-bach.mp4",
-      "bytes": 52744,
-      "sha256": "4a4fff6ff519e30c719fecf7f72528d76d96a3572f16ed677d9aa3b3b605bc08",
+      "bytes": 671327,
+      "sha256": "4e884beecb9f45de533dda3310ba07a0d7ccfa30ac66a6332ecbb0ce3c36245b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2816,8 +2830,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chef-hai.mp4",
-      "bytes": 61899,
-      "sha256": "d1b6b47e4839698b729b37b1fda3325e268fe3afa1c5314df710d5733cc704b6",
+      "bytes": 786184,
+      "sha256": "f0a5908be1e5f4d9073a0007e82bbbef154b3f26bc2eebd62f1fedb82e4d7729",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2829,8 +2843,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chef-lien.mp4",
-      "bytes": 51480,
-      "sha256": "9bf51b40619093fab422949c11c345ab2bc367ca265ba024c9805d576ea52125",
+      "bytes": 649799,
+      "sha256": "0bc0713112bb4976626e11dd3f0a5496887e68bf453991bf785a737e4ff451dd",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2842,8 +2856,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chef-moc.mp4",
-      "bytes": 48760,
-      "sha256": "9ccf1e518be1e00b33d5604a13a927cdccceb9d3fb6366ca96388aae4ff558ef",
+      "bytes": 613368,
+      "sha256": "b09ee1981377ba9bd6d927befaed4e44d2093bfaf4f0494f4066a28b970ef78d",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2855,8 +2869,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/chef-nhien.mp4",
-      "bytes": 49136,
-      "sha256": "b6bc169c83ad19446670da8cb2dc6600362c3030db6c37ffc593a1d53ca16305",
+      "bytes": 628184,
+      "sha256": "d8d8a3042111021dbc1432ea6f3008087a1ea29c82d1256c2b3eb0be51f32f00",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2868,8 +2882,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/christmas-pudding.mp4",
-      "bytes": 49206,
-      "sha256": "266ce7c9e1074e1e47588c7970fc072437164cc0486f2d1b438f97687f15803d",
+      "bytes": 637769,
+      "sha256": "20480d4649306df6da634c22595a63bb301333923637dbcac47f343fc0775ffe",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2881,8 +2895,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/classic-burger.mp4",
-      "bytes": 53020,
-      "sha256": "c0dc38e932d1ec665867f0d607de85ba7f468d65bd37799efa56ba6b1bc9460b",
+      "bytes": 664490,
+      "sha256": "aa932cef00007bff81c05ab3b7bf4593ab3872b99331c438b1462d023a3e8ab8",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2894,8 +2908,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-ga.mp4",
-      "bytes": 50958,
-      "sha256": "74d41e1112c34ddfd9e559c953df4603479313617e4962878d56576c916f6370",
+      "bytes": 637197,
+      "sha256": "f3a24f5cc509021dcbcc53f87ec60290aa3708de9d80c4576601bffb32b64f9f",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2907,8 +2921,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-hen.mp4",
-      "bytes": 50941,
-      "sha256": "9fca3ed5f427514f012db843b20d310149d65e6579ba8438262673ec2613a9cd",
+      "bytes": 629477,
+      "sha256": "dd26c6fca0fa3da81c057205b56c04b2880901247ec0df716a02e6b7240e79d5",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2920,8 +2934,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-lang-vong.mp4",
-      "bytes": 51023,
-      "sha256": "5141aac7faf89f6b7feb71409748fc934a72fc4a3799c7a6897c633aa3f9509a",
+      "bytes": 638230,
+      "sha256": "f027d93b6ff995dde652441b92420828fd8820e6b7cfc8b7984c1da3729c4a6d",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2933,8 +2947,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-nieu.mp4",
-      "bytes": 51694,
-      "sha256": "299a6ddc130003b1266fb19dd4c8939623210ec41e2b523c0868c3cf0317ab09",
+      "bytes": 648802,
+      "sha256": "140ad885907901eced108aa4fb88b319dbe29c4753f2feb5a2412377b67c27fc",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2946,8 +2960,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-rang-dua-bo.mp4",
-      "bytes": 51603,
-      "sha256": "674948e7f335db80f4a96a58578f9e9be7535c9b7a8b7e55dbaa4ce51fb82a84",
+      "bytes": 654336,
+      "sha256": "fbce5e2bf6d576b974f8507bfa8ce2e73b314baa03653760b908eed0463744df",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2959,8 +2973,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/com-tam.mp4",
-      "bytes": 50934,
-      "sha256": "9adc3a1538151713a9d310bbd595d3154282b2c23fd112a5cd2be0608ce44833",
+      "bytes": 656510,
+      "sha256": "980573295dff7d7ea44443a81595386a59d2c8656b5c69e9fdb2942f728a2038",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2972,8 +2986,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/croissant.mp4",
-      "bytes": 48072,
-      "sha256": "52311be84972ebc3cf1e7232fe51302dd35f8a5a85a3fa406e1b6fccf6558b19",
+      "bytes": 620227,
+      "sha256": "16a20e35028a0d9220b76058bca78dac090c721d061a73e82837579f55b0f985",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2985,8 +2999,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/dua-hanh.mp4",
-      "bytes": 49972,
-      "sha256": "93c605ec0abc54f9c125f5e5aefd86bef6c661e9fc0933327d4507ab9b75c21f",
+      "bytes": 628134,
+      "sha256": "fb0993f5aa896650ac268091216a06296373ad16745bc78dd20657effb579a52",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2998,8 +3012,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/duck-confit.mp4",
-      "bytes": 51170,
-      "sha256": "c01a497b671ba604e058b957a4daa536e619a5746cb0f9063ebdee7e4c90e074",
+      "bytes": 644353,
+      "sha256": "86a2e994fd9b14950010475a476b9414e5e4b4a497c64f5892e2ae813c2bc053",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3011,8 +3025,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/french-tasting.mp4",
-      "bytes": 51106,
-      "sha256": "82db7a63394ee2cb28b245165d2f452d561683fa86a55534b3a39fe9154ecd91",
+      "bytes": 639464,
+      "sha256": "6c952dbf2803e36b10b421f0c0b878564cbd7114d8eda75a30d0d70013b6d78a",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3024,8 +3038,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/ga-ran.mp4",
-      "bytes": 52003,
-      "sha256": "8844e51960c1d7a11eeadd84731f31b5920bbf0b3dc5a5ef39a4fcdd7186d3dc",
+      "bytes": 647851,
+      "sha256": "f66f7216c572aa6543d58def610872714bd6c7e4da982a24b34b928f140aed5b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3037,8 +3051,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/ganjang-gejang.mp4",
-      "bytes": 60276,
-      "sha256": "9efc90d6d2f8e6e6f95842b9ab7d9017f754efd9a3234beef7d1c540fdb26ce8",
+      "bytes": 768499,
+      "sha256": "56a099c9d97d3ef7e3ac8745c29633406138e53d5c7e333feced5f4e13665db8",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3050,8 +3064,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/gelato.mp4",
-      "bytes": 49166,
-      "sha256": "87037141ebafef21794c131f6c78d1b15bcf40046888d9c62dc2d535c65c99d8",
+      "bytes": 630981,
+      "sha256": "1dbbd74e05353716af2ee2ccb918f08623210a55d1e4506289319ee3a8cd33b2",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3063,8 +3077,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/gingerbread.mp4",
-      "bytes": 48540,
-      "sha256": "b23d3d12f63ea0d45c8b6a4c624b8ae97d82b19bc398735442fe4dd69687a9d2",
+      "bytes": 607650,
+      "sha256": "5fa78b6d0171dcf82bd0976fad6e92e8ad9d7e7449a545389e7a2f3673e38030",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3076,8 +3090,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/gio-xao.mp4",
-      "bytes": 43948,
-      "sha256": "88844d8b6181a2eb38fb31b3035f87cacaadfc52387d73795f70f01345e90b0c",
+      "bytes": 552203,
+      "sha256": "93ec98f6dcb7fbef41c59f5a66720bb5a7e276bf36a1d284f40b4afabc8641b5",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3089,8 +3103,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/goi-cuon-tom-thit.mp4",
-      "bytes": 48520,
-      "sha256": "e90b71e76cc1f3b30733d2b751decd5ad516d3d04aacdc30f9644b2e931b4e66",
+      "bytes": 608362,
+      "sha256": "036963bcc78bb81cda94cad7eac774538c02fd5083d94f8f0be9f77174d9af2d",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3102,8 +3116,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/gopchang-gui.mp4",
-      "bytes": 44814,
-      "sha256": "e6f6bd503a0d53c5f1753fe947251a78948af081c3a2796efef37379f792f7b9",
+      "bytes": 566284,
+      "sha256": "8b9fcd319a8672ae9a5857dc9e0b5a0cb393f06ce525035b663a4880d129be9a",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3115,8 +3129,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/green-curry.mp4",
-      "bytes": 47617,
-      "sha256": "dfc8c69378a0bb6eff5191fdcb586e81a27650bdee5d816759d4dfc28763ee30",
+      "bytes": 605663,
+      "sha256": "3e6608aa59e2c0ea1104be64ab443d0d0c090e70797ffa7376cbc375c48458ce",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3128,8 +3142,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/haidilao-hotpot.mp4",
-      "bytes": 51940,
-      "sha256": "4ba86fcfae252b78da50fb1f5ec28278f60d5a8c5a33b0de2703325c859aea32",
+      "bytes": 652991,
+      "sha256": "8a99e24e191ed34fc026ad67005fd29eb584d5c38c626b3bd1b6ec26d79f2cad",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3141,8 +3155,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/hanwoo-bbq.mp4",
-      "bytes": 51007,
-      "sha256": "83b646430c3a4e93b7cb39142bf3979e462a247ed612bd94fc64c3efb18bec6d",
+      "bytes": 644632,
+      "sha256": "fb22471764b0153178423b11814b588065ca651ff6fe717065975c2b24712591",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3154,8 +3168,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/honey-glazed-ham.mp4",
-      "bytes": 47007,
-      "sha256": "2ec6c3f8c5977e35963eb862de420e4360a5f8b53cb7c56d74ee050f66bdba6b",
+      "bytes": 606762,
+      "sha256": "7c2f4523b805eb12a79cd11837e766163daa0b8f0182754ec4c5243d3649ef21",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3167,8 +3181,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/hot-chocolate.mp4",
-      "bytes": 49730,
-      "sha256": "ed3fad194d9fd4adb3977d288cf9a6acb26d0dd99f6010b89c85477040274b58",
+      "bytes": 623199,
+      "sha256": "900208db8e97c506609f2b7bd90b7e10beac6114657b5f08d1a758efc4da6af4",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3180,8 +3194,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/hotteok.mp4",
-      "bytes": 48213,
-      "sha256": "b2194bb8d15f993c98af0b26722d9b93bb85060e70d12cfc571bfb98f42e1752",
+      "bytes": 622301,
+      "sha256": "39dcf0f9899b9a05e3908a6b3dbc635c9933d1b38173dabca97ad79713ffd31c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3193,8 +3207,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/jjajangmyeon.mp4",
-      "bytes": 49474,
-      "sha256": "5b94afd510ff9d105a7d91c2bf57328579f0d86b3e76fa03dbe2e9ecfa16c9c9",
+      "bytes": 618428,
+      "sha256": "3f90d06c8a0008cb85e938eba8cdbd8e877032b2eafcaed5c76fe6623301c5ee",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3206,8 +3220,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/kem-bo-da-lat.mp4",
-      "bytes": 48909,
-      "sha256": "fa52fad59f7e8d850c39c32872bd8abe2b3ef8bb2c61d900365f078178e003f7",
+      "bytes": 625719,
+      "sha256": "eb2269935dd655e2111dbbbc542d9854cda427689aa738ce1ebe10b8e447aadc",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3219,8 +3233,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/keo-cu-do.mp4",
-      "bytes": 51535,
-      "sha256": "2e53f7931209b2b588f8372ed43f6f20c06c8cf72000b6d5cbfdbdd3804e1d46",
+      "bytes": 643461,
+      "sha256": "334d5d466501d94e69b725c59bdbc5646ff910ca38c87fe5a4301cafee5da8cf",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3232,8 +3246,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/khao-soi.mp4",
-      "bytes": 47870,
-      "sha256": "aab40be57bd47f2fbec071f9dc1e157a791a70d7d424f04e4a2a6d24449a718b",
+      "bytes": 600491,
+      "sha256": "e5ea07f4857a30036d05a2004703830dc6917987f1f8528e7a8347d2de862b7b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3245,8 +3259,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/kimchi-jjigae.mp4",
-      "bytes": 49056,
-      "sha256": "5b21a38a9322b78fc79d3ae9bb5aea38fd269718f7ff004e60569eb644163a99",
+      "bytes": 629437,
+      "sha256": "3d5d160c2eb9fec3cfdf75c22fd97a6f4a485633a003301f60c1ac5a84d04300",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3258,8 +3272,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/korean-fried-chicken.mp4",
-      "bytes": 44714,
-      "sha256": "a67a546885f6c75c91920377c0fcf4a2e4b92a9e1cc6e4b002b14dd840e3f2c2",
+      "bytes": 561569,
+      "sha256": "003ff7b2da229a737dbac07d86c7dd9f2a2b344611b0a40eff8884fafce1fe5b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3271,8 +3285,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/lasagna.mp4",
-      "bytes": 51341,
-      "sha256": "f9432cf957e386e33012b644fcc92fb43266639b31bab7682d34973b17ddd112",
+      "bytes": 640111,
+      "sha256": "8ff003c17093156d9874542d01e5458f6d2d20ffa5a4cb4b8155619e944616d2",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3284,8 +3298,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/lau-rieu-cua.mp4",
-      "bytes": 50775,
-      "sha256": "bf51c69e2165007339af5c89889f5eb41d74dffc96737267ee36eacf7f56673e",
+      "bytes": 640419,
+      "sha256": "6ef6c52373531f65b0f0bf80860698511b6497dc2ff256a48d5f12fff333f51d",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3297,8 +3311,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/lau-thai.mp4",
-      "bytes": 42941,
-      "sha256": "632defa9c17bf6fb0799e7bb81eba3f1f7b6a407c4137a67dd79a99d872a22d5",
+      "bytes": 555660,
+      "sha256": "30f8da26f1f763917bba6aa60cf33bc35d7c7f706e789ae11d114979ba2fc1c5",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3310,8 +3324,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/mango-sticky-rice.mp4",
-      "bytes": 47711,
-      "sha256": "0b794bb9b3c1758a9d0ec29bbf13632f99413ec3882ce8c27a2c6aa877c7dbe8",
+      "bytes": 620431,
+      "sha256": "75361981feb0c3d3d61cac8aabaec4153c288cd6adbd52ca8e30a3ed63ca767a",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3323,8 +3337,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/mashed-potato.mp4",
-      "bytes": 48128,
-      "sha256": "f19530ba3b12ae2869981cdc845df0b84c625b9af5b143d05bf92db126c617e0",
+      "bytes": 594973,
+      "sha256": "43e7e21f68c4adc66191586fa83412e55e98fa6ce4e8803ce94cf3fbc39b5517",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3336,8 +3350,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/matcha-parfait.mp4",
-      "bytes": 47087,
-      "sha256": "c4f0a3299d17503e658224a1013c3795b5f54612e4a4db029a385dca3817e6a0",
+      "bytes": 603846,
+      "sha256": "5e6782acef5b4eae917abd7cf3e00f869ad8b53919d42a23f433105edc46ff43",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3349,8 +3363,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/mi-cay.mp4",
-      "bytes": 56739,
-      "sha256": "204ffee9ca3c17d849bf1bcc907e9ece02e22999925a65010ece97f60ab2e0d7",
+      "bytes": 699837,
+      "sha256": "a96bd372136a453405f342b8c6493daad5a3297e17bf18c2e61afaa0b4871f69",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3362,8 +3376,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/mi-van-than.mp4",
-      "bytes": 60150,
-      "sha256": "f89fe015bd154b137eda3807a67a0374745be9c52373dd0185f858903820cac6",
+      "bytes": 762070,
+      "sha256": "cbb932503bca2a0ad6dcc9ed3102ad94542b2c2f9bc5e764239576cc329cdff8",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3375,8 +3389,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/mien-ga.mp4",
-      "bytes": 50525,
-      "sha256": "6231be7c8f20dc7700cc8222b7ac902cd6fedd9c640cdebdf7783aa28016830b",
+      "bytes": 635976,
+      "sha256": "4ab76bfa086cc60ba147aab431215235683652b37ebc9a57a99ebc702c91e34b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3388,8 +3402,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/moo-ping.mp4",
-      "bytes": 45321,
-      "sha256": "35b9ad4a75857e7e5eb1d2229b3cc10e1fab7e9f9cf52d23d141275f84ae3934",
+      "bytes": 576603,
+      "sha256": "a603d2fcc9db298c947f99846f50cdf5f2ba6fef1cb366b754fe15f227d7b4c6",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3401,8 +3415,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/nom-sua-xoai.mp4",
-      "bytes": 44925,
-      "sha256": "9db707a83a91ca61451a446a310b5c69c1ae272296e9ab47e233b15646cfbab6",
+      "bytes": 565499,
+      "sha256": "bdb9a8041b477c2bf81de781d3d73a770c0765f3c582fcd117a9775a36d3bb06",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3414,8 +3428,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/nuong-bbq.mp4",
-      "bytes": 43633,
-      "sha256": "d8063d4d18e5479df8e5da6b7c01769b1a1468ef76620dfa4c4578063001af05",
+      "bytes": 559179,
+      "sha256": "306248429b39438afa4273971d15a9b1d6cddef787b8762aa04f4eae68d91350",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3427,8 +3441,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/okonomiyaki.mp4",
-      "bytes": 44700,
-      "sha256": "6d80e79044d059bb5354561a690904218304e29eff9ef78b476ed10052d5b788",
+      "bytes": 576578,
+      "sha256": "3be2937d49a1b2d6af301c41a76a977fdb854e756106a4dddbc3bc2191948150",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3440,8 +3454,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/omakase.mp4",
-      "bytes": 51375,
-      "sha256": "f6546b3b7b992f7dfd2969213bbcc18646204d97163a64dfb0f98c03ab696203",
+      "bytes": 643055,
+      "sha256": "d79ee085e209615778c84fb11d88fe1d9e23d928cec6612d682f5e6366e9f1e6",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3453,8 +3467,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/ossobuco.mp4",
-      "bytes": 43148,
-      "sha256": "96966fac7f67ea5aef3bffd245f60c5337391d994d1567f9cc08fdaf48cd1cd7",
+      "bytes": 544962,
+      "sha256": "020a1ef5b5596938daa6599b8972bc5008ffb1079e274d1207c93e89952a001e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3466,8 +3480,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pad-kra-pao.mp4",
-      "bytes": 45547,
-      "sha256": "2edf26554d48a35352770a81e5a972134e1772f0c99980c695a8458f77ca03ba",
+      "bytes": 577571,
+      "sha256": "cccac47ebeae5e157e3aa30df906acb04471be58bd3d43fb05b0b0a064f999fd",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3479,8 +3493,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pad-thai.mp4",
-      "bytes": 53990,
-      "sha256": "1eeb04e852e4e569bfb8983e4baff8b0b0a397df955ce007f0655108df294103",
+      "bytes": 667826,
+      "sha256": "aae8e1246d0959caf917a53dae0fc883f28da178547f963fddaea847ad323ae5",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3492,8 +3506,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pappardelle-cinghiale.mp4",
-      "bytes": 52848,
-      "sha256": "aa37e1ce8f9ab442e4cc426ac9e4ae5b81e481d8e40330cfcc0a9135a10f694f",
+      "bytes": 662658,
+      "sha256": "b26aa96c495fcb631316f3223e5b799b69f0b2df2a559a31db6e1e946ba3919c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3505,8 +3519,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pasta.mp4",
-      "bytes": 52566,
-      "sha256": "7c52812084a66380b98eeb5942c7873690188a8b4bfa9c251201ce2376d5403a",
+      "bytes": 669865,
+      "sha256": "528e2954b895e536ceb07109e9fbd1ccaae7a5dda535f1ce4af03b28c36ad245",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3518,8 +3532,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/peking-duck.mp4",
-      "bytes": 51705,
-      "sha256": "133f40a0a353caae09297d01267a0da5293b8b519155b16d74e4b5bf5cd9e719",
+      "bytes": 658124,
+      "sha256": "dbdb7d55ff4e3d006c67a5b32584cad6fcd1b19bfc10d3e24253c5cd4a004d75",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3531,8 +3545,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pho-bo.mp4",
-      "bytes": 51310,
-      "sha256": "9e3a4f778e1da51aac29d315ee90df4e7386cc06b015efbce895459091ef9a18",
+      "bytes": 621599,
+      "sha256": "e6b1b05ab8ed2a18d747ce2b119b98c16b727c59126b8dd86d02c46020f40d82",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3544,8 +3558,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pho-ga.mp4",
-      "bytes": 53418,
-      "sha256": "bb4a8700e59ec1d7c3ae6b6962d2830b2f8a727d88cf60707d79b57bbf2e2461",
+      "bytes": 615787,
+      "sha256": "c7d32bffa32932de9963aee9733b4a9a53f364c591b067f9676c7984416b1e05",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3557,8 +3571,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/pizza.mp4",
-      "bytes": 51861,
-      "sha256": "40e4a32782185425cf540609ade0ffa1e1d44f5db9a328cc55a39d1058772ed8",
+      "bytes": 653500,
+      "sha256": "908bcc2ac98c0eee46d7d80d578f5309c6ddffb9be0a7804f05bf94939056bbb",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3570,8 +3584,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/porchetta.mp4",
-      "bytes": 46267,
-      "sha256": "714fcbafb24cfba05eecc4a9cb86246c2cfd351af4ccff16aafbd8f36c82855f",
+      "bytes": 596871,
+      "sha256": "2fdf4a62ef430eaf7793b3e8e788595cb9c63faa97bba3817b7e0e39c3e43f4e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3583,8 +3597,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/roast-turkey.mp4",
-      "bytes": 42995,
-      "sha256": "eacedf2d0a0c3eee0a9fa4d731a0004784f6e2e1d5bb48fd0d3efdee14114893",
+      "bytes": 548238,
+      "sha256": "baa934dc3866b1b133bb8626065d09a7cf3adfba648934e1d9803dc853b23dec",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3596,8 +3610,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/saltimbocca.mp4",
-      "bytes": 43144,
-      "sha256": "9a50816f8b4b19e9df05bd27769f097b243e4617c52b449b5dfb4e8645406c72",
+      "bytes": 551051,
+      "sha256": "e54b97b2b6c0d7b5bbe6a271633f634f127a34c33c5b0d879a8202ffc667c3e5",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3609,8 +3623,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/samgyeopsal.mp4",
-      "bytes": 50920,
-      "sha256": "66edc0d5b5394c07a1d4ce0051545f958e834a2e26fcd832edb72c6bf9b85aed",
+      "bytes": 645786,
+      "sha256": "184ccc3174316d7791c74f3245c48603e599d35be8a4588b1faa34fd83933028",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3622,8 +3636,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/shoyu-ramen.mp4",
-      "bytes": 51009,
-      "sha256": "0c7d86f3709f6b20effec901277f64f6b9069eca8f938a7cb46873c41192bf8a",
+      "bytes": 639075,
+      "sha256": "f2063d4a01200b937179f9ffe105294518a232dccaf4bf2983da6e036417c9fd",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3635,8 +3649,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/smoked-brisket.mp4",
-      "bytes": 50775,
-      "sha256": "cbbb54f33677600d52583380ea56e22ef44794472fb9413666a77f498d224405",
+      "bytes": 652583,
+      "sha256": "42e9490c50eb4e4980af1ec53fcf0a6b97186574b59d8ac282efc9b7a653cb40",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3648,8 +3662,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/som-tam.mp4",
-      "bytes": 56657,
-      "sha256": "021ed436c60b2b295378adc50f00d374341a1c28a804c0eb7fe1b23b33b2bed3",
+      "bytes": 705464,
+      "sha256": "b3ebb10c4df17b1dd7258bec69170aa2358b59fddc809b0e9a5abb6488463314",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3661,8 +3675,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/sua-chua-mit.mp4",
-      "bytes": 47728,
-      "sha256": "29b18500796644bfc9cc207f0b3fb509c965944eedebcf5f377777bea5769b94",
+      "bytes": 602960,
+      "sha256": "83251b2b2b59b08bfc1279c81af1583a2e01f7d33c6111af06e10ea5fdc86312",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3674,8 +3688,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/sundae-guk.mp4",
-      "bytes": 55315,
-      "sha256": "e00eb815cefade219668bec5ad84a1f4262c22fbdc6e7104eb194072c2fe2b36",
+      "bytes": 681632,
+      "sha256": "70e1a3cd2ca39b44fc274e513325056669cf810bc32abd8f862b92fd742b50ed",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3687,8 +3701,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/sushi.mp4",
-      "bytes": 51391,
-      "sha256": "1153aaaed9edbebf1d82291aab328da5fb41393c7315221455052b46c7d64d45",
+      "bytes": 648506,
+      "sha256": "0d20998875c9b9509b1204b940c6dc08680ea57a57eec965aab083959bda990d",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3700,8 +3714,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/taiyaki.mp4",
-      "bytes": 48827,
-      "sha256": "315e8c5bfe042832538d61409bf79f0a3ed5f012607e965656e994ddafd1bd06",
+      "bytes": 628457,
+      "sha256": "f3db3181caab779cfdb4acf4b8153d4e88386cdd227633ee5c656a20c8926108",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3713,8 +3727,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/takoyaki.mp4",
-      "bytes": 49806,
-      "sha256": "acd091fa721429ff68851502fb9ed0041c57c4d5bd1275799a778572a2072d6c",
+      "bytes": 627037,
+      "sha256": "b8935afd384fb3a95373db34b104e7dbcd6c4d1153b05036876295c78dfe596a",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3726,8 +3740,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/thit-dong.mp4",
-      "bytes": 42498,
-      "sha256": "ceee075609e80018a0640ae3143a08b2b4a9def55cf09837206bd2dd0769bb26",
+      "bytes": 533899,
+      "sha256": "3cbde431b6e83414d5fb35ece32aad4dbc19816a093d45d3c0510d881a55396d",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3739,8 +3753,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/thit-kho-trung.mp4",
-      "bytes": 45719,
-      "sha256": "b23740f7a3ac4777306343dde66207c4e5b770b1c7ef9dfc2b6f256cf06b1189",
+      "bytes": 595149,
+      "sha256": "db1cd1365b79889c88ce39d6d2d7416f22bc23b83f4c4e3beeece98934fe3a0c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3752,8 +3766,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/tiramisu.mp4",
-      "bytes": 48152,
-      "sha256": "5364b96902b4199d5297fd5d6f7210642a850173a590eb6ee833814788e923fe",
+      "bytes": 618406,
+      "sha256": "8b06aac02e884ece248111b03be8f92aabe310dd0020f296b8c6ed2d2c10193c",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3765,8 +3779,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/tokbokki.mp4",
-      "bytes": 46609,
-      "sha256": "615ece6981daca41fa46996a3b2f5936bce0f14e032de5f94c3e48e2de60b3e7",
+      "bytes": 595462,
+      "sha256": "dc920209b01c514f84eca81190cab2095f99a633b5c8fdaa877f4500589b7529",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3778,8 +3792,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/tom-yum-goong.mp4",
-      "bytes": 45937,
-      "sha256": "9857690ecfa1ae5e6a93d71ab0254ad273ffeaa5936864795a6a61339c9ad25f",
+      "bytes": 582462,
+      "sha256": "c7a946e5451ca330f0a35d9bf7055998d4dce431cfa1e2025c92141dc2009388",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3791,8 +3805,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/tonkatsu.mp4",
-      "bytes": 43905,
-      "sha256": "1654236f9d9ee99fd9e430c0c7431c8c9d288dd928f2ebdb40b185cf731e7414",
+      "bytes": 556432,
+      "sha256": "99a1e741c778b1261fa2f7b50ff483d242eee88437a81494172b9b2a5d372652",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3804,8 +3818,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/tonkotsu-ramen.mp4",
-      "bytes": 49998,
-      "sha256": "1d5b1840f63f6d844c46af4445cd4bfea7b9617d4bbac55795cfc935e5c5da86",
+      "bytes": 623910,
+      "sha256": "9bf7d93e34c4f9388300469123996fc38bd7c707d03fb33a73a99a5e7c16840a",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3817,8 +3831,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/truffle-risotto.mp4",
-      "bytes": 51614,
-      "sha256": "969fd595534fc06be31ec40044739df430e126aa03b214a7b683518b27af2ab6",
+      "bytes": 650481,
+      "sha256": "17d68ce141bb8ca3b4cdf7c397f25f446ee2c69014c130a87d8c05e147282419",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3830,8 +3844,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/unagi-don.mp4",
-      "bytes": 51728,
-      "sha256": "a7002aacf6906e63d44f3c710f8959f6cd106642395d358981229b71fa52d20e",
+      "bytes": 639887,
+      "sha256": "cf3ec6e369738cfd645e8f33a8afef4d3580064124fb1f21a93ec55f52f5ba7a",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3843,8 +3857,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/v4-market-host.mp4",
-      "bytes": 48219,
-      "sha256": "95e0748b9cca94591ee0bc2c76c08f6a5507ae81404d50e28d6c8e248a1a5aed",
+      "bytes": 604520,
+      "sha256": "4275124a4d8e5076b99ff3e80da46ecb246f965e60b08acad481ef518ba44526",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3856,8 +3870,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/vit-quay.mp4",
-      "bytes": 47102,
-      "sha256": "c3306a7309f9547a5b89ca1939ac811babf818a764ccd3d11460de112ea8548b",
+      "bytes": 616549,
+      "sha256": "bb0d9cf982f2f2a2b7761b61a54ddc3de92f8b69ad86e37a4fab3ed3a7680c29",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3869,8 +3883,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/xiaolongbao.mp4",
-      "bytes": 51188,
-      "sha256": "27ba1e5549431be347bacc61d3cd05461721ffa910a1d4cb286011ba219e5aed",
+      "bytes": 646781,
+      "sha256": "3f6658f7496ffcbe33e7816088f457c3b7e279842261b06ba84a94da10456b3b",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3882,8 +3896,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/xoi-xeo.mp4",
-      "bytes": 51757,
-      "sha256": "752cb47bb437043e48062da21f40e1169841d5bb971c46590d4010c302fcdee3",
+      "bytes": 662595,
+      "sha256": "7b0cf63c391211c54dc0ef3836e0295a0a55dd200a034f1b688c09ff94aa188e",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3895,8 +3909,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/xoi.mp4",
-      "bytes": 52908,
-      "sha256": "682d3b62942968ad5d42c13ca015909e0b668620304d03a2fc2a8c2f32ff001b",
+      "bytes": 683074,
+      "sha256": "819c6d20e7addd0cc4254f47d62abd6617f6b48d6162699fa8fa559227521339",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3908,8 +3922,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/yakitori.mp4",
-      "bytes": 45284,
-      "sha256": "2304ce0537eebbea48142237a03cc2089abcc0bcb7bdf4136a9425ec10ee5ab8",
+      "bytes": 582904,
+      "sha256": "a77a4963cad9fe57a3c9bfb31ff2acb4b8f57b11cc02f7e9b245a9e379685598",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3921,8 +3935,8 @@
     },
     {
       "path": "public/assets/rpg/awakening530/movies/yule-log.mp4",
-      "bytes": 50759,
-      "sha256": "f370a3d510422ab4e10815a0e7a0d33d1912640c2a05a6bd8b476b35fc11c88e",
+      "bytes": 631192,
+      "sha256": "8d607f2a4b298f59d2bd7028454256eccca6a76bc8d9a53dc78c22abe94eb452",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -5472,6 +5486,83 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/rpg/campaign580/aroma-palace.webp",
+      "bytes": 378524,
+      "sha256": "3b9c7cf2e47ccc90b242d57dd81a1e7b9b11bff243080b460c930d31b97bd355",
+      "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
+      "evidence": [
+        "dev/docs/web-v580/art-assets.json",
+        "dev/tools/prepare-campaign580-assets.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/campaign580/battle-ceremony.webp",
+      "bytes": 2240466,
+      "sha256": "041a45bc25e001a4aeafc1b52745b0132296f705edc28a64c73d4cb93dcee3a9",
+      "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
+      "evidence": [
+        "dev/docs/web-v580/art-assets.json",
+        "dev/tools/prepare-campaign580-assets.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/campaign580/campaignA.webp",
+      "bytes": 2153792,
+      "sha256": "07cf5491e868109ff151b7f9b245184d1c77c2f4c0d5b5bae66bc870261e5b08",
+      "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
+      "evidence": [
+        "dev/docs/web-v580/art-assets.json",
+        "dev/tools/prepare-campaign580-assets.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/campaign580/campaignB.webp",
+      "bytes": 2223544,
+      "sha256": "6e546200a90af7bc5ae2a1f642d5167e27a0c0b5064ecbf5e1a31444a5de562e",
+      "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
+      "evidence": [
+        "dev/docs/web-v580/art-assets.json",
+        "dev/tools/prepare-campaign580-assets.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/campaign580/moon-lotus-marsh.webp",
+      "bytes": 285868,
+      "sha256": "103caf327a35c4d1e0a45da6b13ad1b23439093bc46aad5c06f7185d1a1e627c",
+      "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
+      "evidence": [
+        "dev/docs/web-v580/art-assets.json",
+        "dev/tools/prepare-campaign580-assets.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/campaign580/red-salt-kiln.webp",
+      "bytes": 289466,
+      "sha256": "04757e9b305b31fcf21628bc74ac2f016fd7eaae0a30f650912272ba45b9c519",
+      "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
+      "evidence": [
+        "dev/docs/web-v580/art-assets.json",
+        "dev/tools/prepare-campaign580-assets.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/campaign580/tea-cloud-peak.webp",
+      "bytes": 348872,
+      "sha256": "45602b21e8007cc16689f44fb305436e24c354ae8d35523346c96e19e7c74b05",
+      "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
+      "evidence": [
+        "dev/docs/web-v580/art-assets.json",
+        "dev/tools/prepare-campaign580-assets.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/rpg/spirit510/portraits-1.webp",
       "bytes": 502556,
       "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe",
@@ -5604,98 +5695,24 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/tcg/audio/8bit-battle.mp3",
-      "bytes": 265693,
-      "sha256": "b5ece04f1c09345381c98e2bbff8738be16d54c4882aa00db9fdfc08acb754c9",
-      "origin": "Original procedural composition",
+      "path": "public/assets/rpg/village580/crossroads.webp",
+      "bytes": 794330,
+      "sha256": "7dce7521bcaa6a15a7ede2e406f5e6a305c3f3bc579ce20518b1a4501c17a9df",
+      "origin": "Project-owner supplied original Web 5.8 village and party art, transformed into runtime WebP atlases",
       "evidence": [
-        "dev/tools/compose-game-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/AUDIO_ASSETS.md"
+        "dev/docs/web-v580/art-assets.json",
+        "dev/tools/prepare-campaign580-assets.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/tcg/audio/8bit-boss.mp3",
-      "bytes": 230164,
-      "sha256": "d9bb921562461c122e4d6f85a1f33dbdefc786cc9fd24452d3752d1349bb6682",
-      "origin": "Original procedural composition",
+      "path": "public/assets/rpg/village580/party.webp",
+      "bytes": 271666,
+      "sha256": "c13e38370ede91a447d1105943f04c31a5b37dbf7a8407a8f7e7b714c40c083a",
+      "origin": "Project-owner supplied original Web 5.8 village and party art, transformed into runtime WebP atlases",
       "evidence": [
-        "dev/tools/compose-game-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/AUDIO_ASSETS.md"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/tcg/audio/8bit-story-mystery.mp3",
-      "bytes": 240831,
-      "sha256": "13d12cc607862e7b099edd34071cc39ee04db798da03ecfa5613a0e6546d5287",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-game-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/AUDIO_ASSETS.md"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/tcg/audio/8bit-story-warm.mp3",
-      "bytes": 203003,
-      "sha256": "5f6fb9518c12ba5b4b39b8c8603645f3a450e92523207d24e7d9d1d3b59558a0",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-game-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/AUDIO_ASSETS.md"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/tcg/audio/battle.mp3",
-      "bytes": 285331,
-      "sha256": "d3e25bc26b980413a2f77317eaacf32dec8bee53c9c3a25f9c4e611a8a353dfc",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-game-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/AUDIO_ASSETS.md"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/tcg/audio/boss.mp3",
-      "bytes": 244578,
-      "sha256": "d3319599636ed459ebe6df83e4334ba63d2b9c4c34e5c34ce14b18b4bca09f27",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-game-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/AUDIO_ASSETS.md"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/tcg/audio/story-mystery.mp3",
-      "bytes": 256707,
-      "sha256": "8de1f0d2a38db6985191d91a01a05ac4dbf7c627f38d2e4529066b16bebab41b",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-game-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/AUDIO_ASSETS.md"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/tcg/audio/story-warm.mp3",
-      "bytes": 214073,
-      "sha256": "78fa4bfb1c14129ea326ada94730f745f8f18b63bc8a7870522b135c61cba3df",
-      "origin": "Original procedural composition",
-      "evidence": [
-        "dev/tools/compose-game-music.py",
-        "dev/tools/compose-retro-music.py",
-        "dev/docs/AUDIO_ASSETS.md"
+        "dev/docs/web-v580/art-assets.json",
+        "dev/tools/prepare-campaign580-assets.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -6730,636 +6747,6 @@
       "origin": "Original AI-assisted living-market environments",
       "evidence": [
         "dev/docs/major-v400/arena-prompts.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/8bit-harbor-tension.mp3",
-      "bytes": 128819,
-      "sha256": "d6d5f7021e367ad07ea63ea5a8eb16a4be6512f3c76429a614bad9c7de74c218",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/8bit-harbor-warm.mp3",
-      "bytes": 167686,
-      "sha256": "76bd8009088f3ac6ddcec8d4e0bff4a1a1edfdcb1fac2cc631028f038cea605d",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/8bit-kitchen-tension.mp3",
-      "bytes": 128820,
-      "sha256": "fbda6fa0e1d9b47d2e0052b51ace21b8befa3784963a49da1edfe8ef8e32fd93",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/8bit-kitchen-warm.mp3",
-      "bytes": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/8bit-market-tension.mp3",
-      "bytes": 128819,
-      "sha256": "850cbed7ba0af9b2a8cd55191cb9926ffd3f298df2cd5a69e5b89eec9dacee99",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/8bit-market-warm.mp3",
-      "bytes": 167686,
-      "sha256": "67cbbe377380a54c73c520672b02a399eff90a7a0ca31d8961ffb13c812fbf68",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/harbor-tension.mp3",
-      "bytes": 138008,
-      "sha256": "811a545a467125171e36ba58b29e7ff071af279cd76aa246be3ea0871421c6ff",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/harbor-warm.mp3",
-      "bytes": 175412,
-      "sha256": "c2c7a7f2e3d77d0c676b86d308f12f3054dbe4ba36f5402fa38b9dfb869190b2",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/kitchen-tension.mp3",
-      "bytes": 138009,
-      "sha256": "76a7d2a33119c31bea9a3fef7b3c67eb2a98ded06e6f175df2f01d8d39ab74c2",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/kitchen-warm.mp3",
-      "bytes": 175413,
-      "sha256": "0dc48155407b56a629a5e8ada613a2aa2060ac20dd2df1eeee0c147e981f499b",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/market-tension.mp3",
-      "bytes": 138008,
-      "sha256": "db30668f2f0e9f4514d3f1c92302e5e31ded0aba42d2e52560e905e23b73aa65",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/market-warm.mp3",
-      "bytes": 175412,
-      "sha256": "45c6e4d5ad790529d7fa0352a873d8493a10a6d118d4d2ddd0976d445660e1de",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/stem-8bit-base.mp3",
-      "bytes": 160749,
-      "sha256": "dbf2a3a68e7d659e0be3766b44aded967196a6f7c6022a65893fbfff77919476",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/stem-8bit-pressure.mp3",
-      "bytes": 80475,
-      "sha256": "4d64b501c385c2f89208211371a26145a2fc2f62194ff41bcd1422793dc7cf9a",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/stem-8bit-rhythm.mp3",
-      "bytes": 80475,
-      "sha256": "c27d87f1831da3b96534018ecd039f4dd4e5266f48e397dfe27e30b320184211",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/stem-original-base.mp3",
-      "bytes": 160749,
-      "sha256": "290dc66ced50a529de1b7ab681b1cfceb4a625e8b4eca6a0bf020f7eb71dc313",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/stem-original-pressure.mp3",
-      "bytes": 80475,
-      "sha256": "517accf974b50039ca1f15dc6e284c2a2be04f74984744b782383b57ae4fb12c",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/stem-original-rhythm.mp3",
-      "bytes": 80475,
-      "sha256": "d3bda4cdca7c742460fb7b996a43edf63d5e9df7b0faf276e63d9f3f1f7d34c8",
-      "origin": "Original deterministic procedural score, no samples",
-      "evidence": [
-        "dev/tools/compose-v4-music.py",
-        "dev/docs/major-v400/audio-v4.json",
-        "dev/tools/compose-v4-stems.py",
-        "dev/docs/major-v400/audio-stems.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-auto-prepare.mp3",
-      "bytes": 668410,
-      "sha256": "04aa48a4f1dd81d9cce527a869a71cb311fcc6b2fda857447e19b33feac253e8",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-auto-story.mp3",
-      "bytes": 768509,
-      "sha256": "b7d7eeecca38fd3f1949399f2bdf77232769b8b573e4154a5ca86b2fcd3d1b57",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-expedition.mp3",
-      "bytes": 614909,
-      "sha256": "c715aa676970f7d4211b71cb3b71981438aa82962058d20a5ce5c6c89b1718ec",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-harbor-warm.mp3",
-      "bytes": 853983,
-      "sha256": "f0ed0e37fe57bf9822a33573218c7017fd8d484e5e11139ac3ca6e2a537b948e",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-kitchen-warm.mp3",
-      "bytes": 698712,
-      "sha256": "0cd850dc52440c16fa23eccd24867978a0077036c6a60d4e68e673d1e3558ff6",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-lobby.mp3",
-      "bytes": 731933,
-      "sha256": "bbb373dbf1219b3b19ad11a08f895a1129e70deaacf2477754e5f2867e4b568d",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-market-warm.mp3",
-      "bytes": 640615,
-      "sha256": "3e26e259c675df8319b353a126b8a6213225cf982912f36fd2e7aa26dd6a7b29",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-stem-harbor-base.mp3",
-      "bytes": 160594,
-      "sha256": "f057347707d0b7d2af46f24836c81274eca59b3f4ad50fb52ba1812b0e9ba082",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-stem-harbor-pressure.mp3",
-      "bytes": 80429,
-      "sha256": "cd412750ac099e2f481e08ba8a1a8d27378218717e4bf6ea4d607692b52410cd",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-stem-harbor-rhythm.mp3",
-      "bytes": 80427,
-      "sha256": "db4746982cbbe169e76a553557881e2b7d1e7de337f57bda5ff39667bf1f437b",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-stem-kitchen-base.mp3",
-      "bytes": 160595,
-      "sha256": "835880ae5f41d270f9d7937c5028f2fb398bed3fbebe6f6c68626779e817f9d6",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-stem-kitchen-pressure.mp3",
-      "bytes": 80430,
-      "sha256": "6e720ffb11bc78ae7f7b2f1282fb250247f96daf157fc9dacb759539a522b19d",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-stem-kitchen-rhythm.mp3",
-      "bytes": 80428,
-      "sha256": "f5622304b4862f5dca49d335cb43bb2bbf81dc8c6b587914122b41e1c0bae10f",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-stem-market-base.mp3",
-      "bytes": 160594,
-      "sha256": "41b8aaca905df1421ff5093edcf6876f36da8e71b906fe9df52fef83d77168e5",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-stem-market-pressure.mp3",
-      "bytes": 80429,
-      "sha256": "1a4440482492c176fda81b1a457fe8bcadafff35adf86e2c98273acf53e1d881",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-stem-market-rhythm.mp3",
-      "bytes": 80427,
-      "sha256": "4db075e7135c42c75e9d13eff116e205ab927832a54eb9514c18b9356699658b",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-story-mystery.mp3",
-      "bytes": 904140,
-      "sha256": "f8919d7f8523c7f31be96d330834a23b030f943868d3a07ee822db704bd3aa63",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/8bit-story-warm.mp3",
-      "bytes": 809052,
-      "sha256": "7e6459b81c41147f9bad118542bbba2def95f42b8133f96e8142cf8ffe933267",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-auto-prepare.mp3",
-      "bytes": 1002574,
-      "sha256": "93512714ec0c23d227cb0bed7db250a4cbdf2d742db1bd252b444b457925867c",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-auto-story.mp3",
-      "bytes": 1152723,
-      "sha256": "05b4f1fdde3bc9696126ae03acc106ed865d574652ae6cfbf3dc8617fdb8fb2c",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-expedition.mp3",
-      "bytes": 922323,
-      "sha256": "f1485c92f5fb062681163c790f489ff3f998dcfeef45503c19c2f5109aa4a651",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-harbor-warm.mp3",
-      "bytes": 1280933,
-      "sha256": "f5bb72318e0c83296055bd18fc194ae3c19bf7c63ce00ea61dba271ee4256808",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-kitchen-warm.mp3",
-      "bytes": 1048027,
-      "sha256": "eb483fd6d74a4db0e0b073eec41457f7eef8dde698f786fe33f8e493a8392266",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-lobby.mp3",
-      "bytes": 1097861,
-      "sha256": "5de28fe8fca26a5c8146bf39fa28825998cb95cd38ff743a0416ef3f53c357e8",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-market-warm.mp3",
-      "bytes": 960881,
-      "sha256": "13594fcdb8ff6e0fe3dad937bbc99a59ca624bef95249c90969e9b512c67fd3f",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-stem-harbor-base.mp3",
-      "bytes": 160598,
-      "sha256": "34e98e1d96d827c2d5baca84305c82eb217440171b7eb12770e153125616980a",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-stem-harbor-pressure.mp3",
-      "bytes": 80433,
-      "sha256": "6d60037d66ebfc904fcd48660b0fd1870983a025c2783f11b60b51741f32e947",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-stem-harbor-rhythm.mp3",
-      "bytes": 80431,
-      "sha256": "4bd48498cf6abcf458b41888539cee80f92c3a0681eb8da937e829fca403718b",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-stem-kitchen-base.mp3",
-      "bytes": 160599,
-      "sha256": "d88c9c9d0da733691cbb47aee916b1aecb1ec7b1e23802b985236f535c511e65",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-stem-kitchen-pressure.mp3",
-      "bytes": 80434,
-      "sha256": "0df976f31343a822eee0d1672579417d1fd8bdf1b48e7cd1bc3fac9c19735510",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-stem-kitchen-rhythm.mp3",
-      "bytes": 80432,
-      "sha256": "215ca2e0c1c390eac28cba4105c49f9ac150a53ae5205e9fa04bc2bf83952da8",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-stem-market-base.mp3",
-      "bytes": 160598,
-      "sha256": "97a12fa5809af88bf4573836160451637f3a16774e322af8551eb10c047197b1",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-stem-market-pressure.mp3",
-      "bytes": 80433,
-      "sha256": "7ca728a23124d34bd0d416e9f14afdaed63826d220afbbbbc3f128c7205fa333",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-stem-market-rhythm.mp3",
-      "bytes": 80431,
-      "sha256": "c71a3f61be31b7e4b68bf1814623d49ed1dc6e6627ac881fb0fc2a5aea0f01e2",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-story-mystery.mp3",
-      "bytes": 1356168,
-      "sha256": "bd8e1c02a33cec86c6bfa92fc3c19609cc2c5a44b05f59a7b879f3759875acf3",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/v4/audio/web410/original-story-warm.mp3",
-      "bytes": 1213537,
-      "sha256": "2833fd1d0166e16a6c07fce77866793302e5da78ace0bdfd15e4821375e2d71c",
-      "origin": "Original deterministic 32-bar web score and regional 96 BPM stems; no external samples",
-      "evidence": [
-        "dev/tools/compose-web410.py",
-        "dev/docs/web-v410/audio-manifest.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

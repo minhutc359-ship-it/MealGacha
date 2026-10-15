@@ -30,6 +30,44 @@ export const BOSS_SKILLS: Record<string, {
     "boss-mirror-sugar": { name: "Đường soi gương", text: "Chuyển đòn vào người thấp máu, hút năng lượng và dựng khiên." },
     "boss-char-clock": { name: "Giờ tro cháy", text: "Đốt hai tuyến, phá khiên và giữ chân người hỗ trợ." },
     "boss-last-banquet": { name: "Bàn tiệc khóa tên", text: "Khóa hồi phục, dựng khiên và phản công ở pha cuối." },
+    "cloud-teapot": { name: "Vân trà hồi lưu", text: "Rót mây hồi phục, dựng khiên; Hard/Extreme còn rút năng lượng." },
+    "salt-colossus": { name: "Chấn lò muối đỏ", text: "Phá khiên, gây Bỏng và làm nứt giáp; Extreme nện thêm ở pha hai." },
+    "moon-heron": { name: "Nguyệt vũ đoạn triều", text: "Đổi tuyến, hút năng lượng và gây choáng; pha hai quét cả đội." },
+    "aroma-regent": { name: "Vạn hương nhiếp chính", text: "Làm yếu toàn đội, dựng khiên cho quân hương và phản kích ở pha hai." },
+};
+
+const CAMPAIGN_ENEMIES: Record<string, {
+    regular: {id: string; name: string; style: EnemyStyle}[];
+    elite: {id: string; name: string; style: EnemyStyle};
+}> = {
+    mistwood: {
+        regular: [
+            {id: "tea-moth", name: "Bướm Trà Ngọc", style: "hexer"},
+            {id: "jade-sentinel", name: "Vệ Binh Ngọc", style: "bulwark"},
+        ],
+        elite: {id: "tea-oracle", name: "Trà Sư Vân", style: "mender"},
+    },
+    sugartower: {
+        regular: [
+            {id: "salt-scarab", name: "Bọ Muối Đỏ", style: "raider"},
+            {id: "kiln-knight", name: "Kỵ Sĩ Lò", style: "bulwark"},
+        ],
+        elite: {id: "salt-alchemist", name: "Luyện Sư Muối", style: "mender"},
+    },
+    ashalley: {
+        regular: [
+            {id: "moon-jelly", name: "Sứa Nguyệt", style: "hexer"},
+            {id: "lotus-mantis", name: "Bọ Ngựa Sen", style: "raider"},
+        ],
+        elite: {id: "moon-priestess", name: "Tư Tế Nguyệt", style: "hexer"},
+    },
+    lasttable: {
+        regular: [
+            {id: "spice-kite", name: "Diều Gia Vị", style: "raider"},
+            {id: "bronze-warden", name: "Hộ Vệ Hương", style: "bulwark"},
+        ],
+        elite: {id: "aroma-conductor", name: "Nhạc Trưởng Hương", style: "mender"},
+    },
 };
 export function formationAverage(save: RpgSave) {
     const team = save.formation.map(uid => save.roster.find(h => h.uid === uid)!);
@@ -44,21 +82,24 @@ export function encounterWaves(school: School, level: number, count: number, bos
     name: string;
 }, dungeon = false, strength = 1, region?: string, difficulty: RpgDifficulty = "normal"): RpgEnemy[][] {
     const multiplier: 1 | 3 | 8 = difficulty === "extreme" ? 8 : difficulty === "hard" ? 3 : 1;
-    const advancedElites: Record<string, string> = {
-        mistwood: "mist-vine-elite", sugartower: "sugar-echo-elite",
-        ashalley: "char-ash-elite", lasttable: "table-shadow-elite",
-    };
+    const campaign = region ? CAMPAIGN_ENEMIES[region] : undefined;
     const styles: EnemyStyle[] = ["bulwark", "raider", "hexer", "mender", "raider", "hexer"];
     return Array.from({ length: count }, (_, wave) => {
         const size = dungeon ? 4 + Number(level >= 15) : 4 + Number(level >= 5) + Number(level >= 15);
         const finalBoss = boss && wave === count - 1;
         const units: RpgEnemy[] = Array.from({ length: size - Number(!!finalBoss) }, (_, slot) => {
-            const style = styles[(slot + wave) % styles.length];
+            const campaignElite = campaign && wave === count - 1 && slot === 0;
+            const identity = campaignElite
+                ? campaign.elite
+                : campaign?.regular[(slot + wave) % campaign.regular.length];
+            const style = identity?.style ?? styles[(slot + wave) % styles.length];
             return {
-                uid: `e:${wave}:${slot}`, id: advancedElites[region ?? ""] && wave === count - 1 && slot === 0 ? advancedElites[region!] : POOLS[school][(slot + wave) % 3],
-                name: advancedElites[region ?? ""] && wave === count - 1 && slot === 0 ? ({mistwood:"Dây Trói Đêm",sugartower:"Kính Vỡ",ashalley:"Tro Kẹp",lasttable:"Bóng Cạn"}[region!] ?? "Tinh anh") : ENEMY_STYLES[style].name, school, boss: false,
+                uid: `e:${wave}:${slot}`,
+                id: identity?.id ?? POOLS[school][(slot + wave) % 3],
+                name: identity?.name ?? ENEMY_STYLES[style].name,
+                school, boss: false,
                 level: Math.max(1, Math.min(50, level - (count - wave - 1))), style,
-                elite: level >= 3 && wave === count - 1 && slot === 0,
+                elite: campaign ? !!campaignElite : level >= 3 && wave === count - 1 && slot === 0,
                 ...(strength > 1 ? { strength } : {}),
                 ...(multiplier > 1 ? { difficultyMultiplier: multiplier } : {}),
             };

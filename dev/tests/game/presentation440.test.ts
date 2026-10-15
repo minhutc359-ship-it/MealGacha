@@ -21,8 +21,8 @@ describe("presentation budgets",()=>{
    expect(Math.abs(data[0])).toBe(0);expect(Math.abs(data.at(-1)!)).toBe(0)
    expect(data.some(n=>Math.abs(n)>.005)).toBe(true)
   }
-  expect(ambienceFor("v4-market-tension")).toBe("market")
-  expect(ambienceFor("v4-harbor-warm")).toBe("water")
+  expect(ambienceFor("map-lantern")).toBe("market")
+  expect(ambienceFor("map-harbor")).toBe("water")
   expect(ambienceFor("boss")).toBeNull()
  })
 })

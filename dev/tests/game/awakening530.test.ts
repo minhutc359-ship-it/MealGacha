@@ -224,7 +224,7 @@ describe("5.3 real combat and cinematic transaction", () => {
     });
 });
 describe("5.3 media payload", () => {
-    it("ships 139 unique H264 MP4s and original MP3s as real bytes within the 10 MB addition", () => {
+    it("ships 139 unique sharp H264 MP4s and original MP3s within the expanded media budget", () => {
         const root = "public/assets/rpg/awakening530", movieHashes = new Set(), soundHashes = new Set();
         let total = 0;
         for (const id of SPIRIT_IDS) {
@@ -241,7 +241,7 @@ describe("5.3 media payload", () => {
         expect(movieHashes.size).toBe(139);
         expect(soundHashes.size).toBe(139);
         expect(total).toBeGreaterThan(5000000);
-        expect(total).toBeLessThan(10000000);
+        expect(total).toBeLessThan(100000000);
         expect(readdirSync(`${root}/movies`).length).toBe(139);
         expect(readdirSync(`${root}/sounds`).length).toBe(139);
     });

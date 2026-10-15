@@ -30,6 +30,7 @@ import { hasUnlimitedChestAccess } from "../domain/achievements"
 import { getDailyQuestions } from "../domain/dailyQuiz"
 import { getFeaturedEvents } from "../domain/events"
 import { buildPool } from "../domain/drawReward"
+import { useGameAudio, useGameMusic } from "../components/game/GameAudio"
 
 type ChestState =
   | "idle"
@@ -108,6 +109,8 @@ const SLOT_THEME: Record<MealSlot, {
 }
 
 export function ChestPage() {
+  useGameAudio()
+  useGameMusic("mode-chest", 1)
   const user = useAppStore((state) => state.user)
   const dishes = useAppStore((state) => state.dishes)
   const checkIn = useAppStore((state) => state.checkIn)

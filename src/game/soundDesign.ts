@@ -2,12 +2,11 @@ import type { MusicTrack } from "./audioScore"
 export type AmbienceKind = "market" | "water" | "garden" | "kitchen" | "night"
 export function ambienceFor(track?: MusicTrack): AmbienceKind | null {
  if (!track) return null
- if (track.startsWith("v4-")) return /harbor/.test(track) ? "water" : /market/.test(track) ? "market" : "kitchen"
- if (/boss|battle|pressure/.test(track)) return null
- if (/harbor|expedition/.test(track)) return "water"
- if (/market|lobby|prepare/.test(track)) return "market"
- if (/mystery/.test(track)) return "night"
- if (/kitchen|warm|story/.test(track)) return "kitchen"
+ if (track === "boss") return null
+ if (/harbor|tide|lotus/.test(track)) return "water"
+ if (/lantern|chest|autochess/.test(track)) return "market"
+ if (/aroma|salt|tcg/.test(track)) return "kitchen"
+ if (/adventure/.test(track)) return "night"
  return "garden"
 }
 /** Original loop synthesis: soft wind/water, tiny bells and periodic night chirps. */

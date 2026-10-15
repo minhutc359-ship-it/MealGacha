@@ -129,6 +129,38 @@
 @media(max-height:500px) and (orientation:landscape){.rpg-village-title{display:none}.rpg-village-map{min-height:0}.rpg-village-party{width:80px;height:70px}.rpg-village-place{scale:.86}.rpg-transition-copy>strong{margin:3px 0 13px;font-size:22px}.rpg-transition-copy>p{display:none}.rpg-transition-copy{padding-bottom:14px}.rpg-battle-opening strong{font-size:34px}.rpg-battle-opening small{font-size:7px}}
 @media(prefers-reduced-motion:reduce){.rpg-village-party,.rpg-village-place>b,.rpg-transition *,.rpg-battle-opening strong,.rpg-battle[class*=presentation-] .rpg-combatant{animation:none!important;transition:none!important}}
 
+/* Web 5.8: approved village sprites, fitted loading art and illustrated battle beats. */
+.rpg-village-art{inset:0;width:100%;height:100%;object-position:center;filter:saturate(.9) contrast(1.03) brightness(.78);transform:none}
+.village-party-sprites{position:absolute;inset:0;display:block;filter:drop-shadow(0 5px 4px #06131e99)}
+.village-party-actor{position:absolute;display:block}
+.village-party-actor .tcg-character-sprite{width:100%;height:100%}
+.village-party-actor.leader{inset:-6% 21% 0;z-index:3}
+.village-party-actor.companion-one{left:-5%;bottom:-1%;width:48%;height:58%;z-index:2}
+.village-party-actor.companion-two{right:-5%;bottom:-2%;width:49%;height:59%;z-index:2}
+.rpg-village-party>.village-party-sprites{inset:-8% -10% 0}
+.rpg-transition>img{object-fit:contain;object-position:center;filter:saturate(.9) brightness(.66);animation:rpg-transition-reveal 1.1s ease-out both}
+.rpg-travel-party{width:118px;height:80px;translate:-45% -72%}
+.rpg-travel-party .village-party-sprites{inset:0}
+@keyframes rpg-transition-reveal{from{opacity:.55}to{opacity:1}}
+
+.rpg-map-card>img{opacity:1;filter:drop-shadow(0 8px 18px #06151c99);mask-image:none}
+.rpg-story[open]{inset:50% auto auto 50%;margin:0;transform:translate(-50%,-50%);text-align:center}
+
+.rpg-battle-opening{background:radial-gradient(circle at 50% 50%,#102d36d9 0 22%,#071722b8 52%,transparent 76%)}
+.rpg-battle-opening::before,.rpg-battle-opening::after{display:none}
+.rpg-ceremony-art{display:block;width:min(54%,360px);aspect-ratio:1;background-image:url(/assets/rpg/campaign580/battle-ceremony.webp);background-size:500% 500%;background-repeat:no-repeat;filter:drop-shadow(0 12px 18px #02070dbb);animation:rpg-ceremony-pop .58s cubic-bezier(.16,1,.3,1) both}
+.rpg-battle-opening.phase-wave-clear .rpg-ceremony-art,.rpg-battle-opening.phase-wave-enter .rpg-ceremony-art{animation:rpg-ceremony-sweep .64s cubic-bezier(.16,1,.3,1) both}
+.rpg-battle-opening.phase-win{background:radial-gradient(circle,#d7ad504f,transparent 70%)}
+.rpg-battle-opening.phase-fail{background:radial-gradient(circle,#3a2436c9,transparent 70%)}
+@keyframes rpg-ceremony-pop{from{opacity:0;scale:.55}to{opacity:1;scale:1}}
+@keyframes rpg-ceremony-sweep{from{opacity:0;translate:35% 0;scale:.8}to{opacity:1;translate:0;scale:1}}
+
+@media(max-width:740px){
+ .rpg-map-card>img{right:-8px;width:39%;height:138%;opacity:1}
+ .rpg-ceremony-art{width:min(72%,300px)}
+ .rpg-story[open]{width:calc(100vw - 24px);max-width:680px}
+}
+
 /* Web 5.7: horizontal chapter rail, strategic difficulty and centered story overlays. */
 .rpg-app .rpg-map-tabs { display:flex; width:100%; min-width:0; overflow-x:auto; overflow-y:hidden; gap:8px; padding:2px 2px 9px; scroll-snap-type:x proximity; scrollbar-width:thin; }
 .rpg-app .rpg-map-tabs button { flex:0 0 clamp(154px,22%,235px); min-width:0; scroll-snap-align:start; }
@@ -154,4 +186,11 @@
   .rpg-difficulty-chooser button { min-height:25px; padding:2px 9px; }
   .rpg-story[open] { flex-direction:row; }
   .rpg-story>img { max-height:100px; }
+}
+
+/* Web 5.8: dialog must stay centered after the 5.7 compatibility rules. */
+.rpg-story[open] {
+  inset:50% auto auto 50%;
+  margin:0;
+  transform:translate(-50%,-50%);
 }

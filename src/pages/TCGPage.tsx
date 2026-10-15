@@ -99,7 +99,7 @@ export function TCGPage() {
     setMenuOpen(false)
   }
   const inBattle = useGameStore(s => !!s.save.battle)
-  useGameMusic(!inBattle ? tab === "expedition" ? "expedition" : "lobby" : null, 1)
+  useGameMusic(!inBattle ? "mode-tcg" : null, 1)
   const save = useGameStore((s) => s.save),
     notice = useGameStore((s) => s.notice),
     dismiss = useGameStore((s) => s.dismiss)

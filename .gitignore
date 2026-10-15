@@ -43,3 +43,4 @@ dev/docs/**/*.jpeg
 dev/docs/**/*.webp
 !dev/docs/art-direction/*.webp
 !dev/docs/web-v530/environments.webp
+!dev/docs/web-v580/source/*.jpg

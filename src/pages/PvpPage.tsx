@@ -214,7 +214,7 @@ function ConnectedRoom({
     [copy, setCopy] = useState("")
   const playing =
     !!v && v.phase !== "lobby" && !atRoom && state.status !== "closed"
-  useGameMusic(v?.auto?.phase === "combat" ? "auto-battle" : "auto-prepare", 1)
+  useGameMusic(v?.auto?.phase === "combat" && v.auto.run.combat?.boss ? "boss" : "mode-autochess", 1)
   useEffect(() => {
     const prevent = (e: BeforeUnloadEvent) => {
       e.preventDefault()

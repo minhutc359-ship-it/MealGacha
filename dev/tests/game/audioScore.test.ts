@@ -17,12 +17,12 @@ import {
 describe("soundtrack and combat signals", () => {
   it("uses boss music for bosses and danger, mystery music for reveals", () => {
     const battle = startBattle(STARTER_DECK, null)
-    expect(battleMusic(battle)).toBe("battle")
+    expect(battleMusic(battle)).toBe("mode-tcg")
     battle.player.health = 8
     expect(battleMusic(battle)).toBe("boss")
     expect(battleMusic(startBattle(STARTER_DECK, "lantern-3"))).toBe("boss")
-    expect(storyMusic("tet-kitchen")).toBe("story-warm")
-    expect(storyMusic("last-table")).toBe("story-mystery")
+    expect(storyMusic("tet-kitchen")).toBe("mode-tcg")
+    expect(storyMusic("last-table")).toBe("map-tide")
   })
   it("deduplicates sweep sounds and announces destruction and a finishing blow from real damage", () => {
     const battle = startBattle(STARTER_DECK, null)
@@ -72,14 +72,15 @@ describe("soundtrack and combat signals", () => {
   })
   it("ships compact real MP3 assets, not LFS pointers", () => {
     let total = 0
-    for (const path of new Set(Object.values(MUSIC_TRACKS).filter(path => path.includes("/tcg/")))) {
+    for (const path of new Set(Object.values(MUSIC_TRACKS))) {
       const buffer = readFileSync(`public/${path}`)
       total += buffer.length
       expect(buffer.length).toBeGreaterThan(100000)
       expect(buffer.subarray(0, 3).toString()).toBe("ID3")
       expect(buffer.subarray(0, 100).toString()).not.toContain("git-lfs")
     }
-    expect(total).toBeLessThan(1100000)
+    expect(Object.keys(MUSIC_TRACKS)).toHaveLength(13)
+    expect(total).toBeLessThan(15_000_000)
   })
   it("migrates old muted saves and bad new sliders without resetting rewards or profile", () => {
     const old = repository.loadUser()

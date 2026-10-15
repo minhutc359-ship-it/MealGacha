@@ -7,7 +7,28 @@ export const RARITY_POWER = { common: 1, rare: 1.04, epic: 1.08, legendary: 1.12
 // Attack, support, ultimate and passive are independent recipes, not five role clones.
 export const PRIMARY_MOVES = [["Liên kích", "", 6], ["Truy ảnh", "", 7], ["Hoành trảm", "", 8], ["Chùy hương", "", 7], ["Dẫn sấm", "", 8], ["Hỏa châm", "", 7], ["Hộ tâm", "", 7], ["Vững thành", "", 8], ["Chặn sương", "", 8], ["Phong ấn", "", 8], ["Tinh thương", "", 7], ["Vạn tuyến", "", 9], ["Băng thương", "", 7], ["Hải hút", "", 8], ["Pháp hoàn", "", 7], ["Mầm chữa", "", 8], ["Cuộn thanh", "", 8], ["Tiếp hương", "", 7], ["Ước noãn", "", 8], ["Sinh mệnh", "", 9], ["Mộng trói", "", 8], ["Cắt ý", "", 7], ["Bóng nguyệt", "", 7], ["Sương yếu", "", 8], ["Tinh khóa", "", 8]] as const;
 export const SUPPORT_MOVES = [["Mái nhà", "", 10], ["Dưỡng mầm", "", 11], ["Thanh âm", "", 10], ["Tiếp lửa", "", 11], ["Gió nhanh", "", 12], ["Dấu săn", "", 10], ["Bụi mộng", "", 11], ["Vỡ giáp", "", 12], ["Rễ neo", "", 12], ["Chuyển triều", "", 10], ["Gương hộ", "", 12], ["Nhịp nối", "", 12], ["Kết giới", "", 12], ["Hạt noãn", "", 11], ["Tro tàn", "", 11], ["Vườn chung", "", 12]] as const;
-export const ULTIMATE_MOVES = [["Thiên thành", "", "citadel"], ["Tinh lạc", "", "meteor"], ["Vạn tượng", "", "nova"], ["Liên sinh", "", "lotus"], ["Phong nguyệt", "", "moon"], ["Gương mộng", "", "mirror"], ["Thiết trận", "", "bastion"], ["Cửu trảm", "", "blade"], ["Băng long", "", "frost"], ["Đoàn viên", "", "reunion"], ["Tinh tỏa", "", "chains"], ["Thâu mộng", "", "drain"], ["Phản thiên", "", "counter"], ["Thiên phượng", "", "phoenix"], ["Phán quyết", "", "judgement"], ["Vạn sinh", "", "sanctuary"], ["Long triều", "", "tide"], ["Tái ước", "", "renewal"], ["Thiên cân", "", "balance"], ["Ảnh xuyên", "", "shadow"]] as const;
+export const ULTIMATE_MOVES = [
+    ["Thiên thành", "Tạo khiên cho đội, phản đòn và đánh tuyến trước.", "citadel"],
+    ["Tinh lạc", "Ba đòn vào địch mạnh nhất, phá giáp 5 giây.", "meteor"],
+    ["Vạn tượng", "Đánh toàn bộ địch, tăng lực khi có dấu nguyên tố.", "nova"],
+    ["Liên sinh", "Thanh tẩy, hồi phục toàn đội và tái sinh 4 giây.", "lotus"],
+    ["Phong nguyệt", "Đánh tuyến sau, gây choáng và hút năng lượng.", "moon"],
+    ["Gương mộng", "Đánh địch gần nhất; né đòn và giảm sát thương cho đội.", "mirror"],
+    ["Thiết trận", "Che tuyến trước, thu hút đòn và quét toàn bộ địch.", "bastion"],
+    ["Cửu trảm", "Bốn nhát chém, nhát cuối phá một phần khiên.", "blade"],
+    ["Băng long", "Đánh toàn địch, gây choáng và làm yếu.", "frost"],
+    ["Đoàn viên", "Thanh tẩy, hồi cả đội và tiếp năng lượng cho hai người.", "reunion"],
+    ["Tinh tỏa", "Đánh hai địch mạnh nhất, khóa hồi phục và làm yếu.", "chains"],
+    ["Thâu mộng", "Hút năng lượng hai địch đang đầy nhất rồi phản kích.", "drain"],
+    ["Phản thiên", "Che đội bằng khiên phản đòn, đánh địch còn khiên.", "counter"],
+    ["Thiên phượng", "Quét lửa, tăng lực vào địch Bỏng và đốt 5 giây.", "phoenix"],
+    ["Phán quyết", "Truy kích địch thấp HP nhất; tăng lực dưới 30% HP.", "judgement"],
+    ["Vạn sinh", "Thanh tẩy, hồi phục, tạo khiên và kết giới cho đội.", "sanctuary"],
+    ["Long triều", "Phá khiên tuyến trước, đánh và tiếp năng lượng đồng đội.", "tide"],
+    ["Tái ước", "Thanh tẩy, cứu người thấp HP và che ba người yếu nhất.", "renewal"],
+    ["Thiên cân", "Tạo khiên, kết giới và tiếp năng lượng toàn đội.", "balance"],
+    ["Ảnh xuyên", "Hai đòn xuyên tuyến sau, phá giáp và né đòn.", "shadow"],
+] as const;
 export const PASSIVE_MOVES = [["Bất khuất", ""], ["Nhìn thấu", ""], ["Giữ tàn", ""], ["Dòng chảy", ""], ["Hạt sống", ""], ["Mộng sâu", ""], ["Truy kích", ""], ["Hộ ước", ""], ["Từ tâm", ""], ["Nhạc trưởng", ""], ["Gai nhớ", ""], ["Dư âm", ""]] as const;
 export const OATHS = [["Hộ ước", ""], ["Tàn hỏa", ""], ["Dấu triều", ""], ["Cứu viện", ""], ["Kết mầm", ""], ["Ngắt mộng", ""]] as const;
 const kits = new Map(AWAKENED_ROSTER.map(([id, title, primary, support, ultimate, passive, oath, motif, iconCell]) => [id, { id, title, primary, support, ultimate, passive, oath, motif, iconCell }]));

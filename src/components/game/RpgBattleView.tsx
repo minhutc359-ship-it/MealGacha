@@ -2,7 +2,6 @@ import { AWAKENING_MEDIA, awakenedKit } from "../../game/adventureRpg/awakening"
 import { RpgCinematic } from "./RpgCinematic"
 import {useEffect} from "react"
 import { actorAnchor } from "../../game/adventureRpg/formationLayout"
-import { BOSS_SKILLS, ENEMY_STYLES } from "../../game/adventureRpg/enemies"
 import { RpgBattleVfx } from "./RpgBattleVfx"
 import { SpiritArt, SkillArt } from "./SpiritArt"
 import { spiritKit, REACTION_HELP, SPIRIT_SCHOOLS } from "../../game/adventureRpg/skills"
@@ -11,6 +10,7 @@ import { tcgCharacter } from "../../game/tcgCharacterMotion"
 import { monsterCharacter, acquireCharacterImage } from "../../infrastructure/assets/characterSprites"
 import { RPG_ROLE_NAMES } from "../../game/adventureRpg/engine"
 import type { BattlePresentationPhase } from "../../game/adventureV560"
+import type { School } from "../../game/types"
 import type {
   RpgAction,
   RpgActor,
@@ -60,6 +60,7 @@ export function RpgBattleView({
   readOnly = false,
   reduced = false,
   presentation = "fight",
+  school = "hearth",
 }: {
   battle: RpgBattle
   title: string
@@ -70,6 +71,7 @@ export function RpgBattleView({
   readOnly?: boolean
   reduced?: boolean
   presentation?: BattlePresentationPhase
+  school?: School
 }) {
   useEffect(()=>{const lease = acquireCharacterImage("/assets/rpg/spirit510/ultimates.webp");return ()=>lease.release()},[])
   const allies = b.actors.filter((a) => a.side === "ally"),
@@ -89,6 +91,19 @@ export function RpgBattleView({
     return ()=>controller.abort()
   },[partyKey,b.rulesVersion,b.cinematics,readOnly,reduced])
   const blocked = readOnly || b.paused || paused || !!b.result || !!b.cinematic || presentation !== "fight"
+  const ceremonyRow: Record<School, number> = {hearth:0,ember:1,grove:2,tide:3,sugar:4}
+  const ceremonyColumn: Partial<Record<BattlePresentationPhase,number>> = {
+    ready:0,start:1,"wave-clear":2,"wave-enter":2,win:3,fail:4,
+  }
+  const ceremonyLabel: Record<Exclude<BattlePresentationPhase,"fight">,string> = {
+    enter:"Hai phe tiến vào chiến địa",
+    ready:"Ready · Sẵn sàng",
+    start:"Start · Bắt đầu",
+    "wave-clear":`Đợt ${b.wave} hoàn tất`,
+    "wave-enter":`Next wave · Đợt ${b.wave + 1}`,
+    win:"Win · Chiến thắng",
+    fail:"Fail · Thất bại",
+  }
   return (
     <section
       className={`rpg-battle ${quiet ? "is-quiet" : ""} ${b.paused || paused || b.cinematic ? "is-paused" : ""} presentation-${presentation}`}
@@ -159,7 +174,7 @@ export function RpgBattleView({
           const ownCue = [...b.events].reverse().find(e=>e.source===a.uid && (e.animation || e.kind === "burst" || e.kind === "skill") && b.tick-e.tick<4)
           const charging = b.warning?.source === a.uid && !a.stun
           const arriving = ["enter", "wave-enter", "start"].includes(presentation)
-          const motion = arriving && a.hp ? "victory" : !a.hp ? "fall" : b.result === "win" ? "victory" : charging || ownCue && ownCue.animation !== "attack" ? "cast" : ownCue?.animation === "attack" ? "attack" : b.tick-a.motionAt<4 ? a.motion : "idle"
+          const motion = arriving && a.hp ? "victory" : !a.hp || b.result === "loss" && a.side === "ally" ? "fall" : b.result === "win" ? "victory" : charging || ownCue && ownCue.animation !== "attack" ? "cast" : ownCue?.animation === "attack" ? "attack" : b.tick-a.motionAt<4 ? a.motion : "idle"
           const motionStamp = motion === "fall" || motion === "victory" ? String(a.motionAt) : charging ? `charge:${b.warning!.until}` : ownCue ? `cue:${ownCue.serial}` : String(a.motionAt)
           return (
             <div
@@ -181,7 +196,6 @@ export function RpgBattleView({
                 paused={paused || b.paused || !!b.cinematic}
                 flip={a.side === "enemy"}
               /></div>
-              {a.side === "enemy" && a.hp > 0 && !!b.rulesVersion && <button className={`rpg-focus ${b.focus === a.uid ? "is-selected" : ""}`} type="button" disabled={blocked} aria-pressed={b.focus === a.uid} title={a.boss ? BOSS_SKILLS[a.id]?.text : a.style ? ENEMY_STYLES[a.style].text : "Ưu tiên mục tiêu"} aria-label={`Ưu tiên ${a.boss ? "boss" : a.name} ${a.slot + 1}`} onClick={() => onAction({type: "focus", uid: b.focus === a.uid ? null : a.uid})}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6"/><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/></svg></button>}
               {hit && shownValue > 0 && (
                 <b key={hit.serial} className={`rpg-number kind-${hit.kind}`}>
                   {hit.kind === "hit" ? "−" : "+"}
@@ -213,18 +227,10 @@ export function RpgBattleView({
         </div>
         <RpgBattleVfx battle={b} quiet={quiet} paused={paused || b.paused || !!b.cinematic} />
         {presentation !== "fight" && (
-          <div className={`rpg-battle-opening phase-${presentation}`} role="status" aria-live="polite">
-            {presentation === "wave-clear" ? (
-              <><small>HƯƠNG VỊ ĐÃ ĐƯỢC GIỮ</small><strong>ĐỢT {b.wave} HOÀN TẤT</strong></>
-            ) : presentation === "ready" ? (
-              <><small>HAI ĐỘI ĐÃ VÀO VỊ TRÍ</small><strong>SẴN SÀNG</strong></>
-            ) : presentation === "start" ? (
-              <><small>GIỮ NHỊP · PHỐI HỢP TUYỆT KỸ</small><strong>BẮT ĐẦU!</strong></>
-            ) : presentation === "wave-enter" ? (
-              <><small>ĐỊCH MỚI ĐANG TIẾN VÀO</small><strong>ĐỢT {b.wave + 1}</strong></>
-            ) : (
+          <div className={`rpg-battle-opening phase-${presentation}`} role="status" aria-live="polite" aria-label={ceremonyLabel[presentation]}>
+            {ceremonyColumn[presentation] === undefined ? (
               <><small>HAI PHE TIẾN VÀO CHIẾN ĐỊA</small><strong>GIAO ƯỚC XUẤT TRẬN</strong></>
-            )}
+            ) : <span className="rpg-ceremony-art" aria-hidden="true" style={{backgroundPosition:`${ceremonyColumn[presentation]! * 25}% ${ceremonyRow[school] * 25}%`}} />}
           </div>
         )}
         {b.events.filter(e=>e.kind === "reaction" && b.tick-e.tick < 4).slice(-1).map(e=><div key={`reaction:${e.serial}`} className={`rpg-reaction-pill school-${e.school}`} role="status"><SkillArt index={60 + ["Bốc hơi","Nở rộ","Sinh trưởng","Mộng ấm"].indexOf(e.text)} />{e.text}</div>)}
@@ -244,7 +250,7 @@ export function RpgBattleView({
           <div className="rpg-pause-mark">Trận đang tạm dừng</div>
         )}
       </div>
-      {!!b.rulesVersion && <details className="rpg-strategy"><summary>Liên hương {b.chain && b.chain.until >= b.tick ? `×${b.chain.count} · ${((b.chain.until-b.tick)/4).toFixed(1)}s` : "· Chạm ⌖ để ưu tiên mục tiêu"}</summary><p>{REACTION_HELP}</p>{b.rulesVersion===530 && <p>Địch thường cần 60 năng lượng, boss cần 80 để dùng kỹ năng. Hút năng lượng trước khi niệm hoặc khi đang tụ lực có thể trì hoãn / ngắt chiêu. Boss chịu nửa thời gian choáng.</p>}</details>}
+      {!!b.rulesVersion && <details className="rpg-strategy"><summary>Liên hương {b.chain && b.chain.until >= b.tick ? `×${b.chain.count} · ${((b.chain.until-b.tick)/4).toFixed(1)}s` : "· Tự đánh địch gần nhất"}</summary><p>{REACTION_HELP}</p>{b.rulesVersion===530 && <p>Đồng minh tự chọn kẻ địch gần nhất theo vị trí đội hình. Địch thường cần 60 năng lượng, boss cần 80 để dùng kỹ năng; hút năng lượng có thể trì hoãn hoặc ngắt chiêu.</p>}</details>}
       <div className="rpg-tactical">
         <span>
           {last?.text ??

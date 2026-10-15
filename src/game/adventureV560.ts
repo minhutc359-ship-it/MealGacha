@@ -1,13 +1,7 @@
-export const ADVENTURE_LOADING_IMAGES = [
-  "/assets/loading/v560/intro-lantern-market.webp",
-  "/assets/loading/v560/intro-jade-adventure.webp",
-  "/assets/loading/v560/intro-card-duel.webp",
-  "/assets/loading/v560/intro-auto-chess.webp",
-  "/assets/loading/v560/intro-card-collection.webp",
-] as const
+export { GAME_INTRO_IMAGES as ADVENTURE_LOADING_IMAGES } from "./loadingImages"
 
 export type AdventureHomeTab = "village" | "campaign" | "dungeon" | "heroes" | "help"
-export type BattlePresentationPhase = "enter" | "ready" | "start" | "wave-clear" | "wave-enter" | "fight"
+export type BattlePresentationPhase = "enter" | "ready" | "start" | "wave-clear" | "wave-enter" | "fight" | "win" | "fail"
 
 export interface BattlePresentationBeat {
   phase: BattlePresentationPhase

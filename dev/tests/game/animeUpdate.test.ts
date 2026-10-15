@@ -10,7 +10,7 @@ import { speakerCharacter, CHARACTER_ART } from "@/game/characters"
 import { SCENES, WORLD_PRIMER } from "@/game/narrative"
 import { DRAMATIC_BEATS } from "@/game/dramaticBeats"
 import { midScene } from "@/game/encounters"
-import { RETRO_MUSIC_TRACKS, musicAsset, musicPath } from "@/game/audioScore"
+import { MUSIC_TRACKS, musicAsset, musicPath } from "@/game/audioScore"
 import {
   migrateUserState,
   repository,
@@ -126,7 +126,7 @@ describe("turn-four tactical choice", () => {
     expect(JSON.stringify(b)).toBe(old)
   })
 })
-describe("speaking characters and original retro score", () => {
+describe("speaking characters and original score", () => {
   it("resolves every campaign speaker, including memories and supporting roles", () => {
     const lines = [
       ...WORLD_PRIMER,
@@ -161,23 +161,24 @@ describe("speaking characters and original retro score", () => {
       SCENES["last-table-2"].before.map((l) => l.text).join(" "),
     ).toContain("sáu tuổi")
   })
-  it("ships four separate playable MP3 arrangements and migrates music style safely", () => {
+  it("ships thirteen separate playable MP3 themes and migrates old music style safely", () => {
     let bytes = 0
     const counted = new Set<string>()
-    for (const [track, src] of Object.entries(RETRO_MUSIC_TRACKS).filter(([track]) => !track.startsWith("auto-") && !track.startsWith("v4-"))) {
+    for (const [track, src] of Object.entries(MUSIC_TRACKS)) {
       const file = readFileSync(`public/${src}`)
       expect(file.subarray(0, 3).toString()).toBe("ID3")
       expect(file.length).toBeGreaterThan(150000)
       if (!counted.has(src)) bytes += file.length
       counted.add(src)
       expect(
-        musicPath(musicAsset(track as keyof typeof RETRO_MUSIC_TRACKS, "8bit")),
+        musicPath(musicAsset(track as keyof typeof MUSIC_TRACKS, "original")),
       ).toBe(src)
     }
-    expect(bytes).toBeLessThan(1000000)
+    expect(counted.size).toBe(13)
+    expect(bytes).toBeLessThan(15_000_000)
     const user = repository.loadUser()
-    user.preferences.musicStyle = "8bit"
-    expect(migrateUserState(user)?.preferences.musicStyle).toBe("8bit")
+    ;(user.preferences as { musicStyle?: string }).musicStyle = "8bit"
+    expect(migrateUserState(user)?.preferences.musicStyle).toBe("original")
     delete user.preferences.musicStyle
     expect(migrateUserState(user)?.preferences.musicStyle).toBe("original")
     const bad = {
