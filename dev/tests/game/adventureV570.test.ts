@@ -49,6 +49,7 @@ describe("Web 5.7 advanced campaign", () => {
     expect(complete.stars["lantern-1"]).toBeUndefined()
     expect(complete.modeStars?.["hard:lantern-1"]).toBe(2)
     expect(stageUnlocked(complete,"lantern-2")).toBe(false)
+    expect(stageUnlocked(complete,"lantern-2","hard")).toBe(true)
     expect(parseGame({ ...game, adventureRpg: complete })?.adventureRpg?.modeStars?.["hard:lantern-1"]).toBe(2)
     const old = newRpgSave(game)
     delete old.modeStars
