@@ -36,6 +36,7 @@ import {
 } from "../game/adventureRpg/engine"
 import type {
   RpgAction,
+  RpgDifficulty,
   RpgHero,
   RpgLine,
   RpgResources,
@@ -299,15 +300,17 @@ export function AdventurePage() {
     requestedHero ? "heroes" : "village",
   )
   const [mapIndex, setMapIndex] = useState(() =>
-    Math.min(3, RPG_MAPS.filter((m) => save.stars[`${m.id}-6`]).length),
+    Math.min(RPG_MAPS.length - 1, RPG_MAPS.filter((m) => save.stars[`${m.id}-6`]).length),
   )
   const [selected, setSelected] = useState(requestedHero && SPIRIT_IDS.includes(requestedHero as typeof SPIRIT_IDS[number]) ? `card:${requestedHero}` : save.formation[0]),
     [slot, setSlot] = useState(0),
     [tier, setTier] = useState(1),
+    [difficulty, setDifficulty] = useState<RpgDifficulty>("normal"),
     [filter, setFilter] = useState("")
   const [story, setStory] = useState<{
     lines: RpgLine[]
     start?: string
+    difficulty?: RpgDifficulty
   } | null>(null)
   const [confirmExit, setConfirmExit] = useState(false)
   const [hidden, setHidden] = useState(document.hidden)
@@ -476,7 +479,7 @@ export function AdventurePage() {
   const locked = !save.roster.some(h=>h.uid===hero.uid)
   const startStage = (id: string) => {
     const s = rpgStage(id)!
-    setStory({ lines: [s.stage.before], start: id })
+    setStory({ lines: [s.stage.before], start: id, difficulty })
   }
   const closeRun = () => {
     act({ type: "close" })
@@ -762,16 +765,26 @@ export function AdventurePage() {
                 </div>
                 <CharacterPortrait id={map.guide} decorative />
               </section>
+              <div className="rpg-difficulty-chooser" role="group" aria-label="Độ khó Adventure">
+                {(["normal", "hard", "extreme"] as const).map((mode) => (
+                  <button type="button" key={mode} className={difficulty === mode ? "is-selected" : ""}
+                    aria-pressed={difficulty === mode} onClick={() => setDifficulty(mode)}>
+                    {mode.toUpperCase()} <small>Địch ×{mode === "extreme" ? 8 : mode === "hard" ? 3 : 1}</small>
+                  </button>
+                ))}
+                <p>Thành tích lưu riêng từng chế độ. Hard/Extreme tăng HP, công và giáp của địch; tinh anh và boss thêm đòn rút năng lượng.</p>
+              </div>
               <div className="rpg-stage-path">
                 {map.stages.map((stage, i) => {
                   const id = `${map.id}-${i + 1}`,
-                    open = stageUnlocked(save, id)
+                    open = stageUnlocked(save, id),
+                    clearedStars = difficulty === "normal" ? save.stars[id] : save.modeStars?.[`${difficulty}:${id}`]
                   return (
                     <button
                       type="button"
                       key={id}
                       className={`rpg-stage-node ${i === 5 ? "is-boss" : ""} ${
-                        save.stars[id] ? "is-cleared" : ""
+                        clearedStars ? "is-cleared" : ""
                       }`}
                       disabled={!open}
                       onClick={() => startStage(id)}
@@ -782,8 +795,8 @@ export function AdventurePage() {
                       <strong>{stage.name}</strong>
                       <small>Cấp gợi ý {rpgStage(id)!.level}</small>
                       <small>
-                        {save.stars[id]
-                          ? "★".repeat(save.stars[id])
+                        {clearedStars
+                          ? "★".repeat(clearedStars)
                           : i === 5
                             ? "BOSS · 4 đợt"
                             : "3 đợt"}
@@ -803,7 +816,7 @@ export function AdventurePage() {
                 </button>
                 <span>
                   5 màn nhỏ + 1 boss ·{" "}
-                  {Object.values(save.stars).reduce((a, n) => a + n, 0)}/72 sao
+                  {(difficulty === "normal" ? Object.values(save.stars) : Object.entries(save.modeStars ?? {}).filter(([key]) => key.startsWith(`${difficulty}:`)).map(([, stars]) => stars)).reduce((a, n) => a + n, 0)}/{RPG_MAPS.length * 6 * 3} sao
                 </span>
               </div>
               {!!save.stars[`${map.id}-6`] && (
@@ -1053,7 +1066,7 @@ export function AdventurePage() {
           onClose={() => {
             if (story.start)
               beginTransition("Vị Linh đang tiến vào chiến địa", () =>
-                act({ type: "start", stageId: story.start! }),
+                act({ type: "start", stageId: story.start!, difficulty: story.difficulty }),
               )
             setStory(null)
           }}
