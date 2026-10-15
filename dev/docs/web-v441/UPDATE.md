@@ -36,10 +36,4 @@ Web only; không sửa/sync/build Android/iOS. Không đổi save schema, luật
 
 Build sạch cuối: **69,956,770 byte**, tăng **5,549,653 / 5.590.000 byte**; còn **40,347 byte**. JS gzip **611,029 / 650.000 byte**, CSS gzip **90,709 byte**; 438 file, 0 leak. Bộ ảnh mới **5.546.714 byte**; cả tăng trưởng JS/CSS và output khác vẫn trong phần tăng thêm 5,59 MB. 339 asset trong registry, 143 tham chiếu / 0 thiếu.
 
-![Adventure: NPC và điều khiển trong màn dọc](shop-390.webp)
-
-![Adventure: trận đấu màn ngang](battle-landscape.webp)
-
-![Auto chess dùng nền vùng chung](auto-390.webp)
-
-![Năm hệ của atlas impact](impact-strip.webp)
+Ảnh chụp QA cho Adventure, Auto chess và atlas impact có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

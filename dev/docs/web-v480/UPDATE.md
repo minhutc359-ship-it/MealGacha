@@ -36,8 +36,4 @@ Canvas hiện có dùng texture cho toàn bộ 20 map, cây theo vùng, ba nhà,
 
 Build **78.440.998 byte**, tăng **4.166.082 byte** so với 4.7 (74.274.916), gồm cả media và code. Phần thêm được duyệt là 5.000.000 byte, còn **833.918 byte**. 451 file; JS gzip **625.696 / 650.000 byte**, CSS gzip **96.198 byte**, không leak dev/archive/source map. Không đổi trần 100 MB chung; guard riêng 4.8 chặn toàn bộ patch vượt 5 MB. Không tự tăng ngân sách khi lỗi build.
 
-![Cây, nhà và đường mới trên điện thoại](adventure-390.webp)
-
-![Bản đồ dùng atlas và Canvas cache](adventure-1440.webp)
-
-![Ô bẫy gọn trên bàn đấu](tcg-390.webp)
+Ảnh chụp QA cho bản đồ Adventure và ô bẫy TCG có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

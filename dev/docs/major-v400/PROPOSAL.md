@@ -36,9 +36,7 @@ Các khoảng trống quan sát từ code và ảnh QA hiện có:
 
 Đây là đánh giá kỹ thuật/thiết kế, chưa phải kết quả khảo sát người chơi. Các cơ chế mới cần được chơi thử trước khi coi là hấp dẫn hoặc cân bằng.
 
-![Auto chess 3.5: nhiều thông tin cùng vùng bàn](../depth-v350/combat-desktop.webp)
-
-![TCG 3.5: tay bài, xác nhận và sân trên điện thoại](../depth-v350/tcg-revival.webp)
+Ảnh chụp QA tham chiếu cho Auto chess 3.5 và TCG 3.5 có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.
 
 ## 1. Đồ họa: anime 2.5D và bản sắc bếp Việt
 

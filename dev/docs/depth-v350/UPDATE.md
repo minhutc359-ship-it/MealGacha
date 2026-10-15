@@ -59,10 +59,4 @@ Dữ liệu: [browser](browser-results.json), [âm thanh giải mã](audio-decod
 
 Web build khoảng **39,18 MB**, JS gzip **508,4 kB**, dưới budget 45 MB/650 kB. Đây là toàn bộ file tĩnh, không phải lượng tải một lần của trang đầu. `dist` không có test, prompt, screenshot, archive hay source map. Tài liệu, generator, kiểm thử và ảnh kiểm chứng nằm trong `dev/` để bỏ khi đóng gói release.
 
-![Shop ngang hiện hệ và nghề](prepare-landscape.webp)
-
-![Hiệu ứng Auto chess](combat-desktop.webp)
-
-![Kho trang bị RPG](inventory.webp)
-
-![TCG tái triệu hồi](tcg-revival.webp)
+Ảnh chụp QA cho shop, chiến đấu, kho RPG và TCG có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

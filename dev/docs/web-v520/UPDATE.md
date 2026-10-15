@@ -37,6 +37,4 @@ Gộp các module Pixi thành một chunk vẫn tải theo nhu cầu để giả
 
 Kiểm chứng: [VERIFICATION.md](VERIFICATION.md), [BUDGET.md](BUDGET.md), [browser-qa.json](browser-qa.json), [balance-qa.json](balance-qa.json). Đây là mẫu Chromium / SwiftShader, chưa đo FPS trên điện thoại thật hoặc xác nhận Safari / điểm trải nghiệm 9/10. PR để người dùng xem và merge, không tự merge.
 
-![Sân điện thoại, tuyệt kỹ](striker-390x844.jpg)
-![Khống chế có pháp trận](trickster-390x844.jpg)
-![Sân ngang](arena-844x390.jpg)
+Ảnh chụp QA cho sân điện thoại, pháp trận và bố cục ngang có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

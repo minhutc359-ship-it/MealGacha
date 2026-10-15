@@ -43,8 +43,4 @@ Không có JS error hoặc missing asset trong các luồng này. Test quan sát
 
 Production: **72.566.051 byte**, JS gzip **642.094 / 650.000**, CSS gzip **95.491**; 450 file, 0 dev/archive/source-map leak. Giảm **5.936.378 byte** so với 4.9. [Chi tiết ngân sách](BUDGET.md).
 
-![Đường đi map trên điện thoại](map-390.webp)
-
-![Trận đội hình và tuyệt kỹ](battle-390.webp)
-
-![Che chắn theo cảnh báo boss](boss-390.webp)
+Ảnh chụp QA cho đường đi, trận đội hình và cảnh báo boss có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

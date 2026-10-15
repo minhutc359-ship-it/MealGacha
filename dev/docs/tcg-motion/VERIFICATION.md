@@ -45,13 +45,7 @@ Checklist React đã được áp dụng: component vẽ tách riêng, refs cho 
 
 ## Ảnh
 
-![TCG trên điện thoại](screenshots/battle-phone.webp)
-
-![Nhân vật niệm phép và lá bí thuật](screenshots/cast-phone.webp)
-
-![TCG trên desktop](screenshots/battle-desktop.webp)
-
-![Auto chess dùng cache chung](screenshots/autochess-shared-cache.webp)
+Ảnh chụp QA cho TCG và Auto chess có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.
 
 ## Phạm vi bản lưu trên Git
 

@@ -16,7 +16,7 @@ Sửa điểm sai cụ thể: nút xóa dữ liệu chung hiện gọi `reposito
 
 Không thêm cookie banner, popup tuổi, tracking, analytics, remote policy request hoặc SDK mới vào game. Không sửa reset/import/storage để cập nhật văn bản. Dữ liệu người chơi không bị migrate/xóa khi đọc chính sách.
 
-Production browser QA đã đạt: 3 trang HTML không JavaScript và 3 route React ở 320×568, 390×844, 844×390, 1366×768 không tràn ngang. Hai save tổng hợp với ending `remember`/`release`, 18 màn đã qua và Survival còn 1 ý chí giữ nguyên toàn bộ chuỗi JSON qua mọi lần điều hướng chính sách; không chỉ so sánh xu. Không dùng dữ liệu thật của người chơi. Không có lỗi JavaScript hoặc HTTP cục bộ ≥400 trong luồng đã kiểm tra. Vite preview có hành vi extensionless HTML khác Vercel, nên harness mô phỏng đúng rewrite document của `vercel.json` cho route React; chưa kiểm tra URL deploy live/Safari/thiết bị Android. Xem [kết quả browser](browser-policy-results.json) và [ảnh điện thoại](privacy-phone.jpg).
+Production browser QA đã đạt: 3 trang HTML không JavaScript và 3 route React ở 320×568, 390×844, 844×390, 1366×768 không tràn ngang. Hai save tổng hợp với ending `remember`/`release`, 18 màn đã qua và Survival còn 1 ý chí giữ nguyên toàn bộ chuỗi JSON qua mọi lần điều hướng chính sách; không chỉ so sánh xu. Không dùng dữ liệu thật của người chơi. Không có lỗi JavaScript hoặc HTTP cục bộ ≥400 trong luồng đã kiểm tra. Vite preview có hành vi extensionless HTML khác Vercel, nên harness mô phỏng đúng rewrite document của `vercel.json` cho route React; chưa kiểm tra URL deploy live/Safari/thiết bị Android. Xem [kết quả browser](browser-policy-results.json); ảnh chụp QA điện thoại có thể tái tạo từ harness và không được lưu trong cây mã nguồn.
 
 ## Bản đồ dữ liệu đã đọc từ source
 

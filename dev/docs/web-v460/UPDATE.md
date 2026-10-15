@@ -54,12 +54,4 @@ Ngân sách vẫn dùng phần đã được duyệt: trần tổng **79.956.770
 
 PR riêng dựa trên nhánh TCG 4.5 của [#35](https://github.com/minhutc359-ship-it/MealGacha/pull/35), để giữ cập nhật bẫy đã làm. #34 đã merge, #35 hiện chờ duyệt và có base master. Không tự merge.
 
-![Khám phá và cụm điều khiển điện thoại](map-390.webp)
-
-![Cụm điều khiển màn ngang](map-844.webp)
-
-![Bốn lệnh trong trận đấu](battle-390.webp)
-
-![Trận đấu màn hình nhỏ](battle-320.webp)
-
-![Tủ lớn: chỉ sprite trong khung nhìn được vẽ](reserve-390.webp)
+Ảnh chụp QA cho điều khiển, trận đấu và tủ lớn có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.

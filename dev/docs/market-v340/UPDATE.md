@@ -72,16 +72,4 @@ Giới hạn kiểm chứng: Chromium desktop và touch giả lập; chưa thử
 
 ## Ảnh bản cập nhật
 
-| Mobile dọc | Mobile ngang |
-| --- | --- |
-| ![Bàn và chín ghế dự bị](nine-portrait.webp) | ![Shop nằm bên phải ở màn ngang](nine-landscape.webp) |
-
-| Giữ để xem | Preview ghép trên quân |
-| --- | --- |
-| ![Bảng thông tin nhanh khi giữ](mobile-hold-info.webp) | ![Preview Sổ Công Thức](mobile-equipped-craft.webp) |
-
-![HUD hệ mở](traits-expanded.webp)
-
-![Ẩn shop để mở rộng bàn](shop-hidden.webp)
-
-![Bảng shop đủ bảy cấp](nine-level-odds.webp)
+Ảnh chụp QA có thể tái tạo từ harness và đã được loại khỏi cây mã nguồn để giảm dung lượng; kết quả máy vẫn được giữ.

@@ -40,4 +40,4 @@ Mẫu 90 animation frame ở Chromium headless với đội hình 7 quân: media
 
 Không thay namespace lưu, schema, MGC1, luật chiến đấu hay cân bằng. Các kiểm thử import/export tiến trình cũ vẫn đạt. Asset gốc được giữ; chạy `python scripts/build-autochess-sprites.py` (Pillow) để tái tạo metadata, cập nhật mốc hàng đã kiểm tra nếu thay atlas.
 
-Kết quả máy: [luồng game](browser-results.json) · [ảnh/layout/frame](art-layout-results.json). Ảnh sau sửa: [bộ bài](screenshots/deck-phone.webp) · [mặt nhân vật](screenshots/porter-face.webp) · [model](screenshots/models-phone.webp) · [ăn mừng](screenshots/victory-phone.webp).
+Kết quả máy: [luồng game](browser-results.json) · [ảnh/layout/frame](art-layout-results.json). Ảnh chụp QA sau sửa có thể tái tạo từ harness nên không được lưu trong cây mã nguồn.
