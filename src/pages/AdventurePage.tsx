@@ -777,7 +777,7 @@ export function AdventurePage() {
               <div className="rpg-stage-path">
                 {map.stages.map((stage, i) => {
                   const id = `${map.id}-${i + 1}`,
-                    open = stageUnlocked(save, id),
+                    open = stageUnlocked(save, id, difficulty),
                     clearedStars = difficulty === "normal" ? save.stars[id] : save.modeStars?.[`${difficulty}:${id}`]
                   return (
                     <button
