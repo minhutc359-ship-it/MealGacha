@@ -35,6 +35,7 @@ export interface RpgMap {
   name: string
   subtitle: string
   art: string
+  battleArt?: string
   music: MusicTrack
   school: School
   guide: CharacterId

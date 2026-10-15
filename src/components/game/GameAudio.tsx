@@ -77,24 +77,19 @@ export function useStoryMusic(
 }
 
 const trackNames: Record<MusicTrack, string> = {
- lobby: "Chợ lên đèn",
- expedition: "Bước qua sương",
- "v4-market-warm": "Chợ có hai giọng · Lời mời",
- "v4-market-tension": "Chợ có hai giọng · Giữ bàn",
- "v4-harbor-warm": "Bến sau mưa · Lời mời",
- "v4-harbor-tension": "Bến sau mưa · Giữ bàn",
- "v4-kitchen-warm": "Bữa cơm ngày mai · Lời mời",
- "v4-kitchen-tension": "Bữa cơm ngày mai · Giữ bàn",
-
-  "auto-prepare": "Đèn lên phiên chợ",
-  "auto-battle": "Vị Linh giữ bàn",
-  "auto-boss": "Tên gọi trong sương",
-  "auto-story": "Chuyện bên bếp",
-  "auto-pressure": "Đêm không tắt bếp",
-  battle: "Bếp lửa lên nhịp",
-  boss: "Năm ngọn lửa",
-  "story-warm": "Lời mời bên bếp",
-  "story-mystery": "Điều sương chưa kể",
+  "mode-chest": "Lời Mời Khai Vị",
+  "mode-tcg": "Ván Bài Bên Bếp",
+  "mode-autochess": "Bày Mâm Xuất Trận",
+  "mode-adventure": "Đường Qua Sương",
+  "map-lantern": "Phố Đèn Gọi Tên",
+  "map-harbor": "Than Hồng Sau Mưa",
+  "map-garden": "Lời Hứa Dưới Tán",
+  "map-tide": "Trăng Trên Lòng Chảo",
+  "map-tea": "Mây Qua Đỉnh Trà",
+  "map-salt": "Nhịp Lò Muối Đỏ",
+  "map-lotus": "Sen Nguyệt Thức Giấc",
+  "map-aroma": "Vũ Khúc Vạn Hương",
+  boss: "Ngũ Vị Quyết Chiến",
 }
 
 export function AudioControls() {
@@ -115,30 +110,6 @@ export function AudioControls() {
           onChange={(e) => update("soundEnabled", e.target.checked)}
         />
       </label>
-      <fieldset className="tcg-music-styles">
-        <legend>Phong cách nhạc</legend>
-        {(["original", "8bit"] as const).map((style) => (
-          <label key={style}>
-            <input
-              type="radio"
-              name="music-style"
-              value={style}
-              checked={(prefs.musicStyle ?? "original") === style}
-              onChange={() => update("musicStyle", style)}
-            />
-            <span>
-              <strong>
-                {style === "original" ? "Bếp Việt" : "8-bit phiêu lưu"}
-              </strong>
-              <small>
-                {style === "original"
-                  ? "Nhạc ấm áp như hiện tại"
-                  : "Giai điệu Soul of Meal · âm sắc retro"}
-              </small>
-            </span>
-          </label>
-        ))}
-      </fieldset>
       <label>
         <span>Nhạc nền trận đấu & cutscene</span>
         <input
@@ -189,9 +160,7 @@ export function AudioControls() {
             : status.phase === "error"
               ? "Chưa tải được nhạc. Phát thử để thử lại."
               : status.phase === "playing" && status.track
-                ? `Đang phát · ${trackNames[status.track]} · ${
-                    status.style === "8bit" ? "8-bit" : "Bếp Việt"
-                  }`
+                ? `Đang phát · ${trackNames[status.track]}`
                 : "Âm thanh đã sẵn sàng."}
       </p>
       <button

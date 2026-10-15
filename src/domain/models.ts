@@ -87,7 +87,7 @@ export interface UserPreferences {
   language?: "vi" | "en"
   soundEnabled: boolean
   musicEnabled?: boolean
-  musicStyle?: "original" | "8bit"
+  musicStyle?: "original"
   musicVolume?: number
   effectsVolume?: number
   graphicsQuality?: "normal" | "low"

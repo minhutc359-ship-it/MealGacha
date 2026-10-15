@@ -7,58 +7,25 @@ import type { Battle } from "./types"
 import { TCG_IMPACT_MS } from "./battleVfx"
 
 export const MUSIC_TRACKS = {
-  lobby: "assets/tcg/audio/story-warm.mp3",
-  expedition: "assets/tcg/audio/battle.mp3",
-  "v4-market-warm": "assets/v4/audio/market-warm.mp3",
-  "v4-market-tension": "assets/v4/audio/market-tension.mp3",
-  "v4-harbor-warm": "assets/v4/audio/harbor-warm.mp3",
-  "v4-harbor-tension": "assets/v4/audio/harbor-tension.mp3",
-  "v4-kitchen-warm": "assets/v4/audio/kitchen-warm.mp3",
-  "v4-kitchen-tension": "assets/v4/audio/kitchen-tension.mp3",
-
-  "auto-prepare": "assets/autochess/audio/prepare.mp3",
-  "auto-battle": "assets/autochess/audio/battle.mp3",
-  "auto-boss": "assets/autochess/audio/boss.mp3",
-  "auto-story": "assets/autochess/audio/story.mp3",
-  "auto-pressure": "assets/autochess/audio/pressure.mp3",
-
-  battle: "assets/tcg/audio/battle.mp3",
-  boss: "assets/tcg/audio/boss.mp3",
-  "story-warm": "assets/tcg/audio/story-warm.mp3",
-  "story-mystery": "assets/tcg/audio/story-mystery.mp3",
+  "mode-chest": "assets/music580/mode-chest.mp3",
+  "mode-tcg": "assets/music580/mode-tcg.mp3",
+  "mode-autochess": "assets/music580/mode-autochess.mp3",
+  "mode-adventure": "assets/music580/mode-adventure.mp3",
+  "map-lantern": "assets/music580/map-lantern.mp3",
+  "map-harbor": "assets/music580/map-harbor.mp3",
+  "map-garden": "assets/music580/map-garden.mp3",
+  "map-tide": "assets/music580/map-tide.mp3",
+  "map-tea": "assets/music580/map-tea.mp3",
+  "map-salt": "assets/music580/map-salt.mp3",
+  "map-lotus": "assets/music580/map-lotus.mp3",
+  "map-aroma": "assets/music580/map-aroma.mp3",
+  boss: "assets/music580/boss.mp3",
 } as const
 export type MusicTrack = keyof typeof MUSIC_TRACKS
-export type MusicStyle = "original" | "8bit"
-export const RETRO_MUSIC_TRACKS: Record<MusicTrack, string> = {
-  lobby: "assets/tcg/audio/8bit-story-warm.mp3",
-  expedition: "assets/tcg/audio/8bit-battle.mp3",
-  "v4-market-warm": "assets/v4/audio/8bit-market-warm.mp3",
-  "v4-market-tension": "assets/v4/audio/8bit-market-tension.mp3",
-  "v4-harbor-warm": "assets/v4/audio/8bit-harbor-warm.mp3",
-  "v4-harbor-tension": "assets/v4/audio/8bit-harbor-tension.mp3",
-  "v4-kitchen-warm": "assets/v4/audio/8bit-kitchen-warm.mp3",
-  "v4-kitchen-tension": "assets/v4/audio/8bit-kitchen-tension.mp3",
-
-  "auto-prepare": "assets/autochess/audio/8bit-prepare.mp3",
-  "auto-battle": "assets/autochess/audio/8bit-battle.mp3",
-  "auto-boss": "assets/autochess/audio/8bit-boss.mp3",
-  "auto-story": "assets/autochess/audio/8bit-story.mp3",
-  "auto-pressure": "assets/autochess/audio/8bit-pressure.mp3",
-
-  battle: "assets/tcg/audio/8bit-battle.mp3",
-  boss: "assets/tcg/audio/8bit-boss.mp3",
-  "story-warm": "assets/tcg/audio/8bit-story-warm.mp3",
-  "story-mystery": "assets/tcg/audio/8bit-story-mystery.mp3",
-}
-export type MusicAsset = MusicTrack | `8bit-${MusicTrack}`
-export function musicAsset(track: MusicTrack, style: MusicStyle): MusicAsset {
-  return style === "8bit" ? `8bit-${track}` : track
-}
-export function musicPath(asset: MusicAsset): string {
-  return asset.startsWith("8bit-")
-    ? RETRO_MUSIC_TRACKS[(asset.slice(5) as MusicTrack)]
-    : MUSIC_TRACKS[(asset as MusicTrack)]
-}
+export type MusicStyle = "original"
+export type MusicAsset = MusicTrack
+export function musicAsset(track: MusicTrack, _style: MusicStyle): MusicAsset { return track }
+export function musicPath(asset: MusicAsset): string { return MUSIC_TRACKS[asset] }
 export type GameSound = "trap-set" | "footstep" | "door" | "capture" | "select" | "deselect" | "confirm" | "cast" | "impact" | "fire" | "water" | "leaves" | "sparkle" | "heal" | "buff" | "shield" | "break" | "summon" | "draw" | "resonance" | "turn" | "awaken" | "vanish" | "victory" | "defeat" | "story-next" | "combo" | "auto-slash" | "auto-shot" | "auto-contact" | "auto-channel" | "auto-fall" | "auto-boss" | "auto-overtime" | "auto-victory" | "auto-defeat"
 export interface TimedSound {
   cue: GameSound
@@ -72,20 +39,20 @@ export function battleMusic(battle: Battle): MusicTrack {
     battle.player.health <= 8 ||
     (battle.expedition?.enemyBoost ?? 0) >= 2
     ? "boss"
-    : "battle"
+    : "mode-tcg"
 }
 
 export function livingMusic(id: string, tension = false): MusicTrack {
- const region = id.startsWith("living-market") ? "market" : id.startsWith("rain-harbor") ? "harbor" : "kitchen"
- return `v4-${region}-${tension ? "tension" : "warm"}`
+ if (tension) return "boss"
+ return id.startsWith("living-market") ? "map-lantern" : id.startsWith("rain-harbor") ? "map-harbor" : "map-garden"
 }
 export function storyMusic(art: StoryArtId): MusicTrack {
  if (["living-market", "rain-harbor", "tomorrow-table"].includes(art)) return livingMusic(art)
   return ["garden", "tide", "last-table", "harbor", "memory-flare"].includes(
     art,
   )
-    ? "story-mystery"
-    : "story-warm"
+    ? "map-tide"
+    : "mode-tcg"
 }
 
 // One sound per kind even for a sweep. Cast -> contact -> secondary effect;

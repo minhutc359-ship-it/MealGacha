@@ -32,7 +32,7 @@ function fight(s: RpgSave) {
   for (let i = 0; i < 720 && !s.run!.battle.result; i++) {
     const b = s.run!.battle
     const priority = b.actors.find(a=>a.side === "enemy" && a.hp > 0 && a.style === "mender") ?? b.actors.find(a=>a.side === "enemy" && a.hp > 0 && a.style === "hexer")
-    if ((b.rulesVersion ?? 0) >= 520 && priority && b.focus !== priority.uid) s = act(s,{type:"focus",uid:priority.uid})
+    if ((b.rulesVersion ?? 0) >= 520 && (b.rulesVersion ?? 0) < 530 && priority && b.focus !== priority.uid) s = act(s,{type:"focus",uid:priority.uid})
     if (b.warning && b.tick >= b.guardReady)
       s = act(s, { type: "guard", row: b.warning.row })
     s = act(s, { type: "tick", steps: 4 })
@@ -260,7 +260,11 @@ describe("party, growth and real combat", () => {
     let s = openBoss(trained(8))
     while (!s.run!.battle.result && s.run!.battle.wave < s.run!.battle.waves.length - 1) s = act(s, { type: "tick", steps: 1 })
     const b = s.run!.battle, boss = b.actors.find(a => a.boss)!, striker = b.actors.find(a => a.side === "ally" && a.role === "striker")!
-    boss.hp = 1; striker.energy = 100; b.focus = boss.uid
+    const survivors = b.actors.filter(a => a.side === "enemy" && a.uid !== boss.uid)
+    boss.hp = 1; boss.slot = 0; striker.energy = 100
+    for (const enemy of survivors) { enemy.slot = 5; enemy.hp = enemy.maxHp = 1_000_000 }
+    // A stale 5.3 focus value must not override the current nearest-target rule.
+    b.focus = survivors[0].uid
     b.warning = { source: boss.uid, row: "front", until: b.tick + 8 }
     s = act(s, { type: "burst", uid: striker.uid })
     expect(s.run!.battle.warning).toBeNull()

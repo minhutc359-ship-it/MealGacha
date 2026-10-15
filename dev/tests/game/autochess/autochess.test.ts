@@ -31,7 +31,7 @@ import { restoreProgress, readTransferBackup } from "@/game/transferBundle"
 import { repository } from "@/infrastructure/storage/repository"
 import { useGameStore } from "@/game/useGameStore"
 import { useAppStore } from "@/store/useAppStore"
-import { MUSIC_TRACKS, RETRO_MUSIC_TRACKS } from "@/game/audioScore"
+import { MUSIC_TRACKS } from "@/game/audioScore"
 import { buildPool } from "@/domain/drawReward"
 import { BUILT_IN_DISHES } from "@/infrastructure/catalog/dishCatalog"
 
@@ -579,18 +579,16 @@ describe("complete content and assets", () => {
         id,
       ).toBe(true)
   })
-  it("ships five original and five 8-bit music loops under a compact combined budget", () => {
+  it("ships the dedicated auto-chess and shared boss themes", () => {
     let total = 0
-    for (const tracks of [MUSIC_TRACKS, RETRO_MUSIC_TRACKS])
-      for (const [id, path] of Object.entries(tracks).filter(([id]) =>
-        id.startsWith("auto-"),
+    for (const [id, path] of Object.entries(MUSIC_TRACKS).filter(([id]) =>
+        id === "mode-autochess" || id === "boss",
       )) {
         const file = readFileSync("public/" + path)
         expect(file.subarray(0, 3).toString()).toBe("ID3")
         expect(file.length).toBeGreaterThan(100000)
         total += file.length
       }
-    // Combat and boss loops now have 32 bars in both styles.
-    expect(total).toBeLessThan(3800000)
+    expect(total).toBeLessThan(2_000_000)
   })
 })

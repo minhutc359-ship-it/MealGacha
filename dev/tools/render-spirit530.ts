@@ -28,7 +28,9 @@ export async function prepareSpiritMovie(id: string) {
     return {
         draw(time: number) {
             const p = time / 2.4, charge = ease(time / .65), strike = ease((time - .6) / 1), out = 1 - ease((time - 2.05) / .35);
-            ctx.clearRect(0, 0, 512, 288);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.setTransform(2.5, 0, 0, 2.5, 0, 0);
             ctx.save();
             const zoom = 1.02 + p * .045;
             ctx.translate(256, 144);
@@ -169,7 +171,7 @@ export async function prepareSpiritMovie(id: string) {
             ctx.fillText(kit.title + ' · ' + ULTIMATE_MOVES[kit.ultimate][0], 20, 265);
             ctx.fillStyle = accent;
             ctx.fillRect(20, 276, Math.min(472, 472 * p), 1.5);
-            return canvas.toDataURL('image/jpeg', .88).split(',')[1];
+            return canvas.toDataURL('image/jpeg', .96).split(',')[1];
         }, pattern, motif: kit.motif, id, title: kit.title,
     };
 }

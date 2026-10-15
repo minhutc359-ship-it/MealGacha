@@ -29,9 +29,9 @@ export function castAwakened(b: RpgBattle, a: RpgActor, burst: boolean, support:
     if (!foes.length)
         return;
     const k = awakenedKit(a.id), index = burst ? k.ultimate : support ? k.support : k.primary;
-    const weak = weakFirst(friends), focus = foes.find(e => e.uid === b.focus);
+    const weak = weakFirst(friends);
     const back = foes.filter(e => e.slot >= 2), front = foes.filter(e => e.slot < 2);
-    const target = focus ?? nearestRpgOpponent(a, foes) ?? (a.role === "trickster" ? back[0] : undefined) ?? foes[0];
+    const target = nearestRpgOpponent(a, foes) ?? (a.role === "trickster" ? back[0] : undefined) ?? foes[0];
     let boost = 1 + (a.skills[burst ? 2 : support ? 1 : 0] - 1) * .09;
     if (burst) {
         const old = b.chain;
@@ -148,7 +148,7 @@ export function castAwakened(b: RpgBattle, a: RpgActor, burst: boolean, support:
                 }
                 break;
             case 14: {
-                const t = focus ?? [...foes].sort((x, y) => x.hp - y.hp)[0];
+                const t = [...foes].sort((x, y) => x.hp - y.hp)[0];
                 hit([t], 5.4 * (t.hp / t.maxHp < .3 ? 1.25 : 1));
                 break;
             }
@@ -292,7 +292,7 @@ export function castAwakened(b: RpgBattle, a: RpgActor, burst: boolean, support:
                 hit([target], 1.15 * (target.hp < target.maxHp * .5 ? 1.2 : 1));
                 break;
             case 1: {
-                const t = focus ?? back[0] ?? target;
+                const t = back[0] ?? target;
                 hit([t], 2.2);
                 drain([t], 10);
                 break;
@@ -328,13 +328,13 @@ export function castAwakened(b: RpgBattle, a: RpgActor, burst: boolean, support:
                 state([weak[0]], "barrier", 4);
                 break;
             case 9: {
-                const t = focus ?? foes.find(e => e.style === "mender") ?? target;
+                const t = foes.find(e => e.style === "mender") ?? target;
                 hit([t], 2.1);
                 on([t], e => { e.wither = 16; });
                 break;
             }
             case 10: {
-                const t = focus ?? foes.find(e => e.shield > 0) ?? target;
+                const t = foes.find(e => e.shield > 0) ?? target;
                 t.shield = Math.round(t.shield * .65);
                 hit([t], 2.7);
                 break;

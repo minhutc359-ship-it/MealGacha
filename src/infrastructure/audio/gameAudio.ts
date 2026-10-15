@@ -169,7 +169,7 @@ export class GameAudioEngine {
     this.options = {
       soundEnabled: options.soundEnabled,
       musicEnabled: options.musicEnabled ?? true,
-      musicStyle: options.musicStyle === "8bit" ? "8bit" : "original",
+      musicStyle: "original",
       musicVolume: clamp(options.musicVolume, 0.38),
       effectsVolume: clamp(options.effectsVolume, 0.7),
       ambienceVolume: clamp(options.ambienceVolume, 0.18),

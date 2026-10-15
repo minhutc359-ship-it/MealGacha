@@ -25,7 +25,7 @@ export interface AdventureArea {
   summary: string
   objective: string
   art: string
-  music: "v4-market-warm" | "v4-harbor-warm" | "story-warm" | "story-mystery"
+  music: "map-lantern" | "map-harbor" | "map-garden" | "map-tide"
   grid: string[]
   spawn: { x: number; y: number }
   encounters: string[]
@@ -58,7 +58,7 @@ export const ADVENTURE_AREAS: AdventureArea[] = [
     summary: "Bách nhờ bạn đánh thức những Vị Linh đang lạc giữa mùi khói sớm.",
     objective: "Gặp Bách, rèn đội hình rồi thách Người Giữ Đèn.",
     art: "/assets/tcg/story/lantern.webp",
-    music: "v4-market-warm",
+    music: "map-lantern",
     grid: [
       "############",
       "#....gg...b#",
@@ -112,7 +112,7 @@ export const ADVENTURE_AREAS: AdventureArea[] = [
       "Nước triều mang theo tên món đã mất. Hải chờ một người đủ kiên nhẫn để nghe.",
     objective: "Tìm Hải và vượt thử thách của Người Canh Con Nước.",
     art: "/assets/tcg/story/harbor.webp",
-    music: "v4-harbor-warm",
+    music: "map-harbor",
     grid: [
       "############",
       "#e..gg.....#",
@@ -167,7 +167,7 @@ export const ADVENTURE_AREAS: AdventureArea[] = [
       "Sương Nhạt làm cây quên mùa. Mộc cần bạn khôi phục vòng tuần hoàn của khu vườn.",
     objective: "Đọc lời nhắn của Mộc và đánh thức Linh Gốc Cổ Thụ.",
     art: "/assets/tcg/story/garden.webp",
-    music: "story-warm",
+    music: "map-garden",
     grid: [
       "############",
       "#....g....b#",
@@ -221,7 +221,7 @@ export const ADVENTURE_AREAS: AdventureArea[] = [
       "Nhiên giữ một ngọn lửa không tắt giữa gió biển, nhưng lối lên bàn trăng đã bị khóa.",
     objective: "Hợp sức với Nhiên, chiến thắng Chủ Bếp Triều Lửa.",
     art: "/assets/tcg/story/tide.webp",
-    music: "story-mystery",
+    music: "map-tide",
     grid: [
       "############",
       "#e..g.....b#",
@@ -276,7 +276,7 @@ export const ADVENTURE_AREAS: AdventureArea[] = [
       "Liên đã dọn một chỗ trống. Chỉ còn Tiếng Vọng Nuốt Tên đứng giữa bạn và bữa cơm ngày mai.",
     objective: "Chuẩn bị đội hình cuối và hoàn thành Giao Ước Năm Vị.",
     art: "/assets/tcg/story/moon.webp",
-    music: "story-mystery",
+    music: "map-tide",
     grid: [
       "############",
       "#....gg...b#",

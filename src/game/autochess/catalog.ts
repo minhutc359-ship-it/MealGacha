@@ -875,14 +875,31 @@ MONSTERS.push(
 )
 // Campaign-only identities use existing atlas rows, but MUST NOT change Auto Chess monster pools.
 const ADVANCED_RPG_MONSTERS: MonsterDef[] = [
-  {id:"mist-vine-elite",name:"Dây Trói Đêm",hp:1180,attack:74,range:2,armor:28,skill:"leaves",power:250,school:"grove",sprite:3,unlockWave:9,text:"Tinh anh: giữ chân tuyến sau và tiếp sức đồng bọn."},
-  {id:"sugar-echo-elite",name:"Kính Vỡ",hp:1130,attack:79,range:3,armor:18,skill:"drain",power:265,school:"sugar",sprite:2,unlockWave:9,text:"Tinh anh: hút năng lượng trước khi tạo lá chắn."},
-  {id:"char-ash-elite",name:"Tro Kẹp",hp:1360,attack:84,range:1,armor:31,skill:"cone",power:260,school:"ember",sprite:1,unlockWave:9,text:"Tinh anh: sát thương liên tiếp kèm Bỏng hương."},
-  {id:"table-shadow-elite",name:"Bóng Cạn",hp:1510,attack:76,range:1,armor:35,skill:"shell",power:260,school:"hearth",sprite:0,unlockWave:9,text:"Tinh anh: khiên hộ vệ và áp chế hàng trước."},
-  {id:"boss-blue-root",name:"Rễ Vương Không Ngủ",hp:3400,attack:95,range:2,armor:34,skill:"leaves",power:390,school:"grove",sprite:3,boss:true,text:"Boss hậu truyện: hút sinh lực và mọc khiên cho đội sương."},
-  {id:"boss-mirror-sugar",name:"Nữ Chúa Gương Đường",hp:3300,attack:105,range:3,armor:27,skill:"copy",power:395,school:"sugar",sprite:2,boss:true,text:"Boss hậu truyện: phản chiếu khiên, đánh mục tiêu yếu."},
-  {id:"boss-char-clock",name:"Thợ Rèn Đồng Hồ Tro",hp:3750,attack:102,range:1,armor:31,skill:"cone",power:410,school:"ember",sprite:1,boss:true,text:"Boss hậu truyện: đòn lửa đốt tuyến và ngắt hồi năng lượng."},
-  {id:"boss-last-banquet",name:"Chủ Tiệc Không Bóng",hp:4000,attack:101,range:3,armor:36,skill:"seal",power:430,school:"hearth",sprite:0,boss:true,text:"Boss cuối: khóa hồi phục, bảo vệ bóng hầu, phản công khi cuồng nộ."},
+  {id:"tea-moth",name:"Bướm Trà Ngọc",hp:980,attack:68,range:3,armor:12,skill:"drain",power:230,school:"grove",sprite:0,unlockWave:99,text:"Rắc phấn trà làm chậm nhịp tích năng lượng."},
+  {id:"jade-sentinel",name:"Vệ Binh Ngọc",hp:1480,attack:72,range:1,armor:36,skill:"shell",power:260,school:"grove",sprite:1,unlockWave:99,text:"Hộ vệ giáp ngọc dựng khiên cho đồng đội yếu nhất."},
+  {id:"tea-oracle",name:"Trà Sư Vân",hp:1260,attack:76,range:3,armor:20,skill:"leaves",power:285,school:"grove",sprite:2,unlockWave:99,text:"Tinh anh gọi hơi trà hồi phục và tiếp sức."},
+  {id:"cloud-teapot",name:"Ấm Trà Vân Thiên",hp:4100,attack:104,range:2,armor:32,skill:"heal",power:440,school:"grove",sprite:3,boss:true,text:"Boss rót mây hồi phục, dựng khiên và hút năng lượng."},
+  {id:"salt-scarab",name:"Bọ Muối Đỏ",hp:1120,attack:82,range:1,armor:25,skill:"charge",power:250,school:"ember",sprite:4,unlockWave:99,text:"Lao qua tuyến trước và để lại tinh thể Bỏng."},
+  {id:"kiln-knight",name:"Kỵ Sĩ Lò",hp:1620,attack:86,range:1,armor:40,skill:"cone",power:285,school:"ember",sprite:5,unlockWave:99,text:"Giáp gốm dày; quét lửa vào đội hình đứng sát."},
+  {id:"salt-alchemist",name:"Luyện Sư Muối",hp:1320,attack:88,range:3,armor:22,skill:"lantern",power:305,school:"ember",sprite:6,unlockWave:99,text:"Tinh anh kết tinh muối, tăng giáp và công cho đồng minh."},
+  {id:"salt-colossus",name:"Cự Tượng Muối Lò",hp:4650,attack:116,range:1,armor:42,skill:"stun",power:470,school:"ember",sprite:7,boss:true,text:"Boss nện lò, phá khiên, gây Bỏng và làm nứt giáp."},
+  {id:"moon-jelly",name:"Sứa Nguyệt",hp:1080,attack:75,range:3,armor:15,skill:"drain",power:245,school:"tide",sprite:0,unlockWave:99,text:"Sóng trăng hút năng lượng của tuyến sau."},
+  {id:"lotus-mantis",name:"Bọ Ngựa Sen",hp:1280,attack:94,range:1,armor:21,skill:"dodge",power:280,school:"tide",sprite:1,unlockWave:99,text:"Né cú đánh đầu rồi phản công bằng lưỡi sen."},
+  {id:"moon-priestess",name:"Tư Tế Nguyệt",hp:1370,attack:83,range:3,armor:23,skill:"seal",power:315,school:"tide",sprite:2,unlockWave:99,text:"Tinh anh khóa hồi phục và rút năng lượng theo nhịp trăng."},
+  {id:"moon-heron",name:"Nguyệt Hạc Trấn Đầm",hp:4380,attack:110,range:2,armor:31,skill:"frost",power:455,school:"tide",sprite:3,boss:true,text:"Boss đổi tuyến, gây choáng và quét trăng ở pha hai."},
+  {id:"spice-kite",name:"Diều Gia Vị",hp:1050,attack:79,range:3,armor:14,skill:"rhythm",power:250,school:"hearth",sprite:4,unlockWave:99,text:"Bay vượt tuyến và khuấy rối nhịp hồi năng lượng."},
+  {id:"bronze-warden",name:"Hộ Vệ Hương",hp:1710,attack:84,range:1,armor:43,skill:"shell",power:295,school:"hearth",sprite:5,unlockWave:99,text:"Giáp đồng tạo khiên phản sáng cho cả hàng."},
+  {id:"aroma-conductor",name:"Nhạc Trưởng Hương",hp:1410,attack:91,range:3,armor:25,skill:"rhythm",power:325,school:"hearth",sprite:6,unlockWave:99,text:"Tinh anh chỉ huy nhịp gia vị, tăng lực và hút năng lượng."},
+  {id:"aroma-regent",name:"Nhiếp Chính Vạn Hương",hp:4920,attack:114,range:3,armor:39,skill:"feast",power:490,school:"hearth",sprite:7,boss:true,text:"Boss dựng khiên, làm yếu toàn đội và phản kích ở pha hai."},
+  // Legacy 5.7 identities remain valid for battles already saved mid-run.
+  {id:"mist-vine-elite",name:"Dây Trói Đêm",hp:1180,attack:74,range:2,armor:28,skill:"leaves",power:250,school:"grove",sprite:3,unlockWave:99,text:"Tinh anh cũ."},
+  {id:"sugar-echo-elite",name:"Kính Vỡ",hp:1130,attack:79,range:3,armor:18,skill:"drain",power:265,school:"sugar",sprite:2,unlockWave:99,text:"Tinh anh cũ."},
+  {id:"char-ash-elite",name:"Tro Kẹp",hp:1360,attack:84,range:1,armor:31,skill:"cone",power:260,school:"ember",sprite:1,unlockWave:99,text:"Tinh anh cũ."},
+  {id:"table-shadow-elite",name:"Bóng Cạn",hp:1510,attack:76,range:1,armor:35,skill:"shell",power:260,school:"hearth",sprite:0,unlockWave:99,text:"Tinh anh cũ."},
+  {id:"boss-blue-root",name:"Rễ Vương Không Ngủ",hp:3400,attack:95,range:2,armor:34,skill:"leaves",power:390,school:"grove",sprite:3,boss:true,text:"Boss hậu truyện cũ."},
+  {id:"boss-mirror-sugar",name:"Nữ Chúa Gương Đường",hp:3300,attack:105,range:3,armor:27,skill:"copy",power:395,school:"sugar",sprite:2,boss:true,text:"Boss hậu truyện cũ."},
+  {id:"boss-char-clock",name:"Thợ Rèn Đồng Hồ Tro",hp:3750,attack:102,range:1,armor:31,skill:"cone",power:410,school:"ember",sprite:1,boss:true,text:"Boss hậu truyện cũ."},
+  {id:"boss-last-banquet",name:"Chủ Tiệc Không Bóng",hp:4000,attack:101,range:3,armor:36,skill:"seal",power:430,school:"hearth",sprite:0,boss:true,text:"Boss hậu truyện cũ."},
 ]
 export const MONSTER_MAP = Object.fromEntries([...MONSTERS, ...ADVANCED_RPG_MONSTERS].map((m) => [m.id, m]))
 export const SKILL_LABELS: Record<Skill, string> = {

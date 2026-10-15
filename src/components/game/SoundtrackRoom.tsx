@@ -10,8 +10,8 @@ export function SoundtrackRoom() {
   const enabled = useAppStore(s => s.user.preferences.soundEnabled && (s.user.preferences.musicEnabled ?? true))
   useGameMusic(playing, 50)
   return <details className="soundtrack-room" onToggle={e => { if (!e.currentTarget.open) setPlaying(null) }}>
-    <summary>Phòng nghe · 9 chủ đề, hai phong cách</summary>
-    <p>Nhạc được sáng tác cho Soul of Meal. Chọn Bếp Việt hoặc 8-bit ở trên; bài chỉ tải khi được phát. Đóng phòng nghe để trở lại nhạc của cảnh.</p>
+    <summary>Phòng nghe · 13 chủ đề</summary>
+    <p>Mỗi chế độ, bản đồ và trận thủ lĩnh có một chủ đề riêng. Bài chỉ tải khi được phát; đóng phòng nghe để trở lại nhạc của cảnh.</p>
     <div>{Object.entries(WEB_SCORES).map(([track, score]) => <button key={track} type="button" disabled={!enabled} aria-pressed={playing === track} onClick={() => { void gameAudio.unlock(); setPlaying(playing === track ? null : track as MusicTrack) }}>
       <span>{playing === track ? "■" : "♫"}</span><span><strong>{score.title}</strong><small>{score.mood}</small></span>
     </button>)}</div>

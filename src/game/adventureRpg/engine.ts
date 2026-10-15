@@ -439,7 +439,11 @@ function shield(
 function targetFor(b: RpgBattle, a: RpgActor, back = false) {
   const enemies = alive(b, opposing(a)).sort((x, y) => x.slot - y.slot)
   const taunt = b.rulesVersion === 530 && a.side === "enemy" ? enemies.find(t=>t.traits?.taunt) : undefined
-  const focus = a.side === "ally" && ((b.rulesVersion ?? 0) >= 510) ? enemies.find(e => e.uid === b.focus) : undefined
+  // Current battles always resolve the closest legal opponent from formation
+  // geometry. `focus` remains readable only for an old 5.1/5.2 battle save.
+  const focus = a.side === "ally" && (b.rulesVersion === 510 || b.rulesVersion === 520)
+    ? enemies.find(e => e.uid === b.focus)
+    : undefined
   return (
     taunt ?? focus ?? (a.side === "ally" && b.rulesVersion === 530 ? nearestRpgOpponent(a, enemies) : undefined) ?? (back ? enemies.find((t) => rowOf(t) === "back") : enemies[0]) ?? enemies[0]
   )
@@ -605,13 +609,16 @@ function enemySkill(b: RpgBattle, a: RpgActor, row: "front" | "back") {
   event(b, a, a.boss ? "boss" : "skill", targets, 0, name)
   const cue = b.events[b.events.length - 1]; cue.animation = "enemy"
   if (a.boss) {
-    if (a.id === "v4-tide-lock" && a.phase) targets = foes
+    if (["v4-tide-lock", "moon-heron", "aroma-regent"].includes(a.id) && a.phase) targets = foes
     for (const t of targets) {
       if (a.id === "char-hound" && a.phase) t.shield = Math.round(t.shield * .75)
       damage(b, a, t, 2.5 + a.phase * .45)
       if (a.id === "char-hound") t.burn = 20
       if (a.id === "bamboo-wraith") {t.stun = 4; t.wither = 16}
       if (["v4-tide-lock", "boss-lotus"].includes(a.id)) { t.energy = Math.max(0, t.energy - 25); t.weaken = 12; if(a.id === "boss-lotus")t.wither=20 }
+      if (a.id === "salt-colossus") { t.shield = Math.round(t.shield * .45); t.burn = 24; t.traits ??= {}; t.traits.fracture = 1 }
+      if (a.id === "moon-heron") { t.energy = Math.max(0,t.energy-20); t.stun = Math.max(t.stun,4) }
+      if (a.id === "aroma-regent") t.weaken = Math.max(t.weaken,20)
     }
     if (a.id === "boss-drum") shield(b, a, friends, a.maxHp * .035, name)
     if (a.id === "bamboo-wraith") heal(b, a, [a], .045, name)
@@ -620,6 +627,17 @@ function enemySkill(b: RpgBattle, a: RpgActor, row: "front" | "back") {
     if (a.id === "boss-mirror-sugar") { const fragile = [...foes].sort((x,y)=>x.hp/x.maxHp-y.hp/y.maxHp)[0]; if(fragile){damage(b,a,fragile,1.15);fragile.energy=Math.max(0,fragile.energy-20)}; shield(b,a,[a],a.maxHp*.04,name) }
     if (a.id === "boss-char-clock") { for(const t of targets){t.burn=20;t.weaken=16;if(a.phase)damage(b,a,t,.75)} }
     if (a.id === "boss-last-banquet") { for(const t of targets){t.wither=20;t.weaken=16};shield(b,a,friends,a.maxHp*.025,name) }
+    if (a.id === "cloud-teapot") { heal(b,a,[a],.055,name); shield(b,a,friends,a.maxHp*.028,name) }
+    if (a.id === "salt-colossus" && a.phase && b.difficulty === "extreme") for(const t of targets) damage(b,a,t,.8)
+    if (a.id === "moon-heron" && b.difficulty !== "normal") for(const t of targets) t.wither = Math.max(t.wither ?? 0,b.difficulty === "extreme" ? 24 : 14)
+    if (a.id === "aroma-regent") shield(b,a,friends,a.maxHp*(b.difficulty === "extreme" ? .04 : .025),name)
+    if (b.difficulty !== "normal" && ["cloud-teapot","salt-colossus","moon-heron","aroma-regent"].includes(a.id)) {
+      const extreme = b.difficulty === "extreme"
+      for (const t of targets) {
+        t.energy = Math.max(0,t.energy-(extreme ? 22 : 10))
+        if (extreme) t.weaken = Math.max(t.weaken,16)
+      }
+    }
   } else if (a.style === "bulwark") {
     const weak = [...friends].sort((x,y)=>x.hp/x.maxHp-y.hp/y.maxHp)[0]
     shield(b,a,[...new Set([a,weak])],a.maxHp * .13,name)
@@ -630,6 +648,25 @@ function enemySkill(b: RpgBattle, a: RpgActor, row: "front" | "back") {
       damage(b,a,t,a.style === "hexer" ? 1.4 : 1.8)
       if (a.style === "hexer") { t.energy = Math.max(0,t.energy-18); t.weaken=16; t.wither=12 }
       else t.burn = 12
+    }
+  }
+  if (a.elite && b.difficulty && b.difficulty !== "normal") {
+    const extreme = b.difficulty === "extreme"
+    if (a.id === "tea-oracle") {
+      shield(b,a,friends,a.maxHp*(extreme ? .12 : .07),"Vân trà hộ mệnh")
+      if (extreme) heal(b,a,friends.slice(0,2),.06,"Vân trà hồi lưu")
+    }
+    if (a.id === "salt-alchemist") {
+      shield(b,a,friends,a.attack*(extreme ? 2.1 : 1.35),"Kết tinh muối đỏ")
+      for (const t of targets) { t.burn = Math.max(t.burn,extreme ? 24 : 14); if (extreme) {t.traits ??= {};t.traits.fracture=1} }
+    }
+    if (a.id === "moon-priestess") for (const t of targets) {
+      t.wither = Math.max(t.wither ?? 0,extreme ? 24 : 14)
+      if (extreme) t.stun = Math.max(t.stun,4)
+    }
+    if (a.id === "aroma-conductor") {
+      for (const f of friends) { f.traits ??= {}; f.traits.haste = 1 }
+      if (extreme) for (const t of targets) t.weaken = Math.max(t.weaken,24)
     }
   }
   if (b.difficulty && b.difficulty !== "normal" && (a.elite || a.boss)) {
@@ -986,7 +1023,8 @@ export function reduceRpg(
       if (b.paused || b.result || b.cinematic) return { save: current ?? save, changed: false }
       run.battle = advanceRpgBattle(b, action.steps)
     } else if (action.type === "focus") {
-      if (!((b.rulesVersion ?? 0) >= 510) || b.result || b.paused || (action.uid && !b.actors.some(a=>a.side==="enemy" && a.hp>0 && a.uid===action.uid))) return error("Chọn kẻ địch còn sống trong trận mới.")
+      if (b.rulesVersion === 530) return error("Đội hình tự đánh kẻ địch gần nhất.")
+      if (!((b.rulesVersion ?? 0) >= 510) || b.result || b.paused || (action.uid && !b.actors.some(a=>a.side==="enemy" && a.hp>0 && a.uid===action.uid))) return error("Chọn kẻ địch còn sống trong trận cũ.")
       b.focus = action.uid
     } else if (action.type === "burst") {
       const actor = b.actors.find(

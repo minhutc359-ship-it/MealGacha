@@ -1,0 +1,47 @@
+{
+  "assets/rpg/campaign580/aroma-palace.webp": {
+    "width": 1280,
+    "height": 720,
+    "bytes": 378524
+  },
+  "assets/rpg/campaign580/battle-ceremony.webp": {
+    "width": 1254,
+    "height": 1254,
+    "bytes": 2240466
+  },
+  "assets/rpg/campaign580/campaignA.webp": {
+    "width": 1400,
+    "height": 1280,
+    "bytes": 2153792
+  },
+  "assets/rpg/campaign580/campaignB.webp": {
+    "width": 1400,
+    "height": 1280,
+    "bytes": 2223544
+  },
+  "assets/rpg/campaign580/moon-lotus-marsh.webp": {
+    "width": 1280,
+    "height": 720,
+    "bytes": 285868
+  },
+  "assets/rpg/campaign580/red-salt-kiln.webp": {
+    "width": 1280,
+    "height": 720,
+    "bytes": 289466
+  },
+  "assets/rpg/campaign580/tea-cloud-peak.webp": {
+    "width": 1280,
+    "height": 720,
+    "bytes": 348872
+  },
+  "assets/rpg/village580/crossroads.webp": {
+    "width": 1536,
+    "height": 1024,
+    "bytes": 794330
+  },
+  "assets/rpg/village580/party.webp": {
+    "width": 896,
+    "height": 576,
+    "bytes": 271666
+  }
+}

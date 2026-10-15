@@ -727,6 +727,20 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
  .tcg-compact-app .meal-mode-switch { padding:5px 7px; min-height:32px; font-size:10px; }
 }
 @media(prefers-reduced-motion:reduce) { .meal-mode-switch { transition:none; } }
+
+/* Every cross-mode navigation gets a fresh, uncropped game illustration. */
+.mode-switch-loading { position:fixed; inset:0; z-index:10000; display:grid; place-items:center; overflow:hidden; isolation:isolate; background:#071318; color:#f7e8ba; }
+.mode-switch-loading>img { position:absolute; inset:0; z-index:-3; width:100%; height:100%; object-fit:contain; object-position:center; image-rendering:auto; }
+.mode-switch-loading-shade { position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg,#0610158a 0%,#06101524 45%,#061015e8 100%); }
+.mode-switch-loading-copy { position:absolute; left:50%; bottom:clamp(28px,8vh,86px); width:min(560px,calc(100vw - 32px)); transform:translateX(-50%); display:grid; gap:8px; text-align:center; filter:drop-shadow(0 2px 8px #000); }
+.mode-switch-loading-copy small { font:700 10px/1.3 system-ui,sans-serif; letter-spacing:.24em; color:#d9bd79; }
+.mode-switch-loading-copy strong { font:700 clamp(24px,5vw,46px)/1.05 Georgia,serif; letter-spacing:.04em; }
+.mode-switch-loading-copy span { font:600 12px/1.4 system-ui,sans-serif; color:#d7e7df; }
+.mode-switch-loading-copy>i { position:relative; display:block; width:min(360px,74vw); height:3px; margin:8px auto 0; overflow:hidden; border-radius:999px; background:#e4d3a238; }
+.mode-switch-loading-copy>i::after { content:""; position:absolute; inset:0; transform-origin:left; background:linear-gradient(90deg,#c79645,#fff0b6); animation:mode-switch-progress .9s ease-out both; }
+.mode-switch-loading.is-quiet .mode-switch-loading-copy>i::after { animation-duration:.36s; }
+@keyframes mode-switch-progress { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@media(prefers-reduced-motion:reduce) { .mode-switch-loading-copy>i::after { animation-duration:.36s; } }
 /* A bounded chest shell; optional collections/settings scroll inside their workspace. */
 .loot-client { height:100dvh; min-height:0; display:grid; grid-template-rows:72px minmax(0,1fr); overflow:hidden; }
 .loot-client .client-layout { min-height:0; height:100%; }

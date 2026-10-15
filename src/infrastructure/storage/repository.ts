@@ -76,7 +76,7 @@ const StoredUserSchema = z
       language: z.enum(["vi", "en"]).optional(),
       soundEnabled: z.boolean().optional(),
       musicEnabled: z.boolean().catch(true).optional(),
-      musicStyle: z.enum(["original", "8bit"]).catch("original").optional(),
+      musicStyle: z.enum(["original", "8bit"]).catch("original").transform(() => "original" as const).optional(),
       musicVolume: z.number().min(0).max(1).catch(0.38).optional(),
       effectsVolume: z.number().min(0).max(1).catch(0.7).optional(),
       graphicsQuality: z.enum(["normal", "low"]).catch("normal").optional(),

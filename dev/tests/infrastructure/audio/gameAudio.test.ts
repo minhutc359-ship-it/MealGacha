@@ -136,10 +136,10 @@ describe("web long-score streaming",()=>{
   it("waits for a gesture and streams a long score without decoding it into the buffer cache",async()=>{
     const elements:Media[]=[],media=vi.fn(()=>{const element=new Media();elements.push(element);return element as unknown as HTMLAudioElement})
     const f=fixture(undefined,media),decode=vi.spyOn(f.context,"decodeAudioData")
-    f.engine.acquire("lobby")
+    f.engine.acquire("mode-tcg")
     expect(media).not.toHaveBeenCalled()
     await f.engine.unlock();await settle()
-    expect(elements[0].src).toBe("/assets/v4/audio/web410/original-lobby.mp3")
+    expect(elements[0].src).toBe("/assets/music580/mode-tcg.mp3")
     expect(decode).not.toHaveBeenCalled();expect(f.load).not.toHaveBeenCalled()
     expect(f.engine.resourceStats().streamingVoices).toBe(1)
     expect(f.engine.getSnapshot().phase).toBe("playing")
@@ -147,11 +147,11 @@ describe("web long-score streaming",()=>{
     f.hide();expect(elements[0].paused).toBe(true);expect(f.engine.resourceStats().streamingVoices).toBe(0)
     f.show();await settle();expect(elements[1].currentTime).toBe(7)
   })
-  it("bounds stream voices while changing styles and releases all of them on mute",async()=>{
+  it("normalizes a legacy style without replacing the stream and releases it on mute",async()=>{
     const elements:Media[]=[],f=fixture(undefined,()=>{const element=new Media();elements.push(element);return element as unknown as HTMLAudioElement})
-    f.engine.acquire("lobby");await f.engine.unlock();await settle()
-    f.engine.configure({soundEnabled:true,musicStyle:"8bit"});await settle()
-    expect(elements.at(-1)!.src).toContain("8bit-lobby")
+    f.engine.acquire("mode-tcg");await f.engine.unlock();await settle()
+    f.engine.configure({soundEnabled:true,musicStyle:"8bit"} as never);await settle()
+    expect(elements.at(-1)!.src).toContain("mode-tcg")
     f.engine.configure({soundEnabled:true,musicStyle:"original"});await settle()
     expect(f.engine.resourceStats().streamingVoices).toBeLessThanOrEqual(2)
     f.engine.configure({soundEnabled:false})
@@ -159,65 +159,61 @@ describe("web long-score streaming",()=>{
   })
   it("falls back to the existing compact score if the media stream fails",async()=>{
     const element=new Media(),f=fixture(undefined,()=>element as unknown as HTMLAudioElement)
-    f.engine.acquire("lobby");await f.engine.unlock();await settle()
+    f.engine.acquire("mode-tcg");await f.engine.unlock();await settle()
     element.dispatchEvent(new Event("error"));await settle()
-    expect(f.load).toHaveBeenCalledWith("/assets/tcg/audio/story-warm.mp3")
+    expect(f.load).toHaveBeenCalledWith("/assets/music580/mode-tcg.mp3")
     expect(f.engine.resourceStats().streamingVoices).toBe(0)
     expect(f.engine.getSnapshot().phase).toBe("playing")
   })
 })
 describe("game soundtrack lifecycle", () => {
-  it("switches styles during a priority cutscene and resumes each arrangement's own cursor", async () => {
+  it("switches priority tracks and resumes each track's own cursor", async () => {
     const { engine, context, load } = fixture()
-    engine.acquire("battle", 5)
+    engine.acquire("mode-tcg", 5)
     await engine.unlock()
     await settle()
     context.currentTime = 7
-    const release = engine.acquire("story-mystery", 30)
-    await settle()
-    engine.configure({ soundEnabled: true, musicStyle: "8bit" })
+    const release = engine.acquire("map-tide", 30)
     await settle()
     expect(load).toHaveBeenLastCalledWith(
-      "/assets/tcg/audio/8bit-story-mystery.mp3",
+      "/assets/music580/map-tide.mp3",
     )
     expect(engine.getSnapshot()).toMatchObject({
-      track: "story-mystery",
-      style: "8bit",
+      track: "map-tide",
+      style: "original",
       phase: "playing",
     })
     release()
     await settle()
-    expect(load).toHaveBeenLastCalledWith("/assets/tcg/audio/8bit-battle.mp3")
-    expect(context.voices.at(-1)?.starts[0][1]).toBe(0)
-    context.currentTime = 12
-    engine.configure({ soundEnabled: true, musicStyle: "original" })
-    await settle()
-    expect(context.voices.at(-1)?.starts[0][1]).toBe(7)
+    expect(load).toHaveBeenCalledTimes(2)
+    const resumed = context.voices.filter(voice => voice.starts[0]?.length === 2).at(-1)
+    expect(resumed?.starts[0][1]).toBe(7)
   })
-  it("ignores an old style download that finishes after a switch and honors mute", async () => {
+  it("ignores an old track download that finishes after a priority switch and honors mute", async () => {
     const resolvers = new Map<string, (data: ArrayBuffer) => void>()
     const load = vi.fn(
       (url: string) =>
         new Promise<ArrayBuffer>((resolve) => resolvers.set(url, resolve)),
     )
     const { engine, context } = fixture(load)
-    engine.acquire("boss")
+    engine.acquire("mode-tcg")
     await engine.unlock()
-    engine.configure({ soundEnabled: true, musicStyle: "8bit" })
-    resolvers.get("/assets/tcg/audio/8bit-boss.mp3")!(new ArrayBuffer(8))
+    const release = engine.acquire("boss", 30)
+    resolvers.get("/assets/music580/boss.mp3")!(new ArrayBuffer(8))
     await settle()
     expect(context.voices).toHaveLength(1)
-    resolvers.get("/assets/tcg/audio/boss.mp3")!(new ArrayBuffer(8))
+    resolvers.get("/assets/music580/mode-tcg.mp3")!(new ArrayBuffer(8))
     await settle()
     expect(context.voices).toHaveLength(1)
-    engine.configure({ soundEnabled: false, musicStyle: "8bit" })
+    release()
+    engine.configure({ soundEnabled: false })
     expect(context.voices.every((v) => v.stopped)).toBe(true)
     expect(engine.getSnapshot().phase).toBe("muted")
   })
   it("waits for a gesture and honors an existing muted preference", async () => {
     const { engine, create, load } = fixture()
     engine.configure({ soundEnabled: false })
-    engine.acquire("battle")
+    engine.acquire("mode-tcg")
     await engine.unlock()
     engine.play("fire")
     await settle()
@@ -232,27 +228,28 @@ describe("game soundtrack lifecycle", () => {
     expect(load).toHaveBeenCalledOnce()
     expect(engine.getSnapshot()).toEqual({
       phase: "playing",
-      track: "battle",
+      track: "mode-tcg",
       style: "original",
     })
   })
   it("gives cutscenes priority and restores the paused battle cursor", async () => {
     const { engine, context } = fixture()
-    engine.acquire("battle", 5)
+    engine.acquire("mode-tcg", 5)
     await engine.unlock()
     await settle()
     context.currentTime = 9
-    const story = engine.acquire("story-mystery", 30)
+    const story = engine.acquire("map-tide", 30)
     await settle()
-    expect(engine.getSnapshot().track).toBe("story-mystery")
-    const journal = engine.acquire("story-warm", 10)
+    expect(engine.getSnapshot().track).toBe("map-tide")
+    const journal = engine.acquire("map-garden", 10)
     await settle()
-    expect(engine.getSnapshot().track).toBe("story-mystery")
+    expect(engine.getSnapshot().track).toBe("map-tide")
     journal()
     story()
     await settle()
-    expect(engine.getSnapshot().track).toBe("battle")
-    expect(context.voices[context.voices.length - 1]?.starts[0][1]).toBe(9)
+    expect(engine.getSnapshot().track).toBe("mode-tcg")
+    const resumed = context.voices.filter(voice => voice.starts[0]?.length === 2).at(-1)
+    expect(resumed?.starts[0][1]).toBe(9)
   })
   it("rejects late music after a reader closes or the route unmounts", async () => {
     let finish: (data: ArrayBuffer) => void = () => {
@@ -265,7 +262,7 @@ describe("game soundtrack lifecycle", () => {
         }),
     )
     const { engine, context } = fixture(load)
-    const release = engine.acquire("story-warm")
+    const release = engine.acquire("map-garden")
     await engine.unlock()
     release()
     finish(new ArrayBuffer(8))
@@ -281,7 +278,7 @@ describe("game soundtrack lifecycle", () => {
   })
   it("pauses background tabs, cancels delayed SFX and resumes the loop cursor", async () => {
     const { engine, context, hide, show } = fixture()
-    engine.acquire("battle")
+    engine.acquire("mode-tcg")
     await engine.unlock()
     await settle()
     context.currentTime = 6
@@ -294,12 +291,13 @@ describe("game soundtrack lifecycle", () => {
     context.currentTime = 8
     show()
     await settle()
-    expect(context.voices[context.voices.length - 1]?.starts[0][1]).toBe(6)
+    const resumed = context.voices.filter(voice => voice.starts[0]?.length === 2).at(-1)
+    expect(resumed?.starts[0][1]).toBe(6)
     expect(context.oscillators).toHaveLength(12)
   })
   it("separates music and SFX volume, clamps values and cancels everything on mute", async () => {
     const { engine, context } = fixture()
-    engine.acquire("battle")
+    engine.acquire("mode-tcg")
     await engine.unlock()
     await settle()
     engine.configure({
@@ -358,25 +356,23 @@ it("dense auto-chess audio respects the 48-voice cap", async () => {
   expect(context.voices.length + context.oscillators.length).toBeLessThanOrEqual(48)
 })
 
-it("starts three matching stems together, dedupes loads and stops every voice on native background",async()=>{
+it("loads one complete score and stops every voice on native background",async()=>{
  const {engine,context,load}=fixture()
- engine.acquire("v4-market-tension",5,.8)
+ engine.acquire("map-lantern",5,.8)
  await engine.unlock();await settle();await settle()
- const stems=context.voices.filter(v=>v.loop && v.buffer)
- expect(stems).toHaveLength(4) // three music stems plus procedural ambience
- expect(stems.slice(0,3).map(v=>v.starts[0])).toEqual([[.02,0],[.02,0],[.02,0]])
- expect(load).toHaveBeenCalledTimes(3)
- engine.updatePressure(.1,"v4-market-tension")
- expect(context.gains.slice(-3).map(g=>g.gain.value)).toContain(0)
+ const voices=context.voices.filter(v=>v.loop && v.buffer)
+ expect(voices).toHaveLength(2) // complete score plus procedural ambience
+ expect(load).toHaveBeenCalledTimes(1)
+ engine.updatePressure(.1,"map-lantern")
  engine.setNativeVisible(false)
- expect(stems.every(v=>v.stopped)).toBe(true)
+ expect(voices.every(v=>v.stopped)).toBe(true)
  engine.setNativeVisible(true);await settle();await settle()
- expect(load).toHaveBeenCalledTimes(3)
+ expect(load).toHaveBeenCalledTimes(1)
 })
 
 it("closing an introduction does not dispose the live game's shared mixer",async()=>{
  const {engine,context}=fixture()
- engine.acquire("story-warm");await engine.unlock();await settle()
+ engine.acquire("map-garden");await engine.unlock();await settle()
  const closeDemo=engine.mount()
  engine.acquire("boss",50);await settle();closeDemo()
  expect(context.state).toBe("running")
@@ -385,7 +381,7 @@ it("closing an introduction does not dispose the live game's shared mixer",async
 it("ambience remains independently controllable with music off and mute stops it",async()=>{
  const {engine,context}=fixture()
  engine.configure({soundEnabled:true,musicEnabled:false,ambienceVolume:.3})
- engine.acquire("story-warm");await engine.unlock();await settle()
+ engine.acquire("map-garden");await engine.unlock();await settle()
  expect(context.voices.some(v=>v.loop)).toBe(true)
  engine.configure({soundEnabled:false,musicEnabled:false})
  expect(context.voices.filter(v=>v.loop).every(v=>v.stopped)).toBe(true)

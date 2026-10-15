@@ -331,15 +331,14 @@ export function AdventurePage() {
     : null
   const teamSchools = save.formation.map(uid=>CARD_MAP[save.roster.find(h=>h.uid===uid)!.cardId].school)
   const sharedSchool = teamSchools.find(s=>teamSchools.filter(t=>t===s).length>=3)
-  const art =
-    ELEMENTAL_BOARDS[
-      activeStage?.map.school ??
-        (run?.dungeon?.kind === "skills"
-          ? "sugar"
-          : run?.dungeon?.kind === "forge"
-            ? "ember"
-            : "hearth")
-    ]
+  const artSchool =
+    activeStage?.map.school ??
+      (run?.dungeon?.kind === "skills"
+        ? "sugar"
+        : run?.dungeon?.kind === "forge"
+          ? "ember"
+          : "hearth")
+  const art = activeStage?.map.battleArt ?? ELEMENTAL_BOARDS[artSchool]
   const quiet =
     prefs.reducedMotion ||
     prefs.graphicsQuality === "low" ||
@@ -362,8 +361,12 @@ export function AdventurePage() {
     return () => clearTimeout(handle)
   }, [transition, quiet])
   useEffect(() => {
-    if (!b || b.result) {
+    if (!b) {
       setBattlePresentation("fight")
+      return
+    }
+    if (b.result) {
+      setBattlePresentation(b.result === "win" ? "win" : "fail")
       return
     }
     const sequence = battlePresentationSequence(b.wave, quiet)
@@ -384,9 +387,9 @@ export function AdventurePage() {
   useGameMusic(
     run
       ? b?.actors.some((a) => a.boss && a.hp > 0)
-        ? "auto-boss"
-        : "auto-battle"
-      : map.music,
+        ? "boss"
+        : map.music
+      : tab === "village" ? "mode-adventure" : map.music,
     8,
   )
   const act = useCallback(
@@ -435,8 +438,13 @@ export function AdventurePage() {
     dispatch,
   ])
   useEffect(() => {
-    if (b?.result && !b.settled) dispatch({ type: "settle" })
-  }, [b?.result, b?.settled, dispatch])
+    if (!b?.result || b.settled) return
+    const handle = window.setTimeout(
+      () => dispatch({ type: "settle" }),
+      quiet ? 420 : 1_250,
+    )
+    return () => clearTimeout(handle)
+  }, [b?.id, b?.result, b?.settled, quiet, dispatch])
   useEffect(() => {
     if (!b) return
     if (sound.current.battle !== b.id)
@@ -524,6 +532,7 @@ export function AdventurePage() {
             reduced={quiet}
             paused={hidden || !!story || confirmExit}
             presentation={battlePresentation}
+            school={artSchool}
             onAction={act}
           />
           <footer className="rpg-run-footer">
@@ -534,6 +543,7 @@ export function AdventurePage() {
             </span>
             <button
               type="button"
+              disabled={!!b.result && !b.settled}
               onClick={() => (b.result ? closeRun() : setConfirmExit(true))}
             >
               {b.result ? "Về bản đồ" : "Rút lui"}
@@ -1033,7 +1043,7 @@ export function AdventurePage() {
                   </p>
                 </article>
                 <article><h2>Liên hương & phản ứng</h2><p>{REACTION_HELP}</p></article>
-                <article><h2>Chuẩn bị chiến thuật</h2><p>Chạm ⌖ trên địch để ưu tiên đòn tập trung. Ba hệ khác nhau thêm 10 năng lượng đầu trận; ba Vị Linh cùng hệ thêm 12 giáp cho nhóm đó. Cấp 10 chọn hướng tuyệt kỹ Phá sương hoặc Dưỡng linh, đổi miễn phí ngoài chuyến đi.</p></article>
+                <article><h2>Chuẩn bị chiến thuật</h2><p>Vị Linh tự đánh kẻ địch gần nhất theo khoảng cách đội hình. Ba hệ khác nhau thêm 10 năng lượng đầu trận; ba Vị Linh cùng hệ thêm 12 giáp cho nhóm đó. Cấp 10 chọn hướng tuyệt kỹ Phá sương hoặc Dưỡng linh, đổi miễn phí ngoài chuyến đi.</p></article>
               </div>
               <p>
                 {save.legacy.imported

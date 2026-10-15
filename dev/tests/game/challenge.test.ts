@@ -102,7 +102,8 @@ describe("recognizable shared models and mirrored fitting", () => {
   it("assigns a unique real atlas row to every Auto chess unit and shares it with its TCG card", () => {
     const keys=AUTO_UNITS.map(u=>{const m=unitCharacter(u.id); return `${m.sheet}:${m.row}`})
     expect(new Set(keys).size).toBe(AUTO_UNITS.length)
-    expect(Object.keys(DISTINCT_MODELS)).toHaveLength(28)
+    expect(Object.keys(DISTINCT_MODELS)).toHaveLength(31)
+    expect(Object.keys(DISTINCT_MODELS).filter(id => id.startsWith("village-"))).toHaveLength(3)
     for (const u of AUTO_UNITS) if(CARD_MAP[u.id]) expect(tcgCharacter(CARD_MAP[u.id])).toEqual(unitCharacter(u.id))
     expect(tcgCharacter(CARD_MAP["caravan-herbalist"])?.row).not.toBe(tcgCharacter(CARD_MAP["caravan-gardener"])?.row)
   })
