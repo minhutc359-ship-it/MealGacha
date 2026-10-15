@@ -180,13 +180,14 @@ export function syncRoster(save: RpgSave, cards: Record<string, number>) {
       have.add(id)
     }
 }
-export function stageUnlocked(save: RpgSave, id: string) {
+export function stageUnlocked(save: RpgSave, id: string, difficulty: "normal" | "hard" | "extreme" = "normal") {
   const stage = rpgStage(id)
   if (!stage) return false
-  if (stage.index > 0) return !!save.stars[`${stage.map.id}-${stage.index}`]
-  return (
-    stage.mapIndex === 0 || !!save.stars[`${RPG_MAPS[stage.mapIndex - 1].id}-6`]
-  )
+  if (stage.index > 0) {
+    const previous = `${stage.map.id}-${stage.index}`
+    return difficulty === "normal" ? !!save.stars[previous] : !!save.modeStars?.[`${difficulty}:${previous}`]
+  }
+  return stage.mapIndex === 0 || !!save.stars[`${RPG_MAPS[stage.mapIndex - 1].id}-6`]
 }
 export const dungeonTierCap = (save: RpgSave) =>
   Math.min(3, 1 + RPG_MAPS.filter((map) => save.stars[`${map.id}-6`]).length)
@@ -918,7 +919,7 @@ export function reduceRpg(
     const stage = rpgStage(action.stageId)
     const difficulty = action.difficulty ?? "normal"
     if (!["normal", "hard", "extreme"].includes(difficulty)) return error("Độ khó không hợp lệ.")
-    if (!stage || !stageUnlocked(save, action.stageId))
+    if (!stage || !stageUnlocked(save, action.stageId, difficulty))
       return error("Hoàn thành màn trước để mở đường.")
     save.serial++
     const waves = encounterWaves(
