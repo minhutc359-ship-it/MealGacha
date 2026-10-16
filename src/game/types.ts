@@ -22,7 +22,7 @@ export type School = "ember" | "tide" | "grove" | "hearth" | "sugar"
 export type CardRarity = "common" | "rare" | "epic" | "legendary"
 export type Keyword = "guard" | "rush" | "shield" | "drain"
 export type Effect = "damage" | "heal" | "draw" | "buff" | "ward" | "sweep"
-export type Ability = "ambush" | "spellfire" | "scout" | "snare" | "mender" | "bloom" | "host" | "pantry" | "farewell" | "weaver" | "welcome"
+export type Ability = "breach" | "duelist" | "execute" | "triage" | "relay" | "testament" | "thawer" | "reserve" | "conductor" | "siphon" | "ambush" | "spellfire" | "scout" | "snare" | "mender" | "bloom" | "host" | "pantry" | "farewell" | "weaver" | "welcome"
   | "wok" | "pierce" | "desperation" | "insight" | "wash" | "revive" | "mend" | "feast" | "root" | "rebloom" | "sharp" | "diverse" | "bulwark" | "offering" | "veil" | "dream" | "starlight" | "moonward" | "tea-mend" | "steep-unit" | "steep-heal" | "unsteep" | "thaw" | "season-host" | "disarm" | "reveal-trap"
 
 export interface CardChoice {

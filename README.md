@@ -1,3 +1,7 @@
+# Soul of Meal · Auto chess 2.5D và bảo vệ bản phát hành
+
+Bàn đấu phối cảnh, chuyển động đồng bộ cho đủ 44 quân và 24 quái/boss, pose theo nhịp trúng đòn, giải phóng atlas qua vòng dài. Chính sách ngày 16/10/2026 và kiểm tra chống đưa source/map/archive/khóa bí mật vào bản web. [Thay đổi và giới hạn kiểm chứng](dev/docs/web-v584/UPDATE.md) · [Bảo vệ mã nguồn và các việc còn cần chủ sở hữu xử lý](rights/SOURCE_PROTECTION.md). Bản 2.5D, chưa chuyển sang model 3D; repo hiện công khai và hồ sơ quyền sử dụng còn 13 mục cần xác minh. Chỉ cập nhật PR #51, không tự merge.
+
 # Soul of Meal · Web 5.2 · Sân đấu & chiến thuật Vị Linh
 
 Sân không còn kéo giãn nhân vật / vòng phép trên điện thoại; đánh thường dùng FX TCG, tuyệt kỹ có động tác/pháp trận theo vai trò và hệ. Campaign 3–4 đợt, 4–6 địch/đợt; tinh anh và năm boss có kỹ năng riêng. Dungeon chốt mức khó theo cấp trung bình đội mang vào, tăng theo bậc/tầng; trận lưu cũ giữ luật cũ. [Thay đổi / chứng cứ](dev/docs/web-v520/UPDATE.md). Chỉ web, không tự merge.

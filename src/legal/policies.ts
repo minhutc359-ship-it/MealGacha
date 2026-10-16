@@ -1,8 +1,8 @@
 export type PolicyId = "terms" | "privacy" | "rights"
-export const POLICY_DATE = "13/10/2026"
-export const POLICY_VERSION = "2026-10-13"
-export const SUPPORT_URL =
-  "https://github.com/minhutc359-ship-it/MealGacha/issues"
+export const POLICY_DATE = "16/10/2026"
+export const POLICY_VERSION = "2026-10-16"
+export const SUPPORT_NOTICE =
+  "Kênh hỗ trợ riêng chưa được công bố. Thông tin liên hệ sẽ được cập nhật tại đây trước khi phát hành thương mại hoặc trên cửa hàng ứng dụng. Không gửi bản lưu, giấy tờ hoặc dữ liệu nhạy cảm lên nơi công khai."
 export interface Policy {
   title: string
   intro: string
@@ -17,12 +17,12 @@ export const POLICIES: Record<PolicyId, Policy> = {
   terms: {
     title: "Điều khoản sử dụng",
     intro:
-      "Áp dụng cho bản web và Android beta Soul of Meal 4.0, gồm TCG, Chợ Đêm Auto chess và Rương vị giác, khi chính sách này được công bố cùng trò chơi. Đọc điều khoản và chính sách quyền riêng tư trước khi sử dụng. Đồng ý điều khoản không thay thế sự đồng ý riêng cho vị trí hoặc xử lý dữ liệu mới; quyền bắt buộc theo pháp luật luôn được giữ.",
+      "Áp dụng cho bản web Soul of Meal 5.8, gồm TCG, Chợ Đêm Auto chess, Phiêu lưu Vị Linh và Rương vị giác; các quy định về Android beta chỉ áp dụng khi bạn dùng bản beta đó, khi chính sách này được công bố cùng trò chơi. Đọc điều khoản và chính sách quyền riêng tư trước khi sử dụng. Đồng ý điều khoản không thay thế sự đồng ý riêng cho vị trí hoặc xử lý dữ liệu mới; quyền bắt buộc theo pháp luật luôn được giữ.",
     sections: [
       {
         title: "1. Sản phẩm và liên hệ",
         paragraphs: [
-          "Soul of Meal là sản phẩm của dự án tại https://github.com/minhutc359-ship-it/MealGacha. Nhóm duy trì tiếp nhận hỗ trợ qua https://github.com/minhutc359-ship-it/MealGacha/issues. Tên tài khoản GitHub không xác nhận tên pháp lý của một cá nhân hoặc doanh nghiệp. Tên pháp lý, địa chỉ và kênh liên hệ riêng của chủ thể phát hành cần được xác nhận trước bản thương mại/cửa hàng.",
+          "Soul of Meal là trò chơi độc lập về ẩm thực và ký ức Việt Nam. Tên pháp lý, địa chỉ và kênh liên hệ riêng của chủ thể phát hành sẽ được bổ sung trước khi phát hành thương mại hoặc trên cửa hàng ứng dụng. Bản chơi thử hiện chưa công bố kênh tiếp nhận yêu cầu riêng; xem trạng thái liên hệ ở cuối trang.",
           "Bản web hiện tại chơi miễn phí, không có tài khoản máy chủ, chat công khai, quảng cáo hoặc thanh toán trong app. Bản Android beta miễn phí dùng cùng luật chơi; bản trả phí và phát hành cửa hàng cần thông tin/điều kiện riêng được công bố trước.",
         ],
       },
@@ -36,6 +36,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
         title: "3. Quyền chơi và nội dung",
         paragraphs: [
           "Soul of Meal cấp cho bạn quyền cá nhân, không độc quyền để chơi phiên bản được cung cấp hợp pháp. Trừ khi có giấy phép riêng, quyền chơi không bao gồm quyền sao chép để bán, phát hành lại, phân phối mã nguồn, nhạc hoặc hình ảnh của trò chơi.",
+          "Quyền chơi không cấp phép trích xuất, bán lại hoặc phát hành lại mã nguồn, bộ hình, mô hình, hoạt ảnh, âm thanh hay nội dung riêng của dự án. Không được loại bỏ thông báo quyền sở hữu hoặc dùng nội dung đó để giả mạo sản phẩm chính thức. Các ngoại lệ bắt buộc theo pháp luật và quyền theo giấy phép bên thứ ba vẫn được giữ; điều khoản không cấm việc kiểm tra bảo mật hợp pháp hoặc báo lỗi có trách nhiệm.",
           "Trò chơi lấy cảm hứng từ ẩm thực, đời sống và văn hóa Việt Nam. Nhân vật, Vị Linh, hội thoại và các sự kiện kỳ ảo là hư cấu; không đại diện cho một cá nhân, doanh nghiệp hay tín ngưỡng cụ thể.",
         ],
       },
@@ -76,7 +77,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
         title: "8. Hỗ trợ, thay đổi và quyền người tiêu dùng",
         paragraphs: [
           "Ứng dụng được cung cấp theo chức năng được mô tả; không cam kết hoạt động không gián đoạn hoặc dữ liệu bên ngoài luôn chính xác. Nhà phát hành có thể sửa lỗi, thay đổi nội dung và cân bằng, kèm ngày cập nhật điều khoản. Thay đổi quan trọng đối với dữ liệu hoặc thanh toán phải được thông báo trước khi áp dụng khi pháp luật yêu cầu.",
-          "Không điều khoản nào loại bỏ quyền bảo vệ dữ liệu, bảo hành, hoàn tiền hoặc trách nhiệm bắt buộc theo pháp luật áp dụng. Yêu cầu hỗ trợ hoặc khiếu nại được tiếp nhận qua đường dẫn liên hệ ở cuối trang. Việc chuyển nhượng hoặc bán ứng dụng cần một thỏa thuận riêng và không làm mất các quyền này.",
+          "Không điều khoản nào loại bỏ quyền bảo vệ dữ liệu, bảo hành, hoàn tiền hoặc trách nhiệm bắt buộc theo pháp luật áp dụng. Trạng thái và thông tin liên hệ hỗ trợ được nêu ở cuối trang; bản chơi thử hiện chưa công bố kênh tiếp nhận yêu cầu riêng. Việc chuyển nhượng hoặc bán ứng dụng cần một thỏa thuận riêng và không làm mất các quyền này.",
         ],
       },
       {
@@ -89,7 +90,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
       {
         title: "10. Khiếu nại, báo lỗi và trách nhiệm",
         paragraphs: [
-          "Khi báo lỗi hoặc khiếu nại, nêu tình huống, phiên bản và ảnh đã che thông tin riêng nếu cần. Issue GitHub là công khai: không đăng mã MGC1, ZIP có ảnh, giấy tờ tùy thân, khóa truy cập hoặc dữ liệu người khác. Nếu báo lỗ hổng hoặc cần gửi thông tin riêng, yêu cầu kênh tiếp nhận riêng trước; không công khai dữ liệu bị ảnh hưởng.",
+          "Khi báo lỗi hoặc khiếu nại, nêu tình huống, phiên bản và ảnh đã che thông tin riêng nếu cần. Không đăng mã MGC1, ZIP có ảnh, giấy tờ tùy thân, khóa truy cập hoặc dữ liệu người khác. Khi kênh tiếp nhận riêng được công bố, hãy dùng kênh đó để báo lỗ hổng hoặc trao đổi thông tin riêng; không công khai dữ liệu bị ảnh hưởng.",
           "Không điều khoản nào miễn trách nhiệm cho hành vi mà pháp luật không cho phép miễn. Trách nhiệm được xác định theo sự việc và pháp luật áp dụng, không theo một giới hạn mặc định bằng không. Bạn giữ quyền khiếu nại đến cơ quan bảo vệ người tiêu dùng hoặc tòa án có thẩm quyền; điều khoản không ép trọng tài riêng. Nếu một phần không có hiệu lực, phần còn lại áp dụng trong phạm vi hợp pháp.",
         ],
       },
@@ -98,7 +99,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
   privacy: {
     title: "Chính sách quyền riêng tư",
     intro:
-      "Chính sách này mô tả bản web Soul of Meal 5.0. Trò chơi không yêu cầu tài khoản máy chủ; tiến trình và ảnh tự nhập lưu trên thiết bị. Tìm quán, hosting, phông chữ và các liên kết ngoài có thể gửi dữ liệu ra khỏi thiết bị như mô tả dưới đây.",
+      "Chính sách này mô tả bản web Soul of Meal 5.8. Trò chơi không yêu cầu tài khoản máy chủ; tiến trình và ảnh tự nhập lưu trên thiết bị. Tìm quán, hosting, phông chữ và các liên kết ngoài có thể gửi dữ liệu ra khỏi thiết bị như mô tả dưới đây.",
     sections: [
       {
         title: "Phòng PvP giao hữu trên web 4.9",
@@ -111,7 +112,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
       {
         title: "1. Phạm vi và người tiếp nhận yêu cầu",
         paragraphs: [
-          "Ứng dụng thuộc dự án Soul of Meal tại https://github.com/minhutc359-ship-it/MealGacha. Nhóm duy trì tiếp nhận yêu cầu qua https://github.com/minhutc359-ship-it/MealGacha/issues. Đây là kênh công khai: chỉ nêu loại yêu cầu, không đăng dữ liệu nhạy cảm. Tên pháp lý, địa chỉ và kênh riêng của chủ thể phát hành cần được xác nhận trước bản thương mại/cửa hàng; không suy ra chúng từ tên tài khoản GitHub.",
+          "Chính sách áp dụng cho trò chơi Soul of Meal. Tên pháp lý, địa chỉ và kênh liên hệ riêng của chủ thể phát hành sẽ được bổ sung trước khi phát hành thương mại hoặc trên cửa hàng ứng dụng. Bản chơi thử hiện chưa công bố kênh tiếp nhận yêu cầu riêng; xem trạng thái liên hệ ở cuối trang. Không gửi dữ liệu nhạy cảm lên nơi công khai.",
           "Chính sách áp dụng cho chức năng hiện có, không mô tả một app Android đã phát hành, quảng cáo, cloud save hoặc thanh toán chưa tồn tại. Nếu bổ sung chúng phải kiểm kê dịch vụ và cập nhật thông báo trước khi xử lý dữ liệu mới.",
         ],
       },
@@ -135,7 +136,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
         title: "4. Lưu lượng web và liên kết",
         paragraphs: [
           "Vercel phân phối trang, hình và nhạc nên có thể xử lý địa chỉ IP, thông tin yêu cầu và nhật ký kỹ thuật theo chính sách của dịch vụ lưu trữ. Kiểu chữ Be Vietnam Pro và Exo 2 được đóng gói cùng game theo OFL; việc hiển thị chữ không gửi yêu cầu đến Google Fonts. Bản hiện tại không cài SDK quảng cáo hoặc công cụ phân tích hành vi của nhà phát hành.",
-          "Nếu bạn cấu hình danh mục CSV hoặc URL bên ngoài, trình duyệt kết nối đến địa chỉ đó và dịch vụ tương ứng có thể nhận thông tin yêu cầu. Khi bạn gửi phản hồi công khai qua GitHub, thông tin bạn đăng chịu chính sách của GitHub và có thể được người khác xem.",
+          "Nếu bạn cấu hình danh mục CSV hoặc URL bên ngoài, trình duyệt kết nối đến địa chỉ đó và dịch vụ tương ứng có thể nhận thông tin yêu cầu. Khi bạn chủ động chia sẻ phản hồi qua một dịch vụ bên ngoài, nội dung bạn đăng chịu chính sách và quyền truy cập của dịch vụ đó.",
           "Source hiện tại không cài Vercel Analytics/Speed Insights hoặc cookie quảng cáo của ứng dụng. localStorage/IndexedDB phục vụ lưu trò chơi. Dịch vụ ngoài/hosting vẫn có cách xử lý log/cookie riêng; không đồng nghĩa mọi lưu lượng web đều không có dữ liệu cá nhân. Các dịch vụ có thể vận hành hạ tầng ngoài Việt Nam; không cam kết dữ liệu mạng chỉ được xử lý trong một quốc gia.",
         ],
       },
@@ -144,7 +145,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
         paragraphs: [
           "Bạn có thể xuất dữ liệu trước khi xóa. Trong Cài đặt → Dung lượng & quyền riêng tư, “Xóa tất cả ảnh đã lưu” xóa kho ảnh, giữ ghi chú và tiến trình. Trong Cài đặt → Vùng nguy hiểm, “Xóa toàn bộ dữ liệu” yêu cầu xác nhận, xóa hồ sơ/tiến trình cả ba chế độ, cấu hình cục bộ và ảnh; sau tải lại có thể tạo hồ sơ rỗng. Nếu thao tác trong app lỗi hoặc muốn xóa cả kho trình duyệt, dùng mục dữ liệu website của trình duyệt cho đúng địa chỉ trang.",
           "Dữ liệu trên thiết bị tồn tại đến khi bị bạn xóa, trình duyệt thu hồi hoặc ứng dụng bị gỡ. Nhà phát hành không kiểm soát thời gian lưu nhật ký của các dịch vụ bên ngoài. Bạn có thể thu hồi quyền vị trí trong cài đặt trình duyệt; việc này không ngăn các chế độ chiến đấu hoạt động.",
-          "Xóa dữ liệu trang không xóa file ở Downloads, bản sao đã chia sẻ, clipboard hoặc OS backup; bạn cần xóa chúng tại nơi đang lưu. Nhà phát hành không đặt một thời hạn cụ thể cho log của Vercel, Photon, Overpass, Google, OSM hoặc GitHub khi chưa được xác nhận với họ. Log/issue chịu thời gian lưu và cơ chế xóa của nhà cung cấp; bản sao có thể còn trong lịch sử/cache nền tảng.",
+          "Xóa dữ liệu trang không xóa file ở Downloads, bản sao đã chia sẻ, clipboard hoặc OS backup; bạn cần xóa chúng tại nơi đang lưu. Nhà phát hành không đặt một thời hạn cụ thể cho log của Vercel, Photon, Overpass, Google, OSM khi chưa được xác nhận với họ. Nhật ký và phản hồi chịu thời gian lưu và cơ chế xóa của nhà cung cấp; bản sao có thể còn trong lịch sử/cache nền tảng.",
         ],
       },
       {
@@ -165,13 +166,13 @@ export const POLICIES: Record<PolicyId, Policy> = {
         title: "8. Quyền dữ liệu và yêu cầu hỗ trợ",
         paragraphs: [
           "Theo pháp luật áp dụng, bạn có thể có quyền được thông tin, truy cập, sửa, nhận bản sao, xóa, rút sự đồng ý, hạn chế/phản đối xử lý và khiếu nại. Thực hiện phần cục bộ bằng sửa hồ sơ, xuất bản lưu, xóa ảnh/dữ liệu và thu hồi quyền trình duyệt. Không có tài khoản máy chủ để nhà phát hành tra cứu/xóa từ xa trên thiết bị của bạn.",
-          "Nếu cần hỗ trợ quyền dữ liệu, chỉ nêu loại yêu cầu qua kênh cuối trang rồi yêu cầu cách trao đổi riêng trước khi gửi dữ liệu cá nhân. Nhóm duy trì chỉ có thể xử lý dữ liệu mình thực sự nắm giữ, xác minh ở mức cần thiết và phản hồi theo thời hạn luật áp dụng; không yêu cầu đăng giấy tờ/bản lưu công khai. Dữ liệu do dịch vụ ngoài kiểm soát cần yêu cầu qua cơ chế của họ; bạn vẫn có quyền đến cơ quan có thẩm quyền.",
+          "Trạng thái liên hệ được nêu ở cuối trang. Khi kênh hỗ trợ riêng được công bố, chỉ nêu loại yêu cầu trước và xác nhận cách trao đổi riêng trước khi gửi dữ liệu cá nhân. Nhóm duy trì chỉ có thể xử lý dữ liệu mình thực sự nắm giữ, xác minh ở mức cần thiết và phản hồi theo thời hạn luật áp dụng; không yêu cầu đăng giấy tờ/bản lưu công khai. Dữ liệu do dịch vụ ngoài kiểm soát cần yêu cầu qua cơ chế của họ; bạn vẫn có quyền đến cơ quan có thẩm quyền.",
         ],
       },
       {
         title: "9. Chính sách của nhà cung cấp",
         paragraphs: [
-          "Vercel: https://vercel.com/legal/privacy-policy. Google Maps: https://policies.google.com/privacy. OpenStreetMap: https://osmfoundation.org/wiki/Privacy_Policy. GitHub: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement. Photon và Overpass truy cập tại các địa chỉ nêu trong mục tìm quán. Nhà phát hành chưa xác nhận một thời hạn lưu log thống nhất cho các dịch vụ này.",
+          "Vercel: https://vercel.com/legal/privacy-policy. Google Maps: https://policies.google.com/privacy. OpenStreetMap: https://osmfoundation.org/wiki/Privacy_Policy. Photon và Overpass truy cập tại các địa chỉ nêu trong mục tìm quán. Nhà phát hành chưa xác nhận một thời hạn lưu log thống nhất cho các dịch vụ này.",
         ],
       },
       {
@@ -210,15 +211,23 @@ export const POLICIES: Record<PolicyId, Policy> = {
       {
         title: "4. Phát hành hoặc mua bán ứng dụng",
         paragraphs: [
+          "Bản web phải gửi mã JavaScript và tài nguyên cần thiết đến thiết bị để chạy; chúng vẫn có thể được xem hoặc phân tích. Nén mã, bỏ source map và điều khoản không bảo đảm giữ bí mật mã phía trình duyệt. Không đưa khóa bí mật, tài khoản hạ tầng hoặc thuật toán cần giữ kín vào bản web; dịch vụ máy chủ có kiểm soát truy cập mới phù hợp cho phần cần bảo mật. Repo hoặc bản sao từng công khai có thể còn tồn tại trong lịch sử, fork hoặc cache ngay cả khi quyền truy cập sau này thay đổi.",
           "Quyền chơi không phải quyền mua mã nguồn hoặc quyền kinh doanh lại ứng dụng. Bên bán cần chuyển giao các quyền mà mình thực sự sở hữu bằng thỏa thuận bằng văn bản, cung cấp hồ sơ tài nguyên và giữ nghĩa vụ giấy phép bên thứ ba. Tên miền, tài khoản cửa hàng, dịch vụ lưu trữ và thương hiệu cần được xử lý riêng trong giao dịch.",
           "Hồ sơ tài nguyên trong dự án ghi nguồn, dấu vân tay tệp và bằng chứng hiện có để hỗ trợ rà soát. Các tệp cũ đã xác định thiếu bằng chứng giấy phép được chuyển ra ngoài tài nguyên phát hành. Chủ sở hữu vẫn cần hoàn thiện bằng chứng còn thiếu và rà soát quyền của những tài nguyên còn lại trước khi bán hoặc phát hành thương mại. Hồ sơ này không thay thế việc xác minh quyền của tác giả, nhà cung cấp hoặc tư vấn pháp lý trước một giao dịch thương mại.",
         ],
       },
       {
+        title: "Thiết kế độc lập và tài nguyên có nguồn gốc",
+        paragraphs: [
+          "Soul of Meal là dự án độc lập. Việc tham khảo độ mượt hoặc cách đọc trận của thể loại auto chess không cấp quyền sử dụng tên thương mại, logo, nhân vật, bản đồ, biểu tượng, âm nhạc, mô hình hay hoạt ảnh của trò chơi khác. Không tuyên bố liên kết, được tài trợ hoặc được cấp phép bởi Riot Games hay bất kỳ hãng game nào khi chưa có thỏa thuận.",
+          "Chỉ đưa vào bản phát hành tài nguyên do dự án có quyền sử dụng hoặc được cấp phép phù hợp, đồng thời giữ ghi công và điều kiện bắt buộc. Hình do AI hỗ trợ cần được rà soát đầu vào, mức tương đồng và điều khoản nhà cung cấp; ghi nguồn hoặc thêm câu miễn trừ không tự hợp pháp hóa tài nguyên. Quyền và bằng chứng chưa đầy đủ cần được hoàn thiện hoặc tài nguyên phải được thay thế trước phát hành thương mại.",
+        ],
+      },
+      {
         title: "5. Báo cáo quyền sở hữu",
         paragraphs: [
-          "Nếu bạn cho rằng nội dung xâm phạm quyền của mình, hãy gửi đường dẫn hoặc tên tài nguyên, mô tả quyền liên quan, bằng chứng và cách liên hệ qua kênh hỗ trợ. Tránh đăng thông tin cá nhân nhạy cảm ở phản hồi công khai. Nhà phát hành sẽ xem xét, yêu cầu thông tin cần thiết và sửa hoặc gỡ nội dung khi phù hợp.",
-          "Nếu bằng chứng có dữ liệu riêng, chỉ yêu cầu kênh trao đổi riêng trước; không đăng giấy tờ, địa chỉ cá nhân hoặc file mật lên GitHub. Báo cáo không tự chứng minh quyền sở hữu và không hạn chế quyền yêu cầu cơ quan có thẩm quyền xử lý.",
+          "Nếu bạn cho rằng nội dung xâm phạm quyền của mình, hãy chuẩn bị đường dẫn hoặc tên tài nguyên, mô tả quyền liên quan, bằng chứng và cách liên hệ để gửi khi kênh hỗ trợ riêng được công bố ở cuối trang. Tránh đăng thông tin cá nhân nhạy cảm ở phản hồi công khai. Nhà phát hành sẽ xem xét, yêu cầu thông tin cần thiết và sửa hoặc gỡ nội dung khi phù hợp.",
+          "Nếu bằng chứng có dữ liệu riêng, chỉ yêu cầu kênh trao đổi riêng trước; không đăng giấy tờ, địa chỉ cá nhân hoặc file mật lên nơi công khai. Báo cáo không tự chứng minh quyền sở hữu và không hạn chế quyền yêu cầu cơ quan có thẩm quyền xử lý.",
         ],
       },
     ],

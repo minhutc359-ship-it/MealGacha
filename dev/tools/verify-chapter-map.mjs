@@ -38,7 +38,7 @@ try {
   atlas=await map();await atlas.getByRole('button',{name:'Miền ký ức · 01–06'}).click();
   await atlas.getByRole('button',{name:/Đến chương 1:/}).click();
   atlas=await map();await atlas.getByRole('button',{name:'Chợ Sống · 07–12'}).click();
-  const size=await atlas.locator('svg.tcg-world-map-art').boundingBox();const mapSize=await atlas.locator('.tcg-world-map').boundingBox();assert(size.width>=mapSize.width-12);assert(size.height>=mapSize.height-12);
+  const size=await atlas.locator('img.tcg-world-map-art').boundingBox();const mapSize=await atlas.locator('.tcg-world-map').boundingBox();assert(size.width>=mapSize.width-12);assert(size.height>=mapSize.height-12);
   const geometry=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));assert(geometry.scroll<=width+1);
   const persisted=await page.evaluate(()=>JSON.parse(localStorage.getItem('foodchest.tcg.v1')));
   assert.deepEqual(persisted.clearedStages,game.clearedStages);assert.equal(persisted.coins,game.coins);assert.equal(persisted.storyEnding,game.storyEnding);

@@ -1,0 +1,37 @@
+import type { Actor, AutoCombat } from "./types"
+import { actorFrame } from "./presentation"
+import { livingActorFrame } from "../livingClips"
+import { combatSignature } from "../combatArt"
+
+/** Windup/contact/recovery follow the actual action.hit, for every atlas family.
+ * No random values, state writes or changes to combat timing. */
+export function actorPose(actor: Actor, sheet: string, time: number, combat: AutoCombat | null, quiet: boolean, victory: boolean) {
+  if (sheet.startsWith("living-")) return livingActorFrame(actor, time, combat, quiet, victory)
+  const fresh = sheet !== "base", a = actor.action
+  if (sheet === "battleHd") {
+    if (actor.hp <= 0) return 0
+    if (quiet || !a || a.kind === "move") return 0
+    return time < a.hit ? 1 : time < a.hit + Math.max(1, (a.end - a.hit) * .7) ? a.kind === "cast" ? 3 : 2 : 0
+  }
+  if (quiet) return actor.hp <= 0 ? fresh ? 6 : 12 : 0
+  if (victory && actor.hp > 0) return (fresh ? [0,1,2,1] : [13,1,13,3])[Math.floor(time / 5) % 4]
+  if (actor.hp <= 0 || !a || a.kind === "move") return actorFrame(actor,time,fresh,combat)
+  if (fresh) return time < a.hit ? 3 : 4
+  const recovery = time >= a.hit + (a.end - a.hit) * .55
+  return (a.kind === "cast" ? 8 : 5) + (time < a.hit ? 0 : recovery ? 2 : 1)
+}
+
+/** Contact-timed body mechanics keep even short atlases alive without dissolves. */
+export function actorBody(actor: Actor, time: number, quiet: boolean) {
+  if (quiet || actor.hp <= 0) return { lift: 0, lean: 0, stretch: 0 }
+  const signature = combatSignature(actor.id), a = actor.action
+  if (!a) return {lift: Math.sin(time * .26 + signature.angle * 9) * .006, lean: 0, stretch: Math.sin(time * .26) * .004}
+  const progress = Math.max(0, Math.min(1, (time - a.start) / Math.max(1, a.end - a.start)))
+  if (a.kind === "move") {
+    const stride = Math.sin(progress * Math.PI * 4)
+    return {lift: -Math.abs(stride) * .025, lean: stride * .025, stretch: Math.abs(stride) * .012}
+  }
+  const contact = Math.max(.01, (a.hit - a.start) / Math.max(1,a.end - a.start))
+  const impulse = progress < contact ? -Math.sin(progress / contact * Math.PI) * .28 : Math.exp(-(progress - contact) * 9)
+  return {lift: -(a.kind === "cast" ? .035 : .012) * Math.abs(impulse), lean: impulse * (a.kind === "cast" ? -.035 : .06), stretch: Math.abs(impulse) * .025}
+}

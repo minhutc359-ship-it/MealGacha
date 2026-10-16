@@ -1,5 +1,6 @@
 import { CHAPTERS, isStageUnlocked } from "../../game/story"
 import { SCHOOLS } from "../../game/catalog"
+import "./campaignMap.css"
 
 const MEMORY_STOPS = [
   { left: "19%", top: "22%" },
@@ -83,7 +84,7 @@ export function CampaignMap({
           src={
             region === 0
               ? "/assets/tcg/map/meal-world-map.webp"
-              : "/assets/tcg/map/living-chapters-7-12-v560.svg"
+              : "/assets/tcg/map/living-world-v582.webp"
           }
           alt=""
           width="1024"
@@ -148,13 +149,7 @@ export function CampaignMap({
               }}
             >
               <span className="tcg-map-pin">
-                {!chapter
-                  ? "…"
-                  : complete
-                    ? "✓"
-                    : unlocked
-                      ? SCHOOLS[chapter.school].symbol
-                      : "◇"}
+                {String(index + 1).padStart(2, "0")}
               </span>
               <span className="tcg-map-stop-label">
                 <small>CHƯƠNG {String(index + 1).padStart(2, "0")}</small>
@@ -162,6 +157,21 @@ export function CampaignMap({
               </span>
             </button>
           )
+        })}
+      </div>
+      <div className="tcg-map-chapter-list" aria-label="Các chương trong miền">
+        {stops.map((_, offset) => {
+          const index = start + offset, chapter = CHAPTERS[index]
+          const unlocked = !!chapter && isStageUnlocked(chapter.stages[0].id, cleared, ending)
+          const count = chapter?.stages.filter(stage => cleared.includes(stage.id)).length ?? 0
+          return <button type="button" key={index} disabled={!unlocked}
+            aria-current={selected === index ? "location" : undefined}
+            className={chapter ? "" : "is-coming-soon"}
+            onClick={() => onChapter(index)}>
+            <b>{String(index + 1).padStart(2, "0")}</b>
+            <span><strong>{chapter?.title ?? "Sắp ra mắt"}</strong>
+              <small>{chapter ? `${SCHOOLS[chapter.school].name} · ${unlocked ? `${count}/${chapter.stages.length} chặng` : "Chưa mở"}` : "Vùng đất chưa khám phá"}</small></span>
+          </button>
         })}
       </div>
     </>

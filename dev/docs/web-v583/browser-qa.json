@@ -1,0 +1,275 @@
+{
+  "checks": [
+    {
+      "area": "village-rpg",
+      "viewport": 320,
+      "ratio": 1.500077101002313,
+      "fill": 0.9901310717039321,
+      "width": 304,
+      "scroll": 320,
+      "npcs": 4,
+      "companions": 2,
+      "idleInteraction": true,
+      "retargetWithoutSnap": true,
+      "conversationBeforeEntry": true
+    },
+    {
+      "area": "chapter-map",
+      "viewport": [
+        320,
+        568
+      ],
+      "uncropped": true,
+      "nonOverlappingLabels": 6,
+      "comingSoonLocked": 3,
+      "travelToChapter8": true
+    },
+    {
+      "area": "bubble-and-live-ultimate",
+      "viewport": [
+        320,
+        568
+      ],
+      "formed": 5,
+      "dissolved": 5,
+      "videoOffHasArt": true
+    },
+    {
+      "area": "village-rpg",
+      "viewport": 390,
+      "ratio": 1.5000313342106912,
+      "fill": 0.9919784420630444,
+      "width": 374,
+      "scroll": 390,
+      "npcs": 4,
+      "companions": 2,
+      "idleInteraction": true,
+      "retargetWithoutSnap": true,
+      "conversationBeforeEntry": true
+    },
+    {
+      "area": "chapter-map",
+      "viewport": [
+        390,
+        844
+      ],
+      "uncropped": true,
+      "nonOverlappingLabels": 6,
+      "comingSoonLocked": 3,
+      "travelToChapter8": true
+    },
+    {
+      "area": "bubble-and-live-ultimate",
+      "viewport": [
+        390,
+        844
+      ],
+      "formed": 5,
+      "dissolved": 5,
+      "videoOffHasArt": true
+    },
+    {
+      "area": "village-rpg",
+      "viewport": 844,
+      "ratio": 1.5,
+      "fill": 0.9928571428571429,
+      "width": 420,
+      "scroll": 844,
+      "npcs": 4,
+      "companions": 2,
+      "idleInteraction": true,
+      "retargetWithoutSnap": true,
+      "conversationBeforeEntry": true
+    },
+    {
+      "area": "chapter-map",
+      "viewport": [
+        844,
+        390
+      ],
+      "uncropped": true,
+      "nonOverlappingLabels": 6,
+      "comingSoonLocked": 3,
+      "travelToChapter8": true
+    },
+    {
+      "area": "bubble-and-live-ultimate",
+      "viewport": [
+        844,
+        390
+      ],
+      "formed": 5,
+      "dissolved": 5,
+      "videoOffHasArt": true
+    },
+    {
+      "area": "village-rpg",
+      "viewport": 1440,
+      "ratio": 1.5,
+      "fill": 0.9970149253731343,
+      "width": 1005,
+      "scroll": 1440,
+      "npcs": 4,
+      "companions": 2,
+      "idleInteraction": true,
+      "retargetWithoutSnap": true,
+      "conversationBeforeEntry": true
+    },
+    {
+      "area": "chapter-map",
+      "viewport": [
+        1440,
+        900
+      ],
+      "uncropped": true,
+      "nonOverlappingLabels": 6,
+      "comingSoonLocked": 3,
+      "travelToChapter8": true
+    },
+    {
+      "area": "bubble-and-live-ultimate",
+      "viewport": [
+        1440,
+        900
+      ],
+      "formed": 5,
+      "dissolved": 5,
+      "videoOffHasArt": true
+    },
+    {
+      "area": "village-reduced-motion",
+      "fastArrival": true,
+      "noIdleLoops": true
+    },
+    {
+      "area": "autochess",
+      "hdUnits": 5,
+      "sharedAttackArt": true,
+      "unpausedCapture": true
+    },
+    {
+      "area": "hd-battle-poses",
+      "uniquePoses": 20,
+      "minSourceHeight": 280
+    },
+    {
+      "area": "spell-renderer",
+      "patterns": [
+        {
+          "pattern": "citadel",
+          "hash": 1894218635,
+          "pixels": 29971
+        },
+        {
+          "pattern": "meteor",
+          "hash": -85618486,
+          "pixels": 13061
+        },
+        {
+          "pattern": "nova",
+          "hash": 980229312,
+          "pixels": 30092
+        },
+        {
+          "pattern": "lotus",
+          "hash": -437958879,
+          "pixels": 23346
+        },
+        {
+          "pattern": "moon",
+          "hash": -542342845,
+          "pixels": 18544
+        },
+        {
+          "pattern": "mirror",
+          "hash": -1426109988,
+          "pixels": 21361
+        },
+        {
+          "pattern": "bastion",
+          "hash": -133217929,
+          "pixels": 26289
+        },
+        {
+          "pattern": "blade",
+          "hash": 1723972954,
+          "pixels": 16278
+        },
+        {
+          "pattern": "frost",
+          "hash": -1010998745,
+          "pixels": 22608
+        },
+        {
+          "pattern": "reunion",
+          "hash": 2032290491,
+          "pixels": 19643
+        },
+        {
+          "pattern": "chains",
+          "hash": -1013456504,
+          "pixels": 15797
+        },
+        {
+          "pattern": "drain",
+          "hash": 2065204236,
+          "pixels": 18484
+        },
+        {
+          "pattern": "counter",
+          "hash": -53393411,
+          "pixels": 21064
+        },
+        {
+          "pattern": "phoenix",
+          "hash": 1124802044,
+          "pixels": 19358
+        },
+        {
+          "pattern": "judgement",
+          "hash": -634562216,
+          "pixels": 16294
+        },
+        {
+          "pattern": "sanctuary",
+          "hash": 239164265,
+          "pixels": 25118
+        },
+        {
+          "pattern": "tide",
+          "hash": 783369439,
+          "pixels": 19648
+        },
+        {
+          "pattern": "renewal",
+          "hash": 329028933,
+          "pixels": 18405
+        },
+        {
+          "pattern": "balance",
+          "hash": 915462646,
+          "pixels": 21665
+        },
+        {
+          "pattern": "shadow",
+          "hash": -839374036,
+          "pixels": 18288
+        }
+      ]
+    },
+    {
+      "area": "cinematic",
+      "ownPortraitAndSpell": true,
+      "pause": true,
+      "skip": true
+    },
+    {
+      "area": "story",
+      "opening": true,
+      "skipStartsStage": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "scope": "Local Chromium, simulated mobile viewports"
+}

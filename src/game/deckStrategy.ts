@@ -2,13 +2,14 @@ import { deckSizeForRules } from "./tcgRules"
 import { CARDS, CARD_MAP, DECK_SIZE } from "./catalog"
 import { recipeCoverage, recipeFinishers, RECIPES } from "./recipes"
 import type { GameCard, RecipeId } from "./types"
-export type DeckStyle = "balanced" | "rush" | "guard" | "sustain" | "cycle" | "rebirth" | "spellcraft" | "seasoning" | "steeping" | "traps"
+export type DeckStyle = "counterplay" | "balanced" | "rush" | "guard" | "sustain" | "cycle" | "rebirth" | "spellcraft" | "seasoning" | "steeping" | "traps"
 export const DECK_STYLES: {
   id: DeckStyle
   name: string
   text: string
   recipe: RecipeId
 }[] = [
+  {id:"counterplay",name:"Đọc bàn · đổi nhịp",text:"Phá chắn, trao đổi có lợi và tiếp sức bằng phép khác hệ. Giữ đối sách theo bàn địch.",recipe:"coast"},
   {id:"traps",name:"Bẫy Hương phản công",text:"14 đồng minh, 4 bẫy và phép đối sách. Một ô bẫy: đọc điều kiện trước khi úp.",recipe:"coast"},
   {
     id: "balanced",
@@ -66,6 +67,13 @@ export const DECK_STYLES: {
   },
 ]
 export function cardRole(card: GameCard): string {
+  if (["breach","siphon"].includes(card.ability??"")) return "Đối sách lá chắn"
+  if (["duelist","execute"].includes(card.ability??"")) return "Trao đổi trên bàn"
+  if (["relay","conductor"].includes(card.ability??"")) return "Phối hợp phép"
+  if (card.ability==="testament") return "Di sản đồng đội"
+  if (card.ability==="triage") return "Cứu đồng minh"
+  if (card.ability==="thawer") return "Giải khống chế"
+  if (card.ability==="reserve") return "Tiếp tế tay cạn"
   if(card.kind==="trap")return "Bẫy · phản ứng"
   if(["disarm","reveal-trap"].includes(card.ability??""))return "Đối sách bẫy"
   if (card.choices) return "Nêm vị · lựa chọn"
@@ -101,6 +109,7 @@ export function suggestDeck(
   const score = (c: GameCard) =>
     10 -
     c.cost +
+    (style === "counterplay" && ["breach","siphon","duelist","execute","relay","conductor","thawer"].includes(c.ability??"") ? 16 : 0) +
     (style === "traps" && c.kind === "trap" ? 20 : 0) +
     (style === "traps" && ["disarm","reveal-trap"].includes(c.ability??"") ? 16 : 0) +
     (recipe.foodIds.includes(c.id) ? 6 : 0) +
@@ -118,7 +127,7 @@ export function suggestDeck(
       : 0) +
     (style === "cycle" && c.effect === "draw" ? 8 : 0) +
     (style === "rebirth" &&
-    ["pantry", "farewell", "offering", "revive", "rebloom"].includes(
+    ["pantry", "farewell", "testament", "offering", "revive", "rebloom"].includes(
       c.ability ?? "",
     )
       ? 12
@@ -131,7 +140,7 @@ export function suggestDeck(
       ? 18
       : 0) +
     (style === "spellcraft" &&
-    (["spellfire", "weaver", "starlight", "veil"].includes(c.ability ?? "") ||
+    (["spellfire", "weaver", "relay", "conductor", "starlight", "veil"].includes(c.ability ?? "") ||
       (c.kind === "spell" && c.cost <= 2))
       ? 12
       : 0)
