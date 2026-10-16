@@ -2,6 +2,13 @@ import { useEffect, useRef, useState } from "react"
 import type { RpgBattle, RpgEvent } from "../../game/adventureRpg/types"
 import { subscribeCharacterClock } from "../../infrastructure/assets/characterSprites"
 
+type ImpactDelta = {
+  uid: string
+  hp: number
+  shield: number
+  due: number
+}
+
 export function rpgContactMs(events: RpgEvent[], event: RpgEvent) {
   const action = [...events]
     .reverse()
@@ -29,7 +36,7 @@ export function useRpgImpactFrame(
   const state = useRef({
     last: battle,
     paused,
-    pending: [] as { uid: string hp: number shield: number due: number }[],
+    pending: [] as ImpactDelta[],
     labels: new Map<number, number>(),
   })
   const s = state.current
