@@ -1,0 +1,149 @@
+{
+  "files": [
+    {
+      "file": "public/assets/characters/familiar594/banh-xeo-pixel.webp",
+      "bytes": 129844,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "eac8fadb292707a9b5d3cdca6de0de8667e0c5a3b234b530856a1fff88a94a8f"
+    },
+    {
+      "file": "public/assets/characters/familiar594/banh-xeo-portrait.webp",
+      "bytes": 80714,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "cafab49553e41321652f4f98f919bc1755ed8f6c4dd6014478d780061783100f"
+    },
+    {
+      "file": "public/assets/characters/familiar594/banh-xeo.webp",
+      "bytes": 554882,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "85ee5244fb7c6b29a6b65db74debe350c199b8483ac42591ba49cf82db8fc8bc"
+    },
+    {
+      "file": "public/assets/characters/familiar594/bun-cha-pixel.webp",
+      "bytes": 103134,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "8b02c26dc85da4296cac6cedb25da4ab17e7f6464570504ad84fe4692c682f75"
+    },
+    {
+      "file": "public/assets/characters/familiar594/bun-cha-portrait.webp",
+      "bytes": 83696,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "e1cff393fac64a2b7254e6e7b1c87d7d3b69040acaa97c8cee3fab5a64cb85e0"
+    },
+    {
+      "file": "public/assets/characters/familiar594/bun-cha.webp",
+      "bytes": 419992,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "9bd8f8b84d1e851981c735756f69cc183ac70525a4a9afb862a54e31b5766798"
+    },
+    {
+      "file": "public/assets/characters/familiar594/bun-rieu-pixel.webp",
+      "bytes": 109472,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "3dc439006b9b3fcc16e55c839ed7a2c8e6ca3501d0b09bb30e7eed3a11847a26"
+    },
+    {
+      "file": "public/assets/characters/familiar594/bun-rieu-portrait.webp",
+      "bytes": 85536,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "37f0d3d8eb0e1b59c15cfa1c3985be7a3215aede82867176ef6a4097bcf0b6a4"
+    },
+    {
+      "file": "public/assets/characters/familiar594/bun-rieu.webp",
+      "bytes": 430326,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "54c11d025f3191c8965bd565d4b987be2f9909af50c43daea8f40a8f4357f749"
+    },
+    {
+      "file": "public/assets/characters/familiar594/com-ga-pixel.webp",
+      "bytes": 131854,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "baab985c4d18414f34f7030206cdc347bf7ae7e934efb12f76cf341cf797d82a"
+    },
+    {
+      "file": "public/assets/characters/familiar594/com-ga-portrait.webp",
+      "bytes": 85016,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "b891ab57339fe218f01d1fa22056edbd2b78eb53dfdd78ffa16a26089d208afa"
+    },
+    {
+      "file": "public/assets/characters/familiar594/com-ga.webp",
+      "bytes": 525756,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "9e1b727bdc1dc52dc8dbc7a27504d7e533c40bb607202070110a26ce66b69cba"
+    },
+    {
+      "file": "public/assets/characters/familiar594/ultimate.webp",
+      "bytes": 328628,
+      "dimensions": [
+        1024,
+        768
+      ],
+      "frames": 12,
+      "uniqueFrames": 12,
+      "sha256": "10d18ffcf2430707d55df3f3390caafd2bbdc0c1c0dc56f584e0c9e4154f573a"
+    }
+  ],
+  "bytes": 3068850,
+  "frames": 272
+}

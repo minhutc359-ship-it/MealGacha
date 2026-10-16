@@ -19,11 +19,7 @@ export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
   "village-flame": ["villageParty", 1],
   "village-dragon": ["villageParty", 2],
   ferry: ["living-ferry", 0],
-  "bun-cha": ["living-bun-cha", 0],
-  "bun-rieu": ["living-bun-rieu", 0],
-  "banh-xeo": ["living-banh-xeo", 0],
 
-  "com-ga": ["living-com-ga", 0],
   "banh-chung": ["rosterD", 0],
   "banh-tet": ["rosterD", 1],
   "caravan-herbalist": ["rosterD", 2],

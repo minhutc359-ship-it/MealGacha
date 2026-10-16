@@ -1,5 +1,5 @@
 {
-  "version": "5.9.3",
+  "version": "5.9.4",
   "generatedOn": "2026-10-15",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -662,6 +662,201 @@
         "dev/docs/web-v593/support-artwork.json",
         "dev/tools/pack-starters590.py",
         "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/banh-xeo-pixel.webp",
+      "bytes": 129844,
+      "sha256": "eac8fadb292707a9b5d3cdca6de0de8667e0c5a3b234b530856a1fff88a94a8f",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/banh-xeo-portrait.webp",
+      "bytes": 80714,
+      "sha256": "cafab49553e41321652f4f98f919bc1755ed8f6c4dd6014478d780061783100f",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/banh-xeo.webp",
+      "bytes": 554882,
+      "sha256": "85ee5244fb7c6b29a6b65db74debe350c199b8483ac42591ba49cf82db8fc8bc",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/bun-cha-pixel.webp",
+      "bytes": 103134,
+      "sha256": "8b02c26dc85da4296cac6cedb25da4ab17e7f6464570504ad84fe4692c682f75",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/bun-cha-portrait.webp",
+      "bytes": 83696,
+      "sha256": "e1cff393fac64a2b7254e6e7b1c87d7d3b69040acaa97c8cee3fab5a64cb85e0",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/bun-cha.webp",
+      "bytes": 419992,
+      "sha256": "9bd8f8b84d1e851981c735756f69cc183ac70525a4a9afb862a54e31b5766798",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/bun-rieu-pixel.webp",
+      "bytes": 109472,
+      "sha256": "3dc439006b9b3fcc16e55c839ed7a2c8e6ca3501d0b09bb30e7eed3a11847a26",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/bun-rieu-portrait.webp",
+      "bytes": 85536,
+      "sha256": "37f0d3d8eb0e1b59c15cfa1c3985be7a3215aede82867176ef6a4097bcf0b6a4",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/bun-rieu.webp",
+      "bytes": 430326,
+      "sha256": "54c11d025f3191c8965bd565d4b987be2f9909af50c43daea8f40a8f4357f749",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/com-ga-pixel.webp",
+      "bytes": 131854,
+      "sha256": "baab985c4d18414f34f7030206cdc347bf7ae7e934efb12f76cf341cf797d82a",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/com-ga-portrait.webp",
+      "bytes": 85016,
+      "sha256": "b891ab57339fe218f01d1fa22056edbd2b78eb53dfdd78ffa16a26089d208afa",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/com-ga.webp",
+      "bytes": 525756,
+      "sha256": "9e1b727bdc1dc52dc8dbc7a27504d7e533c40bb607202070110a26ce66b69cba",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/familiar594/ultimate.webp",
+      "bytes": 328628,
+      "sha256": "10d18ffcf2430707d55df3f3390caafd2bbdc0c1c0dc56f584e0c9e4154f573a",
+      "origin": "Original AI-assisted identity-preserving four-spirit HD/pixel poses, corrected portraits and exclusive ultimate VFX generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v594/artwork.json",
+        "dev/docs/web-v594/support-artwork.json",
+        "dev/docs/web-v594/repairs.json",
+        "dev/docs/web-v594/actions.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-familiar594.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -3002,19 +3197,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/banh-xeo.mp4",
-      "bytes": 1293671,
-      "sha256": "4d1e0f169c871a2c34681827813d7e139b7a24d72549fbeba8e73871355e66de",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-com-lam.mp4",
       "bytes": 1315116,
       "sha256": "84e5208858061897d877c94f1043888c3ab61642656df1c13a12aeea08493669",
@@ -3184,19 +3366,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/bun-cha.mp4",
-      "bytes": 1506337,
-      "sha256": "f40cf47767e1bef2d83ab0b4f6e966ac01984c1488bb52e2ea680fa00b113cb7",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/bun-dau.mp4",
       "bytes": 1336745,
       "sha256": "4a13a223a5115d9aff89aedfef1bf97fa1e07d1621f94e82c89f9167c35e8bba",
@@ -3213,19 +3382,6 @@
       "path": "public/assets/rpg/awakening530/movies/bun-moc.mp4",
       "bytes": 1555673,
       "sha256": "55a4cb5db6e27e0cdde55c9fe0fbddbfdd1d8da3a1b80d7d062e6bd8e628befa",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/bun-rieu.mp4",
-      "bytes": 1412857,
-      "sha256": "3b5572f68b6a7f032c84125d17783c2a367cf7cede7661fd609c0a83a2658253",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3525,19 +3681,6 @@
       "path": "public/assets/rpg/awakening530/movies/classic-burger.mp4",
       "bytes": 1350492,
       "sha256": "71365fda8aed19d031f45ab6a9dc32637b1764232d7c572b5bfe83d16126a819",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/com-ga.mp4",
-      "bytes": 1290071,
-      "sha256": "d44056fb4dcd5d27b372e61634e0bef818a24b707df25e7b94777377919cdc01",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -4678,7 +4821,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/banh-xeo.mp3",
       "bytes": 10029,
-      "sha256": "e038e177b1023956c52ba87074b382af692da0aebd209d496e4b8b94708821af",
+      "sha256": "b9c873c8c5c90f1e9d2cf61b7b02e02c84a2db9f0364910982654b5373e1cf5e",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4832,7 +4975,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/bun-cha.mp3",
       "bytes": 10029,
-      "sha256": "1d61d243d0154eeee675ba6557f2dac89c315effc3fdb72f7ad70a16a9b78bb0",
+      "sha256": "4e8739ac2541c9dd38108ffc3929dd1571e0d6542291edf8fd91a4f48c87a450",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4865,7 +5008,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/bun-rieu.mp3",
       "bytes": 10029,
-      "sha256": "7604bc027f805ee2179931021aebaa232ba742d332daaec376881f75eb1ac590",
+      "sha256": "8c680f2c734c231b86ec50fd838d962d3e31f4339abbcf8f4788dafd54cc2453",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -5184,7 +5327,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/com-ga.mp3",
       "bytes": 10029,
-      "sha256": "fa2cecd750c70146d42140f340d373d692ebf50ff154e49ab568cc63113eab19",
+      "sha256": "58907937a33317a6837e011088c1443459515497e8ae2682dd41b059eebf5a83",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",

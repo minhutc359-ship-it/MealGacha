@@ -46,11 +46,10 @@ export default defineConfig({
   resolve: { alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) } },
   build: {
     sourcemap: false, minify: true, emptyOutDir: true,
-    // Group the shared state engines to reuse compression dictionaries; visual renderers remain separate.
+    // Let shared engines coalesce with their consumers to avoid duplicate compression dictionaries.
     // Pixi is still imported on demand; one renderer chunk avoids repeated helpers.
     rolldownOptions: { output: { codeSplitting: { groups: [
-      { name: "game-logic", test: /[\/]src[\/](domain[\/]|game[\/](?!spiritArena|battleVfx)|infrastructure[\/](assets[\/]characterSprites|audio[\/]gameAudio))/, priority: 12 },
-      { name: "rpg-presentation", test: /[\/]src[\/](components[\/]game[\/](Rpg|SpiritArt)|pages[\/]AdventurePage)/, priority: 15 },
+      { name: "rpg-presentation", test: /[\/]src[\/](domain[\/]|game[\/](?!spiritArena|battleVfx)|infrastructure[\/](assets[\/]characterSprites|audio[\/]gameAudio))|[\/]src[\/](components[\/]game[\/](Rpg|SpiritArt)|pages[\/]AdventurePage)/, priority: 15 },
       { name: "pixi-renderer", test: /[\/]node_modules[\/].*pixi\.js[\/]/, priority: 10 },
     ] } } },
   },

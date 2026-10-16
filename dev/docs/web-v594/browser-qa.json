@@ -1,0 +1,187 @@
+{
+  "date": "2026-10-16",
+  "browser": "Chromium headless SwiftShader",
+  "checks": [
+    {
+      "area": "cold-selected-cast",
+      "selected": "bun-rieu",
+      "requestedHd": [
+        "/assets/characters/familiar594/bun-rieu.webp",
+        "/assets/characters/familiar594/ultimate.webp"
+      ],
+      "painted": true,
+      "noPartyMediaPreload": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        320,
+        568
+      ],
+      "layout": {
+        "scroll": 320,
+        "deck": 530.171875
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        390,
+        844
+      ],
+      "layout": {
+        "scroll": 390,
+        "deck": 795.5
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        844,
+        390
+      ],
+      "layout": {
+        "scroll": 844,
+        "deck": 379.53125
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        1440,
+        900
+      ],
+      "layout": {
+        "scroll": 1440,
+        "deck": 851.5
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "familiar-ultimate",
+      "id": "bun-cha",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "familiar-ultimate",
+      "id": "bun-rieu",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "familiar-ultimate",
+      "id": "banh-xeo",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "familiar-ultimate",
+      "id": "com-ga",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "familiar-ultimate",
+      "id": "com-tam",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "consecutive-and-concurrent-load",
+      "baselineFps": 30.29167447380631,
+      "fps": 52.904771411463294,
+      "p95Gap": 16.80000000000291,
+      "maxEffects": 3,
+      "remainingEffects": 0,
+      "cachePeak": 60620320,
+      "cacheBudget": 67108864
+    },
+    {
+      "area": "unmount",
+      "count": 14,
+      "bytes": 60620320,
+      "leased": 0,
+      "budget": 67108864
+    },
+    {
+      "area": "autochess",
+      "fourFamiliarAndOneStarterModels": true,
+      "count": 8,
+      "bytes": 58529368,
+      "leased": 8,
+      "budget": 67108864
+    },
+    {
+      "area": "tcg",
+      "fourFamiliarAndOneStarterModels": true,
+      "realAttack": true
+    },
+    {
+      "area": "shared-portraits",
+      "identities": 4,
+      "standaloneAspect": true
+    },
+    {
+      "area": "inventory-identity-audit",
+      "tcgUnits": 139,
+      "autoUnits": 44,
+      "portraitIdentities": 139,
+      "artworkFallbacks": 94
+    },
+    {
+      "area": "reduced-motion",
+      "staticImpact": true,
+      "skip": true
+    },
+    {
+      "area": "production",
+      "savedBattleHydrated": true,
+      "nativeFamiliar": true,
+      "pauseSkip": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "noFamiliarMp4Requested": true
+}

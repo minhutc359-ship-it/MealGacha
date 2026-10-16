@@ -25,13 +25,13 @@ describe("visual production manifest 5.9.1", () => {
   it("keeps the five saved starter IDs and adds Xôi only to visual production", () => {
     const g=newGame(),s=newRpgSave(g)
     expect(s.formation.map(uid=>s.roster.find(h=>h.uid===uid)!.cardId)).toEqual(STARTER_CHARACTER_IDS)
-    expect(Object.keys(CHARACTER_VISUALS)).toHaveLength(11)
+    expect(Object.keys(CHARACTER_VISUALS)).toHaveLength(15)
     expect(characterVisual("goi-cuon")).toBe(characterVisual("goi-cuon-tom-thit"))
     expect(characterVisual("xoi")!.species).toBe("Gấu Nếp Mới")
     expect(characterVisual("classic-burger")).toBeUndefined()
     expect(characterVisual("__proto__")).toBeUndefined()
   })
-  it("resolves eleven full HD/pixel atlases and portraits without sharing another identity", () => {
+  it("resolves fifteen full HD/pixel atlases and portraits without sharing another identity", () => {
     const models = new Set<string>(), effects = new Set<string>()
     for (const [id,v] of Object.entries(CHARACTER_VISUALS)) {
       const m=tcgCharacter(CARD_MAP[id])!
@@ -60,8 +60,8 @@ describe("visual production manifest 5.9.1", () => {
       expect(starterPose(id,"cast",v.contact.cast,false,v.contact.cast)).toBe(14)
       expect(starterPose(id,"fall",3000,true)).toBe(27)
     }
-    expect(effects.size).toBe(11)
-    expect(models.size).toBe(11);expect(TCG_IMPACT_MS).toBe(VISUAL_CONTACT.tcg)
+    expect(effects.size).toBe(15)
+    expect(models.size).toBe(15);expect(TCG_IMPACT_MS).toBe(VISUAL_CONTACT.tcg)
   })
   it("binds presentation deltas to their own source/tick, including multi-hit ultimates", () => {
     const events=[
@@ -87,7 +87,7 @@ describe("visual production manifest 5.9.1", () => {
       expect(geometry(id,"skill",0,true)).toEqual([])
       skills.push(JSON.stringify(skill))
     }
-    expect(new Set(skills).size).toBe(11)
+    expect(new Set(skills).size).toBe(15)
   })
   it("reloads Xôi's committed cast without changing collection, damage or rewards on double skip", () => {
     const g=newGame();let s=newRpgSave(g)
