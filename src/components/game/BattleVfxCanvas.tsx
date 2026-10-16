@@ -1,4 +1,6 @@
 import { renderDpr, renderIsLight } from "../../infrastructure/presentation/renderQuality"
+import { starterCharacter } from "../../game/starterCharacters"
+import { drawStarterVfx } from "../../game/starterVfx"
 import { useEffect, useRef } from "react"
 import type { EffectCue } from "../../game/combatEffects"
 import type { School } from "../../game/types"
@@ -14,8 +16,8 @@ function kindFor(cue: Placed, attack: boolean): VfxKind {
   if (cue.kind === "summon") return "summon"
   return attack || cue.kind === "strike" ? "slash" : "projectile"
 }
-export function BattleVfxCanvas({ source, cues, school, action, stamp, quiet }: {
-  source: VfxPoint; cues: Placed[]; school: School; action: string; stamp: string; quiet: boolean
+export function BattleVfxCanvas({ source, sourceId, cues, school, action, stamp, quiet }: {
+  source: VfxPoint; sourceId?:string; cues: Placed[]; school: School; action: string; stamp: string; quiet: boolean
 }) {
   const canvas = useRef<HTMLCanvasElement>(null)
   const timeline = useRef({ stamp: "", start: 0, hiddenAt: null as number | null })
@@ -41,7 +43,8 @@ export function BattleVfxCanvas({ source, cues, school, action, stamp, quiet }: 
         const support = action === "play" && ["heal", "shield", "buff", "summon"].includes(cue.kind)
         if((cue.projectile || support) && age > contact*.25 && age < contact)
           drawProjectile(ctx,source,point,cue.school,(age-contact*.25)/(contact*.75),Math.min(19,cue.size*.16),renderIsLight(),kind)
-        drawImpact(ctx,point,cue.school,(age-contact)/1000,Math.min(48,cue.size*.4),kind,renderIsLight(),texture?.image)
+        if(sourceId && starterCharacter(sourceId))drawStarterVfx(ctx,sourceId,point.x,point.y,Math.min(48,cue.size*.4),age-contact,false,renderIsLight(),kind === "heal" || kind === "shield" ? kind : action === "attack" ? "attack" : "skill")
+        else drawImpact(ctx,point,cue.school,(age-contact)/1000,Math.min(48,cue.size*.4),kind,renderIsLight(),texture?.image)
       }
       const textureStatus = texture?.image.naturalWidth ? "ready" : "fallback"
       if (surface.dataset.texture !== textureStatus) surface.dataset.texture = textureStatus
@@ -61,6 +64,6 @@ export function BattleVfxCanvas({ source, cues, school, action, stamp, quiet }: 
     unsubscribe=subscribeCharacterClock(draw,true)
     document.addEventListener("visibilitychange",visibility)
     return ()=>{texture?.release();observer.disconnect();unsubscribe();document.removeEventListener("visibilitychange",visibility)}
-  },[source,cues,school,action,stamp,quiet])
+  },[source,sourceId,cues,school,action,stamp,quiet])
   return quiet ? null : <canvas ref={canvas} className="tcg-battle-vfx-canvas" data-vfx="elemental" aria-hidden="true" />
 }

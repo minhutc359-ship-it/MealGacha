@@ -1,3 +1,4 @@
+import { starterCharacter } from "@/game/starterCharacters";
 import { describe, it, expect } from "vitest";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -224,25 +225,25 @@ describe("5.3 real combat and cinematic transaction", () => {
     });
 });
 describe("5.3 media payload", () => {
-    it("ships 139 unique sharp H264 MP4s and original MP3s within the expanded media budget", () => {
+    it("ships 128 H264 clips, eleven native timelines and 139 original sounds within the media budget", () => {
         const root = "public/assets/rpg/awakening530", movieHashes = new Set(), soundHashes = new Set();
         let total = 0;
         for (const id of SPIRIT_IDS) {
-            const movie = readFileSync(`${root}/movies/${id}.mp4`), sound = readFileSync(`${root}/sounds/${id}.mp3`);
-            expect(movie.length).toBeGreaterThan(10000);
+            const movie = starterCharacter(id) ? null : readFileSync(`${root}/movies/${id}.mp4`), sound = readFileSync(`${root}/sounds/${id}.mp3`);
+            if(movie){expect(movie.length).toBeGreaterThan(10000);
             expect(sound.length).toBeGreaterThan(5000);
-            expect(movie.subarray(4, 8).toString()).toBe("ftyp");
+            expect(movie.subarray(4, 8).toString()).toBe("ftyp");}
             expect(sound.subarray(0, 3).toString()).toBe("ID3");
-            movieHashes.add(createHash("sha256").update(movie).digest("hex"));
+            if(movie)movieHashes.add(createHash("sha256").update(movie).digest("hex"));
             soundHashes.add(createHash("sha256").update(sound).digest("hex"));
-            total += movie.length + sound.length;
+            total += (movie?.length ?? 0) + sound.length;
         }
         total += statSync(`dev/docs/web-v530/environments.webp`).size + statSync(`${root}/sigils.webp`).size;
-        expect(movieHashes.size).toBe(139);
+        expect(movieHashes.size).toBe(SPIRIT_IDS.filter(id=>!starterCharacter(id)).length);
         expect(soundHashes.size).toBe(139);
         expect(total).toBeGreaterThan(5000000);
         expect(total).toBeLessThan(190000000);
-        expect(readdirSync(`${root}/movies`).length).toBe(139);
+        expect(readdirSync(`${root}/movies`).length).toBe(SPIRIT_IDS.filter(id=>!starterCharacter(id)).length);
         expect(readdirSync(`${root}/sounds`).length).toBe(139);
     });
 });

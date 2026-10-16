@@ -1,5 +1,5 @@
 """Original 2.4-second spirit leitmotifs and impact sound design. No external samples."""
-import json, pathlib, subprocess, tempfile, wave
+import json, pathlib, subprocess, tempfile, wave, sys
 import numpy as np
 ROOT=pathlib.Path(__file__).resolve().parents[2]
 roster=json.loads((ROOT/'src/game/adventureRpg/awakenedRoster.ts').read_text().split(' = ',1)[1].strip().rstrip(';'))
@@ -8,8 +8,11 @@ OUT=ROOT/'public/assets/rpg/awakening530/sounds'; OUT.mkdir(parents=True,exist_o
 RATE=24000; SECONDS=2.4; LENGTH=int(RATE*SECONDS)
 SCHOOLS=['hearth','ember','grove','tide','sugar']
 SCALES=[[0,2,4,7,9],[0,3,5,7,10],[0,2,4,7,11],[0,2,5,7,9],[0,3,7,10,12]]
+selected=set(sys.argv[1:])
+starters={m['id'] for m in json.loads((ROOT/'dev/docs/web-v530/movie-manifest.json').read_text()) if m.get('renderer','').startswith('native')}
 manifest=[]
 for index,(id,title,primary,support,ultimate,passive,oath,motif,iconCell) in enumerate(roster):
+    if selected and id not in selected:continue
     school=SCHOOLS.index(cards[id]['school']); rng=np.random.default_rng(53000+index)
     audio=np.zeros(LENGTH);scale=SCALES[school];base=[146.83,164.81,196,174.61,220][school]
     def add(at,duration,frequency,volume,timbre):
@@ -26,7 +29,7 @@ for index,(id,title,primary,support,ultimate,passive,oath,motif,iconCell) in enu
     # Charge phrase, then a recognisable motif whose melody and rhythm are authored by the kit.
     intervals=[scale[(motif+oath+j*(1+ultimate%3))%5]+(12 if j>3 else 0) for j in range(6)]
     for j,note in enumerate(intervals):add(.08+j*.104+(motif%3)*.012,.6,base*2**(note/12),.12,school)
-    impact=.75+(ultimate%4)*.09
+    impact=.96 if id in starters else .75+(ultimate%4)*.09
     add(impact,.55,base/2,.23,1 if school==1 else 0)
     for j in range(3+ultimate%4):add(impact+j*.14,.52,base*2**((scale[(j+passive)%5]+12)/12),.1,school)
     # Filtered whoosh, soft chime tails, water/shield/leaf textures; all synthetic, not sampled.
@@ -43,5 +46,9 @@ for index,(id,title,primary,support,ultimate,passive,oath,motif,iconCell) in enu
         with wave.open(temp.name,'wb') as wav:wav.setnchannels(1);wav.setsampwidth(2);wav.setframerate(RATE);wav.writeframes((audio*32767).astype('<i2').tobytes())
         file=OUT/(id+'.mp3');subprocess.run(['ffmpeg','-loglevel','error','-y','-i',temp.name,'-c:a','libmp3lame','-b:a','32k','-ar','24000','-map_metadata','-1',str(file)],check=True)
     manifest.append({'id':id,'path':f'/assets/rpg/awakening530/sounds/{id}.mp3','bytes':file.stat().st_size,'seconds':SECONDS,'sampleRate':RATE,'peak':float(np.max(np.abs(audio))),'notes':intervals,'school':SCHOOLS[school],'ultimate':ultimate})
-(ROOT/'dev/docs/web-v530/audio-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+manifest_path=ROOT/'dev/docs/web-v530/audio-manifest.json'
+if selected:
+    updated={m['id']:m for m in manifest}
+    manifest=[updated.get(m['id'],m) for m in json.loads(manifest_path.read_text())]
+manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps({'sounds':len(manifest),'bytes':sum(m['bytes'] for m in manifest),'maxPeak':max(m['peak'] for m in manifest)}))

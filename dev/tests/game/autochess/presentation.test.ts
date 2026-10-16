@@ -26,7 +26,7 @@ describe("measured sprite rendering", () => {
     }
     for (const unit of AUTO_UNITS) {
       const model = unitCharacter(unit.id)
-      expect(SPRITE_SHEETS[model.sheet].rows[model.row].frames).toHaveLength(model.sheet.startsWith("living-") ? 24 : model.sheet === "base" ? 14 : 7)
+      expect(SPRITE_SHEETS[model.sheet].rows[model.row].frames).toHaveLength(model.sheet.startsWith("starter-") ? 32 : model.sheet.startsWith("living-") ? 24 : model.sheet === "base" ? 14 : 7)
     }
     for (const monster of MONSTERS) {
       const model = monsterCharacter(monster.id)

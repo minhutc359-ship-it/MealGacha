@@ -1,4 +1,4 @@
-import { battleHdPose } from "../../game/combatArt"
+import { starterPose } from "../../game/starterCharacters"
 import { blendPose, type PoseBlend } from "../../game/poseBlend"
 import { renderDpr, subscribeRenderQuality } from "../../infrastructure/presentation/renderQuality"
 import {livingClipFrame} from "../../game/livingClips"
@@ -22,11 +22,12 @@ interface Props {
   paused?: boolean
   fallback?: string
   cinematic?: boolean
+  contactMs?: number
 }
 
 export const CharacterSprite = memo(function CharacterSprite({
   model, motion = "idle", delay = 0, lead, stamp, flip = false,
-  quiet = false, paused = false, fallback, cinematic = false,
+  quiet = false, paused = false, fallback, cinematic = false, contactMs,
 }: Props) {
   const cue = useRef({motion, delay, lead, stamp, flip, quiet, paused, start: performance.now(), frozenAt: paused ? performance.now() : null as number | null, revision: 0})
   useEffect(() => {
@@ -47,10 +48,12 @@ export const CharacterSprite = memo(function CharacterSprite({
     const lease = acquireCharacterImage(path), image = lease.image
     let onscreen = true, drewStatic = false, revision = -1
     const blend: PoseBlend = {pose: 0, previous: 0, at: performance.now()}
-    let width = 1, height = 1, visibleSince = performance.now()
+    let width = 1, height = 1, visibleSince = performance.now(), lastDraw = 0
     let hiddenAt: number | null = document.hidden ? performance.now() : null
     const draw = (now: number) => {
       if (!image.complete || !image.naturalWidth || document.hidden || !onscreen) return
+      if(model.sheet.endsWith("-pixel") && now-lastDraw<32)return
+      lastDraw=now
       const {motion, delay, lead, flip, quiet, paused, start, frozenAt} = cue.current
       if (revision !== cue.current.revision) {drewStatic = false; revision = cue.current.revision}
       const staticMotion = quiet || paused || document.body.classList.contains("presentation-quiet")
@@ -60,7 +63,8 @@ export const CharacterSprite = memo(function CharacterSprite({
       const current = age < delay ? lead ?? "idle" : motion
       const poseAge = age < delay ? age : age - delay
       const fresh = model.sheet !== "base"
-      const pose = model.sheet === "battleHd" ? battleHdPose(current,poseAge,quiet) : model.sheet.startsWith("living-") ? livingClipFrame(current,poseAge,quiet) : characterPose(current, poseAge, fresh, quiet, model.sheet.startsWith("roster"))
+      const starter = model.sheet.startsWith("starter-")
+      const pose = model.sheet.startsWith("portrait-") ? 0 : starter ? starterPose(model.id,current,poseAge,quiet,contactMs) : model.sheet.startsWith("living-") ? livingClipFrame(current,poseAge,quiet) : characterPose(current, poseAge, fresh, quiet, model.sheet.startsWith("roster"))
       const frame = showcase ? [0, 0, image.naturalWidth, image.naturalHeight, image.naturalWidth / 2, image.naturalHeight] : bounds.row.frames[pose]
       const [sx, sy, sw, sh, ax, ay] = frame
       const scale = showcase ? Math.min(width * .94 / sw, height * .94 / sh) : Math.min(width * .86 / (bounds.right - bounds.left), height * .88 / (bounds.bottom - bounds.top))
@@ -98,8 +102,8 @@ export const CharacterSprite = memo(function CharacterSprite({
       ctx.rotate(rotation + accent.rotation)
       stretch += accent.stretch
       ctx.scale(direction * (1 - stretch), 1 + stretch)
-      drawMotionTrail(ctx, height, poseAge / 780, current === "cast", "#efd9a1", quiet || paused || !["attack", "cast"].includes(current))
-      const dissolve = blendPose(blend, pose, now, staticMotion || !!showcase || model.sheet === "battleHd" || ["attack","cast","walk","hit"].includes(current))
+      drawMotionTrail(ctx, height, poseAge / 780, current === "cast", "#efd9a1", quiet || paused || starter || !["attack", "cast"].includes(current))
+      const dissolve = blendPose(blend, pose, now, starter || staticMotion || !!showcase || ["attack","cast","walk","hit"].includes(current))
       const paint = (f: number[], opacity: number) => {
         const [fx,fy,fw,fh,fa,fb] = f
         ctx.globalAlpha = alpha * opacity
@@ -120,7 +124,7 @@ export const CharacterSprite = memo(function CharacterSprite({
       const dpr = renderDpr()
       surface.width = Math.round(width * dpr); surface.height = Math.round(height * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      ctx.imageSmoothingEnabled = true
+      ctx.imageSmoothingEnabled = !model.sheet.endsWith("-pixel")
       ctx.imageSmoothingQuality = "high"
       draw(performance.now())
     }
@@ -147,7 +151,7 @@ export const CharacterSprite = memo(function CharacterSprite({
       lease.release(); unsubscribe(); observer.disconnect(); intersection.disconnect(); qualityRelease(); image.removeEventListener("load", ready)
       document.removeEventListener("visibilitychange", visibility)
     }
-  }, [path, showcase, model.sheet, model.row])
+  }, [path, showcase, model.sheet, model.row, contactMs])
   return <span className={`tcg-character-sprite${loadedPath === path ? " is-loaded" : ""}`}
     data-character={model.id} data-motion={motion} data-sheet={model.sheet}
     data-quiet={quiet || paused} aria-hidden="true">

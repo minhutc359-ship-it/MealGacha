@@ -1,13 +1,14 @@
-import { AWAKENING_MEDIA, awakenedKit } from "../../game/adventureRpg/awakening"
+import { rpgVisualContact } from "../../game/visualTiming"
+import { useRpgImpactFrame } from "./useRpgImpactFrame"
+import { awakenedKit } from "../../game/adventureRpg/awakening"
 import { RpgCinematic } from "./RpgCinematic"
-import {useEffect} from "react"
 import { actorAnchor } from "../../game/adventureRpg/formationLayout"
 import { RpgBattleVfx } from "./RpgBattleVfx"
 import { SpiritArt, SkillArt } from "./SpiritArt"
-import { spiritKit, REACTION_HELP, SPIRIT_SCHOOLS } from "../../game/adventureRpg/skills"
+import { spiritKit, REACTION_HELP } from "../../game/adventureRpg/skills"
 import { CARD_MAP } from "../../game/catalog"
 import { tcgCharacter } from "../../game/tcgCharacterMotion"
-import { monsterCharacter, acquireCharacterImage } from "../../infrastructure/assets/characterSprites"
+import { monsterCharacter } from "../../infrastructure/assets/characterSprites"
 import { RPG_ROLE_NAMES } from "../../game/adventureRpg/engine"
 import type { BattlePresentationPhase } from "../../game/adventureV560"
 import type { School } from "../../game/types"
@@ -18,9 +19,11 @@ import type {
 } from "../../game/adventureRpg/types"
 import { CharacterSprite } from "./CharacterSprite"
 import { RpgShield } from "./RpgShield"
-import { RpgUltimateArt } from "./RpgUltimateArt"
+import { BattleStatus } from "./BattleStatus"
+import { starterCharacter } from "../../game/starterCharacters"
 import "../../game/characterMotion.css"
 import "../../game/adventureRpg/rpg.css"
+import "./starterPresentation.css"
 
 export function RpgMeter({
   value,
@@ -75,7 +78,7 @@ export function RpgBattleView({
   presentation?: BattlePresentationPhase
   school?: School
 }) {
-  useEffect(()=>{const lease = acquireCharacterImage("/assets/rpg/spirit510/ultimates.webp");return ()=>lease.release()},[])
+  const visual = useRpgImpactFrame(b,paused || b.paused || !!b.cinematic,quiet)
   const allies = b.actors.filter((a) => a.side === "ally"),
     burst = [...b.events]
       .reverse()
@@ -84,28 +87,8 @@ export function RpgBattleView({
   const boss = b.actors.find((a) => a.boss && a.hp > 0)
   const warningSource = b.actors.find(a=>a.uid === b.warning?.source)
   const warningSupport = warningSource && !warningSource.boss && ["bulwark","mender"].includes(warningSource.style ?? "")
-  const partyKey = allies.map(a=>a.id).join(":")
-  useEffect(()=>{
-    if(readOnly || b.rulesVersion!==530 || b.cinematics===false)return
-    const controller=new AbortController()
-    // Only five short movies / sounds; normal browser + service-worker caches own the bytes.
-    for(const id of partyKey.split(":"))for(const [folder,ext] of [["movies","mp4"],["sounds","mp3"]]){if(reduced && folder==="movies")continue;void fetch(`${AWAKENING_MEDIA}/${folder}/${id}.${ext}`,{signal:controller.signal,cache:"force-cache"}).catch(()=>{})}
-    return ()=>controller.abort()
-  },[partyKey,b.rulesVersion,b.cinematics,readOnly,reduced])
+  // Cinematic owns its video/audio fetch when a committed cast is shown.
   const blocked = readOnly || b.paused || paused || !!b.result || !!b.cinematic || presentation !== "fight"
-  const ceremonyRow: Record<School, number> = {hearth:0,ember:1,grove:2,tide:3,sugar:4}
-  const ceremonyColumn: Partial<Record<BattlePresentationPhase,number>> = {
-    ready:0,start:1,"wave-clear":2,"wave-enter":2,win:3,fail:4,
-  }
-  const ceremonyLabel: Record<Exclude<BattlePresentationPhase,"fight">,string> = {
-    enter:"Hai phe tiến vào chiến địa",
-    ready:"Ready · Sẵn sàng",
-    start:"Start · Bắt đầu",
-    "wave-clear":`Đợt ${b.wave} hoàn tất`,
-    "wave-enter":`Next wave · Đợt ${b.wave + 1}`,
-    win:"Win · Chiến thắng",
-    fail:"Fail · Thất bại",
-  }
   return (
     <section
       className={`rpg-battle ${quiet ? "is-quiet" : ""} ${b.paused || paused || b.cinematic ? "is-paused" : ""} presentation-${presentation}`}
@@ -155,12 +138,13 @@ export function RpgBattleView({
       >
         <div className="rpg-arena-floor" />
         <div className="rpg-combatants">
-        {b.actors.map((a) => {
-          const model =
+        {visual.actors.map((a) => {
+          const baseModel =
             a.side === "ally"
               ? tcgCharacter(CARD_MAP[a.id])!
               : monsterCharacter(a.id)
-          const hit = [...b.events]
+          const model = starterCharacter(a.id) ? {...baseModel, sheet: starterCharacter(a.id)!.pixelSheet as typeof baseModel.sheet} : baseModel
+          const hit = [...visual.events]
             .reverse()
             .find(
               (e) =>
@@ -173,10 +157,10 @@ export function RpgBattleView({
             b.tick < b.guardUntil &&
             a.side === "ally" &&
             (a.slot < 2 ? "front" : "back") === b.guardRow
-          const ownCue = [...b.events].reverse().find(e=>e.source===a.uid && (e.animation || e.kind === "burst" || e.kind === "skill") && b.tick-e.tick<4)
+          const ownCue = [...b.events].reverse().find(e=>e.source===a.uid && (e.animation || e.kind === "burst" || e.kind === "skill") && b.tick-e.tick<(e.animation==="ultimate"?10:4))
           const charging = b.warning?.source === a.uid && !a.stun
           const arriving = ["enter", "wave-enter", "start"].includes(presentation)
-          const motion = arriving && a.hp ? "victory" : !a.hp || b.result === "loss" && a.side === "ally" ? "fall" : b.result === "win" ? "victory" : charging || ownCue && ownCue.animation !== "attack" ? "cast" : ownCue?.animation === "attack" ? "attack" : b.tick-a.motionAt<4 ? a.motion : "idle"
+          const motion = arriving && a.hp ? "walk" : !a.hp || b.result === "loss" && a.side === "ally" ? "fall" : b.result === "win" ? "victory" : starterCharacter(a.id) && a.stun > 0 ? "stun" : starterCharacter(a.id) && guarding && !ownCue ? "guard" : ownCue?.animation === "ultimate" && starterCharacter(a.id) ? "ultimate" : charging || ownCue && ownCue.animation !== "attack" ? "cast" : ownCue?.animation === "attack" ? "attack" : b.tick-a.motionAt<4 ? a.motion : "idle"
           const motionStamp = motion === "fall" || motion === "victory" ? String(a.motionAt) : charging ? `charge:${b.warning!.until}` : ownCue ? `cue:${ownCue.serial}` : String(a.motionAt)
           return (
             <div
@@ -192,6 +176,7 @@ export function RpgBattleView({
             >
               <div className={`rpg-actor-body ${b.warning?.source === a.uid ? "is-channeling" : ""} ${b.events.some(e=>e.source===a.uid && e.kind==="burst" && b.tick-e.tick<5) ? `is-ultimate role-${a.role}` : ""}`}>{b.warning?.source === a.uid && <span className="rpg-channel-halo" aria-hidden="true" />}<CharacterSprite
                 model={model}
+                contactMs={rpgVisualContact(ownCue?.animation)}
                 motion={motion}
                 stamp={`${b.id}:${motionStamp}:${motion}`}
                 quiet={quiet}
@@ -233,21 +218,13 @@ export function RpgBattleView({
         })}
         </div>
         <RpgBattleVfx battle={b} quiet={quiet} paused={paused || b.paused || !!b.cinematic} />
-        {presentation !== "fight" && (
-          <div className={`rpg-battle-opening phase-${presentation}`} role="status" aria-live="polite" aria-label={ceremonyLabel[presentation]}>
-            {ceremonyColumn[presentation] === undefined ? (
-              <><small>HAI PHE TIẾN VÀO CHIẾN ĐỊA</small><strong>GIAO ƯỚC XUẤT TRẬN</strong></>
-            ) : <span className="rpg-ceremony-art" aria-hidden="true" style={{backgroundPosition:`${ceremonyColumn[presentation]! * 25}% ${ceremonyRow[school] * 25}%`}} />}
-          </div>
-        )}
+        <BattleStatus phase={presentation} wave={b.wave} />
         {b.events.filter(e=>e.kind === "reaction" && b.tick-e.tick < 4).slice(-1).map(e=><div key={`reaction:${e.serial}`} className={`rpg-reaction-pill school-${e.school}`} role="status"><SkillArt index={60 + ["Bốc hơi","Nở rộ","Sinh trưởng","Mộng ấm"].indexOf(e.text)} />{e.text}</div>)}
         {burst && !quiet && !b.cinematic && (
           <div
             className={`rpg-burst-banner school-${burst.school}`}
             key={burst.serial}
           >
-            <span className="rpg-ultimate-art" aria-hidden="true" style={{backgroundPosition: `${(b.chain?.count === 3 ? 5 : SPIRIT_SCHOOLS.indexOf(burst.school)) % 2 * 100}% ${Math.floor((b.chain?.count === 3 ? 5 : SPIRIT_SCHOOLS.indexOf(burst.school)) / 2) * 50}%`}} />
-            <RpgUltimateArt id={b.actors.find(a=>a.uid===burst.source)!.id} compact paused={paused || b.paused}/>
             <span>✦ TUYỆT KỸ {b.chain && b.chain.count > 1 ? `· LIÊN HƯƠNG ×${b.chain.count}` : ""}</span>
             <strong>{burst.text}</strong>
           </div>

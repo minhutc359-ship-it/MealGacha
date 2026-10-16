@@ -1,5 +1,6 @@
 import type { Chapter } from "./types"
 import type { StoryScene } from "./narrative"
+import type { ChefExpression } from "./characterVisuals"
 const chapters = [
   {
     id: "living-market",
@@ -213,12 +214,13 @@ export const LIVING_CHAPTERS: Chapter[] = chapters.map((c, ci) => ({
       ...conversations[sceneIndex].map(([speaker, text]) => ({
         speaker,
         text,
+        expression: (["concern","resolve","surprise","concern","tender","resolve","concern","tender","resolve"] as ChefExpression[])[sceneIndex],
       })),
     ]
     const [narration, speaker, text] = stageOutcomes[sceneIndex]
     const after = [
       { speaker: "Người kể", text: narration },
-      { speaker, text },
+      { speaker, text, expression: (["resolve","tender","tender","resolve","tender","concern","tender","tender","resolve"] as ChefExpression[])[sceneIndex] },
     ]
     LIVING_SCENES[id] = {
       before,

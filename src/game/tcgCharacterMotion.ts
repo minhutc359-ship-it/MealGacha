@@ -1,10 +1,11 @@
+import { characterVisual } from "./characterVisuals"
 import { UNIT_MAP } from "./autochess/catalog"
 import type { BattleFrame } from "./battle"
 import type { BattleUnit, GameCard, School } from "./types"
-import { DISTINCT_MODELS, unitCharacter, type CharacterModel } from "../infrastructure/assets/characterSprites"
+import { DISTINCT_MODELS, unitCharacter, spiritCharacter, type CharacterModel } from "../infrastructure/assets/characterSprites"
 import { TCG_IMPACT_MS } from "./battleVfx"
 
-export type CharacterMotion = "idle" | "walk" | "summon" | "attack" | "cast" | "hit" | "fall" | "victory"
+export type CharacterMotion = "guard" | "stun" | "ultimate" | "idle" | "walk" | "summon" | "attack" | "cast" | "hit" | "fall" | "victory"
 export interface MotionCue {
   kind: CharacterMotion
   delay: number
@@ -39,9 +40,9 @@ function model(id: string): CharacterModel {
 }
 export function tcgCharacter(card: GameCard): CharacterModel | null {
   if (card.kind !== "unit") return null
-  const exact = UNIT_MAP[card.id] || DISTINCT_MODELS[card.id] ? card.id : COMPANIONS[card.id]
+  const exact = characterVisual(card.id) || UNIT_MAP[card.id] || DISTINCT_MODELS[card.id] ? card.id : COMPANIONS[card.id]
   const food = card.art?.startsWith("/assets/food/")
-  return model(exact ?? (food ? SCHOOL_MODELS[card.school] : CASTERS[card.school]))
+  return exact ? model(exact) : spiritCharacter(card.id,card.name) ?? model(food ? SCHOOL_MODELS[card.school] : CASTERS[card.school])
 }
 export function tcgCaster(school: School) { return model(CASTERS[school]) }
 

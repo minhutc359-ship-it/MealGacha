@@ -1,0 +1,16 @@
+{
+  "createdOn": "2026-10-16",
+  "tool": "built-in image_gen.imagegen",
+  "id": "ultimate591",
+  "prompt": "Use case: stylized-concept. Production original transparent COMBAT MAGIC VFX SPRITE ATLAS for Soul of Meal, Vietnamese food spirit anime RPG. This is luminous energy and magic effects ONLY, NOT character sprites. Exactly SIX COLUMNS by THREE ROWS on transparent alpha, wide aspect2:1, equally sized square cells. Every effect isolated with generous empty transparent margins on all sides, no touching neighboring cells. Richly painted high-quality 2D anime spell effects with dimensional highlights, translucent luminous edges, warm fine particles, clear graphic silhouette. No wireframe diagrams, no simple geometric icon outlines, no lettering, no gridlines, no UI. Each COLUMN is ONE unique theme: Col1 antique BRONZE RAMPART with rice engravings, lion-shaped luminous gold crest, low protective bulwark; Col2 intersecting curved blazing FOX SABER slashes, orange-red fire and hot embers; Col3 long serpentine turquoise WATER DRAGON formed of flowing water and frosty white ice shards, antlered dragon head; Col4 ivory pale-green SILK RIBBONS unfurling like a soft blooming lotus with a few white petals, healing; Col5 forked WOODEN ROOTS and jade GREEN LEAF canopy unfolding, white deer antler branching motif, botanical blessing; Col6 earthen GROUND FISSURE with powerful BEAR PAW shockwave, ochre concentric dust ripples and chunky flying stone fragments, golden rice kernels. Exactly THREE ROWS showing progressive spell stages for EACH theme: Row1 small controlled gathering magic, Row2 decisive full impact main silhouette, Row3 majestic lingering finisher with dissipating particles. Effect shapes oriented horizontally, centered and grounded in each cell. The energy must have painterly depth and refined cel shading, elegant restrained bloom that still reads at small size. Transparent everywhere except effects themselves. Do not include full characters, weapons held by hands, scenery, sky, fog backgrounds or dark rectangular plates. Keep all 18 FX frames entirely separate and equally sized with 15% blank margin in every cell.",
+  "source": "exec-8ad4156a-c5d0-4d0b-9048-31ee471d23bd.png",
+  "packing": "dev/tools/pack-ultimate591.py. Technical crop and scale registration only. 6 fixed character columns x 3 rows (charge,impact,finisher), 256px cells; one painted effect frame at a time, geometry fallback is exclusive.",
+  "characters": [
+    "com-tam",
+    "banh-mi",
+    "pho-bo",
+    "banh-cuon",
+    "goi-cuon-tom-thit",
+    "xoi"
+  ]
+}

@@ -13,8 +13,6 @@ import {
   type VillageFacing,
   type VillagePoint,
 } from "../../game/villageRpg"
-import { unitCharacter } from "../../infrastructure/assets/characterSprites"
-import { CharacterSprite } from "./CharacterSprite"
 import { VillageParty } from "./VillageParty"
 import { VillageWalker } from "./VillageWalker"
 
@@ -94,6 +92,7 @@ export function AdventureVillage({
       trip.path.map((p, i) => ({
         left: `${p.x}%`,
         top: `${p.y}%`,
+        zIndex: Math.round(p.y),
         offset: trip.offsets[i],
       })),
       { duration: trip.duration, easing: "linear", fill: "forwards" },
@@ -197,20 +196,12 @@ export function AdventureVillage({
               className={`rpg-village-place village-npc ${
                 trip?.npc?.id === npc.id ? "is-destination" : ""
               }`}
-              style={{ left: `${npc.x}%`, top: `${npc.y}%` }}
+              style={{ left: `${npc.x}%`, top: `${npc.y}%`, zIndex: Math.round(npc.y) }}
               onClick={() => walkTo(npc.stop, npc)}
               aria-label={`Đến gặp ${npc.name}`}
             >
               <span className="village-npc-body">
-                {npc.art === "bach" ? (
-                  <CharacterSprite
-                    model={unitCharacter("chef-bach")}
-                    stamp="village-bach"
-                    quiet={quiet}
-                  />
-                ) : (
-                  <VillageWalker id={npc.art} direction="down" quiet={quiet} />
-                )}
+                <VillageWalker id={npc.art === "bach" ? "bach" : npc.art} quiet={quiet} />
               </span>
               <strong>
                 {npc.name}
@@ -221,7 +212,7 @@ export function AdventureVillage({
           <div
             ref={party}
             className={`rpg-village-party facing-${direction}`}
-            style={{ left: `${position.x}%`, top: `${position.y}%` }}
+            style={{ left: `${position.x}%`, top: `${position.y}%`, zIndex: Math.round(position.y) }}
           >
             {expression && !trip && (
               <span className="village-expression" aria-hidden="true">

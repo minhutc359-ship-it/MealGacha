@@ -133,7 +133,7 @@ function UnitTile({
         {model ? (
           <>
             <img className="tcg-unit-memory" src={card.art} alt="" />
-            <CharacterSprite model={model} motion={motion.kind} delay={motion.delay}
+            <CharacterSprite model={model} contactMs={560} motion={motion.kind} delay={motion.delay}
               lead={motion.lead} stamp={stamp} flip={enemy} quiet={quiet} paused={paused}
               fallback={spirit?.art ?? card.art} />
             <span className="tcg-unit-spirit-tag">{spirit ? "ẤN VỊ" : "ĐỒNG MINH"}</span>

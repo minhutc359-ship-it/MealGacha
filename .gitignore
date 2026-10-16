@@ -44,3 +44,10 @@ dev/docs/**/*.webp
 !dev/docs/art-direction/*.webp
 !dev/docs/web-v530/environments.webp
 !dev/docs/web-v580/source/*.jpg
+
+# Keep five small, reviewed 5.9 evidence captures, not the full QA set.
+!dev/docs/web-v590/evidence/*.webp
+
+!dev/docs/web-v591/evidence/*.webp
+
+!dev/docs/web-v593/evidence/*.webp

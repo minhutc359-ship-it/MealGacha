@@ -1,0 +1,157 @@
+{
+  "atlases": [
+    {
+      "file": "public/assets/characters/starters590/pho-bo-pixel.webp",
+      "dimensions": [
+        256,
+        512
+      ],
+      "bytes": 189510,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/com-tam-pixel.webp",
+      "dimensions": [
+        256,
+        512
+      ],
+      "bytes": 185332,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/xoi-pixel.webp",
+      "dimensions": [
+        256,
+        512
+      ],
+      "bytes": 92010,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/banh-cuon-pixel.webp",
+      "dimensions": [
+        256,
+        512
+      ],
+      "bytes": 165838,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/banh-mi-pixel.webp",
+      "dimensions": [
+        256,
+        512
+      ],
+      "bytes": 173530,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/banh-mi.webp",
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "bytes": 866956,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/goi-cuon-tom-thit-pixel.webp",
+      "dimensions": [
+        256,
+        512
+      ],
+      "bytes": 184304,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/xoi.webp",
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "bytes": 354430,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/goi-cuon-tom-thit.webp",
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "bytes": 1002666,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/banh-cuon.webp",
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "bytes": 825628,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/pho-bo.webp",
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "bytes": 998102,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    },
+    {
+      "file": "public/assets/characters/starters590/com-tam.webp",
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "bytes": 869274,
+      "frames": 32,
+      "nonempty": 32,
+      "uniqueFrameHashes": 32,
+      "edgeClipping": false
+    }
+  ],
+  "totalBytes": 5907580,
+  "portrait": {
+    "file": "public/assets/characters/starters590/xoi-portrait.webp",
+    "size": [
+      512,
+      512
+    ],
+    "bytes": 87302
+  }
+}

@@ -6,6 +6,9 @@ from pathlib import Path
 import numpy as np, json, sys, hashlib
 root=Path(__file__).resolve().parents[2]; inputs=json.loads(Path(sys.argv[1]).read_text())
 manifest=json.loads((root/'src/game/autochess/spriteFrames.json').read_text());records=[]
+# Uniform legacy rows now derive in presentation.ts; native actors derive from characterVisuals.ts.
+uniform={'ferry','bun-cha','bun-rieu','banh-xeo','banh-cuon','xoi','com-ga','bosses'}
+native={m['id'] for m in json.loads((root/'dev/docs/web-v530/movie-manifest.json').read_text()) if m.get('renderer','').startswith('native')}
 folder=root/'public/assets/v4/characters';folder.mkdir(parents=True,exist_ok=True)
 
 def register(id,image,blocks=1):
@@ -31,10 +34,12 @@ def register(id,image,blocks=1):
    frames.append([c*size,r*size,size,size,size/2,size-6])
   entries.append({'height':size,'frames':frames})
  path=folder/f'{id}.webp';out.save(path,'WEBP',quality=35 if blocks==2 else 55,method=6,exact=True)
- key='living-'+id;manifest[key]={'path':'/assets/v4/characters/'+path.name,'width':out.width,'height':out.height,'rows':entries}
+ key='living-'+id
+ if id not in uniform and id not in native:manifest[key]={'path':'/assets/v4/characters/'+path.name,'width':out.width,'height':out.height,'rows':entries}
  records.append({'id':id,'sourceSHA256':hashlib.sha256(image.tobytes()).hexdigest(),'posesPerModel':24,'grid':'6x4 per model','rowCuts':rows,'path':str(path.relative_to(root)),'bytes':path.stat().st_size,'decodedBytes':out.width*out.height*4})
 if '--only-boss' in sys.argv: records=[m for m in json.loads((root/'dev/docs/major-v400/clip-assets.json').read_text())['models'] if m['id']!='bosses']
-for id,filename in ({} if '--only-boss' in sys.argv else inputs['models']).items():register(id,Image.open(filename).convert('RGBA'))
+for id,filename in ({} if '--only-boss' in sys.argv else inputs['models']).items():
+ if id not in native:register(id,Image.open(filename).convert('RGBA'))
 register('bosses',Image.open(inputs['boss']).convert('RGBA'),2)
 (root/'src/game/autochess/spriteFrames.json').write_text(json.dumps(manifest,separators=(',',':'))+'\n')
 (root/'dev/docs/major-v400/clip-assets.json').write_text(json.dumps({'tool':'Imagegen','method':'original roster pose references; new handpainted pose atlases, measured row gaps and alpha-preserving WebP encoding','models':records},indent=2)+'\n')

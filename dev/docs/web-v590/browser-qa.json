@@ -1,0 +1,218 @@
+{
+  "date": "2026-10-16",
+  "browser": "Chromium headless",
+  "checks": [
+    {
+      "area": "viewport",
+      "viewport": [
+        320,
+        568
+      ],
+      "village": {
+        "map": {
+          "width": 304,
+          "height": 202.65625,
+          "bottom": 403.15625
+        },
+        "walker": {
+          "width": 35.015625,
+          "height": 35.015625
+        },
+        "scroll": 320
+      },
+      "battleGeometry": {
+        "scroll": 320,
+        "deck": 530.171875,
+        "arena": 140,
+        "viewport": 568
+      },
+      "pixelCharacters": 7,
+      "starterCombatants": 5,
+      "typographyStates": true,
+      "pauseAndSkip": true,
+      "exclusiveCinematicLayer": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        390,
+        844
+      ],
+      "village": {
+        "map": {
+          "width": 374,
+          "height": 249.328125,
+          "bottom": 437.828125
+        },
+        "walker": {
+          "width": 43.109375,
+          "height": 43.109375
+        },
+        "scroll": 390
+      },
+      "battleGeometry": {
+        "scroll": 390,
+        "deck": 795.5,
+        "arena": 406.9375,
+        "viewport": 844
+      },
+      "pixelCharacters": 7,
+      "starterCombatants": 5,
+      "typographyStates": true,
+      "pauseAndSkip": true,
+      "exclusiveCinematicLayer": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        844,
+        390
+      ],
+      "village": {
+        "map": {
+          "width": 420,
+          "height": 280,
+          "bottom": 354
+        },
+        "walker": {
+          "width": 37.921875,
+          "height": 37.921875
+        },
+        "scroll": 844
+      },
+      "battleGeometry": {
+        "scroll": 844,
+        "deck": 379.53125,
+        "arena": 85,
+        "viewport": 390
+      },
+      "pixelCharacters": 7,
+      "starterCombatants": 5,
+      "typographyStates": true,
+      "pauseAndSkip": true,
+      "exclusiveCinematicLayer": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        1440,
+        900
+      ],
+      "village": {
+        "map": {
+          "width": 847.5,
+          "height": 565,
+          "bottom": 810.390625
+        },
+        "walker": {
+          "width": 76.71875,
+          "height": 76.71875
+        },
+        "scroll": 1440
+      },
+      "battleGeometry": {
+        "scroll": 1440,
+        "deck": 851.5,
+        "arena": 381.625,
+        "viewport": 900
+      },
+      "pixelCharacters": 7,
+      "starterCombatants": 5,
+      "typographyStates": true,
+      "pauseAndSkip": true,
+      "exclusiveCinematicLayer": true
+    },
+    {
+      "area": "starter-ultimate",
+      "id": "com-tam",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "starter-ultimate",
+      "id": "banh-mi",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "starter-ultimate",
+      "id": "pho-bo",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "starter-ultimate",
+      "id": "banh-cuon",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "starter-ultimate",
+      "id": "goi-cuon-tom-thit",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "reload-committed-cast",
+      "noDuplicateDamageOrRewards": true
+    },
+    {
+      "area": "five-consecutive-casts",
+      "baselineFps": 41.037119940309644,
+      "ratioToBaseline": 1.3320129543741,
+      "fps": 54.66197537069614,
+      "p95Gap": 33.30000000000018,
+      "maxCues": 5,
+      "remainingCues": 0,
+      "battleSerial": 46
+    },
+    {
+      "area": "autochess-gameplay",
+      "fiveStarterModels": true,
+      "sharedBoardSoloAndPvp": true
+    },
+    {
+      "area": "tcg-gameplay",
+      "fiveStarterIdentities": true,
+      "unrelatedCardOwnArtwork": true,
+      "noStarterCloneOnAttack": true
+    },
+    {
+      "area": "production-build",
+      "savedBattleHydrated": true,
+      "ownStarterAtlas": true,
+      "ultimatePauseSkip": true,
+      "viewport": [
+        390,
+        844
+      ]
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

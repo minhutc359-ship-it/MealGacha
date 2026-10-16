@@ -2,17 +2,27 @@ import type { Actor, AutoCombat } from "./types"
 import { actorFrame } from "./presentation"
 import { livingActorFrame } from "../livingClips"
 import { combatSignature } from "../combatArt"
+import { starterPose } from "../starterCharacters"
 
 /** Windup/contact/recovery follow the actual action.hit, for every atlas family.
  * No random values, state writes or changes to combat timing. */
 export function actorPose(actor: Actor, sheet: string, time: number, combat: AutoCombat | null, quiet: boolean, victory: boolean) {
+  if (sheet.startsWith("starter-")) {
+    const a = actor.action
+    if (actor.hp <= 0) return starterPose(actor.id,"fall",(time-(actor.diedAt ?? time))*50,quiet)
+    if (victory) return starterPose(actor.id,"victory",time*50,quiet)
+    if (actor.stunnedUntil > time) return starterPose(actor.id,"stun",0,quiet)
+    if (!a) {
+      const hit = [...(combat?.events ?? [])].reverse().find(e=>e.target===actor.uid && e.kind==="hit" && time>=e.tick && time-e.tick<5)
+      return starterPose(actor.id,hit?"hit":"idle",hit?(time-hit.tick)*50:time*50,quiet)
+    }
+    const age = Math.max(0,time-a.start)
+    const p = age < a.hit-a.start ? age/Math.max(1,a.hit-a.start)*.5 : .5+(age-(a.hit-a.start))/Math.max(1,a.end-a.hit)*.5
+    if (a.kind === "move") return starterPose(actor.id,"walk",age*50,quiet)
+    return (a.kind === "cast" ? 12 : 8) + (quiet?0:Math.min(3,Math.floor(p*4)))
+  }
   if (sheet.startsWith("living-")) return livingActorFrame(actor, time, combat, quiet, victory)
   const fresh = sheet !== "base", a = actor.action
-  if (sheet === "battleHd") {
-    if (actor.hp <= 0) return 0
-    if (quiet || !a || a.kind === "move") return 0
-    return time < a.hit ? 1 : time < a.hit + Math.max(1, (a.end - a.hit) * .7) ? a.kind === "cast" ? 3 : 2 : 0
-  }
   if (quiet) return actor.hp <= 0 ? fresh ? 6 : 12 : 0
   if (victory && actor.hp > 0) return (fresh ? [0,1,2,1] : [13,1,13,3])[Math.floor(time / 5) % 4]
   if (actor.hp <= 0 || !a || a.kind === "move") return actorFrame(actor,time,fresh,combat)

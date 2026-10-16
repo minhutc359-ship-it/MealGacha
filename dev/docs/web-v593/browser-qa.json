@@ -1,0 +1,176 @@
+{
+  "date": "2026-10-16",
+  "browser": "Chromium headless SwiftShader",
+  "checks": [
+    {
+      "area": "viewport",
+      "viewport": [
+        320,
+        568
+      ],
+      "layout": {
+        "scroll": 320,
+        "deck": 530.171875
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        390,
+        844
+      ],
+      "layout": {
+        "scroll": 390,
+        "deck": 795.5
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        844,
+        390
+      ],
+      "layout": {
+        "scroll": 844,
+        "deck": 379.53125
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        1440,
+        900
+      ],
+      "layout": {
+        "scroll": 1440,
+        "deck": 851.5
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "chef-ultimate",
+      "id": "chef-bach",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "chef-ultimate",
+      "id": "chef-nhien",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "chef-ultimate",
+      "id": "chef-moc",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "chef-ultimate",
+      "id": "chef-hai",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "chef-ultimate",
+      "id": "chef-lien",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "consecutive-and-concurrent-load",
+      "baselineFps": 29.954132734247196,
+      "fps": 50.089802434647495,
+      "p95Gap": 33.30000000000291,
+      "maxEffects": 5,
+      "remainingEffects": 0,
+      "cachePeak": 65076768,
+      "cacheBudget": 67108864
+    },
+    {
+      "area": "unmount",
+      "count": 14,
+      "bytes": 65076768,
+      "leased": 0,
+      "budget": 67108864
+    },
+    {
+      "area": "autochess",
+      "fiveChefModels": true,
+      "count": 8,
+      "bytes": 58529368,
+      "leased": 8,
+      "budget": 67108864
+    },
+    {
+      "area": "tcg",
+      "fiveChefModels": true,
+      "realAttack": true
+    },
+    {
+      "area": "expression-and-exploration-components",
+      "portraits": 30,
+      "directionalIdentities": 20
+    },
+    {
+      "area": "story-dialogue",
+      "speaker": "Hải",
+      "expression": "concern",
+      "existingStoryText": true
+    },
+    {
+      "area": "reduced-motion",
+      "staticImpact": true,
+      "skip": true
+    },
+    {
+      "area": "production",
+      "savedBattleHydrated": true,
+      "nativeChef": true,
+      "pauseSkip": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "noChefMp4Requested": true
+}

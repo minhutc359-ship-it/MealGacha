@@ -1,5 +1,5 @@
 {
-  "version": "5.8.0",
+  "version": "5.9.3",
   "generatedOn": "2026-10-15",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -120,6 +120,552 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/characters/chefs593/chef-bach-concern.webp",
+      "bytes": 19192,
+      "sha256": "d917a9cf3e45418229fc6546f2840729acf84694c46e4f817aa74157aa47fff3",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-bach-joy.webp",
+      "bytes": 18260,
+      "sha256": "f218cfbffdd50eaafca8556124095f299bfe073e26d38afce8249691e5e17f46",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-bach-neutral.webp",
+      "bytes": 18728,
+      "sha256": "176f0e45abdd10631cbc1d0728509b3c333ed75fe31ce2a0fbc3094c70d099ee",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-bach-pixel.webp",
+      "bytes": 107366,
+      "sha256": "09c170faa7a1ef1046c19d14bf0bacd3e4bf32df09969a4e458028de676727ec",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-bach-resolve.webp",
+      "bytes": 18660,
+      "sha256": "30079dfa0cc8250336ca1a045b83b0516c961bde923e689262984295a2b4f612",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-bach-surprise.webp",
+      "bytes": 18876,
+      "sha256": "e23edf9b82ed2412de7b474875de56f332f2fe990d52973735056a3be28e3122",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-bach-tender.webp",
+      "bytes": 18236,
+      "sha256": "914b8f1974e173da152ed3385e65f7dfb1ef54ba826d859a4738999ed8bd7c7e",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-bach.webp",
+      "bytes": 501140,
+      "sha256": "e7f69f6b0f4a305f3389305a5792aabe194a7ba841925b46d3406ee59bde7e38",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-hai-concern.webp",
+      "bytes": 19782,
+      "sha256": "1fc2b2efe16716394b6506f983fcbfa35e70cca387f7cb08d5a11e6a8f7cba1b",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-hai-joy.webp",
+      "bytes": 20244,
+      "sha256": "a3730593d27960a0ed47cdd247fb91488fe702e7445c46b2f2bdb3e0edc30885",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-hai-neutral.webp",
+      "bytes": 20128,
+      "sha256": "f5625e721691b2c941e592f40f2c9afdc9e5e46e96d6dd5f4939536cc8869e96",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-hai-pixel.webp",
+      "bytes": 90606,
+      "sha256": "857d305a614b613ca3b60232b7b85ea1c07525c2728c869f0a6bce02e41b697b",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-hai-resolve.webp",
+      "bytes": 19528,
+      "sha256": "e9ad5c9e4b1b5425e11482aea97863dbb93ac94b624f2ae231ee74a764905433",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-hai-surprise.webp",
+      "bytes": 20350,
+      "sha256": "d2a97b040787cfa81f1f6cd74a30c465ff303b158b927c1237f40f65f451b2c5",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-hai-tender.webp",
+      "bytes": 19834,
+      "sha256": "84540e6f79efdf7c67c53f90536460d1abb730423e3817a1c51863a403815ff6",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-hai.webp",
+      "bytes": 468844,
+      "sha256": "c26fdc00a03ebaceb1d8ce44557ee496e4265dc7f39f3996c8b9576eeee9e844",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-lien-concern.webp",
+      "bytes": 16784,
+      "sha256": "eb56937369269bb3a0cbd30cbdb80e7cc937194ad7d16bf7bb02efb288edc882",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-lien-joy.webp",
+      "bytes": 18820,
+      "sha256": "69da66bfe1401d8598c588427ee58f640a6e07b439a478922a49e8e962959c74",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-lien-neutral.webp",
+      "bytes": 19242,
+      "sha256": "ce7ae6b557a468f19cac6124d9e803947984d6b58a994982818c17ef20667a21",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-lien-pixel.webp",
+      "bytes": 113530,
+      "sha256": "a418c4d242d890a82bbcfda2ccd06939875bcd1e7ddbcfe3a22c98d7556d97d8",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-lien-resolve.webp",
+      "bytes": 19000,
+      "sha256": "f999f05cdfbef16acd8b9b6a8f23dcfdec7b018f68c2d14818b7a09bb0fc4e82",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-lien-surprise.webp",
+      "bytes": 19452,
+      "sha256": "cb7812f362c353ad83a58eac25beedfc62dfb9e7c6d7b5fed3a285f6d3b40277",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-lien-tender.webp",
+      "bytes": 19964,
+      "sha256": "762613415c5750aed4397e35a490dc0ae26f4ea5ce89c14ed1a67f98d884f7a7",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-lien.webp",
+      "bytes": 565484,
+      "sha256": "9c21f06f9cbdbec6bfd3c41b7b86917ecad1b64d31f1b930efea9e50de8963fc",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-moc-concern.webp",
+      "bytes": 22912,
+      "sha256": "a89dc185956f9b7abcb01283c8eb0c4ce732fa6e648750fef74183c09a707183",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-moc-joy.webp",
+      "bytes": 24698,
+      "sha256": "e474a30a6c250b70e7422eb49badb955f2377ad8947cf566c0d324c9b17de6b3",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-moc-neutral.webp",
+      "bytes": 22200,
+      "sha256": "a65d8d3b5460d3e35511b30843b2b8c4e273952a288d5e904629bfe213c6f8f8",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-moc-pixel.webp",
+      "bytes": 106626,
+      "sha256": "91b29eef245300c8331a42a88b1d846831d27b3303a096341baa0140e83633c2",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-moc-resolve.webp",
+      "bytes": 23358,
+      "sha256": "cbf2c3d94a603d095adb8aa2d39afc1f42ef3c78a7f66b8b903a00ccf2a8e51c",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-moc-surprise.webp",
+      "bytes": 23470,
+      "sha256": "e430eee024ef360c781a68dbf32cb9f34e49840054f5ec5ef55f940d2857902b",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-moc-tender.webp",
+      "bytes": 22882,
+      "sha256": "d1955c0fb51a0e6b794c359a00395156b4c3f3b616e2ce96d4346269828a0d58",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-moc.webp",
+      "bytes": 552484,
+      "sha256": "6d676d1f83871188ec9398bf6308d95999c454ecd32718c7a8260116b71f2b56",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-nhien-concern.webp",
+      "bytes": 22668,
+      "sha256": "6ddee0bad011618079a00424c9967dfd6ed3101a1130fd1050ba9b6c646879c0",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-nhien-joy.webp",
+      "bytes": 22918,
+      "sha256": "75b496574e25543d60f5822db5d96456d65adf7b223796019bf82863c8b43b30",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-nhien-neutral.webp",
+      "bytes": 22804,
+      "sha256": "96f7fc7930e8dea698cfb5e7394132d42e52f259c24210451a6568f8973ce0ea",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-nhien-pixel.webp",
+      "bytes": 103312,
+      "sha256": "6c6268eb86d048d5b0e8d4919d8209dd1ba03ebb9b7473fbfcdb66b69fddd1fc",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-nhien-resolve.webp",
+      "bytes": 22148,
+      "sha256": "53416eee735e955e2abcb3e3c80d9f56b56002bf068a61091b0e6fd04f5c88be",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-nhien-surprise.webp",
+      "bytes": 24074,
+      "sha256": "927f6a879be9216fc2819ae1fa2c9281075855e67629a3420569dfbb3fe7a566",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-nhien-tender.webp",
+      "bytes": 22208,
+      "sha256": "e86d5f635692b8573555477b16a20aa0f31ea8b0447ab81169df574f4e75943f",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/chef-nhien.webp",
+      "bytes": 494932,
+      "sha256": "2af3d8cce8a5b6324d48fa8cade65da1e8d5f9a0368e739376f2a2fa15301d21",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/exploration.webp",
+      "bytes": 255970,
+      "sha256": "2ed514409aa88fdd0ee329e055d2082fe5b0be4938179b8fed94bfd7b2ba5f60",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/chefs593/ultimate.webp",
+      "bytes": 618040,
+      "sha256": "5b51930d8021f41f57c2348d8f8ab8984b7822dd6d221829570a54f758a5eb09",
+      "origin": "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities",
+      "evidence": [
+        "dev/docs/web-v593/artwork.json",
+        "dev/docs/web-v593/support-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-chefs593.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/characters/nightA.webp",
       "bytes": 896596,
       "sha256": "89ad2365afa0827b4fbf4950b1d38de8d6472d5ad25a1bb27273f8749e65e1bf",
@@ -224,6 +770,179 @@
         "dev/docs/challenge-v322/prompts.json",
         "dev/docs/market-v331/atlas-prompts.json",
         "dev/tools/register-market-atlases.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/banh-cuon-pixel.webp",
+      "bytes": 165838,
+      "sha256": "d1878a3e5139cd799f1fc6cd9f936f1d426ddcc342c852e44d4f5205ad863cce",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/banh-cuon.webp",
+      "bytes": 825628,
+      "sha256": "287a6f9ea16fb0f2eecc9e4732bc17942d4f10fd1ada89e3e4500c45402cd968",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/banh-mi-pixel.webp",
+      "bytes": 173530,
+      "sha256": "da23bc273405d8e1130fb3ea544cf82ac46e772cdfa7fffc42ff056c4573ed4e",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/banh-mi.webp",
+      "bytes": 866956,
+      "sha256": "2f045c0e9fb660869c8ccbdc01a93bfff58a2adbcbbd6fe6be03b7ef2c90c0a3",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/com-tam-pixel.webp",
+      "bytes": 185332,
+      "sha256": "493225cd37c985fa369fc265e884d1047c586d81c722877b21e02def7b8c2a22",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/com-tam.webp",
+      "bytes": 869274,
+      "sha256": "55cb668a337902f16abe2fec41c5c5eb7a5b8a89b5f9072350e406361e92bf45",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/goi-cuon-tom-thit-pixel.webp",
+      "bytes": 184304,
+      "sha256": "a20b268e027e3cf5cf47881773683cfa864cfdd519d16dc48549e57cdaf3f02b",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/goi-cuon-tom-thit.webp",
+      "bytes": 1002666,
+      "sha256": "45bbfabda30bb888a9ad141db914cebcede5db68f8af21cd9488ba7b30482e49",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/pho-bo-pixel.webp",
+      "bytes": 189510,
+      "sha256": "815d3df6e44a27529b16f9e9f84923cb4fb19c72281c68b2486e7a91e1b9c91c",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/pho-bo.webp",
+      "bytes": 998102,
+      "sha256": "e30874a3626fcb19fd6ff3e32fa2e93dc27fa9b169ddd8f5812ab690aec9fe6d",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/ultimate591.webp",
+      "bytes": 378844,
+      "sha256": "0aaed254f9de64aa2ee7435795ebe25b05e1dbbac80edfbbe490a14525a626b4",
+      "origin": "Original AI-assisted six-spirit VFX atlas and Xôi bear canon: banana-leaf mantle, rice-grain quilt and jade knot; generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v591/artwork.json",
+        "dev/docs/web-v591/vfx-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-ultimate591.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/village-pixel.webp",
+      "bytes": 347736,
+      "sha256": "efbaf0a0fa33ab9305c6a4c54517bf83a83bf6005a51cf0f3250f16d28e47612",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/xoi-pixel.webp",
+      "bytes": 92010,
+      "sha256": "a2e0b4669b9a91a81bb388be667d0b38786f778c21e072ae1a4ca051fcac4e9b",
+      "origin": "Original AI-assisted six-spirit VFX atlas and Xôi bear canon: banana-leaf mantle, rice-grain quilt and jade knot; generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v591/artwork.json",
+        "dev/docs/web-v591/vfx-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-ultimate591.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/xoi-portrait.webp",
+      "bytes": 87302,
+      "sha256": "bad0e7239ef5bb5c0fc5bb579706c4314453e53f3f5eb46be592ca89e49e0437",
+      "origin": "Original AI-assisted six-spirit VFX atlas and Xôi bear canon: banana-leaf mantle, rice-grain quilt and jade knot; generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v591/artwork.json",
+        "dev/docs/web-v591/vfx-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-ultimate591.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/xoi.webp",
+      "bytes": 354430,
+      "sha256": "51fd3fe2f334fa99af65f821884a1cb78311cedc1c865821706fbc2f26d419e7",
+      "origin": "Original AI-assisted six-spirit VFX atlas and Xôi bear canon: banana-leaf mantle, rice-grain quilt and jade knot; generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v591/artwork.json",
+        "dev/docs/web-v591/vfx-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-ultimate591.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2192,19 +2911,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/banh-cuon.mp4",
-      "bytes": 1215674,
-      "sha256": "9eea7c506e010d132952576fad20199d189071181946ff4bb0cdd12115deb321",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/banh-da-cua.mp4",
       "bytes": 1473793,
       "sha256": "63bdde5321940a2430c9c5f7345c61ec2662916ab93df4a873189d00f0be0f25",
@@ -2247,19 +2953,6 @@
       "path": "public/assets/rpg/awakening530/movies/banh-khuc.mp4",
       "bytes": 1318384,
       "sha256": "da5902315958c0b98f4a1688fac3b565226e4182b42eb459485bdaaac1daca95",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/banh-mi.mp4",
-      "bytes": 1278410,
-      "sha256": "c4d317c6856b5c47095124fc513445e72d72416763a15cd0b24117c82e6fade2",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2816,71 +3509,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/chef-bach.mp4",
-      "bytes": 1390501,
-      "sha256": "54e0a3514b1b7a0b2570e28a502e11e726c939a3c8523b4fcda2c3d2e2640e8c",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/chef-hai.mp4",
-      "bytes": 1656466,
-      "sha256": "1bb44cd5f7cf765c1d95625afaa25ff857c2bb74bccd70de126a3e4af3ed50b6",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/chef-lien.mp4",
-      "bytes": 1369869,
-      "sha256": "90002137b769e4470303b79334d2d86f22b4623870ec8f00e9b96b1b51cef10c",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/chef-moc.mp4",
-      "bytes": 1268577,
-      "sha256": "1f626ad1498bf273643e2f47ff753da36fa830ae761a7f5d2dc698d528bb069f",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/chef-nhien.mp4",
-      "bytes": 1216162,
-      "sha256": "50f4692bbd7c7dc9053f0e047ba0f159007f02de74c15eb5c45981a0e5ea8b2d",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/christmas-pudding.mp4",
       "bytes": 1363599,
       "sha256": "0abe45c614277c975f307d73ae9cdfab73da133f46c6b6fb06583f190f8b94f5",
@@ -2962,19 +3590,6 @@
       "path": "public/assets/rpg/awakening530/movies/com-rang-dua-bo.mp4",
       "bytes": 1346851,
       "sha256": "1768e18b028b34b38c20993acdc0c7a0d0c9bc875391dc945b035db6d8ed5402",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/com-tam.mp4",
-      "bytes": 1344522,
-      "sha256": "3340d11a8e14c9b0527518d4125ad2dfaac31cd6d2d182b438393934b068b9ec",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3092,19 +3707,6 @@
       "path": "public/assets/rpg/awakening530/movies/gio-xao.mp4",
       "bytes": 1045035,
       "sha256": "73fb53e6d4023bbc3a01da0aefa317eaaaabbd48b8bce54cc8a38efbd1f46a7d",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/goi-cuon-tom-thit.mp4",
-      "bytes": 1273902,
-      "sha256": "e648f793f42533b0e8df18d0cae6927d7b7919e2a1e78fd41fcedceb398c0403",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3544,19 +4146,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/pho-bo.mp4",
-      "bytes": 1315912,
-      "sha256": "f64f3f36f862e100e714320d2361f7a451110f91c77d3330de3f5d256fcdbfb3",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/pho-ga.mp4",
       "bytes": 1293153,
       "sha256": "3aa351ed02c164ce1afe3fe604dbc1acb2f53a4a6ad8a85a2ca8b40fd9e5d4e8",
@@ -3908,19 +4497,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/xoi.mp4",
-      "bytes": 1416186,
-      "sha256": "d2d9cb7e96a3eb774db5f84b888b4e55421a1acab9b81c895132605317ad5fb9",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/yakitori.mp4",
       "bytes": 1135251,
       "sha256": "30beef1797bc4a608f9bf481ca73d7e5398d878eb5f8b02a2e5c6df79f72d441",
@@ -4003,7 +4579,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/banh-cuon.mp3",
       "bytes": 10029,
-      "sha256": "66ec75ce85b6ec9b317954e569035983c22de7c3c0ce2b17ab23bbaef6a2b35f",
+      "sha256": "c6ea04700f202ef1e2a1fa8f7b27714ee2647c4c6f66c90f4ad11f4635ca24de",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4058,7 +4634,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/banh-mi.mp3",
       "bytes": 10029,
-      "sha256": "62a277c6b624792d58f17b3ba47cf71716fa8c49b7cefa3dc30a3299a28d9054",
+      "sha256": "32745da78fee1888e9229dc523df5226a63ddd7b0a0338494b461db150e47288",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4531,7 +5107,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/chef-bach.mp3",
       "bytes": 10029,
-      "sha256": "953e2a4f17da1bd9d410bd2a80c237da7411b73952795a56fea05237d1715e3a",
+      "sha256": "57f889b4ad17504837edcc441113579e98f9c77d84aabc29de5b4955ed9a2346",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4542,7 +5118,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/chef-hai.mp3",
       "bytes": 10029,
-      "sha256": "7a0408d0233608503163ab8c6e8dbb65b8919a9bb3ce6b9be860908aa34d27b1",
+      "sha256": "339c5b433fcff45b7c97789093f7452d813c133a4964b1eef816290503615e2d",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4553,7 +5129,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/chef-lien.mp3",
       "bytes": 10029,
-      "sha256": "80689bf3dce1f9b50c51c31656397edf08d6d1b5e9515699d6debf7e40408915",
+      "sha256": "6cd01b8dcb86d0d82deea59e1f2c8fd63ca5f92a5bf981e74c4ab48e0bcf6d12",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4564,7 +5140,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/chef-moc.mp3",
       "bytes": 10029,
-      "sha256": "6710a7021dcde003df704623838a11ead369f439409ae2f0b197bf9b7f3bdf4b",
+      "sha256": "1f6fd1fb59816a5f605a0ba69452c5d7f0ec5541c542d4ad44d289d3f17bafa2",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4575,7 +5151,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/chef-nhien.mp3",
       "bytes": 10029,
-      "sha256": "3708db4238f054f3979cbec5717e692e95c04df29571e6547b37004abe493dc9",
+      "sha256": "270bf7bde3176ae7633c601941557d7c4012626e12a0e1dc19b129e18499453b",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4663,7 +5239,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/com-tam.mp3",
       "bytes": 10029,
-      "sha256": "22618780b5dd333d69d9539d84d857fb864c9626231cbf9b58ae65d070105ae1",
+      "sha256": "fc1381802bbb555b229df19897898817e7a4db47d88b43a616946782823f0802",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4773,7 +5349,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/goi-cuon-tom-thit.mp3",
       "bytes": 10029,
-      "sha256": "07ed94f834998b4824208b8276a9e17023d1cd59529b01eec11884a8697ffa39",
+      "sha256": "0f43fd176479cc6977901f7d24d49de311f0bdf04ca8081f812be6d1a121e346",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -5147,7 +5723,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/pho-bo.mp3",
       "bytes": 10029,
-      "sha256": "88311a08d99a8aeb71feb9bfdbaa22d69e01c73c4904852077e7a73329512353",
+      "sha256": "dca9e7c571c1becf7bb2d77baf7969af9fba67b6007ed8856133f3435d1c14ec",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -5455,7 +6031,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/xoi.mp3",
       "bytes": 10029,
-      "sha256": "2829d0597a548b0d3d3619bac5439b21696f243efe1052b54de703301d608c2f",
+      "sha256": "eb0d33869db84e9bf22d07f716a84afd05a267675530d93dbceaad946c79d93d",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -5489,17 +6065,6 @@
       "path": "public/assets/rpg/campaign580/aroma-palace.webp",
       "bytes": 378524,
       "sha256": "3b9c7cf2e47ccc90b242d57dd81a1e7b9b11bff243080b460c930d31b97bd355",
-      "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
-      "evidence": [
-        "dev/docs/web-v580/art-assets.json",
-        "dev/tools/prepare-campaign580-assets.py"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/campaign580/battle-ceremony.webp",
-      "bytes": 2240466,
-      "sha256": "041a45bc25e001a4aeafc1b52745b0132296f705edc28a64c73d4cb93dcee3a9",
       "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
       "evidence": [
         "dev/docs/web-v580/art-assets.json",
@@ -5566,16 +6131,6 @@
       "path": "public/assets/rpg/combat583/effects.webp",
       "bytes": 990866,
       "sha256": "0bde7b67956817ce1329a028e1b1a8ab955454f057376ae0d75a759ff98fcd52",
-      "origin": "Original AI-assisted Soul of Meal battle poses and five-school combat textures created with built-in image generation",
-      "evidence": [
-        "dev/docs/web-v583/UPDATE.md"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/combat583/spirits.webp",
-      "bytes": 1070252,
-      "sha256": "679cc9a2127ea26809e1ffef80a67b9ce3e839fa1bbd9581aadf81c6a0c31a0e",
       "origin": "Original AI-assisted Soul of Meal battle poses and five-school combat textures created with built-in image generation",
       "evidence": [
         "dev/docs/web-v583/UPDATE.md"

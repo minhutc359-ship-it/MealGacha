@@ -1,3 +1,4 @@
+import { starterCharacter } from "../../game/starterCharacters"
 import {
   useLayoutEffect,
   useState,
@@ -105,9 +106,9 @@ export function CombatEffects({ arena, frame, stamp, quiet = false }: Props) {
       key={stamp}
       aria-hidden="true"
     >
-      <BattleVfxCanvas source={layout.source} cues={layout.cues} school={invocation?.card.school ?? "hearth"}
+      <BattleVfxCanvas sourceId={attacker?.id} source={layout.source} cues={layout.cues} school={invocation?.card.school ?? "hearth"}
         action={frame?.event.kind ?? "idle"} stamp={stamp} quiet={quiet} />
-      {invocation?.kind === "attack" && contact && (
+      {invocation?.kind === "attack" && contact && !starterCharacter(attacker?.id ?? "") && (
         <div
           className="tcg-attack-manifest"
           data-effect="spirit-flight"
@@ -121,7 +122,7 @@ export function CombatEffects({ arena, frame, stamp, quiet = false }: Props) {
             } as CSSProperties
           }
         >
-          {attacker ? <CharacterSprite model={attacker} motion="attack" stamp={stamp}
+          {attacker ? <CharacterSprite model={attacker} contactMs={TCG_IMPACT_MS} motion="attack" stamp={stamp}
             flip={contact.x < layout.source.x || (Math.abs(contact.x - layout.source.x) < 5 && frame?.event.side === "enemy")}
             quiet={quiet} fallback={invocation.art} /> : <img src={invocation.art} alt="" draggable={false} />}
         </div>

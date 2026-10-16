@@ -4,3 +4,25 @@
 .rpg-village-map{max-width:min(1100px,calc((100dvh - 230px)*1.5))}
 .village-npc-body:has([data-character="chef-bach"]){inset:-35% -30% 0}
 @media(max-height:500px) and (orientation:landscape){.rpg-village-map{max-width:min(100%,calc((100dvh - 110px)*1.5))}}
+
+/* Pixel overworld: 64 px cells, shared foot pivot, native-size integer pixels. */
+.village-walker{background-size:1200% 700%;background-position-x:var(--step-b);image-rendering:pixelated;filter:drop-shadow(0 2px 0 #071b2860)}
+.village-walker.is-walking{animation:village-pixel-walk .64s steps(1,end) infinite}
+@keyframes village-pixel-walk{0%,50%,100%{background-position-x:var(--step-b)}25%{background-position-x:var(--step-a)}75%{background-position-x:var(--step-c)}}
+.rpg-village-world .rpg-village-party{width:18%;height:19%;min-width:0;translate:-50% -90%}
+.rpg-village-world .village-npc.rpg-village-place{width:9%;height:17%;translate:-50% -90%}
+.village-npc-body,.village-npc-body:has([data-character="chef-bach"]){inset:0 0 15%}
+.rpg-village-world .village-party-actor.leader{inset:0 29%;z-index:3}
+.rpg-village-world .village-party-actor.companion-one{left:0;bottom:0;width:33%;height:65%}
+.rpg-village-world .village-party-actor.companion-two{right:0;bottom:-6%;width:37%;height:72%}
+.rpg-village-world .village-party-actor .village-walker{filter:none}
+.rpg-village-world .village-party-sprites{filter:drop-shadow(0 2px 1px #07162277)}
+.rpg-village-world .village-party-sprites.facing-down .companion-one{bottom:30%}
+.rpg-village-world .village-party-sprites.facing-down .companion-two{bottom:28%}
+.rpg-village-map{touch-action:manipulation}
+@media(max-width:740px){.rpg-village-world .rpg-village-party{width:23%;height:24%}.rpg-village-world .village-npc.rpg-village-place{width:12%;height:22%}}
+.village-walker{inset:auto;left:50%;bottom:0;translate:-50% 0;width:100%;height:auto;aspect-ratio:1}
+.village-npc.rpg-village-place strong{max-width:none;overflow:visible;text-overflow:clip}
+.rpg-village-map{max-width:min(1100px,calc((100dvh - 335px)*1.5))}
+@media(max-width:740px) and (orientation:portrait){.rpg-village-map{max-width:100%}}
+@media(max-height:500px) and (orientation:landscape){.rpg-village-title,.village-directory,.village-social{display:none}.rpg-village-map{max-width:min(100%,calc((100dvh - 110px)*1.5))}.rpg-app .rpg-village-screen{overflow:hidden;padding-bottom:0}}

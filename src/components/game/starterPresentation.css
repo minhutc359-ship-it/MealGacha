@@ -1,0 +1,29 @@
+/* Isolated stage: floor 0, actors depth 10–90, VFX 100, labels 110, status 120. */
+.rpg-arena .battle-status{z-index:120;pointer-events:none;display:grid;place-items:center;isolation:isolate;background:linear-gradient(90deg,transparent,#081d2bcb 25% 75%,transparent);color:#f4d899}
+.battle-status-type{display:flex;flex-direction:column;align-items:center;width:min(90%,650px);text-align:center;animation:battle-status-type .58s cubic-bezier(.16,1,.3,1) both}
+.battle-status-type small{font:600 clamp(8px,1.4cqw,13px)/1.5 "Be Vietnam Pro",sans-serif;letter-spacing:.2em;color:currentColor}
+.rpg-arena .battle-status .battle-status-type strong{display:block;font:800 clamp(19px,5.6cqw,54px)/1.25 "Exo 2","Be Vietnam Pro",sans-serif;letter-spacing:.06em;white-space:nowrap;color:#fff3d2;text-shadow:0 2px 10px #05131d;padding:.22em 0;max-width:100%;overflow-wrap:anywhere}
+.battle-status-rule{display:block;width:min(68%,320px);height:16px;line-height:16px;font-size:12px;background:linear-gradient(90deg,transparent,currentColor,transparent) center/100% 1px no-repeat}
+.battle-status-rule:first-of-type{background-size:42% 1px;background-position:left center,right center}
+.phase-win .battle-status-type{color:#f5d77f}.phase-win .rpg-arena .battle-status .battle-status-type strong{color:#fff1b2}
+.phase-fail .battle-status-type{color:#d1a5b9}.phase-fail .rpg-arena .battle-status .battle-status-type strong{color:#f4dce4}
+.phase-start .battle-status-type{animation-duration:.32s}.phase-ready .battle-status-type{color:#a5dada}
+@keyframes battle-status-type{from{opacity:0;translate:0 8px;scale:.95}to{opacity:1;translate:0 0;scale:1}}
+.rpg-burst-banner{pointer-events:none;min-height:0!important;padding:7px 12px!important;left:20%;right:20%;top:3%;text-align:center;background:#102a36e6;z-index:110;box-shadow:none}
+.rpg-burst-banner strong{font-size:clamp(10px,1.8cqw,18px)}
+.rpg-actor-body.is-ultimate:before,.rpg-actor-body.is-ultimate:after{display:none!important}
+.rpg-cinematic-screen>.rpg-ultimate-illustration{z-index:1}.rpg-cinematic-native{background:radial-gradient(circle at 55% 50%,#234a50,#071824);position:absolute;inset:0;width:100%;height:100%}
+.rpg-cinematic .rpg-cinematic-caption{position:relative;flex-shrink:0}.rpg-cinematic-screen{box-shadow:none}
+.rpg-cinematic.is-fullscreen .rpg-cinematic-screen{height:auto;max-height:62dvh;aspect-ratio:16/9;max-width:min(1100px,100vw,110dvh);flex-shrink:1}
+.rpg-cinematic .rpg-cinematic-caption strong{font-size:clamp(15px,2.8vw,25px)}
+.rpg-cinematic .rpg-cinematic-caption span{font-size:clamp(10px,1.5vw,13px);line-height:1.5}
+.rpg-battle.presentation-fight .rpg-combatants{isolation:isolate}
+@media(max-height:500px) and (orientation:landscape){.rpg-cinematic.is-fullscreen .rpg-cinematic-screen{max-width:100%;max-height:100%;height:100%;aspect-ratio:auto}.rpg-cinematic.is-fullscreen .rpg-cinematic-caption{position:absolute;bottom:env(safe-area-inset-bottom,0);padding:9px 5%;background:#071b2ce6}.rpg-cinematic .rpg-cinematic-caption span{display:none}}
+@media(prefers-reduced-motion:reduce){.battle-status-type{animation:none!important}}
+.rpg-battle.is-quiet .battle-status-type{animation:none}
+.rpg-arena .battle-status .battle-status-type strong{animation:none;margin:0;width:auto;max-width:100%;font-style:normal}
+/* Keep the liquid ward, cache its surface: no perpetual gradient/radius repaint. */
+.rpg-bubble-film,.rpg-bubble-film::after{animation:none}
+.rpg-bubble-film::after{opacity:.15;translate:-30% 0}
+.rpg-combatant:has([data-sheet^="starter-"]) .rpg-actor-body.is-ultimate{animation:none}
+.rpg-combatant [data-sheet$="-pixel"]{filter:none}

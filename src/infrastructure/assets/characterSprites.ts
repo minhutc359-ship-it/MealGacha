@@ -1,3 +1,5 @@
+import { characterVisual } from "../../game/characterVisuals"
+import { spiritArt } from "../../game/adventureRpg/spiritArt"
 import { renderIsLight, sampleRenderFrame, resetRenderSampling } from "../presentation/renderQuality"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { UNIT_MAP, MONSTER_MAP } from "../../game/autochess/catalog"
@@ -16,20 +18,11 @@ export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
   "village-hero": ["villageParty", 0],
   "village-flame": ["villageParty", 1],
   "village-dragon": ["villageParty", 2],
-  "chef-nhien": ["living-chef-nhien", 0],
-  "chef-hai": ["living-chef-hai", 0],
-  "chef-moc": ["living-chef-moc", 0],
-  "chef-bach": ["living-chef-bach", 0],
-  "chef-lien": ["living-chef-lien", 0],
   ferry: ["living-ferry", 0],
   "bun-cha": ["living-bun-cha", 0],
   "bun-rieu": ["living-bun-rieu", 0],
   "banh-xeo": ["living-banh-xeo", 0],
-  "com-tam": ["battleHd", 0],
-  "banh-mi": ["battleHd", 1],
-  "pho-bo": ["battleHd", 2],
-  "banh-cuon": ["battleHd", 3],
-  xoi: ["battleHd", 4],
+
   "com-ga": ["living-com-ga", 0],
   "banh-chung": ["rosterD", 0],
   "banh-tet": ["rosterD", 1],
@@ -81,9 +74,19 @@ export function monsterCharacter(id: string): CharacterModel {
   const [sheet, row] = ENEMY_MODELS[id] ?? ["enemy", def.sprite]
   return { sheet, row, id, name: def.name }
 }
+/** A character without an authored model keeps its own artwork, never a different hero. */
+export function spiritCharacter(id: string, name = id): CharacterModel | null {
+  const visual = characterVisual(id)
+  if (visual) return {sheet: visual.sheet, row: 0, id, name}
+  const art=spiritArt(id)
+  if(!art)return null
+  const sheet=`portrait-${art.path.match(/portraits-(\d+)/)![1]}` as CharacterSheet
+  return {sheet,row:art.cell,id,name}
+}
 export function unitCharacter(id: string): CharacterModel {
   const unit = UNIT_MAP[id],
-    custom = DISTINCT_MODELS[id]
+    visual = characterVisual(id),
+    custom = visual ? [visual.sheet, 0] as [CharacterSheet, number] : DISTINCT_MODELS[id]
   const [sheet, row] =
     custom ??
     (unit.portrait >= 18

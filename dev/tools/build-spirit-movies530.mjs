@@ -6,11 +6,12 @@ import {fileURLToPath} from 'node:url'
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..'),out=path.join(root,'public/assets/rpg/awakening530/movies')
 mkdirSync(out,{recursive:true});const temporary=path.join(root,'dev/artifacts/awakening530/encoded');mkdirSync(temporary,{recursive:true})
 let ids=JSON.parse(readFileSync(path.join(root,'dev/docs/web-v530/summon-catalog.json'),'utf8')).map(c=>c.id)
+const native=new Set(JSON.parse(readFileSync(path.join(root,"dev/docs/web-v530/movie-manifest.json"),"utf8")).filter(m=>m.renderer?.startsWith("native")).map(m=>m.id));ids=ids.filter(id=>!native.has(id))
 const selected=process.argv.slice(2);if(selected.length)ids=ids.filter(id=>selected.includes(id))
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE??'playwright')
 const port=4253,url=`http://127.0.0.1:${port}`,server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--config','dev/tools/vite.pvp-qa.config.ts','--host','127.0.0.1','--port',String(port),'--strictPort'],{cwd:root,stdio:'pipe'})
 let log='',browser;server.stdout.on('data',b=>log+=b);server.stderr.on('data',b=>log+=b)
-const manifest=[]
+const manifest=JSON.parse(readFileSync(path.join(root,"dev/docs/web-v530/movie-manifest.json"),"utf8")).filter(m=>native.has(m.id))
 try{
   for(let i=0;i<100;i++){try{await fetch(url);break}catch{await new Promise(r=>setTimeout(r,100))}}
   browser=await chromium.launch({executablePath:process.env.CHROMIUM_BIN,headless:true,env:{...process.env,LD_LIBRARY_PATH:process.env.CHROMIUM_LIB_DIR??process.env.LD_LIBRARY_PATH},args:['--no-sandbox']})
