@@ -53,3 +53,5 @@ dev/docs/**/*.webp
 !dev/docs/web-v593/evidence/*.webp
 
 !dev/docs/web-v594/evidence/*.webp
+
+!dev/docs/web-v595/evidence/*.webp

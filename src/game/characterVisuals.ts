@@ -65,6 +65,10 @@ const DEFINITIONS = {
   "bun-rieu": {effectColumn:1,title:"Xích hải",species:"Giáp Cua Cà Chua",signature:"claw",color:"#f39e86",idle:1600,walk:960,attack:920,cast:1080},
   "banh-xeo": {effectColumn:2,title:"Kim phiến",species:"Hỏa Điểu Vầng Giòn",signature:"fan",color:"#ecd983",idle:1060,walk:580,attack:660,cast:900},
   "com-ga": {effectColumn:3,title:"Dương cầm",species:"Kim Kê Cánh Nắng",signature:"lance",color:"#f1cd78",idle:1200,walk:680,attack:700,cast:820},
+  "banh-chung": {effectColumn:0,title:"Lục thành",species:"Linh Quy Lá Vuông",signature:"rampart",color:"#b8d284",idle:1640,walk:940,attack:920,cast:1120},
+  "cha-ca-la-vong": {effectColumn:1,title:"Hải vũ",species:"Lão Ngư Thì Là",signature:"skillet",color:"#8dd6c6",idle:1720,walk:880,attack:880,cast:1180},
+  "bun-thang": {effectColumn:2,title:"Thất thanh",species:"Bạch Hạc Chỉ Vàng",signature:"threads",color:"#f4df9b",idle:1480,walk:740,attack:760,cast:1040},
+  "banh-com-hang-than": {effectColumn:3,title:"Ngọc thu",species:"Yến Ngọc Tơ Duyên",signature:"knot",color:"#d2b9ec",idle:1360,walk:620,attack:700,cast:980},
 } as const
 
 export const CHEF_IDS = ["chef-bach","chef-nhien","chef-moc","chef-hai","chef-lien"] as const
@@ -74,6 +78,8 @@ export type ChefExpression = typeof CHEF_EXPRESSIONS[number]
 export const CHEF_ASSET_ROOT = "/assets/characters/chefs593"
 export const FAMILIAR_IDS = ["bun-cha","bun-rieu","banh-xeo","com-ga"] as const
 export const FAMILIAR_ASSET_ROOT = "/assets/characters/familiar594"
+export const RARE_IDS = ["banh-chung","cha-ca-la-vong","bun-thang","banh-com-hang-than"] as const
+export const RARE_ASSET_ROOT = "/assets/characters/rare595"
 export type VisualCharacterId = keyof typeof DEFINITIONS
 export const VISUAL_CONTACT = { attack: 300, cast: 380, ultimate: 960, tcg: 560 } as const
 export const ULTIMATE_TIMELINE = {
@@ -82,13 +88,13 @@ export const ULTIMATE_TIMELINE = {
 } as const
 export const STARTER_ASSET_ROOT = "/assets/characters/starters590"
 const PORTRAIT_CELLS: Partial<Record<VisualCharacterId,number>> = { "com-tam": 13, "banh-mi": 4, "pho-bo": 0, "banh-cuon": 6, "goi-cuon-tom-thit": 105, xoi: -1 }
-const CAST_ANCHORS = { "com-tam": [.66,.48], "banh-mi": [.73,.43], "pho-bo": [.73,.3], "banh-cuon": [.68,.38], "goi-cuon-tom-thit": [.7,.28], xoi: [.64,.72], "chef-bach":[.7,.48], "chef-nhien":[.76,.5], "chef-moc":[.7,.35], "chef-hai":[.76,.42], "chef-lien":[.73,.32], "bun-cha":[.7,.5], "bun-rieu":[.72,.48], "banh-xeo":[.72,.38], "com-ga":[.77,.4] }
+const CAST_ANCHORS = { "com-tam": [.66,.48], "banh-mi": [.73,.43], "pho-bo": [.73,.3], "banh-cuon": [.68,.38], "goi-cuon-tom-thit": [.7,.28], xoi: [.64,.72], "chef-bach":[.7,.48], "chef-nhien":[.76,.5], "chef-moc":[.7,.35], "chef-hai":[.76,.42], "chef-lien":[.73,.32], "bun-cha":[.7,.5], "bun-rieu":[.72,.48], "banh-xeo":[.72,.38], "com-ga":[.77,.4], "banh-chung":[.71,.49], "cha-ca-la-vong":[.74,.3], "bun-thang":[.75,.27], "banh-com-hang-than":[.74,.45] }
 export function chefPortrait(id: ChefId, expression: ChefExpression = "neutral") {
   return `${CHEF_ASSET_ROOT}/${id}-${expression}.webp`
 }
 function manifest(id: VisualCharacterId) {
-  const chef = id.startsWith("chef-"), familiar = (FAMILIAR_IDS as readonly string[]).includes(id)
-  const root = chef ? CHEF_ASSET_ROOT : familiar ? FAMILIAR_ASSET_ROOT : STARTER_ASSET_ROOT
+  const chef = id.startsWith("chef-")
+  const root = chef ? CHEF_ASSET_ROOT : (RARE_IDS as readonly string[]).includes(id) ? RARE_ASSET_ROOT : (FAMILIAR_IDS as readonly string[]).includes(id) ? FAMILIAR_ASSET_ROOT : STARTER_ASSET_ROOT
   const cell = PORTRAIT_CELLS[id] ?? -1
   return {
     ...DEFINITIONS[id], id,
@@ -96,8 +102,8 @@ function manifest(id: VisualCharacterId) {
     pixelSheet: `starter-${id}-pixel` as const,
     atlas: `${root}/${id}.webp`,
     pixel: `${root}/${id}-pixel.webp`,
-    portrait: cell < 0 ? {path: chef ? chefPortrait(id as ChefId) : `${root}/${familiar ? id : "xoi"}-portrait.webp`, cell: 0, columns: 1} : {path: `/assets/rpg/spirit510/portraits-${Math.floor(cell/16)+1}.webp`, cell: cell%16, columns: 4},
-    effect: {path: `${root}/${chef || familiar ? "ultimate" : "ultimate591"}.webp`, column: DEFINITIONS[id].effectColumn},
+    portrait: cell < 0 ? {path: chef ? chefPortrait(id as ChefId) : `${root}/${id}-portrait.webp`, cell: 0, columns: 1} : {path: `/assets/rpg/spirit510/portraits-${Math.floor(cell/16)+1}.webp`, cell: cell%16, columns: 4},
+    effect: {path: `${root}/${root === STARTER_ASSET_ROOT ? "ultimate591" : "ultimate"}.webp`, column: DEFINITIONS[id].effectColumn},
     anchors: { foot: [.5, .9375], cast: CAST_ANCHORS[id] },
     contact: VISUAL_CONTACT,
     sound: `/assets/rpg/awakening530/sounds/${id}.mp3`,

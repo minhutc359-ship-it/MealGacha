@@ -20,7 +20,6 @@ export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
   "village-dragon": ["villageParty", 2],
   ferry: ["living-ferry", 0],
 
-  "banh-chung": ["rosterD", 0],
   "banh-tet": ["rosterD", 1],
   "caravan-herbalist": ["rosterD", 2],
   "caravan-gardener": ["rosterD", 3],
@@ -30,11 +29,8 @@ export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
   "che-buoi": ["rosterE", 3],
   "bun-ca": ["rosterF", 0],
   "cha-ruoi": ["rosterF", 1],
-  "cha-ca-la-vong": ["rosterF", 2],
   "thit-kho-trung": ["rosterF", 3],
-  "bun-thang": ["rosterG", 0],
   "com-lang-vong": ["rosterG", 1],
-  "banh-com-hang-than": ["rosterG", 2],
   "ca-phe-trung": ["rosterG", 3],
 }
 const ENEMY_MODELS: Record<string, [CharacterSheet, number]> = {
@@ -153,7 +149,7 @@ function imageEntry(path: string) {
     images.set(path, entry)
     image.addEventListener("load", evictImages)
     image.addEventListener("error", () => {
-      if (!entry!.leases) images.delete(path)
+      if (!entry!.leases && images.get(path) === entry) images.delete(path)
     })
     image.src = path
   }
@@ -176,6 +172,8 @@ export function acquireCharacterImage(path: string) {
       if (!active) return
       active = false
       entry.leases--
+      if (!entry.leases && entry.image.complete && !entry.image.naturalWidth)
+        images.delete(path)
       evictImages()
     },
   }

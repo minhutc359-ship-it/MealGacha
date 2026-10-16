@@ -744,27 +744,37 @@
   },
   {
     "id": "cha-ca-la-vong",
-    "pattern": "counter",
-    "motif": 2,
-    "title": "H\u1ea3i v\u0169",
-    "path": "/assets/rpg/awakening530/movies/cha-ca-la-vong.mp4",
-    "bytes": 1530396,
-    "width": 1280,
-    "height": 720,
-    "fps": 24,
-    "seconds": 2.4
+    "renderer": "native595",
+    "path": "/assets/characters/rare595/cha-ca-la-vong.webp",
+    "bytes": 480696,
+    "width": 1024,
+    "height": 2048,
+    "frames": 32,
+    "seconds": 2.4,
+    "phases": [
+      "preparation",
+      "casting",
+      "impact",
+      "finisher",
+      "recovery"
+    ]
   },
   {
     "id": "bun-thang",
-    "pattern": "nova",
-    "motif": 3,
-    "title": "Th\u1ea5t thanh",
-    "path": "/assets/rpg/awakening530/movies/bun-thang.mp4",
-    "bytes": 1585513,
-    "width": 1280,
-    "height": 720,
-    "fps": 24,
-    "seconds": 2.4
+    "renderer": "native595",
+    "path": "/assets/characters/rare595/bun-thang.webp",
+    "bytes": 475360,
+    "width": 1024,
+    "height": 2048,
+    "frames": 32,
+    "seconds": 2.4,
+    "phases": [
+      "preparation",
+      "casting",
+      "impact",
+      "finisher",
+      "recovery"
+    ]
   },
   {
     "id": "com-lang-vong",
@@ -804,15 +814,20 @@
   },
   {
     "id": "banh-com-hang-than",
-    "pattern": "moon",
-    "motif": 7,
-    "title": "Ng\u1ecdc thu",
-    "path": "/assets/rpg/awakening530/movies/banh-com-hang-than.mp4",
-    "bytes": 1356719,
-    "width": 1280,
-    "height": 720,
-    "fps": 24,
-    "seconds": 2.4
+    "renderer": "native595",
+    "path": "/assets/characters/rare595/banh-com-hang-than.webp",
+    "bytes": 651708,
+    "width": 1024,
+    "height": 2048,
+    "frames": 32,
+    "seconds": 2.4,
+    "phases": [
+      "preparation",
+      "casting",
+      "impact",
+      "finisher",
+      "recovery"
+    ]
   },
   {
     "id": "jjajangmyeon",
@@ -1176,15 +1191,20 @@
   },
   {
     "id": "banh-chung",
-    "pattern": "balance",
-    "motif": 6,
-    "title": "L\u1ee5c th\u00e0nh",
-    "path": "/assets/rpg/awakening530/movies/banh-chung.mp4",
-    "bytes": 1415358,
-    "width": 1280,
-    "height": 720,
-    "fps": 24,
-    "seconds": 2.4
+    "renderer": "native595",
+    "path": "/assets/characters/rare595/banh-chung.webp",
+    "bytes": 524754,
+    "width": 1024,
+    "height": 2048,
+    "frames": 32,
+    "seconds": 2.4,
+    "phases": [
+      "preparation",
+      "casting",
+      "impact",
+      "finisher",
+      "recovery"
+    ]
   },
   {
     "id": "canh-mang-mien",

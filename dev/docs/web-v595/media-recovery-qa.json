@@ -1,0 +1,29 @@
+{
+  "mediaOnly": true,
+  "date": "2026-10-16",
+  "browser": "Chromium headless SwiftShader",
+  "checks": [
+    {
+      "area": "offline-native-fallback",
+      "actor": "pixel",
+      "paintedActorPixels": 12397,
+      "onlineRetry": "hd",
+      "skip": true,
+      "released": true
+    },
+    {
+      "area": "reduced-motion",
+      "staticImpact": true,
+      "skip": true
+    },
+    {
+      "area": "production",
+      "savedBattleHydrated": true,
+      "nativeRare": true,
+      "pauseSkip": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "noRareMp4Requested": true
+}

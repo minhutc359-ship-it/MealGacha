@@ -1,0 +1,149 @@
+{
+  "files": [
+    {
+      "file": "public/assets/characters/rare595/banh-chung-pixel.webp",
+      "bytes": 128574,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "ab80422f942070408f784b44be74856ae5863529c878bc817c5455ff7a7eb04c"
+    },
+    {
+      "file": "public/assets/characters/rare595/banh-chung-portrait.webp",
+      "bytes": 94426,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "2efd5d320001de6f703e3ec8baadbce2bd539f81e7d1f33c674bdc53c9600c90"
+    },
+    {
+      "file": "public/assets/characters/rare595/banh-chung.webp",
+      "bytes": 524754,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "fb03cba76ea9bfcdc5f0e6336b217dbbb105875fbf5b9cffe542d800edd90d45"
+    },
+    {
+      "file": "public/assets/characters/rare595/banh-com-hang-than-pixel.webp",
+      "bytes": 138864,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "7a5cffa1200a92ce46cfa76aad9d47953fe7c6ab04eb919bdad07c901b052042"
+    },
+    {
+      "file": "public/assets/characters/rare595/banh-com-hang-than-portrait.webp",
+      "bytes": 85194,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "96bc1a1b48a76c4d9e8ea555d0e5e8d7e190a5d5a4565573b469b9c1ea2b2106"
+    },
+    {
+      "file": "public/assets/characters/rare595/banh-com-hang-than.webp",
+      "bytes": 651708,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "29b77f325fcaafb3eb8744ec56b0b7c93af609d0f32fca47e2e1627fc90d5259"
+    },
+    {
+      "file": "public/assets/characters/rare595/bun-thang-pixel.webp",
+      "bytes": 89946,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "23c9b940d6046ed2992b6d0f0c0b5ccde8a0967ee66e70b31c31877b17369454"
+    },
+    {
+      "file": "public/assets/characters/rare595/bun-thang-portrait.webp",
+      "bytes": 95062,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "2b66bad479d87e6cf3f60a7ddbba0c1537db2a273515d7c879b513491b736e6a"
+    },
+    {
+      "file": "public/assets/characters/rare595/bun-thang.webp",
+      "bytes": 475360,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "4707d73a22f94f8686c2c44930af36d0932e488469c22a0e82bab037edbeccb5"
+    },
+    {
+      "file": "public/assets/characters/rare595/cha-ca-la-vong-pixel.webp",
+      "bytes": 102908,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "0ae1e2f8e28e07319ee214d6274f3e00eae9db031038eadf4173fd8d3f630c59"
+    },
+    {
+      "file": "public/assets/characters/rare595/cha-ca-la-vong-portrait.webp",
+      "bytes": 86538,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "18791379e515e0f41561431345bfe5c13a868bc11d34656b7f3f2b0e80323788"
+    },
+    {
+      "file": "public/assets/characters/rare595/cha-ca-la-vong.webp",
+      "bytes": 480696,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "1cfd0a3a7134a083bd8bc6949df08616ab945ca43048bac27306acfd51987e8e"
+    },
+    {
+      "file": "public/assets/characters/rare595/ultimate.webp",
+      "bytes": 318414,
+      "dimensions": [
+        1024,
+        768
+      ],
+      "frames": 12,
+      "uniqueFrames": 12,
+      "sha256": "0790f9c312a9707d83cd8f9d94ec2131d83dbcb62942adbfd26ceda0f46ce4fe"
+    }
+  ],
+  "bytes": 3272444,
+  "frames": 272
+}

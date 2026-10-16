@@ -1,0 +1,11 @@
+{
+  "sourceSize": [1086,1448],
+  "layout": "3 phases per character row, transposed to 4 character columns at runtime",
+  "method": "Measured alpha gutters preserve full effect and exclude neighboring clusters",
+  "rects": [
+    [0,0,356,390],[356,0,763,390],[763,0,1086,390],
+    [0,390,356,745],[356,390,763,745],[763,390,1086,745],
+    [0,745,356,1098],[356,745,763,1098],[763,745,1086,1098],
+    [0,1098,356,1448],[356,1098,763,1448],[763,1098,1086,1448]
+  ]
+}

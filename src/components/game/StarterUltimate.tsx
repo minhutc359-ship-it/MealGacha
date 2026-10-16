@@ -34,6 +34,7 @@ export function StarterUltimate({
       ctx = el.getContext("2d")!
     const kit = starterCharacter(id)!,
       lease = acquireCharacterImage(kit.atlas),
+      pixelLease = acquireCharacterImage(kit.pixel),
       effectLease = acquireCharacterImage(kit.effect.path),
       effect = effectLease.image,
       image = lease.image
@@ -48,20 +49,26 @@ export function StarterUltimate({
       lastMs = ms
       el.dataset.phase = ultimatePhase(ms)
       ctx.clearRect(0, 0, w, h)
-      if (image.naturalWidth) {
+      const actor = image.complete && image.naturalWidth ? image : pixelLease.image,
+        cell = actor === image ? 256 : 64,
+        source = actor === image ? "hd" : "pixel"
+      if (el.dataset.source !== source) el.dataset.source = source
+      if (actor.complete && actor.naturalWidth) {
+        ctx.imageSmoothingEnabled = actor === image
         const p = state.current.reduced ? kit.reducedPose : starterPose(id, "ultimate", ms),
           size = Math.min(w * 0.48, h * 0.92)
         ctx.drawImage(
-          image,
-          (p % 4) * 256,
-          Math.floor(p / 4) * 256,
-          256,
-          256,
+          actor,
+          (p % 4) * cell,
+          Math.floor(p / 4) * cell,
+          cell,
+          cell,
           w * 0.32 - size / 2,
           h * 0.89 - size * kit.anchors.foot[1],
           size,
           size,
         )
+        ctx.imageSmoothingEnabled = true
       }
       // One painted effect frame replaces geometry when ready; never stack both.
       if (ms >= kit.timeline.casting && ms < kit.timeline.recovery) {
@@ -87,6 +94,7 @@ export function StarterUltimate({
     const observer = new ResizeObserver(resize)
     observer.observe(el)
     image.addEventListener("load", resize)
+    pixelLease.image.addEventListener("load", resize)
     effect.addEventListener("load", resize)
     resize()
     const stop = subscribeCharacterClock(
@@ -97,9 +105,11 @@ export function StarterUltimate({
       stop()
       observer.disconnect()
       image.removeEventListener("load", resize)
+      pixelLease.image.removeEventListener("load", resize)
       effect.removeEventListener("load", resize)
       effectLease.release()
       lease.release()
+      pixelLease.release()
     }
   }, [id])
   return (

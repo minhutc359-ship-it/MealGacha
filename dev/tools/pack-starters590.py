@@ -12,11 +12,11 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE = Path(sys.argv[1])
 args = sys.argv[2:]
 group = next((a.split('=',1)[1] for a in args if a.startswith('--group=')), 'starters590')
-if group not in ['starters590', 'chefs593', 'familiar594']: raise ValueError('Unknown visual production group')
+if group not in ['starters590', 'chefs593', 'familiar594', 'rare595']: raise ValueError('Unknown visual production group')
 args = [a for a in args if not a.startswith('--group=')]
 OUT = ROOT / 'public/assets/characters' / group
 OUT.mkdir(parents=True, exist_ok=True)
-IDS = args or ({'chefs593':['chef-bach','chef-nhien','chef-moc','chef-hai','chef-lien'], 'familiar594':['bun-cha','bun-rieu','banh-xeo','com-ga']}.get(group) or ['com-tam', 'banh-mi', 'pho-bo', 'banh-cuon', 'goi-cuon-tom-thit'])
+IDS = args or ({'chefs593':['chef-bach','chef-nhien','chef-moc','chef-hai','chef-lien'], 'familiar594':['bun-cha','bun-rieu','banh-xeo','com-ga'], 'rare595':['banh-chung','cha-ca-la-vong','bun-thang','banh-com-hang-than']}.get(group) or ['com-tam', 'banh-mi', 'pho-bo', 'banh-cuon', 'goi-cuon-tom-thit'])
 report = []
 def isolate_actor(tile):
     import numpy as np
@@ -29,26 +29,26 @@ def isolate_actor(tile):
 
 for character in IDS:
     source = Image.open(SOURCE / f'{character}.png').convert('RGBA')
-    tiles = []
+    tiles = [None]*32
     cells = SOURCE / f'{character}.cells.json'
     cells = json.loads(cells.read_text()) if cells.exists() else None
     if cells and list(source.size) != cells['sourceSize']: raise ValueError('Source/crop size mismatch')
-    for row in range(8):
-        for col in range(4):
-            tile = source.crop((round(col*source.width/4), round(row*source.height/8), round((col+1)*source.width/4), round((row+1)*source.height/8)))
-            if cells:
-                tile = source.crop(cells['rects'][row*4+col])
-                # Isolate the cell's actor when rectangular source bounds overlap a neighbor.
-                # This is atlas registration, not synthesizing or painting replacement pixels.
-                if cells.get('isolate'):
-                    tile = isolate_actor(tile)
-            bounds = tile.getchannel('A').point(lambda x: 255 if x > 32 else 0).getbbox()
-            if not bounds: raise ValueError(f'Empty frame {character}:{row}:{col}')
-            tiles.append(tile.crop(bounds))
+    for index in range(len(cells["rects"]) if cells else 32):
+        row,col = divmod(index,4)
+        tile = source.crop((round(col*source.width/4), round(row*source.height/8), round((col+1)*source.width/4), round((row+1)*source.height/8)))
+        if cells:
+            tile = source.crop(cells['rects'][row*4+col])
+            # Isolate the cell's actor when rectangular source bounds overlap a neighbor.
+            # This is atlas registration, not synthesizing or painting replacement pixels.
+            if cells.get('isolate'):
+                tile = isolate_actor(tile)
+        bounds = tile.getchannel('A').point(lambda x: 255 if x > 32 else 0).getbbox()
+        if not bounds: raise ValueError(f'Empty frame {character}:{row}:{col}')
+        tiles[index] = tile.crop(bounds)
     # A wide action source can replace individual cells without squeezing weapons.
     # Normalize its source resolution once per actor, then preserve that scale in all poses.
-    if cells and cells.get('actions'):
-        spec = cells['actions']
+    overrides = cells.get('actions',[]) if cells else []
+    for spec in overrides if isinstance(overrides,list) else [overrides]:
         action = Image.open(SOURCE / spec['file']).convert('RGBA')
         if list(action.size) != spec['sourceSize']: raise ValueError('Action/crop size mismatch')
         for index, rect in zip(spec['frames'],spec['rects'],strict=True):
@@ -57,6 +57,7 @@ for character in IDS:
             if not bounds: raise ValueError('Empty replacement action')
             tile = tile.crop(bounds)
             tiles[index] = tile.resize((round(tile.width*spec['scale']),round(tile.height*spec['scale'])),Image.Resampling.LANCZOS)
+    if any(tile is None for tile in tiles): raise ValueError(f"Missing pose in {character}")
     # One scale for the entire actor, including its widest pose. Feet share a pivot.
     scale = min(224/max(t.width for t in tiles), 224/max(t.height for t in tiles))
     atlas = Image.new('RGBA', (1024, 2048))
