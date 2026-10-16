@@ -17,6 +17,8 @@ import type {
   RpgBattle,
 } from "../../game/adventureRpg/types"
 import { CharacterSprite } from "./CharacterSprite"
+import { RpgShield } from "./RpgShield"
+import { RpgUltimateArt } from "./RpgUltimateArt"
 import "../../game/characterMotion.css"
 import "../../game/adventureRpg/rpg.css"
 
@@ -196,6 +198,11 @@ export function RpgBattleView({
                 paused={paused || b.paused || !!b.cinematic}
                 flip={a.side === "enemy"}
               /></div>
+              <RpgShield
+                active={a.hp > 0 && (guarding || a.shield > 0)}
+                strength={a.shield / a.maxHp}
+                breakSerial={[...b.events].reverse().find(e => e.shieldBroken?.includes(a.uid) && b.tick - e.tick < 4)?.serial}
+              />
               {hit && shownValue > 0 && (
                 <b key={hit.serial} className={`rpg-number kind-${hit.kind}`}>
                   {hit.kind === "hit" ? "−" : "+"}
@@ -240,7 +247,7 @@ export function RpgBattleView({
             key={burst.serial}
           >
             <span className="rpg-ultimate-art" aria-hidden="true" style={{backgroundPosition: `${(b.chain?.count === 3 ? 5 : SPIRIT_SCHOOLS.indexOf(burst.school)) % 2 * 100}% ${Math.floor((b.chain?.count === 3 ? 5 : SPIRIT_SCHOOLS.indexOf(burst.school)) / 2) * 50}%`}} />
-            <SpiritArt id={b.actors.find(a=>a.uid===burst.source)?.id ?? ""} />
+            <RpgUltimateArt id={b.actors.find(a=>a.uid===burst.source)!.id} compact paused={paused || b.paused}/>
             <span>✦ TUYỆT KỸ {b.chain && b.chain.count > 1 ? `· LIÊN HƯƠNG ×${b.chain.count}` : ""}</span>
             <strong>{burst.text}</strong>
           </div>

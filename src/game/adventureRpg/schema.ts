@@ -121,6 +121,8 @@ const battle = z.object({
         targets: z.array(uid).max(11),
         value: bounded,
         values: z.record(uid, bounded).optional(),
+        absorbed: z.record(uid, bounded).optional(),
+        shieldBroken: z.array(uid).max(11).optional(),
         text: z.string().max(180),
         school,
         animation: z.enum(["attack", "primary", "support", "ultimate", "enemy"]).optional(),

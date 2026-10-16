@@ -65,6 +65,7 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/tcg/map/living-world-v582.webp", "Original AI-assisted Soul of Meal living-world chapter map created with built-in image generation", ["dev/docs/web-v582/UPDATE.md"]],
  ["assets/music580/", "Original deterministic Web 5.8 score composed without external samples", ["dev/tools/compose-music580.py", "dev/docs/web-v580/music-manifest.json"]],
  ["assets/rpg/campaign580/", "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases", ["dev/docs/web-v580/art-assets.json", "dev/tools/prepare-campaign580-assets.py"]],
  ["assets/rpg/village580/", "Project-owner supplied original Web 5.8 village and party art, transformed into runtime WebP atlases", ["dev/docs/web-v580/art-assets.json", "dev/tools/prepare-campaign580-assets.py"]],

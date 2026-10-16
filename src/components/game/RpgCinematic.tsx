@@ -4,6 +4,7 @@ import { gameAudio } from "../../infrastructure/audio/gameAudio";
 import { AWAKENING_MEDIA, CINEMATIC_SECONDS, awakenedKit, ULTIMATE_MOVES } from "../../game/adventureRpg/awakening";
 import { SpiritArt, SkillArt } from "./SpiritArt";
 import { CARD_MAP } from "../../game/catalog";
+import { RpgUltimateArt } from "./RpgUltimateArt";
 /** The movie presents an already-committed cast. Completion never casts or pays anything. */
 export function RpgCinematic({ id, paused, reduced = false, onDone, onTogglePause }: {
     id: string;
@@ -73,6 +74,7 @@ export function RpgCinematic({ id, paused, reduced = false, onDone, onTogglePaus
     <div className="rpg-cinematic-top"><span>GIAO ƯỚC THỨC TỈNH</span><div>{onTogglePause && <button type="button" aria-label={paused ? "Tiếp hoạt ảnh" : "Dừng hoạt ảnh"} onClick={onTogglePause}>{paused ? "▶" : "Ⅱ"}</button>}<button type="button" onClick={finish}>{failed?"Thử lại":"Bỏ qua ›"}</button></div></div>
     <div className="rpg-cinematic-screen">
       {!fallback ? <video ref={video} src={`${AWAKENING_MEDIA}/movies/${id}.mp4`} muted playsInline preload="auto" aria-label={`Video ${kit.title}`} onEnded={finish} onError={() => setFallback(true)} onTimeUpdate={() => setProgress(Math.min(1, (video.current?.currentTime ?? 0) / CINEMATIC_SECONDS))} onPlaying={() => { audio.current?.stop(); audio.current = gameAudio.playClip(`${AWAKENING_MEDIA}/sounds/${id}.mp3`, () => video.current?.currentTime ?? CINEMATIC_SECONDS); }} onPause={() => { audio.current?.stop(); audio.current = null; }}/> : <div className="rpg-cinematic-poster"><SpiritArt id={id}/><SkillArt index={64 + kit.iconCell}/></div>}
+      <RpgUltimateArt id={id} paused={stopped} reduced={reduced}/>
       <div className="rpg-cinematic-shade"/>
     </div>
     <div className="rpg-cinematic-caption"><SkillArt index={64 + kit.iconCell}/><div><small>{CARD_MAP[id].name}</small><strong>{kit.title} · {ULTIMATE_MOVES[kit.ultimate][0]}</strong><span>{paused ? `Tạm dừng · ${ULTIMATE_MOVES[kit.ultimate][1]}` : ULTIMATE_MOVES[kit.ultimate][1]}</span></div></div>

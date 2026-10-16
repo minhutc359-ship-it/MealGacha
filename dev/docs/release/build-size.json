@@ -2,20 +2,20 @@
   "staticBudgetBytes": 260000000,
   "jsGzipBudgetBytes": 675000,
   "version": "5.8.0",
-  "bytes": 255436263,
-  "files": 664,
+  "bytes": 256159513,
+  "files": 666,
   "byType": {
     "js": {
       "files": 55,
-      "bytes": 2036308
+      "bytes": 2058514
     },
     "css": {
-      "files": 8,
-      "bytes": 483054
+      "files": 9,
+      "bytes": 489774
     },
     "webp": {
-      "files": 284,
-      "bytes": 59733142
+      "files": 285,
+      "bytes": 60427466
     },
     "png": {
       "files": 3,
@@ -59,7 +59,7 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2519362,
+    "Application JS/CSS": 2548288,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
     "Shared character atlases": 9061632,
@@ -68,10 +68,10 @@
     "Food art": 7490462,
     "Adventure presentation art": 1400332,
     "Spirit RPG art/audio/video": 198387738,
-    "TCG art/audio": 17283968
+    "TCG art/audio": 17978292
   },
-  "js_gzip": 656981,
-  "css_gzip": 100433,
+  "js_gzip": 664945,
+  "css_gzip": 102341,
   "largest": [
     {
       "path": "assets/rpg/campaign580/battle-ceremony.webp",
@@ -127,7 +127,7 @@
     "baselineBytes": 88153474,
     "additionalBudgetBytes": 172000000,
     "reason": "Web 5.8 replaces 139 low-resolution ultimate clips with high-detail 1280 x 720 H.264 video encoded from lossless frames and adds four campaigns, supplied battle/village art, and 13 original music themes.",
-    "addedBytes": 167282789,
-    "remainingBytes": 4717211
+    "addedBytes": 168006039,
+    "remainingBytes": 3993961
   }
 }

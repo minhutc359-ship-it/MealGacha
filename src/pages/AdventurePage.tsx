@@ -22,6 +22,7 @@ import { RpgBattleView, RpgMeter } from "../components/game/RpgBattleView"
 import { CARD_MAP, SCHOOLS } from "../game/catalog"
 import { CHARACTER_NAMES } from "../game/characters"
 import { RPG_MAPS, RPG_DUNGEONS, rpgStage } from "../game/adventureRpg/content"
+import { RPG_STORY_ARCS } from "../game/adventureRpg/story"
 import {
   newRpgSave,
   heroPower,
@@ -94,10 +95,12 @@ function StoryDialog({
   lines,
   onClose,
   onCancel,
+  canSkip = false,
 }: {
   lines: RpgLine[]
   onClose: () => void
   onCancel: () => void
+  canSkip?: boolean
 }) {
   const dialog = useRef<HTMLDialogElement>(null),
     [index, setIndex] = useState(0)
@@ -137,6 +140,7 @@ function StoryDialog({
         >
           {index < lines.length - 1 ? "Tiếp câu chuyện" : "Tiếp tục →"}
         </button>
+        {canSkip && index < lines.length - 1 && <button type="button" className="rpg-story-skip" onClick={onClose}>Vào trận ›</button>}
       </div>
     </dialog>
   )
@@ -325,6 +329,7 @@ export function AdventurePage() {
   useEffect(()=>{if(b?.paused||hidden)shortSound.current?.stop()},[b?.paused,hidden])
   const sound = useRef({ battle: "", serial: 0, result: "" })
   const map = RPG_MAPS[mapIndex],
+    mapArc = RPG_STORY_ARCS[map.id],
     activeStage = run?.stageId ? rpgStage(run.stageId) : null
   const dungeon = run?.dungeon
     ? RPG_DUNGEONS.find((d) => d.id === run.dungeon!.kind)
@@ -487,14 +492,20 @@ export function AdventurePage() {
   const locked = !save.roster.some(h=>h.uid===hero.uid)
   const startStage = (id: string) => {
     const s = rpgStage(id)!
-    setStory({ lines: [s.stage.before], start: id, difficulty })
+    const arc = RPG_STORY_ARCS[s.map.id]
+    const previousMap = RPG_MAPS[s.mapIndex - 1]
+    const previousChoice = previousMap ? save.choices[previousMap.id] : undefined
+    const callback = s.index === 0 && previousMap && previousChoice !== undefined
+      ? RPG_STORY_ARCS[previousMap.id].consequences[previousChoice] : []
+    const beat = s.index === 0 ? arc.opening : s.index === 2 ? arc.turningPoint : s.index === 5 ? arc.finale : []
+    setStory({ lines: [...callback, ...beat, s.stage.before], start: id, difficulty })
   }
   const closeRun = () => {
     act({ type: "close" })
     setConfirmExit(false)
     if (activeStage?.boss && b?.result === "win") {
       setMapIndex(activeStage.mapIndex)
-      setStory({ lines: activeStage.map.ending })
+      setStory({ lines: [...activeStage.map.ending, ...RPG_STORY_ARCS[activeStage.map.id].aftermath] })
     }
   }
   const putHero = () => {
@@ -768,9 +779,10 @@ export function AdventurePage() {
                   <h1>{map.name}</h1>
                   <p>
                     {save.choices[map.id] === undefined
-                      ? "Sương Nhạt đang phủ lên những bữa cơm. Cùng các Vị Linh tìm lại câu chuyện của từng vùng."
-                      : `Ký ức bạn đã chọn: ${map.choices[save.choices[map.id]]}.`}
+                      ? mapArc.hook
+                      : mapArc.consequences[save.choices[map.id]][0].text}
                   </p>
+                  <small className="rpg-story-arc">MẠCH TRUYỆN · {mapArc.title}</small>
                   <span>Đội hiện tại · Lực chiến {teamPower}</span>
                 </div>
                 <CharacterPortrait id={map.guide} decorative />
@@ -816,6 +828,7 @@ export function AdventurePage() {
                 })}
               </div>
               <div className="rpg-map-footer">
+                {!!save.stars[`${map.id}-6`] && <button type="button" onClick={() => setStory({lines:[...mapArc.opening,...mapArc.turningPoint,...mapArc.finale,...mapArc.aftermath]})}>Đọc lại chương</button>}
                 <button
                   type="button"
                   onClick={() =>
@@ -837,13 +850,13 @@ export function AdventurePage() {
                       type="button"
                       key={choice}
                       aria-pressed={save.choices[map.id] === i}
-                      onClick={() =>
-                        act({
+                      onClick={() => {
+                        if (act({
                           type: "choice",
                           mapId: map.id,
                           choice: i as 0 | 1,
-                        })
-                      }
+                        })) setStory({lines:mapArc.consequences[i]})
+                      }}
                     >
                       {choice}
                     </button>
@@ -1072,6 +1085,7 @@ export function AdventurePage() {
         <StoryDialog
           key={story.start ?? story.lines[0].text}
           lines={story.lines}
+          canSkip={!!story.start}
           onCancel={() => setStory(null)}
           onClose={() => {
             if (story.start)

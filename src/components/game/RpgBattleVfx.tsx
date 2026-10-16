@@ -1,4 +1,5 @@
 import { awakenedKit } from "../../game/adventureRpg/awakening";
+import { drawUltimateArt, ultimateIdentity } from "../../game/adventureRpg/ultimateArt";
 import { useEffect, useRef } from "react";
 import { drawChannel, drawProjectile, drawImpact, VFX_COLORS, type VfxKind, type VfxPoint } from "../../game/battleVfx";
 import { actorAnchor } from "../../game/adventureRpg/formationLayout";
@@ -158,6 +159,13 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                     drawChannel(ctx, source, c.event.school, age / contact, size, low);
                 if (ultimate || c.actor.boss && c.event.animation === "enemy")
                     sigil(ctx, source, extent * 1.2, age, c, low);
+                if (ultimate && c.awakened) {
+                    const identity = ultimateIdentity(c.actor.id);
+                    const points = c.targets.map(point);
+                    const center = { x: points.reduce((sum,p)=>sum+p.x,0)/points.length, y: points.reduce((sum,p)=>sum+p.y,0)/points.length };
+                    drawUltimateArt(ctx, identity.pattern, center.x, center.y - extent * .2, extent * 1.3, age / 1700, VFX_COLORS[c.event.school][1], identity.motif, low);
+                    surface.dataset.ultimate = identity.pattern;
+                }
                 for (const target of c.targets) {
                     const p = point(target), kind = effectKind(c, target);
                     if (age > 80 && age < contact) {

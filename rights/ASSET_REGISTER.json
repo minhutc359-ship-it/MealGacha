@@ -6553,6 +6553,16 @@
       "review": "owner-verification-required"
     },
     {
+      "path": "public/assets/tcg/map/living-world-v582.webp",
+      "bytes": 694324,
+      "sha256": "5881aece255765b576bb08562a8c085b2b7c0ad3faab19c3a8745bf2020d5f60",
+      "origin": "Original AI-assisted Soul of Meal living-world chapter map created with built-in image generation",
+      "evidence": [
+        "dev/docs/web-v582/UPDATE.md"
+      ],
+      "review": "owner-verification-required"
+    },
+    {
       "path": "public/assets/tcg/map/meal-world-map.webp",
       "bytes": 412492,
       "sha256": "afc3b8b919b95c21b77ab76badbcc304483f9e3fec07f85d31ec999585b6a23c",

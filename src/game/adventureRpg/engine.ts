@@ -390,6 +390,7 @@ function damage(b: RpgBattle, a: RpgActor, target: RpgActor, power: number, atta
     shield(b,target,[target],target.maxHp * .06,"Hộ ước")
   }
   const previouslyAlive = target.hp > 0
+  const shieldBefore = target.shield
   const absorbed = Math.min(target.shield, amount)
   target.shield -= absorbed
   target.hp = Math.max(0, target.hp - amount + absorbed)
@@ -397,7 +398,10 @@ function damage(b: RpgBattle, a: RpgActor, target: RpgActor, power: number, atta
   target.motion = target.hp ? "hit" : "fall"
   target.motionAt = b.tick
   event(b, a, "hit", [target], amount - absorbed, `${a.name} → ${target.name}`)
-  if (attack) b.events[b.events.length - 1].animation = "attack"
+  const hit = b.events[b.events.length - 1]
+  if (absorbed > 0) hit.absorbed = { [target.uid]: absorbed }
+  if (shieldBefore > 0 && target.shield === 0) hit.shieldBroken = [target.uid]
+  if (attack) hit.animation = "attack"
   if (b.rulesVersion === 530 && previouslyAlive && !target.hp && a.side === "ally" && a.rank >= 2 && awakenedKit(a.id).passive === 6) a.energy = Math.min(100,a.energy + 10)
   if (b.rulesVersion === 530 && attack) awakeningAttack(b,a,target,{damage,heal,shield,event})
 }

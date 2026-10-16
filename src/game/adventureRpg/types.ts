@@ -104,6 +104,8 @@ export interface RpgEvent {
   targets: string[]
   value: number
   values?: Record<string, number>
+  absorbed?: Record<string, number>
+  shieldBroken?: string[]
   text: string
   school: School
   animation?: "attack" | "primary" | "support" | "ultimate" | "enemy"
