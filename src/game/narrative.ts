@@ -1,8 +1,10 @@
 import { LIVING_SCENES } from "./livingStory"
+import type { ChefExpression } from "./characterVisuals"
 export interface StoryLine {
   speaker: string
   text: string
   beat?: "reveal" | "resolve" | "tender"
+  expression?: ChefExpression
 }
 export interface StoryClue {
   title: string

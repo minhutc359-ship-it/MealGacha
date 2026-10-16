@@ -43,7 +43,7 @@ export function BattleVfxCanvas({ source, sourceId, cues, school, action, stamp,
         const support = action === "play" && ["heal", "shield", "buff", "summon"].includes(cue.kind)
         if((cue.projectile || support) && age > contact*.25 && age < contact)
           drawProjectile(ctx,source,point,cue.school,(age-contact*.25)/(contact*.75),Math.min(19,cue.size*.16),renderIsLight(),kind)
-        if(sourceId && starterCharacter(sourceId))drawStarterVfx(ctx,sourceId,point.x,point.y,Math.min(48,cue.size*.4),age-contact,false,renderIsLight())
+        if(sourceId && starterCharacter(sourceId))drawStarterVfx(ctx,sourceId,point.x,point.y,Math.min(48,cue.size*.4),age-contact,false,renderIsLight(),kind === "heal" || kind === "shield" ? kind : action === "attack" ? "attack" : "skill")
         else drawImpact(ctx,point,cue.school,(age-contact)/1000,Math.min(48,cue.size*.4),kind,renderIsLight(),texture?.image)
       }
       const textureStatus = texture?.image.naturalWidth ? "ready" : "fallback"

@@ -1,21 +1,22 @@
 {
-  "staticBudgetBytes": 260000000,
+  "staticBudgetBytes": 320000000,
+  "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
-  "version": "5.9.0",
-  "bytes": 256942218,
-  "files": 677,
+  "version": "5.9.3",
+  "bytes": 253045614,
+  "files": 716,
   "byType": {
     "js": {
       "files": 55,
-      "bytes": 2099109
+      "bytes": 2078011
     },
     "css": {
       "files": 9,
-      "bytes": 498685
+      "bytes": 498852
     },
     "webp": {
-      "files": 301,
-      "bytes": 67586102
+      "files": 346,
+      "bytes": 72028190
     },
     "png": {
       "files": 3,
@@ -30,8 +31,8 @@
       "bytes": 10834115
     },
     "mp4": {
-      "files": 134,
-      "bytes": 175324940
+      "files": 128,
+      "bytes": 167007179
     },
     "json": {
       "files": 1,
@@ -59,19 +60,19 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2597794,
+    "Application JS/CSS": 2576863,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
-    "Shared character atlases": 14870508,
+    "Shared character atlases": 20382848,
     "Event art": 2016822,
     "Other and legal": 13024114,
     "Food art": 7490462,
     "Adventure presentation art": 1400332,
-    "Spirit RPG art/audio/video": 193309078,
+    "Spirit RPG art/audio/video": 183921065,
     "TCG art/audio": 17978292
   },
-  "js_gzip": 673875,
-  "css_gzip": 104098,
+  "js_gzip": 674707,
+  "css_gzip": 104139,
   "largest": [
     {
       "path": "assets/rpg/campaign580/campaignB.webp",
@@ -80,10 +81,6 @@
     {
       "path": "assets/rpg/campaign580/campaignA.webp",
       "bytes": 2153792
-    },
-    {
-      "path": "assets/rpg/awakening530/movies/chef-hai.mp4",
-      "bytes": 1656466
     },
     {
       "path": "assets/rpg/awakening530/movies/ganjang-gejang.mp4",
@@ -120,7 +117,27 @@
     {
       "path": "assets/rpg/awakening530/movies/caravan-herbalist.mp4",
       "bytes": 1485982
+    },
+    {
+      "path": "assets/rpg/awakening530/movies/som-tam.mp4",
+      "bytes": 1481363
     }
   ],
-  "leaks": []
+  "leaks": [],
+  "offlineShell": {
+    "bytes": 2875614,
+    "urls": 78,
+    "targetBytes": 8000000,
+    "limitBytes": 12000000,
+    "warning": false,
+    "exceeded": false,
+    "remainingBytes": 9124386
+  },
+  "budget": {
+    "targetBytes": 300000000,
+    "limitBytes": 320000000,
+    "warning": false,
+    "exceeded": false,
+    "remainingBytes": 66954386
+  }
 }

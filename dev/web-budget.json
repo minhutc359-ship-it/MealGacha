@@ -1,0 +1,37 @@
+{
+  "approvedOn": "2026-10-16",
+  "releaseTarget": "Web 6.0",
+  "units": "decimal bytes (1 MB = 1000000 bytes)",
+  "staticTargetBytes": 300000000,
+  "staticBudgetBytes": 320000000,
+  "jsGzipBudgetBytes": 675000,
+  "initialTargetBytes": 8000000,
+  "initialBudgetBytes": 12000000,
+  "additionalAllocationBytes": 60000000,
+  "allocations": {
+    "starterSpirits": 12000000,
+    "chefs": 10000000,
+    "rosterAndBosses": 20000000,
+    "sharedVfxAndAnimation": 8000000,
+    "reserve": 10000000
+  },
+  "assetTargets": {
+    "standardCharacterBytes": [
+      300000,
+      800000
+    ],
+    "heroCharacterBytes": [
+      1000000,
+      2000000
+    ],
+    "cinematic720pBytes": [
+      1000000,
+      2000000
+    ]
+  },
+  "fpsTargets": {
+    "desktop": 60,
+    "lowPower": 30
+  },
+  "allocationScope": "Planned additional production, not per-file caps or automatic consumed counters"
+}

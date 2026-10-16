@@ -1,3 +1,4 @@
+import { rpgVisualContact } from "../../game/visualTiming"
 import { useEffect, useRef, useState } from "react"
 import type { RpgBattle, RpgEvent } from "../../game/adventureRpg/types"
 import { subscribeCharacterClock } from "../../infrastructure/assets/characterSprites"
@@ -19,11 +20,7 @@ export function rpgContactMs(events: RpgEvent[], event: RpgEvent) {
         e.animation &&
         e.serial <= event.serial,
     )
-  return action?.animation === "ultimate"
-    ? 960
-    : action?.animation && action.animation !== "attack"
-      ? 380
-      : 300
+  return rpgVisualContact(action?.animation)
 }
 /** Delay only the displayed HP/shield and labels to contact. The save is authoritative
  * immediately; neither this clock nor unmount/reload can deal damage or award anything. */

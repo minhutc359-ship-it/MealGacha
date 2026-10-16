@@ -1,7 +1,34 @@
 import frames from "./spriteFrames.json"
 import type { Actor, AutoRun, Piece } from "./types"
 
-export const SPRITE_SHEETS = frames
+// Uniform production atlases derive from the manifest, so modes cannot drift.
+import { CHARACTER_VISUALS, type VisualCharacterId } from "../characterVisuals"
+type Sheet = typeof frames.base
+const livingIds = ["ferry","bun-cha","bun-rieu","banh-xeo","banh-cuon","xoi","com-ga","bosses"] as const
+type LivingSheet = `living-${typeof livingIds[number]}`
+const livingSheets = Object.fromEntries(livingIds.map(id=>[
+  `living-${id}`, {path:`/assets/v4/characters/${id}.webp`,width:768,height:id === "bosses" ? 1024 : 512,
+    rows:Array.from({length:id === "bosses" ? 2 : 1},(_,block)=>({height:128,
+      frames:Array.from({length:24},(_,i)=>[i%6*128,(block*4+Math.floor(i/6))*128,128,128,64,122])}))},
+])) as Record<LivingSheet,Sheet>
+type VisualSheet = `starter-${VisualCharacterId}${"" | "-pixel"}`
+type PortraitSheet = `portrait-${1|2|3|4|5|6|7|8|9}`
+const portraitCuts = [0,314,627,940,1254]
+const portraitSheets = Object.fromEntries(Array.from({length:9},(_,sheet)=>[
+  `portrait-${sheet+1}`, {path:`/assets/rpg/spirit510/portraits-${sheet+1}.webp`,width:1254,height:1254,
+    rows:Array.from({length:16},(_,i)=>{
+      const x=portraitCuts[i%4], y=portraitCuts[Math.floor(i/4)], w=portraitCuts[i%4+1]-x, h=portraitCuts[Math.floor(i/4)+1]-y
+      return {height:h,frames:[[x,y,w,h,w/2,h]]}
+    })},
+])) as Record<PortraitSheet,Sheet>
+const visualSheets = Object.fromEntries(Object.values(CHARACTER_VISUALS).flatMap(v =>
+  [false,true].map(pixel => {
+    const size = pixel ? 64 : 256
+    return [pixel ? v.pixelSheet : v.sheet, {path: pixel ? v.pixel : v.atlas, width: size*4, height: size*8,
+      rows: [{height: size, frames: Array.from({length:32},(_,i)=>[i%4*size,Math.floor(i/4)*size,size,size,size/2,size*.9375])}]}]
+  }),
+)) as Record<VisualSheet,Sheet>
+export const SPRITE_SHEETS = {...frames,...livingSheets,...portraitSheets,...visualSheets}
 export const VICTORY_DURATION = 3200
 export const QUIET_VICTORY_DURATION = 1000
 export const STAR_UPGRADE_MS = 1700

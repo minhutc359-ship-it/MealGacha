@@ -9,7 +9,7 @@ RATE=24000; SECONDS=2.4; LENGTH=int(RATE*SECONDS)
 SCHOOLS=['hearth','ember','grove','tide','sugar']
 SCALES=[[0,2,4,7,9],[0,3,5,7,10],[0,2,4,7,11],[0,2,5,7,9],[0,3,7,10,12]]
 selected=set(sys.argv[1:])
-starters={"com-tam","banh-mi","pho-bo","banh-cuon","goi-cuon-tom-thit"}
+starters={m['id'] for m in json.loads((ROOT/'dev/docs/web-v530/movie-manifest.json').read_text()) if m.get('renderer','').startswith('native')}
 manifest=[]
 for index,(id,title,primary,support,ultimate,passive,oath,motif,iconCell) in enumerate(roster):
     if selected and id not in selected:continue

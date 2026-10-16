@@ -94,7 +94,7 @@ export function StoryScene({ lines, art = "lantern", onComplete }: Props) {
           aria-atomic="true"
         >
           <div className="tcg-speaker-row">
-            {portrait && <CharacterPortrait id={portrait} decorative />}
+            {portrait && <CharacterPortrait id={portrait} expression={current.expression ?? (current.beat === "reveal" ? "surprise" : current.beat === "resolve" ? "resolve" : current.beat === "tender" ? "tender" : "neutral")} decorative />}
             <span className="tcg-scene-speaker">{current.speaker}</span>
           </div>
           <p>{current.text}</p>

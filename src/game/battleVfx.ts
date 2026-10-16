@@ -2,7 +2,7 @@ import { IMPACT_ROWS } from "./visualPack"
 import type { School } from "./types"
 
 export type VfxKind = "projectile" | "slash" | "wave" | "heal" | "shield" | "summon" | "shatter"
-export const TCG_IMPACT_MS = 560
+export { TCG_VISUAL_CONTACT as TCG_IMPACT_MS } from "./visualTiming"
 export interface VfxPoint { x: number; y: number }
 export const VFX_COLORS: Record<School, [string, string, string]> = {
   ember: ["#ff7938", "#ffda78", "#fff6d0"],
@@ -129,7 +129,11 @@ export function drawProjectile(ctx: CanvasRenderingContext2D, from: VfxPoint, to
 }
 
 export function drawImpact(ctx: CanvasRenderingContext2D, point: VfxPoint, school: School, age: number, size: number, kind: VfxKind = "projectile", low = false, texture?: HTMLImageElement) {
-  if (age < 0 || age > .7) return
+  if (age < 0 || age >= .7) return
+  if (!low && texture?.complete && texture.naturalWidth) {
+    drawImpactTexture(ctx, point, school, age, size, texture)
+    return
+  }
   const t = age / .7, colors = VFX_COLORS[school], radius = size * (.3 + t * .8)
   ctx.save(); ctx.translate(point.x, point.y); ctx.globalAlpha = (1 - t) * .9
   ctx.strokeStyle = colors[1]; ctx.lineWidth = Math.max(1, size * .07 * (1 - t))
@@ -177,10 +181,9 @@ export function drawImpact(ctx: CanvasRenderingContext2D, point: VfxPoint, schoo
     star(ctx, size * (1 - t), colors[2])
   }
   ctx.restore()
-  if (!low && texture) drawImpactTexture(ctx, point, school, age, size, texture)
 }
 
-/** Blend adjacent atlas frames; keep the procedural core as the loading/light fallback. */
+/** Blend adjacent atlas frames; procedural geometry is an exclusive loading/light fallback. */
 export function drawImpactTexture(ctx: CanvasRenderingContext2D, point: VfxPoint, school: School, age: number, size: number, image: HTMLImageElement) {
   if (!image.complete || !image.naturalWidth || age < 0 || age >= .7) return
   const t = age / .7, phase = t * 4, first = Math.floor(phase), mix = phase - first

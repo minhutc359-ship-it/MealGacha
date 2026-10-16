@@ -1,0 +1,29 @@
+{
+  "createdOn": "2026-10-16",
+  "tool": "built-in image_gen.imagegen",
+  "canonicalDecision": "Follow the user's plan and Auto Chess Gấu Nếp Mới identity for existing xoi ID. Preserve five Adventure starter IDs. The old crane portrait stays in the original portrait atlas for history only; all Xôi UI consumers now resolve the standalone bear portrait.",
+  "prompts": [
+    {
+      "id": "xoi-atlas",
+      "prompt": "Use case: stylized-concept. Production game-ready character sprite atlas for Soul of Meal, coherent with high-quality 2.5D cel-shaded anime Vietnamese food spirits. EXACT 4 COLUMNS by 8 ROWS, 32 separate full-body key poses, regular equal square cells, transparent background alpha. Character Xôi / Kim Noãn / Gấu Nếp Mới: anthropomorphic warm honey-brown BEAR guardian, round bear ears, cream muzzle and belly, broad strong silhouette, kind determined amber eyes, jade green banana-leaf shoulder wraps over quilted ivory rice-grain cloth armor, ochre sash and bronze rice-pattern wrist guards, bare sturdy paws, jade rice-knot pendant, small woven sticky-rice basket at hip. NO BIRD, NO CRANE, no feathers, no human head. Stable character identity/accessories/proportions throughout. Three-quarter facing RIGHT. Short heroic chibi proportions, 3 heads tall. Refined dark outlines, warm cel shading, crisp readable shapes at small size, ivory green gold palette. Each row SAME character and 4 progressively distinct animation poses: row1 idle breathing with relaxed arms; row2 heavy bear walking left step/settle/right step/settle; row3 windup raised heavy fist, weight transfer, forward fist CONTACT, recovery; row4 crouch brace, lift foot, ground STOMP contact, return; row5 ultimate anticipatory crouch, both arms overhead, powerful both-paw GROUND SLAM, proud grounded recovery; row6 hit brace/recoil/steady/recover; row7 falling from knees to side then final prone still pose; row8 victory lift arms/gentle cheer/basket salute/bow. Match a professional playable sprite pack, equal character scale about 80% cell height, feet aligned to same baseline in every cell except death lying, clear padding between all poses. Effects minimal and close to paws; no ground plane, no scenery, no large aura, no ghost duplicates, no writing, no grid lines. Output tall image aspect1:2.",
+      "source": "exec-6991b3de-ea16-48aa-b7a8-0fa3e4f36876.png"
+    },
+    {
+      "id": "xoi-atlas-registration",
+      "prompt": "Use case: precise-object-edit. This image is the Xôi bear sprite sheet. Make it production clean. Preserve the exact bear identity, every clothing/accessory, warm brown cream green gold palette, and all 32 unique poses in their order. REMOVE ALL RED PIXELS/RED FRINGING/RED OUTLINES, especially the bright red residue between and around sprites. No red exists in this character. Preserve genuinely transparent alpha. Re-layout into an EXACT regular four-column eight-row grid of EQUAL SQUARE cells, canvas aspect1:2. Each bear fully contained within its own cell with 12% clear transparent padding on EVERY side. Reduce the per-cell bear size to 70% cell height so rows cannot touch or leak into neighboring cells. All poses same scale, feet at 85% of each cell. Row 7 death fully inside cell; no touching row borders. NO gridlines no text no background no floorplane no new particles. 32 clean independent isolated bears, visibly uniform rows and columns. The sole goal is clean transparent edges and perfect atlas spacing, without changing original character or pose choreography.",
+      "source": "exec-d43f1904-a065-49fd-8abb-2dec0aff9dc2.png"
+    },
+    {
+      "id": "xoi-portrait",
+      "prompt": "Use case: identity-preserve. Input image: approved Xôi Kim Noãn bear sprite sheet, identity reference. Create ONE polished square PORTRAIT artwork of this exact BEAR food spirit for Soul of Meal character profile, matching refined anime fantasy portraits of original game. Chest-up three-quarter hero composition. Preserve warm honey brown fur, round bear ears, cream muzzle, amber eyes, green banana-leaf shoulder mantle, ivory quilted rice-grain armor, bronze patterned wrist guards, ochre sash, jade rice-knot pendant and woven sticky-rice basket strap. Canonical title Gấu Nếp Mới, warm guardian, stout powerful cuddly bear. Portrait has more refined fur rendering and intricate bronze Vietnamese motifs but same silhouette and props as sprites. Behind him a softly lit Vietnamese wood kitchen, golden morning light and gentle steam, shallow depth, warm atmospheric brown gold green palette. Confident kind expression, one paw resting near jade pendant; no weapons invented. No crane, no bird, no feathers, no letters, no captions, no border, no text, no logos. Beautiful detailed cel-shaded painted 2.5D anime RPG portrait, exactly square composition fills image.",
+      "source": "exec-c3a791f4-4bdb-4651-b175-e7fa8329866f.png"
+    }
+  ],
+  "packing": "dev/tools/pack-starters590.py source-dir xoi, measured rectangles in xoi.cells.json. Technical connected-component isolation excludes adjacent-cell fragments. One scale per actor and common foot pivot. HD1024x2048, pixel256x512 (nearest-neighbor derivative), portrait512x512. Pixel derivative is not hand-drawn pixel art.",
+  "retired": [
+    "public/assets/rpg/awakening530/movies/xoi.mp4",
+    "public/assets/rpg/combat583/spirits.webp"
+  ],
+  "retained": "Existing 5 starter atlases, unrelated portraits, skills, all gameplay IDs and save schema. Eight authored rows plus three derived presentation states; no 3D or skeletal rig claimed.",
+  "vfxProvenance": "vfx-artwork.json"
+}

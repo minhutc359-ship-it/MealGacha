@@ -1,3 +1,4 @@
+import { rpgVisualContact } from "../../game/visualTiming";
 import { starterCharacter } from "../../game/starterCharacters";
 import { drawStarterVfx } from "../../game/starterVfx";
 import { awakenedKit } from "../../game/adventureRpg/awakening";
@@ -95,7 +96,8 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             const low = renderIsLight(), size = Math.min(42, width * .095, height * .15);
             const point = (a: RpgActor) => { const p = actorAnchor(a, wide); return { x: p.x * width / 100, y: p.y * height / 100 - size * .55 }; };
             for (const c of s.cues) {
-                const age = now - c.start, source = point(c.actor), ultimate = c.event.kind === "burst", normal = c.event.animation === "attack", contact = normal ? 300 : ultimate ? 540 : 380;
+                const age = now - c.start, source = point(c.actor), ultimate = c.event.kind === "burst", normal = c.event.animation === "attack", contact = rpgVisualContact(c.event.animation);
+                const anchor=starterCharacter(c.actor.id)?.anchors.cast; if(anchor){source.x+=(anchor[0]-.5)*size;source.y+=(anchor[1]-.5)*size;}
                 const scale = ultimate ? 1.3 : normal ? .7 : 1, extent = size * scale;
                 if (ultimate && c.awakened) {
                     const identity = ultimateIdentity(c.actor.id);
@@ -104,7 +106,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                     if(age<360) drawChannel(ctx,source,c.event.school,age/360,size*.55,low);
                     else if(age<960) drawProjectile(ctx,source,center,c.event.school,(age-360)/600,extent*.22,low,"projectile");
                     else if(starterCharacter(c.actor.id)) {
-                        for(const p of points)drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent,age,true,low);
+                        for(const target of c.targets.slice(0,low?3:5)){const p=point(target),enemy=target.side!==c.actor.side;drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent,enemy?age:age-960,enemy,low,c.actor.role==="healer"?"heal":"shield");}
                     } else if(age<1980) drawUltimateArt(ctx,identity.pattern,center.x,center.y,extent*1.3,(age-960)/1020,VFX_COLORS[c.event.school][1],identity.motif,low);
                     surface.dataset.ultimate=identity.pattern;
                     continue;
@@ -116,7 +118,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                         const t=(age-80)/(contact-80);
                         drawProjectile(ctx,source,p,c.event.school,t,extent*.22,low,kind);
                     }
-                    if(starterCharacter(c.actor.id)) drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent*.75,age-contact,false,low);
+                    if(starterCharacter(c.actor.id)) drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent*.75,age-contact,false,low,kind === "heal" || kind === "shield" ? kind : normal ? "attack" : "skill");
                     else drawImpact(ctx,p,c.event.school,(age-contact)/650,extent,kind,low,low?undefined:texture.image);
                 }
                 if (surface.dataset.signature !== `${c.actor.role}:${c.event.school}:${c.variant}`)

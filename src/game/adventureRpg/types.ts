@@ -29,6 +29,7 @@ export interface RpgResources {
 export interface RpgLine {
   speaker: CharacterId
   text: string
+  expression?: import("../characterVisuals").ChefExpression
 }
 export interface RpgMap {
   id: string

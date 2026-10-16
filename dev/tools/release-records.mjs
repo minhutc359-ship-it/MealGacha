@@ -65,6 +65,8 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/characters/chefs593/", "Original AI-assisted chef combat poses, expressions, pixel exploration and VFX generated with built-in Imagegen from existing project story identities", ["dev/docs/web-v593/artwork.json", "dev/docs/web-v593/support-artwork.json", "dev/tools/pack-starters590.py", "dev/tools/pack-chefs593.py"]],
+ ...["xoi.webp", "xoi-pixel.webp", "xoi-portrait.webp", "ultimate591.webp"].map(file=>[`assets/characters/starters590/${file}`, "Original AI-assisted six-spirit VFX atlas and Xôi bear canon: banana-leaf mantle, rice-grain quilt and jade knot; generated with built-in Imagegen", ["dev/docs/web-v591/artwork.json", "dev/docs/web-v591/vfx-artwork.json", "dev/tools/pack-starters590.py", "dev/tools/pack-ultimate591.py"]]),
  ["assets/characters/starters590/", "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots", ["dev/docs/web-v590/artwork.json", "dev/tools/pack-starters590.py"]],
  ["assets/rpg/village583/", "Original project-owned four-direction village atlases restored from the legacy Adventure archive, recompressed to WebP", ["dev/docs/web-v583/UPDATE.md", "dev/docs/web-v440/artwork.json", "dev/docs/web-v441/artwork.json"]],
  ["assets/rpg/combat583/", "Original AI-assisted Soul of Meal battle poses and five-school combat textures created with built-in image generation", ["dev/docs/web-v583/UPDATE.md"]],

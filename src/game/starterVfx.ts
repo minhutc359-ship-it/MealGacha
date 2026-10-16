@@ -1,4 +1,6 @@
-import { starterCharacter, ultimatePhase } from "./starterCharacters"
+import { ULTIMATE_TIMELINE, starterCharacter, ultimatePhase } from "./starterCharacters"
+
+export type CharacterVfxKind = "attack" | "skill" | "heal" | "shield" | "charge"
 
 /** Character-specific geometry; one authored gesture at a time, never a screen wash. */
 export function drawStarterVfx(
@@ -10,13 +12,14 @@ export function drawStarterVfx(
   ms: number,
   ultimate = false,
   light = false,
+  kind: CharacterVfxKind = "skill",
 ) {
   const kit = starterCharacter(id)
-  const end = ultimate ? 2400 : 800
+  const end = ultimate ? ULTIMATE_TIMELINE.end : 650
   if (!kit || ms < 0 || ms >= end) return
-  const phase = ultimatePhase(ms)
+  const phase = ultimate ? ultimatePhase(ms) : ms < 400 ? "impact" : "finisher"
   if (ultimate && (phase === "preparation" || phase === "recovery")) return
-  const t = ultimate ? (ms - 360) / 1620 : ms / 800
+  const t = ultimate ? (ms - ULTIMATE_TIMELINE.casting) / (ULTIMATE_TIMELINE.recovery-ULTIMATE_TIMELINE.casting) : ms / end
   ctx.save()
   ctx.translate(x, y)
   ctx.scale(radius, radius)
@@ -33,7 +36,74 @@ export function drawStarterVfx(
     )
     ctx.stroke()
   }
-  if (kit.signature === "bronze") {
+  if (id.startsWith("chef-")) {
+    const receiving = !ultimate && (kind === "heal" || kind === "shield"),
+      attack = !ultimate && kind === "attack"
+    if (receiving) { ctx.translate(0,.45);ctx.scale(.75,.5) }
+    if (kind === "charge") {ctx.scale(.45,.45);ctx.globalAlpha *= .5}
+    if (kit.signature === "recipe") {
+      // Two open recipe pages become a low protective table on receiving allies.
+      ctx.beginPath();ctx.moveTo(-.8,.35);ctx.lineTo(-.8,-.45);ctx.lineTo(0,-.2);ctx.lineTo(.8,-.45);ctx.lineTo(.8,.35);ctx.lineTo(0,.55);ctx.closePath();ctx.stroke()
+      if (!attack) curve([0,.5,0,.2,0,-.1,0,-.2])
+    } else if (kit.signature === "wok") {
+      ctx.beginPath();ctx.ellipse(0,.35,.75,.2,-.25,0,Math.PI);ctx.stroke()
+      if (!attack) curve([-.6,.2,-.3,-.5,.5,-.1,.3,-.8])
+      if (!receiving) curve([-.5,.15,-.8,-.45,.9,-.6,.6,.1])
+    } else if (kit.signature === "roots") {
+      for (const s of [-1,1]) curve([s*.8,.65,s*.25,.35,s*.55,-.45,s*.2,-.7])
+      if (!attack) {
+        curve([0,.5,-.6,0,-.5,-.75,0,-.4]);curve([0,-.4,.5,-.75,.6,0,0,.5])
+      }
+    } else if (kit.signature === "current") {
+      const n = attack ? 1 : 2
+      for(let i=0;i<n;i++) curve([-.9,.2+i*.3,-.2,-.7+i*.3,.5,.8+i*.1,.9,-.3+i*.3])
+      if (!receiving) {ctx.beginPath();ctx.ellipse(.55,-.15,.22,.45,.7,0,Math.PI*1.4);ctx.stroke()}
+    } else if (kit.signature === "lantern") {
+      ctx.beginPath()
+      for(let i=0;i<10;i++){const a=i*Math.PI/5-Math.PI/2,r=i%2?.25:.6;const px=Math.cos(a)*r,py=Math.sin(a)*r;i?ctx.lineTo(px,py):ctx.moveTo(px,py)}
+      ctx.closePath();ctx.stroke()
+      if (!attack) curve([-.9,.5,-.3,-.1,.3,1,.9,.3])
+    }
+    ctx.restore();return
+  }
+  // The receiving event chooses the visual. A shield never looks like an attack.
+  if (!ultimate && kind === "charge") {
+    ctx.globalAlpha *= .5
+    ctx.scale(.55,.55)
+  }
+  if (!ultimate && kind === "attack") {
+    if (kit.signature === "bronze" || kit.signature === "stomp") {
+      ctx.beginPath();ctx.moveTo(-.35,-.4);ctx.lineTo(.05,.25);ctx.lineTo(.6,.35);ctx.stroke()
+    } else if (kit.signature === "dragon") {
+      ctx.beginPath();ctx.ellipse(0,0,.55,.18,-.4,0,Math.PI*2);ctx.stroke()
+    } else if (kit.signature === "silk") {
+      for (const n of [-1,0,1]) curve([-.5,.4,n*.3,-.4,.4,-.5,.65,-.2])
+    } else if (kit.signature === "leaves") {
+      curve([-.6,.5,-.2,.3,.3,-.1,.65,-.5])
+    } else {
+      ctx.beginPath();ctx.moveTo(-.7,-.5);ctx.lineTo(.7,.5);ctx.stroke()
+    }
+  } else if (!ultimate && (kind === "heal" || kind === "shield")) {
+    // Signature support stays below the face; no opaque full-body disks.
+    ctx.translate(0,.4);ctx.scale(.8,.55)
+    if (kit.signature === "bronze") {
+      ctx.beginPath();ctx.moveTo(-.7,.2);ctx.lineTo(-.7,-.5);ctx.lineTo(0,-.8);ctx.lineTo(.7,-.5);ctx.lineTo(.7,.2);ctx.stroke()
+    } else if (kit.signature === "silk") {
+      for (const n of [-1,0,1]) {ctx.save();ctx.rotate(n*.8);curve([0,.2,-.7,-.4,-.3,-1,0,-.2]);curve([0,-.2,.3,-1,.7,-.4,0,.2]);ctx.restore()}
+    } else if (kit.signature === "leaves") {
+      for(const n of [-1,1])curve([n*.85,.2,n*.7,-1,n*.2,-.9,0,-.45])
+    } else if (kit.signature === "dragon") {
+      curve([-.9,.1,-.4,-.6,.6,.7,.9,-.3]);curve([-.8,.3,-.3,-.3,.5,.9,.8,-.1])
+    } else if (kit.signature === "stomp") {
+      for(let i=0;i<3;i++){ctx.beginPath();ctx.ellipse((i-1)*.4,-.2,.12,.3,(i-1)*.4,0,Math.PI*2);ctx.stroke()}
+    } else {
+      curve([-.8,.1,-.5,-.5,.5,-.5,.8,.1])
+    }
+  } else if (kit.signature === "stomp") {
+    // Bear: a ground fracture, then low concentric quake rings, never a lion wall.
+    ctx.beginPath();ctx.moveTo(-.9,.55);ctx.lineTo(-.3,.35);ctx.lineTo(-.45,.05);ctx.lineTo(.1,.3);ctx.lineTo(.45,.08);ctx.lineTo(.8,.5);ctx.stroke()
+    for(let i=0;i<(light?1:3);i++){ctx.beginPath();ctx.ellipse(0,.55,.3+t*.8+i*.18,.08+i*.06,0,0,Math.PI*2);ctx.stroke()}
+  } else if (kit.signature === "bronze") {
     // A low bronze rampart protects the feet; it never covers the face.
     const n = ultimate ? 3 : 1
     for (let i = 0; i < n; i++) {

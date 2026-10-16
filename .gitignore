@@ -47,3 +47,7 @@ dev/docs/**/*.webp
 
 # Keep five small, reviewed 5.9 evidence captures, not the full QA set.
 !dev/docs/web-v590/evidence/*.webp
+
+!dev/docs/web-v591/evidence/*.webp
+
+!dev/docs/web-v593/evidence/*.webp

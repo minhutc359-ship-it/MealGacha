@@ -11,6 +11,7 @@ export function actorPose(actor: Actor, sheet: string, time: number, combat: Aut
     const a = actor.action
     if (actor.hp <= 0) return starterPose(actor.id,"fall",(time-(actor.diedAt ?? time))*50,quiet)
     if (victory) return starterPose(actor.id,"victory",time*50,quiet)
+    if (actor.stunnedUntil > time) return starterPose(actor.id,"stun",0,quiet)
     if (!a) {
       const hit = [...(combat?.events ?? [])].reverse().find(e=>e.target===actor.uid && e.kind==="hit" && time>=e.tick && time-e.tick<5)
       return starterPose(actor.id,hit?"hit":"idle",hit?(time-hit.tick)*50:time*50,quiet)
@@ -22,11 +23,6 @@ export function actorPose(actor: Actor, sheet: string, time: number, combat: Aut
   }
   if (sheet.startsWith("living-")) return livingActorFrame(actor, time, combat, quiet, victory)
   const fresh = sheet !== "base", a = actor.action
-  if (sheet === "battleHd") {
-    if (actor.hp <= 0) return 0
-    if (quiet || !a || a.kind === "move") return 0
-    return time < a.hit ? 1 : time < a.hit + Math.max(1, (a.end - a.hit) * .7) ? a.kind === "cast" ? 3 : 2 : 0
-  }
   if (quiet) return actor.hp <= 0 ? fresh ? 6 : 12 : 0
   if (victory && actor.hp > 0) return (fresh ? [0,1,2,1] : [13,1,13,3])[Math.floor(time / 5) % 4]
   if (actor.hp <= 0 || !a || a.kind === "move") return actorFrame(actor,time,fresh,combat)

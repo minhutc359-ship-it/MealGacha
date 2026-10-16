@@ -1,18 +1,5 @@
 import type { School } from "./types"
-import type { CharacterMotion } from "./tcgCharacterMotion"
 export const COMBAT_ART = "/assets/rpg/combat583/effects.webp"
-/** Real windup, contact and casting poses; never cross-fade an attack. */
-export function battleHdPose(
-  motion: CharacterMotion,
-  age: number,
-  quiet = false,
-) {
-  if (quiet) return motion === "cast" ? 3 : 0
-  if (motion === "attack") return age < 170 ? 1 : age < 460 ? 2 : 0
-  if (motion === "cast") return age < 170 ? 1 : age < 700 ? 3 : 0
-  if (motion === "hit") return 1
-  return 0
-}
 /** A unit keeps its own slash angle, projectile arc and cast rhythm across modes. */
 export function combatSignature(id: string) {
   let hash = 0

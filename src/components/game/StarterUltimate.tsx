@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react"
 import {
-  STARTER_ASSET_ROOT,
   starterCharacter,
   starterPose,
   ultimatePhase,
@@ -33,38 +32,24 @@ export function StarterUltimate({
   useEffect(() => {
     const el = canvas.current!,
       ctx = el.getContext("2d")!
-    const lease = acquireCharacterImage(`${STARTER_ASSET_ROOT}/${id}.webp`),
-      image = lease.image,
-      kit = starterCharacter(id)!
+    const kit = starterCharacter(id)!,
+      lease = acquireCharacterImage(kit.atlas),
+      effectLease = acquireCharacterImage(kit.effect.path),
+      effect = effectLease.image,
+      image = lease.image
+    let lastMs = -1
     let w = 1,
       h = 1
     const draw = () => {
       const ms = state.current.reduced
-        ? 1040
-        : Math.min(2399, state.current.age())
+        ? kit.timeline.impact + 80
+        : Math.min(kit.timeline.end-1, state.current.age())
+      if (ms === lastMs) return
+      lastMs = ms
       el.dataset.phase = ultimatePhase(ms)
       ctx.clearRect(0, 0, w, h)
-      const gradient = ctx.createRadialGradient(
-        w * 0.55,
-        h * 0.5,
-        0,
-        w * 0.55,
-        h * 0.5,
-        w * 0.75,
-      )
-      gradient.addColorStop(0, "#234a50")
-      gradient.addColorStop(1, "#071824")
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, w, h)
-      ctx.strokeStyle = kit.color
-      ctx.globalAlpha = 0.25
-      ctx.lineWidth = 1
-      ctx.beginPath()
-      ctx.ellipse(w * 0.33, h * 0.87, w * 0.18, h * 0.035, 0, 0, Math.PI * 2)
-      ctx.stroke()
-      ctx.globalAlpha = 1
       if (image.naturalWidth) {
-        const p = starterPose(id, "ultimate", ms),
+        const p = state.current.reduced ? kit.reducedPose : starterPose(id, "ultimate", ms),
           size = Math.min(w * 0.48, h * 0.92)
         ctx.drawImage(
           image,
@@ -73,24 +58,24 @@ export function StarterUltimate({
           256,
           256,
           w * 0.32 - size / 2,
-          h * 0.89 - (size * 240) / 256,
+          h * 0.89 - size * kit.anchors.foot[1],
           size,
           size,
         )
       }
-      // Keep the finishing gesture on the right, away from the actor silhouette.
-      drawStarterVfx(
-        ctx,
-        id,
-        w * 0.73,
-        h * 0.54,
-        Math.min(w * 0.2, h * 0.29),
-        ms,
-        true,
-        renderIsLight() || state.current.reduced,
-      )
+      // One painted effect frame replaces geometry when ready; never stack both.
+      if (ms >= kit.timeline.casting && ms < kit.timeline.recovery) {
+        if (effect.naturalWidth) {
+          const row = ms < kit.timeline.impact ? 0 : ms < kit.timeline.finisher ? 1 : 2,
+            size = Math.min(w*.39,h*.78)
+          ctx.globalAlpha = Math.max(0,Math.min(1,(ms-kit.timeline.casting)/200,(kit.timeline.recovery-ms)/250))
+          ctx.drawImage(effect,kit.effect.column*256,row*256,256,256,w*.76-size/2,h*.58-size/2,size,size)
+          ctx.globalAlpha = 1
+        } else drawStarterVfx(ctx,id,w*.76,h*.54,Math.min(w*.2,h*.29),ms,true,renderIsLight() || state.current.reduced)
+      }
     }
     const resize = () => {
+      lastMs = -1
       w = el.clientWidth
       h = el.clientHeight
       const dpr = renderDpr()
@@ -102,6 +87,7 @@ export function StarterUltimate({
     const observer = new ResizeObserver(resize)
     observer.observe(el)
     image.addEventListener("load", resize)
+    effect.addEventListener("load", resize)
     resize()
     const stop = subscribeCharacterClock(
       draw,
@@ -111,6 +97,8 @@ export function StarterUltimate({
       stop()
       observer.disconnect()
       image.removeEventListener("load", resize)
+      effect.removeEventListener("load", resize)
+      effectLease.release()
       lease.release()
     }
   }, [id])
