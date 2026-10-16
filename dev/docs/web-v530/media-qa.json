@@ -1,8 +1,8 @@
 {
-  "decodedVideos": 120,
-  "nativeTimelines": 19,
+  "decodedVideos": 116,
+  "nativeTimelines": 23,
   "decodedSounds": 139,
-  "totalBytes": 157010288,
+  "totalBytes": 151865116,
   "results": [
     {
       "id": "pho-bo",
@@ -1434,21 +1434,9 @@
     },
     {
       "id": "com-lang-vong",
-      "movies": {
-        "bytes": 1361678,
-        "sha256": "eac4d5e27df210063f87bb6a65c2f38717ba507b60f2c35645dc44c14c2621ff",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "c4e7bf7e6cb599c40907a63690c572a6ce1e46a7d0172744603a0c841f925cde",
+        "sha256": "cd81da4814078b4a53d61e983ee5a77dc64156b4ede5c221712aa4311985abb1",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -1460,21 +1448,9 @@
     },
     {
       "id": "ca-phe-trung",
-      "movies": {
-        "bytes": 1336213,
-        "sha256": "123fbf8acc732c1605ccd1f76b74e64599defb8bc920a0edd944d2d7ab603f31",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "2cab2a04e990f24852f7fe44bef7d49a5fb61a49c1cfa935f76f6a8a8fae2fdb",
+        "sha256": "435cac6e6a55c6e04955ae88045ab163fea69583d6a66788c81ae473022bec53",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -1486,21 +1462,9 @@
     },
     {
       "id": "cha-ruoi",
-      "movies": {
-        "bytes": 1240080,
-        "sha256": "7f165bee4df410cccef68033a267aa38f98b7eabc37339cfcc1cd935cec0d839",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "e1f7ca90e94ef3f48208f94b5c60daae2412d5b50abd535e2a9c4747f2a23355",
+        "sha256": "82b32efd06fe7d2a41eca7e5051cdb191d58f85cd66ed346ef756cf87362b473",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -2398,21 +2362,9 @@
     },
     {
       "id": "thit-kho-trung",
-      "movies": {
-        "bytes": 1207201,
-        "sha256": "8cc61a4d698fcd8729f1af30933e38dc6428a0d466596992faeb612d70058e84",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "ab7be0ef9bad8275800ec6cd55450d705ee80812c3b0689ace712549f3ebcc23",
+        "sha256": "81f8018cf35e3772cdb08d2d1169f92bd9e57e72e4edfed1f5a6cc9c94a4f66f",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",

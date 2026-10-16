@@ -1,5 +1,5 @@
 {
-  "version": "5.9.5",
+  "version": "5.9.6",
   "generatedOn": "2026-10-15",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -1074,6 +1074,214 @@
         "dev/docs/web-v595/resolve-artwork.json",
         "dev/docs/web-v595/support-artwork.json",
         "dev/docs/web-v595/death-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/ca-phe-trung-pixel.webp",
+      "bytes": 110828,
+      "sha256": "93d8b37bd270e6f4a8734a055feaa9f5ed68b9be4784e2d6238b3657d20304cd",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/ca-phe-trung-portrait.webp",
+      "bytes": 75734,
+      "sha256": "c08d508528055ea3fc2cb92691349413adfb37ab53fc4d3347c7d17655437517",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/ca-phe-trung.webp",
+      "bytes": 486934,
+      "sha256": "fb3defe5eef04cd8ae456f07d068b9494cab092e1bd5c2982fc0aef1979e21d1",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/cha-ruoi-pixel.webp",
+      "bytes": 113274,
+      "sha256": "b96fc45a8d6690953266ebbb9d89b84b6fe4affe459b81509b981953e4dced6d",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/cha-ruoi-portrait.webp",
+      "bytes": 86448,
+      "sha256": "59283e2d4f9e17bd4e2d99a782aa43a7ea46863895d3dc3b524e0af3f9c1f490",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/cha-ruoi.webp",
+      "bytes": 466278,
+      "sha256": "fe9ad2a2256fab5db1a5b1bdf5fe2c3161171022c1f8615d9c87906f2d44cf9f",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/com-lang-vong-pixel.webp",
+      "bytes": 135872,
+      "sha256": "fc75856b14f1b4eeb3ea2c0fd59c767e6ea50014928fdfcf80f98118bced7e2e",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/com-lang-vong-portrait.webp",
+      "bytes": 85802,
+      "sha256": "b8056f5f7a551d5bea293838b5364d686b1f295d2a783c52680173f8b7f909ab",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/com-lang-vong.webp",
+      "bytes": 597836,
+      "sha256": "5900ab2076fc80a024d881acd31ff1ec6ba4fc71786573b5219474102f09ba02",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/thit-kho-trung-pixel.webp",
+      "bytes": 148132,
+      "sha256": "7dcebc090246674e9dca543f2fd1093583c13a86a7c702dc5ae588052a9961d6",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/thit-kho-trung-portrait.webp",
+      "bytes": 79070,
+      "sha256": "8236ddeec7f6d531114875eb5785f5d2dfd5106de71c219daab1563526a2cd27",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/thit-kho-trung.webp",
+      "bytes": 549980,
+      "sha256": "65fe8c943075f69f2c1142405dded0d205e048fa3f013d5d95695775762c0c79",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/rare596/ultimate.webp",
+      "bytes": 269706,
+      "sha256": "abae91e037d350c5e0657844114dd9d0a34d12951fe9edb9664789c6ea3ee499",
+      "origin": "Original AI-assisted identity-preserving four additional spirit HD/pixel poses, portraits and exclusive VFX generated with built-in Imagegen from catalog and rosterF/G models",
+      "evidence": [
+        "dev/docs/web-v596/artwork.json",
+        "dev/docs/web-v596/resolve-artwork.json",
+        "dev/docs/web-v596/support-artwork.json",
+        "dev/docs/web-v596/repairs.json",
+        "dev/docs/web-v596/civet-repairs.json",
         "dev/tools/pack-starters590.py",
         "dev/tools/pack-rare595.py"
       ],
@@ -3561,19 +3769,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/ca-phe-trung.mp4",
-      "bytes": 1336213,
-      "sha256": "123fbf8acc732c1605ccd1f76b74e64599defb8bc920a0edd944d2d7ab603f31",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/canh-mang-mien.mp4",
       "bytes": 1336266,
       "sha256": "8b659ea8c1bef6e59dff84cfd04baa3be226efc36709248a3f1f4f7b5bead20c",
@@ -3730,19 +3925,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/cha-ruoi.mp4",
-      "bytes": 1240080,
-      "sha256": "7f165bee4df410cccef68033a267aa38f98b7eabc37339cfcc1cd935cec0d839",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/chao-luon.mp4",
       "bytes": 1345466,
       "sha256": "b7a5e90652aeb0b69f1c19335d1d7d600bf53fc0a4dd5935b02601a8fb7cd62b",
@@ -3837,19 +4019,6 @@
       "path": "public/assets/rpg/awakening530/movies/com-hen.mp4",
       "bytes": 1310328,
       "sha256": "45ba3d7605d2e9f25c3acc05bba3a414ebbd453416e8575b2282a12b48fd0dbf",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/com-lang-vong.mp4",
-      "bytes": 1361678,
-      "sha256": "eac4d5e27df210063f87bb6a65c2f38717ba507b60f2c35645dc44c14c2621ff",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -4627,19 +4796,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/thit-kho-trung.mp4",
-      "bytes": 1207201,
-      "sha256": "8cc61a4d698fcd8729f1af30933e38dc6428a0d466596992faeb612d70058e84",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/tiramisu.mp4",
       "bytes": 1330247,
       "sha256": "977b5b7f42a44e854819f062554c5d0b8a4334354dbe510c54ab1051fae111dd",
@@ -5173,7 +5329,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/ca-phe-trung.mp3",
       "bytes": 10029,
-      "sha256": "2cab2a04e990f24852f7fe44bef7d49a5fb61a49c1cfa935f76f6a8a8fae2fdb",
+      "sha256": "435cac6e6a55c6e04955ae88045ab163fea69583d6a66788c81ae473022bec53",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -5327,7 +5483,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/cha-ruoi.mp3",
       "bytes": 10029,
-      "sha256": "e1f7ca90e94ef3f48208f94b5c60daae2412d5b50abd535e2a9c4747f2a23355",
+      "sha256": "82b32efd06fe7d2a41eca7e5051cdb191d58f85cd66ed346ef756cf87362b473",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -5492,7 +5648,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/com-lang-vong.mp3",
       "bytes": 10029,
-      "sha256": "c4e7bf7e6cb599c40907a63690c572a6ce1e46a7d0172744603a0c841f925cde",
+      "sha256": "cd81da4814078b4a53d61e983ee5a77dc64156b4ede5c221712aa4311985abb1",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -6185,7 +6341,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/thit-kho-trung.mp3",
       "bytes": 10029,
-      "sha256": "ab7be0ef9bad8275800ec6cd55450d705ee80812c3b0689ace712549f3ebcc23",
+      "sha256": "81f8018cf35e3772cdb08d2d1169f92bd9e57e72e4edfed1f5a6cc9c94a4f66f",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",

@@ -1,0 +1,195 @@
+{
+  "date": "2026-10-16",
+  "scope": "Core gameplay, offline recovery and production native cast completed on the final artifact. The added renderer check initially selected a practice fixture without ArenaScene and was corrected separately.",
+  "browser": "Chromium headless SwiftShader",
+  "checks": [
+    {
+      "area": "cold-selected-cast",
+      "selected": "ca-phe-trung",
+      "requestedHd": [
+        "/assets/characters/rare596/ca-phe-trung.webp",
+        "/assets/characters/rare596/ultimate.webp"
+      ],
+      "painted": true,
+      "noPartyMediaPreload": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        320,
+        568
+      ],
+      "layout": {
+        "scroll": 320,
+        "deck": 530.171875
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        390,
+        844
+      ],
+      "layout": {
+        "scroll": 390,
+        "deck": 795.5
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        844,
+        390
+      ],
+      "layout": {
+        "scroll": 844,
+        "deck": 379.53125
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "viewport",
+      "viewport": [
+        1440,
+        900
+      ],
+      "layout": {
+        "scroll": 1440,
+        "deck": 851.5
+      },
+      "pixelWalkIdentity": true,
+      "pixelCombatants": 5,
+      "nativeOneActor": true,
+      "pauseSkip": true
+    },
+    {
+      "area": "rare-ultimate",
+      "id": "com-lang-vong",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "rare-ultimate",
+      "id": "ca-phe-trung",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "rare-ultimate",
+      "id": "thit-kho-trung",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "rare-ultimate",
+      "id": "cha-ruoi",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "rare-ultimate",
+      "id": "com-tam",
+      "phases": [
+        "preparation",
+        "casting",
+        "impact",
+        "finisher",
+        "recovery"
+      ]
+    },
+    {
+      "area": "consecutive-and-concurrent-load",
+      "baselineFps": 36.8335622424815,
+      "fps": 54.74306721008927,
+      "p95Gap": 16.80000000000291,
+      "maxEffects": 3,
+      "remainingEffects": 0,
+      "cachePeak": 60620320,
+      "cacheBudget": 67108864
+    },
+    {
+      "area": "unmount",
+      "count": 14,
+      "bytes": 60620320,
+      "leased": 0,
+      "budget": 67108864
+    },
+    {
+      "area": "autochess",
+      "fourRareAndOneStarterModels": true,
+      "count": 8,
+      "bytes": 58529368,
+      "leased": 8,
+      "budget": 67108864
+    },
+    {
+      "area": "tcg",
+      "fourRareAndOneStarterModels": true,
+      "realAttack": true
+    },
+    {
+      "area": "shared-portraits",
+      "identities": 4,
+      "standaloneAspect": true
+    },
+    {
+      "area": "inventory-identity-audit",
+      "tcgUnits": 139,
+      "autoUnits": 44,
+      "portraitIdentities": 139,
+      "artworkFallbacks": 94
+    },
+    {
+      "area": "offline-native-fallback",
+      "actor": "pixel",
+      "paintedActorPixels": 13041,
+      "onlineRetry": "hd",
+      "skip": true,
+      "released": true
+    },
+    {
+      "area": "reduced-motion",
+      "staticImpact": true,
+      "skip": true
+    },
+    {
+      "area": "production",
+      "savedBattleHydrated": true,
+      "nativeRare": true,
+      "pauseSkip": true
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

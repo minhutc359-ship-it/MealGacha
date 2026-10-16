@@ -1,0 +1,24 @@
+{
+  "baseline595": {
+    "jsGzip": 674641,
+    "bytes": 247997556
+  },
+  "experiments": {
+    "omitUnusedPixiRegistrations": 671313,
+    "plusConsumerGroupsBeforeNewCohort": 662939
+  },
+  "final596": {
+    "jsGzip": 666497,
+    "jsHeadroom": 8503,
+    "bytes": 246055474,
+    "staticHeadroom": 73944526
+  },
+  "limitsUnchanged": {
+    "jsGzip": 675000,
+    "staticTarget": 300000000,
+    "staticMax": 320000000,
+    "initialTarget": 8000000,
+    "initialMax": 12000000,
+    "imageCache": 67108864
+  }
+}

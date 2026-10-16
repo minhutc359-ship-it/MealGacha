@@ -1,0 +1,42 @@
+[
+  {
+    "id": "com-lang-vong",
+    "frames": 32,
+    "states": 8,
+    "bytes": 597836,
+    "sourceSize": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "id": "ca-phe-trung",
+    "frames": 32,
+    "states": 8,
+    "bytes": 486934,
+    "sourceSize": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "id": "thit-kho-trung",
+    "frames": 32,
+    "states": 8,
+    "bytes": 549980,
+    "sourceSize": [
+      1254,
+      1254
+    ]
+  },
+  {
+    "id": "cha-ruoi",
+    "frames": 32,
+    "states": 8,
+    "bytes": 466278,
+    "sourceSize": [
+      1254,
+      1254
+    ]
+  }
+]

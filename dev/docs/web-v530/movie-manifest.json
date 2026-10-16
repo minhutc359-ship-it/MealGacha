@@ -778,39 +778,54 @@
   },
   {
     "id": "com-lang-vong",
-    "pattern": "balance",
-    "motif": 4,
-    "title": "Thanh vong",
-    "path": "/assets/rpg/awakening530/movies/com-lang-vong.mp4",
-    "bytes": 1361678,
-    "width": 1280,
-    "height": 720,
-    "fps": 24,
-    "seconds": 2.4
+    "renderer": "native596",
+    "path": "/assets/characters/rare596/com-lang-vong.webp",
+    "bytes": 597836,
+    "width": 1024,
+    "height": 2048,
+    "frames": 32,
+    "seconds": 2.4,
+    "phases": [
+      "preparation",
+      "casting",
+      "impact",
+      "finisher",
+      "recovery"
+    ]
   },
   {
     "id": "ca-phe-trung",
-    "pattern": "drain",
-    "motif": 5,
-    "title": "Ho\u00e0ng m\u1ed9ng",
-    "path": "/assets/rpg/awakening530/movies/ca-phe-trung.mp4",
-    "bytes": 1336213,
-    "width": 1280,
-    "height": 720,
-    "fps": 24,
-    "seconds": 2.4
+    "renderer": "native596",
+    "path": "/assets/characters/rare596/ca-phe-trung.webp",
+    "bytes": 486934,
+    "width": 1024,
+    "height": 2048,
+    "frames": 32,
+    "seconds": 2.4,
+    "phases": [
+      "preparation",
+      "casting",
+      "impact",
+      "finisher",
+      "recovery"
+    ]
   },
   {
     "id": "cha-ruoi",
-    "pattern": "phoenix",
-    "motif": 6,
-    "title": "Thu ng\u01b0",
-    "path": "/assets/rpg/awakening530/movies/cha-ruoi.mp4",
-    "bytes": 1240080,
-    "width": 1280,
-    "height": 720,
-    "fps": 24,
-    "seconds": 2.4
+    "renderer": "native596",
+    "path": "/assets/characters/rare596/cha-ruoi.webp",
+    "bytes": 466278,
+    "width": 1024,
+    "height": 2048,
+    "frames": 32,
+    "seconds": 2.4,
+    "phases": [
+      "preparation",
+      "casting",
+      "impact",
+      "finisher",
+      "recovery"
+    ]
   },
   {
     "id": "banh-com-hang-than",
@@ -1244,15 +1259,20 @@
   },
   {
     "id": "thit-kho-trung",
-    "pattern": "citadel",
-    "motif": 2,
-    "title": "Ho\u00e0ng \u1ea5n",
-    "path": "/assets/rpg/awakening530/movies/thit-kho-trung.mp4",
-    "bytes": 1207201,
-    "width": 1280,
-    "height": 720,
-    "fps": 24,
-    "seconds": 2.4
+    "renderer": "native596",
+    "path": "/assets/characters/rare596/thit-kho-trung.webp",
+    "bytes": 549980,
+    "width": 1024,
+    "height": 2048,
+    "frames": 32,
+    "seconds": 2.4,
+    "phases": [
+      "preparation",
+      "casting",
+      "impact",
+      "finisher",
+      "recovery"
+    ]
   },
   {
     "id": "dua-hanh",

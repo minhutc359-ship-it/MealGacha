@@ -12,11 +12,11 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE = Path(sys.argv[1])
 args = sys.argv[2:]
 group = next((a.split('=',1)[1] for a in args if a.startswith('--group=')), 'starters590')
-if group not in ['starters590', 'chefs593', 'familiar594', 'rare595']: raise ValueError('Unknown visual production group')
+if group not in ['starters590', 'chefs593', 'familiar594', 'rare595', 'rare596']: raise ValueError('Unknown visual production group')
 args = [a for a in args if not a.startswith('--group=')]
 OUT = ROOT / 'public/assets/characters' / group
 OUT.mkdir(parents=True, exist_ok=True)
-IDS = args or ({'chefs593':['chef-bach','chef-nhien','chef-moc','chef-hai','chef-lien'], 'familiar594':['bun-cha','bun-rieu','banh-xeo','com-ga'], 'rare595':['banh-chung','cha-ca-la-vong','bun-thang','banh-com-hang-than']}.get(group) or ['com-tam', 'banh-mi', 'pho-bo', 'banh-cuon', 'goi-cuon-tom-thit'])
+IDS = args or ({'chefs593':['chef-bach','chef-nhien','chef-moc','chef-hai','chef-lien'], 'familiar594':['bun-cha','bun-rieu','banh-xeo','com-ga'], 'rare595':['banh-chung','cha-ca-la-vong','bun-thang','banh-com-hang-than'], 'rare596':['com-lang-vong','ca-phe-trung','thit-kho-trung','cha-ruoi']}.get(group) or ['com-tam', 'banh-mi', 'pho-bo', 'banh-cuon', 'goi-cuon-tom-thit'])
 report = []
 def isolate_actor(tile):
     import numpy as np

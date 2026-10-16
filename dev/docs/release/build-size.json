@@ -2,21 +2,21 @@
   "staticBudgetBytes": 320000000,
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
-  "version": "5.9.5",
-  "bytes": 247997556,
-  "files": 730,
+  "version": "5.9.6",
+  "bytes": 246055474,
+  "files": 727,
   "byType": {
     "js": {
-      "files": 52,
-      "bytes": 2079571
+      "files": 43,
+      "bytes": 2076770
     },
     "css": {
-      "files": 8,
-      "bytes": 498862
+      "files": 5,
+      "bytes": 498859
     },
     "webp": {
-      "files": 372,
-      "bytes": 78369484
+      "files": 385,
+      "bytes": 81575378
     },
     "png": {
       "files": 3,
@@ -31,8 +31,8 @@
       "bytes": 10834115
     },
     "mp4": {
-      "files": 120,
-      "bytes": 155616257
+      "files": 116,
+      "bytes": 150471085
     },
     "json": {
       "files": 1,
@@ -60,19 +60,19 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2578433,
+    "Application JS/CSS": 2575629,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
-    "Shared character atlases": 26724142,
+    "Shared character atlases": 29930036,
     "Event art": 2016822,
     "Other and legal": 13024114,
     "Food art": 7490462,
     "Adventure presentation art": 1400332,
-    "Spirit RPG art/audio/video": 172530143,
+    "Spirit RPG art/audio/video": 167384971,
     "TCG art/audio": 17978292
   },
-  "js_gzip": 674641,
-  "css_gzip": 103519,
+  "js_gzip": 666497,
+  "css_gzip": 102778,
   "largest": [
     {
       "path": "assets/rpg/campaign580/campaignB.webp",
@@ -125,19 +125,19 @@
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 2877313,
-    "urls": 74,
+    "bytes": 2874949,
+    "urls": 62,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 9122687
+    "remainingBytes": 9125051
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 72002444
+    "remainingBytes": 73944526
   }
 }

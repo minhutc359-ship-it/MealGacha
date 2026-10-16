@@ -69,6 +69,10 @@ const DEFINITIONS = {
   "cha-ca-la-vong": {effectColumn:1,title:"Hải vũ",species:"Lão Ngư Thì Là",signature:"skillet",color:"#8dd6c6",idle:1720,walk:880,attack:880,cast:1180},
   "bun-thang": {effectColumn:2,title:"Thất thanh",species:"Bạch Hạc Chỉ Vàng",signature:"threads",color:"#f4df9b",idle:1480,walk:740,attack:760,cast:1040},
   "banh-com-hang-than": {effectColumn:3,title:"Ngọc thu",species:"Yến Ngọc Tơ Duyên",signature:"knot",color:"#d2b9ec",idle:1360,walk:620,attack:700,cast:980},
+  "com-lang-vong": {effectColumn:0,title:"Thanh vong",species:"Kỳ Lân Lúa Non",signature:"grain",color:"#c9df91",idle:1560,walk:700,attack:820,cast:1140},
+  "ca-phe-trung": {effectColumn:1,title:"Hoàng mộng",species:"Cầy Hương Mây Kem",signature:"phin",color:"#e5c59a",idle:1580,walk:780,attack:760,cast:1080},
+  "thit-kho-trung": {effectColumn:2,title:"Hoàng ấn",species:"Huyền Quy Nồi Tết",signature:"seal",color:"#e5b275",idle:1760,walk:980,attack:960,cast:1220},
+  "cha-ruoi": {effectColumn:3,title:"Thu ngư",species:"Sóc Lá Thu",signature:"autumn",color:"#f1ad6c",idle:960,walk:460,attack:580,cast:860},
 } as const
 
 export const CHEF_IDS = ["chef-bach","chef-nhien","chef-moc","chef-hai","chef-lien"] as const
@@ -80,6 +84,8 @@ export const FAMILIAR_IDS = ["bun-cha","bun-rieu","banh-xeo","com-ga"] as const
 export const FAMILIAR_ASSET_ROOT = "/assets/characters/familiar594"
 export const RARE_IDS = ["banh-chung","cha-ca-la-vong","bun-thang","banh-com-hang-than"] as const
 export const RARE_ASSET_ROOT = "/assets/characters/rare595"
+export const RARE_SECOND_IDS = ["com-lang-vong","ca-phe-trung","thit-kho-trung","cha-ruoi"] as const
+export const RARE_SECOND_ASSET_ROOT = "/assets/characters/rare596"
 export type VisualCharacterId = keyof typeof DEFINITIONS
 export const VISUAL_CONTACT = { attack: 300, cast: 380, ultimate: 960, tcg: 560 } as const
 export const ULTIMATE_TIMELINE = {
@@ -88,13 +94,17 @@ export const ULTIMATE_TIMELINE = {
 } as const
 export const STARTER_ASSET_ROOT = "/assets/characters/starters590"
 const PORTRAIT_CELLS: Partial<Record<VisualCharacterId,number>> = { "com-tam": 13, "banh-mi": 4, "pho-bo": 0, "banh-cuon": 6, "goi-cuon-tom-thit": 105, xoi: -1 }
-const CAST_ANCHORS = { "com-tam": [.66,.48], "banh-mi": [.73,.43], "pho-bo": [.73,.3], "banh-cuon": [.68,.38], "goi-cuon-tom-thit": [.7,.28], xoi: [.64,.72], "chef-bach":[.7,.48], "chef-nhien":[.76,.5], "chef-moc":[.7,.35], "chef-hai":[.76,.42], "chef-lien":[.73,.32], "bun-cha":[.7,.5], "bun-rieu":[.72,.48], "banh-xeo":[.72,.38], "com-ga":[.77,.4], "banh-chung":[.71,.49], "cha-ca-la-vong":[.74,.3], "bun-thang":[.75,.27], "banh-com-hang-than":[.74,.45] }
+const CAST_ANCHORS = { "com-tam": [.66,.48], "banh-mi": [.73,.43], "pho-bo": [.73,.3], "banh-cuon": [.68,.38], "goi-cuon-tom-thit": [.7,.28], xoi: [.64,.72], "chef-bach":[.7,.48], "chef-nhien":[.76,.5], "chef-moc":[.7,.35], "chef-hai":[.76,.42], "chef-lien":[.73,.32], "bun-cha":[.7,.5], "bun-rieu":[.72,.48], "banh-xeo":[.72,.38], "com-ga":[.77,.4], "banh-chung":[.71,.49], "cha-ca-la-vong":[.74,.3], "bun-thang":[.75,.27], "banh-com-hang-than":[.74,.45], "com-lang-vong":[.69,.32], "ca-phe-trung":[.76,.28], "thit-kho-trung":[.65,.51], "cha-ruoi":[.77,.46] }
+const ASSET_GROUPS: readonly (readonly [readonly string[],string])[] = [
+  [CHEF_IDS,CHEF_ASSET_ROOT], [FAMILIAR_IDS,FAMILIAR_ASSET_ROOT],
+  [RARE_IDS,RARE_ASSET_ROOT], [RARE_SECOND_IDS,RARE_SECOND_ASSET_ROOT],
+]
 export function chefPortrait(id: ChefId, expression: ChefExpression = "neutral") {
   return `${CHEF_ASSET_ROOT}/${id}-${expression}.webp`
 }
 function manifest(id: VisualCharacterId) {
   const chef = id.startsWith("chef-")
-  const root = chef ? CHEF_ASSET_ROOT : (RARE_IDS as readonly string[]).includes(id) ? RARE_ASSET_ROOT : (FAMILIAR_IDS as readonly string[]).includes(id) ? FAMILIAR_ASSET_ROOT : STARTER_ASSET_ROOT
+  const root = ASSET_GROUPS.find(([ids]) => ids.includes(id))?.[1] ?? STARTER_ASSET_ROOT
   const cell = PORTRAIT_CELLS[id] ?? -1
   return {
     ...DEFINITIONS[id], id,

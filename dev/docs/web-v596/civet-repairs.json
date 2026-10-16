@@ -1,0 +1,15 @@
+{
+  "id": "ca-phe-trung",
+  "tool": "Built-in Imagegen",
+  "date": "2026-10-16",
+  "prompt": "Use case: identity-preserve. Soul of Meal production sprite poses. Reference is the SAME small cream/brown civet Cà phê trứng: round bronze spectacles, ivory coat over coffee-brown waistcoat with gold buttons, boots, fluffy cream tail with dark tip, ONE slender brass staff with Vietnamese phin coffee-filter head. Keep exact face, proportions, clothing, original warm cel-shaded chibi style and fixed 3/4 view facing screen RIGHT.\nCreate exactly FOUR articulated full-body poses in a TWO by TWO equal square-cell transparent RGBA atlas:\nTop left ATTACK CONTACT: short compact forward staff tap, hold staff DIAGONALLY across front of chest (not horizontally at full arm stretch), free paw tucked, front boot planted.\nTop right CAST RELEASE: phin staff upright and close to shoulder, free palm gently presenting a rhythmic beat, attentive face.\nBottom left ULTIMATE CONTACT: phin staff vertical beside shoulder, free arm spread to conduct the strong beat, proud determined face, tail balancing.\nBottom right VICTORY SALUTE: staff near-vertical with phin just above ear height, free paw tipping spectacles, pleased smile.\nEvery full body, tail and entire staff must stay INSIDE central 60% of its square cell, leaving at least 18% empty transparent gutters on every side. Keep staff physically SHORT: no taller than ear-to-boot height; total pose WIDTH including weapon must be NO GREATER than ear-to-boot HEIGHT. Constant character size and lighting across four cells, keep all equipment complete, no cropped phin or tail. No big aura, VFX, magic, trails, ground, shadows, duplicated gear, grid lines, text or logos.",
+  "source": "/workspace/scratch/01c951ed619f/generated_images/exec-bd9013d0-3b91-4dd2-90fe-5731b0e74a27.png",
+  "reason": "Select only the compact two-handed attack contact. Preserve the original cast/ultimate/victory poses so the staff stays in its original hand.",
+  "frames": [
+    10
+  ],
+  "sha256": "28b3f0ff1bc204ec3964d30d5df0573d435a47ed92b4edd9c48ba8de9e590b69",
+  "selectedSourceCells": [
+    0
+  ]
+}

@@ -28,10 +28,6 @@ export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
   "bun-bo-hue": ["rosterE", 2],
   "che-buoi": ["rosterE", 3],
   "bun-ca": ["rosterF", 0],
-  "cha-ruoi": ["rosterF", 1],
-  "thit-kho-trung": ["rosterF", 3],
-  "com-lang-vong": ["rosterG", 1],
-  "ca-phe-trung": ["rosterG", 3],
 }
 const ENEMY_MODELS: Record<string, [CharacterSheet, number]> = {
   "v4-tide-lock": ["living-bosses", 0],
