@@ -9,14 +9,14 @@ interface ChapterArc {
   aftermath: RpgLine[]
   consequences: [RpgLine[], RpgLine[]]
 }
-const line = (speaker: RpgLine["speaker"], text: string): RpgLine => ({speaker, text})
+const line = (speaker: RpgLine["speaker"], text: string, expression?: RpgLine["expression"]): RpgLine => ({speaker, text, ...(expression ? {expression} : {})})
 
 /** The mystery is revealed in order; earlier choices return as later callbacks. */
 export const RPG_STORY_ARCS: Record<string, ChapterArc> = {
   lantern: {
     title: "Chiếc bát không tên",
     hook: "Một chiếc bát trống xuất hiện ở mọi mâm cơm. Dấu tro dưới đáy bát dẫn tới người bị xóa khỏi ký ức của cả khu chợ.",
-    opening: [line("child", "Đêm qua em đếm đủ người, nhưng sáng nay trên mâm lại có thêm một chiếc bát. Không ai nhớ nó dành cho ai."), line("bach", "Dấu tro dưới đáy bát thuộc về Bếp Gốc. Nếu Sương Nhạt đang tìm một người bị quên, ta phải tìm ra trước nó.")],
+    opening: [line("child", "Đêm qua em đếm đủ người, nhưng sáng nay trên mâm lại có thêm một chiếc bát. Không ai nhớ nó dành cho ai."), line("bach", "Dấu tro dưới đáy bát thuộc về Bếp Gốc. Nếu Sương Nhạt đang tìm một người bị quên, ta phải tìm ra trước nó.", "resolve")],
     turningPoint: [line("grandmother", "Giếng phản chiếu một gian bếp bị khóa. Ta đã thấy cánh cửa ấy trong đêm Bếp Gốc cháy, nhưng ta không còn nhớ ai đứng bên trong."), line("echo", "Các người gọi ta là sương, vì không ai muốn gọi cái tên đã bị gạch khỏi sổ bếp.")],
     finale: [line("bach", "Tiếng trống không gọi quái vật. Nó gọi chủ nhân chiếc bát trống trở về. Ta đã hiểu sai từ đầu."), line("grandmother", "Phá lời nguyền quanh trống, nhưng giữ lại nhịp cuối. Đó là manh mối duy nhất dẫn ra bến cảng.")],
     aftermath: [line("bach", "Trong lòng trống có mảnh bản đồ cháy dở và một cái tên: Vân. Người ấy đã lên con tàu Than Hồng."), line("grandmother", "Sương Nhạt không chỉ xóa ký ức. Nó đang gom những ký ức chúng ta tự tay vứt bỏ.")],
@@ -25,9 +25,9 @@ export const RPG_STORY_ARCS: Record<string, ChapterArc> = {
   harbor: {
     title: "Lá thư không được gửi",
     hook: "Con tàu Than Hồng trở về sau mười năm. Tên người gửi biến mất khỏi mọi kiện hàng, nhưng Nhiên nhận ra nét chữ trên một lá thư.",
-    opening: [line("sailor", "Tàu vẫn chạy, chuông vẫn reo, chỉ có tên người nhận hàng biến mất. Cảng đang quên cùng một người."), line("nhien", "Vân từng nhóm lửa cho chuyến tàu này. Tôi có một lá thư của cô ấy, nhưng đã giữ nó suốt mười năm.")],
+    opening: [line("sailor", "Tàu vẫn chạy, chuông vẫn reo, chỉ có tên người nhận hàng biến mất. Cảng đang quên cùng một người."), line("nhien", "Vân từng nhóm lửa cho chuyến tàu này. Tôi có một lá thư của cô ấy, nhưng đã giữ nó suốt mười năm.", "concern")],
     turningPoint: [line("hai", "Mực hiện lại khi chạm nước biển: ‘Đừng tìm em nơi ngọn lửa đã tắt. Hãy tìm nơi người ta cất điều không muốn nhớ.’"), line("nhien", "Tôi giữ thư vì sợ người nhận sẽ ra khơi mãi mãi. Sự im lặng của tôi đã cho sương chỗ trú.")],
-    finale: [line("sailor", "Khuyển Than canh hòm thư dưới lò máy. Hàng trăm lời từ biệt ở đó chưa từng được mở."), line("nhien", "Ta sẽ mở từng lá thư sau trận này. Sự thật có thể đau, nhưng không ai đáng bị xóa để người khác bớt đau.")],
+    finale: [line("sailor", "Khuyển Than canh hòm thư dưới lò máy. Hàng trăm lời từ biệt ở đó chưa từng được mở."), line("nhien", "Ta sẽ mở từng lá thư sau trận này. Sự thật có thể đau, nhưng không ai đáng bị xóa để người khác bớt đau.", "resolve")],
     aftermath: [line("hai", "Bản đồ trong hòm thư đánh dấu một khu vườn. Vân đã gửi hạt giống về đó trước đêm Bếp Gốc cháy."), line("nhien", "Tôi đã gửi lá thư đi. Lần này người nhận sẽ được tự chọn ở lại hay lên đường.")],
     consequences: [[line("nhien", "Lửa hải đăng được giữ suốt đêm. Tên người mất tích được đọc mỗi khi tàu cập bến; một người làm vườn đã nhận ra tên Vân.")], [line("sailor", "Mỗi căn bếp nhận một đốm lửa và một lá thư. Cả thành phố chia việc chờ đợi; người trông vườn cũng đã đọc được lời nhắn.")]],
   },

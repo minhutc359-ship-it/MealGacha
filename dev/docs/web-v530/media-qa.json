@@ -1,8 +1,8 @@
 {
-  "decodedVideos": 133,
-  "nativeTimelines": 6,
+  "decodedVideos": 128,
+  "nativeTimelines": 11,
   "decodedSounds": 139,
-  "totalBytes": 175302785,
+  "totalBytes": 168401210,
   "results": [
     {
       "id": "pho-bo",
@@ -3132,21 +3132,9 @@
     },
     {
       "id": "chef-nhien",
-      "movies": {
-        "bytes": 1216162,
-        "sha256": "50f4692bbd7c7dc9053f0e047ba0f159007f02de74c15eb5c45981a0e5ea8b2d",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "3708db4238f054f3979cbec5717e692e95c04df29571e6547b37004abe493dc9",
+        "sha256": "270bf7bde3176ae7633c601941557d7c4012626e12a0e1dc19b129e18499453b",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -3158,21 +3146,9 @@
     },
     {
       "id": "chef-moc",
-      "movies": {
-        "bytes": 1268577,
-        "sha256": "1f626ad1498bf273643e2f47ff753da36fa830ae761a7f5d2dc698d528bb069f",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "6710a7021dcde003df704623838a11ead369f439409ae2f0b197bf9b7f3bdf4b",
+        "sha256": "1f6fd1fb59816a5f605a0ba69452c5d7f0ec5541c542d4ad44d289d3f17bafa2",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -3184,21 +3160,9 @@
     },
     {
       "id": "chef-lien",
-      "movies": {
-        "bytes": 1369869,
-        "sha256": "90002137b769e4470303b79334d2d86f22b4623870ec8f00e9b96b1b51cef10c",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "80689bf3dce1f9b50c51c31656397edf08d6d1b5e9515699d6debf7e40408915",
+        "sha256": "6cd01b8dcb86d0d82deea59e1f2c8fd63ca5f92a5bf981e74c4ab48e0bcf6d12",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -3210,21 +3174,9 @@
     },
     {
       "id": "chef-bach",
-      "movies": {
-        "bytes": 1390501,
-        "sha256": "54e0a3514b1b7a0b2570e28a502e11e726c939a3c8523b4fcda2c3d2e2640e8c",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "953e2a4f17da1bd9d410bd2a80c237da7411b73952795a56fea05237d1715e3a",
+        "sha256": "57f889b4ad17504837edcc441113579e98f9c77d84aabc29de5b4955ed9a2346",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -3236,21 +3188,9 @@
     },
     {
       "id": "chef-hai",
-      "movies": {
-        "bytes": 1656466,
-        "sha256": "1bb44cd5f7cf765c1d95625afaa25ff857c2bb74bccd70de126a3e4af3ed50b6",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "7a0408d0233608503163ab8c6e8dbb65b8919a9bb3ce6b9be860908aa34d27b1",
+        "sha256": "339c5b433fcff45b7c97789093f7452d813c133a4964b1eef816290503615e2d",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",

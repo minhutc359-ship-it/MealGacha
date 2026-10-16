@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-16",
+  "party": [
+    "bun-rieu",
+    "bun-cha",
+    "banh-xeo",
+    "com-ga",
+    "xoi-xeo"
+  ],
+  "beforeCast": [],
+  "requestedMovies": [
+    "/assets/rpg/awakening530/movies/bun-rieu.mp4"
+  ],
+  "requestedSounds": [
+    "/assets/rpg/awakening530/sounds/bun-rieu.mp3"
+  ],
+  "playback": "video",
+  "pause": true,
+  "skipWithoutRecast": true,
+  "cacheAfterLeavingBattle": {
+    "count": 8,
+    "bytes": 29161648,
+    "leased": 0,
+    "budget": 67108864
+  },
+  "avoidedEagerMovieBytes": 6886638,
+  "errors": [],
+  "missing": [],
+  "native": {
+    "selectedCharacter": "com-tam",
+    "requestedHdAssets": [
+      "/assets/characters/starters590/com-tam.webp",
+      "/assets/characters/starters590/ultimate591.webp"
+    ],
+    "paintedActorPixels": 13542,
+    "noMovie": true,
+    "skip": true
+  }
+}

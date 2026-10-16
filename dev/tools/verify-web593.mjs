@@ -1,0 +1,77 @@
+import assert from 'node:assert/strict'
+import {spawn} from 'node:child_process'
+import {mkdirSync,writeFileSync} from 'node:fs'
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE??'playwright')
+const dir='dev/docs/web-v593',out=dir+'/qa';mkdirSync(out,{recursive:true})
+const ids=['chef-bach','chef-nhien','chef-moc','chef-hai','chef-lien']
+const url='http://127.0.0.1:4194',checks=[],errors=[],missing=[],media=[]
+const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--config','dev/tools/vite.pvp-qa.config.ts','--host','127.0.0.1','--port','4194','--strictPort'],{stdio:'pipe'})
+let browser,page,preview,seed,log=''
+server.stdout.on('data',b=>log+=b);server.stderr.on('data',b=>log+=b)
+async function ready(url){for(let n=0;n<100;n++){try{if((await fetch(url)).ok)return}catch{}await new Promise(r=>setTimeout(r,100))}throw Error('Server unavailable '+log)}
+function capture(p){p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.url().includes('/assets/')&&r.status()>=400)missing.push(r.url());if(/\.(mp4|mp3)(\?|$)/.test(r.url()))media.push(r.url())})}
+async function fixture(p){await p.evaluate(async ids=>{
+ const {newGame}=await import('/src/game/progression.ts'),{newRpgSave,reduceRpg}=await import('/src/game/adventureRpg/engine.ts'),{useGameStore}=await import('/src/game/useGameStore.ts')
+ const g=newGame(),s=newRpgSave(g);s.cinematics=true
+ s.roster.forEach((h,i)=>{h.cardId=ids[i];h.level=15;h.rank=2;h.skills=[3,3,3,3]})
+ g.adventureRpg=reduceRpg(s,{type:'start',stageId:'lantern-1'},g).save
+ const b=g.adventureRpg.run.battle;b.auto=false
+ for(const a of b.actors){a.nextAttack=a.nextSkill=a.nextSupport=10000;a.energy=100;if(a.side==='enemy')a.hp=a.maxHp=50000}
+ if(!useGameStore.getState().importSave(g))throw Error('Chef fixture rejected');useGameStore.getState().dismiss()
+},ids);await p.locator('.rpg-battle.presentation-fight').waitFor();await p.waitForFunction(()=>document.querySelectorAll('.rpg-arena [data-sheet$="-pixel"].is-loaded').length===5)}
+async function refill(p){await p.evaluate(async()=>{const{useGameStore}=await import('/src/game/useGameStore.ts');const s=useGameStore.getState(),g=structuredClone(s.save);for(const a of g.adventureRpg.run.battle.actors)if(a.side==='ally')a.energy=100;if(!s.importSave(g))throw Error('Refill rejected');s.dismiss()})}
+async function stats(p){return p.evaluate(async()=>{const{characterCacheStats}=await import('/src/infrastructure/assets/characterSprites.ts');return characterCacheStats()})}
+try {
+ await ready(url)
+ browser=await chromium.launch({executablePath:process.env.CHROMIUM_BIN,headless:true,env:{...process.env,LD_LIBRARY_PATH:process.env.CHROMIUM_LIB_DIR??process.env.LD_LIBRARY_PATH,FONTCONFIG_PATH:'/etc/fonts'},args:JSON.parse(process.env.CHROMIUM_ARGS??'["--no-sandbox"]')})
+ for(const [width,height] of [[320,568],[390,844],[844,390],[1440,900]]){
+  const context=await browser.newContext({viewport:{width,height}});page=await context.newPage();capture(page);await page.goto(url+'/adventure');await page.locator('[data-pixel-character="bach"]').waitFor()
+  const walker=await page.locator('[data-pixel-character="bach"]').evaluate(e=>({image:getComputedStyle(e).backgroundImage,width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height}))
+  assert(walker.image.includes('chefs593/exploration.webp'));assert(Math.abs(walker.width-walker.height)<1)
+  const dismiss=page.getByRole('button',{name:'Tắt thông báo',exact:true});if(await dismiss.isVisible())await dismiss.click()
+  await fixture(page);await page.evaluate(()=>document.fonts.ready)
+  const layout=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,deck:document.querySelector('.rpg-burst-deck').getBoundingClientRect().bottom}))
+  assert(layout.scroll<=width+1);assert(layout.deck<=height+1)
+  await page.screenshot({path:`${out}/battle-${width}.png`})
+  await page.locator('.rpg-burst-button').nth(1).click();await page.locator('.rpg-cinematic-native[data-character="chef-nhien"]').waitFor()
+  await page.waitForFunction(()=>document.querySelector('.rpg-cinematic-native')?.dataset.phase==='impact');await page.getByRole('button',{name:'Dừng hoạt ảnh',exact:true}).click()
+  assert.equal(await page.locator('.rpg-cinematic video,.rpg-cinematic .rpg-ultimate-illustration').count(),0)
+  const progress=await page.locator('.rpg-cinematic-progress').evaluate(e=>e.style.width);await page.waitForTimeout(180);assert.equal(await page.locator('.rpg-cinematic-progress').evaluate(e=>e.style.width),progress)
+  await page.screenshot({path:`${out}/ultimate-${width}.png`});await page.getByRole('button',{name:'Bỏ qua ›',exact:true}).click();await page.locator('.rpg-cinematic').waitFor({state:'detached'})
+  checks.push({area:'viewport',viewport:[width,height],layout,pixelWalkIdentity:true,pixelCombatants:5,nativeOneActor:true,pauseSkip:true});await context.close()
+ }
+ const c=await browser.newContext({viewport:{width:1280,height:800}});page=await c.newPage();capture(page);await page.goto(url+'/adventure');await fixture(page)
+ seed=await page.evaluate(()=>Object.fromEntries(Object.entries(localStorage)))
+ const cache=[]
+ for(let i=0;i<5;i++){
+  await refill(page);await page.locator('.rpg-burst-button').nth(i).click();await page.locator(`.rpg-cinematic-native[data-character="${ids[i]}"]`).waitFor()
+  const phases=await page.evaluate(async()=>{const el=document.querySelector('.rpg-cinematic-native'),seen=new Set();await new Promise(resolve=>{const timer=setInterval(()=>{if(!el.isConnected){clearInterval(timer);resolve()}else seen.add(el.dataset.phase)},16)});return [...seen]})
+  assert.deepEqual(phases,['preparation','casting','impact','finisher','recovery']);cache.push(await stats(page));checks.push({area:'chef-ultimate',id:ids[i],phases})
+ }
+ // Real battle render with all five basic/skill events running together, compared with its own baseline.
+ await page.waitForTimeout(500)
+ const baseline=await page.evaluate(()=>new Promise(resolve=>{let n=0,t=performance.now();function step(){n++;performance.now()-t<3200?requestAnimationFrame(step):resolve(n*1000/(performance.now()-t))}requestAnimationFrame(step)}))
+ await refill(page)
+ await page.evaluate(async()=>{const{useGameStore}=await import('/src/game/useGameStore.ts');const store=useGameStore.getState();store.rpgAction({type:'cinematics'});for(const uid of store.save.adventureRpg.formation)store.rpgAction({type:'burst',uid})})
+ const perf=await page.evaluate(()=>new Promise(resolve=>{let n=0,prev=performance.now(),t=prev,max=0;const gaps=[];function step(now){n++;gaps.push(now-prev);prev=now;max=Math.max(max,Number(document.querySelector('.rpg-vfx-canvas')?.dataset.active??0));if(now-t<5000)requestAnimationFrame(step);else resolve({fps:n*1000/(now-t),p95Gap:gaps.sort((a,b)=>a-b)[Math.floor(gaps.length*.95)],maxEffects:max,remainingEffects:Number(document.querySelector('.rpg-vfx-canvas')?.dataset.active??0)})}requestAnimationFrame(step)}))
+ assert(perf.maxEffects>0);assert(perf.maxEffects<=12);assert.equal(perf.remainingEffects,0)
+ const cachePeak=Math.max(...cache.map(s=>s.bytes));assert(cachePeak<=64*1024*1024);assert(perf.fps>=baseline*.7,JSON.stringify({baseline,...perf}))
+ checks.push({area:'consecutive-and-concurrent-load',baselineFps:baseline,...perf,cachePeak,cacheBudget:64*1024*1024})
+ await page.getByRole('link',{name:'Chuyển sang TCG',exact:true}).click();await page.waitForURL(u=>u.pathname==='/');await page.waitForFunction(()=>!document.querySelector('.rpg-arena'));await page.waitForTimeout(250);const released=await stats(page);assert.equal(released.leased,0);checks.push({area:'unmount',...released});await c.close()
+ const auto=await browser.newContext({viewport:{width:1280,height:800}});page=await auto.newPage();capture(page);await page.goto(url+'/autochess')
+ await page.evaluate(async ids=>{const{newGame}=await import('/src/game/progression.ts'),{useGameStore}=await import('/src/game/useGameStore.ts'),{createAutoRun}=await import('/src/game/autochess/economy.ts'),{createCombat}=await import('/src/game/autochess/combat.ts'),{emptyAutoSave}=await import('/src/game/autochess/types.ts');const g=newGame(),r=createAutoRun('survival',42,'2026-10-16','qa593');r.xp=60;for(const p of r.roster)r.pool[p.id]++;r.roster=ids.map((id,i)=>({uid:`p${i+1}`,id,star:1,cell:18+i,items:[]}));r.nextUid=6;for(const p of r.roster)r.pool[p.id]--;r.combat=createCombat(r);for(const a of r.combat.actors){if(a.side==='enemy'){a.hp=a.maxHp=20000;a.attack=a.baseAttack=0}else a.mana=100}r.phase='combat';g.autoChess={...emptyAutoSave(),tutorialSeen:true,run:r};if(!useGameStore.getState().importSave(g))throw Error('Auto fixture rejected');useGameStore.getState().dismiss()},ids)
+ await page.locator('.ac-board canvas').waitFor();await page.getByRole('button',{name:'Tiếp tục chiến đấu →',exact:true}).click();await page.waitForTimeout(1200);await page.screenshot({path:`${out}/autochess.png`});checks.push({area:'autochess',fiveChefModels:true,...await stats(page)});await auto.close()
+ const tcg=await browser.newContext({viewport:{width:1280,height:800}});page=await tcg.newPage();capture(page);await page.goto(url+'/')
+ await page.evaluate(async ids=>{const{newGame}=await import('/src/game/progression.ts'),{startBattle}=await import('/src/game/battle.ts'),{useGameStore}=await import('/src/game/useGameStore.ts');const g=newGame(),b=startBattle(g.decks[0].cards,null,'courage',()=>.4,false),unit=(cardId,i)=>({uid:`chef${i}`,cardId,attack:2,health:10,maxHealth:10,shield:0,ready:true,keywords:[]});b.player.board=ids.slice(0,3).map(unit);b.enemy.board=ids.slice(3).map((id,i)=>unit(id,i+3));g.battle=b;if(!useGameStore.getState().importSave(g))throw Error('TCG fixture rejected');useGameStore.getState().dismiss()},ids)
+ await page.waitForFunction(()=>document.querySelectorAll('.tcg-battle [data-sheet^="starter-chef-"].is-loaded').length===5);await page.screenshot({path:`${out}/tcg.png`});await page.locator('[data-unit="chef0"]').click();await page.locator('[data-unit="chef3"]').click();checks.push({area:'tcg',fiveChefModels:true,realAttack:true});await tcg.close()
+ const portrait=await browser.newContext({viewport:{width:1280,height:900},reducedMotion:'reduce'});page=await portrait.newPage();capture(page);await page.goto(url+'/')
+ await page.evaluate(async()=>{await import('/src/components/game/villageRpg.css');const{default:React}=await import('/node_modules/.vite/deps/react.js'),{default:{createRoot}}=await import('/node_modules/.vite/deps/react-dom_client.js'),{CharacterPortrait}=await import('/src/components/game/CharacterPortrait.tsx'),{VillageWalker}=await import('/src/components/game/VillageWalker.tsx'),{CHEF_IDS,CHEF_EXPRESSIONS}=await import('/src/game/characterVisuals.ts');const el=document.createElement('section');el.id='qa-portraits';el.style.cssText='position:fixed;inset:0;background:#142d31;z-index:10000;overflow:auto;padding:24px;display:grid;grid-template-columns:repeat(6,1fr)';document.body.append(el);const style=document.createElement('style');style.id='qa-face-style';style.textContent='#qa-portraits img{width:110px;height:110px;object-fit:contain}';document.head.append(style);window.chefQaRoot=createRoot(el);window.chefQaRoot.render(React.createElement(React.Fragment,null,...CHEF_IDS.flatMap(id=>CHEF_EXPRESSIONS.map(expression=>React.createElement(CharacterPortrait,{id:id.slice(5),expression,key:id+expression}))),...CHEF_IDS.flatMap(id=>['down','left','right','up'].map(direction=>React.createElement('div',{key:id+direction,style:{position:'relative',width:64,height:64}},React.createElement(VillageWalker,{id,direction,quiet:true}))))))})
+ await page.waitForFunction(()=>document.querySelectorAll('#qa-portraits img[data-chef-expression]').length===30 && [...document.querySelectorAll('#qa-portraits img')].every(im=>im.complete&&im.naturalWidth));await page.evaluate(async()=>{const im=new Image();im.src='/assets/characters/chefs593/exploration.webp';await im.decode()});await page.screenshot({path:`${out}/expressions-walk.png`});checks.push({area:'expression-and-exploration-components',portraits:30,directionalIdentities:20});
+ await page.evaluate(async()=>{const{default:React}=await import('/node_modules/.vite/deps/react.js'),{StoryScene}=await import('/src/components/game/StoryScene.tsx'),{LIVING_SCENES}=await import('/src/game/livingStory.ts');document.querySelector('#qa-face-style').remove();document.querySelector('#qa-portraits').style.display='block';window.chefQaRoot.render(React.createElement(StoryScene,{lines:LIVING_SCENES['rain-harbor-1'].before,art:'rain-harbor'}))});await page.locator('#qa-portraits .tcg-scene').waitFor();await page.getByRole('button',{name:'Tiếp tục →',exact:true}).click();await page.locator('.tcg-speaker-row img[data-chef-expression="concern"]').waitFor();assert((await page.locator('.tcg-speaker-row img').getAttribute('src')).endsWith('/chef-hai-concern.webp'));await page.waitForFunction(()=>[...document.querySelectorAll('#qa-portraits img')].every(im=>im.complete&&im.naturalWidth));await page.screenshot({path:`${out}/story-expression.png`});checks.push({area:'story-dialogue',speaker:'Hải',expression:'concern',existingStoryText:true});await portrait.close()
+ const reduced=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});page=await reduced.newPage();capture(page);await page.goto(url+'/adventure');await fixture(page);await page.locator('.rpg-burst-button').nth(4).click();await page.waitForFunction(()=>document.querySelector('.rpg-cinematic-native')?.dataset.phase==='impact');await page.waitForTimeout(200);assert.equal(await page.locator('.rpg-cinematic-native').getAttribute('data-phase'),'impact');await page.getByRole('button',{name:'Bỏ qua ›',exact:true}).click();checks.push({area:'reduced-motion',staticImpact:true,skip:true});await reduced.close()
+ preview=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4195','--strictPort'],{stdio:'pipe'});await ready('http://127.0.0.1:4195')
+ const prod=await browser.newContext({viewport:{width:390,height:844}});await prod.addInitScript(entries=>{for(const[k,v]of Object.entries(entries))localStorage.setItem(k,v)},seed);page=await prod.newPage();capture(page);await page.goto('http://127.0.0.1:4195/adventure');await page.locator('.rpg-battle.presentation-fight').waitFor();await page.locator('.rpg-burst-button').first().click();await page.locator('.rpg-cinematic-native[data-character="chef-bach"]').waitFor();await page.waitForFunction(()=>document.querySelector('.rpg-cinematic-native')?.dataset.phase==='impact');await page.getByRole('button',{name:'Dừng hoạt ảnh',exact:true}).click();await page.screenshot({path:`${out}/production.png`});await page.getByRole('button',{name:'Bỏ qua ›',exact:true}).click();checks.push({area:'production',savedBattleHydrated:true,nativeChef:true,pauseSkip:true});await prod.close()
+ assert(!media.some(u=>/chef-.*\.mp4/.test(u)));assert.deepEqual(errors,[]);assert.deepEqual(missing,[])
+ writeFileSync(dir+'/browser-qa.json',JSON.stringify({date:'2026-10-16',browser:'Chromium headless SwiftShader',checks,errors,missing,noChefMp4Requested:true},null,2)+'\n');console.log(JSON.stringify(checks))
+}catch(e){console.error(JSON.stringify(checks));if(page&&!page.isClosed())console.error((await page.locator('body').innerText()).slice(-1800));console.error(errors,missing,log.slice(-1000));throw e}
+finally{await browser?.close();server.kill();preview?.kill()}

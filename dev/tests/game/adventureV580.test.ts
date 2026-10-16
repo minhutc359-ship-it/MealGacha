@@ -154,7 +154,7 @@ describe("Web 5.8 supplied campaign assets and combat rules", () => {
     ) as MovieManifestEntry[]
     expect(manifest).toHaveLength(139)
     for (const movie of manifest) {
-      if(movie.renderer === "native590"){expect(movie.frames).toBe(32);expect(existsSync(`public${movie.path}`)).toBe(true);continue}
+      if(movie.renderer?.startsWith("native")){expect(movie.frames).toBe(32);expect(existsSync(`public${movie.path}`)).toBe(true);continue}
       expect([movie.width, movie.height]).toEqual([1280, 720])
       expect(movie.bytes).toBeGreaterThan(500_000)
       expect(existsSync(`public${movie.path}`), movie.path).toBe(true)
