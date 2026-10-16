@@ -99,5 +99,66 @@
     "caravan-cook",
     "caravan-pastry",
     "v4-market-host"
-  ]
+  ],
+  "portraitArtwork": {
+    "checked": 139,
+    "exactDuplicateGroups": []
+  },
+  "monsters": {
+    "definitions": 48,
+    "activeIds": [
+      "mist",
+      "rat",
+      "beetle",
+      "straw",
+      "mushroom",
+      "fish",
+      "ladle-puppet",
+      "bat",
+      "bull",
+      "nameless",
+      "empty-lantern",
+      "white-ink",
+      "one-color",
+      "unwritten",
+      "ink-crab",
+      "char-hound",
+      "silk-moth",
+      "bamboo-wraith",
+      "rival-ladle",
+      "rival-flute",
+      "boss-drum",
+      "boss-lotus",
+      "v4-tide-lock",
+      "v4-last-page",
+      "tea-moth",
+      "jade-sentinel",
+      "tea-oracle",
+      "cloud-teapot",
+      "salt-scarab",
+      "kiln-knight",
+      "salt-alchemist",
+      "salt-colossus",
+      "moon-jelly",
+      "lotus-mantis",
+      "moon-priestess",
+      "moon-heron",
+      "spice-kite",
+      "bronze-warden",
+      "aroma-conductor",
+      "aroma-regent"
+    ],
+    "activeSharedModels": [],
+    "unusedDefinitions": [
+      "mist-vine-elite",
+      "sugar-echo-elite",
+      "char-ash-elite",
+      "table-shadow-elite",
+      "boss-blue-root",
+      "boss-mirror-sugar",
+      "boss-char-clock",
+      "boss-last-banquet"
+    ],
+    "classification": "Repeated instances of one enemy ID in multiple waves or roles are intentional. Unused compatibility definitions retain their old atlas references."
+  }
 }

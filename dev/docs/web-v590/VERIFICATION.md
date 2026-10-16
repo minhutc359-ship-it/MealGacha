@@ -23,6 +23,7 @@ Build tĩnh: **256.942.218 byte**, giảm **2.832.979 byte** so với master; JS
 
 ## Rà trùng và giới hạn thực tế
 
+- Audit thêm 139 portrait không có nhóm trùng hash ảnh; 40 định danh địch đang dùng có model riêng, 8 định nghĩa cũ không được sử dụng giữ để tương thích. Các lần lặp cùng enemy ID ở nhiều wave/vai trò được phân loại là có chủ đích.
 - Audit 139 danh tính TCG và 44 quân Auto Chess không còn nhóm `(sheet,row)` dùng chung cho danh tính khác nhau. Model chuyên biệt cũ được giữ; **94 thẻ dùng artwork fallback riêng**. Chúng chưa có atlas đầy đủ như 5 starter, và không được gọi là “94 model mới”. Alias Gỏi cuốn là dùng chung có chủ đích giữa cùng một nhân vật.
 - Bộ sprite chiến đấu là 2D với 4 key pose/trạng thái và chuyển động thân bổ sung, không phải mesh/rig 3D. Biến thể pixel chiến đấu được đóng từ atlas chi tiết; atlas làng được tạo riêng cho góc nhìn RPG. Chưa phải quy trình pixel art vẽ tay từng điểm ảnh.
 - Chưa đo hoặc nghe trên iPhone/Safari, Android và GPU thật. Cần lượt nghiệm thu thiết bị thật để đánh giá cảm giác animation, âm lượng và hiệu năng dài hạn. Lượt kiểm này không tuyên bố chất lượng mỹ thuật đã được chủ dự án duyệt.
