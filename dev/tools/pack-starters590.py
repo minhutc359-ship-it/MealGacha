@@ -10,9 +10,13 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = Path(sys.argv[1])
-OUT = ROOT / 'public/assets/characters/starters590'
+args = sys.argv[2:]
+group = next((a.split('=',1)[1] for a in args if a.startswith('--group=')), 'starters590')
+if group not in ['starters590', 'chefs593']: raise ValueError('Unknown visual production group')
+args = [a for a in args if not a.startswith('--group=')]
+OUT = ROOT / 'public/assets/characters' / group
 OUT.mkdir(parents=True, exist_ok=True)
-IDS = sys.argv[2:] or ['com-tam', 'banh-mi', 'pho-bo', 'banh-cuon', 'goi-cuon-tom-thit']
+IDS = args or (['chef-bach','chef-nhien','chef-moc','chef-hai','chef-lien'] if group == 'chefs593' else ['com-tam', 'banh-mi', 'pho-bo', 'banh-cuon', 'goi-cuon-tom-thit'])
 report = []
 for character in IDS:
     source = Image.open(SOURCE / f'{character}.png').convert('RGBA')
@@ -49,7 +53,7 @@ for character in IDS:
     # Pixel-sized combat variant: same poses/identity and shared pivot, no duplicate design.
     atlas.resize((256,512), Image.Resampling.NEAREST).save(OUT / f'{character}-pixel.webp', 'WEBP', lossless=True, method=6)
     report.append({'id':character,'frames':32,'states':8,'bytes':path.stat().st_size,'sourceSize':source.size})
-if not sys.argv[2:]:
+if not args and group == 'starters590':
     source=Image.open(SOURCE/'village.png').convert('RGBA')
     atlas=Image.new('RGBA',(768,448))
     for row in range(7):

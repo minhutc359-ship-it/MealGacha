@@ -1,0 +1,468 @@
+{
+  "files": [
+    {
+      "file": "public/assets/characters/chefs593/chef-bach-concern.webp",
+      "bytes": 19192,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "d917a9cf3e45418229fc6546f2840729acf84694c46e4f817aa74157aa47fff3"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-bach-joy.webp",
+      "bytes": 18260,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "f218cfbffdd50eaafca8556124095f299bfe073e26d38afce8249691e5e17f46"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-bach-neutral.webp",
+      "bytes": 18728,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "176f0e45abdd10631cbc1d0728509b3c333ed75fe31ce2a0fbc3094c70d099ee"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-bach-pixel.webp",
+      "bytes": 107366,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "09c170faa7a1ef1046c19d14bf0bacd3e4bf32df09969a4e458028de676727ec"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-bach-resolve.webp",
+      "bytes": 18660,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "30079dfa0cc8250336ca1a045b83b0516c961bde923e689262984295a2b4f612"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-bach-surprise.webp",
+      "bytes": 18876,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "e23edf9b82ed2412de7b474875de56f332f2fe990d52973735056a3be28e3122"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-bach-tender.webp",
+      "bytes": 18236,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "914b8f1974e173da152ed3385e65f7dfb1ef54ba826d859a4738999ed8bd7c7e"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-bach.webp",
+      "bytes": 501140,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "e7f69f6b0f4a305f3389305a5792aabe194a7ba841925b46d3406ee59bde7e38"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-hai-concern.webp",
+      "bytes": 19782,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "1fc2b2efe16716394b6506f983fcbfa35e70cca387f7cb08d5a11e6a8f7cba1b"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-hai-joy.webp",
+      "bytes": 20244,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "a3730593d27960a0ed47cdd247fb91488fe702e7445c46b2f2bdb3e0edc30885"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-hai-neutral.webp",
+      "bytes": 20128,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "f5625e721691b2c941e592f40f2c9afdc9e5e46e96d6dd5f4939536cc8869e96"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-hai-pixel.webp",
+      "bytes": 90606,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "857d305a614b613ca3b60232b7b85ea1c07525c2728c869f0a6bce02e41b697b"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-hai-resolve.webp",
+      "bytes": 19528,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "e9ad5c9e4b1b5425e11482aea97863dbb93ac94b624f2ae231ee74a764905433"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-hai-surprise.webp",
+      "bytes": 20350,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "d2a97b040787cfa81f1f6cd74a30c465ff303b158b927c1237f40f65f451b2c5"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-hai-tender.webp",
+      "bytes": 19834,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "84540e6f79efdf7c67c53f90536460d1abb730423e3817a1c51863a403815ff6"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-hai.webp",
+      "bytes": 468844,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "c26fdc00a03ebaceb1d8ce44557ee496e4265dc7f39f3996c8b9576eeee9e844"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-lien-concern.webp",
+      "bytes": 16784,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "eb56937369269bb3a0cbd30cbdb80e7cc937194ad7d16bf7bb02efb288edc882"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-lien-joy.webp",
+      "bytes": 18820,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "69da66bfe1401d8598c588427ee58f640a6e07b439a478922a49e8e962959c74"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-lien-neutral.webp",
+      "bytes": 19242,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "ce7ae6b557a468f19cac6124d9e803947984d6b58a994982818c17ef20667a21"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-lien-pixel.webp",
+      "bytes": 113530,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "a418c4d242d890a82bbcfda2ccd06939875bcd1e7ddbcfe3a22c98d7556d97d8"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-lien-resolve.webp",
+      "bytes": 19000,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "f999f05cdfbef16acd8b9b6a8f23dcfdec7b018f68c2d14818b7a09bb0fc4e82"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-lien-surprise.webp",
+      "bytes": 19452,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "cb7812f362c353ad83a58eac25beedfc62dfb9e7c6d7b5fed3a285f6d3b40277"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-lien-tender.webp",
+      "bytes": 19964,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "762613415c5750aed4397e35a490dc0ae26f4ea5ce89c14ed1a67f98d884f7a7"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-lien.webp",
+      "bytes": 565484,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "9c21f06f9cbdbec6bfd3c41b7b86917ecad1b64d31f1b930efea9e50de8963fc"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-moc-concern.webp",
+      "bytes": 22912,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "a89dc185956f9b7abcb01283c8eb0c4ce732fa6e648750fef74183c09a707183"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-moc-joy.webp",
+      "bytes": 24698,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "e474a30a6c250b70e7422eb49badb955f2377ad8947cf566c0d324c9b17de6b3"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-moc-neutral.webp",
+      "bytes": 22200,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "a65d8d3b5460d3e35511b30843b2b8c4e273952a288d5e904629bfe213c6f8f8"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-moc-pixel.webp",
+      "bytes": 106626,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "91b29eef245300c8331a42a88b1d846831d27b3303a096341baa0140e83633c2"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-moc-resolve.webp",
+      "bytes": 23358,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "cbf2c3d94a603d095adb8aa2d39afc1f42ef3c78a7f66b8b903a00ccf2a8e51c"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-moc-surprise.webp",
+      "bytes": 23470,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "e430eee024ef360c781a68dbf32cb9f34e49840054f5ec5ef55f940d2857902b"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-moc-tender.webp",
+      "bytes": 22882,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "d1955c0fb51a0e6b794c359a00395156b4c3f3b616e2ce96d4346269828a0d58"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-moc.webp",
+      "bytes": 552484,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "6d676d1f83871188ec9398bf6308d95999c454ecd32718c7a8260116b71f2b56"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-nhien-concern.webp",
+      "bytes": 22668,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "6ddee0bad011618079a00424c9967dfd6ed3101a1130fd1050ba9b6c646879c0"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-nhien-joy.webp",
+      "bytes": 22918,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "75b496574e25543d60f5822db5d96456d65adf7b223796019bf82863c8b43b30"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-nhien-neutral.webp",
+      "bytes": 22804,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "96f7fc7930e8dea698cfb5e7394132d42e52f259c24210451a6568f8973ce0ea"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-nhien-pixel.webp",
+      "bytes": 103312,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "6c6268eb86d048d5b0e8d4919d8209dd1ba03ebb9b7473fbfcdb66b69fddd1fc"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-nhien-resolve.webp",
+      "bytes": 22148,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "53416eee735e955e2abcb3e3c80d9f56b56002bf068a61091b0e6fd04f5c88be"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-nhien-surprise.webp",
+      "bytes": 24074,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "927f6a879be9216fc2819ae1fa2c9281075855e67629a3420569dfbb3fe7a566"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-nhien-tender.webp",
+      "bytes": 22208,
+      "dimensions": [
+        256,
+        256
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "e86d5f635692b8573555477b16a20aa0f31ea8b0447ab81169df574f4e75943f"
+    },
+    {
+      "file": "public/assets/characters/chefs593/chef-nhien.webp",
+      "bytes": 494932,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "2af3d8cce8a5b6324d48fa8cade65da1e8d5f9a0368e739376f2a2fa15301d21"
+    },
+    {
+      "file": "public/assets/characters/chefs593/exploration.webp",
+      "bytes": 255970,
+      "dimensions": [
+        768,
+        320
+      ],
+      "frames": 60,
+      "uniqueFrames": 60,
+      "sha256": "2ed514409aa88fdd0ee329e055d2082fe5b0be4938179b8fed94bfd7b2ba5f60"
+    },
+    {
+      "file": "public/assets/characters/chefs593/ultimate.webp",
+      "bytes": 618040,
+      "dimensions": [
+        1280,
+        768
+      ],
+      "frames": 15,
+      "uniqueFrames": 15,
+      "sha256": "5b51930d8021f41f57c2348d8f8ab8984b7822dd6d221829570a54f758a5eb09"
+    }
+  ],
+  "bytes": 4599754,
+  "frames": 425
+}

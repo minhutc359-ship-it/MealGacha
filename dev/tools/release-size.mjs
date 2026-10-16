@@ -36,6 +36,6 @@ result.budget = checkWebBudget(result.bytes)
 if (result.budget.warning) console.warn(`Static assets reached the ${result.staticTargetBytes / 1_000_000} MB target: review loading, memory and media quality before adding assets.`)
 if (result.budget.exceeded) throw Error(`Static build exceeds the project's approved ${result.staticBudgetBytes / 1_000_000} MB web budget; inspect assets before raising the budget.`)
 // 2026-10-15 review: four new story regions and independent combat difficulties add ~21 KB gzip to the 650 KB baseline.
-if (result.js_gzip > result.jsGzipBudgetBytes) throw Error(`Sum of JS gzip exceeds the approved ${result.jsGzipBudgetBytes} byte budget; inspect code splitting.`)
+if (result.js_gzip > result.jsGzipBudgetBytes) throw Error(`Sum of JS gzip (${result.js_gzip} bytes) exceeds the approved ${result.jsGzipBudgetBytes} byte budget; inspect code splitting.`)
 const out = path.join(root, "dev/docs/release/build-size.json"); mkdirSync(path.dirname(out), { recursive: true }); writeFileSync(out, JSON.stringify(result, null, 2) + "\n")
 console.log(JSON.stringify({ bytes: result.bytes, files: result.files, js_gzip: result.js_gzip, css_gzip: result.css_gzip, leaks: result.leaks.length }))

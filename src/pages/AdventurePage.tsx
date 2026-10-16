@@ -124,7 +124,7 @@ function StoryDialog({
         onCancel()
       }}
     >
-      <CharacterPortrait id={line.speaker} decorative />
+      <CharacterPortrait id={line.speaker} expression={line.expression} decorative />
       <div>
         <small>
           CÂU CHUYỆN · {index + 1}/{lines.length}
