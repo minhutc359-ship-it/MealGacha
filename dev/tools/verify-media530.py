@@ -3,7 +3,7 @@ import concurrent.futures, hashlib, json, pathlib, subprocess
 ROOT=pathlib.Path(__file__).resolve().parents[2]
 MEDIA=ROOT/'public/assets/rpg/awakening530'
 ids=[r['id'] for r in json.loads((ROOT/'dev/docs/web-v530/summon-catalog.json').read_text())]
-native=set(['com-tam', 'banh-mi', 'pho-bo', 'banh-cuon', 'goi-cuon-tom-thit'])
+native={m['id'] for m in json.loads((ROOT/'dev/docs/web-v530/movie-manifest.json').read_text()) if m.get('renderer','').startswith('native')}
 def check(id):
     result={'id':id}
     for kind,ext in [('movies','mp4'),('sounds','mp3')]:
@@ -20,8 +20,8 @@ def check(id):
         result[kind]={'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'duration':duration,'stream':stream}
     return result
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:results=list(pool.map(check,ids))
-assert len({r['movies']['sha256'] for r in results if 'movies' in r})==134
+assert len({r['movies']['sha256'] for r in results if 'movies' in r})==len(ids)-len(native)
 assert len({r['sounds']['sha256'] for r in results})==139
-record={'decodedVideos':134,'nativeTimelines':5,'decodedSounds':139,'totalBytes':sum(r[k]['bytes'] for r in results for k in ['movies','sounds'] if k in r),'results':results}
+record={'decodedVideos':len(ids)-len(native),'nativeTimelines':len(native),'decodedSounds':139,'totalBytes':sum(r[k]['bytes'] for r in results for k in ['movies','sounds'] if k in r),'results':results}
 file=ROOT/'dev/docs/web-v530/media-qa.json';temp=file.with_suffix('.tmp');temp.write_text(json.dumps(record,indent=2)+'\n');temp.replace(file)
 print(json.dumps({k:v for k,v in record.items() if k!='results'}))

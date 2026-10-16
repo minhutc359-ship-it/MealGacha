@@ -1,7 +1,18 @@
 import frames from "./spriteFrames.json"
 import type { Actor, AutoRun, Piece } from "./types"
 
-export const SPRITE_SHEETS = frames
+// Uniform production atlases derive from the manifest, so modes cannot drift.
+import { CHARACTER_VISUALS, type VisualCharacterId } from "../characterVisuals"
+type Sheet = typeof frames.base
+type VisualSheet = `starter-${VisualCharacterId}${"" | "-pixel"}`
+const visualSheets = Object.fromEntries(Object.values(CHARACTER_VISUALS).flatMap(v =>
+  [false,true].map(pixel => {
+    const size = pixel ? 64 : 256
+    return [pixel ? v.pixelSheet : v.sheet, {path: pixel ? v.pixel : v.atlas, width: size*4, height: size*8,
+      rows: [{height: size, frames: Array.from({length:32},(_,i)=>[i%4*size,Math.floor(i/4)*size,size,size,size/2,size*.9375])}]}]
+  }),
+)) as Record<VisualSheet,Sheet>
+export const SPRITE_SHEETS = {...frames,...visualSheets}
 export const VICTORY_DURATION = 3200
 export const QUIET_VICTORY_DURATION = 1000
 export const STAR_UPGRADE_MS = 1700

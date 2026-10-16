@@ -1,0 +1,12 @@
+# Hợp đồng visual · 5.9.1
+
+1. ID gameplay là bất biến. `STARTER_CHARACTER_IDS` chỉ là 5 starter save; `CHARACTER_VISUALS` là danh sách đã có gói visual. Alias `goi-cuon` trả cùng đối tượng manifest `goi-cuon-tom-thit`, không tạo nhân vật mới.
+2. Một manifest xác định HD, pixel, portrait, điểm neo, nhịp animation, marker contact, SFX, timeline, chỉ mục VFX và reduced pose. Giữ portrait đạt chất lượng. Portrait cũ có `columns:4`; ảnh độc lập có `columns:1`. Không tính vị trí từ thứ tự sắp xếp catalog.
+3. Renderer sinh layout chuẩn HD 256 px / pixel 64 px, 4 cột × 8 hàng, 32 frame, pivot chuẩn (0,5;0,9375). Không thêm bản sao tọa độ vào từng chế độ. 8 hàng artwork và 3 trạng thái dẫn xuất phải được ghi riêng trong báo cáo chất lượng.
+4. Cột VFX phải đăng ký rõ theo ID, không lấy thứ tự catalog. Atlas `ultimate591.webp` có 6 cột × 3 hàng, mỗi ô 256 px. Thêm nhân vật phải đăng ký asset/cột tương ứng và kiểm giới hạn; không mặc định mượn hiệu ứng nhân vật khác.
+5. Frame nguồn phải đo và kiểm alpha. Nếu nguồn không đúng lưới, dùng sidecar `<id>.cells.json` gồm `sourceSize`, `rects` (32 vùng row-major), `isolate` để loại mảnh ô cạnh trong đóng gói. Packer cần Pillow; chế độ isolate cần NumPy/SciPy. Không tự co giãn từng frame. Ví dụ: `python3 dev/tools/pack-starters590.py source-dir xoi`.
+6. Loại sự kiện nhận tác động quyết định hình: `attack`, `skill`, `heal`, `shield`, `charge`. Chỉ một silhouette và một family VFX tại mỗi vị trí. Khi ultimate có cả địch và đồng minh, phân loại theo phía đích; không dùng đồ họa tấn công cho nhận khiên/hồi máu.
+7. Marker hình, số HP/khiên và âm thanh cùng nguồn: 300 ms normal, 380 ms skill/support, 960 ms ultimate, 560 ms TCG. Auto Chess lấy `action.hit` từ engine; tăng tốc đánh không làm chậm logic để chờ sprite. Không đưa giảm chuyển động, skip hoặc unmount vào reducer sát thương.
+8. Cinematic native phải chạy đủ 5 pha, pause, skip, reload từ cast đã lưu, cleanup. Không preload/đóng gói video đã được thay thế. Builder và verifier đọc danh sách native từ movie manifest thay cho danh sách hardcode riêng.
+9. Kiểm mỗi asset: alpha không rỗng, frame không chạm mép ô, hash pose, kích thước/byte, provenance. Kiểm thật trong ba chế độ, 4 viewport, production hydration, liên tiếp nhiều cast, queue về 0, save/reward bất biến khi skip hai lần. Không lấy FPS SwiftShader làm cam kết FPS điện thoại.
+10. Giữ budget tĩnh 260.000.000 byte và tổng JS gzip 675.000 byte. Chạy release records/verify/guard/size. Không tăng budget để thêm asset hoặc xóa asset còn được tham chiếu.

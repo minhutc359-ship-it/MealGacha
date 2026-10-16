@@ -1,0 +1,35 @@
+{
+  "version": "5.9.1",
+  "baseCommit": "2a69b2e9f9ea61862cf8d85f5e197f54f72f05eb",
+  "unitTests": 655,
+  "testFiles": 58,
+  "staticBytes": 255361946,
+  "deltaFrom590": -1580272,
+  "jsGzip": 674700,
+  "cssGzip": 104109,
+  "staticBudgetBytes": 260000000,
+  "jsGzipBudgetBytes": 675000,
+  "newImagesBytes": 912586,
+  "visualPackageBytes": 6721462,
+  "nativeCinematics": 6,
+  "decodedVideos": 133,
+  "decodedSounds": 139,
+  "portraitArtwork": {
+    "checked": 139,
+    "exactDuplicateGroups": []
+  },
+  "tcgIdentities": 139,
+  "autoIdentities": 44,
+  "artworkFallbacks": 94,
+  "performance": {
+    "area": "five-consecutive-casts",
+    "baselineFps": 31.563486358948715,
+    "ratioToBaseline": 1.6350312703346443,
+    "fps": 51.60728719766214,
+    "p95Gap": 50,
+    "maxCues": 5,
+    "remainingCues": 0,
+    "battleSerial": 46
+  },
+  "evidenceBytes": 343946
+}

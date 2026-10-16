@@ -433,7 +433,7 @@ export function AutoBoard({
           const from = { x:px(origin.x,origin.y), y:py(origin.y)-cell*.48 }, to = { x:px(end.x,end.y), y:py(end.y)-cell*.48 }
           if (opts.reducedMotion) continue
           if(starterCharacter(u.id)) {
-            if(action.kind==="cast")drawStarterVfx(ctx,u.id,from.x,from.y,cell*.36,t*650,false,opts.lowQuality)
+            if(action.kind==="cast")drawStarterVfx(ctx,u.id,from.x,from.y,cell*.36,t*650,false,opts.lowQuality,"charge")
             continue
           }
           if (action.kind === "cast") {
@@ -479,7 +479,7 @@ export function AutoBoard({
                 : AUTO_SCHOOLS[e.school].color
           const sourceActor = actorMap.get(e.source)
           const starter=sourceActor && starterCharacter(sourceActor.id)
-          if(starter && !opts.reducedMotion && age<.8 && ["hit","heal","shield"].includes(e.kind))drawStarterVfx(ctx,sourceActor!.id,x,y,cell*.37,age*1000,false,opts.lowQuality)
+          if(starter && !opts.reducedMotion && age<.8 && ["hit","heal","shield"].includes(e.kind))drawStarterVfx(ctx,sourceActor!.id,x,y,cell*.37,age*1000,false,opts.lowQuality,e.kind === "heal" || e.kind === "shield" ? e.kind : "skill")
           if (!starter && !opts.reducedMotion && age<.7 && ["hit","heal","shield","burn"].includes(e.kind)) drawCombatArt(ctx,combatTexture,e.school,"impact",x,y,cell*.43,age/.7,sourceActor?.id??e.source)
           if (!starter && e.kind === "cast" && e.amount > 0 && sourceActor) {
             const sourcePos = coords.get(e.source)!

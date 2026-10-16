@@ -1,3 +1,4 @@
+import { characterVisual } from "../../game/characterVisuals"
 import { spiritArt } from "../../game/adventureRpg/spiritArt"
 import { renderIsLight, sampleRenderFrame, resetRenderSampling } from "../presentation/renderQuality"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
@@ -14,12 +15,6 @@ export interface CharacterModel {
 }
 
 export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
-  "com-tam": ["starter-com-tam", 0],
-  "banh-mi": ["starter-banh-mi", 0],
-  "pho-bo": ["starter-pho-bo", 0],
-  "banh-cuon": ["starter-banh-cuon", 0],
-  "goi-cuon-tom-thit": ["starter-goi-cuon-tom-thit", 0],
-  "goi-cuon": ["starter-goi-cuon-tom-thit", 0],
   "village-hero": ["villageParty", 0],
   "village-flame": ["villageParty", 1],
   "village-dragon": ["villageParty", 2],
@@ -32,7 +27,7 @@ export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
   "bun-cha": ["living-bun-cha", 0],
   "bun-rieu": ["living-bun-rieu", 0],
   "banh-xeo": ["living-banh-xeo", 0],
-  xoi: ["battleHd", 4],
+
   "com-ga": ["living-com-ga", 0],
   "banh-chung": ["rosterD", 0],
   "banh-tet": ["rosterD", 1],
@@ -86,6 +81,8 @@ export function monsterCharacter(id: string): CharacterModel {
 }
 /** A character without an authored model keeps its own artwork, never a different hero. */
 export function spiritCharacter(id: string, name = id): CharacterModel | null {
+  const visual = characterVisual(id)
+  if (visual) return {sheet: visual.sheet, row: 0, id, name}
   const art=spiritArt(id)
   if(!art)return null
   const sheet=`portrait-${art.path.match(/portraits-(\d+)/)![1]}` as CharacterSheet
@@ -93,7 +90,8 @@ export function spiritCharacter(id: string, name = id): CharacterModel | null {
 }
 export function unitCharacter(id: string): CharacterModel {
   const unit = UNIT_MAP[id],
-    custom = DISTINCT_MODELS[id]
+    visual = characterVisual(id),
+    custom = visual ? [visual.sheet, 0] as [CharacterSheet, number] : DISTINCT_MODELS[id]
   const [sheet, row] =
     custom ??
     (unit.portrait >= 18

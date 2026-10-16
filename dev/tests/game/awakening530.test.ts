@@ -225,7 +225,7 @@ describe("5.3 real combat and cinematic transaction", () => {
     });
 });
 describe("5.3 media payload", () => {
-    it("ships 134 H264 clips, five native timelines and 139 original sounds within the media budget", () => {
+    it("ships 133 H264 clips, six native timelines and 139 original sounds within the media budget", () => {
         const root = "public/assets/rpg/awakening530", movieHashes = new Set(), soundHashes = new Set();
         let total = 0;
         for (const id of SPIRIT_IDS) {
@@ -239,11 +239,11 @@ describe("5.3 media payload", () => {
             total += (movie?.length ?? 0) + sound.length;
         }
         total += statSync(`dev/docs/web-v530/environments.webp`).size + statSync(`${root}/sigils.webp`).size;
-        expect(movieHashes.size).toBe(134);
+        expect(movieHashes.size).toBe(SPIRIT_IDS.filter(id=>!starterCharacter(id)).length);
         expect(soundHashes.size).toBe(139);
         expect(total).toBeGreaterThan(5000000);
         expect(total).toBeLessThan(190000000);
-        expect(readdirSync(`${root}/movies`).length).toBe(134);
+        expect(readdirSync(`${root}/movies`).length).toBe(SPIRIT_IDS.filter(id=>!starterCharacter(id)).length);
         expect(readdirSync(`${root}/sounds`).length).toBe(139);
     });
 });

@@ -1,25 +1,14 @@
 {
-  "decodedVideos": 139,
+  "decodedVideos": 133,
+  "nativeTimelines": 6,
   "decodedSounds": 139,
-  "totalBytes": 183147391,
+  "totalBytes": 175302785,
   "results": [
     {
       "id": "pho-bo",
-      "movies": {
-        "bytes": 1315912,
-        "sha256": "f64f3f36f862e100e714320d2361f7a451110f91c77d3330de3f5d256fcdbfb3",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "88311a08d99a8aeb71feb9bfdbaa22d69e01c73c4904852077e7a73329512353",
+        "sha256": "dca9e7c571c1becf7bb2d77baf7969af9fba67b6007ed8856133f3435d1c14ec",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -109,21 +98,9 @@
     },
     {
       "id": "banh-mi",
-      "movies": {
-        "bytes": 1278410,
-        "sha256": "c4d317c6856b5c47095124fc513445e72d72416763a15cd0b24117c82e6fade2",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "62a277c6b624792d58f17b3ba47cf71716fa8c49b7cefa3dc30a3299a28d9054",
+        "sha256": "32745da78fee1888e9229dc523df5226a63ddd7b0a0338494b461db150e47288",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -135,21 +112,9 @@
     },
     {
       "id": "xoi",
-      "movies": {
-        "bytes": 1416186,
-        "sha256": "d2d9cb7e96a3eb774db5f84b888b4e55421a1acab9b81c895132605317ad5fb9",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "2829d0597a548b0d3d3619bac5439b21696f243efe1052b54de703301d608c2f",
+        "sha256": "eb0d33869db84e9bf22d07f716a84afd05a267675530d93dbceaad946c79d93d",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -161,21 +126,9 @@
     },
     {
       "id": "banh-cuon",
-      "movies": {
-        "bytes": 1215674,
-        "sha256": "9eea7c506e010d132952576fad20199d189071181946ff4bb0cdd12115deb321",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "66ec75ce85b6ec9b317954e569035983c22de7c3c0ce2b17ab23bbaef6a2b35f",
+        "sha256": "c6ea04700f202ef1e2a1fa8f7b27714ee2647c4c6f66c90f4ad11f4635ca24de",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -343,21 +296,9 @@
     },
     {
       "id": "com-tam",
-      "movies": {
-        "bytes": 1344522,
-        "sha256": "3340d11a8e14c9b0527518d4125ad2dfaac31cd6d2d182b438393934b068b9ec",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "22618780b5dd333d69d9539d84d857fb864c9626231cbf9b58ae65d070105ae1",
+        "sha256": "fc1381802bbb555b229df19897898817e7a4db47d88b43a616946782823f0802",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",
@@ -2735,21 +2676,9 @@
     },
     {
       "id": "goi-cuon-tom-thit",
-      "movies": {
-        "bytes": 1273902,
-        "sha256": "e648f793f42533b0e8df18d0cae6927d7b7919e2a1e78fd41fcedceb398c0403",
-        "duration": 2.416667,
-        "stream": {
-          "codec_name": "h264",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "24/1",
-          "nb_frames": "58"
-        }
-      },
       "sounds": {
         "bytes": 10029,
-        "sha256": "07ed94f834998b4824208b8276a9e17023d1cd59529b01eec11884a8697ffa39",
+        "sha256": "0f43fd176479cc6977901f7d24d49de311f0bdf04ca8081f812be6d1a121e346",
         "duration": 2.448,
         "stream": {
           "codec_name": "mp3",

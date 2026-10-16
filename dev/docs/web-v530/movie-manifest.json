@@ -71,15 +71,22 @@
   },
   {
     "id": "xoi",
-    "pattern": "bastion",
-    "motif": 5,
+    "renderer": "native590",
+    "path": "/assets/characters/starters590/xoi.webp",
+    "bytes": 354430,
+    "width": 1024,
+    "height": 2048,
+    "frames": 32,
+    "seconds": 2.4,
+    "phases": [
+      "preparation",
+      "casting",
+      "impact",
+      "finisher",
+      "recovery"
+    ],
     "title": "Kim no\u00e3n",
-    "path": "/assets/rpg/awakening530/movies/xoi.mp4",
-    "bytes": 1416186,
-    "width": 1280,
-    "height": 720,
-    "fps": 24,
-    "seconds": 2.4
+    "pattern": "bastion"
   },
   {
     "id": "banh-cuon",

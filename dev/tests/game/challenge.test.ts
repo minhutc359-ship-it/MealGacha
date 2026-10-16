@@ -1,3 +1,4 @@
+import { CHARACTER_VISUALS } from "@/game/characterVisuals"
 import { describe, expect, it } from "vitest"
 import { startBattle, actBattle } from "@/game/battle"
 import { STARTER_DECK, CARD_MAP } from "@/game/catalog"
@@ -102,7 +103,7 @@ describe("recognizable shared models and mirrored fitting", () => {
   it("assigns a unique real atlas row to every Auto chess unit and shares it with its TCG card", () => {
     const keys=AUTO_UNITS.map(u=>{const m=unitCharacter(u.id); return `${m.sheet}:${m.row}`})
     expect(new Set(keys).size).toBe(AUTO_UNITS.length)
-    expect(Object.keys(DISTINCT_MODELS).length).toBeGreaterThanOrEqual(31)
+    expect(Object.keys(DISTINCT_MODELS).length + Object.keys(CHARACTER_VISUALS).length).toBeGreaterThanOrEqual(31)
     expect(Object.keys(DISTINCT_MODELS).filter(id => id.startsWith("village-"))).toHaveLength(3)
     for (const u of AUTO_UNITS) if(CARD_MAP[u.id]) expect(tcgCharacter(CARD_MAP[u.id])).toEqual(unitCharacter(u.id))
     expect(tcgCharacter(CARD_MAP["caravan-herbalist"])?.row).not.toBe(tcgCharacter(CARD_MAP["caravan-gardener"])?.row)
@@ -119,7 +120,7 @@ describe("recognizable shared models and mirrored fitting", () => {
       }
     }
     for (const id of ["com-tam","banh-mi","pho-bo","banh-cuon","xoi"]) {
-      const model=unitCharacter(id);expect(model.sheet).toBe(id === "xoi" ? "battleHd" : `starter-${id}`);expect(characterBounds(model)!.row.frames[0][3]).toBeGreaterThanOrEqual(id === "xoi" ? 270 : 256)
+      const model=unitCharacter(id);expect(model.sheet).toBe(`starter-${id}`);expect(characterBounds(model)!.row.frames[0][3]).toBeGreaterThanOrEqual(256)
     }
   })
 })

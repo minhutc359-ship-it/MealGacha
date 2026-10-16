@@ -1,5 +1,5 @@
 {
-  "version": "5.9.0",
+  "version": "5.9.1",
   "generatedOn": "2026-10-15",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -338,6 +338,19 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/characters/starters590/ultimate591.webp",
+      "bytes": 378844,
+      "sha256": "0aaed254f9de64aa2ee7435795ebe25b05e1dbbac80edfbbe490a14525a626b4",
+      "origin": "Original AI-assisted six-spirit VFX atlas and Xôi bear canon: banana-leaf mantle, rice-grain quilt and jade knot; generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v591/artwork.json",
+        "dev/docs/web-v591/vfx-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-ultimate591.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/characters/starters590/village-pixel.webp",
       "bytes": 347736,
       "sha256": "efbaf0a0fa33ab9305c6a4c54517bf83a83bf6005a51cf0f3250f16d28e47612",
@@ -345,6 +358,45 @@
       "evidence": [
         "dev/docs/web-v590/artwork.json",
         "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/xoi-pixel.webp",
+      "bytes": 92010,
+      "sha256": "a2e0b4669b9a91a81bb388be667d0b38786f778c21e072ae1a4ca051fcac4e9b",
+      "origin": "Original AI-assisted six-spirit VFX atlas and Xôi bear canon: banana-leaf mantle, rice-grain quilt and jade knot; generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v591/artwork.json",
+        "dev/docs/web-v591/vfx-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-ultimate591.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/xoi-portrait.webp",
+      "bytes": 87302,
+      "sha256": "bad0e7239ef5bb5c0fc5bb579706c4314453e53f3f5eb46be592ca89e49e0437",
+      "origin": "Original AI-assisted six-spirit VFX atlas and Xôi bear canon: banana-leaf mantle, rice-grain quilt and jade knot; generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v591/artwork.json",
+        "dev/docs/web-v591/vfx-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-ultimate591.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/xoi.webp",
+      "bytes": 354430,
+      "sha256": "51fd3fe2f334fa99af65f821884a1cb78311cedc1c865821706fbc2f26d419e7",
+      "origin": "Original AI-assisted six-spirit VFX atlas and Xôi bear canon: banana-leaf mantle, rice-grain quilt and jade knot; generated with built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v591/artwork.json",
+        "dev/docs/web-v591/vfx-artwork.json",
+        "dev/tools/pack-starters590.py",
+        "dev/tools/pack-ultimate591.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -3964,19 +4016,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/xoi.mp4",
-      "bytes": 1416186,
-      "sha256": "d2d9cb7e96a3eb774db5f84b888b4e55421a1acab9b81c895132605317ad5fb9",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/yakitori.mp4",
       "bytes": 1135251,
       "sha256": "30beef1797bc4a608f9bf481ca73d7e5398d878eb5f8b02a2e5c6df79f72d441",
@@ -5511,7 +5550,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/xoi.mp3",
       "bytes": 10029,
-      "sha256": "2829d0597a548b0d3d3619bac5439b21696f243efe1052b54de703301d608c2f",
+      "sha256": "eb0d33869db84e9bf22d07f716a84afd05a267675530d93dbceaad946c79d93d",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -5611,16 +5650,6 @@
       "path": "public/assets/rpg/combat583/effects.webp",
       "bytes": 990866,
       "sha256": "0bde7b67956817ce1329a028e1b1a8ab955454f057376ae0d75a759ff98fcd52",
-      "origin": "Original AI-assisted Soul of Meal battle poses and five-school combat textures created with built-in image generation",
-      "evidence": [
-        "dev/docs/web-v583/UPDATE.md"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/combat583/spirits.webp",
-      "bytes": 1070252,
-      "sha256": "679cc9a2127ea26809e1ffef80a67b9ce3e839fa1bbd9581aadf81c6a0c31a0e",
       "origin": "Original AI-assisted Soul of Meal battle poses and five-school combat textures created with built-in image generation",
       "evidence": [
         "dev/docs/web-v583/UPDATE.md"

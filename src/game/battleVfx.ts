@@ -2,7 +2,7 @@ import { IMPACT_ROWS } from "./visualPack"
 import type { School } from "./types"
 
 export type VfxKind = "projectile" | "slash" | "wave" | "heal" | "shield" | "summon" | "shatter"
-export const TCG_IMPACT_MS = 560
+export { TCG_VISUAL_CONTACT as TCG_IMPACT_MS } from "./visualTiming"
 export interface VfxPoint { x: number; y: number }
 export const VFX_COLORS: Record<School, [string, string, string]> = {
   ember: ["#ff7938", "#ffda78", "#fff6d0"],
