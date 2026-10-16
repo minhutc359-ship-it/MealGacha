@@ -1,9 +1,9 @@
-import { battleHdPose, COMBAT_ART, drawCombatArt } from "../../game/combatArt"
+import { COMBAT_ART, drawCombatArt } from "../../game/combatArt"
 import { ELEMENTAL_BOARDS, ELEMENTAL_IMPACTS } from "../../game/visualPack"
-import { blendPose, type PoseBlend } from "../../game/poseBlend"
+import { actorPose, actorBody } from "../../game/autochess/actorPresentation"
+import { stagePoint, stageCellStyle, stageScale, drawStageFloor } from "../../game/autochess/stage"
 import { renderIsLight, sampleRenderFrame } from "../../infrastructure/presentation/renderQuality"
-import {livingActorFrame} from "../../game/livingClips"
-import { motionAccent, drawMotionTrail } from "../../game/motionProfiles"
+import { drawMotionTrail } from "../../game/motionProfiles"
 import { useEffect, useRef, type CSSProperties, type PointerEvent } from "react"
 import {
   AUTO_SCHOOLS,
@@ -14,10 +14,10 @@ import {
 import { enemyPlan } from "../../game/autochess/combat"
 import { drawChannel, drawProjectile, drawImpact, skillVfx } from "../../game/battleVfx"
 import type { Actor, AutoRun, Piece } from "../../game/autochess/types"
-import { actorPosition as position, actorFrame, SPRITE_SHEETS, starScale, type StarUpgrade } from "../../game/autochess/presentation"
+import { actorPosition as position, SPRITE_SHEETS, starScale, type StarUpgrade } from "../../game/autochess/presentation"
 import { arenaTheme, drawArena, drawCastAura, drawWard, drawSkillBurst, drawDeparture } from "../../game/autochess/arenaVfx"
 import { drawStarUpgrade } from "../../game/autochess/starVfx"
-import { characterImage as getImage, acquireCharacterImage, unitCharacter, monsterCharacter, fitCharacter } from "../../infrastructure/assets/characterSprites"
+import { acquireCharacterImage, unitCharacter, monsterCharacter, fitCharacter } from "../../infrastructure/assets/characterSprites"
 
 const CELLS = Array.from({ length: 36 }, (_, i) => i)
 const paths = Object.fromEntries(Object.entries(SPRITE_SHEETS).map(([key, sheet]) => [key, sheet.path]))
@@ -69,7 +69,6 @@ export function AutoBoard({
     let lastFrame = 0
     let lastDraw = -Infinity
     const frozen = new Map<string, { x: number; y: number }>()
-    const poseBlends = new Map<string, PoseBlend>()
     const grid = document.createElement("canvas")
     let gridKey = ""
     const healthTrails = new Map<string, { hp: number; from: number; at: number }>()
@@ -78,11 +77,13 @@ export function AutoBoard({
     let endedAt: number | null = null
     let currentBattle = "",
       lastLowQuality = lowQuality
-    const images: Partial<Record<string, HTMLImageElement>> = {}
-    const leases = new Map<string, ReturnType<typeof acquireCharacterImage>>()
-    const leased = (key:string, path:string) => {
-      let lease=leases.get(key); if(!lease){lease=acquireCharacterImage(path);leases.set(key,lease)}
-      return lease.image
+    const leases = new Map<string, { lease: ReturnType<typeof acquireCharacterImage>; used: number }>()
+    let leaseSweep = 0
+    const leased = (key: string, path: string) => {
+      let entry = leases.get(key)
+      if (!entry) { entry = { lease: acquireCharacterImage(path), used: 0 }; leases.set(key, entry) }
+      entry.used = performance.now()
+      return entry.lease.image
     }
     const resize = () => {
       const bounds = element.getBoundingClientRect()
@@ -107,8 +108,8 @@ export function AutoBoard({
     const observer = new ResizeObserver(resize)
     observer.observe(element)
     resize()
-    const px = (x: number) => left + (x + 0.5) * cell,
-      py = (y: number) => top + (y + 0.82) * cell
+    const px = (x: number, y: number) => left + stagePoint(x + .5, y + .82).x * cell * 6,
+      py = (y: number) => top + stagePoint(0, y + .82).y * cell * 6
     const orb = (x: number, y: number, r: number, color: string, alpha = 1) => {
       ctx.globalAlpha = alpha
       ctx.fillStyle = color
@@ -119,11 +120,11 @@ export function AutoBoard({
     }
     const draw = (now: number) => {
       const gap = lastFrame ? now - lastFrame : 16.7; lastFrame = now
-      if (!document.hidden) sampleRenderFrame(gap)
       const { run: current, alpha } = getFrame()
       const fps = current?.paused && current.phase === "combat" ? 15 : options.current.lowQuality || options.current.reducedMotion || renderIsLight() ? 30 : 60
       if (document.hidden || now - lastDraw < 1000 / fps - 1) { handle = requestAnimationFrame(draw); return }
       lastDraw = now
+      const drawStart = performance.now()
       if (!current) {
         handle = requestAnimationFrame(draw)
         return
@@ -137,7 +138,6 @@ export function AutoBoard({
         time = b ? b.tick + (opts.reducedMotion ? 0 : alpha) : now / 50
       if ((b?.id ?? "prepare") !== currentBattle) {
         healthTrails.clear()
-        poseBlends.clear()
         frozen.clear()
         facing.clear()
         endedAt = null
@@ -154,29 +154,7 @@ export function AutoBoard({
         const gridCtx = grid.getContext("2d")!
         const dpr = surface.width / Math.max(1,width)
         gridCtx.setTransform(dpr,0,0,dpr,0,0)
-      for (const i of CELLS) {
-        const x = left + (i % 6) * cell,
-          y = top + Math.floor(i / 6) * cell
-        gridCtx.fillStyle =
-          ((i % 6) + Math.floor(i / 6)) % 2
-            ? "rgba(237,207,153,.035)"
-            : "rgba(2,15,24,.055)"
-        gridCtx.fillRect(x, y, cell, cell)
-        gridCtx.strokeStyle =
-          i < 18 ? "rgba(232,143,112,.2)" : "rgba(235,209,164,.25)"
-        gridCtx.lineWidth = 0.7
-        gridCtx.strokeRect(x, y, cell, cell)
-      }
-      gridCtx.strokeStyle = "#e7bd73"
-      gridCtx.lineWidth = 2
-      gridCtx.strokeRect(left, top, cell * 6, cell * 6)
-      gridCtx.setLineDash([4, 6])
-      gridCtx.strokeStyle = "rgba(236,201,151,.55)"
-      gridCtx.beginPath()
-      gridCtx.moveTo(left, top + cell * 3)
-      gridCtx.lineTo(left + cell * 6, top + cell * 3)
-      gridCtx.stroke()
-      gridCtx.setLineDash([])
+        drawStageFloor(gridCtx, left, top, cell * 6)
       }
       ctx.drawImage(grid,0,0,width,height)
       const actors: Actor[] = b
@@ -244,22 +222,22 @@ export function AutoBoard({
             pos = target ? coords.get(target.uid)! : coords.get(a.uid)!
           const skill = a.action!.skill ?? a.skill
           if (["steam", "dash", "charge"].includes(skill)) {
-            ctx.fillStyle =
-              a.side === "enemy"
-                ? "rgba(255,108,78,.18)"
-                : "rgba(112,218,236,.14)"
-            if (skill === "steam")
-              ctx.fillRect(left + pos.x * cell, top, cell, cell * 6)
-            else ctx.fillRect(left, top + pos.y * cell, cell * 6, cell)
+            const cells = CELLS.filter(i => skill === "steam" ? i % 6 === Math.round(pos.x) : Math.floor(i / 6) === Math.round(pos.y))
+            ctx.fillStyle = a.side === "enemy" ? "rgba(255,108,78,.18)" : "rgba(112,218,236,.14)"
+            for (const i of cells) {
+              const col = i % 6, row = Math.floor(i / 6)
+              const points = [[col,row],[col+1,row],[col+1,row+1],[col,row+1]].map(([x,y]) => stagePoint(x,y))
+              ctx.beginPath(); points.forEach((p,k) => k ? ctx.lineTo(left+p.x*cell*6,top+p.y*cell*6) : ctx.moveTo(left+p.x*cell*6,top+p.y*cell*6)); ctx.closePath();ctx.fill()
+            }
           }
           const color =
             a.side === "enemy"
               ? "#ff826e"
-              : AUTO_SCHOOLS[UNIT_MAP[a.id].school].color
+              : AUTO_SCHOOLS[(UNIT_MAP[a.id] ?? MONSTER_MAP[a.id]).school].color
           ctx.strokeStyle = color
           ctx.lineWidth = 2
           ctx.globalAlpha = 0.55 + 0.2 * Math.sin(time * 0.4)
-          const x = px(pos.x),
+          const x = px(pos.x,pos.y),
             y = py(pos.y)
           ctx.setLineDash([3, 4])
           ctx.beginPath()
@@ -282,9 +260,9 @@ export function AutoBoard({
         const def =
             (UNIT_MAP[actor.id] ?? MONSTER_MAP[actor.id]),
           model = UNIT_MAP[actor.id] ? unitCharacter(actor.id) : monsterCharacter(actor.id),
-          fresh = model.sheet !== "base"
+          depth = stageScale(coords.get(actor.uid)!.y)
         const spriteKey = model.sheet, row = model.row
-        const sheet = images[spriteKey] ??= leased(spriteKey,paths[spriteKey])
+        const sheet = leased(spriteKey,paths[spriteKey])
         const spriteRow = SPRITE_SHEETS[spriteKey].rows[row]
         let p = coords.get(actor.uid)!
         if (actor.hp <= 0) {
@@ -293,11 +271,11 @@ export function AutoBoard({
         }
         const deadAge = actor.diedAt === null ? 0 : visualTime - actor.diedAt
         if (actor.hp <= 0 && deadAge > 20) continue
-        const x = px(p.x),
+        const x = px(p.x,p.y),
           y = py(p.y),
           size =
             cell *
-            (actor.side === "enemy" && MONSTER_MAP[actor.id]?.boss ? .9 : .75) * (UNIT_MAP[actor.id] ? starScale(actor.star) : 1),
+            (actor.side === "enemy" && MONSTER_MAP[actor.id]?.boss ? .94 : .83) * depth * (UNIT_MAP[actor.id] ? starScale(actor.star) : 1),
           color = AUTO_SCHOOLS[def.school].color
         ctx.globalAlpha = actor.hp <= 0 ? Math.max(0, 1 - deadAge / 20) : 1
         if (actor.hp > 0) {
@@ -341,11 +319,8 @@ export function AutoBoard({
         if (actor.shield > 0 && actor.hp > 0) drawWard(ctx, x, y, size, visualTime, opts.reducedMotion || current.paused)
         const dancing = opts.celebrating && actor.side === "ally" && actor.hp > 0
         const beat = visualTime * .38 + row * .28
-        const index = spriteKey === "battleHd" ? battleHdPose(actor.hp <= 0 ? "fall" : actor.action?.kind === "cast" ? "cast" : actor.action?.kind === "attack" ? "attack" : "idle", actor.action ? (time-actor.action.start)/Math.max(1,actor.action.end-actor.action.start)*780 : 0, opts.reducedMotion) : spriteKey.startsWith("living-") ? livingActorFrame(actor,time,b,opts.reducedMotion,dancing) : dancing
-          ? opts.reducedMotion ? (fresh ? 0 : 13) : (spriteKey.startsWith("roster") ? [5, 1, 5, 2] : fresh ? [0, 1, 2, 1] : [13, 1, 13, 3])[Math.floor(visualTime / 5 + row * .2) % 4]
-          : actorFrame(actor, time, fresh, b)
-        const breath = !opts.reducedMotion && !actor.action && actor.hp > 0 && !current.paused
-          ? Math.sin(visualTime / 10 + row) * cell * .009 : 0
+        const index = actorPose(actor, spriteKey, time, b, opts.reducedMotion, dancing)
+        const body = actorBody(actor, visualTime, opts.reducedMotion || current.paused)
         if (sheet.complete && sheet.naturalWidth && spriteRow) {
           const [sx, sy, sw, sh, anchorX, anchorY] = spriteRow.frames[index]
           ctx.save()
@@ -360,7 +335,7 @@ export function AutoBoard({
           const upgrade = opts.upgrades.find(u => u.uid === actor.uid)
           const age = upgrade ? (now - upgrade.at) / 1000 : 10
           const awaken = !opts.reducedMotion && age < .7 ? 1 + Math.sin(Math.min(1, age / .7) * Math.PI) * .09 : 1
-          const { scale, offsetX, offsetY } = fitCharacter(model, cell * .9 * (UNIT_MAP[actor.id] ? starScale(actor.star) : 1), size, flip)
+          const { scale, offsetX, offsetY } = fitCharacter(model, cell * .96 * depth * (UNIT_MAP[actor.id] ? starScale(actor.star) : 1), size, flip)
           let lungeX = 0, lungeY = 0, gait = 0
           if (!opts.reducedMotion && actor.action && !dancing) {
             const progress = Math.max(0, Math.min(1, (time - actor.action.start) / Math.max(1, actor.action.end - actor.action.start)))
@@ -390,11 +365,10 @@ export function AutoBoard({
             const length = Math.max(1, Math.hypot(delta.x, delta.y)), amount = Math.sin((time - hit.tick) / 3 * Math.PI) * cell * .055
             recoilX = delta.x / length * amount; recoilY = delta.y / length * amount
           }
-          ctx.translate(x + offsetX + lungeX + sway + recoilX, y + offsetY + breath + lungeY + gait + hop + recoilY)
+          ctx.translate(x + offsetX + lungeX + sway + recoilX, y + offsetY + body.lift * cell + lungeY + gait + hop + recoilY)
           const departure = actor.hp <= 0 && !opts.reducedMotion ? Math.max(.6, 1 - deadAge / 60) : 1
           const action = actor.action
-          const accent = motionAccent(actor.id, action ? (time - action.start) / Math.max(1, action.end - action.start) : 0, action?.kind === "cast", opts.reducedMotion || opts.lowQuality || current.rulesVersion < 6 || !action || action.kind === "move")
-          ctx.translate(0, accent.lift * cell); ctx.rotate(accent.rotation); ctx.scale(1 - accent.stretch, 1 + accent.stretch)
+          ctx.rotate(body.lean); ctx.scale(1 - body.stretch, 1 + body.stretch)
           ctx.scale(awaken * departure, awaken * departure)
           if (flip) ctx.scale(-1, 1)
           if (dancing && !opts.reducedMotion) {
@@ -403,16 +377,7 @@ export function AutoBoard({
             ctx.scale(1 - stretch, 1 + stretch)
           }
           drawMotionTrail(ctx, cell, action ? (time-action.start)/Math.max(1,action.end-action.start) : 0, action?.kind === "cast", color, opts.reducedMotion || opts.lowQuality || current.paused || actor.hp<=0 || !action || action.kind === "move")
-          let blend = poseBlends.get(actor.uid)
-          if (!blend) {blend = {pose: index, previous: index, at: now}; poseBlends.set(actor.uid,blend)}
-          const dissolve = blendPose(blend,index,now,opts.reducedMotion || opts.lowQuality || current.paused || spriteKey === "battleHd" || !!actor.action)
-          const opacity = ctx.globalAlpha
-          if (dissolve.mix < 1) {
-            const [fx,fy,fw,fh,fa,fb] = spriteRow.frames[dissolve.previous]
-            ctx.globalAlpha = opacity * (1-dissolve.mix)
-            ctx.drawImage(sheet,fx,fy,fw,fh,-fa*scale,-fb*scale,fw*scale,fh*scale)
-          }
-          ctx.globalAlpha = opacity * dissolve.mix
+          // Draw exactly one pose: sharp silhouettes even during fast actions.
           ctx.drawImage(sheet, sx, sy, sw, sh, -anchorX * scale, -anchorY * scale, sw * scale, sh * scale)
           ctx.restore()
         } else orb(x, y - cell * .5, cell * .25, color)
@@ -421,7 +386,7 @@ export function AutoBoard({
         if (upgrade) drawStarUpgrade(ctx, upgrade, now, x, y, cell, left, top, opts.reducedMotion, opts.lowQuality)
         if (actor.hp > 0) {
           const bw = cell * 0.86,
-            by = Math.max(top + p.y * cell + 2, y - size - cell * .05)
+            by = Math.max(top + 2, y - size - cell * .05)
           ctx.fillStyle = "#101b21"
           ctx.fillRect(x - bw / 2, by, bw, 4)
           const lastHp = healthTrails.get(actor.uid)
@@ -463,7 +428,7 @@ export function AutoBoard({
           const t = Math.max(0, Math.min(1, (time - action.start) / Math.max(1, action.hit - action.start)))
           const school = (UNIT_MAP[u.id] ?? MONSTER_MAP[u.id]).school
           const kind = action.kind === "cast" ? skillVfx(action.skill ?? u.skill, u.range) : u.range <= 1 ? "slash" : "projectile"
-          const from = { x:px(origin.x), y:py(origin.y)-cell*.48 }, to = { x:px(end.x), y:py(end.y)-cell*.48 }
+          const from = { x:px(origin.x,origin.y), y:py(origin.y)-cell*.48 }, to = { x:px(end.x,end.y), y:py(end.y)-cell*.48 }
           if (opts.reducedMotion) continue
           if (action.kind === "cast") {
             drawChannel(ctx, { x:from.x,y:py(origin.y) },school,t,cell*.48,opts.lowQuality)
@@ -498,7 +463,7 @@ export function AutoBoard({
               x: e.cell % 6,
               y: Math.floor(e.cell / 6),
             },
-            x = px(point.x),
+            x = px(point.x,point.y),
             y = py(point.y) - cell * 0.45
           const color =
             e.kind === "heal"
@@ -510,7 +475,7 @@ export function AutoBoard({
           if (!opts.reducedMotion && age<.7 && ["hit","heal","shield","burn"].includes(e.kind)) drawCombatArt(ctx,combatTexture,e.school,"impact",x,y,cell*.43,age/.7,sourceActor?.id??e.source)
           if (e.kind === "cast" && e.amount > 0 && sourceActor) {
             const sourcePos = coords.get(e.source)!
-            drawSkillBurst(ctx, px(sourcePos.x), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
+            drawSkillBurst(ctx, px(sourcePos.x,sourcePos.y), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
           }
           if (e.kind === "death") drawDeparture(ctx, x, y, cell, e.school, age, opts.reducedMotion, opts.lowQuality)
           if (!opts.reducedMotion && age < .7 && ["hit","shield","heal","phase","summon","burn"].includes(e.kind)) {
@@ -545,7 +510,7 @@ export function AutoBoard({
               ctx.strokeStyle = "#172430"
               ctx.lineWidth = 3
               const label = SKILL_LABELS[e.skill ?? u.skill]
-              const cx = Math.min(width - 48, Math.max(48, px(pos.x))),
+              const cx = Math.min(width - 48, Math.max(48, px(pos.x,pos.y))),
                 cy = py(pos.y) - cell * 1.1
               ctx.strokeText(label, cx, cy, cell * 1.6)
               ctx.fillText(label, cx, cy, cell * 1.6)
@@ -568,18 +533,25 @@ export function AutoBoard({
           ctx.restore()
         }
       }
+      // Long runs visit many rosters. Release unused sheets so the shared LRU
+      // can enforce its decoded-byte budget instead of pinning every past unit.
+      if (now - leaseSweep > 1000) {
+        leaseSweep = now
+        for (const [key, entry] of leases) if (now - entry.used > 5000) { entry.lease.release(); leases.delete(key) }
+      }
+      sampleRenderFrame(gap, performance.now() - drawStart)
       handle = requestAnimationFrame(draw)
     }
     handle = requestAnimationFrame(draw)
     return () => {
       cancelAnimationFrame(handle)
       observer.disconnect()
-      leases.forEach(lease=>lease.release())
+      leases.forEach(entry=>entry.lease.release())
     }
   }, [getFrame])
   const preview = opponentPieces ? opponentPieces.filter(p=>p.cell!==null).map(p=>({def:UNIT_MAP[p.id],cell:35-p.cell!})) : enemyPlan(run)
   return (
-    <div className="ac-board" data-scene={arenaTheme(run)} style={{backgroundImage:`linear-gradient(180deg,#051c2928,#08201f66),url(${ELEMENTAL_BOARDS[arenaTheme(run)]})`}} ref={root}>
+    <div className="ac-board ac-stage" data-renderer="billboard-2.5d" data-scene={arenaTheme(run)} style={{backgroundImage:`linear-gradient(180deg,#051c2928,#08201f66),url(${ELEMENTAL_BOARDS[arenaTheme(run)]})`}} ref={root}>
       <canvas ref={canvas} aria-hidden="true" />
       <div
         className="ac-cell-grid"
@@ -647,7 +619,7 @@ export function AutoBoard({
                     ?.focus()
                 }
               }}
-              style={{ "--cell": cell } as CSSProperties}
+              style={{ "--cell": cell, ...stageCellStyle(cell) } as CSSProperties}
             />
           )
         })}

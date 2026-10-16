@@ -178,11 +178,9 @@ export function StorageRecovery({ children }: { children: ReactNode }) {
       <p>
         <a href="/legal/privacy">Quyền riêng tư</a> ·{" "}
         <a
-          href="https://github.com/minhutc359-ship-it/MealGacha/issues"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/legal/terms#support"
         >
-          Yêu cầu hỗ trợ
+          Thông tin hỗ trợ
         </a>
         . Không đăng file tiến trình công khai.
       </p>

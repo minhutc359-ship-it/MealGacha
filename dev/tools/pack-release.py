@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import json
 import zipfile
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[2]
 parser = argparse.ArgumentParser(description=__doc__)
@@ -19,10 +20,11 @@ if args.dist:
     base = ROOT / "dist"
     if not (base / "index.html").is_file():
         parser.error("Run pnpm build first")
+    subprocess.run(["node", str(ROOT / "releaseGuard.mjs"), str(base)], check=True)
     files = [p for p in base.rglob("*") if p.is_file()]
 else:
     base = ROOT
-    names = ["README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "package.json", "pnpm-lock.yaml", "tsconfig.json", "vite.config.ts", "webOffline.ts", "web-service-worker.js", "index.html", "vercel.json", ".env.example", ".gitignore", ".gitattributes", ".vercelignore"]
+    names = ["README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "package.json", "pnpm-lock.yaml", "tsconfig.json", "vite.config.ts", "webOffline.ts", "releaseGuard.mjs", "web-service-worker.js", "index.html", "vercel.json", ".env.example", ".gitignore", ".gitattributes", ".vercelignore"]
     files = [ROOT / name for name in names]
     for directory in ["src", "public", "rights"]:
         files.extend(p for p in (ROOT / directory).rglob("*") if p.is_file())

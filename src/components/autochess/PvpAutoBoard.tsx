@@ -38,12 +38,14 @@ export function PvpAutoBoard({
     [inventoryOpen, setInventoryOpen] = useState(false),
     [traitsOpen, setTraitsOpen] = useState(false)
   const frame = useRef({ run, at: performance.now(), online })
-  frame.current = { run, at: performance.now(), online }
+  // UI-only updates must not restart the interpolation window.
+  if (frame.current.run !== run || frame.current.online !== online)
+    frame.current = { run, at: performance.now(), online }
   const getFrame = useCallback(
     () => ({
       run: frame.current.run,
       alpha:
-        frame.current.online && frame.current.run.phase === "combat"
+        frame.current.online && frame.current.run.phase === "combat" && !frame.current.run.paused && !frame.current.run.combat?.pendingScene
           ? Math.min(2, (performance.now() - frame.current.at) / 50)
           : 0,
     }),

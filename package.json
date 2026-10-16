@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config dev/vite.dev.config.ts",
-    "build": "vite build",
+    "build": "vite build && node releaseGuard.mjs",
     "preview": "vite preview",
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
@@ -17,6 +17,9 @@
     "release:records": "node dev/tools/release-records.mjs",
     "release:verify": "node dev/tools/release-records.mjs --check",
     "release:size": "node dev/tools/release-size.mjs",
+    "release:guard": "node releaseGuard.mjs",
+    "release:rights": "node dev/tools/release-rights.mjs",
+    "release:commercial": "pnpm release:verify && pnpm release:rights --commercial && pnpm build && pnpm release:size",
     "release:source": "python3 dev/tools/pack-release.py",
     "release:web": "python3 dev/tools/pack-release.py --dist",
     "validate:assets": "node dev/tools/validate-assets.mjs"
