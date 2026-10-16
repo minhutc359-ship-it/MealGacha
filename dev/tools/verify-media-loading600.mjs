@@ -5,7 +5,7 @@ const {chromium}=await import(process.env.PLAYWRIGHT_MODULE??'playwright')
 const port=4193,url=`http://127.0.0.1:${port}`,server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--config','dev/tools/vite.pvp-qa.config.ts','--host','127.0.0.1','--port',String(port),'--strictPort'],{stdio:'pipe'})
 let browser,log='';const requests=[],errors=[],missing=[]
 server.stdout.on('data',b=>log+=b);server.stderr.on('data',b=>log+=b)
-const ids=['bun-rieu','bun-cha','banh-xeo','com-ga','xoi-xeo']
+const ids=['xoi-xeo','pho-ga','bun-bo-hue','chao-suon','mien-ga']
 try{
   for(let i=0;i<100;i++){try{if((await fetch(url)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
   browser=await chromium.launch({executablePath:process.env.CHROMIUM_BIN,headless:true,args:process.env.CHROMIUM_ARGS?JSON.parse(process.env.CHROMIUM_ARGS):['--no-sandbox'],env:{...process.env,LD_LIBRARY_PATH:process.env.CHROMIUM_LIB_DIR??process.env.LD_LIBRARY_PATH,FONTCONFIG_PATH:process.env.FONTCONFIG_PATH??'/etc/fonts'}})
