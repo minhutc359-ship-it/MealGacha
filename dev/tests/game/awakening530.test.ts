@@ -225,7 +225,7 @@ describe("5.3 real combat and cinematic transaction", () => {
     });
 });
 describe("5.3 media payload", () => {
-    it("ships 133 H264 clips, six native timelines and 139 original sounds within the media budget", () => {
+    it("ships 128 H264 clips, eleven native timelines and 139 original sounds within the media budget", () => {
         const root = "public/assets/rpg/awakening530", movieHashes = new Set(), soundHashes = new Set();
         let total = 0;
         for (const id of SPIRIT_IDS) {

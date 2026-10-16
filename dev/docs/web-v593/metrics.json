@@ -1,0 +1,28 @@
+{
+  "version": "5.9.3",
+  "baselineCommit": "1d87b95",
+  "baselineBytes": 255361476,
+  "buildBytes": 253045614,
+  "netChangeBytes": -2315862,
+  "newVisualAssetBytes": 4599754,
+  "newVisualFiles": 42,
+  "newPhysicalFrames": 425,
+  "retiredMovieBytes": 6901575,
+  "staticLimitBytes": 320000000,
+  "staticTargetBytes": 300000000,
+  "remainingBytes": 66954386,
+  "jsGzipBytes": 674707,
+  "jsGzipLimitBytes": 675000,
+  "cssGzipBytes": 104139,
+  "offlineShell": {
+    "bytes": 2875614,
+    "urls": 78,
+    "targetBytes": 8000000,
+    "limitBytes": 12000000,
+    "warning": false,
+    "exceeded": false,
+    "remainingBytes": 9124386
+  },
+  "additionalChefAllocationBytes": 10000000,
+  "allocationNote": "New asset package size, not a claim that the whole planned additional allocation has been consumed."
+}

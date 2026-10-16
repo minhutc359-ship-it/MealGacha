@@ -480,7 +480,7 @@ export function AutoBoard({
           const sourceActor = actorMap.get(e.source)
           const starter=sourceActor && starterCharacter(sourceActor.id)
           if(starter && !opts.reducedMotion && age<.8 && ["hit","heal","shield"].includes(e.kind))drawStarterVfx(ctx,sourceActor!.id,x,y,cell*.37,age*1000,false,opts.lowQuality,e.kind === "heal" || e.kind === "shield" ? e.kind : "skill")
-          if (!starter && !opts.reducedMotion && age<.7 && ["hit","heal","shield","burn"].includes(e.kind)) drawCombatArt(ctx,combatTexture,e.school,"impact",x,y,cell*.43,age/.7,sourceActor?.id??e.source)
+          // The shared impact renderer already chooses texture OR geometry. Do not paint a second impact over the recipient.
           if (!starter && e.kind === "cast" && e.amount > 0 && sourceActor) {
             const sourcePos = coords.get(e.source)!
             drawSkillBurst(ctx, px(sourcePos.x,sourcePos.y), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
@@ -490,7 +490,7 @@ export function AutoBoard({
             const source = actorMap.get(e.source)
             const kind = e.kind === "heal" ? "heal" : e.kind === "shield" ? "shield" : e.kind === "summon" ? "summon"
               : e.kind === "hit" && source?.range === 1 ? "slash" : "projectile"
-            drawImpact(ctx,{x,y},e.school,age,cell*(e.kind === "phase" ? .75 : .4),kind,opts.lowQuality,texturedImpacts++ < 4 ? impactTexture : undefined)
+            drawImpact(ctx,{x,y:y+cell*.18},e.school,age,cell*(e.kind === "phase" ? .6 : .28),kind,opts.lowQuality,texturedImpacts++ < 4 ? impactTexture : undefined)
           }
           if (
             ["hit", "heal", "burn"].includes(e.kind) &&

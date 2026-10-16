@@ -36,6 +36,36 @@ export function drawStarterVfx(
     )
     ctx.stroke()
   }
+  if (id.startsWith("chef-")) {
+    const receiving = !ultimate && (kind === "heal" || kind === "shield"),
+      attack = !ultimate && kind === "attack"
+    if (receiving) { ctx.translate(0,.45);ctx.scale(.75,.5) }
+    if (kind === "charge") {ctx.scale(.45,.45);ctx.globalAlpha *= .5}
+    if (kit.signature === "recipe") {
+      // Two open recipe pages become a low protective table on receiving allies.
+      ctx.beginPath();ctx.moveTo(-.8,.35);ctx.lineTo(-.8,-.45);ctx.lineTo(0,-.2);ctx.lineTo(.8,-.45);ctx.lineTo(.8,.35);ctx.lineTo(0,.55);ctx.closePath();ctx.stroke()
+      if (!attack) curve([0,.5,0,.2,0,-.1,0,-.2])
+    } else if (kit.signature === "wok") {
+      ctx.beginPath();ctx.ellipse(0,.35,.75,.2,-.25,0,Math.PI);ctx.stroke()
+      if (!attack) curve([-.6,.2,-.3,-.5,.5,-.1,.3,-.8])
+      if (!receiving) curve([-.5,.15,-.8,-.45,.9,-.6,.6,.1])
+    } else if (kit.signature === "roots") {
+      for (const s of [-1,1]) curve([s*.8,.65,s*.25,.35,s*.55,-.45,s*.2,-.7])
+      if (!attack) {
+        curve([0,.5,-.6,0,-.5,-.75,0,-.4]);curve([0,-.4,.5,-.75,.6,0,0,.5])
+      }
+    } else if (kit.signature === "current") {
+      const n = attack ? 1 : 2
+      for(let i=0;i<n;i++) curve([-.9,.2+i*.3,-.2,-.7+i*.3,.5,.8+i*.1,.9,-.3+i*.3])
+      if (!receiving) {ctx.beginPath();ctx.ellipse(.55,-.15,.22,.45,.7,0,Math.PI*1.4);ctx.stroke()}
+    } else if (kit.signature === "lantern") {
+      ctx.beginPath()
+      for(let i=0;i<10;i++){const a=i*Math.PI/5-Math.PI/2,r=i%2?.25:.6;const px=Math.cos(a)*r,py=Math.sin(a)*r;i?ctx.lineTo(px,py):ctx.moveTo(px,py)}
+      ctx.closePath();ctx.stroke()
+      if (!attack) curve([-.9,.5,-.3,-.1,.3,1,.9,.3])
+    }
+    ctx.restore();return
+  }
   // The receiving event chooses the visual. A shield never looks like an attack.
   if (!ultimate && kind === "charge") {
     ctx.globalAlpha *= .5
