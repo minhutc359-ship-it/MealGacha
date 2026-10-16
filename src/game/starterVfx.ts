@@ -1,6 +1,12 @@
 import { ULTIMATE_TIMELINE, starterCharacter, ultimatePhase } from "./starterCharacters"
 
 export type CharacterVfxKind = "attack" | "skill" | "heal" | "shield" | "charge"
+const FAMILIAR_MOTIFS = {
+  grill: [[-.7,.45,-.75,-.35,0,-.7,.75,-.35,.7,.45,0,.7,-.7,.45],[-.45,-.2,.45,.35],[-.45,.35,.45,-.2],[-.65,.05,.65,.05]],
+  claw: [[-.75,.55,-.9,-.1,-.55,-.7,-.25,-.55,-.5,-.05,-.15,.2,-.75,.55],[.75,.55,.9,-.1,.55,-.7,.25,-.55,.5,-.05,.15,.2,.75,.55],[-.25,.5,0,.7,.25,.5]],
+  fan: [[-.8,.5,-.75,-.15,-.3,-.75,.4,-.7,.85,-.25,.2,-.15,-.3,.2,-.8,.5],[-.8,.5,.1,-.5],[-.8,.5,.6,-.3]],
+  lance: [[-.85,.55,.85,-.55,.55,-.55,.85,-.55,.7,-.25],[-.6,.4,-.55,.05,-.2,.1],[-.2,.15,-.15,-.2,.2,-.15],[.2,-.1,.25,-.45,.6,-.4]],
+}
 
 /** Character-specific geometry; one authored gesture at a time, never a screen wash. */
 export function drawStarterVfx(
@@ -28,6 +34,18 @@ export function drawStarterVfx(
   ctx.fillStyle = kit.color
   ctx.lineWidth = 0.05
   ctx.lineCap = "round"
+  const motif = FAMILIAR_MOTIFS[kit.signature as keyof typeof FAMILIAR_MOTIFS]
+  if (motif) {
+    if (!ultimate && (kind === "heal" || kind === "shield")) {ctx.translate(0,.45);ctx.scale(.75,.5)}
+    if (kind === "charge") {ctx.scale(.5,.5);ctx.globalAlpha *= .5}
+    const count = !ultimate && kind === "attack" ? 1 : motif.length
+    for(let i=0;i<count;i++) {
+      const points=motif[i];ctx.beginPath();ctx.moveTo(points[0],points[1])
+      for(let j=2;j<points.length;j+=2)ctx.lineTo(points[j],points[j+1])
+      ctx.stroke()
+    }
+    ctx.restore();return
+  }
   const curve = (points: number[]) => {
     ctx.beginPath()
     ctx.moveTo(points[0], points[1])

@@ -1,0 +1,152 @@
+{
+  "version": "5.9.4",
+  "baselineCommit": "25fdfb0ab724031c2ab79b537c83d6afb95dad7b",
+  "baselineBytes": 253045614,
+  "addedArtBytes": 3068850,
+  "removedMovieBytes": 5502936,
+  "netBuildDeltaBytes": -2434163,
+  "remainingBuildBytes": 69388549,
+  "build": {
+    "staticBudgetBytes": 320000000,
+    "staticTargetBytes": 300000000,
+    "jsGzipBudgetBytes": 675000,
+    "version": "5.9.4",
+    "bytes": 250611451,
+    "files": 721,
+    "byType": {
+      "js": {
+        "files": 52,
+        "bytes": 2077924
+      },
+      "css": {
+        "files": 8,
+        "bytes": 498862
+      },
+      "webp": {
+        "files": 359,
+        "bytes": 75097040
+      },
+      "png": {
+        "files": 3,
+        "bytes": 164790
+      },
+      "woff2": {
+        "files": 11,
+        "bytes": 285956
+      },
+      "mp3": {
+        "files": 152,
+        "bytes": 10834115
+      },
+      "mp4": {
+        "files": 124,
+        "bytes": 161504243
+      },
+      "json": {
+        "files": 1,
+        "bytes": 6983
+      },
+      "svg": {
+        "files": 1,
+        "bytes": 4902
+      },
+      "ico": {
+        "files": 1,
+        "bytes": 16574
+      },
+      "html": {
+        "files": 4,
+        "bytes": 36409
+      },
+      "txt": {
+        "files": 4,
+        "bytes": 83120
+      },
+      "webmanifest": {
+        "files": 1,
+        "bytes": 533
+      }
+    },
+    "groups": {
+      "Application JS/CSS": 2576786,
+      "Auto chess art/audio": 4025282,
+      "Brand": 229534,
+      "Shared character atlases": 23451698,
+      "Event art": 2016822,
+      "Other and legal": 13024114,
+      "Food art": 7490462,
+      "Adventure presentation art": 1400332,
+      "Spirit RPG art/audio/video": 178418129,
+      "TCG art/audio": 17978292
+    },
+    "js_gzip": 674129,
+    "css_gzip": 103519,
+    "largest": [
+      {
+        "path": "assets/rpg/campaign580/campaignB.webp",
+        "bytes": 2223544
+      },
+      {
+        "path": "assets/rpg/campaign580/campaignA.webp",
+        "bytes": 2153792
+      },
+      {
+        "path": "assets/rpg/awakening530/movies/ganjang-gejang.mp4",
+        "bytes": 1617250
+      },
+      {
+        "path": "assets/rpg/awakening530/movies/bun-thang.mp4",
+        "bytes": 1585513
+      },
+      {
+        "path": "assets/rpg/awakening530/movies/mi-van-than.mp4",
+        "bytes": 1583054
+      },
+      {
+        "path": "assets/rpg/awakening530/movies/bun-moc.mp4",
+        "bytes": 1555673
+      },
+      {
+        "path": "assets/rpg/awakening530/movies/cha-ca-la-vong.mp4",
+        "bytes": 1530396
+      },
+      {
+        "path": "assets/rpg/awakening530/movies/bun-bo-hue.mp4",
+        "bytes": 1524357
+      },
+      {
+        "path": "assets/rpg/awakening530/movies/mi-cay.mp4",
+        "bytes": 1511735
+      },
+      {
+        "path": "assets/rpg/awakening530/movies/caravan-herbalist.mp4",
+        "bytes": 1485982
+      },
+      {
+        "path": "assets/rpg/awakening530/movies/som-tam.mp4",
+        "bytes": 1481363
+      },
+      {
+        "path": "assets/rpg/awakening530/movies/boat-noodles.mp4",
+        "bytes": 1480039
+      }
+    ],
+    "leaks": [],
+    "offlineShell": {
+      "bytes": 2875666,
+      "urls": 74,
+      "targetBytes": 8000000,
+      "limitBytes": 12000000,
+      "warning": false,
+      "exceeded": false,
+      "remainingBytes": 9124334
+    },
+    "budget": {
+      "targetBytes": 300000000,
+      "limitBytes": 320000000,
+      "warning": false,
+      "exceeded": false,
+      "remainingBytes": 69388549
+    }
+  }
+}

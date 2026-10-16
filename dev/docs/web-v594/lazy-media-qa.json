@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-16",
+  "party": [
+    "xoi-xeo",
+    "pho-ga",
+    "bun-bo-hue",
+    "chao-suon",
+    "mien-ga"
+  ],
+  "beforeCast": [],
+  "requestedMovies": [
+    "/assets/rpg/awakening530/movies/xoi-xeo.mp4"
+  ],
+  "requestedSounds": [
+    "/assets/rpg/awakening530/sounds/xoi-xeo.mp3"
+  ],
+  "playback": "video",
+  "pause": true,
+  "skipWithoutRecast": true,
+  "cacheAfterLeavingBattle": {
+    "count": 5,
+    "bytes": 29160256,
+    "leased": 0,
+    "budget": 67108864
+  },
+  "avoidedEagerMovieBytes": 6884778,
+  "errors": [],
+  "missing": [],
+  "native": {
+    "selectedCharacter": "com-tam",
+    "requestedHdAssets": [
+      "/assets/characters/starters590/com-tam.webp",
+      "/assets/characters/starters590/ultimate591.webp"
+    ],
+    "paintedActorPixels": 13542,
+    "noMovie": true,
+    "skip": true
+  }
+}

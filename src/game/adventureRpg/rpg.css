@@ -333,5 +333,5 @@
 .rpg-story-skip{background:transparent!important;border-color:transparent!important;color:#bbcebf!important;font-size:10px!important}
 @media(prefers-reduced-motion:reduce){.rpg-bubble-film,.rpg-bubble-film::after,.rpg-ultimate-cut-in{animation:none!important}.rpg-shield-bubble.is-dissolving{animation-duration:.1s}.rpg-shield-bubble.is-dissolving .rpg-bubble-film{animation:none;opacity:0}.rpg-shield-bubble.is-dissolving>i{animation:none;opacity:0}}
 
-/* Chef busts remain square and fully visible in shallow burst buttons. */
-.rpg-spirit-art[data-chef] .rpg-spirit-image{left:50%;top:0;width:auto;height:100%;transform:translateX(-50%)}
+/* Standalone portraits remain square and fully visible in shallow burst buttons. */
+.rpg-spirit-art[data-portrait-square] .rpg-spirit-image{left:50%;top:0;width:auto;height:100%;transform:translateX(-50%)}
