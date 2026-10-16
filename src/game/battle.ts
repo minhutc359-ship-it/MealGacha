@@ -145,6 +145,7 @@ function checkResult(b: Battle) {
   }
   for (const { side, unit } of fallen) {
     const card = CARD_MAP[unit.cardId]
+    if (card.ability === "testament") { const target=weakest(b[side]); if(target){target.attack++;target.shield+=2;log(b,`✦ ${card.name} · trao lại giao ước.`)} }
     if (card.ability === "pantry") restore(b, side, 3)
     if (card.ability === "farewell") draw(b, side, 1)
     if (["pantry", "farewell"].includes(card.ability ?? "")) log(b, `✦ ${card.name} · kích ký ức khi bị hạ.`)
@@ -187,6 +188,10 @@ function mendUnits(p: Combatant, amount: number) {
 function empower(u: BattleUnit, attack: number, health: number) { u.attack += attack; u.health += health; u.maxHealth += health }
 function unitAbility(b: Battle, side: "player" | "enemy", card: GameCard) {
   const p = b[side], foe = b[side === "player" ? "enemy" : "player"], entered = p.board.at(-1)!
+  if (card.ability === "breach") { const target=[...foe.board].filter(u=>u.health>0&&u.shield>0).sort((a,z)=>z.shield-a.shield||a.uid.localeCompare(z.uid))[0];if(target)target.shield=0 }
+  if (card.ability === "triage") { const target=p.board.filter(u=>u.uid!==entered.uid&&u.health>0&&u.health<u.maxHealth).sort((a,z)=>(z.maxHealth-z.health)-(a.maxHealth-a.health)||a.uid.localeCompare(z.uid))[0];if(target)target.health=Math.min(target.maxHealth,target.health+4) }
+  if (card.ability === "thawer") for(const u of p.board.filter(u=>u.uid!==entered.uid&&u.health>0)){if(u.icedThisTurn)u.ready=true;u.frozen=false;u.icedThisTurn=false}
+  if (card.ability === "reserve" && p.hand.length===0) draw(b,side,2)
   if (card.ability === "ambush") {
     const target = [...foe.board].filter(u => u.health < u.maxHealth).sort((a, z) => a.health - z.health)[0]
     if (target) hurt(target, 2)
@@ -253,7 +258,9 @@ function afterSpell(b: Battle, side: "player" | "enemy", card: GameCard) {
   p.spellsThisTurn = (p.spellsThisTurn ?? 0) + 1
   for (const u of p.board.filter(u => u.health > 0 && (u.triggers ?? 0) < 2)) {
     const ability = CARD_MAP[u.cardId].ability
-    if (ability === "spellfire") u.attack++
+    if (ability === "relay" && card.school!==CARD_MAP[u.cardId].school && (u.triggers??0)<1) { const target=weakest({...p,board:p.board.filter(a=>a.uid!==u.uid)});if(!target)continue;target.attack++;target.shield++ }
+    else if (ability === "conductor" && p.spellsThisTurn===2 && (u.triggers??0)<1) p.mana=Math.min(p.maxMana,p.mana+1)
+    else if (ability === "spellfire") u.attack++
     else if (ability === "weaver") { const target = weakest(p); if (target) target.shield++ }
     else if (ability === "season-host" && card.choices && (u.triggers ?? 0) < 1) draw(b, side)
     else continue
@@ -659,9 +666,12 @@ function attack(
   if (guards.length && !defender?.keywords.includes("guard"))
     return "Phải đánh Hộ vệ trước."
   attacker.ready = false
+  const ability=CARD_MAP[attacker.cardId].ability
+  const bonus=defender && (ability==="duelist"&&defender.health===defender.maxHealth||ability==="execute"&&defender.health<defender.maxHealth)?2:0
+  if(defender&&ability==="siphon"){const transfer=Math.min(2,defender.shield);defender.shield-=transfer;attacker.shield+=transfer}
   let actual: number
   if (defender) {
-    actual = hurt(defender, attacker.attack)
+    actual = hurt(defender, attacker.attack+bonus)
     const counter = hurt(attacker, defender.attack)
     if (defender.keywords.includes("drain"))
       restore(b, side === "player" ? "enemy" : "player", counter)
@@ -789,7 +799,7 @@ function enemyTurn(b: Battle, record: (event: BattleEvent) => void) {
           : c.effect === "damage"
             ? c.cost + 2
             : c.cost
-      return score(z.card) - score(a.card)
+      return score(z.card)+tacticalValue(z.card,p,b.player) - score(a.card)-tacticalValue(a.card,p,b.player)
     })
     if (!options.length) break
     const { card, index, branch } = options[0]
@@ -929,6 +939,13 @@ function finishAttack450(b: Battle, side: BattleSide, uid: string, target: strin
   if(cardId)afterActionTraps(b,side,cardId,uid,target,oldBoard,record)
   return null
 }
+function tacticalValue(card:GameCard,p:Combatant,foe:Combatant){
+  if(card.ability==="breach")return Math.min(5,Math.max(0,...foe.board.map(u=>u.shield)))
+  if(card.ability==="triage")return Math.min(4,Math.max(0,...p.board.map(u=>u.maxHealth-u.health)))
+  if(card.ability==="thawer")return p.board.filter(u=>u.frozen||u.icedThisTurn).length*2
+  if(card.ability==="reserve")return p.hand.length===1?3:0
+  return 0
+}
 function enemyOptions450(b: Battle) {
   const p=b.enemy
   return p.hand.flatMap((id,index)=>cardBranches(CARD_MAP[id]).map(branch=>({card:flavoredCard(CARD_MAP[id],branch),index,branch})))
@@ -943,7 +960,7 @@ function enemyOptions450(b: Battle) {
     .sort((a,z)=>{
       // The AI sees an occupied face-down slot, never its private card identity.
       const score=(c:GameCard)=>c.ability==="disarm"&&b.player.trap?20:c.kind==="trap"?c.cost+2+(b.player.board.length?2:0):c.kind==="unit"?c.cost+3:c.effect==="damage"?c.cost+2:c.cost
-      return score(z.card)-score(a.card)
+      return score(z.card)+tacticalValue(z.card,p,b.player)-score(a.card)-tacticalValue(a.card,p,b.player)
     })
 }
 function advanceEnemyTurn(b: Battle, record:(event:BattleEvent)=>void) {

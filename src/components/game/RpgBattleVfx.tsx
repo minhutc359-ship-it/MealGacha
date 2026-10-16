@@ -1,3 +1,4 @@
+import { COMBAT_ART, drawCombatArt } from "../../game/combatArt";
 import { awakenedKit } from "../../game/adventureRpg/awakening";
 import { drawUltimateArt, ultimateIdentity } from "../../game/adventureRpg/ultimateArt";
 import { useEffect, useRef } from "react";
@@ -142,7 +143,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
         const surface = canvas.current, ctx = surface?.getContext("2d");
         if (!surface || !ctx || quiet)
             return;
-        const texture = acquireCharacterImage(ELEMENTAL_IMPACTS);
+        const texture = acquireCharacterImage(ELEMENTAL_IMPACTS), combat = acquireCharacterImage(COMBAT_ART);
         let width = 1, height = 1, wide = false, hiddenAt: number | null = null;
         const draw = (now: number) => {
             const s = state.current;
@@ -157,6 +158,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                 const scale = ultimate ? 1.3 : normal ? .7 : 1, extent = size * scale;
                 if (!normal && age < contact)
                     drawChannel(ctx, source, c.event.school, age / contact, size, low);
+                if (!normal && age < contact) drawCombatArt(ctx,low?undefined:combat.image,c.event.school,"cast",source.x,source.y,extent,age/contact,c.actor.id);
                 if (ultimate || c.actor.boss && c.event.animation === "enemy")
                     sigil(ctx, source, extent * 1.2, age, c, low);
                 if (ultimate && c.awakened) {
@@ -177,6 +179,8 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                     }
                     if ((ultimate && c.actor.role === "trickster") || c.actor.style === "hexer" && c.event.animation === "enemy")
                         sigil(ctx, p, extent * .8, Math.max(0, age - 180), c, low);
+                    if (age > 80 && age < contact && kind !== "heal" && kind !== "shield") { const t=(age-80)/(contact-80); drawCombatArt(ctx,low?undefined:combat.image,c.event.school,kind === "slash" ? "slash" : "projectile",source.x+(p.x-source.x)*t,source.y+(p.y-source.y)*t,extent*(kind === "slash"?.8:.4),t,c.actor.id,Math.atan2(p.y-source.y,p.x-source.x)); }
+                    drawCombatArt(ctx,low?undefined:combat.image,c.event.school,"impact",p.x,p.y,extent,(age-contact)/650,c.actor.id);
                     const repeat = ultimate && c.actor.role === "striker" ? 3 : ultimate && c.variant === 2 ? 2 : 1;
                     for (let i = 0; i < repeat; i++)
                         drawImpact(ctx, p, c.event.school, (age - contact - i * 130) / 1000, extent, kind, low, low ? undefined : texture.image);
@@ -184,7 +188,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                 if (surface.dataset.signature !== `${c.actor.role}:${c.event.school}:${c.variant}`)
                     surface.dataset.signature = `${c.actor.role}:${c.event.school}:${c.variant}`;
             }
-            surface.dataset.active = String(s.cues.length);
+            surface.dataset.active = String(s.cues.length);surface.dataset.combatArt = combat.image.naturalWidth ? "ready" : "loading";
         };
         const resize = () => { wide = window.matchMedia("(max-height:480px) and (orientation:landscape)").matches; width = Math.max(1, surface.clientWidth); height = Math.max(1, surface.clientHeight); const dpr = renderDpr(); surface.width = Math.round(width * dpr); surface.height = Math.round(height * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); draw(performance.now()); };
         const visibility = () => { const now = performance.now(); if (document.hidden)
@@ -200,7 +204,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
         resize();
         const quality = subscribeRenderQuality(resize), clock = subscribeCharacterClock(draw, () => !state.current.paused && state.current.cues.length > 0);
         document.addEventListener("visibilitychange", visibility);
-        return () => { texture.release(); observer.disconnect(); quality(); clock(); document.removeEventListener("visibilitychange", visibility); };
+        return () => { texture.release(); combat.release(); observer.disconnect(); quality(); clock(); document.removeEventListener("visibilitychange", visibility); };
     }, [quiet]);
     return quiet ? null : <canvas ref={canvas} className="rpg-vfx-canvas" aria-hidden="true" data-vfx="rpg-elemental"/>;
 }

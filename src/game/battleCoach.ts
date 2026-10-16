@@ -59,6 +59,7 @@ export function getBattleHint(visible: Battle): BattleHint | null {
         damage * 2 +
         fieldDamage * 2 +
         removed.length * 15 +
+        removed.reduce((sum,unit)=>sum+unit.attack*1.5,0) +
         removed.filter((unit) => unit.keywords.includes("guard")).length * 25 -
         forecast.counter -
         (forecast.attackerDefeated ? 14 : 0)
@@ -81,6 +82,9 @@ export function getBattleHint(visible: Battle): BattleHint | null {
           ? 20
           : 0) +
         (cost < card.cost ? 5 : 0)
+      const alliesMended=battle.player.board.reduce((n,u)=>n+Math.max(0,(next.player.board.find(a=>a.uid===u.uid)?.health??u.health)-u.health),0)
+      const shieldsRemoved=battle.enemy.board.reduce((n,u)=>n+Math.max(0,u.shield-(next.enemy.board.find(a=>a.uid===u.uid)?.shield??0)),0)
+      score += alliesMended*1.5 + shieldsRemoved + removed.length*15 + healed*2 + Math.max(0,next.player.hand.length-battle.player.hand.length+1)*5
       title = `Gọi ${card.name}`
       reason = `${cost} năng lượng${
         cost < card.cost ? " nhờ Cộng hưởng" : ""
@@ -88,7 +92,7 @@ export function getBattleHint(visible: Battle): BattleHint | null {
         card.keywords.includes("rush")
           ? "Xung phong: đánh ngay."
           : "Vị Linh sẽ đánh từ lượt sau."
-      }`
+      } ${card.ability ? card.text : ""}`
     } else {
       score =
         damage +
@@ -152,6 +156,11 @@ export function getBattleHint(visible: Battle): BattleHint | null {
         reason = `${recipe.reward} ${reason}`
       }
     }
+    // Prefer removing a visible lethal threat over non-lethal face damage.
+    // This uses public board information; a hidden hand or trap is never read.
+    const incoming=(state:Battle)=>state.player.board.some(u=>u.health>0&&u.keywords.includes("guard"))?0:state.enemy.board.filter(u=>u.health>0&&!u.frozen).reduce((sum,u)=>sum+u.attack,0)
+    const beforeThreat=incoming(battle),afterThreat=incoming(next)
+    if(beforeThreat>=battle.player.health && beforeThreat>0) score+=(beforeThreat-afterThreat)*5+(afterThreat<next.player.health?35:0)
     if (attempt.battle.result === "win") {
       score = 10000
       reason = `${hiddenTrap ? "Dự kiến kết thúc trận nếu bẫy úp không ngăn cản." : "Nước đi này giúp thắng ngay."} ${reason}`

@@ -19,7 +19,7 @@ import { createAutoRun, refreshShop, random } from "../autochess/economy"
 import { reduceAuto, type AutoAction } from "../autochess/reducer"
 import { emptyAutoSave, type AutoRun, type Piece } from "../autochess/types"
 import { ITEM_COMPONENTS } from "../autochess/items"
-export const ROOM_VERSION = 490
+export const ROOM_VERSION = 583
 export type Seat = 0 | 1
 export type RoomMode = "tcg" | "auto"
 export type Profile = { name: string; deck: string[] }

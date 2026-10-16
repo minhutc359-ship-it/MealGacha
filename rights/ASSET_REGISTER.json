@@ -5563,6 +5563,26 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/rpg/combat583/effects.webp",
+      "bytes": 990866,
+      "sha256": "0bde7b67956817ce1329a028e1b1a8ab955454f057376ae0d75a759ff98fcd52",
+      "origin": "Original AI-assisted Soul of Meal battle poses and five-school combat textures created with built-in image generation",
+      "evidence": [
+        "dev/docs/web-v583/UPDATE.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/combat583/spirits.webp",
+      "bytes": 1070252,
+      "sha256": "679cc9a2127ea26809e1ffef80a67b9ce3e839fa1bbd9581aadf81c6a0c31a0e",
+      "origin": "Original AI-assisted Soul of Meal battle poses and five-school combat textures created with built-in image generation",
+      "evidence": [
+        "dev/docs/web-v583/UPDATE.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/rpg/spirit510/portraits-1.webp",
       "bytes": 502556,
       "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe",
@@ -5713,6 +5733,54 @@
       "evidence": [
         "dev/docs/web-v580/art-assets.json",
         "dev/tools/prepare-campaign580-assets.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/village583/grandmother.webp",
+      "bytes": 509174,
+      "sha256": "70cda901f43c7f9ee14d25998025ad632ed19f02eca09bcdc9650bfa2a88227b",
+      "origin": "Original project-owned four-direction village atlases restored from the legacy Adventure archive, recompressed to WebP",
+      "evidence": [
+        "dev/docs/web-v583/UPDATE.md",
+        "dev/docs/web-v440/artwork.json",
+        "dev/docs/web-v441/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/village583/hero.webp",
+      "bytes": 275028,
+      "sha256": "27ef56c6bec4464e550e840475c8056ac1603cba28f80e9fcc239bd1f3b86a13",
+      "origin": "Original project-owned four-direction village atlases restored from the legacy Adventure archive, recompressed to WebP",
+      "evidence": [
+        "dev/docs/web-v583/UPDATE.md",
+        "dev/docs/web-v440/artwork.json",
+        "dev/docs/web-v441/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/village583/la.webp",
+      "bytes": 367686,
+      "sha256": "3ff67d48f6403fbc8fbd26c9404ba22c58fdbdfd6964b928b7844a1e28ce9b36",
+      "origin": "Original project-owned four-direction village atlases restored from the legacy Adventure archive, recompressed to WebP",
+      "evidence": [
+        "dev/docs/web-v583/UPDATE.md",
+        "dev/docs/web-v440/artwork.json",
+        "dev/docs/web-v441/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/village583/merchant.webp",
+      "bytes": 377220,
+      "sha256": "89f6ee7084c437cda18ea9eb1c7285a6df71a3b7279ed292d0495f4d0d467d19",
+      "origin": "Original project-owned four-direction village atlases restored from the legacy Adventure archive, recompressed to WebP",
+      "evidence": [
+        "dev/docs/web-v583/UPDATE.md",
+        "dev/docs/web-v440/artwork.json",
+        "dev/docs/web-v441/artwork.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

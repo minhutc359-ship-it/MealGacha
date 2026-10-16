@@ -54,6 +54,7 @@ import {
   type BattlePresentationPhase,
 } from "../game/adventureV560"
 import "../game/adventureRpg/rpg.css"
+import "../components/game/villageRpg.css"
 
 const RESOURCE_NAMES: Record<keyof RpgResources, string> = {
   coins: "Xu",

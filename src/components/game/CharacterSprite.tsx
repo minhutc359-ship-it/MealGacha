@@ -1,3 +1,4 @@
+import { battleHdPose } from "../../game/combatArt"
 import { blendPose, type PoseBlend } from "../../game/poseBlend"
 import { renderDpr, subscribeRenderQuality } from "../../infrastructure/presentation/renderQuality"
 import {livingClipFrame} from "../../game/livingClips"
@@ -59,7 +60,7 @@ export const CharacterSprite = memo(function CharacterSprite({
       const current = age < delay ? lead ?? "idle" : motion
       const poseAge = age < delay ? age : age - delay
       const fresh = model.sheet !== "base"
-      const pose = model.sheet.startsWith("living-") ? livingClipFrame(current,poseAge,quiet) : characterPose(current, poseAge, fresh, quiet, model.sheet.startsWith("roster"))
+      const pose = model.sheet === "battleHd" ? battleHdPose(current,poseAge,quiet) : model.sheet.startsWith("living-") ? livingClipFrame(current,poseAge,quiet) : characterPose(current, poseAge, fresh, quiet, model.sheet.startsWith("roster"))
       const frame = showcase ? [0, 0, image.naturalWidth, image.naturalHeight, image.naturalWidth / 2, image.naturalHeight] : bounds.row.frames[pose]
       const [sx, sy, sw, sh, ax, ay] = frame
       const scale = showcase ? Math.min(width * .94 / sw, height * .94 / sh) : Math.min(width * .86 / (bounds.right - bounds.left), height * .88 / (bounds.bottom - bounds.top))
@@ -98,7 +99,7 @@ export const CharacterSprite = memo(function CharacterSprite({
       stretch += accent.stretch
       ctx.scale(direction * (1 - stretch), 1 + stretch)
       drawMotionTrail(ctx, height, poseAge / 780, current === "cast", "#efd9a1", quiet || paused || !["attack", "cast"].includes(current))
-      const dissolve = blendPose(blend, pose, now, staticMotion || !!showcase)
+      const dissolve = blendPose(blend, pose, now, staticMotion || !!showcase || model.sheet === "battleHd" || ["attack","cast","walk","hit"].includes(current))
       const paint = (f: number[], opacity: number) => {
         const [fx,fy,fw,fh,fa,fb] = f
         ctx.globalAlpha = alpha * opacity

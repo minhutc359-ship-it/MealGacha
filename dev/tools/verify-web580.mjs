@@ -274,7 +274,8 @@ async function verifyAdventure(width, height, cinematic = false) {
   await page.screenshot({
     path: path.join(captures, `village-${width}x${height}.png`),
   })
-  await page.getByRole("button", { name: /Cổng Ký Ức/ }).click()
+  await page.getByRole("button", {name:"Đến gặp Lả",exact:true}).click()
+  await page.getByRole("button", {name:"Mở Cổng Ký Ức",exact:true}).click()
   const transition = page.locator(".rpg-transition")
   await transition.waitFor()
   const loading = await transition.locator("img").evaluate((image) => ({

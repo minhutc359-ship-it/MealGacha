@@ -1,3 +1,4 @@
+import { battleHdPose, COMBAT_ART, drawCombatArt } from "../../game/combatArt"
 import { ELEMENTAL_BOARDS, ELEMENTAL_IMPACTS } from "../../game/visualPack"
 import { blendPose, type PoseBlend } from "../../game/poseBlend"
 import { renderIsLight, sampleRenderFrame } from "../../infrastructure/presentation/renderQuality"
@@ -340,7 +341,7 @@ export function AutoBoard({
         if (actor.shield > 0 && actor.hp > 0) drawWard(ctx, x, y, size, visualTime, opts.reducedMotion || current.paused)
         const dancing = opts.celebrating && actor.side === "ally" && actor.hp > 0
         const beat = visualTime * .38 + row * .28
-        const index = spriteKey.startsWith("living-") ? livingActorFrame(actor,time,b,opts.reducedMotion,dancing) : dancing
+        const index = spriteKey === "battleHd" ? battleHdPose(actor.hp <= 0 ? "fall" : actor.action?.kind === "cast" ? "cast" : actor.action?.kind === "attack" ? "attack" : "idle", actor.action ? (time-actor.action.start)/Math.max(1,actor.action.end-actor.action.start)*780 : 0, opts.reducedMotion) : spriteKey.startsWith("living-") ? livingActorFrame(actor,time,b,opts.reducedMotion,dancing) : dancing
           ? opts.reducedMotion ? (fresh ? 0 : 13) : (spriteKey.startsWith("roster") ? [5, 1, 5, 2] : fresh ? [0, 1, 2, 1] : [13, 1, 13, 3])[Math.floor(visualTime / 5 + row * .2) % 4]
           : actorFrame(actor, time, fresh, b)
         const breath = !opts.reducedMotion && !actor.action && actor.hp > 0 && !current.paused
@@ -404,7 +405,7 @@ export function AutoBoard({
           drawMotionTrail(ctx, cell, action ? (time-action.start)/Math.max(1,action.end-action.start) : 0, action?.kind === "cast", color, opts.reducedMotion || opts.lowQuality || current.paused || actor.hp<=0 || !action || action.kind === "move")
           let blend = poseBlends.get(actor.uid)
           if (!blend) {blend = {pose: index, previous: index, at: now}; poseBlends.set(actor.uid,blend)}
-          const dissolve = blendPose(blend,index,now,opts.reducedMotion || opts.lowQuality || current.paused)
+          const dissolve = blendPose(blend,index,now,opts.reducedMotion || opts.lowQuality || current.paused || spriteKey === "battleHd" || !!actor.action)
           const opacity = ctx.globalAlpha
           if (dissolve.mix < 1) {
             const [fx,fy,fw,fh,fa,fb] = spriteRow.frames[dissolve.previous]
@@ -454,6 +455,7 @@ export function AutoBoard({
         }
       }
       if (b) {
+        const combatTexture = opts.lowQuality || opts.reducedMotion ? undefined : leased("combat583", COMBAT_ART)
         for (const u of actors.filter(a => a.hp > 0 && a.action && a.action.kind !== "move" && time < a.action.hit)) {
           const action = u.action!, origin = coords.get(u.uid)!
           const target = actorMap.get(action.target ?? "")
@@ -467,6 +469,9 @@ export function AutoBoard({
             drawChannel(ctx, { x:from.x,y:py(origin.y) },school,t,cell*.48,opts.lowQuality)
             drawCastAura(ctx, from.x, py(origin.y), cell, school, t, opts.lowQuality)
           }
+          if (action.kind === "cast") drawCombatArt(ctx,combatTexture,school,"cast",from.x,from.y,cell*.62,t,u.id)
+          if (kind === "slash" && t>.55) drawCombatArt(ctx,combatTexture,school,"slash",to.x,to.y,cell*.48,(t-.55)/.45,u.id,Math.atan2(to.y-from.y,to.x-from.x))
+          if (kind === "projectile" && t>.25) { const f=(t-.25)/.75;drawCombatArt(ctx,combatTexture,school,"projectile",from.x+(to.x-from.x)*f,from.y+(to.y-from.y)*f,cell*.23,f,u.id,Math.atan2(to.y-from.y,to.x-from.x)) }
           // Support recipients are selected at resolution. Never send a healing
           // projectile to the enemy held in the action's generic target field.
           if (action.kind === "cast" && ["heal", "shield"].includes(kind)) continue
@@ -476,6 +481,7 @@ export function AutoBoard({
             if(t>.4) drawImpact(ctx,from,school,(t-.4)*.6,cell*.42,kind,opts.lowQuality)
           } else if(t>.25) drawProjectile(ctx,from,to,school,(t-.25)/.75,cell*(action.kind === "cast" ? .22 : .16),opts.lowQuality,kind)
         }
+        if(surface.dataset.combatArt !== (combatTexture?.naturalWidth ? "ready" : "fallback")) surface.dataset.combatArt = combatTexture?.naturalWidth ? "ready" : "fallback"
         const popup = new Map<string, number>()
         for (const event of b.events) if (visualTime >= event.tick && visualTime - event.tick < 32) popup.set(event.kind === "cast" ? `cast:${event.source}` : `${event.kind === "heal" ? "heal" : "damage"}:${event.target}`, event.id)
         let texturedImpacts = 0
@@ -501,6 +507,7 @@ export function AutoBoard({
                 ? "#ff9b62"
                 : AUTO_SCHOOLS[e.school].color
           const sourceActor = actorMap.get(e.source)
+          if (!opts.reducedMotion && age<.7 && ["hit","heal","shield","burn"].includes(e.kind)) drawCombatArt(ctx,combatTexture,e.school,"impact",x,y,cell*.43,age/.7,sourceActor?.id??e.source)
           if (e.kind === "cast" && e.amount > 0 && sourceActor) {
             const sourcePos = coords.get(e.source)!
             drawSkillBurst(ctx, px(sourcePos.x), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)

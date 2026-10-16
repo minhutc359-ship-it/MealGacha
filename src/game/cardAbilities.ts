@@ -1,6 +1,16 @@
 import type { Ability, GameCard, School } from "./types"
 
 export const ABILITY_TEXT: Record<Ability, string> = {
+  breach: "Vào sân: xóa toàn bộ chắn của quân địch có chắn cao nhất. Không gây sát thương.",
+  duelist: "Khi tấn công quân địch đầy máu: gây thêm 2 sát thương. Không tăng sát thương lên chủ tướng.",
+  execute: "Khi tấn công quân địch đã mất máu: gây thêm 2 sát thương. Không tăng sát thương lên chủ tướng.",
+  triage: "Vào sân: hồi 4 máu cho đồng minh khác bị thương nặng nhất (theo lượng máu thiếu).",
+  relay: "Sau phép đầu tiên khác hệ với quân này mỗi lượt: đồng minh khác ít máu nhất nhận +1 công và 1 chắn.",
+  testament: "Khi bị hạ: đồng minh còn sống ít máu nhất nhận +1 công và 2 chắn.",
+  thawer: "Vào sân: giải đóng băng mọi đồng minh khác. Quân mất lượt vì băng ở đầu lượt này được đánh lại.",
+  reserve: "Vào sân: nếu tay bạn không còn lá nào, rút 2 lá. Tay đầy không kích hoạt.",
+  conductor: "Sau phép thứ hai trong lượt: hồi 1 năng lượng, không quá năng lượng tối đa; một lần mỗi lượt.",
+  siphon: "Khi tấn công quân địch: chuyển tối đa 2 chắn của mục tiêu sang quân này trước khi trao đổi sát thương.",
   disarm: "Gỡ bẫy úp hoặc bẫy đã lộ.",
   "reveal-trap": "Lộ bẫy địch và rút một lá.",
   "tea-mend": "Hồi ý chí và 1 máu mỗi đồng minh.",
@@ -70,7 +80,23 @@ const SPELLS: Record<string, Partial<GameCard>> = {
   "sweet-dream": { ability: "dream", power: 3 }, starlight: { ability: "starlight", power: 2 },
   "moon-banquet": { ability: "moonward", power: 2 },
 }
+// Keep each dish's established mana tier; spend its stat budget on a distinct role.
+const TACTICAL_UNITS: Record<string, {ability:Ability;cost:number;attack:number;health:number}> = {
+  "bun-bo-hue": {ability:"breach",cost:4,attack:3,health:5},
+  "banh-xeo": {ability:"duelist",cost:2,attack:1,health:3},
+  "cha-ruoi": {ability:"execute",cost:6,attack:4,health:7},
+  "che-buoi": {ability:"triage",cost:6,attack:3,health:7},
+  "bun-rieu": {ability:"relay",cost:1,attack:1,health:2},
+  "banh-chung": {ability:"testament",cost:5,attack:3,health:6},
+  "ca-phe-trung": {ability:"thawer",cost:5,attack:3,health:7},
+  "banh-tet": {ability:"reserve",cost:3,attack:2,health:4},
+  "xoi-xeo": {ability:"conductor",cost:3,attack:2,health:3},
+  "cha-ca-la-vong": {ability:"siphon",cost:2,attack:1,health:3},
+}
 export function specializeCard(card: GameCard): GameCard {
+  const unit=TACTICAL_UNITS[card.id]
+  if(card.kind==="unit" && unit) return {...card,...unit,keywords:[],effect:undefined,power:undefined,text:ABILITY_TEXT[unit.ability]}
+
   const patch = SPELLS[card.id]
   return patch ? { ...card, ...patch, text: patch.ability ? ABILITY_TEXT[patch.ability] : patch.text! } : card
 }
