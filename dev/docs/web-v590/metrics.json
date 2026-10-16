@@ -1,0 +1,22 @@
+{
+  "version": "5.9.0",
+  "unitTests": 650,
+  "testFiles": 57,
+  "staticBytes": 256942218,
+  "staticDeltaFromMaster": -2832979,
+  "jsGzip": 673875,
+  "cssGzip": 104098,
+  "tcgIdentities": 139,
+  "artworkFallbacks": 94,
+  "autoIdentities": 44,
+  "performance": {
+    "area": "five-consecutive-casts",
+    "baselineFps": 41.037119940309644,
+    "ratioToBaseline": 1.3320129543741,
+    "fps": 54.66197537069614,
+    "p95Gap": 33.30000000000018,
+    "maxCues": 5,
+    "remainingCues": 0,
+    "battleSerial": 46
+  }
+}

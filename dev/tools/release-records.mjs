@@ -65,6 +65,7 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/characters/starters590/", "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots", ["dev/docs/web-v590/artwork.json", "dev/tools/pack-starters590.py"]],
  ["assets/rpg/village583/", "Original project-owned four-direction village atlases restored from the legacy Adventure archive, recompressed to WebP", ["dev/docs/web-v583/UPDATE.md", "dev/docs/web-v440/artwork.json", "dev/docs/web-v441/artwork.json"]],
  ["assets/rpg/combat583/", "Original AI-assisted Soul of Meal battle poses and five-school combat textures created with built-in image generation", ["dev/docs/web-v583/UPDATE.md"]],
  ["assets/tcg/map/living-world-v582.webp", "Original AI-assisted Soul of Meal living-world chapter map created with built-in image generation", ["dev/docs/web-v582/UPDATE.md"]],

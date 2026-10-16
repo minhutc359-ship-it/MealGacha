@@ -1,3 +1,5 @@
+import { starterCharacter } from "../../game/starterCharacters"
+import { drawStarterVfx } from "../../game/starterVfx"
 import { COMBAT_ART, drawCombatArt } from "../../game/combatArt"
 import { ELEMENTAL_BOARDS, ELEMENTAL_IMPACTS } from "../../game/visualPack"
 import { actorPose, actorBody } from "../../game/autochess/actorPresentation"
@@ -376,7 +378,7 @@ export function AutoBoard({
             const stretch = Math.cos(beat * 2) * .018
             ctx.scale(1 - stretch, 1 + stretch)
           }
-          drawMotionTrail(ctx, cell, action ? (time-action.start)/Math.max(1,action.end-action.start) : 0, action?.kind === "cast", color, opts.reducedMotion || opts.lowQuality || current.paused || actor.hp<=0 || !action || action.kind === "move")
+          drawMotionTrail(ctx, cell, action ? (time-action.start)/Math.max(1,action.end-action.start) : 0, action?.kind === "cast", color, !!starterCharacter(actor.id) || opts.reducedMotion || opts.lowQuality || current.paused || actor.hp<=0 || !action || action.kind === "move")
           // Draw exactly one pose: sharp silhouettes even during fast actions.
           ctx.drawImage(sheet, sx, sy, sw, sh, -anchorX * scale, -anchorY * scale, sw * scale, sh * scale)
           ctx.restore()
@@ -430,6 +432,10 @@ export function AutoBoard({
           const kind = action.kind === "cast" ? skillVfx(action.skill ?? u.skill, u.range) : u.range <= 1 ? "slash" : "projectile"
           const from = { x:px(origin.x,origin.y), y:py(origin.y)-cell*.48 }, to = { x:px(end.x,end.y), y:py(end.y)-cell*.48 }
           if (opts.reducedMotion) continue
+          if(starterCharacter(u.id)) {
+            if(action.kind==="cast")drawStarterVfx(ctx,u.id,from.x,from.y,cell*.36,t*650,false,opts.lowQuality)
+            continue
+          }
           if (action.kind === "cast") {
             drawChannel(ctx, { x:from.x,y:py(origin.y) },school,t,cell*.48,opts.lowQuality)
             drawCastAura(ctx, from.x, py(origin.y), cell, school, t, opts.lowQuality)
@@ -472,13 +478,15 @@ export function AutoBoard({
                 ? "#ff9b62"
                 : AUTO_SCHOOLS[e.school].color
           const sourceActor = actorMap.get(e.source)
-          if (!opts.reducedMotion && age<.7 && ["hit","heal","shield","burn"].includes(e.kind)) drawCombatArt(ctx,combatTexture,e.school,"impact",x,y,cell*.43,age/.7,sourceActor?.id??e.source)
-          if (e.kind === "cast" && e.amount > 0 && sourceActor) {
+          const starter=sourceActor && starterCharacter(sourceActor.id)
+          if(starter && !opts.reducedMotion && age<.8 && ["hit","heal","shield"].includes(e.kind))drawStarterVfx(ctx,sourceActor!.id,x,y,cell*.37,age*1000,false,opts.lowQuality)
+          if (!starter && !opts.reducedMotion && age<.7 && ["hit","heal","shield","burn"].includes(e.kind)) drawCombatArt(ctx,combatTexture,e.school,"impact",x,y,cell*.43,age/.7,sourceActor?.id??e.source)
+          if (!starter && e.kind === "cast" && e.amount > 0 && sourceActor) {
             const sourcePos = coords.get(e.source)!
             drawSkillBurst(ctx, px(sourcePos.x,sourcePos.y), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
           }
           if (e.kind === "death") drawDeparture(ctx, x, y, cell, e.school, age, opts.reducedMotion, opts.lowQuality)
-          if (!opts.reducedMotion && age < .7 && ["hit","shield","heal","phase","summon","burn"].includes(e.kind)) {
+          if (!starter && !opts.reducedMotion && age < .7 && ["hit","shield","heal","phase","summon","burn"].includes(e.kind)) {
             const source = actorMap.get(e.source)
             const kind = e.kind === "heal" ? "heal" : e.kind === "shield" ? "shield" : e.kind === "summon" ? "summon"
               : e.kind === "hit" && source?.range === 1 ? "slash" : "projectile"

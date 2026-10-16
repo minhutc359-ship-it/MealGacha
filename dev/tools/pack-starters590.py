@@ -1,0 +1,55 @@
+"""Pack Imagegen sources, never synthesize replacement character artwork.
+
+Usage: python3 dev/tools/pack-starters590.py /path/to/source-directory
+The source directory contains <character-id>.png and village.png.
+"""
+import json
+import sys
+from pathlib import Path
+from PIL import Image
+
+ROOT = Path(__file__).resolve().parents[2]
+SOURCE = Path(sys.argv[1])
+OUT = ROOT / 'public/assets/characters/starters590'
+OUT.mkdir(parents=True, exist_ok=True)
+IDS = ['com-tam', 'banh-mi', 'pho-bo', 'banh-cuon', 'goi-cuon-tom-thit']
+frames = json.loads((ROOT / 'src/game/autochess/spriteFrames.json').read_text())
+report = []
+for character in IDS:
+    source = Image.open(SOURCE / f'{character}.png').convert('RGBA')
+    tiles = []
+    for row in range(8):
+        for col in range(4):
+            tile = source.crop((round(col*source.width/4), round(row*source.height/8), round((col+1)*source.width/4), round((row+1)*source.height/8)))
+            bounds = tile.getchannel('A').point(lambda x: 255 if x > 32 else 0).getbbox()
+            if not bounds: raise ValueError(f'Empty frame {character}:{row}:{col}')
+            tiles.append(tile.crop(bounds))
+    # One scale for the entire actor, including its widest pose. Feet share a pivot.
+    scale = min(224/max(t.width for t in tiles), 224/max(t.height for t in tiles))
+    atlas = Image.new('RGBA', (1024, 2048))
+    for i,tile in enumerate(tiles):
+        tile = tile.resize((round(tile.width*scale), round(tile.height*scale)), Image.Resampling.LANCZOS)
+        atlas.alpha_composite(tile, ((i%4)*256+(256-tile.width)//2, (i//4)*256+240-tile.height))
+    path = OUT / f'{character}.webp'
+    atlas.save(path, 'WEBP', quality=88, method=6)
+    # Pixel-sized combat variant: same poses/identity and shared pivot, no duplicate design.
+    atlas.resize((256,512), Image.Resampling.NEAREST).save(OUT / f'{character}-pixel.webp', 'WEBP', lossless=True, method=6)
+    for suffix,size,pivot in [('',256,240),('-pixel',64,60)]:
+        frames[f'starter-{character}{suffix}'] = {'path': f'/assets/characters/starters590/{character}{suffix}.webp', 'width':size*4,'height':size*8,'rows': [{'height':size,'frames': [[i%4*size,i//4*size,size,size,size//2,pivot] for i in range(32)]}]}
+    report.append({'id':character,'frames':32,'states':8,'bytes':path.stat().st_size,'sourceSize':source.size})
+source=Image.open(SOURCE/'village.png').convert('RGBA')
+atlas=Image.new('RGBA',(768,448))
+for row in range(7):
+    tiles=[]
+    for col in range(12):
+        t=source.crop((round(col*source.width/12),round(row*source.height/7),round((col+1)*source.width/12),round((row+1)*source.height/7)))
+        bounds=t.getchannel('A').point(lambda x:255 if x>32 else 0).getbbox()
+        if not bounds: raise ValueError(f'Empty village pose {row}:{col}')
+        tiles.append(t.crop(bounds))
+    scale=min(56/max(t.width for t in tiles),57/max(t.height for t in tiles))
+    for col,t in enumerate(tiles):
+        t=t.resize((max(1,round(t.width*scale)),max(1,round(t.height*scale))),Image.Resampling.NEAREST)
+        atlas.alpha_composite(t,(col*64+(64-t.width)//2,row*64+60-t.height))
+atlas.save(OUT/'village-pixel.webp','WEBP',lossless=True,method=6)
+(ROOT/'src/game/autochess/spriteFrames.json').write_text(json.dumps(frames,separators=(',',':'))+'\n')
+print(json.dumps(report,ensure_ascii=False))

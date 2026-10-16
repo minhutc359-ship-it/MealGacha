@@ -1,0 +1,41 @@
+{
+  "createdOn": "2026-10-16",
+  "tool": "built-in image_gen.imagegen",
+  "reference": "Existing project spirit510 portraits; current identities preserved. No external game art.",
+  "packing": "dev/tools/pack-starters590.py. Uniform 256px battle cells; 64px pixel derivatives; foot pivot 128,240 / 32,60. Pixel variants are downsampled pose atlases, not separately hand-pixeled character art.",
+  "prompts": [
+    {
+      "id": "com-tam",
+      "prompt": "Production identity-preserving 2.5D anime RPG chibi sprite sheet. Exact 4 columns × 8 rows; row order idle, walk, attack, cast, ultimate, hit, death, victory; four poses each; constant scale and foot pivot; transparent background; three-quarter right. Preserve the original spirit portrait species, face, palette, jade jewelry and clothing. White lion guardian, golden mane, bronze heavy armor, red sash, jade ornaments, round bronze shield and ladle mace. Heavy stride, mace impact, shield planting, shield slam, proud roar."
+    },
+    {
+      "id": "banh-mi",
+      "prompt": "Production identity-preserving 2.5D anime RPG chibi sprite sheet. Exact 4 columns × 8 rows; row order idle, walk, attack, cast, ultimate, hit, death, victory; four poses each; constant scale and foot pivot; transparent background; three-quarter right. Preserve the original spirit portrait species, face, palette, jade jewelry and clothing. Red fox duelist, orange fur, white muzzle, red scarf, fitted bronze armor, jade crescent pendant, twin sabers. Nimble stride, crossing saber slash, forward lunge, playful salute."
+    },
+    {
+      "id": "pho-bo",
+      "prompt": "Production identity-preserving 2.5D anime RPG chibi sprite sheet. Exact 4 columns × 8 rows; row order idle, walk, attack, cast, ultimate, hit, death, victory; four poses each; constant scale and foot pivot; transparent background; three-quarter right. Preserve the original spirit portrait species, face, palette, jade jewelry and clothing. White eastern dragon mage, teal scales, white whiskers, golden antlers, jade robe, long staff. Calm stride, staff thrust, water casting, circular staff windup, decisive forward release, bow."
+    },
+    {
+      "id": "banh-cuon",
+      "prompt": "Production identity-preserving 2.5D anime RPG chibi sprite sheet. Exact 4 columns × 8 rows; row order idle, walk, attack, cast, ultimate, hit, death, victory; four poses each; constant scale and foot pivot; transparent background; three-quarter right. Preserve the original spirit portrait species, face, palette, jade jewelry and clothing. White rabbit healer, long ears, white flowers, ivory green robes, jade brooch, pale silk ribbon and bamboo fan. Light steps, fan flick, ribbon release, open arm blessing, curtsy."
+    },
+    {
+      "id": "goi-cuon-tom-thit",
+      "prompt": "Production identity-preserving 2.5D anime RPG chibi sprite sheet. Exact 4 columns × 8 rows; row order idle, walk, attack, cast, ultimate, hit, death, victory; four poses each; constant scale and foot pivot; transparent background; three-quarter right. Preserve the original spirit portrait species, face, palette, jade jewelry and clothing. White deer druid, golden antlers with leaves and blossoms, ivory green robes, jade pendant, forked wooden staff. Grounded walk, staff tap, leaf blessing, staff planted, antler blessing, staff salute."
+    },
+    {
+      "id": "village",
+      "prompt": "Use case: stylized-concept. Production ORIGINAL PIXEL ART RPG OVERWORLD WALKING SPRITE ATLAS for Soul of Meal. TRUE crisp chunky pixel art, limited palette, small SNES-era character proportions 2.5 heads tall, top-down 3/4 overhead view to walk on a village map. NO HD chibi painting, NO smooth gradients, NO antialiasing, NO text no labels no lines no scenery. Transparent background. EXACT regular grid: 12 COLUMNS and 7 ROWS, landscape 1536 x 896. Each cell 128x128, one full body centered with feet at y110 in each cell, generous transparent gutter, all sprites constant size (~75px tall). EACH ROW is ONE character, twelve frames: columns1-3 face DOWN (left leg, standing, right leg), cols4-6 face LEFT (left leg,standing,right leg), cols7-9 face RIGHT, cols10-12 face UP (back view). Never alter character identity across views, keep walk step distinct. ROW1: young Vietnamese female adventurer, long dark brown ponytail, teal short scarf, cream shirt, brown crossbody apron/trousers, little boots. ROW2: Lả young Vietnamese woman dark straight shoulder length hair, dark teal long tunic and maroon trousers. ROW3: Chú Tâm middle aged cheerful Vietnamese male merchant short black hair, white rolled sleeve shirt, moss green apron, dark trousers, moustache. ROW4: Bà Sen elderly Vietnamese lady with silver bun, pale cream tunic, brown apron and trousers. ROW5: Bách stout warm brown bearded Vietnamese cook guardian in yellow-brown layered cloth, bronze round shield and wooden ladle. ROW6: Lửa Nhỏ tiny friendly golden orange flame spirit creature (living flame with eyes and small feet), walking bob; no humanoid costume. ROW7: Lam Lam tiny blue serpentine dragon creature, cyan mane, white belly, short legs, gold little horns and curled tail. Rows6/7 same cell but creatures slightly smaller than humans. Match the seven identities with one coherent pixel aesthetic; separated pixels on transparent alpha, no glow haze."
+    }
+  ],
+  "retained": "All original TCG spirit portraits and skills/ultimate gameplay recipes. Existing source artwork remains in Git history.",
+  "retiredMovies": [
+    "/assets/rpg/awakening530/movies/com-tam.mp4",
+    "/assets/rpg/awakening530/movies/banh-mi.mp4",
+    "/assets/rpg/awakening530/movies/pho-bo.mp4",
+    "/assets/rpg/awakening530/movies/banh-cuon.mp4",
+    "/assets/rpg/awakening530/movies/goi-cuon-tom-thit.mp4"
+  ],
+  "rendering": "Each starter now has a native 2400ms cinematic with five ordered phases. Non-starters use either their video OR fallback art; those layers are mutually exclusive."
+}

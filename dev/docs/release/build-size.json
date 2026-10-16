@@ -1,21 +1,21 @@
 {
   "staticBudgetBytes": 260000000,
   "jsGzipBudgetBytes": 675000,
-  "version": "5.8.0",
-  "bytes": 259775197,
-  "files": 672,
+  "version": "5.9.0",
+  "bytes": 256942218,
+  "files": 677,
   "byType": {
     "js": {
       "files": 55,
-      "bytes": 2076305
+      "bytes": 2099109
     },
     "css": {
       "files": 9,
-      "bytes": 494458
+      "bytes": 498685
     },
     "webp": {
-      "files": 291,
-      "bytes": 64017692
+      "files": 301,
+      "bytes": 67586102
     },
     "png": {
       "files": 3,
@@ -30,8 +30,8 @@
       "bytes": 10834115
     },
     "mp4": {
-      "files": 139,
-      "bytes": 181753360
+      "files": 134,
+      "bytes": 175324940
     },
     "json": {
       "files": 1,
@@ -59,24 +59,20 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2570763,
+    "Application JS/CSS": 2597794,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
-    "Shared character atlases": 9061632,
+    "Shared character atlases": 14870508,
     "Event art": 2016822,
     "Other and legal": 13024114,
     "Food art": 7490462,
     "Adventure presentation art": 1400332,
-    "Spirit RPG art/audio/video": 201977964,
+    "Spirit RPG art/audio/video": 193309078,
     "TCG art/audio": 17978292
   },
-  "js_gzip": 670762,
-  "css_gzip": 103343,
+  "js_gzip": 673875,
+  "css_gzip": 104098,
   "largest": [
-    {
-      "path": "assets/rpg/campaign580/battle-ceremony.webp",
-      "bytes": 2240466
-    },
     {
       "path": "assets/rpg/campaign580/campaignB.webp",
       "bytes": 2223544
@@ -120,14 +116,11 @@
     {
       "path": "assets/rpg/awakening530/movies/bun-cha.mp4",
       "bytes": 1506337
+    },
+    {
+      "path": "assets/rpg/awakening530/movies/caravan-herbalist.mp4",
+      "bytes": 1485982
     }
   ],
-  "leaks": [],
-  "visualUpdate": {
-    "baselineBytes": 88153474,
-    "additionalBudgetBytes": 172000000,
-    "reason": "Web 5.8 replaces 139 low-resolution ultimate clips with high-detail 1280 x 720 H.264 video encoded from lossless frames and adds four campaigns, supplied battle/village art, and 13 original music themes.",
-    "addedBytes": 171621723,
-    "remainingBytes": 378277
-  }
+  "leaks": []
 }

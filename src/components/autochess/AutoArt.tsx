@@ -25,7 +25,7 @@ export function AutoPortrait({
   label?: string
 }) {
   const model = !npc && AUTO_UNITS[index] ? unitCharacter(AUTO_UNITS[index].id) : null
-  if (model?.sheet.startsWith("roster")) {
+  if (model && (model.sheet.startsWith("roster") || model.sheet.startsWith("starter-"))) {
     const sheet = SPRITE_SHEETS[model.sheet]
     const [x,y,width,height] = sheet.rows[model.row].frames[0]
     const fit = 100 / Math.max(width, height)

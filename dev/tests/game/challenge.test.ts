@@ -119,7 +119,7 @@ describe("recognizable shared models and mirrored fitting", () => {
       }
     }
     for (const id of ["com-tam","banh-mi","pho-bo","banh-cuon","xoi"]) {
-      const model=unitCharacter(id);expect(model.sheet).toBe("battleHd");expect(characterBounds(model)!.row.frames[0][3]).toBeGreaterThanOrEqual(270)
+      const model=unitCharacter(id);expect(model.sheet).toBe(id === "xoi" ? "battleHd" : `starter-${id}`);expect(characterBounds(model)!.row.frames[0][3]).toBeGreaterThanOrEqual(id === "xoi" ? 270 : 256)
     }
   })
 })

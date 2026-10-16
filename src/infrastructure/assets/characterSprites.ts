@@ -1,3 +1,4 @@
+import { spiritArt } from "../../game/adventureRpg/spiritArt"
 import { renderIsLight, sampleRenderFrame, resetRenderSampling } from "../presentation/renderQuality"
 import { SPRITE_SHEETS } from "../../game/autochess/presentation"
 import { UNIT_MAP, MONSTER_MAP } from "../../game/autochess/catalog"
@@ -13,6 +14,12 @@ export interface CharacterModel {
 }
 
 export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
+  "com-tam": ["starter-com-tam", 0],
+  "banh-mi": ["starter-banh-mi", 0],
+  "pho-bo": ["starter-pho-bo", 0],
+  "banh-cuon": ["starter-banh-cuon", 0],
+  "goi-cuon-tom-thit": ["starter-goi-cuon-tom-thit", 0],
+  "goi-cuon": ["starter-goi-cuon-tom-thit", 0],
   "village-hero": ["villageParty", 0],
   "village-flame": ["villageParty", 1],
   "village-dragon": ["villageParty", 2],
@@ -25,10 +32,6 @@ export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
   "bun-cha": ["living-bun-cha", 0],
   "bun-rieu": ["living-bun-rieu", 0],
   "banh-xeo": ["living-banh-xeo", 0],
-  "com-tam": ["battleHd", 0],
-  "banh-mi": ["battleHd", 1],
-  "pho-bo": ["battleHd", 2],
-  "banh-cuon": ["battleHd", 3],
   xoi: ["battleHd", 4],
   "com-ga": ["living-com-ga", 0],
   "banh-chung": ["rosterD", 0],
@@ -80,6 +83,13 @@ export function monsterCharacter(id: string): CharacterModel {
   const def = MONSTER_MAP[id]
   const [sheet, row] = ENEMY_MODELS[id] ?? ["enemy", def.sprite]
   return { sheet, row, id, name: def.name }
+}
+/** A character without an authored model keeps its own artwork, never a different hero. */
+export function spiritCharacter(id: string, name = id): CharacterModel | null {
+  const art=spiritArt(id)
+  if(!art)return null
+  const sheet=`portrait-${art.path.match(/portraits-(\d+)/)![1]}` as CharacterSheet
+  return {sheet,row:art.cell,id,name}
 }
 export function unitCharacter(id: string): CharacterModel {
   const unit = UNIT_MAP[id],

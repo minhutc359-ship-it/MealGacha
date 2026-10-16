@@ -1,0 +1,209 @@
+{
+  "atlases": [
+    {
+      "path": "assets/characters/starters590/banh-cuon.webp",
+      "bytes": 825628,
+      "size": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "nonEmptyFrames": 32,
+      "uniqueFrames": 32,
+      "sha256": "287a6f9ea16fb0f2eecc9e4732bc17942d4f10fd1ada89e3e4500c45402cd968"
+    },
+    {
+      "path": "assets/characters/starters590/com-tam.webp",
+      "bytes": 869274,
+      "size": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "nonEmptyFrames": 32,
+      "uniqueFrames": 32,
+      "sha256": "55cb668a337902f16abe2fec41c5c5eb7a5b8a89b5f9072350e406361e92bf45"
+    },
+    {
+      "path": "assets/characters/starters590/goi-cuon-tom-thit-pixel.webp",
+      "bytes": 184304,
+      "size": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "nonEmptyFrames": 32,
+      "uniqueFrames": 32,
+      "sha256": "a20b268e027e3cf5cf47881773683cfa864cfdd519d16dc48549e57cdaf3f02b"
+    },
+    {
+      "path": "assets/characters/starters590/banh-cuon-pixel.webp",
+      "bytes": 165838,
+      "size": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "nonEmptyFrames": 32,
+      "uniqueFrames": 32,
+      "sha256": "d1878a3e5139cd799f1fc6cd9f936f1d426ddcc342c852e44d4f5205ad863cce"
+    },
+    {
+      "path": "assets/characters/starters590/pho-bo.webp",
+      "bytes": 998102,
+      "size": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "nonEmptyFrames": 32,
+      "uniqueFrames": 32,
+      "sha256": "e30874a3626fcb19fd6ff3e32fa2e93dc27fa9b169ddd8f5812ab690aec9fe6d"
+    },
+    {
+      "path": "assets/characters/starters590/goi-cuon-tom-thit.webp",
+      "bytes": 1002666,
+      "size": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "nonEmptyFrames": 32,
+      "uniqueFrames": 32,
+      "sha256": "45bbfabda30bb888a9ad141db914cebcede5db68f8af21cd9488ba7b30482e49"
+    },
+    {
+      "path": "assets/characters/starters590/banh-mi-pixel.webp",
+      "bytes": 173530,
+      "size": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "nonEmptyFrames": 32,
+      "uniqueFrames": 32,
+      "sha256": "da23bc273405d8e1130fb3ea544cf82ac46e772cdfa7fffc42ff056c4573ed4e"
+    },
+    {
+      "path": "assets/characters/starters590/village-pixel.webp",
+      "bytes": 347736,
+      "size": [
+        768,
+        448
+      ],
+      "frames": 84,
+      "nonEmptyFrames": 84,
+      "uniqueFrames": 84,
+      "sha256": "efbaf0a0fa33ab9305c6a4c54517bf83a83bf6005a51cf0f3250f16d28e47612"
+    },
+    {
+      "path": "assets/characters/starters590/com-tam-pixel.webp",
+      "bytes": 185332,
+      "size": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "nonEmptyFrames": 32,
+      "uniqueFrames": 32,
+      "sha256": "493225cd37c985fa369fc265e884d1047c586d81c722877b21e02def7b8c2a22"
+    },
+    {
+      "path": "assets/characters/starters590/pho-bo-pixel.webp",
+      "bytes": 189510,
+      "size": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "nonEmptyFrames": 32,
+      "uniqueFrames": 32,
+      "sha256": "815d3df6e44a27529b16f9e9f84923cb4fb19c72281c68b2486e7a91e1b9c91c"
+    },
+    {
+      "path": "assets/characters/starters590/banh-mi.webp",
+      "bytes": 866956,
+      "size": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "nonEmptyFrames": 32,
+      "uniqueFrames": 32,
+      "sha256": "2f045c0e9fb660869c8ccbdc01a93bfff58a2adbcbbd6fe6be03b7ef2c90c0a3"
+    }
+  ],
+  "totalNewAtlasBytes": 5808876,
+  "sounds": [
+    {
+      "id": "com-tam",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "24000",
+          "channels": 1
+        }
+      ],
+      "format": {
+        "duration": "2.448000"
+      }
+    },
+    {
+      "id": "banh-mi",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "24000",
+          "channels": 1
+        }
+      ],
+      "format": {
+        "duration": "2.448000"
+      }
+    },
+    {
+      "id": "pho-bo",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "24000",
+          "channels": 1
+        }
+      ],
+      "format": {
+        "duration": "2.448000"
+      }
+    },
+    {
+      "id": "banh-cuon",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "24000",
+          "channels": 1
+        }
+      ],
+      "format": {
+        "duration": "2.448000"
+      }
+    },
+    {
+      "id": "goi-cuon-tom-thit",
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "24000",
+          "channels": 1
+        }
+      ],
+      "format": {
+        "duration": "2.448000"
+      }
+    }
+  ]
+}

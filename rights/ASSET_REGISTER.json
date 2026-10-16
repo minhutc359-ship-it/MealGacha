@@ -1,5 +1,5 @@
 {
-  "version": "5.8.0",
+  "version": "5.9.0",
   "generatedOn": "2026-10-15",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -224,6 +224,127 @@
         "dev/docs/challenge-v322/prompts.json",
         "dev/docs/market-v331/atlas-prompts.json",
         "dev/tools/register-market-atlases.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/banh-cuon-pixel.webp",
+      "bytes": 165838,
+      "sha256": "d1878a3e5139cd799f1fc6cd9f936f1d426ddcc342c852e44d4f5205ad863cce",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/banh-cuon.webp",
+      "bytes": 825628,
+      "sha256": "287a6f9ea16fb0f2eecc9e4732bc17942d4f10fd1ada89e3e4500c45402cd968",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/banh-mi-pixel.webp",
+      "bytes": 173530,
+      "sha256": "da23bc273405d8e1130fb3ea544cf82ac46e772cdfa7fffc42ff056c4573ed4e",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/banh-mi.webp",
+      "bytes": 866956,
+      "sha256": "2f045c0e9fb660869c8ccbdc01a93bfff58a2adbcbbd6fe6be03b7ef2c90c0a3",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/com-tam-pixel.webp",
+      "bytes": 185332,
+      "sha256": "493225cd37c985fa369fc265e884d1047c586d81c722877b21e02def7b8c2a22",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/com-tam.webp",
+      "bytes": 869274,
+      "sha256": "55cb668a337902f16abe2fec41c5c5eb7a5b8a89b5f9072350e406361e92bf45",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/goi-cuon-tom-thit-pixel.webp",
+      "bytes": 184304,
+      "sha256": "a20b268e027e3cf5cf47881773683cfa864cfdd519d16dc48549e57cdaf3f02b",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/goi-cuon-tom-thit.webp",
+      "bytes": 1002666,
+      "sha256": "45bbfabda30bb888a9ad141db914cebcede5db68f8af21cd9488ba7b30482e49",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/pho-bo-pixel.webp",
+      "bytes": 189510,
+      "sha256": "815d3df6e44a27529b16f9e9f84923cb4fb19c72281c68b2486e7a91e1b9c91c",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/pho-bo.webp",
+      "bytes": 998102,
+      "sha256": "e30874a3626fcb19fd6ff3e32fa2e93dc27fa9b169ddd8f5812ab690aec9fe6d",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/starters590/village-pixel.webp",
+      "bytes": 347736,
+      "sha256": "efbaf0a0fa33ab9305c6a4c54517bf83a83bf6005a51cf0f3250f16d28e47612",
+      "origin": "Original AI-assisted identity-preserving starter poses and pixel village atlas generated with built-in Imagegen; normalized cells and feet pivots",
+      "evidence": [
+        "dev/docs/web-v590/artwork.json",
+        "dev/tools/pack-starters590.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2192,19 +2313,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/banh-cuon.mp4",
-      "bytes": 1215674,
-      "sha256": "9eea7c506e010d132952576fad20199d189071181946ff4bb0cdd12115deb321",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/banh-da-cua.mp4",
       "bytes": 1473793,
       "sha256": "63bdde5321940a2430c9c5f7345c61ec2662916ab93df4a873189d00f0be0f25",
@@ -2247,19 +2355,6 @@
       "path": "public/assets/rpg/awakening530/movies/banh-khuc.mp4",
       "bytes": 1318384,
       "sha256": "da5902315958c0b98f4a1688fac3b565226e4182b42eb459485bdaaac1daca95",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/banh-mi.mp4",
-      "bytes": 1278410,
-      "sha256": "c4d317c6856b5c47095124fc513445e72d72416763a15cd0b24117c82e6fade2",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -2972,19 +3067,6 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
-      "path": "public/assets/rpg/awakening530/movies/com-tam.mp4",
-      "bytes": 1344522,
-      "sha256": "3340d11a8e14c9b0527518d4125ad2dfaac31cd6d2d182b438393934b068b9ec",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
       "path": "public/assets/rpg/awakening530/movies/croissant.mp4",
       "bytes": 1292009,
       "sha256": "3e4c1ac6ac504d9c6dba36ee892460b5451acd6bf97a26fe31fa9b285e0fafa7",
@@ -3092,19 +3174,6 @@
       "path": "public/assets/rpg/awakening530/movies/gio-xao.mp4",
       "bytes": 1045035,
       "sha256": "73fb53e6d4023bbc3a01da0aefa317eaaaabbd48b8bce54cc8a38efbd1f46a7d",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/goi-cuon-tom-thit.mp4",
-      "bytes": 1273902,
-      "sha256": "e648f793f42533b0e8df18d0cae6927d7b7919e2a1e78fd41fcedceb398c0403",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -3534,19 +3603,6 @@
       "path": "public/assets/rpg/awakening530/movies/peking-duck.mp4",
       "bytes": 1378331,
       "sha256": "feb8e9dc167d841f7deed317c1f13e11ced548ff92f4a4e9777d02d8f082c888",
-      "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
-      "evidence": [
-        "dev/docs/web-v530/artwork.json",
-        "dev/docs/web-v530/movie-manifest.json",
-        "dev/tools/render-spirit530.ts",
-        "dev/tools/build-spirit-movies530.mjs"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/awakening530/movies/pho-bo.mp4",
-      "bytes": 1315912,
-      "sha256": "f64f3f36f862e100e714320d2361f7a451110f91c77d3330de3f5d256fcdbfb3",
       "origin": "Original code-composed spirit cinematics using existing project portraits/poses and original AI-assisted environment/sigil art",
       "evidence": [
         "dev/docs/web-v530/artwork.json",
@@ -4003,7 +4059,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/banh-cuon.mp3",
       "bytes": 10029,
-      "sha256": "66ec75ce85b6ec9b317954e569035983c22de7c3c0ce2b17ab23bbaef6a2b35f",
+      "sha256": "c6ea04700f202ef1e2a1fa8f7b27714ee2647c4c6f66c90f4ad11f4635ca24de",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4058,7 +4114,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/banh-mi.mp3",
       "bytes": 10029,
-      "sha256": "62a277c6b624792d58f17b3ba47cf71716fa8c49b7cefa3dc30a3299a28d9054",
+      "sha256": "32745da78fee1888e9229dc523df5226a63ddd7b0a0338494b461db150e47288",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4663,7 +4719,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/com-tam.mp3",
       "bytes": 10029,
-      "sha256": "22618780b5dd333d69d9539d84d857fb864c9626231cbf9b58ae65d070105ae1",
+      "sha256": "fc1381802bbb555b229df19897898817e7a4db47d88b43a616946782823f0802",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -4773,7 +4829,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/goi-cuon-tom-thit.mp3",
       "bytes": 10029,
-      "sha256": "07ed94f834998b4824208b8276a9e17023d1cd59529b01eec11884a8697ffa39",
+      "sha256": "0f43fd176479cc6977901f7d24d49de311f0bdf04ca8081f812be6d1a121e346",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -5147,7 +5203,7 @@
     {
       "path": "public/assets/rpg/awakening530/sounds/pho-bo.mp3",
       "bytes": 10029,
-      "sha256": "88311a08d99a8aeb71feb9bfdbaa22d69e01c73c4904852077e7a73329512353",
+      "sha256": "dca9e7c571c1becf7bb2d77baf7969af9fba67b6007ed8856133f3435d1c14ec",
       "origin": "Original procedural character leitmotifs and synthetic effects without external samples",
       "evidence": [
         "dev/tools/compose-spirit530.py",
@@ -5489,17 +5545,6 @@
       "path": "public/assets/rpg/campaign580/aroma-palace.webp",
       "bytes": 378524,
       "sha256": "3b9c7cf2e47ccc90b242d57dd81a1e7b9b11bff243080b460c930d31b97bd355",
-      "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
-      "evidence": [
-        "dev/docs/web-v580/art-assets.json",
-        "dev/tools/prepare-campaign580-assets.py"
-      ],
-      "review": "recorded-project-provenance; owner-verification-before-transfer"
-    },
-    {
-      "path": "public/assets/rpg/campaign580/battle-ceremony.webp",
-      "bytes": 2240466,
-      "sha256": "041a45bc25e001a4aeafc1b52745b0132296f705edc28a64c73d4cb93dcee3a9",
       "origin": "Project-owner supplied original Web 5.8 campaign, enemy and ceremony art, transformed into runtime atlases",
       "evidence": [
         "dev/docs/web-v580/art-assets.json",

@@ -7,21 +7,26 @@ export function VillageWalker({
   moving = false,
   quiet = false,
 }: {
-  id?: "hero" | "la" | "merchant" | "grandmother"
+  id?: "hero" | "la" | "merchant" | "grandmother" | "bach" | "flame" | "dragon"
   direction?: VillageFacing
   moving?: boolean
   quiet?: boolean
 }) {
-  const rows = { down: 0, left: 1, right: 2, up: 3 }
+  const column = { down: 0, left: 3, right: 6, up: 9 }[direction]
+  const row = {hero:0,la:1,merchant:2,grandmother:3,bach:4,flame:5,dragon:6}[id]
   return (
     <span
       className={`village-walker ${moving && !quiet ? "is-walking" : ""}`}
       data-facing={direction}
+      data-pixel-character={id}
       aria-hidden="true"
       style={
         {
-          backgroundImage: `url(/assets/rpg/village583/${id}.webp)`,
-          "--facing-row": `${(rows[direction] * 100) / 3}%`,
+          backgroundImage: "url(/assets/characters/starters590/village-pixel.webp)",
+          backgroundPositionY: `${row * 100 / 6}%`,
+          "--step-a": `${column*100/11}%`,
+          "--step-b": `${(column+1)*100/11}%`,
+          "--step-c": `${(column+2)*100/11}%`,
         } as CSSProperties
       }
     />

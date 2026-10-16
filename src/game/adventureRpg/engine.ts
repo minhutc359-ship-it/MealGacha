@@ -1,3 +1,4 @@
+import { STARTER_CHARACTER_IDS } from "../starterCharacters"
 import { awakeningSkills, awakenedKit, RARITY_POWER, type SpiritSkillDetails } from "./awakening"
 import { castAwakened, awakeningDamageFactor, awakeningAttack, awakeningTick } from "./awakeningCombat"
 import { SPIRIT_RARITY, SPIRIT_THRESHOLDS } from "../../domain/spiritSummons"
@@ -29,13 +30,7 @@ export const RPG_ROLE_NAMES: Record<RpgRole, string> = {
   healer: "Hồi phục",
   trickster: "Khống chế",
 }
-const STARTERS = [
-  "com-tam",
-  "banh-mi",
-  "pho-bo",
-  "banh-cuon",
-  "goi-cuon-tom-thit",
-]
+const STARTERS: readonly string[] = STARTER_CHARACTER_IDS
 const ENEMIES: Record<School, string[]> = {
   hearth: ["ink-crab", "rival-ladle"],
   ember: ["char-hound", "rival-flute"],

@@ -37,8 +37,9 @@ export function VillageParty({
     >
       {PARTY.map(([id, className]) => (
         <span className={`village-party-actor ${className}`} key={id}>
-          {directional && className === "leader" ? (
+          {directional ? (
             <VillageWalker
+              id={className === "leader" ? "hero" : className === "companion-one" ? "flame" : "dragon"}
               direction={direction}
               moving={moving}
               quiet={quiet}
