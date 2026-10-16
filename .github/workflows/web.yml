@@ -26,7 +26,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck && pnpm typecheck:dev && pnpm test && pnpm validate:catalog
-      - run: node --test dev/tests/release-guard.test.mjs
+      - run: node --test dev/tests/release-guard.test.mjs dev/tests/web-budget.test.mjs
       - run: pnpm validate:assets && pnpm release:verify && pnpm build && pnpm release:size && pnpm release:rights
       - run: node --check dist/sw.js
       - uses: actions/upload-artifact@v4

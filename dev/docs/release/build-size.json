@@ -1,13 +1,14 @@
 {
-  "staticBudgetBytes": 260000000,
+  "staticBudgetBytes": 320000000,
+  "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
   "version": "5.9.1",
-  "bytes": 255361946,
+  "bytes": 255361476,
   "files": 679,
   "byType": {
     "js": {
       "files": 55,
-      "bytes": 2092631
+      "bytes": 2092161
     },
     "css": {
       "files": 9,
@@ -59,7 +60,7 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2591374,
+    "Application JS/CSS": 2590904,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
     "Shared character atlases": 15783094,
@@ -70,7 +71,7 @@
     "Spirit RPG art/audio/video": 190822640,
     "TCG art/audio": 17978292
   },
-  "js_gzip": 674700,
+  "js_gzip": 674521,
   "css_gzip": 104109,
   "largest": [
     {
@@ -122,5 +123,21 @@
       "bytes": 1485982
     }
   ],
-  "leaks": []
+  "leaks": [],
+  "offlineShell": {
+    "bytes": 2889655,
+    "urls": 78,
+    "targetBytes": 8000000,
+    "limitBytes": 12000000,
+    "warning": false,
+    "exceeded": false,
+    "remainingBytes": 9110345
+  },
+  "budget": {
+    "targetBytes": 300000000,
+    "limitBytes": 320000000,
+    "warning": false,
+    "exceeded": false,
+    "remainingBytes": 64638524
+  }
 }
