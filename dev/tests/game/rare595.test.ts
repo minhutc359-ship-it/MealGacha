@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { RARE_IDS, RARE_ASSET_ROOT, RARE_SECOND_IDS, RARE_SECOND_ASSET_ROOT, characterVisual } from "@/game/characterVisuals"
+import { RARE_IDS, RARE_ASSET_ROOT, RARE_SECOND_IDS, RARE_SECOND_ASSET_ROOT, REGIONAL_IDS, REGIONAL_ASSET_ROOT, characterVisual } from "@/game/characterVisuals"
 import { unitCharacter, spiritCharacter } from "@/infrastructure/assets/characterSprites"
 import { tcgCharacter } from "@/game/tcgCharacterMotion"
 import { spiritArt } from "@/game/adventureRpg/spiritArt"
@@ -12,7 +12,8 @@ import { rpgContactMs } from "@/components/game/useRpgImpactFrame"
 describe.each([
   {ids:RARE_IDS,root:RARE_ASSET_ROOT},
   {ids:RARE_SECOND_IDS,root:RARE_SECOND_ASSET_ROOT},
-])("rare spirit production: $root", ({ids,root}) => {
+  {ids:REGIONAL_IDS,root:REGIONAL_ASSET_ROOT},
+])("shared spirit production: $root", ({ids,root}) => {
   it("keeps catalog identity and dedicated presentation across modes without aliasing another spirit", () => {
     const models=new Set(),portraits=new Set(),signatures=new Set()
     for(const id of ids) {

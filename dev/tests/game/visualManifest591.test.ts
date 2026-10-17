@@ -25,20 +25,21 @@ describe("visual production manifest 5.9.1", () => {
   it("keeps the five saved starter IDs and adds Xôi only to visual production", () => {
     const g=newGame(),s=newRpgSave(g)
     expect(s.formation.map(uid=>s.roster.find(h=>h.uid===uid)!.cardId)).toEqual(STARTER_CHARACTER_IDS)
-    expect(Object.keys(CHARACTER_VISUALS)).toHaveLength(23)
+    expect(Object.keys(CHARACTER_VISUALS)).toHaveLength(27)
     expect(characterVisual("goi-cuon")).toBe(characterVisual("goi-cuon-tom-thit"))
     expect(characterVisual("xoi")!.species).toBe("Gấu Nếp Mới")
     expect(characterVisual("classic-burger")).toBeUndefined()
     expect(characterVisual("__proto__")).toBeUndefined()
   })
-  it("resolves nineteen full HD/pixel atlases and portraits without sharing another identity", () => {
+  it("resolves all full HD/pixel atlases and portraits without sharing another identity", () => {
     const models = new Set<string>(), effects = new Set<string>()
     for (const [id,v] of Object.entries(CHARACTER_VISUALS)) {
       const m=tcgCharacter(CARD_MAP[id])!
       expect(spiritCharacter(id)?.sheet).toBe(v.sheet)
       expect(m).toEqual(unitCharacter(id));expect(m.sheet).toBe(v.sheet)
-      models.add(`${m.sheet}:${m.row}`);effects.add(`${v.effect.path}:${v.effect.column}`)
-      expect(existsSync(`public${v.effect.path}`)).toBe(true)
+      models.add(`${m.sheet}:${m.row}`)
+      if(v.effect){effects.add(`${v.effect.path}:${v.effect.column}`);expect(existsSync(`public${v.effect.path}`)).toBe(true)}
+      else effects.add(`procedural:${v.signature}`)
       for(const sheet of [v.sheet,v.pixelSheet]) {
         const data=SPRITE_SHEETS[sheet]
         expect(existsSync(`public${data.path}`)).toBe(true)
@@ -60,8 +61,8 @@ describe("visual production manifest 5.9.1", () => {
       expect(starterPose(id,"cast",v.contact.cast,false,v.contact.cast)).toBe(14)
       expect(starterPose(id,"fall",3000,true)).toBe(27)
     }
-    expect(effects.size).toBe(23)
-    expect(models.size).toBe(23);expect(TCG_IMPACT_MS).toBe(VISUAL_CONTACT.tcg)
+    expect(effects.size).toBe(27)
+    expect(models.size).toBe(27);expect(TCG_IMPACT_MS).toBe(VISUAL_CONTACT.tcg)
   })
   it("binds presentation deltas to their own source/tick, including multi-hit ultimates", () => {
     const events=[
@@ -87,7 +88,7 @@ describe("visual production manifest 5.9.1", () => {
       expect(geometry(id,"skill",0,true)).toEqual([])
       skills.push(JSON.stringify(skill))
     }
-    expect(new Set(skills).size).toBe(23)
+    expect(new Set(skills).size).toBe(27)
   })
   it("reloads Xôi's committed cast without changing collection, damage or rewards on double skip", () => {
     const g=newGame();let s=newRpgSave(g)

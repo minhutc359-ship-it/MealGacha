@@ -67,3 +67,6 @@ dev/docs/web-v598/modes-*/showcase-manifest.json
 
 !dev/docs/web-v599/evidence/*.webp
 dev/docs/web-v599/modes-*/showcase-manifest.json
+
+!dev/docs/web-v5910/evidence/*.webp
+dev/docs/web-v5910/*-focus-qa.json

@@ -1,5 +1,5 @@
 {
-  "version": "5.9.9",
+  "version": "5.9.10",
   "generatedOn": "2026-10-15",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -1812,6 +1812,150 @@
         "dev/docs/web-v596/civet-repairs.json",
         "dev/tools/pack-starters590.py",
         "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/banh-tet-pixel.webp",
+      "bytes": 134452,
+      "sha256": "f64a89bf9633626491a8a1748ed468560947c9ec68cece362e4fdf76f2d48a1a",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/banh-tet-portrait.webp",
+      "bytes": 56940,
+      "sha256": "6f3c02b0e0ff7645ced36a368fbc9cd823ed7f54bfc40c2b6023f7a6eb6b6eff",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/banh-tet.webp",
+      "bytes": 515988,
+      "sha256": "1e6c0d8c25e04dae73726a9e51aeb472c1a930d73034f85a90e545b63efbe81c",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-bo-hue-pixel.webp",
+      "bytes": 110874,
+      "sha256": "f09d95bd064810e28788adc9230c060dbaa4c5036f892c46f68bcfc195394151",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-bo-hue-portrait.webp",
+      "bytes": 67266,
+      "sha256": "5e2e61528697ba82b9f82d28de227073ead33408decdf46b04c023c2c740f69b",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-bo-hue.webp",
+      "bytes": 504908,
+      "sha256": "2ca2ba0cd2b0a0fe2fdf8b0ee941e6cc837fa112fcd3f4c49a937f8397489d8e",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-ca-pixel.webp",
+      "bytes": 140902,
+      "sha256": "6d9a7f2baaf0665c7e4875061fd67daf8bd803e3ed72190f8889ba1ea626cf48",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-ca-portrait.webp",
+      "bytes": 76944,
+      "sha256": "546e67608705f84d23c4e96bb5c2f7fffe56f1c083da612b48ed93ea71059af0",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-ca.webp",
+      "bytes": 659642,
+      "sha256": "eeabef5e4861b08045a6a395acd13a3dceeefb5121c7d7a45efa1387c9755cc6",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/che-buoi-pixel.webp",
+      "bytes": 148716,
+      "sha256": "c413b30065c006efcf0ed15f6da11120c012160276e9b536c8318d9a71ca1618",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/che-buoi-portrait.webp",
+      "bytes": 55554,
+      "sha256": "b0b5144f747a0b0c52cb1c5ce5f42a09638068003c3230f6a32775f4b8adab36",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/che-buoi.webp",
+      "bytes": 556358,
+      "sha256": "e36af0b5ecff77a974bc43f845a5c8a000b385815e6c952d2d055e2af8e1f4b2",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
