@@ -1,5 +1,5 @@
 {
-  "version": "5.9.7",
+  "version": "5.9.10",
   "generatedOn": "2026-10-15",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -116,6 +116,534 @@
       "origin": "AI-assisted original brand; derivatives resized from project artwork",
       "evidence": [
         "dev/docs/branding/LOGO.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/aroma-conductor-pixel.webp",
+      "bytes": 118584,
+      "sha256": "fbdbfa5fa04150e114200214125047f8fe8bd0b199f40602b3d8f02e0ec2efe0",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/aroma-conductor-portrait.webp",
+      "bytes": 21282,
+      "sha256": "3192f51a37ba1126ddc12c3813159c76048808c923691c8b59cc6e4c4f40c015",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/aroma-conductor.webp",
+      "bytes": 622208,
+      "sha256": "74e4cb4d41d2537f898db70b641a9c44ed98302613191d8419e8e85b96d2d39f",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/aroma-regent-pixel.webp",
+      "bytes": 122382,
+      "sha256": "830b16d382bede15cc040ff25490445d8eb59c3116cd7e8aff4622c37a9c41c6",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/aroma-regent-portrait.webp",
+      "bytes": 21826,
+      "sha256": "1c413e4b5b48524b71cd25f6781abdd434f1792023e1e7752e7f6c6016a8f446",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/aroma-regent.webp",
+      "bytes": 578690,
+      "sha256": "630c05fe0726dd4b3e9857df18d78bcb7b57d8acb418879681f7a59997ecb967",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/cloud-teapot-pixel.webp",
+      "bytes": 111054,
+      "sha256": "5d584b09515ad547ded557af62a7a3063309eb84ad8fdccd28a0a674bf864fe4",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/cloud-teapot-portrait.webp",
+      "bytes": 15958,
+      "sha256": "cd6d567ac84d0680cb711889c6867ececcb844994d9d6b4c92f922fec4ac6dac",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/cloud-teapot.webp",
+      "bytes": 436010,
+      "sha256": "1aad42bd1ff8a03da93a07af91836695760b56b878efa68ea539704fe1693572",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/moon-heron-pixel.webp",
+      "bytes": 75334,
+      "sha256": "2f77decb3c3f53e4868d6074eb8f0e7fdc96a8e8f783078f685c2fdbbf674db6",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/moon-heron-portrait.webp",
+      "bytes": 15330,
+      "sha256": "ab6a7e71e8f89cb026609ce497434cd4fcad8b5d4d819bc69ee096f26a9deef3",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/moon-heron.webp",
+      "bytes": 413902,
+      "sha256": "1d9c625177bf4e70b0a33fc5a44014f3189ceec5e5e64c78eef5fbad737547ad",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/moon-priestess-pixel.webp",
+      "bytes": 106580,
+      "sha256": "7c8b3df7a9d8333fbbaa94a3bf363d352dee684f352d4cbe2c7a637370d211fe",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/moon-priestess-portrait.webp",
+      "bytes": 20194,
+      "sha256": "f9a4e018e2c32bdcfb94e618415ee1dfef00a97c94b8b5b30135b159e4c6970d",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/moon-priestess.webp",
+      "bytes": 528634,
+      "sha256": "1574549b9a3c649c9c357a06d2d9cb68e6714e33c878eb3ffd1de5b33660a0dd",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/salt-alchemist-pixel.webp",
+      "bytes": 97614,
+      "sha256": "dcf1bef71b264ed3ac3df07f8e4c7963eae9d778fc73a3152a70dbe2949b4f63",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/salt-alchemist-portrait.webp",
+      "bytes": 15758,
+      "sha256": "8c16d6b2d63b6a2271ee1dc4e75d4f92cab96d3276e35976c705728b8691e191",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/salt-alchemist.webp",
+      "bytes": 447184,
+      "sha256": "f59c73149968fd564fd3394d59200c82df937485fc705c7cac2c8b6f4059584e",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/salt-colossus-pixel.webp",
+      "bytes": 132834,
+      "sha256": "5d254e77317ac2327a5f2f0899d4dddf4f24dadbdcc010a0680c3efcf3dc347a",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/salt-colossus-portrait.webp",
+      "bytes": 20672,
+      "sha256": "24521e7aa65ed9240abcf6dd9a0054200e96cc4d46bed0471e9efbeeac8c1f05",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/salt-colossus.webp",
+      "bytes": 542916,
+      "sha256": "f1be21ac89c2d6b9b8797d0be94f89f283cf4694090dc45254a48b3f17de3dca",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/tea-oracle-pixel.webp",
+      "bytes": 139838,
+      "sha256": "352d78617c996ce1465e5b60f3c38c98f4bbef9c01ba324b430f0b0b6e73b0de",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/tea-oracle-portrait.webp",
+      "bytes": 21228,
+      "sha256": "000a4e6e5c545db88f8b81d2e010f720a9bb4aae51d2175e38fdae0c25a7b5c3",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign598/tea-oracle.webp",
+      "bytes": 609248,
+      "sha256": "e5975489e0ed683a9ab8611997dfaeba459946900ef8e0e65fd49f63d1a2d365",
+      "origin": "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v598/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/bronze-warden-pixel.webp",
+      "bytes": 110626,
+      "sha256": "f8f0c5772ef49e828606f03343695ddcd51d248a860655d06f90b4dc2ee054e5",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/bronze-warden-portrait.webp",
+      "bytes": 14280,
+      "sha256": "163971fccffe253d99391c6cab2cc0d8a7244598a72fb5598336e3efaaa31756",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/bronze-warden.webp",
+      "bytes": 463560,
+      "sha256": "95177d6ef56c00d9d331cfb56d1bbc9f46cb498447d4d8670c384dc6b89994de",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/jade-sentinel-pixel.webp",
+      "bytes": 66136,
+      "sha256": "415b2ce3299d3c071ab54440d03e1a99a672b045df69d2aa6972b1b9c26d1ba4",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/jade-sentinel-portrait.webp",
+      "bytes": 11616,
+      "sha256": "b4699ab17e352d3857b904d9633d700011bbcb4580b588a1cb073626b3f55427",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/jade-sentinel.webp",
+      "bytes": 322680,
+      "sha256": "9f995d8cdd3f80e39da0bfafb51668286ebdc0863978a9debe6f6463cf1cafef",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/kiln-knight-pixel.webp",
+      "bytes": 85544,
+      "sha256": "fb3891f44090f34197062749a807cb7f8765691c93f5b2978aa1b22b10173fc5",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/kiln-knight-portrait.webp",
+      "bytes": 12952,
+      "sha256": "fa5c6d9308ef2baa0235a4591a81e49aaa9bfd82d7ea3418aa66c0ff8bff749d",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/kiln-knight.webp",
+      "bytes": 380150,
+      "sha256": "750e6ca8f3758d50243503b0180075d02e538e9e478e35138f0647dc185d295e",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/lotus-mantis-pixel.webp",
+      "bytes": 70622,
+      "sha256": "fc6509aa8aa79126fcc4591bfb5d3cd19f41645cdac7d30f38a9928a8433b4c9",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/lotus-mantis-portrait.webp",
+      "bytes": 14708,
+      "sha256": "fc288c73fced3fb03650b1f67f9b5cc3717eb7206255440dd6e2b57f842e6c1f",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/lotus-mantis.webp",
+      "bytes": 395626,
+      "sha256": "7b02a0b5a086c97789af9ed17de367b935f62aa4956469c870df673c10d57c24",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/moon-jelly-pixel.webp",
+      "bytes": 95012,
+      "sha256": "0db2fb20fb2a676bd9025196ccd9a2db617733ccfc17c8a9b72682bcb70089f2",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/moon-jelly-portrait.webp",
+      "bytes": 15680,
+      "sha256": "e9fdff01cfc5c26df8fa49c891c76176b4fccb86846e49cb5f82acd543f6e486",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/moon-jelly.webp",
+      "bytes": 497876,
+      "sha256": "feb213dfc6aedc2e704be45fe007a1bca1118c1303fe66c568f1dcfbeedfeeb3",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/salt-scarab-pixel.webp",
+      "bytes": 66702,
+      "sha256": "e9d15ecdb29906919494b9fba8612bad4f420c7109501c8968e6a57a48bbddec",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/salt-scarab-portrait.webp",
+      "bytes": 10926,
+      "sha256": "2d66069c97c3dab2084946e3a039c3df9d079aeba05d1648e254eb33e0308c44",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/salt-scarab.webp",
+      "bytes": 337226,
+      "sha256": "2578b9ee7a4ee6a25887b37c7b3614ae20def94ddfe3ad2ced27295561817b87",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/spice-kite-pixel.webp",
+      "bytes": 70438,
+      "sha256": "7a42f1f15ae34a791ac07d1eaadeaf508cc4cf7956ae6648d6b9f814c587bc93",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/spice-kite-portrait.webp",
+      "bytes": 13160,
+      "sha256": "8cc015dd2583efe33fa2f936ae3425a3e78a32dbcbf4e518119569eb694d1814",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/spice-kite.webp",
+      "bytes": 414064,
+      "sha256": "ca9e8dc97d31077b405b898d69a0524b2715397b613df65285f01473bcd59256",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/tea-moth-pixel.webp",
+      "bytes": 129770,
+      "sha256": "f09289d63f898949110b87671311ba8f39c58053ebc3cbba08ed105b52f324e7",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/tea-moth-portrait.webp",
+      "bytes": 22792,
+      "sha256": "be36bc9fdc0ce1f2512342293f54d0718c31149a5d0b2b884e20952f8e2c59ee",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/campaign599/tea-moth.webp",
+      "bytes": 586622,
+      "sha256": "dee1f78671f97b91e47ca8a1d3373cab2ad77873872e84eea2757a7f76fd5e1f",
+      "origin": "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities",
+      "evidence": [
+        "dev/docs/web-v599/asset-provenance.json",
+        "dev/tools/pack-campaign598.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -1284,6 +1812,150 @@
         "dev/docs/web-v596/civet-repairs.json",
         "dev/tools/pack-starters590.py",
         "dev/tools/pack-rare595.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/banh-tet-pixel.webp",
+      "bytes": 134452,
+      "sha256": "f64a89bf9633626491a8a1748ed468560947c9ec68cece362e4fdf76f2d48a1a",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/banh-tet-portrait.webp",
+      "bytes": 56940,
+      "sha256": "6f3c02b0e0ff7645ced36a368fbc9cd823ed7f54bfc40c2b6023f7a6eb6b6eff",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/banh-tet.webp",
+      "bytes": 515988,
+      "sha256": "1e6c0d8c25e04dae73726a9e51aeb472c1a930d73034f85a90e545b63efbe81c",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-bo-hue-pixel.webp",
+      "bytes": 110874,
+      "sha256": "f09d95bd064810e28788adc9230c060dbaa4c5036f892c46f68bcfc195394151",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-bo-hue-portrait.webp",
+      "bytes": 67266,
+      "sha256": "5e2e61528697ba82b9f82d28de227073ead33408decdf46b04c023c2c740f69b",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-bo-hue.webp",
+      "bytes": 504908,
+      "sha256": "2ca2ba0cd2b0a0fe2fdf8b0ee941e6cc837fa112fcd3f4c49a937f8397489d8e",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-ca-pixel.webp",
+      "bytes": 140902,
+      "sha256": "6d9a7f2baaf0665c7e4875061fd67daf8bd803e3ed72190f8889ba1ea626cf48",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-ca-portrait.webp",
+      "bytes": 76944,
+      "sha256": "546e67608705f84d23c4e96bb5c2f7fffe56f1c083da612b48ed93ea71059af0",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/bun-ca.webp",
+      "bytes": 659642,
+      "sha256": "eeabef5e4861b08045a6a395acd13a3dceeefb5121c7d7a45efa1387c9755cc6",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/che-buoi-pixel.webp",
+      "bytes": 148716,
+      "sha256": "c413b30065c006efcf0ed15f6da11120c012160276e9b536c8318d9a71ca1618",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/che-buoi-portrait.webp",
+      "bytes": 55554,
+      "sha256": "b0b5144f747a0b0c52cb1c5ce5f42a09638068003c3230f6a32775f4b8adab36",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/regional5910/che-buoi.webp",
+      "bytes": 556358,
+      "sha256": "e36af0b5ecff77a974bc43f845a5c8a000b385815e6c952d2d055e2af8e1f4b2",
+      "origin": "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon",
+      "evidence": [
+        "dev/docs/web-v5910/asset-provenance.json",
+        "dev/docs/web-v5910/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

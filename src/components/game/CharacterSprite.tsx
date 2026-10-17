@@ -1,3 +1,4 @@
+import { enemyPose } from "../../game/enemyVisuals"
 import { starterPose } from "../../game/starterCharacters"
 import { blendPose, type PoseBlend } from "../../game/poseBlend"
 import { renderDpr, subscribeRenderQuality } from "../../infrastructure/presentation/renderQuality"
@@ -63,8 +64,8 @@ export const CharacterSprite = memo(function CharacterSprite({
       const current = age < delay ? lead ?? "idle" : motion
       const poseAge = age < delay ? age : age - delay
       const fresh = model.sheet !== "base"
-      const starter = model.sheet.startsWith("starter-")
-      const pose = model.sheet.startsWith("portrait-") ? 0 : starter ? starterPose(model.id,current,poseAge,quiet,contactMs) : model.sheet.startsWith("living-") ? livingClipFrame(current,poseAge,quiet) : characterPose(current, poseAge, fresh, quiet, model.sheet.startsWith("roster"))
+      const starter = model.sheet.startsWith("starter-") || model.sheet.startsWith("campaign-")
+      const pose = model.sheet.startsWith("portrait-") ? 0 : model.sheet.startsWith("campaign-") ? enemyPose(model.id,current,poseAge,quiet,contactMs) : starter ? starterPose(model.id,current,poseAge,quiet,contactMs) : model.sheet.startsWith("living-") ? livingClipFrame(current,poseAge,quiet) : characterPose(current, poseAge, fresh, quiet, model.sheet.startsWith("roster"))
       const frame = showcase ? [0, 0, image.naturalWidth, image.naturalHeight, image.naturalWidth / 2, image.naturalHeight] : bounds.row.frames[pose]
       const [sx, sy, sw, sh, ax, ay] = frame
       const scale = showcase ? Math.min(width * .94 / sw, height * .94 / sh) : Math.min(width * .86 / (bounds.right - bounds.left), height * .88 / (bounds.bottom - bounds.top))

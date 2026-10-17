@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-17",
+  "engine": "webkit",
+  "version": "26.5",
+  "warningFixtureExtendedForScreenshots": true,
+  "checks": [
+    {
+      "area": "reduced-motion",
+      "staticWarning": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "newAtlasRequests": [
+    "/assets/characters/campaign598/tea-oracle-pixel.webp",
+    "/assets/characters/campaign598/cloud-teapot-pixel.webp"
+  ],
+  "movieRequests": 0
+}

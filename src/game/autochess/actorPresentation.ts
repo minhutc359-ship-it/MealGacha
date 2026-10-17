@@ -2,23 +2,25 @@ import type { Actor, AutoCombat } from "./types"
 import { actorFrame } from "./presentation"
 import { livingActorFrame } from "../livingClips"
 import { combatSignature } from "../combatArt"
+import { enemyPose } from "../enemyVisuals"
 import { starterPose } from "../starterCharacters"
 
 /** Windup/contact/recovery follow the actual action.hit, for every atlas family.
  * No random values, state writes or changes to combat timing. */
 export function actorPose(actor: Actor, sheet: string, time: number, combat: AutoCombat | null, quiet: boolean, victory: boolean) {
-  if (sheet.startsWith("starter-")) {
+  if (sheet.startsWith("starter-") || sheet.startsWith("campaign-")) {
+    const pose = sheet.startsWith("campaign-") ? enemyPose : starterPose
     const a = actor.action
-    if (actor.hp <= 0) return starterPose(actor.id,"fall",(time-(actor.diedAt ?? time))*50,quiet)
-    if (victory) return starterPose(actor.id,"victory",time*50,quiet)
-    if (actor.stunnedUntil > time) return starterPose(actor.id,"stun",0,quiet)
+    if (actor.hp <= 0) return pose(actor.id,"fall",(time-(actor.diedAt ?? time))*50,quiet)
+    if (victory) return pose(actor.id,"victory",time*50,quiet)
+    if (actor.stunnedUntil > time) return pose(actor.id,"stun",0,quiet)
     if (!a) {
       const hit = [...(combat?.events ?? [])].reverse().find(e=>e.target===actor.uid && e.kind==="hit" && time>=e.tick && time-e.tick<5)
-      return starterPose(actor.id,hit?"hit":"idle",hit?(time-hit.tick)*50:time*50,quiet)
+      return pose(actor.id,hit?"hit":"idle",hit?(time-hit.tick)*50:time*50,quiet)
     }
     const age = Math.max(0,time-a.start)
     const p = age < a.hit-a.start ? age/Math.max(1,a.hit-a.start)*.5 : .5+(age-(a.hit-a.start))/Math.max(1,a.end-a.hit)*.5
-    if (a.kind === "move") return starterPose(actor.id,"walk",age*50,quiet)
+    if (a.kind === "move") return pose(actor.id,"walk",age*50,quiet)
     return (a.kind === "cast" ? 12 : 8) + (quiet?0:Math.min(3,Math.floor(p*4)))
   }
   if (sheet.startsWith("living-")) return livingActorFrame(actor, time, combat, quiet, victory)

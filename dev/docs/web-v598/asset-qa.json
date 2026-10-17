@@ -1,0 +1,117 @@
+{
+  "checks": [
+    {
+      "id": "aroma-conductor",
+      "poses": 32,
+      "uniqueFrames": 32,
+      "safeGutters": true,
+      "hd": [
+        1024,
+        2048
+      ],
+      "pixel": [
+        256,
+        512
+      ]
+    },
+    {
+      "id": "aroma-regent",
+      "poses": 32,
+      "uniqueFrames": 32,
+      "safeGutters": true,
+      "hd": [
+        1024,
+        2048
+      ],
+      "pixel": [
+        256,
+        512
+      ]
+    },
+    {
+      "id": "cloud-teapot",
+      "poses": 32,
+      "uniqueFrames": 32,
+      "safeGutters": true,
+      "hd": [
+        1024,
+        2048
+      ],
+      "pixel": [
+        256,
+        512
+      ]
+    },
+    {
+      "id": "moon-heron",
+      "poses": 32,
+      "uniqueFrames": 32,
+      "safeGutters": true,
+      "hd": [
+        1024,
+        2048
+      ],
+      "pixel": [
+        256,
+        512
+      ]
+    },
+    {
+      "id": "moon-priestess",
+      "poses": 32,
+      "uniqueFrames": 32,
+      "safeGutters": true,
+      "hd": [
+        1024,
+        2048
+      ],
+      "pixel": [
+        256,
+        512
+      ]
+    },
+    {
+      "id": "salt-alchemist",
+      "poses": 32,
+      "uniqueFrames": 32,
+      "safeGutters": true,
+      "hd": [
+        1024,
+        2048
+      ],
+      "pixel": [
+        256,
+        512
+      ]
+    },
+    {
+      "id": "salt-colossus",
+      "poses": 32,
+      "uniqueFrames": 32,
+      "safeGutters": true,
+      "hd": [
+        1024,
+        2048
+      ],
+      "pixel": [
+        256,
+        512
+      ]
+    },
+    {
+      "id": "tea-oracle",
+      "poses": 32,
+      "uniqueFrames": 32,
+      "safeGutters": true,
+      "hd": [
+        1024,
+        2048
+      ],
+      "pixel": [
+        256,
+        512
+      ]
+    }
+  ],
+  "totalBytes": 5235260
+}

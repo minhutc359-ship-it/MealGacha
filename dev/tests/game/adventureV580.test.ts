@@ -1,3 +1,4 @@
+import { enemyVisual } from "@/game/enemyVisuals"
 import { SPIRIT_IDS, spiritArt } from "@/game/adventureRpg/spiritArt"
 import { ultimateShowcase } from "@/game/ultimateShowcase"
 import { describe, expect, it } from "vitest"
@@ -76,7 +77,7 @@ describe("Web 5.8 supplied campaign assets and combat rules", () => {
     }
     for (const id of enemyIds) {
       expect(MONSTER_MAP[id]?.name, id).toBeTruthy()
-      expect(monsterCharacter(id).sheet).toMatch(/^campaign[AB]$/)
+      expect(monsterCharacter(id).sheet).toBe(enemyVisual(id)?.sheet ?? (enemyIds.indexOf(id)<8 ? "campaignA" : "campaignB"))
     }
   })
 

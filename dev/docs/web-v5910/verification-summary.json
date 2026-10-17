@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-17",
+  "version": "5.9.10",
+  "vitest": {
+    "passed": 699,
+    "files": 67
+  },
+  "nodeGuardTests": 4,
+  "typecheck": [
+    "app",
+    "dev"
+  ],
+  "adventureBrowser": {
+    "chromium": 33,
+    "webkit": 33
+  },
+  "autoTcgBrowser": {
+    "chromium": 3,
+    "webkit": 3,
+    "cohortIds": [
+      "banh-tet",
+      "bun-bo-hue",
+      "bun-ca",
+      "che-buoi"
+    ],
+    "realUnitAttack": true,
+    "realAutoCasts": true
+  },
+  "build": {
+    "bytes": 108069028,
+    "files": 671,
+    "jsGzip": 670325,
+    "jsGzipLimit": 675000
+  },
+  "newAssets": {
+    "files": 12,
+    "bytes": 3028544,
+    "physicalPoses": 128,
+    "portraits": 4,
+    "requestedInBrowser": 12
+  },
+  "coldOfflineReload": [
+    "/",
+    "/adventure",
+    "/autochess"
+  ],
+  "physicalDeviceQa": "user-owned; not performed",
+  "prReviewMerge": "user-owned; not performed",
+  "commercialClearance": "pending 13 existing asset evidence items"
+}

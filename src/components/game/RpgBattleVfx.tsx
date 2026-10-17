@@ -1,3 +1,6 @@
+import { enemyVisual } from "../../game/enemyVisuals";
+import { drawEnemyVfx } from "../../game/enemyVfx";
+import { isEnemyPhaseEvent } from "../../game/enemyPresentation";
 import { rpgVisualContact } from "../../game/visualTiming";
 import { CAST_SIGILS, drawModelCast } from "../../game/ultimateShowcase";
 import { starterCharacter } from "../../game/starterCharacters";
@@ -50,7 +53,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             s.wave = battle.wave;
             s.cues = [];
         }
-        if (paused && !s.paused)
+        if (paused && (!s.paused || s.frozen === null))
             s.frozen = now;
         if (!paused && s.frozen !== null) {
             for (const c of s.cues)
@@ -60,15 +63,15 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
         s.paused = paused;
         if (quiet) {
             // Reduced motion still presents a static ultimate sigil/impact.
-            s.cues = s.cues.filter(c => c.event.kind === "burst");
+            s.cues = s.cues.filter(c => c.event.kind === "burst" || isEnemyPhaseEvent(c.event,c.actor));
         }
         for (const e of battle.events) {
-            if (e.serial <= s.serial || battle.tick - e.tick > 4 || quiet && e.kind !== "burst" || !(e.animation || ["burst", "skill", "guard", "reaction"].includes(e.kind)))
+            if (e.serial <= s.serial || battle.tick - e.tick > 4 || quiet && !["burst","boss"].includes(e.kind) || !(e.animation || ["burst", "skill", "guard", "reaction", "boss"].includes(e.kind)))
                 continue;
             const actor = battle.actors.find(a => a.uid === e.source);
             if (!actor)
                 continue;
-            const targets = battle.actors.filter(a => e.targets.includes(a.uid));
+            const targets = isEnemyPhaseEvent(e,actor) ? [actor] : battle.actors.filter(a => e.targets.includes(a.uid));
             if (!targets.length)
                 continue;
             const awakened=battle.rulesVersion===530 && actor.side==="ally";
@@ -99,7 +102,9 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             const point = (a: RpgActor) => { const p = actorAnchor(a, wide); return { x: p.x * width / 100, y: p.y * height / 100 - size * .55 }; };
             for (const c of s.cues) {
                 const age = now - c.start, source = point(c.actor), ultimate = c.event.kind === "burst", normal = c.event.animation === "attack", contact = rpgVisualContact(c.event.animation);
-                const anchor=starterCharacter(c.actor.id)?.anchors.cast; if(anchor){source.x+=(anchor[0]-.5)*size;source.y+=(anchor[1]-.5)*size;}
+                const enemy=enemyVisual(c.actor.id);
+                if(enemy && isEnemyPhaseEvent(c.event,c.actor)) {drawEnemyVfx(ctx,c.actor.id,source.x,source.y,size,age,quiet,true);surface.dataset.enemyPhase=c.actor.id;continue;}
+                const anchor=(starterCharacter(c.actor.id)??enemy)?.anchors.cast; if(anchor){source.x+=(anchor[0]-.5)*size;source.y+=(anchor[1]-.5)*size;}
                 const scale = ultimate ? 1.3 : normal ? .7 : 1, extent = size * scale;
                 if (ultimate) {
                     const p = actorAnchor(c.actor, wide);
@@ -132,6 +137,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                         drawProjectile(ctx,source,p,c.event.school,t,extent*.22,low,kind);
                     }
                     if(starterCharacter(c.actor.id)) drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent*.75,age-contact,false,low,kind === "heal" || kind === "shield" ? kind : normal ? "attack" : "skill");
+                    else if(enemy && (!normal || enemy.accent)) {drawEnemyVfx(ctx,c.actor.id,p.x,p.y,extent,age-contact,quiet);surface.dataset.enemySignature=c.actor.id;}
                     else drawImpact(ctx,p,c.event.school,(age-contact)/650,extent,kind,low,low?undefined:texture.image);
                 }
                 if (surface.dataset.signature !== `${c.actor.role}:${c.event.school}:${c.variant}`)

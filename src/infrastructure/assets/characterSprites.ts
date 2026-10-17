@@ -1,3 +1,4 @@
+import { enemyVisual } from "../../game/enemyVisuals"
 import { characterVisual } from "../../game/characterVisuals"
 import { spiritArt } from "../../game/adventureRpg/spiritArt"
 import { renderIsLight, sampleRenderFrame, resetRenderSampling } from "../presentation/renderQuality"
@@ -59,6 +60,8 @@ const ENEMY_MODELS: Record<string, [CharacterSheet, number]> = {
 }
 export function monsterCharacter(id: string): CharacterModel {
   const def = MONSTER_MAP[id]
+  const visual = enemyVisual(id)
+  if (visual) return {sheet:visual.sheet,row:0,id,name:def.name}
   const [sheet, row] = ENEMY_MODELS[id] ?? ["enemy", def.sprite]
   return { sheet, row, id, name: def.name }
 }
