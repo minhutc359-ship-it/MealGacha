@@ -65,6 +65,7 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/characters/spring5911/", "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon", ["dev/docs/web-v5911/asset-provenance.json", "dev/docs/web-v5911/identity-sources.json", "dev/tools/pack-campaign598.py"]],
  ["assets/characters/regional5910/", "Original AI-assisted identity-preserving regional spirit HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E/F canon", ["dev/docs/web-v5910/asset-provenance.json", "dev/docs/web-v5910/identity-sources.json", "dev/tools/pack-campaign598.py"]],
  ["assets/characters/campaign599/", "Original AI-assisted identity-preserving eight post-story regular creature HD/pixel poses and idle portraits generated with built-in Imagegen from campaignA/B identities", ["dev/docs/web-v599/asset-provenance.json", "dev/tools/pack-campaign598.py"]],
  ["assets/characters/campaign598/", "Original AI-assisted identity-preserving eight post-story elite/boss HD/pixel pose atlases and idle portraits generated with built-in Imagegen from existing campaignA/B identities", ["dev/docs/web-v598/asset-provenance.json", "dev/tools/pack-campaign598.py"]],

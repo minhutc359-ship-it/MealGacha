@@ -1,5 +1,5 @@
 {
-  "version": "5.9.10",
+  "version": "5.9.11",
   "generatedOn": "2026-10-15",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -2040,6 +2040,150 @@
         "dev/docs/challenge-v322/prompts.json",
         "dev/docs/market-v331/atlas-prompts.json",
         "dev/tools/register-market-atlases.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/caravan-gardener-pixel.webp",
+      "bytes": 68682,
+      "sha256": "ed1101b2ace972fd7044543415dc7323460acdfb17b77a949bbbf2bf7cbfa4d3",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/caravan-gardener-portrait.webp",
+      "bytes": 68402,
+      "sha256": "c3c5bd9a2dc35b604889d34ccbe0554e5443607fd43ef4acac984a4aa51d43fb",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/caravan-gardener.webp",
+      "bytes": 335286,
+      "sha256": "90d9959c9afe8771dcf5b947b091097a2059a176261dd7b084c5e6afc0acd7ec",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/caravan-herbalist-pixel.webp",
+      "bytes": 87650,
+      "sha256": "7fc397ca42c24a38b5d882cc175bdbdfaabc333ba88c59d6fa06b24dca1249bc",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/caravan-herbalist-portrait.webp",
+      "bytes": 75640,
+      "sha256": "626d4e4e69a41f543a43447d3aa274aec3d95bdd06400f98d231c8c0ede9c36a",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/caravan-herbalist.webp",
+      "bytes": 397206,
+      "sha256": "667356bc9a89b0f7818b3b67f5a0898e126a40f77c86393283124f798d43ed30",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/dua-hanh-pixel.webp",
+      "bytes": 118278,
+      "sha256": "362e2c2fb5228a9fa8204a620574f26817f4c68efca71ceeab0959bb87359e11",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/dua-hanh-portrait.webp",
+      "bytes": 58346,
+      "sha256": "96e691eae2e0adad8b0cc39348f61f1c179031d82f51c0398fd1d05ab03f6218",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/dua-hanh.webp",
+      "bytes": 494130,
+      "sha256": "48803a4898421717ff4a7a2bacae28adefb837fde04c2a13f68cd7004ef243ee",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/xoi-xeo-pixel.webp",
+      "bytes": 105484,
+      "sha256": "76d3a1159d90e768f8e0eb8fe802db7af35aaddc79ac4336cab42f62ce771d0c",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/xoi-xeo-portrait.webp",
+      "bytes": 59036,
+      "sha256": "edaaeaafbdbd679b9d1a46f03815026bc6879983ce127d27331fe30b290be7e3",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spring5911/xoi-xeo.webp",
+      "bytes": 415308,
+      "sha256": "8d889ada8ae43c5733bde4c0a229c43b843f5ad4264e6abaf69643e47e1faaa4",
+      "origin": "Original AI-assisted identity-preserving spring spirits and caravan human HD/pixel poses and matching portraits generated with built-in Imagegen from rosterD/E canon",
+      "evidence": [
+        "dev/docs/web-v5911/asset-provenance.json",
+        "dev/docs/web-v5911/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

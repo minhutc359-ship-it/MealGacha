@@ -1,0 +1,537 @@
+{
+  "date": "2026-10-17",
+  "engine": "webkit",
+  "version": "26.5",
+  "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
+  "checks": [
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 191,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 1222,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 1090,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "xoi-xeo",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1455,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "dua-hanh",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 2066,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 6.046875,
+        "right": 289.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "caravan-herbalist",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1538,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "caravan-gardener",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1706,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 66.46875,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 401,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 2848,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 2551,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "xoi-xeo",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3331,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.3125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "dua-hanh",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5271,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 8.15625,
+        "right": 357.84375,
+        "height": 64,
+        "arena": 451.3125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "caravan-herbalist",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3337,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 15.185554504394531,
+        "right": 364.87305450439453,
+        "height": 64,
+        "arena": 451.3125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "caravan-gardener",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3552,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.3125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 78,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 536,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 446,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "xoi-xeo",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 803,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 66.4375,
+        "right": 753.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "dua-hanh",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 1146,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 66.4375,
+        "right": 753.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "caravan-herbalist",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 874,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "caravan-gardener",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 935,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 521,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 3817,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realReducerEvents": true,
+      "painted": 3406,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "xoi-xeo",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4426,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "dua-hanh",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7104,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "caravan-herbalist",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4540,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "caravan-gardener",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4846,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "victory",
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ]
+    },
+    {
+      "area": "fall",
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ]
+    },
+    {
+      "area": "reload-committed-ultimate",
+      "noRecast": true
+    },
+    {
+      "area": "natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "reduced-motion",
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "staticPose": 16
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedAssets": [
+    "/assets/characters/spring5911/xoi-xeo-pixel.webp",
+    "/assets/characters/spring5911/dua-hanh-pixel.webp",
+    "/assets/characters/spring5911/caravan-herbalist-pixel.webp",
+    "/assets/characters/spring5911/caravan-gardener-pixel.webp",
+    "/assets/characters/spring5911/xoi-xeo-portrait.webp",
+    "/assets/characters/spring5911/dua-hanh-portrait.webp",
+    "/assets/characters/spring5911/caravan-herbalist-portrait.webp",
+    "/assets/characters/spring5911/caravan-gardener-portrait.webp"
+  ],
+  "movieRequests": 0
+}

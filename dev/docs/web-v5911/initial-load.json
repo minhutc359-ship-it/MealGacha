@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-17",
+  "measurement": "Fresh browser context per mode. Includes SW precache and warm requests. No HTTP compression; body bytes are a conservative payload measurement, not wall-clock performance or full network headers.",
+  "browser": "Chromium headless",
+  "results": [
+    {
+      "route": "/",
+      "deliveredBodyBytes": 3184748,
+      "requests": 83,
+      "budget": {
+        "targetBytes": 8000000,
+        "limitBytes": 12000000,
+        "warning": false,
+        "exceeded": false,
+        "remainingBytes": 8815252
+      },
+      "media": [
+        {
+          "url": "/assets/brand/soul-of-meal.webp",
+          "bytes": 64744,
+          "status": 200
+        },
+        {
+          "url": "/assets/tcg/story/lantern.webp",
+          "bytes": 151218,
+          "status": 200
+        },
+        {
+          "url": "/assets/brand/soul-of-meal.webp",
+          "bytes": 0,
+          "status": 304
+        },
+        {
+          "url": "/assets/tcg/story/lantern.webp",
+          "bytes": 0,
+          "status": 304
+        },
+        {
+          "url": "/assets/tcg/characters/anime/hero.webp",
+          "bytes": 73102,
+          "status": 200
+        }
+      ],
+      "serviceWorkerInstalled": true,
+      "offlineReload": true
+    },
+    {
+      "route": "/adventure",
+      "deliveredBodyBytes": 4360189,
+      "requests": 81,
+      "budget": {
+        "targetBytes": 8000000,
+        "limitBytes": 12000000,
+        "warning": false,
+        "exceeded": false,
+        "remainingBytes": 7639811
+      },
+      "media": [
+        {
+          "url": "/assets/brand/soul-of-meal.webp",
+          "bytes": 64744,
+          "status": 200
+        },
+        {
+          "url": "/assets/rpg/village580/crossroads.webp",
+          "bytes": 794330,
+          "status": 200
+        },
+        {
+          "url": "/assets/brand/soul-of-meal.webp",
+          "bytes": 0,
+          "status": 304
+        },
+        {
+          "url": "/assets/rpg/village580/crossroads.webp",
+          "bytes": 0,
+          "status": 304
+        },
+        {
+          "url": "/assets/characters/starters590/village-pixel.webp",
+          "bytes": 347736,
+          "status": 200
+        },
+        {
+          "url": "/assets/characters/chefs593/exploration.webp",
+          "bytes": 255970,
+          "status": 200
+        }
+      ],
+      "serviceWorkerInstalled": true,
+      "offlineReload": true
+    },
+    {
+      "route": "/autochess",
+      "deliveredBodyBytes": 3552741,
+      "requests": 83,
+      "budget": {
+        "targetBytes": 8000000,
+        "limitBytes": 12000000,
+        "warning": false,
+        "exceeded": false,
+        "remainingBytes": 8447259
+      },
+      "media": [
+        {
+          "url": "/assets/brand/soul-of-meal.webp",
+          "bytes": 64744,
+          "status": 200
+        },
+        {
+          "url": "/assets/brand/soul-of-meal.webp",
+          "bytes": 0,
+          "status": 304
+        },
+        {
+          "url": "/assets/autochess/world.webp",
+          "bytes": 385358,
+          "status": 200
+        },
+        {
+          "url": "/assets/autochess/portraits.webp",
+          "bytes": 205230,
+          "status": 200
+        }
+      ],
+      "serviceWorkerInstalled": true,
+      "offlineReload": true
+    }
+  ],
+  "errors": []
+}

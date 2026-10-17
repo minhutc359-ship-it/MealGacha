@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-17",
+  "engine": "webkit",
+  "version": "26.5",
+  "checks": [
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "com-tam",
+        "banh-mi",
+        "pho-bo"
+      ]
+    },
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "com-tam",
+        "banh-mi",
+        "pho-bo"
+      ]
+    },
+    {
+      "area": "tcg",
+      "spell": {
+        "id": "tea-break",
+        "name": "Một chén trà"
+      },
+      "sharedBanner": true,
+      "modelSigil": true,
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "caravan-herbalist",
+        "caravan-gardener"
+      ],
+      "realUnitAttack": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "movieRequests": 0,
+  "requestedAssets": [
+    "/assets/characters/spring5911/xoi-xeo.webp",
+    "/assets/characters/spring5911/dua-hanh.webp",
+    "/assets/characters/spring5911/xoi-xeo-portrait.webp",
+    "/assets/characters/spring5911/caravan-herbalist.webp",
+    "/assets/characters/spring5911/caravan-gardener.webp"
+  ]
+}

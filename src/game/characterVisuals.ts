@@ -77,6 +77,10 @@ const DEFINITIONS = {
   "bun-bo-hue": {effectColumn:-1,title:"Xích ngưu",species:"Ngưu Vương Sả Ớt",signature:"ladle",color:"#efab71",idle:1360,walk:800,attack:860,cast:1060},
   "bun-ca": {effectColumn:-1,title:"Ngân vũ",species:"Bói Cá Sóng Bạc",signature:"dart",color:"#91d7ed",idle:1260,walk:580,attack:680,cast:980},
   "che-buoi": {effectColumn:-1,title:"Bạch hoa",species:"Hải Ly Hương Bưởi",signature:"blossom",color:"#dce79d",idle:1600,walk:720,attack:760,cast:1100},
+  "xoi-xeo": {effectColumn:-1,title:"Nếp vàng",species:"Tê Tê Nếp Vàng",signature:"bowl",color:"#edc16e",idle:1520,walk:820,attack:860,cast:1120},
+  "dua-hanh": {effectColumn:-1,title:"Muối xuân",species:"Ngọc Thố Muối Xuân",signature:"onion",color:"#c4db91",idle:1420,walk:640,attack:740,cast:1060},
+  "caravan-herbalist": {effectColumn:-1,title:"Bạch thảo",species:"Người hái thuốc",signature:"herbs",color:"#c8b2d7",idle:1740,walk:940,attack:920,cast:1240},
+  "caravan-gardener": {effectColumn:-1,title:"Gieo mầm",species:"Người gieo vườn",signature:"hoe",color:"#a9d3b9",idle:1360,walk:680,attack:760,cast:1040},
 } as const
 
 export const CHEF_IDS = ["chef-bach","chef-nhien","chef-moc","chef-hai","chef-lien"] as const
@@ -92,6 +96,8 @@ export const RARE_SECOND_IDS = ["com-lang-vong","ca-phe-trung","thit-kho-trung",
 export const RARE_SECOND_ASSET_ROOT = "/assets/characters/rare596"
 export const REGIONAL_IDS = ["banh-tet","bun-bo-hue","bun-ca","che-buoi"] as const
 export const REGIONAL_ASSET_ROOT = "/assets/characters/regional5910"
+export const SPRING_CARAVAN_IDS = ["xoi-xeo","dua-hanh","caravan-herbalist","caravan-gardener"] as const
+export const SPRING_CARAVAN_ASSET_ROOT = "/assets/characters/spring5911"
 export type VisualCharacterId = keyof typeof DEFINITIONS
 export const VISUAL_CONTACT = { attack: 300, cast: 380, ultimate: 960, tcg: 560 } as const
 export const ULTIMATE_TIMELINE = {
@@ -100,11 +106,11 @@ export const ULTIMATE_TIMELINE = {
 } as const
 export const STARTER_ASSET_ROOT = "/assets/characters/starters590"
 const PORTRAIT_CELLS: Partial<Record<VisualCharacterId,number>> = { "com-tam": 13, "banh-mi": 4, "pho-bo": 0, "banh-cuon": 6, "goi-cuon-tom-thit": 105, xoi: -1 }
-const CAST_ANCHORS = { "com-tam": [.66,.48], "banh-mi": [.73,.43], "pho-bo": [.73,.3], "banh-cuon": [.68,.38], "goi-cuon-tom-thit": [.7,.28], xoi: [.64,.72], "chef-bach":[.7,.48], "chef-nhien":[.76,.5], "chef-moc":[.7,.35], "chef-hai":[.76,.42], "chef-lien":[.73,.32], "bun-cha":[.7,.5], "bun-rieu":[.72,.48], "banh-xeo":[.72,.38], "com-ga":[.77,.4], "banh-chung":[.71,.49], "cha-ca-la-vong":[.74,.3], "bun-thang":[.75,.27], "banh-com-hang-than":[.74,.45], "com-lang-vong":[.69,.32], "ca-phe-trung":[.76,.28], "thit-kho-trung":[.65,.51], "cha-ruoi":[.77,.46], "banh-tet":[.72,.48], "bun-bo-hue":[.77,.4], "bun-ca":[.79,.38], "che-buoi":[.73,.5] }
+const CAST_ANCHORS = { "com-tam": [.66,.48], "banh-mi": [.73,.43], "pho-bo": [.73,.3], "banh-cuon": [.68,.38], "goi-cuon-tom-thit": [.7,.28], xoi: [.64,.72], "chef-bach":[.7,.48], "chef-nhien":[.76,.5], "chef-moc":[.7,.35], "chef-hai":[.76,.42], "chef-lien":[.73,.32], "bun-cha":[.7,.5], "bun-rieu":[.72,.48], "banh-xeo":[.72,.38], "com-ga":[.77,.4], "banh-chung":[.71,.49], "cha-ca-la-vong":[.74,.3], "bun-thang":[.75,.27], "banh-com-hang-than":[.74,.45], "com-lang-vong":[.69,.32], "ca-phe-trung":[.76,.28], "thit-kho-trung":[.65,.51], "cha-ruoi":[.77,.46], "banh-tet":[.72,.48], "bun-bo-hue":[.77,.4], "bun-ca":[.79,.38], "che-buoi":[.73,.5], "xoi-xeo":[.72,.56], "dua-hanh":[.75,.48], "caravan-herbalist":[.76,.46], "caravan-gardener":[.8,.42] }
 const ASSET_GROUPS: ReadonlyArray<readonly [readonly string[],string]> = [
   [CHEF_IDS,CHEF_ASSET_ROOT], [FAMILIAR_IDS,FAMILIAR_ASSET_ROOT],
   [RARE_IDS,RARE_ASSET_ROOT], [RARE_SECOND_IDS,RARE_SECOND_ASSET_ROOT],
-  [REGIONAL_IDS,REGIONAL_ASSET_ROOT],
+  [REGIONAL_IDS,REGIONAL_ASSET_ROOT], [SPRING_CARAVAN_IDS,SPRING_CARAVAN_ASSET_ROOT],
 ]
 export function chefPortrait(id: ChefId, expression: ChefExpression = "neutral") {
   return `${CHEF_ASSET_ROOT}/${id}-${expression}.webp`
@@ -121,7 +127,7 @@ function manifest(id: VisualCharacterId) {
     pixel: `${root}/${id}-pixel.webp`,
     portrait: cell < 0 ? {path: chef ? chefPortrait(id as ChefId) : `${root}/${id}-portrait.webp`, cell: 0, columns: 1} : {path: `/assets/rpg/spirit510/portraits-${Math.floor(cell/16)+1}.webp`, cell: cell%16, columns: 4},
     // New cohorts use procedural VFX; old atlas descriptors remain compatible.
-    effect: root === REGIONAL_ASSET_ROOT ? null : {path: `${root}/${root === STARTER_ASSET_ROOT ? "ultimate591" : "ultimate"}.webp`, column: DEFINITIONS[id].effectColumn},
+    effect: DEFINITIONS[id].effectColumn < 0 ? null : {path: `${root}/${root === STARTER_ASSET_ROOT ? "ultimate591" : "ultimate"}.webp`, column: DEFINITIONS[id].effectColumn},
     anchors: { foot: [.5, .9375], cast: CAST_ANCHORS[id] },
     contact: VISUAL_CONTACT,
     sound: `/assets/rpg/awakening530/sounds/${id}.mp3`,

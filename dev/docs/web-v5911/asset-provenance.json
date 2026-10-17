@@ -1,0 +1,1026 @@
+[
+  {
+    "id": "xoi-xeo",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "0ffe038db2c0d36cd35288e9f826675ece3468ae84ed941b6009fe9a4dab1dc2",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            32,
+            19,
+            287,
+            309
+          ],
+          [
+            331,
+            22,
+            594,
+            308
+          ],
+          [
+            644,
+            15,
+            899,
+            308
+          ],
+          [
+            949,
+            32,
+            1228,
+            306
+          ],
+          [
+            21,
+            328,
+            296,
+            605
+          ],
+          [
+            333,
+            326,
+            612,
+            609
+          ],
+          [
+            644,
+            325,
+            921,
+            603
+          ],
+          [
+            957,
+            327,
+            1235,
+            603
+          ],
+          [
+            31,
+            642,
+            293,
+            886
+          ],
+          [
+            314,
+            642,
+            643,
+            887
+          ],
+          [
+            648,
+            644,
+            999,
+            887
+          ],
+          [
+            1007,
+            642,
+            1230,
+            893
+          ],
+          [
+            21,
+            919,
+            279,
+            1209
+          ],
+          [
+            331,
+            902,
+            582,
+            1212
+          ],
+          [
+            616,
+            924,
+            951,
+            1209
+          ],
+          [
+            955,
+            932,
+            1233,
+            1209
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: production 2D RPG character animation sprite sheet for Soul of Meal. Input image 1 is the identity canon reference, not the sheet layout. Subject: Small cheerful anthropomorphic golden pangolin, overlapping shiny golden rice-grain scales on head and back, cream muzzle and belly, huge warm brown eyes, thick segmented curling gold tail, yellow neckerchief, small dark brown claws. Carries a round engraved copper bowl of white sticky rice with both hands. Keep the pangolin snout, scales and bowl exactly recognizable. Primary request: paint exactly 16 clearly distinct FULL BODY poses of this SAME character in a strict evenly spaced 4 columns x 4 rows square sprite sheet. Row1 four subtle idle breathing/readiness poses; row2 four consecutive walking strides facing RIGHT; row3 four distinct melee attack stages windup, extension toward right, contact, recovery using their existing bowl/wand/staff/hoe; row4 four distinct support casting gestures prepare, gather, reach right, recover. Style: finely hand painted charming chibi fantasy, clean dark contour, softly shaded tactile material, consistent original identity and colors, readable at 64px. Same body proportions, equipment, camera and scale in all 16 cells. Three-quarter view facing RIGHT in every cell. Entire ears, hat, tail, basket, weapon, hands and feet inside each cell with large transparent margins. Exactly one unconnected character per cell. Keep gestures dynamic, authored limb positions, no simple duplicate or shifted clones. Transparent background, alpha outside character. No text, grid, number, border, watermark, ground, drop shadow, particles, magic effects, glow, extra characters or scenery."
+      },
+      {
+        "sheet": "support",
+        "sha256": "593a38600510f0b4b96ab1a644c3afb2c6ae21a545347e023e1df94c78eab090",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            19,
+            66,
+            312,
+            318
+          ],
+          [
+            341,
+            20,
+            614,
+            320
+          ],
+          [
+            630,
+            51,
+            1011,
+            317
+          ],
+          [
+            998,
+            52,
+            1247,
+            322
+          ],
+          [
+            20,
+            346,
+            290,
+            624
+          ],
+          [
+            318,
+            365,
+            610,
+            627
+          ],
+          [
+            630,
+            375,
+            912,
+            628
+          ],
+          [
+            943,
+            356,
+            1227,
+            628
+          ],
+          [
+            19,
+            657,
+            292,
+            894
+          ],
+          [
+            305,
+            698,
+            601,
+            893
+          ],
+          [
+            615,
+            720,
+            939,
+            887
+          ],
+          [
+            953,
+            719,
+            1245,
+            888
+          ],
+          [
+            20,
+            925,
+            297,
+            1222
+          ],
+          [
+            323,
+            899,
+            611,
+            1220
+          ],
+          [
+            622,
+            918,
+            935,
+            1224
+          ],
+          [
+            955,
+            932,
+            1240,
+            1220
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: production 2D RPG sprite support sheet. Input image1 is the approved character sheet and material/style reference; image2 is the original identity canon. Subject: Small cheerful anthropomorphic golden pangolin, overlapping shiny golden rice-grain scales on head and back, cream muzzle and belly, huge warm brown eyes, thick segmented curling gold tail, yellow neckerchief, small dark brown claws. Carries a round engraved copper bowl of white sticky rice with both hands. Keep the pangolin snout, scales and bowl exactly recognizable. Paint exactly 16 FULL BODY distinct poses of this SAME actor in a strict evenly spaced 4 columns x 4 rows SQUARE transparent sheet. Row1 four powerful ultimate gestures: prepare low, lift signature bowl/wand/staff/hoe, fully extend RIGHT at impact, heroic follow-through. Row2 four hit recoil poses: flinch, lean back, brace, regain balance. Row3 four sequential non-graphic fainting/fall poses: kneel, lower body, lie fully on right side unconscious, resting sideways with equipment beside body; still the same complete character. Row4 four happy victory poses: rise proud, lift equipment, celebrate, relaxed smile. Same chibi hand-painted style, body scale, camera, identity, colors and equipment as input1. Clear authored anatomy and distinct limb positions, not moved copies. Character faces RIGHT, three-quarter view. Exactly one disconnected actor per cell with LARGE transparent gutters; keep whole tall ears/hat/basket/weapon/tail/feet inside each cell. Real transparent alpha, no ground, shadows, magic, particles, glow, text, numbering, watermark or extra people."
+      },
+      {
+        "sheet": "portrait",
+        "sha256": "f6554546d771cf96f6f9f96653f4db3913052a90e7f11e1a98ac80591edb0a9b",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: finished square RPG hero portrait, Soul of Meal. Input1 approved sprite style/identity and input2 original model canon. Subject: Small cheerful anthropomorphic golden pangolin, overlapping shiny golden rice-grain scales on head and back, cream muzzle and belly, huge warm brown eyes, thick segmented curling gold tail, yellow neckerchief, small dark brown claws. Carries a round engraved copper bowl of white sticky rice with both hands. Keep the pangolin snout, scales and bowl exactly recognizable. Create a polished, finely hand-painted charming chibi fantasy portrait of exactly this character, three-quarter view facing RIGHT, warm expressive face, visible signature equipment. Waist-up or knee-up composition comfortably INSIDE square with at least 8 percent margin around top of head, onion shoots, ears, conical hat, basket and tools. No cropped head, ears or hat. Background soft cream-jade painterly garden bokeh, subtle warm light and sparse herbs, restrained contrast, face clearly legible at 64px. Preserve outfit, species, age, colors and equipment. No text, letters, frame, border, watermark, extra characters or UI."
+      }
+    ],
+    "uniformScale": 0.5879265091863517,
+    "outputs": {
+      "xoi-xeo-pixel.webp": {
+        "bytes": 105484,
+        "sha256": "76d3a1159d90e768f8e0eb8fe802db7af35aaddc79ac4336cab42f62ce771d0c"
+      },
+      "xoi-xeo-portrait.webp": {
+        "bytes": 59036,
+        "sha256": "edaaeaafbdbd679b9d1a46f03815026bc6879983ce127d27331fe30b290be7e3"
+      },
+      "xoi-xeo.webp": {
+        "bytes": 415308,
+        "sha256": "8d889ada8ae43c5733bde4c0a229c43b843f5ad4264e6abaf69643e47e1faaa4"
+      }
+    }
+  },
+  {
+    "id": "dua-hanh",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "0db71d69ee6a7442cd3235e965917ae70070878d1c0f058d421fc3a6d4bce137",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            49,
+            6,
+            279,
+            320
+          ],
+          [
+            348,
+            6,
+            603,
+            319
+          ],
+          [
+            655,
+            6,
+            913,
+            320
+          ],
+          [
+            955,
+            6,
+            1226,
+            320
+          ],
+          [
+            30,
+            325,
+            307,
+            622
+          ],
+          [
+            352,
+            326,
+            609,
+            622
+          ],
+          [
+            656,
+            326,
+            923,
+            622
+          ],
+          [
+            965,
+            325,
+            1234,
+            624
+          ],
+          [
+            35,
+            634,
+            307,
+            924
+          ],
+          [
+            323,
+            637,
+            648,
+            924
+          ],
+          [
+            645,
+            633,
+            956,
+            923
+          ],
+          [
+            967,
+            627,
+            1236,
+            924
+          ],
+          [
+            34,
+            934,
+            286,
+            1243
+          ],
+          [
+            347,
+            939,
+            598,
+            1243
+          ],
+          [
+            642,
+            937,
+            947,
+            1243
+          ],
+          [
+            980,
+            935,
+            1226,
+            1243
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: production 2D RPG character animation sprite sheet for Soul of Meal. Input image 1 is the identity canon reference, not the sheet layout. Subject: Small ivory rabbit, very long soft pink-inner ears drooping out to both sides, round green eyes, a white onion bulb on the head with upright green shoots, leaf-green cape and tunic, brown belt with tiny orange onion pouches and hanging root sprigs. Holds a little bundled herb/onion twig wand. No antlers or bird anatomy. Primary request: paint exactly 16 clearly distinct FULL BODY poses of this SAME character in a strict evenly spaced 4 columns x 4 rows square sprite sheet. Row1 four subtle idle breathing/readiness poses; row2 four consecutive walking strides facing RIGHT; row3 four distinct melee attack stages windup, extension toward right, contact, recovery using their existing bowl/wand/staff/hoe; row4 four distinct support casting gestures prepare, gather, reach right, recover. Style: finely hand painted charming chibi fantasy, clean dark contour, softly shaded tactile material, consistent original identity and colors, readable at 64px. Same body proportions, equipment, camera and scale in all 16 cells. Three-quarter view facing RIGHT in every cell. Entire ears, hat, tail, basket, weapon, hands and feet inside each cell with large transparent margins. Exactly one unconnected character per cell. Keep gestures dynamic, authored limb positions, no simple duplicate or shifted clones. Transparent background, alpha outside character. No text, grid, number, border, watermark, ground, drop shadow, particles, magic effects, glow, extra characters or scenery."
+      },
+      {
+        "sheet": "support",
+        "sha256": "60cc158895ab07b087e28335994361e94cd31777b62208db0c565b1b2006704c",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            32,
+            79,
+            322,
+            337
+          ],
+          [
+            344,
+            18,
+            624,
+            335
+          ],
+          [
+            633,
+            33,
+            979,
+            335
+          ],
+          [
+            966,
+            31,
+            1241,
+            338
+          ],
+          [
+            36,
+            366,
+            308,
+            644
+          ],
+          [
+            331,
+            358,
+            609,
+            647
+          ],
+          [
+            636,
+            357,
+            919,
+            647
+          ],
+          [
+            964,
+            365,
+            1239,
+            650
+          ],
+          [
+            47,
+            665,
+            284,
+            920
+          ],
+          [
+            320,
+            679,
+            621,
+            902
+          ],
+          [
+            634,
+            734,
+            934,
+            907
+          ],
+          [
+            949,
+            716,
+            1243,
+            915
+          ],
+          [
+            27,
+            927,
+            279,
+            1232
+          ],
+          [
+            329,
+            928,
+            603,
+            1230
+          ],
+          [
+            638,
+            919,
+            924,
+            1233
+          ],
+          [
+            983,
+            924,
+            1237,
+            1233
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: production 2D RPG sprite support sheet. Input image1 is the approved character sheet and material/style reference; image2 is the original identity canon. Subject: Small ivory rabbit, very long soft pink-inner ears drooping out to both sides, round green eyes, a white onion bulb on the head with upright green shoots, leaf-green cape and tunic, brown belt with tiny orange onion pouches and hanging root sprigs. Holds a little bundled herb/onion twig wand. No antlers or bird anatomy. Paint exactly 16 FULL BODY distinct poses of this SAME actor in a strict evenly spaced 4 columns x 4 rows SQUARE transparent sheet. Row1 four powerful ultimate gestures: prepare low, lift signature bowl/wand/staff/hoe, fully extend RIGHT at impact, heroic follow-through. Row2 four hit recoil poses: flinch, lean back, brace, regain balance. Row3 four sequential non-graphic fainting/fall poses: kneel, lower body, lie fully on right side unconscious, resting sideways with equipment beside body; still the same complete character. Row4 four happy victory poses: rise proud, lift equipment, celebrate, relaxed smile. Same chibi hand-painted style, body scale, camera, identity, colors and equipment as input1. Clear authored anatomy and distinct limb positions, not moved copies. Character faces RIGHT, three-quarter view. Exactly one disconnected actor per cell with LARGE transparent gutters; keep whole tall ears/hat/basket/weapon/tail/feet inside each cell. Real transparent alpha, no ground, shadows, magic, particles, glow, text, numbering, watermark or extra people."
+      },
+      {
+        "sheet": "portrait",
+        "sha256": "aff7991d79590828b9b9b4a283effff81911b835cda2de03170b6b9bf5867eda",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: finished square RPG hero portrait, Soul of Meal. Input1 approved sprite style/identity and input2 original model canon. Subject: Small ivory rabbit, very long soft pink-inner ears drooping out to both sides, round green eyes, a white onion bulb on the head with upright green shoots, leaf-green cape and tunic, brown belt with tiny orange onion pouches and hanging root sprigs. Holds a little bundled herb/onion twig wand. No antlers or bird anatomy. Create a polished, finely hand-painted charming chibi fantasy portrait of exactly this character, three-quarter view facing RIGHT, warm expressive face, visible signature equipment. Waist-up or knee-up composition comfortably INSIDE square with at least 8 percent margin around top of head, onion shoots, ears, conical hat, basket and tools. No cropped head, ears or hat. Background soft cream-jade painterly garden bokeh, subtle warm light and sparse herbs, restrained contrast, face clearly legible at 64px. Preserve outfit, species, age, colors and equipment. No text, letters, frame, border, watermark, extra characters or UI."
+      }
+    ],
+    "uniformScale": 0.6473988439306358,
+    "outputs": {
+      "dua-hanh-pixel.webp": {
+        "bytes": 118278,
+        "sha256": "362e2c2fb5228a9fa8204a620574f26817f4c68efca71ceeab0959bb87359e11"
+      },
+      "dua-hanh-portrait.webp": {
+        "bytes": 58346,
+        "sha256": "96e691eae2e0adad8b0cc39348f61f1c179031d82f51c0398fd1d05ab03f6218"
+      },
+      "dua-hanh.webp": {
+        "bytes": 494130,
+        "sha256": "48803a4898421717ff4a7a2bacae28adefb837fde04c2a13f68cd7004ef243ee"
+      }
+    }
+  },
+  {
+    "id": "caravan-herbalist",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "4b877f0fc3d854b47f435407cd1452db43827f92dc0b1dc7721f5a50e33c12f1",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            68,
+            7,
+            300,
+            311
+          ],
+          [
+            397,
+            8,
+            608,
+            310
+          ],
+          [
+            693,
+            6,
+            903,
+            310
+          ],
+          [
+            1008,
+            8,
+            1215,
+            309
+          ],
+          [
+            60,
+            319,
+            288,
+            621
+          ],
+          [
+            385,
+            319,
+            610,
+            621
+          ],
+          [
+            688,
+            320,
+            929,
+            621
+          ],
+          [
+            1004,
+            319,
+            1244,
+            621
+          ],
+          [
+            8,
+            636,
+            268,
+            925
+          ],
+          [
+            327,
+            650,
+            658,
+            921
+          ],
+          [
+            656,
+            645,
+            985,
+            917
+          ],
+          [
+            1000,
+            636,
+            1246,
+            922
+          ],
+          [
+            56,
+            931,
+            254,
+            1238
+          ],
+          [
+            353,
+            939,
+            592,
+            1237
+          ],
+          [
+            666,
+            940,
+            930,
+            1236
+          ],
+          [
+            997,
+            950,
+            1193,
+            1241
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: production 2D RPG character animation sprite sheet for Soul of Meal. Input image 1 is the identity canon reference, not the sheet layout. Subject: Kind elderly Vietnamese human herbalist woman, silver grey hair in neat top bun, warm wrinkled face, small dark eyes, purple long sleeve jacket, cream scarf, loose charcoal trousers, brown open sandals. Woven brown wicker herb basket on her back filled with green herbs and tiny white flowers, gourd and small herb pouch on belt. Uses a crooked dark wooden walking staff wrapped in herbs. Preserve age, face and outfit; never an animal. Primary request: paint exactly 16 clearly distinct FULL BODY poses of this SAME character in a strict evenly spaced 4 columns x 4 rows square sprite sheet. Row1 four subtle idle breathing/readiness poses; row2 four consecutive walking strides facing RIGHT; row3 four distinct melee attack stages windup, extension toward right, contact, recovery using their existing bowl/wand/staff/hoe; row4 four distinct support casting gestures prepare, gather, reach right, recover. Style: finely hand painted charming chibi fantasy, clean dark contour, softly shaded tactile material, consistent original identity and colors, readable at 64px. Same body proportions, equipment, camera and scale in all 16 cells. Three-quarter view facing RIGHT in every cell. Entire ears, hat, tail, basket, weapon, hands and feet inside each cell with large transparent margins. Exactly one unconnected character per cell. Keep gestures dynamic, authored limb positions, no simple duplicate or shifted clones. Transparent background, alpha outside character. No text, grid, number, border, watermark, ground, drop shadow, particles, magic effects, glow, extra characters or scenery."
+      },
+      {
+        "sheet": "support",
+        "sha256": "eae2f6e7662882655939e9c68a09a7a4d1f8ac9c29c13d0e3594490e998ac084",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            32,
+            50,
+            302,
+            328
+          ],
+          [
+            354,
+            3,
+            596,
+            339
+          ],
+          [
+            630,
+            75,
+            1038,
+            330
+          ],
+          [
+            999,
+            32,
+            1250,
+            329
+          ],
+          [
+            29,
+            353,
+            275,
+            636
+          ],
+          [
+            326,
+            353,
+            620,
+            639
+          ],
+          [
+            653,
+            360,
+            914,
+            636
+          ],
+          [
+            985,
+            358,
+            1238,
+            638
+          ],
+          [
+            29,
+            656,
+            265,
+            898
+          ],
+          [
+            307,
+            680,
+            616,
+            898
+          ],
+          [
+            629,
+            691,
+            921,
+            898
+          ],
+          [
+            945,
+            703,
+            1245,
+            897
+          ],
+          [
+            41,
+            913,
+            275,
+            1224
+          ],
+          [
+            325,
+            902,
+            610,
+            1229
+          ],
+          [
+            650,
+            917,
+            918,
+            1231
+          ],
+          [
+            992,
+            920,
+            1221,
+            1224
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: production 2D RPG sprite support sheet. Input image1 is the approved character sheet and material/style reference; image2 is the original identity canon. Subject: Kind elderly Vietnamese human herbalist woman, silver grey hair in neat top bun, warm wrinkled face, small dark eyes, purple long sleeve jacket, cream scarf, loose charcoal trousers, brown open sandals. Woven brown wicker herb basket on her back filled with green herbs and tiny white flowers, gourd and small herb pouch on belt. Uses a crooked dark wooden walking staff wrapped in herbs. Preserve age, face and outfit; never an animal. Paint exactly 16 FULL BODY distinct poses of this SAME actor in a strict evenly spaced 4 columns x 4 rows SQUARE transparent sheet. Row1 four powerful ultimate gestures: prepare low, lift signature bowl/wand/staff/hoe, fully extend RIGHT at impact, heroic follow-through. Row2 four hit recoil poses: flinch, lean back, brace, regain balance. Row3 four sequential non-graphic fainting/fall poses: kneel, lower body, lie fully on right side unconscious, resting sideways with equipment beside body; still the same complete character. Row4 four happy victory poses: rise proud, lift equipment, celebrate, relaxed smile. Same chibi hand-painted style, body scale, camera, identity, colors and equipment as input1. Clear authored anatomy and distinct limb positions, not moved copies. Character faces RIGHT, three-quarter view. Exactly one disconnected actor per cell with LARGE transparent gutters; keep whole tall ears/hat/basket/weapon/tail/feet inside each cell. Real transparent alpha, no ground, shadows, magic, particles, glow, text, numbering, watermark or extra people."
+      },
+      {
+        "sheet": "portrait",
+        "sha256": "ea9b7c56499cd7d5a1c3cfebf10fd709e769f6c519791eac36d6891aed809f7c",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: finished square RPG hero portrait, Soul of Meal. Input1 approved sprite style/identity and input2 original model canon. Subject: Kind elderly Vietnamese human herbalist woman, silver grey hair in neat top bun, warm wrinkled face, small dark eyes, purple long sleeve jacket, cream scarf, loose charcoal trousers, brown open sandals. Woven brown wicker herb basket on her back filled with green herbs and tiny white flowers, gourd and small herb pouch on belt. Uses a crooked dark wooden walking staff wrapped in herbs. Preserve age, face and outfit; never an animal. Create a polished, finely hand-painted charming chibi fantasy portrait of exactly this character, three-quarter view facing RIGHT, warm expressive face, visible signature equipment. Waist-up or knee-up composition comfortably INSIDE square with at least 8 percent margin around top of head, onion shoots, ears, conical hat, basket and tools. No cropped head, ears or hat. Background soft cream-jade painterly garden bokeh, subtle warm light and sparse herbs, restrained contrast, face clearly legible at 64px. Preserve outfit, species, age, colors and equipment. No text, letters, frame, border, watermark, extra characters or UI."
+      }
+    ],
+    "uniformScale": 0.5490196078431373,
+    "outputs": {
+      "caravan-herbalist-pixel.webp": {
+        "bytes": 87650,
+        "sha256": "7fc397ca42c24a38b5d882cc175bdbdfaabc333ba88c59d6fa06b24dca1249bc"
+      },
+      "caravan-herbalist-portrait.webp": {
+        "bytes": 75640,
+        "sha256": "626d4e4e69a41f543a43447d3aa274aec3d95bdd06400f98d231c8c0ede9c36a"
+      },
+      "caravan-herbalist.webp": {
+        "bytes": 397206,
+        "sha256": "667356bc9a89b0f7818b3b67f5a0898e126a40f77c86393283124f798d43ed30"
+      }
+    }
+  },
+  {
+    "id": "caravan-gardener",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "2e16f03f7a03db094a27aa869db4aa175074dba21ef1a20981c8009751039201",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            53,
+            18,
+            259,
+            313
+          ],
+          [
+            355,
+            15,
+            579,
+            313
+          ],
+          [
+            667,
+            14,
+            892,
+            314
+          ],
+          [
+            978,
+            17,
+            1213,
+            313
+          ],
+          [
+            35,
+            321,
+            269,
+            615
+          ],
+          [
+            367,
+            323,
+            602,
+            616
+          ],
+          [
+            684,
+            322,
+            921,
+            616
+          ],
+          [
+            1000,
+            327,
+            1231,
+            618
+          ],
+          [
+            11,
+            623,
+            275,
+            915
+          ],
+          [
+            343,
+            651,
+            663,
+            909
+          ],
+          [
+            656,
+            660,
+            1007,
+            913
+          ],
+          [
+            999,
+            642,
+            1237,
+            910
+          ],
+          [
+            51,
+            930,
+            248,
+            1240
+          ],
+          [
+            366,
+            933,
+            602,
+            1240
+          ],
+          [
+            688,
+            933,
+            925,
+            1238
+          ],
+          [
+            993,
+            932,
+            1231,
+            1239
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: production 2D RPG character animation sprite sheet for Soul of Meal. Input image 1 is the identity canon reference, not the sheet layout. Subject: Young Vietnamese human gardener boy with short tousled black hair, big dark eyes, smiling round face, woven straw conical hat, cream short sleeve shirt, red sash tied at waist, loose teal cropped trousers, brown sandals. Carries a long brown wooden hoe over shoulder, grey metal hoe blade, small plant sprigs and brown pouch at waist, small hand tool at hip. Preserve human child identity, hat and hoe; no animal features. Primary request: paint exactly 16 clearly distinct FULL BODY poses of this SAME character in a strict evenly spaced 4 columns x 4 rows square sprite sheet. Row1 four subtle idle breathing/readiness poses; row2 four consecutive walking strides facing RIGHT; row3 four distinct melee attack stages windup, extension toward right, contact, recovery using their existing bowl/wand/staff/hoe; row4 four distinct support casting gestures prepare, gather, reach right, recover. Style: finely hand painted charming chibi fantasy, clean dark contour, softly shaded tactile material, consistent original identity and colors, readable at 64px. Same body proportions, equipment, camera and scale in all 16 cells. Three-quarter view facing RIGHT in every cell. Entire ears, hat, tail, basket, weapon, hands and feet inside each cell with large transparent margins. Exactly one unconnected character per cell. Keep gestures dynamic, authored limb positions, no simple duplicate or shifted clones. Transparent background, alpha outside character. No text, grid, number, border, watermark, ground, drop shadow, particles, magic effects, glow, extra characters or scenery."
+      },
+      {
+        "sheet": "support",
+        "sha256": "e44b31545887287ddeda10bcd84db3e7ab976bbe725442d45527a97311be752e",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            12,
+            93,
+            306,
+            350
+          ],
+          [
+            360,
+            3,
+            577,
+            350
+          ],
+          [
+            606,
+            95,
+            1024,
+            352
+          ],
+          [
+            1039,
+            65,
+            1244,
+            351
+          ],
+          [
+            39,
+            383,
+            319,
+            661
+          ],
+          [
+            327,
+            396,
+            620,
+            655
+          ],
+          [
+            670,
+            425,
+            928,
+            655
+          ],
+          [
+            983,
+            399,
+            1233,
+            652
+          ],
+          [
+            36,
+            687,
+            307,
+            914
+          ],
+          [
+            334,
+            702,
+            598,
+            928
+          ],
+          [
+            625,
+            746,
+            931,
+            916
+          ],
+          [
+            944,
+            766,
+            1245,
+            919
+          ],
+          [
+            27,
+            935,
+            294,
+            1213
+          ],
+          [
+            341,
+            906,
+            624,
+            1232
+          ],
+          [
+            682,
+            932,
+            902,
+            1232
+          ],
+          [
+            1008,
+            927,
+            1240,
+            1230
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: production 2D RPG sprite support sheet. Input image1 is the approved character sheet and material/style reference; image2 is the original identity canon. Subject: Young Vietnamese human gardener boy with short tousled black hair, big dark eyes, smiling round face, woven straw conical hat, cream short sleeve shirt, red sash tied at waist, loose teal cropped trousers, brown sandals. Carries a long brown wooden hoe over shoulder, grey metal hoe blade, small plant sprigs and brown pouch at waist, small hand tool at hip. Preserve human child identity, hat and hoe; no animal features. Paint exactly 16 FULL BODY distinct poses of this SAME actor in a strict evenly spaced 4 columns x 4 rows SQUARE transparent sheet. Row1 four powerful ultimate gestures: prepare low, lift signature bowl/wand/staff/hoe, fully extend RIGHT at impact, heroic follow-through. Row2 four hit recoil poses: flinch, lean back, brace, regain balance. Row3 four sequential non-graphic fainting/fall poses: kneel, lower body, lie fully on right side unconscious, resting sideways with equipment beside body; still the same complete character. Row4 four happy victory poses: rise proud, lift equipment, celebrate, relaxed smile. Same chibi hand-painted style, body scale, camera, identity, colors and equipment as input1. Clear authored anatomy and distinct limb positions, not moved copies. Character faces RIGHT, three-quarter view. Exactly one disconnected actor per cell with LARGE transparent gutters; keep whole tall ears/hat/basket/weapon/tail/feet inside each cell. Real transparent alpha, no ground, shadows, magic, particles, glow, text, numbering, watermark or extra people."
+      },
+      {
+        "sheet": "portrait",
+        "sha256": "847235d31888467fba00d669f5c060a6adcde4938cd9fedf2f43af1a5491f82a",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. Asset type: finished square RPG hero portrait, Soul of Meal. Input1 approved sprite style/identity and input2 original model canon. Subject: Young Vietnamese human gardener boy with short tousled black hair, big dark eyes, smiling round face, woven straw conical hat, cream short sleeve shirt, red sash tied at waist, loose teal cropped trousers, brown sandals. Carries a long brown wooden hoe over shoulder, grey metal hoe blade, small plant sprigs and brown pouch at waist, small hand tool at hip. Preserve human child identity, hat and hoe; no animal features. Create a polished, finely hand-painted charming chibi fantasy portrait of exactly this character, three-quarter view facing RIGHT, warm expressive face, visible signature equipment. Waist-up or knee-up composition comfortably INSIDE square with at least 8 percent margin around top of head, onion shoots, ears, conical hat, basket and tools. No cropped head, ears or hat. Background soft cream-jade painterly garden bokeh, subtle warm light and sparse herbs, restrained contrast, face clearly legible at 64px. Preserve outfit, species, age, colors and equipment. No text, letters, frame, border, watermark, extra characters or UI."
+      }
+    ],
+    "uniformScale": 0.5358851674641149,
+    "outputs": {
+      "caravan-gardener-pixel.webp": {
+        "bytes": 68682,
+        "sha256": "ed1101b2ace972fd7044543415dc7323460acdfb17b77a949bbbf2bf7cbfa4d3"
+      },
+      "caravan-gardener-portrait.webp": {
+        "bytes": 68402,
+        "sha256": "c3c5bd9a2dc35b604889d34ccbe0554e5443607fd43ef4acac984a4aa51d43fb"
+      },
+      "caravan-gardener.webp": {
+        "bytes": 335286,
+        "sha256": "90d9959c9afe8771dcf5b947b091097a2059a176261dd7b084c5e6afc0acd7ec"
+      }
+    }
+  }
+]
