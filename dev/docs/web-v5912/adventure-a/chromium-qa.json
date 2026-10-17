@@ -1,0 +1,533 @@
+{
+  "date": "2026-10-17",
+  "engine": "chromium",
+  "version": "151.0.7922.34",
+  "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
+  "checks": [
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 198,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 891,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 678,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "pho-ga",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1455,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "chao-suon",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1018,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "mien-ga",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1033,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-moc",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1424,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 480,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 2150,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 1671,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "pho-ga",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3498,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "chao-suon",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2401,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "mien-ga",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2313,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-moc",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2989,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 83,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 375,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 312,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "pho-ga",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 753,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "chao-suon",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 624,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "mien-ga",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 615,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-moc",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 796,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 624,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 2861,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "realReducerEvents": true,
+      "painted": 2212,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "pho-ga",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4719,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "chao-suon",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 3240,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "mien-ga",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 3126,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-moc",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4099,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "victory",
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ]
+    },
+    {
+      "area": "fall",
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ]
+    },
+    {
+      "area": "reload-committed-ultimate",
+      "noRecast": true
+    },
+    {
+      "area": "natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "reduced-motion",
+      "ids": [
+        "pho-ga",
+        "chao-suon",
+        "mien-ga",
+        "bun-moc"
+      ],
+      "staticPose": 16
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedAssets": [
+    "/assets/characters/vietnam5912/pho-ga-pixel.webp",
+    "/assets/characters/vietnam5912/chao-suon-pixel.webp",
+    "/assets/characters/vietnam5912/mien-ga-pixel.webp",
+    "/assets/characters/vietnam5912/bun-moc-pixel.webp"
+  ],
+  "movieRequests": 0
+}

@@ -1,0 +1,533 @@
+{
+  "date": "2026-10-17",
+  "engine": "chromium",
+  "version": "151.0.7922.34",
+  "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
+  "checks": [
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 173,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 957,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 628,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-da-cua",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 2169,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-dau",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1307,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 80.765625,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-rang-dua-bo",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 918,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 80.765625,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-nieu",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 915,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 434,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 2320,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 1509,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-da-cua",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5496,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-dau",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3049,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-rang-dua-bo",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2018,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-nieu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 1921,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 81,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 397,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 272,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-da-cua",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 1202,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-dau",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 746,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-rang-dua-bo",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 596,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-nieu",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 586,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 582,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 3137,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realReducerEvents": true,
+      "painted": 2034,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-da-cua",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7486,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-dau",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4130,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-rang-dua-bo",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 2719,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-nieu",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 2525,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "victory",
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ]
+    },
+    {
+      "area": "fall",
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ]
+    },
+    {
+      "area": "reload-committed-ultimate",
+      "noRecast": true
+    },
+    {
+      "area": "natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "reduced-motion",
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "staticPose": 16
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedAssets": [
+    "/assets/characters/vietnam5912/banh-da-cua-pixel.webp",
+    "/assets/characters/vietnam5912/bun-dau-pixel.webp",
+    "/assets/characters/vietnam5912/com-rang-dua-bo-pixel.webp",
+    "/assets/characters/vietnam5912/com-nieu-pixel.webp"
+  ],
+  "movieRequests": 0
+}

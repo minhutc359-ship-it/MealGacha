@@ -1,0 +1,23 @@
+{
+  "tool": "Built-in Imagegen; no CLI or external API runner",
+  "date": "2026-10-17",
+  "identity": "dev/docs/web-v5912/identity-sources.json",
+  "referenceRecipe": "python3 dev/tools/prepare-spirit-references.py dev/docs/web-v5912/identity-sources.json .asset-work/vietnam5912",
+  "styleReference": {
+    "path": "/assets/characters/spring5911/xoi-xeo.webp",
+    "sha256": "8d889ada8ae43c5733bde4c0a229c43b843f5ad4264e6abaf69643e47e1faaa4",
+    "crop": [
+      0,
+      0,
+      1024,
+      1024
+    ],
+    "use": "Style and grid only; never the pangolin identity"
+  },
+  "authoredSheets": 16,
+  "targetedRepairs": 1,
+  "physicalPoseCount": 256,
+  "portraitPolicy": "Reuse existing immutable canon atlas cells; no new portrait files",
+  "promptSet": "asset-provenance.json sources[].prompt",
+  "runtimeAssets": "public/assets/characters/vietnam5912/"
+}

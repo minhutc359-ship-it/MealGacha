@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { REGIONAL_IDS, SPRING_CARAVAN_IDS, characterVisual } from "@/game/characterVisuals"
+import { REGIONAL_IDS, SPRING_CARAVAN_IDS, VIETNAM_IDS, characterVisual } from "@/game/characterVisuals"
 import { drawStarterVfx, type CharacterVfxKind } from "@/game/starterVfx"
 import { starterPose } from "@/game/starterCharacters"
 import { actorPose } from "@/game/autochess/actorPresentation"
@@ -26,13 +26,14 @@ function geometry(
 describe.each([
   {version:"5.9.10", ids:REGIONAL_IDS},
   {version:"5.9.11", ids:SPRING_CARAVAN_IDS},
+  {version:"5.9.12", ids:VIETNAM_IDS},
 ])("spirit presentation $version", ({ids}) => {
-  it("draws four distinct bounded motifs without unused texture dependencies", () => {
+  it("draws distinct bounded motifs without unused texture dependencies", () => {
     expect(
       new Set(
         ids.map((id) => JSON.stringify(geometry(id, 200, "skill"))),
       ).size,
-    ).toBe(4)
+    ).toBe(ids.length)
     for (const id of ids) {
       expect(characterVisual(id)!.effect).toBeNull()
       expect(geometry(id, -1, "skill")).toEqual([])

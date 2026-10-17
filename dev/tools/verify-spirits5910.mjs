@@ -6,15 +6,18 @@ const { chromium, webkit } = await import(
 )
 const cohorts = {
   "5910": {root: "regional5910", ids: ["banh-tet", "bun-bo-hue", "bun-ca", "che-buoi"]},
+  "5912": {root: "vietnam5912", ids: ["pho-ga", "chao-suon", "mien-ga", "bun-moc"]},
   "5911": {root: "spring5911", ids: ["xoi-xeo", "dua-hanh", "caravan-herbalist", "caravan-gardener"]},
 }
 const cohort = process.env.QA_COHORT ?? "5910"
 assert(cohort in cohorts, "Unknown spirit cohort")
-const {root: assetRoot, ids} = cohorts[cohort]
+const {root: assetRoot, ids: defaultIds} = cohorts[cohort]
+const ids = process.env.QA_IDS ? JSON.parse(process.env.QA_IDS) : defaultIds
+assert.equal(ids.length,4)
 const engine = process.env.QA_ENGINE ?? "chromium",
   port = process.env.QA_PORT ?? "4196",
   url = `http://127.0.0.1:${port}`,
-  out = `dev/docs/web-v${cohort}`
+  out = process.env.QA_OUT ?? `dev/docs/web-v${cohort}`
 const checks = [],
   errors = [],
   missing = [],
@@ -77,7 +80,7 @@ async function open(context) {
   const dismiss = p.getByRole("button", { name: "Tắt thông báo", exact: true })
   if (await dismiss.isVisible()) await dismiss.click()
   await p.clock.install()
-  await p.clock.pauseAt(new Date(Date.now() + 100))
+  await p.clock.pauseAt(new Date(await p.evaluate(() => Date.now()) + 1000))
   return p
 }
 let fixtureSerial = 0
@@ -257,10 +260,8 @@ try {
       const painted = await paint(p)
       assert(painted > 10)
       const banner = p.locator(`.ultimate-banner[data-showcase="${ids[i]}"]`)
-      assert.match(
-        await banner.locator(".ultimate-portrait-image").getAttribute("style"),
-        new RegExp(`${assetRoot}/${ids[i]}-portrait`),
-      )
+      const expectedPortrait=await p.evaluate(async id=>(await import("/src/game/adventureRpg/spiritArt.ts")).spiritArt(id).path,ids[i])
+      assert((await banner.locator(".ultimate-portrait-image").getAttribute("style")).includes(expectedPortrait))
       const rect = await banner.evaluate((e) => {
         const b = e.getBoundingClientRect(),
           a = e.closest(".rpg-arena").getBoundingClientRect()

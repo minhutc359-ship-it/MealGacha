@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-17",
+  "engine": "chromium",
+  "version": "151.0.7922.34",
+  "checks": [
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "com-tam",
+        "banh-mi",
+        "pho-bo"
+      ]
+    },
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "xoi-xeo",
+        "dua-hanh",
+        "com-tam",
+        "banh-mi",
+        "pho-bo"
+      ]
+    },
+    {
+      "area": "tcg",
+      "spell": {
+        "id": "tea-break",
+        "name": "Một chén trà"
+      },
+      "sharedBanner": true,
+      "modelSigil": true,
+      "ids": [
+        "banh-da-cua",
+        "bun-dau",
+        "com-rang-dua-bo",
+        "com-nieu"
+      ],
+      "realUnitAttack": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "movieRequests": 0,
+  "requestedAssets": [
+    "/assets/characters/vietnam5912/com-rang-dua-bo.webp",
+    "/assets/characters/vietnam5912/com-nieu.webp",
+    "/assets/characters/vietnam5912/banh-da-cua.webp",
+    "/assets/characters/vietnam5912/bun-dau.webp"
+  ]
+}

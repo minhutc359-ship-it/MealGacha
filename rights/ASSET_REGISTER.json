@@ -1,5 +1,5 @@
 {
-  "version": "5.9.11",
+  "version": "5.9.12",
   "generatedOn": "2026-10-15",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -2357,6 +2357,198 @@
         "dev/docs/web-v591/vfx-artwork.json",
         "dev/tools/pack-starters590.py",
         "dev/tools/pack-ultimate591.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/banh-da-cua-pixel.webp",
+      "bytes": 126498,
+      "sha256": "64b117b068e49a450291c9407825cfbdaf5493779eb3a85e18ab4269147757be",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/banh-da-cua.webp",
+      "bytes": 572188,
+      "sha256": "07e10c457370173e3f80bc16de5a0d6b85d65f78609992a226930971607e419b",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/bun-dau-pixel.webp",
+      "bytes": 157758,
+      "sha256": "5b7c594a70c989acbad7433fbffe83334a02ecca837433551879e35be363f7fe",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/bun-dau.webp",
+      "bytes": 769760,
+      "sha256": "46e1f1cfa5698acfd5f598adfa3684c2a4c8d6df99de48fa5d6aec40d0cecb13",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/bun-moc-pixel.webp",
+      "bytes": 119664,
+      "sha256": "b5fbad42fd41af3075c1e42ae2f47a6975407190467a2d3e42d724519ff49a9a",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/bun-moc.webp",
+      "bytes": 618252,
+      "sha256": "c794ea308821b9b0200528cf4cd769115b677108a0c5e087cc013ed69f5d0504",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/chao-suon-pixel.webp",
+      "bytes": 127602,
+      "sha256": "c87212d3f3a3651f74a39eda75809486322f9ea2c27f8b2a79bcc051e44a657e",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/chao-suon.webp",
+      "bytes": 578682,
+      "sha256": "9dd5d43cd7a5df870f19160197e313abc2d6d4d16fd971172bb3f050ada7298c",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/com-nieu-pixel.webp",
+      "bytes": 106794,
+      "sha256": "b9bf6b7c6e319f4b9ac73fc623ba2c079c718722ed0f963a23d8bc5f6c5f2c43",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/com-nieu.webp",
+      "bytes": 590422,
+      "sha256": "b2d54538de13242e08c67f095dced9efda6748399591ec571158d55f09c5df35",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/com-rang-dua-bo-pixel.webp",
+      "bytes": 137814,
+      "sha256": "37b000c673765e133149d94501923741e700249b922de2ef5f30fd45b67d76c4",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/com-rang-dua-bo.webp",
+      "bytes": 691070,
+      "sha256": "83d9b38de945e82c4707f29eebc85aa7a65c6415990327fc9f30bfd85debfb05",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/mien-ga-pixel.webp",
+      "bytes": 124896,
+      "sha256": "6ca0d916ae610b5d0c05565cb9c0dd5489d2fa8b230e6c2965a3ad020a9ad77f",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/mien-ga.webp",
+      "bytes": 636858,
+      "sha256": "e7f18d30504c2a5b0c9fa283f9049e96f92965fa05b4eb640086022e83377449",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/pho-ga-pixel.webp",
+      "bytes": 136958,
+      "sha256": "dfed3e9cf5cecb4a0634abcf0553b6d072db4ff9c08f397551391194ed065b69",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/vietnam5912/pho-ga.webp",
+      "bytes": 662876,
+      "sha256": "93cfb03b8b819d1d3d25e37ad3084812e69d6185c167959e400fff15ee5d0465",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5912/asset-provenance.json",
+        "dev/docs/web-v5912/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

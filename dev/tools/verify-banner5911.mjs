@@ -3,7 +3,9 @@ import { spawn } from "node:child_process"
 import { mkdirSync, writeFileSync } from "node:fs"
 const { chromium, webkit } = await import(process.env.PLAYWRIGHT_MODULE ?? "playwright")
 const engine = process.env.QA_ENGINE ?? "chromium", port = process.env.QA_PORT ?? "4195"
-const url = `http://127.0.0.1:${port}`, out = "dev/docs/web-v5911"
+const url = `http://127.0.0.1:${port}`, out = process.env.QA_OUT ?? "dev/docs/web-v5911"
+const ids=process.env.QA_IDS?JSON.parse(process.env.QA_IDS):["com-tam", "banh-mi", "goi-cuon-tom-thit", "takoyaki", "bingsu", "chef-bach"]
+const viewports=process.env.QA_VIEWPORTS?JSON.parse(process.env.QA_VIEWPORTS):[{width:320,height:568}, {width:390,height:844}, {width:844,height:390}, {width:1440,height:900}]
 const errors = [], missing = [], checks = [], requested = new Set()
 mkdirSync(`${out}/qa`, { recursive: true })
 const server = spawn(process.execPath, ["node_modules/vite/bin/vite.js", "--config", "dev/tools/vite.pvp-qa.config.ts", "--host", "127.0.0.1", "--port", port, "--strictPort"], { stdio: "pipe" })
@@ -20,20 +22,20 @@ try {
     executablePath: engine === "webkit" ? process.env.WEBKIT_BIN : process.env.CHROMIUM_BIN,
     ...(engine === "webkit" ? {} : {args: ["--no-sandbox", "--disable-dev-shm-usage", "--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"]}),
   })
-  for (const viewport of [{width:320,height:568}, {width:390,height:844}, {width:844,height:390}, {width:1440,height:900}]) {
+  for (const viewport of viewports) {
     const context = await browser.newContext({viewport}), page = await context.newPage()
     let clockInstalled = false
     page.on("pageerror", e => errors.push(e.message))
     page.on("response", r => {if (r.status() >= 400) missing.push([r.url(),r.status()])})
     page.on("request", r => requested.add(new URL(r.url()).pathname))
-    for (const id of ["com-tam", "banh-mi", "goi-cuon-tom-thit", "takoyaki", "bingsu", "chef-bach"]) {
+    for (const id of ids) {
       await page.goto(`${url}/adventure?hero=${id}`)
       const notice = page.getByRole("button", {name:"Tắt thông báo",exact:true})
       if (await notice.isVisible()) await notice.click()
       await page.locator(".rpg-preview-button").waitFor()
       // Freeze only after UI mounts; production timers and code remain unchanged.
       if (!clockInstalled) {await page.clock.install();clockInstalled = true}
-      await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 100))
+      await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1000))
       await page.locator(".rpg-preview-button").click()
       const banner = page.locator(`.ultimate-banner[data-showcase="${id}"]`)
       await banner.waitFor(); await page.clock.runFor(400)
@@ -62,7 +64,7 @@ try {
       assert(layout.control.bottom <= viewport.height && layout.control.top >= 0)
       if (id === "chef-bach") assert.equal(layout.art.path,"/assets/tcg/characters/anime/bach.webp")
       if (id === "takoyaki") {assert.equal(layout.art.columns,4);assert.equal(layout.portraitSize,"400% 400%")}
-      if (["takoyaki","chef-bach"].includes(id) && [390,844].includes(viewport.width))
+      if ((process.env.QA_IDS || ["takoyaki","chef-bach"].includes(id)) && [390,844].includes(viewport.width))
         await page.screenshot({path:`${out}/qa/${engine}-preview-${id}-${viewport.width}.png`})
       await page.getByRole("button",{name:"Bỏ qua ›",exact:true}).click()
       await page.locator(".rpg-showcase-preview").waitFor({state:"detached"})
