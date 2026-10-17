@@ -12,6 +12,7 @@ User story: vào trận hậu truyện → reducer phát cảnh báo/chuyển ph
 | Atlas | 8 bộ × 32 frame, 256 frame khác nhau, alpha và gutter an toàn; 24 WebP tổng 5.235.260 byte; `asset-qa.json` |
 | Chromium 153 | 29 ca Adventure tại 320×568, 390×844, 844×390, 1440×900; `chromium-qa.json` |
 | WebKit 26.5 | Cùng 29 ca; `webkit-qa.json`; engine Linux headless, không phải Safari/iPhone thật |
+| Kết quả trận | Chromium/WebKit đều kiểm tra thêm hai enemy thắng và năm ally gục; `chromium-outcome-qa.json`, `webkit-outcome-qa.json` |
 | Auto / TCG | Hai viewport Auto có cast thật và TCG bấm Thi triển thật; cả Chromium/WebKit đều qua, không JS error/asset lỗi; `modes-chromium/modes-qa.json`, `modes-webkit/modes-qa.json` |
 | PvP | ICE/DTLS/SCTP thật qua PeerServer/STUN cục bộ, hai context; bốn viewport; 10 nhóm kiểm tra; `pvp-regression/browser-qa.json` |
 | Build / guard / SW | Vite production ở thư mục output mới với cùng config; release guard và `node --check sw.js` đạt; `metrics.json` |

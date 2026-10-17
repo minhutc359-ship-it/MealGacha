@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-17",
+  "engine": "chromium",
+  "version": "153.0.8010.0",
+  "warningFixtureExtendedForScreenshots": true,
+  "checks": [
+    {
+      "area": "enemy-victory",
+      "winners": 2,
+      "fallenAllies": 5
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "newAtlasRequests": [
+    "/assets/characters/campaign598/salt-alchemist-pixel.webp",
+    "/assets/characters/campaign598/salt-colossus-pixel.webp"
+  ],
+  "movieRequests": 0
+}

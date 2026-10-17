@@ -26,6 +26,7 @@ async function fixture(p,ids,mode='warning') {
   if(b.warning)b.warning.until=b.tick+40
   if(mode==='interrupted')boss && (b.actors.find(a=>a.boss).stun=6)
   if(mode==='fallen'){b.warning=null;for(const a of b.actors.filter(a=>a.side==='enemy')){a.hp=0;a.motion='fall';a.motionAt=b.tick}b.paused=true}
+  if(mode==='victory'){b.warning=null;b.result='loss';for(const a of b.actors.filter(a=>a.side==='ally')){a.hp=0;a.motion='fall';a.motionAt=b.tick}}
   g.adventureRpg.run.battle=b
   if(!useGameStore.getState().importSave(g))throw Error('Enemy fixture rejected')
   useGameStore.getState().dismiss();return ids.map(id=>'qa-'+id)
@@ -35,7 +36,7 @@ async function fixture(p,ids,mode='warning') {
  return result
 }
 try{
- for(const viewport of process.env.QA_REDUCED_ONLY?[]:[{width:320,height:568},{width:390,height:844},{width:844,height:390},{width:1440,height:900}]){
+ for(const viewport of process.env.QA_REDUCED_ONLY||process.env.QA_OUTCOME_ONLY?[]:[{width:320,height:568},{width:390,height:844},{width:844,height:390},{width:1440,height:900}]){
   const context=await browser.newContext({viewport}),p=await context.newPage();capture(p);await p.goto(url+'/adventure');await p.locator('[data-pixel-character="bach"]').waitFor()
   const close=p.getByRole('button',{name:'Tắt thông báo',exact:true});if(await close.isVisible())await close.click()
   for(const ids of pairs){
@@ -56,7 +57,8 @@ try{
   await p.locator('.rpg-vfx-canvas[data-enemy-signature="salt-colossus"]').waitFor();checks.push({area:'cast-impact',viewport,realEnemySkill:true})
   await context.close()
  }
- const c=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'}),p=await c.newPage();capture(p);await p.goto(url+'/adventure');await fixture(p,pairs[0]);await p.locator('.rpg-battle.presentation-fight').waitFor();await p.waitForLoadState('networkidle');await p.locator('.rpg-threat-cell i').first().waitFor();assert.equal(await p.locator('.rpg-threat-cell i').first().evaluate(e=>getComputedStyle(e).animationName),'none');await p.screenshot({path:`${out}/qa/${engine}-reduced.png`});checks.push({area:'reduced-motion',staticWarning:true});await c.close()
+ if(process.env.QA_OUTCOME_ONLY){const context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();capture(page);await page.goto(url+'/adventure');await fixture(page,pairs[1],'victory');await page.locator('.side-enemy [data-motion="victory"]').first().waitFor();assert.equal(await page.locator('.side-enemy [data-motion="victory"]').count(),2);assert.equal(await page.locator('.side-ally [data-motion="fall"]').count(),5);checks.push({area:'enemy-victory',winners:2,fallenAllies:5});await context.close()}
+ if(!process.env.QA_OUTCOME_ONLY){const c=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'}),p=await c.newPage();capture(p);await p.goto(url+'/adventure');await fixture(p,pairs[0]);await p.locator('.rpg-battle.presentation-fight').waitFor();await p.waitForLoadState('networkidle');await p.locator('.rpg-threat-cell i').first().waitFor();assert.equal(await p.locator('.rpg-threat-cell i').first().evaluate(e=>getComputedStyle(e).animationName),'none');await p.screenshot({path:`${out}/qa/${engine}-reduced.png`});checks.push({area:'reduced-motion',staticWarning:true});await c.close()}
  assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);assert(!requests.some(p=>p.endsWith('.mp4')))
- writeFileSync(out+`/${engine}${process.env.QA_REDUCED_ONLY?"-reduced":""}-qa.json`,JSON.stringify({date:'2026-10-17',engine,version:browser.version(),warningFixtureExtendedForScreenshots:true,checks,errors,missing,newAtlasRequests:[...new Set(requests.filter(p=>p.includes('/campaign598/')))],movieRequests:0},null,2)+'\n');console.log(JSON.stringify({engine,checks:checks.length,errors,missing}))
+ writeFileSync(out+`/${engine}${process.env.QA_OUTCOME_ONLY?"-outcome":process.env.QA_REDUCED_ONLY?"-reduced":""}-qa.json`,JSON.stringify({date:'2026-10-17',engine,version:browser.version(),warningFixtureExtendedForScreenshots:true,checks,errors,missing,newAtlasRequests:[...new Set(requests.filter(p=>p.includes('/campaign598/')))],movieRequests:0},null,2)+'\n');console.log(JSON.stringify({engine,checks:checks.length,errors,missing}))
 }finally{await browser.close();server.kill()}

@@ -75,3 +75,5 @@ Presentation và asset P3; không sửa engine/save schema hay dependency runtim
 - `src/game/tcgCharacterMotion.ts`
 - `src/infrastructure/assets/characterSprites.ts`
 - `dev/docs/web-v598/CHANGED_FILES.md`
+- `dev/docs/web-v598/chromium-outcome-qa.json`
+- `dev/docs/web-v598/webkit-outcome-qa.json`
