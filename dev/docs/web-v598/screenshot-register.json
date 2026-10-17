@@ -1,0 +1,325 @@
+{
+  "note": "Unaltered browser captures mechanically compressed to WebP quality 86. No layout/content edits. Scripts produce original PNGs; original captures remain in the QA working directory. The complete capture set is reproducible; only the reviewed evidence/ subset is retained in git.",
+  "screenshots": [
+    {
+      "file": "qa/chromium-cloud-teapot-320.webp",
+      "sourceSHA256": "1b673626b60e1dd2a585d936f31f66b8c15e44a1609d8d352f62121e8fefc021",
+      "sourceBytes": 200026,
+      "bytes": 34430,
+      "size": [
+        320,
+        568
+      ]
+    },
+    {
+      "file": "qa/chromium-phase-320.webp",
+      "sourceSHA256": "055e2dd00cc0006096a58ca7b253cbd7cd20eef44c805bae6792dd0fdd6b470d",
+      "sourceBytes": 202601,
+      "bytes": 35752,
+      "size": [
+        320,
+        568
+      ]
+    },
+    {
+      "file": "qa/chromium-reduced.webp",
+      "sourceSHA256": "49852acedcb6a1da1f3648c831cf6532a554b7b5dc61872b65f5e5637b9b2706",
+      "sourceBytes": 358014,
+      "bytes": 45372,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/chromium-cloud-teapot-390.webp",
+      "sourceSHA256": "9e969355a42c2089fec37a9fc0371507e979aa726d3e0ca61d460eee71f06dcd",
+      "sourceBytes": 363619,
+      "bytes": 49602,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/chromium-phase-844.webp",
+      "sourceSHA256": "4380e33e4d906d7c7f50c0fced6b1da662a6a2b24019898bafa16696714772fc",
+      "sourceBytes": 247650,
+      "bytes": 40422,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "file": "qa/webkit-cloud-teapot-320.webp",
+      "sourceSHA256": "59ca73d1926a86885a8cc7d959b252bb4a1143ced5bf47d3413416cabf2412f8",
+      "sourceBytes": 189720,
+      "bytes": 35650,
+      "size": [
+        320,
+        568
+      ]
+    },
+    {
+      "file": "qa/webkit-phase-390.webp",
+      "sourceSHA256": "f28603bb8203183e3d66484c0d54b018c6ddd67ae7b0778f1c2c4505a72fa66d",
+      "sourceBytes": 376339,
+      "bytes": 54162,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/webkit-phase-844.webp",
+      "sourceSHA256": "5f38f07353a6d9948f9af4ad5b1e578e25ef0c28464bcdc11bb9f90d313490d8",
+      "sourceBytes": 225663,
+      "bytes": 40336,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "file": "qa/webkit-moon-heron-390.webp",
+      "sourceSHA256": "ccf85fbeb05ec662f95646ef10d3c39908268077fd13832cb1874fe574aa9619",
+      "sourceBytes": 368930,
+      "bytes": 53418,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/webkit-cloud-teapot-844.webp",
+      "sourceSHA256": "f6b85514f0cf7d335304d2917f77d493d97c8ef1e39cde55d0a7e3fbe9651c6d",
+      "sourceBytes": 228171,
+      "bytes": 39880,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "file": "qa/webkit-phase-320.webp",
+      "sourceSHA256": "1b10a73ee62474c28374175345df16c5bd713324a9a17d3755805c362bd7abc7",
+      "sourceBytes": 192264,
+      "bytes": 36232,
+      "size": [
+        320,
+        568
+      ]
+    },
+    {
+      "file": "qa/chromium-phase-390.webp",
+      "sourceSHA256": "f07d7568eab234b8663d3f059ec1b334503e19059720bb8dfe3a93fe677f6e48",
+      "sourceBytes": 369210,
+      "bytes": 52758,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/webkit-aroma-regent-390.webp",
+      "sourceSHA256": "2eef0b86547732ae2803ada5141104fc39e3aee10a372ec1043646960e778f58",
+      "sourceBytes": 372962,
+      "bytes": 53942,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/webkit-salt-colossus-390.webp",
+      "sourceSHA256": "78d7578b3f333e003fb8025fe2eeac51cea98693f2f5117ea3aec68733560356",
+      "sourceBytes": 370415,
+      "bytes": 53332,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/chromium-moon-heron-390.webp",
+      "sourceSHA256": "2a99c2c231dcfc3212a537cbc257f842fbdca1d8cd2434cf2e506a1ce75eafc3",
+      "sourceBytes": 362415,
+      "bytes": 49688,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/chromium-aroma-regent-390.webp",
+      "sourceSHA256": "3aac76a257a88b1376ba9449aec35fbfe46f95f2191c8536689af55b621a3601",
+      "sourceBytes": 364186,
+      "bytes": 50132,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/webkit-cloud-teapot-390.webp",
+      "sourceSHA256": "200778901854dc6216caa4575f2d3396875e928a097713bd9b3236f39db94b79",
+      "sourceBytes": 369583,
+      "bytes": 53360,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/chromium-salt-colossus-390.webp",
+      "sourceSHA256": "ad0e2c0cfeccbf7965b9e98518fc86f5e36ff96914415264bd852d68c340e629",
+      "sourceBytes": 360298,
+      "bytes": 49174,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/webkit-cloud-teapot-1440.webp",
+      "sourceSHA256": "2f43f67699937b08b88b2260f88e39277ed09caeb2a44b0080f1cac4057fd505",
+      "sourceBytes": 1090637,
+      "bytes": 123218,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "qa/webkit-phase-1440.webp",
+      "sourceSHA256": "f81dcdbaf09f98805f4ec7a161ce1da39ba66af7319b393deb7f1eebec9264d8",
+      "sourceBytes": 1095415,
+      "bytes": 124118,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "qa/chromium-cloud-teapot-844.webp",
+      "sourceSHA256": "c929de18a9eef891eec3e6b2c792f35f8a455ec75fb03db58c1792b7537236ec",
+      "sourceBytes": 238773,
+      "bytes": 39462,
+      "size": [
+        844,
+        390
+      ]
+    },
+    {
+      "file": "qa/webkit-reduced.webp",
+      "sourceSHA256": "dfc4872608e09707431e3f14bb731637a248d051d07b8f969830e03e50bdfb18",
+      "sourceBytes": 439507,
+      "bytes": 71210,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "qa/chromium-phase-1440.webp",
+      "sourceSHA256": "cd85dcd9bdebe54b565e3462718b35515ebb2a7d7a04fda71e6ca8805972b047",
+      "sourceBytes": 1135660,
+      "bytes": 127482,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "qa/chromium-cloud-teapot-1440.webp",
+      "sourceSHA256": "d0d5774bcf1ef9d19631c9c124584bb9e4c30aae7c1ea44a366e0af46d8da135",
+      "sourceBytes": 1124421,
+      "bytes": 124444,
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "modes-chromium/qa/tcg-spell.webp",
+      "sourceSHA256": "ed9e4e48b72d9d826b077203876a50dbd50baa18d1bdd7d64b42c60b32426d23",
+      "sourceBytes": 1204042,
+      "bytes": 113234,
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "file": "modes-chromium/qa/autochess-390.webp",
+      "sourceSHA256": "0642571a7394ee44d78f12b71b9fe3439106e4de7fea9d377d2963d5053c83f4",
+      "sourceBytes": 430382,
+      "bytes": 59518,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "modes-chromium/qa/autochess-1280.webp",
+      "sourceSHA256": "53b4f72e92166c0e4bd3474fe4e648ab06a4fc3a5a63604c5a07a82c1fcc489f",
+      "sourceBytes": 1282365,
+      "bytes": 160044,
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "file": "modes-chromium/qa/tcg-selected.webp",
+      "sourceSHA256": "e244fda58a1564b0bd49134020f4ac050e023aa541bfba9ea1c0c2b98804bb58",
+      "sourceBytes": 1185315,
+      "bytes": 113782,
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "file": "modes-webkit/qa/tcg-spell.webp",
+      "sourceSHA256": "bca3882efd08143f0591a6e5774572ffc1f61c5c809fe98d439237b6a61d01ef",
+      "sourceBytes": 1229463,
+      "bytes": 113028,
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "file": "modes-webkit/qa/autochess-390.webp",
+      "sourceSHA256": "cae9d06c0a8c20fca8cc604770c51643e920f20df14c78e833b0c4a62e3f37a4",
+      "sourceBytes": 449669,
+      "bytes": 58760,
+      "size": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "modes-webkit/qa/autochess-1280.webp",
+      "sourceSHA256": "74a688ad66892b188bfafe4d6568284d1610ce7c7e46425b200898da72949ed1",
+      "sourceBytes": 1441425,
+      "bytes": 166232,
+      "size": [
+        1280,
+        800
+      ]
+    },
+    {
+      "file": "modes-webkit/qa/tcg-selected.webp",
+      "sourceSHA256": "e0a168a6ac3050d4d6b05be53382214d747c772fe8729c117f7867cfc2e8027c",
+      "sourceBytes": 1164972,
+      "bytes": 102716,
+      "size": [
+        1280,
+        800
+      ]
+    }
+  ]
+}

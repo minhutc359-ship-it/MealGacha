@@ -4,7 +4,7 @@ import {createReadStream,statSync,mkdirSync,writeFileSync} from 'node:fs'
 import path from 'node:path'
 import {checkWebBudget} from './web-budget.mjs'
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE??'playwright')
-const root=path.resolve('dist'), requests=[], errors=[]
+const root=path.resolve(process.env.WEB_DIST_DIR??'dist'), requests=[], errors=[]
 const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.webmanifest':'application/manifest+json','.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.woff2':'font/woff2','.ico':'image/x-icon','.mp3':'audio/mpeg','.mp4':'video/mp4'}
 // Count every server response, including service-worker installation/warming, without HTTP compression.
 // This deliberately reports raw delivered bodies rather than mistaking all dist bytes for a cold launch.

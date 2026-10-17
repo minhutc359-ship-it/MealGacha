@@ -5,7 +5,7 @@ import type { BattleUnit, GameCard, School } from "./types"
 import { DISTINCT_MODELS, unitCharacter, spiritCharacter, type CharacterModel } from "../infrastructure/assets/characterSprites"
 import { TCG_IMPACT_MS } from "./battleVfx"
 
-export type CharacterMotion = "guard" | "stun" | "ultimate" | "idle" | "walk" | "summon" | "attack" | "cast" | "hit" | "fall" | "victory"
+export type CharacterMotion = "phase" | "channel" | "guard" | "stun" | "ultimate" | "idle" | "walk" | "summon" | "attack" | "cast" | "hit" | "fall" | "victory"
 export interface MotionCue {
   kind: CharacterMotion
   delay: number

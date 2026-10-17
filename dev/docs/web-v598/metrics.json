@@ -1,0 +1,139 @@
+{
+  "staticBudgetBytes": 320000000,
+  "staticTargetBytes": 300000000,
+  "jsGzipBudgetBytes": 675000,
+  "version": "5.9.8",
+  "bytes": 100827566,
+  "files": 635,
+  "byType": {
+    "js": {
+      "files": 43,
+      "bytes": 2083119
+    },
+    "css": {
+      "files": 5,
+      "bytes": 500427
+    },
+    "webp": {
+      "files": 409,
+      "bytes": 86810638
+    },
+    "png": {
+      "files": 3,
+      "bytes": 164790
+    },
+    "woff2": {
+      "files": 11,
+      "bytes": 285956
+    },
+    "mp3": {
+      "files": 152,
+      "bytes": 10834115
+    },
+    "json": {
+      "files": 1,
+      "bytes": 6983
+    },
+    "svg": {
+      "files": 1,
+      "bytes": 4902
+    },
+    "ico": {
+      "files": 1,
+      "bytes": 16574
+    },
+    "html": {
+      "files": 4,
+      "bytes": 36409
+    },
+    "txt": {
+      "files": 4,
+      "bytes": 83120
+    },
+    "webmanifest": {
+      "files": 1,
+      "bytes": 533
+    }
+  },
+  "groups": {
+    "Application JS/CSS": 2583546,
+    "Auto chess art/audio": 4025282,
+    "Brand": 229534,
+    "Shared character atlases": 35165296,
+    "Event art": 2016822,
+    "Other and legal": 13024114,
+    "Food art": 7490462,
+    "Adventure presentation art": 1400332,
+    "Spirit RPG art/audio/video": 16913886,
+    "TCG art/audio": 17978292
+  },
+  "js_gzip": 669167,
+  "css_gzip": 103289,
+  "largest": [
+    {
+      "path": "assets/rpg/campaign580/campaignB.webp",
+      "bytes": 2223544
+    },
+    {
+      "path": "assets/rpg/campaign580/campaignA.webp",
+      "bytes": 2153792
+    },
+    {
+      "path": "assets/characters/rosterB.webp",
+      "bytes": 1125838
+    },
+    {
+      "path": "assets/characters/nightB.webp",
+      "bytes": 1083090
+    },
+    {
+      "path": "assets/characters/rosterG.webp",
+      "bytes": 1064480
+    },
+    {
+      "path": "assets/characters/rosterE.webp",
+      "bytes": 1037958
+    },
+    {
+      "path": "assets/characters/rosterC.webp",
+      "bytes": 1025512
+    },
+    {
+      "path": "assets/autochess/movement.webp",
+      "bytes": 1005956
+    },
+    {
+      "path": "assets/characters/starters590/goi-cuon-tom-thit.webp",
+      "bytes": 1002666
+    },
+    {
+      "path": "assets/characters/starters590/pho-bo.webp",
+      "bytes": 998102
+    },
+    {
+      "path": "assets/rpg/combat583/effects.webp",
+      "bytes": 990866
+    },
+    {
+      "path": "assets/characters/rosterD.webp",
+      "bytes": 990090
+    }
+  ],
+  "leaks": [],
+  "offlineShell": {
+    "bytes": 2882093,
+    "urls": 62,
+    "targetBytes": 8000000,
+    "limitBytes": 12000000,
+    "warning": false,
+    "exceeded": false,
+    "remainingBytes": 9117907
+  },
+  "budget": {
+    "targetBytes": 300000000,
+    "limitBytes": 320000000,
+    "warning": false,
+    "exceeded": false,
+    "remainingBytes": 219172434
+  }
+}

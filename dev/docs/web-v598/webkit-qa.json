@@ -1,0 +1,445 @@
+{
+  "date": "2026-10-17",
+  "engine": "webkit",
+  "version": "26.5",
+  "warningFixtureExtendedForScreenshots": true,
+  "checks": [
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "tea-oracle",
+        "cloud-teapot"
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "poses": [
+        "1",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi",
+        "qa-tea-oracle",
+        "qa-cloud-teapot"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "salt-alchemist",
+        "salt-colossus"
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "poses": [
+        "1",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "moon-priestess",
+        "moon-heron"
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "poses": [
+        "0",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "aroma-conductor",
+        "aroma-regent"
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "poses": [
+        "1",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi",
+        "qa-aroma-conductor",
+        "qa-aroma-regent"
+      ]
+    },
+    {
+      "area": "phase",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "authoredPose": true,
+      "motif": true
+    },
+    {
+      "area": "interrupted",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "noStaleTelegraph": true
+    },
+    {
+      "area": "cast-impact",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "realEnemySkill": true
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "tea-oracle",
+        "cloud-teapot"
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "poses": [
+        "1",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi",
+        "qa-tea-oracle",
+        "qa-cloud-teapot"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "salt-alchemist",
+        "salt-colossus"
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "poses": [
+        "1",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "moon-priestess",
+        "moon-heron"
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "poses": [
+        "1",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "aroma-conductor",
+        "aroma-regent"
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "poses": [
+        "1",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi",
+        "qa-aroma-conductor",
+        "qa-aroma-regent"
+      ]
+    },
+    {
+      "area": "phase",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "authoredPose": true,
+      "motif": true
+    },
+    {
+      "area": "interrupted",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "noStaleTelegraph": true
+    },
+    {
+      "area": "cast-impact",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "realEnemySkill": true
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "tea-oracle",
+        "cloud-teapot"
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "poses": [
+        "0",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi",
+        "qa-tea-oracle",
+        "qa-cloud-teapot"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "salt-alchemist",
+        "salt-colossus"
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "poses": [
+        "1",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "moon-priestess",
+        "moon-heron"
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "poses": [
+        "1",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "aroma-conductor",
+        "aroma-regent"
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "poses": [
+        "1",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi",
+        "qa-aroma-conductor",
+        "qa-aroma-regent"
+      ]
+    },
+    {
+      "area": "phase",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "authoredPose": true,
+      "motif": true
+    },
+    {
+      "area": "interrupted",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "noStaleTelegraph": true
+    },
+    {
+      "area": "cast-impact",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "realEnemySkill": true
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "tea-oracle",
+        "cloud-teapot"
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "poses": [
+        "0",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi",
+        "qa-tea-oracle",
+        "qa-cloud-teapot"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "salt-alchemist",
+        "salt-colossus"
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "poses": [
+        "2",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "moon-priestess",
+        "moon-heron"
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "poses": [
+        "2",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi"
+      ]
+    },
+    {
+      "area": "warning-and-pause",
+      "ids": [
+        "aroma-conductor",
+        "aroma-regent"
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "poses": [
+        "2",
+        "13"
+      ],
+      "targets": [
+        "card:com-tam",
+        "card:banh-mi",
+        "qa-aroma-conductor",
+        "qa-aroma-regent"
+      ]
+    },
+    {
+      "area": "phase",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "authoredPose": true,
+      "motif": true
+    },
+    {
+      "area": "interrupted",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "noStaleTelegraph": true
+    },
+    {
+      "area": "cast-impact",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "realEnemySkill": true
+    },
+    {
+      "area": "reduced-motion",
+      "staticWarning": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "newAtlasRequests": [
+    "/assets/characters/campaign598/tea-oracle-pixel.webp",
+    "/assets/characters/campaign598/cloud-teapot-pixel.webp",
+    "/assets/characters/campaign598/salt-alchemist-pixel.webp",
+    "/assets/characters/campaign598/salt-colossus-pixel.webp",
+    "/assets/characters/campaign598/moon-priestess-pixel.webp",
+    "/assets/characters/campaign598/moon-heron-pixel.webp",
+    "/assets/characters/campaign598/aroma-conductor-pixel.webp",
+    "/assets/characters/campaign598/aroma-regent-pixel.webp"
+  ],
+  "movieRequests": 0
+}

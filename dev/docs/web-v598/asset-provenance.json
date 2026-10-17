@@ -1,0 +1,1978 @@
+[
+  {
+    "id": "cloud-teapot",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "phase",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "b9ec19785e1a27e46293560fa16bee885ac1ea16144a00dbcf768b7121c41266",
+        "size": [
+          1312,
+          1199
+        ],
+        "rects": [
+          [
+            31,
+            68,
+            321,
+            299
+          ],
+          [
+            354,
+            63,
+            659,
+            299
+          ],
+          [
+            687,
+            70,
+            973,
+            299
+          ],
+          [
+            1016,
+            77,
+            1282,
+            299
+          ],
+          [
+            41,
+            346,
+            337,
+            570
+          ],
+          [
+            371,
+            340,
+            659,
+            570
+          ],
+          [
+            693,
+            347,
+            981,
+            571
+          ],
+          [
+            1023,
+            342,
+            1295,
+            570
+          ],
+          [
+            36,
+            660,
+            359,
+            857
+          ],
+          [
+            368,
+            624,
+            650,
+            858
+          ],
+          [
+            661,
+            621,
+            1007,
+            857
+          ],
+          [
+            1015,
+            632,
+            1282,
+            857
+          ],
+          [
+            61,
+            906,
+            340,
+            1134
+          ],
+          [
+            379,
+            888,
+            643,
+            1137
+          ],
+          [
+            679,
+            871,
+            946,
+            1138
+          ],
+          [
+            1017,
+            911,
+            1274,
+            1135
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production animation atlas. Reference is the current in-game identity; preserve the species, silhouette, colors, clothing and equipment, while redrawing clean polished anime chibi cel-shaded game sprites. Transparent RGBA. Exactly SIXTEEN complete sprites in a precise FOUR columns by FOUR rows square sheet, equal invisible cells. Rows top to bottom: IDLE four visibly distinct breathing/looking poses; WALK four alternating locomotion key poses; ATTACK ready, windup, strong contact, recovery; CAST prepare, gather, release with equipment, return. Three-quarter facing RIGHT in every cell. Uniform scale across ALL poses; feet/base on same baseline. Center each complete actor inside the central 65% of its cell with at least 15% transparent gutter on all sides. Keep all hands, beaks, tails, spouts, cloud ornaments, stone limbs and weapons fully inside their own cell. No overlaps between cells; no copied neighbor fragments. No painted VFX, particles, trails, ground, shadow, background, text, labels, numbers, cell outlines, watermark. Actual production animation art; not a concept poster. Identity invariants: A wide sentient CELADON JADE TEAPOT creature, round jade ceramic belly with cream spiral patterns, ornate BRONZE low foot ring and lid finial, a long curved spout on its left and curved handle on its right, rounded ivory CLOUD billows clustered on top of its lid. No humanoid face or limbs added. Moves by tilting and small base hops; attack leans the spout, cast raises lid and turns spout. Preserve the squat broad teapot silhouette and bronze hardware."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "b70a6fd1697fb901e6b8da648262bed6ba7393bb2eac04c2a55c97be133f1a4d",
+        "size": [
+          1312,
+          1199
+        ],
+        "rects": [
+          [
+            35,
+            84,
+            337,
+            308
+          ],
+          [
+            371,
+            55,
+            655,
+            309
+          ],
+          [
+            680,
+            27,
+            954,
+            309
+          ],
+          [
+            1021,
+            101,
+            1301,
+            309
+          ],
+          [
+            42,
+            349,
+            319,
+            601
+          ],
+          [
+            354,
+            363,
+            668,
+            602
+          ],
+          [
+            690,
+            369,
+            937,
+            604
+          ],
+          [
+            1016,
+            364,
+            1299,
+            598
+          ],
+          [
+            42,
+            641,
+            335,
+            875
+          ],
+          [
+            363,
+            671,
+            657,
+            877
+          ],
+          [
+            682,
+            700,
+            982,
+            870
+          ],
+          [
+            991,
+            701,
+            1302,
+            871
+          ],
+          [
+            38,
+            939,
+            333,
+            1166
+          ],
+          [
+            367,
+            917,
+            655,
+            1166
+          ],
+          [
+            687,
+            878,
+            949,
+            1166
+          ],
+          [
+            1009,
+            938,
+            1296,
+            1166
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal second production animation sheet. The first reference is the newly approved combat sheet: MATCH that exact creature design, colors, body proportions and line/shading style. Keep uniform character scale equivalent to the first sheet. Transparent RGBA. Exactly SIXTEEN complete actors in a precise FOUR column by FOUR row square sheet, equal invisible cells, each entire actor centered in central 65% with 15% empty gutters on every edge. Rows from top: row1 PHASE CHANGE / SPECIAL CAST: brace, gather by distinct physical gesture, powerful release pose, recover; row2 HIT: startled, recoil left, recoil back, recover; row3 DEFEAT: stagger, lower/kneel or tilt, lie collapsed on floor, final fully collapsed horizontal repose (alive game monster, no injury); row4 VICTORY: stand proudly, lift arms/wing/spout, flourish, settle. Four physically distinct poses per row. Three-quarter RIGHT, identical equipment/anatomy throughout. Hold long equipment compactly; full actor incl tail/beak/hat/handle/lid/weapon stays inside cell. No painted magic or particles except integral material such as the teapot's attached cloud decoration. No ground, cast shadow, scenery, text, labels, grid, watermark; no other characters. The squat jade teapot NEVER gains human arms, legs, eyes or a mouth; it rocks/hops on bronze foot ring. Phase raises lid, hit rocks back, defeat rolls gently on its side with lid lowered, victory lifts spout. Preserve gold hardware, jade glaze and ivory attached cloud shapes."
+      }
+    ],
+    "uniformScale": 0.6473988439306358,
+    "outputs": {
+      "cloud-teapot-pixel.webp": {
+        "bytes": 111054,
+        "sha256": "5d584b09515ad547ded557af62a7a3063309eb84ad8fdccd28a0a674bf864fe4"
+      },
+      "cloud-teapot-portrait.webp": {
+        "bytes": 15958,
+        "sha256": "cd6d567ac84d0680cb711889c6867ececcb844994d9d6b4c92f922fec4ac6dac"
+      },
+      "cloud-teapot.webp": {
+        "bytes": 436010,
+        "sha256": "1aad42bd1ff8a03da93a07af91836695760b56b878efa68ea539704fe1693572"
+      }
+    }
+  },
+  {
+    "id": "salt-colossus",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "phase",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "9a751d765157a0232490aee8b6dce16b5085b45ef3977798e94b5183cf8966f4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            11,
+            64,
+            313,
+            306
+          ],
+          [
+            339,
+            68,
+            627,
+            305
+          ],
+          [
+            643,
+            61,
+            932,
+            305
+          ],
+          [
+            949,
+            92,
+            1243,
+            309
+          ],
+          [
+            12,
+            368,
+            334,
+            609
+          ],
+          [
+            354,
+            377,
+            627,
+            609
+          ],
+          [
+            657,
+            368,
+            934,
+            610
+          ],
+          [
+            978,
+            378,
+            1246,
+            610
+          ],
+          [
+            19,
+            692,
+            320,
+            913
+          ],
+          [
+            351,
+            637,
+            640,
+            913
+          ],
+          [
+            654,
+            675,
+            933,
+            914
+          ],
+          [
+            949,
+            717,
+            1246,
+            913
+          ],
+          [
+            36,
+            983,
+            314,
+            1208
+          ],
+          [
+            341,
+            934,
+            607,
+            1210
+          ],
+          [
+            636,
+            983,
+            939,
+            1208
+          ],
+          [
+            945,
+            969,
+            1236,
+            1208
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production animation atlas. Reference is the current in-game identity; preserve the species, silhouette, colors, clothing and equipment, while redrawing clean polished anime chibi cel-shaded game sprites. Transparent RGBA. Exactly SIXTEEN complete sprites in a precise FOUR columns by FOUR rows square sheet, equal invisible cells. Rows top to bottom: IDLE four visibly distinct breathing/looking poses; WALK four alternating locomotion key poses; ATTACK ready, windup, strong contact, recovery; CAST prepare, gather, release with equipment, return. Three-quarter facing RIGHT in every cell. Uniform scale across ALL poses; feet/base on same baseline. Center each complete actor inside the central 65% of its cell with at least 15% transparent gutter on all sides. Keep all hands, beaks, tails, spouts, cloud ornaments, stone limbs and weapons fully inside their own cell. No overlaps between cells; no copied neighbor fragments. No painted VFX, particles, trails, ground, shadow, background, text, labels, numbers, cell outlines, watermark. Actual production animation art; not a concept poster. Identity invariants: A massive squat RED SALT CRYSTAL GOLEM. Broad brick-red rock shoulders, chunky angular salmon-pink and white salt crystals on shoulders/forearms/back, two huge rounded rock fists and short heavy stone legs. Its only central face/heart is a ROUND GLOWING ORANGE KILN GRILLE in the chest with vertical bronze bars. Small rocky head merges into shoulders, no human face. Strong heavy alternating steps; slow fist windup and decisive ground punch; cast braces and raises fists. Preserve the red/crystal/orange furnace identity."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "377fd61f648836ad337cced2da882873c4c28a78f05f2d337303e91d50c7413c",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            33,
+            87,
+            317,
+            325
+          ],
+          [
+            366,
+            82,
+            615,
+            327
+          ],
+          [
+            637,
+            28,
+            943,
+            327
+          ],
+          [
+            933,
+            91,
+            1229,
+            325
+          ],
+          [
+            27,
+            373,
+            329,
+            629
+          ],
+          [
+            358,
+            373,
+            610,
+            629
+          ],
+          [
+            654,
+            410,
+            932,
+            641
+          ],
+          [
+            943,
+            387,
+            1243,
+            627
+          ],
+          [
+            44,
+            663,
+            319,
+            911
+          ],
+          [
+            344,
+            706,
+            627,
+            914
+          ],
+          [
+            628,
+            747,
+            940,
+            909
+          ],
+          [
+            940,
+            789,
+            1244,
+            907
+          ],
+          [
+            21,
+            955,
+            324,
+            1198
+          ],
+          [
+            332,
+            928,
+            625,
+            1201
+          ],
+          [
+            648,
+            957,
+            946,
+            1204
+          ],
+          [
+            938,
+            958,
+            1237,
+            1199
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal second production animation sheet. The first reference is the newly approved combat sheet: MATCH that exact creature design, colors, body proportions and line/shading style. Keep uniform character scale equivalent to the first sheet. Transparent RGBA. Exactly SIXTEEN complete actors in a precise FOUR column by FOUR row square sheet, equal invisible cells, each entire actor centered in central 65% with 15% empty gutters on every edge. Rows from top: row1 PHASE CHANGE / SPECIAL CAST: brace, gather by distinct physical gesture, powerful release pose, recover; row2 HIT: startled, recoil left, recoil back, recover; row3 DEFEAT: stagger, lower/kneel or tilt, lie collapsed on floor, final fully collapsed horizontal repose (alive game monster, no injury); row4 VICTORY: stand proudly, lift arms/wing/spout, flourish, settle. Four physically distinct poses per row. Three-quarter RIGHT, identical equipment/anatomy throughout. Hold long equipment compactly; full actor incl tail/beak/hat/handle/lid/weapon stays inside cell. No painted magic or particles except integral material such as the teapot's attached cloud decoration. No ground, cast shadow, scenery, text, labels, grid, watermark; no other characters. Massive red rock and pink/white salt-crystal golem, kiln grille in chest, two huge stone fists, short legs; phase braces and lifts both fists, hit recoils, defeat lies horizontally, victory raises fists. No rock explosions or loose debris outside actor."
+      }
+    ],
+    "uniformScale": 0.6956521739130435,
+    "outputs": {
+      "salt-colossus-pixel.webp": {
+        "bytes": 132834,
+        "sha256": "5d254e77317ac2327a5f2f0899d4dddf4f24dadbdcc010a0680c3efcf3dc347a"
+      },
+      "salt-colossus-portrait.webp": {
+        "bytes": 20672,
+        "sha256": "24521e7aa65ed9240abcf6dd9a0054200e96cc4d46bed0471e9efbeeac8c1f05"
+      },
+      "salt-colossus.webp": {
+        "bytes": 542916,
+        "sha256": "f1be21ac89c2d6b9b8797d0be94f89f283cf4694090dc45254a48b3f17de3dca"
+      }
+    }
+  },
+  {
+    "id": "moon-heron",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "phase",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "59be1390d84bf20e1e5183a0e502d65c9aa0d7f091c1f12f66f9458ef2ffff5e",
+        "size": [
+          1278,
+          1230
+        ],
+        "rects": [
+          [
+            60,
+            42,
+            307,
+            308
+          ],
+          [
+            417,
+            44,
+            628,
+            308
+          ],
+          [
+            715,
+            68,
+            947,
+            308
+          ],
+          [
+            988,
+            73,
+            1236,
+            308
+          ],
+          [
+            37,
+            349,
+            288,
+            589
+          ],
+          [
+            353,
+            349,
+            630,
+            591
+          ],
+          [
+            681,
+            350,
+            927,
+            592
+          ],
+          [
+            998,
+            355,
+            1251,
+            591
+          ],
+          [
+            27,
+            668,
+            323,
+            882
+          ],
+          [
+            341,
+            632,
+            640,
+            882
+          ],
+          [
+            673,
+            653,
+            982,
+            884
+          ],
+          [
+            1001,
+            647,
+            1243,
+            879
+          ],
+          [
+            32,
+            933,
+            305,
+            1183
+          ],
+          [
+            354,
+            914,
+            626,
+            1183
+          ],
+          [
+            645,
+            918,
+            1020,
+            1183
+          ],
+          [
+            1002,
+            940,
+            1253,
+            1183
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production animation atlas. Reference is the current in-game identity; preserve the species, silhouette, colors, clothing and equipment, while redrawing clean polished anime chibi cel-shaded game sprites. Transparent RGBA. Exactly SIXTEEN complete sprites in a precise FOUR columns by FOUR rows square sheet, equal invisible cells. Rows top to bottom: IDLE four visibly distinct breathing/looking poses; WALK four alternating locomotion key poses; ATTACK ready, windup, strong contact, recovery; CAST prepare, gather, release with equipment, return. Three-quarter facing RIGHT in every cell. Uniform scale across ALL poses; feet/base on same baseline. Center each complete actor inside the central 65% of its cell with at least 15% transparent gutter on all sides. Keep all hands, beaks, tails, spouts, cloud ornaments, stone limbs and weapons fully inside their own cell. No overlaps between cells; no copied neighbor fragments. No painted VFX, particles, trails, ground, shadow, background, text, labels, numbers, cell outlines, watermark. Actual production animation art; not a concept poster. Identity invariants: elegant actual WHITE CRANE / HERON creature with long curved neck, long black beak, white feather body, violet-blue wing tips and tail plumage, slender black legs, ornate SMALL GOLD CROWN and hanging gold chain ornaments on wings. No humanoid face, no human hands. Walk by alternating slender legs, attack pecks with beak and folded wing thrust, cast extends both wings. Keep the long beak compact enough not to cross a cell."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "0605006199d2e764f486c9bd6f087697e125701352fc37532bb0d8584ce43f25",
+        "size": [
+          1278,
+          1230
+        ],
+        "rects": [
+          [
+            97,
+            90,
+            301,
+            334
+          ],
+          [
+            350,
+            157,
+            634,
+            334
+          ],
+          [
+            652,
+            71,
+            954,
+            338
+          ],
+          [
+            999,
+            112,
+            1238,
+            336
+          ],
+          [
+            51,
+            393,
+            285,
+            617
+          ],
+          [
+            344,
+            411,
+            616,
+            619
+          ],
+          [
+            676,
+            377,
+            924,
+            618
+          ],
+          [
+            993,
+            409,
+            1217,
+            630
+          ],
+          [
+            46,
+            697,
+            302,
+            883
+          ],
+          [
+            357,
+            709,
+            619,
+            885
+          ],
+          [
+            647,
+            774,
+            931,
+            873
+          ],
+          [
+            948,
+            785,
+            1250,
+            877
+          ],
+          [
+            54,
+            924,
+            259,
+            1171
+          ],
+          [
+            344,
+            925,
+            601,
+            1171
+          ],
+          [
+            647,
+            943,
+            937,
+            1169
+          ],
+          [
+            999,
+            950,
+            1207,
+            1173
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal second production animation sheet. The first reference is the newly approved combat sheet: MATCH that exact creature design, colors, body proportions and line/shading style. Keep uniform character scale equivalent to the first sheet. Transparent RGBA. Exactly SIXTEEN complete actors in a precise FOUR column by FOUR row square sheet, equal invisible cells, each entire actor centered in central 65% with 15% empty gutters on every edge. Rows from top: row1 PHASE CHANGE / SPECIAL CAST: brace, gather by distinct physical gesture, powerful release pose, recover; row2 HIT: startled, recoil left, recoil back, recover; row3 DEFEAT: stagger, lower/kneel or tilt, lie collapsed on floor, final fully collapsed horizontal repose (alive game monster, no injury); row4 VICTORY: stand proudly, lift arms/wing/spout, flourish, settle. Four physically distinct poses per row. Three-quarter RIGHT, identical equipment/anatomy throughout. Hold long equipment compactly; full actor incl tail/beak/hat/handle/lid/weapon stays inside cell. No painted magic or particles except integral material such as the teapot's attached cloud decoration. No ground, cast shadow, scenery, text, labels, grid, watermark; no other characters. Actual white and violet crane with gold crown, wing chain ornaments, long neck, slender black legs. Phase flares wings, hit recoils wings/neck, defeat folds long legs and lies horizontally with neck resting sideways, victory lifts wings. All beaks point RIGHT. IMPORTANT zoom out: actor must occupy AT MOST 60 percent of each cell width and height; very generous gutters so wide wings NEVER touch adjacent cell. Do not enlarge to fill sheet."
+      }
+    ],
+    "uniformScale": 0.5973333333333334,
+    "outputs": {
+      "moon-heron-pixel.webp": {
+        "bytes": 75334,
+        "sha256": "2f77decb3c3f53e4868d6074eb8f0e7fdc96a8e8f783078f685c2fdbbf674db6"
+      },
+      "moon-heron-portrait.webp": {
+        "bytes": 15330,
+        "sha256": "ab6a7e71e8f89cb026609ce497434cd4fcad8b5d4d819bc69ee096f26a9deef3"
+      },
+      "moon-heron.webp": {
+        "bytes": 413902,
+        "sha256": "1d9c625177bf4e70b0a33fc5a44014f3189ceec5e5e64c78eef5fbad737547ad"
+      }
+    }
+  },
+  {
+    "id": "aroma-regent",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "phase",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "55e423043fad1d461eb611d14349cfb55ad143e116468e034faffdbc9f462306",
+        "size": [
+          1270,
+          1239
+        ],
+        "rects": [
+          [
+            46,
+            23,
+            298,
+            294
+          ],
+          [
+            358,
+            24,
+            617,
+            294
+          ],
+          [
+            677,
+            23,
+            919,
+            295
+          ],
+          [
+            971,
+            33,
+            1253,
+            295
+          ],
+          [
+            36,
+            333,
+            279,
+            601
+          ],
+          [
+            352,
+            341,
+            595,
+            599
+          ],
+          [
+            647,
+            337,
+            902,
+            601
+          ],
+          [
+            969,
+            334,
+            1233,
+            600
+          ],
+          [
+            32,
+            638,
+            293,
+            896
+          ],
+          [
+            333,
+            644,
+            622,
+            896
+          ],
+          [
+            644,
+            653,
+            976,
+            896
+          ],
+          [
+            985,
+            640,
+            1230,
+            896
+          ],
+          [
+            48,
+            938,
+            296,
+            1198
+          ],
+          [
+            375,
+            944,
+            609,
+            1198
+          ],
+          [
+            662,
+            936,
+            961,
+            1200
+          ],
+          [
+            996,
+            933,
+            1237,
+            1200
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production animation atlas. Reference is the current in-game identity; preserve the species, silhouette, colors, clothing and equipment, while redrawing clean polished anime chibi cel-shaded game sprites. Transparent RGBA. Exactly SIXTEEN complete sprites in a precise FOUR columns by FOUR rows square sheet, equal invisible cells. Rows top to bottom: IDLE four visibly distinct breathing/looking poses; WALK four alternating locomotion key poses; ATTACK ready, windup, strong contact, recovery; CAST prepare, gather, release with equipment, return. Three-quarter facing RIGHT in every cell. Uniform scale across ALL poses; feet/base on same baseline. Center each complete actor inside the central 65% of its cell with at least 15% transparent gutter on all sides. Keep all hands, beaks, tails, spouts, cloud ornaments, stone limbs and weapons fully inside their own cell. No overlaps between cells; no copied neighbor fragments. No painted VFX, particles, trails, ground, shadow, background, text, labels, numbers, cell outlines, watermark. Actual production animation art; not a concept poster. Identity invariants: humanoid masked regent, smooth WHITE GOLD full FACE MASK with stern tiny dark eye slits, tall BRONZE LEAF CROWN, emerald GREEN long robe and centered GOLD panel, flowing burnt ORANGE long cape, bronze shoulder and wrist armor. Four small colored aroma ORBS clustered near wrists, integral held equipment, not particles. Compact staffless two-hand spell gestures, alternating steps under robe, strong arm thrust attack. Preserve the full mask/crown/cape identity in every pose."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "0ab11bdeaffe2e37c3ce41233cfa6c65ee62cfb57c2578ab911b8da1c8f17304",
+        "size": [
+          1269,
+          1239
+        ],
+        "rects": [
+          [
+            44,
+            32,
+            285,
+            300
+          ],
+          [
+            360,
+            33,
+            602,
+            303
+          ],
+          [
+            646,
+            34,
+            943,
+            303
+          ],
+          [
+            983,
+            35,
+            1232,
+            304
+          ],
+          [
+            38,
+            353,
+            311,
+            610
+          ],
+          [
+            370,
+            353,
+            641,
+            610
+          ],
+          [
+            679,
+            380,
+            974,
+            611
+          ],
+          [
+            996,
+            340,
+            1235,
+            614
+          ],
+          [
+            31,
+            676,
+            300,
+            882
+          ],
+          [
+            344,
+            678,
+            603,
+            872
+          ],
+          [
+            629,
+            726,
+            938,
+            865
+          ],
+          [
+            966,
+            749,
+            1255,
+            867
+          ],
+          [
+            41,
+            911,
+            291,
+            1187
+          ],
+          [
+            350,
+            920,
+            627,
+            1189
+          ],
+          [
+            667,
+            919,
+            949,
+            1192
+          ],
+          [
+            996,
+            922,
+            1239,
+            1195
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal second production animation sheet. The first reference is the newly approved combat sheet: MATCH that exact creature design, colors, body proportions and line/shading style. Keep uniform character scale equivalent to the first sheet. Transparent RGBA. Exactly SIXTEEN complete actors in a precise FOUR column by FOUR row square sheet, equal invisible cells, each entire actor centered in central 65% with 15% empty gutters on every edge. Rows from top: row1 PHASE CHANGE / SPECIAL CAST: brace, gather by distinct physical gesture, powerful release pose, recover; row2 HIT: startled, recoil left, recoil back, recover; row3 DEFEAT: stagger, lower/kneel or tilt, lie collapsed on floor, final fully collapsed horizontal repose (alive game monster, no injury); row4 VICTORY: stand proudly, lift arms/wing/spout, flourish, settle. Four physically distinct poses per row. Three-quarter RIGHT, identical equipment/anatomy throughout. Hold long equipment compactly; full actor incl tail/beak/hat/handle/lid/weapon stays inside cell. No painted magic or particles except integral material such as the teapot's attached cloud decoration. No ground, cast shadow, scenery, text, labels, grid, watermark; no other characters. White full face mask, tall bronze leaf crown, emerald robe with gold center panel, burnt-orange cape, four small colored held aroma orbs. Phase opens both hands, hit staggers, defeat kneels then lies horizontally with cape pooled, victory raises hand and settles. Keep crown in every pose. At most 60 percent cell occupancy with generous gutters."
+      }
+    ],
+    "uniformScale": 0.6746987951807228,
+    "outputs": {
+      "aroma-regent-pixel.webp": {
+        "bytes": 122382,
+        "sha256": "830b16d382bede15cc040ff25490445d8eb59c3116cd7e8aff4622c37a9c41c6"
+      },
+      "aroma-regent-portrait.webp": {
+        "bytes": 21826,
+        "sha256": "1c413e4b5b48524b71cd25f6781abdd434f1792023e1e7752e7f6c6016a8f446"
+      },
+      "aroma-regent.webp": {
+        "bytes": 578690,
+        "sha256": "630c05fe0726dd4b3e9857df18d78bcb7b57d8acb418879681f7a59997ecb967"
+      }
+    }
+  },
+  {
+    "id": "tea-oracle",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "phase",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "8908a592ea1d8343955308877a62f74a4cd55709c67bc6c9e61a0a3d5091beeb",
+        "size": [
+          1261,
+          1247
+        ],
+        "rects": [
+          [
+            40,
+            64,
+            295,
+            309
+          ],
+          [
+            352,
+            63,
+            604,
+            309
+          ],
+          [
+            652,
+            64,
+            918,
+            309
+          ],
+          [
+            969,
+            89,
+            1214,
+            308
+          ],
+          [
+            40,
+            357,
+            305,
+            602
+          ],
+          [
+            362,
+            355,
+            619,
+            602
+          ],
+          [
+            673,
+            354,
+            923,
+            601
+          ],
+          [
+            974,
+            360,
+            1228,
+            602
+          ],
+          [
+            46,
+            660,
+            297,
+            894
+          ],
+          [
+            350,
+            648,
+            615,
+            894
+          ],
+          [
+            670,
+            660,
+            977,
+            894
+          ],
+          [
+            985,
+            667,
+            1225,
+            895
+          ],
+          [
+            45,
+            945,
+            285,
+            1194
+          ],
+          [
+            351,
+            944,
+            594,
+            1194
+          ],
+          [
+            657,
+            955,
+            949,
+            1195
+          ],
+          [
+            983,
+            952,
+            1228,
+            1195
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production animation atlas. Reference is the current in-game identity; preserve the species, silhouette, colors, clothing and equipment, while redrawing clean polished anime chibi cel-shaded game sprites. Transparent RGBA. Exactly SIXTEEN complete sprites in a precise FOUR columns by FOUR rows square sheet, equal invisible cells. Rows top to bottom: IDLE four visibly distinct breathing/looking poses; WALK four alternating locomotion key poses; ATTACK ready, windup, strong contact, recovery; CAST prepare, gather, release with equipment, return. Three-quarter facing RIGHT in every cell. Uniform scale across ALL poses; feet/base on same baseline. Center each complete actor inside the central 65% of its cell with at least 15% transparent gutter on all sides. Keep all hands, beaks, tails, spouts, cloud ornaments, stone limbs and weapons fully inside their own cell. No overlaps between cells; no copied neighbor fragments. No painted VFX, particles, trails, ground, shadow, background, text, labels, numbers, cell outlines, watermark. Actual production animation art; not a concept poster. Identity: a small masked tea sage wearing huge broad GREEN CONICAL LEAF HAT draped with long gold paper TALISMANS around brim, green and ivory layered ceremonial robe, smooth IVORY round smiling full mask, small BRONZE TEAPOT hanging from raised right hand, left hand sleeve gestures. Do not replace teapot with staff. Keep leaf hat/talismans in all poses. No painted steam. At most60% cell occupancy. Face and teapot pointRIGHT."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "5d110e0a0010142d2eae1bd550c3a617d60be2c367931990b75c6d060011eba3",
+        "size": [
+          1261,
+          1247
+        ],
+        "rects": [
+          [
+            15,
+            54,
+            287,
+            324
+          ],
+          [
+            345,
+            65,
+            628,
+            324
+          ],
+          [
+            663,
+            63,
+            955,
+            325
+          ],
+          [
+            986,
+            68,
+            1242,
+            324
+          ],
+          [
+            24,
+            378,
+            272,
+            630
+          ],
+          [
+            365,
+            372,
+            608,
+            630
+          ],
+          [
+            665,
+            385,
+            940,
+            632
+          ],
+          [
+            986,
+            376,
+            1244,
+            630
+          ],
+          [
+            30,
+            669,
+            278,
+            912
+          ],
+          [
+            349,
+            711,
+            618,
+            906
+          ],
+          [
+            655,
+            750,
+            939,
+            907
+          ],
+          [
+            958,
+            768,
+            1243,
+            908
+          ],
+          [
+            31,
+            941,
+            285,
+            1206
+          ],
+          [
+            333,
+            956,
+            636,
+            1206
+          ],
+          [
+            667,
+            950,
+            951,
+            1206
+          ],
+          [
+            992,
+            943,
+            1238,
+            1205
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal second production animation sheet. The first reference is the newly approved combat sheet: MATCH that exact creature design, colors, body proportions and line/shading style. Keep uniform character scale equivalent to the first sheet. Transparent RGBA. Exactly SIXTEEN complete actors in a precise FOUR column by FOUR row square sheet, equal invisible cells, each entire actor centered in central 65% with 15% empty gutters on every edge. Rows from top: row1 PHASE CHANGE / SPECIAL CAST: brace, gather by distinct physical gesture, powerful release pose, recover; row2 HIT: startled, recoil left, recoil back, recover; row3 DEFEAT: stagger, lower/kneel or tilt, lie collapsed on floor, final fully collapsed horizontal repose (alive game monster, no injury); row4 VICTORY: stand proudly, lift arms/wing/spout, flourish, settle. Four physically distinct poses per row. Three-quarter RIGHT, identical equipment/anatomy throughout. Hold long equipment compactly; full actor incl tail/beak/hat/handle/lid/weapon stays inside cell. No painted magic or particles except integral material such as the teapot's attached cloud decoration. No ground, cast shadow, scenery, text, labels, grid, watermark; no other characters. Masked tea sage keeps huge green leaf conical hat, hanging gold talismans, green ivory robe and small bronze handheld teapot. Phase raises teapot, hit recoils holding it, defeat lowers then lies sidewise with hat and teapot resting, victory lifts teapot proudly. No painted steam."
+      }
+    ],
+    "uniformScale": 0.7296416938110749,
+    "outputs": {
+      "tea-oracle-pixel.webp": {
+        "bytes": 139838,
+        "sha256": "352d78617c996ce1465e5b60f3c38c98f4bbef9c01ba324b430f0b0b6e73b0de"
+      },
+      "tea-oracle-portrait.webp": {
+        "bytes": 21228,
+        "sha256": "000a4e6e5c545db88f8b81d2e010f720a9bb4aae51d2175e38fdae0c25a7b5c3"
+      },
+      "tea-oracle.webp": {
+        "bytes": 609248,
+        "sha256": "e5975489e0ed683a9ab8611997dfaeba459946900ef8e0e65fd49f63d1a2d365"
+      }
+    }
+  },
+  {
+    "id": "salt-alchemist",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "phase",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "6a45194abe338316e9d679177f5b830405910c7fa2ea74c318002a8e8f4ef197",
+        "size": [
+          1263,
+          1246
+        ],
+        "rects": [
+          [
+            61,
+            65,
+            311,
+            300
+          ],
+          [
+            390,
+            70,
+            630,
+            301
+          ],
+          [
+            687,
+            74,
+            932,
+            299
+          ],
+          [
+            1004,
+            89,
+            1236,
+            302
+          ],
+          [
+            56,
+            358,
+            320,
+            585
+          ],
+          [
+            374,
+            358,
+            636,
+            590
+          ],
+          [
+            688,
+            362,
+            957,
+            592
+          ],
+          [
+            1010,
+            357,
+            1239,
+            594
+          ],
+          [
+            56,
+            670,
+            324,
+            887
+          ],
+          [
+            373,
+            643,
+            629,
+            886
+          ],
+          [
+            684,
+            666,
+            998,
+            883
+          ],
+          [
+            999,
+            666,
+            1246,
+            887
+          ],
+          [
+            62,
+            943,
+            282,
+            1175
+          ],
+          [
+            386,
+            950,
+            601,
+            1174
+          ],
+          [
+            674,
+            955,
+            999,
+            1177
+          ],
+          [
+            1021,
+            944,
+            1236,
+            1176
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production animation atlas. Reference is the current in-game identity; preserve the species, silhouette, colors, clothing and equipment, while redrawing clean polished anime chibi cel-shaded game sprites. Transparent RGBA. Exactly SIXTEEN complete sprites in a precise FOUR columns by FOUR rows square sheet, equal invisible cells. Rows top to bottom: IDLE four visibly distinct breathing/looking poses; WALK four alternating locomotion key poses; ATTACK ready, windup, strong contact, recovery; CAST prepare, gather, release with equipment, return. Three-quarter facing RIGHT in every cell. Uniform scale across ALL poses; feet/base on same baseline. Center each complete actor inside the central 65% of its cell with at least 15% transparent gutter on all sides. Keep all hands, beaks, tails, spouts, cloud ornaments, stone limbs and weapons fully inside their own cell. No overlaps between cells; no copied neighbor fragments. No painted VFX, particles, trails, ground, shadow, background, text, labels, numbers, cell outlines, watermark. Actual production animation art; not a concept poster. Identity: small floating RED crystal-hood alchemist with a black void face and two GLOWING ORANGE EYES, red angular crystalline hood/cape, pale ivory fur sleeve edges, short dark stone feet, one bright ORANGE LIQUID round bronze-capped GLASS FLASK held by a SHORT CHAIN in right hand. Keep hood and flask in all poses. No painted smoke or loose rocks. At most60% cell occupancy."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "71aceca627a02552aa66ee0f5e313066b08b1a1ec3b2b327cc653f7200713cd8",
+        "size": [
+          1263,
+          1246
+        ],
+        "rects": [
+          [
+            37,
+            68,
+            291,
+            304
+          ],
+          [
+            363,
+            70,
+            620,
+            309
+          ],
+          [
+            657,
+            65,
+            964,
+            307
+          ],
+          [
+            989,
+            76,
+            1238,
+            303
+          ],
+          [
+            53,
+            369,
+            277,
+            592
+          ],
+          [
+            360,
+            378,
+            631,
+            593
+          ],
+          [
+            664,
+            370,
+            940,
+            576
+          ],
+          [
+            991,
+            363,
+            1238,
+            593
+          ],
+          [
+            44,
+            649,
+            300,
+            865
+          ],
+          [
+            347,
+            665,
+            598,
+            873
+          ],
+          [
+            631,
+            704,
+            917,
+            863
+          ],
+          [
+            940,
+            720,
+            1242,
+            862
+          ],
+          [
+            48,
+            922,
+            304,
+            1156
+          ],
+          [
+            338,
+            926,
+            607,
+            1154
+          ],
+          [
+            644,
+            927,
+            959,
+            1151
+          ],
+          [
+            995,
+            928,
+            1229,
+            1153
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal second production animation sheet. The first reference is the newly approved combat sheet: MATCH that exact creature design, colors, body proportions and line/shading style. Keep uniform character scale equivalent to the first sheet. Transparent RGBA. Exactly SIXTEEN complete actors in a precise FOUR column by FOUR row square sheet, equal invisible cells, each entire actor centered in central 65% with 15% empty gutters on every edge. Rows from top: row1 PHASE CHANGE / SPECIAL CAST: brace, gather by distinct physical gesture, powerful release pose, recover; row2 HIT: startled, recoil left, recoil back, recover; row3 DEFEAT: stagger, lower/kneel or tilt, lie collapsed on floor, final fully collapsed horizontal repose (alive game monster, no injury); row4 VICTORY: stand proudly, lift arms/wing/spout, flourish, settle. Four physically distinct poses per row. Three-quarter RIGHT, identical equipment/anatomy throughout. Hold long equipment compactly; full actor incl tail/beak/hat/handle/lid/weapon stays inside cell. No painted magic or particles except integral material such as the teapot's attached cloud decoration. No ground, cast shadow, scenery, text, labels, grid, watermark; no other characters. Tiny red-crystal-hood alchemist keeps black void face, two glowing orange eyes, ivory fur and orange glass flask hanging from chain. Phase lifts flask, hit recoils, defeat sinks then lies sideways with flask safely grounded, victory lifts flask. No painted smoke, explosions, rubble."
+      }
+    ],
+    "uniformScale": 0.6892307692307692,
+    "outputs": {
+      "salt-alchemist-pixel.webp": {
+        "bytes": 97614,
+        "sha256": "dcf1bef71b264ed3ac3df07f8e4c7963eae9d778fc73a3152a70dbe2949b4f63"
+      },
+      "salt-alchemist-portrait.webp": {
+        "bytes": 15758,
+        "sha256": "8c16d6b2d63b6a2271ee1dc4e75d4f92cab96d3276e35976c705728b8691e191"
+      },
+      "salt-alchemist.webp": {
+        "bytes": 447184,
+        "sha256": "f59c73149968fd564fd3394d59200c82df937485fc705c7cac2c8b6f4059584e"
+      }
+    }
+  },
+  {
+    "id": "moon-priestess",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "phase",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "f2a4aca58a029ec91df4811f4f5fb758f7ef619c010f49562897533d86663a26",
+        "size": [
+          1263,
+          1245
+        ],
+        "rects": [
+          [
+            42,
+            87,
+            311,
+            323
+          ],
+          [
+            354,
+            88,
+            613,
+            320
+          ],
+          [
+            656,
+            84,
+            930,
+            323
+          ],
+          [
+            972,
+            87,
+            1222,
+            321
+          ],
+          [
+            42,
+            369,
+            316,
+            604
+          ],
+          [
+            340,
+            369,
+            617,
+            604
+          ],
+          [
+            648,
+            370,
+            930,
+            606
+          ],
+          [
+            961,
+            368,
+            1232,
+            603
+          ],
+          [
+            40,
+            677,
+            305,
+            902
+          ],
+          [
+            373,
+            635,
+            622,
+            903
+          ],
+          [
+            634,
+            679,
+            979,
+            895
+          ],
+          [
+            980,
+            678,
+            1227,
+            905
+          ],
+          [
+            55,
+            966,
+            299,
+            1188
+          ],
+          [
+            365,
+            949,
+            600,
+            1189
+          ],
+          [
+            643,
+            955,
+            942,
+            1189
+          ],
+          [
+            966,
+            966,
+            1222,
+            1188
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production animation atlas. Reference is the current in-game identity; preserve the species, silhouette, colors, clothing and equipment, while redrawing clean polished anime chibi cel-shaded game sprites. Transparent RGBA. Exactly SIXTEEN complete sprites in a precise FOUR columns by FOUR rows square sheet, equal invisible cells. Rows top to bottom: IDLE four visibly distinct breathing/looking poses; WALK four alternating locomotion key poses; ATTACK ready, windup, strong contact, recovery; CAST prepare, gather, release with equipment, return. Three-quarter facing RIGHT in every cell. Uniform scale across ALL poses; feet/base on same baseline. Center each complete actor inside the central 65% of its cell with at least 15% transparent gutter on all sides. Keep all hands, beaks, tails, spouts, cloud ornaments, stone limbs and weapons fully inside their own cell. No overlaps between cells; no copied neighbor fragments. No painted VFX, particles, trails, ground, shadow, background, text, labels, numbers, cell outlines, watermark. Actual production animation art; not a concept poster. Identity: small floating MOON PRIESTESS, dark navy face with tiny warm gold eyes under WHITE and LAVENDER hood decorated with GOLD CRESCENT. Long flowing lavender-purple ribbons/hair and violet robe with gold trim; no visible human feet. Holds one slender GOLD STAFF topped with ornate oval frame containing a round LAVENDER GEM. Keep staff and crescent hood every pose; no new face. At most60% cell occupancy, staff held compactly."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "be0e103c40ed06f9bbb9fbea658e6d97004b2f1de71445fafaa0535ce759a789",
+        "size": [
+          1263,
+          1246
+        ],
+        "rects": [
+          [
+            37,
+            99,
+            309,
+            334
+          ],
+          [
+            362,
+            106,
+            608,
+            341
+          ],
+          [
+            654,
+            43,
+            941,
+            345
+          ],
+          [
+            971,
+            117,
+            1234,
+            342
+          ],
+          [
+            39,
+            389,
+            303,
+            630
+          ],
+          [
+            337,
+            410,
+            621,
+            640
+          ],
+          [
+            656,
+            382,
+            940,
+            627
+          ],
+          [
+            976,
+            412,
+            1234,
+            640
+          ],
+          [
+            41,
+            701,
+            313,
+            909
+          ],
+          [
+            342,
+            720,
+            613,
+            906
+          ],
+          [
+            640,
+            768,
+            941,
+            901
+          ],
+          [
+            952,
+            780,
+            1254,
+            906
+          ],
+          [
+            37,
+            960,
+            299,
+            1197
+          ],
+          [
+            334,
+            947,
+            611,
+            1198
+          ],
+          [
+            631,
+            977,
+            943,
+            1203
+          ],
+          [
+            974,
+            973,
+            1234,
+            1200
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal second production animation sheet. The first reference is the newly approved combat sheet: MATCH that exact creature design, colors, body proportions and line/shading style. Keep uniform character scale equivalent to the first sheet. Transparent RGBA. Exactly SIXTEEN complete actors in a precise FOUR column by FOUR row square sheet, equal invisible cells, each entire actor centered in central 65% with 15% empty gutters on every edge. Rows from top: row1 PHASE CHANGE / SPECIAL CAST: brace, gather by distinct physical gesture, powerful release pose, recover; row2 HIT: startled, recoil left, recoil back, recover; row3 DEFEAT: stagger, lower/kneel or tilt, lie collapsed on floor, final fully collapsed horizontal repose (alive game monster, no injury); row4 VICTORY: stand proudly, lift arms/wing/spout, flourish, settle. Four physically distinct poses per row. Three-quarter RIGHT, identical equipment/anatomy throughout. Hold long equipment compactly; full actor incl tail/beak/hat/handle/lid/weapon stays inside cell. No painted magic or particles except integral material such as the teapot's attached cloud decoration. No ground, cast shadow, scenery, text, labels, grid, watermark; no other characters. Dark-faced lavender moon priestess, white-violet hood with gold crescent, flowing purple ribbons and gold staff with oval lavender gem. Keep staff and crescent each frame. Phase lifts staff, hit recoils, defeat lowers then lies on side with staff resting, victory lifts staff and waves. No painted particles. at most60% cell occupancy."
+      }
+    ],
+    "uniformScale": 0.6492753623188405,
+    "outputs": {
+      "moon-priestess-pixel.webp": {
+        "bytes": 106580,
+        "sha256": "7c8b3df7a9d8333fbbaa94a3bf363d352dee684f352d4cbe2c7a637370d211fe"
+      },
+      "moon-priestess-portrait.webp": {
+        "bytes": 20194,
+        "sha256": "f9a4e018e2c32bdcfb94e618415ee1dfef00a97c94b8b5b30135b159e4c6970d"
+      },
+      "moon-priestess.webp": {
+        "bytes": 528634,
+        "sha256": "1574549b9a3c649c9c357a06d2d9cb68e6714e33c878eb3ffd1de5b33660a0dd"
+      }
+    }
+  },
+  {
+    "id": "aroma-conductor",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "phase",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "2f078184bb28a29f2e8f3e05bf2f45d961e79431fa23ead8e4c543df38a9cd7c",
+        "size": [
+          1267,
+          1241
+        ],
+        "rects": [
+          [
+            25,
+            73,
+            295,
+            307
+          ],
+          [
+            349,
+            70,
+            605,
+            306
+          ],
+          [
+            658,
+            81,
+            917,
+            307
+          ],
+          [
+            975,
+            81,
+            1245,
+            307
+          ],
+          [
+            19,
+            363,
+            306,
+            596
+          ],
+          [
+            337,
+            353,
+            620,
+            596
+          ],
+          [
+            658,
+            354,
+            942,
+            596
+          ],
+          [
+            968,
+            358,
+            1246,
+            593
+          ],
+          [
+            16,
+            673,
+            310,
+            886
+          ],
+          [
+            338,
+            630,
+            624,
+            885
+          ],
+          [
+            632,
+            670,
+            976,
+            885
+          ],
+          [
+            990,
+            659,
+            1255,
+            885
+          ],
+          [
+            33,
+            951,
+            293,
+            1178
+          ],
+          [
+            346,
+            943,
+            604,
+            1178
+          ],
+          [
+            645,
+            930,
+            962,
+            1178
+          ],
+          [
+            983,
+            943,
+            1245,
+            1178
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production animation atlas. Reference is the current in-game identity; preserve the species, silhouette, colors, clothing and equipment, while redrawing clean polished anime chibi cel-shaded game sprites. Transparent RGBA. Exactly SIXTEEN complete sprites in a precise FOUR columns by FOUR rows square sheet, equal invisible cells. Rows top to bottom: IDLE four visibly distinct breathing/looking poses; WALK four alternating locomotion key poses; ATTACK ready, windup, strong contact, recovery; CAST prepare, gather, release with equipment, return. Three-quarter facing RIGHT in every cell. Uniform scale across ALL poses; feet/base on same baseline. Center each complete actor inside the central 65% of its cell with at least 15% transparent gutter on all sides. Keep all hands, beaks, tails, spouts, cloud ornaments, stone limbs and weapons fully inside their own cell. No overlaps between cells; no copied neighbor fragments. No painted VFX, particles, trails, ground, shadow, background, text, labels, numbers, cell outlines, watermark. Actual production animation art; not a concept poster. Identity: small masked magical CONDUCTOR in EMERALD GREEN/IVORY long coat with long green ribbon tails and gold leaf trim; broad BRONZE GREEN CONICAL HAT has stylized gold swirl mask covering face, no skin visible. Six small red blue purple green gold ORBS compactly clustered beside hands, integral equipment. Keep broad hat, round gold swirl mask and ribbon tails in every pose. No leaf crown or orange cape (those belong to a different boss). Gestures like orchestra conductor, no staff. At most60% cell occupancy."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "46a9e400aa196dd44379225fa84f50d173effddc51ba3ceb85a3bc9298e26def",
+        "size": [
+          1267,
+          1241
+        ],
+        "rects": [
+          [
+            30,
+            79,
+            296,
+            313
+          ],
+          [
+            348,
+            88,
+            600,
+            314
+          ],
+          [
+            650,
+            73,
+            933,
+            314
+          ],
+          [
+            982,
+            85,
+            1237,
+            314
+          ],
+          [
+            42,
+            377,
+            312,
+            608
+          ],
+          [
+            349,
+            373,
+            633,
+            608
+          ],
+          [
+            659,
+            379,
+            930,
+            609
+          ],
+          [
+            994,
+            384,
+            1244,
+            609
+          ],
+          [
+            36,
+            680,
+            301,
+            894
+          ],
+          [
+            348,
+            703,
+            629,
+            892
+          ],
+          [
+            645,
+            713,
+            934,
+            888
+          ],
+          [
+            979,
+            748,
+            1246,
+            883
+          ],
+          [
+            41,
+            946,
+            290,
+            1185
+          ],
+          [
+            353,
+            945,
+            617,
+            1185
+          ],
+          [
+            661,
+            947,
+            947,
+            1188
+          ],
+          [
+            999,
+            952,
+            1243,
+            1189
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal second production animation sheet. The first reference is the newly approved combat sheet: MATCH that exact creature design, colors, body proportions and line/shading style. Keep uniform character scale equivalent to the first sheet. Transparent RGBA. Exactly SIXTEEN complete actors in a precise FOUR column by FOUR row square sheet, equal invisible cells, each entire actor centered in central 65% with 15% empty gutters on every edge. Rows from top: row1 PHASE CHANGE / SPECIAL CAST: brace, gather by distinct physical gesture, powerful release pose, recover; row2 HIT: startled, recoil left, recoil back, recover; row3 DEFEAT: stagger, lower/kneel or tilt, lie collapsed on floor, final fully collapsed horizontal repose (alive game monster, no injury); row4 VICTORY: stand proudly, lift arms/wing/spout, flourish, settle. Four physically distinct poses per row. Three-quarter RIGHT, identical equipment/anatomy throughout. Hold long equipment compactly; full actor incl tail/beak/hat/handle/lid/weapon stays inside cell. No painted magic or particles except integral material such as the teapot's attached cloud decoration. No ground, cast shadow, scenery, text, labels, grid, watermark; no other characters. Masked green/ivory conductor, broad green-bronze conical hat, round gold swirl face mask, ribbon coat tails, six compact red blue purple green gold orbs by hands. Phase opens hands, hit recoils, defeat kneels then lies sideways hat retained, victory conducting flourish. No orange cape or leaf crown. at most60% cell occupancy."
+      }
+    ],
+    "uniformScale": 0.6511627906976745,
+    "outputs": {
+      "aroma-conductor-pixel.webp": {
+        "bytes": 118584,
+        "sha256": "fbdbfa5fa04150e114200214125047f8fe8bd0b199f40602b3d8f02e0ec2efe0"
+      },
+      "aroma-conductor-portrait.webp": {
+        "bytes": 21282,
+        "sha256": "3192f51a37ba1126ddc12c3813159c76048808c923691c8b59cc6e4c4f40c015"
+      },
+      "aroma-conductor.webp": {
+        "bytes": 622208,
+        "sha256": "74e4cb4d41d2537f898db70b641a9c44ed98302613191d8419e8e85b96d2d39f"
+      }
+    }
+  }
+]

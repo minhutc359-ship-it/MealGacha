@@ -12,7 +12,7 @@ const { chromium } = await import(
   process.env.PLAYWRIGHT_MODULE ??
     "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs"
 )
-const out = path.join(root, "dev/docs/web-v510/pvp-regression")
+const out = path.resolve(process.env.PVP_QA_OUT ?? path.join(root, "dev/docs/web-v510/pvp-regression"))
 mkdirSync(out, { recursive: true })
 // QA-only STUN: restricted container cannot enumerate NICs. Real ICE, DTLS and SCTP.
 const stun = dgram.createSocket("udp4")

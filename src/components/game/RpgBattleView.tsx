@@ -1,3 +1,6 @@
+import { enemyVisual } from "../../game/enemyVisuals"
+import { activeEnemyWarning, enemyWarningIsGlobal, isEnemyPhaseEvent } from "../../game/enemyPresentation"
+import { RpgEnemyTelegraph } from "./RpgEnemyTelegraph"
 import { rpgVisualContact } from "../../game/visualTiming"
 import { useRpgImpactFrame } from "./useRpgImpactFrame"
 import { awakenedKit } from "../../game/adventureRpg/awakening"
@@ -85,7 +88,9 @@ export function RpgBattleView({
       .find((e) => e.kind === "burst" && b.tick - e.tick < 4)
   const last = [...b.events].reverse().find((e) => e.kind !== "hit")
   const boss = b.actors.find((a) => a.boss && a.hp > 0)
-  const warningSource = b.actors.find(a=>a.uid === b.warning?.source)
+  const activeWarning = activeEnemyWarning(b)
+  const warning = activeWarning?.warning
+  const warningSource = activeWarning?.actor
   const warningSupport = warningSource && !warningSource.boss && ["bulwark","mender"].includes(warningSource.style ?? "")
   // The showcase presents an already committed cast; combat stays frozen until completion.
   const blocked = readOnly || b.paused || paused || !!b.result || !!b.cinematic || presentation !== "fight"
@@ -127,7 +132,7 @@ export function RpgBattleView({
       {!readOnly && b.rulesVersion!==530 && <small>Trận đang lưu giữ bộ kỹ năng cũ. Bộ kỹ năng mới mở từ chuyến tiếp theo.</small>}
       <div className="rpg-arena-hud">
         {boss && <div className="rpg-boss-health"><strong>{boss.name} {boss.phase ? "· Cuồng nộ" : ""}</strong><RpgMeter value={boss.hp} max={boss.maxHp} label="HP boss" /></div>}
-        <div className={`rpg-warning ${b.warning ? "is-active" : ""}`} role="status">{b.warning ? `⚠ ${b.warning.skill ?? "Đòn lớn"} · ${warningSupport ? "Ngắt chiêu để chặn hỗ trợ" : `Tuyến ${b.warning.row === "front" ? "trước" : "sau"}`} · ${Math.max(0,(b.warning.until-b.tick)/4).toFixed(1)}s` : "Ưu tiên người hồi phục / dệt sương · Giữ Che chắn cho đòn báo trước"}</div>
+        <div className={`rpg-warning ${warning ? "is-active" : ""}`} role="status">{warning ? `⚠ ${warning.skill ?? "Đòn lớn"} · ${warningSupport ? "Ngắt chiêu để chặn hỗ trợ" : warningSource && (b.rulesVersion??510)>=520 && enemyWarningIsGlobal(warningSource) ? "Toàn đội" : `Tuyến ${warning.row === "front" ? "trước" : "sau"}`} · ${Math.max(0,(warning.until-b.tick)/4).toFixed(1)}s` : "Ưu tiên người hồi phục / dệt sương · Giữ Che chắn cho đòn báo trước"}</div>
       </div>
       <div
         className="rpg-arena"
@@ -136,13 +141,15 @@ export function RpgBattleView({
         }}
       >
         <div className="rpg-arena-floor" />
+        <RpgEnemyTelegraph battle={b}/>
         <div className="rpg-combatants">
         {visual.actors.map((a) => {
           const baseModel =
             a.side === "ally"
               ? tcgCharacter(CARD_MAP[a.id])!
               : monsterCharacter(a.id)
-          const model = starterCharacter(a.id) ? {...baseModel, sheet: starterCharacter(a.id)!.pixelSheet as typeof baseModel.sheet} : baseModel
+          const authored = starterCharacter(a.id) ?? enemyVisual(a.id)
+          const model = authored ? {...baseModel, sheet: authored.pixelSheet as typeof baseModel.sheet} : baseModel
           const hit = [...visual.events]
             .reverse()
             .find(
@@ -157,10 +164,11 @@ export function RpgBattleView({
             a.side === "ally" &&
             (a.slot < 2 ? "front" : "back") === b.guardRow
           const ownCue = [...b.events].reverse().find(e=>e.source===a.uid && (e.animation || e.kind === "burst" || e.kind === "skill") && b.tick-e.tick<(e.animation==="ultimate"?10:4))
-          const charging = b.warning?.source === a.uid && !a.stun
+          const charging = warning?.source === a.uid && !a.stun
+          const phaseCue = [...b.events].reverse().find(e=>isEnemyPhaseEvent(e,a) && b.tick-e.tick<5)
           const arriving = ["enter", "wave-enter", "start"].includes(presentation)
-          const motion = arriving && a.hp ? "walk" : !a.hp || b.result === "loss" && a.side === "ally" ? "fall" : b.result === "win" ? "victory" : starterCharacter(a.id) && a.stun > 0 ? "stun" : starterCharacter(a.id) && guarding && !ownCue ? "guard" : ownCue?.animation === "ultimate" && starterCharacter(a.id) ? "ultimate" : charging || ownCue && ownCue.animation !== "attack" ? "cast" : ownCue?.animation === "attack" ? "attack" : b.tick-a.motionAt<4 ? a.motion : "idle"
-          const motionStamp = motion === "fall" || motion === "victory" ? String(a.motionAt) : charging ? `charge:${b.warning!.until}` : ownCue ? `cue:${ownCue.serial}` : String(a.motionAt)
+          const motion = arriving && a.hp ? "walk" : !a.hp || b.result === "loss" && a.side === "ally" ? "fall" : b.result === "win" ? "victory" : authored && a.stun > 0 ? "stun" : starterCharacter(a.id) && guarding && !ownCue ? "guard" : ownCue?.animation === "ultimate" && starterCharacter(a.id) ? "ultimate" : phaseCue && enemyVisual(a.id) ? "phase" : charging && enemyVisual(a.id) ? "channel" : charging || ownCue && ownCue.animation !== "attack" ? "cast" : ownCue?.animation === "attack" ? "attack" : b.tick-a.motionAt<4 ? a.motion : "idle"
+          const motionStamp = motion === "fall" || motion === "victory" ? String(a.motionAt) : phaseCue ? `phase:${phaseCue.serial}` : charging ? `charge:${warning!.until}` : ownCue ? `cue:${ownCue.serial}` : String(a.motionAt)
           return (
             <div
               key={a.uid}
@@ -173,7 +181,7 @@ export function RpgBattleView({
               data-uid={a.uid}
               data-hp={a.hp}
             >
-              <div className={`rpg-actor-body ${b.warning?.source === a.uid ? "is-channeling" : ""} ${b.events.some(e=>e.source===a.uid && e.kind==="burst" && b.tick-e.tick<5) ? `is-ultimate role-${a.role}` : ""}`}>{b.warning?.source === a.uid && <span className="rpg-channel-halo" aria-hidden="true" />}<CharacterSprite
+              <div className={`rpg-actor-body ${warning?.source === a.uid ? "is-channeling" : ""} ${b.events.some(e=>e.source===a.uid && e.kind==="burst" && b.tick-e.tick<5) ? `is-ultimate role-${a.role}` : ""}`}>{warning?.source === a.uid && <span className="rpg-channel-halo" aria-hidden="true" />}<CharacterSprite
                 model={model}
                 contactMs={rpgVisualContact(ownCue?.animation)}
                 motion={motion}
@@ -216,7 +224,7 @@ export function RpgBattleView({
           )
         })}
         </div>
-        <RpgBattleVfx battle={b} quiet={quiet} paused={paused || b.paused} />
+        <RpgBattleVfx battle={b} quiet={quiet} paused={paused || b.paused || presentation !== "fight"} />
         <BattleStatus phase={presentation} wave={b.wave} />
         {b.events.filter(e=>e.kind === "reaction" && b.tick-e.tick < 4).slice(-1).map(e=><div key={`reaction:${e.serial}`} className={`rpg-reaction-pill school-${e.school}`} role="status"><SkillArt index={60 + ["Bốc hơi","Nở rộ","Sinh trưởng","Mộng ấm"].indexOf(e.text)} />{e.text}</div>)}
         {burst && !b.cinematic && (b.rulesVersion !== 530 || b.cinematics === false) && <RpgCinematic key={`${b.id}:${burst.serial}`} id={b.actors.find(a=>a.uid===burst.source)!.id} reduced={quiet || reduced} paused={paused || b.paused} combo={b.chain?.count} onDone={()=>{}}/>}

@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict'
 import {spawn} from 'node:child_process'
 import {mkdirSync,writeFileSync} from 'node:fs'
-const {chromium}=await import(process.env.PLAYWRIGHT_MODULE??'playwright')
-const url='http://127.0.0.1:4198',out='dev/docs/web-v597',checks=[],errors=[],missing=[],requests=[];mkdirSync(out+'/qa',{recursive:true})
+const {chromium,webkit}=await import(process.env.PLAYWRIGHT_MODULE??'playwright')
+const url='http://127.0.0.1:4198',out=process.env.QA_OUT??'dev/docs/web-v597',checks=[],errors=[],missing=[],requests=[];mkdirSync(out+'/qa',{recursive:true})
 const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','--config','dev/tools/vite.pvp-qa.config.ts','--host','127.0.0.1','--port','4198','--strictPort'],{stdio:'pipe'})
 let log='';server.stdout.on('data',v=>log+=v);server.stderr.on('data',v=>log+=v)
 for(let i=0;i<100;i++){try{if((await fetch(url)).ok)break}catch{}if(i===99)throw Error(log);await new Promise(r=>setTimeout(r,100))}
-const b=await chromium.launch({executablePath:process.env.CHROMIUM_BIN,headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'],env:{...process.env,LD_LIBRARY_PATH:process.env.CHROMIUM_LIB_DIR??process.env.LD_LIBRARY_PATH,FONTCONFIG_PATH:'/etc/fonts'}})
+const b=await (process.env.QA_ENGINE==='webkit'?webkit:chromium).launch(process.env.QA_ENGINE==='webkit'?{headless:true,executablePath:process.env.WEBKIT_BIN}:{executablePath:process.env.CHROMIUM_BIN,headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'],env:{...process.env,LD_LIBRARY_PATH:process.env.CHROMIUM_LIB_DIR??process.env.LD_LIBRARY_PATH,FONTCONFIG_PATH:'/etc/fonts'}})
 function capture(p){p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400)missing.push([r.url(),r.status()])});p.on('request',r=>requests.push(new URL(r.url()).pathname))}
 async function dismiss(p){const button=p.getByRole('button',{name:'Tắt thông báo',exact:true});if(await button.isVisible())await button.click()}
 try{
@@ -22,7 +22,7 @@ try{
  const dock=p.locator('.tcg-command-dock');console.log('dock',await dock.innerText())
  await dock.getByRole('button',{name:/Thi triển|Dùng phép|Sử dụng|Xác nhận|Triệu hồi/}).first().click()
  await p.locator('.tcg-spell-banner .ultimate-banner').waitFor();assert.equal(await p.locator('.model-cast-effect').count(),1);await p.screenshot({path:`${out}/qa/tcg-spell.png`});checks.push({area:'tcg',spell,sharedBanner:true,modelSigil:true});
- const manifest=await p.evaluate(async()=>{const{SPIRIT_IDS,spiritArt}=await import('/src/game/adventureRpg/spiritArt.ts'),{CARD_MAP}=await import('/src/game/catalog.ts'),{ultimateShowcase}=await import('/src/game/ultimateShowcase.ts'),{ultimateIdentity}=await import('/src/game/adventureRpg/ultimateArt.ts');return SPIRIT_IDS.map(id=>({id,name:CARD_MAP[id].name,school:CARD_MAP[id].school,...ultimateShowcase(id),portrait:spiritArt(id),cast:'school-sigil',impact:ultimateIdentity(id).pattern,sound:`/assets/rpg/awakening530/sounds/${id}.mp3`}))});writeFileSync(out+'/showcase-manifest.json',JSON.stringify(manifest,null,2)+'\n');await c.close()
+ const manifest=await p.evaluate(async()=>{const{SPIRIT_IDS,spiritArt}=await import('/src/game/adventureRpg/spiritArt.ts'),{CARD_MAP}=await import('/src/game/catalog.ts'),{ultimateShowcase}=await import('/src/game/ultimateShowcase.ts'),{ultimateIdentity}=await import('/src/game/adventureRpg/ultimateArt.ts');return SPIRIT_IDS.map(id=>({id,name:CARD_MAP[id].name,school:CARD_MAP[id].school,...ultimateShowcase(id),portrait:spiritArt(id),cast:'school-sigil',impact:ultimateIdentity(id).pattern,sound:`/assets/rpg/awakening530/sounds/${id}.mp3`}))});if(!process.env.QA_OUT)writeFileSync(out+'/showcase-manifest.json',JSON.stringify(manifest,null,2)+'\n');await c.close()
  assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);assert(!requests.some(p=>p.endsWith('.mp4')))
  writeFileSync(out+'/modes-qa.json',JSON.stringify({date:'2026-10-17',checks,errors,missing,movieRequests:0},null,2)+'\n');console.log(JSON.stringify({checks:checks.length,errors,missing}))
 }finally{await b.close();server.kill()}
