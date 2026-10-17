@@ -1,0 +1,2087 @@
+[
+  {
+    "id": "pho-bo",
+    "name": "Phở bò",
+    "school": "tide",
+    "title": "Long lưu · Băng long",
+    "icon": 72,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 0,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "frost",
+    "sound": "/assets/rpg/awakening530/sounds/pho-bo.mp3"
+  },
+  {
+    "id": "pho-ga",
+    "name": "Phở gà",
+    "school": "tide",
+    "title": "Vũ thanh · Băng long",
+    "icon": 73,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 1,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "frost",
+    "sound": "/assets/rpg/awakening530/sounds/pho-ga.mp3"
+  },
+  {
+    "id": "bun-rieu",
+    "name": "Bún riêu",
+    "school": "tide",
+    "title": "Xích hải · Phong nguyệt",
+    "icon": 74,
+    "portrait": {
+      "path": "/assets/characters/familiar594/bun-rieu-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "moon",
+    "sound": "/assets/rpg/awakening530/sounds/bun-rieu.mp3"
+  },
+  {
+    "id": "bun-bo-hue",
+    "name": "Bún bò Huế",
+    "school": "tide",
+    "title": "Lôi thành · Thiên thành",
+    "icon": 75,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 3,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/bun-bo-hue.mp3"
+  },
+  {
+    "id": "banh-mi",
+    "name": "Bánh mì",
+    "school": "hearth",
+    "title": "Hỏa vũ · Cửu trảm",
+    "icon": 0,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 4,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "blade",
+    "sound": "/assets/rpg/awakening530/sounds/banh-mi.mp3"
+  },
+  {
+    "id": "xoi",
+    "name": "Xôi mặn",
+    "school": "hearth",
+    "title": "Kim noãn · Thiết trận",
+    "icon": 1,
+    "portrait": {
+      "path": "/assets/characters/starters590/xoi-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/xoi.mp3"
+  },
+  {
+    "id": "banh-cuon",
+    "name": "Bánh cuốn",
+    "school": "grove",
+    "title": "Vân cuộn · Đoàn viên",
+    "icon": 48,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 6,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "reunion",
+    "sound": "/assets/rpg/awakening530/sounds/banh-cuon.mp3"
+  },
+  {
+    "id": "chao-suon",
+    "name": "Cháo sườn",
+    "school": "hearth",
+    "title": "Ngân cháo · Phản thiên",
+    "icon": 2,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 7,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/chao-suon.mp3"
+  },
+  {
+    "id": "mien-ga",
+    "name": "Miến gà",
+    "school": "tide",
+    "title": "Vũ tuyến · Phán quyết",
+    "icon": 76,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 8,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "judgement",
+    "sound": "/assets/rpg/awakening530/sounds/mien-ga.mp3"
+  },
+  {
+    "id": "bun-moc",
+    "name": "Bún mọc",
+    "school": "tide",
+    "title": "Mộc châu · Long triều",
+    "icon": 77,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 9,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "tide",
+    "sound": "/assets/rpg/awakening530/sounds/bun-moc.mp3"
+  },
+  {
+    "id": "banh-da-cua",
+    "name": "Bánh đa cua",
+    "school": "tide",
+    "title": "Hải giáp · Vạn tượng",
+    "icon": 78,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 10,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "nova",
+    "sound": "/assets/rpg/awakening530/sounds/banh-da-cua.mp3"
+  },
+  {
+    "id": "bun-cha",
+    "name": "Bún chả",
+    "school": "tide",
+    "title": "Than trúc · Thiên cân",
+    "icon": 79,
+    "portrait": {
+      "path": "/assets/characters/familiar594/bun-cha-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/bun-cha.mp3"
+  },
+  {
+    "id": "bun-dau",
+    "name": "Bún đậu mắm tôm",
+    "school": "hearth",
+    "title": "Ngọc đậu · Thiên thành",
+    "icon": 3,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 12,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/bun-dau.mp3"
+  },
+  {
+    "id": "com-tam",
+    "name": "Cơm tấm",
+    "school": "hearth",
+    "title": "Kim sư · Thiên thành",
+    "icon": 4,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 13,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/com-tam.mp3"
+  },
+  {
+    "id": "com-ga",
+    "name": "Cơm gà",
+    "school": "hearth",
+    "title": "Dương cầm · Cửu trảm",
+    "icon": 5,
+    "portrait": {
+      "path": "/assets/characters/familiar594/com-ga-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "blade",
+    "sound": "/assets/rpg/awakening530/sounds/com-ga.mp3"
+  },
+  {
+    "id": "com-rang-dua-bo",
+    "name": "Cơm rang dưa bò",
+    "school": "hearth",
+    "title": "Phong chảo · Thiên cân",
+    "icon": 6,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "cell": 15,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/com-rang-dua-bo.mp3"
+  },
+  {
+    "id": "com-nieu",
+    "name": "Cơm niêu",
+    "school": "hearth",
+    "title": "Thạch điện · Thiên thành",
+    "icon": 7,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 0,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/com-nieu.mp3"
+  },
+  {
+    "id": "bun-ca",
+    "name": "Bún cá",
+    "school": "tide",
+    "title": "Hải tiễn · Phán quyết",
+    "icon": 80,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 1,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "judgement",
+    "sound": "/assets/rpg/awakening530/sounds/bun-ca.mp3"
+  },
+  {
+    "id": "mi-van-than",
+    "name": "Mì vằn thắn",
+    "school": "tide",
+    "title": "Song vân · Long triều",
+    "icon": 81,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 2,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "tide",
+    "sound": "/assets/rpg/awakening530/sounds/mi-van-than.mp3"
+  },
+  {
+    "id": "mi-cay",
+    "name": "Mì cay",
+    "school": "tide",
+    "title": "Xích nguyệt · Vạn tượng",
+    "icon": 82,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 3,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "nova",
+    "sound": "/assets/rpg/awakening530/sounds/mi-cay.mp3"
+  },
+  {
+    "id": "ga-ran",
+    "name": "Gà rán",
+    "school": "hearth",
+    "title": "Hỏa cánh · Thiết trận",
+    "icon": 8,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 4,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/ga-ran.mp3"
+  },
+  {
+    "id": "pizza",
+    "name": "Pizza",
+    "school": "hearth",
+    "title": "Tinh bàn · Phản thiên",
+    "icon": 9,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 5,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/pizza.mp3"
+  },
+  {
+    "id": "pasta",
+    "name": "Mì Ý",
+    "school": "hearth",
+    "title": "Hồng tơ · Thiên thành",
+    "icon": 10,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 6,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/pasta.mp3"
+  },
+  {
+    "id": "sushi",
+    "name": "Sushi",
+    "school": "hearth",
+    "title": "Nguyệt kiếm · Thiết trận",
+    "icon": 11,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 7,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/sushi.mp3"
+  },
+  {
+    "id": "tokbokki",
+    "name": "Tokbokki",
+    "school": "ember",
+    "title": "Xích đốt · Thiên phượng",
+    "icon": 24,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 8,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "phoenix",
+    "sound": "/assets/rpg/awakening530/sounds/tokbokki.mp3"
+  },
+  {
+    "id": "lau-thai",
+    "name": "Lẩu Thái",
+    "school": "ember",
+    "title": "Lôi vũ · Ảnh xuyên",
+    "icon": 25,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 9,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "shadow",
+    "sound": "/assets/rpg/awakening530/sounds/lau-thai.mp3"
+  },
+  {
+    "id": "lau-rieu-cua",
+    "name": "Lẩu riêu cua",
+    "school": "hearth",
+    "title": "Hải triều · Phản thiên",
+    "icon": 12,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 10,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/lau-rieu-cua.mp3"
+  },
+  {
+    "id": "nuong-bbq",
+    "name": "Nướng BBQ",
+    "school": "ember",
+    "title": "Than hội · Tinh lạc",
+    "icon": 26,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 11,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "meteor",
+    "sound": "/assets/rpg/awakening530/sounds/nuong-bbq.mp3"
+  },
+  {
+    "id": "vit-quay",
+    "name": "Vịt quay",
+    "school": "ember",
+    "title": "Hỏa ấn · Thiên phượng",
+    "icon": 27,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 12,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "phoenix",
+    "sound": "/assets/rpg/awakening530/sounds/vit-quay.mp3"
+  },
+  {
+    "id": "banh-xeo",
+    "name": "Bánh xèo",
+    "school": "hearth",
+    "title": "Kim phiến · Ảnh xuyên",
+    "icon": 13,
+    "portrait": {
+      "path": "/assets/characters/familiar594/banh-xeo-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "shadow",
+    "sound": "/assets/rpg/awakening530/sounds/banh-xeo.mp3"
+  },
+  {
+    "id": "bibimbap",
+    "name": "Bibimbap",
+    "school": "hearth",
+    "title": "Ngũ sắc · Thiên cân",
+    "icon": 14,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 14,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/bibimbap.mp3"
+  },
+  {
+    "id": "samgyeopsal",
+    "name": "Samgyeopsal",
+    "school": "hearth",
+    "title": "Liên hỏa · Thiên thành",
+    "icon": 15,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 15,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/samgyeopsal.mp3"
+  },
+  {
+    "id": "hanwoo-bbq",
+    "name": "Hanwoo BBQ",
+    "school": "hearth",
+    "title": "Đế diệm · Phản thiên",
+    "icon": 16,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 0,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/hanwoo-bbq.mp3"
+  },
+  {
+    "id": "shoyu-ramen",
+    "name": "Shoyu Ramen",
+    "school": "hearth",
+    "title": "Hắc long · Thiên cân",
+    "icon": 17,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 1,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/shoyu-ramen.mp3"
+  },
+  {
+    "id": "unagi-don",
+    "name": "Unagi Don",
+    "school": "hearth",
+    "title": "Lôi lươn · Thiên thành",
+    "icon": 18,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 2,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/unagi-don.mp3"
+  },
+  {
+    "id": "omakase",
+    "name": "Omakase",
+    "school": "hearth",
+    "title": "Thiên yến · Thiết trận",
+    "icon": 19,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 3,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/omakase.mp3"
+  },
+  {
+    "id": "lasagna",
+    "name": "Lasagna",
+    "school": "hearth",
+    "title": "Hồng tầng · Phản thiên",
+    "icon": 20,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 4,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/lasagna.mp3"
+  },
+  {
+    "id": "truffle-risotto",
+    "name": "Risotto nấm Truffle",
+    "school": "hearth",
+    "title": "Bạch truffle · Thiên thành",
+    "icon": 21,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 5,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/truffle-risotto.mp3"
+  },
+  {
+    "id": "bistecca-fiorentina",
+    "name": "Bistecca Fiorentina",
+    "school": "hearth",
+    "title": "Thiết ngưu · Thiết trận",
+    "icon": 22,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 6,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/bistecca-fiorentina.mp3"
+  },
+  {
+    "id": "croissant",
+    "name": "Croissant bơ",
+    "school": "sugar",
+    "title": "Kim nguyệt · Gương mộng",
+    "icon": 96,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 7,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "mirror",
+    "sound": "/assets/rpg/awakening530/sounds/croissant.mp3"
+  },
+  {
+    "id": "duck-confit",
+    "name": "Duck Confit",
+    "school": "hearth",
+    "title": "Dạ vũ · Phản thiên",
+    "icon": 23,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 8,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/duck-confit.mp3"
+  },
+  {
+    "id": "french-tasting",
+    "name": "French Tasting Menu",
+    "school": "hearth",
+    "title": "Thiên vị · Thiên cân",
+    "icon": 120,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 9,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/french-tasting.mp3"
+  },
+  {
+    "id": "classic-burger",
+    "name": "Classic Cheeseburger",
+    "school": "hearth",
+    "title": "Song thành · Thiên thành",
+    "icon": 121,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 10,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/classic-burger.mp3"
+  },
+  {
+    "id": "smoked-brisket",
+    "name": "Smoked Brisket",
+    "school": "hearth",
+    "title": "Hắc khói · Phản thiên",
+    "icon": 122,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 11,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/smoked-brisket.mp3"
+  },
+  {
+    "id": "xiaolongbao",
+    "name": "Xiaolongbao",
+    "school": "hearth",
+    "title": "Bạch vân · Thiên cân",
+    "icon": 123,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 12,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/xiaolongbao.mp3"
+  },
+  {
+    "id": "peking-duck",
+    "name": "Vịt quay Bắc Kinh",
+    "school": "hearth",
+    "title": "Xích vương · Thiên thành",
+    "icon": 124,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 13,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/peking-duck.mp3"
+  },
+  {
+    "id": "haidilao-hotpot",
+    "name": "Lẩu Tứ Xuyên",
+    "school": "hearth",
+    "title": "Cửu hỏa · Thiết trận",
+    "icon": 125,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 14,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/haidilao-hotpot.mp3"
+  },
+  {
+    "id": "pad-thai",
+    "name": "Pad Thai",
+    "school": "hearth",
+    "title": "Phong tuyến · Phản thiên",
+    "icon": 126,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 15,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/pad-thai.mp3"
+  },
+  {
+    "id": "tom-yum-goong",
+    "name": "Tom Yum Goong",
+    "school": "ember",
+    "title": "Hồng hải · Tinh lạc",
+    "icon": 28,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 0,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "meteor",
+    "sound": "/assets/rpg/awakening530/sounds/tom-yum-goong.mp3"
+  },
+  {
+    "id": "mango-sticky-rice",
+    "name": "Xôi xoài Thái",
+    "school": "sugar",
+    "title": "Ngọc kim · Tinh tỏa",
+    "icon": 97,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 1,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "chains",
+    "sound": "/assets/rpg/awakening530/sounds/mango-sticky-rice.mp3"
+  },
+  {
+    "id": "xoi-xeo",
+    "name": "Xôi xéo",
+    "school": "hearth",
+    "title": "Hoàng vân · Thiên thành",
+    "icon": 127,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 2,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/xoi-xeo.mp3"
+  },
+  {
+    "id": "korean-fried-chicken",
+    "name": "Gà rán Hàn Quốc",
+    "school": "ember",
+    "title": "Xích sí · Cửu trảm",
+    "icon": 29,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 3,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "blade",
+    "sound": "/assets/rpg/awakening530/sounds/korean-fried-chicken.mp3"
+  },
+  {
+    "id": "bingsu",
+    "name": "Bingsu",
+    "school": "sugar",
+    "title": "Băng tuyết · Thâu mộng",
+    "icon": 98,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 4,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "drain",
+    "sound": "/assets/rpg/awakening530/sounds/bingsu.mp3"
+  },
+  {
+    "id": "tonkotsu-ramen",
+    "name": "Tonkotsu Ramen",
+    "school": "tide",
+    "title": "Cốt long · Băng long",
+    "icon": 83,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 5,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "frost",
+    "sound": "/assets/rpg/awakening530/sounds/tonkotsu-ramen.mp3"
+  },
+  {
+    "id": "carbonara",
+    "name": "Carbonara",
+    "school": "hearth",
+    "title": "Ngân tơ · Thiết trận",
+    "icon": 128,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 6,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/carbonara.mp3"
+  },
+  {
+    "id": "gelato",
+    "name": "Gelato",
+    "school": "sugar",
+    "title": "Nguyệt băng · Phong nguyệt",
+    "icon": 99,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 7,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "moon",
+    "sound": "/assets/rpg/awakening530/sounds/gelato.mp3"
+  },
+  {
+    "id": "mashed-potato",
+    "name": "Khoai tây nghiền",
+    "school": "grove",
+    "title": "Thạch nhung · Phán quyết",
+    "icon": 49,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 8,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "judgement",
+    "sound": "/assets/rpg/awakening530/sounds/mashed-potato.mp3"
+  },
+  {
+    "id": "hot-chocolate",
+    "name": "Sô cô la nóng",
+    "school": "sugar",
+    "title": "Noãn tinh · Tinh tỏa",
+    "icon": 100,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 9,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "chains",
+    "sound": "/assets/rpg/awakening530/sounds/hot-chocolate.mp3"
+  },
+  {
+    "id": "cha-ca-la-vong",
+    "name": "Chả cá Lã Vọng",
+    "school": "tide",
+    "title": "Hải vũ · Phản thiên",
+    "icon": 84,
+    "portrait": {
+      "path": "/assets/characters/rare595/cha-ca-la-vong-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/cha-ca-la-vong.mp3"
+  },
+  {
+    "id": "bun-thang",
+    "name": "Bún thang",
+    "school": "tide",
+    "title": "Thất thanh · Vạn tượng",
+    "icon": 85,
+    "portrait": {
+      "path": "/assets/characters/rare595/bun-thang-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "nova",
+    "sound": "/assets/rpg/awakening530/sounds/bun-thang.mp3"
+  },
+  {
+    "id": "com-lang-vong",
+    "name": "Cốm Làng Vòng",
+    "school": "sugar",
+    "title": "Thanh vong · Thiên cân",
+    "icon": 101,
+    "portrait": {
+      "path": "/assets/characters/rare596/com-lang-vong-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/com-lang-vong.mp3"
+  },
+  {
+    "id": "ca-phe-trung",
+    "name": "Cà phê trứng",
+    "school": "sugar",
+    "title": "Hoàng mộng · Thâu mộng",
+    "icon": 102,
+    "portrait": {
+      "path": "/assets/characters/rare596/ca-phe-trung-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "drain",
+    "sound": "/assets/rpg/awakening530/sounds/ca-phe-trung.mp3"
+  },
+  {
+    "id": "cha-ruoi",
+    "name": "Chả rươi",
+    "school": "ember",
+    "title": "Thu ngư · Thiên phượng",
+    "icon": 30,
+    "portrait": {
+      "path": "/assets/characters/rare596/cha-ruoi-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "phoenix",
+    "sound": "/assets/rpg/awakening530/sounds/cha-ruoi.mp3"
+  },
+  {
+    "id": "banh-com-hang-than",
+    "name": "Bánh cốm Hàng Than",
+    "school": "sugar",
+    "title": "Ngọc thu · Phong nguyệt",
+    "icon": 103,
+    "portrait": {
+      "path": "/assets/characters/rare595/banh-com-hang-than-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "moon",
+    "sound": "/assets/rpg/awakening530/sounds/banh-com-hang-than.mp3"
+  },
+  {
+    "id": "jjajangmyeon",
+    "name": "Mì tương đen Jjajangmyeon",
+    "school": "tide",
+    "title": "Hắc diện · Băng long",
+    "icon": 86,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 0,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "frost",
+    "sound": "/assets/rpg/awakening530/sounds/jjajangmyeon.mp3"
+  },
+  {
+    "id": "kimchi-jjigae",
+    "name": "Canh kimchi Jjigae",
+    "school": "tide",
+    "title": "Xích kim · Phán quyết",
+    "icon": 87,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 1,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "judgement",
+    "sound": "/assets/rpg/awakening530/sounds/kimchi-jjigae.mp3"
+  },
+  {
+    "id": "hotteok",
+    "name": "Bánh Hotteok",
+    "school": "sugar",
+    "title": "Hồng nguyệt · Gương mộng",
+    "icon": 104,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 2,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "mirror",
+    "sound": "/assets/rpg/awakening530/sounds/hotteok.mp3"
+  },
+  {
+    "id": "ganjang-gejang",
+    "name": "Cua ngâm tương Ganjang Gejang",
+    "school": "tide",
+    "title": "Hải khóa · Long triều",
+    "icon": 88,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 3,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "tide",
+    "sound": "/assets/rpg/awakening530/sounds/ganjang-gejang.mp3"
+  },
+  {
+    "id": "gopchang-gui",
+    "name": "Lòng bò nướng Gopchang",
+    "school": "ember",
+    "title": "Xích xoáy · Tinh lạc",
+    "icon": 31,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 4,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "meteor",
+    "sound": "/assets/rpg/awakening530/sounds/gopchang-gui.mp3"
+  },
+  {
+    "id": "sundae-guk",
+    "name": "Canh Sundae Guk",
+    "school": "tide",
+    "title": "Dạ thang · Vạn tượng",
+    "icon": 89,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 5,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "nova",
+    "sound": "/assets/rpg/awakening530/sounds/sundae-guk.mp3"
+  },
+  {
+    "id": "takoyaki",
+    "name": "Takoyaki",
+    "school": "tide",
+    "title": "Hải châu · Phán quyết",
+    "icon": 90,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 6,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "judgement",
+    "sound": "/assets/rpg/awakening530/sounds/takoyaki.mp3"
+  },
+  {
+    "id": "okonomiyaki",
+    "name": "Okonomiyaki",
+    "school": "ember",
+    "title": "Mâm nhật · Cửu trảm",
+    "icon": 32,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 7,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "blade",
+    "sound": "/assets/rpg/awakening530/sounds/okonomiyaki.mp3"
+  },
+  {
+    "id": "yakitori",
+    "name": "Yakitori",
+    "school": "ember",
+    "title": "Hỏa điểu · Thiên phượng",
+    "icon": 33,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 8,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "phoenix",
+    "sound": "/assets/rpg/awakening530/sounds/yakitori.mp3"
+  },
+  {
+    "id": "tonkatsu",
+    "name": "Tonkatsu",
+    "school": "ember",
+    "title": "Kim giáp · Ảnh xuyên",
+    "icon": 34,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 9,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "shadow",
+    "sound": "/assets/rpg/awakening530/sounds/tonkatsu.mp3"
+  },
+  {
+    "id": "matcha-parfait",
+    "name": "Matcha Parfait",
+    "school": "sugar",
+    "title": "Thanh nguyệt · Tinh tỏa",
+    "icon": 105,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 10,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "chains",
+    "sound": "/assets/rpg/awakening530/sounds/matcha-parfait.mp3"
+  },
+  {
+    "id": "taiyaki",
+    "name": "Bánh cá Taiyaki",
+    "school": "sugar",
+    "title": "Hải mộng · Phong nguyệt",
+    "icon": 106,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 11,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "moon",
+    "sound": "/assets/rpg/awakening530/sounds/taiyaki.mp3"
+  },
+  {
+    "id": "som-tam",
+    "name": "Gỏi đu đủ Som Tam",
+    "school": "grove",
+    "title": "Phong ngọc · Long triều",
+    "icon": 50,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 12,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "tide",
+    "sound": "/assets/rpg/awakening530/sounds/som-tam.mp3"
+  },
+  {
+    "id": "pad-kra-pao",
+    "name": "Cơm húng quế Pad Kra Pao",
+    "school": "ember",
+    "title": "Xích phong · Tinh lạc",
+    "icon": 35,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 13,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "meteor",
+    "sound": "/assets/rpg/awakening530/sounds/pad-kra-pao.mp3"
+  },
+  {
+    "id": "boat-noodles",
+    "name": "Mì thuyền Boat Noodles",
+    "school": "tide",
+    "title": "Thuyền ảnh · Vạn tượng",
+    "icon": 91,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 14,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "nova",
+    "sound": "/assets/rpg/awakening530/sounds/boat-noodles.mp3"
+  },
+  {
+    "id": "green-curry",
+    "name": "Cà ri xanh",
+    "school": "ember",
+    "title": "Mộc lôi · Thiên phượng",
+    "icon": 36,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 15,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "phoenix",
+    "sound": "/assets/rpg/awakening530/sounds/green-curry.mp3"
+  },
+  {
+    "id": "moo-ping",
+    "name": "Thịt xiên Moo Ping",
+    "school": "ember",
+    "title": "Hỏa xiên · Ảnh xuyên",
+    "icon": 37,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 0,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "shadow",
+    "sound": "/assets/rpg/awakening530/sounds/moo-ping.mp3"
+  },
+  {
+    "id": "khao-soi",
+    "name": "Mì cà ri Khao Soi",
+    "school": "tide",
+    "title": "Phong vũ · Băng long",
+    "icon": 92,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 1,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "frost",
+    "sound": "/assets/rpg/awakening530/sounds/khao-soi.mp3"
+  },
+  {
+    "id": "ossobuco",
+    "name": "Ossobuco",
+    "school": "ember",
+    "title": "Thiết tủy · Tinh lạc",
+    "icon": 38,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 2,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "meteor",
+    "sound": "/assets/rpg/awakening530/sounds/ossobuco.mp3"
+  },
+  {
+    "id": "tiramisu",
+    "name": "Tiramisu",
+    "school": "sugar",
+    "title": "Dạ mộng · Gương mộng",
+    "icon": 107,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 3,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "mirror",
+    "sound": "/assets/rpg/awakening530/sounds/tiramisu.mp3"
+  },
+  {
+    "id": "arancini",
+    "name": "Cơm viên Arancini",
+    "school": "hearth",
+    "title": "Kim châu · Thiên thành",
+    "icon": 129,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 4,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/arancini.mp3"
+  },
+  {
+    "id": "saltimbocca",
+    "name": "Thịt bê Saltimbocca",
+    "school": "ember",
+    "title": "Lục phong · Cửu trảm",
+    "icon": 39,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 5,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "blade",
+    "sound": "/assets/rpg/awakening530/sounds/saltimbocca.mp3"
+  },
+  {
+    "id": "pappardelle-cinghiale",
+    "name": "Pappardelle sốt lợn rừng",
+    "school": "hearth",
+    "title": "Dạ lâm · Phản thiên",
+    "icon": 130,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 6,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/pappardelle-cinghiale.mp3"
+  },
+  {
+    "id": "porchetta",
+    "name": "Heo quay Porchetta",
+    "school": "ember",
+    "title": "Kim khải · Thiên phượng",
+    "icon": 40,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 7,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "phoenix",
+    "sound": "/assets/rpg/awakening530/sounds/porchetta.mp3"
+  },
+  {
+    "id": "roast-turkey",
+    "name": "Gà tây quay",
+    "school": "ember",
+    "title": "Vũ hội · Tinh lạc",
+    "icon": 41,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 8,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "meteor",
+    "sound": "/assets/rpg/awakening530/sounds/roast-turkey.mp3"
+  },
+  {
+    "id": "beef-wellington",
+    "name": "Beef Wellington",
+    "school": "ember",
+    "title": "Thạch vương · Cửu trảm",
+    "icon": 42,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 9,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "blade",
+    "sound": "/assets/rpg/awakening530/sounds/beef-wellington.mp3"
+  },
+  {
+    "id": "honey-glazed-ham",
+    "name": "Thịt nguội nướng mật ong",
+    "school": "ember",
+    "title": "Hoàng khải · Thiên phượng",
+    "icon": 43,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 10,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "phoenix",
+    "sound": "/assets/rpg/awakening530/sounds/honey-glazed-ham.mp3"
+  },
+  {
+    "id": "gingerbread",
+    "name": "Bánh gừng",
+    "school": "sugar",
+    "title": "Đông ấn · Tinh tỏa",
+    "icon": 108,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 11,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "chains",
+    "sound": "/assets/rpg/awakening530/sounds/gingerbread.mp3"
+  },
+  {
+    "id": "christmas-pudding",
+    "name": "Christmas Pudding",
+    "school": "sugar",
+    "title": "Hắc tinh · Thâu mộng",
+    "icon": 109,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 12,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "drain",
+    "sound": "/assets/rpg/awakening530/sounds/christmas-pudding.mp3"
+  },
+  {
+    "id": "yule-log",
+    "name": "Bánh khúc cây Yule Log",
+    "school": "sugar",
+    "title": "Noãn nguyệt · Phong nguyệt",
+    "icon": 110,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 13,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "moon",
+    "sound": "/assets/rpg/awakening530/sounds/yule-log.mp3"
+  },
+  {
+    "id": "banh-chung",
+    "name": "Bánh chưng",
+    "school": "hearth",
+    "title": "Lục thành · Thiên cân",
+    "icon": 131,
+    "portrait": {
+      "path": "/assets/characters/rare595/banh-chung-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/banh-chung.mp3"
+  },
+  {
+    "id": "canh-mang-mien",
+    "name": "Canh măng miến",
+    "school": "tide",
+    "title": "Bạch trúc · Phán quyết",
+    "icon": 93,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 15,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "judgement",
+    "sound": "/assets/rpg/awakening530/sounds/canh-mang-mien.mp3"
+  },
+  {
+    "id": "gio-xao",
+    "name": "Giò xào",
+    "school": "ember",
+    "title": "Ngũ kết · Ảnh xuyên",
+    "icon": 44,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 0,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "shadow",
+    "sound": "/assets/rpg/awakening530/sounds/gio-xao.mp3"
+  },
+  {
+    "id": "thit-dong",
+    "name": "Thịt đông",
+    "school": "ember",
+    "title": "Băng ký · Tinh lạc",
+    "icon": 45,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 1,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "meteor",
+    "sound": "/assets/rpg/awakening530/sounds/thit-dong.mp3"
+  },
+  {
+    "id": "thit-kho-trung",
+    "name": "Thịt kho trứng",
+    "school": "ember",
+    "title": "Hoàng ấn · Thiên thành",
+    "icon": 46,
+    "portrait": {
+      "path": "/assets/characters/rare596/thit-kho-trung-portrait.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/thit-kho-trung.mp3"
+  },
+  {
+    "id": "dua-hanh",
+    "name": "Dưa hành",
+    "school": "grove",
+    "title": "Thanh phách · Vạn tượng",
+    "icon": 51,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 3,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "nova",
+    "sound": "/assets/rpg/awakening530/sounds/dua-hanh.mp3"
+  },
+  {
+    "id": "che-khuc-bach",
+    "name": "Chè khúc bạch",
+    "school": "sugar",
+    "title": "Ngọc tuyết · Tinh tỏa",
+    "icon": 111,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 4,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "chains",
+    "sound": "/assets/rpg/awakening530/sounds/che-khuc-bach.mp3"
+  },
+  {
+    "id": "che-buoi",
+    "name": "Chè bưởi",
+    "school": "sugar",
+    "title": "Lục châu · Thâu mộng",
+    "icon": 112,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 5,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "drain",
+    "sound": "/assets/rpg/awakening530/sounds/che-buoi.mp3"
+  },
+  {
+    "id": "sua-chua-mit",
+    "name": "Sữa chua mít",
+    "school": "sugar",
+    "title": "Kim vân · Phong nguyệt",
+    "icon": 113,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 6,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "moon",
+    "sound": "/assets/rpg/awakening530/sounds/sua-chua-mit.mp3"
+  },
+  {
+    "id": "kem-bo-da-lat",
+    "name": "Kem bơ Đà Lạt",
+    "school": "sugar",
+    "title": "Ngọc băng · Gương mộng",
+    "icon": 114,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 7,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "mirror",
+    "sound": "/assets/rpg/awakening530/sounds/kem-bo-da-lat.mp3"
+  },
+  {
+    "id": "nom-sua-xoai",
+    "name": "Nộm sứa xoài xanh",
+    "school": "grove",
+    "title": "Hải ngọc · Băng long",
+    "icon": 52,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 8,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "frost",
+    "sound": "/assets/rpg/awakening530/sounds/nom-sua-xoai.mp3"
+  },
+  {
+    "id": "goi-cuon-tom-thit",
+    "name": "Gỏi cuốn tôm thịt",
+    "school": "grove",
+    "title": "Ngọc lâm · Liên sinh",
+    "icon": 53,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 9,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "lotus",
+    "sound": "/assets/rpg/awakening530/sounds/goi-cuon-tom-thit.mp3"
+  },
+  {
+    "id": "banner-tay-bac-goi-rau-don",
+    "name": "Gỏi rau dơn",
+    "school": "hearth",
+    "title": "Sơn diệp · Thiết trận",
+    "icon": 132,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 10,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/banner-tay-bac-goi-rau-don.mp3"
+  },
+  {
+    "id": "banner-tay-bac-com-lam",
+    "name": "Cơm lam",
+    "school": "hearth",
+    "title": "Trúc hỏa · Phản thiên",
+    "icon": 133,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 11,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/banner-tay-bac-com-lam.mp3"
+  },
+  {
+    "id": "banner-tay-bac-thang-co",
+    "name": "Thắng cố",
+    "school": "hearth",
+    "title": "Sơn hồn · Thiên thành",
+    "icon": 134,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 12,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/banner-tay-bac-thang-co.mp3"
+  },
+  {
+    "id": "banner-tay-bac-thit-trau-gac-bep",
+    "name": "Thịt trâu gác bếp",
+    "school": "ember",
+    "title": "Than vọng · Thiên phượng",
+    "icon": 47,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 13,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "phoenix",
+    "sound": "/assets/rpg/awakening530/sounds/banner-tay-bac-thit-trau-gac-bep.mp3"
+  },
+  {
+    "id": "banner-tay-bac-ga-nuong-mac-khen",
+    "name": "Gà nướng mắc khén",
+    "school": "hearth",
+    "title": "Hỏa sơn · Thiết trận",
+    "icon": 135,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 14,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/banner-tay-bac-ga-nuong-mac-khen.mp3"
+  },
+  {
+    "id": "banner-tay-bac-xoi-ngu-sac",
+    "name": "Xôi ngũ sắc",
+    "school": "hearth",
+    "title": "Ngũ linh · Phản thiên",
+    "icon": 136,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 15,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/banner-tay-bac-xoi-ngu-sac.mp3"
+  },
+  {
+    "id": "banh-dau-xanh",
+    "name": "Bánh đậu xanh",
+    "school": "hearth",
+    "title": "Lục minh · Thiên cân",
+    "icon": 137,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 0,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/banh-dau-xanh.mp3"
+  },
+  {
+    "id": "banh-khuc",
+    "name": "Bánh khúc",
+    "school": "hearth",
+    "title": "Ngọc khúc · Thiên thành",
+    "icon": 138,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 1,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/banh-khuc.mp3"
+  },
+  {
+    "id": "banh-can",
+    "name": "Bánh căn",
+    "school": "hearth",
+    "title": "Kim cầu · Ảnh xuyên",
+    "icon": 139,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 2,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "shadow",
+    "sound": "/assets/rpg/awakening530/sounds/banh-can.mp3"
+  },
+  {
+    "id": "banh-tom-ho-tay",
+    "name": "Bánh tôm Hồ Tây",
+    "school": "hearth",
+    "title": "Hải dực · Tinh lạc",
+    "icon": 140,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 3,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "meteor",
+    "sound": "/assets/rpg/awakening530/sounds/banh-tom-ho-tay.mp3"
+  },
+  {
+    "id": "com-hen",
+    "name": "Cơm hến",
+    "school": "hearth",
+    "title": "Xích hến · Phản thiên",
+    "icon": 141,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 4,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/com-hen.mp3"
+  },
+  {
+    "id": "che-lam",
+    "name": "Chè lam",
+    "school": "hearth",
+    "title": "Mộc mật · Thiên cân",
+    "icon": 142,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 5,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/che-lam.mp3"
+  },
+  {
+    "id": "chao-luon",
+    "name": "Cháo lươn",
+    "school": "tide",
+    "title": "Lôi thang · Phán quyết",
+    "icon": 94,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 6,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "judgement",
+    "sound": "/assets/rpg/awakening530/sounds/chao-luon.mp3"
+  },
+  {
+    "id": "banh-it-la-gai",
+    "name": "Bánh ít lá gai",
+    "school": "hearth",
+    "title": "Thanh ấn · Cửu trảm",
+    "icon": 143,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 7,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "blade",
+    "sound": "/assets/rpg/awakening530/sounds/banh-it-la-gai.mp3"
+  },
+  {
+    "id": "banh-ram-it",
+    "name": "Bánh ram ít",
+    "school": "hearth",
+    "title": "Song ngọc · Thiên thành",
+    "icon": 57,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 8,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "citadel",
+    "sound": "/assets/rpg/awakening530/sounds/banh-ram-it.mp3"
+  },
+  {
+    "id": "keo-cu-do",
+    "name": "Kẹo cu đơ",
+    "school": "hearth",
+    "title": "Hỏa kết · Thiết trận",
+    "icon": 58,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 9,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/keo-cu-do.mp3"
+  },
+  {
+    "id": "banh-tet",
+    "name": "Bánh tét",
+    "school": "hearth",
+    "title": "Lục trụ · Phản thiên",
+    "icon": 59,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "cell": 10,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/banh-tet.mp3"
+  },
+  {
+    "id": "chef-nhien",
+    "name": "Nhiên · Giữ lửa",
+    "school": "ember",
+    "title": "Thiên phượng · Thiên phượng",
+    "icon": 60,
+    "portrait": {
+      "path": "/assets/characters/chefs593/chef-nhien-neutral.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "phoenix",
+    "sound": "/assets/rpg/awakening530/sounds/chef-nhien.mp3"
+  },
+  {
+    "id": "chef-moc",
+    "name": "Mộc · Mầm sống",
+    "school": "grove",
+    "title": "Vạn sinh · Vạn sinh",
+    "icon": 54,
+    "portrait": {
+      "path": "/assets/characters/chefs593/chef-moc-neutral.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "sanctuary",
+    "sound": "/assets/rpg/awakening530/sounds/chef-moc.mp3"
+  },
+  {
+    "id": "chef-lien",
+    "name": "Liên · Dệt sao",
+    "school": "sugar",
+    "title": "Dệt sao · Tinh tỏa",
+    "icon": 115,
+    "portrait": {
+      "path": "/assets/characters/chefs593/chef-lien-neutral.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "chains",
+    "sound": "/assets/rpg/awakening530/sounds/chef-lien.mp3"
+  },
+  {
+    "id": "chef-bach",
+    "name": "Bách · Bếp trưởng",
+    "school": "hearth",
+    "title": "Thiên thành · Thiên cân",
+    "icon": 61,
+    "portrait": {
+      "path": "/assets/characters/chefs593/chef-bach-neutral.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "balance",
+    "sound": "/assets/rpg/awakening530/sounds/chef-bach.mp3"
+  },
+  {
+    "id": "chef-hai",
+    "name": "Hải · Nghe sóng",
+    "school": "tide",
+    "title": "Nghe sóng · Long triều",
+    "icon": 95,
+    "portrait": {
+      "path": "/assets/characters/chefs593/chef-hai-neutral.webp",
+      "cell": 0,
+      "columns": 1
+    },
+    "cast": "school-sigil",
+    "impact": "tide",
+    "sound": "/assets/rpg/awakening530/sounds/chef-hai.mp3"
+  },
+  {
+    "id": "caravan-scout",
+    "name": "Trinh sát than hồng",
+    "school": "ember",
+    "title": "Dẫn lửa · Tinh lạc",
+    "icon": 62,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 0,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "meteor",
+    "sound": "/assets/rpg/awakening530/sounds/caravan-scout.mp3"
+  },
+  {
+    "id": "caravan-smith",
+    "name": "Thợ rèn lửa đỏ",
+    "school": "ember",
+    "title": "Rèn hồng · Cửu trảm",
+    "icon": 63,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 1,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "blade",
+    "sound": "/assets/rpg/awakening530/sounds/caravan-smith.mp3"
+  },
+  {
+    "id": "caravan-letter",
+    "name": "Người đưa thư biển",
+    "school": "tide",
+    "title": "Thư tinh · Vạn tượng",
+    "icon": 64,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 2,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "nova",
+    "sound": "/assets/rpg/awakening530/sounds/caravan-letter.mp3"
+  },
+  {
+    "id": "caravan-ferryman",
+    "name": "Lái đò sương bạc",
+    "school": "tide",
+    "title": "Dẫn triều · Phán quyết",
+    "icon": 65,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 3,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "judgement",
+    "sound": "/assets/rpg/awakening530/sounds/caravan-ferryman.mp3"
+  },
+  {
+    "id": "caravan-herbalist",
+    "name": "Cô hái lá thuốc",
+    "school": "grove",
+    "title": "Bạch thảo · Long triều",
+    "icon": 55,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 4,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "tide",
+    "sound": "/assets/rpg/awakening530/sounds/caravan-herbalist.mp3"
+  },
+  {
+    "id": "caravan-gardener",
+    "name": "Người trồng bình minh",
+    "school": "grove",
+    "title": "Gieo mầm · Vạn tượng",
+    "icon": 56,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 5,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "nova",
+    "sound": "/assets/rpg/awakening530/sounds/caravan-gardener.mp3"
+  },
+  {
+    "id": "caravan-porter",
+    "name": "Người gánh bếp",
+    "school": "hearth",
+    "title": "Đồng hành · Thiết trận",
+    "icon": 66,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 6,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "bastion",
+    "sound": "/assets/rpg/awakening530/sounds/caravan-porter.mp3"
+  },
+  {
+    "id": "caravan-cook",
+    "name": "Bếp trưởng đường xa",
+    "school": "hearth",
+    "title": "Bếp đường · Phản thiên",
+    "icon": 67,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 7,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "counter",
+    "sound": "/assets/rpg/awakening530/sounds/caravan-cook.mp3"
+  },
+  {
+    "id": "caravan-pastry",
+    "name": "Thợ bánh mặt trăng",
+    "school": "sugar",
+    "title": "Mộng bánh · Phong nguyệt",
+    "icon": 116,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 8,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "moon",
+    "sound": "/assets/rpg/awakening530/sounds/caravan-pastry.mp3"
+  },
+  {
+    "id": "caravan-cartographer",
+    "name": "Người vẽ đường sao",
+    "school": "sugar",
+    "title": "Tinh đồ · Gương mộng",
+    "icon": 117,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 9,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "mirror",
+    "sound": "/assets/rpg/awakening530/sounds/caravan-cartographer.mp3"
+  },
+  {
+    "id": "v4-market-host",
+    "name": "Người kể bên bàn",
+    "school": "sugar",
+    "title": "Chợ ký ức · Tinh tỏa",
+    "icon": 118,
+    "portrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 10,
+      "columns": 4
+    },
+    "cast": "school-sigil",
+    "impact": "chains",
+    "sound": "/assets/rpg/awakening530/sounds/v4-market-host.mp3"
+  }
+]

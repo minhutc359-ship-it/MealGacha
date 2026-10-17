@@ -48,8 +48,20 @@ export default defineConfig({
     sourcemap: false, minify: true, emptyOutDir: true,
     // Let shared engines coalesce with their consumers to avoid duplicate compression dictionaries.
     // Pixi is still imported on demand; one renderer chunk avoids repeated helpers.
-    rolldownOptions: { output: { codeSplitting: { groups: [
+    rolldownOptions: {
+      // Our two Pixi consumers draw Graphics onto aria-hidden canvases. Input,
+      // accessibility, assets and filters belong to the surrounding DOM / shared
+      // image renderer, so these automatic feature registrations have no consumer.
+      // Keep Pixi's application, graphics, texture and renderer registrations.
+      treeshake: { moduleSideEffects(id) {
+        if (/[\\/]pixi\.js[\\/]lib[\\/](accessibility|dom|events|spritesheet|filters)[\\/]init\.mjs$/.test(id)) return false
+        return undefined
+      } },
+      output: { codeSplitting: { groups: [
       { name: "rpg-presentation", test: /[\/]src[\/](domain[\/]|game[\/](?!spiritArena|battleVfx)|infrastructure[\/](assets[\/]characterSprites|audio[\/]gameAudio))|[\/]src[\/](components[\/]game[\/](Rpg|SpiritArt)|pages[\/]AdventurePage)/, priority: 15 },
+      { name: "chest-ui", test: /[\/]src[\/](components[\/]chest[\/]|pages[\/]ChestPage)/, priority: 12 },
+      { name: "tcg-ui", test: /[\/]src[\/](components[\/]game[\/](BattleBoard|CombatEffects|BattleVfxCanvas|TrapZone|GameCardView|DuelBasics)|pages[\/]TCGPage)/, priority: 12 },
+      { name: "autochess-ui", test: /[\/]src[\/](components[\/]autochess[\/]|pages[\/]AutoChessPage)/, priority: 12 },
       { name: "pixi-renderer", test: /[\/]node_modules[\/].*pixi\.js[\/]/, priority: 10 },
     ] } } },
   },

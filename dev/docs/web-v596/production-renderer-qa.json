@@ -1,0 +1,29 @@
+{
+  "mediaOnly": false,
+  "renderersOnly": true,
+  "date": "2026-10-16",
+  "browser": "Chromium headless SwiftShader",
+  "checks": [
+    {
+      "area": "optimized-production-renderers",
+      "chestGpu": {
+        "painted": 25129,
+        "webgl": true,
+        "width": 686,
+        "height": 176
+      },
+      "arenaGpu": {
+        "painted": 1117,
+        "webgl": true,
+        "width": 1238,
+        "height": 707
+      },
+      "domPointerInput": true,
+      "contextLossFallbackPaintedPixels": 2632,
+      "reducedMotionCanvas": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "noRareMp4Requested": true
+}

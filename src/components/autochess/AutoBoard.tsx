@@ -1,4 +1,6 @@
 import { starterCharacter } from "../../game/starterCharacters"
+import { CAST_SIGILS, drawModelCast } from "../../game/ultimateShowcase"
+import { AutoCastShowcase } from "./AutoCastShowcase"
 import { drawStarterVfx } from "../../game/starterVfx"
 import { COMBAT_ART, drawCombatArt } from "../../game/combatArt"
 import { ELEMENTAL_BOARDS, ELEMENTAL_IMPACTS } from "../../game/visualPack"
@@ -384,6 +386,10 @@ export function AutoBoard({
           ctx.restore()
         } else orb(x, y - cell * .5, cell * .25, color)
         ctx.globalAlpha = 1
+        if (actor.hp > 0 && actor.action?.kind === "cast" && time <= actor.action.hit) {
+          const action = actor.action, age = (time - action.start) / Math.max(1, action.hit - action.start) * 1100
+          drawModelCast(ctx, x, y, size, def.school, age, actor.id, leased("ultimate-sigils", CAST_SIGILS), 1, opts.reducedMotion)
+        }
         const upgrade = opts.upgrades.find(u => u.uid === actor.uid)
         if (upgrade) drawStarUpgrade(ctx, upgrade, now, x, y, cell, left, top, opts.reducedMotion, opts.lowQuality)
         if (actor.hp > 0) {
@@ -561,6 +567,7 @@ export function AutoBoard({
   return (
     <div className="ac-board ac-stage" data-renderer="billboard-2.5d" data-scene={arenaTheme(run)} style={{backgroundImage:`linear-gradient(180deg,#051c2928,#08201f66),url(${ELEMENTAL_BOARDS[arenaTheme(run)]})`}} ref={root}>
       <canvas ref={canvas} aria-hidden="true" />
+      <AutoCastShowcase getFrame={getFrame} quiet={reducedMotion}/>
       <div
         className="ac-cell-grid"
         role="group"

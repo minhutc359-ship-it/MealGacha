@@ -1,0 +1,149 @@
+{
+  "files": [
+    {
+      "file": "public/assets/characters/rare596/ca-phe-trung-pixel.webp",
+      "bytes": 110828,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "93d8b37bd270e6f4a8734a055feaa9f5ed68b9be4784e2d6238b3657d20304cd"
+    },
+    {
+      "file": "public/assets/characters/rare596/ca-phe-trung-portrait.webp",
+      "bytes": 75734,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "c08d508528055ea3fc2cb92691349413adfb37ab53fc4d3347c7d17655437517"
+    },
+    {
+      "file": "public/assets/characters/rare596/ca-phe-trung.webp",
+      "bytes": 486934,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "fb3defe5eef04cd8ae456f07d068b9494cab092e1bd5c2982fc0aef1979e21d1"
+    },
+    {
+      "file": "public/assets/characters/rare596/cha-ruoi-pixel.webp",
+      "bytes": 113274,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "b96fc45a8d6690953266ebbb9d89b84b6fe4affe459b81509b981953e4dced6d"
+    },
+    {
+      "file": "public/assets/characters/rare596/cha-ruoi-portrait.webp",
+      "bytes": 86448,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "59283e2d4f9e17bd4e2d99a782aa43a7ea46863895d3dc3b524e0af3f9c1f490"
+    },
+    {
+      "file": "public/assets/characters/rare596/cha-ruoi.webp",
+      "bytes": 466278,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "fe9ad2a2256fab5db1a5b1bdf5fe2c3161171022c1f8615d9c87906f2d44cf9f"
+    },
+    {
+      "file": "public/assets/characters/rare596/com-lang-vong-pixel.webp",
+      "bytes": 135872,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "fc75856b14f1b4eeb3ea2c0fd59c767e6ea50014928fdfcf80f98118bced7e2e"
+    },
+    {
+      "file": "public/assets/characters/rare596/com-lang-vong-portrait.webp",
+      "bytes": 85802,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "b8056f5f7a551d5bea293838b5364d686b1f295d2a783c52680173f8b7f909ab"
+    },
+    {
+      "file": "public/assets/characters/rare596/com-lang-vong.webp",
+      "bytes": 597836,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "5900ab2076fc80a024d881acd31ff1ec6ba4fc71786573b5219474102f09ba02"
+    },
+    {
+      "file": "public/assets/characters/rare596/thit-kho-trung-pixel.webp",
+      "bytes": 148132,
+      "dimensions": [
+        256,
+        512
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "7dcebc090246674e9dca543f2fd1093583c13a86a7c702dc5ae588052a9961d6"
+    },
+    {
+      "file": "public/assets/characters/rare596/thit-kho-trung-portrait.webp",
+      "bytes": 79070,
+      "dimensions": [
+        512,
+        512
+      ],
+      "frames": 1,
+      "uniqueFrames": 1,
+      "sha256": "8236ddeec7f6d531114875eb5785f5d2dfd5106de71c219daab1563526a2cd27"
+    },
+    {
+      "file": "public/assets/characters/rare596/thit-kho-trung.webp",
+      "bytes": 549980,
+      "dimensions": [
+        1024,
+        2048
+      ],
+      "frames": 32,
+      "uniqueFrames": 32,
+      "sha256": "65fe8c943075f69f2c1142405dded0d205e048fa3f013d5d95695775762c0c79"
+    },
+    {
+      "file": "public/assets/characters/rare596/ultimate.webp",
+      "bytes": 269706,
+      "dimensions": [
+        1024,
+        768
+      ],
+      "frames": 12,
+      "uniqueFrames": 12,
+      "sha256": "abae91e037d350c5e0657844114dd9d0a34d12951fe9edb9664789c6ea3ee499"
+    }
+  ],
+  "bytes": 3205894,
+  "frames": 272
+}

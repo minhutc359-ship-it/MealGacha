@@ -1,0 +1,537 @@
+{
+  "date": "2026-10-17",
+  "engine": "webkit",
+  "version": "26.5",
+  "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
+  "checks": [
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 163,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 1256,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 891,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-tet",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1389,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-bo-hue",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1167,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 6.046875,
+        "right": 289.953125,
+        "height": 64,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-ca",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 961,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "che-buoi",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1405,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 6.046875,
+        "right": 289.953125,
+        "height": 64,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 348,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 2807,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 2123,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-tet",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3382,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.3125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-bo-hue",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2608,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.3125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-ca",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2062,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.3125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "che-buoi",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3413,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.3125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 67,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 515,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 360,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-tet",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 784,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-bo-hue",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 750,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-ca",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 618,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "che-buoi",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 793,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 444,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 3635,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "realReducerEvents": true,
+      "painted": 2780,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-tet",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4438,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-bo-hue",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 3434,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bun-ca",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 2780,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "che-buoi",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4545,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 43.40625,
+        "right": 1372.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "victory",
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ]
+    },
+    {
+      "area": "fall",
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ]
+    },
+    {
+      "area": "reload-committed-ultimate",
+      "noRecast": true
+    },
+    {
+      "area": "natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "reduced-motion",
+      "ids": [
+        "banh-tet",
+        "bun-bo-hue",
+        "bun-ca",
+        "che-buoi"
+      ],
+      "staticPose": 16
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedAssets": [
+    "/assets/characters/regional5910/banh-tet-pixel.webp",
+    "/assets/characters/regional5910/bun-bo-hue-pixel.webp",
+    "/assets/characters/regional5910/bun-ca-pixel.webp",
+    "/assets/characters/regional5910/che-buoi-pixel.webp",
+    "/assets/characters/regional5910/banh-tet-portrait.webp",
+    "/assets/characters/regional5910/bun-bo-hue-portrait.webp",
+    "/assets/characters/regional5910/bun-ca-portrait.webp",
+    "/assets/characters/regional5910/che-buoi-portrait.webp"
+  ],
+  "movieRequests": 0
+}

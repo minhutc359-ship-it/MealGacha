@@ -4,6 +4,8 @@ import { SPIRIT_IDS } from "../game/adventureRpg/spiritArt"
 import { SPIRIT_RARITY, SPIRIT_RARITY_NAMES, SPIRIT_THRESHOLDS } from "../domain/spiritSummons"
 import { collectedSpiritCards, spiritProgress } from "../domain/spiritCollection"
 import { RpgCinematic } from "../components/game/RpgCinematic"
+import { CharacterSprite } from "../components/game/CharacterSprite"
+import { tcgCharacter } from "../game/tcgCharacterMotion"
 import { AdventureTransition } from "../components/game/AdventureTransition"
 import { AdventureVillage } from "../components/game/AdventureVillage"
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react"
@@ -188,8 +190,8 @@ function HeroDetails({
         </div>
       </div>
       <div className="rpg-unlock-progress" data-spirit={hero.cardId}><small>{SPIRIT_RARITY_NAMES[card.rarity]} · {locked ? "CHƯA HỘI NGỘ" : "ĐÃ HỘI NGỘ"}</small><strong>{progress.collected} / {progress.needed} thẻ Vị Linh</strong><RpgMeter value={Math.min(progress.collected,progress.needed)} max={progress.needed} label="Tiến trình mở khóa Vị Linh"/><p>{locked ? "Mở Rương vị giác để nhận thẻ. Đủ mốc sẽ tự hội ngộ; không tiêu hao thẻ." : progress.ready ? "Đã đủ giao ước. Thẻ và mảnh món ăn vẫn được giữ." : "Vị Linh đồng hành đã được giữ lại; tiếp tục thu thập từ rương."}</p><a href="/chest">Mở Rương vị giác ↗</a><button type="button" aria-pressed={wish===hero.cardId} onClick={()=>chooseWish(hero.cardId)}>{wish===hero.cardId?"♥ Đang ước hẹn":"♡ Ước hẹn nhân vật này"}</button><small>Ước hẹn bảo đảm 1 thẻ nhân vật đã chọn mỗi 5 lần mở rương. Đổi người không đặt lại nhịp.</small></div>
-      <button type="button" className="rpg-preview-button" onClick={()=>setPreview(true)}>▶ Xem video tuyệt kỹ</button>
-      {preview && <RpgModal label="Xem tuyệt kỹ" onClose={()=>setPreview(false)}><div className="rpg-cinematic-preview"><RpgCinematic id={hero.cardId} reduced={reduced} paused={false} onDone={()=>setPreview(false)}/></div></RpgModal>}
+      <button type="button" className="rpg-preview-button" onClick={()=>setPreview(true)}>✦ Xem tuyệt kỹ 2D</button>
+      {preview && <RpgModal label="Xem tuyệt kỹ" onClose={()=>setPreview(false)}><div className="rpg-showcase-preview"><CharacterSprite model={tcgCharacter(CARD_MAP[hero.cardId])!} motion="ultimate" stamp={`preview:${hero.cardId}`} quiet={reduced}/><RpgCinematic id={hero.cardId} reduced={reduced} paused={false} onDone={()=>setPreview(false)}/></div></RpgModal>}
       {!locked && <><RpgMeter
         value={hero.xp}
         max={heroXpNext(hero.level)}
@@ -325,9 +327,6 @@ export function AdventurePage() {
   } | null>(null)
   const [battlePresentation, setBattlePresentation] =
     useState<BattlePresentationPhase>("fight")
-  const shortSound = useRef<ReturnType<typeof gameAudio.playClip> | null>(null)
-  useEffect(()=>()=>shortSound.current?.stop(),[])
-  useEffect(()=>{if(b?.paused||hidden)shortSound.current?.stop()},[b?.paused,hidden])
   const sound = useRef({ battle: "", serial: 0, result: "" })
   const map = RPG_MAPS[mapIndex],
     mapArc = RPG_STORY_ARCS[map.id],
@@ -463,14 +462,10 @@ export function AdventurePage() {
         ["boss", "heal", "shield", "skill"].includes(e.kind),
       ) ??
       events[0]
-    if(e && !hidden && b.rulesVersion===530 && e.kind==="burst" && !b.cinematic){
-      const id=b.actors.find(a=>a.uid===e.source)?.id
-      if(id){shortSound.current?.stop();const at=performance.now();shortSound.current=gameAudio.playClip(`/assets/rpg/awakening530/sounds/${id}.mp3`,()=> (performance.now()-at)/1000)}
-    } else if (e && !hidden && !(b.rulesVersion===530 && e.kind==="burst" && b.cinematic))
+    // Ultimate SFX belongs to the banner clock, including pause/skip/visibility cleanup.
+    if (e && !hidden && e.kind !== "burst")
       gameAudio.play(
-        e.kind === "burst"
-          ? "combo"
-          : e.kind === "heal"
+        e.kind === "heal"
             ? "heal"
             : e.kind === "shield"
               ? "shield"
@@ -1019,7 +1014,7 @@ export function AdventurePage() {
               <ModeIntroButton mode="adventure" />
               <div className="rpg-help-grid">
                 <article><h2>Hội ngộ từ rương</h2><p>Mỗi rương thêm một thẻ Vị Linh. Cần 15/25/35/45 thẻ cùng người theo độ hiếm. Xem tiến độ và chọn Ước hẹn trong hồ sơ: mỗi 5 rương bảo đảm một thẻ đã chọn. Nhân vật đã có được giữ nguyên.</p></article>
-                <article><h2>Video tuyệt kỹ</h2><p>Trận mới có đoạn phim riêng và âm thanh khi tung chiêu. Đồng hồ trận dừng trong phim; có thể dừng, bỏ qua hoặc tắt video để farm nhanh. Sử thi/Huyền thoại có hiệu ứng liên hương; Chân ước cần cấp 10, bậc 2, tuyệt kỹ cấp 3.</p></article>
+                <article><h2>Tuyệt kỹ Vị Linh</h2><p>Ảnh Vị Linh, nền theo hệ, pháp ấn và âm thanh riêng báo hiệu tuyệt kỹ. Đồng hồ trận dừng trong hoạt ảnh ngắn; có thể tạm dừng hoặc bỏ qua. Sử thi/Huyền thoại có hiệu ứng liên hương; Chân ước cần cấp 10, bậc 2, tuyệt kỹ cấp 3.</p></article>
                 <article>
                   <h2>Đội 5 người</h2>
                   <p>

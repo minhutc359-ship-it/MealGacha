@@ -1,4 +1,8 @@
+import { enemyVisual } from "../../game/enemyVisuals";
+import { drawEnemyVfx } from "../../game/enemyVfx";
+import { isEnemyPhaseEvent } from "../../game/enemyPresentation";
 import { rpgVisualContact } from "../../game/visualTiming";
+import { CAST_SIGILS, drawModelCast } from "../../game/ultimateShowcase";
 import { starterCharacter } from "../../game/starterCharacters";
 import { drawStarterVfx } from "../../game/starterVfx";
 import { awakenedKit } from "../../game/adventureRpg/awakening";
@@ -18,6 +22,7 @@ type Cue = {
     start: number;
     variant: number;
     awakened: boolean;
+    combo: number;
 };
 function effectKind(c: Cue, target: RpgActor): VfxKind {
     if (c.awakened && c.event.animation === "support") return target.side!==c.actor.side?"shatter":c.actor.role==="healer"?"heal":c.actor.role==="guardian"?"shield":"summon";
@@ -48,7 +53,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             s.wave = battle.wave;
             s.cues = [];
         }
-        if (paused && !s.paused)
+        if (paused && (!s.paused || s.frozen === null))
             s.frozen = now;
         if (!paused && s.frozen !== null) {
             for (const c of s.cues)
@@ -56,18 +61,17 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             s.frozen = null;
         }
         s.paused = paused;
-        if (battle.cinematic || quiet) {
-            s.cues=[];s.serial=battle.serial;
-            const el=canvas.current;el?.getContext("2d")?.clearRect(0,0,el.width,el.height);
-            return;
+        if (quiet) {
+            // Reduced motion still presents a static ultimate sigil/impact.
+            s.cues = s.cues.filter(c => c.event.kind === "burst" || isEnemyPhaseEvent(c.event,c.actor));
         }
         for (const e of battle.events) {
-            if (e.serial <= s.serial || battle.tick - e.tick > 4 || !(e.animation || ["burst", "skill", "guard", "reaction"].includes(e.kind)))
+            if (e.serial <= s.serial || battle.tick - e.tick > 4 || quiet && !["burst","boss"].includes(e.kind) || !(e.animation || ["burst", "skill", "guard", "reaction", "boss"].includes(e.kind)))
                 continue;
             const actor = battle.actors.find(a => a.uid === e.source);
             if (!actor)
                 continue;
-            const targets = battle.actors.filter(a => e.targets.includes(a.uid));
+            const targets = isEnemyPhaseEvent(e,actor) ? [actor] : battle.actors.filter(a => e.targets.includes(a.uid));
             if (!targets.length)
                 continue;
             const awakened=battle.rulesVersion===530 && actor.side==="ally";
@@ -75,16 +79,17 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             let role=actor.role;
             if(kit && e.animation!=="attack")role=(e.animation==="ultimate"?(["guardian","mage","mage","healer","trickster","trickster","guardian","striker","mage","healer","trickster","trickster","guardian","mage","striker","healer","mage","healer","guardian","striker"] as RpgRole[])[kit.ultimate]:e.animation==="support"?(["guardian","healer","healer","mage","mage","trickster","trickster","striker","trickster","mage","guardian","mage","guardian","healer","striker","healer"] as RpgRole[])[kit.support]:kit.primary>=20?"trickster":kit.primary>=15?"healer":kit.primary>=9?"mage":kit.primary>=6?"guardian":"striker");
             s.cues=s.cues.filter(c=>!(c.actor.uid===actor.uid && c.event.animation===e.animation && c.event.tick===e.tick));
-            s.cues.push({ awakened, event: e, actor: { ...actor, role }, targets: targets.map(a => ({ ...a })), start: s.frozen ?? now, variant: kit?kit.motif:actor.side === "ally" ? spiritKit(actor.id, actor.role).variant : actor.phase });
+            s.cues.push({ awakened, combo: battle.chain?.count ?? 1, event: e, actor: { ...actor, role }, targets: targets.map(a => ({ ...a })), start: s.frozen ?? now, variant: kit?kit.motif:actor.side === "ally" ? spiritKit(actor.id, actor.role).variant : actor.phase });
         }
         s.serial = battle.serial;
         s.cues = s.cues.slice(-12);
     }, [battle, paused, quiet]);
     useEffect(() => {
         const surface = canvas.current, ctx = surface?.getContext("2d");
-        if (!surface || !ctx || quiet)
+        if (!surface || !ctx)
             return;
         const texture = acquireCharacterImage(ELEMENTAL_IMPACTS);
+        const icons = acquireCharacterImage(CAST_SIGILS);
         let width = 1, height = 1, wide = false, lastDraw = 0, hiddenAt: number | null = null;
         const draw = (now: number) => {
             const s = state.current;
@@ -93,21 +98,34 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             if(now-lastDraw<32)return;lastDraw=now;
             ctx.clearRect(0, 0, width, height);
             s.cues = s.cues.filter(c => now - c.start < (c.event.kind==="burst"?2400:1100));
-            const low = renderIsLight(), size = Math.min(42, width * .095, height * .15);
+            const low = renderIsLight() || quiet, size = Math.min(42, width * .095, height * .15);
             const point = (a: RpgActor) => { const p = actorAnchor(a, wide); return { x: p.x * width / 100, y: p.y * height / 100 - size * .55 }; };
             for (const c of s.cues) {
                 const age = now - c.start, source = point(c.actor), ultimate = c.event.kind === "burst", normal = c.event.animation === "attack", contact = rpgVisualContact(c.event.animation);
-                const anchor=starterCharacter(c.actor.id)?.anchors.cast; if(anchor){source.x+=(anchor[0]-.5)*size;source.y+=(anchor[1]-.5)*size;}
+                const enemy=enemyVisual(c.actor.id);
+                if(enemy && isEnemyPhaseEvent(c.event,c.actor)) {drawEnemyVfx(ctx,c.actor.id,source.x,source.y,size,age,quiet,true);surface.dataset.enemyPhase=c.actor.id;continue;}
+                const anchor=(starterCharacter(c.actor.id)??enemy)?.anchors.cast; if(anchor){source.x+=(anchor[0]-.5)*size;source.y+=(anchor[1]-.5)*size;}
                 const scale = ultimate ? 1.3 : normal ? .7 : 1, extent = size * scale;
+                if (ultimate) {
+                    const p = actorAnchor(c.actor, wide);
+                    drawModelCast(ctx, p.x * width / 100, p.y * height / 100, size * 1.65, c.event.school, age, c.actor.id, icons.image, c.combo, quiet);
+                }
                 if (ultimate && c.awakened) {
                     const identity = ultimateIdentity(c.actor.id);
                     const points = c.targets.slice(0,low?3:5).map(point);
                     const center = {x:points.reduce((n,p)=>n+p.x,0)/points.length,y:points.reduce((n,p)=>n+p.y,0)/points.length};
-                    if(age<360) drawChannel(ctx,source,c.event.school,age/360,size*.55,low);
-                    else if(age<960) drawProjectile(ctx,source,center,c.event.school,(age-360)/600,extent*.22,low,"projectile");
-                    else if(starterCharacter(c.actor.id)) {
+                    if(quiet) {
+                        if(age>=960 && age<1980) drawUltimateArt(ctx,identity.pattern,center.x,center.y,extent,.38,VFX_COLORS[c.event.school][1],identity.motif,true);
+                    }
+                    else if(age<360) drawChannel(ctx,source,c.event.school,age/360,size*.55,low);
+                    else if(age<960 && c.targets.some(t=>t.side!==c.actor.side)) drawProjectile(ctx,source,center,c.event.school,(age-360)/600,extent*.22,low,"projectile");
+                    else if(age>=960 && starterCharacter(c.actor.id)) {
                         for(const target of c.targets.slice(0,low?3:5)){const p=point(target),enemy=target.side!==c.actor.side;drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent,enemy?age:age-960,enemy,low,c.actor.role==="healer"?"heal":"shield");}
-                    } else if(age<1980) drawUltimateArt(ctx,identity.pattern,center.x,center.y,extent*1.3,(age-960)/1020,VFX_COLORS[c.event.school][1],identity.motif,low);
+                    } else if(age>=960 && age<1980) {
+                        const foes=c.targets.filter(t=>t.side!==c.actor.side).slice(0,low?3:5).map(point);
+                        if(foes.length) drawUltimateArt(ctx,identity.pattern,foes.reduce((n,p)=>n+p.x,0)/foes.length,foes.reduce((n,p)=>n+p.y,0)/foes.length,extent*1.3,(age-960)/1020,VFX_COLORS[c.event.school][1],identity.motif,low);
+                        for(const friend of c.targets.filter(t=>t.side===c.actor.side).slice(0,low?3:5)) drawImpact(ctx,point(friend),c.event.school,(age-960)/1020,extent,c.actor.role==="healer"?"heal":"shield",low);
+                    }
                     surface.dataset.ultimate=identity.pattern;
                     continue;
                 }
@@ -119,6 +137,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                         drawProjectile(ctx,source,p,c.event.school,t,extent*.22,low,kind);
                     }
                     if(starterCharacter(c.actor.id)) drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent*.75,age-contact,false,low,kind === "heal" || kind === "shield" ? kind : normal ? "attack" : "skill");
+                    else if(enemy && (!normal || enemy.accent)) {drawEnemyVfx(ctx,c.actor.id,p.x,p.y,extent,age-contact,quiet);surface.dataset.enemySignature=c.actor.id;}
                     else drawImpact(ctx,p,c.event.school,(age-contact)/650,extent,kind,low,low?undefined:texture.image);
                 }
                 if (surface.dataset.signature !== `${c.actor.role}:${c.event.school}:${c.variant}`)
@@ -140,7 +159,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
         resize();
         const quality = subscribeRenderQuality(resize), clock = subscribeCharacterClock(draw, () => !state.current.paused && state.current.cues.length > 0);
         document.addEventListener("visibilitychange", visibility);
-        return () => { texture.release(); observer.disconnect(); quality(); clock(); document.removeEventListener("visibilitychange", visibility); };
+        return () => { texture.release(); icons.release(); observer.disconnect(); quality(); clock(); document.removeEventListener("visibilitychange", visibility); };
     }, [quiet]);
-    return quiet ? null : <canvas ref={canvas} className="rpg-vfx-canvas" aria-hidden="true" data-vfx="rpg-elemental"/>;
+    return <canvas ref={canvas} className="rpg-vfx-canvas" aria-hidden="true" data-vfx="rpg-elemental"/>;
 }

@@ -1,3 +1,7 @@
+# Soul of Meal · Web 5.9.7 · Tuyệt kỹ 2D
+
+Tuyệt kỹ của 139 Vị Linh dùng banner chân dung/nền theo hệ, icon trên model, pháp ấn và VFX trúng đích; bỏ toàn bộ 116 video cũ, giảm build khoảng 150,47 MB xuống 95,59 MB. Giữ tiến trình và luật chiến đấu. [Thay đổi](dev/docs/web-v597/UPDATE.md) · [Kiểm chứng và giới hạn](dev/docs/web-v597/VERIFICATION.md). Cập nhật trên PR #58, chưa merge. Các phần dưới là lịch sử.
+
 # Soul of Meal · Auto chess 2.5D và bảo vệ bản phát hành
 
 Bàn đấu phối cảnh, chuyển động đồng bộ cho đủ 44 quân và 24 quái/boss, pose theo nhịp trúng đòn, giải phóng atlas qua vòng dài. Chính sách ngày 16/10/2026 và kiểm tra chống đưa source/map/archive/khóa bí mật vào bản web. [Thay đổi và giới hạn kiểm chứng](dev/docs/web-v584/UPDATE.md) · [Bảo vệ mã nguồn và các việc còn cần chủ sở hữu xử lý](rights/SOURCE_PROTECTION.md). Bản 2.5D, chưa chuyển sang model 3D; repo hiện công khai và hồ sơ quyền sử dụng còn 13 mục cần xác minh. Chỉ cập nhật PR #51, không tự merge.

@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-17",
+  "checks": [
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "liveCast": true,
+      "sharedBanner": true
+    },
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "liveCast": true,
+      "sharedBanner": true
+    },
+    {
+      "area": "tcg",
+      "spell": {
+        "id": "tea-break",
+        "name": "Một chén trà"
+      },
+      "sharedBanner": true,
+      "modelSigil": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "movieRequests": 0
+}

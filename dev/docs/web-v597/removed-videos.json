@@ -1,0 +1,471 @@
+{
+  "base": "e2bdc291866545dee274f763714c4fffc97221f0",
+  "count": 116,
+  "totalBytes": 150471085,
+  "files": [
+    {
+      "path": "public/assets/rpg/awakening530/movies/arancini.mp4",
+      "bytes": 1388109
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banh-can.mp4",
+      "bytes": 1205234
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banh-da-cua.mp4",
+      "bytes": 1473793
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banh-dau-xanh.mp4",
+      "bytes": 1294329
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banh-it-la-gai.mp4",
+      "bytes": 1236075
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banh-khuc.mp4",
+      "bytes": 1318384
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banh-ram-it.mp4",
+      "bytes": 1400990
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banh-tet.mp4",
+      "bytes": 1404889
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banh-tom-ho-tay.mp4",
+      "bytes": 1292305
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-com-lam.mp4",
+      "bytes": 1315116
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-ga-nuong-mac-khen.mp4",
+      "bytes": 1333834
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-goi-rau-don.mp4",
+      "bytes": 1320931
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-thang-co.mp4",
+      "bytes": 1333475
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-thit-trau-gac-bep.mp4",
+      "bytes": 1149911
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/banner-tay-bac-xoi-ngu-sac.mp4",
+      "bytes": 1392623
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/beef-wellington.mp4",
+      "bytes": 1027905
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/bibimbap.mp4",
+      "bytes": 1305242
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/bingsu.mp4",
+      "bytes": 1286407
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/bistecca-fiorentina.mp4",
+      "bytes": 1396492
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/boat-noodles.mp4",
+      "bytes": 1480039
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/bun-bo-hue.mp4",
+      "bytes": 1524357
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/bun-ca.mp4",
+      "bytes": 1297798
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/bun-dau.mp4",
+      "bytes": 1336745
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/bun-moc.mp4",
+      "bytes": 1555673
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/canh-mang-mien.mp4",
+      "bytes": 1336266
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/caravan-cartographer.mp4",
+      "bytes": 1239042
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/caravan-cook.mp4",
+      "bytes": 1385232
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/caravan-ferryman.mp4",
+      "bytes": 1337060
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/caravan-gardener.mp4",
+      "bytes": 1415935
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/caravan-herbalist.mp4",
+      "bytes": 1485982
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/caravan-letter.mp4",
+      "bytes": 1408156
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/caravan-pastry.mp4",
+      "bytes": 1267217
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/caravan-porter.mp4",
+      "bytes": 1301343
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/caravan-scout.mp4",
+      "bytes": 1159931
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/caravan-smith.mp4",
+      "bytes": 1174322
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/carbonara.mp4",
+      "bytes": 1393251
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/chao-luon.mp4",
+      "bytes": 1345466
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/chao-suon.mp4",
+      "bytes": 1361932
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/che-buoi.mp4",
+      "bytes": 1288478
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/che-khuc-bach.mp4",
+      "bytes": 1324359
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/che-lam.mp4",
+      "bytes": 1363380
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/christmas-pudding.mp4",
+      "bytes": 1363599
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/classic-burger.mp4",
+      "bytes": 1350492
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/com-hen.mp4",
+      "bytes": 1310328
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/com-nieu.mp4",
+      "bytes": 1333099
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/com-rang-dua-bo.mp4",
+      "bytes": 1346851
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/croissant.mp4",
+      "bytes": 1292009
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/dua-hanh.mp4",
+      "bytes": 1336611
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/duck-confit.mp4",
+      "bytes": 1347571
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/french-tasting.mp4",
+      "bytes": 1314964
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/ga-ran.mp4",
+      "bytes": 1343254
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/ganjang-gejang.mp4",
+      "bytes": 1617250
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/gelato.mp4",
+      "bytes": 1352772
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/gingerbread.mp4",
+      "bytes": 1284904
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/gio-xao.mp4",
+      "bytes": 1045035
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/gopchang-gui.mp4",
+      "bytes": 1071278
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/green-curry.mp4",
+      "bytes": 1197220
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/haidilao-hotpot.mp4",
+      "bytes": 1346132
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/hanwoo-bbq.mp4",
+      "bytes": 1328391
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/honey-glazed-ham.mp4",
+      "bytes": 1197740
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/hot-chocolate.mp4",
+      "bytes": 1353559
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/hotteok.mp4",
+      "bytes": 1296346
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/jjajangmyeon.mp4",
+      "bytes": 1298636
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/kem-bo-da-lat.mp4",
+      "bytes": 1317304
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/keo-cu-do.mp4",
+      "bytes": 1317738
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/khao-soi.mp4",
+      "bytes": 1282434
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/kimchi-jjigae.mp4",
+      "bytes": 1304387
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/korean-fried-chicken.mp4",
+      "bytes": 1072480
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/lasagna.mp4",
+      "bytes": 1329053
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/lau-rieu-cua.mp4",
+      "bytes": 1320953
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/lau-thai.mp4",
+      "bytes": 1036361
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/mango-sticky-rice.mp4",
+      "bytes": 1361237
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/mashed-potato.mp4",
+      "bytes": 1210765
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/matcha-parfait.mp4",
+      "bytes": 1276235
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/mi-cay.mp4",
+      "bytes": 1511735
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/mi-van-than.mp4",
+      "bytes": 1583054
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/mien-ga.mp4",
+      "bytes": 1321634
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/moo-ping.mp4",
+      "bytes": 1099825
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/nom-sua-xoai.mp4",
+      "bytes": 1142133
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/nuong-bbq.mp4",
+      "bytes": 1055784
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/okonomiyaki.mp4",
+      "bytes": 1088498
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/omakase.mp4",
+      "bytes": 1347126
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/ossobuco.mp4",
+      "bytes": 1039471
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/pad-kra-pao.mp4",
+      "bytes": 1128777
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/pad-thai.mp4",
+      "bytes": 1366411
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/pappardelle-cinghiale.mp4",
+      "bytes": 1404434
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/pasta.mp4",
+      "bytes": 1378846
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/peking-duck.mp4",
+      "bytes": 1378331
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/pho-ga.mp4",
+      "bytes": 1293153
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/pizza.mp4",
+      "bytes": 1352740
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/porchetta.mp4",
+      "bytes": 1164828
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/roast-turkey.mp4",
+      "bytes": 1066632
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/saltimbocca.mp4",
+      "bytes": 1035335
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/samgyeopsal.mp4",
+      "bytes": 1326168
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/shoyu-ramen.mp4",
+      "bytes": 1309109
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/smoked-brisket.mp4",
+      "bytes": 1341671
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/som-tam.mp4",
+      "bytes": 1481363
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/sua-chua-mit.mp4",
+      "bytes": 1290819
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/sundae-guk.mp4",
+      "bytes": 1464540
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/sushi.mp4",
+      "bytes": 1340191
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/taiyaki.mp4",
+      "bytes": 1326310
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/takoyaki.mp4",
+      "bytes": 1305521
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/thit-dong.mp4",
+      "bytes": 1008094
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/tiramisu.mp4",
+      "bytes": 1330247
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/tokbokki.mp4",
+      "bytes": 1146967
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/tom-yum-goong.mp4",
+      "bytes": 1115142
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/tonkatsu.mp4",
+      "bytes": 1046767
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/tonkotsu-ramen.mp4",
+      "bytes": 1303895
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/truffle-risotto.mp4",
+      "bytes": 1340786
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/unagi-don.mp4",
+      "bytes": 1329696
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/v4-market-host.mp4",
+      "bytes": 1265591
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/vit-quay.mp4",
+      "bytes": 1205648
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/xiaolongbao.mp4",
+      "bytes": 1339172
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/xoi-xeo.mp4",
+      "bytes": 1383702
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/yakitori.mp4",
+      "bytes": 1135251
+    },
+    {
+      "path": "public/assets/rpg/awakening530/movies/yule-log.mp4",
+      "bytes": 1360692
+    }
+  ]
+}

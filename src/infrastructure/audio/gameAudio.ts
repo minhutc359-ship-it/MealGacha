@@ -644,7 +644,7 @@ export class GameAudioEngine {
         source.connect(this.effectsBus!); this.effects.add(source)
         source.onended = () => { if (source) { this.effects.delete(source); source.disconnect() } }
         source.start(0, Math.max(0, at))
-      }).catch(() => { /* The movie remains playable without sound. */ })
+      }).catch(() => { /* The showcase remains usable without sound. */ })
     }
     return {stop}
   }

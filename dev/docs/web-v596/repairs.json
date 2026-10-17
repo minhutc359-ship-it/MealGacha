@@ -1,0 +1,14 @@
+{
+  "tool": "Built-in Imagegen",
+  "date": "2026-10-16",
+  "prompt": "Use case: identity-preserve. Production game character sprite repairs for Soul of Meal. Reference image is the exact russet squirrel Chả rươi, preserve its face, huge curled bushy tail, orange scarf, autumn leaf cape, brown leather olive tunic, one compact bronze round buckler and ONE short curved orange leaf blade.\nGenerate exactly FOUR complete full-body articulated poses in a TWO by TWO equal square-cell atlas on genuinely transparent RGBA. Top left: ATTACK CONTACT, low forward diagonal blade slash with buckler held at chest. Top right: ATTACK RECOVERY, blade arm recoils toward waist and back boot catches weight. Bottom left: ULTIMATE CONTACT, a deeper decisive low lunge with blade stretched diagonally downward toward the right, mouth open with effort and tail curled high. Bottom right: ULTIMATE RECOVERY, planted front boot, blade lowered and buckler out, alert three-quarter face.\nFixed 3/4 camera facing screen right, same body size, style, equipment and lighting. Use no long sword; the blade must be SHORTER than torso height. Every single complete pose with full blade and tail must fit inside CENTRAL 65% of its own cell, leave at least 16% empty transparent gutters on ALL edges. No pose or weapon may touch any cell boundary or another pose. No VFX, fire trails, glows, lettering, grids, ground, shadows, duplicated equipment, detached pieces or extra limbs. Polished clean cel-shaded 2.5D chibi like reference. Four separate bodies, no overlapping silhouettes.",
+  "source": "/workspace/scratch/01c951ed619f/generated_images/exec-9114095b-bb1e-4576-bd60-a5664cbd83da.png",
+  "reason": "Attack and ultimate contact touched the next cell; replace both contact/recovery pairs with complete, padded poses.",
+  "frames": [
+    10,
+    11,
+    18,
+    19
+  ],
+  "sha256": "71c79998c58e694eec3cd994d6d1dcfd375ce3040f91b658325e4dbd40be5cbd"
+}

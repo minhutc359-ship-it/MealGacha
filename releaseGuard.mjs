@@ -16,6 +16,7 @@ export function inspectRelease(root) {
         else walk(file)
         continue
       }
+      if (/assets\/rpg\/awakening530\/movies\/.*\.mp4$/i.test(relative)) leaks.push(`${relative}: retired ultimate video`)
       if (/(^|\/)(?:\.env(?:\..*)?|package(?:-lock)?\.json|pnpm-lock\.yaml|vite\.config\..*|tsconfig.*|AGENTS\.md|.*\.(?:zip|tar|gz|tgz|map|tsx?|jsx|pem|key|p12|keystore|jks|log))$/i.test(relative)) leaks.push(`${relative}: source/archive/secret file`)
       if (/\.(?:js|css|html|json|txt|svg|webmanifest)$/i.test(name)) {
         const text = readFileSync(file, "utf8")

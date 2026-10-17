@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "id": "com-lang-vong",
+      "file": "public/assets/rpg/awakening530/movies/com-lang-vong.mp4",
+      "bytes": 1361678
+    },
+    {
+      "id": "ca-phe-trung",
+      "file": "public/assets/rpg/awakening530/movies/ca-phe-trung.mp4",
+      "bytes": 1336213
+    },
+    {
+      "id": "cha-ruoi",
+      "file": "public/assets/rpg/awakening530/movies/cha-ruoi.mp4",
+      "bytes": 1240080
+    },
+    {
+      "id": "thit-kho-trung",
+      "file": "public/assets/rpg/awakening530/movies/thit-kho-trung.mp4",
+      "bytes": 1207201
+    }
+  ],
+  "bytes": 5145172
+}

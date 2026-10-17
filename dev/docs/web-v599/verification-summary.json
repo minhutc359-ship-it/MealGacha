@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-17",
+  "version": "5.9.9",
+  "vitest": {
+    "passed": 692,
+    "files": 66
+  },
+  "nodeGuardTests": 4,
+  "typecheck": [
+    "app",
+    "dev"
+  ],
+  "adventureBrowser": {
+    "chromium": 25,
+    "webkit": 25,
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        1440,
+        900
+      ]
+    ],
+    "clock": "Playwright-controlled, real reducer events"
+  },
+  "autoTcgBrowser": {
+    "chromium": 3,
+    "webkit": 3
+  },
+  "build": {
+    "bytes": 105038947,
+    "jsGzip": 669854,
+    "jsGzipLimit": 675000
+  },
+  "physicalDeviceQa": "user-owned; not performed",
+  "prReviewMerge": "user-owned; not performed",
+  "commercialClearance": "pending 13 existing asset evidence items"
+}

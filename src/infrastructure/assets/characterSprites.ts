@@ -1,3 +1,4 @@
+import { enemyVisual } from "../../game/enemyVisuals"
 import { characterVisual } from "../../game/characterVisuals"
 import { spiritArt } from "../../game/adventureRpg/spiritArt"
 import { renderIsLight, sampleRenderFrame, resetRenderSampling } from "../presentation/renderQuality"
@@ -20,7 +21,6 @@ export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
   "village-dragon": ["villageParty", 2],
   ferry: ["living-ferry", 0],
 
-  "banh-chung": ["rosterD", 0],
   "banh-tet": ["rosterD", 1],
   "caravan-herbalist": ["rosterD", 2],
   "caravan-gardener": ["rosterD", 3],
@@ -29,13 +29,6 @@ export const DISTINCT_MODELS: Record<string, [CharacterSheet, number]> = {
   "bun-bo-hue": ["rosterE", 2],
   "che-buoi": ["rosterE", 3],
   "bun-ca": ["rosterF", 0],
-  "cha-ruoi": ["rosterF", 1],
-  "cha-ca-la-vong": ["rosterF", 2],
-  "thit-kho-trung": ["rosterF", 3],
-  "bun-thang": ["rosterG", 0],
-  "com-lang-vong": ["rosterG", 1],
-  "banh-com-hang-than": ["rosterG", 2],
-  "ca-phe-trung": ["rosterG", 3],
 }
 const ENEMY_MODELS: Record<string, [CharacterSheet, number]> = {
   "v4-tide-lock": ["living-bosses", 0],
@@ -67,6 +60,8 @@ const ENEMY_MODELS: Record<string, [CharacterSheet, number]> = {
 }
 export function monsterCharacter(id: string): CharacterModel {
   const def = MONSTER_MAP[id]
+  const visual = enemyVisual(id)
+  if (visual) return {sheet:visual.sheet,row:0,id,name:def.name}
   const [sheet, row] = ENEMY_MODELS[id] ?? ["enemy", def.sprite]
   return { sheet, row, id, name: def.name }
 }
@@ -153,7 +148,7 @@ function imageEntry(path: string) {
     images.set(path, entry)
     image.addEventListener("load", evictImages)
     image.addEventListener("error", () => {
-      if (!entry!.leases) images.delete(path)
+      if (!entry!.leases && images.get(path) === entry) images.delete(path)
     })
     image.src = path
   }
@@ -176,6 +171,8 @@ export function acquireCharacterImage(path: string) {
       if (!active) return
       active = false
       entry.leases--
+      if (!entry.leases && entry.image.complete && !entry.image.naturalWidth)
+        images.delete(path)
       evictImages()
     },
   }

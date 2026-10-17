@@ -53,3 +53,20 @@ dev/docs/**/*.webp
 !dev/docs/web-v593/evidence/*.webp
 
 !dev/docs/web-v594/evidence/*.webp
+
+!dev/docs/web-v595/evidence/*.webp
+
+!dev/docs/web-v596/evidence/*.webp
+
+!dev/docs/web-v597/evidence/*.webp
+
+!dev/docs/web-v598/evidence/*.webp
+
+# Mode regression reuses the canonical 139-spirit manifest from web-v597.
+dev/docs/web-v598/modes-*/showcase-manifest.json
+
+!dev/docs/web-v599/evidence/*.webp
+dev/docs/web-v599/modes-*/showcase-manifest.json
+
+!dev/docs/web-v5910/evidence/*.webp
+dev/docs/web-v5910/*-focus-qa.json

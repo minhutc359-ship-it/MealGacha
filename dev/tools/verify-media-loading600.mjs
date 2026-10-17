@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import {dirname} from 'node:path'
 import {spawn} from 'node:child_process'
 import {writeFileSync,mkdirSync,statSync} from 'node:fs'
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE??'playwright')
@@ -64,6 +65,6 @@ try{
   await n.getByRole('button',{name:'Bỏ qua ›',exact:true}).click();await n.locator('.rpg-cinematic').waitFor({state:'detached'})
   record.native={selectedCharacter:'com-tam',requestedHdAssets:hd,paintedActorPixels:painted,noMovie:true,skip:true}
   assert.deepEqual(errors,[]);assert.deepEqual(missing,[])
-  mkdirSync('dev/docs/web-v600',{recursive:true});writeFileSync('dev/docs/web-v600/lazy-media-qa.json',JSON.stringify(record,null,2)+'\n');console.log(JSON.stringify(record))
+  const output=process.argv[2]??'dev/docs/web-v600/lazy-media-qa.json';mkdirSync(dirname(output),{recursive:true});writeFileSync(output,JSON.stringify(record,null,2)+'\n');console.log(JSON.stringify(record))
 }catch(e){console.error(log.slice(-2000),errors,missing);throw e}
 finally{await browser?.close();server.kill()}

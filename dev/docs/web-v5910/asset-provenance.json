@@ -1,0 +1,1031 @@
+[
+  {
+    "id": "banh-tet",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "c49ad5da7f2c888e583f1e60b13bce7ebe16f81f57884397702bb1be15d1e184",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            63,
+            5,
+            263,
+            317
+          ],
+          [
+            377,
+            4,
+            580,
+            315
+          ],
+          [
+            686,
+            4,
+            900,
+            316
+          ],
+          [
+            1020,
+            17,
+            1228,
+            315
+          ],
+          [
+            47,
+            318,
+            276,
+            616
+          ],
+          [
+            372,
+            321,
+            610,
+            619
+          ],
+          [
+            680,
+            321,
+            917,
+            620
+          ],
+          [
+            996,
+            321,
+            1234,
+            619
+          ],
+          [
+            59,
+            632,
+            293,
+            916
+          ],
+          [
+            371,
+            634,
+            632,
+            914
+          ],
+          [
+            692,
+            634,
+            968,
+            915
+          ],
+          [
+            1007,
+            627,
+            1242,
+            915
+          ],
+          [
+            55,
+            925,
+            277,
+            1239
+          ],
+          [
+            369,
+            921,
+            597,
+            1236
+          ],
+          [
+            671,
+            929,
+            933,
+            1236
+          ],
+          [
+            991,
+            921,
+            1213,
+            1237
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal game production sprite sheet, character Bánh tét (banh-tet), 16 NEW authored poses.\nInput image is the existing CANON model identity reference, not a sheet to copy. Preserve its anatomy, colors, clothing and equipment exactly. Ignore any old background glow/noise.\nSubject: An ivory/mint anthropomorphic rabbit with very long green-edged ears, big dark-green eyes, tiny pink nose, pink blossom forehead wreath; mint robe with ivory lapels and vivid purple sash/bow. A tall green banana-leaf cylindrical banh-tet rice-cake pack tied with red/pink ribbons and pink blossoms stays strapped vertically on its back. A round golden wicker shield with green inset and central pink lotus is always held in the LEFT hand (viewer right in the reference). Bare paw feet. No staff or sword.\nStyle: polished cute 2.5D anime RPG, warm detailed cel shading, crisp contours, matching the reference proportions; one consistent camera, scale and lighting.\nComposition: one square 2048x2048 transparent RGBA canvas, EXACT 4 columns by 4 rows of equal cells. Exactly ONE full-body character in every cell, 16 total, all facing three-quarter RIGHT. Leave a generous completely transparent margin in every cell including around ears, hats, ladles, tail, pack, arrows, shield and feet. No cell lines. Same scale across all cells. Full character may occupy 70% of each cell. Keep neighboring silhouettes disconnected.\nRows in strict row-major order:\nRow 1 IDLE four distinct subtle breathing/ear/hand poses; no turn to the left.\nRow 2 WALK four genuinely different step phases: left contact, left passing, right contact, right passing. Move legs, hips and arms, not just translate one drawing.\nRow 3 ATTACK four distinct anticipation, windup, contact, recovery poses.\nRow 4 CAST four distinct gather, raised gesture, extended contact, recover poses.\nAction direction and character constraints: gentle heavy rabbit steps carrying the tall pack; attack is a compact shield push; cast is an open right palm and left shield held protectively; keep all ears, pack and ribbon ends.\nTransparent background only. No aura, particles, projectile, ground, cast shadows, props detached from the actor, scenery, texts, labels, duplicate heads or motion echoes. Never clip equipment. Never replace poses with repeated copies. This is clean actor artwork; effects will be drawn by game code."
+      },
+      {
+        "sheet": "support",
+        "sha256": "8c201ca626d4c94423f61950f1add4053619d94660d47789c5c9d01a93f703ef",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            42,
+            3,
+            276,
+            323
+          ],
+          [
+            369,
+            6,
+            599,
+            323
+          ],
+          [
+            654,
+            14,
+            918,
+            322
+          ],
+          [
+            1005,
+            9,
+            1228,
+            322
+          ],
+          [
+            37,
+            340,
+            295,
+            630
+          ],
+          [
+            355,
+            337,
+            631,
+            631
+          ],
+          [
+            671,
+            355,
+            933,
+            635
+          ],
+          [
+            994,
+            341,
+            1243,
+            631
+          ],
+          [
+            33,
+            634,
+            318,
+            920
+          ],
+          [
+            373,
+            648,
+            620,
+            921
+          ],
+          [
+            657,
+            648,
+            936,
+            925
+          ],
+          [
+            968,
+            719,
+            1246,
+            923
+          ],
+          [
+            44,
+            932,
+            297,
+            1243
+          ],
+          [
+            370,
+            932,
+            635,
+            1238
+          ],
+          [
+            670,
+            935,
+            910,
+            1242
+          ],
+          [
+            994,
+            960,
+            1219,
+            1242
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal game production sprite sheet, character Bánh tét (banh-tet), 16 ADDITIONAL NEW authored support poses.\nInput image is the existing CANON model identity reference, not a sheet to copy. Preserve its anatomy, colors, clothing and equipment exactly. Ignore any old background glow/noise.\nSubject: An ivory/mint anthropomorphic rabbit with very long green-edged ears, big dark-green eyes, tiny pink nose, pink blossom forehead wreath; mint robe with ivory lapels and vivid purple sash/bow. A tall green banana-leaf cylindrical banh-tet rice-cake pack tied with red/pink ribbons and pink blossoms stays strapped vertically on its back. A round golden wicker shield with green inset and central pink lotus is always held in the LEFT hand (viewer right in the reference). Bare paw feet. No staff or sword.\nStyle: polished cute 2.5D anime RPG, warm detailed cel shading, crisp contours, matching the reference proportions; one consistent camera, scale and lighting.\nComposition: one square 2048x2048 transparent RGBA canvas, EXACT 4 columns by 4 rows of equal cells. Exactly ONE full-body character in every cell, 16 total, all facing three-quarter RIGHT. Leave a generous completely transparent margin in every cell including around ears, hats, ladles, tail, pack, arrows, shield and feet. No cell lines. Same scale across all cells. Full character may occupy 70% of each cell. Keep neighboring silhouettes disconnected.\nMatch the first input sheet's exact body, clothing, equipment, scale and polish; it is the identity reference for additional gestures.\nRows in strict row-major order:\nRow 1 ULTIMATE four distinct full-body anticipation, raised offering, protective outstretched contact, recovery. Keep actor only, no magic.\nRow 2 HIT four distinct short recoil poses: brace, backward flinch, lower shield with one knee bent, regain balance.\nRow 3 FALL four distinct losing-balance, kneeling, sitting exhausted, lying fainted ON THE RIGHT SIDE poses. Keep every ear, paw, shield and banana-leaf pack visible in every cell. The pack can rest behind the body. No blood.\nRow 4 VICTORY four distinct smiling shield salute, joyful little hop with left foot lifted, open-palm greeting, warm bow. All remain in each cell.\nAction direction and character constraints: gentle heavy rabbit steps carrying the tall pack; attack is a compact shield push; cast is an open right palm and left shield held protectively; keep all ears, pack and ribbon ends.\nTransparent background only. No aura, particles, projectile, ground, cast shadows, props detached from the actor, scenery, texts, labels, duplicate heads or motion echoes. Never clip equipment. Never replace poses with repeated copies. This is clean actor artwork; effects will be drawn by game code."
+      },
+      {
+        "sheet": "portrait",
+        "sha256": "26da881643b5ab1923793afa476ef3cf9b8025d338aba47a78fe75af739ee7fe",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Edit only the framing of this exact Soul of Meal rabbit portrait. Zoom the character OUT by about 22 percent inside the same square canvas and extend the matching soft jade/cream bokeh background. The complete tips of BOTH very long ears must be fully visible, with at least 8% empty background margin above both ears and 6% margin to the right ear tip. Keep the exact rabbit identity, face, eyes, mint fur, purple sash, banana-leaf cylindrical pack with pink ribbons and round golden lotus shield. Keep the same beautiful detailed anime cel shading and three-quarter view. Do not change the species, outfit, expression or add anything. One centered character. No text. This is for a small character UI portrait where the ears must not be clipped.",
+        "revision": {
+          "reason": "First portrait clipped ear tips",
+          "sourceSha256": "e38f79815cc1f2e11934de1b48723b36339203225324fade235b175e8552f74a",
+          "prompt": "Use case: identity-preserve. Asset type: Soul of Meal character portrait for Bánh tét (banh-tet). Create one polished square anime RPG portrait matching the supplied NEW full-body sheet and original CANON model. These inputs are identity references, not a collage to reproduce.\nSubject invariants: An ivory/mint anthropomorphic rabbit with very long green-edged ears, big dark-green eyes, tiny pink nose, pink blossom forehead wreath; mint robe with ivory lapels and vivid purple sash/bow. A tall green banana-leaf cylindrical banh-tet rice-cake pack tied with red/pink ribbons and pink blossoms stays strapped vertically on its back. A round golden wicker shield with green inset and central pink lotus is always held in the LEFT hand (viewer right in the reference). Bare paw feet. No staff or sword.\nComposition: one character only, chest/waist-up three-quarter view, centered friendly expressive face, clean appealing anatomy, large clear eyes, visible key hat/ears/crest, necklace or bow, and signature equipment partly visible near the shoulder/front. Keep long ears, hat, flower or crest INSIDE the square with ample margins. Preserve the exact species, clothing, color palette, proportions and equipment from the reference. Hand-drawn cel shading and detailed soft fur/feathers; coherent with the new sprite sheet. Warm soft studio lighting. Gentle abstract jade and cream bokeh background with a subtle school-colored glow, enough contrast for small UI. No text, no frame, no logos, no extra characters. Never turn the rabbit into a turtle, bull into lion, bird into fox or beaver-like creature into crane."
+        }
+      }
+    ],
+    "uniformScale": 0.7,
+    "outputs": {
+      "banh-tet-pixel.webp": {
+        "bytes": 134452,
+        "sha256": "f64a89bf9633626491a8a1748ed468560947c9ec68cece362e4fdf76f2d48a1a"
+      },
+      "banh-tet-portrait.webp": {
+        "bytes": 56940,
+        "sha256": "6f3c02b0e0ff7645ced36a368fbc9cd823ed7f54bfc40c2b6023f7a6eb6b6eff"
+      },
+      "banh-tet.webp": {
+        "bytes": 515988,
+        "sha256": "1e6c0d8c25e04dae73726a9e51aeb472c1a930d73034f85a90e545b63efbe81c"
+      }
+    }
+  },
+  {
+    "id": "bun-bo-hue",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "55060441d9699d302034eabe46a9a52169b08f5cf7fe38945c09f753593cd3c7",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            39,
+            10,
+            284,
+            321
+          ],
+          [
+            359,
+            6,
+            597,
+            320
+          ],
+          [
+            678,
+            7,
+            913,
+            322
+          ],
+          [
+            983,
+            5,
+            1227,
+            320
+          ],
+          [
+            43,
+            323,
+            298,
+            618
+          ],
+          [
+            361,
+            328,
+            617,
+            619
+          ],
+          [
+            676,
+            329,
+            933,
+            619
+          ],
+          [
+            991,
+            325,
+            1246,
+            621
+          ],
+          [
+            34,
+            637,
+            281,
+            917
+          ],
+          [
+            348,
+            614,
+            607,
+            918
+          ],
+          [
+            634,
+            669,
+            959,
+            912
+          ],
+          [
+            963,
+            633,
+            1227,
+            914
+          ],
+          [
+            32,
+            930,
+            270,
+            1232
+          ],
+          [
+            356,
+            916,
+            598,
+            1230
+          ],
+          [
+            655,
+            968,
+            975,
+            1232
+          ],
+          [
+            977,
+            931,
+            1228,
+            1232
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal game production sprite sheet, character Bún bò Huế (bun-bo-hue), 16 NEW authored poses.\nInput image is the existing CANON model identity reference, not a sheet to copy. Preserve its anatomy, colors, clothing and equipment exactly. Ignore any old background glow/noise.\nSubject: An orange-red anthropomorphic bull warrior, short cream muzzle, big expressive brown eyes, two dark curved bull horns, red beard/neck fur and long red tufted tail. Wears a bamboo conical hat decorated with two red chilies and a green lemongrass leaf, bronze/gold shoulder and wrist armor, red robe with ivory geometric hem, brown boots. Holds one very long bronze soup ladle upright in the RIGHT hand (viewer right in reference), with a round deep bowl at its upper end. Keep the bull horns and chili conical hat, not a lion, fox or human.\nStyle: polished cute 2.5D anime RPG, warm detailed cel shading, crisp contours, matching the reference proportions; one consistent camera, scale and lighting.\nComposition: one square 2048x2048 transparent RGBA canvas, EXACT 4 columns by 4 rows of equal cells. Exactly ONE full-body character in every cell, 16 total, all facing three-quarter RIGHT. Leave a generous completely transparent margin in every cell including around ears, hats, ladles, tail, pack, arrows, shield and feet. No cell lines. Same scale across all cells. Full character may occupy 70% of each cell. Keep neighboring silhouettes disconnected.\nRows in strict row-major order:\nRow 1 IDLE four distinct subtle breathing/ear/hand poses; no turn to the left.\nRow 2 WALK four genuinely different step phases: left contact, left passing, right contact, right passing. Move legs, hips and arms, not just translate one drawing.\nRow 3 ATTACK four distinct anticipation, windup, contact, recovery poses.\nRow 4 CAST four distinct gather, raised gesture, extended contact, recover poses.\nAction direction and character constraints: weighty boot steps with tail counterbalance; attack is a compact ladle sweep with BOTH hands rather than enormous extensions; cast raises the ladle bowl slightly and offers the free palm; maintain shaft and fingers.\nTransparent background only. No aura, particles, projectile, ground, cast shadows, props detached from the actor, scenery, texts, labels, duplicate heads or motion echoes. Never clip equipment. Never replace poses with repeated copies. This is clean actor artwork; effects will be drawn by game code."
+      },
+      {
+        "sheet": "support",
+        "sha256": "3659a320826632b62fa23f251e65e63acb5a62ca4b67124693ff36663629d435",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            23,
+            103,
+            383,
+            363
+          ],
+          [
+            365,
+            5,
+            646,
+            366
+          ],
+          [
+            658,
+            83,
+            955,
+            365
+          ],
+          [
+            997,
+            64,
+            1236,
+            363
+          ],
+          [
+            36,
+            370,
+            293,
+            678
+          ],
+          [
+            313,
+            369,
+            609,
+            684
+          ],
+          [
+            648,
+            412,
+            942,
+            683
+          ],
+          [
+            980,
+            390,
+            1239,
+            680
+          ],
+          [
+            21,
+            668,
+            314,
+            940
+          ],
+          [
+            337,
+            697,
+            638,
+            957
+          ],
+          [
+            641,
+            705,
+            908,
+            956
+          ],
+          [
+            934,
+            774,
+            1253,
+            952
+          ],
+          [
+            53,
+            940,
+            276,
+            1243
+          ],
+          [
+            342,
+            960,
+            582,
+            1239
+          ],
+          [
+            660,
+            968,
+            910,
+            1240
+          ],
+          [
+            982,
+            973,
+            1219,
+            1238
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal game production sprite sheet, character Bún bò Huế (bun-bo-hue), 16 ADDITIONAL NEW authored support poses.\nInput image is the existing CANON model identity reference, not a sheet to copy. Preserve its anatomy, colors, clothing and equipment exactly. Ignore any old background glow/noise.\nSubject: An orange-red anthropomorphic bull warrior, short cream muzzle, big expressive brown eyes, two dark curved bull horns, red beard/neck fur and long red tufted tail. Wears a bamboo conical hat decorated with two red chilies and a green lemongrass leaf, bronze/gold shoulder and wrist armor, red robe with ivory geometric hem, brown boots. Holds one very long bronze soup ladle upright in the RIGHT hand (viewer right in reference), with a round deep bowl at its upper end. Keep the bull horns and chili conical hat, not a lion, fox or human.\nStyle: polished cute 2.5D anime RPG, warm detailed cel shading, crisp contours, matching the reference proportions; one consistent camera, scale and lighting.\nComposition: one square 2048x2048 transparent RGBA canvas, EXACT 4 columns by 4 rows of equal cells. Exactly ONE full-body character in every cell, 16 total, all facing three-quarter RIGHT. Leave a generous completely transparent margin in every cell including around ears, hats, ladles, tail, pack, arrows, shield and feet. No cell lines. Same scale across all cells. Full character may occupy 70% of each cell. Keep neighboring silhouettes disconnected.\nMatch the first input sheet's exact body, clothing, equipment, scale and polish; it is the identity reference for additional gestures.\nRows in strict row-major order:\nRow 1 ULTIMATE four distinct full-body anticipation, raised offering, protective outstretched contact, recovery. Keep actor only, no magic.\nRow 2 HIT four distinct short recoil poses: brace, backward flinch, lower shield with one knee bent, regain balance.\nRow 3 FALL four distinct losing-balance, kneeling, sitting exhausted, lying fainted ON THE RIGHT SIDE poses. Keep the full body, clothing, tail, head, feet and all signature equipment visible in every cell; equipment can rest beside the fainted character. No blood.\nRow 4 VICTORY four distinct smiling equipment salute, joyful little hop with one foot lifted, open-palm greeting, warm bow. All remain in each cell.\nAction direction and character constraints: weighty boot steps with tail counterbalance; attack is a compact ladle sweep with BOTH hands rather than enormous extensions; cast raises the ladle bowl slightly and offers the free palm; maintain shaft and fingers.\nTransparent background only. No aura, particles, projectile, ground, cast shadows, props detached from the actor, scenery, texts, labels, duplicate heads or motion echoes. Never clip equipment. Never replace poses with repeated copies. This is clean actor artwork; effects will be drawn by game code."
+      },
+      {
+        "sheet": "portrait",
+        "sha256": "5187cee22bbb9cbe57eeda0f6114550c07b41ee3fce4000ed88fdeff07b42cc1",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal character portrait for Bún bò Huế (bun-bo-hue). Create one polished square anime RPG portrait matching the supplied NEW full-body sheet and original CANON model. These inputs are identity references, not a collage to reproduce.\nSubject invariants: An orange-red anthropomorphic bull warrior, short cream muzzle, big expressive brown eyes, two dark curved bull horns, red beard/neck fur and long red tufted tail. Wears a bamboo conical hat decorated with two red chilies and a green lemongrass leaf, bronze/gold shoulder and wrist armor, red robe with ivory geometric hem, brown boots. Holds one very long bronze soup ladle upright in the RIGHT hand (viewer right in reference), with a round deep bowl at its upper end. Keep the bull horns and chili conical hat, not a lion, fox or human.\nComposition: one character only, chest/waist-up three-quarter view, centered friendly expressive face, clean appealing anatomy, large clear eyes, visible key hat/ears/crest, necklace or bow, and signature equipment partly visible near the shoulder/front. Keep long ears, hat, flower or crest INSIDE the square with ample margins. Preserve the exact species, clothing, color palette, proportions and equipment from the reference. Hand-drawn cel shading and detailed soft fur/feathers; coherent with the new sprite sheet. Warm soft studio lighting. Gentle abstract jade and cream bokeh background with a subtle school-colored glow, enough contrast for small UI. No text, no frame, no logos, no extra characters. Never turn the rabbit into a turtle, bull into lion, bird into fox or beaver-like creature into crane."
+      }
+    ],
+    "uniformScale": 0.6204986149584487,
+    "outputs": {
+      "bun-bo-hue-pixel.webp": {
+        "bytes": 110874,
+        "sha256": "f09d95bd064810e28788adc9230c060dbaa4c5036f892c46f68bcfc195394151"
+      },
+      "bun-bo-hue-portrait.webp": {
+        "bytes": 67266,
+        "sha256": "5e2e61528697ba82b9f82d28de227073ead33408decdf46b04c023c2c740f69b"
+      },
+      "bun-bo-hue.webp": {
+        "bytes": 504908,
+        "sha256": "2ca2ba0cd2b0a0fe2fdf8b0ee941e6cc837fa112fcd3f4c49a937f8397489d8e"
+      }
+    }
+  },
+  {
+    "id": "bun-ca",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "2a44517a1092eb7fc40821f9e1e10145d8d504ff58b5517bdf867f5cee92077c",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            33,
+            14,
+            313,
+            309
+          ],
+          [
+            353,
+            20,
+            610,
+            308
+          ],
+          [
+            667,
+            21,
+            929,
+            308
+          ],
+          [
+            981,
+            17,
+            1247,
+            308
+          ],
+          [
+            23,
+            326,
+            304,
+            614
+          ],
+          [
+            342,
+            324,
+            628,
+            616
+          ],
+          [
+            655,
+            331,
+            939,
+            612
+          ],
+          [
+            991,
+            328,
+            1252,
+            613
+          ],
+          [
+            27,
+            647,
+            307,
+            917
+          ],
+          [
+            337,
+            636,
+            648,
+            918
+          ],
+          [
+            657,
+            649,
+            961,
+            917
+          ],
+          [
+            974,
+            641,
+            1245,
+            918
+          ],
+          [
+            17,
+            948,
+            304,
+            1235
+          ],
+          [
+            327,
+            936,
+            616,
+            1235
+          ],
+          [
+            652,
+            950,
+            969,
+            1235
+          ],
+          [
+            987,
+            950,
+            1245,
+            1235
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal game production sprite sheet, character Bún cá (bun-ca), 16 NEW authored poses.\nInput image is the existing CANON model identity reference, not a sheet to copy. Preserve its anatomy, colors, clothing and equipment exactly. Ignore any old background glow/noise.\nSubject: An anthropomorphic kingfisher archer bird with a swept blue crest, turquoise/cobalt blue feathers, a long dark pointed beak, bright large brown eyes, white throat and orange cheek patch. Wears an ornate teal-blue robe with white wave patterns, cream chest panel, green jade bead necklace, brown shoulder quiver with three silver-feather arrows, a compact curved brown bow, and two slim dark bird legs with claw feet. Keep the crest, pointed beak, bird wings, jade beads, quiver and water-pattern robe. It is a bird, never a fox or human.\nStyle: polished cute 2.5D anime RPG, warm detailed cel shading, crisp contours, matching the reference proportions; one consistent camera, scale and lighting.\nComposition: one square 2048x2048 transparent RGBA canvas, EXACT 4 columns by 4 rows of equal cells. Exactly ONE full-body character in every cell, 16 total, all facing three-quarter RIGHT. Leave a generous completely transparent margin in every cell including around ears, hats, ladles, tail, pack, arrows, shield and feet. No cell lines. Same scale across all cells. Full character may occupy 70% of each cell. Keep neighboring silhouettes disconnected.\nRows in strict row-major order:\nRow 1 IDLE four distinct subtle breathing/ear/hand poses; no turn to the left.\nRow 2 WALK four genuinely different step phases: left contact, left passing, right contact, right passing. Move legs, hips and arms, not just translate one drawing.\nRow 3 ATTACK four distinct anticipation, windup, contact, recovery poses.\nRow 4 CAST four distinct gather, raised gesture, extended contact, recover poses.\nAction direction and character constraints: quick alternating bird steps and small wing balances; attack is drawing the compact bow and releasing it; cast gathers the free wing beside the jade beads then extends it; avoid huge wingspans or arrows leaving the cell.\nTransparent background only. No aura, particles, projectile, ground, cast shadows, props detached from the actor, scenery, texts, labels, duplicate heads or motion echoes. Never clip equipment. Never replace poses with repeated copies. This is clean actor artwork; effects will be drawn by game code."
+      },
+      {
+        "sheet": "support",
+        "sha256": "f44cac64726f827fc198c90c529776a247cda47f4cbce720861df4ad751cb7fd",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            25,
+            97,
+            312,
+            340
+          ],
+          [
+            332,
+            30,
+            627,
+            329
+          ],
+          [
+            654,
+            47,
+            986,
+            330
+          ],
+          [
+            997,
+            34,
+            1246,
+            332
+          ],
+          [
+            20,
+            370,
+            316,
+            638
+          ],
+          [
+            352,
+            341,
+            620,
+            637
+          ],
+          [
+            659,
+            402,
+            964,
+            637
+          ],
+          [
+            974,
+            346,
+            1243,
+            637
+          ],
+          [
+            22,
+            668,
+            327,
+            928
+          ],
+          [
+            343,
+            669,
+            609,
+            917
+          ],
+          [
+            640,
+            691,
+            936,
+            923
+          ],
+          [
+            935,
+            735,
+            1245,
+            920
+          ],
+          [
+            24,
+            920,
+            311,
+            1237
+          ],
+          [
+            347,
+            931,
+            619,
+            1232
+          ],
+          [
+            648,
+            951,
+            944,
+            1236
+          ],
+          [
+            972,
+            982,
+            1242,
+            1236
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal game production sprite sheet, character Bún cá (bun-ca), 16 ADDITIONAL NEW authored support poses.\nInput image is the existing CANON model identity reference, not a sheet to copy. Preserve its anatomy, colors, clothing and equipment exactly. Ignore any old background glow/noise.\nSubject: An anthropomorphic kingfisher archer bird with a swept blue crest, turquoise/cobalt blue feathers, a long dark pointed beak, bright large brown eyes, white throat and orange cheek patch. Wears an ornate teal-blue robe with white wave patterns, cream chest panel, green jade bead necklace, brown shoulder quiver with three silver-feather arrows, a compact curved brown bow, and two slim dark bird legs with claw feet. Keep the crest, pointed beak, bird wings, jade beads, quiver and water-pattern robe. It is a bird, never a fox or human.\nStyle: polished cute 2.5D anime RPG, warm detailed cel shading, crisp contours, matching the reference proportions; one consistent camera, scale and lighting.\nComposition: one square 2048x2048 transparent RGBA canvas, EXACT 4 columns by 4 rows of equal cells. Exactly ONE full-body character in every cell, 16 total, all facing three-quarter RIGHT. Leave a generous completely transparent margin in every cell including around ears, hats, ladles, tail, pack, arrows, shield and feet. No cell lines. Same scale across all cells. Full character may occupy 70% of each cell. Keep neighboring silhouettes disconnected.\nMatch the first input sheet's exact body, clothing, equipment, scale and polish; it is the identity reference for additional gestures.\nRows in strict row-major order:\nRow 1 ULTIMATE four distinct full-body anticipation, raised offering, protective outstretched contact, recovery. Keep actor only, no magic.\nRow 2 HIT four distinct short recoil poses: brace, backward flinch, lower shield with one knee bent, regain balance.\nRow 3 FALL four distinct losing-balance, kneeling, sitting exhausted, lying fainted ON THE RIGHT SIDE poses. Keep the full body, clothing, tail, head, feet and all signature equipment visible in every cell; equipment can rest beside the fainted character. No blood.\nRow 4 VICTORY four distinct smiling equipment salute, joyful little hop with one foot lifted, open-palm greeting, warm bow. All remain in each cell.\nAction direction and character constraints: quick alternating bird steps and small wing balances; attack is drawing the compact bow and releasing it; cast gathers the free wing beside the jade beads then extends it; avoid huge wingspans or arrows leaving the cell.\nTransparent background only. No aura, particles, projectile, ground, cast shadows, props detached from the actor, scenery, texts, labels, duplicate heads or motion echoes. Never clip equipment. Never replace poses with repeated copies. This is clean actor artwork; effects will be drawn by game code."
+      },
+      {
+        "sheet": "portrait",
+        "sha256": "bb985188b327ee6b3a525f5ac664f8e2728dcb46f86d2ce7cc550f4f0bdb6c87",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal character portrait for Bún cá (bun-ca). Create one polished square anime RPG portrait matching the supplied NEW full-body sheet and original CANON model. These inputs are identity references, not a collage to reproduce.\nSubject invariants: An anthropomorphic kingfisher archer bird with a swept blue crest, turquoise/cobalt blue feathers, a long dark pointed beak, bright large brown eyes, white throat and orange cheek patch. Wears an ornate teal-blue robe with white wave patterns, cream chest panel, green jade bead necklace, brown shoulder quiver with three silver-feather arrows, a compact curved brown bow, and two slim dark bird legs with claw feet. Keep the crest, pointed beak, bird wings, jade beads, quiver and water-pattern robe. It is a bird, never a fox or human.\nComposition: one character only, chest/waist-up three-quarter view, centered friendly expressive face, clean appealing anatomy, large clear eyes, visible key hat/ears/crest, necklace or bow, and signature equipment partly visible near the shoulder/front. Keep long ears, hat, flower or crest INSIDE the square with ample margins. Preserve the exact species, clothing, color palette, proportions and equipment from the reference. Hand-drawn cel shading and detailed soft fur/feathers; coherent with the new sprite sheet. Warm soft studio lighting. Gentle abstract jade and cream bokeh background with a subtle school-colored glow, enough contrast for small UI. No text, no frame, no logos, no extra characters. Never turn the rabbit into a turtle, bull into lion, bird into fox or beaver-like creature into crane."
+      }
+    ],
+    "uniformScale": 0.6746987951807228,
+    "outputs": {
+      "bun-ca-pixel.webp": {
+        "bytes": 140902,
+        "sha256": "6d9a7f2baaf0665c7e4875061fd67daf8bd803e3ed72190f8889ba1ea626cf48"
+      },
+      "bun-ca-portrait.webp": {
+        "bytes": 76944,
+        "sha256": "546e67608705f84d23c4e96bb5c2f7fffe56f1c083da612b48ed93ea71059af0"
+      },
+      "bun-ca.webp": {
+        "bytes": 659642,
+        "sha256": "eeabef5e4861b08045a6a395acd13a3dceeefb5121c7d7a45efa1387c9755cc6"
+      }
+    }
+  },
+  {
+    "id": "che-buoi",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "c38c52e86714f71ef811bc59152225541c2b384b93955c44f21bcb51c2653a90",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            44,
+            1,
+            258,
+            314
+          ],
+          [
+            363,
+            1,
+            568,
+            313
+          ],
+          [
+            673,
+            4,
+            888,
+            312
+          ],
+          [
+            982,
+            8,
+            1207,
+            314
+          ],
+          [
+            33,
+            315,
+            254,
+            622
+          ],
+          [
+            353,
+            311,
+            570,
+            623
+          ],
+          [
+            666,
+            314,
+            895,
+            614
+          ],
+          [
+            994,
+            317,
+            1222,
+            618
+          ],
+          [
+            29,
+            625,
+            283,
+            919
+          ],
+          [
+            323,
+            624,
+            583,
+            921
+          ],
+          [
+            642,
+            625,
+            936,
+            922
+          ],
+          [
+            974,
+            624,
+            1220,
+            922
+          ],
+          [
+            37,
+            922,
+            248,
+            1234
+          ],
+          [
+            334,
+            924,
+            607,
+            1233
+          ],
+          [
+            642,
+            929,
+            955,
+            1234
+          ],
+          [
+            992,
+            931,
+            1217,
+            1233
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal game production sprite sheet, character Chè bưởi (che-buoi), 16 NEW authored poses.\nInput image is the existing CANON model identity reference, not a sheet to copy. Preserve its anatomy, colors, clothing and equipment exactly. Ignore any old background glow/noise.\nSubject: A cute cream-and-light-brown anthropomorphic beaver-like forest spirit with round cheeks, small round ears, enormous dark eyes, short muzzle, a broad brown tail curving behind the body. Wears a pale yellow-green pomelo-rind hood/cap with a white five-petal pomelo flower and green leaves, a mint floral tunic, large pink bow/sash. Holds a small ornate golden dessert bowl filled with translucent golden pomelo pieces and white coconut cream with BOTH hands in front. Keep hood, white flower, golden bowl, pink bow and broad curved brown tail. Not a crane or rabbit.\nStyle: polished cute 2.5D anime RPG, warm detailed cel shading, crisp contours, matching the reference proportions; one consistent camera, scale and lighting.\nComposition: one square 2048x2048 transparent RGBA canvas, EXACT 4 columns by 4 rows of equal cells. Exactly ONE full-body character in every cell, 16 total, all facing three-quarter RIGHT. Leave a generous completely transparent margin in every cell including around ears, hats, ladles, tail, pack, arrows, shield and feet. No cell lines. Same scale across all cells. Full character may occupy 70% of each cell. Keep neighboring silhouettes disconnected.\nRows in strict row-major order:\nRow 1 IDLE four distinct subtle breathing/ear/hand poses; no turn to the left.\nRow 2 WALK four genuinely different step phases: left contact, left passing, right contact, right passing. Move legs, hips and arms, not just translate one drawing.\nRow 3 ATTACK four distinct anticipation, windup, contact, recovery poses.\nRow 4 CAST four distinct gather, raised gesture, extended contact, recover poses.\nAction direction and character constraints: small soft paw steps balancing the bowl; attack is a short one-hand offering/push while keeping the bowl safe; cast lifts the bowl toward chest and opens free palm; both hands return to holding bowl.\nTransparent background only. No aura, particles, projectile, ground, cast shadows, props detached from the actor, scenery, texts, labels, duplicate heads or motion echoes. Never clip equipment. Never replace poses with repeated copies. This is clean actor artwork; effects will be drawn by game code."
+      },
+      {
+        "sheet": "support",
+        "sha256": "04ba4d6446cc44af20a73cb1c745c33239f332e9634209e08f1958e40d00d3ed",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            34,
+            2,
+            269,
+            320
+          ],
+          [
+            331,
+            1,
+            622,
+            317
+          ],
+          [
+            651,
+            9,
+            946,
+            319
+          ],
+          [
+            987,
+            9,
+            1218,
+            320
+          ],
+          [
+            33,
+            333,
+            280,
+            631
+          ],
+          [
+            344,
+            322,
+            616,
+            633
+          ],
+          [
+            661,
+            342,
+            907,
+            633
+          ],
+          [
+            982,
+            329,
+            1227,
+            636
+          ],
+          [
+            32,
+            631,
+            311,
+            940
+          ],
+          [
+            335,
+            650,
+            611,
+            924
+          ],
+          [
+            646,
+            665,
+            926,
+            929
+          ],
+          [
+            943,
+            718,
+            1251,
+            916
+          ],
+          [
+            31,
+            940,
+            305,
+            1240
+          ],
+          [
+            351,
+            925,
+            628,
+            1240
+          ],
+          [
+            654,
+            933,
+            928,
+            1238
+          ],
+          [
+            978,
+            940,
+            1238,
+            1238
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal game production sprite sheet, character Chè bưởi (che-buoi), 16 ADDITIONAL NEW authored support poses.\nInput image is the existing CANON model identity reference, not a sheet to copy. Preserve its anatomy, colors, clothing and equipment exactly. Ignore any old background glow/noise.\nSubject: A cute cream-and-light-brown anthropomorphic beaver-like forest spirit with round cheeks, small round ears, enormous dark eyes, short muzzle, a broad brown tail curving behind the body. Wears a pale yellow-green pomelo-rind hood/cap with a white five-petal pomelo flower and green leaves, a mint floral tunic, large pink bow/sash. Holds a small ornate golden dessert bowl filled with translucent golden pomelo pieces and white coconut cream with BOTH hands in front. Keep hood, white flower, golden bowl, pink bow and broad curved brown tail. Not a crane or rabbit.\nStyle: polished cute 2.5D anime RPG, warm detailed cel shading, crisp contours, matching the reference proportions; one consistent camera, scale and lighting.\nComposition: one square 2048x2048 transparent RGBA canvas, EXACT 4 columns by 4 rows of equal cells. Exactly ONE full-body character in every cell, 16 total, all facing three-quarter RIGHT. Leave a generous completely transparent margin in every cell including around ears, hats, ladles, tail, pack, arrows, shield and feet. No cell lines. Same scale across all cells. Full character may occupy 70% of each cell. Keep neighboring silhouettes disconnected.\nMatch the first input sheet's exact body, clothing, equipment, scale and polish; it is the identity reference for additional gestures.\nRows in strict row-major order:\nRow 1 ULTIMATE four distinct full-body anticipation, raised offering, protective outstretched contact, recovery. Keep actor only, no magic.\nRow 2 HIT four distinct short recoil poses: brace, backward flinch, lower shield with one knee bent, regain balance.\nRow 3 FALL four distinct losing-balance, kneeling, sitting exhausted, lying fainted ON THE RIGHT SIDE poses. Keep the full body, clothing, tail, head, feet and all signature equipment visible in every cell; equipment can rest beside the fainted character. No blood.\nRow 4 VICTORY four distinct smiling equipment salute, joyful little hop with one foot lifted, open-palm greeting, warm bow. All remain in each cell.\nAction direction and character constraints: small soft paw steps balancing the bowl; attack is a short one-hand offering/push while keeping the bowl safe; cast lifts the bowl toward chest and opens free palm; both hands return to holding bowl.\nTransparent background only. No aura, particles, projectile, ground, cast shadows, props detached from the actor, scenery, texts, labels, duplicate heads or motion echoes. Never clip equipment. Never replace poses with repeated copies. This is clean actor artwork; effects will be drawn by game code."
+      },
+      {
+        "sheet": "portrait",
+        "sha256": "082a716095e5b8a30472dc6b2ad4cb51a8a0d81633c93b91d7af92c52f4195b5",
+        "size": [
+          1254,
+          1254
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal character portrait for Chè bưởi (che-buoi). Create one polished square anime RPG portrait matching the supplied NEW full-body sheet and original CANON model. These inputs are identity references, not a collage to reproduce.\nSubject invariants: A cute cream-and-light-brown anthropomorphic beaver-like forest spirit with round cheeks, small round ears, enormous dark eyes, short muzzle, a broad brown tail curving behind the body. Wears a pale yellow-green pomelo-rind hood/cap with a white five-petal pomelo flower and green leaves, a mint floral tunic, large pink bow/sash. Holds a small ornate golden dessert bowl filled with translucent golden pomelo pieces and white coconut cream with BOTH hands in front. Keep hood, white flower, golden bowl, pink bow and broad curved brown tail. Not a crane or rabbit.\nComposition: one character only, chest/waist-up three-quarter view, centered friendly expressive face, clean appealing anatomy, large clear eyes, visible key hat/ears/crest, necklace or bow, and signature equipment partly visible near the shoulder/front. Keep long ears, hat, flower or crest INSIDE the square with ample margins. Preserve the exact species, clothing, color palette, proportions and equipment from the reference. Hand-drawn cel shading and detailed soft fur/feathers; coherent with the new sprite sheet. Warm soft studio lighting. Gentle abstract jade and cream bokeh background with a subtle school-colored glow, enough contrast for small UI. No text, no frame, no logos, no extra characters. Never turn the rabbit into a turtle, bull into lion, bird into fox or beaver-like creature into crane."
+      }
+    ],
+    "uniformScale": 0.7044025157232704,
+    "outputs": {
+      "che-buoi-pixel.webp": {
+        "bytes": 148716,
+        "sha256": "c413b30065c006efcf0ed15f6da11120c012160276e9b536c8318d9a71ca1618"
+      },
+      "che-buoi-portrait.webp": {
+        "bytes": 55554,
+        "sha256": "b0b5144f747a0b0c52cb1c5ce5f42a09638068003c3230f6a32775f4b8adab36"
+      },
+      "che-buoi.webp": {
+        "bytes": 556358,
+        "sha256": "e36af0b5ecff77a974bc43f845a5c8a000b385815e6c952d2d055e2af8e1f4b2"
+      }
+    }
+  }
+]
