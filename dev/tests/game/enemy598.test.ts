@@ -52,8 +52,8 @@ function fixture(id = "salt-colossus", boss = true) {
   return b
 }
 describe("post-story authored presentation 5.9.8", () => {
-  it("resolves eight identities with full HD/pixel poses without adding opponents to Auto spawn pools", () => {
-    expect(Object.keys(ENEMY_VISUALS)).toHaveLength(8)
+  it("resolves post-story identities with full HD/pixel poses without adding opponents to Auto spawn pools", () => {
+    expect(Object.keys(ENEMY_VISUALS)).toHaveLength(16)
     for (const v of Object.values(ENEMY_VISUALS)) {
       expect(monsterCharacter(v.id).sheet).toBe(v.sheet)
       expect(MONSTERS.some((m) => m.id === v.id)).toBe(false)

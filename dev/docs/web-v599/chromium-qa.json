@@ -1,0 +1,331 @@
+{
+  "date": "2026-10-17",
+  "engine": "chromium",
+  "version": "153.0.8010.0",
+  "fixtures": "Actual region-1 stages through reduceRpg; actor HP/timers adjusted only for isolated visual QA. No player save touched.",
+  "checks": [
+    {
+      "area": "canonical-stage-skill",
+      "region": "mistwood",
+      "ids": [
+        "tea-moth",
+        "jade-sentinel"
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "noEliteWarning": true,
+      "defense": "jade-sentinel",
+      "pausedPoseStable": true,
+      "painted": 1424
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "sugartower",
+      "ids": [
+        "salt-scarab",
+        "kiln-knight"
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "noEliteWarning": true,
+      "defense": "kiln-knight",
+      "pausedPoseStable": true,
+      "painted": 1154
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "ashalley",
+      "ids": [
+        "moon-jelly",
+        "lotus-mantis"
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "noEliteWarning": true,
+      "defense": null,
+      "pausedPoseStable": true,
+      "painted": 839
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "lasttable",
+      "ids": [
+        "spice-kite",
+        "bronze-warden"
+      ],
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "noEliteWarning": true,
+      "defense": "bronze-warden",
+      "pausedPoseStable": true,
+      "painted": 1670
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "mistwood",
+      "ids": [
+        "tea-moth",
+        "jade-sentinel"
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "noEliteWarning": true,
+      "defense": "jade-sentinel",
+      "pausedPoseStable": true,
+      "painted": 2590
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "sugartower",
+      "ids": [
+        "salt-scarab",
+        "kiln-knight"
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "noEliteWarning": true,
+      "defense": "kiln-knight",
+      "pausedPoseStable": true,
+      "painted": 2078
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "ashalley",
+      "ids": [
+        "moon-jelly",
+        "lotus-mantis"
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "noEliteWarning": true,
+      "defense": null,
+      "pausedPoseStable": true,
+      "painted": 1656
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "lasttable",
+      "ids": [
+        "spice-kite",
+        "bronze-warden"
+      ],
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "noEliteWarning": true,
+      "defense": "bronze-warden",
+      "pausedPoseStable": true,
+      "painted": 3200
+    },
+    {
+      "area": "normal-attack-contact",
+      "region": "mistwood",
+      "ids": [
+        "tea-moth",
+        "jade-sentinel"
+      ]
+    },
+    {
+      "area": "normal-attack-contact",
+      "region": "sugartower",
+      "ids": [
+        "salt-scarab",
+        "kiln-knight"
+      ]
+    },
+    {
+      "area": "normal-attack-contact",
+      "region": "ashalley",
+      "ids": [
+        "moon-jelly",
+        "lotus-mantis"
+      ]
+    },
+    {
+      "area": "normal-attack-contact",
+      "region": "lasttable",
+      "ids": [
+        "spice-kite",
+        "bronze-warden"
+      ]
+    },
+    {
+      "area": "difficulty",
+      "difficulty": "hard",
+      "canonicalStage": true
+    },
+    {
+      "area": "difficulty",
+      "difficulty": "extreme",
+      "canonicalStage": true
+    },
+    {
+      "area": "enemy-victory",
+      "authored": true
+    },
+    {
+      "area": "enemy-fall",
+      "authored": true
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "mistwood",
+      "ids": [
+        "tea-moth",
+        "jade-sentinel"
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "noEliteWarning": true,
+      "defense": "jade-sentinel",
+      "pausedPoseStable": true,
+      "painted": 692
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "sugartower",
+      "ids": [
+        "salt-scarab",
+        "kiln-knight"
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "noEliteWarning": true,
+      "defense": "kiln-knight",
+      "pausedPoseStable": true,
+      "painted": 626
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "ashalley",
+      "ids": [
+        "moon-jelly",
+        "lotus-mantis"
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "noEliteWarning": true,
+      "defense": null,
+      "pausedPoseStable": true,
+      "painted": 407
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "lasttable",
+      "ids": [
+        "spice-kite",
+        "bronze-warden"
+      ],
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "noEliteWarning": true,
+      "defense": "bronze-warden",
+      "pausedPoseStable": true,
+      "painted": 821
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "mistwood",
+      "ids": [
+        "tea-moth",
+        "jade-sentinel"
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "noEliteWarning": true,
+      "defense": "jade-sentinel",
+      "pausedPoseStable": true,
+      "painted": 3123
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "sugartower",
+      "ids": [
+        "salt-scarab",
+        "kiln-knight"
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "noEliteWarning": true,
+      "defense": "kiln-knight",
+      "pausedPoseStable": true,
+      "painted": 2509
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "ashalley",
+      "ids": [
+        "moon-jelly",
+        "lotus-mantis"
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "noEliteWarning": true,
+      "defense": null,
+      "pausedPoseStable": true,
+      "painted": 1926
+    },
+    {
+      "area": "canonical-stage-skill",
+      "region": "lasttable",
+      "ids": [
+        "spice-kite",
+        "bronze-warden"
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "noEliteWarning": true,
+      "defense": "bronze-warden",
+      "pausedPoseStable": true,
+      "painted": 3890
+    },
+    {
+      "area": "reduced-motion",
+      "staticGuardPose": 18
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "newAtlasRequests": [
+    "/assets/characters/campaign599/tea-moth-pixel.webp",
+    "/assets/characters/campaign599/jade-sentinel-pixel.webp",
+    "/assets/characters/campaign599/salt-scarab-pixel.webp",
+    "/assets/characters/campaign599/kiln-knight-pixel.webp",
+    "/assets/characters/campaign599/moon-jelly-pixel.webp",
+    "/assets/characters/campaign599/lotus-mantis-pixel.webp",
+    "/assets/characters/campaign599/spice-kite-pixel.webp",
+    "/assets/characters/campaign599/bronze-warden-pixel.webp"
+  ],
+  "movieRequests": 0
+}
