@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest"
-import { RARE_IDS, RARE_ASSET_ROOT, RARE_SECOND_IDS, RARE_SECOND_ASSET_ROOT, REGIONAL_IDS, REGIONAL_ASSET_ROOT, characterVisual } from "@/game/characterVisuals"
+import { RARE_IDS, RARE_ASSET_ROOT, RARE_SECOND_IDS, RARE_SECOND_ASSET_ROOT, REGIONAL_IDS, REGIONAL_ASSET_ROOT, SPRING_CARAVAN_IDS, SPRING_CARAVAN_ASSET_ROOT, VIETNAM_IDS, VIETNAM_ASSET_ROOT, characterVisual } from "@/game/characterVisuals"
 import { unitCharacter, spiritCharacter } from "@/infrastructure/assets/characterSprites"
 import { tcgCharacter } from "@/game/tcgCharacterMotion"
-import { spiritArt } from "@/game/adventureRpg/spiritArt"
+import { SPIRIT_IDS, spiritArt } from "@/game/adventureRpg/spiritArt"
 import { CARD_MAP } from "@/game/catalog"
 import { newGame } from "@/game/progression"
 import { newRpgSave, reduceRpg } from "@/game/adventureRpg/engine"
@@ -13,18 +13,22 @@ describe.each([
   {ids:RARE_IDS,root:RARE_ASSET_ROOT},
   {ids:RARE_SECOND_IDS,root:RARE_SECOND_ASSET_ROOT},
   {ids:REGIONAL_IDS,root:REGIONAL_ASSET_ROOT},
+  {ids:SPRING_CARAVAN_IDS,root:SPRING_CARAVAN_ASSET_ROOT},
+  {ids:VIETNAM_IDS,root:VIETNAM_ASSET_ROOT},
 ])("shared spirit production: $root", ({ids,root}) => {
   it("keeps catalog identity and dedicated presentation across modes without aliasing another spirit", () => {
     const models=new Set(),portraits=new Set(),signatures=new Set()
     for(const id of ids) {
       const v=characterVisual(id)!
+      if(root===VIETNAM_ASSET_ROOT) expect(unitCharacter(id).name).toBe(v.species)
       expect(tcgCharacter(CARD_MAP[id])).toEqual(unitCharacter(id))
       expect(spiritCharacter(id)?.sheet).toBe(v.sheet)
       expect(spiritArt(id)).toEqual(v.portrait)
-      expect(v.portrait).toEqual({path:`${root}/${id}-portrait.webp`,cell:0,columns:1})
-      models.add(v.sheet);portraits.add(v.portrait.path);signatures.add(v.signature)
+      if(root===VIETNAM_ASSET_ROOT){const cell=SPIRIT_IDS.indexOf(id as typeof SPIRIT_IDS[number]);expect(v.portrait).toEqual({path:`/assets/rpg/spirit510/portraits-${Math.floor(cell/16)+1}.webp`,cell:cell%16,columns:4})}
+      else expect(v.portrait).toEqual({path:`${root}/${id}-portrait.webp`,cell:0,columns:1})
+      models.add(v.sheet);portraits.add(`${v.portrait.path}:${v.portrait.cell}`);signatures.add(v.signature)
     }
-    expect(models.size).toBe(4);expect(portraits.size).toBe(4);expect(signatures.size).toBe(4)
+    expect(models.size).toBe(ids.length);expect(portraits.size).toBe(ids.length);expect(signatures.size).toBe(ids.length)
     expect(characterVisual("banh-chung")!.signature).not.toBe(characterVisual("com-tam")!.signature)
     expect(characterVisual("bun-thang")!.signature).not.toBe(characterVisual("banh-com-hang-than")!.signature)
     expect(characterVisual("thit-kho-trung")!.signature).not.toBe(characterVisual("banh-chung")!.signature)

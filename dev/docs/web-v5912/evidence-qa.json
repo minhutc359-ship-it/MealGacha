@@ -1,0 +1,187 @@
+{
+  "images": 18,
+  "allDecoded": true,
+  "emptyImages": 0,
+  "checks": [
+    {
+      "path": "evidence/chromium-banh-da-cua-390.webp",
+      "bytes": 63740,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "c539ae3264bb74e37ed95698bd6c5c8de36c81c3b59b78c1dfaa0ea807ca3858",
+      "decoded": true
+    },
+    {
+      "path": "evidence/chromium-bun-dau-390.webp",
+      "bytes": 63566,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "a887b68987e5e17ef2a4adc9dcb54922ed07ec6b7e1c4dc22034ee3aa8bf8f63",
+      "decoded": true
+    },
+    {
+      "path": "evidence/chromium-bun-moc-390.webp",
+      "bytes": 62404,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "c5342a9c760f1ecd63737f2abd8b9e298ff892789623debee55d3f85365ca4ef",
+      "decoded": true
+    },
+    {
+      "path": "evidence/chromium-chao-suon-390.webp",
+      "bytes": 62394,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "d9d9a8cc3c29f10e9b3958b5c158f0b097555c0fb3ffe1ba7db0601ab7169ac4",
+      "decoded": true
+    },
+    {
+      "path": "evidence/chromium-com-nieu-390.webp",
+      "bytes": 63434,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "80e87931e5a0349a7ab2683ff65f2f891363900f15f40a22b6e8d90e933645aa",
+      "decoded": true
+    },
+    {
+      "path": "evidence/chromium-com-rang-dua-bo-390.webp",
+      "bytes": 63114,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "9c06f12d580549851cc44e4abdb0ee994a6fcd9fdaaa60ed6ce7a2f1fdad5a76",
+      "decoded": true
+    },
+    {
+      "path": "evidence/chromium-mien-ga-390.webp",
+      "bytes": 62322,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "dec5f03b608682ce0f03dd58dc99da0d0cec4b5d1e8476b252cb21d584dd725c",
+      "decoded": true
+    },
+    {
+      "path": "evidence/chromium-pho-ga-390.webp",
+      "bytes": 63272,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "04611bafbc7feabf2a1cd1e52a85c577844c1f1481fe2d6a33124d7259578fc2",
+      "decoded": true
+    },
+    {
+      "path": "evidence/chromium-preview-bun-dau-844.webp",
+      "bytes": 29456,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "ec0ec29a3acb0b0198cac3e684d4d30eb92c1d205037590a0d7ff0c120a3e202",
+      "decoded": true
+    },
+    {
+      "path": "evidence/chromium-preview-pho-ga-390.webp",
+      "bytes": 29114,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "e799a503add03ff375616addeacf8f62a4ef23ff632abec7153f55a49c2cb54a",
+      "decoded": true
+    },
+    {
+      "path": "evidence/chromium-tcg-a.webp",
+      "bytes": 104486,
+      "dimensions": [
+        1280,
+        800
+      ],
+      "sha256": "c3d281475a0831d096df8855ed5a86f8d7e6cd9729ad10a5016c43e0ef38c71c",
+      "decoded": true
+    },
+    {
+      "path": "evidence/identity-comparison.webp",
+      "bytes": 457774,
+      "dimensions": [
+        1536,
+        2240
+      ],
+      "sha256": "4c562d805947108c76d3f00c0bbed8c2b9eaf7c2d4449d6b7fbe59114cab0342",
+      "decoded": true
+    },
+    {
+      "path": "evidence/pose-contact.webp",
+      "bytes": 756276,
+      "dimensions": [
+        2048,
+        2304
+      ],
+      "sha256": "aba3ddf8242796871024303a4170814888ffdf54a67f8d87e094082eb9ee07e5",
+      "decoded": true
+    },
+    {
+      "path": "evidence/webkit-com-nieu-390.webp",
+      "bytes": 68508,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "f5a7226b4b3196b3cf61acdce7c12d88bdf91e536634777e83ef8e59591b974b",
+      "decoded": true
+    },
+    {
+      "path": "evidence/webkit-pho-ga-390.webp",
+      "bytes": 67802,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "549ea6d6d5cd11ecdc24b37f2aed6d98fb32711a62b45bd1090e74c61d9c99a2",
+      "decoded": true
+    },
+    {
+      "path": "evidence/webkit-preview-banh-da-cua-390.webp",
+      "bytes": 47200,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "c687c9448dd54331a0c324380d1406283ae8053e84caa8b2b54f90d6168e3c7f",
+      "decoded": true
+    },
+    {
+      "path": "evidence/webkit-preview-com-nieu-844.webp",
+      "bytes": 37284,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "069db8749fc75b1ebe7c58e9baf1e40d728979723ed7df9cf1952cd67835f8d1",
+      "decoded": true
+    },
+    {
+      "path": "evidence/webkit-tcg-b.webp",
+      "bytes": 111912,
+      "dimensions": [
+        1280,
+        800
+      ],
+      "sha256": "6845348b1c9e83cb31689251a80771afc577ef2fa87e57e04767a101bd963b00",
+      "decoded": true
+    }
+  ]
+}

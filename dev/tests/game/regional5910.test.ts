@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { REGIONAL_IDS, characterVisual } from "@/game/characterVisuals"
+import { REGIONAL_IDS, SPRING_CARAVAN_IDS, VIETNAM_IDS, characterVisual } from "@/game/characterVisuals"
 import { drawStarterVfx, type CharacterVfxKind } from "@/game/starterVfx"
 import { starterPose } from "@/game/starterCharacters"
 import { actorPose } from "@/game/autochess/actorPresentation"
@@ -23,14 +23,18 @@ function geometry(
   drawStarterVfx(ctx, id, 0, 0, 40, age, ultimate, true, kind)
   return commands
 }
-describe("regional spirit presentation 5.9.10", () => {
-  it("draws four distinct bounded motifs without unused texture dependencies", () => {
+describe.each([
+  {version:"5.9.10", ids:REGIONAL_IDS},
+  {version:"5.9.11", ids:SPRING_CARAVAN_IDS},
+  {version:"5.9.12", ids:VIETNAM_IDS},
+])("spirit presentation $version", ({ids}) => {
+  it("draws distinct bounded motifs without unused texture dependencies", () => {
     expect(
       new Set(
-        REGIONAL_IDS.map((id) => JSON.stringify(geometry(id, 200, "skill"))),
+        ids.map((id) => JSON.stringify(geometry(id, 200, "skill"))),
       ).size,
-    ).toBe(4)
-    for (const id of REGIONAL_IDS) {
+    ).toBe(ids.length)
+    for (const id of ids) {
       expect(characterVisual(id)!.effect).toBeNull()
       expect(geometry(id, -1, "skill")).toEqual([])
       expect(geometry(id, 650, "skill")).toEqual([])
@@ -43,7 +47,7 @@ describe("regional spirit presentation 5.9.10", () => {
     }
   })
   it("keeps authored contact frames aligned with accelerated Auto and TCG actions", () => {
-    for (const id of REGIONAL_IDS) {
+    for (const id of ids) {
       const model = unitCharacter(id)
       const actor = {
         id,

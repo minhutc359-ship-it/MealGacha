@@ -3,6 +3,8 @@ import { existsSync, readFileSync } from "node:fs"
 import { runInNewContext } from "node:vm"
 import { SPIRIT_IDS, spiritArt } from "@/game/adventureRpg/spiritArt"
 import { CARD_MAP } from "@/game/catalog"
+import { CHARACTER_ART } from "@/game/characters"
+import { chefPortrait } from "@/game/characterVisuals"
 import {
   CAST_SIGILS,
   SHOWCASE_THEMES,
@@ -10,6 +12,16 @@ import {
 } from "@/game/ultimateShowcase"
 
 describe("2D showcase coverage and update cleanup", () => {
+  it("ships five distinct realms and one Bach illustration across portrait consumers", () => {
+    const scenes = Object.values(SHOWCASE_THEMES).map(t => t.scene)
+    expect(new Set(scenes).size).toBe(5)
+    for (const scene of scenes) expect(existsSync(`public${scene}`)).toBe(true)
+    expect(spiritArt("chef-bach")).toEqual({path: CHARACTER_ART.bach, cell: 0, columns: 1})
+    expect(CARD_MAP["chef-bach"].art).toBe(CHARACTER_ART.bach)
+    expect(chefPortrait("chef-bach")).toBe(CHARACTER_ART.bach)
+    expect(chefPortrait("chef-bach", "joy")).not.toBe(CHARACTER_ART.bach)
+  })
+
   it("can present every existing hero with its own title, portrait and ultimate icon", () => {
     const names = new Set<string>(),
       icons = new Set<number>()

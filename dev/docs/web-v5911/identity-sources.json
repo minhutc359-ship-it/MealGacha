@@ -1,0 +1,86 @@
+[
+  {
+    "id": "xoi-xeo",
+    "canon": {
+      "path": "/assets/characters/rosterE.webp",
+      "sheet": "rosterE",
+      "row": 0,
+      "frame": 0,
+      "rect": [
+        8,
+        69,
+        169,
+        222
+      ],
+      "sha256": "f2e78c4683b2b3b3b5511118598a73613c8ed74b1b76d8eb76b04a6f8eaa4627"
+    },
+    "oldPortrait": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 4,
+      "sha256": "33b370606ef7be4d708d4211dee46826f9ca09db770f701265c5bb973371cc2a"
+    }
+  },
+  {
+    "id": "dua-hanh",
+    "canon": {
+      "path": "/assets/characters/rosterE.webp",
+      "sheet": "rosterE",
+      "row": 1,
+      "frame": 0,
+      "rect": [
+        8,
+        316,
+        171,
+        282
+      ],
+      "sha256": "f2e78c4683b2b3b3b5511118598a73613c8ed74b1b76d8eb76b04a6f8eaa4627"
+    },
+    "oldPortrait": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 5,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    }
+  },
+  {
+    "id": "caravan-herbalist",
+    "canon": {
+      "path": "/assets/characters/rosterD.webp",
+      "sheet": "rosterD",
+      "row": 2,
+      "frame": 0,
+      "rect": [
+        7,
+        673,
+        172,
+        247
+      ],
+      "sha256": "c4f0ab1667fefdcae6e2395cea41b0126f24c8c3b2cc9fdc8dcd8c6ceb457227"
+    },
+    "oldPortrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 6,
+      "sha256": "5783ab8d3e60a484690a31e64495429dcbb86caf0703e1f6deac34ca54c8e1ff"
+    }
+  },
+  {
+    "id": "caravan-gardener",
+    "canon": {
+      "path": "/assets/characters/rosterD.webp",
+      "sheet": "rosterD",
+      "row": 3,
+      "frame": 0,
+      "rect": [
+        7,
+        970,
+        172,
+        253
+      ],
+      "sha256": "c4f0ab1667fefdcae6e2395cea41b0126f24c8c3b2cc9fdc8dcd8c6ceb457227"
+    },
+    "oldPortrait": {
+      "path": "/assets/rpg/spirit510/portraits-9.webp",
+      "cell": 7,
+      "sha256": "5783ab8d3e60a484690a31e64495429dcbb86caf0703e1f6deac34ca54c8e1ff"
+    }
+  }
+]

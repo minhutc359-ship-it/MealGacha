@@ -106,7 +106,8 @@ describe("recognizable shared models and mirrored fitting", () => {
     expect(Object.keys(DISTINCT_MODELS).length + Object.keys(CHARACTER_VISUALS).length).toBeGreaterThanOrEqual(31)
     expect(Object.keys(DISTINCT_MODELS).filter(id => id.startsWith("village-"))).toHaveLength(3)
     for (const u of AUTO_UNITS) if(CARD_MAP[u.id]) expect(tcgCharacter(CARD_MAP[u.id])).toEqual(unitCharacter(u.id))
-    expect(tcgCharacter(CARD_MAP["caravan-herbalist"])?.row).not.toBe(tcgCharacter(CARD_MAP["caravan-gardener"])?.row)
+    const herbalist=tcgCharacter(CARD_MAP["caravan-herbalist"])!,gardener=tcgCharacter(CARD_MAP["caravan-gardener"])!
+    expect(`${herbalist.sheet}:${herbalist.row}`).not.toBe(`${gardener.sheet}:${gardener.row}`)
   })
   it("fits every pose and both horizontal directions inside portrait and landscape cell widths", () => {
     for (const unit of AUTO_UNITS) for (const width of [28,42,64,96]) for(const flip of [false,true]) {

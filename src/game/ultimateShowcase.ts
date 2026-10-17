@@ -12,12 +12,13 @@ export const SHOWCASE_THEMES: Record<School, {
   color: string
   shade: string
   motif: string
+  scene: string
 }> = {
-  hearth: { color: "#f2ca79", shade: "#48331b", motif: "Ấn đồng" },
-  ember: { color: "#ffa16f", shade: "#54251f", motif: "Tàn lửa" },
-  grove: { color: "#b0e5ad", shade: "#1d4436", motif: "Lá ngọc" },
-  tide: { color: "#8adfeb", shade: "#183d55", motif: "Sóng nước" },
-  sugar: { color: "#e4b5f0", shade: "#432950", motif: "Mộng tinh" },
+  hearth: { color: "#f2ca79", shade: "#48331b", motif: "Ấn đồng", scene: "/assets/rpg/showcase5911/hearth.webp" },
+  ember: { color: "#ffa16f", shade: "#54251f", motif: "Tàn lửa", scene: "/assets/rpg/showcase5911/ember.webp" },
+  grove: { color: "#b0e5ad", shade: "#1d4436", motif: "Lá ngọc", scene: "/assets/rpg/showcase5911/grove.webp" },
+  tide: { color: "#8adfeb", shade: "#183d55", motif: "Sóng nước", scene: "/assets/rpg/showcase5911/tide.webp" },
+  sugar: { color: "#e4b5f0", shade: "#432950", motif: "Mộng tinh", scene: "/assets/rpg/showcase5911/sugar.webp" },
 }
 
 /** Presentation data only; no skill, rarity or save migration. */

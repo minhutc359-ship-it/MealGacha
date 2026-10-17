@@ -38,7 +38,7 @@ export function UltimateBanner({
   const columns = portrait?.columns ?? 1,
     cell = portrait?.cell ?? 0
   return (
-    <aside
+    <div
       className={`ultimate-banner theme-${school}${quiet ? " is-reduced" : ""}${
         paused ? " is-paused" : ""
       }`}
@@ -46,21 +46,24 @@ export function UltimateBanner({
         {
           "--ultimate-color": theme.color,
           "--ultimate-shade": theme.shade,
+          "--ultimate-scene": `url(${theme.scene})`,
         } as CSSProperties
       }
       data-showcase={id ?? school}
       role="status"
       aria-live="polite"
     >
-      <span
-        className="ultimate-portrait"
-        aria-hidden="true"
-        style={{
-          backgroundImage: `url(${portrait?.path ?? art ?? ""})`,
-          backgroundSize: `${columns * 100}% ${columns * 100}%`,
-          backgroundPosition: `${((cell % columns) * 100) / Math.max(1, columns - 1)}% ${(Math.floor(cell / columns) * 100) / Math.max(1, columns - 1)}%`,
-        }}
-      />
+      <span className="ultimate-landscape" aria-hidden="true" />
+      <span className="ultimate-portrait" aria-hidden="true">
+        <span
+          className="ultimate-portrait-image"
+          style={{
+            backgroundImage: `url(${portrait?.path ?? art ?? ""})`,
+            backgroundSize: portrait ? `${columns * 100}% ${columns * 100}%` : "cover",
+            backgroundPosition: portrait ? `${((cell % columns) * 100) / Math.max(1, columns - 1)}% ${(Math.floor(cell / columns) * 100) / Math.max(1, columns - 1)}%` : "center",
+          }}
+        />
+      </span>
       <span className="ultimate-motif" aria-hidden="true">
         {SCHOOLS[school].symbol}
       </span>
@@ -90,7 +93,7 @@ export function UltimateBanner({
         {!identity && SCHOOLS[school].symbol}
       </span>
       {children && <div className="ultimate-controls">{children}</div>}
-    </aside>
+    </div>
   )
 }
 

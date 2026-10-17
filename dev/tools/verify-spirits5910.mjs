@@ -4,12 +4,21 @@ import { mkdirSync, writeFileSync } from "node:fs"
 const { chromium, webkit } = await import(
   process.env.PLAYWRIGHT_MODULE ?? "playwright"
 )
+const cohorts = {
+  "5910": {root: "regional5910", ids: ["banh-tet", "bun-bo-hue", "bun-ca", "che-buoi"]},
+  "5912": {root: "vietnam5912", ids: ["pho-ga", "chao-suon", "mien-ga", "bun-moc"]},
+  "5911": {root: "spring5911", ids: ["xoi-xeo", "dua-hanh", "caravan-herbalist", "caravan-gardener"]},
+}
+const cohort = process.env.QA_COHORT ?? "5910"
+assert(cohort in cohorts, "Unknown spirit cohort")
+const {root: assetRoot, ids: defaultIds} = cohorts[cohort]
+const ids = process.env.QA_IDS ? JSON.parse(process.env.QA_IDS) : defaultIds
+assert.equal(ids.length,4)
 const engine = process.env.QA_ENGINE ?? "chromium",
   port = process.env.QA_PORT ?? "4196",
   url = `http://127.0.0.1:${port}`,
-  out = "dev/docs/web-v5910"
-const ids = ["banh-tet", "bun-bo-hue", "bun-ca", "che-buoi"],
-  checks = [],
+  out = process.env.QA_OUT ?? `dev/docs/web-v${cohort}`
+const checks = [],
   errors = [],
   missing = [],
   requests = []
@@ -71,13 +80,13 @@ async function open(context) {
   const dismiss = p.getByRole("button", { name: "Tắt thông báo", exact: true })
   if (await dismiss.isVisible()) await dismiss.click()
   await p.clock.install()
-  await p.clock.pauseAt(new Date(Date.now() + 100))
+  await p.clock.pauseAt(new Date(await p.evaluate(() => Date.now()) + 1000))
   return p
 }
 let fixtureSerial = 0
 async function fixture(p, mode = "ultimate") {
   await p.evaluate(
-    async ({ ids, mode, serial }) => {
+    async ({ ids, mode, serial, cohort }) => {
       const { newGame } = await import("/src/game/progression.ts"),
         { newRpgSave, reduceRpg } = await import(
           "/src/game/adventureRpg/engine.ts"
@@ -98,7 +107,7 @@ async function fixture(p, mode = "ultimate") {
         g,
       ).save
       const b = g.adventureRpg.run.battle
-      b.id = `qa5910:${mode}:${serial}`
+      b.id = `qa${cohort}:${mode}:${serial}`
       b.paused = true
       b.auto = false
       for (const a of b.actors) {
@@ -125,7 +134,7 @@ async function fixture(p, mode = "ultimate") {
         throw Error("Regional fixture rejected")
       useGameStore.getState().dismiss()
     },
-    { ids, mode, serial: ++fixtureSerial },
+    { ids, mode, serial: ++fixtureSerial, cohort },
   )
   await p.clock.runFor(32)
   if (!["victory", "fall"].includes(mode)) {
@@ -251,10 +260,8 @@ try {
       const painted = await paint(p)
       assert(painted > 10)
       const banner = p.locator(`.ultimate-banner[data-showcase="${ids[i]}"]`)
-      assert.match(
-        await banner.locator(".ultimate-portrait").getAttribute("style"),
-        new RegExp(`regional5910/${ids[i]}-portrait`),
-      )
+      const expectedPortrait=await p.evaluate(async id=>(await import("/src/game/adventureRpg/spiritArt.ts")).spiritArt(id).path,ids[i])
+      assert((await banner.locator(".ultimate-portrait-image").getAttribute("style")).includes(expectedPortrait))
       const rect = await banner.evaluate((e) => {
         const b = e.getBoundingClientRect(),
           a = e.closest(".rpg-arena").getBoundingClientRect()
@@ -373,7 +380,7 @@ try {
   assert.deepEqual(errors, [])
   assert.deepEqual(missing, [])
   assert(!requests.some((p) => p.endsWith(".mp4")))
-  assert(!requests.some((p) => p.includes("regional5910/ultimate.webp")))
+  assert(!requests.some((p) => p.includes(`${assetRoot}/ultimate.webp`)))
   writeFileSync(
     `${out}/${engine}${
       process.env.QA_END_ONLY ? "-end" : process.env.QA_FOCUS ? "-focus" : ""
@@ -389,7 +396,7 @@ try {
         errors,
         missing,
         requestedAssets: [
-          ...new Set(requests.filter((p) => p.includes("/regional5910/"))),
+          ...new Set(requests.filter((p) => p.includes(`/${assetRoot}/`))),
         ],
         movieRequests: 0,
       },

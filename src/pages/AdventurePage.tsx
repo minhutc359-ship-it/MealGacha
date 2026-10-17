@@ -4,6 +4,7 @@ import { SPIRIT_IDS } from "../game/adventureRpg/spiritArt"
 import { SPIRIT_RARITY, SPIRIT_RARITY_NAMES, SPIRIT_THRESHOLDS } from "../domain/spiritSummons"
 import { collectedSpiritCards, spiritProgress } from "../domain/spiritCollection"
 import { RpgCinematic } from "../components/game/RpgCinematic"
+import { SHOWCASE_THEMES } from "../game/ultimateShowcase"
 import { CharacterSprite } from "../components/game/CharacterSprite"
 import { tcgCharacter } from "../game/tcgCharacterMotion"
 import { AdventureTransition } from "../components/game/AdventureTransition"
@@ -191,7 +192,7 @@ function HeroDetails({
       </div>
       <div className="rpg-unlock-progress" data-spirit={hero.cardId}><small>{SPIRIT_RARITY_NAMES[card.rarity]} · {locked ? "CHƯA HỘI NGỘ" : "ĐÃ HỘI NGỘ"}</small><strong>{progress.collected} / {progress.needed} thẻ Vị Linh</strong><RpgMeter value={Math.min(progress.collected,progress.needed)} max={progress.needed} label="Tiến trình mở khóa Vị Linh"/><p>{locked ? "Mở Rương vị giác để nhận thẻ. Đủ mốc sẽ tự hội ngộ; không tiêu hao thẻ." : progress.ready ? "Đã đủ giao ước. Thẻ và mảnh món ăn vẫn được giữ." : "Vị Linh đồng hành đã được giữ lại; tiếp tục thu thập từ rương."}</p><a href="/chest">Mở Rương vị giác ↗</a><button type="button" aria-pressed={wish===hero.cardId} onClick={()=>chooseWish(hero.cardId)}>{wish===hero.cardId?"♥ Đang ước hẹn":"♡ Ước hẹn nhân vật này"}</button><small>Ước hẹn bảo đảm 1 thẻ nhân vật đã chọn mỗi 5 lần mở rương. Đổi người không đặt lại nhịp.</small></div>
       <button type="button" className="rpg-preview-button" onClick={()=>setPreview(true)}>✦ Xem tuyệt kỹ 2D</button>
-      {preview && <RpgModal label="Xem tuyệt kỹ" onClose={()=>setPreview(false)}><div className="rpg-showcase-preview"><CharacterSprite model={tcgCharacter(CARD_MAP[hero.cardId])!} motion="ultimate" stamp={`preview:${hero.cardId}`} quiet={reduced}/><RpgCinematic id={hero.cardId} reduced={reduced} paused={false} onDone={()=>setPreview(false)}/></div></RpgModal>}
+      {preview && <RpgModal label="Xem tuyệt kỹ" onClose={()=>setPreview(false)}><div className="rpg-showcase-preview" style={{backgroundImage:`linear-gradient(#0b202a33,#0b202a99),url(${SHOWCASE_THEMES[card.school].scene})`}}><CharacterSprite model={tcgCharacter(CARD_MAP[hero.cardId])!} motion="ultimate" stamp={`preview:${hero.cardId}`} quiet={reduced}/><RpgCinematic id={hero.cardId} reduced={reduced} paused={false} onDone={()=>setPreview(false)}/></div></RpgModal>}
       {!locked && <><RpgMeter
         value={hero.xp}
         max={heroXpNext(hero.level)}
