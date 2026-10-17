@@ -1,6 +1,5 @@
-import { starterCharacter } from "@/game/starterCharacters";
 import { describe, it, expect } from "vitest";
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { CARDS, CARD_MAP } from "@/game/catalog";
 import { newGame } from "@/game/progression";
@@ -224,26 +223,20 @@ describe("5.3 real combat and cinematic transaction", () => {
         expect(advanceRpgBattle(old.run!.battle).tick).toBe(1);
     });
 });
-describe("5.3 media payload", () => {
-    it("ships 120 H264 clips, nineteen native timelines and 139 original sounds within the media budget", () => {
-        const root = "public/assets/rpg/awakening530", movieHashes = new Set(), soundHashes = new Set();
-        let total = 0;
+describe("2D ultimate payload", () => {
+    it("keeps 139 unique original sounds and sigils without shipping retired videos", () => {
+        const root = "public/assets/rpg/awakening530", hashes = new Set();
+        let total = statSync(`${root}/sigils.webp`).size;
         for (const id of SPIRIT_IDS) {
-            const movie = starterCharacter(id) ? null : readFileSync(`${root}/movies/${id}.mp4`), sound = readFileSync(`${root}/sounds/${id}.mp3`);
-            if(movie){expect(movie.length).toBeGreaterThan(10000);
+            expect(existsSync(`${root}/movies/${id}.mp4`)).toBe(false);
+            const sound = readFileSync(`${root}/sounds/${id}.mp3`);
             expect(sound.length).toBeGreaterThan(5000);
-            expect(movie.subarray(4, 8).toString()).toBe("ftyp");}
             expect(sound.subarray(0, 3).toString()).toBe("ID3");
-            if(movie)movieHashes.add(createHash("sha256").update(movie).digest("hex"));
-            soundHashes.add(createHash("sha256").update(sound).digest("hex"));
-            total += (movie?.length ?? 0) + sound.length;
+            hashes.add(createHash("sha256").update(sound).digest("hex"));
+            total += sound.length;
         }
-        total += statSync(`dev/docs/web-v530/environments.webp`).size + statSync(`${root}/sigils.webp`).size;
-        expect(movieHashes.size).toBe(SPIRIT_IDS.filter(id=>!starterCharacter(id)).length);
-        expect(soundHashes.size).toBe(139);
-        expect(total).toBeGreaterThan(5000000);
-        expect(total).toBeLessThan(190000000);
-        expect(readdirSync(`${root}/movies`).length).toBe(SPIRIT_IDS.filter(id=>!starterCharacter(id)).length);
+        expect(hashes.size).toBe(139);
+        expect(total).toBeLessThan(6000000);
         expect(readdirSync(`${root}/sounds`).length).toBe(139);
     });
 });

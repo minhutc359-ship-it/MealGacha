@@ -1,3 +1,5 @@
+import { SPIRIT_IDS, spiritArt } from "@/game/adventureRpg/spiritArt"
+import { ultimateShowcase } from "@/game/ultimateShowcase"
 import { describe, expect, it } from "vitest"
 import { existsSync, readFileSync } from "node:fs"
 import { RPG_MAPS } from "@/game/adventureRpg/content"
@@ -36,14 +38,7 @@ const enemyIds = [
   "aroma-regent",
 ]
 
-interface MovieManifestEntry {
-  renderer?: string
-  frames?: number
-  path: string
-  bytes: number
-  width: number
-  height: number
-}
+
 
 describe("Web 5.8 supplied campaign assets and combat rules", () => {
   it("shares five random, uncropped intro candidates with mode changes and loading", () => {
@@ -147,17 +142,12 @@ describe("Web 5.8 supplied campaign assets and combat rules", () => {
       expect(BOSS_SKILLS[id]?.text.length).toBeGreaterThan(35)
   })
 
-  it("ships readable skills and a 720p clip or dedicated starter timeline for every spirit", () => {
+  it("ships readable skills and reusable 2D art for every spirit", () => {
     expect(ULTIMATE_MOVES.every((move) => move[1].length >= 38)).toBe(true)
-    const manifest = JSON.parse(
-      readFileSync("dev/docs/web-v530/movie-manifest.json", "utf8"),
-    ) as MovieManifestEntry[]
-    expect(manifest).toHaveLength(139)
-    for (const movie of manifest) {
-      if(movie.renderer?.startsWith("native")){expect(movie.frames).toBe(32);expect(existsSync(`public${movie.path}`)).toBe(true);continue}
-      expect([movie.width, movie.height]).toEqual([1280, 720])
-      expect(movie.bytes).toBeGreaterThan(500_000)
-      expect(existsSync(`public${movie.path}`), movie.path).toBe(true)
+    expect(SPIRIT_IDS).toHaveLength(139)
+    for (const id of SPIRIT_IDS) {
+      expect(ultimateShowcase(id)).not.toBeNull()
+      expect(existsSync(`public${spiritArt(id)!.path}`)).toBe(true)
     }
   })
 })

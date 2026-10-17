@@ -41,5 +41,5 @@ try{
     await c.close();console.log('PASS cold launch',route,bytes)
   }
   assert.deepEqual(errors,[])
-  const output=process.argv[2]??'dev/docs/web-v600/initial-load.json';mkdirSync(path.dirname(output),{recursive:true});writeFileSync(output,JSON.stringify({date:'2026-10-16',measurement:'Fresh browser context per mode. Includes SW precache and warm requests. No HTTP compression; body bytes are a conservative payload measurement, not wall-clock performance or full network headers.',browser:'Chromium headless',results,errors},null,2)+'\n')
+  const output=process.argv[2]??'dev/docs/web-v600/initial-load.json';mkdirSync(path.dirname(output),{recursive:true});writeFileSync(output,JSON.stringify({date:new Date().toISOString().slice(0,10),measurement:'Fresh browser context per mode. Includes SW precache and warm requests. No HTTP compression; body bytes are a conservative payload measurement, not wall-clock performance or full network headers.',browser:'Chromium headless',results,errors},null,2)+'\n')
 }finally{await browser?.close();await new Promise(resolve=>server.close(resolve))}

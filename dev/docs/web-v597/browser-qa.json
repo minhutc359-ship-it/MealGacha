@@ -1,0 +1,130 @@
+{
+  "date": "2026-10-17",
+  "browser": "Chromium 153 headless SwiftShader",
+  "checks": [
+    {
+      "area": "viewport-themes-pause-skip",
+      "viewport": [
+        320,
+        568
+      ],
+      "ids": [
+        "banh-mi",
+        "tokbokki",
+        "pho-bo",
+        "goi-cuon-tom-thit",
+        "croissant"
+      ],
+      "layout": {
+        "width": 320,
+        "deck": 519.5
+      },
+      "rect": {
+        "height": 64,
+        "arena": 162.328125,
+        "left": 18.046875,
+        "right": 301.953125
+      },
+      "painted": 426,
+      "skipNoRecast": true,
+      "chain3": true
+    },
+    {
+      "area": "viewport-themes-pause-skip",
+      "viewport": [
+        390,
+        844
+      ],
+      "ids": [
+        "banh-mi",
+        "tokbokki",
+        "pho-bo",
+        "goi-cuon-tom-thit",
+        "croissant"
+      ],
+      "layout": {
+        "width": 390,
+        "deck": 795.5
+      },
+      "rect": {
+        "height": 64,
+        "arena": 451.328125,
+        "left": 20.15625,
+        "right": 369.84375
+      },
+      "painted": 1095,
+      "skipNoRecast": true,
+      "chain3": true
+    },
+    {
+      "area": "viewport-themes-pause-skip",
+      "viewport": [
+        844,
+        390
+      ],
+      "ids": [
+        "banh-mi",
+        "tokbokki",
+        "pho-bo",
+        "goi-cuon-tom-thit",
+        "croissant"
+      ],
+      "layout": {
+        "width": 844,
+        "deck": 353
+      },
+      "rect": {
+        "height": 42,
+        "arena": 89.46875,
+        "left": 78.4375,
+        "right": 765.5625
+      },
+      "painted": 179,
+      "skipNoRecast": true,
+      "chain3": true
+    },
+    {
+      "area": "viewport-themes-pause-skip",
+      "viewport": [
+        1440,
+        900
+      ],
+      "ids": [
+        "banh-mi",
+        "tokbokki",
+        "pho-bo",
+        "goi-cuon-tom-thit",
+        "croissant"
+      ],
+      "layout": {
+        "width": 1440,
+        "deck": 851.5
+      },
+      "rect": {
+        "height": 74,
+        "arena": 428.015625,
+        "left": 55.40625,
+        "right": 1384.59375
+      },
+      "painted": 1484,
+      "skipNoRecast": true,
+      "chain3": true
+    },
+    {
+      "area": "reload-and-natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "old-fast-preference",
+      "banner": true,
+      "noBlockingTransaction": true
+    },
+    {
+      "area": "reduced-motion",
+      "staticBanner": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "movieRequests": []
+}

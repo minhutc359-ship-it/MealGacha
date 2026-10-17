@@ -2,7 +2,6 @@ import { AWAKENED_ROSTER } from "./awakenedRoster";
 import { SPIRIT_RARITY, SPIRIT_THRESHOLDS } from "../../domain/spiritSummons";
 import type { RpgHero } from "./types";
 export const AWAKENING_MEDIA = "/assets/rpg/awakening530";
-export const CINEMATIC_SECONDS = 2.4;
 export const RARITY_POWER = { common: 1, rare: 1.04, epic: 1.08, legendary: 1.12 };
 // Attack, support, ultimate and passive are independent recipes, not five role clones.
 export const PRIMARY_MOVES = [["Liên kích", "", 6], ["Truy ảnh", "", 7], ["Hoành trảm", "", 8], ["Chùy hương", "", 7], ["Dẫn sấm", "", 8], ["Hỏa châm", "", 7], ["Hộ tâm", "", 7], ["Vững thành", "", 8], ["Chặn sương", "", 8], ["Phong ấn", "", 8], ["Tinh thương", "", 7], ["Vạn tuyến", "", 9], ["Băng thương", "", 7], ["Hải hút", "", 8], ["Pháp hoàn", "", 7], ["Mầm chữa", "", 8], ["Cuộn thanh", "", 8], ["Tiếp hương", "", 7], ["Ước noãn", "", 8], ["Sinh mệnh", "", 9], ["Mộng trói", "", 8], ["Cắt ý", "", 7], ["Bóng nguyệt", "", 7], ["Sương yếu", "", 8], ["Tinh khóa", "", 8]] as const;

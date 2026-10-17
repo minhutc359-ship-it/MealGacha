@@ -78,7 +78,7 @@ export function RpgBattleView({
   presentation?: BattlePresentationPhase
   school?: School
 }) {
-  const visual = useRpgImpactFrame(b,paused || b.paused || !!b.cinematic,quiet)
+  const visual = useRpgImpactFrame(b,paused || b.paused,quiet)
   const allies = b.actors.filter((a) => a.side === "ally"),
     burst = [...b.events]
       .reverse()
@@ -87,11 +87,11 @@ export function RpgBattleView({
   const boss = b.actors.find((a) => a.boss && a.hp > 0)
   const warningSource = b.actors.find(a=>a.uid === b.warning?.source)
   const warningSupport = warningSource && !warningSource.boss && ["bulwark","mender"].includes(warningSource.style ?? "")
-  // Cinematic owns its video/audio fetch when a committed cast is shown.
+  // The showcase presents an already committed cast; combat stays frozen until completion.
   const blocked = readOnly || b.paused || paused || !!b.result || !!b.cinematic || presentation !== "fight"
   return (
     <section
-      className={`rpg-battle ${quiet ? "is-quiet" : ""} ${b.paused || paused || b.cinematic ? "is-paused" : ""} presentation-${presentation}`}
+      className={`rpg-battle ${quiet ? "is-quiet" : ""} ${b.paused || paused ? "is-paused" : ""} presentation-${presentation}`}
       aria-label="Trận Adventure"
       inert={readOnly || undefined}
     >
@@ -124,8 +124,7 @@ export function RpgBattleView({
           </button>
         </div>
       </header>
-      {!readOnly && b.rulesVersion!==530 && <small>Trận đang lưu giữ bộ kỹ năng cũ. Video và kỹ năng 5.3 mở từ chuyến tiếp theo.</small>}
-      {b.rulesVersion === 530 && !readOnly && <button type="button" className="rpg-cinema-toggle" aria-pressed={b.cinematics!==false} onClick={()=>onAction({type:"cinematics"})}>Video tuyệt kỹ {b.cinematics===false?"OFF":"ON"}</button>}
+      {!readOnly && b.rulesVersion!==530 && <small>Trận đang lưu giữ bộ kỹ năng cũ. Bộ kỹ năng mới mở từ chuyến tiếp theo.</small>}
       <div className="rpg-arena-hud">
         {boss && <div className="rpg-boss-health"><strong>{boss.name} {boss.phase ? "· Cuồng nộ" : ""}</strong><RpgMeter value={boss.hp} max={boss.maxHp} label="HP boss" /></div>}
         <div className={`rpg-warning ${b.warning ? "is-active" : ""}`} role="status">{b.warning ? `⚠ ${b.warning.skill ?? "Đòn lớn"} · ${warningSupport ? "Ngắt chiêu để chặn hỗ trợ" : `Tuyến ${b.warning.row === "front" ? "trước" : "sau"}`} · ${Math.max(0,(b.warning.until-b.tick)/4).toFixed(1)}s` : "Ưu tiên người hồi phục / dệt sương · Giữ Che chắn cho đòn báo trước"}</div>
@@ -180,7 +179,7 @@ export function RpgBattleView({
                 motion={motion}
                 stamp={`${b.id}:${motionStamp}:${motion}`}
                 quiet={quiet}
-                paused={paused || b.paused || !!b.cinematic}
+                paused={paused || b.paused || (!!b.cinematic && b.cinematic.source !== a.uid)}
                 flip={a.side === "enemy"}
               /></div>
               <RpgShield
@@ -217,19 +216,11 @@ export function RpgBattleView({
           )
         })}
         </div>
-        <RpgBattleVfx battle={b} quiet={quiet} paused={paused || b.paused || !!b.cinematic} />
+        <RpgBattleVfx battle={b} quiet={quiet} paused={paused || b.paused} />
         <BattleStatus phase={presentation} wave={b.wave} />
         {b.events.filter(e=>e.kind === "reaction" && b.tick-e.tick < 4).slice(-1).map(e=><div key={`reaction:${e.serial}`} className={`rpg-reaction-pill school-${e.school}`} role="status"><SkillArt index={60 + ["Bốc hơi","Nở rộ","Sinh trưởng","Mộng ấm"].indexOf(e.text)} />{e.text}</div>)}
-        {burst && !quiet && !b.cinematic && (
-          <div
-            className={`rpg-burst-banner school-${burst.school}`}
-            key={burst.serial}
-          >
-            <span>✦ TUYỆT KỸ {b.chain && b.chain.count > 1 ? `· LIÊN HƯƠNG ×${b.chain.count}` : ""}</span>
-            <strong>{burst.text}</strong>
-          </div>
-        )}
-        {b.cinematic && <RpgCinematic key={`${b.id}:${b.cinematic.serial}`} id={b.actors.find(a=>a.uid===b.cinematic!.source)!.id} reduced={reduced} paused={paused || b.paused} onTogglePause={()=>onAction({type:"pause"})} onDone={()=>onAction({type:"cinematicDone",serial:b.cinematic!.serial})}/>}
+        {burst && !b.cinematic && (b.rulesVersion !== 530 || b.cinematics === false) && <RpgCinematic key={`${b.id}:${burst.serial}`} id={b.actors.find(a=>a.uid===burst.source)!.id} reduced={quiet || reduced} paused={paused || b.paused} combo={b.chain?.count} onDone={()=>{}}/>}
+        {b.cinematic && <RpgCinematic key={`${b.id}:${b.cinematic.serial}`} id={b.actors.find(a=>a.uid===b.cinematic!.source)!.id} reduced={quiet || reduced} paused={paused || b.paused} combo={b.chain?.count} onTogglePause={()=>onAction({type:"pause"})} onDone={()=>onAction({type:"cinematicDone",serial:b.cinematic!.serial})}/>}
         {(b.paused || paused) && !readOnly && !b.cinematic && (
           <div className="rpg-pause-mark">Trận đang tạm dừng</div>
         )}

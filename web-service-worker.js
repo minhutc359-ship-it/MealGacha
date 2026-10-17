@@ -14,6 +14,12 @@ self.addEventListener('activate', event => event.waitUntil((async () => {
     const previous = keys.filter(key => key.startsWith(prefix) && key !== prefix + VERSION);
     await Promise.all(previous.slice(0, -1).map(key => caches.delete(key)));
   }
+  // Retired ultimate movies are safe to evict, including the retained media
+  // version. Cache Storage never contains player progress or collections.
+  for (const key of (await caches.keys()).filter(key => key.startsWith('som-web-media-'))) {
+    const cache = await caches.open(key);
+    for (const request of await cache.keys()) if (new URL(request.url).pathname.endsWith('.mp4')) await cache.delete(request);
+  }
   await self.clients.claim();
 })()));
 self.addEventListener('message', event => {
@@ -30,6 +36,7 @@ self.addEventListener('message', event => {
   })));
 });
 function putMedia(request, response) {
+  if (new URL(request.url).pathname.endsWith('.mp4')) return Promise.resolve();
   // Serialize LRU writes; partial streams and oversized files never fill the cache.
   writing = writing.catch(() => {}).then(async () => {
     if (!response.ok || response.status !== 200) return;
@@ -75,11 +82,14 @@ self.addEventListener('fetch', event => {
   }
   if (!url.pathname.startsWith('/assets/') && !CORE_URLS.includes(url.pathname)) return;
   event.respondWith((async () => {
-    const core = await caches.open(CORE), coreHit = await core.match(request);
+    // These version-pinned static files are identical for every same-origin
+    // request. Preview/CDN Vary: Origin must not hide an installed module when
+    // <script crossorigin> adds an Origin header that precache did not send.
+    const core = await caches.open(CORE), coreHit = await core.match(request, {ignoreVary: true});
     if (coreHit) return coreHit;
     // An already open tab may still request a hashed chunk from the previous build.
     for (const key of (await caches.keys()).filter(key => key.startsWith('som-web-core-') && key !== CORE)) {
-      const previous = await (await caches.open(key)).match(request);
+      const previous = await (await caches.open(key)).match(request, {ignoreVary: true});
       if (previous) return previous;
     }
     const cache = await caches.open(MEDIA);

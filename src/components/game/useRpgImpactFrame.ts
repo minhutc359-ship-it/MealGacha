@@ -44,7 +44,6 @@ export function useRpgImpactFrame(
       before.id !== battle.id ||
       before.wave !== battle.wave ||
       battle.serial < before.serial ||
-      battle.cinematic ||
       quiet
     ) {
       s.pending = []

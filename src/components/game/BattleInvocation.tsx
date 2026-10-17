@@ -5,6 +5,7 @@ import { SCHOOLS } from "../../game/catalog"
 import { CHARACTER_ART, type CharacterId } from "../../game/characters"
 import { tcgCharacter, tcgCaster } from "../../game/tcgCharacterMotion"
 import { CharacterSprite } from "./CharacterSprite"
+import { UltimateBanner, ModelCastEffect } from "./UltimateBanner"
 
 export function BattleInvocation({
   frame,
@@ -34,7 +35,8 @@ export function BattleInvocation({
       data-invocation={action.kind}
       aria-hidden="true"
     >
-      <div className="tcg-invocation-commander">
+      {action.kind === "cast" && <div className="tcg-spell-banner"><UltimateBanner id={model?.id} school={action.card.school} title={action.card.name} name={model?.name} art={action.art} label={enemy ? "BÍ THUẬT ĐỊCH" : "BÍ THUẬT"} quiet={quiet}/></div>}
+      {action.kind !== "cast" && <div className="tcg-invocation-commander">
         <img
           src={
             enemy
@@ -50,7 +52,7 @@ export function BattleInvocation({
           </small>
           <strong>“{action.quote}”</strong>
         </div>
-      </div>
+      </div>}
       <div className="tcg-invocation-art">
         {model ? <CharacterSprite model={model} motion={action.kind} stamp={stamp}
           quiet={quiet} flip={enemy} cinematic fallback={action.art} /> : <img src={action.art} alt="" draggable={false} />}
@@ -58,9 +60,7 @@ export function BattleInvocation({
         {action.spirit && (
           <img className="tcg-memory-dish" src={action.card.art} alt="" />
         )}
-        <i />
-        <i />
-        <i />
+        {action.kind === "cast" ? <ModelCastEffect school={action.card.school} quiet={quiet}/> : <><i/><i/><i/></>}
       </div>
       <div className="tcg-invocation-label">
         <strong>{action.spirit && model ? `${action.card.name} → ${model.name}` : action.detail}</strong>
