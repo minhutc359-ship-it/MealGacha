@@ -1,0 +1,1978 @@
+[
+  {
+    "id": "tea-moth",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "special/brace",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "643ed16b05f43a739e0c7cc4837cc178230c36552ea23f860df659a1fbff90a6",
+        "size": [
+          1448,
+          1086
+        ],
+        "rects": [
+          [
+            79,
+            38,
+            336,
+            279
+          ],
+          [
+            426,
+            40,
+            682,
+            279
+          ],
+          [
+            797,
+            38,
+            1032,
+            279
+          ],
+          [
+            1125,
+            39,
+            1377,
+            279
+          ],
+          [
+            83,
+            325,
+            338,
+            552
+          ],
+          [
+            429,
+            315,
+            674,
+            553
+          ],
+          [
+            778,
+            324,
+            1039,
+            553
+          ],
+          [
+            1132,
+            322,
+            1396,
+            550
+          ],
+          [
+            79,
+            598,
+            335,
+            808
+          ],
+          [
+            421,
+            589,
+            675,
+            805
+          ],
+          [
+            772,
+            588,
+            1046,
+            802
+          ],
+          [
+            1148,
+            593,
+            1390,
+            807
+          ],
+          [
+            84,
+            835,
+            318,
+            1054
+          ],
+          [
+            447,
+            845,
+            672,
+            1055
+          ],
+          [
+            800,
+            830,
+            1049,
+            1054
+          ],
+          [
+            1148,
+            835,
+            1385,
+            1055
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production character animation source. Input image is REFERENCE of the current same creature identity; preserve species, silhouette, equipment and colors. Redraw in polished anime chibi cel shading, crisp game sprite linework, matching existing Soul of Meal. Exactly SIXTEEN complete character sprites in FOUR columns by FOUR rows, equal invisible cells. Row1 IDLE: four distinct breathing/looking poses. Row2 WALK/LOCOMOTION: four alternating steps, wing beats or floating motion. Row3 ATTACK: ready, windup, decisive contact, recovery. Row4 CAST: prepare, gather gesture, release, settle. Face three-quarter RIGHT in EVERY cell, uniform physical scale, same feet/base baseline. Zoom out: each COMPLETE actor inside CENTRAL 60 percent of its cell, leaving 20 percent transparent gutters at all edges; NO crossing cell boundaries. Full body, wings, antennae, weapon tips and tails inside cell. Transparent RGBA. No scenery, ground, shadows, text, numbers, labels, outlines, watermark or painted magic/particles. Ignore any small clipped neighbor fragments in the old reference; only redraw the central complete creature. Main identity: small friendly sentient TEA MOTH, ivory fluffy round face with big green eyes, two long GOLD spiral antennae, FOUR translucent JADE GREEN LEAF-shaped wings with pale yellow leaf-vein tracery, layered green tea-leaf tunic, tiny ivory limbs. No human face, hands or weapons. Flutter, hop and lean antennae for attack; cast raises tiny forelimbs. Keep all four leaf wings and both spiral antennae."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "aad1a081445c2d5de9e617852edccd1563dca470ba9dd028f93f03dd987cae4f",
+        "size": [
+          1448,
+          1086
+        ],
+        "rects": [
+          [
+            65,
+            35,
+            334,
+            286
+          ],
+          [
+            436,
+            40,
+            689,
+            287
+          ],
+          [
+            793,
+            33,
+            1053,
+            285
+          ],
+          [
+            1145,
+            51,
+            1398,
+            285
+          ],
+          [
+            81,
+            323,
+            338,
+            563
+          ],
+          [
+            457,
+            321,
+            683,
+            561
+          ],
+          [
+            781,
+            311,
+            1046,
+            561
+          ],
+          [
+            1148,
+            322,
+            1406,
+            560
+          ],
+          [
+            78,
+            608,
+            368,
+            806
+          ],
+          [
+            445,
+            629,
+            696,
+            796
+          ],
+          [
+            764,
+            669,
+            1051,
+            792
+          ],
+          [
+            1132,
+            682,
+            1413,
+            793
+          ],
+          [
+            88,
+            821,
+            336,
+            1049
+          ],
+          [
+            453,
+            818,
+            690,
+            1054
+          ],
+          [
+            802,
+            818,
+            1060,
+            1056
+          ],
+          [
+            1158,
+            828,
+            1405,
+            1052
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal support animation source. First image is APPROVED new action sheet; match exact anatomy, proportions, colors, equipment and rendering style. Exactly SIXTEEN complete sprites in FOUR columns by FOUR rows, equal invisible cells, transparent RGBA. Row1 SPECIAL/BRACE gestures: prepare, brace or gather, strong release, recover. These are presentation poses, no new gameplay phase. Row2 HIT: startled, recoil left, recoil back, recover. Row3 DEFEAT: stagger, crouch/sink, lie on side, final collapsed horizontal resting pose; no injury. Row4 VICTORY: proud stance, raise equipment/wing, flourish, settle. FOUR visibly different physical poses in every row. All face three-quarter RIGHT; uniform physical scale and feet/base baseline across poses. Each complete actor including long wings, antennae and equipment stays in CENTRAL60 percent of its cell with20 percent transparent gutters; zoom out, never cross/touch neighbor cells. No scenery, ground, shadow, particles, painted VFX, text, labels, outlines or watermark. Main identity: small friendly sentient TEA MOTH, ivory fluffy round face with big green eyes, two long GOLD spiral antennae, FOUR translucent JADE GREEN LEAF-shaped wings with pale yellow leaf-vein tracery, layered green tea-leaf tunic, tiny ivory limbs. No human face, hands or weapons. Flutter, hop and lean antennae for attack; cast raises tiny forelimbs. Keep all four leaf wings and both spiral antennae. On defeat wings fold flat and antennae curl safely alongside body."
+      }
+    ],
+    "uniformScale": 0.7724137931034483,
+    "outputs": {
+      "tea-moth-pixel.webp": {
+        "bytes": 129770,
+        "sha256": "f09289d63f898949110b87671311ba8f39c58053ebc3cbba08ed105b52f324e7"
+      },
+      "tea-moth-portrait.webp": {
+        "bytes": 22792,
+        "sha256": "be36bc9fdc0ce1f2512342293f54d0718c31149a5d0b2b884e20952f8e2c59ee"
+      },
+      "tea-moth.webp": {
+        "bytes": 586622,
+        "sha256": "dee1f78671f97b91e47ca8a1d3373cab2ad77873872e84eea2757a7f76fd5e1f"
+      }
+    }
+  },
+  {
+    "id": "salt-scarab",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "special/brace",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "c8d197b640bcfa7bc771c2c8d8e60c28a15d7d0bf546ae3bea00bd28e0f92a0b",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            86,
+            56,
+            354,
+            248
+          ],
+          [
+            445,
+            56,
+            716,
+            250
+          ],
+          [
+            826,
+            67,
+            1098,
+            250
+          ],
+          [
+            1201,
+            55,
+            1468,
+            251
+          ],
+          [
+            83,
+            296,
+            371,
+            490
+          ],
+          [
+            465,
+            289,
+            738,
+            490
+          ],
+          [
+            817,
+            294,
+            1119,
+            490
+          ],
+          [
+            1200,
+            302,
+            1479,
+            484
+          ],
+          [
+            71,
+            545,
+            370,
+            736
+          ],
+          [
+            467,
+            527,
+            751,
+            733
+          ],
+          [
+            794,
+            553,
+            1182,
+            727
+          ],
+          [
+            1215,
+            544,
+            1475,
+            737
+          ],
+          [
+            79,
+            784,
+            374,
+            974
+          ],
+          [
+            472,
+            774,
+            720,
+            971
+          ],
+          [
+            820,
+            782,
+            1136,
+            959
+          ],
+          [
+            1199,
+            781,
+            1484,
+            976
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production character animation source. Input image is REFERENCE of the current same creature identity; preserve species, silhouette, equipment and colors. Redraw in polished anime chibi cel shading, crisp game sprite linework, matching existing Soul of Meal. Exactly SIXTEEN complete character sprites in FOUR columns by FOUR rows, equal invisible cells. Row1 IDLE: four distinct breathing/looking poses. Row2 WALK/LOCOMOTION: four alternating steps, wing beats or floating motion. Row3 ATTACK: ready, windup, decisive contact, recovery. Row4 CAST: prepare, gather gesture, release, settle. Face three-quarter RIGHT in EVERY cell, uniform physical scale, same feet/base baseline. Zoom out: each COMPLETE actor inside CENTRAL 60 percent of its cell, leaving 20 percent transparent gutters at all edges; NO crossing cell boundaries. Full body, wings, antennae, weapon tips and tails inside cell. Transparent RGBA. No scenery, ground, shadows, text, numbers, labels, outlines, watermark or painted magic/particles. Ignore any small clipped neighbor fragments in the old reference; only redraw the central complete creature. Main identity: squat six-legged RED CRYSTAL SCARAB, faceted dark-red oval shell with pale pink/white SALT CRYSTAL SPIKES, six sharp pale crystal legs, small dark face under shell with two glowing orange round eyes and orange brow. NO wings, no human arms or clothes. Crawl with alternating legs; attack lunges shell/forelegs; cast braces forelegs. Ignore clipped bronze feet at top of reference."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "231713bbb14efae2d744d201febd16040c8cbd8e9200bd8f7c960d447cf48342",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            59,
+            37,
+            351,
+            251
+          ],
+          [
+            428,
+            30,
+            754,
+            251
+          ],
+          [
+            790,
+            27,
+            1174,
+            250
+          ],
+          [
+            1195,
+            44,
+            1491,
+            257
+          ],
+          [
+            65,
+            264,
+            388,
+            496
+          ],
+          [
+            451,
+            297,
+            747,
+            504
+          ],
+          [
+            820,
+            275,
+            1123,
+            508
+          ],
+          [
+            1190,
+            304,
+            1490,
+            511
+          ],
+          [
+            66,
+            549,
+            373,
+            738
+          ],
+          [
+            458,
+            569,
+            740,
+            755
+          ],
+          [
+            797,
+            564,
+            1143,
+            732
+          ],
+          [
+            1172,
+            606,
+            1489,
+            731
+          ],
+          [
+            66,
+            770,
+            367,
+            993
+          ],
+          [
+            458,
+            762,
+            711,
+            994
+          ],
+          [
+            800,
+            780,
+            1154,
+            985
+          ],
+          [
+            1210,
+            780,
+            1498,
+            993
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal support animation source. First image is APPROVED new action sheet; match exact anatomy, proportions, colors, equipment and rendering style. Exactly SIXTEEN complete sprites in FOUR columns by FOUR rows, equal invisible cells, transparent RGBA. Row1 SPECIAL/BRACE gestures: prepare, brace or gather, strong release, recover. These are presentation poses, no new gameplay phase. Row2 HIT: startled, recoil left, recoil back, recover. Row3 DEFEAT: stagger, crouch/sink, lie on side, final collapsed horizontal resting pose; no injury. Row4 VICTORY: proud stance, raise equipment/wing, flourish, settle. FOUR visibly different physical poses in every row. All face three-quarter RIGHT; uniform physical scale and feet/base baseline across poses. Each complete actor including long wings, antennae and equipment stays in CENTRAL60 percent of its cell with20 percent transparent gutters; zoom out, never cross/touch neighbor cells. No scenery, ground, shadow, particles, painted VFX, text, labels, outlines or watermark. Main identity: squat six-legged RED CRYSTAL SCARAB, faceted dark-red oval shell with pale pink/white SALT CRYSTAL SPIKES, six sharp pale crystal legs, small dark face under shell with two glowing orange round eyes and orange brow. NO wings, no human arms or clothes. Crawl with alternating legs; attack lunges shell/forelegs; cast braces forelegs. Ignore clipped bronze feet at top of reference. Six crystal legs stay attached; defeat folds legs and tilts shell on its side, no shattered shell or detached chunks."
+      }
+    ],
+    "uniformScale": 0.5773195876288659,
+    "outputs": {
+      "salt-scarab-pixel.webp": {
+        "bytes": 66702,
+        "sha256": "e9d15ecdb29906919494b9fba8612bad4f420c7109501c8968e6a57a48bbddec"
+      },
+      "salt-scarab-portrait.webp": {
+        "bytes": 10926,
+        "sha256": "2d66069c97c3dab2084946e3a039c3df9d079aeba05d1648e254eb33e0308c44"
+      },
+      "salt-scarab.webp": {
+        "bytes": 337226,
+        "sha256": "2578b9ee7a4ee6a25887b37c7b3614ae20def94ddfe3ad2ced27295561817b87"
+      }
+    }
+  },
+  {
+    "id": "kiln-knight",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "special/brace",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "877e29f3d17ee4874f2e08abe3ae4e21d3d8302820f503afd305f7065b65704f",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            111,
+            28,
+            359,
+            236
+          ],
+          [
+            477,
+            33,
+            709,
+            236
+          ],
+          [
+            862,
+            41,
+            1113,
+            236
+          ],
+          [
+            1233,
+            35,
+            1463,
+            236
+          ],
+          [
+            110,
+            281,
+            350,
+            480
+          ],
+          [
+            515,
+            275,
+            735,
+            484
+          ],
+          [
+            890,
+            277,
+            1100,
+            480
+          ],
+          [
+            1262,
+            276,
+            1473,
+            487
+          ],
+          [
+            105,
+            530,
+            352,
+            729
+          ],
+          [
+            498,
+            523,
+            735,
+            727
+          ],
+          [
+            844,
+            535,
+            1131,
+            727
+          ],
+          [
+            1222,
+            526,
+            1481,
+            731
+          ],
+          [
+            109,
+            768,
+            338,
+            975
+          ],
+          [
+            518,
+            758,
+            743,
+            975
+          ],
+          [
+            874,
+            777,
+            1167,
+            976
+          ],
+          [
+            1248,
+            772,
+            1486,
+            976
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production character animation source. Input image is REFERENCE of the current same creature identity; preserve species, silhouette, equipment and colors. Redraw in polished anime chibi cel shading, crisp game sprite linework, matching existing Soul of Meal. Exactly SIXTEEN complete character sprites in FOUR columns by FOUR rows, equal invisible cells. Row1 IDLE: four distinct breathing/looking poses. Row2 WALK/LOCOMOTION: four alternating steps, wing beats or floating motion. Row3 ATTACK: ready, windup, decisive contact, recovery. Row4 CAST: prepare, gather gesture, release, settle. Face three-quarter RIGHT in EVERY cell, uniform physical scale, same feet/base baseline. Zoom out: each COMPLETE actor inside CENTRAL 60 percent of its cell, leaving 20 percent transparent gutters at all edges; NO crossing cell boundaries. Full body, wings, antennae, weapon tips and tails inside cell. Transparent RGBA. No scenery, ground, shadows, text, numbers, labels, outlines, watermark or painted magic/particles. Ignore any small clipped neighbor fragments in the old reference; only redraw the central complete creature. Main identity: short heavy COPPER FURNACE KNIGHT, fully enclosed rounded bronze-red armor, glowing ORANGE vertical grille helmet, little chimney with small attached ivory steam puff atop head. RIGHT hand holds one short broad RED CRYSTAL sword, LEFT arm carries large bronze rectangular shield with vertical orange furnace grille. No exposed human face/skin, no extra equipment. March, swing short sword, brace shield for cast."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "8000be784b27eb739c0d1e15453bf9cf7a186b21cb60e324b840b0e04fef0c7c",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            90,
+            24,
+            373,
+            251
+          ],
+          [
+            467,
+            25,
+            702,
+            248
+          ],
+          [
+            846,
+            32,
+            1115,
+            253
+          ],
+          [
+            1228,
+            30,
+            1478,
+            253
+          ],
+          [
+            86,
+            276,
+            360,
+            498
+          ],
+          [
+            445,
+            275,
+            737,
+            500
+          ],
+          [
+            829,
+            283,
+            1106,
+            495
+          ],
+          [
+            1228,
+            291,
+            1481,
+            504
+          ],
+          [
+            103,
+            524,
+            370,
+            732
+          ],
+          [
+            466,
+            540,
+            734,
+            731
+          ],
+          [
+            793,
+            567,
+            1136,
+            730
+          ],
+          [
+            1185,
+            582,
+            1508,
+            729
+          ],
+          [
+            71,
+            753,
+            359,
+            979
+          ],
+          [
+            486,
+            746,
+            751,
+            980
+          ],
+          [
+            850,
+            758,
+            1172,
+            981
+          ],
+          [
+            1212,
+            756,
+            1482,
+            980
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal support animation source. First image is APPROVED new action sheet; match exact anatomy, proportions, colors, equipment and rendering style. Exactly SIXTEEN complete sprites in FOUR columns by FOUR rows, equal invisible cells, transparent RGBA. Row1 SPECIAL/BRACE gestures: prepare, brace or gather, strong release, recover. These are presentation poses, no new gameplay phase. Row2 HIT: startled, recoil left, recoil back, recover. Row3 DEFEAT: stagger, crouch/sink, lie on side, final collapsed horizontal resting pose; no injury. Row4 VICTORY: proud stance, raise equipment/wing, flourish, settle. FOUR visibly different physical poses in every row. All face three-quarter RIGHT; uniform physical scale and feet/base baseline across poses. Each complete actor including long wings, antennae and equipment stays in CENTRAL60 percent of its cell with20 percent transparent gutters; zoom out, never cross/touch neighbor cells. No scenery, ground, shadow, particles, painted VFX, text, labels, outlines or watermark. Main identity: short heavy COPPER FURNACE KNIGHT, fully enclosed rounded bronze-red armor, glowing ORANGE vertical grille helmet, little chimney with small attached ivory steam puff atop head. RIGHT hand holds one short broad RED CRYSTAL sword, LEFT arm carries large bronze rectangular shield with vertical orange furnace grille. No exposed human face/skin, no extra equipment. March, swing short sword, brace shield for cast. Special row is SHIELD BRACE: raise LEFT furnace shield in front. Preserve short sword and chimney steam in all poses."
+      }
+    ],
+    "uniformScale": 0.6530612244897959,
+    "outputs": {
+      "kiln-knight-pixel.webp": {
+        "bytes": 85544,
+        "sha256": "fb3891f44090f34197062749a807cb7f8765691c93f5b2978aa1b22b10173fc5"
+      },
+      "kiln-knight-portrait.webp": {
+        "bytes": 12952,
+        "sha256": "fa5c6d9308ef2baa0235a4591a81e49aaa9bfd82d7ea3418aa66c0ff8bff749d"
+      },
+      "kiln-knight.webp": {
+        "bytes": 380150,
+        "sha256": "750e6ca8f3758d50243503b0180075d02e538e9e478e35138f0647dc185d295e"
+      }
+    }
+  },
+  {
+    "id": "jade-sentinel",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "special/brace",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "048f9f1cf064790c29dd593691d6c18f7e8ee5c7ca29cc4b3f4399f5fc34e76e",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            134,
+            26,
+            369,
+            258
+          ],
+          [
+            497,
+            25,
+            729,
+            259
+          ],
+          [
+            848,
+            26,
+            1073,
+            259
+          ],
+          [
+            1225,
+            19,
+            1447,
+            258
+          ],
+          [
+            99,
+            271,
+            367,
+            505
+          ],
+          [
+            470,
+            284,
+            737,
+            506
+          ],
+          [
+            819,
+            288,
+            1081,
+            501
+          ],
+          [
+            1216,
+            287,
+            1465,
+            501
+          ],
+          [
+            94,
+            536,
+            397,
+            731
+          ],
+          [
+            429,
+            516,
+            729,
+            732
+          ],
+          [
+            789,
+            543,
+            1189,
+            732
+          ],
+          [
+            1184,
+            523,
+            1471,
+            732
+          ],
+          [
+            114,
+            759,
+            359,
+            984
+          ],
+          [
+            481,
+            752,
+            734,
+            984
+          ],
+          [
+            832,
+            738,
+            1095,
+            983
+          ],
+          [
+            1233,
+            753,
+            1461,
+            982
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production character animation source. Input image is REFERENCE of the current same creature identity; preserve species, silhouette, equipment and colors. Redraw in polished anime chibi cel shading, crisp game sprite linework, matching existing Soul of Meal. Exactly SIXTEEN complete character sprites in FOUR columns by FOUR rows, equal invisible cells. Row1 IDLE: four distinct breathing/looking poses. Row2 WALK/LOCOMOTION: four alternating steps, wing beats or floating motion. Row3 ATTACK: ready, windup, decisive contact, recovery. Row4 CAST: prepare, gather gesture, release, settle. Face three-quarter RIGHT in EVERY cell, uniform physical scale, same feet/base baseline. Zoom out: each COMPLETE actor inside CENTRAL 60 percent of its cell, leaving 20 percent transparent gutters at all edges; NO crossing cell boundaries. Full body, wings, antennae, weapon tips and tails inside cell. Transparent RGBA. No scenery, ground, shadows, text, numbers, labels, outlines, watermark or painted magic/particles. Ignore any small clipped neighbor fragments in the old reference; only redraw the central complete creature. Main identity: short squat sentient JADE CERAMIC armored sentinel, broad rounded jade body, stern pale glowing eyes and curved moustache motifs engraved in jade mask, bronze-gold trim, concentric circular jade/bronze hat and small bronze top finial. Holds one long GREEN CRYSTAL spear with bronze shaft in RIGHT hand, left heavy armored fist. No human skin. Heavy short strides, spear thrust, defensive cast with left forearm. Keep spear full-length compactly diagonal WITHIN cell, never crop.\nBackground alpha repair: Use case: background-extraction. Edit target: the referenced 4x4 jade sentinel sheet. Remove ALL green/olive painted backdrop, gradients, glow and ground shadows. Every pixel outside the sixteen individual complete characters and their spears must have alpha ZERO. Preserve all sixteen actors, poses, design, scale, colors, outlines and positions exactly. Do not paint a new background. Transparent RGBA sprites only; no labels or extra objects."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "27a80584559c7337563384fc67d104d82beea341ad39831e764ed04e12aff8fc",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            104,
+            9,
+            319,
+            261
+          ],
+          [
+            501,
+            28,
+            694,
+            262
+          ],
+          [
+            814,
+            83,
+            1155,
+            263
+          ],
+          [
+            1243,
+            17,
+            1458,
+            262
+          ],
+          [
+            81,
+            272,
+            347,
+            512
+          ],
+          [
+            449,
+            283,
+            725,
+            512
+          ],
+          [
+            787,
+            293,
+            1098,
+            511
+          ],
+          [
+            1224,
+            280,
+            1469,
+            512
+          ],
+          [
+            91,
+            530,
+            391,
+            723
+          ],
+          [
+            497,
+            526,
+            721,
+            725
+          ],
+          [
+            793,
+            590,
+            1157,
+            725
+          ],
+          [
+            1185,
+            621,
+            1524,
+            737
+          ],
+          [
+            111,
+            743,
+            344,
+            987
+          ],
+          [
+            451,
+            721,
+            735,
+            987
+          ],
+          [
+            815,
+            776,
+            1160,
+            987
+          ],
+          [
+            1239,
+            746,
+            1460,
+            987
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal support animation source. First image is APPROVED new action sheet; match exact anatomy, proportions, colors, equipment and rendering style. Exactly SIXTEEN complete sprites in FOUR columns by FOUR rows, equal invisible cells, transparent RGBA. Row1 SPECIAL/BRACE gestures: prepare, brace or gather, strong release, recover. These are presentation poses, no new gameplay phase. Row2 HIT: startled, recoil left, recoil back, recover. Row3 DEFEAT: stagger, crouch/sink, lie on side, final collapsed horizontal resting pose; no injury. Row4 VICTORY: proud stance, raise equipment/wing, flourish, settle. FOUR visibly different physical poses in every row. All face three-quarter RIGHT; uniform physical scale and feet/base baseline across poses. Each complete actor including long wings, antennae and equipment stays in CENTRAL60 percent of its cell with20 percent transparent gutters; zoom out, never cross/touch neighbor cells. No scenery, ground, shadow, particles, painted VFX, text, labels, outlines or watermark. Main identity: short squat sentient JADE CERAMIC armored sentinel, broad rounded jade body, stern pale glowing eyes and curved moustache motifs engraved in jade mask, bronze-gold trim, concentric circular jade/bronze hat and small bronze top finial. Holds one long GREEN CRYSTAL spear with bronze shaft in RIGHT hand, left heavy armored fist. No human skin. Heavy short strides, spear thrust, defensive cast with left forearm. Keep spear full-length compactly diagonal WITHIN cell, never crop. Special row is DEFENSIVE SPEAR BRACE: spear compact vertical, left armored arm closes in front; keep spear with actor on defeat."
+      }
+    ],
+    "uniformScale": 0.56,
+    "outputs": {
+      "jade-sentinel-pixel.webp": {
+        "bytes": 66136,
+        "sha256": "415b2ce3299d3c071ab54440d03e1a99a672b045df69d2aa6972b1b9c26d1ba4"
+      },
+      "jade-sentinel-portrait.webp": {
+        "bytes": 11616,
+        "sha256": "b4699ab17e352d3857b904d9633d700011bbcb4580b588a1cb073626b3f55427"
+      },
+      "jade-sentinel.webp": {
+        "bytes": 322680,
+        "sha256": "9f995d8cdd3f80e39da0bfafb51668286ebdc0863978a9debe6f6463cf1cafef"
+      }
+    }
+  },
+  {
+    "id": "moon-jelly",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "special/brace",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "1eea33a6cf4dded851064202bd14964adaea0bdcbfcb903d3450577964f20228",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            113,
+            23,
+            347,
+            255
+          ],
+          [
+            467,
+            39,
+            715,
+            257
+          ],
+          [
+            842,
+            30,
+            1083,
+            255
+          ],
+          [
+            1213,
+            31,
+            1455,
+            257
+          ],
+          [
+            103,
+            282,
+            356,
+            496
+          ],
+          [
+            470,
+            274,
+            716,
+            494
+          ],
+          [
+            835,
+            284,
+            1090,
+            493
+          ],
+          [
+            1216,
+            275,
+            1459,
+            489
+          ],
+          [
+            103,
+            512,
+            343,
+            725
+          ],
+          [
+            465,
+            511,
+            720,
+            723
+          ],
+          [
+            818,
+            527,
+            1121,
+            715
+          ],
+          [
+            1206,
+            511,
+            1453,
+            729
+          ],
+          [
+            113,
+            756,
+            348,
+            986
+          ],
+          [
+            469,
+            754,
+            717,
+            989
+          ],
+          [
+            841,
+            739,
+            1105,
+            992
+          ],
+          [
+            1217,
+            764,
+            1453,
+            992
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production character animation source. Input image is REFERENCE of the current same creature identity; preserve species, silhouette, equipment and colors. Redraw in polished anime chibi cel shading, crisp game sprite linework, matching existing Soul of Meal. Exactly SIXTEEN complete character sprites in FOUR columns by FOUR rows, equal invisible cells. Row1 IDLE: four distinct breathing/looking poses. Row2 WALK/LOCOMOTION: four alternating steps, wing beats or floating motion. Row3 ATTACK: ready, windup, decisive contact, recovery. Row4 CAST: prepare, gather gesture, release, settle. Face three-quarter RIGHT in EVERY cell, uniform physical scale, same feet/base baseline. Zoom out: each COMPLETE actor inside CENTRAL 60 percent of its cell, leaving 20 percent transparent gutters at all edges; NO crossing cell boundaries. Full body, wings, antennae, weapon tips and tails inside cell. Transparent RGBA. No scenery, ground, shadows, text, numbers, labels, outlines, watermark or painted magic/particles. Ignore any small clipped neighbor fragments in the old reference; only redraw the central complete creature. Main identity: floating MOON JELLYFISH with wide translucent lavender-blue domed bell, iridescent pink/gold markings inside bell, ONE gold CRESCENT on top, many curling violet tentacles below and TWO small hovering lavender pearl satellites. No humanoid face/hands, no weapons. Idle bell pulses, locomotion curls tentacles and compresses bell, attack leans bell forward, cast raises/extends tentacles. Preserve crescent and pearl satellites; no painted aura."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "87f80f32207ba6cabb3f1f84cf93fc771bc41371247c092309ac77b661fb0385",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            82,
+            21,
+            326,
+            250
+          ],
+          [
+            449,
+            15,
+            693,
+            250
+          ],
+          [
+            796,
+            28,
+            1116,
+            249
+          ],
+          [
+            1208,
+            16,
+            1459,
+            250
+          ],
+          [
+            82,
+            267,
+            344,
+            489
+          ],
+          [
+            458,
+            264,
+            722,
+            496
+          ],
+          [
+            825,
+            265,
+            1076,
+            504
+          ],
+          [
+            1220,
+            264,
+            1459,
+            495
+          ],
+          [
+            87,
+            504,
+            332,
+            724
+          ],
+          [
+            456,
+            529,
+            725,
+            723
+          ],
+          [
+            797,
+            565,
+            1122,
+            714
+          ],
+          [
+            1176,
+            582,
+            1511,
+            716
+          ],
+          [
+            74,
+            738,
+            326,
+            986
+          ],
+          [
+            445,
+            739,
+            717,
+            985
+          ],
+          [
+            823,
+            738,
+            1130,
+            993
+          ],
+          [
+            1218,
+            741,
+            1469,
+            989
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal support animation source. First image is APPROVED new action sheet; match exact anatomy, proportions, colors, equipment and rendering style. Exactly SIXTEEN complete sprites in FOUR columns by FOUR rows, equal invisible cells, transparent RGBA. Row1 SPECIAL/BRACE gestures: prepare, brace or gather, strong release, recover. These are presentation poses, no new gameplay phase. Row2 HIT: startled, recoil left, recoil back, recover. Row3 DEFEAT: stagger, crouch/sink, lie on side, final collapsed horizontal resting pose; no injury. Row4 VICTORY: proud stance, raise equipment/wing, flourish, settle. FOUR visibly different physical poses in every row. All face three-quarter RIGHT; uniform physical scale and feet/base baseline across poses. Each complete actor including long wings, antennae and equipment stays in CENTRAL60 percent of its cell with20 percent transparent gutters; zoom out, never cross/touch neighbor cells. No scenery, ground, shadow, particles, painted VFX, text, labels, outlines or watermark. Main identity: floating MOON JELLYFISH with wide translucent lavender-blue domed bell, iridescent pink/gold markings inside bell, ONE gold CRESCENT on top, many curling violet tentacles below and TWO small hovering lavender pearl satellites. No humanoid face/hands, no weapons. Idle bell pulses, locomotion curls tentacles and compresses bell, attack leans bell forward, cast raises/extends tentacles. Preserve crescent and pearl satellites; no painted aura. Defeat: bell sinks and tentacles fold flat, gold crescent remains intact, both satellite pearls rest close."
+      }
+    ],
+    "uniformScale": 0.6686567164179105,
+    "outputs": {
+      "moon-jelly-pixel.webp": {
+        "bytes": 95012,
+        "sha256": "0db2fb20fb2a676bd9025196ccd9a2db617733ccfc17c8a9b72682bcb70089f2"
+      },
+      "moon-jelly-portrait.webp": {
+        "bytes": 15680,
+        "sha256": "e9fdff01cfc5c26df8fa49c891c76176b4fccb86846e49cb5f82acd543f6e486"
+      },
+      "moon-jelly.webp": {
+        "bytes": 497876,
+        "sha256": "feb213dfc6aedc2e704be45fe007a1bca1118c1303fe66c568f1dcfbeedfeeb3"
+      }
+    }
+  },
+  {
+    "id": "lotus-mantis",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "special/brace",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "e2ee32aca6e7011e2b2b3179d7e37db89005bf2bb71563d284d9269ab5b79f81",
+        "size": [
+          1402,
+          1122
+        ],
+        "rects": [
+          [
+            51,
+            25,
+            353,
+            272
+          ],
+          [
+            398,
+            17,
+            689,
+            273
+          ],
+          [
+            742,
+            45,
+            1010,
+            274
+          ],
+          [
+            1059,
+            32,
+            1334,
+            274
+          ],
+          [
+            16,
+            318,
+            305,
+            537
+          ],
+          [
+            365,
+            316,
+            678,
+            542
+          ],
+          [
+            720,
+            310,
+            1016,
+            541
+          ],
+          [
+            1059,
+            323,
+            1361,
+            539
+          ],
+          [
+            36,
+            573,
+            301,
+            813
+          ],
+          [
+            365,
+            565,
+            653,
+            818
+          ],
+          [
+            707,
+            586,
+            1079,
+            816
+          ],
+          [
+            1073,
+            594,
+            1361,
+            814
+          ],
+          [
+            31,
+            846,
+            279,
+            1086
+          ],
+          [
+            420,
+            833,
+            690,
+            1090
+          ],
+          [
+            711,
+            842,
+            1078,
+            1087
+          ],
+          [
+            1077,
+            845,
+            1344,
+            1088
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production character animation source. Input image is REFERENCE of the current same creature identity; preserve species, silhouette, equipment and colors. Redraw in polished anime chibi cel shading, crisp game sprite linework, matching existing Soul of Meal. Exactly SIXTEEN complete character sprites in FOUR columns by FOUR rows, equal invisible cells. Row1 IDLE: four distinct breathing/looking poses. Row2 WALK/LOCOMOTION: four alternating steps, wing beats or floating motion. Row3 ATTACK: ready, windup, decisive contact, recovery. Row4 CAST: prepare, gather gesture, release, settle. Face three-quarter RIGHT in EVERY cell, uniform physical scale, same feet/base baseline. Zoom out: each COMPLETE actor inside CENTRAL 60 percent of its cell, leaving 20 percent transparent gutters at all edges; NO crossing cell boundaries. Full body, wings, antennae, weapon tips and tails inside cell. Transparent RGBA. No scenery, ground, shadows, text, numbers, labels, outlines, watermark or painted magic/particles. Ignore any small clipped neighbor fragments in the old reference; only redraw the central complete creature. Main identity: actual graceful PINK LOTUS PRAYING MANTIS, insect triangular head with gold curved antennae, sharp dark green eyes, segmented dark violet slim thorax and four slender insect walking legs. TWO large curved PINK PETAL SCYTHE forearms, pink leaf wings/petal skirt trailing behind, gold trim accents. No human face, clothing or handheld swords. Attack uses its own petal blade forearms. Never substitute a fairy/human."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "5943f2149333dd91f029edb27ea06e19f85c77de016c89ef9d0759a26e1fb24a",
+        "size": [
+          1402,
+          1122
+        ],
+        "rects": [
+          [
+            28,
+            36,
+            325,
+            296
+          ],
+          [
+            378,
+            74,
+            679,
+            295
+          ],
+          [
+            739,
+            18,
+            1155,
+            295
+          ],
+          [
+            1093,
+            39,
+            1380,
+            296
+          ],
+          [
+            20,
+            323,
+            335,
+            574
+          ],
+          [
+            377,
+            340,
+            669,
+            571
+          ],
+          [
+            728,
+            321,
+            1030,
+            572
+          ],
+          [
+            1083,
+            395,
+            1376,
+            572
+          ],
+          [
+            42,
+            614,
+            330,
+            812
+          ],
+          [
+            391,
+            651,
+            674,
+            815
+          ],
+          [
+            705,
+            679,
+            1028,
+            805
+          ],
+          [
+            1061,
+            708,
+            1383,
+            806
+          ],
+          [
+            37,
+            834,
+            322,
+            1093
+          ],
+          [
+            412,
+            821,
+            696,
+            1092
+          ],
+          [
+            726,
+            834,
+            1136,
+            1093
+          ],
+          [
+            1096,
+            839,
+            1374,
+            1091
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal support animation source. First image is APPROVED new action sheet; match exact anatomy, proportions, colors, equipment and rendering style. Exactly SIXTEEN complete sprites in FOUR columns by FOUR rows, equal invisible cells, transparent RGBA. Row1 SPECIAL/BRACE gestures: prepare, brace or gather, strong release, recover. These are presentation poses, no new gameplay phase. Row2 HIT: startled, recoil left, recoil back, recover. Row3 DEFEAT: stagger, crouch/sink, lie on side, final collapsed horizontal resting pose; no injury. Row4 VICTORY: proud stance, raise equipment/wing, flourish, settle. FOUR visibly different physical poses in every row. All face three-quarter RIGHT; uniform physical scale and feet/base baseline across poses. Each complete actor including long wings, antennae and equipment stays in CENTRAL60 percent of its cell with20 percent transparent gutters; zoom out, never cross/touch neighbor cells. No scenery, ground, shadow, particles, painted VFX, text, labels, outlines or watermark. Main identity: actual graceful PINK LOTUS PRAYING MANTIS, insect triangular head with gold curved antennae, sharp dark green eyes, segmented dark violet slim thorax and four slender insect walking legs. TWO large curved PINK PETAL SCYTHE forearms, pink leaf wings/petal skirt trailing behind, gold trim accents. No human face, clothing or handheld swords. Attack uses its own petal blade forearms. Never substitute a fairy/human. Keep insect head, both petal-scythe forearms and all four thin walking legs. Face RIGHT even in idle/brace. Defeat lies sideways with folded scythes and petals."
+      }
+    ],
+    "uniformScale": 0.5384615384615384,
+    "outputs": {
+      "lotus-mantis-pixel.webp": {
+        "bytes": 70622,
+        "sha256": "fc6509aa8aa79126fcc4591bfb5d3cd19f41645cdac7d30f38a9928a8433b4c9"
+      },
+      "lotus-mantis-portrait.webp": {
+        "bytes": 14708,
+        "sha256": "fc288c73fced3fb03650b1f67f9b5cc3717eb7206255440dd6e2b57f842e6c1f"
+      },
+      "lotus-mantis.webp": {
+        "bytes": 395626,
+        "sha256": "7b02a0b5a086c97789af9ed17de367b935f62aa4956469c870df673c10d57c24"
+      }
+    }
+  },
+  {
+    "id": "spice-kite",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "special/brace",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "943ede7bf6b021020966a32c3b6a9a1430fbf00fce94dc630ff89b08b31765fe",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            61,
+            50,
+            317,
+            235
+          ],
+          [
+            426,
+            44,
+            692,
+            233
+          ],
+          [
+            818,
+            44,
+            1076,
+            234
+          ],
+          [
+            1188,
+            59,
+            1458,
+            230
+          ],
+          [
+            46,
+            269,
+            320,
+            474
+          ],
+          [
+            426,
+            308,
+            708,
+            473
+          ],
+          [
+            807,
+            311,
+            1095,
+            480
+          ],
+          [
+            1204,
+            275,
+            1488,
+            485
+          ],
+          [
+            44,
+            544,
+            324,
+            722
+          ],
+          [
+            416,
+            516,
+            701,
+            718
+          ],
+          [
+            784,
+            555,
+            1111,
+            714
+          ],
+          [
+            1211,
+            525,
+            1475,
+            712
+          ],
+          [
+            41,
+            772,
+            294,
+            977
+          ],
+          [
+            431,
+            748,
+            688,
+            971
+          ],
+          [
+            791,
+            769,
+            1129,
+            984
+          ],
+          [
+            1196,
+            777,
+            1463,
+            964
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production character animation source. Input image is REFERENCE of the current same creature identity; preserve species, silhouette, equipment and colors. Redraw in polished anime chibi cel shading, crisp game sprite linework, matching existing Soul of Meal. Exactly SIXTEEN complete character sprites in FOUR columns by FOUR rows, equal invisible cells. Row1 IDLE: four distinct breathing/looking poses. Row2 WALK/LOCOMOTION: four alternating steps, wing beats or floating motion. Row3 ATTACK: ready, windup, decisive contact, recovery. Row4 CAST: prepare, gather gesture, release, settle. Face three-quarter RIGHT in EVERY cell, uniform physical scale, same feet/base baseline. Zoom out: each COMPLETE actor inside CENTRAL 60 percent of its cell, leaving 20 percent transparent gutters at all edges; NO crossing cell boundaries. Full body, wings, antennae, weapon tips and tails inside cell. Transparent RGBA. No scenery, ground, shadows, text, numbers, labels, outlines, watermark or painted magic/particles. Ignore any small clipped neighbor fragments in the old reference; only redraw the central complete creature. Main identity: small actual bird-shaped ORANGE GOLD SPICE KITE, phoenix-like bird with two feather wings, long split orange leaf-shaped tail streamers, small black beak, gold-green eye mask and short gold feather crest. Ivory gold chest, bronze neck collar with hanging burnt-orange tassel, two thin dark bird legs/claws. No humanoid arms/face, no weapons. Float/hop wingbeats, peck/wing thrust attack, cast wings open. Keep tassel and streaming feather tails."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "cb9e6a72d5c0b9768c6ac17a6cccc1e314feddada047aeb3f92168acbf0e1f60",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            47,
+            47,
+            320,
+            240
+          ],
+          [
+            450,
+            70,
+            717,
+            249
+          ],
+          [
+            794,
+            24,
+            1138,
+            247
+          ],
+          [
+            1197,
+            51,
+            1472,
+            243
+          ],
+          [
+            48,
+            257,
+            331,
+            502
+          ],
+          [
+            456,
+            303,
+            744,
+            474
+          ],
+          [
+            819,
+            286,
+            1130,
+            500
+          ],
+          [
+            1206,
+            301,
+            1462,
+            491
+          ],
+          [
+            57,
+            538,
+            348,
+            719
+          ],
+          [
+            446,
+            565,
+            728,
+            713
+          ],
+          [
+            790,
+            600,
+            1124,
+            711
+          ],
+          [
+            1149,
+            602,
+            1511,
+            703
+          ],
+          [
+            56,
+            764,
+            295,
+            984
+          ],
+          [
+            436,
+            735,
+            734,
+            987
+          ],
+          [
+            824,
+            768,
+            1129,
+            973
+          ],
+          [
+            1201,
+            768,
+            1475,
+            977
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal support animation source. First image is APPROVED new action sheet; match exact anatomy, proportions, colors, equipment and rendering style. Exactly SIXTEEN complete sprites in FOUR columns by FOUR rows, equal invisible cells, transparent RGBA. Row1 SPECIAL/BRACE gestures: prepare, brace or gather, strong release, recover. These are presentation poses, no new gameplay phase. Row2 HIT: startled, recoil left, recoil back, recover. Row3 DEFEAT: stagger, crouch/sink, lie on side, final collapsed horizontal resting pose; no injury. Row4 VICTORY: proud stance, raise equipment/wing, flourish, settle. FOUR visibly different physical poses in every row. All face three-quarter RIGHT; uniform physical scale and feet/base baseline across poses. Each complete actor including long wings, antennae and equipment stays in CENTRAL60 percent of its cell with20 percent transparent gutters; zoom out, never cross/touch neighbor cells. No scenery, ground, shadow, particles, painted VFX, text, labels, outlines or watermark. Main identity: small actual bird-shaped ORANGE GOLD SPICE KITE, phoenix-like bird with two feather wings, long split orange leaf-shaped tail streamers, small black beak, gold-green eye mask and short gold feather crest. Ivory gold chest, bronze neck collar with hanging burnt-orange tassel, two thin dark bird legs/claws. No humanoid arms/face, no weapons. Float/hop wingbeats, peck/wing thrust attack, cast wings open. Keep tassel and streaming feather tails. Actual bird: no hands. Defeat folds wings then lies on side, all long tail feathers and neck tassel intact; victory raises wings."
+      }
+    ],
+    "uniformScale": 0.6187845303867403,
+    "outputs": {
+      "spice-kite-pixel.webp": {
+        "bytes": 70438,
+        "sha256": "7a42f1f15ae34a791ac07d1eaadeaf508cc4cf7956ae6648d6b9f814c587bc93"
+      },
+      "spice-kite-portrait.webp": {
+        "bytes": 13160,
+        "sha256": "8cc015dd2583efe33fa2f936ae3425a3e78a32dbcbf4e518119569eb694d1814"
+      },
+      "spice-kite.webp": {
+        "bytes": 414064,
+        "sha256": "ca9e8dc97d31077b405b898d69a0524b2715397b613df65285f01473bcd59256"
+      }
+    }
+  },
+  {
+    "id": "bronze-warden",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "special/brace",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "bossGen",
+        "sha256": "92aaf66b0fcd42539a15fe3edc2d3bc35759b3053b736d4d7813f73d220a6880",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            103,
+            48,
+            356,
+            235
+          ],
+          [
+            458,
+            45,
+            724,
+            235
+          ],
+          [
+            832,
+            51,
+            1087,
+            236
+          ],
+          [
+            1214,
+            49,
+            1471,
+            235
+          ],
+          [
+            89,
+            283,
+            359,
+            484
+          ],
+          [
+            459,
+            282,
+            730,
+            481
+          ],
+          [
+            829,
+            286,
+            1086,
+            486
+          ],
+          [
+            1209,
+            286,
+            1474,
+            485
+          ],
+          [
+            89,
+            531,
+            361,
+            721
+          ],
+          [
+            475,
+            528,
+            745,
+            722
+          ],
+          [
+            855,
+            531,
+            1125,
+            722
+          ],
+          [
+            1215,
+            528,
+            1479,
+            721
+          ],
+          [
+            88,
+            777,
+            355,
+            962
+          ],
+          [
+            473,
+            771,
+            710,
+            963
+          ],
+          [
+            840,
+            772,
+            1097,
+            964
+          ],
+          [
+            1214,
+            769,
+            1481,
+            962
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production character animation source. Input image is REFERENCE of the current same creature identity; preserve species, silhouette, equipment and colors. Redraw in polished anime chibi cel shading, crisp game sprite linework, matching existing Soul of Meal. Exactly SIXTEEN complete character sprites in FOUR columns by FOUR rows, equal invisible cells. Row1 IDLE: four distinct breathing/looking poses. Row2 WALK/LOCOMOTION: four alternating steps, wing beats or floating motion. Row3 ATTACK: ready, windup, decisive contact, recovery. Row4 CAST: prepare, gather gesture, release, settle. Face three-quarter RIGHT in EVERY cell, uniform physical scale, same feet/base baseline. Zoom out: each COMPLETE actor inside CENTRAL 60 percent of its cell, leaving 20 percent transparent gutters at all edges; NO crossing cell boundaries. Full body, wings, antennae, weapon tips and tails inside cell. Transparent RGBA. No scenery, ground, shadows, text, numbers, labels, outlines, watermark or painted magic/particles. Ignore any small clipped neighbor fragments in the old reference; only redraw the central complete creature. Main identity: squat BRONZE BELL GOLEM / WARDEN, broad cylindrical bell-shaped bronze torso engraved with GOLD floral swirls and a central JADE teardrop gem; green curled ornaments at top, no distinct human head. Small narrow dark visor high on bronze bell, chunky green-bronze arms/short feet, bronze rim along bottom. LEFT arm carries ROUND JADE SHIELD with gold eight-petal lotus in centre; RIGHT fist, no sword/spear. Heavy steps, fist punch, cast braces round shield. Preserve cylindrical bell silhouette and full shield."
+      },
+      {
+        "sheet": "bossSupport",
+        "sha256": "a0020a820ac3d3769185562f2dd4dfaa6747444f4aa9ea5ccb0771ddd5dfe81a",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            87,
+            17,
+            359,
+            238
+          ],
+          [
+            461,
+            35,
+            728,
+            238
+          ],
+          [
+            810,
+            30,
+            1112,
+            236
+          ],
+          [
+            1196,
+            27,
+            1486,
+            238
+          ],
+          [
+            79,
+            274,
+            356,
+            491
+          ],
+          [
+            441,
+            284,
+            727,
+            488
+          ],
+          [
+            820,
+            294,
+            1098,
+            490
+          ],
+          [
+            1200,
+            275,
+            1489,
+            489
+          ],
+          [
+            66,
+            515,
+            360,
+            719
+          ],
+          [
+            441,
+            553,
+            727,
+            714
+          ],
+          [
+            787,
+            564,
+            1115,
+            718
+          ],
+          [
+            1177,
+            579,
+            1490,
+            716
+          ],
+          [
+            54,
+            744,
+            358,
+            975
+          ],
+          [
+            450,
+            723,
+            725,
+            976
+          ],
+          [
+            802,
+            754,
+            1128,
+            975
+          ],
+          [
+            1197,
+            744,
+            1492,
+            976
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal support animation source. First image is APPROVED new action sheet; match exact anatomy, proportions, colors, equipment and rendering style. Exactly SIXTEEN complete sprites in FOUR columns by FOUR rows, equal invisible cells, transparent RGBA. Row1 SPECIAL/BRACE gestures: prepare, brace or gather, strong release, recover. These are presentation poses, no new gameplay phase. Row2 HIT: startled, recoil left, recoil back, recover. Row3 DEFEAT: stagger, crouch/sink, lie on side, final collapsed horizontal resting pose; no injury. Row4 VICTORY: proud stance, raise equipment/wing, flourish, settle. FOUR visibly different physical poses in every row. All face three-quarter RIGHT; uniform physical scale and feet/base baseline across poses. Each complete actor including long wings, antennae and equipment stays in CENTRAL60 percent of its cell with20 percent transparent gutters; zoom out, never cross/touch neighbor cells. No scenery, ground, shadow, particles, painted VFX, text, labels, outlines or watermark. Main identity: squat BRONZE BELL GOLEM / WARDEN, broad cylindrical bell-shaped bronze torso engraved with GOLD floral swirls and a central JADE teardrop gem; green curled ornaments at top, no distinct human head. Small narrow dark visor high on bronze bell, chunky green-bronze arms/short feet, bronze rim along bottom. LEFT arm carries ROUND JADE SHIELD with gold eight-petal lotus in centre; RIGHT fist, no sword/spear. Heavy steps, fist punch, cast braces round shield. Preserve cylindrical bell silhouette and full shield. Special row is ROUND SHIELD GUARD: left round shield lifted and braced in front of bell torso, right fist supporting. Defeat bell body lies on its SIDE, shield beside it, not an upright bell. No separate human head."
+      }
+    ],
+    "uniformScale": 0.6829268292682927,
+    "outputs": {
+      "bronze-warden-pixel.webp": {
+        "bytes": 110626,
+        "sha256": "f8f0c5772ef49e828606f03343695ddcd51d248a860655d06f90b4dc2ee054e5"
+      },
+      "bronze-warden-portrait.webp": {
+        "bytes": 14280,
+        "sha256": "163971fccffe253d99391c6cab2cc0d8a7244598a72fb5598336e3efaaa31756"
+      },
+      "bronze-warden.webp": {
+        "bytes": 463560,
+        "sha256": "95177d6ef56c00d9d331cfb56d1bbc9f46cb498447d4d8670c384dc6b89994de"
+      }
+    }
+  }
+]
