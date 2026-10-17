@@ -78,7 +78,7 @@
         "height": 568
       },
       "pose": 18,
-      "painted": 2066,
+      "painted": 2067,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -96,13 +96,13 @@
         "height": 568
       },
       "pose": 18,
-      "painted": 1538,
+      "painted": 1539,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
         "left": 18.046875,
         "right": 301.953125,
-        "height": 64,
+        "height": 80.765625,
         "arena": 162.328125
       }
     },
@@ -114,13 +114,13 @@
         "height": 568
       },
       "pose": 18,
-      "painted": 1706,
+      "painted": 1708,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
         "left": 18.046875,
         "right": 301.953125,
-        "height": 66.46875,
+        "height": 80.765625,
         "arena": 162.328125
       }
     },
@@ -180,7 +180,7 @@
         "height": 844
       },
       "pose": 18,
-      "painted": 3331,
+      "painted": 3372,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -216,12 +216,12 @@
         "height": 844
       },
       "pose": 18,
-      "painted": 3337,
+      "painted": 3331,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
-        "left": 15.185554504394531,
-        "right": 364.87305450439453,
+        "left": 20.15625,
+        "right": 369.84375,
         "height": 64,
         "arena": 451.3125
       }
@@ -234,7 +234,7 @@
         "height": 844
       },
       "pose": 18,
-      "painted": 3552,
+      "painted": 3551,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -300,12 +300,12 @@
         "height": 390
       },
       "pose": 18,
-      "painted": 803,
+      "painted": 789,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
-        "left": 66.4375,
-        "right": 753.5625,
+        "left": 78.4375,
+        "right": 765.5625,
         "height": 42,
         "arena": 89.46875
       }
@@ -318,12 +318,12 @@
         "height": 390
       },
       "pose": 18,
-      "painted": 1146,
+      "painted": 1147,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
-        "left": 66.4375,
-        "right": 753.5625,
+        "left": 77.41525268554688,
+        "right": 764.5402526855469,
         "height": 42,
         "arena": 89.46875
       }
@@ -336,7 +336,7 @@
         "height": 390
       },
       "pose": 18,
-      "painted": 874,
+      "painted": 865,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -354,7 +354,7 @@
         "height": 390
       },
       "pose": 18,
-      "painted": 935,
+      "painted": 933,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -420,7 +420,7 @@
         "height": 900
       },
       "pose": 18,
-      "painted": 4426,
+      "painted": 4400,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -438,7 +438,7 @@
         "height": 900
       },
       "pose": 18,
-      "painted": 7104,
+      "painted": 7062,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -456,7 +456,7 @@
         "height": 900
       },
       "pose": 18,
-      "painted": 4540,
+      "painted": 4525,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -474,7 +474,7 @@
         "height": 900
       },
       "pose": 18,
-      "painted": 4846,
+      "painted": 4817,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {

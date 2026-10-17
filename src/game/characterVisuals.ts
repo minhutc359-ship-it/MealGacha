@@ -113,6 +113,7 @@ const ASSET_GROUPS: ReadonlyArray<readonly [readonly string[],string]> = [
   [REGIONAL_IDS,REGIONAL_ASSET_ROOT], [SPRING_CARAVAN_IDS,SPRING_CARAVAN_ASSET_ROOT],
 ]
 export function chefPortrait(id: ChefId, expression: ChefExpression = "neutral") {
+  if (id === "chef-bach" && expression === "neutral") return "/assets/tcg/characters/anime/bach.webp"
   return `${CHEF_ASSET_ROOT}/${id}-${expression}.webp`
 }
 function manifest(id: VisualCharacterId) {

@@ -1,7 +1,7 @@
 {
   "date": "2026-10-17",
   "engine": "chromium",
-  "version": "153.0.8010.0",
+  "version": "151.0.7922.34",
   "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
   "checks": [
     {
@@ -102,7 +102,7 @@
       "layout": {
         "left": 18.046875,
         "right": 301.953125,
-        "height": 64,
+        "height": 80.765625,
         "arena": 162.328125
       }
     },
@@ -120,7 +120,7 @@
       "layout": {
         "left": 18.046875,
         "right": 301.953125,
-        "height": 66.46875,
+        "height": 80.765625,
         "arena": 162.328125
       }
     },
@@ -153,7 +153,7 @@
         "caravan-gardener"
       ],
       "realReducerEvents": true,
-      "painted": 2823,
+      "painted": 2824,
       "pauseStable": true
     },
     {
@@ -198,7 +198,7 @@
         "height": 844
       },
       "pose": 18,
-      "painted": 5172,
+      "painted": 5176,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -216,7 +216,7 @@
         "height": 844
       },
       "pose": 18,
-      "painted": 3204,
+      "painted": 3202,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -234,7 +234,7 @@
         "height": 844
       },
       "pose": 18,
-      "painted": 3387,
+      "painted": 3379,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -300,7 +300,7 @@
         "height": 390
       },
       "pose": 18,
-      "painted": 750,
+      "painted": 751,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -318,7 +318,7 @@
         "height": 390
       },
       "pose": 18,
-      "painted": 1050,
+      "painted": 1049,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -354,7 +354,7 @@
         "height": 390
       },
       "pose": 18,
-      "painted": 879,
+      "painted": 881,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -420,7 +420,7 @@
         "height": 900
       },
       "pose": 18,
-      "painted": 4373,
+      "painted": 4386,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -438,7 +438,7 @@
         "height": 900
       },
       "pose": 18,
-      "painted": 6942,
+      "painted": 6939,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {
@@ -456,7 +456,7 @@
         "height": 900
       },
       "pose": 18,
-      "painted": 4301,
+      "painted": 4299,
       "portraitMatches": true,
       "pauseSkipNoRecast": true,
       "layout": {

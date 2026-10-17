@@ -5888,6 +5888,66 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/rpg/showcase5911/ember.webp",
+      "bytes": 74288,
+      "sha256": "2452d15d7f0577f8aa68457b5439729b2469e955e31bc9d2063a725b49c54d24",
+      "origin": "Existing original project ultimate realms cropped into five square images for aspect-preserving cover backgrounds",
+      "evidence": [
+        "dev/docs/web-v5911/showcase-assets.json",
+        "dev/docs/web-v530/artwork.json",
+        "dev/tools/pack-showcase5911.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/showcase5911/grove.webp",
+      "bytes": 86654,
+      "sha256": "37be9005f7c2062af8d9b3f00e241e5f7420426a47355f6c3a93f0a5cf2c5134",
+      "origin": "Existing original project ultimate realms cropped into five square images for aspect-preserving cover backgrounds",
+      "evidence": [
+        "dev/docs/web-v5911/showcase-assets.json",
+        "dev/docs/web-v530/artwork.json",
+        "dev/tools/pack-showcase5911.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/showcase5911/hearth.webp",
+      "bytes": 86010,
+      "sha256": "b1aa27d37723b742a2a2bc59d9bc95ab6f555d6f07a10d2ab75f7988a21dd29a",
+      "origin": "Existing original project ultimate realms cropped into five square images for aspect-preserving cover backgrounds",
+      "evidence": [
+        "dev/docs/web-v5911/showcase-assets.json",
+        "dev/docs/web-v530/artwork.json",
+        "dev/tools/pack-showcase5911.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/showcase5911/sugar.webp",
+      "bytes": 82094,
+      "sha256": "1a6a822a52f39edbad79e70110bf5681afc182113bf2222301ba754245957616",
+      "origin": "Existing original project ultimate realms cropped into five square images for aspect-preserving cover backgrounds",
+      "evidence": [
+        "dev/docs/web-v5911/showcase-assets.json",
+        "dev/docs/web-v530/artwork.json",
+        "dev/tools/pack-showcase5911.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/rpg/showcase5911/tide.webp",
+      "bytes": 93098,
+      "sha256": "17a3aab8eb8c25a0cb029b78418b2d15afe1a6c833c8d328abc71e9ef39cb736",
+      "origin": "Existing original project ultimate realms cropped into five square images for aspect-preserving cover backgrounds",
+      "evidence": [
+        "dev/docs/web-v5911/showcase-assets.json",
+        "dev/docs/web-v530/artwork.json",
+        "dev/tools/pack-showcase5911.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/rpg/spirit510/portraits-1.webp",
       "bytes": 502556,
       "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe",
@@ -6676,12 +6736,12 @@
     },
     {
       "path": "public/assets/tcg/characters/anime/bach.webp",
-      "bytes": 65210,
-      "sha256": "7ba506cae21fafbaa80164aed366c8db3da92963eafbbf41fa42d7a64084d708",
-      "origin": "AI-assisted character art; style reference recorded",
+      "bytes": 104970,
+      "sha256": "f6578959e94ed30a1b5a3ff095b6b4dab4448b30f0c72b5d2fff385e7b9b7769",
+      "origin": "Owner-supplied Bach illustration, resized without cropping or repainting; publisher to verify input rights",
       "evidence": [
-        "dev/docs/anime-asset-prompts.json",
-        "dev/docs/ANIME_ASSETS.md"
+        "dev/docs/web-v5911/showcase-assets.json",
+        "dev/tools/pack-showcase5911.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

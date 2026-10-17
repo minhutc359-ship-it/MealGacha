@@ -2,7 +2,7 @@
   "date": "2026-10-17",
   "version": "5.9.11",
   "vitest": {
-    "passed": 706,
+    "passed": 707,
     "files": 67
   },
   "nodeGuardTests": 4,
@@ -31,9 +31,9 @@
     "realAutoCasts": true
   },
   "build": {
-    "bytes": 110353952,
-    "files": 683,
-    "jsGzip": 670795,
+    "bytes": 110816870,
+    "files": 688,
+    "jsGzip": 670944,
     "jsGzipLimit": 675000
   },
   "newAssets": {
@@ -50,5 +50,39 @@
   ],
   "physicalDeviceQa": "user-owned; not performed",
   "prReviewMerge": "user-owned; not performed",
-  "commercialClearance": "pending 13 existing asset evidence items"
+  "commercialClearance": "pending 13 existing asset evidence items",
+  "bannerBrowser": {
+    "chromium": 24,
+    "webkit": 24,
+    "viewports": [
+      "320x568",
+      "390x844",
+      "844x390",
+      "1440x900"
+    ],
+    "ids": [
+      "com-tam",
+      "banh-mi",
+      "goi-cuon-tom-thit",
+      "takoyaki",
+      "bingsu",
+      "chef-bach"
+    ],
+    "assertions": [
+      "full-bleed school landscape",
+      "square atlas plane",
+      "portrait source and file decode",
+      "controls beside copy and in viewport",
+      "one banner",
+      "skip closes preview"
+    ]
+  },
+  "showcaseAssets": {
+    "newRealms": 5,
+    "replacedBachIllustration": 1,
+    "registeredAssets": 630,
+    "totalRuntimeFilesBytes": 527114,
+    "netMediaAddedBytes": 461904,
+    "source": "owner attachment + existing project realm atlas"
+  }
 }

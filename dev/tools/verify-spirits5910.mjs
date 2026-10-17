@@ -258,7 +258,7 @@ try {
       assert(painted > 10)
       const banner = p.locator(`.ultimate-banner[data-showcase="${ids[i]}"]`)
       assert.match(
-        await banner.locator(".ultimate-portrait").getAttribute("style"),
+        await banner.locator(".ultimate-portrait-image").getAttribute("style"),
         new RegExp(`${assetRoot}/${ids[i]}-portrait`),
       )
       const rect = await banner.evaluate((e) => {

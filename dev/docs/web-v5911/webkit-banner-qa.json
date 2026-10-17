@@ -1,0 +1,1768 @@
+{
+  "date": "2026-10-17",
+  "engine": "webkit",
+  "version": "26.5",
+  "checks": [
+    {
+      "id": "com-tam",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "layout": {
+        "banner": {
+          "left": 17.109375,
+          "right": 302.890625,
+          "top": 180,
+          "bottom": 244,
+          "width": 285.78125,
+          "height": 64
+        },
+        "scene": {
+          "left": 18.109375,
+          "right": 301.890625,
+          "top": 181,
+          "bottom": 243,
+          "width": 283.78125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 18.109375,
+          "right": 92.109375,
+          "top": 181,
+          "bottom": 255,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 98.109375,
+          "right": 240.609375,
+          "top": 191.359375,
+          "bottom": 232.640625,
+          "width": 142.5,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 246.609375,
+          "right": 295.890625,
+          "top": 196,
+          "bottom": 228,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-1.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-1.webp",
+          "cell": 13,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 8,
+          "right": 312,
+          "top": 164,
+          "bottom": 404,
+          "width": 304,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "banh-mi",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "layout": {
+        "banner": {
+          "left": 17.109375,
+          "right": 302.890625,
+          "top": 180,
+          "bottom": 244,
+          "width": 285.78125,
+          "height": 64
+        },
+        "scene": {
+          "left": 18.109375,
+          "right": 301.890625,
+          "top": 181,
+          "bottom": 243,
+          "width": 283.78125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 18.109375,
+          "right": 92.109375,
+          "top": 181,
+          "bottom": 255,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 98.109375,
+          "right": 240.609375,
+          "top": 191.359375,
+          "bottom": 232.640625,
+          "width": 142.5,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 246.609375,
+          "right": 295.890625,
+          "top": 196,
+          "bottom": 228,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-1.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-1.webp",
+          "cell": 4,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 8,
+          "right": 312,
+          "top": 164,
+          "bottom": 404,
+          "width": 304,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "goi-cuon-tom-thit",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "layout": {
+        "banner": {
+          "left": 17.109375,
+          "right": 302.890625,
+          "top": 180,
+          "bottom": 244,
+          "width": 285.78125,
+          "height": 64
+        },
+        "scene": {
+          "left": 18.109375,
+          "right": 301.890625,
+          "top": 181,
+          "bottom": 243,
+          "width": 283.78125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 18.109375,
+          "right": 92.109375,
+          "top": 181,
+          "bottom": 255,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 98.109375,
+          "right": 240.609375,
+          "top": 191.359375,
+          "bottom": 232.640625,
+          "width": 142.5,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 246.609375,
+          "right": 295.890625,
+          "top": 196,
+          "bottom": 228,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/grove.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-7.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/grove.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-7.webp",
+          "cell": 9,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 8,
+          "right": 312,
+          "top": 164,
+          "bottom": 404,
+          "width": 304,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "takoyaki",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "layout": {
+        "banner": {
+          "left": 17.109375,
+          "right": 302.890625,
+          "top": 180,
+          "bottom": 244,
+          "width": 285.78125,
+          "height": 64
+        },
+        "scene": {
+          "left": 18.109375,
+          "right": 301.890625,
+          "top": 181,
+          "bottom": 243,
+          "width": 283.78125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 18.109375,
+          "right": 92.109375,
+          "top": 181,
+          "bottom": 255,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 98.109375,
+          "right": 240.609375,
+          "top": 191.359375,
+          "bottom": 232.640625,
+          "width": 142.5,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 246.609375,
+          "right": 295.890625,
+          "top": 196,
+          "bottom": 228,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/tide.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-5.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/tide.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-5.webp",
+          "cell": 6,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 8,
+          "right": 312,
+          "top": 164,
+          "bottom": 404,
+          "width": 304,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "bingsu",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "layout": {
+        "banner": {
+          "left": 5.109375,
+          "right": 290.890625,
+          "top": 180,
+          "bottom": 244,
+          "width": 285.78125,
+          "height": 64
+        },
+        "scene": {
+          "left": 6.109375,
+          "right": 289.890625,
+          "top": 181,
+          "bottom": 243,
+          "width": 283.78125,
+          "height": 62
+        },
+        "portrait": {
+          "left": -1.890625,
+          "right": 72.109375,
+          "top": 181,
+          "bottom": 255,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 86.109375,
+          "right": 228.609375,
+          "top": 191.359375,
+          "bottom": 232.640625,
+          "width": 142.5,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 234.609375,
+          "right": 283.890625,
+          "top": 196,
+          "bottom": 228,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/sugar.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-4.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/sugar.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-4.webp",
+          "cell": 4,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 8,
+          "right": 312,
+          "top": 164,
+          "bottom": 404,
+          "width": 304,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "chef-bach",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "layout": {
+        "banner": {
+          "left": 17.109375,
+          "right": 302.890625,
+          "top": 180,
+          "bottom": 244,
+          "width": 285.78125,
+          "height": 64
+        },
+        "scene": {
+          "left": 18.109375,
+          "right": 301.890625,
+          "top": 181,
+          "bottom": 243,
+          "width": 283.78125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 18.107879638671875,
+          "right": 92.10787963867188,
+          "top": 181,
+          "bottom": 255,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 98.109375,
+          "right": 240.609375,
+          "top": 191.359375,
+          "bottom": 232.640625,
+          "width": 142.5,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 246.609375,
+          "right": 295.890625,
+          "top": 196,
+          "bottom": 228,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/tcg/characters/anime/bach.webp\")",
+        "portraitSize": "100% 100%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/tcg/characters/anime/bach.webp",
+          "cell": 0,
+          "columns": 1
+        },
+        "sourceSize": [
+          768,
+          768
+        ],
+        "preview": {
+          "left": 8,
+          "right": 312,
+          "top": 164,
+          "bottom": 404,
+          "width": 304,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "com-tam",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "banner": {
+          "left": 20.859375,
+          "right": 369.140625,
+          "top": 318,
+          "bottom": 382,
+          "width": 348.28125,
+          "height": 64
+        },
+        "scene": {
+          "left": 21.859375,
+          "right": 368.140625,
+          "top": 319,
+          "bottom": 381,
+          "width": 346.28125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 21.859375,
+          "right": 95.859375,
+          "top": 319,
+          "bottom": 393,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 101.859375,
+          "right": 306.859375,
+          "top": 329.359375,
+          "bottom": 370.640625,
+          "width": 205,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 312.859375,
+          "right": 362.140625,
+          "top": 334,
+          "bottom": 366,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-1.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-1.webp",
+          "cell": 13,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 9.75,
+          "right": 380.25,
+          "top": 302,
+          "bottom": 542,
+          "width": 370.5,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "banh-mi",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "banner": {
+          "left": 20.859375,
+          "right": 369.140625,
+          "top": 318,
+          "bottom": 382,
+          "width": 348.28125,
+          "height": 64
+        },
+        "scene": {
+          "left": 21.859375,
+          "right": 368.140625,
+          "top": 319,
+          "bottom": 381,
+          "width": 346.28125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 21.859375,
+          "right": 95.859375,
+          "top": 319,
+          "bottom": 393,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 101.859375,
+          "right": 306.859375,
+          "top": 329.359375,
+          "bottom": 370.640625,
+          "width": 205,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 312.859375,
+          "right": 362.140625,
+          "top": 334,
+          "bottom": 366,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-1.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-1.webp",
+          "cell": 4,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 9.75,
+          "right": 380.25,
+          "top": 302,
+          "bottom": 542,
+          "width": 370.5,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "goi-cuon-tom-thit",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "banner": {
+          "left": 20.859375,
+          "right": 369.140625,
+          "top": 318,
+          "bottom": 382,
+          "width": 348.28125,
+          "height": 64
+        },
+        "scene": {
+          "left": 21.859375,
+          "right": 368.140625,
+          "top": 319,
+          "bottom": 381,
+          "width": 346.28125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 21.739952087402344,
+          "right": 95.73995208740234,
+          "top": 319,
+          "bottom": 393,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 101.859375,
+          "right": 306.859375,
+          "top": 329.359375,
+          "bottom": 370.640625,
+          "width": 205,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 312.859375,
+          "right": 362.140625,
+          "top": 334,
+          "bottom": 366,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/grove.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-7.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/grove.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-7.webp",
+          "cell": 9,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 9.75,
+          "right": 380.25,
+          "top": 302,
+          "bottom": 542,
+          "width": 370.5,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "takoyaki",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "banner": {
+          "left": 20.859375,
+          "right": 369.140625,
+          "top": 318,
+          "bottom": 382,
+          "width": 348.28125,
+          "height": 64
+        },
+        "scene": {
+          "left": 21.859375,
+          "right": 368.140625,
+          "top": 319,
+          "bottom": 381,
+          "width": 346.28125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 21.859375,
+          "right": 95.859375,
+          "top": 319,
+          "bottom": 393,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 101.859375,
+          "right": 306.859375,
+          "top": 329.359375,
+          "bottom": 370.640625,
+          "width": 205,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 312.859375,
+          "right": 362.140625,
+          "top": 334,
+          "bottom": 366,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/tide.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-5.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/tide.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-5.webp",
+          "cell": 6,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 9.75,
+          "right": 380.25,
+          "top": 302,
+          "bottom": 542,
+          "width": 370.5,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "bingsu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "banner": {
+          "left": 8.859375,
+          "right": 357.140625,
+          "top": 318,
+          "bottom": 382,
+          "width": 348.28125,
+          "height": 64
+        },
+        "scene": {
+          "left": 9.859375,
+          "right": 356.140625,
+          "top": 319,
+          "bottom": 381,
+          "width": 346.28125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 1.859375,
+          "right": 75.859375,
+          "top": 319,
+          "bottom": 393,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 89.859375,
+          "right": 294.859375,
+          "top": 329.359375,
+          "bottom": 370.640625,
+          "width": 205,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 300.859375,
+          "right": 350.140625,
+          "top": 334,
+          "bottom": 366,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/sugar.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-4.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/sugar.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-4.webp",
+          "cell": 4,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 9.75,
+          "right": 380.25,
+          "top": 302,
+          "bottom": 542,
+          "width": 370.5,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "chef-bach",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "banner": {
+          "left": 20.859375,
+          "right": 369.140625,
+          "top": 318,
+          "bottom": 382,
+          "width": 348.28125,
+          "height": 64
+        },
+        "scene": {
+          "left": 21.859375,
+          "right": 368.140625,
+          "top": 319,
+          "bottom": 381,
+          "width": 346.28125,
+          "height": 62
+        },
+        "portrait": {
+          "left": 21.714393615722656,
+          "right": 95.71439361572266,
+          "top": 319,
+          "bottom": 393,
+          "width": 74,
+          "height": 74
+        },
+        "copy": {
+          "left": 101.859375,
+          "right": 306.859375,
+          "top": 329.359375,
+          "bottom": 370.640625,
+          "width": 205,
+          "height": 41.28125
+        },
+        "control": {
+          "left": 312.859375,
+          "right": 362.140625,
+          "top": 334,
+          "bottom": 366,
+          "width": 49.28125,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/tcg/characters/anime/bach.webp\")",
+        "portraitSize": "100% 100%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/tcg/characters/anime/bach.webp",
+          "cell": 0,
+          "columns": 1
+        },
+        "sourceSize": [
+          768,
+          768
+        ],
+        "preview": {
+          "left": 9.75,
+          "right": 380.25,
+          "top": 302,
+          "bottom": 542,
+          "width": 370.5,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "com-tam",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "layout": {
+        "banner": {
+          "left": 170.59375,
+          "right": 649.40625,
+          "top": 91,
+          "bottom": 133,
+          "width": 478.8125,
+          "height": 42
+        },
+        "scene": {
+          "left": 171.59375,
+          "right": 648.40625,
+          "top": 92,
+          "bottom": 132,
+          "width": 476.8125,
+          "height": 40
+        },
+        "portrait": {
+          "left": 163.59375,
+          "right": 217.59375,
+          "top": 92,
+          "bottom": 146,
+          "width": 54,
+          "height": 54
+        },
+        "copy": {
+          "left": 231.59375,
+          "right": 536.984375,
+          "top": 98.109375,
+          "bottom": 125.890625,
+          "width": 305.390625,
+          "height": 27.78125
+        },
+        "control": {
+          "left": 576.984375,
+          "right": 636.40625,
+          "top": 96,
+          "bottom": 128,
+          "width": 59.421875,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-1.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-1.webp",
+          "cell": 13,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 137,
+          "right": 707,
+          "top": 75,
+          "bottom": 315,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "banh-mi",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "layout": {
+        "banner": {
+          "left": 182.59375,
+          "right": 661.40625,
+          "top": 91,
+          "bottom": 133,
+          "width": 478.8125,
+          "height": 42
+        },
+        "scene": {
+          "left": 183.59375,
+          "right": 660.40625,
+          "top": 92,
+          "bottom": 132,
+          "width": 476.8125,
+          "height": 40
+        },
+        "portrait": {
+          "left": 183.59375,
+          "right": 237.59375,
+          "top": 92,
+          "bottom": 146,
+          "width": 54,
+          "height": 54
+        },
+        "copy": {
+          "left": 243.59375,
+          "right": 548.984375,
+          "top": 98.109375,
+          "bottom": 125.890625,
+          "width": 305.390625,
+          "height": 27.78125
+        },
+        "control": {
+          "left": 588.984375,
+          "right": 648.40625,
+          "top": 96,
+          "bottom": 128,
+          "width": 59.421875,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-1.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-1.webp",
+          "cell": 4,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 137,
+          "right": 707,
+          "top": 75,
+          "bottom": 315,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "goi-cuon-tom-thit",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "layout": {
+        "banner": {
+          "left": 182.59375,
+          "right": 661.40625,
+          "top": 91,
+          "bottom": 133,
+          "width": 478.8125,
+          "height": 42
+        },
+        "scene": {
+          "left": 183.59375,
+          "right": 660.40625,
+          "top": 92,
+          "bottom": 132,
+          "width": 476.8125,
+          "height": 40
+        },
+        "portrait": {
+          "left": 183.59375,
+          "right": 237.59375,
+          "top": 92,
+          "bottom": 146,
+          "width": 54,
+          "height": 54
+        },
+        "copy": {
+          "left": 243.59375,
+          "right": 548.984375,
+          "top": 98.109375,
+          "bottom": 125.890625,
+          "width": 305.390625,
+          "height": 27.78125
+        },
+        "control": {
+          "left": 588.984375,
+          "right": 648.40625,
+          "top": 96,
+          "bottom": 128,
+          "width": 59.421875,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/grove.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-7.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/grove.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-7.webp",
+          "cell": 9,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 137,
+          "right": 707,
+          "top": 75,
+          "bottom": 315,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "takoyaki",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "layout": {
+        "banner": {
+          "left": 181.81759643554688,
+          "right": 660.630126953125,
+          "top": 91,
+          "bottom": 133,
+          "width": 478.8125305175781,
+          "height": 42
+        },
+        "scene": {
+          "left": 182.81759643554688,
+          "right": 659.630126953125,
+          "top": 92,
+          "bottom": 132,
+          "width": 476.8125305175781,
+          "height": 40
+        },
+        "portrait": {
+          "left": 181.364013671875,
+          "right": 235.364013671875,
+          "top": 92,
+          "bottom": 146,
+          "width": 54,
+          "height": 54
+        },
+        "copy": {
+          "left": 242.81759643554688,
+          "right": 548.208251953125,
+          "top": 98.109375,
+          "bottom": 125.890625,
+          "width": 305.3906555175781,
+          "height": 27.78125
+        },
+        "control": {
+          "left": 588.2081909179688,
+          "right": 647.6300659179688,
+          "top": 96,
+          "bottom": 128,
+          "width": 59.421875,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/tide.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-5.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/tide.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-5.webp",
+          "cell": 6,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 137,
+          "right": 707,
+          "top": 75,
+          "bottom": 315,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "bingsu",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "layout": {
+        "banner": {
+          "left": 181.8746795654297,
+          "right": 660.6871795654297,
+          "top": 91,
+          "bottom": 133,
+          "width": 478.8125,
+          "height": 42
+        },
+        "scene": {
+          "left": 182.8746795654297,
+          "right": 659.6871795654297,
+          "top": 92,
+          "bottom": 132,
+          "width": 476.8125,
+          "height": 40
+        },
+        "portrait": {
+          "left": 181.46751403808594,
+          "right": 235.46751403808594,
+          "top": 92,
+          "bottom": 146,
+          "width": 54,
+          "height": 54
+        },
+        "copy": {
+          "left": 242.8746795654297,
+          "right": 548.2653045654297,
+          "top": 98.109375,
+          "bottom": 125.890625,
+          "width": 305.390625,
+          "height": 27.78125
+        },
+        "control": {
+          "left": 588.2653198242188,
+          "right": 647.6871948242188,
+          "top": 96,
+          "bottom": 128,
+          "width": 59.421875,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/sugar.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-4.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/sugar.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-4.webp",
+          "cell": 4,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 137,
+          "right": 707,
+          "top": 75,
+          "bottom": 315,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "chef-bach",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "layout": {
+        "banner": {
+          "left": 182.59375,
+          "right": 661.40625,
+          "top": 91,
+          "bottom": 133,
+          "width": 478.8125,
+          "height": 42
+        },
+        "scene": {
+          "left": 183.59375,
+          "right": 660.40625,
+          "top": 92,
+          "bottom": 132,
+          "width": 476.8125,
+          "height": 40
+        },
+        "portrait": {
+          "left": 183.59225463867188,
+          "right": 237.59225463867188,
+          "top": 92,
+          "bottom": 146,
+          "width": 54,
+          "height": 54
+        },
+        "copy": {
+          "left": 243.59375,
+          "right": 548.984375,
+          "top": 98.109375,
+          "bottom": 125.890625,
+          "width": 305.390625,
+          "height": 27.78125
+        },
+        "control": {
+          "left": 588.984375,
+          "right": 648.40625,
+          "top": 96,
+          "bottom": 128,
+          "width": 59.421875,
+          "height": 32
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/tcg/characters/anime/bach.webp\")",
+        "portraitSize": "100% 100%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/tcg/characters/anime/bach.webp",
+          "cell": 0,
+          "columns": 1
+        },
+        "sourceSize": [
+          768,
+          768
+        ],
+        "preview": {
+          "left": 137,
+          "right": 707,
+          "top": 75,
+          "bottom": 315,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "com-tam",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "layout": {
+        "banner": {
+          "left": 440.09375,
+          "right": 975.90625,
+          "top": 346,
+          "bottom": 420,
+          "width": 535.8125,
+          "height": 74
+        },
+        "scene": {
+          "left": 441.09375,
+          "right": 974.90625,
+          "top": 347,
+          "bottom": 419,
+          "width": 533.8125,
+          "height": 72
+        },
+        "portrait": {
+          "left": 433.09375,
+          "right": 533.09375,
+          "top": 347,
+          "bottom": 447,
+          "width": 100,
+          "height": 100
+        },
+        "copy": {
+          "left": 549.09375,
+          "right": 849.484375,
+          "top": 355.765625,
+          "bottom": 410.234375,
+          "width": 300.390625,
+          "height": 54.46875
+        },
+        "control": {
+          "left": 903.484375,
+          "right": 962.90625,
+          "top": 365,
+          "bottom": 401,
+          "width": 59.421875,
+          "height": 36
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-1.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-1.webp",
+          "cell": 13,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 435,
+          "right": 1005,
+          "top": 330,
+          "bottom": 570,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "banh-mi",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "layout": {
+        "banner": {
+          "left": 452.09375,
+          "right": 987.90625,
+          "top": 346,
+          "bottom": 420,
+          "width": 535.8125,
+          "height": 74
+        },
+        "scene": {
+          "left": 453.09375,
+          "right": 986.90625,
+          "top": 347,
+          "bottom": 419,
+          "width": 533.8125,
+          "height": 72
+        },
+        "portrait": {
+          "left": 453.09375,
+          "right": 553.09375,
+          "top": 347,
+          "bottom": 447,
+          "width": 100,
+          "height": 100
+        },
+        "copy": {
+          "left": 561.09375,
+          "right": 861.484375,
+          "top": 355.765625,
+          "bottom": 410.234375,
+          "width": 300.390625,
+          "height": 54.46875
+        },
+        "control": {
+          "left": 915.484375,
+          "right": 974.90625,
+          "top": 365,
+          "bottom": 401,
+          "width": 59.421875,
+          "height": 36
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-1.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-1.webp",
+          "cell": 4,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 435,
+          "right": 1005,
+          "top": 330,
+          "bottom": 570,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "goi-cuon-tom-thit",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "layout": {
+        "banner": {
+          "left": 452.09375,
+          "right": 987.90625,
+          "top": 346,
+          "bottom": 420,
+          "width": 535.8125,
+          "height": 74
+        },
+        "scene": {
+          "left": 453.09375,
+          "right": 986.90625,
+          "top": 347,
+          "bottom": 419,
+          "width": 533.8125,
+          "height": 72
+        },
+        "portrait": {
+          "left": 453.09375,
+          "right": 553.09375,
+          "top": 347,
+          "bottom": 447,
+          "width": 100,
+          "height": 100
+        },
+        "copy": {
+          "left": 561.09375,
+          "right": 861.484375,
+          "top": 355.765625,
+          "bottom": 410.234375,
+          "width": 300.390625,
+          "height": 54.46875
+        },
+        "control": {
+          "left": 915.484375,
+          "right": 974.90625,
+          "top": 365,
+          "bottom": 401,
+          "width": 59.421875,
+          "height": 36
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/grove.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-7.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/grove.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-7.webp",
+          "cell": 9,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 435,
+          "right": 1005,
+          "top": 330,
+          "bottom": 570,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "takoyaki",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "layout": {
+        "banner": {
+          "left": 451.37469482421875,
+          "right": 987.1871948242188,
+          "top": 346,
+          "bottom": 420,
+          "width": 535.8125,
+          "height": 74
+        },
+        "scene": {
+          "left": 452.37469482421875,
+          "right": 986.1871948242188,
+          "top": 347,
+          "bottom": 419,
+          "width": 533.8125,
+          "height": 72
+        },
+        "portrait": {
+          "left": 450.9674987792969,
+          "right": 550.967529296875,
+          "top": 347,
+          "bottom": 447,
+          "width": 100.00003051757812,
+          "height": 100
+        },
+        "copy": {
+          "left": 560.3746948242188,
+          "right": 860.7653198242188,
+          "top": 355.765625,
+          "bottom": 410.234375,
+          "width": 300.390625,
+          "height": 54.46875
+        },
+        "control": {
+          "left": 914.7653198242188,
+          "right": 974.1871948242188,
+          "top": 365,
+          "bottom": 401,
+          "width": 59.421875,
+          "height": 36
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/tide.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-5.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/tide.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-5.webp",
+          "cell": 6,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 435,
+          "right": 1005,
+          "top": 330,
+          "bottom": 570,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "bingsu",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "layout": {
+        "banner": {
+          "left": 451.9882507324219,
+          "right": 987.8007507324219,
+          "top": 346,
+          "bottom": 420,
+          "width": 535.8125,
+          "height": 74
+        },
+        "scene": {
+          "left": 452.9882507324219,
+          "right": 986.8007507324219,
+          "top": 347,
+          "bottom": 419,
+          "width": 533.8125,
+          "height": 72
+        },
+        "portrait": {
+          "left": 452.2042236328125,
+          "right": 552.2042236328125,
+          "top": 347,
+          "bottom": 447,
+          "width": 100,
+          "height": 100
+        },
+        "copy": {
+          "left": 560.98828125,
+          "right": 861.37890625,
+          "top": 355.765625,
+          "bottom": 410.234375,
+          "width": 300.390625,
+          "height": 54.46875
+        },
+        "control": {
+          "left": 915.37890625,
+          "right": 974.80078125,
+          "top": 365,
+          "bottom": 401,
+          "width": 59.421875,
+          "height": 36
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/sugar.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/rpg/spirit510/portraits-4.webp\")",
+        "portraitSize": "400% 400%",
+        "scenePath": "/assets/rpg/showcase5911/sugar.webp",
+        "art": {
+          "path": "/assets/rpg/spirit510/portraits-4.webp",
+          "cell": 4,
+          "columns": 4
+        },
+        "sourceSize": [
+          1254,
+          1254
+        ],
+        "preview": {
+          "left": 435,
+          "right": 1005,
+          "top": 330,
+          "bottom": 570,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    },
+    {
+      "id": "chef-bach",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "layout": {
+        "banner": {
+          "left": 452.09375,
+          "right": 987.90625,
+          "top": 346,
+          "bottom": 420,
+          "width": 535.8125,
+          "height": 74
+        },
+        "scene": {
+          "left": 453.09375,
+          "right": 986.90625,
+          "top": 347,
+          "bottom": 419,
+          "width": 533.8125,
+          "height": 72
+        },
+        "portrait": {
+          "left": 453.0705871582031,
+          "right": 553.070556640625,
+          "top": 347,
+          "bottom": 447,
+          "width": 99.99996948242188,
+          "height": 100
+        },
+        "copy": {
+          "left": 561.09375,
+          "right": 861.484375,
+          "top": 355.765625,
+          "bottom": 410.234375,
+          "width": 300.390625,
+          "height": 54.46875
+        },
+        "control": {
+          "left": 915.484375,
+          "right": 974.90625,
+          "top": 365,
+          "bottom": 401,
+          "width": 59.421875,
+          "height": 36
+        },
+        "background": "url(\"http://127.0.0.1:4194/assets/rpg/showcase5911/hearth.webp\")",
+        "fit": "cover",
+        "portraitBackground": "url(\"http://127.0.0.1:4194/assets/tcg/characters/anime/bach.webp\")",
+        "portraitSize": "100% 100%",
+        "scenePath": "/assets/rpg/showcase5911/hearth.webp",
+        "art": {
+          "path": "/assets/tcg/characters/anime/bach.webp",
+          "cell": 0,
+          "columns": 1
+        },
+        "sourceSize": [
+          768,
+          768
+        ],
+        "preview": {
+          "left": 435,
+          "right": 1005,
+          "top": 330,
+          "bottom": 570,
+          "width": 570,
+          "height": 240
+        },
+        "count": 1
+      },
+      "skipClosesPreview": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedScenes": [
+    "/assets/rpg/showcase5911/hearth.webp",
+    "/assets/rpg/showcase5911/grove.webp",
+    "/assets/rpg/showcase5911/tide.webp",
+    "/assets/rpg/showcase5911/sugar.webp"
+  ],
+  "physicalDevice": false
+}

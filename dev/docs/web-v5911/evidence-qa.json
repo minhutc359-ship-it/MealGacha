@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-17",
+  "decodePassed": 18,
+  "showcaseAssetHashesPassed": 6,
+  "captures": [
+    {
+      "path": "dev/docs/web-v5911/evidence/autochess-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 55426,
+      "sha256": "a38e02d577bc99addd4a7a67cb6ab5da828bebc26039f0a766d97a52c0ee3f03"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/chromium-caravan-gardener-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 57510,
+      "sha256": "fd89127638ba6b19517261acf5b5d581ce4bc512701b9030a3285175f41e2b03"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/chromium-caravan-herbalist-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 57504,
+      "sha256": "8fcf8b536aac447570b6e84fcd48191e61d2d616fca4be75438b1af7e03fd3f4"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/chromium-dua-hanh-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 59252,
+      "sha256": "fb5db3b35dcab3dbae1ebc2bc82a66979db90ea45cf30de7b7216e703ee6f8b1"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/chromium-preview-chef-bach-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 25030,
+      "sha256": "457ffc19b535b008d5b0d327d65bcfa1625b73ef37e2069f923a0de42557d156"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/chromium-preview-chef-bach-844.webp",
+      "width": 844,
+      "height": 390,
+      "bytes": 27486,
+      "sha256": "3f6cf6daa75e31009b672afaad6df32a840eb34257d909ccd809e57d6176cb36"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/chromium-preview-takoyaki-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 28928,
+      "sha256": "55de2db55ca42a1edf5df43246cbeca66310348cfdcac5876f3210bdd3279597"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/chromium-preview-takoyaki-844.webp",
+      "width": 844,
+      "height": 390,
+      "bytes": 32406,
+      "sha256": "796739622c0d32acc1d33c6aede195a7ab7ae730cac538dbbb349864cb5bc7bf"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/chromium-xoi-xeo-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 58312,
+      "sha256": "c021a7a70d990d15b374db98cdbe874901ba94a11e5887dd3f4af17c49418697"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/identity-comparison.webp",
+      "width": 1200,
+      "height": 1100,
+      "bytes": 268270,
+      "sha256": "42eb553eba75294b1f8644be6b41912606434fc75125becf6a347507e2003222"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/pose-contact.webp",
+      "width": 2048,
+      "height": 1152,
+      "bytes": 290020,
+      "sha256": "91f89f04c5e1c172f9c76e9e47413e63f370f638655b1f32fd81d23b955e73c0"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/tcg-attack.webp",
+      "width": 1280,
+      "height": 800,
+      "bytes": 98620,
+      "sha256": "ac73baaaede712f6fc1cc5818d0d7a9e1c33ed52884bfabaac20f4efe3678b4c"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/webkit-autochess-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 57004,
+      "sha256": "8819b68dbd1b4d40e51ec5753ef6d7726abc74fee0916d68272c325360bd0451"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/webkit-caravan-herbalist-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 64188,
+      "sha256": "78baa70a68a71e0ab1bea0e07bf2865a0a1d436f632a02121ae4cd591a8e70ca"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/webkit-preview-chef-bach-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 42496,
+      "sha256": "08e748b17362b9f1380aacfd5e46cdcbc234984276855a6852397427acd97bfb"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/webkit-preview-chef-bach-844.webp",
+      "width": 844,
+      "height": 390,
+      "bytes": 35440,
+      "sha256": "fb1964ace54c94e14120fbf3335de33fc1bfd1b8685150bbe356c9962d81d149"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/webkit-preview-takoyaki-390.webp",
+      "width": 390,
+      "height": 844,
+      "bytes": 46534,
+      "sha256": "f14f37beb373954b3418a0fd0fd41d4a6aac44a82363155a831bd7a355b62f48"
+    },
+    {
+      "path": "dev/docs/web-v5911/evidence/webkit-preview-takoyaki-844.webp",
+      "width": 844,
+      "height": 390,
+      "bytes": 40306,
+      "sha256": "1c721db2648d1f0d5a58237cd49255b75c28c4978b3a6728d995605e999c7fb6"
+    }
+  ]
+}

@@ -5,14 +5,14 @@
   "results": [
     {
       "route": "/",
-      "deliveredBodyBytes": 3184748,
+      "deliveredBodyBytes": 3185762,
       "requests": 83,
       "budget": {
         "targetBytes": 8000000,
         "limitBytes": 12000000,
         "warning": false,
         "exceeded": false,
-        "remainingBytes": 8815252
+        "remainingBytes": 8814238
       },
       "media": [
         {
@@ -46,14 +46,14 @@
     },
     {
       "route": "/adventure",
-      "deliveredBodyBytes": 4360189,
-      "requests": 81,
+      "deliveredBodyBytes": 4361203,
+      "requests": 84,
       "budget": {
         "targetBytes": 8000000,
         "limitBytes": 12000000,
         "warning": false,
         "exceeded": false,
-        "remainingBytes": 7639811
+        "remainingBytes": 7638797
       },
       "media": [
         {
@@ -67,16 +67,6 @@
           "status": 200
         },
         {
-          "url": "/assets/brand/soul-of-meal.webp",
-          "bytes": 0,
-          "status": 304
-        },
-        {
-          "url": "/assets/rpg/village580/crossroads.webp",
-          "bytes": 0,
-          "status": 304
-        },
-        {
           "url": "/assets/characters/starters590/village-pixel.webp",
           "bytes": 347736,
           "status": 200
@@ -85,6 +75,16 @@
           "url": "/assets/characters/chefs593/exploration.webp",
           "bytes": 255970,
           "status": 200
+        },
+        {
+          "url": "/assets/brand/soul-of-meal.webp",
+          "bytes": 0,
+          "status": 304
+        },
+        {
+          "url": "/assets/rpg/village580/crossroads.webp",
+          "bytes": 0,
+          "status": 304
         }
       ],
       "serviceWorkerInstalled": true,
@@ -92,14 +92,14 @@
     },
     {
       "route": "/autochess",
-      "deliveredBodyBytes": 3552741,
+      "deliveredBodyBytes": 3553755,
       "requests": 83,
       "budget": {
         "targetBytes": 8000000,
         "limitBytes": 12000000,
         "warning": false,
         "exceeded": false,
-        "remainingBytes": 8447259
+        "remainingBytes": 8446245
       },
       "media": [
         {

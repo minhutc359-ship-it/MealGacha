@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-17",
+  "encoding": "WebP quality 83 method 6",
+  "assets": [
+    {
+      "path": "public/assets/rpg/showcase5911/hearth.webp",
+      "width": 512,
+      "height": 512,
+      "bytes": 86010,
+      "sha256": "b1aa27d37723b742a2a2bc59d9bc95ab6f555d6f07a10d2ab75f7988a21dd29a",
+      "school": "hearth",
+      "source": "dev/docs/web-v530/environments.webp",
+      "sourceSHA256": "04b50dfdbab1b971a282798c9f0092641929f08eee41b6915297926c03dd8d18",
+      "crop": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "provenance": "Existing project AI-assisted environment; dev/docs/web-v530/artwork.json"
+    },
+    {
+      "path": "public/assets/rpg/showcase5911/ember.webp",
+      "width": 512,
+      "height": 512,
+      "bytes": 74288,
+      "sha256": "2452d15d7f0577f8aa68457b5439729b2469e955e31bc9d2063a725b49c54d24",
+      "school": "ember",
+      "source": "dev/docs/web-v530/environments.webp",
+      "sourceSHA256": "04b50dfdbab1b971a282798c9f0092641929f08eee41b6915297926c03dd8d18",
+      "crop": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "provenance": "Existing project AI-assisted environment; dev/docs/web-v530/artwork.json"
+    },
+    {
+      "path": "public/assets/rpg/showcase5911/grove.webp",
+      "width": 512,
+      "height": 512,
+      "bytes": 86654,
+      "sha256": "37be9005f7c2062af8d9b3f00e241e5f7420426a47355f6c3a93f0a5cf2c5134",
+      "school": "grove",
+      "source": "dev/docs/web-v530/environments.webp",
+      "sourceSHA256": "04b50dfdbab1b971a282798c9f0092641929f08eee41b6915297926c03dd8d18",
+      "crop": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "provenance": "Existing project AI-assisted environment; dev/docs/web-v530/artwork.json"
+    },
+    {
+      "path": "public/assets/rpg/showcase5911/tide.webp",
+      "width": 512,
+      "height": 512,
+      "bytes": 93098,
+      "sha256": "17a3aab8eb8c25a0cb029b78418b2d15afe1a6c833c8d328abc71e9ef39cb736",
+      "school": "tide",
+      "source": "dev/docs/web-v530/environments.webp",
+      "sourceSHA256": "04b50dfdbab1b971a282798c9f0092641929f08eee41b6915297926c03dd8d18",
+      "crop": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "provenance": "Existing project AI-assisted environment; dev/docs/web-v530/artwork.json"
+    },
+    {
+      "path": "public/assets/rpg/showcase5911/sugar.webp",
+      "width": 512,
+      "height": 512,
+      "bytes": 82094,
+      "sha256": "1a6a822a52f39edbad79e70110bf5681afc182113bf2222301ba754245957616",
+      "school": "sugar",
+      "source": "dev/docs/web-v530/environments.webp",
+      "sourceSHA256": "04b50dfdbab1b971a282798c9f0092641929f08eee41b6915297926c03dd8d18",
+      "crop": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "provenance": "Existing project AI-assisted environment; dev/docs/web-v530/artwork.json"
+    },
+    {
+      "path": "public/assets/tcg/characters/anime/bach.webp",
+      "width": 768,
+      "height": 768,
+      "bytes": 104970,
+      "sha256": "f6578959e94ed30a1b5a3ff095b6b4dab4448b30f0c72b5d2fff385e7b9b7769",
+      "id": "chef-bach",
+      "source": "Owner attachment image(3).png",
+      "sourceSHA256": "7a36841d1f41505e3f024d10cf50092821627caae36c4ecbb823fc4137e30ed8",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "libraryFileId": "libfile_77aebffeaed88191a266b14c31f6654b",
+      "transformation": "Full illustration resized to 768 square; no crop or repaint",
+      "identity": "Dark swept hair, moustache/stubble, ivory shirt, burgundy apron, recipe book and ladle",
+      "provenance": "Owner-supplied illustration; input rights remain subject to publisher verification"
+    }
+  ],
+  "rights": "Provenance record only; not a certificate of ownership or commercial clearance."
+}

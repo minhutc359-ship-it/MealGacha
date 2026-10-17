@@ -1,7 +1,7 @@
 {
   "date": "2026-10-17",
   "engine": "chromium",
-  "version": "153.0.8010.0",
+  "version": "151.0.7922.34",
   "checks": [
     {
       "area": "autochess",
