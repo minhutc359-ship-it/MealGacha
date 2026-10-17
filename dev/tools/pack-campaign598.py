@@ -1,5 +1,5 @@
 """Register Imagegen actors, retaining authored pixels; no synthetic poses.
-Usage: python3 dev/tools/pack-campaign598.py /path/to/sources.json [campaign598|campaign599] [--append]
+Usage: python3 dev/tools/pack-campaign598.py /path/to/sources.json [campaign598|campaign599|regional5910] [--append]
 Two 4x4 source sheets per actor, registered into eight states x four poses.
 """
 import hashlib, json, sys
@@ -9,16 +9,16 @@ from scipy.ndimage import label, find_objects
 from PIL import Image, ImageOps
 ROOT = Path(__file__).resolve().parents[2]
 group=sys.argv[2] if len(sys.argv)>2 else 'campaign598'
-if group not in ['campaign598','campaign599']: raise ValueError('Unknown visual cohort')
+if group not in ['campaign598','campaign599','regional5910']: raise ValueError('Unknown visual cohort')
 OUT = ROOT/'public/assets/characters'/group
-DOC = ROOT/'dev/docs'/('web-v'+group.removeprefix('campaign'))
+DOC = ROOT/'dev/docs'/('web-v'+group.removeprefix('campaign').removeprefix('regional'))
 OUT.mkdir(parents=True, exist_ok=True); DOC.mkdir(parents=True, exist_ok=True)
 entries=json.loads(Path(sys.argv[1]).read_text())
 ids=list(dict.fromkeys(e['id'] for e in entries))
 report=[]
 for actor in ids:
     tiles=[]; sources=[]
-    for kind in ['bossGen:', 'bossSupport:']:
+    for kind in (['poses','support'] if group=='regional5910' else ['bossGen:', 'bossSupport:']):
         e=next(e for e in entries if e['id']==actor and e['kind']==kind)
         raw=Path(e['source']).read_bytes(); src=Image.open(e['source']).convert('RGBA')
         pixels=np.array(src); labels,n=label(pixels[:,:,3]>32)
@@ -65,9 +65,18 @@ for actor in ids:
         atlas.alpha_composite(t,((i%4)*256+(256-t.width)//2,(i//4)*256+240-t.height))
     atlas.save(OUT/f'{actor}.webp','WEBP',quality=88,method=6)
     atlas.resize((256,512),Image.Resampling.NEAREST).save(OUT/f'{actor}-pixel.webp','WEBP',lossless=True,method=6)
-    # A crop of authored idle art, no new identity/portrait invented.
-    atlas.crop((0,0,256,256)).save(OUT/f'{actor}-portrait.webp','WEBP',quality=90,method=6)
-    report.append({'id':actor,'frames':32,'states':['idle','walk','attack','cast','special/brace' if group=='campaign599' else 'phase','hit','fall','victory'],'tool':'built-in Imagegen','generatedOn':'2026-10-17','sources':sources,'uniformScale':scale,'outputs':{p.name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(OUT.glob(f'{actor}*.webp'))}})
+    # Enemies reuse idle; hero cohorts keep their authored standalone portrait.
+    if group!='regional5910':
+        atlas.crop((0,0,256,256)).save(OUT/f'{actor}-portrait.webp','WEBP',quality=90,method=6)
+    else:
+        portrait=next(e for e in entries if e['id']==actor and e['kind']=='portrait')
+        raw=Path(portrait['source']).read_bytes(); image=Image.open(portrait['source']).convert('RGB')
+        if image.width!=image.height:raise ValueError('Portrait must be square')
+        image.resize((512,512),Image.Resampling.LANCZOS).save(OUT/f'{actor}-portrait.webp','WEBP',quality=88,method=6)
+        sources.append({'sheet':'portrait','sha256':hashlib.sha256(raw).hexdigest(),'size':list(image.size),'prompt':portrait['prompt']})
+        if portrait.get('revision'):
+            r=portrait['revision'];sources[-1]['revision']={'reason':r['reason'],'sourceSha256':hashlib.sha256(Path(r['source']).read_bytes()).hexdigest(),'prompt':r['prompt']}
+    report.append({'id':actor,'frames':32,'states':['idle','walk','attack','cast','ultimate' if group=='regional5910' else 'special/brace' if group=='campaign599' else 'phase','hit','fall','victory'],'tool':'built-in Imagegen','generatedOn':'2026-10-17','sources':sources,'uniformScale':scale,'outputs':{p.name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(OUT.glob(f'{actor}*.webp'))}})
 if '--append' in sys.argv[3:] and (DOC/'asset-provenance.json').exists():
     report=[e for e in json.loads((DOC/'asset-provenance.json').read_text()) if e['id'] not in ids]+report
 (DOC/'asset-provenance.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

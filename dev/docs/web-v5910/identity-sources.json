@@ -1,0 +1,70 @@
+[
+  {
+    "id": "banh-tet",
+    "canon": "Existing Auto Chess/TCG runtime model, not the mismatched old spirit portrait",
+    "sheet": "rosterD",
+    "path": "/assets/characters/rosterD.webp",
+    "row": 1,
+    "referenceFrame": [
+      10,
+      338,
+      169,
+      277,
+      90.5,
+      277
+    ],
+    "atlasSha256": "c4f0ab1667fefdcae6e2395cea41b0126f24c8c3b2cc9fdc8dcd8c6ceb457227",
+    "referenceCropSha256": "6ba41a9b43c00945ce874126e06b2cf9ff4fece0593be703c0d46004cbe25ede"
+  },
+  {
+    "id": "bun-bo-hue",
+    "canon": "Existing Auto Chess/TCG runtime model, not the mismatched old spirit portrait",
+    "sheet": "rosterE",
+    "path": "/assets/characters/rosterE.webp",
+    "row": 2,
+    "referenceFrame": [
+      6,
+      658,
+      173,
+      262,
+      70.5,
+      262
+    ],
+    "atlasSha256": "f2e78c4683b2b3b3b5511118598a73613c8ed74b1b76d8eb76b04a6f8eaa4627",
+    "referenceCropSha256": "d580e217589121c636f3cd39c93e567a2b66ec7ef9d608e4838ae1a215faaf02"
+  },
+  {
+    "id": "bun-ca",
+    "canon": "Existing Auto Chess/TCG runtime model, not the mismatched old spirit portrait",
+    "sheet": "rosterF",
+    "path": "/assets/characters/rosterF.webp",
+    "row": 0,
+    "referenceFrame": [
+      7,
+      114,
+      172,
+      216,
+      58.5,
+      216
+    ],
+    "atlasSha256": "f9015ae26d70d9259ff0b57d80bca50c7677aeef5c030dede289a1fde8106e08",
+    "referenceCropSha256": "5ed09ffca05420152d198327022c2e9573d59a84d450bb9d2af3ff1654b2b0f2"
+  },
+  {
+    "id": "che-buoi",
+    "canon": "Existing Auto Chess/TCG runtime model, not the mismatched old spirit portrait",
+    "sheet": "rosterE",
+    "path": "/assets/characters/rosterE.webp",
+    "row": 3,
+    "referenceFrame": [
+      6,
+      953,
+      169,
+      274,
+      71.5,
+      274
+    ],
+    "atlasSha256": "f2e78c4683b2b3b3b5511118598a73613c8ed74b1b76d8eb76b04a6f8eaa4627",
+    "referenceCropSha256": "fe91103cac7eb2d810d27cd9a605897252002f77a32f9b2f9d74cc02714f4c57"
+  }
+]
