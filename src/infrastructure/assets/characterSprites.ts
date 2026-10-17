@@ -89,6 +89,7 @@ export function unitCharacter(id: string): CharacterModel {
     id,
     name:
       unit?.spirit ??
+      visual?.species ??
       (id === "caravan-herbalist" ? "Người hái thuốc" : "Người gieo vườn"),
     showcase: sheet === "base" ? FLAVOR_SPIRITS[unit.school].art : undefined,
   }

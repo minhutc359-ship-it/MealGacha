@@ -1,0 +1,2016 @@
+[
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 1,
+      "globalCell": 1,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "id": "pho-ga",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "1233bc7e76ddb04b292485c94f5bacc7106ea31574f5a82c3c2868baba0413f4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            18,
+            23,
+            302,
+            317
+          ],
+          [
+            344,
+            23,
+            609,
+            317
+          ],
+          [
+            658,
+            23,
+            910,
+            317
+          ],
+          [
+            967,
+            21,
+            1241,
+            317
+          ],
+          [
+            14,
+            340,
+            300,
+            620
+          ],
+          [
+            336,
+            340,
+            612,
+            621
+          ],
+          [
+            646,
+            341,
+            919,
+            619
+          ],
+          [
+            959,
+            340,
+            1249,
+            621
+          ],
+          [
+            8,
+            656,
+            300,
+            923
+          ],
+          [
+            321,
+            659,
+            644,
+            922
+          ],
+          [
+            645,
+            650,
+            940,
+            922
+          ],
+          [
+            940,
+            660,
+            1243,
+            923
+          ],
+          [
+            15,
+            957,
+            300,
+            1236
+          ],
+          [
+            325,
+            954,
+            626,
+            1236
+          ],
+          [
+            634,
+            958,
+            974,
+            1237
+          ],
+          [
+            985,
+            962,
+            1240,
+            1237
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production combat animation atlas. Transform the character from reference image 1 into a consistent full-body battle sprite; reference 1 is the ONLY identity source. Reference image 2 is only the established project cel-shaded chibi rendering and transparent-grid style; never copy its pangolin species, rice bowl or clothing. Subject: White fox spirit with long pointed ears, golden amber eyes, flowing white tail, ornate jade-and-gold forehead crown and earrings, cream and pale mint layered robes with black-gold chest and large oval jade pendant. Preserve the fox muzzle, white fur and regalia from reference 1. Style: polished original anime RPG cel shading, readable silhouette and clothing, about three heads tall, same species, face, apparent age, clothing palette and jewelry in every cell. Exactly FOUR columns by FOUR rows, SIXTEEN completely isolated full-body figures, regular equal square cells, square 1024x1024 canvas. All face three-quarter RIGHT. Uniform scale, feet on the same baseline within each cell. Each full silhouette including crown, antlers, wings, tail, staff and sleeves stays within its own cell with generous transparent gutters of at least 24 pixels. Genuinely transparent RGBA background, no grey/checkerboard, no stage/floor, no labels, letters, numbers, logos, UI, borders or grid lines. Do not reuse an identical pose. Keep effects small and attached to the hands/weapon, no huge circles, floor shadows, opaque aura or separate floating effects. Do not crop any figure. Layout is for sprites, not a portrait gallery. Rows from TOP to BOTTOM: row 1 idle, four varied breathing/blinking poses; row 2 walking, four visibly different alternating steps; row 3 attack, four consecutive frames: ready, windup, decisive contact, recovery; row 4 casting, four consecutive frames: prepare, gather, release, settle. Character-specific action direction: gentle upright breathing with tail sway; smooth biped walking with alternating feet and robe movement; quick right-paw swipe then open-palm contact and recoil; gather and release two slender white vapor ribbons from jade wrist ornaments. Exactly 16 poses, not 12 or 20."
+      },
+      {
+        "sheet": "support",
+        "sha256": "17aa76df52d90a305f1e4beb316fac836ccb185b0c2a749c048b7dec9ae78e1e",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            13,
+            26,
+            305,
+            312
+          ],
+          [
+            320,
+            26,
+            629,
+            314
+          ],
+          [
+            643,
+            41,
+            944,
+            313
+          ],
+          [
+            958,
+            26,
+            1236,
+            317
+          ],
+          [
+            11,
+            344,
+            327,
+            627
+          ],
+          [
+            322,
+            334,
+            620,
+            636
+          ],
+          [
+            635,
+            402,
+            942,
+            631
+          ],
+          [
+            948,
+            349,
+            1235,
+            633
+          ],
+          [
+            16,
+            642,
+            321,
+            927
+          ],
+          [
+            313,
+            683,
+            642,
+            925
+          ],
+          [
+            627,
+            750,
+            940,
+            923
+          ],
+          [
+            940,
+            782,
+            1254,
+            922
+          ],
+          [
+            22,
+            940,
+            309,
+            1232
+          ],
+          [
+            328,
+            940,
+            651,
+            1232
+          ],
+          [
+            648,
+            940,
+            932,
+            1234
+          ],
+          [
+            945,
+            940,
+            1249,
+            1232
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal final production sprite atlas, second action sheet. Input image 1 is the existing canon portrait (identity and regalia); input image 2 is this SAME character's first 16 poses (full body, proportions, clothing, rendering). Preserve the identical character from both references. Subject: White fox spirit with long pointed ears, golden amber eyes, flowing white tail, ornate jade-and-gold forehead crown and earrings, cream and pale mint layered robes with black-gold chest and large oval jade pendant. Preserve the fox muzzle, white fur and regalia from reference 1. Generate exactly SIXTEEN NEW isolated FULL-BODY poses in a strictly regular FOUR-column by FOUR-row square 1024x1024 sprite sheet. Do not repeat the idle/walk/attack/cast rows from image 2. Four equal rows from top to bottom: ROW 1 ULTIMATE with preparation, powerful physical casting gesture, decisive impact gesture, relaxed recovery; ROW 2 TAKING HIT with recoil, stronger recoil, regaining balance, settling; ROW 3 FALLING with stagger, kneel, collapse sideways, lying safely on the ground; ROW 4 VICTORY with four cheerful character-specific gestures and expressions. For the ultimate, the fox extends both wrists, koi sweeps fin palms, owl opens wings, wolf lifts paws and howls, turtle plants feet with shell forward, butterfly fae lifts folded palms and opens wings, deer raises branching antlers and palms, dragon lifts and plants the staff; use ONLY the relevant species. All poses face three-quarter RIGHT and maintain the same uniform body scale. Keep all crowns, whiskers, wings, antlers, tails, sleeves, staff tips and lying figures completely visible in their own square cell, with generous empty transparent gutters on all sides. Compact figures occupying at most 68% of a cell so wide fallen poses fit. Genuinely transparent RGBA background. NO spell VFX, magic ribbons, particles, halos, fog, cast circles, floor shadows, stage, UI, text, labels, grid lines, borders or other characters; runtime will provide effects. Exactly 16 distinct poses of this one character, not multiple characters. Refined cel-shaded project battle-sprite style."
+      }
+    ],
+    "uniformScale": 0.6588235294117647,
+    "outputs": {
+      "pho-ga-pixel.webp": {
+        "bytes": 136958,
+        "sha256": "dfed3e9cf5cecb4a0634abcf0553b6d072db4ff9c08f397551391194ed065b69"
+      },
+      "pho-ga.webp": {
+        "bytes": 662876,
+        "sha256": "93cfb03b8b819d1d3d25e37ad3084812e69d6185c167959e400fff15ee5d0465"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 7,
+      "globalCell": 7,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "id": "chao-suon",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "e59982333025e782b271782dc1cfb65dccb41abe4f192af6064b22ed202af86d",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            31,
+            63,
+            290,
+            310
+          ],
+          [
+            346,
+            63,
+            625,
+            310
+          ],
+          [
+            656,
+            66,
+            915,
+            311
+          ],
+          [
+            967,
+            74,
+            1223,
+            312
+          ],
+          [
+            39,
+            380,
+            308,
+            613
+          ],
+          [
+            349,
+            377,
+            633,
+            613
+          ],
+          [
+            668,
+            385,
+            946,
+            614
+          ],
+          [
+            971,
+            378,
+            1232,
+            616
+          ],
+          [
+            32,
+            689,
+            312,
+            915
+          ],
+          [
+            333,
+            691,
+            616,
+            917
+          ],
+          [
+            636,
+            696,
+            962,
+            917
+          ],
+          [
+            972,
+            695,
+            1234,
+            917
+          ],
+          [
+            40,
+            978,
+            306,
+            1207
+          ],
+          [
+            339,
+            975,
+            616,
+            1208
+          ],
+          [
+            637,
+            970,
+            967,
+            1207
+          ],
+          [
+            930,
+            974,
+            1224,
+            1208
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production combat animation atlas. Transform the character from reference image 1 into a consistent full-body battle sprite; reference 1 is the ONLY identity source. Reference image 2 is only the established project cel-shaded chibi rendering and transparent-grid style; never copy its pangolin species, rice bowl or clothing. Subject: Anthropomorphic orange-and-white koi fish spirit, round amber eyes, fine long white barbels, dorsal fin crest and orange tail, black and gold ceremonial coat, ivory inner robes, jade earrings and round jade pendant. Keep fish anatomy and scales; never a human or dragon head. Style: polished original anime RPG cel shading, readable silhouette and clothing, about three heads tall, same species, face, apparent age, clothing palette and jewelry in every cell. Exactly FOUR columns by FOUR rows, SIXTEEN completely isolated full-body figures, regular equal square cells, square 1024x1024 canvas. All face three-quarter RIGHT. Uniform scale, feet on the same baseline within each cell. Each full silhouette including crown, antlers, wings, tail, staff and sleeves stays within its own cell with generous transparent gutters of at least 24 pixels. Genuinely transparent RGBA background, no grey/checkerboard, no stage/floor, no labels, letters, numbers, logos, UI, borders or grid lines. Do not reuse an identical pose. Keep effects small and attached to the hands/weapon, no huge circles, floor shadows, opaque aura or separate floating effects. Do not crop any figure. Layout is for sprites, not a portrait gallery. Rows from TOP to BOTTOM: row 1 idle, four varied breathing/blinking poses; row 2 walking, four visibly different alternating steps; row 3 attack, four consecutive frames: ready, windup, decisive contact, recovery; row 4 casting, four consecutive frames: prepare, gather, release, settle. Character-specific action direction: steady upright breathing with fins resting; short deliberate biped steps with tail sway; forward fin-palm strike with visible ready/windup/contact/recovery; guide a small curved water ribbon between both fin-hands. Exactly 16 poses, not 12 or 20. Leave visibly empty space around every figure: full silhouette must occupy no more than 70 percent of its cell width and height. Especially keep wing tips, fins, ears, jewelry and tail clear of all neighboring figures."
+      },
+      {
+        "sheet": "support",
+        "sha256": "ba3e2d7ab3c0024cc341e86ad3a97d2e9eb6ace6542ad7eeb48b6a7876c6a25a",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            25,
+            42,
+            304,
+            312
+          ],
+          [
+            319,
+            38,
+            614,
+            312
+          ],
+          [
+            627,
+            55,
+            954,
+            312
+          ],
+          [
+            963,
+            48,
+            1239,
+            314
+          ],
+          [
+            30,
+            352,
+            308,
+            614
+          ],
+          [
+            332,
+            373,
+            623,
+            615
+          ],
+          [
+            642,
+            378,
+            952,
+            619
+          ],
+          [
+            967,
+            361,
+            1240,
+            622
+          ],
+          [
+            22,
+            656,
+            309,
+            907
+          ],
+          [
+            323,
+            671,
+            606,
+            900
+          ],
+          [
+            620,
+            738,
+            934,
+            894
+          ],
+          [
+            938,
+            746,
+            1243,
+            890
+          ],
+          [
+            28,
+            943,
+            303,
+            1218
+          ],
+          [
+            344,
+            946,
+            619,
+            1212
+          ],
+          [
+            648,
+            938,
+            930,
+            1213
+          ],
+          [
+            963,
+            943,
+            1229,
+            1215
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal final production sprite atlas, second action sheet. Input image 1 is the existing canon portrait (identity and regalia); input image 2 is this SAME character's first 16 poses (full body, proportions, clothing, rendering). Preserve the identical character from both references. Subject: Anthropomorphic orange-and-white koi fish spirit, round amber eyes, fine long white barbels, dorsal fin crest and orange tail, black and gold ceremonial coat, ivory inner robes, jade earrings and round jade pendant. Keep fish anatomy and scales; never a human or dragon head. Generate exactly SIXTEEN NEW isolated FULL-BODY poses in a strictly regular FOUR-column by FOUR-row square 1024x1024 sprite sheet. Do not repeat the idle/walk/attack/cast rows from image 2. Four equal rows from top to bottom: ROW 1 ULTIMATE with preparation, powerful physical casting gesture, decisive impact gesture, relaxed recovery; ROW 2 TAKING HIT with recoil, stronger recoil, regaining balance, settling; ROW 3 FALLING with stagger, kneel, collapse sideways, lying safely on the ground; ROW 4 VICTORY with four cheerful character-specific gestures and expressions. For the ultimate, the fox extends both wrists, koi sweeps fin palms, owl opens wings, wolf lifts paws and howls, turtle plants feet with shell forward, butterfly fae lifts folded palms and opens wings, deer raises branching antlers and palms, dragon lifts and plants the staff; use ONLY the relevant species. All poses face three-quarter RIGHT and maintain the same uniform body scale. Keep all crowns, whiskers, wings, antlers, tails, sleeves, staff tips and lying figures completely visible in their own square cell, with generous empty transparent gutters on all sides. Compact figures occupying at most 68% of a cell so wide fallen poses fit. Genuinely transparent RGBA background. NO spell VFX, magic ribbons, particles, halos, fog, cast circles, floor shadows, stage, UI, text, labels, grid lines, borders or other characters; runtime will provide effects. Exactly 16 distinct poses of this one character, not multiple characters. Refined cel-shaded project battle-sprite style."
+      }
+    ],
+    "uniformScale": 0.6787878787878788,
+    "outputs": {
+      "chao-suon-pixel.webp": {
+        "bytes": 127602,
+        "sha256": "c87212d3f3a3651f74a39eda75809486322f9ea2c27f8b2a79bcc051e44a657e"
+      },
+      "chao-suon.webp": {
+        "bytes": 578682,
+        "sha256": "9dd5d43cd7a5df870f19160197e313abc2d6d4d16fd971172bb3f050ada7298c"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 8,
+      "globalCell": 8,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "id": "mien-ga",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "cb9901d95867790ae77e4923ee0aca327727e5c15da76a2610d226b0268c8bfa",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            25,
+            43,
+            267,
+            313
+          ],
+          [
+            345,
+            42,
+            589,
+            314
+          ],
+          [
+            658,
+            42,
+            901,
+            312
+          ],
+          [
+            969,
+            51,
+            1218,
+            312
+          ],
+          [
+            28,
+            353,
+            284,
+            614
+          ],
+          [
+            353,
+            352,
+            605,
+            614
+          ],
+          [
+            657,
+            351,
+            905,
+            613
+          ],
+          [
+            975,
+            352,
+            1228,
+            614
+          ],
+          [
+            20,
+            673,
+            317,
+            913
+          ],
+          [
+            337,
+            645,
+            625,
+            916
+          ],
+          [
+            629,
+            671,
+            954,
+            913
+          ],
+          [
+            965,
+            682,
+            1242,
+            908
+          ],
+          [
+            33,
+            940,
+            304,
+            1207
+          ],
+          [
+            332,
+            941,
+            622,
+            1208
+          ],
+          [
+            638,
+            952,
+            961,
+            1207
+          ],
+          [
+            968,
+            937,
+            1225,
+            1207
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production combat animation atlas. Transform the character from reference image 1 into a consistent full-body battle sprite; reference 1 is the ONLY identity source. Reference image 2 is only the established project cel-shaded chibi rendering and transparent-grid style; never copy its pangolin species, rice bowl or clothing. Subject: Silver-grey owl spirit, white face disk and long silver ear tufts, golden amber eyes, small dark beak, jade-and-gold head chain and earrings, black-gold scholar coat and ivory sash, jade round pendant, feathered wing-arms and taloned feet. Style: polished original anime RPG cel shading, readable silhouette and clothing, about three heads tall, same species, face, apparent age, clothing palette and jewelry in every cell. Exactly FOUR columns by FOUR rows, SIXTEEN completely isolated full-body figures, regular equal square cells, square 1024x1024 canvas. All face three-quarter RIGHT. Uniform scale, feet on the same baseline within each cell. Each full silhouette including crown, antlers, wings, tail, staff and sleeves stays within its own cell with generous transparent gutters of at least 24 pixels. Genuinely transparent RGBA background, no grey/checkerboard, no stage/floor, no labels, letters, numbers, logos, UI, borders or grid lines. Do not reuse an identical pose. Keep effects small and attached to the hands/weapon, no huge circles, floor shadows, opaque aura or separate floating effects. Do not crop any figure. Layout is for sprites, not a portrait gallery. Rows from TOP to BOTTOM: row 1 idle, four varied breathing/blinking poses; row 2 walking, four visibly different alternating steps; row 3 attack, four consecutive frames: ready, windup, decisive contact, recovery; row 4 casting, four consecutive frames: prepare, gather, release, settle. Character-specific action direction: calm breathing with a subtle blink; light biped walking with tucked wings and alternating talons; wing-edge sweep with feather contact; raise wing-arms to guide a tiny spiral of air and feathers. Exactly 16 poses, not 12 or 20. Leave visibly empty space around every figure: full silhouette must occupy no more than 70 percent of its cell width and height. Especially keep wing tips, fins, ears, jewelry and tail clear of all neighboring figures."
+      },
+      {
+        "sheet": "support",
+        "sha256": "f4c6df43fb2cefcb05cea3969ed2633a4f8ead65ec8d0a731e899440732856c1",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            14,
+            51,
+            342,
+            333
+          ],
+          [
+            304,
+            12,
+            637,
+            333
+          ],
+          [
+            630,
+            75,
+            980,
+            334
+          ],
+          [
+            971,
+            57,
+            1235,
+            332
+          ],
+          [
+            22,
+            371,
+            317,
+            635
+          ],
+          [
+            344,
+            340,
+            631,
+            627
+          ],
+          [
+            628,
+            367,
+            964,
+            636
+          ],
+          [
+            971,
+            371,
+            1235,
+            628
+          ],
+          [
+            17,
+            658,
+            352,
+            915
+          ],
+          [
+            330,
+            682,
+            624,
+            918
+          ],
+          [
+            626,
+            729,
+            956,
+            917
+          ],
+          [
+            948,
+            771,
+            1251,
+            914
+          ],
+          [
+            20,
+            927,
+            318,
+            1219
+          ],
+          [
+            330,
+            928,
+            645,
+            1222
+          ],
+          [
+            662,
+            939,
+            961,
+            1220
+          ],
+          [
+            968,
+            929,
+            1240,
+            1218
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal final production sprite atlas, second action sheet. Input image 1 is the existing canon portrait (identity and regalia); input image 2 is this SAME character's first 16 poses (full body, proportions, clothing, rendering). Preserve the identical character from both references. Subject: Silver-grey owl spirit, white face disk and long silver ear tufts, golden amber eyes, small dark beak, jade-and-gold head chain and earrings, black-gold scholar coat and ivory sash, jade round pendant, feathered wing-arms and taloned feet. Generate exactly SIXTEEN NEW isolated FULL-BODY poses in a strictly regular FOUR-column by FOUR-row square 1024x1024 sprite sheet. Do not repeat the idle/walk/attack/cast rows from image 2. Four equal rows from top to bottom: ROW 1 ULTIMATE with preparation, powerful physical casting gesture, decisive impact gesture, relaxed recovery; ROW 2 TAKING HIT with recoil, stronger recoil, regaining balance, settling; ROW 3 FALLING with stagger, kneel, collapse sideways, lying safely on the ground; ROW 4 VICTORY with four cheerful character-specific gestures and expressions. For the ultimate, the fox extends both wrists, koi sweeps fin palms, owl opens wings, wolf lifts paws and howls, turtle plants feet with shell forward, butterfly fae lifts folded palms and opens wings, deer raises branching antlers and palms, dragon lifts and plants the staff; use ONLY the relevant species. All poses face three-quarter RIGHT and maintain the same uniform body scale. Keep all crowns, whiskers, wings, antlers, tails, sleeves, staff tips and lying figures completely visible in their own square cell, with generous empty transparent gutters on all sides. Compact figures occupying at most 68% of a cell so wide fallen poses fit. Genuinely transparent RGBA background. NO spell VFX, magic ribbons, particles, halos, fog, cast circles, floor shadows, stage, UI, text, labels, grid lines, borders or other characters; runtime will provide effects. Exactly 16 distinct poses of this one character, not multiple characters. Refined cel-shaded project battle-sprite style."
+      }
+    ],
+    "uniformScale": 0.64,
+    "outputs": {
+      "mien-ga-pixel.webp": {
+        "bytes": 124896,
+        "sha256": "6ca0d916ae610b5d0c05565cb9c0dd5489d2fa8b230e6c2965a3ad020a9ad77f"
+      },
+      "mien-ga.webp": {
+        "bytes": 636858,
+        "sha256": "e7f18d30504c2a5b0c9fa283f9049e96f92965fa05b4eb640086022e83377449"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 9,
+      "globalCell": 9,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "id": "bun-moc",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "da06c3f4e9f11bacaaf9a5b5dbcfb3369d72a5c8dc6fcad4a0d8ed3e4c2cf29b",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            30,
+            31,
+            276,
+            311
+          ],
+          [
+            336,
+            41,
+            599,
+            311
+          ],
+          [
+            651,
+            40,
+            924,
+            311
+          ],
+          [
+            970,
+            31,
+            1230,
+            311
+          ],
+          [
+            20,
+            347,
+            298,
+            600
+          ],
+          [
+            336,
+            354,
+            611,
+            600
+          ],
+          [
+            646,
+            353,
+            930,
+            599
+          ],
+          [
+            961,
+            352,
+            1240,
+            599
+          ],
+          [
+            20,
+            658,
+            306,
+            897
+          ],
+          [
+            327,
+            626,
+            621,
+            898
+          ],
+          [
+            641,
+            665,
+            961,
+            899
+          ],
+          [
+            963,
+            677,
+            1230,
+            900
+          ],
+          [
+            18,
+            936,
+            300,
+            1222
+          ],
+          [
+            326,
+            916,
+            607,
+            1223
+          ],
+          [
+            630,
+            914,
+            996,
+            1223
+          ],
+          [
+            982,
+            945,
+            1232,
+            1222
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production combat animation atlas. Transform the character from reference image 1 into a consistent full-body battle sprite; reference 1 is the ONLY identity source. Reference image 2 is only the established project cel-shaded chibi rendering and transparent-grid style; never copy its pangolin species, rice bowl or clothing. Subject: Grey-and-white wolf spirit with amber eyes, swept dark grey mane, white cheek and chest fur, upright wolf ears, jade-and-gold crown chain and earrings, deep teal and black-gold robes, large jade pendant, grey fluffy tail. Preserve dignified adult wolf face and slender body. Style: polished original anime RPG cel shading, readable silhouette and clothing, about three heads tall, same species, face, apparent age, clothing palette and jewelry in every cell. Exactly FOUR columns by FOUR rows, SIXTEEN completely isolated full-body figures, regular equal square cells, square 1024x1024 canvas. All face three-quarter RIGHT. Uniform scale, feet on the same baseline within each cell. Each full silhouette including crown, antlers, wings, tail, staff and sleeves stays within its own cell with generous transparent gutters of at least 24 pixels. Genuinely transparent RGBA background, no grey/checkerboard, no stage/floor, no labels, letters, numbers, logos, UI, borders or grid lines. Do not reuse an identical pose. Keep effects small and attached to the hands/weapon, no huge circles, floor shadows, opaque aura or separate floating effects. Do not crop any figure. Layout is for sprites, not a portrait gallery. Rows from TOP to BOTTOM: row 1 idle, four varied breathing/blinking poses; row 2 walking, four visibly different alternating steps; row 3 attack, four consecutive frames: ready, windup, decisive contact, recovery; row 4 casting, four consecutive frames: prepare, gather, release, settle. Character-specific action direction: calm breathing with moving mane; long quiet biped strides; controlled right-claw diagonal slash with ready/windup/contact/recovery; lift both paws and howl softly to cast a narrow mist arc. Exactly 16 poses, not 12 or 20. Leave visibly empty space around every figure: full silhouette must occupy no more than 70 percent of its cell width and height. Especially keep wing tips, fins, ears, jewelry and tail clear of all neighboring figures."
+      },
+      {
+        "sheet": "support",
+        "sha256": "51333d436b526bbf44586b6976862eaf0e70b6c5e4da39a872e7d6a904a28903",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            7,
+            9,
+            333,
+            317
+          ],
+          [
+            335,
+            21,
+            619,
+            317
+          ],
+          [
+            632,
+            41,
+            957,
+            317
+          ],
+          [
+            971,
+            16,
+            1241,
+            315
+          ],
+          [
+            13,
+            322,
+            323,
+            630
+          ],
+          [
+            327,
+            362,
+            627,
+            631
+          ],
+          [
+            626,
+            357,
+            942,
+            629
+          ],
+          [
+            966,
+            327,
+            1244,
+            629
+          ],
+          [
+            10,
+            652,
+            328,
+            921
+          ],
+          [
+            320,
+            686,
+            629,
+            918
+          ],
+          [
+            623,
+            723,
+            940,
+            917
+          ],
+          [
+            945,
+            742,
+            1253,
+            902
+          ],
+          [
+            11,
+            929,
+            309,
+            1234
+          ],
+          [
+            316,
+            939,
+            626,
+            1230
+          ],
+          [
+            626,
+            928,
+            934,
+            1229
+          ],
+          [
+            953,
+            923,
+            1243,
+            1229
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal final production sprite atlas, second action sheet. Input image 1 is the existing canon portrait (identity and regalia); input image 2 is this SAME character's first 16 poses (full body, proportions, clothing, rendering). Preserve the identical character from both references. Subject: Grey-and-white wolf spirit with amber eyes, swept dark grey mane, white cheek and chest fur, upright wolf ears, jade-and-gold crown chain and earrings, deep teal and black-gold robes, large jade pendant, grey fluffy tail. Preserve dignified adult wolf face and slender body. Generate exactly SIXTEEN NEW isolated FULL-BODY poses in a strictly regular FOUR-column by FOUR-row square 1024x1024 sprite sheet. Do not repeat the idle/walk/attack/cast rows from image 2. Four equal rows from top to bottom: ROW 1 ULTIMATE with preparation, powerful physical casting gesture, decisive impact gesture, relaxed recovery; ROW 2 TAKING HIT with recoil, stronger recoil, regaining balance, settling; ROW 3 FALLING with stagger, kneel, collapse sideways, lying safely on the ground; ROW 4 VICTORY with four cheerful character-specific gestures and expressions. For the ultimate, the fox extends both wrists, koi sweeps fin palms, owl opens wings, wolf lifts paws and howls, turtle plants feet with shell forward, butterfly fae lifts folded palms and opens wings, deer raises branching antlers and palms, dragon lifts and plants the staff; use ONLY the relevant species. All poses face three-quarter RIGHT and maintain the same uniform body scale. Keep all crowns, whiskers, wings, antlers, tails, sleeves, staff tips and lying figures completely visible in their own square cell, with generous empty transparent gutters on all sides. Compact figures occupying at most 68% of a cell so wide fallen poses fit. Genuinely transparent RGBA background. NO spell VFX, magic ribbons, particles, halos, fog, cast circles, floor shadows, stage, UI, text, labels, grid lines, borders or other characters; runtime will provide effects. Exactly 16 distinct poses of this one character, not multiple characters. Refined cel-shaded project battle-sprite style."
+      }
+    ],
+    "uniformScale": 0.6120218579234973,
+    "outputs": {
+      "bun-moc-pixel.webp": {
+        "bytes": 119664,
+        "sha256": "b5fbad42fd41af3075c1e42ae2f47a6975407190467a2d3e42d724519ff49a9a"
+      },
+      "bun-moc.webp": {
+        "bytes": 618252,
+        "sha256": "c794ea308821b9b0200528cf4cd769115b677108a0c5e087cc013ed69f5d0504"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 10,
+      "globalCell": 10,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "id": "banh-da-cua",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "afc511619ea7958b0fa80bdabdd655bd9e39f9c9ffe4bd0757f783442dfb04a5",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            46,
+            67,
+            285,
+            341
+          ],
+          [
+            364,
+            72,
+            597,
+            341
+          ],
+          [
+            673,
+            72,
+            911,
+            342
+          ],
+          [
+            993,
+            80,
+            1231,
+            342
+          ],
+          [
+            21,
+            386,
+            292,
+            646
+          ],
+          [
+            342,
+            388,
+            615,
+            646
+          ],
+          [
+            661,
+            389,
+            926,
+            644
+          ],
+          [
+            957,
+            390,
+            1243,
+            645
+          ],
+          [
+            33,
+            688,
+            299,
+            934
+          ],
+          [
+            340,
+            692,
+            613,
+            936
+          ],
+          [
+            619,
+            703,
+            961,
+            936
+          ],
+          [
+            939,
+            693,
+            1239,
+            937
+          ],
+          [
+            35,
+            975,
+            284,
+            1233
+          ],
+          [
+            335,
+            980,
+            611,
+            1233
+          ],
+          [
+            639,
+            984,
+            983,
+            1234
+          ],
+          [
+            990,
+            980,
+            1231,
+            1233
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production combat animation atlas. Transform the character from reference image 1 into a consistent full-body battle sprite; reference 1 is the ONLY identity source. Reference image 2 is only the established project cel-shaded chibi rendering and transparent-grid style; never copy its pangolin species, rice bowl or clothing. Subject: Green sea-turtle spirit with hexagon-patterned skin, pale throat, broad dark woven conical hat with gold rim, jade earrings, black-gold robe with teal sash, visible dark green shell, scaled hands and short feet. Preserve turtle head, hat and shell. Style: polished original anime RPG cel shading, readable silhouette and clothing, about three heads tall, same species, face, apparent age, clothing palette and jewelry in every cell. Exactly FOUR columns by FOUR rows, SIXTEEN completely isolated full-body figures, regular equal square cells, square 1024x1024 canvas. All face three-quarter RIGHT. Uniform scale, feet on the same baseline within each cell. Each full silhouette including crown, antlers, wings, tail, staff and sleeves stays within its own cell with generous transparent gutters of at least 24 pixels. Genuinely transparent RGBA background, no grey/checkerboard, no stage/floor, no labels, letters, numbers, logos, UI, borders or grid lines. Do not reuse an identical pose. Keep effects small and attached to the hands/weapon, no huge circles, floor shadows, opaque aura or separate floating effects. Do not crop any figure. Layout is for sprites, not a portrait gallery. Rows from TOP to BOTTOM: row 1 idle, four varied breathing/blinking poses; row 2 walking, four visibly different alternating steps; row 3 attack, four consecutive frames: ready, windup, decisive contact, recovery; row 4 casting, four consecutive frames: prepare, gather, release, settle. Character-specific action direction: slow breathing with a tiny head tilt; slow alternating biped steps holding shell steady; short shoulder-braced palm thrust; gather a small tide arc in scaled palms, push it forward, recover. Exactly 16 poses, not 12 or 20. Make each sprite compact, at most 70% of a grid cell; preserve wide empty transparent gutters between figures. All full silhouettes and wing/antler/staff tips must be fully visible, no touching neighbors. Make each sprite compact, at most 70% of a grid cell; preserve wide empty transparent gutters between figures. All full silhouettes and wing/antler/staff tips must be fully visible, no touching neighbors."
+      },
+      {
+        "sheet": "support",
+        "sha256": "473491fdaf9aa26cbea43404138e14373ae2c6a3e4ab8731cc5f2d94df498929",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            36,
+            36,
+            293,
+            312
+          ],
+          [
+            331,
+            34,
+            637,
+            314
+          ],
+          [
+            655,
+            48,
+            975,
+            315
+          ],
+          [
+            992,
+            45,
+            1219,
+            314
+          ],
+          [
+            41,
+            353,
+            317,
+            623
+          ],
+          [
+            325,
+            346,
+            630,
+            621
+          ],
+          [
+            642,
+            387,
+            922,
+            624
+          ],
+          [
+            975,
+            351,
+            1224,
+            624
+          ],
+          [
+            12,
+            648,
+            298,
+            910
+          ],
+          [
+            311,
+            694,
+            601,
+            913
+          ],
+          [
+            614,
+            744,
+            926,
+            906
+          ],
+          [
+            941,
+            782,
+            1244,
+            905
+          ],
+          [
+            40,
+            940,
+            290,
+            1212
+          ],
+          [
+            339,
+            942,
+            608,
+            1214
+          ],
+          [
+            647,
+            933,
+            921,
+            1213
+          ],
+          [
+            983,
+            941,
+            1214,
+            1214
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal final production sprite atlas, second action sheet. Input image 1 is the existing canon portrait (identity and regalia); input image 2 is this SAME character's first 16 poses (full body, proportions, clothing, rendering). Preserve the identical character from both references. Subject: Green sea-turtle spirit with hexagon-patterned skin, pale throat, broad dark woven conical hat with gold rim, jade earrings, black-gold robe with teal sash, visible dark green shell, scaled hands and short feet. Preserve turtle head, hat and shell. Generate exactly SIXTEEN NEW isolated FULL-BODY poses in a strictly regular FOUR-column by FOUR-row square 1024x1024 sprite sheet. Do not repeat the idle/walk/attack/cast rows from image 2. Four equal rows from top to bottom: ROW 1 ULTIMATE with preparation, powerful physical casting gesture, decisive impact gesture, relaxed recovery; ROW 2 TAKING HIT with recoil, stronger recoil, regaining balance, settling; ROW 3 FALLING with stagger, kneel, collapse sideways, lying safely on the ground; ROW 4 VICTORY with four cheerful character-specific gestures and expressions. For the ultimate, the fox extends both wrists, koi sweeps fin palms, owl opens wings, wolf lifts paws and howls, turtle plants feet with shell forward, butterfly fae lifts folded palms and opens wings, deer raises branching antlers and palms, dragon lifts and plants the staff; use ONLY the relevant species. All poses face three-quarter RIGHT and maintain the same uniform body scale. Keep all crowns, whiskers, wings, antlers, tails, sleeves, staff tips and lying figures completely visible in their own square cell, with generous empty transparent gutters on all sides. Compact figures occupying at most 68% of a cell so wide fallen poses fit. Genuinely transparent RGBA background. NO spell VFX, magic ribbons, particles, halos, fog, cast circles, floor shadows, stage, UI, text, labels, grid lines, borders or other characters; runtime will provide effects. Exactly 16 distinct poses of this one character, not multiple characters. Refined cel-shaded project battle-sprite style."
+      }
+    ],
+    "uniformScale": 0.6511627906976745,
+    "outputs": {
+      "banh-da-cua-pixel.webp": {
+        "bytes": 126498,
+        "sha256": "64b117b068e49a450291c9407825cfbdaf5493779eb3a85e18ab4269147757be"
+      },
+      "banh-da-cua.webp": {
+        "bytes": 572188,
+        "sha256": "07e10c457370173e3f80bc16de5a0d6b85d65f78609992a226930971607e419b"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 12,
+      "globalCell": 12,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "id": "bun-dau",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "6d3dbc25ef692bb8613d21a9119abbf3de22ab8e674298a7256c3b5be9dcc598",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            26,
+            10,
+            285,
+            297
+          ],
+          [
+            338,
+            12,
+            595,
+            297
+          ],
+          [
+            647,
+            12,
+            901,
+            297
+          ],
+          [
+            961,
+            14,
+            1213,
+            297
+          ],
+          [
+            31,
+            319,
+            273,
+            609
+          ],
+          [
+            343,
+            321,
+            585,
+            609
+          ],
+          [
+            644,
+            321,
+            890,
+            611
+          ],
+          [
+            952,
+            324,
+            1221,
+            610
+          ],
+          [
+            15,
+            634,
+            306,
+            911
+          ],
+          [
+            328,
+            634,
+            631,
+            911
+          ],
+          [
+            634,
+            636,
+            950,
+            910
+          ],
+          [
+            965,
+            636,
+            1235,
+            909
+          ],
+          [
+            22,
+            936,
+            282,
+            1224
+          ],
+          [
+            322,
+            935,
+            604,
+            1225
+          ],
+          [
+            630,
+            938,
+            924,
+            1225
+          ],
+          [
+            919,
+            938,
+            1227,
+            1226
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production combat animation atlas. Transform the character from reference image 1 into a consistent full-body battle sprite; reference 1 is the ONLY identity source. Reference image 2 is only the established project cel-shaded chibi rendering and transparent-grid style; never copy its pangolin species, rice bowl or clothing. Subject: Feminine pale butterfly-fae spirit with a small humanlike face, purple eyes, long white hair, two tall white feathery ear-fins on the head, delicate gold crown with amethyst, jade earrings and pendant, purple and gold layered dress with ivory chest, large translucent violet-amber butterfly wings. Keep the reference wing markings and face; no rabbit muzzle or animal nose. Style: polished original anime RPG cel shading, readable silhouette and clothing, about three heads tall, same species, face, apparent age, clothing palette and jewelry in every cell. Exactly FOUR columns by FOUR rows, SIXTEEN completely isolated full-body figures, regular equal square cells, square 1024x1024 canvas. All face three-quarter RIGHT. Uniform scale, feet on the same baseline within each cell. Each full silhouette including crown, antlers, wings, tail, staff and sleeves stays within its own cell with generous transparent gutters of at least 24 pixels. Genuinely transparent RGBA background, no grey/checkerboard, no stage/floor, no labels, letters, numbers, logos, UI, borders or grid lines. Do not reuse an identical pose. Keep effects small and attached to the hands/weapon, no huge circles, floor shadows, opaque aura or separate floating effects. Do not crop any figure. Layout is for sprites, not a portrait gallery. Rows from TOP to BOTTOM: row 1 idle, four varied breathing/blinking poses; row 2 walking, four visibly different alternating steps; row 3 attack, four consecutive frames: ready, windup, decisive contact, recovery; row 4 casting, four consecutive frames: prepare, gather, release, settle. Character-specific action direction: gentle breathing and a wing flutter with both feet planted; light alternating steps with dress and wings moving; sweeping right-hand arc with a small wing flick at contact; cup a single small golden butterfly light and release it. Exactly 16 poses, not 12 or 20. Make each sprite compact, at most 70% of a grid cell; preserve wide empty transparent gutters between figures. All full silhouettes and wing/antler/staff tips must be fully visible, no touching neighbors. Make each sprite compact, at most 70% of a grid cell; preserve wide empty transparent gutters between figures. All full silhouettes and wing/antler/staff tips must be fully visible, no touching neighbors."
+      },
+      {
+        "sheet": "support",
+        "sha256": "d7d492d850e299556d50274fb90fd70cf7e71e9286462a85c80f921a24455da2",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            22,
+            15,
+            295,
+            319
+          ],
+          [
+            323,
+            11,
+            618,
+            317
+          ],
+          [
+            638,
+            10,
+            950,
+            316
+          ],
+          [
+            962,
+            28,
+            1244,
+            314
+          ],
+          [
+            22,
+            327,
+            307,
+            622
+          ],
+          [
+            346,
+            341,
+            620,
+            620
+          ],
+          [
+            642,
+            340,
+            935,
+            622
+          ],
+          [
+            967,
+            325,
+            1236,
+            625
+          ],
+          [
+            15,
+            627,
+            314,
+            921
+          ],
+          [
+            336,
+            675,
+            634,
+            913
+          ],
+          [
+            633,
+            690,
+            952,
+            909
+          ],
+          [
+            947,
+            738,
+            1239,
+            902
+          ],
+          [
+            22,
+            923,
+            327,
+            1233
+          ],
+          [
+            338,
+            918,
+            622,
+            1233
+          ],
+          [
+            648,
+            926,
+            945,
+            1234
+          ],
+          [
+            962,
+            918,
+            1241,
+            1230
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal final production sprite atlas, second action sheet. Input image 1 is the existing canon portrait (identity and regalia); input image 2 is this SAME character's first 16 poses (full body, proportions, clothing, rendering). Preserve the identical character from both references. Subject: Feminine pale butterfly-fae spirit with a small humanlike face, purple eyes, long white hair, two tall white feathery ear-fins on the head, delicate gold crown with amethyst, jade earrings and pendant, purple and gold layered dress with ivory chest, large translucent violet-amber butterfly wings. Keep the reference wing markings and face; no rabbit muzzle or animal nose. Generate exactly SIXTEEN NEW isolated FULL-BODY poses in a strictly regular FOUR-column by FOUR-row square 1024x1024 sprite sheet. Do not repeat the idle/walk/attack/cast rows from image 2. Four equal rows from top to bottom: ROW 1 ULTIMATE with preparation, powerful physical casting gesture, decisive impact gesture, relaxed recovery; ROW 2 TAKING HIT with recoil, stronger recoil, regaining balance, settling; ROW 3 FALLING with stagger, kneel, collapse sideways, lying safely on the ground; ROW 4 VICTORY with four cheerful character-specific gestures and expressions. For the ultimate, the fox extends both wrists, koi sweeps fin palms, owl opens wings, wolf lifts paws and howls, turtle plants feet with shell forward, butterfly fae lifts folded palms and opens wings, deer raises branching antlers and palms, dragon lifts and plants the staff; use ONLY the relevant species. All poses face three-quarter RIGHT and maintain the same uniform body scale. Keep all crowns, whiskers, wings, antlers, tails, sleeves, staff tips and lying figures completely visible in their own square cell, with generous empty transparent gutters on all sides. Compact figures occupying at most 68% of a cell so wide fallen poses fit. Genuinely transparent RGBA background. NO spell VFX, magic ribbons, particles, halos, fog, cast circles, floor shadows, stage, UI, text, labels, grid lines, borders or other characters; runtime will provide effects. Exactly 16 distinct poses of this one character, not multiple characters. Refined cel-shaded project battle-sprite style."
+      }
+    ],
+    "uniformScale": 0.7021943573667712,
+    "outputs": {
+      "bun-dau-pixel.webp": {
+        "bytes": 157758,
+        "sha256": "5b7c594a70c989acbad7433fbffe83334a02ecca837433551879e35be363f7fe"
+      },
+      "bun-dau.webp": {
+        "bytes": 769760,
+        "sha256": "46e1f1cfa5698acfd5f598adfa3684c2a4c8d6df99de48fa5d6aec40d0cecb13"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 15,
+      "globalCell": 15,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "id": "com-rang-dua-bo",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "c7058853426dd0c0151a9e1a0e23a8dc350a2d36fd5aeab8ef525f2e59149b52",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            42,
+            19,
+            280,
+            300
+          ],
+          [
+            362,
+            21,
+            589,
+            299
+          ],
+          [
+            663,
+            15,
+            887,
+            300
+          ],
+          [
+            988,
+            21,
+            1207,
+            300
+          ],
+          [
+            34,
+            325,
+            282,
+            605
+          ],
+          [
+            352,
+            323,
+            609,
+            606
+          ],
+          [
+            665,
+            327,
+            938,
+            606
+          ],
+          [
+            982,
+            324,
+            1227,
+            607
+          ],
+          [
+            24,
+            635,
+            294,
+            911
+          ],
+          [
+            323,
+            640,
+            627,
+            909
+          ],
+          [
+            656,
+            635,
+            996,
+            911
+          ],
+          [
+            988,
+            641,
+            1237,
+            912
+          ],
+          [
+            24,
+            936,
+            265,
+            1231
+          ],
+          [
+            336,
+            954,
+            604,
+            1230
+          ],
+          [
+            633,
+            944,
+            965,
+            1231
+          ],
+          [
+            988,
+            944,
+            1244,
+            1230
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production combat animation atlas. Transform the character from reference image 1 into a consistent full-body battle sprite; reference 1 is the ONLY identity source. Reference image 2 is only the established project cel-shaded chibi rendering and transparent-grid style; never copy its pangolin species, rice bowl or clothing. Subject: White antlered deer spirit with amber eyes, elegant branching gold-brown antlers, pointed deer ears and narrow deer muzzle, flowing white mane, ornate gold crown and jade chain, deep teal and gold ceremonial robes, jade pendants and pale hooved feet. Keep antlers and deer anatomy; no dragon horns or fish scales. Style: polished original anime RPG cel shading, readable silhouette and clothing, about three heads tall, same species, face, apparent age, clothing palette and jewelry in every cell. Exactly FOUR columns by FOUR rows, SIXTEEN completely isolated full-body figures, regular equal square cells, square 1024x1024 canvas. All face three-quarter RIGHT. Uniform scale, feet on the same baseline within each cell. Each full silhouette including crown, antlers, wings, tail, staff and sleeves stays within its own cell with generous transparent gutters of at least 24 pixels. Genuinely transparent RGBA background, no grey/checkerboard, no stage/floor, no labels, letters, numbers, logos, UI, borders or grid lines. Do not reuse an identical pose. Keep effects small and attached to the hands/weapon, no huge circles, floor shadows, opaque aura or separate floating effects. Do not crop any figure. Layout is for sprites, not a portrait gallery. Rows from TOP to BOTTOM: row 1 idle, four varied breathing/blinking poses; row 2 walking, four visibly different alternating steps; row 3 attack, four consecutive frames: ready, windup, decisive contact, recovery; row 4 casting, four consecutive frames: prepare, gather, release, settle. Character-specific action direction: upright breathing with mane sway; graceful alternating biped hoof steps; short forward forearm strike and angled antler gesture at contact; trace a small branching golden sprout of light with both hands. Exactly 16 poses, not 12 or 20. Make each sprite compact, at most 70% of a grid cell; preserve wide empty transparent gutters between figures. All full silhouettes and wing/antler/staff tips must be fully visible, no touching neighbors. Make each sprite compact, at most 70% of a grid cell; preserve wide empty transparent gutters between figures. All full silhouettes and wing/antler/staff tips must be fully visible, no touching neighbors."
+      },
+      {
+        "sheet": "support",
+        "sha256": "77a1c75a2719ada2fd6f3b4910d15f4ccb800f482d67550e7860b05831772ed7",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            26,
+            15,
+            317,
+            322
+          ],
+          [
+            327,
+            9,
+            631,
+            322
+          ],
+          [
+            636,
+            7,
+            956,
+            326
+          ],
+          [
+            964,
+            12,
+            1231,
+            323
+          ],
+          [
+            21,
+            338,
+            303,
+            623
+          ],
+          [
+            320,
+            349,
+            611,
+            626
+          ],
+          [
+            635,
+            341,
+            945,
+            624
+          ],
+          [
+            964,
+            351,
+            1233,
+            627
+          ],
+          [
+            18,
+            635,
+            301,
+            906
+          ],
+          [
+            316,
+            655,
+            621,
+            904
+          ],
+          [
+            622,
+            711,
+            939,
+            903
+          ],
+          [
+            944,
+            741,
+            1248,
+            903
+          ],
+          [
+            9,
+            914,
+            326,
+            1221
+          ],
+          [
+            339,
+            913,
+            640,
+            1224
+          ],
+          [
+            637,
+            913,
+            941,
+            1219
+          ],
+          [
+            949,
+            920,
+            1244,
+            1226
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal final production sprite atlas, second action sheet. Input image 1 is the existing canon portrait (identity and regalia); input image 2 is this SAME character's first 16 poses (full body, proportions, clothing, rendering). Preserve the identical character from both references. Subject: White antlered deer spirit with amber eyes, elegant branching gold-brown antlers, pointed deer ears and narrow deer muzzle, flowing white mane, ornate gold crown and jade chain, deep teal and gold ceremonial robes, jade pendants and pale hooved feet. Keep antlers and deer anatomy; no dragon horns or fish scales. Generate exactly SIXTEEN NEW isolated FULL-BODY poses in a strictly regular FOUR-column by FOUR-row square 1024x1024 sprite sheet. Do not repeat the idle/walk/attack/cast rows from image 2. Four equal rows from top to bottom: ROW 1 ULTIMATE with preparation, powerful physical casting gesture, decisive impact gesture, relaxed recovery; ROW 2 TAKING HIT with recoil, stronger recoil, regaining balance, settling; ROW 3 FALLING with stagger, kneel, collapse sideways, lying safely on the ground; ROW 4 VICTORY with four cheerful character-specific gestures and expressions. For the ultimate, the fox extends both wrists, koi sweeps fin palms, owl opens wings, wolf lifts paws and howls, turtle plants feet with shell forward, butterfly fae lifts folded palms and opens wings, deer raises branching antlers and palms, dragon lifts and plants the staff; use ONLY the relevant species. All poses face three-quarter RIGHT and maintain the same uniform body scale. Keep all crowns, whiskers, wings, antlers, tails, sleeves, staff tips and lying figures completely visible in their own square cell, with generous empty transparent gutters on all sides. Compact figures occupying at most 68% of a cell so wide fallen poses fit. Genuinely transparent RGBA background. NO spell VFX, magic ribbons, particles, halos, fog, cast circles, floor shadows, stage, UI, text, labels, grid lines, borders or other characters; runtime will provide effects. Exactly 16 distinct poses of this one character, not multiple characters. Refined cel-shaded project battle-sprite style."
+      }
+    ],
+    "uniformScale": 0.6588235294117647,
+    "outputs": {
+      "com-rang-dua-bo-pixel.webp": {
+        "bytes": 137814,
+        "sha256": "37b000c673765e133149d94501923741e700249b922de2ef5f30fd45b67d76c4"
+      },
+      "com-rang-dua-bo.webp": {
+        "bytes": 691070,
+        "sha256": "83d9b38de945e82c4707f29eebc85aa7a65c6415990327fc9f30bfd85debfb05"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "columns": 4,
+      "cell": 0,
+      "globalCell": 16,
+      "sha256": "3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"
+    },
+    "id": "com-nieu",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-17",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "3575cc0f4f8fa12600f780e40415c93f9de67be233f64fe2bad5b9771a301664",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            37,
+            9,
+            308,
+            314
+          ],
+          [
+            338,
+            9,
+            622,
+            313
+          ],
+          [
+            647,
+            16,
+            934,
+            313
+          ],
+          [
+            952,
+            19,
+            1249,
+            313
+          ],
+          [
+            17,
+            341,
+            317,
+            611
+          ],
+          [
+            329,
+            338,
+            633,
+            611
+          ],
+          [
+            654,
+            341,
+            950,
+            611
+          ],
+          [
+            963,
+            343,
+            1254,
+            613
+          ],
+          [
+            20,
+            638,
+            311,
+            914
+          ],
+          [
+            330,
+            656,
+            631,
+            915
+          ],
+          [
+            642,
+            674,
+            940,
+            913
+          ],
+          [
+            940,
+            643,
+            1242,
+            915
+          ],
+          [
+            42,
+            918,
+            300,
+            1227
+          ],
+          [
+            329,
+            915,
+            592,
+            1231
+          ],
+          [
+            614,
+            950,
+            977,
+            1228
+          ],
+          [
+            968,
+            931,
+            1212,
+            1229
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal production combat animation atlas. Transform the character from reference image 1 into a consistent full-body battle sprite; reference 1 is the ONLY identity source. Reference image 2 is only the established project cel-shaded chibi rendering and transparent-grid style; never copy its pangolin species, rice bowl or clothing. Subject: White and golden dragon spirit with amber eyes, long dragon whiskers, swept gold horns, gold scale crest and white mane, dark bronze and gold shoulder armor, ivory robes, red waist sash, jade ornaments. Carries the long bronze-and-gold staff visible in reference 1. Biped body with dragon claws and feet, preserve the dragon face and staff. Style: polished original anime RPG cel shading, readable silhouette and clothing, about three heads tall, same species, face, apparent age, clothing palette and jewelry in every cell. Exactly FOUR columns by FOUR rows, SIXTEEN completely isolated full-body figures, regular equal square cells, square 1024x1024 canvas. All face three-quarter RIGHT. Uniform scale, feet on the same baseline within each cell. Each full silhouette including crown, antlers, wings, tail, staff and sleeves stays within its own cell with generous transparent gutters of at least 24 pixels. Genuinely transparent RGBA background, no grey/checkerboard, no stage/floor, no labels, letters, numbers, logos, UI, borders or grid lines. Do not reuse an identical pose. Keep effects small and attached to the hands/weapon, no huge circles, floor shadows, opaque aura or separate floating effects. Do not crop any figure. Layout is for sprites, not a portrait gallery. Rows from TOP to BOTTOM: row 1 idle, four varied breathing/blinking poses; row 2 walking, four visibly different alternating steps; row 3 attack, four consecutive frames: ready, windup, decisive contact, recovery; row 4 casting, four consecutive frames: prepare, gather, release, settle. Character-specific action direction: steady breathing with staff held at the side; strong biped walking with alternating feet and staff balance; staff ready/windup/forward contact/recovery; plant the staff and gather a small golden seal of light near its head. Exactly 16 poses, not 12 or 20. Make each sprite compact, at most 70% of a grid cell; preserve wide empty transparent gutters between figures. All full silhouettes and wing/antler/staff tips must be fully visible, no touching neighbors. Make each sprite compact, at most 70% of a grid cell; preserve wide empty transparent gutters between figures. All full silhouettes and wing/antler/staff tips must be fully visible, no touching neighbors."
+      },
+      {
+        "sheet": "support",
+        "sha256": "8ee098f63ff8d66ae5de90f595fb5604c4c74c440a7776a78d20a65a7e8bedab",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            10,
+            1,
+            312,
+            369
+          ],
+          [
+            319,
+            58,
+            649,
+            367
+          ],
+          [
+            615,
+            111,
+            996,
+            368
+          ],
+          [
+            945,
+            49,
+            1230,
+            369
+          ],
+          [
+            11,
+            404,
+            315,
+            659
+          ],
+          [
+            347,
+            382,
+            622,
+            665
+          ],
+          [
+            633,
+            382,
+            923,
+            667
+          ],
+          [
+            953,
+            375,
+            1240,
+            667
+          ],
+          [
+            14,
+            688,
+            341,
+            917
+          ],
+          [
+            350,
+            664,
+            601,
+            918
+          ],
+          [
+            617,
+            761,
+            917,
+            924
+          ],
+          [
+            929,
+            795,
+            1240,
+            917
+          ],
+          [
+            23,
+            930,
+            306,
+            1206
+          ],
+          [
+            324,
+            932,
+            610,
+            1208
+          ],
+          [
+            629,
+            939,
+            936,
+            1207
+          ],
+          [
+            937,
+            935,
+            1230,
+            1206
+          ]
+        ],
+        "prompt": "Use case: identity-preserve. Asset type: Soul of Meal final production sprite atlas, second action sheet. Input image 1 is the existing canon portrait (identity and regalia); input image 2 is this SAME character's first 16 poses (full body, proportions, clothing, rendering). Preserve the identical character from both references. Subject: White and golden dragon spirit with amber eyes, long dragon whiskers, swept gold horns, gold scale crest and white mane, dark bronze and gold shoulder armor, ivory robes, red waist sash, jade ornaments. Carries the long bronze-and-gold staff visible in reference 1. Biped body with dragon claws and feet, preserve the dragon face and staff. Generate exactly SIXTEEN NEW isolated FULL-BODY poses in a strictly regular FOUR-column by FOUR-row square 1024x1024 sprite sheet. Do not repeat the idle/walk/attack/cast rows from image 2. Four equal rows from top to bottom: ROW 1 ULTIMATE with preparation, powerful physical casting gesture, decisive impact gesture, relaxed recovery; ROW 2 TAKING HIT with recoil, stronger recoil, regaining balance, settling; ROW 3 FALLING with stagger, kneel, collapse sideways, lying safely on the ground; ROW 4 VICTORY with four cheerful character-specific gestures and expressions. For the ultimate, the fox extends both wrists, koi sweeps fin palms, owl opens wings, wolf lifts paws and howls, turtle plants feet with shell forward, butterfly fae lifts folded palms and opens wings, deer raises branching antlers and palms, dragon lifts and plants the staff; use ONLY the relevant species. All poses face three-quarter RIGHT and maintain the same uniform body scale. Keep all crowns, whiskers, wings, antlers, tails, sleeves, staff tips and lying figures completely visible in their own square cell, with generous empty transparent gutters on all sides. Compact figures occupying at most 68% of a cell so wide fallen poses fit. Genuinely transparent RGBA background. NO spell VFX, magic ribbons, particles, halos, fog, cast circles, floor shadows, stage, UI, text, labels, grid lines, borders or other characters; runtime will provide effects. Exactly 16 distinct poses of this one character, not multiple characters. Refined cel-shaded project battle-sprite style."
+      },
+      {
+        "sheet": "repair",
+        "frame": 7,
+        "sha256": "a693c5c47f0dd3f03f41c038658654e9ec55bc858c7417ed7f4bdea3d997a70b",
+        "rect": [
+          153,
+          188,
+          1146,
+          1047
+        ],
+        "normalizedHeight": 270,
+        "prompt": "Use case: precise-object-edit. Asset type: one transparent Soul of Meal walking sprite repair. Input image 1 is the edit target: a full-body white-and-gold dragon warrior walking three-quarter RIGHT with a gold staff and red sash. Its long rightmost whisker was clipped by the right image edge. Input image 2 is the canon identity portrait; input image 3 is rendering/pose context. Recreate ONLY this single walking figure, same exact pose, expression, body proportions, white/gold scales, horns, mane, dark gold armor, ivory clothes, red sash, jade jewelry, staff placement and fine cel shading as image 1. Complete the clipped whisker into a natural fine tapered curved tip fully inside the canvas. Surround the WHOLE figure with generous empty transparency on every side; no hair, whisker, staff tip, tail or foot may touch an image edge. Keep the full actor small and centered occupying about 65 percent of a square canvas. Genuinely transparent RGBA background. No sheet, no grid, no additional figures, no text, no floor, no shadow, no new particles or magic rings. Preserve the target character and pose; only repair the whisker end and framing.",
+        "reason": "Repair the source walking whisker clipped at the image right edge"
+      }
+    ],
+    "uniformScale": 0.5879265091863517,
+    "outputs": {
+      "com-nieu-pixel.webp": {
+        "bytes": 106794,
+        "sha256": "b9bf6b7c6e319f4b9ac73fc623ba2c079c718722ed0f963a23d8bc5f6c5f2c43"
+      },
+      "com-nieu.webp": {
+        "bytes": 590422,
+        "sha256": "b2d54538de13242e08c67f095dced9efda6748399591ec571158d55f09c5df35"
+      }
+    }
+  }
+]

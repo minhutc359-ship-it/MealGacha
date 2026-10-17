@@ -28,10 +28,14 @@ for actor_index, record in enumerate(records):
         assert hashlib.sha256(data).hexdigest() == expected['sha256'], name
     atlas = Image.open(asset / (actor + '.webp')).convert('RGBA')
     pixel = Image.open(asset / (actor + '-pixel.webp')).convert('RGBA')
-    portrait = Image.open(asset / (actor + '-portrait.webp'))
+    reference=record.get('portraitReference')
+    portrait = Image.open(root/'public'/reference['path'].lstrip('/')) if reference else Image.open(asset / (actor + '-portrait.webp'))
     assert atlas.size == (1024, 2048)
     assert pixel.size == (256, 512)
-    assert portrait.size == (512, 512)
+    if reference:
+        assert portrait.width==portrait.height and reference['columns']==4
+        assert hashlib.sha256((root/'public'/reference['path'].lstrip('/')).read_bytes()).hexdigest()==reference['sha256']
+    else: assert portrait.size == (512, 512)
     bounds, fingerprints = [], set()
     draw.text((8, actor_index * 288 + 2), actor, fill='#193e36')
     for frame in range(32):

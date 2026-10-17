@@ -1,0 +1,106 @@
+[
+  {
+    "id": "pho-ga",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 1,
+      "globalCell": 1,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "reference": ".asset-work/vietnam5912/pho-ga-canon.png",
+    "referenceSHA256": "6da4313b45ce8ac28a6dd95818e85612f6e88ae7ee95d6936047977c00e0deaf",
+    "baseline": "Portrait-only in TCG; no authored combat model and no Auto catalog entry"
+  },
+  {
+    "id": "chao-suon",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 7,
+      "globalCell": 7,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "reference": ".asset-work/vietnam5912/chao-suon-canon.png",
+    "referenceSHA256": "bc606dbfb471fdcc2a969230472bbd010f0edfa4219e1f1cc728ca46a37e861e",
+    "baseline": "Portrait-only in TCG; no authored combat model and no Auto catalog entry"
+  },
+  {
+    "id": "mien-ga",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 8,
+      "globalCell": 8,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "reference": ".asset-work/vietnam5912/mien-ga-canon.png",
+    "referenceSHA256": "4181c727f37cd71441d4ad74fefab3242a4dfa8bdafb8f1e32525c1b1f62fe24",
+    "baseline": "Portrait-only in TCG; no authored combat model and no Auto catalog entry"
+  },
+  {
+    "id": "bun-moc",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 9,
+      "globalCell": 9,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "reference": ".asset-work/vietnam5912/bun-moc-canon.png",
+    "referenceSHA256": "7bfc89d437aadd4772a33940560596983b07438e4ad8773fb81bb5bb2ff6539c",
+    "baseline": "Portrait-only in TCG; no authored combat model and no Auto catalog entry"
+  },
+  {
+    "id": "banh-da-cua",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 10,
+      "globalCell": 10,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "reference": ".asset-work/vietnam5912/banh-da-cua-canon.png",
+    "referenceSHA256": "6cc852e37800853fa788367437ed280d9253ceb8a0466774fbac9d52b0db3393",
+    "baseline": "Portrait-only in TCG; no authored combat model and no Auto catalog entry"
+  },
+  {
+    "id": "bun-dau",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 12,
+      "globalCell": 12,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "reference": ".asset-work/vietnam5912/bun-dau-canon.png",
+    "referenceSHA256": "31efa3285529a419922a45025d59d27aaf65c18731366e75d7c7e7efb51a8c7f",
+    "baseline": "Portrait-only in TCG; no authored combat model and no Auto catalog entry"
+  },
+  {
+    "id": "com-rang-dua-bo",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-1.webp",
+      "columns": 4,
+      "cell": 15,
+      "globalCell": 15,
+      "sha256": "f08aefd921960f27013f5fde0944b6cb8a8d675195909f0e74a0056768bc9bbe"
+    },
+    "reference": ".asset-work/vietnam5912/com-rang-dua-bo-canon.png",
+    "referenceSHA256": "f1dd8c54c5fedcfaad8b94b5c98f443b5edbb0a47f6f04ea19abcce8115eee14",
+    "baseline": "Portrait-only in TCG; no authored combat model and no Auto catalog entry"
+  },
+  {
+    "id": "com-nieu",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "columns": 4,
+      "cell": 0,
+      "globalCell": 16,
+      "sha256": "3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"
+    },
+    "reference": ".asset-work/vietnam5912/com-nieu-canon.png",
+    "referenceSHA256": "b3d4645e1575f7a03f73be06d1e0a0e442b498ed65c92a8d88185dbf2c559af2",
+    "baseline": "Portrait-only in TCG; no authored combat model and no Auto catalog entry"
+  }
+]
