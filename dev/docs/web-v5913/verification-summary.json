@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-18",
+  "version": "5.9.13",
+  "vitest": { "passed": 733, "files": 68 },
+  "typecheck": { "app": true, "dev": true },
+  "browser": {
+    "chromium": { "version": "140.0.7339.16", "adventure": 74, "autoAndTcg": 6, "preview": 20, "errors": [], "missing": [], "movieRequests": 0 },
+    "webkit": { "currentCommitEvidence": false, "reason": "Host WPE/GTK libraries unavailable after scratch remount; physical Safari acceptance remains pending" }
+  },
+  "adventureHd": { "atlasWidth": 1024, "frameWidth": 256, "pixelAtlasRejected": true },
+  "asset": { "newAtlases": 20, "authoredPoses": 320, "newBytes": 9056720, "evidenceImages": 7 },
+  "progress": { "produced": 49, "total": 139, "portraitOnly": 86, "legacyAnimated": 4, "enemyProduced": 16, "enemyTotal": 40 },
+  "build": { "bytes": 126038220, "files": 724, "jsGzip": 673013, "jsGzipBudget": 675000 },
+  "coldLoad": { "home": 3192300, "adventure": 4367741, "autochess": 3560293, "offlineReload": true },
+  "physicalDeviceAcceptance": "pending owner review"
+}

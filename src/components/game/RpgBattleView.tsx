@@ -9,9 +9,7 @@ import { actorAnchor } from "../../game/adventureRpg/formationLayout"
 import { RpgBattleVfx } from "./RpgBattleVfx"
 import { SpiritArt, SkillArt } from "./SpiritArt"
 import { spiritKit, REACTION_HELP } from "../../game/adventureRpg/skills"
-import { CARD_MAP } from "../../game/catalog"
-import { tcgCharacter } from "../../game/tcgCharacterMotion"
-import { monsterCharacter } from "../../infrastructure/assets/characterSprites"
+import { adventureCharacterModel } from "../../game/adventureRpg/presentationModel"
 import { RPG_ROLE_NAMES } from "../../game/adventureRpg/engine"
 import type { BattlePresentationPhase } from "../../game/adventureV560"
 import type { School } from "../../game/types"
@@ -144,12 +142,12 @@ export function RpgBattleView({
         <RpgEnemyTelegraph battle={b}/>
         <div className="rpg-combatants">
         {visual.actors.map((a) => {
-          const baseModel =
-            a.side === "ally"
-              ? tcgCharacter(CARD_MAP[a.id])!
-              : monsterCharacter(a.id)
+          const baseModel = adventureCharacterModel(a.id, a.side)
           const authored = starterCharacter(a.id) ?? enemyVisual(a.id)
-          const model = authored ? {...baseModel, sheet: authored.pixelSheet as typeof baseModel.sheet} : baseModel
+          // Adventure actors are large enough that the 64 px pixel atlas becomes
+          // visibly soft on high-density phones. Keep the authored 256 px source;
+          // the canvas DPR budget still lowers raster cost in light mode.
+          const model = baseModel
           const hit = [...visual.events]
             .reverse()
             .find(

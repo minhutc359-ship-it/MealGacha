@@ -1,0 +1,621 @@
+{
+  "date": "2026-10-17",
+  "engine": "chromium",
+  "version": "140.0.7339.16",
+  "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
+  "checks": [
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 133,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 1225,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 867,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "che-lam",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1051,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "chao-luon",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1904,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-it-la-gai",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1668,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 66.46875,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-ram-it",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1322,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "keo-cu-do",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1799,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 325,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 3006,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 2143,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "che-lam",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2412,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "chao-luon",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 4648,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-it-la-gai",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 4063,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-ram-it",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2767,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "keo-cu-do",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 4260,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 49,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 501,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 365,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "che-lam",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 606,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "chao-luon",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 941,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-it-la-gai",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 876,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-ram-it",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 748,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "keo-cu-do",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 938,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 423,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 4016,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "realReducerEvents": true,
+      "painted": 2913,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "che-lam",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 3236,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "chao-luon",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 6377,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-it-la-gai",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 5547,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-ram-it",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 3810,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "keo-cu-do",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 5719,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "victory",
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ]
+    },
+    {
+      "area": "fall",
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ]
+    },
+    {
+      "area": "reload-committed-ultimate",
+      "noRecast": true
+    },
+    {
+      "area": "natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "reduced-motion",
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ],
+      "staticPose": 16
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedAssets": [
+    "/assets/characters/autochess5913/che-lam.webp",
+    "/assets/characters/autochess5913/chao-luon.webp",
+    "/assets/characters/autochess5913/banh-it-la-gai.webp",
+    "/assets/characters/autochess5913/banh-ram-it.webp",
+    "/assets/characters/autochess5913/keo-cu-do.webp"
+  ],
+  "movieRequests": 0
+}

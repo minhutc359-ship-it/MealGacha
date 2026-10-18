@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-18",
+  "images": [
+    {"file":"evidence/chromium-autochess-b.webp","size":[390,844],"sha256":"c8f41ebb0e4dfe1c82aa9ae44b6e2725cdf81364d8d63cb0970155538e971295"},
+    {"file":"evidence/chromium-banh-dau-xanh-390.webp","size":[390,844],"sha256":"6d685a46ba55277a8cac9921ed5431119212c8f02a212c61b42b962254476048"},
+    {"file":"evidence/chromium-banh-it-la-gai-390.webp","size":[390,844],"sha256":"8e866a7b03e4ccbb3b382b7921d3537f465b0b0cd27d63745ba255c47035274f"},
+    {"file":"evidence/chromium-keo-cu-do-390.webp","size":[390,844],"sha256":"3a4b3350e9d9d7bc8b6d57bcf62aa9fd2611b4832425ddc195f1ce7626a540d0"},
+    {"file":"evidence/chromium-preview-keo-cu-do-844.webp","size":[844,390],"sha256":"b48eb29986ee53b6e6b1b5fc03d1c564771e93267056368e7c69a0b8a0560cce"},
+    {"file":"evidence/chromium-tcg-a.webp","size":[900,563],"sha256":"b22648f5d3905862df4c1dd8530e86c4a6221e1fad6c274ae8c3c881025d1d3c"},
+    {"file":"evidence/pose-contact.webp","size":[2048,2880],"sha256":"c2d28556a578ad97dbee39605094833b6cb235ef71a3632db7ea23ec41de0d12"}
+  ]
+}

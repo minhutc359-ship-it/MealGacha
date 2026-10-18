@@ -1,0 +1,72 @@
+[
+  {
+    "id": "banh-dau-xanh",
+    "canon": { "path": "/assets/rpg/spirit510/portraits-8.webp", "columns": 4, "cell": 0, "globalCell": 112, "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a" },
+    "reference": ".asset-work/fresh5913/references/banh-dau-xanh-canon.png",
+    "referenceSHA256": "6bc767e5e2186d8a5999eeaf11382604e71b940f87cf547ec75a58556aab42fd",
+    "baseline": "Shared legacy fresh atlas in Auto Chess; portrait-only in TCG and Adventure"
+  },
+  {
+    "id": "banh-khuc",
+    "canon": { "path": "/assets/rpg/spirit510/portraits-8.webp", "columns": 4, "cell": 1, "globalCell": 113, "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a" },
+    "reference": ".asset-work/fresh5913/references/banh-khuc-canon.png",
+    "referenceSHA256": "4a90dbbf77d6515fb8c586b9bdbe4ece98bdb522ef8c656c23279b95b03f21a0",
+    "baseline": "Shared legacy fresh atlas in Auto Chess; portrait-only in TCG and Adventure"
+  },
+  {
+    "id": "banh-can",
+    "canon": { "path": "/assets/rpg/spirit510/portraits-8.webp", "columns": 4, "cell": 2, "globalCell": 114, "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a" },
+    "reference": ".asset-work/fresh5913/references/banh-can-canon.png",
+    "referenceSHA256": "8aa42ed62252ab3703acc2cb33049cf52396be088a16924152c0cdeaff6df901",
+    "baseline": "Shared legacy fresh atlas in Auto Chess; portrait-only in TCG and Adventure"
+  },
+  {
+    "id": "banh-tom-ho-tay",
+    "canon": { "path": "/assets/rpg/spirit510/portraits-8.webp", "columns": 4, "cell": 3, "globalCell": 115, "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a" },
+    "reference": ".asset-work/fresh5913/references/banh-tom-ho-tay-canon.png",
+    "referenceSHA256": "bcbd6a51e566ad941098f7616c50fb07f8b11ced45fb974b024f9031929cfc57",
+    "baseline": "Shared legacy fresh atlas in Auto Chess; portrait-only in TCG and Adventure"
+  },
+  {
+    "id": "com-hen",
+    "canon": { "path": "/assets/rpg/spirit510/portraits-8.webp", "columns": 4, "cell": 4, "globalCell": 116, "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a" },
+    "reference": ".asset-work/fresh5913/references/com-hen-canon.png",
+    "referenceSHA256": "72be9f522cb75153133af180d809ee057d892b73a11380f458e77effc5773f45",
+    "baseline": "Shared legacy fresh atlas in Auto Chess; portrait-only in TCG and Adventure"
+  },
+  {
+    "id": "che-lam",
+    "canon": { "path": "/assets/rpg/spirit510/portraits-8.webp", "columns": 4, "cell": 5, "globalCell": 117, "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a" },
+    "reference": ".asset-work/fresh5913/references/che-lam-canon.png",
+    "referenceSHA256": "06a8cc221396e50a7dc0b6430c055eed2927b06831768c684462031cb5fe760b",
+    "baseline": "Shared legacy fresh atlas in Auto Chess; portrait-only in TCG and Adventure"
+  },
+  {
+    "id": "chao-luon",
+    "canon": { "path": "/assets/rpg/spirit510/portraits-8.webp", "columns": 4, "cell": 6, "globalCell": 118, "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a" },
+    "reference": ".asset-work/fresh5913/references/chao-luon-canon.png",
+    "referenceSHA256": "f8be374929d345bdc1ac677f26218410e7a17a3427e5e0825e56b40554af00a2",
+    "baseline": "Shared legacy fresh atlas in Auto Chess; portrait-only in TCG and Adventure"
+  },
+  {
+    "id": "banh-it-la-gai",
+    "canon": { "path": "/assets/rpg/spirit510/portraits-8.webp", "columns": 4, "cell": 7, "globalCell": 119, "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a" },
+    "reference": ".asset-work/fresh5913/references/banh-it-la-gai-canon.png",
+    "referenceSHA256": "2456307109a7ca0562d7b0ef5ab697991dace98f85c474976659313887e0b9cf",
+    "baseline": "Shared legacy fresh atlas in Auto Chess; portrait-only in TCG and Adventure"
+  },
+  {
+    "id": "banh-ram-it",
+    "canon": { "path": "/assets/rpg/spirit510/portraits-8.webp", "columns": 4, "cell": 8, "globalCell": 120, "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a" },
+    "reference": ".asset-work/fresh5913/references/banh-ram-it-canon.png",
+    "referenceSHA256": "f5573819f73e559531665a50443a5a4213f8287471cc085e93db89509629dbf2",
+    "baseline": "Shared legacy fresh atlas in Auto Chess; portrait-only in TCG and Adventure"
+  },
+  {
+    "id": "keo-cu-do",
+    "canon": { "path": "/assets/rpg/spirit510/portraits-8.webp", "columns": 4, "cell": 9, "globalCell": 121, "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a" },
+    "reference": ".asset-work/fresh5913/references/keo-cu-do-canon.png",
+    "referenceSHA256": "9fc9ac8394a4cb7e17c4781a12d8c946c1538fec41041e5c144cc44e45c74c81",
+    "baseline": "Shared legacy fresh atlas in Auto Chess; portrait-only in TCG and Adventure"
+  }
+]

@@ -89,6 +89,16 @@ const DEFINITIONS = {
   "bun-dau": {effectColumn:-1,title:"Mộng điệp",species:"Tiên Hồ Điệp Tử Ngọc",signature:"butterfly",color:"#e2b9e9",idle:1520,walk:660,attack:740,cast:1140},
   "com-rang-dua-bo": {effectColumn:-1,title:"Bạch lộc",species:"Bạch Lộc Kim Chi",signature:"antler",color:"#dfcf9a",idle:1620,walk:740,attack:800,cast:1180},
   "com-nieu": {effectColumn:-1,title:"Kim long",species:"Kim Long Đồng Trượng",signature:"scepter",color:"#efbd76",idle:1720,walk:860,attack:920,cast:1240},
+  "banh-dau-xanh": {effectColumn:-1,title:"Ngọc châu",species:"Tiểu Tượng Ngọc",signature:"pearl",color:"#edc66f",idle:1560,walk:780,attack:820,cast:1160},
+  "banh-khuc": {effectColumn:-1,title:"Diệp y",species:"Mầm Áo Lá",signature:"leafwrap",color:"#b8d58b",idle:1480,walk:700,attack:760,cast:1100},
+  "banh-can": {effectColumn:-1,title:"Kim luân",species:"Chim Than Tròn",signature:"discs",color:"#e9bb63",idle:1380,walk:620,attack:700,cast:980},
+  "banh-tom-ho-tay": {effectColumn:-1,title:"Hồ hỏa",species:"Tôm Lửa Hồ",signature:"flarelion",color:"#f08a58",idle:1440,walk:680,attack:740,cast:1040},
+  "com-hen": {effectColumn:-1,title:"Châu giáp",species:"Linh Trai Sông",signature:"pearlguard",color:"#e6d3a0",idle:1680,walk:820,attack:860,cast:1180},
+  "che-lam": {effectColumn:-1,title:"Khương vũ",species:"Hươu Mật Gừng",signature:"gingerwing",color:"#e3b86f",idle:1520,walk:720,attack:780,cast:1120},
+  "chao-luon": {effectColumn:-1,title:"Thủy tuyến",species:"Long Tuyến Ấm",signature:"steamline",color:"#72ced5",idle:1460,walk:660,attack:720,cast:1060},
+  "banh-it-la-gai": {effectColumn:-1,title:"Diệp lưu",species:"Dơi Lá Tím",signature:"leafdodge",color:"#b69ad7",idle:1580,walk:760,attack:800,cast:1140},
+  "banh-ram-it": {effectColumn:-1,title:"Song nhịp",species:"Song Linh Giòn Mềm",signature:"twinbeat",color:"#d6ad70",idle:1420,walk:640,attack:720,cast:1000},
+  "keo-cu-do": {effectColumn:-1,title:"Xích xung",species:"Ngưu Lạc Vàng",signature:"chargearc",color:"#dc825c",idle:1500,walk:700,attack:760,cast:1080},
 } as const
 
 export const CHEF_IDS = ["chef-bach","chef-nhien","chef-moc","chef-hai","chef-lien"] as const
@@ -108,6 +118,8 @@ export const SPRING_CARAVAN_IDS = ["xoi-xeo","dua-hanh","caravan-herbalist","car
 export const SPRING_CARAVAN_ASSET_ROOT = "/assets/characters/spring5911"
 export const VIETNAM_IDS = ["pho-ga","chao-suon","mien-ga","bun-moc","banh-da-cua","bun-dau","com-rang-dua-bo","com-nieu"] as const
 export const VIETNAM_ASSET_ROOT = "/assets/characters/vietnam5912"
+export const AUTOCHESS_CORE_IDS = ["banh-dau-xanh","banh-khuc","banh-can","banh-tom-ho-tay","com-hen","che-lam","chao-luon","banh-it-la-gai","banh-ram-it","keo-cu-do"] as const
+export const AUTOCHESS_CORE_ASSET_ROOT = "/assets/characters/autochess5913"
 export type VisualCharacterId = keyof typeof DEFINITIONS
 export const VISUAL_CONTACT = { attack: 300, cast: 380, ultimate: 960, tcg: 560 } as const
 export const ULTIMATE_TIMELINE = {
@@ -115,13 +127,13 @@ export const ULTIMATE_TIMELINE = {
   finisher: 1500, recovery: 1980, end: 2400,
 } as const
 export const STARTER_ASSET_ROOT = "/assets/characters/starters590"
-const PORTRAIT_CELLS: Partial<Record<VisualCharacterId,number>> = { "com-tam": 13, "banh-mi": 4, "pho-bo": 0, "banh-cuon": 6, "goi-cuon-tom-thit": 105, xoi: -1, "pho-ga":1,"chao-suon":7,"mien-ga":8,"bun-moc":9,"banh-da-cua":10,"bun-dau":12,"com-rang-dua-bo":15,"com-nieu":16 }
-const CAST_ANCHORS = { "pho-ga":[.72,.46],"chao-suon":[.75,.5],"mien-ga":[.78,.45],"bun-moc":[.78,.5],"banh-da-cua":[.76,.52],"bun-dau":[.73,.4],"com-rang-dua-bo":[.75,.46],"com-nieu":[.79,.4], "com-tam": [.66,.48], "banh-mi": [.73,.43], "pho-bo": [.73,.3], "banh-cuon": [.68,.38], "goi-cuon-tom-thit": [.7,.28], xoi: [.64,.72], "chef-bach":[.7,.48], "chef-nhien":[.76,.5], "chef-moc":[.7,.35], "chef-hai":[.76,.42], "chef-lien":[.73,.32], "bun-cha":[.7,.5], "bun-rieu":[.72,.48], "banh-xeo":[.72,.38], "com-ga":[.77,.4], "banh-chung":[.71,.49], "cha-ca-la-vong":[.74,.3], "bun-thang":[.75,.27], "banh-com-hang-than":[.74,.45], "com-lang-vong":[.69,.32], "ca-phe-trung":[.76,.28], "thit-kho-trung":[.65,.51], "cha-ruoi":[.77,.46], "banh-tet":[.72,.48], "bun-bo-hue":[.77,.4], "bun-ca":[.79,.38], "che-buoi":[.73,.5], "xoi-xeo":[.72,.56], "dua-hanh":[.75,.48], "caravan-herbalist":[.76,.46], "caravan-gardener":[.8,.42] }
+const PORTRAIT_CELLS: Partial<Record<VisualCharacterId,number>> = { "com-tam": 13, "banh-mi": 4, "pho-bo": 0, "banh-cuon": 6, "goi-cuon-tom-thit": 105, xoi: -1, "pho-ga":1,"chao-suon":7,"mien-ga":8,"bun-moc":9,"banh-da-cua":10,"bun-dau":12,"com-rang-dua-bo":15,"com-nieu":16,"banh-dau-xanh":112,"banh-khuc":113,"banh-can":114,"banh-tom-ho-tay":115,"com-hen":116,"che-lam":117,"chao-luon":118,"banh-it-la-gai":119,"banh-ram-it":120,"keo-cu-do":121 }
+const CAST_ANCHORS = { "banh-dau-xanh":[.72,.38],"banh-khuc":[.75,.42],"banh-can":[.78,.5],"banh-tom-ho-tay":[.73,.43],"com-hen":[.71,.34],"che-lam":[.77,.31],"chao-luon":[.78,.44],"banh-it-la-gai":[.76,.4],"banh-ram-it":[.74,.46],"keo-cu-do":[.79,.45], "pho-ga":[.72,.46],"chao-suon":[.75,.5],"mien-ga":[.78,.45],"bun-moc":[.78,.5],"banh-da-cua":[.76,.52],"bun-dau":[.73,.4],"com-rang-dua-bo":[.75,.46],"com-nieu":[.79,.4], "com-tam": [.66,.48], "banh-mi": [.73,.43], "pho-bo": [.73,.3], "banh-cuon": [.68,.38], "goi-cuon-tom-thit": [.7,.28], xoi: [.64,.72], "chef-bach":[.7,.48], "chef-nhien":[.76,.5], "chef-moc":[.7,.35], "chef-hai":[.76,.42], "chef-lien":[.73,.32], "bun-cha":[.7,.5], "bun-rieu":[.72,.48], "banh-xeo":[.72,.38], "com-ga":[.77,.4], "banh-chung":[.71,.49], "cha-ca-la-vong":[.74,.3], "bun-thang":[.75,.27], "banh-com-hang-than":[.74,.45], "com-lang-vong":[.69,.32], "ca-phe-trung":[.76,.28], "thit-kho-trung":[.65,.51], "cha-ruoi":[.77,.46], "banh-tet":[.72,.48], "bun-bo-hue":[.77,.4], "bun-ca":[.79,.38], "che-buoi":[.73,.5], "xoi-xeo":[.72,.56], "dua-hanh":[.75,.48], "caravan-herbalist":[.76,.46], "caravan-gardener":[.8,.42] }
 const ASSET_GROUPS: ReadonlyArray<readonly [readonly string[],string]> = [
   [CHEF_IDS,CHEF_ASSET_ROOT], [FAMILIAR_IDS,FAMILIAR_ASSET_ROOT],
   [RARE_IDS,RARE_ASSET_ROOT], [RARE_SECOND_IDS,RARE_SECOND_ASSET_ROOT],
   [REGIONAL_IDS,REGIONAL_ASSET_ROOT], [SPRING_CARAVAN_IDS,SPRING_CARAVAN_ASSET_ROOT],
-  [VIETNAM_IDS,VIETNAM_ASSET_ROOT],
+  [VIETNAM_IDS,VIETNAM_ASSET_ROOT], [AUTOCHESS_CORE_IDS,AUTOCHESS_CORE_ASSET_ROOT],
 ]
 export function chefPortrait(id: ChefId, expression: ChefExpression = "neutral") {
   if (id === "chef-bach" && expression === "neutral") return "/assets/tcg/characters/anime/bach.webp"

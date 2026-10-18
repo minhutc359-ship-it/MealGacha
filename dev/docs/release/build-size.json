@@ -2,21 +2,21 @@
   "staticBudgetBytes": 320000000,
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
-  "version": "5.9.12",
-  "bytes": 116977848,
-  "files": 704,
+  "version": "5.9.13",
+  "bytes": 126038220,
+  "files": 724,
   "byType": {
     "js": {
       "files": 43,
-      "bytes": 2092209
+      "bytes": 2095861
     },
     "css": {
       "files": 5,
       "bytes": 500862
     },
     "webp": {
-      "files": 478,
-      "bytes": 102951394
+      "files": 498,
+      "bytes": 112008114
     },
     "png": {
       "files": 3,
@@ -56,10 +56,10 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2593071,
+    "Application JS/CSS": 2596723,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
-    "Shared character atlases": 50844148,
+    "Shared character atlases": 59900868,
     "Event art": 2016822,
     "Other and legal": 13024115,
     "Food art": 7490462,
@@ -67,7 +67,7 @@
     "Spirit RPG art/audio/video": 17336030,
     "TCG art/audio": 18018052
   },
-  "js_gzip": 671866,
+  "js_gzip": 673013,
   "css_gzip": 103361,
   "largest": [
     {
@@ -121,19 +121,19 @@
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 2891618,
+    "bytes": 2895270,
     "urls": 62,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 9108382
+    "remainingBytes": 9104730
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 203022152
+    "remainingBytes": 193961780
   }
 }

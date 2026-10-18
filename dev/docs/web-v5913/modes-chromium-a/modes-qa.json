@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-17",
+  "engine": "chromium",
+  "version": "140.0.7339.16",
+  "checks": [
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ]
+    },
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ]
+    },
+    {
+      "area": "tcg",
+      "spell": {
+        "id": "tea-break",
+        "name": "Một chén trà"
+      },
+      "sharedBanner": true,
+      "modelSigil": true,
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay"
+      ],
+      "realUnitAttack": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "movieRequests": 0,
+  "requestedAssets": [
+    "/assets/characters/autochess5913/banh-dau-xanh.webp",
+    "/assets/characters/autochess5913/banh-khuc.webp",
+    "/assets/characters/autochess5913/banh-can.webp",
+    "/assets/characters/autochess5913/banh-tom-ho-tay.webp",
+    "/assets/characters/autochess5913/com-hen.webp"
+  ]
+}

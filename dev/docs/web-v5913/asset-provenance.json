@@ -1,0 +1,2502 @@
+[
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "columns": 4,
+      "cell": 0,
+      "globalCell": 112,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a"
+    },
+    "id": "banh-dau-xanh",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "9e97b1cab45fbf8738ffcf1df147adaa17c3a9e7b7474c6f81c5ffe964fe2210",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            33,
+            11,
+            293,
+            316
+          ],
+          [
+            340,
+            11,
+            597,
+            316
+          ],
+          [
+            642,
+            15,
+            898,
+            318
+          ],
+          [
+            949,
+            11,
+            1218,
+            316
+          ],
+          [
+            25,
+            337,
+            279,
+            615
+          ],
+          [
+            333,
+            338,
+            591,
+            615
+          ],
+          [
+            637,
+            348,
+            911,
+            616
+          ],
+          [
+            958,
+            342,
+            1224,
+            616
+          ],
+          [
+            14,
+            650,
+            296,
+            919
+          ],
+          [
+            303,
+            662,
+            613,
+            919
+          ],
+          [
+            624,
+            651,
+            951,
+            920
+          ],
+          [
+            965,
+            663,
+            1236,
+            919
+          ],
+          [
+            18,
+            952,
+            281,
+            1235
+          ],
+          [
+            332,
+            954,
+            630,
+            1235
+          ],
+          [
+            636,
+            950,
+            934,
+            1233
+          ],
+          [
+            932,
+            949,
+            1237,
+            1235
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: idle, walk, attack and cast poses for the canon white-gold dragon with pearl."
+      },
+      {
+        "sheet": "support",
+        "sha256": "110b30d533dbe9c7c1ed95ae5afaecffd636ec4fddbf962e4157c61e8b1fc9e1",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            26,
+            10,
+            312,
+            320
+          ],
+          [
+            328,
+            17,
+            633,
+            322
+          ],
+          [
+            646,
+            12,
+            976,
+            321
+          ],
+          [
+            985,
+            11,
+            1247,
+            322
+          ],
+          [
+            22,
+            345,
+            320,
+            650
+          ],
+          [
+            340,
+            346,
+            623,
+            650
+          ],
+          [
+            659,
+            378,
+            949,
+            650
+          ],
+          [
+            984,
+            389,
+            1235,
+            650
+          ],
+          [
+            23,
+            676,
+            306,
+            915
+          ],
+          [
+            340,
+            706,
+            635,
+            913
+          ],
+          [
+            648,
+            742,
+            952,
+            909
+          ],
+          [
+            968,
+            771,
+            1239,
+            912
+          ],
+          [
+            25,
+            950,
+            307,
+            1234
+          ],
+          [
+            330,
+            942,
+            639,
+            1233
+          ],
+          [
+            625,
+            943,
+            964,
+            1233
+          ],
+          [
+            985,
+            954,
+            1240,
+            1237
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: ultimate, hit, fall and victory poses for the canon white-gold dragon with pearl."
+      }
+    ],
+    "uniformScale": 0.6607669616519174,
+    "outputs": {
+      "banh-dau-xanh-pixel.webp": {
+        "bytes": 144132,
+        "sha256": "70a2e030708af07a496e4bc7db72cb3a9d30b5692bbc2f2999db480eb0b97be8"
+      },
+      "banh-dau-xanh.webp": {
+        "bytes": 770080,
+        "sha256": "282d5eb7cbafc5122b47113854de7e0dd3c1fb5ef299428fb346f2b95cad7e11"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "columns": 4,
+      "cell": 1,
+      "globalCell": 113,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a"
+    },
+    "id": "banh-khuc",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "40119aa9e55963eba15fca7c285429591b6b38e33d5addcbe12ba6f1deeee14d",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            32,
+            20,
+            276,
+            314
+          ],
+          [
+            353,
+            28,
+            600,
+            314
+          ],
+          [
+            646,
+            35,
+            909,
+            314
+          ],
+          [
+            967,
+            37,
+            1218,
+            314
+          ],
+          [
+            37,
+            352,
+            301,
+            625
+          ],
+          [
+            338,
+            353,
+            614,
+            623
+          ],
+          [
+            662,
+            357,
+            929,
+            623
+          ],
+          [
+            970,
+            357,
+            1225,
+            621
+          ],
+          [
+            25,
+            675,
+            290,
+            918
+          ],
+          [
+            324,
+            678,
+            637,
+            918
+          ],
+          [
+            657,
+            669,
+            994,
+            923
+          ],
+          [
+            962,
+            687,
+            1237,
+            922
+          ],
+          [
+            25,
+            951,
+            306,
+            1235
+          ],
+          [
+            341,
+            953,
+            635,
+            1233
+          ],
+          [
+            651,
+            951,
+            981,
+            1234
+          ],
+          [
+            996,
+            953,
+            1226,
+            1235
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: idle, walk, attack and cast poses for the canon white fox with green-gold leaf crown."
+      },
+      {
+        "sheet": "support",
+        "sha256": "e583ac28f8a5d6cc5d6f948a52793669c589bf9b050af733d64a316e6803b0c4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            19,
+            29,
+            305,
+            310
+          ],
+          [
+            329,
+            35,
+            623,
+            310
+          ],
+          [
+            640,
+            28,
+            981,
+            309
+          ],
+          [
+            988,
+            35,
+            1245,
+            310
+          ],
+          [
+            24,
+            339,
+            313,
+            621
+          ],
+          [
+            328,
+            351,
+            620,
+            621
+          ],
+          [
+            645,
+            349,
+            909,
+            623
+          ],
+          [
+            961,
+            374,
+            1228,
+            621
+          ],
+          [
+            16,
+            651,
+            319,
+            917
+          ],
+          [
+            335,
+            676,
+            633,
+            918
+          ],
+          [
+            641,
+            742,
+            952,
+            917
+          ],
+          [
+            963,
+            763,
+            1246,
+            918
+          ],
+          [
+            19,
+            934,
+            314,
+            1218
+          ],
+          [
+            333,
+            943,
+            635,
+            1217
+          ],
+          [
+            652,
+            936,
+            978,
+            1217
+          ],
+          [
+            982,
+            946,
+            1245,
+            1217
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: ultimate, hit, fall and victory poses for the canon white fox with green-gold leaf crown."
+      }
+    ],
+    "uniformScale": 0.656891495601173,
+    "outputs": {
+      "banh-khuc-pixel.webp": {
+        "bytes": 139988,
+        "sha256": "9efbaa825660380bf563ad2e045af2364923e8734e106bf80ae36109eac53227"
+      },
+      "banh-khuc.webp": {
+        "bytes": 703968,
+        "sha256": "86d8754bc3c6a299638a811bca01b4fdad2f6a018bea688b71b8f252e3e5b020"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "columns": 4,
+      "cell": 2,
+      "globalCell": 114,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a"
+    },
+    "id": "banh-can",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "4596330bb0b64f95828b0c6684a6c3826d6f8a94fd681d035058f422c3d8983d",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            34,
+            21,
+            270,
+            310
+          ],
+          [
+            351,
+            16,
+            608,
+            309
+          ],
+          [
+            660,
+            18,
+            915,
+            309
+          ],
+          [
+            973,
+            16,
+            1226,
+            309
+          ],
+          [
+            27,
+            336,
+            286,
+            614
+          ],
+          [
+            342,
+            339,
+            614,
+            616
+          ],
+          [
+            659,
+            339,
+            922,
+            615
+          ],
+          [
+            978,
+            346,
+            1232,
+            614
+          ],
+          [
+            15,
+            662,
+            310,
+            922
+          ],
+          [
+            331,
+            641,
+            610,
+            921
+          ],
+          [
+            639,
+            650,
+            981,
+            922
+          ],
+          [
+            983,
+            657,
+            1240,
+            922
+          ],
+          [
+            32,
+            951,
+            300,
+            1228
+          ],
+          [
+            336,
+            946,
+            615,
+            1228
+          ],
+          [
+            642,
+            948,
+            961,
+            1228
+          ],
+          [
+            983,
+            973,
+            1238,
+            1228
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: idle, walk, attack and cast poses for the canon white rabbit with twin gold round shields."
+      },
+      {
+        "sheet": "support",
+        "sha256": "c069225aafc162d903e35a4625fbe91931d550c54efa6e3a96871b9c59fcb1dd",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            21,
+            36,
+            321,
+            321
+          ],
+          [
+            335,
+            52,
+            628,
+            320
+          ],
+          [
+            627,
+            49,
+            940,
+            314
+          ],
+          [
+            940,
+            48,
+            1241,
+            314
+          ],
+          [
+            22,
+            366,
+            305,
+            631
+          ],
+          [
+            324,
+            385,
+            613,
+            635
+          ],
+          [
+            623,
+            314,
+            929,
+            618
+          ],
+          [
+            946,
+            314,
+            1233,
+            633
+          ],
+          [
+            26,
+            675,
+            311,
+            926
+          ],
+          [
+            317,
+            691,
+            619,
+            919
+          ],
+          [
+            632,
+            769,
+            939,
+            923
+          ],
+          [
+            955,
+            794,
+            1244,
+            925
+          ],
+          [
+            43,
+            964,
+            326,
+            1231
+          ],
+          [
+            342,
+            951,
+            618,
+            1228
+          ],
+          [
+            639,
+            948,
+            933,
+            1229
+          ],
+          [
+            948,
+            966,
+            1222,
+            1231
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: ultimate, hit, fall and victory poses for the canon white rabbit with twin gold round shields."
+      }
+    ],
+    "uniformScale": 0.6549707602339181,
+    "outputs": {
+      "banh-can-pixel.webp": {
+        "bytes": 135634,
+        "sha256": "08cfd84a0a7ee642384809b3e9845601123e558303420918d93a2493626262e0"
+      },
+      "banh-can.webp": {
+        "bytes": 701040,
+        "sha256": "bb990134fe906fcc04ab26877e4f81ec35b4ffd8effeee548a2bbfa53fbe0788"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "columns": 4,
+      "cell": 3,
+      "globalCell": 115,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a"
+    },
+    "id": "banh-tom-ho-tay",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "21c4a1f2f8bfd37c7e4c29dc2dffe453f82a24098aa2d7d64ff61addddb2e8fb",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            28,
+            33,
+            303,
+            306
+          ],
+          [
+            332,
+            27,
+            609,
+            304
+          ],
+          [
+            638,
+            28,
+            919,
+            306
+          ],
+          [
+            955,
+            31,
+            1232,
+            306
+          ],
+          [
+            12,
+            335,
+            317,
+            615
+          ],
+          [
+            331,
+            329,
+            642,
+            610
+          ],
+          [
+            663,
+            328,
+            955,
+            616
+          ],
+          [
+            963,
+            328,
+            1246,
+            615
+          ],
+          [
+            11,
+            669,
+            330,
+            920
+          ],
+          [
+            326,
+            630,
+            650,
+            916
+          ],
+          [
+            651,
+            636,
+            960,
+            917
+          ],
+          [
+            966,
+            643,
+            1241,
+            919
+          ],
+          [
+            10,
+            932,
+            316,
+            1221
+          ],
+          [
+            326,
+            935,
+            628,
+            1221
+          ],
+          [
+            643,
+            935,
+            954,
+            1221
+          ],
+          [
+            956,
+            934,
+            1243,
+            1222
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: idle, walk, attack and cast poses for the canon orange-white guardian lion."
+      },
+      {
+        "sheet": "support",
+        "sha256": "3dda92202379863b356c4940d420343421eda77ae7b397e345bfe4e8ae60ae7a",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            14,
+            44,
+            308,
+            294
+          ],
+          [
+            319,
+            48,
+            624,
+            300
+          ],
+          [
+            631,
+            54,
+            939,
+            307
+          ],
+          [
+            948,
+            52,
+            1236,
+            299
+          ],
+          [
+            20,
+            341,
+            312,
+            612
+          ],
+          [
+            328,
+            345,
+            618,
+            619
+          ],
+          [
+            635,
+            352,
+            915,
+            614
+          ],
+          [
+            946,
+            362,
+            1238,
+            614
+          ],
+          [
+            17,
+            657,
+            308,
+            910
+          ],
+          [
+            321,
+            688,
+            623,
+            914
+          ],
+          [
+            625,
+            734,
+            944,
+            912
+          ],
+          [
+            943,
+            746,
+            1248,
+            912
+          ],
+          [
+            11,
+            951,
+            306,
+            1224
+          ],
+          [
+            322,
+            948,
+            619,
+            1223
+          ],
+          [
+            634,
+            948,
+            933,
+            1229
+          ],
+          [
+            945,
+            949,
+            1243,
+            1225
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: ultimate, hit, fall and victory poses for the canon orange-white guardian lion."
+      }
+    ],
+    "uniformScale": 0.691358024691358,
+    "outputs": {
+      "banh-tom-ho-tay-pixel.webp": {
+        "bytes": 178834,
+        "sha256": "cc7728b2ee0d0f158e28846b1f4fcd730f99d68dec57063acc26d74445d38aa7"
+      },
+      "banh-tom-ho-tay.webp": {
+        "bytes": 856598,
+        "sha256": "5d2877789bafe0d5fed021b854474651c6cf220e42db60ecbca0cd60d2152a00"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "columns": 4,
+      "cell": 4,
+      "globalCell": 116,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a"
+    },
+    "id": "com-hen",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "4e6916d93b7ba84f054bad63bf93ace198dae9c5cb735d91787e0ea59ae38141",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            58,
+            19,
+            303,
+            310
+          ],
+          [
+            364,
+            17,
+            608,
+            310
+          ],
+          [
+            681,
+            15,
+            917,
+            310
+          ],
+          [
+            996,
+            17,
+            1223,
+            310
+          ],
+          [
+            22,
+            324,
+            285,
+            619
+          ],
+          [
+            343,
+            323,
+            600,
+            620
+          ],
+          [
+            658,
+            327,
+            919,
+            618
+          ],
+          [
+            966,
+            335,
+            1240,
+            619
+          ],
+          [
+            23,
+            645,
+            302,
+            915
+          ],
+          [
+            327,
+            627,
+            595,
+            917
+          ],
+          [
+            605,
+            633,
+            981,
+            919
+          ],
+          [
+            991,
+            650,
+            1229,
+            917
+          ],
+          [
+            43,
+            943,
+            277,
+            1231
+          ],
+          [
+            347,
+            943,
+            610,
+            1231
+          ],
+          [
+            638,
+            955,
+            976,
+            1231
+          ],
+          [
+            997,
+            948,
+            1221,
+            1231
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: idle, walk, attack and cast poses for the canon white deer with antlers and pearl."
+      },
+      {
+        "sheet": "support",
+        "sha256": "c0f02886fd2b1f3e4b303a242e02fd59378b946f52e752022f247fc86712e985",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            12,
+            18,
+            314,
+            320
+          ],
+          [
+            329,
+            10,
+            620,
+            323
+          ],
+          [
+            632,
+            6,
+            955,
+            325
+          ],
+          [
+            972,
+            10,
+            1244,
+            321
+          ],
+          [
+            25,
+            331,
+            291,
+            623
+          ],
+          [
+            328,
+            345,
+            604,
+            619
+          ],
+          [
+            652,
+            376,
+            960,
+            617
+          ],
+          [
+            978,
+            355,
+            1242,
+            618
+          ],
+          [
+            26,
+            632,
+            288,
+            911
+          ],
+          [
+            324,
+            675,
+            616,
+            910
+          ],
+          [
+            629,
+            715,
+            943,
+            913
+          ],
+          [
+            949,
+            746,
+            1253,
+            910
+          ],
+          [
+            22,
+            916,
+            310,
+            1225
+          ],
+          [
+            338,
+            923,
+            619,
+            1224
+          ],
+          [
+            642,
+            934,
+            952,
+            1230
+          ],
+          [
+            959,
+            927,
+            1237,
+            1229
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: ultimate, hit, fall and victory poses for the canon white deer with antlers and pearl."
+      }
+    ],
+    "uniformScale": 0.5957446808510638,
+    "outputs": {
+      "com-hen-pixel.webp": {
+        "bytes": 117896,
+        "sha256": "e93c7f8c762261141f9bb165328fe8486b0ca30af856b6edd9937c3b2cc4890a"
+      },
+      "com-hen.webp": {
+        "bytes": 658416,
+        "sha256": "2e81df3ce0085c74f3b6517581076c822a35aece4114c6615b1465494e32b446"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "columns": 4,
+      "cell": 5,
+      "globalCell": 117,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a"
+    },
+    "id": "che-lam",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "50658c8020ce55186db8bd0c78c7984512194ee0e52a570d388499dbde4bc2a3",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            26,
+            7,
+            293,
+            312
+          ],
+          [
+            340,
+            7,
+            581,
+            312
+          ],
+          [
+            659,
+            13,
+            923,
+            312
+          ],
+          [
+            973,
+            18,
+            1227,
+            311
+          ],
+          [
+            9,
+            313,
+            317,
+            623
+          ],
+          [
+            335,
+            330,
+            636,
+            622
+          ],
+          [
+            651,
+            313,
+            958,
+            623
+          ],
+          [
+            970,
+            329,
+            1250,
+            623
+          ],
+          [
+            15,
+            659,
+            305,
+            926
+          ],
+          [
+            336,
+            629,
+            625,
+            928
+          ],
+          [
+            634,
+            644,
+            963,
+            928
+          ],
+          [
+            975,
+            686,
+            1246,
+            930
+          ],
+          [
+            11,
+            940,
+            304,
+            1237
+          ],
+          [
+            322,
+            940,
+            626,
+            1237
+          ],
+          [
+            636,
+            943,
+            972,
+            1240
+          ],
+          [
+            994,
+            940,
+            1244,
+            1238
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: idle, walk, attack and cast poses for the canon white crane with long gold beak."
+      },
+      {
+        "sheet": "support",
+        "sha256": "eeefe0824ec7ad6c5af64807f4cfe7124c48e5b749dae504572e455d42ad6810",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            9,
+            46,
+            302,
+            325
+          ],
+          [
+            322,
+            46,
+            621,
+            328
+          ],
+          [
+            633,
+            32,
+            937,
+            330
+          ],
+          [
+            935,
+            35,
+            1243,
+            328
+          ],
+          [
+            20,
+            357,
+            322,
+            642
+          ],
+          [
+            335,
+            377,
+            610,
+            640
+          ],
+          [
+            638,
+            379,
+            926,
+            642
+          ],
+          [
+            950,
+            426,
+            1246,
+            641
+          ],
+          [
+            14,
+            684,
+            307,
+            926
+          ],
+          [
+            320,
+            704,
+            614,
+            926
+          ],
+          [
+            628,
+            749,
+            933,
+            926
+          ],
+          [
+            932,
+            797,
+            1251,
+            925
+          ],
+          [
+            11,
+            962,
+            318,
+            1231
+          ],
+          [
+            339,
+            939,
+            633,
+            1231
+          ],
+          [
+            657,
+            972,
+            921,
+            1226
+          ],
+          [
+            942,
+            947,
+            1247,
+            1233
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: ultimate, hit, fall and victory poses for the canon white crane with long gold beak."
+      }
+    ],
+    "uniformScale": 0.6666666666666666,
+    "outputs": {
+      "che-lam-pixel.webp": {
+        "bytes": 146364,
+        "sha256": "6e968d98236913d0d8f5ae8cfaf06ca717cb56c160d337d2f840b6619292f129"
+      },
+      "che-lam.webp": {
+        "bytes": 780284,
+        "sha256": "4999236d5b14581044098574adad028ce2fb33ea5a76e601263fc912d076b947"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "columns": 4,
+      "cell": 6,
+      "globalCell": 118,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a"
+    },
+    "id": "chao-luon",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "2c66213f5ff54994bc63c4ba57249fdc459e6b73cb4de254593604b28f79d128",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            22,
+            46,
+            295,
+            322
+          ],
+          [
+            341,
+            46,
+            608,
+            321
+          ],
+          [
+            654,
+            50,
+            910,
+            321
+          ],
+          [
+            973,
+            47,
+            1227,
+            320
+          ],
+          [
+            18,
+            357,
+            298,
+            614
+          ],
+          [
+            328,
+            361,
+            614,
+            614
+          ],
+          [
+            643,
+            361,
+            924,
+            614
+          ],
+          [
+            964,
+            371,
+            1239,
+            614
+          ],
+          [
+            15,
+            667,
+            296,
+            916
+          ],
+          [
+            316,
+            658,
+            623,
+            921
+          ],
+          [
+            632,
+            660,
+            967,
+            924
+          ],
+          [
+            951,
+            685,
+            1239,
+            915
+          ],
+          [
+            16,
+            969,
+            293,
+            1224
+          ],
+          [
+            316,
+            970,
+            625,
+            1223
+          ],
+          [
+            637,
+            971,
+            973,
+            1225
+          ],
+          [
+            937,
+            970,
+            1239,
+            1225
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: idle, walk, attack and cast poses for the canon white tiger with teal water ribbons."
+      },
+      {
+        "sheet": "support",
+        "sha256": "646605a9300c20b7afb4a0326da6ee5596513afece931d811192f7eaa7049ddf",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            11,
+            36,
+            307,
+            323
+          ],
+          [
+            325,
+            46,
+            619,
+            322
+          ],
+          [
+            635,
+            36,
+            936,
+            335
+          ],
+          [
+            948,
+            43,
+            1249,
+            328
+          ],
+          [
+            13,
+            380,
+            316,
+            646
+          ],
+          [
+            330,
+            377,
+            615,
+            649
+          ],
+          [
+            643,
+            432,
+            923,
+            650
+          ],
+          [
+            958,
+            386,
+            1240,
+            646
+          ],
+          [
+            16,
+            681,
+            314,
+            942
+          ],
+          [
+            322,
+            718,
+            629,
+            942
+          ],
+          [
+            641,
+            720,
+            937,
+            939
+          ],
+          [
+            949,
+            715,
+            1247,
+            942
+          ],
+          [
+            17,
+            973,
+            307,
+            1234
+          ],
+          [
+            328,
+            972,
+            625,
+            1228
+          ],
+          [
+            638,
+            966,
+            938,
+            1234
+          ],
+          [
+            964,
+            964,
+            1247,
+            1231
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: ultimate, hit, fall and victory poses for the canon white tiger with teal water ribbons."
+      }
+    ],
+    "uniformScale": 0.6666666666666666,
+    "outputs": {
+      "chao-luon-pixel.webp": {
+        "bytes": 154984,
+        "sha256": "856e04e4bfa35de4e25cae2b001e69b2b726404022a57f4ccfe31ef0ebcc4bf2"
+      },
+      "chao-luon.webp": {
+        "bytes": 792490,
+        "sha256": "3e5f3bbf20dc346514dd6b7be11b70bf1e13e6d416b3332fdb339b8456f1cd1d"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "columns": 4,
+      "cell": 7,
+      "globalCell": 119,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a"
+    },
+    "id": "banh-it-la-gai",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "23ebbbc3c32b700784dd2f4e02ce83bc10ac6a38d148ac528db0599db848c4b4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            19,
+            36,
+            290,
+            304
+          ],
+          [
+            346,
+            37,
+            610,
+            304
+          ],
+          [
+            659,
+            37,
+            917,
+            304
+          ],
+          [
+            978,
+            43,
+            1230,
+            303
+          ],
+          [
+            31,
+            354,
+            311,
+            603
+          ],
+          [
+            343,
+            353,
+            608,
+            606
+          ],
+          [
+            663,
+            351,
+            936,
+            604
+          ],
+          [
+            976,
+            355,
+            1228,
+            604
+          ],
+          [
+            18,
+            668,
+            299,
+            900
+          ],
+          [
+            327,
+            667,
+            621,
+            901
+          ],
+          [
+            633,
+            654,
+            964,
+            904
+          ],
+          [
+            987,
+            654,
+            1236,
+            905
+          ],
+          [
+            25,
+            949,
+            306,
+            1210
+          ],
+          [
+            321,
+            945,
+            624,
+            1212
+          ],
+          [
+            641,
+            944,
+            968,
+            1211
+          ],
+          [
+            972,
+            947,
+            1240,
+            1208
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: idle, walk, attack and cast poses for the canon orange-white koi spirit."
+      },
+      {
+        "sheet": "support",
+        "sha256": "db3b1b72c7e1a1a7aeec8117abef867221d15fc22cb62df17435187fed9c33ea",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            8,
+            48,
+            314,
+            329
+          ],
+          [
+            308,
+            55,
+            621,
+            331
+          ],
+          [
+            624,
+            37,
+            925,
+            331
+          ],
+          [
+            922,
+            7,
+            1231,
+            335
+          ],
+          [
+            12,
+            347,
+            319,
+            612
+          ],
+          [
+            325,
+            374,
+            631,
+            632
+          ],
+          [
+            634,
+            351,
+            940,
+            627
+          ],
+          [
+            940,
+            409,
+            1235,
+            627
+          ],
+          [
+            9,
+            637,
+            308,
+            940
+          ],
+          [
+            314,
+            688,
+            624,
+            940
+          ],
+          [
+            630,
+            627,
+            941,
+            916
+          ],
+          [
+            937,
+            627,
+            1241,
+            913
+          ],
+          [
+            17,
+            940,
+            314,
+            1194
+          ],
+          [
+            314,
+            940,
+            627,
+            1195
+          ],
+          [
+            627,
+            927,
+            937,
+            1223
+          ],
+          [
+            931,
+            927,
+            1243,
+            1222
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: ultimate, hit, fall and victory poses for the canon orange-white koi spirit; all cells verified as koi."
+      }
+    ],
+    "uniformScale": 0.676737160120846,
+    "outputs": {
+      "banh-it-la-gai-pixel.webp": {
+        "bytes": 163496,
+        "sha256": "b045b7c15df624d6182d00d38e73f4f7ca5483ab0d787993ee0f9672b79dcc33"
+      },
+      "banh-it-la-gai.webp": {
+        "bytes": 724880,
+        "sha256": "60a9fad71e605be074a2b0cdc76d946743e9a65befc8dc5039bb98da80696f63"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "columns": 4,
+      "cell": 8,
+      "globalCell": 120,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a"
+    },
+    "id": "banh-ram-it",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "545f1ace9171fe238d71377368ba1ec9dbb5bbcaaf0b49a7fd58380a737ff4b9",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            31,
+            40,
+            286,
+            307
+          ],
+          [
+            349,
+            46,
+            603,
+            306
+          ],
+          [
+            668,
+            38,
+            913,
+            306
+          ],
+          [
+            976,
+            42,
+            1227,
+            306
+          ],
+          [
+            35,
+            352,
+            292,
+            607
+          ],
+          [
+            351,
+            354,
+            607,
+            607
+          ],
+          [
+            652,
+            359,
+            908,
+            607
+          ],
+          [
+            973,
+            352,
+            1219,
+            608
+          ],
+          [
+            21,
+            671,
+            312,
+            906
+          ],
+          [
+            325,
+            647,
+            619,
+            904
+          ],
+          [
+            642,
+            665,
+            949,
+            907
+          ],
+          [
+            966,
+            665,
+            1229,
+            907
+          ],
+          [
+            24,
+            958,
+            301,
+            1211
+          ],
+          [
+            326,
+            959,
+            625,
+            1211
+          ],
+          [
+            644,
+            950,
+            957,
+            1210
+          ],
+          [
+            973,
+            953,
+            1234,
+            1213
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: idle, walk, attack and cast poses for the canon brown-white owl spirit."
+      },
+      {
+        "sheet": "support",
+        "sha256": "486158e667e7f79953c5a2a12a2d6dd67542e7e428a35d7a5c0c1447cb34f112",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            18,
+            50,
+            279,
+            310
+          ],
+          [
+            315,
+            56,
+            610,
+            312
+          ],
+          [
+            614,
+            43,
+            917,
+            310
+          ],
+          [
+            919,
+            25,
+            1244,
+            315
+          ],
+          [
+            20,
+            372,
+            309,
+            627
+          ],
+          [
+            330,
+            370,
+            610,
+            626
+          ],
+          [
+            634,
+            380,
+            937,
+            626
+          ],
+          [
+            955,
+            397,
+            1226,
+            630
+          ],
+          [
+            16,
+            659,
+            303,
+            927
+          ],
+          [
+            317,
+            663,
+            626,
+            925
+          ],
+          [
+            631,
+            742,
+            937,
+            926
+          ],
+          [
+            929,
+            774,
+            1244,
+            921
+          ],
+          [
+            19,
+            966,
+            312,
+            1229
+          ],
+          [
+            320,
+            948,
+            623,
+            1222
+          ],
+          [
+            631,
+            972,
+            935,
+            1222
+          ],
+          [
+            945,
+            962,
+            1244,
+            1224
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: ultimate, hit, fall and victory poses for the canon brown-white owl spirit."
+      }
+    ],
+    "uniformScale": 0.6892307692307692,
+    "outputs": {
+      "banh-ram-it-pixel.webp": {
+        "bytes": 152782,
+        "sha256": "7c1a9587e7d10c2899d08f3364b58595375b71ac6c8c7dc595d63ef7c279d67c"
+      },
+      "banh-ram-it.webp": {
+        "bytes": 782480,
+        "sha256": "52480227648be39c88df1d44fb4024e6853804fddb29c17db6263f3e35c88eca"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-8.webp",
+      "columns": 4,
+      "cell": 9,
+      "globalCell": 121,
+      "sha256": "cc5d07b95d3299e7ce53070324d8d8605e2c934ed4e6a660aa10e2152a68f49a"
+    },
+    "id": "keo-cu-do",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "e62493ebf4c94787b2793d670cc60c0ff58f3231b0eaeca6842202aba77be9c4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            17,
+            22,
+            288,
+            303
+          ],
+          [
+            330,
+            22,
+            604,
+            303
+          ],
+          [
+            634,
+            24,
+            916,
+            303
+          ],
+          [
+            947,
+            25,
+            1229,
+            303
+          ],
+          [
+            12,
+            346,
+            306,
+            616
+          ],
+          [
+            321,
+            345,
+            620,
+            615
+          ],
+          [
+            641,
+            345,
+            933,
+            616
+          ],
+          [
+            947,
+            344,
+            1246,
+            614
+          ],
+          [
+            7,
+            684,
+            306,
+            922
+          ],
+          [
+            325,
+            634,
+            615,
+            925
+          ],
+          [
+            622,
+            638,
+            945,
+            923
+          ],
+          [
+            951,
+            675,
+            1246,
+            926
+          ],
+          [
+            9,
+            952,
+            307,
+            1226
+          ],
+          [
+            317,
+            957,
+            621,
+            1229
+          ],
+          [
+            634,
+            952,
+            946,
+            1228
+          ],
+          [
+            959,
+            957,
+            1246,
+            1227
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: idle, walk, attack and cast poses for the canon gray-white wolf in a red-gold cloak."
+      },
+      {
+        "sheet": "support",
+        "sha256": "7a411cdc962ec6d81cb81f62ba5488a3abee56a950e2a7899b03247375a1c26c",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            18,
+            51,
+            296,
+            316
+          ],
+          [
+            319,
+            59,
+            612,
+            316
+          ],
+          [
+            629,
+            43,
+            937,
+            318
+          ],
+          [
+            940,
+            35,
+            1244,
+            321
+          ],
+          [
+            19,
+            367,
+            316,
+            613
+          ],
+          [
+            327,
+            377,
+            611,
+            610
+          ],
+          [
+            630,
+            402,
+            926,
+            614
+          ],
+          [
+            941,
+            375,
+            1234,
+            622
+          ],
+          [
+            28,
+            662,
+            299,
+            908
+          ],
+          [
+            317,
+            687,
+            619,
+            907
+          ],
+          [
+            629,
+            710,
+            920,
+            909
+          ],
+          [
+            939,
+            744,
+            1235,
+            907
+          ],
+          [
+            22,
+            954,
+            300,
+            1219
+          ],
+          [
+            323,
+            951,
+            607,
+            1218
+          ],
+          [
+            624,
+            952,
+            926,
+            1217
+          ],
+          [
+            947,
+            953,
+            1235,
+            1216
+          ]
+        ],
+        "prompt": "Identity-preserving 4x4 transparent sprite sheet: ultimate, hit, fall and victory poses for the canon gray-white wolf in a red-gold cloak."
+      }
+    ],
+    "uniformScale": 0.6934984520123839,
+    "outputs": {
+      "keo-cu-do-pixel.webp": {
+        "bytes": 158790,
+        "sha256": "b44955f4bc0d199aafbe2de93516a7d201f150b905777b962e59569f10f8dc64"
+      },
+      "keo-cu-do.webp": {
+        "bytes": 793584,
+        "sha256": "eeec566bf77d39f87ce9aefd60f5ac26b93631cf01e9196fb8fd10c82087bc00"
+      }
+    }
+  }
+]

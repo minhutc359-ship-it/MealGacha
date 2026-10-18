@@ -8,12 +8,25 @@ const cohorts = {
   "5910": {root: "regional5910", ids: ["banh-tet", "bun-bo-hue", "bun-ca", "che-buoi"]},
   "5912": {root: "vietnam5912", ids: ["pho-ga", "chao-suon", "mien-ga", "bun-moc"]},
   "5911": {root: "spring5911", ids: ["xoi-xeo", "dua-hanh", "caravan-herbalist", "caravan-gardener"]},
+  "5913": {root: "autochess5913", ids: ["banh-dau-xanh", "banh-khuc", "banh-can", "banh-tom-ho-tay", "com-hen"]},
 }
 const cohort = process.env.QA_COHORT ?? "5910"
 assert(cohort in cohorts, "Unknown spirit cohort")
 const {root: assetRoot, ids: defaultIds} = cohorts[cohort]
 const ids = process.env.QA_IDS ? JSON.parse(process.env.QA_IDS) : defaultIds
-assert.equal(ids.length,4)
+assert(ids.length >= 2 && ids.length <= 5)
+const viewports = process.env.QA_END_ONLY
+  ? []
+  : process.env.QA_VIEWPORTS
+    ? JSON.parse(process.env.QA_VIEWPORTS)
+    : process.env.QA_FOCUS
+      ? [{ width: 390, height: 844 }]
+      : [
+          { width: 320, height: 568 },
+          { width: 390, height: 844 },
+          { width: 844, height: 390 },
+          { width: 1440, height: 900 },
+        ]
 const engine = process.env.QA_ENGINE ?? "chromium",
   port = process.env.QA_PORT ?? "4196",
   url = `http://127.0.0.1:${port}`,
@@ -96,7 +109,7 @@ async function fixture(p, mode = "ultimate") {
         s = newRpgSave(g)
       s.cinematics = true
       s.roster.forEach((h, i) => {
-        h.cardId = [...ids, "com-tam"][i]
+        h.cardId = [...ids, "com-tam", "banh-mi", "pho-bo", "banh-cuon", "goi-cuon-tom-thit"][i]
         h.level = 15
         h.rank = 2
         h.skills = [3, 3, 3, 3]
@@ -147,7 +160,17 @@ async function fixture(p, mode = "ultimate") {
     await p.locator(".rpg-battle.presentation-fight").waitFor()
   }
   for (const id of ids)
-    await p.locator(`[data-character="${id}"].is-loaded`).first().waitFor()
+    await p.locator(`[data-character="${id}"][data-sheet="starter-${id}"].is-loaded`).first().waitFor()
+  const hd = await p.evaluate(async ({ids,assetRoot}) => {
+    const {SPRITE_SHEETS} = await import("/src/game/autochess/presentation.ts")
+    return ids.map(id => {
+      const actor = document.querySelector(`[data-character="${id}"]`)
+      const sheet = actor?.dataset.sheet
+      const descriptor = SPRITE_SHEETS[sheet]
+      return {id,sheet,path:descriptor?.path,width:descriptor?.width,frameWidth:descriptor?.rows[0]?.frames[0]?.[2],expectedRoot:descriptor?.path.includes(`/${assetRoot}/`)}
+    })
+  }, {ids,assetRoot})
+  assert(hd.every(r => r.sheet === `starter-${r.id}` && r.width === 1024 && r.frameWidth === 256 && r.expectedRoot),JSON.stringify(hd))
 }
 async function snapshot(p) {
   return p.evaluate(async () => {
@@ -192,16 +215,7 @@ async function cast(p, index) {
   await p.locator(`.ultimate-banner[data-showcase="${ids[index]}"]`).waitFor()
 }
 try {
-  for (const viewport of process.env.QA_END_ONLY
-    ? []
-    : process.env.QA_FOCUS
-      ? [{ width: 390, height: 844 }]
-      : [
-          { width: 320, height: 568 },
-          { width: 390, height: 844 },
-          { width: 844, height: 390 },
-          { width: 1440, height: 900 },
-        ]) {
+  for (const viewport of viewports) {
     const c = await browser.newContext({ viewport }),
       p = await open(c)
     for (const mode of ["attack", "primary", "support"]) {
@@ -350,7 +364,7 @@ try {
   noRecast(saved, await snapshot(p))
   checks.push({ area: "reload-committed-ultimate", noRecast: true })
   await fixture(p)
-  await cast(p, 2)
+  await cast(p, Math.min(2, ids.length - 1))
   const before = await snapshot(p)
   await p.clock.runFor(2500)
   await p.locator(".rpg-showcase").waitFor({ state: "detached" })
