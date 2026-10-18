@@ -19,6 +19,7 @@ import { GameCardView } from "../components/game/GameCardView"
 import { StoryScene } from "../components/game/StoryScene"
 import { DuelBasics } from "../components/game/DuelBasics"
 import { ModeIntroButton } from "../components/layout/ModeIntroButton"
+import { MangaChronicle } from "../components/game/MangaChronicle"
 import { HomeLobby } from "../components/game/HomeLobby"
 import { CampaignScreen } from "../components/game/CampaignScreen"
 import { AudioControls, useGameAudio, useGameMusic } from "../components/game/GameAudio"
@@ -53,6 +54,7 @@ import "../game/characterMotion.css"
 const NAV = [
   { id: "home", name: "Sảnh hành trình", icon: "home" },
   { id: "story", name: "Cốt truyện", icon: "map" },
+  { id: "manga", name: "Manga ký ức", icon: "book" },
   { id: "companions", name: "Lời hứa bên bếp", icon: "home" },
   { id: "expedition", name: "Thám hiểm", icon: "compass" },
   { id: "collection", name: "Thư viện thẻ", icon: "cards" },
@@ -64,6 +66,7 @@ const NAV = [
 const paths: Record<string, string> = {
   home: "M3 11 12 3l9 8M5 10v10h5v-6h4v6h5V10",
   map: "m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5M9 3v16M15 5v16",
+  book: "M4 4h7a3 3 0 0 1 3 3v14a3 3 0 0 0-3-3H4V4Zm16 0h-3a3 3 0 0 0-3 3v14a3 3 0 0 1 3-3h3V4Z",
   cards: "M7 5h13v15H7zM4 17H3V2h13v1M10 9h7M10 12h7M10 16h4",
   deck: "m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5",
   pack: "M5 3h14v18H5zM5 7h14M5 17h14m-7-7 3 2-3 2-3-2 3-2",
@@ -259,6 +262,7 @@ export function TCGPage() {
                     home: "Sảnh",
                     companions: "Bạn bếp",
                     story: "Truyện",
+                    manga: "Manga",
                     expedition: "Thám hiểm",
                     collection: "Thẻ",
                     decks: "Bộ bài",
@@ -459,6 +463,7 @@ export function TCGPage() {
               )}
               {tab === "expedition" && <Expedition />}
               {tab === "story" && <CampaignScreen onStage={goStage} />}
+              {tab === "manga" && <MangaChronicle track="tcg" clearedStages={current.clearedStages} storyEnding={current.storyEnding} />}
               {tab === "collection" && <Collection />}
               {tab === "workshop" && <Collection workshop />}
               {tab === "companions" && <JourneyHub />}

@@ -1,5 +1,5 @@
 {
-  "version": "5.9.14",
+  "version": "5.9.15",
   "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -4750,6 +4750,234 @@
       "origin": "Original AI-assisted Soul of Meal loading illustrations selected from the project Library and optimized to WebP",
       "evidence": [
         "dev/docs/web-v560/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/ashalley.webp",
+      "bytes": 559368,
+      "sha256": "c7fb12f87a2cf770ee90d46f39a67a63e67da4829227a36ec4b77cee6b10b91b",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/cover.webp",
+      "bytes": 569846,
+      "sha256": "70167ea881591da470a7b734edf8c9ea742949583f877e55ec1221282641e224",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/garden.webp",
+      "bytes": 545410,
+      "sha256": "400f7adf3141a123eb17fa2e043e8944b674287f45612f7e45369ab859b7b884",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/harbor.webp",
+      "bytes": 551530,
+      "sha256": "77ed47329b5d7bb32595f64e3e3a5c1d52233c060f0dfe068065e3ff93d5a7c2",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/lantern.webp",
+      "bytes": 504410,
+      "sha256": "3a0aaff5a4777b699cf87573e0f9c089d50e03dc28adf9ac49b27f3f6d2a65cc",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/lasttable.webp",
+      "bytes": 549720,
+      "sha256": "6e74a8f76d52147a525f3ae0c3d7a8bd25807f74a844e43e18e19e5d61ac50f6",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/mistwood.webp",
+      "bytes": 545058,
+      "sha256": "5fb92cdc69eb8bbcda79a1f0f0f5351d311a2c10e6a5df4b5cb6944df74bc914",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/sugartower.webp",
+      "bytes": 615908,
+      "sha256": "97fbfbbd694a59fb8aff64c361d00a83e4313cf6e6dfd19dde1d8dee0ed1fe05",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/tide.webp",
+      "bytes": 557786,
+      "sha256": "c3f4ffac0205770b5ba8a24afc6d4263248e5bb0f4bb84b7aee41f0599195642",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/cover.webp",
+      "bytes": 487936,
+      "sha256": "71f19b9db61bb1ed71782a80c85dfa2132e5294f055c039dc16ec6a3efc8d4d9",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/garden.webp",
+      "bytes": 544344,
+      "sha256": "929318a325508fae896b1aaf3e0cd20e81640108b54cde425d30b9cb5c0e4758",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/harbor.webp",
+      "bytes": 490262,
+      "sha256": "c4f99e26b5d51941c0c91ce95d2e5ad8668d2443ad8fcbcd00b115a3e98701bd",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/lantern.webp",
+      "bytes": 489536,
+      "sha256": "944b0c107810b26984d4eb62baa6de40ab1e54be122beb5a429fde2719fee8af",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/last-table.webp",
+      "bytes": 482308,
+      "sha256": "6a3a5471ecc4a5daaa0ccaa72c835fa9a63378553c711773aa0db3474d92541a",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/living-market.webp",
+      "bytes": 518610,
+      "sha256": "4d78d861a53e9287d36e7b40c9c687d569105448b52ddf250ca8de9829901493",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/moon.webp",
+      "bytes": 513176,
+      "sha256": "a5425a32bfdb351e23d702972436f96b9ba13f199085aa09e3d9bc9f73957945",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/rain-harbor.webp",
+      "bytes": 530360,
+      "sha256": "4b2d2def5be381d9307f8f4dc7744f159fd55087e3f64fcd7bfbf4896d5b988b",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/tide.webp",
+      "bytes": 545702,
+      "sha256": "5b86609d4d2afe3cb0438a971f8df84d6d8cdaabf216586d5fae21fdd4ed7b2d",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/tomorrow-table.webp",
+      "bytes": 535818,
+      "sha256": "de507332fc0afb0f084c391f585e5aef99df6c868e67adffaef93838e71a41ba",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
