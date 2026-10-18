@@ -1,0 +1,16 @@
+{
+  "tool": "Built-in Imagegen; no CLI or external API runner",
+  "date": "2026-10-18",
+  "identity": "dev/docs/web-v5914/identity-sources.json",
+  "styleReference": {
+    "path": "/assets/characters/vietnam5912/pho-ga.webp",
+    "workingCopy": ".asset-work/tcg5914/references/project-style.png",
+    "sha256": "503e6d4e4c1786a8ba68ac8d9a945b0db1bd94758b1c4bf4772db041dc948ee6",
+    "use": "Style, transparent grid and rendering only; never identity"
+  },
+  "authoredSheets": 16,
+  "physicalPoseCount": 256,
+  "portraitPolicy": "Reuse existing immutable canon atlas cells; no new portrait files",
+  "promptSet": "asset-provenance.json[].sources[].prompt",
+  "runtimeAssets": "public/assets/characters/tcg5914/"
+}

@@ -1,5 +1,5 @@
 """Register Imagegen actors, retaining authored pixels; no synthetic poses.
-Usage: python3 dev/tools/pack-campaign598.py /path/to/sources.json [campaign598|campaign599|regional5910|spring5911|vietnam5912|autochess5913] [--append]
+Usage: python3 dev/tools/pack-campaign598.py /path/to/sources.json [campaign598|campaign599|regional5910|spring5911|vietnam5912|autochess5913|tcg5914] [--append]
 Two 4x4 source sheets per actor, registered into eight states x four poses.
 """
 import hashlib, json, sys
@@ -9,10 +9,10 @@ from scipy.ndimage import label, find_objects
 from PIL import Image, ImageOps
 ROOT = Path(__file__).resolve().parents[2]
 group=sys.argv[2] if len(sys.argv)>2 else 'campaign598'
-if group not in ['campaign598','campaign599','regional5910','spring5911','vietnam5912','autochess5913']: raise ValueError('Unknown visual cohort')
-hero_cohort=group in ['regional5910','spring5911','vietnam5912','autochess5913']
+if group not in ['campaign598','campaign599','regional5910','spring5911','vietnam5912','autochess5913','tcg5914']: raise ValueError('Unknown visual cohort')
+hero_cohort=group in ['regional5910','spring5911','vietnam5912','autochess5913','tcg5914']
 OUT = ROOT/'public/assets/characters'/group
-DOC = ROOT/'dev/docs'/('web-v'+group.removeprefix('campaign').removeprefix('regional').removeprefix('spring').removeprefix('vietnam').removeprefix('autochess'))
+DOC = ROOT/'dev/docs'/('web-v'+group.removeprefix('campaign').removeprefix('regional').removeprefix('spring').removeprefix('vietnam').removeprefix('autochess').removeprefix('tcg'))
 OUT.mkdir(parents=True, exist_ok=True); DOC.mkdir(parents=True, exist_ok=True)
 entries=json.loads(Path(sys.argv[1]).read_text())
 ids=list(dict.fromkeys(e['id'] for e in entries))
@@ -84,7 +84,7 @@ for actor in ids:
     # Enemies reuse idle; hero cohorts keep their authored standalone portrait.
     if not hero_cohort:
         atlas.crop((0,0,256,256)).save(OUT/f'{actor}-portrait.webp','WEBP',quality=90,method=6)
-    elif group not in ['vietnam5912','autochess5913']:
+    elif group not in ['vietnam5912','autochess5913','tcg5914']:
         portrait=next(e for e in entries if e['id']==actor and e['kind']=='portrait')
         raw=Path(portrait['source']).read_bytes(); image=Image.open(portrait['source']).convert('RGB')
         if image.width!=image.height:raise ValueError('Portrait must be square')
@@ -92,7 +92,7 @@ for actor in ids:
         sources.append({'sheet':'portrait','sha256':hashlib.sha256(raw).hexdigest(),'size':list(image.size),'prompt':portrait['prompt']})
         if portrait.get('revision'):
             r=portrait['revision'];sources[-1]['revision']={'reason':r['reason'],'sourceSha256':hashlib.sha256(Path(r['source']).read_bytes()).hexdigest(),'prompt':r['prompt']}
-    portrait_reference=next((r['canon'] for r in json.loads((DOC/'identity-sources.json').read_text()) if r['id']==actor),None) if group in ['vietnam5912','autochess5913'] else None
+    portrait_reference=next((r['canon'] for r in json.loads((DOC/'identity-sources.json').read_text()) if r['id']==actor),None) if group in ['vietnam5912','autochess5913','tcg5914'] else None
     report.append({'portraitReference':portrait_reference,'id':actor,'frames':32,'states':['idle','walk','attack','cast','ultimate' if hero_cohort else 'special/brace' if group=='campaign599' else 'phase','hit','fall','victory'],'tool':'built-in Imagegen','generatedOn':'2026-10-18','sources':sources,'uniformScale':scale,'outputs':{p.name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(OUT.glob(f'{actor}*.webp'))}})
 if '--append' in sys.argv[3:] and (DOC/'asset-provenance.json').exists():
     report=[e for e in json.loads((DOC/'asset-provenance.json').read_text()) if e['id'] not in ids]+report

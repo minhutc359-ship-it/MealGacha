@@ -65,6 +65,7 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/characters/tcg5914/", "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged", ["dev/docs/web-v5914/asset-provenance.json", "dev/docs/web-v5914/identity-sources.json", "dev/tools/pack-campaign598.py"]],
  ["assets/characters/autochess5913/", "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged", ["dev/docs/web-v5913/asset-provenance.json", "dev/docs/web-v5913/identity-sources.json", "dev/tools/pack-campaign598.py"]],
  ["assets/characters/vietnam5912/", "Original AI-assisted identity-preserving HD and pixel pose atlases from existing eight canon portraits; portraits reused unchanged", ["dev/docs/web-v5912/asset-provenance.json", "dev/docs/web-v5912/identity-sources.json", "dev/tools/pack-campaign598.py"]],
  ["assets/rpg/showcase5911/", "Existing original project ultimate realms cropped into five square images for aspect-preserving cover backgrounds", ["dev/docs/web-v5911/showcase-assets.json", "dev/docs/web-v530/artwork.json", "dev/tools/pack-showcase5911.py"]],

@@ -99,6 +99,14 @@ const DEFINITIONS = {
   "banh-it-la-gai": {effectColumn:-1,title:"Diệp lưu",species:"Dơi Lá Tím",signature:"leafdodge",color:"#b69ad7",idle:1580,walk:760,attack:800,cast:1140},
   "banh-ram-it": {effectColumn:-1,title:"Song nhịp",species:"Song Linh Giòn Mềm",signature:"twinbeat",color:"#d6ad70",idle:1420,walk:640,attack:720,cast:1000},
   "keo-cu-do": {effectColumn:-1,title:"Xích xung",species:"Ngưu Lạc Vàng",signature:"chargearc",color:"#dc825c",idle:1500,walk:700,attack:760,cast:1080},
+  "mi-van-than": {effectColumn:-1,title:"Thủy thương",species:"Ngọc Thố Lam Triều",signature:"rabbitwave",color:"#75d8df",idle:1460,walk:640,attack:740,cast:1060},
+  "mi-cay": {effectColumn:-1,title:"Xích sư",species:"Sư Vương Xích Triều",signature:"liontide",color:"#ef6854",idle:1580,walk:760,attack:820,cast:1120},
+  "ga-ran": {effectColumn:-1,title:"Kim lộc",species:"Kim Lộc Thu Diệp",signature:"amberantler",color:"#e9b957",idle:1640,walk:780,attack:840,cast:1160},
+  pizza: {effectColumn:-1,title:"Thiên vũ",species:"Hạc Vương Kim Phong",signature:"cranewind",color:"#f0c56e",idle:1560,walk:720,attack:800,cast:1120},
+  pasta: {effectColumn:-1,title:"Hổ diệm",species:"Kim Hổ Liệt Dương",signature:"tigerflare",color:"#efa34f",idle:1520,walk:700,attack:780,cast:1080},
+  sushi: {effectColumn:-1,title:"Cẩm triều",species:"Cẩm Lý San Hô",signature:"koicurrent",color:"#ed8b62",idle:1500,walk:680,attack:760,cast:1060},
+  tokbokki: {effectColumn:-1,title:"Hỏa nhãn",species:"Hỏa Cú Xích Vũ",signature:"owlember",color:"#ee5d42",idle:1480,walk:660,attack:740,cast:1040},
+  "lau-thai": {effectColumn:-1,title:"Lang hỏa",species:"Ngân Lang Xích Ấn",signature:"wolfflame",color:"#f05f4d",idle:1540,walk:720,attack:800,cast:1100},
 } as const
 
 export const CHEF_IDS = ["chef-bach","chef-nhien","chef-moc","chef-hai","chef-lien"] as const
@@ -120,6 +128,8 @@ export const VIETNAM_IDS = ["pho-ga","chao-suon","mien-ga","bun-moc","banh-da-cu
 export const VIETNAM_ASSET_ROOT = "/assets/characters/vietnam5912"
 export const AUTOCHESS_CORE_IDS = ["banh-dau-xanh","banh-khuc","banh-can","banh-tom-ho-tay","com-hen","che-lam","chao-luon","banh-it-la-gai","banh-ram-it","keo-cu-do"] as const
 export const AUTOCHESS_CORE_ASSET_ROOT = "/assets/characters/autochess5913"
+export const TCG_CLASSIC_IDS = ["mi-van-than","mi-cay","ga-ran","pizza","pasta","sushi","tokbokki","lau-thai"] as const
+export const TCG_CLASSIC_ASSET_ROOT = "/assets/characters/tcg5914"
 export type VisualCharacterId = keyof typeof DEFINITIONS
 export const VISUAL_CONTACT = { attack: 300, cast: 380, ultimate: 960, tcg: 560 } as const
 export const ULTIMATE_TIMELINE = {
@@ -128,12 +138,15 @@ export const ULTIMATE_TIMELINE = {
 } as const
 export const STARTER_ASSET_ROOT = "/assets/characters/starters590"
 const PORTRAIT_CELLS: Partial<Record<VisualCharacterId,number>> = { "com-tam": 13, "banh-mi": 4, "pho-bo": 0, "banh-cuon": 6, "goi-cuon-tom-thit": 105, xoi: -1, "pho-ga":1,"chao-suon":7,"mien-ga":8,"bun-moc":9,"banh-da-cua":10,"bun-dau":12,"com-rang-dua-bo":15,"com-nieu":16,"banh-dau-xanh":112,"banh-khuc":113,"banh-can":114,"banh-tom-ho-tay":115,"com-hen":116,"che-lam":117,"chao-luon":118,"banh-it-la-gai":119,"banh-ram-it":120,"keo-cu-do":121 }
+const TCG_CLASSIC_PORTRAIT_CELLS: Partial<Record<VisualCharacterId,number>> = {"mi-van-than":18,"mi-cay":19,"ga-ran":20,pizza:21,pasta:22,sushi:23,tokbokki:24,"lau-thai":25}
 const CAST_ANCHORS = { "banh-dau-xanh":[.72,.38],"banh-khuc":[.75,.42],"banh-can":[.78,.5],"banh-tom-ho-tay":[.73,.43],"com-hen":[.71,.34],"che-lam":[.77,.31],"chao-luon":[.78,.44],"banh-it-la-gai":[.76,.4],"banh-ram-it":[.74,.46],"keo-cu-do":[.79,.45], "pho-ga":[.72,.46],"chao-suon":[.75,.5],"mien-ga":[.78,.45],"bun-moc":[.78,.5],"banh-da-cua":[.76,.52],"bun-dau":[.73,.4],"com-rang-dua-bo":[.75,.46],"com-nieu":[.79,.4], "com-tam": [.66,.48], "banh-mi": [.73,.43], "pho-bo": [.73,.3], "banh-cuon": [.68,.38], "goi-cuon-tom-thit": [.7,.28], xoi: [.64,.72], "chef-bach":[.7,.48], "chef-nhien":[.76,.5], "chef-moc":[.7,.35], "chef-hai":[.76,.42], "chef-lien":[.73,.32], "bun-cha":[.7,.5], "bun-rieu":[.72,.48], "banh-xeo":[.72,.38], "com-ga":[.77,.4], "banh-chung":[.71,.49], "cha-ca-la-vong":[.74,.3], "bun-thang":[.75,.27], "banh-com-hang-than":[.74,.45], "com-lang-vong":[.69,.32], "ca-phe-trung":[.76,.28], "thit-kho-trung":[.65,.51], "cha-ruoi":[.77,.46], "banh-tet":[.72,.48], "bun-bo-hue":[.77,.4], "bun-ca":[.79,.38], "che-buoi":[.73,.5], "xoi-xeo":[.72,.56], "dua-hanh":[.75,.48], "caravan-herbalist":[.76,.46], "caravan-gardener":[.8,.42] }
+const TCG_CLASSIC_CAST_ANCHORS: Partial<Record<VisualCharacterId,readonly [number,number]>> = {"mi-van-than":[.76,.38],"mi-cay":[.77,.42],"ga-ran":[.78,.36],pizza:[.79,.4],pasta:[.78,.42],sushi:[.77,.38],tokbokki:[.76,.39],"lau-thai":[.79,.43]}
 const ASSET_GROUPS: ReadonlyArray<readonly [readonly string[],string]> = [
   [CHEF_IDS,CHEF_ASSET_ROOT], [FAMILIAR_IDS,FAMILIAR_ASSET_ROOT],
   [RARE_IDS,RARE_ASSET_ROOT], [RARE_SECOND_IDS,RARE_SECOND_ASSET_ROOT],
   [REGIONAL_IDS,REGIONAL_ASSET_ROOT], [SPRING_CARAVAN_IDS,SPRING_CARAVAN_ASSET_ROOT],
   [VIETNAM_IDS,VIETNAM_ASSET_ROOT], [AUTOCHESS_CORE_IDS,AUTOCHESS_CORE_ASSET_ROOT],
+  [TCG_CLASSIC_IDS,TCG_CLASSIC_ASSET_ROOT],
 ]
 export function chefPortrait(id: ChefId, expression: ChefExpression = "neutral") {
   if (id === "chef-bach" && expression === "neutral") return "/assets/tcg/characters/anime/bach.webp"
@@ -142,7 +155,7 @@ export function chefPortrait(id: ChefId, expression: ChefExpression = "neutral")
 function manifest(id: VisualCharacterId) {
   const chef = id.startsWith("chef-")
   const root = ASSET_GROUPS.find(([ids]) => ids.includes(id))?.[1] ?? STARTER_ASSET_ROOT
-  const cell = PORTRAIT_CELLS[id] ?? -1
+  const cell = TCG_CLASSIC_PORTRAIT_CELLS[id] ?? PORTRAIT_CELLS[id] ?? -1
   return {
     ...DEFINITIONS[id], id,
     sheet: `starter-${id}` as const,
@@ -152,7 +165,7 @@ function manifest(id: VisualCharacterId) {
     portrait: cell < 0 ? {path: chef ? chefPortrait(id as ChefId) : `${root}/${id}-portrait.webp`, cell: 0, columns: 1} : {path: `/assets/rpg/spirit510/portraits-${Math.floor(cell/16)+1}.webp`, cell: cell%16, columns: 4},
     // New cohorts use procedural VFX; old atlas descriptors remain compatible.
     effect: DEFINITIONS[id].effectColumn < 0 ? null : {path: `${root}/${root === STARTER_ASSET_ROOT ? "ultimate591" : "ultimate"}.webp`, column: DEFINITIONS[id].effectColumn},
-    anchors: { foot: [.5, .9375], cast: CAST_ANCHORS[id] },
+    anchors: { foot: [.5, .9375], cast: TCG_CLASSIC_CAST_ANCHORS[id] ?? (CAST_ANCHORS as unknown as Partial<Record<VisualCharacterId, readonly [number, number]>>)[id] ?? [.76, .4] },
     contact: VISUAL_CONTACT,
     sound: `/assets/rpg/awakening530/sounds/${id}.mp3`,
     timeline: ULTIMATE_TIMELINE,

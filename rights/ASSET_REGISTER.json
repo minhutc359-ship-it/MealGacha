@@ -1,5 +1,5 @@
 {
-  "version": "5.9.13",
+  "version": "5.9.14",
   "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -2597,6 +2597,198 @@
         "dev/docs/web-v591/vfx-artwork.json",
         "dev/tools/pack-starters590.py",
         "dev/tools/pack-ultimate591.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/ga-ran-pixel.webp",
+      "bytes": 139650,
+      "sha256": "ce7ab347d73b4e5d610dd01ad96e6a4fdadf6fdc8cb0c6156736a6cb9516d0fb",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/ga-ran.webp",
+      "bytes": 792486,
+      "sha256": "cbc30475bfa25d6819ed34231fe3c685cf3b1682cd517acf735e4e4588bd30f5",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/lau-thai-pixel.webp",
+      "bytes": 108796,
+      "sha256": "56ba39e3bd0f71c9afb6c4d0e7f49417c422c3cce8898c109ea82f2bd287770f",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/lau-thai.webp",
+      "bytes": 610870,
+      "sha256": "1ef3694e71c6c8966afe13c1cff7afc88a4c40cca3d0775412435d81c790d4af",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/mi-cay-pixel.webp",
+      "bytes": 110814,
+      "sha256": "675bd9272d2fe5d2fe19bb43b73a8393867b3d6a738406631f6d54205e7a4cc4",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/mi-cay.webp",
+      "bytes": 624868,
+      "sha256": "d78f8ea31065c0729c57bf7c363434fd04a3d8fbf0f48f923ba55e975d848daa",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/mi-van-than-pixel.webp",
+      "bytes": 121160,
+      "sha256": "b44c81aa280ddb220f504f9029362cc2473b55a99dadf634084c1b76808238c0",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/mi-van-than.webp",
+      "bytes": 662322,
+      "sha256": "067e9ad26678dab3de15988b65614c6cf468d6cce6091901cba4057be01ef5b2",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/pasta-pixel.webp",
+      "bytes": 149266,
+      "sha256": "ddbe2fbf8800ce5d64e421c668cb87ed3f805c220f79a74f19825a613e98d7b7",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/pasta.webp",
+      "bytes": 768922,
+      "sha256": "93b9b55cd6ecd7eda3da2f29eea2ffa193911952bb4d8ed74567c86961a4b4ca",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/pizza-pixel.webp",
+      "bytes": 142574,
+      "sha256": "60c6b561d87fcdb5e2a9761364c39cc739cfd32a0318d6a76ffd20cfc323f3ed",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/pizza.webp",
+      "bytes": 810644,
+      "sha256": "bd62865b2730c530133ee232161c97e937b5926c0b0dcf3c7df161e93bb858a3",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/sushi-pixel.webp",
+      "bytes": 152804,
+      "sha256": "915fb218c28c644071f2c4f0ab8834e56c6b94f08a0f3599a835695068de92fb",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/sushi.webp",
+      "bytes": 799580,
+      "sha256": "c3d29819a6eb43f1ea9e7616268ba68f09bd8da275284493f900acebc285aefa",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/tokbokki-pixel.webp",
+      "bytes": 141362,
+      "sha256": "1bd36ed1cdb4cb48c032a5b49dbbf1338305db6f270e7fdd5d6bed84bf799bd9",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/tokbokki.webp",
+      "bytes": 733752,
+      "sha256": "1ec68a44894b870462914a17854504eb553939aeba6ed24f2f065d855eb102d0",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
