@@ -61,12 +61,8 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             s.frozen = null;
         }
         s.paused = paused;
-        if (quiet) {
-            // Reduced motion still presents a static ultimate sigil/impact.
-            s.cues = s.cues.filter(c => c.event.kind === "burst" || isEnemyPhaseEvent(c.event,c.actor));
-        }
         for (const e of battle.events) {
-            if (e.serial <= s.serial || battle.tick - e.tick > 4 || quiet && !["burst","boss"].includes(e.kind) || !(e.animation || ["burst", "skill", "guard", "reaction", "boss"].includes(e.kind)))
+            if (e.serial <= s.serial || battle.tick - e.tick > 4 || !(e.animation || ["burst", "skill", "guard", "reaction", "boss"].includes(e.kind)))
                 continue;
             const actor = battle.actors.find(a => a.uid === e.source);
             if (!actor)
@@ -119,12 +115,11 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                     }
                     else if(age<360) drawChannel(ctx,source,c.event.school,age/360,size*.55,low);
                     else if(age<960 && c.targets.some(t=>t.side!==c.actor.side)) drawProjectile(ctx,source,center,c.event.school,(age-360)/600,extent*.22,low,"projectile");
-                    else if(age>=960 && starterCharacter(c.actor.id)) {
-                        for(const target of c.targets.slice(0,low?3:5)){const p=point(target),enemy=target.side!==c.actor.side;drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent,enemy?age:age-960,enemy,low,c.actor.role==="healer"?"heal":"shield");}
-                    } else if(age>=960 && age<1980) {
+                    else if(age>=960 && age<1980) {
                         const foes=c.targets.filter(t=>t.side!==c.actor.side).slice(0,low?3:5).map(point);
                         if(foes.length) drawUltimateArt(ctx,identity.pattern,foes.reduce((n,p)=>n+p.x,0)/foes.length,foes.reduce((n,p)=>n+p.y,0)/foes.length,extent*1.3,(age-960)/1020,VFX_COLORS[c.event.school][1],identity.motif,low);
                         for(const friend of c.targets.filter(t=>t.side===c.actor.side).slice(0,low?3:5)) drawImpact(ctx,point(friend),c.event.school,(age-960)/1020,extent,c.actor.role==="healer"?"heal":"shield",low);
+                        if(starterCharacter(c.actor.id)) for(const target of c.targets.slice(0,low?3:5)){const p=point(target),enemy=target.side!==c.actor.side;drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent,enemy?age:age-960,enemy,low,c.actor.role==="healer"?"heal":"shield");}
                     }
                     surface.dataset.ultimate=identity.pattern;
                     continue;
@@ -136,9 +131,11 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                         const t=(age-80)/(contact-80);
                         drawProjectile(ctx,source,p,c.event.school,t,extent*.22,low,kind);
                     }
+                    // The school impact is always the base layer. Character/boss
+                    // signatures may accent it, but can no longer replace it.
+                    drawImpact(ctx,p,c.event.school,(age-contact)/650,extent,kind,low,low?undefined:texture.image);
                     if(starterCharacter(c.actor.id)) drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent*.75,age-contact,false,low,kind === "heal" || kind === "shield" ? kind : normal ? "attack" : "skill");
                     else if(enemy && (!normal || enemy.accent)) {drawEnemyVfx(ctx,c.actor.id,p.x,p.y,extent,age-contact,quiet);surface.dataset.enemySignature=c.actor.id;}
-                    else drawImpact(ctx,p,c.event.school,(age-contact)/650,extent,kind,low,low?undefined:texture.image);
                 }
                 if (surface.dataset.signature !== `${c.actor.role}:${c.event.school}:${c.variant}`)
                     surface.dataset.signature = `${c.actor.role}:${c.event.school}:${c.variant}`;
