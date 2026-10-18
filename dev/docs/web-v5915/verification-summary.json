@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-18",
+  "version": "5.9.15",
+  "vitest": { "passed": 748, "files": 69 },
+  "typecheck": { "app": true, "dev": true },
+  "browser": {
+    "currentCommitEvidence": false,
+    "reason": "Playwright and browser binaries are unavailable in the current runtime; physical Safari acceptance remains pending"
+  },
+  "manga": {
+    "tracks": 2,
+    "covers": 2,
+    "chapters": 17,
+    "pages": 19,
+    "bytes": 10137088,
+    "size": [1086, 1448],
+    "decoded": true,
+    "canonicalDialogue": true,
+    "lockedImagesNotMounted": true
+  },
+  "build": { "bytes": 143054920, "files": 759, "jsGzip": 674966, "jsGzipBudget": 675000, "cssGzip": 104174 },
+  "commercialRights": { "cleared": false, "pendingLegacyAssets": 13 },
+  "physicalDeviceAcceptance": "pending owner review"
+}

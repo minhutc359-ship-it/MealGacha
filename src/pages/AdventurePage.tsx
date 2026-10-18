@@ -15,6 +15,7 @@ import { REACTION_HELP } from "../game/adventureRpg/skills"
 import { BrandMark } from "../components/layout/BrandMark"
 import { ModeSwitch } from "../components/layout/ModeSwitch"
 import { ModeIntroButton } from "../components/layout/ModeIntroButton"
+import { MangaChronicle } from "../components/game/MangaChronicle"
 import {
   AudioButton,
   useGameAudio,
@@ -728,6 +729,8 @@ export function AdventurePage() {
                     ? "Kho Sương"
                     : tab === "heroes"
                       ? "Nhà Giao Ước"
+                      : tab === "manga"
+                        ? "Nhà Truyện Ký Ức"
                       : "Đình Đèn"}
               </strong>
               <small>Muốn đổi chức năng, hãy trở về làng và đi tới địa điểm khác.</small>
@@ -861,6 +864,9 @@ export function AdventurePage() {
                 </div>
               )}
             </section>
+          )}
+          {tab === "manga" && (
+            <MangaChronicle track="adventure" stars={save.stars} choices={save.choices} />
           )}
           {tab === "dungeon" && (
             <section className="rpg-dungeon-screen">
