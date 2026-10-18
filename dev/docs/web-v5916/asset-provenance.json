@@ -1,0 +1,705 @@
+{
+  "version": "5.9.16",
+  "generatedOn": "2026-10-18",
+  "count": 17,
+  "bytes": 10526072,
+  "images": [
+    {
+      "track": "tcg",
+      "id": "lantern",
+      "path": "public/assets/manga5916/tcg/lantern.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 570186,
+      "sha256": "6b58cfd0e6e201b3b83032c5a610830d0919c94af7eabce633e4845c24537717",
+      "sourceSha256": "847510da7e91d02187ba08cb8977416b5f775b0a1fb46fa77563822b15ed2b0c",
+      "sourceName": "exec-27bb1471-4b8b-472e-850a-5731961a880b.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/tcg/lantern.webp",
+      "frames": [
+        [
+          0,
+          0,
+          765,
+          508
+        ],
+        [
+          772,
+          0,
+          764,
+          508
+        ],
+        [
+          0,
+          514,
+          765,
+          510
+        ],
+        [
+          772,
+          514,
+          764,
+          510
+        ]
+      ]
+    },
+    {
+      "track": "tcg",
+      "id": "harbor",
+      "path": "public/assets/manga5916/tcg/harbor.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 614500,
+      "sha256": "a69c2ca4f06bbbb17d5283c8899218ef553a4245674672f4006ffd8f997fdd5d",
+      "sourceSha256": "dfbf9130b0aa7a0a6d11552923274789b2385a4ea593c66f20b3221ec6187a04",
+      "sourceName": "exec-c52e28fd-bee5-4a62-8572-e0e91dbb073b.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/tcg/harbor.webp",
+      "frames": [
+        [
+          0,
+          0,
+          763,
+          494
+        ],
+        [
+          772,
+          0,
+          764,
+          494
+        ],
+        [
+          0,
+          500,
+          763,
+          524
+        ],
+        [
+          772,
+          500,
+          764,
+          524
+        ]
+      ]
+    },
+    {
+      "track": "tcg",
+      "id": "garden",
+      "path": "public/assets/manga5916/tcg/garden.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 613498,
+      "sha256": "7fd9e1c17a2803fb71f4a0cd5addb13133e715df4da34709776af38db8075ebf",
+      "sourceSha256": "2c7838698fb9a1518b2fb71a9a92ca48c10e795c44705b8160e624d6fd72984a",
+      "sourceName": "exec-fdc7a309-3869-49a2-b096-9db1b06ac003.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/tcg/garden.webp",
+      "frames": [
+        [
+          0,
+          0,
+          765,
+          504
+        ],
+        [
+          773,
+          0,
+          763,
+          504
+        ],
+        [
+          0,
+          512,
+          765,
+          512
+        ],
+        [
+          773,
+          512,
+          763,
+          512
+        ]
+      ]
+    },
+    {
+      "track": "tcg",
+      "id": "tide",
+      "path": "public/assets/manga5916/tcg/tide.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 558032,
+      "sha256": "926fade349d000144661a313643e9607251c35003d10eec0beb22ac9404df755",
+      "sourceSha256": "30594ff1192528c68d9828f5d09726214180d4577382e46bcfaf394a6bb4f674",
+      "sourceName": "exec-70367a13-bdbc-46d0-a888-c31330aaaaf2.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/tcg/tide.webp",
+      "frames": [
+        [
+          0,
+          0,
+          763,
+          506
+        ],
+        [
+          773,
+          0,
+          763,
+          506
+        ],
+        [
+          0,
+          514,
+          763,
+          510
+        ],
+        [
+          773,
+          514,
+          763,
+          510
+        ]
+      ]
+    },
+    {
+      "track": "tcg",
+      "id": "moon",
+      "path": "public/assets/manga5916/tcg/moon.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 629840,
+      "sha256": "033379b66dff2834209eb4d7c44bf82938780d68cb3de0ebe3777bacfe436f04",
+      "sourceSha256": "379b4632e4e2848a1a51246aa4749b05d6b903c03563a761ae1af3fcb7bc6d2d",
+      "sourceName": "exec-38e56bd5-b64e-419b-9627-f0256ff4461f.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/tcg/moon.webp",
+      "frames": [
+        [
+          0,
+          0,
+          763,
+          474
+        ],
+        [
+          774,
+          0,
+          762,
+          474
+        ],
+        [
+          0,
+          481,
+          763,
+          543
+        ],
+        [
+          774,
+          481,
+          762,
+          543
+        ]
+      ]
+    },
+    {
+      "track": "tcg",
+      "id": "last-table",
+      "path": "public/assets/manga5916/tcg/last-table.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 590856,
+      "sha256": "d898aecc519ba78e9f74e4abf54ad597d491945328c04effa47e303e94a24e1a",
+      "sourceSha256": "05c33cd30c8cc8b96cdbdeb5eeae8def89c15d785f2286f0b9bc8eaf4aa9f2d7",
+      "sourceName": "exec-d8df9a89-3e19-4478-a953-8b0e1c4a46f1.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/tcg/last-table.webp",
+      "frames": [
+        [
+          0,
+          0,
+          765,
+          510
+        ],
+        [
+          772,
+          0,
+          764,
+          510
+        ],
+        [
+          0,
+          513,
+          765,
+          511
+        ],
+        [
+          772,
+          513,
+          764,
+          511
+        ]
+      ]
+    },
+    {
+      "track": "tcg",
+      "id": "living-market",
+      "path": "public/assets/manga5916/tcg/living-market.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 570514,
+      "sha256": "29df08e024774705228f9f21671736b0c9a79b2396996662afcee739dca4fd7a",
+      "sourceSha256": "c97c90641c86e8a409bff0a49145456aa25e5914fcdc02edf8045418591c2d43",
+      "sourceName": "exec-3647ee13-abcb-4098-8ec4-1fee586b5ea9.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/tcg/living-market.webp",
+      "frames": [
+        [
+          0,
+          0,
+          763,
+          507
+        ],
+        [
+          773,
+          0,
+          763,
+          507
+        ],
+        [
+          0,
+          515,
+          763,
+          509
+        ],
+        [
+          773,
+          515,
+          763,
+          509
+        ]
+      ]
+    },
+    {
+      "track": "tcg",
+      "id": "rain-harbor",
+      "path": "public/assets/manga5916/tcg/rain-harbor.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 617804,
+      "sha256": "3636c17598e3d840952e8f4d65e90772131b6e0c660d21b202edfa87a23821a2",
+      "sourceSha256": "1938b49fde5b761f99c744c1b5c96380912605ac2bae5e709aaac74df3371306",
+      "sourceName": "exec-d62811b2-7054-43e5-9af1-ef07597ec8b3.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/tcg/rain-harbor.webp",
+      "frames": [
+        [
+          0,
+          0,
+          763,
+          506
+        ],
+        [
+          772,
+          0,
+          764,
+          506
+        ],
+        [
+          0,
+          514,
+          763,
+          510
+        ],
+        [
+          772,
+          514,
+          764,
+          510
+        ]
+      ]
+    },
+    {
+      "track": "tcg",
+      "id": "tomorrow-table",
+      "path": "public/assets/manga5916/tcg/tomorrow-table.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 580162,
+      "sha256": "edc367dcdffda7cb93e44fafd431a86c635b57eacb8ee589deead3e34784e789",
+      "sourceSha256": "56e3534532ecbec07c50d33e42d2d4ecc94a4bb0f3fc3e6f1d05c23f52847d14",
+      "sourceName": "exec-2ce0e71f-3643-4a74-ae8c-004bc69280b1.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/tcg/tomorrow-table.webp",
+      "frames": [
+        [
+          0,
+          0,
+          763,
+          507
+        ],
+        [
+          773,
+          0,
+          763,
+          507
+        ],
+        [
+          0,
+          514,
+          763,
+          510
+        ],
+        [
+          773,
+          514,
+          763,
+          510
+        ]
+      ]
+    },
+    {
+      "track": "adventure",
+      "id": "lantern",
+      "path": "public/assets/manga5916/adventure/lantern.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 552934,
+      "sha256": "b5a4fe2562dd5f77f65b42d121ca629065b5d0205a9c9a572ada10742cad4712",
+      "sourceSha256": "283b58b0ba7ec440fb231981cea3f493c3cca30ab250faf49659c0ef04a3354b",
+      "sourceName": "exec-4029ebec-a9ae-4881-a072-94d9ea5ec91c.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/adventure/lantern.webp",
+      "frames": [
+        [
+          0,
+          0,
+          763,
+          432
+        ],
+        [
+          774,
+          0,
+          762,
+          432
+        ],
+        [
+          0,
+          437,
+          763,
+          587
+        ],
+        [
+          774,
+          437,
+          762,
+          587
+        ]
+      ]
+    },
+    {
+      "track": "adventure",
+      "id": "harbor",
+      "path": "public/assets/manga5916/adventure/harbor.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 649812,
+      "sha256": "c97d844b4801183076ea39da76b6f651a0e24ee393b9f7c949a338f1a3402fec",
+      "sourceSha256": "1e879a71e77f1190277ee1ae90cf8e47e4a469dd40e7962961bd56da77076f2f",
+      "sourceName": "exec-84cf5097-7978-4aa8-8487-1c44f975947f.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/adventure/harbor.webp",
+      "frames": [
+        [
+          0,
+          0,
+          763,
+          506
+        ],
+        [
+          775,
+          0,
+          761,
+          506
+        ],
+        [
+          0,
+          517,
+          763,
+          507
+        ],
+        [
+          775,
+          517,
+          761,
+          507
+        ]
+      ]
+    },
+    {
+      "track": "adventure",
+      "id": "garden",
+      "path": "public/assets/manga5916/adventure/garden.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 666922,
+      "sha256": "be3f44672756628da750808bd56e232c4ca58a5a0dea8b44460702b1366264b4",
+      "sourceSha256": "d3fc52d81251518c7a1dc03677bc2950788226863a1d782a54e3bb23efee1ec0",
+      "sourceName": "exec-cca0858e-920a-4812-a64e-d32f17ff03b0.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/adventure/garden.webp",
+      "frames": [
+        [
+          0,
+          0,
+          764,
+          504
+        ],
+        [
+          773,
+          0,
+          763,
+          504
+        ],
+        [
+          0,
+          512,
+          764,
+          512
+        ],
+        [
+          773,
+          512,
+          763,
+          512
+        ]
+      ]
+    },
+    {
+      "track": "adventure",
+      "id": "tide",
+      "path": "public/assets/manga5916/adventure/tide.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 643988,
+      "sha256": "bd1d1ee17ac1c635446e9a032bb74aed6e82b49d177c63d7c3dda0c68c28f115",
+      "sourceSha256": "fa6b9cada524adb82e5437f11b7904a0b1ff47ff002e4ca79a3169fa1e678ea4",
+      "sourceName": "exec-911365df-cff7-4661-83ef-4101ba9f9d8c.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/adventure/tide.webp",
+      "frames": [
+        [
+          0,
+          0,
+          761,
+          506
+        ],
+        [
+          776,
+          0,
+          760,
+          506
+        ],
+        [
+          0,
+          514,
+          761,
+          510
+        ],
+        [
+          776,
+          514,
+          760,
+          510
+        ]
+      ]
+    },
+    {
+      "track": "adventure",
+      "id": "mistwood",
+      "path": "public/assets/manga5916/adventure/mistwood.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 591084,
+      "sha256": "57a676f9fee4a810ad6a3b314acf94198a5106b6141c764f8b1911962bd10643",
+      "sourceSha256": "8cfe21b6b57175558df725f61d54616ad035408b79732c6276d75d96ce3842d7",
+      "sourceName": "exec-ab86cb15-165b-46e4-94cd-7909fc2cdd83.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/adventure/mistwood.webp",
+      "frames": [
+        [
+          0,
+          0,
+          766,
+          477
+        ],
+        [
+          772,
+          0,
+          764,
+          477
+        ],
+        [
+          0,
+          480,
+          766,
+          544
+        ],
+        [
+          772,
+          480,
+          764,
+          544
+        ]
+      ]
+    },
+    {
+      "track": "adventure",
+      "id": "sugartower",
+      "path": "public/assets/manga5916/adventure/sugartower.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 744422,
+      "sha256": "8f74f08b54a06872c569fe4f41601706c356f2a51b0626fd44fd9a4e663ad42b",
+      "sourceSha256": "95c10c53699d47f41cf69aec762b073250294f5aaf8a87b383edfee3fd47dadd",
+      "sourceName": "exec-92b58eaa-1af7-4cd0-ab9c-9ebe838c80d9.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/adventure/sugartower.webp",
+      "frames": [
+        [
+          0,
+          0,
+          763,
+          485
+        ],
+        [
+          774,
+          0,
+          762,
+          485
+        ],
+        [
+          0,
+          494,
+          763,
+          530
+        ],
+        [
+          774,
+          494,
+          762,
+          530
+        ]
+      ]
+    },
+    {
+      "track": "adventure",
+      "id": "ashalley",
+      "path": "public/assets/manga5916/adventure/ashalley.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 702928,
+      "sha256": "b2a69787bf64c655093654fdddf30b55d70e180eaa992af6082a1ac03871eb43",
+      "sourceSha256": "0b55f779a3a8dd2eeb83abdce31730d286165f2743e694c901528e5316a123ed",
+      "sourceName": "exec-732a3dc4-309f-43f8-919a-734538d3cffd.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/adventure/ashalley.webp",
+      "frames": [
+        [
+          0,
+          0,
+          765,
+          508
+        ],
+        [
+          772,
+          0,
+          764,
+          508
+        ],
+        [
+          0,
+          514,
+          765,
+          510
+        ],
+        [
+          772,
+          514,
+          764,
+          510
+        ]
+      ]
+    },
+    {
+      "track": "adventure",
+      "id": "lasttable",
+      "path": "public/assets/manga5916/adventure/lasttable.webp",
+      "size": [
+        1536,
+        1024
+      ],
+      "bytes": 628590,
+      "sha256": "d4c535aecbe18c46ad622aef8ec9e11ba0d82a26f3c34e7c8ccc9ae660d2c9c5",
+      "sourceSha256": "304383f87cd840011862d585443d3ee08c9e56cd5404fa39c6514fd9f38b10b8",
+      "sourceName": "exec-44a50578-42db-4907-a003-5db540503eb6.png",
+      "tool": "Built-in Imagegen",
+      "reference": "public/assets/manga5915/adventure/lasttable.webp",
+      "frames": [
+        [
+          0,
+          0,
+          763,
+          499
+        ],
+        [
+          773,
+          0,
+          763,
+          499
+        ],
+        [
+          0,
+          507,
+          763,
+          517
+        ],
+        [
+          773,
+          507,
+          763,
+          517
+        ]
+      ]
+    }
+  ]
+}

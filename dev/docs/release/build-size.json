@@ -2,21 +2,21 @@
   "staticBudgetBytes": 320000000,
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
-  "version": "5.9.15",
-  "bytes": 143054920,
-  "files": 759,
+  "version": "5.9.16",
+  "bytes": 153976068,
+  "files": 788,
   "byType": {
     "js": {
-      "files": 43,
-      "bytes": 2102256
+      "files": 39,
+      "bytes": 2103162
     },
     "css": {
-      "files": 5,
-      "bytes": 504209
+      "files": 4,
+      "bytes": 509178
     },
     "webp": {
-      "files": 533,
-      "bytes": 129015072
+      "files": 550,
+      "bytes": 139541144
     },
     "png": {
       "files": 3,
@@ -26,13 +26,13 @@
       "files": 11,
       "bytes": 285956
     },
+    "json": {
+      "files": 18,
+      "bytes": 396184
+    },
     "mp3": {
       "files": 152,
       "bytes": 10834115
-    },
-    "json": {
-      "files": 1,
-      "bytes": 6983
     },
     "svg": {
       "files": 1,
@@ -56,19 +56,19 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2606465,
+    "Application JS/CSS": 2612340,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
     "Shared character atlases": 66770738,
     "Event art": 2016822,
-    "Other and legal": 23161203,
+    "Other and legal": 34076476,
     "Food art": 7490462,
     "Adventure presentation art": 1400332,
     "Spirit RPG art/audio/video": 17336030,
     "TCG art/audio": 18018052
   },
-  "js_gzip": 674966,
-  "css_gzip": 104174,
+  "js_gzip": 673095,
+  "css_gzip": 104402,
   "largest": [
     {
       "path": "assets/rpg/campaign580/campaignB.webp",
@@ -77,6 +77,10 @@
     {
       "path": "assets/rpg/campaign580/campaignA.webp",
       "bytes": 2153792
+    },
+    {
+      "path": "assets/rpg-presentation-D8dkoj57.js",
+      "bytes": 1133744
     },
     {
       "path": "assets/characters/rosterB.webp",
@@ -113,27 +117,23 @@
     {
       "path": "assets/rpg/combat583/effects.webp",
       "bytes": 990866
-    },
-    {
-      "path": "assets/characters/rosterD.webp",
-      "bytes": 990090
     }
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 2905012,
-    "urls": 62,
+    "bytes": 2911047,
+    "urls": 57,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 9094988
+    "remainingBytes": 9088953
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 176945080
+    "remainingBytes": 166023932
   }
 }

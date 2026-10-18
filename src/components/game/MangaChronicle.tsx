@@ -1,21 +1,369 @@
-import { useState } from "react"
+import { useEffect, useRef, useState, type CSSProperties } from "react"
+import { createPortal } from "react-dom"
 import {
-  ADVENTURE_MANGA_CHAPTERS,
-  TCG_MANGA_CHAPTERS,
-  tcgEndingBeat,
+  mangaChapters,
+  mangaEdition,
   unlockedAdventureManga,
   unlockedTcgManga,
-  type MangaBeat,
+  type MangaBook,
+  type MangaChapterInfo,
+  type MangaContext,
+  type MangaPage,
   type MangaTrack,
 } from "../../game/mangaChronicle"
 import "../../game/mangaChronicle.css"
 
-interface Props {
+interface Props extends MangaContext {
   track: MangaTrack
   clearedStages?: readonly string[]
   stars?: Readonly<Record<string, number>>
   choices?: Readonly<Record<string, 0 | 1>>
-  storyEnding?: "remember" | "release" | null
+}
+
+function ComicPage({ page, number }: {
+  page: MangaPage
+  number: number
+}) {
+  return (
+    <article
+      className="manga-comic-page"
+      aria-label={`Trang ${number}: ${page.title}`}
+    >
+      <header>
+        <small>SOUL OF MEAL</small>
+        <span>{String(number).padStart(2, "0")}</span>
+      </header>
+      <h3>{page.title}</h3>
+      <svg
+        className="manga-panel"
+        viewBox={page.frame.join(" ")}
+        style={{ aspectRatio: `${page.frame[2]} / ${page.frame[3]}` }}
+        role="img"
+        aria-label={`Minh họa: ${page.title}`}
+      >
+        <image href={page.image} width={page.size[0]} height={page.size[1]} />
+      </svg>
+      <div className="manga-balloons">
+        {page.lines.map((line, index) => (
+          <blockquote
+            key={index}
+            className={
+              /Người kể|Ngoại truyện/.test(line.speaker)
+                ? "is-narration"
+                : index % 2
+                  ? "is-reply"
+                  : ""
+            }
+          >
+            <strong>{line.speaker}</strong>
+            <p>{line.text}</p>
+          </blockquote>
+        ))}
+      </div>
+      <footer>{number} · Soul of Meal</footer>
+    </article>
+  )
+}
+
+function MangaReader({
+  chapter,
+  track,
+  context,
+  onClose,
+  previous,
+  next,
+  onChapter,
+  returnFocus,
+}: {
+  chapter: MangaChapterInfo
+  track: MangaTrack
+  context: MangaContext
+  onClose: () => void
+  previous?: MangaChapterInfo
+  next?: MangaChapterInfo
+  onChapter: (id: string) => void
+  returnFocus: HTMLButtonElement | null
+}) {
+  const dialog = useRef<HTMLDialogElement>(null),
+    scroll = useRef<HTMLDivElement>(null)
+  const [extra, setExtra] = useState<MangaBook | null>(null),
+    [error, setError] = useState(false)
+  const [retry, setRetry] = useState(0),
+    [index, setIndex] = useState(0)
+  const [continuous, setContinuous] = useState(false),
+    [largeText, setLargeText] = useState(false)
+  const [zoom, setZoom] = useState(false),
+    [original, setOriginal] = useState(false)
+  const pages = extra
+    ? (extra.editions[mangaEdition(track, chapter.id, context)] ??
+      extra.editions.base)
+    : []
+  useEffect(() => {
+    const element = dialog.current!
+    const overflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    element.showModal()
+    return () => {
+      element.close()
+      document.body.style.overflow = overflow
+      if (returnFocus?.isConnected) returnFocus.focus()
+    }
+  }, [])
+  useEffect(() => {
+    const controller = new AbortController()
+    setError(false)
+    fetch(`/assets/manga5916/${track}/${chapter.id}.json`, {
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) throw Error("chapter")
+        return response.json()
+      })
+      .then((data: MangaBook) => setExtra(data))
+      .catch(() => {
+        if (!controller.signal.aborted) setError(true)
+      })
+    return () => controller.abort()
+  }, [track, chapter.id, retry])
+  const turn = (page: number) => {
+    setIndex(Math.max(0, Math.min(pages.length - 1, page)))
+    scroll.current?.scrollTo({ top: 0, left: 0 })
+  }
+  return createPortal(
+    <dialog
+      ref={dialog}
+      className="manga-dialog"
+      aria-labelledby="manga-reader-title"
+      onCancel={(e) => {
+        e.preventDefault()
+        onClose()
+      }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose()
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Tab") {
+          const nodes = [
+            ...e.currentTarget.querySelectorAll<HTMLElement>(
+              'button:enabled,select:enabled,[tabindex="0"]',
+            ),
+          ]
+          const target = e.shiftKey ? nodes[nodes.length - 1] : nodes[0]
+          if (
+            document.activeElement ===
+            (e.shiftKey ? nodes[0] : nodes[nodes.length - 1])
+          ) {
+            e.preventDefault()
+            target?.focus()
+          }
+        }
+        if (
+          continuous ||
+          original ||
+          !pages.length ||
+          e.ctrlKey ||
+          e.metaKey ||
+          e.altKey ||
+          /INPUT|SELECT|TEXTAREA/.test((e.target as HTMLElement).tagName)
+        )
+          return
+        if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) {
+          e.preventDefault()
+          turn(
+            e.key === "Home"
+              ? 0
+              : e.key === "End"
+                ? pages.length - 1
+                : index + (e.key === "ArrowRight" ? 1 : -1),
+          )
+        }
+      }}
+    >
+      <div className="manga-dialog-shell">
+        <header className="manga-reader-heading">
+          <div>
+            <small>
+              {track === "tcg" ? "TẬP I · BÀN KÝ ỨC" : "TẬP II · TÁM HƯƠNG ẤN"}
+            </small>
+            <h2 id="manga-reader-title">{chapter.title}</h2>
+          </div>
+          <button
+            type="button"
+            className="manga-close"
+            onClick={onClose}
+            aria-label="Đóng truyện"
+            autoFocus
+          >
+            Đóng ×
+          </button>
+        </header>
+        <div
+          className="manga-toolbar"
+          role="group"
+          aria-label="Tùy chọn đọc truyện"
+        >
+          <button
+            type="button"
+            aria-pressed={continuous}
+            disabled={original}
+            onClick={() => {
+              setContinuous(!continuous)
+              turn(0)
+            }}
+          >
+            {continuous ? "Đọc cuộn" : "Lật trang"}
+          </button>
+          <button
+            type="button"
+            aria-pressed={largeText}
+            disabled={original}
+            onClick={() => setLargeText(!largeText)}
+          >
+            Chữ lớn
+          </button>
+          <button
+            type="button"
+            aria-pressed={zoom}
+            onClick={() => setZoom(!zoom)}
+          >
+            Phóng to
+          </button>
+          <button
+            type="button"
+            aria-pressed={original}
+            onClick={() => {
+              setOriginal(!original)
+              scroll.current?.scrollTo(0, 0)
+            }}
+          >
+            {original ? "Về truyện" : "Tranh gốc"}
+          </button>
+        </div>
+        <div
+          ref={scroll}
+          className={`manga-viewport ${zoom ? "is-zoomed" : ""} ${
+            largeText ? "has-large-text" : ""
+          }`}
+          tabIndex={0}
+          aria-label="Nội dung truyện"
+        >
+          {!extra ? (
+            <div className="manga-load" role={error ? "alert" : "status"}>
+              <p>{error ? "Không tải được truyện." : "Đang mở truyện…"}</p>
+              {error && (
+                <button type="button" onClick={() => setRetry(retry + 1)}>
+                  Thử lại
+                </button>
+              )}
+            </div>
+          ) : original ? (
+            <div className="manga-originals">
+              <figure>
+                <img src={chapter.image} alt={`Tranh gốc · ${chapter.title}`} />
+                <figcaption>Tranh gốc</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src={extra.extraImage}
+                  alt={`Tranh bổ sung · ${chapter.title}`}
+                  loading="lazy"
+                />
+                <figcaption>Tranh bổ sung</figcaption>
+              </figure>
+            </div>
+          ) : (
+            <div
+              className="manga-pages"
+              style={
+                {
+                  "--manga-page-width": zoom ? "1050px" : "720px",
+                } as CSSProperties
+              }
+            >
+              {(continuous ? pages : pages.slice(index, index + 1)).map(
+                (page, offset) => (
+                  <ComicPage
+                    key={page.id}
+                    page={page}
+                    number={continuous ? offset + 1 : index + 1}
+                  />
+                ),
+              )}
+              {continuous && (
+                <p className="manga-end">Hết chương · {pages.length} trang</p>
+              )}
+            </div>
+          )}
+        </div>
+        <footer className="manga-reader-controls">
+          <div className="manga-pagination">
+            <button
+              type="button"
+              disabled={!pages.length || continuous || original || index === 0}
+              onClick={() => turn(index - 1)}
+              aria-label="Trang trước"
+            >
+              ← Trước
+            </button>
+            <label>
+              Trang{" "}
+              <select
+                aria-label="Đi đến trang"
+                disabled={!pages.length || continuous || original}
+                value={index}
+                onChange={(e) => turn(Number(e.target.value))}
+              >
+                {pages.map((page, i) => (
+                  <option key={page.id} value={i}>
+                    {i + 1} / {pages.length} · {page.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <button
+              type="button"
+              disabled={
+                !pages.length ||
+                continuous ||
+                original ||
+                index === pages.length - 1
+              }
+              onClick={() => turn(index + 1)}
+              aria-label="Trang sau"
+            >
+              Sau →
+            </button>
+          </div>
+          <div className="manga-chapter-nav">
+            <button
+              type="button"
+              disabled={!previous}
+              onClick={() => previous && onChapter(previous.id)}
+            >
+              ‹ Chương trước
+            </button>
+            <span role="status" aria-live="polite">
+              {extra
+                ? continuous
+                  ? `${pages.length} trang · Đọc cuộn`
+                  : original
+                    ? "Tranh gốc đầy đủ"
+                    : `${index + 1} / ${pages.length}`
+                : ""}
+            </span>
+            <button
+              type="button"
+              disabled={!next}
+              onClick={() => next && onChapter(next.id)}
+            >
+              Chương sau ›
+            </button>
+          </div>
+        </footer>
+      </div>
+    </dialog>,
+    document.body,
+  )
 }
 
 export function MangaChronicle({
@@ -24,68 +372,91 @@ export function MangaChronicle({
   stars = {},
   choices = {},
   storyEnding,
+  story400,
 }: Props) {
-  const chapters = track === "tcg" ? TCG_MANGA_CHAPTERS : ADVENTURE_MANGA_CHAPTERS
-  const unlocked = new Set(track === "tcg" ? unlockedTcgManga(clearedStages) : unlockedAdventureManga(stars))
-  const [page, setPage] = useState("cover")
-  const chapter = chapters.find((item) => item.id === page)
-  const availableBeats: MangaBeat[] = chapter ? [...chapter.beats] : []
-  if (track === "adventure" && chapter?.choices && choices[chapter.id] !== undefined)
-    availableBeats.push(chapter.choices[choices[chapter.id]])
-  if (track === "tcg" && chapter?.id === "last-table") {
-    const ending = tcgEndingBeat(storyEnding)
-    if (ending) availableBeats.push(ending)
+  const chapters = mangaChapters(track)
+  const unlocked = new Set(
+    track === "tcg"
+      ? unlockedTcgManga(clearedStages)
+      : unlockedAdventureManga(stars),
+  )
+  const [selected, setSelected] = useState<string | null>(null)
+  const trigger = useRef<HTMLButtonElement | null>(null)
+  const chapter = chapters.find(
+    (item) => item.id === selected && unlocked.has(item.id),
+  )
+  const chapterIndex = chapter ? chapters.indexOf(chapter) : -1
+  const neighbor = (offset: number) => {
+    const item = chapters[chapterIndex + offset]
+    return item && unlocked.has(item.id) ? item : undefined
   }
-  const cover = `/assets/manga5915/${track}/cover.webp`
   return (
     <section className={`manga-chronicle manga-${track}`}>
       <header className="manga-heading">
+        <img
+          src={`/assets/manga5915/${track}/cover.webp`}
+          alt="Bìa manga Soul of Meal"
+          width="1086"
+          height="1448"
+        />
         <div>
-          <small>{track === "tcg" ? "TẬP I · BÀN KÝ ỨC" : "TẬP II · TÁM HƯƠNG ẤN"}</small>
-          <h1>{track === "tcg" ? "Bữa cơm còn một ghế" : "Con đường của Vân"}</h1>
-          <p>Hạ boss cuối chương để mở trang kế tiếp.</p>
+          <small>
+            {track === "tcg" ? "TẬP I · BÀN KÝ ỨC" : "TẬP II · TÁM HƯƠNG ẤN"}
+          </small>
+          <h1>
+            {track === "tcg" ? "Bữa cơm còn một ghế" : "Con đường của Vân"}
+          </h1>
+          <p>Mỗi bữa ăn giữ một câu chuyện.</p>
+          <p className="manga-shelf-note">
+            Chọn chương để mở truyện · Có lời thoại · {unlocked.size}/
+            {chapters.length} chương đã mở
+          </p>
         </div>
       </header>
-
-      <nav className="manga-shelf">
-        <button type="button" className={page === "cover" ? "is-active" : ""} onClick={() => setPage("cover")}>
-          <span>BÌA</span><b>Khởi hành</b><small>Luôn mở</small>
-        </button>
+      <nav className="manga-shelf" aria-label="Danh sách chương manga">
         {chapters.map((item, index) => {
           const open = unlocked.has(item.id)
-          return <button type="button" key={item.id} disabled={!open} className={page === item.id ? "is-active" : ""}
-            onClick={() => setPage(item.id)}>
-            <span>{open ? `TRANG ${index + 1}` : "🔒 KHÓA"}</span>
-            <b>{open ? item.title : `Chương ${index + 1}`}</b>
-            <small>{open ? "Đã mở" : "Vượt boss để mở"}</small>
-          </button>
+          return (
+            <button
+              type="button"
+              key={item.id}
+              disabled={!open}
+              aria-haspopup="dialog"
+              onClick={(e) => {
+                trigger.current = e.currentTarget
+                setSelected(item.id)
+              }}
+            >
+              <span>
+                {open
+                  ? `CHƯƠNG ${String(index + 1).padStart(2, "0")}`
+                  : `🔒 CHƯƠNG ${index + 1}`}
+              </span>
+              <b>{open ? item.title : "Chưa mở khóa"}</b>
+              <small>
+                {open
+                  ? "Mở truyện ↗"
+                  : track === "tcg"
+                    ? "Vượt 3 màn của chương"
+                    : "Vượt boss chương (Thường)"}
+              </small>
+            </button>
+          )
         })}
       </nav>
-
-      {page === "cover" ? (
-        <article className="manga-reader is-cover">
-          <figure><img src={cover} alt="Bìa manga" width="1086" height="1448" /></figure>
-        </article>
-      ) : chapter && unlocked.has(chapter.id) ? (
-        <article className="manga-reader">
-          <figure>
-            <img src={chapter.image} alt={chapter.title} width="1086" height="1448" loading="lazy" />
-          </figure>
-          <div className="manga-copy">
-            <small>CHƯƠNG {chapters.indexOf(chapter) + 1}</small>
-            <h2>{chapter.title}</h2>
-            <p>{chapter.hook}</p>
-            <section className="manga-script">
-              {availableBeats.map((item, beatIndex) => <details key={`${item.title}-${beatIndex}`} open={beatIndex === 0}>
-                <summary>{beatIndex + 1}. {item.title}</summary>
-                {item.lines.map((line, lineIndex) => <blockquote key={`${line.speaker}-${lineIndex}`}>
-                  <strong>{line.speaker}</strong><p>{line.text}</p>
-                </blockquote>)}
-              </details>)}
-            </section>
-          </div>
-        </article>
-      ) : null}
+      {chapter && (
+        <MangaReader
+          key={`${track}-${chapter.id}`}
+          chapter={chapter}
+          track={track}
+          context={{ storyEnding, story400, choice: choices[chapter.id] }}
+          onClose={() => setSelected(null)}
+          previous={neighbor(-1)}
+          next={neighbor(1)}
+          onChapter={setSelected}
+          returnFocus={trigger.current}
+        />
+      )}
     </section>
   )
 }

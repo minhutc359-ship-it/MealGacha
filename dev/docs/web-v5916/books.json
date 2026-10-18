@@ -1,0 +1,155 @@
+[
+  {
+    "track": "tcg",
+    "id": "lantern",
+    "title": "Phố Đèn Lồng",
+    "pages": 16,
+    "maxPages": 16,
+    "editions": 1,
+    "bytes": 10088
+  },
+  {
+    "track": "tcg",
+    "id": "harbor",
+    "title": "Bến Cảng Than Hồng",
+    "pages": 13,
+    "maxPages": 13,
+    "editions": 1,
+    "bytes": 8928
+  },
+  {
+    "track": "tcg",
+    "id": "garden",
+    "title": "Vườn Xanh Tĩnh Lặng",
+    "pages": 14,
+    "maxPages": 14,
+    "editions": 1,
+    "bytes": 9100
+  },
+  {
+    "track": "tcg",
+    "id": "tide",
+    "title": "Biển Ký Ức",
+    "pages": 11,
+    "maxPages": 11,
+    "editions": 1,
+    "bytes": 7637
+  },
+  {
+    "track": "tcg",
+    "id": "moon",
+    "title": "Thành Phố Đường Sao",
+    "pages": 12,
+    "maxPages": 12,
+    "editions": 1,
+    "bytes": 8439
+  },
+  {
+    "track": "tcg",
+    "id": "last-table",
+    "title": "Bữa Tiệc Bình Minh",
+    "pages": 13,
+    "maxPages": 15,
+    "editions": 3,
+    "bytes": 26498
+  },
+  {
+    "track": "tcg",
+    "id": "living-market",
+    "title": "Chợ có hai giọng",
+    "pages": 13,
+    "maxPages": 13,
+    "editions": 10,
+    "bytes": 70270
+  },
+  {
+    "track": "tcg",
+    "id": "rain-harbor",
+    "title": "Bến sau cơn mưa",
+    "pages": 13,
+    "maxPages": 13,
+    "editions": 10,
+    "bytes": 68032
+  },
+  {
+    "track": "tcg",
+    "id": "tomorrow-table",
+    "title": "Bữa cơm ngày mai",
+    "pages": 13,
+    "maxPages": 14,
+    "editions": 10,
+    "bytes": 71335
+  },
+  {
+    "track": "adventure",
+    "id": "lantern",
+    "title": "Chiếc bát không tên",
+    "pages": 8,
+    "maxPages": 9,
+    "editions": 3,
+    "bytes": 13534
+  },
+  {
+    "track": "adventure",
+    "id": "harbor",
+    "title": "Lá thư không được gửi",
+    "pages": 8,
+    "maxPages": 9,
+    "editions": 3,
+    "bytes": 13267
+  },
+  {
+    "track": "adventure",
+    "id": "garden",
+    "title": "Hạt giống của Vân",
+    "pages": 8,
+    "maxPages": 9,
+    "editions": 3,
+    "bytes": 13347
+  },
+  {
+    "track": "adventure",
+    "id": "tide",
+    "title": "Cánh cửa dưới triều",
+    "pages": 8,
+    "maxPages": 9,
+    "editions": 3,
+    "bytes": 13427
+  },
+  {
+    "track": "adventure",
+    "id": "mistwood",
+    "title": "Chén trà cho người lạ",
+    "pages": 8,
+    "maxPages": 9,
+    "editions": 3,
+    "bytes": 13833
+  },
+  {
+    "track": "adventure",
+    "id": "sugartower",
+    "title": "Chữ ký trong tro",
+    "pages": 8,
+    "maxPages": 9,
+    "editions": 3,
+    "bytes": 13482
+  },
+  {
+    "track": "adventure",
+    "id": "ashalley",
+    "title": "Con đường để tự trở về",
+    "pages": 8,
+    "maxPages": 9,
+    "editions": 3,
+    "bytes": 13328
+  },
+  {
+    "track": "adventure",
+    "id": "lasttable",
+    "title": "Bữa ăn thứ chín",
+    "pages": 8,
+    "maxPages": 9,
+    "editions": 3,
+    "bytes": 14656
+  }
+]

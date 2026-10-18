@@ -20,7 +20,7 @@ export type LivingDecision = typeof LIVING_CHOICES[number]["options"][number]["i
 export function validLivingDecision(chapter: string, decision: string) {
   return LIVING_CHOICES.some(c => c.id === chapter && c.options.some(o => o.id === decision))
 }
-export function livingChoiceLines(stage: string, save: GameSave, after = false): StoryLine[] {
+export function livingChoiceLines(stage: string, save: Pick<GameSave, "story400">, after = false): StoryLine[] {
   const chapter=LIVING_CHOICES.find(c=>stage.startsWith(`${c.id}-`))
   if(!chapter) return []
   const decision=save.story400?.decisions?.[chapter.id]

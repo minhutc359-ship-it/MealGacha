@@ -1,5 +1,5 @@
 {
-  "version": "5.9.15",
+  "version": "5.9.16",
   "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -4978,6 +4978,210 @@
         "dev/docs/web-v5915/asset-provenance.json",
         "dev/docs/web-v5915/STORY_MAPPING.md",
         "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/adventure/ashalley.webp",
+      "bytes": 702928,
+      "sha256": "b2a69787bf64c655093654fdddf30b55d70e180eaa992af6082a1ac03871eb43",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/adventure/garden.webp",
+      "bytes": 666922,
+      "sha256": "be3f44672756628da750808bd56e232c4ca58a5a0dea8b44460702b1366264b4",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/adventure/harbor.webp",
+      "bytes": 649812,
+      "sha256": "c97d844b4801183076ea39da76b6f651a0e24ee393b9f7c949a338f1a3402fec",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/adventure/lantern.webp",
+      "bytes": 552934,
+      "sha256": "b5a4fe2562dd5f77f65b42d121ca629065b5d0205a9c9a572ada10742cad4712",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/adventure/lasttable.webp",
+      "bytes": 628590,
+      "sha256": "d4c535aecbe18c46ad622aef8ec9e11ba0d82a26f3c34e7c8ccc9ae660d2c9c5",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/adventure/mistwood.webp",
+      "bytes": 591084,
+      "sha256": "57a676f9fee4a810ad6a3b314acf94198a5106b6141c764f8b1911962bd10643",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/adventure/sugartower.webp",
+      "bytes": 744422,
+      "sha256": "8f74f08b54a06872c569fe4f41601706c356f2a51b0626fd44fd9a4e663ad42b",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/adventure/tide.webp",
+      "bytes": 643988,
+      "sha256": "bd1d1ee17ac1c635446e9a032bb74aed6e82b49d177c63d7c3dda0c68c28f115",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/tcg/garden.webp",
+      "bytes": 613498,
+      "sha256": "7fd9e1c17a2803fb71f4a0cd5addb13133e715df4da34709776af38db8075ebf",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/tcg/harbor.webp",
+      "bytes": 614500,
+      "sha256": "a69c2ca4f06bbbb17d5283c8899218ef553a4245674672f4006ffd8f997fdd5d",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/tcg/lantern.webp",
+      "bytes": 570186,
+      "sha256": "6b58cfd0e6e201b3b83032c5a610830d0919c94af7eabce633e4845c24537717",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/tcg/last-table.webp",
+      "bytes": 590856,
+      "sha256": "d898aecc519ba78e9f74e4abf54ad597d491945328c04effa47e303e94a24e1a",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/tcg/living-market.webp",
+      "bytes": 570514,
+      "sha256": "29df08e024774705228f9f21671736b0c9a79b2396996662afcee739dca4fd7a",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/tcg/moon.webp",
+      "bytes": 629840,
+      "sha256": "033379b66dff2834209eb4d7c44bf82938780d68cb3de0ebe3777bacfe436f04",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/tcg/rain-harbor.webp",
+      "bytes": 617804,
+      "sha256": "3636c17598e3d840952e8f4d65e90772131b6e0c660d21b202edfa87a23821a2",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/tcg/tide.webp",
+      "bytes": 558032,
+      "sha256": "926fade349d000144661a313643e9607251c35003d10eec0beb22ac9404df755",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5916/tcg/tomorrow-table.webp",
+      "bytes": 580162,
+      "sha256": "edc367dcdffda7cb93e44fafd431a86c635b57eacb8ee589deead3e34784e789",
+      "origin": "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue",
+      "evidence": [
+        "dev/docs/web-v5916/asset-provenance.json",
+        "dev/docs/web-v5916/art-prompts.json",
+        "dev/content/manga5916.json"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

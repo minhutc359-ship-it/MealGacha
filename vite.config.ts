@@ -58,7 +58,7 @@ export default defineConfig({
         return undefined
       } },
       output: { codeSplitting: { groups: [
-      { name: "rpg-presentation", test: /[\/]src[\/](domain[\/]|game[\/](?!spiritArena|battleVfx)|infrastructure[\/](assets[\/]characterSprites|audio[\/]gameAudio))|[\/]src[\/](components[\/]game[\/](Rpg|SpiritArt)|pages[\/]AdventurePage)/, priority: 15 },
+      { name: "rpg-presentation", test: /[\/]src[\/](domain[\/]|game[\/](?!spiritArena|battleVfx)|infrastructure[\/](assets[\/]characterSprites|audio[\/]gameAudio))|[\/]src[\/](components[\/]game[\/](Rpg|SpiritArt|MangaChronicle|BattleBoard|CombatEffects|BattleVfxCanvas|TrapZone|GameCardView|DuelBasics)|pages[\/](AdventurePage|TCGPage|AutoChessPage))|[\/]src[\/]components[\/]autochess[\/]/, priority: 15 },
       { name: "chest-ui", test: /[\/]src[\/](components[\/]chest[\/]|pages[\/]ChestPage)/, priority: 12 },
       { name: "tcg-ui", test: /[\/]src[\/](components[\/]game[\/](BattleBoard|CombatEffects|BattleVfxCanvas|TrapZone|GameCardView|DuelBasics)|pages[\/]TCGPage)/, priority: 12 },
       { name: "autochess-ui", test: /[\/]src[\/](components[\/]autochess[\/]|pages[\/]AutoChessPage)/, priority: 12 },
