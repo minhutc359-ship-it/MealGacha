@@ -247,6 +247,9 @@ export function AdventureVillage({
         <button type="button" disabled={!!trip} onClick={() => play()}>
           Gọi Vị Linh ♡
         </button>
+        <button type="button" disabled={!!trip} onClick={() => onVisit("manga", "Nhà Truyện Ký Ức")}>
+          Đọc manga ▤
+        </button>
       </div>
       {conversation && (
         <section

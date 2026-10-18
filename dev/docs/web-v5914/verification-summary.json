@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-18",
+  "version": "5.9.14",
+  "vitest": { "passed": 744, "files": 68 },
+  "typecheck": { "app": true, "dev": true },
+  "browser": {
+    "currentCommitEvidence": false,
+    "reason": "Playwright and browser binaries are unavailable in the current runtime; physical Safari acceptance remains pending"
+  },
+  "adventureHd": { "atlasWidth": 1024, "frameWidth": 256, "pixelAtlasRejectedByInheritedRegression": true },
+  "asset": { "newAtlases": 16, "authoredPoses": 256, "newBytes": 6869870, "evidenceImages": 1 },
+  "progress": { "produced": 57, "total": 139, "portraitOnly": 78, "legacyAnimated": 4, "enemyProduced": 16, "enemyTotal": 40 },
+  "build": { "bytes": 132910742, "files": 740, "jsGzip": 673853, "jsGzipBudget": 675000 },
+  "commercialRights": { "cleared": false, "pendingLegacyAssets": 13 },
+  "physicalDeviceAcceptance": "pending owner review"
+}

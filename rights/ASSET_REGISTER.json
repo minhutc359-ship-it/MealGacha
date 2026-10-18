@@ -1,5 +1,5 @@
 {
-  "version": "5.9.13",
+  "version": "5.9.15",
   "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -2601,6 +2601,198 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/characters/tcg5914/ga-ran-pixel.webp",
+      "bytes": 139650,
+      "sha256": "ce7ab347d73b4e5d610dd01ad96e6a4fdadf6fdc8cb0c6156736a6cb9516d0fb",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/ga-ran.webp",
+      "bytes": 792486,
+      "sha256": "cbc30475bfa25d6819ed34231fe3c685cf3b1682cd517acf735e4e4588bd30f5",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/lau-thai-pixel.webp",
+      "bytes": 108796,
+      "sha256": "56ba39e3bd0f71c9afb6c4d0e7f49417c422c3cce8898c109ea82f2bd287770f",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/lau-thai.webp",
+      "bytes": 610870,
+      "sha256": "1ef3694e71c6c8966afe13c1cff7afc88a4c40cca3d0775412435d81c790d4af",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/mi-cay-pixel.webp",
+      "bytes": 110814,
+      "sha256": "675bd9272d2fe5d2fe19bb43b73a8393867b3d6a738406631f6d54205e7a4cc4",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/mi-cay.webp",
+      "bytes": 624868,
+      "sha256": "d78f8ea31065c0729c57bf7c363434fd04a3d8fbf0f48f923ba55e975d848daa",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/mi-van-than-pixel.webp",
+      "bytes": 121160,
+      "sha256": "b44c81aa280ddb220f504f9029362cc2473b55a99dadf634084c1b76808238c0",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/mi-van-than.webp",
+      "bytes": 662322,
+      "sha256": "067e9ad26678dab3de15988b65614c6cf468d6cce6091901cba4057be01ef5b2",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/pasta-pixel.webp",
+      "bytes": 149266,
+      "sha256": "ddbe2fbf8800ce5d64e421c668cb87ed3f805c220f79a74f19825a613e98d7b7",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/pasta.webp",
+      "bytes": 768922,
+      "sha256": "93b9b55cd6ecd7eda3da2f29eea2ffa193911952bb4d8ed74567c86961a4b4ca",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/pizza-pixel.webp",
+      "bytes": 142574,
+      "sha256": "60c6b561d87fcdb5e2a9761364c39cc739cfd32a0318d6a76ffd20cfc323f3ed",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/pizza.webp",
+      "bytes": 810644,
+      "sha256": "bd62865b2730c530133ee232161c97e937b5926c0b0dcf3c7df161e93bb858a3",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/sushi-pixel.webp",
+      "bytes": 152804,
+      "sha256": "915fb218c28c644071f2c4f0ab8834e56c6b94f08a0f3599a835695068de92fb",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/sushi.webp",
+      "bytes": 799580,
+      "sha256": "c3d29819a6eb43f1ea9e7616268ba68f09bd8da275284493f900acebc285aefa",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/tokbokki-pixel.webp",
+      "bytes": 141362,
+      "sha256": "1bd36ed1cdb4cb48c032a5b49dbbf1338305db6f270e7fdd5d6bed84bf799bd9",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/tcg5914/tokbokki.webp",
+      "bytes": 733752,
+      "sha256": "1ec68a44894b870462914a17854504eb553939aeba6ed24f2f065d855eb102d0",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5914/asset-provenance.json",
+        "dev/docs/web-v5914/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/characters/vietnam5912/banh-da-cua-pixel.webp",
       "bytes": 126498,
       "sha256": "64b117b068e49a450291c9407825cfbdaf5493779eb3a85e18ab4269147757be",
@@ -4558,6 +4750,234 @@
       "origin": "Original AI-assisted Soul of Meal loading illustrations selected from the project Library and optimized to WebP",
       "evidence": [
         "dev/docs/web-v560/artwork.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/ashalley.webp",
+      "bytes": 559368,
+      "sha256": "c7fb12f87a2cf770ee90d46f39a67a63e67da4829227a36ec4b77cee6b10b91b",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/cover.webp",
+      "bytes": 569846,
+      "sha256": "70167ea881591da470a7b734edf8c9ea742949583f877e55ec1221282641e224",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/garden.webp",
+      "bytes": 545410,
+      "sha256": "400f7adf3141a123eb17fa2e043e8944b674287f45612f7e45369ab859b7b884",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/harbor.webp",
+      "bytes": 551530,
+      "sha256": "77ed47329b5d7bb32595f64e3e3a5c1d52233c060f0dfe068065e3ff93d5a7c2",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/lantern.webp",
+      "bytes": 504410,
+      "sha256": "3a0aaff5a4777b699cf87573e0f9c089d50e03dc28adf9ac49b27f3f6d2a65cc",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/lasttable.webp",
+      "bytes": 549720,
+      "sha256": "6e74a8f76d52147a525f3ae0c3d7a8bd25807f74a844e43e18e19e5d61ac50f6",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/mistwood.webp",
+      "bytes": 545058,
+      "sha256": "5fb92cdc69eb8bbcda79a1f0f0f5351d311a2c10e6a5df4b5cb6944df74bc914",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/sugartower.webp",
+      "bytes": 615908,
+      "sha256": "97fbfbbd694a59fb8aff64c361d00a83e4313cf6e6dfd19dde1d8dee0ed1fe05",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/adventure/tide.webp",
+      "bytes": 557786,
+      "sha256": "c3f4ffac0205770b5ba8a24afc6d4263248e5bb0f4bb84b7aee41f0599195642",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/cover.webp",
+      "bytes": 487936,
+      "sha256": "71f19b9db61bb1ed71782a80c85dfa2132e5294f055c039dc16ec6a3efc8d4d9",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/garden.webp",
+      "bytes": 544344,
+      "sha256": "929318a325508fae896b1aaf3e0cd20e81640108b54cde425d30b9cb5c0e4758",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/harbor.webp",
+      "bytes": 490262,
+      "sha256": "c4f99e26b5d51941c0c91ce95d2e5ad8668d2443ad8fcbcd00b115a3e98701bd",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/lantern.webp",
+      "bytes": 489536,
+      "sha256": "944b0c107810b26984d4eb62baa6de40ab1e54be122beb5a429fde2719fee8af",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/last-table.webp",
+      "bytes": 482308,
+      "sha256": "6a3a5471ecc4a5daaa0ccaa72c835fa9a63378553c711773aa0db3474d92541a",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/living-market.webp",
+      "bytes": 518610,
+      "sha256": "4d78d861a53e9287d36e7b40c9c687d569105448b52ddf250ca8de9829901493",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/moon.webp",
+      "bytes": 513176,
+      "sha256": "a5425a32bfdb351e23d702972436f96b9ba13f199085aa09e3d9bc9f73957945",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/rain-harbor.webp",
+      "bytes": 530360,
+      "sha256": "4b2d2def5be381d9307f8f4dc7744f159fd55087e3f64fcd7bfbf4896d5b988b",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/tide.webp",
+      "bytes": 545702,
+      "sha256": "5b86609d4d2afe3cb0438a971f8df84d6d8cdaabf216586d5fae21fdd4ed7b2d",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/manga5915/tcg/tomorrow-table.webp",
+      "bytes": 535818,
+      "sha256": "de507332fc0afb0f084c391f585e5aef99df6c868e67adffaef93838e71a41ba",
+      "origin": "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data",
+      "evidence": [
+        "dev/docs/web-v5915/asset-provenance.json",
+        "dev/docs/web-v5915/STORY_MAPPING.md",
+        "src/game/mangaChronicle.ts"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

@@ -1,0 +1,388 @@
+{
+  "version": "5.9.15",
+  "generatedOn": "2026-10-18",
+  "count": 19,
+  "bytes": 10137088,
+  "pages": [
+    {
+      "track": "tcg",
+      "id": "cover",
+      "path": "public/assets/manga5915/tcg/cover.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 487936,
+      "sha256": "71f19b9db61bb1ed71782a80c85dfa2132e5294f055c039dc16ec6a3efc8d4d9",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/narrative.ts + src/game/livingStory.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/tcg/story/",
+        "public/assets/v4/arenas/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "tcg",
+      "id": "lantern",
+      "path": "public/assets/manga5915/tcg/lantern.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 489536,
+      "sha256": "944b0c107810b26984d4eb62baa6de40ab1e54be122beb5a429fde2719fee8af",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/narrative.ts + src/game/livingStory.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/tcg/story/",
+        "public/assets/v4/arenas/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "tcg",
+      "id": "harbor",
+      "path": "public/assets/manga5915/tcg/harbor.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 490262,
+      "sha256": "c4f99e26b5d51941c0c91ce95d2e5ad8668d2443ad8fcbcd00b115a3e98701bd",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/narrative.ts + src/game/livingStory.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/tcg/story/",
+        "public/assets/v4/arenas/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "tcg",
+      "id": "garden",
+      "path": "public/assets/manga5915/tcg/garden.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 544344,
+      "sha256": "929318a325508fae896b1aaf3e0cd20e81640108b54cde425d30b9cb5c0e4758",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/narrative.ts + src/game/livingStory.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/tcg/story/",
+        "public/assets/v4/arenas/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "tcg",
+      "id": "tide",
+      "path": "public/assets/manga5915/tcg/tide.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 545702,
+      "sha256": "5b86609d4d2afe3cb0438a971f8df84d6d8cdaabf216586d5fae21fdd4ed7b2d",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/narrative.ts + src/game/livingStory.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/tcg/story/",
+        "public/assets/v4/arenas/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "tcg",
+      "id": "moon",
+      "path": "public/assets/manga5915/tcg/moon.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 513176,
+      "sha256": "a5425a32bfdb351e23d702972436f96b9ba13f199085aa09e3d9bc9f73957945",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/narrative.ts + src/game/livingStory.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/tcg/story/",
+        "public/assets/v4/arenas/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "tcg",
+      "id": "last-table",
+      "path": "public/assets/manga5915/tcg/last-table.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 482308,
+      "sha256": "6a3a5471ecc4a5daaa0ccaa72c835fa9a63378553c711773aa0db3474d92541a",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/narrative.ts + src/game/livingStory.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/tcg/story/",
+        "public/assets/v4/arenas/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "tcg",
+      "id": "living-market",
+      "path": "public/assets/manga5915/tcg/living-market.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 518610,
+      "sha256": "4d78d861a53e9287d36e7b40c9c687d569105448b52ddf250ca8de9829901493",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/narrative.ts + src/game/livingStory.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/tcg/story/",
+        "public/assets/v4/arenas/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "tcg",
+      "id": "rain-harbor",
+      "path": "public/assets/manga5915/tcg/rain-harbor.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 530360,
+      "sha256": "4b2d2def5be381d9307f8f4dc7744f159fd55087e3f64fcd7bfbf4896d5b988b",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/narrative.ts + src/game/livingStory.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/tcg/story/",
+        "public/assets/v4/arenas/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "tcg",
+      "id": "tomorrow-table",
+      "path": "public/assets/manga5915/tcg/tomorrow-table.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 535818,
+      "sha256": "de507332fc0afb0f084c391f585e5aef99df6c868e67adffaef93838e71a41ba",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/narrative.ts + src/game/livingStory.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/tcg/story/",
+        "public/assets/v4/arenas/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "adventure",
+      "id": "cover",
+      "path": "public/assets/manga5915/adventure/cover.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 569846,
+      "sha256": "70167ea881591da470a7b734edf8c9ea742949583f877e55ec1221282641e224",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/adventureRpg/story.ts + src/game/adventureRpg/content.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/rpg/campaign580/",
+        "public/assets/tcg/characters/anime/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "adventure",
+      "id": "lantern",
+      "path": "public/assets/manga5915/adventure/lantern.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 504410,
+      "sha256": "3a0aaff5a4777b699cf87573e0f9c089d50e03dc28adf9ac49b27f3f6d2a65cc",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/adventureRpg/story.ts + src/game/adventureRpg/content.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/rpg/campaign580/",
+        "public/assets/tcg/characters/anime/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "adventure",
+      "id": "harbor",
+      "path": "public/assets/manga5915/adventure/harbor.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 551530,
+      "sha256": "77ed47329b5d7bb32595f64e3e3a5c1d52233c060f0dfe068065e3ff93d5a7c2",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/adventureRpg/story.ts + src/game/adventureRpg/content.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/rpg/campaign580/",
+        "public/assets/tcg/characters/anime/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "adventure",
+      "id": "garden",
+      "path": "public/assets/manga5915/adventure/garden.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 545410,
+      "sha256": "400f7adf3141a123eb17fa2e043e8944b674287f45612f7e45369ab859b7b884",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/adventureRpg/story.ts + src/game/adventureRpg/content.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/rpg/campaign580/",
+        "public/assets/tcg/characters/anime/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "adventure",
+      "id": "tide",
+      "path": "public/assets/manga5915/adventure/tide.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 557786,
+      "sha256": "c3f4ffac0205770b5ba8a24afc6d4263248e5bb0f4bb84b7aee41f0599195642",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/adventureRpg/story.ts + src/game/adventureRpg/content.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/rpg/campaign580/",
+        "public/assets/tcg/characters/anime/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "adventure",
+      "id": "mistwood",
+      "path": "public/assets/manga5915/adventure/mistwood.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 545058,
+      "sha256": "5fb92cdc69eb8bbcda79a1f0f0f5351d311a2c10e6a5df4b5cb6944df74bc914",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/adventureRpg/story.ts + src/game/adventureRpg/content.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/rpg/campaign580/",
+        "public/assets/tcg/characters/anime/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "adventure",
+      "id": "sugartower",
+      "path": "public/assets/manga5915/adventure/sugartower.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 615908,
+      "sha256": "97fbfbbd694a59fb8aff64c361d00a83e4313cf6e6dfd19dde1d8dee0ed1fe05",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/adventureRpg/story.ts + src/game/adventureRpg/content.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/rpg/campaign580/",
+        "public/assets/tcg/characters/anime/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "adventure",
+      "id": "ashalley",
+      "path": "public/assets/manga5915/adventure/ashalley.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 559368,
+      "sha256": "c7fb12f87a2cf770ee90d46f39a67a63e67da4829227a36ec4b77cee6b10b91b",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/adventureRpg/story.ts + src/game/adventureRpg/content.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/rpg/campaign580/",
+        "public/assets/tcg/characters/anime/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    },
+    {
+      "track": "adventure",
+      "id": "lasttable",
+      "path": "public/assets/manga5915/adventure/lasttable.webp",
+      "size": [
+        1086,
+        1448
+      ],
+      "bytes": 549720,
+      "sha256": "6e74a8f76d52147a525f3ae0c3d7a8bd25807f74a844e43e18e19e5d61ac50f6",
+      "tool": "Built-in Imagegen",
+      "storySource": "src/game/adventureRpg/story.ts + src/game/adventureRpg/content.ts",
+      "identityReferences": [
+        "public/assets/characters/chefs593/",
+        "public/assets/rpg/campaign580/",
+        "public/assets/tcg/characters/anime/",
+        "public/assets/autochess/portraits.webp"
+      ],
+      "promptPolicy": "Five-panel vertical manga page, canonical events and identities, no baked text; exact Vietnamese dialogue is rendered from source data."
+    }
+  ]
+}

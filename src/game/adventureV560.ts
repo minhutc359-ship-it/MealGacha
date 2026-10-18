@@ -1,6 +1,6 @@
 export { GAME_INTRO_IMAGES as ADVENTURE_LOADING_IMAGES } from "./loadingImages"
 
-export type AdventureHomeTab = "village" | "campaign" | "dungeon" | "heroes" | "help"
+export type AdventureHomeTab = "village" | "campaign" | "dungeon" | "heroes" | "manga" | "help"
 export type BattlePresentationPhase = "enter" | "ready" | "start" | "wave-clear" | "wave-enter" | "fight" | "win" | "fail"
 
 export interface BattlePresentationBeat {
