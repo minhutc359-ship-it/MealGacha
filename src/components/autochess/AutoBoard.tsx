@@ -437,26 +437,28 @@ export function AutoBoard({
           const school = (UNIT_MAP[u.id] ?? MONSTER_MAP[u.id]).school
           const kind = action.kind === "cast" ? skillVfx(action.skill ?? u.skill, u.range) : u.range <= 1 ? "slash" : "projectile"
           const from = { x:px(origin.x,origin.y), y:py(origin.y)-cell*.48 }, to = { x:px(end.x,end.y), y:py(end.y)-cell*.48 }
-          if (opts.reducedMotion) continue
-          if(starterCharacter(u.id)) {
-            if(action.kind==="cast")drawStarterVfx(ctx,u.id,from.x,from.y,cell*.36,t*650,false,opts.lowQuality,"charge")
-            continue
-          }
+          const starter = starterCharacter(u.id)
+          const essentialLow = opts.lowQuality || opts.reducedMotion
           if (action.kind === "cast") {
-            drawChannel(ctx, { x:from.x,y:py(origin.y) },school,t,cell*.48,opts.lowQuality)
-            drawCastAura(ctx, from.x, py(origin.y), cell, school, t, opts.lowQuality)
+            drawChannel(ctx, { x:from.x,y:py(origin.y) },school,t,cell*.48,essentialLow)
+            drawCastAura(ctx, from.x, py(origin.y), cell, school, t, essentialLow)
           }
-          if (action.kind === "cast") drawCombatArt(ctx,combatTexture,school,"cast",from.x,from.y,cell*.62,t,u.id)
-          if (kind === "slash" && t>.55) drawCombatArt(ctx,combatTexture,school,"slash",to.x,to.y,cell*.48,(t-.55)/.45,u.id,Math.atan2(to.y-from.y,to.x-from.x))
-          if (kind === "projectile" && t>.25) { const f=(t-.25)/.75;drawCombatArt(ctx,combatTexture,school,"projectile",from.x+(to.x-from.x)*f,from.y+(to.y-from.y)*f,cell*.23,f,u.id,Math.atan2(to.y-from.y,to.x-from.x)) }
+          // Authored signatures are an accent layer. The shared school VFX below
+          // remains the readable gameplay layer for every spirit and boss.
+          if (!starter && action.kind === "cast") drawCombatArt(ctx,combatTexture,school,"cast",from.x,from.y,cell*.62,t,u.id)
+          if (!starter && kind === "slash" && t>.55) drawCombatArt(ctx,combatTexture,school,"slash",to.x,to.y,cell*.48,(t-.55)/.45,u.id,Math.atan2(to.y-from.y,to.x-from.x))
+          if (!starter && kind === "projectile" && t>.25) { const f=(t-.25)/.75;drawCombatArt(ctx,combatTexture,school,"projectile",from.x+(to.x-from.x)*f,from.y+(to.y-from.y)*f,cell*.23,f,u.id,Math.atan2(to.y-from.y,to.x-from.x)) }
           // Support recipients are selected at resolution. Never send a healing
           // projectile to the enemy held in the action's generic target field.
-          if (action.kind === "cast" && ["heal", "shield"].includes(kind)) continue
-          if (kind === "slash") {
-            if(t>.72) drawImpact(ctx,to,school,(t-.72)*.3,cell*.45,"slash",opts.lowQuality)
-          } else if (["shield","summon"].includes(kind) || !target || target.uid === u.uid) {
-            if(t>.4) drawImpact(ctx,from,school,(t-.4)*.6,cell*.42,kind,opts.lowQuality)
-          } else if(t>.25) drawProjectile(ctx,from,to,school,(t-.25)/.75,cell*(action.kind === "cast" ? .22 : .16),opts.lowQuality,kind)
+          const unresolvedSupport = action.kind === "cast" && ["heal", "shield"].includes(kind)
+          if (!unresolvedSupport) {
+            if (kind === "slash") {
+              if(t>.72) drawImpact(ctx,to,school,(t-.72)*.3,cell*.45,"slash",essentialLow)
+            } else if (["shield","summon"].includes(kind) || !target || target.uid === u.uid) {
+              if(t>.4) drawImpact(ctx,from,school,(t-.4)*.6,cell*.42,kind,essentialLow)
+            } else if(t>.25) drawProjectile(ctx,from,to,school,(t-.25)/.75,cell*(action.kind === "cast" ? .22 : .16),essentialLow,kind)
+          }
+          if(starter && !opts.reducedMotion && action.kind==="cast")drawStarterVfx(ctx,u.id,from.x,from.y,cell*.36,t*650,false,opts.lowQuality,"charge")
         }
         if(surface.dataset.combatArt !== (combatTexture?.naturalWidth ? "ready" : "fallback")) surface.dataset.combatArt = combatTexture?.naturalWidth ? "ready" : "fallback"
         const popup = new Map<string, number>()
@@ -485,19 +487,18 @@ export function AutoBoard({
                 : AUTO_SCHOOLS[e.school].color
           const sourceActor = actorMap.get(e.source)
           const starter=sourceActor && starterCharacter(sourceActor.id)
-          if(starter && !opts.reducedMotion && age<.8 && ["hit","heal","shield"].includes(e.kind))drawStarterVfx(ctx,sourceActor!.id,x,y,cell*.37,age*1000,false,opts.lowQuality,e.kind === "heal" || e.kind === "shield" ? e.kind : "skill")
-          // The shared impact renderer already chooses texture OR geometry. Do not paint a second impact over the recipient.
-          if (!starter && e.kind === "cast" && e.amount > 0 && sourceActor) {
+          if (e.kind === "cast" && e.amount > 0 && sourceActor) {
             const sourcePos = coords.get(e.source)!
             drawSkillBurst(ctx, px(sourcePos.x,sourcePos.y), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
           }
           if (e.kind === "death") drawDeparture(ctx, x, y, cell, e.school, age, opts.reducedMotion, opts.lowQuality)
-          if (!starter && !opts.reducedMotion && age < .7 && ["hit","shield","heal","phase","summon","burn"].includes(e.kind)) {
+          if (age < .7 && ["hit","shield","heal","phase","summon","burn"].includes(e.kind)) {
             const source = actorMap.get(e.source)
             const kind = e.kind === "heal" ? "heal" : e.kind === "shield" ? "shield" : e.kind === "summon" ? "summon"
               : e.kind === "hit" && source?.range === 1 ? "slash" : "projectile"
-            drawImpact(ctx,{x,y:y+cell*.18},e.school,age,cell*(e.kind === "phase" ? .6 : .28),kind,opts.lowQuality,texturedImpacts++ < 4 ? impactTexture : undefined)
+            drawImpact(ctx,{x,y:y+cell*.18},e.school,age,cell*(e.kind === "phase" ? .6 : .28),kind,opts.lowQuality || opts.reducedMotion,texturedImpacts++ < 4 ? impactTexture : undefined)
           }
+          if(starter && !opts.reducedMotion && age<.8 && ["hit","heal","shield"].includes(e.kind))drawStarterVfx(ctx,sourceActor!.id,x,y,cell*.37,age*1000,false,opts.lowQuality,e.kind === "heal" || e.kind === "shield" ? e.kind : "skill")
           if (
             ["hit", "heal", "burn"].includes(e.kind) &&
             e.amount > 0 &&
