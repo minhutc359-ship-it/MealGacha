@@ -1,6 +1,6 @@
 {
-  "version": "5.9.12",
-  "generatedOn": "2026-10-15",
+  "version": "5.9.13",
+  "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
     {
@@ -116,6 +116,246 @@
       "origin": "AI-assisted original brand; derivatives resized from project artwork",
       "evidence": [
         "dev/docs/branding/LOGO.md"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-can-pixel.webp",
+      "bytes": 135634,
+      "sha256": "08cfd84a0a7ee642384809b3e9845601123e558303420918d93a2493626262e0",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-can.webp",
+      "bytes": 701040,
+      "sha256": "bb990134fe906fcc04ab26877e4f81ec35b4ffd8effeee548a2bbfa53fbe0788",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-dau-xanh-pixel.webp",
+      "bytes": 144132,
+      "sha256": "70a2e030708af07a496e4bc7db72cb3a9d30b5692bbc2f2999db480eb0b97be8",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-dau-xanh.webp",
+      "bytes": 770080,
+      "sha256": "282d5eb7cbafc5122b47113854de7e0dd3c1fb5ef299428fb346f2b95cad7e11",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-it-la-gai-pixel.webp",
+      "bytes": 163496,
+      "sha256": "b045b7c15df624d6182d00d38e73f4f7ca5483ab0d787993ee0f9672b79dcc33",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-it-la-gai.webp",
+      "bytes": 724880,
+      "sha256": "60a9fad71e605be074a2b0cdc76d946743e9a65befc8dc5039bb98da80696f63",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-khuc-pixel.webp",
+      "bytes": 139988,
+      "sha256": "9efbaa825660380bf563ad2e045af2364923e8734e106bf80ae36109eac53227",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-khuc.webp",
+      "bytes": 703968,
+      "sha256": "86d8754bc3c6a299638a811bca01b4fdad2f6a018bea688b71b8f252e3e5b020",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-ram-it-pixel.webp",
+      "bytes": 152782,
+      "sha256": "7c1a9587e7d10c2899d08f3364b58595375b71ac6c8c7dc595d63ef7c279d67c",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-ram-it.webp",
+      "bytes": 782480,
+      "sha256": "52480227648be39c88df1d44fb4024e6853804fddb29c17db6263f3e35c88eca",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-tom-ho-tay-pixel.webp",
+      "bytes": 178834,
+      "sha256": "cc7728b2ee0d0f158e28846b1f4fcd730f99d68dec57063acc26d74445d38aa7",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/banh-tom-ho-tay.webp",
+      "bytes": 856598,
+      "sha256": "5d2877789bafe0d5fed021b854474651c6cf220e42db60ecbca0cd60d2152a00",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/chao-luon-pixel.webp",
+      "bytes": 154984,
+      "sha256": "856e04e4bfa35de4e25cae2b001e69b2b726404022a57f4ccfe31ef0ebcc4bf2",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/chao-luon.webp",
+      "bytes": 792490,
+      "sha256": "3e5f3bbf20dc346514dd6b7be11b70bf1e13e6d416b3332fdb339b8456f1cd1d",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/che-lam-pixel.webp",
+      "bytes": 146364,
+      "sha256": "6e968d98236913d0d8f5ae8cfaf06ca717cb56c160d337d2f840b6619292f129",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/che-lam.webp",
+      "bytes": 780284,
+      "sha256": "4999236d5b14581044098574adad028ce2fb33ea5a76e601263fc912d076b947",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/com-hen-pixel.webp",
+      "bytes": 117896,
+      "sha256": "e93c7f8c762261141f9bb165328fe8486b0ca30af856b6edd9937c3b2cc4890a",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/com-hen.webp",
+      "bytes": 658416,
+      "sha256": "2e81df3ce0085c74f3b6517581076c822a35aece4114c6615b1465494e32b446",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/keo-cu-do-pixel.webp",
+      "bytes": 158790,
+      "sha256": "b44955f4bc0d199aafbe2de93516a7d201f150b905777b962e59569f10f8dc64",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/autochess5913/keo-cu-do.webp",
+      "bytes": 793584,
+      "sha256": "eeec566bf77d39f87ce9aefd60f5ac26b93631cf01e9196fb8fd10c82087bc00",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged",
+      "evidence": [
+        "dev/docs/web-v5913/asset-provenance.json",
+        "dev/docs/web-v5913/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

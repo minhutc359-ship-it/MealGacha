@@ -1,6 +1,6 @@
 {
-  "version": "5.9.12",
-  "generatedOn": "2026-10-15",
+  "version": "5.9.13",
+  "generatedOn": "2026-10-18",
   "packages": [
     {
       "name": "@capacitor/android",

@@ -63,7 +63,7 @@ describe("shared characters in TCG", () => {
       expect(characterBounds(tcgCaster(school))).not.toBeNull()
   })
   it("reuses dedicated models for new foods and people instead of replacing them with school icons", () => {
-    expect(tcgCharacter(CARD_MAP["banh-dau-xanh"])).toMatchObject({ id: "banh-dau-xanh", sheet: "fresh", row: 0 })
+    expect(tcgCharacter(CARD_MAP["banh-dau-xanh"])).toMatchObject({ id: "banh-dau-xanh", sheet: "starter-banh-dau-xanh", row: 0 })
     expect(tcgCharacter(CARD_MAP["caravan-ferryman"])).toMatchObject({ id: "ferry" })
     expect(tcgCharacter(CARD_MAP["caravan-porter"])).toMatchObject({ id: "loc", sheet: "fresh" })
     expect(tcgCharacter(CARD_MAP["chef-nhien"])).toMatchObject({ id: "chef-nhien", sheet: "starter-chef-nhien", row: 0 })

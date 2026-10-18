@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { REGIONAL_IDS, SPRING_CARAVAN_IDS, VIETNAM_IDS, characterVisual } from "@/game/characterVisuals"
+import { REGIONAL_IDS, SPRING_CARAVAN_IDS, VIETNAM_IDS, AUTOCHESS_CORE_IDS, characterVisual } from "@/game/characterVisuals"
 import { drawStarterVfx, type CharacterVfxKind } from "@/game/starterVfx"
 import { starterPose } from "@/game/starterCharacters"
 import { actorPose } from "@/game/autochess/actorPresentation"
@@ -27,6 +27,7 @@ describe.each([
   {version:"5.9.10", ids:REGIONAL_IDS},
   {version:"5.9.11", ids:SPRING_CARAVAN_IDS},
   {version:"5.9.12", ids:VIETNAM_IDS},
+  {version:"5.9.13", ids:AUTOCHESS_CORE_IDS},
 ])("spirit presentation $version", ({ids}) => {
   it("draws distinct bounded motifs without unused texture dependencies", () => {
     expect(

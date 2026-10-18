@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-17",
+  "engine": "chromium",
+  "version": "140.0.7339.16",
+  "checks": [
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ]
+    },
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it",
+        "keo-cu-do"
+      ]
+    },
+    {
+      "area": "tcg",
+      "spell": {
+        "id": "tea-break",
+        "name": "Một chén trà"
+      },
+      "sharedBanner": true,
+      "modelSigil": true,
+      "ids": [
+        "che-lam",
+        "chao-luon",
+        "banh-it-la-gai",
+        "banh-ram-it"
+      ],
+      "realUnitAttack": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "movieRequests": 0,
+  "requestedAssets": [
+    "/assets/characters/autochess5913/che-lam.webp",
+    "/assets/characters/autochess5913/chao-luon.webp",
+    "/assets/characters/autochess5913/banh-it-la-gai.webp",
+    "/assets/characters/autochess5913/banh-ram-it.webp",
+    "/assets/characters/autochess5913/keo-cu-do.webp"
+  ]
+}

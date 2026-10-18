@@ -1,0 +1,621 @@
+{
+  "date": "2026-10-17",
+  "engine": "chromium",
+  "version": "140.0.7339.16",
+  "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
+  "checks": [
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 188,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 881,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 835,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-dau-xanh",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 981,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-khuc",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1217,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-can",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1173,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-tom-ho-tay",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 793,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 66.46875,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-hen",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1382,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 69.578125,
+        "arena": 162.328125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 474,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 2204,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 2055,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-dau-xanh",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2129,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-khuc",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2672,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-can",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 2793,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-tom-ho-tay",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 1634,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-hen",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3183,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 451.328125
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 81,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 373,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 380,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-dau-xanh",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 584,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-khuc",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 704,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-can",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 703,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-tom-ho-tay",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 535,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-hen",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 764,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 634,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 2859,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "realReducerEvents": true,
+      "painted": 2759,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-dau-xanh",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 2913,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-khuc",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 3575,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-can",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 3853,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banh-tom-ho-tay",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 2267,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "com-hen",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4313,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "victory",
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ]
+    },
+    {
+      "area": "fall",
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ]
+    },
+    {
+      "area": "reload-committed-ultimate",
+      "noRecast": true
+    },
+    {
+      "area": "natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "reduced-motion",
+      "ids": [
+        "banh-dau-xanh",
+        "banh-khuc",
+        "banh-can",
+        "banh-tom-ho-tay",
+        "com-hen"
+      ],
+      "staticPose": 16
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedAssets": [
+    "/assets/characters/autochess5913/banh-dau-xanh.webp",
+    "/assets/characters/autochess5913/banh-khuc.webp",
+    "/assets/characters/autochess5913/banh-can.webp",
+    "/assets/characters/autochess5913/banh-tom-ho-tay.webp",
+    "/assets/characters/autochess5913/com-hen.webp"
+  ],
+  "movieRequests": 0
+}
