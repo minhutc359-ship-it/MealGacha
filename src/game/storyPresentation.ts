@@ -5,7 +5,7 @@ import { livingOpening } from "./livingStory"
 import type { GameSave } from "./types"
 
 /** Presentation only: replay uses the player's saved branch, without rewards. */
-export function storyLines(stage: string, save: GameSave, phase: "before" | "after") {
+export function storyLines(stage: string, save: Pick<GameSave, "storyEnding" | "story400">, phase: "before" | "after") {
   const scene = SCENES[stage]
   if (!scene) return []
   if (phase === "after") return [...scene.after, ...livingChoiceLines(stage, save, true)]

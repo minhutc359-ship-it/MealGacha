@@ -1,0 +1,351 @@
+{
+  "engine": "153.0.8010.0",
+  "checks": [
+    {
+      "track": "tcg",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pages": 16,
+      "measurements": {
+        "x": 0,
+        "y": 0,
+        "right": 320,
+        "bottom": 568,
+        "width": 320,
+        "overflow": false,
+        "viewOverflow": false,
+        "ratio": 1.5060116798351082,
+        "expected": 1.5059055118110236,
+        "buttons": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "flow": "locked → chapter → pages/keyboard/font/zoom/full art/scroll/focus → next chapter",
+      "savePreserved": true
+    },
+    {
+      "track": "adventure",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pages": 9,
+      "measurements": {
+        "x": 0,
+        "y": 0,
+        "right": 320,
+        "bottom": 568,
+        "width": 320,
+        "overflow": false,
+        "viewOverflow": false,
+        "ratio": 1.766317485898469,
+        "expected": 1.7662037037037037,
+        "buttons": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "flow": "locked → chapter → pages/keyboard/font/zoom/full art/scroll/focus → next chapter",
+      "savePreserved": true
+    },
+    {
+      "track": "tcg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pages": 16,
+      "measurements": {
+        "x": 0,
+        "y": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "overflow": false,
+        "viewOverflow": false,
+        "ratio": 1.5059853615158356,
+        "expected": 1.5059055118110236,
+        "buttons": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "flow": "locked → chapter → pages/keyboard/font/zoom/full art/scroll/focus → next chapter",
+      "savePreserved": true
+    },
+    {
+      "track": "adventure",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pages": 9,
+      "measurements": {
+        "x": 0,
+        "y": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "overflow": false,
+        "viewOverflow": false,
+        "ratio": 1.7662254312073806,
+        "expected": 1.7662037037037037,
+        "buttons": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "flow": "locked → chapter → pages/keyboard/font/zoom/full art/scroll/focus → next chapter",
+      "savePreserved": true
+    },
+    {
+      "track": "tcg",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pages": 16,
+      "measurements": {
+        "x": 0,
+        "y": 0,
+        "right": 844,
+        "bottom": 390,
+        "width": 844,
+        "overflow": false,
+        "viewOverflow": false,
+        "ratio": 1.5059277246107698,
+        "expected": 1.5059055118110236,
+        "buttons": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "flow": "locked → chapter → pages/keyboard/font/zoom/full art/scroll/focus → next chapter",
+      "savePreserved": true
+    },
+    {
+      "track": "adventure",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pages": 9,
+      "measurements": {
+        "x": 0,
+        "y": 0,
+        "right": 844,
+        "bottom": 390,
+        "width": 844,
+        "overflow": false,
+        "viewOverflow": false,
+        "ratio": 1.7662185366670855,
+        "expected": 1.7662037037037037,
+        "buttons": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "flow": "locked → chapter → pages/keyboard/font/zoom/full art/scroll/focus → next chapter",
+      "savePreserved": true
+    },
+    {
+      "track": "tcg",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pages": 16,
+      "measurements": {
+        "x": 160,
+        "y": 16,
+        "right": 1280,
+        "bottom": 884,
+        "width": 1120,
+        "overflow": false,
+        "viewOverflow": false,
+        "ratio": 1.505936203690459,
+        "expected": 1.5059055118110236,
+        "buttons": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "flow": "locked → chapter → pages/keyboard/font/zoom/full art/scroll/focus → next chapter",
+      "savePreserved": true
+    },
+    {
+      "track": "adventure",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pages": 9,
+      "measurements": {
+        "x": 160,
+        "y": 16,
+        "right": 1280,
+        "bottom": 884,
+        "width": 1120,
+        "overflow": false,
+        "viewOverflow": false,
+        "ratio": 1.7662206937046512,
+        "expected": 1.7662037037037037,
+        "buttons": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      },
+      "flow": "locked → chapter → pages/keyboard/font/zoom/full art/scroll/focus → next chapter",
+      "savePreserved": true
+    },
+    {
+      "track": "tcg",
+      "chapter": "lantern",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "tcg",
+      "chapter": "harbor",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "tcg",
+      "chapter": "garden",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "tcg",
+      "chapter": "tide",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "tcg",
+      "chapter": "moon",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "tcg",
+      "chapter": "last-table",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "tcg",
+      "chapter": "living-market",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "tcg",
+      "chapter": "rain-harbor",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "tcg",
+      "chapter": "tomorrow-table",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "adventure",
+      "chapter": "lantern",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "adventure",
+      "chapter": "harbor",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "adventure",
+      "chapter": "garden",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "adventure",
+      "chapter": "tide",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "adventure",
+      "chapter": "mistwood",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "adventure",
+      "chapter": "sugartower",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "adventure",
+      "chapter": "ashalley",
+      "decodedFullSheets": 2
+    },
+    {
+      "track": "adventure",
+      "chapter": "lasttable",
+      "decodedFullSheets": 2
+    },
+    {
+      "failedChapterFetch": "retry recovers"
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

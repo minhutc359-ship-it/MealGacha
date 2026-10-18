@@ -1,0 +1,22 @@
+{
+  "engine": "153.0.8010.0",
+  "checks": [
+    {
+      "mode": "tcg",
+      "manga": true,
+      "savePreserved": true
+    },
+    {
+      "mode": "adventure",
+      "manga": true,
+      "savedChoice": 1,
+      "savePreserved": true
+    },
+    {
+      "mode": "autochess",
+      "productionChunkLoaded": true
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

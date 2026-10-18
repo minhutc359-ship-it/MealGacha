@@ -1,0 +1,108 @@
+{
+  "tcg": {
+    "lantern": [
+      ["Hai bát cơm", "Người kể", "Sợi lạt còn ướt trên tay bà. Bên bếp, hai chiếc bát đã dọn, nhưng chỉ một chiếc có người ngồi.", "Bạn", "Bà vừa ở đây. Nếu đi tìm ngay, chắc mình vẫn kịp mời bà về ăn."],
+      ["Một cái tên suýt được gọi", "Bạn", "Sao bác nhìn tôi như đã gặp từ lâu?", "Người bán hàng", "Ta định gọi một cái tên… Nhưng xin lỗi, ta không nhớ nổi. Con đừng đi một mình giữa sương."],
+      ["Bàn tay người dẫn đường", "Bạn", "Ông biết chiếc muôi này từ trước, phải không?", "Bách", "Ta biết nó từng thuộc về một căn bếp. Còn chuyện của con, ta chưa có quyền kể thay."],
+      ["Chỗ ngồi chưa có tên", "Người kể", "Bạn đặt thêm một chiếc bát. Trong căn bếp vắng, tiếng sứ chạm bàn nghe rõ hơn mọi lời hứa.", "Bạn", "Ngày mai tôi sẽ hỏi lại. Một cái tên không thể tự nhiên biến mất khỏi tất cả mọi người."]
+    ],
+    "harbor": [
+      ["Tấm vé cháy dở", "Người kể", "Mùi cháo gạo rang còn bám trên tờ vé sém cạnh. Bạn không biết vì sao mình nhận ra nó.", "Bạn", "Cái mùi này… Tôi nhớ có ai đã bảo phải ăn khi còn nóng."],
+      ["Lửa của Nhiên", "Nhiên", "Cha tôi thường để nồi cháo thêm một lúc. Ông bảo người về muộn cũng cần được ăn.", "Bạn", "Vậy mình giữ lửa. Còn người chưa về, mình sẽ tìm tên họ."],
+      ["Khoảng trống trong sổ tàu", "Hải", "Đừng đoán tên ở chỗ giấy cháy. Đoán sai rồi tin luôn còn đáng sợ hơn không biết.", "Bạn", "Tôi muốn tìm sự thật, dù nó không giống điều tôi đang mong."],
+      ["Bến phía bên kia", "Người kể", "Con thuyền rời bến, mang theo một cái tên vừa được tìm lại. Bách đứng cuối thuyền, không nhìn trang sổ.", "Bạn", "Đến khu vườn, tôi sẽ hỏi ông ấy lần nữa. Lần này tôi cần một câu trả lời."]
+    ],
+    "garden": [
+      ["Nửa câu hát", "Mộc", "Tôi nhớ cách mẹ lấy hơi trước câu hát, mà không nhớ nổi lời tiếp theo.", "Bạn", "Cậu cứ hát phần còn nhớ. Tôi sẽ ngồi nghe, không điền lời khác vào đâu."],
+      ["Lá thư của bà", "Người kể", "Mép thư sờn vì từng được mở nhiều lần. Người giữ nó đã có đủ thời gian để nói, rồi lại thôi.", "Bạn", "Bà viết cho tôi, hay cho người mà mọi người tưởng tôi là?"],
+      ["Câu hỏi không thể tránh", "Bạn", "Nếu biết tôi sẽ đau, ông có định giấu mãi không?", "Bách", "Ta đã lấy nỗi sợ của mình làm lý do. Con có quyền giận, và có quyền hỏi đến cùng."],
+      ["Vị mặn ở cuối vườn", "Mộc", "Tôi sẽ đi cùng. Cậu không cần phải tin lại ngay mới được có người bên cạnh.", "Người kể", "Qua cổng vườn, gió mang vị muối. Câu trả lời tiếp theo nằm dưới mặt nước."]
+    ],
+    "tide": [
+      ["Dây đàn và con nước", "Hải", "Dây cũ dễ đứt. Tôi cứ thay từng sợi, để cây đàn còn được chơi tiếp.", "Bạn", "Có lẽ nhớ một người cũng cần học cách thay đổi như thế."],
+      ["Dòng tên trên giấy ướt", "Người kể", "Giấy mềm đi dưới đầu ngón tay. Bạn đọc chậm, sợ một cái chạm vội sẽ làm mất dấu còn lại.", "Hải", "Tôi giữ góc này. Cậu cứ đọc hết, tôi ở đây."],
+      ["Bàn tay qua làn hơi", "Bạn", "Tôi nhớ hơi nóng, nhưng bàn tay lại không chạm được chiếc nồi.", "Hải", "Cậu không phải chứng minh mình là ai bằng cách chịu đau một mình."],
+      ["Một bát cơm trên bến", "Hải", "Tôi chưa biết phải nói gì. Nên tôi mang phần ăn ra đây.", "Bạn", "Cảm ơn. Hôm nay, được ngồi cạnh một người đã là đủ."]
+    ],
+    "moon": [
+      ["Nan tre bị gãy", "Liên", "Gãy một nan thôi. Mình nối lại được, không cần vứt cả chiếc đèn.", "Bạn", "Cậu sửa đồ kiên nhẫn thật.", "Liên", "Có những tối tôi cũng cần một việc nhỏ để làm tiếp."],
+      ["Nửa chiếc bánh", "Liên", "Nếu không muốn kể thì mình cứ ăn bánh. Tôi không giỏi đoán nỗi buồn của người khác.", "Bạn", "Vậy cho tôi ngồi đây thêm một lúc."],
+      ["Bàn tay phía cửa tàu", "Người kể", "Bà đưa tay ra rồi dừng lại. Khoảng cách giữa hai người chỉ một bước, mà chứa cả một câu hỏi.", "Bạn", "Con sẽ tới. Nhưng xin bà nhìn kỹ người đang bước tới bà."],
+      ["Đèn còn sáng", "Liên", "Ngày mai cậu chọn điều gì, tối nay chiếc đèn này vẫn là mình cùng sửa.", "Người kể", "Ánh sao bằng giấy đủ nhỏ để cầm trong tay, đủ sáng cho đoạn đường về căn bếp."]
+    ],
+    "last-table": [
+      ["Món nợ không thể trả bằng phép màu", "Bách", "Ta đã chuẩn bị lời giải thích quá lâu, đến mức tưởng nói ra là đủ.", "Người kể", "Ông đặt vật kỷ niệm xuống bàn. Lần đầu, cả hai bàn tay đều không còn chỗ để giấu."],
+      ["Người được đưa lên thuyền", "Người kể", "Trong câu chuyện được kể trọn, đứa trẻ trên thuyền có một cái tên. Người cứu đứa trẻ ấy cũng vậy.", "Liên", "Con muốn được biết sự thật về người đã cứu mình, dù cha không thể sửa lại ngày ấy."],
+      ["Bà thôi nắm giữ", "Bà", "Ta muốn giữ con lại. Nhưng muốn là chuyện của ta; quyết định phải là của con.", "Bạn", "Lần đầu tiên, con nghe lời mời ấy mà không thấy mình mắc nợ."],
+      ["Trước lời lựa chọn", "Người kể", "Ánh bình minh chạm chiếc muôi đã nứt. Không ai đưa tay chọn thay bạn nữa.", "Bạn", "Dù con đường nào mở ra, xin hãy kể đúng việc đã xảy ra ở đây."]
+    ],
+    "living-market": [
+      ["Trang sổ không yên", "An", "Mình vừa đọc câu này. Sao nét mực lại đổi rồi?", "Người kể", "Trong sổ, lời nhận lỗi nhạt đi trước. Những chữ còn lại trông đẹp đẽ đến đáng ngờ."],
+      ["Hôm nhà hết gừng", "Bà Sen", "Đừng chỉ hỏi công thức thiếu gì. Hỏi hôm đó người nấu có gì trong bếp nữa.", "An", "Vâng. Cháu sẽ ghi cả hoàn cảnh, để người đọc không phải đoán hộ."],
+      ["Đặt cục tẩy xuống", "Nhiên", "Tôi cứ nghĩ lời trơn tru hơn thì người nghe sẽ đỡ đau.", "An", "Mình có thể chọn nói tử tế. Nhưng không thể xóa phần mình phải chịu trách nhiệm."],
+      ["Hai bát cháo", "Người kể", "Hai cách nấu được đặt cạnh nhau. Người trong chợ nếm thử, hỏi tên người nấu rồi mới mở sổ.", "An", "Nếu cuốn sổ lại sửa, mình vẫn còn người để hỏi. Lần sau mình sẽ hỏi trước."]
+    ],
+    "rain-harbor": [
+      ["Lá thư trong ngực áo", "Hải", "Tôi tập câu mở đầu suốt đường đi. Đến đây lại chẳng nhớ nổi.", "Mộc", "Cậu chỉ cần giao đúng lời của mình. Câu trả lời là phần của người nhận."],
+      ["Một mái hiên", "Người kể", "Mưa gõ đều lên ngói. Hải thôi tập nói để nghe người dưới mái hiên kể hết một chuyện cũ.", "Hải", "Tôi cứ tưởng chuyện ấy đã qua, vì tôi không còn nhắc đến nó."],
+      ["Chờ một câu trả lời", "Hải", "Tôi gửi lời xin lỗi này. Anh không cần phải trả lời ngay.", "Người kể", "Phong thư nằm trên bàn. Không có phép thuật nào mở nó thay người nhận."],
+      ["Nước rút", "Mộc", "Ngày mai có thể vẫn chưa có tin. Cậu sẽ làm gì?", "Hải", "Làm cho xong những điều mình đã hứa. Tôi không thể chỉ tử tế vào hôm đi xin lỗi."]
+    ],
+    "tomorrow-table": [
+      ["Khăn ấm", "Liên", "Để khăn ở đây nhé. Ai về muộn cứ dùng trước khi ăn.", "Người kể", "Những việc nhỏ trong bếp vẫn tiếp tục, kể cả khi không ai nói ra một lời thật hay."],
+      ["Cuốn sổ được trả lại", "Tịnh", "Tôi trả trang này cho người đã nấu. Có chỗ nào tôi ghi sai, xin cô chỉ giúp.", "An", "Lần này mình nghe hết rồi mới viết."],
+      ["Cánh cửa không khóa", "Bách", "Ta không hứa đưa ai trở về nữa. Hôm nay ta có thể nấu, dọn bàn và nghe mọi người nói.", "Liên", "Vậy cha giúp con bưng nồi này. Khách sắp tới rồi."],
+      ["Trang dành cho người tới sau", "Người kể", "Nồi cơm mới sôi. Trên bàn, một khoảng giấy còn để trống bên cạnh những công thức đã có tên.", "An", "Bữa sau mình nấu gì? Đợi mọi người tới, rồi cùng chọn nhé."]
+    ]
+  },
+  "adventure": {
+    "lantern": [
+      ["Đếm lại một lần", "Em bé cầm đèn", "Một, hai… Em đã đếm ba lần. Vẫn thừa một chiếc bát.", "Bách", "Đừng cất nó đi vội. Có thể người ta quên người ngồi, chứ chiếc bát chưa từng thừa."],
+      ["Dấu tro dưới đáy", "Người kể", "Bách lật đáy bát. Vệt tro dính vào tay ông, còn khoảng trống trong trí nhớ thì không.", "Bách", "Ta nhận ra dấu bếp, mà lại không nhớ người đã đặt nó lên bàn."],
+      ["Giếng không trả lời", "Bà", "Ta đã đi ngang giếng này mỗi ngày. Sao đến hôm nay mới dám nhìn xuống?", "Người kể", "Bà nhìn cánh cửa trong nước. Bách đứng cạnh, để bà tự nói hết điều vừa nhớ."],
+      ["Mảnh bản đồ trong trống", "Bách", "Ta mang cả mảnh cháy đi. Không xé bỏ phần khó đọc nữa.", "Người kể", "Một cái tên vừa có lại chỗ trong câu chuyện. Ngoài cảng, tiếng chuông tàu bắt đầu vang."]
+    ],
+    "harbor": [
+      ["Kiện hàng không người nhận", "Thủy thủ", "Tôi nhớ phải trao tận tay. Chỉ không nhớ bàn tay của ai.", "Người kể", "Chuông tàu vẫn gọi đúng giờ. Trên bến, những người chờ nhau đã quên mất điều mình chờ."],
+      ["Mười năm trong một phong thư", "Nhiên", "Giấy đã mỏng đi, còn tôi cứ tự nhủ để mai gửi cũng được.", "Hải", "Hôm nay mình bắt đầu bằng việc mở ra. Chậm rồi vẫn có thể làm điều cần làm."],
+      ["Mực chạm nước", "Hải", "Đừng lau vội. Nước biển đang làm hiện nét cũ.", "Nhiên", "Tôi muốn đọc hết, kể cả phần mình đã sợ suốt mười năm."],
+      ["Hòm thư dưới lò", "Người kể", "Giữa các lá thư có một gói hạt. Có người đã gửi đi điều mình muốn thấy lớn lên.", "Nhiên", "Đến khu vườn thôi. Lần này tôi không giữ lời nhắn cho riêng mình nữa."]
+    ],
+    "garden": [
+      ["Ngày gieo hạt", "Mộc", "Tôi nhớ bàn tay Vân phủ đất lên hạt. Hồi ấy tôi cứ hỏi bao giờ cây cho quả.", "Người kể", "Mộc vuốt đất quanh gốc. Câu hỏi cũ nhỏ quá trước điều Mộc chưa từng chịu nhớ."],
+      ["Rễ giữ chìa khóa", "Mộc", "Nó không giấu chìa khóa khỏi chúng ta. Nó đang giữ hộ một lời hứa.", "Bà", "Vậy hãy nói đúng lời đã hứa, đừng đổi thành lời dễ thực hiện hơn."],
+      ["Bàn tay dừng trước rễ", "Bà", "Ta đã quen nghĩ người lớn biết điều gì tốt nhất. Cái cây này có lý do để không tin ta.", "Mộc", "Hôm nay mình sẽ đợi. Không lấy được chìa cũng không chặt nó."],
+      ["Hoa đầu tiên", "Người kể", "Chìa khóa rơi vào lòng bàn tay đang mở. Không bàn tay nào giật nó khỏi rễ cây.", "Mộc", "Vị muối… Vân đã để lại đường đi. Chúng ta phải xuống biển."]
+    ],
+    "tide": [
+      ["Bước cuối của món canh", "Hải", "Cha luôn dặn cho thứ này vào sau cùng. Tôi tưởng ông chỉ khó tính.", "Người kể", "Hương canh bốc lên. Một thói quen nhỏ đã giữ lời nhắn suốt mười năm."],
+      ["Cánh cổng trong trí nhớ", "Bà", "Ta nhớ tay mình trên then cửa. Không thể chỉ kể phần ta đã sợ mà bỏ qua việc ta đã làm.", "Hải", "Chúng ta sẽ nghe trọn chuyện. Rồi tìm cách mở cánh cửa ấy."],
+      ["Người còn ở lại", "Người kể", "Cánh cửa dưới nước vẫn nguyên. Có người đã mất mười năm để nó còn có ngày được mở.", "Hải", "Con tới rồi. Con không đem lời hứa của cha ra khỏi đây rồi bỏ mặc phần còn lại."],
+      ["Cầu thang lên mây", "Hải", "Mình đã mở được cửa, nhưng chưa biết người ở cuối đường muốn gì.", "Bà", "Vậy đi để hỏi. Không đi để mang người ấy về bằng mọi giá."]
+    ],
+    "mistwood": [
+      ["Vị đắng chưa nuốt", "Mộc", "Tôi vừa định thêm mật để dễ uống. Có lẽ nên thử hiểu vị trà trước.", "Người kể", "Mùi trà vương nơi chén rỗng. Một bài học nhỏ, nhưng Mộc chậm rãi làm lại từ đầu."],
+      ["Chén phía đối diện", "Mộc", "Chén này dành cho ngươi. Ngồi xuống được không?", "Sương Nhạt · Tiếng vọng", "Ngươi sẽ để ta nói tới câu khó nghe, hay chỉ tới lúc thấy mình đã tử tế đủ?"],
+      ["Nghe hết câu", "Bà", "Ta đang nghe. Nếu muốn sửa lời ta kể, cứ nói điều ta đã bỏ qua.", "Người kể", "Không ai rút chén trà lại. Lần đầu cuộc đối thoại không bắt đầu bằng một mệnh lệnh."],
+      ["Hơi ấm còn lại", "Mộc", "Một chén trà không trả hết món nợ. Nhưng mình có thể bắt đầu bằng cách không bỏ đi giữa câu chuyện.", "Người kể", "Ấn thứ năm ấm lên trong tay. Phía lò đỏ, một chữ ký vẫn chờ người nhận là của mình."]
+    ],
+    "sugartower": [
+      ["Tờ giấy qua lửa", "Nhiên", "Lửa không xóa được hết. Muối giữ lại cả chỗ người ký muốn quên.", "Người kể", "Bách nhận ra nét bút trước khi ai phải chỉ cho ông."],
+      ["Không đổ lỗi cho màn sương", "Bách", "Chữ ký ấy là của tôi. Không phải của một bóng ma hay một người khác mang tên tôi.", "Nhiên", "Vậy hãy nói trước thợ lò. Người chịu lệnh cần được nghe ông hủy nó."],
+      ["Lõi còn những cái tên", "Nhiên", "Khoan đánh vào lõi. Nó đã giấu được một phần khỏi lệnh thiêu.", "Bách", "Ta sẽ chấm dứt lệnh cũ. Không phá nốt những gì nó cố cứu."],
+      ["Bản lệnh được hủy", "Người kể", "Bách không xin mọi người vỗ tay. Ông chờ từng người đọc xong rồi để bản lệnh lại trên bàn.", "Bách", "Mang cả bản sao theo. Chuyện này phải còn được kể khi tôi không đứng đây nữa."]
+    ],
+    "ashalley": [
+      ["Chiếc lông trên mặt nước", "Hải", "Cha để lại lời nhắn cho người chờ, không phải dây buộc người đi.", "Bà", "Ta sẽ mang đèn. Nhưng ta phải học cách đứng sang một bên đường."],
+      ["Hai đầu cây cầu", "Người kể", "Dưới ánh trăng, cầu đẹp như một lời hứa. Chỉ khi tới gần, Hải mới thấy cả hai đầu đều bị khóa.", "Hải", "Một lối về mà không có lối đi thì vẫn là nhà giam."],
+      ["Để đèn ở lại", "Bà", "Nếu người ấy không quay về, ngọn đèn vẫn sẽ sáng. Đó là việc ta chọn làm.", "Hải", "Và không biến nó thành một món nợ mới của Vân."],
+      ["Qua cầu, hay đi tiếp", "Người kể", "Gió đi qua hai đầu cầu. Không ai phải xin phép để quay lại, cũng không ai bị giữ vì từng được chờ.", "Hải", "Còn một ấn nữa. Lần này mình mang câu hỏi tới, không mang sẵn câu trả lời."]
+    ],
+    "lasttable": [
+      ["Dọn chỗ thứ chín", "Bách", "Để chiếc ghế ở đây nhé. Không khắc tên trước.", "Bà", "Người tới sẽ tự giới thiệu. Chúng ta nghe rồi mới kể phần của mình."],
+      ["Những trang giống hệt nhau", "Người kể", "Quanh ngai, mọi trang giấy bị ép phẳng theo một khuôn. Không còn vết sửa, cũng không còn bàn tay người viết.", "Bách", "Nếu không ai được nhớ khác, lời nhận lỗi của tôi rồi cũng sẽ bị viết thành một lời bào chữa."],
+      ["Phá xiềng, giữ trang", "Bà", "Gỡ những thứ đang trói câu chuyện. Đừng xé trang của người khác để chứng minh mình đúng.", "Người kể", "Sau tiếng vỡ của ngai, những tờ giấy rơi khác hướng. Lần đầu chúng không cần giống nhau."],
+      ["Cửa mở ra hai phía", "Sương Nhạt · Tiếng vọng", "Ta có thể ngồi xuống, cũng có thể đi thêm. Các người có còn giữ lời không?", "Bách", "Có. Chúng tôi nấu bữa ngày mai, chứ không khóa cửa để giữ bữa hôm nay."]
+    ]
+  }
+}

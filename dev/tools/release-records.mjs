@@ -65,6 +65,7 @@ for (const [id, policy] of Object.entries(POLICIES)) {
 }
 
 const origins = [
+ ["assets/manga5916/", "Original AI-assisted supplemental manga storyboards generated with built-in Imagegen using the corresponding canonical chapter artwork as identity reference; code-authored Vietnamese dialogue", ["dev/docs/web-v5916/asset-provenance.json", "dev/docs/web-v5916/art-prompts.json", "dev/content/manga5916.json"]],
  ["assets/manga5915/", "Original AI-assisted multi-panel manga pages generated with built-in Imagegen from project-owned character portraits and canonical story environments; Vietnamese script remains code-authored from canonical story data", ["dev/docs/web-v5915/asset-provenance.json", "dev/docs/web-v5915/STORY_MAPPING.md", "src/game/mangaChronicle.ts"]],
  ["assets/characters/tcg5914/", "Original AI-assisted identity-preserving HD and pixel pose atlases for eight early TCG and Adventure spirits from existing canon portraits; portraits reused unchanged", ["dev/docs/web-v5914/asset-provenance.json", "dev/docs/web-v5914/identity-sources.json", "dev/tools/pack-campaign598.py"]],
  ["assets/characters/autochess5913/", "Original AI-assisted identity-preserving HD and pixel pose atlases for ten Auto Chess core spirits from existing canon portraits; portraits reused unchanged", ["dev/docs/web-v5913/asset-provenance.json", "dev/docs/web-v5913/identity-sources.json", "dev/tools/pack-campaign598.py"]],

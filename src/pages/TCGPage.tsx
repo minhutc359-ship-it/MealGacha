@@ -463,7 +463,7 @@ export function TCGPage() {
               )}
               {tab === "expedition" && <Expedition />}
               {tab === "story" && <CampaignScreen onStage={goStage} />}
-              {tab === "manga" && <MangaChronicle track="tcg" clearedStages={current.clearedStages} storyEnding={current.storyEnding} />}
+              {tab === "manga" && <MangaChronicle track="tcg" clearedStages={current.clearedStages} storyEnding={current.storyEnding} story400={current.story400} />}
               {tab === "collection" && <Collection />}
               {tab === "workshop" && <Collection workshop />}
               {tab === "companions" && <JourneyHub />}

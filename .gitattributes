@@ -223,6 +223,8 @@ dev/docs/web-v490/*.jpg -filter -diff -merge -text
 
 # Spirit portraits, skill icons and ultimate panels must ship as real WebP bytes.
 public/assets/rpg/** -filter -diff -merge -text
+public/assets/manga5915/** -filter -diff -merge -text
+public/assets/manga5916/** -filter -diff -merge -text
 
 # Web 5.8 music must deploy as playable bytes without requiring an LFS upload.
 public/assets/music580/** -filter -diff -merge -text
