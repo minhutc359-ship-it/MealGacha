@@ -1,0 +1,19 @@
+{
+  "engine": "153.0.8010.0",
+  "checks": [
+    "Fresh installation: no false update popup",
+    "Startup detects waiting release; popup fits four viewports, traps focus and supports Escape",
+    "Later keeps the current version; Settings retains update action without repeated popup",
+    "Activation timeout shows a recoverable error and keeps saved progress",
+    "Retry activates real waiting worker and reloads into release B with storage unchanged",
+    "Reconnect discovers release C; accepting reloads only the chosen tab",
+    "Installed current shell reopens offline with no false popup or storage changes"
+  ],
+  "workerDeploymentsRequested": [
+    "A",
+    "B",
+    "C"
+  ],
+  "errors": [],
+  "missing": []
+}

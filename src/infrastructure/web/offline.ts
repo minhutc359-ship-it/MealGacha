@@ -1,18 +1,21 @@
 import { Capacitor } from "@capacitor/core"
 
-type Snapshot = { phase: "unsupported" | "preparing" | "ready" | "error"; update: boolean }
-let snapshot: Snapshot = { phase: "preparing", update: false }
+type Snapshot = { phase: "unsupported" | "preparing" | "ready" | "error"; update: boolean; applying: boolean; updateError: boolean }
+let snapshot: Snapshot = { phase: "preparing", update: false, applying: false, updateError: false }
 let registration: ServiceWorkerRegistration | undefined
 let started = false
 const listeners = new Set<() => void>()
-const publish = (next: Snapshot) => { snapshot = next; listeners.forEach(listener => listener()) }
+const publish = (next: Partial<Snapshot>) => { snapshot = { ...snapshot, ...next }; listeners.forEach(listener => listener()) }
 export const offlineSnapshot = () => snapshot
 export const subscribeOffline = (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener) } }
 
 export function startWebOffline() {
   if (started) return
   started = true
-  const visibility = () => { document.documentElement.dataset.webHidden = String(document.hidden) }
+  const visibility = () => {
+    document.documentElement.dataset.webHidden = String(document.hidden)
+    if (!document.hidden) void checkWebUpdate()
+  }
   document.addEventListener("visibilitychange", visibility)
   visibility()
   if (!import.meta.env.PROD || Capacitor.isNativePlatform() || !("serviceWorker" in navigator)) {
@@ -23,7 +26,7 @@ export function startWebOffline() {
     registration = reg
     let warmed = false
     const changed = () => {
-      publish({ phase: navigator.serviceWorker.controller ? "ready" : "preparing", update: !!reg.waiting })
+      publish({ phase: navigator.serviceWorker.controller ? "ready" : "preparing", update: !!reg.waiting && !!navigator.serviceWorker.controller })
       if (!warmed && navigator.serviceWorker.controller) {
         warmed = true
         const urls = [...document.images].filter(img => img.complete && img.naturalWidth && img.getClientRects().length).map(img => img.currentSrc)
@@ -44,14 +47,26 @@ export function startWebOffline() {
     navigator.serviceWorker.addEventListener("controllerchange", changed)
     await navigator.serviceWorker.ready
     changed()
+    window.addEventListener("online", () => { void checkWebUpdate() })
+    void checkWebUpdate()
   }).catch(() => publish({ phase: "error", update: false }))
 }
 export async function checkWebUpdate() {
   try { await registration?.update() } catch { /* current cached version remains playable */ }
 }
-/** User invokes this from Settings after leaving combat. No storage is cleared. */
+/** Activate only on an explicit click. Player storage is never cleared. */
 export function applyWebUpdate() {
-  if (!registration?.waiting) return
-  navigator.serviceWorker.addEventListener("controllerchange", () => location.reload(), { once: true })
-  registration.waiting.postMessage({ type: "APPLY_WEB_UPDATE" })
+  if (snapshot.applying) return
+  const waiting = registration?.waiting
+  if (!waiting) { publish({ updateError: true }); void checkWebUpdate(); return }
+  publish({ applying: true, updateError: false })
+  const changed = () => { clearTimeout(timer); location.reload() }
+  const failed = () => {
+    navigator.serviceWorker.removeEventListener("controllerchange", changed)
+    clearTimeout(timer)
+    publish({ applying: false, updateError: true })
+  }
+  const timer = setTimeout(failed, 15_000)
+  navigator.serviceWorker.addEventListener("controllerchange", changed, { once: true })
+  try { waiting.postMessage({ type: "APPLY_WEB_UPDATE" }) } catch { failed() }
 }
