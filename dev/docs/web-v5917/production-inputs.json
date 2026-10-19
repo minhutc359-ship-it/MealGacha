@@ -1,0 +1,12 @@
+{
+  "tool": "Built-in Imagegen; recovered from the prior approved generation session",
+  "date": "2026-10-18",
+  "identity": "dev/docs/web-v5917/identity-sources.json",
+  "authoredSheets": 8,
+  "physicalPoseCount": 128,
+  "repair": "lau-rieu-cua frame 26 uses an authored prone pose from the earlier identity-matched frog sheet",
+  "portraitPolicy": "Reuse existing immutable canon atlas cells; no new portrait files",
+  "signatureVfxPolicy": "Deferred; shared school projectile and impact remain the runtime fallback",
+  "promptSet": "asset-provenance.json[].sources[].prompt",
+  "runtimeAssets": "public/assets/characters/spirits5917/"
+}
