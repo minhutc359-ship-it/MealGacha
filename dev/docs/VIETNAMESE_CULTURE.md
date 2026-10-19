@@ -1,3 +1,7 @@
+# Cập nhật Web 5.9.20
+
+Nội dung hiện tại được mở rộng thành 9 trang và 9 cuộc gặp có 27 bước tương tác, dùng chung TCG/Adventure và truy cập qua Sổ từ mọi chế độ. Các nhiệm vụ là cảnh kể chuyện hư cấu có lựa chọn và hướng dẫn, không phải mô phỏng đầy đủ hay chứng nhận kỹ năng thực hành di sản. Xem [bản cập nhật và nguồn đối chiếu](web-v5920/UPDATE.md). Phần dưới lưu định hướng gốc của sáu trang đầu.
+
 # Hương vị giữ người · văn hóa Việt trong MealGacha v2.5
 
 Thành phố, trận lũ, nhân vật, Vị Linh và Bàn Ký Ức là hư cấu. Chiến dịch đi qua các miền **ký ức** của những người từng ghé một căn bếp chung, không mô tả một tuyến du lịch thực tế hay cho rằng Tết và Trung Thu diễn ra cùng ngày. Sáu nét văn hóa được kể qua việc đón khách, cùng làm, nghe và truyền dạy; thông tin ngoài đời nằm riêng trong sổ.

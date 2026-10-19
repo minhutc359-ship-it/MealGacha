@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest"
+import { readFileSync } from "node:fs"
 import { CULTURAL_PAGES, discoveredCulture, cultureForStage } from "@/game/culture"
 import { newGame, settleBattle } from "@/game/progression"
 import { startBattle } from "@/game/battle"
@@ -40,16 +41,16 @@ describe("Vietnamese cultural discoveries", () => {
     const parsed = parseGame(oldSave)!
     const before = JSON.stringify(parsed)
     expect(parsed.version).toBe(1)
-    expect(discoveredCulture(parsed.clearedStages)).toHaveLength(6)
+    expect(discoveredCulture(parsed.clearedStages)).toHaveLength(9)
     expect(
       discoveredCulture([...parsed.clearedStages, ...parsed.clearedStages]),
-    ).toHaveLength(6)
+    ).toHaveLength(9)
     expect(JSON.stringify(parsed)).toBe(before)
   })
   it("keeps discovery order, official HTTPS sources and localized introductions valid", () => {
-    expect(new Set(CULTURAL_PAGES.map((page) => page.id)).size).toBe(6)
+    expect(new Set(CULTURAL_PAGES.map((page) => page.id)).size).toBe(9)
     expect(new Set(CULTURAL_PAGES.map((page) => page.unlockStageId)).size).toBe(
-      6,
+      9,
     )
     const positions = CULTURAL_PAGES.map((page) =>
       STAGES.findIndex((stage) => stage.id === page.unlockStageId),
@@ -60,7 +61,8 @@ describe("Vietnamese cultural discoveries", () => {
           position >= 0 && (index === 0 || position > positions[index - 1]),
       ),
     ).toBe(true)
-    for (const page of CULTURAL_PAGES) {
+    const content = JSON.parse(readFileSync("public/assets/culture5920/journeys.json", "utf8"))
+    for (const page of content) {
       expect(page.englishFact.length).toBeGreaterThan(80)
       expect(page.sources.length).toBeGreaterThan(0)
       for (const source of page.sources) {

@@ -15,6 +15,7 @@ import {
 } from "../../game/villageRpg"
 import { VillageParty } from "./VillageParty"
 import { VillageWalker } from "./VillageWalker"
+import { useModeIntroStore } from "../../game/modeIntroState"
 
 type Npc = typeof VILLAGE_NPCS[number]
 type Trip = ReturnType<typeof villageTrip> & {
@@ -264,6 +265,7 @@ export function AdventureVillage({
           <small>{conversation.job}</small>
           <h2>{conversation.name}</h2>
           <p>{conversation.greeting}</p>
+          <button type="button" onClick={event => useModeIntroStore.getState().openLibrary("culture", conversation.art === "la" ? "xoe-thai" : "tet", event.currentTarget)}>Nghe chuyện và cùng học bên bếp ▤</button>
           <div>
             <button
               type="button"

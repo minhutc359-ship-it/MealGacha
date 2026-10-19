@@ -14,6 +14,8 @@ import { SpiritArt, SkillArt } from "../components/game/SpiritArt"
 import { REACTION_HELP } from "../game/adventureRpg/skills"
 import { BrandMark } from "../components/layout/BrandMark"
 import { ModeSwitch } from "../components/layout/ModeSwitch"
+import { CULTURAL_PAGES } from "../game/culture"
+import { useModeIntroStore } from "../game/modeIntroState"
 import { ModeIntroButton } from "../components/layout/ModeIntroButton"
 import { MangaChronicle } from "../components/game/MangaChronicle"
 import {
@@ -828,6 +830,7 @@ export function AdventurePage() {
                 })}
               </div>
               <div className="rpg-map-footer">
+                <button type="button" onClick={event => useModeIntroStore.getState().openLibrary("culture", CULTURAL_PAGES.find(page => page.mapId === map.id)?.id, event.currentTarget)}>Gặp người truyền nghề ▤</button>
                 {!!save.stars[`${map.id}-6`] && <button type="button" onClick={() => setStory({lines:[...mapArc.opening,...mapArc.turningPoint,...mapArc.finale,...mapArc.aftermath]})}>Đọc lại chương</button>}
                 <button
                   type="button"

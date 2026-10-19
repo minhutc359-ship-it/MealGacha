@@ -1,3 +1,9 @@
+# Soul of Meal · Web 5.9.20 · Sổ chung và hành trình văn hóa
+
+Nút **▤ Sổ** ở TCG, Phiêu lưu, Auto chess, Rương và PvP mở manga giới thiệu 4 chương hoặc **9 chặng văn hóa / 27 bước tương tác**. Các cuộc gặp có người truyền nghề, món ăn, lựa chọn, phản hồi và trang lưu niệm; tiếp tục được từ tiến trình TCG hoặc Adventure. Sửa thẻ manga giới thiệu bị co và đè lên bìa truyện trong Adventure.
+
+[Thay đổi và kiểm chứng](dev/docs/web-v5920/UPDATE.md). Chỉ web; giữ tiến trình và bộ sưu tập. Chủ dự án review thiết bị thật và merge PR.
+
 # Soul of Meal · Web 5.9.19 · Thông báo phiên bản mới
 
 Game tự hiện popup khi có bản mới sẵn sàng: **Cập nhật và tải lại** hoặc **Để sau**. Có trạng thái đang xử lý, thông báo lỗi để thử lại và nút cập nhật trong Cài đặt. Giữ tiến trình và bộ sưu tập; kiểm tra lại khi mở web, trở lại tab hoặc có mạng.

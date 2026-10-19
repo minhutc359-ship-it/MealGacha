@@ -1,4 +1,5 @@
 import { boardLimit, deckSizeForRules, DECK_SIZE } from "./tcgRules"
+import { CULTURAL_PAGES } from "./culture"
 import { trapStateIssue } from "./traps"
 import { validLivingDecision } from "./livingChoices"
 import { z } from "zod"
@@ -441,6 +442,7 @@ export const GameSaveSchema = z
   .object({
     version: z.literal(1),
     tcg470:z.object({giftClaimed:z.boolean()}).optional(),
+    cultureJourney: z.record(z.string().refine(id => CULTURAL_PAGES.some(page => page.id === id)), z.number().int().min(0).max(3)).optional(),
     traps450:z.object({giftClaimed:z.boolean()}).optional(),
     contentVersion: z.union([z.literal(350), z.literal(400), z.literal(450), z.literal(470)]).optional(),
     story400: z

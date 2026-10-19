@@ -3,6 +3,7 @@ import { createPortal } from "react-dom"
 import { Link, useNavigate } from "react-router-dom"
 import { randomGameIntroImage } from "../../game/loadingImages"
 import { useAppStore } from "../../store/useAppStore"
+import { useModeIntroStore } from "../../game/modeIntroState"
 
 type ModeDestination = {
   id: "tcg" | "chest" | "auto" | "adventure"
@@ -88,6 +89,8 @@ export function ModeSwitch({
             <span aria-hidden="true">⇄</span> {m.label}
           </Link>
         ))}
+        <button type="button" className="meal-library-button" aria-label="Mở Sổ · Manga giới thiệu và văn hóa Việt" title="Manga giới thiệu và văn hóa Việt" aria-haspopup="dialog" disabled={!!pending}
+          onClick={event => useModeIntroStore.getState().openLibrary("manga", undefined, event.currentTarget)}>▤ <span>Sổ</span></button>
       </nav>
       {pending &&
         createPortal(

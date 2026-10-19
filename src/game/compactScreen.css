@@ -512,3 +512,10 @@
 .tcg-map-stop.is-coming-soon { opacity:1; }
 .tcg-living-map .tcg-map-stop-label strong { font-size:10px; white-space:normal; }
 .tcg-living-map .tcg-map-stop-label small { font-size:7px; }
+/* Keep the shared book, wallet and settings reachable on narrow phones. */
+@media(max-width:480px) and (min-height:481px){
+ .tcg-compact-app .tcg-content{grid-template-rows:88px minmax(0,1fr) calc(58px + env(safe-area-inset-bottom))}
+ .tcg-compact-app .tcg-wallet{display:grid;grid-template-columns:1fr auto auto;gap:4px;padding-block:4px;min-width:0}
+ .tcg-compact-app .tcg-wallet>.meal-mode-selector{grid-column:1/-1;justify-content:flex-end}
+ .tcg-compact-app .tcg-wallet>span,.tcg-compact-app .tcg-wallet>button{justify-self:end}
+}

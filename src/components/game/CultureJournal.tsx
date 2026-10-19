@@ -6,12 +6,17 @@ import {
 } from "../../game/culture"
 import { STORY_ART } from "../../game/storyArt"
 import { useGameStore } from "../../game/useGameStore"
+import { useCultureContent } from "../../game/useCultureContent"
+import { useModeIntroStore } from "../../game/modeIntroState"
 
 export function CultureJournal() {
   const cleared = useGameStore((s) => s.save.clearedStages)
+  const progress = useGameStore((s) => s.save.cultureJourney)
+  const [open, setOpen] = useState(false)
+  const content = useCultureContent(open)
   const [english, setEnglish] = useState(false)
   const [copyStatus, setCopyStatus] = useState("")
-  const discovered = discoveredCulture(cleared)
+  const discovered = discoveredCulture(cleared, progress)
   const openIds = new Set(discovered.map((page) => page.id))
   const copyIntroduction = async (page: CulturalPage) => {
     const text = [
@@ -44,10 +49,11 @@ export function CultureJournal() {
       <p>
         Thành phố, nhân vật, trận lũ và phép thuật là hư cấu. Những trang mở
         trên đường đi giới thiệu các thực hành văn hóa có thật, cùng người gìn
-        giữ chúng. Mỗi cộng đồng có cách thực hành riêng; sáu trang này là lời
+        giữ chúng. Mỗi cộng đồng có cách thực hành riêng; những trang này là lời
         mời khám phá thêm.
       </p>
-      <details className="tcg-culture-pages">
+      <button type="button" onClick={event => useModeIntroStore.getState().openLibrary("culture", undefined, event.currentTarget)}>Gặp người truyền nghề · 9 chặng văn hóa →</button>
+      <details className="tcg-culture-pages" onToggle={event => setOpen(event.currentTarget.open)}>
         <summary>Mở sổ văn hóa · {discovered.length} trang đã khám phá</summary>
         <div
           className="tcg-culture-language"
@@ -75,7 +81,9 @@ export function CultureJournal() {
             : "Đọc ký ức trong truyện rồi tìm hiểu nét văn hóa ngoài đời. Minh họa mang phong cách kỳ ảo. Nguồn chính thức ở cuối mỗi trang giúp bạn tìm hiểu thêm."}
         </p>
         <div className="tcg-culture-grid">
-          {CULTURAL_PAGES.map((page, index) =>
+          {content.error && <p role="alert">Chưa tải được sổ. <button type="button" onClick={content.retry}>Thử lại</button></p>}
+          {!content.pages && !content.error && open && <p role="status">Đang mở sổ văn hóa…</p>}
+          {(content.pages ?? []).map((page, index) =>
             openIds.has(page.id) ? (
               <article
                 key={page.id}

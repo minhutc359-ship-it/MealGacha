@@ -2,7 +2,7 @@
   "name": "soul-of-meal",
   "packageManager": "pnpm@10.34.3",
   "private": true,
-  "version": "5.9.19",
+  "version": "5.9.20",
   "type": "module",
   "scripts": {
     "dev": "vite --config dev/vite.dev.config.ts",
@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run --config dev/vitest.config.ts",
     "validate:catalog": "node dev/tools/validate-catalog.mjs",
+    "validate:culture": "node dev/tools/build-culture5920.mjs --check",
     "validate:manga": "node dev/tools/build-manga5916.mjs --check && node dev/tools/validate-intro-manga5918.mjs",
     "benchmark:autochess": "node dev/tools/benchmark-autochess.mjs",
     "typecheck:dev": "tsc --noEmit -p dev/tsconfig.json",
