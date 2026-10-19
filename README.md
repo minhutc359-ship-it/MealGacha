@@ -1,3 +1,9 @@
+# Soul of Meal · Web 5.9.18 · Manga giới thiệu
+
+**Một lời mời, bốn hành trình** gồm 4 chương, 12 trang manga hoàn chỉnh: nguồn gốc Vị Linh, triệu hồi thẻ TCG, chuẩn bị đội hình Auto Chess và khám phá thế giới Phiêu lưu. Lời thoại tiếng Việt nằm trong ảnh; popup giữ nguyên trang, có phóng to, đọc cuộn và bản lời thoại lớn tùy chọn. Mở từ mục Manga hoặc phần Hướng dẫn của các chế độ, không cần vượt chương trước.
+
+[Thay đổi và kịch bản](dev/docs/web-v5918/UPDATE.md) · [Kiểm chứng](dev/docs/web-v5918/VALIDATION.md). Chỉ cập nhật web, giữ tiến trình và bộ sưu tập; chờ chủ dự án review/merge. Các phần dưới là lịch sử.
+
 # Soul of Meal · Web 5.9.7 · Tuyệt kỹ 2D
 
 Tuyệt kỹ của 139 Vị Linh dùng banner chân dung/nền theo hệ, icon trên model, pháp ấn và VFX trúng đích; bỏ toàn bộ 116 video cũ, giảm build khoảng 150,47 MB xuống 95,59 MB. Giữ tiến trình và luật chiến đấu. [Thay đổi](dev/docs/web-v597/UPDATE.md) · [Kiểm chứng và giới hạn](dev/docs/web-v597/VERIFICATION.md). Cập nhật trên PR #58, chưa merge. Các phần dưới là lịch sử.

@@ -1,5 +1,5 @@
 {
-  "version": "5.9.17",
+  "version": "5.9.18",
   "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -4795,6 +4795,150 @@
         "dev/docs/art-direction/README.md",
         "dev/docs/PROGRESSION_ECONOMY_V292.md",
         "dev/docs/autochess/image-prompts.json"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/cards-1.webp",
+      "bytes": 597168,
+      "sha256": "294d45b20fa66e3c2084a4b8e4d51b8fed18e377dd6be2565b5a9bf647ad20ea",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/cards-2.webp",
+      "bytes": 584518,
+      "sha256": "6bf85c64562584ff414662315c6d6108fe3110a66f6073ef8ebfb1f81bfd3e7f",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/cards-3.webp",
+      "bytes": 599322,
+      "sha256": "7d5f4fb2691d0a5c4fc6ca0ee71bc4582d99b0e1f2c912e05113c9d91cf8da97",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/formation-1.webp",
+      "bytes": 602312,
+      "sha256": "93e82e4cfe2f20273482faaaa66046f3b22eaa643caa884bb9e7065db719b618",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/formation-2.webp",
+      "bytes": 612396,
+      "sha256": "084717024a2ed63d695ed5049e1983d3a0783310bf16e155380a0ac4b091dfe4",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/formation-3.webp",
+      "bytes": 664026,
+      "sha256": "62111a25b795db999a1ac020402b0f69f025a249066b7069d7cd0638fdd50d87",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/journey-1.webp",
+      "bytes": 613244,
+      "sha256": "b6a412bcb4f8aab08944f15565820f27e760bb12351bf6a8de79ff22b5159447",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/journey-2.webp",
+      "bytes": 689206,
+      "sha256": "89ca4434ee8c457469274f9eecc7391ad7860f280dbeb6c9ecff583e363e0c0e",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/journey-3.webp",
+      "bytes": 560990,
+      "sha256": "03c13e2f322b73c00ae95edeb553f995a744f26148f9425aa20e51016a73f109",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/origin-1.webp",
+      "bytes": 583652,
+      "sha256": "c220584fda6ec7b97ac80e2e3e2bb4239bc6b5d84dad0a3ba773932e415f9b6f",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/origin-2.webp",
+      "bytes": 607924,
+      "sha256": "6731855992d79a44e2e23f607c712e3b6219596fca041c6be9e7474f5dda11ff",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/intro-manga5918/origin-3.webp",
+      "bytes": 621912,
+      "sha256": "cb85b7841523ff685212b7513608a1fbf8956dedcc058ae7f12c95b3d609f5ae",
+      "origin": "Original complete manga pages with integrated Vietnamese lettering generated using built-in Imagegen from project-owned canonical character and manga references; converted intact to WebP",
+      "evidence": [
+        "dev/docs/web-v5918/asset-provenance.json",
+        "dev/content/intro-manga5918.json",
+        "dev/tools/pack-intro-manga5918.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

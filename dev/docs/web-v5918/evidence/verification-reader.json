@@ -1,0 +1,62 @@
+{
+  "checks": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "chapters": 4,
+      "fullPages": 12,
+      "uncropped": true,
+      "controls": true,
+      "focusRestored": true,
+      "savePreserved": true,
+      "lazyUntilOpen": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "chapters": 4,
+      "fullPages": 12,
+      "uncropped": true,
+      "controls": true,
+      "focusRestored": true,
+      "savePreserved": true,
+      "lazyUntilOpen": true
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "chapters": 4,
+      "fullPages": 12,
+      "uncropped": true,
+      "controls": true,
+      "focusRestored": true,
+      "savePreserved": true,
+      "lazyUntilOpen": true
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "chapters": 4,
+      "fullPages": 12,
+      "uncropped": true,
+      "controls": true,
+      "focusRestored": true,
+      "savePreserved": true,
+      "lazyUntilOpen": true
+    },
+    {
+      "retryBook": true,
+      "retryImage": true
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

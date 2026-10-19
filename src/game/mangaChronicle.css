@@ -5,3 +5,7 @@
 @media(prefers-reduced-motion:reduce){.manga-chronicle *,.manga-dialog *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 /* Adventure keeps its shell within the viewport; the shelf scrolls inside it. */
 .rpg-home-screen>.manga-chronicle{width:100%;flex:1;min-height:0;overflow:auto;align-content:start;overscroll-behavior:contain}
+/* Intro pages are complete lettered images; no frame slicing or overlay text. */
+.manga-native-page{position:relative;padding:0;border:0}.manga-native-page .manga-full-art{width:100%;height:auto;max-height:none;object-fit:contain}.manga-transcript{padding:20px;color:#24251f;background:#f3ecdd}.manga-transcript blockquote{margin:0 0 16px;font-size:20px;line-height:1.75}.manga-transcript strong{font-size:13px;color:#66501f}.manga-transcript p{margin:4px 0}.manga-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.manga-intro-entry{display:grid;gap:8px;text-align:left;padding:20px;border:1px solid #d7b56c;border-radius:6px;background:linear-gradient(120deg,#243b34,#172321);color:#f9df9f;cursor:pointer}.manga-intro-entry b{font-size:18px}.manga-intro-entry span{font-size:13px;line-height:1.6;color:#e5ddca}.manga-intro-entry:hover{background:#30483b}
+.manga-toolbar select{max-width:100%;min-width:0;font-size:13px}
+.manga-dialog.is-intro .manga-toolbar{position:static}.manga-dialog.is-intro .manga-reader-heading>div{max-width:none}

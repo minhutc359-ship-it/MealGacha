@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "productionMode": "tcg",
+      "integrated": true,
+      "savePreserved": true
+    },
+    {
+      "productionMode": "adventure",
+      "integrated": true,
+      "savePreserved": true
+    },
+    {
+      "productionMode": "autochess",
+      "integrated": true,
+      "savePreserved": true
+    },
+    {
+      "productionMode": "chest",
+      "integrated": true,
+      "savePreserved": true
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

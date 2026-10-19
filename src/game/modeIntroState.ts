@@ -11,17 +11,27 @@ export const INTRO_NAMES: Record<IntroMode, string> = {
 
 interface IntroState {
   mode: IntroMode | null
+  comic: boolean
+  comicTrigger: HTMLButtonElement | null
   open: (mode: IntroMode) => void
+  openComic: (trigger?: HTMLButtonElement) => void
   close: () => void
 }
 // Transient UI only: never persist this state or dispatch a live game action.
 export const useModeIntroStore = create<IntroState>((set) => ({
   mode: null,
-  open: (mode) => set({ mode }),
-  close: () => set({ mode: null }),
+  comic: false,
+  comicTrigger: null,
+  open: (mode) => set({ mode, comic: false, comicTrigger: null }),
+  openComic: (trigger) =>
+    set({ mode: "tcg", comic: true, comicTrigger: trigger ?? null }),
+  close: () => set({ mode: null, comic: false, comicTrigger: null }),
 }))
 
 export function introTime(elapsed: number, delta: number, running: boolean) {
   if (!running) return elapsed
-  return Math.min(INTRO_DURATION, Math.max(0, elapsed + Math.max(0, Math.min(delta, 250))))
+  return Math.min(
+    INTRO_DURATION,
+    Math.max(0, elapsed + Math.max(0, Math.min(delta, 250))),
+  )
 }

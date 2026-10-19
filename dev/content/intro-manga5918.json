@@ -1,0 +1,325 @@
+{
+  "title": "Một lời mời, bốn hành trình",
+  "chapters": [
+    {
+      "id": "origin",
+      "title": "Khi ký ức có hình hài",
+      "subtitle": "Sự hình thành của Vị Linh",
+      "mode": "chest",
+      "pages": [
+        {
+          "id": "origin-1",
+          "title": "Mùi hương giữa màn sương",
+          "scene": "Four panels: lantern market losing its light to mist; An stops at Bach's steaming pho stall; close-up of hands setting a real bowl of pho down; a golden memory of a family meal rises in the steam. An is the young woman with dark bun, gold ribbon and navy robe in the reference. Bach is the graying man with goatee and cream shirt. No spirits yet.",
+          "lines": [
+            [
+              "Người kể",
+              "Đêm ấy, An tới một khu chợ đang mất dần tiếng gọi tên nhau."
+            ],
+            [
+              "An",
+              "Sương phủ cả con đường… Sao mùi phở ở đây vẫn ấm thế?"
+            ],
+            [
+              "Bách",
+              "Vì có người vẫn nhớ mình từng nấu cho ai."
+            ],
+            [
+              "Bách",
+              "Ngồi xuống đi. Ta sẽ kể con nghe về Vị Linh."
+            ]
+          ]
+        },
+        {
+          "id": "origin-2",
+          "title": "Ấn Vị",
+          "scene": "Four panels: a grandmother serving a family meal in a golden remembered vignette; An watching the memory over a bowl; Bach showing an old recipe card and silver ladle; memory threads gather into a glowing seed above the card. This is an explanation about culinary memory, not resurrection or a religious ritual.",
+          "lines": [
+            [
+              "Người bà trong ký ức",
+              "Một bữa ăn có thể giữ tiếng cười, lời hẹn và cả nỗi nhớ người nấu."
+            ],
+            [
+              "An",
+              "Vậy công thức giữ được cả câu chuyện phía sau món ăn?"
+            ],
+            [
+              "Bách",
+              "Ký ức gắn với món ăn ấy được gọi là Ấn Vị."
+            ],
+            [
+              "Bách",
+              "Đúng. Khi được gọi qua thẻ công thức, ký ức ấy có thể hiện thành Vị Linh."
+            ]
+          ]
+        },
+        {
+          "id": "origin-3",
+          "title": "Người bạn từ bữa cơm",
+          "scene": "Four panels: An holds a glowing recipe card; Xoi materializes as ONE friendly brown bear with banana-leaf mantle, rice-grain quilt, yellow sash and jade ring; An offers her palm and the bear gently touches it; Xoi and An face a harmless silhouette of mist while the actual rice bowl remains intact on the table. Use Xoi portrait reference exactly, not a human warrior. Warm wonder.",
+          "lines": [
+            [
+              "An",
+              "Một người bạn… bước ra từ ký ức của món xôi!"
+            ],
+            [
+              "Bách",
+              "Là linh thể của ký ức. Bát xôi thật vẫn ở đây."
+            ],
+            [
+              "Bách",
+              "Vị Linh chiến đấu với những linh ảnh trong sương, giúp người ta tìm lại điều đã quên."
+            ],
+            [
+              "An",
+              "Vậy mình sẽ cùng cậu giữ những câu chuyện ấy."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "title": "Lá bài mở lối",
+      "subtitle": "Triệu hồi và chiến đấu TCG",
+      "mode": "tcg",
+      "pages": [
+        {
+          "id": "cards-1",
+          "title": "Chuẩn bị bộ bài",
+          "scene": "Four panels: An and Bach at a magical memory duel table in the lantern market; An lays out a stack of recipe cards; close-ups contrast a spirit unit card, spell card and face-down trap card; An carefully chooses a balanced deck. Illustrated cards are story props with pictorial art, not fake UI. No readable card text other than supplied speech.",
+          "lines": [
+            [
+              "Bách",
+              "Trong TCG, con chuẩn bị một bộ bài 24 lá. Bộ khởi đầu đã sẵn sàng cho trận đầu."
+            ],
+            [
+              "An",
+              "Mình cần cả đồng minh, phép và bẫy, chứ không chỉ những lá gây sát thương."
+            ],
+            [
+              "Bách",
+              "Trước trận, con có thể đổi tối đa 3 lá mở đầu để tìm nhịp chơi phù hợp."
+            ],
+            [
+              "An",
+              "Mình sẽ chọn những lá có thể giúp nhau!"
+            ]
+          ]
+        },
+        {
+          "id": "cards-2",
+          "title": "Gọi Vị Linh lên bàn",
+          "scene": "Four panels: close-up of An inspecting a recipe card and glowing energy motes; she places it on one of FOUR allied spaces on her half of a fantasy duel table; Xoi bear materializes above that card; Bach points at the new spirit waiting calmly. Include a separate single face-down trap niche. Clearly a turn-based card duel, not auto chess. Preserve Xoi design.",
+          "lines": [
+            [
+              "Bách",
+              "Đọc hiệu ứng và chi phí trước khi xác nhận dùng năng lượng."
+            ],
+            [
+              "An",
+              "Khi thẻ được đặt xuống, Vị Linh sẽ xuất hiện trên sân!"
+            ],
+            [
+              "Bách",
+              "Mỗi bên có 4 ô đồng minh và 1 ô bẫy riêng."
+            ],
+            [
+              "Bách",
+              "Đồng minh thường chờ tới lượt sau mới đánh. Xung phong là ngoại lệ được đánh ngay."
+            ]
+          ]
+        },
+        {
+          "id": "cards-3",
+          "title": "Một lượt, nhiều lựa chọn",
+          "scene": "Five panels: a mist guardian shields the opposing leader; An points her ready Xoi spirit at the guardian; a face-down trap waits separately; An finishes her turn and the mist opponent acts; warm light clears a patch of mist as An understands. Spirit duel only, no human injury. No false depiction of traps triggering on their placement turn.",
+          "lines": [
+            [
+              "Bách",
+              "Chọn đồng minh sẵn sàng rồi chọn mục tiêu. Có Hộ vệ thì phải đánh Hộ vệ trước."
+            ],
+            [
+              "An",
+              "Mình có thể phối phép với đồng minh, và úp bẫy để phản ứng từ lượt kế tiếp."
+            ],
+            [
+              "Bách",
+              "Kết thúc lượt để địch hành động. Tới lượt mới, con rút bài và hồi năng lượng."
+            ],
+            [
+              "Bách",
+              "Đưa ý chí chủ tướng địch về 0 để thắng."
+            ],
+            [
+              "An",
+              "Mỗi lần ra bài đều phải nghĩ cho cả lượt tiếp theo."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "formation",
+      "title": "Trước tiếng gọi xuất trận",
+      "subtitle": "Chuẩn bị đội hình Auto Chess",
+      "mode": "auto",
+      "pages": [
+        {
+          "id": "formation-1",
+          "title": "Phiên chợ đội hình",
+          "scene": "Four panels: An reaches a magical market shop displaying five illustrated spirit cards; she pays gold coins for a card and it joins a reserve bench; three translucent identical one-star Xoi bears merge into one larger two-star Xoi bear, visually unmistakably a single result; An considers saving coins for experience. This is Auto Chess preparation, not chest gacha. No desktop UI or unrelated text.",
+          "lines": [
+            [
+              "Bách",
+              "Ở Auto Chess, dùng vàng trong phiên chơi để mua Vị Linh từ cửa hàng."
+            ],
+            [
+              "An",
+              "Quân mới vào dự bị. Mình sẽ chọn ai được ra sân."
+            ],
+            [
+              "Bách",
+              "Ba bản cùng quân, cùng bậc sao tự ghép lên sao; tối đa 3 sao."
+            ],
+            [
+              "Bách",
+              "Cũng cần dành vàng mua XP để tăng số quân được ra sân. Vàng này riêng với xu TCG."
+            ]
+          ]
+        },
+        {
+          "id": "formation-2",
+          "title": "Chọn chỗ cho đồng đội",
+          "scene": "Four panels: An moves a Cơm Tấm golden lion guardian with red-gold armor and round shield to the front of the board; places Phở Bò white jade dragon mage with teal mane and staff behind; places Bánh Cuốn white rabbit healer with pale green robes and flower crown safely behind; wider shot shows their complementary formation facing mist enemies. These are the three established starter spirit designs. Reference atlases show repeated poses of ONE creature each, not a crowd.",
+          "lines": [
+            [
+              "An",
+              "Cơm tấm giữ tuyến trước. Phở bò đánh tầm xa. Bánh cuốn hồi phục phía sau."
+            ],
+            [
+              "Bách",
+              "Kéo quân giữa bàn và dự bị; thả lên đồng đội để đổi chỗ."
+            ],
+            [
+              "Bách",
+              "Xem cả hệ lẫn nghề để phối đội. Các quân khác tên mới được tính riêng vào mốc cộng hưởng."
+            ],
+            [
+              "An",
+              "Đội mạnh còn cần đứng đúng vị trí và được hỗ trợ đúng lúc."
+            ]
+          ]
+        },
+        {
+          "id": "formation-3",
+          "title": "Khi đội hình tự cất tiếng",
+          "scene": "Five panels: both spirit teams run onto the arena from opposite sides; An watches with hands away from the board as lion protects mage and rabbit; dragon casts a teal spell and rabbit heals; after one difficult attempt An rearranges the formation; victory celebration of the three spirits. No human combat or gore. The narrative conveys an automatic fight and retry while willpower remains, not manually controlling attacks.",
+          "lines": [
+            [
+              "Bách",
+              "Xuất trận rồi, Vị Linh tự di chuyển, đánh và dùng kỹ năng khi đủ 100 mana."
+            ],
+            [
+              "An",
+              "Việc của mình là chuẩn bị tốt, rồi quan sát xem đội còn yếu ở đâu."
+            ],
+            [
+              "Bách",
+              "Thua mất ý chí. Còn ý chí thì chỉnh đội và thử lại cùng đợt; thắng mới đi tiếp."
+            ],
+            [
+              "Bách",
+              "Riêng Survival bắt đầu với 3 ý chí, mỗi lần thua mất 1."
+            ],
+            [
+              "An",
+              "Lần này, chúng ta sẽ giữ được tuyến!"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "journey",
+      "title": "Con đường có bạn đồng hành",
+      "subtitle": "Khám phá thế giới cùng Vị Linh",
+      "mode": "adventure",
+      "pages": [
+        {
+          "id": "journey-1",
+          "title": "Rời khỏi bàn đấu",
+          "scene": "Four panels: An opens the village gate at dawn with Xoi bear and Pho Bo white jade dragon mage following; she points at a location and walks there; talks to an elderly village NPC by a tea house; unfolds a map showing lantern streets, harbor, forest and sugar tower as distant destinations. A lived-in Vietnamese fantasy world, no real-world map or interface screenshots.",
+          "lines": [
+            [
+              "An",
+              "Ngoài bàn đấu, chúng mình còn có thể đi đâu?"
+            ],
+            [
+              "Bách",
+              "Trong Phiêu lưu, chạm nơi muốn tới để di chuyển, gặp người dân và mở các địa điểm."
+            ],
+            [
+              "Người kể",
+              "Qua phố đèn lồng, bến cảng và những miền đất mới, mỗi người đều giữ một câu chuyện."
+            ],
+            [
+              "An",
+              "Mình muốn nghe họ kể, và cùng Vị Linh tìm đường qua màn sương."
+            ]
+          ]
+        },
+        {
+          "id": "journey-2",
+          "title": "Giao ước trên đường xa",
+          "scene": "Four panels: An studies a five-person party plan with two frontline and three backline positions; a lion guardian and Xoi bear hold the front, Pho Bo dragon mage and rabbit healer and one additional allied spirit stand behind; a mist boss telegraphs danger towards the front line; An activates a protective ward, then Pho Bo releases its ultimate with a jade sigil. The other ally can be a small leaf-themed spirit in silhouette, not a new named canon character. No readable UI apart from supplied lettering.",
+          "lines": [
+            [
+              "Bách",
+              "Đội Phiêu lưu có 5 người: 2 tuyến trước, 3 tuyến sau. Đặt giữ tuyến và hồi phục đúng chỗ."
+            ],
+            [
+              "Bách",
+              "Đòn đánh và kỹ năng tự diễn ra. Đủ 100 năng lượng, chạm nhân vật để dùng tuyệt kỹ; AUTO sẽ dùng giúp."
+            ],
+            [
+              "An",
+              "Boss đang báo đòn vào tuyến trước! Mình phải che đúng tuyến."
+            ],
+            [
+              "Bách",
+              "Đọc tín hiệu của địch rồi mới quyết định thời điểm tung sức mạnh."
+            ]
+          ]
+        },
+        {
+          "id": "journey-3",
+          "title": "Hành trình còn mở",
+          "scene": "Five panels: An opens a glowing Taste Chest and discovers a spirit card, not a guaranteed complete unlocked hero; small vignettes of her checking spirit-card collection and training with experience books; she and spirits study normal/hard/extreme paths symbolically as three gates; close-up of her writing a villager's recipe; final large sunrise panel with An, Xoi bear and Pho Bo dragon mage leaving the lantern village together. Warm hopeful conclusion with no major story spoilers.",
+          "lines": [
+            [
+              "Bách",
+              "Ở Phiêu lưu, thẻ từ Rương vị giác giúp hội ngộ Vị Linh. Mốc Thường, Hiếm, Sử thi, Huyền thoại là 15, 25, 35, 45 thẻ cùng nhân vật."
+            ],
+            [
+              "Bách",
+              "Nâng cấp, kỹ năng và trang bị để đi xa hơn; chọn độ khó phù hợp trước khi vào map."
+            ],
+            [
+              "An",
+              "TCG cần nghĩ từng lượt. Auto Chess cần xếp đội. Phiêu lưu cần hiểu bạn đồng hành."
+            ],
+            [
+              "An",
+              "Và dù đi bằng con đường nào, mình cũng muốn giữ lại câu chuyện của mọi người."
+            ],
+            [
+              "Người kể",
+              "Một lời mời ngồi xuống. Một hành trình cùng bắt đầu."
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

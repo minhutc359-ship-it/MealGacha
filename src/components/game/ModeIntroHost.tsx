@@ -3,6 +3,7 @@ import { useModeIntroStore } from "../../game/modeIntroState"
 import { Dialog } from "./Dialog"
 
 const ModeIntroPlayer = lazy(() => import("./ModeIntroPlayer"))
+const MangaIntroduction = lazy(() => import("./MangaChronicle").then(module => ({ default: module.MangaIntroduction })))
 
 class IntroBoundary extends Component<{ children: ReactNode; onClose: () => void }, { failed: boolean }> {
   state = { failed: false }
@@ -16,8 +17,10 @@ class IntroBoundary extends Component<{ children: ReactNode; onClose: () => void
 export function ModeIntroHost() {
   const mode = useModeIntroStore((state) => state.mode)
   const close = useModeIntroStore((state) => state.close)
+  const comic = useModeIntroStore((state) => state.comic)
+  const comicTrigger = useModeIntroStore((state) => state.comicTrigger)
   if (!mode) return null
-  return <IntroBoundary key={mode} onClose={close}><Suspense fallback={<Dialog title="Đang chuẩn bị giới thiệu…" onClose={close}><p>Đang mở sân khấu và mô hình Vị Linh.</p></Dialog>}>
-    <ModeIntroPlayer key={mode} mode={mode} onClose={close} />
+  return <IntroBoundary key={`${mode}-${comic}`} onClose={close}><Suspense fallback={<Dialog title="Đang chuẩn bị giới thiệu…" onClose={close}><p>Đang mở nội dung giới thiệu Vị Linh.</p></Dialog>}>
+    {comic ? <MangaIntroduction onClose={close} returnFocus={comicTrigger} /> : <ModeIntroPlayer key={mode} mode={mode} onClose={close} />}
   </Suspense></IntroBoundary>
 }
