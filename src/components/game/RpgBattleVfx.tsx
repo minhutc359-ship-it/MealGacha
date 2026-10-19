@@ -5,10 +5,10 @@ import { rpgVisualContact } from "../../game/visualTiming";
 import { CAST_SIGILS, drawModelCast } from "../../game/ultimateShowcase";
 import { starterCharacter } from "../../game/starterCharacters";
 import { drawStarterVfx } from "../../game/starterVfx";
+import { characterEffect, drawCharacterEffect } from "../../game/characterEffect";
 import { awakenedKit } from "../../game/adventureRpg/awakening";
-import { drawUltimateArt, ultimateIdentity } from "../../game/adventureRpg/ultimateArt";
 import { useEffect, useRef } from "react";
-import { drawChannel, drawProjectile, drawImpact, VFX_COLORS, type VfxKind } from "../../game/battleVfx";
+import { drawChannel, drawProjectile, drawImpact, type VfxKind } from "../../game/battleVfx";
 import { actorAnchor } from "../../game/adventureRpg/formationLayout";
 import { spiritKit } from "../../game/adventureRpg/skills";
 import type { RpgActor, RpgBattle, RpgEvent, RpgRole } from "../../game/adventureRpg/types";
@@ -86,6 +86,14 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             return;
         const texture = acquireCharacterImage(ELEMENTAL_IMPACTS);
         const icons = acquireCharacterImage(CAST_SIGILS);
+        const effectLeases = new Map<string, ReturnType<typeof acquireCharacterImage>>();
+        const authoredEffect = (id: string) => {
+            const effect = characterEffect(id);
+            if (!effect) return null;
+            let lease = effectLeases.get(effect.path);
+            if (!lease) { lease = acquireCharacterImage(effect.path); effectLeases.set(effect.path, lease); }
+            return lease.image;
+        };
         let width = 1, height = 1, wide = false, lastDraw = 0, hiddenAt: number | null = null;
         const draw = (now: number) => {
             const s = state.current;
@@ -107,21 +115,21 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                     drawModelCast(ctx, p.x * width / 100, p.y * height / 100, size * 1.65, c.event.school, age, c.actor.id, icons.image, c.combo, quiet);
                 }
                 if (ultimate && c.awakened) {
-                    const identity = ultimateIdentity(c.actor.id);
                     const points = c.targets.slice(0,low?3:5).map(point);
                     const center = {x:points.reduce((n,p)=>n+p.x,0)/points.length,y:points.reduce((n,p)=>n+p.y,0)/points.length};
-                    if(quiet) {
-                        if(age>=960 && age<1980) drawUltimateArt(ctx,identity.pattern,center.x,center.y,extent,.38,VFX_COLORS[c.event.school][1],identity.motif,true);
-                    }
-                    else if(age<360) drawChannel(ctx,source,c.event.school,age/360,size*.55,low);
+                    const custom = authoredEffect(c.actor.id);
+                    if(age<360) drawChannel(ctx,source,c.event.school,age/360,size*.55,low);
                     else if(age<960 && c.targets.some(t=>t.side!==c.actor.side)) drawProjectile(ctx,source,center,c.event.school,(age-360)/600,extent*.22,low,"projectile");
-                    else if(age>=960 && age<1980) {
-                        const foes=c.targets.filter(t=>t.side!==c.actor.side).slice(0,low?3:5).map(point);
-                        if(foes.length) drawUltimateArt(ctx,identity.pattern,foes.reduce((n,p)=>n+p.x,0)/foes.length,foes.reduce((n,p)=>n+p.y,0)/foes.length,extent*1.3,(age-960)/1020,VFX_COLORS[c.event.school][1],identity.motif,low);
-                        for(const friend of c.targets.filter(t=>t.side===c.actor.side).slice(0,low?3:5)) drawImpact(ctx,point(friend),c.event.school,(age-960)/1020,extent,c.actor.role==="healer"?"heal":"shield",low);
-                        if(starterCharacter(c.actor.id)) for(const target of c.targets.slice(0,low?3:5)){const p=point(target),enemy=target.side!==c.actor.side;drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent,enemy?age:age-960,enemy,low,c.actor.role==="healer"?"heal":"shield");}
+                    if(custom && age>=360 && age<1980)
+                        drawCharacterEffect(ctx,c.actor.id,custom,center.x,center.y,extent*.82,(age-360)/1620,low);
+                    if(age>=960 && age<1980) for(const target of c.targets.slice(0,low?3:5)) {
+                        const p=point(target),kind=effectKind(c,target);
+                        drawImpact(ctx,p,c.event.school,(age-960)/1020,extent*.58,kind,low);
                     }
-                    surface.dataset.ultimate=identity.pattern;
+                    // Large procedural silhouettes used to cover the actors here.
+                    // Model motion is now primary; authored art is optional and the
+                    // shared school impact is the complete fallback.
+                    surface.dataset.ultimate=custom?"character-asset":"school-fallback";
                     continue;
                 }
                 if (!normal && age < contact) drawChannel(ctx,source,c.event.school,age/contact,size*.6,low);
@@ -156,7 +164,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
         resize();
         const quality = subscribeRenderQuality(resize), clock = subscribeCharacterClock(draw, () => !state.current.paused && state.current.cues.length > 0);
         document.addEventListener("visibilitychange", visibility);
-        return () => { texture.release(); icons.release(); observer.disconnect(); quality(); clock(); document.removeEventListener("visibilitychange", visibility); };
+        return () => { texture.release(); icons.release(); effectLeases.forEach(lease=>lease.release()); observer.disconnect(); quality(); clock(); document.removeEventListener("visibilitychange", visibility); };
     }, [quiet]);
     return <canvas ref={canvas} className="rpg-vfx-canvas" aria-hidden="true" data-vfx="rpg-elemental"/>;
 }

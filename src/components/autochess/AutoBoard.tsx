@@ -2,6 +2,7 @@ import { starterCharacter } from "../../game/starterCharacters"
 import { CAST_SIGILS, drawModelCast } from "../../game/ultimateShowcase"
 import { AutoCastShowcase } from "./AutoCastShowcase"
 import { drawStarterVfx } from "../../game/starterVfx"
+import { characterEffect, drawCharacterEffect } from "../../game/characterEffect"
 import { COMBAT_ART, drawCombatArt } from "../../game/combatArt"
 import { ELEMENTAL_BOARDS, ELEMENTAL_IMPACTS } from "../../game/visualPack"
 import { actorPose, actorBody } from "../../game/autochess/actorPresentation"
@@ -489,7 +490,9 @@ export function AutoBoard({
           const starter=sourceActor && starterCharacter(sourceActor.id)
           if (e.kind === "cast" && e.amount > 0 && sourceActor) {
             const sourcePos = coords.get(e.source)!
-            drawSkillBurst(ctx, px(sourcePos.x,sourcePos.y), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
+            const custom = characterEffect(sourceActor.id)
+            const drawn = custom ? drawCharacterEffect(ctx,sourceActor.id,leased(`effect:${custom.path}`,custom.path),px(sourcePos.x,sourcePos.y),py(sourcePos.y)-cell*.42,cell*.58,age/1.25,opts.reducedMotion) : false
+            if(!drawn) drawSkillBurst(ctx, px(sourcePos.x,sourcePos.y), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
           }
           if (e.kind === "death") drawDeparture(ctx, x, y, cell, e.school, age, opts.reducedMotion, opts.lowQuality)
           if (age < .7 && ["hit","shield","heal","phase","summon","burn"].includes(e.kind)) {
@@ -498,7 +501,8 @@ export function AutoBoard({
               : e.kind === "hit" && source?.range === 1 ? "slash" : "projectile"
             drawImpact(ctx,{x,y:y+cell*.18},e.school,age,cell*(e.kind === "phase" ? .6 : .28),kind,opts.lowQuality || opts.reducedMotion,texturedImpacts++ < 4 ? impactTexture : undefined)
           }
-          if(starter && !opts.reducedMotion && age<.8 && ["hit","heal","shield"].includes(e.kind))drawStarterVfx(ctx,sourceActor!.id,x,y,cell*.37,age*1000,false,opts.lowQuality,e.kind === "heal" || e.kind === "shield" ? e.kind : "skill")
+          const authoredCast=!!sourceActor&&!!characterEffect(sourceActor.id)&&b.events.some(cast=>cast.kind==="cast"&&cast.source===e.source&&cast.tick===e.tick&&cast.amount>0)
+          if(starter && !authoredCast && !opts.reducedMotion && age<.8 && ["hit","heal","shield"].includes(e.kind))drawStarterVfx(ctx,sourceActor!.id,x,y,cell*.37,age*1000,false,opts.lowQuality,e.kind === "heal" || e.kind === "shield" ? e.kind : "skill")
           if (
             ["hit", "heal", "burn"].includes(e.kind) &&
             e.amount > 0 &&
