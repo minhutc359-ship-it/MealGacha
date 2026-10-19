@@ -56,8 +56,9 @@ describe("authored character VFX priority 5.9.17", () => {
   it("never substitutes Auto Chess geometry while a declared atlas is loading", () => {
     const source = readFileSync("src/components/autochess/AutoBoard.tsx","utf8")
     expect(source).toContain("if(custom) drawCharacterEffect")
-    expect(source).toContain("else drawSkillBurst")
-    expect(source).not.toContain("if(!drawn) drawSkillBurst")
+    expect(source).toContain("else if(!drawCombatArt")
+    expect(source).toContain('combatTextureStatus === "fallback") drawSkillBurst')
+    expect(source).not.toContain("else drawSkillBurst")
     expect(source).toContain("for(const actor of actors)")
     expect(source).toContain("leased(`effect:${effect.path}`,effect.path)")
   })
