@@ -3,12 +3,12 @@
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
   "version": "5.9.17",
-  "bytes": 156767727,
+  "bytes": 156768380,
   "files": 796,
   "byType": {
     "js": {
       "files": 39,
-      "bytes": 2100882
+      "bytes": 2101535
     },
     "css": {
       "files": 4,
@@ -56,7 +56,7 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2610053,
+    "Application JS/CSS": 2610706,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
     "Shared character atlases": 69564684,
@@ -67,7 +67,7 @@
     "Spirit RPG art/audio/video": 17336030,
     "TCG art/audio": 18018052
   },
-  "js_gzip": 672298,
+  "js_gzip": 672420,
   "css_gzip": 104404,
   "largest": [
     {
@@ -79,8 +79,8 @@
       "bytes": 2153792
     },
     {
-      "path": "assets/rpg-presentation-BZMF879w.js",
-      "bytes": 1131464
+      "path": "assets/rpg-presentation-9k-uOSim.js",
+      "bytes": 1132117
     },
     {
       "path": "assets/characters/rosterB.webp",
@@ -121,19 +121,19 @@
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 2908760,
+    "bytes": 2909413,
     "urls": 57,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 9091240
+    "remainingBytes": 9090587
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 163232273
+    "remainingBytes": 163231620
   }
 }

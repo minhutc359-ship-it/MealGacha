@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs"
 import { describe, expect, it } from "vitest"
 import { drawImpact, drawProjectile } from "@/game/battleVfx"
+import { drawCombatArt } from "@/game/combatArt"
 
 function recordingContext() {
   const calls: string[] = []
@@ -45,7 +46,25 @@ describe("combat VFX recovery 5.9.17", () => {
     expect(impact.calls).not.toContain("drawImage")
   })
 
-  it("does not let signature or reduced-motion branches bypass shared Auto Chess VFX", () => {
+  it("maps attacks to the painted five-school atlas", () => {
+    let calls: unknown[][] = []
+    const context = new Proxy({}, {
+      get: (_target, key) => (...args: unknown[]) => calls.push([key, ...args]),
+      set: () => true,
+    }) as CanvasRenderingContext2D
+    const image = { complete: true, naturalWidth: 400, naturalHeight: 500 } as HTMLImageElement
+
+    for(const [row,school] of (["hearth","ember","grove","tide","sugar"] as const).entries()) {
+      for(const [column,kind] of (["slash","projectile","impact","cast"] as const).entries()) {
+        calls=[]
+        expect(drawCombatArt(context,image,school,kind,50,60,20,.5,school)).toBe(true)
+        expect(calls.find(call=>call[0] === "drawImage")?.slice(2,6)).toEqual([column*100+2,row*100+2,96,96])
+      }
+    }
+    expect(drawCombatArt(context,{ complete: false, naturalWidth: 0 } as HTMLImageElement,"ember","slash",0,0,20,.5,"banh-mi")).toBe(false)
+  })
+
+  it("keeps painted Auto Chess VFX primary and geometry as a broken-asset fallback", () => {
     const source = readFileSync(
       "src/components/autochess/AutoBoard.tsx",
       "utf8",
@@ -57,12 +76,13 @@ describe("combat VFX recovery 5.9.17", () => {
     expect(source).toContain(
       "const essentialLow = opts.lowQuality || opts.reducedMotion",
     )
-    expect(source.indexOf("drawProjectile(ctx,from,to")).toBeLessThan(
-      source.indexOf("drawStarterVfx(ctx,u.id,from.x"),
-    )
-    expect(source.indexOf("drawImpact(ctx,{x,y:y+cell*.18}")).toBeLessThan(
-      source.indexOf("drawStarterVfx(ctx,sourceActor!.id"),
-    )
+    expect(source).toContain('const combatTexture = leased("combat583", COMBAT_ART)')
+    expect(source).toContain('const impactTexture = leased("elemental-impacts", ELEMENTAL_IMPACTS)')
+    expect(source).toContain('if(!drawn && combatTextureStatus === "fallback") drawProjectile')
+    expect(source).toContain('if(impactTextureStatus !== "loading") drawImpact')
+    expect(source).not.toContain("texturedImpacts")
+    expect(source).not.toContain("if (!starter && kind")
+    expect(source).toContain("starter && skillCast && !authoredCast && combatTextureStatus")
   })
 
   it("keeps normal Adventure cues and paints the common impact below signatures", () => {

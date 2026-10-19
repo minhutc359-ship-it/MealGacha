@@ -18,7 +18,8 @@ Bản này khôi phục tín hiệu chiến đấu dùng chung và nâng bốn V
 
 ## VFX chiến đấu
 
-- Auto Chess luôn giữ projectile/trail/slash/channel/impact dùng chung. VFX nhận diện riêng chỉ là lớp nhấn phía trên, không được bỏ qua lớp theo hệ.
+- Auto Chess dùng trực tiếp atlas sơn `combat583/effects.webp` cho slash/projectile/cast của cả năm hệ và atlas `elemental-impacts-v441.webp` cho mọi va chạm đồng thời. Nhóm có model riêng không còn bị nhánh `!starter` đẩy về nét Canvas; giới hạn bốn impact atlas mỗi frame cũng được loại bỏ.
+- Hai atlas theo hệ được preload ngay từ màn chuẩn bị. Trong lúc giải mã, compositor không chớp hình học; Canvas chỉ là fallback kỹ thuật khi file thật sự tải lỗi. VFX nhận diện riêng vẫn được ưu tiên trên fallback theo hệ.
 - Adventure vẫn giữ cue attack/skill khi bật Reduced Motion; chế độ nhẹ dùng hình học ít hạt thay vì ẩn hiệu ứng.
 - Adventure, Auto Chess và TCG giờ đọc trực tiếp atlas VFX đã khai báo trong manifest. Ví dụ Bách dùng cột riêng trong `chefs593/ultimate.webp`; atlas ba pha được phát một lần quanh vùng tác động và không lặp trên từng mục tiêu.
 - Năm Vị Linh khởi đầu (`com-tam`, `banh-mi`, `pho-bo`, `banh-cuon`, `goi-cuon-tom-thit`) dùng đủ năm cột riêng của `starters590/ultimate591.webp` cho primary/support/ultimate. Khi atlas đang tải, compositor giữ VFX theo hệ và không thay bằng nét hình học.

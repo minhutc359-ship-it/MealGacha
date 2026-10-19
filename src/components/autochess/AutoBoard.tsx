@@ -209,6 +209,15 @@ export function AutoBoard({
         const effect=characterEffect(actor.id)
         if(effect) leased(`effect:${effect.path}`,effect.path)
       }
+      // Five-school combat atlases are the normal attack/impact renderer, not
+      // an optional accent. Loading them during preparation prevents the first
+      // attack of a round from flashing procedural Canvas geometry.
+      const combatTexture = leased("combat583", COMBAT_ART)
+      const impactTexture = leased("elemental-impacts", ELEMENTAL_IMPACTS)
+      const combatTextureStatus = combatTexture.naturalWidth ? "ready" : combatTexture.complete ? "fallback" : "loading"
+      const impactTextureStatus = impactTexture.naturalWidth ? "ready" : impactTexture.complete ? "fallback" : "loading"
+      if(surface.dataset.combatArt !== combatTextureStatus) surface.dataset.combatArt = combatTextureStatus
+      if(surface.dataset.texture !== impactTextureStatus) surface.dataset.texture = impactTextureStatus
       const coords = new Map(actors.map((a) => {
         const pos = position(a, time)
         if (b || opts.reducedMotion) return [a.uid, pos] as const
@@ -435,7 +444,6 @@ export function AutoBoard({
         }
       }
       if (b) {
-        const combatTexture = opts.lowQuality || opts.reducedMotion ? undefined : leased("combat583", COMBAT_ART)
         for (const u of actors.filter(a => a.hp > 0 && a.action && a.action.kind !== "move" && time < a.action.hit)) {
           const action = u.action!, origin = coords.get(u.uid)!
           const target = actorMap.get(action.target ?? "")
@@ -445,35 +453,44 @@ export function AutoBoard({
           const kind = action.kind === "cast" ? skillVfx(action.skill ?? u.skill, u.range) : u.range <= 1 ? "slash" : "projectile"
           const from = { x:px(origin.x,origin.y), y:py(origin.y)-cell*.48 }, to = { x:px(end.x,end.y), y:py(end.y)-cell*.48 }
           const starter = starterCharacter(u.id)
+          const customEffect = characterEffect(u.id)
           const essentialLow = opts.lowQuality || opts.reducedMotion
           if (action.kind === "cast") {
             drawChannel(ctx, { x:from.x,y:py(origin.y) },school,t,cell*.48,essentialLow)
             drawCastAura(ctx, from.x, py(origin.y), cell, school, t, essentialLow)
           }
-          // Authored signatures are an accent layer. The shared school VFX below
-          // remains the readable gameplay layer for every spirit and boss.
-          if (!starter && action.kind === "cast") drawCombatArt(ctx,combatTexture,school,"cast",from.x,from.y,cell*.62,t,u.id)
-          if (!starter && kind === "slash" && t>.55) drawCombatArt(ctx,combatTexture,school,"slash",to.x,to.y,cell*.48,(t-.55)/.45,u.id,Math.atan2(to.y-from.y,to.x-from.x))
-          if (!starter && kind === "projectile" && t>.25) { const f=(t-.25)/.75;drawCombatArt(ctx,combatTexture,school,"projectile",from.x+(to.x-from.x)*f,from.y+(to.y-from.y)*f,cell*.23,f,u.id,Math.atan2(to.y-from.y,to.x-from.x)) }
+          // The painted five-school atlas is the primary attack renderer for
+          // every model. Procedural geometry is reserved for a broken asset;
+          // while the image is decoding we wait instead of flashing a shape.
+          if (!customEffect && action.kind === "cast") drawCombatArt(ctx,combatTexture,school,"cast",from.x,from.y,cell*.62,t,u.id)
+          if (action.kind !== "cast" && kind === "slash" && t>.55) {
+            const drawn = drawCombatArt(ctx,combatTexture,school,"slash",to.x,to.y,cell*.48,(t-.55)/.45,u.id,Math.atan2(to.y-from.y,to.x-from.x))
+            if(!drawn && combatTextureStatus === "fallback" && t>.72) drawImpact(ctx,to,school,(t-.72)*.3,cell*.45,"slash",essentialLow)
+          }
+          if (action.kind !== "cast" && kind === "projectile" && t>.25) {
+            const f=(t-.25)/.75
+            const drawn=drawCombatArt(ctx,combatTexture,school,"projectile",from.x+(to.x-from.x)*f,from.y+(to.y-from.y)*f,cell*.23,f,u.id,Math.atan2(to.y-from.y,to.x-from.x))
+            if(!drawn && combatTextureStatus === "fallback") drawProjectile(ctx,from,to,school,f,cell*.16,essentialLow,kind)
+          }
           // Support recipients are selected at resolution. Never send a healing
           // projectile to the enemy held in the action's generic target field.
           const unresolvedSupport = action.kind === "cast" && ["heal", "shield"].includes(kind)
-          if (!unresolvedSupport) {
-            if (kind === "slash") {
-              if(t>.72) drawImpact(ctx,to,school,(t-.72)*.3,cell*.45,"slash",essentialLow)
-            } else if (["shield","summon"].includes(kind) || !target || target.uid === u.uid) {
-              if(t>.4) drawImpact(ctx,from,school,(t-.4)*.6,cell*.42,kind,essentialLow)
-            } else if(t>.25) drawProjectile(ctx,from,to,school,(t-.25)/.75,cell*(action.kind === "cast" ? .22 : .16),essentialLow,kind)
+          if (action.kind === "cast" && !unresolvedSupport) {
+            if (["shield","summon"].includes(kind) || !target || target.uid === u.uid) {
+              if(t>.4 && impactTextureStatus !== "loading") drawImpact(ctx,from,school,(t-.4)*.6,cell*.42,kind,impactTextureStatus === "ready" ? false : essentialLow,impactTextureStatus === "ready" ? impactTexture : undefined)
+            } else if(kind === "slash" && t>.55) {
+              const drawn=drawCombatArt(ctx,combatTexture,school,"slash",to.x,to.y,cell*.52,(t-.55)/.45,u.id,Math.atan2(to.y-from.y,to.x-from.x))
+              if(!drawn && combatTextureStatus === "fallback" && t>.72) drawImpact(ctx,to,school,(t-.72)*.3,cell*.45,"slash",essentialLow)
+            } else if(t>.25) {
+              const f=(t-.25)/.75
+              const drawn=drawCombatArt(ctx,combatTexture,school,"projectile",from.x+(to.x-from.x)*f,from.y+(to.y-from.y)*f,cell*.25,f,u.id,Math.atan2(to.y-from.y,to.x-from.x))
+              if(!drawn && combatTextureStatus === "fallback") drawProjectile(ctx,from,to,school,f,cell*.22,essentialLow,kind)
+            }
           }
-          if(starter && !opts.reducedMotion && action.kind==="cast")drawStarterVfx(ctx,u.id,from.x,from.y,cell*.36,t*650,false,opts.lowQuality,"charge")
+          if(starter && !customEffect && combatTextureStatus === "fallback" && !opts.reducedMotion && action.kind==="cast")drawStarterVfx(ctx,u.id,from.x,from.y,cell*.36,t*650,false,opts.lowQuality,"charge")
         }
-        if(surface.dataset.combatArt !== (combatTexture?.naturalWidth ? "ready" : "fallback")) surface.dataset.combatArt = combatTexture?.naturalWidth ? "ready" : "fallback"
         const popup = new Map<string, number>()
         for (const event of b.events) if (visualTime >= event.tick && visualTime - event.tick < 32) popup.set(event.kind === "cast" ? `cast:${event.source}` : `${event.kind === "heal" ? "heal" : "damage"}:${event.target}`, event.id)
-        let texturedImpacts = 0
-        const impactTexture = opts.lowQuality || opts.reducedMotion ? undefined : leased("elemental-impacts", ELEMENTAL_IMPACTS)
-        const textureStatus = impactTexture?.naturalWidth ? "ready" : "fallback"
-        if(surface.dataset.texture !== textureStatus) surface.dataset.texture = textureStatus
         const labels = new Set([...popup.keys()].filter(key => key.startsWith("cast:")).sort((a,b) => popup.get(b)! - popup.get(a)!).slice(0, 4))
         for (const e of b.events.filter(
           (e) => e.kind !== "move" && e.kind !== "attack",
@@ -498,17 +515,18 @@ export function AutoBoard({
             const sourcePos = coords.get(e.source)!
             const custom = characterEffect(sourceActor.id)
             if(custom) drawCharacterEffect(ctx,sourceActor.id,leased(`effect:${custom.path}`,custom.path),px(sourcePos.x,sourcePos.y),py(sourcePos.y)-cell*.42,cell*.58,age/1.25,opts.reducedMotion)
-            else drawSkillBurst(ctx, px(sourcePos.x,sourcePos.y), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
+            else if(!drawCombatArt(ctx,combatTexture,e.school,"cast",px(sourcePos.x,sourcePos.y),py(sourcePos.y)-cell*.42,cell*.58,age/1.25,sourceActor.id) && combatTextureStatus === "fallback") drawSkillBurst(ctx, px(sourcePos.x,sourcePos.y), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
           }
           if (e.kind === "death") drawDeparture(ctx, x, y, cell, e.school, age, opts.reducedMotion, opts.lowQuality)
           if (age < .7 && ["hit","shield","heal","phase","summon","burn"].includes(e.kind)) {
             const source = actorMap.get(e.source)
             const kind = e.kind === "heal" ? "heal" : e.kind === "shield" ? "shield" : e.kind === "summon" ? "summon"
               : e.kind === "hit" && source?.range === 1 ? "slash" : "projectile"
-            drawImpact(ctx,{x,y:y+cell*.18},e.school,age,cell*(e.kind === "phase" ? .6 : .28),kind,opts.lowQuality || opts.reducedMotion,texturedImpacts++ < 4 ? impactTexture : undefined)
+            if(impactTextureStatus !== "loading") drawImpact(ctx,{x,y:y+cell*.18},e.school,age,cell*(e.kind === "phase" ? .6 : .28),kind,impactTextureStatus === "ready" ? false : opts.lowQuality || opts.reducedMotion,impactTextureStatus === "ready" ? impactTexture : undefined)
           }
           const authoredCast=!!sourceActor&&!!characterEffect(sourceActor.id)&&b.events.some(cast=>cast.kind==="cast"&&cast.source===e.source&&cast.tick===e.tick&&cast.amount>0)
-          if(starter && !authoredCast && !opts.reducedMotion && age<.8 && ["hit","heal","shield"].includes(e.kind))drawStarterVfx(ctx,sourceActor!.id,x,y,cell*.37,age*1000,false,opts.lowQuality,e.kind === "heal" || e.kind === "shield" ? e.kind : "skill")
+          const skillCast=!!sourceActor&&b.events.some(cast=>cast.kind==="cast"&&cast.source===e.source&&cast.tick===e.tick&&cast.amount>0)
+          if(starter && skillCast && !authoredCast && combatTextureStatus === "fallback" && !opts.reducedMotion && age<.8 && ["hit","heal","shield"].includes(e.kind))drawStarterVfx(ctx,sourceActor!.id,x,y,cell*.37,age*1000,false,opts.lowQuality,e.kind === "heal" || e.kind === "shield" ? e.kind : "skill")
           if (
             ["hit", "heal", "burn"].includes(e.kind) &&
             e.amount > 0 &&

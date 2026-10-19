@@ -22,7 +22,7 @@ export function drawCombatArt(
   id: string,
   angle = 0,
 ) {
-  if (!image?.complete || !image.naturalWidth || t < 0 || t > 1) return
+  if (!image?.complete || !image.naturalWidth || t < 0 || t > 1) return false
   const row = { hearth: 0, ember: 1, grove: 2, tide: 3, sugar: 4 }[school],
     col = { slash: 0, projectile: 1, impact: 2, cast: 3 }[kind]
   const w = image.naturalWidth / 4,
@@ -56,4 +56,5 @@ export function drawCombatArt(
     size * 2,
   )
   ctx.restore()
+  return true
 }
