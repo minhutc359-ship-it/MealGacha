@@ -10,6 +10,7 @@ const cohorts = {
   "5911": {root: "spring5911", ids: ["xoi-xeo", "dua-hanh", "caravan-herbalist", "caravan-gardener"]},
   "5913": {root: "autochess5913", ids: ["banh-dau-xanh", "banh-khuc", "banh-can", "banh-tom-ho-tay", "com-hen"]},
   "5914": {root: "tcg5914", ids: ["mi-van-than", "mi-cay", "ga-ran", "pizza"]},
+  "5921": {root: "spirits5921", ids: ["canh-mang-mien", "gio-xao", "thit-dong", "che-khuc-bach"]},
   "5917": {root: "spirits5917", ids: ["lau-rieu-cua", "nuong-bbq", "vit-quay", "bibimbap"]},
 }
 const cohort = process.env.QA_COHORT ?? "5910"
@@ -288,11 +289,9 @@ try {
           arena: a.height,
         }
       })
-      assert(
-        rect.left >= 0 &&
-          rect.right <= viewport.width + 1 &&
-          rect.height < rect.arena * 0.5,
-      )
+      const bannerFits = rect.left >= 0 && rect.right <= viewport.width + 1 && rect.height < rect.arena * 0.5
+      if (!bannerFits) await p.screenshot({path: `${out}/qa/banner-fit-failure.png`})
+      assert(bannerFits, JSON.stringify({id:ids[i],viewport,rect}))
       await click(
         p,
         p.getByRole("button", { name: "Dừng hoạt ảnh", exact: true }),
@@ -396,14 +395,14 @@ try {
   assert.deepEqual(errors, [])
   assert.deepEqual(missing, [])
   assert(!requests.some((p) => p.endsWith(".mp4")))
-  assert(!requests.some((p) => p.includes(`${assetRoot}/ultimate.webp`)))
+  assert.equal(requests.some((p) => p.includes(`${assetRoot}/ultimate.webp`)), ["5917","5921"].includes(cohort), "Painted VFX atlas request")
   writeFileSync(
     `${out}/${engine}${
       process.env.QA_END_ONLY ? "-end" : process.env.QA_FOCUS ? "-focus" : ""
     }-qa.json`,
     JSON.stringify(
       {
-        date: "2026-10-17",
+        date: new Date().toISOString().slice(0,10),
         engine,
         version: browser.version(),
         fixtures:

@@ -19,7 +19,7 @@ describe("authored character VFX priority 5.9.17", () => {
       path: "/assets/characters/chefs593/ultimate.webp",
       column: 0,
     })
-    expect(characterEffect("lau-rieu-cua")).toBeNull()
+    expect(characterEffect("unknown-character")).toBeNull()
   })
 
   it("draws one bounded atlas cell instead of procedural full-field geometry", () => {
@@ -33,7 +33,7 @@ describe("authored character VFX priority 5.9.17", () => {
     expect(draw.slice(2,6)).toEqual([2,258,252,252])
     expect(draw.at(-2)).toBeLessThanOrEqual(84)
     expect(draw.at(-1)).toBeLessThanOrEqual(84)
-    expect(drawCharacterEffect(ctx,"lau-rieu-cua",image(),100,80,42,.5)).toBe(false)
+    expect(drawCharacterEffect(ctx,"unknown-character",image(),100,80,42,.5)).toBe(false)
   })
 
   it("keeps model motion primary in Adventure and uses school VFX as fallback", () => {

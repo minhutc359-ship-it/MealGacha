@@ -2,7 +2,7 @@
   "name": "soul-of-meal",
   "packageManager": "pnpm@10.34.3",
   "private": true,
-  "version": "5.9.20",
+  "version": "5.9.21",
   "type": "module",
   "scripts": {
     "dev": "vite --config dev/vite.dev.config.ts",

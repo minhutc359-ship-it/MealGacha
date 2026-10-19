@@ -76,3 +76,5 @@ dev/docs/web-v5911/modes-*/showcase-manifest.json
 
 !dev/docs/web-v5912/evidence/*.webp
 dev/docs/web-v5912/modes-*/showcase-manifest.json
+
+!dev/docs/web-v5921/**/*.webp

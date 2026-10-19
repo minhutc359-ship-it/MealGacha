@@ -2,21 +2,21 @@
   "staticBudgetBytes": 320000000,
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
-  "version": "5.9.20",
-  "bytes": 164158674,
-  "files": 815,
+  "version": "5.9.21",
+  "bytes": 168005129,
+  "files": 825,
   "byType": {
     "js": {
       "files": 40,
-      "bytes": 2109727
+      "bytes": 2110619
     },
     "css": {
       "files": 5,
-      "bytes": 517466
+      "bytes": 517711
     },
     "webp": {
-      "files": 570,
-      "bytes": 149671760
+      "files": 580,
+      "bytes": 153517078
     },
     "png": {
       "files": 3,
@@ -56,10 +56,10 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2627193,
+    "Application JS/CSS": 2628330,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
-    "Shared character atlases": 69564684,
+    "Shared character atlases": 73410002,
     "Other and legal": 41450283,
     "Event art": 2016822,
     "Food art": 7490462,
@@ -67,8 +67,8 @@
     "Spirit RPG art/audio/video": 17336030,
     "TCG art/audio": 18018052
   },
-  "js_gzip": 674612,
-  "css_gzip": 106914,
+  "js_gzip": 674820,
+  "css_gzip": 106955,
   "largest": [
     {
       "path": "assets/rpg/campaign580/campaignB.webp",
@@ -79,8 +79,8 @@
       "bytes": 2153792
     },
     {
-      "path": "assets/rpg-presentation-CpdEE-q6.js",
-      "bytes": 1130665
+      "path": "assets/rpg-presentation-g4rnFhqV.js",
+      "bytes": 1131557
     },
     {
       "path": "assets/characters/rosterB.webp",
@@ -121,19 +121,19 @@
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 2925827,
+    "bytes": 2926964,
     "urls": 59,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 9074173
+    "remainingBytes": 9073036
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 155841326
+    "remainingBytes": 151994871
   }
 }

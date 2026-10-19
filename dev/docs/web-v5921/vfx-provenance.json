@@ -1,0 +1,42 @@
+[
+  {
+    "group": "spirits5917",
+    "tool": "built-in Imagegen",
+    "prompt": "Use case: stylized-concept. Production hand-painted VFX sprite atlas for Soul of Meal anime RPG game. TRUE transparent alpha background. Exactly 4 columns and 3 rows, 12 separate effect cells, square cells, entire canvas 2048 by 1536 landscape. No text/grid/borders, no characters, no opaque background, generous empty gutter inside each cell, no effect crosses any cell. Each column is one distinct signature with 3 phases top to bottom: small gathered magic, bright readable impact, dispersed fading fragments. Column 1 jade frog guardian effect: curved golden spear slash over low jade lotus ripple, bronze flecks. Column 2 phoenix ember effect: sweeping crimson phoenix wing/flame feathers and warm golden sparks. Column 3 red butterfly rabbit effect: two delicate red and ivory butterfly wings and petal arcs, fine golden highlights. Column 4 garden beaver effect: golden lance stroke surrounded by green leaves and amber rice-grain sparks. Crisp painterly colored glow with bright edges and transparent center, low visual density, no giant filled disks, suitable over small battle characters. Preserve directional progression and distinct silhouette of each column at 128px. Each of the twelve effects is a separate compact complete isolated composition in the center of its cell.",
+    "sourceSha256": "b9e18712cf0b8954839c47dd0ac7405cedd244ed1576f0c7cf511063d7f1caf4",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "path": "public/assets/characters/spirits5917/ultimate.webp",
+    "size": [
+      1024,
+      768
+    ],
+    "frames": 12,
+    "uniqueFrames": 12,
+    "safeGutters": true,
+    "bytes": 304998,
+    "sha256": "06f0cb14ee79871e40d06459b75820e52249ed23a87f14aad5f0763389a28eed"
+  },
+  {
+    "group": "spirits5921",
+    "tool": "built-in Imagegen",
+    "prompt": "Use case: stylized-concept. Production hand-painted VFX sprite atlas for Soul of Meal anime RPG. TRUE transparent alpha background. Exactly 4 columns x 3 rows, landscape 2048x1536 canvas, 12 effects isolated within equal square cells, generous padding, no grids/text/characters/scenery/opaque backgrounds. Each column has three phases top to bottom: focused preparation, luminous impact, dispersed recovery. Column1 antlered white guardian: two crossed silver crescent sword strokes with teal ribbons and small golden branching antler sparks. Column2 crimson dragon scholar: a single red-gold serpentine ribbon unfurling like a scroll, small ember calligraphy-like abstract strokes with NO actual lettering. Column3 fox scholar: two elegant red ivory fox-tail-shaped silk arcs and delicate gold seal spark, no animal body. Column4 deer oracle: lavender crystal shard bouquet and silver crescent halo with small purple blossom sparkles. Painterly crisp anime spell effects, transparent open centers, readable compact silhouette, no filled disks, no full-screen washes, no effects crossing cells. All twelve sprites complete within cells, phase progression coherent per column.",
+    "sourceSha256": "86b9e99a5a8647317337973fb6e0b6cb377f4f6d56154ffd17ba9dd1ba557540",
+    "sourceSize": [
+      1448,
+      1086
+    ],
+    "path": "public/assets/characters/spirits5921/ultimate.webp",
+    "size": [
+      1024,
+      768
+    ],
+    "frames": 12,
+    "uniqueFrames": 12,
+    "safeGutters": true,
+    "bytes": 426172,
+    "sha256": "e362068f10ad667c1da7bdc77847225e0d6341e5af2877d6b31127d1295f9f0f"
+  }
+]

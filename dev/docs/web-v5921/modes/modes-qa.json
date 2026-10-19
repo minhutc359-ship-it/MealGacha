@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-19",
+  "engine": "chromium",
+  "version": "153.0.8010.0",
+  "checks": [
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "com-tam",
+        "banh-mi",
+        "pho-bo",
+        "banh-cuon",
+        "xoi"
+      ]
+    },
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "com-tam",
+        "banh-mi",
+        "pho-bo",
+        "banh-cuon",
+        "xoi"
+      ]
+    },
+    {
+      "area": "tcg",
+      "spell": {
+        "id": "tea-break",
+        "name": "Một chén trà"
+      },
+      "sharedBanner": true,
+      "modelSigil": true,
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realUnitAttack": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "movieRequests": 0,
+  "requestedAssets": [
+    "/assets/characters/spirits5921/thit-dong.webp",
+    "/assets/characters/spirits5921/che-khuc-bach.webp",
+    "/assets/characters/spirits5921/canh-mang-mien.webp",
+    "/assets/characters/spirits5921/gio-xao.webp",
+    "/assets/characters/spirits5921/ultimate.webp"
+  ]
+}

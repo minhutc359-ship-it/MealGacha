@@ -1,0 +1,534 @@
+{
+  "date": "2026-10-19",
+  "engine": "chromium",
+  "version": "153.0.8010.0",
+  "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
+  "checks": [
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 1314,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 6875,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 3906,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "canh-mang-mien",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1213,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "gio-xao",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1073,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "thit-dong",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1601,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "che-khuc-bach",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1207,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 5779,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 30695,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 19351,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "canh-mang-mien",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3736,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "gio-xao",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3477,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "thit-dong",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5544,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "che-khuc-bach",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 4264,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 652,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 3628,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 2354,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "canh-mang-mien",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 802,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "gio-xao",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 782,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "thit-dong",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 1086,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "che-khuc-bach",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 895,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 8244,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 47078,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "realReducerEvents": true,
+      "painted": 25537,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "canh-mang-mien",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 5122,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "gio-xao",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4708,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "thit-dong",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7735,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "che-khuc-bach",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 5741,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "victory",
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ]
+    },
+    {
+      "area": "fall",
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ]
+    },
+    {
+      "area": "reload-committed-ultimate",
+      "noRecast": true
+    },
+    {
+      "area": "natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "reduced-motion",
+      "ids": [
+        "canh-mang-mien",
+        "gio-xao",
+        "thit-dong",
+        "che-khuc-bach"
+      ],
+      "staticPose": 16
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedAssets": [
+    "/assets/characters/spirits5921/canh-mang-mien.webp",
+    "/assets/characters/spirits5921/gio-xao.webp",
+    "/assets/characters/spirits5921/thit-dong.webp",
+    "/assets/characters/spirits5921/che-khuc-bach.webp",
+    "/assets/characters/spirits5921/ultimate.webp"
+  ],
+  "movieRequests": 0
+}

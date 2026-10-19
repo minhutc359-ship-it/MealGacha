@@ -1,0 +1,18 @@
+{
+  "tool": "built-in Imagegen",
+  "date": "2026-10-19",
+  "identity": "identity-sources.json",
+  "authoredSheets": 8,
+  "physicalPoseCount": 128,
+  "paintedEffectSheets": 2,
+  "paintedEffectFrames": 24,
+  "portraitPolicy": "Reuse immutable canon atlas cells without edits",
+  "promptSet": [
+    "asset-provenance.json[].sources[].prompt",
+    "vfx-provenance.json[].prompt"
+  ],
+  "runtimeRoots": [
+    "public/assets/characters/spirits5921/",
+    "public/assets/characters/spirits5917/ultimate.webp"
+  ]
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "canh-mang-mien",
+    "reference": ".asset-work/spirits5921/references/canh-mang-mien.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 15,
+      "columns": 4,
+      "sha256": "c546608de090b33d119066e68e2cf6022dedbb8281f463bd68c04e39e988da92"
+    }
+  },
+  {
+    "id": "gio-xao",
+    "reference": ".asset-work/spirits5921/references/gio-xao.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 0,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    }
+  },
+  {
+    "id": "thit-dong",
+    "reference": ".asset-work/spirits5921/references/thit-dong.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 1,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    }
+  },
+  {
+    "id": "che-khuc-bach",
+    "reference": ".asset-work/spirits5921/references/che-khuc-bach.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 4,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    }
+  }
+]

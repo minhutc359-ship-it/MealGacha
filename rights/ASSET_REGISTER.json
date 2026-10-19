@@ -1,5 +1,5 @@
 {
-  "version": "5.9.20",
+  "version": "5.9.21",
   "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -2356,6 +2356,17 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/characters/spirits5917/ultimate.webp",
+      "bytes": 304998,
+      "sha256": "06f0cb14ee79871e40d06459b75820e52249ed23a87f14aad5f0763389a28eed",
+      "origin": "Original AI-assisted four-signature painted three-phase VFX atlas generated using built-in Imagegen; consumed by shared character-effect compositor",
+      "evidence": [
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/characters/spirits5917/vit-quay-pixel.webp",
       "bytes": 102352,
       "sha256": "90db39f37959f227088849132eef4992d18c0264030659ad02c1dadaa1615cee",
@@ -2376,6 +2387,132 @@
         "dev/docs/web-v5917/asset-provenance.json",
         "dev/docs/web-v5917/identity-sources.json",
         "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/canh-mang-mien-pixel.webp",
+      "bytes": 122212,
+      "sha256": "823061fee93caa14b45621a09f0d9a43a30dee65ca4e07144fc9eaae0877bbb3",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/canh-mang-mien.webp",
+      "bytes": 662714,
+      "sha256": "dcb830ae8bf40858911f62e452bd16265d349455afe1aa2acdf9e6581b122b49",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/che-khuc-bach-pixel.webp",
+      "bytes": 106728,
+      "sha256": "ba12d88787b7d818ec7ab6f11f56c4e4252e7a48088aa8a490eab3c02adab51f",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/che-khuc-bach.webp",
+      "bytes": 621376,
+      "sha256": "46d7a4ee6aff7e650ae6be2737bcd57dbc6545c1ac84e4dabc4a083fac3a728f",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/gio-xao-pixel.webp",
+      "bytes": 126034,
+      "sha256": "473ea619c6ee879336b0d661da2fbc84dbe2f717c8d8efc0ff347ee1f20e7587",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/gio-xao.webp",
+      "bytes": 709668,
+      "sha256": "55cf259c5f6261780304f06c20dc908ba427ab57a43eaad9b6dcb2758f52e434",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/thit-dong-pixel.webp",
+      "bytes": 126266,
+      "sha256": "c212337a2e5bd556c083dc99f365d86de4d2489ba3f6b7ef40d668790902c3e3",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/thit-dong.webp",
+      "bytes": 639150,
+      "sha256": "c6d07361faea49fead010587b2fdc7bd850825d0a679c977c0a3f598047644fb",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/ultimate.webp",
+      "bytes": 426172,
+      "sha256": "e362068f10ad667c1da7bdc77847225e0d6341e5af2877d6b31127d1295f9f0f",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

@@ -33,10 +33,10 @@ describe("priority spirit models 5.9.17", () => {
     expect(sheets.size).toBe(PRIORITY_SPIRIT_IDS.length)
   })
 
-  it("defers signature VFX and leaves elemental combat VFX as the fallback", () => {
-    for (const id of PRIORITY_SPIRIT_IDS) {
+  it("uses painted signature VFX with elemental combat VFX underneath", () => {
+    for (const [column,id] of PRIORITY_SPIRIT_IDS.entries()) {
       const visual = characterVisual(id)!
-      expect(visual.effect).toBeNull()
+      expect(visual.effect).toEqual({path: `${PRIORITY_SPIRIT_ASSET_ROOT}/ultimate.webp`,column})
       expect(visual.signature).toBe("none")
     }
   })
