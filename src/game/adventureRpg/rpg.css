@@ -278,8 +278,8 @@
 /* Liquid protection follows the actor, including tactical guard expiry. */
 .rpg-combatant.is-shielded::before{content:none!important}
 .rpg-actor-body{position:relative;z-index:2}.rpg-actor-caption{z-index:9}
-.rpg-shield-bubble{position:absolute;inset:8% -5% -1%;z-index:4;pointer-events:none;transform-origin:50% 80%;animation:rpg-bubble-form .42s ease-out both}
-.rpg-bubble-film{position:absolute;inset:0;overflow:hidden;border:1.5px solid #c6f8ffe0;border-radius:50%;background:radial-gradient(ellipse at 28% 18%,#fff9,transparent 18%),radial-gradient(ellipse at 70% 80%,#88bfff30,transparent 48%),linear-gradient(135deg,#b4eeff2b,transparent 45%,#aef4e630);box-shadow:inset 8px 5px 16px #ffffff21,inset -8px -10px 20px #7bdaff4d,0 0 13px #81d9e960;opacity:calc(.48 + var(--shield-strength,.5) * .32);animation:rpg-bubble-breathe 2.6s ease-in-out infinite}
+.rpg-shield-bubble{position:absolute;inset:14% 3% 2%;z-index:1;pointer-events:none;transform-origin:50% 80%;animation:rpg-bubble-form .42s ease-out both}
+.rpg-bubble-film{position:absolute;inset:0;overflow:hidden;border:1px solid #c6f8ffc0;border-radius:50%;background:radial-gradient(ellipse at 28% 18%,#fff7,transparent 17%),radial-gradient(ellipse at 70% 80%,#88bfff20,transparent 48%),linear-gradient(135deg,#b4eeff1c,transparent 45%,#aef4e620);box-shadow:inset 5px 4px 11px #ffffff18,inset -5px -7px 13px #7bdaff36,0 0 8px #81d9e947;opacity:calc(.3 + var(--shield-strength,.5) * .2);animation:rpg-bubble-breathe 2.6s ease-in-out infinite}
 .rpg-bubble-film::before{content:"";position:absolute;left:14%;top:9%;width:32%;height:19%;border-top:3px solid #fff9;border-radius:50%;rotate:-26deg}
 .rpg-bubble-film::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,#fff6 49%,transparent 58%);animation:rpg-bubble-glint 3s ease-in-out infinite}
 .rpg-shield-bubble>i{--angle:calc(var(--drop) * 45deg);position:absolute;left:50%;top:48%;width:7px;aspect-ratio:1;border:1px solid #e8fdff;border-radius:50%;box-shadow:inset 0 0 4px #a7ecff,0 0 5px #9beaff;opacity:0;rotate:var(--angle)}

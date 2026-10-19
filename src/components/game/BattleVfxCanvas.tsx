@@ -1,6 +1,7 @@
 import { renderDpr, renderIsLight } from "../../infrastructure/presentation/renderQuality"
 import { starterCharacter } from "../../game/starterCharacters"
 import { drawStarterVfx } from "../../game/starterVfx"
+import { characterEffect, drawCharacterEffect } from "../../game/characterEffect"
 import { useEffect, useRef } from "react"
 import type { EffectCue } from "../../game/combatEffects"
 import type { School } from "../../game/types"
@@ -25,6 +26,8 @@ export function BattleVfxCanvas({ source, sourceId, cues, school, action, stamp,
     const surface = canvas.current, ctx = surface?.getContext("2d")
     if (!surface || !ctx || quiet) return
     const texture = renderIsLight() ? null : acquireCharacterImage(ELEMENTAL_IMPACTS)
+    const custom = sourceId ? characterEffect(sourceId) : null
+    const customTexture = custom ? acquireCharacterImage(custom.path) : null
     let width = 1, height = 1
     if (timeline.current.stamp !== stamp) timeline.current = { stamp, start: performance.now(), hiddenAt: null }
     const clock = timeline.current
@@ -37,14 +40,16 @@ export function BattleVfxCanvas({ source, sourceId, cues, school, action, stamp,
       if (document.hidden) return
       surface.dataset.phase = age < contact * .4 ? "windup" : age < contact ? "flight" : "impact"
       if (action === "play" && age < contact) drawChannel(ctx,source,school,age/contact,34, renderIsLight())
+      const customCast = action === "play" && !!sourceId && !!custom
+      if(customCast && age<contact+650)drawCharacterEffect(ctx,sourceId!,customTexture?.image,source.x,source.y,48,age/(contact+650),renderIsLight())
       for (const cue of cues) {
         if (["draw","turn","awaken","resonance"].includes(cue.kind)) continue
         const point = { x:cue.x,y:cue.y }, kind = kindFor(cue,action === "attack")
         const support = action === "play" && ["heal", "shield", "buff", "summon"].includes(cue.kind)
         if((cue.projectile || support) && age > contact*.25 && age < contact)
           drawProjectile(ctx,source,point,cue.school,(age-contact*.25)/(contact*.75),Math.min(19,cue.size*.16),renderIsLight(),kind)
-        if(sourceId && starterCharacter(sourceId))drawStarterVfx(ctx,sourceId,point.x,point.y,Math.min(48,cue.size*.4),age-contact,false,renderIsLight(),kind === "heal" || kind === "shield" ? kind : action === "attack" ? "attack" : "skill")
-        else drawImpact(ctx,point,cue.school,(age-contact)/1000,Math.min(48,cue.size*.4),kind,renderIsLight(),texture?.image)
+        drawImpact(ctx,point,cue.school,(age-contact)/1000,Math.min(48,cue.size*.4),kind,renderIsLight(),texture?.image)
+        if(sourceId && starterCharacter(sourceId) && !customCast)drawStarterVfx(ctx,sourceId,point.x,point.y,Math.min(48,cue.size*.4),age-contact,false,renderIsLight(),kind === "heal" || kind === "shield" ? kind : action === "attack" ? "attack" : "skill")
       }
       const textureStatus = texture?.image.naturalWidth ? "ready" : "fallback"
       if (surface.dataset.texture !== textureStatus) surface.dataset.texture = textureStatus
@@ -63,7 +68,7 @@ export function BattleVfxCanvas({ source, sourceId, cues, school, action, stamp,
     const observer=new ResizeObserver(resize);observer.observe(surface);resize()
     unsubscribe=subscribeCharacterClock(draw,true)
     document.addEventListener("visibilitychange",visibility)
-    return ()=>{texture?.release();observer.disconnect();unsubscribe();document.removeEventListener("visibilitychange",visibility)}
+    return ()=>{texture?.release();customTexture?.release();observer.disconnect();unsubscribe();document.removeEventListener("visibilitychange",visibility)}
   },[source,sourceId,cues,school,action,stamp,quiet])
   return quiet ? null : <canvas ref={canvas} className="tcg-battle-vfx-canvas" data-vfx="elemental" aria-hidden="true" />
 }

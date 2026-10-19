@@ -20,6 +20,10 @@ Bản này khôi phục tín hiệu chiến đấu dùng chung và nâng bốn V
 
 - Auto Chess luôn giữ projectile/trail/slash/channel/impact dùng chung. VFX nhận diện riêng chỉ là lớp nhấn phía trên, không được bỏ qua lớp theo hệ.
 - Adventure vẫn giữ cue attack/skill khi bật Reduced Motion; chế độ nhẹ dùng hình học ít hạt thay vì ẩn hiệu ứng.
+- Adventure, Auto Chess và TCG giờ đọc trực tiếp atlas VFX đã khai báo trong manifest. Ví dụ Bách dùng cột riêng trong `chefs593/ultimate.webp`; atlas ba pha được phát một lần quanh vùng tác động và không lặp trên từng mục tiêu.
+- Năm Vị Linh khởi đầu (`com-tam`, `banh-mi`, `pho-bo`, `banh-cuon`, `goi-cuon-tom-thit`) dùng đủ năm cột riêng của `starters590/ultimate591.webp` cho primary/support/ultimate. Khi atlas đang tải, compositor giữ VFX theo hệ và không thay bằng nét hình học.
+- Loại lớp `drawUltimateArt` hình học cỡ lớn từng che model khi tung tuyệt kỹ. Model/pose là chuyển động chính; impact theo hệ thể hiện kết quả lên từng mục tiêu và VFX atlas riêng chỉ là lớp nhấn gọn.
+- Khiên bong bóng được thu gọn, giảm độ đục và chuyển xuống sau model để đội hình vẫn đọc được rõ khi Bách che chắn cả đội.
 - Bốn model mới đặt `signature: none`: chưa vẽ VFX riêng ở đợt này và không sinh motif tạm sai nhận diện. Projectile/impact theo hệ vẫn hiển thị đầy đủ làm fallback.
 
 Chủ dự án tiếp tục review và quyết định merge; nhánh/PR không tự merge.
