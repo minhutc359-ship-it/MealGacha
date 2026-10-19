@@ -14,6 +14,7 @@ import {
   useGameMusic,
 } from "../components/game/GameAudio"
 import { Dialog } from "../components/game/Dialog"
+import { useModeIntroStore } from "../game/modeIntroState"
 import "../game/tcg.css"
 import "../game/combat.css"
 import "../game/story.css"
@@ -79,6 +80,7 @@ export function PvpPage() {
           ‹ {mode === "auto" ? "Auto chess" : "TCG"}
         </Link>
         <strong>⚔ PHÒNG GIAO HỮU</strong>
+        <nav className="meal-mode-selector" aria-label="Sổ hành trình"><button type="button" className="meal-library-button" aria-label="Mở Sổ · Manga giới thiệu và văn hóa Việt" aria-haspopup="dialog" onClick={event => useModeIntroStore.getState().openLibrary("manga", undefined, event.currentTarget)}>▤ <span>Sổ</span></button></nav>
         <button onClick={() => setAudio(true)} aria-label="Cài đặt âm thanh">
           ♫
         </button>

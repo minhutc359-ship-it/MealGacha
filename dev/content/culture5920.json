@@ -1,0 +1,649 @@
+[
+  {
+    "id": "tet",
+    "unlockStageId": "lantern-2",
+    "title": "Tết · Mỗi nhà một vị",
+    "englishTitle": "Tết · A recipe in every home",
+    "region": "Nếp sum họp · nhiều vùng miền",
+    "englishRegion": "Family reunions across regions",
+    "art": "tet-kitchen",
+    "memory": "Bà chỉ bạn cách buộc lạt; chiếc ghế trống giữ phần bánh của người chưa về. Sau trận đấu, cả chợ lại chia nhau việc trông nồi.",
+    "fact": "Tết Nguyên Đán là dịp nhiều gia đình sum họp, tưởng nhớ tổ tiên và chúc nhau năm mới. Bánh chưng hình vuông, bánh tét hình trụ thường có nếp, đậu xanh và thịt, với nhiều biến thể theo gia đình và vùng miền. Mâm cỗ cũng khác nhau: miền Bắc thường có bánh chưng, nem; miền Nam có thịt kho hột vịt, canh khổ qua.",
+    "englishFact": "Tết, Vietnamese Lunar New Year, brings many families together to remember ancestors and exchange wishes. Square bánh chưng and cylindrical bánh tét commonly contain sticky rice, mung beans and pork, with family and regional variations. Festive meals vary too: bánh chưng and fried spring rolls are common in the north; braised pork with eggs and bitter melon soup in the south.",
+    "sources": [
+      {
+        "label": "Vietnam Tourism · Tết và ẩm thực",
+        "url": "https://vietnam.travel/things-to-do/tet-tradition-reunion-taste"
+      },
+      {
+        "label": "Vietnam Tourism · Mâm cỗ vùng miền",
+        "url": "https://vietnam.travel/vi/things-to-do/travellers-guide-tet-holiday"
+      }
+    ],
+    "mapId": "lantern",
+    "teacher": "Bà Sen",
+    "dish": "Bánh chưng",
+    "questTitle": "Nút lạt đầu tiên",
+    "opening": "Bên nồi bánh ở Phố Đèn Lồng, bà Sen đưa An một chiếc lá. “Bà nhớ đôi tay đã dạy mình. Cháu giúp bà làm chiếc bánh cho bàn ăn tối nay nhé.”",
+    "ending": "Chiếc bánh được đặt cạnh trang ghi công thức của bà. An chừa một dòng cho lần sau tự ghi điều đã học.",
+    "steps": [
+      {
+        "prompt": "Mâm nguyên liệu còn thiếu phần nhân. Bà hỏi An muốn chuẩn bị gì cho chiếc bánh nhà bà đang gói.",
+        "choices": [
+          {
+            "label": "Mang nếp, đậu xanh và thịt theo công thức của bà",
+            "reply": "Bà Sen: Đủ rồi. Đây là cách nhà bà làm; cháu ghi rõ để không nhầm với cách nhà khác nhé.",
+            "advance": true
+          },
+          {
+            "label": "Tuyên bố mọi gia đình phải dùng cùng một nhân",
+            "reply": "Bà Sen: Mỗi nhà có thể làm khác. Mình đang học công thức của nhà bà thôi.",
+            "advance": false
+          }
+        ]
+      },
+      {
+        "prompt": "An đặt lá vào khuôn và xếp phần nếp, nhân. Sợi lạt đang siết khiến chiếc lá rách ở mép.",
+        "choices": [
+          {
+            "label": "Giấu chỗ rách và tiếp tục siết",
+            "reply": "Bà Sen: Bánh cần được gói lại cẩn thận. Mình sửa trước khi đưa vào nồi nhé.",
+            "advance": false
+          },
+          {
+            "label": "Nới lạt, sửa lại lá rồi nhờ bà xem",
+            "reply": "Bà Sen: Cứ hỏi khi chưa chắc. Lạt giữ bánh gọn, không phải để làm rách lá.",
+            "advance": true
+          }
+        ]
+      },
+      {
+        "prompt": "Nồi bánh vừa được đặt lên bếp. Một người khách tới giúp trông lửa.",
+        "choices": [
+          {
+            "label": "Cùng chia việc trông nồi, để bánh chín rồi mới chia phần",
+            "reply": "Bà Sen: Cảm ơn cháu. Có người phụ một tay thì căn bếp đã vui hơn rồi.",
+            "advance": true
+          },
+          {
+            "label": "Mở bánh sống để chia ngay",
+            "reply": "Bà Sen: Chưa ăn được đâu. Mình còn phải nấu chín bánh và chờ đủ thời gian.",
+            "advance": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bai-choi",
+    "unlockStageId": "harbor-1",
+    "title": "Bài Chòi · Một tiếng hô, nhiều người đáp",
+    "englishTitle": "Bài Chòi · Voices across a courtyard",
+    "region": "Cộng đồng thực hành ở miền Trung",
+    "englishRegion": "Practising communities in Central Vietnam",
+    "art": "bai-choi",
+    "memory": "Nhiên nhận ra tiếng hô cha từng dạy. Người nghệ nhân còn nhớ điệu, nhưng sương đã lấy mất tên người nhận bát cháo trên chuyến cứu hộ.",
+    "fact": "Nghệ thuật Bài Chòi ở miền Trung kết hợp âm nhạc, thơ, diễn xuất và nhiều hình thức sáng tạo. Có trò chơi Bài Chòi và trình diễn Bài Chòi; nghệ nhân Hiệu giữ vai trò dẫn dắt. Làm thẻ, dựng chòi và truyền dạy cũng là phần công việc của cộng đồng. UNESCO ghi danh năm 2017. Bàn đấu Vị Linh trong game có luật riêng, không mô phỏng luật Bài Chòi.",
+    "englishFact": "Bài Chòi in Central Vietnam combines music, poetry, acting and other arts. It includes both games and performances, led by Hiệu artists. Communities also make cards, build huts and pass on the practice. UNESCO inscribed it in 2017. This game's Flavor Spirit duels use their own rules; they do not reproduce Bài Chòi gameplay.",
+    "sources": [
+      {
+        "label": "UNESCO · Nghệ thuật Bài Chòi",
+        "url": "https://ich.unesco.org/en/RL/the-art-of-bai-choi-in-central-viet-nam-01222"
+      }
+    ],
+    "mapId": "harbor",
+    "teacher": "Nghệ nhân Hiệu và Nhiên",
+    "dish": "Cháo nóng ở sân hội",
+    "questTitle": "Sân hội có người đáp",
+    "opening": "Nhiên tìm lại người nghệ nhân từng cất tiếng hô ở bến. Sân hội còn thiếu thẻ và chỗ ngồi. Bà Hiệu nhờ An chuẩn bị, để lát nữa mọi người cùng nghe.",
+    "ending": "Sân hội sáng đèn. Nhiên ghi tên người nghệ nhân bên câu chuyện vừa nghe; nồi cháo được chia cho những người đã cùng giúp.",
+    "steps": [
+      {
+        "prompt": "Trước giờ hội, bà Hiệu chỉ vào những thẻ đang phai nét.",
+        "choices": [
+          {
+            "label": "Giúp sửa thẻ theo mẫu bà hướng dẫn",
+            "reply": "Nghệ nhân Hiệu: Người làm thẻ cũng góp công giữ hội. Cháu hỏi bà trước khi sửa nét này nhé.",
+            "advance": true
+          },
+          {
+            "label": "Đổi thẻ Bài Chòi thành luật chiến đấu TCG",
+            "reply": "Nghệ nhân Hiệu: Hai trò chơi có luật khác nhau. Hôm nay mình giúp chuẩn bị sân hội, không đổi luật Bài Chòi.",
+            "advance": false
+          }
+        ]
+      },
+      {
+        "prompt": "Tiếng hô vừa bắt đầu, Nhiên còn chưa nghe hết.",
+        "choices": [
+          {
+            "label": "Ngắt giữa câu và tự nhận đã học xong",
+            "reply": "Nghệ nhân Hiệu: Kỹ năng cần được nghe và học cùng người có kinh nghiệm.",
+            "advance": false
+          },
+          {
+            "label": "Chờ hết câu rồi hỏi bà ý nghĩa",
+            "reply": "Nhiên: Tớ đã nghe rõ. Mình có thể xin bà chỉ lại phần chưa hiểu.",
+            "advance": true
+          }
+        ]
+      },
+      {
+        "prompt": "Một em nhỏ đứng ngoài sân, muốn biết ai làm nên buổi hội.",
+        "choices": [
+          {
+            "label": "Mời em ngồi và giới thiệu cả người hô, làm thẻ, dựng chòi",
+            "reply": "Nghệ nhân Hiệu: Đúng rồi, hội là công của nhiều người trong cộng đồng.",
+            "advance": true
+          },
+          {
+            "label": "Chỉ ghi tên An vì vừa thắng một trận",
+            "reply": "Nhiên: Chiến thắng của mình không thay thế công việc của những người giữ hội.",
+            "advance": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quan-ho",
+    "unlockStageId": "garden-1",
+    "title": "Quan họ · Đừng để lời mời mất câu đáp",
+    "englishTitle": "Quan họ · An invitation deserves a reply",
+    "region": "Bắc Ninh · Bắc Giang",
+    "englishRegion": "Bắc Ninh · Bắc Giang",
+    "art": "garden",
+    "memory": "Mộc tìm lại giọng mẹ trong câu hát đối đáp đã bỏ dở. Cô rót trà, mời bạn ngồi và dám hát cả lời giã bạn vốn khiến mình buồn.",
+    "fact": "Dân ca Quan họ gắn với các cộng đồng ở Bắc Ninh và Bắc Giang. Những nhóm người hát trao các câu đối đáp; lời ca có niềm vui gặp gỡ, tình cảm và nỗi buồn chia tay. Quan họ hiện diện trong lễ hội và cả những cuộc gặp thân tình, với cách đón khách, hát và giã bạn. UNESCO ghi danh năm 2009.",
+    "englishFact": "Quan họ folk songs belong to communities in Bắc Ninh and Bắc Giang. Groups of singers exchange verses about meeting, affection and parting. The practice appears at festivals and informal gatherings, with traditions of welcoming guests, singing and saying farewell. UNESCO inscribed it in 2009.",
+    "sources": [
+      {
+        "label": "UNESCO · Dân ca Quan họ",
+        "url": "https://ich.unesco.org/en/RL/quan-h-bc-ninh-folk-songs-00183"
+      }
+    ],
+    "mapId": "garden",
+    "teacher": "Mộc và người bạn hát",
+    "dish": "Trà đón khách",
+    "questTitle": "Chén trà chờ câu đáp",
+    "opening": "Mộc dọn bàn ở khu vườn để đón một người bạn hát từ quê mẹ. Một ấm trà mới đã sẵn, nhưng cô vẫn bối rối khi nghe lời mời quen thuộc.",
+    "ending": "Mộc ghi lại câu chuyện về cách mẹ đón bạn. Cô để trống dòng lời hát chưa thuộc, hẹn buổi sau học tiếp thay vì tự chép cho xong.",
+    "steps": [
+      {
+        "prompt": "Khách vừa đến, Mộc muốn bắt đầu cuộc gặp.",
+        "choices": [
+          {
+            "label": "Mời khách ngồi, hỏi có dùng trà không",
+            "reply": "Mộc: Một lời mời nhẹ nhàng là đủ để người bạn thấy mình được chào đón.",
+            "advance": true
+          },
+          {
+            "label": "Ép khách uống vì cho rằng đó là quy tắc của mọi nhà",
+            "reply": "Mộc: Mình có thể mời và lắng nghe. Khách vẫn được chọn.",
+            "advance": false
+          }
+        ]
+      },
+      {
+        "prompt": "Người bạn hát cất câu mời, Mộc nhớ đến giọng mẹ.",
+        "choices": [
+          {
+            "label": "Thay câu hát bằng lời quảng cáo món trà",
+            "reply": "Mộc: Chén trà và lời hát có chỗ riêng. Mình đừng sửa lời người khác khi chưa hỏi.",
+            "advance": false
+          },
+          {
+            "label": "Nghe trọn câu và nhờ bạn chỉ lại phần đối đáp",
+            "reply": "Mộc: Tớ muốn học từ người đang thực hành, từng phần một.",
+            "advance": true
+          }
+        ]
+      },
+      {
+        "prompt": "Cuộc gặp sắp kết thúc. Người bạn cần trở về.",
+        "choices": [
+          {
+            "label": "Tiễn bạn, cảm ơn và hẹn gặp lần sau",
+            "reply": "Mộc: Có lời giã bạn không có nghĩa là cuộc gặp đã mất đi.",
+            "advance": true
+          },
+          {
+            "label": "Giữ khách lại để không phải nói lời chia tay",
+            "reply": "Mộc: Mình quý cuộc gặp thì cũng nên tôn trọng lúc bạn cần về.",
+            "advance": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "don-ca-tai-tu",
+    "unlockStageId": "tide-1",
+    "title": "Đờn ca tài tử · Có chỗ cho một câu mới",
+    "englishTitle": "Đờn ca tài tử · Room for a new phrase",
+    "region": "Nam Bộ · miền sông nước",
+    "englishRegion": "Southern Vietnam · river country",
+    "art": "tide",
+    "memory": "Người khách Nam Bộ từng đờn trên thuyền mở lại câu nhạc cũ. Hải thôi đòi ký ức phải lặp đúng một đêm; ông viết tiếp sổ người trở về.",
+    "fact": "Đờn ca tài tử là nghệ thuật âm nhạc và ca hát ở Nam Bộ, gắn với đời sống và miền sông nước. Người thực hành biến tấu, điểm xuyết trên khung giai điệu; kỹ năng được truyền qua việc nghe, học và tập cùng người có kinh nghiệm. Những nhạc cụ được sử dụng gồm đàn kìm, đàn cò, đàn tranh… UNESCO ghi danh năm 2013.",
+    "englishFact": "Đờn ca tài tử is a Southern Vietnamese music and song tradition connected to everyday life and river landscapes. Performers improvise and ornament established melodic frameworks, learning by listening and practising with experienced musicians. Instruments include the moon lute, two-string fiddle and zither. UNESCO inscribed it in 2013.",
+    "sources": [
+      {
+        "label": "UNESCO · Đờn ca tài tử Nam Bộ",
+        "url": "https://ich.unesco.org/en/RL/art-of-n-ca-tai-t-music-and-song-in-southern-viet-nam-00733"
+      }
+    ],
+    "mapId": "tide",
+    "teacher": "Hải và người khách Nam Bộ",
+    "dish": "Bữa cơm trên bến",
+    "questTitle": "Câu đờn còn chỗ viết",
+    "opening": "Người khách Nam Bộ mang cây đàn kìm đến bến. Hải muốn nghe lại kỷ niệm trên thuyền, còn An giúp dọn một chỗ yên trước bữa cơm.",
+    "ending": "Hải ghi tên người kể và lời hẹn học tiếp. Một câu nhạc có thể gợi ký ức, nhưng không buộc mọi lần gặp phải giống hệt lần trước.",
+    "steps": [
+      {
+        "prompt": "Người khách đang chỉnh dây. Chỗ ngồi cạnh bếp quá ồn.",
+        "choices": [
+          {
+            "label": "Dọn chỗ yên và hỏi lúc nào có thể bắt đầu",
+            "reply": "Người khách: Cảm ơn cháu. Nghe nhau rõ thì mới cùng tập được.",
+            "advance": true
+          },
+          {
+            "label": "Giục chơi ngay rồi nói át tiếng đàn",
+            "reply": "Hải: Đợi người chơi sẵn sàng đã. Cuộc gặp này cần có người nghe.",
+            "advance": false
+          }
+        ]
+      },
+      {
+        "prompt": "Câu đờn lần này có chỗ khác lần Hải từng nhớ.",
+        "choices": [
+          {
+            "label": "Kết luận người chơi sai vì không lặp y hệt",
+            "reply": "Hải: Ký ức của ta không phải bản mẫu bắt mọi người phải theo.",
+            "advance": false
+          },
+          {
+            "label": "Hỏi người chơi về cách biến tấu trên giai điệu",
+            "reply": "Người khách: Đờn ca tài tử có chỗ cho sự điểm xuyết, biến tấu của người thực hành.",
+            "advance": true
+          }
+        ]
+      },
+      {
+        "prompt": "An muốn giữ lại trải nghiệm, nhưng chưa được dạy kỹ thuật đàn.",
+        "choices": [
+          {
+            "label": "Ghi điều đã nghe, tên người truyền dạy và hẹn học tiếp",
+            "reply": "Người khách: Muốn chơi được còn cần thời gian và người hướng dẫn. Cứ bắt đầu bằng việc lắng nghe.",
+            "advance": true
+          },
+          {
+            "label": "Ghi rằng An đã thành nghệ nhân sau một buổi",
+            "reply": "Hải: Một cuộc gặp không thay cho quá trình học và luyện tập lâu dài.",
+            "advance": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "trung-thu",
+    "unlockStageId": "moon-1",
+    "title": "Trung Thu · Chia bánh, nối lại đèn",
+    "englishTitle": "Trung Thu · Shared cakes, glowing lanterns",
+    "region": "Đêm hội của trẻ em và gia đình",
+    "englishRegion": "A festival for children and families",
+    "art": "moon",
+    "memory": "Liên sửa chiếc đèn ông sao méo cho lũ trẻ rồi cắt bánh thành nhiều phần. Câu chuyện về người em trở thành lời mời sống tiếp cùng những người đang ở đây.",
+    "fact": "Tết Trung Thu diễn ra vào rằm tháng Tám âm lịch. Rước đèn, múa lân và bánh Trung Thu là những nét quen thuộc của dịp này. Đèn ông sao được trẻ em yêu thích; bánh nướng và bánh dẻo có nhiều loại nhân. Chuyện chú Cuội, cây đa trên cung trăng là một truyền thuyết được kể trong không khí hội trăng.",
+    "englishFact": "Trung Thu, the Mid-Autumn Festival, falls on the full moon of the eighth lunar month. Lantern processions, lion dances and mooncakes are familiar features. Children enjoy star lanterns; baked bánh nướng and sticky bánh dẻo come with varied fillings. Cuội and the banyan tree on the moon belong to a folk legend told around the festival.",
+    "sources": [
+      {
+        "label": "Vietnam Tourism · Đêm hội Trung Thu",
+        "url": "https://www.vietnam.travel/things-to-do/vietnams-magical-mid-autumn-festival"
+      },
+      {
+        "label": "Vietnam Tourism · Rằm tháng Tám",
+        "url": "https://vietnam.travel/things-to-do/festival-event/mid-autumn-festival-0"
+      }
+    ],
+    "mapId": "sugartower",
+    "teacher": "Liên",
+    "dish": "Bánh Trung Thu",
+    "questTitle": "Nối lại chiếc đèn sao",
+    "opening": "Liên mang một chiếc đèn ông sao méo đến góc tiệm. Đứa trẻ chủ chiếc đèn muốn giữ màu giấy cũ. An được nhờ giúp sửa để tối nay cùng rước đèn.",
+    "ending": "Chiếc đèn sáng lại bằng màu đứa trẻ chọn. Liên chia bánh, dành chỗ bên bàn cho cả người vừa tới; câu chuyện mới bắt đầu từ đó.",
+    "steps": [
+      {
+        "prompt": "Một nan khung bị lệch. Liên đưa An giấy màu để chọn.",
+        "choices": [
+          {
+            "label": "Sửa khung cùng Liên, hỏi chủ đèn muốn giữ màu nào",
+            "reply": "Liên: Đây là chiếc đèn của em ấy. Mình giúp em sửa, không chọn thay em.",
+            "advance": true
+          },
+          {
+            "label": "Bỏ chiếc đèn cũ và tự chọn hết",
+            "reply": "Liên: Điều em muốn giữ cũng là một phần câu chuyện của chiếc đèn.",
+            "advance": false
+          }
+        ]
+      },
+      {
+        "prompt": "Đứa trẻ đề nghị trang trí thêm một ngôi sao giấy.",
+        "choices": [
+          {
+            "label": "Đặt giấy sát lửa cho sáng hơn",
+            "reply": "Liên: Giấy rất dễ cháy. Cần cách thắp sáng an toàn và người lớn trông nom.",
+            "advance": false
+          },
+          {
+            "label": "Dán trang trí khi khung đã chắc rồi nhờ người lớn kiểm tra",
+            "reply": "Liên: Mình làm phần giấy trước. Việc đặt nguồn sáng cần có người lớn giúp.",
+            "advance": true
+          }
+        ]
+      },
+      {
+        "prompt": "Đèn đã xong. Trên bàn có bánh nướng và bánh dẻo.",
+        "choices": [
+          {
+            "label": "Chia bánh và mời các bạn cùng đi rước đèn",
+            "reply": "Liên: Đêm hội vui hơn khi ai cũng có phần.",
+            "advance": true
+          },
+          {
+            "label": "Giữ hết bánh để chiếc đèn của mình nổi bật",
+            "reply": "Đứa trẻ: Các bạn còn đang chờ. Mình chia nhau rồi cùng đi nhé.",
+            "advance": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xoe-thai",
+    "unlockStageId": "last-table-3",
+    "title": "Xòe Thái · Vòng tay còn chỗ cho bạn",
+    "englishTitle": "Xòe Thái · A circle with room for you",
+    "region": "Cộng đồng người Thái · Tây Bắc",
+    "englishRegion": "Thái communities · Northwestern Vietnam",
+    "art": "last-table",
+    "memory": "Lả, người khách Thái từ Tây Bắc, mời mọi người ra sân sau bữa cơm. Cô dạy lại điệu xòe mẹ truyền cho mình: ai đến muộn vẫn có chỗ trong vòng tay.",
+    "fact": "Nghệ thuật Xòe là một dấu ấn văn hóa của cộng đồng người Thái ở Tây Bắc Việt Nam. Xòe có nhiều hình thức; xòe vòng là hình thức phổ biến, với người múa cùng tạo vòng và bước theo nhịp. Nghệ thuật này được trao truyền trong gia đình, đội múa và trường học, thể hiện sự đón khách và mong ước cộng đồng hòa thuận. UNESCO ghi danh năm 2021.",
+    "englishFact": "Xòe is an important cultural practice of Thái communities in Northwestern Vietnam. There are several forms; circle xòe is especially popular, with dancers forming a circle and stepping in harmony. Families, dance groups and schools pass it on. It expresses hospitality and wishes for communal harmony. UNESCO inscribed it in 2021.",
+    "sources": [
+      {
+        "label": "UNESCO · Nghệ thuật Xòe Thái",
+        "url": "https://ich.unesco.org/en/RL/art-of-xoe-dance-of-the-tai-people-in-viet-nam-01575"
+      }
+    ],
+    "mapId": "mistwood",
+    "teacher": "Lả",
+    "dish": "Xôi bên bữa cơm",
+    "questTitle": "Vòng tay còn chỗ",
+    "opening": "Sau bữa cơm ở bìa rừng, Lả kể về xòe của cộng đồng người Thái ở Tây Bắc. Cô mời An vào vòng, bắt đầu bằng việc quan sát và nghe người hướng dẫn.",
+    "ending": "Lả mở thêm một khoảng cho người đến muộn. An nhớ tên cộng đồng và người đã chỉ mình, hẹn tiếp tục tìm hiểu ngoài đời.",
+    "steps": [
+      {
+        "prompt": "An chưa biết bước. Lả đang chỉ nhịp cho người mới.",
+        "choices": [
+          {
+            "label": "Quan sát và xin Lả hướng dẫn từ đầu",
+            "reply": "Lả: Cậu cứ học chậm cùng mọi người, không cần vội tỏ ra đã biết.",
+            "advance": true
+          },
+          {
+            "label": "Tự đặt tên điệu múa rồi dạy ngược cho Lả",
+            "reply": "Lả: Mình nên nghe người thực hành trước khi sửa hay gọi tên thay họ.",
+            "advance": false
+          }
+        ]
+      },
+      {
+        "prompt": "Một người đến muộn đứng ngoài vòng.",
+        "choices": [
+          {
+            "label": "Khép vòng để đội hình trông thật hoàn hảo",
+            "reply": "Lả: Cuộc gặp này có chỗ cho người đến sau.",
+            "advance": false
+          },
+          {
+            "label": "Nới vòng, mời người ấy vào theo hướng dẫn của Lả",
+            "reply": "Lả: Vẫn còn chỗ. Chúng mình cùng giữ nhịp cho người mới.",
+            "advance": true
+          }
+        ]
+      },
+      {
+        "prompt": "An muốn ghi lại trang lưu niệm.",
+        "choices": [
+          {
+            "label": "Ghi đây là cuộc gặp hư cấu tìm hiểu xòe Thái Tây Bắc",
+            "reply": "Lả: Đúng, rồi cậu có thể tìm nguồn về cộng đồng thực hành để học thêm.",
+            "advance": true
+          },
+          {
+            "label": "Ghi rằng mọi dân tộc Việt Nam đều múa cùng một điệu",
+            "reply": "Lả: Các cộng đồng có truyền thống khác nhau. Mình gọi đúng tên để tôn trọng sự khác biệt.",
+            "advance": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "family-recipes",
+    "unlockStageId": "living-market-1",
+    "title": "Một món · Nhiều cách nấu",
+    "englishTitle": "One dish, many family recipes",
+    "region": "Căn bếp gia đình · nhiều vùng miền",
+    "englishRegion": "Family kitchens across regions",
+    "art": "living-market",
+    "memory": "An giữ hai bản công thức, ghi rõ người truyền lại thay vì sửa thành một bản duy nhất.",
+    "fact": "Cách chuẩn bị món ăn có thể khác nhau giữa gia đình và vùng miền. Bánh chưng, bánh tét trong dịp Tết có nhiều biến thể về nguyên liệu và cách làm; ghi tên người truyền dạy giúp giữ lại câu chuyện của từng nhà.",
+    "englishFact": "Recipes vary between families and regions. Tết cakes such as bánh chưng and bánh tét have different ingredients and preparations. Recording who taught a recipe helps preserve each household’s story.",
+    "sources": [
+      {
+        "label": "Vietnam Tourism · Tết và sum họp",
+        "url": "https://vietnam.travel/things-to-do/tet-tradition-reunion-taste"
+      }
+    ],
+    "mapId": "ashalley",
+    "teacher": "Bà Sen và người hàng xóm",
+    "dish": "Bánh tét theo công thức gia đình",
+    "questTitle": "Hai trang công thức",
+    "opening": "Giữa khu chợ vừa sáng lại, hai người đưa An hai cách nấu một món. Sổ cũ chỉ chừa một trang. Bà Sen nhờ An tìm cách giữ được cả hai câu chuyện.",
+    "ending": "Hai trang sổ được đặt cạnh nhau, có tên người kể và phần khác biệt. An không cần xóa một nhà để câu chuyện nhà kia được giữ lại.",
+    "steps": [
+      {
+        "prompt": "Hai bản ghi có nguyên liệu khác nhau.",
+        "choices": [
+          {
+            "label": "Hỏi mỗi người đã học cách nấu từ ai",
+            "reply": "Bà Sen: Cháu đang tìm câu chuyện của từng nhà, không phải xử ai thắng ai thua.",
+            "advance": true
+          },
+          {
+            "label": "Chọn bản giống mình rồi bỏ bản còn lại",
+            "reply": "Người hàng xóm: Cách nhà tôi làm cũng có người truyền lại.",
+            "advance": false
+          }
+        ]
+      },
+      {
+        "prompt": "An đã nghe xong và chuẩn bị chép.",
+        "choices": [
+          {
+            "label": "Trộn hai bản thành một và bỏ tên người kể",
+            "reply": "Người hàng xóm: Như vậy sẽ không còn ai biết đâu là cách nhà nào.",
+            "advance": false
+          },
+          {
+            "label": "Ghi riêng từng bản, tên người dạy và phần biến thể",
+            "reply": "Bà Sen: Đọc lại tên giúp bà nhé, rồi chúng ta mới đóng sổ.",
+            "advance": true
+          }
+        ]
+      },
+      {
+        "prompt": "Một người học mới hỏi công thức nào bắt buộc mọi nhà phải theo.",
+        "choices": [
+          {
+            "label": "Giới thiệu cả hai và nói rõ đây là những cách của từng gia đình",
+            "reply": "An: Bạn có thể hỏi người dạy và ghi lại cách mình học, không cần gọi bản còn lại là sai.",
+            "advance": true
+          },
+          {
+            "label": "Công bố sổ này là chuẩn duy nhất của cả Việt Nam",
+            "reply": "Bà Sen: Cuốn sổ của chúng ta không thể thay lời mọi gia đình.",
+            "advance": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "shared-table",
+    "unlockStageId": "rain-harbor-1",
+    "title": "Bữa cơm · Chừa phần cho khách",
+    "englishTitle": "A shared meal, a place for a guest",
+    "region": "Nếp mời cơm · đời sống gia đình",
+    "englishRegion": "Hospitality in everyday family life",
+    "art": "rain-harbor",
+    "memory": "Hải hỏi người khách muốn ăn gì, rồi cùng bà Sen chuẩn bị phần cơm sau cơn mưa.",
+    "fact": "Bữa ăn chung và việc đón người thân, bạn bè là những phần quen thuộc trong đời sống của nhiều gia đình Việt. Dịp Tết làm nổi bật sự sum họp và thăm hỏi; món ăn, cách mời và nếp sinh hoạt có thể khác nhau giữa các nhà.",
+    "englishFact": "Shared meals and welcoming relatives or friends are familiar in many Vietnamese households. Tết highlights reunion and visiting. Food, invitations and household customs vary; no single arrangement represents every family.",
+    "sources": [
+      {
+        "label": "Vietnam Tourism · Tết và sum họp",
+        "url": "https://vietnam.travel/things-to-do/tet-tradition-reunion-taste"
+      }
+    ],
+    "mapId": "lasttable",
+    "teacher": "Bà Sen và Hải",
+    "dish": "Phần cơm sau mưa",
+    "questTitle": "Chừa phần cho khách",
+    "opening": "Mưa đã tạnh nhưng vài người khách còn ở bến. Hải mang gạo vào bếp, bà Sen hỏi An giúp thu xếp một bữa ăn để ai tới cũng có chỗ ngồi.",
+    "ending": "Bữa cơm được dọn theo điều người khách vừa kể. Hải đặt thêm một chiếc ghế, còn An giữ nguyên phần ghi tên người đã cùng nấu.",
+    "steps": [
+      {
+        "prompt": "Khách còn ngại bước vào.",
+        "choices": [
+          {
+            "label": "Mời khách ngồi và hỏi điều họ cần",
+            "reply": "Hải: Mình có thể đưa một lời mời; người được mời vẫn tự chọn nhận hay không.",
+            "advance": true
+          },
+          {
+            "label": "Kéo khách vào bàn dù họ chưa đồng ý",
+            "reply": "Bà Sen: Cứ hỏi trước. Lòng hiếu khách cũng cần biết lắng nghe.",
+            "advance": false
+          }
+        ]
+      },
+      {
+        "prompt": "Có người không dùng được một nguyên liệu trong món chung.",
+        "choices": [
+          {
+            "label": "Bảo khách phải ăn giống mọi người",
+            "reply": "Hải: Mâm cơm chung vẫn có thể chừa chỗ cho nhu cầu khác nhau.",
+            "advance": false
+          },
+          {
+            "label": "Hỏi lại rồi chuẩn bị một phần phù hợp",
+            "reply": "Bà Sen: Cảm ơn cháu đã nhớ. Đón khách là để người ấy có thể cùng ăn.",
+            "advance": true
+          }
+        ]
+      },
+      {
+        "prompt": "Dọn cơm xong, An còn thấy một người đang giúp rửa bát.",
+        "choices": [
+          {
+            "label": "Mời người vừa giúp bếp nhận phần cơm của mình",
+            "reply": "Bà Sen: Đừng quên người đã cùng làm nên bữa ăn.",
+            "advance": true
+          },
+          {
+            "label": "Ghi công chỉ người đứng đầu bàn",
+            "reply": "Hải: Một bữa cơm có công của nhiều bàn tay.",
+            "advance": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "passing-on",
+    "unlockStageId": "tomorrow-table-1",
+    "title": "Truyền nghề · Trang sổ có tên người",
+    "englishTitle": "Passing on a craft, keeping its bearers’ names",
+    "region": "Gia đình và cộng đồng",
+    "englishRegion": "Families and communities",
+    "art": "tomorrow-table",
+    "memory": "Bách để người học tự ghi cách làm, còn người truyền nghề đọc lại trước khi trang sổ được chia sẻ.",
+    "fact": "Việc trao truyền cần cả người dạy, người học và cộng đồng thực hành. Với Bài Chòi, gia đình, câu lạc bộ và trường học đều có vai trò truyền kỹ năng; trong câu chuyện hư cấu của game, nguyên tắc lắng nghe người thực hành được đưa vào việc ghi công thức.",
+    "englishFact": "Transmission involves teachers, learners and practising communities. Bài Chòi skills are passed on in families, clubs and schools. The game’s fictional recipe notebook applies the idea of listening to practitioners and letting them review their own accounts.",
+    "sources": [
+      {
+        "label": "UNESCO · Nghệ thuật Bài Chòi",
+        "url": "https://ich.unesco.org/en/RL/the-art-of-bai-choi-in-central-viet-nam-01222"
+      }
+    ],
+    "mapId": "lasttable",
+    "teacher": "Bách và người học bếp",
+    "dish": "Công thức được trao truyền",
+    "questTitle": "Trang sổ có tên người",
+    "opening": "Bách mở lớp bếp nhỏ sau bữa ăn. Người học đã làm xong phần đầu tiên, nhưng trang ghi chép còn thiếu tên người truyền lại và điều họ muốn giữ.",
+    "ending": "Trang mới có tên người dạy, lời của người học và một khoảng để viết tiếp. Bách để người kể tự giữ bản của mình, không còn ai phải mất tên trong sổ.",
+    "steps": [
+      {
+        "prompt": "Người học muốn mang công thức ra chia sẻ.",
+        "choices": [
+          {
+            "label": "Hỏi người dạy có đồng ý và muốn ghi tên ra sao",
+            "reply": "Bách: Chúng ta hỏi trước rồi cùng quyết định điều muốn kể.",
+            "advance": true
+          },
+          {
+            "label": "Tự ký tên An vì An cầm bút",
+            "reply": "Người học: Người cầm bút không phải người duy nhất làm nên câu chuyện.",
+            "advance": false
+          }
+        ]
+      },
+      {
+        "prompt": "An đã chép lại một bước mình chưa hiểu.",
+        "choices": [
+          {
+            "label": "Tự sửa cho nghe thật huyền bí",
+            "reply": "Bách: Câu chuyện cần rõ nghĩa trước khi cần đẹp lời.",
+            "advance": false
+          },
+          {
+            "label": "Đọc lại cho người dạy xem và xin chỉ phần còn thiếu",
+            "reply": "Bách: Cứ để điều chưa biết thành câu hỏi, rồi tập lại cùng nhau.",
+            "advance": true
+          }
+        ]
+      },
+      {
+        "prompt": "Một em nhỏ muốn học nhưng làm chưa khéo.",
+        "choices": [
+          {
+            "label": "Mời em thử lại, giữ dòng ghi điều em vừa học",
+            "reply": "Bách: Mỗi lần thực hành lại thêm một câu chuyện để viết tiếp.",
+            "advance": true
+          },
+          {
+            "label": "Xóa tên em vì chưa làm giống người lớn",
+            "reply": "An: Sổ mới phải có chỗ cho người đang học, không chỉ người đã giỏi.",
+            "advance": false
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -301,3 +301,5 @@
 
 /* Standalone portraits remain square and fully visible in shallow burst buttons. */
 .rpg-spirit-art[data-portrait-square] .rpg-spirit-image{left:50%;top:0;width:auto;height:100%;transform:translateX(-50%)}
+/* Give the shared book a full navigation row without compressing the brand. */
+@media(max-width:480px) and (min-height:481px){.rpg-header{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;height:auto;min-height:86px;gap:6px;padding-block:6px}.rpg-header>div{display:contents}.rpg-header .rpg-brand{grid-column:1;grid-row:1}.rpg-header>div>.meal-mode-selector{grid-column:1/-1;grid-row:2;justify-content:space-between}.rpg-header>div>button{grid-column:2;grid-row:1;justify-self:end}}

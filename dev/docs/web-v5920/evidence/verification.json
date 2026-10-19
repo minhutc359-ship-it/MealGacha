@@ -1,0 +1,233 @@
+{
+  "engine": "153.0.8010.0",
+  "checks": [
+    {
+      "mode": "tcg",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "tcg",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "tcg",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "tcg",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "adventure",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "adventure",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "adventure",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "adventure",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "adventureIntroCard": "no shrinking or overlap"
+    },
+    {
+      "mode": "autochess",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "autochess",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "autochess",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "autochess",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "chest",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "chest",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "chest",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "chest",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "pvp",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "pvp",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "pvp",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "mode": "pvp",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "globalEntry": true,
+      "fullPage": true,
+      "focus": true,
+      "readOnly": true
+    },
+    {
+      "culture": "load retry, incorrect choice, quota failure/retry, partial resume, completion, official sources, replay without rewards or writes"
+    }
+  ],
+  "errors": [],
+  "missing": []
+}

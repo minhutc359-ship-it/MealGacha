@@ -248,6 +248,7 @@ export interface GameStats {
   crafted: number
 }
 export interface GameSave {
+  cultureJourney?: Record<string, number>
   tcg470?: { giftClaimed: boolean }
   traps450?: { giftClaimed: boolean }
   contentVersion?: 350 | 400 | 450 | 470

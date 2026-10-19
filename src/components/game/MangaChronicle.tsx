@@ -453,11 +453,13 @@ function MangaReader({
 export function MangaIntroduction({
   onClose,
   returnFocus,
+  initialChapter = 0,
 }: {
   onClose: () => void
   returnFocus: HTMLButtonElement | null
+  initialChapter?: number
 }) {
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(initialChapter)
   return (
     <MangaReader
       key={index}

@@ -1,4 +1,5 @@
 import { TRAP_PACK } from "./trapCards"
+import { advanceCulture } from "./culture"
 import { validLivingDecision, LIVING_CHOICES, type LivingChapter, type LivingDecision } from "./livingChoices"
 import { create } from "zustand"
 import { V4_CARDS } from "./v4Cards"
@@ -48,6 +49,7 @@ import { reduceRpg } from "./adventureRpg/engine"
 import type { RpgAction } from "./adventureRpg/types"
 
 interface Store {
+  cultureStep(id: string, step: number): boolean
   autoAction(action: AutoAction): boolean
   rpgAction(action: RpgAction): boolean
   flushRpg(): void
@@ -108,6 +110,10 @@ export const useGameStore = create<Store>((set, get) => {
     save: loadGame(),
     notice: null,
     presentation: null,
+    cultureStep(id, step) {
+      const save = get().save, next = advanceCulture(save, id, step)
+      return next !== save && commit(next)
+    },
     autoAction(action) {
       const save = current(), result = reduceAuto(save.autoChess, action)
       if (result.error) { set({ notice: result.error }); return false }
