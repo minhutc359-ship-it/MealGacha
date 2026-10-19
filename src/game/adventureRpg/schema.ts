@@ -72,6 +72,7 @@ const actor = z.object({
   hp: combatHp,
   maxHp: combatHp.min(1),
   attack: bounded.min(1),
+  range: z.number().int().min(1).max(4).optional(),
   armor: bounded,
   energy: bounded.max(100),
   shield: combatHp,

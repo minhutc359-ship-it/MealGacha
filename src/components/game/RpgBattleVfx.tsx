@@ -10,6 +10,7 @@ import { awakenedKit } from "../../game/adventureRpg/awakening";
 import { useEffect, useRef } from "react";
 import { drawChannel, drawProjectile, drawImpact, type VfxKind } from "../../game/battleVfx";
 import { actorAnchor } from "../../game/adventureRpg/formationLayout";
+import { rpgAttackRange } from "../../game/adventureRpg/attackRange";
 import { spiritKit } from "../../game/adventureRpg/skills";
 import type { RpgActor, RpgBattle, RpgEvent, RpgRole } from "../../game/adventureRpg/types";
 import { ELEMENTAL_IMPACTS } from "../../game/visualPack";
@@ -29,7 +30,7 @@ function effectKind(c: Cue, target: RpgActor): VfxKind {
     if (c.event.animation === "support")
         return c.actor.school === "tide" ? "summon" : c.actor.school === "grove" ? "heal" : c.actor.school === "hearth" ? "shield" : "projectile";
     if (c.event.animation === "attack")
-        return c.actor.role === "mage" ? "projectile" : "slash";
+        return rpgAttackRange(c.actor) <= 1 ? "slash" : "projectile";
     if (target.side === c.actor.side)
         return c.actor.role === "healer" || c.actor.style === "mender" || c.actor.school === "grove" ? "heal" : "shield";
     return c.actor.role === "striker" || c.actor.style === "raider" ? "slash" : c.actor.role === "trickster" || c.actor.style === "hexer" ? "shatter" : "wave";
@@ -144,7 +145,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                 }
                 for(const target of c.targets.slice(0,low?3:5)) {
                     const p=point(target),kind=effectKind(c,target);
-                    if(age>80 && age<contact && target.side!==c.actor.side) {
+                    if(age>80 && age<contact && target.side!==c.actor.side && kind!=="slash") {
                         const t=(age-80)/(contact-80);
                         drawProjectile(ctx,source,p,c.event.school,t,extent*.22,low,kind);
                     }
