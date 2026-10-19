@@ -62,6 +62,41 @@ export interface MangaBook extends MangaSupplement {
   editions: Record<string, readonly MangaPage[]>
 }
 
+export interface MangaImagePage extends MangaBeat {
+  id: string
+  image: string
+  size: readonly [number, number]
+  fullPage: true
+}
+export type MangaReaderPage = MangaPage | MangaImagePage
+export interface MangaReaderBook {
+  editions: Record<string, readonly MangaReaderPage[]>
+  extraImage?: string
+}
+
+export const INTRO_MANGA_CHAPTERS: readonly MangaChapterInfo[] = [
+  {
+    id: "origin",
+    title: "Khi ký ức có hình hài",
+    image: "/assets/intro-manga5918/origin-1.webp",
+  },
+  {
+    id: "cards",
+    title: "Lá bài mở lối",
+    image: "/assets/intro-manga5918/cards-1.webp",
+  },
+  {
+    id: "formation",
+    title: "Trước tiếng gọi xuất trận",
+    image: "/assets/intro-manga5918/formation-1.webp",
+  },
+  {
+    id: "journey",
+    title: "Con đường có bạn đồng hành",
+    image: "/assets/intro-manga5918/journey-1.webp",
+  },
+]
+
 export function mangaEdition(
   track: MangaTrack,
   chapterId: string,

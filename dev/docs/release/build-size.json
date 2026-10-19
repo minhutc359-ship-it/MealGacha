@@ -2,21 +2,21 @@
   "staticBudgetBytes": 320000000,
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
-  "version": "5.9.17",
-  "bytes": 156768380,
-  "files": 796,
+  "version": "5.9.18",
+  "bytes": 164117230,
+  "files": 812,
   "byType": {
     "js": {
       "files": 39,
-      "bytes": 2101535
+      "bytes": 2104540
     },
     "css": {
       "files": 4,
-      "bytes": 509171
+      "bytes": 510398
     },
     "webp": {
-      "files": 558,
-      "bytes": 142335090
+      "files": 570,
+      "bytes": 149671760
     },
     "png": {
       "files": 3,
@@ -27,8 +27,8 @@
       "bytes": 285956
     },
     "json": {
-      "files": 18,
-      "bytes": 396184
+      "files": 22,
+      "bytes": 404132
     },
     "mp3": {
       "files": 152,
@@ -56,19 +56,19 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2610706,
+    "Application JS/CSS": 2614938,
     "Auto chess art/audio": 4025282,
     "Brand": 229534,
     "Shared character atlases": 69564684,
     "Event art": 2016822,
-    "Other and legal": 34076476,
+    "Other and legal": 41421094,
     "Food art": 7490462,
     "Adventure presentation art": 1400332,
     "Spirit RPG art/audio/video": 17336030,
     "TCG art/audio": 18018052
   },
-  "js_gzip": 672420,
-  "css_gzip": 104404,
+  "js_gzip": 673509,
+  "css_gzip": 104714,
   "largest": [
     {
       "path": "assets/rpg/campaign580/campaignB.webp",
@@ -79,8 +79,8 @@
       "bytes": 2153792
     },
     {
-      "path": "assets/rpg-presentation-9k-uOSim.js",
-      "bytes": 1132117
+      "path": "assets/rpg-presentation-C0QUGc1A.js",
+      "bytes": 1134886
     },
     {
       "path": "assets/characters/rosterB.webp",
@@ -121,19 +121,19 @@
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 2909413,
+    "bytes": 2913645,
     "urls": 57,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 9090587
+    "remainingBytes": 9086355
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 163231620
+    "remainingBytes": 155882770
   }
 }

@@ -842,3 +842,4 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .native-app .tcg-dialog {max-height:calc(100dvh - var(--safe-area-inset-top,env(safe-area-inset-top)) - var(--safe-area-inset-bottom,env(safe-area-inset-bottom)) - 24px)}
 
 .chest-play-guide{width:min(700px,calc(100% - 28px));margin:8px auto 12px;padding:10px 14px;border:1px solid #b8a16440;border-radius:8px;background:#15313a;color:#d4dcc7;font-size:12px}.chest-play-guide summary{cursor:pointer;min-height:28px;line-height:28px;color:#efd598}.chest-play-guide p{line-height:1.7;margin:10px 0}.chest-play-guide .meal-mode-intro-button{margin-bottom:6px}
+.meal-intro-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px}.meal-intro-actions .meal-mode-intro-button{white-space:normal;text-align:center;line-height:1.5}
