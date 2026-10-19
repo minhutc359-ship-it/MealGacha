@@ -1,0 +1,39 @@
+{
+  "version": "5.9.24",
+  "date": "2026-10-19",
+  "unit": {"passed": 795, "files": 81},
+  "typecheckApp": true,
+  "typecheckDev": true,
+  "nodeGuards": 4,
+  "catalog": {"foods": 123, "tags": 35, "events": 9},
+  "assets": {"validatedReferences": 137, "missing": 0, "registered": 786},
+  "runtimeDependencies": 32,
+  "physicalNewPoses": 192,
+  "customVfxFrames": 0,
+  "schoolAtlasFallback": true,
+  "existingManifestsUnchanged": 77,
+  "modelAudit": {"total": 139, "produced": 83, "portraitOnly": 52, "legacyAnimated": 4},
+  "build": {
+    "bytes": 182042811,
+    "files": 863,
+    "js_gzip": 674765,
+    "css_gzip": 107187,
+    "jsGzipBudgetBytes": 675000,
+    "staticBudgetBytes": 320000000,
+    "offlineShellBytes": 2924362,
+    "offlineShellBudgetBytes": 12000000
+  },
+  "addedBytesSince5923": 4592417,
+  "browserAutomation": {
+    "attempted": true,
+    "completed": false,
+    "blocker": "Playwright library is available but no Chromium/WebKit executable is installed in the runtime"
+  },
+  "screenshotsCommitted": false,
+  "scope": "Web only; models and manifest wiring; no gameplay or save changes; no merge",
+  "limits": [
+    "Browser visual QA awaits CI/preview or a runtime with a browser executable",
+    "Physical Safari/iPhone and sustained device FPS/RAM/thermal are not certified",
+    "Existing 13 rights-evidence items remain; non-commercial rights check exits successfully"
+  ]
+}

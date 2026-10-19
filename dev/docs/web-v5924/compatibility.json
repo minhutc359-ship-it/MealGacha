@@ -1,0 +1,16 @@
+{
+  "baselineCommit": "f9d39257d17b4dd378a2fbd2a9f936724754fc16",
+  "existingManifests": 77,
+  "comparedFields": "all recursively, including portrait, atlas, effect, anchors, timing, sound, IDs and reduced pose",
+  "allExistingManifestsUnchanged": true,
+  "baselineSha256": "af4427770dcc0faef7939a8bb574dd06417f915aa164d606a8cbe392dcde37ba",
+  "newIds": [
+    "shoyu-ramen",
+    "unagi-don",
+    "omakase",
+    "tonkotsu-ramen",
+    "takoyaki",
+    "okonomiyaki"
+  ],
+  "currentCount": 83
+}

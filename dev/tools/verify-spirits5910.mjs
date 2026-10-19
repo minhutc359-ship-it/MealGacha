@@ -5,6 +5,8 @@ const { chromium, webkit } = await import(
   process.env.PLAYWRIGHT_MODULE ?? "playwright"
 )
 const cohorts = {
+  "5924a": {root: "japan5924", ids: ["shoyu-ramen","unagi-don","omakase","tonkotsu-ramen"]},
+  "5924b": {root: "japan5924", ids: ["takoyaki","okonomiyaki","shoyu-ramen","omakase"]},
   "5923a": {root: "korea5923", ids: ["samgyeopsal","hanwoo-bbq","korean-fried-chicken","bingsu"]},
   "5923b": {root: "korea5923", ids: ["jjajangmyeon","kimchi-jjigae","samgyeopsal","bingsu"]},
   "5910": {root: "regional5910", ids: ["banh-tet", "bun-bo-hue", "bun-ca", "che-buoi"]},
