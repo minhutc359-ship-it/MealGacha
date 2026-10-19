@@ -83,37 +83,47 @@ const VISUAL_ROWS = {
   "bingsu": [3,"Bạch Lộc Tử Hoa","none","#c8b3ed",1720,760,820,1200,52,0.74,0.43],
   "jjajangmyeon": [4,"Huyền Long Thanh Đăng","none","#77d5d7",1600,740,800,1140,64,0.76,0.47],
   "kimchi-jjigae": [5,"Xích Hồ Hỏa Đăng","none","#eda36a",1420,640,720,1040,65,0.77,0.46],
+  "shoyu-ramen": [-1,"Hồ ly cam","none","#ef9b4b",1460,660,760,1080,33,0.77,0.42],
+  "unagi-don": [-1,"Thỏ trắng","none","#ead5df",1420,640,740,1060,34,0.76,0.4],
+  "omakase": [-1,"Sư tử trắng","none","#efc879",1600,760,840,1160,35,0.75,0.39],
+  "tonkotsu-ramen": [-1,"Hạc mào đỏ","none","#78d5df",1560,720,800,1120,53,0.78,0.42],
+  "takoyaki": [-1,"Hổ cam","none","#e69551",1520,700,780,1080,70,0.77,0.45],
+  "okonomiyaki": [-1,"Cá koi đỏ","none","#ee7358",1500,680,760,1060,71,0.76,0.4],
 } as const satisfies Record<string, VisualRow>
 
+const VISUAL_IDS = Object.keys(VISUAL_ROWS) as (keyof typeof VISUAL_ROWS)[]
 export const CHEF_IDS = ["chef-bach","chef-nhien","chef-moc","chef-hai","chef-lien"] as const
 export type ChefId = typeof CHEF_IDS[number]
 export const CHEF_EXPRESSIONS = ["neutral","joy","resolve","concern","surprise","tender"] as const
 export type ChefExpression = typeof CHEF_EXPRESSIONS[number]
 export const CHEF_ASSET_ROOT = "/assets/characters/chefs593"
-export const FAMILIAR_IDS = ["bun-cha","bun-rieu","banh-xeo","com-ga"] as const
+// Production cohorts are contiguous in VISUAL_ROWS; slicing avoids a second copy of every ID in the client bundle.
+export const FAMILIAR_IDS = VISUAL_IDS.slice(11,15)
 export const FAMILIAR_ASSET_ROOT = "/assets/characters/familiar594"
-export const RARE_IDS = ["banh-chung","cha-ca-la-vong","bun-thang","banh-com-hang-than"] as const
+export const RARE_IDS = VISUAL_IDS.slice(15,19)
 export const RARE_ASSET_ROOT = "/assets/characters/rare595"
-export const RARE_SECOND_IDS = ["com-lang-vong","ca-phe-trung","thit-kho-trung","cha-ruoi"] as const
+export const RARE_SECOND_IDS = VISUAL_IDS.slice(19,23)
 export const RARE_SECOND_ASSET_ROOT = "/assets/characters/rare596"
-export const REGIONAL_IDS = ["banh-tet","bun-bo-hue","bun-ca","che-buoi"] as const
+export const REGIONAL_IDS = VISUAL_IDS.slice(23,27)
 export const REGIONAL_ASSET_ROOT = "/assets/characters/regional5910"
-export const SPRING_CARAVAN_IDS = ["xoi-xeo","dua-hanh","caravan-herbalist","caravan-gardener"] as const
+export const SPRING_CARAVAN_IDS = VISUAL_IDS.slice(27,31)
 export const SPRING_CARAVAN_ASSET_ROOT = "/assets/characters/spring5911"
-export const VIETNAM_IDS = ["pho-ga","chao-suon","mien-ga","bun-moc","banh-da-cua","bun-dau","com-rang-dua-bo","com-nieu"] as const
+export const VIETNAM_IDS = VISUAL_IDS.slice(31,39)
 export const VIETNAM_ASSET_ROOT = "/assets/characters/vietnam5912"
-export const AUTOCHESS_CORE_IDS = ["banh-dau-xanh","banh-khuc","banh-can","banh-tom-ho-tay","com-hen","che-lam","chao-luon","banh-it-la-gai","banh-ram-it","keo-cu-do"] as const
+export const AUTOCHESS_CORE_IDS = VISUAL_IDS.slice(39,49)
 export const AUTOCHESS_CORE_ASSET_ROOT = "/assets/characters/autochess5913"
-export const TCG_CLASSIC_IDS = ["mi-van-than","mi-cay","ga-ran","pizza","pasta","sushi","tokbokki","lau-thai"] as const
+export const TCG_CLASSIC_IDS = VISUAL_IDS.slice(49,57)
 export const TCG_CLASSIC_ASSET_ROOT = "/assets/characters/tcg5914"
-export const PRIORITY_SPIRIT_IDS = ["lau-rieu-cua","nuong-bbq","vit-quay","bibimbap"] as const
+export const PRIORITY_SPIRIT_IDS = VISUAL_IDS.slice(57,61)
 export const PRIORITY_SPIRIT_ASSET_ROOT = "/assets/characters/spirits5917"
-export const VIET_FEAST_IDS = ["canh-mang-mien","gio-xao","thit-dong","che-khuc-bach"] as const
+export const VIET_FEAST_IDS = VISUAL_IDS.slice(61,65)
 export const VIET_FEAST_ASSET_ROOT = "/assets/characters/spirits5921"
-export const NORTHWEST_SPIRIT_IDS = ["banner-tay-bac-goi-rau-don","banner-tay-bac-com-lam","banner-tay-bac-thang-co","banner-tay-bac-thit-trau-gac-bep","banner-tay-bac-ga-nuong-mac-khen","banner-tay-bac-xoi-ngu-sac"] as const
+export const NORTHWEST_SPIRIT_IDS = VISUAL_IDS.slice(65,71)
 export const NORTHWEST_SPIRIT_ASSET_ROOT = "/assets/characters/northwest5922"
-export const KOREA_SPIRIT_IDS = ["samgyeopsal","hanwoo-bbq","korean-fried-chicken","bingsu","jjajangmyeon","kimchi-jjigae"] as const
+export const KOREA_SPIRIT_IDS = VISUAL_IDS.slice(71,77)
 export const KOREA_SPIRIT_ASSET_ROOT = "/assets/characters/korea5923"
+export const JAPAN_SPIRIT_IDS = VISUAL_IDS.slice(77)
+export const JAPAN_SPIRIT_ASSET_ROOT = "/assets/characters/japan5924"
 export type VisualCharacterId = keyof typeof VISUAL_ROWS
 export const VISUAL_CONTACT = { attack: 300, cast: 380, ultimate: 960, tcg: 560 } as const
 export const ULTIMATE_TIMELINE = {
@@ -122,7 +132,7 @@ export const ULTIMATE_TIMELINE = {
 } as const
 export const STARTER_ASSET_ROOT = "/assets/characters/starters590"
 const ASSET_GROUPS: ReadonlyArray<readonly [readonly string[],string]> = [
-  [KOREA_SPIRIT_IDS,KOREA_SPIRIT_ASSET_ROOT], [CHEF_IDS,CHEF_ASSET_ROOT], [FAMILIAR_IDS,FAMILIAR_ASSET_ROOT],
+  [JAPAN_SPIRIT_IDS,JAPAN_SPIRIT_ASSET_ROOT], [KOREA_SPIRIT_IDS,KOREA_SPIRIT_ASSET_ROOT], [CHEF_IDS,CHEF_ASSET_ROOT], [FAMILIAR_IDS,FAMILIAR_ASSET_ROOT],
   [RARE_IDS,RARE_ASSET_ROOT], [RARE_SECOND_IDS,RARE_SECOND_ASSET_ROOT],
   [REGIONAL_IDS,REGIONAL_ASSET_ROOT], [SPRING_CARAVAN_IDS,SPRING_CARAVAN_ASSET_ROOT],
   [VIETNAM_IDS,VIETNAM_ASSET_ROOT], [AUTOCHESS_CORE_IDS,AUTOCHESS_CORE_ASSET_ROOT],
@@ -157,6 +167,6 @@ export const CHARACTER_VISUALS = Object.fromEntries(
 ) as Record<VisualCharacterId, ReturnType<typeof manifest>>
 export function characterVisual(id: string) {
   if (id === "goi-cuon") id = "goi-cuon-tom-thit"
-  return Object.prototype.hasOwnProperty.call(CHARACTER_VISUALS, id)
-    ? CHARACTER_VISUALS[id as VisualCharacterId] : undefined
+  const visual = CHARACTER_VISUALS[id as VisualCharacterId]
+  return visual?.id === id ? visual : undefined
 }

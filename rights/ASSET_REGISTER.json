@@ -1,5 +1,5 @@
 {
-  "version": "5.9.23",
+  "version": "5.9.24",
   "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -1625,6 +1625,150 @@
         "dev/docs/web-v594/actions.json",
         "dev/tools/pack-starters590.py",
         "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/okonomiyaki-pixel.webp",
+      "bytes": 128700,
+      "sha256": "dbaaf11a45bcf7ede5b5759f6c274a2fc67179f1860a18cc96e3e320b7272554",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/okonomiyaki.webp",
+      "bytes": 673490,
+      "sha256": "5bf909bbd15dbf48fa770e19f0b700cfea7cd29be66e0475c8ac10cb8952de31",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/omakase-pixel.webp",
+      "bytes": 112756,
+      "sha256": "41cc8639f88391a841870ec4987e87888a0e307373e384f23e19fdd04f8f6693",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/omakase.webp",
+      "bytes": 616298,
+      "sha256": "6b7f50aa6c87208f066ea0f945c5dd68ae0a90b550101e2ec0c6c7ba5beb368c",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/shoyu-ramen-pixel.webp",
+      "bytes": 115976,
+      "sha256": "02773796a29906d11ba17ef46063654a467abd8ea2dde1c881799e350f099940",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/shoyu-ramen.webp",
+      "bytes": 584726,
+      "sha256": "ecd518f2f5feea70dd5cf8ceed90137b52ebe7a07fc099c25e516fff056ae631",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/takoyaki-pixel.webp",
+      "bytes": 144452,
+      "sha256": "f50d9a045995ec62ebe371b221f74b5c4021d6816bdf8b3f7a2763248bd44aab",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/takoyaki.webp",
+      "bytes": 720696,
+      "sha256": "598a0dcfab4144681c082c33e83a501cfe3cf74f3e1a177e61901078c72f7da4",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/tonkotsu-ramen-pixel.webp",
+      "bytes": 119594,
+      "sha256": "4c6eaf93f3bc210d6f66960f7b538b371b9311190b9f18d6e4c9c0ec4e4665ba",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/tonkotsu-ramen.webp",
+      "bytes": 699096,
+      "sha256": "548e5788cdf4db9a373ec3a350edc7a6b3a198703ee3b1684adad548d48d2efa",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/unagi-don-pixel.webp",
+      "bytes": 102738,
+      "sha256": "b2f7d48411e3bf5d765580019003ea1910292d5fecdb99cdf1c6df27b4339a11",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/japan5924/unagi-don.webp",
+      "bytes": 574148,
+      "sha256": "a865f05ed2bb9015cc1e11ade1784db9127136adb640ddd00787837d1ff64848",
+      "origin": "Original AI-assisted identity-preserving six Japanese spirit HD/pixel pose atlases from immutable project portraits using built-in Imagegen; portraits reused unchanged and character-specific VFX intentionally deferred to the shared school fallback",
+      "evidence": [
+        "dev/docs/web-v5924/asset-provenance.json",
+        "dev/docs/web-v5924/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

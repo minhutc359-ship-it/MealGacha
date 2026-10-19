@@ -26,7 +26,7 @@ describe("visual production manifest", () => {
   it("keeps the five saved starter IDs and adds Xôi only to visual production", () => {
     const g=newGame(),s=newRpgSave(g)
     expect(s.formation.map(uid=>s.roster.find(h=>h.uid===uid)!.cardId)).toEqual(STARTER_CHARACTER_IDS)
-    expect(visualCount).toBe(77)
+    expect(visualCount).toBe(83)
     expect(characterVisual("goi-cuon")).toBe(characterVisual("goi-cuon-tom-thit"))
     expect(characterVisual("xoi")!.species).toBe("Gấu Nếp Mới")
     expect(characterVisual("classic-burger")).toBeUndefined()
@@ -62,7 +62,7 @@ describe("visual production manifest", () => {
       expect(starterPose(id,"cast",v.contact.cast,false,v.contact.cast)).toBe(14)
       expect(starterPose(id,"fall",3000,true)).toBe(27)
     }
-    expect(effects.size).toBe(visualCount)
+    expect(effects.size).toBe(Object.values(CHARACTER_VISUALS).filter(v=>v.effect || v.signature !== "none").length)
     expect(models.size).toBe(visualCount);expect(TCG_IMPACT_MS).toBe(VISUAL_CONTACT.tcg)
   })
   it("binds presentation deltas to their own source/tick, including multi-hit ultimates", () => {

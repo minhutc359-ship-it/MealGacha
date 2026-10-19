@@ -1,0 +1,1664 @@
+[
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 1,
+      "columns": 4,
+      "sha256": "bacc5bf57479298d97e8e8bb1fd43a6da95f28117fa2e5b53dda7f3b1baf6d8e"
+    },
+    "id": "shoyu-ramen",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "309ae3b524ced66eab615616e07cc8c69aa3cda15557a792203557a3f2989862",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            13,
+            18,
+            314,
+            319
+          ],
+          [
+            341,
+            18,
+            624,
+            316
+          ],
+          [
+            648,
+            24,
+            925,
+            320
+          ],
+          [
+            955,
+            30,
+            1239,
+            319
+          ],
+          [
+            19,
+            339,
+            311,
+            610
+          ],
+          [
+            344,
+            344,
+            638,
+            607
+          ],
+          [
+            649,
+            348,
+            945,
+            612
+          ],
+          [
+            961,
+            346,
+            1246,
+            608
+          ],
+          [
+            11,
+            650,
+            324,
+            898
+          ],
+          [
+            324,
+            615,
+            601,
+            900
+          ],
+          [
+            614,
+            645,
+            982,
+            899
+          ],
+          [
+            983,
+            626,
+            1248,
+            900
+          ],
+          [
+            12,
+            923,
+            297,
+            1208
+          ],
+          [
+            311,
+            926,
+            601,
+            1207
+          ],
+          [
+            612,
+            923,
+            1006,
+            1205
+          ],
+          [
+            939,
+            920,
+            1250,
+            1206
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent combat sheet: idle, walk, attack and cast for the orange kitsune with black curled ornaments, moon staff and cream tails."
+      },
+      {
+        "sheet": "support",
+        "sha256": "2d110154ba25f6ec777c2ad4ec2ffd7a346eb3985273a20993b4b2816582c111",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            16,
+            27,
+            302,
+            315
+          ],
+          [
+            335,
+            39,
+            603,
+            316
+          ],
+          [
+            622,
+            19,
+            971,
+            318
+          ],
+          [
+            937,
+            34,
+            1239,
+            315
+          ],
+          [
+            19,
+            356,
+            328,
+            630
+          ],
+          [
+            313,
+            349,
+            636,
+            630
+          ],
+          [
+            653,
+            344,
+            972,
+            626
+          ],
+          [
+            941,
+            352,
+            1236,
+            625
+          ],
+          [
+            25,
+            658,
+            285,
+            910
+          ],
+          [
+            324,
+            638,
+            594,
+            897
+          ],
+          [
+            630,
+            713,
+            939,
+            908
+          ],
+          [
+            939,
+            761,
+            1249,
+            901
+          ],
+          [
+            32,
+            939,
+            295,
+            1220
+          ],
+          [
+            328,
+            920,
+            619,
+            1225
+          ],
+          [
+            643,
+            928,
+            923,
+            1232
+          ],
+          [
+            968,
+            939,
+            1226,
+            1224
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent support sheet: ultimate, hit, fall and victory for the orange moon-staff kitsune; regenerated with strict transparent gutters between cells."
+      }
+    ],
+    "uniformScale": 0.5685279187817259,
+    "outputs": {
+      "shoyu-ramen-pixel.webp": {
+        "bytes": 115976,
+        "sha256": "02773796a29906d11ba17ef46063654a467abd8ea2dde1c881799e350f099940"
+      },
+      "shoyu-ramen.webp": {
+        "bytes": 584726,
+        "sha256": "ecd518f2f5feea70dd5cf8ceed90137b52ebe7a07fc099c25e516fff056ae631"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 2,
+      "columns": 4,
+      "sha256": "bacc5bf57479298d97e8e8bb1fd43a6da95f28117fa2e5b53dda7f3b1baf6d8e"
+    },
+    "id": "unagi-don",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "f8fe5193f38c5a954f07f85fc18c1ab5cca24968f4ce92c3ccfc902026b73e51",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            20,
+            0,
+            291,
+            313
+          ],
+          [
+            336,
+            4,
+            592,
+            313
+          ],
+          [
+            644,
+            0,
+            914,
+            312
+          ],
+          [
+            966,
+            2,
+            1246,
+            313
+          ],
+          [
+            21,
+            316,
+            284,
+            617
+          ],
+          [
+            333,
+            321,
+            585,
+            619
+          ],
+          [
+            647,
+            322,
+            913,
+            620
+          ],
+          [
+            960,
+            319,
+            1217,
+            615
+          ],
+          [
+            22,
+            640,
+            306,
+            923
+          ],
+          [
+            331,
+            630,
+            636,
+            923
+          ],
+          [
+            630,
+            645,
+            1005,
+            918
+          ],
+          [
+            985,
+            631,
+            1230,
+            923
+          ],
+          [
+            22,
+            935,
+            296,
+            1227
+          ],
+          [
+            311,
+            930,
+            576,
+            1226
+          ],
+          [
+            572,
+            955,
+            997,
+            1226
+          ],
+          [
+            966,
+            935,
+            1232,
+            1231
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent combat sheet: idle, walk, attack and cast for the white moon rabbit in red-black-gold kimono."
+      },
+      {
+        "sheet": "support",
+        "sha256": "21ca2465ae9e9bd1172eaaea096db79e955f550e3d57317997720996f6d1a2b4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            9,
+            21,
+            314,
+            314
+          ],
+          [
+            314,
+            17,
+            625,
+            314
+          ],
+          [
+            627,
+            32,
+            940,
+            314
+          ],
+          [
+            940,
+            19,
+            1244,
+            314
+          ],
+          [
+            17,
+            314,
+            301,
+            626
+          ],
+          [
+            321,
+            314,
+            616,
+            625
+          ],
+          [
+            607,
+            314,
+            937,
+            627
+          ],
+          [
+            948,
+            314,
+            1247,
+            627
+          ],
+          [
+            30,
+            631,
+            283,
+            905
+          ],
+          [
+            318,
+            635,
+            615,
+            903
+          ],
+          [
+            609,
+            704,
+            931,
+            904
+          ],
+          [
+            933,
+            781,
+            1252,
+            912
+          ],
+          [
+            13,
+            916,
+            298,
+            1231
+          ],
+          [
+            320,
+            911,
+            623,
+            1228
+          ],
+          [
+            634,
+            912,
+            936,
+            1231
+          ],
+          [
+            959,
+            917,
+            1245,
+            1234
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent support sheet: ultimate, hit, fall and victory for the white moon rabbit."
+      }
+    ],
+    "uniformScale": 0.5270588235294118,
+    "outputs": {
+      "unagi-don-pixel.webp": {
+        "bytes": 102738,
+        "sha256": "b2f7d48411e3bf5d765580019003ea1910292d5fecdb99cdf1c6df27b4339a11"
+      },
+      "unagi-don.webp": {
+        "bytes": 574148,
+        "sha256": "a865f05ed2bb9015cc1e11ade1784db9127136adb640ddd00787837d1ff64848"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 3,
+      "columns": 4,
+      "sha256": "bacc5bf57479298d97e8e8bb1fd43a6da95f28117fa2e5b53dda7f3b1baf6d8e"
+    },
+    "id": "omakase",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "d07789b0c05438c7b9dd89c086ef33e410f4704a8efb18e64656fe7227c02573",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            23,
+            15,
+            304,
+            318
+          ],
+          [
+            321,
+            17,
+            593,
+            317
+          ],
+          [
+            644,
+            17,
+            916,
+            319
+          ],
+          [
+            933,
+            17,
+            1223,
+            320
+          ],
+          [
+            23,
+            330,
+            319,
+            613
+          ],
+          [
+            336,
+            331,
+            638,
+            617
+          ],
+          [
+            641,
+            335,
+            944,
+            617
+          ],
+          [
+            961,
+            333,
+            1240,
+            617
+          ],
+          [
+            10,
+            662,
+            317,
+            919
+          ],
+          [
+            314,
+            630,
+            627,
+            916
+          ],
+          [
+            627,
+            658,
+            940,
+            916
+          ],
+          [
+            940,
+            666,
+            1238,
+            919
+          ],
+          [
+            15,
+            942,
+            285,
+            1228
+          ],
+          [
+            295,
+            950,
+            560,
+            1230
+          ],
+          [
+            557,
+            944,
+            970,
+            1225
+          ],
+          [
+            981,
+            941,
+            1238,
+            1232
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent combat sheet: idle, walk, attack and cast for the regal white lion with antler crown and sun staff."
+      },
+      {
+        "sheet": "support",
+        "sha256": "8f97c60d341af22b5d814e4ceec496fd7082b010632edcf97982f13846424ca7",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            11,
+            5,
+            286,
+            332
+          ],
+          [
+            292,
+            8,
+            610,
+            332
+          ],
+          [
+            607,
+            7,
+            999,
+            331
+          ],
+          [
+            932,
+            23,
+            1243,
+            331
+          ],
+          [
+            14,
+            340,
+            317,
+            627
+          ],
+          [
+            322,
+            340,
+            643,
+            627
+          ],
+          [
+            620,
+            366,
+            962,
+            627
+          ],
+          [
+            959,
+            349,
+            1227,
+            624
+          ],
+          [
+            21,
+            634,
+            318,
+            907
+          ],
+          [
+            319,
+            625,
+            587,
+            902
+          ],
+          [
+            606,
+            716,
+            939,
+            965
+          ],
+          [
+            907,
+            781,
+            1243,
+            907
+          ],
+          [
+            18,
+            923,
+            298,
+            1225
+          ],
+          [
+            316,
+            896,
+            614,
+            1232
+          ],
+          [
+            633,
+            913,
+            960,
+            1234
+          ],
+          [
+            970,
+            917,
+            1229,
+            1228
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent support sheet: ultimate, hit, fall and victory for the regal white lion."
+      }
+    ],
+    "uniformScale": 0.5423728813559322,
+    "outputs": {
+      "omakase-pixel.webp": {
+        "bytes": 112756,
+        "sha256": "41cc8639f88391a841870ec4987e87888a0e307373e384f23e19fdd04f8f6693"
+      },
+      "omakase.webp": {
+        "bytes": 616298,
+        "sha256": "6b7f50aa6c87208f066ea0f945c5dd68ae0a90b550101e2ec0c6c7ba5beb368c"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 5,
+      "columns": 4,
+      "sha256": "33b370606ef7be4d708d4211dee46826f9ca09db770f701265c5bb973371cc2a"
+    },
+    "id": "tonkotsu-ramen",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "4a74c50e277d2c9449876e0051789f6c1fc383c605dead2eb061dbd5e82701e8",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            20,
+            15,
+            304,
+            306
+          ],
+          [
+            326,
+            14,
+            603,
+            308
+          ],
+          [
+            623,
+            26,
+            925,
+            307
+          ],
+          [
+            945,
+            52,
+            1224,
+            307
+          ],
+          [
+            14,
+            334,
+            301,
+            618
+          ],
+          [
+            335,
+            334,
+            612,
+            619
+          ],
+          [
+            640,
+            338,
+            916,
+            618
+          ],
+          [
+            947,
+            334,
+            1236,
+            618
+          ],
+          [
+            11,
+            664,
+            303,
+            918
+          ],
+          [
+            315,
+            634,
+            623,
+            921
+          ],
+          [
+            628,
+            635,
+            938,
+            920
+          ],
+          [
+            950,
+            648,
+            1238,
+            923
+          ],
+          [
+            22,
+            934,
+            310,
+            1237
+          ],
+          [
+            324,
+            938,
+            615,
+            1235
+          ],
+          [
+            633,
+            935,
+            940,
+            1235
+          ],
+          [
+            948,
+            947,
+            1234,
+            1237
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent combat sheet: idle, walk, attack and cast for the red-crowned crane with aqua robes and crystal wave shield."
+      },
+      {
+        "sheet": "support",
+        "sha256": "2ad98ef73dd726c56b4093fc147baf2703a2ce963151e096b4808ef8b86b6fb9",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            11,
+            23,
+            313,
+            321
+          ],
+          [
+            312,
+            15,
+            619,
+            322
+          ],
+          [
+            624,
+            37,
+            1008,
+            317
+          ],
+          [
+            956,
+            21,
+            1248,
+            319
+          ],
+          [
+            14,
+            348,
+            300,
+            632
+          ],
+          [
+            320,
+            348,
+            604,
+            630
+          ],
+          [
+            623,
+            390,
+            964,
+            622
+          ],
+          [
+            949,
+            343,
+            1236,
+            636
+          ],
+          [
+            16,
+            656,
+            301,
+            906
+          ],
+          [
+            312,
+            680,
+            627,
+            906
+          ],
+          [
+            627,
+            711,
+            940,
+            906
+          ],
+          [
+            939,
+            758,
+            1246,
+            908
+          ],
+          [
+            25,
+            945,
+            299,
+            1233
+          ],
+          [
+            325,
+            929,
+            597,
+            1234
+          ],
+          [
+            609,
+            932,
+            990,
+            1227
+          ],
+          [
+            961,
+            941,
+            1235,
+            1230
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent support sheet: ultimate, hit, fall and victory for the red-crowned crane."
+      }
+    ],
+    "uniformScale": 0.5833333333333334,
+    "outputs": {
+      "tonkotsu-ramen-pixel.webp": {
+        "bytes": 119594,
+        "sha256": "4c6eaf93f3bc210d6f66960f7b538b371b9311190b9f18d6e4c9c0ec4e4665ba"
+      },
+      "tonkotsu-ramen.webp": {
+        "bytes": 699096,
+        "sha256": "548e5788cdf4db9a373ec3a350edc7a6b3a198703ee3b1684adad548d48d2efa"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 6,
+      "columns": 4,
+      "sha256": "bd5b104f7cdbe94a3bf259b55653cada715b43951eec7b5809ca8363fe7313be"
+    },
+    "id": "takoyaki",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "bd003d6c19b3e311bf71467240d8deb6adb02777912a64047733c1bcd9e35afd",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            14,
+            33,
+            311,
+            314
+          ],
+          [
+            327,
+            32,
+            617,
+            315
+          ],
+          [
+            635,
+            33,
+            913,
+            314
+          ],
+          [
+            924,
+            69,
+            1240,
+            316
+          ],
+          [
+            16,
+            347,
+            301,
+            620
+          ],
+          [
+            326,
+            348,
+            604,
+            616
+          ],
+          [
+            633,
+            342,
+            933,
+            619
+          ],
+          [
+            949,
+            345,
+            1239,
+            619
+          ],
+          [
+            11,
+            666,
+            309,
+            905
+          ],
+          [
+            319,
+            633,
+            625,
+            940
+          ],
+          [
+            632,
+            640,
+            953,
+            944
+          ],
+          [
+            926,
+            677,
+            1242,
+            902
+          ],
+          [
+            16,
+            927,
+            310,
+            1210
+          ],
+          [
+            315,
+            920,
+            620,
+            1216
+          ],
+          [
+            611,
+            934,
+            964,
+            1217
+          ],
+          [
+            931,
+            931,
+            1224,
+            1216
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent combat sheet: idle, walk, attack and cast for the armored tiger with teal scarf, red orb and turquoise lantern."
+      },
+      {
+        "sheet": "support",
+        "sha256": "239325338c4bb8a5608eaa93081164486b531f25faa384dba98e0b084b4e89a0",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            6,
+            17,
+            340,
+            324
+          ],
+          [
+            329,
+            38,
+            627,
+            330
+          ],
+          [
+            627,
+            17,
+            947,
+            314
+          ],
+          [
+            940,
+            48,
+            1245,
+            314
+          ],
+          [
+            10,
+            348,
+            319,
+            621
+          ],
+          [
+            332,
+            352,
+            608,
+            624
+          ],
+          [
+            626,
+            309,
+            976,
+            629
+          ],
+          [
+            928,
+            314,
+            1247,
+            628
+          ],
+          [
+            9,
+            649,
+            292,
+            910
+          ],
+          [
+            320,
+            674,
+            604,
+            902
+          ],
+          [
+            612,
+            680,
+            945,
+            908
+          ],
+          [
+            954,
+            761,
+            1244,
+            905
+          ],
+          [
+            8,
+            950,
+            308,
+            1226
+          ],
+          [
+            332,
+            926,
+            612,
+            1230
+          ],
+          [
+            629,
+            921,
+            944,
+            1231
+          ],
+          [
+            967,
+            947,
+            1236,
+            1229
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent support sheet: ultimate, hit, fall and victory for the armored tiger."
+      }
+    ],
+    "uniformScale": 0.6345609065155807,
+    "outputs": {
+      "takoyaki-pixel.webp": {
+        "bytes": 144452,
+        "sha256": "f50d9a045995ec62ebe371b221f74b5c4021d6816bdf8b3f7a2763248bd44aab"
+      },
+      "takoyaki.webp": {
+        "bytes": 720696,
+        "sha256": "598a0dcfab4144681c082c33e83a501cfe3cf74f3e1a177e61901078c72f7da4"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 7,
+      "columns": 4,
+      "sha256": "bd5b104f7cdbe94a3bf259b55653cada715b43951eec7b5809ca8363fe7313be"
+    },
+    "id": "okonomiyaki",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "6ca4b67502f47dcac8e4c5f5491274ec4717d9a3785bcce1702bd5a1a4ec4215",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            15,
+            26,
+            282,
+            299
+          ],
+          [
+            321,
+            26,
+            584,
+            307
+          ],
+          [
+            634,
+            26,
+            921,
+            305
+          ],
+          [
+            950,
+            28,
+            1238,
+            301
+          ],
+          [
+            11,
+            349,
+            304,
+            583
+          ],
+          [
+            320,
+            363,
+            620,
+            572
+          ],
+          [
+            634,
+            374,
+            942,
+            578
+          ],
+          [
+            957,
+            353,
+            1250,
+            580
+          ],
+          [
+            12,
+            655,
+            304,
+            911
+          ],
+          [
+            323,
+            635,
+            616,
+            921
+          ],
+          [
+            633,
+            654,
+            939,
+            906
+          ],
+          [
+            954,
+            662,
+            1241,
+            906
+          ],
+          [
+            21,
+            962,
+            290,
+            1225
+          ],
+          [
+            321,
+            948,
+            612,
+            1225
+          ],
+          [
+            632,
+            948,
+            943,
+            1222
+          ],
+          [
+            951,
+            959,
+            1236,
+            1218
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent combat sheet: idle, glide, attack and cast for the red-white koi in black-red kimono with lantern."
+      },
+      {
+        "sheet": "support",
+        "sha256": "f3238bc98731499918977b18e1fc682073aee609babcac65c753a3c4f94ec7aa",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            18,
+            34,
+            288,
+            307
+          ],
+          [
+            309,
+            20,
+            617,
+            305
+          ],
+          [
+            616,
+            32,
+            986,
+            312
+          ],
+          [
+            967,
+            33,
+            1233,
+            306
+          ],
+          [
+            15,
+            331,
+            307,
+            603
+          ],
+          [
+            319,
+            323,
+            608,
+            610
+          ],
+          [
+            626,
+            336,
+            958,
+            617
+          ],
+          [
+            966,
+            325,
+            1240,
+            612
+          ],
+          [
+            17,
+            623,
+            289,
+            898
+          ],
+          [
+            310,
+            648,
+            600,
+            919
+          ],
+          [
+            607,
+            666,
+            944,
+            945
+          ],
+          [
+            941,
+            730,
+            1242,
+            885
+          ],
+          [
+            15,
+            915,
+            295,
+            1212
+          ],
+          [
+            321,
+            898,
+            614,
+            1217
+          ],
+          [
+            629,
+            904,
+            956,
+            1215
+          ],
+          [
+            943,
+            914,
+            1237,
+            1218
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Identity-preserving 4x4 transparent support sheet: ultimate, hit, fall and victory for the red-white koi spirit."
+      }
+    ],
+    "uniformScale": 0.6054054054054054,
+    "outputs": {
+      "okonomiyaki-pixel.webp": {
+        "bytes": 128700,
+        "sha256": "dbaaf11a45bcf7ede5b5759f6c274a2fc67179f1860a18cc96e3e320b7272554"
+      },
+      "okonomiyaki.webp": {
+        "bytes": 673490,
+        "sha256": "5bf909bbd15dbf48fa770e19f0b700cfea7cd29be66e0475c8ac10cb8952de31"
+      }
+    }
+  }
+]

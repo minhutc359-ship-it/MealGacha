@@ -1,0 +1,8 @@
+[
+  {"id":"shoyu-ramen","reference":".asset-work/japan5924/references/shoyu-ramen.png","canon":{"path":"/assets/rpg/spirit510/portraits-3.webp","cell":1,"columns":4,"sha256":"bacc5bf57479298d97e8e8bb1fd43a6da95f28117fa2e5b53dda7f3b1baf6d8e"}},
+  {"id":"unagi-don","reference":".asset-work/japan5924/references/unagi-don.png","canon":{"path":"/assets/rpg/spirit510/portraits-3.webp","cell":2,"columns":4,"sha256":"bacc5bf57479298d97e8e8bb1fd43a6da95f28117fa2e5b53dda7f3b1baf6d8e"}},
+  {"id":"omakase","reference":".asset-work/japan5924/references/omakase.png","canon":{"path":"/assets/rpg/spirit510/portraits-3.webp","cell":3,"columns":4,"sha256":"bacc5bf57479298d97e8e8bb1fd43a6da95f28117fa2e5b53dda7f3b1baf6d8e"}},
+  {"id":"tonkotsu-ramen","reference":".asset-work/japan5924/references/tonkotsu-ramen.png","canon":{"path":"/assets/rpg/spirit510/portraits-4.webp","cell":5,"columns":4,"sha256":"33b370606ef7be4d708d4211dee46826f9ca09db770f701265c5bb973371cc2a"}},
+  {"id":"takoyaki","reference":".asset-work/japan5924/references/takoyaki.png","canon":{"path":"/assets/rpg/spirit510/portraits-5.webp","cell":6,"columns":4,"sha256":"bd5b104f7cdbe94a3bf259b55653cada715b43951eec7b5809ca8363fe7313be"}},
+  {"id":"okonomiyaki","reference":".asset-work/japan5924/references/okonomiyaki.png","canon":{"path":"/assets/rpg/spirit510/portraits-5.webp","cell":7,"columns":4,"sha256":"bd5b104f7cdbe94a3bf259b55653cada715b43951eec7b5809ca8363fe7313be"}}
+]
