@@ -26,4 +26,4 @@ QA_HERO=che-khuc-bach QA_WIDTH=320 QA_HEIGHT=568 QA_OUT=dev/docs/web-v5921/produ
 node dev/tools/measure-web-load.mjs dev/docs/web-v5921/initial-load.json
 ```
 
-Nguồn PNG Imagegen không cần cho inspector. Để đóng gói lại từ nguồn, truyền JSON nguồn chứa ID/kind/source/prompt cho `pack-campaign598.py ... spirits5921`, và JSON group/source/prompt cho `pack-spirit-vfx5921.py ...`. Prompt chính xác và hash nguồn được giữ trong provenance. Ảnh QA được nén sang WebP để lưu bằng chứng; harness xuất PNG cục bộ.
+Nguồn PNG Imagegen không cần cho inspector. Để đóng gói lại từ nguồn, truyền JSON nguồn chứa ID/kind/source/prompt cho `pack-campaign598.py ... spirits5921`, và JSON group/source/prompt cho `pack-spirit-vfx5921.py ...`. Prompt chính xác và hash nguồn được giữ trong provenance. Ảnh QA giữ cục bộ trong `.asset-work/`, không commit; harness có thể xuất PNG để kiểm tra.

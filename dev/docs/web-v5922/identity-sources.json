@@ -1,0 +1,62 @@
+[
+  {
+    "id": "banner-tay-bac-goi-rau-don",
+    "reference": ".asset-work/northwest5922/references/banner-tay-bac-goi-rau-don.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 10,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    }
+  },
+  {
+    "id": "banner-tay-bac-com-lam",
+    "reference": ".asset-work/northwest5922/references/banner-tay-bac-com-lam.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 11,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    }
+  },
+  {
+    "id": "banner-tay-bac-thang-co",
+    "reference": ".asset-work/northwest5922/references/banner-tay-bac-thang-co.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 12,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    }
+  },
+  {
+    "id": "banner-tay-bac-thit-trau-gac-bep",
+    "reference": ".asset-work/northwest5922/references/banner-tay-bac-thit-trau-gac-bep.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 13,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    }
+  },
+  {
+    "id": "banner-tay-bac-ga-nuong-mac-khen",
+    "reference": ".asset-work/northwest5922/references/banner-tay-bac-ga-nuong-mac-khen.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 14,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    }
+  },
+  {
+    "id": "banner-tay-bac-xoi-ngu-sac",
+    "reference": ".asset-work/northwest5922/references/banner-tay-bac-xoi-ngu-sac.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 15,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    }
+  }
+]

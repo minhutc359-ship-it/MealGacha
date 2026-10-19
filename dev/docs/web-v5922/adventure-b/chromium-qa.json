@@ -1,0 +1,534 @@
+{
+  "date": "2026-10-19",
+  "engine": "chromium",
+  "version": "153.0.8010.0",
+  "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
+  "checks": [
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 1305,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 7364,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 6254,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-ga-nuong-mac-khen",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1616,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-xoi-ngu-sac",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1482,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-goi-rau-don",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1591,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-thang-co",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1447,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 5749,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 33218,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 26745,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-ga-nuong-mac-khen",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5310,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-xoi-ngu-sac",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5344,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-goi-rau-don",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5660,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-thang-co",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5173,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 632,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 4018,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 3415,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-ga-nuong-mac-khen",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 1021,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-xoi-ngu-sac",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 945,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-goi-rau-don",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 1069,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-thang-co",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 928,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 8112,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 50564,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "realReducerEvents": true,
+      "painted": 42518,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-ga-nuong-mac-khen",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7526,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-xoi-ngu-sac",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7365,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-goi-rau-don",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7889,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "banner-tay-bac-thang-co",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7092,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "victory",
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ]
+    },
+    {
+      "area": "fall",
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ]
+    },
+    {
+      "area": "reload-committed-ultimate",
+      "noRecast": true
+    },
+    {
+      "area": "natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "reduced-motion",
+      "ids": [
+        "banner-tay-bac-ga-nuong-mac-khen",
+        "banner-tay-bac-xoi-ngu-sac",
+        "banner-tay-bac-goi-rau-don",
+        "banner-tay-bac-thang-co"
+      ],
+      "staticPose": 16
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedAssets": [
+    "/assets/characters/northwest5922/banner-tay-bac-ga-nuong-mac-khen.webp",
+    "/assets/characters/northwest5922/banner-tay-bac-xoi-ngu-sac.webp",
+    "/assets/characters/northwest5922/banner-tay-bac-goi-rau-don.webp",
+    "/assets/characters/northwest5922/banner-tay-bac-thang-co.webp",
+    "/assets/characters/northwest5922/ultimate.webp"
+  ],
+  "movieRequests": 0
+}

@@ -1,5 +1,5 @@
 """Register Imagegen actors, retaining authored pixels; no synthetic poses.
-Usage: python3 dev/tools/pack-campaign598.py /path/to/sources.json [campaign598|campaign599|regional5910|spring5911|vietnam5912|autochess5913|tcg5914|spirits5917|spirits5921] [--append]
+Usage: python3 dev/tools/pack-campaign598.py /path/to/sources.json [campaign598|campaign599|regional5910|spring5911|vietnam5912|autochess5913|tcg5914|spirits5917|spirits5921|northwest5922] [--append]
 Two 4x4 source sheets per actor, registered into eight states x four poses.
 """
 import hashlib, json, sys
@@ -10,11 +10,11 @@ from scipy.ndimage import label, find_objects
 from PIL import Image, ImageOps
 ROOT = Path(__file__).resolve().parents[2]
 group=sys.argv[2] if len(sys.argv)>2 else 'campaign598'
-hero_groups=['regional5910','spring5911','vietnam5912','autochess5913','tcg5914','spirits5917','spirits5921']
+hero_groups=['regional5910','spring5911','vietnam5912','autochess5913','tcg5914','spirits5917','spirits5921','northwest5922']
 if group not in ['campaign598','campaign599',*hero_groups]: raise ValueError('Unknown visual cohort')
 hero_cohort=group in hero_groups
 OUT = ROOT/'public/assets/characters'/group
-version=group.removeprefix('campaign').removeprefix('regional').removeprefix('spring').removeprefix('vietnam').removeprefix('autochess').removeprefix('tcg').removeprefix('spirits')
+version=group.removeprefix('campaign').removeprefix('regional').removeprefix('spring').removeprefix('vietnam').removeprefix('autochess').removeprefix('tcg').removeprefix('spirits').removeprefix('northwest')
 DOC = ROOT/'dev/docs'/('web-v'+version)
 OUT.mkdir(parents=True, exist_ok=True); DOC.mkdir(parents=True, exist_ok=True)
 entries=json.loads(Path(sys.argv[1]).read_text())
@@ -25,6 +25,9 @@ for actor in ids:
     for kind in (['poses','support'] if hero_cohort else ['bossGen:', 'bossSupport:']):
         e=next(e for e in entries if e['id']==actor and e['kind']==kind)
         raw=Path(e['source']).read_bytes(); src=Image.open(e['source']).convert('RGBA')
+        grid_rows=e.get('gridRows',[round(i*src.height/4) for i in range(5)])
+        grid_cols=e.get('gridColumns',[round(i*src.width/4) for i in range(5)])
+        assert len(grid_rows)==len(grid_cols)==5
         pixels=np.array(src); labels,n=label(pixels[:,:,3]>32)
         counts=np.bincount(labels.ravel())
         objects=find_objects(labels)
@@ -36,8 +39,8 @@ for actor in ids:
             if xx.stop-xx.start<src.width*.42 and yy.stop-yy.start<src.height*.4: continue
             for row in range(4):
                 for col in range(4):
-                    y0,y1=round(row*src.height/4),round((row+1)*src.height/4)
-                    x0,x1=round(col*src.width/4),round((col+1)*src.width/4)
+                    y0,y1=grid_rows[row:row+2]
+                    x0,x1=grid_cols[col:col+2]
                     part=labels[y0:y1,x0:x1]; mask=part==i
                     if mask.any(): n+=1; part[mask]=n
         counts=np.bincount(labels.ravel()); objects=find_objects(labels)
@@ -49,7 +52,7 @@ for actor in ids:
             if slices is None: continue
             yy,xx=slices
             cx=(xx.start+xx.stop)/2; cy=(yy.start+yy.stop)/2
-            cell=min(3,int(cy/src.height*4))*4+min(3,int(cx/src.width*4))
+            cell=min(3,int(np.searchsorted(grid_rows[1:],cy,side='right')))*4+min(3,int(np.searchsorted(grid_cols[1:],cx,side='right')))
             groups[cell].append(i)
         rects=[]
         for i,components in enumerate(groups):
@@ -61,7 +64,7 @@ for actor in ids:
             if (actor=='moon-heron' and frame in [0,1,2,16]) or (actor=='lotus-mantis' and frame in [0,1,2]): tile=ImageOps.mirror(tile)
             if actor=='cloud-teapot' and frame==0: tile=ImageOps.mirror(tile)
             tiles.append(tile); rects.append(list(bounds))
-        sources.append({'sheet':kind.rstrip(':'),'sha256':hashlib.sha256(raw).hexdigest(),'size':list(src.size),'rects':rects,'prompt':e['prompt']})
+        sources.append({'sheet':kind.rstrip(':'),'sha256':hashlib.sha256(raw).hexdigest(),'size':list(src.size),'rects':rects,'gridRows':grid_rows,'gridColumns':grid_cols,'prompt':e['prompt']})
     # A repaired authored frame replaces one source pose; never count it twice.
     for repair in [e for e in entries if e['id']==actor and e['kind']=='repair']:
         frame=repair['frame']
@@ -89,7 +92,7 @@ for actor in ids:
     # Enemies reuse idle; hero cohorts keep their authored standalone portrait.
     if not hero_cohort:
         atlas.crop((0,0,256,256)).save(OUT/f'{actor}-portrait.webp','WEBP',quality=90,method=6)
-    elif group not in ['vietnam5912','autochess5913','tcg5914','spirits5917','spirits5921']:
+    elif group not in ['vietnam5912','autochess5913','tcg5914','spirits5917','spirits5921','northwest5922']:
         portrait=next(e for e in entries if e['id']==actor and e['kind']=='portrait')
         raw=Path(portrait['source']).read_bytes(); image=Image.open(portrait['source']).convert('RGB')
         if image.width!=image.height:raise ValueError('Portrait must be square')
@@ -97,7 +100,7 @@ for actor in ids:
         sources.append({'sheet':'portrait','sha256':hashlib.sha256(raw).hexdigest(),'size':list(image.size),'prompt':portrait['prompt']})
         if portrait.get('revision'):
             r=portrait['revision'];sources[-1]['revision']={'reason':r['reason'],'sourceSha256':hashlib.sha256(Path(r['source']).read_bytes()).hexdigest(),'prompt':r['prompt']}
-    portrait_reference=next((r['canon'] for r in json.loads((DOC/'identity-sources.json').read_text()) if r['id']==actor),None) if group in ['vietnam5912','autochess5913','tcg5914','spirits5917','spirits5921'] else None
+    portrait_reference=next((r['canon'] for r in json.loads((DOC/'identity-sources.json').read_text()) if r['id']==actor),None) if group in ['vietnam5912','autochess5913','tcg5914','spirits5917','spirits5921','northwest5922'] else None
     report.append({'portraitReference':portrait_reference,'id':actor,'frames':32,'states':['idle','walk','attack','cast','ultimate' if hero_cohort else 'special/brace' if group=='campaign599' else 'phase','hit','fall','victory'],'tool':'built-in Imagegen','generatedOn':date.today().isoformat(),'sources':sources,'uniformScale':scale,'outputs':{p.name:{'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(OUT.glob(f'{actor}*.webp'))}})
 if '--append' in sys.argv[3:] and (DOC/'asset-provenance.json').exists():
     report=[e for e in json.loads((DOC/'asset-provenance.json').read_text()) if e['id'] not in ids]+report

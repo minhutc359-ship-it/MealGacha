@@ -1,5 +1,5 @@
 {
-  "version": "5.9.21",
+  "version": "5.9.22",
   "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -1649,6 +1649,188 @@
         "dev/docs/challenge-v322/prompts.json",
         "dev/docs/market-v331/atlas-prompts.json",
         "dev/tools/register-market-atlases.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-com-lam-pixel.webp",
+      "bytes": 114578,
+      "sha256": "4c118533e5fd7cc38c0f456dd63093977c031104a6e8134a6c17f87fa29f0ff1",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-com-lam.webp",
+      "bytes": 626686,
+      "sha256": "ad81e0e93c0a8d64bf228ba92d14679700586ed1964fa4b25b3b97f4677e6255",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-ga-nuong-mac-khen-pixel.webp",
+      "bytes": 121330,
+      "sha256": "9a0b516c4d507b0dafefa3a8625f6e7968dfcb174aeed5ed4406d531c5960d57",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-ga-nuong-mac-khen.webp",
+      "bytes": 580914,
+      "sha256": "2256c1222c667603d9b13192a6ca3f6dcba96188901a8e78e48161db0ac5842d",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-goi-rau-don-pixel.webp",
+      "bytes": 131734,
+      "sha256": "ca235cb49ab0eb976ea9365ca3844b79ee9200efe879fc5e90824ad7249fda7e",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-goi-rau-don.webp",
+      "bytes": 605740,
+      "sha256": "ec7dcab6ee7da64ac2dc0279bbf3950548d12040a954c8cc97bfdc9cb2bf00b1",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-thang-co-pixel.webp",
+      "bytes": 126720,
+      "sha256": "93f3df04fa25a6ac16a908786000c3f6e5d37bc7a040c29c204c3036eed46051",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-thang-co.webp",
+      "bytes": 649114,
+      "sha256": "56048a9ff5d2e60ac7cc62b4de414be0ae6ec05641360d42f84ebcca1a1fe6db",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-thit-trau-gac-bep-pixel.webp",
+      "bytes": 101266,
+      "sha256": "e48d26d743c2063f4f29fd0bb29249aed82a4ad281150c0565ed0c40f96b2e0e",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-thit-trau-gac-bep.webp",
+      "bytes": 511222,
+      "sha256": "6703640729fc781d4d67f0e68a8dd8ca75c59e68b292d199c58f883f0d1ab840",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-xoi-ngu-sac-pixel.webp",
+      "bytes": 122816,
+      "sha256": "7a21b882b8e6e3042de4d5f568a670f3ed16b2e28c01ecae0b45e52965a5e43c",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-xoi-ngu-sac.webp",
+      "bytes": 634418,
+      "sha256": "a30cccda64adf579cf540be05fef47e9c95322d6970c2584824bacdbab6bc497",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/ultimate.webp",
+      "bytes": 421466,
+      "sha256": "da172756adbe3e97f64e7be0a5825de973078af35f7989ec96ce00a89a3e7ad1",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

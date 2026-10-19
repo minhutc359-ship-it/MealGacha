@@ -1,0 +1,7 @@
+{
+  "baseline": "3a9f8d2f7ba1dd4eb3dba5f3d7540a68aa8d6d8f",
+  "unchangedExistingVisualDefinitions": 65,
+  "intentionalRemoval": "Unused presentation-only title property; UI uses catalog/awakening names",
+  "newDefinitions": 6,
+  "gameplayFilesChanged": []
+}

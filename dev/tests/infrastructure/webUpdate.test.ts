@@ -32,6 +32,18 @@ beforeEach(() => { vi.resetModules(); vi.useFakeTimers(); vi.stubEnv("PROD", tru
 afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); vi.unstubAllEnvs() })
 
 describe("explicit web updates", () => {
+  it("warms already loaded Canvas and CSS artwork when the first worker takes control", async () => {
+    const urls = ["https://meal.example/assets/model.webp", "https://meal.example/assets/realm.png?rev=2", "https://meal.example/assets/sound.mp3"]
+    const resources = vi.spyOn(performance, "getEntriesByType").mockReturnValue(
+      [...urls, "https://meal.example/assets/app.js", "https://meal.example/assets/retired.mp4"].map(name=>({name}) as PerformanceEntry),
+    )
+    try {
+      const f = await fixture(false, false)
+      f.serviceWorker.controller = { postMessage: vi.fn() }
+      f.serviceWorker.dispatchEvent(new Event("controllerchange"))
+      expect(f.serviceWorker.controller.postMessage).toHaveBeenCalledExactlyOnceWith({type:"WARM_WEB_ASSETS",urls})
+    } finally { resources.mockRestore() }
+  })
   it("does not show a new-version prompt for the first installation", async () => {
     const f = await fixture(false, false)
     expect(f.api.offlineSnapshot().update).toBe(false)

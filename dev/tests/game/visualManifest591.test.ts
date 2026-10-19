@@ -26,7 +26,7 @@ describe("visual production manifest", () => {
   it("keeps the five saved starter IDs and adds Xôi only to visual production", () => {
     const g=newGame(),s=newRpgSave(g)
     expect(s.formation.map(uid=>s.roster.find(h=>h.uid===uid)!.cardId)).toEqual(STARTER_CHARACTER_IDS)
-    expect(visualCount).toBe(65)
+    expect(visualCount).toBe(71)
     expect(characterVisual("goi-cuon")).toBe(characterVisual("goi-cuon-tom-thit"))
     expect(characterVisual("xoi")!.species).toBe("Gấu Nếp Mới")
     expect(characterVisual("classic-burger")).toBeUndefined()
