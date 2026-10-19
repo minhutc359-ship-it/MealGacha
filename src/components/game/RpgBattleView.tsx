@@ -5,7 +5,7 @@ import { rpgVisualContact } from "../../game/visualTiming"
 import { useRpgImpactFrame } from "./useRpgImpactFrame"
 import { awakenedKit } from "../../game/adventureRpg/awakening"
 import { RpgCinematic } from "./RpgCinematic"
-import { actorAnchor } from "../../game/adventureRpg/formationLayout"
+import { actorAnchor, actorAttackMotion } from "../../game/adventureRpg/formationLayout"
 import { RpgBattleVfx } from "./RpgBattleVfx"
 import { SpiritArt, SkillArt } from "./SpiritArt"
 import { spiritKit, REACTION_HELP } from "../../game/adventureRpg/skills"
@@ -18,6 +18,7 @@ import type {
   RpgActor,
   RpgBattle,
 } from "../../game/adventureRpg/types"
+import type { CSSProperties } from "react"
 import { CharacterSprite } from "./CharacterSprite"
 import { RpgShield } from "./RpgShield"
 import { BattleStatus } from "./BattleStatus"
@@ -52,9 +53,22 @@ export function RpgMeter({
     </span>
   )
 }
-function position(actor: RpgActor) {
+function position(actor: RpgActor, target?: RpgActor) {
   const p = actorAnchor(actor)
-  return { left: `${p.x}%`, top: `${p.y}%`, "--wide-left": `${actorAnchor(actor,true).x}%`, zIndex: Math.round(p.y) }
+  const style = { left: `${p.x}%`, top: `${p.y}%`, "--wide-left": `${actorAnchor(actor,true).x}%`, zIndex: Math.round(p.y) } as CSSProperties
+  if (!target) return style
+  const motion = actorAttackMotion(actor,target), wide = actorAttackMotion(actor,target,true)
+  return {
+    ...style,
+    "--attack-x": `${motion.x}cqw`,
+    "--attack-y": `${motion.y}cqh`,
+    "--attack-windup-x": `${motion.windupX}cqw`,
+    "--attack-windup-y": `${motion.windupY}cqh`,
+    "--attack-wide-x": `${wide.x}cqw`,
+    "--attack-wide-y": `${wide.y}cqh`,
+    "--attack-wide-windup-x": `${wide.windupX}cqw`,
+    "--attack-wide-windup-y": `${wide.windupY}cqh`,
+  } as CSSProperties
 }
 export function RpgBattleView({
   battle: b,
@@ -161,7 +175,9 @@ export function RpgBattleView({
             b.tick < b.guardUntil &&
             a.side === "ally" &&
             (a.slot < 2 ? "front" : "back") === b.guardRow
-          const ownCue = [...b.events].reverse().find(e=>e.source===a.uid && (e.animation || e.kind === "burst" || e.kind === "skill") && b.tick-e.tick<(e.animation==="ultimate"?10:4))
+          const ownCue = [...b.events].reverse().find(e=>e.source===a.uid && (e.animation || e.kind === "burst" || e.kind === "skill") && b.tick-e.tick<(e.animation==="ultimate"?10:e.animation==="attack"?5:4))
+          const attackTarget = ownCue?.animation === "attack" ? visual.actors.find(target=>ownCue.targets.includes(target.uid)) : undefined
+          const attackMotion = attackTarget ? actorAttackMotion(a,attackTarget) : null
           const charging = warning?.source === a.uid && !a.stun
           const phaseCue = [...b.events].reverse().find(e=>isEnemyPhaseEvent(e,a) && b.tick-e.tick<5)
           const arriving = ["enter", "wave-enter", "start"].includes(presentation)
@@ -174,10 +190,11 @@ export function RpgBattleView({
                 a.boss ? "is-boss" : a.elite ? "is-elite" : ""
               } ${!a.hp ? "is-fallen" : ""} ${
                 guarding || a.shield ? "is-shielded" : ""
-              }`}
-              style={position(a)}
+              } ${attackMotion ? `is-attacking attack-range-${attackMotion.band}` : ""}`}
+              style={position(a,attackTarget)}
               data-uid={a.uid}
               data-hp={a.hp}
+              data-attack-range={attackMotion?.range}
             >
               <div className={`rpg-actor-body ${warning?.source === a.uid ? "is-channeling" : ""} ${b.events.some(e=>e.source===a.uid && e.kind==="burst" && b.tick-e.tick<5) ? `is-ultimate role-${a.role}` : ""}`}>{warning?.source === a.uid && <span className="rpg-channel-halo" aria-hidden="true" />}<CharacterSprite
                 model={model}

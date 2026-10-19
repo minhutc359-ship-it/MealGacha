@@ -78,6 +78,7 @@ export interface RpgActor {
   hp: number
   maxHp: number
   attack: number
+  range?: number
   armor: number
   energy: number
   shield: number

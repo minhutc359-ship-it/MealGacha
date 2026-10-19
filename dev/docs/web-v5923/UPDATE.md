@@ -17,4 +17,11 @@ Gộp metadata hình ảnh thành một bảng hàng có vị trí cột đượ
 
 Không đổi gameplay, kỹ năng, chỉ số, độ hiếm, unlock, ID, save/progress/collection, roster 44 quân Auto Chess hoặc networking. Chỉ web; chủ dự án review và quyết định merge.
 
+## Tầm đánh Adventure
+
+- Battle snapshot mới lưu `range` của cả Vị Linh lẫn quái từ catalog chiến đấu dùng chung; save cũ chưa có trường này vẫn suy ra an toàn theo ID/role. Alias ổn định như `goi-cuon-tom-thit` được nối đúng với quân Auto Chess `goi-cuon` (tầm 2).
+- Đòn đánh thường không còn giữ model đứng im: cận chiến lao sát mục tiêu rồi trở về đội hình, tầm 2 bước lên một đoạn, tầm 3–4 giữ vị trí và giật lùi khi phóng đạn. Cả phe ta, quái thường, tinh anh và boss dùng cùng quy tắc.
+- VFX đọc cùng giá trị `range`: tầm 1 dùng slash/impact tại điểm tiếp xúc, tầm 2 trở lên dùng projectile/impact theo hệ. Vì vậy không còn projectile hình học giả bay ra từ model cận chiến đang lao tới.
+- Di chuyển chỉ thuộc lớp trình bày; chọn mục tiêu, sát thương, nhịp đánh và cân bằng reducer không đổi. Chế độ yên lặng/Reduced Motion vẫn vô hiệu hóa travel nhưng giữ tín hiệu va chạm cần thiết.
+
 Asset runtime lưu tại `public/assets/characters/korea5923/`. Prompt cuối, hash và crop nguồn: `asset-provenance.json`, `vfx-provenance.json`, `identity-sources.json`. Ảnh QA/contact sheet chỉ giữ cục bộ trong `.asset-work/`; Git chỉ chứa báo cáo chữ/JSON và tranh runtime. Xem `VERIFICATION.md` và `ROADMAP_STATUS.md` cho kết quả kiểm tra và số lượng còn lại.

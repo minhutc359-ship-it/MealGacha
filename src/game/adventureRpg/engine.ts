@@ -6,6 +6,7 @@ import { spiritKit, reactionName } from "./skills"
 import { encounterWaves, dungeonScaling, ENEMY_STYLES, BOSS_SKILLS } from "./enemies"
 import { CARD_MAP } from "../catalog"
 import { UNIT_MAP } from "../autochess/catalog"
+import { rpgAttackRange } from "./attackRange"
 import type { GameSave, School } from "../types"
 import { RPG_MAPS, rpgStage } from "./content"
 import { nearestRpgOpponent } from "./autoTarget"
@@ -229,7 +230,8 @@ export function createRpgBattle(
 ): RpgBattle {
   const actors: RpgActor[] = save.formation.map((uid, slot) => {
     const hero = save.roster.find((m) => m.uid === uid)!,
-      stats = heroStats(hero, rulesVersion === 530)
+      stats = heroStats(hero, rulesVersion === 530),
+      role = heroRole(hero.cardId)
     return {
       uid,
       id: hero.cardId,
@@ -237,7 +239,7 @@ export function createRpgBattle(
       side: "ally",
       slot,
       school: CARD_MAP[hero.cardId].school,
-      role: heroRole(hero.cardId),
+      role,
       level: hero.level,
       rank: hero.rank,
       skills: [...hero.skills],
@@ -245,6 +247,7 @@ export function createRpgBattle(
       hp: carried?.[uid]?.hp ?? stats.hp,
       maxHp: stats.hp,
       attack: Math.round(stats.attack * (1 + bonus)),
+      range: rpgAttackRange({id:hero.cardId,role}),
       armor: stats.armor,
       energy: carried?.[uid]?.energy ?? stats.energy,
       shield: 0,
@@ -316,6 +319,7 @@ function loadEnemies(b: RpgBattle) {
       hp,
       maxHp: hp,
       attack: modern ? Math.round((16 + e.level * 2.8) * (e.boss ? 1.9 : e.elite ? 1.25 : 1) * Math.sqrt(e.strength ?? 1)) * (e.difficultyMultiplier ?? 1) : Math.round((15 + e.level * 2.5) * (e.boss ? 1.7 : 1)),
+      range: rpgAttackRange({id:e.id,role:e.boss?"mage":"striker",boss:e.boss,style:e.style}),
       armor: (modern ? e.boss ? 26 : e.style === "bulwark" ? 22 : e.elite ? 14 : 7 : e.boss ? 18 : 5) * (e.difficultyMultiplier ?? 1),
       energy: b.rulesVersion === 530 ? e.boss ? 80 : 60 : 0,
       shield: 0,
