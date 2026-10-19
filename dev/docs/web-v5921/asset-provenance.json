@@ -1,0 +1,998 @@
+[
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-6.webp",
+      "cell": 15,
+      "columns": 4,
+      "sha256": "c546608de090b33d119066e68e2cf6022dedbb8281f463bd68c04e39e988da92"
+    },
+    "id": "canh-mang-mien",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "4807eeabe0929fd0cd58bff3e23397a15eee2a2656a608df64c80281b98816a4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            13,
+            1,
+            300,
+            309
+          ],
+          [
+            330,
+            1,
+            610,
+            309
+          ],
+          [
+            643,
+            4,
+            927,
+            309
+          ],
+          [
+            952,
+            1,
+            1238,
+            309
+          ],
+          [
+            6,
+            319,
+            308,
+            620
+          ],
+          [
+            330,
+            323,
+            620,
+            619
+          ],
+          [
+            637,
+            319,
+            932,
+            620
+          ],
+          [
+            963,
+            323,
+            1250,
+            620
+          ],
+          [
+            10,
+            633,
+            309,
+            920
+          ],
+          [
+            326,
+            628,
+            618,
+            919
+          ],
+          [
+            633,
+            646,
+            938,
+            917
+          ],
+          [
+            942,
+            633,
+            1245,
+            917
+          ],
+          [
+            10,
+            932,
+            310,
+            1242
+          ],
+          [
+            325,
+            932,
+            620,
+            1241
+          ],
+          [
+            637,
+            932,
+            965,
+            1241
+          ],
+          [
+            957,
+            936,
+            1245,
+            1242
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset: production Soul of Meal game animation sprite sheet. Reference image is IMMUTABLE CHARACTER IDENTITY: white antlered feline guardian, turquoise eyes, golden branching antlers, white mane, teal and gold ceremonial armor, two curved silver short swords. Preserve species, facial markings, outfit, colors and weapons; no redesign from dish name. Draw this SAME character as polished anime RPG chibi full-body sprites with clean painted shading. Exactly 4 columns × 4 rows on a truly transparent 2048x2048 square canvas, no visible grid/text, 16 isolated full-body poses, equal 512x512 cells, every body/weapon completely inside its cell with at least 40px padding. Consistent 3/4 facing RIGHT, feet along same baseline, same body proportions and scale across cells. Row1 four different subtle idle breathing poses; row2 four different walking stride poses; row3 four sequential attack poses (anticipation, windup, contact to right, followthrough); row4 four sequential magic casting poses (prepare, gather, release to right, recover). Use a single character per cell, no extra companions, no ground, shadows or scenery, no painted rectangular backgrounds, no large VFX. Keep silhouette clear at 128px. Full ears and antlers in frame."
+      },
+      {
+        "sheet": "support",
+        "sha256": "4fea94b45e2aa9ea1d077b6b7fba4e3afa44d528139194335e8f0d09011a0219",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            16,
+            14,
+            329,
+            329
+          ],
+          [
+            298,
+            7,
+            616,
+            333
+          ],
+          [
+            607,
+            41,
+            982,
+            325
+          ],
+          [
+            991,
+            18,
+            1249,
+            336
+          ],
+          [
+            25,
+            332,
+            321,
+            639
+          ],
+          [
+            332,
+            346,
+            637,
+            643
+          ],
+          [
+            635,
+            356,
+            950,
+            639
+          ],
+          [
+            972,
+            343,
+            1233,
+            643
+          ],
+          [
+            8,
+            651,
+            335,
+            908
+          ],
+          [
+            343,
+            662,
+            622,
+            917
+          ],
+          [
+            607,
+            731,
+            957,
+            917
+          ],
+          [
+            967,
+            786,
+            1243,
+            914
+          ],
+          [
+            15,
+            918,
+            304,
+            1228
+          ],
+          [
+            315,
+            932,
+            650,
+            1226
+          ],
+          [
+            652,
+            931,
+            930,
+            1230
+          ],
+          [
+            979,
+            927,
+            1244,
+            1226
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset: production Soul of Meal game animation sprite sheet. Reference image is IMMUTABLE CHARACTER IDENTITY: white antlered feline guardian, turquoise eyes, golden branching antlers, white mane, teal and gold ceremonial armor, two curved silver short swords. Preserve exact species, facial markings, costume, colors and weapons. Same character in polished anime RPG chibi full-body sprites with clean painted shading. Exactly 4 columns × 4 rows on a truly transparent 2048x2048 square canvas, no grid/text, 16 isolated full-body poses, equal cells, every body/weapon inside cell with 40px padding. Consistent 3/4 facing RIGHT; same character scale and proportions. Row1 four sequential ULTIMATE poses: ready, gather power overhead, powerful release toward RIGHT, recover. Row2 four HIT reaction poses: recoil, flinch, stagger, regain balance. Row3 four FALL/defeat poses: lose balance, kneel, lie completely down horizontally, same fallen character resting. Row4 four VICTORY celebration poses: raise weapon/scroll, cheerful gesture, bow, settle proudly. Each cell has only one complete character. No ghosts/duplicates, ground/shadows/scenery, no huge VFX, no opaque backgrounds. Full head, antlers, ears and weapons in frame. Fallen poses stay horizontal and separate within cells, never split or cross grid."
+      }
+    ],
+    "uniformScale": 0.5973333333333334,
+    "outputs": {
+      "canh-mang-mien-pixel.webp": {
+        "bytes": 122212,
+        "sha256": "823061fee93caa14b45621a09f0d9a43a30dee65ca4e07144fc9eaae0877bbb3"
+      },
+      "canh-mang-mien.webp": {
+        "bytes": 662714,
+        "sha256": "dcb830ae8bf40858911f62e452bd16265d349455afe1aa2acdf9e6581b122b49"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 0,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    },
+    "id": "gio-xao",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "f6a4364d95513eb82bb5e0e64af2b383a81233fd31ea285f98088aa65bdbdca6",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            24,
+            3,
+            287,
+            308
+          ],
+          [
+            331,
+            2,
+            600,
+            309
+          ],
+          [
+            644,
+            5,
+            909,
+            308
+          ],
+          [
+            960,
+            2,
+            1229,
+            309
+          ],
+          [
+            18,
+            314,
+            283,
+            622
+          ],
+          [
+            330,
+            314,
+            616,
+            623
+          ],
+          [
+            640,
+            311,
+            929,
+            625
+          ],
+          [
+            957,
+            317,
+            1241,
+            623
+          ],
+          [
+            5,
+            639,
+            303,
+            913
+          ],
+          [
+            331,
+            630,
+            621,
+            940
+          ],
+          [
+            633,
+            631,
+            976,
+            912
+          ],
+          [
+            949,
+            630,
+            1246,
+            913
+          ],
+          [
+            16,
+            924,
+            291,
+            1230
+          ],
+          [
+            316,
+            940,
+            619,
+            1226
+          ],
+          [
+            618,
+            922,
+            952,
+            1227
+          ],
+          [
+            964,
+            924,
+            1239,
+            1229
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset: production Soul of Meal game animation sprite sheet. Reference image is IMMUTABLE CHARACTER IDENTITY: red and ivory Eastern dragon scholar, swept horns, long whiskers, red mane, black and crimson gold-embroidered robe, scroll in hand. Preserve species, facial markings, outfit, colors and weapons; no redesign from dish name. Draw this SAME character as polished anime RPG chibi full-body sprites with clean painted shading. Exactly 4 columns × 4 rows on a truly transparent 2048x2048 square canvas, no visible grid/text, 16 isolated full-body poses, equal 512x512 cells, every body/weapon completely inside its cell with at least 40px padding. Consistent 3/4 facing RIGHT, feet along same baseline, same body proportions and scale across cells. Row1 four different subtle idle breathing poses; row2 four different walking stride poses; row3 four sequential attack poses (anticipation, windup, contact to right, followthrough); row4 four sequential magic casting poses (prepare, gather, release to right, recover). Use a single character per cell, no extra companions, no ground, shadows or scenery, no painted rectangular backgrounds, no large VFX. Keep silhouette clear at 128px. Full ears and antlers in frame."
+      },
+      {
+        "sheet": "support",
+        "sha256": "5559e1c0c8d0581dc33cfbe2ad213aff4bf40708087a0a733ed3ecbf021a18c9",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            22,
+            28,
+            285,
+            323
+          ],
+          [
+            310,
+            18,
+            628,
+            325
+          ],
+          [
+            627,
+            39,
+            979,
+            324
+          ],
+          [
+            977,
+            23,
+            1226,
+            323
+          ],
+          [
+            26,
+            347,
+            303,
+            624
+          ],
+          [
+            327,
+            347,
+            606,
+            622
+          ],
+          [
+            631,
+            358,
+            946,
+            622
+          ],
+          [
+            969,
+            354,
+            1242,
+            623
+          ],
+          [
+            12,
+            650,
+            331,
+            898
+          ],
+          [
+            325,
+            644,
+            631,
+            899
+          ],
+          [
+            623,
+            757,
+            935,
+            897
+          ],
+          [
+            944,
+            773,
+            1241,
+            897
+          ],
+          [
+            12,
+            905,
+            316,
+            1215
+          ],
+          [
+            327,
+            920,
+            621,
+            1215
+          ],
+          [
+            649,
+            930,
+            923,
+            1214
+          ],
+          [
+            969,
+            919,
+            1231,
+            1215
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset: production Soul of Meal game animation sprite sheet. Reference image is IMMUTABLE CHARACTER IDENTITY: red and ivory Eastern dragon scholar, swept horns, long whiskers, red mane, black and crimson gold-embroidered robe, scroll in hand. Preserve exact species, facial markings, costume, colors and weapons. Same character in polished anime RPG chibi full-body sprites with clean painted shading. Exactly 4 columns × 4 rows on a truly transparent 2048x2048 square canvas, no grid/text, 16 isolated full-body poses, equal cells, every body/weapon inside cell with 40px padding. Consistent 3/4 facing RIGHT; same character scale and proportions. Row1 four sequential ULTIMATE poses: ready, gather power overhead, powerful release toward RIGHT, recover. Row2 four HIT reaction poses: recoil, flinch, stagger, regain balance. Row3 four FALL/defeat poses: lose balance, kneel, lie completely down horizontally, same fallen character resting. Row4 four VICTORY celebration poses: raise weapon/scroll, cheerful gesture, bow, settle proudly. Each cell has only one complete character. No ghosts/duplicates, ground/shadows/scenery, no huge VFX, no opaque backgrounds. Full head, antlers, ears and weapons in frame. Fallen poses stay horizontal and separate within cells, never split or cross grid."
+      }
+    ],
+    "uniformScale": 0.6363636363636364,
+    "outputs": {
+      "gio-xao-pixel.webp": {
+        "bytes": 126034,
+        "sha256": "473ea619c6ee879336b0d661da2fbc84dbe2f717c8d8efc0ff347ee1f20e7587"
+      },
+      "gio-xao.webp": {
+        "bytes": 709668,
+        "sha256": "55cf259c5f6261780304f06c20dc908ba427ab57a43eaad9b6dcb2758f52e434"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 1,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    },
+    "id": "thit-dong",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "584b1bd05c6cae2300c0570c3a160499cfa3f1cdcae50f3a2f5a41cef940c65d",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            26,
+            0,
+            283,
+            307
+          ],
+          [
+            333,
+            6,
+            593,
+            306
+          ],
+          [
+            638,
+            7,
+            911,
+            307
+          ],
+          [
+            961,
+            6,
+            1226,
+            306
+          ],
+          [
+            19,
+            312,
+            285,
+            620
+          ],
+          [
+            316,
+            316,
+            604,
+            622
+          ],
+          [
+            635,
+            313,
+            922,
+            621
+          ],
+          [
+            950,
+            316,
+            1227,
+            621
+          ],
+          [
+            6,
+            637,
+            297,
+            919
+          ],
+          [
+            319,
+            635,
+            611,
+            920
+          ],
+          [
+            628,
+            638,
+            940,
+            920
+          ],
+          [
+            940,
+            643,
+            1249,
+            919
+          ],
+          [
+            15,
+            937,
+            281,
+            1233
+          ],
+          [
+            314,
+            939,
+            617,
+            1233
+          ],
+          [
+            632,
+            933,
+            947,
+            1234
+          ],
+          [
+            969,
+            942,
+            1236,
+            1234
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset: production Soul of Meal game animation sprite sheet. Reference image is IMMUTABLE CHARACTER IDENTITY: white and red fox woman scholar, pointed ears, black flowing hair with red-gold hair ornaments, black and crimson gold-embroidered dress, scroll in hand. Preserve species, facial markings, outfit, colors and weapons; no redesign from dish name. Draw this SAME character as polished anime RPG chibi full-body sprites with clean painted shading. Exactly 4 columns × 4 rows on a truly transparent 2048x2048 square canvas, no visible grid/text, 16 isolated full-body poses, equal 512x512 cells, every body/weapon completely inside its cell with at least 40px padding. Consistent 3/4 facing RIGHT, feet along same baseline, same body proportions and scale across cells. Row1 four different subtle idle breathing poses; row2 four different walking stride poses; row3 four sequential attack poses (anticipation, windup, contact to right, followthrough); row4 four sequential magic casting poses (prepare, gather, release to right, recover). Use a single character per cell, no extra companions, no ground, shadows or scenery, no painted rectangular backgrounds, no large VFX. Keep silhouette clear at 128px. Full ears and antlers in frame."
+      },
+      {
+        "sheet": "support",
+        "sha256": "351cc9e5e038bd2d66eb584823477ecf859ab1597e28d6204b5d3f9ecfb3ae69",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            23,
+            13,
+            316,
+            317
+          ],
+          [
+            327,
+            9,
+            621,
+            319
+          ],
+          [
+            630,
+            38,
+            995,
+            320
+          ],
+          [
+            970,
+            16,
+            1225,
+            320
+          ],
+          [
+            9,
+            346,
+            326,
+            626
+          ],
+          [
+            335,
+            349,
+            622,
+            626
+          ],
+          [
+            627,
+            356,
+            948,
+            629
+          ],
+          [
+            951,
+            332,
+            1227,
+            632
+          ],
+          [
+            13,
+            641,
+            325,
+            917
+          ],
+          [
+            327,
+            680,
+            629,
+            920
+          ],
+          [
+            611,
+            740,
+            947,
+            893
+          ],
+          [
+            956,
+            737,
+            1247,
+            892
+          ],
+          [
+            30,
+            928,
+            308,
+            1226
+          ],
+          [
+            333,
+            927,
+            607,
+            1228
+          ],
+          [
+            650,
+            949,
+            925,
+            1223
+          ],
+          [
+            946,
+            929,
+            1237,
+            1227
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset: production Soul of Meal game animation sprite sheet. Reference image is IMMUTABLE CHARACTER IDENTITY: white and red fox woman scholar, pointed ears, black flowing hair with red-gold hair ornaments, black and crimson gold-embroidered dress, scroll in hand. Preserve exact species, facial markings, costume, colors and weapons. Same character in polished anime RPG chibi full-body sprites with clean painted shading. Exactly 4 columns × 4 rows on a truly transparent 2048x2048 square canvas, no grid/text, 16 isolated full-body poses, equal cells, every body/weapon inside cell with 40px padding. Consistent 3/4 facing RIGHT; same character scale and proportions. Row1 four sequential ULTIMATE poses: ready, gather power overhead, powerful release toward RIGHT, recover. Row2 four HIT reaction poses: recoil, flinch, stagger, regain balance. Row3 four FALL/defeat poses: lose balance, kneel, lie completely down horizontally, same fallen character resting. Row4 four VICTORY celebration poses: raise weapon/scroll, cheerful gesture, bow, settle proudly. Each cell has only one complete character. No ghosts/duplicates, ground/shadows/scenery, no huge VFX, no opaque backgrounds. Full head, antlers, ears and weapons in frame. Fallen poses stay horizontal and separate within cells, never split or cross grid."
+      }
+    ],
+    "uniformScale": 0.6136986301369863,
+    "outputs": {
+      "thit-dong-pixel.webp": {
+        "bytes": 126266,
+        "sha256": "c212337a2e5bd556c083dc99f365d86de4d2489ba3f6b7ef40d668790902c3e3"
+      },
+      "thit-dong.webp": {
+        "bytes": 639150,
+        "sha256": "c6d07361faea49fead010587b2fdc7bd850825d0a679c977c0a3f598047644fb"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 4,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    },
+    "id": "che-khuc-bach",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "20693bc1e18929f722dc018da4395f5a5a1bbc22c0739f5c43aea17aee484c2b",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            49,
+            4,
+            277,
+            311
+          ],
+          [
+            371,
+            4,
+            596,
+            313
+          ],
+          [
+            670,
+            5,
+            908,
+            313
+          ],
+          [
+            984,
+            5,
+            1221,
+            313
+          ],
+          [
+            20,
+            318,
+            290,
+            623
+          ],
+          [
+            347,
+            318,
+            605,
+            624
+          ],
+          [
+            649,
+            318,
+            921,
+            623
+          ],
+          [
+            986,
+            320,
+            1234,
+            623
+          ],
+          [
+            26,
+            637,
+            292,
+            928
+          ],
+          [
+            341,
+            632,
+            623,
+            929
+          ],
+          [
+            634,
+            634,
+            974,
+            930
+          ],
+          [
+            968,
+            633,
+            1236,
+            930
+          ],
+          [
+            37,
+            942,
+            295,
+            1244
+          ],
+          [
+            340,
+            942,
+            622,
+            1244
+          ],
+          [
+            647,
+            943,
+            944,
+            1244
+          ],
+          [
+            981,
+            943,
+            1223,
+            1244
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset: production Soul of Meal game animation sprite sheet. Reference image is IMMUTABLE CHARACTER IDENTITY: ivory antlered deer oracle, violet eyes, long ears, lavender crystal headdress, white lilac gold ceremonial robe, purple gloves, scroll in hand. Preserve species, facial markings, outfit, colors and weapons; no redesign from dish name. Draw this SAME character as polished anime RPG chibi full-body sprites with clean painted shading. Exactly 4 columns × 4 rows on a truly transparent 2048x2048 square canvas, no visible grid/text, 16 isolated full-body poses, equal 512x512 cells, every body/weapon completely inside its cell with at least 40px padding. Consistent 3/4 facing RIGHT, feet along same baseline, same body proportions and scale across cells. Row1 four different subtle idle breathing poses; row2 four different walking stride poses; row3 four sequential attack poses (anticipation, windup, contact to right, followthrough); row4 four sequential magic casting poses (prepare, gather, release to right, recover). Use a single character per cell, no extra companions, no ground, shadows or scenery, no painted rectangular backgrounds, no large VFX. Keep silhouette clear at 128px. Full ears and antlers in frame."
+      },
+      {
+        "sheet": "support",
+        "sha256": "787aaeb24fc754d8f6f39e0e9d8b2d0662fe5bc37a82e67b5579ab7faf01ef28",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            21,
+            7,
+            288,
+            316
+          ],
+          [
+            311,
+            7,
+            617,
+            317
+          ],
+          [
+            616,
+            18,
+            1002,
+            318
+          ],
+          [
+            981,
+            6,
+            1203,
+            317
+          ],
+          [
+            15,
+            325,
+            306,
+            622
+          ],
+          [
+            337,
+            333,
+            572,
+            624
+          ],
+          [
+            609,
+            347,
+            897,
+            625
+          ],
+          [
+            955,
+            324,
+            1213,
+            625
+          ],
+          [
+            15,
+            631,
+            334,
+            902
+          ],
+          [
+            318,
+            645,
+            584,
+            906
+          ],
+          [
+            588,
+            740,
+            925,
+            906
+          ],
+          [
+            924,
+            756,
+            1244,
+            908
+          ],
+          [
+            20,
+            909,
+            309,
+            1231
+          ],
+          [
+            321,
+            923,
+            604,
+            1233
+          ],
+          [
+            640,
+            937,
+            901,
+            1230
+          ],
+          [
+            960,
+            910,
+            1221,
+            1232
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Asset: production Soul of Meal game animation sprite sheet. Reference image is IMMUTABLE CHARACTER IDENTITY: ivory antlered deer oracle, violet eyes, long ears, lavender crystal headdress, white lilac gold ceremonial robe, purple gloves, scroll in hand. Preserve exact species, facial markings, costume, colors and weapons. Same character in polished anime RPG chibi full-body sprites with clean painted shading. Exactly 4 columns × 4 rows on a truly transparent 2048x2048 square canvas, no grid/text, 16 isolated full-body poses, equal cells, every body/weapon inside cell with 40px padding. Consistent 3/4 facing RIGHT; same character scale and proportions. Row1 four sequential ULTIMATE poses: ready, gather power overhead, powerful release toward RIGHT, recover. Row2 four HIT reaction poses: recoil, flinch, stagger, regain balance. Row3 four FALL/defeat poses: lose balance, kneel, lie completely down horizontally, same fallen character resting. Row4 four VICTORY celebration poses: raise weapon/scroll, cheerful gesture, bow, settle proudly. Each cell has only one complete character. No ghosts/duplicates, ground/shadows/scenery, no huge VFX, no opaque backgrounds. Full head, antlers, ears and weapons in frame. Fallen poses stay horizontal and separate within cells, never split or cross grid."
+      }
+    ],
+    "uniformScale": 0.5803108808290155,
+    "outputs": {
+      "che-khuc-bach-pixel.webp": {
+        "bytes": 106728,
+        "sha256": "ba12d88787b7d818ec7ab6f11f56c4e4252e7a48088aa8a490eab3c02adab51f"
+      },
+      "che-khuc-bach.webp": {
+        "bytes": 621376,
+        "sha256": "46d7a4ee6aff7e650ae6be2737bcd57dbc6545c1ac84e4dabc4a083fac3a728f"
+      }
+    }
+  }
+]

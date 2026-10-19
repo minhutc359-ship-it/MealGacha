@@ -1,0 +1,1838 @@
+{
+  "version": "5.9.21",
+  "total": 139,
+  "produced": {
+    "count": 65,
+    "ids": [
+      "pho-bo",
+      "pho-ga",
+      "bun-rieu",
+      "bun-bo-hue",
+      "banh-mi",
+      "xoi",
+      "banh-cuon",
+      "chao-suon",
+      "mien-ga",
+      "bun-moc",
+      "banh-da-cua",
+      "bun-cha",
+      "bun-dau",
+      "com-tam",
+      "com-ga",
+      "com-rang-dua-bo",
+      "com-nieu",
+      "bun-ca",
+      "mi-van-than",
+      "mi-cay",
+      "ga-ran",
+      "pizza",
+      "pasta",
+      "sushi",
+      "tokbokki",
+      "lau-thai",
+      "lau-rieu-cua",
+      "nuong-bbq",
+      "vit-quay",
+      "banh-xeo",
+      "bibimbap",
+      "xoi-xeo",
+      "cha-ca-la-vong",
+      "bun-thang",
+      "com-lang-vong",
+      "ca-phe-trung",
+      "cha-ruoi",
+      "banh-com-hang-than",
+      "banh-chung",
+      "canh-mang-mien",
+      "gio-xao",
+      "thit-dong",
+      "thit-kho-trung",
+      "dua-hanh",
+      "che-khuc-bach",
+      "che-buoi",
+      "goi-cuon-tom-thit",
+      "banh-dau-xanh",
+      "banh-khuc",
+      "banh-can",
+      "banh-tom-ho-tay",
+      "com-hen",
+      "che-lam",
+      "chao-luon",
+      "banh-it-la-gai",
+      "banh-ram-it",
+      "keo-cu-do",
+      "banh-tet",
+      "chef-nhien",
+      "chef-moc",
+      "chef-lien",
+      "chef-bach",
+      "chef-hai",
+      "caravan-herbalist",
+      "caravan-gardener"
+    ]
+  },
+  "remaining": {
+    "count": 74,
+    "portraitOnly": [
+      "samgyeopsal",
+      "hanwoo-bbq",
+      "shoyu-ramen",
+      "unagi-don",
+      "omakase",
+      "lasagna",
+      "truffle-risotto",
+      "bistecca-fiorentina",
+      "croissant",
+      "duck-confit",
+      "french-tasting",
+      "classic-burger",
+      "smoked-brisket",
+      "xiaolongbao",
+      "peking-duck",
+      "haidilao-hotpot",
+      "pad-thai",
+      "tom-yum-goong",
+      "mango-sticky-rice",
+      "korean-fried-chicken",
+      "bingsu",
+      "tonkotsu-ramen",
+      "carbonara",
+      "gelato",
+      "mashed-potato",
+      "hot-chocolate",
+      "jjajangmyeon",
+      "kimchi-jjigae",
+      "hotteok",
+      "ganjang-gejang",
+      "gopchang-gui",
+      "sundae-guk",
+      "takoyaki",
+      "okonomiyaki",
+      "yakitori",
+      "tonkatsu",
+      "matcha-parfait",
+      "taiyaki",
+      "som-tam",
+      "pad-kra-pao",
+      "boat-noodles",
+      "green-curry",
+      "moo-ping",
+      "khao-soi",
+      "ossobuco",
+      "tiramisu",
+      "arancini",
+      "saltimbocca",
+      "pappardelle-cinghiale",
+      "porchetta",
+      "roast-turkey",
+      "beef-wellington",
+      "honey-glazed-ham",
+      "gingerbread",
+      "christmas-pudding",
+      "yule-log",
+      "sua-chua-mit",
+      "kem-bo-da-lat",
+      "nom-sua-xoai",
+      "banner-tay-bac-goi-rau-don",
+      "banner-tay-bac-com-lam",
+      "banner-tay-bac-thang-co",
+      "banner-tay-bac-thit-trau-gac-bep",
+      "banner-tay-bac-ga-nuong-mac-khen",
+      "banner-tay-bac-xoi-ngu-sac",
+      "caravan-scout",
+      "caravan-smith",
+      "caravan-cook",
+      "caravan-pastry",
+      "v4-market-host"
+    ],
+    "legacyAnimated": [
+      "caravan-letter",
+      "caravan-ferryman",
+      "caravan-porter",
+      "caravan-cartographer"
+    ]
+  },
+  "autoRosterCount": 44,
+  "autoRoster": {
+    "count": 44,
+    "uniqueModelCount": 44,
+    "authored32PoseCount": 38,
+    "legacyAtlasModelIds": [
+      "loc",
+      "tinh",
+      "sen",
+      "recorder"
+    ]
+  },
+  "uniqueTcgModels": true,
+  "rows": [
+    {
+      "id": "pho-bo",
+      "name": "Phở bò",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-pho-bo",
+        "row": 0,
+        "id": "pho-bo",
+        "name": "Long Ngư Hơi Nước"
+      }
+    },
+    {
+      "id": "pho-ga",
+      "name": "Phở gà",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-pho-ga",
+        "row": 0,
+        "id": "pho-ga",
+        "name": "Bạch Hồ Ngọc Vân"
+      }
+    },
+    {
+      "id": "bun-rieu",
+      "name": "Bún riêu",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-bun-rieu",
+        "row": 0,
+        "id": "bun-rieu",
+        "name": "Giáp Cua Cà Chua"
+      }
+    },
+    {
+      "id": "bun-bo-hue",
+      "name": "Bún bò Huế",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-bun-bo-hue",
+        "row": 0,
+        "id": "bun-bo-hue",
+        "name": "Ngưu Vương Sả Ớt"
+      }
+    },
+    {
+      "id": "banh-mi",
+      "name": "Bánh mì",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-mi",
+        "row": 0,
+        "id": "banh-mi",
+        "name": "Hồ Ly Vỏ Giòn"
+      }
+    },
+    {
+      "id": "xoi",
+      "name": "Xôi mặn",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-xoi",
+        "row": 0,
+        "id": "xoi",
+        "name": "Gấu Nếp Mới"
+      }
+    },
+    {
+      "id": "banh-cuon",
+      "name": "Bánh cuốn",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-cuon",
+        "row": 0,
+        "id": "banh-cuon",
+        "name": "Ngọc Thố Hơi Mỏng"
+      }
+    },
+    {
+      "id": "chao-suon",
+      "name": "Cháo sườn",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-chao-suon",
+        "row": 0,
+        "id": "chao-suon",
+        "name": "Cẩm Lý Ngọc Ấn"
+      }
+    },
+    {
+      "id": "mien-ga",
+      "name": "Miến gà",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-mien-ga",
+        "row": 0,
+        "id": "mien-ga",
+        "name": "Ngân Cú Tơ Sương"
+      }
+    },
+    {
+      "id": "bun-moc",
+      "name": "Bún mọc",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-bun-moc",
+        "row": 0,
+        "id": "bun-moc",
+        "name": "Ngân Lang Thanh Phong"
+      }
+    },
+    {
+      "id": "banh-da-cua",
+      "name": "Bánh đa cua",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-banh-da-cua",
+        "row": 0,
+        "id": "banh-da-cua",
+        "name": "Hải Quy Nón Ngọc"
+      }
+    },
+    {
+      "id": "bun-cha",
+      "name": "Bún chả",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-bun-cha",
+        "row": 0,
+        "id": "bun-cha",
+        "name": "Hồ Ly Than Thơm"
+      }
+    },
+    {
+      "id": "bun-dau",
+      "name": "Bún đậu mắm tôm",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-bun-dau",
+        "row": 0,
+        "id": "bun-dau",
+        "name": "Tiên Hồ Điệp Tử Ngọc"
+      }
+    },
+    {
+      "id": "com-tam",
+      "name": "Cơm tấm",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-com-tam",
+        "row": 0,
+        "id": "com-tam",
+        "name": "Sư Tử Gạo Ấm"
+      }
+    },
+    {
+      "id": "com-ga",
+      "name": "Cơm gà",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-com-ga",
+        "row": 0,
+        "id": "com-ga",
+        "name": "Kim Kê Cánh Nắng"
+      }
+    },
+    {
+      "id": "com-rang-dua-bo",
+      "name": "Cơm rang dưa bò",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-com-rang-dua-bo",
+        "row": 0,
+        "id": "com-rang-dua-bo",
+        "name": "Bạch Lộc Kim Chi"
+      }
+    },
+    {
+      "id": "com-nieu",
+      "name": "Cơm niêu",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-com-nieu",
+        "row": 0,
+        "id": "com-nieu",
+        "name": "Kim Long Đồng Trượng"
+      }
+    },
+    {
+      "id": "bun-ca",
+      "name": "Bún cá",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-bun-ca",
+        "row": 0,
+        "id": "bun-ca",
+        "name": "Bói Cá Sóng Bạc"
+      }
+    },
+    {
+      "id": "mi-van-than",
+      "name": "Mì vằn thắn",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-mi-van-than",
+        "row": 0,
+        "id": "mi-van-than",
+        "name": "Ngọc Thố Lam Triều"
+      }
+    },
+    {
+      "id": "mi-cay",
+      "name": "Mì cay",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-mi-cay",
+        "row": 0,
+        "id": "mi-cay",
+        "name": "Sư Vương Xích Triều"
+      }
+    },
+    {
+      "id": "ga-ran",
+      "name": "Gà rán",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-ga-ran",
+        "row": 0,
+        "id": "ga-ran",
+        "name": "Kim Lộc Thu Diệp"
+      }
+    },
+    {
+      "id": "pizza",
+      "name": "Pizza",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-pizza",
+        "row": 0,
+        "id": "pizza",
+        "name": "Hạc Vương Kim Phong"
+      }
+    },
+    {
+      "id": "pasta",
+      "name": "Mì Ý",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-pasta",
+        "row": 0,
+        "id": "pasta",
+        "name": "Kim Hổ Liệt Dương"
+      }
+    },
+    {
+      "id": "sushi",
+      "name": "Sushi",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-sushi",
+        "row": 0,
+        "id": "sushi",
+        "name": "Cẩm Lý San Hô"
+      }
+    },
+    {
+      "id": "tokbokki",
+      "name": "Tokbokki",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-tokbokki",
+        "row": 0,
+        "id": "tokbokki",
+        "name": "Hỏa Cú Xích Vũ"
+      }
+    },
+    {
+      "id": "lau-thai",
+      "name": "Lẩu Thái",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-lau-thai",
+        "row": 0,
+        "id": "lau-thai",
+        "name": "Ngân Lang Xích Ấn"
+      }
+    },
+    {
+      "id": "lau-rieu-cua",
+      "name": "Lẩu riêu cua",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-lau-rieu-cua",
+        "row": 0,
+        "id": "lau-rieu-cua",
+        "name": "Thần Oa Hải Triều"
+      }
+    },
+    {
+      "id": "nuong-bbq",
+      "name": "Nướng BBQ",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-nuong-bbq",
+        "row": 0,
+        "id": "nuong-bbq",
+        "name": "Phượng Hoàng Than Hội"
+      }
+    },
+    {
+      "id": "vit-quay",
+      "name": "Vịt quay",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-vit-quay",
+        "row": 0,
+        "id": "vit-quay",
+        "name": "Ngọc Thố Hỏa Điệp"
+      }
+    },
+    {
+      "id": "banh-xeo",
+      "name": "Bánh xèo",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-xeo",
+        "row": 0,
+        "id": "banh-xeo",
+        "name": "Hỏa Điểu Vầng Giòn"
+      }
+    },
+    {
+      "id": "bibimbap",
+      "name": "Bibimbap",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-bibimbap",
+        "row": 0,
+        "id": "bibimbap",
+        "name": "Hải Ly Ngũ Sắc"
+      }
+    },
+    {
+      "id": "samgyeopsal",
+      "name": "Samgyeopsal",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-2",
+        "row": 15,
+        "id": "samgyeopsal",
+        "name": "Samgyeopsal"
+      }
+    },
+    {
+      "id": "hanwoo-bbq",
+      "name": "Hanwoo BBQ",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 0,
+        "id": "hanwoo-bbq",
+        "name": "Hanwoo BBQ"
+      }
+    },
+    {
+      "id": "shoyu-ramen",
+      "name": "Shoyu Ramen",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 1,
+        "id": "shoyu-ramen",
+        "name": "Shoyu Ramen"
+      }
+    },
+    {
+      "id": "unagi-don",
+      "name": "Unagi Don",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 2,
+        "id": "unagi-don",
+        "name": "Unagi Don"
+      }
+    },
+    {
+      "id": "omakase",
+      "name": "Omakase",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 3,
+        "id": "omakase",
+        "name": "Omakase"
+      }
+    },
+    {
+      "id": "lasagna",
+      "name": "Lasagna",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 4,
+        "id": "lasagna",
+        "name": "Lasagna"
+      }
+    },
+    {
+      "id": "truffle-risotto",
+      "name": "Risotto nấm Truffle",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 5,
+        "id": "truffle-risotto",
+        "name": "Risotto nấm Truffle"
+      }
+    },
+    {
+      "id": "bistecca-fiorentina",
+      "name": "Bistecca Fiorentina",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 6,
+        "id": "bistecca-fiorentina",
+        "name": "Bistecca Fiorentina"
+      }
+    },
+    {
+      "id": "croissant",
+      "name": "Croissant bơ",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 7,
+        "id": "croissant",
+        "name": "Croissant bơ"
+      }
+    },
+    {
+      "id": "duck-confit",
+      "name": "Duck Confit",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 8,
+        "id": "duck-confit",
+        "name": "Duck Confit"
+      }
+    },
+    {
+      "id": "french-tasting",
+      "name": "French Tasting Menu",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 9,
+        "id": "french-tasting",
+        "name": "French Tasting Menu"
+      }
+    },
+    {
+      "id": "classic-burger",
+      "name": "Classic Cheeseburger",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 10,
+        "id": "classic-burger",
+        "name": "Classic Cheeseburger"
+      }
+    },
+    {
+      "id": "smoked-brisket",
+      "name": "Smoked Brisket",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 11,
+        "id": "smoked-brisket",
+        "name": "Smoked Brisket"
+      }
+    },
+    {
+      "id": "xiaolongbao",
+      "name": "Xiaolongbao",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 12,
+        "id": "xiaolongbao",
+        "name": "Xiaolongbao"
+      }
+    },
+    {
+      "id": "peking-duck",
+      "name": "Vịt quay Bắc Kinh",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 13,
+        "id": "peking-duck",
+        "name": "Vịt quay Bắc Kinh"
+      }
+    },
+    {
+      "id": "haidilao-hotpot",
+      "name": "Lẩu Tứ Xuyên",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 14,
+        "id": "haidilao-hotpot",
+        "name": "Lẩu Tứ Xuyên"
+      }
+    },
+    {
+      "id": "pad-thai",
+      "name": "Pad Thai",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-3",
+        "row": 15,
+        "id": "pad-thai",
+        "name": "Pad Thai"
+      }
+    },
+    {
+      "id": "tom-yum-goong",
+      "name": "Tom Yum Goong",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-4",
+        "row": 0,
+        "id": "tom-yum-goong",
+        "name": "Tom Yum Goong"
+      }
+    },
+    {
+      "id": "mango-sticky-rice",
+      "name": "Xôi xoài Thái",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-4",
+        "row": 1,
+        "id": "mango-sticky-rice",
+        "name": "Xôi xoài Thái"
+      }
+    },
+    {
+      "id": "xoi-xeo",
+      "name": "Xôi xéo",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-xoi-xeo",
+        "row": 0,
+        "id": "xoi-xeo",
+        "name": "Tê Tê Nếp Vàng"
+      }
+    },
+    {
+      "id": "korean-fried-chicken",
+      "name": "Gà rán Hàn Quốc",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-4",
+        "row": 3,
+        "id": "korean-fried-chicken",
+        "name": "Gà rán Hàn Quốc"
+      }
+    },
+    {
+      "id": "bingsu",
+      "name": "Bingsu",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-4",
+        "row": 4,
+        "id": "bingsu",
+        "name": "Bingsu"
+      }
+    },
+    {
+      "id": "tonkotsu-ramen",
+      "name": "Tonkotsu Ramen",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-4",
+        "row": 5,
+        "id": "tonkotsu-ramen",
+        "name": "Tonkotsu Ramen"
+      }
+    },
+    {
+      "id": "carbonara",
+      "name": "Carbonara",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-4",
+        "row": 6,
+        "id": "carbonara",
+        "name": "Carbonara"
+      }
+    },
+    {
+      "id": "gelato",
+      "name": "Gelato",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-4",
+        "row": 7,
+        "id": "gelato",
+        "name": "Gelato"
+      }
+    },
+    {
+      "id": "mashed-potato",
+      "name": "Khoai tây nghiền",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-4",
+        "row": 8,
+        "id": "mashed-potato",
+        "name": "Khoai tây nghiền"
+      }
+    },
+    {
+      "id": "hot-chocolate",
+      "name": "Sô cô la nóng",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-4",
+        "row": 9,
+        "id": "hot-chocolate",
+        "name": "Sô cô la nóng"
+      }
+    },
+    {
+      "id": "cha-ca-la-vong",
+      "name": "Chả cá Lã Vọng",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-cha-ca-la-vong",
+        "row": 0,
+        "id": "cha-ca-la-vong",
+        "name": "Lão Ngư Thì Là"
+      }
+    },
+    {
+      "id": "bun-thang",
+      "name": "Bún thang",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-bun-thang",
+        "row": 0,
+        "id": "bun-thang",
+        "name": "Bạch Hạc Chỉ Vàng"
+      }
+    },
+    {
+      "id": "com-lang-vong",
+      "name": "Cốm Làng Vòng",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-com-lang-vong",
+        "row": 0,
+        "id": "com-lang-vong",
+        "name": "Kỳ Lân Lúa Non"
+      }
+    },
+    {
+      "id": "ca-phe-trung",
+      "name": "Cà phê trứng",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-ca-phe-trung",
+        "row": 0,
+        "id": "ca-phe-trung",
+        "name": "Cầy Hương Mây Kem"
+      }
+    },
+    {
+      "id": "cha-ruoi",
+      "name": "Chả rươi",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-cha-ruoi",
+        "row": 0,
+        "id": "cha-ruoi",
+        "name": "Sóc Lá Thu"
+      }
+    },
+    {
+      "id": "banh-com-hang-than",
+      "name": "Bánh cốm Hàng Than",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-com-hang-than",
+        "row": 0,
+        "id": "banh-com-hang-than",
+        "name": "Yến Ngọc Tơ Duyên"
+      }
+    },
+    {
+      "id": "jjajangmyeon",
+      "name": "Mì tương đen Jjajangmyeon",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 0,
+        "id": "jjajangmyeon",
+        "name": "Mì tương đen Jjajangmyeon"
+      }
+    },
+    {
+      "id": "kimchi-jjigae",
+      "name": "Canh kimchi Jjigae",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 1,
+        "id": "kimchi-jjigae",
+        "name": "Canh kimchi Jjigae"
+      }
+    },
+    {
+      "id": "hotteok",
+      "name": "Bánh Hotteok",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 2,
+        "id": "hotteok",
+        "name": "Bánh Hotteok"
+      }
+    },
+    {
+      "id": "ganjang-gejang",
+      "name": "Cua ngâm tương Ganjang Gejang",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 3,
+        "id": "ganjang-gejang",
+        "name": "Cua ngâm tương Ganjang Gejang"
+      }
+    },
+    {
+      "id": "gopchang-gui",
+      "name": "Lòng bò nướng Gopchang",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 4,
+        "id": "gopchang-gui",
+        "name": "Lòng bò nướng Gopchang"
+      }
+    },
+    {
+      "id": "sundae-guk",
+      "name": "Canh Sundae Guk",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 5,
+        "id": "sundae-guk",
+        "name": "Canh Sundae Guk"
+      }
+    },
+    {
+      "id": "takoyaki",
+      "name": "Takoyaki",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 6,
+        "id": "takoyaki",
+        "name": "Takoyaki"
+      }
+    },
+    {
+      "id": "okonomiyaki",
+      "name": "Okonomiyaki",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 7,
+        "id": "okonomiyaki",
+        "name": "Okonomiyaki"
+      }
+    },
+    {
+      "id": "yakitori",
+      "name": "Yakitori",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 8,
+        "id": "yakitori",
+        "name": "Yakitori"
+      }
+    },
+    {
+      "id": "tonkatsu",
+      "name": "Tonkatsu",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 9,
+        "id": "tonkatsu",
+        "name": "Tonkatsu"
+      }
+    },
+    {
+      "id": "matcha-parfait",
+      "name": "Matcha Parfait",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 10,
+        "id": "matcha-parfait",
+        "name": "Matcha Parfait"
+      }
+    },
+    {
+      "id": "taiyaki",
+      "name": "Bánh cá Taiyaki",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 11,
+        "id": "taiyaki",
+        "name": "Bánh cá Taiyaki"
+      }
+    },
+    {
+      "id": "som-tam",
+      "name": "Gỏi đu đủ Som Tam",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 12,
+        "id": "som-tam",
+        "name": "Gỏi đu đủ Som Tam"
+      }
+    },
+    {
+      "id": "pad-kra-pao",
+      "name": "Cơm húng quế Pad Kra Pao",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 13,
+        "id": "pad-kra-pao",
+        "name": "Cơm húng quế Pad Kra Pao"
+      }
+    },
+    {
+      "id": "boat-noodles",
+      "name": "Mì thuyền Boat Noodles",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 14,
+        "id": "boat-noodles",
+        "name": "Mì thuyền Boat Noodles"
+      }
+    },
+    {
+      "id": "green-curry",
+      "name": "Cà ri xanh",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-5",
+        "row": 15,
+        "id": "green-curry",
+        "name": "Cà ri xanh"
+      }
+    },
+    {
+      "id": "moo-ping",
+      "name": "Thịt xiên Moo Ping",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 0,
+        "id": "moo-ping",
+        "name": "Thịt xiên Moo Ping"
+      }
+    },
+    {
+      "id": "khao-soi",
+      "name": "Mì cà ri Khao Soi",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 1,
+        "id": "khao-soi",
+        "name": "Mì cà ri Khao Soi"
+      }
+    },
+    {
+      "id": "ossobuco",
+      "name": "Ossobuco",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 2,
+        "id": "ossobuco",
+        "name": "Ossobuco"
+      }
+    },
+    {
+      "id": "tiramisu",
+      "name": "Tiramisu",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 3,
+        "id": "tiramisu",
+        "name": "Tiramisu"
+      }
+    },
+    {
+      "id": "arancini",
+      "name": "Cơm viên Arancini",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 4,
+        "id": "arancini",
+        "name": "Cơm viên Arancini"
+      }
+    },
+    {
+      "id": "saltimbocca",
+      "name": "Thịt bê Saltimbocca",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 5,
+        "id": "saltimbocca",
+        "name": "Thịt bê Saltimbocca"
+      }
+    },
+    {
+      "id": "pappardelle-cinghiale",
+      "name": "Pappardelle sốt lợn rừng",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 6,
+        "id": "pappardelle-cinghiale",
+        "name": "Pappardelle sốt lợn rừng"
+      }
+    },
+    {
+      "id": "porchetta",
+      "name": "Heo quay Porchetta",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 7,
+        "id": "porchetta",
+        "name": "Heo quay Porchetta"
+      }
+    },
+    {
+      "id": "roast-turkey",
+      "name": "Gà tây quay",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 8,
+        "id": "roast-turkey",
+        "name": "Gà tây quay"
+      }
+    },
+    {
+      "id": "beef-wellington",
+      "name": "Beef Wellington",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 9,
+        "id": "beef-wellington",
+        "name": "Beef Wellington"
+      }
+    },
+    {
+      "id": "honey-glazed-ham",
+      "name": "Thịt nguội nướng mật ong",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 10,
+        "id": "honey-glazed-ham",
+        "name": "Thịt nguội nướng mật ong"
+      }
+    },
+    {
+      "id": "gingerbread",
+      "name": "Bánh gừng",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 11,
+        "id": "gingerbread",
+        "name": "Bánh gừng"
+      }
+    },
+    {
+      "id": "christmas-pudding",
+      "name": "Christmas Pudding",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 12,
+        "id": "christmas-pudding",
+        "name": "Christmas Pudding"
+      }
+    },
+    {
+      "id": "yule-log",
+      "name": "Bánh khúc cây Yule Log",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-6",
+        "row": 13,
+        "id": "yule-log",
+        "name": "Bánh khúc cây Yule Log"
+      }
+    },
+    {
+      "id": "banh-chung",
+      "name": "Bánh chưng",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-chung",
+        "row": 0,
+        "id": "banh-chung",
+        "name": "Linh Quy Lá Vuông"
+      }
+    },
+    {
+      "id": "canh-mang-mien",
+      "name": "Canh măng miến",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-canh-mang-mien",
+        "row": 0,
+        "id": "canh-mang-mien",
+        "name": "Bạch Lân Song Kiếm"
+      }
+    },
+    {
+      "id": "gio-xao",
+      "name": "Giò xào",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-gio-xao",
+        "row": 0,
+        "id": "gio-xao",
+        "name": "Xích Long Văn Ấn"
+      }
+    },
+    {
+      "id": "thit-dong",
+      "name": "Thịt đông",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-thit-dong",
+        "row": 0,
+        "id": "thit-dong",
+        "name": "Hồ Ly Hồng Quyển"
+      }
+    },
+    {
+      "id": "thit-kho-trung",
+      "name": "Thịt kho trứng",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-thit-kho-trung",
+        "row": 0,
+        "id": "thit-kho-trung",
+        "name": "Huyền Quy Nồi Tết"
+      }
+    },
+    {
+      "id": "dua-hanh",
+      "name": "Dưa hành",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-dua-hanh",
+        "row": 0,
+        "id": "dua-hanh",
+        "name": "Ngọc Thố Muối Xuân"
+      }
+    },
+    {
+      "id": "che-khuc-bach",
+      "name": "Chè khúc bạch",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-che-khuc-bach",
+        "row": 0,
+        "id": "che-khuc-bach",
+        "name": "Bạch Lộc Tử Tinh"
+      }
+    },
+    {
+      "id": "che-buoi",
+      "name": "Chè bưởi",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-che-buoi",
+        "row": 0,
+        "id": "che-buoi",
+        "name": "Hải Ly Hương Bưởi"
+      }
+    },
+    {
+      "id": "sua-chua-mit",
+      "name": "Sữa chua mít",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-7",
+        "row": 6,
+        "id": "sua-chua-mit",
+        "name": "Sữa chua mít"
+      }
+    },
+    {
+      "id": "kem-bo-da-lat",
+      "name": "Kem bơ Đà Lạt",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-7",
+        "row": 7,
+        "id": "kem-bo-da-lat",
+        "name": "Kem bơ Đà Lạt"
+      }
+    },
+    {
+      "id": "nom-sua-xoai",
+      "name": "Nộm sứa xoài xanh",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-7",
+        "row": 8,
+        "id": "nom-sua-xoai",
+        "name": "Nộm sứa xoài xanh"
+      }
+    },
+    {
+      "id": "goi-cuon-tom-thit",
+      "name": "Gỏi cuốn tôm thịt",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-goi-cuon-tom-thit",
+        "row": 0,
+        "id": "goi-cuon-tom-thit",
+        "name": "Bạch lộc"
+      }
+    },
+    {
+      "id": "banner-tay-bac-goi-rau-don",
+      "name": "Gỏi rau dơn",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-7",
+        "row": 10,
+        "id": "banner-tay-bac-goi-rau-don",
+        "name": "Gỏi rau dơn"
+      }
+    },
+    {
+      "id": "banner-tay-bac-com-lam",
+      "name": "Cơm lam",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-7",
+        "row": 11,
+        "id": "banner-tay-bac-com-lam",
+        "name": "Cơm lam"
+      }
+    },
+    {
+      "id": "banner-tay-bac-thang-co",
+      "name": "Thắng cố",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-7",
+        "row": 12,
+        "id": "banner-tay-bac-thang-co",
+        "name": "Thắng cố"
+      }
+    },
+    {
+      "id": "banner-tay-bac-thit-trau-gac-bep",
+      "name": "Thịt trâu gác bếp",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-7",
+        "row": 13,
+        "id": "banner-tay-bac-thit-trau-gac-bep",
+        "name": "Thịt trâu gác bếp"
+      }
+    },
+    {
+      "id": "banner-tay-bac-ga-nuong-mac-khen",
+      "name": "Gà nướng mắc khén",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-7",
+        "row": 14,
+        "id": "banner-tay-bac-ga-nuong-mac-khen",
+        "name": "Gà nướng mắc khén"
+      }
+    },
+    {
+      "id": "banner-tay-bac-xoi-ngu-sac",
+      "name": "Xôi ngũ sắc",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-7",
+        "row": 15,
+        "id": "banner-tay-bac-xoi-ngu-sac",
+        "name": "Xôi ngũ sắc"
+      }
+    },
+    {
+      "id": "banh-dau-xanh",
+      "name": "Bánh đậu xanh",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-dau-xanh",
+        "row": 0,
+        "id": "banh-dau-xanh",
+        "name": "Tiểu Tượng Ngọc"
+      }
+    },
+    {
+      "id": "banh-khuc",
+      "name": "Bánh khúc",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-khuc",
+        "row": 0,
+        "id": "banh-khuc",
+        "name": "Mầm Áo Lá"
+      }
+    },
+    {
+      "id": "banh-can",
+      "name": "Bánh căn",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-can",
+        "row": 0,
+        "id": "banh-can",
+        "name": "Chim Than Tròn"
+      }
+    },
+    {
+      "id": "banh-tom-ho-tay",
+      "name": "Bánh tôm Hồ Tây",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-tom-ho-tay",
+        "row": 0,
+        "id": "banh-tom-ho-tay",
+        "name": "Tôm Lửa Hồ"
+      }
+    },
+    {
+      "id": "com-hen",
+      "name": "Cơm hến",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-com-hen",
+        "row": 0,
+        "id": "com-hen",
+        "name": "Linh Trai Sông"
+      }
+    },
+    {
+      "id": "che-lam",
+      "name": "Chè lam",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-che-lam",
+        "row": 0,
+        "id": "che-lam",
+        "name": "Hươu Mật Gừng"
+      }
+    },
+    {
+      "id": "chao-luon",
+      "name": "Cháo lươn",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-chao-luon",
+        "row": 0,
+        "id": "chao-luon",
+        "name": "Long Tuyến Ấm"
+      }
+    },
+    {
+      "id": "banh-it-la-gai",
+      "name": "Bánh ít lá gai",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-it-la-gai",
+        "row": 0,
+        "id": "banh-it-la-gai",
+        "name": "Dơi Lá Tím"
+      }
+    },
+    {
+      "id": "banh-ram-it",
+      "name": "Bánh ram ít",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-ram-it",
+        "row": 0,
+        "id": "banh-ram-it",
+        "name": "Song Linh Giòn Mềm"
+      }
+    },
+    {
+      "id": "keo-cu-do",
+      "name": "Kẹo cu đơ",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-keo-cu-do",
+        "row": 0,
+        "id": "keo-cu-do",
+        "name": "Ngưu Lạc Vàng"
+      }
+    },
+    {
+      "id": "banh-tet",
+      "name": "Bánh tét",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-banh-tet",
+        "row": 0,
+        "id": "banh-tet",
+        "name": "Ngọc Thố Nếp Đoàn Viên"
+      }
+    },
+    {
+      "id": "chef-nhien",
+      "name": "Nhiên · Giữ lửa",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-chef-nhien",
+        "row": 0,
+        "id": "chef-nhien",
+        "name": "Người giữ than"
+      }
+    },
+    {
+      "id": "chef-moc",
+      "name": "Mộc · Mầm sống",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-chef-moc",
+        "row": 0,
+        "id": "chef-moc",
+        "name": "Người giữ lá"
+      }
+    },
+    {
+      "id": "chef-lien",
+      "name": "Liên · Dệt sao",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-chef-lien",
+        "row": 0,
+        "id": "chef-lien",
+        "name": "Người dệt sao"
+      }
+    },
+    {
+      "id": "chef-bach",
+      "name": "Bách · Bếp trưởng",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-chef-bach",
+        "row": 0,
+        "id": "chef-bach",
+        "name": "Người giữ bàn"
+      }
+    },
+    {
+      "id": "chef-hai",
+      "name": "Hải · Nghe sóng",
+      "authored32Poses": true,
+      "autoRoster": true,
+      "model": {
+        "sheet": "starter-chef-hai",
+        "row": 0,
+        "id": "chef-hai",
+        "name": "Người nghe nước"
+      }
+    },
+    {
+      "id": "caravan-scout",
+      "name": "Trinh sát than hồng",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-9",
+        "row": 0,
+        "id": "caravan-scout",
+        "name": "Trinh sát than hồng"
+      }
+    },
+    {
+      "id": "caravan-smith",
+      "name": "Thợ rèn lửa đỏ",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-9",
+        "row": 1,
+        "id": "caravan-smith",
+        "name": "Thợ rèn lửa đỏ"
+      }
+    },
+    {
+      "id": "caravan-letter",
+      "name": "Người đưa thư biển",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "fresh",
+        "row": 11,
+        "id": "tinh",
+        "name": "Người giữ nhịp"
+      }
+    },
+    {
+      "id": "caravan-ferryman",
+      "name": "Lái đò sương bạc",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "living-ferry",
+        "row": 0,
+        "id": "ferry",
+        "name": "Người đưa khách"
+      }
+    },
+    {
+      "id": "caravan-herbalist",
+      "name": "Cô hái lá thuốc",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-caravan-herbalist",
+        "row": 0,
+        "id": "caravan-herbalist",
+        "name": "Người hái thuốc"
+      }
+    },
+    {
+      "id": "caravan-gardener",
+      "name": "Người trồng bình minh",
+      "authored32Poses": true,
+      "autoRoster": false,
+      "model": {
+        "sheet": "starter-caravan-gardener",
+        "row": 0,
+        "id": "caravan-gardener",
+        "name": "Người gieo vườn"
+      }
+    },
+    {
+      "id": "caravan-porter",
+      "name": "Người gánh bếp",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "fresh",
+        "row": 10,
+        "id": "loc",
+        "name": "Người thắp đèn"
+      }
+    },
+    {
+      "id": "caravan-cook",
+      "name": "Bếp trưởng đường xa",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-9",
+        "row": 7,
+        "id": "caravan-cook",
+        "name": "Bếp trưởng đường xa"
+      }
+    },
+    {
+      "id": "caravan-pastry",
+      "name": "Thợ bánh mặt trăng",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-9",
+        "row": 8,
+        "id": "caravan-pastry",
+        "name": "Thợ bánh mặt trăng"
+      }
+    },
+    {
+      "id": "caravan-cartographer",
+      "name": "Người vẽ đường sao",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "fresh",
+        "row": 13,
+        "id": "recorder",
+        "name": "Trang sổ còn mở"
+      }
+    },
+    {
+      "id": "v4-market-host",
+      "name": "Người kể bên bàn",
+      "authored32Poses": false,
+      "autoRoster": false,
+      "model": {
+        "sheet": "portrait-9",
+        "row": 10,
+        "id": "v4-market-host",
+        "name": "Người kể bên bàn"
+      }
+    }
+  ]
+}

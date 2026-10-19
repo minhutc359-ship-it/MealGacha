@@ -1,0 +1,62 @@
+[
+  {
+    "id": "samgyeopsal",
+    "reference": ".asset-work/korea5923/references/samgyeopsal.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 15,
+      "columns": 4,
+      "sha256": "3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"
+    }
+  },
+  {
+    "id": "hanwoo-bbq",
+    "reference": ".asset-work/korea5923/references/hanwoo-bbq.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 0,
+      "columns": 4,
+      "sha256": "bacc5bf57479298d97e8e8bb1fd43a6da95f28117fa2e5b53dda7f3b1baf6d8e"
+    }
+  },
+  {
+    "id": "korean-fried-chicken",
+    "reference": ".asset-work/korea5923/references/korean-fried-chicken.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 3,
+      "columns": 4,
+      "sha256": "33b370606ef7be4d708d4211dee46826f9ca09db770f701265c5bb973371cc2a"
+    }
+  },
+  {
+    "id": "bingsu",
+    "reference": ".asset-work/korea5923/references/bingsu.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 4,
+      "columns": 4,
+      "sha256": "33b370606ef7be4d708d4211dee46826f9ca09db770f701265c5bb973371cc2a"
+    }
+  },
+  {
+    "id": "jjajangmyeon",
+    "reference": ".asset-work/korea5923/references/jjajangmyeon.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 0,
+      "columns": 4,
+      "sha256": "bd5b104f7cdbe94a3bf259b55653cada715b43951eec7b5809ca8363fe7313be"
+    }
+  },
+  {
+    "id": "kimchi-jjigae",
+    "reference": ".asset-work/korea5923/references/kimchi-jjigae.png",
+    "canon": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 1,
+      "columns": 4,
+      "sha256": "bd5b104f7cdbe94a3bf259b55653cada715b43951eec7b5809ca8363fe7313be"
+    }
+  }
+]

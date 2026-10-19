@@ -1,0 +1,1664 @@
+[
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-3.webp",
+      "cell": 0,
+      "columns": 4,
+      "sha256": "bacc5bf57479298d97e8e8bb1fd43a6da95f28117fa2e5b53dda7f3b1baf6d8e"
+    },
+    "id": "hanwoo-bbq",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "83bab40b4e4d3bb13624342a7c3bb89b03345a952c1d6d7302da7984e7f6410d",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            20,
+            17,
+            306,
+            322
+          ],
+          [
+            341,
+            18,
+            610,
+            321
+          ],
+          [
+            642,
+            18,
+            926,
+            321
+          ],
+          [
+            957,
+            31,
+            1242,
+            321
+          ],
+          [
+            19,
+            335,
+            304,
+            615
+          ],
+          [
+            330,
+            334,
+            604,
+            616
+          ],
+          [
+            635,
+            334,
+            927,
+            618
+          ],
+          [
+            956,
+            334,
+            1235,
+            617
+          ],
+          [
+            13,
+            649,
+            307,
+            906
+          ],
+          [
+            328,
+            633,
+            625,
+            906
+          ],
+          [
+            629,
+            650,
+            1014,
+            906
+          ],
+          [
+            991,
+            640,
+            1247,
+            906
+          ],
+          [
+            17,
+            931,
+            309,
+            1219
+          ],
+          [
+            337,
+            932,
+            625,
+            1219
+          ],
+          [
+            636,
+            941,
+            981,
+            1220
+          ],
+          [
+            974,
+            933,
+            1239,
+            1219
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a red and cream eastern dragon with two black horns, long golden whiskers, red mane, red black and gold ceremonial robe, jade ornaments, a staff topped by a golden sun orb. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: idle breathing, alert idle, soft inhale, ready idle. ROW 2: walk right step left foot, passing, right foot forward, settling. ROW 3: attack anticipation, strong windup, distinct forward contact to RIGHT using the held weapon/ward/lantern, recoil recovery. ROW 4: magic prepare, gather tiny energy at held prop, release tiny energy toward RIGHT, recover. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      },
+      {
+        "sheet": "support",
+        "sha256": "581c3945ed845788569f0d866cc8c5a894ae634868a3cd979ee3ed17d939e606",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            12,
+            29,
+            301,
+            332
+          ],
+          [
+            321,
+            0,
+            623,
+            334
+          ],
+          [
+            618,
+            55,
+            991,
+            329
+          ],
+          [
+            972,
+            31,
+            1240,
+            333
+          ],
+          [
+            20,
+            345,
+            288,
+            633
+          ],
+          [
+            307,
+            348,
+            626,
+            635
+          ],
+          [
+            645,
+            346,
+            955,
+            636
+          ],
+          [
+            981,
+            344,
+            1238,
+            635
+          ],
+          [
+            26,
+            642,
+            316,
+            914
+          ],
+          [
+            340,
+            646,
+            603,
+            913
+          ],
+          [
+            617,
+            750,
+            964,
+            908
+          ],
+          [
+            964,
+            746,
+            1244,
+            900
+          ],
+          [
+            27,
+            929,
+            312,
+            1219
+          ],
+          [
+            336,
+            920,
+            628,
+            1219
+          ],
+          [
+            661,
+            900,
+            967,
+            1218
+          ],
+          [
+            982,
+            907,
+            1238,
+            1220
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a red and cream eastern dragon with two black horns, long golden whiskers, red mane, red black and gold ceremonial robe, jade ornaments, a staff topped by a golden sun orb. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: ultimate prepare, raise prop, powerful forward RIGHT finishing pose, settle. ROW 2: light hit flinch, strong hit recoil, brace, recover. ROW 3: lose balance, kneel, lie horizontally on ground, horizontal resting defeated pose. ROW 4: victory relief, confident salute with prop, joyful raised gesture, calm proud finish. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      }
+    ],
+    "uniformScale": 0.5818181818181818,
+    "outputs": {
+      "hanwoo-bbq-pixel.webp": {
+        "bytes": 117104,
+        "sha256": "409db2d17b1d74a913b37e3f57a19073db2913cdae01a14a26ba439f8a52715b"
+      },
+      "hanwoo-bbq.webp": {
+        "bytes": 631602,
+        "sha256": "6b7575452ddb0a917708dc2a10fd71886f721dd7acb067b8e1207604baf1a095"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 15,
+      "columns": 4,
+      "sha256": "3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"
+    },
+    "id": "samgyeopsal",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "db10a11f1390745446d9cfebb4a95ca3726e90bdb035f48c075def213a901055",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            54,
+            77,
+            277,
+            321
+          ],
+          [
+            350,
+            70,
+            591,
+            325
+          ],
+          [
+            659,
+            68,
+            897,
+            323
+          ],
+          [
+            952,
+            76,
+            1197,
+            325
+          ],
+          [
+            45,
+            366,
+            299,
+            622
+          ],
+          [
+            353,
+            371,
+            601,
+            626
+          ],
+          [
+            659,
+            373,
+            916,
+            629
+          ],
+          [
+            966,
+            369,
+            1211,
+            626
+          ],
+          [
+            33,
+            668,
+            306,
+            901
+          ],
+          [
+            338,
+            654,
+            623,
+            900
+          ],
+          [
+            652,
+            669,
+            1012,
+            901
+          ],
+          [
+            983,
+            663,
+            1226,
+            902
+          ],
+          [
+            34,
+            940,
+            303,
+            1198
+          ],
+          [
+            346,
+            942,
+            609,
+            1194
+          ],
+          [
+            656,
+            946,
+            995,
+            1191
+          ],
+          [
+            974,
+            940,
+            1214,
+            1198
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Fix the layout of reference image 2, retaining its same 16 distinct character poses and identity from reference 1. Make each figure MUCH SMALLER in its cell: only 60% of the cell width and height. Blank transparent gutters must occupy the other 40%. Exactly 4 columns x 4 rows; fixed equal square cells. Every spear tip, antler, long scarf and all feet must stay fully inside its own cell, with at least 15% transparent margin on each side. NO glow, NO aura, NO energy arcs, NO particles. Pose only. It is essential that no two sprites touch or overlap at all. Preserve the reference species, outfit, signature gold spear, colors and all 16 ordered actions. Full true transparent background. Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a white furry eastern dragon-deer guardian with branching gold antlers, teal scale accents along neck, teal and white robes with ornate gold armor and jade pendants, dark brown gloves, a long golden spear. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: idle breathing, alert idle, soft inhale, ready idle. ROW 2: walk right step left foot, passing, right foot forward, settling. ROW 3: attack anticipation, strong windup, distinct forward contact to RIGHT using the held weapon/ward/lantern, recoil recovery. ROW 4: magic prepare, gather tiny energy at held prop, release tiny energy toward RIGHT, recover. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      },
+      {
+        "sheet": "support",
+        "sha256": "63c1b1b2056c430fdd2b94161459162056ffde0a0a2acbc6ec4548f9c7450bb4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            57,
+            63,
+            277,
+            308
+          ],
+          [
+            355,
+            49,
+            574,
+            308
+          ],
+          [
+            639,
+            115,
+            967,
+            308
+          ],
+          [
+            990,
+            63,
+            1196,
+            308
+          ],
+          [
+            59,
+            370,
+            312,
+            613
+          ],
+          [
+            353,
+            375,
+            604,
+            617
+          ],
+          [
+            666,
+            370,
+            890,
+            613
+          ],
+          [
+            985,
+            360,
+            1209,
+            613
+          ],
+          [
+            44,
+            678,
+            300,
+            911
+          ],
+          [
+            352,
+            678,
+            588,
+            905
+          ],
+          [
+            639,
+            778,
+            900,
+            913
+          ],
+          [
+            962,
+            769,
+            1222,
+            909
+          ],
+          [
+            56,
+            949,
+            288,
+            1205
+          ],
+          [
+            356,
+            953,
+            591,
+            1205
+          ],
+          [
+            667,
+            952,
+            895,
+            1206
+          ],
+          [
+            988,
+            951,
+            1205,
+            1206
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Fix the layout of reference image 2, retaining its same 16 distinct character poses and identity from reference 1. Make each figure MUCH SMALLER in its cell: only 60% of the cell width and height. Blank transparent gutters must occupy the other 40%. Exactly 4 columns x 4 rows; fixed equal square cells. Every spear tip, antler, long scarf and all feet must stay fully inside its own cell, with at least 15% transparent margin on each side. NO glow, NO aura, NO energy arcs, NO particles. Pose only. It is essential that no two sprites touch or overlap at all. Preserve the reference species, outfit, signature gold spear, colors and all 16 ordered actions. Full true transparent background. Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a white furry eastern dragon-deer guardian with branching gold antlers, teal scale accents along neck, teal and white robes with ornate gold armor and jade pendants, dark brown gloves, a long golden spear. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: ultimate prepare, raise prop, powerful forward RIGHT finishing pose, settle. ROW 2: light hit flinch, strong hit recoil, brace, recover. ROW 3: lose balance, kneel, lie horizontally on ground, horizontal resting defeated pose. ROW 4: victory relief, confident salute with prop, joyful raised gesture, calm proud finish. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      }
+    ],
+    "uniformScale": 0.6222222222222222,
+    "outputs": {
+      "samgyeopsal-pixel.webp": {
+        "bytes": 103426,
+        "sha256": "933a489762b2412417603031af649768e033a4d3164181b5b5dcc6ba7e05c674"
+      },
+      "samgyeopsal.webp": {
+        "bytes": 494896,
+        "sha256": "939372f41293a591c786831043e0174d38751f8c9e6a95502a025b961e1d557b"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 3,
+      "columns": 4,
+      "sha256": "33b370606ef7be4d708d4211dee46826f9ca09db770f701265c5bb973371cc2a"
+    },
+    "id": "korean-fried-chicken",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "eb4c73ea88c468b4f1153d34759af7ca1e2d25acd6fceb5e94a77979df6a8ca0",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            67,
+            108,
+            325,
+            369
+          ],
+          [
+            361,
+            109,
+            626,
+            368
+          ],
+          [
+            659,
+            109,
+            920,
+            369
+          ],
+          [
+            957,
+            109,
+            1208,
+            369
+          ],
+          [
+            41,
+            393,
+            346,
+            654
+          ],
+          [
+            367,
+            398,
+            641,
+            651
+          ],
+          [
+            666,
+            397,
+            933,
+            650
+          ],
+          [
+            968,
+            395,
+            1220,
+            650
+          ],
+          [
+            49,
+            680,
+            317,
+            925
+          ],
+          [
+            347,
+            661,
+            627,
+            926
+          ],
+          [
+            644,
+            694,
+            975,
+            922
+          ],
+          [
+            981,
+            678,
+            1234,
+            925
+          ],
+          [
+            53,
+            950,
+            315,
+            1203
+          ],
+          [
+            360,
+            941,
+            621,
+            1208
+          ],
+          [
+            654,
+            949,
+            980,
+            1206
+          ],
+          [
+            986,
+            950,
+            1229,
+            1201
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Fix only layout and spacing of reference image 2. Keep its same sixteen ordered actions and exact identity. Make every complete sprite SMALLER to occupy at most 65% of its cell width and height. Exact 4 equal columns x 4 equal rows, fully transparent gutters, no two sprites may touch. Every tail, red mane, shield and effect must fit completely inside its own cell with 15% transparent empty padding on all sides. Remove all attack and casting flame trails; pose-only motions with the SAME solid crimson shield. Every fourth pose in each row is a calm recovery with zero flames. No ambient aura or particles. Full body, fixed right-facing camera. Reference 1 is immutable canon identity. Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a noble golden lion with huge fiery red mane, red hibiscus flowers and gold chains, black and red gold-trimmed robes, carrying a large angular crimson shield with a gold flame emblem. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: idle breathing, alert idle, soft inhale, ready idle. ROW 2: walk right step left foot, passing, right foot forward, settling. ROW 3: attack anticipation, strong windup, distinct forward contact to RIGHT using the held weapon/ward/lantern, recoil recovery. ROW 4: magic prepare, gather tiny energy at held prop, release tiny energy toward RIGHT, recover. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      },
+      {
+        "sheet": "support",
+        "sha256": "d85d5123a37327ae6e4c611ef781f41611cbdb4e402c5b462ab7b599cb495703",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            7,
+            18,
+            313,
+            318
+          ],
+          [
+            320,
+            8,
+            611,
+            318
+          ],
+          [
+            633,
+            57,
+            986,
+            319
+          ],
+          [
+            983,
+            20,
+            1253,
+            317
+          ],
+          [
+            13,
+            341,
+            295,
+            622
+          ],
+          [
+            313,
+            369,
+            635,
+            625
+          ],
+          [
+            639,
+            367,
+            963,
+            624
+          ],
+          [
+            967,
+            342,
+            1246,
+            623
+          ],
+          [
+            20,
+            636,
+            313,
+            912
+          ],
+          [
+            324,
+            663,
+            627,
+            906
+          ],
+          [
+            627,
+            760,
+            940,
+            910
+          ],
+          [
+            940,
+            757,
+            1252,
+            910
+          ],
+          [
+            7,
+            935,
+            313,
+            1225
+          ],
+          [
+            320,
+            919,
+            627,
+            1226
+          ],
+          [
+            644,
+            919,
+            934,
+            1227
+          ],
+          [
+            947,
+            926,
+            1249,
+            1225
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a noble golden lion with huge fiery red mane, red hibiscus flowers and gold chains, black and red gold-trimmed robes, carrying a large angular crimson shield with a gold flame emblem. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: ultimate prepare, raise prop, powerful forward RIGHT finishing pose, settle. ROW 2: light hit flinch, strong hit recoil, brace, recover. ROW 3: lose balance, kneel, lie horizontally on ground, horizontal resting defeated pose. ROW 4: victory relief, confident salute with prop, joyful raised gesture, calm proud finish. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      }
+    ],
+    "uniformScale": 0.6345609065155807,
+    "outputs": {
+      "korean-fried-chicken-pixel.webp": {
+        "bytes": 134790,
+        "sha256": "fd10ff9bf22135fe1db0aa86130b9837dea284632992fc82990698d31340de27"
+      },
+      "korean-fried-chicken.webp": {
+        "bytes": 631844,
+        "sha256": "abac1344235fa65263d8e40478ce2adee0b8cc01db04c1262a214660a9826ae8"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-4.webp",
+      "cell": 4,
+      "columns": 4,
+      "sha256": "33b370606ef7be4d708d4211dee46826f9ca09db770f701265c5bb973371cc2a"
+    },
+    "id": "bingsu",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "d5edc7967d8e05044879ef8add7312ca24420041f92b2579ea7ea67a8d18f826",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            34,
+            36,
+            289,
+            320
+          ],
+          [
+            361,
+            36,
+            615,
+            319
+          ],
+          [
+            661,
+            50,
+            913,
+            320
+          ],
+          [
+            978,
+            46,
+            1234,
+            321
+          ],
+          [
+            36,
+            348,
+            317,
+            614
+          ],
+          [
+            357,
+            347,
+            622,
+            616
+          ],
+          [
+            659,
+            356,
+            942,
+            619
+          ],
+          [
+            985,
+            352,
+            1242,
+            618
+          ],
+          [
+            27,
+            671,
+            303,
+            908
+          ],
+          [
+            354,
+            639,
+            620,
+            902
+          ],
+          [
+            656,
+            680,
+            997,
+            904
+          ],
+          [
+            1005,
+            661,
+            1244,
+            909
+          ],
+          [
+            35,
+            925,
+            287,
+            1209
+          ],
+          [
+            350,
+            931,
+            610,
+            1211
+          ],
+          [
+            661,
+            935,
+            951,
+            1209
+          ],
+          [
+            985,
+            940,
+            1237,
+            1211
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Fix the crowded sprite layout in reference image 2, preserving its 16 distinct ordered poses and exact white deer identity from reference 1. Render the same entire sixteen complete full-body sprites at a SMALLER size: each figure, its antlers, tail and violet crystal ward must fit in only 60% of its square cell. Exact FOUR equal columns by FOUR equal rows, at least 20% empty transparent padding on every side of each figure. No sprite or aura may touch a neighbor. Remove all spell glows and trails; retain the solid held violet crystal ward. Fourth column is calm recovery without any stray fragments. The contact pose should thrust the ward toward RIGHT but remain entirely within the cell. All antlers and feet must be fully visible, no cropping at sheet edges. No aura, particles, ground shadow, scene, text or grid. TRUE TRANSPARENT BACKGROUND. Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a graceful white deer with gold branching antlers and dangling violet crystal pendants, lavender blossoms around head and shoulders, purple white and gold robes, holding a faceted violet crystal ward. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: idle breathing, alert idle, soft inhale, ready idle. ROW 2: walk right step left foot, passing, right foot forward, settling. ROW 3: attack anticipation, strong windup, distinct forward contact to RIGHT using the held weapon/ward/lantern, recoil recovery. ROW 4: magic prepare, gather tiny energy at held prop, release tiny energy toward RIGHT, recover. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      },
+      {
+        "sheet": "support",
+        "sha256": "7cceb19295bc7be21f6b8a3eb55411a331da1bae25fe967ea5be049e6b9dbdca",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            22,
+            17,
+            297,
+            325
+          ],
+          [
+            324,
+            7,
+            617,
+            322
+          ],
+          [
+            630,
+            50,
+            963,
+            330
+          ],
+          [
+            974,
+            21,
+            1230,
+            325
+          ],
+          [
+            23,
+            339,
+            311,
+            626
+          ],
+          [
+            334,
+            334,
+            612,
+            626
+          ],
+          [
+            636,
+            344,
+            944,
+            626
+          ],
+          [
+            972,
+            338,
+            1231,
+            628
+          ],
+          [
+            19,
+            638,
+            332,
+            893
+          ],
+          [
+            331,
+            638,
+            616,
+            897
+          ],
+          [
+            626,
+            740,
+            987,
+            898
+          ],
+          [
+            993,
+            701,
+            1242,
+            883
+          ],
+          [
+            23,
+            908,
+            296,
+            1214
+          ],
+          [
+            325,
+            908,
+            615,
+            1215
+          ],
+          [
+            648,
+            911,
+            940,
+            1211
+          ],
+          [
+            976,
+            912,
+            1236,
+            1214
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a graceful white deer with gold branching antlers and dangling violet crystal pendants, lavender blossoms around head and shoulders, purple white and gold robes, holding a faceted violet crystal ward. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: ultimate prepare, raise prop, powerful forward RIGHT finishing pose, settle. ROW 2: light hit flinch, strong hit recoil, brace, recover. ROW 3: lose balance, kneel, lie horizontally on ground, horizontal resting defeated pose. ROW 4: victory relief, confident salute with prop, joyful raised gesture, calm proud finish. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      }
+    ],
+    "uniformScale": 0.6204986149584487,
+    "outputs": {
+      "bingsu-pixel.webp": {
+        "bytes": 123816,
+        "sha256": "8b6070e7c60b601b4457e158d6464ac16294cd16bd2656484985aa0763716aed"
+      },
+      "bingsu.webp": {
+        "bytes": 638304,
+        "sha256": "c8e439a3563bbe90747609cde66483d0e57e4fba44845f44c65067bc9b05dd21"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 1,
+      "columns": 4,
+      "sha256": "bd5b104f7cdbe94a3bf259b55653cada715b43951eec7b5809ca8363fe7313be"
+    },
+    "id": "kimchi-jjigae",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "e6fe35d04c8d033622d82793ac7c8d961e3fdd398a41231812a3789f0d3a5f80",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            20,
+            19,
+            317,
+            315
+          ],
+          [
+            326,
+            22,
+            622,
+            315
+          ],
+          [
+            638,
+            22,
+            943,
+            315
+          ],
+          [
+            953,
+            19,
+            1233,
+            315
+          ],
+          [
+            15,
+            329,
+            324,
+            613
+          ],
+          [
+            334,
+            326,
+            624,
+            612
+          ],
+          [
+            637,
+            332,
+            941,
+            618
+          ],
+          [
+            949,
+            331,
+            1244,
+            621
+          ],
+          [
+            11,
+            641,
+            322,
+            909
+          ],
+          [
+            335,
+            626,
+            612,
+            912
+          ],
+          [
+            625,
+            643,
+            980,
+            908
+          ],
+          [
+            980,
+            660,
+            1239,
+            910
+          ],
+          [
+            19,
+            932,
+            280,
+            1213
+          ],
+          [
+            329,
+            938,
+            587,
+            1212
+          ],
+          [
+            604,
+            937,
+            995,
+            1211
+          ],
+          [
+            985,
+            934,
+            1232,
+            1213
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a red-orange fox with large white-lined ears, cream muzzle and chest, amber eyes, red scarf and black gold-trimmed robe, gold ornaments and flower hairpins, dark gloves, carrying an ornate bronze lantern glowing orange. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: idle breathing, alert idle, soft inhale, ready idle. ROW 2: walk right step left foot, passing, right foot forward, settling. ROW 3: attack anticipation, strong windup, distinct forward contact to RIGHT using the held weapon/ward/lantern, recoil recovery. ROW 4: magic prepare, gather tiny energy at held prop, release tiny energy toward RIGHT, recover. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      },
+      {
+        "sheet": "support",
+        "sha256": "6008285d687310d4aca9a4c5f0fa2787da91bf79c28ebb0540f333baa040cf67",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            11,
+            5,
+            302,
+            316
+          ],
+          [
+            321,
+            5,
+            618,
+            314
+          ],
+          [
+            634,
+            36,
+            977,
+            312
+          ],
+          [
+            988,
+            26,
+            1241,
+            313
+          ],
+          [
+            21,
+            343,
+            302,
+            619
+          ],
+          [
+            323,
+            340,
+            624,
+            620
+          ],
+          [
+            642,
+            348,
+            943,
+            624
+          ],
+          [
+            980,
+            336,
+            1247,
+            626
+          ],
+          [
+            5,
+            629,
+            304,
+            910
+          ],
+          [
+            319,
+            650,
+            612,
+            905
+          ],
+          [
+            627,
+            730,
+            973,
+            887
+          ],
+          [
+            965,
+            691,
+            1248,
+            890
+          ],
+          [
+            12,
+            923,
+            302,
+            1231
+          ],
+          [
+            328,
+            917,
+            616,
+            1228
+          ],
+          [
+            627,
+            916,
+            934,
+            1226
+          ],
+          [
+            961,
+            911,
+            1251,
+            1232
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a red-orange fox with large white-lined ears, cream muzzle and chest, amber eyes, red scarf and black gold-trimmed robe, gold ornaments and flower hairpins, dark gloves, carrying an ornate bronze lantern glowing orange. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: ultimate prepare, raise prop, powerful forward RIGHT finishing pose, settle. ROW 2: light hit flinch, strong hit recoil, brace, recover. ROW 3: lose balance, kneel, lie horizontally on ground, horizontal resting defeated pose. ROW 4: victory relief, confident salute with prop, joyful raised gesture, calm proud finish. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      }
+    ],
+    "uniformScale": 0.5728900255754475,
+    "outputs": {
+      "kimchi-jjigae-pixel.webp": {
+        "bytes": 110214,
+        "sha256": "03514a41b90aa1731d1f68c6f5c7dafdfc93267effb649f50a82b6aa0929137d"
+      },
+      "kimchi-jjigae.webp": {
+        "bytes": 523110,
+        "sha256": "5d0f715813db5e61aa234b4bae44f9c79535e762009b04c4f83995a1bafa3131"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-5.webp",
+      "cell": 0,
+      "columns": 4,
+      "sha256": "bd5b104f7cdbe94a3bf259b55653cada715b43951eec7b5809ca8363fe7313be"
+    },
+    "id": "jjajangmyeon",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "c4c05989a1148b12219ecf30638d23fa8d3f18e451c2ec2b3c9e2d2afc96f1b1",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            24,
+            15,
+            309,
+            314
+          ],
+          [
+            338,
+            17,
+            626,
+            315
+          ],
+          [
+            646,
+            17,
+            918,
+            315
+          ],
+          [
+            963,
+            12,
+            1239,
+            315
+          ],
+          [
+            16,
+            325,
+            308,
+            624
+          ],
+          [
+            332,
+            323,
+            630,
+            622
+          ],
+          [
+            648,
+            329,
+            931,
+            624
+          ],
+          [
+            953,
+            335,
+            1240,
+            624
+          ],
+          [
+            14,
+            631,
+            301,
+            933
+          ],
+          [
+            338,
+            627,
+            627,
+            935
+          ],
+          [
+            652,
+            649,
+            1010,
+            936
+          ],
+          [
+            1008,
+            651,
+            1240,
+            936
+          ],
+          [
+            19,
+            944,
+            298,
+            1238
+          ],
+          [
+            336,
+            948,
+            612,
+            1238
+          ],
+          [
+            642,
+            950,
+            968,
+            1239
+          ],
+          [
+            987,
+            948,
+            1245,
+            1238
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Repaint reference image 2 as a clean spaced game sprite sheet, preserving the EXACT black-turquoise dragon identity, clothes, ivory horns, jade beads and bronze cyan lantern from reference 1. Preserve all sixteen individually distinct actions in their same positions: row1 four idle variations, row2 four walking poses, row3 anticipation/windup/right-facing melee lantern strike/recovery, row4 prepare/gather/extend lantern to RIGHT/recovery. Exact 4 columns x 4 rows of equal square cells. SHRINK ALL sprites so each occupies at most 60% of its cell's width and height. At least 20% perfectly empty transparent margin on every side of each full figure, including tail, horns and lantern. REMOVE every cyan wave, beam, trail, smoke puff or attack effect outside the lantern. Only a tiny glow INSIDE the lantern glass is allowed. The fourth column must be calm recovery without any cyan fragment beside it. All full-body characters isolated; no overlaps and nothing touching cell or sheet edges. Same painted chibi style, right-facing camera and anatomy throughout. TRUE transparent background, no ground, shadow, labels, text or grid."
+      },
+      {
+        "sheet": "support",
+        "sha256": "bc29e8281e0c9219faab2a17c7c23ad2cd5a0c674c3d413a74b80677a67a3613",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            9,
+            9,
+            324,
+            308
+          ],
+          [
+            333,
+            6,
+            625,
+            308
+          ],
+          [
+            626,
+            31,
+            1011,
+            306
+          ],
+          [
+            1012,
+            7,
+            1244,
+            309
+          ],
+          [
+            9,
+            325,
+            307,
+            614
+          ],
+          [
+            319,
+            323,
+            624,
+            615
+          ],
+          [
+            631,
+            354,
+            945,
+            616
+          ],
+          [
+            967,
+            324,
+            1249,
+            616
+          ],
+          [
+            7,
+            626,
+            313,
+            920
+          ],
+          [
+            317,
+            633,
+            612,
+            917
+          ],
+          [
+            621,
+            737,
+            941,
+            914
+          ],
+          [
+            943,
+            740,
+            1250,
+            910
+          ],
+          [
+            11,
+            937,
+            296,
+            1231
+          ],
+          [
+            308,
+            925,
+            621,
+            1232
+          ],
+          [
+            627,
+            928,
+            922,
+            1228
+          ],
+          [
+            948,
+            925,
+            1248,
+            1235
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Create a production game SPRITE SHEET, 2048x2048 square with TRUE TRANSPARENT BACKGROUND. Reference image is the immutable canon identity; transform into a consistent high quality painted anime chibi FULL BODY guardian, a dark charcoal and turquoise eastern dragon with pale ivory branching horns, golden eyes and whiskers, turquoise scale accents, black teal robes, jade bead necklace, carrying a bronze lantern glowing cyan. Preserve species, colors, facial features, outfit and same signature prop from reference in ALL sixteen poses. Exactly 4 equal columns by 4 equal rows, 16 separately authored distinct full-body poses. ROW 1: ultimate prepare, raise prop, powerful forward RIGHT finishing pose, settle. ROW 2: light hit flinch, strong hit recoil, brace, recover. ROW 3: lose balance, kneel, lie horizontally on ground, horizontal resting defeated pose. ROW 4: victory relief, confident salute with prop, joyful raised gesture, calm proud finish. Camera fixed three-quarter view facing RIGHT across all rows; hit/fall may tilt naturally. Consistent anatomy and scale. Each complete character centered within its own exact quarter-cell with generous 20% transparent padding, especially at row boundaries. Feet, antlers, tails, shields and lanterns fully inside each cell. No overlaps, no particles between cells. No scenery, ground shadow, text, labels, watermark or drawn grid. No duplicate or extra actors. Energy must stay very small and local to prop; character silhouette and movement are primary. Hand-painted detailed warm fantasy mobile RPG style, crisp readable silhouettes."
+      }
+    ],
+    "uniformScale": 0.5818181818181818,
+    "outputs": {
+      "jjajangmyeon-pixel.webp": {
+        "bytes": 116826,
+        "sha256": "297dcbd982c8fdda1954b2246a0c9d8d4eb6d09a7cb44205a1d7ef939a58bb61"
+      },
+      "jjajangmyeon.webp": {
+        "bytes": 587596,
+        "sha256": "7f1011046b1da92f2f1f8883bca2e53b7a7bb1f72b96059b1236dcd99358c3a7"
+      }
+    }
+  }
+]

@@ -76,3 +76,16 @@ dev/docs/web-v5911/modes-*/showcase-manifest.json
 
 !dev/docs/web-v5912/evidence/*.webp
 dev/docs/web-v5912/modes-*/showcase-manifest.json
+
+dev/docs/web-v5921/**/*.webp
+dev/docs/web-v5922/**/*.webp
+
+# Test captures stay local; runtime artwork is tracked separately.
+dev/docs/**/qa/*.png
+dev/docs/**/qa/*.jpg
+dev/docs/**/qa/*.jpeg
+dev/docs/**/qa/*.webp
+dev/docs/**/evidence/*.png
+dev/docs/**/evidence/*.jpg
+dev/docs/**/evidence/*.jpeg
+dev/docs/**/evidence/*.webp

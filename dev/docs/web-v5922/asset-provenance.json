@@ -1,0 +1,1552 @@
+[
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 11,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    },
+    "id": "banner-tay-bac-com-lam",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "52479b90a5c4c4e9eb10b019188cacefee171a515894fc2472e4662d2b39c545",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            11,
+            26,
+            298,
+            313
+          ],
+          [
+            327,
+            27,
+            600,
+            312
+          ],
+          [
+            648,
+            31,
+            910,
+            313
+          ],
+          [
+            960,
+            36,
+            1241,
+            313
+          ],
+          [
+            9,
+            339,
+            292,
+            623
+          ],
+          [
+            335,
+            339,
+            603,
+            624
+          ],
+          [
+            646,
+            336,
+            910,
+            621
+          ],
+          [
+            940,
+            335,
+            1232,
+            619
+          ],
+          [
+            10,
+            678,
+            305,
+            917
+          ],
+          [
+            316,
+            659,
+            621,
+            917
+          ],
+          [
+            634,
+            663,
+            984,
+            918
+          ],
+          [
+            952,
+            663,
+            1229,
+            926
+          ],
+          [
+            13,
+            951,
+            288,
+            1227
+          ],
+          [
+            320,
+            951,
+            613,
+            1228
+          ],
+          [
+            638,
+            949,
+            946,
+            1222
+          ],
+          [
+            972,
+            950,
+            1231,
+            1229
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG character animation atlas, ID banner-tay-bac-com-lam. Attached portrait is immutable identity: anthropomorphic red and white phoenix scholar with a long ivory beak, red feather crest with golden branches, white and red embroidered golden robe, ivory scroll. Preserve exact species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. NO text, labels, visible grid, ground shadows, scenery, extra characters, or large spell effects. IMPORTANT each sprite occupies at most 70 percent of its cell, with generous empty padding on all sides, including ears, scroll, wings, antlers, shell; nothing touches canvas edges or neighboring cells. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row 1: four subtle different idle poses. Row 2: four different walking stride poses. Row 3: four sequential attacks: crouch/anticipate, wind up scroll arm, forceful thrust to RIGHT, recovery. Row 4: four casting poses: prepare scroll, open/gather magic, release spell toward RIGHT, return to stance. Keep a single complete body in every cell."
+      },
+      {
+        "sheet": "support",
+        "sha256": "1b4cdfc543d893240bb0076997dae316a2d1c62687b2d9634631f91343d1d2db",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            20,
+            14,
+            272,
+            317
+          ],
+          [
+            321,
+            10,
+            617,
+            317
+          ],
+          [
+            628,
+            63,
+            1013,
+            314
+          ],
+          [
+            938,
+            17,
+            1230,
+            318
+          ],
+          [
+            22,
+            355,
+            299,
+            635
+          ],
+          [
+            323,
+            363,
+            615,
+            636
+          ],
+          [
+            639,
+            337,
+            928,
+            635
+          ],
+          [
+            948,
+            337,
+            1241,
+            635
+          ],
+          [
+            10,
+            656,
+            321,
+            918
+          ],
+          [
+            305,
+            684,
+            621,
+            917
+          ],
+          [
+            618,
+            746,
+            939,
+            908
+          ],
+          [
+            945,
+            733,
+            1245,
+            900
+          ],
+          [
+            10,
+            933,
+            306,
+            1237
+          ],
+          [
+            323,
+            943,
+            626,
+            1236
+          ],
+          [
+            642,
+            951,
+            916,
+            1237
+          ],
+          [
+            957,
+            940,
+            1219,
+            1238
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG animation atlas, ID banner-tay-bac-com-lam. Attached portrait locks identity: anthropomorphic red and white phoenix scholar with a long ivory beak, red feather crest with golden branches, white and red embroidered golden robe, ivory scroll. Preserve species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. No text/labels/grid/ground/shadows/scenery/extra characters/large VFX. Each sprite occupies AT MOST 70 percent of its cell with generous padding all around. Everything including weapons/wings/antlers fits within its cell and canvas. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row1 four sequential ULTIMATE poses: resolve with scroll, raise scroll and gather power, powerful scroll spell release to RIGHT, recover. Row2 four HIT poses: recoil, flinch, stagger, regain balance. Row3 four FALL poses: lose balance, kneel, lie completely down horizontally, same fallen character resting. Row4 four VICTORY poses: raise scroll proudly, joyful gesture, bow, settle smiling. Each of all 16 cells contains a single complete character; fallen poses never straddle grid boundaries or merge with adjacent characters."
+      }
+    ],
+    "uniformScale": 0.5818181818181818,
+    "outputs": {
+      "banner-tay-bac-com-lam-pixel.webp": {
+        "bytes": 114578,
+        "sha256": "4c118533e5fd7cc38c0f456dd63093977c031104a6e8134a6c17f87fa29f0ff1"
+      },
+      "banner-tay-bac-com-lam.webp": {
+        "bytes": 626686,
+        "sha256": "ad81e0e93c0a8d64bf228ba92d14679700586ed1964fa4b25b3b97f4677e6255"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 12,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    },
+    "id": "banner-tay-bac-thang-co",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "72600c0ccde9aa741852c6371c7aa85db7e15aaa4098f725ee941f3f5650bde4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            33,
+            12,
+            303,
+            305
+          ],
+          [
+            332,
+            16,
+            609,
+            303
+          ],
+          [
+            617,
+            17,
+            907,
+            302
+          ],
+          [
+            936,
+            18,
+            1234,
+            305
+          ],
+          [
+            32,
+            328,
+            296,
+            615
+          ],
+          [
+            347,
+            325,
+            610,
+            616
+          ],
+          [
+            655,
+            329,
+            926,
+            618
+          ],
+          [
+            970,
+            329,
+            1229,
+            616
+          ],
+          [
+            18,
+            659,
+            314,
+            902
+          ],
+          [
+            334,
+            633,
+            613,
+            914
+          ],
+          [
+            633,
+            627,
+            995,
+            912
+          ],
+          [
+            998,
+            636,
+            1234,
+            911
+          ],
+          [
+            30,
+            933,
+            304,
+            1223
+          ],
+          [
+            331,
+            934,
+            624,
+            1221
+          ],
+          [
+            628,
+            946,
+            996,
+            1221
+          ],
+          [
+            1003,
+            939,
+            1230,
+            1222
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG character animation atlas, ID banner-tay-bac-thang-co. Attached portrait is immutable identity: small white and brown owl-moth scholar with large golden eyes, white feathered cheeks, translucent amber butterfly wings with golden spots, black and gold robe, branch and flower crown, ivory scroll. Preserve exact species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. NO text, labels, visible grid, ground shadows, scenery, extra characters, or large spell effects. IMPORTANT each sprite occupies at most 70 percent of its cell, with generous empty padding on all sides, including ears, scroll, wings, antlers, shell; nothing touches canvas edges or neighboring cells. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row 1: four subtle different idle poses. Row 2: four different walking stride poses. Row 3: four sequential attacks: crouch/anticipate, wind up scroll arm, forceful thrust to RIGHT, recovery. Row 4: four casting poses: prepare scroll, open/gather magic, release spell toward RIGHT, return to stance. Keep a single complete body in every cell."
+      },
+      {
+        "sheet": "support",
+        "sha256": "43f81e4b4e6776b82ea24852e7c3e46e6f5317a78a621d527a6484184c10e2b4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            28,
+            22,
+            304,
+            313
+          ],
+          [
+            330,
+            22,
+            606,
+            313
+          ],
+          [
+            622,
+            24,
+            993,
+            314
+          ],
+          [
+            985,
+            34,
+            1239,
+            314
+          ],
+          [
+            28,
+            328,
+            331,
+            618
+          ],
+          [
+            341,
+            338,
+            592,
+            616
+          ],
+          [
+            634,
+            337,
+            946,
+            622
+          ],
+          [
+            949,
+            339,
+            1227,
+            617
+          ],
+          [
+            33,
+            628,
+            349,
+            896
+          ],
+          [
+            338,
+            660,
+            613,
+            887
+          ],
+          [
+            625,
+            722,
+            937,
+            905
+          ],
+          [
+            944,
+            742,
+            1239,
+            908
+          ],
+          [
+            20,
+            905,
+            314,
+            1216
+          ],
+          [
+            333,
+            905,
+            614,
+            1211
+          ],
+          [
+            636,
+            942,
+            926,
+            1212
+          ],
+          [
+            942,
+            926,
+            1224,
+            1214
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG animation atlas, ID banner-tay-bac-thang-co. Attached portrait locks identity: small white and brown owl-moth scholar with large golden eyes, white feathered cheeks, translucent amber butterfly wings with golden spots, black and gold robe, branch and flower crown, ivory scroll. Preserve species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. No text/labels/grid/ground/shadows/scenery/extra characters/large VFX. Each sprite occupies AT MOST 70 percent of its cell with generous padding all around. Everything including weapons/wings/antlers fits within its cell and canvas. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row1 four sequential ULTIMATE poses: resolve with scroll, raise scroll and gather power, powerful scroll spell release to RIGHT, recover. Row2 four HIT poses: recoil, flinch, stagger, regain balance. Row3 four FALL poses: lose balance, kneel, lie completely down horizontally, same fallen character resting. Row4 four VICTORY poses: raise scroll proudly, joyful gesture, bow, settle smiling. Each of all 16 cells contains a single complete character; fallen poses never straddle grid boundaries or merge with adjacent characters."
+      }
+    ],
+    "uniformScale": 0.6037735849056604,
+    "outputs": {
+      "banner-tay-bac-thang-co-pixel.webp": {
+        "bytes": 126720,
+        "sha256": "93f3df04fa25a6ac16a908786000c3f6e5d37bc7a040c29c204c3036eed46051"
+      },
+      "banner-tay-bac-thang-co.webp": {
+        "bytes": 649114,
+        "sha256": "56048a9ff5d2e60ac7cc62b4de414be0ae6ec05641360d42f84ebcca1a1fe6db"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 13,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    },
+    "id": "banner-tay-bac-thit-trau-gac-bep",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "02a1d427e2fd1143eaefead6132b01cdbcf49a59f995f8432f1eed0fec59e4a5",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            26,
+            20,
+            272,
+            313
+          ],
+          [
+            342,
+            22,
+            583,
+            312
+          ],
+          [
+            641,
+            23,
+            930,
+            312
+          ],
+          [
+            969,
+            22,
+            1213,
+            312
+          ],
+          [
+            29,
+            330,
+            280,
+            618
+          ],
+          [
+            345,
+            329,
+            607,
+            610
+          ],
+          [
+            637,
+            335,
+            908,
+            613
+          ],
+          [
+            968,
+            330,
+            1209,
+            612
+          ],
+          [
+            24,
+            699,
+            293,
+            909
+          ],
+          [
+            329,
+            635,
+            591,
+            916
+          ],
+          [
+            601,
+            671,
+            971,
+            910
+          ],
+          [
+            970,
+            650,
+            1219,
+            916
+          ],
+          [
+            31,
+            942,
+            276,
+            1223
+          ],
+          [
+            325,
+            942,
+            613,
+            1222
+          ],
+          [
+            631,
+            943,
+            988,
+            1223
+          ],
+          [
+            982,
+            940,
+            1227,
+            1224
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG character animation atlas, ID banner-tay-bac-thit-trau-gac-bep. Attached portrait is immutable identity: anthropomorphic bronze pangolin scholar with brown scale armor and long snout, black and red golden-embroidered robe, red scarf and tassels, ivory scroll. Preserve exact species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. NO text, labels, visible grid, ground shadows, scenery, extra characters, or large spell effects. IMPORTANT each sprite occupies at most 70 percent of its cell, with generous empty padding on all sides, including ears, scroll, wings, antlers, shell; nothing touches canvas edges or neighboring cells. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row 1: four subtle different idle poses. Row 2: four different walking stride poses. Row 3: four sequential attacks: crouch/anticipate, wind up scroll arm, forceful thrust to RIGHT, recovery. Row 4: four casting poses: prepare scroll, open/gather magic, release spell toward RIGHT, return to stance. Keep a single complete body in every cell."
+      },
+      {
+        "sheet": "support",
+        "sha256": "2591f3d327cd4c087f7956843e31375f3424254042751ecc86d9cd8196b78ec3",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            16,
+            44,
+            283,
+            332
+          ],
+          [
+            303,
+            16,
+            620,
+            336
+          ],
+          [
+            599,
+            19,
+            987,
+            337
+          ],
+          [
+            989,
+            48,
+            1246,
+            334
+          ],
+          [
+            12,
+            371,
+            298,
+            632
+          ],
+          [
+            325,
+            357,
+            614,
+            634
+          ],
+          [
+            635,
+            378,
+            937,
+            633
+          ],
+          [
+            962,
+            382,
+            1240,
+            631
+          ],
+          [
+            10,
+            661,
+            338,
+            908
+          ],
+          [
+            344,
+            688,
+            615,
+            901
+          ],
+          [
+            624,
+            750,
+            939,
+            902
+          ],
+          [
+            953,
+            764,
+            1240,
+            900
+          ],
+          [
+            23,
+            918,
+            336,
+            1216
+          ],
+          [
+            327,
+            939,
+            611,
+            1215
+          ],
+          [
+            639,
+            953,
+            897,
+            1218
+          ],
+          [
+            969,
+            941,
+            1231,
+            1217
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG animation atlas, ID banner-tay-bac-thit-trau-gac-bep. Attached portrait locks identity: anthropomorphic bronze pangolin scholar with brown scale armor and long snout, black and red golden-embroidered robe, red scarf and tassels, ivory scroll. Preserve species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. No text/labels/grid/ground/shadows/scenery/extra characters/large VFX. Each sprite occupies AT MOST 70 percent of its cell with generous padding all around. Everything including weapons/wings/antlers fits within its cell and canvas. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row1 four sequential ULTIMATE poses: resolve with scroll, raise scroll and gather power, powerful scroll spell release to RIGHT, recover. Row2 four HIT poses: recoil, flinch, stagger, regain balance. Row3 four FALL poses: lose balance, kneel, lie completely down horizontally, same fallen character resting. Row4 four VICTORY poses: raise scroll proudly, joyful gesture, bow, settle smiling. Each of all 16 cells contains a single complete character; fallen poses never straddle grid boundaries or merge with adjacent characters."
+      }
+    ],
+    "uniformScale": 0.5773195876288659,
+    "outputs": {
+      "banner-tay-bac-thit-trau-gac-bep-pixel.webp": {
+        "bytes": 101266,
+        "sha256": "e48d26d743c2063f4f29fd0bb29249aed82a4ad281150c0565ed0c40f96b2e0e"
+      },
+      "banner-tay-bac-thit-trau-gac-bep.webp": {
+        "bytes": 511222,
+        "sha256": "6703640729fc781d4d67f0e68a8dd8ca75c59e68b292d199c58f883f0d1ab840"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 15,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    },
+    "id": "banner-tay-bac-xoi-ngu-sac",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "973dd27471fa3e9197f655874ad1d817e85a52ecf8650c8f1fe2864197655ab9",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            44,
+            12,
+            274,
+            314
+          ],
+          [
+            353,
+            12,
+            593,
+            313
+          ],
+          [
+            652,
+            13,
+            896,
+            314
+          ],
+          [
+            981,
+            13,
+            1228,
+            314
+          ],
+          [
+            23,
+            325,
+            282,
+            620
+          ],
+          [
+            344,
+            327,
+            592,
+            621
+          ],
+          [
+            643,
+            326,
+            918,
+            622
+          ],
+          [
+            967,
+            325,
+            1228,
+            622
+          ],
+          [
+            25,
+            647,
+            296,
+            919
+          ],
+          [
+            326,
+            640,
+            612,
+            916
+          ],
+          [
+            635,
+            636,
+            980,
+            916
+          ],
+          [
+            987,
+            639,
+            1231,
+            920
+          ],
+          [
+            42,
+            936,
+            290,
+            1229
+          ],
+          [
+            327,
+            929,
+            615,
+            1229
+          ],
+          [
+            638,
+            927,
+            964,
+            1230
+          ],
+          [
+            970,
+            931,
+            1224,
+            1230
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG character animation atlas, ID banner-tay-bac-xoi-ngu-sac. Attached portrait is immutable identity: anthropomorphic ivory antlered deer scholar, ruby eyes, golden antlers, purple flowing mane and head ribbons, teal crimson and gold robe, ivory scroll. Preserve exact species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. NO text, labels, visible grid, ground shadows, scenery, extra characters, or large spell effects. IMPORTANT each sprite occupies at most 70 percent of its cell, with generous empty padding on all sides, including ears, scroll, wings, antlers, shell; nothing touches canvas edges or neighboring cells. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row 1: four subtle different idle poses. Row 2: four different walking stride poses. Row 3: four sequential attacks: crouch/anticipate, wind up scroll arm, forceful thrust to RIGHT, recovery. Row 4: four casting poses: prepare scroll, open/gather magic, release spell toward RIGHT, return to stance. Keep a single complete body in every cell."
+      },
+      {
+        "sheet": "support",
+        "sha256": "57a9dc3419f66cb5c47269ea3ee6d594661e1002eb15db0dcda5a7205c8b8c0d",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            19,
+            0,
+            289,
+            321
+          ],
+          [
+            320,
+            5,
+            624,
+            322
+          ],
+          [
+            630,
+            43,
+            1011,
+            323
+          ],
+          [
+            935,
+            10,
+            1240,
+            324
+          ],
+          [
+            12,
+            331,
+            298,
+            640
+          ],
+          [
+            331,
+            332,
+            628,
+            650
+          ],
+          [
+            651,
+            355,
+            947,
+            659
+          ],
+          [
+            932,
+            332,
+            1241,
+            656
+          ],
+          [
+            14,
+            659,
+            337,
+            921
+          ],
+          [
+            319,
+            701,
+            614,
+            930
+          ],
+          [
+            606,
+            781,
+            920,
+            928
+          ],
+          [
+            931,
+            785,
+            1237,
+            931
+          ],
+          [
+            19,
+            936,
+            293,
+            1237
+          ],
+          [
+            327,
+            942,
+            608,
+            1236
+          ],
+          [
+            646,
+            949,
+            912,
+            1233
+          ],
+          [
+            961,
+            942,
+            1221,
+            1234
+          ]
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG animation atlas, ID banner-tay-bac-xoi-ngu-sac. Attached portrait locks identity: anthropomorphic ivory antlered deer scholar, ruby eyes, golden antlers, purple flowing mane and head ribbons, teal crimson and gold robe, ivory scroll. Preserve species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. No text/labels/grid/ground/shadows/scenery/extra characters/large VFX. Each sprite occupies AT MOST 70 percent of its cell with generous padding all around. Everything including weapons/wings/antlers fits within its cell and canvas. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row1 four sequential ULTIMATE poses: resolve with scroll, raise scroll and gather power, powerful scroll spell release to RIGHT, recover. Row2 four HIT poses: recoil, flinch, stagger, regain balance. Row3 four FALL poses: lose balance, kneel, lie completely down horizontally, same fallen character resting. Row4 four VICTORY poses: raise scroll proudly, joyful gesture, bow, settle smiling. Each of all 16 cells contains a single complete character; fallen poses never straddle grid boundaries or merge with adjacent characters."
+      }
+    ],
+    "uniformScale": 0.5879265091863517,
+    "outputs": {
+      "banner-tay-bac-xoi-ngu-sac-pixel.webp": {
+        "bytes": 122816,
+        "sha256": "7a21b882b8e6e3042de4d5f568a670f3ed16b2e28c01ecae0b45e52965a5e43c"
+      },
+      "banner-tay-bac-xoi-ngu-sac.webp": {
+        "bytes": 634418,
+        "sha256": "a30cccda64adf579cf540be05fef47e9c95322d6970c2584824bacdbab6bc497"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 10,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    },
+    "id": "banner-tay-bac-goi-rau-don",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "32bd1fa06b8e8c30c0bc35f97a6a814a9223dbc5c30e2dc552a2423217b1ecb6",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            30,
+            39,
+            297,
+            320
+          ],
+          [
+            348,
+            40,
+            615,
+            319
+          ],
+          [
+            632,
+            39,
+            941,
+            319
+          ],
+          [
+            963,
+            44,
+            1232,
+            317
+          ],
+          [
+            11,
+            329,
+            297,
+            618
+          ],
+          [
+            320,
+            337,
+            618,
+            618
+          ],
+          [
+            640,
+            337,
+            934,
+            621
+          ],
+          [
+            957,
+            343,
+            1244,
+            627
+          ],
+          [
+            13,
+            690,
+            303,
+            910
+          ],
+          [
+            322,
+            634,
+            622,
+            912
+          ],
+          [
+            618,
+            662,
+            989,
+            907
+          ],
+          [
+            978,
+            657,
+            1240,
+            940
+          ],
+          [
+            15,
+            929,
+            287,
+            1214
+          ],
+          [
+            310,
+            933,
+            627,
+            1212
+          ],
+          [
+            627,
+            940,
+            940,
+            1214
+          ],
+          [
+            940,
+            938,
+            1237,
+            1215
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG character animation atlas, ID banner-tay-bac-goi-rau-don. Attached portrait is immutable identity: wise anthropomorphic tortoise scholar, small warm brown eyes, pale cream reptile face with gray scale spots, enormous dark bronze shell, black bronze and gold robe, amber and jade prayer beads, ivory scroll. Preserve exact species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. NO text, labels, visible grid, ground shadows, scenery, extra characters, or large spell effects. IMPORTANT each sprite occupies at most 70 percent of its cell, with generous empty padding on all sides, including ears, scroll, wings, antlers, shell; nothing touches canvas edges or neighboring cells. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row 1: four subtle different idle poses. Row 2: four different walking stride poses. Row 3: four sequential attacks: crouch/anticipate, wind up scroll arm, forceful thrust to RIGHT, recovery. Row 4: four casting poses: prepare scroll, open/gather magic, release spell toward RIGHT, return to stance. Keep a single complete body in every cell."
+      },
+      {
+        "sheet": "support",
+        "sha256": "73c33881125727de7e5fa0f7dac21c55661c170ffc3eddd6c85b4a2f5d7924f9",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            8,
+            38,
+            314,
+            342
+          ],
+          [
+            314,
+            6,
+            627,
+            344
+          ],
+          [
+            627,
+            33,
+            984,
+            345
+          ],
+          [
+            982,
+            55,
+            1247,
+            342
+          ],
+          [
+            14,
+            363,
+            309,
+            644
+          ],
+          [
+            334,
+            371,
+            614,
+            635
+          ],
+          [
+            615,
+            374,
+            938,
+            645
+          ],
+          [
+            956,
+            385,
+            1246,
+            640
+          ],
+          [
+            11,
+            665,
+            320,
+            898
+          ],
+          [
+            305,
+            690,
+            606,
+            904
+          ],
+          [
+            617,
+            751,
+            947,
+            903
+          ],
+          [
+            951,
+            755,
+            1246,
+            903
+          ],
+          [
+            16,
+            906,
+            322,
+            1225
+          ],
+          [
+            330,
+            940,
+            635,
+            1225
+          ],
+          [
+            666,
+            944,
+            914,
+            1221
+          ],
+          [
+            972,
+            924,
+            1235,
+            1224
+          ]
+        ],
+        "gridRows": [
+          0,
+          354,
+          654,
+          905,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          984,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG animation atlas, ID banner-tay-bac-goi-rau-don. Attached portrait locks identity: wise anthropomorphic tortoise scholar, small warm brown eyes, pale cream reptile face with gray scale spots, enormous dark bronze shell, black bronze and gold robe, amber and jade prayer beads, ivory scroll. Preserve species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. No text/labels/grid/ground/shadows/scenery/extra characters/large VFX. Each sprite occupies AT MOST 70 percent of its cell with generous padding all around. Everything including weapons/wings/antlers fits within its cell and canvas. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row1 four sequential ULTIMATE poses: resolve with scroll, raise scroll and gather power, powerful scroll spell release to RIGHT, recover. Row2 four HIT poses: recoil, flinch, stagger, regain balance. Row3 four FALL poses: lose balance, kneel, lie completely down horizontally, same fallen character resting. Row4 four VICTORY poses: raise scroll proudly, joyful gesture, bow, settle smiling. Each of all 16 cells contains a single complete character; fallen poses never straddle grid boundaries or merge with adjacent characters."
+      }
+    ],
+    "uniformScale": 0.6037735849056604,
+    "outputs": {
+      "banner-tay-bac-goi-rau-don-pixel.webp": {
+        "bytes": 131734,
+        "sha256": "ca235cb49ab0eb976ea9365ca3844b79ee9200efe879fc5e90824ad7249fda7e"
+      },
+      "banner-tay-bac-goi-rau-don.webp": {
+        "bytes": 605740,
+        "sha256": "ec7dcab6ee7da64ac2dc0279bbf3950548d12040a954c8cc97bfdc9cb2bf00b1"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-7.webp",
+      "cell": 14,
+      "columns": 4,
+      "sha256": "b9ada1806175d1b73cdbd38d1c02c46e0e41826031c8a203d18457e85b5cf518"
+    },
+    "id": "banner-tay-bac-ga-nuong-mac-khen",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-19",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "a011252aaa1c3abff838e3aa46841ffacf4fe4049fe66eb170a13c5adca62947",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            21,
+            18,
+            296,
+            304
+          ],
+          [
+            330,
+            19,
+            624,
+            310
+          ],
+          [
+            640,
+            30,
+            934,
+            306
+          ],
+          [
+            955,
+            24,
+            1234,
+            305
+          ],
+          [
+            16,
+            331,
+            294,
+            611
+          ],
+          [
+            335,
+            332,
+            628,
+            609
+          ],
+          [
+            652,
+            331,
+            935,
+            610
+          ],
+          [
+            962,
+            331,
+            1242,
+            608
+          ],
+          [
+            16,
+            675,
+            317,
+            908
+          ],
+          [
+            341,
+            613,
+            620,
+            909
+          ],
+          [
+            630,
+            675,
+            999,
+            910
+          ],
+          [
+            963,
+            640,
+            1237,
+            911
+          ],
+          [
+            19,
+            931,
+            294,
+            1214
+          ],
+          [
+            298,
+            927,
+            617,
+            1211
+          ],
+          [
+            629,
+            941,
+            953,
+            1214
+          ],
+          [
+            931,
+            933,
+            1230,
+            1213
+          ]
+        ],
+        "gridRows": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          940,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG character animation atlas, ID banner-tay-bac-ga-nuong-mac-khen. Attached portrait is immutable identity: anthropomorphic brown and ivory otter scholar, short round ears and white whiskers, black ivory and gold robe, amber bead necklaces, ivory scroll. Preserve exact species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. NO text, labels, visible grid, ground shadows, scenery, extra characters, or large spell effects. IMPORTANT each sprite occupies at most 70 percent of its cell, with generous empty padding on all sides, including ears, scroll, wings, antlers, shell; nothing touches canvas edges or neighboring cells. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row 1: four subtle different idle poses. Row 2: four different walking stride poses. Row 3: four sequential attacks: crouch/anticipate, wind up scroll arm, forceful thrust to RIGHT, recovery. Row 4: four casting poses: prepare scroll, open/gather magic, release spell toward RIGHT, return to stance. Keep a single complete body in every cell."
+      },
+      {
+        "sheet": "support",
+        "sha256": "3adf90ad821d8f6be4bba20e7259e3dc645edc8ce72e13d9d7f49363a9330b4d",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            9,
+            33,
+            283,
+            344
+          ],
+          [
+            302,
+            20,
+            639,
+            346
+          ],
+          [
+            630,
+            54,
+            1005,
+            345
+          ],
+          [
+            1005,
+            64,
+            1241,
+            345
+          ],
+          [
+            13,
+            379,
+            316,
+            656
+          ],
+          [
+            326,
+            391,
+            599,
+            645
+          ],
+          [
+            640,
+            406,
+            949,
+            646
+          ],
+          [
+            974,
+            378,
+            1244,
+            646
+          ],
+          [
+            15,
+            662,
+            307,
+            917
+          ],
+          [
+            316,
+            700,
+            613,
+            900
+          ],
+          [
+            614,
+            765,
+            922,
+            891
+          ],
+          [
+            947,
+            772,
+            1233,
+            890
+          ],
+          [
+            13,
+            915,
+            298,
+            1227
+          ],
+          [
+            324,
+            943,
+            628,
+            1226
+          ],
+          [
+            652,
+            963,
+            918,
+            1226
+          ],
+          [
+            969,
+            930,
+            1223,
+            1226
+          ]
+        ],
+        "gridRows": [
+          0,
+          362,
+          658,
+          916,
+          1254
+        ],
+        "gridColumns": [
+          0,
+          314,
+          627,
+          1005,
+          1254
+        ],
+        "prompt": "Use case: stylized-concept. Production Soul of Meal anime RPG animation atlas, ID banner-tay-bac-ga-nuong-mac-khen. Attached portrait locks identity: anthropomorphic brown and ivory otter scholar, short round ears and white whiskers, black ivory and gold robe, amber bead necklaces, ivory scroll. Preserve species, face, outfit colors, jewelry, scroll, unique wings/antlers/shell. Polished painted anime chibi, full body, recognizable at 128px. TRUE transparent alpha, square 2048x2048 canvas with exactly 4 columns by 4 rows, 16 separate isolated sprites. No text/labels/grid/ground/shadows/scenery/extra characters/large VFX. Each sprite occupies AT MOST 70 percent of its cell with generous padding all around. Everything including weapons/wings/antlers fits within its cell and canvas. Same body proportions and consistent full-body scale, 3/4 facing RIGHT. Row1 four sequential ULTIMATE poses: resolve with scroll, raise scroll and gather power, powerful scroll spell release to RIGHT, recover. Row2 four HIT poses: recoil, flinch, stagger, regain balance. Row3 four FALL poses: lose balance, kneel, lie completely down horizontally, same fallen character resting. Row4 four VICTORY poses: raise scroll proudly, joyful gesture, bow, settle smiling. Each of all 16 cells contains a single complete character; fallen poses never straddle grid boundaries or merge with adjacent characters."
+      }
+    ],
+    "uniformScale": 0.5973333333333334,
+    "outputs": {
+      "banner-tay-bac-ga-nuong-mac-khen-pixel.webp": {
+        "bytes": 121330,
+        "sha256": "9a0b516c4d507b0dafefa3a8625f6e7968dfcb174aeed5ed4406d531c5960d57"
+      },
+      "banner-tay-bac-ga-nuong-mac-khen.webp": {
+        "bytes": 580914,
+        "sha256": "2256c1222c667603d9b13192a6ca3f6dcba96188901a8e78e48161db0ac5842d"
+      }
+    }
+  }
+]

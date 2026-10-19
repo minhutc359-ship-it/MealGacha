@@ -1,0 +1,55 @@
+{
+  "tool": "built-in Imagegen",
+  "sources": [
+    {
+      "prompt": "Use case: stylized-concept. Hand-painted anime RPG spell VFX atlas for Soul of Meal. TRUE transparent alpha background. Exactly 3 columns x 3 rows on a square 1536x1536 canvas. Nine separate COMPLETE isolated effects inside square cells with generous 15 percent empty padding. Three signature columns in order: column1 tortoise scholar: bronze hexagonal shell ward, warm amber bead sparks and a thin jade fern unfurling; column2 phoenix scholar: ivory and crimson feather sweep, golden flame plume and rising ember sparks; column3 owl-moth scholar: two translucent amber butterfly-wing arcs with little gold star and pollen lights. Top row is small focused charge; middle row luminous decisive impact; bottom row thin dissipating fragments. Clear sequential phases with same motif for each column. Soft translucent glow, crisp painterly bright edges, open transparent center, low visual density. No characters, scenery, text, letters, labels, grid, opaque disks, or effects crossing cells. All glow and motes remain inside their own cell. Readable at 128 pixels over dark battlefield.",
+      "sha256": "243c46c2a82e4b204b6f07c8cf2917b780dfd76878527f87eebaa6c008a05138",
+      "size": [
+        1254,
+        1254
+      ],
+      "rows": [
+        0,
+        376,
+        845,
+        1254
+      ],
+      "columns": [
+        0,
+        430,
+        833,
+        1254
+      ]
+    },
+    {
+      "prompt": "Use case: stylized-concept. Hand-painted anime RPG spell VFX atlas for Soul of Meal. TRUE transparent alpha background. Exactly 3 columns x 3 rows on a square 1536x1536 canvas. Nine separate COMPLETE isolated effects inside square cells with generous 15 percent empty padding. Three signature columns in order: column1 pangolin scholar: overlapping bronze scale crescents and a slender crimson silk ribbon, red seal-like abstract spark without text; column2 otter scholar: spiraling warm golden bead chain with ivory wind strokes and little amber pepper-like motes; column3 antlered deer scholar: elegant branching golden antler light with purple silk wisps, teal and crimson fine sparks. Top row is small focused charge; middle row luminous decisive impact; bottom row thin dissipating fragments. Clear sequential phases with same motif for each column. Soft translucent glow, crisp painterly bright edges, open transparent center, low visual density. No characters, scenery, text, letters, labels, grid, opaque disks, or effects crossing cells. All glow and motes remain inside their own cell. Readable at 128 pixels over dark battlefield.",
+      "sha256": "386b991660a58e6ab2d3ec1f0f961e09b4ebd1400f21ac4b334f038dd5bd8d5f",
+      "size": [
+        1254,
+        1254
+      ],
+      "rows": [
+        0,
+        376,
+        845,
+        1254
+      ],
+      "columns": [
+        0,
+        430,
+        833,
+        1254
+      ]
+    }
+  ],
+  "path": "public/assets/characters/northwest5922/ultimate.webp",
+  "size": [
+    1536,
+    768
+  ],
+  "frames": 18,
+  "uniqueFrames": 18,
+  "safeGutters": true,
+  "bytes": 421466,
+  "sha256": "da172756adbe3e97f64e7be0a5825de973078af35f7989ec96ce00a89a3e7ad1"
+}

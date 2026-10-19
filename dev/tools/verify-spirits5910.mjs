@@ -5,11 +5,16 @@ const { chromium, webkit } = await import(
   process.env.PLAYWRIGHT_MODULE ?? "playwright"
 )
 const cohorts = {
+  "5923a": {root: "korea5923", ids: ["samgyeopsal","hanwoo-bbq","korean-fried-chicken","bingsu"]},
+  "5923b": {root: "korea5923", ids: ["jjajangmyeon","kimchi-jjigae","samgyeopsal","bingsu"]},
   "5910": {root: "regional5910", ids: ["banh-tet", "bun-bo-hue", "bun-ca", "che-buoi"]},
   "5912": {root: "vietnam5912", ids: ["pho-ga", "chao-suon", "mien-ga", "bun-moc"]},
   "5911": {root: "spring5911", ids: ["xoi-xeo", "dua-hanh", "caravan-herbalist", "caravan-gardener"]},
   "5913": {root: "autochess5913", ids: ["banh-dau-xanh", "banh-khuc", "banh-can", "banh-tom-ho-tay", "com-hen"]},
   "5914": {root: "tcg5914", ids: ["mi-van-than", "mi-cay", "ga-ran", "pizza"]},
+  "5922a": {root: "northwest5922", ids: ["banner-tay-bac-goi-rau-don","banner-tay-bac-com-lam","banner-tay-bac-thang-co","banner-tay-bac-thit-trau-gac-bep"]},
+  "5922b": {root: "northwest5922", ids: ["banner-tay-bac-ga-nuong-mac-khen","banner-tay-bac-xoi-ngu-sac","banner-tay-bac-goi-rau-don","banner-tay-bac-thang-co"]},
+  "5921": {root: "spirits5921", ids: ["canh-mang-mien", "gio-xao", "thit-dong", "che-khuc-bach"]},
   "5917": {root: "spirits5917", ids: ["lau-rieu-cua", "nuong-bbq", "vit-quay", "bibimbap"]},
 }
 const cohort = process.env.QA_COHORT ?? "5910"
@@ -37,7 +42,9 @@ const checks = [],
   errors = [],
   missing = [],
   requests = []
-mkdirSync(out + "/qa", { recursive: true })
+const captureOut = process.env.QA_CAPTURE_DIR ?? `.asset-work/qa/spirits-${cohort}`
+mkdirSync(out, { recursive: true })
+mkdirSync(captureOut, { recursive: true })
 const server = spawn(
   process.execPath,
   [
@@ -288,11 +295,9 @@ try {
           arena: a.height,
         }
       })
-      assert(
-        rect.left >= 0 &&
-          rect.right <= viewport.width + 1 &&
-          rect.height < rect.arena * 0.5,
-      )
+      const bannerFits = rect.left >= 0 && rect.right <= viewport.width + 1 && rect.height < rect.arena * 0.5
+      if (!bannerFits) await p.screenshot({path: `${captureOut}/banner-fit-failure.png`})
+      assert(bannerFits, JSON.stringify({id:ids[i],viewport,rect}))
       await click(
         p,
         p.getByRole("button", { name: "Dừng hoạt ảnh", exact: true }),
@@ -306,7 +311,7 @@ try {
         progress,
       )
       if (viewport.width === 390)
-        await p.screenshot({ path: `${out}/qa/${engine}-${ids[i]}-390.png` })
+        await p.screenshot({ path: `${captureOut}/${engine}-${ids[i]}-390.png` })
       await click(p, p.getByRole("button", { name: "Bỏ qua ›", exact: true }))
       await p.locator(".rpg-showcase").waitFor({ state: "detached" })
       noRecast(committed, await snapshot(p))
@@ -396,14 +401,14 @@ try {
   assert.deepEqual(errors, [])
   assert.deepEqual(missing, [])
   assert(!requests.some((p) => p.endsWith(".mp4")))
-  assert(!requests.some((p) => p.includes(`${assetRoot}/ultimate.webp`)))
+  assert.equal(requests.some((p) => p.includes(`${assetRoot}/ultimate.webp`)), ["5917","5921","5922a","5922b","5923a","5923b"].includes(cohort), "Painted VFX atlas request")
   writeFileSync(
     `${out}/${engine}${
       process.env.QA_END_ONLY ? "-end" : process.env.QA_FOCUS ? "-focus" : ""
     }-qa.json`,
     JSON.stringify(
       {
-        date: "2026-10-17",
+        date: new Date().toISOString().slice(0,10),
         engine,
         version: browser.version(),
         fixtures:

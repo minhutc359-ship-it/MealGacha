@@ -1,0 +1,162 @@
+{
+  "date": "2026-10-19",
+  "unitTests": 784,
+  "unitFiles": 77,
+  "releaseGuardTests": 4,
+  "typecheck": [
+    "production",
+    "dev"
+  ],
+  "browser": {
+    "engine": "Chromium 153.0.8010.0",
+    "newCohortChecks": 33,
+    "priorityVfxChecks": 12,
+    "modeChecks": 3,
+    "productionTransactions": [
+      "canh-mang-mien@390x844",
+      "che-khuc-bach@320x568"
+    ],
+    "errors": [],
+    "missingAssets": []
+  },
+  "build": {
+    "staticBudgetBytes": 320000000,
+    "staticTargetBytes": 300000000,
+    "jsGzipBudgetBytes": 675000,
+    "version": "5.9.21",
+    "bytes": 168005129,
+    "files": 825,
+    "byType": {
+      "js": {
+        "files": 40,
+        "bytes": 2110619
+      },
+      "css": {
+        "files": 5,
+        "bytes": 517711
+      },
+      "webp": {
+        "files": 580,
+        "bytes": 153517078
+      },
+      "png": {
+        "files": 3,
+        "bytes": 164790
+      },
+      "json": {
+        "files": 23,
+        "bytes": 433321
+      },
+      "woff2": {
+        "files": 11,
+        "bytes": 285956
+      },
+      "mp3": {
+        "files": 152,
+        "bytes": 10834115
+      },
+      "svg": {
+        "files": 1,
+        "bytes": 4902
+      },
+      "ico": {
+        "files": 1,
+        "bytes": 16574
+      },
+      "html": {
+        "files": 4,
+        "bytes": 36409
+      },
+      "txt": {
+        "files": 4,
+        "bytes": 83121
+      },
+      "webmanifest": {
+        "files": 1,
+        "bytes": 533
+      }
+    },
+    "groups": {
+      "Application JS/CSS": 2628330,
+      "Auto chess art/audio": 4025282,
+      "Brand": 229534,
+      "Shared character atlases": 73410002,
+      "Other and legal": 41450283,
+      "Event art": 2016822,
+      "Food art": 7490462,
+      "Adventure presentation art": 1400332,
+      "Spirit RPG art/audio/video": 17336030,
+      "TCG art/audio": 18018052
+    },
+    "js_gzip": 674820,
+    "css_gzip": 106955,
+    "largest": [
+      {
+        "path": "assets/rpg/campaign580/campaignB.webp",
+        "bytes": 2223544
+      },
+      {
+        "path": "assets/rpg/campaign580/campaignA.webp",
+        "bytes": 2153792
+      },
+      {
+        "path": "assets/rpg-presentation-g4rnFhqV.js",
+        "bytes": 1131557
+      },
+      {
+        "path": "assets/characters/rosterB.webp",
+        "bytes": 1125838
+      },
+      {
+        "path": "assets/characters/nightB.webp",
+        "bytes": 1083090
+      },
+      {
+        "path": "assets/characters/rosterG.webp",
+        "bytes": 1064480
+      },
+      {
+        "path": "assets/characters/rosterE.webp",
+        "bytes": 1037958
+      },
+      {
+        "path": "assets/characters/rosterC.webp",
+        "bytes": 1025512
+      },
+      {
+        "path": "assets/autochess/movement.webp",
+        "bytes": 1005956
+      },
+      {
+        "path": "assets/characters/starters590/goi-cuon-tom-thit.webp",
+        "bytes": 1002666
+      },
+      {
+        "path": "assets/characters/starters590/pho-bo.webp",
+        "bytes": 998102
+      },
+      {
+        "path": "assets/rpg/combat583/effects.webp",
+        "bytes": 990866
+      }
+    ],
+    "leaks": [],
+    "offlineShell": {
+      "bytes": 2926964,
+      "urls": 59,
+      "targetBytes": 8000000,
+      "limitBytes": 12000000,
+      "warning": false,
+      "exceeded": false,
+      "remainingBytes": 9073036
+    },
+    "budget": {
+      "targetBytes": 300000000,
+      "limitBytes": 320000000,
+      "warning": false,
+      "exceeded": false,
+      "remainingBytes": 151994871
+    }
+  },
+  "physicalDeviceReview": "Owner review pending; no real-device FPS or Safari certification"
+}

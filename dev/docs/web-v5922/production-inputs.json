@@ -1,0 +1,16 @@
+{
+  "tool": "built-in Imagegen",
+  "date": "2026-10-19",
+  "identity": "identity-sources.json",
+  "authoredSheets": 12,
+  "physicalPoseCount": 192,
+  "paintedEffectSheets": 2,
+  "paintedEffectFrames": 18,
+  "portraitPolicy": "Reuse immutable portrait-7 cells 10 through 15 unchanged",
+  "promptSet": [
+    "asset-provenance.json[].sources[].prompt",
+    "vfx-provenance.json.sources[].prompt"
+  ],
+  "runtimeRoot": "public/assets/characters/northwest5922/",
+  "qaImages": "Local only under .asset-work/; excluded from Git"
+}

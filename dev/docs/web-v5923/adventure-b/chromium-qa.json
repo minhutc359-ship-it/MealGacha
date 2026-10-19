@@ -1,0 +1,534 @@
+{
+  "date": "2026-10-19",
+  "engine": "chromium",
+  "version": "153.0.8010.0",
+  "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
+  "checks": [
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 1323,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 8444,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 5396,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "jjajangmyeon",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1641,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "kimchi-jjigae",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1034,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "samgyeopsal",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1653,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bingsu",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1483,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 67.578125,
+        "arena": 140
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 5824,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 38048,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 23942,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "jjajangmyeon",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5390,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "kimchi-jjigae",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3214,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "samgyeopsal",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5753,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bingsu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5427,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 655,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 4791,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 3030,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "jjajangmyeon",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 1049,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "kimchi-jjigae",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 699,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "samgyeopsal",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 996,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bingsu",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 1008,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 8238,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 57122,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 37853,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "jjajangmyeon",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7750,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "kimchi-jjigae",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4433,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "samgyeopsal",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 8066,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bingsu",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7693,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "victory",
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ]
+    },
+    {
+      "area": "fall",
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ]
+    },
+    {
+      "area": "reload-committed-ultimate",
+      "noRecast": true
+    },
+    {
+      "area": "natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "reduced-motion",
+      "ids": [
+        "jjajangmyeon",
+        "kimchi-jjigae",
+        "samgyeopsal",
+        "bingsu"
+      ],
+      "staticPose": 16
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedAssets": [
+    "/assets/characters/korea5923/jjajangmyeon.webp",
+    "/assets/characters/korea5923/kimchi-jjigae.webp",
+    "/assets/characters/korea5923/samgyeopsal.webp",
+    "/assets/characters/korea5923/bingsu.webp",
+    "/assets/characters/korea5923/ultimate.webp"
+  ],
+  "movieRequests": 0
+}

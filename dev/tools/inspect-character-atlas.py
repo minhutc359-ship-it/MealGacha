@@ -4,6 +4,7 @@ Usage: python3 dev/tools/inspect-character-atlas.py spring5911 5911
 Checks final runtime files against provenance; source PNGs are not required.
 """
 import hashlib
+import os
 import json
 import sys
 from pathlib import Path
@@ -15,8 +16,8 @@ group, version = sys.argv[1:3]
 asset = root / 'public/assets/characters' / group
 docs = root / 'dev/docs' / ('web-v' + version)
 records = json.loads((docs / 'asset-provenance.json').read_text())
-evidence = docs / 'evidence'
-evidence.mkdir(exist_ok=True)
+evidence = Path(os.environ.get('QA_EVIDENCE_DIR', str(root/'.asset-work/qa'/group)))
+evidence.mkdir(parents=True, exist_ok=True)
 contact = Image.new('RGB', (2048, len(records) * 288), '#e5e1d5')
 draw = ImageDraw.Draw(contact)
 checks = []

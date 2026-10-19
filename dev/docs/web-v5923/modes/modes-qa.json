@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-19",
+  "engine": "chromium",
+  "version": "153.0.8010.0",
+  "checks": [
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "com-tam",
+        "banh-mi",
+        "pho-bo",
+        "banh-cuon",
+        "xoi"
+      ]
+    },
+    {
+      "area": "autochess",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "liveCast": true,
+      "sharedBanner": true,
+      "ids": [
+        "com-tam",
+        "banh-mi",
+        "pho-bo",
+        "banh-cuon",
+        "xoi"
+      ]
+    },
+    {
+      "area": "tcg",
+      "spell": {
+        "id": "tea-break",
+        "name": "Một chén trà"
+      },
+      "sharedBanner": true,
+      "modelSigil": true,
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realUnitAttack": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "movieRequests": 0,
+  "requestedAssets": [
+    "/assets/characters/korea5923/korean-fried-chicken.webp",
+    "/assets/characters/korea5923/bingsu.webp",
+    "/assets/characters/korea5923/samgyeopsal.webp",
+    "/assets/characters/korea5923/hanwoo-bbq.webp",
+    "/assets/characters/korea5923/ultimate.webp"
+  ]
+}

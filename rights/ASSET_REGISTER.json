@@ -1,5 +1,5 @@
 {
-  "version": "5.9.20",
+  "version": "5.9.23",
   "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -1629,6 +1629,188 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/characters/korea5923/bingsu-pixel.webp",
+      "bytes": 123816,
+      "sha256": "8b6070e7c60b601b4457e158d6464ac16294cd16bd2656484985aa0763716aed",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/bingsu.webp",
+      "bytes": 638304,
+      "sha256": "c8e439a3563bbe90747609cde66483d0e57e4fba44845f44c65067bc9b05dd21",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/hanwoo-bbq-pixel.webp",
+      "bytes": 117104,
+      "sha256": "409db2d17b1d74a913b37e3f57a19073db2913cdae01a14a26ba439f8a52715b",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/hanwoo-bbq.webp",
+      "bytes": 631602,
+      "sha256": "6b7575452ddb0a917708dc2a10fd71886f721dd7acb067b8e1207604baf1a095",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/jjajangmyeon-pixel.webp",
+      "bytes": 116826,
+      "sha256": "297dcbd982c8fdda1954b2246a0c9d8d4eb6d09a7cb44205a1d7ef939a58bb61",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/jjajangmyeon.webp",
+      "bytes": 587596,
+      "sha256": "7f1011046b1da92f2f1f8883bca2e53b7a7bb1f72b96059b1236dcd99358c3a7",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/kimchi-jjigae-pixel.webp",
+      "bytes": 110214,
+      "sha256": "03514a41b90aa1731d1f68c6f5c7dafdfc93267effb649f50a82b6aa0929137d",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/kimchi-jjigae.webp",
+      "bytes": 523110,
+      "sha256": "5d0f715813db5e61aa234b4bae44f9c79535e762009b04c4f83995a1bafa3131",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/korean-fried-chicken-pixel.webp",
+      "bytes": 134790,
+      "sha256": "fd10ff9bf22135fe1db0aa86130b9837dea284632992fc82990698d31340de27",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/korean-fried-chicken.webp",
+      "bytes": 631844,
+      "sha256": "abac1344235fa65263d8e40478ce2adee0b8cc01db04c1262a214660a9826ae8",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/samgyeopsal-pixel.webp",
+      "bytes": 103426,
+      "sha256": "933a489762b2412417603031af649768e033a4d3164181b5b5dcc6ba7e05c674",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/samgyeopsal.webp",
+      "bytes": 494896,
+      "sha256": "939372f41293a591c786831043e0174d38751f8c9e6a95502a025b961e1d557b",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/ultimate.webp",
+      "bytes": 486082,
+      "sha256": "3f69f272fa02f653124a3462d2cd99eda9b75b38a99eda6d845a3bc3c789e1f9",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/characters/nightA.webp",
       "bytes": 896596,
       "sha256": "89ad2365afa0827b4fbf4950b1d38de8d6472d5ad25a1bb27273f8749e65e1bf",
@@ -1649,6 +1831,188 @@
         "dev/docs/challenge-v322/prompts.json",
         "dev/docs/market-v331/atlas-prompts.json",
         "dev/tools/register-market-atlases.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-com-lam-pixel.webp",
+      "bytes": 114578,
+      "sha256": "4c118533e5fd7cc38c0f456dd63093977c031104a6e8134a6c17f87fa29f0ff1",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-com-lam.webp",
+      "bytes": 626686,
+      "sha256": "ad81e0e93c0a8d64bf228ba92d14679700586ed1964fa4b25b3b97f4677e6255",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-ga-nuong-mac-khen-pixel.webp",
+      "bytes": 121330,
+      "sha256": "9a0b516c4d507b0dafefa3a8625f6e7968dfcb174aeed5ed4406d531c5960d57",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-ga-nuong-mac-khen.webp",
+      "bytes": 580914,
+      "sha256": "2256c1222c667603d9b13192a6ca3f6dcba96188901a8e78e48161db0ac5842d",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-goi-rau-don-pixel.webp",
+      "bytes": 131734,
+      "sha256": "ca235cb49ab0eb976ea9365ca3844b79ee9200efe879fc5e90824ad7249fda7e",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-goi-rau-don.webp",
+      "bytes": 605740,
+      "sha256": "ec7dcab6ee7da64ac2dc0279bbf3950548d12040a954c8cc97bfdc9cb2bf00b1",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-thang-co-pixel.webp",
+      "bytes": 126720,
+      "sha256": "93f3df04fa25a6ac16a908786000c3f6e5d37bc7a040c29c204c3036eed46051",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-thang-co.webp",
+      "bytes": 649114,
+      "sha256": "56048a9ff5d2e60ac7cc62b4de414be0ae6ec05641360d42f84ebcca1a1fe6db",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-thit-trau-gac-bep-pixel.webp",
+      "bytes": 101266,
+      "sha256": "e48d26d743c2063f4f29fd0bb29249aed82a4ad281150c0565ed0c40f96b2e0e",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-thit-trau-gac-bep.webp",
+      "bytes": 511222,
+      "sha256": "6703640729fc781d4d67f0e68a8dd8ca75c59e68b292d199c58f883f0d1ab840",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-xoi-ngu-sac-pixel.webp",
+      "bytes": 122816,
+      "sha256": "7a21b882b8e6e3042de4d5f568a670f3ed16b2e28c01ecae0b45e52965a5e43c",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/banner-tay-bac-xoi-ngu-sac.webp",
+      "bytes": 634418,
+      "sha256": "a30cccda64adf579cf540be05fef47e9c95322d6970c2584824bacdbab6bc497",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/northwest5922/ultimate.webp",
+      "bytes": 421466,
+      "sha256": "da172756adbe3e97f64e7be0a5825de973078af35f7989ec96ce00a89a3e7ad1",
+      "origin": "Original AI-assisted identity-preserving six Northwest spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5922/asset-provenance.json",
+        "dev/docs/web-v5922/identity-sources.json",
+        "dev/docs/web-v5922/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-northwest-vfx5922.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
@@ -2356,6 +2720,17 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/characters/spirits5917/ultimate.webp",
+      "bytes": 304998,
+      "sha256": "06f0cb14ee79871e40d06459b75820e52249ed23a87f14aad5f0763389a28eed",
+      "origin": "Original AI-assisted four-signature painted three-phase VFX atlas generated using built-in Imagegen; consumed by shared character-effect compositor",
+      "evidence": [
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/characters/spirits5917/vit-quay-pixel.webp",
       "bytes": 102352,
       "sha256": "90db39f37959f227088849132eef4992d18c0264030659ad02c1dadaa1615cee",
@@ -2376,6 +2751,132 @@
         "dev/docs/web-v5917/asset-provenance.json",
         "dev/docs/web-v5917/identity-sources.json",
         "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/canh-mang-mien-pixel.webp",
+      "bytes": 122212,
+      "sha256": "823061fee93caa14b45621a09f0d9a43a30dee65ca4e07144fc9eaae0877bbb3",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/canh-mang-mien.webp",
+      "bytes": 662714,
+      "sha256": "dcb830ae8bf40858911f62e452bd16265d349455afe1aa2acdf9e6581b122b49",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/che-khuc-bach-pixel.webp",
+      "bytes": 106728,
+      "sha256": "ba12d88787b7d818ec7ab6f11f56c4e4252e7a48088aa8a490eab3c02adab51f",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/che-khuc-bach.webp",
+      "bytes": 621376,
+      "sha256": "46d7a4ee6aff7e650ae6be2737bcd57dbc6545c1ac84e4dabc4a083fac3a728f",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/gio-xao-pixel.webp",
+      "bytes": 126034,
+      "sha256": "473ea619c6ee879336b0d661da2fbc84dbe2f717c8d8efc0ff347ee1f20e7587",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/gio-xao.webp",
+      "bytes": 709668,
+      "sha256": "55cf259c5f6261780304f06c20dc908ba427ab57a43eaad9b6dcb2758f52e434",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/thit-dong-pixel.webp",
+      "bytes": 126266,
+      "sha256": "c212337a2e5bd556c083dc99f365d86de4d2489ba3f6b7ef40d668790902c3e3",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/thit-dong.webp",
+      "bytes": 639150,
+      "sha256": "c6d07361faea49fead010587b2fdc7bd850825d0a679c977c0a3f598047644fb",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5921/ultimate.webp",
+      "bytes": 426172,
+      "sha256": "e362068f10ad667c1da7bdc77847225e0d6341e5af2877d6b31127d1295f9f0f",
+      "origin": "Original AI-assisted identity-preserving four Vietnamese feast spirit HD/pixel pose atlases and painted signature VFX from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5921/asset-provenance.json",
+        "dev/docs/web-v5921/identity-sources.json",
+        "dev/docs/web-v5921/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-spirit-vfx5921.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
