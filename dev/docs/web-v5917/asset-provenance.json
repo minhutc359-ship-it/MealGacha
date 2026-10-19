@@ -1,0 +1,1012 @@
+[
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 11,
+      "columns": 4,
+      "sha256": "3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"
+    },
+    "id": "nuong-bbq",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "4dcb089dec2c2a88f2f51c6fe6a2e04e1d27d9cd697e496cf51e34399c74cde1",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            12,
+            2,
+            299,
+            316
+          ],
+          [
+            321,
+            3,
+            600,
+            316
+          ],
+          [
+            634,
+            2,
+            924,
+            315
+          ],
+          [
+            942,
+            1,
+            1230,
+            316
+          ],
+          [
+            5,
+            338,
+            314,
+            624
+          ],
+          [
+            303,
+            331,
+            642,
+            627
+          ],
+          [
+            622,
+            330,
+            962,
+            628
+          ],
+          [
+            946,
+            331,
+            1253,
+            628
+          ],
+          [
+            12,
+            631,
+            306,
+            933
+          ],
+          [
+            301,
+            649,
+            627,
+            932
+          ],
+          [
+            627,
+            651,
+            940,
+            932
+          ],
+          [
+            940,
+            663,
+            1253,
+            924
+          ],
+          [
+            11,
+            951,
+            289,
+            1240
+          ],
+          [
+            322,
+            950,
+            613,
+            1240
+          ],
+          [
+            619,
+            935,
+            943,
+            1236
+          ],
+          [
+            940,
+            951,
+            1249,
+            1239
+          ]
+        ],
+        "prompt": "Identity-preserving transparent 4x4 sheet: idle, walk, spear attack and ember cast for the canon phoenix guardian."
+      },
+      {
+        "sheet": "support",
+        "sha256": "20f150318016c8ac4c89db2e33b2ef19d3875b560b957c9fe65e883b410d5ad4",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            8,
+            5,
+            334,
+            394
+          ],
+          [
+            338,
+            36,
+            653,
+            378
+          ],
+          [
+            636,
+            72,
+            964,
+            365
+          ],
+          [
+            956,
+            4,
+            1249,
+            398
+          ],
+          [
+            15,
+            321,
+            322,
+            695
+          ],
+          [
+            344,
+            392,
+            616,
+            697
+          ],
+          [
+            647,
+            325,
+            949,
+            696
+          ],
+          [
+            961,
+            356,
+            1243,
+            701
+          ],
+          [
+            18,
+            687,
+            315,
+            937
+          ],
+          [
+            329,
+            713,
+            612,
+            933
+          ],
+          [
+            626,
+            789,
+            971,
+            931
+          ],
+          [
+            960,
+            804,
+            1251,
+            925
+          ],
+          [
+            19,
+            933,
+            313,
+            1248
+          ],
+          [
+            342,
+            919,
+            623,
+            1248
+          ],
+          [
+            646,
+            950,
+            931,
+            1245
+          ],
+          [
+            934,
+            949,
+            1244,
+            1247
+          ]
+        ],
+        "prompt": "Identity-preserving transparent 4x4 sheet: ultimate, hit, fall and victory for the canon phoenix guardian."
+      }
+    ],
+    "uniformScale": 0.5685279187817259,
+    "outputs": {
+      "nuong-bbq-pixel.webp": {
+        "bytes": 113714,
+        "sha256": "5305f0b26feb31860069f9cffa7fadf21b7dcc726dbf059129b68fa75e7ee5a0"
+      },
+      "nuong-bbq.webp": {
+        "bytes": 675220,
+        "sha256": "9af90217f81e6307ec1308a06ad5c500ad168fd396d0db85de6430851b1125f9"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 12,
+      "columns": 4,
+      "sha256": "3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"
+    },
+    "id": "vit-quay",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "2dfe9646c420ab2df29e8803d99125d575035b25c0129fda7c313e58b36d7010",
+        "size": [
+          1536,
+          1024
+        ],
+        "rects": [
+          [
+            50,
+            5,
+            338,
+            251
+          ],
+          [
+            450,
+            5,
+            698,
+            252
+          ],
+          [
+            811,
+            5,
+            1075,
+            252
+          ],
+          [
+            1210,
+            5,
+            1464,
+            252
+          ],
+          [
+            38,
+            262,
+            356,
+            504
+          ],
+          [
+            410,
+            264,
+            748,
+            500
+          ],
+          [
+            796,
+            258,
+            1131,
+            504
+          ],
+          [
+            1166,
+            266,
+            1528,
+            497
+          ],
+          [
+            16,
+            510,
+            337,
+            760
+          ],
+          [
+            388,
+            505,
+            768,
+            755
+          ],
+          [
+            766,
+            522,
+            1160,
+            756
+          ],
+          [
+            1159,
+            514,
+            1522,
+            760
+          ],
+          [
+            41,
+            767,
+            341,
+            1018
+          ],
+          [
+            425,
+            764,
+            743,
+            1018
+          ],
+          [
+            791,
+            769,
+            1120,
+            1018
+          ],
+          [
+            1175,
+            765,
+            1517,
+            1019
+          ]
+        ],
+        "prompt": "Identity-preserving transparent 4x4 sheet: idle, walk, spear attack and ember cast for the canon rabbit-moth guardian."
+      },
+      {
+        "sheet": "support",
+        "sha256": "a6903bd0ec5fbef7810b4fe2ba1355cecd32ab2a5408ef3be45527e6ecfa48fb",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            16,
+            8,
+            304,
+            314
+          ],
+          [
+            322,
+            35,
+            622,
+            315
+          ],
+          [
+            635,
+            5,
+            931,
+            329
+          ],
+          [
+            941,
+            42,
+            1252,
+            313
+          ],
+          [
+            13,
+            332,
+            310,
+            623
+          ],
+          [
+            334,
+            345,
+            612,
+            624
+          ],
+          [
+            627,
+            383,
+            935,
+            616
+          ],
+          [
+            946,
+            328,
+            1248,
+            622
+          ],
+          [
+            24,
+            636,
+            305,
+            900
+          ],
+          [
+            322,
+            661,
+            627,
+            899
+          ],
+          [
+            628,
+            725,
+            939,
+            896
+          ],
+          [
+            947,
+            758,
+            1248,
+            893
+          ],
+          [
+            13,
+            910,
+            299,
+            1237
+          ],
+          [
+            314,
+            914,
+            607,
+            1237
+          ],
+          [
+            630,
+            914,
+            923,
+            1233
+          ],
+          [
+            946,
+            914,
+            1237,
+            1239
+          ]
+        ],
+        "prompt": "Identity-preserving transparent 4x4 sheet: ultimate, hit, fall and victory for the canon rabbit-moth guardian."
+      }
+    ],
+    "uniformScale": 0.5685279187817259,
+    "outputs": {
+      "vit-quay-pixel.webp": {
+        "bytes": 102352,
+        "sha256": "90db39f37959f227088849132eef4992d18c0264030659ad02c1dadaa1615cee"
+      },
+      "vit-quay.webp": {
+        "bytes": 601090,
+        "sha256": "4c0e2b91cfc6c98ecbeaba176f23dc4686bb339353b19d7c5074a70f021e79f8"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 14,
+      "columns": 4,
+      "sha256": "3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"
+    },
+    "id": "bibimbap",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "5158bb6ce2bf02c3d9a12f0a08f72efb2366fec4a11b547960c7a61223040f28",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            14,
+            2,
+            289,
+            321
+          ],
+          [
+            319,
+            8,
+            594,
+            322
+          ],
+          [
+            632,
+            1,
+            918,
+            322
+          ],
+          [
+            934,
+            2,
+            1237,
+            322
+          ],
+          [
+            6,
+            347,
+            321,
+            614
+          ],
+          [
+            316,
+            345,
+            643,
+            607
+          ],
+          [
+            630,
+            358,
+            1005,
+            597
+          ],
+          [
+            967,
+            346,
+            1254,
+            606
+          ],
+          [
+            6,
+            621,
+            296,
+            907
+          ],
+          [
+            298,
+            630,
+            613,
+            913
+          ],
+          [
+            623,
+            701,
+            1036,
+            901
+          ],
+          [
+            964,
+            646,
+            1251,
+            901
+          ],
+          [
+            8,
+            915,
+            307,
+            1236
+          ],
+          [
+            320,
+            942,
+            628,
+            1231
+          ],
+          [
+            633,
+            944,
+            933,
+            1231
+          ],
+          [
+            946,
+            917,
+            1245,
+            1235
+          ]
+        ],
+        "prompt": "Identity-preserving transparent 4x4 sheet: idle, walk, spear attack and five-color cast for the canon otter guardian."
+      },
+      {
+        "sheet": "support",
+        "sha256": "ca99061f5d33050b31701b269b0519da04adf64c871bb9677560052449914d35",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            0,
+            8,
+            314,
+            317
+          ],
+          [
+            314,
+            2,
+            621,
+            324
+          ],
+          [
+            632,
+            0,
+            931,
+            314
+          ],
+          [
+            944,
+            16,
+            1254,
+            326
+          ],
+          [
+            13,
+            314,
+            298,
+            609
+          ],
+          [
+            317,
+            314,
+            593,
+            620
+          ],
+          [
+            634,
+            314,
+            936,
+            627
+          ],
+          [
+            946,
+            310,
+            1246,
+            627
+          ],
+          [
+            11,
+            638,
+            314,
+            916
+          ],
+          [
+            321,
+            675,
+            627,
+            902
+          ],
+          [
+            630,
+            627,
+            938,
+            940
+          ],
+          [
+            944,
+            742,
+            1250,
+            900
+          ],
+          [
+            15,
+            908,
+            305,
+            1230
+          ],
+          [
+            332,
+            908,
+            611,
+            1228
+          ],
+          [
+            631,
+            940,
+            937,
+            1239
+          ],
+          [
+            951,
+            909,
+            1230,
+            1239
+          ]
+        ],
+        "prompt": "Identity-preserving transparent 4x4 sheet: ultimate, hit, fall and victory for the canon otter guardian."
+      }
+    ],
+    "uniformScale": 0.5423728813559322,
+    "outputs": {
+      "bibimbap-pixel.webp": {
+        "bytes": 111242,
+        "sha256": "953618886e6426b9e342db172f7fc86642e2ab80404306dd916050ca4f411509"
+      },
+      "bibimbap.webp": {
+        "bytes": 578762,
+        "sha256": "25513bbe7ccfb6c7e770436909d981d6b69da2e31a90568ed55407b6654b1b81"
+      }
+    }
+  },
+  {
+    "portraitReference": {
+      "path": "/assets/rpg/spirit510/portraits-2.webp",
+      "cell": 10,
+      "columns": 4,
+      "sha256": "3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"
+    },
+    "id": "lau-rieu-cua",
+    "frames": 32,
+    "states": [
+      "idle",
+      "walk",
+      "attack",
+      "cast",
+      "ultimate",
+      "hit",
+      "fall",
+      "victory"
+    ],
+    "tool": "built-in Imagegen",
+    "generatedOn": "2026-10-18",
+    "sources": [
+      {
+        "sheet": "poses",
+        "sha256": "3017bc9431dd8040647eeedc2b8f81cf51068a803452acca2de6ea5b798a82fa",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            27,
+            0,
+            260,
+            318
+          ],
+          [
+            328,
+            7,
+            575,
+            318
+          ],
+          [
+            641,
+            2,
+            894,
+            321
+          ],
+          [
+            947,
+            3,
+            1211,
+            320
+          ],
+          [
+            17,
+            315,
+            276,
+            619
+          ],
+          [
+            327,
+            315,
+            596,
+            617
+          ],
+          [
+            620,
+            322,
+            897,
+            619
+          ],
+          [
+            925,
+            317,
+            1247,
+            613
+          ],
+          [
+            9,
+            627,
+            291,
+            915
+          ],
+          [
+            317,
+            650,
+            611,
+            909
+          ],
+          [
+            606,
+            704,
+            953,
+            902
+          ],
+          [
+            964,
+            688,
+            1247,
+            914
+          ],
+          [
+            22,
+            925,
+            283,
+            1242
+          ],
+          [
+            322,
+            923,
+            594,
+            1240
+          ],
+          [
+            623,
+            965,
+            934,
+            1220
+          ],
+          [
+            945,
+            934,
+            1243,
+            1236
+          ]
+        ],
+        "prompt": "Identity-preserving transparent 4x4 sheet: idle, walk, spear attack and tide cast for the canon bronze-armored frog guardian."
+      },
+      {
+        "sheet": "support",
+        "sha256": "3fd483e5410dc089dd4530bd3a0339dcacad208bdeeda00f9669a4e3d84f0fa0",
+        "size": [
+          1254,
+          1254
+        ],
+        "rects": [
+          [
+            3,
+            0,
+            320,
+            368
+          ],
+          [
+            322,
+            19,
+            628,
+            371
+          ],
+          [
+            630,
+            34,
+            958,
+            368
+          ],
+          [
+            959,
+            6,
+            1247,
+            314
+          ],
+          [
+            24,
+            401,
+            318,
+            683
+          ],
+          [
+            336,
+            401,
+            612,
+            684
+          ],
+          [
+            639,
+            421,
+            932,
+            689
+          ],
+          [
+            967,
+            314,
+            1237,
+            627
+          ],
+          [
+            6,
+            698,
+            305,
+            950
+          ],
+          [
+            311,
+            762,
+            627,
+            943
+          ],
+          [
+            776,
+            772,
+            823,
+            811
+          ],
+          [
+            974,
+            627,
+            1252,
+            964
+          ],
+          [
+            11,
+            937,
+            302,
+            1242
+          ],
+          [
+            352,
+            933,
+            635,
+            1242
+          ],
+          [
+            632,
+            804,
+            966,
+            1242
+          ],
+          [
+            969,
+            930,
+            1234,
+            1238
+          ]
+        ],
+        "prompt": "Identity-preserving transparent 4x4 sheet: ultimate, hit, fall and victory for the canon bronze-armored frog guardian."
+      },
+      {
+        "sheet": "repair",
+        "frame": 26,
+        "sha256": "3d2143d4f6e89eaf7cee5093ec24072a61415f70fbc3d21d64596d8ed6a03bb6",
+        "rect": [
+          0,
+          51,
+          311,
+          222
+        ],
+        "normalizedHeight": 171,
+        "prompt": "Authored prone fall pose recovered from the earlier identity-matched frog sheet.",
+        "reason": "The support sheet's third fall silhouette crossed a source grid boundary and packed as an isolated fragment."
+      }
+    ],
+    "uniformScale": 0.5114155251141552,
+    "outputs": {
+      "lau-rieu-cua-pixel.webp": {
+        "bytes": 94944,
+        "sha256": "65220446e99150db92885a709aac2e140bd0bc717879a49043a257513b1a3d51"
+      },
+      "lau-rieu-cua.webp": {
+        "bytes": 516622,
+        "sha256": "3ede9ac16ab57281e577d025c34a5be975ca91ffb2af0ba5d91796cc5e29132e"
+      }
+    }
+  }
+]

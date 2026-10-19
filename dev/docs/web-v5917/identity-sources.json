@@ -1,0 +1,6 @@
+[
+  {"id":"lau-rieu-cua","name":"Lẩu riêu cua","baseline":"Portrait-only in TCG and Adventure","reference":".asset-work/web-v5917/references/lau-rieu-cua-canon.png","canon":{"path":"/assets/rpg/spirit510/portraits-2.webp","cell":10,"columns":4,"sha256":"3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"}},
+  {"id":"nuong-bbq","name":"Nướng BBQ","baseline":"Portrait-only in TCG and Adventure","reference":".asset-work/web-v5917/references/nuong-bbq-canon.png","canon":{"path":"/assets/rpg/spirit510/portraits-2.webp","cell":11,"columns":4,"sha256":"3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"}},
+  {"id":"vit-quay","name":"Vịt quay","baseline":"Portrait-only in TCG and Adventure","reference":".asset-work/web-v5917/references/vit-quay-canon.png","canon":{"path":"/assets/rpg/spirit510/portraits-2.webp","cell":12,"columns":4,"sha256":"3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"}},
+  {"id":"bibimbap","name":"Bibimbap","baseline":"Portrait-only in TCG and Adventure","reference":".asset-work/web-v5917/references/bibimbap-canon.png","canon":{"path":"/assets/rpg/spirit510/portraits-2.webp","cell":14,"columns":4,"sha256":"3b49a4928920c8bf32699adc88ebbca1e4f45f770ddea1dbf7f5b45c3156b891"}}
+]

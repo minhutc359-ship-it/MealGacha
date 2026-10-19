@@ -2284,6 +2284,102 @@
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },
     {
+      "path": "public/assets/characters/spirits5917/bibimbap-pixel.webp",
+      "bytes": 111242,
+      "sha256": "953618886e6426b9e342db172f7fc86642e2ab80404306dd916050ca4f411509",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for four priority spirits from existing canon portraits; portraits reused unchanged; signature VFX intentionally deferred",
+      "evidence": [
+        "dev/docs/web-v5917/asset-provenance.json",
+        "dev/docs/web-v5917/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5917/bibimbap.webp",
+      "bytes": 578762,
+      "sha256": "25513bbe7ccfb6c7e770436909d981d6b69da2e31a90568ed55407b6654b1b81",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for four priority spirits from existing canon portraits; portraits reused unchanged; signature VFX intentionally deferred",
+      "evidence": [
+        "dev/docs/web-v5917/asset-provenance.json",
+        "dev/docs/web-v5917/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5917/lau-rieu-cua-pixel.webp",
+      "bytes": 94944,
+      "sha256": "65220446e99150db92885a709aac2e140bd0bc717879a49043a257513b1a3d51",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for four priority spirits from existing canon portraits; portraits reused unchanged; signature VFX intentionally deferred",
+      "evidence": [
+        "dev/docs/web-v5917/asset-provenance.json",
+        "dev/docs/web-v5917/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5917/lau-rieu-cua.webp",
+      "bytes": 516622,
+      "sha256": "3ede9ac16ab57281e577d025c34a5be975ca91ffb2af0ba5d91796cc5e29132e",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for four priority spirits from existing canon portraits; portraits reused unchanged; signature VFX intentionally deferred",
+      "evidence": [
+        "dev/docs/web-v5917/asset-provenance.json",
+        "dev/docs/web-v5917/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5917/nuong-bbq-pixel.webp",
+      "bytes": 113714,
+      "sha256": "5305f0b26feb31860069f9cffa7fadf21b7dcc726dbf059129b68fa75e7ee5a0",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for four priority spirits from existing canon portraits; portraits reused unchanged; signature VFX intentionally deferred",
+      "evidence": [
+        "dev/docs/web-v5917/asset-provenance.json",
+        "dev/docs/web-v5917/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5917/nuong-bbq.webp",
+      "bytes": 675220,
+      "sha256": "9af90217f81e6307ec1308a06ad5c500ad168fd396d0db85de6430851b1125f9",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for four priority spirits from existing canon portraits; portraits reused unchanged; signature VFX intentionally deferred",
+      "evidence": [
+        "dev/docs/web-v5917/asset-provenance.json",
+        "dev/docs/web-v5917/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5917/vit-quay-pixel.webp",
+      "bytes": 102352,
+      "sha256": "90db39f37959f227088849132eef4992d18c0264030659ad02c1dadaa1615cee",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for four priority spirits from existing canon portraits; portraits reused unchanged; signature VFX intentionally deferred",
+      "evidence": [
+        "dev/docs/web-v5917/asset-provenance.json",
+        "dev/docs/web-v5917/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/spirits5917/vit-quay.webp",
+      "bytes": 601090,
+      "sha256": "4c0e2b91cfc6c98ecbeaba176f23dc4686bb339353b19d7c5074a70f021e79f8",
+      "origin": "Original AI-assisted identity-preserving HD and pixel pose atlases for four priority spirits from existing canon portraits; portraits reused unchanged; signature VFX intentionally deferred",
+      "evidence": [
+        "dev/docs/web-v5917/asset-provenance.json",
+        "dev/docs/web-v5917/identity-sources.json",
+        "dev/tools/pack-campaign598.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
       "path": "public/assets/characters/spring5911/caravan-gardener-pixel.webp",
       "bytes": 68682,
       "sha256": "ed1101b2ace972fd7044543415dc7323460acdfb17b77a949bbbf2bf7cbfa4d3",

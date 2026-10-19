@@ -112,7 +112,9 @@ export function drawStarterVfx(
 ) {
   const kit = starterCharacter(id)
   const end = ultimate ? ULTIMATE_TIMELINE.end : 650
-  if (!kit || ms < 0 || ms >= end) return
+  // Models may ship before their signature art. In that case the battle
+  // compositor keeps the shared school projectile/impact as the only VFX.
+  if (!kit || kit.signature === "none" || ms < 0 || ms >= end) return
   const phase = ultimate ? ultimatePhase(ms) : ms < 400 ? "impact" : "finisher"
   if (ultimate && (phase === "preparation" || phase === "recovery")) return
   const t = ultimate ? (ms - ULTIMATE_TIMELINE.casting) / (ULTIMATE_TIMELINE.recovery-ULTIMATE_TIMELINE.casting) : ms / end

@@ -10,6 +10,7 @@ const cohorts = {
   "5911": {root: "spring5911", ids: ["xoi-xeo", "dua-hanh", "caravan-herbalist", "caravan-gardener"]},
   "5913": {root: "autochess5913", ids: ["banh-dau-xanh", "banh-khuc", "banh-can", "banh-tom-ho-tay", "com-hen"]},
   "5914": {root: "tcg5914", ids: ["mi-van-than", "mi-cay", "ga-ran", "pizza"]},
+  "5917": {root: "spirits5917", ids: ["lau-rieu-cua", "nuong-bbq", "vit-quay", "bibimbap"]},
 }
 const cohort = process.env.QA_COHORT ?? "5910"
 assert(cohort in cohorts, "Unknown spirit cohort")
