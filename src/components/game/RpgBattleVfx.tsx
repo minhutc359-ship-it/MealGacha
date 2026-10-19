@@ -94,6 +94,9 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
             if (!lease) { lease = acquireCharacterImage(effect.path); effectLeases.set(effect.path, lease); }
             return lease.image;
         };
+        // Start decoding the active party's authored VFX before its first cast.
+        // A declared atlas never falls through to procedural placeholder art.
+        for (const actor of battle.actors) authoredEffect(actor.id);
         let width = 1, height = 1, wide = false, lastDraw = 0, hiddenAt: number | null = null;
         const draw = (now: number) => {
             const s = state.current;
@@ -133,6 +136,12 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                     continue;
                 }
                 if (!normal && age < contact) drawChannel(ctx,source,c.event.school,age/contact,size*.6,low);
+                const custom = normal ? null : authoredEffect(c.actor.id);
+                if(custom && age<1100) {
+                    const points=c.targets.slice(0,low?3:5).map(point);
+                    const center={x:points.reduce((n,p)=>n+p.x,0)/points.length,y:points.reduce((n,p)=>n+p.y,0)/points.length};
+                    drawCharacterEffect(ctx,c.actor.id,custom,center.x,center.y,extent*.72,age/1100,low);
+                }
                 for(const target of c.targets.slice(0,low?3:5)) {
                     const p=point(target),kind=effectKind(c,target);
                     if(age>80 && age<contact && target.side!==c.actor.side) {
@@ -142,7 +151,7 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
                     // The school impact is always the base layer. Character/boss
                     // signatures may accent it, but can no longer replace it.
                     drawImpact(ctx,p,c.event.school,(age-contact)/650,extent,kind,low,low?undefined:texture.image);
-                    if(starterCharacter(c.actor.id)) drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent*.75,age-contact,false,low,kind === "heal" || kind === "shield" ? kind : normal ? "attack" : "skill");
+                    if(starterCharacter(c.actor.id) && (!custom || normal)) drawStarterVfx(ctx,c.actor.id,p.x,p.y,extent*.75,age-contact,false,low,kind === "heal" || kind === "shield" ? kind : normal ? "attack" : "skill");
                     else if(enemy && (!normal || enemy.accent)) {drawEnemyVfx(ctx,c.actor.id,p.x,p.y,extent,age-contact,quiet);surface.dataset.enemySignature=c.actor.id;}
                 }
                 if (surface.dataset.signature !== `${c.actor.role}:${c.event.school}:${c.variant}`)
@@ -165,6 +174,6 @@ export function RpgBattleVfx({ battle, paused, quiet }: {
         const quality = subscribeRenderQuality(resize), clock = subscribeCharacterClock(draw, () => !state.current.paused && state.current.cues.length > 0);
         document.addEventListener("visibilitychange", visibility);
         return () => { texture.release(); icons.release(); effectLeases.forEach(lease=>lease.release()); observer.disconnect(); quality(); clock(); document.removeEventListener("visibilitychange", visibility); };
-    }, [quiet]);
+    }, [quiet,battle.id]);
     return <canvas ref={canvas} className="rpg-vfx-canvas" aria-hidden="true" data-vfx="rpg-elemental"/>;
 }

@@ -1,13 +1,20 @@
 import { readFileSync } from "node:fs"
 import { describe, expect, it } from "vitest"
 import { characterEffect, drawCharacterEffect } from "@/game/characterEffect"
+import { STARTER_CHARACTER_IDS } from "@/game/starterCharacters"
 
 function image(width = 1280, height = 768) {
   return { complete: true, naturalWidth: width, naturalHeight: height } as HTMLImageElement
 }
 
 describe("authored character VFX priority 5.9.17", () => {
-  it("uses Bách's authored effect column and leaves missing art to the school fallback", () => {
+  it("uses authored columns for all five starters and leaves missing art to the school fallback", () => {
+    expect(STARTER_CHARACTER_IDS.map(id=>characterEffect(id))).toEqual(
+      STARTER_CHARACTER_IDS.map((_id,column)=>({
+        path:"/assets/characters/starters590/ultimate591.webp",
+        column,
+      })),
+    )
     expect(characterEffect("chef-bach")).toEqual({
       path: "/assets/characters/chefs593/ultimate.webp",
       column: 0,
@@ -36,6 +43,7 @@ describe("authored character VFX priority 5.9.17", () => {
     expect(source).toContain("drawCharacterEffect(ctx,c.actor.id")
     expect(source).toContain('surface.dataset.ultimate=custom?"character-asset":"school-fallback"')
     expect(source.indexOf("drawModelCast(ctx")).toBeLessThan(source.indexOf("drawCharacterEffect(ctx,c.actor.id"))
+    expect(source).toContain("if(starterCharacter(c.actor.id) && (!custom || normal))")
     expect(css).toContain(".rpg-shield-bubble{position:absolute;inset:14% 3% 2%;z-index:1")
     expect(css).toContain(".rpg-actor-body{position:relative;z-index:2}")
   })
@@ -43,5 +51,14 @@ describe("authored character VFX priority 5.9.17", () => {
   it("keeps the elemental impact under optional TCG character art", () => {
     const source = readFileSync("src/components/game/BattleVfxCanvas.tsx","utf8")
     expect(source.indexOf("drawImpact(ctx,point")).toBeLessThan(source.indexOf("drawStarterVfx(ctx,sourceId"))
+  })
+
+  it("never substitutes Auto Chess geometry while a declared atlas is loading", () => {
+    const source = readFileSync("src/components/autochess/AutoBoard.tsx","utf8")
+    expect(source).toContain("if(custom) drawCharacterEffect")
+    expect(source).toContain("else drawSkillBurst")
+    expect(source).not.toContain("if(!drawn) drawSkillBurst")
+    expect(source).toContain("for(const actor of actors)")
+    expect(source).toContain("leased(`effect:${effect.path}`,effect.path)")
   })
 })

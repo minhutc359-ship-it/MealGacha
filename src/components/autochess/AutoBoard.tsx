@@ -203,6 +203,12 @@ export function AutoBoard({
             ),
           ]
       const actorMap = new Map(actors.map(a => [a.uid, a]))
+      // Decode authored skill sheets with the active roster, not at the first
+      // impact frame. A declared sheet must never flash procedural fallback.
+      for(const actor of actors) {
+        const effect=characterEffect(actor.id)
+        if(effect) leased(`effect:${effect.path}`,effect.path)
+      }
       const coords = new Map(actors.map((a) => {
         const pos = position(a, time)
         if (b || opts.reducedMotion) return [a.uid, pos] as const
@@ -491,8 +497,8 @@ export function AutoBoard({
           if (e.kind === "cast" && e.amount > 0 && sourceActor) {
             const sourcePos = coords.get(e.source)!
             const custom = characterEffect(sourceActor.id)
-            const drawn = custom ? drawCharacterEffect(ctx,sourceActor.id,leased(`effect:${custom.path}`,custom.path),px(sourcePos.x,sourcePos.y),py(sourcePos.y)-cell*.42,cell*.58,age/1.25,opts.reducedMotion) : false
-            if(!drawn) drawSkillBurst(ctx, px(sourcePos.x,sourcePos.y), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
+            if(custom) drawCharacterEffect(ctx,sourceActor.id,leased(`effect:${custom.path}`,custom.path),px(sourcePos.x,sourcePos.y),py(sourcePos.y)-cell*.42,cell*.58,age/1.25,opts.reducedMotion)
+            else drawSkillBurst(ctx, px(sourcePos.x,sourcePos.y), py(sourcePos.y) - cell * .3, cell, e.school, e.skill ?? sourceActor.skill, age, opts.reducedMotion, opts.lowQuality)
           }
           if (e.kind === "death") drawDeparture(ctx, x, y, cell, e.school, age, opts.reducedMotion, opts.lowQuality)
           if (age < .7 && ["hit","shield","heal","phase","summon","burn"].includes(e.kind)) {
