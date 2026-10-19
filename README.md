@@ -1,3 +1,9 @@
+# Soul of Meal · Web 5.9.19 · Thông báo phiên bản mới
+
+Game tự hiện popup khi có bản mới sẵn sàng: **Cập nhật và tải lại** hoặc **Để sau**. Có trạng thái đang xử lý, thông báo lỗi để thử lại và nút cập nhật trong Cài đặt. Giữ tiến trình và bộ sưu tập; kiểm tra lại khi mở web, trở lại tab hoặc có mạng.
+
+[Thay đổi và kiểm chứng](dev/docs/web-v5919/UPDATE.md). Chỉ cập nhật web; chờ chủ dự án review/merge. Các phần dưới là lịch sử.
+
 # Soul of Meal · Web 5.9.18 · Manga giới thiệu
 
 **Một lời mời, bốn hành trình** gồm 4 chương, 12 trang manga hoàn chỉnh: nguồn gốc Vị Linh, triệu hồi thẻ TCG, chuẩn bị đội hình Auto Chess và khám phá thế giới Phiêu lưu. Lời thoại tiếng Việt nằm trong ảnh; popup giữ nguyên trang, có phóng to, đọc cuộn và bản lời thoại lớn tùy chọn. Mở từ mục Manga hoặc phần Hướng dẫn của các chế độ, không cần vượt chương trước.
