@@ -1,0 +1,16 @@
+{
+  "baselineCommit": "da7fb54dfc4bdf397e5d110760cb57a77d1312f2",
+  "existingManifests": 71,
+  "comparedFields": "all recursively, including portrait, atlas, effect, anchors, timing, sound, IDs and reduced pose",
+  "allExistingManifestsUnchanged": true,
+  "baselineSha256": "e126fac55d930293f9352ef6e218a307ff43bf562e32de315e068ca43b0d161c",
+  "newIds": [
+    "samgyeopsal",
+    "hanwoo-bbq",
+    "korean-fried-chicken",
+    "bingsu",
+    "jjajangmyeon",
+    "kimchi-jjigae"
+  ],
+  "currentCount": 77
+}

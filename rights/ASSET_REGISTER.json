@@ -1,5 +1,5 @@
 {
-  "version": "5.9.22",
+  "version": "5.9.23",
   "generatedOn": "2026-10-18",
   "disclaimer": "Provenance inventory, not a certificate of non-infringement. AI output can be non-unique; input/reference rights and actual ownership must be verified by the publisher. No asset is automatically CC0. Archives are excluded from distribution.",
   "assets": [
@@ -1625,6 +1625,188 @@
         "dev/docs/web-v594/actions.json",
         "dev/tools/pack-starters590.py",
         "dev/tools/pack-familiar594.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/bingsu-pixel.webp",
+      "bytes": 123816,
+      "sha256": "8b6070e7c60b601b4457e158d6464ac16294cd16bd2656484985aa0763716aed",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/bingsu.webp",
+      "bytes": 638304,
+      "sha256": "c8e439a3563bbe90747609cde66483d0e57e4fba44845f44c65067bc9b05dd21",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/hanwoo-bbq-pixel.webp",
+      "bytes": 117104,
+      "sha256": "409db2d17b1d74a913b37e3f57a19073db2913cdae01a14a26ba439f8a52715b",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/hanwoo-bbq.webp",
+      "bytes": 631602,
+      "sha256": "6b7575452ddb0a917708dc2a10fd71886f721dd7acb067b8e1207604baf1a095",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/jjajangmyeon-pixel.webp",
+      "bytes": 116826,
+      "sha256": "297dcbd982c8fdda1954b2246a0c9d8d4eb6d09a7cb44205a1d7ef939a58bb61",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/jjajangmyeon.webp",
+      "bytes": 587596,
+      "sha256": "7f1011046b1da92f2f1f8883bca2e53b7a7bb1f72b96059b1236dcd99358c3a7",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/kimchi-jjigae-pixel.webp",
+      "bytes": 110214,
+      "sha256": "03514a41b90aa1731d1f68c6f5c7dafdfc93267effb649f50a82b6aa0929137d",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/kimchi-jjigae.webp",
+      "bytes": 523110,
+      "sha256": "5d0f715813db5e61aa234b4bae44f9c79535e762009b04c4f83995a1bafa3131",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/korean-fried-chicken-pixel.webp",
+      "bytes": 134790,
+      "sha256": "fd10ff9bf22135fe1db0aa86130b9837dea284632992fc82990698d31340de27",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/korean-fried-chicken.webp",
+      "bytes": 631844,
+      "sha256": "abac1344235fa65263d8e40478ce2adee0b8cc01db04c1262a214660a9826ae8",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/samgyeopsal-pixel.webp",
+      "bytes": 103426,
+      "sha256": "933a489762b2412417603031af649768e033a4d3164181b5b5dcc6ba7e05c674",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/samgyeopsal.webp",
+      "bytes": 494896,
+      "sha256": "939372f41293a591c786831043e0174d38751f8c9e6a95502a025b961e1d557b",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
+      ],
+      "review": "recorded-project-provenance; owner-verification-before-transfer"
+    },
+    {
+      "path": "public/assets/characters/korea5923/ultimate.webp",
+      "bytes": 486082,
+      "sha256": "3f69f272fa02f653124a3462d2cd99eda9b75b38a99eda6d845a3bc3c789e1f9",
+      "origin": "Original AI-assisted identity-preserving six Korean spirit HD/pixel pose atlases and six painted three-phase signatures from immutable project portraits using built-in Imagegen",
+      "evidence": [
+        "dev/docs/web-v5923/asset-provenance.json",
+        "dev/docs/web-v5923/identity-sources.json",
+        "dev/docs/web-v5923/vfx-provenance.json",
+        "dev/tools/pack-campaign598.py",
+        "dev/tools/pack-korea-vfx5923.py"
       ],
       "review": "recorded-project-provenance; owner-verification-before-transfer"
     },

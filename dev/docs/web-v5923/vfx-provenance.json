@@ -1,0 +1,169 @@
+{
+  "tool": "built-in Imagegen",
+  "sources": [
+    {
+      "prompt": "Repaint reference into a MUCH MORE SPACIOUS SPRITE SHEET. Preserve the same nine motifs and phase order, but SHRINK each effect to 60% of its own equal square cell. Exact THREE columns by THREE rows. Each effect is a small isolated clean painted emblem centered in its cell with at least 20% perfectly empty transparent margin on EVERY side. Sparse tidy strokes. Clean smooth alpha, no surrounding colored grain, no rectangular haze, no speckle noise. No glows may touch boundaries or neighboring effects. Transparent center holes. The top row is charging, middle impact, bottom dissipating. Same color identities and designs as reference. TRUE TRANSPARENT background, no grid or text, no people. Create a production hand-painted fantasy game VFX SPRITE SHEET with TRUE TRANSPARENT BACKGROUND, square 2048x2048. Exactly THREE equal columns and THREE equal rows, nine separated effects. Three reference portraits only establish color/identity; DO NOT DRAW ANY CHARACTERS or their portraits. Column 1 motif: A golden branching antler spear sigil with teal scale-shaped wisps and white-gold wind arcs. Column 2 motif: A radiant golden sun orb with black-red dragon-horn arcs and curling red ribbons. Column 3 motif: A bold crimson angular shield rune edged in gold, with red hibiscus petals and small warm embers. Row 1 small charging form, row 2 bold expanding impact, row 3 fading scattered dissipating form. Each nine effect is individually centered in its exact third-cell with 20% empty transparent padding on all four sides. Crisp authored painted magical strokes, bright readable at small mobile size. Each effect mostly hollow with open transparent center so the actor remains readable. Distinct motion and silhouette for each phase. No full-screen bloom, scenery, actors, weapons held by hands, ground, black or white background, labels, grid, lettering or watermark. Absolutely no crossing cell boundaries.",
+      "sha256": "32ee4528982c2996959eca552674fa76b03ba9e76a497bdf2890f6e58424118d",
+      "size": [
+        1254,
+        1254
+      ],
+      "rows": [
+        0,
+        418,
+        836,
+        1254
+      ],
+      "columns": [
+        0,
+        418,
+        836,
+        1254
+      ],
+      "rects": [
+        [
+          65,
+          32,
+          384,
+          394
+        ],
+        [
+          456,
+          60,
+          787,
+          400
+        ],
+        [
+          871,
+          54,
+          1191,
+          396
+        ],
+        [
+          26,
+          416,
+          420,
+          835
+        ],
+        [
+          440,
+          434,
+          824,
+          844
+        ],
+        [
+          841,
+          438,
+          1236,
+          839
+        ],
+        [
+          69,
+          867,
+          399,
+          1203
+        ],
+        [
+          460,
+          861,
+          798,
+          1212
+        ],
+        [
+          878,
+          874,
+          1204,
+          1198
+        ]
+      ],
+      "registration": "whole alpha components >32, isolated speckles <24 pixels removed"
+    },
+    {
+      "prompt": "Repaint reference into a MUCH MORE SPACIOUS SPRITE SHEET. Preserve the same nine motifs and phase order, but SHRINK each effect to 60% of its own equal square cell. Exact THREE columns by THREE rows. Each effect is a small isolated clean painted emblem centered in its cell with at least 20% perfectly empty transparent margin on EVERY side. Sparse tidy strokes. Clean smooth alpha, no surrounding colored grain, no rectangular haze, no speckle noise. No glows may touch boundaries or neighboring effects. Transparent center holes. The top row is charging, middle impact, bottom dissipating. Same color identities and designs as reference. TRUE TRANSPARENT background, no grid or text, no people. Create a production hand-painted fantasy game VFX SPRITE SHEET with TRUE TRANSPARENT BACKGROUND, square 2048x2048. Exactly THREE equal columns and THREE equal rows, nine separated effects. Three reference portraits only establish color/identity; DO NOT DRAW ANY CHARACTERS or their portraits. Column 1 motif: A violet faceted crystal ward with tiny lavender blossoms and fine golden antler threads. Column 2 motif: A cyan lantern-shaped rune, turquoise smoke curls and jade motes against an open transparent center. Column 3 motif: A warm orange lantern rune with a curling fox-tail flame and gold tassel sparks. Row 1 small charging form, row 2 bold expanding impact, row 3 fading scattered dissipating form. Each nine effect is individually centered in its exact third-cell with 20% empty transparent padding on all four sides. Crisp authored painted magical strokes, bright readable at small mobile size. Each effect mostly hollow with open transparent center so the actor remains readable. Distinct motion and silhouette for each phase. No full-screen bloom, scenery, actors, weapons held by hands, ground, black or white background, labels, grid, lettering or watermark. Absolutely no crossing cell boundaries.",
+      "sha256": "071413ee6a35bdf432bb211fe7f15e4a90b1c0070a048d7a7dacb675aa49b56c",
+      "size": [
+        1254,
+        1254
+      ],
+      "rows": [
+        0,
+        418,
+        836,
+        1254
+      ],
+      "columns": [
+        0,
+        418,
+        836,
+        1254
+      ],
+      "rects": [
+        [
+          116,
+          67,
+          371,
+          385
+        ],
+        [
+          507,
+          89,
+          772,
+          395
+        ],
+        [
+          913,
+          60,
+          1184,
+          388
+        ],
+        [
+          33,
+          451,
+          426,
+          817
+        ],
+        [
+          459,
+          440,
+          815,
+          821
+        ],
+        [
+          851,
+          428,
+          1231,
+          819
+        ],
+        [
+          56,
+          865,
+          415,
+          1197
+        ],
+        [
+          471,
+          871,
+          806,
+          1199
+        ],
+        [
+          890,
+          867,
+          1224,
+          1205
+        ]
+      ],
+      "registration": "whole alpha components >32, isolated speckles <24 pixels removed"
+    }
+  ],
+  "path": "public/assets/characters/korea5923/ultimate.webp",
+  "size": [
+    1536,
+    768
+  ],
+  "frames": 18,
+  "uniqueFrames": 18,
+  "safeGutters": true,
+  "bytes": 486082,
+  "sha256": "3f69f272fa02f653124a3462d2cd99eda9b75b38a99eda6d845a3bc3c789e1f9"
+}

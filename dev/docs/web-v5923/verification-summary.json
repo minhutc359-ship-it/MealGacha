@@ -1,0 +1,53 @@
+{
+  "version": "5.9.23",
+  "date": "2026-10-19",
+  "unit": {
+    "passed": 789,
+    "files": 79
+  },
+  "typecheckApp": true,
+  "typecheckDev": true,
+  "nodeGuards": 4,
+  "catalogAssetsRecordsBuildSwPassed": true,
+  "runtimeDependencies": 32,
+  "registeredAssets": 774,
+  "physicalNewPoses": 192,
+  "paintedVfxFrames": 18,
+  "existingManifestsUnchanged": 71,
+  "adventureCases": 66,
+  "modeCases": 3,
+  "productionCases": 2,
+  "coldLaunch": [
+    {
+      "route": "/",
+      "deliveredBodyBytes": 3219032,
+      "offlineReload": true
+    },
+    {
+      "route": "/adventure",
+      "deliveredBodyBytes": 4394473,
+      "offlineReload": true
+    },
+    {
+      "route": "/autochess",
+      "deliveredBodyBytes": 3587025,
+      "offlineReload": true
+    }
+  ],
+  "build": {
+    "bytes": 177447868,
+    "files": 851,
+    "js_gzip": 674379,
+    "css_gzip": 106955,
+    "jsGzipBudgetBytes": 675000,
+    "staticBudgetBytes": 320000000
+  },
+  "addedBytesSince5922": 4694418,
+  "addedBytesSinceMaster5920": 13289194,
+  "screenshotsCommitted": false,
+  "scope": "Web only; no gameplay or save changes; no merge",
+  "limits": [
+    "Chromium headless only; physical Safari/iPhone and sustained device FPS/RAM/thermal not certified",
+    "Existing 13 rights-evidence items remain; non-commercial rights check exits successfully"
+  ]
+}

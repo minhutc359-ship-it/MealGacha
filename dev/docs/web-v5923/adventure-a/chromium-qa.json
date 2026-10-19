@@ -1,0 +1,534 @@
+{
+  "date": "2026-10-19",
+  "engine": "chromium",
+  "version": "153.0.8010.0",
+  "fixtures": "Real reducer stages; isolated saves with adjusted party, HP and timers; controlled browser clock",
+  "checks": [
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 1329,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 8608,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 4626,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "samgyeopsal",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1594,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "hanwoo-bbq",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1513,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "korean-fried-chicken",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1063,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 64,
+        "arena": 140
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bingsu",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pose": 18,
+      "painted": 1485,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 18.046875,
+        "right": 301.953125,
+        "height": 67.578125,
+        "arena": 140
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 5856,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 38009,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 21628,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "samgyeopsal",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5651,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "hanwoo-bbq",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5508,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "korean-fried-chicken",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 3294,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bingsu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pose": 18,
+      "painted": 5415,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 20.15625,
+        "right": 369.84375,
+        "height": 64,
+        "arena": 406.9375
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 658,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 4566,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 2773,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "samgyeopsal",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 938,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "hanwoo-bbq",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 966,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "korean-fried-chicken",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 698,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bingsu",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pose": 18,
+      "painted": 1004,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 78.4375,
+        "right": 765.5625,
+        "height": 42,
+        "arena": 89.46875
+      }
+    },
+    {
+      "area": "attack",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 8029,
+      "pauseStable": true
+    },
+    {
+      "area": "primary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 60978,
+      "pauseStable": true
+    },
+    {
+      "area": "support",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "realReducerEvents": true,
+      "painted": 31505,
+      "pauseStable": true
+    },
+    {
+      "area": "ultimate",
+      "id": "samgyeopsal",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7844,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "hanwoo-bbq",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7721,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "korean-fried-chicken",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 4633,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "ultimate",
+      "id": "bingsu",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "pose": 18,
+      "painted": 7644,
+      "portraitMatches": true,
+      "pauseSkipNoRecast": true,
+      "layout": {
+        "left": 55.40625,
+        "right": 1384.59375,
+        "height": 74,
+        "arena": 428.015625
+      }
+    },
+    {
+      "area": "victory",
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ]
+    },
+    {
+      "area": "fall",
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ]
+    },
+    {
+      "area": "reload-committed-ultimate",
+      "noRecast": true
+    },
+    {
+      "area": "natural-completion",
+      "noRecast": true
+    },
+    {
+      "area": "reduced-motion",
+      "ids": [
+        "samgyeopsal",
+        "hanwoo-bbq",
+        "korean-fried-chicken",
+        "bingsu"
+      ],
+      "staticPose": 16
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "requestedAssets": [
+    "/assets/characters/korea5923/samgyeopsal.webp",
+    "/assets/characters/korea5923/hanwoo-bbq.webp",
+    "/assets/characters/korea5923/korean-fried-chicken.webp",
+    "/assets/characters/korea5923/bingsu.webp",
+    "/assets/characters/korea5923/ultimate.webp"
+  ],
+  "movieRequests": 0
+}

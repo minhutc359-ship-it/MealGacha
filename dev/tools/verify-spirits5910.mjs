@@ -5,6 +5,8 @@ const { chromium, webkit } = await import(
   process.env.PLAYWRIGHT_MODULE ?? "playwright"
 )
 const cohorts = {
+  "5923a": {root: "korea5923", ids: ["samgyeopsal","hanwoo-bbq","korean-fried-chicken","bingsu"]},
+  "5923b": {root: "korea5923", ids: ["jjajangmyeon","kimchi-jjigae","samgyeopsal","bingsu"]},
   "5910": {root: "regional5910", ids: ["banh-tet", "bun-bo-hue", "bun-ca", "che-buoi"]},
   "5912": {root: "vietnam5912", ids: ["pho-ga", "chao-suon", "mien-ga", "bun-moc"]},
   "5911": {root: "spring5911", ids: ["xoi-xeo", "dua-hanh", "caravan-herbalist", "caravan-gardener"]},
@@ -399,7 +401,7 @@ try {
   assert.deepEqual(errors, [])
   assert.deepEqual(missing, [])
   assert(!requests.some((p) => p.endsWith(".mp4")))
-  assert.equal(requests.some((p) => p.includes(`${assetRoot}/ultimate.webp`)), ["5917","5921","5922a","5922b"].includes(cohort), "Painted VFX atlas request")
+  assert.equal(requests.some((p) => p.includes(`${assetRoot}/ultimate.webp`)), ["5917","5921","5922a","5922b","5923a","5923b"].includes(cohort), "Painted VFX atlas request")
   writeFileSync(
     `${out}/${engine}${
       process.env.QA_END_ONLY ? "-end" : process.env.QA_FOCUS ? "-focus" : ""
