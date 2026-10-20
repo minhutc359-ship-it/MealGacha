@@ -45,7 +45,7 @@ Covered: immutable deterministic commands and JSON replay; one-to-five teams/uni
 
 ## AW2-007B event renderer / development leveling — 2026-10-20
 
-Base `179cc214e4fc8cee37fba34fbfe4416a26742bfb`; implementation source `31299a44704962b68fa6769860b1050e16e18fe2`, branch `feat/aw2-007b-battle-renderer`. Remote draft PR #80 head `df72ebf37c35467ec6f3a67c2683fcc6f3f919e9` used the exact local documented tree `294ceb03204f012560b974d842bbf70211b11f16`. Linux x86_64, Node v24.19.0, pnpm 11.25.0, TypeScript 5.9.3, Vitest 5.0.1, Vite 8.0.5. Status REVIEW: browser criterion BLOCKED.
+Base `179cc214e4fc8cee37fba34fbfe4416a26742bfb`; implementation source `31299a44704962b68fa6769860b1050e16e18fe2`, branch `feat/aw2-007b-battle-renderer`. Remote draft PR #80 implementation snapshot `df72ebf37c35467ec6f3a67c2683fcc6f3f919e9` used the exact local documented implementation/evidence tree `294ceb03204f012560b974d842bbf70211b11f16`; following remote commits are documentation-only. Linux x86_64, Node v24.19.0, pnpm 11.25.0, TypeScript 5.9.3, Vitest 5.0.1, Vite 8.0.5. Status REVIEW: browser criterion BLOCKED.
 
 | Command/check | Result | Observed |
 |---|---|---|
