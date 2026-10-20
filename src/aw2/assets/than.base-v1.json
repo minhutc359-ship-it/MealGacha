@@ -1108,6 +1108,13 @@
         "fx.basic.3"
       ],
       "fxTriggerAtMs": 240,
+      "fxPlacement": {
+        "attachment": "contact",
+        "layer": "front",
+        "x": 180,
+        "y": -265,
+        "scale": 1.32
+      },
       "trigger": "animation contact marker; combat still owns gameplay",
       "fxFrameMs": 100,
       "audio": {
@@ -1132,6 +1139,13 @@
         "fx.auto.3"
       ],
       "fxTriggerAtMs": 420,
+      "fxPlacement": {
+        "attachment": "unit",
+        "layer": "front",
+        "x": 81,
+        "y": -124,
+        "scale": 1.32
+      },
       "trigger": "animation contact marker; combat still owns gameplay",
       "fxFrameMs": 100,
       "audio": {
@@ -1156,6 +1170,13 @@
         "fx.passive.3"
       ],
       "fxTriggerAtMs": 180,
+      "fxPlacement": {
+        "attachment": "unit",
+        "layer": "front",
+        "x": 44,
+        "y": -265,
+        "scale": 1.32
+      },
       "trigger": "shield-expired event from combat",
       "fxFrameMs": 100,
       "audio": {
@@ -1180,6 +1201,13 @@
         "fx.ultimate.3"
       ],
       "fxTriggerAtMs": 560,
+      "fxPlacement": {
+        "attachment": "unit",
+        "layer": "behind",
+        "x": 30,
+        "y": -197,
+        "scale": 2.13
+      },
       "trigger": "animation contact marker; combat still owns gameplay",
       "fxFrameMs": 160,
       "audio": {

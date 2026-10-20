@@ -82,13 +82,14 @@ export function AssetCanvas(props: Options) {
           if ((flags.reduced || since >= 0) && index >= 0 && index < selectedSkill.fx.length) fxFrame = selectedSkill.fx[index]
         }
         const drawFx = () => {
-          if (!fxFrame) return
-          const ultimate = props.skill === "ultimate"
-          paint(fxFrame, props.skill === "basic" ? 450 : 320, ultimate ? 260 : 212, ultimate ? 1.45 : .9)
+          if (!fxFrame || !selectedSkill) return
+          const placement = selectedSkill.fxPlacement
+          const anchor = placement.attachment === "contact" ? sampleBattleClip(clip, selectedSkill.fxTriggerAtMs, flags.reduced) : pose
+          paint(fxFrame, 300 + anchor.x + placement.x * .68, 394 + anchor.y + placement.y * .68, .68 * placement.scale)
         }
-        if (props.skill === "ultimate") drawFx()
+        if (selectedSkill?.fxPlacement.layer === "behind") drawFx()
         paint(frameId, 300 + pose.x, 394 + pose.y, .68 * pose.scale, pose.rotation, pose.opacity)
-        if (props.skill !== "ultimate") drawFx()
+        if (selectedSkill?.fxPlacement.layer !== "behind") drawFx()
         const contacts = markersBetween(clip, previous, elapsed)
         if (contacts.length) { eventCount += contacts.length; setLastCue(`${contacts[0].kind} · ${contacts[0].skill} @ ${contacts[0].atMs}ms`) }
         if (selectedSkill && !cuePlayed && elapsed >= selectedSkill.fxTriggerAtMs) {

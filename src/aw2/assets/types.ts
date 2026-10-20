@@ -62,6 +62,7 @@ export interface SpiritAssetManifest {
     fx: string[]
     fxFrameMs: number
     fxTriggerAtMs: number
+    fxPlacement: { attachment: string; layer: string; x: number; y: number; scale: number }
     trigger: string
     audio: { id: string; url: string; durationMs: number; sampleRate: number; sha256: string; method: string }
     projectile: null

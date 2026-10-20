@@ -120,6 +120,12 @@ def main():
         "passive": cue("passive", .25, [(880, 420, .13), (1320, 200, .06)]),
         "ultimate": cue("ultimate", .7, [(147, 55, .16), (294, 110, .14), (440, 160, .1)]),
     }
+    placements = {
+        "basic": {"attachment": "contact", "layer": "front", "x": 180, "y": -265, "scale": 1.32},
+        "auto": {"attachment": "unit", "layer": "front", "x": 81, "y": -124, "scale": 1.32},
+        "passive": {"attachment": "unit", "layer": "front", "x": 44, "y": -265, "scale": 1.32},
+        "ultimate": {"attachment": "unit", "layer": "behind", "x": 30, "y": -197, "scale": 2.13},
+    }
     data = {"version": 1, "spiritId": "aw2-than", "displayName": "Than", "artVariantId": "base-v1",
             "status": "REFERENCE_ASSETS_REVIEWED", "fullCharacterComplete": False,
             "assets": sources, "frames": all_frames, "battle": clips,
@@ -128,6 +134,7 @@ def main():
             "skills": {slot: {"id": f"aw2-than:skill:{slot}", "displayName": name,
                               "battleState": state, "fx": [f"fx.{slot}.{i}" for i in range(4)],
                               "fxTriggerAtMs": 180 if slot == "passive" else contacts[state][0],
+                              "fxPlacement": placements[slot],
                               "trigger": "shield-expired event from combat" if slot == "passive" else "animation contact marker; combat still owns gameplay",
                               "fxFrameMs": 100 if slot != "ultimate" else 160, "audio": sounds[slot],
                               "projectile": None, "scope": "animation reference; actual combat not implemented"}

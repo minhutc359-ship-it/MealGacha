@@ -31,7 +31,8 @@ describe("ART-THAN reference manifest and animation boundaries", () => {
     const time = clone(); time.battle.attack.frames[1].atMs = -1
     const motion = clone(); motion.battle.hit.motion[0].scale = 0
     const skill = clone(); skill.skills.auto.battleState = "unknown-state"
-    for (const manifest of [outside, missing, bleeding, time, motion, skill]) expect(validateAssetManifest(manifest).length).toBeGreaterThan(0)
+    const anchor = clone(); anchor.skills.auto.fxPlacement.scale = 0
+    for (const manifest of [outside, missing, bleeding, time, motion, skill, anchor]) expect(validateAssetManifest(manifest).length).toBeGreaterThan(0)
   })
   it("switches attack poses at authored boundaries and interpolates exactly at contact", () => {
     const clip = THAN_ASSETS.battle.attack
@@ -79,6 +80,8 @@ describe("ART-THAN reference manifest and animation boundaries", () => {
     const fx = SKILL_SLOTS.map(slot => THAN_ASSETS.skills[slot].fx.join(","))
     expect(new Set(fx).size).toBe(4)
     expect(new Set(SKILL_SLOTS.map(slot => THAN_ASSETS.skills[slot].audio.sha256)).size).toBe(4)
+    expect(THAN_ASSETS.skills.basic.fxPlacement.attachment).toBe("contact")
+    expect(THAN_ASSETS.skills.ultimate.fxPlacement.layer).toBe("behind")
     for (const slot of SKILL_SLOTS) {
       expect(THAN_ASSETS.skills[slot].id).toBe(`aw2-than:skill:${slot}`)
       expect(THAN_ASSETS.skills[slot].projectile).toBeNull()

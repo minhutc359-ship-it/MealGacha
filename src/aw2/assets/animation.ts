@@ -70,7 +70,9 @@ export function validateAssetManifest(manifest: SpiritAssetManifest): string[] {
   for (const slot of ["basic", "auto", "passive", "ultimate"] as const) {
     const skill = manifest.skills[slot]
     const state = skill && manifest.battle[skill.battleState as keyof typeof manifest.battle]
+    const placement = skill?.fxPlacement
     if (!skill || !state || skill.id !== `${manifest.spiritId}:skill:${slot}` || skill.projectile !== null || skill.fxFrameMs <= 0 || skill.fxTriggerAtMs < 0 || skill.fxTriggerAtMs > state.durationMs || skill.fx.length !== 4 || skill.fx.some(frame => !manifest.frames[frame])) errors.push(`Invalid skill ${slot}`)
+    if (!placement || !["contact", "unit"].includes(placement.attachment) || !["front", "behind"].includes(placement.layer) || ![placement.x, placement.y, placement.scale].every(Number.isFinite) || placement.scale <= 0) errors.push(`Invalid FX placement ${slot}`)
   }
   return errors
 }
