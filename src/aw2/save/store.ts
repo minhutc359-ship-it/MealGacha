@@ -6,7 +6,17 @@ import {
   type Aw2DevSave,
   type SaveSnapshot,
 } from "./schema"
-import { assertProgressContinuation, newWorldProgress, type WorldProgress } from "../world/model"
+import {
+  assertProgressContinuation,
+  newWorldProgress,
+  type WorldProgress,
+} from "../world/model"
+import {
+  bossCheckpoint,
+  commitWorldBossEncounter,
+  createWorldBossEncounter,
+  type WorldBossEncounter,
+} from "../world/encounter"
 
 type SaveStorage = Pick<Storage, "getItem" | "setItem">
 type WriteLock = <T>(action: () => T) => Promise<T>
@@ -74,7 +84,10 @@ export class Aw2DevSaveStore {
     }
   }
 
-  save(expectedRaw: string | null, progress?: WorldProgress): Promise<ReadySave> {
+  save(
+    expectedRaw: string | null,
+    progress?: WorldProgress,
+  ): Promise<ReadySave> {
     return this.write(expectedRaw, (current) => {
       if (current.status === "invalid" || current.status === "unsupported") {
         throw new Aw2SaveError(
@@ -83,15 +96,52 @@ export class Aw2DevSaveStore {
         )
       }
       if (current.status === "ready") {
-        if (progress) assertProgressContinuation(current.save.progress, progress)
-        return aw2DevSaveSchema.parse({
-          ...current.save,
-          revision: current.save.revision + 1,
-          updatedAt: this.timestamp(current.save.updatedAt),
-          progress: progress ?? current.save.progress,
-        })
+        return this.revise(current, progress ?? current.save.progress)
       }
       return this.freshSave()
+    })
+  }
+
+  async beginBoss(expectedRaw: string, progress: WorldProgress): Promise<{
+    snapshot: ReadySave
+    encounter: WorldBossEncounter
+  }> {
+    const snapshot = await this.write(expectedRaw, (current) => {
+      if (current.status !== "ready")
+        throw new Aw2SaveError(
+          "invalid",
+          "Cần bản lưu AW2 hợp lệ trước khi vào trận.",
+        )
+      return this.revise(current, bossCheckpoint(progress))
+    })
+    const encounter = createWorldBossEncounter(snapshot.raw)
+    return { snapshot, encounter }
+  }
+
+  finishBoss(
+    expectedRaw: string,
+    encounter: WorldBossEncounter,
+  ): Promise<ReadySave> {
+    return commitWorldBossEncounter(encounter, expectedRaw, (progress) =>
+      this.write(expectedRaw, (current) => {
+        if (current.status !== "ready")
+          throw new Aw2SaveError("invalid", "Cần đọc lại bản lưu AW2.")
+        return this.revise(current, progress, true)
+      }),
+    )
+  }
+
+  private revise(
+    current: ReadySave,
+    progress: WorldProgress,
+    allowBossWin = false,
+  ): Aw2DevSave {
+    assertProgressContinuation(current.save.progress, progress, allowBossWin)
+    return aw2DevSaveSchema.parse({
+      ...current.save,
+      revision: current.save.revision + 1,
+      updatedAt: this.timestamp(current.save.updatedAt),
+      progress,
     })
   }
 
@@ -136,7 +186,7 @@ export class Aw2DevSaveStore {
     return aw2DevSaveSchema.parse({
       gameId: "adventure-world-2",
       environment: "development",
-      schemaVersion: 2,
+      schemaVersion: 3,
       saveId: this.newId(),
       revision: 0,
       createdAt: now,

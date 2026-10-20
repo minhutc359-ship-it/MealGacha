@@ -88,14 +88,15 @@ try {
   const first = JSON.parse(await raw(page))
   const firstRaw = await raw(page)
   check(
-    "Create writes development schema v2",
-    first.environment === "development" && first.schemaVersion === 2,
+    "Create writes development schema v3",
+    first.environment === "development" && first.schemaVersion === 3,
   )
   await page.reload()
   await save(page).waitFor()
   check(
     "Reload preserves save identity and exact bytes",
-    (await raw(page)) === firstRaw && JSON.parse(await raw(page)).saveId === first.saveId,
+    (await raw(page)) === firstRaw &&
+      JSON.parse(await raw(page)).saveId === first.saveId,
   )
   await save(page).click()
   await waitText(page, /Đã lưu AW2/)
@@ -103,7 +104,9 @@ try {
   const beforeReset = await raw(page)
   await reset(page).click()
   await page.getByRole("dialog").waitFor()
-  await page.waitForFunction(() => document.activeElement?.textContent === "Hủy")
+  await page.waitForFunction(
+    () => document.activeElement?.textContent === "Hủy",
+  )
   check(
     "Reset opens modal with cancel focused",
     (await page.getByRole("dialog").isVisible()) &&
@@ -169,24 +172,31 @@ try {
     JSON.parse(await raw(page)).revision === 2,
   )
   await read(other).click()
-  await page.evaluate(key => {
-    void navigator.locks.request(key, () => new Promise(resolve => {
-      window.releaseAw2TestLock = resolve
-    }))
+  await page.evaluate((key) => {
+    void navigator.locks.request(
+      key,
+      () =>
+        new Promise((resolve) => {
+          window.releaseAw2TestLock = resolve
+        }),
+    )
   }, key)
   await page.waitForFunction(() => !!window.releaseAw2TestLock)
   await Promise.all([save(page).click(), save(other).click()])
   await page.evaluate(() => window.releaseAw2TestLock())
   await page.waitForFunction(() => !document.querySelector("button").disabled)
   await other.waitForFunction(() => !document.querySelector("button").disabled)
-  check("Web Locks serialize simultaneous writes from two tabs", JSON.parse(await raw(page)).revision === 3)
+  check(
+    "Web Locks serialize simultaneous writes from two tabs",
+    JSON.parse(await raw(page)).revision === 3,
+  )
   await read(page).click()
   await other.close()
 
   for (const [bad, expected] of [
     ["{broken-original", /không hợp lệ/],
     [
-      JSON.stringify({ schemaVersion: 3, futureData: ["retain"] }),
+      JSON.stringify({ schemaVersion: 4, futureData: ["retain"] }),
       /schema mới hơn/,
     ],
   ]) {
@@ -212,7 +222,7 @@ try {
     await waitText(page, /Đã bắt đầu lại/)
     check(
       `Explicit development reset recovers: ${expected.source}`,
-      JSON.parse(await raw(page)).schemaVersion === 2,
+      JSON.parse(await raw(page)).schemaVersion === 3,
     )
   }
 

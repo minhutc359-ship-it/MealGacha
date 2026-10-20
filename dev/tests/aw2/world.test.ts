@@ -3,14 +3,33 @@ import { Aw2DevSaveStore } from "@/aw2/save/store"
 import { AW2_DEV_SAVE_KEY } from "@/aw2/save/schema"
 import { MEMORY_IDS, STARTER_TEAM, ZONE_IDS } from "@/aw2/world/ids"
 import { canStand, ZONES, zoneById } from "@/aw2/world/maps"
-import { newWorldProgress, worldProgressSchema, type WorldProgress } from "@/aw2/world/model"
-import { applyWorldAction, completedReceipts, describeObject, moveWorld, nearestObject } from "@/aw2/world/rules"
+import {
+  newWorldProgress,
+  worldProgressSchema,
+  type WorldProgress,
+} from "@/aw2/world/model"
+import {
+  applyWorldAction,
+  completedReceipts,
+  describeObject,
+  moveWorld,
+  nearestObject,
+} from "@/aw2/world/rules"
 
-function at(state: WorldProgress, id: string, zoneId = state.zoneId): WorldProgress {
-  const object = zoneById(zoneId).objects.find(object => object.id === id)!
+function at(
+  state: WorldProgress,
+  id: string,
+  zoneId = state.zoneId,
+): WorldProgress {
+  const object = zoneById(zoneId).objects.find((object) => object.id === id)!
   return { ...state, zoneId, x: object.x, y: object.y }
 }
-function act(state: WorldProgress, id: string, action: string, zoneId = state.zoneId) {
+function act(
+  state: WorldProgress,
+  id: string,
+  action: string,
+  zoneId = state.zoneId,
+) {
   return applyWorldAction(at(state, id, zoneId), id, action).state
 }
 function intro() {
@@ -21,13 +40,15 @@ function intro() {
 }
 function memories() {
   let state = act(intro(), "aw2-npc-va-den", "accept", ZONE_IDS[1])
-  for (const id of ["aw2-npc-nguoi-ban", "aw2-npc-sua-ghe", "aw2-npc-dem-nuoc"]) state = act(state, id, "remember")
+  for (const id of ["aw2-npc-nguoi-ban", "aw2-npc-sua-ghe", "aw2-npc-dem-nuoc"])
+    state = act(state, id, "remember")
   return act(state, "aw2-npc-va-den", "thread-return")
 }
 function openKitchen() {
   let state = act(memories(), "aw2-npc-gac-bep", "accept", ZONE_IDS[2])
   state = act(state, "aw2-object-hearth-hint", "inspect", ZONE_IDS[3])
-  for (const step of [0, 1, 2]) state = act(state, `aw2-object-steam-${step}`, "puzzle", ZONE_IDS[4])
+  for (const step of [0, 1, 2])
+    state = act(state, `aw2-object-steam-${step}`, "puzzle", ZONE_IDS[4])
   return state
 }
 
@@ -51,14 +72,20 @@ describe("WORLD-01 continuous movement, collision and safe transfers", () => {
   })
   it("gives every zone a return route with an unblocked destination spawn", () => {
     expect(ZONES).toHaveLength(6)
-    for (const zone of ZONES) for (const exit of zone.objects.filter(object => object.kind === "exit")) {
-      expect(canStand(exit.to!, exit.spawnX!, 192)).toBe(true)
-      expect(zoneById(exit.to!).objects.some(back => back.to === zone.id)).toBe(true)
-    }
+    for (const zone of ZONES)
+      for (const exit of zone.objects.filter(
+        (object) => object.kind === "exit",
+      )) {
+        expect(canStand(exit.to!, exit.spawnX!, 192)).toBe(true)
+        expect(
+          zoneById(exit.to!).objects.some((back) => back.to === zone.id),
+        ).toBe(true)
+      }
   })
   it("permits return routes and blocks entering dungeon before accepting the correct quest", () => {
     let state = newWorldProgress()
-    for (let index = 0; index < 2; index++) state = act(state, `${ZONE_IDS[index]}:exit:east`, "travel")
+    for (let index = 0; index < 2; index++)
+      state = act(state, `${ZONE_IDS[index]}:exit:east`, "travel")
     expect(state.zoneId).toBe(ZONE_IDS[2])
     expect(() => act(state, `${ZONE_IDS[2]}:exit:east`, "travel")).toThrow()
     state = act(state, `${ZONE_IDS[2]}:exit:west`, "travel")
@@ -67,8 +94,12 @@ describe("WORLD-01 continuous movement, collision and safe transfers", () => {
   it("requires interaction range and resolves the nearby target", () => {
     const state = newWorldProgress()
     expect(nearestObject(state)).toBeUndefined()
-    expect(() => applyWorldAction(state, "aw2-npc-giu-cho", "accept")).toThrow(/đến gần/)
-    expect(nearestObject(at(state, "aw2-npc-giu-cho"))?.id).toBe("aw2-npc-giu-cho")
+    expect(() => applyWorldAction(state, "aw2-npc-giu-cho", "accept")).toThrow(
+      /đến gần/,
+    )
+    expect(nearestObject(at(state, "aw2-npc-giu-cho"))?.id).toBe(
+      "aw2-npc-giu-cho",
+    )
   })
 })
 
@@ -78,14 +109,23 @@ describe("WORLD-02 approved quest progression and starter unlock", () => {
     const original = JSON.stringify(state)
     describeObject(state, zoneById(state.zoneId).objects[0])
     expect(JSON.stringify(state)).toBe(original)
-    expect(() => applyWorldAction(state, "aw2-npc-giu-cho", "turn-in")).toThrow()
+    expect(() =>
+      applyWorldAction(state, "aw2-npc-giu-cho", "turn-in"),
+    ).toThrow()
     const completed = intro()
     expect(completed.partyIds).toEqual(STARTER_TEAM)
     expect(completedReceipts(completed)).toEqual(["aw2-grant-kept-seat"])
     expect(() => act(completed, "aw2-npc-giu-cho", "turn-in")).toThrow()
     expect(new Set(completed.partyIds).size).toBe(5)
   })
-  it.each([[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]])("accepts all three-memory permutations %j", (...order) => {
+  it.each([
+    [0, 1, 2],
+    [0, 2, 1],
+    [1, 0, 2],
+    [1, 2, 0],
+    [2, 0, 1],
+    [2, 1, 0],
+  ])("accepts all three-memory permutations %j", (...order) => {
     let state = act(intro(), "aw2-npc-va-den", "accept", ZONE_IDS[1])
     const ids = ["aw2-npc-nguoi-ban", "aw2-npc-sua-ghe", "aw2-npc-dem-nuoc"]
     for (const index of order) {
@@ -94,11 +134,17 @@ describe("WORLD-02 approved quest progression and starter unlock", () => {
     }
     expect(new Set(state.memories)).toEqual(new Set(MEMORY_IDS))
     state = act(state, "aw2-npc-va-den", "thread-wait")
-    expect(state).toMatchObject({ questIndex: 2, threadChoice: "wait", accepted: false })
+    expect(state).toMatchObject({
+      questIndex: 2,
+      threadChoice: "wait",
+      accepted: false,
+    })
   })
   it("does not count memories before accepting the quest", () => {
     const state = at(intro(), "aw2-npc-nguoi-ban", ZONE_IDS[1])
-    expect(() => applyWorldAction(state, "aw2-npc-nguoi-ban", "remember")).toThrow()
+    expect(() =>
+      applyWorldAction(state, "aw2-npc-nguoi-ban", "remember"),
+    ).toThrow()
   })
   it("retries wrong puzzle order, persists solved state and permits returning to report", () => {
     let state = act(memories(), "aw2-npc-gac-bep", "accept", ZONE_IDS[2])
@@ -107,7 +153,9 @@ describe("WORLD-02 approved quest progression and starter unlock", () => {
     state = act(state, "aw2-object-steam-2", "puzzle")
     expect(state.puzzleStep).toBe(0)
     state = openKitchen()
-    expect(worldProgressSchema.parse(JSON.parse(JSON.stringify(state))).puzzleStep).toBe(3)
+    expect(
+      worldProgressSchema.parse(JSON.parse(JSON.stringify(state))).puzzleStep,
+    ).toBe(3)
     expect(() => act(state, "aw2-object-steam-0", "puzzle")).toThrow()
     const reported = act(state, "aw2-npc-gac-bep", "turn-in", ZONE_IDS[2])
     expect(reported).toMatchObject({ questIndex: 3, accepted: false })
@@ -115,9 +163,14 @@ describe("WORLD-02 approved quest progression and starter unlock", () => {
   })
   it("never fabricates combat, chest rewards or mode transitions", () => {
     const state = act(openKitchen(), "aw2-npc-gac-bep", "turn-in", ZONE_IDS[2])
-    for (const [id, zone] of [["aw2-enemy-forgotten-host", ZONE_IDS[5]], ["aw2-chest-pantry", ZONE_IDS[3]], ["aw2-npc-ban-bai", ZONE_IDS[1]], ["aw2-npc-ban-co", ZONE_IDS[1]]] as const) {
+    for (const [id, zone] of [
+      ["aw2-enemy-forgotten-host", ZONE_IDS[5]],
+      ["aw2-chest-pantry", ZONE_IDS[3]],
+      ["aw2-npc-ban-bai", ZONE_IDS[1]],
+      ["aw2-npc-ban-co", ZONE_IDS[1]],
+    ] as const) {
       const placed = at(state, id, zone)
-      const object = zoneById(zone).objects.find(object => object.id === id)!
+      const object = zoneById(zone).objects.find((object) => object.id === id)!
       expect(describeObject(placed, object).actions).toEqual([])
       expect(() => applyWorldAction(placed, id, "win")).toThrow()
     }
@@ -128,44 +181,88 @@ describe("WORLD-02 approved quest progression and starter unlock", () => {
       { ...newWorldProgress(), x: 320, y: 320 },
       { ...newWorldProgress(), zoneId: ZONE_IDS[3] },
       { ...intro(), partyIds: ["aw2-van"] },
-      { ...memories(), memories: [MEMORY_IDS[0], MEMORY_IDS[0], MEMORY_IDS[1]] },
-    ]) expect(worldProgressSchema.safeParse(invalid).success).toBe(false)
+      {
+        ...memories(),
+        memories: [MEMORY_IDS[0], MEMORY_IDS[0], MEMORY_IDS[1]],
+      },
+    ])
+      expect(worldProgressSchema.safeParse(invalid).success).toBe(false)
   })
 })
 
 describe("SAVE-03 v1 migration and atomic world/starter writes", () => {
   function fixture() {
-    const memory = new Map<string, string>([["foodchest.tcg.v1", "stable original"]])
+    const memory = new Map<string, string>([
+      ["foodchest.tcg.v1", "stable original"],
+    ])
     let fail = false
     const store = new Aw2DevSaveStore({
-      storage: () => ({ getItem: key => memory.get(key) ?? null, setItem: (key, value) => { if (fail) throw Error("Quota"); memory.set(key, value) } }),
-      lock: async action => action(), now: () => "2026-10-20T08:00:00.000Z", newId: () => "00000000-0000-4000-8000-000000000001",
+      storage: () => ({
+        getItem: (key) => memory.get(key) ?? null,
+        setItem: (key, value) => {
+          if (fail) throw Error("Quota")
+          memory.set(key, value)
+        },
+      }),
+      lock: async (action) => action(),
+      now: () => "2026-10-20T08:00:00.000Z",
+      newId: () => "00000000-0000-4000-8000-000000000001",
     })
-    return { store, memory, fail: () => { fail = true }, recover: () => { fail = false } }
+    return {
+      store,
+      memory,
+      fail: () => {
+        fail = true
+      },
+      recover: () => {
+        fail = false
+      },
+    }
   }
   it("upgrades v1 in memory without writing, preserving identity and revision on explicit save", async () => {
-    const f = fixture(), first = await f.store.save(null)
-    const raw = JSON.stringify({ ...first.save, schemaVersion: 1, revision: 7, progress: {} })
+    const f = fixture(),
+      first = await f.store.save(null)
+    const raw = JSON.stringify({
+      ...first.save,
+      schemaVersion: 1,
+      revision: 7,
+      progress: {},
+    })
     f.memory.set(AW2_DEV_SAVE_KEY, raw)
     const loaded = f.store.load()
-    expect(loaded).toMatchObject({ status: "ready", save: { schemaVersion: 2, revision: 7, progress: newWorldProgress() } })
+    expect(loaded).toMatchObject({
+      status: "ready",
+      save: { schemaVersion: 3, revision: 7, progress: newWorldProgress() },
+    })
     expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(raw)
     const saved = await f.store.save(raw)
-    expect(saved.save).toMatchObject({ saveId: first.save.saveId, createdAt: first.save.createdAt, schemaVersion: 2, revision: 8 })
+    expect(saved.save).toMatchObject({
+      saveId: first.save.saveId,
+      createdAt: first.save.createdAt,
+      schemaVersion: 3,
+      revision: 8,
+    })
     expect(f.memory.get("foodchest.tcg.v1")).toBe("stable original")
   })
   it("preserves original progression on failed starter unlock, and retries exactly once", async () => {
-    const f = fixture(), initial = await f.store.save(null)
+    const f = fixture(),
+      initial = await f.store.save(null)
     let active = act(newWorldProgress(), "aw2-npc-giu-cho", "accept")
     active = act(active, "aw2-object-village-table", "inspect")
     const before = await f.store.save(initial.raw, active)
     f.fail()
     await expect(f.store.save(before.raw, intro())).rejects.toThrow()
-    expect(f.store.load()).toMatchObject({ save: { progress: { questIndex: 0, partyIds: [] } } })
+    expect(f.store.load()).toMatchObject({
+      save: { progress: { questIndex: 0, partyIds: [] } },
+    })
     f.recover()
     const after = await f.store.save(before.raw, intro())
     expect(after.save.progress.partyIds).toEqual(STARTER_TEAM)
-    await expect(f.store.save(before.raw, intro())).rejects.toMatchObject({ code: "conflict" })
-    await expect(f.store.save(after.raw, newWorldProgress())).rejects.toThrow(/đặt lại quest/)
+    await expect(f.store.save(before.raw, intro())).rejects.toMatchObject({
+      code: "conflict",
+    })
+    await expect(f.store.save(after.raw, newWorldProgress())).rejects.toThrow(
+      /đặt lại quest/,
+    )
   })
 })

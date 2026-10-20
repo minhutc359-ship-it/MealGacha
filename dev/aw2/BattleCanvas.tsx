@@ -21,6 +21,8 @@ interface Props {
   battle: CombatBattle
   presentation: CombatPresentation
   reducedMotion: boolean
+  visualIds?: Readonly<Record<string, string>>
+  labels?: Readonly<Record<string, string>>
 }
 
 const TICK_MS = 650
@@ -32,8 +34,11 @@ const actorY = (actor: CombatActor) =>
 const actorById = (battle: CombatBattle, id: string) =>
   battle.actors.find((actor) => actor.id === id)
 
-function manifestFor(actor: CombatActor): SpiritAssetManifest {
-  return STARTER_ASSETS[actor.spiritId] ?? STARTER_ASSETS["aw2-than"]
+function manifestFor(
+  actor: CombatActor,
+  visualIds?: Props["visualIds"],
+): SpiritAssetManifest {
+  return STARTER_ASSETS[visualIds?.[actor.id] ?? actor.spiritId]
 }
 
 function slotFromSkill(skillId?: string): SkillSlot | null {
@@ -43,7 +48,13 @@ function slotFromSkill(skillId?: string): SkillSlot | null {
     : null
 }
 
-export function BattleCanvas({ battle, presentation, reducedMotion }: Props) {
+export function BattleCanvas({
+  battle,
+  presentation,
+  reducedMotion,
+  visualIds,
+  labels,
+}: Props) {
   const canvas = useRef<HTMLCanvasElement>(null)
   const [atlases, setAtlases] = useState<Record<string, LoadedAtlas> | null>(
     null,
@@ -91,6 +102,14 @@ export function BattleCanvas({ battle, presentation, reducedMotion }: Props) {
     const element = canvas.current
     const context = element?.getContext("2d")
     if (!element || !context || !atlases) return
+    const unresolved = battle.actors.find(
+      (actor) => !manifestFor(actor, visualIds),
+    )
+    if (unresolved) {
+      context.clearRect(0, 0, element.width, element.height)
+      setError(`Chưa có manifest hình ảnh cho ${unresolved.id}.`)
+      return
+    }
     const startedAt = performance.now()
     let frameRequest = 0
 
@@ -145,7 +164,7 @@ export function BattleCanvas({ battle, presentation, reducedMotion }: Props) {
     }
 
     function drawActor(actor: CombatActor, elapsed: number) {
-      const manifest = manifestFor(actor)
+      const manifest = manifestFor(actor, visualIds)
       const atlas = atlases![manifest.spiritId]
       const cue = presentation.actors[actor.id]
       const fresh =
@@ -224,7 +243,7 @@ export function BattleCanvas({ battle, presentation, reducedMotion }: Props) {
       context!.fillStyle = "#fff6df"
       context!.font = "600 11px system-ui"
       context!.textAlign = "center"
-      context!.fillText(manifest.displayName, x, top - 5)
+      context!.fillText(labels?.[actor.id] ?? manifest.displayName, x, top - 5)
     }
 
     function drawProjectile(
@@ -234,7 +253,7 @@ export function BattleCanvas({ battle, presentation, reducedMotion }: Props) {
       const source = actorById(battle, projectile.sourceId)
       const target = actorById(battle, projectile.targetId)
       if (!source || !target) return
-      const manifest = manifestFor(source)
+      const manifest = manifestFor(source, visualIds)
       const slot = slotFromSkill(projectile.skillId)
       const track = slot ? manifest.skills[slot].projectile : null
       if (!track) return
@@ -322,7 +341,7 @@ export function BattleCanvas({ battle, presentation, reducedMotion }: Props) {
 
     frameRequest = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(frameRequest)
-  }, [atlases, battle, presentation, reducedMotion])
+  }, [atlases, battle, presentation, reducedMotion, visualIds, labels])
 
   return (
     <>
