@@ -1,0 +1,645 @@
+{
+  "task": "AW2-012",
+  "status": "PASS",
+  "date": "2026-10-20",
+  "branch": "game/adventure-world-2",
+  "baseSha": "72ee9b4360299db4bab9b9b43dba552dd80b86cf",
+  "sourceSha": "0e8fb7a893fa61ba2348843b06c1ece47dcad514",
+  "runtimeEquivalentTo": "b39fc49446723586a12101898abea48250914b16",
+  "sourceHeads": {
+    "feat/aw2-001-dev-save": "9dec38e2da40d086b9d1ed7be93af1f6ab141a71",
+    "feat/aw2-002-story-bible": "238708cba7bb1402ec38828aa8748e35aee01ad9",
+    "feat/aw2-003-roster-review": "4b8553c21e191aa5ed964dca338fc243c2d0ebc6",
+    "feat/aw2-006-world-foundation": "944e4dff411c57ad903c7a7c332e91172cbf77f6",
+    "feat/aw2-004a-than-assets": "7f9c6ab63637ab9d9eb4cf6fa6e7dfb649892bed",
+    "feat/aw2-004b-starter-assets": "b39fc49446723586a12101898abea48250914b16"
+  },
+  "allFeatureHeadsAreAncestors": true,
+  "masterUnchanged": "13f4d3411e9d40abdaa14aa1e7bcf3b65072e4ed",
+  "extraWorktreesClean": true,
+  "remotePush": false,
+  "unit": {
+    "command": "pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-012-unit.json",
+    "status": "PASS",
+    "files": 84,
+    "passed": 859,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 31.11
+  },
+  "typechecks": {
+    "commands": [
+      "pnpm typecheck",
+      "pnpm typecheck:dev"
+    ],
+    "status": "PASS"
+  },
+  "build": {
+    "command": "pnpm build",
+    "status": "PASS",
+    "warning": "existing chunk larger than 500 kB"
+  },
+  "production": {
+    "status": "PASS",
+    "artifacts": 49,
+    "check": "AW2 IDs/save key/all four development entries excluded from production"
+  },
+  "canon": {
+    "status": "PASS",
+    "checks": [
+      "6 zones/8 NPCs/4 quests",
+      "12 identities match approved CANON",
+      "3N/3R/3SR/2SSR/1UR",
+      "48 skill slots",
+      "proposal approval notices retained",
+      "D10/D13/D14/D15 approved with date; D11 proposed"
+    ]
+  },
+  "files": {
+    "task": "AW2-004B",
+    "status": "PASS",
+    "units": [
+      {
+        "task": "AW2-004A",
+        "spiritId": "aw2-than",
+        "status": "PASS",
+        "checks": [
+          "reference: bytes/hash/dimensions/real alpha",
+          "world: bytes/hash/dimensions/real alpha",
+          "battle: bytes/hash/dimensions/real alpha",
+          "portrait: bytes/hash/dimensions/real alpha",
+          "fx: bytes/hash/dimensions/real alpha",
+          "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+          "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+        ],
+        "webpBytes": 5943968
+      },
+      {
+        "task": "AW2-004B",
+        "spiritId": "aw2-lua",
+        "status": "PASS",
+        "checks": [
+          "world: bytes/hash/dimensions/real alpha",
+          "battle: bytes/hash/dimensions/real alpha",
+          "portrait: bytes/hash/dimensions/real alpha",
+          "fx: bytes/hash/dimensions/real alpha",
+          "reference: bytes/hash/dimensions/real alpha",
+          "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+          "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+        ],
+        "webpBytes": 3788324
+      },
+      {
+        "task": "AW2-004B",
+        "spiritId": "aw2-lam",
+        "status": "PASS",
+        "checks": [
+          "world: bytes/hash/dimensions/real alpha",
+          "battle: bytes/hash/dimensions/real alpha",
+          "portrait: bytes/hash/dimensions/real alpha",
+          "fx: bytes/hash/dimensions/real alpha",
+          "reference: bytes/hash/dimensions/real alpha",
+          "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+          "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+        ],
+        "webpBytes": 4038342
+      },
+      {
+        "task": "AW2-004B",
+        "spiritId": "aw2-moc-non",
+        "status": "PASS",
+        "checks": [
+          "world: bytes/hash/dimensions/real alpha",
+          "battle: bytes/hash/dimensions/real alpha",
+          "portrait: bytes/hash/dimensions/real alpha",
+          "fx: bytes/hash/dimensions/real alpha",
+          "reference: bytes/hash/dimensions/real alpha",
+          "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 9/255",
+          "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+        ],
+        "webpBytes": 4503922
+      },
+      {
+        "task": "AW2-004B",
+        "spiritId": "aw2-suong",
+        "status": "PASS",
+        "checks": [
+          "world: bytes/hash/dimensions/real alpha",
+          "battle: bytes/hash/dimensions/real alpha",
+          "portrait: bytes/hash/dimensions/real alpha",
+          "fx: bytes/hash/dimensions/real alpha",
+          "reference: bytes/hash/dimensions/real alpha",
+          "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+          "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+          "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+        ],
+        "webpBytes": 4178630
+      }
+    ],
+    "newSourceImages": 16,
+    "newAudioCues": 16,
+    "newUniqueWebpBytes": 16509218,
+    "checks": [
+      "source/packed visible RGBA and alpha equality",
+      "selected prompt/output/workspace hashes",
+      "four distinct portraits and sixteen distinct audio cues",
+      "rights not cleared; no full-character completion"
+    ]
+  },
+  "browser": {
+    "save": {
+      "task": "AW2-001",
+      "status": "PASS",
+      "engine": "Chromium 153.0.8010.36",
+      "viewports": [
+        "1280x800",
+        "390x844"
+      ],
+      "checks": [
+        "Opening AW2 leaves absent save absent",
+        "Create writes development schema v2",
+        "Reload preserves save identity and exact bytes",
+        "Save advances revision",
+        "Reset opens modal with cancel focused",
+        "Reset disabled before typed confirmation",
+        "Wrong phrase keeps reset disabled",
+        "Cancel preserves exact bytes",
+        "New dialog forgets previous phrase",
+        "Escape preserves exact bytes and closes modal",
+        "Confirmed reset creates fresh identity",
+        "Stale reset cannot overwrite another tab",
+        "Stale save cannot overwrite another tab",
+        "Reread permits subsequent save",
+        "Web Locks serialize simultaneous writes from two tabs",
+        "Unreadable save preserved: không hợp lệ",
+        "Cancel unreadable reset preserves bytes: không hợp lệ",
+        "Explicit development reset recovers: không hợp lệ",
+        "Unreadable save preserved: schema mới hơn",
+        "Cancel unreadable reset preserves bytes: schema mới hơn",
+        "Explicit development reset recovers: schema mới hơn",
+        "Write failure reports error and preserves bytes",
+        "Reset failure reports error and closes consumed confirmation",
+        "Mobile viewport has no horizontal overflow",
+        "All seeded legacy keys remain byte-for-byte intact",
+        "Standalone screen never imports legacy app/bootstrap/save",
+        "Storage denial renders a recoverable error",
+        "Missing Web Locks blocks creation with an explanation",
+        "No browser console or page errors"
+      ],
+      "errors": [],
+      "requestedPaths": [
+        "/@react-refresh",
+        "/@vite/client",
+        "/dev/aw2/index.html",
+        "/dev/aw2/main.tsx",
+        "/dev/aw2/styles.css",
+        "/node_modules/.pnpm/vite@8.0.5_@types+node@22.19.17_jiti@2.6.1/node_modules/vite/dist/client/env.mjs",
+        "/node_modules/.vite/deps/chunk-BoAXSpZd.js",
+        "/node_modules/.vite/deps/react-dom.js",
+        "/node_modules/.vite/deps/react-dom_client.js",
+        "/node_modules/.vite/deps/react.js",
+        "/node_modules/.vite/deps/react_jsx-dev-runtime.js",
+        "/node_modules/.vite/deps/zod.js",
+        "/src/aw2/assets/lam.base-v1.json",
+        "/src/aw2/assets/lua.base-v1.json",
+        "/src/aw2/assets/moc-non.base-v1.json",
+        "/src/aw2/assets/starters.ts",
+        "/src/aw2/assets/suong.base-v1.json",
+        "/src/aw2/assets/than.base-v1.json",
+        "/src/aw2/assets/than.ts",
+        "/src/aw2/save/schema.ts",
+        "/src/aw2/save/store.ts",
+        "/src/aw2/world/ids.ts",
+        "/src/aw2/world/maps.ts",
+        "/src/aw2/world/model.ts"
+      ],
+      "screenshots": [
+        ".asset-work/aw2-001/desktop-save.png",
+        ".asset-work/aw2-001/mobile-reset.png"
+      ]
+    },
+    "world": {
+      "task": "AW2-006A",
+      "status": "PASS",
+      "engine": "Chromium 153.0.8010.36",
+      "checks": [
+        "Opening world does not auto-create save",
+        "Standalone Pixi world renders",
+        "Dialog pauses movement",
+        "Closing dialog does not accept quest",
+        "Intro unlocks exactly five approved starters",
+        "Quest and party survive reload",
+        "On-screen hold moves and release stops",
+        "Blur clears held movement",
+        "Three memories count in a different order",
+        "Wrong puzzle order safely resets attempt",
+        "Correct puzzle order opens inside route",
+        "Solved puzzle survives reload",
+        "Boss cannot fabricate combat or reward",
+        "Return route and third quest hand-in persist",
+        "Schema v2 holds one coherent world/party snapshot",
+        "Legacy data remains byte-identical",
+        "Mobile viewport has no horizontal overflow",
+        "No console/page errors"
+      ],
+      "errors": [],
+      "viewports": [
+        "1280x1000",
+        "390x844"
+      ]
+    },
+    "than": {
+      "task": "AW2-004A",
+      "status": "PASS",
+      "engine": "Chromium 153.0.8010.36",
+      "viewports": [
+        "1280x1000",
+        "390x844"
+      ],
+      "checks": [
+        "Asset preview opens without creating game saves",
+        "HD state idle draws authored pixels",
+        "HD state move draws authored pixels",
+        "HD state attack draws authored pixels",
+        "HD state cast draws authored pixels",
+        "HD state hit draws authored pixels",
+        "HD state guard draws authored pixels",
+        "HD state ultimate draws authored pixels",
+        "HD state defeat draws authored pixels",
+        "Skill basic uses its own authored FX at the declared cue",
+        "Skill basic emits only one cue",
+        "Skill auto uses its own authored FX at the declared cue",
+        "Skill auto emits only one cue",
+        "Skill passive uses its own authored FX at the declared cue",
+        "Skill passive emits only one cue",
+        "Skill ultimate uses its own authored FX at the declared cue",
+        "Skill ultimate emits only one cue",
+        "All four WAV cues load and decode in the browser",
+        "Reduced motion holds a meaningful attack pose without visual animation",
+        "World down advances real walk cels",
+        "World left advances real walk cels",
+        "World right advances real walk cels",
+        "World up advances real walk cels",
+        "Pause freezes the timeline",
+        "Resume continues the timeline",
+        "Standing selects the direction-specific idle cel",
+        "Separate portrait loads",
+        "Mobile preview has no horizontal overflow",
+        "All legacy and AW2 save bytes remain unchanged",
+        "No primary-context browser errors or missing assets",
+        "Missing atlas reports an error without a geometry replacement",
+        "System reduced-motion preference initializes the control"
+      ],
+      "errors": [],
+      "failed": [],
+      "audio": [
+        {
+          "slot": "basic",
+          "duration": 0.18,
+          "channels": 1
+        },
+        {
+          "slot": "auto",
+          "duration": 0.42,
+          "channels": 1
+        },
+        {
+          "slot": "passive",
+          "duration": 0.24995833333333334,
+          "channels": 1
+        },
+        {
+          "slot": "ultimate",
+          "duration": 0.7,
+          "channels": 1
+        }
+      ],
+      "requestedAssets": [
+        "/dev/aw2/assets/than/base-v1/auto.wav",
+        "/dev/aw2/assets/than/base-v1/basic.wav",
+        "/dev/aw2/assets/than/base-v1/battle.webp",
+        "/dev/aw2/assets/than/base-v1/fx.webp",
+        "/dev/aw2/assets/than/base-v1/passive.wav",
+        "/dev/aw2/assets/than/base-v1/portrait.webp",
+        "/dev/aw2/assets/than/base-v1/ultimate.wav",
+        "/dev/aw2/assets/than/base-v1/world.webp"
+      ],
+      "limits": [
+        "headless browser audio decoded, not human listening",
+        "no real device/combat/leveling/legal approval"
+      ]
+    },
+    "starters": {
+      "task": "AW2-004B",
+      "status": "PASS",
+      "engine": "Chromium 153.0.8010.36",
+      "viewports": [
+        "1280x1000",
+        "390x844"
+      ],
+      "checks": [
+        "Preview creates no AW2 save",
+        "Only initially selected unit image atlases load",
+        "lua: selection resets audio opt-in",
+        "lua: previous unit audio is stopped",
+        "lua: HD idle draws authored pixels",
+        "lua: HD move draws authored pixels",
+        "lua: HD attack draws authored pixels",
+        "lua: HD cast draws authored pixels",
+        "lua: HD hit draws authored pixels",
+        "lua: HD guard draws authored pixels",
+        "lua: HD ultimate draws authored pixels",
+        "lua: HD defeat draws authored pixels",
+        "lua: basic shows its own FX and all 2 cues",
+        "lua: basic markers emit once per authored timestamp",
+        "lua: auto shows its own FX and all 1 cues",
+        "lua: auto markers emit once per authored timestamp",
+        "lua: passive shows its own FX and all 1 cues",
+        "lua: passive markers emit once per authored timestamp",
+        "lua: ultimate shows its own FX and all 1 cues",
+        "lua: ultimate markers emit once per authored timestamp",
+        "lua: opted-in skill audio uses this unit only",
+        "lua: reduced motion holds an authored pose",
+        "lua: world down advances real cels",
+        "lua: world left advances real cels",
+        "lua: world right advances real cels",
+        "lua: world up advances real cels",
+        "lua: pause freezes time",
+        "lua: resume advances time",
+        "lua: standing uses directional idle",
+        "lua: original portrait loads",
+        "lua: mobile viewport has no horizontal overflow",
+        "lam: selection resets audio opt-in",
+        "lam: previous unit audio is stopped",
+        "lam: HD idle draws authored pixels",
+        "lam: HD move draws authored pixels",
+        "lam: HD attack draws authored pixels",
+        "lam: HD cast draws authored pixels",
+        "lam: HD hit draws authored pixels",
+        "lam: HD guard draws authored pixels",
+        "lam: HD ultimate draws authored pixels",
+        "lam: HD defeat draws authored pixels",
+        "lam: authored projectile travels before impact",
+        "lam: projectile contains actual atlas pixels",
+        "lam: basic shows its own FX and all 1 cues",
+        "lam: basic markers emit once per authored timestamp",
+        "lam: auto shows its own FX and all 1 cues",
+        "lam: auto markers emit once per authored timestamp",
+        "lam: passive shows its own FX and all 1 cues",
+        "lam: passive markers emit once per authored timestamp",
+        "lam: ultimate shows its own FX and all 2 cues",
+        "lam: ultimate markers emit once per authored timestamp",
+        "lam: opted-in skill audio uses this unit only",
+        "lam: reduced motion holds an authored pose",
+        "lam: world down advances real cels",
+        "lam: world left advances real cels",
+        "lam: world right advances real cels",
+        "lam: world up advances real cels",
+        "lam: pause freezes time",
+        "lam: resume advances time",
+        "lam: standing uses directional idle",
+        "lam: original portrait loads",
+        "lam: mobile viewport has no horizontal overflow",
+        "moc-non: selection resets audio opt-in",
+        "moc-non: previous unit audio is stopped",
+        "moc-non: HD idle draws authored pixels",
+        "moc-non: HD move draws authored pixels",
+        "moc-non: HD attack draws authored pixels",
+        "moc-non: HD cast draws authored pixels",
+        "moc-non: HD hit draws authored pixels",
+        "moc-non: HD guard draws authored pixels",
+        "moc-non: HD ultimate draws authored pixels",
+        "moc-non: HD defeat draws authored pixels",
+        "moc-non: authored projectile travels before impact",
+        "moc-non: projectile contains actual atlas pixels",
+        "moc-non: basic shows its own FX and all 1 cues",
+        "moc-non: basic markers emit once per authored timestamp",
+        "moc-non: auto shows its own FX and all 1 cues",
+        "moc-non: auto markers emit once per authored timestamp",
+        "moc-non: passive shows its own FX and all 1 cues",
+        "moc-non: passive markers emit once per authored timestamp",
+        "moc-non: ultimate shows its own FX and all 1 cues",
+        "moc-non: ultimate markers emit once per authored timestamp",
+        "moc-non: opted-in skill audio uses this unit only",
+        "moc-non: reduced motion holds an authored pose",
+        "moc-non: world down advances real cels",
+        "moc-non: world left advances real cels",
+        "moc-non: world right advances real cels",
+        "moc-non: world up advances real cels",
+        "moc-non: pause freezes time",
+        "moc-non: resume advances time",
+        "moc-non: standing uses directional idle",
+        "moc-non: original portrait loads",
+        "moc-non: mobile viewport has no horizontal overflow",
+        "suong: selection resets audio opt-in",
+        "suong: previous unit audio is stopped",
+        "suong: HD idle draws authored pixels",
+        "suong: HD move draws authored pixels",
+        "suong: HD attack draws authored pixels",
+        "suong: HD cast draws authored pixels",
+        "suong: HD hit draws authored pixels",
+        "suong: HD guard draws authored pixels",
+        "suong: HD ultimate draws authored pixels",
+        "suong: HD defeat draws authored pixels",
+        "suong: authored projectile travels before impact",
+        "suong: projectile contains actual atlas pixels",
+        "suong: basic shows its own FX and all 1 cues",
+        "suong: basic markers emit once per authored timestamp",
+        "suong: auto shows its own FX and all 1 cues",
+        "suong: auto markers emit once per authored timestamp",
+        "suong: passive shows its own FX and all 1 cues",
+        "suong: passive markers emit once per authored timestamp",
+        "suong: ultimate shows its own FX and all 1 cues",
+        "suong: ultimate markers emit once per authored timestamp",
+        "suong: opted-in skill audio uses this unit only",
+        "suong: reduced motion holds an authored pose",
+        "suong: world down advances real cels",
+        "suong: world left advances real cels",
+        "suong: world right advances real cels",
+        "suong: world up advances real cels",
+        "suong: pause freezes time",
+        "suong: resume advances time",
+        "suong: standing uses directional idle",
+        "suong: original portrait loads",
+        "suong: mobile viewport has no horizontal overflow",
+        "Sixteen original audio cues fetch and decode",
+        "Rapid character changes settle on the latest identity with idle timeline and audio off",
+        "All legacy and AW2 save bytes unchanged",
+        "No primary-context browser errors or missing assets",
+        "lua: missing atlas reports error and leaves canvas blank",
+        "lam: missing atlas reports error and leaves canvas blank",
+        "moc-non: missing atlas reports error and leaves canvas blank",
+        "suong: missing atlas reports error and leaves canvas blank",
+        "System reduced-motion preference initializes the control"
+      ],
+      "errors": [],
+      "failed": [],
+      "audio": [
+        {
+          "unit": "lua",
+          "slot": "basic",
+          "duration": 0.16,
+          "channels": 1
+        },
+        {
+          "unit": "lua",
+          "slot": "auto",
+          "duration": 0.34,
+          "channels": 1
+        },
+        {
+          "unit": "lua",
+          "slot": "passive",
+          "duration": 0.22,
+          "channels": 1
+        },
+        {
+          "unit": "lua",
+          "slot": "ultimate",
+          "duration": 0.46,
+          "channels": 1
+        },
+        {
+          "unit": "lam",
+          "slot": "basic",
+          "duration": 0.16,
+          "channels": 1
+        },
+        {
+          "unit": "lam",
+          "slot": "auto",
+          "duration": 0.34,
+          "channels": 1
+        },
+        {
+          "unit": "lam",
+          "slot": "passive",
+          "duration": 0.22,
+          "channels": 1
+        },
+        {
+          "unit": "lam",
+          "slot": "ultimate",
+          "duration": 0.46,
+          "channels": 1
+        },
+        {
+          "unit": "moc-non",
+          "slot": "basic",
+          "duration": 0.16,
+          "channels": 1
+        },
+        {
+          "unit": "moc-non",
+          "slot": "auto",
+          "duration": 0.34,
+          "channels": 1
+        },
+        {
+          "unit": "moc-non",
+          "slot": "passive",
+          "duration": 0.22,
+          "channels": 1
+        },
+        {
+          "unit": "moc-non",
+          "slot": "ultimate",
+          "duration": 0.46,
+          "channels": 1
+        },
+        {
+          "unit": "suong",
+          "slot": "basic",
+          "duration": 0.16,
+          "channels": 1
+        },
+        {
+          "unit": "suong",
+          "slot": "auto",
+          "duration": 0.34,
+          "channels": 1
+        },
+        {
+          "unit": "suong",
+          "slot": "passive",
+          "duration": 0.22,
+          "channels": 1
+        },
+        {
+          "unit": "suong",
+          "slot": "ultimate",
+          "duration": 0.46,
+          "channels": 1
+        }
+      ],
+      "requestedAssets": [
+        "/dev/aw2/assets/lam/base-v1/auto.wav",
+        "/dev/aw2/assets/lam/base-v1/basic.wav",
+        "/dev/aw2/assets/lam/base-v1/battle.webp",
+        "/dev/aw2/assets/lam/base-v1/fx.webp",
+        "/dev/aw2/assets/lam/base-v1/passive.wav",
+        "/dev/aw2/assets/lam/base-v1/portrait.webp",
+        "/dev/aw2/assets/lam/base-v1/ultimate.wav",
+        "/dev/aw2/assets/lam/base-v1/world.webp",
+        "/dev/aw2/assets/lua/base-v1/auto.wav",
+        "/dev/aw2/assets/lua/base-v1/basic.wav",
+        "/dev/aw2/assets/lua/base-v1/battle.webp",
+        "/dev/aw2/assets/lua/base-v1/fx.webp",
+        "/dev/aw2/assets/lua/base-v1/passive.wav",
+        "/dev/aw2/assets/lua/base-v1/portrait.webp",
+        "/dev/aw2/assets/lua/base-v1/ultimate.wav",
+        "/dev/aw2/assets/lua/base-v1/world.webp",
+        "/dev/aw2/assets/moc-non/base-v1/auto.wav",
+        "/dev/aw2/assets/moc-non/base-v1/basic.wav",
+        "/dev/aw2/assets/moc-non/base-v1/battle.webp",
+        "/dev/aw2/assets/moc-non/base-v1/fx.webp",
+        "/dev/aw2/assets/moc-non/base-v1/passive.wav",
+        "/dev/aw2/assets/moc-non/base-v1/portrait.webp",
+        "/dev/aw2/assets/moc-non/base-v1/ultimate.wav",
+        "/dev/aw2/assets/moc-non/base-v1/world.webp",
+        "/dev/aw2/assets/suong/base-v1/auto.wav",
+        "/dev/aw2/assets/suong/base-v1/basic.wav",
+        "/dev/aw2/assets/suong/base-v1/battle.webp",
+        "/dev/aw2/assets/suong/base-v1/fx.webp",
+        "/dev/aw2/assets/suong/base-v1/passive.wav",
+        "/dev/aw2/assets/suong/base-v1/portrait.webp",
+        "/dev/aw2/assets/suong/base-v1/ultimate.wav",
+        "/dev/aw2/assets/suong/base-v1/world.webp",
+        "/dev/aw2/assets/than/base-v1/battle.webp",
+        "/dev/aw2/assets/than/base-v1/fx.webp",
+        "/dev/aw2/assets/than/base-v1/portrait.webp",
+        "/dev/aw2/assets/than/base-v1/world.webp"
+      ],
+      "limits": [
+        "headless audio decoded, not human listening",
+        "no physical device/combat/leveling/legal review"
+      ]
+    }
+  },
+  "browserChecks": 212,
+  "resolvedChecks": [
+    "historical document conflicts preserve approved canon; original review evidence kept",
+    "initial whitespace check found trailing blank line, trimmed",
+    "initial one-off canon checker did not allow approval date; corrected to exact APPROVED 2026-10-20 format"
+  ],
+  "limits": [
+    "reference assets do not establish actual combat/leveling/full character completion",
+    "seven non-starter sets/full ART-01 incomplete",
+    "no physical-device/FPS/offline/native/human audio/legal approval",
+    "no master update, remote push, release, owner-save reset or source-branch/worktree deletion"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "task": "AW2-004A",
+  "spiritId": "aw2-than",
+  "variant": "base-v1",
+  "tool": "built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-20",
+  "externalInputs": [],
+  "promptFile": "prompts.json",
+  "pipeline": {
+    "python": "3.12.3",
+    "pillow": "10.2.0",
+    "artworkEdits": "All creative image creation/repair performed by image_gen",
+    "packing": "Source PNGs unchanged; lossless WebP encoding, measured frame rectangles and alpha anchors",
+    "motion": "16 generated world cels, 8 battle key poses + interpolated motion, 16 FX cels",
+    "audio": "4 original deterministic synthesized WAVs, not recordings/music"
+  },
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "humanLegalReview": "NOT_RUN",
+  "history": [
+    {
+      "promptKey": "Reference",
+      "toolOutputFilename": "exec-bf33d8c8-1126-4564-bd49-f34e44df0a2b.png",
+      "outputSha256": "319c6e204ccf1953ebaa8b70979dc61a348842d487c31b367291cf0a72daef84",
+      "workspaceSource": "reference.png",
+      "inputs": [],
+      "selected": true,
+      "rejectionReason": null
+    },
+    {
+      "promptKey": "World",
+      "toolOutputFilename": "exec-a3260217-2e5b-4b05-88b7-1388328d5df9.png",
+      "outputSha256": "0750639a65e141dfcf38130e8b68902f0891b4fc038f0f552755e77b926490b0",
+      "workspaceSource": "world.png",
+      "inputs": [
+        "Reference"
+      ],
+      "selected": true,
+      "rejectionReason": null
+    },
+    {
+      "promptKey": "Battle",
+      "toolOutputFilename": "exec-473cab0b-c684-4dbb-91a4-0f2070c1df59.png",
+      "outputSha256": "2a6e27ed315d1a7aeecf3db7e0b16e68c273593d88fb2f2bfa40ea7b00daaedb",
+      "workspaceSource": null,
+      "inputs": [
+        "Reference"
+      ],
+      "selected": false,
+      "rejectionReason": "Rejected: poses exceeded equal-cell boundaries; replaced through image_gen"
+    },
+    {
+      "promptKey": "BattleRepair",
+      "toolOutputFilename": "exec-198646e8-5b12-40c1-b5d8-26d8745af913.png",
+      "outputSha256": "10f44dbff3503e7577eeeab568c325d031e9bb6ad5b2180ae3a4ecdc654efb75",
+      "workspaceSource": "battle.png",
+      "inputs": [
+        "Battle",
+        "Reference"
+      ],
+      "selected": true,
+      "rejectionReason": null
+    },
+    {
+      "promptKey": "Fx",
+      "toolOutputFilename": "exec-74fa5104-0cc7-41f6-b9ee-f5b15e7874ec.png",
+      "outputSha256": "09322ac4f5a0d4cd2adb19c4b87cdfe49d99a8b86b8051bd662343b556ce4f4b",
+      "workspaceSource": null,
+      "inputs": [],
+      "selected": false,
+      "rejectionReason": "Rejected: broad glow/no safe gutters; replaced by smaller effects through image_gen"
+    },
+    {
+      "promptKey": "Portrait",
+      "toolOutputFilename": "exec-28650fc5-736e-45d7-beed-fe8bfcfd4702.png",
+      "outputSha256": "69dabcd9af7f3f605f174f8e580f63e8ca41f771645ead607299393b4616edb6",
+      "workspaceSource": "portrait.png",
+      "inputs": [
+        "Reference"
+      ],
+      "selected": true,
+      "rejectionReason": null
+    },
+    {
+      "promptKey": "FxRepair",
+      "toolOutputFilename": "exec-72e9469b-409f-49c3-9a9a-f78e8f96bb05.png",
+      "outputSha256": "6dfb4c88717ddcbedbb2856875c9da36de9d3e42f7d765c9abc2b9257bac804e",
+      "workspaceSource": "fx.png",
+      "inputs": [],
+      "selected": true,
+      "rejectionReason": null
+    }
+  ]
+}

@@ -1,0 +1,1280 @@
+{
+  "version": 1,
+  "spiritId": "aw2-lua",
+  "displayName": "Lửa Nhỏ",
+  "artVariantId": "base-v1",
+  "status": "REFERENCE_ASSETS_REVIEWED",
+  "fullCharacterComplete": false,
+  "assets": {
+    "world": {
+      "id": "aw2-lua:world:base-v1",
+      "url": "/dev/aw2/assets/lua/base-v1/world.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "26c56a18e3a68606139aea0266d498acbfea8010fd653b951fbab02d2f220793",
+      "bytes": 963132,
+      "source": {
+        "path": "dev/aw2/assets/lua/base-v1/world.png",
+        "sha256": "f1812aaf9b06dbab63fee21bd19ab05b24fc996f8a0eb1023f603b96e3ded71b"
+      },
+      "transparentFraction": 0.701904
+    },
+    "battle": {
+      "id": "aw2-lua:battle:base-v1",
+      "url": "/dev/aw2/assets/lua/base-v1/battle.webp",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "b7c66bdc46d477ed68140d001e1b305553319db377282fab4fced42fbfaaa0a5",
+      "bytes": 1423908,
+      "source": {
+        "path": "dev/aw2/assets/lua/base-v1/battle.png",
+        "sha256": "404b4a65e5ad611f3357ab95e6dea37ce99490497329f1e2af6128222f99777f"
+      },
+      "transparentFraction": 0.694864
+    },
+    "portrait": {
+      "id": "aw2-lua:portrait:base-v1",
+      "url": "/dev/aw2/assets/lua/base-v1/portrait.webp",
+      "width": 1312,
+      "height": 1199,
+      "sha256": "fd07e40fde5ff65c881890625d1abbe3b3cb2826839cfdca85bdeb2a1233886b",
+      "bytes": 1176674,
+      "source": {
+        "path": "dev/aw2/assets/lua/base-v1/portrait.png",
+        "sha256": "077beff42ba2e04085db73daf58aae35d8e8c34edb83166add1f53e7bcc54682"
+      },
+      "transparentFraction": 0.46077
+    },
+    "fx": {
+      "id": "aw2-lua:fx:base-v1",
+      "url": "/dev/aw2/assets/lua/base-v1/fx.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d2e0600764bd84975c20d7bb93a8c31ae6bc1491add0162b3fb434c28a5668f6",
+      "bytes": 224610,
+      "source": {
+        "path": "dev/aw2/assets/lua/base-v1/fx.png",
+        "sha256": "cc6c64652f996a76311c44f8e7fe0f678cee4e74194fdc89829422039a7e0298"
+      },
+      "transparentFraction": 0.86135
+    },
+    "reference": {
+      "id": "aw2-lua:reference:base-v1",
+      "url": "/dev/aw2/assets/lua/base-v1/portrait.webp",
+      "width": 1312,
+      "height": 1199,
+      "sha256": "fd07e40fde5ff65c881890625d1abbe3b3cb2826839cfdca85bdeb2a1233886b",
+      "bytes": 1176674,
+      "source": {
+        "path": "dev/aw2/assets/lua/base-v1/portrait.png",
+        "sha256": "077beff42ba2e04085db73daf58aae35d8e8c34edb83166add1f53e7bcc54682"
+      },
+      "transparentFraction": 0.46077
+    }
+  },
+  "frames": {
+    "world.down.0": {
+      "asset": "world",
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "anchorX": 168.5,
+      "anchorY": 297,
+      "visibleBounds": [
+        99,
+        35,
+        238,
+        297
+      ],
+      "maxEdgeAlpha": 0
+    },
+    "world.down.1": {
+      "asset": "world",
+      "x": 314,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "anchorX": 161.0,
+      "anchorY": 301,
+      "visibleBounds": [
+        91,
+        38,
+        231,
+        301
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "world.down.2": {
+      "asset": "world",
+      "x": 627,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "anchorX": 153.5,
+      "anchorY": 301,
+      "visibleBounds": [
+        84,
+        38,
+        223,
+        301
+      ],
+      "maxEdgeAlpha": 0
+    },
+    "world.down.3": {
+      "asset": "world",
+      "x": 940,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "anchorX": 148.0,
+      "anchorY": 301,
+      "visibleBounds": [
+        78,
+        38,
+        218,
+        301
+      ],
+      "maxEdgeAlpha": 0
+    },
+    "world.left.0": {
+      "asset": "world",
+      "x": 0,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "anchorX": 165.0,
+      "anchorY": 291,
+      "visibleBounds": [
+        91,
+        31,
+        239,
+        291
+      ],
+      "maxEdgeAlpha": 0
+    },
+    "world.left.1": {
+      "asset": "world",
+      "x": 314,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "anchorX": 163.0,
+      "anchorY": 294,
+      "visibleBounds": [
+        88,
+        32,
+        238,
+        294
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "world.left.2": {
+      "asset": "world",
+      "x": 627,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "anchorX": 152.0,
+      "anchorY": 293,
+      "visibleBounds": [
+        78,
+        32,
+        226,
+        293
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "world.left.3": {
+      "asset": "world",
+      "x": 940,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "anchorX": 154.5,
+      "anchorY": 294,
+      "visibleBounds": [
+        81,
+        31,
+        228,
+        294
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "world.right.0": {
+      "asset": "world",
+      "x": 0,
+      "y": 627,
+      "width": 314,
+      "height": 313,
+      "anchorX": 157.0,
+      "anchorY": 285,
+      "visibleBounds": [
+        83,
+        24,
+        231,
+        285
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "world.right.1": {
+      "asset": "world",
+      "x": 314,
+      "y": 627,
+      "width": 313,
+      "height": 313,
+      "anchorX": 157.5,
+      "anchorY": 286,
+      "visibleBounds": [
+        85,
+        24,
+        230,
+        286
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "world.right.2": {
+      "asset": "world",
+      "x": 627,
+      "y": 627,
+      "width": 313,
+      "height": 313,
+      "anchorX": 157.0,
+      "anchorY": 286,
+      "visibleBounds": [
+        83,
+        24,
+        231,
+        286
+      ],
+      "maxEdgeAlpha": 0
+    },
+    "world.right.3": {
+      "asset": "world",
+      "x": 940,
+      "y": 627,
+      "width": 314,
+      "height": 313,
+      "anchorX": 158.5,
+      "anchorY": 283,
+      "visibleBounds": [
+        83,
+        24,
+        234,
+        283
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "world.up.0": {
+      "asset": "world",
+      "x": 0,
+      "y": 940,
+      "width": 314,
+      "height": 314,
+      "anchorX": 167.0,
+      "anchorY": 274,
+      "visibleBounds": [
+        97,
+        17,
+        237,
+        274
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "world.up.1": {
+      "asset": "world",
+      "x": 314,
+      "y": 940,
+      "width": 313,
+      "height": 314,
+      "anchorX": 164.0,
+      "anchorY": 276,
+      "visibleBounds": [
+        91,
+        13,
+        237,
+        276
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "world.up.2": {
+      "asset": "world",
+      "x": 627,
+      "y": 940,
+      "width": 313,
+      "height": 314,
+      "anchorX": 159.0,
+      "anchorY": 275,
+      "visibleBounds": [
+        89,
+        14,
+        229,
+        275
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "world.up.3": {
+      "asset": "world",
+      "x": 940,
+      "y": 940,
+      "width": 314,
+      "height": 314,
+      "anchorX": 162.0,
+      "anchorY": 276,
+      "visibleBounds": [
+        91,
+        16,
+        233,
+        276
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "battle.idle": {
+      "asset": "battle",
+      "x": 0,
+      "y": 0,
+      "width": 384,
+      "height": 512,
+      "anchorX": 192.0,
+      "anchorY": 495,
+      "visibleBounds": [
+        65,
+        69,
+        319,
+        495
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "battle.hit": {
+      "asset": "battle",
+      "x": 0,
+      "y": 512,
+      "width": 384,
+      "height": 512,
+      "anchorX": 199.5,
+      "anchorY": 451,
+      "visibleBounds": [
+        45,
+        64,
+        354,
+        451
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "battle.move": {
+      "asset": "battle",
+      "x": 384,
+      "y": 0,
+      "width": 384,
+      "height": 512,
+      "anchorX": 178.5,
+      "anchorY": 481,
+      "visibleBounds": [
+        36,
+        89,
+        321,
+        481
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "battle.guard": {
+      "asset": "battle",
+      "x": 384,
+      "y": 512,
+      "width": 384,
+      "height": 512,
+      "anchorX": 183.5,
+      "anchorY": 448,
+      "visibleBounds": [
+        35,
+        58,
+        332,
+        448
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "battle.attack": {
+      "asset": "battle",
+      "x": 768,
+      "y": 0,
+      "width": 384,
+      "height": 512,
+      "anchorX": 206.5,
+      "anchorY": 490,
+      "visibleBounds": [
+        32,
+        108,
+        381,
+        490
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "battle.ultimate": {
+      "asset": "battle",
+      "x": 768,
+      "y": 512,
+      "width": 384,
+      "height": 512,
+      "anchorX": 212.0,
+      "anchorY": 431,
+      "visibleBounds": [
+        44,
+        120,
+        380,
+        431
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "battle.cast": {
+      "asset": "battle",
+      "x": 1152,
+      "y": 0,
+      "width": 384,
+      "height": 512,
+      "anchorX": 200.0,
+      "anchorY": 492,
+      "visibleBounds": [
+        49,
+        107,
+        351,
+        492
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "battle.defeat": {
+      "asset": "battle",
+      "x": 1152,
+      "y": 512,
+      "width": 384,
+      "height": 512,
+      "anchorX": 198.0,
+      "anchorY": 413,
+      "visibleBounds": [
+        70,
+        127,
+        326,
+        413
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.basic.0": {
+      "asset": "fx",
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "anchorX": 173.0,
+      "anchorY": 190.0,
+      "visibleBounds": [
+        138,
+        164,
+        208,
+        216
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.basic.1": {
+      "asset": "fx",
+      "x": 314,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "anchorX": 161.5,
+      "anchorY": 193.5,
+      "visibleBounds": [
+        97,
+        137,
+        226,
+        250
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.basic.2": {
+      "asset": "fx",
+      "x": 627,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "anchorX": 160.5,
+      "anchorY": 195.0,
+      "visibleBounds": [
+        92,
+        139,
+        229,
+        251
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.basic.3": {
+      "asset": "fx",
+      "x": 940,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "anchorX": 147.5,
+      "anchorY": 201.0,
+      "visibleBounds": [
+        114,
+        174,
+        181,
+        228
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.auto.0": {
+      "asset": "fx",
+      "x": 0,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "anchorX": 163.5,
+      "anchorY": 178.5,
+      "visibleBounds": [
+        102,
+        150,
+        225,
+        207
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.auto.1": {
+      "asset": "fx",
+      "x": 314,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "anchorX": 155.0,
+      "anchorY": 185.0,
+      "visibleBounds": [
+        91,
+        155,
+        219,
+        215
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.auto.2": {
+      "asset": "fx",
+      "x": 627,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "anchorX": 161.0,
+      "anchorY": 176.5,
+      "visibleBounds": [
+        92,
+        141,
+        230,
+        212
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.auto.3": {
+      "asset": "fx",
+      "x": 940,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "anchorX": 160.0,
+      "anchorY": 192.0,
+      "visibleBounds": [
+        103,
+        170,
+        217,
+        214
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.passive.0": {
+      "asset": "fx",
+      "x": 0,
+      "y": 627,
+      "width": 314,
+      "height": 313,
+      "anchorX": 172.0,
+      "anchorY": 160.0,
+      "visibleBounds": [
+        148,
+        122,
+        196,
+        198
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.passive.1": {
+      "asset": "fx",
+      "x": 314,
+      "y": 627,
+      "width": 313,
+      "height": 313,
+      "anchorX": 165.5,
+      "anchorY": 155.5,
+      "visibleBounds": [
+        112,
+        101,
+        219,
+        210
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.passive.2": {
+      "asset": "fx",
+      "x": 627,
+      "y": 627,
+      "width": 313,
+      "height": 313,
+      "anchorX": 162.0,
+      "anchorY": 156.5,
+      "visibleBounds": [
+        107,
+        101,
+        217,
+        212
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.passive.3": {
+      "asset": "fx",
+      "x": 940,
+      "y": 627,
+      "width": 314,
+      "height": 313,
+      "anchorX": 154.5,
+      "anchorY": 165.5,
+      "visibleBounds": [
+        120,
+        136,
+        189,
+        195
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.ultimate.0": {
+      "asset": "fx",
+      "x": 0,
+      "y": 940,
+      "width": 314,
+      "height": 314,
+      "anchorX": 166.0,
+      "anchorY": 143.0,
+      "visibleBounds": [
+        125,
+        128,
+        207,
+        158
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.ultimate.1": {
+      "asset": "fx",
+      "x": 314,
+      "y": 940,
+      "width": 313,
+      "height": 314,
+      "anchorX": 158.0,
+      "anchorY": 123.0,
+      "visibleBounds": [
+        104,
+        81,
+        212,
+        165
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.ultimate.2": {
+      "asset": "fx",
+      "x": 627,
+      "y": 940,
+      "width": 313,
+      "height": 314,
+      "anchorX": 159.5,
+      "anchorY": 128.5,
+      "visibleBounds": [
+        95,
+        80,
+        224,
+        177
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "fx.ultimate.3": {
+      "asset": "fx",
+      "x": 940,
+      "y": 940,
+      "width": 314,
+      "height": 314,
+      "anchorX": 155.5,
+      "anchorY": 145.0,
+      "visibleBounds": [
+        98,
+        130,
+        213,
+        160
+      ],
+      "maxEdgeAlpha": 1
+    }
+  },
+  "battle": {
+    "idle": {
+      "id": "aw2-lua:battle:idle:base-v1",
+      "durationMs": 1200,
+      "loop": true,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.idle"
+        }
+      ],
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 600,
+          "x": 0,
+          "y": -3,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1200,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+    },
+    "move": {
+      "id": "aw2-lua:battle:move:base-v1",
+      "durationMs": 680,
+      "loop": true,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.move"
+        }
+      ],
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 340,
+          "x": 0,
+          "y": -3,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 680,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+    },
+    "attack": {
+      "id": "aw2-lua:battle:attack:base-v1",
+      "durationMs": 760,
+      "loop": false,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.idle"
+        },
+        {
+          "atMs": 120,
+          "frame": "battle.attack"
+        },
+        {
+          "atMs": 560,
+          "frame": "battle.idle"
+        }
+      ],
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 120,
+          "x": -10,
+          "y": 0,
+          "rotation": -0.02,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 220,
+          "x": 22,
+          "y": 0,
+          "rotation": 0.02,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 300,
+          "x": -6,
+          "y": 0,
+          "rotation": -0.01,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 380,
+          "x": 30,
+          "y": 0,
+          "rotation": 0.02,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 760,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [
+        {
+          "atMs": 220,
+          "kind": "contact",
+          "skill": "basic"
+        },
+        {
+          "atMs": 380,
+          "kind": "contact",
+          "skill": "basic"
+        }
+      ],
+      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+    },
+    "cast": {
+      "id": "aw2-lua:battle:cast:base-v1",
+      "durationMs": 1080,
+      "loop": false,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.cast"
+        }
+      ],
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 540,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1080,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [
+        {
+          "atMs": 420,
+          "kind": "contact",
+          "skill": "auto"
+        }
+      ],
+      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+    },
+    "hit": {
+      "id": "aw2-lua:battle:hit:base-v1",
+      "durationMs": 520,
+      "loop": false,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.hit"
+        }
+      ],
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 100,
+          "x": -16,
+          "y": 0,
+          "rotation": -0.06,
+          "scale": 1,
+          "opacity": 0.72
+        },
+        {
+          "atMs": 520,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+    },
+    "guard": {
+      "id": "aw2-lua:battle:guard:base-v1",
+      "durationMs": 1000,
+      "loop": true,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.guard"
+        }
+      ],
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 500,
+          "x": 0,
+          "y": -3,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1000,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+    },
+    "ultimate": {
+      "id": "aw2-lua:battle:ultimate:base-v1",
+      "durationMs": 1320,
+      "loop": false,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.ultimate"
+        }
+      ],
+      "motion": [
+        {
+          "atMs": 0,
+          "x": -10,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 360,
+          "x": -15,
+          "y": 0,
+          "rotation": -0.02,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 560,
+          "x": 80,
+          "y": 0,
+          "rotation": 0.02,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1320,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [
+        {
+          "atMs": 560,
+          "kind": "contact",
+          "skill": "ultimate"
+        }
+      ],
+      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+    },
+    "defeat": {
+      "id": "aw2-lua:battle:defeat:base-v1",
+      "durationMs": 1000,
+      "loop": false,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.defeat"
+        }
+      ],
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1000,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 0.8
+        }
+      ],
+      "markers": [],
+      "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"
+    }
+  },
+  "world": {
+    "down": {
+      "idle": "world.down.0",
+      "walk": [
+        "world.down.1",
+        "world.down.2",
+        "world.down.3",
+        "world.down.2"
+      ],
+      "frameMs": 150
+    },
+    "left": {
+      "idle": "world.left.0",
+      "walk": [
+        "world.left.1",
+        "world.left.2",
+        "world.left.3",
+        "world.left.2"
+      ],
+      "frameMs": 150
+    },
+    "right": {
+      "idle": "world.right.0",
+      "walk": [
+        "world.right.1",
+        "world.right.2",
+        "world.right.3",
+        "world.right.2"
+      ],
+      "frameMs": 150
+    },
+    "up": {
+      "idle": "world.up.0",
+      "walk": [
+        "world.up.1",
+        "world.up.2",
+        "world.up.3",
+        "world.up.2"
+      ],
+      "frameMs": 150
+    }
+  },
+  "skills": {
+    "basic": {
+      "id": "aw2-lua:skill:basic",
+      "displayName": "Nhịp Giòn",
+      "battleState": "attack",
+      "fx": [
+        "fx.basic.0",
+        "fx.basic.1",
+        "fx.basic.2",
+        "fx.basic.3"
+      ],
+      "fxTriggerAtMs": 220,
+      "fxPlacement": {
+        "attachment": "contact",
+        "layer": "front",
+        "x": 200,
+        "y": -220,
+        "scale": 1.2
+      },
+      "trigger": "authored presentation cue; combat owns validation, interruption and outcome",
+      "fxFrameMs": 90,
+      "audio": {
+        "id": "aw2-lua:audio:basic",
+        "url": "/dev/aw2/assets/lua/base-v1/basic.wav",
+        "durationMs": 160,
+        "sampleRate": 22050,
+        "sha256": "691fc981b4fa59d132489dd2a33f8f24decd28934a21b7ac510ff90057e7fe31",
+        "method": "original deterministic additive synthesis + seeded noise"
+      },
+      "projectile": null,
+      "scope": "animation reference; actual combat not implemented",
+      "fxCueAtMs": [
+        220,
+        380
+      ]
+    },
+    "auto": {
+      "id": "aw2-lua:skill:auto",
+      "displayName": "Chuyền Hơi Ấm",
+      "battleState": "cast",
+      "fx": [
+        "fx.auto.0",
+        "fx.auto.1",
+        "fx.auto.2",
+        "fx.auto.3"
+      ],
+      "fxTriggerAtMs": 420,
+      "fxPlacement": {
+        "attachment": "unit",
+        "layer": "behind",
+        "x": 100,
+        "y": -130,
+        "scale": 1.8
+      },
+      "trigger": "authored presentation cue; combat owns validation, interruption and outcome",
+      "fxFrameMs": 110,
+      "audio": {
+        "id": "aw2-lua:audio:auto",
+        "url": "/dev/aw2/assets/lua/base-v1/auto.wav",
+        "durationMs": 340,
+        "sampleRate": 22050,
+        "sha256": "7702b45c6e648c83b071df86257845d5fda0e8b685daffce834ac31c6107b0ac",
+        "method": "original deterministic additive synthesis + seeded noise"
+      },
+      "projectile": null,
+      "scope": "animation reference; actual combat not implemented",
+      "fxCueAtMs": [
+        420
+      ]
+    },
+    "passive": {
+      "id": "aw2-lua:skill:passive",
+      "displayName": "Đúng Giờ",
+      "battleState": "guard",
+      "fx": [
+        "fx.passive.0",
+        "fx.passive.1",
+        "fx.passive.2",
+        "fx.passive.3"
+      ],
+      "fxTriggerAtMs": 180,
+      "fxPlacement": {
+        "attachment": "unit",
+        "layer": "front",
+        "x": 0,
+        "y": -115,
+        "scale": 1.3
+      },
+      "trigger": "same-target rhythm event from combat; capped",
+      "fxFrameMs": 110,
+      "audio": {
+        "id": "aw2-lua:audio:passive",
+        "url": "/dev/aw2/assets/lua/base-v1/passive.wav",
+        "durationMs": 220,
+        "sampleRate": 22050,
+        "sha256": "c3de9608350bdf001492dda0fb8d5468ceb9685ba620d180bf44fedc6c504795",
+        "method": "original deterministic additive synthesis + seeded noise"
+      },
+      "projectile": null,
+      "scope": "animation reference; actual combat not implemented",
+      "fxCueAtMs": [
+        180
+      ]
+    },
+    "ultimate": {
+      "id": "aw2-lua:skill:ultimate",
+      "displayName": "Dọc Phố Sớm",
+      "battleState": "ultimate",
+      "fx": [
+        "fx.ultimate.0",
+        "fx.ultimate.1",
+        "fx.ultimate.2",
+        "fx.ultimate.3"
+      ],
+      "fxTriggerAtMs": 560,
+      "fxPlacement": {
+        "attachment": "unit",
+        "layer": "behind",
+        "x": 130,
+        "y": -85,
+        "scale": 2
+      },
+      "trigger": "authored presentation cue; combat owns validation, interruption and outcome",
+      "fxFrameMs": 110,
+      "audio": {
+        "id": "aw2-lua:audio:ultimate",
+        "url": "/dev/aw2/assets/lua/base-v1/ultimate.wav",
+        "durationMs": 460,
+        "sampleRate": 22050,
+        "sha256": "694632c4a539938bf5f02ea2bf007a3297b8bb9a8b6ddcba198ef58c6ae0a812",
+        "method": "original deterministic additive synthesis + seeded noise"
+      },
+      "projectile": null,
+      "scope": "animation reference; actual combat not implemented",
+      "fxCueAtMs": [
+        560
+      ]
+    }
+  },
+  "provenance": {
+    "generator": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-20",
+    "prompts": "/dev/aw2/assets/lua/base-v1/prompts.json",
+    "externalReferences": [],
+    "referenceAsset": "aw2-lua:portrait:base-v1",
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "audio": "original deterministic synthesis, no external recordings",
+    "processing": "unchanged source PNGs; lossless WebP encoding with real alpha; measured cell rectangles/visible pivots; portrait also used as identity reference; no repaint/masking/mirroring/resizing",
+    "alphaEdgeTolerance": 8
+  }
+}

@@ -1,3 +1,7 @@
+# Adventure World 2 · Nhánh phát triển game mới
+
+AW2 đang được ươm tạo từ `game/adventure-world-2`. Đọc [tài liệu và tiến độ AW2](docs/aw2/README.md) trước khi tiếp tục plan. Đã có kho save riêng/migration v1→v2 và world thử nghiệm gồm 6 zone, 3 nhiệm vụ đầu, puzzle và đội khởi đầu 5 người. Sau `pnpm dev`, mở `/dev/aw2/world.html` hoặc `/dev/aw2/index.html`. World vẫn dùng hình khối debug; cả 5 starter đã có bộ asset tham chiếu bốn hướng/tám tư thế HD, chân dung, FX và cue riêng tại `/dev/aw2/starters.html`. Battle dùng tư thế gốc và chuyển động nội suy. Combat/leveling thật, 7 bộ art còn lại, loot và gacha chưa hoàn tất. Các mục Soul of Meal bên dưới là tài liệu của game hiện tại.
+
 # Soul of Meal · Web 5.9.20 · Sổ chung và hành trình văn hóa
 
 Nút **▤ Sổ** ở TCG, Phiêu lưu, Auto chess, Rương và PvP mở manga giới thiệu 4 chương hoặc **9 chặng văn hóa / 27 bước tương tác**. Các cuộc gặp có người truyền nghề, món ăn, lựa chọn, phản hồi và trang lưu niệm; tiếp tục được từ tiến trình TCG hoặc Adventure. Sửa thẻ manga giới thiệu bị co và đè lên bìa truyện trong Adventure.

@@ -1,0 +1,61 @@
+:root { font-family: system-ui, sans-serif; color: #ede7db; background: #121c1b; color-scheme: dark; line-height: 1.6; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.aw2-save { width: min(100% - 2rem, 50rem); margin: 3rem auto; }
+.eyebrow { color: #b8d6be; font-size: .8rem; letter-spacing: .12em; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); margin: .5rem 0; }
+h2 { font-size: 1.2rem; }
+section, dialog { border: 1px solid #60756b; background: #1b2a27; padding: 1.5rem; border-radius: 1rem; }
+section { margin: 2rem 0; }
+code, dd { overflow-wrap: anywhere; }
+dl > div { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: .5rem; margin: .5rem 0; }
+dt, .note { color: #b7c5be; }
+dd { margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+button, input { font: inherit; min-height: 44px; border: 1px solid #a3b4a8; border-radius: .5rem; padding: .6rem .9rem; }
+button { background: #c4dbbb; color: #122319; font-weight: 650; cursor: pointer; }
+button.danger { background: #49302b; color: #ffe0cd; border-color: #d3947e; }
+button:disabled { opacity: .5; cursor: default; }
+:focus-visible { outline: 3px solid #f5d68b; outline-offset: 4px; }
+[role="alert"] { color: #ffc2a9; }
+[role="status"] { min-height: 1.6em; }
+dialog { color: inherit; width: min(100% - 2rem, 36rem); max-height: calc(100dvh - 2rem); overflow-y: auto; }
+dialog::backdrop { background: rgb(0 0 0 / 75%); }
+dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
+@media (max-width: 480px) { .aw2-save { margin-top: 1.5rem; } section, dialog { padding: 1rem; } dl > div { grid-template-columns: 1fr; gap: 0; } }
+.aw2-world { width: min(100% - 2rem, 62rem); }
+.aw2-world-map { position: relative; width: 100%; background: #203c35; aspect-ratio: 5 / 3; }
+.aw2-world-map canvas { display: block; width: 100%; height: auto; }
+.aw2-world-label { position: absolute; transform: translate(-50%, -125%); font-size: clamp(.65rem, 1.2vw, .8rem); width: 20%; text-align: center; line-height: 1.2; pointer-events: none; color: #fff5dc; text-shadow: 1px 1px #000; }
+.aw2-world a { color: #f0d797; }
+.aw2-asset-preview { width: min(100% - 2rem, 64rem); }
+.aw2-asset-preview a { color: #f0d797; }
+.aw2-asset-stage { max-width: 640px; margin: 1.5rem auto 0; border: 1px solid #60756b; border-radius: 1rem; overflow: hidden; background: repeating-conic-gradient(#283e36 0 25%, #20342e 0 50%) 0 / 32px 32px; }
+.aw2-asset-stage canvas { display: block; width: 100%; height: auto; }
+.aw2-asset-preview .actions { align-items: center; }
+.aw2-asset-preview label { display: inline-flex; gap: .5rem; align-items: center; min-height: 44px; }
+.aw2-asset-preview input[type="checkbox"] { width: 1.25rem; min-height: 1.25rem; accent-color: #d5b77a; }
+.aw2-asset-preview button[aria-pressed="true"] { outline: 2px solid #f5d68b; outline-offset: 2px; }
+.aw2-asset-details { display: flex; align-items: flex-start; gap: 1.5rem; }
+.aw2-asset-details img { object-fit: contain; flex-shrink: 0; }
+@media (max-width: 600px) { .aw2-asset-details { flex-direction: column; } }
+.aw2-battle { width: min(100% - 2rem, 76rem); }
+.aw2-battle-stage { width: 100%; overflow: hidden; border: 1px solid #60756b; border-radius: 1rem; background: #172b31; }
+.aw2-battle-stage canvas { display: block; width: 100%; height: auto; }
+.aw2-battle-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; margin-bottom: 1rem; }
+.aw2-battle-controls label { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; }
+.aw2-battle-controls select { display: block; min-height: 44px; border: 1px solid #a3b4a8; border-radius: .5rem; padding: .55rem .8rem; background: #13231f; color: inherit; }
+.aw2-battle-controls input[type="checkbox"] { width: 1.25rem; min-height: 1.25rem; accent-color: #d5b77a; }
+.aw2-battle-summary { color: #e8d6a2; }
+.aw2-ultimate-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: .75rem; }
+.aw2-ultimate-grid article { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .65rem; align-items: center; border: 1px solid #50695f; border-radius: .75rem; padding: .75rem; background: #14221f; }
+.aw2-ultimate-grid img { grid-row: span 2; object-fit: cover; border-radius: .5rem; }
+.aw2-ultimate-grid small { display: block; color: #b7c5be; }
+.aw2-ultimate-grid button { justify-self: start; }
+.aw2-event-log { max-height: 14rem; overflow-y: auto; padding-left: 1.5rem; }
+.aw2-event-log li { margin: .3rem 0; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .aw2-battle-controls > * { width: 100%; }
+  .aw2-ultimate-grid article { grid-template-columns: 3.5rem minmax(0, 1fr); }
+  .aw2-ultimate-grid img { width: 56px; height: 56px; }
+}
