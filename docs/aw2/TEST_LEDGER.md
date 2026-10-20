@@ -27,6 +27,10 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
 Current AW2-007C verifies the debug four-quest/world/boss/save v3 flow below. Gacha/numerical inventory grants, full authored art/device and vertical-slice gates have not run. Historical AW2-001/006A/007A/B records remain scoped to their original refs/schema/feature gates; latest entries supersede affected current rows.
 
+## AW2-012B direct-branch policy / cleanup — 2026-10-21
+
+IN_PROGRESS. Baseline local/remote AW2 `ccddfd69404860e48829f79b588c65a7408054ef`; retained remote master `f9d39257d17b4dd378a2fbd2a9f936724754fc16`. Windows10.0.26200 /PowerShell /Git. Scope: documentation/process policy D16 and branch refs only. Task card precedes edits/deletion. Fresh `git fetch --prune MealGacha`, default-branch readback, open-PR #79 metadata and79 remote/5 local ancestry audits executed:73 remote/3 local candidates are reachable from retained AW2 or master;6 remote/2 local refs retained. Policy push/deletion/post-cleanup checks pending. Runtime unit/browser/build NOT_RUN for this task; earlier source-bound results remain historical. [Task](tasks/AW2-012B.md).
+
 ## AW2-012A long-lived integration / push — 2026-10-21
 
 Explicit owner authorization; existing canonical target `game/adventure-world-2`. Refreshed baseline `f0d588461f2408a8e0a1ee49a78b36af5a8c7476`; exact fast-forward source `82b85cd054e001d8a8dafbc9ea4467f5442842dc`, which contains implementation03b92e2 and continuation7bb0bf1. Windows10.0.26200 x64 /Node25.2.0 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5. Following changes documentation only. `pnpm` below was invoked through `node .asset-work/aw2-tools/node_modules/pnpm/bin/pnpm.cjs`; package/lockfile unchanged.

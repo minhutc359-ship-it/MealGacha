@@ -3,10 +3,21 @@ scretary → reads repo/ref and documents; BA → task card (scope, AC, test imp
 Task states BACKLOG, READY, IN_PROGRESS, REVIEW, VERIFIED, MERGED/BLOCKED.
 Every handoff: ID, base/head commit, exact paths, accepted decisions, tested vs not tested, failed/blockers, next owner.
 Conflicts: immutable identity → character; lore → story; balance → mechanic; asset manifest → animation; QA claims → tester; requirement trade-off → BA/owner; indexing → scretary.
-Per-feature branches based on long-lived AW2 branch. No auto merge/master writes. Stable legacy data untouched by pre-release AW2 reset.
+## Current branch policy — owner instruction 2026-10-21
 
-Owner instruction 2026-10-20: after each completed task, verify, update the handoff, commit and push the feature branch automatically. This authorizes feature pushes without asking again; it does not authorize merges, master updates, deployment or releases. Verify the remote ref and record any push failure honestly.
+Develop AW2 directly on `game/adventure-world-2`. Do not create a new feature branch for ordinary continuation work. This standing owner instruction supersedes the earlier per-feature-branch default and AW2-012A's one-time-integration restriction; the historical records remain evidence of the policy at their dates.
 
-Owner instruction 2026-10-21 explicitly authorizes integrating/pushing all completed AW2 features to the long-lived `game/adventure-world-2` branch for AW2-012A. The spelling `game/advanture-world-2` refers to that existing branch, consistent with AW2-012. This one-time target integration does not change the default policy for later feature work or authorize master/deployment/releases.
+At task start, inspect the worktree, current branch, remote AW2 head and relevant open PRs. Stay on the AW2 branch and preserve local/remote work. If the remote advanced, inspect and incorporate its commits without rewriting remote history before continuing; a rejected push is a reason to recheck state, not to force-update it.
 
-Git Credential Manager has multiple cached GitHub accounts on this workspace. For this repository's existing owner login, command-scoped selection avoids an interactive account picker: `git -c credential.username=minhutc359-ship-it -c credential.interactive=false push -u MealGacha <feature-branch>`. This uses the cached login without changing global Git settings or printing credentials.
+After each completed task: execute the checks required by its change impact, update STATUS/BACKLOG/HANDOFF/TEST_LEDGER and other affected documents, commit on `game/adventure-world-2`, then push that exact branch automatically and compare remote SHA with local HEAD. No additional branch/PR/merge is required. A failed check or push must be recorded honestly. Master updates, unrelated feature integration, deployment and releases still require separate explicit authorization; stable legacy data remains untouched by AW2 development resets.
+
+Git Credential Manager has multiple cached GitHub accounts on this workspace. Use command-scoped owner selection without changing global settings or printing credentials:
+
+```sh
+git -c credential.username=minhutc359-ship-it -c credential.interactive=false push MealGacha game/adventure-world-2:refs/heads/game/adventure-world-2
+git -c credential.helper= ls-remote --heads https://github.com/minhutc359-ship-it/MealGacha refs/heads/game/adventure-world-2
+```
+
+## Branch cleanup — AW2-012B
+
+The owner also explicitly requests deleting redundant local/remote branches in this cleanup. Refresh refs and inspect open PRs/worktrees first. A branch is eligible only when its exact head is an ancestor of retained remote AW2 or master and is neither default/current/worktree nor an open-PR head/base. Keep unmerged histories and record the reason. Delete explicit audited refs with expected-SHA guards, retain an inventory of original names/SHAs/reachable retained refs, then verify actual remote/local lists. This cleanup request does not authorize discarding unmerged work or closing PRs. See [task and audit](tasks/AW2-012B.md).

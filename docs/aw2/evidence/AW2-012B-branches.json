@@ -1,0 +1,743 @@
+{
+  "task": "AW2-012B",
+  "date": "2026-10-21",
+  "status": "PLANNED",
+  "repository": "minhutc359-ship-it/MealGacha",
+  "baseline": "ccddfd69404860e48829f79b588c65a7408054ef",
+  "retainedAncestryRefs": {
+    "game/adventure-world-2": "ccddfd69404860e48829f79b588c65a7408054ef",
+    "master": "f9d39257d17b4dd378a2fbd2a9f936724754fc16"
+  },
+  "openPr": {
+    "number": 79,
+    "head": "feat/web-v5924-japan-models",
+    "base": "master"
+  },
+  "remoteDeletionCandidates": [
+    {
+      "name": "chore/drop-generated-qa-screenshots",
+      "sha": "2db376295522999529c08f9d15208f43fe2e1b62",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/android-v4-beta",
+      "sha": "9628a492d4d46b9722b079bce45fd261193cf5dc",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/anime-stage-and-retro-score",
+      "sha": "d96946ae2bcefddfd5b93020295ac0b60acaee12",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/auto-roster-shortcuts",
+      "sha": "45bca8f4580c45978ef74e20299ef9847ff6f2b7",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/aw2-007b-battle-renderer",
+      "sha": "5186dd8a5a9970828df71455bf0cf4a020b2c17f",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/aw2-007b-browser-qa",
+      "sha": "7bb0bf131e5994887429d8da7fd23c857d5d18b1",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/aw2-007c-world-boss",
+      "sha": "82b85cd054e001d8a8dafbc9ea4467f5442842dc",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/battle-audio-and-skill-effects",
+      "sha": "428bde649dd2dc65854671e0af20bd06dba27954",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/campaign-atlas-visual-polish",
+      "sha": "3ed6fd4b4cd4aede37d2bee36fe8fe42a791f0af",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/challenge-character-roster",
+      "sha": "b514261e8c3a1544b9a5b18a1f922b78d4f591c2",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/chapter-map-7-12",
+      "sha": "cef0c4263d8b6dc01858f862da3e73c1dd96163f",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/deeper-decks-and-willpower",
+      "sha": "b55bc1b729e6faf9a8b1e55bfeb124b4b0e213ce",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/exclusive-seasonal-food-pools",
+      "sha": "04992d57813c7fc73d5da762a57eda855d80e546",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/flavorbound-tcg",
+      "sha": "d92ddc69e4fa5b87cd5de0d69d0a6906710e1ee0",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/living-table-combos-and-journeys",
+      "sha": "c9c4860b7bb2e5ab4a29f1f63c2c229451e56441",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/memory-echoes-combat",
+      "sha": "540c314436db36e86cfe996a08287081416f024e",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/new-year-cooling-summer-events",
+      "sha": "cbd4993dfcbb026b4b167c412d67ab5006246d63",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/product-plan-v2-events-profile",
+      "sha": "bc955262fcabffee4c9e39662faae07ceec892a4",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/v4-complete-release",
+      "sha": "29a6b811d19fddb066fa5a88fd522aa8d83a8632",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/v4-living-market",
+      "sha": "6f57a1b7f24c8621cd70168b731c3dbb25f9edd2",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/viewport-elemental-effects",
+      "sha": "e3c10cb98adc0304dd35eb02901264559f9afd0b",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v410-living-world",
+      "sha": "b502c0867a69fda6c845d3570de8c8b1b2552877",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v420-adventure",
+      "sha": "0da755e0c0f9883c0e51240df43bf5b4ccc387a4",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v430-adventure-world",
+      "sha": "7c25bd1df533bbb552997231bab1f03845bf5f2c",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v433-adventure-screen",
+      "sha": "840cd141cc22916fe2549db642983b7cbd392f06",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v440-presentation",
+      "sha": "62a1673daafbb1712c7ca6b303e92aec007a8280",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v460-adventure-flow",
+      "sha": "09b4c2783cc2a4107266c74d4fa8509a1de9c19e",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v470-tcg-four-slots",
+      "sha": "6d2b5ee4df9a7e853cbe320e95fad407db61d67a",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v480-trap-art",
+      "sha": "229fd6ca4f0a7b4d31b3a64c9b741c3c4504efac",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v490-hosted-pvp",
+      "sha": "858367994b047e25124827a0c98e256119e67189",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v500-adventure-campaign",
+      "sha": "dd0e1499c89b0680d72aec02044bbdd86a800482",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v510-spirit-finesse",
+      "sha": "b59d662802e3e284f55b97201a65a05f09688c55",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v520-rpg-combat",
+      "sha": "7571b062eae3089b2314993b0c9d7964163c84d5",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v530-spirit-awakening",
+      "sha": "c9aa49d17e72d76a31f612e390823b459c9fbce4",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v560-adventure-presentation",
+      "sha": "f8c41227b1a9d5f5070b6ab8374af0e152388afa",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v570-advanced-campaign",
+      "sha": "e211e69d8872589ac3b9b6ebdf96a8b06e91c4c5",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v580-adventure-completion",
+      "sha": "4807effcfb8e72c063a2abcc21a47fd546e19f0c",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v582-spells-story-map",
+      "sha": "f7a8e18c75017b5c994881ae38bf7c2f32d248b2",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v590-starter-polish",
+      "sha": "61a579df7728064dd24c35e17058a6c2b05764ba",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v591-visual-manifest",
+      "sha": "14d235a87f0b996715c59c2829c441a0fcf5024d",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5910-regional-spirits",
+      "sha": "c992f32c63f31809322267f0c73ca10149ce2df8",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5911-spring-caravan",
+      "sha": "ed1b1b289eddb484c83e7c1fe96d095e79621f9e",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5912-vietnam-portraits",
+      "sha": "76f6b2eb838e4be97a7193cbf2e55ea0b9cdde75",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5913-autochess-core",
+      "sha": "64808b8b32f4373040f69656f383fa7c69dd543d",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5914-spirit-batch",
+      "sha": "b78c5cb83d5dfaef36fe7ead2be4af13467f8203",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5915-manga-chronicle",
+      "sha": "29b417a5db12a695c98bd6cd2c53d5642cfec58f",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5916-manga-reader",
+      "sha": "c1f325c19b30328be91c5a9cb4a03ea2f0cd92a5",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5917-combat-vfx-recovery",
+      "sha": "add3abd4853b69746a4993b3aa2e82180f5b423a",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5917-priority-spirit-models",
+      "sha": "7f24bc36724e6b92412661e20171849835d99c8e",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5918-introduction-manga",
+      "sha": "780a07d92a3d2b113aec80d9945a84a591169889",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5919-update-popup",
+      "sha": "6e7c9b326ff7c6d04805c318a01d7b8d3ccbbd9c",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v592-web-budget",
+      "sha": "c01c781d039964897114beedcf09e7e335539fa7",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5920-culture-and-library",
+      "sha": "e3b45f6c8f1fa90ff8c0f8ed83f29eedba716bbe",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v5921-spirit-models-vfx",
+      "sha": "06776f8484604d8e90f619b50109b818a51f7d25",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v593-chef-production",
+      "sha": "63cbe7fda363d7e742b1d4bdefbf26781909f018",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v594-familiar-spirits",
+      "sha": "354668e52077ba0a9d65ee600f428cb651bf3bb6",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v595-rare-spirits",
+      "sha": "13f094cfb324e1e44f1e0855b0cf111a39d4feb5",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v598-campaign-bosses",
+      "sha": "a11672c21ae0164badeb973581bab5359378a91c",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/web-v599-campaign-creatures",
+      "sha": "8ae6a42ea6b5239ca56714dce2c30e1abb50b6a4",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feature/foodchest-ui-v2",
+      "sha": "a1250305a665e580d4b353cd5051962fd6e0a24a",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/autochess-overtime",
+      "sha": "2e7301aef4400f0ac32dbdc380ff62a1d958d273",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/card-scroll-autochess-victory",
+      "sha": "6aac8aca91e918dcdd23588b0f16e6200ee12b2e",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/center-mobile-chest-ritual",
+      "sha": "057bff78ca7c54d68a2a84311433cd34783dd8cd",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/chest-reveal-and-banner-polish",
+      "sha": "682c09a1e0ee2775a0b013fe0e4ac7512e36b013",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/compact-tcg-interface",
+      "sha": "6b98c0d1a0ab9cc5c6a1be6768978626556986e6",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/readable-battle-card-library",
+      "sha": "230b981a76b2fc16c6bc95ba657bd68c00145f47",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/restore-popups-dev-events",
+      "sha": "6a7523decfb9da9ae68fbc510919830e3a7dc4af",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/use-result-spin-reward-audio",
+      "sha": "ab3a1a46f1467832183ffc6b15f781128f4cf5a5",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/v4-clearer-dialogue",
+      "sha": "f92f927e4a67dfbf995544a4cb423ad95c719e15",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/web-guide-live-demo",
+      "sha": "7fbe09225910490ad2d3f371b3e5f087290af139",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/web-v5917-authored-skill-vfx",
+      "sha": "a5fb8dd90ec367db306236b496867a57a618e096",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/web-v5917-autochess-elemental-attacks",
+      "sha": "4b5077a7f2f8aa8565204a9c61709f84ae7bab21",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "fix/web-v5923-adventure-attack-range",
+      "sha": "26a54216d0cc99f4283e4a546296fddc609e56e1",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    }
+  ],
+  "localDeletionCandidates": [
+    {
+      "name": "feat/aw2-007b-browser-qa",
+      "sha": "7bb0bf131e5994887429d8da7fd23c857d5d18b1",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feat/aw2-007c-world-boss",
+      "sha": "82b85cd054e001d8a8dafbc9ea4467f5442842dc",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2"
+      ],
+      "result": "PENDING"
+    },
+    {
+      "name": "feature/foodchest-ui-v2",
+      "sha": "65169b67727d4538e7a454a458872bbf1247d91e",
+      "retainedBy": [
+        "MealGacha/game/adventure-world-2",
+        "MealGacha/master"
+      ],
+      "result": "PENDING"
+    }
+  ],
+  "retainedRemote": [
+    {
+      "name": "feat/web-v450-traps",
+      "sha": "bc5f98394ca81d45296d8d5ec1072df42964d264",
+      "reason": "Head has merge commit outside retained AW2/master history."
+    },
+    {
+      "name": "feat/web-v5924-japan-models",
+      "sha": "441ada9c30f950505da85e5cc6cffa29411f8d73",
+      "reason": "Open PR #79 head; unmerged Japan models commit."
+    },
+    {
+      "name": "game/adventure-world-2",
+      "sha": "ccddfd69404860e48829f79b588c65a7408054ef",
+      "reason": "Current AW2 development branch; preserve and push documentation here."
+    },
+    {
+      "name": "master",
+      "sha": "f9d39257d17b4dd378a2fbd2a9f936724754fc16",
+      "reason": "Repository default branch; preserve unchanged."
+    },
+    {
+      "name": "research/soul-of-meal-v4-major-update",
+      "sha": "8c04b9c13ba4d76c97c2faebb40babd42589e780",
+      "reason": "Head has merge commit outside retained AW2/master history."
+    },
+    {
+      "name": "rpg",
+      "sha": "5f14e42b1ab8e35764c379f2c5b14e81e5be945f",
+      "reason": "New PR #81 merge 5f14e42 is outside retained AW2/master history."
+    }
+  ],
+  "retainedLocal": [
+    {
+      "name": "game/adventure-world-2",
+      "sha": "ccddfd69404860e48829f79b588c65a7408054ef",
+      "reason": "Current AW2 development branch; preserve and push documentation here."
+    },
+    {
+      "name": "master",
+      "sha": "98843584b5f747dbaaf8c52c0db2dab1c0f26996",
+      "reason": "Repository default branch; preserve unchanged."
+    }
+  ]
+}

@@ -2,6 +2,12 @@
 
 > Scope: the long-lived `game/adventure-world-2` development branch. This is the **next-game incubator**, not a patch to released Soul of Meal. Stable `master` is not a merge target for game changes without owner approval.
 
+## Branch and push policy — owner instruction 2026-10-21
+- Continue AW2 development directly on `game/adventure-world-2`; do not create a new feature branch for each task.
+- After each completed task, run appropriate checks, update the required documents, commit and automatically push `game/adventure-world-2` to `MealGacha`. Verify the remote SHA equals local HEAD before reporting success. No additional branch, PR or merge approval is needed for this authorized AW2 workflow.
+- Inspect local/remote state before work; preserve concurrent commits and resolve divergence without rewriting remote history. Keep the task-card and evidence requirements below.
+- This supersedes earlier feature-branch-only instructions. Master, releases, deployment and stable game saves retain their existing restrictions. Branch cleanup must preserve default/current/worktree branches, open-PR refs and commits not included in retained branches; see `docs/aw2/WORKFLOW.md`.
+
 ## Mandatory context bootstrap (every session)
 1. Read `docs/aw2/README.md`, `docs/aw2/DECISIONS.md`, `docs/aw2/CANON.md`, `docs/aw2/STATUS.md`, `docs/aw2/BACKLOG.md`, and `docs/aw2/TEST_LEDGER.md` in that order.
 2. Review current branch, changed files, relevant open PRs, and baseline Git SHA. Do not assume a previous assistant's "done" means merged or tested.
