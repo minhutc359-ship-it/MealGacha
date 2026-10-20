@@ -7,7 +7,7 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 
 ## AW2 development preview — AW2-001 + AW2-006A
 
-Current branch: `game/adventure-world-2`; AW2-012 integrated all six completed feature histories locally at the owner's explicit request. Verified integration source `0e8fb7a893fa61ba2348843b06c1ece47dcad514`; runtime/assets match starter head `b39fc49`, asset implementation `f6a3b66`, world `b3c526b`. Full859 unit tests /84 files,212 Chromium checks, typechecks/build/file audit PASS. [Integration evidence](evidence/AW2-012.md), [handoff](HANDOFF.md). Master and feature branches unchanged; no remote push or publication. Owner approved story/12 identities/tier/kit/starter direction; rates/pity remain open (D11).
+Current feature branch: `feat/aw2-007b-battle-renderer`, implementation source `31299a4`; long-lived base `game/adventure-world-2` remains at `179cc21`. AW2-012 integrated the earlier save/world/assets histories, AW2-007A added pure combat rules, and AW2-007B now adds the standalone event battle preview in REVIEW. Current source has 876 unit tests PASS; the new Chromium gate is BLOCKED on this runner and is not claimed as PASS. [Status](STATUS.md), [handoff](HANDOFF.md), [AW2-007B evidence](evidence/AW2-007B.md). Owner-approved story/12 identities/tier/kit/starter direction remain; rates/pity are open (D11).
 
 ```sh
 pnpm install --frozen-lockfile
@@ -47,6 +47,32 @@ node dev/tools/verify-aw2-world.mjs --url http://localhost:8443/dev/aw2/world.ht
 
 The world browser script accepts the same `--playwright` and `--chromium` options; fresh isolated profile only, captures/report under `.asset-work/aw2-006a/`. See [AW2-006A task](tasks/AW2-006A.md), [latest evidence](evidence/AW2-006A.md), [current canon](CANON.md) and [handoff](HANDOFF.md). The original AW2-001 evidence remains a historical schema-v1 record; latest schema-v2 results supersede affected current test rows.
 
+## Deterministic combat core — AW2-007A
+
+`src/aw2/combat` is a development-only pure rules module for one-to-five units per side. It owns movement/range, melee contacts, launched projectiles, auto skills, manual ultimates, interruptions, bounded starter passives and the terminal result. Renderer-facing events describe outcomes that already happened; they cannot apply damage or grant rewards. Numeric stats use `aw2-combat-development-v1` and are not final approved balance.
+
+```sh
+pnpm test dev/tests/aw2/combat.test.ts
+pnpm test dev/tests/aw2
+pnpm typecheck
+pnpm typecheck:dev
+```
+
+These rules are consumed by the development preview below. World boss/save/reward integration and BATTLE-02 remain separate work. [Task](tasks/AW2-007A.md) · [evidence](evidence/AW2-007A.md).
+
+## Event battle preview — AW2-007B
+
+Open `http://localhost:8443/dev/aw2/battle.html`. The five approved starters auto-fight with HD reference atlases and can use manual ultimates. Pause, step one tick, choose development levels 1/5/10/20, reset, and enable reduced motion. Enemy units temporarily reuse tinted starter atlases and are not finished enemy assets.
+
+The canvas consumes `CombatEvent` presentation state; it does not calculate damage or award outcomes. `aw2-leveling-development-v1` is a deterministic non-persistent test curve, not approved balance. This page never writes XP, rewards or save data.
+
+```sh
+pnpm test dev/tests/aw2/combat.test.ts dev/tests/aw2/battle-presentation.test.ts
+node dev/tools/verify-aw2-battle-browser.mjs --url http://localhost:8443/dev/aw2/battle.html
+```
+
+The browser verifier needs Playwright/Chromium and uses a fresh profile. Current implementation/build evidence is recorded even when that external browser gate is unavailable. [Task](tasks/AW2-007B.md) · [evidence](evidence/AW2-007B.md).
+
 ## Than asset / animation reference — AW2-004A
 
 Open `http://localhost:8443/dev/aw2/than.html` after `pnpm dev` (current verification server localhost:8452). Eight HD states, four world directions, four skill FX/audio tracks, pause/replay and reduced motion. Audio starts only after opting in. Preview does not access or change saves. World now links to the shared five-starter selector below; no follower/battle integration is implied.
@@ -83,4 +109,4 @@ node dev/tools/verify-aw2-starter-browser.mjs --url http://localhost:8443/dev/aw
 node dev/tools/verify-aw2-than-browser.mjs --url http://localhost:8443/dev/aw2/than.html
 ```
 
-Build uses the preserved sources, AW2-004A encoder/synth helpers and manifest template; it never generates or repaints art. Browser tools accept `--playwright`/`--chromium`, use fresh isolated profiles and keep QA PNGs under ignored `.asset-work/`. [Task](tasks/AW2-004B.md), [verification](evidence/AW2-004B.md), [handoff](HANDOFF.md). Next: mechanic/BA/tester scope AW2-007A actual five-unit combat rules, while animation/character complete seven non-starter references and character gates.
+Build uses the preserved sources, AW2-004A encoder/synth helpers and manifest template; it never generates or repaints art. Browser tools accept `--playwright`/`--chromium`, use fresh isolated profiles and keep QA PNGs under ignored `.asset-work/`. [Task](tasks/AW2-004B.md), [verification](evidence/AW2-004B.md), [handoff](HANDOFF.md). AW2-007B now consumes the pure rules in a development canvas; next is its Chromium gate, then trusted world/save/boss integration while animation/character complete authored enemies, seven non-starter references and character gates.

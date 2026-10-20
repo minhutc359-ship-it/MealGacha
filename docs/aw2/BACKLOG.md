@@ -10,7 +10,9 @@
 | AW2-004B | animation/character/tester | Four other starters, ranged projectile art, repeated cues and shared selector | MERGED verified reference sets, integration source 0e8fb7a; not full character/release |
 | AW2-005 | mechanic | Five-tier gacha/pity/simulation | BACKLOG |
 | AW2-006 | mechanic | Pixi free-roam map/collision; AW2-006A prototype source b3c526b | IN_PROGRESS: verified foundation MERGED, authored visuals/followers pending |
-| AW2-007 | mechanic | RPG team/battle integration | BACKLOG |
+| AW2-007 | mechanic | RPG team/battle integration | IN_PROGRESS: AW2-007A rules VERIFIED; AW2-007B renderer/leveling in REVIEW; world-save adapter pending |
+| AW2-007A | mechanic/BA/character/tester | Deterministic five-unit core, canonical events, range/projectile/interrupt and bounded starter passives | VERIFIED pure rules at fdf4a60; no UI/save/reward |
+| AW2-007B | mechanic/animation/tester | Event-driven HD battle preview and development leveling | REVIEW at 31299a4: 83 AW2 +876 full tests/build PASS; Chromium BLOCKED |
 | AW2-008 | story/mechanic | First 3 quests/puzzle prototype implemented; boss/loot/cooking pending | IN_PROGRESS (foundation only) |
 | AW2-009 | BA/mechanic | TCG/Auto Chess in-world portals & quick-entry | BACKLOG |
 | AW2-010 | all/tester | Lantern playable vertical slice | BACKLOG |
@@ -26,4 +28,8 @@ AW2-004A has a verified reference pipeline: [task](tasks/AW2-004A.md), [evidence
 
 AW2-004B: [task](tasks/AW2-004B.md), [evidence](evidence/AW2-004B.md), preview `/dev/aw2/starters.html`. Lửa Nhỏ/Lam Lam/Mộc Non/Sương Lành have distinct reference sets; all five starters resolve canonical assets. Three ranged basic flights/impacts and two-hit/two-pulse presentation cues are tested; combat outcomes remain unimplemented.
 
-Next smallest task: mechanic + BA/tester scope AW2-007A pure five-unit combat rules and deterministic tests, before renderer/boss/save integration. Keep renderer events from confirming gameplay hits or awarding outcomes; carry interruption/range/manual ultimate contracts and capped passives into the engine. Five starter reference sets make this the next vertical-slice dependency. Animation/character still owe seven sets (`aw2-muoi`, `aw2-nhien`, `aw2-hai`, `aw2-lien`, `aw2-moc`, `aw2-bach`, `aw2-van`) and all full-character combat/leveling/device/rights gates. BA/mechanic can simulate D11 without treating rates as approved. Then AW2-008 loot/cooking, AW2-009 modes, AW2-010/011 gates. No finished slice before AW2-010 verification.
+AW2-007A: [task](tasks/AW2-007A.md), [evidence](evidence/AW2-007A.md). Pure rules now own damage/heal/shield/status/interruption/terminal truth and ordered renderer events. Development numbers are not approved balance; BATTLE-02/world persistence is still NOT_RUN.
+
+AW2-007B: [task](tasks/AW2-007B.md), [evidence](evidence/AW2-007B.md). The event reducer, level projection and standalone canvas are implemented; browser/visual acceptance remains BLOCKED by the current runner and must not be called PASS.
+
+Next smallest task: tester runs the supplied Chromium verifier, then mechanic + BA/tester add trusted boss result/world/save and once-only reward integration. Animation/character still owe authored enemies, seven sets (`aw2-muoi`, `aw2-nhien`, `aw2-hai`, `aw2-lien`, `aw2-moc`, `aw2-bach`, `aw2-van`) and all full-character device/rights gates. BA/mechanic can simulate D11 without treating rates as approved. Then AW2-008 loot/cooking, AW2-009 modes, AW2-010/011 gates. No finished slice before AW2-010 verification.

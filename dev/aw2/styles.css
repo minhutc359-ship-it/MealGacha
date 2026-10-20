@@ -39,3 +39,23 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-asset-details { display: flex; align-items: flex-start; gap: 1.5rem; }
 .aw2-asset-details img { object-fit: contain; flex-shrink: 0; }
 @media (max-width: 600px) { .aw2-asset-details { flex-direction: column; } }
+.aw2-battle { width: min(100% - 2rem, 76rem); }
+.aw2-battle-stage { width: 100%; overflow: hidden; border: 1px solid #60756b; border-radius: 1rem; background: #172b31; }
+.aw2-battle-stage canvas { display: block; width: 100%; height: auto; }
+.aw2-battle-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; margin-bottom: 1rem; }
+.aw2-battle-controls label { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; }
+.aw2-battle-controls select { display: block; min-height: 44px; border: 1px solid #a3b4a8; border-radius: .5rem; padding: .55rem .8rem; background: #13231f; color: inherit; }
+.aw2-battle-controls input[type="checkbox"] { width: 1.25rem; min-height: 1.25rem; accent-color: #d5b77a; }
+.aw2-battle-summary { color: #e8d6a2; }
+.aw2-ultimate-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: .75rem; }
+.aw2-ultimate-grid article { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .65rem; align-items: center; border: 1px solid #50695f; border-radius: .75rem; padding: .75rem; background: #14221f; }
+.aw2-ultimate-grid img { grid-row: span 2; object-fit: cover; border-radius: .5rem; }
+.aw2-ultimate-grid small { display: block; color: #b7c5be; }
+.aw2-ultimate-grid button { justify-self: start; }
+.aw2-event-log { max-height: 14rem; overflow-y: auto; padding-left: 1.5rem; }
+.aw2-event-log li { margin: .3rem 0; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .aw2-battle-controls > * { width: 100%; }
+  .aw2-ultimate-grid article { grid-template-columns: 3.5rem minmax(0, 1fr); }
+  .aw2-ultimate-grid img { width: 56px; height: 56px; }
+}

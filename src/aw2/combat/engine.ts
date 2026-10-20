@@ -1,0 +1,1052 @@
+import {
+  combatSkillId,
+  isStarterSpiritId,
+  STARTER_COMBAT_KITS,
+  type StarterSpiritId,
+} from "./roster"
+import type {
+  CombatActor,
+  CombatBattle,
+  CombatCast,
+  CombatEffect,
+  CombatEffectKind,
+  CombatEvent,
+  CombatEventKind,
+  CombatSide,
+  CombatUnitSeed,
+  CreateCombatBattleInput,
+} from "./types"
+
+const MAX_UNITS = 5
+const MAX_EVENTS = 160
+const MAX_TICKS_PER_COMMAND = 64
+const ULTIMATE_ENERGY = 100
+
+const clamp = (value: number, min: number, max: number) =>
+  Math.max(min, Math.min(max, value))
+const living = (battle: CombatBattle, side?: CombatSide) =>
+  battle.actors.filter(
+    (actor) => actor.hp > 0 && (!side || actor.side === side),
+  )
+const opponent = (side: CombatSide): CombatSide =>
+  side === "player" ? "enemy" : "player"
+const byId = (battle: CombatBattle, id: string) =>
+  battle.actors.find((actor) => actor.id === id)
+const distance = (left: CombatActor, right: CombatActor) =>
+  Math.abs(left.position - right.position)
+const ratio = (actor: CombatActor) => actor.hp / actor.maxHp
+
+function copyBattle(battle: CombatBattle): CombatBattle {
+  return structuredClone(battle)
+}
+
+function assertNumber(
+  value: number,
+  label: string,
+  min: number,
+  max: number,
+): number {
+  if (!Number.isFinite(value) || value < min || value > max)
+    throw Error(`${label} không hợp lệ.`)
+  return value
+}
+
+function defaultEnemy(seed: CombatUnitSeed) {
+  const ranged = (seed.range ?? 8) > 12
+  return {
+    hp: 120,
+    attack: 24,
+    defense: 8,
+    range: ranged ? 36 : 8,
+    moveSpeed: ranged ? 5 : 6,
+    projectileTicks: ranged ? 2 : 0,
+  }
+}
+
+function actorFromSeed(
+  seed: CombatUnitSeed,
+  side: CombatSide,
+  slot: number,
+): CombatActor {
+  if (!seed.id.trim() || !seed.spiritId.trim())
+    throw Error("ID combat không được để trống.")
+  if (side === "player" && !isStarterSpiritId(seed.spiritId))
+    throw Error(`Vị Linh chưa có combat kit AW2-007A: ${seed.spiritId}`)
+  const base =
+    side === "player"
+      ? STARTER_COMBAT_KITS[(seed.spiritId as StarterSpiritId)]
+      : defaultEnemy(seed)
+  const maxHp = assertNumber(seed.maxHp ?? base.hp, "HP tối đa", 1, 1_000_000)
+  const hp = assertNumber(seed.hp ?? maxHp, "HP", 1, maxHp)
+  return {
+    id: seed.id,
+    spiritId: seed.spiritId,
+    side,
+    slot,
+    boss: seed.boss === true,
+    controlImmune: seed.controlImmune ?? seed.boss === true,
+    position: assertNumber(
+      seed.position ?? (side === "player" ? 12 + slot * 4 : 88 - slot * 4),
+      "Vị trí",
+      0,
+      100,
+    ),
+    hp,
+    maxHp,
+    attack: assertNumber(seed.attack ?? base.attack, "Tấn công", 1, 100_000),
+    defense: assertNumber(
+      seed.defense ?? base.defense,
+      "Phòng thủ",
+      0,
+      100_000,
+    ),
+    range: assertNumber(seed.range ?? base.range, "Tầm đánh", 1, 100),
+    moveSpeed: assertNumber(
+      seed.moveSpeed ?? base.moveSpeed,
+      "Tốc độ",
+      0.1,
+      100,
+    ),
+    projectileTicks: Math.floor(
+      assertNumber(
+        seed.projectileTicks ?? base.projectileTicks,
+        "Thời gian đạn",
+        0,
+        30,
+      ),
+    ),
+    energy: Math.floor(
+      assertNumber(seed.energy ?? 0, "Năng lượng", 0, ULTIMATE_ENERGY),
+    ),
+    shield: 0,
+    shieldExpiresAtTick: 0,
+    weakenUntilTick: 0,
+    slowUntilTick: 0,
+    interruptGuardCharges: 0,
+    interruptGuardUntilTick: 0,
+    nextBasicTick: Math.floor(
+      assertNumber(seed.nextBasicTick ?? 1 + slot, "Nhịp đánh", 0, 100_000),
+    ),
+    nextAutoTick: Math.floor(
+      assertNumber(
+        seed.nextAutoTick ?? (side === "player" ? 4 + slot * 2 : 100_000),
+        "Nhịp kỹ năng",
+        0,
+        100_000,
+      ),
+    ),
+    cast: null,
+    passive: {
+      thanArmed: false,
+      thanCooldownUntil: 0,
+      luaFocusTargetId: null,
+      luaFocus: 0,
+      mocSupportedIds: [],
+      suongSlowCooldowns: {},
+    },
+  }
+}
+
+export function createCombatBattle(
+  input: CreateCombatBattleInput,
+): CombatBattle {
+  if (!input.id.trim()) throw Error("Battle ID không được để trống.")
+  if (
+    !input.players.length ||
+    !input.enemies.length ||
+    input.players.length > MAX_UNITS ||
+    input.enemies.length > MAX_UNITS
+  ) {
+    throw Error("Mỗi phe combat phải có từ một đến năm đơn vị.")
+  }
+  const seeds = [...input.players, ...input.enemies]
+  if (new Set(seeds.map((seed) => seed.id)).size !== seeds.length)
+    throw Error("Combat unit ID phải duy nhất.")
+  const actors = [
+    ...input.players.map((seed, slot) => actorFromSeed(seed, "player", slot)),
+    ...input.enemies.map((seed, slot) => actorFromSeed(seed, "enemy", slot)),
+  ]
+  return {
+    rulesVersion: 1,
+    tuningId: "aw2-combat-development-v1",
+    id: input.id,
+    tick: 0,
+    status: "active",
+    actors,
+    effects: [],
+    events: [],
+    eventSerial: 0,
+    actionSerial: 0,
+  }
+}
+
+function record(
+  battle: CombatBattle,
+  kind: CombatEventKind,
+  sourceId: string | null,
+  targetIds: string[],
+  detail: Omit<CombatEvent, "serial" | "tick" | "kind" | "sourceId" | "targetIds"> = {},
+): CombatEvent {
+  const event: CombatEvent = {
+    serial: ++battle.eventSerial,
+    tick: battle.tick,
+    kind,
+    sourceId,
+    targetIds: [...targetIds],
+    ...detail,
+  }
+  battle.events.push(event)
+  if (battle.events.length > MAX_EVENTS)
+    battle.events.splice(0, battle.events.length - MAX_EVENTS)
+  return event
+}
+
+function selectEnemy(
+  battle: CombatBattle,
+  source: CombatActor,
+  preferredId?: string | null,
+): CombatActor | undefined {
+  const preferred = preferredId ? byId(battle, preferredId) : undefined
+  if (preferred?.hp && preferred.side === opponent(source.side))
+    return preferred
+  return living(battle, opponent(source.side)).sort(
+    (left, right) =>
+      distance(source, left) - distance(source, right) ||
+      ratio(left) - ratio(right) ||
+      left.slot - right.slot ||
+      left.id.localeCompare(right.id),
+  )[0]
+}
+
+function selectInjuredAlly(
+  battle: CombatBattle,
+  source: CombatActor,
+  preferredId?: string | null,
+): CombatActor | undefined {
+  const preferred = preferredId ? byId(battle, preferredId) : undefined
+  if (
+    preferred?.hp &&
+    preferred.side === source.side &&
+    preferred.hp < preferred.maxHp
+  )
+    return preferred
+  return living(battle, source.side)
+    .filter((actor) => actor.hp < actor.maxHp)
+    .sort(
+      (left, right) =>
+        ratio(left) - ratio(right) ||
+        distance(source, left) - distance(source, right) ||
+        left.slot - right.slot ||
+        left.id.localeCompare(right.id),
+    )[0]
+}
+
+function threatCount(battle: CombatBattle, targetId: string): number {
+  return (
+    battle.effects.filter(
+      (effect) => effect.targetId === targetId && effect.kind === "damage",
+    ).length +
+    battle.actors.filter(
+      (actor) => actor.cast?.targetId === targetId && actor.side === "enemy",
+    ).length
+  )
+}
+
+function selectShieldAlly(
+  battle: CombatBattle,
+  source: CombatActor,
+  preferredId?: string | null,
+): CombatActor | undefined {
+  const preferred = preferredId ? byId(battle, preferredId) : undefined
+  if (
+    preferred?.hp &&
+    preferred.side === source.side &&
+    preferred.id !== source.id
+  )
+    return preferred
+  const enemies = living(battle, opponent(source.side))
+  return living(battle, source.side)
+    .filter((actor) => actor.id !== source.id)
+    .sort((left, right) => {
+      const leftFront = enemies.length
+        ? Math.min(...enemies.map((enemy) => distance(left, enemy)))
+        : 100
+      const rightFront = enemies.length
+        ? Math.min(...enemies.map((enemy) => distance(right, enemy)))
+        : 100
+      return (
+        Number(source.passive.mocSupportedIds.includes(left.id)) -
+          Number(source.passive.mocSupportedIds.includes(right.id)) ||
+        Number(left.shield > 0) - Number(right.shield > 0) ||
+        threatCount(battle, right.id) - threatCount(battle, left.id) ||
+        leftFront - rightFront ||
+        ratio(left) - ratio(right) ||
+        left.id.localeCompare(right.id)
+      )
+    })[0]
+}
+
+function armThanPassive(battle: CombatBattle, actor: CombatActor) {
+  if (
+    actor.spiritId !== "aw2-than" ||
+    actor.passive.thanArmed ||
+    battle.tick < actor.passive.thanCooldownUntil
+  )
+    return
+  actor.passive.thanArmed = true
+  actor.passive.thanCooldownUntil = battle.tick + 8
+  record(battle, "status", actor.id, [actor.id], {
+    skillId: combatSkillId("aw2-than", "passive"),
+    text: "Than Còn Ấm đã sẵn sàng.",
+  })
+}
+
+function expireTimedState(battle: CombatBattle) {
+  for (const actor of battle.actors) {
+    if (
+      actor.shield > 0 &&
+      actor.shieldExpiresAtTick &&
+      battle.tick >= actor.shieldExpiresAtTick
+    ) {
+      actor.shield = 0
+      actor.shieldExpiresAtTick = 0
+      armThanPassive(battle, actor)
+    }
+    if (
+      actor.interruptGuardCharges &&
+      battle.tick >= actor.interruptGuardUntilTick
+    ) {
+      actor.interruptGuardCharges = 0
+      actor.interruptGuardUntilTick = 0
+    }
+  }
+}
+
+function queueEffect(
+  battle: CombatBattle,
+  source: CombatActor,
+  kind: CombatEffectKind,
+  skillId: string,
+  targetId: string | null,
+  amount: number,
+  resolveTick: number,
+  extra: Pick<CombatEffect, "areaCenter" | "areaRadius" | "pull"> = {},
+  projectile = false,
+) {
+  const serial = ++battle.actionSerial
+  const projectileId = projectile ? `projectile:${serial}` : undefined
+  const effect: CombatEffect = {
+    id: `effect:${serial}`,
+    serial,
+    sourceId: source.id,
+    skillId,
+    kind,
+    resolveTick,
+    targetId,
+    amount,
+    ...(projectileId ? { projectileId } : {}),
+    ...extra,
+  }
+  battle.effects.push(effect)
+  if (projectileId)
+    record(battle, "projectile-launch", source.id, targetId ? [targetId] : [], {
+      skillId,
+      projectileId,
+      resolveTick,
+    })
+}
+
+function startCast(
+  battle: CombatBattle,
+  actor: CombatActor,
+  slot: "auto" | "ultimate",
+  targetId: string | null,
+  ticks: number,
+) {
+  const skillId = isStarterSpiritId(actor.spiritId)
+    ? combatSkillId(actor.spiritId, slot)
+    : `${actor.spiritId}:skill:${slot}`
+  const cast: CombatCast = {
+    id: `cast:${++battle.actionSerial}`,
+    sourceId: actor.id,
+    skillId,
+    slot,
+    targetId,
+    commitTick: battle.tick + ticks,
+  }
+  actor.cast = cast
+  record(battle, "cast-start", actor.id, targetId ? [targetId] : [], {
+    skillId,
+  })
+}
+
+function applyShield(
+  battle: CombatBattle,
+  source: CombatActor,
+  target: CombatActor,
+  amount: number,
+  skillId: string,
+  duration = 5,
+) {
+  if (target.hp <= 0) {
+    record(battle, "miss", source.id, [target.id], {
+      skillId,
+      text: "Mục tiêu khiên không còn hợp lệ.",
+    })
+    return
+  }
+  const cap = Math.max(1, Math.round(target.maxHp * 0.45))
+  const previous = target.shield
+  target.shield = Math.min(cap, target.shield + Math.max(0, Math.round(amount)))
+  target.shieldExpiresAtTick = Math.max(
+    target.shieldExpiresAtTick,
+    battle.tick + duration,
+  )
+  record(battle, "shield", source.id, [target.id], {
+    skillId,
+    amount: target.shield - previous,
+  })
+  if (
+    source.spiritId === "aw2-moc-non" &&
+    target.id !== source.id &&
+    !source.passive.mocSupportedIds.includes(target.id)
+  ) {
+    source.passive.mocSupportedIds.push(target.id)
+    source.passive.mocSupportedIds = source.passive.mocSupportedIds.slice(-2)
+    if (source.passive.mocSupportedIds.length === 2) {
+      source.nextBasicTick = Math.max(battle.tick + 1, source.nextBasicTick - 1)
+      source.passive.mocSupportedIds = []
+      record(battle, "status", source.id, [source.id], {
+        skillId: combatSkillId("aw2-moc-non", "passive"),
+        text: "Mỗi Người Một Tay tăng nhịp kế tiếp.",
+      })
+    }
+  }
+}
+
+function applyHeal(
+  battle: CombatBattle,
+  source: CombatActor,
+  target: CombatActor,
+  amount: number,
+  skillId: string,
+) {
+  if (target.hp <= 0) {
+    record(battle, "miss", source.id, [target.id], {
+      skillId,
+      text: "Không thể hồi sinh mục tiêu đã bị hạ.",
+    })
+    return
+  }
+  const rounded = Math.max(0, Math.round(amount))
+  const missing = target.maxHp - target.hp
+  const restored = Math.min(missing, rounded)
+  target.hp += restored
+  record(battle, "heal", source.id, [target.id], { skillId, amount: restored })
+  if (source.spiritId === "aw2-lam" && rounded > restored) {
+    const cap = Math.round(target.maxHp * 0.2)
+    const previous = target.shield
+    target.shield = Math.min(cap, target.shield + rounded - restored)
+    target.shieldExpiresAtTick = Math.max(
+      target.shieldExpiresAtTick,
+      battle.tick + 5,
+    )
+    if (target.shield > previous)
+      record(battle, "shield", source.id, [target.id], {
+        skillId: combatSkillId("aw2-lam", "passive"),
+        amount: target.shield - previous,
+        text: "Để Nguội Vừa chuyển hồi phục dư thành bảo vệ.",
+      })
+  }
+}
+
+function luaFocusBonus(
+  battle: CombatBattle,
+  source: CombatActor,
+  target: CombatActor,
+  skillId: string,
+): number {
+  if (
+    source.spiritId !== "aw2-lua" ||
+    skillId !== combatSkillId("aw2-lua", "basic")
+  )
+    return 0
+  if (source.passive.luaFocusTargetId !== target.id) {
+    source.passive.luaFocusTargetId = target.id
+    source.passive.luaFocus = 0
+  }
+  source.passive.luaFocus = Math.min(3, source.passive.luaFocus + 1)
+  if (source.passive.luaFocus < 3) return 0
+  source.passive.luaFocus = 0
+  record(battle, "status", source.id, [target.id], {
+    skillId: combatSkillId("aw2-lua", "passive"),
+    text: "Đúng Giờ đạt nhịp nhấn.",
+  })
+  return Math.round(source.attack * 0.45)
+}
+
+function applyDamage(
+  battle: CombatBattle,
+  source: CombatActor,
+  target: CombatActor,
+  rawAmount: number,
+  skillId: string,
+  projectileId?: string,
+) {
+  if (target.hp <= 0) {
+    record(battle, "miss", source.id, [target.id], {
+      skillId,
+      ...(projectileId ? { projectileId } : {}),
+      text: "Đòn đã phóng không đổi hướng sau khi mục tiêu bị hạ.",
+    })
+    return
+  }
+  let raw = rawAmount + luaFocusBonus(battle, source, target, skillId)
+  if (source.weakenUntilTick > battle.tick) raw *= 0.75
+  const mitigated = Math.max(
+    1,
+    Math.round((raw * 100) / (100 + target.defense)),
+  )
+  const absorbed = Math.min(target.shield, mitigated)
+  target.shield -= absorbed
+  if (absorbed && target.shield === 0) {
+    target.shieldExpiresAtTick = 0
+    armThanPassive(battle, target)
+  }
+  const hpDamage = Math.min(target.hp, mitigated - absorbed)
+  target.hp -= hpDamage
+  if (skillId.endsWith(":skill:basic"))
+    source.energy = Math.min(ULTIMATE_ENERGY, source.energy + 12)
+  target.energy = Math.min(ULTIMATE_ENERGY, target.energy + 4)
+  record(battle, "hit", source.id, [target.id], {
+    skillId,
+    amount: hpDamage,
+    absorbed,
+    ...(projectileId ? { projectileId } : {}),
+  })
+  if (
+    source.spiritId === "aw2-than" &&
+    skillId === combatSkillId("aw2-than", "basic") &&
+    source.passive.thanArmed &&
+    target.hp > 0
+  ) {
+    source.passive.thanArmed = false
+    target.weakenUntilTick = Math.max(target.weakenUntilTick, battle.tick + 4)
+    record(battle, "status", source.id, [target.id], {
+      skillId: combatSkillId("aw2-than", "passive"),
+      text: "Than Còn Ấm làm yếu đòn đánh kế tiếp của mục tiêu.",
+    })
+  }
+  if (
+    source.spiritId === "aw2-suong" &&
+    skillId === combatSkillId("aw2-suong", "auto") &&
+    target.hp > 0
+  ) {
+    const cooldown = source.passive.suongSlowCooldowns[target.id] ?? 0
+    if (battle.tick >= cooldown) {
+      target.slowUntilTick = Math.max(target.slowUntilTick, battle.tick + 3)
+      source.passive.suongSlowCooldowns[target.id] = battle.tick + 8
+      record(battle, "status", source.id, [target.id], {
+        skillId: combatSkillId("aw2-suong", "passive"),
+        text: "Nét Còn Rõ làm chậm có giới hạn.",
+      })
+    }
+  }
+  if (target.hp === 0) {
+    target.cast = null
+    record(battle, "defeat", source.id, [target.id], { skillId })
+  }
+}
+
+function applyEffect(battle: CombatBattle, effect: CombatEffect) {
+  const source = byId(battle, effect.sourceId)
+  if (!source) return
+  if (effect.areaCenter !== undefined && effect.areaRadius !== undefined) {
+    const targets = living(battle, opponent(source.side))
+      .filter(
+        (target) =>
+          Math.abs(target.position - effect.areaCenter!) <= effect.areaRadius!,
+      )
+      .sort(
+        (left, right) =>
+          left.slot - right.slot || left.id.localeCompare(right.id),
+      )
+    if (!targets.length)
+      record(battle, "miss", source.id, [], {
+        skillId: effect.skillId,
+        text: "Không còn mục tiêu trong vùng hiệu lực.",
+      })
+    for (const target of targets) {
+      applyDamage(
+        battle,
+        source,
+        target,
+        effect.amount,
+        effect.skillId,
+        effect.projectileId,
+      )
+      if (effect.pull && target.hp > 0 && !target.controlImmune) {
+        const direction = effect.areaCenter > target.position ? 1 : -1
+        target.position = clamp(
+          target.position +
+            direction *
+              Math.min(
+                effect.pull,
+                Math.abs(effect.areaCenter - target.position),
+              ),
+          0,
+          100,
+        )
+        record(battle, "status", source.id, [target.id], {
+          skillId: effect.skillId,
+          text: "Mục tiêu bị kéo trong giới hạn điều khiển.",
+        })
+      }
+    }
+    return
+  }
+  const target = effect.targetId ? byId(battle, effect.targetId) : undefined
+  if (!target) {
+    record(
+      battle,
+      "miss",
+      source.id,
+      effect.targetId ? [effect.targetId] : [],
+      { skillId: effect.skillId, text: "Mục tiêu hiệu ứng không tồn tại." },
+    )
+    return
+  }
+  if (effect.kind === "damage")
+    applyDamage(
+      battle,
+      source,
+      target,
+      effect.amount,
+      effect.skillId,
+      effect.projectileId,
+    )
+  if (effect.kind === "heal")
+    applyHeal(battle, source, target, effect.amount, effect.skillId)
+  if (effect.kind === "shield")
+    applyShield(battle, source, target, effect.amount, effect.skillId)
+  if (effect.kind === "interrupt-guard" && target.hp > 0) {
+    target.interruptGuardCharges = Math.min(
+      1,
+      target.interruptGuardCharges + Math.round(effect.amount),
+    )
+    target.interruptGuardUntilTick = Math.max(
+      target.interruptGuardUntilTick,
+      battle.tick + 6,
+    )
+    record(battle, "status", source.id, [target.id], {
+      skillId: effect.skillId,
+      text: "Chung Một Mâm giảm một lần gián đoạn.",
+    })
+  }
+}
+
+function resolveDueEffects(battle: CombatBattle) {
+  const due = battle.effects
+    .filter((effect) => effect.resolveTick <= battle.tick)
+    .sort(
+      (left, right) =>
+        left.resolveTick - right.resolveTick || left.serial - right.serial,
+    )
+  battle.effects = battle.effects.filter(
+    (effect) => effect.resolveTick > battle.tick,
+  )
+  for (const effect of due) applyEffect(battle, effect)
+}
+
+function commitCast(
+  battle: CombatBattle,
+  actor: CombatActor,
+  cast: CombatCast,
+) {
+  actor.cast = null
+  const enemy = selectEnemy(battle, actor, cast.targetId)
+  const injuredAlly =
+    cast.slot === "auto" && actor.spiritId === "aw2-lam"
+      ? selectInjuredAlly(battle, actor, cast.targetId)
+      : undefined
+  const shieldAlly =
+    cast.slot === "auto" && actor.spiritId === "aw2-moc-non"
+      ? selectShieldAlly(battle, actor, cast.targetId)
+      : undefined
+  const skillId = cast.skillId
+  const teamTarget =
+    cast.slot === "ultimate" &&
+    ["aw2-than", "aw2-lam", "aw2-moc-non"].includes(actor.spiritId)
+  const committedTargets = teamTarget
+    ? living(battle, actor.side).map((ally) => ally.id)
+    : cast.slot === "auto" && actor.spiritId === "aw2-than"
+      ? [actor.id]
+      : injuredAlly
+        ? [injuredAlly.id]
+        : shieldAlly
+          ? [shieldAlly.id]
+          : enemy
+            ? [enemy.id]
+            : []
+  record(battle, "cast-commit", actor.id, committedTargets, { skillId })
+  if (cast.slot === "auto") {
+    if (actor.spiritId === "aw2-than")
+      applyShield(battle, actor, actor, actor.attack + 28, skillId, 4)
+    if (actor.spiritId === "aw2-lua" && enemy)
+      moveToward(battle, actor, enemy, Math.max(actor.moveSpeed, 10), skillId)
+    if (actor.spiritId === "aw2-lam") {
+      const ally = injuredAlly
+      if (ally)
+        queueEffect(
+          battle,
+          actor,
+          "heal",
+          skillId,
+          ally.id,
+          actor.attack * 1.8 + 12,
+          battle.tick,
+        )
+      else
+        record(battle, "miss", actor.id, [], {
+          skillId,
+          text: "Không tiêu hồi phục khi cả đội đầy máu.",
+        })
+    }
+    if (actor.spiritId === "aw2-moc-non") {
+      const ally = shieldAlly
+      if (ally)
+        queueEffect(
+          battle,
+          actor,
+          "shield",
+          skillId,
+          ally.id,
+          actor.attack + 18,
+          battle.tick,
+        )
+    }
+    if (actor.spiritId === "aw2-suong" && enemy) {
+      for (let offset = 0; offset < 3; offset++)
+        queueEffect(
+          battle,
+          actor,
+          "damage",
+          skillId,
+          null,
+          actor.attack * 0.42,
+          battle.tick + offset,
+          {
+            areaCenter: enemy.position,
+            areaRadius: 10,
+          },
+        )
+    }
+    return
+  }
+  if (actor.spiritId === "aw2-than")
+    for (const ally of living(battle, actor.side))
+      applyShield(battle, actor, ally, actor.attack * 1.3 + 25, skillId, 6)
+  if (actor.spiritId === "aw2-lua" && enemy)
+    queueEffect(
+      battle,
+      actor,
+      "damage",
+      skillId,
+      null,
+      actor.attack * 1.7,
+      battle.tick,
+      {
+        areaCenter: enemy.position,
+        areaRadius: 14,
+      },
+    )
+  if (actor.spiritId === "aw2-lam")
+    for (const ally of living(battle, actor.side)) {
+      queueEffect(
+        battle,
+        actor,
+        "heal",
+        skillId,
+        ally.id,
+        actor.attack * 1.5 + 10,
+        battle.tick,
+      )
+      queueEffect(
+        battle,
+        actor,
+        "heal",
+        skillId,
+        ally.id,
+        actor.attack * 1.1 + 8,
+        battle.tick + 2,
+      )
+    }
+  if (actor.spiritId === "aw2-moc-non")
+    for (const ally of living(battle, actor.side))
+      queueEffect(
+        battle,
+        actor,
+        "interrupt-guard",
+        skillId,
+        ally.id,
+        1,
+        battle.tick,
+      )
+  if (actor.spiritId === "aw2-suong" && enemy)
+    queueEffect(
+      battle,
+      actor,
+      "damage",
+      skillId,
+      null,
+      actor.attack * 1.6,
+      battle.tick,
+      {
+        areaCenter: enemy.position,
+        areaRadius: 20,
+        pull: 4,
+      },
+    )
+}
+
+function resolveDueCasts(battle: CombatBattle) {
+  for (const actor of [...battle.actors].sort(
+    (left, right) =>
+      left.side.localeCompare(right.side) ||
+      left.slot - right.slot ||
+      left.id.localeCompare(right.id),
+  )) {
+    const cast = actor.cast
+    if (!cast || cast.commitTick > battle.tick) continue
+    if (actor.hp <= 0) {
+      actor.cast = null
+      continue
+    }
+    commitCast(battle, actor, cast)
+  }
+}
+
+function moveToward(
+  battle: CombatBattle,
+  actor: CombatActor,
+  target: CombatActor,
+  requestedSpeed: number,
+  skillId?: string,
+) {
+  const currentDistance = distance(actor, target)
+  if (currentDistance <= actor.range) return
+  const slowed = actor.slowUntilTick > battle.tick
+  const speed = requestedSpeed * (slowed ? 0.5 : 1)
+  const step = Math.min(speed, Math.max(0, currentDistance - actor.range))
+  const direction = target.position > actor.position ? 1 : -1
+  actor.position = clamp(actor.position + direction * step, 0, 100)
+  record(battle, "move", actor.id, [target.id], {
+    ...(skillId ? { skillId } : {}),
+    amount: step,
+  })
+}
+
+function basicCooldown(actor: CombatActor): number {
+  return isStarterSpiritId(actor.spiritId)
+    ? STARTER_COMBAT_KITS[actor.spiritId].basicCooldown
+    : 5
+}
+
+function performBasic(
+  battle: CombatBattle,
+  actor: CombatActor,
+  target: CombatActor,
+) {
+  const skillId = isStarterSpiritId(actor.spiritId)
+    ? combatSkillId(actor.spiritId, "basic")
+    : `${actor.spiritId}:skill:basic`
+  if (distance(actor, target) > actor.range) {
+    moveToward(battle, actor, target, actor.moveSpeed, skillId)
+    return
+  }
+  actor.nextBasicTick = battle.tick + basicCooldown(actor)
+  const projectile = actor.projectileTicks > 0
+  if (actor.spiritId === "aw2-lua") {
+    queueEffect(
+      battle,
+      actor,
+      "damage",
+      skillId,
+      target.id,
+      actor.attack * 0.58,
+      battle.tick,
+    )
+    queueEffect(
+      battle,
+      actor,
+      "damage",
+      skillId,
+      target.id,
+      actor.attack * 0.58,
+      battle.tick + 1,
+    )
+    return
+  }
+  queueEffect(
+    battle,
+    actor,
+    "damage",
+    skillId,
+    target.id,
+    actor.attack,
+    battle.tick + actor.projectileTicks,
+    {},
+    projectile,
+  )
+}
+
+function tryAutoSkill(battle: CombatBattle, actor: CombatActor): boolean {
+  if (
+    !isStarterSpiritId(actor.spiritId) ||
+    battle.tick < actor.nextAutoTick ||
+    actor.cast
+  )
+    return false
+  const kit = STARTER_COMBAT_KITS[actor.spiritId]
+  const enemy = selectEnemy(battle, actor)
+  let targetId: string | null = enemy?.id ?? null
+  if (actor.spiritId === "aw2-than") {
+    if (actor.shield > 0) return false
+    targetId = actor.id
+  }
+  if (
+    actor.spiritId === "aw2-lua" &&
+    (!enemy || distance(actor, enemy) <= actor.range)
+  )
+    return false
+  if (actor.spiritId === "aw2-lam") {
+    const ally = selectInjuredAlly(battle, actor)
+    if (!ally) return false
+    targetId = ally.id
+  }
+  if (actor.spiritId === "aw2-moc-non") {
+    const ally = selectShieldAlly(battle, actor)
+    if (!ally) return false
+    targetId = ally.id
+  }
+  if (!targetId && actor.spiritId === "aw2-suong") return false
+  actor.nextAutoTick = battle.tick + kit.autoCooldown
+  startCast(battle, actor, "auto", targetId, kit.autoCastTicks)
+  return true
+}
+
+function actAutomatically(battle: CombatBattle) {
+  const order = [...living(battle)].sort(
+    (left, right) =>
+      left.side.localeCompare(right.side) ||
+      left.slot - right.slot ||
+      left.id.localeCompare(right.id),
+  )
+  for (const actor of order) {
+    if (actor.hp <= 0 || actor.cast) continue
+    if (tryAutoSkill(battle, actor)) continue
+    if (battle.tick < actor.nextBasicTick) continue
+    const target = selectEnemy(battle, actor)
+    if (target) performBasic(battle, actor, target)
+  }
+}
+
+function checkResult(battle: CombatBattle) {
+  if (battle.status !== "active") return
+  const players = living(battle, "player").length
+  const enemies = living(battle, "enemy").length
+  if (players && enemies) return
+  battle.status = players ? "player-win" : enemies ? "enemy-win" : "draw"
+  for (const actor of battle.actors) actor.cast = null
+  record(battle, "battle-end", null, [], { text: battle.status })
+}
+
+function advanceOneTick(battle: CombatBattle) {
+  battle.tick++
+  expireTimedState(battle)
+  resolveDueCasts(battle)
+  resolveDueEffects(battle)
+  checkResult(battle)
+  if (battle.status !== "active") return
+  actAutomatically(battle)
+  resolveDueEffects(battle)
+  checkResult(battle)
+}
+
+export function advanceCombatBattle(
+  current: CombatBattle,
+  steps = 1,
+): CombatBattle {
+  if (!Number.isInteger(steps) || steps < 1 || steps > MAX_TICKS_PER_COMMAND)
+    throw Error(`Số tick phải từ 1 đến ${MAX_TICKS_PER_COMMAND}.`)
+  if (current.status !== "active") return current
+  const battle = copyBattle(current)
+  for (let step = 0; step < steps && battle.status === "active"; step++)
+    advanceOneTick(battle)
+  return battle
+}
+
+export function castCombatUltimate(
+  current: CombatBattle,
+  actorId: string,
+  targetId?: string,
+): CombatBattle {
+  if (current.status !== "active") throw Error("Trận đấu đã kết thúc.")
+  const battle = copyBattle(current)
+  const actor = byId(battle, actorId)
+  if (
+    !actor ||
+    actor.side !== "player" ||
+    actor.hp <= 0 ||
+    !isStarterSpiritId(actor.spiritId)
+  )
+    throw Error("Vị Linh không thể dùng tuyệt kỹ.")
+  if (actor.cast) throw Error("Vị Linh đang thi triển kỹ năng khác.")
+  if (actor.energy < ULTIMATE_ENERGY)
+    throw Error("Tuyệt kỹ chưa đủ năng lượng.")
+  const needsEnemy =
+    actor.spiritId === "aw2-lua" || actor.spiritId === "aw2-suong"
+  if (needsEnemy) {
+    const target = targetId ? byId(battle, targetId) : undefined
+    if (!target?.hp || target.side !== "enemy")
+      throw Error("Tuyệt kỹ cần một mục tiêu địch hợp lệ.")
+  }
+  actor.energy = 0
+  startCast(
+    battle,
+    actor,
+    "ultimate",
+    targetId ?? null,
+    STARTER_COMBAT_KITS[actor.spiritId].ultimateCastTicks,
+  )
+  return battle
+}
+
+export function interruptCombatCast(
+  current: CombatBattle,
+  actorId: string,
+): CombatBattle {
+  if (current.status !== "active") throw Error("Trận đấu đã kết thúc.")
+  const battle = copyBattle(current)
+  const actor = byId(battle, actorId)
+  if (!actor?.cast || actor.hp <= 0)
+    throw Error("Không có kỹ năng đang thi triển để ngắt.")
+  if (
+    actor.interruptGuardCharges > 0 &&
+    actor.interruptGuardUntilTick > battle.tick
+  ) {
+    actor.interruptGuardCharges--
+    record(battle, "interrupt-resist", actor.id, [actor.id], {
+      skillId: actor.cast.skillId,
+      text: "Giảm một lần gián đoạn.",
+    })
+    return battle
+  }
+  const skillId = actor.cast.skillId
+  actor.cast = null
+  record(battle, "interrupt", actor.id, [actor.id], {
+    skillId,
+    text: "Kỹ năng bị ngắt trước điểm commit.",
+  })
+  return battle
+}
