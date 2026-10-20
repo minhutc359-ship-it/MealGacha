@@ -12,9 +12,11 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS — source b3c526b, rule tests + 18 Chromium world checks |
 | BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | NOT_RUN |
 | BATTLE-02 battle return/save/reload, paused run | combat/save | NOT_RUN |
-| ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; Than reference subset verified below |
-| ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — AW2-004A source 5d1df97, reference pipeline scope only |
+| ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; five starter reference sets verified below |
+| ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — shared-player regression on f6a3b66, 32 Chromium checks; reference scope only |
 | PROVENANCE-THAN source/prompt/hash inventory | asset | PASS inventory only — rights/legal approval still NOT_RUN |
+| ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS — AW2-004B source f6a3b66, 133 Chromium checks; reference scope only |
+| PROVENANCE-STARTERS original image/audio inventory | asset | PASS inventory only — source f6a3b66; rights/legal approval NOT_RUN |
 | DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | NOT_RUN |
 | MODE-01 TCG/Chess embedded and quick-entry safe | navigation | NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
@@ -88,3 +90,24 @@ Base `944e4dff411c57ad903c7a7c332e91172cbf77f6`; source/head `5d1df97da61bbefca1
 Observed failures/repairs: initial HD sheet had bodies crossing equal-cell boundaries and was rejected; repaired through image_gen, then calibrated explicit rectangles for actual nonuniform source spacing. Initial FX sheet had excessive glow/gutter overlap; replaced through image_gen with isolated smaller effects. No failed sheet is used by runtime or labelled PASS. No SVG/geometry substitutes for missing authored skills. Peak-FX visual review found the auto shield covering the face; fixed by manifest-owned unit/contact attachment offsets and layers (final source 5d1df97), then all 32 browser checks/captures reverified. Pause-induced Audio.play AbortError is treated as intentional interruption; missing image remains an explicit error. Pixel edges were not repainted: selected source PNGs preserved, WebP only losslessly encoded. 16 world cels, 8 HD key poses + interpolated transforms, 16 FX cels accurately describe the motion method.
 
 Current save/world logic/schema unchanged; their 46 unit cases reverified in the 54-case run, prior browser/world evidence remains at b3c526b for unchanged flows. No new full TCG/RPG regression claimed or required for this isolated asset/preview change; full release/major integration regression remains due. RIGHTS-01 is NOT_RUN: provenance inventory is not license clearance. Audio verified numerically/decoded in headless browser, not heard on human/real-device hardware. [Evidence](evidence/AW2-004A.md).
+
+## AW2-004B four starter references / shared player — 2026-10-20
+
+Base `7f9c6ab63637ab9d9eb4cf6fa6e7dfb649892bed`; source/head `f6a3b6655988d262a974f6f5034845740fd94766`, branch `feat/aw2-004b-starter-assets`. Checks on identical precommit implementation bytes; file audit also on this commit. Subsequent changes documentation only. Linux x64 / Node22.23.2 / pnpm10.34.3 / TS5.9.3 / Vitest5.0.1 / Vite8.0.5 / Chromium153.0.8010.36; Python/Pillow versions in each provenance. Existing localhost8452 HTTP200; fresh isolated browser profiles, 1280×1000 /390×844; no physical-device claim. Open-PR query returned zero results; no push/merge/release.
+
+| Command / check | Result | Observed |
+|---|---|---|
+| `python3 dev/tools/build-aw2-starter-assets.py` | PASS | Four sets /160 new measured cells, sixteen WAVs, sixteen WebPs /16,509,218 bytes; lossless visible RGBA/alpha equality |
+| `python3 dev/tools/verify-aw2-starter-files.py` | PASS | All five sets /200 actual cells; hashes/bounds/alpha/PCM/duration/non-silence/no clipping/fades; new source/prompt hash chains, four distinct portraits and sixteen distinct cues |
+| `pnpm test dev/tests/aw2` | PASS | Four files /66 cases: all46 save/world +8 Than +12 starter cases; projectile/contact/repeated-cue boundaries and malformed manifests |
+| `pnpm typecheck` / `pnpm typecheck:dev` | PASS | Both exit0, includes shared preview/selector/tests |
+| `pnpm build` | PASS | Vite root build + release guard; existing >500k chunk warning |
+| Production output scan | PASS | 49 text artifacts exclude all five starter IDs, AW2 key and dev preview/task markers; Than/starter HTML absent |
+| `node dev/tools/verify-aw2-starter-browser.mjs --playwright /tmp/Quetica.FNOT.MigrationTool.stage/frontend/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome` | PASS | 133 assertions; all four eight-state/four-direction/skill/flight/selector/audio/pause/reduced-motion/portrait/mobile/missing-atlas checks; zero primary errors/failures;16 WAVs decoded; seeded save bytes unchanged |
+| `node dev/tools/verify-aw2-than-browser.mjs --playwright /tmp/Quetica.FNOT.MigrationTool.stage/frontend/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome` | PASS | 32 assertions reverify Than after shared renderer/preview extraction |
+| Visual review | PASS reference scope | Four HD contact sheets, world/skill/projectile sheets and all four mobile captures opened;71 new browser captures +7 QA sheets remain ignored locally |
+| Current full suite / all12 ART-01 / real combat/leveling / physical devices / human audio / legal rights | NOT_RUN | Prior full839-test result remains at b3c526b; release/major engine integration full regression still due |
+
+Three rejected Lua outputs (initial battle, initial FX, extra battle attempt) failed measured boundary checks; selected repair sheets pass. Early quick-preview RGB mistaken for an opaque background was corrected by real alpha inspection. Mộc Non uniform-grid build assertions failed, then explicit measured rectangles/row splits and declared alpha9/255 gutter tolerance preserved all source art; other sets tolerance8. No source painting/masking/mirroring/resizing or failed-attempt PASS. Sương Lành direction rows mapped to actual art and verified through browser captures.
+
+Reference contracts only: Lua basic contacts220/380ms, Lam ultimate pulses520/1040ms; three ranged basics launch260/impact700ms with own flight/impact art. Timings/coordinates do not confirm gameplay impact or final balance. Passives require future combat events. All five fullCharacterComplete=false; seven sets NOT_CREATED; license REVIEW_REQUIRED/NOT_CLEARED. Forty-six save/world cases reverified; gameplay/save schema unchanged, prior world/save Chromium evidence remains historical. [Evidence and reports](evidence/AW2-004B.md).

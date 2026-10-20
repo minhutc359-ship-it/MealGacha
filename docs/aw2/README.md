@@ -7,7 +7,7 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 
 ## AW2 development preview — AW2-001 + AW2-006A
 
-Current branch: `feat/aw2-004a-than-assets`, based on verified AW2-006A dependency `944e4df`, with AW2-001 and approved AW2-002/003 content incorporated. Latest asset source: `5d1df97da61bbefca1bdbe27f27f6c28ed3ed694`; world implementation remains `b3c526b`. Local implementation, not merged into the long-lived AW2 branch or published. Owner approved story/12 identities/tier/kit/starter direction; rates/pity remain open (D11).
+Current branch: `feat/aw2-004b-starter-assets`, based on AW2-004A handoff `7f9c6ab`, with AW2-001 and approved AW2-002/003 content incorporated. Latest asset source: `f6a3b6655988d262a974f6f5034845740fd94766`; world implementation remains `b3c526b`. Local implementation, not merged into the long-lived AW2 branch or published. Owner approved story/12 identities/tier/kit/starter direction; rates/pity remain open (D11).
 
 ```sh
 pnpm install --frozen-lockfile
@@ -49,7 +49,7 @@ The world browser script accepts the same `--playwright` and `--chromium` option
 
 ## Than asset / animation reference — AW2-004A
 
-Open `http://localhost:8443/dev/aw2/than.html` after `pnpm dev` (current verification server localhost:8452). Eight HD states, four world directions, four skill FX/audio tracks, pause/replay and reduced motion. Audio starts only after opting in. Preview does not access or change saves. World page links to it; no follower/battle integration is implied.
+Open `http://localhost:8443/dev/aw2/than.html` after `pnpm dev` (current verification server localhost:8452). Eight HD states, four world directions, four skill FX/audio tracks, pause/replay and reduced motion. Audio starts only after opting in. Preview does not access or change saves. World now links to the shared five-starter selector below; no follower/battle integration is implied.
 
 Five original PNG sources and their lossless WebP counterparts live in `dev/aw2/assets/than/base-v1/`, alongside four synthesized WAVs, exact `prompts.json` and `provenance.json`. Runtime metadata at `src/aw2/assets/than.base-v1.json` binds canonical identity/variant/asset/skill IDs to measured frames, foot anchors, timings/contact markers and source hashes. Generated sheet dimensions/spacing were not exact uniform grids; explicit calibrated rectangles preserve complete visible sprites without repainting or mirroring. Alpha edges tolerate at most 8/255 (observed maximum 4/255 on the selected cells).
 
@@ -64,4 +64,23 @@ node dev/tools/verify-aw2-than-browser.mjs --url http://localhost:8443/dev/aw2/t
 
 Build processing requires Pillow (recorded version in provenance); source PNG artwork remains unchanged. Build only encodes lossless WebP, writes atlas/timing metadata and synthesizes the four cues. Browser verification accepts the existing `--playwright` and `--chromium` options; uses a fresh temporary profile and writes captures under ignored `.asset-work/aw2-004a/`.
 
-[Task](tasks/AW2-004A.md) · [evidence](evidence/AW2-004A.md) · [source prompts](../../dev/aw2/assets/than/base-v1/prompts.json) · [provenance](../../dev/aw2/assets/than/base-v1/provenance.json). License remains REVIEW_REQUIRED / commercial release NOT_CLEARED. Than is a reference asset set, not a completed character: leveling, actual combat, device QA/human audio listening/legal approval remain open. Other 11 spirits still have NOT_CREATED assets. No AW2-010 completion or release follows from this task.
+[Task](tasks/AW2-004A.md) · [evidence](evidence/AW2-004A.md) · [source prompts](../../dev/aw2/assets/than/base-v1/prompts.json) · [provenance](../../dev/aw2/assets/than/base-v1/provenance.json). License remains REVIEW_REQUIRED / commercial release NOT_CLEARED. Than is a reference asset set, not a completed character: leveling, actual combat, device QA/human listening/legal approval remain open. Other four starters now have reference sets through AW2-004B; seven non-starters remain NOT_CREATED. No AW2-010 completion or release follows from these tasks.
+
+## Five starter references — AW2-004B
+
+Open `http://localhost:8452/dev/aw2/starters.html` on the existing verification server (normal `pnpm dev` default localhost:8443). Choose Than, Lửa Nhỏ, Lam Lam, Mộc Non or Sương Lành. Selection resets playback/audio opt-in; only selected unit image atlases are loaded. Pause/replay, reduced motion, world directions, eight HD states, four skills, portrait and source links are shared. Missing atlas gives an explicit error and blank canvas. Optional `?spirit=aw2-lam` selects the initial unit.
+
+New assets: `dev/aw2/assets/{lua,lam,moc-non,suong}/base-v1/`; each contains four unchanged original PNGs and four lossless WebPs (portrait also serves as identity reference), four WAVs, exact prompts and generation provenance. Canonical manifests: `src/aw2/assets/{lua,lam,moc-non,suong}.base-v1.json`; registry `starters.ts`. Sixteen selected images from nineteen built-in image_gen calls, no external artwork references or CLI/API fallback. Total new WebPs 16,509,218 bytes. Explicit measured cells preserve source art; Sương Lành source rows map down/right/left/up. Mộc Non's faint world gutter permits declared edge alpha 9/255, other sets 8/255; all visible alpha≥96 bounds inset ≥2px.
+
+HD is eight key poses plus interpolation. Lửa Nhỏ basic has contacts at 220/380ms; Lam Lam ultimate pulses at 520/1040ms. Three ranged basics have separate authored projectile cels/flight and impact cels (launch260/impact700ms). These are reference presentation timings/coordinates, not approved damage/speed/balance or engine hit confirmation. Passives are manual preview procs requiring future combat events. Full character completion remains false for all five.
+
+```sh
+python3 dev/tools/build-aw2-starter-assets.py
+python3 dev/tools/verify-aw2-starter-files.py
+pnpm test dev/tests/aw2
+node dev/tools/verify-aw2-starter-browser.mjs --url http://localhost:8443/dev/aw2/starters.html
+# Than compatibility:
+node dev/tools/verify-aw2-than-browser.mjs --url http://localhost:8443/dev/aw2/than.html
+```
+
+Build uses the preserved sources, AW2-004A encoder/synth helpers and manifest template; it never generates or repaints art. Browser tools accept `--playwright`/`--chromium`, use fresh isolated profiles and keep QA PNGs under ignored `.asset-work/`. [Task](tasks/AW2-004B.md), [verification](evidence/AW2-004B.md), [handoff](HANDOFF.md). Next: mechanic/BA/tester scope AW2-007A actual five-unit combat rules, while animation/character complete seven non-starter references and character gates.
