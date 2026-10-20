@@ -2,6 +2,8 @@
 
 **Current branch:** `feat/aw2-007c-world-boss`. Verified implementation `03b92e20f6dc55d62530da7e88c1ca1579505490`; dependency/base `7bb0bf131e5994887429d8da7fd23c857d5d18b1`. Long-lived `game/adventure-world-2` stays at `f0d588461f2408a8e0a1ee49a78b36af5a8c7476`, the prior PR #80 merge. PR #79 remains unrelated legacy work. Owner requests automatically pushing completed tasks after checks/docs/commit; previous AW2-007B branch was pushed at 7bb0bf1, and current work follows that instruction. No merge/deployment/release or owner save/reset. Documentation commits after 03b92e2 change no implementation.
 
+**Push verified:** remote `refs/heads/feat/aw2-007c-world-boss` matched local `8e379a602e65d255ee4bcd7b0c3aee5647420e9b` after the implementation/evidence push; previous `feat/aw2-007b-browser-qa` matched7bb0bf1. Following handoff/workflow-only updates retain source03b92e2. Initial push waited for GCM's account picker; canceled it and used command-scoped cached owner selection, then push succeeded. Use the recorded WORKFLOW command for subsequent pushes; no global account configuration was changed.
+
 ## AW2-007A/007B/007C delivered
 
 Pure `src/aw2/combat` rules now own deterministic combat truth for one-to-five units per side: serializable state, automatic movement/basic/auto skills, manual ultimate commands, queued casts/effects, target fallback, melee contact, ranged projectile impact, interruption, shields/healing/debuffs and terminal results. Ordered events are output only; renderer cannot decide hits or rewards. Five approved starter IDs and four skill ID slots stay canonical. Development tuning numbers are not final balance/canon.

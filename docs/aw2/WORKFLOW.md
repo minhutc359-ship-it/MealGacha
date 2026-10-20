@@ -6,3 +6,5 @@ Conflicts: immutable identity → character; lore → story; balance → mechani
 Per-feature branches based on long-lived AW2 branch. No auto merge/master writes. Stable legacy data untouched by pre-release AW2 reset.
 
 Owner instruction 2026-10-20: after each completed task, verify, update the handoff, commit and push the feature branch automatically. This authorizes feature pushes without asking again; it does not authorize merges, master updates, deployment or releases. Verify the remote ref and record any push failure honestly.
+
+Git Credential Manager has multiple cached GitHub accounts on this workspace. For this repository's existing owner login, command-scoped selection avoids an interactive account picker: `git -c credential.username=minhutc359-ship-it -c credential.interactive=false push -u MealGacha <feature-branch>`. This uses the cached login without changing global Git settings or printing credentials.

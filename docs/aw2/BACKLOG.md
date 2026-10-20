@@ -13,7 +13,7 @@
 | AW2-007 | mechanic | RPG team/battle integration | IN_PROGRESS: A/B/C development rules/renderer/world-save VERIFIED; authored boss kit/art/production progression pending |
 | AW2-007A | mechanic/BA/character/tester | Deterministic five-unit core, canonical events, range/projectile/interrupt and bounded starter passives | VERIFIED pure rules at fdf4a60; no UI/save/reward |
 | AW2-007B | mechanic/animation/tester | Event-driven HD battle preview and development leveling | Original PR #80 MERGED at f0d5884; continuation VERIFIED locally at 9067376: 87 AW2 /880 full tests,22 Chromium checks,type/build PASS; fixes not merged |
-| AW2-007C | mechanic/BA/story/animation/tester | Trusted boss checkpoint/result/save v3, note/both endings/shortcut and once-only receipts | VERIFIED at 03b92e2:98 AW2 /891 full tests;40 world/boss +29 save +22 battle Chromium checks PASS; feature push authorized, no merge |
+| AW2-007C | mechanic/BA/story/animation/tester | Trusted boss checkpoint/result/save v3, note/both endings/shortcut and once-only receipts | VERIFIED at 03b92e2:98 AW2 /891 full tests;40 world/boss +29 save +22 battle Chromium checks PASS; feature push/readback PASS at8e379a6, no merge |
 | AW2-008 | story/mechanic | Four quest/debug dungeon/boss progress implemented; numerical loot/chest/cooking pending | IN_PROGRESS; no inventory grants until economy contract |
 | AW2-009 | BA/mechanic | TCG/Auto Chess in-world portals & quick-entry | BACKLOG |
 | AW2-010 | all/tester | Lantern playable vertical slice | BACKLOG |
