@@ -2,7 +2,7 @@
 | ID | Owner | Scope | Status |
 |---|---|---|---|
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
-| AW2-001 | mechanic/BA/tester | Isolated save/reset; extended non-destructively to v2 for world | MERGED into AW2; regression verified on 0e8fb7a |
+| AW2-001 | mechanic/BA/tester | Isolated save/reset; non-destructive v1/v2→v3 migrations | Foundation MERGED; current schema v3/save regression VERIFIED at 03b92e2 |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |
 | AW2-003 | character/mechanic | Owner approved initial 12 identities/tier/kit/starter, D10/D13/D15 | MERGED approved direction + original review history; full character DoD pending |
 | AW2-004 | animation/character | 12 world + HD + VFX sets; five starters source f6a3b66 implemented | IN_PROGRESS: 5 reference sets, 7 NOT_CREATED; full character gates pending |
@@ -10,10 +10,11 @@
 | AW2-004B | animation/character/tester | Four other starters, ranged projectile art, repeated cues and shared selector | MERGED verified reference sets, integration source 0e8fb7a; not full character/release |
 | AW2-005 | mechanic | Five-tier gacha/pity/simulation | BACKLOG |
 | AW2-006 | mechanic | Pixi free-roam map/collision; AW2-006A prototype source b3c526b | IN_PROGRESS: verified foundation MERGED, authored visuals/followers pending |
-| AW2-007 | mechanic | RPG team/battle integration | IN_PROGRESS: AW2-007A rules and AW2-007B preview VERIFIED; world-save adapter pending |
+| AW2-007 | mechanic | RPG team/battle integration | IN_PROGRESS: A/B/C development rules/renderer/world-save VERIFIED; authored boss kit/art/production progression pending |
 | AW2-007A | mechanic/BA/character/tester | Deterministic five-unit core, canonical events, range/projectile/interrupt and bounded starter passives | VERIFIED pure rules at fdf4a60; no UI/save/reward |
 | AW2-007B | mechanic/animation/tester | Event-driven HD battle preview and development leveling | Original PR #80 MERGED at f0d5884; continuation VERIFIED locally at 9067376: 87 AW2 /880 full tests,22 Chromium checks,type/build PASS; fixes not merged |
-| AW2-008 | story/mechanic | First 3 quests/puzzle prototype implemented; boss/loot/cooking pending | IN_PROGRESS (foundation only) |
+| AW2-007C | mechanic/BA/story/animation/tester | Trusted boss checkpoint/result/save v3, note/both endings/shortcut and once-only receipts | VERIFIED at 03b92e2:98 AW2 /891 full tests;40 world/boss +29 save +22 battle Chromium checks PASS; feature push authorized, no merge |
+| AW2-008 | story/mechanic | Four quest/debug dungeon/boss progress implemented; numerical loot/chest/cooking pending | IN_PROGRESS; no inventory grants until economy contract |
 | AW2-009 | BA/mechanic | TCG/Auto Chess in-world portals & quick-entry | BACKLOG |
 | AW2-010 | all/tester | Lantern playable vertical slice | BACKLOG |
 | AW2-011 | tester | Release regression/rights/mobile/offline | BACKLOG |
@@ -30,6 +31,8 @@ AW2-004B: [task](tasks/AW2-004B.md), [evidence](evidence/AW2-004B.md), preview `
 
 AW2-007A: [task](tasks/AW2-007A.md), [evidence](evidence/AW2-007A.md). Pure rules now own damage/heal/shield/status/interruption/terminal truth and ordered renderer events. Development numbers are not approved balance; BATTLE-02/world persistence is still NOT_RUN.
 
-AW2-007B: [task](tasks/AW2-007B.md), [evidence](evidence/AW2-007B.md). Chromium acceptance is now PASS on Windows/Chrome155. Fixed pending-level cards and terminal projectiles, introduced coherent pure session transitions, and strengthened decoded-atlas/terminal/browser portability checks. Only local feature commits; no current-session merge or push.
+AW2-007B: [task](tasks/AW2-007B.md), [evidence](evidence/AW2-007B.md). Chromium acceptance PASS; pending-level/terminal projectile repairs and pure session transitions. Completed branch pushed at 7bb0bf1 following the owner's ongoing push instruction; no merge.
 
-Next smallest task: mechanic + BA/tester scope AW2-007C trusted boss result/world/save and once-only receipts; specify numerical rewards/XP before granting them. Animation/character still owe authored enemies, seven sets (`aw2-muoi`, `aw2-nhien`, `aw2-hai`, `aw2-lien`, `aw2-moc`, `aw2-bach`, `aw2-van`), readable mobile combat presentation and all full-character device/rights gates. BA/mechanic can simulate D11 without treating rates as approved. Then AW2-008 loot/cooking, AW2-009 modes, AW2-010/011 gates. No finished slice before AW2-010 verification.
+AW2-007C: [task](tasks/AW2-007C.md), [evidence](evidence/AW2-007C.md), [report](evidence/AW2-007C-browser.json). Canonical boss result is bound to its saved checkpoint; real loss/retreat/failed writes/stale tabs, note and both approved endings verified. v1/v2 load in memory as v3; no owner data/reset or numerical loot/XP grant. World uses explicit reference boss visuals.
+
+Next smallest task: mechanic + BA specify numerical reward/XP/inventory contracts for AW2-008 chest/cooking, then tester verifies atomic inventory + receipt behavior. Animation/character owe authored enemies/signature kits, seven sets (`aw2-muoi`, `aw2-nhien`, `aw2-hai`, `aw2-lien`, `aw2-moc`, `aw2-bach`, `aw2-van`), mobile combat readability and all full-character device/rights gates. D11 simulation precedes rate/pity approval. Then AW2-009 modes and AW2-010/011 gates. No finished slice before AW2-010 verification. Completed feature work is pushed per owner instruction; no auto-merge.

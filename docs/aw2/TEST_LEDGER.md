@@ -6,16 +6,16 @@ Historical story review preserved by AW2-012: source `461c7cfaac658618d96ca8020a
 Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, command, observed outcome. Prior PASS becomes STALE for affected changes. PR runs selective affected tests; full suite required before release/major cross-engine merge, and after high-impact save/shared engine changes.
 | Case | Trigger | Result |
 |---|---|---|
-| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS — integrated source `0e8fb7a`, full unit regression +29 save Chromium checks; original evidence retained |
-| SAVE-02 chest/battle/gacha atomic grants, no double reward | loot/store | NOT_RUN |
-| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS — integrated source `0e8fb7a`, schema v2/v1 migration/reset/conflicts/Chromium |
+| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —03b92e2; schema v3/full unit +29 save and 40 world/boss Chromium checks preserve seeded stable bytes |
+| SAVE-02 chest/battle/gacha atomic grants, no double reward | loot/store | NOT_RUN as full item/chest/gacha case; boss flag/derived final-quest receipt subset PASS at 03b92e2, competing commits/choices included |
+| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS —03b92e2; v1/v2→v3 read-only migration, reset/conflicts/failures, bound boss checkpoint and competing tabs |
 | GACHA-01 weights N/R/SR/SSR/UR seeded statistics | gacha/roster | NOT_RUN |
 | GACHA-02 pity/shards/dupes and reload | gacha/save | NOT_RUN |
-| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS — six-zone debug foundation, integration source 0e8fb7a /18 Chromium checks; retest authored maps/assets |
+| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS —03b92e2 debug six zones/safe result returns +completed reciprocal shortcut; retest authored maps/assets |
 | WORLD-02 NPC, quest, followers and interact range | world/quest | NOT_RUN as full case: first 3 quests/range verified in QUEST-01; followers pending |
-| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS — integration source 0e8fb7a, rule tests +18 Chromium world checks |
-| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS rules + standalone renderer subset — source 9067376; 87 AW2 /880 full tests,22 Chromium checks; world BATTLE-02 separate |
-| BATTLE-02 battle return/save/reload, paused run | combat/save | NOT_RUN |
+| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS —03b92e2; previous3 +boss/note/both endings, once-only receipt and close/reload flow in40 Chromium checks |
+| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS rules +development renderer —03b92e2;98 AW2 /891 full tests,22 standalone +40 world/boss checks |
+| BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development boss/checkpoint subset —03b92e2; pause, actual win/loss/retreat, retry/stale-tab, reload abort policy; persisted active-battle resume/production/native NOT_RUN |
 | ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; five starter reference sets verified below |
 | ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — integration source 0e8fb7a /32 Chromium checks; reference scope only |
 | PROVENANCE-THAN source/prompt/hash inventory | asset | PASS inventory only — rights/legal approval still NOT_RUN |
@@ -25,7 +25,30 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | MODE-01 TCG/Chess embedded and quick-entry safe | navigation | NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
-Six-zone debug navigation and first-three-quest tests run under AW2-006A. Pure combat rules run under AW2-007A; AW2-007B now has current Chromium evidence below. World-connected battle, gacha, full authored-art and vertical-slice tests have not run. Historical AW2-001 below covers schema v1; the latest record supersedes its affected current-source coverage.
+Current AW2-007C verifies the debug four-quest/world/boss/save v3 flow below. Gacha/numerical inventory grants, full authored art/device and vertical-slice gates have not run. Historical AW2-001/006A/007A/B records remain scoped to their original refs/schema/feature gates; latest entries supersede affected current rows.
+
+## AW2-007C world boss / schema v3 — 2026-10-21
+
+Base/dependency `7bb0bf131e5994887429d8da7fd23c857d5d18b1`; source `03b92e20f6dc55d62530da7e88c1ca1579505490`, branch `feat/aw2-007c-world-boss`. Long-lived remains f0d5884. Checks executed on the implementation before its commit; final save Chromium reran on the source commit. Subsequent edits documentation only. Windows10.0.26200 x64 /Node25.2.0 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Playwright1.64.1 /Chrome155.0.8059.85. Fresh browser contexts, no owner profile; local source server127.0.0.1:8452.
+
+| Command/check | Result | Observed |
+|---|---|---|
+| `pnpm test dev/tests/aw2 --maxWorkers=2` | PASS |8 files /98 cases; prior87 +11 trusted encounter/receipt/migration cases |
+| `NODE_OPTIONS=--no-experimental-webstorage pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=.asset-work/aw2-007c/unit.json` | PASS |88 files /891 cases,32.93s; no failures/skips, full run separate from browsers/build |
+| `pnpm typecheck` / `pnpm typecheck:dev` | PASS |Both exit0 on final implementation |
+| 16-file `oxfmt --check` + `git diff --check` | PASS |Named interfaces avoid formatter inline-object type bug; source LF-normalized |
+| `pnpm build` + production exclusion | PASS |Release guard;851 files /76 text artifacts exclude AW2 markers/entries; chunk/plugin-timing warnings only |
+| `node dev/tools/verify-aw2-world.mjs --boss --playwright file:///D:/prj/MealGacha/.asset-work/aw2-tools/node_modules/playwright-core/index.mjs --chromium "C:/Program Files/Google/Chrome/Application/chrome.exe"` | PASS |40 assertions: new save→all4 quests→real boss→failed-write retry→note/reload→both endings/shortcut, plus separate competing-tab fixture |
+| `node dev/tools/verify-aw2-save.mjs --url http://127.0.0.1:8452/dev/aw2/index.html ...` | PASS |29 schema v3/reset/future/conflict/failure/legacy assertions; final run on03b92e2 |
+| `node dev/tools/verify-aw2-battle-browser.mjs ...` | PASS |22 standalone event/canvas/controls/error/save-byte assertions after explicit boss visual mapping; standalone cannot settle world results |
+| Capture inspection | PASS reference scope |Boss desktop/mobile and ending opened; no horizontal overflow, narrow mobile cards/small canvas text remain |
+| Full SAVE-02/DUNGEON-01/ART-01/RIGHTS-01, physical/native/offline/FPS | NOT_RUN |No numerical inventory/chest/gacha grants, authored boss kit/art, persistent battle resume, device or release claim |
+
+Coverage: no encounter on rejected/failed checkpoint; canonical identity/range/accepted quest; private core versus forged result/mutated snapshots/ordinary-save win; real win41 and loss49 ticks/retreat safe return; result-write failure retains retry; concurrent begin/terminal/ending transactions produce one winner; reset/changed checkpoint rejects old identity; v1/v2 migrate without writes and preserve prior progress; invalid/future/contradictory ending flags rejected; explicit note/close/both endings and reciprocal gated shortcut.
+
+Observed failures, not PASS: initial experimental auto-only-defeat expectations failed at boss attack80/140 because combat actually won. Simulation selected development 1000HP/180ATK: auto-only loses tick49, ultimates beginning tick5 win tick41. First integrated browser attempt passed main ending but its secondary fixture read a canvas dataset before the first frame and failed; explicit initial-frame wait fixed the verifier, final40 PASS. Initial hook-placement/formatter inline-object syntax issues were caught and fixed by typechecks before final gates. [Evidence](evidence/AW2-007C.md), [report](evidence/AW2-007C-browser.json).
+
+The high-impact save/world full-unit obligation is satisfied at this source. Repeat affected full/save/world/battle checks after future shared-save/economy changes and before release. Derived completion markers are not item grants; production/native/device/full-art/rights/full-slice obligations remain open. Owner requests completed feature pushes; no auto merge/release.
 
 ## AW2-007B browser continuation — 2026-10-20
 
@@ -163,7 +186,7 @@ Base `7f9c6ab63637ab9d9eb4cf6fa6e7dfb649892bed`; source/head `f6a3b6655988d262a9
 | `node dev/tools/verify-aw2-starter-browser.mjs --playwright /tmp/Quetica.FNOT.MigrationTool.stage/frontend/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome` | PASS | 133 assertions; all four eight-state/four-direction/skill/flight/selector/audio/pause/reduced-motion/portrait/mobile/missing-atlas checks; zero primary errors/failures;16 WAVs decoded; seeded save bytes unchanged |
 | `node dev/tools/verify-aw2-than-browser.mjs --playwright /tmp/Quetica.FNOT.MigrationTool.stage/frontend/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome` | PASS | 32 assertions reverify Than after shared renderer/preview extraction |
 | Visual review | PASS reference scope | Four HD contact sheets, world/skill/projectile sheets and all four mobile captures opened;71 new browser captures +7 QA sheets remain ignored locally |
-| Current full suite / all12 ART-01 / real combat/leveling / physical devices / human audio / legal rights | NOT_RUN | Prior full839-test result remains at b3c526b; release/major engine integration full regression still due |
+| Current full suite / all12 ART-01 / real combat/leveling / physical devices / human audio / legal rights | NOT_RUN | Prior full 839-test result remains at b3c526b; release/major engine integration full regression still due |
 
 Three rejected Lua outputs (initial battle, initial FX, extra battle attempt) failed measured boundary checks; selected repair sheets pass. Early quick-preview RGB mistaken for an opaque background was corrected by real alpha inspection. Mộc Non uniform-grid build assertions failed, then explicit measured rectangles/row splits and declared alpha9/255 gutter tolerance preserved all source art; other sets tolerance8. No source painting/masking/mirroring/resizing or failed-attempt PASS. Sương Lành direction rows mapped to actual art and verified through browser captures.
 
