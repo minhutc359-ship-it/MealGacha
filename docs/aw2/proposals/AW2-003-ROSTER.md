@@ -1,5 +1,7 @@
 # AW2-003 · Hồ sơ 12 Vị Linh — PROPOSED
 
+> Approval update 2026-10-20: owner explicitly approved both review proposals in-session. The PROPOSED labels below preserve the original review version; current CANON and D10/D13/D14/D15 supersede those labels. Rates/pity, numerical balance, finished assets and release/merge are not approved by this notice.
+
 Ngày 2026-10-20. **CHƯA OWNER DUYỆT.** Giữ đúng 12 ID/tên/món/tier/role ứng viên trong CANON; mở rộng lore/kit để review, không đưa vào runtime/save và không tự khóa ID. Các tên Bách/Hải/Liên/Mộc/Nhiên/Vân không mang theo lore hay kit Soul of Meal cũ. Nội dung dưới đây là sáng tác gốc; món ăn là cảm hứng thiết kế, không phải khẳng định văn hóa/lịch sử độc quyền.
 
 ## Identity và rarity review

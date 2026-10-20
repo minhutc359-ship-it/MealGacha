@@ -1,5 +1,7 @@
 # AW2-002 · Một chỗ bên bếp — PROPOSED
 
+> Approval update 2026-10-20: owner explicitly approved both review proposals in-session. The PROPOSED labels below preserve the original review version; current CANON and D10/D13/D14/D15 supersede those labels. Rates/pity, numerical balance, finished assets and release/merge are not approved by this notice.
+
 Ngày 2026-10-20. Toàn bộ nội dung bổ sung dưới đây là **PROPOSED / CHƯA OWNER DUYỆT**, không phải canon runtime. Điểm xuất phát duy nhất từ CANON working draft: ký ức bữa ăn, Sương Nhạt, Làng Giao Ước → Phố Đèn Lồng → bếp bị quên. Tên/thoại/NPC/mục tiêu mới là sáng tác gốc cho AW2; món ăn là cảm hứng, không dùng tài liệu này làm khẳng định lịch sử hoặc đại diện cho mọi thực hành văn hóa Việt Nam.
 
 ## Trục truyện

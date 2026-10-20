@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-20",
+  "sourceSha": "b3c526bdf37c03184fb68df150381f19e5f0723d",
+  "baseSha": "72ee9b4360299db4bab9b9b43dba552dd80b86cf",
+  "task": "AW2-006A",
+  "status": "PASS",
+  "engine": "Chromium 153.0.8010.36",
+  "checks": [
+    "Opening world does not auto-create save",
+    "Standalone Pixi world renders",
+    "Dialog pauses movement",
+    "Closing dialog does not accept quest",
+    "Intro unlocks exactly five approved starters",
+    "Quest and party survive reload",
+    "On-screen hold moves and release stops",
+    "Blur clears held movement",
+    "Three memories count in a different order",
+    "Wrong puzzle order safely resets attempt",
+    "Correct puzzle order opens inside route",
+    "Solved puzzle survives reload",
+    "Boss cannot fabricate combat or reward",
+    "Return route and third quest hand-in persist",
+    "Schema v2 holds one coherent world/party snapshot",
+    "Legacy data remains byte-identical",
+    "Mobile viewport has no horizontal overflow",
+    "No console/page errors"
+  ],
+  "errors": [],
+  "viewports": [
+    "1280x1000",
+    "390x844"
+  ]
+}

@@ -1,4 +1,6 @@
 # Changes
+2026-10-20: Owner approved AW2-002/003; CANON + D10/D13/D14/D15 updated, rates/pity explicitly excluded. AW2-006A source `b3c526bdf37c03184fb68df150381f19e5f0723d`: 6-zone Pixi debug world, first 3 quests/puzzle, one-time 5-starter unlock, non-destructive v1→v2 save migration. 839 full-suite tests PASS with 2 workers after one default-run legacy timeout; root/dev typechecks, build/entry isolation and 29 save + 18 world Chromium checks PASS. Full art/combat/loot/modes/gacha/device/slice gates remain open. Feature branch only, no push/merge/release.
+
 2026-10-20: AW2-001 implemented and verified locally on `feat/aw2-001-dev-save`, source `201c6b7ada91bc9c76ff6b6fe7d642735b040dc1`: independent development save v1, explicit per-reset UX, strict load/conflict/failure guards and standalone dev screen. 821 unit tests, root/dev typechecks, build/release guard and 29 Chromium flow checks passed. No gameplay/assets/canon approval, push, merge or release. See task/evidence/ledger; AW2-002/003 next.
 
 2026-10-20: Owner chose incubated new RPG branch, 12-first 10–20 spirits, five rarity tiers, pre-release dev-save resets, seven agent skill roles; documentation bootstrap in progress. Runtime not implemented.
