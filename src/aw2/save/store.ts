@@ -9,6 +9,7 @@ import {
 import {
   assertProgressContinuation,
   newWorldProgress,
+  worldProgressSchema,
   type WorldProgress,
 } from "../world/model"
 import {
@@ -17,6 +18,13 @@ import {
   createWorldBossEncounter,
   type WorldBossEncounter,
 } from "../world/encounter"
+import { applyWorldAction } from "../world/rules"
+import {
+  applyEconomyAction,
+  grantQuestRewards,
+  newEconomy,
+  type EconomyAction,
+} from "../economy/model"
 
 type SaveStorage = Pick<Storage, "getItem" | "setItem">
 type WriteLock = <T>(action: () => T) => Promise<T>
@@ -118,6 +126,62 @@ export class Aw2DevSaveStore {
     return { snapshot, encounter }
   }
 
+  /** Resolve actions inside the lock; renderer never supplies items, XP or receipts. */
+  act(
+    expectedRaw: string,
+    progress: WorldProgress,
+    objectId: string,
+    actionId: string,
+  ): Promise<ReadySave> {
+    return this.write(expectedRaw, (current) => {
+      if (current.status !== "ready")
+        throw new Aw2SaveError("invalid", "Cần đọc lại bản lưu AW2.")
+      this.assertPositionOnly(current.save.progress, progress)
+      const result = applyWorldAction(progress, objectId, actionId)
+      const next = this.revise(current, result.state)
+      if (result.state.questIndex > current.save.progress.questIndex)
+        next.economy = grantQuestRewards(current.save.economy, result.state)
+      return aw2DevSaveSchema.parse(next)
+    })
+  }
+
+  economyAction(
+    expectedRaw: string,
+    progress: WorldProgress,
+    action: EconomyAction,
+  ): Promise<ReadySave> {
+    return this.write(expectedRaw, (current) => {
+      if (current.status !== "ready")
+        throw new Aw2SaveError("invalid", "Cần đọc lại bản lưu AW2.")
+      this.assertPositionOnly(current.save.progress, progress)
+      const next = this.revise(current, progress)
+      next.economy = applyEconomyAction(
+        current.save.economy,
+        next.progress,
+        action,
+      )
+      return aw2DevSaveSchema.parse(next)
+    })
+  }
+
+  private assertPositionOnly(
+    before: WorldProgress,
+    candidate: WorldProgress,
+  ): void {
+    const valid = worldProgressSchema.parse(candidate)
+    if (
+      (Object.keys(before) as Array<keyof WorldProgress>).some(
+        (key) =>
+          !["x", "y", "facing"].includes(key) &&
+          JSON.stringify(valid[key]) !== JSON.stringify(before[key]),
+      )
+    )
+      throw new Aw2SaveError(
+        "invalid",
+        "Tiến trình đã đổi. Đọc lại trước khi tương tác.",
+      )
+  }
+
   finishBoss(
     expectedRaw: string,
     encounter: WorldBossEncounter,
@@ -186,12 +250,13 @@ export class Aw2DevSaveStore {
     return aw2DevSaveSchema.parse({
       gameId: "adventure-world-2",
       environment: "development",
-      schemaVersion: 3,
+      schemaVersion: 4,
       saveId: this.newId(),
       revision: 0,
       createdAt: now,
       updatedAt: now,
       progress: newWorldProgress(),
+      economy: newEconomy(),
     })
   }
 

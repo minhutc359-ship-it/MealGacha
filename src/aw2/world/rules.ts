@@ -21,6 +21,37 @@ export const completedReceipts = (state: WorldProgress) =>
   QUEST_GRANTS.slice(0, state.questIndex)
 export const currentQuestId = (state: WorldProgress) =>
   QUEST_IDS[state.questIndex]
+export function currentObjective(state: WorldProgress): string {
+  if (state.questIndex === 0)
+    return !state.accepted
+      ? "Đến Bà Giữ Chỗ ở làng để nhận lời nhờ."
+      : !state.tableRead
+        ? "Đọc mảnh khăn trên Bàn chung rồi trở lại Bà."
+        : "Trở lại Bà Giữ Chỗ để đón năm người bạn."
+  if (state.questIndex === 1)
+    return !state.accepted
+      ? "Đến An Vá Đèn tại Phố Đèn Lồng."
+      : state.memories.length < 3
+        ? `Nghe ba câu chuyện ở Phố: còn ${3 - state.memories.length} mẩu ký ức.`
+        : "Trở lại An Vá Đèn, chọn nét chỉ để nối mảnh khăn."
+  if (state.questIndex === 2)
+    return !state.accepted
+      ? "Gặp Dì Gác Bếp ở Sân Bếp Bỏ Quên."
+      : !state.hintRead
+        ? "Vào Phòng Kho, đọc Bảng dấu hơi."
+        : state.puzzleStep < 3
+          ? "Trong Phòng Lửa: mở lối thoát → đặt nồi → nhóm lửa."
+          : "Trở về Sân, báo Dì rằng bếp đã sáng."
+  if (state.questIndex === 3)
+    return !state.accepted
+      ? "Nhận nhiệm vụ Thêm một chén tại Dì Gác Bếp."
+      : !state.bossDefeated
+        ? "Đến Phòng Bàn và vượt thử thách Người Giữ Bàn Quên."
+        : !state.tableNoteRead
+          ? "Đọc Ghi chép bên chén trong Phòng Bàn."
+          : "Trở về Bà Giữ Chỗ, chọn cách giữ lời mời."
+  return "Bếp đã sáng. Bạn có thể khám phá, mở rương và chia một bữa ấm."
+}
 export function nearestObject(state: WorldProgress): WorldObject | undefined {
   return zoneById(state.zoneId)
     .objects.filter(
@@ -105,7 +136,7 @@ export function describeObject(
     )
   if (object.kind === "chest")
     return result(
-      "Rương chưa có contract phần thưởng. Chưa nhận vật phẩm hoặc đánh dấu đã nhận.",
+      "Rương nguyên liệu: 4 Gạo thơm, 3 Rau vườn, 2 Nước dùng. Mỗi hành trình chỉ nhận một lần.",
     )
   if (object.kind === "boss") {
     if (state.bossDefeated)
@@ -270,7 +301,8 @@ export function applyWorldAction(
     next.endingChoice = actionId === "seat-wait" ? "wait" : "share"
     next.questIndex = 4
     next.accepted = false
-    message = "Đã giữ lời mời bên bếp. Nhiệm vụ hoàn tất; chưa cấp XP/vật phẩm."
+    message =
+      "Đã giữ lời mời bên bếp. Nhiệm vụ hoàn tất; quà được lưu cùng tiến trình."
   }
   if (actionId.startsWith("thread-")) {
     next.threadChoice = actionId === "thread-wait" ? "wait" : "return"

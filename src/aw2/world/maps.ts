@@ -95,7 +95,7 @@ const objects: WorldObject[][] = [
     },
     {
       id: "aw2-chest-pantry",
-      name: "Rương · chờ economy",
+      name: "Rương nguyên liệu",
       x: 432,
       y: 272,
       kind: "chest",
