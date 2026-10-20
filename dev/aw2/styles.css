@@ -28,3 +28,14 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-world-map canvas { display: block; width: 100%; height: auto; }
 .aw2-world-label { position: absolute; transform: translate(-50%, -125%); font-size: clamp(.65rem, 1.2vw, .8rem); width: 20%; text-align: center; line-height: 1.2; pointer-events: none; color: #fff5dc; text-shadow: 1px 1px #000; }
 .aw2-world a { color: #f0d797; }
+.aw2-asset-preview { width: min(100% - 2rem, 64rem); }
+.aw2-asset-preview a { color: #f0d797; }
+.aw2-asset-stage { max-width: 640px; margin: 1.5rem auto 0; border: 1px solid #60756b; border-radius: 1rem; overflow: hidden; background: repeating-conic-gradient(#283e36 0 25%, #20342e 0 50%) 0 / 32px 32px; }
+.aw2-asset-stage canvas { display: block; width: 100%; height: auto; }
+.aw2-asset-preview .actions { align-items: center; }
+.aw2-asset-preview label { display: inline-flex; gap: .5rem; align-items: center; min-height: 44px; }
+.aw2-asset-preview input[type="checkbox"] { width: 1.25rem; min-height: 1.25rem; accent-color: #d5b77a; }
+.aw2-asset-preview button[aria-pressed="true"] { outline: 2px solid #f5d68b; outline-offset: 2px; }
+.aw2-asset-details { display: flex; align-items: flex-start; gap: 1.5rem; }
+.aw2-asset-details img { object-fit: contain; flex-shrink: 0; }
+@media (max-width: 600px) { .aw2-asset-details { flex-direction: column; } }

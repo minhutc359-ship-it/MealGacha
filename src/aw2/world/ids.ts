@@ -1,3 +1,5 @@
+import { THAN_ASSET_IDS } from "../assets/than"
+
 export const ZONE_IDS = [
   "aw2-zone-covenant-village", "aw2-zone-lantern-street", "aw2-zone-forgotten-kitchen-yard",
   "aw2-zone-kitchen-pantry", "aw2-zone-kitchen-hearth", "aw2-zone-kitchen-table",
@@ -15,5 +17,7 @@ export const ROSTER = SPIRIT_IDS.map((spiritId, index) => ({
   recipeAffiliation: ["Cơm tấm", "Bánh mì", "Phở", "Gỏi cuốn", "Bánh cuốn", "Muối rang", "Bún bò", "Canh chua", "Chè sen", "Cốm", "Bánh chưng", "Bữa ăn thất lạc"][index],
   rarity: (["N", "N", "N", "R", "R", "R", "SR", "SR", "SR", "SSR", "SSR", "UR"] as const)[index],
   role: ["Tank", "Striker", "Healer", "Support", "Mage", "Debuffer", "Striker", "Tank", "Healer", "Mage", "Tank", "Hybrid"][index],
-  assets: { status: "NOT_CREATED" as const, world: null, battle: null, portrait: null },
+  assets: spiritId === "aw2-than"
+    ? { status: "REFERENCE_ASSETS_REVIEWED" as const, ...THAN_ASSET_IDS }
+    : { status: "NOT_CREATED" as const, world: null, battle: null, portrait: null },
 }))

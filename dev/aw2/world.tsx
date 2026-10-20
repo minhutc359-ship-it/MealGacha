@@ -132,7 +132,7 @@ function WorldPreview() {
   return <main className="aw2-save aw2-world">
     <p className="eyebrow">AW2-006A · DEVELOPMENT</p><h1>Đường qua Phố Đèn Lồng</h1>
     <p>World thử nghiệm · hình khối debug, chưa có model/art nhân vật. Di chuyển WASD/mũi tên; E tương tác. Vị trí được lưu khi chọn Lưu hoặc xác nhận tương tác.</p>
-    <p><a href="/dev/aw2/index.html">Kho save / xác nhận reset AW2</a></p>
+    <p><a href="/dev/aw2/index.html">Kho save / xác nhận reset AW2</a> · <a href="/dev/aw2/than.html">Than · xem bộ chuyển động</a></p>
     {snapshot.status === "empty" ? <button onClick={() => void persist()} disabled={busy}>Tạo bản lưu AW2</button> : snapshot.status !== "ready" ? <p role="alert">Chưa mở được save ({snapshot.status}). Dữ liệu gốc được giữ; đọc lại hoặc mở kho save.</p> : <>
       <h2 data-testid="zone-name">{zoneById(world.zoneId).name}</h2>
       <WorldCanvas world={world} />
