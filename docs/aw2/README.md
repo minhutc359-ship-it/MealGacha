@@ -7,7 +7,7 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 
 ## AW2 development preview — AW2-001 + AW2-006A
 
-Current feature branch: `feat/aw2-007b-battle-renderer`, remote implementation snapshot `df72ebf` in draft [PR #80](https://github.com/minhutc359-ship-it/MealGacha/pull/80); long-lived base `game/adventure-world-2` remains at `179cc21`. AW2-012 integrated the earlier save/world/assets histories, AW2-007A added pure combat rules, and AW2-007B now adds the standalone event battle preview in REVIEW. Current source has 876 unit tests PASS; the new Chromium gate is BLOCKED on this runner and is not claimed as PASS. [Status](STATUS.md), [handoff](HANDOFF.md), [AW2-007B evidence](evidence/AW2-007B.md). Owner-approved story/12 identities/tier/kit/starter direction remain; rates/pity are open (D11).
+Current feature branch: `feat/aw2-007b-browser-qa`, verified source `9067376b728d12bb55fbce3b94f81e80e7675978`. [PR #80](https://github.com/minhutc359-ship-it/MealGacha/pull/80) was merged into `game/adventure-world-2` at baseline `f0d5884`; this continuation fixes battle-session/terminal presentation and closes its browser gate locally. Current evidence: 880 unit tests /87 files and 22 Chromium checks PASS; both typechecks/build/production exclusion PASS. Windows Node25 full-suite command needs `NODE_OPTIONS=--no-experimental-webstorage` (see evidence). [Status](STATUS.md), [handoff](HANDOFF.md), [AW2-007B evidence](evidence/AW2-007B.md). Owner-approved story/12 identities/tier/kit/starter direction remain; rates/pity are open (D11). No continuation push/merge/release.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -62,7 +62,7 @@ These rules are consumed by the development preview below. World boss/save/rewar
 
 ## Event battle preview — AW2-007B
 
-Open `http://localhost:8443/dev/aw2/battle.html`. The five approved starters auto-fight with HD reference atlases and can use manual ultimates. Pause, step one tick, choose development levels 1/5/10/20, reset, and enable reduced motion. Enemy units temporarily reuse tinted starter atlases and are not finished enemy assets.
+Open `http://localhost:8443/dev/aw2/battle.html` (current local verification server `http://127.0.0.1:8452/dev/aw2/battle.html`). The five approved starters auto-fight with HD reference atlases and can use manual ultimates. Pause, step one tick, choose development levels 1/5/10/20, reset, and enable reduced motion. Choosing a level applies only when creating the next battle; current cards retain their active level/stats. Terminal events clear unfinished visual projectiles. Enemy units temporarily reuse tinted starter atlases and are not finished enemy assets.
 
 The canvas consumes `CombatEvent` presentation state; it does not calculate damage or award outcomes. `aw2-leveling-development-v1` is a deterministic non-persistent test curve, not approved balance. This page never writes XP, rewards or save data.
 
@@ -71,7 +71,7 @@ pnpm test dev/tests/aw2/combat.test.ts dev/tests/aw2/battle-presentation.test.ts
 node dev/tools/verify-aw2-battle-browser.mjs --url http://localhost:8443/dev/aw2/battle.html
 ```
 
-The browser verifier needs Playwright/Chromium and uses a fresh profile. Current implementation/build evidence is recorded even when that external browser gate is unavailable. [Task](tasks/AW2-007B.md) · [evidence](evidence/AW2-007B.md).
+The browser verifier needs Playwright/Chromium and uses a fresh profile. It accepts a package name, file URL, or local Windows/POSIX module path through `--playwright`, and a browser executable through `--chromium`. Current Chromium gate: 22 checks PASS; desktop/mobile/terminal captures inspected. Device/mobile UX/FPS and world-save integration remain open. [Task](tasks/AW2-007B.md) · [evidence](evidence/AW2-007B.md).
 
 ## Than asset / animation reference — AW2-004A
 
@@ -109,4 +109,4 @@ node dev/tools/verify-aw2-starter-browser.mjs --url http://localhost:8443/dev/aw
 node dev/tools/verify-aw2-than-browser.mjs --url http://localhost:8443/dev/aw2/than.html
 ```
 
-Build uses the preserved sources, AW2-004A encoder/synth helpers and manifest template; it never generates or repaints art. Browser tools accept `--playwright`/`--chromium`, use fresh isolated profiles and keep QA PNGs under ignored `.asset-work/`. [Task](tasks/AW2-004B.md), [verification](evidence/AW2-004B.md), [handoff](HANDOFF.md). AW2-007B now consumes the pure rules in a development canvas; next is its Chromium gate, then trusted world/save/boss integration while animation/character complete authored enemies, seven non-starter references and character gates.
+Build uses the preserved sources, AW2-004A encoder/synth helpers and manifest template; it never generates or repaints art. Browser tools accept `--playwright`/`--chromium`, use fresh isolated profiles and keep QA PNGs under ignored `.asset-work/`. [Task](tasks/AW2-004B.md), [verification](evidence/AW2-004B.md), [handoff](HANDOFF.md). AW2-007B's development canvas is now Chromium-verified; next is trusted world/save/boss integration while animation/character complete authored enemies, seven non-starter references and character gates.

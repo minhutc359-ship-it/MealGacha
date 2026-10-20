@@ -14,7 +14,7 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | WORLD-01 navigation, collision, zone transfer, spawn | world | PASS — six-zone debug foundation, integration source 0e8fb7a /18 Chromium checks; retest authored maps/assets |
 | WORLD-02 NPC, quest, followers and interact range | world/quest | NOT_RUN as full case: first 3 quests/range verified in QUEST-01; followers pending |
 | QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS — integration source 0e8fb7a, rule tests +18 Chromium world checks |
-| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS pure rules — fdf4a60; 31299a4 renderer/level unit+build PASS, Chromium visual gate BLOCKED |
+| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS rules + standalone renderer subset — source 9067376; 87 AW2 /880 full tests,22 Chromium checks; world BATTLE-02 separate |
 | BATTLE-02 battle return/save/reload, paused run | combat/save | NOT_RUN |
 | ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; five starter reference sets verified below |
 | ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — integration source 0e8fb7a /32 Chromium checks; reference scope only |
@@ -25,7 +25,28 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | MODE-01 TCG/Chess embedded and quick-entry safe | navigation | NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
-Six-zone debug navigation and first-three-quest tests run under AW2-006A. Pure combat rules run under AW2-007A; AW2-007B has source/unit/build evidence but its browser visual gate is BLOCKED. World-connected battle, gacha, full authored-art and vertical-slice tests have not run. Historical AW2-001 below covers schema v1; the latest record supersedes its affected current-source coverage.
+Six-zone debug navigation and first-three-quest tests run under AW2-006A. Pure combat rules run under AW2-007A; AW2-007B now has current Chromium evidence below. World-connected battle, gacha, full authored-art and vertical-slice tests have not run. Historical AW2-001 below covers schema v1; the latest record supersedes its affected current-source coverage.
+
+## AW2-007B browser continuation — 2026-10-20
+
+Base `f0d588461f2408a8e0a1ee49a78b36af5a8c7476` (PR #80 merge); tested implementation `9067376b728d12bb55fbce3b94f81e80e7675978`, branch `feat/aw2-007b-browser-qa`. Source checks ran on the committed implementation bytes before commit; final Chromium reran on the commit. Later documentation only. Windows10.0.26200 x64 /Node25.2.0 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Playwright1.64.1 /Chrome155.0.8059.85; fresh browser contexts only.
+
+| Command/check | Result | Observed |
+|---|---|---|
+| Frozen-lockfile install | PASS | Restored missing Capacitor and locked package versions; package.json/lockfile unchanged |
+| `pnpm test dev/tests/aw2 --maxWorkers=2` | PASS | 7 files /87 cases: four added session/terminal cases, all prior83 AW2 |
+| Default Node25 full suite | FAIL | 662 pass /15 failed;10 suites failed to load; unconfigured Node localStorage getter throws SecurityError |
+| `NODE_OPTIONS=--no-experimental-webstorage pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=.asset-work/aw2-007b/unit-node25.json` | PASS | 87 files /880 cases,24.66s; no failures/skips; no test/source workaround |
+| Root/dev typechecks | PASS | Both exit0; named command interfaces repair formatter's invalid inline union |
+| Six-file formatter + whitespace checks | PASS | `oxfmt --check` and `git diff --check`; line endings normalized in presentation source |
+| `pnpm build` + production exclusion scan | PASS | Build/release guard;851 files /76 text artifacts exclude AW2 markers/entries; existing chunk warning |
+| `node dev/tools/verify-aw2-battle-browser.mjs --playwright D:/prj/MealGacha/.asset-work/aw2-tools/node_modules/playwright-core/index.mjs --chromium "C:/Program Files/Google/Chrome/Application/chrome.exe"` | PASS | 22 checks on source commit, zero primary errors/failed requests, seeded save bytes unchanged |
+| Desktop/mobile/terminal captures | PASS reference scope | All three final captures opened; mobile has no overflow but small/crowded arena text remains |
+| BATTLE-02/SAVE-02/boss/world/persistent XP/device/rights | NOT_RUN | Preview-only gate; full game/device/release claims excluded |
+
+Reproduced baseline failure: choosing pending level10 changed the active level5 card before reset. Fixed by storing applied level/battle/presentation together and reading real actor ATK. Terminal inspection found one unfinished projectile still visible at player-win tick71; authoritative battle-end now cancels presentation flights without invented hit/miss/damage. Browser atlas coverage now observes actual decoded-image draw calls/valid rectangles; the old opaque-pixel count could pass on the arena background alone. Windows module paths work. Roles reviewed in-session; no independent agent sign-off. [Evidence](evidence/AW2-007B.md), [report](evidence/AW2-007B-browser.json).
+
+This closes the standalone AW2-007B gate and satisfies its full-unit obligation. Earlier blocked-browser entries below remain historical. Future save/shared-engine integration must run affected save/world/battle browser flows and full unit regression again; release/device/art/rights obligations remain open.
 
 ## AW2-007A pure combat rules — 2026-10-20
 
