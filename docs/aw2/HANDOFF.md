@@ -1,4 +1,21 @@
-# Handoff — 2026-10-21 / AW2-012A integrated and pushed
+# Current handoff — RPG continuation / AW2-013
+
+Review: [PR #82](https://github.com/minhutc359-ship-it/MealGacha/pull/82), `feat/rpg-playable-progression` → `rpg`; feature published, not merged.
+
+Base `rpg@5f14e42b1ab8e35764c379f2c5b14e81e5be945f` from PR #81. Feature `feat/rpg-playable-progression`, target PR `rpg`, account `hoangmingzzz123-source`. Root task card preceded runtime changes. No merge, master change, release, deployment or owner save access.
+
+Implemented: development economy v1 (quest XP30/50/80/140; pantry ingredients4/3/2; recipe1/1/1; sharing45 teamXP), schema v4 read-only migration from1–3, atomic item/receipt/XP writes and conflict/error retry, real boss seeds from saved progression. Five existing chibi atlases are used for walking/followers with bounded pathfinding. Explicit objective text, expandable inventory, readable mobile battle cards and opt-in event audio. New D11 simulator has2,000,000 seeded draws; review proposal is ready, rates remain PROPOSED.
+
+No new raster assets were generated. World terrain/NPC props remain procedural prototype visuals; boss still explicitly reuses tinted Than. No claim that seven missing spirits, full art, embedded modes, production gacha or entire project are done. D11 blocks shipping gacha specifically; it does not block the independent art/mode backlog. Existing save/body flags and stable namespaces are preserved.
+
+Verified local implementation `cbe9505bbb1ba33d8fb741e54f169df8588ae34e` is published as `a66188f2f340800b86e10e56ad300bc302387f0f`, identical tree `758f7d9427c810768364f6d3b9066caf6efc193d`.907 tests /91 files,114 AW2 tests /11 files,120 browser checks, both typechecks, separate RPG build and stable build/isolation PASS. Full evidence is in `evidence/AW2-013.md` and `TEST_LEDGER.md`. QA captures remain ignored under `.asset-work/`; only text/JSON evidence is committed. Run `pnpm dev`, then `/dev/aw2/world.html`; testing helper `node dev/tools/verify-aw2-rpg.mjs --playwright <module> --chromium <binary>` owns its localhost server for isolated runners. Full world verification still uses `verify-aw2-world.mjs --boss` with a reachable server in the same runner network.
+
+`pnpm build:aw2` produces `dist-aw2/`; serve from the origin root using `pnpm exec vite preview --config dev/vite.aw2.config.ts --port 8455`. This review build has91 files /23,785,177 bytes, excludes raw PNG/TS/source maps and opens the playable world at its root. HTTPS/localhost and Web Locks are needed for writes.
+
+Next owners: animation/character for boss/seven sets and final world art; BA/mechanic for AW2-009 isolated embedded modes; owner for concrete D11 rate/pity proposal; tester for affected checks and actual-device handoff. User-reserved physical QA and rights approval are not replaced by Chromium emulation. All roles in this task performed in-session, no independent sub-agent sign-off.
+
+## Historical handoff — AW2-012A (superseded current state above)
+
 
 **Current branch:** `game/adventure-world-2`. Owner explicitly requested pushing all completed AW2 features into this branch (the spelling `advanture` resolves to the canonical existing name, as in AW2-012). Task card AW2-012A preceded integration. Refreshed remote baseline `f0d588461f2408a8e0a1ee49a78b36af5a8c7476`; fast-forwarded and pushed completed head `82b85cd054e001d8a8dafbc9ea4467f5442842dc`. Remote readback matched exactly. This includes feature heads7bb0bf1 and82b85cd plus all six historical foundation feature heads; no conflict resolution or new runtime changes. Following handoff changes are documentation only. [Task/checks](tasks/AW2-012A.md).
 

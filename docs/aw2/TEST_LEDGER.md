@@ -6,26 +6,43 @@ Historical story review preserved by AW2-012: source `461c7cfaac658618d96ca8020a
 Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, command, observed outcome. Prior PASS becomes STALE for affected changes. PR runs selective affected tests; full suite required before release/major cross-engine merge, and after high-impact save/shared engine changes.
 | Case | Trigger | Result |
 |---|---|---|
-| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —03b92e2; schema v3/full unit +29 save and 40 world/boss Chromium checks preserve seeded stable bytes |
-| SAVE-02 chest/battle/gacha atomic grants, no double reward | loot/store | NOT_RUN as full item/chest/gacha case; boss flag/derived final-quest receipt subset PASS at 03b92e2, competing commits/choices included |
-| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS —03b92e2; v1/v2→v3 read-only migration, reset/conflicts/failures, bound boss checkpoint and competing tabs |
-| GACHA-01 weights N/R/SR/SSR/UR seeded statistics | gacha/roster | NOT_RUN |
-| GACHA-02 pity/shards/dupes and reload | gacha/save | NOT_RUN |
-| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS —03b92e2 debug six zones/safe result returns +completed reciprocal shortcut; retest authored maps/assets |
-| WORLD-02 NPC, quest, followers and interact range | world/quest | NOT_RUN as full case: first 3 quests/range verified in QUEST-01; followers pending |
-| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS —03b92e2; previous3 +boss/note/both endings, once-only receipt and close/reload flow in40 Chromium checks |
-| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS rules +development renderer —03b92e2;98 AW2 /891 full tests,22 standalone +40 world/boss checks |
-| BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development boss/checkpoint subset —03b92e2; pause, actual win/loss/retreat, retry/stale-tab, reload abort policy; persisted active-battle resume/production/native NOT_RUN |
+| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —AW2-013 source5ee6142;907 unit tests +29 save /40 world /21 economy /8 built checks preserve seeded stable bytes |
+| SAVE-02 chest/battle/gacha atomic grants, no double reward | loot/store | PASS development quest/chest/cooking/XP and boss settlement at5ee6142; runtime gacha part NOT_RUN, D11 unapproved |
+| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS —5ee6142; strict v1/v2/v3→v4 read-only migration, inventory receipts, reset/conflicts/failures and simultaneous writes |
+| GACHA-01 weights N/R/SR/SSR/UR seeded statistics | gacha/roster | PASS simulation only —5ee6142;2,000,000 tier/pity draws, proposal not runtime approval |
+| GACHA-02 pity/shards/dupes and reload | gacha/save | NOT_RUN runtime; pure pity boundaries covered, identity/dupe/shards/carry-save transactions pending |
+| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS development —5ee6142; six zones, safe returns/shortcut, tap route around wall and exact stop; authored maps pending |
+| WORLD-02 NPC, quest, followers and interact range | world/quest | PASS development —5ee6142; four quests/range plus five decoded authored chibi atlases/follower trail; final NPC/map art pending |
+| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS —5ee6142; all four quests, both endings, once-only rewards/catch-up and chest/cooking persist;40 world +21 economy checks |
+| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS rules/development renderer —5ee6142;114 AW2 cases,22 standalone +40 world checks, mobile portraits and opt-in confirmed-event audio |
+| BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development boss/checkpoint —5ee6142; saved XP drives stats, pause/win/retreat/retry/stale/reload-abort covered; persisted active-battle resume NOT_RUN |
 | ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; five starter reference sets verified below |
 | ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — integration source 0e8fb7a /32 Chromium checks; reference scope only |
 | PROVENANCE-THAN source/prompt/hash inventory | asset | PASS inventory only — rights/legal approval still NOT_RUN |
 | ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS — integration source 0e8fb7a /133 Chromium checks; reference scope only |
 | PROVENANCE-STARTERS original image/audio inventory | asset | PASS inventory only — integration source 0e8fb7a; rights/legal approval NOT_RUN |
-| DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | NOT_RUN |
+| DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | PASS development flow —5ee6142; pantry/fire/table rooms, puzzle, once-only chest and real boss; finished art/signature kit pending |
 | MODE-01 TCG/Chess embedded and quick-entry safe | navigation | NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
-Current AW2-007C verifies the debug four-quest/world/boss/save v3 flow below. Gacha/numerical inventory grants, full authored art/device and vertical-slice gates have not run. Historical AW2-001/006A/007A/B records remain scoped to their original refs/schema/feature gates; latest entries supersede affected current rows.
+Current AW2-013 verifies development save v4, numerical quest/chest/cooking/XP transactions, five followers, touch navigation, optional combat audio and a separate compiled review build. Runtime gacha/full authored art/modes/device/rights/vertical-slice release gates remain open. Earlier records remain source-bound history; current rows supersede affected older status.
+
+## AW2-013 RPG continuation — 2026-10-20 UTC
+
+Base rpg5f14e42 (PR #81); local runtime5ee6142, review buildcbe9505; published implementationa66188f with identical tree758f7d9. Task card preceded runtime. Linux x64 /Node24.19.0 /pnpm11.25.0 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Playwright1.62.1 /Chromium153.0.8010.0. Following edits documentation/evidence plus a formatter-only v1 test-fixture wrap; runtime/build bytes unchanged. No product dependency/lockfile change.
+
+| Command/check | Result | Observed |
+|---|---|---|
+| Full suite with `NODE_OPTIONS=--no-experimental-webstorage`, two workers | PASS |907 tests /91 files,26.84s, no failures/skips; includes114 AW2 tests /11 files |
+| `pnpm typecheck`; `pnpm typecheck:dev`; changed-source formatter; whitespace | PASS | Final runtime and new review build configuration |
+| `pnpm build`; release guard; recursive stable exclusion | PASS |851 files /72 text artifacts; no AW2 IDs/paths/save/tuning/reset markers |
+| Save/world-boss/standalone-battle/RPG browser verifiers | PASS |29+40+22+21=112 checks; fresh profiles; primary contexts no errors; stable saves unchanged |
+| `pnpm build:aw2`; compiled review verifier | PASS |8 more checks;91 files /23,785,177 bytes; real intro unlock/reward/reload and decoded battle/preview resources |
+| `node dev/tools/simulate-aw2-gacha.mjs` | PASS proposal simulation |2,000,000 draws /10,000 profiles; D11 remains PROPOSED; no live gacha or shard transactions |
+| Capture inspection | PASS prototype scope | Desktop followers,390px world and boss cards opened;320/390/768px overflow checks pass; small arena labels/scrolling remain |
+| Physical devices/offline/FPS/rights/full12/full-art/embedded modes | NOT_RUN | No whole-project or release-completion claim |
+
+[Full evidence, commands and observed failures](evidence/AW2-013.md). Initial stale schema fixtures, formatter type corruption, a transient HMR error and a worker-resource assertion were fixed before final PASS. Browser download/network isolation issues were resolved with an external temporary binary and server ownership in the same execution context. CLI push lacked credentials; selected GitHub connection published the feature with exact tree verification. PR #82 targets rpg and remains unmerged. No base/master write, merge/deployment or owner data reset. Current full-regression obligation is satisfied for these bytes; broaden testing only when later changes affect its gates.
 
 ## AW2-012A long-lived integration / push — 2026-10-21
 

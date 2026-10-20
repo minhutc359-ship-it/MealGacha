@@ -1,4 +1,21 @@
-# Live project status — 2026-10-21
+# Live project status — RPG continuation, 2026-10-20
+
+Review: [PR #82](https://github.com/minhutc359-ship-it/MealGacha/pull/82), `feat/rpg-playable-progression` → `rpg`; feature published, not merged.
+
+Current base: `rpg@5f14e42b1ab8e35764c379f2c5b14e81e5be945f` (PR #81 merged the incubator). Current feature: `feat/rpg-playable-progression`, PR target `rpg`. No master change or release. This section supersedes older statements below about the active branch and missing inventory/followers/audio.
+
+**AW2-013: VERIFIED implementation / review pending.** Development save v4 preserves strict v1/v2/v3 read-only migrations and adds inventory, fixed quest/chest receipts, cooking/sharing and shared team XP. New quest turn-ins grant atomically; old completed quests can be claimed explicitly. Real world boss seeds use saved XP. Five existing authored starter world atlases now walk/follow a collision-safe trail; touch paths route around walls. Objectives are explicit; bag is expandable; mobile ultimate cards include portraits; confirmed combat events play authored audio only after opt-in.
+
+Verified source: local `cbe9505bbb1ba33d8fb741e54f169df8588ae34e`, published implementation `a66188f2f340800b86e10e56ad300bc302387f0f`; identical tree `758f7d9427c810768364f6d3b9066caf6efc193d`. **907 unit tests /91 files and120 browser checks PASS**, both typechecks, separate RPG build and stable build/release/isolation PASS. `pnpm build:aw2` produces an independently servable review build (91 files,23,785,177 bytes). [Evidence](evidence/AW2-013.md).
+
+**AW2-005A: PROPOSED, simulation complete.** Two million seeded draws. Review [rates and pity](proposals/AW2-005A-RATES.md). D11 remains unapproved; no runtime draw/spend UI or gacha save writes. Numerical economy is an explicitly versioned development profile, not approved final balance.
+
+**Whole-project completion is still open.** Seven non-starter asset sets; authored boss art/signature kit; finished zone/NPC artwork; all twelve full-character DoD; embedded TCG/Auto Chess and quick-entry; D11 approval then runtime gacha; physical-device/offline/performance and rights review. No completed vertical-slice/release claim. User has reserved real-device testing/review; do not mislabel desktop viewport checks as device QA.
+
+[Current task](tasks/AW2-013.md) · [handoff](HANDOFF.md) · [ledger](TEST_LEDGER.md). Completed feature branches may be pushed; merges/releases still require explicit authorization.
+
+## Historical AW2-012A snapshot (superseded where noted above)
+
 
 Phase: PREPRODUCTION / development world→boss→note→ending flow verified; economy/authored assets pending.
 Current branch `game/adventure-world-2`. **AW2-012A: VERIFIED / INTEGRATED / PUSHED** by the owner's explicit request. Local and remote target fast-forwarded from `f0d588461f2408a8e0a1ee49a78b36af5a8c7476` to completed feature head `82b85cd054e001d8a8dafbc9ea4467f5442842dc`; remote readback matched exactly. This includes AW2-007B continuation `7bb0bf1` and AW2-007C, implementation `03b92e20f6dc55d62530da7e88c1ca1579505490`. Following integration documentation changes do not alter implementation. The requested spelling `game/advanture-world-2` refers to the existing canonical branch, as resolved in AW2-012. PR #79 remains unrelated legacy work. [Integration task and checks](tasks/AW2-012A.md).

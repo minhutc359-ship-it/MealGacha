@@ -223,7 +223,9 @@ describe("SAVE-03 v1 migration and atomic world/starter writes", () => {
     const f = fixture(),
       first = await f.store.save(null)
     const raw = JSON.stringify({
-      ...Object.fromEntries(Object.entries(first.save).filter(([key]) => key !== "economy")),
+      ...Object.fromEntries(
+        Object.entries(first.save).filter(([key]) => key !== "economy"),
+      ),
       schemaVersion: 1,
       revision: 7,
       progress: {},

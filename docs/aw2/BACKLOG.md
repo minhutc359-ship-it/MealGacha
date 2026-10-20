@@ -1,25 +1,30 @@
-# Task board
+# Task board — current target rpg
+
+AW2-013 supersedes previous inventory/follower/audio next-step notes; historical integration notes below retain their original refs.
 | ID | Owner | Scope | Status |
 |---|---|---|---|
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
-| AW2-001 | mechanic/BA/tester | Isolated save/reset; non-destructive v1/v2→v3 migrations | Foundation MERGED; current schema v3/save regression VERIFIED at 03b92e2 |
+| AW2-001 | mechanic/BA/tester | Isolated save/reset; non-destructive v1/v2→v3 migrations | Foundation MERGED; current schema v4 and read-only v1–v3 migrations VERIFIED in AW2-013 |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |
 | AW2-003 | character/mechanic | Owner approved initial 12 identities/tier/kit/starter, D10/D13/D15 | MERGED approved direction + original review history; full character DoD pending |
 | AW2-004 | animation/character | 12 world + HD + VFX sets; five starters source f6a3b66 implemented | IN_PROGRESS: 5 reference sets, 7 NOT_CREATED; full character gates pending |
 | AW2-004A | animation/character/tester | Than 4-way world, 8 HD key poses/tracks, portrait, FX/audio/provenance and preview | MERGED verified reference pipeline; not full character/release |
 | AW2-004B | animation/character/tester | Four other starters, ranged projectile art, repeated cues and shared selector | MERGED verified reference sets, integration source 0e8fb7a; not full character/release |
-| AW2-005 | mechanic | Five-tier gacha/pity/simulation | BACKLOG |
-| AW2-006 | mechanic | Pixi free-roam map/collision; AW2-006A prototype source b3c526b | IN_PROGRESS: verified foundation MERGED, authored visuals/followers pending |
+| AW2-005 | mechanic | Five-tier gacha/pity/simulation | Simulation PROPOSED via AW2-005A; D11 owner approval and runtime draws pending |
+| AW2-006 | mechanic | Pixi free-roam map/collision; AW2-006A prototype source b3c526b | IN_PROGRESS: verified foundation MERGED, five authored starter followers + touch paths implemented in AW2-013; zone/NPC art pending |
 | AW2-007 | mechanic | RPG team/battle integration | IN_PROGRESS: A/B/C development rules/renderer/world-save VERIFIED; authored boss kit/art/production progression pending |
 | AW2-007A | mechanic/BA/character/tester | Deterministic five-unit core, canonical events, range/projectile/interrupt and bounded starter passives | VERIFIED pure rules at fdf4a60; no UI/save/reward |
 | AW2-007B | mechanic/animation/tester | Event-driven HD battle preview and development leveling | VERIFIED at9067376; continuation INTEGRATED / PUSHED to game/adventure-world-2 through AW2-012A at82b85cd |
 | AW2-007C | mechanic/BA/story/animation/tester | Trusted boss checkpoint/result/save v3, note/both endings/shortcut and once-only receipts | VERIFIED at03b92e2:98 AW2 /891 full tests;91 Chromium assertions; INTEGRATED / PUSHED through AW2-012A at82b85cd |
-| AW2-008 | story/mechanic | Four quest/debug dungeon/boss progress implemented; numerical loot/chest/cooking pending | IN_PROGRESS; no inventory grants until economy contract |
+| AW2-008 | story/mechanic | Four quest/debug dungeon/boss progress implemented; development loot/chest/cooking contract verified in AW2-013 | Development flow VERIFIED; final balance and full dungeon art gates pending |
 | AW2-009 | BA/mechanic | TCG/Auto Chess in-world portals & quick-entry | BACKLOG |
 | AW2-010 | all/tester | Lantern playable vertical slice | BACKLOG |
 | AW2-011 | tester | Release regression/rights/mobile/offline | BACKLOG |
 | AW2-012 | BA/tester/scretary | Integrate all six AW2 feature histories; preserve approved canon and review evidence | VERIFIED / MERGED locally, source 0e8fb7a;859 tests +212 Chromium checks PASS |
 | AW2-012A | BA/tester/scretary | Owner-authorized fast-forward/push of all completed AW2 features to the long-lived branch | VERIFIED / INTEGRATED / PUSHED at82b85cd;891 tests /88 files, both typechecks, build/release/isolation PASS; following edits docs only |
+
+| AW2-013 | BA/mechanic/animation/tester/scretary | Save v4 economy, chest/cooking/XP, companions/touch navigation, mobile/audio, D11 simulation | VERIFIED implementation; review pending,907 tests /120 browser checks |
+| AW2-005A | BA/mechanic | Simulated D11 rates/pity/duplicate direction | PROPOSED: 2,000,000 draws; owner decision needed before runtime gacha |
 
 Current integration status supersedes the historical local-only/no-push statements below: the six foundation histories and AW2-007A/B/C are included in remote `game/adventure-world-2`. [AW2-012A task/checks](tasks/AW2-012A.md). Source feature branches remain retained; unrelated legacy features are excluded.
 AW2-001 evidence: [task card](tasks/AW2-001.md), [verification](evidence/AW2-001.md). The original standalone save source is retained; AW2-012 now integrates it and schema-v2 world dependencies into `game/adventure-world-2`.
@@ -38,4 +43,4 @@ AW2-007B: [task](tasks/AW2-007B.md), [evidence](evidence/AW2-007B.md). Chromium 
 
 AW2-007C: [task](tasks/AW2-007C.md), [evidence](evidence/AW2-007C.md), [report](evidence/AW2-007C-browser.json). Canonical boss result is bound to its saved checkpoint; real loss/retreat/failed writes/stale tabs, note and both approved endings verified. v1/v2 load in memory as v3; no owner data/reset or numerical loot/XP grant. World uses explicit reference boss visuals.
 
-Next smallest task: mechanic + BA specify numerical reward/XP/inventory contracts for AW2-008 chest/cooking, then tester verifies atomic inventory + receipt behavior. Animation/character owe authored enemies/signature kits, seven sets (`aw2-muoi`, `aw2-nhien`, `aw2-hai`, `aw2-lien`, `aw2-moc`, `aw2-bach`, `aw2-van`), mobile combat readability and all full-character device/rights gates. D11 simulation precedes rate/pity approval. Then AW2-009 modes and AW2-010/011 gates. No finished slice before AW2-010 verification. Completed feature work is pushed per owner instruction; no auto-merge.
+Next work: owner reviews D11 simulation; animation/character completes authored boss/signature kit and seven non-starter sets (`aw2-muoi`, `aw2-nhien`, `aw2-hai`, `aw2-lien`, `aw2-moc`, `aw2-bach`, `aw2-van`), then all twelve character gates. Mechanic/BA owns isolated TCG/Chess transitions (AW2-009); no legacy save imports. AW2-010/011 remain open for authored slice/device/offline/rights. Current development economy/followers/audio are implemented, not unfinished contracts. Completed feature pushes authorized; no auto-merge.

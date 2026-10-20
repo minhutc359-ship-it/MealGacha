@@ -1,4 +1,33 @@
 # Soul of Meal Adventure World 2 — Next Game
+
+Review: [PR #82](https://github.com/minhutc359-ship-it/MealGacha/pull/82), `feat/rpg-playable-progression` → `rpg`; feature published, not merged.
+
+## Current RPG continuation — AW2-013
+
+Active base is now `rpg` after PR #81; work branch `feat/rpg-playable-progression` targets `rpg`. See [current status](STATUS.md), [task](tasks/AW2-013.md), [handoff](HANDOFF.md). Current schema is **v4**: v1–v3 read-only upgrades, inventory/quest and chest receipts, cooking and persistent team XP. At the pantry, interact to open the chest once. At Dì or the lit hearth after quest3, expand **Đội và túi đồ** to cook/share meals. Old completed quests expose an explicit catch-up claim. Failed writes preserve previous items and progress. Real boss fights use the team's saved level.
+
+World now draws the five existing authored chibi atlases with directional walking/followers. Tap a valid ground point to route around collisions; keyboard/held controls remain. The inventory expands separately; objective text gives the next destination. Battle audio is opt-in and triggered by confirmed events; mobile cards include portraits. Terrain/NPC props and boss artwork remain reference/prototype quality. No new assets or full12-character completion is claimed.
+
+D11 [rate/pity simulation proposal](proposals/AW2-005A-RATES.md) is ready for review. Runtime gacha, seven spirit sets, authored boss/zone art, embedded modes and release/device/rights gates remain open. Later historical sections describe original milestones; this current section supersedes their missing XP/items/followers/audio limitations.
+
+Build riêng để chơi thử RPG (không phải bản phát hành):
+
+```sh
+pnpm install --frozen-lockfile
+pnpm build:aw2
+pnpm exec vite preview --config dev/vite.aw2.config.ts --host 127.0.0.1 --port 8455
+```
+
+Mở `http://127.0.0.1:8455/`. Dùng **Tạo bản lưu AW2** rồi theo mục tiêu trên màn hình; WASD/mũi tên hoặc chạm mặt đất để đi, E để tương tác. Bản build cần phục vụ ở thư mục gốc của origin; thao tác lưu cần HTTPS/localhost và Web Locks. `dist-aw2/` chứa91 files /23,785,177 bytes; `pnpm build` vẫn là bản stable riêng. [Bằng chứng kiểm thử](evidence/AW2-013.md):907 unit tests và120 browser checks.
+
+```sh
+node dev/tools/verify-aw2-build.mjs --playwright /path/to/playwright/index.mjs --chromium /path/to/chromium
+node dev/tools/verify-aw2-rpg.mjs --playwright /path/to/playwright/index.mjs --chromium /path/to/chromium
+node dev/tools/simulate-aw2-gacha.mjs
+```
+
+## Original incubator and milestone documentation
+
 Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không phải bản patch/đè lên master. Giai đoạn đầu hoàn thiện 12 nhân vật rồi mở lên 16–20; kết nối map, đi tự do, team 5 tự đánh/ultimate thủ công, pixel world + HD anime battle, TCG/Auto Chess trong thế giới kèm quick-entry, khám phá dungeon/rương/nấu ăn.
 ## Quy tắc
 Được reset **AW2 pre-release dev data riêng** sau xác nhận rõ; không clear dữ liệu của game Soul of Meal hiện tại. Kể từ release đầu tiên phải migration save và patch an toàn. 5 tier **N R SR SSR UR**, tách luật 4-tier cũ; tài nguyên/canon legacy chỉ tái sử dụng có chọn lọc.
