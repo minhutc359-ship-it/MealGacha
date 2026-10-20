@@ -7,7 +7,7 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 
 ## AW2 development preview — AW2-001 + AW2-006A
 
-Current branch: `feat/aw2-006-world-foundation`, with AW2-001 dependency and approved AW2-002/003 content incorporated. Source ref: `b3c526bdf37c03184fb68df150381f19e5f0723d`. Local implementation, not merged into the long-lived AW2 branch or published. Owner approved story/12 identities/tier/kit/starter direction; rates/pity remain open (D11).
+Current branch: `feat/aw2-004a-than-assets`, based on verified AW2-006A dependency `944e4df`, with AW2-001 and approved AW2-002/003 content incorporated. Latest asset source: `5d1df97da61bbefca1bdbe27f27f6c28ed3ed694`; world implementation remains `b3c526b`. Local implementation, not merged into the long-lived AW2 branch or published. Owner approved story/12 identities/tier/kit/starter direction; rates/pity remain open (D11).
 
 ```sh
 pnpm install --frozen-lockfile
@@ -46,3 +46,22 @@ node dev/tools/verify-aw2-world.mjs --url http://localhost:8443/dev/aw2/world.ht
 ```
 
 The world browser script accepts the same `--playwright` and `--chromium` options; fresh isolated profile only, captures/report under `.asset-work/aw2-006a/`. See [AW2-006A task](tasks/AW2-006A.md), [latest evidence](evidence/AW2-006A.md), [current canon](CANON.md) and [handoff](HANDOFF.md). The original AW2-001 evidence remains a historical schema-v1 record; latest schema-v2 results supersede affected current test rows.
+
+## Than asset / animation reference — AW2-004A
+
+Open `http://localhost:8443/dev/aw2/than.html` after `pnpm dev` (current verification server localhost:8452). Eight HD states, four world directions, four skill FX/audio tracks, pause/replay and reduced motion. Audio starts only after opting in. Preview does not access or change saves. World page links to it; no follower/battle integration is implied.
+
+Five original PNG sources and their lossless WebP counterparts live in `dev/aw2/assets/than/base-v1/`, alongside four synthesized WAVs, exact `prompts.json` and `provenance.json`. Runtime metadata at `src/aw2/assets/than.base-v1.json` binds canonical identity/variant/asset/skill IDs to measured frames, foot anchors, timings/contact markers and source hashes. Generated sheet dimensions/spacing were not exact uniform grids; explicit calibrated rectangles preserve complete visible sprites without repainting or mirroring. Alpha edges tolerate at most 8/255 (observed maximum 4/255 on the selected cells).
+
+World has 16 chibi cels: one idle + three authored walking poses per direction, played as a four-step cycle. HD has eight generated key poses plus authored interpolated transform tracks; it is not frame-by-frame battle animation. Skill FX has four stages per skill, 16 frames. Than is melee, no projectile substitute. Passive requires a shield-expired event from future combat; preview proc is explicitly manual. Original audio cues are synthetic sounds, not sampled recordings/music. All image creation/repair used built-in `image_gen`, not a CLI/API fallback.
+
+```sh
+python3 dev/tools/build-aw2-than-assets.py
+python3 dev/tools/verify-aw2-than-files.py
+pnpm test dev/tests/aw2
+node dev/tools/verify-aw2-than-browser.mjs --url http://localhost:8443/dev/aw2/than.html
+```
+
+Build processing requires Pillow (recorded version in provenance); source PNG artwork remains unchanged. Build only encodes lossless WebP, writes atlas/timing metadata and synthesizes the four cues. Browser verification accepts the existing `--playwright` and `--chromium` options; uses a fresh temporary profile and writes captures under ignored `.asset-work/aw2-004a/`.
+
+[Task](tasks/AW2-004A.md) · [evidence](evidence/AW2-004A.md) · [source prompts](../../dev/aw2/assets/than/base-v1/prompts.json) · [provenance](../../dev/aw2/assets/than/base-v1/provenance.json). License remains REVIEW_REQUIRED / commercial release NOT_CLEARED. Than is a reference asset set, not a completed character: leveling, actual combat, device QA/human audio listening/legal approval remain open. Other 11 spirits still have NOT_CREATED assets. No AW2-010 completion or release follows from this task.

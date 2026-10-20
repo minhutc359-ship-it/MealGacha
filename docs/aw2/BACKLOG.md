@@ -5,7 +5,8 @@
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; extended non-destructively to v2 for world | VERIFIED locally; latest source b3c526b |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | VERIFIED specification; runtime partial |
 | AW2-003 | character/mechanic | Owner approved initial 12 identities/tier/kit/starter, D10/D13/D15 | VERIFIED direction; full character DoD pending |
-| AW2-004 | animation/character | 12 world + HD + VFX assets; identities/direction approved | READY: start one complete reference pipeline, then all 12 |
+| AW2-004 | animation/character | 12 world + HD + VFX sets; Than reference source 5d1df97 implemented | IN_PROGRESS: 1 reference set, 11 NOT_CREATED; full character gates pending |
+| AW2-004A | animation/character/tester | Than 4-way world, 8 HD key poses/tracks, portrait, FX/audio/provenance and preview | VERIFIED reference pipeline locally; not full character/release |
 | AW2-005 | mechanic | Five-tier gacha/pity/simulation | BACKLOG |
 | AW2-006 | mechanic | Pixi free-roam map/collision; AW2-006A prototype source b3c526b | IN_PROGRESS: foundation verified, authored visuals/followers pending |
 | AW2-007 | mechanic | RPG team/battle integration | BACKLOG |
@@ -19,4 +20,6 @@ Owner approved both story and roster proposals in-session. D10/D13/D14/D15 and C
 
 AW2-006A foundation: six debug zones, collisions/range/returns, first three quests, memory choice/puzzle, one-time starter unlock and v1→v2 save migration; [task](tasks/AW2-006A.md), [evidence](evidence/AW2-006A.md). Current branch includes AW2-001 and both source proposals, but no long-lived/master merge or push.
 
-Next smallest task: animation + character scope AW2-004A for one fully authored reference spirit (Than) with 4-way world, 8-state HD, portrait and unique skill/VFX/provenance; propagate validated pipeline to the other 11. Mechanic scopes AW2-007 combat/verified boss-result adapter and leveling/balance; BA/mechanic can simulate D11 without treating proposed rates as approved. Then complete AW2-008 loot/cooking, AW2-009 modes, AW2-010 vertical slice and AW2-011 release gates. No phase considered playable as a finished slice before AW2-010 verification.
+AW2-004A has a verified reference pipeline: [task](tasks/AW2-004A.md), [evidence](evidence/AW2-004A.md), preview `/dev/aw2/than.html`. Eight HD key poses + interpolated tracks are declared honestly; full character DoD and legal/device/battle gates remain open. No changes to save schema, rates or approved identities.
+
+Next smallest task: animation + character scope AW2-004B for the other four N/R starters (Lửa Nhỏ, Lam Lam, Mộc Non, Sương Lành), reuse validated frame/provenance/player contracts and review each identity. Then author the remaining seven and finish Than combat/leveling/device/rights gates; do not treat one reference set as one completed character. Mechanic scopes AW2-007 combat/verified boss-result adapter and leveling/balance; BA/mechanic can simulate D11 without treating proposed rates as approved. Then complete AW2-008 loot/cooking, AW2-009 modes, AW2-010 vertical slice and AW2-011 release gates. No phase considered playable as a finished slice before AW2-010 verification.

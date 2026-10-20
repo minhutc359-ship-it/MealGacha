@@ -12,7 +12,9 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS — source b3c526b, rule tests + 18 Chromium world checks |
 | BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | NOT_RUN |
 | BATTLE-02 battle return/save/reload, paused run | combat/save | NOT_RUN |
-| ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN |
+| ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; Than reference subset verified below |
+| ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — AW2-004A source 5d1df97, reference pipeline scope only |
+| PROVENANCE-THAN source/prompt/hash inventory | asset | PASS inventory only — rights/legal approval still NOT_RUN |
 | DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | NOT_RUN |
 | MODE-01 TCG/Chess embedded and quick-entry safe | navigation | NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
@@ -65,3 +67,24 @@ Source/head `b3c526bdf37c03184fb68df150381f19e5f0723d`; base long-lived `72ee9b4
 New coverage: movement normalization/frame clamp/walls/borders/slide, safe reciprocal exits and gates, range, all six memory permutations, explicit acceptance/hand-in/choice and replay rejection, puzzle wrong-order retry/persistence, no fabricated pending rewards/wins, strict progression validation, byte-preserving read-only v1→v2 migration, failed starter commit keeps prior party/quest and retry cannot duplicate unlock. Rule modules contain no React/Pixi dependency. Quest receipts are derived completion markers, not a verified loot economy.
 
 Default-run timeout is retained as runner sensitivity; do not label that attempt PASS. Capped-worker run supplies the final full-suite PASS, without changing gameplay or timeouts. Future shared-save/map/asset changes stale affected rows; full release regression including device/art/combat/loot/rights gates still required. Owner proposal approval recorded separately in CANON/DECISIONS, not inferred from tests. [Latest evidence](evidence/AW2-006A.md).
+
+## AW2-004A reference assets — 2026-10-20
+
+Base `944e4dff411c57ad903c7a7c332e91172cbf77f6`; source/head `5d1df97da61bbefca1bdbe27f27f6c28ed3ed694`, branch `feat/aw2-004a-than-assets`. Later changes documentation only. Linux x64, Node v22.23.2, pnpm 10.34.3, TypeScript 5.9.3, Vitest 5.0.1, Vite 8.0.5; Python/Pillow exact versions recorded in asset provenance. Existing Vite localhost:8452 returned HTTP 200; no new server needed. Open-PR connector query returned zero results in-session; no push/merge/release.
+
+| Command/check | Result | Observed |
+| --- | --- | --- |
+| `python3 dev/tools/build-aw2-than-assets.py` | PASS | 40 measured frames, 8 battle states, 4 cue WAVs; 5,943,968 WebP bytes; source visible RGBA/alpha preserved; identical-byte precommit build |
+| `python3 dev/tools/verify-aw2-than-files.py` | PASS | All source/output hashes/dimensions/alpha, 40 in-bounds/inset cells and edge alpha ≤8; four WAVs mono PCM22,050Hz, durations/non-silence/no clipping/faded ends |
+| `pnpm test dev/tests/aw2` | PASS | 3 files / 54 tests on source commit, includes save/world regression and 8 asset/timeline cases |
+| `pnpm typecheck` | PASS | Exit 0 on source commit |
+| `pnpm typecheck:dev` | PASS | Exit 0 on source commit |
+| `pnpm build` | PASS | Root production build + release guard exit 0; existing large-chunk warning |
+| Production boundary scan | PASS | 49 text artifacts exclude Than IDs/assets/preview and AW2 development entries |
+| `node dev/tools/verify-aw2-than-browser.mjs --playwright /tmp/Quetica.FNOT.MigrationTool.stage/frontend/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome` | PASS | 32 assertions, Chromium 153.0.8010.36; desktop 1280×1000 / mobile viewport 390×844; primary context no errors/missing assets |
+| Capture inspection | PASS | Eight-state/four-direction/skill contact sheets and mobile preview opened; final peak FX captures inspected |
+| Full suite / full ART-01 / real combat / devices / human audio listening / legal review | NOT_RUN | Selective task; prior full-suite result remains historical; remaining obligations retained |
+
+Observed failures/repairs: initial HD sheet had bodies crossing equal-cell boundaries and was rejected; repaired through image_gen, then calibrated explicit rectangles for actual nonuniform source spacing. Initial FX sheet had excessive glow/gutter overlap; replaced through image_gen with isolated smaller effects. No failed sheet is used by runtime or labelled PASS. No SVG/geometry substitutes for missing authored skills. Peak-FX visual review found the auto shield covering the face; fixed by manifest-owned unit/contact attachment offsets and layers (final source 5d1df97), then all 32 browser checks/captures reverified. Pause-induced Audio.play AbortError is treated as intentional interruption; missing image remains an explicit error. Pixel edges were not repainted: selected source PNGs preserved, WebP only losslessly encoded. 16 world cels, 8 HD key poses + interpolated transforms, 16 FX cels accurately describe the motion method.
+
+Current save/world logic/schema unchanged; their 46 unit cases reverified in the 54-case run, prior browser/world evidence remains at b3c526b for unchanged flows. No new full TCG/RPG regression claimed or required for this isolated asset/preview change; full release/major integration regression remains due. RIGHTS-01 is NOT_RUN: provenance inventory is not license clearance. Audio verified numerically/decoded in headless browser, not heard on human/real-device hardware. [Evidence](evidence/AW2-004A.md).
