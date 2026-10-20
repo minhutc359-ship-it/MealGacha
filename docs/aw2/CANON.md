@@ -1,7 +1,12 @@
-# Canon & Character Candidates — Working draft, not approved
-Thế giới: Hương vị lưu ký ức của những bữa ăn, Sương Nhạt làm ký ức biến mất. Người chơi cùng Vị Linh vào Làng Giao Ước → Phố Đèn Lồng → dungeon bếp bị quên. Bách, Hải, Liên, Mộc, Nhiên và Vân là concept tái sử dụng tùy phê duyệt, không tự động giữ nguyên lore cũ.
-## 12 danh tính đề xuất cần owner review
-| ID | Tên làm việc | Cảm hứng món ăn | Độ hiếm đề xuất | Role |
+# Canon — Initial 12 and Lantern direction approved 2026-10-20
+Owner approved both AW2-002 and AW2-003 proposals in-session; see D10/D13/D14/D15. Original proposal labels are historical, superseded by this explicit approval. Rates/pity, numerical balance, final title, production platform and finished art remain unapproved/unimplemented.
+
+Thế giới: Hương vị lưu ký ức của những bữa ăn, Sương Nhạt làm ký ức biến mất. Arc “Một chỗ bên bếp”: Làng Giao Ước → Phố Đèn Lồng → Sân Bếp Bỏ Quên → Phòng Kho → Phòng Lửa → Phòng Bàn, nối lại lời mời dành cho người vắng mặt. Không xác nhận người vắng mặt là Vân; Sương Lành không đồng nhất với Sương Nhạt. Bách, Hải, Liên, Mộc, Nhiên và Vân dùng lore AW2 đã duyệt, không tự kế thừa lore cũ. Mộc Non và Mộc là hai identity riêng.
+
+Approved story IDs and quest/choice direction are in `proposals/AW2-002-LANTERN.md`: six `aw2-zone-*`, eight `aw2-npc-*`, four quests `aw2-quest-kept-seat`, `aw2-quest-three-memories`, `aw2-quest-open-hearth`, `aw2-quest-one-more-bowl`; safe return routes, replayable dialogue/puzzle, no paid/UR story gate. Reward amounts and battle timing/stats are still mechanic work.
+
+## 12 danh tính / tier / role đã owner duyệt
+| ID immutable | Display name | Cảm hứng món ăn | Độ hiếm đã duyệt | Role |
 |---|---|---|---|---|
 | aw2-than | Than | Cơm tấm | N | Tank |
 | aw2-lua | Lửa Nhỏ | Bánh mì | N | Striker |
@@ -16,3 +21,5 @@ Thế giới: Hương vị lưu ký ức của những bữa ăn, Sương Nhạt
 | aw2-bach | Bách | Bánh chưng | SSR | Tank |
 | aw2-van | Vân | Bữa ăn thất lạc | UR | Hybrid |
 Mỗi ID immutable sau khi duyệt. Display name/recipe/animation được đổi riêng. **Ảnh chân dung không tính là model hoàn thành.** Definition of Done mỗi nhân vật: lore, role/kit, leveling, 4-way pixel movement, 8 trạng thái HD battle, portrait, projectile/impact/ultimate asset, QA và provenance. UR không được bắt buộc để kết thúc main story.
+
+Approved kit/identity/visual direction: `proposals/AW2-003-ROSTER.md`. Starter team: `aw2-than`, `aw2-lua`, `aw2-lam`, `aw2-moc-non`, `aw2-suong`; direct intro unlock before mandatory combat, no draw needed. Four slots: basic/auto/passive/manual ultimate; level curves, final skill data, art/animation/audio and QA remain pending. No character meets full Definition of Done from document approval alone.

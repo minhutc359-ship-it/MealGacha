@@ -1,3 +1,4 @@
+import { newWorldProgress } from "@/aw2/world/model"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import {
   AW2_DEV_SAVE_KEY,
@@ -81,9 +82,9 @@ describe("SAVE-01: AW2 namespace, round-trip and explicit reset", () => {
     expect(first.save).toMatchObject({
       gameId: "adventure-world-2",
       environment: "development",
-      schemaVersion: 1,
+      schemaVersion: 2,
       revision: 0,
-      progress: {},
+      progress: newWorldProgress(),
     })
     expect(new Aw2DevSaveStore(f.options).load()).toEqual(first)
     f.now.mockReturnValue("2026-10-20T08:01:00.000Z")
@@ -132,7 +133,7 @@ describe("SAVE-01: AW2 namespace, round-trip and explicit reset", () => {
     expect(result.save).toMatchObject({
       revision: 0,
       createdAt: "2026-10-20T09:00:00.000Z",
-      progress: {},
+      progress: newWorldProgress(),
     })
     await expect(
       f.store.confirmReset(reset, AW2_RESET_CONFIRMATION),
@@ -161,7 +162,7 @@ describe("SAVE-03: validation, conflicts and failures", () => {
     ["null", "invalid"],
     ["[]", "invalid"],
     [
-      JSON.stringify({ schemaVersion: 2, futureData: ["retain"] }),
+      JSON.stringify({ schemaVersion: 3, futureData: ["retain"] }),
       "unsupported",
     ],
     [JSON.stringify({ version: 1, gameId: "soul-of-meal" }), "invalid"],
@@ -210,7 +211,7 @@ describe("SAVE-03: validation, conflicts and failures", () => {
 
   it.each([
     "{broken",
-    JSON.stringify({ schemaVersion: 2, futureData: ["retain"] }),
+    JSON.stringify({ schemaVersion: 3, futureData: ["retain"] }),
   ])("allows an explicitly confirmed dev reset of %s", async (raw) => {
     const f = fixture()
     f.memory.set(AW2_DEV_SAVE_KEY, raw)

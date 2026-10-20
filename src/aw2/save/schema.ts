@@ -1,11 +1,12 @@
 import { z } from "zod"
+import { newWorldProgress, worldProgressSchema } from "../world/model"
 
 export const AW2_DEV_SAVE_KEY = "aw2.development.save"
 export const AW2_RESET_CONFIRMATION = "RESET AW2"
 
 // Version stays in the envelope so a newer save at the same key is detected.
 // No draft spirit, zone, economy or reward contract is implied by this schema.
-export const aw2DevSaveSchema = z
+export const aw2DevSaveV1Schema = z
   .strictObject({
     gameId: z.literal("adventure-world-2"),
     environment: z.literal("development"),
@@ -19,6 +20,14 @@ export const aw2DevSaveSchema = z
   .refine((save) => Date.parse(save.updatedAt) >= Date.parse(save.createdAt), {
     message: "Thời điểm lưu không được trước thời điểm tạo.",
   })
+
+export const aw2DevSaveSchema = z.strictObject({
+  ...aw2DevSaveV1Schema.shape,
+  schemaVersion: z.literal(2),
+  progress: worldProgressSchema,
+}).refine(save => Date.parse(save.updatedAt) >= Date.parse(save.createdAt), {
+  message: "Thời điểm lưu không được trước thời điểm tạo.",
+})
 
 export type Aw2DevSave = z.infer<typeof aw2DevSaveSchema>
 
@@ -52,11 +61,14 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
     typeof value === "object" &&
     "schemaVersion" in value &&
     typeof value.schemaVersion === "number" &&
-    value.schemaVersion > 1
+    value.schemaVersion > 2
   ) {
     return { status: "unsupported", raw }
   }
-  const parsed = aw2DevSaveSchema.safeParse(value)
+  const legacy = aw2DevSaveV1Schema.safeParse(value)
+  const parsed = aw2DevSaveSchema.safeParse(legacy.success ? {
+    ...legacy.data, schemaVersion: 2, progress: newWorldProgress(),
+  } : value)
   return parsed.success
     ? { status: "ready", raw, save: parsed.data }
     : { status: "invalid", raw }

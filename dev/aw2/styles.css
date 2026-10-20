@@ -23,3 +23,8 @@ dialog { color: inherit; width: min(100% - 2rem, 36rem); max-height: calc(100dvh
 dialog::backdrop { background: rgb(0 0 0 / 75%); }
 dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 @media (max-width: 480px) { .aw2-save { margin-top: 1.5rem; } section, dialog { padding: 1rem; } dl > div { grid-template-columns: 1fr; gap: 0; } }
+.aw2-world { width: min(100% - 2rem, 62rem); }
+.aw2-world-map { position: relative; width: 100%; background: #203c35; aspect-ratio: 5 / 3; }
+.aw2-world-map canvas { display: block; width: 100%; height: auto; }
+.aw2-world-label { position: absolute; transform: translate(-50%, -125%); font-size: clamp(.65rem, 1.2vw, .8rem); width: 20%; text-align: center; line-height: 1.2; pointer-events: none; color: #fff5dc; text-shadow: 1px 1px #000; }
+.aw2-world a { color: #f0d797; }

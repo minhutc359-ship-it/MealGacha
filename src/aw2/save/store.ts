@@ -6,6 +6,7 @@ import {
   type Aw2DevSave,
   type SaveSnapshot,
 } from "./schema"
+import { assertProgressContinuation, newWorldProgress, type WorldProgress } from "../world/model"
 
 type SaveStorage = Pick<Storage, "getItem" | "setItem">
 type WriteLock = <T>(action: () => T) => Promise<T>
@@ -73,7 +74,7 @@ export class Aw2DevSaveStore {
     }
   }
 
-  save(expectedRaw: string | null): Promise<ReadySave> {
+  save(expectedRaw: string | null, progress?: WorldProgress): Promise<ReadySave> {
     return this.write(expectedRaw, (current) => {
       if (current.status === "invalid" || current.status === "unsupported") {
         throw new Aw2SaveError(
@@ -82,10 +83,12 @@ export class Aw2DevSaveStore {
         )
       }
       if (current.status === "ready") {
+        if (progress) assertProgressContinuation(current.save.progress, progress)
         return aw2DevSaveSchema.parse({
           ...current.save,
           revision: current.save.revision + 1,
           updatedAt: this.timestamp(current.save.updatedAt),
+          progress: progress ?? current.save.progress,
         })
       }
       return this.freshSave()
@@ -133,12 +136,12 @@ export class Aw2DevSaveStore {
     return aw2DevSaveSchema.parse({
       gameId: "adventure-world-2",
       environment: "development",
-      schemaVersion: 1,
+      schemaVersion: 2,
       saveId: this.newId(),
       revision: 0,
       createdAt: now,
       updatedAt: now,
-      progress: {},
+      progress: newWorldProgress(),
     })
   }
 
