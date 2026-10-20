@@ -1,0 +1,60 @@
+{
+  "task": "AW2-004B",
+  "spiritId": "aw2-suong",
+  "variant": "base-v1",
+  "generator": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-20",
+  "externalReferences": [],
+  "outputs": [
+    {
+      "callId": "AW2-004B-09",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-e84b1fa6-e13c-4ff7-9e44-1d064909d615.png",
+      "sha256": "84659cbd7d4be062a18a8eaaec2a93c3c679bf9163e7d45644f6a78aae7493fd",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/suong/base-v1/portrait.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-17",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-07ab8ac6-9f6a-4d9f-b196-a25687fa7af0.png",
+      "sha256": "e0fabc93c17b44f893b18c0ba0ee22d23eae97bca195c38e0d69812353460475",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/suong/base-v1/world.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-18",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-2bbebbaf-21e4-4bf5-aed1-9f196e4b9180.png",
+      "sha256": "243ec6912c587b60a4dbb78681ffdde9ca946d7a0a1f668154c25135bebf0f5f",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/suong/base-v1/battle.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-19",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-9bd9387e-c7a0-4429-9e64-1aaae93c2f22.png",
+      "sha256": "f542a3b3926a92b196fbd2d7af37427053455d04d50bc58a2fdaa0abd34ef95d",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/suong/base-v1/fx.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    }
+  ],
+  "referencePolicy": "original portrait doubles as identity reference; no separate full-body reference illustration claimed",
+  "processing": "source PNGs unchanged; lossless WebP visible RGBA/alpha verified; measured atlas rectangles and pivots; no repaint/mask/mirror/resize",
+  "layoutNotes": "actual world rows down/right/left/up mapped explicitly",
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "fullCharacterComplete": false,
+  "audio": "original deterministic additive sine/sweep synthesis, no recordings; build-aw2-starter-assets.py",
+  "python": "3.12.3",
+  "Pillow": "10.2.0"
+}

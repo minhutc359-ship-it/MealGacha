@@ -1,0 +1,84 @@
+import { MEMORY_IDS, QUEST_GRANTS, QUEST_IDS, STARTER_TEAM, ZONE_IDS } from "./ids"
+import { canStand, zoneById, type WorldObject } from "./maps"
+import { worldProgressSchema, type WorldProgress } from "./model"
+
+export const INTERACT_RANGE = 48
+export const questLabel = (state: WorldProgress) => ["Một chỗ bên bàn", "Ba mẩu ký ức", "Mở lại bếp", "Thêm một chén · chờ combat"][state.questIndex]
+export const completedReceipts = (state: WorldProgress) => QUEST_GRANTS.slice(0, state.questIndex)
+export const currentQuestId = (state: WorldProgress) => QUEST_IDS[state.questIndex]
+export function nearestObject(state: WorldProgress): WorldObject | undefined {
+  return zoneById(state.zoneId).objects.filter(object => Math.hypot(state.x - object.x, state.y - object.y) <= INTERACT_RANGE)
+    .sort((a, b) => Math.hypot(state.x - a.x, state.y - a.y) - Math.hypot(state.x - b.x, state.y - b.y))[0]
+}
+export function moveWorld(state: WorldProgress, dx: number, dy: number, seconds: number): WorldProgress {
+  if (![dx, dy, seconds].every(Number.isFinite) || seconds <= 0 || (!dx && !dy)) return state
+  const length = Math.hypot(dx, dy)
+  const distance = 140 * Math.min(seconds, 0.05)
+  const vx = dx / length * distance, vy = dy / length * distance
+  let x = state.x, y = state.y
+  if (canStand(state.zoneId, x + vx, y)) x += vx
+  if (canStand(state.zoneId, x, y + vy)) y += vy
+  return { ...state, x, y, facing: Math.abs(dx) > Math.abs(dy) ? dx < 0 ? "left" : "right" : dy < 0 ? "up" : "down" }
+}
+
+export interface WorldDialog { title: string; text: string; actions: { id: string; label: string }[] }
+const action = (id: string, label: string) => ({ id, label })
+export function describeObject(state: WorldProgress, object: WorldObject): WorldDialog {
+  const result = (text: string, actions: WorldDialog["actions"] = []) => ({ title: object.name, text, actions })
+  if (object.kind === "exit") {
+    const locked = object.to === ZONE_IDS[3] && object.id.endsWith(":east") && !(state.questIndex > 2 || state.questIndex === 2 && state.accepted)
+      || object.to === ZONE_IDS[5] && state.puzzleStep !== 3
+    return locked ? result("Cửa chưa mở. Tiếp tục nhiệm vụ và đọc gợi ý tại Dì Gác Bếp.") : result("Đi qua sẽ lưu vị trí an toàn tại vùng đích.", [action("travel", "Đi qua")])
+  }
+  if (object.kind === "mode") return result("Chế độ chưa được nối với AW2. Chưa chuyển mode hoặc thay đổi tiến trình.")
+  if (object.kind === "chest") return result("Rương chưa có contract phần thưởng. Chưa nhận vật phẩm hoặc đánh dấu đã nhận.")
+  if (object.kind === "boss") return result("Combat chưa được triển khai. Chưa bắt đầu trận, chưa đánh dấu thắng và chưa nhận thưởng.")
+  if (object.kind === "table") return result("Một mảnh khăn còn để dành trên bàn.", state.questIndex === 0 && state.accepted && !state.tableRead ? [action("inspect", "Đọc mảnh khăn")] : [])
+  if (object.kind === "memory") return result([
+    "Tôi nhớ một người luôn xin gói phần ngon nhất mang về. Không nhớ gói cho ai.",
+    "Chiếc ghế thấp này từng được kê thêm đệm. Tôi vẫn giữ phần đệm ấy.",
+    "Em chỉ nhớ phải đặt thêm một chén. Đặt thêm vẫn tốt hơn để ai đó thiếu.",
+  ][object.memory!], state.questIndex === 1 && state.accepted && !state.memories.includes(MEMORY_IDS[object.memory!]) ? [action("remember", "Ghi nhớ câu chuyện")] : [])
+  if (object.kind === "hint") return result("Mở lối thoát → đặt nồi → nhóm lửa. Làm sai có thể thử lại, không mất tài nguyên.", state.questIndex === 2 && state.accepted && !state.hintRead ? [action("inspect", "Ghi lại gợi ý")] : [])
+  if (object.kind === "puzzle") return result(state.puzzleStep === 3 ? "Bếp đã sáng. Cửa trong được mở." : `Đã đúng ${state.puzzleStep}/3 bước.`, state.questIndex === 2 && state.accepted && state.hintRead && state.puzzleStep < 3 ? [action("puzzle", object.name)] : [])
+  const owner = ["aw2-npc-giu-cho", "aw2-npc-va-den", "aw2-npc-gac-bep", "aw2-npc-gac-bep"][state.questIndex]
+  if (object.id !== owner) return result(object.id === "aw2-npc-giu-cho" ? "Chưa nhớ được tên cũng không sao. Con đã giúp bà giữ lời mời." : "Đường về luôn còn ở phía sau. Cứ quay lại khi con sẵn sàng.")
+  if (!state.accepted) return result([
+    "Bà nhớ đã để dành chiếc ghế này. Chỉ không nhớ đã hẹn ai. Con đọc giúp bà mảnh khăn nhé?",
+    "Đèn tắt thì thay tim. Còn người quên nhau, phải tìm xem ai đang chờ. Hỏi ba người ở phố rồi quay lại nhé.",
+    "Đường về ở ngay sau lưng con. Đọc bảng dấu hơi trong Kho rồi giải puzzle để mở bếp.",
+    "Bếp đã sáng. Phía trong còn một chỗ đang đợi — trận boss sẽ được nối ở bước combat.",
+  ][state.questIndex], [action("accept", "Nhận nhiệm vụ")])
+  if (state.questIndex === 0 && state.tableRead) return result("Cảm ơn con. Năm người bạn sẽ cùng con lên đường.", [action("turn-in", "Hoàn tất nhập môn")])
+  if (state.questIndex === 1 && state.memories.length === 3) return result("Ba nét chỉ khác nhau vẫn giữ cùng một mép khăn. Con chọn nét chỉ nào?", [action("thread-wait", "Người chờ"), action("thread-return", "Người trở lại")])
+  if (state.questIndex === 2 && state.puzzleStep === 3) return result("Bếp sáng rồi. Chừa cửa cho người đến sau nhé.", [action("turn-in", "Báo đã mở bếp")])
+  return result("Câu chuyện vẫn đợi con. Hoàn thành mục tiêu rồi quay lại; có thể rời đi và đọc lại gợi ý.")
+}
+
+export function applyWorldAction(state: WorldProgress, objectId: string, actionId: string): { state: WorldProgress; message: string } {
+  const object = zoneById(state.zoneId).objects.find(candidate => candidate.id === objectId)
+  if (!object || Math.hypot(state.x - object.x, state.y - object.y) > INTERACT_RANGE) throw Error("Hãy đến gần để tương tác.")
+  if (!describeObject(state, object).actions.some(action => action.id === actionId)) throw Error("Thao tác chưa hợp lệ với trạng thái hiện tại.")
+  let next = { ...state }, message = "Đã ghi nhận tiến trình AW2."
+  if (actionId === "travel") next = { ...next, zoneId: object.to!, x: object.spawnX!, y: 192 }
+  if (actionId === "accept") next.accepted = true
+  if (actionId === "inspect" && object.kind === "table") next.tableRead = true
+  if (actionId === "inspect" && object.kind === "hint") next.hintRead = true
+  if (actionId === "remember") next.memories = [...next.memories, MEMORY_IDS[object.memory!]]
+  if (actionId.startsWith("thread-")) {
+    next.threadChoice = actionId === "thread-wait" ? "wait" : "return"
+    next.questIndex = 2; next.accepted = false
+  }
+  if (actionId === "turn-in") {
+    if (state.questIndex === 0) next.partyIds = [...STARTER_TEAM]
+    next.questIndex++; next.accepted = false
+  }
+  if (actionId === "puzzle") {
+    const correct = object.step === state.puzzleStep
+    next.puzzleStep = correct ? state.puzzleStep + 1 : 0
+    message = correct ? next.puzzleStep === 3 ? "Bếp đã sáng; cửa trong mở. Trở lại Dì Gác Bếp." : "Đúng nhịp; tiếp tục bước kế." : "Chưa đúng thứ tự. Thử lại từ mở lối thoát; không mất tài nguyên."
+  }
+  next = worldProgressSchema.parse(next)
+  if (!canStand(next.zoneId, next.x, next.y)) throw Error("Điểm đến chưa an toàn.")
+  return { state: next, message }
+}

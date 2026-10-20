@@ -1,0 +1,90 @@
+{
+  "task": "AW2-004B",
+  "spiritId": "aw2-lua",
+  "variant": "base-v1",
+  "generator": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-20",
+  "externalReferences": [],
+  "outputs": [
+    {
+      "callId": "AW2-004B-01",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-dd2e9246-5653-4fd3-94a8-6c2c3cf75570.png",
+      "sha256": "077beff42ba2e04085db73daf58aae35d8e8c34edb83166add1f53e7bcc54682",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/lua/base-v1/portrait.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-02",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-e4043bc3-4f8f-4283-b7a9-162a7303aba1.png",
+      "sha256": "f1812aaf9b06dbab63fee21bd19ab05b24fc996f8a0eb1023f603b96e3ded71b",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/lua/base-v1/world.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-03",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-dfcc3249-a572-4585-a776-ba29c5b555df.png",
+      "sha256": "4fd8fc1d8e1d7cd26f290b70f73da579dcc2e7e883ac79df2e24f3893ad16829",
+      "selected": false,
+      "workspacePath": null,
+      "reason": "cell boundary crossed by visible art/glow; not used by runtime"
+    },
+    {
+      "callId": "AW2-004B-04",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-ac0a5972-7a3a-45e8-91a7-3408e0f27e9b.png",
+      "sha256": "3706fcd01d3aeba02e3a4286aad3fc9a735d1a3ec3f0c5e99ee5c6aff64dc13f",
+      "selected": false,
+      "workspacePath": null,
+      "reason": "cell boundary crossed by visible art/glow; not used by runtime"
+    },
+    {
+      "callId": "AW2-004B-05",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-4cf69caf-51aa-4e77-bb22-a4535ce05464.png",
+      "sha256": "404b4a65e5ad611f3357ab95e6dea37ce99490497329f1e2af6128222f99777f",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/lua/base-v1/battle.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-06",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-013fbd0c-f18b-49fd-ac09-7fb9adf0e8be.png",
+      "sha256": "cc6c64652f996a76311c44f8e7fe0f678cee4e74194fdc89829422039a7e0298",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/lua/base-v1/fx.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-10",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-99bc9ee5-1572-4f82-9e44-1bb90f1436bf.png",
+      "sha256": "9af239848a8d507c3fe39be1f7d9d3f49346609fcae92c389bfa7bd1d1de000b",
+      "selected": false,
+      "workspacePath": null,
+      "reason": "cell boundary crossed by visible art/glow; not used by runtime"
+    }
+  ],
+  "referencePolicy": "original portrait doubles as identity reference; no separate full-body reference illustration claimed",
+  "processing": "source PNGs unchanged; lossless WebP visible RGBA/alpha verified; measured atlas rectangles and pivots; no repaint/mask/mirror/resize",
+  "layoutNotes": "measured nonuniform row/column boundaries",
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "fullCharacterComplete": false,
+  "audio": "original deterministic additive sine/sweep synthesis, no recordings; build-aw2-starter-assets.py",
+  "python": "3.12.3",
+  "Pillow": "10.2.0"
+}
