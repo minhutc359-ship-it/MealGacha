@@ -29,7 +29,23 @@ Current AW2-007C verifies the debug four-quest/world/boss/save v3 flow below. Ga
 
 ## AW2-012B direct-branch policy / cleanup — 2026-10-21
 
-IN_PROGRESS. Baseline local/remote AW2 `ccddfd69404860e48829f79b588c65a7408054ef`; retained remote master `f9d39257d17b4dd378a2fbd2a9f936724754fc16`. Windows10.0.26200 /PowerShell /Git. Scope: documentation/process policy D16 and branch refs only. Task card precedes edits/deletion. Fresh `git fetch --prune MealGacha`, default-branch readback, open-PR #79 metadata and79 remote/5 local ancestry audits executed:73 remote/3 local candidates are reachable from retained AW2 or master;6 remote/2 local refs retained. Policy push/deletion/post-cleanup checks pending. Runtime unit/browser/build NOT_RUN for this task; earlier source-bound results remain historical. [Task](tasks/AW2-012B.md).
+VERIFIED. Baseline local/remote AW2 `ccddfd69404860e48829f79b588c65a7408054ef`; policy commit `3d0311084fd52a9ad618b0f5bebbe08110063e98`. Retained remote master `f9d39257d17b4dd378a2fbd2a9f936724754fc16`; local master98843584b5f747dbaaf8c52c0db2dab1c0f26996. Windows10.0.26200 /PowerShell /Git /Node25.2.0. Scope: documentation/process policy D16 and branch refs only. Task card preceded edits/deletion; no new feature branch created. [Task](tasks/AW2-012B.md), [full audit/results](evidence/AW2-012B-branches.json).
+
+| Command/check | Result | Observed |
+|---|---|---|
+| `git fetch --prune MealGacha`, `ls-remote --symref ... HEAD`, open-PR query/metadata | PASS |79 remote refs, default master; only PR #79 open, Japan models→master; single AW2 worktree |
+| Per-head `git merge-base --is-ancestor <sha> <retained-ref>` audits | PASS |73 remote/3 local refs reachable from AW2/master; exact names/SHAs/retained ancestors recorded before deletion |
+| Direct-AW2 policy consistency + `git diff --cached --check` | PASS |Root AGENTS/WORKFLOW/README/status/handoff agree on D16; prior feature-only instructions explicitly superseded |
+| Policy commit/push + independent `ls-remote` | PASS |Remote AW2 matched3d0311084fd52a9ad618b0f5bebbe08110063e98 before any deletion |
+| Exact-head remote preflight + `git push --dry-run --porcelain --atomic <per-ref leases> MealGacha <explicit deletion refspecs>` | PASS |All73 heads match audited SHAs; six retained refs unchanged; dry-run accepted |
+| Same atomic push without `--dry-run` | PASS |73 refs reported deleted; leases guarded each expected SHA; no retained history rewritten |
+| `git branch -d -- <audited-local-name>` | PASS |Deleted3 local merged branches after exact-head/HEAD ancestry checks; no forced local deletion |
+| Refresh + `ls-remote --heads` / `git for-each-ref refs/heads` / inventory assertions | PASS |All selected refs absent;6 remote /2 local branches remain; four unmerged histories and master untouched; PR #79 rechecked open with original refs |
+| `git diff --exit-code ccddfd6 -- src dev public package.json pnpm-lock.yaml vite.config.ts tsconfig.json` | PASS |No runtime/assets/tests/build/dependency changes |
+| Final documentation/link/inventory checks + `git diff --check` | PASS |11 changed documentation files reviewed; relative links valid; all76 deleted local/remote heads still ancestors of AW2 HEAD; completed inventory agrees with actual ref lists |
+| Game unit/type/build/browser/device/rights | NOT_RUN this task |Documentation/ref-only change; prior891 unit/91 browser assertions remain source-bound historical evidence |
+
+Initial inventory generation using unavailable Python failed; staging stopped on the missing inventory file, with no commit or deletion. Reimplemented the inventory step with installed Node. A later Node child-process Git check hit sandbox EPERM; reran Git directly in PowerShell and kept Node for file/link checks, all PASS without changing permissions. The remote cleanup used explicit empty-source refspecs and per-ref expected-SHA leases, not a rewrite of retained branch history. Follow-up completion documentation is committed/pushed on the same AW2 branch; SHA readback and clean-tree checks are required at handoff.
 
 ## AW2-012A long-lived integration / push — 2026-10-21
 

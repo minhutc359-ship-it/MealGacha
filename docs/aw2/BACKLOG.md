@@ -20,7 +20,7 @@
 | AW2-011 | tester | Release regression/rights/mobile/offline | BACKLOG |
 | AW2-012 | BA/tester/scretary | Integrate all six AW2 feature histories; preserve approved canon and review evidence | VERIFIED / MERGED locally, source 0e8fb7a;859 tests +212 Chromium checks PASS |
 | AW2-012A | BA/tester/scretary | Owner-authorized fast-forward/push of all completed AW2 features to the long-lived branch | VERIFIED / INTEGRATED / PUSHED at82b85cd;891 tests /88 files, both typechecks, build/release/isolation PASS; following edits docs only |
-| AW2-012B | BA/tester/scretary | Standing direct-AW2 development/push policy D16 and audited redundant branch cleanup | IN_PROGRESS;73 merged remote /3 merged local candidates,6 remote /2 local retained |
+| AW2-012B | BA/tester/scretary | Standing direct-AW2 development/push policy D16 and audited redundant branch cleanup | VERIFIED; policy pushed at3d03110;73 remote /3 local branches deleted and read back,6 remote /2 local retained; documentation/ref checks PASS |
 
 Current integration status supersedes the historical local-only/no-push statements below: the six foundation histories and AW2-007A/B/C are included in remote `game/adventure-world-2`. [AW2-012A task/checks](tasks/AW2-012A.md). AW2-012B now supersedes source-branch-retention and feature-only-push policy: work directly on AW2, push after each completed task and remove audited merged branch refs while retaining their reachable commits/evidence. Unrelated unmerged legacy work remains excluded.
 AW2-001 evidence: [task card](tasks/AW2-001.md), [verification](evidence/AW2-001.md). The original standalone save source is retained; AW2-012 now integrates it and schema-v2 world dependencies into `game/adventure-world-2`.

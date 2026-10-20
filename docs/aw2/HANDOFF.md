@@ -2,7 +2,9 @@
 
 **Current standing instruction (D16):** continue AW2 functionality directly on `game/adventure-world-2`; create no new feature branch. At every completed task, run appropriate checks, update docs, commit and automatically push this exact branch, then confirm remote HEAD. This supersedes the earlier feature-only and one-time-integration policy in historical handoffs. [WORKFLOW](WORKFLOW.md), [task](tasks/AW2-012B.md).
 
-AW2-012B baseline local/remote `ccddfd69404860e48829f79b588c65a7408054ef`; clean single worktree. Policy documentation update and cleanup IN_PROGRESS. Fresh remote audit found79 branches:73 exact heads are included in retained AW2/master and eligible for deletion. Three merged local feature branches are also eligible. Keep default master/current AW2, plus four unmerged remote histories: feat/web-v450-traps, feat/web-v5924-japan-models (open PR #79), research/soul-of-meal-v4-major-update and rpg (new5f14e42 merge of PR #81). No runtime changes or game-test rerun in this documentation/ref-only task.
+**AW2-012B VERIFIED.** Baseline local/remote `ccddfd69404860e48829f79b588c65a7408054ef`; policy commit `3d0311084fd52a9ad618b0f5bebbe08110063e98` was pushed/read back before cleanup. Removed73 remote refs in one atomic deletion guarded by each audited head SHA, then3 local refs via `git branch -d`: feat/aw2-007b-browser-qa, feat/aw2-007c-world-boss and feature/foodchest-ui-v2. Refresh/readback confirmed every selected ref absent; all original commits remain reachable from retained AW2/master. [Exact names/SHAs/results](evidence/AW2-012B-branches.json).
+
+**Retained:**6 remote branches — master, game/adventure-world-2, feat/web-v450-traps, feat/web-v5924-japan-models, research/soul-of-meal-v4-major-update, rpg. The last four each have commits outside AW2/master; do not discard them based on age. PR #79 remains open with original head441ada9/basef9d3925. Rpg retains5f14e42 (new merge of PR #81). Local branches now only AW2 and master9884358; master was not updated. Runtime/assets/tests/build bytes match baseline; game tests/build/browser NOT_RUN this task. Policy consistency/whitespace/ref/ancestry checks PASS; prior891-unit/91-browser evidence remains historical, not a fresh run. Following completion evidence changes are documentation only and are pushed to AW2 under D16.
 
 ## Historical AW2-012A integration record
 
@@ -12,7 +14,7 @@ AW2-012B baseline local/remote `ccddfd69404860e48829f79b588c65a7408054ef`; clean
 
 **Next smallest task / owner:** mechanic + BA specify AW2-008 numerical loot/XP/inventory and cooking contracts, then tester verifies item/receipt atomicity. Authored boss/seven spirit sets/mobile/device/rights gates remain open. AW2-012A's one-time-integration policy is now superseded by standing D16 direct AW2 development/push. BA/tester/scretary reviews performed in-session; no independent agent or device/legal sign-off.
 
-**Historical feature push:** `feat/aw2-007c-world-boss` first matched8e379a6 after implementation/evidence, then reached82b85cd with documentation-only updates; `feat/aw2-007b-browser-qa` matched7bb0bf1. Both refs were verified again before AW2-012A and are retained. Initial feature push waited for GCM's account picker; scoped cached owner selection resolved it. Use WORKFLOW's command for future pushes; no global account configuration changed.
+**Historical feature push:** `feat/aw2-007c-world-boss` first matched8e379a6 after implementation/evidence, then reached82b85cd with documentation-only updates; `feat/aw2-007b-browser-qa` matched7bb0bf1. Both heads were included by AW2-012A; redundant branch refs were subsequently deleted by AW2-012B while their commit histories remain reachable. Initial feature push waited for GCM's account picker; scoped cached owner selection resolved it. Use WORKFLOW's direct-AW2 command for future pushes; no global account configuration changed.
 
 ## AW2-007A/007B/007C delivered
 

@@ -1,7 +1,7 @@
 {
   "task": "AW2-012B",
   "date": "2026-10-21",
-  "status": "PLANNED",
+  "status": "VERIFIED",
   "repository": "minhutc359-ship-it/MealGacha",
   "baseline": "ccddfd69404860e48829f79b588c65a7408054ef",
   "retainedAncestryRefs": {
@@ -21,7 +21,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/android-v4-beta",
@@ -30,7 +30,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/anime-stage-and-retro-score",
@@ -39,7 +39,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/auto-roster-shortcuts",
@@ -48,7 +48,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/aw2-007b-battle-renderer",
@@ -56,7 +56,7 @@
       "retainedBy": [
         "MealGacha/game/adventure-world-2"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/aw2-007b-browser-qa",
@@ -64,7 +64,7 @@
       "retainedBy": [
         "MealGacha/game/adventure-world-2"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/aw2-007c-world-boss",
@@ -72,7 +72,7 @@
       "retainedBy": [
         "MealGacha/game/adventure-world-2"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/battle-audio-and-skill-effects",
@@ -81,7 +81,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/campaign-atlas-visual-polish",
@@ -90,7 +90,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/challenge-character-roster",
@@ -99,7 +99,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/chapter-map-7-12",
@@ -108,7 +108,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/deeper-decks-and-willpower",
@@ -117,7 +117,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/exclusive-seasonal-food-pools",
@@ -126,7 +126,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/flavorbound-tcg",
@@ -135,7 +135,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/living-table-combos-and-journeys",
@@ -144,7 +144,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/memory-echoes-combat",
@@ -153,7 +153,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/new-year-cooling-summer-events",
@@ -162,7 +162,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/product-plan-v2-events-profile",
@@ -171,7 +171,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/v4-complete-release",
@@ -180,7 +180,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/v4-living-market",
@@ -189,7 +189,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/viewport-elemental-effects",
@@ -198,7 +198,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v410-living-world",
@@ -207,7 +207,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v420-adventure",
@@ -216,7 +216,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v430-adventure-world",
@@ -225,7 +225,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v433-adventure-screen",
@@ -234,7 +234,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v440-presentation",
@@ -243,7 +243,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v460-adventure-flow",
@@ -252,7 +252,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v470-tcg-four-slots",
@@ -261,7 +261,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v480-trap-art",
@@ -270,7 +270,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v490-hosted-pvp",
@@ -279,7 +279,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v500-adventure-campaign",
@@ -288,7 +288,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v510-spirit-finesse",
@@ -297,7 +297,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v520-rpg-combat",
@@ -306,7 +306,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v530-spirit-awakening",
@@ -315,7 +315,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v560-adventure-presentation",
@@ -324,7 +324,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v570-advanced-campaign",
@@ -333,7 +333,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v580-adventure-completion",
@@ -342,7 +342,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v582-spells-story-map",
@@ -351,7 +351,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v590-starter-polish",
@@ -360,7 +360,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v591-visual-manifest",
@@ -369,7 +369,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5910-regional-spirits",
@@ -378,7 +378,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5911-spring-caravan",
@@ -387,7 +387,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5912-vietnam-portraits",
@@ -396,7 +396,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5913-autochess-core",
@@ -405,7 +405,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5914-spirit-batch",
@@ -414,7 +414,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5915-manga-chronicle",
@@ -423,7 +423,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5916-manga-reader",
@@ -432,7 +432,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5917-combat-vfx-recovery",
@@ -441,7 +441,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5917-priority-spirit-models",
@@ -450,7 +450,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5918-introduction-manga",
@@ -459,7 +459,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5919-update-popup",
@@ -468,7 +468,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v592-web-budget",
@@ -477,7 +477,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5920-culture-and-library",
@@ -486,7 +486,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v5921-spirit-models-vfx",
@@ -495,7 +495,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v593-chef-production",
@@ -504,7 +504,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v594-familiar-spirits",
@@ -513,7 +513,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v595-rare-spirits",
@@ -522,7 +522,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v598-campaign-bosses",
@@ -531,7 +531,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/web-v599-campaign-creatures",
@@ -540,7 +540,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feature/foodchest-ui-v2",
@@ -549,7 +549,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/autochess-overtime",
@@ -558,7 +558,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/card-scroll-autochess-victory",
@@ -567,7 +567,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/center-mobile-chest-ritual",
@@ -576,7 +576,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/chest-reveal-and-banner-polish",
@@ -585,7 +585,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/compact-tcg-interface",
@@ -594,7 +594,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/readable-battle-card-library",
@@ -603,7 +603,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/restore-popups-dev-events",
@@ -612,7 +612,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/use-result-spin-reward-audio",
@@ -621,7 +621,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/v4-clearer-dialogue",
@@ -630,7 +630,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/web-guide-live-demo",
@@ -639,7 +639,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/web-v5917-authored-skill-vfx",
@@ -648,7 +648,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/web-v5917-autochess-elemental-attacks",
@@ -657,7 +657,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "fix/web-v5923-adventure-attack-range",
@@ -666,7 +666,7 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     }
   ],
   "localDeletionCandidates": [
@@ -676,7 +676,7 @@
       "retainedBy": [
         "MealGacha/game/adventure-world-2"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feat/aw2-007c-world-boss",
@@ -684,7 +684,7 @@
       "retainedBy": [
         "MealGacha/game/adventure-world-2"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     },
     {
       "name": "feature/foodchest-ui-v2",
@@ -693,51 +693,70 @@
         "MealGacha/game/adventure-world-2",
         "MealGacha/master"
       ],
-      "result": "PENDING"
+      "result": "DELETED"
     }
   ],
   "retainedRemote": [
     {
       "name": "feat/web-v450-traps",
       "sha": "bc5f98394ca81d45296d8d5ec1072df42964d264",
-      "reason": "Head has merge commit outside retained AW2/master history."
+      "reason": "Head has merge commit outside retained AW2/master history.",
+      "observedShaAfterCleanup": "bc5f98394ca81d45296d8d5ec1072df42964d264"
     },
     {
       "name": "feat/web-v5924-japan-models",
       "sha": "441ada9c30f950505da85e5cc6cffa29411f8d73",
-      "reason": "Open PR #79 head; unmerged Japan models commit."
+      "reason": "Open PR #79 head; unmerged Japan models commit.",
+      "observedShaAfterCleanup": "441ada9c30f950505da85e5cc6cffa29411f8d73"
     },
     {
       "name": "game/adventure-world-2",
       "sha": "ccddfd69404860e48829f79b588c65a7408054ef",
-      "reason": "Current AW2 development branch; preserve and push documentation here."
+      "reason": "Current AW2 development branch; preserve and push documentation here.",
+      "observedShaAfterCleanup": "3d0311084fd52a9ad618b0f5bebbe08110063e98"
     },
     {
       "name": "master",
       "sha": "f9d39257d17b4dd378a2fbd2a9f936724754fc16",
-      "reason": "Repository default branch; preserve unchanged."
+      "reason": "Repository default branch; preserve unchanged.",
+      "observedShaAfterCleanup": "f9d39257d17b4dd378a2fbd2a9f936724754fc16"
     },
     {
       "name": "research/soul-of-meal-v4-major-update",
       "sha": "8c04b9c13ba4d76c97c2faebb40babd42589e780",
-      "reason": "Head has merge commit outside retained AW2/master history."
+      "reason": "Head has merge commit outside retained AW2/master history.",
+      "observedShaAfterCleanup": "8c04b9c13ba4d76c97c2faebb40babd42589e780"
     },
     {
       "name": "rpg",
       "sha": "5f14e42b1ab8e35764c379f2c5b14e81e5be945f",
-      "reason": "New PR #81 merge 5f14e42 is outside retained AW2/master history."
+      "reason": "New PR #81 merge 5f14e42 is outside retained AW2/master history.",
+      "observedShaAfterCleanup": "5f14e42b1ab8e35764c379f2c5b14e81e5be945f"
     }
   ],
   "retainedLocal": [
     {
       "name": "game/adventure-world-2",
       "sha": "ccddfd69404860e48829f79b588c65a7408054ef",
-      "reason": "Current AW2 development branch; preserve and push documentation here."
+      "reason": "Current AW2 development branch; preserve and push documentation here.",
+      "observedShaAfterCleanup": "3d0311084fd52a9ad618b0f5bebbe08110063e98"
     },
     {
       "name": "master",
       "sha": "98843584b5f747dbaaf8c52c0db2dab1c0f26996",
-      "reason": "Repository default branch; preserve unchanged."
+      "reason": "Repository default branch; preserve unchanged.",
+      "observedShaAfterCleanup": "98843584b5f747dbaaf8c52c0db2dab1c0f26996"
     }
-  ]
+  ],
+  "policyCommit": "3d0311084fd52a9ad618b0f5bebbe08110063e98",
+  "deletionMethod": "Remote atomic push with explicit empty-source refspecs and per-ref expected-SHA leases; local git branch -d after ancestry/ref checks.",
+  "summary": {
+    "remoteBefore": 79,
+    "remoteDeleted": 73,
+    "remoteRemaining": 6,
+    "localBefore": 5,
+    "localDeleted": 3,
+    "localRemaining": 2
+  },
+  "note": "After-cleanup AW2 SHA records the policy commit. Subsequent completion-evidence commit changes documentation only and is pushed to the same AW2 branch."
 }
