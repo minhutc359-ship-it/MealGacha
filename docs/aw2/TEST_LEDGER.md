@@ -1,4 +1,6 @@
 # Test ledger / change impact
+Historical roster review preserved by AW2-012: source `4d8f1c516f55a0ffd4bad992624c465fe65a9146`, handoff `4b8553c21e191aa5ed964dca338fc243c2d0ebc6`; static structure checks PASS (twelve IDs, 48 skill slots, eight HD-state requirements, proposed tier distribution). [Original evidence](evidence/AW2-003.md). This is proposal-only historical evidence; current approval/asset status comes from CANON/D10/D13/D15 and subsequent records.
+
 Historical story review preserved by AW2-012: source `461c7cfaac658618d96ca8020ac99076fad9e35d`, handoff `238708cba7bb1402ec38828aa8748e35aee01ad9`; static namespace/reference checks PASS (six zones/eight NPCs/four quests, acyclic prerequisites), `git diff --check` PASS. [Original evidence](evidence/AW2-002.md). This describes the original proposal-only branch; current approval/runtime status comes from CANON/D14 and later integration records below.
 
 Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, command, observed outcome. Prior PASS becomes STALE for affected changes. PR runs selective affected tests; full suite required before release/major cross-engine merge, and after high-impact save/shared engine changes.
