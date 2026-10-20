@@ -5,12 +5,12 @@ import { BATTLE_STATES, DIRECTIONS, SKILL_SLOTS } from "@/aw2/assets/types"
 import { ROSTER } from "@/aw2/world/ids"
 
 describe("ART-THAN reference manifest and animation boundaries", () => {
-  it("resolves real art for Than while leaving the other 11 visibly incomplete", () => {
+  it("resolves real art for Than while leaving the other seven visibly incomplete", () => {
     expect(validateAssetManifest(THAN_ASSETS)).toEqual([])
     const than = ROSTER.find(spirit => spirit.spiritId === "aw2-than")!
     expect(than.assets.world).toBe(THAN_ASSETS.assets.world.id)
     expect(than.assets.battle).toBe(THAN_ASSETS.assets.battle.id)
-    expect(ROSTER.filter(spirit => spirit.assets.status === "NOT_CREATED")).toHaveLength(11)
+    expect(ROSTER.filter(spirit => spirit.assets.status === "NOT_CREATED")).toHaveLength(7)
     expect(THAN_ASSETS.fullCharacterComplete).toBe(false)
     expect(THAN_ASSETS.provenance.licenseStatus).toBe("REVIEW_REQUIRED")
     expect(THAN_ASSETS.provenance.commercialRelease).toBe("NOT_CLEARED")

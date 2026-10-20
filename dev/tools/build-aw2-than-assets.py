@@ -43,7 +43,7 @@ def encode(name):
     }
 
 
-def frames(name, xs, ys, labels):
+def frames(name, xs, ys, labels, edge_tolerance=8):
     alpha = Image.open(ASSETS / f"{name}.png").getchannel("A")
     result = {}
     for row in range(len(ys) - 1):
@@ -53,7 +53,7 @@ def frames(name, xs, ys, labels):
             bounds = cell.point(lambda a: 255 if a >= 96 else 0).getbbox()
             assert bounds and min(bounds[0], bounds[1], w - bounds[2], h - bounds[3]) >= 2, (name, row, col, bounds)
             edges = [cell.crop(box).getextrema()[1] for box in [(0, 0, w, 1), (0, h - 1, w, h), (0, 0, 1, h), (w - 1, 0, w, h)]]
-            assert max(edges) <= 8, (name, row, col, edges)
+            assert max(edges) <= edge_tolerance, (name, row, col, edges)
             label = labels[row][col]
             result[label] = {"asset": name, "x": x, "y": y, "width": w, "height": h,
                              "anchorX": round((bounds[0] + bounds[2]) / 2, 2),

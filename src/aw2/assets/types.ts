@@ -44,6 +44,15 @@ export interface BattleClip {
   markers: ClipMarker[]
   method: string
 }
+export interface ProjectileTrack {
+  frames: string[]
+  frameMs: number
+  launchAtMs: number
+  impactAtMs: number
+  from: { x: number; y: number }
+  to: { x: number; y: number }
+  scale: number
+}
 export interface SpiritAssetManifest {
   version: number
   spiritId: string
@@ -62,10 +71,11 @@ export interface SpiritAssetManifest {
     fx: string[]
     fxFrameMs: number
     fxTriggerAtMs: number
+    fxCueAtMs?: number[]
     fxPlacement: { attachment: string; layer: string; x: number; y: number; scale: number }
     trigger: string
     audio: { id: string; url: string; durationMs: number; sampleRate: number; sha256: string; method: string }
-    projectile: null
+    projectile: ProjectileTrack | null
     scope: string
   }>
   provenance: {

@@ -41,6 +41,33 @@ export function sampleWorldFrame(manifest: SpiritAssetManifest, direction: World
   return !walking || reducedMotion ? clip.idle : clip.walk[Math.floor(safeTime(elapsedMs) / clip.frameMs) % clip.walk.length]
 }
 
+export function skillCueTimes(skill: SpiritAssetManifest["skills"]["basic"]): number[] {
+  return skill.fxCueAtMs ?? [skill.fxTriggerAtMs]
+}
+
+/** Authored presentation trajectory. This does not confirm a gameplay hit. */
+export function sampleProjectile(skill: SpiritAssetManifest["skills"]["basic"], elapsedMs: number, reducedMotion = false) {
+  const track = skill.projectile
+  if (!track || reducedMotion || elapsedMs < track.launchAtMs || elapsedMs >= track.impactAtMs) return null
+  const time = elapsedMs - track.launchAtMs
+  const progress = time / (track.impactAtMs - track.launchAtMs)
+  return {
+    frame: track.frames[Math.floor(time / track.frameMs) % track.frames.length],
+    x: track.from.x + (track.to.x - track.from.x) * progress,
+    y: track.from.y + (track.to.y - track.from.y) * progress,
+    scale: track.scale,
+  }
+}
+
+export function sampleSkillFx(skill: SpiritAssetManifest["skills"]["basic"], elapsedMs: number, reducedMotion = false) {
+  const cue = [...skillCueTimes(skill)].reverse().find(at => elapsedMs >= at)
+  const frames = skill.projectile ? skill.fx.slice(2) : skill.fx
+  if (reducedMotion) return { frame: frames[skill.projectile ? 0 : 2], cue: skill.fxTriggerAtMs }
+  if (cue === undefined) return null
+  const frame = frames[Math.floor((elapsedMs - cue) / skill.fxFrameMs)]
+  return frame ? { frame, cue } : null
+}
+
 export function validateAssetManifest(manifest: SpiritAssetManifest): string[] {
   const errors: string[] = []
   if (!/^aw2-[a-z-]+$/.test(manifest.spiritId) || manifest.artVariantId !== "base-v1" || manifest.fullCharacterComplete) errors.push("Unexpected identity/completion claim")
@@ -71,8 +98,16 @@ export function validateAssetManifest(manifest: SpiritAssetManifest): string[] {
     const skill = manifest.skills[slot]
     const state = skill && manifest.battle[skill.battleState as keyof typeof manifest.battle]
     const placement = skill?.fxPlacement
-    if (!skill || !state || skill.id !== `${manifest.spiritId}:skill:${slot}` || skill.projectile !== null || skill.fxFrameMs <= 0 || skill.fxTriggerAtMs < 0 || skill.fxTriggerAtMs > state.durationMs || skill.fx.length !== 4 || skill.fx.some(frame => !manifest.frames[frame])) errors.push(`Invalid skill ${slot}`)
+    if (!skill || !state || skill.id !== `${manifest.spiritId}:skill:${slot}` || skill.fxFrameMs <= 0 || skill.fxTriggerAtMs < 0 || skill.fxTriggerAtMs > state.durationMs || skill.fx.length !== 4 || skill.fx.some(frame => !manifest.frames[frame])) errors.push(`Invalid skill ${slot}`)
     if (!placement || !["contact", "unit"].includes(placement.attachment) || !["front", "behind"].includes(placement.layer) || ![placement.x, placement.y, placement.scale].every(Number.isFinite) || placement.scale <= 0) errors.push(`Invalid FX placement ${slot}`)
+    if (skill && state) {
+      const cues = skillCueTimes(skill)
+      if (!cues.length || cues[0] !== skill.fxTriggerAtMs || cues.some((at, i) => !Number.isFinite(at) || at < 0 || at > state.durationMs || (i > 0 && at <= cues[i - 1]))) errors.push(`Invalid skill cues ${slot}`)
+      const projectile = skill.projectile
+      if (projectile && (!projectile.frames.length || projectile.frames.some(frame => !manifest.frames[frame]) ||
+        ![projectile.launchAtMs, projectile.impactAtMs, projectile.frameMs, projectile.scale, projectile.from.x, projectile.from.y, projectile.to.x, projectile.to.y].every(Number.isFinite) ||
+        projectile.launchAtMs < 0 || projectile.impactAtMs <= projectile.launchAtMs || projectile.impactAtMs !== skill.fxTriggerAtMs || projectile.impactAtMs > state.durationMs || projectile.frameMs <= 0 || projectile.scale <= 0)) errors.push(`Invalid projectile ${slot}`)
+    }
   }
   return errors
 }

@@ -1,0 +1,60 @@
+{
+  "task": "AW2-004B",
+  "spiritId": "aw2-moc-non",
+  "variant": "base-v1",
+  "generator": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-20",
+  "externalReferences": [],
+  "outputs": [
+    {
+      "callId": "AW2-004B-08",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-0e091ffd-86ae-4545-be94-1d2b03ae0a27.png",
+      "sha256": "ac454840da48f02fc820b160b486d9e86041dbcb32b5807e34553414e86af005",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/moc-non/base-v1/portrait.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-14",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-6ea9935a-d0cd-47f6-95eb-2ebbca743016.png",
+      "sha256": "f0923e2940fcb69dc106fda237874bac03cededab59f261322c12f8963465ee1",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/moc-non/base-v1/world.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-15",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-2d68d0bf-2bfe-4e4f-923a-162e3bf2da71.png",
+      "sha256": "40d272c9a391eab53ced50382db8971b9575eeba7d9509bf37e6accb511bd628",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/moc-non/base-v1/battle.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-16",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-d7dee244-c8ea-4722-85f0-6f73c02bffaa.png",
+      "sha256": "3d7f8384fbecd5487087d78a6b839eda29ea00d3269b8542377d482e705dc029",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/moc-non/base-v1/fx.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    }
+  ],
+  "referencePolicy": "original portrait doubles as identity reference; no separate full-body reference illustration claimed",
+  "processing": "source PNGs unchanged; lossless WebP visible RGBA/alpha verified; measured atlas rectangles and pivots; no repaint/mask/mirror/resize",
+  "layoutNotes": "Measured contiguous rectangles retain all source pixels. One world gutter has edge alpha 9/255, declared tolerance 9; visible alpha>=96 pixels stay inset >=2px. Other three sets tolerance8.",
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "fullCharacterComplete": false,
+  "audio": "original deterministic additive sine/sweep synthesis, no recordings; build-aw2-starter-assets.py",
+  "python": "3.12.3",
+  "Pillow": "10.2.0"
+}

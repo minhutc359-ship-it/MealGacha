@@ -5,10 +5,11 @@ import json
 import math
 import struct
 import wave
+import sys
 from PIL import Image
 
 root = Path(__file__).resolve().parents[2]
-manifest = json.loads((root / "src/aw2/assets/than.base-v1.json").read_text())
+manifest = json.loads((root / (sys.argv[1] if len(sys.argv) > 1 else "src/aw2/assets/than.base-v1.json")).read_text())
 checks = []
 images = {}
 for name, asset in manifest["assets"].items():
@@ -32,8 +33,8 @@ for name, frame in manifest["frames"].items():
     assert list(bounds) == frame["visibleBounds"], name
     assert min(bounds[0], bounds[1], w-bounds[2], h-bounds[3]) >= 2, name
     edge = max(cell.crop(box).getextrema()[1] for box in [(0,0,w,1),(0,h-1,w,h),(0,0,1,h),(w-1,0,w,h)])
-    assert edge == frame["maxEdgeAlpha"] and edge <= 8, name
-checks.append("40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255")
+    assert edge == frame["maxEdgeAlpha"] and edge <= manifest["provenance"]["alphaEdgeTolerance"], name
+checks.append(f"40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= {manifest['provenance']['alphaEdgeTolerance']}/255")
 
 for slot, skill in manifest["skills"].items():
     asset = skill["audio"]
@@ -50,4 +51,4 @@ for slot, skill in manifest["skills"].items():
     checks.append(f"{slot}: WAV hash/PCM/duration/non-silent/no clipping/faded edges")
 assert manifest["fullCharacterComplete"] is False
 assert manifest["provenance"]["licenseStatus"] == "REVIEW_REQUIRED"
-print(json.dumps({"task":"AW2-004A","status":"PASS","checks":checks,"webpBytes":sum(a["bytes"] for a in manifest["assets"].values())}))
+print(json.dumps({"task":"AW2-004A" if manifest["spiritId"] == "aw2-than" else "AW2-004B", "spiritId": manifest["spiritId"],"status":"PASS","checks":checks,"webpBytes":sum(a["bytes"] for a in {a["url"]:a for a in manifest["assets"].values()}.values())}))

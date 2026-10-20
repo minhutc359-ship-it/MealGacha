@@ -1,0 +1,60 @@
+{
+  "task": "AW2-004B",
+  "spiritId": "aw2-lam",
+  "variant": "base-v1",
+  "generator": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-20",
+  "externalReferences": [],
+  "outputs": [
+    {
+      "callId": "AW2-004B-07",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-cdef50c5-01b0-47f0-849c-2bbd562b3a2b.png",
+      "sha256": "52a93fffa7af754e89a3bb731ed120deac3e5ae87c24fa3ae57b843a62ab8a39",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/lam/base-v1/portrait.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-11",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-0a42c057-f8d1-4023-aeb9-fe8505e7a110.png",
+      "sha256": "f7d5035e8741d31d3bc426112b0d4c5006e25f9c3d1d8f2e59eacaed54a92198",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/lam/base-v1/world.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-12",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-813356f1-70ff-4ead-89a8-f10d6793cbec.png",
+      "sha256": "6675f128c266d407f283396508b3e060e3adc93c8c97e1fe79c1ae0db93b86b7",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/lam/base-v1/battle.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    },
+    {
+      "callId": "AW2-004B-13",
+      "tool": "built-in image_gen",
+      "model": "not exposed by tool",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-56e13753-4dfe-4982-bb4d-61e853e3c518.png",
+      "sha256": "9b74cd95b975ff4cff07978231d74a5e810ae85dd6ec24a8c5b7e18f3aedd3af",
+      "selected": true,
+      "workspacePath": "dev/aw2/assets/lam/base-v1/fx.png",
+      "reason": "selected after measured alpha/cell bounds and visual review"
+    }
+  ],
+  "referencePolicy": "original portrait doubles as identity reference; no separate full-body reference illustration claimed",
+  "processing": "source PNGs unchanged; lossless WebP visible RGBA/alpha verified; measured atlas rectangles and pivots; no repaint/mask/mirror/resize",
+  "layoutNotes": "measured nonuniform row/column boundaries",
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "fullCharacterComplete": false,
+  "audio": "original deterministic additive sine/sweep synthesis, no recordings; build-aw2-starter-assets.py",
+  "python": "3.12.3",
+  "Pillow": "10.2.0"
+}
