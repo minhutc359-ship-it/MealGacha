@@ -27,6 +27,25 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
 Current AW2-007C verifies the debug four-quest/world/boss/save v3 flow below. Gacha/numerical inventory grants, full authored art/device and vertical-slice gates have not run. Historical AW2-001/006A/007A/B records remain scoped to their original refs/schema/feature gates; latest entries supersede affected current rows.
 
+## AW2-012A long-lived integration / push — 2026-10-21
+
+Explicit owner authorization; existing canonical target `game/adventure-world-2`. Refreshed baseline `f0d588461f2408a8e0a1ee49a78b36af5a8c7476`; exact fast-forward source `82b85cd054e001d8a8dafbc9ea4467f5442842dc`, which contains implementation03b92e2 and continuation7bb0bf1. Windows10.0.26200 x64 /Node25.2.0 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5. Following changes documentation only. `pnpm` below was invoked through `node .asset-work/aw2-tools/node_modules/pnpm/bin/pnpm.cjs`; package/lockfile unchanged.
+
+| Command/check | Result | Observed |
+|---|---|---|
+| Target fetch, `git merge --ff-only 82b85cd` | PASS | Baseline matched refreshed remote; five completed commits included without conflicts |
+| Eight `git merge-base --is-ancestor <feature-head> HEAD` checks | PASS | Both completed feature heads and six historical foundation heads included; exact refs in task/HANDOFF |
+| `git diff --exit-code 82b85cd -- src dev public package.json pnpm-lock.yaml vite.config.ts tsconfig.json` | PASS | Implementation/assets/tests/build bytes unchanged |
+| `$env:NODE_OPTIONS='--no-experimental-webstorage'; pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=.asset-work/aw2-012a-unit.json` | PASS |88 files /891 tests,23.23s; no failures/skips, including all98 AW2 cases; no simultaneous build/browser |
+| `pnpm typecheck` / `pnpm typecheck:dev` | PASS |Both exit0 |
+| `pnpm build` | PASS |Vite production build and release guard exit0; existing >500k chunk warning |
+| `git diff --check` and changed-path review | PASS |Integration follow-up changes are AW2 documentation only; no whitespace errors |
+| Production output recursive scan | PASS |851 files /72 HTML/JS/CSS/JSON artifacts; no AW2 paths, save/reset/world/boss/tuning markers |
+| Scoped-owner `git push MealGacha game/adventure-world-2:refs/heads/game/adventure-world-2` + `git ls-remote --heads ... refs/heads/game/adventure-world-2` | PASS |Remote advanced f0d5884→82b85cd; exact full SHA readback matched local |
+| Browser/device/native/art/audio/rights | NOT_RUN this task |Unchanged-source fast-forward; prior91 Chromium assertions at03b92e2 are retained evidence, not rerun |
+
+Local master98843584b5f747dbaaf8c52c0db2dab1c0f26996, cached remote masterf9d39257d17b4dd378a2fbd2a9f936724754fc16, source feature7bb0bf1/82b85cd retained. Only unrelated legacy PR #79 open and excluded. Initial sandbox remote read could not reach its proxy; scoped elevated fetch/read/push succeeded. No game/test source fixes, dependency updates, force push, release or save reset. [Task](tasks/AW2-012A.md). Future economy/shared-save changes need affected suites and full regression; open device/rights/full-art/full-slice obligations remain.
+
 ## AW2-007C world boss / schema v3 — 2026-10-21
 
 Base/dependency `7bb0bf131e5994887429d8da7fd23c857d5d18b1`; source `03b92e20f6dc55d62530da7e88c1ca1579505490`, branch `feat/aw2-007c-world-boss`. Long-lived remains f0d5884. Checks executed on the implementation before its commit; final save Chromium reran on the source commit. Subsequent edits documentation only. Windows10.0.26200 x64 /Node25.2.0 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Playwright1.64.1 /Chrome155.0.8059.85. Fresh browser contexts, no owner profile; local source server127.0.0.1:8452.

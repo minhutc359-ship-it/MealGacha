@@ -7,4 +7,6 @@ Per-feature branches based on long-lived AW2 branch. No auto merge/master writes
 
 Owner instruction 2026-10-20: after each completed task, verify, update the handoff, commit and push the feature branch automatically. This authorizes feature pushes without asking again; it does not authorize merges, master updates, deployment or releases. Verify the remote ref and record any push failure honestly.
 
+Owner instruction 2026-10-21 explicitly authorizes integrating/pushing all completed AW2 features to the long-lived `game/adventure-world-2` branch for AW2-012A. The spelling `game/advanture-world-2` refers to that existing branch, consistent with AW2-012. This one-time target integration does not change the default policy for later feature work or authorize master/deployment/releases.
+
 Git Credential Manager has multiple cached GitHub accounts on this workspace. For this repository's existing owner login, command-scoped selection avoids an interactive account picker: `git -c credential.username=minhutc359-ship-it -c credential.interactive=false push -u MealGacha <feature-branch>`. This uses the cached login without changing global Git settings or printing credentials.
