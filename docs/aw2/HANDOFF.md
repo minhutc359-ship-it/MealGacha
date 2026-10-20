@@ -1,6 +1,6 @@
 # Handoff — 2026-10-20 / AW2-007B battle preview review
 
-**Current branch:** `feat/aw2-007b-battle-renderer`. **Implementation source:** `31299a44704962b68fa6769860b1050e16e18fe2`; following edits documentation only. Base remote AW2 `179cc214e4fc8cee37fba34fbfe4416a26742bfb`. Correct long-lived branch is `game/adventure-world-2`. PR #79 remains separate on `master`. No merge, release, stable/AW2 save write or reset.
+**Current branch:** `feat/aw2-007b-battle-renderer`. Draft [PR #80](https://github.com/minhutc359-ship-it/MealGacha/pull/80) targets the correct long-lived branch `game/adventure-world-2` at `179cc214e4fc8cee37fba34fbfe4416a26742bfb`. Remote review head `df72ebf37c35467ec6f3a67c2683fcc6f3f919e9`, tree `294ceb03204f012560b974d842bbf70211b11f16`, matched the local documented tree exactly; implementation source tested at `31299a44704962b68fa6769860b1050e16e18fe2`. PR #79 remains separate on `master`. No merge, release, stable/AW2 save write or reset.
 
 ## AW2-007A/007B delivered
 

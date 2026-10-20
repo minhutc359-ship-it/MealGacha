@@ -7,7 +7,7 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 
 ## AW2 development preview — AW2-001 + AW2-006A
 
-Current feature branch: `feat/aw2-007b-battle-renderer`, implementation source `31299a4`; long-lived base `game/adventure-world-2` remains at `179cc21`. AW2-012 integrated the earlier save/world/assets histories, AW2-007A added pure combat rules, and AW2-007B now adds the standalone event battle preview in REVIEW. Current source has 876 unit tests PASS; the new Chromium gate is BLOCKED on this runner and is not claimed as PASS. [Status](STATUS.md), [handoff](HANDOFF.md), [AW2-007B evidence](evidence/AW2-007B.md). Owner-approved story/12 identities/tier/kit/starter direction remain; rates/pity are open (D11).
+Current feature branch: `feat/aw2-007b-battle-renderer`, remote review head `df72ebf` in draft [PR #80](https://github.com/minhutc359-ship-it/MealGacha/pull/80); long-lived base `game/adventure-world-2` remains at `179cc21`. AW2-012 integrated the earlier save/world/assets histories, AW2-007A added pure combat rules, and AW2-007B now adds the standalone event battle preview in REVIEW. Current source has 876 unit tests PASS; the new Chromium gate is BLOCKED on this runner and is not claimed as PASS. [Status](STATUS.md), [handoff](HANDOFF.md), [AW2-007B evidence](evidence/AW2-007B.md). Owner-approved story/12 identities/tier/kit/starter direction remain; rates/pity are open (D11).
 
 ```sh
 pnpm install --frozen-lockfile

@@ -12,7 +12,7 @@
 | AW2-006 | mechanic | Pixi free-roam map/collision; AW2-006A prototype source b3c526b | IN_PROGRESS: verified foundation MERGED, authored visuals/followers pending |
 | AW2-007 | mechanic | RPG team/battle integration | IN_PROGRESS: AW2-007A rules VERIFIED; AW2-007B renderer/leveling in REVIEW; world-save adapter pending |
 | AW2-007A | mechanic/BA/character/tester | Deterministic five-unit core, canonical events, range/projectile/interrupt and bounded starter passives | VERIFIED pure rules at fdf4a60; no UI/save/reward |
-| AW2-007B | mechanic/animation/tester | Event-driven HD battle preview and development leveling | REVIEW at 31299a4: 83 AW2 +876 full tests/build PASS; Chromium BLOCKED |
+| AW2-007B | mechanic/animation/tester | Event-driven HD battle preview and development leveling | Draft PR #80 / REVIEW: 83 AW2 +876 full tests/build PASS; Chromium BLOCKED |
 | AW2-008 | story/mechanic | First 3 quests/puzzle prototype implemented; boss/loot/cooking pending | IN_PROGRESS (foundation only) |
 | AW2-009 | BA/mechanic | TCG/Auto Chess in-world portals & quick-entry | BACKLOG |
 | AW2-010 | all/tester | Lantern playable vertical slice | BACKLOG |

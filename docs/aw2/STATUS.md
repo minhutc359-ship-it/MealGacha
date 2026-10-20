@@ -1,7 +1,7 @@
 # Live project status — 2026-10-20
 
 Phase: PREPRODUCTION / event-driven development battle preview after deterministic combat rules.
-Current feature branch: `feat/aw2-007b-battle-renderer`; implementation source `31299a44704962b68fa6769860b1050e16e18fe2`, based on remote `game/adventure-world-2` at `179cc214e4fc8cee37fba34fbfe4416a26742bfb` and AW2-007A. Long-lived AW2 and `master` are unchanged; PR #79 remains separate. No release or save reset.
+Current feature branch: `feat/aw2-007b-battle-renderer`; draft [PR #80](https://github.com/minhutc359-ship-it/MealGacha/pull/80) targets `game/adventure-world-2` at `179cc214e4fc8cee37fba34fbfe4416a26742bfb`. Remote review head `df72ebf37c35467ec6f3a67c2683fcc6f3f919e9` has tree `294ceb03204f012560b974d842bbf70211b11f16`, byte-identical to the local documented head before this remote-status update; implementation was tested at `31299a44704962b68fa6769860b1050e16e18fe2`. Long-lived AW2 and `master` are unchanged; PR #79 remains separate. No release or save reset.
 
 **AW2-012: VERIFIED / MERGED locally.** Save, original story/roster histories, world/quests and both asset milestones are ancestors of the long-lived branch. Historical review evidence added; old pending-review handoffs explicitly superseded by owner-approved canon. [Integration evidence](evidence/AW2-012.md).
 
