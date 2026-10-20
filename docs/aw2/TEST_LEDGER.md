@@ -14,7 +14,7 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | WORLD-01 navigation, collision, zone transfer, spawn | world | PASS — six-zone debug foundation, integration source 0e8fb7a /18 Chromium checks; retest authored maps/assets |
 | WORLD-02 NPC, quest, followers and interact range | world/quest | NOT_RUN as full case: first 3 quests/range verified in QUEST-01; followers pending |
 | QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS — integration source 0e8fb7a, rule tests +18 Chromium world checks |
-| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | NOT_RUN |
+| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS pure rules — fdf4a60; 31299a4 renderer/level unit+build PASS, Chromium visual gate BLOCKED |
 | BATTLE-02 battle return/save/reload, paused run | combat/save | NOT_RUN |
 | ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; five starter reference sets verified below |
 | ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — integration source 0e8fb7a /32 Chromium checks; reference scope only |
@@ -25,7 +25,39 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | MODE-01 TCG/Chess embedded and quick-entry safe | navigation | NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
-Six-zone debug navigation and first-three-quest tests now run under AW2-006A. No full battle/gacha/authored-art/vertical-slice tests have run. Historical AW2-001 run below covers schema v1; the latest record supersedes its affected current-source coverage.
+Six-zone debug navigation and first-three-quest tests run under AW2-006A. Pure combat rules run under AW2-007A; AW2-007B has source/unit/build evidence but its browser visual gate is BLOCKED. World-connected battle, gacha, full authored-art and vertical-slice tests have not run. Historical AW2-001 below covers schema v1; the latest record supersedes its affected current-source coverage.
+
+## AW2-007A pure combat rules — 2026-10-20
+
+Base `179cc214e4fc8cee37fba34fbfe4416a26742bfb`; tested implementation source `fdf4a605a233da266f36158393860a9c9fe7d2ad`, branch `feat/aw2-007a-combat-core`. Linux x86_64, Node v24.19.0, pnpm 11.25.0, TypeScript 5.9.3, Vitest 5.0.1, Vite 8.0.5. No remote push, PR, merge, deployment or save reset.
+
+| Command/check | Result | Observed |
+|---|---|---|
+| `pnpm test dev/tests/aw2` | PASS | 5 files /76 tests: 10 combat and all66 prior AW2 cases |
+| `pnpm test --maxWorkers=2` | PASS | 85 files /869 tests,29.14s, no failures/skips |
+| `pnpm typecheck` / `pnpm typecheck:dev` | PASS | Both exit0 |
+| Combat formatter + `git diff --check` | PASS | No formatting/whitespace issue |
+| `pnpm build` + release guard | PASS | Production build; existing large-chunk warning only |
+| Production exclusion scan | PASS | 851 output files contain no AW2 combat/task markers |
+| Browser/renderer/save/boss/reward/device | NOT_RUN | Pure rules scope has no UI or adapter |
+
+Covered: immutable deterministic commands and JSON replay; one-to-five teams/unique IDs; target fallback; movement/range; melee two-contact and ranged projectile timing; manual ultimate validation/spend; pre-commit interruption versus post-launch impact; finite shield/heal/debuff/passive behavior for all five starters; one-charge interrupt guard; same-tick projectile draw and exactly one terminal event; no reward/save fields. Initial typechecks exposed the missing passive slot in the combat slot union; corrected before final gates. Review repairs for target attribution, initial-dead seed rejection and boss pull immunity were included before final full regression. BATTLE-01 PASS is rules-only; BATTLE-02 and actual rendered/world-connected combat remain NOT_RUN. [Evidence](evidence/AW2-007A.md).
+
+## AW2-007B event renderer / development leveling — 2026-10-20
+
+Base `179cc214e4fc8cee37fba34fbfe4416a26742bfb`; implementation source `31299a44704962b68fa6769860b1050e16e18fe2`, branch `feat/aw2-007b-battle-renderer`. Remote draft PR #80 implementation snapshot `df72ebf37c35467ec6f3a67c2683fcc6f3f919e9` used the exact local documented implementation/evidence tree `294ceb03204f012560b974d842bbf70211b11f16`; following remote commits are documentation-only. Linux x86_64, Node v24.19.0, pnpm 11.25.0, TypeScript 5.9.3, Vitest 5.0.1, Vite 8.0.5. Status REVIEW: browser criterion BLOCKED.
+
+| Command/check | Result | Observed |
+|---|---|---|
+| `pnpm test dev/tests/aw2` | PASS | 6 files /83 tests: 7 presentation/level,10 combat, all66 prior AW2 |
+| `pnpm test --maxWorkers=2` | PASS | 86 files /876 tests,28.47s, no failures/skips |
+| Root/dev typechecks + formatter + whitespace | PASS | Both TS configs exit0; selected files formatted; `git diff --check` clean |
+| Vite localhost HTTP smoke | PASS | Battle HTML/transformed TSX and real Than WebP served on127.0.0.1 |
+| Production build/guard/exclusion | PASS | Existing chunk warning;851 files contain no AW2-007B markers |
+| Headless Chromium verifier | BLOCKED | No Playwright package or Chromium executable in runner; supplied script NOT_RUN |
+| World/save/boss/reward/persistent XP/device | NOT_RUN | Standalone development preview only |
+
+Covered by unit/source gates: ordered/idempotent presentation replay; gap rejection; projectile launch→authoritative hit settlement; cast/support/interrupt/defeat/terminal mapping; no HP/reward/save authority; non-negative integer XP; monotonic level/stat projection; cap20; immutable seed creation; combat launch impact tick. Browser source intends load/pixels/auto/pause/step/level reset/ultimate/projectile/reduced-motion/mobile/error/save-byte checks, but those are not PASS until executed. [Evidence](evidence/AW2-007B.md).
 
 ## AW2-001 verification record — 2026-10-20
 
