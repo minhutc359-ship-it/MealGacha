@@ -102,6 +102,29 @@ describe("BATTLE-01 AW2 event-driven presentation", () => {
     expect("save" in state).toBe(false)
   })
 
+  it("cancels unfinished visual flights on terminal without inventing impact outcomes", () => {
+    const launched = reduceCombatPresentation(createCombatPresentation(), [
+      event(1, "projectile-launch", {
+        tick: 1,
+        skillId: "aw2-lam:skill:basic",
+        projectileId: "projectile:pending",
+        resolveTick: 3,
+      }),
+    ])
+    const terminal = event(2, "battle-end", {
+      tick: 2,
+      sourceId: null,
+      targetIds: [],
+      text: "player-win",
+    })
+    const ended = reduceCombatPresentation(launched, [terminal])
+    expect(Object.keys(launched.projectiles)).toEqual(["projectile:pending"])
+    expect(ended.projectiles).toEqual({})
+    expect(ended.terminal?.text).toBe("player-win")
+    expect(ended.floating.map((item) => item.kind)).toEqual(["battle-end"])
+    expect(reduceCombatPresentation(ended, [terminal])).toBe(ended)
+  })
+
   it("rejects gaps and incomplete projectile presentation metadata", () => {
     expect(() =>
       reduceCombatPresentation(createCombatPresentation(), [event(2, "move")]),

@@ -168,12 +168,15 @@ export function reduceCombatPresentation(
         text,
       })
     next.floating = next.floating.slice(-16)
-    if (event.kind === "battle-end")
+    if (event.kind === "battle-end") {
+      // The terminal rules event cancels remaining visual flights, without hits.
+      next.projectiles = {}
       next.terminal = {
         serial: event.serial,
         tick: event.tick,
         text: event.text ?? "draw",
       }
+    }
   }
   return next
 }

@@ -1,147 +1,47 @@
-import { StrictMode, useEffect, useMemo, useState } from "react"
+import { StrictMode, useEffect, useReducer, useState } from "react"
 import { createRoot } from "react-dom/client"
 import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
-import {
-  STARTER_SPIRIT_IDS,
-  advanceCombatBattle,
-  castCombatUltimate,
-  createCombatBattle,
-  createCombatPresentation,
-  createDevelopmentStarterSeed,
-  developmentStarterStats,
-  experienceToReachLevel,
-  reduceCombatPresentation,
-  type CombatBattle,
-  type CombatPresentation,
-  type StarterSpiritId,
-} from "../../src/aw2/combat"
+import type { StarterSpiritId } from "../../src/aw2/combat"
 import { BattleCanvas } from "./BattleCanvas"
+import {
+  createBattlePreviewSession,
+  reduceBattlePreviewSession,
+} from "./battleSession"
 import "./styles.css"
 
 const LEVELS = [1, 5, 10, 20] as const
 
-function createPreviewBattle(level: number): CombatBattle {
-  const experience = experienceToReachLevel(level)
-  const players = STARTER_SPIRIT_IDS.map((spiritId, slot) =>
-    createDevelopmentStarterSeed(`player-${spiritId}`, spiritId, experience, {
-      position: 12 + slot * 4,
-      energy: 100,
-      nextBasicTick: 1 + slot,
-      nextAutoTick: 3 + slot,
-    }),
-  )
-  const enemyScale = 1 + (level - 1) * 0.035
-  return createCombatBattle({
-    id: `aw2-007b-level-${level}`,
-    players,
-    enemies: [
-      {
-        id: "enemy-than",
-        spiritId: "aw2-than",
-        position: 82,
-        hp: Math.round(440 * enemyScale),
-        maxHp: Math.round(440 * enemyScale),
-        attack: Math.round(27 * enemyScale),
-        defense: Math.round(18 * enemyScale),
-        nextBasicTick: 2,
-        nextAutoTick: 5,
-      },
-      {
-        id: "enemy-suong",
-        spiritId: "aw2-suong",
-        boss: true,
-        position: 88,
-        hp: Math.round(620 * enemyScale),
-        maxHp: Math.round(620 * enemyScale),
-        attack: Math.round(32 * enemyScale),
-        defense: Math.round(14 * enemyScale),
-        range: 42,
-        projectileTicks: 2,
-        nextBasicTick: 1,
-        nextAutoTick: 4,
-      },
-      {
-        id: "enemy-lua",
-        spiritId: "aw2-lua",
-        position: 76,
-        hp: Math.round(360 * enemyScale),
-        maxHp: Math.round(360 * enemyScale),
-        attack: Math.round(34 * enemyScale),
-        defense: Math.round(10 * enemyScale),
-        nextBasicTick: 3,
-        nextAutoTick: 6,
-      },
-    ],
-  })
-}
-
 function BattlePreview() {
   const [level, setLevel] = useState(5)
-  const [battle, setBattle] = useState(() => createPreviewBattle(5))
-  const [presentation, setPresentation] = useState<CombatPresentation>(() =>
-    createCombatPresentation(),
-  )
+  const [{ battle, presentation, level: activeLevel, message }, dispatch] =
+    useReducer(reduceBattlePreviewSession, 5, createBattlePreviewSession)
   const [paused, setPaused] = useState(false)
-  const [message, setMessage] = useState("Auto combat đang chạy.")
   const [reducedMotion, setReducedMotion] = useState(
     () => matchMedia("(prefers-reduced-motion: reduce)").matches,
   )
 
-  const applyBattle = (next: CombatBattle) => {
-    setPresentation((current) => reduceCombatPresentation(current, next.events))
-    setBattle(next)
-  }
-
   useEffect(() => {
     if (paused || battle.status !== "active") return
     const interval = window.setInterval(() => {
-      setBattle((current) => {
-        if (current.status !== "active") return current
-        const next = advanceCombatBattle(current)
-        setPresentation((view) => reduceCombatPresentation(view, next.events))
-        return next
-      })
+      dispatch({ type: "advance" })
     }, 650)
     return () => window.clearInterval(interval)
   }, [paused, battle.status])
 
   const reset = () => {
-    setBattle(createPreviewBattle(level))
-    setPresentation(createCombatPresentation())
+    dispatch({ type: "reset", level })
     setPaused(false)
-    setMessage(`Đã tạo trận development cấp ${level}; chưa ghi save/XP.`)
   }
 
   const step = () => {
-    if (battle.status !== "active") return
-    applyBattle(advanceCombatBattle(battle))
-    setMessage("Đã xử lý đúng một tick từ combat core.")
+    dispatch({ type: "advance", manual: true })
   }
 
-  const ultimate = (actorId: string, spiritId: StarterSpiritId) => {
-    try {
-      const target = battle.actors.find(
-        (actor) => actor.side === "enemy" && actor.hp > 0,
-      )
-      const needsEnemy = spiritId === "aw2-lua" || spiritId === "aw2-suong"
-      const next = castCombatUltimate(
-        battle,
-        actorId,
-        needsEnemy ? target?.id : undefined,
-      )
-      applyBattle(next)
-      setMessage(`${STARTER_ASSETS[spiritId].displayName} đã bắt đầu tuyệt kỹ.`)
-    } catch (cause) {
-      setMessage(
-        cause instanceof Error ? cause.message : "Không thể dùng tuyệt kỹ.",
-      )
-    }
+  const ultimate = (actorId: string) => {
+    dispatch({ type: "ultimate", actorId })
   }
 
-  const playerRows = useMemo(
-    () => battle.actors.filter((actor) => actor.side === "player"),
-    [battle],
-  )
+  const playerRows = battle.actors.filter((actor) => actor.side === "player")
 
   return (
     <main className="aw2-save aw2-battle">
@@ -210,7 +110,6 @@ function BattlePreview() {
         <div className="aw2-ultimate-grid">
           {playerRows.map((actor) => {
             const spiritId = actor.spiritId as StarterSpiritId
-            const progressionStats = developmentStarterStats(spiritId, level)
             return (
               <article key={actor.id} data-testid={`unit-${spiritId}`}>
                 <img
@@ -223,8 +122,8 @@ function BattlePreview() {
                   <strong>{STARTER_ASSETS[spiritId].displayName}</strong>
                   <small>
                     {" "}
-                    Cấp {level} · HP {actor.hp}/{actor.maxHp} · ATK{" "}
-                    {progressionStats.attack}
+                    Cấp {activeLevel} · HP {actor.hp}/{actor.maxHp} · ATK{" "}
+                    {actor.attack}
                   </small>
                 </div>
                 <button
@@ -235,7 +134,7 @@ function BattlePreview() {
                     actor.energy < 100 ||
                     battle.status !== "active"
                   }
-                  onClick={() => ultimate(actor.id, spiritId)}
+                  onClick={() => ultimate(actor.id)}
                 >
                   Tuyệt kỹ · {actor.energy}/100
                 </button>

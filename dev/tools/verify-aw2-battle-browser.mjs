@@ -1,5 +1,7 @@
 import assert from "node:assert/strict"
 import { mkdir, writeFile } from "node:fs/promises"
+import { isAbsolute, resolve } from "node:path"
+import { pathToFileURL } from "node:url"
 import { parseArgs } from "node:util"
 
 const { values } = parseArgs({
@@ -12,7 +14,11 @@ const { values } = parseArgs({
     chromium: { type: "string" },
   },
 })
-const { chromium } = await import(values.playwright)
+const playwrightModule =
+  isAbsolute(values.playwright) || values.playwright.startsWith(".")
+    ? pathToFileURL(resolve(values.playwright)).href
+    : values.playwright
+const { chromium } = await import(playwrightModule)
 const browser = await chromium.launch({
   executablePath: values.chromium,
   headless: true,
@@ -45,6 +51,33 @@ try {
       ),
     original,
   )
+  await context.addInitScript(() => {
+    window.aw2AtlasDraws = {}
+    const drawImage = CanvasRenderingContext2D.prototype.drawImage
+    CanvasRenderingContext2D.prototype.drawImage = function (...args) {
+      const [source, x, y, width, height] = args
+      if (
+        source instanceof HTMLImageElement &&
+        source.src.includes("/dev/aw2/assets/")
+      ) {
+        const asset = new URL(source.src).pathname
+        const record = window.aw2AtlasDraws[asset] ?? { draws: 0, invalid: 0 }
+        record.draws++
+        if (
+          args.length !== 9 ||
+          x < 0 ||
+          y < 0 ||
+          width <= 0 ||
+          height <= 0 ||
+          x + width > source.naturalWidth ||
+          y + height > source.naturalHeight
+        )
+          record.invalid++
+        window.aw2AtlasDraws[asset] = record
+      }
+      return drawImage.apply(this, args)
+    }
+  })
   const page = await context.newPage()
   page.on("pageerror", (error) => errors.push(error.message))
   page.on("console", (message) => {
@@ -62,18 +95,22 @@ try {
     "Five starter ultimate cards render",
     (await page.locator("[data-testid^=unit-aw2-]").count()) === 5,
   )
-  check(
-    "Canvas draws authored atlas pixels",
-    await page.locator("canvas").evaluate((canvas) => {
-      const data = canvas
-        .getContext("2d")
-        .getImageData(0, 0, canvas.width, canvas.height).data
-      let visible = 0
-      for (let index = 3; index < data.length; index += 4)
-        if (data[index] > 64) visible++
-      return visible > 100000
-    }),
+  await page.waitForFunction(
+    () =>
+      Object.keys(window.aw2AtlasDraws).filter((url) =>
+        url.endsWith("/battle.webp"),
+      ).length === 5,
   )
+  check("Canvas draws all five decoded authored battle atlases")
+  const stepOnce = async () => {
+    const tick = Number(await page.locator("canvas").getAttribute("data-tick"))
+    await page.getByRole("button", { name: "Bước 1 nhịp", exact: true }).click()
+    await page.waitForFunction(
+      (tick) =>
+        Number(document.querySelector("canvas").dataset.tick) === tick + 1,
+      tick,
+    )
+  }
   const initialTick = Number(
     await page.locator("canvas").getAttribute("data-tick"),
   )
@@ -99,7 +136,12 @@ try {
   )
   check("Manual step advances exactly one tick")
 
+  const activeCard = await page.getByTestId("unit-aw2-than").innerText()
   await page.getByLabel("Cấp thử nghiệm").selectOption("10")
+  check(
+    "Selecting a pending level preserves the active battle cards",
+    (await page.getByTestId("unit-aw2-than").innerText()) === activeCard,
+  )
   await page.getByRole("button", { name: "Tạo lại trận", exact: true }).click()
   await page.getByRole("button", { name: "Tạm dừng", exact: true }).click()
   check(
@@ -117,14 +159,14 @@ try {
   await page.getByRole("button", { name: "Tạm dừng", exact: true }).click()
   let sawProjectile = false
   for (let step = 0; step < 8 && !sawProjectile; step++) {
-    await page.getByRole("button", { name: "Bước 1 nhịp", exact: true }).click()
+    await stepOnce()
     sawProjectile =
       Number(await page.locator("canvas").getAttribute("data-projectiles")) > 0
   }
   check("Projectile remains visible after authoritative launch", sawProjectile)
   let settled = false
   for (let step = 0; step < 4 && !settled; step++) {
-    await page.getByRole("button", { name: "Bước 1 nhịp", exact: true }).click()
+    await stepOnce()
     settled =
       Number(await page.locator("canvas").getAttribute("data-projectiles")) ===
         0 && (await page.getByTestId("event-log").innerText()).includes("hit")
@@ -145,6 +187,56 @@ try {
     ),
   )
   await page.screenshot({ path: `${out}/mobile.png`, fullPage: true })
+
+  await page.setViewportSize({ width: 1280, height: 1000 })
+  await page.getByLabel("Giảm chuyển động").uncheck()
+  for (let step = 0; step < 240; step++) {
+    if ((await page.locator("canvas").getAttribute("data-status")) !== "active")
+      break
+    await stepOnce()
+  }
+  check(
+    "Combat reaches one authoritative terminal result without presentation gaps",
+    (await page.locator("canvas").getAttribute("data-status")) !== "active" &&
+      (await page.getByTestId("event-log").innerText()).match(/battle-end/g)
+        ?.length === 1,
+  )
+  check(
+    "Terminal battle disables stepping and all manual ultimates",
+    (await page
+      .getByRole("button", { name: "Bước 1 nhịp", exact: true })
+      .isDisabled()) &&
+      (await page.locator("[data-testid^=ultimate-aw2-]:enabled").count()) ===
+        0,
+  )
+  check(
+    "Terminal event cancels unfinished visual projectiles",
+    (await page.locator("canvas").getAttribute("data-projectiles")) === "0",
+  )
+  const terminalTick = await page.locator("canvas").getAttribute("data-tick")
+  await page.getByRole("button", { name: "Tiếp tục", exact: true }).click()
+  await page.waitForTimeout(900)
+  check(
+    "Resuming a terminal battle cannot advance ticks",
+    (await page.locator("canvas").getAttribute("data-tick")) === terminalTick,
+  )
+  await page.screenshot({ path: `${out}/terminal.png`, fullPage: true })
+  const atlasDraws = await page.evaluate(() => window.aw2AtlasDraws)
+  check(
+    "Canvas uses decoded FX atlases with no out-of-bounds source frames",
+    Object.keys(atlasDraws).some((url) => url.endsWith("/fx.webp")) &&
+      Object.values(atlasDraws).every((record) => record.invalid === 0),
+  )
+
+  await page.getByLabel("Cấp thử nghiệm").selectOption("1")
+  await page.getByRole("button", { name: "Tạo lại trận", exact: true }).click()
+  await page.getByRole("button", { name: "Tạm dừng", exact: true }).click()
+  check(
+    "Reset after terminal clears events and restores a playable level-one team",
+    (await page.getByTestId("unit-aw2-than").innerText()).includes("Cấp 1") &&
+      (await page.getByTestId("ultimate-aw2-lua").isEnabled()) &&
+      (await page.getByTestId("event-log").locator("li").count()) === 0,
+  )
 
   const preserved = await page.evaluate(
     (keys) =>
@@ -191,6 +283,7 @@ try {
     checks,
     errors,
     failed,
+    atlasDraws,
     limits: [
       "development renderer only",
       "no physical device/performance/save/boss/reward/final-balance approval",
