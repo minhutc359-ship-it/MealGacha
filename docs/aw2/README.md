@@ -7,7 +7,7 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 
 ## AW2 development preview — AW2-001 + AW2-006A
 
-Current branch: `feat/aw2-004b-starter-assets`, based on AW2-004A handoff `7f9c6ab`, with AW2-001 and approved AW2-002/003 content incorporated. Latest asset source: `f6a3b6655988d262a974f6f5034845740fd94766`; world implementation remains `b3c526b`. Local implementation, not merged into the long-lived AW2 branch or published. Owner approved story/12 identities/tier/kit/starter direction; rates/pity remain open (D11).
+Current branch: `game/adventure-world-2`; AW2-012 integrated all six completed feature histories locally at the owner's explicit request. Verified integration source `0e8fb7a893fa61ba2348843b06c1ece47dcad514`; runtime/assets match starter head `b39fc49`, asset implementation `f6a3b66`, world `b3c526b`. Full859 unit tests /84 files,212 Chromium checks, typechecks/build/file audit PASS. [Integration evidence](evidence/AW2-012.md), [handoff](HANDOFF.md). Master and feature branches unchanged; no remote push or publication. Owner approved story/12 identities/tier/kit/starter direction; rates/pity remain open (D11).
 
 ```sh
 pnpm install --frozen-lockfile

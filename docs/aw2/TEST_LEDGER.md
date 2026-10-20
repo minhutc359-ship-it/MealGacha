@@ -6,21 +6,21 @@ Historical story review preserved by AW2-012: source `461c7cfaac658618d96ca8020a
 Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, command, observed outcome. Prior PASS becomes STALE for affected changes. PR runs selective affected tests; full suite required before release/major cross-engine merge, and after high-impact save/shared engine changes.
 | Case | Trigger | Result |
 |---|---|---|
-| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS — latest AW2-006A source `b3c526b`, namespace/migration/Chromium; original AW2-001 record retained |
+| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS — integrated source `0e8fb7a`, full unit regression +29 save Chromium checks; original evidence retained |
 | SAVE-02 chest/battle/gacha atomic grants, no double reward | loot/store | NOT_RUN |
-| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS — latest source `b3c526b`, schema v2/v1 migration/reset/conflicts/Chromium |
+| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS — integrated source `0e8fb7a`, schema v2/v1 migration/reset/conflicts/Chromium |
 | GACHA-01 weights N/R/SR/SSR/UR seeded statistics | gacha/roster | NOT_RUN |
 | GACHA-02 pity/shards/dupes and reload | gacha/save | NOT_RUN |
-| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS — six-zone debug foundation, source b3c526b; retest with authored maps/assets |
+| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS — six-zone debug foundation, integration source 0e8fb7a /18 Chromium checks; retest authored maps/assets |
 | WORLD-02 NPC, quest, followers and interact range | world/quest | NOT_RUN as full case: first 3 quests/range verified in QUEST-01; followers pending |
-| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS — source b3c526b, rule tests + 18 Chromium world checks |
+| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS — integration source 0e8fb7a, rule tests +18 Chromium world checks |
 | BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | NOT_RUN |
 | BATTLE-02 battle return/save/reload, paused run | combat/save | NOT_RUN |
 | ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; five starter reference sets verified below |
-| ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — shared-player regression on f6a3b66, 32 Chromium checks; reference scope only |
+| ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — integration source 0e8fb7a /32 Chromium checks; reference scope only |
 | PROVENANCE-THAN source/prompt/hash inventory | asset | PASS inventory only — rights/legal approval still NOT_RUN |
-| ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS — AW2-004B source f6a3b66, 133 Chromium checks; reference scope only |
-| PROVENANCE-STARTERS original image/audio inventory | asset | PASS inventory only — source f6a3b66; rights/legal approval NOT_RUN |
+| ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS — integration source 0e8fb7a /133 Chromium checks; reference scope only |
+| PROVENANCE-STARTERS original image/audio inventory | asset | PASS inventory only — integration source 0e8fb7a; rights/legal approval NOT_RUN |
 | DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | NOT_RUN |
 | MODE-01 TCG/Chess embedded and quick-entry safe | navigation | NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
@@ -115,3 +115,24 @@ Base `7f9c6ab63637ab9d9eb4cf6fa6e7dfb649892bed`; source/head `f6a3b6655988d262a9
 Three rejected Lua outputs (initial battle, initial FX, extra battle attempt) failed measured boundary checks; selected repair sheets pass. Early quick-preview RGB mistaken for an opaque background was corrected by real alpha inspection. Mộc Non uniform-grid build assertions failed, then explicit measured rectangles/row splits and declared alpha9/255 gutter tolerance preserved all source art; other sets tolerance8. No source painting/masking/mirroring/resizing or failed-attempt PASS. Sương Lành direction rows mapped to actual art and verified through browser captures.
 
 Reference contracts only: Lua basic contacts220/380ms, Lam ultimate pulses520/1040ms; three ranged basics launch260/impact700ms with own flight/impact art. Timings/coordinates do not confirm gameplay impact or final balance. Passives require future combat events. All five fullCharacterComplete=false; seven sets NOT_CREATED; license REVIEW_REQUIRED/NOT_CLEARED. Forty-six save/world cases reverified; gameplay/save schema unchanged, prior world/save Chromium evidence remains historical. [Evidence and reports](evidence/AW2-004B.md).
+
+## AW2-012 integration — 2026-10-20
+
+Target base `72ee9b4360299db4bab9b9b43dba552dd80b86cf`; verified merged source `0e8fb7a893fa61ba2348843b06c1ece47dcad514`, current branch `game/adventure-world-2`. Following edits documentation only. All six feature heads are ancestors; runtime/assets/test/build paths exactly match b39fc49. Owner explicitly authorized this merge; source branches/master unchanged, no remote push/release. Linux x64 /Node22.23.2 /pnpm10.34.3 /Python3.12.3 /Chromium153.0.8010.36; same installed Vite/TS/Vitest environment, no dependency changes.
+
+| Command/check | Result | Observed |
+|---|---|---|
+| Six `git merge-base --is-ancestor <feature> HEAD` checks | PASS | Save/story/roster/world/Than/starter heads all included, exact refs in task/evidence |
+| Diff against b39fc49; approved story/roster/canon checks | PASS | Only AW2 docs differ;6 zones/8 NPCs/4 quests,12 IDs/48 skill slots/tier distribution retained; D10/D13/D14/D15 approved, D11 proposed |
+| `pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-012-unit.json` | PASS |84 files /859 tests,31.11s; no failed/skipped tests; includes all66 AW2 cases. Full suite ran without simultaneous build/browser |
+| `pnpm typecheck` / `pnpm typecheck:dev` | PASS | Both exit0 |
+| `pnpm build` | PASS | Vite build + release guard; existing >500k chunk warning |
+| Production exclusion scan | PASS |49 text artifacts exclude AW2 IDs/save key/dev paths; all four dev HTML entries absent |
+| `python3 dev/tools/verify-aw2-starter-files.py` | PASS |Five starters /200 cells; source/output hashes/alpha/visible-RGBA/PCM/durations/fades/provenance |
+| `node dev/tools/verify-aw2-save.mjs --playwright /tmp/Quetica.FNOT.MigrationTool.stage/frontend/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome` | PASS |29 isolated save/migration/reset/conflict/failure/legacy checks |
+| `node dev/tools/verify-aw2-world.mjs --playwright /tmp/Quetica.FNOT.MigrationTool.stage/frontend/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome` | PASS |18 six-zone/quest/puzzle/movement/reload/legacy checks |
+| `node dev/tools/verify-aw2-than-browser.mjs --playwright /tmp/Quetica.FNOT.MigrationTool.stage/frontend/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome` | PASS |32 reference renderer/FX/audio/error/layout/legacy checks |
+| `node dev/tools/verify-aw2-starter-browser.mjs --playwright /tmp/Quetica.FNOT.MigrationTool.stage/frontend/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome` | PASS |133 reference pose/direction/FX/projectile/cue/selection/error/mobile/legacy checks |
+| Physical devices / actual combat / all12 ART-01 / rights / release | NOT_RUN |Unimplemented/unverified gates retained; full unit regression is not full-game/device/legal QA |
+
+212 Chromium assertions PASS in fresh isolated profiles; zero unexpected primary errors and preserved seeded stable/AW2 bytes. Original source evidence remains scoped to original refs; current results are in [AW2-012 evidence](evidence/AW2-012.md). Eight document conflicts in each original proposal merge resolved explicitly, retaining approved/current text and old review evidence. Initial documentation whitespace check caught an extra trailing blank line, corrected; initial one-off canon checker assumed `APPROVED` without the recorded date, corrected to validate exact `APPROVED 2026-10-20` statuses. Neither issue required runtime changes. This merge's full-unit obligation is satisfied; repeat appropriate regression after future high-impact changes/before release, while device/art/combat/rights gates remain open.
