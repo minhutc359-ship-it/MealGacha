@@ -1,0 +1,182 @@
+import {
+  AW2_DEV_SAVE_KEY,
+  AW2_RESET_CONFIRMATION,
+  aw2DevSaveSchema,
+  decodeAw2Save,
+  type Aw2DevSave,
+  type SaveSnapshot,
+} from "./schema"
+
+type SaveStorage = Pick<Storage, "getItem" | "setItem">
+type WriteLock = <T>(action: () => T) => Promise<T>
+type ReadySave = Extract<SaveSnapshot, { status: "ready" }>
+export type ResetRequest = Readonly<{ expectedRaw: string | null }>
+
+export class Aw2SaveError extends Error {
+  constructor(
+    readonly code: "unavailable" | "write-failed" | "conflict" | "invalid" | "confirmation" | "locking",
+    message: string,
+  ) {
+    super(message)
+    this.name = "Aw2SaveError"
+  }
+}
+
+export function supportsAw2Writes(): boolean {
+  return typeof navigator !== "undefined" && !!navigator.locks?.request
+}
+
+const browserWriteLock: WriteLock = async (action) => {
+  if (!supportsAw2Writes()) {
+    throw new Aw2SaveError(
+      "locking",
+      "Trình duyệt cần hỗ trợ Web Locks để lưu an toàn giữa các tab. Hãy mở bằng localhost hoặc HTTPS trên trình duyệt hỗ trợ.",
+    )
+  }
+  return navigator.locks.request(
+    AW2_DEV_SAVE_KEY,
+    { mode: "exclusive" },
+    action,
+  )
+}
+
+/** One atomic localStorage value, independent of legacy journals/native bridges.
+ * Web Locks serialize cooperating AW2 tabs; raw comparison rejects stale views.
+ * Uncooperative scripts clearing storage remain outside this pre-release contract.
+ */
+export class Aw2DevSaveStore {
+  private pendingReset: ResetRequest | null = null
+  private readonly storage: () => SaveStorage
+  private readonly lock: WriteLock
+  private readonly now: () => string
+  private readonly newId: () => string
+
+  constructor(
+    options: {
+      storage?: () => SaveStorage
+      lock?: WriteLock
+      now?: () => string
+      newId?: () => string
+    } = {},
+  ) {
+    this.storage = options.storage ?? (() => window.localStorage)
+    this.lock = options.lock ?? browserWriteLock
+    this.now = options.now ?? (() => new Date().toISOString())
+    this.newId = options.newId ?? (() => crypto.randomUUID())
+  }
+
+  load(): SaveSnapshot {
+    try {
+      return decodeAw2Save(this.storage().getItem(AW2_DEV_SAVE_KEY))
+    } catch {
+      return { status: "unavailable" }
+    }
+  }
+
+  save(expectedRaw: string | null): Promise<ReadySave> {
+    return this.write(expectedRaw, (current) => {
+      if (current.status === "invalid" || current.status === "unsupported") {
+        throw new Aw2SaveError(
+          "invalid",
+          "Bản lưu chưa đọc được. Hãy giữ dữ liệu gốc hoặc dùng xác nhận reset AW2 riêng.",
+        )
+      }
+      if (current.status === "ready") {
+        return aw2DevSaveSchema.parse({
+          ...current.save,
+          revision: current.save.revision + 1,
+          updatedAt: this.timestamp(current.save.updatedAt),
+        })
+      }
+      return this.freshSave()
+    })
+  }
+
+  beginReset(expectedRaw: string | null): ResetRequest {
+    const request = Object.freeze({ expectedRaw })
+    this.pendingReset = request
+    return request
+  }
+
+  cancelReset(): void {
+    this.pendingReset = null
+  }
+
+  confirmReset(
+    request: ResetRequest,
+    confirmation: string,
+  ): Promise<ReadySave> {
+    if (
+      request !== this.pendingReset ||
+      confirmation !== AW2_RESET_CONFIRMATION
+    ) {
+      return Promise.reject(
+        new Aw2SaveError(
+          "confirmation",
+          "Mở xác nhận mới và nhập chính xác RESET AW2 để bắt đầu lại.",
+        ),
+      )
+    }
+    // Consume before awaiting the lock: repeated clicks cannot reset twice.
+    this.pendingReset = null
+    return this.write(request.expectedRaw, () => this.freshSave())
+  }
+
+  private timestamp(previous?: string): string {
+    const now = this.now()
+    // Clock adjustments must not invalidate an otherwise readable save.
+    return previous && Date.parse(now) < Date.parse(previous) ? previous : now
+  }
+
+  private freshSave(): Aw2DevSave {
+    const now = this.timestamp()
+    return aw2DevSaveSchema.parse({
+      gameId: "adventure-world-2",
+      environment: "development",
+      schemaVersion: 1,
+      saveId: this.newId(),
+      revision: 0,
+      createdAt: now,
+      updatedAt: now,
+      progress: {},
+    })
+  }
+
+  private write(
+    expectedRaw: string | null,
+    next: (
+      snapshot: Exclude<SaveSnapshot, { status: "unavailable" }>,
+    ) => Aw2DevSave,
+  ): Promise<ReadySave> {
+    return this.lock(() => {
+      let storage: SaveStorage
+      let raw: string | null
+      try {
+        storage = this.storage()
+        raw = storage.getItem(AW2_DEV_SAVE_KEY)
+      } catch {
+        throw new Aw2SaveError(
+          "unavailable",
+          "Chưa đọc được kho AW2. Kiểm tra quyền lưu của trình duyệt rồi thử lại.",
+        )
+      }
+      if (raw !== expectedRaw) {
+        throw new Aw2SaveError(
+          "conflict",
+          "Dữ liệu AW2 đã thay đổi ở tab khác. Đọc lại trước khi lưu hoặc mở xác nhận reset mới.",
+        )
+      }
+      const save = next(decodeAw2Save(raw))
+      const encoded = JSON.stringify(save)
+      try {
+        storage.setItem(AW2_DEV_SAVE_KEY, encoded)
+      } catch {
+        throw new Aw2SaveError(
+          "write-failed",
+          "Chưa lưu được AW2. Kho có thể đã đầy hoặc bị chặn; bản lưu trước vẫn được giữ.",
+        )
+      }
+      return { status: "ready", raw: encoded, save }
+    })
+  }
+}

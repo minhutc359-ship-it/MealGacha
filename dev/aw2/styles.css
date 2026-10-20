@@ -1,0 +1,25 @@
+:root { font-family: system-ui, sans-serif; color: #ede7db; background: #121c1b; color-scheme: dark; line-height: 1.6; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.aw2-save { width: min(100% - 2rem, 50rem); margin: 3rem auto; }
+.eyebrow { color: #b8d6be; font-size: .8rem; letter-spacing: .12em; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); margin: .5rem 0; }
+h2 { font-size: 1.2rem; }
+section, dialog { border: 1px solid #60756b; background: #1b2a27; padding: 1.5rem; border-radius: 1rem; }
+section { margin: 2rem 0; }
+code, dd { overflow-wrap: anywhere; }
+dl > div { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: .5rem; margin: .5rem 0; }
+dt, .note { color: #b7c5be; }
+dd { margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+button, input { font: inherit; min-height: 44px; border: 1px solid #a3b4a8; border-radius: .5rem; padding: .6rem .9rem; }
+button { background: #c4dbbb; color: #122319; font-weight: 650; cursor: pointer; }
+button.danger { background: #49302b; color: #ffe0cd; border-color: #d3947e; }
+button:disabled { opacity: .5; cursor: default; }
+:focus-visible { outline: 3px solid #f5d68b; outline-offset: 4px; }
+[role="alert"] { color: #ffc2a9; }
+[role="status"] { min-height: 1.6em; }
+dialog { color: inherit; width: min(100% - 2rem, 36rem); max-height: calc(100dvh - 2rem); overflow-y: auto; }
+dialog::backdrop { background: rgb(0 0 0 / 75%); }
+dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
+@media (max-width: 480px) { .aw2-save { margin-top: 1.5rem; } section, dialog { padding: 1rem; } dl > div { grid-template-columns: 1fr; gap: 0; } }
