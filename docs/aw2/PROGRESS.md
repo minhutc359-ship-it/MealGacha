@@ -43,3 +43,6 @@ Scretary cập nhật hai chỉ báo sau mỗi mốc có thay đổi thực ch�
 ## AW2-004C measurement update
 
 Than có thêm32 khung chuyển động/tám trạng thái, đã kiểm chứng source+compiled và boss thật; [bằng chứng](evidence/AW2-004C.md), [gate từng phần](THAN_CHARACTER_GATES.md). Bốn lần gọi image_gen tạo hai bản đầu bị loại vì khoảng cách ô và hai bản sửa được chọn. Đây là số đo của một gói motion, chưa phải thời gian hoàn thiện/kiểm duyệt một nhân vật. Art độc lập, cân bằng/cấp độ cuối, nghe âm thanh, thiết bị/quyền sử dụng còn mở. **0/12 full DoD, demo≈90% và sản phẩm≈40% giữ nguyên**; không tự cộng điểm chỉ vì tăng số khung/test. Tiếp theo004D Lửa Nhỏ; chưa có dữ liệu vận tốc để siết lịch12 nhân vật.
+
+
+AW2-004D: Lửa Nhỏ thêm32 cels/tám trạng thái, hai hit/FX đúng sự kiện thật và builder tái tạo ổn định; [bằng chứng](evidence/AW2-004D.md), [gate còn lại](LUA_CHARACTER_GATES.md). Ba lần image_gen tạo hai sheet được chọn, một bản B bị loại và sửa bố cục. Than+Lửa Nhỏ có64 cels mới nhưng vẫn là hai gói tham chiếu, chưa phải hai nhân vật qua full DoD. Giữ **demo≈90%, sản phẩm≈40%,0/12 full DoD**; không suy điểm hay vận tốc12 nhân vật từ số khung/test. Tiếp theo004E Lam Lam, các gate độc lập vẫn mở.

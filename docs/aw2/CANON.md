@@ -30,3 +30,6 @@ Runtime-status clarification 2026-10-21: AW2-007A/B/C and AW2-013A verify develo
 
 
 Asset-status clarification2026-10-21: AW2-004C at `f85e1e7cadb933bce0a7355abe8f244cab2c89b8` adds32 generated HD motion cels for Than, four per eight states, preserving original art/IDs and reduced-motion poses. Other four starters retain their original key-pose reference tracks; seven sets remain NOT_CREATED. This supersedes only the older all-five single-key-pose inventory for Than, not identity/lore/kit/rarity approvals, final balance or finished-art/license/device status. All five fullCharacterComplete=false; [Than full-DoD ledger](THAN_CHARACTER_GATES.md).
+
+
+Current asset clarification2026-10-21: AW2-004D at `cef55c00f8c4cf646a9d8952f6cbe02865b0225c` adds32 motion cels for Lửa Nhỏ; original/reduced poses and identity/recipe/rarity/four skill IDs remain. Than and Lửa Nhỏ now each have32 motion cels; Lam Lam/Mộc Non/Sương Lành retain key-pose references, seven others NOT_CREATED. This supersedes the004C paragraph's other-four key-pose inventory only for Lua. Actual two-hit contact presentation is event-bound; no gameplay numbers or locked kit/story change. All5 fullCharacterComplete=false, final art/level/balance/listening/device/rights still open. [Lua ledger](LUA_CHARACTER_GATES.md).

@@ -34,10 +34,13 @@ Actual combat selects each contact from a confirmed Lua basic-hit event. The fir
 | Eight HD states |32 new cels, original eight reduced poses, authored timing/contacts | Independent anatomy/identity/loop/contact acceptance; denser inbetweens as needed |
 | Portrait | Original distinct portrait/reference | Independent finished-art acceptance |
 | FX/projectile/ultimate |16 original authored FX cels; melee intentionally no projectile; event-bound confirmed basic beats | Ultimate telegraph/path clarity/contact/mobile art review; not a completed authored boss/mode-art set |
-| Audio | Four original synthesized WAVs; complete reference two-cue playback and opt-in confirmed-event audio integration | Human listening/mix/device review; decoded PCM is not listening approval |
+| Audio | Four original synthesized WAVs; complete reference two-cue playback and opt-in confirmed-event audio integration | Basic-hit audio binding remains absent in actual combat (existing event audio handles cast/passive); human listening/mix/device review, decoded PCM is not listening approval |
 | Actual integration | Shared source/compiled previews/battle/earned-world journey, locked-save boundary unchanged; evidence in004D | Physical-device/native/offline/FPS/full production suite remains open |
 | Provenance/rights | Three built-in image_gen calls, one rejected unsafe layout/repair, selected original sources/prompts/hashes; no external artwork inputs | Legal/rights approval NOT_RUN, commercial NOT_CLEARED |
 
 Builder now uses explicit immutable reference timelines and unit-owned metadata, rather than inheriting Than's mutable motion manifest. Rebuilding other starter manifests/assets preserves their bytes; scoped rebuilds are reproducible. This is a measured implementation/QA result, not independent art clearance or a complete-character production velocity.
 
 Next implementable owner: character/animation/mechanic/tester scopes Lam Lam's motion and two-pulse presentation in AW2-004E; independent Lửa Nhỏ/Than reviews remain explicit. Seven missing sets, map/NPC/boss own art, final balance, independent playtest/device/listening/rights/production save/release gates remain open. All five fullCharacterComplete=false.
+
+
+Verified source `cef55c00f8c4cf646a9d8952f6cbe02865b0225c`, base90e1f8c, treeff547302b1e45a3d8bfee602be162f6d7ff5f6ac.996 full tests /203 AW2 and385 fresh source/compiled browser assertions PASS; [commands, failures and limits](evidence/AW2-004D.md). Independent full-character acceptance remains open.

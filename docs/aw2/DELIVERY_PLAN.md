@@ -25,3 +25,6 @@ Giả định phát hành web chơi đơn, lưu cục bộ; không tính tài kh
 
 
 AW2-004C cập nhật cơ sở:32 cels/tám trạng thái Than đã được tạo, sửa gutter và kiểm chứng, nhưng full DoD vẫn mở. Bốn lần image_gen/hai sheet được chọn và gate cụ thể nằm tại [Than ledger](THAN_CHARACTER_GATES.md); chưa phải số ngày/chi phí của một nhân vật hoàn chỉnh. Giữ nguyên các khoảng có điều kiện ở trên, không suy vận tốc12 nhân vật từ một gói motion. Task triển khai kế tiếp004D Lửa Nhỏ; kiểm duyệt độc lập/playtest/thiết bị/rights vẫn là phần phải tính riêng.
+
+
+AW2-004D bổ sung gói32-cel Lửa Nhỏ và sửa trình diễn hai hit/builder; ba lần image_gen gồm một sửa layout. Đây vẫn chưa phải mẫu nhân vật đủ DoD. Giữ nguyên các khoảng/giả định ở trên, không rút lịch từ64 cels mới của hai starter; cần thời gian đóng art/telegraph/audio-hit/cân bằng/thiết bị/listening/rights và đo nhân vật được chấp nhận đầy đủ. [Lua gaps](LUA_CHARACTER_GATES.md), [bằng chứng](evidence/AW2-004D.md); next004E Lam Lam.
