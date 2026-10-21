@@ -1,2 +1,4 @@
 # Gacha design contract — Draft
 Rarity N/R/SR/SSR/UR. **Tỷ lệ tham khảo để simulate, chưa được duyệt:** N 55%, R 30%, SR 11%, SSR 3.5%, UR 0.5% (tổng 100%). Pity đề xuất để thử nghiệm: SR+ tối đa 10, SSR+ tối đa 80, UR tối đa 200; chưa chốt tính reset/carry, spark/dupe shards. Không xây gacha tiền thật hoặc công bố rate trước khi BA, mechanic, owner duyệt. Unit N/R/SR đủ vượt cốt truyện; tier cao mang nhận diện/chiến thuật khác, không tạo paywall. Tester phải có seed simulator, kiểm tra boundary, pity carry, duplicates, save/reload và chống duplicate grants.
+
+AW2-013A đã chạy simulator2.000.000 lượt với seed20261021. [Phương án reset/carry/dupe để duyệt](proposals/AW2-005A-RATES.md), [kết quả mới](evidence/AW2-013A-gacha-simulation.json). Không có nút quay, tiêu tài nguyên hoặc ghi gacha vào save; D11 vẫn PROPOSED.

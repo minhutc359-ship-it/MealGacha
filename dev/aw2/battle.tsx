@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client"
 import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
 import type { StarterSpiritId } from "../../src/aw2/combat"
 import { BattleCanvas } from "./BattleCanvas"
+import { useBattleAudio } from "./useBattleAudio"
 import {
   createBattlePreviewSession,
   reduceBattlePreviewSession,
@@ -16,6 +17,7 @@ function BattlePreview() {
   const [{ battle, presentation, level: activeLevel, message }, dispatch] =
     useReducer(reduceBattlePreviewSession, 5, createBattlePreviewSession)
   const [paused, setPaused] = useState(false)
+  const audio = useBattleAudio(battle, paused)
   const [reducedMotion, setReducedMotion] = useState(
     () => matchMedia("(prefers-reduced-motion: reduce)").matches,
   )
@@ -55,6 +57,15 @@ function BattlePreview() {
       </p>
 
       <section className="aw2-battle-controls" aria-label="Điều khiển trận đấu">
+        <label>
+          <input
+            type="checkbox"
+            checked={audio.enabled}
+            onChange={audio.toggle}
+          />{" "}
+          Âm thanh
+        </label>
+        {audio.error && <p role="status">{audio.error}</p>}
         <label>
           Cấp thử nghiệm
           <select

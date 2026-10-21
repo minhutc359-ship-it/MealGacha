@@ -70,10 +70,15 @@ export function createWorldBossEncounter(
     battle: createCombatBattle({
       id: `${checkpoint.saveId}:boss:${checkpoint.revision}`,
       players: STARTER_SPIRIT_IDS.map((spiritId, slot) =>
-        createDevelopmentStarterSeed(`player-${spiritId}`, spiritId, 0, {
-          energy: 100,
-          position: 12 + slot * 4,
-        }),
+        createDevelopmentStarterSeed(
+          `player-${spiritId}`,
+          spiritId,
+          checkpoint.economy.teamExperience,
+          {
+            energy: 100,
+            position: 12 + slot * 4,
+          },
+        ),
       ),
       enemies: [
         {

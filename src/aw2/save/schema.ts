@@ -1,4 +1,6 @@
 import { z } from "zod"
+import { economySchema, newEconomy } from "../economy/model"
+import { QUEST_GRANTS } from "../world/ids"
 import {
   newWorldProgress,
   worldProgressSchema,
@@ -9,7 +11,7 @@ export const AW2_DEV_SAVE_KEY = "aw2.development.save"
 export const AW2_RESET_CONFIRMATION = "RESET AW2"
 
 // Version stays in the envelope so a newer save at the same key is detected.
-// No draft spirit, zone, economy or reward contract is implied by this schema.
+// Historical versions remain strict; schema v4 adds the development economy.
 export const aw2DevSaveV1Schema = z
   .strictObject({
     gameId: z.literal("adventure-world-2"),
@@ -35,7 +37,7 @@ export const aw2DevSaveV2Schema = z
     message: "Thời điểm lưu không được trước thời điểm tạo.",
   })
 
-export const aw2DevSaveSchema = z
+export const aw2DevSaveV3Schema = z
   .strictObject({
     ...aw2DevSaveV1Schema.shape,
     schemaVersion: z.literal(3),
@@ -46,6 +48,28 @@ export const aw2DevSaveSchema = z
   })
 
 export type Aw2DevSave = z.infer<typeof aw2DevSaveSchema>
+
+export const aw2DevSaveSchema = z
+  .strictObject({
+    ...aw2DevSaveV3Schema.shape,
+    schemaVersion: z.literal(4),
+    economy: economySchema,
+  })
+  .superRefine((save, ctx) => {
+    if (
+      Date.parse(save.updatedAt) < Date.parse(save.createdAt) ||
+      save.economy.receipts.some(
+        (id) =>
+          QUEST_GRANTS.includes(id as typeof QUEST_GRANTS[number]) &&
+          QUEST_GRANTS.indexOf(id as typeof QUEST_GRANTS[number]) >=
+            save.progress.questIndex,
+      )
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Biên nhận/thời điểm AW2 không hợp lệ.",
+      })
+  })
 
 export type ReadableSave = {
   status: "empty"
@@ -74,23 +98,26 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
     typeof value === "object" &&
     "schemaVersion" in value &&
     typeof value.schemaVersion === "number" &&
-    value.schemaVersion > 3
+    value.schemaVersion > 4
   ) {
     return { status: "unsupported", raw }
   }
   const legacy = aw2DevSaveV1Schema.safeParse(value)
   const previous = aw2DevSaveV2Schema.safeParse(value)
+  const third = aw2DevSaveV3Schema.safeParse(value)
   const parsed = aw2DevSaveSchema.safeParse(
     legacy.success
       ? {
           ...legacy.data,
-          schemaVersion: 3,
+          schemaVersion: 4,
           progress: newWorldProgress(),
+          economy: newEconomy(),
         }
       : previous.success
         ? {
             ...previous.data,
-            schemaVersion: 3,
+            schemaVersion: 4,
+            economy: newEconomy(),
             progress: {
               ...previous.data.progress,
               bossDefeated: false,
@@ -98,7 +125,9 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
               endingChoice: null,
             },
           }
-        : value,
+        : third.success
+          ? { ...third.data, schemaVersion: 4, economy: newEconomy() }
+          : value,
   )
   return parsed.success
     ? { status: "ready", raw, save: parsed.data }

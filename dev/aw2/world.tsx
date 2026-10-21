@@ -1,6 +1,5 @@
 import { StrictMode, useEffect, useRef, useState } from "react"
 import { createRoot } from "react-dom/client"
-import type { Application } from "pixi.js"
 import { Aw2DevSaveStore } from "../../src/aw2/save/store"
 import type { SaveSnapshot } from "../../src/aw2/save/schema"
 import { AW2_DEV_SAVE_KEY } from "../../src/aw2/save/schema"
@@ -9,96 +8,19 @@ import { newWorldProgress, type WorldProgress } from "../../src/aw2/world/model"
 import { zoneById, type WorldObject } from "../../src/aw2/world/maps"
 import {
   applyWorldAction,
-  completedReceipts,
   describeObject,
   moveWorld,
   nearestObject,
   questLabel,
+  currentObjective,
 } from "../../src/aw2/world/rules"
 import type { WorldBossEncounter } from "../../src/aw2/world/encounter"
 import { WorldBattle } from "./WorldBattle"
+import { WorldCanvas } from "./WorldCanvas"
+import { InventoryPanel } from "./InventoryPanel"
+import { CHEST_RECEIPT, type EconomyAction } from "../../src/aw2/economy/model"
+import { findWorldPath, type Waypoint } from "../../src/aw2/world/navigation"
 import "./styles.css"
-
-function WorldCanvas({ world }: { world: WorldProgress }) {
-  const host = useRef<HTMLDivElement>(null)
-  const position = useRef(world)
-  position.current = world
-  const [error, setError] = useState("")
-  useEffect(() => {
-    let disposed = false
-    let app: Application | undefined
-    void (async () => {
-      try {
-        const { Application, Graphics } = await import("pixi.js")
-        const next = new Application()
-        await next.init({
-          width: 640,
-          height: 384,
-          background: 0x203c35,
-          antialias: false,
-          preference: "webgl",
-        })
-        if (disposed) {
-          next.destroy(true)
-          return
-        }
-        app = next
-        const terrain = new Graphics()
-          .rect(8, 8, 624, 368)
-          .stroke({ width: 3, color: 0x839c84 })
-        for (const wall of zoneById(world.zoneId).walls)
-          terrain.rect(wall.x, wall.y, wall.width, wall.height).fill(0x718878)
-        for (const object of zoneById(world.zoneId).objects)
-          terrain
-            .circle(object.x, object.y, object.kind === "exit" ? 15 : 10)
-            .fill(
-              object.kind === "exit"
-                ? 0xe8ce8c
-                : object.kind === "boss"
-                  ? 0xb46b62
-                  : 0x96b9c6,
-            )
-        const player = new Graphics()
-          .circle(0, 0, 8)
-          .fill(0xfff2bd)
-          .stroke({ width: 2, color: 0x111c17 })
-        next.stage.addChild(terrain, player)
-        next.ticker.add(() =>
-          player.position.set(position.current.x, position.current.y),
-        )
-        next.canvas.setAttribute("aria-hidden", "true")
-        host.current?.replaceChildren(next.canvas)
-      } catch (cause) {
-        if (!disposed)
-          setError(
-            cause instanceof Error ? cause.message : "Chưa tạo được canvas.",
-          )
-      }
-    })()
-    return () => {
-      disposed = true
-      app?.destroy(true, { children: true })
-    }
-  }, [world.zoneId])
-  return (
-    <div className="aw2-world-map">
-      <div ref={host} />
-      {zoneById(world.zoneId).objects.map((object) => (
-        <span
-          key={object.id}
-          className="aw2-world-label"
-          style={{
-            left: `${Math.max(12, Math.min(88, object.x / 6.4))}%`,
-            top: `${object.y / 3.84}%`,
-          }}
-        >
-          {object.name}
-        </span>
-      ))}
-      {error && <p role="alert">Canvas: {error}</p>}
-    </div>
-  )
-}
 
 interface ActiveWorldEncounter {
   run: WorldBossEncounter
@@ -115,11 +37,13 @@ function WorldPreview() {
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
+  const [mapEpoch, setMapEpoch] = useState(0)
   const [activeEncounter, setActiveEncounter] =
     useState<ActiveWorldEncounter | null>(null)
   const worldRef = useRef(world)
   const saved = useRef(snapshot)
   const keys = useRef(new Set<string>())
+  const route = useRef<Waypoint[]>([])
   const pending = useRef(false)
   const paused = useRef(false)
   const dialog = useRef<HTMLDialogElement>(null)
@@ -129,9 +53,11 @@ function WorldPreview() {
   paused.current = !!dialogObject || !!activeEncounter
 
   function openInteraction() {
+    route.current = []
     if (pending.current || paused.current || saved.current.status !== "ready")
       return
     keys.current.clear()
+    route.current = []
     const object = nearestObject(worldRef.current)
     if (object) setDialogObject(object)
     else
@@ -158,23 +84,38 @@ function WorldPreview() {
         event.preventDefault()
         if (key === "e") {
           if (!event.repeat) openInteraction()
-        } else if (!paused.current && !pending.current) keys.current.add(key)
+        } else if (!paused.current && !pending.current) {
+          route.current = []
+          keys.current.add(key)
+        }
       }
     }
     const up = (event: KeyboardEvent) =>
       keys.current.delete(event.key.toLowerCase())
-    const stop = () => keys.current.clear()
+    const stop = () => {
+      keys.current.clear()
+      route.current = []
+    }
     const timer = window.setInterval(() => {
       if (paused.current || pending.current || saved.current.status !== "ready")
         return
       const held = (a: string, b: string) =>
         Number(keys.current.has(a) || keys.current.has(b))
+      const point = route.current[0]
+      const distance = point
+        ? Math.hypot(point.x - worldRef.current.x, point.y - worldRef.current.y)
+        : 0
       const next = moveWorld(
         worldRef.current,
-        held("d", "arrowright") - held("a", "arrowleft"),
-        held("s", "arrowdown") - held("w", "arrowup"),
-        0.033,
+        point
+          ? point.x - worldRef.current.x
+          : held("d", "arrowright") - held("a", "arrowleft"),
+        point
+          ? point.y - worldRef.current.y
+          : held("s", "arrowdown") - held("w", "arrowup"),
+        point ? Math.min(0.033, distance / 140) : 0.033,
       )
+      if (point && distance <= 140 * 0.033) route.current.shift()
       if (next !== worldRef.current) {
         worldRef.current = next
         setWorld(next)
@@ -211,7 +152,9 @@ function WorldPreview() {
   }, [dialogObject])
 
   function reread() {
+    setMapEpoch(epoch => epoch + 1)
     keys.current.clear()
+    route.current = []
     setDialogObject(null)
     setActiveEncounter(null)
     const next = store.load()
@@ -220,6 +163,9 @@ function WorldPreview() {
     if (next.status === "ready") {
       worldRef.current = next.save.progress
       setWorld(next.save.progress)
+    } else {
+      worldRef.current = newWorldProgress()
+      setWorld(worldRef.current)
     }
     setMessage("Đã đọc lại AW2.")
     setError("")
@@ -230,6 +176,7 @@ function WorldPreview() {
     pending.current = true
     setBusy(true)
     keys.current.clear()
+    route.current = []
     setError("")
     setMessage("")
     try {
@@ -253,10 +200,18 @@ function WorldPreview() {
         actionId && dialogObject
           ? applyWorldAction(worldRef.current, dialogObject.id, actionId)
           : { state: worldRef.current, message: "Đã lưu vị trí AW2." }
-      const next = await store.save(
-        saved.current.raw,
-        saved.current.status === "ready" ? result.state : undefined,
-      )
+      const next =
+        actionId && dialogObject && saved.current.status === "ready"
+          ? await store.act(
+              saved.current.raw,
+              worldRef.current,
+              dialogObject.id,
+              actionId,
+            )
+          : await store.save(
+              saved.current.raw,
+              saved.current.status === "ready" ? result.state : undefined,
+            )
       setSnapshot(next)
       saved.current = next
       worldRef.current = next.save.progress
@@ -271,6 +226,50 @@ function WorldPreview() {
       pending.current = false
       setBusy(false)
     }
+  }
+  async function transact(action: EconomyAction) {
+    if (pending.current || saved.current.status !== "ready") return
+    pending.current = true
+    setBusy(true)
+    keys.current.clear()
+    route.current = []
+    setError("")
+    try {
+      const next = await store.economyAction(
+        saved.current.raw,
+        worldRef.current,
+        action,
+      )
+      setSnapshot(next)
+      saved.current = next
+      setWorld(next.save.progress)
+      worldRef.current = next.save.progress
+      setDialogObject(null)
+      setMessage(
+        {
+          "claim-quests": "Đã nhận quà nhiệm vụ.",
+          "open-chest": "Đã nhận nguyên liệu trong rương.",
+          cook: "Đã nấu Chén cơm ấm.",
+          "share-meal": "Bữa ăn được chia sẻ. Cả đội nhận 45 EXP.",
+        }[action],
+      )
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Chưa lưu được túi đồ.")
+    } finally {
+      pending.current = false
+      setBusy(false)
+    }
+  }
+  function navigate(point: Waypoint) {
+    if (pending.current || paused.current || saved.current.status !== "ready")
+      return
+    keys.current.clear()
+    route.current = findWorldPath(
+      worldRef.current.zoneId,
+      worldRef.current,
+      point,
+    )
+    if (!route.current.length) setMessage("Chọn một điểm trên lối đi.")
   }
   async function finishEncounter() {
     if (!activeEncounter || pending.current) return
@@ -315,12 +314,11 @@ function WorldPreview() {
   const nearby = nearestObject(world)
   return (
     <main className="aw2-save aw2-world">
-      <p className="eyebrow">AW2-006A / AW2-007C · DEVELOPMENT</p>
+      <p className="eyebrow">SOUL OF MEAL · RPG · BẢN PHÁT TRIỂN</p>
       <h1>Đường qua Phố Đèn Lồng</h1>
       <p>
-        World thử nghiệm · hình khối debug, chưa có model/art nhân vật. Di
-        chuyển WASD/mũi tên; E tương tác. Vị trí được lưu khi chọn Lưu hoặc xác
-        nhận tương tác.
+        Chạm lên lối đi hoặc dùng WASD/mũi tên; E để tương tác. Cùng năm Vị Linh
+        tìm lại một lời mời bên bếp.
       </p>
       <p>
         <a href="/dev/aw2/index.html">Kho save / xác nhận reset AW2</a> ·{" "}
@@ -338,7 +336,12 @@ function WorldPreview() {
       ) : (
         <>
           <h2 data-testid="zone-name">{zoneById(world.zoneId).name}</h2>
-          <WorldCanvas world={world} />
+          <WorldCanvas
+            key={`${snapshot.save.saveId}:${mapEpoch}`}
+            world={world}
+            onNavigate={navigate}
+            paused={busy || !!dialogObject}
+          />
           <p data-testid="player-position">
             Vị trí {world.x.toFixed(0)}, {world.y.toFixed(0)} · {world.facing}
           </p>
@@ -350,6 +353,9 @@ function WorldPreview() {
                 ? "Đang nhận"
                 : "Chưa nhận"}
             ; ký ức {world.memories.length}/3; puzzle {world.puzzleStep}/3
+          </p>
+          <p className="aw2-objective" data-testid="quest-objective">
+            {currentObjective(world)}
           </p>
           {world.questIndex >= 3 && (
             <p data-testid="boss-objectives">
@@ -366,10 +372,6 @@ function WorldPreview() {
               )
               .join(", ") || "Nhận sau nhập môn"}
           </p>
-          <p>
-            Quest receipts: {completedReceipts(world).join(", ") || "Chưa có"}.
-            Chưa cấp XP/vật phẩm khi chưa có economy contract.
-          </p>
           <div className="actions" aria-label="Điều khiển di chuyển">
             {[
               ["w", "↑ Lên"],
@@ -383,6 +385,7 @@ function WorldPreview() {
                 style={{ touchAction: "none" }}
                 onPointerDown={(event) => {
                   event.currentTarget.setPointerCapture(event.pointerId)
+                  route.current = []
                   keys.current.add(key)
                 }}
                 onPointerUp={() => keys.current.delete(key)}
@@ -399,6 +402,17 @@ function WorldPreview() {
               Lưu vị trí
             </button>
           </div>
+          <details className="aw2-bag-panel">
+            <summary>
+              Đội và túi đồ · {snapshot.save.economy.teamExperience} EXP
+            </summary>
+            <InventoryPanel
+              save={snapshot.save}
+              world={world}
+              busy={busy}
+              onAction={(action) => void transact(action)}
+            />
+          </details>
         </>
       )}
       <div className="actions">
@@ -426,6 +440,18 @@ function WorldPreview() {
           >
             Để sau / Đóng
           </button>
+          {dialogObject?.kind === "chest" && snapshot.status === "ready" && (
+            <button
+              disabled={
+                busy || snapshot.save.economy.receipts.includes(CHEST_RECEIPT)
+              }
+              onClick={() => void transact("open-chest")}
+            >
+              {snapshot.save.economy.receipts.includes(CHEST_RECEIPT)
+                ? "Đã nhận rương"
+                : "Mở rương nguyên liệu"}
+            </button>
+          )}
           {description?.actions.map((action) => (
             <button
               key={action.id}

@@ -7,6 +7,7 @@ import {
 } from "../../src/aw2/combat"
 import { KITCHEN_BOSS_ID } from "../../src/aw2/world/ids"
 import type { WorldBossEncounter } from "../../src/aw2/world/encounter"
+import { useBattleAudio } from "./useBattleAudio"
 
 const visualIds = { [KITCHEN_BOSS_ID]: "aw2-than" }
 const labels = { [KITCHEN_BOSS_ID]: "Người Giữ Bàn Quên" }
@@ -37,6 +38,7 @@ export function WorldBattle({
   )
   const battle = frame.view.battle
   const finished = frame.view.retreated || battle.status !== "active"
+  const audio = useBattleAudio(battle, paused || finished)
   const command = useCallback(
     (kind: "advance" | "ultimate" | "retreat", actorId?: string) => {
       try {
@@ -75,15 +77,17 @@ export function WorldBattle({
     <main className="aw2-save aw2-battle" data-testid="world-battle">
       <p className="eyebrow">AW2-007C · THỬ THÁCH BÊN BẾP</p>
       <h1>Người Giữ Bàn Quên</h1>
-      <p>
-        Đội năm Vị Linh cấp 1 thử nghiệm tự chiến đấu; chọn thời điểm dùng tuyệt
-        kỹ. Địch tạm dùng atlas Than đổi màu; hình ảnh và bộ chiêu boss riêng
-        chưa hoàn tất. Chưa có XP hoặc vật phẩm.
-      </p>
-      <p>
-        Điểm kiểm tra đã lưu. Tải lại giữa trận sẽ bỏ lượt đang chơi, trở về
-        Phòng Bàn và không tính thắng.
-      </p>
+      <details className="aw2-combat-help">
+        <summary>Cách chơi và điểm lưu</summary>
+        <p>
+          Đội tự chiến đấu với cấp đã tích lũy. Chọn thời điểm dùng tuyệt kỹ để
+          bảo vệ cả đội. Hình boss hiện dùng bộ tham chiếu Than đổi màu.
+        </p>
+        <p>
+          Điểm kiểm tra đã lưu. Tải lại giữa trận sẽ bỏ lượt đang chơi, trở về
+          Phòng Bàn và không tính thắng.
+        </p>
+      </details>
       <section
         className="aw2-battle-controls"
         aria-label="Điều khiển thử thách"
@@ -109,6 +113,14 @@ export function WorldBattle({
         >
           Rút lui về Sân
         </button>
+        <label>
+          <input
+            type="checkbox"
+            checked={audio.enabled}
+            onChange={audio.toggle}
+          />{" "}
+          Âm thanh
+        </label>
         <label>
           <input
             type="checkbox"
@@ -143,6 +155,12 @@ export function WorldBattle({
           .filter((actor) => actor.side === "player")
           .map((actor) => (
             <article key={actor.id}>
+              <img
+                src={STARTER_ASSETS[actor.spiritId].assets.portrait.url}
+                alt=""
+                width={64}
+                height={64}
+              />
               <div>
                 <strong>{STARTER_ASSETS[actor.spiritId].displayName}</strong>
                 <small>
@@ -166,6 +184,7 @@ export function WorldBattle({
             </article>
           ))}
       </section>
+      {audio.error && <p role="status">{audio.error}</p>}
       {finished && (
         <button type="button" disabled={busy} onClick={onFinish}>
           Lưu kết quả và trở về
