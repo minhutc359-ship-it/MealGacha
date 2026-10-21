@@ -56,6 +56,34 @@ def apply_lua_motion(data):
         skill["scope"] = "reference presentation used by development combat; final balance/full-character QA pending"
 
 
+def apply_lam_motion(data):
+    """Preserved image_gen cels; rectangles, pivots and scale are metadata."""
+    sheets = [
+        ("battle-motion-a-v2", STATES[:4], [0, 291, 645, 947, 1254], [0, 334, 645, 947, 1254], 1.6),
+        ("battle-motion-b-v2", STATES[4:], [0, 325, 645, 947, 1254], [0, 325, 661, 947, 1254], 1.65),
+    ]
+    timing = {"idle": [0, 300, 600, 900], "move": [0, 170, 340, 510],
+              "attack": [0, 260, 700, 820], "cast": [0, 210, 420, 740],
+              "hit": [0, 80, 180, 340], "guard": [0, 180, 400, 700],
+              "ultimate": [0, 520, 800, 1040], "defeat": [0, 220, 480, 760]}
+    for name, states, xs, ys, scale in sheets:
+        asset = util.encode(name)
+        asset["id"] = f"aw2-lam:{name}:base-v1"
+        data["assets"][name] = asset
+        cells = util.frames(name, xs, ys, [[f"battle.{state}.{i}" for i in range(4)] for state in states])
+        for frame in cells.values(): frame["renderScale"] = scale
+        data["frames"].update(cells)
+        for state in states:
+            clip = data["battle"][state]
+            clip["frames"] = [{"atMs": at, "frame": f"battle.{state}.{i}"} for i, at in enumerate(timing[state])]
+            clip["reducedMotionFrame"] = f"battle.{state}"
+            clip["method"] = "four distinct image_gen cels with authored timing; launch/impact and two healing gestures are reference cues; independent art review pending"
+    data["status"] = "MOTION_REFERENCE_IMPLEMENTED"
+    data["provenance"]["processing"] += "; motion RGBA sources unchanged, calibrated rectangles/anchors and logical renderScale metadata only"
+    for skill in data["skills"].values():
+        skill["scope"] = "reference presentation used by development combat; final balance/full-character QA pending"
+
+
 def build(unit, config):
     identity = f"aw2-{unit}"
     util.ASSETS = ROOT / f"dev/aw2/assets/{unit}/base-v1"
@@ -114,6 +142,8 @@ def build(unit, config):
     data["provenance"]["alphaEdgeTolerance"] = 9 if unit == "moc-non" else 8
     if unit == "lua":
         apply_lua_motion(data)
+    if unit == "lam":
+        apply_lam_motion(data)
     (ROOT / f"src/aw2/assets/{unit}.base-v1.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"unit": identity, "status": "PASS", "frames": len(data["frames"]), "webpBytes": sum(a["bytes"] for n, a in sources.items() if n != "reference")}))
 

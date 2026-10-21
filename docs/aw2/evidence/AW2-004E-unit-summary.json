@@ -1,0 +1,15 @@
+{
+  "task": "AW2-004E",
+  "base": "4def09f18c201663846f1122cacba81947b9ed84",
+  "status": "PASS",
+  "fullTests": 1007,
+  "files": 98,
+  "aw2Tests": 214,
+  "aw2Files": 18,
+  "newLamTests": 11,
+  "observedDurationSeconds": 71.46,
+  "failed": 0,
+  "pending": 0,
+  "rawReportSha256": "71c93273edba79dfba0d3869d455d124f6a45c8a1e6b547424dbb3ec6ea61cbe",
+  "note": "Final full run while preceding compiled journey was finishing; no throughput/device performance inference. Final browser runs follow this full run and review rebuild."
+}

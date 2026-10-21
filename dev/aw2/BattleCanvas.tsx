@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react"
-import { sampleSkillFx } from "../../src/aw2/assets/animation"
 import {
   battleAtlasKeys,
   sampleActorPlayback,
+  sampleActorEffect,
+  sampleConfirmedEffect,
   type ActorPlayback,
+  type EffectPlayback,
 } from "../../src/aw2/assets/playback"
 import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
 import type { SkillSlot, SpiritAssetManifest } from "../../src/aw2/assets/types"
@@ -61,6 +63,7 @@ export function BattleCanvas({
     tick: -1,
     battleId: "",
     actors: {} as Record<string, ActorPlayback>,
+    effects: {} as Record<string, EffectPlayback>,
   })
   const [atlases, setAtlases] = useState<Record<string, LoadedAtlas> | null>(
     null,
@@ -129,6 +132,7 @@ export function BattleCanvas({
         tick: battle.tick,
         battleId: battle.id,
         actors: {},
+        effects: {},
       }
     }
     clock.current.tick = battle.tick
@@ -217,28 +221,64 @@ export function BattleCanvas({
         ["cast", "ultimate", "attack", "guard"].includes(state)
           ? manifest.skills[slot]
           : null
-      const effect = skill
-        ? sampleSkillFx(
-            skill,
-            playback.elapsedMs,
-            reducedMotion,
-            cue?.contactIndex,
-          )
-        : null
-      const drawFx = () => {
-        if (!skill || !effect) return
-        paintFrame(
+      const effect =
+        skill && !(manifest.spiritId === "aw2-lam" && slot !== "passive")
+          ? sampleActorEffect(manifest, cue, playback.elapsedMs, reducedMotion)
+          : null
+      const independent = Object.entries(
+        presentation.effects[actor.id] ?? {},
+      ).map(([slot, cue]) => {
+        const key = `${actor.id}:${slot}`
+        const sampled = sampleConfirmedEffect(
           manifest,
-          effect.frame,
-          atlas.fx,
-          x + (enemy ? -1 : 1) * skill.fxPlacement.x * 0.28,
-          y + skill.fxPlacement.y * 0.28,
-          0.28 * skill.fxPlacement.scale,
-          enemy,
-          0.82,
+          clock.current.effects[key],
+          cue,
+          clock.current.time,
+          reducedMotion,
         )
+        clock.current.effects[key] = sampled.clock
+        return {
+          skill: manifest.skills[(slot as SkillSlot)],
+          effect: sampled.effect,
+          targetId: cue.targetId,
+          serial: cue.serial,
+          index: cue.index,
+        }
+      })
+      actorEffects[actor.id] = independent.map((entry) => ({
+        serial: entry.serial,
+        index: entry.index,
+        skillId: entry.skill.id,
+        fx: entry.effect?.frame ?? "",
+        atMs: entry.effect?.cue ?? null,
+        targetId: entry.targetId,
+        pose: pose.frame,
+      }))
+      const entries = [
+        ...independent,
+        ...(skill && effect
+          ? [{ skill, effect, targetId: cue?.effectTargetId }]
+          : []),
+      ]
+      const drawFx = (layer: "front" | "behind") => {
+        for (const { skill, effect, targetId } of entries) {
+          if (!effect || skill.fxPlacement.layer !== layer) continue
+          const target = targetId ? actorById(battle, targetId) : undefined
+          paintFrame(
+            manifest,
+            effect.frame,
+            atlas.fx,
+            target
+              ? actorX(target)
+              : x + (enemy ? -1 : 1) * skill.fxPlacement.x * 0.28,
+            (target ? actorY(target) : y) + skill.fxPlacement.y * 0.28,
+            0.28 * skill.fxPlacement.scale,
+            enemy,
+            0.82,
+          )
+        }
       }
-      if (skill?.fxPlacement.layer === "behind") drawFx()
+      drawFx("behind")
       paintFrame(
         manifest,
         pose.frame,
@@ -250,9 +290,15 @@ export function BattleCanvas({
         pose.opacity,
         enemy ? -pose.rotation : pose.rotation,
       )
-      if (skill?.fxPlacement.layer !== "behind") drawFx()
+      drawFx("front")
       if (enemy) context!.restore()
       actorPoses[actor.id] = pose.frame
+      actorCues[actor.id] = {
+        serial: cue?.serial,
+        phase: cue?.phase,
+        skillId: cue?.skillId,
+        fx: effect?.frame ?? "",
+      }
       actorContacts[actor.id] =
         cue?.contactIndex === undefined
           ? null
@@ -261,6 +307,8 @@ export function BattleCanvas({
               index: cue.contactIndex,
               fx: effect?.frame ?? "",
               atMs: effect?.cue ?? null,
+              skillId: cue.skillId,
+              targetId: cue.effectTargetId,
             }
 
       const barWidth = 76
@@ -344,6 +392,8 @@ export function BattleCanvas({
 
     const actorPoses: Record<string, string> = {}
     const actorContacts: Record<string, unknown> = {}
+    const actorCues: Record<string, unknown> = {}
+    const actorEffects: Record<string, unknown> = {}
     function draw(now: number) {
       if (!paused && document.visibilityState === "visible")
         clock.current.time += Math.min(50, Math.max(0, now - lastTime))
@@ -382,6 +432,8 @@ export function BattleCanvas({
       element!.dataset.reduced = String(reducedMotion)
       element!.dataset.actorPoses = JSON.stringify(actorPoses)
       element!.dataset.actorContacts = JSON.stringify(actorContacts)
+      element!.dataset.actorCues = JSON.stringify(actorCues)
+      element!.dataset.actorEffects = JSON.stringify(actorEffects)
       element!.dataset.motionTime = String(Math.floor(clock.current.time))
       frameRequest = requestAnimationFrame(draw)
     }

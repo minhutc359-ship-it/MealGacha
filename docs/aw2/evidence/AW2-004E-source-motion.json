@@ -1,0 +1,448 @@
+{
+  "task": "AW2-004E",
+  "spiritId": "aw2-lam",
+  "status": "PASS",
+  "flavor": "source",
+  "engine": "153.0.8010.36",
+  "checks": [
+    "Lam Lam preview declares four-cel reference motion without full-character approval",
+    "idle: browser draws all four declared distinct cels",
+    "idle: preview pause freezes authored timeline",
+    "move: browser draws all four declared distinct cels",
+    "move: preview pause freezes authored timeline",
+    "attack: browser draws all four declared distinct cels",
+    "attack: preview pause freezes authored timeline",
+    "cast: browser draws all four declared distinct cels",
+    "cast: preview pause freezes authored timeline",
+    "hit: browser draws all four declared distinct cels",
+    "hit: preview pause freezes authored timeline",
+    "guard: browser draws all four declared distinct cels",
+    "guard: preview pause freezes authored timeline",
+    "ultimate: browser draws all four declared distinct cels",
+    "ultimate: preview pause freezes authored timeline",
+    "defeat: browser draws all four declared distinct cels",
+    "defeat: preview pause freezes authored timeline",
+    "Lam reference flight stays between launch260 and impact700; separate impact art follows",
+    "Lam reference ultimate crosses exactly two markers/cues at520/1040",
+    "Reduced motion holds the preserved authored attack pose",
+    "Four existing authored WAV cues decode; audio remains opt-in",
+    "Preserved down world sprite resolves",
+    "Preserved left world sprite resolves",
+    "Preserved right world sprite resolves",
+    "Preserved up world sprite resolves",
+    "Preview controls fit 320px",
+    "Preview controls fit 390px",
+    "Preview controls fit 768px",
+    "Actual five-unit combat draws Lam Lam motion atlas",
+    "Combat pause freezes presentation clock across RAFs",
+    "Explicit paused step advances rules once while presentation remains frozen",
+    "Resume continues presentation time",
+    "Actual Lam ultimate has one confirmed visual cue per rules pulse across ally recipients",
+    "First confirmed healing gesture never reaches unconfirmed second pose",
+    "Actual Lam basic uses only target-owned impact frames",
+    "Actual cast/flight never emit premature impact/healing FX",
+    "Reduced motion never revives expired confirmed healing FX",
+    "Decoded atlas draws stay inside actual source bounds",
+    "Reference/combat previews preserve every seeded save byte",
+    "No unexpected primary browser or resource errors",
+    "Missing battle-motion-a-v2 is explicit and never replaced by geometry",
+    "Missing battle-motion-b-v2 is explicit and never replaced by geometry"
+  ],
+  "errors": [],
+  "timelines": {
+    "idle": [
+      "battle.idle.0",
+      "battle.idle.1",
+      "battle.idle.2",
+      "battle.idle.3"
+    ],
+    "move": [
+      "battle.move.0",
+      "battle.move.1",
+      "battle.move.2",
+      "battle.move.3"
+    ],
+    "attack": [
+      "battle.attack.0",
+      "battle.attack.1",
+      "battle.attack.2",
+      "battle.attack.3"
+    ],
+    "cast": [
+      "battle.cast.0",
+      "battle.cast.1",
+      "battle.cast.2",
+      "battle.cast.3"
+    ],
+    "hit": [
+      "battle.hit.0",
+      "battle.hit.1",
+      "battle.hit.2",
+      "battle.hit.3"
+    ],
+    "guard": [
+      "battle.guard.0",
+      "battle.guard.1",
+      "battle.guard.2",
+      "battle.guard.3"
+    ],
+    "ultimate": [
+      "battle.ultimate.0",
+      "battle.ultimate.1",
+      "battle.ultimate.2",
+      "battle.ultimate.3"
+    ],
+    "defeat": [
+      "battle.defeat.0",
+      "battle.defeat.1",
+      "battle.defeat.2",
+      "battle.defeat.3"
+    ]
+  },
+  "confirmedContacts": [
+    {
+      "serial": 9,
+      "index": 0,
+      "skillId": "aw2-lam:skill:ultimate",
+      "fx": "fx.ultimate.0",
+      "atMs": 520,
+      "pose": "battle.ultimate.1",
+      "tick": 3
+    },
+    {
+      "serial": 9,
+      "index": 0,
+      "skillId": "aw2-lam:skill:ultimate",
+      "fx": "fx.ultimate.1",
+      "atMs": 520,
+      "pose": "battle.ultimate.1",
+      "tick": 3
+    },
+    {
+      "serial": 9,
+      "index": 0,
+      "skillId": "aw2-lam:skill:ultimate",
+      "fx": "fx.ultimate.2",
+      "atMs": 520,
+      "pose": "battle.ultimate.1",
+      "tick": 3
+    },
+    {
+      "serial": 9,
+      "index": 0,
+      "skillId": "aw2-lam:skill:ultimate",
+      "fx": "fx.ultimate.3",
+      "atMs": 520,
+      "pose": "battle.ultimate.2",
+      "tick": 3
+    },
+    {
+      "serial": 35,
+      "index": 1,
+      "skillId": "aw2-lam:skill:ultimate",
+      "fx": "fx.ultimate.0",
+      "atMs": 1040,
+      "pose": "battle.hit.0",
+      "tick": 5
+    },
+    {
+      "serial": 35,
+      "index": 1,
+      "skillId": "aw2-lam:skill:ultimate",
+      "fx": "fx.ultimate.1",
+      "atMs": 1040,
+      "pose": "battle.hit.1",
+      "tick": 5
+    },
+    {
+      "serial": 35,
+      "index": 1,
+      "skillId": "aw2-lam:skill:ultimate",
+      "fx": "fx.ultimate.2",
+      "atMs": 1040,
+      "pose": "battle.hit.2",
+      "tick": 5
+    },
+    {
+      "serial": 35,
+      "index": 1,
+      "skillId": "aw2-lam:skill:ultimate",
+      "fx": "fx.ultimate.3",
+      "atMs": 1040,
+      "pose": "battle.hit.3",
+      "tick": 5
+    },
+    {
+      "serial": 60,
+      "index": 0,
+      "skillId": "aw2-lam:skill:basic",
+      "fx": "fx.basic.2",
+      "atMs": 700,
+      "targetId": "enemy-than",
+      "pose": "battle.hit.0",
+      "tick": 6
+    }
+  ],
+  "audio": [
+    0.16,
+    0.34,
+    0.22,
+    0.46
+  ],
+  "draws": {
+    "http://127.0.0.1:8464/dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp": {
+      "draws": 242,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/suong/base-v1/battle.webp": {
+      "draws": 302,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/lua/base-v1/battle-motion-a-v1.webp": {
+      "draws": 238,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/lam/base-v1/battle-motion-a-v2.webp": {
+      "draws": 80,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/moc-non/base-v1/battle.webp": {
+      "draws": 151,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/lam/base-v1/battle-motion-b-v2.webp": {
+      "draws": 41,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/lam/base-v1/fx.webp": {
+      "draws": 76,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/suong/base-v1/fx.webp": {
+      "draws": 126,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/lua/base-v1/fx.webp": {
+      "draws": 18,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/moc-non/base-v1/fx.webp": {
+      "draws": 62,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/lua/base-v1/battle-motion-b-v2.webp": {
+      "draws": 4,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/than/base-v1/battle.webp": {
+      "draws": 60,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/than/base-v1/fx.webp": {
+      "draws": 23,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/lua/base-v1/battle.webp": {
+      "draws": 60,
+      "invalid": 0
+    },
+    "http://127.0.0.1:8464/dev/aw2/assets/lam/base-v1/battle.webp": {
+      "draws": 30,
+      "invalid": 0
+    }
+  },
+  "requestedAssets": [
+    "/src/aw2/assets/starters.ts",
+    "/src/aw2/assets/lua.base-v1.json",
+    "/src/aw2/assets/moc-non.base-v1.json",
+    "/src/aw2/assets/lam.base-v1.json",
+    "/src/aw2/assets/types.ts",
+    "/src/aw2/assets/suong.base-v1.json",
+    "/src/aw2/assets/animation.ts",
+    "/src/aw2/assets/than.ts",
+    "/src/aw2/assets/playback.ts",
+    "/src/aw2/assets/than.base-v1.json",
+    "/dev/aw2/assets/lam/base-v1/world.webp",
+    "/dev/aw2/assets/lam/base-v1/battle.webp",
+    "/dev/aw2/assets/lam/base-v1/fx.webp",
+    "/dev/aw2/assets/lam/base-v1/battle-motion-a-v2.webp",
+    "/dev/aw2/assets/lam/base-v1/battle-motion-b-v2.webp",
+    "/dev/aw2/assets/lam/base-v1/portrait.webp",
+    "/dev/aw2/assets/lam/base-v1/basic.wav",
+    "/dev/aw2/assets/lam/base-v1/auto.wav",
+    "/dev/aw2/assets/lam/base-v1/passive.wav",
+    "/dev/aw2/assets/lam/base-v1/ultimate.wav",
+    "/dev/aw2/assets/than/base-v1/portrait.webp",
+    "/dev/aw2/assets/lua/base-v1/portrait.webp",
+    "/dev/aw2/assets/suong/base-v1/portrait.webp",
+    "/dev/aw2/assets/moc-non/base-v1/portrait.webp",
+    "/dev/aw2/assets/than/base-v1/battle.webp",
+    "/dev/aw2/assets/than/base-v1/fx.webp",
+    "/dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp",
+    "/dev/aw2/assets/than/base-v1/battle-motion-b-v2.webp",
+    "/dev/aw2/assets/lua/base-v1/battle.webp",
+    "/dev/aw2/assets/lua/base-v1/fx.webp",
+    "/dev/aw2/assets/lua/base-v1/battle-motion-a-v1.webp",
+    "/dev/aw2/assets/lua/base-v1/battle-motion-b-v2.webp",
+    "/dev/aw2/assets/moc-non/base-v1/battle.webp",
+    "/dev/aw2/assets/moc-non/base-v1/fx.webp",
+    "/dev/aw2/assets/suong/base-v1/battle.webp",
+    "/dev/aw2/assets/suong/base-v1/fx.webp"
+  ],
+  "resources": [
+    {
+      "path": "/src/aw2/assets/starters.ts",
+      "durationMs": 4,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/src/aw2/assets/lua.base-v1.json",
+      "durationMs": 5,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/src/aw2/assets/lam.base-v1.json",
+      "durationMs": 12,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/src/aw2/assets/moc-non.base-v1.json",
+      "durationMs": 17,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/src/aw2/assets/suong.base-v1.json",
+      "durationMs": 10,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/src/aw2/assets/than.ts",
+      "durationMs": 16,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/src/aw2/assets/than.base-v1.json",
+      "durationMs": 8,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/src/aw2/assets/playback.ts",
+      "durationMs": 7,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/src/aw2/assets/animation.ts",
+      "durationMs": 7,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/dev/aw2/assets/lam/base-v1/portrait.webp",
+      "durationMs": 2,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/dev/aw2/assets/than/base-v1/portrait.webp",
+      "durationMs": 46,
+      "decodedBodySize": 1577496
+    },
+    {
+      "path": "/dev/aw2/assets/lua/base-v1/portrait.webp",
+      "durationMs": 43,
+      "decodedBodySize": 1176674
+    },
+    {
+      "path": "/dev/aw2/assets/moc-non/base-v1/portrait.webp",
+      "durationMs": 40,
+      "decodedBodySize": 1186780
+    },
+    {
+      "path": "/dev/aw2/assets/suong/base-v1/portrait.webp",
+      "durationMs": 32,
+      "decodedBodySize": 1004776
+    },
+    {
+      "path": "/dev/aw2/assets/lam/base-v1/battle.webp",
+      "durationMs": 4,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/dev/aw2/assets/lam/base-v1/fx.webp",
+      "durationMs": 7,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/dev/aw2/assets/lam/base-v1/battle-motion-a-v2.webp",
+      "durationMs": 8,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/dev/aw2/assets/lam/base-v1/battle-motion-b-v2.webp",
+      "durationMs": 9,
+      "decodedBodySize": 0
+    },
+    {
+      "path": "/dev/aw2/assets/than/base-v1/battle.webp",
+      "durationMs": 70,
+      "decodedBodySize": 1461066
+    },
+    {
+      "path": "/dev/aw2/assets/than/base-v1/fx.webp",
+      "durationMs": 40,
+      "decodedBodySize": 380092
+    },
+    {
+      "path": "/dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp",
+      "durationMs": 76,
+      "decodedBodySize": 1083934
+    },
+    {
+      "path": "/dev/aw2/assets/than/base-v1/battle-motion-b-v2.webp",
+      "durationMs": 82,
+      "decodedBodySize": 1055702
+    },
+    {
+      "path": "/dev/aw2/assets/lua/base-v1/battle.webp",
+      "durationMs": 100,
+      "decodedBodySize": 1423908
+    },
+    {
+      "path": "/dev/aw2/assets/lua/base-v1/fx.webp",
+      "durationMs": 38,
+      "decodedBodySize": 224610
+    },
+    {
+      "path": "/dev/aw2/assets/lua/base-v1/battle-motion-a-v1.webp",
+      "durationMs": 113,
+      "decodedBodySize": 1199666
+    },
+    {
+      "path": "/dev/aw2/assets/lua/base-v1/battle-motion-b-v2.webp",
+      "durationMs": 112,
+      "decodedBodySize": 830168
+    },
+    {
+      "path": "/dev/aw2/assets/moc-non/base-v1/battle.webp",
+      "durationMs": 123,
+      "decodedBodySize": 1562632
+    },
+    {
+      "path": "/dev/aw2/assets/moc-non/base-v1/fx.webp",
+      "durationMs": 112,
+      "decodedBodySize": 442358
+    },
+    {
+      "path": "/dev/aw2/assets/suong/base-v1/battle.webp",
+      "durationMs": 122,
+      "decodedBodySize": 1424544
+    },
+    {
+      "path": "/dev/aw2/assets/suong/base-v1/fx.webp",
+      "durationMs": 118,
+      "decodedBodySize": 518418
+    }
+  ],
+  "limits": [
+    "Local headless resource timings only; no device/FPS/offline performance approval",
+    "Reference animation; independent art/listening/rights/final balance NOT_RUN"
+  ]
+}

@@ -12,11 +12,11 @@ const { values } = parseArgs({
   },
 })
 assert.ok(
-  ["aw2-than", "aw2-lua"].includes(values.spirit),
+  ["aw2-than", "aw2-lua", "aw2-lam"].includes(values.spirit),
   "Supported authored motion spirit",
 )
 const slug = values.spirit.slice(4)
-const task = slug === "lua" ? "AW2-004D" : "AW2-004C"
+const task = { than: "AW2-004C", lua: "AW2-004D", lam: "AW2-004E" }[slug]
 const { chromium } = await import(values.playwright)
 const port = values.compiled ? 8465 : 8464
 const flavor = values.compiled ? "compiled" : "source"
@@ -33,7 +33,8 @@ const manifest = JSON.parse(
   await readFile(`src/aw2/assets/${slug}.base-v1.json`, "utf8"),
 )
 const out = `.asset-work/${task.toLowerCase()}`,
-  previewEntry = slug === "than" ? "than.html" : "starters.html?spirit=aw2-lua",
+  previewEntry =
+    slug === "than" ? "than.html" : `starters.html?spirit=${values.spirit}`,
   motionKeys = Object.keys(manifest.assets).filter((key) =>
     key.startsWith("battle-motion-"),
   ),
@@ -178,6 +179,49 @@ try {
       (await page.locator("canvas").getAttribute("data-events")) === "2" &&
         (await page.locator("canvas").getAttribute("data-cues")) === "2" &&
         (await page.getByTestId("contact-cue").innerText()).includes("380ms"),
+    )
+  }
+  if (slug === "lam") {
+    await page.getByTestId("skill-basic").click()
+    const flight = await page.evaluate(async () => {
+      const samples = [],
+        start = performance.now()
+      await new Promise((resolve) => {
+        const poll = () => {
+          const d = document.querySelector("canvas").dataset
+          samples.push({ time: +d.elapsed, flight: d.projectile, fx: d.fx })
+          if (+d.elapsed >= 950 && d.frame === "battle.attack.3") resolve()
+          else if (performance.now() - start > 4000) resolve()
+          else requestAnimationFrame(poll)
+        }
+        poll()
+      })
+      return samples
+    })
+    check(
+      "Lam reference flight stays between launch260 and impact700; separate impact art follows",
+      flight.some(
+        (s) =>
+          s.flight?.startsWith("fx.basic.") && s.time >= 260 && s.time < 700,
+      ) &&
+        flight.some((s) => s.fx === "fx.basic.2" && s.time >= 700) &&
+        flight
+          .filter((s) => s.flight?.startsWith("fx.basic."))
+          .every((s) => s.time >= 260 && s.time < 700),
+    )
+    await page.getByTestId("skill-ultimate").click()
+    await page.waitForFunction(() => {
+      const d = document.querySelector("canvas").dataset
+      return (
+        d.frame === "battle.ultimate.3" &&
+        +d.elapsed >= 1200 &&
+        d.events === "2" &&
+        d.cues === "2"
+      )
+    })
+    check(
+      "Lam reference ultimate crosses exactly two markers/cues at520/1040",
+      (await page.getByTestId("contact-cue").innerText()).includes("1040ms"),
     )
   }
   await page
@@ -326,6 +370,100 @@ try {
         .every((entry) => entry.pose !== "battle.attack.3"),
     )
   }
+  if (slug === "lam") {
+    await page.evaluate(() => {
+      window.__lamContacts = []
+      window.__lamPreparation = []
+      const poll = () => {
+        const c = document.querySelector("canvas"),
+          d = c?.dataset
+        const cue = JSON.parse(d?.actorCues ?? "{}")["player-aw2-lam"]
+        if (cue?.phase === "prepare" || cue?.phase === "launch")
+          window.__lamPreparation.push({ ...cue, tick: +d.tick })
+        for (const beat of JSON.parse(d?.actorEffects ?? "{}")[
+          "player-aw2-lam"
+        ] ?? []) {
+          if (
+            beat.fx &&
+            !window.__lamContacts.some(
+              (e) => e.serial === beat.serial && e.fx === beat.fx,
+            )
+          )
+            window.__lamContacts.push({ ...beat, tick: +d.tick })
+        }
+        requestAnimationFrame(poll)
+      }
+      poll()
+    })
+    await page.getByTestId("ultimate-aw2-lam").click()
+    await page.waitForFunction(
+      () => {
+        const e = window.__lamContacts
+        return (
+          e.some((e) => e.skillId === "aw2-lam:skill:basic") &&
+          [0, 1].every((i) =>
+            e.some(
+              (e) => e.skillId === "aw2-lam:skill:ultimate" && e.index === i,
+            ),
+          )
+        )
+      },
+      null,
+      { timeout: 30000 },
+    )
+    confirmedContacts = await page.evaluate(() => window.__lamContacts)
+    const heal = confirmedContacts.filter(
+      (e) => e.skillId === "aw2-lam:skill:ultimate",
+    )
+    check(
+      "Actual Lam ultimate has one confirmed visual cue per rules pulse across ally recipients",
+      new Set(heal.map((e) => e.serial)).size === 2 &&
+        heal.every((e) => e.atMs === (e.index === 0 ? 520 : 1040)),
+    )
+    check(
+      "First confirmed healing gesture never reaches unconfirmed second pose",
+      heal
+        .filter((e) => e.index === 0)
+        .every((e) => e.pose !== "battle.ultimate.3"),
+    )
+    check(
+      "Actual Lam basic uses only target-owned impact frames",
+      confirmedContacts
+        .filter((e) => e.skillId === "aw2-lam:skill:basic")
+        .every(
+          (e) =>
+            ["fx.basic.2", "fx.basic.3"].includes(e.fx) &&
+            e.targetId &&
+            e.atMs === 700,
+        ),
+    )
+    check(
+      "Actual cast/flight never emit premature impact/healing FX",
+      await page.evaluate(
+        () =>
+          window.__lamPreparation.length > 0 &&
+          window.__lamPreparation.every((e) => e.fx === ""),
+      ),
+    )
+    await page
+      .getByRole("checkbox", { name: "Giảm chuyển động", exact: true })
+      .check()
+    await page.waitForTimeout(500)
+    check(
+      "Reduced motion never revives expired confirmed healing FX",
+      await page.evaluate(() => {
+        const effects = JSON.parse(
+          document.querySelector("canvas").dataset.actorEffects,
+        )["player-aw2-lam"]
+        return effects.some(
+          (e) =>
+            e.skillId === "aw2-lam:skill:ultimate" &&
+            e.index === 1 &&
+            e.fx === "",
+        )
+      }),
+    )
+  }
   await page
     .locator("canvas")
     .screenshot({ path: `${out}/${flavor}-actual-battle.png` })
@@ -408,6 +546,11 @@ try {
   )
   console.log(JSON.stringify({ status: "PASS", flavor, checks: checks.length }))
 } catch (error) {
+  if (slug === "lam")
+    confirmedContacts =
+      (await page
+        ?.evaluate(() => window.__lamContacts ?? [])
+        .catch(() => [])) ?? []
   await mkdir(out, { recursive: true })
   await writeFile(
     `${out}/${flavor}-motion.json`,

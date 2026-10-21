@@ -595,6 +595,17 @@ try {
     )
   })
   check("Earned world encounter also draws Lua's authored motion atlas")
+  await page.waitForFunction(() => {
+    const poses = JSON.parse(
+      document.querySelector('[data-testid="world-battle"] canvas').dataset
+        .actorPoses ?? "{}",
+    )
+    return Object.entries(poses).some(
+      ([id, frame]) =>
+        id.includes("aw2-lam") && frame.startsWith("battle.idle."),
+    )
+  })
+  check("Earned world encounter also draws Lam's authored motion atlas")
   const pausedMotion = await canvas.getAttribute("data-motion-time")
   await page.waitForTimeout(180)
   check(

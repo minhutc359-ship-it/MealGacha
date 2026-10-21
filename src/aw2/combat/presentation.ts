@@ -7,8 +7,24 @@ export interface ActorPresentation {
   serial: number
   tick: number
   skillId?: string
-  /** Only an authoritative hit may select a beat of Lua's basic sequence. */
+  /** Only an authoritative hit/heal may select a confirmed presentation beat. */
   contactIndex?: number
+  phase?: "prepare" | "launch" | "confirmed"
+  effectTargetId?: string
+}
+
+export interface HealingPulse {
+  castSerial: number
+  tick: number
+  index: number
+}
+
+export interface ConfirmedEffect {
+  serial: number
+  tick: number
+  skillId: string
+  index: number
+  targetId?: string
 }
 
 export interface ConfirmedContact {
@@ -47,6 +63,9 @@ export interface CombatPresentation {
   lastSerial: number
   actors: Record<string, ActorPresentation>
   contacts: Record<string, ConfirmedContact>
+  healingPulses: Record<string, HealingPulse>
+  /** Bounded per-source/slot effects survive simultaneous source pose changes. */
+  effects: Record<string, Record<string, ConfirmedEffect>>
   projectiles: Record<string, ProjectilePresentation>
   floating: FloatingPresentation[]
   terminal: TerminalPresentation | null
@@ -58,6 +77,8 @@ export function createCombatPresentation(): CombatPresentation {
     lastSerial: 0,
     actors: {},
     contacts: {},
+    healingPulses: {},
+    effects: {},
     projectiles: {},
     floating: [],
     terminal: null,
@@ -117,8 +138,78 @@ export function reduceCombatPresentation(
   for (const event of incoming) {
     assertNextEvent(event, next.lastSerial)
     next.lastSerial = event.serial
-    const sourceState = actorStateFor(event)
+    let sourceState = actorStateFor(event)
     let contactIndex: number | undefined
+    let phase: ActorPresentation["phase"]
+    const lamSkill = event.skillId?.startsWith("aw2-lam:skill:")
+    if (lamSkill && event.sourceId) {
+      const slot = skillSlot(event.skillId)
+      if (["cast-start", "cast-commit"].includes(event.kind)) {
+        phase = "prepare"
+        if (slot === "ultimate")
+          next.healingPulses[event.sourceId] = {
+            castSerial: event.serial,
+            tick: -1,
+            index: -1,
+          }
+      }
+      if (event.kind === "projectile-launch") phase = "launch"
+      if (event.kind === "hit" || event.kind === "heal") {
+        phase = "confirmed"
+        contactIndex = 0
+        if (slot === "ultimate" && event.kind === "heal") {
+          const prior = next.healingPulses[event.sourceId]
+          // One rules pulse can heal several allies, in separate batches and
+          // interleaved with overheal shields. Never restart it per recipient.
+          if (prior?.tick === event.tick || (prior?.index ?? -1) >= 1)
+            sourceState = null
+          else {
+            contactIndex = prior?.index === 0 ? 1 : 0
+            next.healingPulses[event.sourceId] = {
+              castSerial: prior?.castSerial ?? event.serial,
+              tick: event.tick,
+              index: contactIndex,
+            }
+          }
+        }
+      }
+      if (slot === "passive" && event.kind === "shield") {
+        if (
+          next.actors[event.sourceId]?.phase === "confirmed" &&
+          next.actors[event.sourceId]?.tick === event.tick &&
+          ["aw2-lam:skill:auto", "aw2-lam:skill:ultimate"].includes(
+            next.actors[event.sourceId]?.skillId ?? "",
+          )
+        )
+          sourceState = null
+        else {
+          phase = "confirmed"
+          contactIndex = 0
+        }
+      }
+      if (sourceState && phase === "confirmed" && slot && slot !== "passive") {
+        const effects = (next.effects[event.sourceId] ??= {})
+        effects[slot] = {
+          serial: event.serial,
+          tick: event.tick,
+          skillId: event.skillId!,
+          index: contactIndex ?? 0,
+          ...(event.kind === "hit" && event.targetIds[0]
+            ? { targetId: event.targetIds[0] }
+            : {}),
+        }
+      }
+      const previous = next.actors[event.sourceId]
+      // Rules may heal and launch/commit another action in the same tick.
+      // Keep the ultimate gesture; both confirmed effects retain their clocks.
+      if (
+        previous?.tick === event.tick &&
+        previous.phase === "confirmed" &&
+        previous.skillId === "aw2-lam:skill:ultimate" &&
+        slot !== "ultimate"
+      )
+        sourceState = null
+    }
     if (event.sourceId && event.skillId === "aw2-lua:skill:basic") {
       if (event.kind === "miss") delete next.contacts[event.sourceId]
       if (event.kind === "hit" && event.targetIds[0]) {
@@ -143,6 +234,10 @@ export function reduceCombatPresentation(
         tick: event.tick,
         ...(event.skillId ? { skillId: event.skillId } : {}),
         ...(contactIndex === undefined ? {} : { contactIndex }),
+        ...(phase ? { phase } : {}),
+        ...(lamSkill && event.kind === "hit" && event.targetIds[0]
+          ? { effectTargetId: event.targetIds[0] }
+          : {}),
       }
     if (event.kind === "projectile-launch") {
       const targetId = event.targetIds[0]

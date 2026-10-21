@@ -1,0 +1,55 @@
+{
+  "task": "AW2-004E",
+  "base": "4def09f18c201663846f1122cacba81947b9ed84",
+  "status": "PASS scoped reference milestone",
+  "browserAssertions": 471,
+  "browserBreakdown": {
+    "source-motion": 42,
+    "compiled-motion": 42,
+    "source-lua-motion": 38,
+    "compiled-lua-motion": 38,
+    "source-than": 32,
+    "source-starters": 133,
+    "source-battle": 22,
+    "compiled-battle": 22,
+    "source-demo": 47,
+    "compiled-demo": 47,
+    "compiled-smoke": 8
+  },
+  "independentArtListeningDeviceRights": "NOT_RUN",
+  "fullCharacterComplete": false,
+  "demoPercent": 90,
+  "productEstimatePercent": 40,
+  "productEstimateRange": [
+    35,
+    45
+  ],
+  "fullCharacters": 0,
+  "referenceSets": 5,
+  "missingSets": 7,
+  "starterMotionPackages": 3,
+  "newLamCels": 32,
+  "allFiveRectangles": 296,
+  "maxLamEdgeAlpha": 3,
+  "motionPromptSetSha256": "3c104f1743d8c336ae5a1127edaa3af7c0196da07eb35b377c9c73f6bc60f171",
+  "openedFinalCaptures": [
+    "source-actual-battle.png",
+    "compiled-ultimate.png",
+    "compiled-mobile.png"
+  ],
+  "openedDiagnosticCapture": "source-motion-initial-failure.png",
+  "failures": [
+    "Two generated layouts rejected and repaired through image_gen; source pixels not masked/repainted",
+    "Initial rebuild harness compared modified TS helpers; corrected asset inventory",
+    "Second rebuild assertions passed but missing report directory failed write; final complete run PASS",
+    "Initial browser timeout: simultaneous Lam rules actions overwrote one actor FX cue; independent confirmed-effect clocks and same-tick gesture priority fixed it",
+    "Final review caught reduced-motion revival of expired independent FX; finite180/440ms lifetimes, new unit/browser case; all final browser reports postdate rebuild"
+  ],
+  "limits": [
+    "Sparse reference cels; independent anatomy/identity/contact/loop/kneel-stand continuity review pending",
+    "Arena actor/label overlap and telegraph/target readability unresolved",
+    "Basic-hit/heal-pulse audio binding incomplete; no human listening",
+    "No physical-device/native/offline/FPS/rights/production-save/release approval",
+    "Unchanged deeper standalone save/mode/boss-failure browser permutations not separately repeated"
+  ]
+}

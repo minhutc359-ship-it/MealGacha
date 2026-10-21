@@ -131,8 +131,15 @@ export function sampleSkillFx(
   if (confirmedContactIndex !== undefined) {
     const cue = skillCueTimes(skill)[confirmedContactIndex]
     if (cue === undefined || elapsedMs < 0) return null
+    const frames = skill.projectile ? skill.fx.slice(2) : skill.fx
     const frame =
-      skill.fx[reducedMotion ? 2 : Math.floor(elapsedMs / skill.fxFrameMs)]
+      frames[
+        reducedMotion
+          ? skill.projectile
+            ? 0
+            : 2
+          : Math.floor(elapsedMs / skill.fxFrameMs)
+      ]
     return frame ? { frame, cue } : null
   }
   const cue = [...skillCueTimes(skill)].reverse().find((at) => elapsedMs >= at)
