@@ -1,11 +1,12 @@
 # Chạy AW2 trên máy để chơi thử
 
-Dùng nhánh `game/adventure-world-2`. Môi trường đã dùng để kiểm tra: Node22.23.2, pnpm10.34.3, Chrome trên Linux. Các trang AW2 này chạy phía trình duyệt, không cần backend, tài khoản hoặc file .env.
+Dùng nhánh `game/adventure-world-2`. Môi trường hiện được kiểm tra: Windows/Node25.2.0, pnpm10.34.3, Chrome155; trước đó có bằng chứng Linux/Node22.23.2. Các trang AW2 này chạy phía trình duyệt, không cần backend, tài khoản hoặc file .env.
 
 Tại thư mục dự án:
 
 ```sh
-cd /home/sotatek/Documents/prj/MealGacha/MealGacha
+# Windows PowerShell: cd D:\prj\MealGacha
+# Hoặc mở terminal tại thư mục clone trên máy bạn.
 pnpm install --frozen-lockfile
 pnpm dev
 ```
@@ -24,6 +25,8 @@ Trong hành trình, chọn **Tạo bản lưu AW2** nếu chưa có save; save h
 Trong trận mẫu, thử ultimate Sương Lành khi đủ năng lượng, **Tạm dừng** → **Bước 1 nhịp** → **Tiếp tục**, rồi bật **Giảm chuyển động**. Hiệu ứng đạn/vùng chỉ đi cùng kết quả combat thật. Âm thanh bật tự nguyện bằng ô **Âm thanh**. Trận mẫu và màn xem nhân vật không ghi tiến trình/phần thưởng.
 
 Sau AW2-004H, mỗi nhân vật có một làn riêng để tránh che nhau; trục ngang vẫn thể hiện bước tiến trong trận. Ký hiệu **Đ1–Đ5** là đội, **K1…** là ký ức. Mở **Máu và trạng thái từng nhân vật** để xem tên đầy đủ/HP/trạng thái hiện tại. Dùng **Đến tuyệt kỹ** và **Đến đấu trường** để chuyển nhanh bằng chạm hoặc Tab/Enter. Điện thoại cuộn dọc để giữ chữ và nhân vật rõ; nút ultimate trong trận boss nay là từng hàng có chân dung. Thử ở cửa sổ hẹp, tạm dừng rồi đổi kích thước, kiểm tra nhân vật/đạn vẫn đúng mục tiêu và báo thao tác/cảnh khó theo dõi.
+
+Boss mới ở **world.html**, sau khi nhận nhiệm vụ cuối tại Dì và vào Phòng Bàn; trận mẫu battle.html không phải boss này. Mời hụt/Tắt bếp có cảnh báo ba nhịp; Ghế trống chặn bốn đòn đánh thường. Chờ lớp bảo vệ vỡ rồi dùng tuyệt kỹ gây sát thương. Dùng Tạm dừng/Bước1 nhịp để đọc cảnh báo; thắng xong chọn **Lưu kết quả và trở về**. [Hướng dẫn boss và lưu kết quả](BOSS_PRACTICE.md).
 
 Chơi thử nhanh: nhận đội → đi sang Phố và trở về → lưu/tải lại → mở TCG hoặc Auto Chess từ **Ghé nhanh**, chơi rồi rời bàn. Sau đó tiếp tục mục tiêu nhiệm vụ tới boss. Bản đồ nối Làng → Phố → Sân → Kho → Lửa → Bàn. [Hướng dẫn demo đầy đủ](DEMO.md).
 

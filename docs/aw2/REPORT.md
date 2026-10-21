@@ -1,19 +1,19 @@
 # Báo cáo nhanh AW2
 
-Cập nhật2026-10-21 · **scretary-agent** · game/adventure-world-2. Báo cáo theo task, không chạy nền.
+Cập nhật2026-10-22 · **scretary-agent** · game/adventure-world-2. Báo cáo theo task.
 
-**Vừa hoàn tất AW2-004H:** tách làn nhân vật để tránh che nhau, giữ trục ngang theo vị trí chiến đấu thật. Chữ/thanh máu rõ ở320/390/768/desktop; bảng trạng thái có tên đầy đủ/HP. Nút ultimate boss thành từng hàng lớn; có lối chuyển nhanh bằng chạm/bàn phím. Điện thoại cuộn dọc nhiều hơn để giữ nhân vật và chữ rõ.
+**Vừa hoàn tất AW2-007D:** boss Người Giữ Bàn Quên có ba cơ chế thật: Mời hụt quét vùng đã báo trước, Tắt bếp đếm ba nhịp, Ghế trống chặn bốn đòn đánh thường. Bảng cảnh báo cho biết mục tiêu/nhịp còn lại; hiển thị rõ ở320/390px và không che nút tuyệt kỹ. Biết chờ lớp bảo vệ vỡ trước khi dùng tuyệt kỹ gây sát thương giúp thắng nhanh hơn. Hình boss vẫn là tham chiếu, art riêng còn thiếu.
 
-**Kiểm chứng mới:**43 test liên quan/6 file và89 bước browser compiled PASS (29 layout/boss,60 combat của cả5 starter). Hai typecheck, format và build AW2107 file≈34,7MB PASS;9 ảnh trước/sau đã mở. Core/save/quest/economy/mode/art/stable không đổi nên giữ bằng chứng cũ ở SHA gốc, không chạy lại/cộng số. Nguồn `aa0a3a645f15035cb72e16650cc2fa77b440237a`; [bằng chứng](evidence/AW2-004H.md).
+**Kiểm chứng mới:**1036 test/102 file PASS (243 AW2,10 mới);95 bước browser compiled PASS (26 boss,47 hành trình mới qua quest/hai mode/boss/hai kết thúc,22 trận mẫu). Hai typecheck, format, build AW2107 file≈34,7MB và stable/release guard/isolation PASS.9 mô phỏng dùng đúng seed boss PASS; lượt chơi mới thắng boss ở nhịp45. Full test/hành trình dùng core cuối, trước sửa nhỏ giao diện; type/build/26 gate boss kiểm tra phần sửa đó. Nguồn `910b55bf977557f11be03111afa40283df0fbcf1`; [bằng chứng và giới hạn](evidence/AW2-007D.md).
 
 | Phạm vi | Hiện tại | Thay đổi |
 |---|---|---|
-| Demo web với art tham chiếu |**Khoảng90%** | Giữ9/10; cần playtest độc lập |
+| Demo web với art tham chiếu |**Khoảng90%** | Giữ9/10; cần ghi đủ phạm vi playtest |
 | Sản phẩm đủ12 nhân vật |**Khoảng40%** | Giữ ước lượng35–45%; gate nhân vật/phát hành còn mở |
-| Motion tham chiếu5 starter |**100% (5/5)** | Giữ nguyên160 cels; chưa là nhân vật hoàn chỉnh |
+| Motion tham chiếu5 starter |**100% (5/5)** | Giữ160 cels; chưa là nhân vật hoàn chỉnh |
 
-**0/12 full DoD**,5 bộ tham chiếu/7 bộ chưa tạo. Chưa xác nhận playtest độc lập/art/cân bằng/audio nghe thử/thiết bị/FPS/offline/rights/save production/release. Không deploy task này. [Cách tính](PROGRESS.md).
+**Phản hồi người chơi:** owner đã chơi và “chưa thấy lỗi chặn”. Đã ghi nhận smoke trải nghiệm; chưa có phiên bản/thiết bị/các quest/hai kết thúc đã thử để đóng gate playtest đầy đủ. **0/12 full DoD**,5 bộ tham chiếu/7 bộ chưa tạo. Art riêng/cân bằng cuối/nghe âm thanh/thiết bị/FPS/offline/rights/save production/release còn mở. Boss nằm trong nhóm demo đã tính, nên không tự tăng % theo số test. [Cách tính](PROGRESS.md).
 
-**Chơi thử:** `pnpm dev` → http://localhost:8443/dev/aw2/battle.html. Thử Tạm dừng/Bước1 nhịp/ultimate/đổi kích thước; mở **Máu và trạng thái từng nhân vật**, dùng **Đến tuyệt kỹ**. [Chạy local](LOCAL_TEST.md), [hành trình đầy đủ](DEMO.md).
+**Chơi phần mới:** `pnpm dev` → http://localhost:8443/dev/aw2/world.html → nhận nhiệm vụ cuối tại Dì → Phòng Bàn. Chọn tuyệt kỹ sau khi Ghế trống vỡ, rồi **Lưu kết quả và trở về**. [Hướng dẫn boss](BOSS_PRACTICE.md), [chạy local](LOCAL_TEST.md), [hành trình](DEMO.md).
 
-**Tiếp theo:** BA/tester nhận playtest độc lập, sửa lỗi tái hiện được; animation/character tiếp tục boss/map/NPC/7 bộ còn thiếu. D11 PROPOSED/D12 OPEN. [HANDOFF](HANDOFF.md), [STATUS](STATUS.md), [BACKLOG](BACKLOG.md), [TEST_LEDGER](TEST_LEDGER.md).
+**Tiếp theo:** [AW2-004I](tasks/AW2-004I.md) art/presentation riêng cho boss; BA/tester bổ sung phạm vi playtest và sửa lỗi tái hiện được. D11 PROPOSED/D12 OPEN; không deploy task này. [HANDOFF](HANDOFF.md), [STATUS](STATUS.md), [BACKLOG](BACKLOG.md), [TEST_LEDGER](TEST_LEDGER.md).
