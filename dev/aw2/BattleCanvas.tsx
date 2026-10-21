@@ -1,26 +1,25 @@
 import { useEffect, useRef, useState } from "react"
-import { sampleBattleClip } from "../../src/aw2/assets/animation"
+import { sampleSkillFx } from "../../src/aw2/assets/animation"
+import {
+  battleAtlasKeys,
+  sampleActorPlayback,
+  type ActorPlayback,
+} from "../../src/aw2/assets/playback"
 import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
-import type {
-  BattleState,
-  SkillSlot,
-  SpiritAssetManifest,
-} from "../../src/aw2/assets/types"
+import type { SkillSlot, SpiritAssetManifest } from "../../src/aw2/assets/types"
 import type {
   CombatActor,
   CombatBattle,
   CombatPresentation,
 } from "../../src/aw2/combat"
 
-interface LoadedAtlas {
-  battle: HTMLImageElement
-  fx: HTMLImageElement
-}
+type LoadedAtlas = Record<string, HTMLImageElement>
 
 interface Props {
   battle: CombatBattle
   presentation: CombatPresentation
   reducedMotion: boolean
+  paused?: boolean
   visualIds?: Readonly<Record<string, string>>
   labels?: Readonly<Record<string, string>>
 }
@@ -52,10 +51,17 @@ export function BattleCanvas({
   battle,
   presentation,
   reducedMotion,
+  paused = false,
   visualIds,
   labels,
 }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null)
+  const clock = useRef({
+    time: 0,
+    tick: -1,
+    battleId: "",
+    actors: {} as Record<string, ActorPlayback>,
+  })
   const [atlases, setAtlases] = useState<Record<string, LoadedAtlas> | null>(
     null,
   )
@@ -77,10 +83,14 @@ export function BattleCanvas({
         async (manifest) =>
           [
             manifest.spiritId,
-            {
-              battle: await load(manifest.assets.battle.url),
-              fx: await load(manifest.assets.fx.url),
-            },
+            Object.fromEntries(
+              await Promise.all(
+                battleAtlasKeys(manifest).map(async (key) => [
+                  key,
+                  await load(manifest.assets[key].url),
+                ]),
+              ),
+            ),
           ] as const,
       ),
     )
@@ -110,7 +120,20 @@ export function BattleCanvas({
       setError(`Chưa có manifest hình ảnh cho ${unresolved.id}.`)
       return
     }
-    const startedAt = performance.now()
+    if (
+      clock.current.battleId !== battle.id ||
+      battle.tick < clock.current.tick
+    ) {
+      clock.current = {
+        time: 0,
+        tick: battle.tick,
+        battleId: battle.id,
+        actors: {},
+      }
+    }
+    clock.current.tick = battle.tick
+    let lastTime = performance.now()
+    const tickStartedAt = clock.current.time
     let frameRequest = 0
 
     function paintFrame(
@@ -122,12 +145,15 @@ export function BattleCanvas({
       scale: number,
       flip = false,
       opacity = 1,
+      rotation = 0,
     ) {
       const frame = manifest.frames[frameId]
       if (!frame) return
+      scale *= frame.renderScale ?? 1
       context!.save()
       context!.globalAlpha = clamp(opacity)
       context!.translate(x, y)
+      context!.rotate(rotation)
       context!.scale(flip ? -scale : scale, scale)
       context!.imageSmoothingEnabled = true
       context!.drawImage(
@@ -163,25 +189,20 @@ export function BattleCanvas({
       context!.fillRect(40, 280, 880, 2)
     }
 
-    function drawActor(actor: CombatActor, elapsed: number) {
+    function drawActor(actor: CombatActor) {
       const manifest = manifestFor(actor, visualIds)
       const atlas = atlases![manifest.spiritId]
       const cue = presentation.actors[actor.id]
-      const fresh =
-        cue && (cue.state === "defeat" || cue.tick >= battle.tick - 1)
-      const state: BattleState =
-        actor.hp <= 0
-          ? "defeat"
-          : fresh
-            ? cue.state
-            : actor.cast
-              ? "cast"
-              : "idle"
-      const pose = sampleBattleClip(
-        manifest.battle[state],
-        elapsed,
+      const playback = sampleActorPlayback(
+        manifest,
+        clock.current.actors[actor.id],
+        cue,
+        actor.hp <= 0,
+        clock.current.time,
         reducedMotion,
       )
+      clock.current.actors[actor.id] = playback.clock
+      const { state, pose } = playback
       const x = actorX(actor)
       const y = actorY(actor)
       const enemy = actor.side === "enemy"
@@ -189,32 +210,21 @@ export function BattleCanvas({
         context!.save()
         context!.filter = "hue-rotate(155deg) saturate(.68) brightness(.82)"
       }
-      paintFrame(
-        manifest,
-        pose.frame,
-        atlas.battle,
-        x + (enemy ? -pose.x : pose.x) * 0.28,
-        y + pose.y * 0.28,
-        0.28 * pose.scale,
-        enemy,
-        pose.opacity,
-      )
-      if (enemy) context!.restore()
-
       const slot = slotFromSkill(cue?.skillId)
-      if (
-        fresh &&
+      const skill =
+        playback.active &&
         slot &&
         ["cast", "ultimate", "attack", "guard"].includes(state)
-      ) {
-        const skill = manifest.skills[slot]
-        const fxIndex = reducedMotion
-          ? 2
-          : Math.floor(elapsed / 90) % skill.fx.length
-        const fxFrame = skill.fx[fxIndex]
+          ? manifest.skills[slot]
+          : null
+      const effect = skill
+        ? sampleSkillFx(skill, playback.elapsedMs, reducedMotion)
+        : null
+      const drawFx = () => {
+        if (!skill || !effect) return
         paintFrame(
           manifest,
-          fxFrame,
+          effect.frame,
           atlas.fx,
           x + (enemy ? -1 : 1) * skill.fxPlacement.x * 0.28,
           y + skill.fxPlacement.y * 0.28,
@@ -223,6 +233,21 @@ export function BattleCanvas({
           0.82,
         )
       }
+      if (skill?.fxPlacement.layer === "behind") drawFx()
+      paintFrame(
+        manifest,
+        pose.frame,
+        atlas[manifest.frames[pose.frame].asset],
+        x + (enemy ? -pose.x : pose.x) * 0.28,
+        y + pose.y * 0.28,
+        0.28 * pose.scale,
+        enemy,
+        pose.opacity,
+        enemy ? -pose.rotation : pose.rotation,
+      )
+      if (skill?.fxPlacement.layer !== "behind") drawFx()
+      if (enemy) context!.restore()
+      actorPoses[actor.id] = pose.frame
 
       const barWidth = 76
       const left = x - barWidth / 2
@@ -303,15 +328,19 @@ export function BattleCanvas({
       }
     }
 
+    const actorPoses: Record<string, string> = {}
     function draw(now: number) {
-      const elapsed = reducedMotion ? 0 : now - startedAt
+      if (!paused && document.visibilityState === "visible")
+        clock.current.time += Math.min(50, Math.max(0, now - lastTime))
+      lastTime = now
+      const elapsed = reducedMotion ? 0 : clock.current.time - tickStartedAt
       drawArena()
       for (const projectile of Object.values(presentation.projectiles))
         drawProjectile(projectile, elapsed)
       for (const actor of [...battle.actors].sort(
         (left, right) => actorY(left) - actorY(right),
       ))
-        drawActor(actor, elapsed)
+        drawActor(actor)
       drawFloating()
       if (presentation.terminal) {
         context!.fillStyle = "rgba(7, 13, 12, .76)"
@@ -336,12 +365,14 @@ export function BattleCanvas({
       )
       element!.dataset.lastSerial = String(presentation.lastSerial)
       element!.dataset.reduced = String(reducedMotion)
+      element!.dataset.actorPoses = JSON.stringify(actorPoses)
+      element!.dataset.motionTime = String(Math.floor(clock.current.time))
       frameRequest = requestAnimationFrame(draw)
     }
 
     frameRequest = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(frameRequest)
-  }, [atlases, battle, presentation, reducedMotion, visualIds, labels])
+  }, [atlases, battle, presentation, reducedMotion, paused, visualIds, labels])
 
   return (
     <>

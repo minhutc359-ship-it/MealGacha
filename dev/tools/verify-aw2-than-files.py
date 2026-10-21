@@ -34,7 +34,16 @@ for name, frame in manifest["frames"].items():
     assert min(bounds[0], bounds[1], w-bounds[2], h-bounds[3]) >= 2, name
     edge = max(cell.crop(box).getextrema()[1] for box in [(0,0,w,1),(0,h-1,w,h),(0,0,1,h),(w-1,0,w,h)])
     assert edge == frame["maxEdgeAlpha"] and edge <= manifest["provenance"]["alphaEdgeTolerance"], name
-checks.append(f"40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= {manifest['provenance']['alphaEdgeTolerance']}/255")
+for state, clip in manifest["battle"].items():
+    if "reducedMotionFrame" not in clip:
+        continue
+    cels = []
+    for key in clip["frames"]:
+        frame = manifest["frames"][key["frame"]]
+        x,y,w,h = (frame[k] for k in ["x","y","width","height"])
+        cels.append(hashlib.sha256(images[frame["asset"]].crop((x,y,x+w,y+h)).tobytes()).hexdigest())
+    assert len(cels) == len(set(cels)) == 4, state
+checks.append(f"{len(manifest['frames'])} actual atlas cells: safe bounds, visible pixels inset, alpha edge <= {manifest['provenance']['alphaEdgeTolerance']}/255")
 
 for slot, skill in manifest["skills"].items():
     asset = skill["audio"]
@@ -51,4 +60,4 @@ for slot, skill in manifest["skills"].items():
     checks.append(f"{slot}: WAV hash/PCM/duration/non-silent/no clipping/faded edges")
 assert manifest["fullCharacterComplete"] is False
 assert manifest["provenance"]["licenseStatus"] == "REVIEW_REQUIRED"
-print(json.dumps({"task":"AW2-004A" if manifest["spiritId"] == "aw2-than" else "AW2-004B", "spiritId": manifest["spiritId"],"status":"PASS","checks":checks,"webpBytes":sum(a["bytes"] for a in {a["url"]:a for a in manifest["assets"].values()}.values())}))
+print(json.dumps({"task": "AW2-004C" if "reducedMotionFrame" in manifest["battle"]["idle"] else "AW2-004A" if manifest["spiritId"] == "aw2-than" else "AW2-004B", "spiritId": manifest["spiritId"],"status":"PASS","checks":checks,"webpBytes":sum(a["bytes"] for a in {a["url"]:a for a in manifest["assets"].values()}.values())}))

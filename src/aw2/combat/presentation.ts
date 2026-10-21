@@ -62,14 +62,19 @@ function skillSlot(skillId?: string): CombatSkillSlot | null {
 }
 
 function actorStateFor(event: CombatEvent): CombatAnimationState | null {
+  const slot = skillSlot(event.skillId)
   if (event.kind === "move") return "move"
   if (event.kind === "cast-start" || event.kind === "cast-commit")
-    return skillSlot(event.skillId) === "ultimate" ? "ultimate" : "cast"
+    return slot === "ultimate" ? "ultimate" : "cast"
   if (event.kind === "projectile-launch" || event.kind === "hit")
-    return "attack"
-  if (event.kind === "heal" || event.kind === "shield") return "guard"
-  if (event.kind === "interrupt" || event.kind === "interrupt-resist")
-    return "hit"
+    return slot === "ultimate"
+      ? "ultimate"
+      : slot === "auto"
+        ? "cast"
+        : "attack"
+  if (event.kind === "heal" || event.kind === "shield")
+    return slot === "ultimate" ? "ultimate" : slot === "auto" ? "cast" : "guard"
+  if (event.kind === "status" && slot === "passive") return "guard"
   return null
 }
 
@@ -135,27 +140,26 @@ export function reduceCombatPresentation(
       delete next.projectiles[event.projectileId]
     if (["hit", "interrupt"].includes(event.kind))
       for (const targetId of event.targetIds)
-        next.actors[targetId] = {
-          state: "hit",
-          serial: event.serial,
-          tick: event.tick,
-          ...(event.skillId ? { skillId: event.skillId } : {}),
-        }
+        if (targetId !== event.sourceId)
+          next.actors[targetId] = {
+            state: "hit",
+            serial: event.serial,
+            tick: event.tick,
+          }
     if (event.kind === "shield" || event.kind === "interrupt-resist")
       for (const targetId of event.targetIds)
-        next.actors[targetId] = {
-          state: "guard",
-          serial: event.serial,
-          tick: event.tick,
-          ...(event.skillId ? { skillId: event.skillId } : {}),
-        }
+        if (targetId !== event.sourceId)
+          next.actors[targetId] = {
+            state: "guard",
+            serial: event.serial,
+            tick: event.tick,
+          }
     if (event.kind === "defeat")
       for (const targetId of event.targetIds)
         next.actors[targetId] = {
           state: "defeat",
           serial: event.serial,
           tick: event.tick,
-          ...(event.skillId ? { skillId: event.skillId } : {}),
         }
     const text = displayText(event)
     if (text)

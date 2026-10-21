@@ -106,6 +106,7 @@ function BattlePreview() {
         battle={battle}
         presentation={presentation}
         reducedMotion={reducedMotion}
+        paused={paused}
       />
       <p data-testid="battle-message" role="status">
         {message}

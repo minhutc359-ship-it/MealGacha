@@ -97,9 +97,11 @@ try {
   )
   await page.waitForFunction(
     () =>
-      Object.keys(window.aw2AtlasDraws).filter((url) =>
-        url.endsWith("/battle.webp"),
-      ).length === 5,
+      new Set(
+        Object.keys(window.aw2AtlasDraws)
+          .filter((url) => /\/(battle|battle-motion-[ab]-v2)\.webp$/.test(url))
+          .map((url) => url.split("/").at(-3)),
+      ).size === 5,
   )
   check("Canvas draws all five decoded authored battle atlases")
   const stepOnce = async () => {

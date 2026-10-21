@@ -568,6 +568,31 @@ try {
   )
   await page.getByRole("checkbox", { name: "Âm thanh", exact: true }).check()
   await page.getByRole("checkbox", { name: "Âm thanh", exact: true }).uncheck()
+  await page
+    .getByRole("checkbox", { name: "Giảm chuyển động", exact: true })
+    .uncheck()
+  await page.waitForFunction(() => {
+    const poses = JSON.parse(
+      document.querySelector('[data-testid="world-battle"] canvas').dataset
+        .actorPoses ?? "{}",
+    )
+    return Object.entries(poses).some(
+      ([id, frame]) =>
+        id.includes("aw2-than") && frame.startsWith("battle.idle."),
+    )
+  })
+  check(
+    "Earned world encounter draws Than's new motion atlas through the shared renderer",
+  )
+  const pausedMotion = await canvas.getAttribute("data-motion-time")
+  await page.waitForTimeout(180)
+  check(
+    "Paused world encounter freezes visual time as well as core ticks",
+    (await canvas.getAttribute("data-motion-time")) === pausedMotion,
+  )
+  await page
+    .getByRole("checkbox", { name: "Giảm chuyển động", exact: true })
+    .check()
   const bossCheckpoint = await raw()
   const encounterStatus = page.getByTestId("encounter-status")
   await page.waitForFunction(

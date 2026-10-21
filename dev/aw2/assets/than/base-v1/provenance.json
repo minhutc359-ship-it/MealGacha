@@ -91,5 +91,80 @@
       "selected": true,
       "rejectionReason": null
     }
-  ]
+  ],
+  "motionUpdate": {
+    "task": "AW2-004C",
+    "date": "2026-10-21",
+    "tool": "built-in image_gen",
+    "model": "not exposed by tool",
+    "prompts": "motion-prompts.json",
+    "externalInputs": [],
+    "identityReferences": [
+      {
+        "path": "dev/aw2/assets/than/base-v1/reference.png",
+        "sha256": "319c6e204ccf1953ebaa8b70979dc61a348842d487c31b367291cf0a72daef84"
+      },
+      {
+        "path": "dev/aw2/assets/than/base-v1/battle.png",
+        "sha256": "10f44dbff3503e7577eeeab568c325d031e9bb6ad5b2180ae3a4ecdc654efb75"
+      }
+    ],
+    "processing": "Unchanged RGBA source PNGs; lossless WebP, measured cell rectangles/visible-foot anchors and logical renderScale=1.6. No pixel repaint, masking, mirroring or resizing.",
+    "history": [
+      {
+        "promptKey": "MotionA",
+        "toolOutputFilename": "exec-64c86b61-e68f-480d-804d-5c9ce27491f9.png",
+        "outputSha256": "8e670483643154dd2dcc76786ea62694d286596e7b16dc2f272a24090646dd20",
+        "workspaceSource": null,
+        "selected": false,
+        "inputs": [
+          "reference.png",
+          "battle.png"
+        ],
+        "rejectionReason": "Insufficient transparent gutters between consecutive poses; repaired through image_gen, no source pixel masking."
+      },
+      {
+        "promptKey": "MotionARepair",
+        "toolOutputFilename": "exec-9c711abb-8a5a-4d1e-9831-7a669b8d4945.png",
+        "outputSha256": "2b08938c3de5175736287bf887f394e7fd8a87805c5da6c18a0f7dc81fcc7581",
+        "workspaceSource": "battle-motion-a-v2.png",
+        "selected": true,
+        "inputs": [
+          "MotionA"
+        ],
+        "rejectionReason": null
+      },
+      {
+        "promptKey": "MotionB",
+        "toolOutputFilename": "exec-7745dada-0d23-4a53-be44-8589f6af8537.png",
+        "outputSha256": "d1e8f41bba2572c1c4c81c6e271f7764eb9a5f91279eeb2d8c703c9176cbcaee",
+        "workspaceSource": null,
+        "selected": false,
+        "inputs": [
+          "reference.png",
+          "battle.png"
+        ],
+        "rejectionReason": "Insufficient transparent gutters between consecutive poses; repaired through image_gen, no source pixel masking."
+      },
+      {
+        "promptKey": "MotionBRepair",
+        "toolOutputFilename": "exec-5a51f681-de83-454d-8a28-30a0d41894ea.png",
+        "outputSha256": "568380c52daca06ace4214ca2ec768777d4b35b38571c168fac631b663a42d2c",
+        "workspaceSource": "battle-motion-b-v2.png",
+        "selected": true,
+        "inputs": [
+          "MotionB"
+        ],
+        "rejectionReason": null
+      }
+    ],
+    "review": {
+      "inSessionVisualInspection": "PASS reference layout/identity/32 distinct poses",
+      "independentArtReview": "NOT_RUN",
+      "humanListening": "NOT_RUN",
+      "physicalDevice": "NOT_RUN",
+      "legal": "NOT_RUN"
+    },
+    "fullCharacterComplete": false
+  }
 }

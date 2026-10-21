@@ -134,6 +134,7 @@ export function WorldBattle({
         battle={battle}
         presentation={frame.presentation}
         reducedMotion={reducedMotion}
+        paused={paused}
         visualIds={visualIds}
         labels={labels}
       />

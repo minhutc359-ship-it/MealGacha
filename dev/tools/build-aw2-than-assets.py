@@ -88,6 +88,33 @@ def track(*keys):
             for t, x, y, rotation, scale, opacity in keys]
 
 
+def apply_motion(data):
+    """Calibrate unchanged generated sheets; no pixel edits or resizing."""
+    sheets = [
+        ("battle-motion-a-v2", STATES[:4], [0, 334, 649, 955, 1254], [0, 375, 655, 940, 1254]),
+        ("battle-motion-b-v2", STATES[4:], [0, 324, 614, 951, 1254], [0, 350, 680, 950, 1254]),
+    ]
+    timing = {"idle": [0, 300, 600, 900], "move": [0, 170, 340, 510],
+              "attack": [0, 120, 240, 420], "cast": [0, 210, 420, 740],
+              "hit": [0, 80, 180, 340], "guard": [0, 180, 400, 700],
+              "ultimate": [0, 280, 560, 960], "defeat": [0, 220, 480, 760]}
+    for name, states, xs, ys in sheets:
+        data["assets"][name] = encode(name)
+        cells = frames(name, xs, ys, [[f"battle.{state}.{i}" for i in range(4)] for state in states])
+        for frame in cells.values():
+            frame["renderScale"] = 1.6
+        data["frames"].update(cells)
+        for state in states:
+            clip = data["battle"][state]
+            clip["frames"] = [{"atMs": at, "frame": f"battle.{state}.{i}"} for i, at in enumerate(timing[state])]
+            clip["reducedMotionFrame"] = f"battle.{state}"
+            clip["method"] = "four distinct image_gen cels with authored frame timing and interpolated transforms; reference animation, independent review pending"
+    data["status"] = "MOTION_REFERENCE_IMPLEMENTED"
+    data["provenance"]["processing"] += "; motion sheets preserved unchanged, calibrated cells and logical renderScale metadata only"
+    for skill in data["skills"].values():
+        skill["scope"] = "presentation reference used by development combat; final balance/full-character QA pending"
+
+
 def main():
     sources = {name: encode(name) for name in ["reference", "world", "battle", "portrait", "fx"]}
     all_frames = frames("world", [0, 313, 627, 940, 1254], [0, 318, 626, 930, 1254],
@@ -145,6 +172,7 @@ def main():
                            "commercialRelease": "NOT_CLEARED", "audio": "original deterministic synthesis, no external recordings",
                            "processing": "lossless WebP encoding; source RGBA retained; explicit measured cell rectangles and visible-foot anchors; no painting/mirroring/resizing",
                            "alphaEdgeTolerance": 8}}
+    apply_motion(data)
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     MANIFEST.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"status": "PASS", "frames": len(all_frames), "battleStates": len(clips),
