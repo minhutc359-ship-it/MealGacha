@@ -84,6 +84,38 @@ def apply_lam_motion(data):
         skill["scope"] = "reference presentation used by development combat; final balance/full-character QA pending"
 
 
+def apply_moc_motion(data):
+    """Keep generated RGBA unchanged; calibrate actual nonuniform cells."""
+    timing = {"idle": [0, 300, 600, 900], "move": [0, 170, 340, 510],
+              "attack": [0, 260, 700, 820], "cast": [0, 210, 420, 740],
+              "hit": [0, 80, 180, 340], "guard": [0, 180, 400, 700],
+              "ultimate": [0, 280, 560, 960], "defeat": [0, 220, 480, 760]}
+    for name, states in [("battle-motion-a-v1", STATES[:4]), ("battle-motion-b-v1", STATES[4:])]:
+        asset = util.encode(name)
+        asset["id"] = f"aw2-moc-non:{name}:base-v1"
+        data["assets"][name] = asset
+        if name == "battle-motion-a-v1":
+            cells = util.frames(name, [0, 322, 645, 965, 1254], [0, 338, 649, 948, 1254], [[f"battle.{state}.{i}" for i in range(4)] for state in states])
+        else:
+            cells = {}
+            xs = [0, 330, 654, 976, 1263]
+            cuts = [[0, 341, 662, 958, 1246], [0, 341, 662, 976, 1246],
+                    [0, 341, 661, 979, 1246], [0, 344, 661, 976, 1246]]
+            for col in range(4):
+                cells.update(util.frames(name, xs[col:col + 2], cuts[col], [[f"battle.{state}.{col}"] for state in states]))
+        for frame in cells.values(): frame["renderScale"] = 1.45
+        data["frames"].update(cells)
+        for state in states:
+            clip = data["battle"][state]
+            clip["frames"] = [{"atMs": at, "frame": f"battle.{state}.{i}"} for i, at in enumerate(timing[state])]
+            clip["reducedMotionFrame"] = f"battle.{state}"
+            clip["method"] = "four distinct image_gen cels with authored timing; reference support/launch/impact cues; independent art review pending"
+    data["status"] = "MOTION_REFERENCE_IMPLEMENTED"
+    data["provenance"]["processing"] += "; motion RGBA unchanged, calibrated per-column rectangles/anchors and logical renderScale metadata only"
+    for skill in data["skills"].values():
+        skill["scope"] = "reference presentation used by development combat; final balance/full-character QA pending"
+
+
 def build(unit, config):
     identity = f"aw2-{unit}"
     util.ASSETS = ROOT / f"dev/aw2/assets/{unit}/base-v1"
@@ -144,6 +176,8 @@ def build(unit, config):
         apply_lua_motion(data)
     if unit == "lam":
         apply_lam_motion(data)
+    if unit == "moc-non":
+        apply_moc_motion(data)
     (ROOT / f"src/aw2/assets/{unit}.base-v1.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"unit": identity, "status": "PASS", "frames": len(data["frames"]), "webpBytes": sum(a["bytes"] for n, a in sources.items() if n != "reference")}))
 

@@ -1,0 +1,49 @@
+{
+  "task": "AW2-004F",
+  "base": "ff44ab28d5a30a5f63b52b55db25a594118042e3",
+  "status": "PASS scoped reference milestone",
+  "freshTests": 62,
+  "freshTestFiles": 7,
+  "newMocTests": 7,
+  "freshBrowserAssertions": 88,
+  "browserBreakdown": {
+    "source-motion": 38,
+    "compiled-motion": 38,
+    "compiled-lam-combat": 12
+  },
+  "fullSuiteThisTask": "NOT_RUN; unchanged checks reused at cf0b394",
+  "priorFullSuite": {
+    "source": "cf0b39469d1fb8f7d77e18feb5e16895d70565a1",
+    "tests": 1007,
+    "browserAssertions": 471,
+    "fresh": false
+  },
+  "noHistoricalCountsAdded": true,
+  "demoPercent": 90,
+  "productEstimatePercent": 40,
+  "productEstimateRange": [
+    35,
+    45
+  ],
+  "starterMotionPercent": 80,
+  "starterMotionPackages": 4,
+  "referenceSets": 5,
+  "missingSets": 7,
+  "fullCharacters": 0,
+  "newMocCels": 32,
+  "independentArtListeningDeviceRights": "NOT_RUN",
+  "fullCharacterComplete": false,
+  "openedCaptures": [
+    "source-actual-battle.png",
+    "compiled-ultimate.png",
+    "compiled-mobile.png"
+  ],
+  "failedQaAttempts": [],
+  "limits": [
+    "Sparse motion needs independent anatomy/identity/fan/cloth/loop/contact review",
+    "Arena actor/label overlap and support/telegraph readability remain open",
+    "Audio original/decode/world paths reused; no fresh listening/audio binding or full earned world/mode/save journey",
+    "Stable build/full suite unchanged boundaries source-bound; full regression remains due before release/major save/shared-engine changes",
+    "No physical-device/FPS/offline/native/rights/production-save/release approval"
+  ]
+}

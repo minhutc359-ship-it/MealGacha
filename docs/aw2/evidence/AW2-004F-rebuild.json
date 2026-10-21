@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "unit": "aw2-moc-non",
+  "scopedRepeatBuildByteIdentity": true,
+  "hashedAssetManifestPaths": 97,
+  "unchangedOriginalAssetManifestPaths": 90,
+  "originalMocImageAudioPreserved": 12,
+  "otherFourManifestsUnchanged": true,
+  "promptReferenceOutputHashes": "PASS",
+  "reusedOriginalBoundaries": [
+    "other four starter source/runtime/audio/manifests",
+    "Moc original source/runtime/audio/world and reduced poses"
+  ],
+  "noUnrelatedBuilderRun": true
+}

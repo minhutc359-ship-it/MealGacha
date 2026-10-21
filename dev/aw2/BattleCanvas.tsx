@@ -222,7 +222,7 @@ export function BattleCanvas({
           ? manifest.skills[slot]
           : null
       const effect =
-        skill && !(manifest.spiritId === "aw2-lam" && slot !== "passive")
+        skill && slot && !presentation.effects[actor.id]?.[slot]
           ? sampleActorEffect(manifest, cue, playback.elapsedMs, reducedMotion)
           : null
       const independent = Object.entries(

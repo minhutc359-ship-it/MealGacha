@@ -142,6 +142,7 @@ export function reduceCombatPresentation(
     let contactIndex: number | undefined
     let phase: ActorPresentation["phase"]
     const lamSkill = event.skillId?.startsWith("aw2-lam:skill:")
+    const mocSkill = event.skillId?.startsWith("aw2-moc-non:skill:")
     if (lamSkill && event.sourceId) {
       const slot = skillSlot(event.skillId)
       if (["cast-start", "cast-commit"].includes(event.kind)) {
@@ -210,6 +211,59 @@ export function reduceCombatPresentation(
       )
         sourceState = null
     }
+    if (mocSkill && event.sourceId) {
+      const slot = skillSlot(event.skillId)
+      if (["cast-start", "cast-commit"].includes(event.kind)) phase = "prepare"
+      if (event.kind === "projectile-launch") phase = "launch"
+      const confirmed =
+        (event.kind === "hit" && slot === "basic") ||
+        (event.kind === "shield" && slot === "auto") ||
+        (event.kind === "status" && (slot === "ultimate" || slot === "passive"))
+      if (confirmed && slot) {
+        phase = "confirmed"
+        contactIndex = 0
+        const effects = (next.effects[event.sourceId] ??= {})
+        // Each recipient receives a real guard; one ultimate cast is one
+        // source gesture/effect, including when events arrive separately.
+        if (slot === "ultimate" && effects[slot]?.tick === event.tick)
+          sourceState = null
+        else {
+          sourceState =
+            slot === "ultimate"
+              ? "ultimate"
+              : slot === "passive"
+                ? "guard"
+                : slot === "auto"
+                  ? "cast"
+                  : "attack"
+          effects[slot] = {
+            serial: event.serial,
+            tick: event.tick,
+            skillId: event.skillId!,
+            index: 0,
+            ...(["basic", "auto"].includes(slot) && event.targetIds[0]
+              ? { targetId: event.targetIds[0] }
+              : {}),
+          }
+        }
+        if (slot === "ultimate")
+          for (const targetId of event.targetIds)
+            if (targetId !== event.sourceId)
+              next.actors[targetId] = {
+                state: "guard",
+                serial: event.serial,
+                tick: event.tick,
+              }
+      }
+      const previous = next.actors[event.sourceId]
+      if (
+        previous?.tick === event.tick &&
+        previous.phase === "confirmed" &&
+        previous.skillId === "aw2-moc-non:skill:ultimate" &&
+        slot !== "ultimate"
+      )
+        sourceState = null
+    }
     if (event.sourceId && event.skillId === "aw2-lua:skill:basic") {
       if (event.kind === "miss") delete next.contacts[event.sourceId]
       if (event.kind === "hit" && event.targetIds[0]) {
@@ -235,7 +289,7 @@ export function reduceCombatPresentation(
         ...(event.skillId ? { skillId: event.skillId } : {}),
         ...(contactIndex === undefined ? {} : { contactIndex }),
         ...(phase ? { phase } : {}),
-        ...(lamSkill && event.kind === "hit" && event.targetIds[0]
+        ...((lamSkill || mocSkill) && event.kind === "hit" && event.targetIds[0]
           ? { effectTargetId: event.targetIds[0] }
           : {}),
       }

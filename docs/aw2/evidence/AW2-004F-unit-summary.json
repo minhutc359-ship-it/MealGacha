@@ -1,0 +1,20 @@
+{
+  "task": "AW2-004F",
+  "base": "ff44ab28d5a30a5f63b52b55db25a594118042e3",
+  "status": "PASS",
+  "freshTests": 62,
+  "freshFiles": 7,
+  "newMocTests": 7,
+  "observedDurationSeconds": 0.708,
+  "failed": 0,
+  "pending": 0,
+  "rawSha256": "446aefb494a4064a4366c33e03db8c30c8548b616eabed20874478e5c362eeb6",
+  "command": "pnpm test dev/tests/aw2/{moc-motion,combat,battle-presentation,lam-motion,lua-motion,asset-playback,starters}.test.ts --maxWorkers=2",
+  "reusedFullSuite": {
+    "source": "cf0b39469d1fb8f7d77e18feb5e16895d70565a1",
+    "tests": 1007,
+    "files": 98,
+    "fresh": false
+  },
+  "reason": "Owner requests selective retesting. Moc manifest/presentation branch and renderer effect ownership changed; engine/save/world/quests/modes/dependencies untouched."
+}

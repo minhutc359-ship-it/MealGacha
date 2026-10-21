@@ -9,14 +9,21 @@ const { values } = parseArgs({
     chromium: { type: "string" },
     compiled: { type: "boolean", default: false },
     spirit: { type: "string", default: "aw2-than" },
+    "combat-only": { type: "boolean", default: false },
+    "reuse-originals": { type: "boolean", default: false },
   },
 })
 assert.ok(
-  ["aw2-than", "aw2-lua", "aw2-lam"].includes(values.spirit),
+  ["aw2-than", "aw2-lua", "aw2-lam", "aw2-moc-non"].includes(values.spirit),
   "Supported authored motion spirit",
 )
 const slug = values.spirit.slice(4)
-const task = { than: "AW2-004C", lua: "AW2-004D", lam: "AW2-004E" }[slug]
+const task = {
+  than: "AW2-004C",
+  lua: "AW2-004D",
+  lam: "AW2-004E",
+  "moc-non": "AW2-004F",
+}[slug]
 const { chromium } = await import(values.playwright)
 const port = values.compiled ? 8465 : 8464
 const flavor = values.compiled ? "compiled" : "source"
@@ -40,6 +47,7 @@ const out = `.asset-work/${task.toLowerCase()}`,
   ),
   root = `http://127.0.0.1:${port}`
 let confirmedContacts = []
+let audio = []
 const checks = [],
   errors = [],
   timelines = {},
@@ -108,192 +116,204 @@ try {
       errors.push(`${response.status()} ${response.url()}`)
   })
   await mkdir(out, { recursive: true })
-  await page.goto(`${root}/dev/aw2/${previewEntry}`)
-  await page
-    .getByTestId("atlas-state")
-    .filter({ hasText: "Atlas đã tải" })
-    .waitFor()
-  check(
-    `${manifest.displayName} preview declares four-cel reference motion without full-character approval`,
-    (await page.locator("main").innerText()).includes(
-      "mỗi trạng thái có bốn khung hình riêng",
-    ),
-  )
-  for (const [state, clip] of Object.entries(manifest.battle)) {
-    await page.getByTestId(`state-${state}`).click()
-    const seen = await page.evaluate(
-      async ({ state, duration }) => {
-        const frames = new Set()
-        const start = performance.now()
+  if (!values["combat-only"]) {
+    await page.goto(`${root}/dev/aw2/${previewEntry}`)
+    await page
+      .getByTestId("atlas-state")
+      .filter({ hasText: "Atlas đã tải" })
+      .waitFor()
+    check(
+      `${manifest.displayName} preview declares four-cel reference motion without full-character approval`,
+      (await page.locator("main").innerText()).includes(
+        "mỗi trạng thái có bốn khung hình riêng",
+      ),
+    )
+    for (const [state, clip] of Object.entries(manifest.battle)) {
+      await page.getByTestId(`state-${state}`).click()
+      const seen = await page.evaluate(
+        async ({ state, duration }) => {
+          const frames = new Set()
+          const start = performance.now()
+          await new Promise((resolve) => {
+            const poll = () => {
+              const frame = document.querySelector("canvas").dataset.frame
+              if (frame.startsWith(`battle.${state}.`)) frames.add(frame)
+              if (performance.now() - start >= duration + 150) resolve()
+              else requestAnimationFrame(poll)
+            }
+            poll()
+          })
+          return [...frames].sort()
+        },
+        { state, duration: clip.durationMs },
+      )
+      timelines[state] = seen
+      check(
+        `${state}: browser draws all four declared distinct cels`,
+        JSON.stringify(seen) ===
+          JSON.stringify(
+            [
+              ...new Set(
+                clip.frames
+                  .map((key) => key.frame)
+                  .filter((frame) => frame.startsWith(`battle.${state}.`)),
+              ),
+            ].sort(),
+          ),
+      )
+      await page.getByRole("button", { name: "Tạm dừng", exact: true }).click()
+      const time = await page.locator("canvas").getAttribute("data-elapsed")
+      await page.waitForTimeout(100)
+      check(
+        `${state}: preview pause freezes authored timeline`,
+        (await page.locator("canvas").getAttribute("data-elapsed")) === time,
+      )
+      await page
+        .locator("canvas")
+        .screenshot({ path: `${out}/${flavor}-${state}.png` })
+    }
+    if (slug === "lua") {
+      await page.getByTestId("skill-basic").click()
+      await page.waitForFunction(() => {
+        const data = document.querySelector("canvas").dataset
+        return (
+          data.frame === "battle.idle.0" &&
+          +data.elapsed >= 800 &&
+          data.events === "2" &&
+          data.cues === "2"
+        )
+      })
+      check(
+        "Full Lua preview crosses exactly two authored contacts and two FX/audio cues",
+        (await page.locator("canvas").getAttribute("data-events")) === "2" &&
+          (await page.locator("canvas").getAttribute("data-cues")) === "2" &&
+          (await page.getByTestId("contact-cue").innerText()).includes("380ms"),
+      )
+    }
+    if (slug === "lam" || slug === "moc-non") {
+      await page.getByTestId("skill-basic").click()
+      const flight = await page.evaluate(async () => {
+        const samples = [],
+          start = performance.now()
         await new Promise((resolve) => {
           const poll = () => {
-            const frame = document.querySelector("canvas").dataset.frame
-            if (frame.startsWith(`battle.${state}.`)) frames.add(frame)
-            if (performance.now() - start >= duration + 150) resolve()
+            const d = document.querySelector("canvas").dataset
+            samples.push({ time: +d.elapsed, flight: d.projectile, fx: d.fx })
+            if (+d.elapsed >= 950 && d.frame === "battle.attack.3") resolve()
+            else if (performance.now() - start > 4000) resolve()
             else requestAnimationFrame(poll)
           }
           poll()
         })
-        return [...frames].sort()
-      },
-      { state, duration: clip.durationMs },
-    )
-    timelines[state] = seen
-    check(
-      `${state}: browser draws all four declared distinct cels`,
-      JSON.stringify(seen) ===
-        JSON.stringify(
-          [
-            ...new Set(
-              clip.frames
-                .map((key) => key.frame)
-                .filter((frame) => frame.startsWith(`battle.${state}.`)),
-            ),
-          ].sort(),
-        ),
-    )
-    await page.getByRole("button", { name: "Tạm dừng", exact: true }).click()
-    const time = await page.locator("canvas").getAttribute("data-elapsed")
-    await page.waitForTimeout(100)
-    check(
-      `${state}: preview pause freezes authored timeline`,
-      (await page.locator("canvas").getAttribute("data-elapsed")) === time,
-    )
+        return samples
+      })
+      check(
+        `${manifest.displayName} reference flight stays between launch260 and impact700; separate impact art follows`,
+        flight.some(
+          (s) =>
+            s.flight?.startsWith("fx.basic.") && s.time >= 260 && s.time < 700,
+        ) &&
+          flight.some((s) => s.fx === "fx.basic.2" && s.time >= 700) &&
+          flight
+            .filter((s) => s.flight?.startsWith("fx.basic."))
+            .every((s) => s.time >= 260 && s.time < 700),
+      )
+    }
+    if (slug === "lam") {
+      await page.getByTestId("skill-ultimate").click()
+      await page.waitForFunction(() => {
+        const d = document.querySelector("canvas").dataset
+        return (
+          d.frame === "battle.ultimate.3" &&
+          +d.elapsed >= 1200 &&
+          d.events === "2" &&
+          d.cues === "2"
+        )
+      })
+      check(
+        "Lam reference ultimate crosses exactly two markers/cues at520/1040",
+        (await page.getByTestId("contact-cue").innerText()).includes("1040ms"),
+      )
+    }
     await page
-      .locator("canvas")
-      .screenshot({ path: `${out}/${flavor}-${state}.png` })
-  }
-  if (slug === "lua") {
-    await page.getByTestId("skill-basic").click()
+      .getByRole("checkbox", { name: "Giảm chuyển động", exact: true })
+      .check()
+    await page.getByTestId("state-attack").click()
     await page.waitForFunction(() => {
       const data = document.querySelector("canvas").dataset
-      return (
-        data.frame === "battle.idle.0" &&
-        +data.elapsed >= 800 &&
-        data.events === "2" &&
-        data.cues === "2"
-      )
+      return data.frame === "battle.attack" && data.fx === ""
     })
+    const staticPixels = await page
+      .locator("canvas")
+      .evaluate((canvas) => canvas.toDataURL())
+    await page.waitForTimeout(200)
     check(
-      "Full Lua preview crosses exactly two authored contacts and two FX/audio cues",
-      (await page.locator("canvas").getAttribute("data-events")) === "2" &&
-        (await page.locator("canvas").getAttribute("data-cues")) === "2" &&
-        (await page.getByTestId("contact-cue").innerText()).includes("380ms"),
+      "Reduced motion holds the preserved authored attack pose",
+      (await page
+        .locator("canvas")
+        .evaluate((canvas) => canvas.toDataURL())) === staticPixels,
     )
-  }
-  if (slug === "lam") {
-    await page.getByTestId("skill-basic").click()
-    const flight = await page.evaluate(async () => {
-      const samples = [],
-        start = performance.now()
-      await new Promise((resolve) => {
-        const poll = () => {
-          const d = document.querySelector("canvas").dataset
-          samples.push({ time: +d.elapsed, flight: d.projectile, fx: d.fx })
-          if (+d.elapsed >= 950 && d.frame === "battle.attack.3") resolve()
-          else if (performance.now() - start > 4000) resolve()
-          else requestAnimationFrame(poll)
+    if (!values["reuse-originals"]) {
+      audio = await page.evaluate(async (slug) => {
+        const context = new AudioContext(),
+          durations = []
+        try {
+          for (const slot of ["basic", "auto", "passive", "ultimate"]) {
+            const response = await fetch(
+              `/dev/aw2/assets/${slug}/base-v1/${slot}.wav`,
+            )
+            assertResponse(response)
+            durations.push(
+              (await context.decodeAudioData(await response.arrayBuffer()))
+                .duration,
+            )
+          }
+          return durations
+        } finally {
+          await context.close()
         }
-        poll()
-      })
-      return samples
-    })
-    check(
-      "Lam reference flight stays between launch260 and impact700; separate impact art follows",
-      flight.some(
-        (s) =>
-          s.flight?.startsWith("fx.basic.") && s.time >= 260 && s.time < 700,
-      ) &&
-        flight.some((s) => s.fx === "fx.basic.2" && s.time >= 700) &&
-        flight
-          .filter((s) => s.flight?.startsWith("fx.basic."))
-          .every((s) => s.time >= 260 && s.time < 700),
-    )
-    await page.getByTestId("skill-ultimate").click()
-    await page.waitForFunction(() => {
-      const d = document.querySelector("canvas").dataset
-      return (
-        d.frame === "battle.ultimate.3" &&
-        +d.elapsed >= 1200 &&
-        d.events === "2" &&
-        d.cues === "2"
+        function assertResponse(response) {
+          if (!response.ok) throw Error("Missing authored WAV")
+        }
+      }, slug)
+      check(
+        "Four existing authored WAV cues decode; audio remains opt-in",
+        audio.length === 4 &&
+          audio.every((value) => value > 0.1) &&
+          !(await page
+            .getByRole("checkbox", { name: "Bật âm thanh", exact: true })
+            .isChecked()),
       )
-    })
-    check(
-      "Lam reference ultimate crosses exactly two markers/cues at520/1040",
-      (await page.getByTestId("contact-cue").innerText()).includes("1040ms"),
-    )
-  }
-  await page
-    .getByRole("checkbox", { name: "Giảm chuyển động", exact: true })
-    .check()
-  await page.getByTestId("state-attack").click()
-  await page.waitForFunction(() => {
-    const data = document.querySelector("canvas").dataset
-    return data.frame === "battle.attack" && data.fx === ""
-  })
-  const staticPixels = await page
-    .locator("canvas")
-    .evaluate((canvas) => canvas.toDataURL())
-  await page.waitForTimeout(200)
-  check(
-    "Reduced motion holds the preserved authored attack pose",
-    (await page.locator("canvas").evaluate((canvas) => canvas.toDataURL())) ===
-      staticPixels,
-  )
-  const audio = await page.evaluate(async (slug) => {
-    const context = new AudioContext(),
-      durations = []
-    try {
-      for (const slot of ["basic", "auto", "passive", "ultimate"]) {
-        const response = await fetch(
-          `/dev/aw2/assets/${slug}/base-v1/${slot}.wav`,
+      await page
+        .getByRole("button", { name: "World / chibi", exact: true })
+        .click()
+      for (const direction of ["down", "left", "right", "up"]) {
+        await page.getByTestId(`direction-${direction}`).click()
+        await page.waitForFunction(
+          (direction) =>
+            document
+              .querySelector("canvas")
+              .dataset.frame.startsWith(`world.${direction}.`),
+          direction,
         )
-        assertResponse(response)
-        durations.push(
-          (await context.decodeAudioData(await response.arrayBuffer()))
-            .duration,
-        )
+        check(`Preserved ${direction} world sprite resolves`)
       }
-      return durations
-    } finally {
-      await context.close()
     }
-    function assertResponse(response) {
-      if (!response.ok) throw Error("Missing authored WAV")
+    for (const width of [320, 390, 768]) {
+      await page.setViewportSize({ width, height: 900 })
+      check(
+        `Preview controls fit ${width}px`,
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+      )
     }
-  }, slug)
-  check(
-    "Four existing authored WAV cues decode; audio remains opt-in",
-    audio.length === 4 &&
-      audio.every((value) => value > 0.1) &&
-      !(await page
-        .getByRole("checkbox", { name: "Bật âm thanh", exact: true })
-        .isChecked()),
-  )
-  await page.getByRole("button", { name: "World / chibi", exact: true }).click()
-  for (const direction of ["down", "left", "right", "up"]) {
-    await page.getByTestId(`direction-${direction}`).click()
-    await page.waitForFunction(
-      (direction) =>
-        document
-          .querySelector("canvas")
-          .dataset.frame.startsWith(`world.${direction}.`),
-      direction,
-    )
-    check(`Preserved ${direction} world sprite resolves`)
+    await page.screenshot({
+      path: `${out}/${flavor}-mobile.png`,
+      fullPage: true,
+    })
+    await page.setViewportSize({ width: 1280, height: 1000 })
   }
-  for (const width of [320, 390, 768]) {
-    await page.setViewportSize({ width, height: 900 })
-    check(
-      `Preview controls fit ${width}px`,
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth,
-      ),
-    )
-  }
-  await page.screenshot({ path: `${out}/${flavor}-mobile.png`, fullPage: true })
-  await page.setViewportSize({ width: 1280, height: 1000 })
   await page.goto(`${root}/dev/aw2/battle.html`)
   await page
     .getByTestId("battle-atlas-state")
@@ -464,6 +484,129 @@ try {
       }),
     )
   }
+  if (slug === "moc-non") {
+    await page.evaluate(() => {
+      window.__mocContacts = []
+      window.__mocPreparation = []
+      window.__mocRecipients = []
+      const poll = () => {
+        const d = document.querySelector("canvas")?.dataset
+        const cue = JSON.parse(d?.actorCues ?? "{}")["player-aw2-moc-non"]
+        if (cue?.phase === "prepare" || cue?.phase === "launch")
+          window.__mocPreparation.push({ ...cue, tick: +d.tick })
+        const entries =
+          JSON.parse(d?.actorEffects ?? "{}")["player-aw2-moc-non"] ?? []
+        for (const beat of entries)
+          if (
+            beat.fx &&
+            !window.__mocContacts.some(
+              (e) => e.serial === beat.serial && e.fx === beat.fx,
+            )
+          )
+            window.__mocContacts.push({ ...beat, tick: +d.tick })
+        if (
+          entries.some(
+            (e) => e.skillId === "aw2-moc-non:skill:ultimate" && e.fx,
+          )
+        ) {
+          const poses = JSON.parse(d?.actorPoses ?? "{}"),
+            cues = JSON.parse(d?.actorCues ?? "{}")
+          for (const [id, pose] of Object.entries(poses))
+            if (
+              id.startsWith("player-") &&
+              id !== "player-aw2-moc-non" &&
+              pose.startsWith("battle.guard") &&
+              !window.__mocRecipients.some((e) => e.id === id)
+            )
+              window.__mocRecipients.push({
+                id,
+                pose,
+                skillId: cues[id]?.skillId ?? null,
+              })
+        }
+        requestAnimationFrame(poll)
+      }
+      poll()
+    })
+    await page.getByTestId("ultimate-aw2-moc-non").click()
+    await page.waitForFunction(
+      () =>
+        ["basic", "auto", "passive", "ultimate"].every((slot) =>
+          window.__mocContacts.some(
+            (e) => e.skillId === `aw2-moc-non:skill:${slot}`,
+          ),
+        ),
+      null,
+      { timeout: 30000 },
+    )
+    confirmedContacts = await page.evaluate(() => window.__mocContacts)
+    const ultimate = confirmedContacts.filter(
+      (e) => e.skillId === "aw2-moc-non:skill:ultimate",
+    )
+    check(
+      "Actual Moc ultimate emits one confirmed source effect across ally statuses",
+      new Set(ultimate.map((e) => e.serial)).size === 1 &&
+        ultimate.every((e) => e.atMs === 560),
+    )
+    check(
+      "Actual Moc basic uses confirmed target impact art only",
+      confirmedContacts
+        .filter((e) => e.skillId === "aw2-moc-non:skill:basic")
+        .every(
+          (e) =>
+            ["fx.basic.2", "fx.basic.3"].includes(e.fx) &&
+            e.atMs === 700 &&
+            e.targetId,
+        ),
+    )
+    check(
+      "Actual Moc shield FX belongs to its confirmed ally target",
+      confirmedContacts
+        .filter((e) => e.skillId === "aw2-moc-non:skill:auto")
+        .every(
+          (e) =>
+            e.atMs === 420 &&
+            e.targetId?.startsWith("player-") &&
+            e.targetId !== "player-aw2-moc-non",
+        ),
+    )
+    check(
+      "Actual Moc passive displays only its confirmed proc cue",
+      confirmedContacts
+        .filter((e) => e.skillId === "aw2-moc-non:skill:passive")
+        .every((e) => e.atMs === 180),
+    )
+    check(
+      "Actual Moc preparation/flight produce no premature outcome FX",
+      await page.evaluate(
+        () =>
+          window.__mocPreparation.length > 0 &&
+          window.__mocPreparation.every((e) => e.fx === ""),
+      ),
+    )
+    check(
+      "Guard recipients keep their own actor identities without Moc source skill cues",
+      await page.evaluate(
+        () =>
+          window.__mocRecipients.length > 0 &&
+          window.__mocRecipients.every((e) => e.skillId === null),
+      ),
+    )
+    await page
+      .getByRole("checkbox", { name: "Giảm chuyển động", exact: true })
+      .check()
+    await page.waitForTimeout(500)
+    check(
+      "Reduced motion cannot revive expired confirmed Moc ultimate FX",
+      await page.evaluate(() =>
+        JSON.parse(document.querySelector("canvas").dataset.actorEffects)[
+          "player-aw2-moc-non"
+        ].some(
+          (e) => e.skillId === "aw2-moc-non:skill:ultimate" && e.fx === "",
+        ),
+      ),
+    )
+  }
   await page
     .locator("canvas")
     .screenshot({ path: `${out}/${flavor}-actual-battle.png` })
@@ -485,29 +628,30 @@ try {
     ),
   )
   check("No unexpected primary browser or resource errors", errors.length === 0)
-  for (const motionKey of motionKeys) {
-    const blocked = await browser.newContext()
-    await blocked.route(`**/${motionKey}.webp`, (route) => route.abort())
-    const missing = await blocked.newPage()
-    await missing.goto(`${root}/dev/aw2/${previewEntry}`)
-    await missing
-      .getByRole("alert")
-      .filter({
-        hasText: `Không tải được asset ${manifest.assets[motionKey].id}`,
-      })
-      .waitFor()
-    check(
-      `Missing ${motionKey} is explicit and never replaced by geometry`,
-      await missing.locator("canvas").evaluate(
-        (canvas) =>
-          !canvas
-            .getContext("2d")
-            .getImageData(0, 0, 640, 440)
-            .data.some((value) => value > 0),
-      ),
-    )
-    await blocked.close()
-  }
+  if (!values["combat-only"])
+    for (const motionKey of motionKeys) {
+      const blocked = await browser.newContext()
+      await blocked.route(`**/${motionKey}.webp`, (route) => route.abort())
+      const missing = await blocked.newPage()
+      await missing.goto(`${root}/dev/aw2/${previewEntry}`)
+      await missing
+        .getByRole("alert")
+        .filter({
+          hasText: `Không tải được asset ${manifest.assets[motionKey].id}`,
+        })
+        .waitFor()
+      check(
+        `Missing ${motionKey} is explicit and never replaced by geometry`,
+        await missing.locator("canvas").evaluate(
+          (canvas) =>
+            !canvas
+              .getContext("2d")
+              .getImageData(0, 0, 640, 440)
+              .data.some((value) => value > 0),
+        ),
+      )
+      await blocked.close()
+    }
   const resources = await page.evaluate(() =>
     performance
       .getEntriesByType("resource")
@@ -524,6 +668,17 @@ try {
       {
         task,
         spiritId: manifest.spiritId,
+        scope: values["combat-only"]
+          ? "affected combat renderer only"
+          : "affected motion/reference/combat",
+        reusedEvidence:
+          values["combat-only"] || values["reuse-originals"]
+            ? {
+                source: "cf0b39469d1fb8f7d77e18feb5e16895d70565a1",
+                reason:
+                  "unchanged original art/audio/world and unrelated preview/quest/save/mode/full-suite checks retained at original SHA; not counted as fresh",
+              }
+            : null,
         status: "PASS",
         flavor,
         engine: browser.version(),
@@ -550,6 +705,11 @@ try {
     confirmedContacts =
       (await page
         ?.evaluate(() => window.__lamContacts ?? [])
+        .catch(() => [])) ?? []
+  if (slug === "moc-non")
+    confirmedContacts =
+      (await page
+        ?.evaluate(() => window.__mocContacts ?? [])
         .catch(() => [])) ?? []
   await mkdir(out, { recursive: true })
   await writeFile(

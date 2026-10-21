@@ -1,0 +1,16 @@
+{
+  "task": "AW2-004F",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "externalInputs": [],
+  "prompts": [
+    {
+      "key": "AW2-004F-a",
+      "prompt": "Use case: stylized-concept. Asset type: original Adventure World 2 Mộc Non combat sprite atlas A. Image1 portrait and image2 eight-pose sheet are identity/costume references, not edit targets. Same adult slim friendly support character, brown hair high bun tied with leaf-green ribbons, olive eyes, white loose robe/trousers, layered leaf-green sleeveless wrap/long sash, green wrist wraps, brown cloth shoes, bamboo folding fan. Create EXACTLY sixteen distinctly drawn full-body anime cels arranged FOUR equal columns x FOUR equal rows on genuinely transparent background. Four coherent animation phases per row left-to-right: row1 idle subtle breath/fan-holding and ribbon settling; row2 four walking stride phases; row3 ranged basic wind-up, folded-fan pointing release, follow-through, recover; row4 shield-support preparation, gathering fan at chest, offering/opening gesture, settle. Same costume, face, view three-quarter facing right, consistent standing body scale. VERY SMALL isolated figures: each fits CENTRAL 45% WIDTH and 55% HEIGHT of its own cell, huge empty transparent padding on EVERY side, at least 50px alpha-empty on quarter-sheet row/column cuts and outer boundaries at 1254 square. Full head/hair/ribbons/hands/shoes/coat always visible inside each cell. Clean delicate lines, soft anime painted shading matching references. No FX, leaf particles, glow, floor, shadows, detached specks, text, grids, labels or external game references. Four truly different motion poses per row, not translations of one static image. Keep spacious gutters even if this makes figures small."
+    },
+    {
+      "key": "AW2-004F-b",
+      "prompt": "Use case: stylized-concept. Original Adventure World 2 Mộc Non combat animation atlas B. Reference portrait and eight-pose sheet establish identity: slim friendly adult, brown high-bun hair/leaf ribbons, olive eyes, white loose robe and trousers, leaf-green layered sleeveless wrap and long sash, green wrist wraps, brown shoes, bamboo folding fan. Exactly 16 DISTINCT full-body anime cels, FOUR equal columns x FOUR equal rows, transparent background. Left-to-right four consecutive animation poses per row: row1 hit recoil, deep recoil, brace, recover; row2 guard drawing closed fan across chest, brace lower, controlled protective stance, ease; row3 team support ultimate gather fan closed low, start opening, fan fully open with other palm offering help at the contact, recover/settle; row4 defeat stagger, lower to one knee, sit tired, head bowed/fan lowered. Match reference costume, face, soft painted anime shading/linework. Same body scale/view three-quarter right. SMALL isolated complete figures centered within each cell; each figure occupies only middle45% width and55% height. Huge genuinely empty transparent gutters at all quarter-sheet cuts and outer edges; all hair/ribbons/sleeves/fan/shoes fit in cell. No effects, particles, detached specks, halos, floor, shadow, text, grid or labels. Four motion poses not one shifted pose. No external IP. Spacious layout even if figures are small."
+    }
+  ]
+}
