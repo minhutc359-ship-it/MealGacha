@@ -10,7 +10,7 @@ Nhận **Thêm một chén** tại Dì sau nhiệm vụ mở bếp, đến gần
 | **Mời hụt** | Báo3 nhịp, chốt vùng ngang quanh mục tiêu lúc báo; khi đòn tới chỉ đánh đối thủ còn sống đang trong vùng. | Theo tên đang trong vùng; đội di chuyển tự động có thể rời/vào vùng. Canh khiên/hồi phục. |
 | **Tắt bếp** | Đếm3→2→1 rồi tác động mọi thành viên còn sống. | Chuẩn bị khiên/hồi phục trước nhịp tới; có thể tạm dừng và bước từng nhịp để học. |
 
-Cảnh báo vẫn hiện khi tắt âm thanh hoặc bật giảm chuyển động. Bảng cảnh báo bám phía trên khi cuộn đến ultimate; khoảng cuộn giữ nút đầu tiên không bị bảng che. Hiện mới có chỉ báo chữ/thanh tiến độ; chưa có âm gõ/telegraph art riêng. Body boss vẫn mượn bộ Than đổi màu. Không coi hình/âm starter là bộ art boss hoàn chỉnh.
+Cảnh báo vẫn hiện khi tắt âm thanh hoặc bật giảm chuyển động. Bảng cảnh báo bám phía trên khi cuộn đến ultimate; khoảng cuộn giữ nút đầu tiên không bị bảng che. Sau004I, boss có8 tư thế HD tham chiếu/portrait và9 ô hiệu ứng riêng cho cảnh báo, tiếp xúc và bảo vệ. Không còn mượn hình Than. Hình cảnh báo đi cùng intent thật; tác động chỉ hiện ở mục tiêu đã bị hit và tắt khi rút lui/kết thúc. Chưa có full motion/âm gõ/audio riêng/world object hoặc duyệt rights. [Gate boss](BOSS_CHARACTER_GATES.md).
 
 Nhịp thử nghiệm dài650ms. Boss bắt đầu bảo vệ ở nhịp3, tiếp theo Mời hụt12→15, Tắt bếp21→24, lặp chu kỳ ba chiêu với khoảng9 nhịp giữa lần bắt đầu. Trong lúc báo đòn, boss dừng basic/di chuyển. Thông số boss1000HP/135ATK/14DEF; Mời hụt dùng1×ATK trong bán kính14 trên trục0–100, Tắt bếp0,7×ATK toàn đội. Phòng thủ/khiên/làm yếu vẫn do core xử lý. Năng lượng basic vẫn được nạp khi chạm bảo vệ; đòn bị chặn không kích hoạt thêm passive sát thương/làm yếu.
 

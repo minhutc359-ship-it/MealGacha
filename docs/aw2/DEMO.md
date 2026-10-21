@@ -31,3 +31,5 @@ Verifier tự mở/đóng source8462 hoặc compiled8463; build trước bản c
 Còn cần playtest độc lập, đóng lỗi dùng thử, hoàn thiện12 nhân vật/map/NPC/boss/art/UI/cân bằng và QA thiết bị/hiệu năng/offline/quyền sử dụng/save production. Năm bộ hiện có đều `fullCharacterComplete=false`; không có gacha runtime và D11 chưa duyệt. Mốc demo không tự duyệt phát hành.
 
 Sau kết thúc đã lưu, **Bạn đã hoàn tất hành trình demo** cho biết lựa chọn/EXP và cách tiếp tục khám phá. **Luyện TCG / Luyện Auto Chess** vào bàn qua điểm lưu an toàn; không cấp lại quà nhiệm vụ. Owner đã thử hai mode nhưng chưa kết thúc hành trình, nên playtest tới cuối còn mở. [Chuyển sang sản phẩm](PRODUCT_PLAN.md).
+
+004I bổ sung hình boss/FX riêng trong trận, giữ nguyên quest/phần thưởng/lựa chọn kết. Đây là gói tham chiếu có8 tư thế và9 ô FX, full motion/audio/world/rights vẫn mở. [Gate boss](BOSS_CHARACTER_GATES.md).

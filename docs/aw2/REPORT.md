@@ -1,9 +1,11 @@
 # Báo cáo nhanh AW2
 
-2026-10-22 · game/adventure-world-2 · AW2-010B.
+2026-10-22 · game/adventure-world-2 · **Đã bắt đầu phát triển product**.
 
-**Demo:** thêm màn tổng kết sau kết thúc đã lưu: lựa chọn kết thúc, EXP đội, lối tắt và hai nút luyện TCG/Auto Chess. Có thể tiếp tục khám phá; màn tổng kết không cấp lại phần thưởng.55 bước browser compiled PASS qua hành trình mới/hai kết thúc/tải lại/320–390px/đi-về hai mode sau kết thúc. Hai typecheck, format, build107 file≈34,7MB PASS. [Bằng chứng](evidence/AW2-010B.md), nguồn `b836a82f3cb8babf1087e6ac32603de1f83336de`. Full1036 test/core/save/stable không đổi giữ PASS tại910b55b, không chạy lại/cộng số.
+**Demo:**010B đã thêm màn tổng kết từ kết thúc đã lưu, EXP/lối tắt và hai nút luyện TCG/Auto Chess;55 bước browser compiled PASS tại b836a82. Bạn đã thử hai mode nhưng chưa kết thúc hành trình, nên gate playtest tới cuối còn mở.
 
-**Phản hồi:** bạn đã thử TCG/Auto Chess nhưng chưa kết thúc hành trình. Gate playtest trọn vẹn vẫn mở. **Demo≈90% (9/10), sản phẩm≈40% (35–45%) giữ nguyên**;0/12 full DoD,5 bộ tham chiếu/7 bộ thiếu.
+**Product —004I vừa xong:** boss Người Giữ Bàn Quên có hình riêng thay Than:8 tư thế HD, portrait và9 ô hiệu ứng cho3 chiêu. Cảnh báo theo intent thật, tác động chỉ tại mục tiêu đã bị hit, rút lui/kết thúc hủy FX. Sửa link đấu trường để bảng cảnh báo không che boss ở320/390px. Đây là bộ tham chiếu, chưa phải animation/audio hoàn chỉnh. Nguồn `26849546825131a5c448645274880977caa9d230`.
 
-**Đã chuyển sang công việc product:**004I IN_PROGRESS, chuẩn bị art boss riêng; còn tích hợp manifest/hiệu ứng đúng event và kiểm tra trước khi báo xong. [Worklist sản phẩm](PRODUCT_PLAN.md). Art/âm thanh/cân bằng/thiết bị/hiệu năng/offline/rights/save production/release còn gate. D11 PROPOSED/D12 OPEN; không deploy/merge master. [Tiến độ](PROGRESS.md), [chơi demo](DEMO.md), [bàn giao](HANDOFF.md).
+**Kiểm chứng:**49 test liên quan PASS, hai typecheck/format/builds/isolation PASS;39 source+39 compiled gate boss trước sửa CSS nhỏ,12+12 gate điều hướng cuối xác minh phần sửa đó,22 gate trận mẫu compiled.17 ô alpha an toàn,8 file build lại giống byte; WebP mới≈2,16MB. Full1036 core/save không đổi giữ PASS tại910b55b; không chạy lại hoặc cộng số cũ. [Bằng chứng](evidence/AW2-004I.md), [gate boss](BOSS_CHARACTER_GATES.md).
+
+**Demo≈90% (9/10), sản phẩm≈40% (35–45%) giữ nguyên**: art tham chiếu chưa đóng gate playtest/nhân vật/phát hành.0/12 full DoD,5 bộ starter/7 bộ thiếu. **Tiếp theo004J Muối Đen**, rồi kit thật007E và các bộ còn lại theo [PRODUCT_PLAN](PRODUCT_PLAN.md). Âm thanh/thiết bị/FPS/offline/rights/save production/release còn mở; D11 PROPOSED/D12 OPEN. Không deploy task này. [Chơi local](LOCAL_TEST.md), [tiến độ](PROGRESS.md), [bàn giao](HANDOFF.md).

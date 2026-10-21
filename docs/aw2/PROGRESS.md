@@ -72,3 +72,7 @@ Source `910b55bf977557f11be03111afa40283df0fbcf1` adds actual three-part boss me
 ## AW2-010B demo → product —2026-10-22
 
 Source `b836a82f3cb8babf1087e6ac32603de1f83336de` supplies a clear saved-ending summary/play-again routes;55 compiled earned checks PASS. Owner2026-10-22 confirms TCG/Auto Chess tried, full journey not finished. Record partial human mode smoke; end-to-end player acceptance remains NOT_RUN, not inferred from the request to move to product. **Demo9/10≈90%, product≈40% (rough35–45%) unchanged**. Completion UI does not close human full-route/art/character/release gates. Product development now starts004I while acceptance remains open. [Worklist](PRODUCT_PLAN.md), [evidence](evidence/AW2-010B.md).
+
+## AW2-004I product development starts —2026-10-22
+
+Owner requests demo then product;010B closes technical completion UI and004I at `26849546825131a5c448645274880977caa9d230` delivers original boss reference art/actual FX. Demo9/10≈90%, product≈40% (rough35–45%) unchanged: this is one reference-presentation deliverable, not a closed independent-playtest/full-character/release gate.5/5 starter motion/160 cels,0/12 full DoD/7 absent spirit sets remain. Boss is not one of12 collectible spirits; no increase in0/12 full DoD. Owner tried TCG/Auto Chess but not the ending; do not call demo100% or reset the denominator. Next004J addresses first missing Muối Đen set; product priorities [PRODUCT_PLAN](PRODUCT_PLAN.md), [actual boss gates](BOSS_CHARACTER_GATES.md).

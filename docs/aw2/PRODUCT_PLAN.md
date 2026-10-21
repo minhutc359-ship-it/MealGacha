@@ -6,8 +6,8 @@ Demo kỹ thuật có luồng mới từ save trống qua4 quest, hai mode, kinh
 
 | Ưu tiên | Deliverable cụ thể | Điều kiện hoàn tất |
 |---|---|---|
-|1 · AW2-004I | Boss có8 tư thế HD và hiệu ứng3 chiêu riêng, thay hình Than mượn | Nguồn/provenance/manifest đo thật; actual-event binding/không tự gây damage; pause/reduced/terminal/mobile/source+compiled PASS |
-|2 · character/mechanic/animation | Muối Đen, bộ đầu tiên trong7 nhân vật còn thiếu | Giữ aw2-muoi/R/Muối rang và kit đã duyệt; task card riêng cho rules,4-way world/eight-state HD/portrait/FX/audio/leveling/QA; không chỉ portrait |
+|1 · AW2-004I VERIFIED reference at2684954 | Boss có8 tư thế HD và hiệu ứng3 chiêu riêng, thay hình Than mượn | Nguồn/provenance/manifest đo thật; actual-event binding/không tự gây damage; pause/reduced/terminal/mobile/source+compiled PASS |
+|2 · AW2-004J, rồi mechanic007E | Muối Đen, bộ đầu tiên trong7 nhân vật còn thiếu | Giữ aw2-muoi/R/Muối rang và kit đã duyệt; task card riêng cho rules,4-way world/eight-state HD/portrait/FX/audio/leveling/QA; không chỉ portrait |
 |3 · các owner | Lần lượt Nhiên/Hải/Liên/Mộc/Bách/Vân và hoàn thiện5 starter |12 ledger full DoD có chứng cứ; không biến số cel thành tỷ lệ nhân vật hoàn chỉnh |
 |4 · story/animation/mechanic | Art map/NPC/dungeon riêng và đọc đường/counter rõ | Giữ6 zone/8 NPC/4 quest đã duyệt; nghiệm thu điều hướng/persistence/đường về/thiết bị |
 |5 · mechanic/BA | Collection/team/mode tiến triển và kinh tế sản phẩm | Có yêu cầu rõ, migrations an toàn, chống double grant; runtime gacha phải chờ owner duyệt D11; practice hiện tại vẫn không tiêu/thưởng RPG |
@@ -16,3 +16,5 @@ Demo kỹ thuật có luồng mới từ save trống qua4 quest, hai mode, kinh
 Mỗi task làm trực tiếp trên game/adventure-world-2, kiểm tra phần chịu ảnh hưởng và tái sử dụng PASS của phần không đổi, cập nhật docs/commit/push/readback. Shared-core/save thay đổi cần full regression theo WORKFLOW. Không tự chạy nhiều agent nền. Các hàng chưa có card là worklist ưu tiên, chưa phải artifact hoặc passing test.
 
 Sản phẩm≈40% (ước lượng35–45%),0/12 full DoD; chỉ tăng khi deliverable/gate tương ứng thật sự đóng. Demo9/10 và mẫu số sản phẩm tách biệt. [Tiến độ](PROGRESS.md), [board](BACKLOG.md), [demo](DEMO.md), [hướng dẫn local](LOCAL_TEST.md), [boss](BOSS_PRACTICE.md).
+
+Mốc product đầu tiên004I đã giao bộ boss tham chiếu riêng, chưa đóng fullEnemy/character gates. Tiếp tục004J Muối Đen, kit thật007E phải kiểm chứng riêng trước actual combat; không mở gacha hoặc sửa starter-save contract trong asset task. [Bằng chứng](evidence/AW2-004I.md).
