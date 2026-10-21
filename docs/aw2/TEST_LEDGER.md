@@ -6,26 +6,47 @@ Historical story review preserved by AW2-012: source `461c7cfaac658618d96ca8020a
 Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, command, observed outcome. Prior PASS becomes STALE for affected changes. PR runs selective affected tests; full suite required before release/major cross-engine merge, and after high-impact save/shared engine changes.
 | Case | Trigger | Result |
 |---|---|---|
-| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —a40217a; v4/full909 tests and124 Chromium assertions preserve seeded stable bytes |
+| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —16f55af; unchanged v4 store,926 full tests and100 fresh Chromium assertions preserve seeded stable bytes |
 | SAVE-02 chest/battle/gacha atomic grants, no double reward | loot/store | PASS development quest/chest/cooking/XP/boss subset —a40217a; failure/replay/concurrency/authority checks; runtime gacha/spending NOT_RUN |
-| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS —a40217a; v1/v2/v3→v4 read-only migration, no grant on load, reset/failure/stale-write/boss checks |
+| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS —16f55af; unchanged migration/raw-lock boundary regressed in full units; mode checkpoint/stale/failed/reset/missing/corrupt/future/read-only return checks added |
 | GACHA-01 weights N/R/SR/SSR/UR seeded statistics | gacha/roster | PASS simulation-only proposed D11 —a40217a;2,000,000 seeded draws +boundary/pity tests; owner approval/runtime adoption pending |
 | GACHA-02 pity/shards/dupes and reload | gacha/save | NOT_RUN runtime; proposed counters have pure simulation tests only |
-| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS development —a40217a; six zones/safe returns/shortcut, touch paths, non-finite rejection and follower reread reset; authored maps/device pending |
-| WORLD-02 NPC, quest, followers and interact range | world/quest | PASS development subset —a40217a; five reference companions/NPC interactions/range/quest guidance; full authored NPC/map gates open |
-| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS —a40217a; all4 quests/boss/note/both endings and numerical once-only rewards |
+| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS development —16f55af;40 fresh world checks plus52 mode transition checks, safe checkpoint returns/reload; authored maps/device pending |
+| WORLD-02 NPC, quest, followers and interact range | world/quest | PASS development subset —16f55af; quests/NPC/portal range/quick-entry/return and existing follower unit regression; full authored NPC/map gates open |
+| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS —16f55af;40 fresh all4-quest/boss/note/both-ending checks and133 AW2 units; mode entry/return grants nothing |
 | BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS rules/development renderer —a40217a;116 AW2 /909 full tests,22 independent +40 world/boss Chromium checks |
-| BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development boss/persisted-level/checkpoint subset —a40217a; real terminal/retry/stale/reload-abort; active-battle resume/native/production NOT_RUN |
+| BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development subset —16f55af;40 fresh boss/checkpoint/return/ending checks plus real battle mode-entry guard; active-battle resume/native/production NOT_RUN |
 | ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; five starter reference sets verified below |
 | ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS — integration source 0e8fb7a /32 Chromium checks; reference scope only |
 | PROVENANCE-THAN source/prompt/hash inventory | asset | PASS inventory only — rights/legal approval still NOT_RUN |
 | ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS — integration source 0e8fb7a /133 Chromium checks; reference scope only |
 | PROVENANCE-STARTERS original image/audio inventory | asset | PASS inventory only — integration source 0e8fb7a; rights/legal approval NOT_RUN |
 | DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | PASS debug development subset —a40217a;3 rooms/puzzle/once-only chest/real boss/return; full authored dungeon/balance/device pending |
-| MODE-01 TCG/Chess embedded and quick-entry safe | navigation | NOT_RUN |
+| MODE-01 TCG/Chess embedded and quick-entry safe | navigation | PASS transition/lobby subset —16f55af;17 new unit cases +26 source/26 compiled browser assertions; actual games/results/rewards/full case NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
-Current AW2-013A supersedes affected schema-v3/no-item/follower-pending rows. Fresh reports are bound to a40217a below; original AW2-013 PR evidence is historical. Full authored art/device/rights/runtime gacha and full vertical slice remain open.
+Current AW2-009A verifies mode transition/lobby boundaries and reruns affected world/boss/compiled integration. Actual playable modes/prizes remain NOT_RUN. Unchanged save/combat/asset milestones retain original source-bound evidence; new results below supersede affected current rows. Prior AW2-013A909/124 results are historical, not added to the new totals.
+
+## AW2-009A mode transitions / quick REPORT — 2026-10-21
+
+VERIFIED transition/lobby subset. Base local/remote `339edaf80e2ee879455a09c484058470318d8493`; implementation `16f55afb7a1928e5eec1c49acdcb500a6c975554`, tested tree `d9b568da3b0f181b2dbff2f2145f9047625e2cfb`, branch game/adventure-world-2. Task card preceded implementation. D16 direct branch delivery uses existing authorized GitHub connection, matched index tree, expected-head/force=false and independent fetch/SHA/ancestry readback. No local duplicate commit/history rewrite or new branch. Completion changes are documentation only.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36, fresh isolated browser contexts. In-session BA/mechanic/tester/scretary and condensed React hooks/lifecycle/accessibility review; no independent agent/device/legal sign-off. [Task](tasks/AW2-009A.md), [full evidence](evidence/AW2-009A.md), [owner quick REPORT](REPORT.md).
+
+| Command/check | Result | Observed |
+|---|---|---|
+| `pnpm test dev/tests/aw2 --maxWorkers=2` | PASS |12 files /133 cases; final full run includes all133 after named-type repair |
+| `pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-009a-unit.json` | PASS |92 files /926 tests,37.66s, no failures/skips;133 AW2 /17 new transition cases; before build/browser |
+| `pnpm typecheck` / `pnpm typecheck:dev` | PASS |Both exit0 after formatter/named-interface correction |
+| Seven-file formatter / whitespace | PASS |`oxfmt --check`, `git diff --cached --check` |
+| `pnpm build` / `pnpm build:aw2` / recursive scan | PASS |Stable release guard +851 files/72 text exclusion; review91 files /23,790,245 bytes, no PNG/code/maps/ZIP |
+| `verify-aw2-modes.mjs` source / `--compiled` | PASS |26+26 actual portal/quick-entry/checkpoint/return/reload/failure/stale/corrupt/boss-guard/mobile assertions |
+| `verify-aw2-world.mjs --boss` / `verify-aw2-build.mjs` | PASS |40+8 all-quest/boss/endings and compiled intro/XP/save/assets regressions |
+| Two compiled desktop/mobile lobby captures opened | PASS reference scope |Readable wrapped controls; full authored art/device gates unaffected |
+| Relative links / live-report source+count consistency / docs-only runtime diff | PASS |REPORT/source/task/evidence agree; schema/store/economy/combat/legacy/dependencies/assets/config unchanged |
+| Actual playable TCG/Chess, mode cost/reward/resume, device/native/offline/FPS/rights/full slice | NOT_RUN |Parent AW2-009/full MODE-01 remain open; D11 still PROPOSED |
+
+**100 fresh Chromium assertions PASS** (26+26+40+8), zero primary unexpected console/page/resource errors, stable seeded bytes preserved. Initial affected132PASS/1FAIL was test timing: pending-abandon assertion ran after an await that completed the checkpoint; moved before await. Formatter removed inline-type separators and TS reported two syntax errors; named interfaces fixed it before final full/type/build/browser gates. Failed attempts stay FAIL. Current full-unit obligation satisfied; repeat impacted/shared-save/engine checks after future changes and full regression before release. Original save29/standalone battle22 browser scripts were not rerun separately; their unchanged source evidence remains scoped to AW2-013A.
 
 ## AW2-013A persistent progression — 2026-10-21
 

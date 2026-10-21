@@ -15,7 +15,10 @@
 | AW2-007B | mechanic/animation/tester | Event-driven HD battle preview and development leveling | VERIFIED at9067376; continuation INTEGRATED / PUSHED to game/adventure-world-2 through AW2-012A at82b85cd |
 | AW2-007C | mechanic/BA/story/animation/tester | Trusted boss checkpoint/result/save v3, note/both endings/shortcut and once-only receipts | VERIFIED at03b92e2:98 AW2 /891 full tests;91 Chromium assertions; INTEGRATED / PUSHED through AW2-012A at82b85cd |
 | AW2-008 | story/mechanic | Four quests/debug dungeon/boss plus atomic XP/inventory/chest/cooking | Development subset VERIFIED in AW2-013A; final balance/authored dungeon/full gates open |
-| AW2-009 | BA/mechanic | TCG/Auto Chess in-world portals & quick-entry | BACKLOG; next AW2-009A must first define isolated-save/return/reload adapter contract |
+| AW2-009 | BA/mechanic | TCG/Auto Chess in-world portals & quick-entry | IN_PROGRESS; AW2-009A transition/lobby verified, actual games pending |
+| AW2-009A | BA/mechanic/tester/scretary | Shared checkpoint/return adapter, portals/quick-entry, honest lobbies and quick REPORT | VERIFIED at16f55af;926 full tests /100 Chromium assertions; D16 direct AW2 delivery |
+| AW2-009B | BA/mechanic/tester | AW2 TCG practice contract/deck/rules/opponent through the adapter | BACKLOG; next smallest task, task card required before implementation |
+| AW2-009C | BA/mechanic/tester | AW2 Auto Chess practice contract/board/rules through the adapter | BACKLOG; follows mode-state/rules contract |
 | AW2-010 | all/tester | Lantern playable vertical slice | BACKLOG |
 | AW2-011 | tester | Release regression/rights/mobile/offline | BACKLOG |
 | AW2-012 | BA/tester/scretary | Integrate all six AW2 feature histories; preserve approved canon and review evidence | VERIFIED / MERGED locally, source 0e8fb7a;859 tests +212 Chromium checks PASS |
@@ -43,4 +46,6 @@ Historical AW2-007C source03b92e2: [task](tasks/AW2-007C.md), [evidence](evidenc
 
 Current progression: [AW2-013A task](tasks/AW2-013A.md), [fresh evidence](evidence/AW2-013A.md). Schema v4 and locked actions replace the prior schema-v3/no-numerical-reward limits above. Valid old saves load without writes/rewards; explicit actions atomically grant once. Boss uses persisted team XP. Five reference companions, touch paths, inventory UI, optional event audio and a separate review build are verified development subsets; full parent tasks are not complete.
 
-Next smallest task: BA/mechanic scope AW2-009A isolated TCG/Auto Chess portals and quick-entry, then tester verifies entry/return/reload/save boundaries. Animation/character owe authored boss/map/NPCs, seven sets (`aw2-muoi`, `aw2-nhien`, `aw2-hai`, `aw2-lien`, `aw2-moc`, `aw2-bach`, `aw2-van`) and full-character/mobile/device/rights gates. D11 simulation is available; owner approval still precedes runtime gacha. Final economy/balance and AW2-010/011 remain open. Continue directly on game/adventure-world-2 and push/read back after each completed task under D16.
+Current mode foundation: [AW2-009A](tasks/AW2-009A.md) verifies only transition/lobby boundaries, not playable TCG/Chess. [Fresh evidence](evidence/AW2-009A.md), [owner quick REPORT](REPORT.md).
+
+Next smallest task: BA/mechanic scope and implement AW2-009B isolated TCG practice rules/deck/opponent, then tester validates actual moves/results/return/reload. Auto Chess follows in AW2-009C. Animation/character owe authored boss/map/NPCs, seven sets (`aw2-muoi`, `aw2-nhien`, `aw2-hai`, `aw2-lien`, `aw2-moc`, `aw2-bach`, `aw2-van`) and full-character/mobile/device/rights gates. D11 simulation is available; owner approval still precedes runtime gacha. Final economy/balance and AW2-010/011 remain open. Continue directly on game/adventure-world-2 and push/read back after each completed task under D16.

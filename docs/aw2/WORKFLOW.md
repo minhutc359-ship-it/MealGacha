@@ -2,6 +2,7 @@
 scretary → reads repo/ref and documents; BA → task card (scope, AC, test impact); story/character/mechanic/animation → deliver proposals + changes with reviews; tester → selective verification and milestone full suite; scretary → changelog/status/handoff.
 Task states BACKLOG, READY, IN_PROGRESS, REVIEW, VERIFIED, MERGED/BLOCKED.
 Every handoff: ID, base/head commit, exact paths, accepted decisions, tested vs not tested, failed/blockers, next owner.
+Scretary also maintains the concise Vietnamese [REPORT.md](REPORT.md) after each task: verified progress, current work, test source/results, remaining limits and next owner. It links to the detailed live indexes; the role is not an autonomous background dashboard.
 Conflicts: immutable identity → character; lore → story; balance → mechanic; asset manifest → animation; QA claims → tester; requirement trade-off → BA/owner; indexing → scretary.
 ## Current branch policy — owner instruction 2026-10-21
 

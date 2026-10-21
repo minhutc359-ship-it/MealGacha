@@ -5,13 +5,15 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 ## Khởi động ngữ cảnh
 Đọc `AGENTS.md`, `DECISIONS.md`, `CANON.md`, `STATUS.md`, `BACKLOG.md`, `TEST_LEDGER.md`, `HANDOFF.md` và skill tương ứng. Agent skills là vai trò + tài liệu bền vững, không phải background agents tự chạy.
 
+**Xem nhanh cho chủ dự án:** [REPORT.md](REPORT.md), do `scretary-agent` tổng hợp sau mỗi task. [HANDOFF.md](HANDOFF.md) ghi chi tiết triển khai và việc bàn giao.
+
 ## Quy trình phát triển và push
 
 Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực tiếp trên `game/adventure-world-2`, **không tạo branch mới**. Mỗi task hoàn thành: chạy kiểm tra phù hợp, cập nhật tài liệu, commit rồi **push ngay vào `game/adventure-world-2`** và xác minh SHA trên remote trùng local. Quy định này thay thế hướng dẫn feature branch trước đây. Chi tiết lệnh và dọn nhánh đã tích hợp tại [WORKFLOW](WORKFLOW.md), [AW2-012B](tasks/AW2-012B.md).
 
-## AW2 development preview — AW2-001 + AW2-006A
+## AW2 development preview — expedition and mode lobbies
 
-Current branch: `game/adventure-world-2`. AW2-013A at `a40217afd4168fac854b8c482a3f0fef48809c26` adds persistent development inventory/XP, atomic quest/chest/cooking rewards, five following companions, touch navigation, optional confirmed-event audio, mobile ultimate cards and a separate static review build. It reviews/adapts PR #82 without merging/changing rpg/master. Fresh909 unit tests /124 Chromium assertions, both typechecks and stable/review builds PASS. D16 still requires direct AW2 commit/push/readback after each task. [Current status](STATUS.md), [handoff](HANDOFF.md), [verification](evidence/AW2-013A.md). Earlier AW2-012/012A/012B integration and cleanup remain historical; approved canon is unchanged and D11 stays PROPOSED.
+Current branch: `game/adventure-world-2`. AW2-009A at `16f55afb7a1928e5eec1c49acdcb500a6c975554` adds shared portal/quick-entry checkpoint and read-only return lobbies for TCG/Auto Chess; actual games/prizes are not integrated. Fresh926 tests (133 AW2) /100 Chromium assertions, both typechecks and stable/review builds PASS. Prior AW2-013A supplies persistent inventory/XP, quest/chest/cooking rewards, five companions, touch navigation, event audio and review build; its original evidence remains historical. [Quick REPORT](REPORT.md), [status](STATUS.md), [handoff](HANDOFF.md), [fresh verification](evidence/AW2-009A.md). D16 direct AW2 delivery still applies; approved canon is unchanged and D11 stays PROPOSED.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -72,6 +74,18 @@ node dev/tools/simulate-aw2-gacha.mjs
 
 `dist-aw2/` is a local review artifact with separate world/save/battle/starter/Than entries and runtime assets, excluding source PNG/code/maps/archives. `pnpm build` still creates the stable game without AW2. No deployment/release. The two new browser verifiers own ports8454/8455; close a manual preview before using8455. Captures stay ignored under `.asset-work/`. [Development contract and fresh evidence](evidence/AW2-013A.md). Gacha simulation is a [proposal for D11](proposals/AW2-005A-RATES.md), with no runtime draw/spend/save.
 
+## TCG / Auto Chess transition lobbies — AW2-009A
+
+With a ready AW2 save, choose **Ghé nhanh TCG/Auto Chess** from the world, or approach the two tables in Phố, interact and choose **Ghé bàn**. Both paths save the current exploration checkpoint before entering. **Actual games and prizes are not integrated yet.** Return reads the same checkpoint without a second write; changed save requires **Đọc lại hành trình**. Reload abandons the visit at its saved exploration position. World battle and active visits block another mode entry. No legacy stores are used and save v4 remains unchanged.
+
+```sh
+node dev/tools/verify-aw2-modes.mjs --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+pnpm build:aw2
+node dev/tools/verify-aw2-modes.mjs --compiled --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+```
+
+The tool owns/closes source8456 or compiled8457 and uses fresh isolated browser profiles. [Task/contract](tasks/AW2-009A.md), [evidence](evidence/AW2-009A.md). AW2-009B will define AW2 TCG practice rules; AW2-009C Auto Chess follows. Parent AW2-009/full MODE-01 remain open.
+
 ## Deterministic combat core — AW2-007A
 
 `src/aw2/combat` is a development-only pure rules module for one-to-five units per side. It owns movement/range, melee contacts, launched projectiles, auto skills, manual ultimates, interruptions, bounded starter passives and the terminal result. Renderer-facing events describe outcomes that already happened; they cannot apply damage or grant rewards. Numeric stats use `aw2-combat-development-v1` and are not final approved balance.
@@ -96,11 +110,11 @@ pnpm test dev/tests/aw2/combat.test.ts dev/tests/aw2/battle-presentation.test.ts
 node dev/tools/verify-aw2-battle-browser.mjs --url http://localhost:8443/dev/aw2/battle.html
 ```
 
-The browser verifier needs Playwright/Chromium and uses a fresh profile. It accepts a package name, file URL, or local Windows/POSIX module path through `--playwright`, and a browser executable through `--chromium`. Current Chromium gate: 22 checks PASS; desktop/mobile/terminal captures inspected. Device/mobile UX/FPS and world-save integration remain open. [Task](tasks/AW2-007B.md) · [evidence](evidence/AW2-007B.md).
+The browser verifier needs Playwright/Chromium and uses a fresh profile. It accepts a package name, file URL, or local Windows/POSIX module path through `--playwright`, and a browser executable through `--chromium`. Current Chromium gate: 22 checks PASS; desktop/mobile/terminal captures inspected. Device/mobile UX/FPS remain open. The separate world boss/save integration and mode transitions now have their own verified development scopes. [Task](tasks/AW2-007B.md) · [evidence](evidence/AW2-007B.md).
 
 ## Than asset / animation reference — AW2-004A
 
-Open `http://localhost:8443/dev/aw2/than.html` after `pnpm dev` (current verification server localhost:8452). Eight HD states, four world directions, four skill FX/audio tracks, pause/replay and reduced motion. Audio starts only after opting in. Preview does not access or change saves. World now links to the shared five-starter selector below; no follower/battle integration is implied.
+Open `http://localhost:8443/dev/aw2/than.html` after `pnpm dev` (current verification server localhost:8452). Eight HD states, four world directions, four skill FX/audio tracks, pause/replay and reduced motion. Audio starts only after opting in. Preview does not access or change saves. World uses the same reference atlases for followers/battle; this manual asset preview itself grants no gameplay outcome.
 
 Five original PNG sources and their lossless WebP counterparts live in `dev/aw2/assets/than/base-v1/`, alongside four synthesized WAVs, exact `prompts.json` and `provenance.json`. Runtime metadata at `src/aw2/assets/than.base-v1.json` binds canonical identity/variant/asset/skill IDs to measured frames, foot anchors, timings/contact markers and source hashes. Generated sheet dimensions/spacing were not exact uniform grids; explicit calibrated rectangles preserve complete visible sprites without repainting or mirroring. Alpha edges tolerate at most 8/255 (observed maximum 4/255 on the selected cells).
 
@@ -115,7 +129,7 @@ node dev/tools/verify-aw2-than-browser.mjs --url http://localhost:8443/dev/aw2/t
 
 Build processing requires Pillow (recorded version in provenance); source PNG artwork remains unchanged. Build only encodes lossless WebP, writes atlas/timing metadata and synthesizes the four cues. Browser verification accepts the existing `--playwright` and `--chromium` options; uses a fresh temporary profile and writes captures under ignored `.asset-work/aw2-004a/`.
 
-[Task](tasks/AW2-004A.md) · [evidence](evidence/AW2-004A.md) · [source prompts](../../dev/aw2/assets/than/base-v1/prompts.json) · [provenance](../../dev/aw2/assets/than/base-v1/provenance.json). License remains REVIEW_REQUIRED / commercial release NOT_CLEARED. Than is a reference asset set, not a completed character: leveling, actual combat, device QA/human listening/legal approval remain open. Other four starters now have reference sets through AW2-004B; seven non-starters remain NOT_CREATED. No AW2-010 completion or release follows from these tasks.
+[Task](tasks/AW2-004A.md) · [evidence](evidence/AW2-004A.md) · [source prompts](../../dev/aw2/assets/than/base-v1/prompts.json) · [provenance](../../dev/aw2/assets/than/base-v1/provenance.json). License remains REVIEW_REQUIRED / commercial release NOT_CLEARED. Than is a reference asset set, not a completed character: five-starter development combat/leveling are verified separately, while full-character/device/human-listening/legal gates remain open. Other four starters now have reference sets through AW2-004B; seven non-starters remain NOT_CREATED. No AW2-010 completion or release follows from these tasks.
 
 ## Five starter references — AW2-004B
 
