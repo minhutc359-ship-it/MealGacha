@@ -413,7 +413,7 @@ try {
     checks,
     errors,
     scope:
-      "MODE-01 navigation/lobby regression only; playable TCG verified separately; no prize or device QA",
+      "MODE-01 navigation/lobby regression only; TCG and Auto Chess practice gameplay verified separately; no prize or device QA",
   }
   await writeFile(
     `${out}/${flavor}-browser.json`,

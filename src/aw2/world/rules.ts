@@ -134,7 +134,7 @@ export function describeObject(
     return result(
       object.id === "aw2-npc-ban-bai"
         ? "Ghé bàn TCG luyện tập với bộ bài mượn, rồi quay về điểm khám phá đã lưu. Không tốn vật phẩm, không nhận thưởng."
-        : "Bạn có thể ghé sảnh rồi quay về điểm khám phá đã lưu. Ván chơi tại bàn này đang được chuẩn bị, chưa có phần thưởng.",
+        : "Ghé bàn Auto Chess luyện tập: tuyển Vị Linh mượn, xếp đội và đấu 5 vòng, rồi quay về điểm khám phá đã lưu. Không tốn vật phẩm, không nhận thưởng hành trình.",
       [action("visit-mode", "Ghé bàn")],
     )
   if (object.kind === "chest")

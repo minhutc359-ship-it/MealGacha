@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "flavor": "source",
+  "engine": "153.0.8010.36",
+  "checks": [
+    "Actual Auto Chess mounts through the adapter with focused heading",
+    "Entry preserves RPG progress/economy and starts only borrowed 10 gold",
+    "Empty formation cannot begin battle",
+    "Click placement and swap preserve distinct unit identities",
+    "Benching and selling return borrowed currency without changing RPG",
+    "Lock is explicit and prevents paid refresh",
+    "Refresh spends exactly one practice gold",
+    "Surrender is distinct terminal state with no grants",
+    "Rematch resets only borrowed match resources",
+    "Returning after planning/rematch is byte-identical and read-only",
+    "Shop/formation portraits decode through canonical manifests",
+    "Shop/bench/formation fit 320px",
+    "Main controls retain 44px targets at 320px",
+    "Shop/bench/formation fit 390px",
+    "Main controls retain 44px targets at 390px",
+    "Shop/bench/formation fit 768px",
+    "Main controls retain 44px targets at 768px",
+    "Pause freezes authoritative auto-combat ticks",
+    "Single-step advances one genuine combat tick",
+    "Resume runs actual auto battle and hides planning mutations",
+    "Legal recruitment/formation and real combat survive all five rounds",
+    "Actual recruitment automatically merges three copies into 2-star units",
+    "Combat, round income and final victory never write world save",
+    "Returning from genuine victory grants nothing",
+    "Weak legal formation loses the match from actual combat damage",
+    "Actual defeat makes no world save write or reward",
+    "Returning during running auto battle abandons match and cleans its timer",
+    "Reload discards borrowed roster/currency at exact exploration checkpoint",
+    "Stale return preserves match and newer-tab save bytes",
+    "Explicit reread abandons stale chess without overwriting current save",
+    "Every seeded legacy key stays byte-identical",
+    "Missing portraits are explicit text errors with recruitment still usable",
+    "No unexpected primary console/page/resource errors"
+  ],
+  "errors": [],
+  "winRounds": [
+    {
+      "round": 1,
+      "tick": 5,
+      "outcome": "Bạn thắng vòng · Nhịp 5"
+    },
+    {
+      "round": 2,
+      "tick": 5,
+      "outcome": "Bạn thắng vòng · Nhịp 5"
+    },
+    {
+      "round": 3,
+      "tick": 4,
+      "outcome": "Bạn thắng vòng · Nhịp 4"
+    },
+    {
+      "round": 4,
+      "tick": 5,
+      "outcome": "Bạn thắng vòng · Nhịp 5"
+    },
+    {
+      "round": 5,
+      "tick": 9,
+      "outcome": "Bạn thắng vòng · Nhịp 9"
+    }
+  ],
+  "lossRounds": 4,
+  "merged": true,
+  "totalTicks": 26,
+  "scope": "Borrowed AW2 Auto Chess development practice; no RPG rewards, production balance, art/device/rights/full mode QA"
+}

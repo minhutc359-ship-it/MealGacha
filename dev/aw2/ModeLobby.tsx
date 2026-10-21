@@ -3,6 +3,7 @@ import { AW2_MODES } from "../../src/aw2/modes/catalog"
 import type { ModeVisit } from "../../src/aw2/modes/session"
 import { zoneById } from "../../src/aw2/world/maps"
 import { TcgPractice } from "./TcgPractice"
+import { ChessPractice } from "./ChessPractice"
 
 export function ModeLobby({
   visit,
@@ -23,6 +24,10 @@ export function ModeLobby({
   const mode = AW2_MODES.find((candidate) => candidate.id === visit.modeId)!
   if (playing && visit.modeId === "tcg")
     return <TcgPractice error={error} onReturn={onReturn} onReread={onReread} />
+  if (playing && visit.modeId === "auto-chess")
+    return (
+      <ChessPractice error={error} onReturn={onReturn} onReread={onReread} />
+    )
   return (
     <main
       className="aw2-save aw2-mode-lobby"
@@ -46,11 +51,15 @@ export function ModeLobby({
           </>
         ) : (
           <>
-            <h2>Ván chơi đang được chuẩn bị</h2>
+            <h2>Bàn cờ luyện tập đã sẵn sàng</h2>
             <p>
-              Hiện chưa có ván đấu hoặc phần thưởng tại bàn này. Điểm khám phá
-              đã được lưu; bạn có thể quay về hành trình ngay.
+              Mượn đội và vàng tại bàn để tuyển quân, xếp đội và đấu 5 vòng.
+              Không tốn vật phẩm, không nhận thưởng hành trình; tải lại hoặc rời
+              bàn sẽ bỏ ván.
             </p>
+            <button onClick={() => setPlaying(true)}>
+              Chơi Auto Chess thử
+            </button>
           </>
         )}
         <p>

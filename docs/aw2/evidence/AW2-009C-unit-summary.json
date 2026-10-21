@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "numTotalTests": 970,
+  "numPassedTests": 970,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "startTime": 1792559119958,
+  "files": 94,
+  "durationMs": 35442.8837890625,
+  "aw2Files": 14,
+  "aw2Tests": 177,
+  "chessTests": 19,
+  "command": "pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-009c-unit.json"
+}
