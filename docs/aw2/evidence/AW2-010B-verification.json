@@ -1,0 +1,142 @@
+{
+  "task": "AW2-010B",
+  "source": "b836a82f3cb8babf1087e6ac32603de1f83336de",
+  "base": "a8f8dfa206f5045cebcb4b43e5875c9f6344662f",
+  "status": "PASS development UI subset",
+  "browser": {
+    "status": "PASS",
+    "flavor": "compiled",
+    "engine": "155.0.8059.85",
+    "checks": [
+      "Fresh demo opens without creating a save or granting progression",
+      "Incomplete saved journey does not claim demo completion",
+      "Initial goal precedes the map and names the first NPC",
+      "Keyboard opens optional help with save/mode return guidance and no writes",
+      "Native summary keeps browser arrows and interaction letters",
+      "Goal/help/world controls fit 320px",
+      "Goal/help/world controls fit 390px",
+      "Goal/help/world controls fit 768px",
+      "Save button keeps native key ownership",
+      "Direction button Enter moves right exactly through world rules without save writes",
+      "Focusing native UI stops held exploration movement",
+      "Reread restores initial unsaved movement without writing",
+      "Closing the first dialogue accepts nothing",
+      "Closing dialogue from body focus restores the keyboard map target",
+      "One earned intro unlocks five starters and exactly 30XP",
+      "Fresh intro reload is byte-identical and retains next objective",
+      "TCG/quick-entry leaves browser reading arrows available",
+      "Actual browser arrow scroll works inside the long TCG page",
+      "tcg/quick-entry real result returns exact RPG position/objective/economy without writes",
+      "Chess/quick-entry leaves browser reading arrows available",
+      "auto-chess/quick-entry real result returns exact RPG position/objective/economy without writes",
+      "TCG/portal leaves browser reading arrows available",
+      "tcg/portal real result returns exact RPG position/objective/economy without writes",
+      "Chess/portal leaves browser reading arrows available",
+      "auto-chess/portal real result returns exact RPG position/objective/economy without writes",
+      "Both real practices and both entry routes fit one legitimately earned journey",
+      "Three memories hand-in grants only its actual quest reward",
+      "Reading and closing chest grants nothing in the combined journey",
+      "Chest can be claimed only once with an actual receipt",
+      "Wrong puzzle attempt is retryable and spends no ingredients",
+      "Solved puzzle reload preserves earned state and exact bytes",
+      "Kitchen guidance explains an opened but distant kitchen",
+      "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
+      "Fresh earned team enters real boss with reduced motion and audio opt-in",
+      "Earned world encounter draws Than's new motion atlas through the shared renderer",
+      "Earned world encounter also draws Lua's authored motion atlas",
+      "Earned world encounter also draws Lam's authored motion atlas",
+      "Paused world encounter freezes visual time as well as core ticks",
+      "Same earned journey wins the actual boss without renderer-supplied outcome",
+      "Explicit boss commit survives reload before note and ending",
+      "Ending branch is captured at the explicitly saved NPC position",
+      "Closing the earned final choice grants no final quest reward",
+      "One fresh journey completes all four quests with exact once-only rewards",
+      "Saved wait ending has an honest completion summary and current XP",
+      "Completion summary reload preserves exact save bytes without grants",
+      "Completed ending and reload cannot repeat quest grants",
+      "Earned ending opens the reciprocal return shortcut",
+      "320px completion summary and both48px practice controls remain readable",
+      "390px completion summary and both48px practice controls remain readable",
+      "Completion tcg action uses safe checkpoint/return without grants",
+      "Completion auto-chess action uses safe checkpoint/return without grants",
+      "Alternate ending branches from exact earned checkpoint and gets same final reward",
+      "Alternate saved ending displays its own summary without a new reward",
+      "All five legacy keys remain byte-identical throughout the combined journey",
+      "No unexpected combined console/page/resource errors"
+    ],
+    "errors": [],
+    "modes": [
+      {
+        "mode": "tcg",
+        "entry": "quick-entry",
+        "result": "player-win",
+        "questIndex": 1
+      },
+      {
+        "mode": "auto-chess",
+        "entry": "quick-entry",
+        "result": "player-win",
+        "questIndex": 1
+      },
+      {
+        "mode": "tcg",
+        "entry": "portal",
+        "result": "opponent-win",
+        "questIndex": 1
+      },
+      {
+        "mode": "auto-chess",
+        "entry": "portal",
+        "result": "opponent-win",
+        "questIndex": 1
+      }
+    ],
+    "bossTick": 45,
+    "final": {
+      "experience": 345,
+      "receipts": [
+        "aw2-grant-kept-seat",
+        "aw2-grant-three-memories",
+        "aw2-grant-chest-pantry",
+        "aw2-grant-open-hearth",
+        "aw2-grant-one-more-bowl"
+      ],
+      "ending": "wait"
+    },
+    "scope": "Fresh earned web demo with reference assets; automated combined acceptance, no independent human/device/art/release approval"
+  },
+  "types": {
+    "root": "PASS",
+    "dev": "PASS"
+  },
+  "formatSyntaxWhitespace": "PASS",
+  "reviewBuild": {
+    "files": 107,
+    "bytes": 34720421,
+    "sourceExclusions": "PASS"
+  },
+  "visual": {
+    "opened": ".asset-work/aw2-010b/compiled-completed-mobile.png"
+  },
+  "reused": {
+    "source": "910b55bf977557f11be03111afa40283df0fbcf1",
+    "fullUnits": 1036,
+    "scope": "Unchanged core/save/economy/modes/assets/stable config/dependencies; not rerun or counted fresh"
+  },
+  "ownerFeedback": {
+    "date": "2026-10-22",
+    "text": "Đã thử TCG/Auto Chess nhưng chưa kết thúc hành trình",
+    "fullJourneyPlaytest": "NOT_RUN"
+  },
+  "progress": {
+    "demo": 90,
+    "product": 40,
+    "roughRange": [
+      35,
+      45
+    ],
+    "fullDoD": "0/12",
+    "unchanged": true
+  },
+  "next": "AW2-004I original boss presentation"
+}

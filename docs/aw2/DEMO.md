@@ -29,3 +29,5 @@ node dev/tools/verify-aw2-demo.mjs --compiled --playwright <module> --chromium <
 Verifier tự mở/đóng source8462 hoặc compiled8463; build trước bản compiled. Chạy build xong trước các browser runner để Vite không reload giữa một hành trình. Chỉ dùng context QA mới, ảnh/runner JSON ở ignored `.asset-work/aw2-010a/`.
 
 Còn cần playtest độc lập, đóng lỗi dùng thử, hoàn thiện12 nhân vật/map/NPC/boss/art/UI/cân bằng và QA thiết bị/hiệu năng/offline/quyền sử dụng/save production. Năm bộ hiện có đều `fullCharacterComplete=false`; không có gacha runtime và D11 chưa duyệt. Mốc demo không tự duyệt phát hành.
+
+Sau kết thúc đã lưu, **Bạn đã hoàn tất hành trình demo** cho biết lựa chọn/EXP và cách tiếp tục khám phá. **Luyện TCG / Luyện Auto Chess** vào bàn qua điểm lưu an toàn; không cấp lại quà nhiệm vụ. Owner đã thử hai mode nhưng chưa kết thúc hành trình, nên playtest tới cuối còn mở. [Chuyển sang sản phẩm](PRODUCT_PLAN.md).

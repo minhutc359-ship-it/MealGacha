@@ -68,3 +68,7 @@ Source `aa0a3a645f15035cb72e16650cc2fa77b440237a`: responsive battle lanes/label
 ## AW2-007D boss development kit —2026-10-22
 
 Source `910b55bf977557f11be03111afa40283df0fbcf1` adds actual three-part boss mechanics and authoritative readable warnings;1036 full units/95 fresh compiled browser assertions/9 simulations PASS. This improves the already counted boss/journey group. **Demo≈90% (9/10), product≈40% (rough35–45%) unchanged**;5/5 starter reference motion/160 cels,0/12 full DoD/7 absent sets unchanged. Owner reports having played and seen no blocker; version/device/full quest/ending coverage is unknown, so record partial player smoke without awarding the final10 points. Full independent playtest gate remains NOT_RUN until its coverage/feedback are recorded. Own boss art/signature presentation, full-character/device/rights/release gates remain open. [Evidence](evidence/AW2-007D.md), [next004I](tasks/AW2-004I.md).
+
+## AW2-010B demo → product —2026-10-22
+
+Source `b836a82f3cb8babf1087e6ac32603de1f83336de` supplies a clear saved-ending summary/play-again routes;55 compiled earned checks PASS. Owner2026-10-22 confirms TCG/Auto Chess tried, full journey not finished. Record partial human mode smoke; end-to-end player acceptance remains NOT_RUN, not inferred from the request to move to product. **Demo9/10≈90%, product≈40% (rough35–45%) unchanged**. Completion UI does not close human full-route/art/character/release gates. Product development now starts004I while acceptance remains open. [Worklist](PRODUCT_PLAN.md), [evidence](evidence/AW2-010B.md).
