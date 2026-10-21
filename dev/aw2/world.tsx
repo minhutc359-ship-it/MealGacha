@@ -30,6 +30,7 @@ import { Aw2ModeAdapter, type ModeVisit } from "../../src/aw2/modes/session"
 import { ModeLobby } from "./ModeLobby"
 import { worldKeyAction } from "../../src/aw2/world/controls"
 import { JourneyGuide } from "./JourneyGuide"
+import { DemoCompletion } from "./DemoCompletion"
 import "./styles.css"
 
 interface ActiveWorldEncounter {
@@ -439,6 +440,11 @@ function WorldPreview() {
         </p>
       ) : (
         <>
+          <DemoCompletion
+            save={snapshot.save}
+            busy={busy}
+            onPractice={(mode) => void enterMode(mode, "quick-entry")}
+          />
           <h2 data-testid="zone-name">{zoneById(world.zoneId).name}</h2>
           <nav className="actions aw2-mode-menu" aria-label="Ghé bàn nhanh">
             {AW2_MODES.map((mode) => (

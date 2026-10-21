@@ -22,7 +22,7 @@ const server = values.compiled
       configFile: "dev/vite.dev.config.ts",
       server: { host: "127.0.0.1", port, strictPort: true },
     })
-const out = ".asset-work/aw2-010a",
+const out = ".asset-work/aw2-010b",
   key = "aw2.development.save",
   url = `http://127.0.0.1:${port}/dev/aw2/world.html`
 const checks = [],
@@ -153,6 +153,10 @@ try {
   await click("Tạo bản lưu AW2")
   await world()
   const initial = await raw()
+  check(
+    "Incomplete saved journey does not claim demo completion",
+    (await page.getByTestId("demo-complete").count()) === 0,
+  )
   check(
     "Initial goal precedes the map and names the first NPC",
     (await page
@@ -704,8 +708,21 @@ try {
       done.economy.teamExperience === 345 &&
       done.economy.receipts.length === 5,
   )
+  const summary = page.getByTestId("demo-complete")
+  check(
+    "Saved wait ending has an honest completion summary and current XP",
+    (await summary.textContent()).includes("345 EXP") &&
+      (await page.getByTestId("demo-ending").textContent()).includes(
+        "Để ghế trống chờ",
+      ) &&
+      (await raw()) === completed,
+  )
   await page.reload()
   await world()
+  check(
+    "Completion summary reload preserves exact save bytes without grants",
+    (await summary.isVisible()) && (await raw()) === completed,
+  )
   await go(160, 240)
   await interact()
   await page.keyboard.press("Escape")
@@ -730,6 +747,42 @@ try {
     path: `${out}/${flavor}-completed-mobile.png`,
     fullPage: true,
   })
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 844 })
+    await summary.scrollIntoViewIfNeeded()
+    check(
+      `${width}px completion summary and both48px practice controls remain readable`,
+      await summary.evaluate((node) => {
+        const buttons = [...node.querySelectorAll("button")]
+        return (
+          document.documentElement.scrollWidth <= innerWidth &&
+          buttons.length === 2 &&
+          buttons.every((button) => button.getBoundingClientRect().height >= 48)
+        )
+      }),
+    )
+  }
+  for (const [label, mode] of [
+    ["Luyện TCG", "tcg"],
+    ["Luyện Auto Chess", "auto-chess"],
+  ]) {
+    await click(label)
+    await page.getByTestId("mode-lobby").waitFor()
+    const checkpoint = await raw()
+    const validEntry =
+      (await page.getByTestId("mode-lobby").getAttribute("data-mode-id")) ===
+      mode
+    await click("Trở về hành trình")
+    await world()
+    check(
+      `Completion ${mode} action uses safe checkpoint/return without grants`,
+      validEntry &&
+        (await raw()) === checkpoint &&
+        (await save()).economy.teamExperience === 345 &&
+        (await save()).economy.receipts.length === 5 &&
+        (await summary.isVisible()),
+    )
+  }
   const branchContext = await browser.newContext({ reducedMotion: "reduce" }),
     branch = await branchContext.newPage()
   watch(branch)
@@ -756,6 +809,15 @@ try {
       share.progress.endingChoice === "share" &&
       share.economy.teamExperience === 345 &&
       share.economy.receipts.length === 5,
+  )
+  check(
+    "Alternate saved ending displays its own summary without a new reward",
+    (await branch.getByTestId("demo-ending").textContent()).includes(
+      "Mời cả làng dùng bữa",
+    ) &&
+      (await branch.getByTestId("demo-complete").textContent()).includes(
+        "345 EXP",
+      ),
   )
   await branchContext.close()
   check(

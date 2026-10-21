@@ -125,3 +125,7 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-boss-telegraph p { margin: .4rem 0; overflow-wrap: anywhere; }
 .aw2-boss-telegraph progress { display: block; width: 100%; height: 1rem; accent-color: #ebc477; }
 .aw2-battle #battle-ultimates, .aw2-battle .aw2-ultimate-grid button { scroll-margin-top: calc(var(--boss-telegraph-height, 0px) + 1rem); }
+.aw2-demo-complete { margin: 1.25rem 0; padding: 1rem; border: 1px solid #d8b573; border-radius: .75rem; background: #26352c; overflow-wrap: anywhere; }
+.aw2-demo-complete h2 { margin-top: .35rem; color: #ffe1a4; }
+.aw2-demo-complete button { min-height: 48px; }
+.aw2-demo-note { font-size: .875rem; color: #d5e4d9; }
