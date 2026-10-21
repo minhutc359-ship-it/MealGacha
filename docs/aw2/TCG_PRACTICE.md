@@ -30,4 +30,4 @@ pnpm build:aw2
 node dev/tools/verify-aw2-tcg.mjs --compiled --playwright <module> --chromium <executable>
 ```
 
-Fresh browser contexts only. Capture/JSON artifacts live in ignored `.asset-work/aw2-009b/`; tracked results are linked from [verification](evidence/AW2-009B.md). Auto Chess gameplay remains AW2-009C; prizes/costs/persistent decks/production balance/device/art/rights gates remain separate.
+Fresh browser contexts only. Capture/JSON artifacts live in ignored `.asset-work/aw2-009b/`; tracked results are linked from [verification](evidence/AW2-009B.md). [AW2-009C](AUTO_CHESS_PRACTICE.md) now supplies borrowed Auto Chess practice through the same adapter; prizes/costs/persistent decks/production balance/device/art/rights gates remain separate.

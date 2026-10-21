@@ -11,9 +11,9 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 
 Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực tiếp trên `game/adventure-world-2`, **không tạo branch mới**. Mỗi task hoàn thành: chạy kiểm tra phù hợp, cập nhật tài liệu, commit rồi **push ngay vào `game/adventure-world-2`** và xác minh SHA trên remote trùng local. Quy định này thay thế hướng dẫn feature branch trước đây. Chi tiết lệnh và dọn nhánh đã tích hợp tại [WORKFLOW](WORKFLOW.md), [AW2-012B](tasks/AW2-012B.md).
 
-## AW2 development preview — expedition and TCG practice
+## AW2 development preview — expedition, TCG and Auto Chess practice
 
-Current branch: `game/adventure-world-2`. AW2-009B at `a0d24937f1450f8b4f8338780fee6a4cc0aa125c` adds playable borrowed-deck TCG with manual actions/targets, bounded opponent, real results and transient rematch through AW2-009A's checkpoint/return adapter. No mode spending/prizes/save fields; Auto Chess gameplay remains pending.951 tests (158 AW2), both typechecks and stable/review builds PASS; browser details in [fresh verification](evidence/AW2-009B.md). Prior AW2-013A supplies inventory/XP, quest/chest/cooking, companions, touch navigation, audio and review build. [TCG rules/how to play](TCG_PRACTICE.md), [quick REPORT](REPORT.md), [status](STATUS.md), [handoff](HANDOFF.md). D16 applies; approved canon is unchanged and D11 stays PROPOSED.
+Current branch: `game/adventure-world-2`. AW2-009C at `ff499a52e471f9b07133bc80e9d32802dda92cb8` adds actual Auto Chess practice: finite borrowed shop, merge2-star, formation/swap, bounded auto battle and five-round results through the checkpoint/return adapter. TCG practice remains playable and freshly regressed. No mode world spending/prizes/save fields.970 tests (177 AW2), both typechecks and stable/review builds PASS; [fresh verification](evidence/AW2-009C.md). [Auto Chess rules/how to play](AUTO_CHESS_PRACTICE.md), [TCG rules](TCG_PRACTICE.md), [quick REPORT](REPORT.md), [conditional delivery estimates](DELIVERY_PLAN.md), [status](STATUS.md), [handoff](HANDOFF.md). D16 applies; approved canon unchanged, D11 stays PROPOSED.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -74,17 +74,20 @@ node dev/tools/simulate-aw2-gacha.mjs
 
 `dist-aw2/` is a local review artifact with separate world/save/battle/starter/Than entries and runtime assets, excluding source PNG/code/maps/archives. `pnpm build` still creates the stable game without AW2. No deployment/release. The two new browser verifiers own ports8454/8455; close a manual preview before using8455. Captures stay ignored under `.asset-work/`. [Development contract and fresh evidence](evidence/AW2-013A.md). Gacha simulation is a [proposal for D11](proposals/AW2-005A-RATES.md), with no runtime draw/spend/save.
 
-## TCG / Auto Chess transition lobbies — AW2-009A
+## Embedded TCG / Auto Chess practice — AW2-009A/B/C
 
-With a ready AW2 save, choose **Ghé nhanh TCG/Auto Chess** from the world, or approach the two tables in Phố, interact and choose **Ghé bàn**. Both paths save the current exploration checkpoint before entering. **Actual games and prizes are not integrated yet.** Return reads the same checkpoint without a second write; changed save requires **Đọc lại hành trình**. Reload abandons the visit at its saved exploration position. World battle and active visits block another mode entry. No legacy stores are used and save v4 remains unchanged.
+With a ready AW2 save, choose **Ghé nhanh TCG/Auto Chess** from the world, or approach either table in Phố, interact and choose **Ghé bàn**. Both paths checkpoint current exploration before entering. The lobby now opens **Chơi TCG thử** or **Chơi Auto Chess thử**. Both actual borrowed-resource practices are integrated; mode prizes/collected progression are not. Return reads the same checkpoint without another write; changed data requires **Đọc lại hành trình**. Reload abandons the match at its checkpoint. Active world battle/visits block nested entry; no legacy store or schema change.
+
+This supersedes the old AW2-009A subsection that said actual games were not integrated; that statement described its historical transition-only milestone. [Navigation foundation](tasks/AW2-009A.md), [TCG](TCG_PRACTICE.md), [Auto Chess](AUTO_CHESS_PRACTICE.md).
 
 ```sh
 node dev/tools/verify-aw2-modes.mjs --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+node dev/tools/verify-aw2-chess.mjs --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
 pnpm build:aw2
-node dev/tools/verify-aw2-modes.mjs --compiled --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+node dev/tools/verify-aw2-chess.mjs --compiled --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
 ```
 
-The tool owns/closes source8456 or compiled8457 and uses fresh isolated browser profiles. [Task/contract](tasks/AW2-009A.md), [evidence](evidence/AW2-009A.md). AW2-009B will define AW2 TCG practice rules; AW2-009C Auto Chess follows. Parent AW2-009/full MODE-01 remain open.
+Navigation owns/closes source8456/compiled8457, TCG8458/8459, Chess8460/8461. Fresh isolated browser profiles only. [Current task](tasks/AW2-009C.md), [evidence](evidence/AW2-009C.md). Embedded-practice/navigation subset verified; production mode balance/art/persistence/prizes and complete release gates remain open. Next [AW2-010A](tasks/AW2-010A.md) demo integration/playtest.
 
 ## Deterministic combat core — AW2-007A
 

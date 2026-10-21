@@ -6,9 +6,9 @@ Historical story review preserved by AW2-012: source `461c7cfaac658618d96ca8020a
 Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, command, observed outcome. Prior PASS becomes STALE for affected changes. PR runs selective affected tests; full suite required before release/major cross-engine merge, and after high-impact save/shared engine changes.
 | Case | Trigger | Result |
 |---|---|---|
-| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —16f55af; unchanged v4 store,926 full tests and100 fresh Chromium assertions preserve seeded stable bytes |
+| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —ff499a5; unchanged v4 store,970 full tests and224 fresh browser assertions preserve seeded stable bytes |
 | SAVE-02 chest/battle/gacha atomic grants, no double reward | loot/store | PASS development quest/chest/cooking/XP/boss subset —a40217a; failure/replay/concurrency/authority checks; runtime gacha/spending NOT_RUN |
-| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS —16f55af; unchanged migration/raw-lock boundary regressed in full units; mode checkpoint/stale/failed/reset/missing/corrupt/future/read-only return checks added |
+| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS —ff499a5; unchanged v4 migration/raw-lock boundary in970 units; both practices/checkpoint/failed/stale/reset/invalid/read-only return regressed |
 | GACHA-01 weights N/R/SR/SSR/UR seeded statistics | gacha/roster | PASS simulation-only proposed D11 —a40217a;2,000,000 seeded draws +boundary/pity tests; owner approval/runtime adoption pending |
 | GACHA-02 pity/shards/dupes and reload | gacha/save | NOT_RUN runtime; proposed counters have pure simulation tests only |
 | WORLD-01 navigation, collision, zone transfer, spawn | world | PASS development —16f55af;40 fresh world checks plus52 mode transition checks, safe checkpoint returns/reload; authored maps/device pending |
@@ -22,10 +22,32 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS — integration source 0e8fb7a /133 Chromium checks; reference scope only |
 | PROVENANCE-STARTERS original image/audio inventory | asset | PASS inventory only — integration source 0e8fb7a; rights/legal approval NOT_RUN |
 | DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | PASS debug development subset —a40217a;3 rooms/puzzle/once-only chest/real boss/return; full authored dungeon/balance/device pending |
-| MODE-01 TCG/Chess embedded and quick-entry safe | navigation | PASS navigation +TCG practice subset —a0d2493;25 TCG cases/40 legal seeds,29+29 gameplay and26+26 navigation browser assertions; Auto Chess/full case NOT_RUN; prizes/persistence out of scope |
+| MODE-01 TCG/Chess embedded and quick-entry safe | navigation | PASS embedded borrowed-practice/navigation subset —ff499a5;19 Chess/25 TCG cases,33+33 Chess/29+29 TCG/26+26 navigation browser checks; production mode balance/art/device/prizes/persistence NOT_RUN/out of scope |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
-Current AW2-009B verifies actual isolated TCG practice plus affected navigation/world/boss/compiled integration. Auto Chess/full MODE-01 remain NOT_RUN; prizes/persistence are out of scope. Unchanged save/combat/asset milestones retain source-bound evidence. Prior AW2-009A926/100 and AW2-013A909/124 results are historical, not added to current totals.
+Current AW2-009C verifies both actual borrowed practices plus affected navigation/world/boss/compiled integration. Full production mode/art/device/release gates remain open; prizes/persistence out of scope. Unchanged combat/asset evidence retains its original source. Prior009B951/158,009A926/100 and013A909/124 results are historical, not added to224 fresh assertions. Combined first-player demo acceptance is AW2-010A READY/NOT_RUN.
+
+## AW2-009C Auto Chess practice / estimate — 2026-10-21
+
+VERIFIED development-practice subset. Base local/remote `99fa529ac196b3f0a06e286851d39d6c3971d45e`; implementation `ff499a52e471f9b07133bc80e9d32802dda92cb8`, tree `28e00e7d412b448d11095fc1c03dac16e1fc97a6`, branch game/adventure-world-2. Task card preceded code; completion docs only. D16 matched index/remote tree, expected-head/force=false GitHub connection delivery, independent Git fetch/SHA/index/ancestry and guarded local fast-forward; final docs descendant fetched before handoff. No feature branch/PR/master/rpg/deployment/owner reset.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. In-session BA/mechanic/tester/scretary and React/verification reviews; no independent agent/human-device/legal sign-off. [Task](tasks/AW2-009C.md), [rules](AUTO_CHESS_PRACTICE.md), [commands/evidence](evidence/AW2-009C.md), [REPORT](REPORT.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Affected Chess / all AW2 | PASS |Initial18 Chess; hardened19 cases,177 AW2 /14 files,2.25s |
+| Full unit JSON run, maxWorkers2 | PASS |970 tests /94 files,35.44s, zero failed/pending; before build/browser |
+| Root/dev types,10-file format, Git whitespace | PASS |Exit0; dev types rechecked after UI public attributes |
+| Stable/review build and recursive scan | PASS |Stable851 files /77 text artifacts exclude AW2; review92 files /23,828,460 bytes, no PNG/TS/TSX/map/ZIP |
+| Actual Auto Chess source / compiled | PASS |33+33 shop/merge/formation/move/swap/bench/sell/keyboard/lock, genuine five-round win/combat defeat/surrender, pause/step/rematch/return/reload/stale reread/no world writes/mobile/missing portrait |
+| TCG source / compiled | PASS |29+29 fresh actual gameplay/return/byte-preservation regression |
+| Navigation source / compiled | PASS |26+26 portals/quick-entry/checkpoint/failure/stale/boss guard/mobile |
+| World/quest/boss/both endings / compiled smoke | PASS |40+8,8452 inspected for current ChessPractice first |
+| Three source/compiled captures opened | PASS reference scope |390px planning,768px battle/terminal; long scrolling pages, no physical-device/finished-animation claim |
+
+224 fresh browser assertions, zero unexpected primary errors; five seeded stable keys unchanged. Default seed legal recruitment wins all5 rounds at ticks5/5/4/5/9; weak legal unit loses4 rounds to0HP. Pure invariant coverage includes finite pool/reserved/owned/merged copy conservation across12 full legal seeds, gold/cap/phase/UID, simultaneous damage/heal/shield, formation/range/blocked movement, diversity, timeout/draw/once-only settlement and invalid-state preservation. No game-check failures observed in executed runs; source keyboard verifier rerun replaces prior run, not added again to counts. [Raw summaries](evidence/AW2-009C-unit-summary.json).
+
+Residual obligations: AW2-010A combined fresh-player demo/onboarding/playtest READY/NOT_RUN,12 full characters/art/mode-product design/balance, D11/D12 decisions, save-production migrations, physical devices/native/offline/FPS/listening/rights/release. [Delivery ranges](DELIVERY_PLAN.md) are conditional planning assumptions, not QA results, committed dates or approval. Repeat affected checks and full suite per impact/cadence; this does not turn untouched gates green.
 
 ## AW2-009B playable TCG practice — 2026-10-21
 
