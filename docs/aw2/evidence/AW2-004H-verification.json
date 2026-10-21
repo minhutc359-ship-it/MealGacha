@@ -1,0 +1,184 @@
+{
+  "task": "AW2-004H",
+  "source": "aa0a3a645f15035cb72e16650cc2fa77b440237a",
+  "base": "24dcf77846a71f9df63b6c2321e19c2a431f8c2d",
+  "status": "PASS presentation subset",
+  "environment": {
+    "os": "Windows10.0.26200 x64",
+    "node": "v25.2.0",
+    "pnpm": "10.34.3",
+    "chrome": "155.0.8059.85"
+  },
+  "fresh": {
+    "unitTests": 43,
+    "unitFiles": 6,
+    "newUnitTests": 5,
+    "layoutChecks": [
+      "Actual decoded atlases for all five starters draw without invalid source cells",
+      "1280px: all eight actors have distinct bounded lanes and associated labels",
+      "1280px: no page overflow or whole-stage text shrink",
+      "1280px: five ultimate controls retain readable 44px targets",
+      "1280px: paused resize preserves rules tick and playback clock",
+      "1280px: keyboard jump reaches the ultimate section",
+      "768px: all eight actors have distinct bounded lanes and associated labels",
+      "768px: no page overflow or whole-stage text shrink",
+      "768px: five ultimate controls retain readable 44px targets",
+      "768px: paused resize preserves rules tick and playback clock",
+      "768px: keyboard jump reaches the ultimate section",
+      "390px: all eight actors have distinct bounded lanes and associated labels",
+      "390px: no page overflow or whole-stage text shrink",
+      "390px: five ultimate controls retain readable 44px targets",
+      "390px: paused resize preserves rules tick and playback clock",
+      "390px: keyboard jump reaches the ultimate section",
+      "320px: all eight actors have distinct bounded lanes and associated labels",
+      "320px: no page overflow or whole-stage text shrink",
+      "320px: five ultimate controls retain readable 44px targets",
+      "320px: paused resize preserves rules tick and playback clock",
+      "320px: keyboard jump reaches the ultimate section",
+      "Screen-readable roster associates eight names, HP and finite current statuses",
+      "Real moving battle retains lanes, flights and confirmed target effects",
+      "Real terminal clears flights and numeric outcome clutter in reduced motion",
+      "Independent preview preserves exact seeded AW2/stable bytes",
+      "World boss 390px: full labels/HP and five readable ultimate rows",
+      "World boss 320px: full labels/HP and five readable ultimate rows",
+      "Canonical long boss name remains fully available in the associated roster",
+      "No browser/page/asset errors"
+    ],
+    "combatConsumers": [
+      {
+        "spirit": "aw2-than",
+        "checks": [
+          "Actual five-unit combat draws Than motion atlas",
+          "Combat pause freezes presentation clock across RAFs",
+          "Explicit paused step advances rules once while presentation remains frozen",
+          "Resume continues presentation time",
+          "Decoded atlas draws stay inside actual source bounds",
+          "Reference/combat previews preserve every seeded save byte",
+          "No unexpected primary browser or resource errors"
+        ]
+      },
+      {
+        "spirit": "aw2-lua",
+        "checks": [
+          "Actual five-unit combat draws Lửa Nhỏ motion atlas",
+          "Combat pause freezes presentation clock across RAFs",
+          "Explicit paused step advances rules once while presentation remains frozen",
+          "Resume continues presentation time",
+          "Actual Lua combat presents both confirmed beats using their own FX cue",
+          "Actual first-hit visuals never jump to the second unconfirmed punch",
+          "Decoded atlas draws stay inside actual source bounds",
+          "Reference/combat previews preserve every seeded save byte",
+          "No unexpected primary browser or resource errors"
+        ]
+      },
+      {
+        "spirit": "aw2-lam",
+        "checks": [
+          "Actual five-unit combat draws Lam Lam motion atlas",
+          "Combat pause freezes presentation clock across RAFs",
+          "Explicit paused step advances rules once while presentation remains frozen",
+          "Resume continues presentation time",
+          "Actual Lam ultimate has one confirmed visual cue per rules pulse across ally recipients",
+          "First confirmed healing gesture never reaches unconfirmed second pose",
+          "Actual Lam basic uses only target-owned impact frames",
+          "Actual cast/flight never emit premature impact/healing FX",
+          "Reduced motion never revives expired confirmed healing FX",
+          "Decoded atlas draws stay inside actual source bounds",
+          "Reference/combat previews preserve every seeded save byte",
+          "No unexpected primary browser or resource errors"
+        ]
+      },
+      {
+        "spirit": "aw2-moc-non",
+        "checks": [
+          "Actual five-unit combat draws Mộc Non motion atlas",
+          "Combat pause freezes presentation clock across RAFs",
+          "Explicit paused step advances rules once while presentation remains frozen",
+          "Resume continues presentation time",
+          "Actual Moc ultimate emits one confirmed source effect across ally statuses",
+          "Actual Moc basic uses confirmed target impact art only",
+          "Actual Moc shield FX belongs to its confirmed ally target",
+          "Actual Moc passive displays only its confirmed proc cue",
+          "Actual Moc preparation/flight produce no premature outcome FX",
+          "Guard recipients keep their own actor identities without Moc source skill cues",
+          "Reduced motion cannot revive expired confirmed Moc ultimate FX",
+          "Decoded atlas draws stay inside actual source bounds",
+          "Reference/combat previews preserve every seeded save byte",
+          "No unexpected primary browser or resource errors"
+        ]
+      },
+      {
+        "spirit": "aw2-suong",
+        "checks": [
+          "Actual five-unit combat draws Sương Lành motion atlas",
+          "Combat pause freezes presentation clock across RAFs",
+          "Explicit paused step advances rules once while presentation remains frozen",
+          "Resume continues presentation time",
+          "Actual Suong basic uses only its finite confirmed cue at700",
+          "Actual Suong auto uses only its finite confirmed cue at420",
+          "Actual Suong passive uses only its finite confirmed cue at180",
+          "Actual Suong ultimate uses only its finite confirmed cue at560",
+          "Three real consecutive zone pulses restart once per rules tick, never per recipient",
+          "Actual ranged impact uses separate impact cels",
+          "Interleaved pull statuses do not duplicate ultimate damage FX",
+          "Preparation and flight contain no outcome FX",
+          "Recipients retain their own reaction identity",
+          "Reduced motion cannot revive an expired confirmed ultimate",
+          "Terminal combat suppresses all confirmed and actor FX without fabricating later zone contacts",
+          "Decoded atlas draws stay inside actual source bounds",
+          "Reference/combat previews preserve every seeded save byte",
+          "No unexpected primary browser or resource errors"
+        ]
+      }
+    ],
+    "totalBrowserAssertions": 89,
+    "typechecks": "both PASS",
+    "format": "6 files PASS",
+    "reviewBuild": {
+      "files": 107,
+      "bytes": 34712894,
+      "sourceExclusion": "PASS"
+    },
+    "capturesOpened": {
+      "before": 2,
+      "after": 7
+    }
+  },
+  "unchanged": {
+    "base": "24dcf77846a71f9df63b6c2321e19c2a431f8c2d",
+    "paths": [
+      "src",
+      "dev/aw2/assets",
+      "dev/aw2/world.tsx",
+      "dev/aw2/battleSession.ts",
+      "dev/aw2/useBattleAudio.ts",
+      "dev/vite.aw2.config.ts",
+      "vite.config.ts",
+      "package.json",
+      "pnpm-lock.yaml",
+      "public"
+    ],
+    "command": "git diff --exit-code <base> -- <paths>",
+    "result": "PASS",
+    "retainedFullEvidence": "cf0b39469d1fb8f7d77e18feb5e16895d70565a1"
+  },
+  "notRun": [
+    "fresh full suite",
+    "stable build",
+    "new earned full quest journey",
+    "physical devices",
+    "independent playtest",
+    "performance",
+    "rights"
+  ],
+  "limits": [
+    "Mobile requires vertical scrolling",
+    "Canvas truncates long labels; full text in roster",
+    "World boss test uses isolated v3 ready-quest fixture"
+  ],
+  "progress": {
+    "demo": "90% unchanged",
+    "product": "40% rough35–45%, unchanged",
+    "fullCharacters": "0/12"
+  }
+}

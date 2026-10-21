@@ -23,6 +23,8 @@ Trong hành trình, chọn **Tạo bản lưu AW2** nếu chưa có save; save h
 
 Trong trận mẫu, thử ultimate Sương Lành khi đủ năng lượng, **Tạm dừng** → **Bước 1 nhịp** → **Tiếp tục**, rồi bật **Giảm chuyển động**. Hiệu ứng đạn/vùng chỉ đi cùng kết quả combat thật. Âm thanh bật tự nguyện bằng ô **Âm thanh**. Trận mẫu và màn xem nhân vật không ghi tiến trình/phần thưởng.
 
+Sau AW2-004H, mỗi nhân vật có một làn riêng để tránh che nhau; trục ngang vẫn thể hiện bước tiến trong trận. Ký hiệu **Đ1–Đ5** là đội, **K1…** là ký ức. Mở **Máu và trạng thái từng nhân vật** để xem tên đầy đủ/HP/trạng thái hiện tại. Dùng **Đến tuyệt kỹ** và **Đến đấu trường** để chuyển nhanh bằng chạm hoặc Tab/Enter. Điện thoại cuộn dọc để giữ chữ và nhân vật rõ; nút ultimate trong trận boss nay là từng hàng có chân dung. Thử ở cửa sổ hẹp, tạm dừng rồi đổi kích thước, kiểm tra nhân vật/đạn vẫn đúng mục tiêu và báo thao tác/cảnh khó theo dõi.
+
 Chơi thử nhanh: nhận đội → đi sang Phố và trở về → lưu/tải lại → mở TCG hoặc Auto Chess từ **Ghé nhanh**, chơi rồi rời bàn. Sau đó tiếp tục mục tiêu nhiệm vụ tới boss. Bản đồ nối Làng → Phố → Sân → Kho → Lửa → Bàn. [Hướng dẫn demo đầy đủ](DEMO.md).
 
 Save AW2 dùng `aw2.development.save`, tách dữ liệu Soul of Meal. Giữ cùng trình duyệt và địa chỉ `localhost:8443`: đổi cổng/host hoặc dùng cửa sổ riêng tư là kho lưu khác. Ghi save cần localhost/HTTPS và Web Locks; nếu báo không ghi được, dùng Chrome mới và giữ thông báo lỗi để báo lại. Không cần reset/xóa localStorage để thử cập nhật này. Khi gặp lỗi, ghi trang/zone, thao tác trước lỗi, thông báo trên trang/Console và việc có tái hiện sau tải lại hay không.
