@@ -22,3 +22,6 @@ Giả định phát hành web chơi đơn, lưu cục bộ; không tính tài kh
 4. **Release gate — AW2-011:** trình duyệt/thiết bị thật, hiệu năng/offline/âm thanh, migration/save production không phá dữ liệu, quyền sử dụng art/audio và full regression. Owner duyệt trước deploy/release; làm xong code không tự đóng các gate này.
 
 **Cách cập nhật ước lượng:** phần kỹ thuật010A đã qua; cập nhật tiếp sau playtest độc lập và sau nhân vật đầu tiên đạt đầy đủ DoD, BA/tester đối chiếu công sức thực, lỗi còn mở và thời gian duyệt; scretary cập nhật REPORT/bản này. Theo yêu cầu owner về %, dùng [PROGRESS](PROGRESS.md): đếm nhóm tiêu chí demo đã kiểm chứng và ghi riêng ước lượng sản phẩm có trọng số/độ bất định. Không suy phần trăm từ số test hoặc hẹn ngày không có cơ sở. [STATUS](STATUS.md), [BACKLOG](BACKLOG.md), [CANON](CANON.md), [HANDOFF](HANDOFF.md) là nguồn phạm vi/gate.
+
+
+AW2-004C cập nhật cơ sở:32 cels/tám trạng thái Than đã được tạo, sửa gutter và kiểm chứng, nhưng full DoD vẫn mở. Bốn lần image_gen/hai sheet được chọn và gate cụ thể nằm tại [Than ledger](THAN_CHARACTER_GATES.md); chưa phải số ngày/chi phí của một nhân vật hoàn chỉnh. Giữ nguyên các khoảng có điều kiện ở trên, không suy vận tốc12 nhân vật từ một gói motion. Task triển khai kế tiếp004D Lửa Nhỏ; kiểm duyệt độc lập/playtest/thiết bị/rights vẫn là phần phải tính riêng.

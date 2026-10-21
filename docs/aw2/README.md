@@ -13,7 +13,7 @@ Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực t
 
 ## AW2 development preview — expedition, TCG and Auto Chess practice
 
-Current branch: `game/adventure-world-2`. AW2-010A at `e7aedacadcc5f7664695767196d9edaa77fe724b` verifies a fresh earned RPG/TCG/Chess journey on source+compiled and fixes keyboard/native-control ownership, dialog focus and onboarding guidance.982 tests (189 AW2),171 browser assertions, both types/builds/isolation PASS. [Demo/how to play](DEMO.md), [fresh evidence](evidence/AW2-010A.md), [progress/caveats](PROGRESS.md): demo9/10 groups≈90%, full12-character product≈40% rough weighted estimate. Independent human playtest, full art/device/rights/release gates remain open. Both borrowed practices stay isolated from RPG spending/prizes/save fields; D11 stays PROPOSED, D12 platform/scope OPEN. Next [AW2-004C](tasks/AW2-004C.md) first-character gap closure; [REPORT](REPORT.md), [HANDOFF](HANDOFF.md).
+Current branch: `game/adventure-world-2`. AW2-004C at `f85e1e7cadb933bce0a7355abe8f244cab2c89b8` adds32 Than motion cels and fixes shared animation timing/pause/defeat/skill-FX ownership.989 tests (196 AW2),377 fresh browser assertions, types/builds/isolation PASS. [Per-state/full-character gaps](THAN_CHARACTER_GATES.md), [evidence](evidence/AW2-004C.md). [Demo/how to play](DEMO.md), [progress](PROGRESS.md): demo9/10≈90%, product≈40% rough estimate unchanged;0/12 full DoD. Next [AW2-004D](tasks/AW2-004D.md) Lửa Nhỏ motion/two-contact package; independent art/human playtest/device/rights/release gates remain open. D11 PROPOSED, D12 OPEN. [REPORT](REPORT.md), [HANDOFF](HANDOFF.md).
 
 ```sh
 pnpm install --frozen-lockfile

@@ -38,3 +38,8 @@ Trước AW2-010A: **8/10 nhóm tiêu chí đã kiểm chứng, khoảng80%**. H
 Hoàn tất một test mới có thể làm tỷ lệ demo tăng mà điểm sản phẩm giữ nguyên: art/nội dung/gate phát hành vẫn còn phần lớn công việc. Chỉ nâng điểm nhóm khi có artifact và bằng chứng đúng phạm vi; không coi portrait hoặc approved proposal là nhân vật hoàn thành. Xem [CANON](CANON.md), [STATUS](STATUS.md), [TEST_LEDGER](TEST_LEDGER.md).
 
 Scretary cập nhật hai chỉ báo sau mỗi mốc có thay đổi thực chất, giữ mốc gốc/cách tính và ghi lý do điều chỉnh. Sau nhân vật đầu tiên đủ DoD và playtest demo, BA/tester điều chỉnh trọng số/ước lượng thời gian trong [DELIVERY_PLAN](DELIVERY_PLAN.md); không suy ra ngày hẹn từ40% hoặc90%.
+
+
+## AW2-004C measurement update
+
+Than có thêm32 khung chuyển động/tám trạng thái, đã kiểm chứng source+compiled và boss thật; [bằng chứng](evidence/AW2-004C.md), [gate từng phần](THAN_CHARACTER_GATES.md). Bốn lần gọi image_gen tạo hai bản đầu bị loại vì khoảng cách ô và hai bản sửa được chọn. Đây là số đo của một gói motion, chưa phải thời gian hoàn thiện/kiểm duyệt một nhân vật. Art độc lập, cân bằng/cấp độ cuối, nghe âm thanh, thiết bị/quyền sử dụng còn mở. **0/12 full DoD, demo≈90% và sản phẩm≈40% giữ nguyên**; không tự cộng điểm chỉ vì tăng số khung/test. Tiếp theo004D Lửa Nhỏ; chưa có dữ liệu vận tốc để siết lịch12 nhân vật.
