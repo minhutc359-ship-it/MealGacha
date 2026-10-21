@@ -89,6 +89,9 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 }
 
 .aw2-bag-panel { margin-top: 1rem; border: 1px solid #60756b; border-radius: .75rem; padding: .5rem 1rem; }
+.aw2-mode-menu { margin: .75rem 0 1.25rem; }
+.aw2-mode-lobby a { color: #f0d797; }
+.aw2-mode-lobby h1 { font-size: clamp(1.7rem, 5vw, 2.6rem); }
 .aw2-bag-panel > summary, .aw2-combat-help > summary { cursor: pointer; min-height: 44px; padding: .6rem 0; }
 .aw2-combat-help p { color: #bdcec4; }
 @media (max-width:600px) {

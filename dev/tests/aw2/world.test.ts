@@ -171,7 +171,13 @@ describe("WORLD-02 approved quest progression and starter unlock", () => {
     ] as const) {
       const placed = at(state, id, zone)
       const object = zoneById(zone).objects.find((object) => object.id === id)!
-      expect(describeObject(placed, object).actions).toEqual([])
+      expect(describeObject(placed, object).actions).toEqual(
+        object.kind === "mode" ? [{ id: "visit-mode", label: "Ghé bàn" }] : [],
+      )
+      if (object.kind === "mode")
+        expect(() => applyWorldAction(placed, id, "visit-mode")).toThrow(
+          /bộ chuyển mode/,
+        )
       expect(() => applyWorldAction(placed, id, "win")).toThrow()
     }
   })

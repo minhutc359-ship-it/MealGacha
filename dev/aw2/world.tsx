@@ -20,6 +20,14 @@ import { WorldCanvas } from "./WorldCanvas"
 import { InventoryPanel } from "./InventoryPanel"
 import { CHEST_RECEIPT, type EconomyAction } from "../../src/aw2/economy/model"
 import { findWorldPath, type Waypoint } from "../../src/aw2/world/navigation"
+import {
+  AW2_MODES,
+  modeForPortal,
+  type Aw2ModeId,
+  type ModeEntry,
+} from "../../src/aw2/modes/catalog"
+import { Aw2ModeAdapter, type ModeVisit } from "../../src/aw2/modes/session"
+import { ModeLobby } from "./ModeLobby"
 import "./styles.css"
 
 interface ActiveWorldEncounter {
@@ -40,6 +48,14 @@ function WorldPreview() {
   const [mapEpoch, setMapEpoch] = useState(0)
   const [activeEncounter, setActiveEncounter] =
     useState<ActiveWorldEncounter | null>(null)
+  const [activeMode, setActiveMode] = useState<ModeVisit | null>(null)
+  const battleActive = useRef(false)
+  battleActive.current = !!activeEncounter
+  const [modeAdapter] = useState(
+    () => new Aw2ModeAdapter(store, () => !battleActive.current),
+  )
+  const worldHeading = useRef<HTMLHeadingElement>(null)
+  const restoreModeFocus = useRef(false)
   const worldRef = useRef(world)
   const saved = useRef(snapshot)
   const keys = useRef(new Set<string>())
@@ -50,7 +66,7 @@ function WorldPreview() {
   const closeButton = useRef<HTMLButtonElement>(null)
   worldRef.current = world
   saved.current = snapshot
-  paused.current = !!dialogObject || !!activeEncounter
+  paused.current = !!dialogObject || !!activeEncounter || !!activeMode
 
   function openInteraction() {
     route.current = []
@@ -151,8 +167,19 @@ function WorldPreview() {
     } else dialog.current?.close()
   }, [dialogObject])
 
+  useEffect(() => {
+    if (!activeMode && restoreModeFocus.current) {
+      restoreModeFocus.current = false
+      worldHeading.current?.focus()
+    }
+  }, [activeMode])
+
   function reread() {
-    setMapEpoch(epoch => epoch + 1)
+    if (pending.current) return
+    restoreModeFocus.current = !!activeMode
+    modeAdapter.abandon()
+    setActiveMode(null)
+    setMapEpoch((epoch) => epoch + 1)
     keys.current.clear()
     route.current = []
     setDialogObject(null)
@@ -169,6 +196,60 @@ function WorldPreview() {
     }
     setMessage("Đã đọc lại AW2.")
     setError("")
+  }
+
+  async function enterMode(modeId: Aw2ModeId, entry: ModeEntry) {
+    if (
+      pending.current ||
+      activeEncounter ||
+      activeMode ||
+      saved.current.status !== "ready"
+    )
+      return
+    pending.current = true
+    setBusy(true)
+    keys.current.clear()
+    route.current = []
+    setError("")
+    try {
+      const started = await modeAdapter.enter(
+        saved.current.raw,
+        worldRef.current,
+        modeId,
+        entry,
+      )
+      setSnapshot(started.checkpoint)
+      saved.current = started.checkpoint
+      worldRef.current = started.checkpoint.save.progress
+      setWorld(started.checkpoint.save.progress)
+      setDialogObject(null)
+      setActiveMode(started.visit)
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Chưa ghé được bàn.")
+    } finally {
+      pending.current = false
+      setBusy(false)
+    }
+  }
+
+  function returnFromMode() {
+    try {
+      const next = modeAdapter.returnToWorld()
+      setSnapshot(next)
+      saved.current = next
+      worldRef.current = next.save.progress
+      setWorld(next.save.progress)
+      restoreModeFocus.current = true
+      setActiveMode(null)
+      setMessage("Đã trở về hành trình.")
+      setError("")
+    } catch (cause) {
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "Đọc lại hành trình để tiếp tục.",
+      )
+    }
   }
 
   async function persist(actionId?: string) {
@@ -310,12 +391,23 @@ function WorldPreview() {
         onReread={reread}
       />
     )
+  if (activeMode)
+    return (
+      <ModeLobby
+        visit={activeMode}
+        error={error}
+        onReturn={returnFromMode}
+        onReread={reread}
+      />
+    )
   const description = dialogObject ? describeObject(world, dialogObject) : null
   const nearby = nearestObject(world)
   return (
     <main className="aw2-save aw2-world">
       <p className="eyebrow">SOUL OF MEAL · RPG · BẢN PHÁT TRIỂN</p>
-      <h1>Đường qua Phố Đèn Lồng</h1>
+      <h1 ref={worldHeading} tabIndex={-1}>
+        Đường qua Phố Đèn Lồng
+      </h1>
       <p>
         Chạm lên lối đi hoặc dùng WASD/mũi tên; E để tương tác. Cùng năm Vị Linh
         tìm lại một lời mời bên bếp.
@@ -336,6 +428,17 @@ function WorldPreview() {
       ) : (
         <>
           <h2 data-testid="zone-name">{zoneById(world.zoneId).name}</h2>
+          <nav className="actions aw2-mode-menu" aria-label="Ghé bàn nhanh">
+            {AW2_MODES.map((mode) => (
+              <button
+                key={mode.id}
+                disabled={busy}
+                onClick={() => void enterMode(mode.id, "quick-entry")}
+              >
+                Ghé nhanh {mode.name}
+              </button>
+            ))}
+          </nav>
           <WorldCanvas
             key={`${snapshot.save.saveId}:${mapEpoch}`}
             world={world}
@@ -455,7 +558,12 @@ function WorldPreview() {
           {description?.actions.map((action) => (
             <button
               key={action.id}
-              onClick={() => void persist(action.id)}
+              onClick={() => {
+                const mode = dialogObject && modeForPortal(dialogObject.id)
+                if (action.id === "visit-mode" && mode)
+                  void enterMode(mode.id, "portal")
+                else void persist(action.id)
+              }}
               disabled={busy}
             >
               {action.label}

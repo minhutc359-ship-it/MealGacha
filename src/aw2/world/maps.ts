@@ -59,14 +59,14 @@ const objects: WorldObject[][] = [
     ),
     {
       id: "aw2-npc-ban-bai",
-      name: "Bàn TCG · chưa triển khai",
+      name: "Chủ Bàn Bài · TCG",
       x: 240,
       y: 272,
       kind: "mode",
     },
     {
       id: "aw2-npc-ban-co",
-      name: "Bàn Auto Chess · chưa triển khai",
+      name: "Chủ Bàn Cờ · Auto Chess",
       x: 432,
       y: 272,
       kind: "mode",
