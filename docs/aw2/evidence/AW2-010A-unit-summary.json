@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "numTotalTests": 982,
+  "numPassedTests": 982,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "startTime": 1792560801588,
+  "files": 95,
+  "durationMs": 32901.434326171875,
+  "aw2Files": 15,
+  "aw2Tests": 189,
+  "newControlsTests": 12,
+  "command": "pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-010a-unit.json"
+}

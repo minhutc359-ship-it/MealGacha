@@ -24,6 +24,9 @@ dialog::backdrop { background: rgb(0 0 0 / 75%); }
 dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 @media (max-width: 480px) { .aw2-save { margin-top: 1.5rem; } section, dialog { padding: 1rem; } dl > div { grid-template-columns: 1fr; gap: 0; } }
 .aw2-world { width: min(100% - 2rem, 62rem); }
+.aw2-journey-guide { margin: 1rem 0; padding: 1rem; }
+.aw2-journey-guide h2 { margin-top: 0; }
+.aw2-journey-guide summary { cursor: pointer; min-height: 44px; padding: .6rem 0; }
 .aw2-world-map { position: relative; width: 100%; background: #203c35; aspect-ratio: 5 / 3; }
 .aw2-world-map canvas { display: block; width: 100%; height: auto; }
 .aw2-world-label { position: absolute; transform: translate(-50%, -125%); font-size: clamp(.65rem, 1.2vw, .8rem); width: 20%; text-align: center; line-height: 1.2; pointer-events: none; color: #fff5dc; text-shadow: 1px 1px #000; }

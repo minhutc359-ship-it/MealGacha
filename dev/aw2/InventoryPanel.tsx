@@ -81,20 +81,26 @@ export function InventoryPanel({
           Mỗi chén cần 1 Gạo thơm + 1 Rau vườn + 1 Nước dùng. Chia một chén đã
           nấu để cả đội nhận 45 EXP.
         </p>
-        {!kitchen && (
-          <p>
-            Mở lại bếp rồi đến gần Dì Gác Bếp hoặc ngọn lửa để nấu/chia bữa.
-          </p>
-        )}
+        <p id="aw2-kitchen-guide">
+          {world.questIndex < 3
+            ? "Hoàn tất nhiệm vụ Mở lại bếp rồi đến gần Dì Gác Bếp hoặc ngọn lửa để nấu/chia bữa."
+            : !kitchen
+              ? "Bếp đã mở. Đến gần Dì Gác Bếp ở Sân hoặc ngọn lửa trong Phòng Lửa để nấu/chia bữa."
+              : !ingredients
+                ? "Bạn đang ở bếp. Gom đủ nguyên liệu để nấu; chén đã có vẫn có thể chia."
+                : "Bạn đang ở bếp, có thể nấu. Chia bữa sau khi có Chén cơm ấm."}
+        </p>
         <div className="actions">
           <button
             disabled={busy || !kitchen || !ingredients}
+            aria-describedby="aw2-kitchen-guide"
             onClick={() => onAction("cook")}
           >
             Nấu Chén cơm ấm
           </button>
           <button
             disabled={busy || !kitchen || !economy.inventory["warm-bowl"]}
+            aria-describedby="aw2-kitchen-guide"
             onClick={() => onAction("share-meal")}
           >
             Chia bữa · +45 EXP

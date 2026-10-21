@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, type Ref } from "react"
 import type { Application, Texture } from "pixi.js"
 import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
 import { sampleWorldFrame } from "../../src/aw2/assets/animation"
@@ -11,10 +11,12 @@ export function WorldCanvas({
   world,
   onNavigate,
   paused,
+  focusRef,
 }: {
   world: WorldProgress
   onNavigate: (point: Waypoint) => void
   paused: boolean
+  focusRef?: Ref<HTMLDivElement>
 }) {
   const host = useRef<HTMLDivElement>(null)
   const pointerStart = useRef<Waypoint | null>(null)
@@ -208,10 +210,15 @@ export function WorldCanvas({
   }, [world.zoneId, partyKey])
   return (
     <div
+      ref={focusRef}
       className="aw2-world-map"
       data-testid="world-map"
+      tabIndex={0}
+      role="region"
+      aria-label="Bản đồ khám phá"
       onPointerDown={(event) => {
         if (paused || !ready || event.button !== 0) return
+        event.currentTarget.focus({ preventScroll: true })
         pointerStart.current = { x: event.clientX, y: event.clientY }
       }}
       onPointerCancel={() => {

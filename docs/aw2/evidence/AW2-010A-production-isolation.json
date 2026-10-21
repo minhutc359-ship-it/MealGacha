@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "stableFiles": 851,
+  "stableTextArtifacts": 77,
+  "markers": [
+    "aw2.development.save",
+    "/dev/aw2/",
+    "Aw2ModeAdapter",
+    "aw2-chess-practice-v1",
+    "worldKeyAction",
+    "Mục tiêu trước mắt"
+  ],
+  "hits": [],
+  "reviewFiles": 92,
+  "reviewBytes": 23831805,
+  "saveSchemaChanged": false,
+  "stableConfigChanged": false,
+  "lockfileChanged": false
+}

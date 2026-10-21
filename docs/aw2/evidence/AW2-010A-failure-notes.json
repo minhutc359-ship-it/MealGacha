@@ -1,0 +1,38 @@
+{
+  "initialRpgRegression": {
+    "status": "FAIL",
+    "observed": "Timeout waiting for Mở rương nguyên liệu on second E after Escape",
+    "diagnostic": {
+      "activeElement": "<button>Để sau / Đóng</button>",
+      "dialogOpen": false
+    },
+    "repair": "Return focus to world map when the dialog closes; rerun unchanged verifier."
+  },
+  "initialCombinedDemo": {
+    "status": "FAIL",
+    "observed": "Step helper clicked a disabled Bước 1 nhịp after a manual ultimate ended the real battle",
+    "imageObserved": "Source failure capture opened: actual player-win at tick36",
+    "repair": "Recheck actual battle status after ultimates before stepping; preserve terminal authority."
+  },
+  "initialProbe": {
+    "status": "INCONCLUSIVE for direction button only",
+    "reason": "Synthetic keydown omitted keyup; rerun paired events before modifying implementation."
+  },
+  "initialCompiledMeal": {
+    "status": "FAIL",
+    "observed": "Meal assertion read before async share transaction finished",
+    "imageObserved": "Compiled failure capture opened:205XP, ingredients6/5/3, bowl0 and success status after completion",
+    "repair": "Wait for actual share success status, then assert one coherent saved snapshot; do not change economy rules."
+  },
+  "initialAlternateEnding": {
+    "status": "FAIL",
+    "observed": "Alternate ending context could not find Mời cả làng dùng bữa",
+    "cause": "Captured stored bytes still pointed to village entry; the primary player had walked locally to Bà without an explicit position save. Fork correctly loaded the saved position, not unsaved movement.",
+    "repair": "Use real Lưu vị trí at Bà, wait for commit, assert saved coordinates, then branch exact earned bytes without modifying progress."
+  },
+  "terminalRendererLag": {
+    "status": "FAIL on both source and compiled intermediate retries",
+    "observed": "Canvas data-status could still be active just after the authoritative step had reached terminal; step button correctly disabled.",
+    "repair": "Drive loop from authoritative encounter-status and wait for each rendered tick increment, matching existing battle-verifier synchronization. No combat/UI changes."
+  }
+}

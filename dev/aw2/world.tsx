@@ -28,6 +28,8 @@ import {
 } from "../../src/aw2/modes/catalog"
 import { Aw2ModeAdapter, type ModeVisit } from "../../src/aw2/modes/session"
 import { ModeLobby } from "./ModeLobby"
+import { worldKeyAction } from "../../src/aw2/world/controls"
+import { JourneyGuide } from "./JourneyGuide"
 import "./styles.css"
 
 interface ActiveWorldEncounter {
@@ -55,6 +57,7 @@ function WorldPreview() {
     () => new Aw2ModeAdapter(store, () => !battleActive.current),
   )
   const worldHeading = useRef<HTMLHeadingElement>(null)
+  const worldMap = useRef<HTMLDivElement>(null)
   const restoreModeFocus = useRef(false)
   const worldRef = useRef(world)
   const saved = useRef(snapshot)
@@ -81,29 +84,29 @@ function WorldPreview() {
   }
 
   useEffect(() => {
+    const isNativeControl = (target: EventTarget | null) =>
+      target instanceof Element &&
+      !target.closest("[data-aw2-world-control]") &&
+      !!target.closest(
+        "button, a, input, textarea, select, summary, dialog, [contenteditable]:not([contenteditable='false']), [role='textbox']",
+      )
     const down = (event: KeyboardEvent) => {
-      if (event.ctrlKey || event.metaKey || event.altKey) return
-      const key = event.key.toLowerCase()
-      if (
-        [
-          "arrowup",
-          "arrowdown",
-          "arrowleft",
-          "arrowright",
-          "w",
-          "a",
-          "s",
-          "d",
-          "e",
-        ].includes(key)
-      ) {
-        event.preventDefault()
-        if (key === "e") {
-          if (!event.repeat) openInteraction()
-        } else if (!paused.current && !pending.current) {
-          route.current = []
-          keys.current.add(key)
-        }
+      if (event.defaultPrevented) return
+      const action = worldKeyAction(event.key, {
+        enabled:
+          saved.current.status === "ready" &&
+          !paused.current &&
+          !pending.current,
+        nativeControl: isNativeControl(event.target),
+        modified: event.ctrlKey || event.metaKey || event.altKey,
+        repeat: event.repeat,
+      })
+      if (!action) return
+      event.preventDefault()
+      if (action.type === "interact") openInteraction()
+      else {
+        route.current = []
+        keys.current.add(action.key)
       }
     }
     const up = (event: KeyboardEvent) =>
@@ -111,6 +114,9 @@ function WorldPreview() {
     const stop = () => {
       keys.current.clear()
       route.current = []
+    }
+    const focused = (event: FocusEvent) => {
+      if (isNativeControl(event.target)) stop()
     }
     const timer = window.setInterval(() => {
       if (paused.current || pending.current || saved.current.status !== "ready")
@@ -140,6 +146,7 @@ function WorldPreview() {
     window.addEventListener("keydown", down)
     window.addEventListener("keyup", up)
     window.addEventListener("blur", stop)
+    window.addEventListener("focusin", focused)
     document.addEventListener("visibilitychange", stop)
     const changed = (event: StorageEvent) => {
       if (event.key === AW2_DEV_SAVE_KEY || event.key === null) {
@@ -155,6 +162,7 @@ function WorldPreview() {
       window.removeEventListener("keydown", down)
       window.removeEventListener("keyup", up)
       window.removeEventListener("blur", stop)
+      window.removeEventListener("focusin", focused)
       document.removeEventListener("visibilitychange", stop)
       window.removeEventListener("storage", changed)
     }
@@ -164,7 +172,11 @@ function WorldPreview() {
     if (dialogObject) {
       dialog.current?.showModal()
       closeButton.current?.focus()
-    } else dialog.current?.close()
+    } else {
+      const wasOpen = dialog.current?.open
+      dialog.current?.close()
+      if (wasOpen) worldMap.current?.focus({ preventScroll: true })
+    }
   }, [dialogObject])
 
   useEffect(() => {
@@ -439,7 +451,9 @@ function WorldPreview() {
               </button>
             ))}
           </nav>
+          <JourneyGuide objective={currentObjective(world)} />
           <WorldCanvas
+            focusRef={worldMap}
             key={`${snapshot.save.saveId}:${mapEpoch}`}
             world={world}
             onNavigate={navigate}
@@ -456,9 +470,6 @@ function WorldPreview() {
                 ? "Đang nhận"
                 : "Chưa nhận"}
             ; ký ức {world.memories.length}/3; puzzle {world.puzzleStep}/3
-          </p>
-          <p className="aw2-objective" data-testid="quest-objective">
-            {currentObjective(world)}
           </p>
           {world.questIndex >= 3 && (
             <p data-testid="boss-objectives">
@@ -484,6 +495,7 @@ function WorldPreview() {
             ].map(([key, label]) => (
               <button
                 key={key}
+                data-aw2-world-control="move"
                 disabled={busy}
                 style={{ touchAction: "none" }}
                 onPointerDown={(event) => {
@@ -494,11 +506,28 @@ function WorldPreview() {
                 onPointerUp={() => keys.current.delete(key)}
                 onPointerCancel={() => keys.current.delete(key)}
                 onLostPointerCapture={() => keys.current.delete(key)}
+                onClick={(event) => {
+                  if (event.detail !== 0 || pending.current || paused.current)
+                    return
+                  route.current = []
+                  const next = moveWorld(
+                    worldRef.current,
+                    key === "d" ? 1 : key === "a" ? -1 : 0,
+                    key === "s" ? 1 : key === "w" ? -1 : 0,
+                    0.05,
+                  )
+                  worldRef.current = next
+                  setWorld(next)
+                }}
               >
                 {label}
               </button>
             ))}
-            <button onClick={openInteraction} disabled={busy}>
+            <button
+              data-aw2-world-control="interact"
+              onClick={openInteraction}
+              disabled={busy}
+            >
               Tương tác{nearby ? ` · ${nearby.name}` : ""}
             </button>
             <button onClick={() => void persist()} disabled={busy}>
