@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { AW2_MODES } from "../../src/aw2/modes/catalog"
 import type { ModeVisit } from "../../src/aw2/modes/session"
 import { zoneById } from "../../src/aw2/world/maps"
+import { TcgPractice } from "./TcgPractice"
 
 export function ModeLobby({
   visit,
@@ -15,10 +16,13 @@ export function ModeLobby({
   onReread: () => void
 }) {
   const heading = useRef<HTMLHeadingElement>(null)
+  const [playing, setPlaying] = useState(false)
   useEffect(() => {
     heading.current?.focus()
   }, [])
   const mode = AW2_MODES.find((candidate) => candidate.id === visit.modeId)!
+  if (playing && visit.modeId === "tcg")
+    return <TcgPractice error={error} onReturn={onReturn} onReread={onReread} />
   return (
     <main
       className="aw2-save aw2-mode-lobby"
@@ -31,11 +35,24 @@ export function ModeLobby({
         {mode.name} · Sảnh chờ
       </h1>
       <section aria-label="Tình trạng bàn chơi">
-        <h2>Ván chơi đang được chuẩn bị</h2>
-        <p>
-          Hiện chưa có ván đấu hoặc phần thưởng tại bàn này. Điểm khám phá đã
-          được lưu; bạn có thể quay về hành trình ngay.
-        </p>
+        {visit.modeId === "tcg" ? (
+          <>
+            <h2>Bộ bài luyện tập đã sẵn sàng</h2>
+            <p>
+              Mượn bộ 20 lá để đấu với Chủ bàn. Không tốn vật phẩm, không nhận
+              thưởng; tải lại hoặc rời bàn sẽ bỏ ván.
+            </p>
+            <button onClick={() => setPlaying(true)}>Chơi TCG thử</button>
+          </>
+        ) : (
+          <>
+            <h2>Ván chơi đang được chuẩn bị</h2>
+            <p>
+              Hiện chưa có ván đấu hoặc phần thưởng tại bàn này. Điểm khám phá
+              đã được lưu; bạn có thể quay về hành trình ngay.
+            </p>
+          </>
+        )}
         <p>
           Trở về: <strong>{zoneById(visit.returnZoneId).name}</strong>.
         </p>

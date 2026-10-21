@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "flavor": "source",
+  "engine": "153.0.8010.36",
+  "checks": [
+    "Borrowed practice enters through the world adapter and focuses its heading",
+    "Practice checkpoint preserves RPG progress and economy",
+    "Opening hand has four public cards and no opponent hand DOM",
+    "Keyboard end-turn runs a real bounded opponent turn and refreshes energy",
+    "Spell selection alone does not execute or spend a card",
+    "Manual attack and targeted tactic execute real legal commands",
+    "Playing, targeting and opponent turns make no world writes",
+    "A completed practice exposes rematch and freezes turn controls",
+    "Rematch creates a new borrowed shuffle without save writes",
+    "Actual legal recommended moves reach a player victory (not a supplied outcome)",
+    "Victory grants no world item, XP or write",
+    "Returning from actual victory is read-only",
+    "Passing lets actual opponent damage end the match in defeat",
+    "Defeat and subsequent rematch preserve checkpoint bytes",
+    "Explicit surrender records a distinct real loss",
+    "Rendered card portraits decode through canonical manifests",
+    "Playable cards and controls fit 320px",
+    "Main controls retain touch targets at 320px",
+    "Playable cards and controls fit 390px",
+    "Main controls retain touch targets at 390px",
+    "Playable cards and controls fit 768px",
+    "Main controls retain touch targets at 768px",
+    "Mid-match return abandons only transient state without writes",
+    "Reload abandons practice at the exact saved exploration checkpoint",
+    "Stale return preserves both current practice and newer world bytes",
+    "Explicit reread abandons stale practice without overwriting save",
+    "All seeded stable keys remain byte-identical",
+    "Missing portrait reports explicit text while legal gameplay remains usable",
+    "No unexpected primary console/page/resource errors"
+  ],
+  "errors": [],
+  "win": {
+    "seed": 20261022,
+    "moves": 29,
+    "turn": 17
+  },
+  "loss": {
+    "seed": 20261021,
+    "passes": 6
+  },
+  "manualAttack": true,
+  "manualSpell": true,
+  "guardSeen": false,
+  "scope": "AW2 borrowed TCG practice; no rewards, production balance, Auto Chess or physical-device QA"
+}

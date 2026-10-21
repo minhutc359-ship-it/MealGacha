@@ -132,7 +132,9 @@ export function describeObject(
   }
   if (object.kind === "mode")
     return result(
-      "Bạn có thể ghé sảnh rồi quay về điểm khám phá đã lưu. Ván chơi tại bàn này đang được chuẩn bị, chưa có phần thưởng.",
+      object.id === "aw2-npc-ban-bai"
+        ? "Ghé bàn TCG luyện tập với bộ bài mượn, rồi quay về điểm khám phá đã lưu. Không tốn vật phẩm, không nhận thưởng."
+        : "Bạn có thể ghé sảnh rồi quay về điểm khám phá đã lưu. Ván chơi tại bàn này đang được chuẩn bị, chưa có phần thưởng.",
       [action("visit-mode", "Ghé bàn")],
     )
   if (object.kind === "chest")
@@ -289,7 +291,9 @@ export function applyWorldAction(
       "Bắt đầu trận qua bộ điều khiển boss; không thể ghi kết quả bằng tương tác thường.",
     )
   if (actionId === "visit-mode")
-    throw Error("Ghé bàn qua bộ chuyển mode; không thay đổi quest hoặc nhận phần thưởng.")
+    throw Error(
+      "Ghé bàn qua bộ chuyển mode; không thay đổi quest hoặc nhận phần thưởng.",
+    )
   let next = { ...state },
     message = "Đã ghi nhận tiến trình AW2."
   if (actionId === "travel")

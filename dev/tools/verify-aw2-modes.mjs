@@ -173,7 +173,7 @@ try {
     parsed.progress.questIndex === 0 &&
       JSON.stringify(parsed.economy) === JSON.stringify(initial.economy) &&
       (await page
-        .getByText("Ván chơi đang được chuẩn bị", { exact: true })
+        .getByText("Bộ bài luyện tập đã sẵn sàng", { exact: true })
         .isVisible()) &&
       (await page
         .getByRole("heading", { level: 1 })
@@ -413,7 +413,7 @@ try {
     checks,
     errors,
     scope:
-      "MODE-01 transition/lobby subset only; no playable mode, prize or device QA",
+      "MODE-01 navigation/lobby regression only; playable TCG verified separately; no prize or device QA",
   }
   await writeFile(
     `${out}/${flavor}-browser.json`,

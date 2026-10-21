@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "stableFiles": 851,
+  "stableTextArtifacts": 77,
+  "markers": [
+    "aw2.development.save",
+    "/dev/aw2/",
+    "Aw2ModeAdapter",
+    "aw2-npc-ban-bai",
+    "aw2-economy-development-v1",
+    "aw2-tcg-practice-v1",
+    "TCG · Luyện tập"
+  ],
+  "hits": [],
+  "reviewFiles": 92,
+  "reviewBytes": 23807730,
+  "saveSchemaChanged": false,
+  "stableConfigChanged": false,
+  "lockfileChanged": false
+}
