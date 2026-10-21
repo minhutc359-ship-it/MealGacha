@@ -11,7 +11,7 @@ Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực t
 
 ## AW2 development preview — AW2-001 + AW2-006A
 
-Current branch: `game/adventure-world-2`, integration documentation baseline `ccddfd69404860e48829f79b588c65a7408054ef`. [AW2-012A](tasks/AW2-012A.md) integrated and pushed all completed AW2 features: target fast-forwarded from `f0d5884` to `82b85cd054e001d8a8dafbc9ea4467f5442842dc`, remote SHA verified. This includes AW2-007B continuation7bb0bf1 and AW2-007C implementation `03b92e20f6dc55d62530da7e88c1ca1579505490`, connecting actual boss combat to the fourth quest and isolated save v3. Following integration/policy edits are documentation only. Integration checks:891 unit tests /88 files, both typechecks/build/production exclusion PASS. The91 Chromium assertions (40 world/boss +29 save +22 battle) remain prior source-bound evidence; browsers were not rerun for the unchanged-source integration. Windows Node25 full-suite command needs `NODE_OPTIONS=--no-experimental-webstorage`. [Status](STATUS.md), [handoff](HANDOFF.md), [AW2-007C evidence](evidence/AW2-007C.md). Current D16 authorizes direct AW2 development/push after every completed task; master/deployment/releases retain separate authorization. Approved canon remains; rates/pity D11 and numerical loot/XP remain open.
+Current branch: `game/adventure-world-2`. AW2-013A at `a40217afd4168fac854b8c482a3f0fef48809c26` adds persistent development inventory/XP, atomic quest/chest/cooking rewards, five following companions, touch navigation, optional confirmed-event audio, mobile ultimate cards and a separate static review build. It reviews/adapts PR #82 without merging/changing rpg/master. Fresh909 unit tests /124 Chromium assertions, both typechecks and stable/review builds PASS. D16 still requires direct AW2 commit/push/readback after each task. [Current status](STATUS.md), [handoff](HANDOFF.md), [verification](evidence/AW2-013A.md). Earlier AW2-012/012A/012B integration and cleanup remain historical; approved canon is unchanged and D11 stays PROPOSED.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -22,7 +22,7 @@ Open `http://localhost:8443/dev/aw2/index.html`. This standalone development ent
 
 Choose **Tạo bản lưu AW2** to initialize `aw2.development.save`, **Lưu thử AW2** to advance its revision, then reload to inspect persistence. **Bắt đầu lại AW2…** opens a modal; each reset requires the exact phrase `RESET AW2` and an explicit final action. Hủy/Escape leaves stored bytes intact. Normal writes preserve invalid/future saves, stale tabs must read again, and failed writes report an error. Confirmed development reset may replace an invalid/future AW2 save as disclosed in the dialog.
 
-Writes require Web Locks and a secure context (localhost or HTTPS); unsupported browsers can inspect/read only. Schema v3 stores world/quest/starter progress plus boss/note/ending flags. Valid v1/v2 saves upgrade in memory without writing until an explicit save, preserving identity/timestamps/prior progress and legacy data. Future production migrations/native durability remain future work. No operation on this screen clears Soul of Meal saves.
+Writes require Web Locks and a secure context (localhost or HTTPS); unsupported browsers can inspect/read only. Schema v4 stores world/quest/starter/boss/note/ending progress plus inventory/shared XP/receipts. Valid v1/v2/v3 saves upgrade in memory without writing or granting until an explicit action, preserving identity/timestamps/prior progress and legacy data. Ordinary position-save cannot change quest/objectives; locked world/economy actions own reward changes. Future production migrations/native durability remain future work. No operation on this screen clears Soul of Meal saves.
 
 ```sh
 pnpm test dev/tests/aw2/save.test.ts dev/tests/infrastructure/protectedStorage.test.ts
@@ -38,15 +38,15 @@ The browser tool also accepts `--playwright /absolute/path/to/playwright-core/in
 
 ## World / quest foundation
 
-Open `http://localhost:8443/dev/aw2/world.html`. WASD/arrows or hold the on-screen direction buttons; E / Tương tác near an object. Closing dialogue changes nothing. Explicit actions and Lưu vị trí commit one coherent AW2 save; walking alone remains local until saved. Blur/keyup/pointer release stop movement, and dialogs pause it.
+Open `http://localhost:8443/dev/aw2/world.html`. Click/tap a clear destination, WASD/arrows or hold the on-screen direction buttons; E / Tương tác near an object. Five companions follow traversable history after starter unlock; reread clears their old trails. Closing dialogue changes nothing. Explicit actions and Lưu vị trí commit one coherent AW2 save; walking alone remains local until saved. Blur/keyup/pointer release stop movement, and dialogs pause it.
 
 Flow: meet Bà Giữ Chỗ → read the cloth → hand in to unlock five approved N/R starters. Go east to Phố, accept at An, listen to three memories in any order, choose a thread. Accept at Dì, read the hint in Kho, solve the three-step puzzle in Phòng Lửa, then return to Dì to report. Wrong order resets only the attempt. All six zones have safe return routes.
 
-For the fourth quest, explicitly accept **Thêm một chén** at Dì, reach Người Giữ Bàn Quên in Phòng Bàn and choose **Bắt đầu thử thách**. A safe checkpoint is written before combat mounts. The five level1 development starters auto-fight; use manual ultimates at the right time (current verified sequence starts at tick5). Pause/step/reduced motion and retreat are available. Choose **Lưu kết quả và trở về** after win/loss/retreat. Failed writes keep the live result for retry; another-tab writes require reread. Reload/reread abandons an uncommitted attempt at its checkpoint and never implies a win.
+For the fourth quest, explicitly accept **Thêm một chén** at Dì, reach Người Giữ Bàn Quên in Phòng Bàn and choose **Bắt đầu thử thách**. A safe checkpoint is written before combat mounts. The five development starters use persisted team XP to derive actual stats and auto-fight; manual ultimates remain available. The earned-XP verification fixture wins at tick36; this is development tuning, not final balance. Pause/step/reduced motion and retreat are available. Choose **Lưu kết quả và trở về** after win/loss/retreat. Failed writes keep the live result for retry; another-tab writes require reread. Reload/reread abandons an uncommitted attempt at its checkpoint and never implies a win.
 
-After a committed win, explicitly read **Ghi chép bên chén**, return to Bà and choose either **Để ghế trống chờ** or **Mời cả làng dùng bữa**. Both finish the same quest/derived once-only receipt and open the reciprocal Sân↔Phòng Bàn shortcut. Closing dialogue does not choose an ending. These are completion markers, not XP/items; numerical economy remains unspecified.
+After a committed win, explicitly read **Ghi chép bên chén**, return to Bà and choose either **Để ghế trống chờ** or **Mời cả làng dùng bữa**. Both finish the same quest once, grant its development XP/ingredients atomically and open the reciprocal Sân↔Phòng Bàn shortcut. Closing dialogue does not choose an ending or grant rewards.
 
-Exploration visuals remain debug primitives. The boss has its canonical content ID and explicitly reuses a tinted Than reference atlas; its own art/signature kit is unfinished. Chest/TCG/Chess adapters still disclose pending work and cannot grant fabricated outcomes. No persistent leveling, gacha, followers, finished art/audio/mobile UX or completed vertical slice is claimed. Full AW2-006/008/010 remain open.
+Terrain/NPC/chest remain generated placeholders; companions reuse the five existing authored reference sets. Development XP/inventory/chest/cooking are now implemented below. Boss own art/kit, seven spirit sets, final balance/device/mobile readability and full AW2-006/008/010 gates remain open.
 
 ```sh
 pnpm test dev/tests/aw2
@@ -56,6 +56,21 @@ node dev/tools/verify-aw2-world.mjs --boss --url http://localhost:8443/dev/aw2/w
 ```
 
 The world browser script accepts `--playwright` and `--chromium`; fresh isolated profiles only, normal captures under `.asset-work/aw2-006a/`, `--boss` captures/report under `.asset-work/aw2-007c/`. [AW2-006A foundation](tasks/AW2-006A.md), [current AW2-007C task](tasks/AW2-007C.md), [current evidence](evidence/AW2-007C.md), [canon](CANON.md), [handoff](HANDOFF.md). Original schema-v1/v2 evidence remains historical; current save/world results supersede affected ledger rows.
+
+## Persistent progression and separate review build — AW2-013A
+
+Open **Đội và túi đồ** for actual shared EXP/levels/items. Quest hand-in saves progress and reward together. Phòng Kho has a one-time ingredient chest. After completing the third quest, stand near Dì or the opened hearth: cook 1 rice +1 herbs +1 broth into a warm bowl, then share it for 45 team XP. Old saves expose an explicit **Nhận quà … nhiệm vụ đã hoàn tất** catch-up action; loading grants nothing. Failed writes preserve items/receipts; stale tabs must reread. These amounts use `aw2-economy-development-v1`, not final balance.
+
+```sh
+pnpm build:aw2
+pnpm exec vite preview --config dev/vite.aw2.config.ts --host 127.0.0.1 --port 8455
+# Open http://127.0.0.1:8455/ → compiled world
+node dev/tools/verify-aw2-rpg.mjs --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+node dev/tools/verify-aw2-build.mjs --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+node dev/tools/simulate-aw2-gacha.mjs
+```
+
+`dist-aw2/` is a local review artifact with separate world/save/battle/starter/Than entries and runtime assets, excluding source PNG/code/maps/archives. `pnpm build` still creates the stable game without AW2. No deployment/release. The two new browser verifiers own ports8454/8455; close a manual preview before using8455. Captures stay ignored under `.asset-work/`. [Development contract and fresh evidence](evidence/AW2-013A.md). Gacha simulation is a [proposal for D11](proposals/AW2-005A-RATES.md), with no runtime draw/spend/save.
 
 ## Deterministic combat core — AW2-007A
 
@@ -68,13 +83,13 @@ pnpm typecheck
 pnpm typecheck:dev
 ```
 
-These rules are consumed by the independent preview below and AW2-007C's private world encounter controller. The renderer never applies world results; the save boundary accepts an authentic terminal/retreat bound to its exact checkpoint raw bytes. BATTLE-02's development boss subset is now verified; production/native continuation and numerical rewards remain separate. [Rules task](tasks/AW2-007A.md) · [world integration](tasks/AW2-007C.md).
+These rules are consumed by the independent preview below and AW2-007C's private world encounter controller. The renderer never applies world results; the save boundary accepts an authentic terminal/retreat bound to its exact checkpoint raw bytes. BATTLE-02's development boss subset is now verified; production/native continuation remains open. AW2-013A adds development numerical rewards through locked save transactions. [Rules task](tasks/AW2-007A.md) · [world integration](tasks/AW2-007C.md).
 
 ## Event battle preview — AW2-007B
 
 Open `http://localhost:8443/dev/aw2/battle.html` (current local verification server `http://127.0.0.1:8452/dev/aw2/battle.html`). The five approved starters auto-fight with HD reference atlases and can use manual ultimates. Pause, step one tick, choose development levels 1/5/10/20, reset, and enable reduced motion. Choosing a level applies only when creating the next battle; current cards retain their active level/stats. Terminal events clear unfinished visual projectiles. Enemy units temporarily reuse tinted starter atlases and are not finished enemy assets.
 
-The canvas consumes `CombatEvent` presentation state; it does not calculate damage or award outcomes. `aw2-leveling-development-v1` is a deterministic non-persistent test curve, not approved balance. This page never writes XP, rewards or save data.
+The canvas consumes `CombatEvent` presentation state; it does not calculate damage or award outcomes. `aw2-leveling-development-v1` is a deterministic development curve, not approved balance. The standalone page never writes XP, rewards or save data; world encounters now project persisted team XP through the same curve. Audio is opt-in and consumes confirmed events only.
 
 ```sh
 pnpm test dev/tests/aw2/combat.test.ts dev/tests/aw2/battle-presentation.test.ts
@@ -119,4 +134,4 @@ node dev/tools/verify-aw2-starter-browser.mjs --url http://localhost:8443/dev/aw
 node dev/tools/verify-aw2-than-browser.mjs --url http://localhost:8443/dev/aw2/than.html
 ```
 
-Build uses the preserved sources, AW2-004A encoder/synth helpers and manifest template; it never generates or repaints art. Browser tools accept `--playwright`/`--chromium`, use fresh isolated profiles and keep QA PNGs under ignored `.asset-work/`. [Task](tasks/AW2-004B.md), [verification](evidence/AW2-004B.md), [handoff](HANDOFF.md). AW2-007C now connects the development canvas to world/save boss progress. Numerical loot/cooking and authored enemies/seven remaining spirit sets/full character gates are next.
+Build uses the preserved sources, AW2-004A encoder/synth helpers and manifest template; it never generates or repaints art. Browser tools accept `--playwright`/`--chromium`, use fresh isolated profiles and keep QA PNGs under ignored `.asset-work/`. [Task](tasks/AW2-004B.md), [verification](evidence/AW2-004B.md), [handoff](HANDOFF.md). AW2-007C now connects the development canvas to world/save boss progress. AW2-013A now adds numerical loot/cooking and followers; authored enemies/seven remaining spirit sets/full character gates remain open.

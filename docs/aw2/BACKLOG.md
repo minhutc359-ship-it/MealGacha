@@ -2,25 +2,27 @@
 | ID | Owner | Scope | Status |
 |---|---|---|---|
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
-| AW2-001 | mechanic/BA/tester | Isolated save/reset; non-destructive v1/v2→v3 migrations | Foundation MERGED; current schema v3/save regression VERIFIED at 03b92e2 |
+| AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |
 | AW2-003 | character/mechanic | Owner approved initial 12 identities/tier/kit/starter, D10/D13/D15 | MERGED approved direction + original review history; full character DoD pending |
 | AW2-004 | animation/character | 12 world + HD + VFX sets; five starters source f6a3b66 implemented | IN_PROGRESS: 5 reference sets, 7 NOT_CREATED; full character gates pending |
 | AW2-004A | animation/character/tester | Than 4-way world, 8 HD key poses/tracks, portrait, FX/audio/provenance and preview | MERGED verified reference pipeline; not full character/release |
 | AW2-004B | animation/character/tester | Four other starters, ranged projectile art, repeated cues and shared selector | MERGED verified reference sets, integration source 0e8fb7a; not full character/release |
-| AW2-005 | mechanic | Five-tier gacha/pity/simulation | BACKLOG |
-| AW2-006 | mechanic | Pixi free-roam map/collision; AW2-006A prototype source b3c526b | IN_PROGRESS: verified foundation MERGED, authored visuals/followers pending |
-| AW2-007 | mechanic | RPG team/battle integration | IN_PROGRESS: A/B/C development rules/renderer/world-save VERIFIED; authored boss kit/art/production progression pending |
+| AW2-005 | mechanic | Five-tier gacha/pity/simulation | Simulation/proposal VERIFIED in AW2-013A; D11 PROPOSED, runtime draw/spend/save BACKLOG |
+| AW2-006 | mechanic | Pixi free-roam map/collision/companions/touch | Development foundation/followers/navigation VERIFIED in AW2-013A; authored maps/NPCs/device gates pending |
+| AW2-007 | mechanic | RPG team/battle integration | Development core/world-save/persisted-level/audio/mobile subsets VERIFIED; authored boss kit/art/production balance pending |
 | AW2-007A | mechanic/BA/character/tester | Deterministic five-unit core, canonical events, range/projectile/interrupt and bounded starter passives | VERIFIED pure rules at fdf4a60; no UI/save/reward |
 | AW2-007B | mechanic/animation/tester | Event-driven HD battle preview and development leveling | VERIFIED at9067376; continuation INTEGRATED / PUSHED to game/adventure-world-2 through AW2-012A at82b85cd |
 | AW2-007C | mechanic/BA/story/animation/tester | Trusted boss checkpoint/result/save v3, note/both endings/shortcut and once-only receipts | VERIFIED at03b92e2:98 AW2 /891 full tests;91 Chromium assertions; INTEGRATED / PUSHED through AW2-012A at82b85cd |
-| AW2-008 | story/mechanic | Four quest/debug dungeon/boss progress implemented; numerical loot/chest/cooking pending | IN_PROGRESS; no inventory grants until economy contract |
-| AW2-009 | BA/mechanic | TCG/Auto Chess in-world portals & quick-entry | BACKLOG |
+| AW2-008 | story/mechanic | Four quests/debug dungeon/boss plus atomic XP/inventory/chest/cooking | Development subset VERIFIED in AW2-013A; final balance/authored dungeon/full gates open |
+| AW2-009 | BA/mechanic | TCG/Auto Chess in-world portals & quick-entry | BACKLOG; next AW2-009A must first define isolated-save/return/reload adapter contract |
 | AW2-010 | all/tester | Lantern playable vertical slice | BACKLOG |
 | AW2-011 | tester | Release regression/rights/mobile/offline | BACKLOG |
 | AW2-012 | BA/tester/scretary | Integrate all six AW2 feature histories; preserve approved canon and review evidence | VERIFIED / MERGED locally, source 0e8fb7a;859 tests +212 Chromium checks PASS |
 | AW2-012A | BA/tester/scretary | Owner-authorized fast-forward/push of all completed AW2 features to the long-lived branch | VERIFIED / INTEGRATED / PUSHED at82b85cd;891 tests /88 files, both typechecks, build/release/isolation PASS; following edits docs only |
 | AW2-012B | BA/tester/scretary | Standing direct-AW2 development/push policy D16 and audited redundant branch cleanup | VERIFIED; policy pushed at3d03110;73 remote /3 local branches deleted and read back,6 remote /2 local retained; documentation/ref checks PASS |
+| AW2-013 | mechanic/animation/tester/scretary | Historical PR #82 RPG progression/companions/build work | Original source a66188f, pinned c34c6a2; reviewed/adapted by AW2-013A, PR/rpg unchanged |
+| AW2-013A | BA/mechanic/tester/scretary | Reviewed schema v4 economy/XP/chest/cooking, companions/touch/audio and isolated review build | VERIFIED at a40217a;909 full tests /124 Chromium assertions; D16 direct-AW2 delivery |
 
 Current integration status supersedes the historical local-only/no-push statements below: the six foundation histories and AW2-007A/B/C are included in remote `game/adventure-world-2`. [AW2-012A task/checks](tasks/AW2-012A.md). AW2-012B now supersedes source-branch-retention and feature-only-push policy: work directly on AW2, push after each completed task and remove audited merged branch refs while retaining their reachable commits/evidence. Unrelated unmerged legacy work remains excluded.
 AW2-001 evidence: [task card](tasks/AW2-001.md), [verification](evidence/AW2-001.md). The original standalone save source is retained; AW2-012 now integrates it and schema-v2 world dependencies into `game/adventure-world-2`.
@@ -37,6 +39,8 @@ AW2-007A: [task](tasks/AW2-007A.md), [evidence](evidence/AW2-007A.md). Pure rule
 
 AW2-007B: [task](tasks/AW2-007B.md), [evidence](evidence/AW2-007B.md). Chromium acceptance PASS; pending-level/terminal projectile repairs and pure session transitions. Feature branch7bb0bf1 is now included in the long-lived remote through the explicitly requested AW2-012A integration.
 
-AW2-007C: [task](tasks/AW2-007C.md), [evidence](evidence/AW2-007C.md), [report](evidence/AW2-007C-browser.json). Canonical boss result is bound to its saved checkpoint; real loss/retreat/failed writes/stale tabs, note and both approved endings verified. v1/v2 load in memory as v3; no owner data/reset or numerical loot/XP grant. World uses explicit reference boss visuals.
+Historical AW2-007C source03b92e2: [task](tasks/AW2-007C.md), [evidence](evidence/AW2-007C.md), [report](evidence/AW2-007C-browser.json). Canonical boss result is bound to its saved checkpoint; real loss/retreat/failed writes/stale tabs, note and both approved endings verified. That milestone loaded v1/v2 in memory as v3 without numerical rewards; AW2-013A below supersedes those limits. World uses explicit reference boss visuals.
 
-Next smallest task: mechanic + BA specify numerical reward/XP/inventory contracts for AW2-008 chest/cooking, then tester verifies atomic inventory + receipt behavior. Animation/character owe authored enemies/signature kits, seven sets (`aw2-muoi`, `aw2-nhien`, `aw2-hai`, `aw2-lien`, `aw2-moc`, `aw2-bach`, `aw2-van`), mobile combat readability and all full-character device/rights gates. D11 simulation precedes rate/pity approval. Then AW2-009 modes and AW2-010/011 gates. No finished slice before AW2-010 verification. Continue directly on game/adventure-world-2 and push it after each completed task under D16; no new feature branch required.
+Current progression: [AW2-013A task](tasks/AW2-013A.md), [fresh evidence](evidence/AW2-013A.md). Schema v4 and locked actions replace the prior schema-v3/no-numerical-reward limits above. Valid old saves load without writes/rewards; explicit actions atomically grant once. Boss uses persisted team XP. Five reference companions, touch paths, inventory UI, optional event audio and a separate review build are verified development subsets; full parent tasks are not complete.
+
+Next smallest task: BA/mechanic scope AW2-009A isolated TCG/Auto Chess portals and quick-entry, then tester verifies entry/return/reload/save boundaries. Animation/character owe authored boss/map/NPCs, seven sets (`aw2-muoi`, `aw2-nhien`, `aw2-hai`, `aw2-lien`, `aw2-moc`, `aw2-bach`, `aw2-van`) and full-character/mobile/device/rights gates. D11 simulation is available; owner approval still precedes runtime gacha. Final economy/balance and AW2-010/011 remain open. Continue directly on game/adventure-world-2 and push/read back after each completed task under D16.
