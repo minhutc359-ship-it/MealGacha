@@ -16,7 +16,7 @@ Nếu đã có save AW2, tiếp tục hành trình đang lưu. Nếu chưa có, 
 5. Nhận nhiệm vụ cuối tại Dì trước khi vào thử thách Phòng Bàn. Đội tự chiến đấu, bạn chọn tuyệt kỹ; có tạm dừng/tiến từng nhịp/giảm chuyển động, âm thanh chỉ bật khi chọn. Sau trận phải **Lưu kết quả và trở về**. Khi thắng, đọc ghi chép rồi về Bà để chọn một trong hai kết thúc.
 6. Đi bộ chưa lưu vị trí; **Lưu vị trí** trước khi rời trang. Các hành động nhiệm vụ/rương/nấu/ghé bàn lưu riêng theo thao tác. **Đọc lại** trở về lần lưu gần nhất. Nếu tab khác thay đổi dữ liệu, đọc lại trước khi tiếp tục; không ghi đè tiến trình mới hơn.
 
-Gate kỹ thuật mới dùng một lượt thật từ save trống qua cả hai mode/cổng, bốn quest, rương/nấu/chia, boss và hai kết thúc. Nhánh kết thúc thứ hai dùng đúng checkpoint đã kiếm và lưu, không sửa cờ nhiệm vụ. Nguồn và bản biên dịch phải cùng PASS; xem [bằng chứng AW2-010A](evidence/AW2-010A.md). Điều này không thay thế một người chơi độc lập đã playtest.
+Gate kỹ thuật mới dùng một lượt thật từ save trống qua cả hai mode/cổng, bốn quest, rương/nấu/chia, boss và hai kết thúc. Nhánh kết thúc thứ hai dùng đúng checkpoint đã kiếm và lưu, không sửa cờ nhiệm vụ. Nguồn và bản biên dịch đã cùng PASS; xem [bằng chứng AW2-010A](evidence/AW2-010A.md). Điều này không thay thế một người chơi độc lập đã playtest.
 
 ```sh
 pnpm build:aw2

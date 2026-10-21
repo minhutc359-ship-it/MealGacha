@@ -5,7 +5,7 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 ## Khởi động ngữ cảnh
 Đọc `AGENTS.md`, `DECISIONS.md`, `CANON.md`, `STATUS.md`, `BACKLOG.md`, `TEST_LEDGER.md`, `HANDOFF.md` và skill tương ứng. Agent skills là vai trò + tài liệu bền vững, không phải background agents tự chạy.
 
-**Xem nhanh cho chủ dự án:** [REPORT.md](REPORT.md), do `scretary-agent` tổng hợp sau mỗi task. [HANDOFF.md](HANDOFF.md) ghi chi tiết triển khai và việc bàn giao.
+**Xem nhanh cho chủ dự án:** [REPORT.md](REPORT.md), do `scretary-agent` tổng hợp sau mỗi task. [Phần trăm và cách tính](PROGRESS.md) · [Chơi thử demo](DEMO.md). [HANDOFF.md](HANDOFF.md) ghi chi tiết triển khai và việc bàn giao.
 
 ## Quy trình phát triển và push
 
@@ -13,7 +13,7 @@ Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực t
 
 ## AW2 development preview — expedition, TCG and Auto Chess practice
 
-Current branch: `game/adventure-world-2`. AW2-009C at `ff499a52e471f9b07133bc80e9d32802dda92cb8` adds actual Auto Chess practice: finite borrowed shop, merge2-star, formation/swap, bounded auto battle and five-round results through the checkpoint/return adapter. TCG practice remains playable and freshly regressed. No mode world spending/prizes/save fields.970 tests (177 AW2), both typechecks and stable/review builds PASS; [fresh verification](evidence/AW2-009C.md). [Auto Chess rules/how to play](AUTO_CHESS_PRACTICE.md), [TCG rules](TCG_PRACTICE.md), [quick REPORT](REPORT.md), [conditional delivery estimates](DELIVERY_PLAN.md), [status](STATUS.md), [handoff](HANDOFF.md). D16 applies; approved canon unchanged, D11 stays PROPOSED.
+Current branch: `game/adventure-world-2`. AW2-010A at `e7aedacadcc5f7664695767196d9edaa77fe724b` verifies a fresh earned RPG/TCG/Chess journey on source+compiled and fixes keyboard/native-control ownership, dialog focus and onboarding guidance.982 tests (189 AW2),171 browser assertions, both types/builds/isolation PASS. [Demo/how to play](DEMO.md), [fresh evidence](evidence/AW2-010A.md), [progress/caveats](PROGRESS.md): demo9/10 groups≈90%, full12-character product≈40% rough weighted estimate. Independent human playtest, full art/device/rights/release gates remain open. Both borrowed practices stay isolated from RPG spending/prizes/save fields; D11 stays PROPOSED, D12 platform/scope OPEN. Next [AW2-004C](tasks/AW2-004C.md) first-character gap closure; [REPORT](REPORT.md), [HANDOFF](HANDOFF.md).
 
 ```sh
 pnpm install --frozen-lockfile
@@ -87,7 +87,7 @@ pnpm build:aw2
 node dev/tools/verify-aw2-chess.mjs --compiled --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
 ```
 
-Navigation owns/closes source8456/compiled8457, TCG8458/8459, Chess8460/8461. Fresh isolated browser profiles only. [Current task](tasks/AW2-009C.md), [evidence](evidence/AW2-009C.md). Embedded-practice/navigation subset verified; production mode balance/art/persistence/prizes and complete release gates remain open. Next [AW2-010A](tasks/AW2-010A.md) demo integration/playtest.
+Navigation owns/closes source8456/compiled8457, TCG8458/8459, Chess8460/8461. Fresh isolated browser profiles only. [Current task](tasks/AW2-009C.md), [evidence](evidence/AW2-009C.md). Embedded-practice/navigation subset verified; production mode balance/art/persistence/prizes and complete release gates remain open. [AW2-010A](tasks/AW2-010A.md) automated integration gate now passes; independent playtest remains open.
 
 ## Deterministic combat core — AW2-007A
 

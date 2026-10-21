@@ -6,14 +6,14 @@ Historical story review preserved by AW2-012: source `461c7cfaac658618d96ca8020a
 Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, command, observed outcome. Prior PASS becomes STALE for affected changes. PR runs selective affected tests; full suite required before release/major cross-engine merge, and after high-impact save/shared engine changes.
 | Case | Trigger | Result |
 |---|---|---|
-| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —ff499a5; unchanged v4 store,970 full tests and224 fresh browser assertions preserve seeded stable bytes |
+| SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —e7aedac; unchanged v4 store,982 full tests and171 fresh browser assertions preserve seeded stable bytes |
 | SAVE-02 chest/battle/gacha atomic grants, no double reward | loot/store | PASS development quest/chest/cooking/XP/boss subset —a40217a; failure/replay/concurrency/authority checks; runtime gacha/spending NOT_RUN |
-| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS —ff499a5; unchanged v4 migration/raw-lock boundary in970 units; both practices/checkpoint/failed/stale/reset/invalid/read-only return regressed |
+| SAVE-03 schema/reset conflicts, storage failures and serialized writers | save/schema/reset | PASS —e7aedac; unchanged v4 boundary in982 units; current mode/RPG stale/failed/migration/read-only return regression |
 | GACHA-01 weights N/R/SR/SSR/UR seeded statistics | gacha/roster | PASS simulation-only proposed D11 —a40217a;2,000,000 seeded draws +boundary/pity tests; owner approval/runtime adoption pending |
 | GACHA-02 pity/shards/dupes and reload | gacha/save | NOT_RUN runtime; proposed counters have pure simulation tests only |
-| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS development —16f55af;40 fresh world checks plus52 mode transition checks, safe checkpoint returns/reload; authored maps/device pending |
-| WORLD-02 NPC, quest, followers and interact range | world/quest | PASS development subset —16f55af; quests/NPC/portal range/quick-entry/return and existing follower unit regression; full authored NPC/map gates open |
-| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS —16f55af;40 fresh all4-quest/boss/note/both-ending checks and133 AW2 units; mode entry/return grants nothing |
+| WORLD-01 navigation, collision, zone transfer, spawn | world | PASS development —e7aedac;43+43 fresh combined journeys plus52 mode checks/25 RPG checks, touch wall path/returns/reload; authored maps/device pending |
+| WORLD-02 NPC, quest, followers and interact range | world/quest | PASS development subset —e7aedac; combined quests/NPC,52 mode portal/return and25 RPG/follower checks; full authored NPC/map gates open |
+| QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS —e7aedac;43+43 fresh earned all4-quest/boss/note/both-ending journeys,189 AW2 units; mode entry/return grants nothing |
 | BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS rules/development renderer —a40217a;116 AW2 /909 full tests,22 independent +40 world/boss Chromium checks |
 | BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development subset —16f55af;40 fresh boss/checkpoint/return/ending checks plus real battle mode-entry guard; active-battle resume/native/production NOT_RUN |
 | ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; five starter reference sets verified below |
@@ -23,9 +23,33 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | PROVENANCE-STARTERS original image/audio inventory | asset | PASS inventory only — integration source 0e8fb7a; rights/legal approval NOT_RUN |
 | DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | PASS debug development subset —a40217a;3 rooms/puzzle/once-only chest/real boss/return; full authored dungeon/balance/device pending |
 | MODE-01 TCG/Chess embedded and quick-entry safe | navigation | PASS embedded borrowed-practice/navigation subset —ff499a5;19 Chess/25 TCG cases,33+33 Chess/29+29 TCG/26+26 navigation browser checks; production mode balance/art/device/prizes/persistence NOT_RUN/out of scope |
+| CTRL-01 map shortcuts/native UI/focus/Enter direction | world/UI | PASS —e7aedac;12 pure cases and43+43 combined browser checks, native scroll and dialog focus restored |
+| DEMO-01 one fresh earned RPG/TCG/Chess journey/both endings | demo integration | PASS automated reference-art scope —e7aedac;43 source/43 compiled,0 forged progression; independent human playtest NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
-Current AW2-009C verifies both actual borrowed practices plus affected navigation/world/boss/compiled integration. Full production mode/art/device/release gates remain open; prizes/persistence out of scope. Unchanged combat/asset evidence retains its original source. Prior009B951/158,009A926/100 and013A909/124 results are historical, not added to224 fresh assertions. Combined first-player demo acceptance is AW2-010A READY/NOT_RUN.
+Current AW2-010A verifies the automated combined fresh-player demo plus affected navigation/RPG/compiled integration. Full production mode/art/device/release gates remain open; prizes/persistence out of scope. Unchanged combat/asset evidence retains its original source. Prior009C970/224,009B951/158 and older totals are historical, not added to171 fresh final assertions. Automated combined acceptance PASS; independent human demo playtest NOT_RUN.
+
+## AW2-010A automated fresh-player demo — 2026-10-21
+
+VERIFIED automated subset; independent human playtest NOT_RUN. Base local/remote `4dde53f9cdae36afa11814ddae62077963c59d3d`; source `e7aedacadcc5f7664695767196d9edaa77fe724b`, tree `e95629e68bb41744721cdb89f786960d657129be`, branch game/adventure-world-2. Existing task card updated before code; completion docs only. D16 matched index/remote tree and expected-head/force=false publication, independent fetch/SHA/index/ancestry and guarded local fast-forward; final docs descendant fetched before final handoff. No branch/PR/master/rpg/deployment/owner reset.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. In-session BA/mechanic/tester/scretary +React/verification review; no independent agent/device/legal sign-off. [Task](tasks/AW2-010A.md), [full evidence/failures](evidence/AW2-010A.md), [demo](DEMO.md), [progress methodology](PROGRESS.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Affected / final full units | PASS |189 AW2 /15 files,2.00s;982 full /95 files,32.90s, zero failed/pending;12 new key-policy cases |
+| Root/dev types,7-file format/whitespace | PASS |Exit0 after final runtime focus fix |
+| Stable/review build and exclusion | PASS |851 files /77 text artifacts exclude AW2; review92 files /23,831,805 bytes, no PNG/code/maps/ZIP |
+| Fresh earned combined source / compiled | PASS |43+43 intro/5 starters/four mode games/both entries/quest/chest/cook/share/real boss/note/both endings, exact returns/reloads/rewards/legacy bytes |
+| Mode navigation source / compiled | PASS |26+26 checkpoint/failure/stale/portal/boss guard/mobile |
+| Unchanged RPG regression / compiled smoke | PASS |25+8 migration/inventory/economy/touch/follower/stale/audio/missing atlas/compiled assets |
+| Three accepted captures opened | PASS reference scope |Source/compiled390px guide and completed journey; two diagnostic failure images excluded |
+
+171 fresh final browser assertions total, zero unexpected final primary errors, five seeded stable keys unchanged. Earned205XP before final quest, real boss tick36, each ending345XP/5 receipts, exact saved NPC-position bytes for alternate branch.12 pure policy cases cover native/mode/modifier/repeat keyboard ownership; browsers prove direction Enter, native scrolling, focus restoration/held-key stop, touch/reduced motion/opt-in. [Unit summary](evidence/AW2-010A-unit-summary.json).
+
+Initial FAILs retained: RPG revealed hidden-close-button focus regression and passed unchanged after genuine map-focus fix; combined helper terminal/canvas lag, async meal assertion and unsaved branch position fixed with truth/commit synchronization and explicit UI save. First omitted-keyup probe direction result inconclusive; paired baseline preserved. Final full units/types/build follow runtime repair, final demo source/compiled follow harness fixes. No core rules/save/schema/asset changes. Standalone TCG/Chess/older40-world runner not repeated separately; deeper unchanged-engine evidence stays source-bound.
+
+Residual obligation: independent human demo playtest, full12 DoD/art/native/device/offline/FPS/listening/rights/production-save/release. [PROGRESS](PROGRESS.md) demo9/10≈90% and rough product≈40% are planning indicators, not QA results or date approval. Next AW2-004C character/animation gap closure/measurement; repeat impact/full checks per cadence before release.
 
 ## AW2-009C Auto Chess practice / estimate — 2026-10-21
 
