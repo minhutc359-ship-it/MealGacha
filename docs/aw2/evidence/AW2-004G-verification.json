@@ -1,8 +1,8 @@
 {
   "task": "AW2-004G",
   "base": "d5fc1a8f146a31097d0f81fc2bb4055f91642141",
-  "source": "AW2_004G_SOURCE_REF",
-  "sourceTree": "AW2_004G_SOURCE_TREE",
+  "source": "489ce7162df7db11b1b1954d0b0a62b4d073fe17",
+  "sourceTree": "1ebf5fbaec245dbe986731f640e02df337db4d44",
   "status": "PASS_SCOPED_REFERENCE",
   "environment": "Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36",
   "units": {
@@ -1210,5 +1210,16 @@
   "priorFailures": "Initial new fixture run67 PASS/2 FAIL: ultimate omitted required target and empty-zone fixture moved enemies before commit. Corrected fixtures only;7-case rerun PASS, other62 not repeated. Initial source-browser attempt raced the scoped builder manifest write and hot-reloaded (createRoot/startsWith/context destroyed); preserved failure record, final browser runs only after builder completion. No image repair/rejection or production behavior weakened.",
   "scope": "Preparation/flight emit no outcome FX. Basic confirmed hits use actual-target impact cels2/3. Each real same-tick zone pulse groups source gesture/clock and actual recipient IDs across partial batches; three real ticks trigger three finite effects. Passive needs actual eligible slow status; pull statuses add no damage contact. Each target retains its own reaction art. Renderer expands actual recipients without clock restart and suppresses actor/confirmed FX at terminal. Existing finite180/440ms expiry including reduced motion stays unchanged. Engine/numbers/save/quests/economy/gacha/canon/dependencies unchanged.",
   "reuse": "Unchanged full1007 units/471 browser/stable851-file78-text exclusion/earned world-quest-save-mode journeys retain original-SHA PASS at cf0b39469d1fb8f7d77e18feb5e16895d70565a1; not rerun or added to fresh totals.124 byte-identical paths prove unchanged core/save/world/economy/modes/helpers/other assets/stable entry/config/dependencies against base; other manifests and original12 Sương files unchanged. Release/major save/shared-engine work still requires full regression.",
-  "progress": "Demo9/10≈90% and full product≈40% (rough35–45%) unchanged. Starter reference motion5/5=100%, up from4/5=80%,160 new cels total.0/12 full DoD,5 reference sets/7 absent; motion completion uses a separate denominator. Independent playtest/art/anatomy/cloth/loops/contact/readability/audio binding/listening/device/FPS/offline/native/rights/production-save/release gates remain open."
+  "progress": "Demo9/10≈90% and full product≈40% (rough35–45%) unchanged. Starter reference motion5/5=100%, up from4/5=80%,160 new cels total.0/12 full DoD,5 reference sets/7 absent; motion completion uses a separate denominator. Independent playtest/art/anatomy/cloth/loops/contact/readability/audio binding/listening/device/FPS/offline/native/rights/production-save/release gates remain open.",
+  "publication": {
+    "source": "489ce7162df7db11b1b1954d0b0a62b4d073fe17",
+    "tree": "1ebf5fbaec245dbe986731f640e02df337db4d44",
+    "base": "d5fc1a8f146a31097d0f81fc2bb4055f91642141",
+    "branch": "game/adventure-world-2",
+    "remoteTreeEqualsStaged": true,
+    "binaryGitShaMatches": 4,
+    "expectedHeadForceFalse": true,
+    "independentFetchTreeIndexAncestryAndGuardedLocalFF": "PASS",
+    "completion": "docs-only descendant, final clean remote readback required"
+  }
 }

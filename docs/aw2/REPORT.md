@@ -4,7 +4,7 @@ Cập nhật2026-10-21 · **scretary-agent** · game/adventure-world-2. Báo cá
 
 **Vừa hoàn tất AW2-004G:** Sương Lành thêm32 khung/tám trạng thái. Đạn, ba nhịp vùng, làm chậm và kéo hiển thị theo kết quả thật; nhiều mục tiêu cùng nhịp không khởi động lại hiệu ứng. Có [hướng dẫn chạy local](LOCAL_TEST.md).
 
-**Kiểm chứng mới:**69 test liên quan/8 file và113 bước browser PASS (41 nguồn+42 biên dịch Sương,12 Lam+14 Mộc Non renderer,4 startup local). Hai typecheck, kiểm tra asset/build lại riêng và build AW2 PASS. Hai lỗi fixture sửa rồi chỉ chạy lại7 case,62 case khác đã pass giữ nguyên. Full suite/quest/save/mode/stable không đổi giữ PASS ở SHA gốc004E, không chạy lại/cộng vào số mới. Nguồn `AW2_004G_SOURCE_REF`; [bằng chứng](evidence/AW2-004G.md).
+**Kiểm chứng mới:**69 test liên quan/8 file và113 bước browser PASS (41 nguồn+42 biên dịch Sương,12 Lam+14 Mộc Non renderer,4 startup local). Hai typecheck, kiểm tra asset/build lại riêng và build AW2 PASS. Hai lỗi fixture sửa rồi chỉ chạy lại7 case,62 case khác đã pass giữ nguyên. Full suite/quest/save/mode/stable không đổi giữ PASS ở SHA gốc004E, không chạy lại/cộng vào số mới. Nguồn `489ce7162df7db11b1b1954d0b0a62b4d073fe17`; [bằng chứng](evidence/AW2-004G.md).
 
 | Phạm vi | Hiện tại | So với mốc trước |
 |---|---|---|

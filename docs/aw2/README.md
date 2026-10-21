@@ -13,7 +13,7 @@ Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực t
 
 ## AW2 development preview — expedition, TCG and Auto Chess practice
 
-Current branch game/adventure-world-2. AW2-004G at `AW2_004G_SOURCE_REF` adds32 Sương motion cels/confirmed actual zone recipients and [local-run guide](LOCAL_TEST.md).69 affected unit tests/113 fresh browser checks/types/scoped repeat-build/review build PASS. Unchanged full1007/471/world/save/modes/stable evidence retained atcf0b394, not rerun or added. Demo90%/product≈40% rough35–45% unchanged;5/5 starter reference motion (160 cels),0/12 full DoD/7 absent sets. [Sương gaps](SUONG_CHARACTER_GATES.md), [evidence](evidence/AW2-004G.md), [REPORT](REPORT.md). Next [004H](tasks/AW2-004H.md) arena/readability; independent playtest/art/audio/devices/rights/release stay open. D11 PROPOSED/D12 OPEN.
+Current branch game/adventure-world-2. AW2-004G at `489ce7162df7db11b1b1954d0b0a62b4d073fe17` adds32 Sương motion cels/confirmed actual zone recipients and [local-run guide](LOCAL_TEST.md).69 affected unit tests/113 fresh browser checks/types/scoped repeat-build/review build PASS. Unchanged full1007/471/world/save/modes/stable evidence retained atcf0b394, not rerun or added. Demo90%/product≈40% rough35–45% unchanged;5/5 starter reference motion (160 cels),0/12 full DoD/7 absent sets. [Sương gaps](SUONG_CHARACTER_GATES.md), [evidence](evidence/AW2-004G.md), [REPORT](REPORT.md). Next [004H](tasks/AW2-004H.md) arena/readability; independent playtest/art/audio/devices/rights/release stay open. D11 PROPOSED/D12 OPEN.
 
 ```sh
 pnpm install --frozen-lockfile
