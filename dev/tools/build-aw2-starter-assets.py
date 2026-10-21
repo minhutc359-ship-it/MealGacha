@@ -5,6 +5,7 @@ Uses AW2-004A's lossless encoder, actual alpha measurements and original cue syn
 """
 from pathlib import Path
 import copy
+import argparse
 import importlib.util
 import json
 
@@ -26,11 +27,43 @@ CONFIG = {
 }
 
 
+def apply_lua_motion(data):
+    """Pack preserved generated RGBA; timing/scale changes are metadata only."""
+    sheets = [
+        ("battle-motion-a-v1", STATES[:4], [0, 324, 643, 963, 1254], [0, 346, 643, 949, 1254]),
+        ("battle-motion-b-v2", STATES[4:], [0, 338, 643, 963, 1254], [0, 354, 651, 951, 1254]),
+    ]
+    timing = {"idle": [0, 300, 600, 900], "move": [0, 170, 340, 510],
+              "attack": [0, 220, 300, 380], "cast": [0, 210, 420, 740],
+              "hit": [0, 80, 180, 340], "guard": [0, 180, 400, 700],
+              "ultimate": [0, 280, 560, 960], "defeat": [0, 220, 480, 760]}
+    for name, states, xs, ys in sheets:
+        asset = util.encode(name)
+        asset["id"] = f"aw2-lua:{name}:base-v1"
+        data["assets"][name] = asset
+        cells = util.frames(name, xs, ys, [[f"battle.{state}.{i}" for i in range(4)] for state in states])
+        for frame in cells.values(): frame["renderScale"] = 1.35 if name == "battle-motion-a-v1" else 1.9
+        data["frames"].update(cells)
+        for state in states:
+            clip = data["battle"][state]
+            clip["frames"] = [{"atMs": at, "frame": f"battle.{state}.{i}"} for i, at in enumerate(timing[state])]
+            if state == "attack": clip["frames"].append({"atMs": 560, "frame": "battle.idle.0"})
+            clip["reducedMotionFrame"] = f"battle.{state}"
+            clip["method"] = "four distinct image_gen cels with authored frame timing; attack has two contacts and idle recovery; independent art review pending"
+    data["status"] = "MOTION_REFERENCE_IMPLEMENTED"
+    data["provenance"]["processing"] += "; motion RGBA sources unchanged, calibrated rectangles/anchors and logical renderScale metadata only"
+    for skill in data["skills"].values():
+        skill["scope"] = "reference presentation used by development combat; final balance/full-character QA pending"
+
+
 def build(unit, config):
     identity = f"aw2-{unit}"
     util.ASSETS = ROOT / f"dev/aw2/assets/{unit}/base-v1"
     util.URL = f"/dev/aw2/assets/{unit}/base-v1/"
-    data = json.loads((ROOT / "src/aw2/assets/than.base-v1.json").read_text().replace("aw2-than", identity))
+    # Preserve unit-owned metadata. Never inherit another character's mutable
+    # motion frames, assets, status or provenance from a live manifest.
+    data = json.loads((ROOT / f"src/aw2/assets/{unit}.base-v1.json").read_text())
+    data["battle"] = util.reference_battle_clips(identity)
     sources = {name: util.encode(name) for name in ["world", "battle", "portrait", "fx"]}
     for name, asset in sources.items():
         asset["id"] = f"{identity}:{name}:base-v1"
@@ -79,9 +112,16 @@ def build(unit, config):
         skill["audio"]["id"] = f"{identity}:audio:{slot}"
     data["provenance"].update(referenceAsset=f"{identity}:portrait:base-v1", prompts=util.URL + "prompts.json", processing="unchanged source PNGs; lossless WebP encoding with real alpha; measured cell rectangles/visible pivots; portrait also used as identity reference; no repaint/masking/mirroring/resizing")
     data["provenance"]["alphaEdgeTolerance"] = 9 if unit == "moc-non" else 8
+    if unit == "lua":
+        apply_lua_motion(data)
     (ROOT / f"src/aw2/assets/{unit}.base-v1.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
-    print(json.dumps({"unit": identity, "status": "PASS", "frames": len(cells), "webpBytes": sum(a["bytes"] for n, a in sources.items() if n != "reference")}))
+    print(json.dumps({"unit": identity, "status": "PASS", "frames": len(data["frames"]), "webpBytes": sum(a["bytes"] for n, a in sources.items() if n != "reference")}))
 
 
 if __name__ == "__main__":
-    for unit, config in CONFIG.items(): build(unit, config)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--unit", choices=list(CONFIG))
+    selected = parser.parse_args().unit
+    for unit, config in CONFIG.items():
+        if selected is None or selected == unit:
+            build(unit, config)

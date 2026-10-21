@@ -1,4 +1,4 @@
-import { sampleBattleClip } from "./animation"
+import { sampleBattleClip, skillCueTimes } from "./animation"
 import type { BattleState, SpiritAssetManifest } from "./types"
 
 export interface ActorPlayback {
@@ -10,6 +10,8 @@ export interface ActorPlayback {
 export interface PlaybackCue {
   serial: number
   state: BattleState
+  skillId?: string
+  contactIndex?: number
 }
 
 /** Presentation time survives unrelated core ticks; received/new cues can interrupt.
@@ -42,14 +44,29 @@ export function sampleActorPlayback(
   }
   const elapsedMs = Math.max(0, time - clock.startedAtMs)
   const clip = manifest.battle[clock.state]
-  const active = clock.state === "defeat" || elapsedMs < clip.durationMs
+  const contacts =
+    clock.state === "attack" &&
+    cue?.skillId === manifest.skills.basic.id &&
+    cue.contactIndex !== undefined
+      ? skillCueTimes(manifest.skills.basic)
+      : []
+  const contactAt = contacts[cue?.contactIndex ?? -1] ?? 0
+  const nextContactAt =
+    contacts[(cue?.contactIndex ?? -2) + 1] ?? clip.durationMs
+  const active =
+    clock.state === "defeat" || elapsedMs < clip.durationMs - contactAt
   const state = active ? clock.state : "idle"
+  // A confirmed first beat must never advance to an unconfirmed second pose.
+  const clipTime =
+    active && contacts.length
+      ? Math.min(contactAt + elapsedMs, nextContactAt - 1)
+      : elapsedMs
   return {
     clock,
     state,
     elapsedMs,
     active,
-    pose: sampleBattleClip(manifest.battle[state], elapsedMs, reducedMotion),
+    pose: sampleBattleClip(manifest.battle[state], clipTime, reducedMotion),
   }
 }
 

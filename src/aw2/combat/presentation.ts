@@ -7,6 +7,14 @@ export interface ActorPresentation {
   serial: number
   tick: number
   skillId?: string
+  /** Only an authoritative hit may select a beat of Lua's basic sequence. */
+  contactIndex?: number
+}
+
+export interface ConfirmedContact {
+  targetId: string
+  tick: number
+  index: number
 }
 
 export interface ProjectilePresentation {
@@ -38,6 +46,7 @@ export interface CombatPresentation {
   version: 1
   lastSerial: number
   actors: Record<string, ActorPresentation>
+  contacts: Record<string, ConfirmedContact>
   projectiles: Record<string, ProjectilePresentation>
   floating: FloatingPresentation[]
   terminal: TerminalPresentation | null
@@ -48,6 +57,7 @@ export function createCombatPresentation(): CombatPresentation {
     version: 1,
     lastSerial: 0,
     actors: {},
+    contacts: {},
     projectiles: {},
     floating: [],
     terminal: null,
@@ -108,12 +118,31 @@ export function reduceCombatPresentation(
     assertNextEvent(event, next.lastSerial)
     next.lastSerial = event.serial
     const sourceState = actorStateFor(event)
+    let contactIndex: number | undefined
+    if (event.sourceId && event.skillId === "aw2-lua:skill:basic") {
+      if (event.kind === "miss") delete next.contacts[event.sourceId]
+      if (event.kind === "hit" && event.targetIds[0]) {
+        const prior = next.contacts[event.sourceId]
+        contactIndex =
+          prior?.index === 0 &&
+          prior.targetId === event.targetIds[0] &&
+          prior.tick + 1 === event.tick
+            ? 1
+            : 0
+        next.contacts[event.sourceId] = {
+          targetId: event.targetIds[0],
+          tick: event.tick,
+          index: contactIndex,
+        }
+      }
+    }
     if (sourceState && event.sourceId)
       next.actors[event.sourceId] = {
         state: sourceState,
         serial: event.serial,
         tick: event.tick,
         ...(event.skillId ? { skillId: event.skillId } : {}),
+        ...(contactIndex === undefined ? {} : { contactIndex }),
       }
     if (event.kind === "projectile-launch") {
       const targetId = event.targetIds[0]

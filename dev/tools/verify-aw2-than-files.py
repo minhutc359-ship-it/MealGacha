@@ -39,6 +39,10 @@ for state, clip in manifest["battle"].items():
         continue
     cels = []
     for key in clip["frames"]:
+        # Attack may return to an authored idle cel after its final contact.
+        # Count the four new cels belonging to this state, not recovery aliases.
+        if not key["frame"].startswith(f"battle.{state}."):
+            continue
         frame = manifest["frames"][key["frame"]]
         x,y,w,h = (frame[k] for k in ["x","y","width","height"])
         cels.append(hashlib.sha256(images[frame["asset"]].crop((x,y,x+w,y+h)).tobytes()).hexdigest())
@@ -60,4 +64,4 @@ for slot, skill in manifest["skills"].items():
     checks.append(f"{slot}: WAV hash/PCM/duration/non-silent/no clipping/faded edges")
 assert manifest["fullCharacterComplete"] is False
 assert manifest["provenance"]["licenseStatus"] == "REVIEW_REQUIRED"
-print(json.dumps({"task": "AW2-004C" if "reducedMotionFrame" in manifest["battle"]["idle"] else "AW2-004A" if manifest["spiritId"] == "aw2-than" else "AW2-004B", "spiritId": manifest["spiritId"],"status":"PASS","checks":checks,"webpBytes":sum(a["bytes"] for a in {a["url"]:a for a in manifest["assets"].values()}.values())}))
+print(json.dumps({"task": ("AW2-004D" if manifest["spiritId"] == "aw2-lua" else "AW2-004C") if "reducedMotionFrame" in manifest["battle"]["idle"] else "AW2-004A" if manifest["spiritId"] == "aw2-than" else "AW2-004B", "spiritId": manifest["spiritId"],"status":"PASS","checks":checks,"webpBytes":sum(a["bytes"] for a in {a["url"]:a for a in manifest["assets"].values()}.values())}))

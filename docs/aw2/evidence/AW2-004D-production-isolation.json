@@ -1,0 +1,17 @@
+{
+  "task": "AW2-004D",
+  "status": "PASS",
+  "stableFiles": 851,
+  "stableTextFiles": 78,
+  "markers": [
+    "aw2.development.save",
+    "/dev/aw2/",
+    "aw2-lua",
+    "aw2-combat-development-v1",
+    "battle-motion-a-v1"
+  ],
+  "matches": [],
+  "reviewFiles": 98,
+  "reviewBytes": 28038187,
+  "disallowedReview": []
+}

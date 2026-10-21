@@ -88,6 +88,29 @@ def track(*keys):
             for t, x, y, rotation, scale, opacity in keys]
 
 
+def reference_battle_clips(identity="aw2-than"):
+    """Reference timelines are explicit inputs, independent of mutable manifests."""
+    durations = dict(zip(STATES, [1200, 680, 620, 1080, 520, 1000, 1320, 1000]))
+    contacts = {"attack": (240, "basic"), "cast": (420, "auto"), "ultimate": (560, "ultimate")}
+    clips = {}
+    for state in STATES:
+        duration = durations[state]
+        loop = state in ["idle", "move", "guard"]
+        keys = track((0, 0, 0, 0, 1, 1), (duration // 2, 0, -3 if loop else 0, 0, 1, 1), (duration, 0, 0, 0, 1, 1))
+        cells = [{"atMs": 0, "frame": f"battle.{state}"}]
+        if state == "attack":
+            cells = [{"atMs": 0, "frame": "battle.idle"}, {"atMs": 120, "frame": "battle.attack"}, {"atMs": 420, "frame": "battle.idle"}]
+            keys = track((0, 0, 0, 0, 1, 1), (120, -14, 0, -0.03, 1, 1), (240, 28, 0, 0.02, 1, 1), (620, 0, 0, 0, 1, 1))
+        if state == "hit": keys = track((0, 0, 0, 0, 1, 1), (100, -16, 0, -0.06, 1, 0.72), (520, 0, 0, 0, 1, 1))
+        if state == "ultimate": keys = track((0, 0, 0, 0, 0.96, 1), (560, 0, -4, 0, 1.03, 1), (1320, 0, 0, 0, 1, 1))
+        if state == "defeat": keys = track((0, 0, 0, 0, 1, 1), (1000, 0, 0, 0, 1, 0.8))
+        markers = [{"atMs": contacts[state][0], "kind": "contact", "skill": contacts[state][1]}] if state in contacts else []
+        clips[state] = {"id": f"{identity}:battle:{state}:base-v1", "durationMs": duration, "loop": loop,
+                        "frames": cells, "motion": keys, "markers": markers,
+                        "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"}
+    return clips
+
+
 def apply_motion(data):
     """Calibrate unchanged generated sheets; no pixel edits or resizing."""
     sheets = [
@@ -123,24 +146,7 @@ def main():
                              [[f"battle.{state}" for state in STATES[:4]], [f"battle.{state}" for state in STATES[4:]]]))
     all_frames.update(frames("fx", [0, 313, 627, 940, 1254], [0, 313, 627, 940, 1254],
                              [[f"fx.{skill}.{i}" for i in range(4)] for skill in ["basic", "auto", "passive", "ultimate"]]))
-    durations = dict(zip(STATES, [1200, 680, 620, 1080, 520, 1000, 1320, 1000]))
-    contacts = {"attack": (240, "basic"), "cast": (420, "auto"), "ultimate": (560, "ultimate")}
-    clips = {}
-    for state in STATES:
-        duration = durations[state]
-        loop = state in ["idle", "move", "guard"]
-        keys = track((0, 0, 0, 0, 1, 1), (duration // 2, 0, -3 if loop else 0, 0, 1, 1), (duration, 0, 0, 0, 1, 1))
-        cells = [{"atMs": 0, "frame": f"battle.{state}"}]
-        if state == "attack":
-            cells = [{"atMs": 0, "frame": "battle.idle"}, {"atMs": 120, "frame": "battle.attack"}, {"atMs": 420, "frame": "battle.idle"}]
-            keys = track((0, 0, 0, 0, 1, 1), (120, -14, 0, -0.03, 1, 1), (240, 28, 0, 0.02, 1, 1), (620, 0, 0, 0, 1, 1))
-        if state == "hit": keys = track((0, 0, 0, 0, 1, 1), (100, -16, 0, -0.06, 1, 0.72), (520, 0, 0, 0, 1, 1))
-        if state == "ultimate": keys = track((0, 0, 0, 0, 0.96, 1), (560, 0, -4, 0, 1.03, 1), (1320, 0, 0, 0, 1, 1))
-        if state == "defeat": keys = track((0, 0, 0, 0, 1, 1), (1000, 0, 0, 0, 1, 0.8))
-        markers = [{"atMs": contacts[state][0], "kind": "contact", "skill": contacts[state][1]}] if state in contacts else []
-        clips[state] = {"id": f"aw2-than:battle:{state}:base-v1", "durationMs": duration, "loop": loop,
-                        "frames": cells, "motion": keys, "markers": markers,
-                        "method": "authored generated key pose(s) + authored interpolated transform track; not frame-by-frame animation"}
+    clips = reference_battle_clips()
     sounds = {
         "basic": cue("basic", .18, [(160, -300, .28), (740, -1200, .12)], .12),
         "auto": cue("auto", .42, [(294, 180, .16), (440, 120, .12), (660, 50, .08)]),
@@ -160,7 +166,7 @@ def main():
                       for direction in ["down", "left", "right", "up"]},
             "skills": {slot: {"id": f"aw2-than:skill:{slot}", "displayName": name,
                               "battleState": state, "fx": [f"fx.{slot}.{i}" for i in range(4)],
-                              "fxTriggerAtMs": 180 if slot == "passive" else contacts[state][0],
+                              "fxTriggerAtMs": 180 if slot == "passive" else clips[state]["markers"][0]["atMs"],
                               "fxPlacement": placements[slot],
                               "trigger": "shield-expired event from combat" if slot == "passive" else "animation contact marker; combat still owns gameplay",
                               "fxFrameMs": 100 if slot != "ultimate" else 160, "audio": sounds[slot],

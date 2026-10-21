@@ -218,7 +218,12 @@ export function BattleCanvas({
           ? manifest.skills[slot]
           : null
       const effect = skill
-        ? sampleSkillFx(skill, playback.elapsedMs, reducedMotion)
+        ? sampleSkillFx(
+            skill,
+            playback.elapsedMs,
+            reducedMotion,
+            cue?.contactIndex,
+          )
         : null
       const drawFx = () => {
         if (!skill || !effect) return
@@ -248,6 +253,15 @@ export function BattleCanvas({
       if (skill?.fxPlacement.layer !== "behind") drawFx()
       if (enemy) context!.restore()
       actorPoses[actor.id] = pose.frame
+      actorContacts[actor.id] =
+        cue?.contactIndex === undefined
+          ? null
+          : {
+              serial: cue.serial,
+              index: cue.contactIndex,
+              fx: effect?.frame ?? "",
+              atMs: effect?.cue ?? null,
+            }
 
       const barWidth = 76
       const left = x - barWidth / 2
@@ -329,6 +343,7 @@ export function BattleCanvas({
     }
 
     const actorPoses: Record<string, string> = {}
+    const actorContacts: Record<string, unknown> = {}
     function draw(now: number) {
       if (!paused && document.visibilityState === "visible")
         clock.current.time += Math.min(50, Math.max(0, now - lastTime))
@@ -366,6 +381,7 @@ export function BattleCanvas({
       element!.dataset.lastSerial = String(presentation.lastSerial)
       element!.dataset.reduced = String(reducedMotion)
       element!.dataset.actorPoses = JSON.stringify(actorPoses)
+      element!.dataset.actorContacts = JSON.stringify(actorContacts)
       element!.dataset.motionTime = String(Math.floor(clock.current.time))
       frameRequest = requestAnimationFrame(draw)
     }

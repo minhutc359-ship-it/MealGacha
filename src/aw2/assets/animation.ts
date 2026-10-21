@@ -119,11 +119,22 @@ export function sampleProjectile(
   }
 }
 
+/** A confirmed beat uses time since that event and cannot emit a later beat.
+ * Asset preview omits the index and plays the complete authored reference track.
+ */
 export function sampleSkillFx(
   skill: SpiritAssetManifest["skills"]["basic"],
   elapsedMs: number,
   reducedMotion = false,
+  confirmedContactIndex?: number,
 ) {
+  if (confirmedContactIndex !== undefined) {
+    const cue = skillCueTimes(skill)[confirmedContactIndex]
+    if (cue === undefined || elapsedMs < 0) return null
+    const frame =
+      skill.fx[reducedMotion ? 2 : Math.floor(elapsedMs / skill.fxFrameMs)]
+    return frame ? { frame, cue } : null
+  }
   const cue = [...skillCueTimes(skill)].reverse().find((at) => elapsedMs >= at)
   const frames = skill.projectile ? skill.fx.slice(2) : skill.fx
   if (reducedMotion)

@@ -99,7 +99,9 @@ try {
     () =>
       new Set(
         Object.keys(window.aw2AtlasDraws)
-          .filter((url) => /\/(battle|battle-motion-[ab]-v2)\.webp$/.test(url))
+          .filter((url) =>
+            /\/(battle|battle-motion-[ab]-v[12])\.webp$/.test(url),
+          )
           .map((url) => url.split("/").at(-3)),
       ).size === 5,
   )

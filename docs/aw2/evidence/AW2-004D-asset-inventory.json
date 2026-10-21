@@ -1,0 +1,30 @@
+{
+  "task": "AW2-004D",
+  "status": "PASS",
+  "originalLuaAssetsByteIdenticalToBase": [
+    "dev/aw2/assets/lua/base-v1/world.webp",
+    "dev/aw2/assets/lua/base-v1/portrait.png",
+    "dev/aw2/assets/lua/base-v1/battle.png",
+    "dev/aw2/assets/lua/base-v1/auto.wav",
+    "dev/aw2/assets/lua/base-v1/world.png",
+    "dev/aw2/assets/lua/base-v1/fx.png",
+    "dev/aw2/assets/lua/base-v1/passive.wav",
+    "dev/aw2/assets/lua/base-v1/ultimate.wav",
+    "dev/aw2/assets/lua/base-v1/fx.webp",
+    "dev/aw2/assets/lua/base-v1/basic.wav",
+    "dev/aw2/assets/lua/base-v1/battle.webp",
+    "dev/aw2/assets/lua/base-v1/portrait.webp"
+  ],
+  "otherManifestsByteIdentical": [
+    "src/aw2/assets/than.base-v1.json",
+    "src/aw2/assets/lam.base-v1.json",
+    "src/aw2/assets/moc-non.base-v1.json",
+    "src/aw2/assets/suong.base-v1.json"
+  ],
+  "totalFrames": 72,
+  "newMotionCels": 32,
+  "maxActualEdgeAlpha": 2,
+  "runtimeMotionWebpBytes": 2029834,
+  "runtimeMotionDecodedRgbaBytes": 12580128,
+  "fullCharacterComplete": false
+}

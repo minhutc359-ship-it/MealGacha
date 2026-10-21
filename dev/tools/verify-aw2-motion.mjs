@@ -8,8 +8,15 @@ const { values } = parseArgs({
     playwright: { type: "string", default: "playwright" },
     chromium: { type: "string" },
     compiled: { type: "boolean", default: false },
+    spirit: { type: "string", default: "aw2-than" },
   },
 })
+assert.ok(
+  ["aw2-than", "aw2-lua"].includes(values.spirit),
+  "Supported authored motion spirit",
+)
+const slug = values.spirit.slice(4)
+const task = slug === "lua" ? "AW2-004D" : "AW2-004C"
 const { chromium } = await import(values.playwright)
 const port = values.compiled ? 8465 : 8464
 const flavor = values.compiled ? "compiled" : "source"
@@ -23,10 +30,15 @@ const server = values.compiled
       server: { host: "127.0.0.1", port, strictPort: true },
     })
 const manifest = JSON.parse(
-  await readFile("src/aw2/assets/than.base-v1.json", "utf8"),
+  await readFile(`src/aw2/assets/${slug}.base-v1.json`, "utf8"),
 )
-const out = ".asset-work/aw2-004c",
+const out = `.asset-work/${task.toLowerCase()}`,
+  previewEntry = slug === "than" ? "than.html" : "starters.html?spirit=aw2-lua",
+  motionKeys = Object.keys(manifest.assets).filter((key) =>
+    key.startsWith("battle-motion-"),
+  ),
   root = `http://127.0.0.1:${port}`
+let confirmedContacts = []
 const checks = [],
   errors = [],
   timelines = {},
@@ -95,13 +107,13 @@ try {
       errors.push(`${response.status()} ${response.url()}`)
   })
   await mkdir(out, { recursive: true })
-  await page.goto(`${root}/dev/aw2/than.html`)
+  await page.goto(`${root}/dev/aw2/${previewEntry}`)
   await page
     .getByTestId("atlas-state")
     .filter({ hasText: "Atlas đã tải" })
     .waitFor()
   check(
-    "Than preview declares four-cel reference motion without full-character approval",
+    `${manifest.displayName} preview declares four-cel reference motion without full-character approval`,
     (await page.locator("main").innerText()).includes(
       "mỗi trạng thái có bốn khung hình riêng",
     ),
@@ -129,7 +141,15 @@ try {
     check(
       `${state}: browser draws all four declared distinct cels`,
       JSON.stringify(seen) ===
-        JSON.stringify(clip.frames.map((key) => key.frame).sort()),
+        JSON.stringify(
+          [
+            ...new Set(
+              clip.frames
+                .map((key) => key.frame)
+                .filter((frame) => frame.startsWith(`battle.${state}.`)),
+            ),
+          ].sort(),
+        ),
     )
     await page.getByRole("button", { name: "Tạm dừng", exact: true }).click()
     const time = await page.locator("canvas").getAttribute("data-elapsed")
@@ -142,13 +162,32 @@ try {
       .locator("canvas")
       .screenshot({ path: `${out}/${flavor}-${state}.png` })
   }
+  if (slug === "lua") {
+    await page.getByTestId("skill-basic").click()
+    await page.waitForFunction(() => {
+      const data = document.querySelector("canvas").dataset
+      return (
+        data.frame === "battle.idle.0" &&
+        +data.elapsed >= 800 &&
+        data.events === "2" &&
+        data.cues === "2"
+      )
+    })
+    check(
+      "Full Lua preview crosses exactly two authored contacts and two FX/audio cues",
+      (await page.locator("canvas").getAttribute("data-events")) === "2" &&
+        (await page.locator("canvas").getAttribute("data-cues")) === "2" &&
+        (await page.getByTestId("contact-cue").innerText()).includes("380ms"),
+    )
+  }
   await page
     .getByRole("checkbox", { name: "Giảm chuyển động", exact: true })
     .check()
   await page.getByTestId("state-attack").click()
-  await page.waitForFunction(
-    () => document.querySelector("canvas").dataset.frame === "battle.attack",
-  )
+  await page.waitForFunction(() => {
+    const data = document.querySelector("canvas").dataset
+    return data.frame === "battle.attack" && data.fx === ""
+  })
   const staticPixels = await page
     .locator("canvas")
     .evaluate((canvas) => canvas.toDataURL())
@@ -158,12 +197,14 @@ try {
     (await page.locator("canvas").evaluate((canvas) => canvas.toDataURL())) ===
       staticPixels,
   )
-  const audio = await page.evaluate(async () => {
+  const audio = await page.evaluate(async (slug) => {
     const context = new AudioContext(),
       durations = []
     try {
       for (const slot of ["basic", "auto", "passive", "ultimate"]) {
-        const response = await fetch(`/dev/aw2/assets/than/base-v1/${slot}.wav`)
+        const response = await fetch(
+          `/dev/aw2/assets/${slug}/base-v1/${slot}.wav`,
+        )
         assertResponse(response)
         durations.push(
           (await context.decodeAudioData(await response.arrayBuffer()))
@@ -177,7 +218,7 @@ try {
     function assertResponse(response) {
       if (!response.ok) throw Error("Missing authored WAV")
     }
-  })
+  }, slug)
   check(
     "Four existing authored WAV cues decode; audio remains opt-in",
     audio.length === 4 &&
@@ -214,12 +255,12 @@ try {
     .getByTestId("battle-atlas-state")
     .filter({ hasText: "Năm atlas chiến đấu đã tải" })
     .waitFor()
-  await page.waitForFunction(() =>
-    Object.keys(window.__motionDraws).some((url) =>
-      url.endsWith("/battle-motion-a-v2.webp"),
-    ),
+  await page.waitForFunction(
+    (url) =>
+      Object.keys(window.__motionDraws).some((path) => path.endsWith(url)),
+    manifest.assets[motionKeys[0]].url,
   )
-  check("Actual five-unit combat draws the new Than motion atlas")
+  check(`Actual five-unit combat draws ${manifest.displayName} motion atlas`)
   await page.getByRole("button", { name: "Tạm dừng", exact: true }).click()
   const before = await page.locator("canvas").getAttribute("data-motion-time")
   await page.waitForTimeout(250)
@@ -244,6 +285,47 @@ try {
     before,
   )
   check("Resume continues presentation time")
+  if (slug === "lua") {
+    await page.evaluate(() => {
+      window.__luaContacts = []
+      const poll = () => {
+        const canvas = document.querySelector("canvas")
+        const contacts = JSON.parse(canvas?.dataset.actorContacts ?? "{}")
+        const poses = JSON.parse(canvas?.dataset.actorPoses ?? "{}")
+        const beat = contacts["player-aw2-lua"]
+        if (
+          beat?.fx &&
+          beat.atMs !== null &&
+          !window.__luaContacts.some(
+            (entry) => entry.serial === beat.serial && entry.fx === beat.fx,
+          )
+        )
+          window.__luaContacts.push({ ...beat, pose: poses["player-aw2-lua"] })
+        requestAnimationFrame(poll)
+      }
+      poll()
+    })
+    await page.waitForFunction(
+      () =>
+        window.__luaContacts.some((entry) => entry.index === 0) &&
+        window.__luaContacts.some((entry) => entry.index === 1),
+      null,
+      { timeout: 25000 },
+    )
+    confirmedContacts = await page.evaluate(() => window.__luaContacts)
+    check(
+      "Actual Lua combat presents both confirmed beats using their own FX cue",
+      confirmedContacts.every(
+        (entry) => entry.atMs === (entry.index === 0 ? 220 : 380),
+      ),
+    )
+    check(
+      "Actual first-hit visuals never jump to the second unconfirmed punch",
+      confirmedContacts
+        .filter((entry) => entry.index === 0)
+        .every((entry) => entry.pose !== "battle.attack.3"),
+    )
+  }
   await page
     .locator("canvas")
     .screenshot({ path: `${out}/${flavor}-actual-battle.png` })
@@ -265,21 +347,19 @@ try {
     ),
   )
   check("No unexpected primary browser or resource errors", errors.length === 0)
-  for (const suffix of ["a", "b"]) {
+  for (const motionKey of motionKeys) {
     const blocked = await browser.newContext()
-    await blocked.route(`**/battle-motion-${suffix}-v2.webp`, (route) =>
-      route.abort(),
-    )
+    await blocked.route(`**/${motionKey}.webp`, (route) => route.abort())
     const missing = await blocked.newPage()
-    await missing.goto(`${root}/dev/aw2/than.html`)
+    await missing.goto(`${root}/dev/aw2/${previewEntry}`)
     await missing
       .getByRole("alert")
       .filter({
-        hasText: `Không tải được asset aw2-than:battle-motion-${suffix}-v2:base-v1`,
+        hasText: `Không tải được asset ${manifest.assets[motionKey].id}`,
       })
       .waitFor()
     check(
-      `Missing motion-${suffix} is explicit and never replaced by geometry`,
+      `Missing ${motionKey} is explicit and never replaced by geometry`,
       await missing.locator("canvas").evaluate(
         (canvas) =>
           !canvas
@@ -304,13 +384,15 @@ try {
     `${out}/${flavor}-motion.json`,
     JSON.stringify(
       {
-        task: "AW2-004C",
+        task,
+        spiritId: manifest.spiritId,
         status: "PASS",
         flavor,
         engine: browser.version(),
         checks,
         errors,
         timelines,
+        confirmedContacts,
         audio,
         draws,
         requestedAssets: [...requests],
@@ -331,12 +413,14 @@ try {
     `${out}/${flavor}-motion.json`,
     JSON.stringify(
       {
-        task: "AW2-004C",
+        task,
+        spiritId: manifest.spiritId,
         status: "FAIL",
         flavor,
         checks,
         errors,
         timelines,
+        confirmedContacts,
         failure: String(error),
       },
       null,
