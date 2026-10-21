@@ -14,7 +14,9 @@ const { values } = parseArgs({
   },
 })
 assert.ok(
-  ["aw2-than", "aw2-lua", "aw2-lam", "aw2-moc-non"].includes(values.spirit),
+  ["aw2-than", "aw2-lua", "aw2-lam", "aw2-moc-non", "aw2-suong"].includes(
+    values.spirit,
+  ),
   "Supported authored motion spirit",
 )
 const slug = values.spirit.slice(4)
@@ -23,6 +25,7 @@ const task = {
   lua: "AW2-004D",
   lam: "AW2-004E",
   "moc-non": "AW2-004F",
+  suong: "AW2-004G",
 }[slug]
 const { chromium } = await import(values.playwright)
 const port = values.compiled ? 8465 : 8464
@@ -190,7 +193,7 @@ try {
           (await page.getByTestId("contact-cue").innerText()).includes("380ms"),
       )
     }
-    if (slug === "lam" || slug === "moc-non") {
+    if (["lam", "moc-non", "suong"].includes(slug)) {
       await page.getByTestId("skill-basic").click()
       const flight = await page.evaluate(async () => {
         const samples = [],
@@ -606,6 +609,172 @@ try {
         ),
       ),
     )
+  }
+  if (slug === "suong") {
+    await page.evaluate(() => {
+      window.__suongContacts = []
+      window.__suongPreparation = []
+      window.__suongReactions = []
+      const poll = () => {
+        const d = document.querySelector("canvas")?.dataset
+        const cues = JSON.parse(d?.actorCues ?? "{}")
+        const poses = JSON.parse(d?.actorPoses ?? "{}")
+        const cue = cues["player-aw2-suong"]
+        if (["prepare", "launch"].includes(cue?.phase))
+          window.__suongPreparation.push({ ...cue, tick: +d.tick })
+        const effects =
+          JSON.parse(d?.actorEffects ?? "{}")["player-aw2-suong"] ?? []
+        for (const beat of effects) {
+          if (
+            beat.fx &&
+            !window.__suongContacts.some(
+              (e) =>
+                e.serial === beat.serial &&
+                e.targetId === beat.targetId &&
+                e.fx === beat.fx,
+            )
+          ) {
+            window.__suongContacts.push({ ...beat, tick: +d.tick })
+            if (beat.targetId)
+              window.__suongReactions.push({
+                id: beat.targetId,
+                pose: poses[beat.targetId],
+                skillId: cues[beat.targetId]?.skillId ?? null,
+              })
+          }
+        }
+        requestAnimationFrame(poll)
+      }
+      poll()
+    })
+    await page.getByTestId("ultimate-aw2-suong").click()
+    await page.waitForFunction(
+      () => {
+        const e = window.__suongContacts
+        return (
+          ["basic", "auto", "passive", "ultimate"].every((slot) =>
+            e.some((e) => e.skillId === `aw2-suong:skill:${slot}`),
+          ) &&
+          new Set(
+            e
+              .filter((e) => e.skillId === "aw2-suong:skill:auto")
+              .map((e) => e.serial),
+          ).size >= 3
+        )
+      },
+      null,
+      { timeout: 30000 },
+    )
+    confirmedContacts = await page.evaluate(() => window.__suongContacts)
+    for (const [slot, atMs] of [
+      ["basic", 700],
+      ["auto", 420],
+      ["passive", 180],
+      ["ultimate", 560],
+    ])
+      check(
+        `Actual Suong ${slot} uses only its finite confirmed cue at${atMs}`,
+        confirmedContacts
+          .filter((e) => e.skillId === `aw2-suong:skill:${slot}`)
+          .every((e) => e.atMs === atMs && e.targetId?.startsWith("enemy-")),
+      )
+    const zone = confirmedContacts.filter(
+      (e) => e.skillId === "aw2-suong:skill:auto",
+    )
+    const ticks = [...new Set(zone.map((e) => e.tick))].sort((a, b) => a - b)
+    check(
+      "Three real consecutive zone pulses restart once per rules tick, never per recipient",
+      ticks.some(
+        (tick, i) => ticks[i + 1] === tick + 1 && ticks[i + 2] === tick + 2,
+      ) &&
+        ticks.every(
+          (tick) =>
+            new Set(zone.filter((e) => e.tick === tick).map((e) => e.serial))
+              .size === 1,
+        ),
+    )
+    check(
+      "Actual ranged impact uses separate impact cels",
+      confirmedContacts
+        .filter((e) => e.skillId === "aw2-suong:skill:basic")
+        .every((e) => ["fx.basic.2", "fx.basic.3"].includes(e.fx)),
+    )
+    const ultimate = confirmedContacts.filter(
+      (e) => e.skillId === "aw2-suong:skill:ultimate",
+    )
+    check(
+      "Interleaved pull statuses do not duplicate ultimate damage FX",
+      new Set(ultimate.map((e) => e.serial)).size === 1,
+    )
+    check(
+      "Preparation and flight contain no outcome FX",
+      await page.evaluate(
+        () =>
+          window.__suongPreparation.length > 0 &&
+          window.__suongPreparation.every((e) => e.fx === ""),
+      ),
+    )
+    check(
+      "Recipients retain their own reaction identity",
+      await page.evaluate(
+        () =>
+          window.__suongReactions.length > 0 &&
+          window.__suongReactions.every(
+            (e) =>
+              e.skillId !== "aw2-suong:skill:ultimate" &&
+              e.skillId !== "aw2-suong:skill:auto",
+          ),
+      ),
+    )
+    await page.getByRole("button", { name: "Tạm dừng", exact: true }).click()
+    await page
+      .getByRole("checkbox", { name: "Giảm chuyển động", exact: true })
+      .check()
+    await page.getByRole("button", { name: "Tiếp tục", exact: true }).click()
+    await page.waitForFunction(() =>
+      JSON.parse(document.querySelector("canvas").dataset.actorEffects)
+        ["player-aw2-suong"].filter(
+          (e) => e.skillId === "aw2-suong:skill:ultimate",
+        )
+        .every((e) => e.fx === ""),
+    )
+    check("Reduced motion cannot revive an expired confirmed ultimate")
+    if (values.compiled) {
+      await page
+        .locator("canvas")
+        .screenshot({ path: `${out}/${flavor}-confirmed-zone.png` })
+      await page.getByRole("button", { name: "Tạm dừng", exact: true }).click()
+      for (
+        let i = 0;
+        i < 120 &&
+        (await page.locator("canvas").getAttribute("data-status")) === "active";
+        i++
+      ) {
+        const tick = await page.locator("canvas").getAttribute("data-tick")
+        await page
+          .getByRole("button", { name: "Bước 1 nhịp", exact: true })
+          .click()
+        await page.waitForFunction(
+          (tick) =>
+            document.querySelector("canvas").dataset.tick !== tick ||
+            document.querySelector("canvas").dataset.status !== "active",
+          tick,
+        )
+      }
+      await page.waitForFunction(() => {
+        const d = document.querySelector("canvas").dataset
+        return (
+          d.status !== "active" &&
+          Object.values(JSON.parse(d.actorEffects))
+            .flat()
+            .every((e) => e.fx === "") &&
+          Object.values(JSON.parse(d.actorCues)).every((e) => e.fx === "")
+        )
+      })
+      check(
+        "Terminal combat suppresses all confirmed and actor FX without fabricating later zone contacts",
+      )
+    }
   }
   await page
     .locator("canvas")

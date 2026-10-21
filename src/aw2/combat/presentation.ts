@@ -25,6 +25,8 @@ export interface ConfirmedEffect {
   skillId: string
   index: number
   targetId?: string
+  /** Actual recipients of one area pulse; append only within its rules tick. */
+  targetIds?: string[]
 }
 
 export interface ConfirmedContact {
@@ -143,6 +145,56 @@ export function reduceCombatPresentation(
     let phase: ActorPresentation["phase"]
     const lamSkill = event.skillId?.startsWith("aw2-lam:skill:")
     const mocSkill = event.skillId?.startsWith("aw2-moc-non:skill:")
+    const suongSkill = event.skillId?.startsWith("aw2-suong:skill:")
+    if (suongSkill && event.sourceId) {
+      const slot = skillSlot(event.skillId)
+      if (["cast-start", "cast-commit"].includes(event.kind)) phase = "prepare"
+      if (event.kind === "projectile-launch") phase = "launch"
+      const confirmed =
+        event.kind === "hit" || (slot === "passive" && event.kind === "status")
+      if (confirmed && slot) {
+        const effects = (next.effects[event.sourceId] ??= {})
+        const prior = effects[slot]
+        phase = "confirmed"
+        contactIndex = 0
+        if (slot !== "basic" && prior?.tick === event.tick) {
+          // A zone pulse emits one event per actual recipient. Partial batches
+          // extend that pulse without restarting its source gesture/FX clock.
+          prior.targetIds = [
+            ...new Set([...(prior.targetIds ?? []), ...event.targetIds]),
+          ]
+          sourceState = null
+        } else {
+          sourceState =
+            slot === "ultimate"
+              ? "ultimate"
+              : slot === "passive"
+                ? "guard"
+                : slot === "auto"
+                  ? "cast"
+                  : "attack"
+          effects[slot] = {
+            serial: event.serial,
+            tick: event.tick,
+            skillId: event.skillId!,
+            index: 0,
+            ...(slot === "basic"
+              ? { targetId: event.targetIds[0] }
+              : { targetIds: [...event.targetIds] }),
+          }
+        }
+      }
+      const previous = next.actors[event.sourceId]
+      // Interleaved slow/pull statuses are outcomes, not extra damage contacts.
+      if (event.kind === "status" && slot === "ultimate") sourceState = null
+      if (
+        previous?.tick === event.tick &&
+        previous.phase === "confirmed" &&
+        previous.skillId === "aw2-suong:skill:ultimate" &&
+        slot !== "ultimate"
+      )
+        sourceState = null
+    }
     if (lamSkill && event.sourceId) {
       const slot = skillSlot(event.skillId)
       if (["cast-start", "cast-commit"].includes(event.kind)) {

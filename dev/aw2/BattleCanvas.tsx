@@ -222,12 +222,15 @@ export function BattleCanvas({
           ? manifest.skills[slot]
           : null
       const effect =
-        skill && slot && !presentation.effects[actor.id]?.[slot]
+        !presentation.terminal &&
+        skill &&
+        slot &&
+        !presentation.effects[actor.id]?.[slot]
           ? sampleActorEffect(manifest, cue, playback.elapsedMs, reducedMotion)
           : null
       const independent = Object.entries(
         presentation.effects[actor.id] ?? {},
-      ).map(([slot, cue]) => {
+      ).flatMap(([slot, cue]) => {
         const key = `${actor.id}:${slot}`
         const sampled = sampleConfirmedEffect(
           manifest,
@@ -237,13 +240,13 @@ export function BattleCanvas({
           reducedMotion,
         )
         clock.current.effects[key] = sampled.clock
-        return {
+        return (cue.targetIds ?? [cue.targetId]).map((targetId) => ({
           skill: manifest.skills[(slot as SkillSlot)],
-          effect: sampled.effect,
-          targetId: cue.targetId,
+          effect: presentation.terminal ? null : sampled.effect,
+          targetId,
           serial: cue.serial,
           index: cue.index,
-        }
+        }))
       })
       actorEffects[actor.id] = independent.map((entry) => ({
         serial: entry.serial,

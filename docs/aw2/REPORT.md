@@ -1,21 +1,19 @@
 # Báo cáo nhanh AW2
 
-Cập nhật2026-10-21 · **scretary-agent** · game/adventure-world-2. [Mục scretary](../../skills/aw2/scretary-agent/README.md) dẫn về đây; không có tiến trình chạy nền. Mỗi mốc đều báo hai tỷ lệ dự án, kể cả khi giữ nguyên.
+Cập nhật2026-10-21 · **scretary-agent** · game/adventure-world-2. Báo cáo theo từng task, không chạy nền.
 
-**Vừa hoàn tất AW2-004F:** Mộc Non có thêm32 khung/tám trạng thái. Đạn/khiên/nội tại/tuyệt kỹ hiển thị theo kết quả thật; một tuyệt kỹ không lặp hiệu ứng nguồn theo từng đồng đội, từng người giữ hình ảnh của mình. Ảnh/âm thanh gốc, luật combat và save giữ nguyên.
+**Vừa hoàn tất AW2-004G:** Sương Lành thêm32 khung/tám trạng thái. Đạn, ba nhịp vùng, làm chậm và kéo hiển thị theo kết quả thật; nhiều mục tiêu cùng nhịp không khởi động lại hiệu ứng. Có [hướng dẫn chạy local](LOCAL_TEST.md).
 
-**Kiểm chứng mới:**62 test/7 file (7 case mới) và88 bước trình duyệt PASS:38 nguồn+38 biên dịch Mộc Non,12 kiểm tra renderer Lam Lam. Hai typecheck, kiểm tra asset/build lại riêng Mộc Non và build AW2 PASS. Nguồn `1803347`; [bằng chứng](evidence/AW2-004F.md). Theo yêu cầu của bạn, full suite/quest/save/mode/stable build không đổi dùng lại PASS ở nguồn004E, không chạy lại hoặc cộng vào số mới.
+**Kiểm chứng mới:**69 test liên quan/8 file và113 bước browser PASS (41 nguồn+42 biên dịch Sương,12 Lam+14 Mộc Non renderer,4 startup local). Hai typecheck, kiểm tra asset/build lại riêng và build AW2 PASS. Hai lỗi fixture sửa rồi chỉ chạy lại7 case,62 case khác đã pass giữ nguyên. Full suite/quest/save/mode/stable không đổi giữ PASS ở SHA gốc004E, không chạy lại/cộng vào số mới. Nguồn `AW2_004G_SOURCE_REF`; [bằng chứng](evidence/AW2-004G.md).
 
 | Phạm vi | Hiện tại | So với mốc trước |
 |---|---|---|
 | Demo web với art tham chiếu |**Khoảng90%** | Giữ nguyên9/10 nhóm; còn playtest độc lập |
 | Sản phẩm đầy đủ12 nhân vật |**Khoảng40%** | Giữ nguyên, ước lượng35–45%; còn gate nhân vật/phát hành |
-| Riêng bộ motion của5 starter |**80% (4/5)** | Tăng từ60%; còn Sương Lành, đây là bộ tham chiếu |
+| Riêng bộ motion tham chiếu5 starter |**100% (5/5)** | Tăng từ80%; đây chưa là nhân vật hoàn chỉnh |
 
-**0/12 nhân vật đủ DoD**,5 bộ tham chiếu/7 bộ chưa tạo. Than/Lửa Nhỏ/Lam Lam/Mộc Non mỗi người32 cels; art độc lập, cân bằng, audio binding/nghe thử, readability, thiết bị/hiệu năng/offline/quyền sử dụng/save production vẫn mở. [Cách tính](PROGRESS.md), [Mộc Non](MOC_NON_CHARACTER_GATES.md). Review build≈32,2MB, chưa deploy/release.
+**0/12 nhân vật đủ DoD**,5 bộ tham chiếu/7 bộ chưa tạo;160 cels motion tổng. Bốn ảnh đã mở cho thấy đấu trường/chữ còn chồng nhau. Art độc lập/cân bằng/audio binding-nghe thử/thiết bị/hiệu năng/offline/rights/save production/release còn mở. Review build≈34,7MB, chưa deploy. [Cách tính](PROGRESS.md), [gate Sương](SUONG_CHARACTER_GATES.md).
 
-**Xem ngay:** `pnpm dev` → `/dev/aw2/starters.html?spirit=aw2-moc-non`; `/dev/aw2/world.html` chơi demo. [Cách chơi](DEMO.md).
+**Chạy thử:** `pnpm dev` → http://localhost:8443/dev/aw2/world.html. Xem motion tại `/dev/aw2/starters.html?spirit=aw2-suong`, combat tại `/dev/aw2/battle.html`. [Các bước cài/chạy/điều khiển](LOCAL_TEST.md).
 
-**Tiếp theo:** [AW2-004G](tasks/AW2-004G.md), Sương Lành motion/hiệu ứng vùng theo event thật. Tiếp tục chỉ kiểm tra phần thay đổi và phụ thuộc; full regression trước release/thay đổi lớn save-engine. D11 PROPOSED, D12 OPEN. [Ước lượng có điều kiện](DELIVERY_PLAN.md).
-
-[HANDOFF](HANDOFF.md) · [STATUS](STATUS.md) · [BACKLOG](BACKLOG.md) · [TEST_LEDGER](TEST_LEDGER.md).
+**Tiếp theo:** [AW2-004H](tasks/AW2-004H.md), bố trí đấu trường/nhân vật/thanh máu/chữ trạng thái dễ đọc hơn. Tiếp tục chỉ test phần thay đổi/phụ thuộc. D11 PROPOSED, D12 OPEN. [HANDOFF](HANDOFF.md), [STATUS](STATUS.md), [BACKLOG](BACKLOG.md), [TEST_LEDGER](TEST_LEDGER.md).

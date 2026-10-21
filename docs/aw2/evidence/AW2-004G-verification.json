@@ -1,0 +1,1214 @@
+{
+  "task": "AW2-004G",
+  "base": "d5fc1a8f146a31097d0f81fc2bb4055f91642141",
+  "source": "AW2_004G_SOURCE_REF",
+  "sourceTree": "AW2_004G_SOURCE_TREE",
+  "status": "PASS_SCOPED_REFERENCE",
+  "environment": "Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36",
+  "units": {
+    "uniqueAffectedFinalPass": 69,
+    "files": 8,
+    "initialPass": 67,
+    "initialFail": 2,
+    "correctedFileRerunPass": 7,
+    "initialDurationMs": 820,
+    "rerunDurationMs": 492,
+    "fullCurrentHead": "NOT_RUN"
+  },
+  "browserFresh": 113,
+  "reports": {
+    "source-suong": {
+      "status": "PASS",
+      "flavor": "source",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Sương Lành preview declares four-cel reference motion without full-character approval",
+        "idle: browser draws all four declared distinct cels",
+        "idle: preview pause freezes authored timeline",
+        "move: browser draws all four declared distinct cels",
+        "move: preview pause freezes authored timeline",
+        "attack: browser draws all four declared distinct cels",
+        "attack: preview pause freezes authored timeline",
+        "cast: browser draws all four declared distinct cels",
+        "cast: preview pause freezes authored timeline",
+        "hit: browser draws all four declared distinct cels",
+        "hit: preview pause freezes authored timeline",
+        "guard: browser draws all four declared distinct cels",
+        "guard: preview pause freezes authored timeline",
+        "ultimate: browser draws all four declared distinct cels",
+        "ultimate: preview pause freezes authored timeline",
+        "defeat: browser draws all four declared distinct cels",
+        "defeat: preview pause freezes authored timeline",
+        "Sương Lành reference flight stays between launch260 and impact700; separate impact art follows",
+        "Reduced motion holds the preserved authored attack pose",
+        "Preview controls fit 320px",
+        "Preview controls fit 390px",
+        "Preview controls fit 768px",
+        "Actual five-unit combat draws Sương Lành motion atlas",
+        "Combat pause freezes presentation clock across RAFs",
+        "Explicit paused step advances rules once while presentation remains frozen",
+        "Resume continues presentation time",
+        "Actual Suong basic uses only its finite confirmed cue at700",
+        "Actual Suong auto uses only its finite confirmed cue at420",
+        "Actual Suong passive uses only its finite confirmed cue at180",
+        "Actual Suong ultimate uses only its finite confirmed cue at560",
+        "Three real consecutive zone pulses restart once per rules tick, never per recipient",
+        "Actual ranged impact uses separate impact cels",
+        "Interleaved pull statuses do not duplicate ultimate damage FX",
+        "Preparation and flight contain no outcome FX",
+        "Recipients retain their own reaction identity",
+        "Reduced motion cannot revive an expired confirmed ultimate",
+        "Decoded atlas draws stay inside actual source bounds",
+        "Reference/combat previews preserve every seeded save byte",
+        "No unexpected primary browser or resource errors",
+        "Missing battle-motion-a-v1 is explicit and never replaced by geometry",
+        "Missing battle-motion-b-v1 is explicit and never replaced by geometry"
+      ],
+      "errors": [],
+      "confirmedContacts": [
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "targetId": "enemy-suong",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "targetId": "enemy-lua",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "targetId": "enemy-suong",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "targetId": "enemy-lua",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "targetId": "enemy-suong",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "targetId": "enemy-lua",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "targetId": "enemy-suong",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "targetId": "enemy-lua",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 73,
+          "index": 0,
+          "skillId": "aw2-suong:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.0",
+          "tick": 7
+        },
+        {
+          "serial": 73,
+          "index": 0,
+          "skillId": "aw2-suong:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.0",
+          "tick": 7
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.0",
+          "atMs": 180,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.0",
+          "atMs": 180,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.1",
+          "atMs": 180,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.1",
+          "atMs": 180,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.2",
+          "atMs": 180,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.2",
+          "atMs": 180,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.3",
+          "atMs": 180,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.3",
+          "atMs": 180,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.cast.3",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.3",
+          "tick": 9
+        },
+        {
+          "serial": 94,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.1",
+          "tick": 10
+        },
+        {
+          "serial": 94,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.1",
+          "tick": 10
+        }
+      ]
+    },
+    "compiled-suong": {
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Sương Lành preview declares four-cel reference motion without full-character approval",
+        "idle: browser draws all four declared distinct cels",
+        "idle: preview pause freezes authored timeline",
+        "move: browser draws all four declared distinct cels",
+        "move: preview pause freezes authored timeline",
+        "attack: browser draws all four declared distinct cels",
+        "attack: preview pause freezes authored timeline",
+        "cast: browser draws all four declared distinct cels",
+        "cast: preview pause freezes authored timeline",
+        "hit: browser draws all four declared distinct cels",
+        "hit: preview pause freezes authored timeline",
+        "guard: browser draws all four declared distinct cels",
+        "guard: preview pause freezes authored timeline",
+        "ultimate: browser draws all four declared distinct cels",
+        "ultimate: preview pause freezes authored timeline",
+        "defeat: browser draws all four declared distinct cels",
+        "defeat: preview pause freezes authored timeline",
+        "Sương Lành reference flight stays between launch260 and impact700; separate impact art follows",
+        "Reduced motion holds the preserved authored attack pose",
+        "Preview controls fit 320px",
+        "Preview controls fit 390px",
+        "Preview controls fit 768px",
+        "Actual five-unit combat draws Sương Lành motion atlas",
+        "Combat pause freezes presentation clock across RAFs",
+        "Explicit paused step advances rules once while presentation remains frozen",
+        "Resume continues presentation time",
+        "Actual Suong basic uses only its finite confirmed cue at700",
+        "Actual Suong auto uses only its finite confirmed cue at420",
+        "Actual Suong passive uses only its finite confirmed cue at180",
+        "Actual Suong ultimate uses only its finite confirmed cue at560",
+        "Three real consecutive zone pulses restart once per rules tick, never per recipient",
+        "Actual ranged impact uses separate impact cels",
+        "Interleaved pull statuses do not duplicate ultimate damage FX",
+        "Preparation and flight contain no outcome FX",
+        "Recipients retain their own reaction identity",
+        "Reduced motion cannot revive an expired confirmed ultimate",
+        "Terminal combat suppresses all confirmed and actor FX without fabricating later zone contacts",
+        "Decoded atlas draws stay inside actual source bounds",
+        "Reference/combat previews preserve every seeded save byte",
+        "No unexpected primary browser or resource errors",
+        "Missing battle-motion-a-v1 is explicit and never replaced by geometry",
+        "Missing battle-motion-b-v1 is explicit and never replaced by geometry"
+      ],
+      "errors": [],
+      "confirmedContacts": [
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "targetId": "enemy-suong",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "targetId": "enemy-lua",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "targetId": "enemy-suong",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "targetId": "enemy-lua",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "targetId": "enemy-suong",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "targetId": "enemy-lua",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "targetId": "enemy-suong",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 9,
+          "index": 0,
+          "skillId": "aw2-suong:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "targetId": "enemy-lua",
+          "pose": "battle.ultimate.2",
+          "tick": 3
+        },
+        {
+          "serial": 73,
+          "index": 0,
+          "skillId": "aw2-suong:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.0",
+          "tick": 7
+        },
+        {
+          "serial": 73,
+          "index": 0,
+          "skillId": "aw2-suong:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.0",
+          "tick": 7
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.0",
+          "atMs": 180,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.0",
+          "atMs": 180,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.1",
+          "atMs": 180,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.1",
+          "atMs": 180,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.1",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.2",
+          "atMs": 180,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.2",
+          "atMs": 180,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 84,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.3",
+          "atMs": 180,
+          "targetId": "enemy-than",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 85,
+          "index": 0,
+          "skillId": "aw2-suong:skill:passive",
+          "fx": "fx.passive.3",
+          "atMs": 180,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.2",
+          "tick": 8
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.2",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.cast.3",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.3",
+          "tick": 9
+        },
+        {
+          "serial": 94,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.1",
+          "tick": 10
+        },
+        {
+          "serial": 94,
+          "index": 0,
+          "skillId": "aw2-suong:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.1",
+          "tick": 10
+        }
+      ]
+    },
+    "compiled-lam": {
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Actual five-unit combat draws Lam Lam motion atlas",
+        "Combat pause freezes presentation clock across RAFs",
+        "Explicit paused step advances rules once while presentation remains frozen",
+        "Resume continues presentation time",
+        "Actual Lam ultimate has one confirmed visual cue per rules pulse across ally recipients",
+        "First confirmed healing gesture never reaches unconfirmed second pose",
+        "Actual Lam basic uses only target-owned impact frames",
+        "Actual cast/flight never emit premature impact/healing FX",
+        "Reduced motion never revives expired confirmed healing FX",
+        "Decoded atlas draws stay inside actual source bounds",
+        "Reference/combat previews preserve every seeded save byte",
+        "No unexpected primary browser or resource errors"
+      ],
+      "errors": [],
+      "confirmedContacts": [
+        {
+          "serial": 5,
+          "index": 0,
+          "skillId": "aw2-lam:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 520,
+          "pose": "battle.ultimate.1",
+          "tick": 2
+        },
+        {
+          "serial": 5,
+          "index": 0,
+          "skillId": "aw2-lam:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 520,
+          "pose": "battle.ultimate.1",
+          "tick": 2
+        },
+        {
+          "serial": 5,
+          "index": 0,
+          "skillId": "aw2-lam:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 520,
+          "pose": "battle.ultimate.1",
+          "tick": 2
+        },
+        {
+          "serial": 5,
+          "index": 0,
+          "skillId": "aw2-lam:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 520,
+          "pose": "battle.ultimate.2",
+          "tick": 2
+        },
+        {
+          "serial": 25,
+          "index": 1,
+          "skillId": "aw2-lam:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 1040,
+          "pose": "battle.ultimate.3",
+          "tick": 4
+        },
+        {
+          "serial": 25,
+          "index": 1,
+          "skillId": "aw2-lam:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 1040,
+          "pose": "battle.ultimate.3",
+          "tick": 4
+        },
+        {
+          "serial": 25,
+          "index": 1,
+          "skillId": "aw2-lam:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 1040,
+          "pose": "battle.ultimate.3",
+          "tick": 4
+        },
+        {
+          "serial": 25,
+          "index": 1,
+          "skillId": "aw2-lam:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 1040,
+          "pose": "battle.ultimate.3",
+          "tick": 4
+        },
+        {
+          "serial": 60,
+          "index": 0,
+          "skillId": "aw2-lam:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.hit.0",
+          "tick": 6
+        }
+      ]
+    },
+    "compiled-moc": {
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Actual five-unit combat draws Mộc Non motion atlas",
+        "Combat pause freezes presentation clock across RAFs",
+        "Explicit paused step advances rules once while presentation remains frozen",
+        "Resume continues presentation time",
+        "Actual Moc ultimate emits one confirmed source effect across ally statuses",
+        "Actual Moc basic uses confirmed target impact art only",
+        "Actual Moc shield FX belongs to its confirmed ally target",
+        "Actual Moc passive displays only its confirmed proc cue",
+        "Actual Moc preparation/flight produce no premature outcome FX",
+        "Guard recipients keep their own actor identities without Moc source skill cues",
+        "Reduced motion cannot revive expired confirmed Moc ultimate FX",
+        "Decoded atlas draws stay inside actual source bounds",
+        "Reference/combat previews preserve every seeded save byte",
+        "No unexpected primary browser or resource errors"
+      ],
+      "errors": [],
+      "confirmedContacts": [
+        {
+          "serial": 5,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "pose": "battle.ultimate.2",
+          "tick": 2
+        },
+        {
+          "serial": 5,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "pose": "battle.ultimate.2",
+          "tick": 2
+        },
+        {
+          "serial": 5,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "pose": "battle.ultimate.2",
+          "tick": 2
+        },
+        {
+          "serial": 5,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "pose": "battle.ultimate.2",
+          "tick": 2
+        },
+        {
+          "serial": 72,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.2",
+          "tick": 7
+        },
+        {
+          "serial": 74,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "player-aw2-lua",
+          "pose": "battle.cast.2",
+          "tick": 7
+        },
+        {
+          "serial": 72,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.cast.2",
+          "tick": 7
+        },
+        {
+          "serial": 74,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "player-aw2-lua",
+          "pose": "battle.cast.2",
+          "tick": 7
+        },
+        {
+          "serial": 74,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "player-aw2-lua",
+          "pose": "battle.cast.2",
+          "tick": 7
+        },
+        {
+          "serial": 74,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "player-aw2-lua",
+          "pose": "battle.cast.3",
+          "tick": 7
+        },
+        {
+          "serial": 109,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.2",
+          "tick": 12
+        },
+        {
+          "serial": 109,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.2",
+          "tick": 12
+        },
+        {
+          "serial": 127,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "player-aw2-than",
+          "pose": "battle.guard.1",
+          "tick": 14
+        },
+        {
+          "serial": 128,
+          "index": 0,
+          "skillId": "aw2-moc-non:skill:passive",
+          "fx": "fx.passive.0",
+          "atMs": 180,
+          "pose": "battle.guard.1",
+          "tick": 14
+        }
+      ]
+    },
+    "local-startup": {
+      "status": "PASS",
+      "command": "pnpm dev --host 127.0.0.1",
+      "url": "http://localhost:8443/dev/aw2/world.html",
+      "checks": [
+        "Documented localhost8443 world entry returns200 with pnpm dev",
+        "Fresh profile opens world onboarding without a backend or injected save",
+        "Documented localhost origin supports required Web Locks",
+        "World entry starts with no browser errors"
+      ],
+      "errors": []
+    }
+  },
+  "build": {
+    "files": 107,
+    "bytes": 34709078,
+    "forbiddenSourceFormats": 0
+  },
+  "newMotion": {
+    "cels": 32,
+    "webpBytes": 2521164,
+    "decodedRGBA": 12578644,
+    "maxEdgeAlpha": 8
+  },
+  "priorFailures": "Initial new fixture run67 PASS/2 FAIL: ultimate omitted required target and empty-zone fixture moved enemies before commit. Corrected fixtures only;7-case rerun PASS, other62 not repeated. Initial source-browser attempt raced the scoped builder manifest write and hot-reloaded (createRoot/startsWith/context destroyed); preserved failure record, final browser runs only after builder completion. No image repair/rejection or production behavior weakened.",
+  "scope": "Preparation/flight emit no outcome FX. Basic confirmed hits use actual-target impact cels2/3. Each real same-tick zone pulse groups source gesture/clock and actual recipient IDs across partial batches; three real ticks trigger three finite effects. Passive needs actual eligible slow status; pull statuses add no damage contact. Each target retains its own reaction art. Renderer expands actual recipients without clock restart and suppresses actor/confirmed FX at terminal. Existing finite180/440ms expiry including reduced motion stays unchanged. Engine/numbers/save/quests/economy/gacha/canon/dependencies unchanged.",
+  "reuse": "Unchanged full1007 units/471 browser/stable851-file78-text exclusion/earned world-quest-save-mode journeys retain original-SHA PASS at cf0b39469d1fb8f7d77e18feb5e16895d70565a1; not rerun or added to fresh totals.124 byte-identical paths prove unchanged core/save/world/economy/modes/helpers/other assets/stable entry/config/dependencies against base; other manifests and original12 Sương files unchanged. Release/major save/shared-engine work still requires full regression.",
+  "progress": "Demo9/10≈90% and full product≈40% (rough35–45%) unchanged. Starter reference motion5/5=100%, up from4/5=80%,160 new cels total.0/12 full DoD,5 reference sets/7 absent; motion completion uses a separate denominator. Independent playtest/art/anatomy/cloth/loops/contact/readability/audio binding/listening/device/FPS/offline/native/rights/production-save/release gates remain open."
+}

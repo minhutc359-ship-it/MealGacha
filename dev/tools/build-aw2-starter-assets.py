@@ -116,6 +116,39 @@ def apply_moc_motion(data):
         skill["scope"] = "reference presentation used by development combat; final balance/full-character QA pending"
 
 
+def apply_suong_motion(data):
+    """Measured per-column cuts; generated source RGBA remains unchanged."""
+    timing = {"idle": [0, 300, 600, 900], "move": [0, 170, 340, 510],
+              "attack": [0, 260, 700, 820], "cast": [0, 210, 420, 740],
+              "hit": [0, 80, 180, 340], "guard": [0, 180, 400, 700],
+              "ultimate": [0, 280, 560, 960], "defeat": [0, 220, 480, 760]}
+    sheets = [
+        ("battle-motion-a-v1", STATES[:4], [0, 325, 651, 1008, 1303],
+         [[0, 315, 629, 929, 1207], [0, 314, 630, 927, 1207],
+          [0, 314, 630, 932, 1207], [0, 318, 630, 928, 1207]]),
+        ("battle-motion-b-v1", STATES[4:], [0, 327, 640, 958, 1278],
+         [[0, 331, 647, 959, 1230], [0, 343, 646, 958, 1230],
+          [0, 339, 648, 959, 1230], [0, 345, 656, 959, 1230]]),
+    ]
+    for name, states, xs, cuts in sheets:
+        asset = util.encode(name)
+        asset["id"] = f"aw2-suong:{name}:base-v1"
+        data["assets"][name] = asset
+        for col in range(4):
+            cells = util.frames(name, xs[col:col+2], cuts[col], [[f"battle.{state}.{col}"] for state in states])
+            for frame in cells.values(): frame["renderScale"] = 1.45
+            data["frames"].update(cells)
+        for state in states:
+            clip = data["battle"][state]
+            clip["frames"] = [{"atMs": at, "frame": f"battle.{state}.{i}"} for i, at in enumerate(timing[state])]
+            clip["reducedMotionFrame"] = f"battle.{state}"
+            clip["method"] = "four distinct image_gen cels with authored timing; confirmed zone pulses reuse one finite reference cue; independent art review pending"
+    data["status"] = "MOTION_REFERENCE_IMPLEMENTED"
+    data["provenance"]["processing"] += "; motion RGBA unchanged, measured per-column rectangles/anchors and logical renderScale metadata only"
+    for skill in data["skills"].values():
+        skill["scope"] = "reference presentation used by development combat; final balance/full-character QA pending"
+
+
 def build(unit, config):
     identity = f"aw2-{unit}"
     util.ASSETS = ROOT / f"dev/aw2/assets/{unit}/base-v1"
@@ -178,6 +211,8 @@ def build(unit, config):
         apply_lam_motion(data)
     if unit == "moc-non":
         apply_moc_motion(data)
+    if unit == "suong":
+        apply_suong_motion(data)
     (ROOT / f"src/aw2/assets/{unit}.base-v1.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"unit": identity, "status": "PASS", "frames": len(data["frames"]), "webpBytes": sum(a["bytes"] for n, a in sources.items() if n != "reference")}))
 

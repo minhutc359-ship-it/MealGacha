@@ -1,6 +1,6 @@
 # Chơi thử hành trình AW2
 
-Phạm vi: web demo với5 Vị Linh và art tham chiếu. Đây là bản phát triển riêng;12 nhân vật hoàn chỉnh và gate phát hành vẫn còn mở. [Báo cáo](REPORT.md) · [Phần trăm/cách tính](PROGRESS.md).
+Phạm vi: web demo với5 Vị Linh và art tham chiếu. Đây là bản phát triển riêng;12 nhân vật hoàn chỉnh và gate phát hành vẫn còn mở. [Cài và chạy local từng bước](LOCAL_TEST.md) · [Báo cáo](REPORT.md) · [Phần trăm/cách tính](PROGRESS.md).
 
 ```sh
 pnpm dev

@@ -64,4 +64,4 @@ for slot, skill in manifest["skills"].items():
     checks.append(f"{slot}: WAV hash/PCM/duration/non-silent/no clipping/faded edges")
 assert manifest["fullCharacterComplete"] is False
 assert manifest["provenance"]["licenseStatus"] == "REVIEW_REQUIRED"
-print(json.dumps({"task": ({"aw2-lam": "AW2-004E", "aw2-lua": "AW2-004D", "aw2-moc-non": "AW2-004F"}.get(manifest["spiritId"], "AW2-004C")) if "reducedMotionFrame" in manifest["battle"]["idle"] else "AW2-004A" if manifest["spiritId"] == "aw2-than" else "AW2-004B", "spiritId": manifest["spiritId"],"status":"PASS","checks":checks,"webpBytes":sum(a["bytes"] for a in {a["url"]:a for a in manifest["assets"].values()}.values())}))
+print(json.dumps({"task": ({"aw2-lam": "AW2-004E", "aw2-lua": "AW2-004D", "aw2-moc-non": "AW2-004F", "aw2-suong": "AW2-004G"}.get(manifest["spiritId"], "AW2-004C")) if "reducedMotionFrame" in manifest["battle"]["idle"] else "AW2-004A" if manifest["spiritId"] == "aw2-than" else "AW2-004B", "spiritId": manifest["spiritId"],"status":"PASS","checks":checks,"webpBytes":sum(a["bytes"] for a in {a["url"]:a for a in manifest["assets"].values()}.values())}))
