@@ -4,6 +4,7 @@ Historical roster review preserved by AW2-012: source `4d8f1c516f55a0ffd4bad9926
 Historical story review preserved by AW2-012: source `461c7cfaac658618d96ca8020ac99076fad9e35d`, handoff `238708cba7bb1402ec38828aa8748e35aee01ad9`; static namespace/reference checks PASS (six zones/eight NPCs/four quests, acyclic prerequisites), `git diff --check` PASS. [Original evidence](evidence/AW2-002.md). This describes the original proposal-only branch; current approval/runtime status comes from CANON/D14 and later integration records below.
 
 Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, command, observed outcome. Prior PASS becomes STALE for affected changes. PR runs selective affected tests; full suite required before release/major cross-engine merge, and after high-impact save/shared engine changes.
+Owner refinement after004E: reuse original-SHA PASS when implementation/dependencies are unchanged; run changed/dependent cases only. Full current-head suite NOT_RUN for004F;62 affected cases PASS. Do not relabel historical full1007/471 as fresh or add counts. Full regression before release/major save/shared-engine changes remains required.
 | Case | Trigger | Result |
 |---|---|---|
 | SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS —cf0b394; unchanged v4 store,1007 full units/471 browser assertions preserve seeded stable bytes |
@@ -14,22 +15,42 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | WORLD-01 navigation, collision, zone transfer, spawn | world | PASS development —cf0b394;47+47 earned combined journeys/compiled smoke; authored maps/device pending |
 | WORLD-02 NPC, quest, followers and interact range | world/quest | PASS development subset —cf0b394; actual quests/5 starters/portals/returns/new Lam motion world use; authored art/device gates open |
 | QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS —cf0b394;47+47 earned all4-quest/boss/note/both-ending journeys,214 AW2 units |
-| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS development —cf0b394;1007 full/214 AW2,22+22 battle,42+42 Lam/38+38 Lua motion/confirmed FX and earned boss; engine/numbers unchanged |
+| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS affected presentation —1803347;62 units/88 fresh browser including Moc support and Lam renderer; engine unchanged, full rules/regression retained atcf0b394 |
 | BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development subset —16f55af;40 fresh boss/checkpoint/return/ending checks plus real battle mode-entry guard; active-battle resume/native/production NOT_RUN |
 | ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; five starter reference sets verified below |
 | ART-THAN-01 frames/manifests/timelines/FX/audio preview | asset | PASS reference motion —f85e1e7;72 rectangles/32 new cels,35+35 motion/32 Than previews/actual combat and world; independent full-DoD gates OPEN |
 | PROVENANCE-THAN source/prompt/hash inventory | asset | PASS inventory only —f85e1e7; selected/rejected motion prompt/output hashes,14 originals unchanged; legal NOT_RUN/commercial NOT_CLEARED |
-| ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS reference scope —cf0b394;133 source previews,42+42 Lam/38+38 Lua, actual battle/world;3 motion packages/2 key-pose starters |
+| ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS affected Moc reference scope —1803347;38+38 new motion/support,4 motion packages/1 key-pose starter; unchanged selector/original audio/world/other previews retained atcf0b394 |
 | ART-LUA-01 32 cels/eight states/reference and confirmed contacts | asset/combat | PASS reference scope —cef55c0;72 rectangles,38+38 motion/confirmed beats,7 new unit cases, actual world use; full DoD OPEN |
-| ART-LAM-01 32 cels/eight states/projectile/two healing pulses | asset/combat | PASS reference scope —cf0b394;72 rectangles,42+42 motion/actual confirmed effects/reduced expiry,11 new unit cases/world use; full DoD OPEN |
-| PROVENANCE-STARTERS original image/audio inventory | asset | PASS inventory only —cf0b394; all-five296 rectangles/RGBA/alpha/PCM/reference/selected output inventory;12 Lam originals/other manifests preserved; rights NOT_RUN |
+| ART-LAM-01 32 cels/eight states/projectile/two healing pulses | asset/combat | PASS reference inventory/motion atcf0b394;12 fresh compiled renderer checks at1803347 confirm unchanged Lam FX ownership, full DoD OPEN |
+| ART-MOC-NON-01 32 cels/eight states/projectile/confirmed support | asset/combat | PASS reference scope —1803347;72 rectangles,38+38 Moc motion/actual support/7 new cases, own-art recipients/finite FX; full DoD OPEN |
+| PROVENANCE-STARTERS original image/audio inventory | asset | PASS Moc changed inventory —1803347;72 rectangles/32 cels/prompt-reference-output hashes,12 originals/other4 manifests preserved with90 unchanged boundaries; other inventories retained atcf0b394, rights NOT_RUN |
 | DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | PASS debug development subset —a40217a;3 rooms/puzzle/once-only chest/real boss/return; full authored dungeon/balance/device pending |
 | MODE-01 TCG/Chess embedded and quick-entry safe | navigation | PASS embedded borrowed-practice/navigation subset —ff499a5;19 Chess/25 TCG cases,33+33 Chess/29+29 TCG/26+26 navigation browser checks; production mode balance/art/device/prizes/persistence NOT_RUN/out of scope |
 | CTRL-01 map shortcuts/native UI/focus/Enter direction | world/UI | PASS —cf0b394; unchanged12 policy cases in1007 full units and47+47 earned journeys |
 | DEMO-01 one fresh earned RPG/TCG/Chess journey/both endings | demo integration | PASS automated reference-art scope —cf0b394;47 source/47 compiled, Than/Lua/Lam world motion/pause; independent human playtest NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
-Current AW2-004E verifies Lam reference motion/confirmed effects/rebuild plus fresh earned demo/regression:471 final browser assertions. Older004D385/004C377/010A171 remain historical, not added. All5 fullCharacterComplete=false; deeper unchanged save/mode/boss-failure evidence stays source-bound, no independent art/device/listening/legal PASS inferred.
+Current AW2-004F at1803347:62 affected unit tests/88 fresh browser assertions, scoped asset/rebuild/review/type checks. Unchanged full1007/471/stable/earned-world-save-mode evidence retained atcf0b394; not rerun, not fresh totals. Changed cases above PASS; independent12-unit ART-01/art/playtest/device/listening/rights/release remain open.
+
+## AW2-004F Moc motion / confirmed support / selective verification —2026-10-21
+
+VERIFIED reference subset, full character DoD OPEN. Source `1803347bcff73e1500ef1d6219968f599c155114`, tree `ebe9ae1737eb499fb0356a26d8e034f1b716f5a4`, base local/fresh remote `ff44ab28d5a30a5f63b52b55db25a594118042e3`, game/adventure-world-2. D16 exact staged/remote tree and four binary SHA matches, expected-head/force=false publication, independent fetch/SHA/tree/index/ancestry and guarded local fast-forward verified. Completion descendant docs only; final fresh clean local/remote comparison before handoff. Task/owner skills/impact plan preceded edits. In-session BA/character/animation/mechanic/tester/scretary and imagegen/verification guidance; no independent agent/art/device/listening/rights sign-off. Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. [Task](tasks/AW2-004F.md), [commands/raw evidence](evidence/AW2-004F.md), [Moc gates](MOC_NON_CHARACTER_GATES.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Affected units | PASS |62 tests/7 files,708ms,7 new Moc cases,0 failed/pending; existing direct combat/presentation/Lam/Lua/playback/manifest consumers only |
+| Types/4-file format/syntax/whitespace | PASS |Both TS configs/formatter/motion-runner syntax exit0 |
+| Moc-only asset/provenance/rebuild | PASS |72 rectangles/32 new cels/new edge≤4/255/original world9,12 originals/other4 manifests unchanged;97 hashed asset paths repeat-byte identity/90 unchanged original boundaries;2 selected image_gen outputs, no repair |
+| Changed review build/isolation | PASS |104 files/32,168,363 bytes, no PNG/code/maps/ZIP; new WebPs2,335,982 bytes/decoded RGBA12,584,856 |
+| Moc source/compiled with --reuse-originals | PASS reference scope |38+38 eight-state/new cels/reference flight/confirmed target impact-shield/passive/grouped ultimate/own-art recipients/pause/reduced expiry/widths/missing-new-atlas/save bytes; unchanged audio/world gates skipped |
+| Compiled Lam --combat-only | PASS affected renderer |12 confirmed pulses/target impacts/reduced expiry/pause/bounds/save/error checks; unrelated preview/atlas/audio/world skipped |
+| Full suite/stable build/earned-world-save-mode/unrelated previews | NOT_RUN fresh |Unchanged PASS retained atcf0b394, full1007/471 not relabeled/added; byte/path proof recorded |
+| Three captures opened | PASS reference scope |Source reduced battle/compiled new ultimate/768px preview; overlap/independent art/readability remain open |
+
+88 fresh browser assertions (38+38+12), after changed review build. No QA failures/repairs this task. Real Moc serial5/tick2 ultimate560ms, basic72/auto74 tick7 at enemy-lua/player-aw2-lua coexist; auto127/passive128 tick14 after another ally shield. Independent FX reused, grouped statuses retain every own-art recipient; preparation/interrupt/miss/terminal cannot fabricate grant. Engine/save/world/mode/core helpers unchanged. Last full1007 tests/471 browser and stable851-file/78-text/47+47 earned journeys remain atcf0b39469d1fb8f7d77e18feb5e16895d70565a1, not a full PASS for current head. No fresh full earned-world/Moc encounter visual claim.
+
+Owner asks to avoid redundant passing tests: reuse proven unchanged boundaries, rerun only affected dependencies/fixes/new concerns, retain mandatory types/changed-consumer builds and full regression before release/major save/shared-engine changes. All5 fullCharacterComplete=false;0/12 full DoD, independent art/anatomy/identity/fan/cloth/loop/contact/telegraph/audio-binding/listening/playtest/device/native/offline/FPS/rights/production-save/release obligation remains. Demo90%/product≈40% rough35–45% unchanged; starter motion4/5=80% separate denominator. Next004G Sương Lành.
 
 ## AW2-004E Lam motion / confirmed impacts and healing — 2026-10-21
 

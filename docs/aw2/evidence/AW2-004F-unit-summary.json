@@ -16,5 +16,8 @@
     "files": 98,
     "fresh": false
   },
-  "reason": "Owner requests selective retesting. Moc manifest/presentation branch and renderer effect ownership changed; engine/save/world/quests/modes/dependencies untouched."
+  "reason": "Owner requests selective retesting. Moc manifest/presentation branch and renderer effect ownership changed; engine/save/world/quests/modes/dependencies untouched.",
+  "verifiedSource": "1803347bcff73e1500ef1d6219968f599c155114",
+  "verifiedSourceTree": "ebe9ae1737eb499fb0356a26d8e034f1b716f5a4",
+  "publication": "Exact staged/remote tree and four binary hashes; expected-head/force=false; independent fetch/index/ancestry/guarded local fast-forward verified; completion docs only"
 }

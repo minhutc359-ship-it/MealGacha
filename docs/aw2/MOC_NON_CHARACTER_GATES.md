@@ -37,3 +37,5 @@ Actual cast preparation/launch emits no outcome FX. Confirmed ranged hits use on
 | Provenance/rights | Two image_gen outputs, full prompts/reference/source/hash inventory | Independent legal/rights NOT_RUN, commercial NOT_CLEARED |
 
 Owner requests selective retesting. Fresh affected results and exact source are recorded in [AW2-004F evidence](evidence/AW2-004F.md). Unchanged full-suite/quests/save/modes/stable-build/original art/audio checks retain their original004E SHA and are not counted as fresh. Independent art/listening/device/rights remain NOT_RUN. Next [AW2-004G](tasks/AW2-004G.md) Sương Lành motion/event-bound repeated-zone presentation, character/animation/mechanic/tester; scretary maintains [REPORT](REPORT.md).
+
+Verified source `1803347bcff73e1500ef1d6219968f599c155114`, tree `ebe9ae1737eb499fb0356a26d8e034f1b716f5a4`, baseff44ab2;62 fresh affected units/88 fresh browser checks PASS. Prior unchanged full/runtime evidence remains source-bound atcf0b394, not new checks. Independent full-character approval remains open.

@@ -50,3 +50,9 @@ AW2-004D: Lửa Nhỏ thêm32 cels/tám trạng thái, hai hit/FX đúng sự ki
 ## AW2-004E measurement update
 
 Lam Lam có thêm32 cels/tám trạng thái, tác động đạn và hai nhịp heal theo event thật; sửa mất hiệu ứng khi trùng hành động và hết hạn FX trong reduced motion. Nguồn `cf0b394`;1007 test/471 kiểm tra browser cuối PASS, [bằng chứng](evidence/AW2-004E.md), [gate từng phần](LAM_CHARACTER_GATES.md). Bốn lần image_gen/hai layout sửa được chọn;3/5 starter có32 cels mỗi người (96 tổng), hai starter còn key-pose,7 bộ chưa tạo. **Demo≈90% và sản phẩm≈40% giữ nguyên** (35–45% rough range), **0/12 full DoD**: chưa đóng playtest độc lập/nhân vật hoàn chỉnh/thiết bị/rights/release. Motion/test-count không tự tăng điểm nhóm. Sau mỗi cập nhật phải báo cả hai %, lý do thay đổi hoặc giữ nguyên, đồng bộ REPORT/HANDOFF. Next004F Mộc Non; chưa có dữ liệu vận tốc nhân vật được chấp nhận đủ DoD để siết lịch.
+
+## AW2-004F measurement update
+
+Mộc Non thêm32 cels/tám trạng thái và trình diễn hỗ trợ theo event thật, nguồn `1803347`. **Riêng motion5 starter:4/5=80%, tăng từ3/5=60%**, gồm Than/Lửa Nhỏ/Lam Lam/Mộc Non;128 cels tổng, Sương Lành còn key-pose. Hai lần image_gen/hai output đầu được chọn, chưa là nhân vật đủ DoD. [Gate Mộc Non](MOC_NON_CHARACTER_GATES.md), [bằng chứng](evidence/AW2-004F.md).
+
+Theo yêu cầu owner, chỉ chạy62 test chịu ảnh hưởng/88 bước browser mới; full1007/471 và quest/save/mode/stable không đổi giữ bằng chứng004E ở SHA gốc, không chạy lại/cộng số. **Demo≈90% và sản phẩm≈40% (35–45%) giữ nguyên;0/12 full DoD** vì playtest độc lập/nhân vật hoàn chỉnh/thiết bị/rights/release vẫn mở. Metric motion80% dùng mẫu số riêng, không phải80% sản phẩm. Tiếp theo004G Sương Lành; tiếp tục báo hai % dự án sau mỗi cập nhật.
