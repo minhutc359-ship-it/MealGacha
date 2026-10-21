@@ -4,6 +4,23 @@ export type CombatSkillSlot = "basic" | "auto" | "passive" | "ultimate"
 export type CombatEffectKind = "damage" | "heal" | "shield" | "interrupt-guard"
 export type CombatEventKind = "cast-start" | "cast-commit" | "move" | "projectile-launch" | "hit" | "heal" | "shield" | "status" | "interrupt" | "interrupt-resist" | "miss" | "defeat" | "battle-end"
 
+export interface ForgottenHostIntent {
+  kind: "sweep" | "snuff"
+  startedTick: number
+  resolveTick: number
+  areaCenter: number
+  areaRadius: number
+}
+
+export interface ForgottenHostState {
+  profile: "aw2-forgotten-host-development-v2"
+  nextSkillTick: number
+  phase: number
+  barrierHits: number
+  barrierExpiresAtTick: number
+  intent: ForgottenHostIntent | null
+}
+
 export interface CombatEvent {
   serial: number
   tick: number
@@ -77,6 +94,8 @@ export interface CombatActor {
   nextAutoTick: number
   cast: CombatCast | null
   passive: CombatPassiveState
+
+  bossKit?: ForgottenHostState
 }
 
 export interface CombatBattle {
@@ -96,6 +115,8 @@ export interface CombatUnitSeed {
   id: string
   spiritId: string
   boss?: boolean
+
+  bossProfile?: "aw2-forgotten-host-development-v2"
   controlImmune?: boolean
   position?: number
   hp?: number

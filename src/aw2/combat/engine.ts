@@ -4,6 +4,14 @@ import {
   STARTER_COMBAT_KITS,
   type StarterSpiritId,
 } from "./roster"
+
+import {
+  FORGOTTEN_HOST_ID,
+  FORGOTTEN_HOST_PROFILE,
+  FORGOTTEN_HOST_SKILLS,
+  forgottenHostTargets,
+  newForgottenHostState,
+} from "./forgottenHost"
 import type {
   CombatActor,
   CombatBattle,
@@ -72,6 +80,15 @@ function actorFromSeed(
     throw Error("ID combat không được để trống.")
   if (side === "player" && !isStarterSpiritId(seed.spiritId))
     throw Error(`Vị Linh chưa có combat kit AW2-007A: ${seed.spiritId}`)
+
+  if (
+    seed.bossProfile !== undefined &&
+    (seed.bossProfile !== FORGOTTEN_HOST_PROFILE ||
+      side !== "enemy" ||
+      !seed.boss ||
+      seed.spiritId !== FORGOTTEN_HOST_ID)
+  )
+    throw Error("Boss profile không thuộc Người Giữ Bàn Quên.")
   const base =
     side === "player"
       ? STARTER_COMBAT_KITS[(seed.spiritId as StarterSpiritId)]
@@ -81,6 +98,8 @@ function actorFromSeed(
   return {
     id: seed.id,
     spiritId: seed.spiritId,
+
+    ...(seed.bossProfile ? { bossKit: newForgottenHostState() } : {}),
     side,
     slot,
     boss: seed.boss === true,
@@ -303,6 +322,18 @@ function armThanPassive(battle: CombatBattle, actor: CombatActor) {
 
 function expireTimedState(battle: CombatBattle) {
   for (const actor of battle.actors) {
+    const kit = actor.bossKit
+
+    if (kit && kit.barrierHits > 0 && battle.tick >= kit.barrierExpiresAtTick) {
+      kit.barrierHits = 0
+
+      kit.barrierExpiresAtTick = 0
+
+      record(battle, "status", actor.id, [actor.id], {
+        skillId: FORGOTTEN_HOST_SKILLS.barrier.id,
+        text: "Ghế trống tự tan.",
+      })
+    }
     if (
       actor.shield > 0 &&
       actor.shieldExpiresAtTick &&
@@ -498,6 +529,28 @@ function applyDamage(
       skillId,
       ...(projectileId ? { projectileId } : {}),
       text: "Đòn đã phóng không đổi hướng sau khi mục tiêu bị hạ.",
+    })
+    return
+  }
+
+  const protection = target.bossKit
+  if (protection && protection.barrierHits > 0) {
+    if (skillId.endsWith(":skill:basic")) {
+      protection.barrierHits--
+      source.energy = Math.min(ULTIMATE_ENERGY, source.energy + 12)
+      if (protection.barrierHits === 0) protection.barrierExpiresAtTick = 0
+      record(battle, "status", target.id, [target.id], {
+        skillId: FORGOTTEN_HOST_SKILLS.barrier.id,
+        text: `Ghế trống còn ${protection.barrierHits} đòn thường.`,
+      })
+    }
+    // The contact which breaks the barrier is absorbed too; subsequent hits damage HP.
+    record(battle, "hit", source.id, [target.id], {
+      skillId,
+      amount: 0,
+      absorbed: 0,
+      ...(projectileId ? { projectileId } : {}),
+      text: "Ghế trống chặn đòn.",
     })
     return
   }
@@ -901,6 +954,7 @@ function performBasic(
 }
 
 function tryAutoSkill(battle: CombatBattle, actor: CombatActor): boolean {
+  if (actor.bossKit) return tryForgottenHostSkill(battle, actor)
   if (
     !isStarterSpiritId(actor.spiritId) ||
     battle.tick < actor.nextAutoTick ||
@@ -935,6 +989,94 @@ function tryAutoSkill(battle: CombatBattle, actor: CombatActor): boolean {
   return true
 }
 
+function tryForgottenHostSkill(
+  battle: CombatBattle,
+  actor: CombatActor,
+): boolean {
+  const kit = actor.bossKit!
+  if (kit.intent || battle.tick < kit.nextSkillTick) return false
+  const target = selectEnemy(battle, actor)
+  if (!target) return false
+  const phase = kit.phase++ % 3
+  kit.nextSkillTick = battle.tick + 9
+  if (phase === 0) {
+    kit.barrierHits = 4
+    kit.barrierExpiresAtTick = battle.tick + 8
+    record(battle, "status", actor.id, [actor.id], {
+      skillId: FORGOTTEN_HOST_SKILLS.barrier.id,
+      text: "Ghế trống: phá bằng 4 đòn thường, tự tan sau 8 nhịp.",
+    })
+  } else {
+    const kind = phase === 1 ? "sweep" : "snuff"
+    kit.intent = {
+      kind,
+      startedTick: battle.tick,
+      resolveTick: battle.tick + 3,
+      areaCenter: kind === "sweep" ? target.position : 50,
+      areaRadius: kind === "sweep" ? 14 : 100,
+    }
+    record(
+      battle,
+      "cast-start",
+      actor.id,
+      forgottenHostTargets(battle, actor).map((unit) => unit.id),
+      {
+        skillId: FORGOTTEN_HOST_SKILLS[kind].id,
+        resolveTick: kit.intent.resolveTick,
+        text: `${FORGOTTEN_HOST_SKILLS[kind].name}: còn 3 nhịp.`,
+      },
+    )
+  }
+  return true
+}
+
+function updateForgottenHostIntents(battle: CombatBattle) {
+  for (const actor of battle.actors) {
+    const kit = actor.bossKit
+    if (!kit) continue
+    if (actor.hp <= 0) {
+      kit.intent = null
+      kit.barrierHits = 0
+      kit.barrierExpiresAtTick = 0
+      continue
+    }
+    const intent = kit.intent
+    if (!intent) continue
+    const skill = FORGOTTEN_HOST_SKILLS[intent.kind]
+    const targets = forgottenHostTargets(battle, actor)
+    if (battle.tick < intent.resolveTick) {
+      record(
+        battle,
+        "status",
+        actor.id,
+        targets.map((unit) => unit.id),
+        {
+          skillId: skill.id,
+          resolveTick: intent.resolveTick,
+          text: `${skill.name}: còn ${intent.resolveTick - battle.tick} nhịp.`,
+        },
+      )
+      continue
+    }
+    kit.intent = null
+    record(
+      battle,
+      "cast-commit",
+      actor.id,
+      targets.map((unit) => unit.id),
+      { skillId: skill.id, text: skill.name },
+    )
+    for (const target of targets)
+      applyDamage(
+        battle,
+        actor,
+        target,
+        actor.attack * (intent.kind === "sweep" ? 1 : 0.7),
+        skill.id,
+      )
+  }
+}
+
 function actAutomatically(battle: CombatBattle) {
   const order = [...living(battle)].sort(
     (left, right) =>
@@ -943,7 +1085,7 @@ function actAutomatically(battle: CombatBattle) {
       left.id.localeCompare(right.id),
   )
   for (const actor of order) {
-    if (actor.hp <= 0 || actor.cast) continue
+    if (actor.hp <= 0 || actor.cast || actor.bossKit?.intent) continue
     if (tryAutoSkill(battle, actor)) continue
     if (battle.tick < actor.nextBasicTick) continue
     const target = selectEnemy(battle, actor)
@@ -957,7 +1099,18 @@ function checkResult(battle: CombatBattle) {
   const enemies = living(battle, "enemy").length
   if (players && enemies) return
   battle.status = players ? "player-win" : enemies ? "enemy-win" : "draw"
-  for (const actor of battle.actors) actor.cast = null
+
+  for (const actor of battle.actors) {
+    actor.cast = null
+
+    if (actor.bossKit) {
+      actor.bossKit.intent = null
+
+      actor.bossKit.barrierHits = 0
+
+      actor.bossKit.barrierExpiresAtTick = 0
+    }
+  }
   record(battle, "battle-end", null, [], { text: battle.status })
 }
 
@@ -967,6 +1120,12 @@ function advanceOneTick(battle: CombatBattle) {
   resolveDueCasts(battle)
   resolveDueEffects(battle)
   checkResult(battle)
+  if (battle.status !== "active") return
+
+  updateForgottenHostIntents(battle)
+
+  checkResult(battle)
+
   if (battle.status !== "active") return
   actAutomatically(battle)
   resolveDueEffects(battle)

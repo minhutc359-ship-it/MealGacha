@@ -8,6 +8,7 @@ import {
 import { KITCHEN_BOSS_ID } from "../../src/aw2/world/ids"
 import type { WorldBossEncounter } from "../../src/aw2/world/encounter"
 import { useBattleAudio } from "./useBattleAudio"
+import { BossTelegraph } from "./BossTelegraph"
 
 const visualIds = { [KITCHEN_BOSS_ID]: "aw2-than" }
 const labels = { [KITCHEN_BOSS_ID]: "Người Giữ Bàn Quên" }
@@ -130,6 +131,7 @@ export function WorldBattle({
           Giảm chuyển động
         </label>
       </section>
+      <BossTelegraph battle={battle} stopped={frame.view.retreated} />
       <nav className="aw2-battle-jumps" aria-label="Chuyển vùng trận đấu">
         <a href="#battle-ultimates">Đến tuyệt kỹ</a>
         <a href="#battle-arena">Đến đấu trường</a>

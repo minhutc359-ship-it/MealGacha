@@ -11,8 +11,9 @@ import { worldProgressSchema, type WorldProgress } from "./model"
 import { describeObject, INTERACT_RANGE } from "./rules"
 import { zoneById } from "./maps"
 import { aw2DevSaveSchema } from "../save/schema"
+import { createForgottenHostSeed } from "../combat/forgottenHost"
 
-export const WORLD_BOSS_TUNING_ID = "aw2-world-boss-development-v1"
+export const WORLD_BOSS_TUNING_ID = "aw2-world-boss-development-v2"
 export interface BossEncounterView {
   battle: CombatBattle
   retreated: boolean
@@ -80,20 +81,7 @@ export function createWorldBossEncounter(
           },
         ),
       ),
-      enemies: [
-        {
-          id: KITCHEN_BOSS_ID,
-          spiritId: KITCHEN_BOSS_ID,
-          boss: true,
-          hp: 1000,
-          maxHp: 1000,
-          attack: 180,
-          defense: 14,
-          position: 82,
-          range: 8,
-          nextBasicTick: 2,
-        },
-      ],
+      enemies: [createForgottenHostSeed()],
     }),
   }
   const assertActive = () => {

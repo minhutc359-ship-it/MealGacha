@@ -120,3 +120,8 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-battle-jumps { display: flex; flex-wrap: wrap; gap: .75rem; margin: .75rem 0; }
 .aw2-battle-jumps a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .75rem; color: #f2d799; border: 1px solid #60756b; border-radius: .5rem; }
 #battle-arena, #battle-ultimates { scroll-margin-top: 1rem; }
+.aw2-boss-telegraph { position: sticky; top: .5rem; z-index: 2; margin: .75rem 0; padding: 1rem; border-color: #d8b573; background: #1b2a27; }
+.aw2-boss-telegraph h2 { margin: 0 0 .5rem; }
+.aw2-boss-telegraph p { margin: .4rem 0; overflow-wrap: anywhere; }
+.aw2-boss-telegraph progress { display: block; width: 100%; height: 1rem; accent-color: #ebc477; }
+.aw2-battle #battle-ultimates, .aw2-battle .aw2-ultimate-grid button { scroll-margin-top: calc(var(--boss-telegraph-height, 0px) + 1rem); }
