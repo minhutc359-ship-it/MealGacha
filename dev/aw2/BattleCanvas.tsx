@@ -14,6 +14,12 @@ import type {
   CombatBattle,
   CombatPresentation,
 } from "../../src/aw2/combat"
+import {
+  actorDisplayScale,
+  actorStatus,
+  projectBattle,
+  recentActorOutcomes,
+} from "./battleLayout"
 
 type LoadedAtlas = Record<string, HTMLImageElement>
 
@@ -29,9 +35,6 @@ interface Props {
 const TICK_MS = 650
 const clamp = (value: number, min = 0, max = 1) =>
   Math.max(min, Math.min(max, value))
-const actorX = (actor: CombatActor) => 65 + actor.position * 8.3
-const actorY = (actor: CombatActor) =>
-  actor.side === "player" ? 365 + actor.slot * 28 : 255 + actor.slot * 34
 const actorById = (battle: CombatBattle, id: string) =>
   battle.actors.find((actor) => actor.id === id)
 
@@ -58,9 +61,13 @@ export function BattleCanvas({
   labels,
 }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null)
+  const stage = useRef<HTMLDivElement>(null)
+  const [stageWidth, setStageWidth] = useState(960)
+  const layout = projectBattle(battle.actors, stageWidth)
   const clock = useRef({
     time: 0,
     tick: -1,
+    tickStartedAt: 0,
     battleId: "",
     actors: {} as Record<string, ActorPlayback>,
     effects: {} as Record<string, EffectPlayback>,
@@ -69,6 +76,16 @@ export function BattleCanvas({
     null,
   )
   const [error, setError] = useState("")
+
+  useEffect(() => {
+    const container = stage.current
+    if (!container) return
+    const observer = new ResizeObserver(([entry]) =>
+      setStageWidth(entry.contentRect.width),
+    )
+    observer.observe(container)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     let disposed = false
@@ -130,15 +147,35 @@ export function BattleCanvas({
       clock.current = {
         time: 0,
         tick: battle.tick,
+        tickStartedAt: 0,
         battleId: battle.id,
         actors: {},
         effects: {},
       }
     }
+    if (clock.current.tick !== battle.tick)
+      clock.current.tickStartedAt = clock.current.time
     clock.current.tick = battle.tick
     let lastTime = performance.now()
-    const tickStartedAt = clock.current.time
+    const tickStartedAt = clock.current.tickStartedAt
     let frameRequest = 0
+    const actorX = (actor: CombatActor) => layout.points[actor.id].x
+    const actorY = (actor: CombatActor) => layout.points[actor.id].y
+    const scales = Object.fromEntries(
+      battle.actors.map((actor) => [
+        actor.id,
+        actorDisplayScale(manifestFor(actor, visualIds)),
+      ]),
+    )
+    const fxScale = (actor: CombatActor) => scales[actor.id] / 0.28
+
+    function label(text: string, x: number, y: number, width = 120) {
+      let clipped = text
+      while (clipped.length > 1 && context!.measureText(clipped).width > width)
+        clipped = clipped.slice(0, -1)
+      if (clipped !== text) clipped = clipped.slice(0, -1) + "…"
+      context!.fillText(clipped, x, y)
+    }
 
     function paintFrame(
       manifest: SpiritAssetManifest,
@@ -175,22 +212,30 @@ export function BattleCanvas({
     }
 
     function drawArena() {
-      const gradient = context!.createLinearGradient(0, 0, 0, 560)
+      const gradient = context!.createLinearGradient(0, 0, 0, layout.height)
       gradient.addColorStop(0, "#172b31")
       gradient.addColorStop(0.58, "#29413c")
       gradient.addColorStop(1, "#17241f")
       context!.fillStyle = gradient
-      context!.fillRect(0, 0, 960, 560)
+      context!.fillRect(0, 0, layout.width, layout.height)
       context!.strokeStyle = "rgba(245, 214, 139, .2)"
       context!.lineWidth = 1
-      for (let x = 64; x < 920; x += 64) {
+      for (let x = 64; x <= layout.width - 64; x += (layout.width - 128) / 4) {
         context!.beginPath()
-        context!.moveTo(x, 210)
-        context!.lineTo(x, 520)
+        context!.moveTo(x, 44)
+        context!.lineTo(x, layout.height - 12)
         context!.stroke()
       }
-      context!.fillStyle = "rgba(255,255,255,.08)"
-      context!.fillRect(40, 280, 880, 2)
+      context!.font = "600 13px system-ui"
+      context!.textAlign = "left"
+      context!.fillStyle = "#e5e8d5"
+      context!.fillText("Đội →", 12, 24)
+      context!.textAlign = "right"
+      context!.fillText("← Ký ức", layout.width - 12, 24)
+      for (const actor of battle.actors) {
+        context!.fillStyle = actor.side === "player" ? "#8ac5a00c" : "#e7a0a00c"
+        context!.fillRect(0, actorY(actor) - 72, layout.width, 108)
+      }
     }
 
     function drawActor(actor: CombatActor) {
@@ -209,6 +254,8 @@ export function BattleCanvas({
       const { state, pose } = playback
       const x = actorX(actor)
       const y = actorY(actor)
+      const scale = scales[actor.id]
+      const effectScale = fxScale(actor)
       const enemy = actor.side === "enemy"
       if (enemy) {
         context!.save()
@@ -273,9 +320,10 @@ export function BattleCanvas({
             atlas.fx,
             target
               ? actorX(target)
-              : x + (enemy ? -1 : 1) * skill.fxPlacement.x * 0.28,
-            (target ? actorY(target) : y) + skill.fxPlacement.y * 0.28,
-            0.28 * skill.fxPlacement.scale,
+              : x + (enemy ? -1 : 1) * skill.fxPlacement.x * 0.28 * effectScale,
+            (target ? actorY(target) : y) +
+              skill.fxPlacement.y * 0.28 * effectScale,
+            0.28 * skill.fxPlacement.scale * effectScale,
             enemy,
             0.82,
           )
@@ -286,9 +334,9 @@ export function BattleCanvas({
         manifest,
         pose.frame,
         atlas[manifest.frames[pose.frame].asset],
-        x + (enemy ? -pose.x : pose.x) * 0.28,
-        y + pose.y * 0.28,
-        0.28 * pose.scale,
+        x + (enemy ? -pose.x : pose.x) * scale,
+        y + pose.y * scale,
+        scale * pose.scale,
         enemy,
         pose.opacity,
         enemy ? -pose.rotation : pose.rotation,
@@ -316,7 +364,7 @@ export function BattleCanvas({
 
       const barWidth = 76
       const left = x - barWidth / 2
-      const top = y - 128
+      const top = y + 20
       context!.fillStyle = "rgba(5, 12, 10, .78)"
       context!.fillRect(left, top, barWidth, 8)
       context!.fillStyle = enemy ? "#d46a6a" : "#74d28c"
@@ -331,9 +379,13 @@ export function BattleCanvas({
         )
       }
       context!.fillStyle = "#fff6df"
-      context!.font = "600 11px system-ui"
+      context!.font = "600 13px system-ui"
       context!.textAlign = "center"
-      context!.fillText(labels?.[actor.id] ?? manifest.displayName, x, top - 5)
+      label(
+        `${layout.points[actor.id].badge} · ${labels?.[actor.id] ?? manifest.displayName}`,
+        x,
+        top - 5,
+      )
     }
 
     function drawProjectile(
@@ -354,7 +406,7 @@ export function BattleCanvas({
       )
       const x = actorX(source) + (actorX(target) - actorX(source)) * progress
       const y =
-        actorY(source) - 55 + (actorY(target) - actorY(source)) * progress
+        actorY(source) - 32 + (actorY(target) - actorY(source)) * progress
       const frame =
         track.frames[
           reducedMotion
@@ -367,29 +419,36 @@ export function BattleCanvas({
         atlases![manifest.spiritId].fx,
         x,
         y,
-        0.32 * track.scale,
+        0.32 * track.scale * fxScale(source),
         source.side === "enemy",
       )
     }
 
     function drawFloating() {
-      for (const item of presentation.floating.filter(
-        (entry) => entry.tick >= battle.tick - 2,
-      )) {
-        const target = item.targetId ? actorById(battle, item.targetId) : null
-        const x = target ? actorX(target) : 480
-        const y = target ? actorY(target) - 145 - (item.serial % 3) * 15 : 80
-        context!.font = "700 14px system-ui"
-        context!.textAlign = "center"
-        context!.fillStyle =
-          item.kind === "heal"
-            ? "#9cf0b4"
-            : item.kind === "shield"
-              ? "#9ddcff"
-              : item.kind === "hit"
-                ? "#ffd0a3"
-                : "#fff0b7"
-        context!.fillText(item.text, x, y)
+      for (const actor of battle.actors) {
+        const outcomes = recentActorOutcomes(
+          presentation,
+          actor.id,
+          battle.tick,
+        )
+        for (const [index, item] of outcomes.entries()) {
+          const x = Math.max(
+            40,
+            Math.min(layout.width - 40, actorX(actor) + 48),
+          )
+          const y = actorY(actor) - 44 - index * 17
+          context!.font = "700 14px system-ui"
+          context!.textAlign = "center"
+          context!.fillStyle =
+            item.kind === "heal"
+              ? "#9cf0b4"
+              : item.kind === "shield"
+                ? "#9ddcff"
+                : item.kind === "hit"
+                  ? "#ffd0a3"
+                  : "#fff0b7"
+          label(`${item.kind === "hit" ? "−" : "+"}${item.amount}`, x, y, 70)
+        }
       }
     }
 
@@ -412,11 +471,11 @@ export function BattleCanvas({
       drawFloating()
       if (presentation.terminal) {
         context!.fillStyle = "rgba(7, 13, 12, .76)"
-        context!.fillRect(280, 210, 400, 110)
+        context!.fillRect(8, layout.height / 2 - 55, layout.width - 16, 110)
         context!.strokeStyle = "#f5d68b"
-        context!.strokeRect(280, 210, 400, 110)
+        context!.strokeRect(8, layout.height / 2 - 55, layout.width - 16, 110)
         context!.fillStyle = "#fff3cc"
-        context!.font = "700 30px system-ui"
+        context!.font = `700 ${layout.width < 480 ? 18 : 30}px system-ui`
         context!.textAlign = "center"
         const label =
           presentation.terminal.text === "player-win"
@@ -424,7 +483,7 @@ export function BattleCanvas({
             : presentation.terminal.text === "enemy-win"
               ? "Ký ức tan vào sương"
               : "Hai phía cùng lặng"
-        context!.fillText(label, 480, 276)
+        context!.fillText(label, layout.width / 2, layout.height / 2 + 10)
       }
       element!.dataset.tick = String(battle.tick)
       element!.dataset.status = battle.status
@@ -438,21 +497,41 @@ export function BattleCanvas({
       element!.dataset.actorCues = JSON.stringify(actorCues)
       element!.dataset.actorEffects = JSON.stringify(actorEffects)
       element!.dataset.motionTime = String(Math.floor(clock.current.time))
+      element!.dataset.actorLayout = JSON.stringify(layout.points)
       frameRequest = requestAnimationFrame(draw)
     }
 
     frameRequest = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(frameRequest)
-  }, [atlases, battle, presentation, reducedMotion, paused, visualIds, labels])
+  }, [
+    atlases,
+    battle,
+    presentation,
+    reducedMotion,
+    paused,
+    visualIds,
+    labels,
+    stageWidth,
+  ])
 
   return (
     <>
-      <div className="aw2-battle-stage">
+      <p className="note">
+        Làn tách nhân vật để dễ theo dõi; vị trí ngang thể hiện bước tiến trong
+        trận. Đ: đội của bạn · K: ký ức.
+      </p>
+      <div
+        className="aw2-battle-stage"
+        id="battle-arena"
+        tabIndex={-1}
+        ref={stage}
+      >
         <canvas
           ref={canvas}
-          width={960}
-          height={560}
+          width={layout.width}
+          height={layout.height}
           aria-label="Trận đấu năm Vị Linh AW2"
+          aria-describedby="battle-roster"
         />
       </div>
       <p role="status" data-testid="battle-atlas-state">
@@ -463,6 +542,25 @@ export function BattleCanvas({
             : "Đang tải atlas chiến đấu…"}
       </p>
       {error && <p role="alert">{error}</p>}
+      <details className="aw2-battle-roster" id="battle-roster">
+        <summary>Máu và trạng thái từng nhân vật</summary>
+        <ul>
+          {battle.actors.map((actor) => (
+            <li key={actor.id} data-actor-id={actor.id}>
+              <strong>
+                {layout.points[actor.id].badge} ·{" "}
+                {labels?.[actor.id] ??
+                  manifestFor(actor, visualIds)?.displayName ??
+                  actor.id}
+              </strong>
+              <span>
+                HP {actor.hp}/{actor.maxHp} ·{" "}
+                {actorStatus(actor, battle.tick).join(" · ") || "Sẵn sàng"}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </details>
     </>
   )
 }

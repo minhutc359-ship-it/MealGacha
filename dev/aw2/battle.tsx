@@ -102,6 +102,10 @@ function BattlePreview() {
         </label>
       </section>
 
+      <nav className="aw2-battle-jumps" aria-label="Chuyển vùng trận đấu">
+        <a href="#battle-ultimates">Đến tuyệt kỹ</a>
+        <a href="#battle-arena">Đến đấu trường</a>
+      </nav>
       <BattleCanvas
         battle={battle}
         presentation={presentation}
@@ -117,7 +121,7 @@ function BattlePreview() {
         {Object.keys(presentation.projectiles).length} projectile đang bay
       </p>
 
-      <section>
+      <section id="battle-ultimates" tabIndex={-1}>
         <h2>Tuyệt kỹ đội 5 Vị Linh</h2>
         <div className="aw2-ultimate-grid">
           {playerRows.map((actor) => {

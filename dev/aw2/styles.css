@@ -43,7 +43,7 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-asset-details img { object-fit: contain; flex-shrink: 0; }
 @media (max-width: 600px) { .aw2-asset-details { flex-direction: column; } }
 .aw2-battle { width: min(100% - 2rem, 76rem); }
-.aw2-battle-stage { width: 100%; overflow: hidden; border: 1px solid #60756b; border-radius: 1rem; background: #172b31; }
+.aw2-battle-stage { width: 100%; max-width: 962px; margin-inline: auto; overflow: hidden; border: 1px solid #60756b; border-radius: 1rem; background: #172b31; }
 .aw2-battle-stage canvas { display: block; width: 100%; height: auto; }
 .aw2-battle-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; margin-bottom: 1rem; }
 .aw2-battle-controls label { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; }
@@ -103,11 +103,20 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
  [data-testid="world-battle"] .aw2-battle-controls { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); padding: .6rem; margin: .5rem 0; gap: .4rem; }
  [data-testid="world-battle"] .aw2-battle-controls > * { width: auto; font-size: .8rem; }
  [data-testid="world-battle"] .aw2-battle-controls button { padding: .4rem; }
- [data-testid="world-battle"] .aw2-ultimate-grid { grid-template-columns: repeat(5,minmax(0,1fr)); gap: .3rem; padding: .4rem; margin: .5rem 0; }
- [data-testid="world-battle"] .aw2-ultimate-grid article { display: flex; flex-direction: column; gap: .3rem; padding: .3rem .15rem; min-width: 0; text-align: center; }
- [data-testid="world-battle"] .aw2-ultimate-grid img { width: 40px; height: 40px; }
- [data-testid="world-battle"] .aw2-ultimate-grid strong { font-size: .7rem; display: block; min-height: 2.8em; line-height: 1.3; }
- [data-testid="world-battle"] .aw2-ultimate-grid small { font-size: .6rem; white-space: nowrap; }
- [data-testid="world-battle"] .aw2-ultimate-grid button { margin-top: auto; padding: .3rem .1rem; font-size: .65rem; min-height: 48px; }
+ [data-testid="world-battle"] .aw2-ultimate-grid { grid-template-columns: 1fr; gap: .5rem; padding: .65rem; margin: .5rem 0; }
+ [data-testid="world-battle"] .aw2-ultimate-grid article { min-width: 0; }
+ [data-testid="world-battle"] .aw2-ultimate-grid strong { font-size: 1rem; }
+ [data-testid="world-battle"] .aw2-ultimate-grid small { font-size: .875rem; }
+ [data-testid="world-battle"] .aw2-ultimate-grid button { min-height: 48px; }
  [data-testid="world-battle"] [data-testid="encounter-status"] { margin: .4rem 0; font-size: .9rem; }
 }
+
+.aw2-battle-roster { margin: 1rem 0; border: 1px solid #60756b; border-radius: .75rem; padding: .75rem; }
+.aw2-battle-roster summary { cursor: pointer; min-height: 44px; padding: .6rem 0; }
+.aw2-battle-roster ul { list-style: none; padding: 0; margin: .5rem 0; display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,16rem),1fr)); gap: .5rem; }
+.aw2-battle-roster li { padding: .6rem; background: #12231f; border-radius: .5rem; overflow-wrap: anywhere; }
+.aw2-battle-roster strong, .aw2-battle-roster span { display: block; }
+.aw2-battle-roster span { font-size: .875rem; color: #d5e4d9; }
+.aw2-battle-jumps { display: flex; flex-wrap: wrap; gap: .75rem; margin: .75rem 0; }
+.aw2-battle-jumps a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .75rem; color: #f2d799; border: 1px solid #60756b; border-radius: .5rem; }
+#battle-arena, #battle-ultimates { scroll-margin-top: 1rem; }

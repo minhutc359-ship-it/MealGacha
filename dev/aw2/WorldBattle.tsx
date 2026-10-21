@@ -130,6 +130,10 @@ export function WorldBattle({
           Giảm chuyển động
         </label>
       </section>
+      <nav className="aw2-battle-jumps" aria-label="Chuyển vùng trận đấu">
+        <a href="#battle-ultimates">Đến tuyệt kỹ</a>
+        <a href="#battle-arena">Đến đấu trường</a>
+      </nav>
       <BattleCanvas
         battle={battle}
         presentation={frame.presentation}
@@ -151,6 +155,8 @@ export function WorldBattle({
       <section
         aria-label="Tuyệt kỹ đội năm Vị Linh"
         className="aw2-ultimate-grid"
+        id="battle-ultimates"
+        tabIndex={-1}
       >
         {battle.actors
           .filter((actor) => actor.side === "player")
