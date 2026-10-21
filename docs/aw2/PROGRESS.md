@@ -37,7 +37,7 @@ Trước AW2-010A: **8/10 nhóm tiêu chí đã kiểm chứng, khoảng80%**. H
 
 Hoàn tất một test mới có thể làm tỷ lệ demo tăng mà điểm sản phẩm giữ nguyên: art/nội dung/gate phát hành vẫn còn phần lớn công việc. Chỉ nâng điểm nhóm khi có artifact và bằng chứng đúng phạm vi; không coi portrait hoặc approved proposal là nhân vật hoàn thành. Xem [CANON](CANON.md), [STATUS](STATUS.md), [TEST_LEDGER](TEST_LEDGER.md).
 
-Scretary cập nhật hai chỉ báo sau mỗi mốc có thay đổi thực chất, giữ mốc gốc/cách tính và ghi lý do điều chỉnh. Sau nhân vật đầu tiên đủ DoD và playtest demo, BA/tester điều chỉnh trọng số/ước lượng thời gian trong [DELIVERY_PLAN](DELIVERY_PLAN.md); không suy ra ngày hẹn từ40% hoặc90%.
+Theo yêu cầu owner2026-10-21, scretary báo hai chỉ báo sau **mỗi mốc cập nhật hoàn tất**, kể cả khi giữ nguyên; giữ mốc gốc/cách tính và ghi lý do điều chỉnh. Sau nhân vật đầu tiên đủ DoD và playtest demo, BA/tester điều chỉnh trọng số/ước lượng thời gian trong [DELIVERY_PLAN](DELIVERY_PLAN.md); không suy ra ngày hẹn từ40% hoặc90%.
 
 
 ## AW2-004C measurement update
@@ -46,3 +46,7 @@ Than có thêm32 khung chuyển động/tám trạng thái, đã kiểm chứng 
 
 
 AW2-004D: Lửa Nhỏ thêm32 cels/tám trạng thái, hai hit/FX đúng sự kiện thật và builder tái tạo ổn định; [bằng chứng](evidence/AW2-004D.md), [gate còn lại](LUA_CHARACTER_GATES.md). Ba lần image_gen tạo hai sheet được chọn, một bản B bị loại và sửa bố cục. Than+Lửa Nhỏ có64 cels mới nhưng vẫn là hai gói tham chiếu, chưa phải hai nhân vật qua full DoD. Giữ **demo≈90%, sản phẩm≈40%,0/12 full DoD**; không suy điểm hay vận tốc12 nhân vật từ số khung/test. Tiếp theo004E Lam Lam, các gate độc lập vẫn mở.
+
+## AW2-004E measurement update
+
+Lam Lam có thêm32 cels/tám trạng thái, tác động đạn và hai nhịp heal theo event thật; sửa mất hiệu ứng khi trùng hành động và hết hạn FX trong reduced motion. Nguồn `cf0b394`;1007 test/471 kiểm tra browser cuối PASS, [bằng chứng](evidence/AW2-004E.md), [gate từng phần](LAM_CHARACTER_GATES.md). Bốn lần image_gen/hai layout sửa được chọn;3/5 starter có32 cels mỗi người (96 tổng), hai starter còn key-pose,7 bộ chưa tạo. **Demo≈90% và sản phẩm≈40% giữ nguyên** (35–45% rough range), **0/12 full DoD**: chưa đóng playtest độc lập/nhân vật hoàn chỉnh/thiết bị/rights/release. Motion/test-count không tự tăng điểm nhóm. Sau mỗi cập nhật phải báo cả hai %, lý do thay đổi hoặc giữ nguyên, đồng bộ REPORT/HANDOFF. Next004F Mộc Non; chưa có dữ liệu vận tốc nhân vật được chấp nhận đủ DoD để siết lịch.

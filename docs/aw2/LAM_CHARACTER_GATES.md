@@ -36,6 +36,8 @@ Actual Lam cast preparation/commit and projectile launch suppress impact/healing
 | Integration / save | Shared source/compiled previews and actual world/battle; isolated development namespace | Production migrations/durability/native/offline/FPS/physical-device/full-release QA remains open |
 | Provenance / rights | Built-in image_gen source/prompt/reference/hash audit, no external artwork inputs | Legal/rights NOT_RUN; commercial NOT_CLEARED |
 
-Automated results and exact source will be recorded in [AW2-004E evidence](evidence/AW2-004E.md). Next implementable owner: character/animation/mechanic/tester for [AW2-004F](tasks/AW2-004F.md) Mộc Non. Independent Lam/Than/Lửa Nhỏ approval and remaining seven sets/map/NPC/boss/full-product gates remain open.
+Automated results and exact source are recorded in [AW2-004E evidence](evidence/AW2-004E.md). Next implementable owner: character/animation/mechanic/tester for [AW2-004F](tasks/AW2-004F.md) Mộc Non. Independent Lam/Than/Lửa Nhỏ approval and remaining seven sets/map/NPC/boss/full-product gates remain open.
 
 Confirmed FX have finite lifetimes even with reduced motion: basic impact180ms, healing440ms, measured from each confirmed event's own presentation clock. Toggling reduced motion cannot revive expired effects. These are visual durations only, with no impact on rule ticks/heal counts or final balance. No frame/FX counter is treated as a device or human art gate.
+
+Verified source `cf0b39469d1fb8f7d77e18feb5e16895d70565a1`, tree `a31058eb72be8b420cb6dbde32e8c008a6e2ac04`, base4def09f;1007 full tests/214 AW2 and471 fresh final browser checks PASS. Independent full-character acceptance remains open.

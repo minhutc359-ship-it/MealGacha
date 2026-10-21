@@ -11,5 +11,8 @@
   "failed": 0,
   "pending": 0,
   "rawReportSha256": "71c93273edba79dfba0d3869d455d124f6a45c8a1e6b547424dbb3ec6ea61cbe",
-  "note": "Final full run while preceding compiled journey was finishing; no throughput/device performance inference. Final browser runs follow this full run and review rebuild."
+  "note": "Final full run while preceding compiled journey was finishing; no throughput/device performance inference. Final browser runs follow this full run and review rebuild.",
+  "verifiedSource": "cf0b39469d1fb8f7d77e18feb5e16895d70565a1",
+  "verifiedSourceTree": "a31058eb72be8b420cb6dbde32e8c008a6e2ac04",
+  "publication": "Exact staged/remote tree and binary hashes; expected-head/force=false; independent fetch/index/ancestry/guarded local fast-forward verified; completion docs only"
 }

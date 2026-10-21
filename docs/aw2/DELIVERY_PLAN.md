@@ -28,3 +28,5 @@ AW2-004C cập nhật cơ sở:32 cels/tám trạng thái Than đã được t�
 
 
 AW2-004D bổ sung gói32-cel Lửa Nhỏ và sửa trình diễn hai hit/builder; ba lần image_gen gồm một sửa layout. Đây vẫn chưa phải mẫu nhân vật đủ DoD. Giữ nguyên các khoảng/giả định ở trên, không rút lịch từ64 cels mới của hai starter; cần thời gian đóng art/telegraph/audio-hit/cân bằng/thiết bị/listening/rights và đo nhân vật được chấp nhận đầy đủ. [Lua gaps](LUA_CHARACTER_GATES.md), [bằng chứng](evidence/AW2-004D.md); next004E Lam Lam.
+
+AW2-004E tạicf0b394 thêm32 cels Lam và sửa trình diễn đạn/hai nhịp heal/FX reduced;4 lần image_gen,2 layout sửa được chọn.3/5 starter có motion packages, vẫn0/12 đầy đủ DoD. Giữ các khoảng/giả định có điều kiện trên; không rút lịch từ96 cels hoặc1007 test/471 browser checks. Demo≈90%, sản phẩm≈40% rough35–45% giữ nguyên; báo hai tỷ lệ sau mỗi cập nhật theo owner. Next004F Mộc Non, độc lập art/playtest/thiết bị/listening/rights vẫn mở. [Lam gates](LAM_CHARACTER_GATES.md), [evidence](evidence/AW2-004E.md).

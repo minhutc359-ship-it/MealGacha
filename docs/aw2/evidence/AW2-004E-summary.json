@@ -51,5 +51,8 @@
     "Basic-hit/heal-pulse audio binding incomplete; no human listening",
     "No physical-device/native/offline/FPS/rights/production-save/release approval",
     "Unchanged deeper standalone save/mode/boss-failure browser permutations not separately repeated"
-  ]
+  ],
+  "verifiedSource": "cf0b39469d1fb8f7d77e18feb5e16895d70565a1",
+  "verifiedSourceTree": "a31058eb72be8b420cb6dbde32e8c008a6e2ac04",
+  "publication": "Exact staged/remote tree and binary hashes; expected-head/force=false; independent fetch/index/ancestry/guarded local fast-forward verified; completion docs only"
 }
