@@ -36,7 +36,9 @@ export function projectBattle(
 }
 
 /** Reserve room for pose movement/rotation as well as the unmodified source cell. */
-export function actorDisplayScale(manifest: SpiritAssetManifest) {
+export function actorDisplayScale(
+  manifest: Pick<SpiritAssetManifest, "frames">,
+) {
   const frames = Object.values(manifest.frames).filter((frame) =>
     frame.asset.startsWith("battle"),
   )

@@ -8,6 +8,11 @@ import {
   type EffectPlayback,
 } from "../../src/aw2/assets/playback"
 import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
+import { FORGOTTEN_HOST_ASSETS } from "../../src/aw2/assets/forgottenHost"
+import {
+  sampleBossVisual,
+  type BossPlaybackClock,
+} from "../../src/aw2/assets/bossPlayback"
 import type { SkillSlot, SpiritAssetManifest } from "../../src/aw2/assets/types"
 import type {
   CombatActor,
@@ -28,6 +33,7 @@ interface Props {
   presentation: CombatPresentation
   reducedMotion: boolean
   paused?: boolean
+  stopped?: boolean
   visualIds?: Readonly<Record<string, string>>
   labels?: Readonly<Record<string, string>>
 }
@@ -57,12 +63,16 @@ export function BattleCanvas({
   presentation,
   reducedMotion,
   paused = false,
+  stopped = false,
   visualIds,
   labels,
 }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null)
   const stage = useRef<HTMLDivElement>(null)
   const [stageWidth, setStageWidth] = useState(960)
+  const bossPresent = battle.actors.some(
+    (actor) => actor.spiritId === FORGOTTEN_HOST_ASSETS.entityId,
+  )
   const layout = projectBattle(battle.actors, stageWidth)
   const clock = useRef({
     time: 0,
@@ -71,6 +81,7 @@ export function BattleCanvas({
     battleId: "",
     actors: {} as Record<string, ActorPlayback>,
     effects: {} as Record<string, EffectPlayback>,
+    bosses: {} as Record<string, BossPlaybackClock>,
   })
   const [atlases, setAtlases] = useState<Record<string, LoadedAtlas> | null>(
     null,
@@ -98,14 +109,30 @@ export function BattleCanvas({
       })
     setAtlases(null)
     setError("")
+    const sources = [
+      ...Object.values(STARTER_ASSETS).map((manifest) => ({
+        id: manifest.spiritId,
+        assets: manifest.assets,
+        keys: battleAtlasKeys(manifest),
+      })),
+      ...(bossPresent
+        ? [
+            {
+              id: FORGOTTEN_HOST_ASSETS.entityId,
+              assets: FORGOTTEN_HOST_ASSETS.assets,
+              keys: ["battle", "fx"],
+            },
+          ]
+        : []),
+    ]
     void Promise.all(
-      Object.values(STARTER_ASSETS).map(
+      sources.map(
         async (manifest) =>
           [
-            manifest.spiritId,
+            manifest.id,
             Object.fromEntries(
               await Promise.all(
-                battleAtlasKeys(manifest).map(async (key) => [
+                manifest.keys.map(async (key) => [
                   key,
                   await load(manifest.assets[key].url),
                 ]),
@@ -126,14 +153,16 @@ export function BattleCanvas({
     return () => {
       disposed = true
     }
-  }, [])
+  }, [bossPresent])
 
   useEffect(() => {
     const element = canvas.current
     const context = element?.getContext("2d")
     if (!element || !context || !atlases) return
     const unresolved = battle.actors.find(
-      (actor) => !manifestFor(actor, visualIds),
+      (actor) =>
+        actor.spiritId !== FORGOTTEN_HOST_ASSETS.entityId &&
+        !manifestFor(actor, visualIds),
     )
     if (unresolved) {
       context.clearRect(0, 0, element.width, element.height)
@@ -151,6 +180,7 @@ export function BattleCanvas({
         battleId: battle.id,
         actors: {},
         effects: {},
+        bosses: {},
       }
     }
     if (clock.current.tick !== battle.tick)
@@ -164,7 +194,11 @@ export function BattleCanvas({
     const scales = Object.fromEntries(
       battle.actors.map((actor) => [
         actor.id,
-        actorDisplayScale(manifestFor(actor, visualIds)),
+        actorDisplayScale(
+          actor.spiritId === FORGOTTEN_HOST_ASSETS.entityId
+            ? FORGOTTEN_HOST_ASSETS
+            : manifestFor(actor, visualIds),
+        ),
       ]),
     )
     const fxScale = (actor: CombatActor) => scales[actor.id] / 0.28
@@ -178,7 +212,7 @@ export function BattleCanvas({
     }
 
     function paintFrame(
-      manifest: SpiritAssetManifest,
+      manifest: Pick<SpiritAssetManifest, "frames">,
       frameId: string,
       image: HTMLImageElement,
       x: number,
@@ -239,6 +273,33 @@ export function BattleCanvas({
     }
 
     function drawActor(actor: CombatActor) {
+      if (actor.spiritId === FORGOTTEN_HOST_ASSETS.entityId) {
+        const manifest = FORGOTTEN_HOST_ASSETS
+        const visual = bossVisuals[actor.id]
+        const atlas = atlases![manifest.entityId]
+        paintFrame(
+          manifest,
+          visual.pose.frame,
+          atlas.battle,
+          actorX(actor),
+          actorY(actor),
+          scales[actor.id],
+        )
+        actorPoses[actor.id] = visual.pose.frame
+        actorEffects[actor.id] = visual.effects.map((effect) => ({
+          skillId: effect.skillId,
+          phase: effect.phase,
+          fx: effect.frame,
+          targetIds: effect.targetIds,
+        }))
+        actorCues[actor.id] = {
+          state: visual.state,
+          manifest: manifest.entityId,
+          facing: manifest.facing,
+        }
+        drawActorVitals(actor, manifest.displayName)
+        return
+      }
       const manifest = manifestFor(actor, visualIds)
       const atlas = atlases![manifest.spiritId]
       const cue = presentation.actors[actor.id]
@@ -362,6 +423,13 @@ export function BattleCanvas({
               targetId: cue.effectTargetId,
             }
 
+      drawActorVitals(actor, manifest.displayName)
+    }
+
+    function drawActorVitals(actor: CombatActor, displayName: string) {
+      const x = actorX(actor),
+        y = actorY(actor),
+        enemy = actor.side === "enemy"
       const barWidth = 76
       const left = x - barWidth / 2
       const top = y + 20
@@ -382,7 +450,7 @@ export function BattleCanvas({
       context!.font = "600 13px system-ui"
       context!.textAlign = "center"
       label(
-        `${layout.points[actor.id].badge} · ${labels?.[actor.id] ?? manifest.displayName}`,
+        `${layout.points[actor.id].badge} · ${labels?.[actor.id] ?? displayName}`,
         x,
         top - 5,
       )
@@ -456,18 +524,58 @@ export function BattleCanvas({
     const actorContacts: Record<string, unknown> = {}
     const actorCues: Record<string, unknown> = {}
     const actorEffects: Record<string, unknown> = {}
+    const bossVisuals: Record<string, ReturnType<typeof sampleBossVisual>> = {}
+    function drawBossEffects(confirmed: boolean) {
+      const manifest = FORGOTTEN_HOST_ASSETS
+      for (const visual of Object.values(bossVisuals))
+        for (const effect of visual.effects) {
+          if ((effect.phase === "confirmed") !== confirmed) continue
+          for (const targetId of effect.targetIds) {
+            const target = actorById(battle, targetId)
+            if (!target || (effect.phase === "warning" && target.hp <= 0))
+              continue
+            const frame = manifest.frames[effect.frame]
+            paintFrame(
+              manifest,
+              effect.frame,
+              atlases![manifest.entityId].fx,
+              actorX(target),
+              actorY(target) - 32,
+              Math.min(0.32, 90 / Math.max(frame.width, frame.height)),
+              false,
+              effect.phase === "warning" ? 0.65 : 0.9,
+            )
+          }
+        }
+    }
     function draw(now: number) {
       if (!paused && document.visibilityState === "visible")
         clock.current.time += Math.min(50, Math.max(0, now - lastTime))
       lastTime = now
       const elapsed = reducedMotion ? 0 : clock.current.time - tickStartedAt
+      for (const actor of battle.actors)
+        if (actor.spiritId === FORGOTTEN_HOST_ASSETS.entityId) {
+          const visual = sampleBossVisual(
+            battle,
+            actor,
+            presentation,
+            clock.current.bosses[actor.id],
+            clock.current.time,
+            reducedMotion,
+            stopped,
+          )
+          clock.current.bosses[actor.id] = visual.clock
+          bossVisuals[actor.id] = visual
+        }
       drawArena()
+      drawBossEffects(false)
       for (const projectile of Object.values(presentation.projectiles))
         drawProjectile(projectile, elapsed)
       for (const actor of [...battle.actors].sort(
         (left, right) => actorY(left) - actorY(right),
       ))
         drawActor(actor)
+      drawBossEffects(true)
       drawFloating()
       if (presentation.terminal) {
         context!.fillStyle = "rgba(7, 13, 12, .76)"
@@ -509,6 +617,7 @@ export function BattleCanvas({
     presentation,
     reducedMotion,
     paused,
+    stopped,
     visualIds,
     labels,
     stageWidth,

@@ -10,7 +10,6 @@ import type { WorldBossEncounter } from "../../src/aw2/world/encounter"
 import { useBattleAudio } from "./useBattleAudio"
 import { BossTelegraph } from "./BossTelegraph"
 
-const visualIds = { [KITCHEN_BOSS_ID]: "aw2-than" }
 const labels = { [KITCHEN_BOSS_ID]: "Người Giữ Bàn Quên" }
 interface Props {
   encounter: WorldBossEncounter
@@ -82,7 +81,8 @@ export function WorldBattle({
         <summary>Cách chơi và điểm lưu</summary>
         <p>
           Đội tự chiến đấu với cấp đã tích lũy. Chọn thời điểm dùng tuyệt kỹ để
-          bảo vệ cả đội. Hình boss hiện dùng bộ tham chiếu Than đổi màu.
+          bảo vệ cả đội. Mời hụt và Tắt bếp báo trước ba nhịp; đợi Ghế trống vỡ
+          rồi dùng tuyệt kỹ gây sát thương. Boss có bộ hình tham chiếu riêng.
         </p>
         <p>
           Điểm kiểm tra đã lưu. Tải lại giữa trận sẽ bỏ lượt đang chơi, trở về
@@ -140,8 +140,8 @@ export function WorldBattle({
         battle={battle}
         presentation={frame.presentation}
         reducedMotion={reducedMotion}
-        paused={paused}
-        visualIds={visualIds}
+        paused={paused || finished}
+        stopped={frame.view.retreated}
         labels={labels}
       />
       <p data-testid="encounter-status" role="status">
