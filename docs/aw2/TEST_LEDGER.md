@@ -22,10 +22,31 @@ Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, co
 | ART-STARTERS-01 four other starter frames/projectiles/cues/selector | asset | PASS — integration source 0e8fb7a /133 Chromium checks; reference scope only |
 | PROVENANCE-STARTERS original image/audio inventory | asset | PASS inventory only — integration source 0e8fb7a; rights/legal approval NOT_RUN |
 | DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | PASS debug development subset —a40217a;3 rooms/puzzle/once-only chest/real boss/return; full authored dungeon/balance/device pending |
-| MODE-01 TCG/Chess embedded and quick-entry safe | navigation | PASS transition/lobby subset —16f55af;17 new unit cases +26 source/26 compiled browser assertions; actual games/results/rewards/full case NOT_RUN |
+| MODE-01 TCG/Chess embedded and quick-entry safe | navigation | PASS navigation +TCG practice subset —a0d2493;25 TCG cases/40 legal seeds,29+29 gameplay and26+26 navigation browser assertions; Auto Chess/full case NOT_RUN; prizes/persistence out of scope |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
-Current AW2-009A verifies mode transition/lobby boundaries and reruns affected world/boss/compiled integration. Actual playable modes/prizes remain NOT_RUN. Unchanged save/combat/asset milestones retain original source-bound evidence; new results below supersede affected current rows. Prior AW2-013A909/124 results are historical, not added to the new totals.
+Current AW2-009B verifies actual isolated TCG practice plus affected navigation/world/boss/compiled integration. Auto Chess/full MODE-01 remain NOT_RUN; prizes/persistence are out of scope. Unchanged save/combat/asset milestones retain source-bound evidence. Prior AW2-009A926/100 and AW2-013A909/124 results are historical, not added to current totals.
+
+## AW2-009B playable TCG practice — 2026-10-21
+
+VERIFIED development subset. Base local/remote `0339f92f47f334c2497766ddb056b38164ed8a1f`; implementation `a0d24937f1450f8b4f8338780fee6a4cc0aa125c`, tested tree `d8ae48941c41c69b67e22f6772fa1f570ebb96e9`, branch game/adventure-world-2. Task card preceded implementation; completion descendants docs only. D16 delivery: verified index/remote tree equality, existing GitHub connection expected-head/force=false, independent fetch/index/ancestry and guarded local fast-forward; final docs descendant fetched before final handoff. No feature branch/PR/master/rpg/deployment/owner reset.
+
+Linux7.0.0-38 x86_64 /Node22.23.2 /pnpm10.34.3 /TS5.9.3 /Vitest5.0.1 /Vite8.0.5 /Chromium153.0.8010.36. In-session BA/mechanic/tester/scretary and condensed React checklist; no independent agent/human-device/legal sign-off. [Task](tasks/AW2-009B.md), [rules](TCG_PRACTICE.md), [full commands/evidence](evidence/AW2-009B.md), [quick REPORT](REPORT.md).
+
+| Check | Status | Observed |
+|---|---|---|
+| Affected AW2 tests | PASS |158 tests /13 files,1.82s;25 new TCG rules/session cases |
+| Full `pnpm test --maxWorkers=2` with JSON reporter | PASS |951 tests /93 files,32.94s, zero failed/pending; before build/browser |
+| Root/dev typechecks,10-file format, Git whitespace | PASS |Exit0 on repaired final source |
+| Stable/review build, recursive exclusion | PASS |Stable851 files /77 text artifacts, no AW2; review92 files /23,807,730 bytes, no PNG/TS/TSX/map/ZIP |
+| Actual TCG browser source / compiled | PASS |29+29 manual play/target/attack, genuine win/loss/surrender, rematch, no save writes/grants, return/reload/stale reread, portrait error/mobile/keyboard checks |
+| Mode navigation browser source / compiled | PASS |26+26 portals/quick-entry/checkpoints/return/failures/stale/boss guard/mobile |
+| World/quest/boss/both endings / compiled smoke | PASS |40+8, existing8452 source inspected before world run |
+| Three source/compiled victory/mobile captures opened | PASS reference scope |Main controls fit320/390/768; long scrolling page, no physical-device claim |
+
+158 fresh browser assertions total; seeded stable bytes unchanged, no unexpected primary errors. Seed20261022 wins by real legal damage after29 recommended commands at turn17; seed20261021 loses to real opponent after6 passes. Card conservation/resource/guard/fatigue/turn-limit and both outcomes across40 legal seeds are pure-test coverage; optional browser guard observation false, not claimed. First targeted24PASS/1FAIL was a wrong default-coach-win expectation, preserved actual loss and verified next seed win; first dev typecheck narrowing/fixture-type errors repaired. Final full run/typechecks/build/browser follow repairs. [Tracked summaries](evidence/AW2-009B-unit-summary.json).
+
+Residual obligation: actual Auto Chess shop/formation/combat/results and full MODE-01 in AW2-009C; production balance/collected deck/prizes/persistence/art/device/native/offline/FPS/rights/full slice remain open. Repeat full regression on relevant changes/per tester cadence; this result does not turn untouched gates green. Next BA/mechanic implements009C, tester verifies, scretary updates REPORT.
 
 ## AW2-009A mode transitions / quick REPORT — 2026-10-21
 

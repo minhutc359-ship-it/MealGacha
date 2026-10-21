@@ -11,9 +11,9 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 
 Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực tiếp trên `game/adventure-world-2`, **không tạo branch mới**. Mỗi task hoàn thành: chạy kiểm tra phù hợp, cập nhật tài liệu, commit rồi **push ngay vào `game/adventure-world-2`** và xác minh SHA trên remote trùng local. Quy định này thay thế hướng dẫn feature branch trước đây. Chi tiết lệnh và dọn nhánh đã tích hợp tại [WORKFLOW](WORKFLOW.md), [AW2-012B](tasks/AW2-012B.md).
 
-## AW2 development preview — expedition and mode lobbies
+## AW2 development preview — expedition and TCG practice
 
-Current branch: `game/adventure-world-2`. AW2-009A at `16f55afb7a1928e5eec1c49acdcb500a6c975554` adds shared portal/quick-entry checkpoint and read-only return lobbies for TCG/Auto Chess; actual games/prizes are not integrated. Fresh926 tests (133 AW2) /100 Chromium assertions, both typechecks and stable/review builds PASS. Prior AW2-013A supplies persistent inventory/XP, quest/chest/cooking rewards, five companions, touch navigation, event audio and review build; its original evidence remains historical. [Quick REPORT](REPORT.md), [status](STATUS.md), [handoff](HANDOFF.md), [fresh verification](evidence/AW2-009A.md). D16 direct AW2 delivery still applies; approved canon is unchanged and D11 stays PROPOSED.
+Current branch: `game/adventure-world-2`. AW2-009B at `a0d24937f1450f8b4f8338780fee6a4cc0aa125c` adds playable borrowed-deck TCG with manual actions/targets, bounded opponent, real results and transient rematch through AW2-009A's checkpoint/return adapter. No mode spending/prizes/save fields; Auto Chess gameplay remains pending.951 tests (158 AW2), both typechecks and stable/review builds PASS; browser details in [fresh verification](evidence/AW2-009B.md). Prior AW2-013A supplies inventory/XP, quest/chest/cooking, companions, touch navigation, audio and review build. [TCG rules/how to play](TCG_PRACTICE.md), [quick REPORT](REPORT.md), [status](STATUS.md), [handoff](HANDOFF.md). D16 applies; approved canon is unchanged and D11 stays PROPOSED.
 
 ```sh
 pnpm install --frozen-lockfile
