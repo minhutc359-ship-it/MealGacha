@@ -1,4 +1,9 @@
-import { STARTER_COMBAT_KITS, type StarterSpiritId } from "./roster"
+import {
+  COMBAT_KITS,
+  isCombatSpiritId,
+  type CombatSpiritId,
+  type StarterSpiritId,
+} from "./roster"
 import type { CombatUnitSeed } from "./types"
 
 export const DEVELOPMENT_LEVELING_ID = "aw2-leveling-development-v1" as const
@@ -64,12 +69,13 @@ export function developmentProgression(
   }
 }
 
-export function developmentStarterStats(
-  spiritId: StarterSpiritId,
+export function developmentCombatStats(
+  spiritId: CombatSpiritId,
   level: number,
 ): DevelopmentStarterStats {
   const safeLevel = assertLevel(level)
-  const kit = STARTER_COMBAT_KITS[spiritId]
+  if (!isCombatSpiritId(spiritId)) throw Error("Vị Linh chưa có combat kit.")
+  const kit = COMBAT_KITS[spiritId]
   const gained = safeLevel - 1
   return {
     maxHp: Math.round(kit.hp * (1 + gained * 0.055)),
@@ -78,15 +84,15 @@ export function developmentStarterStats(
   }
 }
 
-export function createDevelopmentStarterSeed(
+export function createDevelopmentCombatSeed(
   id: string,
-  spiritId: StarterSpiritId,
+  spiritId: CombatSpiritId,
   totalExperience: number,
   overrides: StarterSeedOverrides = {},
 ): CombatUnitSeed {
   if (!id.trim()) throw Error("ID đơn vị tăng cấp không được để trống.")
   const progression = developmentProgression(totalExperience)
-  const stats = developmentStarterStats(spiritId, progression.level)
+  const stats = developmentCombatStats(spiritId, progression.level)
   return {
     ...structuredClone(overrides),
     id,
@@ -96,4 +102,20 @@ export function createDevelopmentStarterSeed(
     attack: stats.attack,
     defense: stats.defense,
   }
+}
+
+/** Keep the starter-only callers/contract explicit. */
+export function developmentStarterStats(
+  spiritId: StarterSpiritId,
+  level: number,
+) {
+  return developmentCombatStats(spiritId, level)
+}
+export function createDevelopmentStarterSeed(
+  id: string,
+  spiritId: StarterSpiritId,
+  totalExperience: number,
+  overrides: StarterSeedOverrides = {},
+) {
+  return createDevelopmentCombatSeed(id, spiritId, totalExperience, overrides)
 }

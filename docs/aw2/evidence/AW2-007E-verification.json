@@ -1,0 +1,1926 @@
+{
+  "task": "AW2-007E",
+  "source": "AW2_007E_SOURCE_REF",
+  "tree": "AW2_007E_SOURCE_TREE",
+  "base": "cef0db1fff89bbc0f8016f055732761da6c2ea31",
+  "status": "PASS_SCOPED_DEVELOPMENT_KIT",
+  "environment": {
+    "os": "Linux x86_64",
+    "node": "22.23.2",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vitest": "5.0.1",
+    "vite": "8.0.5",
+    "chromium": "153.0.8010.36",
+    "python": "3.12.3"
+  },
+  "unit": {
+    "passed": 1068,
+    "files": 105,
+    "aw2Passed": 275,
+    "aw2Files": 25,
+    "newMuoi": 19,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 32.42
+  },
+  "browserFresh": 174,
+  "reports": {
+    "source": {
+      "task": "AW2-007E",
+      "status": "PASS",
+      "flavor": "source",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Actual practice draws own Muoi atlas and exactly five player cards",
+        "No outcome audio before opt-in",
+        "Preparing ultimate emits no confirmed burst",
+        "Actual dispel targets selected ordinary shield",
+        "Dispel and burst share one confirmed FX serial/cue560 at actual target",
+        "Paused step does not advance presentation clocks",
+        "Actual auto applies exactly one finite mark",
+        "Victim roster exposes the real attack-reduction mark",
+        "Practice counterplay removes real mark without new hit/mark FX",
+        "Subsequent basic does not silently recreate cleansed mark",
+        "Removal leaves confirmed effect serial unchanged",
+        "Actual basic/mark/passive and ultimate each produce own confirmed effects",
+        "basic: event-owned cue/target",
+        "auto: event-owned cue/target",
+        "passive: event-owned cue/target",
+        "Basic contacts draw only impact cels2/3",
+        "Cast preparation/flight cannot draw outcome FX",
+        "Opted-in confirmed Muoi cues use own authored audio",
+        "Reduced motion cannot revive expired ultimate FX",
+        "320px controls fit viewport",
+        "390px controls fit viewport",
+        "768px controls fit viewport",
+        "Actual terminal cancels effect playback and all mark state",
+        "Muoi atlas draws stay within declared source bounds",
+        "Actual practice preserves all seeded save bytes",
+        "Reference viewer links actual practice and keeps collection pending",
+        "No unexpected browser/resource errors"
+      ],
+      "errors": [],
+      "contacts": [
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.1",
+          "tick": 6
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 8
+        },
+        {
+          "serial": 69,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 8
+        },
+        {
+          "serial": 69,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.idle.1",
+          "tick": 10
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.idle.1",
+          "tick": 10
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 13
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 13
+        },
+        {
+          "serial": 134,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 18
+        },
+        {
+          "serial": 138,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 18
+        },
+        {
+          "serial": 164,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.hit.0",
+          "tick": 23
+        },
+        {
+          "serial": 195,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.0",
+          "tick": 28
+        },
+        {
+          "serial": 198,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.0",
+          "tick": 28
+        },
+        {
+          "serial": 224,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.hit.0",
+          "tick": 33
+        },
+        {
+          "serial": 254,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 38
+        },
+        {
+          "serial": 255,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.2",
+          "tick": 38
+        },
+        {
+          "serial": 289,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.2",
+          "tick": 43
+        },
+        {
+          "serial": 313,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        },
+        {
+          "serial": 314,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        },
+        {
+          "serial": 315,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:passive",
+          "fx": "fx.passive.0",
+          "atMs": 180,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        }
+      ],
+      "limits": [
+        "Actual isolated practice, no collection/world-party unlock",
+        "Desktop viewports only; no human listening/device/rights acceptance"
+      ]
+    },
+    "compiled": {
+      "task": "AW2-007E",
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Actual practice draws own Muoi atlas and exactly five player cards",
+        "No outcome audio before opt-in",
+        "Preparing ultimate emits no confirmed burst",
+        "Actual dispel targets selected ordinary shield",
+        "Dispel and burst share one confirmed FX serial/cue560 at actual target",
+        "Paused step does not advance presentation clocks",
+        "Actual auto applies exactly one finite mark",
+        "Victim roster exposes the real attack-reduction mark",
+        "Practice counterplay removes real mark without new hit/mark FX",
+        "Subsequent basic does not silently recreate cleansed mark",
+        "Removal leaves confirmed effect serial unchanged",
+        "Actual basic/mark/passive and ultimate each produce own confirmed effects",
+        "basic: event-owned cue/target",
+        "auto: event-owned cue/target",
+        "passive: event-owned cue/target",
+        "Basic contacts draw only impact cels2/3",
+        "Cast preparation/flight cannot draw outcome FX",
+        "Opted-in confirmed Muoi cues use own authored audio",
+        "Reduced motion cannot revive expired ultimate FX",
+        "320px controls fit viewport",
+        "390px controls fit viewport",
+        "768px controls fit viewport",
+        "Actual terminal cancels effect playback and all mark state",
+        "Muoi atlas draws stay within declared source bounds",
+        "Actual practice preserves all seeded save bytes",
+        "Reference viewer links actual practice and keeps collection pending",
+        "No unexpected browser/resource errors"
+      ],
+      "errors": [],
+      "contacts": [
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.1",
+          "tick": 6
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 8
+        },
+        {
+          "serial": 69,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 8
+        },
+        {
+          "serial": 69,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.idle.1",
+          "tick": 10
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.idle.1",
+          "tick": 10
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 13
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 13
+        },
+        {
+          "serial": 134,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 18
+        },
+        {
+          "serial": 138,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 18
+        },
+        {
+          "serial": 164,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.hit.0",
+          "tick": 23
+        },
+        {
+          "serial": 195,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.0",
+          "tick": 28
+        },
+        {
+          "serial": 198,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.0",
+          "tick": 28
+        },
+        {
+          "serial": 224,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.hit.0",
+          "tick": 33
+        },
+        {
+          "serial": 254,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 38
+        },
+        {
+          "serial": 255,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.2",
+          "tick": 38
+        },
+        {
+          "serial": 289,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.2",
+          "tick": 43
+        },
+        {
+          "serial": 313,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        },
+        {
+          "serial": 314,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        },
+        {
+          "serial": 315,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:passive",
+          "fx": "fx.passive.0",
+          "atMs": 180,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        }
+      ],
+      "limits": [
+        "Actual isolated practice, no collection/world-party unlock",
+        "Desktop viewports only; no human listening/device/rights acceptance"
+      ]
+    },
+    "captionDelta": {
+      "task": "AW2-007E",
+      "status": "PASS",
+      "checks": 2,
+      "results": [
+        {
+          "flavor": "source",
+          "checks": [
+            "Practice caption describes loaded team art without a false five-atlas count"
+          ],
+          "status": "PASS"
+        },
+        {
+          "flavor": "compiled",
+          "checks": [
+            "Practice caption describes loaded team art without a false five-atlas count"
+          ],
+          "status": "PASS"
+        }
+      ],
+      "limits": "Caption-only delta, previous27+27 full practice gates retained on same logic; supplemental image is visual inspection, not an additional assertion"
+    },
+    "simulation": {
+      "task": "AW2-007E",
+      "status": "PASS",
+      "runs": [
+        {
+          "level": 1,
+          "team": "starter",
+          "strategy": "auto",
+          "status": "player-win",
+          "tick": 71,
+          "playerHp": 640,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 1,
+          "team": "starter",
+          "strategy": "ultimate",
+          "status": "player-win",
+          "tick": 39,
+          "playerHp": 759,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 1,
+          "team": "starter",
+          "strategy": "cleanse",
+          "status": "player-win",
+          "tick": 71,
+          "playerHp": 640,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 1,
+          "team": "muoi",
+          "strategy": "auto",
+          "status": "enemy-win",
+          "tick": 86,
+          "playerHp": 0,
+          "maxTargets": 1,
+          "maxLife": 6,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 1,
+          "team": "muoi",
+          "strategy": "ultimate",
+          "status": "player-win",
+          "tick": 45,
+          "playerHp": 564,
+          "maxTargets": 1,
+          "maxLife": 7,
+          "dispel": 0,
+          "refresh": 2
+        },
+        {
+          "level": 1,
+          "team": "muoi",
+          "strategy": "cleanse",
+          "status": "enemy-win",
+          "tick": 77,
+          "playerHp": 0,
+          "maxTargets": 1,
+          "maxLife": 6,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 5,
+          "team": "starter",
+          "strategy": "auto",
+          "status": "player-win",
+          "tick": 71,
+          "playerHp": 757,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 5,
+          "team": "starter",
+          "strategy": "ultimate",
+          "status": "player-win",
+          "tick": 39,
+          "playerHp": 936,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 5,
+          "team": "starter",
+          "strategy": "cleanse",
+          "status": "player-win",
+          "tick": 71,
+          "playerHp": 757,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 5,
+          "team": "muoi",
+          "strategy": "auto",
+          "status": "player-win",
+          "tick": 87,
+          "playerHp": 529,
+          "maxTargets": 1,
+          "maxLife": 7,
+          "dispel": 0,
+          "refresh": 3,
+          "ticks": [
+            {
+              "tick": 1,
+              "events": []
+            },
+            {
+              "tick": 2,
+              "events": []
+            },
+            {
+              "tick": 3,
+              "events": []
+            },
+            {
+              "tick": 4,
+              "events": []
+            },
+            {
+              "tick": 5,
+              "events": [
+                {
+                  "serial": 34,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                }
+              ]
+            },
+            {
+              "tick": 6,
+              "events": []
+            },
+            {
+              "tick": 7,
+              "events": [
+                {
+                  "serial": 56,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                },
+                {
+                  "serial": 58,
+                  "kind": "cast-start",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 8,
+              "events": [
+                {
+                  "serial": 62,
+                  "kind": "cast-commit",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 63,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "apply",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 9,
+              "events": []
+            },
+            {
+              "tick": 10,
+              "events": [
+                {
+                  "serial": 74,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                }
+              ]
+            },
+            {
+              "tick": 11,
+              "events": []
+            },
+            {
+              "tick": 12,
+              "events": [
+                {
+                  "serial": 81,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                }
+              ]
+            },
+            {
+              "tick": 13,
+              "events": []
+            },
+            {
+              "tick": 14,
+              "events": [
+                {
+                  "serial": 92,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "remove",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 15,
+              "events": [
+                {
+                  "serial": 116,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                }
+              ]
+            },
+            {
+              "tick": 16,
+              "events": []
+            },
+            {
+              "tick": 17,
+              "events": [
+                {
+                  "serial": 127,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                },
+                {
+                  "serial": 128,
+                  "kind": "cast-start",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 18,
+              "events": [
+                {
+                  "serial": 131,
+                  "kind": "cast-commit",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 132,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "apply",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 19,
+              "events": []
+            },
+            {
+              "tick": 20,
+              "events": [
+                {
+                  "serial": 142,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                }
+              ]
+            },
+            {
+              "tick": 21,
+              "events": []
+            },
+            {
+              "tick": 22,
+              "events": [
+                {
+                  "serial": 151,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                }
+              ]
+            },
+            {
+              "tick": 23,
+              "events": []
+            },
+            {
+              "tick": 24,
+              "events": [
+                {
+                  "serial": 168,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "remove",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 25,
+              "events": [
+                {
+                  "serial": 180,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                }
+              ]
+            },
+            {
+              "tick": 26,
+              "events": []
+            },
+            {
+              "tick": 27,
+              "events": [
+                {
+                  "serial": 190,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                },
+                {
+                  "serial": 192,
+                  "kind": "cast-start",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 28,
+              "events": [
+                {
+                  "serial": 194,
+                  "kind": "cast-commit",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 195,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "apply",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 29,
+              "events": []
+            },
+            {
+              "tick": 30,
+              "events": [
+                {
+                  "serial": 211,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                }
+              ]
+            },
+            {
+              "tick": 31,
+              "events": []
+            },
+            {
+              "tick": 32,
+              "events": [
+                {
+                  "serial": 219,
+                  "kind": "miss",
+                  "slot": "basic",
+                  "target": "enemy-than"
+                }
+              ]
+            },
+            {
+              "tick": 33,
+              "events": []
+            },
+            {
+              "tick": 34,
+              "events": [
+                {
+                  "serial": 233,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "remove",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 35,
+              "events": [
+                {
+                  "serial": 248,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-lua"
+                }
+              ]
+            },
+            {
+              "tick": 36,
+              "events": []
+            },
+            {
+              "tick": 37,
+              "events": [
+                {
+                  "serial": 253,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-lua"
+                },
+                {
+                  "serial": 256,
+                  "kind": "cast-start",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 38,
+              "events": [
+                {
+                  "serial": 259,
+                  "kind": "cast-commit",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 260,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "apply",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 39,
+              "events": []
+            },
+            {
+              "tick": 40,
+              "events": [
+                {
+                  "serial": 267,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-lua"
+                }
+              ]
+            },
+            {
+              "tick": 41,
+              "events": []
+            },
+            {
+              "tick": 42,
+              "events": [
+                {
+                  "serial": 282,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-lua"
+                }
+              ]
+            },
+            {
+              "tick": 43,
+              "events": []
+            },
+            {
+              "tick": 44,
+              "events": [
+                {
+                  "serial": 294,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "remove",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 45,
+              "events": [
+                {
+                  "serial": 301,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-lua"
+                }
+              ]
+            },
+            {
+              "tick": 46,
+              "events": []
+            },
+            {
+              "tick": 47,
+              "events": [
+                {
+                  "serial": 310,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-lua"
+                },
+                {
+                  "serial": 312,
+                  "kind": "cast-start",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 48,
+              "events": [
+                {
+                  "serial": 313,
+                  "kind": "cast-commit",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 314,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "apply",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 49,
+              "events": []
+            },
+            {
+              "tick": 50,
+              "events": [
+                {
+                  "serial": 333,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-lua"
+                }
+              ]
+            },
+            {
+              "tick": 51,
+              "events": []
+            },
+            {
+              "tick": 52,
+              "events": [
+                {
+                  "serial": 345,
+                  "kind": "miss",
+                  "slot": "basic",
+                  "target": "enemy-lua"
+                }
+              ]
+            },
+            {
+              "tick": 53,
+              "events": []
+            },
+            {
+              "tick": 54,
+              "events": [
+                {
+                  "serial": 351,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "remove",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 55,
+              "events": [
+                {
+                  "serial": 362,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 56,
+              "events": []
+            },
+            {
+              "tick": 57,
+              "events": [
+                {
+                  "serial": 367,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 372,
+                  "kind": "cast-start",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 58,
+              "events": [
+                {
+                  "serial": 374,
+                  "kind": "cast-commit",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 375,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "apply",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 59,
+              "events": []
+            },
+            {
+              "tick": 60,
+              "events": [
+                {
+                  "serial": 386,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 61,
+              "events": []
+            },
+            {
+              "tick": 62,
+              "events": [
+                {
+                  "serial": 390,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 391,
+                  "kind": "status",
+                  "slot": "passive",
+                  "change": "refresh",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 63,
+              "events": []
+            },
+            {
+              "tick": 64,
+              "events": []
+            },
+            {
+              "tick": 65,
+              "events": [
+                {
+                  "serial": 402,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "remove",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 404,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 66,
+              "events": []
+            },
+            {
+              "tick": 67,
+              "events": [
+                {
+                  "serial": 406,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 409,
+                  "kind": "cast-start",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 68,
+              "events": [
+                {
+                  "serial": 412,
+                  "kind": "cast-commit",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 413,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "apply",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 69,
+              "events": []
+            },
+            {
+              "tick": 70,
+              "events": [
+                {
+                  "serial": 433,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 71,
+              "events": []
+            },
+            {
+              "tick": 72,
+              "events": [
+                {
+                  "serial": 436,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 437,
+                  "kind": "status",
+                  "slot": "passive",
+                  "change": "refresh",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 73,
+              "events": []
+            },
+            {
+              "tick": 74,
+              "events": []
+            },
+            {
+              "tick": 75,
+              "events": [
+                {
+                  "serial": 444,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "remove",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 446,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 76,
+              "events": []
+            },
+            {
+              "tick": 77,
+              "events": [
+                {
+                  "serial": 451,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 457,
+                  "kind": "cast-start",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 78,
+              "events": [
+                {
+                  "serial": 459,
+                  "kind": "cast-commit",
+                  "slot": "auto",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 460,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "apply",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 79,
+              "events": []
+            },
+            {
+              "tick": 80,
+              "events": [
+                {
+                  "serial": 470,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 81,
+              "events": []
+            },
+            {
+              "tick": 82,
+              "events": [
+                {
+                  "serial": 472,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 473,
+                  "kind": "status",
+                  "slot": "passive",
+                  "change": "refresh",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 83,
+              "events": []
+            },
+            {
+              "tick": 84,
+              "events": []
+            },
+            {
+              "tick": 85,
+              "events": [
+                {
+                  "serial": 487,
+                  "kind": "status",
+                  "slot": "auto",
+                  "change": "remove",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 492,
+                  "kind": "projectile-launch",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                }
+              ]
+            },
+            {
+              "tick": 86,
+              "events": []
+            },
+            {
+              "tick": 87,
+              "events": [
+                {
+                  "serial": 499,
+                  "kind": "hit",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                },
+                {
+                  "serial": 500,
+                  "kind": "defeat",
+                  "slot": "basic",
+                  "target": "enemy-suong"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "level": 5,
+          "team": "muoi",
+          "strategy": "ultimate",
+          "status": "player-win",
+          "tick": 45,
+          "playerHp": 695,
+          "maxTargets": 1,
+          "maxLife": 7,
+          "dispel": 0,
+          "refresh": 2
+        },
+        {
+          "level": 5,
+          "team": "muoi",
+          "strategy": "cleanse",
+          "status": "enemy-win",
+          "tick": 85,
+          "playerHp": 0,
+          "maxTargets": 1,
+          "maxLife": 6,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 10,
+          "team": "starter",
+          "strategy": "auto",
+          "status": "player-win",
+          "tick": 71,
+          "playerHp": 936,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 10,
+          "team": "starter",
+          "strategy": "ultimate",
+          "status": "player-win",
+          "tick": 39,
+          "playerHp": 1165,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 10,
+          "team": "starter",
+          "strategy": "cleanse",
+          "status": "player-win",
+          "tick": 71,
+          "playerHp": 936,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 10,
+          "team": "muoi",
+          "strategy": "auto",
+          "status": "player-win",
+          "tick": 83,
+          "playerHp": 741,
+          "maxTargets": 1,
+          "maxLife": 7,
+          "dispel": 0,
+          "refresh": 4
+        },
+        {
+          "level": 10,
+          "team": "muoi",
+          "strategy": "ultimate",
+          "status": "player-win",
+          "tick": 45,
+          "playerHp": 919,
+          "maxTargets": 1,
+          "maxLife": 7,
+          "dispel": 0,
+          "refresh": 2
+        },
+        {
+          "level": 10,
+          "team": "muoi",
+          "strategy": "cleanse",
+          "status": "player-win",
+          "tick": 83,
+          "playerHp": 657,
+          "maxTargets": 1,
+          "maxLife": 6,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 20,
+          "team": "starter",
+          "strategy": "auto",
+          "status": "player-win",
+          "tick": 71,
+          "playerHp": 1325,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 20,
+          "team": "starter",
+          "strategy": "ultimate",
+          "status": "player-win",
+          "tick": 39,
+          "playerHp": 1614,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 20,
+          "team": "starter",
+          "strategy": "cleanse",
+          "status": "player-win",
+          "tick": 71,
+          "playerHp": 1325,
+          "maxTargets": 0,
+          "maxLife": 0,
+          "dispel": 0,
+          "refresh": 0
+        },
+        {
+          "level": 20,
+          "team": "muoi",
+          "strategy": "auto",
+          "status": "player-win",
+          "tick": 88,
+          "playerHp": 1028,
+          "maxTargets": 1,
+          "maxLife": 7,
+          "dispel": 0,
+          "refresh": 3
+        },
+        {
+          "level": 20,
+          "team": "muoi",
+          "strategy": "ultimate",
+          "status": "player-win",
+          "tick": 45,
+          "playerHp": 1401,
+          "maxTargets": 1,
+          "maxLife": 7,
+          "dispel": 0,
+          "refresh": 2
+        },
+        {
+          "level": 20,
+          "team": "muoi",
+          "strategy": "cleanse",
+          "status": "player-win",
+          "tick": 88,
+          "playerHp": 926,
+          "maxTargets": 1,
+          "maxLife": 6,
+          "dispel": 0,
+          "refresh": 0
+        }
+      ],
+      "limits": [
+        "Provisional development seeds, not final balance",
+        "Different team positions/opponent distance in the two preview presets; not a controlled DPS ranking",
+        "Cleanse is explicit counterplay in practice, not automatic product enemy AI"
+      ]
+    }
+  },
+  "compiledConsumers": {
+    "boss": {
+      "status": "PASS",
+      "checks": [
+        "Canonical boss resolves its own left-facing manifest, without starter fallback",
+        "Real Ghế trống activates with a finite four-basic protection counter",
+        "Actual protection uses own guard pose and authored empty-chair art",
+        "Pause freezes the authoritative boss countdown/protection",
+        "Paused boss presentation clock remains frozen",
+        "390px sticky protection remains visible at manual ultimate controls",
+        "390px jump leaves the first ultimate uncovered by the sticky panel",
+        "390px arena jump keeps own boss visible below the sticky warning",
+        "320px sticky protection remains visible at manual ultimate controls",
+        "320px jump leaves the first ultimate uncovered by the sticky panel",
+        "320px arena jump keeps own boss visible below the sticky warning",
+        "Mời hụt displays real remaining beat 3",
+        "Real sweep warning uses own cast pose and warning art without a predicted hit",
+        "Mời hụt displays real remaining beat 2",
+        "Mời hụt displays real remaining beat 1",
+        "Sweep warning ends after its actual scheduled resolution",
+        "Actual sweep hits use confirmed authored effects at real recipients",
+        "Confirmed boss impact expires without reviving after the hit",
+        "Tắt bếp exposes countdown 3 with audio off",
+        "Real snuff warning uses own ultimate pose and ember art",
+        "Tắt bếp exposes countdown 2 with audio off",
+        "Tắt bếp exposes countdown 1 with audio off",
+        "Live combat progress cannot write boss victory before explicit settlement",
+        "Retreat suppresses outstanding warning/protection display",
+        "Retreat cancels all boss authored warning/contact art",
+        "Retreat returns to the safe yard with accepted objectives and no boss grant",
+        "auto-only reaches its real enemy-win result",
+        "auto-only terminal clears telegraph/protection without writing results",
+        "auto-only terminal clears authored boss effects",
+        "auto-only commits only its actual result and correct safe return",
+        "auto-only reload preserves exact committed bytes and seeded legacy",
+        "hold-damage-ultimates-for-barrier reaches its real player-win result",
+        "hold-damage-ultimates-for-barrier terminal clears telegraph/protection without writing results",
+        "hold-damage-ultimates-for-barrier terminal clears authored boss effects",
+        "Defeated boss resolves its own defeat cell",
+        "Failed win settlement retains checkpoint bytes and authentic live terminal for retry",
+        "hold-damage-ultimates-for-barrier commits only its actual result and correct safe return",
+        "hold-damage-ultimates-for-barrier reload preserves exact committed bytes and seeded legacy",
+        "Actual draws include both own battle/effect atlases with safe source cells and no recolor/mirroring",
+        "Actual battle draws include own idle/guard/cast/ultimate/defeat key poses",
+        "No browser/page/asset errors"
+      ],
+      "errors": [],
+      "sourceReportPath": ".asset-work/aw2-004i/compiled-boss.json"
+    },
+    "earnedDemo": {
+      "status": "PASS",
+      "checks": [
+        "Fresh demo opens without creating a save or granting progression",
+        "Incomplete saved journey does not claim demo completion",
+        "Initial goal precedes the map and names the first NPC",
+        "Keyboard opens optional help with save/mode return guidance and no writes",
+        "Native summary keeps browser arrows and interaction letters",
+        "Goal/help/world controls fit 320px",
+        "Goal/help/world controls fit 390px",
+        "Goal/help/world controls fit 768px",
+        "Save button keeps native key ownership",
+        "Direction button Enter moves right exactly through world rules without save writes",
+        "Focusing native UI stops held exploration movement",
+        "Reread restores initial unsaved movement without writing",
+        "Closing the first dialogue accepts nothing",
+        "Closing dialogue from body focus restores the keyboard map target",
+        "One earned intro unlocks five starters and exactly 30XP",
+        "Fresh intro reload is byte-identical and retains next objective",
+        "TCG/quick-entry leaves browser reading arrows available",
+        "Actual browser arrow scroll works inside the long TCG page",
+        "tcg/quick-entry real result returns exact RPG position/objective/economy without writes",
+        "Chess/quick-entry leaves browser reading arrows available",
+        "auto-chess/quick-entry real result returns exact RPG position/objective/economy without writes",
+        "TCG/portal leaves browser reading arrows available",
+        "tcg/portal real result returns exact RPG position/objective/economy without writes",
+        "Chess/portal leaves browser reading arrows available",
+        "auto-chess/portal real result returns exact RPG position/objective/economy without writes",
+        "Both real practices and both entry routes fit one legitimately earned journey",
+        "Three memories hand-in grants only its actual quest reward",
+        "Reading and closing chest grants nothing in the combined journey",
+        "Chest can be claimed only once with an actual receipt",
+        "Wrong puzzle attempt is retryable and spends no ingredients",
+        "Solved puzzle reload preserves earned state and exact bytes",
+        "Kitchen guidance explains an opened but distant kitchen",
+        "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
+        "Fresh earned team enters real boss with reduced motion and audio opt-in",
+        "Earned world encounter draws Than's new motion atlas through the shared renderer",
+        "Earned world encounter also draws Lua's authored motion atlas",
+        "Earned world encounter also draws Lam's authored motion atlas",
+        "Paused world encounter freezes visual time as well as core ticks",
+        "Same earned journey wins the actual boss without renderer-supplied outcome",
+        "Explicit boss commit survives reload before note and ending",
+        "Ending branch is captured at the explicitly saved NPC position",
+        "Closing the earned final choice grants no final quest reward",
+        "One fresh journey completes all four quests with exact once-only rewards",
+        "Saved wait ending has an honest completion summary and current XP",
+        "Completion summary reload preserves exact save bytes without grants",
+        "Completed ending and reload cannot repeat quest grants",
+        "Earned ending opens the reciprocal return shortcut",
+        "320px completion summary and both48px practice controls remain readable",
+        "390px completion summary and both48px practice controls remain readable",
+        "Completion tcg action uses safe checkpoint/return without grants",
+        "Completion auto-chess action uses safe checkpoint/return without grants",
+        "Alternate ending branches from exact earned checkpoint and gets same final reward",
+        "Alternate saved ending displays its own summary without a new reward",
+        "All five legacy keys remain byte-identical throughout the combined journey",
+        "No unexpected combined console/page/resource errors"
+      ],
+      "errors": [],
+      "sourceReportPath": ".asset-work/aw2-010b/compiled-demo.json"
+    },
+    "starterBattle": {
+      "status": "PASS",
+      "checks": [
+        "Five starter ultimate cards render",
+        "Canvas draws all five decoded authored battle atlases",
+        "Auto combat advances core ticks",
+        "Pause freezes core ticks",
+        "Manual step advances exactly one tick",
+        "Selecting a pending level preserves the active battle cards",
+        "Level reset applies development stats without persistence",
+        "Manual ultimate emits core cast event and spends energy",
+        "Projectile remains visible after authoritative launch",
+        "Authoritative hit settles projectile presentation",
+        "Reduced motion reaches renderer while outcomes remain readable",
+        "Mobile viewport has no horizontal overflow",
+        "Combat reaches one authoritative terminal result without presentation gaps",
+        "Terminal battle disables stepping and all manual ultimates",
+        "Terminal event cancels unfinished visual projectiles",
+        "Resuming a terminal battle cannot advance ticks",
+        "Canvas uses decoded FX atlases with no out-of-bounds source frames",
+        "Reset after terminal clears events and restores a playable level-one team",
+        "Battle preview leaves stable and AW2 save bytes unchanged",
+        "No primary-context browser errors or failed requests",
+        "Missing authored atlas reports a visible error",
+        "System reduced-motion preference initializes the control"
+      ],
+      "errors": [],
+      "sourceReportPath": ".asset-work/aw2-007b/browser.json"
+    }
+  },
+  "types": "PASS root and dev; final dev after caption",
+  "format": "PASS19 checked paths/two MJS syntax/whitespace",
+  "builds": {
+    "review": {
+      "files": 126,
+      "textFiles": 44,
+      "bytes": 41636635,
+      "sourceExclusion": "PASS"
+    },
+    "stable": {
+      "files": 851,
+      "textFiles": 49,
+      "bytes": 177450422,
+      "releaseGuard": "PASS",
+      "aw2Exclusion": "PASS"
+    }
+  },
+  "testBoundary": "Full unit chạy trên core/tests cuối; các sửa UI sau đó chỉ thêm bảng kết quả kỹ năng và caption.172 browser assertions bao phủ core/UI trước caption cuối;2 kiểm tra source+compiled chỉ xác minh caption cuối. Stable build chạy trước hai sửa practice-only này; stable entry/dependencies/exclusion không đổi. Review build và dev types cuối bao phủ caption. Không chạy lại toàn bộ PASS cho copy-only delta.",
+  "reuse": "157 đường dẫn byte-identical so với baseline: ảnh/âm thanh/provenance, save/schema/store, world/economy/mode rules/maps, starter/boss manifests, playback helpers và stable entry/config/dependencies. Muối manifest/builder chỉ sửa scope/trigger copy, asset/frame/timing/numeric data không đổi. Giữ PASS asset preview/deep reset/concurrency/mode detail tại SHA gốc; không chạy lại/cộng số. Combat core thay đổi nên full1068 và các consumer chịu ảnh hưởng được kiểm chứng mới; full1036 cũ không dùng làm bằng chứng core hiện tại.",
+  "progress": "Demo **≈90% (9/10)**, sản phẩm **≈40% (ước lượng35–45%)**, giữ nguyên. Sáu bộ tham chiếu/12 (50%), sáu bộ còn thiếu;5/5 starter motion/160 cels, Muối32 cels riêng; **0/12 full DoD**. Kit phát triển mới chưa đóng thu thập nhân vật, cân bằng cuối, art/playtest độc lập hoặc gate phát hành.",
+  "limits": "Muối collection/đội lưu trong hành trình chưa triển khai; chỉ số/cap là development tuning. Art/continuity/readability độc lập, human listening/mix, thiết bị thật/FPS/offline/native, rights/production-save/release còn mở. Owner đã thử TCG/Auto Chess nhưng chưa hoàn tất hành trình; end-to-end player acceptance NOT_RUN. D11 tỷ lệ/pity PROPOSED, D12 OPEN.",
+  "capturesOpened": [
+    "source-ultimate.png",
+    "source-mobile.png",
+    "compiled-peak-actual-ultimate.png"
+  ],
+  "publication": {
+    "status": "PENDING_EXACT_TREE_READBACK",
+    "source": "AW2_007E_SOURCE_REF",
+    "tree": "AW2_007E_SOURCE_TREE",
+    "base": "cef0db1fff89bbc0f8016f055732761da6c2ea31",
+    "branch": "game/adventure-world-2"
+  },
+  "priorFailures": "Focused16 initially14PASS/2FAIL from projectile/auto fixture assumptions, fixed16PASS then19 included in full1068. Dev types initially failed formatter inline-type corruption then stale readiness import, corrected. Browser shield timing corrected to real ult4→6; status log retention improved with actual outcome panel; collapsed roster opened in verifier. Final27+27 PASS, no injected HP/hit/result or weakened assertions; see Markdown evidence."
+}

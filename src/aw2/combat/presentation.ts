@@ -145,6 +145,50 @@ export function reduceCombatPresentation(
     let phase: ActorPresentation["phase"]
     const lamSkill = event.skillId?.startsWith("aw2-lam:skill:")
     const mocSkill = event.skillId?.startsWith("aw2-moc-non:skill:")
+    const muoiSkill = event.skillId?.startsWith("aw2-muoi:skill:")
+    if (muoiSkill && event.sourceId) {
+      const slot = skillSlot(event.skillId)
+      if (["cast-start", "cast-commit"].includes(event.kind)) phase = "prepare"
+      if (event.kind === "projectile-launch") phase = "launch"
+      const confirmed =
+        event.kind === "hit" ||
+        (event.kind === "status" &&
+          ["apply", "refresh", "dispel"].includes(event.statusChange ?? ""))
+      if (confirmed && slot) {
+        phase = "confirmed"
+        contactIndex = 0
+        const effects = (next.effects[event.sourceId] ??= {})
+        if (slot === "ultimate" && effects[slot]?.tick === event.tick)
+          sourceState = null
+        else {
+          sourceState =
+            slot === "basic"
+              ? "attack"
+              : slot === "ultimate"
+                ? "ultimate"
+                : slot === "passive"
+                  ? "guard"
+                  : "cast"
+          effects[slot] = {
+            serial: event.serial,
+            tick: event.tick,
+            skillId: event.skillId!,
+            index: 0,
+            targetId: event.targetIds[0],
+          }
+        }
+      }
+      // Removal/cleanse is not a new proc. Preserve a simultaneous ultimate gesture.
+      if (event.statusChange === "remove") sourceState = null
+      const prior = next.actors[event.sourceId]
+      if (
+        prior?.tick === event.tick &&
+        prior.phase === "confirmed" &&
+        prior.skillId === "aw2-muoi:skill:ultimate" &&
+        slot !== "ultimate"
+      )
+        sourceState = null
+    }
     const suongSkill = event.skillId?.startsWith("aw2-suong:skill:")
     if (suongSkill && event.sourceId) {
       const slot = skillSlot(event.skillId)

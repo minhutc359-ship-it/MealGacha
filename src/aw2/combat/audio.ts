@@ -1,5 +1,5 @@
 import type { CombatEvent } from "./types"
-import { STARTER_ASSETS } from "../assets/starters"
+import { ROSTER_ASSETS } from "../assets/roster"
 import type { SkillSlot } from "../assets/types"
 
 /** Audio consumes confirmed casts/passive procs; it never dispatches gameplay. */
@@ -9,10 +9,19 @@ export function combatAudioCues(events: CombatEvent[], afterSerial: number) {
     .filter((event) => event.serial > afterSerial)
     .flatMap((event) => {
       const [spiritId, , slot] = event.skillId?.split(":") ?? []
-      const manifest = STARTER_ASSETS[spiritId]
+      const manifest = ROSTER_ASSETS[spiritId]
       if (!manifest || !["basic", "auto", "passive", "ultimate"].includes(slot))
         return []
-      if (
+      if (spiritId === "aw2-muoi") {
+        if (
+          !(
+            event.kind === "hit" ||
+            (event.kind === "status" &&
+              ["apply", "refresh", "dispel"].includes(event.statusChange ?? ""))
+          )
+        )
+          return []
+      } else if (
         event.kind !== "cast-commit" &&
         !(
           slot === "passive" &&

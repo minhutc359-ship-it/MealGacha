@@ -1,9 +1,11 @@
 import {
   combatSkillId,
-  isStarterSpiritId,
-  STARTER_COMBAT_KITS,
-  type StarterSpiritId,
+  isCombatSpiritId,
+  COMBAT_KITS,
+  type CombatSpiritId,
 } from "./roster"
+
+import { MUOI_TUNING, muoiDamageMultiplier, selectMuoiTarget } from "./muoi"
 
 import {
   FORGOTTEN_HOST_ID,
@@ -78,7 +80,7 @@ function actorFromSeed(
 ): CombatActor {
   if (!seed.id.trim() || !seed.spiritId.trim())
     throw Error("ID combat không được để trống.")
-  if (side === "player" && !isStarterSpiritId(seed.spiritId))
+  if (side === "player" && !isCombatSpiritId(seed.spiritId))
     throw Error(`Vị Linh chưa có combat kit AW2-007A: ${seed.spiritId}`)
 
   if (
@@ -90,8 +92,8 @@ function actorFromSeed(
   )
     throw Error("Boss profile không thuộc Người Giữ Bàn Quên.")
   const base =
-    side === "player"
-      ? STARTER_COMBAT_KITS[(seed.spiritId as StarterSpiritId)]
+    side === "player" || seed.spiritId === "aw2-muoi"
+      ? COMBAT_KITS[(seed.spiritId as CombatSpiritId)]
       : defaultEnemy(seed)
   const maxHp = assertNumber(seed.maxHp ?? base.hp, "HP tối đa", 1, 1_000_000)
   const hp = assertNumber(seed.hp ?? maxHp, "HP", 1, maxHp)
@@ -103,6 +105,7 @@ function actorFromSeed(
     side,
     slot,
     boss: seed.boss === true,
+    ...(seed.debuffImmune ? { debuffImmune: true } : {}),
     controlImmune: seed.controlImmune ?? seed.boss === true,
     position: assertNumber(
       seed.position ?? (side === "player" ? 12 + slot * 4 : 88 - slot * 4),
@@ -320,7 +323,62 @@ function armThanPassive(battle: CombatBattle, actor: CombatActor) {
   })
 }
 
+function removeMuoiMarks(
+  battle: CombatBattle,
+  reason: string,
+  matches: (sourceId: string, target: CombatActor) => boolean,
+) {
+  for (const target of battle.actors)
+    for (const sourceId of Object.keys(target.muoiMarks ?? {})) {
+      if (!matches(sourceId, target)) continue
+      delete target.muoiMarks![sourceId]
+      record(battle, "status", sourceId, [target.id], {
+        skillId: combatSkillId("aw2-muoi", "auto"),
+        statusEffect: "muoi-mark",
+        statusChange: "remove",
+        text: `Dấu gia vị kết thúc: ${reason}.`,
+      })
+      if (!Object.keys(target.muoiMarks!).length) delete target.muoiMarks
+    }
+}
+
+function cleanupMuoiMarks(battle: CombatBattle) {
+  removeMuoiMarks(
+    battle,
+    "hết hạn hoặc nguồn/mục tiêu đã gục",
+    (id, target) =>
+      target.hp <= 0 ||
+      !byId(battle, id)?.hp ||
+      (target.muoiMarks?.[id].expiresAtTick ?? 0) <= battle.tick,
+  )
+}
+
+function applyMuoiMark(
+  battle: CombatBattle,
+  source: CombatActor,
+  target: CombatActor,
+) {
+  removeMuoiMarks(battle, "đổi dấu", (id) => id === source.id)
+  const expiresAtTick = battle.tick + MUOI_TUNING.durationTicks
+  target.muoiMarks = {
+    ...target.muoiMarks,
+    [source.id]: {
+      appliedTick: battle.tick,
+      expiresAtTick,
+      capTick: battle.tick + MUOI_TUNING.maxLifetimeTicks,
+    },
+  }
+  record(battle, "status", source.id, [target.id], {
+    skillId: combatSkillId("aw2-muoi", "auto"),
+    statusEffect: "muoi-mark",
+    statusChange: "apply",
+    expiresAtTick,
+    text: "Nêm Đúng Chỗ: giảm công20%.",
+  })
+}
+
 function expireTimedState(battle: CombatBattle) {
+  cleanupMuoiMarks(battle)
   for (const actor of battle.actors) {
     const kit = actor.bossKit
 
@@ -394,7 +452,7 @@ function startCast(
   targetId: string | null,
   ticks: number,
 ) {
-  const skillId = isStarterSpiritId(actor.spiritId)
+  const skillId = isCombatSpiritId(actor.spiritId)
     ? combatSkillId(actor.spiritId, slot)
     : `${actor.spiritId}:skill:${slot}`
   const cast: CombatCast = {
@@ -555,7 +613,10 @@ function applyDamage(
     return
   }
   let raw = rawAmount + luaFocusBonus(battle, source, target, skillId)
-  if (source.weakenUntilTick > battle.tick) raw *= 0.75
+  raw *= Math.min(
+    source.weakenUntilTick > battle.tick ? 0.75 : 1,
+    muoiDamageMultiplier(source, battle.tick),
+  )
   const mitigated = Math.max(
     1,
     Math.round((raw * 100) / (100 + target.defense)),
@@ -568,6 +629,7 @@ function applyDamage(
   }
   const hpDamage = Math.min(target.hp, mitigated - absorbed)
   target.hp -= hpDamage
+  source.damageDealt = (source.damageDealt ?? 0) + hpDamage + absorbed
   if (skillId.endsWith(":skill:basic"))
     source.energy = Math.min(ULTIMATE_ENERGY, source.energy + 12)
   target.energy = Math.min(ULTIMATE_ENERGY, target.energy + 4)
@@ -577,6 +639,31 @@ function applyDamage(
     absorbed,
     ...(projectileId ? { projectileId } : {}),
   })
+  if (
+    source.spiritId === "aw2-muoi" &&
+    source.hp > 0 &&
+    target.hp > 0 &&
+    skillId === combatSkillId("aw2-muoi", "basic") &&
+    hpDamage + absorbed > 0
+  ) {
+    const mark = target.muoiMarks?.[source.id]
+    if (mark && mark.expiresAtTick > battle.tick) {
+      const expiresAtTick = Math.min(
+        mark.capTick,
+        mark.expiresAtTick + MUOI_TUNING.refreshTicks,
+      )
+      if (expiresAtTick > mark.expiresAtTick) {
+        mark.expiresAtTick = expiresAtTick
+        record(battle, "status", source.id, [target.id], {
+          skillId: combatSkillId("aw2-muoi", "passive"),
+          statusEffect: "muoi-mark",
+          statusChange: "refresh",
+          expiresAtTick,
+          text: "Vị Còn Lại gia hạn dấu trong giới hạn.",
+        })
+      }
+    }
+  }
   if (
     source.spiritId === "aw2-than" &&
     skillId === combatSkillId("aw2-than", "basic") &&
@@ -608,6 +695,7 @@ function applyDamage(
   if (target.hp === 0) {
     target.cast = null
     record(battle, "defeat", source.id, [target.id], { skillId })
+    cleanupMuoiMarks(battle)
   }
 }
 
@@ -717,7 +805,10 @@ function commitCast(
   cast: CombatCast,
 ) {
   actor.cast = null
-  const enemy = selectEnemy(battle, actor, cast.targetId)
+  const enemy =
+    actor.spiritId === "aw2-muoi" && cast.slot === "auto"
+      ? selectMuoiTarget(battle, actor)
+      : selectEnemy(battle, actor, cast.targetId)
   const injuredAlly =
     cast.slot === "auto" && actor.spiritId === "aw2-lam"
       ? selectInjuredAlly(battle, actor, cast.targetId)
@@ -742,6 +833,41 @@ function commitCast(
             ? [enemy.id]
             : []
   record(battle, "cast-commit", actor.id, committedTargets, { skillId })
+  if (actor.spiritId === "aw2-muoi") {
+    if (!enemy || distance(actor, enemy) > actor.range) {
+      record(battle, "miss", actor.id, enemy ? [enemy.id] : [], {
+        skillId,
+        text: "Không còn mục tiêu hợp lệ trong tầm.",
+      })
+      return
+    }
+    if (cast.slot === "auto") applyMuoiMark(battle, actor, enemy)
+    else {
+      const removed = Math.floor(
+        enemy.shield * MUOI_TUNING.shieldRemovalFraction,
+      )
+      if (removed > 0) {
+        enemy.shield -= removed
+        record(battle, "status", actor.id, [enemy.id], {
+          skillId,
+          statusEffect: "ordinary-shield",
+          statusChange: "dispel",
+          amount: removed,
+          text: `Một Nhúm Đủ Rồi bóc ${removed} khiên thường.`,
+        })
+      }
+      queueEffect(
+        battle,
+        actor,
+        "damage",
+        skillId,
+        enemy.id,
+        actor.attack * MUOI_TUNING.ultimateMultiplier,
+        battle.tick,
+      )
+    }
+    return
+  }
   if (cast.slot === "auto") {
     if (actor.spiritId === "aw2-than")
       applyShield(battle, actor, actor, actor.attack + 28, skillId, 4)
@@ -900,8 +1026,8 @@ function moveToward(
 }
 
 function basicCooldown(actor: CombatActor): number {
-  return isStarterSpiritId(actor.spiritId)
-    ? STARTER_COMBAT_KITS[actor.spiritId].basicCooldown
+  return isCombatSpiritId(actor.spiritId)
+    ? COMBAT_KITS[actor.spiritId].basicCooldown
     : 5
 }
 
@@ -910,7 +1036,7 @@ function performBasic(
   actor: CombatActor,
   target: CombatActor,
 ) {
-  const skillId = isStarterSpiritId(actor.spiritId)
+  const skillId = isCombatSpiritId(actor.spiritId)
     ? combatSkillId(actor.spiritId, "basic")
     : `${actor.spiritId}:skill:basic`
   if (distance(actor, target) > actor.range) {
@@ -956,13 +1082,20 @@ function performBasic(
 function tryAutoSkill(battle: CombatBattle, actor: CombatActor): boolean {
   if (actor.bossKit) return tryForgottenHostSkill(battle, actor)
   if (
-    !isStarterSpiritId(actor.spiritId) ||
+    !isCombatSpiritId(actor.spiritId) ||
     battle.tick < actor.nextAutoTick ||
     actor.cast
   )
     return false
-  const kit = STARTER_COMBAT_KITS[actor.spiritId]
+  const kit = COMBAT_KITS[actor.spiritId]
   const enemy = selectEnemy(battle, actor)
+  if (actor.spiritId === "aw2-muoi") {
+    const target = selectMuoiTarget(battle, actor)
+    if (!target) return false
+    actor.nextAutoTick = battle.tick + kit.autoCooldown
+    startCast(battle, actor, "auto", target.id, kit.autoCastTicks)
+    return true
+  }
   let targetId: string | null = enemy?.id ?? null
   if (actor.spiritId === "aw2-than") {
     if (actor.shield > 0) return false
@@ -1100,6 +1233,7 @@ function checkResult(battle: CombatBattle) {
   if (players && enemies) return
   battle.status = players ? "player-win" : enemies ? "enemy-win" : "draw"
 
+  removeMuoiMarks(battle, "trận kết thúc", () => true)
   for (const actor of battle.actors) {
     actor.cast = null
 
@@ -1157,14 +1291,15 @@ export function castCombatUltimate(
     !actor ||
     actor.side !== "player" ||
     actor.hp <= 0 ||
-    !isStarterSpiritId(actor.spiritId)
+    !isCombatSpiritId(actor.spiritId)
   )
     throw Error("Vị Linh không thể dùng tuyệt kỹ.")
   if (actor.cast) throw Error("Vị Linh đang thi triển kỹ năng khác.")
   if (actor.energy < ULTIMATE_ENERGY)
     throw Error("Tuyệt kỹ chưa đủ năng lượng.")
-  const needsEnemy =
-    actor.spiritId === "aw2-lua" || actor.spiritId === "aw2-suong"
+  const needsEnemy = ["aw2-lua", "aw2-suong", "aw2-muoi"].includes(
+    actor.spiritId,
+  )
   if (needsEnemy) {
     const target = targetId ? byId(battle, targetId) : undefined
     if (!target?.hp || target.side !== "enemy")
@@ -1176,7 +1311,7 @@ export function castCombatUltimate(
     actor,
     "ultimate",
     targetId ?? null,
-    STARTER_COMBAT_KITS[actor.spiritId].ultimateCastTicks,
+    COMBAT_KITS[actor.spiritId].ultimateCastTicks,
   )
   return battle
 }
@@ -1207,5 +1342,18 @@ export function interruptCombatCast(
     skillId,
     text: "Kỹ năng bị ngắt trước điểm commit.",
   })
+  return battle
+}
+
+/** Explicit counterplay command for ephemeral combat; no saved-game writes. */
+export function cleanseMuoiMarks(
+  current: CombatBattle,
+  targetId: string,
+): CombatBattle {
+  if (current.status !== "active") throw Error("Trận đấu đã kết thúc.")
+  const target = byId(current, targetId)
+  if (!target || target.hp <= 0) throw Error("Mục tiêu tẩy dấu không hợp lệ.")
+  const battle = copyBattle(current)
+  removeMuoiMarks(battle, "được tẩy", (_, actor) => actor.id === targetId)
   return battle
 }

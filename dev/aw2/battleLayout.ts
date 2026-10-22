@@ -55,6 +55,12 @@ export function actorStatus(actor: CombatActor, tick: number): string[] {
   const labels: string[] = []
   if (actor.cast) labels.push("Đang niệm")
   if (actor.shield > 0) labels.push(`Khiên ${actor.shield}`)
+  if (
+    Object.values(actor.muoiMarks ?? {}).some(
+      (mark) => mark.expiresAtTick > tick,
+    )
+  )
+    labels.push("Dấu gia vị · giảm công20%")
   if (actor.slowUntilTick > tick) labels.push("Chậm")
   if (actor.weakenUntilTick > tick) labels.push("Suy yếu")
   if (actor.interruptGuardCharges > 0 && actor.interruptGuardUntilTick > tick)

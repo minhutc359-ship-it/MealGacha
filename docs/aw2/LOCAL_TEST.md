@@ -45,4 +45,4 @@ Sau004I, thử **Đến đấu trường** ở320/390px: boss có hình bát g�
 
 ## Muối Đen · bộ hình tham chiếu mới
 
-Mở http://localhost:8443/dev/aw2/roster.html?spirit=aw2-muoi sau `pnpm dev` để xem world bốn hướng,32 cel/tám trạng thái, bốn FX và âm thanh tự nguyện. Màn này không cấp nhân vật/ghi save; kỹ năng debuff và thu thập Muối Đen còn chờ007E và phần collection. Đội khởi đầu vẫn5 người.
+Mở http://localhost:8443/dev/aw2/roster.html?spirit=aw2-muoi sau `pnpm dev` để xem world bốn hướng,32 cel/tám trạng thái, bốn FX và âm thanh tự nguyện. Màn này không cấp nhân vật/ghi save; kit thật/cấp1–20 đã có ở http://localhost:8443/dev/aw2/battle.html?team=muoi. [Hướng dẫn thử dấu/tẩy dấu/bóc khiên](MUOI_PRACTICE.md). Thu thập/đội lưu Muối trong hành trình còn chờ contract riêng. Đội khởi đầu vẫn5 người.

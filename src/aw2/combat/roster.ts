@@ -9,9 +9,11 @@ export const STARTER_SPIRIT_IDS = [
 ] as const
 export type StarterSpiritId = typeof STARTER_SPIRIT_IDS[number]
 
+export type CombatSpiritId = StarterSpiritId | "aw2-muoi"
+
 export interface CombatKit {
-  spiritId: StarterSpiritId
-  role: "tank" | "striker" | "healer" | "support" | "mage"
+  spiritId: CombatSpiritId
+  role: "tank" | "striker" | "healer" | "support" | "mage" | "debuffer"
   hp: number
   attack: number
   defense: number
@@ -104,8 +106,30 @@ export function isStarterSpiritId(value: string): value is StarterSpiritId {
 }
 
 export function combatSkillId(
-  spiritId: StarterSpiritId,
+  spiritId: CombatSpiritId,
   slot: CombatSkillSlot,
 ): string {
   return `${spiritId}:skill:${slot}`
+}
+
+export const COMBAT_KITS: Record<CombatSpiritId, CombatKit> = {
+  ...STARTER_COMBAT_KITS,
+  "aw2-muoi": {
+    spiritId: "aw2-muoi",
+    role: "debuffer",
+    hp: 150,
+    attack: 27,
+    defense: 10,
+    range: 40,
+    moveSpeed: 5,
+    projectileTicks: 2,
+    basicCooldown: 5,
+    autoCooldown: 10,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
+}
+
+export function isCombatSpiritId(value: string): value is CombatSpiritId {
+  return Object.prototype.hasOwnProperty.call(COMBAT_KITS, value)
 }

@@ -29,7 +29,7 @@ Trước AW2-010A: **8/10 nhóm tiêu chí đã kiểm chứng, khoảng80%**. H
 |---|---:|---:|---|
 | Nền runtime/combat/save/tích hợp |25 |20 | Luật thật, checkpoint/progression và hai practice đã chạy; production durability/hoàn thiện còn mở |
 | Arc thế giới/quest/dungeon |15 |10 |6 zone/4 quest/boss/hai kết thúc hoạt động; map/NPC/boss riêng và polish còn thiếu |
-|12 nhân vật đủ DoD/art/animation/kit |30 |5 |5 bộ mới là tham chiếu,7 bộ chưa tạo; **0/12 đạt đầy đủ DoD** |
+|12 nhân vật đủ DoD/art/animation/kit |30 |5 |6 bộ tham chiếu,6 bộ chưa tạo; **0/12 đạt đầy đủ DoD** |
 | UX/presentation/audio |10 |3 | Có điều khiển/touch/opt-in và hướng dẫn; UI/game art còn cần hoàn thiện/playtest |
 | Kinh tế/mode sản phẩm/gacha/cân bằng |10 |2 | Kinh tế/practice còn là development tuning; D11 chưa duyệt, gacha runtime/thu thập mode chưa làm |
 | Gate phát hành: thiết bị/hiệu năng/offline/save production/rights |10 |0 | Các gate đầy đủ còn NOT_RUN/mở; chưa có phát hành |
@@ -80,3 +80,7 @@ Owner requests demo then product;010B closes technical completion UI and004I at 
 ## AW2-004J reference asset update —2026-10-22
 
 Source `7643ec4cb4e1e56d0c1013f7135a065e5ad3af36` adds Muối Đen original64-cell package/portrait/four cues/reference preview, preserving aw2-muoi/R/Muối rang/four approved skill directions. This supersedes004I's seven-absent inventory only for Muối: six references/six absent, with separate roster registry and five-starter save/team unchanged. Demo9/10≈90% and full product≈40% (rough35–45%) unchanged. Authored spirit reference sets6/12=50% (was5/12), six absent; starter motion5/5=100%/160 cels unchanged; Muối adds32 cels separately.0/12 full DoD. One reference package does not close actual kit/leveling/collection/independent art/audio/device/rights/release gates or supply accepted-character production velocity. No actual Muối kit/leveling/collection or approved balance claim; next007E. Existing planning ranges/assumptions unchanged until accepted full-character/playtest/device evidence. [Gates](MUOI_CHARACTER_GATES.md), [evidence](evidence/AW2-004J.md).
+
+## AW2-007E actual development kit —2026-10-22
+
+Source `AW2_007E_SOURCE_REF` delivers Muối bounded actual kit/level1–20/isolated practice and confirmed FX/audio. This supersedes004J's kit/leveling/event-binding pending status only; ownership/collection remains pending. Six explicit actual combat identities now exist (five starters+Muối), same five-starter world/save contract. Demo **≈90% (9/10)**, sản phẩm **≈40% (ước lượng35–45%)**, giữ nguyên. Sáu bộ tham chiếu/12 (50%), sáu bộ còn thiếu;5/5 starter motion/160 cels, Muối32 cels riêng; **0/12 full DoD**. Kit phát triển mới chưa đóng thu thập nhân vật, cân bằng cuối, art/playtest độc lập hoặc gate phát hành. Planning ranges remain unchanged; actual development-kit/test counts do not measure accepted full-character velocity. Muối collection/đội lưu trong hành trình chưa triển khai; chỉ số/cap là development tuning. Art/continuity/readability độc lập, human listening/mix, thiết bị thật/FPS/offline/native, rights/production-save/release còn mở. Owner đã thử TCG/Auto Chess nhưng chưa hoàn tất hành trình; end-to-end player acceptance NOT_RUN. D11 tỷ lệ/pity PROPOSED, D12 OPEN. [Evidence](evidence/AW2-007E.md), [gates](MUOI_CHARACTER_GATES.md), [next004K](tasks/AW2-004K.md).

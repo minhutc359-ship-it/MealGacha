@@ -1630,7 +1630,7 @@
         "y": -230,
         "scale": 0.9
       },
-      "trigger": "reference presentation only; actual debuff/removable-protection combat follows007E",
+      "trigger": "reference presentation only; combat rules independently confirm outcomes in007E",
       "audio": {
         "id": "aw2-muoi:audio:basic",
         "url": "/dev/aw2/assets/muoi/base-v1/basic.wav",
@@ -1657,7 +1657,7 @@
         },
         "scale": 0.6
       },
-      "scope": "asset reference only; no implemented Muối combat, collection, leveling or final numerical balance"
+      "scope": "asset reference only; actual development combat/leveling in007E; no collection or final numerical balance"
     },
     "auto": {
       "id": "aw2-muoi:skill:auto",
@@ -1681,7 +1681,7 @@
         "y": -230,
         "scale": 1.15
       },
-      "trigger": "reference presentation only; actual debuff/removable-protection combat follows007E",
+      "trigger": "reference presentation only; combat rules independently confirm outcomes in007E",
       "audio": {
         "id": "aw2-muoi:audio:auto",
         "url": "/dev/aw2/assets/muoi/base-v1/auto.wav",
@@ -1691,7 +1691,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "asset reference only; no implemented Muối combat, collection, leveling or final numerical balance"
+      "scope": "asset reference only; actual development combat/leveling in007E; no collection or final numerical balance"
     },
     "passive": {
       "id": "aw2-muoi:skill:passive",
@@ -1725,7 +1725,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "asset reference only; no implemented Muối combat, collection, leveling or final numerical balance"
+      "scope": "asset reference only; actual development combat/leveling in007E; no collection or final numerical balance"
     },
     "ultimate": {
       "id": "aw2-muoi:skill:ultimate",
@@ -1749,7 +1749,7 @@
         "y": -230,
         "scale": 1.15
       },
-      "trigger": "reference presentation only; actual debuff/removable-protection combat follows007E",
+      "trigger": "reference presentation only; combat rules independently confirm outcomes in007E",
       "audio": {
         "id": "aw2-muoi:audio:ultimate",
         "url": "/dev/aw2/assets/muoi/base-v1/ultimate.wav",
@@ -1759,7 +1759,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "asset reference only; no implemented Muối combat, collection, leveling or final numerical balance"
+      "scope": "asset reference only; actual development combat/leveling in007E; no collection or final numerical balance"
     }
   },
   "provenance": {

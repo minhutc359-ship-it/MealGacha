@@ -1,7 +1,7 @@
 import { StrictMode, useState } from "react"
 import { createRoot } from "react-dom/client"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
-import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
+import { isCombatSpiritId } from "../../src/aw2/combat/roster"
 import { AssetPreview } from "./AssetPreview"
 import "./styles.css"
 
@@ -35,10 +35,7 @@ function RosterPreview() {
       <AssetPreview
         key={identity}
         manifest={ROSTER_ASSETS[identity]}
-        combatImplemented={Object.prototype.hasOwnProperty.call(
-          STARTER_ASSETS,
-          identity,
-        )}
+        combatImplemented={isCombatSpiritId(identity)}
       />
     </>
   )

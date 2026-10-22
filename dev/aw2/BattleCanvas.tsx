@@ -7,7 +7,7 @@ import {
   type ActorPlayback,
   type EffectPlayback,
 } from "../../src/aw2/assets/playback"
-import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
+import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { FORGOTTEN_HOST_ASSETS } from "../../src/aw2/assets/forgottenHost"
 import {
   sampleBossVisual,
@@ -48,7 +48,7 @@ function manifestFor(
   actor: CombatActor,
   visualIds?: Props["visualIds"],
 ): SpiritAssetManifest {
-  return STARTER_ASSETS[visualIds?.[actor.id] ?? actor.spiritId]
+  return ROSTER_ASSETS[visualIds?.[actor.id] ?? actor.spiritId]
 }
 
 function slotFromSkill(skillId?: string): SkillSlot | null {
@@ -70,6 +70,9 @@ export function BattleCanvas({
   const canvas = useRef<HTMLCanvasElement>(null)
   const stage = useRef<HTMLDivElement>(null)
   const [stageWidth, setStageWidth] = useState(960)
+  const muoiPresent = battle.actors.some(
+    (actor) => actor.spiritId === "aw2-muoi",
+  )
   const bossPresent = battle.actors.some(
     (actor) => actor.spiritId === FORGOTTEN_HOST_ASSETS.entityId,
   )
@@ -110,11 +113,13 @@ export function BattleCanvas({
     setAtlases(null)
     setError("")
     const sources = [
-      ...Object.values(STARTER_ASSETS).map((manifest) => ({
-        id: manifest.spiritId,
-        assets: manifest.assets,
-        keys: battleAtlasKeys(manifest),
-      })),
+      ...Object.values(ROSTER_ASSETS)
+        .filter((manifest) => manifest.spiritId !== "aw2-muoi" || muoiPresent)
+        .map((manifest) => ({
+          id: manifest.spiritId,
+          assets: manifest.assets,
+          keys: battleAtlasKeys(manifest),
+        })),
       ...(bossPresent
         ? [
             {
@@ -153,7 +158,7 @@ export function BattleCanvas({
     return () => {
       disposed = true
     }
-  }, [bossPresent])
+  }, [bossPresent, muoiPresent])
 
   useEffect(() => {
     const element = canvas.current
@@ -645,7 +650,9 @@ export function BattleCanvas({
       </div>
       <p role="status" data-testid="battle-atlas-state">
         {atlases
-          ? "Năm atlas chiến đấu đã tải"
+          ? muoiPresent
+            ? "Đội luyện đã tải đủ bộ hình chiến đấu"
+            : "Năm atlas chiến đấu đã tải"
           : error
             ? "Tải atlas thất bại"
             : "Đang tải atlas chiến đấu…"}

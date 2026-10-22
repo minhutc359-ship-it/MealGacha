@@ -45,7 +45,9 @@ describe("AW2-004J Muối reference assets without combat/collection grants", ()
     for (const slot of SKILL_SLOTS) {
       expect(muoi.skills[slot].id).toBe(`aw2-muoi:skill:${slot}`)
       expect(muoi.skills[slot].audio.id).toBe(`aw2-muoi:audio:${slot}`)
-      expect(muoi.skills[slot].scope).toContain("no implemented Muối combat")
+      expect(muoi.skills[slot].scope).toContain(
+        "no collection or final numerical balance",
+      )
     }
     expect(
       Object.values(muoi.assets).every(

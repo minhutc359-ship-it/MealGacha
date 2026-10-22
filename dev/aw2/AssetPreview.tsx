@@ -72,6 +72,13 @@ export function AssetPreview({
         <a href="/dev/aw2/roster.html">Các bộ nhân vật</a> ·{" "}
         <a href={manifest.provenance.prompts}>Prompt và nguồn tạo ảnh</a>
       </p>
+      {manifest.spiritId === "aw2-muoi" && combatImplemented && (
+        <p>
+          Kit đã có trong{" "}
+          <a href="/dev/aw2/battle.html?team=muoi">trận luyện Muối Đen</a>; thu
+          thập và đưa vào đội hành trình còn đang phát triển.
+        </p>
+      )}
       {errors.length > 0 ? (
         <p role="alert">Manifest lỗi: {errors.join("; ")}</p>
       ) : (

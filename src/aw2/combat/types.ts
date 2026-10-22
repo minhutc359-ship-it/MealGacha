@@ -21,6 +21,12 @@ export interface ForgottenHostState {
   intent: ForgottenHostIntent | null
 }
 
+export interface MuoiMark {
+  appliedTick: number
+  expiresAtTick: number
+  capTick: number
+}
+
 export interface CombatEvent {
   serial: number
   tick: number
@@ -33,6 +39,9 @@ export interface CombatEvent {
   projectileId?: string
   resolveTick?: number
   text?: string
+  statusEffect?: "muoi-mark" | "ordinary-shield"
+  statusChange?: "apply" | "refresh" | "remove" | "dispel"
+  expiresAtTick?: number
 }
 
 export interface CombatPassiveState {
@@ -95,6 +104,10 @@ export interface CombatActor {
   cast: CombatCast | null
   passive: CombatPassiveState
 
+  /** Ephemeral optional state; absent in older battle JSON. */
+  damageDealt?: number
+  debuffImmune?: boolean
+  muoiMarks?: Record<string, MuoiMark>
   bossKit?: ForgottenHostState
 }
 
@@ -117,6 +130,7 @@ export interface CombatUnitSeed {
   boss?: boolean
 
   bossProfile?: "aw2-forgotten-host-development-v2"
+  debuffImmune?: boolean
   controlImmune?: boolean
   position?: number
   hp?: number
