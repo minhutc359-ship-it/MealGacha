@@ -2,6 +2,7 @@ import { StrictMode, useEffect, useReducer, useState } from "react"
 import { createRoot } from "react-dom/client"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import type { CombatSpiritId } from "../../src/aw2/combat"
+import { nhienBusy } from "../../src/aw2/combat"
 import { BattleCanvas } from "./BattleCanvas"
 import { useBattleAudio } from "./useBattleAudio"
 import {
@@ -16,13 +17,15 @@ function BattlePreview() {
   const practice =
     new URLSearchParams(location.search).get("team") === "muoi"
       ? "muoi"
-      : undefined
+      : new URLSearchParams(location.search).get("team") === "nhien"
+        ? "nhien"
+        : undefined
   const [level, setLevel] = useState(5)
   const [{ battle, presentation, level: activeLevel, message }, dispatch] =
     useReducer(reduceBattlePreviewSession, 5, (level) =>
       createBattlePreviewSession(level, practice),
     )
-  const [muoiTarget, setMuoiTarget] = useState("enemy-than")
+  const [skillTarget, setSkillTarget] = useState("enemy-than")
   const [paused, setPaused] = useState(false)
   const audio = useBattleAudio(battle, paused)
   const [reducedMotion, setReducedMotion] = useState(
@@ -50,16 +53,25 @@ function BattlePreview() {
     dispatch({
       type: "ultimate",
       actorId,
-      ...(actorId === "player-aw2-muoi" ? { targetId: muoiTarget } : {}),
+      ...(["player-aw2-muoi", "player-aw2-nhien"].includes(actorId)
+        ? { targetId: skillTarget }
+        : {}),
     })
   }
 
   const playerRows = battle.actors.filter((actor) => actor.side === "player")
+  const nhien = playerRows.find((actor) => actor.spiritId === "aw2-nhien")
 
   return (
     <main className="aw2-save aw2-battle">
       <p className="eyebrow">AW2-007B · DEVELOPMENT-ONLY EVENT RENDERER</p>
-      <h1>{practice ? "Luyện kỹ năng Muối Đen" : "Giao ước bên bếp"}</h1>
+      <h1>
+        {practice === "nhien"
+          ? "Luyện kỹ năng Nhiên"
+          : practice
+            ? "Luyện kỹ năng Muối Đen"
+            : "Giao ước bên bếp"}
+      </h1>
       <p>
         <a
           href={
@@ -68,13 +80,21 @@ function BattlePreview() {
         >
           {practice ? "Trở về đội khởi đầu" : "Luyện kỹ năng Muối Đen"}
         </a>{" "}
-        · <a href="/dev/aw2/world.html">Về hành trình</a>
+        · <a href="/dev/aw2/world.html">Về hành trình</a> ·{" "}
+        <a href="/dev/aw2/battle.html?team=nhien">Luyện kỹ năng Nhiên</a>
       </p>
-      {practice && (
+      {practice === "muoi" && (
         <p>
-          Đội luyện tạm có5 người, thay Sương Lành bằng Muối Đen. Dấu giảm
+          Đội luyện tạm có 5 người, thay Sương Lành bằng Muối Đen. Dấu giảm
           công20%, gia hạn có giới hạn; tuyệt kỹ bóc một phần khiên thường.
           Trang này không cấp nhân vật hoặc ghi save.
+        </p>
+      )}
+      {practice === "nhien" && (
+        <p>
+          Đội luyện 5 người thay Lửa Nhỏ bằng Nhiên. Chuỗi cận chiến và ba nhịp
+          tuyệt kỹ có hồi thế; đánh trúng hai địch khác nhau mới hồi năng lượng
+          có giới hạn. Có thể thử ngắt chuỗi, không cấp nhân vật hay ghi save.
         </p>
       )}
       <p className="note">
@@ -134,14 +154,14 @@ function BattlePreview() {
         <a href="#battle-ultimates">Đến tuyệt kỹ</a>
         <a href="#battle-arena">Đến đấu trường</a>
       </nav>
-      {practice && (
+      {practice === "muoi" && (
         <section className="actions" aria-label="Thử kỹ năng Muối Đen">
           <label>
             Mục tiêu Muối Đen
             <select
               aria-label="Mục tiêu Muối Đen"
-              value={muoiTarget}
-              onChange={(event) => setMuoiTarget(event.target.value)}
+              value={skillTarget}
+              onChange={(event) => setSkillTarget(event.target.value)}
             >
               {battle.actors
                 .filter((a) => a.side === "enemy")
@@ -159,18 +179,18 @@ function BattlePreview() {
               battle.status !== "active" ||
               !battle.actors.some(
                 (a) =>
-                  a.id === muoiTarget &&
+                  a.id === skillTarget &&
                   Object.keys(a.muoiMarks ?? {}).length > 0,
               )
             }
-            onClick={() => dispatch({ type: "cleanse", targetId: muoiTarget })}
+            onClick={() => dispatch({ type: "cleanse", targetId: skillTarget })}
           >
             Đối thủ tẩy dấu
           </button>
         </section>
       )}
 
-      {practice && (
+      {practice === "muoi" && (
         <p
           data-testid="muoi-mark-state"
           data-marks={JSON.stringify(
@@ -188,14 +208,14 @@ function BattlePreview() {
             .filter((target) => Object.keys(target.muoiMarks ?? {}).length > 0)
             .map(
               (target) =>
-                `${ROSTER_ASSETS[target.spiritId]?.displayName ?? target.id} đến nhịp${Object.values(target.muoiMarks!)[0].expiresAtTick}`,
+                `${ROSTER_ASSETS[target.spiritId]?.displayName ?? target.id} đến nhịp ${Object.values(target.muoiMarks!)[0].expiresAtTick}`,
             )
             .join("; ") || "chưa có"}
           .
         </p>
       )}
 
-      {practice && (
+      {practice === "muoi" && (
         <section aria-label="Kết quả kỹ năng Muối Đen">
           <h2>Kỹ năng vừa xảy ra</h2>
           <ol data-testid="muoi-outcomes">
@@ -207,7 +227,87 @@ function BattlePreview() {
               .slice(-6)
               .map((event) => (
                 <li key={event.serial}>
-                  Nhịp{event.tick}: {event.text}
+                  Nhịp {event.tick}: {event.text}
+                </li>
+              ))}
+          </ol>
+        </section>
+      )}
+
+      {practice === "nhien" && nhien && (
+        <section aria-label="Thử kỹ năng Nhiên">
+          <div className="actions">
+            <label>
+              Mục tiêu Nhiên
+              <select
+                aria-label="Mục tiêu Nhiên"
+                value={skillTarget}
+                onChange={(e) => setSkillTarget(e.target.value)}
+              >
+                {battle.actors
+                  .filter((a) => a.side === "enemy")
+                  .map((a) => (
+                    <option key={a.id} value={a.id} disabled={a.hp <= 0}>
+                      {ROSTER_ASSETS[a.spiritId]?.displayName ?? a.id}
+                      {a.hp <= 0 ? " · đã gục" : ""}
+                    </option>
+                  ))}
+              </select>
+            </label>
+            <button
+              data-testid="nhien-interrupt"
+              disabled={
+                battle.status !== "active" ||
+                nhien.hp <= 0 ||
+                !(nhien.cast || nhien.nhienSequence)
+              }
+              onClick={() => dispatch({ type: "interrupt-nhien" })}
+            >
+              Đối thủ ngắt nhịp
+            </button>
+          </div>
+          <p data-testid="nhien-state" data-state={JSON.stringify(nhien)}>
+            Năng lượng {nhien.energy}/100 ·{" "}
+            {nhien.nhienSequence
+              ? `Đang nối nhịp ${nhien.nhienSequence.nextIndex + 1}`
+              : (nhien.nhienRecoveryUntilTick ?? 0) > battle.tick
+                ? `Hồi thế đến nhịp ${nhien.nhienRecoveryUntilTick}`
+                : nhien.cast
+                  ? "Đang chuẩn bị"
+                  : "Sẵn sàng"}{" "}
+            · Bếp Đông đã hồi {nhien.nhienRhythm?.energyGranted ?? 0}/24 năng
+            lượng.
+          </p>
+          <h2>Nhịp vừa xảy ra</h2>
+          <ol data-testid="nhien-outcomes">
+            {battle.events
+              .filter(
+                (event) =>
+                  event.skillId?.startsWith("aw2-nhien:") &&
+                  [
+                    "hit",
+                    "miss",
+                    "status",
+                    "interrupt",
+                    "interrupt-resist",
+                  ].includes(event.kind),
+              )
+              .slice(-8)
+              .map((event) => (
+                <li
+                  key={event.serial}
+                  data-kind={event.kind}
+                  data-index={event.contactIndex}
+                  data-action={event.actionId}
+                >
+                  Nhịp {event.tick}:{" "}
+                  {event.contactIndex !== undefined
+                    ? `điểm chạm ${event.contactIndex + 1} · `
+                    : ""}
+                  {event.text ??
+                    (event.kind === "hit"
+                      ? `trúng ${event.targetIds.join(", ")} · sát thương ${event.amount ?? 0}`
+                      : event.kind)}
                 </li>
               ))}
           </ol>
@@ -256,6 +356,7 @@ function BattlePreview() {
                   disabled={
                     actor.hp <= 0 ||
                     actor.energy < 100 ||
+                    nhienBusy(actor, battle.tick) ||
                     battle.status !== "active"
                   }
                   onClick={() => ultimate(actor.id)}

@@ -17,11 +17,11 @@ import { ROSTER, STARTER_TEAM } from "@/aw2/world/ids"
 const nhien = ROSTER_ASSETS["aw2-nhien"]
 
 describe("AW2-004K Nhiên reference availability and bounded presentation", () => {
-  it("exposes seven authored references without granting ownership or inventing a seventh combat kit", () => {
+  it("exposes seven authored references without granting ownership or expanding the starter team", () => {
     expect(Object.keys(ROSTER_ASSETS)).toHaveLength(7)
     expect(Object.keys(STARTER_ASSETS)).toEqual(STARTER_TEAM)
     expect(STARTER_TEAM).not.toContain("aw2-nhien")
-    expect(isCombatSpiritId("aw2-nhien")).toBe(false)
+    expect(isCombatSpiritId("aw2-nhien")).toBe(true)
     expect(isCombatSpiritId("aw2-muoi")).toBe(true)
     expect(
       ROSTER.filter((s) => s.assets.status === "NOT_CREATED"),
@@ -48,7 +48,9 @@ describe("AW2-004K Nhiên reference availability and bounded presentation", () =
     for (const slot of SKILL_SLOTS) {
       expect(nhien.skills[slot].id).toBe(`aw2-nhien:skill:${slot}`)
       expect(nhien.skills[slot].audio.id).toBe(`aw2-nhien:audio:${slot}`)
-      expect(nhien.skills[slot].scope).toContain("not implemented")
+      expect(nhien.skills[slot].scope).toContain(
+        "no collection or final numerical balance",
+      )
     }
     expect(
       Object.values(nhien.assets).every(

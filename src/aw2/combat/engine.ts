@@ -6,6 +6,14 @@ import {
 } from "./roster"
 
 import { MUOI_TUNING, muoiDamageMultiplier, selectMuoiTarget } from "./muoi"
+import {
+  NHIEN_TUNING,
+  grantNhienRhythm,
+  nhienBusy,
+  nhienFacing,
+  nhienMultipliers,
+  nhienTargets,
+} from "./nhien"
 
 import {
   FORGOTTEN_HOST_ID,
@@ -25,6 +33,7 @@ import type {
   CombatSide,
   CombatUnitSeed,
   CreateCombatBattleInput,
+  NhienSequence,
 } from "./types"
 
 const MAX_UNITS = 5
@@ -92,7 +101,7 @@ function actorFromSeed(
   )
     throw Error("Boss profile không thuộc Người Giữ Bàn Quên.")
   const base =
-    side === "player" || seed.spiritId === "aw2-muoi"
+    side === "player" || ["aw2-muoi", "aw2-nhien"].includes(seed.spiritId)
       ? COMBAT_KITS[(seed.spiritId as CombatSpiritId)]
       : defaultEnemy(seed)
   const maxHp = assertNumber(seed.maxHp ?? base.hp, "HP tối đa", 1, 1_000_000)
@@ -106,6 +115,7 @@ function actorFromSeed(
     slot,
     boss: seed.boss === true,
     ...(seed.debuffImmune ? { debuffImmune: true } : {}),
+    ...(seed.summoned ? { summoned: true } : {}),
     controlImmune: seed.controlImmune ?? seed.boss === true,
     position: assertNumber(
       seed.position ?? (side === "player" ? 12 + slot * 4 : 88 - slot * 4),
@@ -380,6 +390,16 @@ function applyMuoiMark(
 function expireTimedState(battle: CombatBattle) {
   cleanupMuoiMarks(battle)
   for (const actor of battle.actors) {
+    if ((actor.nhienRecoveryUntilTick ?? Infinity) <= battle.tick)
+      delete actor.nhienRecoveryUntilTick
+    if (
+      actor.nhienRhythm &&
+      battle.tick >=
+        actor.nhienRhythm.windowStartTick + NHIEN_TUNING.rhythmWindowTicks
+    ) {
+      actor.nhienRhythm.targetIds = []
+      actor.nhienRhythm.windowStartTick = battle.tick
+    }
     const kit = actor.bossKit
 
     if (kit && kit.barrierHits > 0 && battle.tick >= kit.barrierExpiresAtTick) {
@@ -462,11 +482,114 @@ function startCast(
     slot,
     targetId,
     commitTick: battle.tick + ticks,
+    ...(actor.spiritId === "aw2-nhien" && targetId && byId(battle, targetId)
+      ? { facing: nhienFacing(actor, byId(battle, targetId)!) }
+      : {}),
   }
   actor.cast = cast
   record(battle, "cast-start", actor.id, targetId ? [targetId] : [], {
     skillId,
   })
+}
+
+function startNhienSequence(
+  battle: CombatBattle,
+  actor: CombatActor,
+  slot: NhienSequence["slot"],
+  targetId: string,
+  firstContactTick: number,
+  facing: 1 | -1,
+  actionId = `nhien:${++battle.actionSerial}`,
+) {
+  actor.nhienSequence = {
+    id: actionId,
+    slot,
+    targetId,
+    facing,
+    firstContactTick,
+    nextIndex: 0,
+  }
+  actor.nhienRecoveryUntilTick =
+    firstContactTick +
+    nhienMultipliers(slot).length -
+    1 +
+    NHIEN_TUNING.recoveryTicks +
+    1
+  actor.nextBasicTick = Math.max(
+    actor.nextBasicTick,
+    actor.nhienRecoveryUntilTick,
+  )
+  if (slot === "basic")
+    record(battle, "cast-start", actor.id, [targetId], {
+      skillId: combatSkillId("aw2-nhien", slot),
+      actionId,
+      text: "Nhịp Chảo chuẩn bị hai điểm chạm.",
+    })
+}
+
+function resolveNhienSequences(battle: CombatBattle) {
+  const order = [...battle.actors].sort(
+    (a, b) =>
+      a.side.localeCompare(b.side) ||
+      a.slot - b.slot ||
+      a.id.localeCompare(b.id),
+  )
+  for (const source of order) {
+    const action = source.nhienSequence
+    if (
+      !action ||
+      source.hp <= 0 ||
+      action.firstContactTick + action.nextIndex > battle.tick
+    )
+      continue
+    const index = action.nextIndex++
+    const skillId = combatSkillId("aw2-nhien", action.slot)
+    const candidates = nhienTargets(
+      battle,
+      source,
+      action.slot === "auto" ? action.facing : undefined,
+    )
+    const preferred = byId(battle, action.targetId)
+    // A dead target may fall back inside melee range; a living one can dodge by leaving it.
+    const target = preferred?.hp ? preferred : candidates[0]
+    const targets =
+      action.slot === "auto"
+        ? candidates.slice(0, NHIEN_TUNING.maxSweepTargets)
+        : target &&
+            target.side !== source.side &&
+            distance(source, target) <= source.range
+          ? [target]
+          : []
+    if (action.slot !== "auto" && targets[0]) action.targetId = targets[0].id
+    const contact = { actionId: action.id, contactIndex: index }
+    if (!targets.length)
+      record(battle, "miss", source.id, target ? [target.id] : [], {
+        skillId,
+        ...contact,
+        text: "Điểm chạm không còn mục tiêu cận chiến hợp lệ.",
+      })
+    for (const victim of targets)
+      applyDamage(
+        battle,
+        source,
+        victim,
+        source.attack * nhienMultipliers(action.slot)[index],
+        skillId,
+        undefined,
+        contact,
+      )
+    if (action.nextIndex >= nhienMultipliers(action.slot).length) {
+      delete source.nhienSequence
+      record(battle, "status", source.id, [source.id], {
+        skillId,
+        actionId: action.id,
+        statusEffect: "nhien-recovery",
+        statusChange: "apply",
+        expiresAtTick: source.nhienRecoveryUntilTick,
+        text: `Hồi thế đến nhịp${source.nhienRecoveryUntilTick}.`,
+      })
+    }
+  }
 }
 
 function applyShield(
@@ -581,10 +704,12 @@ function applyDamage(
   rawAmount: number,
   skillId: string,
   projectileId?: string,
+  contact: Pick<CombatEvent, "actionId" | "contactIndex"> = {},
 ) {
   if (target.hp <= 0) {
     record(battle, "miss", source.id, [target.id], {
       skillId,
+      ...contact,
       ...(projectileId ? { projectileId } : {}),
       text: "Đòn đã phóng không đổi hướng sau khi mục tiêu bị hạ.",
     })
@@ -605,6 +730,7 @@ function applyDamage(
     // The contact which breaks the barrier is absorbed too; subsequent hits damage HP.
     record(battle, "hit", source.id, [target.id], {
       skillId,
+      ...contact,
       amount: 0,
       absorbed: 0,
       ...(projectileId ? { projectileId } : {}),
@@ -635,10 +761,22 @@ function applyDamage(
   target.energy = Math.min(ULTIMATE_ENERGY, target.energy + 4)
   record(battle, "hit", source.id, [target.id], {
     skillId,
+    ...contact,
     amount: hpDamage,
     absorbed,
     ...(projectileId ? { projectileId } : {}),
   })
+  if (hpDamage + absorbed > 0) {
+    const gained = grantNhienRhythm(source, target, battle.tick)
+    if (gained > 0)
+      record(battle, "status", source.id, [source.id], {
+        skillId: combatSkillId("aw2-nhien", "passive"),
+        statusEffect: "nhien-energy",
+        statusChange: "gain-energy",
+        amount: gained,
+        text: `Bếp Đông hồi ${gained} năng lượng có giới hạn.`,
+      })
+  }
   if (
     source.spiritId === "aw2-muoi" &&
     source.hp > 0 &&
@@ -694,6 +832,8 @@ function applyDamage(
   }
   if (target.hp === 0) {
     target.cast = null
+    delete target.nhienSequence
+    delete target.nhienRecoveryUntilTick
     record(battle, "defeat", source.id, [target.id], { skillId })
     cleanupMuoiMarks(battle)
   }
@@ -833,6 +973,18 @@ function commitCast(
             ? [enemy.id]
             : []
   record(battle, "cast-commit", actor.id, committedTargets, { skillId })
+  if (actor.spiritId === "aw2-nhien") {
+    startNhienSequence(
+      battle,
+      actor,
+      cast.slot,
+      cast.targetId!,
+      battle.tick,
+      cast.facing ?? (actor.side === "player" ? 1 : -1),
+      cast.id,
+    )
+    return
+  }
   if (actor.spiritId === "aw2-muoi") {
     if (!enemy || distance(actor, enemy) > actor.range) {
       record(battle, "miss", actor.id, enemy ? [enemy.id] : [], {
@@ -1044,6 +1196,17 @@ function performBasic(
     return
   }
   actor.nextBasicTick = battle.tick + basicCooldown(actor)
+  if (actor.spiritId === "aw2-nhien") {
+    startNhienSequence(
+      battle,
+      actor,
+      "basic",
+      target.id,
+      battle.tick + NHIEN_TUNING.basicWindupTicks,
+      nhienFacing(actor, target),
+    )
+    return
+  }
   const projectile = actor.projectileTicks > 0
   if (actor.spiritId === "aw2-lua") {
     queueEffect(
@@ -1089,6 +1252,13 @@ function tryAutoSkill(battle: CombatBattle, actor: CombatActor): boolean {
     return false
   const kit = COMBAT_KITS[actor.spiritId]
   const enemy = selectEnemy(battle, actor)
+  if (actor.spiritId === "aw2-nhien") {
+    const target = nhienTargets(battle, actor)[0]
+    if (!target) return false
+    actor.nextAutoTick = battle.tick + kit.autoCooldown
+    startCast(battle, actor, "auto", target.id, kit.autoCastTicks)
+    return true
+  }
   if (actor.spiritId === "aw2-muoi") {
     const target = selectMuoiTarget(battle, actor)
     if (!target) return false
@@ -1218,7 +1388,13 @@ function actAutomatically(battle: CombatBattle) {
       left.id.localeCompare(right.id),
   )
   for (const actor of order) {
-    if (actor.hp <= 0 || actor.cast || actor.bossKit?.intent) continue
+    if (
+      actor.hp <= 0 ||
+      actor.cast ||
+      actor.bossKit?.intent ||
+      nhienBusy(actor, battle.tick)
+    )
+      continue
     if (tryAutoSkill(battle, actor)) continue
     if (battle.tick < actor.nextBasicTick) continue
     const target = selectEnemy(battle, actor)
@@ -1236,6 +1412,9 @@ function checkResult(battle: CombatBattle) {
   removeMuoiMarks(battle, "trận kết thúc", () => true)
   for (const actor of battle.actors) {
     actor.cast = null
+    delete actor.nhienSequence
+    delete actor.nhienRecoveryUntilTick
+    if (actor.nhienRhythm) actor.nhienRhythm.targetIds = []
 
     if (actor.bossKit) {
       actor.bossKit.intent = null
@@ -1253,6 +1432,10 @@ function advanceOneTick(battle: CombatBattle) {
   expireTimedState(battle)
   resolveDueCasts(battle)
   resolveDueEffects(battle)
+  checkResult(battle)
+  if (battle.status !== "active") return
+
+  resolveNhienSequences(battle)
   checkResult(battle)
   if (battle.status !== "active") return
 
@@ -1295,15 +1478,19 @@ export function castCombatUltimate(
   )
     throw Error("Vị Linh không thể dùng tuyệt kỹ.")
   if (actor.cast) throw Error("Vị Linh đang thi triển kỹ năng khác.")
+  if (nhienBusy(actor, battle.tick))
+    throw Error("Nhiên đang nối nhịp hoặc hồi thế.")
   if (actor.energy < ULTIMATE_ENERGY)
     throw Error("Tuyệt kỹ chưa đủ năng lượng.")
-  const needsEnemy = ["aw2-lua", "aw2-suong", "aw2-muoi"].includes(
+  const needsEnemy = ["aw2-lua", "aw2-suong", "aw2-muoi", "aw2-nhien"].includes(
     actor.spiritId,
   )
   if (needsEnemy) {
     const target = targetId ? byId(battle, targetId) : undefined
     if (!target?.hp || target.side !== "enemy")
       throw Error("Tuyệt kỹ cần một mục tiêu địch hợp lệ.")
+    if (actor.spiritId === "aw2-nhien" && distance(actor, target) > actor.range)
+      throw Error("Mục tiêu nằm ngoài tầm cận chiến của Nhiên.")
   }
   actor.energy = 0
   startCast(
@@ -1323,24 +1510,36 @@ export function interruptCombatCast(
   if (current.status !== "active") throw Error("Trận đấu đã kết thúc.")
   const battle = copyBattle(current)
   const actor = byId(battle, actorId)
-  if (!actor?.cast || actor.hp <= 0)
+  if (!actor || actor.hp <= 0 || (!actor.cast && !actor.nhienSequence))
     throw Error("Không có kỹ năng đang thi triển để ngắt.")
+  const skillId =
+    actor.cast?.skillId ?? combatSkillId("aw2-nhien", actor.nhienSequence!.slot)
   if (
     actor.interruptGuardCharges > 0 &&
     actor.interruptGuardUntilTick > battle.tick
   ) {
     actor.interruptGuardCharges--
     record(battle, "interrupt-resist", actor.id, [actor.id], {
-      skillId: actor.cast.skillId,
+      skillId,
       text: "Giảm một lần gián đoạn.",
     })
     return battle
   }
-  const skillId = actor.cast.skillId
   actor.cast = null
+  if (actor.spiritId === "aw2-nhien") {
+    delete actor.nhienSequence
+    actor.nhienRecoveryUntilTick = battle.tick + NHIEN_TUNING.recoveryTicks + 1
+    actor.nextBasicTick = Math.max(
+      actor.nextBasicTick,
+      actor.nhienRecoveryUntilTick,
+    )
+  }
   record(battle, "interrupt", actor.id, [actor.id], {
     skillId,
-    text: "Kỹ năng bị ngắt trước điểm commit.",
+    text:
+      actor.spiritId === "aw2-nhien"
+        ? "Chuỗi nhịp bị ngắt; các điểm chạm còn lại đã hủy."
+        : "Kỹ năng bị ngắt trước điểm commit.",
   })
   return battle
 }

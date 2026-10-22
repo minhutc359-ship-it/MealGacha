@@ -1,0 +1,3293 @@
+{
+  "task": "AW2-007F",
+  "base": "29f60f1428b48c4409a3adeaf33b9e51ec576576",
+  "status": "PASS",
+  "freshBrowserAssertions": 205,
+  "reports": {
+    "nhienSource": {
+      "task": "AW2-007F",
+      "status": "PASS",
+      "flavor": "source",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Own Nhiên practice has exactly five members and replaces Lua",
+        "Sound remains off before opt-in",
+        "Out-of-range ultimate preserves energy and explains rejection",
+        "Actual selected-target ultimate spends energy and starts wind-up",
+        "Preparation creates no confirmed ultimate effect",
+        "Ultimate contact 1 uses its actual indexed cue and selected victim",
+        "Ultimate contact 1 uses own strike or actual counterplay reaction: battle.ultimate.1",
+        "Ultimate contact 2 uses its actual indexed cue and selected victim",
+        "Ultimate contact 2 uses own strike or actual counterplay reaction: battle.ultimate.2",
+        "Ultimate contact 3 uses its actual indexed cue and selected victim",
+        "Ultimate contact 3 uses own strike or actual counterplay reaction: battle.ultimate.3",
+        "Three contacts have distinct event serials",
+        "Final contact enters actual recovery and blocks recast",
+        "Paused presentation clock stays fixed",
+        "Actual basic reports both contacts",
+        "Actual distinct-target passive grants bounded energy",
+        "Basic, sweep and passive have independent confirmed effects",
+        "Confirmed Nhiên events play own audio after opt-in",
+        "320px practice controls fit viewport",
+        "390px practice controls fit viewport",
+        "768px practice controls fit viewport",
+        "Real terminal clears sequence/recovery and all effect playback",
+        "Own atlas draws stay within measured source bounds",
+        "Level reset retains Nhiên five-member practice and applies actual stats",
+        "Real counterplay cancels remaining contacts without energy refund",
+        "Interruption leaves exactly one ultimate contact",
+        "Cancelled anticipation/contact pose has stopped",
+        "Isolated practice preserves all seeded save bytes",
+        "Reference viewer links actual practice and leaves collection pending",
+        "No unexpected browser or resource errors"
+      ],
+      "errors": [],
+      "contacts": [
+        {
+          "serial": 78,
+          "index": 0,
+          "skillId": "aw2-nhien:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 240,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.1",
+          "cue": {
+            "serial": 78,
+            "phase": "confirmed",
+            "skillId": "aw2-nhien:skill:ultimate",
+            "fx": ""
+          }
+        },
+        {
+          "serial": 93,
+          "index": 1,
+          "skillId": "aw2-nhien:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 520,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "cue": {
+            "serial": 93,
+            "phase": "confirmed",
+            "skillId": "aw2-nhien:skill:ultimate",
+            "fx": ""
+          }
+        },
+        {
+          "serial": 101,
+          "index": 2,
+          "skillId": "aw2-nhien:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 800,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.3",
+          "cue": {
+            "serial": 101,
+            "phase": "confirmed",
+            "skillId": "aw2-nhien:skill:ultimate",
+            "fx": ""
+          }
+        }
+      ],
+      "limits": [
+        "Isolated development practice, no collection/world-team unlock",
+        "Desktop viewports; no physical-device, human-listening or independent-art acceptance"
+      ]
+    },
+    "nhienCompiled": {
+      "task": "AW2-007F",
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Own Nhiên practice has exactly five members and replaces Lua",
+        "Sound remains off before opt-in",
+        "Out-of-range ultimate preserves energy and explains rejection",
+        "Actual selected-target ultimate spends energy and starts wind-up",
+        "Preparation creates no confirmed ultimate effect",
+        "Ultimate contact 1 uses its actual indexed cue and selected victim",
+        "Ultimate contact 1 uses own strike or actual counterplay reaction: battle.ultimate.1",
+        "Ultimate contact 2 uses its actual indexed cue and selected victim",
+        "Ultimate contact 2 uses own strike or actual counterplay reaction: battle.ultimate.2",
+        "Ultimate contact 3 uses its actual indexed cue and selected victim",
+        "Ultimate contact 3 uses own strike or actual counterplay reaction: battle.ultimate.3",
+        "Three contacts have distinct event serials",
+        "Final contact enters actual recovery and blocks recast",
+        "Paused presentation clock stays fixed",
+        "Actual basic reports both contacts",
+        "Actual distinct-target passive grants bounded energy",
+        "Basic, sweep and passive have independent confirmed effects",
+        "Confirmed Nhiên events play own audio after opt-in",
+        "320px practice controls fit viewport",
+        "390px practice controls fit viewport",
+        "768px practice controls fit viewport",
+        "Real terminal clears sequence/recovery and all effect playback",
+        "Own atlas draws stay within measured source bounds",
+        "Level reset retains Nhiên five-member practice and applies actual stats",
+        "Real counterplay cancels remaining contacts without energy refund",
+        "Interruption leaves exactly one ultimate contact",
+        "Cancelled anticipation/contact pose has stopped",
+        "Isolated practice preserves all seeded save bytes",
+        "Reference viewer links actual practice and leaves collection pending",
+        "No unexpected browser or resource errors"
+      ],
+      "errors": [],
+      "contacts": [
+        {
+          "serial": 78,
+          "index": 0,
+          "skillId": "aw2-nhien:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 240,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.1",
+          "cue": {
+            "serial": 78,
+            "phase": "confirmed",
+            "skillId": "aw2-nhien:skill:ultimate",
+            "fx": ""
+          }
+        },
+        {
+          "serial": 93,
+          "index": 1,
+          "skillId": "aw2-nhien:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 520,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "cue": {
+            "serial": 93,
+            "phase": "confirmed",
+            "skillId": "aw2-nhien:skill:ultimate",
+            "fx": ""
+          }
+        },
+        {
+          "serial": 101,
+          "index": 2,
+          "skillId": "aw2-nhien:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 800,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.3",
+          "cue": {
+            "serial": 101,
+            "phase": "confirmed",
+            "skillId": "aw2-nhien:skill:ultimate",
+            "fx": ""
+          }
+        }
+      ],
+      "limits": [
+        "Isolated development practice, no collection/world-team unlock",
+        "Desktop viewports; no physical-device, human-listening or independent-art acceptance"
+      ]
+    },
+    "muoiCompiled": {
+      "task": "AW2-007E",
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Actual practice draws own Muoi atlas and exactly five player cards",
+        "No outcome audio before opt-in",
+        "Preparing ultimate emits no confirmed burst",
+        "Actual dispel targets selected ordinary shield",
+        "Dispel and burst share one confirmed FX serial/cue560 at actual target",
+        "Paused step does not advance presentation clocks",
+        "Actual auto applies exactly one finite mark",
+        "Victim roster exposes the real attack-reduction mark",
+        "Practice counterplay removes real mark without new hit/mark FX",
+        "Subsequent basic does not silently recreate cleansed mark",
+        "Removal leaves confirmed effect serial unchanged",
+        "Actual basic/mark/passive and ultimate each produce own confirmed effects",
+        "basic: event-owned cue/target",
+        "auto: event-owned cue/target",
+        "passive: event-owned cue/target",
+        "Basic contacts draw only impact cels2/3",
+        "Cast preparation/flight cannot draw outcome FX",
+        "Opted-in confirmed Muoi cues use own authored audio",
+        "Reduced motion cannot revive expired ultimate FX",
+        "320px controls fit viewport",
+        "390px controls fit viewport",
+        "768px controls fit viewport",
+        "Actual terminal cancels effect playback and all mark state",
+        "Muoi atlas draws stay within declared source bounds",
+        "Actual practice preserves all seeded save bytes",
+        "Reference viewer links actual practice and keeps collection pending",
+        "No unexpected browser/resource errors"
+      ],
+      "errors": [],
+      "contacts": [
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.1",
+          "tick": 6
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 8
+        },
+        {
+          "serial": 69,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 8
+        },
+        {
+          "serial": 69,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.idle.1",
+          "tick": 9
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.idle.1",
+          "tick": 9
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 13
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 13
+        },
+        {
+          "serial": 134,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 18
+        },
+        {
+          "serial": 138,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 18
+        },
+        {
+          "serial": 164,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.hit.0",
+          "tick": 23
+        },
+        {
+          "serial": 195,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.0",
+          "tick": 28
+        },
+        {
+          "serial": 198,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.0",
+          "tick": 28
+        },
+        {
+          "serial": 224,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.hit.0",
+          "tick": 33
+        },
+        {
+          "serial": 254,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 38
+        },
+        {
+          "serial": 255,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.2",
+          "tick": 38
+        },
+        {
+          "serial": 289,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.2",
+          "tick": 43
+        },
+        {
+          "serial": 313,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        },
+        {
+          "serial": 314,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        },
+        {
+          "serial": 315,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:passive",
+          "fx": "fx.passive.0",
+          "atMs": 180,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        }
+      ],
+      "limits": [
+        "Actual isolated practice, no collection/world-party unlock",
+        "Desktop viewports only; no human listening/device/rights acceptance"
+      ]
+    },
+    "bossCompiled": {
+      "task": "AW2-004I",
+      "status": "PASS",
+      "flavor": "compiled",
+      "checks": [
+        "Canonical boss resolves its own left-facing manifest, without starter fallback",
+        "Real Ghế trống activates with a finite four-basic protection counter",
+        "Actual protection uses own guard pose and authored empty-chair art",
+        "Pause freezes the authoritative boss countdown/protection",
+        "Paused boss presentation clock remains frozen",
+        "390px sticky protection remains visible at manual ultimate controls",
+        "390px jump leaves the first ultimate uncovered by the sticky panel",
+        "390px arena jump keeps own boss visible below the sticky warning",
+        "320px sticky protection remains visible at manual ultimate controls",
+        "320px jump leaves the first ultimate uncovered by the sticky panel",
+        "320px arena jump keeps own boss visible below the sticky warning",
+        "Mời hụt displays real remaining beat 3",
+        "Real sweep warning uses own cast pose and warning art without a predicted hit",
+        "Mời hụt displays real remaining beat 2",
+        "Mời hụt displays real remaining beat 1",
+        "Sweep warning ends after its actual scheduled resolution",
+        "Actual sweep hits use confirmed authored effects at real recipients",
+        "Confirmed boss impact expires without reviving after the hit",
+        "Tắt bếp exposes countdown 3 with audio off",
+        "Real snuff warning uses own ultimate pose and ember art",
+        "Tắt bếp exposes countdown 2 with audio off",
+        "Tắt bếp exposes countdown 1 with audio off",
+        "Live combat progress cannot write boss victory before explicit settlement",
+        "Retreat suppresses outstanding warning/protection display",
+        "Retreat cancels all boss authored warning/contact art",
+        "Retreat returns to the safe yard with accepted objectives and no boss grant",
+        "auto-only reaches its real enemy-win result",
+        "auto-only terminal clears telegraph/protection without writing results",
+        "auto-only terminal clears authored boss effects",
+        "auto-only commits only its actual result and correct safe return",
+        "auto-only reload preserves exact committed bytes and seeded legacy",
+        "hold-damage-ultimates-for-barrier reaches its real player-win result",
+        "hold-damage-ultimates-for-barrier terminal clears telegraph/protection without writing results",
+        "hold-damage-ultimates-for-barrier terminal clears authored boss effects",
+        "Defeated boss resolves its own defeat cell",
+        "Failed win settlement retains checkpoint bytes and authentic live terminal for retry",
+        "hold-damage-ultimates-for-barrier commits only its actual result and correct safe return",
+        "hold-damage-ultimates-for-barrier reload preserves exact committed bytes and seeded legacy",
+        "Actual draws include both own battle/effect atlases with safe source cells and no recolor/mirroring",
+        "Actual battle draws include own idle/guard/cast/ultimate/defeat key poses",
+        "No browser/page/asset errors"
+      ],
+      "errors": [],
+      "runs": [
+        {
+          "strategy": "auto-only",
+          "result": "enemy-win",
+          "tick": 51
+        },
+        {
+          "strategy": "hold-damage-ultimates-for-barrier",
+          "result": "player-win",
+          "tick": 43
+        }
+      ],
+      "drawAudits": [
+        {
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/battle.webp": {
+            "draws": 255,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "89,93,254,332": true,
+              "512,94,335,323": true,
+              "532,508,318,320": true,
+              "927,119,367,302": true,
+              "61,535,332,297": true,
+              "1432,94,286,333": true,
+              "934,500,363,329": true
+            }
+          },
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/fx.webp": {
+            "draws": 369,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "68,679,405,308": true,
+              "1111,698,375,276": true,
+              "82,71,361,264": true,
+              "553,68,468,269": true,
+              "1150,100,321,233": true,
+              "129,362,272,280": true,
+              "599,390,417,237": true
+            }
+          }
+        },
+        {
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/battle.webp": {
+            "draws": 185,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "89,93,254,332": true,
+              "512,94,335,323": true,
+              "532,508,318,320": true,
+              "927,119,367,302": true,
+              "61,535,332,297": true,
+              "1432,94,286,333": true,
+              "934,500,363,329": true
+            }
+          },
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/fx.webp": {
+            "draws": 212,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "68,679,405,308": true,
+              "1111,698,375,276": true,
+              "82,71,361,264": true,
+              "553,68,468,269": true,
+              "129,362,272,280": true,
+              "599,390,417,237": true,
+              "576,676,449,302": true
+            }
+          }
+        },
+        {
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/battle.webp": {
+            "draws": 203,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "89,93,254,332": true,
+              "512,94,335,323": true,
+              "532,508,318,320": true,
+              "927,119,367,302": true,
+              "61,535,332,297": true,
+              "1432,94,286,333": true,
+              "934,500,363,329": true,
+              "1411,588,306,239": true
+            }
+          },
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/fx.webp": {
+            "draws": 205,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "68,679,405,308": true,
+              "1111,698,375,276": true,
+              "82,71,361,264": true,
+              "553,68,468,269": true,
+              "129,362,272,280": true,
+              "599,390,417,237": true,
+              "576,676,449,302": true
+            }
+          }
+        }
+      ],
+      "browser": "153.0.8010.36",
+      "fixture": "Isolated v3 ready quest, no injected combat result; not a full earned quest journey."
+    },
+    "journeyCompiled": {
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Fresh demo opens without creating a save or granting progression",
+        "Incomplete saved journey does not claim demo completion",
+        "Initial goal precedes the map and names the first NPC",
+        "Keyboard opens optional help with save/mode return guidance and no writes",
+        "Native summary keeps browser arrows and interaction letters",
+        "Goal/help/world controls fit 320px",
+        "Goal/help/world controls fit 390px",
+        "Goal/help/world controls fit 768px",
+        "Save button keeps native key ownership",
+        "Direction button Enter moves right exactly through world rules without save writes",
+        "Focusing native UI stops held exploration movement",
+        "Reread restores initial unsaved movement without writing",
+        "Closing the first dialogue accepts nothing",
+        "Closing dialogue from body focus restores the keyboard map target",
+        "One earned intro unlocks five starters and exactly 30XP",
+        "Fresh intro reload is byte-identical and retains next objective",
+        "TCG/quick-entry leaves browser reading arrows available",
+        "Actual browser arrow scroll works inside the long TCG page",
+        "tcg/quick-entry real result returns exact RPG position/objective/economy without writes",
+        "Chess/quick-entry leaves browser reading arrows available",
+        "auto-chess/quick-entry real result returns exact RPG position/objective/economy without writes",
+        "TCG/portal leaves browser reading arrows available",
+        "tcg/portal real result returns exact RPG position/objective/economy without writes",
+        "Chess/portal leaves browser reading arrows available",
+        "auto-chess/portal real result returns exact RPG position/objective/economy without writes",
+        "Both real practices and both entry routes fit one legitimately earned journey",
+        "Three memories hand-in grants only its actual quest reward",
+        "Reading and closing chest grants nothing in the combined journey",
+        "Chest can be claimed only once with an actual receipt",
+        "Wrong puzzle attempt is retryable and spends no ingredients",
+        "Solved puzzle reload preserves earned state and exact bytes",
+        "Kitchen guidance explains an opened but distant kitchen",
+        "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
+        "Fresh earned team enters real boss with reduced motion and audio opt-in",
+        "Earned world encounter draws Than's new motion atlas through the shared renderer",
+        "Earned world encounter also draws Lua's authored motion atlas",
+        "Earned world encounter also draws Lam's authored motion atlas",
+        "Paused world encounter freezes visual time as well as core ticks",
+        "Same earned journey wins the actual boss without renderer-supplied outcome",
+        "Explicit boss commit survives reload before note and ending",
+        "Ending branch is captured at the explicitly saved NPC position",
+        "Closing the earned final choice grants no final quest reward",
+        "One fresh journey completes all four quests with exact once-only rewards",
+        "Saved wait ending has an honest completion summary and current XP",
+        "Completion summary reload preserves exact save bytes without grants",
+        "Completed ending and reload cannot repeat quest grants",
+        "Earned ending opens the reciprocal return shortcut",
+        "320px completion summary and both48px practice controls remain readable",
+        "390px completion summary and both48px practice controls remain readable",
+        "Completion tcg action uses safe checkpoint/return without grants",
+        "Completion auto-chess action uses safe checkpoint/return without grants",
+        "Alternate ending branches from exact earned checkpoint and gets same final reward",
+        "Alternate saved ending displays its own summary without a new reward",
+        "All five legacy keys remain byte-identical throughout the combined journey",
+        "No unexpected combined console/page/resource errors"
+      ],
+      "errors": [],
+      "modes": [
+        {
+          "mode": "tcg",
+          "entry": "quick-entry",
+          "result": "player-win",
+          "questIndex": 1
+        },
+        {
+          "mode": "auto-chess",
+          "entry": "quick-entry",
+          "result": "player-win",
+          "questIndex": 1
+        },
+        {
+          "mode": "tcg",
+          "entry": "portal",
+          "result": "opponent-win",
+          "questIndex": 1
+        },
+        {
+          "mode": "auto-chess",
+          "entry": "portal",
+          "result": "opponent-win",
+          "questIndex": 1
+        }
+      ],
+      "bossTick": 45,
+      "final": {
+        "experience": 345,
+        "receipts": [
+          "aw2-grant-kept-seat",
+          "aw2-grant-three-memories",
+          "aw2-grant-chest-pantry",
+          "aw2-grant-open-hearth",
+          "aw2-grant-one-more-bowl"
+        ],
+        "ending": "wait"
+      },
+      "scope": "Fresh earned web demo with reference assets; automated combined acceptance, no independent human/device/art/release approval"
+    },
+    "starterCompiled": {
+      "task": "AW2-007B",
+      "status": "PASS",
+      "engine": "Chromium 153.0.8010.36",
+      "viewports": [
+        "1280x1000",
+        "390x844"
+      ],
+      "checks": [
+        "Five starter ultimate cards render",
+        "Canvas draws all five decoded authored battle atlases",
+        "Auto combat advances core ticks",
+        "Pause freezes core ticks",
+        "Manual step advances exactly one tick",
+        "Selecting a pending level preserves the active battle cards",
+        "Level reset applies development stats without persistence",
+        "Manual ultimate emits core cast event and spends energy",
+        "Projectile remains visible after authoritative launch",
+        "Authoritative hit settles projectile presentation",
+        "Reduced motion reaches renderer while outcomes remain readable",
+        "Mobile viewport has no horizontal overflow",
+        "Combat reaches one authoritative terminal result without presentation gaps",
+        "Terminal battle disables stepping and all manual ultimates",
+        "Terminal event cancels unfinished visual projectiles",
+        "Resuming a terminal battle cannot advance ticks",
+        "Canvas uses decoded FX atlases with no out-of-bounds source frames",
+        "Reset after terminal clears events and restores a playable level-one team",
+        "Battle preview leaves stable and AW2 save bytes unchanged",
+        "No primary-context browser errors or failed requests",
+        "Missing authored atlas reports a visible error",
+        "System reduced-motion preference initializes the control"
+      ],
+      "errors": [],
+      "failed": [],
+      "atlasDraws": {
+        "/dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp": {
+          "draws": 1054,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lua/base-v1/battle-motion-a-v1.webp": {
+          "draws": 589,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/suong/base-v1/battle-motion-a-v1.webp": {
+          "draws": 2080,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lam/base-v1/battle-motion-a-v2.webp": {
+          "draws": 1287,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/moc-non/base-v1/battle-motion-a-v1.webp": {
+          "draws": 1192,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lua/base-v1/battle-motion-b-v2.webp": {
+          "draws": 2113,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lam/base-v1/fx.webp": {
+          "draws": 2573,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/suong/base-v1/fx.webp": {
+          "draws": 9137,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/moc-non/base-v1/fx.webp": {
+          "draws": 3467,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/suong/base-v1/battle-motion-b-v1.webp": {
+          "draws": 622,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lua/base-v1/fx.webp": {
+          "draws": 182,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lam/base-v1/battle-motion-b-v2.webp": {
+          "draws": 64,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/than/base-v1/battle.webp": {
+          "draws": 80,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/than/base-v1/fx.webp": {
+          "draws": 40,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lua/base-v1/battle.webp": {
+          "draws": 80,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/suong/base-v1/battle.webp": {
+          "draws": 80,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lam/base-v1/battle.webp": {
+          "draws": 40,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/moc-non/base-v1/battle.webp": {
+          "draws": 40,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/than/base-v1/battle-motion-b-v2.webp": {
+          "draws": 1648,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/moc-non/base-v1/battle-motion-b-v1.webp": {
+          "draws": 159,
+          "invalid": 0
+        }
+      },
+      "limits": [
+        "development renderer only",
+        "no physical device/performance/save/boss/reward/final-balance approval"
+      ]
+    }
+  },
+  "simulation": {
+    "task": "AW2-007F",
+    "status": "PASS",
+    "runs": [
+      {
+        "level": 1,
+        "team": "starter",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 71,
+        "playerHp": 640,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 1,
+        "team": "starter",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 39,
+        "playerHp": 759,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 1,
+        "team": "starter",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 71,
+        "playerHp": 640,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 1,
+        "team": "muoi",
+        "strategy": "auto",
+        "status": "enemy-win",
+        "tick": 86,
+        "playerHp": 0,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 1,
+        "team": "muoi",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "playerHp": 564,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 1,
+        "team": "muoi",
+        "strategy": "interrupt",
+        "status": "enemy-win",
+        "tick": 86,
+        "playerHp": 0,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 1,
+        "team": "nhien",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 70,
+        "playerHp": 429,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 1,
+        "team": "nhien",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 48,
+        "playerHp": 568,
+        "interrupted": 0,
+        "maxGranted": 8,
+        "maxProcs": 1,
+        "maxWindowTargets": 1
+      },
+      {
+        "level": 1,
+        "team": "nhien",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 85,
+        "playerHp": 80,
+        "interrupted": 2,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 1
+      },
+      {
+        "level": 5,
+        "team": "starter",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 71,
+        "playerHp": 757,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 5,
+        "team": "starter",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 39,
+        "playerHp": 936,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 5,
+        "team": "starter",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 71,
+        "playerHp": 757,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 5,
+        "team": "muoi",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 87,
+        "playerHp": 529,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 5,
+        "team": "muoi",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "playerHp": 695,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 5,
+        "team": "muoi",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 87,
+        "playerHp": 529,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 5,
+        "team": "nhien",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 70,
+        "playerHp": 500,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0,
+        "ticks": [
+          {
+            "tick": 1,
+            "events": [],
+            "energy": 100,
+            "position": 16
+          },
+          {
+            "tick": 2,
+            "events": [
+              {
+                "serial": 5,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 7,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 23
+          },
+          {
+            "tick": 3,
+            "events": [
+              {
+                "serial": 10,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 7,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 30
+          },
+          {
+            "tick": 4,
+            "events": [
+              {
+                "serial": 18,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 1,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 5,
+            "events": [
+              {
+                "serial": 33,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 6,
+            "events": [
+              {
+                "serial": 38,
+                "kind": "cast-commit",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              },
+              {
+                "serial": 47,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:auto",
+                "contactIndex": 0,
+                "actionId": "cast:10",
+                "amount": 30,
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              },
+              {
+                "serial": 48,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:auto",
+                "contactIndex": 0,
+                "actionId": "cast:10",
+                "amount": 0,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              },
+              {
+                "serial": 49,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:auto",
+                "actionId": "cast:10",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp9."
+              }
+            ],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 9
+          },
+          {
+            "tick": 7,
+            "events": [],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 9
+          },
+          {
+            "tick": 8,
+            "events": [],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 9
+          },
+          {
+            "tick": 9,
+            "events": [
+              {
+                "serial": 76,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:26",
+                "targetIds": [
+                  "enemy-lua"
+                ],
+                "text": "Nhịp Chảo chuẩn bị hai điểm chạm."
+              }
+            ],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 14,
+            "sequence": {
+              "id": "nhien:26",
+              "slot": "basic",
+              "targetId": "enemy-lua",
+              "facing": 1,
+              "firstContactTick": 10,
+              "nextIndex": 0
+            }
+          },
+          {
+            "tick": 10,
+            "events": [
+              {
+                "serial": 81,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 0,
+                "actionId": "nhien:26",
+                "amount": 21,
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 14,
+            "sequence": {
+              "id": "nhien:26",
+              "slot": "basic",
+              "targetId": "enemy-lua",
+              "facing": 1,
+              "firstContactTick": 10,
+              "nextIndex": 1
+            }
+          },
+          {
+            "tick": 11,
+            "events": [
+              {
+                "serial": 89,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 1,
+                "actionId": "nhien:26",
+                "amount": 21,
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              },
+              {
+                "serial": 90,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:26",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp14."
+              }
+            ],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 14
+          },
+          {
+            "tick": 12,
+            "events": [],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 14
+          },
+          {
+            "tick": 13,
+            "events": [],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 14
+          },
+          {
+            "tick": 14,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 15,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 16,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 17,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 18,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 19,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 20,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 21,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 22,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 23,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 24,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 25,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 26,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 27,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 28,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 29,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 30,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 31,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 32,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 33,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 34,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 35,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 36,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 37,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 38,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 39,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 40,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 41,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 42,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 43,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 44,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 45,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 46,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 47,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 48,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 49,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 50,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 51,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 52,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 53,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 54,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 55,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 56,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 57,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 58,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 59,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 60,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 61,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 62,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 63,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 64,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 65,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 66,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 67,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 68,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 69,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 70,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "team": "nhien",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 48,
+        "playerHp": 749,
+        "interrupted": 0,
+        "maxGranted": 8,
+        "maxProcs": 1,
+        "maxWindowTargets": 1,
+        "ticks": [
+          {
+            "tick": 1,
+            "events": [],
+            "energy": 100,
+            "position": 16
+          },
+          {
+            "tick": 2,
+            "events": [
+              {
+                "serial": 33,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 7,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 23
+          },
+          {
+            "tick": 3,
+            "events": [
+              {
+                "serial": 43,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 7,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 30
+          },
+          {
+            "tick": 4,
+            "events": [
+              {
+                "serial": 49,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 1,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 5,
+            "events": [],
+            "energy": 4,
+            "position": 31
+          },
+          {
+            "tick": 6,
+            "events": [
+              {
+                "serial": 69,
+                "kind": "cast-commit",
+                "skill": "aw2-nhien:skill:ultimate",
+                "targetIds": [
+                  "enemy-than"
+                ]
+              },
+              {
+                "serial": 78,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:ultimate",
+                "contactIndex": 0,
+                "actionId": "cast:25",
+                "amount": 0,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 8,
+            "position": 31,
+            "recoveryUntil": 11,
+            "sequence": {
+              "id": "cast:25",
+              "slot": "ultimate",
+              "targetId": "enemy-than",
+              "facing": 1,
+              "firstContactTick": 6,
+              "nextIndex": 1
+            }
+          },
+          {
+            "tick": 7,
+            "events": [
+              {
+                "serial": 93,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:ultimate",
+                "contactIndex": 1,
+                "actionId": "cast:25",
+                "amount": 24,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 12,
+            "position": 31,
+            "recoveryUntil": 11,
+            "sequence": {
+              "id": "cast:25",
+              "slot": "ultimate",
+              "targetId": "enemy-than",
+              "facing": 1,
+              "firstContactTick": 6,
+              "nextIndex": 2
+            }
+          },
+          {
+            "tick": 8,
+            "events": [
+              {
+                "serial": 101,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:ultimate",
+                "contactIndex": 2,
+                "actionId": "cast:25",
+                "amount": 24,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              },
+              {
+                "serial": 102,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:ultimate",
+                "actionId": "cast:25",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp11."
+              }
+            ],
+            "energy": 12,
+            "position": 31,
+            "recoveryUntil": 11
+          },
+          {
+            "tick": 9,
+            "events": [],
+            "energy": 12,
+            "position": 31,
+            "recoveryUntil": 11
+          },
+          {
+            "tick": 10,
+            "events": [],
+            "energy": 12,
+            "position": 31,
+            "recoveryUntil": 11
+          },
+          {
+            "tick": 11,
+            "events": [
+              {
+                "serial": 121,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 12,
+            "position": 31
+          },
+          {
+            "tick": 12,
+            "events": [
+              {
+                "serial": 124,
+                "kind": "cast-commit",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-than"
+                ]
+              },
+              {
+                "serial": 126,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:auto",
+                "contactIndex": 0,
+                "actionId": "cast:53",
+                "amount": 27,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              },
+              {
+                "serial": 127,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:auto",
+                "contactIndex": 0,
+                "actionId": "cast:53",
+                "amount": 30,
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              },
+              {
+                "serial": 128,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:passive",
+                "amount": 8,
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Bếp Đông hồi 8 năng lượng có giới hạn."
+              },
+              {
+                "serial": 129,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:auto",
+                "actionId": "cast:53",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp15."
+              }
+            ],
+            "energy": 20,
+            "position": 31,
+            "recoveryUntil": 15
+          },
+          {
+            "tick": 13,
+            "events": [],
+            "energy": 20,
+            "position": 31,
+            "recoveryUntil": 15
+          },
+          {
+            "tick": 14,
+            "events": [],
+            "energy": 24,
+            "position": 31,
+            "recoveryUntil": 15
+          },
+          {
+            "tick": 15,
+            "events": [
+              {
+                "serial": 160,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:68",
+                "targetIds": [
+                  "enemy-than"
+                ],
+                "text": "Nhịp Chảo chuẩn bị hai điểm chạm."
+              }
+            ],
+            "energy": 28,
+            "position": 31,
+            "recoveryUntil": 20,
+            "sequence": {
+              "id": "nhien:68",
+              "slot": "basic",
+              "targetId": "enemy-than",
+              "facing": 1,
+              "firstContactTick": 16,
+              "nextIndex": 0
+            }
+          },
+          {
+            "tick": 16,
+            "events": [
+              {
+                "serial": 177,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 0,
+                "actionId": "nhien:68",
+                "amount": 0,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 44,
+            "position": 31,
+            "recoveryUntil": 20,
+            "sequence": {
+              "id": "nhien:68",
+              "slot": "basic",
+              "targetId": "enemy-than",
+              "facing": 1,
+              "firstContactTick": 16,
+              "nextIndex": 1
+            }
+          },
+          {
+            "tick": 17,
+            "events": [
+              {
+                "serial": 188,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 1,
+                "actionId": "nhien:68",
+                "amount": 19,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              },
+              {
+                "serial": 189,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:68",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp20."
+              }
+            ],
+            "energy": 56,
+            "position": 31,
+            "recoveryUntil": 20
+          },
+          {
+            "tick": 18,
+            "events": [],
+            "energy": 56,
+            "position": 31,
+            "recoveryUntil": 20
+          },
+          {
+            "tick": 19,
+            "events": [],
+            "energy": 56,
+            "position": 31,
+            "recoveryUntil": 20
+          },
+          {
+            "tick": 20,
+            "events": [
+              {
+                "serial": 202,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 56,
+            "position": 31
+          },
+          {
+            "tick": 21,
+            "events": [
+              {
+                "serial": 205,
+                "kind": "cast-commit",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-than"
+                ]
+              },
+              {
+                "serial": 210,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:auto",
+                "contactIndex": 0,
+                "actionId": "cast:82",
+                "amount": 30,
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              },
+              {
+                "serial": 211,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:auto",
+                "actionId": "cast:82",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp24."
+              }
+            ],
+            "energy": 56,
+            "position": 31,
+            "recoveryUntil": 24
+          },
+          {
+            "tick": 22,
+            "events": [],
+            "energy": 56,
+            "position": 31,
+            "recoveryUntil": 24
+          },
+          {
+            "tick": 23,
+            "events": [],
+            "energy": 60,
+            "position": 31,
+            "recoveryUntil": 24
+          },
+          {
+            "tick": 24,
+            "events": [
+              {
+                "serial": 242,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:98",
+                "targetIds": [
+                  "enemy-lua"
+                ],
+                "text": "Nhịp Chảo chuẩn bị hai điểm chạm."
+              }
+            ],
+            "energy": 64,
+            "position": 31,
+            "recoveryUntil": 29,
+            "sequence": {
+              "id": "nhien:98",
+              "slot": "basic",
+              "targetId": "enemy-lua",
+              "facing": 1,
+              "firstContactTick": 25,
+              "nextIndex": 0
+            }
+          },
+          {
+            "tick": 25,
+            "events": [
+              {
+                "serial": 248,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 0,
+                "actionId": "nhien:98",
+                "amount": 21,
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              }
+            ],
+            "energy": 80,
+            "position": 31,
+            "recoveryUntil": 29,
+            "sequence": {
+              "id": "nhien:98",
+              "slot": "basic",
+              "targetId": "enemy-lua",
+              "facing": 1,
+              "firstContactTick": 25,
+              "nextIndex": 1
+            }
+          },
+          {
+            "tick": 26,
+            "events": [
+              {
+                "serial": 256,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 1,
+                "actionId": "nhien:98",
+                "amount": 21,
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              },
+              {
+                "serial": 257,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:98",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp29."
+              }
+            ],
+            "energy": 92,
+            "position": 31,
+            "recoveryUntil": 29
+          },
+          {
+            "tick": 27,
+            "events": [],
+            "energy": 92,
+            "position": 31,
+            "recoveryUntil": 29
+          },
+          {
+            "tick": 28,
+            "events": [],
+            "energy": 92,
+            "position": 31,
+            "recoveryUntil": 29
+          },
+          {
+            "tick": 29,
+            "events": [
+              {
+                "serial": 275,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 7,
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              }
+            ],
+            "energy": 92,
+            "position": 38
+          },
+          {
+            "tick": 30,
+            "events": [
+              {
+                "serial": 280,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 7,
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              }
+            ],
+            "energy": 92,
+            "position": 45
+          },
+          {
+            "tick": 31,
+            "events": [
+              {
+                "serial": 285,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 7,
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              }
+            ],
+            "energy": 92,
+            "position": 52
+          },
+          {
+            "tick": 32,
+            "events": [
+              {
+                "serial": 296,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 3,
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              }
+            ],
+            "energy": 96,
+            "position": 55
+          },
+          {
+            "tick": 33,
+            "events": [
+              {
+                "serial": 303,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 55
+          },
+          {
+            "tick": 34,
+            "events": [
+              {
+                "serial": 307,
+                "kind": "cast-commit",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              },
+              {
+                "serial": 317,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:auto",
+                "contactIndex": 0,
+                "actionId": "cast:123",
+                "amount": 29,
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              },
+              {
+                "serial": 318,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:auto",
+                "actionId": "cast:123",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp37."
+              }
+            ],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 37
+          },
+          {
+            "tick": 35,
+            "events": [],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 37
+          },
+          {
+            "tick": 36,
+            "events": [],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 37
+          },
+          {
+            "tick": 37,
+            "events": [
+              {
+                "serial": 341,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:142",
+                "targetIds": [
+                  "enemy-suong"
+                ],
+                "text": "Nhịp Chảo chuẩn bị hai điểm chạm."
+              }
+            ],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 42,
+            "sequence": {
+              "id": "nhien:142",
+              "slot": "basic",
+              "targetId": "enemy-suong",
+              "facing": 1,
+              "firstContactTick": 38,
+              "nextIndex": 0
+            }
+          },
+          {
+            "tick": 38,
+            "events": [
+              {
+                "serial": 348,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 0,
+                "actionId": "nhien:142",
+                "amount": 20,
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 42,
+            "sequence": {
+              "id": "nhien:142",
+              "slot": "basic",
+              "targetId": "enemy-suong",
+              "facing": 1,
+              "firstContactTick": 38,
+              "nextIndex": 1
+            }
+          },
+          {
+            "tick": 39,
+            "events": [
+              {
+                "serial": 351,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 1,
+                "actionId": "nhien:142",
+                "amount": 20,
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              },
+              {
+                "serial": 352,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:142",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp42."
+              }
+            ],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 42
+          },
+          {
+            "tick": 40,
+            "events": [],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 42
+          },
+          {
+            "tick": 41,
+            "events": [],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 42
+          },
+          {
+            "tick": 42,
+            "events": [
+              {
+                "serial": 372,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 55
+          },
+          {
+            "tick": 43,
+            "events": [
+              {
+                "serial": 373,
+                "kind": "cast-commit",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              },
+              {
+                "serial": 378,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:auto",
+                "contactIndex": 0,
+                "actionId": "cast:157",
+                "amount": 29,
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              },
+              {
+                "serial": 379,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:auto",
+                "actionId": "cast:157",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp46."
+              }
+            ],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 46
+          },
+          {
+            "tick": 44,
+            "events": [],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 46
+          },
+          {
+            "tick": 45,
+            "events": [],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 46
+          },
+          {
+            "tick": 46,
+            "events": [
+              {
+                "serial": 394,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:166",
+                "targetIds": [
+                  "enemy-suong"
+                ],
+                "text": "Nhịp Chảo chuẩn bị hai điểm chạm."
+              }
+            ],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 51,
+            "sequence": {
+              "id": "nhien:166",
+              "slot": "basic",
+              "targetId": "enemy-suong",
+              "facing": 1,
+              "firstContactTick": 47,
+              "nextIndex": 0
+            }
+          },
+          {
+            "tick": 47,
+            "events": [
+              {
+                "serial": 397,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 0,
+                "actionId": "nhien:166",
+                "amount": 20,
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 55,
+            "recoveryUntil": 51,
+            "sequence": {
+              "id": "nhien:166",
+              "slot": "basic",
+              "targetId": "enemy-suong",
+              "facing": 1,
+              "firstContactTick": 47,
+              "nextIndex": 1
+            }
+          },
+          {
+            "tick": 48,
+            "events": [
+              {
+                "serial": 404,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 1,
+                "actionId": "nhien:166",
+                "amount": 3,
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              },
+              {
+                "serial": 405,
+                "kind": "defeat",
+                "skill": "aw2-nhien:skill:basic",
+                "targetIds": [
+                  "enemy-suong"
+                ]
+              },
+              {
+                "serial": 406,
+                "kind": "status",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:166",
+                "targetIds": [
+                  "player-aw2-nhien"
+                ],
+                "text": "Hồi thế đến nhịp51."
+              }
+            ],
+            "energy": 100,
+            "position": 55
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "team": "nhien",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 70,
+        "playerHp": 450,
+        "interrupted": 2,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 1,
+        "ticks": [
+          {
+            "tick": 1,
+            "events": [],
+            "energy": 100,
+            "position": 16
+          },
+          {
+            "tick": 2,
+            "events": [
+              {
+                "serial": 5,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 7,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 23
+          },
+          {
+            "tick": 3,
+            "events": [
+              {
+                "serial": 10,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 7,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 30
+          },
+          {
+            "tick": 4,
+            "events": [
+              {
+                "serial": 18,
+                "kind": "move",
+                "skill": "aw2-nhien:skill:basic",
+                "amount": 1,
+                "targetIds": [
+                  "enemy-than"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 5,
+            "events": [
+              {
+                "serial": 33,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:auto",
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 6,
+            "events": [],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 8
+          },
+          {
+            "tick": 7,
+            "events": [],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 8
+          },
+          {
+            "tick": 8,
+            "events": [
+              {
+                "serial": 70,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:25",
+                "targetIds": [
+                  "enemy-lua"
+                ],
+                "text": "Nhịp Chảo chuẩn bị hai điểm chạm."
+              }
+            ],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 13,
+            "sequence": {
+              "id": "nhien:25",
+              "slot": "basic",
+              "targetId": "enemy-lua",
+              "facing": 1,
+              "firstContactTick": 9,
+              "nextIndex": 0
+            }
+          },
+          {
+            "tick": 9,
+            "events": [
+              {
+                "serial": 74,
+                "kind": "hit",
+                "skill": "aw2-nhien:skill:basic",
+                "contactIndex": 0,
+                "actionId": "nhien:25",
+                "amount": 21,
+                "targetIds": [
+                  "enemy-lua"
+                ]
+              }
+            ],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 13,
+            "sequence": {
+              "id": "nhien:25",
+              "slot": "basic",
+              "targetId": "enemy-lua",
+              "facing": 1,
+              "firstContactTick": 9,
+              "nextIndex": 1
+            }
+          },
+          {
+            "tick": 10,
+            "events": [],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 12
+          },
+          {
+            "tick": 11,
+            "events": [],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 12
+          },
+          {
+            "tick": 12,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 13,
+            "events": [
+              {
+                "serial": 94,
+                "kind": "cast-start",
+                "skill": "aw2-nhien:skill:basic",
+                "actionId": "nhien:36",
+                "targetIds": [
+                  "enemy-lua"
+                ],
+                "text": "Nhịp Chảo chuẩn bị hai điểm chạm."
+              }
+            ],
+            "energy": 100,
+            "position": 31,
+            "recoveryUntil": 18,
+            "sequence": {
+              "id": "nhien:36",
+              "slot": "basic",
+              "targetId": "enemy-lua",
+              "facing": 1,
+              "firstContactTick": 14,
+              "nextIndex": 0
+            }
+          },
+          {
+            "tick": 14,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 15,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 16,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 17,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 18,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 19,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 20,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 21,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 22,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 23,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 24,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 25,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 26,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 27,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 28,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 29,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 30,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 31,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 32,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 33,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 34,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 35,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 36,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 37,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 38,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 39,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 40,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 41,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 42,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 43,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 44,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 45,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 46,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 47,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 48,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 49,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 50,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 51,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 52,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 53,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 54,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 55,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 56,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 57,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 58,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 59,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 60,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 61,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 62,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 63,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 64,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 65,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 66,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 67,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 68,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 69,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          },
+          {
+            "tick": 70,
+            "events": [],
+            "energy": 100,
+            "position": 31
+          }
+        ]
+      },
+      {
+        "level": 10,
+        "team": "starter",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 71,
+        "playerHp": 936,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 10,
+        "team": "starter",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 39,
+        "playerHp": 1165,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 10,
+        "team": "starter",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 71,
+        "playerHp": 936,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 10,
+        "team": "muoi",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 83,
+        "playerHp": 741,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 10,
+        "team": "muoi",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "playerHp": 919,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 10,
+        "team": "muoi",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 83,
+        "playerHp": 741,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 10,
+        "team": "nhien",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 70,
+        "playerHp": 667,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 10,
+        "team": "nhien",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 48,
+        "playerHp": 985,
+        "interrupted": 0,
+        "maxGranted": 8,
+        "maxProcs": 1,
+        "maxWindowTargets": 1
+      },
+      {
+        "level": 10,
+        "team": "nhien",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 70,
+        "playerHp": 648,
+        "interrupted": 3,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 1
+      },
+      {
+        "level": 20,
+        "team": "starter",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 71,
+        "playerHp": 1325,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 20,
+        "team": "starter",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 39,
+        "playerHp": 1614,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 20,
+        "team": "starter",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 71,
+        "playerHp": 1325,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 20,
+        "team": "muoi",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 88,
+        "playerHp": 1028,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 20,
+        "team": "muoi",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "playerHp": 1401,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 20,
+        "team": "muoi",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 88,
+        "playerHp": 1028,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 20,
+        "team": "nhien",
+        "strategy": "auto",
+        "status": "player-win",
+        "tick": 69,
+        "playerHp": 899,
+        "interrupted": 0,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 0
+      },
+      {
+        "level": 20,
+        "team": "nhien",
+        "strategy": "ultimate",
+        "status": "player-win",
+        "tick": 48,
+        "playerHp": 1385,
+        "interrupted": 0,
+        "maxGranted": 8,
+        "maxProcs": 1,
+        "maxWindowTargets": 1
+      },
+      {
+        "level": 20,
+        "team": "nhien",
+        "strategy": "interrupt",
+        "status": "player-win",
+        "tick": 71,
+        "playerHp": 990,
+        "interrupted": 3,
+        "maxGranted": 0,
+        "maxProcs": 0,
+        "maxWindowTargets": 1
+      }
+    ],
+    "limits": [
+      "Provisional development seeds, not final balance or controlled DPS comparison; default and optional presets use different opponent distances",
+      "Explicit interrupt policy is practice counterplay, not product enemy AI",
+      "No collection/economy/save grants"
+    ]
+  },
+  "limits": [
+    "No full-character acceptance, collection or saved-party unlock",
+    "Desktop Chromium viewports, no physical devices/FPS/offline/human-listening/rights acceptance",
+    "Failed harness attempts retained in evidence narrative, not added to fresh PASS totals"
+  ]
+}

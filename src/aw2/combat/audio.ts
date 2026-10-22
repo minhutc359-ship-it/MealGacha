@@ -12,7 +12,17 @@ export function combatAudioCues(events: CombatEvent[], afterSerial: number) {
       const manifest = ROSTER_ASSETS[spiritId]
       if (!manifest || !["basic", "auto", "passive", "ultimate"].includes(slot))
         return []
-      if (spiritId === "aw2-muoi") {
+      if (spiritId === "aw2-nhien") {
+        if (
+          !(event.kind === "hit" && event.contactIndex !== undefined) &&
+          !(
+            event.statusEffect === "nhien-energy" &&
+            event.statusChange === "gain-energy" &&
+            (event.amount ?? 0) > 0
+          )
+        )
+          return []
+      } else if (spiritId === "aw2-muoi") {
         if (
           !(
             event.kind === "hit" ||

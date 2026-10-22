@@ -63,7 +63,7 @@ def build():
                         'fxPlacement': {'attachment': 'contact', 'layer': 'front', 'x': 220, 'y': -220, 'scale': .8 if slot == 'passive' else 1.05},
                         'trigger': 'preview only; future combat must confirm bounded energy from distinct targets; no per-frame proc' if slot == 'passive' else 'reference presentation only; each contact is a visual cue, not confirmed damage',
                         'audio': sound, 'projectile': None,
-                        'scope': 'reference assets only; actual Nhiên combat, leveling, collection and final numerical balance not implemented'}
+                        'scope': 'reference assets only; actual Nhiên development combat/leveling in007F; no collection or final numerical balance'}
     manifest = {'version': 1, 'spiritId': IDENTITY, 'displayName': 'Nhiên', 'artVariantId': 'base-v1',
                 'status': 'MOTION_REFERENCE_IMPLEMENTED', 'fullCharacterComplete': False,
                 'assets': assets, 'frames': frames, 'battle': battle,

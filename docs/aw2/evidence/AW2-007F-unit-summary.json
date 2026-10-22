@@ -1,0 +1,15 @@
+{
+  "task": "AW2-007F",
+  "base": "29f60f1428b48c4409a3adeaf33b9e51ec576576",
+  "status": "PASS",
+  "tests": 1107,
+  "passed": 1107,
+  "failed": 0,
+  "pending": 0,
+  "files": 107,
+  "aw2Tests": 314,
+  "aw2Files": 27,
+  "newNhienCombatCases": 32,
+  "command": "pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-007f-full-unit.json",
+  "observedDurationSeconds": 33.78
+}

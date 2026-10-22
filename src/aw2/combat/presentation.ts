@@ -27,6 +27,7 @@ export interface ConfirmedEffect {
   targetId?: string
   /** Actual recipients of one area pulse; append only within its rules tick. */
   targetIds?: string[]
+  actionId?: string
 }
 
 export interface ConfirmedContact {
@@ -146,6 +147,72 @@ export function reduceCombatPresentation(
     const lamSkill = event.skillId?.startsWith("aw2-lam:skill:")
     const mocSkill = event.skillId?.startsWith("aw2-moc-non:skill:")
     const muoiSkill = event.skillId?.startsWith("aw2-muoi:skill:")
+    const nhienSkill = event.skillId?.startsWith("aw2-nhien:skill:")
+    if (nhienSkill && event.sourceId) {
+      const slot = skillSlot(event.skillId)
+      if (["cast-start", "cast-commit"].includes(event.kind)) {
+        phase = "prepare"
+        if (slot === "basic") sourceState = "attack"
+      }
+      const confirmed =
+        (event.kind === "hit" && event.contactIndex !== undefined) ||
+        (event.statusEffect === "nhien-energy" &&
+          event.statusChange === "gain-energy" &&
+          (event.amount ?? 0) > 0)
+      if (confirmed && slot) {
+        phase = "confirmed"
+        contactIndex = event.contactIndex ?? 0
+        const effects = (next.effects[event.sourceId] ??= {})
+        const previous = effects[slot]
+        if (
+          slot === "auto" &&
+          previous?.tick === event.tick &&
+          previous.actionId === event.actionId
+        ) {
+          previous.targetIds = [
+            ...new Set([...(previous.targetIds ?? []), ...event.targetIds]),
+          ]
+          sourceState = null
+        } else {
+          sourceState =
+            slot === "ultimate"
+              ? "ultimate"
+              : slot === "basic"
+                ? "attack"
+                : slot === "auto"
+                  ? "cast"
+                  : "guard"
+          effects[slot] = {
+            serial: event.serial,
+            tick: event.tick,
+            skillId: event.skillId!,
+            index: contactIndex,
+            actionId: event.actionId,
+            ...(slot === "auto"
+              ? { targetIds: [...event.targetIds] }
+              : { targetId: event.targetIds[0] }),
+          }
+        }
+      }
+      if (event.statusEffect === "nhien-recovery") sourceState = null
+      const previous = next.actors[event.sourceId]
+      if (
+        slot === "passive" &&
+        previous?.tick === event.tick &&
+        previous.phase === "confirmed" &&
+        previous.skillId !== event.skillId
+      )
+        sourceState = null
+      if (event.kind === "interrupt") {
+        // Stop the cancelled anticipation/contact pose as well as its rules
+        // sequence. Previously confirmed finite FX keep their own clocks.
+        next.actors[event.sourceId] = {
+          state: "hit",
+          serial: event.serial,
+          tick: event.tick,
+        }
+      }
+    }
     if (muoiSkill && event.sourceId) {
       const slot = skillSlot(event.skillId)
       if (["cast-start", "cast-commit"].includes(event.kind)) phase = "prepare"

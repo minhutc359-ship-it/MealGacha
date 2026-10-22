@@ -16,7 +16,8 @@
 | AW2-004J | character/animation/story/mechanic/tester | Muối Đen64-cell reference package/roster preview | VERIFIED at7643ec4cb4e1e56d0c1013f7135a065e5ad3af36;73 affected units/106 fresh browser, full DoD OPEN |
 | AW2-007E | BA/mechanic/character/animation/tester | Actual bounded Muối rules/leveling/isolated practice/event binding | VERIFIED ate1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd;1068 full units/174 browser/24 simulations; collection/full DoD OPEN |
 | AW2-004K | character/story/animation/tester | Nhiên original64-cell reference package | VERIFIED at22877ba16e52d70d5447a5870452e3acebe114af;80 affected units/104 browser; actual kit/full DoD OPEN |
-| AW2-007F | BA/mechanic/character/tester | Actual Nhiên bounded melee/energy/recovery kit | READY; [card](tasks/AW2-007F.md), implementation NOT_RUN |
+| AW2-007F | BA/mechanic/character/animation/tester | Actual Nhiên bounded melee/energy/recovery kit | VERIFIED at IMPLEMENTATION_SHA;1107 full units/205 browser/36 simulations; collection/full DoD OPEN |
+| AW2-004L | character/story/animation/tester | Hải original reference package | READY; [card](tasks/AW2-004L.md), implementation NOT_RUN |
 | AW2-004I | character/animation/BA/tester | Original Forgotten Host reference art/presentation bound to actual boss events | VERIFIED reference at2684954;8 own poses/9 FX/portrait,49 affected units,39+39 boss/final12+12 nav/22 battle gates; full enemy gates OPEN |
 | AW2-004H | BA/animation/mechanic/tester | Five-starter arena/labels/status readability | VERIFIED presentation subset ataa0a3a6;43 affected units/89 compiled browser assertions; types/review build PASS; independent playtest/device open |
 | AW2-005 | mechanic | Five-tier gacha/pity/simulation | Simulation/proposal VERIFIED in AW2-013A; D11 PROPOSED, runtime draw/spend/save BACKLOG |
@@ -69,3 +70,5 @@ Owner tried TCG/Auto Chess but has not finished the journey; full end-to-end pla
 Current[007E](tasks/AW2-007E.md) VERIFIED ate1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd: actual bounded kit/leveling/practice; next[004K](tasks/AW2-004K.md) Nhiên reference; [004J](tasks/AW2-004J.md) VERIFIED at7643ec4cb4e1e56d0c1013f7135a065e5ad3af36,73 units/106 fresh browser. Six reference spirit sets/six absent,0/12 full DoD; starter team remains5. [Product plan](PRODUCT_PLAN.md), [gates](BOSS_CHARACTER_GATES.md). D16 direct delivery; no release/master/deploy.
 
 Current004K source`22877ba16e52d70d5447a5870452e3acebe114af` supersedes next004K and six-reference inventory above only:7 reference sets/5 absent,0/12 full DoD.80 affected units/104 browser PASS; next[007F](tasks/AW2-007F.md) actual Nhiên kit. Demo90%/product≈40% unchanged; ETA MVP6–10 weeks/release-ready web10–16 conditional, see[plan](DELIVERY_PLAN.md).
+
+Current007F source `IMPLEMENTATION_SHA` supersedes older next007F/six-combat statements: seven actual combat identities, same five-starter world/save and7reference sets/0fullDoD.1107 full units/205 fresh browser/36 simulations PASS. Next[004L Hải](tasks/AW2-004L.md); collection and independent gates remain open. Demo≈90%/product≈40% unchanged.

@@ -9,7 +9,7 @@ export const STARTER_SPIRIT_IDS = [
 ] as const
 export type StarterSpiritId = typeof STARTER_SPIRIT_IDS[number]
 
-export type CombatSpiritId = StarterSpiritId | "aw2-muoi"
+export type CombatSpiritId = StarterSpiritId | "aw2-muoi" | "aw2-nhien"
 
 export interface CombatKit {
   spiritId: CombatSpiritId
@@ -125,6 +125,20 @@ export const COMBAT_KITS: Record<CombatSpiritId, CombatKit> = {
     projectileTicks: 2,
     basicCooldown: 5,
     autoCooldown: 10,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
+  "aw2-nhien": {
+    spiritId: "aw2-nhien",
+    role: "striker",
+    hp: 170,
+    attack: 34,
+    defense: 11,
+    range: 9,
+    moveSpeed: 7,
+    projectileTicks: 0,
+    basicCooldown: 5,
+    autoCooldown: 9,
     autoCastTicks: 1,
     ultimateCastTicks: 2,
   },

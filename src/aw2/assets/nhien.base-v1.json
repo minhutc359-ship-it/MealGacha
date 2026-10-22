@@ -1655,7 +1655,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual Nhiên combat, leveling, collection and final numerical balance not implemented"
+      "scope": "reference assets only; actual Nhiên development combat/leveling in007F; no collection or final numerical balance"
     },
     "auto": {
       "id": "aw2-nhien:skill:auto",
@@ -1689,7 +1689,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual Nhiên combat, leveling, collection and final numerical balance not implemented"
+      "scope": "reference assets only; actual Nhiên development combat/leveling in007F; no collection or final numerical balance"
     },
     "passive": {
       "id": "aw2-nhien:skill:passive",
@@ -1723,7 +1723,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual Nhiên combat, leveling, collection and final numerical balance not implemented"
+      "scope": "reference assets only; actual Nhiên development combat/leveling in007F; no collection or final numerical balance"
     },
     "ultimate": {
       "id": "aw2-nhien:skill:ultimate",
@@ -1759,7 +1759,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual Nhiên combat, leveling, collection and final numerical balance not implemented"
+      "scope": "reference assets only; actual Nhiên development combat/leveling in007F; no collection or final numerical balance"
     }
   },
   "provenance": {

@@ -8,18 +8,21 @@ import {
   createCombatPresentation,
   createDevelopmentCombatSeed,
   experienceToReachLevel,
+  interruptCombatCast,
   reduceCombatPresentation,
   type CombatSpiritId,
   type CombatBattle,
   type CombatPresentation,
 } from "../../src/aw2/combat"
 
+export type BattlePractice = "muoi" | "nhien"
+
 export interface BattlePreviewSession {
   level: number
   battle: CombatBattle
   presentation: CombatPresentation
   message: string
-  practice?: "muoi"
+  practice?: BattlePractice
 }
 
 interface AdvanceCommand {
@@ -29,7 +32,7 @@ interface AdvanceCommand {
 
 interface ResetCommand {
   type: "reset"
-  practice?: "muoi"
+  practice?: BattlePractice
   level: number
 }
 
@@ -44,17 +47,23 @@ interface CleanseCommand {
   targetId: string
 }
 
-export type BattlePreviewCommand = AdvanceCommand | ResetCommand | UltimateCommand | CleanseCommand
+interface NhienInterruptCommand {
+  type: "interrupt-nhien"
+}
+
+export type BattlePreviewCommand = AdvanceCommand | ResetCommand | UltimateCommand | CleanseCommand | NhienInterruptCommand
 
 export function createBattlePreviewSession(
   level: number,
-  practice?: "muoi",
+  practice?: BattlePractice,
 ): BattlePreviewSession {
   const experience = experienceToReachLevel(level)
   const identities: readonly CombatSpiritId[] =
     practice === "muoi"
       ? [...STARTER_SPIRIT_IDS.slice(0, 4), "aw2-muoi"]
-      : STARTER_SPIRIT_IDS
+      : practice === "nhien"
+        ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-lua" ? "aw2-nhien" : id))
+        : STARTER_SPIRIT_IDS
   const players = identities.map((spiritId, slot) =>
     createDevelopmentCombatSeed(`player-${spiritId}`, spiritId, experience, {
       position: 12 + slot * 4,
@@ -138,6 +147,12 @@ export function reduceBattlePreviewSession(
     if (command.type === "advance") {
       battle = advanceCombatBattle(current.battle)
       if (command.manual) message = "Đã xử lý đúng một tick từ combat core."
+    } else if (command.type === "interrupt-nhien") {
+      if (current.practice !== "nhien")
+        throw Error("Ngắt Nhiên chỉ có trong trận luyện Nhiên.")
+      battle = interruptCombatCast(current.battle, "player-aw2-nhien")
+      message =
+        "Đối thủ thử ngắt chuỗi Nhiên; chỉ các điểm chạm đã xảy ra được giữ lại."
     } else if (command.type === "cleanse") {
       if (current.practice !== "muoi")
         throw Error("Tẩy dấu chỉ có trong trận luyện Muối Đen.")
@@ -153,9 +168,12 @@ export function reduceBattlePreviewSession(
           candidate.hp > 0 &&
           (!command.targetId || candidate.id === command.targetId),
       )
-      const needsEnemy = ["aw2-lua", "aw2-suong", "aw2-muoi"].includes(
-        actor?.spiritId ?? "",
-      )
+      const needsEnemy = [
+        "aw2-lua",
+        "aw2-suong",
+        "aw2-muoi",
+        "aw2-nhien",
+      ].includes(actor?.spiritId ?? "")
       battle = castCombatUltimate(
         current.battle,
         command.actorId,

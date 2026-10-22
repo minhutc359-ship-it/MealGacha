@@ -4,7 +4,7 @@ Historical roster review preserved by AW2-012: source `4d8f1c516f55a0ffd4bad9926
 Historical story review preserved by AW2-012: source `461c7cfaac658618d96ca8020ac99076fad9e35d`, handoff `238708cba7bb1402ec38828aa8748e35aee01ad9`; static namespace/reference checks PASS (six zones/eight NPCs/four quests, acyclic prerequisites), `git diff --check` PASS. [Original evidence](evidence/AW2-002.md). This describes the original proposal-only branch; current approval/runtime status comes from CANON/D14 and later integration records below.
 
 Statuses: NOT_RUN, PASS, FAIL, BLOCKED, STALE. PASS requires commit SHA, env, command, observed outcome. Prior PASS becomes STALE for affected changes. PR runs selective affected tests; full suite required before release/major cross-engine merge, and after high-impact save/shared engine changes.
-Owner refinement after004E: reuse original-SHA PASS when implementation/dependencies are unchanged; run changed/dependent cases only. Historical004G ran69 affected cases only. Current007E changes shared core and ran1068 tests/105 files; see fresh record below. Earlier007D1036 remains historical. Do not relabel historical full1007/471 as fresh or add counts. Full regression before release/major save/shared-engine changes remains required.
+Owner refinement after004E: reuse original-SHA PASS when implementation/dependencies are unchanged; run changed/dependent cases only. Historical004G ran69 affected cases only. Current007F changes shared core and ran1107 tests/107 files; see fresh record below. Earlier007E1068 remains historical. Earlier007D1036 remains historical. Do not relabel historical full1007/471 as fresh or add counts. Full regression before release/major save/shared-engine changes remains required.
 | Case | Trigger | Result |
 |---|---|---|
 | SAVE-01 separate AW2 dev namespace preserves legacy save | save/reset | PASS development —910b55b;1036 full units/47 fresh earned journey/26 boss gates preserve seeded stable bytes; deep unchanged reset cases retain original refs |
@@ -15,9 +15,10 @@ Owner refinement after004E: reuse original-SHA PASS when implementation/dependen
 | WORLD-01 navigation, collision, zone transfer, spawn | world | PASS development —910b55b;47 fresh compiled earned all-zone journey; authored maps/physical devices pending |
 | WORLD-02 NPC, quest, followers and interact range | world/quest | PASS development —910b55b;47 fresh earned journey with5 starters/portals/returns; authored art/device gates open |
 | QUEST-01 first 3 quests, starter unlock, puzzle retry and reload | quest/save/world | PASS development —910b55b;47 earned all4-quest/new boss/note/both-ending compiled checks,243 AW2 units |
-| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS ate1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd;1068 full units/27+27 Muối/41 boss/22 starter compiled; final caption-only source+compiled2 checks |
+| BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS at IMPLEMENTATION_SHA;1107 full units/30+30 Nhiên/27 Muối/41 boss/22 starter browser, all current shared consumers |
+| BATTLE-NHIEN-01 melee/multi-contact/recovery/target/energy/interrupt/events | combat/asset | PASS at IMPLEMENTATION_SHA;32 new cases inside1107,36 simulations,30+30 actual-practice browser; collection/full DoD OPEN |
 | BATTLE-MUOI-01 targeting/mark cap/cleanse/ordinary shield immunity/events | combat/asset | PASS ate1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd;19 new cases inside1068,24 simulations and actual27+27 practice gates; collection/final balance OPEN |
-| BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development —910b55b;26 targeted boss +47 earned compiled journey, real loss/win/retreat/failed write/note/endings; active-battle resume/native/production NOT_RUN |
+| BATTLE-02 battle return/save/reload, paused run | combat/save | PASS development at IMPLEMENTATION_SHA;1107 units/41 boss+55 earned-journey browser, authentic results/failure retry/exact writes; production/native resume NOT_RUN |
 | ART-MUOI-01 world4dir/HD8states/projectile/mark FX/preview | asset/roster | PASS reference at7643ec4cb4e1e56d0c1013f7135a065e5ad3af36;64 cells/32 HD,73 affected units/49+49 preview+8 compiled onboarding; actual Muối practice now VERIFIED007E; collection/full DoD OPEN |
 | ART-BOSS-01 original boss art/manifest/confirmed effects | asset/combat | PASS reference —2684954;17 safe cells/8 key poses/9 FX, hashes/repeat build, actual own left-facing/no recolor/cancel; full motion/world/audio/device/rights OPEN |
 | ART-01 12 pixel 4dir + HD 8states + unique FX manifests | asset | NOT_RUN as full 12-unit case; seven spirit reference sets verified below |
@@ -32,12 +33,32 @@ Owner refinement after004E: reuse original-SHA PASS when implementation/dependen
 | DUNGEON-01 three+ rooms, puzzle, chest, boss | dungeon | PASS debug development subset —a40217a;3 rooms/puzzle/once-only chest/real boss/return; full authored dungeon/balance/device pending |
 | MODE-01 TCG/Chess embedded and quick-entry safe | navigation | PASS embedded borrowed-practice/navigation subset —ff499a5;19 Chess/25 TCG cases,33+33 Chess/29+29 TCG/26+26 navigation browser checks; production mode balance/art/device/prizes/persistence NOT_RUN/out of scope |
 | CTRL-01 map shortcuts/native UI/focus/Enter direction | world/UI | PASS —cf0b394; unchanged12 policy cases in1007 full units and47+47 earned journeys |
-| DEMO-01 one fresh earned RPG/TCG/Chess journey/both endings | demo integration | PASS automated ate1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd;55 fresh compiled checks/all quests/both ending summaries/exact returns/no extra grants/mobile; owner mode smoke only, full player coverage NOT_RUN |
+| DEMO-01 one fresh earned RPG/TCG/Chess journey/both endings | demo integration | PASS automated at IMPLEMENTATION_SHA;55 fresh compiled checks/all quests/both endings/summary/exact returns/once-only grants; full human acceptance NOT_RUN |
 | PERF-01 30/60 FPS targets, cold-load, memory, offline | asset/runtime | NOT_RUN |
 | RIGHTS-01 art/audio provenance and legal check | asset | NOT_RUN |
 Retained shared-core baseline AW2-007D source `910b55bf977557f11be03111afa40283df0fbcf1`: PASS1036 unit tests/102 files (243 AW2,10 new), both typechecks/format/syntax/whitespace, review build107 files/34,718,397 bytes and stable build/release guard/isolation851 files/76 text artifacts.95 fresh compiled browser assertions:26 final boss +47 earned full journey/both endings +22 standalone battle. Nine actual-seed simulations PASS. Full units/47-case journey use final core before UI-only opacity/scroll-margin refinement; final dev types/build/26 boss gates cover the delta. Demo≈90% (9/10 groups), full product≈40% (rough35–45%) unchanged. Boss rules improve an already counted development group; full playtest/art/release gates remain open.5/5 starter reference-motion packages/160 cels,0/12 full DoD,7 absent sets. Owner feedback2026-10-22: “Đã chơi, chưa thấy lỗi chặn”. Record as a partial player smoke observation; version/device/covered quests/endings were not supplied. Full independent playtest gate remains NOT_RUN until coverage is recorded; do not infer complete acceptance from this response.
 
-## AW2-004K Nhiên reference package —2026-10-22
+## AW2-007F actual Nhiên kit —2026-10-22
+
+VERIFIED development subset. Source `IMPLEMENTATION_SHA`, base `29f60f1428b48c4409a3adeaf33b9e51ec576576`, branch game/adventure-world-2. Existing scoped WIP preserved and completed. Linux x64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chromium153.0.8010.36. No dependency changes; isolated profiles/no owner reset. Single-session BA/mechanic/character/animation/tester/scretary role reviews, no independent approvals.
+
+| Command/check | Status | Observed |
+|---|---|---|
+| Full unit JSON run, maxWorkers2 | PASS |1107 tests/107files;314 AW2/27files,32 new Nhiên cases;0fail/skip,33.78s |
+| Both typechecks/changed format/Python+MJS syntax/Git whitespace | PASS |Final source after cancellation-pose repair |
+| Actual simulation | PASS |36 runs:4 levels ×3 teams ×3 policies; finite energy/state/one result |
+| Nhiên source/compiled browser | PASS |30+30 indexed actual contacts/cues/targets/recovery/energy/audio/interrupt/reset/mobile/save bytes |
+| Compiled Muối/boss/default battle | PASS |27+41+22 directly affected shared-core/renderer consumers |
+| Compiled earned full journey | PASS |55 all-quest/modes/boss/note/both endings/summary/exact receipts/legacy preservation |
+| Review build/stable build/release guard/isolation | PASS |Review137files/46,419,961bytes;stable851files/177,450,422bytes, source/AW2 exclusions |
+| Original art/deep reset/concurrency/mode-detail browser | PASS reused |171 byte-identical paths; manifest scope wording only, original-SHA evidence not fresh |
+| Independent full DoD/playtest/listening/physical device/rights/release | NOT_RUN/OPEN |No acceptance inferred |
+
+205 fresh browser assertions,36 simulations; partial/focused/historical counts not added. Full1107 covers final runtime, later edits verifier/docs only. Two final captures opened plus one diagnostic. Sandbox Git DNS and Vite websocket EPERM resolved by elevated execution; simulation rerun not doubled. Initial source pose assertion failed on real hurt reaction; corrected counterplay assertion. Next attempt and diagnostic failed because unsupported Nhiên genuinely died before expected basic; final scenario uses legal ally ultimates and actual basic-index check. Final30+30PASS, no outcome injection/runtime weakening. [Commands/failures/paths](evidence/AW2-007F.md), [unit summary](evidence/AW2-007F-unit-summary.json), [JSON](evidence/AW2-007F-verification.json), [reuse proof](evidence/AW2-007F-reused-evidence.json).
+
+Seventh actual identity/level1–20/isolated max5practice verified; same five-starter world/save,7 references/0fullDoD. Collection/final balance/independent gates remain open. Demo≈90%/product≈40%/reference7/12≈58% unchanged. Next[004L Hải](tasks/AW2-004L.md); D16 commit/push/exact readback in[handoff](HANDOFF.md).
+
+## AW2-004K Nhiên reference package —2026-10-22 (historical)
 
 Source `22877ba16e52d70d5447a5870452e3acebe114af`, tree `a36a766f573ffbe921633d2e5bd372669d5e5fbe`, base `8797cc94006322db559ae56fcef05f36ef2990b7` trên `game/adventure-world-2`. D16 exact staged/remote tree và14 binary Git SHA matches PASS; expected-head/force=false publication, independent fetch/tree/index/ancestry/guarded local fast-forward PASS, clean source HEAD bằng fresh remote. Completion chỉ sửa tài liệu; final clean remote readback trước bàn giao. Linux x64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chromium153.0.8010.36/Python3.12.3/Pillow10.2.0; no dependencies changed.
 

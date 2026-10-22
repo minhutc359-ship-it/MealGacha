@@ -27,6 +27,23 @@ export interface MuoiMark {
   capTick: number
 }
 
+export interface NhienSequence {
+  id: string
+  slot: "basic" | "auto" | "ultimate"
+  targetId: string
+  facing: 1 | -1
+  firstContactTick: number
+  nextIndex: number
+}
+
+export interface NhienRhythm {
+  windowStartTick: number
+  targetIds: string[]
+  nextProcTick: number
+  procs: number
+  energyGranted: number
+}
+
 export interface CombatEvent {
   serial: number
   tick: number
@@ -39,9 +56,11 @@ export interface CombatEvent {
   projectileId?: string
   resolveTick?: number
   text?: string
-  statusEffect?: "muoi-mark" | "ordinary-shield"
-  statusChange?: "apply" | "refresh" | "remove" | "dispel"
+  statusEffect?: "muoi-mark" | "ordinary-shield" | "nhien-energy" | "nhien-recovery"
+  statusChange?: "apply" | "refresh" | "remove" | "dispel" | "gain-energy"
   expiresAtTick?: number
+  actionId?: string
+  contactIndex?: number
 }
 
 export interface CombatPassiveState {
@@ -60,6 +79,7 @@ export interface CombatCast {
   slot: "auto" | "ultimate"
   targetId: string | null
   commitTick: number
+  facing?: 1 | -1
 }
 
 export interface CombatEffect {
@@ -108,6 +128,10 @@ export interface CombatActor {
   damageDealt?: number
   debuffImmune?: boolean
   muoiMarks?: Record<string, MuoiMark>
+  summoned?: boolean
+  nhienSequence?: NhienSequence
+  nhienRecoveryUntilTick?: number
+  nhienRhythm?: NhienRhythm
   bossKit?: ForgottenHostState
 }
 
@@ -131,6 +155,7 @@ export interface CombatUnitSeed {
 
   bossProfile?: "aw2-forgotten-host-development-v2"
   debuffImmune?: boolean
+  summoned?: boolean
   controlImmune?: boolean
   position?: number
   hp?: number
