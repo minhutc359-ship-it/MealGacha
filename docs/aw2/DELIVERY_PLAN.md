@@ -53,4 +53,4 @@ Các gói còn lại: hoàn thiện12 kit/leveling/art/audio và cân bằng đ�
 
 Lần hiệu chỉnh tiếp theo: sau một nhân vật được nghiệm thu đầy đủ và một playtest hoàn chỉnh tới ending, ghi công sức thực/lỗi/chờ duyệt để thay khoảng hiện tại. Demo≈90%, sản phẩm≈40% (35–45%) giữ nguyên;7/12 reference availability≈58% là mẫu số riêng. [REPORT](REPORT.md), [Nhiên gates](NHIEN_CHARACTER_GATES.md), [next007F](tasks/AW2-007F.md).
 
-004K verification source`AW2_004K_SOURCE_REF`:80 affected units/104 browser/scoped assets/types/review build PASS; full1068/stable reused. ETA unchanged; reference cels do not close full-character gate.
+004K verification source`22877ba16e52d70d5447a5870452e3acebe114af`:80 affected units/104 browser/scoped assets/types/review build PASS; full1068/stable reused. ETA unchanged; reference cels do not close full-character gate.

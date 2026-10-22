@@ -13,7 +13,7 @@ Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực t
 
 ## AW2 development preview — expedition, TCG and Auto Chess practice
 
-**AW2-004K VERIFIED Nhiên reference package** at `AW2_004K_SOURCE_REF`.64cels/portrait/4cues; roster preview now7references. Nhiên actual kit/leveling/collection pending, six combat identities/five-starter world/save unchanged.80 affected units/104 browser/types/scoped asset audit/repeat/review isolation PASS; unchanged007E full1068/174/24/stable evidence retained, not repeated/counted fresh. Demo≈90%/product≈40%,7/12 reference sets≈58%,0/12 full DoD. Next[007F](tasks/AW2-007F.md) actual Nhiên kit. Conditional ETA MVP6–10weeks/release-ready web10–16weeks. [Evidence](evidence/AW2-004K.md), [gates](NHIEN_CHARACTER_GATES.md), [REPORT](REPORT.md), [LOCAL_TEST](LOCAL_TEST.md), [ETA assumptions](DELIVERY_PLAN.md).
+**AW2-004K VERIFIED Nhiên reference package** at `22877ba16e52d70d5447a5870452e3acebe114af`.64cels/portrait/4cues; roster preview now7references. Nhiên actual kit/leveling/collection pending, six combat identities/five-starter world/save unchanged.80 affected units/104 browser/types/scoped asset audit/repeat/review isolation PASS; unchanged007E full1068/174/24/stable evidence retained, not repeated/counted fresh. Demo≈90%/product≈40%,7/12 reference sets≈58%,0/12 full DoD. Next[007F](tasks/AW2-007F.md) actual Nhiên kit. Conditional ETA MVP6–10weeks/release-ready web10–16weeks. [Evidence](evidence/AW2-004K.md), [gates](NHIEN_CHARACTER_GATES.md), [REPORT](REPORT.md), [LOCAL_TEST](LOCAL_TEST.md), [ETA assumptions](DELIVERY_PLAN.md).
 
 ```sh
 pnpm install --frozen-lockfile

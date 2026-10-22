@@ -39,7 +39,7 @@ Retained shared-core baseline AW2-007D source `910b55bf977557f11be03111afa40283d
 
 ## AW2-004K Nhiên reference package —2026-10-22
 
-Source `AW2_004K_SOURCE_REF`, tree `AW2_004K_SOURCE_TREE`, base `8797cc94006322db559ae56fcef05f36ef2990b7` trên `game/adventure-world-2`. D16 exact staged tree/expected-head/force=false publication và independent fetch/tree/index/ancestry/local guarded fast-forward cần xác minh trước bàn giao; completion chỉ sửa tài liệu. Linux x64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chromium153.0.8010.36/Python3.12.3/Pillow10.2.0; no dependencies changed.
+Source `22877ba16e52d70d5447a5870452e3acebe114af`, tree `a36a766f573ffbe921633d2e5bd372669d5e5fbe`, base `8797cc94006322db559ae56fcef05f36ef2990b7` trên `game/adventure-world-2`. D16 exact staged/remote tree và14 binary Git SHA matches PASS; expected-head/force=false publication, independent fetch/tree/index/ancestry/guarded local fast-forward PASS, clean source HEAD bằng fresh remote. Completion chỉ sửa tài liệu; final clean remote readback trước bàn giao. Linux x64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chromium153.0.8010.36/Python3.12.3/Pillow10.2.0; no dependencies changed.
 
 | Command/check | Status | Observed |
 |---|---|---|

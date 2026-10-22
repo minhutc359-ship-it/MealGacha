@@ -4,7 +4,7 @@
 
 **Vừa hoàn tất004K:** Nhiên có bộ tham chiếu riêng: portrait,16 world,32 HD/tám trạng thái,16 FX và4 cue âm thanh. Basic có2 nhịp, ultimate3 cue riêng và recovery. Màn xem có7 nhân vật; Nhiên chưa có kỹ năng thật/leveling/collection. Muối vẫn có kit thật ở trận luyện riêng.
 
-**Kiểm chứng mới:**80 test/6file,104 bước browser, hai typecheck và review build PASS. Source browser giữ44PASS, chỉ chạy4 case còn lại sau sửa assertion alias; compiled48+onboarding8PASS. Giữ bằng chứng combat/save/mode/stable không đổi, không lặp full suite. [Chi tiết](evidence/AW2-004K.md), nguồn `AW2_004K_SOURCE_REF`.
+**Kiểm chứng mới:**80 test/6file,104 bước browser, hai typecheck và review build PASS. Source browser giữ44PASS, chỉ chạy4 case còn lại sau sửa assertion alias; compiled48+onboarding8PASS. Giữ bằng chứng combat/save/mode/stable không đổi, không lặp full suite. [Chi tiết](evidence/AW2-004K.md), nguồn `22877ba16e52d70d5447a5870452e3acebe114af`.
 
 | Phạm vi | Hiện tại | Thay đổi |
 |---|---|---|

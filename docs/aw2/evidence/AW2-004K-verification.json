@@ -1,7 +1,7 @@
 {
   "task": "AW2-004K",
-  "source": "AW2_004K_SOURCE_REF",
-  "tree": "AW2_004K_SOURCE_TREE",
+  "source": "22877ba16e52d70d5447a5870452e3acebe114af",
+  "tree": "a36a766f573ffbe921633d2e5bd372669d5e5fbe",
   "base": "8797cc94006322db559ae56fcef05f36ef2990b7",
   "status": "PASS_SCOPED_REFERENCE",
   "environment": {
@@ -336,10 +336,16 @@
   ],
   "captureScope": "Four actual browser captures viewed; supplemental peak adds no assertion count. Desktop viewports, not physical devices/human listening/final art acceptance.",
   "publication": {
-    "status": "PENDING_EXACT_TREE_READBACK",
-    "source": "AW2_004K_SOURCE_REF",
-    "tree": "AW2_004K_SOURCE_TREE",
+    "status": "PASS_EXACT_TREE_READBACK",
+    "source": "22877ba16e52d70d5447a5870452e3acebe114af",
+    "tree": "a36a766f573ffbe921633d2e5bd372669d5e5fbe",
     "base": "8797cc94006322db559ae56fcef05f36ef2990b7",
-    "branch": "game/adventure-world-2"
+    "branch": "game/adventure-world-2",
+    "remoteTreeEqualsStaged": true,
+    "binaryGitShaMatches": 14,
+    "expectedHeadForceFalse": true,
+    "independentFetchTreeIndexAncestryAndGuardedLocalFF": "PASS",
+    "cleanSourceHeadEqualsFreshRemote": true,
+    "completion": "docs-only descendant; final fresh clean local/remote SHA comparison before report"
   }
 }
