@@ -29,7 +29,13 @@ const directionLabels: Record<WorldDirection, string> = {
   up: "Lên",
 }
 
-export function AssetPreview({ manifest }: { manifest: SpiritAssetManifest }) {
+export function AssetPreview({
+  manifest,
+  combatImplemented = true,
+}: {
+  manifest: SpiritAssetManifest
+  combatImplemented?: boolean
+}) {
   const errors = validateAssetManifest(manifest)
   const character = ROSTER.find((unit) => unit.spiritId === manifest.spiritId)!
   const hasMotionCels = manifest.battle.idle.frames.length >= 4
@@ -63,6 +69,7 @@ export function AssetPreview({ manifest }: { manifest: SpiritAssetManifest }) {
       <p>
         <a href="/dev/aw2/world.html">Về world thử nghiệm</a> ·{" "}
         <a href="/dev/aw2/starters.html">Năm starter</a> ·{" "}
+        <a href="/dev/aw2/roster.html">Các bộ nhân vật</a> ·{" "}
         <a href={manifest.provenance.prompts}>Prompt và nguồn tạo ảnh</a>
       </p>
       {errors.length > 0 ? (
@@ -221,9 +228,11 @@ export function AssetPreview({ manifest }: { manifest: SpiritAssetManifest }) {
             duyệt pháp lý phát hành.
           </p>
           <p>
-            Đã có combat và cấp độ thử nghiệm. Bộ tham chiếu còn chờ duyệt mỹ
-            thuật, cân bằng, âm thanh, thiết bị và quyền sử dụng. Trang này
-            không truy cập save.
+            {combatImplemented
+              ? "Đã có combat và cấp độ thử nghiệm."
+              : "Nhân vật này mới có bộ hình tham chiếu; kỹ năng combat và thu thập chưa được triển khai."}{" "}
+            Bộ tham chiếu còn chờ duyệt mỹ thuật, cân bằng, âm thanh, thiết bị
+            và quyền sử dụng. Trang này không truy cập save.
           </p>
           <p>
             <a href={manifest.assets.reference.url}>Xem ảnh tham chiếu gốc</a>

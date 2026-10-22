@@ -1,0 +1,172 @@
+{
+  "task": "AW2-004J",
+  "spiritId": "aw2-muoi",
+  "date": "2026-10-22",
+  "generator": "OpenAI built-in image_gen",
+  "calls": 10,
+  "selected": 5,
+  "rejected": 5,
+  "externalReferences": [],
+  "promptSet": "prompts.json",
+  "processing": "preserved source RGBA; only measured crop metadata/foot anchors/logical scale and lossless WebP, no repaint/mask/mirror/pixel resize",
+  "audio": "original deterministic synthesis in build-aw2-muoi-assets.py using unchanged build-aw2-than-assets.py helper; no recordings; human listening NOT_RUN",
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "fullCharacterComplete": false,
+  "records": [
+    {
+      "callId": "AW2-004J-1",
+      "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+      "workspacePath": "dev/aw2/assets/muoi/base-v1/portrait.png",
+      "selected": true,
+      "reason": "selected original identity reference",
+      "inputReferences": []
+    },
+    {
+      "callId": "AW2-004J-2",
+      "sha256": "d418792641933761f61dc2745a339b6861a9dc1f74fa9f5c7ca16dc752f00dcd",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-b4c0a100-a3c5-4604-a4f7-c409b8b6df77.png",
+      "workspacePath": null,
+      "selected": false,
+      "reason": "attack release loses jar/turn continuity, replaced",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-3",
+      "sha256": "7d960517b7f25bbbc013f016356ba7ec6c48c8a783fc4f1783c87a65400d771d",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-02c56441-5c8f-4b4e-bea0-f8b02fd904b0.png",
+      "workspacePath": null,
+      "selected": false,
+      "reason": "unsafe row boundaries/no alpha-safe cut",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-4",
+      "sha256": "595d5b4d0c2180a77db1b5978b14b95d9a06bb059abe59be0244c0bccba6e025",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-bfb03b1e-cbc9-4399-9210-4598e98a2f51.png",
+      "workspacePath": "dev/aw2/assets/muoi/base-v1/world.png",
+      "selected": true,
+      "reason": "four authored directions, alpha-safe",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-5",
+      "sha256": "4af3bd1a616586d232f98b38148339971f2b9f72ef80f4194d3613dfb1f92527",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-606fb62e-c2ff-4d34-98c0-236853ef5d47.png",
+      "workspacePath": "dev/aw2/assets/muoi/base-v1/fx.png",
+      "selected": true,
+      "reason": "separate projectile/impact/mark/refresh/burst, alpha-safe",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-6",
+      "sha256": "f6579415ba7d4f76b2aa690919b12b19c9169f08c6f8a4ada446d0d838511408",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-510fc956-0efc-4885-905e-cfc3a7673f7e.png",
+      "workspacePath": null,
+      "selected": false,
+      "reason": "layout safe but attack release still lacks jar",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-b4c0a100-a3c5-4604-a4f7-c409b8b6df77.png",
+          "sha256": "d418792641933761f61dc2745a339b6861a9dc1f74fa9f5c7ca16dc752f00dcd",
+          "role": "edit target"
+        },
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-7",
+      "sha256": "926617cc259dc20960c6f5b48ae59b263420d5c7e045edf50a4d53e681c534c5",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-1635c1f3-7816-4d04-878f-9b44a85c6daa.png",
+      "workspacePath": null,
+      "selected": false,
+      "reason": "guard/ultimate cells still overlap alpha boundary",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-02c56441-5c8f-4b4e-bea0-f8b02fd904b0.png",
+          "sha256": "7d960517b7f25bbbc013f016356ba7ec6c48c8a783fc4f1783c87a65400d771d",
+          "role": "edit target"
+        },
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-8",
+      "sha256": "53fca6fe797f4a0b1727349806d188d6761db1d8183061581d59b23267d53f37",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-f4a8051d-22f8-416c-baf7-7bb76db11097.png",
+      "workspacePath": null,
+      "selected": false,
+      "reason": "regeneration cropped final row feet, unused",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-9",
+      "sha256": "2e7acfcc431aeda0ec11b85e24666c79d6cc752614f94b0a782af523b590bdeb",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-d4331e5a-5522-45d9-b625-26b65152457b.png",
+      "workspacePath": "dev/aw2/assets/muoi/base-v1/battle-motion-b-v3.png",
+      "selected": true,
+      "reason": "safe independently generated replacement, 16 cels",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-10",
+      "sha256": "6fe07a91890a6e56d312d3dd321fbd9c1576ab351580dc78bcc7605392eaee10",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-c9e49a0c-a7e0-4bd8-843c-b34c9663d69e.png",
+      "workspacePath": "dev/aw2/assets/muoi/base-v1/battle-motion-a-v3.png",
+      "selected": true,
+      "reason": "single-cel jar continuity repair, 16 safe cels",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-510fc956-0efc-4885-905e-cfc3a7673f7e.png",
+          "sha256": "f6579415ba7d4f76b2aa690919b12b19c9169f08c6f8a4ada446d0d838511408",
+          "role": "edit target"
+        }
+      ]
+    }
+  ]
+}

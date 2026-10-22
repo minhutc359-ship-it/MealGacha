@@ -5,7 +5,7 @@ import { cp, mkdir, readdir, writeFile } from "node:fs/promises"
 import { join } from "node:path"
 
 const root = fileURLToPath(new URL("../", import.meta.url))
-const entries = ["index", "world", "battle", "starters", "than"]
+const entries = ["index", "world", "battle", "starters", "than", "roster"]
 
 /** Separate review build. The stable production entry/config is unchanged. */
 export default defineConfig({

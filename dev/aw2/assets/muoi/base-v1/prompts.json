@@ -1,0 +1,190 @@
+{
+  "task": "AW2-004J",
+  "externalReferences": [],
+  "records": [
+    {
+      "callId": "AW2-004J-1",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: stylized-concept. Original anime game character identity reference portrait for Muối Đen, a seasoning debuffer spirit inspired by roasted salt, NOT an existing IP. A thoughtful forthright young adult male cook, gentle serious expression, short tousled charcoal hair with one ash-gray lock, amber-brown eyes, warm light-medium skin. Practical warm gray wrap tunic with rolled sleeves, ivory undershirt, charcoal apron-sash, subtle copper stitching, loose dark gray trousers, sturdy brown flat shoes. Distinct small asymmetric charcoal ceramic seasoning jar with off-center copper cap, always carried in LEFT hand; right hand has two fingers poised to sprinkle seasoning. Warm gray is costume, not moral or ethnic coding. HD anime linework/cel shading, clear silhouette, full body from head to toes centered with generous transparent margins, slightly three-quarter facing right. No weapons, no text/logos/watermarks, no scenery, no cast shadow/floor/particles. Transparent RGBA background. This project-owned design will be a reference for subsequent sprites.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+      "workspacePath": "dev/aw2/assets/muoi/base-v1/portrait.png",
+      "selected": true,
+      "reason": "selected original identity reference",
+      "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+      "inputReferences": []
+    },
+    {
+      "callId": "AW2-004J-2",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: stylized-concept. Create original HD anime game motion sprite sheet of Muối Đen. Supplied project-owned image is identity/costume reference ONLY. Preserve charcoal hair with ash lock, amber eyes, warm-gray wrap tunic/ivory sleeves, dark apron-sash/trousers, brown shoes, asymmetric charcoal seasoning jar with copper cap in LEFT hand. Three-quarter facing RIGHT. Exactly 4 columns x4 rows, sixteen isolated full-body cels on transparent RGBA. Row1 idle breathing four sequential poses; row2 walk right four distinct alternating foot-contact poses; row3 basic cast: gather seasoning, right-finger flick/release, extend/contact, recover; row4 targeted mark cast: prepare jar, short right-hand sign, point, recover. Four genuinely distinct sequential body/hand poses per row. Each body/sleeve/jar/shoe must fit central40% cell WIDTH and55% cell HEIGHT, at least50px fully transparent clear gutters around all sides. Consistent feet baselines, full head and both feet visible. Jar never switches hands. No FX, particles, shadows/floor/background, text/grid/labels/watermarks. Clean solid edges, no stray translucent specks. Do not copy commercial characters.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-b4c0a100-a3c5-4604-a4f7-c409b8b6df77.png",
+      "workspacePath": null,
+      "selected": false,
+      "reason": "attack release loses jar/turn continuity, replaced",
+      "sha256": "d418792641933761f61dc2745a339b6861a9dc1f74fa9f5c7ca16dc752f00dcd",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-3",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: stylized-concept. Original HD anime game motion sprite sheet of Muối Đen, using supplied project-owned portrait as identity/costume reference. Keep charcoal hair/ash lock, amber eyes, warm-gray wrap tunic/ivory rolled sleeves, charcoal apron-sash/trousers, brown shoes, asymmetric charcoal seasoning jar with copper cap in LEFT hand. Three-quarter facing RIGHT. Exactly4columns x4rows, sixteen isolated full-body sequential cels. Row1 hit: startle, recoil, regain balance, recover; row2 guard: raise forearm, brace, hold, lower; row3 ultimate: pinch seasoning, raise right hand, decisive downward sprinkle gesture, settle; row4 defeat: stagger, kneel, sit lowered, seated exhausted eyes closed. Full head/both feet/jar visible, jar always left-hand. Each cel central40% WIDTH and50% HEIGHT, at least50px fully transparent clear gutters on all sides. Consistent feet baselines/proportions/costume. No particles/FX, shadow/floor/scenery, text/labels/grid/watermarks/gore. Clean solid edges, no stray translucent specks. Four distinct sequential poses per row, no duplicate cels. Transparent RGBA background.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-02c56441-5c8f-4b4e-bea0-f8b02fd904b0.png",
+      "workspacePath": null,
+      "selected": false,
+      "reason": "unsafe row boundaries/no alpha-safe cut",
+      "sha256": "7d960517b7f25bbbc013f016356ba7ec6c48c8a783fc4f1783c87a65400d771d",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-4",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: stylized-concept. Original pixel/chibi overworld sprite sheet of Muối Đen from supplied project-owned identity portrait. Match short charcoal hair with ash forelock, warm-gray tunic, white rolled cuffs, dark apron/trousers, brown shoes, small asymmetric charcoal seasoning jar with copper cap always in LEFT hand. Exactly4columns by4rows, sixteen individual full-body chibi cels, transparent RGBA. Row1 facing DOWN/front: idle,left-step,passing,right-step. Row2 facing LEFT/profile: idle,left-step,passing,right-step. Row3 facing RIGHT/profile: idle,left-step,passing,right-step. Row4 facing UP/back: idle,left-step,passing,right-step. Same character/costume/scale; true separately drawn directions, not mirrored. Crisp pixel-style edges, simple readable shapes, two-and-half-head proportions. Each occupies central40% cell width and50% height, wide clear alpha gutters≥50px, feet entirely visible. No scenery/floor/shadow/particles, labels/grid/text/watermark.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-bfb03b1e-cbc9-4399-9210-4598e98a2f51.png",
+      "workspacePath": "dev/aw2/assets/muoi/base-v1/world.png",
+      "selected": true,
+      "reason": "four authored directions, alpha-safe",
+      "sha256": "595d5b4d0c2180a77db1b5978b14b95d9a06bb059abe59be0244c0bccba6e025",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-5",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: stylized-concept. Original transparent game VFX sprite sheet for Muối Đen's seasoning magic. Project portrait is palette/style reference only; draw NO character/jar/hands. Exactly4columns by4rows =16 isolated FX cels. Row1 BASIC: first2cels are small copper-and-ivory salt-grain projectiles flying RIGHT (compact seed then short streak); last2cels compact star-like salt impact then fading grains. Row2 TARGET MARK:4stages appear/form/pulse/fade of distinctive angular seasoning sigil, two nested offset diamonds plus three short copper notches, pale-ivory inner outline so recognizable without relying on dark color. Row3 MARK REFRESH:4stages smaller same sigil with one short circular refresh stroke, never duplicated across canvas. Row4 ULTIMATE:4stages pinch-sized copper burst gathering, bloom with broken outer shield-ring, impact shards, fade. Muted warm charcoal/copper/ivory, anime cel shaded crisp silhouette, finite compact effects, not huge fog/glow. All drawn pixels within central40% of EACH cell width and height; ≥60px fully transparent clear gutters. No background/floor/shadow, text/grid/labels/watermarks, game icons copied from elsewhere, or full-screen effects. True transparent RGBA.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-606fb62e-c2ff-4d34-98c0-236853ef5d47.png",
+      "workspacePath": "dev/aw2/assets/muoi/base-v1/fx.png",
+      "selected": true,
+      "reason": "separate projectile/impact/mark/refresh/burst, alpha-safe",
+      "sha256": "4af3bd1a616586d232f98b38148339971f2b9f72ef80f4194d3613dfb1f92527",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-6",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Edit target = supplied first motion sheet; supporting identity reference = supplied second portrait. Correct only continuity/layout problems while retaining Muối Đen's 4x4 sequence and costume. In row3column2 (release/flick), the LEFT hand MUST hold the same asymmetric charcoal seasoning jar with copper cap; RIGHT hand performs flick. Keep jar in LEFT hand in ALL16cels. Every pose three-quarter facing RIGHT, including row3column3 and row4column3; do not turn back to viewer. Maintain full-body four rows idle/walk/attack/mark-cast, four distinct sequential cels each. Shrink all figures to central40% width and50% height of each cell, generous alpha-clear gutters≥60px. No pixels near outer edges. Clean transparent RGBA, no stray translucent specks, no particles/shadows/grid/labels/text. Keep identity/gray-wrap/ivory-cuffs/apron/trousers/shoes unchanged. Original sheet reference, not paste cropped figures.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-510fc956-0efc-4885-905e-cfc3a7673f7e.png",
+      "workspacePath": null,
+      "selected": false,
+      "reason": "layout safe but attack release still lacks jar",
+      "sha256": "f6579415ba7d4f76b2aa690919b12b19c9169f08c6f8a4ada446d0d838511408",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-b4c0a100-a3c5-4604-a4f7-c409b8b6df77.png",
+          "sha256": "d418792641933761f61dc2745a339b6861a9dc1f74fa9f5c7ca16dc752f00dcd",
+          "role": "edit target"
+        },
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-7",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Edit target first image, identity reference second image. Preserve Muối Đen identity, gray tunic/ivory rolled sleeves, charcoal apron/trousers, brown shoes, charcoal jar with copper cap always LEFT hand. Repair layout ONLY by redrawing ALL16cels much smaller in a square4x4 evenly spaced sheet. Current poses overlap row boundaries. Each entire figure including raised arm/hair/feet/jar MUST fit central40% width and45% height of each cell; at least60px alpha-clear gaps on every side. Row1 hit reaction4beats, row2 guard4beats, row3 ultimate pinch/raise/sprinkle/recover4beats, row4 defeat stagger/kneel/lower/seated4beats. Three-quarter facing right consistently. Preserve all four distinct poses per row. Completely transparent background, no floor/shadows, no text/grid/labels, no FX. No stray translucent/colored specks or pixels near boundaries.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-1635c1f3-7816-4d04-878f-9b44a85c6daa.png",
+      "workspacePath": null,
+      "selected": false,
+      "reason": "guard/ultimate cells still overlap alpha boundary",
+      "sha256": "926617cc259dc20960c6f5b48ae59b263420d5c7e045edf50a4d53e681c534c5",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-02c56441-5c8f-4b4e-bea0-f8b02fd904b0.png",
+          "sha256": "7d960517b7f25bbbc013f016356ba7ec6c48c8a783fc4f1783c87a65400d771d",
+          "role": "edit target"
+        },
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-8",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Create a NEW transparent original anime motion sprite sheet using ONLY the supplied Muối Đen portrait for identity. 4columns x4rows. Full-body warm-gray cook with charcoal hair/ash lock, ivory cuffs, dark apron/trousers/brown shoes. In EVERY pose, LEFT hand firmly holds the visible dark ceramic jar WITH copper cap against left hip. LEFT arm never extends or releases jar. RIGHT arm is the ONLY moving casting arm. No spinning or turning away: face and chest remain3/4 RIGHT at all times. Row1 four distinct calm breathing poses; row2 four distinct walk cycle poses alternating feet; row3 four simple basic casting poses: right hand pinches above jar, right hand lifts slightly, right index/middle fingers flick toward right while left hand holds jar, right hand returns. Row4 four simple mark poses: right hand ready, draws a small sign, short rightward point, returns. Do NOT use acrobatic/wide poses. Every cel central40% cell width and50% cell height, huge clear gutters, full head/feet. Transparent RGBA, clean edges, no shadows/floor/magic/particles/text/grid. Preserve costume/jar clearly in ALL16cels.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-f4a8051d-22f8-416c-baf7-7bb76db11097.png",
+      "workspacePath": null,
+      "selected": false,
+      "reason": "regeneration cropped final row feet, unused",
+      "sha256": "53fca6fe797f4a0b1727349806d188d6761db1d8183061581d59b23267d53f37",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-9",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use project portrait ONLY as identity reference. Create brand-new sprite sheet, DO NOT copy the layout of previous sheets. Exactly4columns x4rows in a SQUARE transparent RGBA sheet with sixteen VERY SMALL fully isolated characters. Muối Đen warm-gray tunic/ivory cuffs/dark apron-trousers/brown shoes/ash-black hair. LEFT hand ALWAYS holds charcoal copper-capped jar at hip. Three-quarter facing right. Row1 hit reactions four small beats; row2 guard four small beats with right forearm; row3 ultimate four beats right hand pinch/lift to chest/sprinkle horizontally/settle; NO arm above head. Row4 defeat stagger/kneel/lower/seated. Every character entire silhouette fits central35% WIDTH and40% HEIGHT of each cell. More empty transparent space than character. At least80px transparent gutter around every sprite. Maintain huge VERTICAL gaps especially guard→ultimate. No shadows, floor, halo, glow, particles or background; no text/grid/labels. Clean solid edges. Four distinct body poses each row. Do not enlarge them to fill the sheet.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-d4331e5a-5522-45d9-b625-26b65152457b.png",
+      "workspacePath": "dev/aw2/assets/muoi/base-v1/battle-motion-b-v3.png",
+      "selected": true,
+      "reason": "safe independently generated replacement, 16 cels",
+      "sha256": "2e7acfcc431aeda0ec11b85e24666c79d6cc752614f94b0a782af523b590bdeb",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-22d0b44a-f1c8-4df2-ab8b-440e6af8c2db.png",
+          "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f",
+          "role": "identity/style reference"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004J-10",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Edit ONLY row3column2 of this supplied4x4 sprite sheet (count rows and columns starting at1). His left arm currently extends down/right with an empty hand. Change that LEFT arm/hand to cradle the same small charcoal ceramic seasoning jar with copper cap against his left hip, as in every neighboring cel. His RIGHT arm remains raised for the basic attack release. Keep the other15cels, cell spacing, transparent background, costume, face, feet and all sheet dimensions unchanged. No particles, shadows, background or text. This is a small continuity correction to one cel only.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-c9e49a0c-a7e0-4bd8-843c-b34c9663d69e.png",
+      "workspacePath": "dev/aw2/assets/muoi/base-v1/battle-motion-a-v3.png",
+      "selected": true,
+      "reason": "single-cel jar continuity repair, 16 safe cels",
+      "sha256": "6fe07a91890a6e56d312d3dd321fbd9c1576ab351580dc78bcc7605392eaee10",
+      "inputReferences": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-510fc956-0efc-4885-905e-cfc3a7673f7e.png",
+          "sha256": "f6579415ba7d4f76b2aa690919b12b19c9169f08c6f8a4ada446d0d838511408",
+          "role": "edit target"
+        }
+      ]
+    }
+  ]
+}

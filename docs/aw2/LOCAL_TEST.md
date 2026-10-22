@@ -42,3 +42,7 @@ pnpm exec vite preview --config dev/vite.aw2.config.ts --host 127.0.0.1 --port 8
 Mở http://127.0.0.1:8455/ để vào hành trình. Kho lưu của địa chỉ này độc lập với localhost:8443. Đây là bản xem thử local; map/NPC/boss, cân bằng, âm thanh, quyền sử dụng và playtest người dùng vẫn còn gate chưa hoàn tất. [Tiến độ](REPORT.md), [kiểm chứng](TEST_LEDGER.md).
 
 Sau004I, thử **Đến đấu trường** ở320/390px: boss có hình bát gốm/tạp dề riêng, không bị bảng cảnh báo che ở điểm nhảy. Quan sát ba chiêu/counter, pause/giảm chuyển động/rút lui; hình tác động không tự quyết định thắng. Màn tổng kết chỉ xuất hiện sau kết thúc đã lưu. [Gate boss](BOSS_CHARACTER_GATES.md), [worklist sản phẩm](PRODUCT_PLAN.md).
+
+## Muối Đen · bộ hình tham chiếu mới
+
+Mở http://localhost:8443/dev/aw2/roster.html?spirit=aw2-muoi sau `pnpm dev` để xem world bốn hướng,32 cel/tám trạng thái, bốn FX và âm thanh tự nguyện. Màn này không cấp nhân vật/ghi save; kỹ năng debuff và thu thập Muối Đen còn chờ007E và phần collection. Đội khởi đầu vẫn5 người.

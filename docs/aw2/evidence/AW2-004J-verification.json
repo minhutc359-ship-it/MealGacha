@@ -1,0 +1,427 @@
+{
+  "task": "AW2-004J",
+  "source": "AW2_004J_SOURCE_REF",
+  "tree": "AW2_004J_SOURCE_TREE",
+  "base": "c558faab1df548463abfe80e2cc4de4f7a67f479",
+  "status": "PASS_SCOPED_REFERENCE",
+  "environment": {
+    "os": "Linux7.0.0-38 x86_64",
+    "node": "22.23.2",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vitest": "5.0.1",
+    "vite": "8.0.5",
+    "chromium": "153.0.8010.36",
+    "python": "3.12.3",
+    "Pillow": "10.2.0"
+  },
+  "unit": {
+    "passed": 73,
+    "files": 5,
+    "new": 7,
+    "failed": 0,
+    "durationMs": 557,
+    "fullCurrentHead": "NOT_RUN"
+  },
+  "browserFresh": 106,
+  "reports": {
+    "source": {
+      "task": "AW2-004J",
+      "status": "PASS",
+      "flavor": "source",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Six authored references available without changing five-starter ownership",
+        "Muoi preview truthfully declares combat and collection pending",
+        "No opted-out sound played",
+        "idle: all four new cels render",
+        "idle: pause freezes the timeline",
+        "move: all four new cels render",
+        "move: pause freezes the timeline",
+        "attack: all four new cels render",
+        "attack: pause freezes the timeline",
+        "cast: all four new cels render",
+        "cast: pause freezes the timeline",
+        "hit: all four new cels render",
+        "hit: pause freezes the timeline",
+        "guard: all four new cels render",
+        "guard: pause freezes the timeline",
+        "ultimate: all four new cels render",
+        "ultimate: pause freezes the timeline",
+        "defeat: all four new cels render",
+        "defeat: pause freezes the timeline",
+        "Basic flight uses authored projectile cels before impact",
+        "Basic impact starts after flight ends",
+        "Basic impact expires and markers emit exactly once",
+        "basic: own FX and one opted-in cue",
+        "auto: own FX and one opted-in cue",
+        "passive: own FX and one opted-in cue",
+        "ultimate: own FX and one opted-in cue",
+        "Four unit-owned synthesized cues decode, without human listening claim",
+        "Opted-in audio only requests Muoi sources",
+        "Reduced motion is a static authored cel",
+        "World down: four authored cels cycle",
+        "World left: four authored cels cycle",
+        "World right: four authored cels cycle",
+        "World up: four authored cels cycle",
+        "Standing uses the chosen directional idle",
+        "All decoded source rectangles stay in bounds",
+        "320px: controls and page fit viewport",
+        "390px: controls and page fit viewport",
+        "768px: controls and page fit viewport",
+        "Shared preview retains starter combat-ready copy",
+        "Selection resets audio opt-in",
+        "Rapid selection returns to latest identity",
+        "All seeded stable and AW2 save bytes remain unchanged",
+        "No unexpected browser/resource errors",
+        "Missing world: explicit error and blank canvas",
+        "Missing fx: explicit error and blank canvas",
+        "Missing battle-motion-a-v3: explicit error and blank canvas",
+        "Missing battle-motion-b-v3: explicit error and blank canvas",
+        "System reduced-motion preference initializes control",
+        "Unknown/prototype query safely selects Muoi reference"
+      ],
+      "errors": [],
+      "audio": [
+        {
+          "slot": "basic",
+          "channels": 1,
+          "duration": 0.18
+        },
+        {
+          "slot": "auto",
+          "channels": 1,
+          "duration": 0.32
+        },
+        {
+          "slot": "passive",
+          "channels": 1,
+          "duration": 0.22
+        },
+        {
+          "slot": "ultimate",
+          "channels": 1,
+          "duration": 0.46
+        }
+      ],
+      "timelines": {
+        "idle": [
+          "battle.idle.0",
+          "battle.idle.1",
+          "battle.idle.2",
+          "battle.idle.3"
+        ],
+        "move": [
+          "battle.move.0",
+          "battle.move.1",
+          "battle.move.2",
+          "battle.move.3"
+        ],
+        "attack": [
+          "battle.attack.0",
+          "battle.attack.1",
+          "battle.attack.2",
+          "battle.attack.3"
+        ],
+        "cast": [
+          "battle.cast.0",
+          "battle.cast.1",
+          "battle.cast.2",
+          "battle.cast.3"
+        ],
+        "hit": [
+          "battle.hit.0",
+          "battle.hit.1",
+          "battle.hit.2",
+          "battle.hit.3"
+        ],
+        "guard": [
+          "battle.guard.0",
+          "battle.guard.1",
+          "battle.guard.2",
+          "battle.guard.3"
+        ],
+        "ultimate": [
+          "battle.ultimate.0",
+          "battle.ultimate.1",
+          "battle.ultimate.2",
+          "battle.ultimate.3"
+        ],
+        "defeat": [
+          "battle.defeat.0",
+          "battle.defeat.1",
+          "battle.defeat.2",
+          "battle.defeat.3"
+        ]
+      },
+      "requested": [
+        "/src/aw2/assets/starters.ts",
+        "/src/aw2/assets/roster.ts",
+        "/src/aw2/assets/lua.base-v1.json",
+        "/src/aw2/assets/moc-non.base-v1.json",
+        "/src/aw2/assets/lam.base-v1.json",
+        "/src/aw2/assets/suong.base-v1.json",
+        "/src/aw2/assets/muoi.base-v1.json",
+        "/src/aw2/assets/types.ts",
+        "/src/aw2/assets/animation.ts",
+        "/src/aw2/assets/than.ts",
+        "/src/aw2/assets/than.base-v1.json",
+        "/src/aw2/assets/playback.ts",
+        "/dev/aw2/assets/muoi/base-v1/portrait.webp",
+        "/dev/aw2/assets/muoi/base-v1/world.webp",
+        "/dev/aw2/assets/muoi/base-v1/battle-motion-a-v3.webp",
+        "/dev/aw2/assets/muoi/base-v1/fx.webp",
+        "/dev/aw2/assets/muoi/base-v1/battle-motion-b-v3.webp",
+        "/dev/aw2/assets/muoi/base-v1/basic.wav",
+        "/dev/aw2/assets/muoi/base-v1/auto.wav",
+        "/dev/aw2/assets/muoi/base-v1/passive.wav",
+        "/dev/aw2/assets/muoi/base-v1/ultimate.wav",
+        "/dev/aw2/assets/than/base-v1/world.webp",
+        "/dev/aw2/assets/than/base-v1/battle.webp",
+        "/dev/aw2/assets/than/base-v1/fx.webp",
+        "/dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp",
+        "/dev/aw2/assets/than/base-v1/battle-motion-b-v2.webp",
+        "/dev/aw2/assets/than/base-v1/portrait.webp",
+        "/dev/aw2/assets/lua/base-v1/world.webp",
+        "/dev/aw2/assets/lua/base-v1/fx.webp",
+        "/dev/aw2/assets/lua/base-v1/battle.webp",
+        "/dev/aw2/assets/lua/base-v1/battle-motion-a-v1.webp",
+        "/dev/aw2/assets/lua/base-v1/battle-motion-b-v2.webp",
+        "/dev/aw2/assets/lua/base-v1/portrait.webp"
+      ],
+      "limits": [
+        "Asset preview only; Muoi combat/collection NOT_IMPLEMENTED",
+        "No physical device/human listening/legal/full-character acceptance"
+      ]
+    },
+    "compiled": {
+      "task": "AW2-004J",
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Six authored references available without changing five-starter ownership",
+        "Muoi preview truthfully declares combat and collection pending",
+        "No opted-out sound played",
+        "idle: all four new cels render",
+        "idle: pause freezes the timeline",
+        "move: all four new cels render",
+        "move: pause freezes the timeline",
+        "attack: all four new cels render",
+        "attack: pause freezes the timeline",
+        "cast: all four new cels render",
+        "cast: pause freezes the timeline",
+        "hit: all four new cels render",
+        "hit: pause freezes the timeline",
+        "guard: all four new cels render",
+        "guard: pause freezes the timeline",
+        "ultimate: all four new cels render",
+        "ultimate: pause freezes the timeline",
+        "defeat: all four new cels render",
+        "defeat: pause freezes the timeline",
+        "Basic flight uses authored projectile cels before impact",
+        "Basic impact starts after flight ends",
+        "Basic impact expires and markers emit exactly once",
+        "basic: own FX and one opted-in cue",
+        "auto: own FX and one opted-in cue",
+        "passive: own FX and one opted-in cue",
+        "ultimate: own FX and one opted-in cue",
+        "Four unit-owned synthesized cues decode, without human listening claim",
+        "Opted-in audio only requests Muoi sources",
+        "Reduced motion is a static authored cel",
+        "World down: four authored cels cycle",
+        "World left: four authored cels cycle",
+        "World right: four authored cels cycle",
+        "World up: four authored cels cycle",
+        "Standing uses the chosen directional idle",
+        "All decoded source rectangles stay in bounds",
+        "320px: controls and page fit viewport",
+        "390px: controls and page fit viewport",
+        "768px: controls and page fit viewport",
+        "Shared preview retains starter combat-ready copy",
+        "Selection resets audio opt-in",
+        "Rapid selection returns to latest identity",
+        "All seeded stable and AW2 save bytes remain unchanged",
+        "No unexpected browser/resource errors",
+        "Missing world: explicit error and blank canvas",
+        "Missing fx: explicit error and blank canvas",
+        "Missing battle-motion-a-v3: explicit error and blank canvas",
+        "Missing battle-motion-b-v3: explicit error and blank canvas",
+        "System reduced-motion preference initializes control",
+        "Unknown/prototype query safely selects Muoi reference"
+      ],
+      "errors": [],
+      "audio": [
+        {
+          "slot": "basic",
+          "channels": 1,
+          "duration": 0.18
+        },
+        {
+          "slot": "auto",
+          "channels": 1,
+          "duration": 0.32
+        },
+        {
+          "slot": "passive",
+          "channels": 1,
+          "duration": 0.22
+        },
+        {
+          "slot": "ultimate",
+          "channels": 1,
+          "duration": 0.46
+        }
+      ],
+      "timelines": {
+        "idle": [
+          "battle.idle.0",
+          "battle.idle.1",
+          "battle.idle.2",
+          "battle.idle.3"
+        ],
+        "move": [
+          "battle.move.0",
+          "battle.move.1",
+          "battle.move.2",
+          "battle.move.3"
+        ],
+        "attack": [
+          "battle.attack.0",
+          "battle.attack.1",
+          "battle.attack.2",
+          "battle.attack.3"
+        ],
+        "cast": [
+          "battle.cast.0",
+          "battle.cast.1",
+          "battle.cast.2",
+          "battle.cast.3"
+        ],
+        "hit": [
+          "battle.hit.0",
+          "battle.hit.1",
+          "battle.hit.2",
+          "battle.hit.3"
+        ],
+        "guard": [
+          "battle.guard.0",
+          "battle.guard.1",
+          "battle.guard.2",
+          "battle.guard.3"
+        ],
+        "ultimate": [
+          "battle.ultimate.0",
+          "battle.ultimate.1",
+          "battle.ultimate.2",
+          "battle.ultimate.3"
+        ],
+        "defeat": [
+          "battle.defeat.0",
+          "battle.defeat.1",
+          "battle.defeat.2",
+          "battle.defeat.3"
+        ]
+      },
+      "requested": [
+        "/dev/aw2/assets/muoi/base-v1/portrait.webp",
+        "/dev/aw2/assets/muoi/base-v1/world.webp",
+        "/dev/aw2/assets/muoi/base-v1/battle-motion-a-v3.webp",
+        "/dev/aw2/assets/muoi/base-v1/fx.webp",
+        "/dev/aw2/assets/muoi/base-v1/battle-motion-b-v3.webp",
+        "/dev/aw2/assets/muoi/base-v1/basic.wav",
+        "/dev/aw2/assets/muoi/base-v1/auto.wav",
+        "/dev/aw2/assets/muoi/base-v1/passive.wav",
+        "/dev/aw2/assets/muoi/base-v1/ultimate.wav",
+        "/dev/aw2/assets/than/base-v1/battle.webp",
+        "/dev/aw2/assets/than/base-v1/world.webp",
+        "/dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp",
+        "/dev/aw2/assets/than/base-v1/fx.webp",
+        "/dev/aw2/assets/than/base-v1/battle-motion-b-v2.webp",
+        "/dev/aw2/assets/than/base-v1/portrait.webp",
+        "/dev/aw2/assets/lua/base-v1/world.webp",
+        "/dev/aw2/assets/lua/base-v1/battle-motion-a-v1.webp",
+        "/dev/aw2/assets/lua/base-v1/fx.webp",
+        "/dev/aw2/assets/lua/base-v1/battle-motion-b-v2.webp",
+        "/dev/aw2/assets/lua/base-v1/battle.webp",
+        "/dev/aw2/assets/lua/base-v1/portrait.webp"
+      ],
+      "limits": [
+        "Asset preview only; Muoi combat/collection NOT_IMPLEMENTED",
+        "No physical device/human listening/legal/full-character acceptance"
+      ]
+    },
+    "compiled-consumer": {
+      "status": "PASS",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Static root opens the compiled RPG world",
+        "Built intro grants five starters and one 30XP reward",
+        "Built save survives reload byte-identically",
+        "Standalone compiled battle loads all atlases",
+        "Compiled starter preview is reachable",
+        "Review tools leave progression and stable save untouched",
+        "No failed resources or console/page errors",
+        "Review bundle excludes source PNG/code/maps/archives"
+      ],
+      "errors": [],
+      "files": 125,
+      "bytes": 41629173
+    }
+  },
+  "assetBuild": {
+    "task": "AW2-004J",
+    "status": "PASS",
+    "frames": 64,
+    "runtimeWebpBytes": 4622842,
+    "decodedRGBA": 31455136,
+    "maxEdgeAlpha": 2
+  },
+  "fileAudit": {
+    "task": "AW2-004J",
+    "spiritId": "aw2-muoi",
+    "status": "PASS",
+    "checks": [
+      "portrait: bytes/hash/dimensions/real alpha",
+      "world: bytes/hash/dimensions/real alpha",
+      "battle-motion-a-v3: bytes/hash/dimensions/real alpha",
+      "battle-motion-b-v3: bytes/hash/dimensions/real alpha",
+      "fx: bytes/hash/dimensions/real alpha",
+      "battle: bytes/hash/dimensions/real alpha",
+      "reference: bytes/hash/dimensions/real alpha",
+      "64 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+      "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+      "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+      "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+      "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+    ],
+    "webpBytes": 4622842
+  },
+  "builds": {
+    "review": {
+      "files": 125,
+      "textFiles": 43,
+      "bytes": 41629173,
+      "forbiddenSourceFormats": 0
+    },
+    "stable": {
+      "files": 851,
+      "textFiles": 49,
+      "bytes": 177450422,
+      "releaseGuard": "PASS",
+      "aw2Exclusion": "PASS"
+    }
+  },
+  "priorFailures": "Initial dev typecheck FAIL because Object.hasOwn is unavailable in its target lib; replaced with Object.prototype.hasOwnProperty.call, preserving prototype-query safety, then reran dev typecheck only PASS. Root typecheck/unit cases already passed and were not repeated. First unchanged-boundary audit referenced nonexistent world/engine.ts; corrected to tracked world rule paths and final143-path proof PASS. Five unsafe/continuity image attempts rejected as above; no failed asset enters runtime. No unit/browser assertion failure. Review build rerun after final UI compatibility fix, before final browser runs; no builder/source mutations during browser verification.",
+  "reuse": "Prior full1036-unit/core/save evidence at910b55bf977557f11be03111afa40283df0fbcf1,55 earned demo assertions atb836a82f3cb8babf1087e6ac32603de1f83336de and boss presentation at26849546825131a5c448645274880977caa9d230 retain source-bound PASS within unchanged implementation boundaries.143 paths match base, including core/save/world rules/economy/modes/original starter/boss assets/helpers and stable entry/dependencies; only roster availability metadata changes. Changed roster consumers are covered by world/save units and a narrow fresh onboarding/build browser smoke. No full quest/mode/boss journey or unrelated original asset suite rerun/counted fresh. Full regression remains due before release or shared-engine/save changes (including next007E).",
+  "progress": "Demo9/10≈90% and full product≈40% (rough35–45%) unchanged. Authored spirit reference sets6/12=50% (was5/12), six absent; starter motion5/5=100%/160 cels unchanged; Muối adds32 cels separately.0/12 full DoD. One reference package does not close actual kit/leveling/collection/independent art/audio/device/rights/release gates or supply accepted-character production velocity.",
+  "capturesOpened": [
+    "source-attack",
+    "source-ultimate",
+    "source-mobile",
+    "compiled-peak-basic",
+    "compiled-peak-auto",
+    "compiled-peak-ultimate"
+  ],
+  "captureScope": "Six captures opened; three supplemental peak captures are visual inspection only, not additional test counts.320/390/768 are desktop viewports, not physical devices."
+}

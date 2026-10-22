@@ -5,7 +5,7 @@
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |
 | AW2-003 | character/mechanic | Owner approved initial 12 identities/tier/kit/starter, D10/D13/D15 | MERGED approved direction + original review history; full character DoD pending |
-| AW2-004 | animation/character | 12 world + HD + VFX sets; five starters source f6a3b66 implemented | IN_PROGRESS: 5 reference sets,5 starter motion packages,7 NOT_CREATED; full character gates pending |
+| AW2-004 | animation/character | 12 world + HD + VFX sets; five starters source f6a3b66 implemented | IN_PROGRESS: 6 reference sets,5 starter motion packages plus Muối32cels,6 NOT_CREATED; full character gates pending |
 | AW2-004A | animation/character/tester | Than 4-way world, 8 HD key poses/tracks, portrait, FX/audio/provenance and preview | MERGED verified reference pipeline; not full character/release |
 | AW2-004B | animation/character/tester | Four other starters, ranged projectile art, repeated cues and shared selector | MERGED verified reference sets, integration source 0e8fb7a; not full character/release |
 | AW2-004C | character/animation/mechanic/tester | Than32-cel/eight-state motion, shared playback/FX ownership and measured full-DoD gaps | VERIFIED scoped reference milestone at f85e1e7;989 tests /377 browser checks; full-character gates OPEN |
@@ -13,7 +13,8 @@
 | AW2-004E | character/animation/mechanic/tester | Lam Lam32-cel motion/confirmed impacts and two-pulse healing | VERIFIED reference subset at cf0b394;1007 units/471 browser checks; full-character gates OPEN |
 | AW2-004F | character/animation/mechanic/tester | Mộc Non32-cel motion/confirmed target support and grouped ultimate | VERIFIED reference subset at1803347;62 affected units/88 fresh browser checks, unchanged evidence reused; full DoD OPEN |
 | AW2-004G | character/animation/mechanic/tester | Sương Lành32-cel motion/confirmed repeated-zone presentation/local guide | VERIFIED reference subset at 489ce7162df7db11b1b1954d0b0a62b4d073fe17;69 affected units/113 fresh browser checks; full DoD OPEN |
-| AW2-004J | character/animation/story/mechanic/tester | Muối Đen first missing reference asset package | READY; [card](tasks/AW2-004J.md), implementation NOT_RUN; later007E kit needed |
+| AW2-004J | character/animation/story/mechanic/tester | Muối Đen64-cell reference package/roster preview | VERIFIED atAW2_004J_SOURCE_REF;73 affected units/106 fresh browser, full DoD OPEN |
+| AW2-007E | BA/mechanic/character/tester | Bounded Muối debuff/refresh/removable-protection rules | READY; [card](tasks/AW2-007E.md), implementation NOT_RUN; shared-core full regression required |
 | AW2-004I | character/animation/BA/tester | Original Forgotten Host reference art/presentation bound to actual boss events | VERIFIED reference at2684954;8 own poses/9 FX/portrait,49 affected units,39+39 boss/final12+12 nav/22 battle gates; full enemy gates OPEN |
 | AW2-004H | BA/animation/mechanic/tester | Five-starter arena/labels/status readability | VERIFIED presentation subset ataa0a3a6;43 affected units/89 compiled browser assertions; types/review build PASS; independent playtest/device open |
 | AW2-005 | mechanic | Five-tier gacha/pity/simulation | Simulation/proposal VERIFIED in AW2-013A; D11 PROPOSED, runtime draw/spend/save BACKLOG |
@@ -63,4 +64,4 @@ Current modes: [AW2-009A](tasks/AW2-009A.md) navigation, [AW2-009B](tasks/AW2-00
 
 Owner tried TCG/Auto Chess but has not finished the journey; full end-to-end player acceptance remains NOT_RUN. Own boss motion/world object/audio, final balance, physical devices/FPS/offline/listening/rights/native/production-save/release gates remain open. fullEnemyComplete=false, no collectible identity/rarity change, no Vân identification. D11 PROPOSED/D12 OPEN. Demo9/10≈90%, product≈40% (rough35–45%) unchanged: this is one reference-presentation deliverable, not a closed independent-playtest/full-character/release gate.5/5 starter motion/160 cels,0/12 full DoD/7 absent spirit sets remain.
 
-Next004J Muối Đen reference assets, then007E actual debuff kit; five starters/seven absent collectible sets/full DoD remain. [Product plan](PRODUCT_PLAN.md), [gates](BOSS_CHARACTER_GATES.md). D16 direct delivery; no release/master/deploy.
+Next[007E](tasks/AW2-007E.md) actual bounded Muối kit; [004J](tasks/AW2-004J.md) VERIFIED atAW2_004J_SOURCE_REF,73 units/106 fresh browser. Six reference spirit sets/six absent,0/12 full DoD; starter team remains5. [Product plan](PRODUCT_PLAN.md), [gates](BOSS_CHARACTER_GATES.md). D16 direct delivery; no release/master/deploy.

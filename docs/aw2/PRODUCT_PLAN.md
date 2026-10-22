@@ -7,7 +7,7 @@ Demo kỹ thuật có luồng mới từ save trống qua4 quest, hai mode, kinh
 | Ưu tiên | Deliverable cụ thể | Điều kiện hoàn tất |
 |---|---|---|
 |1 · AW2-004I VERIFIED reference at2684954 | Boss có8 tư thế HD và hiệu ứng3 chiêu riêng, thay hình Than mượn | Nguồn/provenance/manifest đo thật; actual-event binding/không tự gây damage; pause/reduced/terminal/mobile/source+compiled PASS |
-|2 · AW2-004J, rồi mechanic007E | Muối Đen, bộ đầu tiên trong7 nhân vật còn thiếu | Giữ aw2-muoi/R/Muối rang và kit đã duyệt; task card riêng cho rules,4-way world/eight-state HD/portrait/FX/audio/leveling/QA; không chỉ portrait |
+|2 · AW2-004J VERIFIED atAW2_004J_SOURCE_REF, next007E | Muối Đen: bộ tham chiếu64 ô đã có, kit thật tiếp theo | Giữ aw2-muoi/R/Muối rang và kit đã duyệt; task card riêng cho rules,4-way world/eight-state HD/portrait/FX/audio/leveling/QA; không chỉ portrait |
 |3 · các owner | Lần lượt Nhiên/Hải/Liên/Mộc/Bách/Vân và hoàn thiện5 starter |12 ledger full DoD có chứng cứ; không biến số cel thành tỷ lệ nhân vật hoàn chỉnh |
 |4 · story/animation/mechanic | Art map/NPC/dungeon riêng và đọc đường/counter rõ | Giữ6 zone/8 NPC/4 quest đã duyệt; nghiệm thu điều hướng/persistence/đường về/thiết bị |
 |5 · mechanic/BA | Collection/team/mode tiến triển và kinh tế sản phẩm | Có yêu cầu rõ, migrations an toàn, chống double grant; runtime gacha phải chờ owner duyệt D11; practice hiện tại vẫn không tiêu/thưởng RPG |
@@ -17,4 +17,6 @@ Mỗi task làm trực tiếp trên game/adventure-world-2, kiểm tra phần ch
 
 Sản phẩm≈40% (ước lượng35–45%),0/12 full DoD; chỉ tăng khi deliverable/gate tương ứng thật sự đóng. Demo9/10 và mẫu số sản phẩm tách biệt. [Tiến độ](PROGRESS.md), [board](BACKLOG.md), [demo](DEMO.md), [hướng dẫn local](LOCAL_TEST.md), [boss](BOSS_PRACTICE.md).
 
-Mốc product đầu tiên004I đã giao bộ boss tham chiếu riêng, chưa đóng fullEnemy/character gates. Tiếp tục004J Muối Đen, kit thật007E phải kiểm chứng riêng trước actual combat; không mở gacha hoặc sửa starter-save contract trong asset task. [Bằng chứng](evidence/AW2-004I.md).
+Mốc product đầu tiên004I đã giao bộ boss tham chiếu riêng, chưa đóng fullEnemy/character gates. 004J Muối Đen đã giao bộ tham chiếu riêng; tiếp tục[007E](tasks/AW2-007E.md), kit thật phải kiểm chứng riêng trước actual combat; không mở gacha hoặc sửa starter-save contract trong asset task. [Bằng chứng](evidence/AW2-004I.md).
+
+Current004J source `AW2_004J_SOURCE_REF`:73 affected units/106 fresh browser/type/build/isolation PASS;6 spirit references/6 absent,0/12 full DoD. Demo90%/product≈40% unchanged. Muối art availability is not collection or actual kit; unchanged full1036/earned55/boss evidence retains original refs. [Evidence](evidence/AW2-004J.md), [gates](MUOI_CHARACTER_GATES.md).
