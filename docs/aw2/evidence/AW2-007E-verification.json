@@ -1,7 +1,7 @@
 {
   "task": "AW2-007E",
-  "source": "AW2_007E_SOURCE_REF",
-  "tree": "AW2_007E_SOURCE_TREE",
+  "source": "e1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd",
+  "tree": "905232b76ff275863452cb371ccfa5908eaef86d",
   "base": "cef0db1fff89bbc0f8016f055732761da6c2ea31",
   "status": "PASS_SCOPED_DEVELOPMENT_KIT",
   "environment": {
@@ -1916,11 +1916,16 @@
     "compiled-peak-actual-ultimate.png"
   ],
   "publication": {
-    "status": "PENDING_EXACT_TREE_READBACK",
-    "source": "AW2_007E_SOURCE_REF",
-    "tree": "AW2_007E_SOURCE_TREE",
+    "status": "PASS_EXACT_TREE_READBACK",
+    "source": "e1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd",
+    "tree": "905232b76ff275863452cb371ccfa5908eaef86d",
     "base": "cef0db1fff89bbc0f8016f055732761da6c2ea31",
-    "branch": "game/adventure-world-2"
+    "branch": "game/adventure-world-2",
+    "remoteTreeEqualsStaged": true,
+    "expectedHeadForceFalse": true,
+    "independentFetchTreeIndexAncestryAndGuardedLocalFF": "PASS",
+    "cleanSourceHeadEqualsFreshRemote": true,
+    "completion": "docs-only descendant; final fresh clean SHA comparison before report"
   },
   "priorFailures": "Focused16 initially14PASS/2FAIL from projectile/auto fixture assumptions, fixed16PASS then19 included in full1068. Dev types initially failed formatter inline-type corruption then stale readiness import, corrected. Browser shield timing corrected to real ult4→6; status log retention improved with actual outcome panel; collapsed roster opened in verifier. Final27+27 PASS, no injected HP/hit/result or weakened assertions; see Markdown evidence."
 }

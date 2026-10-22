@@ -1,6 +1,6 @@
 # Live project status —2026-10-22
 
-**AW2-007E VERIFIED — Muối Đen có kit thật và isolated practice**, phase PRODUCT DEVELOPMENT (pre-release). Source `AW2_007E_SOURCE_REF`, tree `AW2_007E_SOURCE_TREE`, base `cef0db1fff89bbc0f8016f055732761da6c2ea31` trên `game/adventure-world-2`. D16: xuất bản exact staged tree với expected-head/force=false, fetch độc lập và đối chiếu local/remote; completion chỉ sửa tài liệu.
+**AW2-007E VERIFIED — Muối Đen có kit thật và isolated practice**, phase PRODUCT DEVELOPMENT (pre-release). Source `e1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd`, tree `905232b76ff275863452cb371ccfa5908eaef86d`, base `cef0db1fff89bbc0f8016f055732761da6c2ea31` trên `game/adventure-world-2`. D16 exact staged/remote tree PASS, expected-head/force=false publication, independent fetch/tree/index/ancestry và guarded local fast-forward PASS; clean HEAD/remote trùng source. Completion chỉ sửa tài liệu, final fresh readback trước bàn giao.
 
 Muối aw2-muoi/R/Muối rang dùng đạn basic, auto chọn mục tiêu đủ điều kiện/trong tầm theo sát thương thực đã gây, giảm công20%/6ticks; basic cùng nguồn/mục tiêu gia hạn+1, cap10ticks. Một dấu/nguồn, không cộng dồn; Than weaken mạnh hơn thắng. Expiry/cleanse/source death/target death/terminal hủy dấu, không tạo proc giả. Ultimate bóc floor50% khiên thường rồi burst1.3ATK; boss phase barrier/interrupt guards giữ authority. Level1–20 dùng stat curve phát triển; số liệu chưa duyệt cân bằng cuối.
 

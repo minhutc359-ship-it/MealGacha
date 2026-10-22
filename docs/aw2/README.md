@@ -13,7 +13,7 @@ Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực t
 
 ## AW2 development preview — expedition, TCG and Auto Chess practice
 
-**AW2-007E VERIFIED actual Muối development kit/practice** at `AW2_007E_SOURCE_REF`. Bounded mark/refresh/ordinary-shield dispel, explicit six-kit stats/leveling, confirmed FX/audio. `/dev/aw2/battle.html?team=muoi` swaps Muối into five-member practice; collection/world saved team pending.1068 full units/174 fresh browser/24 simulations, types/build/isolation PASS.157 unchanged paths preserve asset/save/mode deep evidence; no unrelated reruns. Demo≈90%/product≈40% (35–45%),6/12 reference sets,0/12 full DoD unchanged. Next[004K](tasks/AW2-004K.md) Nhiên reference. [Evidence](evidence/AW2-007E.md), [practice](MUOI_PRACTICE.md), [gates](MUOI_CHARACTER_GATES.md), [REPORT](REPORT.md), [LOCAL_TEST](LOCAL_TEST.md), [product worklist](PRODUCT_PLAN.md).
+**AW2-007E VERIFIED actual Muối development kit/practice** at `e1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd`. Bounded mark/refresh/ordinary-shield dispel, explicit six-kit stats/leveling, confirmed FX/audio. `/dev/aw2/battle.html?team=muoi` swaps Muối into five-member practice; collection/world saved team pending.1068 full units/174 fresh browser/24 simulations, types/build/isolation PASS.157 unchanged paths preserve asset/save/mode deep evidence; no unrelated reruns. Demo≈90%/product≈40% (35–45%),6/12 reference sets,0/12 full DoD unchanged. Next[004K](tasks/AW2-004K.md) Nhiên reference. [Evidence](evidence/AW2-007E.md), [practice](MUOI_PRACTICE.md), [gates](MUOI_CHARACTER_GATES.md), [REPORT](REPORT.md), [LOCAL_TEST](LOCAL_TEST.md), [product worklist](PRODUCT_PLAN.md).
 
 ```sh
 pnpm install --frozen-lockfile

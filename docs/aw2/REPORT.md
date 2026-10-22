@@ -4,7 +4,7 @@
 
 **Vừa hoàn tất007E:** Muối Đen đã có bốn kỹ năng thật, cấp1–20 và màn luyện5 người riêng. Dấu giảm công20% trong6 nhịp, gia hạn có cap10; ultimate bóc nửa khiên thường rồi gây sát thương. Có chọn mục tiêu, tẩy dấu thử counter và hiệu ứng/âm thanh theo kết quả thật. Thu thập Muối/đội lưu trong hành trình còn chờ contract riêng.
 
-**Đã kiểm chứng:**1068 unit test,174 bước browser và24 mô phỏng PASS; hai typecheck, review+stable build/isolation PASS. Vì sửa shared combat core nên chạy full unit một lần; các PASS asset/save/mode không đổi giữ bằng chứng gốc.2 bước browser cuối chỉ kiểm tra caption, không chạy lại172 bước đã qua. [Chi tiết](evidence/AW2-007E.md), nguồn `AW2_007E_SOURCE_REF`.
+**Đã kiểm chứng:**1068 unit test,174 bước browser và24 mô phỏng PASS; hai typecheck, review+stable build/isolation PASS. Vì sửa shared combat core nên chạy full unit một lần; các PASS asset/save/mode không đổi giữ bằng chứng gốc.2 bước browser cuối chỉ kiểm tra caption, không chạy lại172 bước đã qua. [Chi tiết](evidence/AW2-007E.md), nguồn `e1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd`.
 
 | Phạm vi | Hiện tại | Cơ sở |
 |---|---|---|
