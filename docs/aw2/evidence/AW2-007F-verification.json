@@ -3289,5 +3289,16 @@
     "No full-character acceptance, collection or saved-party unlock",
     "Desktop Chromium viewports, no physical devices/FPS/offline/human-listening/rights acceptance",
     "Failed harness attempts retained in evidence narrative, not added to fresh PASS totals"
-  ]
+  ],
+  "implementationSource": "5ca3964a2cb46b60188d3192e32a2545740cda14",
+  "testedTree": "add4ec1416cbe1549e49ccf3a2d2f40d9eb0df29",
+  "publication": {
+    "status": "PASS_IMPLEMENTATION",
+    "localTestedCommit": "1ff4a7cb24764994708e79ffda0993212d5c4a78",
+    "source": "5ca3964a2cb46b60188d3192e32a2545740cda14",
+    "tree": "add4ec1416cbe1549e49ccf3a2d2f40d9eb0df29",
+    "parent": "29f60f1428b48c4409a3adeaf33b9e51ec576576",
+    "method": "GitHub connector create_tree/create_commit/update_ref, expected head, force=false; independent Git ls-remote/fetch/tree/ancestry and guarded local synchronization",
+    "followingEdits": "documentation only; final readback required before handoff"
+  }
 }

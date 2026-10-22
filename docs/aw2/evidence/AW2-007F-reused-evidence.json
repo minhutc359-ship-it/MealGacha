@@ -701,5 +701,7 @@
       "bytes": 46419961
     }
   },
-  "reuse": "Original art/audio/deep save/mode browser evidence remains source-bound; current shared combat/full unit/journey/boss/practice checks are fresh."
+  "reuse": "Original art/audio/deep save/mode browser evidence remains source-bound; current shared combat/full unit/journey/boss/practice checks are fresh.",
+  "implementationSource": "5ca3964a2cb46b60188d3192e32a2545740cda14",
+  "testedTree": "add4ec1416cbe1549e49ccf3a2d2f40d9eb0df29"
 }

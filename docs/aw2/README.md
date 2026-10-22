@@ -13,7 +13,7 @@ Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực t
 
 ## AW2 development preview — expedition, TCG and Auto Chess practice
 
-**AW2-007F VERIFIED Nhiên development combat** at `IMPLEMENTATION_SHA`. Seven actual identities; Nhiên two-basic/three-ultimate contacts, frontal sweep, bounded energy/recovery/interrupt and isolated5-member practice.1107 full units/205 browser/36 simulations/types/review+stable isolation PASS. Seven references/five absent,0/12 fullDoD; five-starter world/save unchanged. Demo≈90%/product≈40% unchanged. [Practice](NHIEN_PRACTICE.md), [evidence](evidence/AW2-007F.md), [next004L Hải](tasks/AW2-004L.md).
+**AW2-007F VERIFIED Nhiên development combat** at `5ca3964a2cb46b60188d3192e32a2545740cda14`. Seven actual identities; Nhiên two-basic/three-ultimate contacts, frontal sweep, bounded energy/recovery/interrupt and isolated5-member practice.1107 full units/205 browser/36 simulations/types/review+stable isolation PASS. Seven references/five absent,0/12 fullDoD; five-starter world/save unchanged. Demo≈90%/product≈40% unchanged. [Practice](NHIEN_PRACTICE.md), [evidence](evidence/AW2-007F.md), [next004L Hải](tasks/AW2-004L.md).
 
 ```sh
 pnpm install --frozen-lockfile

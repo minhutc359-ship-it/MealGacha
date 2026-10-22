@@ -1,6 +1,6 @@
 # Live project status —2026-10-22
 
-**AW2-007F VERIFIED development Nhiên kit/practice**, PRODUCT DEVELOPMENT (pre-release). Source `IMPLEMENTATION_SHA`, base `29f60f1428b48c4409a3adeaf33b9e51ec576576` trên `game/adventure-world-2`; final publication/readback recorded in handoff. Existing uncommitted007F work preserved and completed under its pre-edit contract; no relevant AW2 PR (unrelated #79→master excluded).
+**AW2-007F VERIFIED development Nhiên kit/practice**, PRODUCT DEVELOPMENT (pre-release). Source `5ca3964a2cb46b60188d3192e32a2545740cda14`, base `29f60f1428b48c4409a3adeaf33b9e51ec576576` trên `game/adventure-world-2`; final publication/readback recorded in handoff. Existing uncommitted007F work preserved and completed under its pre-edit contract; no relevant AW2 PR (unrelated #79→master excluded).
 
 Nhiên `aw2-nhien`/SR/Bún bò/Striker là combat identity thứ bảy. Nhịp Chảo hai contact thật; Bắt Nhịp quét tối đa3 địch phía trước; ultimate ba contact riêng, kiểm tra tầm từng lần. Hai nhịp hồi thế, ngắt/gục/terminal hủy phần chưa diễn ra. Bếp Đông hồi tối đa8/lần,3 lần/24 mỗi trận với cửa sổ6/cooldown8, loại summon/duplicate/barrier-blocked. Stats/cap là development tuning. FX/audio chỉ nhận event thật; ngắt chuyển sang pose phản ứng. Practice5 người thay Lua, không grant/save/team migration. [Hướng dẫn](NHIEN_PRACTICE.md), [gate](NHIEN_CHARACTER_GATES.md).
 

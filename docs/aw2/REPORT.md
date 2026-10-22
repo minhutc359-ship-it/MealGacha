@@ -4,7 +4,7 @@
 
 **Vừa hoàn tất AW2-007F:** Nhiên đã có kit thật/cấp1–20 trong trận luyện5 người: hai nhịp basic, quét phía trước, ba nhịp ultimate, hồi thế và năng lượng có giới hạn. Thử ngắt chuỗi giữ đúng các contact đã xảy ra. Bảy combat identities; hành trình vẫn nhận đúng5 starter. Thu thập/đội lưu Nhiên chưa triển khai.
 
-**Kiểm chứng mới:**1107 test/107file,205 bước browser và36 mô phỏng PASS; hai typecheck, review+stable build/release guard/isolation PASS. Browser gồm Nhiên source/build, Muối, boss, đội mặc định và hành trình thật tới cả hai ending. Reuse171 đường dẫn không đổi cho art/deep save/mode; không cộng số cũ. [Chi tiết](evidence/AW2-007F.md), source `IMPLEMENTATION_SHA`.
+**Kiểm chứng mới:**1107 test/107file,205 bước browser và36 mô phỏng PASS; hai typecheck, review+stable build/release guard/isolation PASS. Browser gồm Nhiên source/build, Muối, boss, đội mặc định và hành trình thật tới cả hai ending. Reuse171 đường dẫn không đổi cho art/deep save/mode; không cộng số cũ. [Chi tiết](evidence/AW2-007F.md), source `5ca3964a2cb46b60188d3192e32a2545740cda14`.
 
 | Phạm vi | Hiện tại | Thay đổi |
 |---|---|---|
