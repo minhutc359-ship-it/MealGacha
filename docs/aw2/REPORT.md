@@ -1,17 +1,17 @@
 # Báo cáo nhanh AW2
 
-2026-10-22 · **scretary-agent** · game/adventure-world-2 · Product development.
+2026-10-22 · **scretary-agent** · game/adventure-world-2.
 
-**Vừa hoàn tất007E:** Muối Đen đã có bốn kỹ năng thật, cấp1–20 và màn luyện5 người riêng. Dấu giảm công20% trong6 nhịp, gia hạn có cap10; ultimate bóc nửa khiên thường rồi gây sát thương. Có chọn mục tiêu, tẩy dấu thử counter và hiệu ứng/âm thanh theo kết quả thật. Thu thập Muối/đội lưu trong hành trình còn chờ contract riêng.
+**Vừa hoàn tất004K:** Nhiên có bộ tham chiếu riêng: portrait,16 world,32 HD/tám trạng thái,16 FX và4 cue âm thanh. Basic có2 nhịp, ultimate3 cue riêng và recovery. Màn xem có7 nhân vật; Nhiên chưa có kỹ năng thật/leveling/collection. Muối vẫn có kit thật ở trận luyện riêng.
 
-**Đã kiểm chứng:**1068 unit test,174 bước browser và24 mô phỏng PASS; hai typecheck, review+stable build/isolation PASS. Vì sửa shared combat core nên chạy full unit một lần; các PASS asset/save/mode không đổi giữ bằng chứng gốc.2 bước browser cuối chỉ kiểm tra caption, không chạy lại172 bước đã qua. [Chi tiết](evidence/AW2-007E.md), nguồn `e1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd`.
+**Kiểm chứng mới:**80 test/6file,104 bước browser, hai typecheck và review build PASS. Source browser giữ44PASS, chỉ chạy4 case còn lại sau sửa assertion alias; compiled48+onboarding8PASS. Giữ bằng chứng combat/save/mode/stable không đổi, không lặp full suite. [Chi tiết](evidence/AW2-004K.md), nguồn `AW2_004K_SOURCE_REF`.
 
-| Phạm vi | Hiện tại | Cơ sở |
+| Phạm vi | Hiện tại | Thay đổi |
 |---|---|---|
-| Demo web | **≈90% (9/10)** | Còn nghiệm thu hành trình đầy đủ bởi người chơi |
-| Sản phẩm đầy đủ12 nhân vật | **≈40% (35–45%)** | Giữ nguyên; còn nhiều nội dung/art/collection/gate phát hành |
-| Bộ tham chiếu nhân vật | **6/12 (50%)** | Còn6 bộ thiếu, **0/12 full DoD** |
+| Demo web | **≈90% (9/10)** | Giữ nguyên; còn playtest hết hành trình |
+| Sản phẩm12 nhân vật | **≈40% (35–45%)** | Giữ nguyên; art/kit/collection/gate phát hành còn nhiều |
+| Bộ hình tham chiếu | **7/12≈58%** | Tăng từ6; còn5 bộ thiếu, **0/12 full DoD** |
 
-**Chạy local:** `pnpm dev` → http://localhost:8443/dev/aw2/battle.html?team=muoi. [Cách thử kỹ năng](MUOI_PRACTICE.md), [chơi hành trình](LOCAL_TEST.md). Số liệu là thử nghiệm; art/nghe âm thanh/thiết bị/rights/release vẫn mở.
+**Dự kiến:** MVP12 nhân vật **6–10 tuần làm việc đều**; web đủ điều kiện phát hành **10–16 tuần**, có art/QA thường xuyên và duyệt kịp thời. Độ tin cậy thấp, chưa phải ngày hẹn; chỉ làm gián đoạn cần ước lượng lại. Demo kỹ thuật đã chơi được. [Giả định/đường găng](DELIVERY_PLAN.md).
 
-**Tiếp theo:** [004K Nhiên](tasks/AW2-004K.md), bộ tham chiếu riêng theo identity đã duyệt. [Product plan](PRODUCT_PLAN.md), [gate Muối](MUOI_CHARACTER_GATES.md), [HANDOFF](HANDOFF.md), [tiến độ/cách tính](PROGRESS.md). D11 PROPOSED/D12 OPEN.
+**Xem local:** `pnpm dev` → http://localhost:8443/dev/aw2/roster.html?spirit=aw2-nhien. [Hướng dẫn](LOCAL_TEST.md), [gate Nhiên](NHIEN_CHARACTER_GATES.md). **Tiếp theo:**[007F](tasks/AW2-007F.md), actual melee/3contact/energy cap/recovery. [HANDOFF](HANDOFF.md), [product plan](PRODUCT_PLAN.md), [tiến độ](PROGRESS.md). Chưa deploy/release; D11 PROPOSED/D12 OPEN.

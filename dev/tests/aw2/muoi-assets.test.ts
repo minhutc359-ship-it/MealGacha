@@ -15,14 +15,14 @@ import { ROSTER, STARTER_TEAM } from "@/aw2/world/ids"
 const muoi = ROSTER_ASSETS["aw2-muoi"]
 
 describe("AW2-004J Muối reference assets without combat/collection grants", () => {
-  it("resolves sixth authored identity while keeping the starter roster fixed and six missing sets honest", () => {
+  it("resolves Muối while keeping starters fixed and the current missing inventory honest", () => {
     expect(ROSTER_ASSETS["aw2-muoi"]).toBe(muoi)
     expect(Object.keys(STARTER_ASSETS)).toEqual(STARTER_TEAM)
     expect(STARTER_TEAM).not.toContain("aw2-muoi")
-    expect(Object.keys(ROSTER_ASSETS)).toHaveLength(6)
+    expect(Object.keys(ROSTER_ASSETS)).toHaveLength(7)
     expect(
       ROSTER.filter((s) => s.assets.status === "NOT_CREATED"),
-    ).toHaveLength(6)
+    ).toHaveLength(5)
     expect(ROSTER.find((s) => s.spiritId === "aw2-muoi")).toMatchObject({
       displayName: "Muối Đen",
       rarity: "R",

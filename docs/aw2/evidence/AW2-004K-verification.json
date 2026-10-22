@@ -1,0 +1,345 @@
+{
+  "task": "AW2-004K",
+  "source": "AW2_004K_SOURCE_REF",
+  "tree": "AW2_004K_SOURCE_TREE",
+  "base": "8797cc94006322db559ae56fcef05f36ef2990b7",
+  "status": "PASS_SCOPED_REFERENCE",
+  "environment": {
+    "os": "Linux x86_64",
+    "node": "22.23.2",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vitest": "5.0.1",
+    "vite": "8.0.5",
+    "chromium": "153.0.8010.36",
+    "python": "3.12.3",
+    "Pillow": "10.2.0"
+  },
+  "unit": {
+    "passed": 80,
+    "files": 6,
+    "new": 7,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 890,
+    "fullCurrentHead": "NOT_RUN"
+  },
+  "browserFresh": 104,
+  "reports": {
+    "source": {
+      "status": "PASS_COMBINED_UNCHANGED_RUNTIME",
+      "checks": [
+        "Seven authored references available without changing five-starter ownership",
+        "Nhien preview truthfully declares combat and collection pending",
+        "No opted-out sound played",
+        "idle: all four new cels render",
+        "idle: pause freezes the timeline",
+        "move: all four new cels render",
+        "move: pause freezes the timeline",
+        "attack: all four new cels render",
+        "attack: pause freezes the timeline",
+        "cast: all four new cels render",
+        "cast: pause freezes the timeline",
+        "hit: all four new cels render",
+        "hit: pause freezes the timeline",
+        "guard: all four new cels render",
+        "guard: pause freezes the timeline",
+        "ultimate: all four new cels render",
+        "ultimate: pause freezes the timeline",
+        "defeat: all four new cels render",
+        "defeat: pause freezes the timeline",
+        "basic: distinct contact cues finish once and recover without a projectile",
+        "ultimate: distinct contact cues finish once and recover without a projectile",
+        "basic: own finite FX and 2 opted-in cues",
+        "auto: own finite FX and 1 opted-in cues",
+        "passive: own finite FX and 1 opted-in cues",
+        "ultimate: own finite FX and 3 opted-in cues",
+        "Four unit-owned synthesized cues decode, without human listening claim",
+        "Opted-in audio only requests Nhien sources",
+        "Reduced motion is a static authored cel",
+        "World down: four authored cels cycle",
+        "World left: four authored cels cycle",
+        "World right: four authored cels cycle",
+        "World up: four authored cels cycle",
+        "Standing uses the chosen directional idle",
+        "All decoded source rectangles stay in bounds",
+        "320px: controls and page fit viewport",
+        "390px: controls and page fit viewport",
+        "768px: controls and page fit viewport",
+        "Shared preview retains starter combat-ready copy",
+        "Selection resets audio opt-in",
+        "Rapid selection returns to latest identity",
+        "All seeded stable and AW2 save bytes remain unchanged",
+        "No unexpected browser/resource errors",
+        "Missing world: explicit error and blank canvas",
+        "Missing fx: explicit error and blank canvas",
+        "Missing battle-motion-a-v1: explicit error and blank canvas",
+        "Missing battle-motion-b-v2: explicit error and blank canvas",
+        "System reduced-motion preference initializes control",
+        "Unknown/prototype query retains safe Muoi default"
+      ],
+      "earlierRunStatus": "FAIL_VERIFIER_ALIAS_AFTER44_PASS",
+      "earlierFailure": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('alert').filter({ hasText: 'Không tải được asset aw2-nhien:battle-motion-a-v1:base-v1' }) to be visible\u001b[22m\n",
+      "remainingOnlyReport": {
+        "task": "AW2-004K",
+        "status": "PASS",
+        "flavor": "source",
+        "scope": "remaining four source cases only; retain earlier44 PASS on identical runtime",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Missing battle-motion-a-v1: explicit error and blank canvas",
+          "Missing battle-motion-b-v2: explicit error and blank canvas",
+          "System reduced-motion preference initializes control",
+          "Unknown/prototype query retains safe Muoi default"
+        ],
+        "errors": [],
+        "audio": [],
+        "timelines": {},
+        "requested": [],
+        "limits": [
+          "Asset preview only; Nhien combat/collection NOT_IMPLEMENTED",
+          "No physical device/human listening/legal/full-character acceptance"
+        ]
+      },
+      "boundary": "No runtime/asset change; canonical error alias assertion/resume flag only. Do not count as two full source runs."
+    },
+    "compiled": {
+      "task": "AW2-004K",
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Seven authored references available without changing five-starter ownership",
+        "Nhien preview truthfully declares combat and collection pending",
+        "No opted-out sound played",
+        "idle: all four new cels render",
+        "idle: pause freezes the timeline",
+        "move: all four new cels render",
+        "move: pause freezes the timeline",
+        "attack: all four new cels render",
+        "attack: pause freezes the timeline",
+        "cast: all four new cels render",
+        "cast: pause freezes the timeline",
+        "hit: all four new cels render",
+        "hit: pause freezes the timeline",
+        "guard: all four new cels render",
+        "guard: pause freezes the timeline",
+        "ultimate: all four new cels render",
+        "ultimate: pause freezes the timeline",
+        "defeat: all four new cels render",
+        "defeat: pause freezes the timeline",
+        "basic: distinct contact cues finish once and recover without a projectile",
+        "ultimate: distinct contact cues finish once and recover without a projectile",
+        "basic: own finite FX and 2 opted-in cues",
+        "auto: own finite FX and 1 opted-in cues",
+        "passive: own finite FX and 1 opted-in cues",
+        "ultimate: own finite FX and 3 opted-in cues",
+        "Four unit-owned synthesized cues decode, without human listening claim",
+        "Opted-in audio only requests Nhien sources",
+        "Reduced motion is a static authored cel",
+        "World down: four authored cels cycle",
+        "World left: four authored cels cycle",
+        "World right: four authored cels cycle",
+        "World up: four authored cels cycle",
+        "Standing uses the chosen directional idle",
+        "All decoded source rectangles stay in bounds",
+        "320px: controls and page fit viewport",
+        "390px: controls and page fit viewport",
+        "768px: controls and page fit viewport",
+        "Shared preview retains starter combat-ready copy",
+        "Selection resets audio opt-in",
+        "Rapid selection returns to latest identity",
+        "All seeded stable and AW2 save bytes remain unchanged",
+        "No unexpected browser/resource errors",
+        "Missing world: explicit error and blank canvas",
+        "Missing fx: explicit error and blank canvas",
+        "Missing battle-motion-a-v1: explicit error and blank canvas",
+        "Missing battle-motion-b-v2: explicit error and blank canvas",
+        "System reduced-motion preference initializes control",
+        "Unknown/prototype query retains safe Muoi default"
+      ],
+      "errors": [],
+      "audio": [
+        {
+          "slot": "basic",
+          "channels": 1,
+          "duration": 0.16
+        },
+        {
+          "slot": "auto",
+          "channels": 1,
+          "duration": 0.28
+        },
+        {
+          "slot": "passive",
+          "channels": 1,
+          "duration": 0.24
+        },
+        {
+          "slot": "ultimate",
+          "channels": 1,
+          "duration": 0.38
+        }
+      ],
+      "timelines": {
+        "idle": [
+          "battle.idle.0",
+          "battle.idle.1",
+          "battle.idle.2",
+          "battle.idle.3"
+        ],
+        "move": [
+          "battle.move.0",
+          "battle.move.1",
+          "battle.move.2",
+          "battle.move.3"
+        ],
+        "attack": [
+          "battle.attack.0",
+          "battle.attack.1",
+          "battle.attack.2",
+          "battle.attack.3"
+        ],
+        "cast": [
+          "battle.cast.0",
+          "battle.cast.1",
+          "battle.cast.2",
+          "battle.cast.3"
+        ],
+        "hit": [
+          "battle.hit.0",
+          "battle.hit.1",
+          "battle.hit.2",
+          "battle.hit.3"
+        ],
+        "guard": [
+          "battle.guard.0",
+          "battle.guard.1",
+          "battle.guard.2",
+          "battle.guard.3"
+        ],
+        "ultimate": [
+          "battle.ultimate.0",
+          "battle.ultimate.1",
+          "battle.ultimate.2",
+          "battle.ultimate.3"
+        ],
+        "defeat": [
+          "battle.defeat.0",
+          "battle.defeat.1",
+          "battle.defeat.2",
+          "battle.defeat.3"
+        ]
+      },
+      "requested": [
+        "/dev/aw2/assets/nhien/base-v1/portrait.webp",
+        "/dev/aw2/assets/nhien/base-v1/world.webp",
+        "/dev/aw2/assets/nhien/base-v1/battle-motion-a-v1.webp",
+        "/dev/aw2/assets/nhien/base-v1/fx.webp",
+        "/dev/aw2/assets/nhien/base-v1/battle-motion-b-v2.webp",
+        "/dev/aw2/assets/nhien/base-v1/basic.wav",
+        "/dev/aw2/assets/nhien/base-v1/auto.wav",
+        "/dev/aw2/assets/nhien/base-v1/passive.wav",
+        "/dev/aw2/assets/nhien/base-v1/ultimate.wav",
+        "/dev/aw2/assets/than/base-v1/world.webp",
+        "/dev/aw2/assets/than/base-v1/fx.webp",
+        "/dev/aw2/assets/than/base-v1/battle.webp",
+        "/dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp",
+        "/dev/aw2/assets/than/base-v1/battle-motion-b-v2.webp",
+        "/dev/aw2/assets/than/base-v1/portrait.webp",
+        "/dev/aw2/assets/lua/base-v1/world.webp",
+        "/dev/aw2/assets/lua/base-v1/battle-motion-a-v1.webp",
+        "/dev/aw2/assets/lua/base-v1/fx.webp",
+        "/dev/aw2/assets/lua/base-v1/battle.webp",
+        "/dev/aw2/assets/lua/base-v1/battle-motion-b-v2.webp",
+        "/dev/aw2/assets/lua/base-v1/portrait.webp"
+      ],
+      "limits": [
+        "Asset preview only; Nhien combat/collection NOT_IMPLEMENTED",
+        "No physical device/human listening/legal/full-character acceptance"
+      ]
+    },
+    "compiledConsumer": {
+      "status": "PASS",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Static root opens the compiled RPG world",
+        "Built intro grants five starters and one 30XP reward",
+        "Built save survives reload byte-identically",
+        "Standalone compiled battle loads all atlases",
+        "Compiled starter preview is reachable",
+        "Review tools leave progression and stable save untouched",
+        "No failed resources or console/page errors",
+        "Review bundle excludes source PNG/code/maps/archives"
+      ],
+      "errors": [],
+      "files": 137,
+      "bytes": 46410380
+    }
+  },
+  "assetBuild": {
+    "task": "AW2-004K",
+    "status": "PASS",
+    "frames": 64,
+    "scaleB": 1.8364,
+    "runtimeWebpBytes": 4685032,
+    "decodedRGBA": 31451712,
+    "maxEdgeAlpha": 6
+  },
+  "fileAudit": {
+    "task": "AW2-004K",
+    "spiritId": "aw2-nhien",
+    "status": "PASS",
+    "checks": [
+      "portrait: bytes/hash/dimensions/real alpha",
+      "world: bytes/hash/dimensions/real alpha",
+      "battle-motion-a-v1: bytes/hash/dimensions/real alpha",
+      "battle-motion-b-v2: bytes/hash/dimensions/real alpha",
+      "fx: bytes/hash/dimensions/real alpha",
+      "battle: bytes/hash/dimensions/real alpha",
+      "reference: bytes/hash/dimensions/real alpha",
+      "64 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+      "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+      "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+      "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+      "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+    ],
+    "webpBytes": 4685032
+  },
+  "builds": {
+    "review": {
+      "files": 137,
+      "htmlJsCss": 44,
+      "allTextIncludingJSON": 65,
+      "bytes": 46410380,
+      "sourceExclusion": "PASS"
+    },
+    "stable": {
+      "freshBuild": "NOT_RUN_REUSED_007E",
+      "files": 851,
+      "htmlJsCss": 49,
+      "allTextIncludingJSONAndTXT": 76,
+      "bytes": 177450422,
+      "exclusionReadOnlyScan": "PASS"
+    }
+  },
+  "priorFailures": "7 lần built-in image_gen,5 output chọn,2 output không chọn: portrait đầu được thay bằng bản refine nền trong suốt; B đầu UNSAFE (không có row cut alpha-safe, minimum214/255, top9/255), bản compact recompose pass. Không cắt/xóa pixel để vượt audit. Initial source browser44PASS rồi timeout do alias battle/motion-a cùng URL: verifier ban đầu chờ một ID duy nhất nhưng race có thể trả alias khác. Sửa nhận đúng tập own canonical IDs của URL bị chặn và vẫn yêu cầu canvas rỗng; chỉ chạy4 case source chưa xong, không lặp44PASS. Compiled48PASS từ lần đầu, runtime không đổi. Formatter CLI lần đầu từ chối --write trước mutation; dùng cú pháp mặc định và check đúng bản0.2.0. Không có unit failure hoặc fake HP/hit/win.",
+  "reuse": "171 đường dẫn byte-identical so với baseline: six-kit core/progression/presentation/audio, save/schema/store, world/economy/mode rules/maps, existing assets/manifests/audio/provenance/helpers và stable entry/config/dependencies. Chỉ registry thêm Nhiên làm ROSTER availability metadata thay đổi; consumer được80 units+8 compiled smoke mới kiểm tra. Giữ full1068/174/24 của007E tại e1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd trong ranh giới không đổi; không chạy lại/cộng số. Stable build851files/49 HTML-JS-CSS/177,450,422bytes từ007E giữ nguyên, chỉ scan lại exclusion; không gọi đó là build mới. Full regression vẫn cần trước release/shared-core/save change.",
+  "progress": "Demo **≈90% (9/10)** và sản phẩm **≈40% (ước lượng35–45%)**, giữ nguyên. Bộ tham chiếu **7/12≈58%**, tăng từ6/12; còn5 bộ Hải/Liên/Mộc/Bách/Vân chưa tạo.5/5 starter motion/160cels +Muối32 +Nhiên32 riêng; **0/12 full DoD**. Tham chiếu mới chưa đóng actual Nhiên kit/leveling/collection hoặc nghiệm thu art/playtest/thiết bị/rights/release.",
+  "eta": "MVP đủ12 nhân vật: **6–10 tuần làm việc đều**; web đủ điều kiện phát hành ổn định: **10–16 tuần**, không cộng dồn. Đây là khoảng lập kế hoạch độ tin cậy thấp, giả định một lập trình viên làm đều với art/QA thường xuyên, phản hồi1–2 ngày làm việc, web chơi đơn/lưu cục bộ/phạm vi12. Chưa có vận tốc nhân vật full DoD để chốt ngày; chỉ làm gián đoạn/một người tự làm mọi việc cần ước lượng lại. Demo kỹ thuật đã chơi được, còn dự trù2–5 ngày playtest/sửa lỗi khi có người thử. [Cơ sở ETA](DELIVERY_PLAN.md).",
+  "limits": "Nhiên combat/leveling/collection NOT_IMPLEMENTED; reference cue không gây damage/energy/grant/save. Sáu combat identities (5starter+Muối) giữ nguyên, starter/world save vẫn5. Muối collection còn mở. Independent art/anatomy/hand/tool/cloth/loop/contact/readability, human listening/mix, physical devices/FPS/offline/native/rights/production-save/release chưa đóng. Owner mới thử mode, chưa full ending playtest. D11 PROPOSED, D12 OPEN.",
+  "capturesOpened": [
+    "source-attack.png",
+    "source-ultimate.png",
+    "compiled-mobile.png",
+    "compiled-peak-ultimate.png"
+  ],
+  "captureScope": "Four actual browser captures viewed; supplemental peak adds no assertion count. Desktop viewports, not physical devices/human listening/final art acceptance.",
+  "publication": {
+    "status": "PENDING_EXACT_TREE_READBACK",
+    "source": "AW2_004K_SOURCE_REF",
+    "tree": "AW2_004K_SOURCE_TREE",
+    "base": "8797cc94006322db559ae56fcef05f36ef2990b7",
+    "branch": "game/adventure-world-2"
+  }
+}

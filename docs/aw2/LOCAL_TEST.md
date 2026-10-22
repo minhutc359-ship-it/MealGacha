@@ -46,3 +46,9 @@ Sau004I, thử **Đến đấu trường** ở320/390px: boss có hình bát g�
 ## Muối Đen · bộ hình tham chiếu mới
 
 Mở http://localhost:8443/dev/aw2/roster.html?spirit=aw2-muoi sau `pnpm dev` để xem world bốn hướng,32 cel/tám trạng thái, bốn FX và âm thanh tự nguyện. Màn này không cấp nhân vật/ghi save; kit thật/cấp1–20 đã có ở http://localhost:8443/dev/aw2/battle.html?team=muoi. [Hướng dẫn thử dấu/tẩy dấu/bóc khiên](MUOI_PRACTICE.md). Thu thập/đội lưu Muối trong hành trình còn chờ contract riêng. Đội khởi đầu vẫn5 người.
+
+## Nhiên · bộ tham chiếu004K
+
+Mở http://localhost:8443/dev/aw2/roster.html?spirit=aw2-nhien sau `pnpm dev`. Chọn world bốn hướng/đi bộ hoặc HD8 trạng thái; chọn Nhịp Chảo để xem2 cue220/440ms, Lửa Qua Ba Nhịp xem3 cue240/520/800ms và hồi idle1080ms. Bật âm thanh tự nguyện, thử tạm dừng/phát lại/giảm chuyển động; âm thanh tổng hợp chưa được nghe nghiệm thu trên thiết bị. Không có projectile cho cận chiến.
+
+Đây là art reference, chưa có Nhiên actual combat/leveling/thu thập, không cấp nhân vật/EXP hay ghi save. Muối vẫn luyện riêng ở `battle.html?team=muoi`; đội khởi đầu/world save vẫn5. [Gate Nhiên](NHIEN_CHARACTER_GATES.md), [task007F tiếp theo](tasks/AW2-007F.md), [REPORT](REPORT.md).
