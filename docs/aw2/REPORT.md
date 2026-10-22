@@ -4,7 +4,7 @@
 
 **Vừa hoàn tất004J:** Muối Đen có ảnh tham chiếu riêng,16 khung world bốn hướng,32 khung HD/tám trạng thái,16 ô FX và4 âm thanh tổng hợp. Có màn xem6 bộ nhân vật; đội khởi đầu vẫn5. Kỹ năng debuff/thu thập Muối Đen chưa triển khai, đã ghi rõ trong màn xem.
 
-**Kiểm chứng mới:**73 test/5 file PASS và106 bước browser PASS:49 nguồn+49 biên dịch Muối,8 kiểm tra consumer/onboarding nhận đúng5 starter. Hai typecheck, asset/hash/alpha/build lại17 file, review+stable builds/isolation PASS. Chỉ dev typecheck chạy lại sau sửa tương thích; test đã pass giữ nguyên. Full1036/55 journey/boss không đổi giữ bằng chứng SHA gốc, không chạy lại/cộng số. [Bằng chứng](evidence/AW2-004J.md), nguồn `AW2_004J_SOURCE_REF`.
+**Kiểm chứng mới:**73 test/5 file PASS và106 bước browser PASS:49 nguồn+49 biên dịch Muối,8 kiểm tra consumer/onboarding nhận đúng5 starter. Hai typecheck, asset/hash/alpha/build lại17 file, review+stable builds/isolation PASS. Chỉ dev typecheck chạy lại sau sửa tương thích; test đã pass giữ nguyên. Full1036/55 journey/boss không đổi giữ bằng chứng SHA gốc, không chạy lại/cộng số. [Bằng chứng](evidence/AW2-004J.md), nguồn `7643ec4cb4e1e56d0c1013f7135a065e5ad3af36`.
 
 | Phạm vi | Hiện tại | Thay đổi |
 |---|---|---|

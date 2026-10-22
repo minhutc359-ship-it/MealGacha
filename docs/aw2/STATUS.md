@@ -1,6 +1,6 @@
 # Live project status —2026-10-22
 
-Phase **PRODUCT DEVELOPMENT (pre-release)**. **AW2-004J VERIFIED scoped Muối Đen reference package**. Source `AW2_004J_SOURCE_REF`, tree `AW2_004J_SOURCE_TREE`, base `c558faab1df548463abfe80e2cc4de4f7a67f479` on game/adventure-world-2. D16 exact-tree publication and fresh clean remote readback are required before final handoff; source refs are filled in the docs-only completion descendant.
+Phase **PRODUCT DEVELOPMENT (pre-release)**. **AW2-004J VERIFIED scoped Muối Đen reference package**. Source `7643ec4cb4e1e56d0c1013f7135a065e5ad3af36`, tree `5a430329174506bd81ee49accaa5b5d5ab99113d`, base `c558faab1df548463abfe80e2cc4de4f7a67f479` on game/adventure-world-2. D16 exact staged/remote tree and14 binary Git SHA matches verified; expected-head/force=false publication, independent fetch/tree/index/ancestry and guarded local fast-forward PASS. Completion descendant changes docs only; final fresh clean local/remote comparison before handoff.
 
 Muối Đen aw2-muoi/R/Muối rang/Debuffer has an original full-body identity portrait,16 four-way world cels,32 HD motion cels/eight states,16 FX cells and four unit-owned synthesized audio cues.64 measured rectangles, new edge alpha≤2/255 (declared tolerance8). All selected PNG pixels preserved; lossless visible RGBA/alpha verified, measured per-column rectangles/foot anchors/logical scale1.5 only, no repaint/mask/mirror/pixel resize. Five unique WebPs4,622,842 bytes/decoded RGBA31,455,136 bytes;17 scoped files repeat-byte-identical.
 

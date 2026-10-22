@@ -1,7 +1,7 @@
 {
   "task": "AW2-004J",
-  "source": "AW2_004J_SOURCE_REF",
-  "tree": "AW2_004J_SOURCE_TREE",
+  "source": "7643ec4cb4e1e56d0c1013f7135a065e5ad3af36",
+  "tree": "5a430329174506bd81ee49accaa5b5d5ab99113d",
   "base": "c558faab1df548463abfe80e2cc4de4f7a67f479",
   "status": "PASS_SCOPED_REFERENCE",
   "environment": {
@@ -423,5 +423,16 @@
     "compiled-peak-auto",
     "compiled-peak-ultimate"
   ],
-  "captureScope": "Six captures opened; three supplemental peak captures are visual inspection only, not additional test counts.320/390/768 are desktop viewports, not physical devices."
+  "captureScope": "Six captures opened; three supplemental peak captures are visual inspection only, not additional test counts.320/390/768 are desktop viewports, not physical devices.",
+  "publication": {
+    "source": "7643ec4cb4e1e56d0c1013f7135a065e5ad3af36",
+    "tree": "5a430329174506bd81ee49accaa5b5d5ab99113d",
+    "base": "c558faab1df548463abfe80e2cc4de4f7a67f479",
+    "branch": "game/adventure-world-2",
+    "remoteTreeEqualsStaged": true,
+    "binaryGitShaMatches": 14,
+    "expectedHeadForceFalse": true,
+    "independentFetchTreeIndexAncestryAndGuardedLocalFF": "PASS",
+    "completion": "docs-only descendant; fresh final clean SHA readback before report"
+  }
 }
