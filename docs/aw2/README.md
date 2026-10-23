@@ -13,7 +13,7 @@ Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực t
 
 ## AW2 development preview — expedition, TCG and Auto Chess practice
 
-**AW2-007F VERIFIED Nhiên development combat** at `5ca3964a2cb46b60188d3192e32a2545740cda14`. Seven actual identities; Nhiên two-basic/three-ultimate contacts, frontal sweep, bounded energy/recovery/interrupt and isolated5-member practice.1107 full units/205 browser/36 simulations/types/review+stable isolation PASS. Seven references/five absent,0/12 fullDoD; five-starter world/save unchanged. Demo≈90%/product≈40% unchanged. [Practice](NHIEN_PRACTICE.md), [evidence](evidence/AW2-007F.md), [next004L Hải](tasks/AW2-004L.md).
+**AW2-004L VERIFIED Hải reference** — source `PENDING_ART_SOURCE`, base `3b7188b3bbd102c66d2517801e55e25cad5a46f4`. Original portrait/16world/32HD/16FX/four cues,64 safe cells,7 imagegen calls/5 selected.85 unique affected units,102 browser assertions, both types/review build/audit/repeat PASS.8/12 complete reference sets≈67%,4 packages pending; initial portraits for all remaining characters already saved, not counted as packages.7 actual combat identities/five-starter world/save unchanged.0/12 full DoD; art/playtest/listening/device/rights/release OPEN. Demo≈90%/product≈40% (35–45%) unchanged. Next004M Liên,004N Mộc,004O Bách,004P Vân. [Evidence](evidence/AW2-004L.md), [gate Hải](HAI_CHARACTER_GATES.md).
 
 ```sh
 pnpm install --frozen-lockfile

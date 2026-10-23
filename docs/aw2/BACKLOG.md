@@ -5,7 +5,7 @@
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |
 | AW2-003 | character/mechanic | Owner approved initial 12 identities/tier/kit/starter, D10/D13/D15 | MERGED approved direction + original review history; full character DoD pending |
-| AW2-004 | animation/character | 12 world + HD + VFX sets; five starters source f6a3b66 implemented | IN_PROGRESS: 7 reference sets,5 starter motion packages plus Muối32/Nhiên32cels,5 NOT_CREATED; full character gates pending |
+| AW2-004 | animation/character | 12 world + HD + VFX sets; five starters source f6a3b66 implemented | IN_PROGRESS: 8 complete reference sets,4 packages pending,full-character gates open; full character gates pending |
 | AW2-004A | animation/character/tester | Than 4-way world, 8 HD key poses/tracks, portrait, FX/audio/provenance and preview | MERGED verified reference pipeline; not full character/release |
 | AW2-004B | animation/character/tester | Four other starters, ranged projectile art, repeated cues and shared selector | MERGED verified reference sets, integration source 0e8fb7a; not full character/release |
 | AW2-004C | character/animation/mechanic/tester | Than32-cel/eight-state motion, shared playback/FX ownership and measured full-DoD gaps | VERIFIED scoped reference milestone at f85e1e7;989 tests /377 browser checks; full-character gates OPEN |
@@ -17,7 +17,11 @@
 | AW2-007E | BA/mechanic/character/animation/tester | Actual bounded Muối rules/leveling/isolated practice/event binding | VERIFIED ate1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd;1068 full units/174 browser/24 simulations; collection/full DoD OPEN |
 | AW2-004K | character/story/animation/tester | Nhiên original64-cell reference package | VERIFIED at22877ba16e52d70d5447a5870452e3acebe114af;80 affected units/104 browser; actual kit/full DoD OPEN |
 | AW2-007F | BA/mechanic/character/animation/tester | Actual Nhiên bounded melee/energy/recovery kit | VERIFIED at 5ca3964a2cb46b60188d3192e32a2545740cda14;1107 full units/205 browser/36 simulations; collection/full DoD OPEN |
-| AW2-004L | character/story/animation/tester | Hải original reference package | READY; [card](tasks/AW2-004L.md), implementation NOT_RUN |
+| AW2-004L | character/story/animation/tester | Hải original reference package | VERIFIED at PENDING_ART_SOURCE;85 units/102 browser; full DoD OPEN |
+| AW2-004M | character/story/animation/tester | Liên original reference package | IN_PROGRESS; [card](tasks/AW2-004M.md), generation begun/integration NOT_RUN |
+| AW2-004N | character/story/animation/tester | Mộc original reference package | IN_PROGRESS; [card](tasks/AW2-004N.md), generation begun/integration NOT_RUN |
+| AW2-004O | character/story/animation/tester | Bách original reference package | IN_PROGRESS; [card](tasks/AW2-004O.md), generation begun/integration NOT_RUN |
+| AW2-004P | character/story/animation/tester | Vân original reference package | IN_PROGRESS; [card](tasks/AW2-004P.md), generation begun/integration NOT_RUN |
 | AW2-004I | character/animation/BA/tester | Original Forgotten Host reference art/presentation bound to actual boss events | VERIFIED reference at2684954;8 own poses/9 FX/portrait,49 affected units,39+39 boss/final12+12 nav/22 battle gates; full enemy gates OPEN |
 | AW2-004H | BA/animation/mechanic/tester | Five-starter arena/labels/status readability | VERIFIED presentation subset ataa0a3a6;43 affected units/89 compiled browser assertions; types/review build PASS; independent playtest/device open |
 | AW2-005 | mechanic | Five-tier gacha/pity/simulation | Simulation/proposal VERIFIED in AW2-013A; D11 PROPOSED, runtime draw/spend/save BACKLOG |
@@ -72,3 +76,5 @@ Current[007E](tasks/AW2-007E.md) VERIFIED ate1f023d391a2fcf14ab07b7a436b3bd0ad7d
 Current004K source`22877ba16e52d70d5447a5870452e3acebe114af` supersedes next004K and six-reference inventory above only:7 reference sets/5 absent,0/12 full DoD.80 affected units/104 browser PASS; next[007F](tasks/AW2-007F.md) actual Nhiên kit. Demo90%/product≈40% unchanged; ETA MVP6–10 weeks/release-ready web10–16 conditional, see[plan](DELIVERY_PLAN.md).
 
 Current007F source `5ca3964a2cb46b60188d3192e32a2545740cda14` supersedes older next007F/six-combat statements: seven actual combat identities, same five-starter world/save and7reference sets/0fullDoD.1107 full units/205 fresh browser/36 simulations PASS. Next[004L Hải](tasks/AW2-004L.md); collection and independent gates remain open. Demo≈90%/product≈40% unchanged.
+
+**AW2-004L VERIFIED Hải reference** — source `PENDING_ART_SOURCE`, base `3b7188b3bbd102c66d2517801e55e25cad5a46f4`. Original portrait/16world/32HD/16FX/four cues,64 safe cells,7 imagegen calls/5 selected.85 unique affected units,102 browser assertions, both types/review build/audit/repeat PASS.8/12 complete reference sets≈67%,4 packages pending; initial portraits for all remaining characters already saved, not counted as packages.7 actual combat identities/five-starter world/save unchanged.0/12 full DoD; art/playtest/listening/device/rights/release OPEN. Demo≈90%/product≈40% (35–45%) unchanged. Next004M Liên,004N Mộc,004O Bách,004P Vân. [Evidence](evidence/AW2-004L.md), [gate Hải](HAI_CHARACTER_GATES.md).

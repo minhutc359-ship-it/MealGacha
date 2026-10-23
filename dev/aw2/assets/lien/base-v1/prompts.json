@@ -1,0 +1,25 @@
+{
+  "task": "AW2-004M",
+  "spiritId": "aw2-lien",
+  "generator": "OpenAI built-in image_gen",
+  "calls": [
+    {
+      "callId": "AW2-004M-1",
+      "asset": "portrait",
+      "prompt": "Use case: stylized-concept. Asset type: original full-body identity portrait for Adventure World 2 character Liên, aw2-lien, on genuine transparent alpha background. Original adult woman healer, muted dusty-rose wide sleeves over cream practical tunic, deep pink waist ribbon, dark tied-back hair with small simple hair tie, warm attentive eyes, small folded-paper promise pouch worn at waist; one hand holding an original pale pink lotus-seed-shaped bead, other hand open gently. No written text on pouch, no external character flower icon. Clean polished HD anime game illustration, restrained painterly shadows, readable original face and simple reproducible outfit. One complete character, three-quarter facing viewer-right, entire head/body/fingers/tools/both boots visible with generous empty outer margins. Neutral ready identity pose. No scenery, floor, drop shadow, text, watermark, border, UI, background haze, extra characters or borrowed IP. All space outside the character alpha transparent.",
+      "referenceInputs": [],
+      "selected": true,
+      "source": "portrait.png"
+    },
+    {
+      "callId": "AW2-004M-2",
+      "asset": "world",
+      "prompt": "Use case: identity-preserve. Transform Image1 original character identity into a sprite exploration contact sheet. Preserve same face/hair/clothing/tools and color palette. Exactly FOUR columns and FOUR rows, square canvas. Tiny complete chibi thumbnails, crisp discrete pixel-art steps, three-head-tall bodies. Every sprite only about HALF of its cell's width and60% height, including tools and flowing cloth; VAST truly transparent padding around ALL figures, wide clear gutters at quarter-grid lines and outer canvas. Every head/hand/tool/both boots entirely visible. Row1 FRONT/down, row2 LEFT/profile facing viewer-left, row3 RIGHT/profile facing viewer-right, row4 BACK/up showing back of head/outfit. Each row four distinct cels: planted idle, left-foot-forward, passing stance, right-foot-forward. Keep tool ownership coherent across turns; no mirrored duplicate masquerading as a new direction, no extra limbs/equipment. No texts, labels, grid lines, floor, shadow, scenery, FX, border or watermark. Genuinely transparent background. Liên: dusty rose sleeves/cream tunic, tied dark hair, promise-paper pouch, pale pink seed bead. No shield or staff.",
+      "referenceInputs": [
+        "portrait.png"
+      ],
+      "selected": true,
+      "source": "world.png"
+    }
+  ]
+}

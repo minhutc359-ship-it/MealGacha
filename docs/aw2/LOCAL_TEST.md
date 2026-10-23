@@ -52,3 +52,7 @@ Mở http://localhost:8443/dev/aw2/roster.html?spirit=aw2-muoi sau `pnpm dev` đ
 Mở http://localhost:8443/dev/aw2/roster.html?spirit=aw2-nhien sau `pnpm dev`. Chọn world bốn hướng/đi bộ hoặc HD8 trạng thái; chọn Nhịp Chảo để xem2 cue220/440ms, Lửa Qua Ba Nhịp xem3 cue240/520/800ms và hồi idle1080ms. Bật âm thanh tự nguyện, thử tạm dừng/phát lại/giảm chuyển động; âm thanh tổng hợp chưa được nghe nghiệm thu trên thiết bị. Không có projectile cho cận chiến.
 
 Màn này là art reference. Kit thật/cấp1–20 của Nhiên đã có tại http://localhost:8443/dev/aw2/battle.html?team=nhien: chọn mục tiêu, thử ba contact/hồi thế và **Đối thủ ngắt nhịp**. [Hướng dẫn dùng ultimate đồng đội để thử đủ chuỗi](NHIEN_PRACTICE.md). Chưa có collection/đội lưu Nhiên; practice không cấp EXP/ghi save. Đội khởi đầu/world save vẫn5. [Gate Nhiên](NHIEN_CHARACTER_GATES.md), [task007F](tasks/AW2-007F.md), [REPORT](REPORT.md).
+
+## Hải và các bộ hình còn lại
+
+Hải đã có tại http://localhost:8443/dev/aw2/roster.html?spirit=aw2-hai sau `pnpm dev`. Thử8 trạng tháiHD,4 hướngworld,4FX/audio opt-in/pause/reduced. Chưa có actual Hải kit/collection. Liên/Mộc/Bách/Vân đang tạo; chỉ xuất hiện trong selector khi có đầy đủ manifest đã kiểm tra. [Gates](HAI_CHARACTER_GATES.md).

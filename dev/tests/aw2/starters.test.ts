@@ -51,7 +51,7 @@ describe("ART-STARTERS authored identity, cue and projectile contracts", () => {
     expect(Object.keys(STARTER_ASSETS)).toEqual(STARTER_TEAM)
     expect(
       ROSTER.filter((unit) => unit.assets.status === "NOT_CREATED"),
-    ).toHaveLength(5)
+    ).toHaveLength(4)
   })
   it("authors Lua two-hit basic contacts and Lam two-stage ultimate independently", () => {
     const lua = STARTER_ASSETS["aw2-lua"]

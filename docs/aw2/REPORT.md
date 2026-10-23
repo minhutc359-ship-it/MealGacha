@@ -1,17 +1,7 @@
 # Báo cáo nhanh AW2
 
-2026-10-22 · **scretary-agent** · game/adventure-world-2.
+2026-10-22 · scretary-agent · game/adventure-world-2.
 
-**Vừa hoàn tất AW2-007F:** Nhiên đã có kit thật/cấp1–20 trong trận luyện5 người: hai nhịp basic, quét phía trước, ba nhịp ultimate, hồi thế và năng lượng có giới hạn. Thử ngắt chuỗi giữ đúng các contact đã xảy ra. Bảy combat identities; hành trình vẫn nhận đúng5 starter. Thu thập/đội lưu Nhiên chưa triển khai.
+**AW2-004L VERIFIED Hải reference** — source `PENDING_ART_SOURCE`, base `3b7188b3bbd102c66d2517801e55e25cad5a46f4`. Original portrait/16world/32HD/16FX/four cues,64 safe cells,7 imagegen calls/5 selected.85 unique affected units,102 browser assertions, both types/review build/audit/repeat PASS.8/12 complete reference sets≈67%,4 packages pending; initial portraits for all remaining characters already saved, not counted as packages.7 actual combat identities/five-starter world/save unchanged.0/12 full DoD; art/playtest/listening/device/rights/release OPEN. Demo≈90%/product≈40% (35–45%) unchanged. Next004M Liên,004N Mộc,004O Bách,004P Vân. [Evidence](evidence/AW2-004L.md), [gate Hải](HAI_CHARACTER_GATES.md).
 
-**Kiểm chứng mới:**1107 test/107file,205 bước browser và36 mô phỏng PASS; hai typecheck, review+stable build/release guard/isolation PASS. Browser gồm Nhiên source/build, Muối, boss, đội mặc định và hành trình thật tới cả hai ending. Reuse171 đường dẫn không đổi cho art/deep save/mode; không cộng số cũ. [Chi tiết](evidence/AW2-007F.md), source `5ca3964a2cb46b60188d3192e32a2545740cda14`.
-
-| Phạm vi | Hiện tại | Thay đổi |
-|---|---|---|
-| Demo web | **≈90% (9/10)** | Giữ nguyên; còn playtest hết hành trình |
-| Sản phẩm12 nhân vật | **≈40% (35–45%)** | Giữ nguyên; một development kit chưa đóng full DoD |
-| Bộ hình tham chiếu | **7/12≈58%** | Giữ nguyên; còn5 bộ, **0/12 full DoD** |
-
-**Chơi local:** `pnpm dev` → http://localhost:8443/dev/aw2/battle.html?team=nhien. [Hướng dẫn thử](NHIEN_PRACTICE.md). **Tiếp theo:**[004L Hải reference](tasks/AW2-004L.md).
-
-ETA có điều kiện giữ MVP12 nhân vật **6–10 tuần làm việc đều**, web release-ready **10–16 tuần**, có art/QA thường xuyên và duyệt kịp thời; chưa phải ngày hẹn. [Giả định](DELIVERY_PLAN.md), [handoff](HANDOFF.md). Independent art/playtest/listening/thiết bị/rights và collection còn mở; D11 PROPOSED/D12 OPEN. Chưa deploy/release.
+Chơi local: `pnpm dev` → http://localhost:8443/dev/aw2/roster.html?spirit=aw2-hai. Các bộ tiếp theo đang tạo theo yêu cầu hoàn thành toàn bộ. Bộ hình tham chiếu không tự cấp nhân vật hay kỹ năng thật. [Handoff](HANDOFF.md), [tiến độ](PROGRESS.md).

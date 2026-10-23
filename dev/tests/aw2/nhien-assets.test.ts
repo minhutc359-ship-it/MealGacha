@@ -18,14 +18,14 @@ const nhien = ROSTER_ASSETS["aw2-nhien"]
 
 describe("AW2-004K Nhiên reference availability and bounded presentation", () => {
   it("exposes seven authored references without granting ownership or expanding the starter team", () => {
-    expect(Object.keys(ROSTER_ASSETS)).toHaveLength(7)
+    expect(Object.keys(ROSTER_ASSETS)).toHaveLength(8)
     expect(Object.keys(STARTER_ASSETS)).toEqual(STARTER_TEAM)
     expect(STARTER_TEAM).not.toContain("aw2-nhien")
     expect(isCombatSpiritId("aw2-nhien")).toBe(true)
     expect(isCombatSpiritId("aw2-muoi")).toBe(true)
     expect(
       ROSTER.filter((s) => s.assets.status === "NOT_CREATED"),
-    ).toHaveLength(5)
+    ).toHaveLength(4)
     expect(ROSTER.find((s) => s.spiritId === "aw2-nhien")).toMatchObject({
       displayName: "Nhiên",
       rarity: "SR",

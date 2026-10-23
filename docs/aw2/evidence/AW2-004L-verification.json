@@ -1,0 +1,308 @@
+{
+  "task": "AW2-004L",
+  "base": "3b7188b3bbd102c66d2517801e55e25cad5a46f4",
+  "status": "PASS",
+  "units": {
+    "uniqueCases": 85,
+    "retainedUnchangedCases": 80,
+    "correctedFileCases": 5,
+    "newCases": 5,
+    "fullSuite": "NOT_RUN; unchanged007F full1107 remains source-bound"
+  },
+  "browserAssertions": 102,
+  "browser": {
+    "source": {
+      "task": "AW2-004L",
+      "spiritId": "aw2-hai",
+      "status": "PASS",
+      "flavor": "source",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Authored registry count is explicit, without expanding ownership",
+        "New reference truthfully keeps combat and collection pending",
+        "Audio remains off before opt-in",
+        "idle: four distinct authored cels render",
+        "idle: pause freezes its clock",
+        "move: four distinct authored cels render",
+        "move: pause freezes its clock",
+        "attack: four distinct authored cels render",
+        "attack: pause freezes its clock",
+        "cast: four distinct authored cels render",
+        "cast: pause freezes its clock",
+        "hit: four distinct authored cels render",
+        "hit: pause freezes its clock",
+        "guard: four distinct authored cels render",
+        "guard: pause freezes its clock",
+        "ultimate: four distinct authored cels render",
+        "ultimate: pause freezes its clock",
+        "defeat: four distinct authored cels render",
+        "defeat: pause freezes its clock",
+        "basic: exactly 1 opted-in own cues",
+        "basic: expired effect and projectile stay absent in recovery",
+        "auto: exactly 1 opted-in own cues",
+        "auto: expired effect and projectile stay absent in recovery",
+        "passive: exactly 1 opted-in own cues",
+        "passive: expired effect and projectile stay absent in recovery",
+        "ultimate: exactly 1 opted-in own cues",
+        "ultimate: expired effect and projectile stay absent in recovery",
+        "Four original cues decode, without a human-listening claim",
+        "Opt-in only plays this unit's own audio",
+        "Reduced motion holds one authored cel",
+        "down: four separate world cels cycle",
+        "left: four separate world cels cycle",
+        "right: four separate world cels cycle",
+        "up: four separate world cels cycle",
+        "Standing respects selected directional idle",
+        "All actual draws remain inside their source atlas",
+        "320px controls fit viewport",
+        "390px controls fit viewport",
+        "768px controls fit viewport",
+        "Starter copy retains existing combat readiness",
+        "Selection resets sound opt-in",
+        "Preview preserves all seeded stable and AW2 bytes",
+        "No unexpected browser/resource errors",
+        "Missing world: own explicit error and blank canvas",
+        "Missing fx: own explicit error and blank canvas",
+        "Missing battle-motion-a-v2: own explicit error and blank canvas",
+        "Missing battle-motion-b-v2: own explicit error and blank canvas"
+      ],
+      "errors": [],
+      "timelines": {
+        "idle": [
+          "battle.idle.0",
+          "battle.idle.1",
+          "battle.idle.2",
+          "battle.idle.3"
+        ],
+        "move": [
+          "battle.move.0",
+          "battle.move.1",
+          "battle.move.2",
+          "battle.move.3"
+        ],
+        "attack": [
+          "battle.attack.0",
+          "battle.attack.1",
+          "battle.attack.2",
+          "battle.attack.3"
+        ],
+        "cast": [
+          "battle.cast.0",
+          "battle.cast.1",
+          "battle.cast.2",
+          "battle.cast.3"
+        ],
+        "hit": [
+          "battle.hit.0",
+          "battle.hit.1",
+          "battle.hit.2",
+          "battle.hit.3"
+        ],
+        "guard": [
+          "battle.guard.0",
+          "battle.guard.1",
+          "battle.guard.2",
+          "battle.guard.3"
+        ],
+        "ultimate": [
+          "battle.ultimate.0",
+          "battle.ultimate.1",
+          "battle.ultimate.2",
+          "battle.ultimate.3"
+        ],
+        "defeat": [
+          "battle.defeat.0",
+          "battle.defeat.1",
+          "battle.defeat.2",
+          "battle.defeat.3"
+        ]
+      },
+      "audio": [
+        {
+          "slot": "basic",
+          "channels": 1,
+          "duration": 0.18
+        },
+        {
+          "slot": "auto",
+          "channels": 1,
+          "duration": 0.3
+        },
+        {
+          "slot": "passive",
+          "channels": 1,
+          "duration": 0.22
+        },
+        {
+          "slot": "ultimate",
+          "channels": 1,
+          "duration": 0.42
+        }
+      ],
+      "limits": [
+        "Reference preview only; no combat/ownership/save grants",
+        "Desktop viewports only; independent art/listening/device/rights still open"
+      ]
+    },
+    "compiled": {
+      "task": "AW2-004L",
+      "spiritId": "aw2-hai",
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Authored registry count is explicit, without expanding ownership",
+        "New reference truthfully keeps combat and collection pending",
+        "Audio remains off before opt-in",
+        "idle: four distinct authored cels render",
+        "idle: pause freezes its clock",
+        "move: four distinct authored cels render",
+        "move: pause freezes its clock",
+        "attack: four distinct authored cels render",
+        "attack: pause freezes its clock",
+        "cast: four distinct authored cels render",
+        "cast: pause freezes its clock",
+        "hit: four distinct authored cels render",
+        "hit: pause freezes its clock",
+        "guard: four distinct authored cels render",
+        "guard: pause freezes its clock",
+        "ultimate: four distinct authored cels render",
+        "ultimate: pause freezes its clock",
+        "defeat: four distinct authored cels render",
+        "defeat: pause freezes its clock",
+        "basic: exactly 1 opted-in own cues",
+        "basic: expired effect and projectile stay absent in recovery",
+        "auto: exactly 1 opted-in own cues",
+        "auto: expired effect and projectile stay absent in recovery",
+        "passive: exactly 1 opted-in own cues",
+        "passive: expired effect and projectile stay absent in recovery",
+        "ultimate: exactly 1 opted-in own cues",
+        "ultimate: expired effect and projectile stay absent in recovery",
+        "Four original cues decode, without a human-listening claim",
+        "Opt-in only plays this unit's own audio",
+        "Reduced motion holds one authored cel",
+        "down: four separate world cels cycle",
+        "left: four separate world cels cycle",
+        "right: four separate world cels cycle",
+        "up: four separate world cels cycle",
+        "Standing respects selected directional idle",
+        "All actual draws remain inside their source atlas",
+        "320px controls fit viewport",
+        "390px controls fit viewport",
+        "768px controls fit viewport",
+        "Starter copy retains existing combat readiness",
+        "Selection resets sound opt-in",
+        "Preview preserves all seeded stable and AW2 bytes",
+        "No unexpected browser/resource errors",
+        "Missing world: own explicit error and blank canvas",
+        "Missing fx: own explicit error and blank canvas",
+        "Missing battle-motion-a-v2: own explicit error and blank canvas",
+        "Missing battle-motion-b-v2: own explicit error and blank canvas"
+      ],
+      "errors": [],
+      "timelines": {
+        "idle": [
+          "battle.idle.0",
+          "battle.idle.1",
+          "battle.idle.2",
+          "battle.idle.3"
+        ],
+        "move": [
+          "battle.move.0",
+          "battle.move.1",
+          "battle.move.2",
+          "battle.move.3"
+        ],
+        "attack": [
+          "battle.attack.0",
+          "battle.attack.1",
+          "battle.attack.2",
+          "battle.attack.3"
+        ],
+        "cast": [
+          "battle.cast.0",
+          "battle.cast.1",
+          "battle.cast.2",
+          "battle.cast.3"
+        ],
+        "hit": [
+          "battle.hit.0",
+          "battle.hit.1",
+          "battle.hit.2",
+          "battle.hit.3"
+        ],
+        "guard": [
+          "battle.guard.0",
+          "battle.guard.1",
+          "battle.guard.2",
+          "battle.guard.3"
+        ],
+        "ultimate": [
+          "battle.ultimate.0",
+          "battle.ultimate.1",
+          "battle.ultimate.2",
+          "battle.ultimate.3"
+        ],
+        "defeat": [
+          "battle.defeat.0",
+          "battle.defeat.1",
+          "battle.defeat.2",
+          "battle.defeat.3"
+        ]
+      },
+      "audio": [
+        {
+          "slot": "basic",
+          "channels": 1,
+          "duration": 0.18
+        },
+        {
+          "slot": "auto",
+          "channels": 1,
+          "duration": 0.3
+        },
+        {
+          "slot": "passive",
+          "channels": 1,
+          "duration": 0.22
+        },
+        {
+          "slot": "ultimate",
+          "channels": 1,
+          "duration": 0.42
+        }
+      ],
+      "limits": [
+        "Reference preview only; no combat/ownership/save grants",
+        "Desktop viewports only; independent art/listening/device/rights still open"
+      ]
+    },
+    "consumerBuildSmoke": {
+      "status": "PASS",
+      "checks": 8,
+      "report": ".asset-work/aw2-013a/build.json"
+    }
+  },
+  "build": {
+    "files": 151,
+    "bytes": 52247305,
+    "includes": "8 complete references plus two pre-production prompt JSONs; no PNG/TS/maps/archives"
+  },
+  "assets": {
+    "frames": 64,
+    "edgeMax": 3,
+    "webpBytes": 5733020,
+    "decodedRGBA": 31451712,
+    "repeatByteIdenticalPaths": 18
+  },
+  "generation": {
+    "calls": 7,
+    "selected": 5,
+    "rejected": 2,
+    "method": "OpenAI built-in image_gen"
+  },
+  "limits": [
+    "Reference package only, no full-character/actual Hai combat/collection approval",
+    "Desktop viewports, no physical-device/human-listening/rights acceptance"
+  ]
+}

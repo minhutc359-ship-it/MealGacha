@@ -1,0 +1,15 @@
+{
+  "task": "AW2-004P",
+  "spiritId": "aw2-van",
+  "generator": "OpenAI built-in image_gen",
+  "calls": [
+    {
+      "callId": "AW2-004P-1",
+      "asset": "portrait",
+      "prompt": "Use case: stylized-concept. Original full-body identity portrait for Vân, aw2-van, Adventure World2. Original adult androgynous hybrid spirit, jade-gray asymmetric simple layered clothes, a few unlettered memory-fabric fragments and narrow ties, medium silver-dark hair, calm ambiguous thoughtful face, both hands holding one original offset open ring composed of restrained broken jade/pearl fragments. Full body and practical boots. No halo, wings, crown, deity imagery, text, or identification with any story absent person. Clean polished HD anime game illustration, precise anatomy, readable original face, simple reproducible costume and restrained painterly shading. One whole character in three-quarter viewer-right ready stance with generous margins; all head/hands/tools/both boots visible. No scenery, floor, shadow, haze, background, text, logos, border, watermark, extra characters or copied IP. All space outside the character genuine transparent alpha.",
+      "referenceInputs": [],
+      "selected": true,
+      "source": "portrait.png"
+    }
+  ]
+}

@@ -17,7 +17,7 @@ describe("ART-THAN reference manifest and animation boundaries", () => {
     expect(than.assets.battle).toBe(THAN_ASSETS.assets.battle.id)
     expect(
       ROSTER.filter((spirit) => spirit.assets.status === "NOT_CREATED"),
-    ).toHaveLength(5)
+    ).toHaveLength(4)
     expect(THAN_ASSETS.fullCharacterComplete).toBe(false)
     expect(THAN_ASSETS.provenance.licenseStatus).toBe("REVIEW_REQUIRED")
     expect(THAN_ASSETS.provenance.commercialRelease).toBe("NOT_CLEARED")
