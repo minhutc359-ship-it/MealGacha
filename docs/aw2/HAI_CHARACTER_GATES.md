@@ -1,6 +1,6 @@
 # Hải — reference and full-character gates
 
-2026-10-22 · AW2-004L · aw2-hai/SR/Canh chua/Tank. Source `PENDING_ART_SOURCE`. Identity and Gạt Sóng/Giữ Lối/Biết Đường Về/Bờ Đợi directions preserved. Original portrait/16world/32HD/16FX/four cues verified as reference only.64 alpha-safe cells/edge≤3,lossless PNG→WebP and18-path reproducible build.
+2026-10-22 · AW2-004L · aw2-hai/SR/Canh chua/Tank. Source `57b160faefa4edca081e46680a45489bfa4d9e68`. Identity and Gạt Sóng/Giữ Lối/Biết Đường Về/Bờ Đợi directions preserved. Original portrait/16world/32HD/16FX/four cues verified as reference only.64 alpha-safe cells/edge≤3,lossless PNG→WebP and18-path reproducible build.
 
 | Gate | Verified subset | Remaining |
 |---|---|---|

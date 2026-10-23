@@ -872,5 +872,7 @@
       "sha256": "8778290fb3f96ec53429966a5ed0898987d53d61e235b7d11edb0e694c6ab64f"
     }
   ],
-  "reuse": "007F full1107/205browser/36sim and original seven art packages retain original-SHA evidence; no fresh count addition."
+  "reuse": "007F full1107/205browser/36sim and original seven art packages retain original-SHA evidence; no fresh count addition.",
+  "implementationSource": "57b160faefa4edca081e46680a45489bfa4d9e68",
+  "testedTree": "2ea874912df0777eb22df40f9b464f80a6d5918e"
 }

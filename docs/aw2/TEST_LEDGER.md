@@ -40,7 +40,7 @@ Retained shared-core baseline AW2-007D source `910b55bf977557f11be03111afa40283d
 
 ## AW2-004L Hải reference —2026-10-22
 
-Source `PENDING_ART_SOURCE`, base `3b7188b3bbd102c66d2517801e55e25cad5a46f4`. PASS85 unique units/7files (80 retained unchanged+5 corrected file); first84PASS/1FAIL reduced-sampler test assumption retained. PASS102 browser=47source+47compiled+8compiled onboarding, both types/review build/file audit/18path repeat, source/compiled captures opened.64cells/edge≤3,5WebPs5,733,020bytes,decoded31,451,712bytes.7 built-in calls/5selected/2HD unsafe rejects.217 tracked paths unchanged;007F full1107/205/36 and original art/deep save/mode evidence reused source-bound, not fresh. Independent fullDoD/art/listening/device/rights/release OPEN. Reference8/12≈67%,0fullDoD;demo≈90%/product≈40% unchanged. [Evidence](evidence/AW2-004L.md), [JSON](evidence/AW2-004L-verification.json).
+Source `57b160faefa4edca081e46680a45489bfa4d9e68`, base `3b7188b3bbd102c66d2517801e55e25cad5a46f4`. PASS85 unique units/7files (80 retained unchanged+5 corrected file); first84PASS/1FAIL reduced-sampler test assumption retained. PASS102 browser=47source+47compiled+8compiled onboarding, both types/review build/file audit/18path repeat, source/compiled captures opened.64cells/edge≤3,5WebPs5,733,020bytes,decoded31,451,712bytes.7 built-in calls/5selected/2HD unsafe rejects.217 tracked paths unchanged;007F full1107/205/36 and original art/deep save/mode evidence reused source-bound, not fresh. Independent fullDoD/art/listening/device/rights/release OPEN. Reference8/12≈67%,0fullDoD;demo≈90%/product≈40% unchanged. [Evidence](evidence/AW2-004L.md), [JSON](evidence/AW2-004L-verification.json).
 
 ## AW2-007F actual Nhiên kit —2026-10-22
 

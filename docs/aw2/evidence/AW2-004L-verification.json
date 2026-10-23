@@ -304,5 +304,7 @@
   "limits": [
     "Reference package only, no full-character/actual Hai combat/collection approval",
     "Desktop viewports, no physical-device/human-listening/rights acceptance"
-  ]
+  ],
+  "implementationSource": "57b160faefa4edca081e46680a45489bfa4d9e68",
+  "testedTree": "2ea874912df0777eb22df40f9b464f80a6d5918e"
 }
