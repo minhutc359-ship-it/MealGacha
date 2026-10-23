@@ -2,7 +2,7 @@
   "task": "AW2-007G",
   "date": "2026-10-23",
   "base": "92922b33167b81b84b7b382fd6b21a8375347a35",
-  "implementationSource": "PENDING_007G_SOURCE",
+  "implementationSource": "3154df089761afc11552c66668f8890640a1d914",
   "status": "PASS",
   "units": {
     "status": "PASS",
@@ -2275,5 +2275,17 @@
       "No dependencies/environment/SSR/auth boundary introduced"
     ],
     "evidence": "Existing237 browser assertions and two viewed compiled captures cover final story; no additional test count"
+  },
+  "testedTree": "820fb8043ac8a3a47f76d4061a617b4814c628e8",
+  "publication": {
+    "source": "3154df089761afc11552c66668f8890640a1d914",
+    "tree": "820fb8043ac8a3a47f76d4061a617b4814c628e8",
+    "changedFiles": 35,
+    "stagedBytes": 582066,
+    "exactRemoteTreeEqualsIndex": "PASS",
+    "expectedHead": "92922b33167b81b84b7b382fd6b21a8375347a35",
+    "force": false,
+    "independentFetchIndexTreeAncestryGuardedLocalSync": "PASS",
+    "completion": "Docs-only source stamps; final HEAD equality reported after completion commit"
   }
 }
