@@ -1,7 +1,7 @@
 {
   "task": "AW2-007M",
   "status": "PASS",
-  "source": "PENDING007M",
+  "source": "4165b1e84cbd0181853611b324d85945c8e46001",
   "base": "e658c97b9df52540445369e649f48da3a3e6a3ba",
   "branch": "game/adventure-world-2",
   "environment": {
@@ -472,5 +472,17 @@
       "path": "dev/tools/simulate-aw2-collection.mjs",
       "sha256": "3a8b4551e5b1318930528199e1cae9d0dbc4789153071d3ac2f409c85b9750fd"
     }
-  ]
+  ],
+  "publication": {
+    "status": "PASS",
+    "source": "4165b1e84cbd0181853611b324d85945c8e46001",
+    "sourceTree": "8c521acc832144c3cadb4ed5025176bd10fe75ba",
+    "expectedHead": "e658c97b9df52540445369e649f48da3a3e6a3ba",
+    "force": false,
+    "textFiles": 25,
+    "stagedBytes": 453122,
+    "independentFetchTreeIndexAncestryGuardedLocalSync": "PASS",
+    "sourceClean": true,
+    "completionScope": "Documentation source stamps and publication evidence only; tested runtime/build unchanged. Final clean local/fresh remote equality required before reporting success."
+  }
 }

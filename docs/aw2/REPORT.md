@@ -1,6 +1,6 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-007M: đấu lại boss sau kết thúc.** Source `PENDING007M` trên `game/adventure-world-2`. Trong Phòng Bàn, tới Người Giữ Bàn Quên và chọn **Đấu lại boss · không nhận thưởng**. Đội hình/EXP/nhấn Vân đã lưu áp dụng cho trận mới. Thắng, thua hoặc rút lui đều về Phòng Bàn, giữ nguyên kết thúc và toàn bộ tiến trình/phần thưởng. Reload bỏ lượt đang chơi; lỗi ghi có thể thử lại; kết quả tab cũ không ghi đè save mới.
+**Đã hoàn thành AW2-007M: đấu lại boss sau kết thúc.** Source `4165b1e84cbd0181853611b324d85945c8e46001` trên `game/adventure-world-2`. Trong Phòng Bàn, tới Người Giữ Bàn Quên và chọn **Đấu lại boss · không nhận thưởng**. Đội hình/EXP/nhấn Vân đã lưu áp dụng cho trận mới. Thắng, thua hoặc rút lui đều về Phòng Bàn, giữ nguyên kết thúc và toàn bộ tiến trình/phần thưởng. Reload bỏ lượt đang chơi; lỗi ghi có thể thử lại; kết quả tab cũ không ghi đè save mới.
 
 | Mốc | Hiện tại | Còn lại |
 |---|---:|---|
