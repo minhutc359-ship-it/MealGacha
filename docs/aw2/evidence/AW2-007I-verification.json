@@ -2,7 +2,7 @@
   "task": "AW2-007I",
   "status": "PASS",
   "base": "c38a5cc6d0ac0731904cc65ea1f582be24a4ef7a",
-  "implementation": "PENDING_007I_SOURCE",
+  "implementation": "9b9c365a5dd4c01176bef59772967d64522685b0",
   "unitTests": {
     "status": "PASS",
     "uniqueVerified": 1242,
@@ -1347,5 +1347,17 @@
     "Passive shield covered by actual-rule tests; default browser seed does not exercise replacement passive",
     "Three compiled warning/ultimate/mobile captures inspected; independent listening/playtest/physical-device/rights/release OPEN",
     "Ten actual kits/12references/five saved starters/0full-characterDoD; demo90%/product40% unchanged"
-  ]
+  ],
+  "testedTree": "8a27a0f0ee0dd1fc4aaa03841093ecf96b7909e4",
+  "publication": {
+    "source": "9b9c365a5dd4c01176bef59772967d64522685b0",
+    "tree": "8a27a0f0ee0dd1fc4aaa03841093ecf96b7909e4",
+    "changedFiles": 40,
+    "stagedBytes": 719145,
+    "expectedHead": "c38a5cc6d0ac0731904cc65ea1f582be24a4ef7a",
+    "force": false,
+    "exactRemoteTreeEqualsIndex": "PASS",
+    "independentFetchSourceTreeIndexAncestryGuardedLocalSync": "PASS",
+    "completion": "Docs-only source stamps; final clean local/remote HEAD comparison before handoff."
+  }
 }

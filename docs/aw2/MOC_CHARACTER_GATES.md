@@ -12,4 +12,4 @@
 
 [Evidence/commands/incidents](evidence/AW2-004M-P.md), [JSON](evidence/AW2-004M-P-verification.json), [all12 references](ROSTER_ART.md). Demo≈90%/product≈40% unchanged. Next owner BA/mechanic for future kit; character/animation for independent art review.
 
-AW2-007I current development source `PENDING_007I_SOURCE`, base `c38a5cc6d0ac0731904cc65ea1f582be24a4ef7a`. Original images/PCM/frame/timing unchanged; [practice](MOC_PRACTICE.md), [verification](evidence/AW2-007I.md). Tenth actual kit, five saved starters unchanged; full-character DoD still OPEN.
+AW2-007I current development source `9b9c365a5dd4c01176bef59772967d64522685b0`, base `c38a5cc6d0ac0731904cc65ea1f582be24a4ef7a`. Original images/PCM/frame/timing unchanged; [practice](MOC_PRACTICE.md), [verification](evidence/AW2-007I.md). Tenth actual kit, five saved starters unchanged; full-character DoD still OPEN.
