@@ -1,6 +1,6 @@
 # Bộ sưu tập và đội hình — AW2-007L
 
-Development source `PENDING007L` · schema5 · `aw2-collection-development-v1`. Final recruitment policy remains **PROPOSED**; these rules enable testing existing kits, do not adopt D11 rates/pity/spending or character-join story canon.
+Development source `730bd97b81875489e87f5c0c96665157fb3b6bb4` · schema5 · `aw2-collection-development-v1`. Final recruitment policy remains **PROPOSED**; these rules enable testing existing kits, do not adopt D11 rates/pity/spending or character-join story canon.
 
 Trong `/dev/aw2/world.html`, mở **Đội và túi đồ**. Nhập môn vẫn nhận trực tiếp Than/Lửa Nhỏ/Lam Lam/Mộc Non/Sương Lành. Các lời mời sau là tùy chọn, miễn phí, chỉ nhận một lần:
 

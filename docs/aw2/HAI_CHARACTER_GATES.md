@@ -1,6 +1,6 @@
 # Hải — reference and full-character gates
 
-AW2-007L current development update, source `PENDING007L`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
+AW2-007L current development update, source `730bd97b81875489e87f5c0c96665157fb3b6bb4`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
 
 2026-10-22 · AW2-004L · aw2-hai/SR/Canh chua/Tank. Source `57b160faefa4edca081e46680a45489bfa4d9e68`. Identity and Gạt Sóng/Giữ Lối/Biết Đường Về/Bờ Đợi directions preserved. Original portrait/16world/32HD/16FX/four cues verified as reference only.64 alpha-safe cells/edge≤3,lossless PNG→WebP and18-path reproducible build.
 

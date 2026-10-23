@@ -1,6 +1,6 @@
 # Liên — reference and full-character gates
 
-AW2-007L current development update, source `PENDING007L`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
+AW2-007L current development update, source `730bd97b81875489e87f5c0c96665157fb3b6bb4`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
 
 2026-10-23 · AW2-004M · aw2-lien/SR/Chè sen/Healer. Source `8344fc0b05275a1d8e314100fcfa3263d9956c8e`. Approved identity and four canonical skill directions preserved. Portrait/16world/32HD/16FX/four cues verified as reference only;64 safe cells, edge≤2/255, lossless runtimeWebP and18-path repeat identity. Browser48source+48compiled PASS, included in cohort390; full1132 cases PASS.
 

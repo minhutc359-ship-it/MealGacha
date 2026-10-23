@@ -1,7 +1,7 @@
 {
   "task": "AW2-007L",
   "status": "PASS",
-  "source": "PENDING007L",
+  "source": "730bd97b81875489e87f5c0c96665157fb3b6bb4",
   "base": "b4e20e628156b1ee5a6c17e8a2ed8b86c3b0b3ca",
   "branch": "game/adventure-world-2",
   "scope": "Provisional earned collection/schema5/saved parties; final recruitment policy PROPOSED, no D11 approval",
@@ -1485,5 +1485,16 @@
     "104composition simulations include losses and do not establish balance",
     "No independent human/device/art/listening/rights/production-save/release acceptance"
   ],
-  "next": "AW2-007M reward-free post-ending boss rematch"
+  "next": "AW2-007M reward-free post-ending boss rematch",
+  "publication": {
+    "source": "730bd97b81875489e87f5c0c96665157fb3b6bb4",
+    "sourceTree": "1fd0037c629f0a345baf7ec3f14b3a61fd80cdf7",
+    "files": 64,
+    "stagedBytes": 857287,
+    "expectedHead": "b4e20e628156b1ee5a6c17e8a2ed8b86c3b0b3ca",
+    "force": false,
+    "sourceFetchTreeIndexAncestrySync": "PASS",
+    "sourceClean": true,
+    "completionScope": "Source-stamp docs only; final clean local/fresh remote equality checked before handoff"
+  }
 }

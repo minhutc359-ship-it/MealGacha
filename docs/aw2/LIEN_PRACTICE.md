@@ -1,6 +1,6 @@
 # Luyện kỹ năng Liên
 
-AW2-007L current development update, source `PENDING007L`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
+AW2-007L current development update, source `730bd97b81875489e87f5c0c96665157fb3b6bb4`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
 
 Chạy `pnpm dev`, mở http://localhost:8443/dev/aw2/battle.html?team=lien. Đội luyện năm người thay Lam Lam bằng Liên; đối thủ Muối Đen dùng dấu thật. Các cấp1/5/10/20 áp dụng chỉ số thử nghiệm; trang không ghi EXP/save hoặc cấp quyền sở hữu Liên.
 

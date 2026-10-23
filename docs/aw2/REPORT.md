@@ -1,6 +1,6 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-007L: bộ sưu tập và đội hình lưu.** Source `PENDING007L` trên `game/adventure-world-2`. Người chơi có thể mời thêm bảy nhân vật theo mốc nhiệm vụ thử nghiệm, chọn năm người, lưu thứ tự và nhấn Vân. Followers và trận boss thật dùng đội đã lưu; trận đang chạy giữ nguyên snapshot. Save v1–4 được đọc thành v5 mà không tự ghi/cấp thêm nhân vật.
+**Đã hoàn thành AW2-007L: bộ sưu tập và đội hình lưu.** Source `730bd97b81875489e87f5c0c96665157fb3b6bb4` trên `game/adventure-world-2`. Người chơi có thể mời thêm bảy nhân vật theo mốc nhiệm vụ thử nghiệm, chọn năm người, lưu thứ tự và nhấn Vân. Followers và trận boss thật dùng đội đã lưu; trận đang chạy giữ nguyên snapshot. Save v1–4 được đọc thành v5 mà không tự ghi/cấp thêm nhân vật.
 
 | Chỉ báo | Hiện tại | Thay đổi |
 |---|---:|---|

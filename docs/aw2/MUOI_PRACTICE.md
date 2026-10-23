@@ -1,6 +1,6 @@
 # Luyện kỹ năng Muối Đen
 
-AW2-007L current development update, source `PENDING007L`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
+AW2-007L current development update, source `730bd97b81875489e87f5c0c96665157fb3b6bb4`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
 
 Sau `pnpm dev`, mở http://localhost:8443/dev/aw2/battle.html?team=muoi. Đây là đội luyện5 người, thay Sương Lành bằng Muối Đen; không cấp nhân vật, tiêu nguyên liệu, ghi EXP hoặc save. Hành trình vẫn dùng đội khởi đầu đã lưu. Chỉ số là development tuning, chưa phải cân bằng cuối.
 

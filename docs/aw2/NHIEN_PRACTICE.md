@@ -1,6 +1,6 @@
 # Luyện kỹ năng Nhiên
 
-AW2-007L current development update, source `PENDING007L`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
+AW2-007L current development update, source `730bd97b81875489e87f5c0c96665157fb3b6bb4`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
 
 Sau `pnpm dev`, mở http://localhost:8443/dev/aw2/battle.html?team=nhien. Đội luyện có năm người, thay Lửa Nhỏ bằng Nhiên. Cấp 1/5/10/20 chỉ áp dụng khi **Tạo lại trận**. Chỉ số dùng `aw2-nhien-development-v1` và curve phát triển, chưa phải cân bằng cuối; trận luyện không cấp nhân vật, EXP hoặc ghi save.
 
