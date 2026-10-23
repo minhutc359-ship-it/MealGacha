@@ -1,5 +1,9 @@
 # Ước lượng hoàn thiện AW2
 
+**AW2-007K VERIFIED — Vân có kit hybrid và nhấn tuyệt kỹ cố định trước trận.** Source `PENDING007K`, base `62d3e585213b65340d32c6566c810e384081bee2` trên `game/adventure-world-2`. Hai nửa hỗ trợ/đánh dấu khóa mục tiêu riêng; hồi máu chỉ từ khiên thực đã cấp; Bảo hộ hoặc Tấn công dùng chung một tuyệt kỹ/100năng lượng. **12/12 kit phát triển=100%**, tăng từ11/12≈92%; **12/12 bộ hình tham chiếu**, năm starter lưu và **0/12 full-characterDoD** giữ nguyên. **Demo≈90%, toàn sản phẩm≈40% (35–45%) giữ nguyên** vì collection và nghiệm thu art/playtest/thiết bị/rights/release còn mở.1345ca unit riêng biệt/113files, 384browser assertions/108simulations; hai typecheck/review+stable build/isolation PASS. [Luyện Vân](VAN_PRACTICE.md), [bằng chứng](evidence/AW2-007K.md). Next BA/mechanic: [007L collection/đội lưu contract](tasks/AW2-007L.md); D11 PROPOSED/D12 OPEN.
+
+Các mốc dưới là lịch sử theo source; số kit/NEXT cũ được thay thế bởi cập nhật007K ở trên. Khoảng thời gian có điều kiện giữ nguyên, chưa đo được vận tốc nhân vật qua đầy đủ DoD.
+
 Cập nhật 2026-10-22 · BA/scretary · **Ước lượng sơ bộ có điều kiện, chưa phải ngày cam kết hoặc quyết định phát hành.** Các mốc dưới tính từ hiện trạng đã kiểm chứng, không cộng dồn từng khoảng. D12 còn mở về nền tảng/tên/monetization; web trước là giả định lập kế hoạch, không phải owner approval mới.
 
 | Mốc | Khoảng thời gian còn lại | Điều kiện hoàn thành |
@@ -17,7 +21,7 @@ Giả định phát hành web chơi đơn, lưu cục bộ; không tính tài kh
 Đã có nền6 zone/4 quest, đội5 người, boss thật/hai kết thúc, save v4/túi đồ/EXP/nấu ăn và TCG luyện tập. AW2-009C bổ sung Auto Chess thực tế qua cùng adapter; kết quả kiểm chứng nằm trong [REPORT](REPORT.md)/[ledger](TEST_LEDGER.md). Hai mode mượn tài nguyên riêng và chưa có phần thưởng/tiến trình sưu tập. Thông số hiện tại còn là thử nghiệm.
 
 1. **Chốt demo — AW2-010A:** phần tích hợp/hướng dẫn và kiểm chứng tự động source+compiled đã PASS; còn playtest bởi người chơi độc lập và sửa lỗi dùng thử. Dự trù3–5 ngày cho tích hợp/hướng dẫn và2–5 ngày cho playtest/sửa lỗi; không tự đánh dấu đủ12 nhân vật.
-2. **Nhân vật/art — AW2-004 và phần còn lại006/007:**5 bộ chưa tạo;7 bộ hiện có vẫn là tham chiếu và đều `fullCharacterComplete=false`. Hoàn thiện lore/kit/leveling, chibi4 hướng, HD8 trạng thái, portrait, projectile/impact/ultimate, âm thanh và provenance cho từng người. Map/NPC còn tạm; boss đã có bộ tham chiếu riêng, full motion/world/audio còn thiếu. Đây là đường găng lớn nhất; cần đo thời gian thực tế của1 nhân vật hoàn chỉnh trước khi siết mốc6–10 tuần.
+2. **Nhân vật/art — AW2-004 và phần còn lại006/007:**12 bộ đã có kit phát triển và tài nguyên tham chiếu;12 bộ vẫn là tham chiếu và đều `fullCharacterComplete=false`. Hoàn thiện lore/kit/leveling, chibi4 hướng, HD8 trạng thái, portrait, projectile/impact/ultimate, âm thanh và provenance cho từng người. Map/NPC còn tạm; boss đã có bộ tham chiếu riêng, full motion/world/audio còn thiếu. Đây là đường găng lớn nhất; cần đo thời gian thực tế của1 nhân vật hoàn chỉnh trước khi siết mốc6–10 tuần.
 3. **Cơ chế và nội dung hoàn thiện:** kiểm thử/cân bằng các đội12 nhân vật, dungeon, kinh tế/phần thưởng, UX; duyệt D11 trước runtime gacha nếu giữ phần đó trong MVP. Không tự áp tỷ lệ đề xuất. Chốt tiêu chí mode sản phẩm nếu muốn vượt bộ luyện tập mượn hiện tại.
 4. **Release gate — AW2-011:** trình duyệt/thiết bị thật, hiệu năng/offline/âm thanh, migration/save production không phá dữ liệu, quyền sử dụng art/audio và full regression. Owner duyệt trước deploy/release; làm xong code không tự đóng các gate này.
 

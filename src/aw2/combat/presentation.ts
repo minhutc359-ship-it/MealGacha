@@ -1,3 +1,4 @@
+import { isVanConfirmedOutcome } from "./van"
 import type { CombatEvent, CombatEventKind, CombatSkillSlot } from "./types"
 import { isBachConfirmedOutcome } from "./bach"
 import { isMocConfirmedOutcome } from "./moc"
@@ -159,6 +160,53 @@ export function reduceCombatPresentation(
     const mocSkill = event.skillId?.startsWith("aw2-moc-non:skill:")
     const muoiSkill = event.skillId?.startsWith("aw2-muoi:skill:")
     const nhienSkill = event.skillId?.startsWith("aw2-nhien:skill:")
+    if (event.skillId?.startsWith("aw2-van:skill:") && event.sourceId) {
+      const slot = skillSlot(event.skillId)!
+      if (["cast-start", "cast-commit"].includes(event.kind)) {
+        phase = "prepare"
+        if (slot === "basic") sourceState = "attack"
+      }
+      if (event.kind === "projectile-launch") phase = "launch"
+      if (isVanConfirmedOutcome(event)) {
+        phase = "confirmed"
+        contactIndex = 0
+        const effects = (next.effects[event.sourceId] ??= {})
+        const previous = effects[slot]
+        if (
+          previous?.tick === event.tick &&
+          previous.actionId === event.actionId
+        ) {
+          previous.targetIds = [
+            ...new Set([...(previous.targetIds ?? []), ...event.targetIds]),
+          ]
+          sourceState = null
+        } else {
+          effects[slot] = {
+            serial: event.serial,
+            tick: event.tick,
+            skillId: event.skillId,
+            index: 0,
+            actionId: event.actionId,
+            targetIds: [...event.targetIds],
+          }
+          sourceState =
+            slot === "ultimate"
+              ? "ultimate"
+              : slot === "auto"
+                ? "cast"
+                : slot === "passive"
+                  ? "guard"
+                  : "attack"
+        }
+      } else if (["status", "miss"].includes(event.kind)) sourceState = null
+      // A real incoming hit can replace the ultimate pose before a later own
+      // windup. Preserve that reaction and the independent committed outcome.
+      if (
+        next.effects[event.sourceId]?.ultimate?.tick === event.tick &&
+        slot !== "ultimate"
+      )
+        sourceState = null
+    }
     if (event.skillId?.startsWith("aw2-bach:skill:") && event.sourceId) {
       const slot = skillSlot(event.skillId)!
       if (["cast-start", "cast-commit"].includes(event.kind)) {

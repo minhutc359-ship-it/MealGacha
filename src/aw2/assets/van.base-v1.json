@@ -1661,7 +1661,7 @@
         },
         "scale": 0.65
       },
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "actual development hybrid combat/leveling implemented; pre-battle protection or attack emphasis, bounded earned-support passive; collection/saved teams/final balance not implemented"
     },
     "auto": {
       "id": "aw2-van:skill:auto",
@@ -1695,7 +1695,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "actual development hybrid combat/leveling implemented; pre-battle protection or attack emphasis, bounded earned-support passive; collection/saved teams/final balance not implemented"
     },
     "passive": {
       "id": "aw2-van:skill:passive",
@@ -1729,7 +1729,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "actual development hybrid combat/leveling implemented; pre-battle protection or attack emphasis, bounded earned-support passive; collection/saved teams/final balance not implemented"
     },
     "ultimate": {
       "id": "aw2-van:skill:ultimate",
@@ -1763,7 +1763,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "actual development hybrid combat/leveling implemented; pre-battle protection or attack emphasis, bounded earned-support passive; collection/saved teams/final balance not implemented"
     }
   },
   "provenance": {

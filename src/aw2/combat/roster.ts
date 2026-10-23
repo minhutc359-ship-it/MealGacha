@@ -17,10 +17,18 @@ export type CombatSpiritId =
   | "aw2-lien"
   | "aw2-moc"
   | "aw2-bach"
+  | "aw2-van"
 
 export interface CombatKit {
   spiritId: CombatSpiritId
-  role: "tank" | "striker" | "healer" | "support" | "mage" | "debuffer"
+  role:
+    | "tank"
+    | "striker"
+    | "healer"
+    | "support"
+    | "mage"
+    | "debuffer"
+    | "hybrid"
   hp: number
   attack: number
   defense: number
@@ -121,6 +129,20 @@ export function combatSkillId(
 
 export const COMBAT_KITS: Record<CombatSpiritId, CombatKit> = {
   ...STARTER_COMBAT_KITS,
+  "aw2-van": {
+    spiritId: "aw2-van",
+    role: "hybrid",
+    hp: 155,
+    attack: 26,
+    defense: 11,
+    range: 38,
+    moveSpeed: 5,
+    projectileTicks: 2,
+    basicCooldown: 5,
+    autoCooldown: 9,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
   "aw2-bach": {
     spiritId: "aw2-bach",
     role: "tank",

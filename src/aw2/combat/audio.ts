@@ -1,3 +1,4 @@
+import { isVanConfirmedOutcome } from "./van"
 import type { CombatEvent } from "./types"
 import { ROSTER_ASSETS } from "../assets/roster"
 import type { SkillSlot } from "../assets/types"
@@ -15,7 +16,20 @@ export function combatAudioCues(events: CombatEvent[], afterSerial: number) {
       const manifest = ROSTER_ASSETS[spiritId]
       if (!manifest || !["basic", "auto", "passive", "ultimate"].includes(slot))
         return []
-      if (spiritId === "aw2-bach") {
+      if (spiritId === "aw2-van") {
+        if (!isVanConfirmedOutcome(event)) return []
+        if (
+          events.some(
+            (previous) =>
+              previous.serial <= afterSerial &&
+              previous.tick === event.tick &&
+              previous.sourceId === event.sourceId &&
+              previous.skillId === event.skillId &&
+              isVanConfirmedOutcome(previous),
+          )
+        )
+          return []
+      } else if (spiritId === "aw2-bach") {
         if (!isBachConfirmedOutcome(event)) return []
         if (
           events.some(

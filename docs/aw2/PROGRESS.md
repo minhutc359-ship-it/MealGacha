@@ -1,5 +1,9 @@
 # Phần trăm hoàn thiện AW2
 
+**AW2-007K VERIFIED — Vân có kit hybrid và nhấn tuyệt kỹ cố định trước trận.** Source `PENDING007K`, base `62d3e585213b65340d32c6566c810e384081bee2` trên `game/adventure-world-2`. Hai nửa hỗ trợ/đánh dấu khóa mục tiêu riêng; hồi máu chỉ từ khiên thực đã cấp; Bảo hộ hoặc Tấn công dùng chung một tuyệt kỹ/100năng lượng. **12/12 kit phát triển=100%**, tăng từ11/12≈92%; **12/12 bộ hình tham chiếu**, năm starter lưu và **0/12 full-characterDoD** giữ nguyên. **Demo≈90%, toàn sản phẩm≈40% (35–45%) giữ nguyên** vì collection và nghiệm thu art/playtest/thiết bị/rights/release còn mở.1345ca unit riêng biệt/113files, 384browser assertions/108simulations; hai typecheck/review+stable build/isolation PASS. [Luyện Vân](VAN_PRACTICE.md), [bằng chứng](evidence/AW2-007K.md). Next BA/mechanic: [007L collection/đội lưu contract](tasks/AW2-007L.md); D11 PROPOSED/D12 OPEN.
+
+Các mốc dưới là lịch sử theo source; số kit/NEXT cũ được thay thế bởi cập nhật007K ở trên. Khoảng thời gian có điều kiện giữ nguyên, chưa đo được vận tốc nhân vật qua đầy đủ DoD.
+
 2026-10-21 · BA/scretary · Owner yêu cầu ước lượng theo %. Đây là chỉ báo lập kế hoạch với phạm vi/cách tính công khai, không phải phê duyệt phát hành hoặc phần trăm công sức đã đo. Bản web chơi đơn là giả định hiện tại; D12 nền tảng/monetization còn mở. [REPORT](REPORT.md) là bản tóm tắt.
 
 ## Demo với art tham chiếu

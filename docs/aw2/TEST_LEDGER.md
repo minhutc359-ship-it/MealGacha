@@ -1,6 +1,12 @@
 # Test ledger / change impact
 
-## AW2-007J current verified scope
+## AW2-007K current verified scope
+
+Source `PENDING007K`, base `62d3e585213b65340d32c6566c810e384081bee2`. PASS1345unique/113files:1288unaffected cases plus57finalVân; initial full1344=1341PASS/3fixtureFAIL, three corrected fixtures PASS, Van-only rerun after area helper fix replaces prior56. Final single-full1345 NOT_RUN; no duplicated focused+full sum. PASS384fresh browser assertions/108simulations, both final types/review+stable builds/releaseguard/49text isolation/style/syntax/JSON/links. Final source/compiled Vân both emphases, pending reset, actual support/cleanse/expiry/ult/audio/atlas/320390768/missing resources and byte isolation. Original/deep save/mode details retained at source refs within300unchanged hashes, not added to fresh totals. Incidents and exact scope [evidence](evidence/AW2-007K.md), [JSON](evidence/AW2-007K-verification.json). Independent human art/listening/playtest/physical devices/FPS/offline/native/rights/production migration/release NOT_RUN/OPEN. Next007L contract; full regression on shared save/world changes or release.
+
+Historical entries below retain their original refs/counts; their old NEXT/inventory statements are superseded by STATUS.
+
+## AW2-007J historical verified scope
 
 Source `efca3be173196b5c09c7d84be49e308d8a23fa31`, base `3bd893a143e4954125a6e39ec608ced4c738d210`. PASS1288unique/112files:1242 unchanged full cases plus46finalBách, full1287PASS before isolated pose fix; no overlapping sum. PASS351browser/84simulations, both final types/review+stable builds/releaseguard/49text isolation/style/syntax/JSON/links. Own Bách source/compiled each retains20 initial PASS, remaining after corrected branch; only final composite report counted. Earlier fixture/type/pose/instrumentation failures explicitly recorded. Three compiled captures viewed. Bách64cell/hash/PCM/18repeat/301unchanged boundary PASS; unchanged original art/deep-save/reset/mode evidence retains original refs. [Evidence](evidence/AW2-007J.md), [JSON](evidence/AW2-007J-verification.json).11actualkits/12references/5savedstarters/0fullDoD;demo90%/product40% unchanged.
 

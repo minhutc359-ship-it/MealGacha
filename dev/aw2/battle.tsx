@@ -1,7 +1,7 @@
 import { StrictMode, useEffect, useReducer, useState } from "react"
 import { createRoot } from "react-dom/client"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
-import type { CombatSpiritId } from "../../src/aw2/combat"
+import type { CombatSpiritId, VanEmphasis } from "../../src/aw2/combat"
 import { nhienBusy, bachThreshold } from "../../src/aw2/combat"
 import { BattleCanvas } from "./BattleCanvas"
 import { useBattleAudio } from "./useBattleAudio"
@@ -27,11 +27,19 @@ function BattlePreview() {
               ? "moc"
               : new URLSearchParams(location.search).get("team") === "bach"
                 ? "bach"
-                : undefined
+                : new URLSearchParams(location.search).get("team") === "van"
+                  ? "van"
+                  : undefined
+  const initialEmphasis: VanEmphasis =
+    new URLSearchParams(location.search).get("emphasis") === "attack"
+      ? "attack"
+      : "protection"
+  const [pendingEmphasis, setPendingEmphasis] =
+    useState<VanEmphasis>(initialEmphasis)
   const [level, setLevel] = useState(5)
   const [{ battle, presentation, level: activeLevel, message }, dispatch] =
     useReducer(reduceBattlePreviewSession, 5, (level) =>
-      createBattlePreviewSession(level, practice),
+      createBattlePreviewSession(level, practice, initialEmphasis),
     )
   const [skillTarget, setSkillTarget] = useState("enemy-than")
   const [interruptTarget, setInterruptTarget] = useState("player-aw2-lien")
@@ -50,7 +58,7 @@ function BattlePreview() {
   }, [paused, battle.status])
 
   const reset = () => {
-    dispatch({ type: "reset", level, practice })
+    dispatch({ type: "reset", level, practice, vanEmphasis: pendingEmphasis })
     setPaused(false)
   }
 
@@ -62,9 +70,12 @@ function BattlePreview() {
     dispatch({
       type: "ultimate",
       actorId,
-      ...(["player-aw2-muoi", "player-aw2-nhien", "player-aw2-moc"].includes(
-        actorId,
-      )
+      ...([
+        "player-aw2-muoi",
+        "player-aw2-nhien",
+        "player-aw2-moc",
+        "player-aw2-van",
+      ].includes(actorId)
         ? { targetId: skillTarget }
         : {}),
     })
@@ -73,6 +84,7 @@ function BattlePreview() {
   const playerRows = battle.actors.filter((actor) => actor.side === "player")
   const nhien = playerRows.find((actor) => actor.spiritId === "aw2-nhien")
   const hai = playerRows.find((actor) => actor.spiritId === "aw2-hai")
+  const van = playerRows.find((a) => a.spiritId === "aw2-van")
   const bach = playerRows.find((actor) => actor.spiritId === "aw2-bach")
   const requiredBachAbsorption = bach ? bachThreshold(bach) : 0
   const moc = playerRows.find((actor) => actor.spiritId === "aw2-moc")
@@ -85,19 +97,21 @@ function BattlePreview() {
     <main className="aw2-save aw2-battle">
       <p className="eyebrow">AW2-007B · DEVELOPMENT-ONLY EVENT RENDERER</p>
       <h1>
-        {practice === "bach"
-          ? "Luyện kỹ năng Bách"
-          : practice === "moc"
-            ? "Luyện kỹ năng Mộc"
-            : practice === "lien"
-              ? "Luyện kỹ năng Liên"
-              : practice === "hai"
-                ? "Luyện kỹ năng Hải"
-                : practice === "nhien"
-                  ? "Luyện kỹ năng Nhiên"
-                  : practice
-                    ? "Luyện kỹ năng Muối Đen"
-                    : "Giao ước bên bếp"}
+        {practice === "van"
+          ? "Luyện kỹ năng Vân"
+          : practice === "bach"
+            ? "Luyện kỹ năng Bách"
+            : practice === "moc"
+              ? "Luyện kỹ năng Mộc"
+              : practice === "lien"
+                ? "Luyện kỹ năng Liên"
+                : practice === "hai"
+                  ? "Luyện kỹ năng Hải"
+                  : practice === "nhien"
+                    ? "Luyện kỹ năng Nhiên"
+                    : practice
+                      ? "Luyện kỹ năng Muối Đen"
+                      : "Giao ước bên bếp"}
       </h1>
       <p>
         <a
@@ -116,7 +130,8 @@ function BattlePreview() {
         {" · "}
         <a href="/dev/aw2/battle.html?team=moc">Luyện kỹ năng Mộc</a>
         {" · "}
-        <a href="/dev/aw2/battle.html?team=bach">Luyện kỹ năng Bách</a>
+        <a href="/dev/aw2/battle.html?team=bach">Luyện kỹ năng Bách</a> ·{" "}
+        <a href="/dev/aw2/battle.html?team=van">Luyện kỹ năng Vân</a>
       </p>
       {practice === "muoi" && (
         <p>
@@ -131,6 +146,119 @@ function BattlePreview() {
           tuyệt kỹ có hồi thế; đánh trúng hai địch khác nhau mới hồi năng lượng
           có giới hạn. Có thể thử ngắt chuỗi, không cấp nhân vật hay ghi save.
         </p>
+      )}
+      {practice === "van" && van && (
+        <section aria-label="Thử kỹ năng Vân">
+          <p>
+            Đội luyện 5 người thay Mộc Non bằng Vân. Nối Hai Đầu bảo vệ đồng
+            minh đang bị đe dọa và đánh dấu địch. Nhớ Một Phần chỉ hồi máu từ hỗ
+            trợ thực khi dấu kết thúc. Thu thập và đội lưu còn chờ triển khai.
+          </p>
+          <p data-testid="van-active-emphasis">
+            Nhấn đang dùng:{" "}
+            {(van.vanEmphasis ?? "protection") === "attack"
+              ? "Tấn công"
+              : "Bảo hộ"}{" "}
+            · cố định trong trận.
+          </p>
+          <label>
+            Nhấn cho trận mới{" "}
+            <select
+              data-testid="van-emphasis"
+              value={pendingEmphasis}
+              onChange={(e) =>
+                setPendingEmphasis(
+                  e.target.value === "attack" ? "attack" : "protection",
+                )
+              }
+            >
+              <option value="protection">Bảo hộ</option>
+              <option value="attack">Tấn công</option>
+            </select>
+          </label>
+          <p>Lựa chọn chỉ áp dụng khi bấm Tạo lại trận.</p>
+          <p data-testid="van-state" data-state={JSON.stringify(van)}>
+            Năng lượng {van.energy}/100 · Khiên {van.shield} ·{" "}
+            {van.cast ? "Đang chuẩn bị kỹ năng" : "Sẵn sàng"} ·{" "}
+            {van.vanLink
+              ? `Dấu ${van.vanLink.enemyId} đến nhịp ${van.vanLink.endsAtTick}; hỗ trợ thực ${van.vanLink.supportedShield}`
+              : "Chưa nối dấu"}
+          </p>
+          <label>
+            Mục tiêu Vân{" "}
+            <select
+              aria-label="Mục tiêu Vân"
+              value={skillTarget}
+              onChange={(e) => setSkillTarget(e.target.value)}
+            >
+              {battle.actors
+                .filter((a) => a.side === "enemy")
+                .map((a) => (
+                  <option key={a.id} value={a.id} disabled={a.hp <= 0}>
+                    {ROSTER_ASSETS[a.spiritId]?.displayName ?? a.spiritId}
+                    {a.hp <= 0 ? " — đã gục" : ""}
+                  </option>
+                ))}
+            </select>
+          </label>
+          <button
+            type="button"
+            data-testid="van-interrupt"
+            disabled={battle.status !== "active" || van.hp <= 0 || !van.cast}
+            onClick={() => dispatch({ type: "interrupt-van" })}
+          >
+            Đối thủ ngắt Vân
+          </button>
+          <button
+            type="button"
+            data-testid="van-cleanse"
+            disabled={
+              battle.status !== "active" ||
+              !battle.actors.some(
+                (a) => a.id === skillTarget && a.hp > 0 && a.side === "enemy",
+              )
+            }
+            onClick={() =>
+              dispatch({ type: "cleanse-van", targetId: skillTarget })
+            }
+          >
+            Đối thủ tẩy dấu Vân
+          </button>
+          <ul data-testid="van-allies" data-state={JSON.stringify(playerRows)}>
+            {playerRows.map((a) => (
+              <li key={a.id}>
+                {ROSTER_ASSETS[a.spiritId].displayName}: HP{a.hp}/{a.maxHp} ·
+                Khiên{a.shield}
+              </li>
+            ))}
+          </ul>
+          <ol
+            data-testid="van-outcomes"
+            data-events={JSON.stringify(
+              battle.events.filter((e) => e.skillId?.startsWith("aw2-van:")),
+            )}
+          >
+            {battle.events
+              .filter(
+                (e) =>
+                  e.skillId?.startsWith("aw2-van:") &&
+                  [
+                    "hit",
+                    "miss",
+                    "shield",
+                    "heal",
+                    "status",
+                    "interrupt",
+                  ].includes(e.kind),
+              )
+              .slice(-10)
+              .map((e) => (
+                <li
+                  key={e.serial}
+                >{`Nhịp ${e.tick}: ${e.text ?? `${e.kind} ${e.amount ?? 0}`}`}</li>
+              ))}
+          </ol>
+        </section>
       )}
       {practice === "bach" && bach && (
         <section aria-label="Thử kỹ năng Bách">

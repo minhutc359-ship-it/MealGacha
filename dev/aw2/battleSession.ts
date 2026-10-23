@@ -4,6 +4,9 @@ import {
   advanceCombatBattle,
   castCombatUltimate,
   cleanseMuoiMarks,
+  cleanseVanLinks,
+  vanEmphasis,
+  type VanEmphasis,
   createCombatBattle,
   createCombatPresentation,
   createDevelopmentCombatSeed,
@@ -15,7 +18,14 @@ import {
   type CombatPresentation,
 } from "../../src/aw2/combat"
 
-export type BattlePractice = "muoi" | "nhien" | "hai" | "lien" | "moc" | "bach"
+export type BattlePractice =
+  | "muoi"
+  | "nhien"
+  | "hai"
+  | "lien"
+  | "moc"
+  | "bach"
+  | "van"
 
 export interface BattlePreviewSession {
   level: number
@@ -31,6 +41,7 @@ interface AdvanceCommand {
 }
 
 interface ResetCommand {
+  vanEmphasis?: VanEmphasis
   type: "reset"
   practice?: BattlePractice
   level: number
@@ -62,6 +73,8 @@ interface LienInterruptCommand {
 }
 
 export type BattlePreviewCommand =
+  | { type: "interrupt-van" }
+  | { type: "cleanse-van"; targetId: string }
   | AdvanceCommand
   | ResetCommand
   | UltimateCommand
@@ -75,30 +88,36 @@ export type BattlePreviewCommand =
 export function createBattlePreviewSession(
   level: number,
   practice?: BattlePractice,
+  emphasis: VanEmphasis = "protection",
 ): BattlePreviewSession {
   const experience = experienceToReachLevel(level)
   const identities: readonly CombatSpiritId[] =
-    practice === "bach"
-      ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-than" ? "aw2-bach" : id))
-      : practice === "moc"
-        ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-suong" ? "aw2-moc" : id))
-        : practice === "muoi"
-          ? [...STARTER_SPIRIT_IDS.slice(0, 4), "aw2-muoi"]
-          : practice === "nhien"
-            ? STARTER_SPIRIT_IDS.map((id) =>
-                id === "aw2-lua" ? "aw2-nhien" : id,
-              )
-            : practice === "hai"
+    practice === "van"
+      ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-moc-non" ? "aw2-van" : id))
+      : practice === "bach"
+        ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-than" ? "aw2-bach" : id))
+        : practice === "moc"
+          ? STARTER_SPIRIT_IDS.map((id) =>
+              id === "aw2-suong" ? "aw2-moc" : id,
+            )
+          : practice === "muoi"
+            ? [...STARTER_SPIRIT_IDS.slice(0, 4), "aw2-muoi"]
+            : practice === "nhien"
               ? STARTER_SPIRIT_IDS.map((id) =>
-                  id === "aw2-than" ? "aw2-hai" : id,
+                  id === "aw2-lua" ? "aw2-nhien" : id,
                 )
-              : practice === "lien"
+              : practice === "hai"
                 ? STARTER_SPIRIT_IDS.map((id) =>
-                    id === "aw2-lam" ? "aw2-lien" : id,
+                    id === "aw2-than" ? "aw2-hai" : id,
                   )
-                : STARTER_SPIRIT_IDS
+                : practice === "lien"
+                  ? STARTER_SPIRIT_IDS.map((id) =>
+                      id === "aw2-lam" ? "aw2-lien" : id,
+                    )
+                  : STARTER_SPIRIT_IDS
   const players = identities.map((spiritId, slot) =>
     createDevelopmentCombatSeed(`player-${spiritId}`, spiritId, experience, {
+      ...(spiritId === "aw2-van" ? { vanEmphasis: emphasis } : {}),
       position: 12 + slot * 4,
       energy: 100,
       nextBasicTick: 1 + slot,
@@ -107,7 +126,7 @@ export function createBattlePreviewSession(
   )
   const enemyScale = 1 + (level - 1) * 0.035
   const battle = createCombatBattle({
-    id: `aw2-007b-${practice ?? "starter"}-level-${level}`,
+    id: `aw2-007b-${practice === "van" ? `van-${emphasis}` : (practice ?? "starter")}-level-${level}`,
     players,
     enemies: [
       {
@@ -167,6 +186,9 @@ export function reduceBattlePreviewSession(
       ...createBattlePreviewSession(
         command.level,
         command.practice ?? current.practice,
+        command.vanEmphasis ??
+          current.battle.actors.find((a) => a.spiritId === "aw2-van")
+            ?.vanEmphasis,
       ),
       message: `Đã tạo trận development cấp ${command.level}; chưa ghi save/XP.`,
     }
@@ -180,6 +202,27 @@ export function reduceBattlePreviewSession(
     if (command.type === "advance") {
       battle = advanceCombatBattle(current.battle)
       if (command.manual) message = "Đã xử lý đúng một tick từ combat core."
+    } else if (
+      command.type === "interrupt-van" ||
+      command.type === "cleanse-van"
+    ) {
+      if (current.practice !== "van")
+        throw Error("Chỉ thử đối kháng trong trận luyện Vân.")
+      if (
+        command.type === "cleanse-van" &&
+        !current.battle.actors.some(
+          (a) => a.id === command.targetId && a.side === "enemy",
+        )
+      )
+        throw Error("Cần chọn địch để tẩy dấu Vân.")
+      battle =
+        command.type === "interrupt-van"
+          ? interruptCombatCast(current.battle, "player-aw2-van")
+          : cleanseVanLinks(current.battle, command.targetId)
+      message =
+        command.type === "interrupt-van"
+          ? "Đối thủ thử ngắt Vân trước cam kết."
+          : "Đối thủ đã tẩy dấu Vân; chỉ hỗ trợ thực mới có thể hồi máu."
     } else if (command.type === "interrupt-lien-target") {
       if (
         current.practice !== "lien" ||
@@ -238,13 +281,11 @@ export function reduceBattlePreviewSession(
           candidate.hp > 0 &&
           (!command.targetId || candidate.id === command.targetId),
       )
-      const needsEnemy = [
-        "aw2-lua",
-        "aw2-suong",
-        "aw2-muoi",
-        "aw2-nhien",
-        "aw2-moc",
-      ].includes(actor?.spiritId ?? "")
+      const needsEnemy =
+        (actor?.spiritId === "aw2-van" && vanEmphasis(actor) === "attack") ||
+        ["aw2-lua", "aw2-suong", "aw2-muoi", "aw2-nhien", "aw2-moc"].includes(
+          actor?.spiritId ?? "",
+        )
       battle = castCombatUltimate(
         current.battle,
         command.actorId,

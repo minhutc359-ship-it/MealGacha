@@ -1,4 +1,13 @@
 import {
+  VAN_TUNING,
+  vanEmphasis,
+  vanShieldRoom,
+  vanAlly,
+  vanEnemy,
+  vanSupportEligible,
+  vanDamageMultiplier,
+} from "./van"
+import {
   BACH_TUNING,
   bachThreshold,
   bachShareTarget,
@@ -121,6 +130,12 @@ function actorFromSeed(
       seed.spiritId !== FORGOTTEN_HOST_ID)
   )
     throw Error("Boss profile không thuộc Người Giữ Bàn Quên.")
+  if (
+    seed.vanEmphasis !== undefined &&
+    (seed.spiritId !== "aw2-van" ||
+      !["protection", "attack"].includes(seed.vanEmphasis))
+  )
+    throw Error("Nhấn tuyệt kỹ Vân phải được chọn hợp lệ trước trận.")
   const base =
     side === "player" ||
     [
@@ -130,6 +145,7 @@ function actorFromSeed(
       "aw2-lien",
       "aw2-moc",
       "aw2-bach",
+      "aw2-van",
     ].includes(seed.spiritId)
       ? COMBAT_KITS[seed.spiritId as CombatSpiritId]
       : defaultEnemy(seed)
@@ -138,6 +154,9 @@ function actorFromSeed(
   return {
     id: seed.id,
     spiritId: seed.spiritId,
+    ...(seed.spiritId === "aw2-van"
+      ? { vanEmphasis: seed.vanEmphasis ?? "protection" }
+      : {}),
 
     ...(seed.bossProfile ? { bossKit: newForgottenHostState() } : {}),
     side,
@@ -632,7 +651,96 @@ function resolveMocFields(battle: CombatBattle) {
   }
 }
 
+function endVanLink(
+  battle: CombatBattle,
+  source: CombatActor,
+  reason:
+    | "expiry"
+    | "defeat"
+    | "cleanse"
+    | "replacement"
+    | "source"
+    | "terminal",
+) {
+  const link = source.vanLink
+  if (!link) return
+  delete source.vanLink
+  record(battle, "status", source.id, [link.enemyId], {
+    skillId: combatSkillId("aw2-van", "auto"),
+    actionId: link.id,
+    statusEffect: "van-link",
+    statusChange: reason === "cleanse" ? "dispel" : "remove",
+    text: `Nối Hai Đầu kết thúc: ${reason}.`,
+  })
+  if (
+    ["source", "terminal", "replacement"].includes(reason) ||
+    source.hp <= 0 ||
+    battle.status !== "active" ||
+    !living(battle, "player").length ||
+    !living(battle, "enemy").length ||
+    link.supportedShield <= 0 ||
+    battle.tick < (source.vanPassiveUntilTick ?? 0)
+  )
+    return
+  const ally = link.allyId ? byId(battle, link.allyId) : undefined
+  if (
+    !ally ||
+    ally.hp <= 0 ||
+    ally.hp >= ally.maxHp ||
+    ally.side !== source.side ||
+    ally.summoned ||
+    distance(source, ally) > VAN_TUNING.allyRange
+  )
+    return
+  const amount = Math.min(
+    link.supportedShield,
+    Math.round(
+      source.attack * VAN_TUNING.memoryMultiplier + VAN_TUNING.memoryFlat,
+    ),
+    ally.maxHp - ally.hp,
+  )
+  if (amount <= 0) return
+  applyHeal(battle, source, ally, amount, combatSkillId("aw2-van", "passive"), {
+    actionId: link.id,
+    contactIndex: 0,
+  })
+  source.vanPassiveUntilTick = battle.tick + VAN_TUNING.memoryCooldown
+}
+function cleanupVanLinks(battle: CombatBattle, terminal = false) {
+  for (const source of battle.actors) {
+    const link = source.vanLink
+    if (!link) continue
+    if (terminal) endVanLink(battle, source, "terminal")
+    else if (source.hp <= 0) endVanLink(battle, source, "source")
+    else if (!byId(battle, link.enemyId)?.hp)
+      endVanLink(battle, source, "defeat")
+    else if (link.endsAtTick <= battle.tick)
+      endVanLink(battle, source, "expiry")
+  }
+}
+function grantVanShield(
+  battle: CombatBattle,
+  source: CombatActor,
+  target: CombatActor,
+  amount: number,
+  skillId: string,
+  duration: number,
+  actionId: string,
+) {
+  const actual = Math.min(
+    Math.max(0, Math.round(amount)),
+    vanShieldRoom(target),
+  )
+  if (actual <= 0) return 0
+  applyShield(battle, source, target, actual, skillId, duration, {
+    actionId,
+    contactIndex: 0,
+  })
+  return actual
+}
+
 function expireTimedState(battle: CombatBattle) {
+  cleanupVanLinks(battle)
   cleanupMocFields(battle)
   cleanupLienHealing(battle)
   cleanupHaiFields(battle)
@@ -1091,6 +1199,7 @@ function applyDamage(
   raw *= Math.min(
     source.weakenUntilTick > battle.tick ? 0.75 : 1,
     muoiDamageMultiplier(source, battle.tick),
+    vanDamageMultiplier(battle, source),
   )
   const mitigated = Math.max(
     1,
@@ -1200,6 +1309,7 @@ function applyDamage(
     record(battle, "defeat", source.id, [target.id], { skillId })
     cleanupMuoiMarks(battle)
   }
+  cleanupVanLinks(battle)
   cleanupMocFields(battle)
   cleanupHaiFields(battle)
   cleanupLienHealing(battle)
@@ -1336,18 +1446,138 @@ function commitCast(
     ["aw2-than", "aw2-lam", "aw2-moc-non", "aw2-lien", "aw2-bach"].includes(
       actor.spiritId,
     )
-  const committedTargets = teamTarget
-    ? living(battle, actor.side).map((ally) => ally.id)
-    : cast.slot === "auto" && ["aw2-than", "aw2-bach"].includes(actor.spiritId)
-      ? [actor.id]
-      : injuredAlly
-        ? [injuredAlly.id]
-        : shieldAlly
-          ? [shieldAlly.id]
-          : enemy
-            ? [enemy.id]
+  const committedTargets =
+    actor.spiritId === "aw2-van"
+      ? cast.slot === "auto"
+        ? [cast.vanTargets?.allyId, cast.vanTargets?.enemyId].filter(
+            (id): id is string => !!id,
+          )
+        : vanEmphasis(actor) === "protection"
+          ? living(battle, actor.side)
+              .filter(
+                (a) =>
+                  !a.summoned && distance(actor, a) <= VAN_TUNING.allyRange,
+              )
+              .map((a) => a.id)
+          : cast.targetId
+            ? [cast.targetId]
             : []
+      : teamTarget
+        ? living(battle, actor.side).map((ally) => ally.id)
+        : cast.slot === "auto" &&
+            ["aw2-than", "aw2-bach"].includes(actor.spiritId)
+          ? [actor.id]
+          : injuredAlly
+            ? [injuredAlly.id]
+            : shieldAlly
+              ? [shieldAlly.id]
+              : enemy
+                ? [enemy.id]
+                : []
   record(battle, "cast-commit", actor.id, committedTargets, { skillId })
+  if (actor.spiritId === "aw2-van") {
+    if (cast.slot === "auto") {
+      const ally = cast.vanTargets?.allyId
+        ? byId(battle, cast.vanTargets.allyId)
+        : undefined
+      const target = cast.vanTargets?.enemyId
+        ? byId(battle, cast.vanTargets.enemyId)
+        : undefined
+      const supported =
+        ally && vanSupportEligible(battle, actor, ally)
+          ? grantVanShield(
+              battle,
+              actor,
+              ally,
+              actor.attack * VAN_TUNING.supportMultiplier +
+                VAN_TUNING.supportFlat,
+              skillId,
+              VAN_TUNING.supportTicks,
+              cast.id,
+            )
+          : 0
+      const valid =
+        target &&
+        target.hp > 0 &&
+        target.side !== actor.side &&
+        !target.debuffImmune &&
+        distance(actor, target) <= actor.range
+      if (valid) {
+        endVanLink(battle, actor, "replacement")
+        actor.vanLink = {
+          id: cast.id,
+          enemyId: target.id,
+          allyId: supported > 0 ? ally!.id : null,
+          supportedShield: supported,
+          endsAtTick: battle.tick + VAN_TUNING.linkTicks,
+        }
+        record(battle, "status", actor.id, [target.id], {
+          skillId,
+          actionId: cast.id,
+          contactIndex: 0,
+          statusEffect: "van-link",
+          statusChange: "apply",
+          expiresAtTick: actor.vanLink.endsAtTick,
+          text: "Nối Hai Đầu: dấu giảm công10%, không cộng dồn.",
+        })
+      }
+      if (!supported && !valid)
+        record(battle, "miss", actor.id, [], {
+          skillId,
+          actionId: cast.id,
+          text: "Cả hai nửa Nối Hai Đầu không còn hợp lệ; không đổi mục tiêu.",
+        })
+    } else if (vanEmphasis(actor) === "protection") {
+      for (const ally of living(battle, actor.side).filter(
+        (a) => !a.summoned && distance(actor, a) <= VAN_TUNING.allyRange,
+      ))
+        grantVanShield(
+          battle,
+          actor,
+          ally,
+          actor.attack * VAN_TUNING.wardMultiplier + VAN_TUNING.wardFlat,
+          skillId,
+          VAN_TUNING.wardTicks,
+          cast.id,
+        )
+    } else {
+      const target = cast.targetId ? byId(battle, cast.targetId) : undefined
+      if (
+        !target ||
+        target.hp <= 0 ||
+        target.side === actor.side ||
+        distance(actor, target) > actor.range
+      ) {
+        record(battle, "miss", actor.id, cast.targetId ? [cast.targetId] : [], {
+          skillId,
+          actionId: cast.id,
+          text: "Nhấn tấn công không còn mục tiêu trong tầm; không đổi mục tiêu.",
+        })
+        return
+      }
+      const center = target.position
+      const targets = living(battle, opponent(actor.side))
+        .filter((a) => Math.abs(a.position - center) <= VAN_TUNING.burstRadius)
+        .sort(
+          (a, b) =>
+            Math.abs(a.position - center) - Math.abs(b.position - center) ||
+            a.slot - b.slot ||
+            a.id.localeCompare(b.id),
+        )
+        .slice(0, VAN_TUNING.burstTargets)
+      for (const victim of targets)
+        applyDamage(
+          battle,
+          actor,
+          victim,
+          actor.attack * VAN_TUNING.burstMultiplier,
+          skillId,
+          undefined,
+          { actionId: cast.id, contactIndex: 0 },
+        )
+    }
+    return
+  }
   if (actor.spiritId === "aw2-bach") {
     if (cast.slot === "auto") {
       if (actor.shield > 0) {
@@ -1898,6 +2128,18 @@ function tryAutoSkill(battle: CombatBattle, actor: CombatActor): boolean {
     return false
   const kit = COMBAT_KITS[actor.spiritId]
   const enemy = selectEnemy(battle, actor)
+  if (actor.spiritId === "aw2-van") {
+    const ally = vanAlly(battle, actor)
+    const target = vanEnemy(battle, actor, ally ?? actor)
+    if (!ally && !target) return false
+    actor.nextAutoTick = battle.tick + kit.autoCooldown
+    startCast(battle, actor, "auto", ally?.id ?? target!.id, kit.autoCastTicks)
+    actor.cast!.vanTargets = {
+      allyId: ally?.id ?? null,
+      enemyId: target?.id ?? null,
+    }
+    return true
+  }
   if (actor.spiritId === "aw2-bach") {
     if (actor.shield > 0) return false
     actor.nextAutoTick = battle.tick + kit.autoCooldown
@@ -2083,6 +2325,7 @@ function checkResult(battle: CombatBattle) {
   const enemies = living(battle, "enemy").length
   if (players && enemies) return
   battle.status = players ? "player-win" : enemies ? "enemy-win" : "draw"
+  cleanupVanLinks(battle, true)
   cleanupMocFields(battle, true)
   cleanupHaiFields(battle, true)
   cleanupLienHealing(battle, true)
@@ -2173,24 +2416,22 @@ export function castCombatUltimate(
     throw Error("Nhiên đang nối nhịp hoặc hồi thế.")
   if (actor.energy < ULTIMATE_ENERGY)
     throw Error("Tuyệt kỹ chưa đủ năng lượng.")
-  const needsEnemy = [
-    "aw2-lua",
-    "aw2-suong",
-    "aw2-muoi",
-    "aw2-nhien",
-    "aw2-moc",
-  ].includes(actor.spiritId)
+  const needsEnemy =
+    (actor.spiritId === "aw2-van" && vanEmphasis(actor) === "attack") ||
+    ["aw2-lua", "aw2-suong", "aw2-muoi", "aw2-nhien", "aw2-moc"].includes(
+      actor.spiritId,
+    )
   if (needsEnemy) {
     const target = targetId ? byId(battle, targetId) : undefined
     if (!target?.hp || target.side !== "enemy")
       throw Error("Tuyệt kỹ cần một mục tiêu địch hợp lệ.")
     if (
-      ["aw2-nhien", "aw2-moc"].includes(actor.spiritId) &&
+      ["aw2-nhien", "aw2-moc", "aw2-van"].includes(actor.spiritId) &&
       distance(actor, target) > actor.range
     )
       throw Error(
-        actor.spiritId === "aw2-moc"
-          ? "Mục tiêu nằm ngoài tầm của Mộc."
+        ["aw2-moc", "aw2-van"].includes(actor.spiritId)
+          ? "Mục tiêu nằm ngoài tầm của kỹ năng."
           : "Mục tiêu nằm ngoài tầm cận chiến của Nhiên.",
       )
   }
@@ -2266,5 +2507,21 @@ export function cleanseMuoiMarks(
   if (!target || target.hp <= 0) throw Error("Mục tiêu tẩy dấu không hợp lệ.")
   const battle = copyBattle(current)
   removeMuoiMarks(battle, "được tẩy", (_, actor) => actor.id === targetId)
+  return battle
+}
+
+/** Explicit ephemeral counterplay; never writes saves or changes emphasis. */
+export function cleanseVanLinks(
+  current: CombatBattle,
+  targetId: string,
+): CombatBattle {
+  if (current.status !== "active") throw Error("Trận đấu đã kết thúc.")
+  const target = byId(current, targetId)
+  if (!target || target.hp <= 0)
+    throw Error("Mục tiêu tẩy dấu Vân không hợp lệ.")
+  const battle = copyBattle(current)
+  for (const source of battle.actors)
+    if (source.vanLink?.enemyId === targetId)
+      endVanLink(battle, source, "cleanse")
   return battle
 }

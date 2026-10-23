@@ -22,7 +22,7 @@ const enemy = (
 })
 const player = (
   id: string,
-  spiritId: typeof STARTER_SPIRIT_IDS[number],
+  spiritId: (typeof STARTER_SPIRIT_IDS)[number],
   overrides: Partial<CombatUnitSeed> = {},
 ): CombatUnitSeed => ({
   id,
@@ -56,7 +56,7 @@ describe("BATTLE-01 AW2 deterministic combat contract", () => {
       /duy nhất/,
     )
     expect(() =>
-      battle([{ id: "future", spiritId: "aw2-van" }], [enemy("e")]),
+      battle([{ id: "future", spiritId: "aw2-unknown" }], [enemy("e")]),
     ).toThrow(/chưa có combat kit/)
     expect(() =>
       battle([player("dead", "aw2-than", { hp: 0 })], [enemy("e")]),
@@ -151,13 +151,15 @@ describe("BATTLE-01 AW2 deterministic combat contract", () => {
   })
 
   it("validates, spends and interrupts a manual ultimate while an earlier projectile remains authoritative", () => {
-    const low = battle([player("lam", "aw2-lam", { energy: 99 })], [
-      enemy("target", { position: 30, hp: 500, maxHp: 500 }),
-    ])
+    const low = battle(
+      [player("lam", "aw2-lam", { energy: 99 })],
+      [enemy("target", { position: 30, hp: 500, maxHp: 500 })],
+    )
     expect(() => castCombatUltimate(low, "lam")).toThrow(/năng lượng/)
-    const offensive = battle([player("lua", "aw2-lua", { energy: 100 })], [
-      enemy("target"),
-    ])
+    const offensive = battle(
+      [player("lua", "aw2-lua", { energy: 100 })],
+      [enemy("target")],
+    )
     expect(() => castCombatUltimate(offensive, "lua")).toThrow(/mục tiêu địch/)
 
     let state = battle(

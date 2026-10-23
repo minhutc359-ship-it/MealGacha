@@ -93,6 +93,13 @@ export function AssetPreview({
           thập và đội lưu còn chờ triển khai.
         </p>
       )}
+      {manifest.spiritId === "aw2-van" && combatImplemented && (
+        <p>
+          Vân đã có kit hybrid cấp 1–20 và hai nhấn tuyệt kỹ chọn trước trận:{" "}
+          <a href="/dev/aw2/battle.html?team=van">luyện kỹ năng Vân</a>. Thu
+          thập/đội lưu và nghiệm thu sản phẩm còn chờ.
+        </p>
+      )}
       {manifest.spiritId === "aw2-bach" && combatImplemented && (
         <p>
           Bách có khiên cá nhân, chia phần từ lượng đỡ thật và tuyệt kỹ đánh đổi

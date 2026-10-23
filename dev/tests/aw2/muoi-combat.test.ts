@@ -79,7 +79,7 @@ describe("AW2-007E bounded Muối combat", () => {
     expect(() =>
       createCombatBattle({
         id: "future",
-        players: [{ id: "f", spiritId: "aw2-van" }],
+        players: [{ id: "f", spiritId: "aw2-unknown" }],
         enemies: [enemy("e")],
       }),
     ).toThrow(/chưa có combat kit/)

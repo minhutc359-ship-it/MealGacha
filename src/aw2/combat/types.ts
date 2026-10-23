@@ -1,3 +1,4 @@
+export type VanEmphasis = "protection" | "attack"
 export type CombatSide = "player" | "enemy"
 export type CombatStatus = "active" | "player-win" | "enemy-win" | "draw"
 export type CombatSkillSlot = "basic" | "auto" | "passive" | "ultimate"
@@ -78,6 +79,7 @@ export interface CombatEvent {
     | "hai-slow"
     | "hai-line"
     | "hai-block"
+    | "van-link"
     | "bach-release"
     | "moc-mark"
     | "moc-burst"
@@ -117,6 +119,7 @@ export interface CombatCast {
   targetId: string | null
   commitTick: number
   facing?: 1 | -1
+  vanTargets?: { allyId: string | null; enemyId: string | null }
 }
 
 export interface CombatEffect {
@@ -169,6 +172,15 @@ export interface CombatActor {
   nhienSequence?: NhienSequence
   nhienRecoveryUntilTick?: number
   nhienRhythm?: NhienRhythm
+  readonly vanEmphasis?: VanEmphasis
+  vanLink?: {
+    id: string
+    enemyId: string
+    allyId: string | null
+    supportedShield: number
+    endsAtTick: number
+  }
+  vanPassiveUntilTick?: number
   bachStrike?: { id: string; targetId: string; resolveTick: number }
   bachGuarded?: number
   bachShareUntilTick?: number
@@ -229,6 +241,7 @@ export interface CombatUnitSeed {
   spiritId: string
   boss?: boolean
 
+  vanEmphasis?: VanEmphasis
   bossProfile?: "aw2-forgotten-host-development-v2"
   debuffImmune?: boolean
   summoned?: boolean
