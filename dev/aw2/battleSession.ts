@@ -15,7 +15,7 @@ import {
   type CombatPresentation,
 } from "../../src/aw2/combat"
 
-export type BattlePractice = "muoi" | "nhien"
+export type BattlePractice = "muoi" | "nhien" | "hai"
 
 export interface BattlePreviewSession {
   level: number
@@ -50,8 +50,17 @@ interface CleanseCommand {
 interface NhienInterruptCommand {
   type: "interrupt-nhien"
 }
+interface HaiInterruptCommand {
+  type: "interrupt-hai"
+}
 
-export type BattlePreviewCommand = AdvanceCommand | ResetCommand | UltimateCommand | CleanseCommand | NhienInterruptCommand
+export type BattlePreviewCommand =
+  | AdvanceCommand
+  | ResetCommand
+  | UltimateCommand
+  | CleanseCommand
+  | NhienInterruptCommand
+  | HaiInterruptCommand
 
 export function createBattlePreviewSession(
   level: number,
@@ -63,7 +72,9 @@ export function createBattlePreviewSession(
       ? [...STARTER_SPIRIT_IDS.slice(0, 4), "aw2-muoi"]
       : practice === "nhien"
         ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-lua" ? "aw2-nhien" : id))
-        : STARTER_SPIRIT_IDS
+        : practice === "hai"
+          ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-than" ? "aw2-hai" : id))
+          : STARTER_SPIRIT_IDS
   const players = identities.map((spiritId, slot) =>
     createDevelopmentCombatSeed(`player-${spiritId}`, spiritId, experience, {
       position: 12 + slot * 4,
@@ -147,12 +158,22 @@ export function reduceBattlePreviewSession(
     if (command.type === "advance") {
       battle = advanceCombatBattle(current.battle)
       if (command.manual) message = "Đã xử lý đúng một tick từ combat core."
-    } else if (command.type === "interrupt-nhien") {
-      if (current.practice !== "nhien")
-        throw Error("Ngắt Nhiên chỉ có trong trận luyện Nhiên.")
-      battle = interruptCombatCast(current.battle, "player-aw2-nhien")
+    } else if (
+      command.type === "interrupt-nhien" ||
+      command.type === "interrupt-hai"
+    ) {
+      const unit = command.type === "interrupt-hai" ? "hai" : "nhien"
+      if (current.practice !== unit)
+        throw Error(
+          unit === "hai"
+            ? "Ngắt Hải chỉ có trong trận luyện Hải."
+            : "Ngắt Nhiên chỉ có trong trận luyện Nhiên.",
+        )
+      battle = interruptCombatCast(current.battle, `player-aw2-${unit}`)
       message =
-        "Đối thủ thử ngắt chuỗi Nhiên; chỉ các điểm chạm đã xảy ra được giữ lại."
+        unit === "hai"
+          ? "Đối thủ thử ngắt Hải; vùng chưa dựng không có hiệu lực."
+          : "Đối thủ thử ngắt chuỗi Nhiên; chỉ các điểm chạm đã xảy ra được giữ lại."
     } else if (command.type === "cleanse") {
       if (current.practice !== "muoi")
         throw Error("Tẩy dấu chỉ có trong trận luyện Muối Đen.")

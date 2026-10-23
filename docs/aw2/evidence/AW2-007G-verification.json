@@ -1,0 +1,2279 @@
+{
+  "task": "AW2-007G",
+  "date": "2026-10-23",
+  "base": "92922b33167b81b84b7b382fd6b21a8375347a35",
+  "implementationSource": "PENDING_007G_SOURCE",
+  "status": "PASS",
+  "units": {
+    "status": "PASS",
+    "uniqueCases": 1164,
+    "files": 109,
+    "newHaiCases": 32,
+    "retainedUnchangedFromFull": 1132,
+    "correctedFileCases": 32,
+    "initialFull": {
+      "passed": 1162,
+      "failed": 2,
+      "report": "/tmp/aw2-007g-full-unit.json"
+    },
+    "correctedFile": "/tmp/aw2-007g-corrected-unit.json",
+    "finalWholeSuite": "NOT_RERUN; all changed/failing cases rerun, unchanged PASS retained per owner preference",
+    "failuresResolved": [
+      "Nhien unsupported fixture used newly-supported Hai; switched to still-unsupported Lien",
+      "Restored original Nhien wrong-practice interrupt message while adding separate Hai message"
+    ],
+    "focusedOverlap": "Not added to unique full coverage"
+  },
+  "browserAssertions": 237,
+  "browser": {
+    "haiSource": {
+      "task": "AW2-007G",
+      "status": "PASS",
+      "flavor": "source",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Five-member Hải practice replaces Than",
+        "Audio remains silent before opt-in",
+        "Paid ultimate starts real windup without a line",
+        "Preparation has no confirmed ultimate effect",
+        "Actual interruption cancels promised line without refund",
+        "Commit creates finite directional capacity",
+        "Own painted ultimate field renders at fixed rules position",
+        "Ultimate owns one opted-in cue",
+        "Line stays fixed while Hải advances",
+        "Pause freezes presentation clock",
+        "Expired line is removed from rules and rendered fields",
+        "Auto commits its own finite slow field",
+        "Reduced motion keeps live fields tied to rules",
+        "Nearby low-HP ally triggers real ordinary shield and cooldown",
+        "Finite previous ultimate FX expire independently of persistent state",
+        "Actual draws stay inside Hải source atlases",
+        "Actual auto/passive events play own audio while running",
+        "320px controls fit viewport",
+        "390px controls fit viewport",
+        "768px controls fit viewport",
+        "Reset retains Hải practice and projects level20",
+        "Practice preserves seeded stable and AW2 bytes",
+        "Reference links actual kit while collection remains pending",
+        "No unexpected console or resource errors",
+        "Missing battle-motion-a-v2.webp has explicit failure and blank canvas",
+        "Missing battle-motion-b-v2.webp has explicit failure and blank canvas",
+        "Missing fx.webp has explicit failure and blank canvas"
+      ],
+      "errors": [],
+      "limits": [
+        "Desktop viewports; no independent art/listening/device/rights acceptance",
+        "No collection or saved-team grants"
+      ]
+    },
+    "haiCompiled": {
+      "task": "AW2-007G",
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Five-member Hải practice replaces Than",
+        "Audio remains silent before opt-in",
+        "Paid ultimate starts real windup without a line",
+        "Preparation has no confirmed ultimate effect",
+        "Actual interruption cancels promised line without refund",
+        "Commit creates finite directional capacity",
+        "Own painted ultimate field renders at fixed rules position",
+        "Ultimate owns one opted-in cue",
+        "Line stays fixed while Hải advances",
+        "Pause freezes presentation clock",
+        "Expired line is removed from rules and rendered fields",
+        "Auto commits its own finite slow field",
+        "Reduced motion keeps live fields tied to rules",
+        "Nearby low-HP ally triggers real ordinary shield and cooldown",
+        "Finite previous ultimate FX expire independently of persistent state",
+        "Actual draws stay inside Hải source atlases",
+        "Actual auto/passive events play own audio while running",
+        "320px controls fit viewport",
+        "390px controls fit viewport",
+        "768px controls fit viewport",
+        "Reset retains Hải practice and projects level20",
+        "Practice preserves seeded stable and AW2 bytes",
+        "Reference links actual kit while collection remains pending",
+        "No unexpected console or resource errors",
+        "Missing battle-motion-a-v2.webp has explicit failure and blank canvas",
+        "Missing battle-motion-b-v2.webp has explicit failure and blank canvas",
+        "Missing fx.webp has explicit failure and blank canvas"
+      ],
+      "errors": [],
+      "limits": [
+        "Desktop viewports; no independent art/listening/device/rights acceptance",
+        "No collection or saved-team grants"
+      ]
+    },
+    "nhienCompiled": {
+      "task": "AW2-007F",
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Own Nhiên practice has exactly five members and replaces Lua",
+        "Sound remains off before opt-in",
+        "Out-of-range ultimate preserves energy and explains rejection",
+        "Actual selected-target ultimate spends energy and starts wind-up",
+        "Preparation creates no confirmed ultimate effect",
+        "Ultimate contact 1 uses its actual indexed cue and selected victim",
+        "Ultimate contact 1 uses own strike or actual counterplay reaction: battle.ultimate.1",
+        "Ultimate contact 2 uses its actual indexed cue and selected victim",
+        "Ultimate contact 2 uses own strike or actual counterplay reaction: battle.ultimate.2",
+        "Ultimate contact 3 uses its actual indexed cue and selected victim",
+        "Ultimate contact 3 uses own strike or actual counterplay reaction: battle.ultimate.3",
+        "Three contacts have distinct event serials",
+        "Final contact enters actual recovery and blocks recast",
+        "Paused presentation clock stays fixed",
+        "Actual basic reports both contacts",
+        "Actual distinct-target passive grants bounded energy",
+        "Basic, sweep and passive have independent confirmed effects",
+        "Confirmed Nhiên events play own audio after opt-in",
+        "320px practice controls fit viewport",
+        "390px practice controls fit viewport",
+        "768px practice controls fit viewport",
+        "Real terminal clears sequence/recovery and all effect playback",
+        "Own atlas draws stay within measured source bounds",
+        "Level reset retains Nhiên five-member practice and applies actual stats",
+        "Real counterplay cancels remaining contacts without energy refund",
+        "Interruption leaves exactly one ultimate contact",
+        "Cancelled anticipation/contact pose has stopped",
+        "Isolated practice preserves all seeded save bytes",
+        "Reference viewer links actual practice and leaves collection pending",
+        "No unexpected browser or resource errors"
+      ],
+      "errors": [],
+      "contacts": [
+        {
+          "serial": 78,
+          "index": 0,
+          "skillId": "aw2-nhien:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 240,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.1",
+          "cue": {
+            "serial": 78,
+            "phase": "confirmed",
+            "skillId": "aw2-nhien:skill:ultimate",
+            "fx": ""
+          }
+        },
+        {
+          "serial": 93,
+          "index": 1,
+          "skillId": "aw2-nhien:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 520,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.2",
+          "cue": {
+            "serial": 93,
+            "phase": "confirmed",
+            "skillId": "aw2-nhien:skill:ultimate",
+            "fx": ""
+          }
+        },
+        {
+          "serial": 101,
+          "index": 2,
+          "skillId": "aw2-nhien:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 800,
+          "targetId": "enemy-than",
+          "pose": "battle.ultimate.3",
+          "cue": {
+            "serial": 101,
+            "phase": "confirmed",
+            "skillId": "aw2-nhien:skill:ultimate",
+            "fx": ""
+          }
+        }
+      ],
+      "limits": [
+        "Isolated development practice, no collection/world-team unlock",
+        "Desktop viewports; no physical-device, human-listening or independent-art acceptance"
+      ]
+    },
+    "muoiCompiled": {
+      "task": "AW2-007E",
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Actual practice draws own Muoi atlas and exactly five player cards",
+        "No outcome audio before opt-in",
+        "Preparing ultimate emits no confirmed burst",
+        "Actual dispel targets selected ordinary shield",
+        "Dispel and burst share one confirmed FX serial/cue560 at actual target",
+        "Paused step does not advance presentation clocks",
+        "Actual auto applies exactly one finite mark",
+        "Victim roster exposes the real attack-reduction mark",
+        "Practice counterplay removes real mark without new hit/mark FX",
+        "Subsequent basic does not silently recreate cleansed mark",
+        "Removal leaves confirmed effect serial unchanged",
+        "Actual basic/mark/passive and ultimate each produce own confirmed effects",
+        "basic: event-owned cue/target",
+        "auto: event-owned cue/target",
+        "passive: event-owned cue/target",
+        "Basic contacts draw only impact cels2/3",
+        "Cast preparation/flight cannot draw outcome FX",
+        "Opted-in confirmed Muoi cues use own authored audio",
+        "Reduced motion cannot revive expired ultimate FX",
+        "320px controls fit viewport",
+        "390px controls fit viewport",
+        "768px controls fit viewport",
+        "Actual terminal cancels effect playback and all mark state",
+        "Muoi atlas draws stay within declared source bounds",
+        "Actual practice preserves all seeded save bytes",
+        "Reference viewer links actual practice and keeps collection pending",
+        "No unexpected browser/resource errors"
+      ],
+      "errors": [],
+      "contacts": [
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.0",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.1",
+          "tick": 6
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 8
+        },
+        {
+          "serial": 69,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 8
+        },
+        {
+          "serial": 69,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.1",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.1",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.2",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.2",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.3",
+          "tick": 9
+        },
+        {
+          "serial": 40,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:ultimate",
+          "fx": "fx.ultimate.3",
+          "atMs": 560,
+          "targetId": "enemy-than",
+          "pose": "battle.idle.1",
+          "tick": 10
+        },
+        {
+          "serial": 67,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.3",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.idle.1",
+          "tick": 10
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 13
+        },
+        {
+          "serial": 89,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.3",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 13
+        },
+        {
+          "serial": 134,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 18
+        },
+        {
+          "serial": 138,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.attack.2",
+          "tick": 18
+        },
+        {
+          "serial": 164,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-than",
+          "pose": "battle.hit.0",
+          "tick": 23
+        },
+        {
+          "serial": 195,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.0",
+          "tick": 28
+        },
+        {
+          "serial": 198,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.guard.0",
+          "tick": 28
+        },
+        {
+          "serial": 224,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.hit.0",
+          "tick": 33
+        },
+        {
+          "serial": 254,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.attack.2",
+          "tick": 38
+        },
+        {
+          "serial": 255,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.2",
+          "tick": 38
+        },
+        {
+          "serial": 289,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-lua",
+          "pose": "battle.attack.2",
+          "tick": 43
+        },
+        {
+          "serial": 313,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:auto",
+          "fx": "fx.auto.0",
+          "atMs": 420,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        },
+        {
+          "serial": 314,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:basic",
+          "fx": "fx.basic.2",
+          "atMs": 700,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        },
+        {
+          "serial": 315,
+          "index": 0,
+          "skillId": "aw2-muoi:skill:passive",
+          "fx": "fx.passive.0",
+          "atMs": 180,
+          "targetId": "enemy-suong",
+          "pose": "battle.guard.1",
+          "tick": 48
+        }
+      ],
+      "limits": [
+        "Actual isolated practice, no collection/world-party unlock",
+        "Desktop viewports only; no human listening/device/rights acceptance"
+      ]
+    },
+    "bossCompiled": {
+      "task": "AW2-004I",
+      "status": "PASS",
+      "flavor": "compiled",
+      "checks": [
+        "Canonical boss resolves its own left-facing manifest, without starter fallback",
+        "Real Ghế trống activates with a finite four-basic protection counter",
+        "Actual protection uses own guard pose and authored empty-chair art",
+        "Pause freezes the authoritative boss countdown/protection",
+        "Paused boss presentation clock remains frozen",
+        "390px sticky protection remains visible at manual ultimate controls",
+        "390px jump leaves the first ultimate uncovered by the sticky panel",
+        "390px arena jump keeps own boss visible below the sticky warning",
+        "320px sticky protection remains visible at manual ultimate controls",
+        "320px jump leaves the first ultimate uncovered by the sticky panel",
+        "320px arena jump keeps own boss visible below the sticky warning",
+        "Mời hụt displays real remaining beat 3",
+        "Real sweep warning uses own cast pose and warning art without a predicted hit",
+        "Mời hụt displays real remaining beat 2",
+        "Mời hụt displays real remaining beat 1",
+        "Sweep warning ends after its actual scheduled resolution",
+        "Actual sweep hits use confirmed authored effects at real recipients",
+        "Confirmed boss impact expires without reviving after the hit",
+        "Tắt bếp exposes countdown 3 with audio off",
+        "Real snuff warning uses own ultimate pose and ember art",
+        "Tắt bếp exposes countdown 2 with audio off",
+        "Tắt bếp exposes countdown 1 with audio off",
+        "Live combat progress cannot write boss victory before explicit settlement",
+        "Retreat suppresses outstanding warning/protection display",
+        "Retreat cancels all boss authored warning/contact art",
+        "Retreat returns to the safe yard with accepted objectives and no boss grant",
+        "auto-only reaches its real enemy-win result",
+        "auto-only terminal clears telegraph/protection without writing results",
+        "auto-only terminal clears authored boss effects",
+        "auto-only commits only its actual result and correct safe return",
+        "auto-only reload preserves exact committed bytes and seeded legacy",
+        "hold-damage-ultimates-for-barrier reaches its real player-win result",
+        "hold-damage-ultimates-for-barrier terminal clears telegraph/protection without writing results",
+        "hold-damage-ultimates-for-barrier terminal clears authored boss effects",
+        "Defeated boss resolves its own defeat cell",
+        "Failed win settlement retains checkpoint bytes and authentic live terminal for retry",
+        "hold-damage-ultimates-for-barrier commits only its actual result and correct safe return",
+        "hold-damage-ultimates-for-barrier reload preserves exact committed bytes and seeded legacy",
+        "Actual draws include both own battle/effect atlases with safe source cells and no recolor/mirroring",
+        "Actual battle draws include own idle/guard/cast/ultimate/defeat key poses",
+        "No browser/page/asset errors"
+      ],
+      "errors": [],
+      "runs": [
+        {
+          "strategy": "auto-only",
+          "result": "enemy-win",
+          "tick": 51
+        },
+        {
+          "strategy": "hold-damage-ultimates-for-barrier",
+          "result": "player-win",
+          "tick": 43
+        }
+      ],
+      "drawAudits": [
+        {
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/battle.webp": {
+            "draws": 286,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "89,93,254,332": true,
+              "512,94,335,323": true,
+              "532,508,318,320": true,
+              "927,119,367,302": true,
+              "61,535,332,297": true,
+              "1432,94,286,333": true,
+              "934,500,363,329": true
+            }
+          },
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/fx.webp": {
+            "draws": 396,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "68,679,405,308": true,
+              "1111,698,375,276": true,
+              "82,71,361,264": true,
+              "553,68,468,269": true,
+              "1150,100,321,233": true,
+              "129,362,272,280": true,
+              "599,390,417,237": true
+            }
+          }
+        },
+        {
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/battle.webp": {
+            "draws": 182,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "89,93,254,332": true,
+              "512,94,335,323": true,
+              "532,508,318,320": true,
+              "927,119,367,302": true,
+              "61,535,332,297": true,
+              "1432,94,286,333": true,
+              "934,500,363,329": true
+            }
+          },
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/fx.webp": {
+            "draws": 208,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "68,679,405,308": true,
+              "1111,698,375,276": true,
+              "82,71,361,264": true,
+              "553,68,468,269": true,
+              "129,362,272,280": true,
+              "599,390,417,237": true,
+              "576,676,449,302": true
+            }
+          }
+        },
+        {
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/battle.webp": {
+            "draws": 206,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "89,93,254,332": true,
+              "512,94,335,323": true,
+              "532,508,318,320": true,
+              "927,119,367,302": true,
+              "61,535,332,297": true,
+              "1432,94,286,333": true,
+              "934,500,363,329": true,
+              "1411,588,306,239": true
+            }
+          },
+          "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/fx.webp": {
+            "draws": 208,
+            "invalid": 0,
+            "flipped": 0,
+            "tinted": 0,
+            "cells": {
+              "68,679,405,308": true,
+              "1111,698,375,276": true,
+              "82,71,361,264": true,
+              "553,68,468,269": true,
+              "129,362,272,280": true,
+              "599,390,417,237": true,
+              "576,676,449,302": true
+            }
+          }
+        }
+      ],
+      "browser": "153.0.8010.36",
+      "fixture": "Isolated v3 ready quest, no injected combat result; not a full earned quest journey."
+    },
+    "earnedJourneyCompiled": {
+      "status": "PASS",
+      "flavor": "compiled",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Fresh demo opens without creating a save or granting progression",
+        "Incomplete saved journey does not claim demo completion",
+        "Initial goal precedes the map and names the first NPC",
+        "Keyboard opens optional help with save/mode return guidance and no writes",
+        "Native summary keeps browser arrows and interaction letters",
+        "Goal/help/world controls fit 320px",
+        "Goal/help/world controls fit 390px",
+        "Goal/help/world controls fit 768px",
+        "Save button keeps native key ownership",
+        "Direction button Enter moves right exactly through world rules without save writes",
+        "Focusing native UI stops held exploration movement",
+        "Reread restores initial unsaved movement without writing",
+        "Closing the first dialogue accepts nothing",
+        "Closing dialogue from body focus restores the keyboard map target",
+        "One earned intro unlocks five starters and exactly 30XP",
+        "Fresh intro reload is byte-identical and retains next objective",
+        "TCG/quick-entry leaves browser reading arrows available",
+        "Actual browser arrow scroll works inside the long TCG page",
+        "tcg/quick-entry real result returns exact RPG position/objective/economy without writes",
+        "Chess/quick-entry leaves browser reading arrows available",
+        "auto-chess/quick-entry real result returns exact RPG position/objective/economy without writes",
+        "TCG/portal leaves browser reading arrows available",
+        "tcg/portal real result returns exact RPG position/objective/economy without writes",
+        "Chess/portal leaves browser reading arrows available",
+        "auto-chess/portal real result returns exact RPG position/objective/economy without writes",
+        "Both real practices and both entry routes fit one legitimately earned journey",
+        "Three memories hand-in grants only its actual quest reward",
+        "Reading and closing chest grants nothing in the combined journey",
+        "Chest can be claimed only once with an actual receipt",
+        "Wrong puzzle attempt is retryable and spends no ingredients",
+        "Solved puzzle reload preserves earned state and exact bytes",
+        "Kitchen guidance explains an opened but distant kitchen",
+        "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
+        "Fresh earned team enters real boss with reduced motion and audio opt-in",
+        "Earned world encounter draws Than's new motion atlas through the shared renderer",
+        "Earned world encounter also draws Lua's authored motion atlas",
+        "Earned world encounter also draws Lam's authored motion atlas",
+        "Paused world encounter freezes visual time as well as core ticks",
+        "Same earned journey wins the actual boss without renderer-supplied outcome",
+        "Explicit boss commit survives reload before note and ending",
+        "Ending branch is captured at the explicitly saved NPC position",
+        "Closing the earned final choice grants no final quest reward",
+        "One fresh journey completes all four quests with exact once-only rewards",
+        "Saved wait ending has an honest completion summary and current XP",
+        "Completion summary reload preserves exact save bytes without grants",
+        "Completed ending and reload cannot repeat quest grants",
+        "Earned ending opens the reciprocal return shortcut",
+        "320px completion summary and both48px practice controls remain readable",
+        "390px completion summary and both48px practice controls remain readable",
+        "Completion tcg action uses safe checkpoint/return without grants",
+        "Completion auto-chess action uses safe checkpoint/return without grants",
+        "Alternate ending branches from exact earned checkpoint and gets same final reward",
+        "Alternate saved ending displays its own summary without a new reward",
+        "All five legacy keys remain byte-identical throughout the combined journey",
+        "No unexpected combined console/page/resource errors"
+      ],
+      "errors": [],
+      "modes": [
+        {
+          "mode": "tcg",
+          "entry": "quick-entry",
+          "result": "player-win",
+          "questIndex": 1
+        },
+        {
+          "mode": "auto-chess",
+          "entry": "quick-entry",
+          "result": "player-win",
+          "questIndex": 1
+        },
+        {
+          "mode": "tcg",
+          "entry": "portal",
+          "result": "opponent-win",
+          "questIndex": 1
+        },
+        {
+          "mode": "auto-chess",
+          "entry": "portal",
+          "result": "opponent-win",
+          "questIndex": 1
+        }
+      ],
+      "bossTick": 45,
+      "final": {
+        "experience": 345,
+        "receipts": [
+          "aw2-grant-kept-seat",
+          "aw2-grant-three-memories",
+          "aw2-grant-chest-pantry",
+          "aw2-grant-open-hearth",
+          "aw2-grant-one-more-bowl"
+        ],
+        "ending": "wait"
+      },
+      "scope": "Fresh earned web demo with reference assets; automated combined acceptance, no independent human/device/art/release approval"
+    },
+    "defaultCompiled": {
+      "task": "AW2-007B",
+      "status": "PASS",
+      "engine": "Chromium 153.0.8010.36",
+      "viewports": [
+        "1280x1000",
+        "390x844"
+      ],
+      "checks": [
+        "Five starter ultimate cards render",
+        "Canvas draws all five decoded authored battle atlases",
+        "Auto combat advances core ticks",
+        "Pause freezes core ticks",
+        "Manual step advances exactly one tick",
+        "Selecting a pending level preserves the active battle cards",
+        "Level reset applies development stats without persistence",
+        "Manual ultimate emits core cast event and spends energy",
+        "Projectile remains visible after authoritative launch",
+        "Authoritative hit settles projectile presentation",
+        "Reduced motion reaches renderer while outcomes remain readable",
+        "Mobile viewport has no horizontal overflow",
+        "Combat reaches one authoritative terminal result without presentation gaps",
+        "Terminal battle disables stepping and all manual ultimates",
+        "Terminal event cancels unfinished visual projectiles",
+        "Resuming a terminal battle cannot advance ticks",
+        "Canvas uses decoded FX atlases with no out-of-bounds source frames",
+        "Reset after terminal clears events and restores a playable level-one team",
+        "Battle preview leaves stable and AW2 save bytes unchanged",
+        "No primary-context browser errors or failed requests",
+        "Missing authored atlas reports a visible error",
+        "System reduced-motion preference initializes the control"
+      ],
+      "errors": [],
+      "failed": [],
+      "atlasDraws": {
+        "/dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp": {
+          "draws": 1038,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lua/base-v1/battle-motion-a-v1.webp": {
+          "draws": 568,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/suong/base-v1/battle-motion-a-v1.webp": {
+          "draws": 2065,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lam/base-v1/battle-motion-a-v2.webp": {
+          "draws": 1284,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/moc-non/base-v1/battle-motion-a-v1.webp": {
+          "draws": 1183,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lua/base-v1/battle-motion-b-v2.webp": {
+          "draws": 2128,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lam/base-v1/fx.webp": {
+          "draws": 2580,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/suong/base-v1/fx.webp": {
+          "draws": 9159,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/moc-non/base-v1/fx.webp": {
+          "draws": 3472,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/suong/base-v1/battle-motion-b-v1.webp": {
+          "draws": 631,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lua/base-v1/fx.webp": {
+          "draws": 183,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lam/base-v1/battle-motion-b-v2.webp": {
+          "draws": 64,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/than/base-v1/battle.webp": {
+          "draws": 80,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/than/base-v1/fx.webp": {
+          "draws": 40,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lua/base-v1/battle.webp": {
+          "draws": 80,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/suong/base-v1/battle.webp": {
+          "draws": 80,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/lam/base-v1/battle.webp": {
+          "draws": 40,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/moc-non/base-v1/battle.webp": {
+          "draws": 40,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/than/base-v1/battle-motion-b-v2.webp": {
+          "draws": 1658,
+          "invalid": 0
+        },
+        "/dev/aw2/assets/moc-non/base-v1/battle-motion-b-v1.webp": {
+          "draws": 165,
+          "invalid": 0
+        }
+      },
+      "limits": [
+        "development renderer only",
+        "no physical device/performance/save/boss/reward/final-balance approval"
+      ]
+    },
+    "buildConsumer": {
+      "status": "PASS",
+      "engine": "153.0.8010.36",
+      "checks": [
+        "Static root opens the compiled RPG world",
+        "Built intro grants five starters and one 30XP reward",
+        "Built save survives reload byte-identically",
+        "Standalone compiled battle loads all atlases",
+        "Compiled starter preview is reachable",
+        "Review tools leave progression and stable save untouched",
+        "No failed resources or console/page errors",
+        "Review bundle excludes source PNG/code/maps/archives"
+      ],
+      "errors": [],
+      "files": 197,
+      "bytes": 76396261
+    }
+  },
+  "browserCounts": {
+    "haiSource": 27,
+    "haiCompiled": 27,
+    "nhienCompiled": 30,
+    "muoiCompiled": 27,
+    "bossCompiled": 41,
+    "earnedJourneyCompiled": 55,
+    "defaultCompiled": 22,
+    "buildConsumer": 8
+  },
+  "simulations": {
+    "task": "AW2-007G",
+    "status": "PASS",
+    "runs": [
+      {
+        "level": 1,
+        "team": "starter",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 71,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "starter",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 39,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "starter",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 71,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "muoi",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 86,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "muoi",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "muoi",
+        "policy": "interrupt",
+        "status": "enemy-win",
+        "tick": 86,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "nhien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 70,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "nhien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 48,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "nhien",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 70,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "hai",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 97,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 2,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "hai",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 53,
+        "maxLine": 84,
+        "blocked": 58,
+        "passives": 1,
+        "interrupted": 0
+      },
+      {
+        "level": 1,
+        "team": "hai",
+        "policy": "interrupt",
+        "status": "enemy-win",
+        "tick": 97,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 2,
+        "interrupted": 3
+      },
+      {
+        "level": 5,
+        "team": "starter",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 71,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 5,
+        "team": "starter",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 39,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 5,
+        "team": "starter",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 71,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 5,
+        "team": "muoi",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 87,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 5,
+        "team": "muoi",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 5,
+        "team": "muoi",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 87,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 5,
+        "team": "nhien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 70,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 5,
+        "team": "nhien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 48,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 5,
+        "team": "nhien",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 70,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 5,
+        "team": "hai",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 70,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 1,
+        "interrupted": 0,
+        "schedule": [
+          {
+            "tick": 1,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 2,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 3,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 4,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 4
+              }
+            ]
+          },
+          {
+            "tick": 5,
+            "events": [
+              {
+                "kind": "cast-start",
+                "slot": "auto"
+              }
+            ]
+          },
+          {
+            "tick": 6,
+            "events": [
+              {
+                "kind": "cast-commit",
+                "slot": "auto"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 0
+              }
+            ]
+          },
+          {
+            "tick": 7,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              }
+            ]
+          },
+          {
+            "tick": 8,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              }
+            ]
+          },
+          {
+            "tick": 9,
+            "events": [
+              {
+                "kind": "shield",
+                "slot": "passive",
+                "amount": 59
+              }
+            ]
+          },
+          {
+            "tick": 10,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              }
+            ]
+          },
+          {
+            "tick": 11,
+            "events": [
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 25
+              }
+            ]
+          },
+          {
+            "tick": 15,
+            "events": [
+              {
+                "kind": "cast-start",
+                "slot": "auto"
+              }
+            ]
+          },
+          {
+            "tick": 16,
+            "events": [
+              {
+                "kind": "cast-commit",
+                "slot": "auto"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 0
+              }
+            ]
+          },
+          {
+            "tick": 17,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              }
+            ]
+          },
+          {
+            "tick": 20,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              }
+            ]
+          },
+          {
+            "tick": 21,
+            "events": [
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 19
+              }
+            ]
+          },
+          {
+            "tick": 25,
+            "events": [
+              {
+                "kind": "cast-start",
+                "slot": "auto"
+              }
+            ]
+          },
+          {
+            "tick": 26,
+            "events": [
+              {
+                "kind": "cast-commit",
+                "slot": "auto"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 27
+              }
+            ]
+          },
+          {
+            "tick": 28,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              }
+            ]
+          },
+          {
+            "tick": 30,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "team": "hai",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 46,
+        "maxLine": 103,
+        "blocked": 28,
+        "passives": 1,
+        "interrupted": 0,
+        "schedule": [
+          {
+            "tick": 2,
+            "events": [
+              {
+                "kind": "cast-commit",
+                "slot": "ultimate"
+              },
+              {
+                "kind": "status",
+                "slot": "ultimate",
+                "status": "hai-line"
+              },
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 3,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 4,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 5,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 3
+              }
+            ]
+          },
+          {
+            "tick": 6,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 1
+              }
+            ]
+          },
+          {
+            "tick": 7,
+            "events": [
+              {
+                "kind": "cast-start",
+                "slot": "auto"
+              }
+            ]
+          },
+          {
+            "tick": 8,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "ultimate",
+                "status": "hai-line"
+              },
+              {
+                "kind": "cast-commit",
+                "slot": "auto"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 25
+              }
+            ]
+          },
+          {
+            "tick": 10,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              },
+              {
+                "kind": "shield",
+                "slot": "passive",
+                "amount": 59
+              }
+            ]
+          },
+          {
+            "tick": 12,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              }
+            ]
+          },
+          {
+            "tick": 13,
+            "events": [
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 25
+              }
+            ]
+          },
+          {
+            "tick": 17,
+            "events": [
+              {
+                "kind": "cast-start",
+                "slot": "auto"
+              }
+            ]
+          },
+          {
+            "tick": 18,
+            "events": [
+              {
+                "kind": "cast-commit",
+                "slot": "auto"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              },
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 27
+              }
+            ]
+          },
+          {
+            "tick": 19,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              }
+            ]
+          },
+          {
+            "tick": 20,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-slow"
+              }
+            ]
+          },
+          {
+            "tick": 22,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              }
+            ]
+          },
+          {
+            "tick": 23,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 3
+              }
+            ]
+          },
+          {
+            "tick": 24,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 3
+              }
+            ]
+          },
+          {
+            "tick": 25,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 3
+              }
+            ]
+          },
+          {
+            "tick": 26,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 27,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 28,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 1
+              }
+            ]
+          },
+          {
+            "tick": 30,
+            "events": [
+              {
+                "kind": "cast-commit",
+                "slot": "ultimate"
+              },
+              {
+                "kind": "status",
+                "slot": "ultimate",
+                "status": "hai-line"
+              },
+              {
+                "kind": "cast-start",
+                "slot": "auto"
+              }
+            ]
+          },
+          {
+            "tick": 31,
+            "events": [
+              {
+                "kind": "cast-commit",
+                "slot": "auto"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              },
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 26
+              }
+            ]
+          },
+          {
+            "tick": 32,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "ultimate",
+                "status": "hai-block",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "tick": 33,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "ultimate",
+                "status": "hai-block",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "tick": 34,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "ultimate",
+                "status": "hai-block",
+                "amount": 5
+              },
+              {
+                "kind": "status",
+                "slot": "ultimate",
+                "status": "hai-block",
+                "amount": 13
+              }
+            ]
+          },
+          {
+            "tick": 35,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              }
+            ]
+          },
+          {
+            "tick": 36,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "ultimate",
+                "status": "hai-line"
+              },
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 26
+              }
+            ]
+          },
+          {
+            "tick": 40,
+            "events": [
+              {
+                "kind": "cast-start",
+                "slot": "auto"
+              }
+            ]
+          },
+          {
+            "tick": 41,
+            "events": [
+              {
+                "kind": "cast-commit",
+                "slot": "auto"
+              },
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              },
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 26
+              }
+            ]
+          },
+          {
+            "tick": 45,
+            "events": [
+              {
+                "kind": "status",
+                "slot": "auto",
+                "status": "hai-zone"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "team": "hai",
+        "policy": "interrupt",
+        "status": "enemy-win",
+        "tick": 70,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 1,
+        "interrupted": 3,
+        "schedule": [
+          {
+            "tick": 1,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 2,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 3,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 6
+              }
+            ]
+          },
+          {
+            "tick": 4,
+            "events": [
+              {
+                "kind": "move",
+                "slot": "basic",
+                "amount": 4
+              }
+            ]
+          },
+          {
+            "tick": 5,
+            "events": [
+              {
+                "kind": "cast-start",
+                "slot": "auto"
+              }
+            ]
+          },
+          {
+            "tick": 6,
+            "events": [
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 0
+              }
+            ]
+          },
+          {
+            "tick": 9,
+            "events": [
+              {
+                "kind": "shield",
+                "slot": "passive",
+                "amount": 59
+              }
+            ]
+          },
+          {
+            "tick": 11,
+            "events": [
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 25
+              }
+            ]
+          },
+          {
+            "tick": 15,
+            "events": [
+              {
+                "kind": "cast-start",
+                "slot": "auto"
+              }
+            ]
+          },
+          {
+            "tick": 16,
+            "events": [
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 0
+              }
+            ]
+          },
+          {
+            "tick": 21,
+            "events": [
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 19
+              }
+            ]
+          },
+          {
+            "tick": 25,
+            "events": [
+              {
+                "kind": "cast-start",
+                "slot": "auto"
+              }
+            ]
+          },
+          {
+            "tick": 26,
+            "events": [
+              {
+                "kind": "hit",
+                "slot": "basic",
+                "amount": 27
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "level": 10,
+        "team": "starter",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 71,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "starter",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 39,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "starter",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 71,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "muoi",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 83,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "muoi",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "muoi",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 83,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "nhien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 70,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "nhien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 48,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "nhien",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 70,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "hai",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 71,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 2,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "hai",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 46,
+        "maxLine": 126,
+        "blocked": 33,
+        "passives": 1,
+        "interrupted": 0
+      },
+      {
+        "level": 10,
+        "team": "hai",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 71,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 2,
+        "interrupted": 6
+      },
+      {
+        "level": 20,
+        "team": "starter",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 71,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "starter",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 39,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "starter",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 71,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "muoi",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 88,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "muoi",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "muoi",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 88,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "nhien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 69,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "nhien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 48,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "nhien",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 69,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 0,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "hai",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 69,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 1,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "hai",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 48,
+        "maxLine": 172,
+        "blocked": 51,
+        "passives": 1,
+        "interrupted": 0
+      },
+      {
+        "level": 20,
+        "team": "hai",
+        "policy": "interrupt",
+        "status": "player-win",
+        "tick": 69,
+        "maxLine": 0,
+        "blocked": 0,
+        "passives": 1,
+        "interrupted": 7
+      }
+    ],
+    "limits": [
+      "Provisional levels/seeds, not final balance or controlled team comparison",
+      "No collection/economy/save grants; JSON replay of battle only"
+    ]
+  },
+  "types": {
+    "root": "PASS",
+    "dev": "PASS"
+  },
+  "reviewBuild": {
+    "status": "PASS",
+    "files": 197,
+    "bytes": 76396261
+  },
+  "stableBuild": {
+    "status": "PASS",
+    "files": 851,
+    "bytes": 177450422,
+    "releaseGuard": "PASS",
+    "scannedHtmlJsCss": 49,
+    "aw2Excluded": "PASS"
+  },
+  "unchangedTrackedPaths": 300,
+  "environment": "Linux x64 / Node22.23.2 / pnpm10.34.3 / TS5.9.3 / Vitest5.0.1 / Vite8.0.5 / Chromium153.0.8010.36",
+  "incidents": [
+    "Initial boss fixture passed overrides as function arguments and allowed phase refresh; corrected spread overrides and isolated barrier phase. No boss-rule change.",
+    "Initial types exposed non-discriminated command union and unsupported findLast test API; corrected union/test API, both final types PASS.",
+    "Initial full1162PASS/2FAIL: newly-supported Hai no longer valid unsupported fixture; restored original Nhien wrong-practice message. Corrected32-case Nhien file PASS;1132 other PASS retained, no duplicate counts.",
+    "Initial audio harness incorrectly expected sound while paused; corrected to verify actual running opt-in audio, runtime audio unchanged.",
+    "Source preview invalidated by HMR during late message refinement; stable source rerun27PASS. Partial/failed counts excluded.",
+    "First simulation printed sandbox WebSocket EPERM but completed; clean elevated rerun48PASS retained.",
+    "Stable build retains existing large-chunk warning; release guard/isolation PASS."
+  ],
+  "coverageBoundary": "Nhien/Muoi/boss/earned checks ran before final wrong-practice-message restore; engine/renderer/assets identical. Corrected Nhien units cover negative command, final dev types/review build and Hai/default/build consumers cover final leaf. No repeat of unchanged passing journeys.",
+  "limits": [
+    "Development tuning; no final balance or independent playtest approval",
+    "Own reference art remains12/12, fullCharacterComplete=false/0fullDoD",
+    "Eight actual combat identities, five-starter saved ownership unchanged; collection pending",
+    "Physical devices/FPS/offline/native/human listening/rights/production-save/release OPEN"
+  ],
+  "uiReview": {
+    "status": "PASS",
+    "skills": [
+      "vercel:react-best-practices",
+      "vercel:verification"
+    ],
+    "story": "Roster/practice entry → pure session command → authoritative combat state/events → own painted fields/FX/opt-in audio; no API/backend required",
+    "reviewed": [
+      "Hooks unconditional; interval/RAF/ResizeObserver cleanup retained",
+      "Independent atlas requests parallel and limited to present units",
+      "Controls have visible names, real disabled states and native keyboard semantics",
+      "Derived Hai state is read from actual battle; renderer cannot grant damage/results/save",
+      "No dependencies/environment/SSR/auth boundary introduced"
+    ],
+    "evidence": "Existing237 browser assertions and two viewed compiled captures cover final story; no additional test count"
+  }
+}

@@ -6,3 +6,4 @@ export * from "./presentation"
 
 export * from "./muoi"
 export * from "./nhien"
+export * from "./hai"

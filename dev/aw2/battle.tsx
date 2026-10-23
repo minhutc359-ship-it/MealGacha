@@ -19,7 +19,9 @@ function BattlePreview() {
       ? "muoi"
       : new URLSearchParams(location.search).get("team") === "nhien"
         ? "nhien"
-        : undefined
+        : new URLSearchParams(location.search).get("team") === "hai"
+          ? "hai"
+          : undefined
   const [level, setLevel] = useState(5)
   const [{ battle, presentation, level: activeLevel, message }, dispatch] =
     useReducer(reduceBattlePreviewSession, 5, (level) =>
@@ -61,16 +63,19 @@ function BattlePreview() {
 
   const playerRows = battle.actors.filter((actor) => actor.side === "player")
   const nhien = playerRows.find((actor) => actor.spiritId === "aw2-nhien")
+  const hai = playerRows.find((actor) => actor.spiritId === "aw2-hai")
 
   return (
     <main className="aw2-save aw2-battle">
       <p className="eyebrow">AW2-007B · DEVELOPMENT-ONLY EVENT RENDERER</p>
       <h1>
-        {practice === "nhien"
-          ? "Luyện kỹ năng Nhiên"
-          : practice
-            ? "Luyện kỹ năng Muối Đen"
-            : "Giao ước bên bếp"}
+        {practice === "hai"
+          ? "Luyện kỹ năng Hải"
+          : practice === "nhien"
+            ? "Luyện kỹ năng Nhiên"
+            : practice
+              ? "Luyện kỹ năng Muối Đen"
+              : "Giao ước bên bếp"}
       </h1>
       <p>
         <a
@@ -82,6 +87,8 @@ function BattlePreview() {
         </a>{" "}
         · <a href="/dev/aw2/world.html">Về hành trình</a> ·{" "}
         <a href="/dev/aw2/battle.html?team=nhien">Luyện kỹ năng Nhiên</a>
+        {" · "}
+        <a href="/dev/aw2/battle.html?team=hai">Luyện kỹ năng Hải</a>
       </p>
       {practice === "muoi" && (
         <p>
@@ -96,6 +103,55 @@ function BattlePreview() {
           tuyệt kỹ có hồi thế; đánh trúng hai địch khác nhau mới hồi năng lượng
           có giới hạn. Có thể thử ngắt chuỗi, không cấp nhân vật hay ghi save.
         </p>
+      )}
+      {practice === "hai" && hai && (
+        <section aria-label="Thử kỹ năng Hải">
+          <p>
+            Đội luyện 5 người thay Than bằng Hải. Giữ Lối làm chậm kẻ áp sát;
+            Biết Đường Về cấp khiên cho Hải khi đồng minh thấp máu ở gần. Bờ Đợi
+            chắn phía trước, có thể bị đánh vòng qua. Thu thập Hải còn chờ triển
+            khai.
+          </p>
+          <p data-testid="hai-state" data-state={JSON.stringify(hai)}>
+            Năng lượng {hai.energy}/100 · Khiên {hai.shield} ·{" "}
+            {hai.cast ? "Đang chuẩn bị" : "Sẵn sàng"}
+          </p>
+          <p data-testid="hai-fields">
+            {hai.haiZone
+              ? `Giữ Lối: vùng ${hai.haiZone.center - hai.haiZone.radius}–${hai.haiZone.center + hai.haiZone.radius}, tan nhịp ${hai.haiZone.expiresAtTick}. `
+              : "Chưa có vùng Giữ Lối. "}
+            {hai.haiLine
+              ? `Bờ Đợi: tuyến ${hai.haiLine.position}, hướng ${hai.haiLine.facing === 1 ? "phải" : "trái"}, còn ${hai.haiLine.remaining}, tan nhịp ${hai.haiLine.expiresAtTick}.`
+              : "Chưa có tuyến Bờ Đợi."}
+          </p>
+          <button
+            data-testid="hai-interrupt"
+            disabled={battle.status !== "active" || hai.hp <= 0 || !hai.cast}
+            onClick={() => dispatch({ type: "interrupt-hai" })}
+          >
+            Đối thủ ngắt Hải
+          </button>
+          <ol data-testid="hai-outcomes">
+            {battle.events
+              .filter(
+                (e) =>
+                  e.skillId?.startsWith("aw2-hai:") &&
+                  ["hit", "shield", "status", "interrupt"].includes(e.kind),
+              )
+              .slice(-8)
+              .map((e) => (
+                <li
+                  key={e.serial}
+                  data-kind={e.kind}
+                  data-status={e.statusEffect}
+                >
+                  Nhịp {e.tick}:{" "}
+                  {e.text ??
+                    `${e.kind === "shield" ? "Khiên" : "Sát thương"} ${e.amount ?? 0}`}
+                </li>
+              ))}
+          </ol>
+        </section>
       )}
       <p className="note">
         Canvas chỉ trình bày event đã được combat core quyết định. Cấp và chỉ số

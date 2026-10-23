@@ -12,7 +12,19 @@ export function combatAudioCues(events: CombatEvent[], afterSerial: number) {
       const manifest = ROSTER_ASSETS[spiritId]
       if (!manifest || !["basic", "auto", "passive", "ultimate"].includes(slot))
         return []
-      if (spiritId === "aw2-nhien") {
+      if (spiritId === "aw2-hai") {
+        if (
+          !(
+            (slot === "basic" && event.kind === "hit") ||
+            (slot === "passive" &&
+              event.kind === "shield" &&
+              (event.amount ?? 0) > 0) ||
+            (event.statusChange === "apply" &&
+              ["hai-zone", "hai-line"].includes(event.statusEffect ?? ""))
+          )
+        )
+          return []
+      } else if (spiritId === "aw2-nhien") {
         if (
           !(event.kind === "hit" && event.contactIndex !== undefined) &&
           !(
@@ -46,7 +58,7 @@ export function combatAudioCues(events: CombatEvent[], afterSerial: number) {
         {
           serial: event.serial,
           slot: slot as SkillSlot,
-          url: manifest.skills[(slot as SkillSlot)].audio.url,
+          url: manifest.skills[slot as SkillSlot].audio.url,
         },
       ]
     })

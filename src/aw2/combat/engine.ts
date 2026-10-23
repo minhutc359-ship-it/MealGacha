@@ -7,6 +7,12 @@ import {
 
 import { MUOI_TUNING, muoiDamageMultiplier, selectMuoiTarget } from "./muoi"
 import {
+  HAI_TUNING,
+  haiNearbyEnemy,
+  haiNeedsShield,
+  absorbHaiLine,
+} from "./hai"
+import {
   NHIEN_TUNING,
   grantNhienRhythm,
   nhienBusy,
@@ -101,8 +107,9 @@ function actorFromSeed(
   )
     throw Error("Boss profile không thuộc Người Giữ Bàn Quên.")
   const base =
-    side === "player" || ["aw2-muoi", "aw2-nhien"].includes(seed.spiritId)
-      ? COMBAT_KITS[(seed.spiritId as CombatSpiritId)]
+    side === "player" ||
+    ["aw2-muoi", "aw2-nhien", "aw2-hai"].includes(seed.spiritId)
+      ? COMBAT_KITS[seed.spiritId as CombatSpiritId]
       : defaultEnemy(seed)
   const maxHp = assertNumber(seed.maxHp ?? base.hp, "HP tối đa", 1, 1_000_000)
   const hp = assertNumber(seed.hp ?? maxHp, "HP", 1, maxHp)
@@ -217,7 +224,10 @@ function record(
   kind: CombatEventKind,
   sourceId: string | null,
   targetIds: string[],
-  detail: Omit<CombatEvent, "serial" | "tick" | "kind" | "sourceId" | "targetIds"> = {},
+  detail: Omit<
+    CombatEvent,
+    "serial" | "tick" | "kind" | "sourceId" | "targetIds"
+  > = {},
 ): CombatEvent {
   const event: CombatEvent = {
     serial: ++battle.eventSerial,
@@ -387,7 +397,74 @@ function applyMuoiMark(
   })
 }
 
+function cleanupHaiFields(battle: CombatBattle, terminal = false) {
+  for (const actor of battle.actors) {
+    for (const key of ["haiZone", "haiLine"] as const) {
+      const field = actor[key]
+      if (
+        !field ||
+        (!terminal && actor.hp > 0 && field.expiresAtTick > battle.tick)
+      )
+        continue
+      delete actor[key]
+      const slot = key === "haiZone" ? "auto" : "ultimate"
+      record(battle, "status", actor.id, [actor.id], {
+        skillId: combatSkillId("aw2-hai", slot),
+        statusEffect: key === "haiZone" ? "hai-zone" : "hai-line",
+        statusChange: "remove",
+        text: key === "haiZone" ? "Giữ Lối đã tan." : "Bờ Đợi đã tan.",
+      })
+    }
+  }
+}
+
+function updateHaiPassives(battle: CombatBattle) {
+  if (!living(battle, "player").length || !living(battle, "enemy").length)
+    return
+  for (const source of battle.actors) {
+    if (!haiNeedsShield(battle, source)) continue
+    applyShield(
+      battle,
+      source,
+      source,
+      Math.max(1, Math.round(source.maxHp * HAI_TUNING.passiveShieldRatio)),
+      combatSkillId("aw2-hai", "passive"),
+      HAI_TUNING.passiveShieldTicks,
+    )
+    source.haiPassiveUntilTick = battle.tick + HAI_TUNING.passiveCooldown
+  }
+}
+
+function updateHaiZones(battle: CombatBattle) {
+  for (const source of battle.actors) {
+    const zone = source.haiZone
+    if (!zone || source.hp <= 0 || zone.expiresAtTick <= battle.tick) continue
+    for (const target of living(battle, opponent(source.side))) {
+      if (
+        target.controlImmune ||
+        target.debuffImmune ||
+        Math.abs(target.position - zone.center) > zone.radius
+      )
+        continue
+      const expiry = Math.min(
+        zone.expiresAtTick,
+        battle.tick + HAI_TUNING.slowTicks,
+      )
+      if (target.slowUntilTick >= expiry) continue
+      target.slowUntilTick = expiry
+      record(battle, "status", source.id, [target.id], {
+        skillId: combatSkillId("aw2-hai", "auto"),
+        statusEffect: "hai-slow",
+        statusChange: "refresh",
+        expiresAtTick: expiry,
+        text: "Giữ Lối làm chậm trong vùng.",
+      })
+    }
+  }
+}
+
 function expireTimedState(battle: CombatBattle) {
+  cleanupHaiFields(battle)
   cleanupMuoiMarks(battle)
   for (const actor of battle.actors) {
     if ((actor.nhienRecoveryUntilTick ?? Infinity) <= battle.tick)
@@ -482,7 +559,9 @@ function startCast(
     slot,
     targetId,
     commitTick: battle.tick + ticks,
-    ...(actor.spiritId === "aw2-nhien" && targetId && byId(battle, targetId)
+    ...(["aw2-nhien", "aw2-hai"].includes(actor.spiritId) &&
+    targetId &&
+    byId(battle, targetId)
       ? { facing: nhienFacing(actor, byId(battle, targetId)!) }
       : {}),
   }
@@ -747,13 +826,23 @@ function applyDamage(
     1,
     Math.round((raw * 100) / (100 + target.defense)),
   )
-  const absorbed = Math.min(target.shield, mitigated)
+  const line = absorbHaiLine(battle, source, target, mitigated)
+  const blocked = line?.blocked ?? 0
+  if (line)
+    record(battle, "status", line.protector.id, [target.id], {
+      skillId: combatSkillId("aw2-hai", "ultimate"),
+      statusEffect: "hai-block",
+      statusChange: "block",
+      amount: blocked,
+      text: `Bờ Đợi chặn ${blocked} sát thương phía trước.`,
+    })
+  const absorbed = Math.min(target.shield, mitigated - blocked)
   target.shield -= absorbed
   if (absorbed && target.shield === 0) {
     target.shieldExpiresAtTick = 0
     armThanPassive(battle, target)
   }
-  const hpDamage = Math.min(target.hp, mitigated - absorbed)
+  const hpDamage = Math.min(target.hp, mitigated - blocked - absorbed)
   target.hp -= hpDamage
   source.damageDealt = (source.damageDealt ?? 0) + hpDamage + absorbed
   if (skillId.endsWith(":skill:basic"))
@@ -764,6 +853,7 @@ function applyDamage(
     ...contact,
     amount: hpDamage,
     absorbed,
+    ...(blocked > 0 ? { blocked } : {}),
     ...(projectileId ? { projectileId } : {}),
   })
   if (hpDamage + absorbed > 0) {
@@ -837,6 +927,8 @@ function applyDamage(
     record(battle, "defeat", source.id, [target.id], { skillId })
     cleanupMuoiMarks(battle)
   }
+  cleanupHaiFields(battle)
+  updateHaiPassives(battle)
 }
 
 function applyEffect(battle: CombatBattle, effect: CombatEffect) {
@@ -973,6 +1065,44 @@ function commitCast(
             ? [enemy.id]
             : []
   record(battle, "cast-commit", actor.id, committedTargets, { skillId })
+  if (actor.spiritId === "aw2-hai") {
+    const facing = cast.facing ?? (actor.side === "player" ? 1 : -1)
+    if (cast.slot === "auto") {
+      actor.haiZone = {
+        center: clamp(actor.position + facing * HAI_TUNING.zoneRadius, 0, 100),
+        radius: HAI_TUNING.zoneRadius,
+        expiresAtTick: battle.tick + HAI_TUNING.zoneTicks,
+      }
+    } else {
+      actor.haiLine = {
+        position: clamp(
+          actor.position + facing * HAI_TUNING.lineOffset,
+          0,
+          100,
+        ),
+        facing,
+        expiresAtTick: battle.tick + HAI_TUNING.lineTicks,
+        remaining: Math.max(
+          1,
+          Math.round(actor.maxHp * HAI_TUNING.lineCapacityRatio),
+        ),
+        createdTick: battle.tick,
+      }
+    }
+    record(battle, "status", actor.id, [actor.id], {
+      skillId,
+      statusEffect: cast.slot === "auto" ? "hai-zone" : "hai-line",
+      statusChange: "apply",
+      expiresAtTick: (actor.haiZone && cast.slot === "auto"
+        ? actor.haiZone
+        : actor.haiLine)!.expiresAtTick,
+      text:
+        cast.slot === "auto"
+          ? "Giữ Lối đã dựng vùng cố định."
+          : "Bờ Đợi đã dựng tuyến chắn theo hướng.",
+    })
+    return
+  }
   if (actor.spiritId === "aw2-nhien") {
     startNhienSequence(
       battle,
@@ -1252,6 +1382,13 @@ function tryAutoSkill(battle: CombatBattle, actor: CombatActor): boolean {
     return false
   const kit = COMBAT_KITS[actor.spiritId]
   const enemy = selectEnemy(battle, actor)
+  if (actor.spiritId === "aw2-hai") {
+    const target = haiNearbyEnemy(battle, actor)
+    if (!target) return false
+    actor.nextAutoTick = battle.tick + kit.autoCooldown
+    startCast(battle, actor, "auto", target.id, kit.autoCastTicks)
+    return true
+  }
   if (actor.spiritId === "aw2-nhien") {
     const target = nhienTargets(battle, actor)[0]
     if (!target) return false
@@ -1408,6 +1545,7 @@ function checkResult(battle: CombatBattle) {
   const enemies = living(battle, "enemy").length
   if (players && enemies) return
   battle.status = players ? "player-win" : enemies ? "enemy-win" : "draw"
+  cleanupHaiFields(battle, true)
 
   removeMuoiMarks(battle, "trận kết thúc", () => true)
   for (const actor of battle.actors) {
@@ -1430,7 +1568,9 @@ function checkResult(battle: CombatBattle) {
 function advanceOneTick(battle: CombatBattle) {
   battle.tick++
   expireTimedState(battle)
+  updateHaiPassives(battle)
   resolveDueCasts(battle)
+  updateHaiZones(battle)
   resolveDueEffects(battle)
   checkResult(battle)
   if (battle.status !== "active") return
@@ -1497,7 +1637,9 @@ export function castCombatUltimate(
     battle,
     actor,
     "ultimate",
-    targetId ?? null,
+    actor.spiritId === "aw2-hai"
+      ? (selectEnemy(battle, actor)?.id ?? null)
+      : (targetId ?? null),
     COMBAT_KITS[actor.spiritId].ultimateCastTicks,
   )
   return battle

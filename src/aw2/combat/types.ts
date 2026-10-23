@@ -2,7 +2,20 @@ export type CombatSide = "player" | "enemy"
 export type CombatStatus = "active" | "player-win" | "enemy-win" | "draw"
 export type CombatSkillSlot = "basic" | "auto" | "passive" | "ultimate"
 export type CombatEffectKind = "damage" | "heal" | "shield" | "interrupt-guard"
-export type CombatEventKind = "cast-start" | "cast-commit" | "move" | "projectile-launch" | "hit" | "heal" | "shield" | "status" | "interrupt" | "interrupt-resist" | "miss" | "defeat" | "battle-end"
+export type CombatEventKind =
+  | "cast-start"
+  | "cast-commit"
+  | "move"
+  | "projectile-launch"
+  | "hit"
+  | "heal"
+  | "shield"
+  | "status"
+  | "interrupt"
+  | "interrupt-resist"
+  | "miss"
+  | "defeat"
+  | "battle-end"
 
 export interface ForgottenHostIntent {
   kind: "sweep" | "snuff"
@@ -56,8 +69,23 @@ export interface CombatEvent {
   projectileId?: string
   resolveTick?: number
   text?: string
-  statusEffect?: "muoi-mark" | "ordinary-shield" | "nhien-energy" | "nhien-recovery"
-  statusChange?: "apply" | "refresh" | "remove" | "dispel" | "gain-energy"
+  statusEffect?:
+    | "muoi-mark"
+    | "ordinary-shield"
+    | "nhien-energy"
+    | "nhien-recovery"
+    | "hai-zone"
+    | "hai-slow"
+    | "hai-line"
+    | "hai-block"
+  statusChange?:
+    | "apply"
+    | "refresh"
+    | "remove"
+    | "dispel"
+    | "gain-energy"
+    | "block"
+  blocked?: number
   expiresAtTick?: number
   actionId?: string
   contactIndex?: number
@@ -132,6 +160,15 @@ export interface CombatActor {
   nhienSequence?: NhienSequence
   nhienRecoveryUntilTick?: number
   nhienRhythm?: NhienRhythm
+  haiPassiveUntilTick?: number
+  haiZone?: { center: number; radius: number; expiresAtTick: number }
+  haiLine?: {
+    position: number
+    facing: 1 | -1
+    expiresAtTick: number
+    remaining: number
+    createdTick: number
+  }
   bossKit?: ForgottenHostState
 }
 

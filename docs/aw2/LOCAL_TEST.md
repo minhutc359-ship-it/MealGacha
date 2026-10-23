@@ -55,4 +55,8 @@ Màn này là art reference. Kit thật/cấp1–20 của Nhiên đã có tại 
 
 ## Đủ 12 bộ hình tham chiếu —2026-10-23
 
-Mở http://localhost:8443/dev/aw2/roster.html sau `pnpm dev`. Selector đã có đủ 12 nhân vật, gồm Hải/Liên/Mộc/Bách/Vân vừa hoàn tất. Chọn World để thử bốn hướng/đi bộ; chọn HD để xem tám trạng thái, mỗi trạng thái bốn cel. Thử bốn kỹ năng, âm thanh tự nguyện, tạm dừng/phát lại và giảm chuyển động. Liên có hai nhịp ultimate; Liên/Mộc/Vân có đạn bay riêng, Hải/Bách đánh cận chiến. Đây là cue tham chiếu; năm bộ mới chưa có kit thật/leveling/collection. [Danh mục và ảnh gốc](ROSTER_ART.md), [bằng chứng kiểm tra](evidence/AW2-004M-P.md). Demo≈90%/sản phẩm≈40% giữ nguyên; full-character gates còn mở.
+Mở http://localhost:8443/dev/aw2/roster.html sau `pnpm dev`. Selector đã có đủ 12 nhân vật, gồm Hải/Liên/Mộc/Bách/Vân vừa hoàn tất. Chọn World để thử bốn hướng/đi bộ; chọn HD để xem tám trạng thái, mỗi trạng thái bốn cel. Thử bốn kỹ năng, âm thanh tự nguyện, tạm dừng/phát lại và giảm chuyển động. Liên có hai nhịp ultimate; Liên/Mộc/Vân có đạn bay riêng, Hải/Bách đánh cận chiến. Đây là cue tham chiếu; Hải đã có kit/cấp độ thử nghiệm007G; Liên/Mộc/Bách/Vân chưa có kit thật/leveling và cả năm chưa có collection. [Danh mục và ảnh gốc](ROSTER_ART.md), [bằng chứng kiểm tra](evidence/AW2-004M-P.md). Demo≈90%/sản phẩm≈40% giữ nguyên; full-character gates còn mở.
+
+## Hải · kỹ năng thật AW2-007G
+
+Mở http://localhost:8443/dev/aw2/battle.html?team=hai sau `pnpm dev`. Đội luyện5 người thay Than bằng Hải; thử vùng làm chậm cố định, khiên khi đồng minh thấp máu và tuyến Bờ Đợi theo hướng. Có ngắt kỹ năng, tạm dừng/bước nhịp, giảm chuyển động, âm thanh tự nguyện và cấp1/5/10/20. [Hướng dẫn Hải](HAI_PRACTICE.md). Chưa cấp Hải vào đội lưu/collection. Bộ hình vẫn12/12; full-character gates còn mở.

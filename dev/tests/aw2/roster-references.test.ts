@@ -59,7 +59,7 @@ const references = [
 
 describe.each(references)("$id original reference package", (unit) => {
   const m = ROSTER_ASSETS[unit.id]
-  it("resolves approved identity and own assets without enabling ownership or combat", () => {
+  it("resolves approved identity and art independently of ownership and actual-kit availability", () => {
     expect(validateAssetManifest(m)).toEqual([])
     expect(ROSTER.find((s) => s.spiritId === unit.id)).toMatchObject({
       displayName: unit.name,
@@ -69,7 +69,7 @@ describe.each(references)("$id original reference package", (unit) => {
     expect(Object.keys(STARTER_ASSETS)).toEqual(STARTER_TEAM)
     expect(STARTER_TEAM).toHaveLength(5)
     expect(STARTER_TEAM).not.toContain(unit.id)
-    expect(isCombatSpiritId(unit.id)).toBe(false)
+    expect(isCombatSpiritId(unit.id)).toBe(unit.id === "aw2-hai")
     expect(
       Object.values(m.assets).every(
         (a) =>

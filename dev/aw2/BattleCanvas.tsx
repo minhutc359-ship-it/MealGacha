@@ -55,7 +55,7 @@ function manifestFor(
 function slotFromSkill(skillId?: string): SkillSlot | null {
   const slot = skillId?.split(":").at(-1)
   return ["basic", "auto", "passive", "ultimate"].includes(slot ?? "")
-    ? slot as SkillSlot
+    ? (slot as SkillSlot)
     : null
 }
 
@@ -287,6 +287,39 @@ export function BattleCanvas({
       }
     }
 
+    function drawHaiFields() {
+      const fields = []
+      if (!presentation.terminal)
+        for (const actor of battle.actors) {
+          if (actor.spiritId !== "aw2-hai" || actor.hp <= 0) continue
+          const manifest = manifestFor(actor, visualIds)
+          for (const slot of ["auto", "ultimate"] as const) {
+            const field = slot === "auto" ? actor.haiZone : actor.haiLine
+            if (!field || field.expiresAtTick <= battle.tick) continue
+            const position = "center" in field ? field.center : field.position
+            const frame = manifest.skills[slot].fx[2]
+            paintFrame(
+              manifest,
+              frame,
+              atlases![manifest.spiritId].fx,
+              64 + (position * (layout.width - 128)) / 100,
+              actorY(actor),
+              0.22,
+              "facing" in field ? field.facing === -1 : actor.side === "enemy",
+              0.65,
+            )
+            fields.push({
+              sourceId: actor.id,
+              slot,
+              position,
+              frame,
+              expiresAtTick: field.expiresAtTick,
+            })
+          }
+        }
+      element!.dataset.haiFields = JSON.stringify(fields)
+    }
+
     function drawActor(actor: CombatActor) {
       if (actor.spiritId === FORGOTTEN_HOST_ASSETS.entityId) {
         const manifest = FORGOTTEN_HOST_ASSETS
@@ -364,7 +397,7 @@ export function BattleCanvas({
         )
         clock.current.effects[key] = sampled.clock
         return (cue.targetIds ?? [cue.targetId]).map((targetId) => ({
-          skill: manifest.skills[(slot as SkillSlot)],
+          skill: manifest.skills[slot as SkillSlot],
           effect: presentation.terminal ? null : sampled.effect,
           targetId,
           serial: cue.serial,
@@ -583,6 +616,7 @@ export function BattleCanvas({
           bossVisuals[actor.id] = visual
         }
       drawArena()
+      drawHaiFields()
       drawBossEffects(false)
       for (const projectile of Object.values(presentation.projectiles))
         drawProjectile(projectile, elapsed)

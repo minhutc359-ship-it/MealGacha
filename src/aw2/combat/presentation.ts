@@ -1,6 +1,14 @@
 import type { CombatEvent, CombatEventKind, CombatSkillSlot } from "./types"
 
-export type CombatAnimationState = "idle" | "move" | "attack" | "cast" | "hit" | "guard" | "ultimate" | "defeat"
+export type CombatAnimationState =
+  | "idle"
+  | "move"
+  | "attack"
+  | "cast"
+  | "hit"
+  | "guard"
+  | "ultimate"
+  | "defeat"
 
 export interface ActorPresentation {
   state: CombatAnimationState
@@ -91,7 +99,7 @@ export function createCombatPresentation(): CombatPresentation {
 function skillSlot(skillId?: string): CombatSkillSlot | null {
   const slot = skillId?.split(":").at(-1)
   return ["basic", "auto", "passive", "ultimate"].includes(slot ?? "")
-    ? slot as CombatSkillSlot
+    ? (slot as CombatSkillSlot)
     : null
 }
 
@@ -148,6 +156,50 @@ export function reduceCombatPresentation(
     const mocSkill = event.skillId?.startsWith("aw2-moc-non:skill:")
     const muoiSkill = event.skillId?.startsWith("aw2-muoi:skill:")
     const nhienSkill = event.skillId?.startsWith("aw2-nhien:skill:")
+    if (event.skillId?.startsWith("aw2-hai:skill:") && event.sourceId) {
+      const slot = skillSlot(event.skillId)!
+      if (["cast-start", "cast-commit"].includes(event.kind)) phase = "prepare"
+      const confirmed =
+        (slot === "basic" && event.kind === "hit") ||
+        (slot === "passive" &&
+          event.kind === "shield" &&
+          (event.amount ?? 0) > 0) ||
+        (event.statusChange === "apply" &&
+          ["hai-zone", "hai-line"].includes(event.statusEffect ?? ""))
+      if (confirmed) {
+        phase = "confirmed"
+        contactIndex = 0
+        ;(next.effects[event.sourceId] ??= {})[slot] = {
+          serial: event.serial,
+          tick: event.tick,
+          skillId: event.skillId,
+          index: 0,
+          ...(slot === "basic" ? { targetId: event.targetIds[0] } : {}),
+        }
+        sourceState =
+          slot === "ultimate"
+            ? "ultimate"
+            : slot === "auto"
+              ? "cast"
+              : slot === "basic"
+                ? "attack"
+                : "guard"
+        const prior = next.actors[event.sourceId]
+        if (
+          slot === "passive" &&
+          prior?.tick === event.tick &&
+          prior.phase === "confirmed"
+        )
+          sourceState = null
+      } else if (event.kind === "status" || event.kind === "shield")
+        sourceState = null
+      if (event.kind === "interrupt")
+        next.actors[event.sourceId] = {
+          state: "hit",
+          serial: event.serial,
+          tick: event.tick,
+        }
+    }
     if (nhienSkill && event.sourceId) {
       const slot = skillSlot(event.skillId)
       if (["cast-start", "cast-commit"].includes(event.kind)) {
