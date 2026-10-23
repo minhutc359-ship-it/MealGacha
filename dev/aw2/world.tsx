@@ -275,10 +275,14 @@ function WorldPreview() {
     setError("")
     setMessage("")
     try {
-      if (actionId === "challenge" && saved.current.status === "ready") {
+      if (
+        (actionId === "challenge" || actionId === "rematch") &&
+        saved.current.status === "ready"
+      ) {
         const started = await store.beginBoss(
           saved.current.raw,
           worldRef.current,
+          actionId === "rematch" ? "rematch" : "quest",
         )
         setSnapshot(started.snapshot)
         saved.current = started.snapshot
@@ -414,9 +418,11 @@ function WorldPreview() {
       setWorld(next.save.progress)
       setActiveEncounter(null)
       setMessage(
-        next.save.progress.bossDefeated
-          ? "Đã lưu chiến thắng. Đọc ghi chép bên chén rồi trở về Bà Giữ Chỗ."
-          : "Đã về Sân. Tiến trình được giữ, có thể thử lại.",
+        activeEncounter.run.snapshot().purpose === "rematch"
+          ? "Đã về Phòng Bàn sau lượt đấu lại. Không nhận thưởng; kết thúc, đội hình và tiến trình được giữ nguyên."
+          : next.save.progress.bossDefeated
+            ? "Đã lưu chiến thắng. Đọc ghi chép bên chén rồi trở về Bà Giữ Chỗ."
+            : "Đã về Sân. Tiến trình được giữ, có thể thử lại.",
       )
     } catch (cause) {
       setError(

@@ -1,6 +1,9 @@
 import assert from "node:assert/strict"
 import { mkdir, writeFile } from "node:fs/promises"
 import { createServer } from "vite"
+const rematch = process.argv.includes("--rematch")
+const task = rematch ? "AW2-007M" : "AW2-007L"
+const out = rematch ? ".asset-work/aw2-007m" : ".asset-work/aw2-007l"
 const server = await createServer({
   configFile: false,
   server: { middlewareMode: true, hmr: false, ws: false },
@@ -55,7 +58,7 @@ try {
       ]),
     ]
   const runs = []
-  for (const level of [1, 5, 10, 20])
+  for (const level of rematch ? [1, 3, 5, 10, 20] : [1, 5, 10, 20])
     for (const config of configs)
       for (const policy of ["auto", "ultimate"]) {
         const data = save.aw2DevSaveSchema.parse({
@@ -71,8 +74,15 @@ try {
             zoneId: ids.ZONE_IDS[5],
             x: 96,
             y: 192,
-            questIndex: 3,
-            accepted: true,
+            questIndex: rematch ? 4 : 3,
+            accepted: !rematch,
+            ...(rematch
+              ? {
+                  bossDefeated: true,
+                  tableNoteRead: true,
+                  endingChoice: "wait",
+                }
+              : {}),
             tableRead: true,
             memories: [...ids.MEMORY_IDS],
             threadChoice: "wait",
@@ -90,7 +100,10 @@ try {
           },
         })
         const raw = JSON.stringify(data),
-          run = encounters.createWorldBossEncounter(raw),
+          run = encounters.createWorldBossEncounter(
+            raw,
+            rematch ? "rematch" : "quest",
+          ),
           commits = new Set()
         for (
           let tick = 0;
@@ -165,8 +178,15 @@ try {
         assert.deepEqual(result.progress.partyIds, config.party)
         assert.equal(
           result.progress.bossDefeated,
-          end.battle.status === "player-win",
+          rematch || end.battle.status === "player-win",
         )
+        if (rematch) {
+          const nonspatial = ({ zoneId, x, y, facing, ...p }) => p
+          assert.deepEqual(
+            nonspatial(result.progress),
+            nonspatial(data.progress),
+          )
+        }
         runs.push({
           level,
           config: config.name,
@@ -176,12 +196,12 @@ try {
           ultimates: [...commits],
         })
       }
-  await mkdir(".asset-work/aw2-007l", { recursive: true })
+  await mkdir(out, { recursive: true })
   await writeFile(
-    ".asset-work/aw2-007l/simulation.json",
+    `${out}/simulation.json`,
     JSON.stringify(
       {
-        task: "AW2-007L",
+        task,
         status: "PASS",
         runs,
         limits: [

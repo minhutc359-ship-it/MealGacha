@@ -1,3 +1,4 @@
+import { rematchAfterEnding } from "./aw2-rematch-browser-flow.mjs"
 import {
   collectionIntro,
   collectionBeforeBoss,
@@ -13,8 +14,10 @@ const { values } = parseArgs({
     chromium: { type: "string" },
     compiled: { type: "boolean", default: false },
     collection: { type: "boolean", default: false },
+    rematch: { type: "boolean", default: false },
   },
 })
+const withCollection = values.collection || values.rematch
 const { chromium } = await import(values.playwright)
 const port = values.compiled ? 8463 : 8462,
   flavor = values.compiled ? "compiled" : "source"
@@ -27,7 +30,11 @@ const server = values.compiled
       configFile: "dev/vite.dev.config.ts",
       server: { host: "127.0.0.1", port, strictPort: true },
     })
-const out = values.collection ? ".asset-work/aw2-007l" : ".asset-work/aw2-010b",
+const out = values.rematch
+    ? ".asset-work/aw2-007m"
+    : withCollection
+      ? ".asset-work/aw2-007l"
+      : ".asset-work/aw2-010b",
   key = "aw2.development.save",
   url = `http://127.0.0.1:${port}/dev/aw2/world.html`
 const checks = [],
@@ -269,7 +276,7 @@ try {
     (await save()).progress.partyIds.length === 5 &&
       (await save()).economy.teamExperience === 30,
   )
-  if (values.collection) await collectionIntro({ page, check, raw, save })
+  if (withCollection) await collectionIntro({ page, check, raw, save })
   const intro = await raw()
   await page.reload()
   await world()
@@ -559,7 +566,7 @@ try {
   await travel(616, "Phòng Lửa")
   await travel(616, "Phòng Bàn")
   await go(320, 128)
-  if (values.collection)
+  if (withCollection)
     await collectionBeforeBoss({
       page,
       check,
@@ -728,7 +735,7 @@ try {
       done.economy.teamExperience === 345 &&
       done.economy.receipts.length === 5,
   )
-  if (values.collection)
+  if (withCollection)
     check(
       "Completed quest/economy/boss/mode writes preserve all explicitly recruited spirits",
       done.collection.recruitedIds.length === 7 &&
@@ -846,6 +853,20 @@ try {
       ),
   )
   await branchContext.close()
+  if (values.rematch)
+    await rematchAfterEnding({
+      page,
+      check,
+      raw,
+      save,
+      go,
+      interact,
+      world,
+      url,
+      out,
+      flavor,
+      watch,
+    })
   check(
     "All five legacy keys remain byte-identical throughout the combined journey",
     await page.evaluate(
@@ -866,7 +887,11 @@ try {
     JSON.stringify(
       {
         status: "PASS",
-        task: values.collection ? "AW2-007L" : "AW2-010B",
+        task: values.rematch
+          ? "AW2-007M"
+          : withCollection
+            ? "AW2-007L"
+            : "AW2-010B",
         flavor,
         engine: browser.version(),
         checks,

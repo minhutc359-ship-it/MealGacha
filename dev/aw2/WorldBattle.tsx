@@ -38,6 +38,7 @@ export function WorldBattle({
     () => matchMedia("(prefers-reduced-motion: reduce)").matches,
   )
   const battle = frame.view.battle
+  const rematch = frame.view.purpose === "rematch"
   const finished = frame.view.retreated || battle.status !== "active"
   const audio = useBattleAudio(battle, paused || finished)
   const command = useCallback(
@@ -78,12 +79,22 @@ export function WorldBattle({
     <main
       className="aw2-save aw2-battle"
       data-testid="world-battle"
+      data-purpose={frame.view.purpose}
       data-boss-position={
         battle.actors.find((actor) => actor.id === KITCHEN_BOSS_ID)?.position
       }
     >
-      <p className="eyebrow">AW2-007C · THỬ THÁCH BÊN BẾP</p>
+      <p className="eyebrow">
+        {rematch ? "ĐẤU LẠI BOSS · LUYỆN ĐỘI HÌNH" : "THỬ THÁCH BÊN BẾP"}
+      </p>
       <h1>Người Giữ Bàn Quên</h1>
+      {rematch && (
+        <p role="note">
+          Lượt luyện tập không nhận EXP, vật phẩm hoặc phần thưởng. Thắng, thua
+          hoặc rút lui đều trở về Phòng Bàn; giữ nguyên kết thúc và đội hình đã
+          lưu.
+        </p>
+      )}
       <details className="aw2-combat-help">
         <summary>Cách chơi và điểm lưu</summary>
         <p>
@@ -93,7 +104,7 @@ export function WorldBattle({
         </p>
         <p>
           Điểm kiểm tra đã lưu. Tải lại giữa trận sẽ bỏ lượt đang chơi, trở về
-          Phòng Bàn và không tính thắng.
+          Phòng Bàn và không ghi nhận kết quả lượt này.
         </p>
       </details>
       <section
@@ -119,7 +130,7 @@ export function WorldBattle({
           disabled={finished || busy}
           onClick={() => command("retreat")}
         >
-          Rút lui về Sân
+          {rematch ? "Rút lui về Phòng Bàn" : "Rút lui về Sân"}
         </button>
         <label>
           <input
@@ -158,7 +169,9 @@ export function WorldBattle({
           : battle.status === "player-win"
             ? "Đã thắng — cần lưu kết quả"
             : finished
-              ? "Chưa vượt thử thách — trở về Sân"
+              ? rematch
+                ? "Lượt luyện tập đã kết thúc — trở về Phòng Bàn"
+                : "Chưa vượt thử thách — trở về Sân"
               : "Đang chiến đấu"}
       </p>
       <section

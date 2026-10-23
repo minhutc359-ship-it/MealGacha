@@ -21,6 +21,7 @@ import {
   bossCheckpoint,
   commitWorldBossEncounter,
   createWorldBossEncounter,
+  type BossEncounterPurpose,
   type WorldBossEncounter,
 } from "../world/encounter"
 import { applyWorldAction } from "../world/rules"
@@ -126,6 +127,7 @@ export class Aw2DevSaveStore {
   async beginBoss(
     expectedRaw: string,
     progress: WorldProgress,
+    purpose: BossEncounterPurpose = "quest",
   ): Promise<{
     snapshot: ReadySave
     encounter: WorldBossEncounter
@@ -137,9 +139,9 @@ export class Aw2DevSaveStore {
           "Cần bản lưu AW2 hợp lệ trước khi vào trận.",
         )
       this.assertPositionOnly(current.save.progress, progress)
-      return this.revise(current, bossCheckpoint(progress))
+      return this.revise(current, bossCheckpoint(progress, purpose))
     })
-    const encounter = createWorldBossEncounter(snapshot.raw)
+    const encounter = createWorldBossEncounter(snapshot.raw, purpose)
     return { snapshot, encounter }
   }
 
@@ -227,12 +229,15 @@ export class Aw2DevSaveStore {
     expectedRaw: string,
     encounter: WorldBossEncounter,
   ): Promise<ReadySave> {
-    return commitWorldBossEncounter(encounter, expectedRaw, (progress) =>
-      this.write(expectedRaw, (current) => {
-        if (current.status !== "ready")
-          throw new Aw2SaveError("invalid", "Cần đọc lại bản lưu AW2.")
-        return this.revise(current, progress, true)
-      }),
+    return commitWorldBossEncounter(
+      encounter,
+      expectedRaw,
+      (progress, purpose) =>
+        this.write(expectedRaw, (current) => {
+          if (current.status !== "ready")
+            throw new Aw2SaveError("invalid", "Cần đọc lại bản lưu AW2.")
+          return this.revise(current, progress, purpose === "quest")
+        }),
     )
   }
 

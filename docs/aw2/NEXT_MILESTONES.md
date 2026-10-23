@@ -1,0 +1,19 @@
+# Sau đấu lại boss: đường tới demo100% và sản phẩm≈50%
+
+2026-10-23 · BA/tester/scretary · Kế hoạch có điều kiện sau AW2-007M. Chỉ báo hiện tại vẫn **demo9/10≈90%, sản phẩm≈40% (35–45%)**. [Mẫu số/trọng số](PROGRESS.md) giữ nguyên; không tính phần trăm theo số task, test hoặc số khung hình. Chưa có vận tốc một nhân vật qua đầy đủ DoD, không hứa số phiên/ngày hoàn tất.
+
+**Demo còn1gói nghiệm thu:** một người chơi độc lập đi hết nhập môn→6vùng/4quest→rương/nấu/chia bữa→TCG/Chess→boss→ghi chép→ending→reload, ghi bản build, trình duyệt/thiết bị, đường đi, lỗi và đánh giá hướng dẫn; sau đó sửa và xác minh hết lỗi chặn demo. TCG/Chess/partial smoke đã được owner thử, nhưng chưa có bằng chứng hoàn tất toàn hành trình. Kiểm tra tự động không thay thế lượt chơi này. Một nhóm tiêu chí còn lại có thể sinh nhiều bug task, nên không thể hứa chỉ còn một lần sửa code. Demo100% cho phép art tham chiếu, không đồng nghĩa release/12 nhân vật hoàn chỉnh.
+
+**Sản phẩm≈50%: đề xuất4gói chính sau rematch**, theo thứ tự dưới. Đây là phạm vi lập kế hoạch để BA đánh giá lại sau nghiệm thu, chưa phải điểm đã đạt hay cam kết rằng đóng bốn ticket tự động bằng50%.
+
+| Gói | Kết quả cần có để nghiệm thu | Phần điểm dự kiến trong mẫu số100 | Owner/dependency |
+|---|---|---:|---|
+|1. Cân bằng đội và tiến trình —007N | Đo đội đại diện của đủ12kit tại cấp thực sự kiếm được; phân tích defeat/timeout/ultimate policy, điều chỉnh lỗi rõ ràng và trải nghiệm chọn đội. Chốt tiêu chí challenge thực tế trước tuning, giữ đội starter/không bắt UR, không yêu cầu mọi đội thắng. Save/rewards/ending regression đạt. |+2: runtime+1, kinh tế/cân bằng+1 | BA/mechanic/tester, sau007M |
+|2. Hoàn thiện một tuyến thế giới/dungeon và UX | Chọn tuyến đi tới boss hiện có, authored map/NPC/interactions/telegraph và hướng dẫn nhất quán; mở rộng spec trước khi đổi lore. Test navigation/collision/return, mobile/keyboard/readability và quan sát người chơi. Không chỉ thay portrait hoặc thêm placeholder. |+3: world+2, UX+1 | story/animation/mechanic/BA/tester, sau scope review |
+|3. Hai nhân vật mẫu qua đủ DoD | Ưu tiên Than và Lửa Nhỏ để đo vận tốc; mỗi người đạt identity/lore/kit/progression/chibi4hướng/HD8trạngthái/FX/contact/audio/provenance, nghiệm thu art/animation/listening/cân bằng/thiết bị/rights theo CANON và gate riêng. Hiện cả12 vẫn0fullDoD; không tự ký nghiệm thu độc lập. |+3: nhân vật+3 | character/animation/story/mechanic/tester và reviewer phù hợp; có thể làm song song tiến trình sản phẩm khi đủ người |
+|4. Playtest demo và baseline thiết bị thật | Đóng nhóm demo còn lại ở trên; thử hành trình trên desktop và một điện thoại thật, đo tải/FPS/bộ nhớ/audio, ghi save/reload/recovery và lỗi; sửa blocker theo phạm vi. Baseline này chưa đóng toàn bộ offline/native/production-save/release gate. |+2: UX+1, release baseline+1 | BA/tester/người chơi độc lập, sau build ổn định; không thay bằng viewport giả lập |
+| **Tổng mục tiêu** | Nghiệm thu từng gói rồi BA/tester đối chiếu lại bằng chứng và trọng số | **+10:40→≈50** | Không ghi nhận trước |
+
+Điểm đích nếu phạm vi trên thực sự được chấp nhận: runtime21/25, world12/15, nhân vật8/30, UX5/10, kinh tế3/10, release1/10 =50/100. Đây vẫn là ước lượng khối lượng, có thể cần hiệu chỉnh sau hai nhân vật mẫu; không nâng chỉ báo hiện tại theo phép cộng giả định. Rematch cải thiện nhóm nền đã tính, không có điểm thưởng riêng. Gói4 chứa nghiệm thu demo nên không cộng thêm lần nữa.
+
+Việc nhỏ nhất tiếp theo là [AW2-007N](tasks/AW2-007N.md), chưa phải triển khai gacha. D11 vẫn PROPOSED, D12 OPEN. Các phần để từ50% tới sản phẩm hoàn chỉnh vẫn gồm10nhân vật còn lại/full art, thế giới/dungeon còn lại, mode/economy/gacha nếu được duyệt, UX/audio, production-save/offline/performance/rights/release; owner phải cho phép deploy/release riêng. [Delivery plan](DELIVERY_PLAN.md), [REPORT](REPORT.md).

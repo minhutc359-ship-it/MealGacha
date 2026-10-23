@@ -142,6 +142,11 @@ export function describeObject(
       "Rương nguyên liệu: 4 Gạo thơm, 3 Rau vườn, 2 Nước dùng. Mỗi hành trình chỉ nhận một lần.",
     )
   if (object.kind === "boss") {
+    if (state.questIndex === 4)
+      return result(
+        "Đấu lại để luyện đội hình đã lưu. Không nhận EXP, vật phẩm hoặc phần thưởng; thắng, thua và rút lui đều trở về Phòng Bàn, giữ nguyên kết thúc đã chọn.",
+        [action("rematch", "Đấu lại boss · không nhận thưởng")],
+      )
     if (state.bossDefeated)
       return result(
         "Ký ức đã lắng xuống. Đọc ghi chép bên chén rồi trở về Bà Giữ Chỗ.",
@@ -286,7 +291,7 @@ export function applyWorldAction(
     )
   )
     throw Error("Thao tác chưa hợp lệ với trạng thái hiện tại.")
-  if (actionId === "challenge")
+  if (actionId === "challenge" || actionId === "rematch")
     throw Error(
       "Bắt đầu trận qua bộ điều khiển boss; không thể ghi kết quả bằng tương tác thường.",
     )

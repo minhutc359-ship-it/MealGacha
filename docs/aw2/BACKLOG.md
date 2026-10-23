@@ -1,6 +1,6 @@
 # Task board
 
-**AW2-007L VERIFIED — đã có bộ sưu tập và đội hình lưu cho12 Vị Linh.** Source `730bd97b81875489e87f5c0c96665157fb3b6bb4`, base `b4e20e628156b1ee5a6c17e8a2ed8b86c3b0b3ca` trên `game/adventure-world-2`. Mời nhân vật theo mốc nhiệm vụ thử nghiệm bằng thao tác rõ ràng; lưu đúng5 nhân vật sở hữu, thứ tự và nhấn Vân cho trận mới. Schema5 đọc/nâng cấp v1–4 trong bộ nhớ, không tự ghi hoặc cấp nhân vật ngoài starter. Boss/followers dùng đội đã lưu; trận cũ giữ snapshot và không ghi đè save mới.1392ca unit riêng biệt/114files,233browser assertions/104mô phỏng PASS; cả hai typecheck/review+stable builds/isolation đạt. **Demo≈90%, sản phẩm≈40% (35–45%) giữ nguyên**;12/12kit,12/12bộ tham chiếu,0/12fullDoD. [Quy tắc và cách dùng](COLLECTION.md), [bằng chứng](evidence/AW2-007L.md). Next007M: đấu lại boss sau kết thúc để thử đội đã lưu; cân bằng/nghiệm thu độc lập còn mở. D11 PROPOSED/D12 OPEN.
+**AW2-007M VERIFIED — đấu lại boss sau kết thúc, dùng đội đã lưu và không nhận thưởng.** Source `PENDING007M`, base `e658c97b9df52540445369e649f48da3a3e6a3ba` trên `game/adventure-world-2`. Mục đích quest/rematch được giữ trong controller riêng; thắng/thua/rút lui rematch đều về Phòng Bàn, giữ quest4/ending/note/party/collection/items/EXP/receipts. Lỗi ghi cho thử lại; reload bỏ lượt đang chơi; tab cũ không ghi đè dữ liệu mới.1401full unit/115files, 282fresh browser assertions và130mô phỏng PASS; hai typecheck/review+stable build/isolation đạt. **Demo≈90% (còn1nhóm playtest độc lập/đóng blocker), sản phẩm≈40% (35–45%) giữ nguyên**;12kit/12bộ tham chiếu/0fullDoD. Next[007N cân bằng đội/tiến trình](tasks/AW2-007N.md); [bốn gói đề xuất tới≈50%](NEXT_MILESTONES.md), chưa cấp điểm. [Cách dùng](COLLECTION.md), [bằng chứng](evidence/AW2-007M.md). D11PROPOSED/D12OPEN.
 
 | ID | Owner | Scope | Status |
 |---|---|---|---|
@@ -26,7 +26,8 @@
 | AW2-007J | BA/mechanic/character/animation/tester | Actual Bách Tank shield-sharing kit | VERIFIED at efca3be173196b5c09c7d84be49e308d8a23fa31;1288unique units/351browser/84sim; Tank identity retained, collection/fullDoD OPEN |
 | AW2-007K | BA/character/mechanic/animation/tester | Actual Vân hybrid and immutable emphasis | VERIFIED at 3a77154bdbf1eb8a654833c3f5354889b5377a1c;1345unique units/384browser/108sim; collection/fullDoD OPEN |
 | AW2-007L | BA/mechanic/character/tester/scretary | Earned collection/schema5/saved five-member party/real boss | VERIFIED at 730bd97b81875489e87f5c0c96665157fb3b6bb4;1392unique units/233browser/104sim; provisional gates, fullDoD OPEN |
-| AW2-007M | BA/mechanic/tester/scretary | Reward-free post-ending boss rematch with saved parties | NEXT; no ending/reward reset, balance separately |
+| AW2-007M | BA/mechanic/tester/scretary | Reward-free post-ending boss rematch with saved parties | VERIFIED at PENDING007M;1401full units/282browser/130sim, no rewards/ending reset |
+| AW2-007N | BA/mechanic/tester/scretary | Measured party balance/earned progression, bounded correction or guidance | READY after007M; pre-tuning acceptance required, no all-teams-must-win contract |
 | AW2-004L | character/story/animation/tester | Hải original reference package | VERIFIED at 57b160faefa4edca081e46680a45489bfa4d9e68;85 units/102 browser; full DoD OPEN |
 | AW2-004M | character/story/animation/tester | Liên original reference package | VERIFIED at 8344fc0b05275a1d8e314100fcfa3263d9956c8e;96 own browser assertions, shared full1132; [card](tasks/AW2-004M.md), full DoD OPEN |
 | AW2-004N | character/story/animation/tester | Mộc original reference package | VERIFIED at 8344fc0b05275a1d8e314100fcfa3263d9956c8e;96 own browser assertions, shared full1132; [card](tasks/AW2-004N.md), full DoD OPEN |
@@ -60,6 +61,8 @@ Current integration status supersedes the historical local-only/no-push statemen
 AW2-001 evidence: [task card](tasks/AW2-001.md), [verification](evidence/AW2-001.md). The original standalone save source is retained; AW2-012 now integrates it and schema-v2 world dependencies into `game/adventure-world-2`.
 
 Owner approved both story and roster proposals in-session. D10/D13/D14/D15 and CANON supersede historical PROPOSED labels in the archived review documents. D11 rates/pity remain unapproved; do not ship gacha before their simulation/review.
+
+Historical milestone notes below retain original source-bound claims; older Current/NEXT/schema/collection statements are superseded by007M/current STATUS above.
 
 AW2-006A foundation: six debug zones, collisions/range/returns, first three quests, memory choice/puzzle, one-time starter unlock and v1→v2 save migration; [task](tasks/AW2-006A.md), [evidence](evidence/AW2-006A.md). AW2-012 merged all completed feature heads locally into the long-lived AW2 branch; no master update or remote push. [Integration](evidence/AW2-012.md).
 
