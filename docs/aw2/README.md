@@ -13,7 +13,7 @@ Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực t
 
 ## AW2 development preview — expedition, TCG and Auto Chess practice
 
-**AW2-004L VERIFIED Hải reference** — source `57b160faefa4edca081e46680a45489bfa4d9e68`, base `3b7188b3bbd102c66d2517801e55e25cad5a46f4`. Original portrait/16world/32HD/16FX/four cues,64 safe cells,7 imagegen calls/5 selected.85 unique affected units,102 browser assertions, both types/review build/audit/repeat PASS.8/12 complete reference sets≈67%,4 packages pending; initial portraits for all remaining characters already saved, not counted as packages.7 actual combat identities/five-starter world/save unchanged.0/12 full DoD; art/playtest/listening/device/rights/release OPEN. Demo≈90%/product≈40% (35–45%) unchanged. Next004M Liên,004N Mộc,004O Bách,004P Vân. [Evidence](evidence/AW2-004L.md), [gate Hải](HAI_CHARACTER_GATES.md).
+**AW2-004M–P VERIFIED: đủ 12/12 bộ hình tham chiếu (100%)** — source `PENDING_COHORT_SOURCE`, base `e0d6bb52584e84d047e0536d7c4525df0a64125e`. Liên/Mộc/Bách/Vân mỗi bộ có portrait,16 world cels/bốn hướng,32 HD cels/tám trạng thái,16 FX cels và bốn cue âm thanh riêng; registry12, không còn bộ thiếu.105 focused cases/7files và full1132 cases/108files PASS (hai tập chồng nhau);390 browser assertions=382 source+compiled references+8 compiled onboarding; cả hai typecheck, review build, hash/alpha/PCM/rebuild PASS.7 actual combat identities/five-starter world/save giữ nguyên;0/12 full-character DoD. Demo≈90% và sản phẩm≈40% (35–45%) giữ nguyên; hoàn tất tài nguyên tham chiếu chưa đóng nghiệm thu art/playtest/listening/device/rights/release. [Danh mục12 bộ](ROSTER_ART.md), [bằng chứng](evidence/AW2-004M-P.md).
 
 ```sh
 pnpm install --frozen-lockfile

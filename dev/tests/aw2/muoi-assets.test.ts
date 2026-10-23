@@ -19,10 +19,10 @@ describe("AW2-004J Muối reference assets without combat/collection grants", ()
     expect(ROSTER_ASSETS["aw2-muoi"]).toBe(muoi)
     expect(Object.keys(STARTER_ASSETS)).toEqual(STARTER_TEAM)
     expect(STARTER_TEAM).not.toContain("aw2-muoi")
-    expect(Object.keys(ROSTER_ASSETS)).toHaveLength(8)
+    expect(Object.keys(ROSTER_ASSETS)).toHaveLength(12)
     expect(
       ROSTER.filter((s) => s.assets.status === "NOT_CREATED"),
-    ).toHaveLength(4)
+    ).toHaveLength(0)
     expect(ROSTER.find((s) => s.spiritId === "aw2-muoi")).toMatchObject({
       displayName: "Muối Đen",
       rarity: "R",

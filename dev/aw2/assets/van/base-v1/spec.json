@@ -1,0 +1,21 @@
+{
+  "task": "AW2-004P",
+  "displayName": "Vân",
+  "skills": [
+    "Mảnh Âm",
+    "Nối Hai Đầu",
+    "Nhớ Một Phần",
+    "Bữa Ăn Chưa Gọi Tên"
+  ],
+  "ranged": true,
+  "audioBaseHz": 565,
+  "worldRows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "sheetA": "battle-motion-a-v1",
+  "sheetB": "battle-motion-b-v1",
+  "date": "2026-10-23"
+}

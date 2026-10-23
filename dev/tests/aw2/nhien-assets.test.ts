@@ -17,15 +17,15 @@ import { ROSTER, STARTER_TEAM } from "@/aw2/world/ids"
 const nhien = ROSTER_ASSETS["aw2-nhien"]
 
 describe("AW2-004K Nhiên reference availability and bounded presentation", () => {
-  it("exposes seven authored references without granting ownership or expanding the starter team", () => {
-    expect(Object.keys(ROSTER_ASSETS)).toHaveLength(8)
+  it("retains Nhiên among all twelve authored references without granting ownership or expanding the starter team", () => {
+    expect(Object.keys(ROSTER_ASSETS)).toHaveLength(12)
     expect(Object.keys(STARTER_ASSETS)).toEqual(STARTER_TEAM)
     expect(STARTER_TEAM).not.toContain("aw2-nhien")
     expect(isCombatSpiritId("aw2-nhien")).toBe(true)
     expect(isCombatSpiritId("aw2-muoi")).toBe(true)
     expect(
       ROSTER.filter((s) => s.assets.status === "NOT_CREATED"),
-    ).toHaveLength(4)
+    ).toHaveLength(0)
     expect(ROSTER.find((s) => s.spiritId === "aw2-nhien")).toMatchObject({
       displayName: "Nhiên",
       rarity: "SR",

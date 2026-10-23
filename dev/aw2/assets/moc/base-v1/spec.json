@@ -1,0 +1,21 @@
+{
+  "task": "AW2-004N",
+  "displayName": "Mộc",
+  "skills": [
+    "Nét Lá",
+    "Gieo Dấu",
+    "Mùa Nối Mùa",
+    "Mở Gói Mùa Xanh"
+  ],
+  "ranged": true,
+  "audioBaseHz": 485,
+  "worldRows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "sheetA": "battle-motion-a-v1",
+  "sheetB": "battle-motion-b-v1",
+  "date": "2026-10-23"
+}

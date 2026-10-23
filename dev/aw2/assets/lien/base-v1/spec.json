@@ -1,0 +1,25 @@
+{
+  "task": "AW2-004M",
+  "displayName": "Liên",
+  "skills": [
+    "Hạt Sen",
+    "Hẹn Sau Cơn Mệt",
+    "Lời Hẹn Còn Đây",
+    "Mở Lời"
+  ],
+  "ranged": true,
+  "audioBaseHz": 395,
+  "worldRows": [
+    "down",
+    "right",
+    "left",
+    "up"
+  ],
+  "ultimateCues": [
+    520,
+    1040
+  ],
+  "sheetA": "battle-motion-a-v1",
+  "sheetB": "battle-motion-b-v1",
+  "date": "2026-10-23"
+}

@@ -1,0 +1,22 @@
+{
+  "task": "AW2-004O",
+  "displayName": "Bách",
+  "skills": [
+    "Mối Buộc",
+    "Gói Chắc",
+    "Chia Phần",
+    "Mở Vòng Dây"
+  ],
+  "ranged": false,
+  "basicContactMs": 460,
+  "audioBaseHz": 195,
+  "worldRows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "sheetA": "battle-motion-a-v1",
+  "sheetB": "battle-motion-b-v1",
+  "date": "2026-10-23"
+}

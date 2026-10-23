@@ -53,6 +53,6 @@ Mở http://localhost:8443/dev/aw2/roster.html?spirit=aw2-nhien sau `pnpm dev`. 
 
 Màn này là art reference. Kit thật/cấp1–20 của Nhiên đã có tại http://localhost:8443/dev/aw2/battle.html?team=nhien: chọn mục tiêu, thử ba contact/hồi thế và **Đối thủ ngắt nhịp**. [Hướng dẫn dùng ultimate đồng đội để thử đủ chuỗi](NHIEN_PRACTICE.md). Chưa có collection/đội lưu Nhiên; practice không cấp EXP/ghi save. Đội khởi đầu/world save vẫn5. [Gate Nhiên](NHIEN_CHARACTER_GATES.md), [task007F](tasks/AW2-007F.md), [REPORT](REPORT.md).
 
-## Hải và các bộ hình còn lại
+## Đủ 12 bộ hình tham chiếu —2026-10-23
 
-Hải đã có tại http://localhost:8443/dev/aw2/roster.html?spirit=aw2-hai sau `pnpm dev`. Thử8 trạng tháiHD,4 hướngworld,4FX/audio opt-in/pause/reduced. Chưa có actual Hải kit/collection. Liên/Mộc/Bách/Vân đang tạo; chỉ xuất hiện trong selector khi có đầy đủ manifest đã kiểm tra. [Gates](HAI_CHARACTER_GATES.md).
+Mở http://localhost:8443/dev/aw2/roster.html sau `pnpm dev`. Selector đã có đủ 12 nhân vật, gồm Hải/Liên/Mộc/Bách/Vân vừa hoàn tất. Chọn World để thử bốn hướng/đi bộ; chọn HD để xem tám trạng thái, mỗi trạng thái bốn cel. Thử bốn kỹ năng, âm thanh tự nguyện, tạm dừng/phát lại và giảm chuyển động. Liên có hai nhịp ultimate; Liên/Mộc/Vân có đạn bay riêng, Hải/Bách đánh cận chiến. Đây là cue tham chiếu; năm bộ mới chưa có kit thật/leveling/collection. [Danh mục và ảnh gốc](ROSTER_ART.md), [bằng chứng kiểm tra](evidence/AW2-004M-P.md). Demo≈90%/sản phẩm≈40% giữ nguyên; full-character gates còn mở.

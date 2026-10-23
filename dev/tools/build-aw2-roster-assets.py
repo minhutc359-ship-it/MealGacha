@@ -51,6 +51,8 @@ def build(unit):
               'guard': [0, 180, 400, 700], 'ultimate': [0, 280, 560, 960],
               'defeat': [0, 220, 480, 760]}
     cues = {'basic': [contact], 'auto': [420], 'passive': [180], 'ultimate': spec.get('ultimateCues', [560])}
+    if len(cues['ultimate']) > 1:
+        timing['ultimate'] = [0, 520, 1040, 1220]
     clips = util.reference_battle_clips(identity)
     for state, clip in clips.items():
         if state == 'attack':
@@ -58,7 +60,7 @@ def build(unit):
         clip['motion'] = util.track((0, 0, 0, 0, 1, 1), (clip['durationMs'], 0, 0, 0, 1, 1))
         clip['frames'] = [{'atMs': at, 'frame': f'battle.{state}.{i}'} for i, at in enumerate(timing[state])]
         if state == 'ultimate':
-            clip['frames'].append({'atMs': 1250 if len(cues['ultimate']) > 1 else 1080, 'frame': 'battle.idle.0'})
+            clip['frames'].append({'atMs': 1300 if len(cues['ultimate']) > 1 else 1080, 'frame': 'battle.idle.0'})
         clip['reducedMotionFrame'] = f'battle.{state}.0'
         clip['method'] = 'four distinct generated reference cels; explicit timing/recovery, independent continuity review pending'
         slot = {'attack': 'basic', 'cast': 'auto', 'ultimate': 'ultimate'}.get(state)
@@ -89,7 +91,7 @@ def build(unit):
         'world': {d: {'idle': f'world.{d}.0', 'walk': [f'world.{d}.{i}' for i in range(4)], 'frameMs': 150} for d in ['down', 'left', 'right', 'up']},
         'skills': skills,
         'provenance': {
-            'generator': 'OpenAI built-in image_gen', 'model': 'not exposed by tool', 'date': '2026-10-22',
+            'generator': 'OpenAI built-in image_gen', 'model': 'not exposed by tool', 'date': spec.get('date', '2026-10-22'),
             'prompts': util.URL + 'prompts.json', 'externalReferences': [], 'referenceAsset': f'{identity}:portrait:base-v1',
             'licenseStatus': 'REVIEW_REQUIRED', 'commercialRelease': 'NOT_CLEARED',
             'audio': 'original deterministic additive synthesis + seeded noise; build-aw2-roster-assets.py and preserved Than helper; human listening pending',
@@ -104,7 +106,7 @@ def build(unit):
         source = directory / call['source'] if call['selected'] else ROOT / call['source']
         refs = []
         for reference in call.get('referenceInputs', []):
-            path = ROOT / reference if reference.startswith('.asset-work/') else directory / reference
+            path = ROOT / reference if reference.startswith(('.asset-work/', 'dev/', 'src/')) else directory / reference
             refs.append({'path': str(path.relative_to(ROOT)), 'sha256': digest(path)})
         history.append({'callId': call['callId'], 'workspacePath': str(source.relative_to(ROOT)), 'selected': call['selected'],
                         'reason': call.get('reason', 'Selected original reference, measured alpha-safe cells'),

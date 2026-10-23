@@ -1,0 +1,1280 @@
+{
+  "task": "AW2-004M–P",
+  "date": "2026-10-23",
+  "base": "e0d6bb52584e84d047e0536d7c4525df0a64125e",
+  "implementationSource": "PENDING_COHORT_SOURCE",
+  "status": "PASS",
+  "units": {
+    "focusedCases": 105,
+    "focusedFiles": 7,
+    "fullCases": 1132,
+    "fullFiles": 108,
+    "fullDurationSeconds": 21.43,
+    "overlap": "Focused105 are contained in full1132, never sum them",
+    "fullRunNote": "A literal CLI -- made the intended scoped rerun ignore subsequent filters/options; observed full1132/108 PASS, no requested JSON was produced. Earlier focused105 JSON retained. No further rerun."
+  },
+  "browserAssertions": 390,
+  "browser": {
+    "lien": {
+      "source": {
+        "task": "AW2-004M",
+        "spiritId": "aw2-lien",
+        "status": "PASS",
+        "flavor": "source",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Authored registry count is explicit, without expanding ownership",
+          "New reference truthfully keeps combat and collection pending",
+          "Audio remains off before opt-in",
+          "idle: four distinct authored cels render",
+          "idle: pause freezes its clock",
+          "move: four distinct authored cels render",
+          "move: pause freezes its clock",
+          "attack: four distinct authored cels render",
+          "attack: pause freezes its clock",
+          "cast: four distinct authored cels render",
+          "cast: pause freezes its clock",
+          "hit: four distinct authored cels render",
+          "hit: pause freezes its clock",
+          "guard: four distinct authored cels render",
+          "guard: pause freezes its clock",
+          "ultimate: four distinct authored cels render",
+          "ultimate: pause freezes its clock",
+          "defeat: four distinct authored cels render",
+          "defeat: pause freezes its clock",
+          "Ranged basic shows own flight before impact",
+          "basic: exactly 1 opted-in own cues",
+          "basic: expired effect and projectile stay absent in recovery",
+          "auto: exactly 1 opted-in own cues",
+          "auto: expired effect and projectile stay absent in recovery",
+          "passive: exactly 1 opted-in own cues",
+          "passive: expired effect and projectile stay absent in recovery",
+          "ultimate: exactly 2 opted-in own cues",
+          "ultimate: expired effect and projectile stay absent in recovery",
+          "Four original cues decode, without a human-listening claim",
+          "Opt-in only plays this unit's own audio",
+          "Reduced motion holds one authored cel",
+          "down: four separate world cels cycle",
+          "left: four separate world cels cycle",
+          "right: four separate world cels cycle",
+          "up: four separate world cels cycle",
+          "Standing respects selected directional idle",
+          "All actual draws remain inside their source atlas",
+          "320px controls fit viewport",
+          "390px controls fit viewport",
+          "768px controls fit viewport",
+          "Starter copy retains existing combat readiness",
+          "Selection resets sound opt-in",
+          "Preview preserves all seeded stable and AW2 bytes",
+          "No unexpected browser/resource errors",
+          "Missing world: own explicit error and blank canvas",
+          "Missing fx: own explicit error and blank canvas",
+          "Missing battle-motion-a-v1: own explicit error and blank canvas",
+          "Missing battle-motion-b-v1: own explicit error and blank canvas"
+        ],
+        "errors": [],
+        "timelines": {
+          "idle": [
+            "battle.idle.0",
+            "battle.idle.1",
+            "battle.idle.2",
+            "battle.idle.3"
+          ],
+          "move": [
+            "battle.move.0",
+            "battle.move.1",
+            "battle.move.2",
+            "battle.move.3"
+          ],
+          "attack": [
+            "battle.attack.0",
+            "battle.attack.1",
+            "battle.attack.2",
+            "battle.attack.3"
+          ],
+          "cast": [
+            "battle.cast.0",
+            "battle.cast.1",
+            "battle.cast.2",
+            "battle.cast.3"
+          ],
+          "hit": [
+            "battle.hit.0",
+            "battle.hit.1",
+            "battle.hit.2",
+            "battle.hit.3"
+          ],
+          "guard": [
+            "battle.guard.0",
+            "battle.guard.1",
+            "battle.guard.2",
+            "battle.guard.3"
+          ],
+          "ultimate": [
+            "battle.ultimate.0",
+            "battle.ultimate.1",
+            "battle.ultimate.2",
+            "battle.ultimate.3"
+          ],
+          "defeat": [
+            "battle.defeat.0",
+            "battle.defeat.1",
+            "battle.defeat.2",
+            "battle.defeat.3"
+          ]
+        },
+        "audio": [
+          {
+            "slot": "basic",
+            "channels": 1,
+            "duration": 0.18
+          },
+          {
+            "slot": "auto",
+            "channels": 1,
+            "duration": 0.3
+          },
+          {
+            "slot": "passive",
+            "channels": 1,
+            "duration": 0.22
+          },
+          {
+            "slot": "ultimate",
+            "channels": 1,
+            "duration": 0.42
+          }
+        ],
+        "limits": [
+          "Reference preview only; no combat/ownership/save grants",
+          "Desktop viewports only; independent art/listening/device/rights still open"
+        ]
+      },
+      "compiled": {
+        "task": "AW2-004M",
+        "spiritId": "aw2-lien",
+        "status": "PASS",
+        "flavor": "compiled",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Authored registry count is explicit, without expanding ownership",
+          "New reference truthfully keeps combat and collection pending",
+          "Audio remains off before opt-in",
+          "idle: four distinct authored cels render",
+          "idle: pause freezes its clock",
+          "move: four distinct authored cels render",
+          "move: pause freezes its clock",
+          "attack: four distinct authored cels render",
+          "attack: pause freezes its clock",
+          "cast: four distinct authored cels render",
+          "cast: pause freezes its clock",
+          "hit: four distinct authored cels render",
+          "hit: pause freezes its clock",
+          "guard: four distinct authored cels render",
+          "guard: pause freezes its clock",
+          "ultimate: four distinct authored cels render",
+          "ultimate: pause freezes its clock",
+          "defeat: four distinct authored cels render",
+          "defeat: pause freezes its clock",
+          "Ranged basic shows own flight before impact",
+          "basic: exactly 1 opted-in own cues",
+          "basic: expired effect and projectile stay absent in recovery",
+          "auto: exactly 1 opted-in own cues",
+          "auto: expired effect and projectile stay absent in recovery",
+          "passive: exactly 1 opted-in own cues",
+          "passive: expired effect and projectile stay absent in recovery",
+          "ultimate: exactly 2 opted-in own cues",
+          "ultimate: expired effect and projectile stay absent in recovery",
+          "Four original cues decode, without a human-listening claim",
+          "Opt-in only plays this unit's own audio",
+          "Reduced motion holds one authored cel",
+          "down: four separate world cels cycle",
+          "left: four separate world cels cycle",
+          "right: four separate world cels cycle",
+          "up: four separate world cels cycle",
+          "Standing respects selected directional idle",
+          "All actual draws remain inside their source atlas",
+          "320px controls fit viewport",
+          "390px controls fit viewport",
+          "768px controls fit viewport",
+          "Starter copy retains existing combat readiness",
+          "Selection resets sound opt-in",
+          "Preview preserves all seeded stable and AW2 bytes",
+          "No unexpected browser/resource errors",
+          "Missing world: own explicit error and blank canvas",
+          "Missing fx: own explicit error and blank canvas",
+          "Missing battle-motion-a-v1: own explicit error and blank canvas",
+          "Missing battle-motion-b-v1: own explicit error and blank canvas"
+        ],
+        "errors": [],
+        "timelines": {
+          "idle": [
+            "battle.idle.0",
+            "battle.idle.1",
+            "battle.idle.2",
+            "battle.idle.3"
+          ],
+          "move": [
+            "battle.move.0",
+            "battle.move.1",
+            "battle.move.2",
+            "battle.move.3"
+          ],
+          "attack": [
+            "battle.attack.0",
+            "battle.attack.1",
+            "battle.attack.2",
+            "battle.attack.3"
+          ],
+          "cast": [
+            "battle.cast.0",
+            "battle.cast.1",
+            "battle.cast.2",
+            "battle.cast.3"
+          ],
+          "hit": [
+            "battle.hit.0",
+            "battle.hit.1",
+            "battle.hit.2",
+            "battle.hit.3"
+          ],
+          "guard": [
+            "battle.guard.0",
+            "battle.guard.1",
+            "battle.guard.2",
+            "battle.guard.3"
+          ],
+          "ultimate": [
+            "battle.ultimate.0",
+            "battle.ultimate.1",
+            "battle.ultimate.2",
+            "battle.ultimate.3"
+          ],
+          "defeat": [
+            "battle.defeat.0",
+            "battle.defeat.1",
+            "battle.defeat.2",
+            "battle.defeat.3"
+          ]
+        },
+        "audio": [
+          {
+            "slot": "basic",
+            "channels": 1,
+            "duration": 0.18
+          },
+          {
+            "slot": "auto",
+            "channels": 1,
+            "duration": 0.3
+          },
+          {
+            "slot": "passive",
+            "channels": 1,
+            "duration": 0.22
+          },
+          {
+            "slot": "ultimate",
+            "channels": 1,
+            "duration": 0.42
+          }
+        ],
+        "limits": [
+          "Reference preview only; no combat/ownership/save grants",
+          "Desktop viewports only; independent art/listening/device/rights still open"
+        ]
+      }
+    },
+    "moc": {
+      "source": {
+        "task": "AW2-004N",
+        "spiritId": "aw2-moc",
+        "status": "PASS",
+        "flavor": "source",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Authored registry count is explicit, without expanding ownership",
+          "New reference truthfully keeps combat and collection pending",
+          "Audio remains off before opt-in",
+          "idle: four distinct authored cels render",
+          "idle: pause freezes its clock",
+          "move: four distinct authored cels render",
+          "move: pause freezes its clock",
+          "attack: four distinct authored cels render",
+          "attack: pause freezes its clock",
+          "cast: four distinct authored cels render",
+          "cast: pause freezes its clock",
+          "hit: four distinct authored cels render",
+          "hit: pause freezes its clock",
+          "guard: four distinct authored cels render",
+          "guard: pause freezes its clock",
+          "ultimate: four distinct authored cels render",
+          "ultimate: pause freezes its clock",
+          "defeat: four distinct authored cels render",
+          "defeat: pause freezes its clock",
+          "Ranged basic shows own flight before impact",
+          "basic: exactly 1 opted-in own cues",
+          "basic: expired effect and projectile stay absent in recovery",
+          "auto: exactly 1 opted-in own cues",
+          "auto: expired effect and projectile stay absent in recovery",
+          "passive: exactly 1 opted-in own cues",
+          "passive: expired effect and projectile stay absent in recovery",
+          "ultimate: exactly 1 opted-in own cues",
+          "ultimate: expired effect and projectile stay absent in recovery",
+          "Four original cues decode, without a human-listening claim",
+          "Opt-in only plays this unit's own audio",
+          "Reduced motion holds one authored cel",
+          "down: four separate world cels cycle",
+          "left: four separate world cels cycle",
+          "right: four separate world cels cycle",
+          "up: four separate world cels cycle",
+          "Standing respects selected directional idle",
+          "All actual draws remain inside their source atlas",
+          "320px controls fit viewport",
+          "390px controls fit viewport",
+          "768px controls fit viewport",
+          "Starter copy retains existing combat readiness",
+          "Selection resets sound opt-in",
+          "Preview preserves all seeded stable and AW2 bytes",
+          "No unexpected browser/resource errors",
+          "Missing world: own explicit error and blank canvas",
+          "Missing fx: own explicit error and blank canvas",
+          "Missing battle-motion-a-v1: own explicit error and blank canvas",
+          "Missing battle-motion-b-v1: own explicit error and blank canvas"
+        ],
+        "errors": [],
+        "timelines": {
+          "idle": [
+            "battle.idle.0",
+            "battle.idle.1",
+            "battle.idle.2",
+            "battle.idle.3"
+          ],
+          "move": [
+            "battle.move.0",
+            "battle.move.1",
+            "battle.move.2",
+            "battle.move.3"
+          ],
+          "attack": [
+            "battle.attack.0",
+            "battle.attack.1",
+            "battle.attack.2",
+            "battle.attack.3"
+          ],
+          "cast": [
+            "battle.cast.0",
+            "battle.cast.1",
+            "battle.cast.2",
+            "battle.cast.3"
+          ],
+          "hit": [
+            "battle.hit.0",
+            "battle.hit.1",
+            "battle.hit.2",
+            "battle.hit.3"
+          ],
+          "guard": [
+            "battle.guard.0",
+            "battle.guard.1",
+            "battle.guard.2",
+            "battle.guard.3"
+          ],
+          "ultimate": [
+            "battle.ultimate.0",
+            "battle.ultimate.1",
+            "battle.ultimate.2",
+            "battle.ultimate.3"
+          ],
+          "defeat": [
+            "battle.defeat.0",
+            "battle.defeat.1",
+            "battle.defeat.2",
+            "battle.defeat.3"
+          ]
+        },
+        "audio": [
+          {
+            "slot": "basic",
+            "channels": 1,
+            "duration": 0.18
+          },
+          {
+            "slot": "auto",
+            "channels": 1,
+            "duration": 0.3
+          },
+          {
+            "slot": "passive",
+            "channels": 1,
+            "duration": 0.22
+          },
+          {
+            "slot": "ultimate",
+            "channels": 1,
+            "duration": 0.42
+          }
+        ],
+        "limits": [
+          "Reference preview only; no combat/ownership/save grants",
+          "Desktop viewports only; independent art/listening/device/rights still open"
+        ]
+      },
+      "compiled": {
+        "task": "AW2-004N",
+        "spiritId": "aw2-moc",
+        "status": "PASS",
+        "flavor": "compiled",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Authored registry count is explicit, without expanding ownership",
+          "New reference truthfully keeps combat and collection pending",
+          "Audio remains off before opt-in",
+          "idle: four distinct authored cels render",
+          "idle: pause freezes its clock",
+          "move: four distinct authored cels render",
+          "move: pause freezes its clock",
+          "attack: four distinct authored cels render",
+          "attack: pause freezes its clock",
+          "cast: four distinct authored cels render",
+          "cast: pause freezes its clock",
+          "hit: four distinct authored cels render",
+          "hit: pause freezes its clock",
+          "guard: four distinct authored cels render",
+          "guard: pause freezes its clock",
+          "ultimate: four distinct authored cels render",
+          "ultimate: pause freezes its clock",
+          "defeat: four distinct authored cels render",
+          "defeat: pause freezes its clock",
+          "Ranged basic shows own flight before impact",
+          "basic: exactly 1 opted-in own cues",
+          "basic: expired effect and projectile stay absent in recovery",
+          "auto: exactly 1 opted-in own cues",
+          "auto: expired effect and projectile stay absent in recovery",
+          "passive: exactly 1 opted-in own cues",
+          "passive: expired effect and projectile stay absent in recovery",
+          "ultimate: exactly 1 opted-in own cues",
+          "ultimate: expired effect and projectile stay absent in recovery",
+          "Four original cues decode, without a human-listening claim",
+          "Opt-in only plays this unit's own audio",
+          "Reduced motion holds one authored cel",
+          "down: four separate world cels cycle",
+          "left: four separate world cels cycle",
+          "right: four separate world cels cycle",
+          "up: four separate world cels cycle",
+          "Standing respects selected directional idle",
+          "All actual draws remain inside their source atlas",
+          "320px controls fit viewport",
+          "390px controls fit viewport",
+          "768px controls fit viewport",
+          "Starter copy retains existing combat readiness",
+          "Selection resets sound opt-in",
+          "Preview preserves all seeded stable and AW2 bytes",
+          "No unexpected browser/resource errors",
+          "Missing world: own explicit error and blank canvas",
+          "Missing fx: own explicit error and blank canvas",
+          "Missing battle-motion-a-v1: own explicit error and blank canvas",
+          "Missing battle-motion-b-v1: own explicit error and blank canvas"
+        ],
+        "errors": [],
+        "timelines": {
+          "idle": [
+            "battle.idle.0",
+            "battle.idle.1",
+            "battle.idle.2",
+            "battle.idle.3"
+          ],
+          "move": [
+            "battle.move.0",
+            "battle.move.1",
+            "battle.move.2",
+            "battle.move.3"
+          ],
+          "attack": [
+            "battle.attack.0",
+            "battle.attack.1",
+            "battle.attack.2",
+            "battle.attack.3"
+          ],
+          "cast": [
+            "battle.cast.0",
+            "battle.cast.1",
+            "battle.cast.2",
+            "battle.cast.3"
+          ],
+          "hit": [
+            "battle.hit.0",
+            "battle.hit.1",
+            "battle.hit.2",
+            "battle.hit.3"
+          ],
+          "guard": [
+            "battle.guard.0",
+            "battle.guard.1",
+            "battle.guard.2",
+            "battle.guard.3"
+          ],
+          "ultimate": [
+            "battle.ultimate.0",
+            "battle.ultimate.1",
+            "battle.ultimate.2",
+            "battle.ultimate.3"
+          ],
+          "defeat": [
+            "battle.defeat.0",
+            "battle.defeat.1",
+            "battle.defeat.2",
+            "battle.defeat.3"
+          ]
+        },
+        "audio": [
+          {
+            "slot": "basic",
+            "channels": 1,
+            "duration": 0.18
+          },
+          {
+            "slot": "auto",
+            "channels": 1,
+            "duration": 0.3
+          },
+          {
+            "slot": "passive",
+            "channels": 1,
+            "duration": 0.22
+          },
+          {
+            "slot": "ultimate",
+            "channels": 1,
+            "duration": 0.42
+          }
+        ],
+        "limits": [
+          "Reference preview only; no combat/ownership/save grants",
+          "Desktop viewports only; independent art/listening/device/rights still open"
+        ]
+      }
+    },
+    "bach": {
+      "source": {
+        "task": "AW2-004O",
+        "spiritId": "aw2-bach",
+        "status": "PASS",
+        "flavor": "source",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Authored registry count is explicit, without expanding ownership",
+          "New reference truthfully keeps combat and collection pending",
+          "Audio remains off before opt-in",
+          "idle: four distinct authored cels render",
+          "idle: pause freezes its clock",
+          "move: four distinct authored cels render",
+          "move: pause freezes its clock",
+          "attack: four distinct authored cels render",
+          "attack: pause freezes its clock",
+          "cast: four distinct authored cels render",
+          "cast: pause freezes its clock",
+          "hit: four distinct authored cels render",
+          "hit: pause freezes its clock",
+          "guard: four distinct authored cels render",
+          "guard: pause freezes its clock",
+          "ultimate: four distinct authored cels render",
+          "ultimate: pause freezes its clock",
+          "defeat: four distinct authored cels render",
+          "defeat: pause freezes its clock",
+          "basic: exactly 1 opted-in own cues",
+          "basic: expired effect and projectile stay absent in recovery",
+          "auto: exactly 1 opted-in own cues",
+          "auto: expired effect and projectile stay absent in recovery",
+          "passive: exactly 1 opted-in own cues",
+          "passive: expired effect and projectile stay absent in recovery",
+          "ultimate: exactly 1 opted-in own cues",
+          "ultimate: expired effect and projectile stay absent in recovery",
+          "Four original cues decode, without a human-listening claim",
+          "Opt-in only plays this unit's own audio",
+          "Reduced motion holds one authored cel",
+          "down: four separate world cels cycle",
+          "left: four separate world cels cycle",
+          "right: four separate world cels cycle",
+          "up: four separate world cels cycle",
+          "Standing respects selected directional idle",
+          "All actual draws remain inside their source atlas",
+          "320px controls fit viewport",
+          "390px controls fit viewport",
+          "768px controls fit viewport",
+          "Starter copy retains existing combat readiness",
+          "Selection resets sound opt-in",
+          "Preview preserves all seeded stable and AW2 bytes",
+          "No unexpected browser/resource errors",
+          "Missing world: own explicit error and blank canvas",
+          "Missing fx: own explicit error and blank canvas",
+          "Missing battle-motion-a-v1: own explicit error and blank canvas",
+          "Missing battle-motion-b-v1: own explicit error and blank canvas"
+        ],
+        "errors": [],
+        "timelines": {
+          "idle": [
+            "battle.idle.0",
+            "battle.idle.1",
+            "battle.idle.2",
+            "battle.idle.3"
+          ],
+          "move": [
+            "battle.move.0",
+            "battle.move.1",
+            "battle.move.2",
+            "battle.move.3"
+          ],
+          "attack": [
+            "battle.attack.0",
+            "battle.attack.1",
+            "battle.attack.2",
+            "battle.attack.3"
+          ],
+          "cast": [
+            "battle.cast.0",
+            "battle.cast.1",
+            "battle.cast.2",
+            "battle.cast.3"
+          ],
+          "hit": [
+            "battle.hit.0",
+            "battle.hit.1",
+            "battle.hit.2",
+            "battle.hit.3"
+          ],
+          "guard": [
+            "battle.guard.0",
+            "battle.guard.1",
+            "battle.guard.2",
+            "battle.guard.3"
+          ],
+          "ultimate": [
+            "battle.ultimate.0",
+            "battle.ultimate.1",
+            "battle.ultimate.2",
+            "battle.ultimate.3"
+          ],
+          "defeat": [
+            "battle.defeat.0",
+            "battle.defeat.1",
+            "battle.defeat.2",
+            "battle.defeat.3"
+          ]
+        },
+        "audio": [
+          {
+            "slot": "basic",
+            "channels": 1,
+            "duration": 0.18
+          },
+          {
+            "slot": "auto",
+            "channels": 1,
+            "duration": 0.3
+          },
+          {
+            "slot": "passive",
+            "channels": 1,
+            "duration": 0.22
+          },
+          {
+            "slot": "ultimate",
+            "channels": 1,
+            "duration": 0.42
+          }
+        ],
+        "limits": [
+          "Reference preview only; no combat/ownership/save grants",
+          "Desktop viewports only; independent art/listening/device/rights still open"
+        ]
+      },
+      "compiled": {
+        "task": "AW2-004O",
+        "spiritId": "aw2-bach",
+        "status": "PASS",
+        "flavor": "compiled",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Authored registry count is explicit, without expanding ownership",
+          "New reference truthfully keeps combat and collection pending",
+          "Audio remains off before opt-in",
+          "idle: four distinct authored cels render",
+          "idle: pause freezes its clock",
+          "move: four distinct authored cels render",
+          "move: pause freezes its clock",
+          "attack: four distinct authored cels render",
+          "attack: pause freezes its clock",
+          "cast: four distinct authored cels render",
+          "cast: pause freezes its clock",
+          "hit: four distinct authored cels render",
+          "hit: pause freezes its clock",
+          "guard: four distinct authored cels render",
+          "guard: pause freezes its clock",
+          "ultimate: four distinct authored cels render",
+          "ultimate: pause freezes its clock",
+          "defeat: four distinct authored cels render",
+          "defeat: pause freezes its clock",
+          "basic: exactly 1 opted-in own cues",
+          "basic: expired effect and projectile stay absent in recovery",
+          "auto: exactly 1 opted-in own cues",
+          "auto: expired effect and projectile stay absent in recovery",
+          "passive: exactly 1 opted-in own cues",
+          "passive: expired effect and projectile stay absent in recovery",
+          "ultimate: exactly 1 opted-in own cues",
+          "ultimate: expired effect and projectile stay absent in recovery",
+          "Four original cues decode, without a human-listening claim",
+          "Opt-in only plays this unit's own audio",
+          "Reduced motion holds one authored cel",
+          "down: four separate world cels cycle",
+          "left: four separate world cels cycle",
+          "right: four separate world cels cycle",
+          "up: four separate world cels cycle",
+          "Standing respects selected directional idle",
+          "All actual draws remain inside their source atlas",
+          "320px controls fit viewport",
+          "390px controls fit viewport",
+          "768px controls fit viewport",
+          "Starter copy retains existing combat readiness",
+          "Selection resets sound opt-in",
+          "Preview preserves all seeded stable and AW2 bytes",
+          "No unexpected browser/resource errors",
+          "Missing world: own explicit error and blank canvas",
+          "Missing fx: own explicit error and blank canvas",
+          "Missing battle-motion-a-v1: own explicit error and blank canvas",
+          "Missing battle-motion-b-v1: own explicit error and blank canvas"
+        ],
+        "errors": [],
+        "timelines": {
+          "idle": [
+            "battle.idle.0",
+            "battle.idle.1",
+            "battle.idle.2",
+            "battle.idle.3"
+          ],
+          "move": [
+            "battle.move.0",
+            "battle.move.1",
+            "battle.move.2",
+            "battle.move.3"
+          ],
+          "attack": [
+            "battle.attack.0",
+            "battle.attack.1",
+            "battle.attack.2",
+            "battle.attack.3"
+          ],
+          "cast": [
+            "battle.cast.0",
+            "battle.cast.1",
+            "battle.cast.2",
+            "battle.cast.3"
+          ],
+          "hit": [
+            "battle.hit.0",
+            "battle.hit.1",
+            "battle.hit.2",
+            "battle.hit.3"
+          ],
+          "guard": [
+            "battle.guard.0",
+            "battle.guard.1",
+            "battle.guard.2",
+            "battle.guard.3"
+          ],
+          "ultimate": [
+            "battle.ultimate.0",
+            "battle.ultimate.1",
+            "battle.ultimate.2",
+            "battle.ultimate.3"
+          ],
+          "defeat": [
+            "battle.defeat.0",
+            "battle.defeat.1",
+            "battle.defeat.2",
+            "battle.defeat.3"
+          ]
+        },
+        "audio": [
+          {
+            "slot": "basic",
+            "channels": 1,
+            "duration": 0.18
+          },
+          {
+            "slot": "auto",
+            "channels": 1,
+            "duration": 0.3
+          },
+          {
+            "slot": "passive",
+            "channels": 1,
+            "duration": 0.22
+          },
+          {
+            "slot": "ultimate",
+            "channels": 1,
+            "duration": 0.42
+          }
+        ],
+        "limits": [
+          "Reference preview only; no combat/ownership/save grants",
+          "Desktop viewports only; independent art/listening/device/rights still open"
+        ]
+      }
+    },
+    "van": {
+      "source": {
+        "task": "AW2-004P",
+        "spiritId": "aw2-van",
+        "status": "PASS",
+        "flavor": "source",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Authored registry count is explicit, without expanding ownership",
+          "New reference truthfully keeps combat and collection pending",
+          "Audio remains off before opt-in",
+          "idle: four distinct authored cels render",
+          "idle: pause freezes its clock",
+          "move: four distinct authored cels render",
+          "move: pause freezes its clock",
+          "attack: four distinct authored cels render",
+          "attack: pause freezes its clock",
+          "cast: four distinct authored cels render",
+          "cast: pause freezes its clock",
+          "hit: four distinct authored cels render",
+          "hit: pause freezes its clock",
+          "guard: four distinct authored cels render",
+          "guard: pause freezes its clock",
+          "ultimate: four distinct authored cels render",
+          "ultimate: pause freezes its clock",
+          "defeat: four distinct authored cels render",
+          "defeat: pause freezes its clock",
+          "Ranged basic shows own flight before impact",
+          "basic: exactly 1 opted-in own cues",
+          "basic: expired effect and projectile stay absent in recovery",
+          "auto: exactly 1 opted-in own cues",
+          "auto: expired effect and projectile stay absent in recovery",
+          "passive: exactly 1 opted-in own cues",
+          "passive: expired effect and projectile stay absent in recovery",
+          "ultimate: exactly 1 opted-in own cues",
+          "ultimate: expired effect and projectile stay absent in recovery",
+          "Four original cues decode, without a human-listening claim",
+          "Opt-in only plays this unit's own audio",
+          "Reduced motion holds one authored cel",
+          "down: four separate world cels cycle",
+          "left: four separate world cels cycle",
+          "right: four separate world cels cycle",
+          "up: four separate world cels cycle",
+          "Standing respects selected directional idle",
+          "All actual draws remain inside their source atlas",
+          "320px controls fit viewport",
+          "390px controls fit viewport",
+          "768px controls fit viewport",
+          "Starter copy retains existing combat readiness",
+          "Selection resets sound opt-in",
+          "Preview preserves all seeded stable and AW2 bytes",
+          "No unexpected browser/resource errors",
+          "Missing world: own explicit error and blank canvas",
+          "Missing fx: own explicit error and blank canvas",
+          "Missing battle-motion-a-v1: own explicit error and blank canvas",
+          "Missing battle-motion-b-v1: own explicit error and blank canvas"
+        ],
+        "errors": [],
+        "timelines": {
+          "idle": [
+            "battle.idle.0",
+            "battle.idle.1",
+            "battle.idle.2",
+            "battle.idle.3"
+          ],
+          "move": [
+            "battle.move.0",
+            "battle.move.1",
+            "battle.move.2",
+            "battle.move.3"
+          ],
+          "attack": [
+            "battle.attack.0",
+            "battle.attack.1",
+            "battle.attack.2",
+            "battle.attack.3"
+          ],
+          "cast": [
+            "battle.cast.0",
+            "battle.cast.1",
+            "battle.cast.2",
+            "battle.cast.3"
+          ],
+          "hit": [
+            "battle.hit.0",
+            "battle.hit.1",
+            "battle.hit.2",
+            "battle.hit.3"
+          ],
+          "guard": [
+            "battle.guard.0",
+            "battle.guard.1",
+            "battle.guard.2",
+            "battle.guard.3"
+          ],
+          "ultimate": [
+            "battle.ultimate.0",
+            "battle.ultimate.1",
+            "battle.ultimate.2",
+            "battle.ultimate.3"
+          ],
+          "defeat": [
+            "battle.defeat.0",
+            "battle.defeat.1",
+            "battle.defeat.2",
+            "battle.defeat.3"
+          ]
+        },
+        "audio": [
+          {
+            "slot": "basic",
+            "channels": 1,
+            "duration": 0.18
+          },
+          {
+            "slot": "auto",
+            "channels": 1,
+            "duration": 0.3
+          },
+          {
+            "slot": "passive",
+            "channels": 1,
+            "duration": 0.22
+          },
+          {
+            "slot": "ultimate",
+            "channels": 1,
+            "duration": 0.42
+          }
+        ],
+        "limits": [
+          "Reference preview only; no combat/ownership/save grants",
+          "Desktop viewports only; independent art/listening/device/rights still open"
+        ]
+      },
+      "compiled": {
+        "task": "AW2-004P",
+        "spiritId": "aw2-van",
+        "status": "PASS",
+        "flavor": "compiled",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Authored registry count is explicit, without expanding ownership",
+          "New reference truthfully keeps combat and collection pending",
+          "Audio remains off before opt-in",
+          "idle: four distinct authored cels render",
+          "idle: pause freezes its clock",
+          "move: four distinct authored cels render",
+          "move: pause freezes its clock",
+          "attack: four distinct authored cels render",
+          "attack: pause freezes its clock",
+          "cast: four distinct authored cels render",
+          "cast: pause freezes its clock",
+          "hit: four distinct authored cels render",
+          "hit: pause freezes its clock",
+          "guard: four distinct authored cels render",
+          "guard: pause freezes its clock",
+          "ultimate: four distinct authored cels render",
+          "ultimate: pause freezes its clock",
+          "defeat: four distinct authored cels render",
+          "defeat: pause freezes its clock",
+          "Ranged basic shows own flight before impact",
+          "basic: exactly 1 opted-in own cues",
+          "basic: expired effect and projectile stay absent in recovery",
+          "auto: exactly 1 opted-in own cues",
+          "auto: expired effect and projectile stay absent in recovery",
+          "passive: exactly 1 opted-in own cues",
+          "passive: expired effect and projectile stay absent in recovery",
+          "ultimate: exactly 1 opted-in own cues",
+          "ultimate: expired effect and projectile stay absent in recovery",
+          "Four original cues decode, without a human-listening claim",
+          "Opt-in only plays this unit's own audio",
+          "Reduced motion holds one authored cel",
+          "down: four separate world cels cycle",
+          "left: four separate world cels cycle",
+          "right: four separate world cels cycle",
+          "up: four separate world cels cycle",
+          "Standing respects selected directional idle",
+          "All actual draws remain inside their source atlas",
+          "320px controls fit viewport",
+          "390px controls fit viewport",
+          "768px controls fit viewport",
+          "Starter copy retains existing combat readiness",
+          "Selection resets sound opt-in",
+          "Preview preserves all seeded stable and AW2 bytes",
+          "No unexpected browser/resource errors",
+          "Missing world: own explicit error and blank canvas",
+          "Missing fx: own explicit error and blank canvas",
+          "Missing battle-motion-a-v1: own explicit error and blank canvas",
+          "Missing battle-motion-b-v1: own explicit error and blank canvas"
+        ],
+        "errors": [],
+        "timelines": {
+          "idle": [
+            "battle.idle.0",
+            "battle.idle.1",
+            "battle.idle.2",
+            "battle.idle.3"
+          ],
+          "move": [
+            "battle.move.0",
+            "battle.move.1",
+            "battle.move.2",
+            "battle.move.3"
+          ],
+          "attack": [
+            "battle.attack.0",
+            "battle.attack.1",
+            "battle.attack.2",
+            "battle.attack.3"
+          ],
+          "cast": [
+            "battle.cast.0",
+            "battle.cast.1",
+            "battle.cast.2",
+            "battle.cast.3"
+          ],
+          "hit": [
+            "battle.hit.0",
+            "battle.hit.1",
+            "battle.hit.2",
+            "battle.hit.3"
+          ],
+          "guard": [
+            "battle.guard.0",
+            "battle.guard.1",
+            "battle.guard.2",
+            "battle.guard.3"
+          ],
+          "ultimate": [
+            "battle.ultimate.0",
+            "battle.ultimate.1",
+            "battle.ultimate.2",
+            "battle.ultimate.3"
+          ],
+          "defeat": [
+            "battle.defeat.0",
+            "battle.defeat.1",
+            "battle.defeat.2",
+            "battle.defeat.3"
+          ]
+        },
+        "audio": [
+          {
+            "slot": "basic",
+            "channels": 1,
+            "duration": 0.18
+          },
+          {
+            "slot": "auto",
+            "channels": 1,
+            "duration": 0.3
+          },
+          {
+            "slot": "passive",
+            "channels": 1,
+            "duration": 0.22
+          },
+          {
+            "slot": "ultimate",
+            "channels": 1,
+            "duration": 0.42
+          }
+        ],
+        "limits": [
+          "Reference preview only; no combat/ownership/save grants",
+          "Desktop viewports only; independent art/listening/device/rights still open"
+        ]
+      }
+    }
+  },
+  "consumerBuildSmoke": {
+    "status": "PASS",
+    "engine": "153.0.8010.36",
+    "checks": [
+      "Static root opens the compiled RPG world",
+      "Built intro grants five starters and one 30XP reward",
+      "Built save survives reload byte-identically",
+      "Standalone compiled battle loads all atlases",
+      "Compiled starter preview is reachable",
+      "Review tools leave progression and stable save untouched",
+      "No failed resources or console/page errors",
+      "Review bundle excludes source PNG/code/maps/archives"
+    ],
+    "errors": [],
+    "files": 197,
+    "bytes": 76388695
+  },
+  "assets": {
+    "lien": {
+      "task": "AW2-004M",
+      "spiritId": "aw2-lien",
+      "frames": 64,
+      "edgeMax": 2,
+      "webpBytes": 5905810,
+      "decodedRGBA": 31453104,
+      "repeatByteIdenticalPaths": 18
+    },
+    "moc": {
+      "task": "AW2-004N",
+      "spiritId": "aw2-moc",
+      "frames": 64,
+      "edgeMax": 2,
+      "webpBytes": 6220532,
+      "decodedRGBA": 31453104,
+      "repeatByteIdenticalPaths": 18
+    },
+    "bach": {
+      "task": "AW2-004O",
+      "spiritId": "aw2-bach",
+      "frames": 64,
+      "edgeMax": 2,
+      "webpBytes": 5714556,
+      "decodedRGBA": 31453104,
+      "repeatByteIdenticalPaths": 18
+    },
+    "van": {
+      "task": "AW2-004P",
+      "spiritId": "aw2-van",
+      "frames": 64,
+      "edgeMax": 2,
+      "webpBytes": 5953390,
+      "decodedRGBA": 31453104,
+      "repeatByteIdenticalPaths": 18
+    }
+  },
+  "fileAudits": {
+    "lien": {
+      "task": "AW2-004M",
+      "spiritId": "aw2-lien",
+      "status": "PASS",
+      "checks": [
+        "portrait: bytes/hash/dimensions/real alpha",
+        "world: bytes/hash/dimensions/real alpha",
+        "battle-motion-a-v1: bytes/hash/dimensions/real alpha",
+        "battle-motion-b-v1: bytes/hash/dimensions/real alpha",
+        "fx: bytes/hash/dimensions/real alpha",
+        "battle: bytes/hash/dimensions/real alpha",
+        "reference: bytes/hash/dimensions/real alpha",
+        "64 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+        "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+      ],
+      "webpBytes": 5905810
+    },
+    "moc": {
+      "task": "AW2-004N",
+      "spiritId": "aw2-moc",
+      "status": "PASS",
+      "checks": [
+        "portrait: bytes/hash/dimensions/real alpha",
+        "world: bytes/hash/dimensions/real alpha",
+        "battle-motion-a-v1: bytes/hash/dimensions/real alpha",
+        "battle-motion-b-v1: bytes/hash/dimensions/real alpha",
+        "fx: bytes/hash/dimensions/real alpha",
+        "battle: bytes/hash/dimensions/real alpha",
+        "reference: bytes/hash/dimensions/real alpha",
+        "64 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+        "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+      ],
+      "webpBytes": 6220532
+    },
+    "bach": {
+      "task": "AW2-004O",
+      "spiritId": "aw2-bach",
+      "status": "PASS",
+      "checks": [
+        "portrait: bytes/hash/dimensions/real alpha",
+        "world: bytes/hash/dimensions/real alpha",
+        "battle-motion-a-v1: bytes/hash/dimensions/real alpha",
+        "battle-motion-b-v1: bytes/hash/dimensions/real alpha",
+        "fx: bytes/hash/dimensions/real alpha",
+        "battle: bytes/hash/dimensions/real alpha",
+        "reference: bytes/hash/dimensions/real alpha",
+        "64 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+        "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+      ],
+      "webpBytes": 5714556
+    },
+    "van": {
+      "task": "AW2-004P",
+      "spiritId": "aw2-van",
+      "status": "PASS",
+      "checks": [
+        "portrait: bytes/hash/dimensions/real alpha",
+        "world: bytes/hash/dimensions/real alpha",
+        "battle-motion-a-v1: bytes/hash/dimensions/real alpha",
+        "battle-motion-b-v1: bytes/hash/dimensions/real alpha",
+        "fx: bytes/hash/dimensions/real alpha",
+        "battle: bytes/hash/dimensions/real alpha",
+        "reference: bytes/hash/dimensions/real alpha",
+        "64 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+        "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+      ],
+      "webpBytes": 5953390
+    }
+  },
+  "repeatByteIdenticalPaths": 90,
+  "unchangedTrackedPaths": 236,
+  "generation": {
+    "cohortCalls": 20,
+    "selected": 20,
+    "rejected": 0,
+    "wholeFivePackageRequestCalls": 27,
+    "wholeFiveSelected": 25,
+    "wholeFiveRejected": 2,
+    "method": "OpenAI built-in image_gen; not API/CLI"
+  },
+  "types": {
+    "root": "PASS",
+    "dev": "PASS"
+  },
+  "build": {
+    "files": 197,
+    "bytes": 76388695,
+    "status": "PASS",
+    "sourcePNGsCodeMapsArchives": "EXCLUDED"
+  },
+  "stableBuild": {
+    "status": "REUSED_PASS",
+    "source": "5ca3964a2cb46b60188d3192e32a2545740cda14",
+    "files": 851,
+    "bytes": 177450422,
+    "exclusionScan": "PASS"
+  },
+  "limits": [
+    "Reference availability12/12; fullCharacterComplete=false for all12",
+    "Actual combat7 / starter ownership5 unchanged; new five kits and collection NOT_IMPLEMENTED",
+    "Independent art/continuity/listening/device/FPS/offline/native/rights/production-save/release OPEN"
+  ],
+  "environment": "Linux x64 / Node22.23.2 / pnpm10.34.3 / TS5.9.3 / Vitest5.0.1 / Vite8.0.5 / Chromium153.0.8010.36 / Python3.12 / Pillow10.2",
+  "incidents": [
+    {
+      "status": "RESOLVED",
+      "event": "Initial Lien source preview aborted after3 checks because concurrent metadata builder triggered Vite HMR/context destroyed; partial run excluded",
+      "resolution": "Waited for all builders, rebuilt final review artifact, reran four stable source+compiled previews successfully; no runtime fix"
+    },
+    {
+      "status": "RESOLVED",
+      "event": "pnpm exec prettier unavailable in project dependencies",
+      "resolution": "Used existing cached Prettier3.3.3 with --no-semi, scoped check PASS; no dependencies changed"
+    }
+  ]
+}

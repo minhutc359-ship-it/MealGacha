@@ -20,6 +20,38 @@
       ],
       "selected": true,
       "source": "world.png"
+    },
+    {
+      "callId": "AW2-004M-3",
+      "asset": "battle-motion-a-v1",
+      "prompt": "Use case: identity-preserve. Create an original game sprite contact sheet of Image1 Liên, adult woman, dusty-rose/cream sleeves, tied dark hair, paper promise pouch, one pale pink seed bead; no staff, shield or new equipment. Image1 is the ONLY character identity/outfit/tool reference. Image2 is LAYOUT/SCALE reference only: copy its TINY THUMBNAIL spacing, do NOT copy Hải, any shield, teal costume or his gestures. Square transparent canvas, exactly4columns4rows with16 distinct whole-body cels. EACH FIGURE A SMALL THUMBNAIL, only HALF of cell width and55–60% cell height INCLUDING TOOLS/CLOTH. VAST transparent padding surrounds every figure, with wide clear gutters across all quarter boundaries and outer edges. Do not fill cells with big figures. All hair/hands/tools/feet wholly inside own cell. Clean HD anime cels matching Image1, adult proportions, facing viewer-right. Keep every identity prop through poses; no extra limbs/equipment. No text, labels, grids, background, floor, shadow, logos or watermark. Genuine transparent alpha outside each sprite. No combat FX on bodies. Rows top to bottom: row1 IDLE four subtle distinct breath/cloth/ready poses; row2 MOVE four actual alternating walk strides, feet contacts; row3 ATTACK lift seed bead to chest, cast a single seed from the hand, follow through with fingers open, ready recovery with bead again; row4 CAST touch promise pouch, unfold free hand gently toward ally, hold a precise healing gesture, recover. Exactly4 sequential poses in each row, not repeated identical portraits.",
+      "referenceInputs": [
+        "portrait.png",
+        "dev/aw2/assets/hai/base-v1/battle-motion-a-v2.png"
+      ],
+      "selected": true,
+      "source": "battle-motion-a-v1.png"
+    },
+    {
+      "callId": "AW2-004M-4",
+      "asset": "battle-motion-b-v1",
+      "prompt": "Use case: identity-preserve. Create an original game sprite contact sheet of Image1 Liên, adult woman, dusty-rose/cream sleeves, tied dark hair, paper promise pouch, one pale pink seed bead; no staff, shield or new equipment. Image1 is the ONLY character identity/outfit/tool reference. Image2 is LAYOUT/SCALE reference only: copy its TINY THUMBNAIL spacing, do NOT copy Hải, any shield, teal costume or his gestures. Square transparent canvas, exactly4columns4rows with16 distinct whole-body cels. EACH FIGURE A SMALL THUMBNAIL, only HALF of cell width and55–60% cell height INCLUDING TOOLS/CLOTH. VAST transparent padding surrounds every figure, with wide clear gutters across all quarter boundaries and outer edges. Do not fill cells with big figures. All hair/hands/tools/feet wholly inside own cell. Clean HD anime cels matching Image1, adult proportions, facing viewer-right. Keep every identity prop through poses; no extra limbs/equipment. No text, labels, grids, background, floor, shadow, logos or watermark. Genuine transparent alpha outside each sprite. No combat FX on bodies. Rows top to bottom: row1 HIT four poses of safe recoil/regain balance/ready; row2 GUARD four poses of cautious defensive brace/settle ready using OWN props, no borrowed shield; row3 ULTIMATE gather hands by chest, open free hand and sleeve, offer a selective cleansing/healing gesture, return ready; row4 DEFEAT stagger, lower weight, sink onto one knee, hold one-knee dignified rest. Final kneel shorter than standing, full feet/tools still visible. Exactly4 distinct sequential poses per row.",
+      "referenceInputs": [
+        "portrait.png",
+        "dev/aw2/assets/hai/base-v1/battle-motion-b-v2.png"
+      ],
+      "selected": true,
+      "source": "battle-motion-b-v1.png"
+    },
+    {
+      "callId": "AW2-004M-5",
+      "asset": "fx",
+      "prompt": "Use case: stylized-concept. Original transparent painted anime game skill FX atlas for Image1 Liên. EFFECTS ONLY, no character/anatomy, no whole weapon or equipment portrait. Exactly4columns4rows,16 isolated original effects. Every effect a tiny thumbnail using only45–50% of cell width/height; huge genuine transparent gutters at all quarter-grid boundaries/outer edges, no glow bleed. Own unit palette and silhouette. Row1 Hạt Sen: two tiny original pale-pink seed projectiles in flight (cells1/2), two seed-opening impact bursts (cells3/4). Row2 Hẹn Sau Cơn Mệt: four gentle stages of a rose/cream seed-ring healing ribbon. Row3 Lời Hẹn Còn Đây: four stages of a compact protective seed-loop arc. Row4 Mở Lời: four stages of an original open seed ring with two small paper-petal ribbons, gather/open/pulse/fade; no literal written promise. No letters, text, logos, grid/frame, background, floor, watermark, religious symbols or borrowed IP. Transparent alpha outside painted effects. Each cell independent and whole.",
+      "referenceInputs": [
+        "portrait.png"
+      ],
+      "selected": true,
+      "source": "fx.png"
     }
   ]
 }

@@ -10,6 +10,48 @@
       "referenceInputs": [],
       "selected": true,
       "source": "portrait.png"
+    },
+    {
+      "callId": "AW2-004O-2",
+      "asset": "world",
+      "prompt": "Use case: identity-preserve. Transform Image1 original character identity into a sprite exploration contact sheet. Preserve same face/hair/clothing/tools and color palette. Exactly FOUR columns and FOUR rows, square canvas. Tiny complete chibi thumbnails, crisp discrete pixel-art steps, three-head-tall bodies. Every sprite only about HALF of its cell's width and60% height, including tools and flowing cloth; VAST truly transparent padding around ALL figures, wide clear gutters at quarter-grid lines and outer canvas. Every head/hand/tool/both boots entirely visible. Row1 FRONT/down, row2 LEFT/profile facing viewer-left, row3 RIGHT/profile facing viewer-right, row4 BACK/up showing back of head/outfit. Each row four distinct cels: planted idle, left-foot-forward, passing stance, right-foot-forward. Keep tool ownership coherent across turns; no mirrored duplicate masquerading as a new direction, no extra limbs/equipment. No texts, labels, grid lines, floor, shadow, scenery, FX, border or watermark. Genuinely transparent background. Bách: broad mature adult man, square shoulders, short dark hair, dark forest-green layered tunic, broad cloth binding ties, original four-panel divided rectangular shield; no historic/religious insignia.",
+      "referenceInputs": [
+        "portrait.png"
+      ],
+      "selected": true,
+      "source": "world.png"
+    },
+    {
+      "callId": "AW2-004O-3",
+      "asset": "battle-motion-a-v1",
+      "prompt": "Use case: identity-preserve. Create an original game sprite contact sheet of Image1 Bách, broad mature adult man, square shoulders, short dark hair, dark forest-green layered tunic, broad cloth binding ties, original four-panel divided rectangular shield; no historic/religious insignia. Image1 is the ONLY character identity/outfit/tool reference. Image2 is LAYOUT/SCALE reference only: copy its TINY THUMBNAIL spacing, do NOT copy Hải, any shield, teal costume or his gestures. Square transparent canvas, exactly4columns4rows with16 distinct whole-body cels. EACH FIGURE A SMALL THUMBNAIL, only HALF of cell width and55–60% cell height INCLUDING TOOLS/CLOTH. VAST transparent padding surrounds every figure, with wide clear gutters across all quarter boundaries and outer edges. Do not fill cells with big figures. All hair/hands/tools/feet wholly inside own cell. Clean HD anime cels matching Image1, adult proportions, facing viewer-right. Keep every identity prop through poses; no extra limbs/equipment. No text, labels, grids, background, floor, shadow, logos or watermark. Genuine transparent alpha outside each sprite. No combat FX on bodies. Rows top to bottom: row1 IDLE four subtle distinct breath/cloth/ready poses; row2 MOVE four actual alternating walk strides, feet contacts; row3 ATTACK brace weight, slow heavy forward shield/knot contact, compact follow-through, ready recovery; row4 CAST draw shield close, tighten a cloth binding with free hand, plant firm protective stance, recover without extra shield. Exactly4 sequential poses in each row, not repeated identical portraits.",
+      "referenceInputs": [
+        "portrait.png",
+        "dev/aw2/assets/hai/base-v1/battle-motion-a-v2.png"
+      ],
+      "selected": true,
+      "source": "battle-motion-a-v1.png"
+    },
+    {
+      "callId": "AW2-004O-4",
+      "asset": "battle-motion-b-v1",
+      "prompt": "Use case: identity-preserve. Create an original game sprite contact sheet of Image1 Bách, broad mature adult man, square shoulders, short dark hair, dark forest-green layered tunic, broad cloth binding ties, original four-panel divided rectangular shield; no historic/religious insignia. Image1 is the ONLY character identity/outfit/tool reference. Image2 is LAYOUT/SCALE reference only: copy its TINY THUMBNAIL spacing, do NOT copy Hải, any shield, teal costume or his gestures. Square transparent canvas, exactly4columns4rows with16 distinct whole-body cels. EACH FIGURE A SMALL THUMBNAIL, only HALF of cell width and55–60% cell height INCLUDING TOOLS/CLOTH. VAST transparent padding surrounds every figure, with wide clear gutters across all quarter boundaries and outer edges. Do not fill cells with big figures. All hair/hands/tools/feet wholly inside own cell. Clean HD anime cels matching Image1, adult proportions, facing viewer-right. Keep every identity prop through poses; no extra limbs/equipment. No text, labels, grids, background, floor, shadow, logos or watermark. Genuine transparent alpha outside each sprite. No combat FX on bodies. Rows top to bottom: row1 HIT four poses of safe recoil/regain balance/ready; row2 GUARD four poses of cautious defensive brace/settle ready using OWN props, no borrowed shield; row3 ULTIMATE gather shield near torso, loosen a wide binding, open free arm to share protection while lowering personal shield, ready recovery; row4 DEFEAT stagger, lower weight, sink onto one knee, hold one-knee dignified rest. Final kneel shorter than standing, full feet/tools still visible. Exactly4 distinct sequential poses per row.",
+      "referenceInputs": [
+        "portrait.png",
+        "dev/aw2/assets/hai/base-v1/battle-motion-b-v2.png"
+      ],
+      "selected": true,
+      "source": "battle-motion-b-v1.png"
+    },
+    {
+      "callId": "AW2-004O-5",
+      "asset": "fx",
+      "prompt": "Use case: stylized-concept. Original transparent painted anime game skill FX atlas for Image1 Bách. EFFECTS ONLY, no character/anatomy, no whole weapon or equipment portrait. Exactly4columns4rows,16 isolated original effects. Every effect a tiny thumbnail using only45–50% of cell width/height; huge genuine transparent gutters at all quarter-grid boundaries/outer edges, no glow bleed. Own unit palette and silhouette. Row1 Mối Buộc: four stages of a short heavy cloth-knot contact accent, gather/strike/fold/fade. Row2 Gói Chắc: four stages of one original dark-green divided-panel shield glow with cloth-tie corners. Row3 Chia Phần: four stages of a small cloth-bound protective packet opening into a guard arc. Row4 Mở Vòng Dây: four stages of a broad green/ivory cloth loop unbinding into one protective front-line crest; no religious/dynastic symbols. No letters, text, logos, grid/frame, background, floor, watermark, religious symbols or borrowed IP. Transparent alpha outside painted effects. Each cell independent and whole.",
+      "referenceInputs": [
+        "portrait.png"
+      ],
+      "selected": true,
+      "source": "fx.png"
     }
   ]
 }

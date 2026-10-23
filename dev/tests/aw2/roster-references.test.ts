@@ -23,6 +23,38 @@ const references = [
     ranged: false,
     skills: ["Gạt Sóng", "Giữ Lối", "Biết Đường Về", "Bờ Đợi"],
   },
+  {
+    id: "aw2-lien",
+    name: "Liên",
+    rarity: "SR",
+    recipe: "Chè sen",
+    ranged: true,
+    skills: ["Hạt Sen", "Hẹn Sau Cơn Mệt", "Lời Hẹn Còn Đây", "Mở Lời"],
+  },
+  {
+    id: "aw2-moc",
+    name: "Mộc",
+    rarity: "SSR",
+    recipe: "Cốm",
+    ranged: true,
+    skills: ["Nét Lá", "Gieo Dấu", "Mùa Nối Mùa", "Mở Gói Mùa Xanh"],
+  },
+  {
+    id: "aw2-bach",
+    name: "Bách",
+    rarity: "SSR",
+    recipe: "Bánh chưng",
+    ranged: false,
+    skills: ["Mối Buộc", "Gói Chắc", "Chia Phần", "Mở Vòng Dây"],
+  },
+  {
+    id: "aw2-van",
+    name: "Vân",
+    rarity: "UR",
+    recipe: "Bữa ăn thất lạc",
+    ranged: true,
+    skills: ["Mảnh Âm", "Nối Hai Đầu", "Nhớ Một Phần", "Bữa Ăn Chưa Gọi Tên"],
+  },
 ]
 
 describe.each(references)("$id original reference package", (unit) => {
