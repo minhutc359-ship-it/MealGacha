@@ -1,0 +1,207 @@
+{
+  "task": "AW2-006D",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "branch": "game/adventure-world-2",
+  "base": "caf0057d8655f33d125c07fc32a53f057d29d0d5",
+  "source": "7124bed958ee5cfa537fa3a021b4f03836e19544",
+  "stagedAndRemoteSourceTree": "ea0db3107d5bbdea413d338ac8766bc171fe184a",
+  "changedFiles": 31,
+  "changedBytes": 2092484,
+  "files": [
+    {
+      "path": "dev/aw2/WorldCanvas.tsx",
+      "mode": "100644",
+      "sha": "e4f663118defb9963824ad673a6c44ff91d31b06",
+      "bytes": 16931
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/world-v1/prompts.json",
+      "mode": "100644",
+      "sha": "8e476a3126f3a143c60c42dfbabcd930f806aafb",
+      "bytes": 2058
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/world-v1/provenance.json",
+      "mode": "100644",
+      "sha": "d6fc47bcbe77c54dc9b42c6db861a493297aab91",
+      "bytes": 2513
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/world-v1/world-source.png",
+      "mode": "100644",
+      "sha": "1bcf637199aa77cbd4d4c54c43cd6996347d498b",
+      "bytes": 910580
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/world-v1/world.webp",
+      "mode": "100644",
+      "sha": "fdc1c275c9bfcbab05e4b3338b75caef618b213c",
+      "bytes": 691470
+    },
+    {
+      "path": "dev/tests/aw2/boss-world.test.ts",
+      "mode": "100644",
+      "sha": "fa15ae12829cc9c5ea171b143bbdca9b1708d11f",
+      "bytes": 4576
+    },
+    {
+      "path": "dev/tests/aw2/table-room.test.ts",
+      "mode": "100644",
+      "sha": "66559f1c26b8c39a4f538fbf747f5e7320adbb66",
+      "bytes": 6616
+    },
+    {
+      "path": "dev/tools/build-aw2-boss-world.py",
+      "mode": "100644",
+      "sha": "4e788ad9c394d3e894212e2599662fe528b57f6c",
+      "bytes": 4559
+    },
+    {
+      "path": "dev/tools/verify-aw2-boss-world-files.py",
+      "mode": "100644",
+      "sha": "1c12520afb6c9b1de3fe5bc2953b3da9f8fa86f7",
+      "bytes": 2206
+    },
+    {
+      "path": "dev/tools/verify-aw2-boss-world.mjs",
+      "mode": "100644",
+      "sha": "8ebc8905ba05e94ea16c7ecacea43e7e555421d1",
+      "bytes": 14534
+    },
+    {
+      "path": "docs/aw2/BACKLOG.md",
+      "mode": "100644",
+      "sha": "69d6d6a91fe516023b0a8e8c31da3434d5ad5432",
+      "bytes": 23302
+    },
+    {
+      "path": "docs/aw2/BOSS_CHARACTER_GATES.md",
+      "mode": "100644",
+      "sha": "9a2e55c6b1d60d3a19af7d667da393ece82897f1",
+      "bytes": 3320
+    },
+    {
+      "path": "docs/aw2/CANON.md",
+      "mode": "100644",
+      "sha": "ce36273fec738599308cc3461dee7350e55c29d7",
+      "bytes": 21025
+    },
+    {
+      "path": "docs/aw2/DELIVERY_PLAN.md",
+      "mode": "100644",
+      "sha": "7664c8162d7c6b79e781e00b54851f4f7bb530cc",
+      "bytes": 24976
+    },
+    {
+      "path": "docs/aw2/HANDOFF.md",
+      "mode": "100644",
+      "sha": "c22487e78d704664241ee7d7561943729a521bd2",
+      "bytes": 4787
+    },
+    {
+      "path": "docs/aw2/NEXT_MILESTONES.md",
+      "mode": "100644",
+      "sha": "8be9bf948d5d481072677927bcb2021cbac9ad84",
+      "bytes": 5760
+    },
+    {
+      "path": "docs/aw2/PHONG_BAN.md",
+      "mode": "100644",
+      "sha": "6f152a6e0ca1639149c2e32c939688ebd67c603d",
+      "bytes": 3419
+    },
+    {
+      "path": "docs/aw2/PHONG_BAN_SCENE_SPEC.md",
+      "mode": "100644",
+      "sha": "cea65b750c53d81eaed12a465d0f9f6ac2b4b5eb",
+      "bytes": 5968
+    },
+    {
+      "path": "docs/aw2/PROGRESS.md",
+      "mode": "100644",
+      "sha": "8c84da83a923b3d36bb769c7b58317ff49b3e73e",
+      "bytes": 28910
+    },
+    {
+      "path": "docs/aw2/README.md",
+      "mode": "100644",
+      "sha": "8a70799e46b932f1fa671173b4e92a81ad247397",
+      "bytes": 25811
+    },
+    {
+      "path": "docs/aw2/REPORT.md",
+      "mode": "100644",
+      "sha": "9d750f3e975136babce30ee8f95459760711b68b",
+      "bytes": 2067
+    },
+    {
+      "path": "docs/aw2/STATUS.md",
+      "mode": "100644",
+      "sha": "5aa5d46643292a8b02d5dcc3cd3a56c5ad2a9cf5",
+      "bytes": 2324
+    },
+    {
+      "path": "docs/aw2/TEST_LEDGER.md",
+      "mode": "100644",
+      "sha": "918a8e6e25a2012b443836e097777cb95a742ccf",
+      "bytes": 131599
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006D-reused-evidence.json",
+      "mode": "100644",
+      "sha": "7c5529729870224bb9231ccd11d61bcf110cfc19",
+      "bytes": 60450
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006D-verification.json",
+      "mode": "100644",
+      "sha": "39e9a78464cf34e2741cb054631f834a1ea7cf13",
+      "bytes": 67720
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006D.md",
+      "mode": "100644",
+      "sha": "2f99d5f2628618d524c2d8a00c1b981017818c73",
+      "bytes": 9331
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-006D.md",
+      "mode": "100644",
+      "sha": "fcf8e2a869c6233f8f9a5b7a5077fbd762df334e",
+      "bytes": 6424
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-006F.md",
+      "mode": "100644",
+      "sha": "1769c2eec21bdb830c9a9d9df910d67d406baa05",
+      "bytes": 2146
+    },
+    {
+      "path": "src/aw2/assets/bossWorld.ts",
+      "mode": "100644",
+      "sha": "e7897a552c0cc33324dd05cd810d44fceec38087",
+      "bytes": 1138
+    },
+    {
+      "path": "src/aw2/assets/forgotten-host.world-v1.json",
+      "mode": "100644",
+      "sha": "97adb12a4a63adf5ca9d72f7ae6888747262c4dd",
+      "bytes": 2947
+    },
+    {
+      "path": "src/aw2/assets/tableRoom.ts",
+      "mode": "100644",
+      "sha": "970521e1bab88f9220bd44b3656a457ddb3dcfdc",
+      "bytes": 3017
+    }
+  ],
+  "expectedShaGuard": "caf0057d8655f33d125c07fc32a53f057d29d0d5",
+  "force": false,
+  "independentGitFetch": "PASS",
+  "fetchedRemoteSha": "7124bed958ee5cfa537fa3a021b4f03836e19544",
+  "treeIndexEquality": "PASS",
+  "baseAncestor": "PASS",
+  "guardedLocalSync": "PASS",
+  "cleanLocalAfterSourceSync": true,
+  "completion": "Documentation-only source stamp follows. No runtime, asset or assertion change; final clean local=fresh remote SHA must be read independently before final response. Self-final SHA is not embedded recursively."
+}

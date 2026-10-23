@@ -1,6 +1,6 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-006D: hình chibi đứng bốn hướng riêng cho Người Giữ Bàn Quên trên map.** Source `PENDING006D` trên `game/adventure-world-2`.
+**Đã hoàn thành AW2-006D: hình chibi đứng bốn hướng riêng cho Người Giữ Bàn Quên trên map.** Source `7124bed958ee5cfa537fa3a021b4f03836e19544` trên `game/adventure-world-2`.
 
 - Boss quay về phía người chơi, giữ nguyên vị trí/điểm đặt chân; nhãn nằm dưới hình. Bốn tư thế đứng tham chiếu, chưa có hoạt ảnh đi/đánh.
 - Sau chiến thắng trước ending, boss mờ như trước; sau ending hiện đầy đủ để đấu lại. Hình HD/FX trong trận giữ nguyên.

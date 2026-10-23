@@ -13,7 +13,7 @@
 | Actual combat binding | PASS affected49 units;39 source+39 compiled boss gates before final CSS-only navigation refinement; final12+12 navigation delta/22 compiled standalone gates |
 | Source/provenance | PASS inventory:3 built-in image_gen calls, first rejected for unsafe gutters, repaired body+style-referenced FX selected; no external artwork |
 | Files/alpha/runtime | PASS17 actual safe cells, hashes/dimensions/visible RGBA+alpha;8 repeat-build files byte-identical; WebP2,163,576 bytes/decoded RGBA12,922,920 bytes |
-| World object/four-way exploration | PASS006D reference at `PENDING006D`:4original static chibi idle directions, measured feet/common scale/player-facing, no walk/attack motion; full world acceptance OPEN |
+| World object/four-way exploration | PASS006D reference at `7124bed958ee5cfa537fa3a021b4f03836e19544`:4original static chibi idle directions, measured feet/common scale/player-facing, no walk/attack motion; full world acceptance OPEN |
 | Audio/listening | NOT_CREATED/NOT_RUN for own boss cues; no starter audio presented as boss audio |
 | Independent art/animation/player/device/rights review | NOT_RUN/open; license REVIEW_REQUIRED, commercial release NOT_CLEARED |
 | Final balance/performance/offline/native/production saves/release | NOT_RUN/open; unchanged development-v2 kit is not final approval |
