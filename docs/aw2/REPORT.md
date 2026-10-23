@@ -1,18 +1,20 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-007M: đấu lại boss sau kết thúc.** Source `4165b1e84cbd0181853611b324d85945c8e46001` trên `game/adventure-world-2`. Trong Phòng Bàn, tới Người Giữ Bàn Quên và chọn **Đấu lại boss · không nhận thưởng**. Đội hình/EXP/nhấn Vân đã lưu áp dụng cho trận mới. Thắng, thua hoặc rút lui đều về Phòng Bàn, giữ nguyên kết thúc và toàn bộ tiến trình/phần thưởng. Reload bỏ lượt đang chơi; lỗi ghi có thể thử lại; kết quả tab cũ không ghi đè save mới.
+**Đã hoàn thành AW2-007N: đo đội hình ở EXP thực tế và cải thiện việc thử đội.** Source `PENDING007N` trên `game/adventure-world-2`.
 
-| Mốc | Hiện tại | Còn lại |
+- **Vai trò/chỉ số đội đang chọn:** xem Máu/Công/Thủ theo cấp chung; gợi ý khi thiếu người đỡ đòn, hồi phục hoặc sát thương chuyên trách. Vân giữ Hybrid; Mộc/Mộc Non tách đúng identity.
+- **Chọn đội khởi đầu:** trở lại năm starter trong draft, giữ nhấn Vân; bấm Lưu mới áp dụng, Hủy trả về đội lưu. Không cấp nhân vật/EXP/items hoặc sửa ending.
+- **Kết quả lượt đấu này:** hiện số đồng đội còn đứng và máu boss thực còn lại sau thắng/thua/rút lui; phần hiển thị không tự ghi save.
+
+Đã đo **96lượt xác định** =16đội×205/345EXP×3policy. Starter vẫn vượt boss ở EXP thực tế, không cần UR. Canh tuyệt kỹ giúp một số đội, nhưng không có policy tốt nhất cho mọi đội; không sửa chỉ số để ép tất cả thắng. [Kết quả/cách dùng](PARTY_GUIDE.md).
+
+**Kiểm chứng mới:**73ca unit liên quan/3files (17mới),60browser assertions=30source+30compiled,96mô phỏng PASS; hai typecheck/final review build/fresh stable isolation đạt. Browser dùng nguyên văn checkpoint ending đã kiếm được từ007M, rồi thao tác native draft/cancel/lỗi ghi/retry/reload/tab cũ và win/loss/retreat thật; không phải một lượt full-story mới. Full1401unit/deep art/combat/save/mode và stable build giữ bằng chứng ref gốc theo309hash không đổi, không cộng vào số mới. Full current-head suite NOT_RUN theo phạm vi advisory/presentation. [Bằng chứng](evidence/AW2-007N.md).
+
+| Chỉ báo | Hiện tại | Lý do |
 |---|---:|---|
-| Demo với art tham chiếu | **≈90% —9/10nhóm** | **1gói**: playtest độc lập hết hành trình và sửa/xác minh hết lỗi chặn demo |
-| Toàn sản phẩm12nhân vật | **≈40%**, khoảng35–45% | **4gói chính đề xuất** tới≈50%, chỉ đánh giá lại sau nghiệm thu |
-| Kit/bộ hình tham chiếu | **12/12mỗi nhóm** | Cân bằng/nghiệm thu đầy đủ còn mở |
-| Nhân vật qua đầy đủ DoD | **0/12** | Art/animation/listening/thiết bị/rights và các gate riêng chưa được chấp nhận |
+| Demo với art tham chiếu | **≈90%** | Giữ nguyên; còn1gói playtest độc lập toàn hành trình và sửa blocker |
+| Toàn sản phẩm12nhân vật | **≈40%**, khoảng35–45% | Giữ nguyên; baseline/hướng dẫn mới chưa đóng nghiệm thu cân bằng/full-character/device/rights |
+| Kit/bộ hình tham chiếu | **12/12mỗi nhóm** | Giữ nguyên |
+| Nhân vật qua đầy đủ DoD | **0/12** | Các gate độc lập còn mở |
 
-**Sau đấu lại boss làm gì?** [007N](tasks/AW2-007N.md) là việc nhỏ nhất tiếp theo: đo và cân bằng đội hình/tiến trình tại205XP trước boss và345XP sau ending, phân biệt team yếu với lỗi kit hoặc cách dùng tuyệt kỹ. Không ép mọi đội đều thắng và không bắt UR.
-
-[Lộ trình tới≈50%](NEXT_MILESTONES.md) gồm: **(1)** cân bằng đội/tiến trình; **(2)** hoàn thiện một tuyến world/dungeon và UX; **(3)** hai nhân vật mẫu qua đủDoD; **(4)** playtest demo +baseline thiết bị thật và sửa blocker. Dự kiến phân bổ+10điểm trên mẫu số hiện tại, chưa phải điểm đã đạt; gói4 chứa luôn nghiệm thu demo, không cộng hai lần. Số bug/số task con phát sinh chưa xác định. Demo100% không đồng nghĩa phát hành hoặc12nhân vật hoàn chỉnh.
-
-**Kiểm chứng:**1401ca unit/115files PASS trong một full run;282browser assertions mới =110source +110compiled earned journeys/rematch +29save +25RPG +8build.130mô phỏng thực, hai typecheck/review+stable build/release guard/isolation đạt. Mỗi flavor giữ79kiểm tra hành trình đã qua, tiếp31kiểm tra rematch từ checkpoint thật sau sửa scriptQA; không có một lượt full-browser cuối chạy liền mạch. Browser đi hành trình thật để kiếm ending/quyền tuyển, rồi thử rematch win/loss/retreat/reload/lỗi ghi/tab cũ; không bơm HP hoặc kết quả.305hash không đổi giữ bằng chứng art/purecombat/mode ở ref gốc, không cộng số cũ. [Bằng chứng/giới hạn](evidence/AW2-007M.md).
-
-**Hai tỷ lệ giữ nguyên:** rematch cải thiện nền đã được tính; chưa đóng playtest độc lập/full-character/device/rights/release gate. D11gachaPROPOSED/D12OPEN. [Cách dùng](COLLECTION.md) · [Cách tính](PROGRESS.md) · [Handoff](HANDOFF.md).
+**Tiếp theo:**[AW2-006B](tasks/AW2-006B.md) — đặc tả rồi làm hình môi trường Phòng Bàn và UX khám phá, nối boss/rematch với một phòng có art riêng. Gói1 đã có baseline/hướng dẫn nhưng cân bằng cuối vẫn mở; [4gói đề xuất tới≈50%](NEXT_MILESTONES.md) chưa được cấp điểm. D11gachaPROPOSED/D12OPEN.

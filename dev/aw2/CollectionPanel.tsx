@@ -9,6 +9,8 @@ import {
   type CollectionAction,
 } from "../../src/aw2/collection/model"
 import { questLabel } from "../../src/aw2/world/rules"
+import { STARTER_SPIRIT_IDS } from "../../src/aw2/combat/roster"
+import { PartyReadiness } from "./PartyReadiness"
 
 type SpiritId = (typeof SPIRIT_IDS)[number]
 export function CollectionPanel({
@@ -164,7 +166,19 @@ export function CollectionPanel({
               ? "Có thay đổi chưa lưu; đội đang đi cùng vẫn giữ nguyên."
               : "Đội và nhấn tuyệt kỹ đã lưu."}
           </p>
+          <PartyReadiness
+            partyIds={party}
+            teamExperience={save.economy.teamExperience}
+            vanEmphasis={emphasis}
+          />
           <div className="actions">
+            <button
+              type="button"
+              disabled={busy}
+              onClick={() => setParty([...STARTER_SPIRIT_IDS])}
+            >
+              Chọn đội khởi đầu
+            </button>
             <button
               type="button"
               disabled={busy || !changed || party.length !== 5}
@@ -182,6 +196,10 @@ export function CollectionPanel({
               Hủy chọn đội
             </button>
           </div>
+          <p>
+            Chọn đội khởi đầu chỉ đổi lựa chọn đang sửa. Bấm Lưu đội hình để áp
+            dụng, hoặc Hủy chọn đội để trở lại đội đã lưu.
+          </p>
         </>
       )}
     </section>

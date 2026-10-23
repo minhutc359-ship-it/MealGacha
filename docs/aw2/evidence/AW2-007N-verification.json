@@ -1,0 +1,303 @@
+{
+  "task": "AW2-007N",
+  "status": "PASS_DEVELOPMENT_SUBSET",
+  "source": "PENDING007N",
+  "base": "e855c8e87e45a3623aed09bd19cfab90ba9ff8d7",
+  "branch": "game/adventure-world-2",
+  "environment": {
+    "os": "Linux x64",
+    "node": "22.23.2",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vitest": "5.0.1",
+    "vite": "8.0.5",
+    "chromium": "153.0.8010.36"
+  },
+  "unit": {
+    "status": "PASS",
+    "targetedCases": 73,
+    "files": 3,
+    "newCases": 17,
+    "failures": 0,
+    "skips": 0,
+    "fullCurrentHead": "NOT_RUN",
+    "reusedFull1401Source": "4165b1e84cbd0181853611b324d85945c8e46001"
+  },
+  "browser": {
+    "status": "PASS",
+    "freshAssertions": 60,
+    "runs": {
+      "source": {
+        "assertions": 30,
+        "checks": [
+          "Read-only initial view grants no save or party guidance",
+          "Before intro there is no starter draft fallback or five-member advice",
+          "Recorded authentic ending restores exact bytes and earned345XP without a grant",
+          "Advisory uses selected five IDs and actual shared level3",
+          "No-tank draft explains an owned starter option and leaves storage/followers intact",
+          "No-healer draft does not count Vân as a dedicated healer",
+          "Protection-heavy draft explains missing dedicated damage while Van stays Hybrid",
+          "Keyboard starter fallback changes draft only and preserves chosen Van emphasis",
+          "Cancel restores saved team and saved emphasis without writes",
+          "Failed explicit fallback save preserves exact bytes and retryable draft",
+          "Retry applies only five owned starters with no extra XP/items/receipts/ending changes",
+          "Saved starter choice and advisory survive byte-identical reload",
+          "320px expanded stats and native fallback stay readable",
+          "390px expanded stats and native fallback stay readable",
+          "768px expanded stats and native fallback stay readable",
+          "Active encounter does not display a terminal result summary",
+          "All five previewed HP/attack/defense values match authentic combat actors",
+          "Earned starter fallback wins real rematch without renderer outcome injection",
+          "win summary reports real surviving allies and actual boss HP",
+          "Win summary rendering itself never writes save/rewards",
+          "Mixed-party auto loss remains authentic with historical story bossDefeated still true",
+          "loss summary reports real surviving allies and actual boss HP",
+          "Loss summary writes no extra progress or rewards",
+          "Stale fallback draft cannot overwrite newer team or rewards",
+          "Reread restores authoritative saved party and advisory together",
+          "retreat summary reports real surviving allies and actual boss HP",
+          "Retreat summary remains read-only",
+          "All changes/real outcomes/returns/reload preserve original earned economy/ownership/ending",
+          "Legacy keys remain byte-identical",
+          "No unexpected guidance console/page/resource errors"
+        ],
+        "outcomes": [
+          {
+            "outcome": "win",
+            "tick": 45,
+            "survivors": 4,
+            "bossHp": 0,
+            "bossMaxHp": 1000
+          },
+          {
+            "outcome": "loss",
+            "tick": 43,
+            "survivors": 0,
+            "bossHp": 200,
+            "bossMaxHp": 1000
+          },
+          {
+            "outcome": "retreat",
+            "tick": 1,
+            "survivors": 5,
+            "bossHp": 1000,
+            "bossMaxHp": 1000
+          }
+        ],
+        "earnedOrigin": {
+          "source": ".asset-work/aw2-007m/source-earned-journey.json",
+          "sha256": "422af0adb3e21cd2f4643b4466229f63caef77d444672500d235129a904603ec",
+          "checkpointSha256": "d08b4bfa7eb38ac38949f5c8fa95b791ca31d466b93dfb8486eb142b634e9ffa",
+          "origin": "Exact authentic ending checkpoint previously earned through native all-quest/mode/boss journey; current flow starts at recorded checkpoint, no fresh complete story claim"
+        },
+        "rawReport": ".asset-work/aw2-007n/source-browser.json",
+        "rawSha256": "e8e5c2725f75fe02a5b430ec7d19745bab0bcc3869e17c7c73cbaf5be6f96e82"
+      },
+      "compiled": {
+        "assertions": 30,
+        "checks": [
+          "Read-only initial view grants no save or party guidance",
+          "Before intro there is no starter draft fallback or five-member advice",
+          "Recorded authentic ending restores exact bytes and earned345XP without a grant",
+          "Advisory uses selected five IDs and actual shared level3",
+          "No-tank draft explains an owned starter option and leaves storage/followers intact",
+          "No-healer draft does not count Vân as a dedicated healer",
+          "Protection-heavy draft explains missing dedicated damage while Van stays Hybrid",
+          "Keyboard starter fallback changes draft only and preserves chosen Van emphasis",
+          "Cancel restores saved team and saved emphasis without writes",
+          "Failed explicit fallback save preserves exact bytes and retryable draft",
+          "Retry applies only five owned starters with no extra XP/items/receipts/ending changes",
+          "Saved starter choice and advisory survive byte-identical reload",
+          "320px expanded stats and native fallback stay readable",
+          "390px expanded stats and native fallback stay readable",
+          "768px expanded stats and native fallback stay readable",
+          "Active encounter does not display a terminal result summary",
+          "All five previewed HP/attack/defense values match authentic combat actors",
+          "Earned starter fallback wins real rematch without renderer outcome injection",
+          "win summary reports real surviving allies and actual boss HP",
+          "Win summary rendering itself never writes save/rewards",
+          "Mixed-party auto loss remains authentic with historical story bossDefeated still true",
+          "loss summary reports real surviving allies and actual boss HP",
+          "Loss summary writes no extra progress or rewards",
+          "Stale fallback draft cannot overwrite newer team or rewards",
+          "Reread restores authoritative saved party and advisory together",
+          "retreat summary reports real surviving allies and actual boss HP",
+          "Retreat summary remains read-only",
+          "All changes/real outcomes/returns/reload preserve original earned economy/ownership/ending",
+          "Legacy keys remain byte-identical",
+          "No unexpected guidance console/page/resource errors"
+        ],
+        "outcomes": [
+          {
+            "outcome": "win",
+            "tick": 45,
+            "survivors": 4,
+            "bossHp": 0,
+            "bossMaxHp": 1000
+          },
+          {
+            "outcome": "loss",
+            "tick": 43,
+            "survivors": 0,
+            "bossHp": 200,
+            "bossMaxHp": 1000
+          },
+          {
+            "outcome": "retreat",
+            "tick": 1,
+            "survivors": 5,
+            "bossHp": 1000,
+            "bossMaxHp": 1000
+          }
+        ],
+        "earnedOrigin": {
+          "source": ".asset-work/aw2-007m/compiled-earned-journey.json",
+          "sha256": "5bf8a513520df381bd36b9ce1e9fa21491ab17f7d0d7ed52cc5d1a606e71b924",
+          "checkpointSha256": "484cf0be4fa540d48c4a14f81d5e1a63038bf56ef40271c0e6d65b60c6e02c9f",
+          "origin": "Exact authentic ending checkpoint previously earned through native all-quest/mode/boss journey; current flow starts at recorded checkpoint, no fresh complete story claim"
+        },
+        "rawReport": ".asset-work/aw2-007n/compiled-browser.json",
+        "rawSha256": "50179e80c2ec0400520f315ead84539574304fe3ab8bd7f029ff28fb87034370"
+      }
+    },
+    "scope": "New native guidance/real-rematch flows from exact previously earned007M ending checkpoints, not a fresh full-story run",
+    "repeatBoundary": "Final TSX-only stat line readability refinement repeated affected30+30 browser and dev type/review build. Final reports replace initial PASS reports, no doubled count."
+  },
+  "simulation": {
+    "status": "PASS",
+    "runs": 96,
+    "summary": [
+      {
+        "xp": 205,
+        "policy": "auto",
+        "wins": 3,
+        "losses": 13,
+        "draws": 0
+      },
+      {
+        "xp": 205,
+        "policy": "ready-after-five",
+        "wins": 6,
+        "losses": 10,
+        "draws": 0
+      },
+      {
+        "xp": 205,
+        "policy": "counterplay",
+        "wins": 7,
+        "losses": 9,
+        "draws": 0
+      },
+      {
+        "xp": 345,
+        "policy": "auto",
+        "wins": 4,
+        "losses": 12,
+        "draws": 0
+      },
+      {
+        "xp": 345,
+        "policy": "ready-after-five",
+        "wins": 11,
+        "losses": 5,
+        "draws": 0
+      },
+      {
+        "xp": 345,
+        "policy": "counterplay",
+        "wins": 12,
+        "losses": 4,
+        "draws": 0
+      }
+    ],
+    "compactReport": "AW2-007N-balance-summary.json",
+    "rawReport": ".asset-work/aw2-007n/balance.json",
+    "rawSha256": "a36c12d5269d3141807bc2a24df9e44eaa2c251189d83d3f8fe11a6dd19cd4de",
+    "eventContinuity": "PASS",
+    "maxRetainedEvents": 381,
+    "limits": [
+      "Predeclared deterministic development fixture matrix at earned XP amounts, not96human playtests or a random win-rate estimate",
+      "All kit stats/rules/save/rewards unchanged; policies are legal timing examples, not optimal play",
+      "Every command/unique event retained; hit amounts are HP damage, heal amounts actual restored HP, shield amounts granted protection (not absorbed damage)"
+    ]
+  },
+  "checks": {
+    "rootTypes": "PASS",
+    "finalDevTypes": "PASS",
+    "reviewBuild": {
+      "status": "PASS_FRESH",
+      "files": 197,
+      "bytes": 76447235
+    },
+    "stableBuild": {
+      "status": "PASS_REUSED_BUILD_FRESH_SCAN",
+      "source": "4165b1e84cbd0181853611b324d85945c8e46001",
+      "files": 851,
+      "bytes": 177450422,
+      "textScans": 49
+    },
+    "formatSyntaxWhitespaceLinksJson": "PASS",
+    "reactReview": "PASS in-session; hooks unchanged, advisory derived, native disabled/busy/focus controls retained, no extra listeners/effects/dependencies"
+  },
+  "reuse": {
+    "path": "AW2-007N-reused-evidence.json",
+    "unchangedTrackedPaths": 309,
+    "source": "4165b1e84cbd0181853611b324d85945c8e46001",
+    "historicalCountsAdded": false
+  },
+  "verifiedArtifactHashes": [
+    {
+      "path": "src/aw2/collection/readiness.ts",
+      "sha256": "eee58e1c9fa4897b50c2171feb9b7de109ba9f3308c5b0fc9c69681c357ff806"
+    },
+    {
+      "path": "dev/aw2/PartyReadiness.tsx",
+      "sha256": "4d5be4892643f972e9df3d0fb348f26a255922d5da33ae063d84bd6d27f8cad3"
+    },
+    {
+      "path": "dev/aw2/CollectionPanel.tsx",
+      "sha256": "d4e01c762b89f8f53191e03928638766f99cd2a0c0d77aefc9e64b2b6b888d5a"
+    },
+    {
+      "path": "dev/aw2/WorldBattle.tsx",
+      "sha256": "a6ae6becf87738ed520657964bc26144a6709ae2abe27a6b243a1f25e8998a23"
+    },
+    {
+      "path": "dev/tests/aw2/party-readiness.test.ts",
+      "sha256": "92a0bdf34c4eaffd27290cacfa795ebca86c271b267ffbaa4d82c28d2a599ee5"
+    },
+    {
+      "path": "dev/tools/aw2-party-balance-cases.mjs",
+      "sha256": "411548c4f9403089e8b9acb4a08fe752bbf563c1d7aaaa85eb2ad84d56e1f3d8"
+    },
+    {
+      "path": "dev/tools/measure-aw2-party-balance.mjs",
+      "sha256": "176a0ad2c24dda80bc8e0abd18c92d346268c2009f75ffe5b02aff7f7d6bb6a8"
+    },
+    {
+      "path": "dev/tools/verify-aw2-party-guidance.mjs",
+      "sha256": "4953cec0ce2868486ac40ee1ec09080bc81a010061f761c04c7a048c1441dfe7"
+    },
+    {
+      "path": "dev/tools/verify-aw2-demo.mjs",
+      "sha256": "db883eb39586360ab6dfbf9562c4761c6de11c57283a155a7bf06039e490bf61"
+    }
+  ],
+  "notRun": [
+    "Independent full-route human acceptance",
+    "Final balance acceptance",
+    "Full-character art/animation/listening",
+    "Physical device/FPS/memory/offline/native/production-save/rights/release"
+  ],
+  "progress": {
+    "demo": 90,
+    "productEstimate": 40,
+    "productRange": [
+      35,
+      45
+    ],
+    "fullCharacterDoD": 0,
+    "pointsGranted": 0,
+    "reason": "Measured/advisory slice improves existing development group; no independent/product gate closed."
+  }
+}

@@ -898,6 +898,7 @@ try {
         errors,
         modes,
         bossTick,
+        checkpointRaw: await raw(),
         final: {
           experience: done.economy.teamExperience,
           receipts: done.economy.receipts,

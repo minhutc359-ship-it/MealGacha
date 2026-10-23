@@ -226,6 +226,34 @@ export function WorldBattle({
       </section>
       {audio.error && <p role="status">{audio.error}</p>}
       {finished && (
+        <section
+          aria-label="Kết quả lượt đấu này"
+          data-testid="battle-outcome-summary"
+        >
+          <h2>Kết quả lượt đấu này</h2>
+          <p data-testid="battle-survivors">
+            Đồng đội còn đứng:{" "}
+            {
+              battle.actors.filter(
+                (actor) => actor.side === "player" && actor.hp > 0,
+              ).length
+            }
+            /5
+          </p>
+          {battle.actors
+            .filter((actor) => actor.id === KITCHEN_BOSS_ID)
+            .map((boss) => (
+              <p key={boss.id} data-testid="battle-boss-hp">
+                Máu boss còn lại: {boss.hp}/{boss.maxHp}
+              </p>
+            ))}
+          <p>
+            Sau khi trở về, mở Đội và túi đồ để xem vai trò, chỉ số hoặc chọn
+            đội khởi đầu rồi lưu cho trận mới.
+          </p>
+        </section>
+      )}
+      {finished && (
         <button type="button" disabled={busy} onClick={onFinish}>
           Lưu kết quả và trở về
         </button>

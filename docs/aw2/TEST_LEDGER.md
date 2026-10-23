@@ -1,6 +1,14 @@
 # Test ledger / change impact
 
-## AW2-007M current verified scope
+## AW2-007N current verified scope
+
+Source `PENDING007N`, base `e855c8e87e45a3623aed09bd19cfab90ba9ff8d7`. PASS73targeted tests/3files =17new readiness+47collection+9rematch,0fail/skip. Exact seed-stat parity for all12kits at8XP points; canonical roles/Van emphasis/Mộc distinction, strict bad/duplicate/enemy selection, invalid XP, detached/nonmutating advisory. Full current-head suite NOT_RUN; original1401PASS from4165b1e retains unchanged boundary only, not counted fresh. No combat/save/world/economy/mode authority changes.
+
+PASS60final browser assertions=30source+30compiled from exact historical earned ending raw; no new full-story claim. Native role hints/stat preview, draft-only starter fallback/cancel/failed write/retry/save/reload,320/390/768px/keyboard, actual actor-stat parity, real win/loss/retreat summaries and no writes on render, stale-tab prevention/legacy/economy/ownership/ending invariants. PASS96fixture runs=16predeclared teams×205/345XP×3legal policies; every command/event (continuous serials, max381), per-tick replay/one terminal/authentic locked settlement/no reward retained. Outcomes are not random win rates or final balance acceptance. Root types/final dev types/review build/style/syntax/JSON/links/fresh49text stable isolation PASS. Stable build and deep art/engine/save/mode evidence reused at original source/hash scope309paths; no original count added. Final UI-only stat line refinement reran affected browser/type/build checks, final30+30replace initial30+30, no double count. Source+compiled captures opened. [Evidence](evidence/AW2-007N.md), [JSON](evidence/AW2-007N-verification.json), [all96summary](evidence/AW2-007N-balance-summary.json).
+
+PARTY-READINESS-01/COLLECTION-01/BATTLE-REMATCH-01 development subset PASS; independent full-route/player/balance/full-character/listening/physical device/FPS/offline/native/rights/production-save/release NOT_RUN/OPEN. Demo90%/product≈40% unchanged,0fullDoD. Next006B world/environment scope; full regression on next shared engine/save/world authority changes and release.
+
+## AW2-007M historical verified scope
 
 Source `4165b1e84cbd0181853611b324d85945c8e46001`, base `e658c97b9df52540445369e649f48da3a3e6a3ba`. PASS full1401tests/115files (9new rematch,1392existing),0fail/skip, one full final-runtime run; initial focused7PASS/2fixtureFAIL excluded, no overlap sum. PASS282fresh browser assertions =110source+110compiled earned complete journeys/rematch,29save/25RPG/8build.130private-controller simulations:5levels(1/3/5/10/20)×13party configurations×auto/ultimate;83player-win/47enemy-win, every-tick JSON replay/finite values/authentic terminal settlement/nonspatial invariants. Both types/review+stable builds/releaseguard/isolation/style/syntax PASS. Source and compiled rematch captures inspected. Each browser report composes79passed earned-journey checks from the initial attempt with the corrected hook continued from its exact authentic saved checkpoint; no single uninterrupted final full-browser run claimed.
 
