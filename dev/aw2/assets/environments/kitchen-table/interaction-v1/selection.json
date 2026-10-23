@@ -1,0 +1,15 @@
+{
+  "builtInCalls": 2,
+  "selected": [
+    {
+      "id": "note",
+      "generatedFile": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-375b04b5-b6be-47eb-82c5-134cc85ab9f0.png"
+    },
+    {
+      "id": "threshold",
+      "generatedFile": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-8bd8f42c-ea67-499e-a4e9-b9b4a617a372.png"
+    }
+  ],
+  "rejected": [],
+  "inspection": "Original blank folded note and empty bowl, woven mat, no visible glyph/person/door; measured near-opaque alpha254 is preserved, not normalized. Slight ambient glow/edge translucency retained."
+}

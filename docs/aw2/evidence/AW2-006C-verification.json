@@ -1,0 +1,263 @@
+{
+  "task": "AW2-006C",
+  "status": "PASS_DEVELOPMENT_SUBSET",
+  "source": "PENDING006C",
+  "base": "171ccd04efe7b5edc894a32ff5db14e15d54a111",
+  "branch": "game/adventure-world-2",
+  "environment": {
+    "os": "Linux x64",
+    "node": "22.23.2",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vitest": "5.0.1",
+    "vite": "8.0.5",
+    "chromium": "153.0.8010.36"
+  },
+  "unit": {
+    "status": "PASS",
+    "uniqueCases": 30,
+    "files": 3,
+    "newCases": 8,
+    "failures": 0,
+    "skips": 0,
+    "fullCurrentHead": "NOT_RUN"
+  },
+  "browser": {
+    "status": "PASS",
+    "assertionInstances": 102,
+    "runs": {
+      "source": {
+        "task": "AW2-006C",
+        "status": "PASS",
+        "flavor": "source",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Exact earned checkpoint restore/render preserves bytes",
+          "Three actual sprites use canonical anchors, own textures and flat depth below all actors",
+          "Authored room loads actual floor/foreground/static boss reference after earned quest3",
+          "Pre-win note remains locked and completed shortcut is visibly disabled",
+          "Keyboard waypoint walks to canonical note and restores map focus without interacting or writing",
+          "Arriving at note cannot bypass authentic boss victory",
+          "320px authored room waypoint controls fit and meet44px targets",
+          "390px authored room waypoint controls fit and meet44px targets",
+          "768px authored room waypoint controls fit and meet44px targets",
+          "Room follower group1 loads selected original world atlases",
+          "Group1 overlapping character behind prop remains visible through faded furniture",
+          "Group1 front character sorts in front of prop using actual ground depth",
+          "Group1 foreground restores full opacity after all followers clear it",
+          "Room follower group2 loads selected original world atlases",
+          "Group2 overlapping character behind prop remains visible through faded furniture",
+          "Group2 front character sorts in front of prop using actual ground depth",
+          "Group2 foreground restores full opacity after all followers clear it",
+          "Room follower group3 loads selected original world atlases",
+          "Group3 overlapping character behind prop remains visible through faded furniture",
+          "Group3 front character sorts in front of prop using actual ground depth",
+          "Group3 foreground restores full opacity after all followers clear it",
+          "Authored room exercised all12 original follower identities",
+          "Explicit team trials preserve exact earned economy, recruits and story flags",
+          "West waypoint walks without travelling, granting or saving",
+          "Leaving authored room preserves the other zone debug renderer",
+          "Actual reciprocal west/east travel restores authored scene without rewards",
+          "Boss waypoint arrival does not auto-start fight or claim victory",
+          "Flat prop rendering/walking leaves earned economy unchanged",
+          "Real earned205XP team wins actual boss before note unlock",
+          "Native real boss victory updates room/note status without rebuilding or fabricating quest",
+          "Actual win changes note sprite opacity/state while shortcut remains locked",
+          "Native note read updates authored-room waypoint from actual saved flag",
+          "Reload preserves native note-read state and exact bytes",
+          "Win/read add no economy grants",
+          "Exact earned checkpoint restore/render preserves bytes",
+          "Authentic completed ending lights actual shortcut sprite",
+          "320px labels stay below complete prop bounds and native controls fit",
+          "390px labels stay below complete prop bounds and native controls fit",
+          "768px labels stay below complete prop bounds and native controls fit",
+          "Native shortcut leaves authored room for unchanged Sân renderer",
+          "Reciprocal shortcut restores three props and ending/rewards",
+          "Real rematch retreat restores current authored props without reward/ending changes",
+          "Completed scene reload keeps exact settled bytes",
+          "No unexpected page/console errors before deliberate asset faults",
+          "Missing note fails visibly with all waypoints disabled",
+          "Missing note preserves exact save bytes",
+          "Recovered note restores props without writes/new errors",
+          "Missing threshold fails visibly with all waypoints disabled",
+          "Missing threshold preserves exact save bytes",
+          "Recovered threshold restores props without writes/new errors",
+          "Seeded legacy bytes preserved across all native scene operations"
+        ],
+        "errors": [],
+        "expectedErrors": [],
+        "origins": [
+          {
+            "path": ".asset-work/aw2-006b/failed-visibility/source-demo.json",
+            "sha256": "c92dbf0a1a441d4b25734cb4ef531ea89d4c195d2d61c06b640a5031715dbb6e",
+            "checkpointSha256": "726a0f1073b17f3c116fa0ddda4c2b054b6266f6645f4d332be40f83f56c2df1",
+            "questIndex": 3
+          },
+          {
+            "path": ".asset-work/aw2-006b/source-demo.json",
+            "sha256": "2b05e26e05a1b3452bc22b2ce285c896d00b387e9d7a71faf48effd4a7a1f4f3",
+            "checkpointSha256": "d9b2a8046781fece4d3b933a42f76570161c9f09eac90a38870fdf1d1c684d1b",
+            "questIndex": 4
+          }
+        ],
+        "checkpointRaw": "{\"gameId\":\"adventure-world-2\",\"environment\":\"development\",\"schemaVersion\":5,\"saveId\":\"e03ff424-71db-46e7-855e-cd89494c2f14\",\"revision\":85,\"createdAt\":\"2026-10-23T08:35:49.230Z\",\"updatedAt\":\"2026-10-23T09:01:53.891Z\",\"progress\":{\"zoneId\":\"aw2-zone-kitchen-table\",\"x\":96,\"y\":192,\"facing\":\"right\",\"questIndex\":4,\"accepted\":false,\"tableRead\":true,\"memories\":[\"aw2-event-memory-bowl\",\"aw2-event-memory-vendor\",\"aw2-event-memory-chair\"],\"threadChoice\":\"wait\",\"hintRead\":true,\"puzzleStep\":3,\"partyIds\":[\"aw2-hai\",\"aw2-nhien\",\"aw2-moc\",\"aw2-lien\",\"aw2-van\"],\"bossDefeated\":true,\"tableNoteRead\":true,\"endingChoice\":\"wait\"},\"economy\":{\"tuningId\":\"aw2-economy-development-v1\",\"inventory\":{\"rice\":8,\"herbs\":7,\"broth\":5,\"warm-bowl\":0},\"teamExperience\":345,\"receipts\":[\"aw2-grant-kept-seat\",\"aw2-grant-three-memories\",\"aw2-grant-chest-pantry\",\"aw2-grant-open-hearth\",\"aw2-grant-one-more-bowl\"],\"cooked\":1,\"shared\":1},\"collection\":{\"recruitedIds\":[\"aw2-muoi\",\"aw2-nhien\",\"aw2-hai\",\"aw2-lien\",\"aw2-moc\",\"aw2-bach\",\"aw2-van\"],\"vanEmphasis\":\"protection\"}}",
+        "scope": "Focused native scene/boss/note/return/rematch checks from exact006B earned checkpoints, not a fresh full-story run"
+      },
+      "compiled": {
+        "task": "AW2-006C",
+        "status": "PASS",
+        "flavor": "compiled",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Exact earned checkpoint restore/render preserves bytes",
+          "Three actual sprites use canonical anchors, own textures and flat depth below all actors",
+          "Authored room loads actual floor/foreground/static boss reference after earned quest3",
+          "Pre-win note remains locked and completed shortcut is visibly disabled",
+          "Keyboard waypoint walks to canonical note and restores map focus without interacting or writing",
+          "Arriving at note cannot bypass authentic boss victory",
+          "320px authored room waypoint controls fit and meet44px targets",
+          "390px authored room waypoint controls fit and meet44px targets",
+          "768px authored room waypoint controls fit and meet44px targets",
+          "Room follower group1 loads selected original world atlases",
+          "Group1 overlapping character behind prop remains visible through faded furniture",
+          "Group1 front character sorts in front of prop using actual ground depth",
+          "Group1 foreground restores full opacity after all followers clear it",
+          "Room follower group2 loads selected original world atlases",
+          "Group2 overlapping character behind prop remains visible through faded furniture",
+          "Group2 front character sorts in front of prop using actual ground depth",
+          "Group2 foreground restores full opacity after all followers clear it",
+          "Room follower group3 loads selected original world atlases",
+          "Group3 overlapping character behind prop remains visible through faded furniture",
+          "Group3 front character sorts in front of prop using actual ground depth",
+          "Group3 foreground restores full opacity after all followers clear it",
+          "Authored room exercised all12 original follower identities",
+          "Explicit team trials preserve exact earned economy, recruits and story flags",
+          "West waypoint walks without travelling, granting or saving",
+          "Leaving authored room preserves the other zone debug renderer",
+          "Actual reciprocal west/east travel restores authored scene without rewards",
+          "Boss waypoint arrival does not auto-start fight or claim victory",
+          "Flat prop rendering/walking leaves earned economy unchanged",
+          "Real earned205XP team wins actual boss before note unlock",
+          "Native real boss victory updates room/note status without rebuilding or fabricating quest",
+          "Actual win changes note sprite opacity/state while shortcut remains locked",
+          "Native note read updates authored-room waypoint from actual saved flag",
+          "Reload preserves native note-read state and exact bytes",
+          "Win/read add no economy grants",
+          "Exact earned checkpoint restore/render preserves bytes",
+          "Authentic completed ending lights actual shortcut sprite",
+          "320px labels stay below complete prop bounds and native controls fit",
+          "390px labels stay below complete prop bounds and native controls fit",
+          "768px labels stay below complete prop bounds and native controls fit",
+          "Native shortcut leaves authored room for unchanged Sân renderer",
+          "Reciprocal shortcut restores three props and ending/rewards",
+          "Real rematch retreat restores current authored props without reward/ending changes",
+          "Completed scene reload keeps exact settled bytes",
+          "No unexpected page/console errors before deliberate asset faults",
+          "Missing note fails visibly with all waypoints disabled",
+          "Missing note preserves exact save bytes",
+          "Recovered note restores props without writes/new errors",
+          "Missing threshold fails visibly with all waypoints disabled",
+          "Missing threshold preserves exact save bytes",
+          "Recovered threshold restores props without writes/new errors",
+          "Seeded legacy bytes preserved across all native scene operations"
+        ],
+        "errors": [],
+        "expectedErrors": [],
+        "origins": [
+          {
+            "path": ".asset-work/aw2-006b/failed-visibility/compiled-demo.json",
+            "sha256": "f4e0a83c3573d81d48807bf9c4d8dc83e905b706a1431cd6f43a1cdf5623106c",
+            "checkpointSha256": "d77b36e74ce0c1558d81fce04963e9081648a49805b43813c5768a19d6eb4fec",
+            "questIndex": 3
+          },
+          {
+            "path": ".asset-work/aw2-006b/compiled-demo.json",
+            "sha256": "6e30a2128ee5e701c0218cab5422051ebc9c818aa09ae504ba07478fcce516e3",
+            "checkpointSha256": "c8196fc29da8e3b97f6c48c97d4901fa20021f957b848a47675639d53bf27c34",
+            "questIndex": 4
+          }
+        ],
+        "checkpointRaw": "{\"gameId\":\"adventure-world-2\",\"environment\":\"development\",\"schemaVersion\":5,\"saveId\":\"0c8a0f0e-6e21-4af8-a599-dc4d838db34c\",\"revision\":85,\"createdAt\":\"2026-10-23T08:35:48.087Z\",\"updatedAt\":\"2026-10-23T09:01:53.003Z\",\"progress\":{\"zoneId\":\"aw2-zone-kitchen-table\",\"x\":96,\"y\":192,\"facing\":\"right\",\"questIndex\":4,\"accepted\":false,\"tableRead\":true,\"memories\":[\"aw2-event-memory-bowl\",\"aw2-event-memory-vendor\",\"aw2-event-memory-chair\"],\"threadChoice\":\"wait\",\"hintRead\":true,\"puzzleStep\":3,\"partyIds\":[\"aw2-hai\",\"aw2-nhien\",\"aw2-moc\",\"aw2-lien\",\"aw2-van\"],\"bossDefeated\":true,\"tableNoteRead\":true,\"endingChoice\":\"wait\"},\"economy\":{\"tuningId\":\"aw2-economy-development-v1\",\"inventory\":{\"rice\":8,\"herbs\":7,\"broth\":5,\"warm-bowl\":0},\"teamExperience\":345,\"receipts\":[\"aw2-grant-kept-seat\",\"aw2-grant-three-memories\",\"aw2-grant-chest-pantry\",\"aw2-grant-open-hearth\",\"aw2-grant-one-more-bowl\"],\"cooked\":1,\"shared\":1},\"collection\":{\"recruitedIds\":[\"aw2-muoi\",\"aw2-nhien\",\"aw2-hai\",\"aw2-lien\",\"aw2-moc\",\"aw2-bach\",\"aw2-van\"],\"vanEmphasis\":\"protection\"}}",
+        "scope": "Focused native scene/boss/note/return/rematch checks from exact006B earned checkpoints, not a fresh full-story run"
+      }
+    },
+    "freshFullStory": false,
+    "failedAttemptsExcluded": true
+  },
+  "assetAudit": {
+    "task": "AW2-006C",
+    "status": "PASS",
+    "assets": [
+      {
+        "id": "note",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "alpha": [
+          0,
+          254
+        ],
+        "frameEdgeAlpha": 1,
+        "runtimeBytes": 609550,
+        "decodedRgbaBytes": 6291456,
+        "exactRgba": "PASS"
+      },
+      {
+        "id": "threshold",
+        "dimensions": [
+          1536,
+          1024
+        ],
+        "alpha": [
+          0,
+          254
+        ],
+        "frameEdgeAlpha": 1,
+        "runtimeBytes": 927068,
+        "decodedRgbaBytes": 6291456,
+        "exactRgba": "PASS"
+      }
+    ],
+    "repeatHashes": {
+      "src/aw2/assets/kitchen-table.interactions-v1.json": "4eea2ce06e6eaa9ec0278430c68749c42f0e2c70b9ade62d927892ecd5ccd089",
+      "dev/aw2/assets/environments/kitchen-table/interaction-v1/provenance.json": "d132976220814f3611384a77ee997ed07324c74ff87aa7200d9d42c328ab64b0",
+      "dev/aw2/assets/environments/kitchen-table/interaction-v1/note-source.png": "c8631b1d9bddbf76d284f8294eca0828955917039f3a720cc6a21b248f08631c",
+      "dev/aw2/assets/environments/kitchen-table/interaction-v1/note.webp": "e774cf7a7fd7aeb9af07e315b36e7ef2f5d7165a92a5bb2a9710cd0ab8047cfc",
+      "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png": "ecb379f438637c2dd66b3bfec67a6cafab5ace9b137b365091f1986747ddaf1d",
+      "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5"
+    },
+    "runtimeBytes": 1536618,
+    "decodedRgbaBytes": 12582912
+  },
+  "types": {
+    "root": "PASS",
+    "finalDev": "PASS"
+  },
+  "reviewBuild": {
+    "files": 206,
+    "bytes": 80463227,
+    "sourceAssetsExcluded": true,
+    "newWebpParity": "PASS"
+  },
+  "stableIsolation": {
+    "files": 851,
+    "bytes": 177450422,
+    "freshTextScans": 49,
+    "aw2Excluded": true
+  },
+  "unchangedHashProof": "AW2-006C-reused-evidence.json",
+  "unchangedTrackedPaths": 381,
+  "testedRuntimeSha256": {
+    "dev/aw2/WorldCanvas.tsx": "343c96bced0db8738a70c8d899386bfcf4f75223d56029ea1ad9d0037f1a06b5",
+    "src/aw2/assets/tableInteractions.ts": "a77c9fac0b3d634d51e225f745b6db7792c1ad5e3f0a32d1b01d7411e0e1ed6d",
+    "src/aw2/assets/kitchen-table.interactions-v1.json": "4eea2ce06e6eaa9ec0278430c68749c42f0e2c70b9ade62d927892ecd5ccd089"
+  },
+  "visualReview": "Selected generated images and final source/compiled desktop/mobile/follower captures opened in-session; no independent/device acceptance",
+  "limits": [
+    "Other5zones debug; boss static HD idle, no complete world4dir/motion",
+    "Full-room/character/art/audio/listening/player/physical-device/FPS/memory/offline/native/rights/production-save/release OPEN",
+    "Demo90/product40(35-45)/12reference/0fullDoD unchanged"
+  ],
+  "next": "AW2-006D"
+}

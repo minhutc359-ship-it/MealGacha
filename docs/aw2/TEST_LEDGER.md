@@ -1,6 +1,14 @@
 # Test ledger / change impact
 
-## AW2-006B current verified scope
+## AW2-006C current verified scope
+
+Source `PENDING006C`, base `171ccd04efe7b5edc894a32ff5db14e15d54a111`. PASS30cases/3files=8new interaction-prop+10room+12controls,0fail/skip. Actual PNG/WebP hashes/frame/aspect/budget/rights, three map-sourced anchors/layer/label clearance, read-only live locked/won/read/completed state, real path/controls. Full current-head NOT_RUN; shared store/schema/collision/combat/world/economy/collection/mode authority unchanged.
+
+PASS102focused browser assertions=51source+51compiled from exact006Bearned quest3/completed checkpoints, origin/raw hashes recorded. All12atlases/furniture visibility retained through fresh room integration; native keyboard/touch/pre-win note denial/real boss win/note read/reload, west travel/shortcut/rematch retreat/ending-reward preservation,320/390/768actual label clearance and native44px controls. Each new asset deliberately404→visible error/disabled controls/exact byte preservation→resource recovery/reload/no writes/no new errors, expected404errors separated. Final runs replace initial failures; no failed/double counts or fresh full-story claim. Both types/final review206files/80,463,227bytes/asset parity/format/syntax/AST/JSON/doc links/whitespace/fresh49text stable exclusion PASS.381unchanged hashes retain original006Bfull earned quest/modes/both endings/stale/failed writes and1401pure regression at4165b1e within boundaries; stable851files build reused, no historical totals added. First lifecycleTypeError fixed by old-zone ticker guard; QA status wait and label clearance corrected before final source+compiled rerun. [Evidence](evidence/AW2-006C.md), [JSON](evidence/AW2-006C-verification.json), [reuse](evidence/AW2-006C-reused-evidence.json).
+
+WORLD-PROPS-01/WORLD-SCENE-01/CONTROL-01 development subset PASS. In-session visual/React review only; full environment/world boss4dir/motion/full-character/listening/independent player/device/FPS/memory/offline/native/rights/production-save/release OPEN. Demo90%/product≈40%/0fullDoD unchanged. Next006D; full regression if shared authority/collision changes or release.
+
+## AW2-006B historical verified scope
 
 Source `425aa16d94ea51decf7f43afb5986b13ad126dfc`, base `87aa38c2e79ba11adb1508b78b83370c089b3984`, branch `game/adventure-world-2`. PASS113unique affected cases/6files:74world/collection/rematch retained from first in-session invocation +22final room/controls +17readiness. Initial84had80PASS/4fixtureFAIL; final10room replace all initial10, not an overlapping80+22+17 sum. Nonexistent navigation.test.ts argument ran no cases; actual controls12 and room path checks passed. Full current-head NOT_RUN;1401full units remain historical source4165b1e on unchanged pure boundaries only.
 

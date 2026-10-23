@@ -13,6 +13,10 @@ import {
 import { FORGOTTEN_HOST_ASSETS } from "../../src/aw2/assets/forgottenHost"
 import { RoomWaypoints } from "./RoomWaypoints"
 import type { Waypoint } from "../../src/aw2/world/navigation"
+import {
+  TABLE_ROOM_INTERACTIONS,
+  tableRoomInteractionProps,
+} from "../../src/aw2/assets/tableInteractions"
 
 export function WorldCanvas({
   world,
@@ -38,6 +42,7 @@ export function WorldCanvas({
   const scene =
     world.zoneId === TABLE_ROOM_SCENE.zoneId ? TABLE_ROOM_SCENE : null
   const roomPoints = tableRoomWaypoints(world)
+  const interactionProps = tableRoomInteractionProps(world)
   useEffect(() => {
     let disposed = false
     let app: Application | undefined
@@ -57,6 +62,8 @@ export function WorldCanvas({
                 Assets.load(scene.assets.floor.url),
                 Assets.load(scene.assets.sideboard.url),
                 Assets.load(FORGOTTEN_HOST_ASSETS.assets.battle.url),
+                Assets.load(TABLE_ROOM_INTERACTIONS.assets.note.url),
+                Assets.load(TABLE_ROOM_INTERACTIONS.assets.threshold.url),
               ])
             : Promise.resolve([]),
         ])
@@ -118,7 +125,7 @@ export function WorldCanvas({
           }
         }
         for (const object of zoneById(world.zoneId).objects) {
-          if (scene && object.id === KITCHEN_BOSS_ID) continue
+          if (scene) continue
           if (object.kind === "exit")
             terrain.rect(object.x - 10, object.y - 16, 20, 32).fill(0xe4c782)
           else if (object.kind === "chest")
@@ -148,7 +155,32 @@ export function WorldCanvas({
         next.stage.addChild(terrain)
         let foreground: import("pixi.js").Sprite | undefined
         let bossMarker: import("pixi.js").Sprite | undefined
+        const groundProps: {
+          entityId: string
+          sprite: import("pixi.js").Sprite
+        }[] = []
         if (scene) {
+          for (const prop of interactionProps) {
+            const asset =
+              TABLE_ROOM_INTERACTIONS.assets[
+                prop.asset as keyof typeof TABLE_ROOM_INTERACTIONS.assets
+              ]
+            const f = asset.frame
+            const texture = new Texture({
+              source: environment[prop.asset === "note" ? 3 : 4].source,
+              frame: new Rectangle(f.x, f.y, f.width, f.height),
+            })
+            textures.push(texture)
+            const sprite = new Sprite(texture)
+            sprite.anchor.set(prop.anchorX, prop.anchorY)
+            sprite.position.set(prop.x, prop.y)
+            sprite.width = prop.width
+            sprite.height = prop.height
+            sprite.zIndex = prop.depth
+            sprite.alpha = prop.alpha
+            next.stage.addChild(sprite)
+            groundProps.push({ entityId: prop.entityId, sprite })
+          }
           const frame = scene.assets.sideboard.frame
           const texture = new Texture({
             source: environment[1].source,
@@ -209,6 +241,8 @@ export function WorldCanvas({
         next.stage.sortableChildren = true
         next.ticker.add((ticker) => {
           const now = position.current
+          // React may publish the destination before effect cleanup destroys this canvas.
+          if (now.zoneId !== world.zoneId) return
           const moving =
             Math.hypot(now.x - prior.x, now.y - prior.y) > 0.05 &&
             !pauseRef.current
@@ -279,6 +313,34 @@ export function WorldCanvas({
           if (bossMarker)
             bossMarker.alpha =
               now.questIndex === 4 ? 1 : now.bossDefeated ? 0.6 : 1
+          if (groundProps.length) {
+            const props = tableRoomInteractionProps(now)
+            for (const { entityId, sprite } of groundProps)
+              sprite.alpha = props.find(
+                (prop) => prop.entityId === entityId,
+              )!.alpha
+            next.canvas.dataset.interactionProps = JSON.stringify(
+              props.map((prop) => {
+                const sprite = groundProps.find(
+                  (p) => p.entityId === prop.entityId,
+                )!.sprite
+                return {
+                  entityId: prop.entityId,
+                  state: prop.state,
+                  x: sprite.x,
+                  y: sprite.y,
+                  alpha: sprite.alpha,
+                  depth: sprite.zIndex,
+                  width: sprite.width,
+                  height: sprite.height,
+                  textureId:
+                    TABLE_ROOM_INTERACTIONS.assets[
+                      prop.asset as keyof typeof TABLE_ROOM_INTERACTIONS.assets
+                    ].id,
+                }
+              }),
+            )
+          }
           prior = { ...now }
         })
         next.canvas.setAttribute("aria-hidden", "true")
@@ -340,8 +402,13 @@ export function WorldCanvas({
             key={object.id}
             className="aw2-world-label"
             style={{
+              transform: interactionProps.some(
+                (prop) => prop.entityId === object.id,
+              )
+                ? "translate(-50%, 0)"
+                : undefined,
               left: `${Math.max(12, Math.min(88, object.x / 6.4))}%`,
-              top: `${(object.y + (scene ? 14 : 0)) / 3.84}%`,
+              top: `${(object.y + (interactionProps.find((prop) => prop.entityId === object.id)?.labelOffsetY ?? (scene ? 14 : 0))) / 3.84}%`,
             }}
           >
             {scene

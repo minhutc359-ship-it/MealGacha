@@ -1,0 +1,76 @@
+{
+  "task": "AW2-006C",
+  "id": "aw2-environment-kitchen-table-interactions-v1",
+  "generator": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-23",
+    "prompts": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/prompts.json",
+    "externalReferences": [],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "processing": "Selected source PNGs unchanged; lossless exact RGBA WebP; alpha>8 bounds with4px padding; uniform logical scale. No painting/masking/mirroring/resizing.",
+    "builder": "dev/tools/build-aw2-table-interactions.py",
+    "pillow": "10.2.0"
+  },
+  "selection": {
+    "builtInCalls": 2,
+    "selected": [
+      {
+        "id": "note",
+        "generatedFile": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-375b04b5-b6be-47eb-82c5-134cc85ab9f0.png"
+      },
+      {
+        "id": "threshold",
+        "generatedFile": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-8bd8f42c-ea67-499e-a4e9-b9b4a617a372.png"
+      }
+    ],
+    "rejected": [],
+    "inspection": "Original blank folded note and empty bowl, woven mat, no visible glyph/person/door; measured near-opaque alpha254 is preserved, not normalized. Slight ambient glow/edge translucency retained."
+  },
+  "assets": {
+    "note": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:note",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/note.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 609550,
+      "sha256": "e774cf7a7fd7aeb9af07e315b36e7ef2f5d7165a92a5bb2a9710cd0ab8047cfc",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/note-source.png",
+        "bytes": 923171,
+        "sha256": "c8631b1d9bddbf76d284f8294eca0828955917039f3a720cc6a21b248f08631c"
+      },
+      "frame": {
+        "x": 410,
+        "y": 259,
+        "width": 715,
+        "height": 515
+      }
+    },
+    "threshold": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:threshold",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 927068,
+      "sha256": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png",
+        "bytes": 1370491,
+        "sha256": "ecb379f438637c2dd66b3bfec67a6cafab5ace9b137b365091f1986747ddaf1d"
+      },
+      "frame": {
+        "x": 300,
+        "y": 231,
+        "width": 936,
+        "height": 564
+      }
+    }
+  },
+  "limits": [
+    "Flat props do not change collision or authorize actions.",
+    "Same unchanged woven mat reused for two exits; labels own destination/lock status.",
+    "Boss remains static HD reference; other5zones/debug visuals and independent gates stay open."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "task": "AW2-006C",
+  "tool": "OpenAI built-in image_gen",
+  "prompts": [
+    {
+      "id": "note",
+      "prompt": "Use case: stylized-concept. Asset type: original transparent pixel RPG exploration floor prop for Adventure World 2, note and empty bowl. Primary request: ONE small floor vignette: a single folded cream parchment note, blank with absolutely no writing or symbols, beside one small empty off-white ceramic rice bowl on a short muted moss-green folded linen. Warm amber edge light. Orthographic overhead camera with a little visible bowl rim, suitable for an existing wood floor in a chibi pixel RPG. No table, pedestal, shadow plane, scenery, doorway, person, food, cutlery, characters, letters, glyphs, watermark or UI. Hand authored-looking crisp pixel clusters, restrained dark brown outline, cream and quiet moss palette. Center the complete group with generous truly transparent padding on every side; no cropped parts. Transparent RGBA background. Single centered asset, not sheet, no text. Keep silhouette compact and readable when rendered about44 game pixels wide. Original design without external game or artist references."
+    },
+    {
+      "id": "threshold",
+      "prompt": "Use case: stylized-concept. Asset type: original transparent pixel RPG flat passage floor marker for Adventure World 2. Primary request: ONE flat short woven threshold mat seen from directly overhead, rectangular with rounded worn corners, muted moss-green center and amber/cream double woven border, a few subtle weave pixels. The whole mat lies completely flat, no raised frame. Warm restrained amber light matching a cozy wooden kitchen. Crisp hand authored-looking pixel clusters and dark brown outline, readable at36 game pixels wide. Single centered horizontal mat with approximately3:2 width-to-height silhouette, complete with generous truly transparent padding on all sides. No doorway, wall, floor scenery, lock, arrow, footprints, symbols, letters, people, extra objects, watermark or UI. Transparent RGBA background. Original design without external game or artist references."
+    }
+  ]
+}
