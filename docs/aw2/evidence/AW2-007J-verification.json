@@ -2,7 +2,7 @@
   "task": "AW2-007J",
   "status": "PASS",
   "base": "3bd893a143e4954125a6e39ec608ced4c738d210",
-  "implementation": "PENDING_007J_SOURCE",
+  "implementation": "efca3be173196b5c09c7d84be49e308d8a23fa31",
   "unitTests": {
     "status": "PASS",
     "uniqueVerified": 1288,
@@ -1647,5 +1647,17 @@
     "Provisional Tank tuning; no final balance acceptance or collection/saved teams",
     "Three compiled share/ultimate/mobile captures inspected; independent art/listening/playtest/physical-device/rights/release OPEN",
     "11actual kits/12references/five saved starters/0fullDoD; demo90%/product40% unchanged"
-  ]
+  ],
+  "testedTree": "f65b02fc316cb14763188fe40082fe29f45d0392",
+  "publication": {
+    "source": "efca3be173196b5c09c7d84be49e308d8a23fa31",
+    "tree": "f65b02fc316cb14763188fe40082fe29f45d0392",
+    "changedFiles": 37,
+    "stagedBytes": 697244,
+    "expectedHead": "3bd893a143e4954125a6e39ec608ced4c738d210",
+    "force": false,
+    "exactRemoteTreeEqualsIndex": "PASS",
+    "independentFetchSourceTreeIndexAncestryGuardedLocalSync": "PASS",
+    "completion": "Docs-only source stamps; final clean local/remote HEAD equality checked after completion publication."
+  }
 }

@@ -12,4 +12,4 @@
 
 [Evidence/commands/incidents](evidence/AW2-004M-P.md), [JSON](evidence/AW2-004M-P-verification.json), [all12 references](ROSTER_ART.md). Demo≈90%/product≈40% unchanged. Next owner BA/mechanic for future kit; character/animation for independent art review.
 
-Current007J source `PENDING_007J_SOURCE`, base `3bd893a143e4954125a6e39ec608ced4c738d210`. Approved Tank role preserved; historical007I “striker” next-task label corrected explicitly. Eleven actual kits/five saved starters, full-characterDoD OPEN. [Practice](BACH_PRACTICE.md), [verification](evidence/AW2-007J.md).
+Current007J source `efca3be173196b5c09c7d84be49e308d8a23fa31`, base `3bd893a143e4954125a6e39ec608ced4c738d210`. Approved Tank role preserved; historical007I “striker” next-task label corrected explicitly. Eleven actual kits/five saved starters, full-characterDoD OPEN. [Practice](BACH_PRACTICE.md), [verification](evidence/AW2-007J.md).

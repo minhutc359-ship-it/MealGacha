@@ -1,6 +1,6 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-007J: bộ kỹ năng Tank của Bách và cấp1–20.** Source `PENDING_007J_SOURCE` trên `game/adventure-world-2`. Bách có đòn cận chiến chờ điểm chạm, khiên cá nhân, chia bảo vệ từ lượng khiên thực sự đỡ và tuyệt kỹ dùng hết khiên còn lại để bảo vệ đồng minh/tác động tuyến trước. Lỗi nhãn “striker” ở bàn giao007I đã sửa theo canon Tank.
+**Đã hoàn thành AW2-007J: bộ kỹ năng Tank của Bách và cấp1–20.** Source `efca3be173196b5c09c7d84be49e308d8a23fa31` trên `game/adventure-world-2`. Bách có đòn cận chiến chờ điểm chạm, khiên cá nhân, chia bảo vệ từ lượng khiên thực sự đỡ và tuyệt kỹ dùng hết khiên còn lại để bảo vệ đồng minh/tác động tuyến trước. Lỗi nhãn “striker” ở bàn giao007I đã sửa theo canon Tank.
 
 | Chỉ báo | Tiến độ hiện tại | Thay đổi |
 |---|---:|---|
