@@ -1,6 +1,7 @@
 import type { CombatEvent } from "./types"
 import { ROSTER_ASSETS } from "../assets/roster"
 import type { SkillSlot } from "../assets/types"
+import { isLienConfirmedOutcome } from "./lien"
 
 /** Audio consumes confirmed casts/passive procs; it never dispatches gameplay. */
 export function combatAudioCues(events: CombatEvent[], afterSerial: number) {
@@ -12,7 +13,22 @@ export function combatAudioCues(events: CombatEvent[], afterSerial: number) {
       const manifest = ROSTER_ASSETS[spiritId]
       if (!manifest || !["basic", "auto", "passive", "ultimate"].includes(slot))
         return []
-      if (spiritId === "aw2-hai") {
+      if (spiritId === "aw2-lien") {
+        if (!isLienConfirmedOutcome(event)) return []
+        // Full event history lets partial batches extend one actual pulse
+        // without replaying its cue per recipient or cleanse/heal pair.
+        if (
+          events.some(
+            (previous) =>
+              previous.serial <= afterSerial &&
+              previous.tick === event.tick &&
+              previous.sourceId === event.sourceId &&
+              previous.skillId === event.skillId &&
+              isLienConfirmedOutcome(previous),
+          )
+        )
+          return []
+      } else if (spiritId === "aw2-hai") {
         if (
           !(
             (slot === "basic" && event.kind === "hit") ||

@@ -82,7 +82,7 @@ def build(unit):
             'audio': sound,
             'projectile': {'frames': ['fx.basic.0', 'fx.basic.1'], 'frameMs': 100, 'launchAtMs': 260, 'impactAtMs': 700,
                            'from': {'x': 80, 'y': -220}, 'to': {'x': 240, 'y': -220}, 'scale': .65} if slot == 'basic' and ranged else None,
-            'scope': 'reference assets only; actual combat/leveling/collection and final numerical balance not implemented',
+            'scope': spec.get('skillScope', 'reference assets only; actual combat/leveling/collection and final numerical balance not implemented'),
         }
     manifest = {
         'version': 1, 'spiritId': identity, 'displayName': spec['displayName'], 'artVariantId': 'base-v1',

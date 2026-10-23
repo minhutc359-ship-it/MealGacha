@@ -93,6 +93,13 @@ export function AssetPreview({
           thập và đội lưu còn chờ triển khai.
         </p>
       )}
+      {manifest.spiritId === "aw2-lien" && combatImplemented && (
+        <p>
+          Liên đã có chiến đấu/cấp độ thử nghiệm:{" "}
+          <a href="/dev/aw2/battle.html?team=lien">luyện kỹ năng Liên</a>. Thu
+          thập và đội lưu còn chờ triển khai.
+        </p>
+      )}
       {errors.length > 0 ? (
         <p role="alert">Manifest lỗi: {errors.join("; ")}</p>
       ) : (

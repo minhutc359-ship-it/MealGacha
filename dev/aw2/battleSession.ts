@@ -15,7 +15,7 @@ import {
   type CombatPresentation,
 } from "../../src/aw2/combat"
 
-export type BattlePractice = "muoi" | "nhien" | "hai"
+export type BattlePractice = "muoi" | "nhien" | "hai" | "lien"
 
 export interface BattlePreviewSession {
   level: number
@@ -53,6 +53,10 @@ interface NhienInterruptCommand {
 interface HaiInterruptCommand {
   type: "interrupt-hai"
 }
+interface LienInterruptCommand {
+  type: "interrupt-lien-target"
+  actorId: string
+}
 
 export type BattlePreviewCommand =
   | AdvanceCommand
@@ -61,6 +65,7 @@ export type BattlePreviewCommand =
   | CleanseCommand
   | NhienInterruptCommand
   | HaiInterruptCommand
+  | LienInterruptCommand
 
 export function createBattlePreviewSession(
   level: number,
@@ -74,7 +79,11 @@ export function createBattlePreviewSession(
         ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-lua" ? "aw2-nhien" : id))
         : practice === "hai"
           ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-than" ? "aw2-hai" : id))
-          : STARTER_SPIRIT_IDS
+          : practice === "lien"
+            ? STARTER_SPIRIT_IDS.map((id) =>
+                id === "aw2-lam" ? "aw2-lien" : id,
+              )
+            : STARTER_SPIRIT_IDS
   const players = identities.map((spiritId, slot) =>
     createDevelopmentCombatSeed(`player-${spiritId}`, spiritId, experience, {
       position: 12 + slot * 4,
@@ -101,8 +110,8 @@ export function createBattlePreviewSession(
       },
       {
         id: "enemy-suong",
-        spiritId: "aw2-suong",
-        boss: true,
+        spiritId: practice === "lien" ? "aw2-muoi" : "aw2-suong",
+        boss: practice !== "lien",
         position: practice ? 64 : 88,
         hp: Math.round(620 * enemyScale),
         maxHp: Math.round(620 * enemyScale),
@@ -158,6 +167,16 @@ export function reduceBattlePreviewSession(
     if (command.type === "advance") {
       battle = advanceCombatBattle(current.battle)
       if (command.manual) message = "Đã xử lý đúng một tick từ combat core."
+    } else if (command.type === "interrupt-lien-target") {
+      if (
+        current.practice !== "lien" ||
+        !current.battle.actors.some(
+          (a) => a.id === command.actorId && a.side === "player",
+        )
+      )
+        throw Error("Chỉ thử ngắt đồng minh trong trận luyện Liên.")
+      battle = interruptCombatCast(current.battle, command.actorId)
+      message = "Đã thử ngắt qua luật thật; kháng ngắt chỉ bảo vệ một lần."
     } else if (
       command.type === "interrupt-nhien" ||
       command.type === "interrupt-hai"

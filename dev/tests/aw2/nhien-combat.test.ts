@@ -90,7 +90,7 @@ describe("AW2-007F bounded Nhiên melee and energy", () => {
     expect(() =>
       createCombatBattle({
         id: "future",
-        players: [{ id: "h", spiritId: "aw2-lien" }],
+        players: [{ id: "h", spiritId: "aw2-unknown" }],
         enemies: [foe("a")],
       }),
     ).toThrow(/chưa có combat kit/)

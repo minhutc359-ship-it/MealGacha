@@ -64,8 +64,8 @@ function incoming(b: CombatBattle, target = "ally", amount = 100) {
 }
 
 describe("AW2-007G actual directional Hải kit", () => {
-  it("adds eighth kit and level1–20 without granting starter ownership", () => {
-    expect(Object.keys(COMBAT_KITS)).toHaveLength(8)
+  it("retains Hải among supported kits and level1–20 without granting starter ownership", () => {
+    expect(Object.keys(COMBAT_KITS)).toHaveLength(9)
     expect(STARTER_SPIRIT_IDS).toHaveLength(5)
     expect(STARTER_SPIRIT_IDS).not.toContain("aw2-hai")
     for (const level of [1, 5, 10, 20]) {

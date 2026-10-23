@@ -1666,7 +1666,7 @@
         },
         "scale": 0.65
       },
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "Reference artwork; AW2-007H development combat and level1-20 implemented; collection, final balance and full-character acceptance pending"
     },
     "auto": {
       "id": "aw2-lien:skill:auto",
@@ -1700,7 +1700,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "Reference artwork; AW2-007H development combat and level1-20 implemented; collection, final balance and full-character acceptance pending"
     },
     "passive": {
       "id": "aw2-lien:skill:passive",
@@ -1734,7 +1734,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "Reference artwork; AW2-007H development combat and level1-20 implemented; collection, final balance and full-character acceptance pending"
     },
     "ultimate": {
       "id": "aw2-lien:skill:ultimate",
@@ -1769,7 +1769,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "Reference artwork; AW2-007H development combat and level1-20 implemented; collection, final balance and full-character acceptance pending"
     }
   },
   "provenance": {

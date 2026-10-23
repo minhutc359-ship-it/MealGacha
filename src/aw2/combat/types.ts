@@ -78,6 +78,11 @@ export interface CombatEvent {
     | "hai-slow"
     | "hai-line"
     | "hai-block"
+    | "lien-hot"
+    | "lien-pulses"
+    | "lien-guard"
+    | "lien-cleanse"
+  cleansedEffect?: "muoi-mark" | "slow" | "weaken"
   statusChange?:
     | "apply"
     | "refresh"
@@ -161,6 +166,19 @@ export interface CombatActor {
   nhienRecoveryUntilTick?: number
   nhienRhythm?: NhienRhythm
   haiPassiveUntilTick?: number
+  lienHoT?: {
+    id: string
+    targetId: string
+    nextPulseTick: number
+    index: number
+  }
+  lienUltimate?: {
+    id: string
+    targetIds: string[]
+    nextPulseTick: number
+    index: number
+  }
+  lienGuardCooldowns?: Record<string, number>
   haiZone?: { center: number; radius: number; expiresAtTick: number }
   haiLine?: {
     position: number

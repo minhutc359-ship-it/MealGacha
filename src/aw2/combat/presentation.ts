@@ -1,4 +1,5 @@
 import type { CombatEvent, CombatEventKind, CombatSkillSlot } from "./types"
+import { isLienConfirmedOutcome } from "./lien"
 
 export type CombatAnimationState =
   | "idle"
@@ -156,6 +157,73 @@ export function reduceCombatPresentation(
     const mocSkill = event.skillId?.startsWith("aw2-moc-non:skill:")
     const muoiSkill = event.skillId?.startsWith("aw2-muoi:skill:")
     const nhienSkill = event.skillId?.startsWith("aw2-nhien:skill:")
+    if (event.skillId?.startsWith("aw2-lien:skill:") && event.sourceId) {
+      const slot = skillSlot(event.skillId)!
+      if (["cast-start", "cast-commit"].includes(event.kind)) phase = "prepare"
+      if (event.kind === "projectile-launch") phase = "launch"
+      if (isLienConfirmedOutcome(event)) {
+        phase = "confirmed"
+        contactIndex = event.contactIndex ?? 0
+        const effects = (next.effects[event.sourceId] ??= {})
+        const prior = effects[slot]
+        if (
+          prior?.tick === event.tick &&
+          prior.actionId === event.actionId &&
+          prior.index === contactIndex
+        ) {
+          prior.targetIds = [
+            ...new Set([...(prior.targetIds ?? []), ...event.targetIds]),
+          ]
+          sourceState = null
+        } else {
+          effects[slot] = {
+            serial: event.serial,
+            tick: event.tick,
+            skillId: event.skillId,
+            index: contactIndex,
+            actionId: event.actionId,
+            targetIds: [...event.targetIds],
+          }
+          sourceState =
+            slot === "ultimate"
+              ? "ultimate"
+              : slot === "auto"
+                ? "cast"
+                : slot === "passive"
+                  ? "guard"
+                  : "attack"
+        }
+        const previous = next.actors[event.sourceId]
+        if (
+          slot === "passive" &&
+          previous?.tick === event.tick &&
+          previous.phase === "confirmed"
+        )
+          sourceState = null
+        if (slot === "passive")
+          for (const targetId of event.targetIds)
+            if (targetId !== event.sourceId)
+              next.actors[targetId] = {
+                state: "guard",
+                serial: event.serial,
+                tick: event.tick,
+              }
+      } else if (["heal", "status"].includes(event.kind)) sourceState = null
+      if (event.kind === "interrupt")
+        next.actors[event.sourceId] = {
+          state: "hit",
+          serial: event.serial,
+          tick: event.tick,
+        }
+      const priorGesture = next.actors[event.sourceId]
+      if (
+        priorGesture?.tick === event.tick &&
+        priorGesture.phase === "confirmed" &&
+        priorGesture.skillId === "aw2-lien:skill:ultimate" &&
+        slot !== "ultimate"
+      )
+        sourceState = null
+    }
     if (event.skillId?.startsWith("aw2-hai:skill:") && event.sourceId) {
       const slot = skillSlot(event.skillId)!
       if (["cast-start", "cast-commit"].includes(event.kind)) phase = "prepare"

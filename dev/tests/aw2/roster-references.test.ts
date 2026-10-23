@@ -69,7 +69,9 @@ describe.each(references)("$id original reference package", (unit) => {
     expect(Object.keys(STARTER_ASSETS)).toEqual(STARTER_TEAM)
     expect(STARTER_TEAM).toHaveLength(5)
     expect(STARTER_TEAM).not.toContain(unit.id)
-    expect(isCombatSpiritId(unit.id)).toBe(unit.id === "aw2-hai")
+    expect(isCombatSpiritId(unit.id)).toBe(
+      ["aw2-hai", "aw2-lien"].includes(unit.id),
+    )
     expect(
       Object.values(m.assets).every(
         (a) =>

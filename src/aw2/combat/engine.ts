@@ -7,6 +7,12 @@ import {
 
 import { MUOI_TUNING, muoiDamageMultiplier, selectMuoiTarget } from "./muoi"
 import {
+  LIEN_TUNING,
+  selectLienAlly,
+  lienDebuff,
+  cleanseLienDebuff,
+} from "./lien"
+import {
   HAI_TUNING,
   haiNearbyEnemy,
   haiNeedsShield,
@@ -108,7 +114,7 @@ function actorFromSeed(
     throw Error("Boss profile không thuộc Người Giữ Bàn Quên.")
   const base =
     side === "player" ||
-    ["aw2-muoi", "aw2-nhien", "aw2-hai"].includes(seed.spiritId)
+    ["aw2-muoi", "aw2-nhien", "aw2-hai", "aw2-lien"].includes(seed.spiritId)
       ? COMBAT_KITS[seed.spiritId as CombatSpiritId]
       : defaultEnemy(seed)
   const maxHp = assertNumber(seed.maxHp ?? base.hp, "HP tối đa", 1, 1_000_000)
@@ -463,7 +469,81 @@ function updateHaiZones(battle: CombatBattle) {
   }
 }
 
+function cleanupLienHealing(battle: CombatBattle, terminal = false) {
+  for (const actor of battle.actors) {
+    for (const key of ["lienHoT", "lienUltimate"] as const) {
+      const healing = actor[key]
+      if (
+        !healing ||
+        (!terminal &&
+          actor.hp > 0 &&
+          (key !== "lienHoT" || !!byId(battle, actor.lienHoT!.targetId)?.hp))
+      )
+        continue
+      delete actor[key]
+      record(battle, "status", actor.id, [], {
+        skillId: combatSkillId(
+          "aw2-lien",
+          key === "lienHoT" ? "auto" : "ultimate",
+        ),
+        statusEffect: key === "lienHoT" ? "lien-hot" : "lien-pulses",
+        statusChange: "remove",
+        actionId: healing.id,
+        text: "Lời hẹn hồi phục đã dừng; không hồi sinh.",
+      })
+    }
+  }
+}
+
+function resolveLienHealing(battle: CombatBattle) {
+  cleanupLienHealing(battle)
+  for (const source of living(battle).filter(
+    (a) => a.spiritId === "aw2-lien",
+  )) {
+    for (const key of ["lienHoT", "lienUltimate"] as const) {
+      const healing = source[key]
+      if (!healing || healing.nextPulseTick > battle.tick) continue
+      const ultimate = key === "lienUltimate"
+      const slot = ultimate ? "ultimate" : "auto"
+      const skillId = combatSkillId("aw2-lien", slot)
+      const targetIds =
+        "targetIds" in healing ? healing.targetIds : [healing.targetId]
+      const amount = ultimate
+        ? source.attack * LIEN_TUNING.ultimateMultipliers[healing.index] +
+          LIEN_TUNING.ultimateFlats[healing.index]
+        : source.attack * LIEN_TUNING.hotMultiplier + LIEN_TUNING.hotFlat
+      for (const id of targetIds) {
+        const target = byId(battle, id)
+        if (!target || target.hp <= 0 || target.side !== source.side) {
+          record(battle, "miss", source.id, [id], {
+            skillId,
+            actionId: healing.id,
+            text: "Không hồi sinh hoặc đổi người nhận sau khi cam kết.",
+          })
+          continue
+        }
+        applyHeal(battle, source, target, amount, skillId, {
+          actionId: healing.id,
+          contactIndex: ultimate ? healing.index : 0,
+        })
+      }
+      healing.index++
+      if (healing.index >= (ultimate ? 2 : LIEN_TUNING.hotPulses)) {
+        delete source[key]
+        record(battle, "status", source.id, [], {
+          skillId,
+          actionId: healing.id,
+          statusEffect: ultimate ? "lien-pulses" : "lien-hot",
+          statusChange: "remove",
+          text: "Đã hết số nhịp hồi phục.",
+        })
+      } else healing.nextPulseTick += LIEN_TUNING.pulseInterval
+    }
+  }
+}
+
 function expireTimedState(battle: CombatBattle) {
+  cleanupLienHealing(battle)
   cleanupHaiFields(battle)
   cleanupMuoiMarks(battle)
   for (const actor of battle.actors) {
@@ -721,6 +801,7 @@ function applyHeal(
   target: CombatActor,
   amount: number,
   skillId: string,
+  contact: Pick<CombatEvent, "actionId" | "contactIndex"> = {},
 ) {
   if (target.hp <= 0) {
     record(battle, "miss", source.id, [target.id], {
@@ -733,7 +814,35 @@ function applyHeal(
   const missing = target.maxHp - target.hp
   const restored = Math.min(missing, rounded)
   target.hp += restored
-  record(battle, "heal", source.id, [target.id], { skillId, amount: restored })
+  record(battle, "heal", source.id, [target.id], {
+    skillId,
+    amount: restored,
+    ...contact,
+  })
+  if (
+    source.spiritId === "aw2-lien" &&
+    source.hp > 0 &&
+    restored > 0 &&
+    lienDebuff(target, battle.tick) &&
+    !(
+      target.interruptGuardCharges > 0 &&
+      target.interruptGuardUntilTick > battle.tick
+    ) &&
+    battle.tick >= (source.lienGuardCooldowns?.[target.id] ?? 0)
+  ) {
+    target.interruptGuardCharges = 1
+    target.interruptGuardUntilTick = battle.tick + LIEN_TUNING.guardTicks
+    ;(source.lienGuardCooldowns ??= {})[target.id] =
+      battle.tick + LIEN_TUNING.guardCooldown
+    record(battle, "status", source.id, [target.id], {
+      skillId: combatSkillId("aw2-lien", "passive"),
+      statusEffect: "lien-guard",
+      statusChange: "apply",
+      amount: 1,
+      expiresAtTick: target.interruptGuardUntilTick,
+      text: "Lời Hẹn Còn Đây: kháng một lần gián đoạn có giới hạn.",
+    })
+  }
   if (source.spiritId === "aw2-lam" && rounded > restored) {
     const cap = Math.round(target.maxHp * 0.2)
     const previous = target.shield
@@ -928,6 +1037,7 @@ function applyDamage(
     cleanupMuoiMarks(battle)
   }
   cleanupHaiFields(battle)
+  cleanupLienHealing(battle)
   updateHaiPassives(battle)
 }
 
@@ -1042,8 +1152,10 @@ function commitCast(
       ? selectMuoiTarget(battle, actor)
       : selectEnemy(battle, actor, cast.targetId)
   const injuredAlly =
-    cast.slot === "auto" && actor.spiritId === "aw2-lam"
-      ? selectInjuredAlly(battle, actor, cast.targetId)
+    cast.slot === "auto" && ["aw2-lam", "aw2-lien"].includes(actor.spiritId)
+      ? actor.spiritId === "aw2-lien"
+        ? selectLienAlly(battle, actor, cast.targetId)
+        : selectInjuredAlly(battle, actor, cast.targetId)
       : undefined
   const shieldAlly =
     cast.slot === "auto" && actor.spiritId === "aw2-moc-non"
@@ -1052,7 +1164,7 @@ function commitCast(
   const skillId = cast.skillId
   const teamTarget =
     cast.slot === "ultimate" &&
-    ["aw2-than", "aw2-lam", "aw2-moc-non"].includes(actor.spiritId)
+    ["aw2-than", "aw2-lam", "aw2-moc-non", "aw2-lien"].includes(actor.spiritId)
   const committedTargets = teamTarget
     ? living(battle, actor.side).map((ally) => ally.id)
     : cast.slot === "auto" && actor.spiritId === "aw2-than"
@@ -1065,6 +1177,61 @@ function commitCast(
             ? [enemy.id]
             : []
   record(battle, "cast-commit", actor.id, committedTargets, { skillId })
+  if (actor.spiritId === "aw2-lien") {
+    if (cast.slot === "auto") {
+      if (!injuredAlly || actor.lienHoT) {
+        record(battle, "miss", actor.id, [], {
+          skillId,
+          text: "Không còn người nhận bị thương hoặc lời hẹn cũ chưa hết.",
+        })
+        return
+      }
+      actor.lienHoT = {
+        id: cast.id,
+        targetId: injuredAlly.id,
+        nextPulseTick: battle.tick,
+        index: 0,
+      }
+    } else {
+      const targets = living(battle, actor.side)
+      actor.lienUltimate = {
+        id: cast.id,
+        targetIds: targets.map((a) => a.id),
+        nextPulseTick: battle.tick,
+        index: 0,
+      }
+      for (const target of targets) {
+        const cleansed = cleanseLienDebuff(target, battle.tick)
+        if (cleansed)
+          record(battle, "status", actor.id, [target.id], {
+            skillId,
+            actionId: cast.id,
+            contactIndex: 0,
+            statusEffect: "lien-cleanse",
+            statusChange: "dispel",
+            cleansedEffect: cleansed.kind,
+            text: `Mở Lời tẩy một hiệu ứng: ${cleansed.kind}.`,
+          })
+      }
+    }
+    record(
+      battle,
+      "status",
+      actor.id,
+      cast.slot === "auto" ? [injuredAlly!.id] : committedTargets,
+      {
+        skillId,
+        actionId: cast.id,
+        statusEffect: cast.slot === "auto" ? "lien-hot" : "lien-pulses",
+        statusChange: "apply",
+        text:
+          cast.slot === "auto"
+            ? "Hẹn Sau Cơn Mệt đã cam kết ba nhịp."
+            : "Mở Lời đã cam kết hai nhịp.",
+      },
+    )
+    return
+  }
   if (actor.spiritId === "aw2-hai") {
     const facing = cast.facing ?? (actor.side === "player" ? 1 : -1)
     if (cast.slot === "auto") {
@@ -1382,6 +1549,14 @@ function tryAutoSkill(battle: CombatBattle, actor: CombatActor): boolean {
     return false
   const kit = COMBAT_KITS[actor.spiritId]
   const enemy = selectEnemy(battle, actor)
+  if (actor.spiritId === "aw2-lien") {
+    if (actor.lienHoT) return false
+    const target = selectLienAlly(battle, actor)
+    if (!target) return false
+    actor.nextAutoTick = battle.tick + kit.autoCooldown
+    startCast(battle, actor, "auto", target.id, kit.autoCastTicks)
+    return true
+  }
   if (actor.spiritId === "aw2-hai") {
     const target = haiNearbyEnemy(battle, actor)
     if (!target) return false
@@ -1546,6 +1721,7 @@ function checkResult(battle: CombatBattle) {
   if (players && enemies) return
   battle.status = players ? "player-win" : enemies ? "enemy-win" : "draw"
   cleanupHaiFields(battle, true)
+  cleanupLienHealing(battle, true)
 
   removeMuoiMarks(battle, "trận kết thúc", () => true)
   for (const actor of battle.actors) {
@@ -1574,6 +1750,8 @@ function advanceOneTick(battle: CombatBattle) {
   resolveDueEffects(battle)
   checkResult(battle)
   if (battle.status !== "active") return
+
+  resolveLienHealing(battle)
 
   resolveNhienSequences(battle)
   checkResult(battle)
@@ -1618,6 +1796,8 @@ export function castCombatUltimate(
   )
     throw Error("Vị Linh không thể dùng tuyệt kỹ.")
   if (actor.cast) throw Error("Vị Linh đang thi triển kỹ năng khác.")
+  if (actor.lienUltimate)
+    throw Error("Liên đang hoàn tất nhịp hồi phục đã cam kết.")
   if (nhienBusy(actor, battle.tick))
     throw Error("Nhiên đang nối nhịp hoặc hồi thế.")
   if (actor.energy < ULTIMATE_ENERGY)
