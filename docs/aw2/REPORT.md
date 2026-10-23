@@ -1,6 +1,6 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-007K: bộ kỹ năng hybrid của Vân và cấp1–20.** Source `PENDING007K` trên `game/adventure-world-2`. Vân hỗ trợ đồng minh đang bị đe dọa, đánh dấu địch và chỉ hồi máu từ hỗ trợ thực. Chọn một nhấn tuyệt kỹ Bảo hộ/Tấn công trước trận; thay lựa chọn chỉ áp dụng khi tạo trận mới.
+**Đã hoàn thành AW2-007K: bộ kỹ năng hybrid của Vân và cấp1–20.** Source `3a77154bdbf1eb8a654833c3f5354889b5377a1c` trên `game/adventure-world-2`. Vân hỗ trợ đồng minh đang bị đe dọa, đánh dấu địch và chỉ hồi máu từ hỗ trợ thực. Chọn một nhấn tuyệt kỹ Bảo hộ/Tấn công trước trận; thay lựa chọn chỉ áp dụng khi tạo trận mới.
 
 | Chỉ báo | Tiến độ hiện tại | Thay đổi |
 |---|---:|---|

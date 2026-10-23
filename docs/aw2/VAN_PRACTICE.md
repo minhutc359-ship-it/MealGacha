@@ -1,6 +1,6 @@
 # Vân — thử kit hybrid
 
-AW2-007K · source `PENDING007K` · development, chưa phải cân bằng cuối hoặc nghiệm thu nhân vật đầy đủ.
+AW2-007K · source `3a77154bdbf1eb8a654833c3f5354889b5377a1c` · development, chưa phải cân bằng cuối hoặc nghiệm thu nhân vật đầy đủ.
 
 Chạy `pnpm dev`, mở `/dev/aw2/battle.html?team=van`. Đội tạm có năm người, thay Mộc Non bằng Vân; không nhận nhân vật hoặc ghi save. Có thể chọn nhấn Bảo hộ/Tấn công cho **trận mới** rồi bấm **Tạo lại trận**. Nhấn đang dùng luôn hiện riêng, cố định suốt trận; URL `&emphasis=attack` khởi tạo nhấn tấn công. Cấp thử nghiệm1/5/10/20 chỉ áp dụng khi tạo lại.
 

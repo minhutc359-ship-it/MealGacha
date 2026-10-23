@@ -2,7 +2,7 @@
   "task": "AW2-007K",
   "status": "PASS",
   "base": "62d3e585213b65340d32c6566c810e384081bee2",
-  "source": "PENDING007K",
+  "source": "3a77154bdbf1eb8a654833c3f5354889b5377a1c",
   "branch": "game/adventure-world-2",
   "roles": "Scoped in-session BA/character/mechanic/animation/tester/scretary, no independent agents/sign-off",
   "units": {
@@ -1832,5 +1832,16 @@
     "Collection/saved-team implementation not started; D11 PROPOSED/D12 OPEN",
     "Automated desktop checks do not imply final balance"
   ],
-  "next": "AW2-007L BA/mechanic collection/saved-team contract"
+  "next": "AW2-007L BA/mechanic collection/saved-team contract",
+  "publication": {
+    "source": "3a77154bdbf1eb8a654833c3f5354889b5377a1c",
+    "sourceTree": "7711b03462cd154c6535a89b20978512f0512bab",
+    "files": 38,
+    "stagedBytes": 722902,
+    "expectedHead": "62d3e585213b65340d32c6566c810e384081bee2",
+    "force": false,
+    "sourceFetchTreeIndexAncestrySync": "PASS",
+    "sourceClean": true,
+    "completionScope": "Source-stamp docs only; final clean local/fresh remote equality checked before handoff"
+  }
 }
