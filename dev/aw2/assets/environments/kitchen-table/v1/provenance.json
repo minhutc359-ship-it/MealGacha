@@ -1,0 +1,76 @@
+{
+  "task": "AW2-006B",
+  "id": "aw2-environment-kitchen-table-v1",
+  "generator": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-23",
+    "prompts": "/dev/aw2/assets/environments/kitchen-table/v1/prompts.json",
+    "externalReferences": [],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "processing": "Unchanged selected PNGs; lossless exact RGBA WebP encoding; measured alpha-safe texture frame with tolerance8 and4px padding; uniform logical prop scale. No painting/masking/mirroring/resizing.",
+    "builder": "dev/tools/build-aw2-table-room-assets.py",
+    "pillow": "10.2.0"
+  },
+  "selected": [
+    {
+      "generation": "floor-v1",
+      "source": "dev/aw2/assets/environments/kitchen-table/v1/floor-source.png",
+      "generatedFile": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-84891b86-9a7a-4284-ace3-dc286f75377c.png"
+    },
+    {
+      "generation": "sideboard-v1",
+      "source": "dev/aw2/assets/environments/kitchen-table/v1/sideboard-source.png",
+      "generatedFile": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-436d8581-3fbe-4f09-a2f1-0c9181fcc51f.png"
+    }
+  ],
+  "builtInCalls": 2,
+  "rejected": [],
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-kitchen-table-v1:floor",
+      "url": "/dev/aw2/assets/environments/kitchen-table/v1/floor.webp",
+      "width": 1619,
+      "height": 971,
+      "bytes": 1724554,
+      "sha256": "307fe1452573173579aa406bd18ee0648574a075a3ac9919299fce73f3b3ec19",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/v1/floor-source.png",
+        "bytes": 2337306,
+        "sha256": "bb42116815fcc1b76eb72949a3c592ee3af71e27004e628d55ba7364703e3649"
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1619,
+        "height": 971
+      }
+    },
+    "sideboard": {
+      "id": "aw2-environment-kitchen-table-v1:sideboard",
+      "url": "/dev/aw2/assets/environments/kitchen-table/v1/sideboard.webp",
+      "width": 1322,
+      "height": 1190,
+      "bytes": 733646,
+      "sha256": "5f1939c67f0342e46e4b018c011f7adcd3a3a2d3471ed665b4f735f96c83a5ef",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/v1/sideboard-source.png",
+        "bytes": 1049015,
+        "sha256": "71d9d181ec16826c51bf039ec00f723c9334fd595e3dbfdb7a443543c4abfdd4"
+      },
+      "frame": {
+        "x": 69,
+        "y": 278,
+        "width": 1187,
+        "height": 686
+      }
+    }
+  },
+  "observedLimits": [
+    "Floor contains decorative hanging-lantern corners; overhead decor does not change walkable geometry.",
+    "Sideboard has wider actual aspect than approximate prompt; measured frame/uniform render scale preserves it.",
+    "Static boss marker reuses original own battle idle frame; full world4direction/motion still absent.",
+    "Independent full-room/art/device/rights acceptance remains open."
+  ]
+}

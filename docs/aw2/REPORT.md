@@ -1,20 +1,20 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-007N: đo đội hình ở EXP thực tế và cải thiện việc thử đội.** Source `6fc852872a008c08d2e9b2dd6a8983ba6f2617dc` trên `game/adventure-world-2`.
+**Đã hoàn thành AW2-006B: hình môi trường và chỉ đường trong Phòng Bàn.** Source `PENDING006B` trên `game/adventure-world-2`.
 
-- **Vai trò/chỉ số đội đang chọn:** xem Máu/Công/Thủ theo cấp chung; gợi ý khi thiếu người đỡ đòn, hồi phục hoặc sát thương chuyên trách. Vân giữ Hybrid; Mộc/Mộc Non tách đúng identity.
-- **Chọn đội khởi đầu:** trở lại năm starter trong draft, giữ nhấn Vân; bấm Lưu mới áp dụng, Hủy trả về đội lưu. Không cấp nhân vật/EXP/items hoặc sửa ending.
-- **Kết quả lượt đấu này:** hiện số đồng đội còn đứng và máu boss thực còn lại sau thắng/thua/rút lui; phần hiển thị không tự ghi save.
+- Nền gỗ/thảm và bàn nhỏ riêng; bàn mờ khi che nhân vật phía sau. Đã kiểm tra đủ12nhân vật tham chiếu.
+- Bốn nút đi bộ tới boss, ghi chép và hai lối ra; trạng thái theo nhiệm vụ. Khi đến gần vẫn dùng **E/Tương tác**; lối tắt mở sau kết thúc.
+- Sửa lỗi bảng đội hình bị dừng ngay sau phần mở đầu khi vừa nhận năm starter.
 
-Đã đo **96lượt xác định** =16đội×205/345EXP×3policy. Starter vẫn vượt boss ở EXP thực tế, không cần UR. Canh tuyệt kỹ giúp một số đội, nhưng không có policy tốt nhất cho mọi đội; không sửa chỉ số để ép tất cả thắng. [Kết quả/cách dùng](PARTY_GUIDE.md).
-
-**Kiểm chứng mới:**73ca unit liên quan/3files (17mới),60browser assertions=30source+30compiled,96mô phỏng PASS; hai typecheck/final review build/fresh stable isolation đạt. Browser dùng nguyên văn checkpoint ending đã kiếm được từ007M, rồi thao tác native draft/cancel/lỗi ghi/retry/reload/tab cũ và win/loss/retreat thật; không phải một lượt full-story mới. Full1401unit/deep art/combat/save/mode và stable build giữ bằng chứng ref gốc theo309hash không đổi, không cộng vào số mới. Full current-head suite NOT_RUN theo phạm vi advisory/presentation. [Bằng chứng](evidence/AW2-007N.md).
+**Kiểm chứng:**113ca unit liên quan/6files và286browser assertions PASS; hai typecheck, review build và cách ly stable đạt. Browser ghép chặng earned từ save mới với tiếp tục nguyên văn checkpoint nhiệm vụ3; đã thắng boss/đọc ghi chép/hai kết thúc/đấu lại, kiểm tra lỗi ghi/tab cũ và thiếu ảnh→khôi phục. Không tính lượt lỗi hoặc test cũ vào số mới; full current-head NOT_RUN, bằng chứng phần không đổi giữ ref gốc. [Chi tiết](evidence/AW2-006B.md), [cách dùng](PHONG_BAN.md).
 
 | Chỉ báo | Hiện tại | Lý do |
 |---|---:|---|
-| Demo với art tham chiếu | **≈90%** | Giữ nguyên; còn1gói playtest độc lập toàn hành trình và sửa blocker |
-| Toàn sản phẩm12nhân vật | **≈40%**, khoảng35–45% | Giữ nguyên; baseline/hướng dẫn mới chưa đóng nghiệm thu cân bằng/full-character/device/rights |
+| Demo với art tham chiếu | **≈90%** | Giữ nguyên; còn playtest độc lập toàn hành trình và sửa blocker |
+| Toàn sản phẩm12nhân vật | **≈40%**, khoảng35–45% | Giữ nguyên; một phòng tham chiếu chưa đóng gói world/full-character/device/rights |
 | Kit/bộ hình tham chiếu | **12/12mỗi nhóm** | Giữ nguyên |
-| Nhân vật qua đầy đủ DoD | **0/12** | Các gate độc lập còn mở |
+| Nhân vật qua đầy đủ DoD | **0/12** | Gate độc lập còn mở |
 
-**Tiếp theo:**[AW2-006B](tasks/AW2-006B.md) — đặc tả rồi làm hình môi trường Phòng Bàn và UX khám phá, nối boss/rematch với một phòng có art riêng. Gói1 đã có baseline/hướng dẫn nhưng cân bằng cuối vẫn mở; [4gói đề xuất tới≈50%](NEXT_MILESTONES.md) chưa được cấp điểm. D11gachaPROPOSED/D12OPEN.
+Boss world hiện dùng HD idle tĩnh; ghi chép/hai lối ra còn marker tạm, năm vùng khác vẫn dùng địa hình debug. **Tiếp theo:**[AW2-006C](tasks/AW2-006C.md) — làm hình các điểm tương tác còn tạm trong Phòng Bàn. [Bốn gói tới≈50%](NEXT_MILESTONES.md) vẫn chưa nghiệm thu đủ. D11gachaPROPOSED/D12OPEN.
+
+Hai ảnh tạo bằng **built-in imagegen**, lưu [nền PNG](../../dev/aw2/assets/environments/kitchen-table/v1/floor-source.png) và [bàn PNG trong suốt](../../dev/aw2/assets/environments/kitchen-table/v1/sideboard-source.png); [prompts nguyên văn](../../dev/aw2/assets/environments/kitchen-table/v1/prompts.json). Provenance/rights REVIEW_REQUIRED, chưa clearance thương mại.

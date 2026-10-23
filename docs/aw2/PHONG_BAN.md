@@ -1,0 +1,11 @@
+# Đi lại trong Phòng Bàn
+
+Mở `world.html`, nhận **Thêm một chén** tại Dì rồi đi qua Phòng Kho → Phòng Lửa → Phòng Bàn. Nếu đã có kết thúc lưu, dùng lối tắt từ Sân hoặc đường cũ.
+
+Dưới bản đồ có bốn nút điểm đến: Người Giữ Bàn Quên, Ghi chép bên chén, về Phòng Lửa và lối tắt về Sân. Chọn một nút để đội đi bộ theo đường hợp lệ; khi đến gần, dùng **E** hoặc **Tương tác** rồi chọn hành động trong hội thoại. Đi tới boss không tự bắt đầu trận; đi tới ghi chép không tự đọc. Lối tắt chỉ mở sau khi hoàn thành câu chuyện. Sau kết thúc, boss cho đấu lại không nhận thưởng.
+
+Phòng có nền gỗ/thảm và bàn nhỏ riêng. Bàn mờ khi che người đi phía sau; người đi phía trước được vẽ trên bàn. Boss hiện dùng tư thế HD tĩnh từ bộ tham chiếu có sẵn. Ghi chép/hai lối ra còn marker tạm; năm vùng khác vẫn dùng địa hình debug. Đây là môi trường tham chiếu, chưa phải bản đồ/nhân vật được nghiệm thu đầy đủ.
+
+Nếu ảnh bắt buộc tải lỗi, bản đồ hiện thông báo và khóa các nút điểm đến. Sau khi kết nối/tài nguyên phục hồi, tải lại trang để thử lại. Không cần reset save để xem hình mới.
+
+Hai ảnh mới được tạo bằng built-in imagegen: [nền](../../dev/aw2/assets/environments/kitchen-table/v1/floor-source.png), [bàn nền trong suốt](../../dev/aw2/assets/environments/kitchen-table/v1/sideboard-source.png). [Prompts nguyên văn](../../dev/aw2/assets/environments/kitchen-table/v1/prompts.json), [provenance](../../dev/aw2/assets/environments/kitchen-table/v1/provenance.json), [đặc tả](PHONG_BAN_SCENE_SPEC.md), [kiểm chứng006B](evidence/AW2-006B.md). Rights REVIEW_REQUIRED; commercial NOT_CLEARED.

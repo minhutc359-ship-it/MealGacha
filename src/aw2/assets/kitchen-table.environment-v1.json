@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "id": "aw2-environment-kitchen-table-v1",
+  "zoneId": "aw2-zone-kitchen-table",
+  "status": "REFERENCE_ENVIRONMENT",
+  "fullEnvironmentComplete": false,
+  "canvas": {
+    "width": 640,
+    "height": 384
+  },
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-kitchen-table-v1:floor",
+      "url": "/dev/aw2/assets/environments/kitchen-table/v1/floor.webp",
+      "width": 1619,
+      "height": 971,
+      "bytes": 1724554,
+      "sha256": "307fe1452573173579aa406bd18ee0648574a075a3ac9919299fce73f3b3ec19",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/v1/floor-source.png",
+        "bytes": 2337306,
+        "sha256": "bb42116815fcc1b76eb72949a3c592ee3af71e27004e628d55ba7364703e3649"
+      },
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 1619,
+        "height": 971
+      }
+    },
+    "sideboard": {
+      "id": "aw2-environment-kitchen-table-v1:sideboard",
+      "url": "/dev/aw2/assets/environments/kitchen-table/v1/sideboard.webp",
+      "width": 1322,
+      "height": 1190,
+      "bytes": 733646,
+      "sha256": "5f1939c67f0342e46e4b018c011f7adcd3a3a2d3471ed665b4f735f96c83a5ef",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/v1/sideboard-source.png",
+        "bytes": 1049015,
+        "sha256": "71d9d181ec16826c51bf039ec00f723c9334fd595e3dbfdb7a443543c4abfdd4"
+      },
+      "frame": {
+        "x": 69,
+        "y": 278,
+        "width": 1187,
+        "height": 686
+      }
+    }
+  },
+  "prop": {
+    "asset": "sideboard",
+    "x": 320,
+    "y": 352,
+    "width": 80,
+    "height": 46.2342,
+    "anchorX": 0.5,
+    "anchorY": 1,
+    "sortY": 352,
+    "occludedAlpha": 0.35,
+    "footprint": {
+      "x": 288,
+      "y": 304,
+      "width": 64,
+      "height": 48
+    }
+  },
+  "bossMarker": {
+    "entityId": "aw2-enemy-forgotten-host",
+    "manifest": "forgotten-host.reference-v1",
+    "frame": "battle.idle",
+    "height": 56,
+    "status": "STATIC_BATTLE_REFERENCE_NOT_WORLD_MODEL"
+  },
+  "provenance": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-23",
+    "prompts": "/dev/aw2/assets/environments/kitchen-table/v1/prompts.json",
+    "externalReferences": [],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "processing": "Unchanged selected PNGs; lossless exact RGBA WebP encoding; measured alpha-safe texture frame with tolerance8 and4px padding; uniform logical prop scale. No painting/masking/mirroring/resizing.",
+    "builder": "dev/tools/build-aw2-table-room-assets.py",
+    "pillow": "10.2.0"
+  }
+}

@@ -33,3 +33,5 @@ Còn cần playtest độc lập, đóng lỗi dùng thử, hoàn thiện12 nhâ
 Sau kết thúc đã lưu, **Bạn đã hoàn tất hành trình demo** cho biết lựa chọn/EXP và cách tiếp tục khám phá. **Luyện TCG / Luyện Auto Chess** vào bàn qua điểm lưu an toàn; không cấp lại quà nhiệm vụ. Owner đã thử hai mode nhưng chưa kết thúc hành trình, nên playtest tới cuối còn mở. [Chuyển sang sản phẩm](PRODUCT_PLAN.md).
 
 004I bổ sung hình boss/FX riêng trong trận, giữ nguyên quest/phần thưởng/lựa chọn kết. Đây là gói tham chiếu có8 tư thế và9 ô FX, full motion/audio/world/rights vẫn mở. [Gate boss](BOSS_CHARACTER_GATES.md).
+
+AW2-006B: Phòng Bàn có nền/bàn riêng và bốn nút điểm đến dưới bản đồ. Bấm để đi bộ, đến gần dùng E/Tương tác; lối tắt chỉ mở sau ending. Boss dùng HD tĩnh và một số marker còn tạm. Không cần reset save. [Cách dùng/giới hạn](PHONG_BAN.md).

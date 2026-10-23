@@ -1,6 +1,14 @@
 # Test ledger / change impact
 
-## AW2-007N current verified scope
+## AW2-006B current verified scope
+
+Source `PENDING006B`, base `87aa38c2e79ba11adb1508b78b83370c089b3984`, branch `game/adventure-world-2`. PASS113unique affected cases/6files:74world/collection/rematch retained from first in-session invocation +22final room/controls +17readiness. Initial84had80PASS/4fixtureFAIL; final10room replace all initial10, not an overlapping80+22+17 sum. Nonexistent navigation.test.ts argument ran no cases; actual controls12 and room path checks passed. Full current-head NOT_RUN;1401full units remain historical source4165b1e on unchanged pure boundaries only.
+
+PASS286browser assertions=140source+140compiled+6compiled missing-floor/recovery. Composite earned run:59prefix assertions per flavor from fresh intro through modes/quests/recruits and failed-write/stale encounter checks, then exact current-task quest3raw restore and final room/boss/note/both endings/rematch continuation. No fabricated quest/HP/ownership or single uninterrupted full-story claim. New regression covers intro empty→five-starter advisory. All12followers, prop depth/fade/restoration,320/390/768px/native keyboard/touch, both room exits/gated shortcut, real once-only rewards, failed writes/reread/reload/tab conflicts and five legacy keys covered. Failed intro/visibility/early-tap attempts excluded/replaced, exact origins/hashes recorded. Missing-art6uses authentic completed checkpoint; expected404 errors recorded, no new errors after recovery. File decode/alpha/hash/repeat6paths PASS. Both types/final review build201files/78,917,249bytes and fresh49text stable exclusion PASS. Stable build851files reused at4165b1e;309unchanged hashes retain original art/PCM/pure authority/mode/dependency evidence. [Evidence](evidence/AW2-006B.md), [JSON](evidence/AW2-006B-verification.json), [reuse proof](evidence/AW2-006B-reused-evidence.json).
+
+ENVIRONMENT-01/WORLD-NAV-01/COLLECTION-INTRO-01 development subset PASS. In-session React review: existing awaited loading/disposal, separate Promise loads, native controls outside map hitbox, revision-keyed draft, no new event listener/store authority; texture sources preserved. Source+compiled runtime captures opened; no independent visual/device/FPS/memory/listening/rights acceptance. Full environment/world-boss/full-character/production-save/release OPEN. Demo90%/product≈40%/0fullDoD unchanged; next006C.
+
+## AW2-007N historical verified scope
 
 Source `6fc852872a008c08d2e9b2dd6a8983ba6f2617dc`, base `e855c8e87e45a3623aed09bd19cfab90ba9ff8d7`. PASS73targeted tests/3files =17new readiness+47collection+9rematch,0fail/skip. Exact seed-stat parity for all12kits at8XP points; canonical roles/Van emphasis/Mộc distinction, strict bad/duplicate/enemy selection, invalid XP, detached/nonmutating advisory. Full current-head suite NOT_RUN; original1401PASS from4165b1e retains unchanged boundary only, not counted fresh. No combat/save/world/economy/mode authority changes.
 

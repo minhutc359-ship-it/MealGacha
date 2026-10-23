@@ -4,7 +4,14 @@ import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { sampleWorldFrame } from "../../src/aw2/assets/animation"
 import type { WorldProgress } from "../../src/aw2/world/model"
 import { zoneById } from "../../src/aw2/world/maps"
-import { ZONE_IDS } from "../../src/aw2/world/ids"
+import { KITCHEN_BOSS_ID, ZONE_IDS } from "../../src/aw2/world/ids"
+import {
+  TABLE_ROOM_SCENE,
+  tableRoomPropAlpha,
+  tableRoomWaypoints,
+} from "../../src/aw2/assets/tableRoom"
+import { FORGOTTEN_HOST_ASSETS } from "../../src/aw2/assets/forgottenHost"
+import { RoomWaypoints } from "./RoomWaypoints"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 
 export function WorldCanvas({
@@ -28,6 +35,9 @@ export function WorldCanvas({
   const [ready, setReady] = useState(false)
   const ids = world.partyIds.length ? world.partyIds : ["aw2-than"]
   const partyKey = ids.join(",")
+  const scene =
+    world.zoneId === TABLE_ROOM_SCENE.zoneId ? TABLE_ROOM_SCENE : null
+  const roomPoints = tableRoomWaypoints(world)
   useEffect(() => {
     let disposed = false
     let app: Application | undefined
@@ -38,10 +48,20 @@ export function WorldCanvas({
       try {
         const { Application, Graphics, Assets, Sprite, Texture, Rectangle } =
           await import("pixi.js")
-        const loaded = await Promise.all(
-          ids.map((id) => Assets.load(ROSTER_ASSETS[id].assets.world.url)),
-        )
+        const [loaded, environment] = await Promise.all([
+          Promise.all(
+            ids.map((id) => Assets.load(ROSTER_ASSETS[id].assets.world.url)),
+          ),
+          scene
+            ? Promise.all([
+                Assets.load(scene.assets.floor.url),
+                Assets.load(scene.assets.sideboard.url),
+                Assets.load(FORGOTTEN_HOST_ASSETS.assets.battle.url),
+              ])
+            : Promise.resolve([]),
+        ])
         if (disposed) return
+        for (const texture of environment) texture.source.scaleMode = "nearest"
         const next = new Application()
         await next.init({
           width: 640,
@@ -57,39 +77,48 @@ export function WorldCanvas({
         app = next
         const room = ZONE_IDS.indexOf(world.zoneId) >= 3
         const terrain = new Graphics()
-        for (let y = 0; y < 384; y += 16)
-          for (let x = 0; x < 640; x += 16) {
-            const path =
-              Math.abs(y - 192) < 44 ||
-              (x > 120 && x < 536 && y > 96 && y < 288)
-            const tone = (x / 16 + y / 16) % 2
-            terrain
-              .rect(x, y, 16, 16)
-              .fill(
-                room
-                  ? tone
-                    ? 0x615039
-                    : 0x584832
-                  : path
+        if (scene) {
+          const floor = new Sprite(environment[0])
+          floor.width = scene.canvas.width
+          floor.height = scene.canvas.height
+          next.stage.addChild(floor)
+        }
+        if (!scene) {
+          for (let y = 0; y < 384; y += 16)
+            for (let x = 0; x < 640; x += 16) {
+              const path =
+                Math.abs(y - 192) < 44 ||
+                (x > 120 && x < 536 && y > 96 && y < 288)
+              const tone = (x / 16 + y / 16) % 2
+              terrain
+                .rect(x, y, 16, 16)
+                .fill(
+                  room
                     ? tone
-                      ? 0xb6a075
-                      : 0xad976d
-                    : tone
-                      ? 0x315b41
-                      : 0x345f43,
-              )
+                      ? 0x615039
+                      : 0x584832
+                    : path
+                      ? tone
+                        ? 0xb6a075
+                        : 0xad976d
+                      : tone
+                        ? 0x315b41
+                        : 0x345f43,
+                )
+            }
+          terrain.rect(8, 8, 624, 368).stroke({ width: 4, color: 0x9f885e })
+          for (const wall of zoneById(world.zoneId).walls) {
+            terrain
+              .rect(wall.x, wall.y, wall.width, wall.height)
+              .fill(0x384536)
+              .rect(wall.x + 4, wall.y + 4, wall.width - 8, wall.height - 8)
+              .fill(0x63724d)
+              .rect(wall.x + 12, wall.y + 12, wall.width - 24, 12)
+              .fill(0x889264)
           }
-        terrain.rect(8, 8, 624, 368).stroke({ width: 4, color: 0x9f885e })
-        for (const wall of zoneById(world.zoneId).walls) {
-          terrain
-            .rect(wall.x, wall.y, wall.width, wall.height)
-            .fill(0x384536)
-            .rect(wall.x + 4, wall.y + 4, wall.width - 8, wall.height - 8)
-            .fill(0x63724d)
-            .rect(wall.x + 12, wall.y + 12, wall.width - 24, 12)
-            .fill(0x889264)
         }
         for (const object of zoneById(world.zoneId).objects) {
+          if (scene && object.id === KITCHEN_BOSS_ID) continue
           if (object.kind === "exit")
             terrain.rect(object.x - 10, object.y - 16, 20, 32).fill(0xe4c782)
           else if (object.kind === "chest")
@@ -117,6 +146,45 @@ export function WorldCanvas({
               .fill(0xf2d5ad)
         }
         next.stage.addChild(terrain)
+        let foreground: import("pixi.js").Sprite | undefined
+        let bossMarker: import("pixi.js").Sprite | undefined
+        if (scene) {
+          const frame = scene.assets.sideboard.frame
+          const texture = new Texture({
+            source: environment[1].source,
+            frame: new Rectangle(frame.x, frame.y, frame.width, frame.height),
+          })
+          textures.push(texture)
+          foreground = new Sprite(texture)
+          foreground.anchor.set(scene.prop.anchorX, scene.prop.anchorY)
+          foreground.position.set(scene.prop.x, scene.prop.y)
+          foreground.width = scene.prop.width
+          foreground.height = scene.prop.height
+          foreground.zIndex = scene.prop.sortY + 10
+          next.stage.addChild(foreground)
+          const pose =
+            FORGOTTEN_HOST_ASSETS.frames[
+              scene.bossMarker
+                .frame as keyof typeof FORGOTTEN_HOST_ASSETS.frames
+            ]
+          const bossTexture = new Texture({
+            source: environment[2].source,
+            frame: new Rectangle(pose.x, pose.y, pose.width, pose.height),
+          })
+          textures.push(bossTexture)
+          bossMarker = new Sprite(bossTexture)
+          bossMarker.anchor.set(
+            pose.anchorX / pose.width,
+            pose.anchorY / pose.height,
+          )
+          bossMarker.scale.set(scene.bossMarker.height / pose.height)
+          const object = zoneById(world.zoneId).objects.find(
+            (object) => object.id === KITCHEN_BOSS_ID,
+          )!
+          bossMarker.position.set(object.x, object.y + 6)
+          bossMarker.zIndex = object.y + 10
+          next.stage.addChild(bossMarker)
+        }
         const actors = ids.map((id, index) => {
           const manifest = ROSTER_ASSETS[id]
           loaded[index].source.scaleMode = "nearest"
@@ -189,9 +257,32 @@ export function WorldCanvas({
           next.canvas.dataset.partyPositions = JSON.stringify(
             actors.map(({ sprite }) => ({ x: sprite.x, y: sprite.y })),
           )
+          if (foreground && scene) {
+            foreground.alpha = tableRoomPropAlpha(
+              actors.map(({ sprite }) => {
+                const bounds = sprite.getBounds()
+                return {
+                  x: bounds.x,
+                  y: bounds.y,
+                  width: bounds.width,
+                  height: bounds.height,
+                  groundY: sprite.zIndex - 10,
+                }
+              }),
+            )
+            next.canvas.dataset.foregroundAlpha = String(foreground.alpha)
+            next.canvas.dataset.groundDepths = JSON.stringify({
+              prop: foreground.zIndex,
+              actors: actors.map(({ sprite }) => sprite.zIndex),
+            })
+          }
+          if (bossMarker)
+            bossMarker.alpha =
+              now.questIndex === 4 ? 1 : now.bossDefeated ? 0.6 : 1
           prior = { ...now }
         })
         next.canvas.setAttribute("aria-hidden", "true")
+        next.canvas.dataset.sceneId = scene?.id ?? "debug-terrain"
         next.canvas.dataset.partySize = String(ids.length)
         next.canvas.dataset.partyIds = JSON.stringify(ids)
         host.current?.replaceChildren(next.canvas)
@@ -210,61 +301,76 @@ export function WorldCanvas({
     }
   }, [world.zoneId, partyKey])
   return (
-    <div
-      ref={focusRef}
-      className="aw2-world-map"
-      data-testid="world-map"
-      tabIndex={0}
-      role="region"
-      aria-label="Bản đồ khám phá"
-      onPointerDown={(event) => {
-        if (paused || !ready || event.button !== 0) return
-        event.currentTarget.focus({ preventScroll: true })
-        pointerStart.current = { x: event.clientX, y: event.clientY }
-      }}
-      onPointerCancel={() => {
-        pointerStart.current = null
-      }}
-      onPointerUp={(event) => {
-        const start = pointerStart.current
-        pointerStart.current = null
-        if (
-          paused ||
-          !ready ||
-          !start ||
-          Math.hypot(event.clientX - start.x, event.clientY - start.y) > 8
-        )
-          return
-        const rect = event.currentTarget.getBoundingClientRect()
-        onNavigate({
-          x: ((event.clientX - rect.left) * 640) / rect.width,
-          y: ((event.clientY - rect.top) * 384) / rect.height,
-        })
-      }}
-    >
-      <div ref={host} />
-      {zoneById(world.zoneId).objects.map((object) => (
-        <span
-          key={object.id}
-          className="aw2-world-label"
-          style={{
-            left: `${Math.max(12, Math.min(88, object.x / 6.4))}%`,
-            top: `${object.y / 3.84}%`,
+    <>
+      <div
+        ref={focusRef}
+        className="aw2-world-map"
+        data-testid="world-map"
+        tabIndex={0}
+        role="region"
+        aria-label="Bản đồ khám phá"
+        onPointerDown={(event) => {
+          if (paused || !ready || event.button !== 0) return
+          event.currentTarget.focus({ preventScroll: true })
+          pointerStart.current = { x: event.clientX, y: event.clientY }
+        }}
+        onPointerCancel={() => {
+          pointerStart.current = null
+        }}
+        onPointerUp={(event) => {
+          const start = pointerStart.current
+          pointerStart.current = null
+          if (
+            paused ||
+            !ready ||
+            !start ||
+            Math.hypot(event.clientX - start.x, event.clientY - start.y) > 8
+          )
+            return
+          const rect = event.currentTarget.getBoundingClientRect()
+          onNavigate({
+            x: ((event.clientX - rect.left) * 640) / rect.width,
+            y: ((event.clientY - rect.top) * 384) / rect.height,
+          })
+        }}
+      >
+        <div ref={host} />
+        {zoneById(world.zoneId).objects.map((object) => (
+          <span
+            key={object.id}
+            className="aw2-world-label"
+            style={{
+              left: `${Math.max(12, Math.min(88, object.x / 6.4))}%`,
+              top: `${(object.y + (scene ? 14 : 0)) / 3.84}%`,
+            }}
+          >
+            {scene
+              ? (roomPoints.find((point) => point.id === object.id)?.short ??
+                object.name)
+              : object.name}
+          </span>
+        ))}
+        {!ready && !error && (
+          <p className="aw2-map-loading" role="status">
+            Đang gọi những người bạn…
+          </p>
+        )}
+        {error && (
+          <p className="aw2-map-loading" role="alert">
+            Bản đồ: {error}
+          </p>
+        )}
+      </div>
+      {scene && (
+        <RoomWaypoints
+          world={world}
+          disabled={!ready || paused}
+          onChoose={(point) => {
+            onNavigate(point)
+            host.current?.parentElement?.focus({ preventScroll: true })
           }}
-        >
-          {object.name}
-        </span>
-      ))}
-      {!ready && !error && (
-        <p className="aw2-map-loading" role="status">
-          Đang gọi những người bạn…
-        </p>
+        />
       )}
-      {error && (
-        <p className="aw2-map-loading" role="alert">
-          Bản đồ: {error}
-        </p>
-      )}
-    </div>
+    </>
   )
 }

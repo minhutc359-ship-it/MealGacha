@@ -1,0 +1,16 @@
+{
+  "task": "AW2-006B",
+  "tool": "built-in image_gen",
+  "generations": [
+    {
+      "id": "floor-v1",
+      "useCase": "stylized-concept",
+      "prompt": "Use case: stylized-concept. Asset type: original 2D RPG exploration environment floor plate for Adventure World 2, a Vietnamese-inspired fictional memory-of-meals adventure. Create a wide 5:3 image, ideally 1280 by 768 pixels. Camera: strict orthographic overhead, flat navigable plane, NOT isometric, no perspective convergence, no horizon. The entire interior from 2.5 percent inset through 97.5 percent width/height is open walkable floor. Show a beautiful quiet aged dining-room floor: warm amber wooden boards with carefully drawn seams, restrained chunky pixel-art detail matching 48-pixel chibi sprites, a subtle flat woven floor mat with a faded cream-and-moss border in the middle, gentle soft lantern-colored light pooling from the upper corners. Rich but calm game-ready surface texture, clean silhouettes, muted teal/moss accents. A very thin decorative wooden perimeter no more than 2 percent of image edge may frame the open floor. The central and side passages must remain visibly open. This is ONLY the background floor layer; all furniture, characters, objects, doorway markers and labels are added separately by the game. No tables, no chairs, no cabinets, no walls across the interior, no doors painted into the floor, no people or creatures, no text or lettering, no UI, no arrows, no watermark, no logos. No copied game designs or recognizable external IP. Full-bleed opaque artwork with no transparency. Original coherent handcrafted pixel environment reference, warm reserved-place mood."
+    },
+    {
+      "id": "sideboard-v1",
+      "useCase": "stylized-concept",
+      "prompt": "Use case: stylized-concept. Asset type: a single original transparent foreground furniture sprite for a 2D top-down RPG dining-room exploration scene. Subject: one low, aged amber wooden sideboard/table, four short feet and a modest front face, a single small empty ivory ceramic bowl and neatly folded muted moss-green linen on top. The empty bowl suggests a place being kept for someone; no character, face or identity symbol. Camera: orthographic overhead with just enough front face to read the low furniture height, aligned to a flat top-down RPG floor, NOT isometric, no diagonal orientation. Furniture sits horizontally, width to visible height about 80:72 including upper bowl and feet; grounded footprint is about 64:48. Center the complete object and occupy most of the canvas with a small clean transparent margin, no clipping. Style: restrained chunky pixel art with warm amber wood, cream highlights and moss/teal accents, handmade 48-pixel-chibi-RPG environment style, soft overhead lantern light. Clean readable contours at small scale, no fine illegible ornament. Exactly one isolated furniture sprite, not a sprite sheet, not a scene. Genuinely transparent background, no floor plane, no opaque rectangle, no checkerboard painted into the image, no cast shadow outside the object, no text, UI, watermark or logo, no copied game designs."
+    }
+  ]
+}

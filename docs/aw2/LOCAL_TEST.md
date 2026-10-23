@@ -70,3 +70,5 @@ AW2-007I: `pnpm dev`, mở `http://localhost:8443/dev/aw2/battle.html?team=moc`;
 
 
 AW2-007J: `pnpm dev`, mở `http://localhost:8443/dev/aw2/battle.html?team=bach`; Tank thay Than trong đội5, khiên/Chia Phần từ lượng đỡ thật/tuyệt kỹ chuyển khiên, ngắt/cấp1–20. Không cấp collection/ghi save. [Hướng dẫn](BACH_PRACTICE.md), [evidence](evidence/AW2-007J.md).
+
+AW2-006B: Phòng Bàn có nền/bàn riêng và bốn nút điểm đến dưới bản đồ. Bấm để đi bộ, đến gần dùng E/Tương tác; lối tắt chỉ mở sau ending. Boss dùng HD tĩnh và một số marker còn tạm. Không cần reset save. [Cách dùng/giới hạn](PHONG_BAN.md).

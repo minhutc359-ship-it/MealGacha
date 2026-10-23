@@ -38,6 +38,12 @@ async function saveTeam(page, ids, mode) {
 export async function collectionIntro({ page, check, raw, save }) {
   await bag(page)
   check(
+    "Earned intro immediately renders the five-starter advisory from its own saved revision",
+    JSON.parse(
+      await page.getByTestId("party-readiness").getAttribute("data-ids"),
+    ).join() === starters.join(),
+  )
+  check(
     "Intro owns exactly five starters and shows all12 collection cards",
     (await owned(page)).length === 5 &&
       (await page.locator('[data-testid^="collection-aw2-"]').count()) === 12,

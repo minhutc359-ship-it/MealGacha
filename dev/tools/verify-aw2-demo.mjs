@@ -1,10 +1,17 @@
+import {
+  roomBeforeBoss,
+  roomAfterVictory,
+  roomAfterNote,
+  roomAfterEnding,
+} from "./aw2-table-room-browser-flow.mjs"
 import { rematchAfterEnding } from "./aw2-rematch-browser-flow.mjs"
 import {
   collectionIntro,
   collectionBeforeBoss,
 } from "./aw2-collection-browser-flow.mjs"
 import assert from "node:assert/strict"
-import { mkdir, writeFile } from "node:fs/promises"
+import { mkdir, writeFile, readFile } from "node:fs/promises"
+import { createHash } from "node:crypto"
 import { parseArgs } from "node:util"
 import { createServer, preview } from "vite"
 
@@ -14,10 +21,13 @@ const { values } = parseArgs({
     chromium: { type: "string" },
     compiled: { type: "boolean", default: false },
     collection: { type: "boolean", default: false },
+    room: { type: "boolean", default: false },
+    "resume-room": { type: "string" },
     rematch: { type: "boolean", default: false },
   },
 })
-const withCollection = values.collection || values.rematch
+const withCollection = values.collection || values.rematch || values.room
+assert.ok(!values["resume-room"] || values.room, "Room resume requires --room")
 const { chromium } = await import(values.playwright)
 const port = values.compiled ? 8463 : 8462,
   flavor = values.compiled ? "compiled" : "source"
@@ -30,11 +40,13 @@ const server = values.compiled
       configFile: "dev/vite.dev.config.ts",
       server: { host: "127.0.0.1", port, strictPort: true },
     })
-const out = values.rematch
-    ? ".asset-work/aw2-007m"
-    : withCollection
-      ? ".asset-work/aw2-007l"
-      : ".asset-work/aw2-010b",
+const out = values.room
+    ? ".asset-work/aw2-006b"
+    : values.rematch
+      ? ".asset-work/aw2-007m"
+      : withCollection
+        ? ".asset-work/aw2-007l"
+        : ".asset-work/aw2-010b",
   key = "aw2.development.save",
   url = `http://127.0.0.1:${port}/dev/aw2/world.html`
 const checks = [],
@@ -48,6 +60,7 @@ const checks = [],
     "mealgacha.progress-writer.v4": "original-writer",
   }
 let browser, page
+let earnedChain
 const check = (name, condition = true) => {
   assert.ok(condition, name)
   checks.push(name)
@@ -101,6 +114,8 @@ try {
   const world = () => page.locator("canvas[data-party-size]").waitFor()
   const go = async (x, y) => {
     const map = page.getByTestId("world-map")
+    await world()
+    await map.locator(".aw2-map-loading").waitFor({ state: "hidden" })
     await map.scrollIntoViewIfNeeded()
     const box = await map.boundingBox()
     await page.touchscreen.tap(
@@ -148,426 +163,480 @@ try {
     }, key)
   await mkdir(out, { recursive: true })
   await page.goto(url)
-  await page
-    .getByRole("button", { name: "Tạo bản lưu AW2", exact: true })
-    .waitFor()
-  check(
-    "Fresh demo opens without creating a save or granting progression",
-    (await raw()) === null,
-  )
-  await page.evaluate(
-    (legacy) =>
-      Object.entries(legacy).forEach(([key, value]) =>
-        localStorage.setItem(key, value),
-      ),
-    legacy,
-  )
-  await click("Tạo bản lưu AW2")
-  await world()
-  const initial = await raw()
-  check(
-    "Incomplete saved journey does not claim demo completion",
-    (await page.getByTestId("demo-complete").count()) === 0,
-  )
-  check(
-    "Initial goal precedes the map and names the first NPC",
-    (await page
-      .getByTestId("quest-objective")
-      .evaluate(
-        (node) =>
-          !!(
-            node.compareDocumentPosition(
-              document.querySelector('[data-testid="world-map"]'),
-            ) & Node.DOCUMENT_POSITION_FOLLOWING
-          ),
-      )) &&
-      (await page.getByTestId("quest-objective").textContent()).includes(
-        "Bà Giữ Chỗ",
-      ),
-  )
-  const help = page.getByText("Hướng dẫn di chuyển, lưu và ghé bàn", {
-    exact: true,
-  })
-  await help.focus()
-  await page.keyboard.press("Space")
-  check(
-    "Keyboard opens optional help with save/mode return guidance and no writes",
-    (await help.evaluate((node) => node.parentElement.open)) &&
-      (
-        await page
-          .getByRole("region", { name: "Mục tiêu hành trình" })
-          .textContent()
-      ).includes("Đi bộ chưa lưu vị trí") &&
-      (await raw()) === initial,
-  )
-  check(
-    "Native summary keeps browser arrows and interaction letters",
-    !(await blocked("ArrowDown")) && !(await blocked("e")),
-  )
-  for (const width of [320, 390, 768]) {
-    await page.setViewportSize({ width, height: 844 })
-    check(
-      `Goal/help/world controls fit ${width}px`,
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth,
-      ),
-    )
-    if (width === 390)
-      await page.screenshot({
-        path: `${out}/${flavor}-guide-mobile.png`,
-        fullPage: true,
-      })
-  }
-  await page.setViewportSize({ width: 1280, height: 1000 })
-  await page.getByRole("button", { name: "Lưu vị trí", exact: true }).focus()
-  check(
-    "Save button keeps native key ownership",
-    !(await blocked("ArrowDown")) && !(await blocked("e")),
-  )
-  const position = () => page.getByTestId("player-position").textContent()
-  const beforeKey = await position()
-  await page.getByRole("button", { name: "→ Phải", exact: true }).focus()
-  await page.keyboard.press("Enter")
-  check(
-    "Direction button Enter moves right exactly through world rules without save writes",
-    (await position()).includes("Vị trí 103, 192") &&
-      (await raw()) === initial &&
-      (await position()) !== beforeKey,
-  )
-  await page.getByTestId("world-map").focus()
-  await page.keyboard.down("d")
-  await page.waitForTimeout(120)
-  await page.getByRole("button", { name: "Lưu vị trí", exact: true }).focus()
-  const stopped = await position()
-  await page.waitForTimeout(160)
-  await page.keyboard.up("d")
-  check(
-    "Focusing native UI stops held exploration movement",
-    (await position()) === stopped,
-  )
-  await click("Đọc lại")
-  await world()
-  check(
-    "Reread restores initial unsaved movement without writing",
-    (await raw()) === initial && (await position()).includes("Vị trí 96, 192"),
-  )
-  await go(160, 240)
-  await page.getByTestId("world-map").evaluate((node) => node.blur())
-  await interact()
-  const beforeClose = await raw()
-  await page.keyboard.press("Escape")
-  check(
-    "Closing the first dialogue accepts nothing",
-    (await raw()) === beforeClose && !(await save()).progress.accepted,
-  )
-  check(
-    "Closing dialogue from body focus restores the keyboard map target",
-    await page
-      .getByTestId("world-map")
-      .evaluate((node) => document.activeElement === node),
-  )
-  await interact("Nhận nhiệm vụ")
-  await go(160, 144)
-  await interact("Đọc mảnh khăn")
-  await go(160, 240)
-  await interact("Hoàn tất nhập môn")
-  check(
-    "One earned intro unlocks five starters and exactly 30XP",
-    (await save()).progress.partyIds.length === 5 &&
-      (await save()).economy.teamExperience === 30,
-  )
-  if (withCollection) await collectionIntro({ page, check, raw, save })
-  const intro = await raw()
-  await page.reload()
-  await world()
-  check(
-    "Fresh intro reload is byte-identical and retains next objective",
-    (await raw()) === intro &&
-      (await page.getByTestId("quest-objective").textContent()).includes(
-        "An Vá Đèn",
-      ),
-  )
-
-  const enter = async (mode, entry) => {
-    if (entry === "quick-entry")
-      await click(mode === "tcg" ? "Ghé nhanh TCG" : "Ghé nhanh Auto Chess")
-    else {
-      await go(mode === "tcg" ? 240 : 432, 272)
-      await interact("Ghé bàn")
+  if (values["resume-room"]) {
+    const priorText = await readFile(values["resume-room"], "utf8"),
+      prior = JSON.parse(priorText),
+      checkpoint = JSON.parse(prior.observedRaw),
+      boundary = prior.checks.findIndex((c) =>
+        c.startsWith("Authored room loads"),
+      )
+    assert.equal(prior.flavor, flavor)
+    assert.equal(prior.errors.length, 0)
+    assert.ok(boundary > 0)
+    assert.equal(checkpoint.progress.questIndex, 3)
+    assert.equal(checkpoint.progress.zoneId, "aw2-zone-kitchen-table")
+    assert.equal(checkpoint.progress.bossDefeated, false)
+    assert.equal(checkpoint.economy.teamExperience, 205)
+    assert.equal(checkpoint.collection.recruitedIds.length, 7)
+    checks.push(...prior.checks.slice(0, boundary))
+    modes.push(...prior.modes)
+    earnedChain = {
+      source: values["resume-room"],
+      sourceSha256: createHash("sha256").update(priorText).digest("hex"),
+      checkpointSha256: createHash("sha256")
+        .update(prior.observedRaw)
+        .digest("hex"),
+      retainedAssertions: boundary,
+      boundary:
+        "Before room hook; initial earned native journey retained, room assertions rerun in a fresh QA profile",
     }
-    await page.getByTestId("mode-lobby").waitFor()
-    const checkpoint = await raw(),
-      count = await page.evaluate(() => window.__demoWrites)
-    await click(mode === "tcg" ? "Chơi TCG thử" : "Chơi Auto Chess thử")
+    await page.evaluate(
+      ({ key, raw, legacy }) => {
+        localStorage.setItem(key, raw)
+        Object.entries(legacy).forEach(([k, v]) => localStorage.setItem(k, v))
+      },
+      { key, raw: prior.observedRaw, legacy },
+    )
+    await page.reload()
+    await world()
+  } else {
     await page
-      .getByTestId(mode === "tcg" ? "tcg-practice" : "chess-practice")
+      .getByRole("button", { name: "Tạo bản lưu AW2", exact: true })
       .waitFor()
-    await page.evaluate(() => {
-      window.__demoBlock = true
+    check(
+      "Fresh demo opens without creating a save or granting progression",
+      (await raw()) === null,
+    )
+    await page.evaluate(
+      (legacy) =>
+        Object.entries(legacy).forEach(([key, value]) =>
+          localStorage.setItem(key, value),
+        ),
+      legacy,
+    )
+    await click("Tạo bản lưu AW2")
+    await world()
+    const initial = await raw()
+    check(
+      "Incomplete saved journey does not claim demo completion",
+      (await page.getByTestId("demo-complete").count()) === 0,
+    )
+    check(
+      "Initial goal precedes the map and names the first NPC",
+      (await page
+        .getByTestId("quest-objective")
+        .evaluate(
+          (node) =>
+            !!(
+              node.compareDocumentPosition(
+                document.querySelector('[data-testid="world-map"]'),
+              ) & Node.DOCUMENT_POSITION_FOLLOWING
+            ),
+        )) &&
+        (await page.getByTestId("quest-objective").textContent()).includes(
+          "Bà Giữ Chỗ",
+        ),
+    )
+    const help = page.getByText("Hướng dẫn di chuyển, lưu và ghé bàn", {
+      exact: true,
     })
-    return { checkpoint, count }
-  }
-  const returnFrom = async (mode, entry, checkpoint, count, result) => {
-    await click("Trở về hành trình")
+    await help.focus()
+    await page.keyboard.press("Space")
+    check(
+      "Keyboard opens optional help with save/mode return guidance and no writes",
+      (await help.evaluate((node) => node.parentElement.open)) &&
+        (
+          await page
+            .getByRole("region", { name: "Mục tiêu hành trình" })
+            .textContent()
+        ).includes("Đi bộ chưa lưu vị trí") &&
+        (await raw()) === initial,
+    )
+    check(
+      "Native summary keeps browser arrows and interaction letters",
+      !(await blocked("ArrowDown")) && !(await blocked("e")),
+    )
+    for (const width of [320, 390, 768]) {
+      await page.setViewportSize({ width, height: 844 })
+      check(
+        `Goal/help/world controls fit ${width}px`,
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+      )
+      if (width === 390)
+        await page.screenshot({
+          path: `${out}/${flavor}-guide-mobile.png`,
+          fullPage: true,
+        })
+    }
+    await page.setViewportSize({ width: 1280, height: 1000 })
+    await page.getByRole("button", { name: "Lưu vị trí", exact: true }).focus()
+    check(
+      "Save button keeps native key ownership",
+      !(await blocked("ArrowDown")) && !(await blocked("e")),
+    )
+    const position = () => page.getByTestId("player-position").textContent()
+    const beforeKey = await position()
+    await page.getByRole("button", { name: "→ Phải", exact: true }).focus()
+    await page.keyboard.press("Enter")
+    check(
+      "Direction button Enter moves right exactly through world rules without save writes",
+      (await position()).includes("Vị trí 103, 192") &&
+        (await raw()) === initial &&
+        (await position()) !== beforeKey,
+    )
+    await page.getByTestId("world-map").focus()
+    await page.keyboard.down("d")
+    await page.waitForTimeout(120)
+    await page.getByRole("button", { name: "Lưu vị trí", exact: true }).focus()
+    const stopped = await position()
+    await page.waitForTimeout(160)
+    await page.keyboard.up("d")
+    check(
+      "Focusing native UI stops held exploration movement",
+      (await position()) === stopped,
+    )
+    await click("Đọc lại")
     await world()
     check(
-      `${mode}/${entry} real result returns exact RPG position/objective/economy without writes`,
-      (await raw()) === checkpoint &&
-        (await page.evaluate(() => window.__demoWrites)) === count,
+      "Reread restores initial unsaved movement without writing",
+      (await raw()) === initial &&
+        (await position()).includes("Vị trí 96, 192"),
     )
-    modes.push({
-      mode,
-      entry,
-      result,
-      questIndex: JSON.parse(checkpoint).progress.questIndex,
-    })
-    await page.evaluate(() => {
-      window.__demoBlock = false
-    })
-  }
-  const finishTcg = async (entry, win) => {
-    const { checkpoint, count } = await enter("tcg", entry),
-      match = page.getByTestId("tcg-practice")
-    await page.getByRole("heading", { level: 1 }).focus()
+    await go(160, 240)
+    await page.getByTestId("world-map").evaluate((node) => node.blur())
+    await interact()
+    const beforeClose = await raw()
+    await page.keyboard.press("Escape")
     check(
-      `TCG/${entry} leaves browser reading arrows available`,
-      !(await blocked("ArrowDown")),
+      "Closing the first dialogue accepts nothing",
+      (await raw()) === beforeClose && !(await save()).progress.accepted,
     )
-    if (entry === "quick-entry") {
-      await page.evaluate(() => window.scrollTo(0, 0))
-      await page.keyboard.press("ArrowDown")
-      await page.waitForTimeout(220)
-      check(
-        "Actual browser arrow scroll works inside the long TCG page",
-        await page.evaluate(() => scrollY > 0),
-      )
+    check(
+      "Closing dialogue from body focus restores the keyboard map target",
+      await page
+        .getByTestId("world-map")
+        .evaluate((node) => document.activeElement === node),
+    )
+    await interact("Nhận nhiệm vụ")
+    await go(160, 144)
+    await interact("Đọc mảnh khăn")
+    await go(160, 240)
+    await interact("Hoàn tất nhập môn")
+    check(
+      "One earned intro unlocks five starters and exactly 30XP",
+      (await save()).progress.partyIds.length === 5 &&
+        (await save()).economy.teamExperience === 30,
+    )
+    if (withCollection) await collectionIntro({ page, check, raw, save })
+    const intro = await raw()
+    await page.reload()
+    await world()
+    check(
+      "Fresh intro reload is byte-identical and retains next objective",
+      (await raw()) === intro &&
+        (await page.getByTestId("quest-objective").textContent()).includes(
+          "An Vá Đèn",
+        ),
+    )
+
+    const enter = async (mode, entry) => {
+      if (entry === "quick-entry")
+        await click(mode === "tcg" ? "Ghé nhanh TCG" : "Ghé nhanh Auto Chess")
+      else {
+        await go(mode === "tcg" ? 240 : 432, 272)
+        await interact("Ghé bàn")
+      }
+      await page.getByTestId("mode-lobby").waitFor()
+      const checkpoint = await raw(),
+        count = await page.evaluate(() => window.__demoWrites)
+      await click(mode === "tcg" ? "Chơi TCG thử" : "Chơi Auto Chess thử")
+      await page
+        .getByTestId(mode === "tcg" ? "tcg-practice" : "chess-practice")
+        .waitFor()
+      await page.evaluate(() => {
+        window.__demoBlock = true
+      })
+      return { checkpoint, count }
     }
-    let turns = 0
-    while (
-      (await match.getAttribute("data-status")) === "active" &&
-      turns++ < 70
-    )
-      await click("Kết thúc lượt")
-    assert.equal(await match.getAttribute("data-status"), "opponent-win")
-    if (win) {
-      await click("Chơi ván mới")
-      let actions = 0
+    const returnFrom = async (mode, entry, checkpoint, count, result) => {
+      await click("Trở về hành trình")
+      await world()
+      check(
+        `${mode}/${entry} real result returns exact RPG position/objective/economy without writes`,
+        (await raw()) === checkpoint &&
+          (await page.evaluate(() => window.__demoWrites)) === count,
+      )
+      modes.push({
+        mode,
+        entry,
+        result,
+        questIndex: JSON.parse(checkpoint).progress.questIndex,
+      })
+      await page.evaluate(() => {
+        window.__demoBlock = false
+      })
+    }
+    const finishTcg = async (entry, win) => {
+      const { checkpoint, count } = await enter("tcg", entry),
+        match = page.getByTestId("tcg-practice")
+      await page.getByRole("heading", { level: 1 }).focus()
+      check(
+        `TCG/${entry} leaves browser reading arrows available`,
+        !(await blocked("ArrowDown")),
+      )
+      if (entry === "quick-entry") {
+        await page.evaluate(() => window.scrollTo(0, 0))
+        await page.keyboard.press("ArrowDown")
+        await page.waitForTimeout(220)
+        check(
+          "Actual browser arrow scroll works inside the long TCG page",
+          await page.evaluate(() => scrollY > 0),
+        )
+      }
+      let turns = 0
       while (
         (await match.getAttribute("data-status")) === "active" &&
-        actions++ < 400
+        turns++ < 70
       )
-        await click("Chơi nước gợi ý")
-      assert.equal(await match.getAttribute("data-status"), "player-win")
-    }
-    await returnFrom(
-      "tcg",
-      entry,
-      checkpoint,
-      count,
-      await match.getAttribute("data-status"),
-    )
-  }
-  const owned = () =>
-    page
-      .getByTestId("chess-practice")
-      .locator("[data-piece-id]")
-      .evaluateAll((nodes) =>
-        nodes.map((node) => ({
-          uid: node.dataset.pieceId,
-          id: node.dataset.spiritId,
-          stars: +node.dataset.stars,
-        })),
-      )
-  const finishChess = async (entry, strong) => {
-    const { checkpoint, count } = await enter("auto-chess", entry),
-      match = page.getByTestId("chess-practice")
-    const phase = () => match.getAttribute("data-phase")
-    await page.getByRole("heading", { level: 1 }).focus()
-    check(
-      `Chess/${entry} leaves browser reading arrows available`,
-      !(await blocked("ArrowDown")),
-    )
-    let rounds = 0
-    while ((await phase()) !== "finished" && rounds++ < 6) {
-      if (strong) {
-        for (let tries = 0; tries < 40; tries++) {
-          const units = await owned(),
-            offers = await page.locator("[data-offer]").evaluateAll((nodes) =>
-              nodes.map((node, slot) => ({
-                id: node.dataset.offer,
-                slot,
-                usable:
-                  !!node.querySelector("button") &&
-                  !node.querySelector("button").disabled,
-              })),
-            )
-          const score = (id) =>
-            units.filter((unit) => unit.id === id && unit.stars === 1).length *
-              20 +
-            (!units.some((unit) => unit.id === id) ? 8 : 0)
-          offers.sort((a, b) => score(b.id) - score(a.id))
-          const offer = offers.find((offer) => offer.usable)
-          if (offer) {
-            await page
-              .locator("[data-offer]")
-              .nth(offer.slot)
-              .getByRole("button")
-              .click()
-            await click("Xếp đội gợi ý")
-            continue
-          }
-          if (
-            +(await page.getByTestId("chess-gold").textContent()) < 3 ||
-            units.length >= 8
-          )
-            break
-          await click("Đổi quầy · 1 vàng")
-        }
-        await click("Xếp đội gợi ý")
-      } else if (!(await owned()).length) {
-        await page.locator("[data-offer]").first().getByRole("button").click()
-        const piece = (await owned())[0]
-        await page.locator(`[data-piece-id="${piece.uid}"]`).click()
-        await page.locator("[data-cell='3']").click()
+        await click("Kết thúc lượt")
+      assert.equal(await match.getAttribute("data-status"), "opponent-win")
+      if (win) {
+        await click("Chơi ván mới")
+        let actions = 0
+        while (
+          (await match.getAttribute("data-status")) === "active" &&
+          actions++ < 400
+        )
+          await click("Chơi nước gợi ý")
+        assert.equal(await match.getAttribute("data-status"), "player-win")
       }
-      await click("Bắt đầu giao tranh")
-      if (
-        await page
-          .getByRole("button", { name: "Tạm dừng giao tranh", exact: true })
-          .count()
+      await returnFrom(
+        "tcg",
+        entry,
+        checkpoint,
+        count,
+        await match.getAttribute("data-status"),
       )
-        await click("Tạm dừng giao tranh")
-      let ticks = 0
-      while ((await phase()) === "battle" && ticks++ < 81)
-        await click("Tiến một nhịp")
-      if ((await phase()) === "round-result")
-        await click("Vòng tiếp · nhận 6 vàng")
     }
-    assert.equal(await phase(), "finished")
-    assert.equal(
-      await match.getAttribute("data-status"),
-      strong ? "player-win" : "opponent-win",
+    const owned = () =>
+      page
+        .getByTestId("chess-practice")
+        .locator("[data-piece-id]")
+        .evaluateAll((nodes) =>
+          nodes.map((node) => ({
+            uid: node.dataset.pieceId,
+            id: node.dataset.spiritId,
+            stars: +node.dataset.stars,
+          })),
+        )
+    const finishChess = async (entry, strong) => {
+      const { checkpoint, count } = await enter("auto-chess", entry),
+        match = page.getByTestId("chess-practice")
+      const phase = () => match.getAttribute("data-phase")
+      await page.getByRole("heading", { level: 1 }).focus()
+      check(
+        `Chess/${entry} leaves browser reading arrows available`,
+        !(await blocked("ArrowDown")),
+      )
+      let rounds = 0
+      while ((await phase()) !== "finished" && rounds++ < 6) {
+        if (strong) {
+          for (let tries = 0; tries < 40; tries++) {
+            const units = await owned(),
+              offers = await page.locator("[data-offer]").evaluateAll((nodes) =>
+                nodes.map((node, slot) => ({
+                  id: node.dataset.offer,
+                  slot,
+                  usable:
+                    !!node.querySelector("button") &&
+                    !node.querySelector("button").disabled,
+                })),
+              )
+            const score = (id) =>
+              units.filter((unit) => unit.id === id && unit.stars === 1)
+                .length *
+                20 +
+              (!units.some((unit) => unit.id === id) ? 8 : 0)
+            offers.sort((a, b) => score(b.id) - score(a.id))
+            const offer = offers.find((offer) => offer.usable)
+            if (offer) {
+              await page
+                .locator("[data-offer]")
+                .nth(offer.slot)
+                .getByRole("button")
+                .click()
+              await click("Xếp đội gợi ý")
+              continue
+            }
+            if (
+              +(await page.getByTestId("chess-gold").textContent()) < 3 ||
+              units.length >= 8
+            )
+              break
+            await click("Đổi quầy · 1 vàng")
+          }
+          await click("Xếp đội gợi ý")
+        } else if (!(await owned()).length) {
+          await page.locator("[data-offer]").first().getByRole("button").click()
+          const piece = (await owned())[0]
+          await page.locator(`[data-piece-id="${piece.uid}"]`).click()
+          await page.locator("[data-cell='3']").click()
+        }
+        await click("Bắt đầu giao tranh")
+        if (
+          await page
+            .getByRole("button", { name: "Tạm dừng giao tranh", exact: true })
+            .count()
+        )
+          await click("Tạm dừng giao tranh")
+        let ticks = 0
+        while ((await phase()) === "battle" && ticks++ < 81)
+          await click("Tiến một nhịp")
+        if ((await phase()) === "round-result")
+          await click("Vòng tiếp · nhận 6 vàng")
+      }
+      assert.equal(await phase(), "finished")
+      assert.equal(
+        await match.getAttribute("data-status"),
+        strong ? "player-win" : "opponent-win",
+      )
+      await returnFrom(
+        "auto-chess",
+        entry,
+        checkpoint,
+        count,
+        await match.getAttribute("data-status"),
+      )
+    }
+    await finishTcg("quick-entry", true)
+    await finishChess("quick-entry", true)
+    await travel(616, "Phố Đèn Lồng")
+    await finishTcg("portal", false)
+    await finishChess("portal", false)
+    check(
+      "Both real practices and both entry routes fit one legitimately earned journey",
+      modes.length === 4 && modes.every((mode) => mode.questIndex === 1),
     )
-    await returnFrom(
-      "auto-chess",
-      entry,
-      checkpoint,
-      count,
-      await match.getAttribute("data-status"),
+    await go(160, 112)
+    await interact("Nhận nhiệm vụ")
+    for (const x of [504, 280, 392]) {
+      await go(x, 128)
+      await interact("Ghi nhớ câu chuyện")
+    }
+    await go(160, 112)
+    await interact("Người chờ")
+    check(
+      "Three memories hand-in grants only its actual quest reward",
+      (await save()).progress.questIndex === 2 &&
+        (await save()).economy.teamExperience === 80,
     )
-  }
-  await finishTcg("quick-entry", true)
-  await finishChess("quick-entry", true)
-  await travel(616, "Phố Đèn Lồng")
-  await finishTcg("portal", false)
-  await finishChess("portal", false)
-  check(
-    "Both real practices and both entry routes fit one legitimately earned journey",
-    modes.length === 4 && modes.every((mode) => mode.questIndex === 1),
-  )
-  await go(160, 112)
-  await interact("Nhận nhiệm vụ")
-  for (const x of [504, 280, 392]) {
-    await go(x, 128)
-    await interact("Ghi nhớ câu chuyện")
-  }
-  await go(160, 112)
-  await interact("Người chờ")
-  check(
-    "Three memories hand-in grants only its actual quest reward",
-    (await save()).progress.questIndex === 2 &&
-      (await save()).economy.teamExperience === 80,
-  )
-  await travel(616, "Sân Bếp Bỏ Quên")
-  await go(320, 128)
-  await interact("Nhận nhiệm vụ")
-  await travel(616, "Phòng Kho")
-  await go(240, 128)
-  await interact("Ghi lại gợi ý")
-  await go(432, 272)
-  await interact()
-  const chestBefore = await raw()
-  await page.keyboard.press("Escape")
-  check(
-    "Reading and closing chest grants nothing in the combined journey",
-    (await raw()) === chestBefore,
-  )
-  await interact("Mở rương nguyên liệu")
-  const chestRaw = await raw()
-  await interact()
-  check(
-    "Chest can be claimed only once with an actual receipt",
-    (await page
-      .getByRole("button", { name: "Đã nhận rương", exact: true })
-      .isDisabled()) && (await raw()) === chestRaw,
-  )
-  await page.keyboard.press("Escape")
-  await travel(616, "Phòng Lửa")
-  await go(432, 144)
-  await interact("Nhóm lửa")
-  check(
-    "Wrong puzzle attempt is retryable and spends no ingredients",
-    (await save()).progress.puzzleStep === 0 &&
-      JSON.stringify((await save()).economy.inventory) ===
-        JSON.stringify(JSON.parse(chestRaw).economy.inventory),
-  )
-  for (const [x, action] of [
-    [208, "Mở lối thoát"],
-    [320, "Đặt nồi"],
-    [432, "Nhóm lửa"],
-  ]) {
-    await go(x, 144)
-    await interact(action)
-  }
-  const puzzle = await raw()
-  await page.reload()
-  await world()
-  check(
-    "Solved puzzle reload preserves earned state and exact bytes",
-    (await raw()) === puzzle && (await save()).progress.puzzleStep === 3,
-  )
-  await travel(24, "Phòng Kho")
-  await travel(24, "Sân Bếp Bỏ Quên")
-  await go(320, 128)
-  await interact("Báo đã mở bếp")
-  await go(96, 192)
-  await page.locator(".aw2-bag-panel > summary").click()
-  await page.getByText("Nấu và chia một bữa ấm", { exact: true }).click()
-  check(
-    "Kitchen guidance explains an opened but distant kitchen",
-    (await page.locator("#aw2-kitchen-guide").textContent()).includes(
-      "Bếp đã mở. Đến gần",
-    ) &&
+    await travel(616, "Sân Bếp Bỏ Quên")
+    await go(320, 128)
+    await interact("Nhận nhiệm vụ")
+    await travel(616, "Phòng Kho")
+    await go(240, 128)
+    await interact("Ghi lại gợi ý")
+    await go(432, 272)
+    await interact()
+    const chestBefore = await raw()
+    await page.keyboard.press("Escape")
+    check(
+      "Reading and closing chest grants nothing in the combined journey",
+      (await raw()) === chestBefore,
+    )
+    await interact("Mở rương nguyên liệu")
+    const chestRaw = await raw()
+    await interact()
+    check(
+      "Chest can be claimed only once with an actual receipt",
       (await page
-        .getByRole("button", { name: "Nấu Chén cơm ấm", exact: true })
-        .isDisabled()),
-  )
-  await go(320, 128)
-  const beforeMeal = await save()
-  await click("Nấu Chén cơm ấm")
-  await click("Chia bữa · +45 EXP")
-  await page
-    .getByRole("status")
-    .filter({ hasText: "Bữa ăn được chia sẻ" })
-    .waitFor()
-  const afterMeal = await save()
-  check(
-    "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
-    afterMeal.economy.teamExperience === 205 &&
-      afterMeal.economy.shared === 1 &&
-      afterMeal.economy.cooked === 1 &&
-      afterMeal.economy.inventory.rice ===
-        beforeMeal.economy.inventory.rice - 1 &&
-      afterMeal.economy.inventory["warm-bowl"] === 0,
-  )
-  await go(320, 128)
-  await interact("Nhận nhiệm vụ")
-  await travel(616, "Phòng Kho")
-  await travel(616, "Phòng Lửa")
-  await travel(616, "Phòng Bàn")
-  await go(320, 128)
-  if (withCollection)
-    await collectionBeforeBoss({
+        .getByRole("button", { name: "Đã nhận rương", exact: true })
+        .isDisabled()) && (await raw()) === chestRaw,
+    )
+    await page.keyboard.press("Escape")
+    await travel(616, "Phòng Lửa")
+    await go(432, 144)
+    await interact("Nhóm lửa")
+    check(
+      "Wrong puzzle attempt is retryable and spends no ingredients",
+      (await save()).progress.puzzleStep === 0 &&
+        JSON.stringify((await save()).economy.inventory) ===
+          JSON.stringify(JSON.parse(chestRaw).economy.inventory),
+    )
+    for (const [x, action] of [
+      [208, "Mở lối thoát"],
+      [320, "Đặt nồi"],
+      [432, "Nhóm lửa"],
+    ]) {
+      await go(x, 144)
+      await interact(action)
+    }
+    const puzzle = await raw()
+    await page.reload()
+    await world()
+    check(
+      "Solved puzzle reload preserves earned state and exact bytes",
+      (await raw()) === puzzle && (await save()).progress.puzzleStep === 3,
+    )
+    await travel(24, "Phòng Kho")
+    await travel(24, "Sân Bếp Bỏ Quên")
+    await go(320, 128)
+    await interact("Báo đã mở bếp")
+    await go(96, 192)
+    await page.locator(".aw2-bag-panel > summary").click()
+    await page.getByText("Nấu và chia một bữa ấm", { exact: true }).click()
+    check(
+      "Kitchen guidance explains an opened but distant kitchen",
+      (await page.locator("#aw2-kitchen-guide").textContent()).includes(
+        "Bếp đã mở. Đến gần",
+      ) &&
+        (await page
+          .getByRole("button", { name: "Nấu Chén cơm ấm", exact: true })
+          .isDisabled()),
+    )
+    await go(320, 128)
+    const beforeMeal = await save()
+    await click("Nấu Chén cơm ấm")
+    await click("Chia bữa · +45 EXP")
+    await page
+      .getByRole("status")
+      .filter({ hasText: "Bữa ăn được chia sẻ" })
+      .waitFor()
+    const afterMeal = await save()
+    check(
+      "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
+      afterMeal.economy.teamExperience === 205 &&
+        afterMeal.economy.shared === 1 &&
+        afterMeal.economy.cooked === 1 &&
+        afterMeal.economy.inventory.rice ===
+          beforeMeal.economy.inventory.rice - 1 &&
+        afterMeal.economy.inventory["warm-bowl"] === 0,
+    )
+    await go(320, 128)
+    await interact("Nhận nhiệm vụ")
+    await travel(616, "Phòng Kho")
+    await travel(616, "Phòng Lửa")
+    await travel(616, "Phòng Bàn")
+    await go(320, 128)
+    if (withCollection)
+      await collectionBeforeBoss({
+        page,
+        check,
+        raw,
+        save,
+        go,
+        interact,
+        world,
+        url,
+        out,
+        flavor,
+        watch,
+      })
+  }
+  if (values.room)
+    await roomBeforeBoss({
       page,
       check,
       raw,
@@ -575,10 +644,8 @@ try {
       go,
       interact,
       world,
-      url,
       out,
       flavor,
-      watch,
     })
   await interact("Bắt đầu thử thách")
   await page.getByTestId("world-battle").waitFor()
@@ -697,8 +764,10 @@ try {
       !(await save()).progress.tableNoteRead &&
       (await save()).progress.questIndex === 3,
   )
+  if (values.room) await roomAfterVictory({ page, check })
   await go(448, 144)
   await interact("Đọc ghi chép")
+  if (values.room) await roomAfterNote({ page, check })
   for (const zone of [
     "Phòng Lửa",
     "Phòng Kho",
@@ -853,7 +922,9 @@ try {
       ),
   )
   await branchContext.close()
-  if (values.rematch)
+  if (values.room)
+    await roomAfterEnding({ page, check, go, interact, raw, save })
+  if (values.rematch || values.room)
     await rematchAfterEnding({
       page,
       check,
@@ -887,16 +958,19 @@ try {
     JSON.stringify(
       {
         status: "PASS",
-        task: values.rematch
-          ? "AW2-007M"
-          : withCollection
-            ? "AW2-007L"
-            : "AW2-010B",
+        task: values.room
+          ? "AW2-006B"
+          : values.rematch
+            ? "AW2-007M"
+            : withCollection
+              ? "AW2-007L"
+              : "AW2-010B",
         flavor,
         engine: browser.version(),
         checks,
         errors,
         modes,
+        earnedChain,
         bossTick,
         checkpointRaw: await raw(),
         final: {
@@ -904,8 +978,9 @@ try {
           receipts: done.economy.receipts,
           ending: done.progress.endingChoice,
         },
-        scope:
-          "Fresh earned web demo with reference assets; automated combined acceptance, no independent human/device/art/release approval",
+        scope: earnedChain
+          ? "Composite earned native journey + exact checkpoint continuation; no single uninterrupted full-story run or independent human/device/art/release approval"
+          : "Fresh earned web demo with reference assets; automated combined acceptance, no independent human/device/art/release approval",
       },
       null,
       2,
@@ -926,6 +1001,7 @@ try {
         checks,
         errors,
         modes,
+        earnedChain,
         observedRaw: await page
           ?.evaluate((key) => localStorage.getItem(key), key)
           .catch(() => null),

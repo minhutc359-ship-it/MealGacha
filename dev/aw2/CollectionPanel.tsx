@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import type { Aw2DevSave } from "../../src/aw2/save/schema"
 import { ROSTER, type SPIRIT_IDS } from "../../src/aw2/world/ids"
@@ -13,21 +13,25 @@ import { STARTER_SPIRIT_IDS } from "../../src/aw2/combat/roster"
 import { PartyReadiness } from "./PartyReadiness"
 
 type SpiritId = (typeof SPIRIT_IDS)[number]
-export function CollectionPanel({
-  save,
-  busy,
-  onAction,
-}: {
+type CollectionPanelProps = {
   save: Aw2DevSave
   busy: boolean
   onAction: (action: CollectionAction) => void
-}) {
+}
+
+export function CollectionPanel(props: CollectionPanelProps) {
+  // A committed revision owns a fresh draft, including the empty → starter transition.
+  return (
+    <CollectionEditor
+      key={`${props.save.saveId}:${props.save.revision}`}
+      {...props}
+    />
+  )
+}
+
+function CollectionEditor({ save, busy, onAction }: CollectionPanelProps) {
   const [party, setParty] = useState(save.progress.partyIds)
   const [emphasis, setEmphasis] = useState(save.collection.vanEmphasis)
-  useEffect(() => {
-    setParty(save.progress.partyIds)
-    setEmphasis(save.collection.vanEmphasis)
-  }, [save.revision, save.progress.partyIds, save.collection.vanEmphasis])
   const owned = ownedSpirits(save.progress, save.collection)
   const changed =
     JSON.stringify(party) !== JSON.stringify(save.progress.partyIds) ||
