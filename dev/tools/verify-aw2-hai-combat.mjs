@@ -281,9 +281,9 @@ try {
     .getByRole("link", { name: "luyện kỹ năng Hải", exact: true })
     .waitFor()
   check(
-    "Reference links actual kit while collection remains pending",
+    "Reference links actual kit and links persisted collection",
     (await page.locator("main").innerText()).includes(
-      "Thu thập và đội lưu còn chờ",
+      "Mời nhân vật và lưu đội trong hành trình",
     ),
   )
   check("No unexpected console or resource errors", errors.length === 0)

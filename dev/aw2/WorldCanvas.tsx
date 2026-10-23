@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type Ref } from "react"
 import type { Application, Texture } from "pixi.js"
-import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
+import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { sampleWorldFrame } from "../../src/aw2/assets/animation"
 import type { WorldProgress } from "../../src/aw2/world/model"
 import { zoneById } from "../../src/aw2/world/maps"
@@ -39,7 +39,7 @@ export function WorldCanvas({
         const { Application, Graphics, Assets, Sprite, Texture, Rectangle } =
           await import("pixi.js")
         const loaded = await Promise.all(
-          ids.map((id) => Assets.load(STARTER_ASSETS[id].assets.world.url)),
+          ids.map((id) => Assets.load(ROSTER_ASSETS[id].assets.world.url)),
         )
         if (disposed) return
         const next = new Application()
@@ -118,7 +118,7 @@ export function WorldCanvas({
         }
         next.stage.addChild(terrain)
         const actors = ids.map((id, index) => {
-          const manifest = STARTER_ASSETS[id]
+          const manifest = ROSTER_ASSETS[id]
           loaded[index].source.scaleMode = "nearest"
           const frames: Record<string, Texture> = {}
           for (const [frameId, frame] of Object.entries(manifest.frames)) {
@@ -193,6 +193,7 @@ export function WorldCanvas({
         })
         next.canvas.setAttribute("aria-hidden", "true")
         next.canvas.dataset.partySize = String(ids.length)
+        next.canvas.dataset.partyIds = JSON.stringify(ids)
         host.current?.replaceChildren(next.canvas)
         setReady(true)
       } catch (cause) {

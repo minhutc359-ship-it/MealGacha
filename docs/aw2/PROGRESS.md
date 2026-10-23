@@ -1,5 +1,9 @@
 # Phần trăm hoàn thiện AW2
 
+**AW2-007L VERIFIED — đã có bộ sưu tập và đội hình lưu cho12 Vị Linh.** Source `PENDING007L`, base `b4e20e628156b1ee5a6c17e8a2ed8b86c3b0b3ca` trên `game/adventure-world-2`. Mời nhân vật theo mốc nhiệm vụ thử nghiệm bằng thao tác rõ ràng; lưu đúng5 nhân vật sở hữu, thứ tự và nhấn Vân cho trận mới. Schema5 đọc/nâng cấp v1–4 trong bộ nhớ, không tự ghi hoặc cấp nhân vật ngoài starter. Boss/followers dùng đội đã lưu; trận cũ giữ snapshot và không ghi đè save mới.1392ca unit riêng biệt/114files,233browser assertions/104mô phỏng PASS; cả hai typecheck/review+stable builds/isolation đạt. **Demo≈90%, sản phẩm≈40% (35–45%) giữ nguyên**;12/12kit,12/12bộ tham chiếu,0/12fullDoD. [Quy tắc và cách dùng](COLLECTION.md), [bằng chứng](evidence/AW2-007L.md). Next007M: đấu lại boss sau kết thúc để thử đội đã lưu; cân bằng/nghiệm thu độc lập còn mở. D11 PROPOSED/D12 OPEN.
+
+Các mốc cũ bên dưới giữ source/bằng chứng gốc; nhận định pending collection được thay bởi007L. Prototype collection không đóng full-character/playtest/production-save/release gate; các trọng số và khoảng thời gian có điều kiện giữ nguyên.
+
 **AW2-007K VERIFIED — Vân có kit hybrid và nhấn tuyệt kỹ cố định trước trận.** Source `3a77154bdbf1eb8a654833c3f5354889b5377a1c`, base `62d3e585213b65340d32c6566c810e384081bee2` trên `game/adventure-world-2`. Hai nửa hỗ trợ/đánh dấu khóa mục tiêu riêng; hồi máu chỉ từ khiên thực đã cấp; Bảo hộ hoặc Tấn công dùng chung một tuyệt kỹ/100năng lượng. **12/12 kit phát triển=100%**, tăng từ11/12≈92%; **12/12 bộ hình tham chiếu**, năm starter lưu và **0/12 full-characterDoD** giữ nguyên. **Demo≈90%, toàn sản phẩm≈40% (35–45%) giữ nguyên** vì collection và nghiệm thu art/playtest/thiết bị/rights/release còn mở.1345ca unit riêng biệt/113files, 384browser assertions/108simulations; hai typecheck/review+stable build/isolation PASS. [Luyện Vân](VAN_PRACTICE.md), [bằng chứng](evidence/AW2-007K.md). Next BA/mechanic: [007L collection/đội lưu contract](tasks/AW2-007L.md); D11 PROPOSED/D12 OPEN.
 
 Các mốc dưới là lịch sử theo source; số kit/NEXT cũ được thay thế bởi cập nhật007K ở trên. Khoảng thời gian có điều kiện giữ nguyên, chưa đo được vận tốc nhân vật qua đầy đủ DoD.
@@ -33,7 +37,7 @@ Trước AW2-010A: **8/10 nhóm tiêu chí đã kiểm chứng, khoảng80%**. H
 |---|---:|---:|---|
 | Nền runtime/combat/save/tích hợp |25 |20 | Luật thật, checkpoint/progression và hai practice đã chạy; production durability/hoàn thiện còn mở |
 | Arc thế giới/quest/dungeon |15 |10 |6 zone/4 quest/boss/hai kết thúc hoạt động; map/NPC/boss riêng và polish còn thiếu |
-|12 nhân vật đủ DoD/art/animation/kit |30 |5 |12/12 bộ tham chiếu,11/12 kit thực thi sau007J; **0/12 đạt đầy đủ DoD**, collection và nghiệm thu còn mở |
+|12 nhân vật đủ DoD/art/animation/kit |30 |5 |12/12 bộ tham chiếu,12/12 kit và collection/đội lưu thử nghiệm sau007L; **0/12 đạt đầy đủ DoD**, cân bằng và nghiệm thu còn mở |
 | UX/presentation/audio |10 |3 | Có điều khiển/touch/opt-in và hướng dẫn; UI/game art còn cần hoàn thiện/playtest |
 | Kinh tế/mode sản phẩm/gacha/cân bằng |10 |2 | Kinh tế/practice còn là development tuning; D11 chưa duyệt, gacha runtime/thu thập mode chưa làm |
 | Gate phát hành: thiết bị/hiệu năng/offline/save production/rights |10 |0 | Các gate đầy đủ còn NOT_RUN/mở; chưa có phát hành |

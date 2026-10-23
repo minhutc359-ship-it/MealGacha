@@ -152,7 +152,8 @@ function BattlePreview() {
           <p>
             Đội luyện 5 người thay Mộc Non bằng Vân. Nối Hai Đầu bảo vệ đồng
             minh đang bị đe dọa và đánh dấu địch. Nhớ Một Phần chỉ hồi máu từ hỗ
-            trợ thực khi dấu kết thúc. Thu thập và đội lưu còn chờ triển khai.
+            trợ thực khi dấu kết thúc. Mời và lưu đội tại Đội và túi đồ trong
+            hành trình.
           </p>
           <p data-testid="van-active-emphasis">
             Nhấn đang dùng:{" "}
@@ -266,8 +267,8 @@ function BattlePreview() {
             Đội luyện5 thay Than bằng Bách, một Tank dùng khiên và chia phần bảo
             vệ. Gói Chắc tạo khiên cá nhân; Chia Phần chỉ tính lượng khiên thực
             sự đỡ đòn. Mở Vòng Dây dùng hết khiên còn lại để chia cho đồng minh
-            gần và tác động ngắn phía trước. Thu thập và đội lưu còn chờ triển
-            khai.
+            gần và tác động ngắn phía trước. Mời và lưu đội tại Đội và túi đồ
+            trong hành trình.
           </p>
           <p data-testid="bach-state" data-state={JSON.stringify(bach)}>
             Năng lượng {bach.energy}/100 · Khiên {bach.shield} ·{" "}
@@ -342,8 +343,8 @@ function BattlePreview() {
             Đội luyện 5 người thay Sương Lành bằng Mộc. Gieo Dấu đặt một vùng cố
             định, chờ ba nhịp rồi kích hoạt một lần khi địch đứng trong vùng.
             Đổi dấu sang vị trí mới có thể cấp khiên ngắn. Mở Gói Mùa Xanh thu
-            dấu hợp lệ và báo trước hai nhịp; đối thủ có thể rời vùng. Thu thập
-            và đội lưu còn chờ triển khai.
+            dấu hợp lệ và báo trước hai nhịp; đối thủ có thể rời vùng. Mời và
+            lưu đội tại Đội và túi đồ trong hành trình.
           </p>
           <p data-testid="moc-state" data-state={JSON.stringify(moc)}>
             Năng lượng {moc.energy}/100 · Khiên {moc.shield} ·{" "}
@@ -422,7 +423,7 @@ function BattlePreview() {
             Đội luyện 5 người thay Lam Lam bằng Liên; đối thủ Muối Đen tạo dấu
             thật để thử hồi phục và giải hiệu ứng. Hẹn Sau Cơn Mệt hồi ba nhịp
             hữu hạn; Mở Lời tẩy một hiệu ứng được phép rồi hồi hai nhịp, không
-            hồi sinh. Thu thập và đội lưu Liên còn chờ triển khai.
+            hồi sinh. Mời và lưu đội tại Đội và túi đồ trong hành trình.
           </p>
           <p data-testid="lien-state" data-state={JSON.stringify(lien)}>
             Năng lượng {lien.energy}/100 ·{" "}
@@ -519,8 +520,8 @@ function BattlePreview() {
           <p>
             Đội luyện 5 người thay Than bằng Hải. Giữ Lối làm chậm kẻ áp sát;
             Biết Đường Về cấp khiên cho Hải khi đồng minh thấp máu ở gần. Bờ Đợi
-            chắn phía trước, có thể bị đánh vòng qua. Thu thập Hải còn chờ triển
-            khai.
+            chắn phía trước, có thể bị đánh vòng qua. Mời Hải và lưu đội tại Đội
+            và túi đồ trong hành trình.
           </p>
           <p data-testid="hai-state" data-state={JSON.stringify(hai)}>
             Năng lượng {hai.energy}/100 · Khiên {hai.shield} ·{" "}

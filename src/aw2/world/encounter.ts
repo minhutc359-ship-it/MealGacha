@@ -1,16 +1,15 @@
 import {
-  STARTER_SPIRIT_IDS,
   advanceCombatBattle,
   castCombatUltimate,
   createCombatBattle,
-  createDevelopmentStarterSeed,
+  createDevelopmentCombatSeed,
   type CombatBattle,
 } from "../combat"
 import { KITCHEN_BOSS_ID, ZONE_IDS } from "./ids"
 import { worldProgressSchema, type WorldProgress } from "./model"
 import { describeObject, INTERACT_RANGE } from "./rules"
 import { zoneById } from "./maps"
-import { aw2DevSaveSchema } from "../save/schema"
+import { decodeAw2Save } from "../save/schema"
 import { createForgottenHostSeed } from "../combat/forgottenHost"
 
 export const WORLD_BOSS_TUNING_ID = "aw2-world-boss-development-v2"
@@ -54,7 +53,9 @@ export function bossCheckpoint(progress: WorldProgress): WorldProgress {
 export function createWorldBossEncounter(
   checkpointRaw: string,
 ): WorldBossEncounter {
-  const checkpoint = aw2DevSaveSchema.parse(JSON.parse(checkpointRaw))
+  const decoded = decodeAw2Save(checkpointRaw)
+  if (decoded.status !== "ready") throw Error("Điểm kiểm tra AW2 không hợp lệ.")
+  const checkpoint = decoded.save
   const valid = checkpoint.progress
   if (
     valid.zoneId !== ZONE_IDS[5] ||
@@ -70,12 +71,15 @@ export function createWorldBossEncounter(
     committed: false,
     battle: createCombatBattle({
       id: `${checkpoint.saveId}:boss:${checkpoint.revision}`,
-      players: STARTER_SPIRIT_IDS.map((spiritId, slot) =>
-        createDevelopmentStarterSeed(
+      players: valid.partyIds.map((spiritId, slot) =>
+        createDevelopmentCombatSeed(
           `player-${spiritId}`,
           spiritId,
           checkpoint.economy.teamExperience,
           {
+            ...(spiritId === "aw2-van"
+              ? { vanEmphasis: checkpoint.collection.vanEmphasis }
+              : {}),
             energy: 100,
             position: 12 + slot * 4,
           },
@@ -104,7 +108,10 @@ export function createWorldBossEncounter(
         (candidate) => candidate.id === actorId,
       )
       const needsEnemy =
-        actor?.spiritId === "aw2-lua" || actor?.spiritId === "aw2-suong"
+        ["aw2-lua", "aw2-suong", "aw2-muoi", "aw2-nhien", "aw2-moc"].includes(
+          actor?.spiritId ?? "",
+        ) ||
+        (actor?.spiritId === "aw2-van" && actor.vanEmphasis === "attack")
       state.battle = castCombatUltimate(
         state.battle,
         actorId,

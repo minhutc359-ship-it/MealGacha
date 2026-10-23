@@ -72,54 +72,23 @@ export function AssetPreview({
         <a href="/dev/aw2/roster.html">Các bộ nhân vật</a> ·{" "}
         <a href={manifest.provenance.prompts}>Prompt và nguồn tạo ảnh</a>
       </p>
-      {manifest.spiritId === "aw2-muoi" && combatImplemented && (
+      {combatImplemented && (
         <p>
           Kit đã có trong{" "}
-          <a href="/dev/aw2/battle.html?team=muoi">trận luyện Muối Đen</a>; thu
-          thập và đưa vào đội hành trình còn đang phát triển.
-        </p>
-      )}
-      {manifest.spiritId === "aw2-nhien" && combatImplemented && (
-        <p>
-          Kit đã có trong{" "}
-          <a href="/dev/aw2/battle.html?team=nhien">trận luyện Nhiên</a>; thu
-          thập và đội lưu trong hành trình còn chờ contract riêng.
-        </p>
-      )}
-      {manifest.spiritId === "aw2-hai" && combatImplemented && (
-        <p>
-          Hải đã có chiến đấu/cấp độ thử nghiệm:{" "}
-          <a href="/dev/aw2/battle.html?team=hai">luyện kỹ năng Hải</a>. Thu
-          thập và đội lưu còn chờ triển khai.
-        </p>
-      )}
-      {manifest.spiritId === "aw2-van" && combatImplemented && (
-        <p>
-          Vân đã có kit hybrid cấp 1–20 và hai nhấn tuyệt kỹ chọn trước trận:{" "}
-          <a href="/dev/aw2/battle.html?team=van">luyện kỹ năng Vân</a>. Thu
-          thập/đội lưu và nghiệm thu sản phẩm còn chờ.
-        </p>
-      )}
-      {manifest.spiritId === "aw2-bach" && combatImplemented && (
-        <p>
-          Bách có khiên cá nhân, chia phần từ lượng đỡ thật và tuyệt kỹ đánh đổi
-          khiên; thử tại{" "}
-          <a href="/dev/aw2/battle.html?team=bach">luyện kỹ năng Bách</a>. Thu
-          thập và đội lưu còn chờ triển khai.
-        </p>
-      )}
-      {manifest.spiritId === "aw2-moc" && combatImplemented && (
-        <p>
-          Mộc có dấu lá cố định và tuyệt kỹ kết tụ theo luật thật; thử tại{" "}
-          <a href="/dev/aw2/battle.html?team=moc">luyện kỹ năng Mộc</a>. Thu
-          thập và đội lưu còn chờ triển khai.
-        </p>
-      )}
-      {manifest.spiritId === "aw2-lien" && combatImplemented && (
-        <p>
-          Liên đã có chiến đấu/cấp độ thử nghiệm:{" "}
-          <a href="/dev/aw2/battle.html?team=lien">luyện kỹ năng Liên</a>. Thu
-          thập và đội lưu còn chờ triển khai.
+          <a
+            href={`/dev/aw2/battle.html${["aw2-than", "aw2-lua", "aw2-lam", "aw2-moc-non", "aw2-suong"].includes(manifest.spiritId) ? "" : `?team=${manifest.spiritId.slice(4)}`}`}
+          >
+            {manifest.spiritId === "aw2-muoi"
+              ? "trận luyện Muối Đen"
+              : manifest.spiritId === "aw2-nhien"
+                ? "trận luyện Nhiên"
+                : `luyện kỹ năng ${manifest.displayName}`}
+          </a>
+          .{" "}
+          <a href="/dev/aw2/world.html">
+            Mời nhân vật và lưu đội trong hành trình
+          </a>{" "}
+          tại Đội và túi đồ sau mốc nhiệm vụ. Nghiệm thu nhân vật đầy đủ còn mở.
         </p>
       )}
       {errors.length > 0 ? (

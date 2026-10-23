@@ -129,3 +129,11 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-demo-complete h2 { margin-top: .35rem; color: #ffe1a4; }
 .aw2-demo-complete button { min-height: 48px; }
 .aw2-demo-note { font-size: .875rem; color: #d5e4d9; }
+
+.aw2-collection-grid {list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}
+.aw2-collection-grid li {border:1px solid #4b6257;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.aw2-collection-grid img {object-fit:contain}
+.aw2-collection-grid small {color:#c0d1c7}
+.aw2-team-slots {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px;margin:12px 0}
+.aw2-team-slots label {display:flex;flex-direction:column;gap:6px}
+.aw2-team-slots select {width:100%;min-width:0;min-height:44px}

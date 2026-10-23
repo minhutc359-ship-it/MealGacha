@@ -321,9 +321,9 @@ try {
     .getByRole("link", { name: "trận luyện Nhiên", exact: true })
     .waitFor()
   check(
-    "Reference viewer links actual practice and leaves collection pending",
+    "Reference viewer links actual practice and links persisted collection",
     (await page.locator("main").innerText()).includes(
-      "thu thập và đội lưu trong hành trình còn chờ",
+      "Mời nhân vật và lưu đội trong hành trình",
     ),
   )
   check("No unexpected browser or resource errors", errors.length === 0)

@@ -88,8 +88,8 @@ try {
   const first = JSON.parse(await raw(page))
   const firstRaw = await raw(page)
   check(
-    "Create writes development schema v4",
-    first.environment === "development" && first.schemaVersion === 4,
+    "Create writes development schema v5",
+    first.environment === "development" && first.schemaVersion === 5,
   )
   await page.reload()
   await save(page).waitFor()
@@ -196,7 +196,7 @@ try {
   for (const [bad, expected] of [
     ["{broken-original", /không hợp lệ/],
     [
-      JSON.stringify({ schemaVersion: 5, futureData: ["retain"] }),
+      JSON.stringify({ schemaVersion: 6, futureData: ["retain"] }),
       /schema mới hơn/,
     ],
   ]) {
@@ -222,7 +222,7 @@ try {
     await waitText(page, /Đã bắt đầu lại/)
     check(
       `Explicit development reset recovers: ${expected.source}`,
-      JSON.parse(await raw(page)).schemaVersion === 4,
+      JSON.parse(await raw(page)).schemaVersion === 5,
     )
   }
 

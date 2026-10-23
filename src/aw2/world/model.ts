@@ -20,6 +20,7 @@ const baseProgressSchema = z.strictObject({
 function validateBase(
   value: z.infer<typeof baseProgressSchema>,
   context: z.RefinementCtx,
+  startersOnly = true,
 ) {
   const issue = () =>
     context.addIssue({
@@ -50,7 +51,9 @@ function validateBase(
   if (
     value.questIndex > 0 &&
     (!value.tableRead ||
-      JSON.stringify(value.partyIds) !== JSON.stringify(STARTER_TEAM))
+      value.partyIds.length !== 5 ||
+      (startersOnly &&
+        JSON.stringify(value.partyIds) !== JSON.stringify(STARTER_TEAM)))
   )
     issue()
   if (value.questIndex < 2 && (value.hintRead || value.puzzleStep)) issue()
@@ -83,36 +86,52 @@ export const worldProgressV2Schema = baseProgressSchema
   })
   .superRefine(validateBase)
 
-export const worldProgressSchema = baseProgressSchema
-  .extend({
-    bossDefeated: z.boolean(),
-    tableNoteRead: z.boolean(),
-    endingChoice: z.enum(["wait", "share"]).nullable(),
-  })
-  .superRefine((value, context) => {
-    validateBase(value, context)
-    const issue = () =>
-      context.addIssue({
-        code: "custom",
-        message: "Kết quả boss/ghi chép/kết truyện AW2 không nhất quán.",
-      })
-    if (
-      value.questIndex < 3 &&
-      (value.bossDefeated || value.tableNoteRead || value.endingChoice)
-    )
-      issue()
-    if (value.questIndex === 3 && value.bossDefeated && !value.accepted) issue()
-    if (value.tableNoteRead && !value.bossDefeated) issue()
-    if (value.questIndex < 4 && value.endingChoice !== null) issue()
-    if (
-      value.questIndex === 4 &&
-      (!value.bossDefeated ||
-        !value.tableNoteRead ||
-        !value.endingChoice ||
-        value.accepted)
-    )
-      issue()
-  })
+const progressWithBoss = baseProgressSchema.extend({
+  bossDefeated: z.boolean(),
+  tableNoteRead: z.boolean(),
+  endingChoice: z.enum(["wait", "share"]).nullable(),
+})
+
+function validateBoss(
+  value: z.infer<typeof progressWithBoss>,
+  context: z.RefinementCtx,
+) {
+  const issue = () =>
+    context.addIssue({
+      code: "custom",
+      message: "Kết quả boss/ghi chép/kết truyện AW2 không nhất quán.",
+    })
+  if (
+    value.questIndex < 3 &&
+    (value.bossDefeated || value.tableNoteRead || value.endingChoice)
+  )
+    issue()
+  if (value.questIndex === 3 && value.bossDefeated && !value.accepted) issue()
+  if (value.tableNoteRead && !value.bossDefeated) issue()
+  if (value.questIndex < 4 && value.endingChoice !== null) issue()
+  if (
+    value.questIndex === 4 &&
+    (!value.bossDefeated ||
+      !value.tableNoteRead ||
+      !value.endingChoice ||
+      value.accepted)
+  )
+    issue()
+}
+
+/** Strict historical v3/v4 party contract. */
+export const worldProgressV4Schema = progressWithBoss.superRefine(
+  (value, ctx) => {
+    validateBase(value, ctx)
+    validateBoss(value, ctx)
+  },
+)
+export const worldProgressSchema = progressWithBoss.superRefine(
+  (value, ctx) => {
+    validateBase(value, ctx, false)
+    validateBoss(value, ctx)
+  },
+)
 
 export type WorldProgress = z.infer<typeof worldProgressSchema>
 export function newWorldProgress(): WorldProgress {

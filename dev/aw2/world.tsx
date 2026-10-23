@@ -1,3 +1,4 @@
+import type { CollectionAction } from "../../src/aw2/collection/model"
 import { StrictMode, useEffect, useRef, useState } from "react"
 import { createRoot } from "react-dom/client"
 import { Aw2DevSaveStore } from "../../src/aw2/save/store"
@@ -354,6 +355,38 @@ function WorldPreview() {
       setBusy(false)
     }
   }
+  async function collect(action: CollectionAction) {
+    if (pending.current || saved.current.status !== "ready") return
+    pending.current = true
+    setBusy(true)
+    keys.current.clear()
+    route.current = []
+    setError("")
+    try {
+      const next = await store.collectionAction(
+        saved.current.raw,
+        worldRef.current,
+        action,
+      )
+      saved.current = next
+      setSnapshot(next)
+      worldRef.current = next.save.progress
+      setWorld(next.save.progress)
+      setDialogObject(null)
+      setMessage(
+        action.type === "recruit"
+          ? "Đã mời Vị Linh. Hãy chọn và lưu đội hình nếu muốn đồng hành."
+          : "Đã lưu đội hình và nhấn tuyệt kỹ cho trận tiếp theo.",
+      )
+    } catch (cause) {
+      setError(
+        cause instanceof Error ? cause.message : "Chưa lưu được đội hình.",
+      )
+    } finally {
+      pending.current = false
+      setBusy(false)
+    }
+  }
   function navigate(point: Waypoint) {
     if (pending.current || paused.current || saved.current.status !== "ready")
       return
@@ -549,6 +582,7 @@ function WorldPreview() {
               world={world}
               busy={busy}
               onAction={(action) => void transact(action)}
+              onCollectionAction={(action) => void collect(action)}
             />
           </details>
         </>

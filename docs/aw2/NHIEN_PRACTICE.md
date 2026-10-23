@@ -1,5 +1,7 @@
 # Luyện kỹ năng Nhiên
 
+AW2-007L current development update, source `PENDING007L`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
+
 Sau `pnpm dev`, mở http://localhost:8443/dev/aw2/battle.html?team=nhien. Đội luyện có năm người, thay Lửa Nhỏ bằng Nhiên. Cấp 1/5/10/20 chỉ áp dụng khi **Tạo lại trận**. Chỉ số dùng `aw2-nhien-development-v1` và curve phát triển, chưa phải cân bằng cuối; trận luyện không cấp nhân vật, EXP hoặc ghi save.
 
 **Nhịp Chảo** chuẩn bị một nhịp rồi có hai điểm chạm liên tiếp, mỗi điểm 0,6 ATK. **Bắt Nhịp** chỉ bắt đầu khi có địch trong tầm cận chiến 9; khóa hướng lúc chuẩn bị và quét tối đa ba địch còn sống phía trước khi chạm, mỗi người 0,85 ATK. Địch ra khỏi vùng có thể né; không có projectile thay đòn cận chiến.

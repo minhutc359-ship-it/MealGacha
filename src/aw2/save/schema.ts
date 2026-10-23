@@ -1,17 +1,23 @@
 import { z } from "zod"
 import { economySchema, newEconomy } from "../economy/model"
+import {
+  collectionSchema,
+  newCollection,
+  validCollectionProgress,
+} from "../collection/model"
 import { QUEST_GRANTS } from "../world/ids"
 import {
   newWorldProgress,
   worldProgressSchema,
   worldProgressV2Schema,
+  worldProgressV4Schema,
 } from "../world/model"
 
 export const AW2_DEV_SAVE_KEY = "aw2.development.save"
 export const AW2_RESET_CONFIRMATION = "RESET AW2"
 
 // Version stays in the envelope so a newer save at the same key is detected.
-// Historical versions remain strict; schema v4 adds the development economy.
+// Historical versions remain strict; v4 adds economy, v5 adds collection/owned teams.
 export const aw2DevSaveV1Schema = z
   .strictObject({
     gameId: z.literal("adventure-world-2"),
@@ -41,7 +47,7 @@ export const aw2DevSaveV3Schema = z
   .strictObject({
     ...aw2DevSaveV1Schema.shape,
     schemaVersion: z.literal(3),
-    progress: worldProgressSchema,
+    progress: worldProgressV4Schema,
   })
   .refine((save) => Date.parse(save.updatedAt) >= Date.parse(save.createdAt), {
     message: "Thời điểm lưu không được trước thời điểm tạo.",
@@ -49,7 +55,7 @@ export const aw2DevSaveV3Schema = z
 
 export type Aw2DevSave = z.infer<typeof aw2DevSaveSchema>
 
-export const aw2DevSaveSchema = z
+export const aw2DevSaveV4Schema = z
   .strictObject({
     ...aw2DevSaveV3Schema.shape,
     schemaVersion: z.literal(4),
@@ -60,8 +66,8 @@ export const aw2DevSaveSchema = z
       Date.parse(save.updatedAt) < Date.parse(save.createdAt) ||
       save.economy.receipts.some(
         (id) =>
-          QUEST_GRANTS.includes(id as typeof QUEST_GRANTS[number]) &&
-          QUEST_GRANTS.indexOf(id as typeof QUEST_GRANTS[number]) >=
+          QUEST_GRANTS.includes(id as (typeof QUEST_GRANTS)[number]) &&
+          QUEST_GRANTS.indexOf(id as (typeof QUEST_GRANTS)[number]) >=
             save.progress.questIndex,
       )
     )
@@ -71,17 +77,44 @@ export const aw2DevSaveSchema = z
       })
   })
 
-export type ReadableSave = {
-  status: "empty"
-  raw: null
-} | {
-  status: "ready"
-  raw: string
-  save: Aw2DevSave
-} | {
-  status: "invalid" | "unsupported"
-  raw: string
-}
+export const aw2DevSaveSchema = z
+  .strictObject({
+    ...aw2DevSaveV4Schema.shape,
+    schemaVersion: z.literal(5),
+    progress: worldProgressSchema,
+    collection: collectionSchema,
+  })
+  .superRefine((save, ctx) => {
+    if (
+      Date.parse(save.updatedAt) < Date.parse(save.createdAt) ||
+      save.economy.receipts.some(
+        (id) =>
+          QUEST_GRANTS.includes(id as (typeof QUEST_GRANTS)[number]) &&
+          QUEST_GRANTS.indexOf(id as (typeof QUEST_GRANTS)[number]) >=
+            save.progress.questIndex,
+      ) ||
+      !validCollectionProgress(save.progress, save.collection)
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Bộ sưu tập/đội/biên nhận AW2 không hợp lệ.",
+      })
+  })
+
+export type ReadableSave =
+  | {
+      status: "empty"
+      raw: null
+    }
+  | {
+      status: "ready"
+      raw: string
+      save: Aw2DevSave
+    }
+  | {
+      status: "invalid" | "unsupported"
+      raw: string
+    }
 
 export type SaveSnapshot = ReadableSave | { status: "unavailable" }
 
@@ -98,37 +131,38 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
     typeof value === "object" &&
     "schemaVersion" in value &&
     typeof value.schemaVersion === "number" &&
-    value.schemaVersion > 4
+    value.schemaVersion > 5
   ) {
     return { status: "unsupported", raw }
   }
   const legacy = aw2DevSaveV1Schema.safeParse(value)
   const previous = aw2DevSaveV2Schema.safeParse(value)
   const third = aw2DevSaveV3Schema.safeParse(value)
-  const parsed = aw2DevSaveSchema.safeParse(
-    legacy.success
+  const fourth = aw2DevSaveV4Schema.safeParse(value)
+  const historical = legacy.success
+    ? { ...legacy.data, progress: newWorldProgress(), economy: newEconomy() }
+    : previous.success
       ? {
-          ...legacy.data,
-          schemaVersion: 4,
-          progress: newWorldProgress(),
+          ...previous.data,
           economy: newEconomy(),
+          progress: {
+            ...previous.data.progress,
+            bossDefeated: false,
+            tableNoteRead: false,
+            endingChoice: null,
+          },
         }
-      : previous.success
-        ? {
-            ...previous.data,
-            schemaVersion: 4,
-            economy: newEconomy(),
-            progress: {
-              ...previous.data.progress,
-              bossDefeated: false,
-              tableNoteRead: false,
-              endingChoice: null,
-            },
-          }
-        : third.success
-          ? { ...third.data, schemaVersion: 4, economy: newEconomy() }
-          : value,
+      : third.success
+        ? { ...third.data, economy: newEconomy() }
+        : fourth.success
+          ? fourth.data
+          : null
+  const parsed = aw2DevSaveSchema.safeParse(
+    historical
+      ? { ...historical, schemaVersion: 5, collection: newCollection() }
+      : value,
   )
+
   return parsed.success
     ? { status: "ready", raw, save: parsed.data }
     : { status: "invalid", raw }

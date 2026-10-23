@@ -359,9 +359,9 @@ try {
   )
   await page.goto(`${root}/dev/aw2/roster.html?spirit=aw2-muoi`)
   check(
-    "Reference viewer links actual practice and keeps collection pending",
+    "Reference viewer links actual practice and links persisted collection",
     (await page.locator("main").innerText()).includes(
-      "thu thập và đưa vào đội hành trình còn đang phát triển",
+      "Mời nhân vật và lưu đội trong hành trình",
     ),
   )
   check("No unexpected browser/resource errors", errors.length === 0)

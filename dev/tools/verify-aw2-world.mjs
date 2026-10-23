@@ -225,8 +225,8 @@ try {
   const raw = await page.evaluate((key) => localStorage.getItem(key), key)
   const state = JSON.parse(raw)
   check(
-    "Schema v4 holds one coherent world/party snapshot",
-    state.schemaVersion === 4 &&
+    "Schema v5 holds one coherent world/party snapshot",
+    state.schemaVersion === 5 &&
       state.progress.questIndex === 3 &&
       state.progress.partyIds.length === 5,
   )

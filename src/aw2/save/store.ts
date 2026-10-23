@@ -1,4 +1,9 @@
 import {
+  applyCollectionAction,
+  newCollection,
+  type CollectionAction,
+} from "../collection/model"
+import {
   AW2_DEV_SAVE_KEY,
   AW2_RESET_CONFIRMATION,
   aw2DevSaveSchema,
@@ -33,7 +38,13 @@ export type ResetRequest = Readonly<{ expectedRaw: string | null }>
 
 export class Aw2SaveError extends Error {
   constructor(
-    readonly code: "unavailable" | "write-failed" | "conflict" | "invalid" | "confirmation" | "locking",
+    readonly code:
+      | "unavailable"
+      | "write-failed"
+      | "conflict"
+      | "invalid"
+      | "confirmation"
+      | "locking",
     message: string,
   ) {
     super(message)
@@ -112,7 +123,10 @@ export class Aw2DevSaveStore {
     })
   }
 
-  async beginBoss(expectedRaw: string, progress: WorldProgress): Promise<{
+  async beginBoss(
+    expectedRaw: string,
+    progress: WorldProgress,
+  ): Promise<{
     snapshot: ReadySave
     encounter: WorldBossEncounter
   }> {
@@ -164,6 +178,28 @@ export class Aw2DevSaveStore {
         action,
       )
       return aw2DevSaveSchema.parse(next)
+    })
+  }
+
+  collectionAction(
+    expectedRaw: string,
+    progress: WorldProgress,
+    action: CollectionAction,
+  ): Promise<ReadySave> {
+    return this.write(expectedRaw, (current) => {
+      if (current.status !== "ready")
+        throw new Aw2SaveError("invalid", "Cần đọc lại bản lưu AW2.")
+      this.assertPositionOnly(current.save.progress, progress)
+      const result = applyCollectionAction(
+        current.save.collection,
+        progress,
+        action,
+      )
+      return aw2DevSaveSchema.parse({
+        ...this.revise(current, progress),
+        progress: result.progress,
+        collection: result.collection,
+      })
     })
   }
 
@@ -255,7 +291,8 @@ export class Aw2DevSaveStore {
     return aw2DevSaveSchema.parse({
       gameId: "adventure-world-2",
       environment: "development",
-      schemaVersion: 4,
+      schemaVersion: 5,
+      collection: newCollection(),
       saveId: this.newId(),
       revision: 0,
       createdAt: now,

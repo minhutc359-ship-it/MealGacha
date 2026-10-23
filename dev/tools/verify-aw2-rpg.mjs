@@ -155,7 +155,7 @@ try {
   const claimed = JSON.parse(await raw())
   check(
     "Chest inventory and receipt commit together",
-    claimed.schemaVersion === 4 &&
+    claimed.schemaVersion === 5 &&
       claimed.economy.inventory.rice === 4 &&
       claimed.economy.receipts.length === 1,
   )

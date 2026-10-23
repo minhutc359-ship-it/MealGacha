@@ -1,3 +1,5 @@
+import { CollectionPanel } from "./CollectionPanel"
+import type { CollectionAction } from "../../src/aw2/collection/model"
 import type { Aw2DevSave } from "../../src/aw2/save/schema"
 import type { WorldProgress } from "../../src/aw2/world/model"
 import {
@@ -8,18 +10,20 @@ import {
   type EconomyAction,
 } from "../../src/aw2/economy/model"
 import { developmentProgression } from "../../src/aw2/combat/progression"
-import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
+import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 
 export function InventoryPanel({
   save,
   world,
   busy,
   onAction,
+  onCollectionAction,
 }: {
   save: Aw2DevSave
   world: WorldProgress
   busy: boolean
   onAction: (action: EconomyAction) => void
+  onCollectionAction: (action: CollectionAction) => void
 }) {
   const { economy } = save
   const xp = developmentProgression(economy.teamExperience)
@@ -52,15 +56,16 @@ export function InventoryPanel({
         {world.partyIds.map((id) => (
           <figure key={id}>
             <img
-              src={STARTER_ASSETS[id].assets.portrait.url}
+              src={ROSTER_ASSETS[id].assets.portrait.url}
               alt=""
               width={56}
               height={56}
             />
-            <figcaption>{STARTER_ASSETS[id].displayName}</figcaption>
+            <figcaption>{ROSTER_ASSETS[id].displayName}</figcaption>
           </figure>
         ))}
       </div>
+      <CollectionPanel save={save} busy={busy} onAction={onCollectionAction} />
       <h3>Túi nguyên liệu</h3>
       <dl className="aw2-item-grid" data-testid="inventory">
         {ITEM_IDS.map((id) => (

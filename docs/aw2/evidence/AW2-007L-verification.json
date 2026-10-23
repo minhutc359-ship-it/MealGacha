@@ -1,0 +1,1489 @@
+{
+  "task": "AW2-007L",
+  "status": "PASS",
+  "source": "PENDING007L",
+  "base": "b4e20e628156b1ee5a6c17e8a2ed8b86c3b0b3ca",
+  "branch": "game/adventure-world-2",
+  "scope": "Provisional earned collection/schema5/saved parties; final recruitment policy PROPOSED, no D11 approval",
+  "units": {
+    "unique": 1392,
+    "files": 114,
+    "newCollection": 47,
+    "initialFull": {
+      "pass": 1390,
+      "fail": 0
+    },
+    "finalExistingCollection": 45,
+    "newModeCases": 2,
+    "finalSingleFull": "NOT_RUN",
+    "composition": "1345existing +45corrected current collection +2additional mode cases; no overlap sum"
+  },
+  "browsers": {
+    "uniqueAssertions": 233,
+    "reports": [
+      {
+        "name": "source earned collection",
+        "file": ".asset-work/aw2-007l/source-demo.json",
+        "checks": [
+          "Fresh demo opens without creating a save or granting progression",
+          "Incomplete saved journey does not claim demo completion",
+          "Initial goal precedes the map and names the first NPC",
+          "Keyboard opens optional help with save/mode return guidance and no writes",
+          "Native summary keeps browser arrows and interaction letters",
+          "Goal/help/world controls fit 320px",
+          "Goal/help/world controls fit 390px",
+          "Goal/help/world controls fit 768px",
+          "Save button keeps native key ownership",
+          "Direction button Enter moves right exactly through world rules without save writes",
+          "Focusing native UI stops held exploration movement",
+          "Reread restores initial unsaved movement without writing",
+          "Closing the first dialogue accepts nothing",
+          "Closing dialogue from body focus restores the keyboard map target",
+          "One earned intro unlocks five starters and exactly 30XP",
+          "Intro owns exactly five starters and shows all12 collection cards",
+          "Only Muối is eligible at quest1; Van stays locked",
+          "Locked spirits cannot be picked in saved-team controls",
+          "Failed recruit write leaves exact bytes and ownership intact",
+          "Retry recruits once without spending items/XP or changing active party",
+          "Owned recruit cannot be claimed a second time",
+          "Fresh intro reload is byte-identical and retains next objective",
+          "TCG/quick-entry leaves browser reading arrows available",
+          "Actual browser arrow scroll works inside the long TCG page",
+          "tcg/quick-entry real result returns exact RPG position/objective/economy without writes",
+          "Chess/quick-entry leaves browser reading arrows available",
+          "auto-chess/quick-entry real result returns exact RPG position/objective/economy without writes",
+          "TCG/portal leaves browser reading arrows available",
+          "tcg/portal real result returns exact RPG position/objective/economy without writes",
+          "Chess/portal leaves browser reading arrows available",
+          "auto-chess/portal real result returns exact RPG position/objective/economy without writes",
+          "Both real practices and both entry routes fit one legitimately earned journey",
+          "Three memories hand-in grants only its actual quest reward",
+          "Reading and closing chest grants nothing in the combined journey",
+          "Chest can be claimed only once with an actual receipt",
+          "Wrong puzzle attempt is retryable and spends no ingredients",
+          "Solved puzzle reload preserves earned state and exact bytes",
+          "Kitchen guidance explains an opened but distant kitchen",
+          "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
+          "Real quest3 progression permits all seven explicit recruits and12 owned",
+          "Recruiting all seven grants no extra ingredients/XP/quest receipts",
+          "Pending party/Van emphasis leaves saved party and storage untouched",
+          "Cancel restores saved slot choices without writes",
+          "Failed team write retains saved party/choice and retryable draft",
+          "Explicit save persists five selected unique recruits and attack emphasis",
+          "Reload preserves exact team/collection bytes and saved selection",
+          "World followers use all five selected nonstarter authored manifests",
+          "Collection 320px controls have no horizontal overflow",
+          "Collection 390px controls have no horizontal overflow",
+          "Collection 768px controls have no horizontal overflow",
+          "Selecting an already chosen member swaps draft positions without duplicate/save",
+          "Authentic world encounter uses saved nonstarter party and frozen Van choice",
+          "Shared earned XP projects real recruited stats",
+          "Native Van attack ultimate is routed to the real boss target",
+          "Other-tab save changes only the next battle choice; active Van stays attack",
+          "Stale encounter settlement cannot overwrite the newer team or imply victory",
+          "Reread abandons the old attempt and restores authoritative party/choice",
+          "Starter team remains selectable and no recruit is lost when returning to it",
+          "Fresh earned team enters real boss with reduced motion and audio opt-in",
+          "Earned world encounter draws Than's new motion atlas through the shared renderer",
+          "Earned world encounter also draws Lua's authored motion atlas",
+          "Earned world encounter also draws Lam's authored motion atlas",
+          "Paused world encounter freezes visual time as well as core ticks",
+          "Same earned journey wins the actual boss without renderer-supplied outcome",
+          "Explicit boss commit survives reload before note and ending",
+          "Ending branch is captured at the explicitly saved NPC position",
+          "Closing the earned final choice grants no final quest reward",
+          "One fresh journey completes all four quests with exact once-only rewards",
+          "Completed quest/economy/boss/mode writes preserve all explicitly recruited spirits",
+          "Saved wait ending has an honest completion summary and current XP",
+          "Completion summary reload preserves exact save bytes without grants",
+          "Completed ending and reload cannot repeat quest grants",
+          "Earned ending opens the reciprocal return shortcut",
+          "320px completion summary and both48px practice controls remain readable",
+          "390px completion summary and both48px practice controls remain readable",
+          "Completion tcg action uses safe checkpoint/return without grants",
+          "Completion auto-chess action uses safe checkpoint/return without grants",
+          "Alternate ending branches from exact earned checkpoint and gets same final reward",
+          "Alternate saved ending displays its own summary without a new reward",
+          "All five legacy keys remain byte-identical throughout the combined journey",
+          "No unexpected combined console/page/resource errors"
+        ]
+      },
+      {
+        "name": "compiled earned collection",
+        "file": ".asset-work/aw2-007l/compiled-demo.json",
+        "checks": [
+          "Fresh demo opens without creating a save or granting progression",
+          "Incomplete saved journey does not claim demo completion",
+          "Initial goal precedes the map and names the first NPC",
+          "Keyboard opens optional help with save/mode return guidance and no writes",
+          "Native summary keeps browser arrows and interaction letters",
+          "Goal/help/world controls fit 320px",
+          "Goal/help/world controls fit 390px",
+          "Goal/help/world controls fit 768px",
+          "Save button keeps native key ownership",
+          "Direction button Enter moves right exactly through world rules without save writes",
+          "Focusing native UI stops held exploration movement",
+          "Reread restores initial unsaved movement without writing",
+          "Closing the first dialogue accepts nothing",
+          "Closing dialogue from body focus restores the keyboard map target",
+          "One earned intro unlocks five starters and exactly 30XP",
+          "Intro owns exactly five starters and shows all12 collection cards",
+          "Only Muối is eligible at quest1; Van stays locked",
+          "Locked spirits cannot be picked in saved-team controls",
+          "Failed recruit write leaves exact bytes and ownership intact",
+          "Retry recruits once without spending items/XP or changing active party",
+          "Owned recruit cannot be claimed a second time",
+          "Fresh intro reload is byte-identical and retains next objective",
+          "TCG/quick-entry leaves browser reading arrows available",
+          "Actual browser arrow scroll works inside the long TCG page",
+          "tcg/quick-entry real result returns exact RPG position/objective/economy without writes",
+          "Chess/quick-entry leaves browser reading arrows available",
+          "auto-chess/quick-entry real result returns exact RPG position/objective/economy without writes",
+          "TCG/portal leaves browser reading arrows available",
+          "tcg/portal real result returns exact RPG position/objective/economy without writes",
+          "Chess/portal leaves browser reading arrows available",
+          "auto-chess/portal real result returns exact RPG position/objective/economy without writes",
+          "Both real practices and both entry routes fit one legitimately earned journey",
+          "Three memories hand-in grants only its actual quest reward",
+          "Reading and closing chest grants nothing in the combined journey",
+          "Chest can be claimed only once with an actual receipt",
+          "Wrong puzzle attempt is retryable and spends no ingredients",
+          "Solved puzzle reload preserves earned state and exact bytes",
+          "Kitchen guidance explains an opened but distant kitchen",
+          "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
+          "Real quest3 progression permits all seven explicit recruits and12 owned",
+          "Recruiting all seven grants no extra ingredients/XP/quest receipts",
+          "Pending party/Van emphasis leaves saved party and storage untouched",
+          "Cancel restores saved slot choices without writes",
+          "Failed team write retains saved party/choice and retryable draft",
+          "Explicit save persists five selected unique recruits and attack emphasis",
+          "Reload preserves exact team/collection bytes and saved selection",
+          "World followers use all five selected nonstarter authored manifests",
+          "Collection 320px controls have no horizontal overflow",
+          "Collection 390px controls have no horizontal overflow",
+          "Collection 768px controls have no horizontal overflow",
+          "Selecting an already chosen member swaps draft positions without duplicate/save",
+          "Authentic world encounter uses saved nonstarter party and frozen Van choice",
+          "Shared earned XP projects real recruited stats",
+          "Native Van attack ultimate is routed to the real boss target",
+          "Other-tab save changes only the next battle choice; active Van stays attack",
+          "Stale encounter settlement cannot overwrite the newer team or imply victory",
+          "Reread abandons the old attempt and restores authoritative party/choice",
+          "Starter team remains selectable and no recruit is lost when returning to it",
+          "Fresh earned team enters real boss with reduced motion and audio opt-in",
+          "Earned world encounter draws Than's new motion atlas through the shared renderer",
+          "Earned world encounter also draws Lua's authored motion atlas",
+          "Earned world encounter also draws Lam's authored motion atlas",
+          "Paused world encounter freezes visual time as well as core ticks",
+          "Same earned journey wins the actual boss without renderer-supplied outcome",
+          "Explicit boss commit survives reload before note and ending",
+          "Ending branch is captured at the explicitly saved NPC position",
+          "Closing the earned final choice grants no final quest reward",
+          "One fresh journey completes all four quests with exact once-only rewards",
+          "Completed quest/economy/boss/mode writes preserve all explicitly recruited spirits",
+          "Saved wait ending has an honest completion summary and current XP",
+          "Completion summary reload preserves exact save bytes without grants",
+          "Completed ending and reload cannot repeat quest grants",
+          "Earned ending opens the reciprocal return shortcut",
+          "320px completion summary and both48px practice controls remain readable",
+          "390px completion summary and both48px practice controls remain readable",
+          "Completion tcg action uses safe checkpoint/return without grants",
+          "Completion auto-chess action uses safe checkpoint/return without grants",
+          "Alternate ending branches from exact earned checkpoint and gets same final reward",
+          "Alternate saved ending displays its own summary without a new reward",
+          "All five legacy keys remain byte-identical throughout the combined journey",
+          "No unexpected combined console/page/resource errors"
+        ]
+      },
+      {
+        "name": "compiled references",
+        "file": ".asset-work/aw2-007l/references.json",
+        "checks": [
+          "muoi reference links actual practice and current earned collection",
+          "nhien reference links actual practice and current earned collection",
+          "hai reference links actual practice and current earned collection",
+          "lien reference links actual practice and current earned collection",
+          "moc reference links actual practice and current earned collection",
+          "bach reference links actual practice and current earned collection",
+          "van reference links actual practice and current earned collection",
+          "Reference viewers grant nothing and preserve AW2/stable bytes",
+          "No reference browser/resource/console errors"
+        ]
+      },
+      {
+        "name": "compiled save",
+        "file": ".asset-work/aw2-001/browser.json",
+        "checks": [
+          "Opening AW2 leaves absent save absent",
+          "Create writes development schema v5",
+          "Reload preserves save identity and exact bytes",
+          "Save advances revision",
+          "Reset opens modal with cancel focused",
+          "Reset disabled before typed confirmation",
+          "Wrong phrase keeps reset disabled",
+          "Cancel preserves exact bytes",
+          "New dialog forgets previous phrase",
+          "Escape preserves exact bytes and closes modal",
+          "Confirmed reset creates fresh identity",
+          "Stale reset cannot overwrite another tab",
+          "Stale save cannot overwrite another tab",
+          "Reread permits subsequent save",
+          "Web Locks serialize simultaneous writes from two tabs",
+          "Unreadable save preserved: không hợp lệ",
+          "Cancel unreadable reset preserves bytes: không hợp lệ",
+          "Explicit development reset recovers: không hợp lệ",
+          "Unreadable save preserved: schema mới hơn",
+          "Cancel unreadable reset preserves bytes: schema mới hơn",
+          "Explicit development reset recovers: schema mới hơn",
+          "Write failure reports error and preserves bytes",
+          "Reset failure reports error and closes consumed confirmation",
+          "Mobile viewport has no horizontal overflow",
+          "All seeded legacy keys remain byte-for-byte intact",
+          "Standalone screen never imports legacy app/bootstrap/save",
+          "Storage denial renders a recoverable error",
+          "Missing Web Locks blocks creation with an explanation",
+          "No browser console or page errors"
+        ]
+      },
+      {
+        "name": "source progression",
+        "file": ".asset-work/aw2-013/browser.json",
+        "checks": [
+          "v3 migration is read-only until an explicit action",
+          "Ordinary position save rejects quest forgery without changing reward eligibility",
+          "All five authored world atlases are decoded",
+          "Closing chest dialogue grants nothing",
+          "Failed chest write preserves raw bytes and unclaimed UI",
+          "Chest inventory and receipt commit together",
+          "Chest cannot be claimed again after reload",
+          "Old completed quests grant once and level the party",
+          "Cooking consumes exact ingredients and persists one meal",
+          "Sharing consumes the meal and grants XP atomically",
+          "Empty meal inventory disables repeat sharing",
+          "Inventory and EXP survive reload",
+          "Touch/click path navigates around the wall to the exact target",
+          "Reaching a tap target stops movement",
+          "Reread clears old follower trails and restores the saved position without writing",
+          "World/inventory fits 320px",
+          "World/inventory fits 390px",
+          "World/inventory fits 768px",
+          "Stale tab cannot overwrite newer inventory",
+          "Stable legacy save remains byte-identical",
+          "Battle audio is opt-in; no WAV is requested by default",
+          "Confirmed combat events request authored WAV cues after opt-in",
+          "Reset stops voices from the previous battle even when the level ID is reused",
+          "No page or console errors",
+          "Missing companion atlas reports an explicit error without substitute actors"
+        ]
+      },
+      {
+        "name": "compiled build",
+        "file": ".asset-work/aw2-013/build-browser.json",
+        "checks": [
+          "Static root opens the compiled RPG world",
+          "Built intro grants five starters and one 30XP reward",
+          "Built save survives reload byte-identically",
+          "Standalone compiled battle loads all atlases",
+          "Compiled starter preview is reachable",
+          "Review tools leave progression and stable save untouched",
+          "No failed resources or console/page errors",
+          "Review bundle excludes source PNG/code/maps/archives"
+        ]
+      }
+    ]
+  },
+  "simulations": {
+    "task": "AW2-007L",
+    "status": "PASS",
+    "runs": [
+      {
+        "level": 1,
+        "config": "starter",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 51,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "starter",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 51,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "muoi",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 59,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "muoi",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 58,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-muoi:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "nhien",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 65,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "nhien",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "hai",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 44,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "hai",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 44,
+        "ultimates": [
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-hai:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "lien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 50,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "lien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "moc",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "moc",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-moc:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "bach",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 55,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "bach",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 51,
+        "ultimates": [
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-bach:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "van-protection",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "van-protection",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "mixed-protection",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "mixed-protection",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": [
+          "aw2-hai:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "shield-protection",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 25,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "shield-protection",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 25,
+        "ultimates": [
+          "aw2-bach:skill:ultimate",
+          "aw2-muoi:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-moc:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "van-attack",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "van-attack",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-van:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "mixed-attack",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "mixed-attack",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": [
+          "aw2-hai:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 1,
+        "config": "shield-attack",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 25,
+        "ultimates": []
+      },
+      {
+        "level": 1,
+        "config": "shield-attack",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 25,
+        "ultimates": [
+          "aw2-bach:skill:ultimate",
+          "aw2-muoi:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-van:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "starter",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 43,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "starter",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 43,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "muoi",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 50,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "muoi",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-muoi:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "nhien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 49,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "nhien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 43,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "hai",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 47,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "hai",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 43,
+        "ultimates": [
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-hai:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "lien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 43,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "lien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 41,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "moc",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 37,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "moc",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 28,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-moc:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "bach",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 50,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "bach",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 45,
+        "ultimates": [
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-bach:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "van-protection",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 43,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "van-protection",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 41,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "mixed-protection",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 51,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "mixed-protection",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 51,
+        "ultimates": [
+          "aw2-hai:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "shield-protection",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "shield-protection",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": [
+          "aw2-bach:skill:ultimate",
+          "aw2-muoi:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-moc:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "van-attack",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 43,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "van-attack",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 41,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-van:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "mixed-attack",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 51,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "mixed-attack",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 51,
+        "ultimates": [
+          "aw2-hai:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 5,
+        "config": "shield-attack",
+        "policy": "auto",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 5,
+        "config": "shield-attack",
+        "policy": "ultimate",
+        "status": "enemy-win",
+        "tick": 42,
+        "ultimates": [
+          "aw2-bach:skill:ultimate",
+          "aw2-muoi:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-van:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "starter",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 40,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "starter",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 27,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "muoi",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "muoi",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 27,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-muoi:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "nhien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 41,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "nhien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 37,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "hai",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "hai",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 35,
+        "ultimates": [
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-hai:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "lien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 37,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "lien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 27,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "moc",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 29,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "moc",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 23,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-moc:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "bach",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 41,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "bach",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 37,
+        "ultimates": [
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-bach:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "van-protection",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 38,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "van-protection",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 29,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "mixed-protection",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "mixed-protection",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 42,
+        "ultimates": [
+          "aw2-hai:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "shield-protection",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 38,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "shield-protection",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 38,
+        "ultimates": [
+          "aw2-bach:skill:ultimate",
+          "aw2-muoi:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-moc:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "van-attack",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 38,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "van-attack",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 29,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-van:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "mixed-attack",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 42,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "mixed-attack",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 42,
+        "ultimates": [
+          "aw2-hai:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 10,
+        "config": "shield-attack",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 38,
+        "ultimates": []
+      },
+      {
+        "level": 10,
+        "config": "shield-attack",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 38,
+        "ultimates": [
+          "aw2-bach:skill:ultimate",
+          "aw2-muoi:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-van:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "starter",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 23,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "starter",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 21,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "muoi",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 27,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "muoi",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 22,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-muoi:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "nhien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 27,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "nhien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 27,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "hai",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 24,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "hai",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 21,
+        "ultimates": [
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-hai:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "lien",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 23,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "lien",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 21,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "moc",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 22,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "moc",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 18,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-moc:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "bach",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 26,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "bach",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 22,
+        "ultimates": [
+          "aw2-lam:skill:ultimate",
+          "aw2-moc-non:skill:ultimate",
+          "aw2-bach:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "van-protection",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 23,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "van-protection",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 21,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-suong:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "mixed-protection",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 27,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "mixed-protection",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 28,
+        "ultimates": [
+          "aw2-hai:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "shield-protection",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 27,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "shield-protection",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 28,
+        "ultimates": [
+          "aw2-bach:skill:ultimate",
+          "aw2-muoi:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-moc:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "van-attack",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 23,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "van-attack",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 21,
+        "ultimates": [
+          "aw2-than:skill:ultimate",
+          "aw2-lam:skill:ultimate",
+          "aw2-lua:skill:ultimate",
+          "aw2-suong:skill:ultimate",
+          "aw2-van:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "mixed-attack",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 27,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "mixed-attack",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 28,
+        "ultimates": [
+          "aw2-hai:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-van:skill:ultimate",
+          "aw2-nhien:skill:ultimate"
+        ]
+      },
+      {
+        "level": 20,
+        "config": "shield-attack",
+        "policy": "auto",
+        "status": "player-win",
+        "tick": 27,
+        "ultimates": []
+      },
+      {
+        "level": 20,
+        "config": "shield-attack",
+        "policy": "ultimate",
+        "status": "player-win",
+        "tick": 28,
+        "ultimates": [
+          "aw2-bach:skill:ultimate",
+          "aw2-muoi:skill:ultimate",
+          "aw2-lien:skill:ultimate",
+          "aw2-moc:skill:ultimate",
+          "aw2-van:skill:ultimate"
+        ]
+      }
+    ],
+    "limits": [
+      "Development fixture snapshots, not earned browser journeys or final balance",
+      "Real private controller, every-tick JSON replay and authenticated settlement verified"
+    ]
+  },
+  "checks": {
+    "typecheck": "PASS",
+    "typecheckDev": "PASS",
+    "reviewBuild": "PASS",
+    "stableBuild": "PASS",
+    "releaseGuard": "PASS",
+    "stable": {
+      "status": "PASS",
+      "files": 851,
+      "bytes": 177450422,
+      "textScans": 49
+    },
+    "review": {
+      "status": "PASS",
+      "files": 197,
+      "bytes": 76441980
+    },
+    "syntaxStyleLinksJSON": "PASS",
+    "reactFullStoryReview": "PASS"
+  },
+  "reuse": {
+    "proof": "AW2-007L-reused-evidence.json",
+    "paths": 300,
+    "artReferenceSource": "8344fc0b05275a1d8e314100fcfa3263d9956c8e",
+    "kitSource": "3a77154bdbf1eb8a654833c3f5354889b5377a1c"
+  },
+  "progress": {
+    "demo": "~90%",
+    "product": "~40% (35–45%)",
+    "actualKits": 12,
+    "references": 12,
+    "fullDoD": 0
+  },
+  "limits": [
+    "Development invitation gates remain provisional; no final economy/gacha approval",
+    "No post-ending rematch yet; completed saves can select followers",
+    "104composition simulations include losses and do not establish balance",
+    "No independent human/device/art/listening/rights/production-save/release acceptance"
+  ],
+  "next": "AW2-007M reward-free post-ending boss rematch"
+}

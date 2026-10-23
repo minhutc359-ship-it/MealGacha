@@ -1,3 +1,7 @@
+import {
+  collectionIntro,
+  collectionBeforeBoss,
+} from "./aw2-collection-browser-flow.mjs"
 import assert from "node:assert/strict"
 import { mkdir, writeFile } from "node:fs/promises"
 import { parseArgs } from "node:util"
@@ -8,6 +12,7 @@ const { values } = parseArgs({
     playwright: { type: "string", default: "playwright" },
     chromium: { type: "string" },
     compiled: { type: "boolean", default: false },
+    collection: { type: "boolean", default: false },
   },
 })
 const { chromium } = await import(values.playwright)
@@ -22,7 +27,7 @@ const server = values.compiled
       configFile: "dev/vite.dev.config.ts",
       server: { host: "127.0.0.1", port, strictPort: true },
     })
-const out = ".asset-work/aw2-010b",
+const out = values.collection ? ".asset-work/aw2-007l" : ".asset-work/aw2-010b",
   key = "aw2.development.save",
   url = `http://127.0.0.1:${port}/dev/aw2/world.html`
 const checks = [],
@@ -264,6 +269,7 @@ try {
     (await save()).progress.partyIds.length === 5 &&
       (await save()).economy.teamExperience === 30,
   )
+  if (values.collection) await collectionIntro({ page, check, raw, save })
   const intro = await raw()
   await page.reload()
   await world()
@@ -553,6 +559,20 @@ try {
   await travel(616, "Phòng Lửa")
   await travel(616, "Phòng Bàn")
   await go(320, 128)
+  if (values.collection)
+    await collectionBeforeBoss({
+      page,
+      check,
+      raw,
+      save,
+      go,
+      interact,
+      world,
+      url,
+      out,
+      flavor,
+      watch,
+    })
   await interact("Bắt đầu thử thách")
   await page.getByTestId("world-battle").waitFor()
   await click("Tạm dừng")
@@ -708,6 +728,12 @@ try {
       done.economy.teamExperience === 345 &&
       done.economy.receipts.length === 5,
   )
+  if (values.collection)
+    check(
+      "Completed quest/economy/boss/mode writes preserve all explicitly recruited spirits",
+      done.collection.recruitedIds.length === 7 &&
+        done.progress.partyIds.length === 5,
+    )
   const summary = page.getByTestId("demo-complete")
   check(
     "Saved wait ending has an honest completion summary and current XP",
@@ -840,6 +866,7 @@ try {
     JSON.stringify(
       {
         status: "PASS",
+        task: values.collection ? "AW2-007L" : "AW2-010B",
         flavor,
         engine: browser.version(),
         checks,
@@ -867,7 +894,17 @@ try {
   await writeFile(
     `${out}/${flavor}-demo.json`,
     JSON.stringify(
-      { status: "FAIL", flavor, checks, errors, failure: String(cause) },
+      {
+        status: "FAIL",
+        flavor,
+        checks,
+        errors,
+        modes,
+        observedRaw: await page
+          ?.evaluate((key) => localStorage.getItem(key), key)
+          .catch(() => null),
+        failure: String(cause),
+      },
       null,
       2,
     ) + "\n",

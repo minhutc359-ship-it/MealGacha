@@ -110,7 +110,7 @@ describe("SAVE-02 inventory, chest and cooking transactions", () => {
     expect(f.store.load()).toMatchObject({
       status: "ready",
       raw: f.raw,
-      save: { schemaVersion: 4, economy: newEconomy() },
+      save: { schemaVersion: 5, economy: newEconomy() },
     })
     expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(f.raw)
     const grant = await f.store.economyAction(
@@ -285,7 +285,7 @@ describe("SAVE-02 inventory, chest and cooking transactions", () => {
       const raw = JSON.stringify({ ...f.old, schemaVersion: 4, economy })
       expect(decodeAw2Save(raw)).toEqual({ status: "invalid", raw })
     }
-    const raw = JSON.stringify({ schemaVersion: 5, preserve: true })
+    const raw = JSON.stringify({ schemaVersion: 6, preserve: true })
     expect(decodeAw2Save(raw)).toEqual({ status: "unsupported", raw })
   })
 })

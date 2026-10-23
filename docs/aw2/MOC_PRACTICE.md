@@ -1,5 +1,7 @@
 # Luyện kỹ năng Mộc
 
+AW2-007L current development update, source `PENDING007L`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
+
 AW2-007I · development subset · aw2-moc/SSR/Cốm/Mage, khác Mộc Non. Chạy `pnpm dev`, mở `http://localhost:8443/dev/aw2/battle.html?team=moc`. Đội luyện vẫn5 người, thay Sương Lành bằng Mộc; chọn cấp1/5/10/20 rồi Tạo lại trận. Trang không cấp nhân vật, EXP hay ghi save.
 
 - **Nét Lá:** một đạn thật; va chạm mới phát tác động, không tự tạo dấu.

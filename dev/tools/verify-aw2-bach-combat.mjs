@@ -397,9 +397,9 @@ try {
     .getByRole("link", { name: "luyện kỹ năng Bách", exact: true })
     .waitFor()
   check(
-    "Reference links actual Tank practice and discloses pending collection",
+    "Reference links actual Tank practice and links persisted collection",
     (await page.locator("main").innerText()).includes(
-      "Thu thập và đội lưu còn chờ",
+      "Mời nhân vật và lưu đội trong hành trình",
     ),
   )
   check("No unexpected page/console/resource errors", errors.length === 0)

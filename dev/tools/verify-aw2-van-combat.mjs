@@ -414,8 +414,10 @@ try {
     .getByRole("link", { name: "luyện kỹ năng Vân", exact: true })
     .waitFor()
   check(
-    "Reference viewer links actual Vân practice and discloses pending collection",
-    (await page.locator("main").innerText()).includes("Thu thập/đội lưu"),
+    "Reference viewer links actual Vân practice and links persisted collection",
+    (await page.locator("main").innerText()).includes(
+      "Mời nhân vật và lưu đội trong hành trình",
+    ),
   )
   for (const file of [
     "battle-motion-a-v1.webp",

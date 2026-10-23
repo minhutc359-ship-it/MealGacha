@@ -1,5 +1,7 @@
 # Vân — thử kit hybrid
 
+AW2-007L current development update, source `PENDING007L`: collection/saved-party implementation now available for this spirit after its explicit quest-gated invitation; practice remains ephemeral and grants nothing. [Collection rules](COLLECTION.md). Earlier pending-collection wording in the source-bound kit/art record below is superseded only for development ownership/parties. Original images/audio/manifest scope are historical delivery metadata, unchanged; full DoD/independent art/listening/device/rights/final balance remain OPEN.
+
 AW2-007K · source `3a77154bdbf1eb8a654833c3f5354889b5377a1c` · development, chưa phải cân bằng cuối hoặc nghiệm thu nhân vật đầy đủ.
 
 Chạy `pnpm dev`, mở `/dev/aw2/battle.html?team=van`. Đội tạm có năm người, thay Mộc Non bằng Vân; không nhận nhân vật hoặc ghi save. Có thể chọn nhấn Bảo hộ/Tấn công cho **trận mới** rồi bấm **Tạo lại trận**. Nhấn đang dùng luôn hiện riêng, cố định suốt trận; URL `&emphasis=attack` khởi tạo nhấn tấn công. Cấp thử nghiệm1/5/10/20 chỉ áp dụng khi tạo lại.

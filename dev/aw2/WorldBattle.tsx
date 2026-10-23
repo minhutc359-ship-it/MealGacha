@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { BattleCanvas } from "./BattleCanvas"
-import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
+import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import {
+  nhienBusy,
   createCombatPresentation,
   reduceCombatPresentation,
 } from "../../src/aw2/combat"
@@ -74,7 +75,13 @@ export function WorldBattle({
   }, [paused, finished, command])
 
   return (
-    <main className="aw2-save aw2-battle" data-testid="world-battle">
+    <main
+      className="aw2-save aw2-battle"
+      data-testid="world-battle"
+      data-boss-position={
+        battle.actors.find((actor) => actor.id === KITCHEN_BOSS_ID)?.position
+      }
+    >
       <p className="eyebrow">AW2-007C · THỬ THÁCH BÊN BẾP</p>
       <h1>Người Giữ Bàn Quên</h1>
       <details className="aw2-combat-help">
@@ -163,17 +170,24 @@ export function WorldBattle({
         {battle.actors
           .filter((actor) => actor.side === "player")
           .map((actor) => (
-            <article key={actor.id}>
+            <article
+              key={actor.id}
+              data-testid={`world-unit-${actor.spiritId}`}
+              data-state={JSON.stringify(actor)}
+            >
               <img
-                src={STARTER_ASSETS[actor.spiritId].assets.portrait.url}
+                src={ROSTER_ASSETS[actor.spiritId].assets.portrait.url}
                 alt=""
                 width={64}
                 height={64}
               />
               <div>
-                <strong>{STARTER_ASSETS[actor.spiritId].displayName}</strong>
+                <strong>{ROSTER_ASSETS[actor.spiritId].displayName}</strong>
                 <small>
                   HP {actor.hp}/{actor.maxHp}
+                  {actor.spiritId === "aw2-van"
+                    ? ` · Nhấn ${actor.vanEmphasis === "attack" ? "Tấn công" : "Bảo hộ"}`
+                    : ""}
                 </small>
               </div>
               <button
@@ -184,7 +198,11 @@ export function WorldBattle({
                   busy ||
                   actor.hp <= 0 ||
                   actor.energy < 100 ||
-                  !!actor.cast
+                  !!actor.cast ||
+                  !!actor.lienUltimate ||
+                  !!actor.mocBurst ||
+                  !!actor.bachStrike ||
+                  nhienBusy(actor, battle.tick)
                 }
                 onClick={() => command("ultimate", actor.id)}
               >

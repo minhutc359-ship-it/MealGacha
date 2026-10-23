@@ -1,6 +1,6 @@
 # Soul of Meal Adventure World 2 — Next Game
 
-**AW2-007K VERIFIED — Vân có kit hybrid và nhấn tuyệt kỹ cố định trước trận.** Source `3a77154bdbf1eb8a654833c3f5354889b5377a1c`, base `62d3e585213b65340d32c6566c810e384081bee2` trên `game/adventure-world-2`. Hai nửa hỗ trợ/đánh dấu khóa mục tiêu riêng; hồi máu chỉ từ khiên thực đã cấp; Bảo hộ hoặc Tấn công dùng chung một tuyệt kỹ/100năng lượng. **12/12 kit phát triển=100%**, tăng từ11/12≈92%; **12/12 bộ hình tham chiếu**, năm starter lưu và **0/12 full-characterDoD** giữ nguyên. **Demo≈90%, toàn sản phẩm≈40% (35–45%) giữ nguyên** vì collection và nghiệm thu art/playtest/thiết bị/rights/release còn mở.1345ca unit riêng biệt/113files, 384browser assertions/108simulations; hai typecheck/review+stable build/isolation PASS. [Luyện Vân](VAN_PRACTICE.md), [bằng chứng](evidence/AW2-007K.md). Next BA/mechanic: [007L collection/đội lưu contract](tasks/AW2-007L.md); D11 PROPOSED/D12 OPEN.
+**AW2-007L VERIFIED — đã có bộ sưu tập và đội hình lưu cho12 Vị Linh.** Source `PENDING007L`, base `b4e20e628156b1ee5a6c17e8a2ed8b86c3b0b3ca` trên `game/adventure-world-2`. Mời nhân vật theo mốc nhiệm vụ thử nghiệm bằng thao tác rõ ràng; lưu đúng5 nhân vật sở hữu, thứ tự và nhấn Vân cho trận mới. Schema5 đọc/nâng cấp v1–4 trong bộ nhớ, không tự ghi hoặc cấp nhân vật ngoài starter. Boss/followers dùng đội đã lưu; trận cũ giữ snapshot và không ghi đè save mới.1392ca unit riêng biệt/114files,233browser assertions/104mô phỏng PASS; cả hai typecheck/review+stable builds/isolation đạt. **Demo≈90%, sản phẩm≈40% (35–45%) giữ nguyên**;12/12kit,12/12bộ tham chiếu,0/12fullDoD. [Quy tắc và cách dùng](COLLECTION.md), [bằng chứng](evidence/AW2-007L.md). Next007M: đấu lại boss sau kết thúc để thử đội đã lưu; cân bằng/nghiệm thu độc lập còn mở. D11 PROPOSED/D12 OPEN.
 
 Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không phải bản patch/đè lên master. Giai đoạn đầu hoàn thiện 12 nhân vật rồi mở lên 16–20; kết nối map, đi tự do, team 5 tự đánh/ultimate thủ công, pixel world + HD anime battle, TCG/Auto Chess trong thế giới kèm quick-entry, khám phá dungeon/rương/nấu ăn.
 ## Quy tắc
@@ -13,6 +13,12 @@ Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không ph�
 ## Quy trình phát triển và push
 
 Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực tiếp trên `game/adventure-world-2`, **không tạo branch mới**. Mỗi task hoàn thành: chạy kiểm tra phù hợp, cập nhật tài liệu, commit rồi **push ngay vào `game/adventure-world-2`** và xác minh SHA trên remote trùng local. Quy định này thay thế hướng dẫn feature branch trước đây. Chi tiết lệnh và dọn nhánh đã tích hợp tại [WORKFLOW](WORKFLOW.md), [AW2-012B](tasks/AW2-012B.md).
+
+## Bộ sưu tập và đội hình lưu — AW2-007L
+
+Mở **Đội và túi đồ** trong world. Sau mốc nhiệm vụ, bấm **Mời …** một lần, chọn đủ năm người và nhấn Vân, rồi **Lưu đội hình**. Chọn một người đang ở slot khác sẽ đổi chỗ; Hủy chọn đội giữ bản lưu. Draft không đổi followers hoặc trận đang chạy. Đội mới áp dụng cho lần bắt đầu boss tiếp theo. Save cũ tải không tự nhận thêm nhân vật/XP; thao tác ghi tiếp theo mới lưu schema5. [Quy tắc/giới hạn](COLLECTION.md). Sau kết thúc vẫn chọn được đội đồng hành; đấu lại boss chờ007M. Gacha vẫn chưa triển khai.
+
+Các bản ghi asset/kit có source cũ dưới đây giữ bằng chứng gốc; nhận định pending inventory/collection được thay bởi STATUS/COLLECTION hiện tại, không đổi canon hoặc nghiệm thu art.
 
 ## AW2 development preview — expedition, TCG and Auto Chess practice
 
@@ -27,7 +33,7 @@ Open `http://localhost:8443/dev/aw2/index.html`. This standalone development ent
 
 Choose **Tạo bản lưu AW2** to initialize `aw2.development.save`, **Lưu thử AW2** to advance its revision, then reload to inspect persistence. **Bắt đầu lại AW2…** opens a modal; each reset requires the exact phrase `RESET AW2` and an explicit final action. Hủy/Escape leaves stored bytes intact. Normal writes preserve invalid/future saves, stale tabs must read again, and failed writes report an error. Confirmed development reset may replace an invalid/future AW2 save as disclosed in the dialog.
 
-Writes require Web Locks and a secure context (localhost or HTTPS); unsupported browsers can inspect/read only. Schema v4 stores world/quest/starter/boss/note/ending progress plus inventory/shared XP/receipts. Valid v1/v2/v3 saves upgrade in memory without writing or granting until an explicit action, preserving identity/timestamps/prior progress and legacy data. Ordinary position-save cannot change quest/objectives; locked world/economy actions own reward changes. Future production migrations/native durability remain future work. No operation on this screen clears Soul of Meal saves.
+Writes require Web Locks and a secure context (localhost or HTTPS); unsupported browsers can inspect/read only. Schema v5 stores world/quest/boss/note/ending, inventory/shared XP/receipts and collection/saved party/Van emphasis. Valid v1/v2/v3/v4 saves upgrade in memory without writing or granting until an explicit action, preserving identity/timestamps/prior progress and legacy data. Ordinary position-save cannot change quest/objectives; locked world/economy actions own reward changes. Future production migrations/native durability remain future work. No operation on this screen clears Soul of Meal saves.
 
 ```sh
 pnpm test dev/tests/aw2/save.test.ts dev/tests/infrastructure/protectedStorage.test.ts
@@ -43,7 +49,7 @@ The browser tool also accepts `--playwright /absolute/path/to/playwright-core/in
 
 ## World / quest foundation
 
-Open `http://localhost:8443/dev/aw2/world.html`. Click/tap a clear destination, WASD/arrows or hold the on-screen direction buttons; E / Tương tác near an object. Five companions follow traversable history after starter unlock; reread clears their old trails. Closing dialogue changes nothing. Explicit actions and Lưu vị trí commit one coherent AW2 save; walking alone remains local until saved. Blur/keyup/pointer release stop movement, and dialogs pause it.
+Open `http://localhost:8443/dev/aw2/world.html`. Click/tap a clear destination, WASD/arrows or hold the on-screen direction buttons; E / Tương tác near an object. The five selected owned companions follow traversable history after intro; reread clears their old trails. Closing dialogue changes nothing. Explicit actions and Lưu vị trí commit one coherent AW2 save; walking alone remains local until saved. Blur/keyup/pointer release stop movement, and dialogs pause it.
 
 Flow: meet Bà Giữ Chỗ → read the cloth → hand in to unlock five approved N/R starters. Go east to Phố, accept at An, listen to three memories in any order, choose a thread. Accept at Dì, read the hint in Kho, solve the three-step puzzle in Phòng Lửa, then return to Dì to report. Wrong order resets only the attempt. All six zones have safe return routes.
 
@@ -51,7 +57,7 @@ For the fourth quest, explicitly accept **Thêm một chén** at Dì, reach Ngư
 
 After a committed win, explicitly read **Ghi chép bên chén**, return to Bà and choose either **Để ghế trống chờ** or **Mời cả làng dùng bữa**. Both finish the same quest once, grant its development XP/ingredients atomically and open the reciprocal Sân↔Phòng Bàn shortcut. Closing dialogue does not choose an ending or grant rewards.
 
-Terrain/NPC/chest remain generated placeholders; companions reuse the five existing authored reference sets. Development XP/inventory/chest/cooking are now implemented below. The boss development kit is verified through AW2-007D; full boss motion/world art/audio, seven spirit sets, final balance/device usability and full AW2-006/008/010 gates remain open.
+Terrain/NPC/chest remain generated placeholders; companions reuse the five existing authored reference sets. Development XP/inventory/chest/cooking are now implemented below. The boss development kit is verified through AW2-007D; full boss motion/world art/audio, independent acceptance of the12 spirit reference sets, final balance/device usability and full AW2-006/008/010 gates remain open.
 
 ```sh
 pnpm test dev/tests/aw2
