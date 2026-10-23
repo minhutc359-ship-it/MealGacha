@@ -78,6 +78,7 @@ export interface CombatEvent {
     | "hai-slow"
     | "hai-line"
     | "hai-block"
+    | "bach-release"
     | "moc-mark"
     | "moc-burst"
     | "lien-hot"
@@ -168,6 +169,9 @@ export interface CombatActor {
   nhienSequence?: NhienSequence
   nhienRecoveryUntilTick?: number
   nhienRhythm?: NhienRhythm
+  bachStrike?: { id: string; targetId: string; resolveTick: number }
+  bachGuarded?: number
+  bachShareUntilTick?: number
   mocMark?: {
     id: string
     center: number

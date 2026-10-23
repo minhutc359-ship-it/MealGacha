@@ -29,7 +29,7 @@ Trước AW2-010A: **8/10 nhóm tiêu chí đã kiểm chứng, khoảng80%**. H
 |---|---:|---:|---|
 | Nền runtime/combat/save/tích hợp |25 |20 | Luật thật, checkpoint/progression và hai practice đã chạy; production durability/hoàn thiện còn mở |
 | Arc thế giới/quest/dungeon |15 |10 |6 zone/4 quest/boss/hai kết thúc hoạt động; map/NPC/boss riêng và polish còn thiếu |
-|12 nhân vật đủ DoD/art/animation/kit |30 |5 |12/12 bộ tham chiếu,10/12 kit thực thi sau007I; **0/12 đạt đầy đủ DoD**, collection và nghiệm thu còn mở |
+|12 nhân vật đủ DoD/art/animation/kit |30 |5 |12/12 bộ tham chiếu,11/12 kit thực thi sau007J; **0/12 đạt đầy đủ DoD**, collection và nghiệm thu còn mở |
 | UX/presentation/audio |10 |3 | Có điều khiển/touch/opt-in và hướng dẫn; UI/game art còn cần hoàn thiện/playtest |
 | Kinh tế/mode sản phẩm/gacha/cân bằng |10 |2 | Kinh tế/practice còn là development tuning; D11 chưa duyệt, gacha runtime/thu thập mode chưa làm |
 | Gate phát hành: thiết bị/hiệu năng/offline/save production/rights |10 |0 | Các gate đầy đủ còn NOT_RUN/mở; chưa có phát hành |
@@ -113,3 +113,8 @@ This supersedes earlier eight-actual-kit/Liên combat-pending status only. Exist
 ## AW2-007I — current measurement
 
 **AW2-007I VERIFIED — Mộc có bộ kỹ năng chiến đấu thật và cấp1–20**. Source `9b9c365a5dd4c01176bef59772967d64522685b0`, base `c38a5cc6d0ac0731904cc65ea1f582be24a4ef7a`. Gieo Dấu là một vùng cố định chờ3nhịp/kích hoạt một lần/hết hạn6nhịp; Mùa Nối Mùa cấp khiên ngắn khi thay dấu ở vị trí mới; Mở Gói Mùa Xanh thu tối đa một dấu và báo trước2nhịp rồi nổ một lần. **10/12 kit thực thi≈83%** (từ9/12=75%); **12/12 bộ hình tham chiếu100%**, năm starter lưu giữ nguyên, **0/12 full-characterDoD**. **Demo≈90% và toàn sản phẩm≈40% (ước lượng35–45%) giữ nguyên**: chưa đóng collection, nghiệm thu art/playtest độc lập/thiết bị/rights/release.1242ca unit riêng biệt/111files được xác minh (1241PASS từ full run +69ca hai file sửa kiểm tra inventory, không cộng trùng),41ca Mộc mới;310browser assertions và72simulations PASS. Hai typecheck/review+stable build/isolation PASS. [Luyện Mộc](MOC_PRACTICE.md), [bằng chứng](evidence/AW2-007I.md). Next BA/mechanic:007J Bách, sau đó Vân; collection/đội lưu riêng.
+
+
+## AW2-007J — current measurement
+
+**AW2-007J VERIFIED — Bách có bộ kỹ năng Tank thực thi và cấp1–20**. Source `PENDING_007J_SOURCE`, base `3bd893a143e4954125a6e39ec608ced4c738d210`. Mối Buộc chờ điểm chạm cận chiến; Gói Chắc tạo khiên cá nhân; Chia Phần chỉ tính lượng khiên thực đỡ; Mở Vòng Dây tiêu khiên còn lại trước khi chia bảo vệ và tác động tuyến trước. Sửa rõ lỗi ghi chép007I “striker” theo canon Tank đã duyệt. **11/12 kit≈92%**, tăng từ10/12≈83%; **12/12 bộ hình tham chiếu100%**, năm starter lưu giữ nguyên, **0/12 full-characterDoD**. **Demo≈90%, sản phẩm≈40% (35–45%) giữ nguyên** vì collection/nghiệm thu art/playtest/thiết bị/rights/release còn mở.1288ca unit riêng biệt/112files (46Bách cuối,1242ca full không đổi),351browser assertions/84simulations, hai typecheck/review+stable build/isolation PASS. [Luyện Bách](BACH_PRACTICE.md), [bằng chứng](evidence/AW2-007J.md). Next BA/character/mechanic:007K Vân hybrid/chọn nhấn trước trận; collection/đội lưu riêng.

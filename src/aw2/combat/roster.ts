@@ -16,6 +16,7 @@ export type CombatSpiritId =
   | "aw2-hai"
   | "aw2-lien"
   | "aw2-moc"
+  | "aw2-bach"
 
 export interface CombatKit {
   spiritId: CombatSpiritId
@@ -120,6 +121,20 @@ export function combatSkillId(
 
 export const COMBAT_KITS: Record<CombatSpiritId, CombatKit> = {
   ...STARTER_COMBAT_KITS,
+  "aw2-bach": {
+    spiritId: "aw2-bach",
+    role: "tank",
+    hp: 250,
+    attack: 28,
+    defense: 28,
+    range: 8,
+    moveSpeed: 4,
+    projectileTicks: 0,
+    basicCooldown: 6,
+    autoCooldown: 10,
+    autoCastTicks: 1,
+    ultimateCastTicks: 2,
+  },
   "aw2-moc": {
     spiritId: "aw2-moc",
     role: "mage",

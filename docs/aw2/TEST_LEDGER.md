@@ -1,5 +1,9 @@
 # Test ledger / change impact
 
+## AW2-007J current verified scope
+
+Source `PENDING_007J_SOURCE`, base `3bd893a143e4954125a6e39ec608ced4c738d210`. PASS1288unique/112files:1242 unchanged full cases plus46finalBách, full1287PASS before isolated pose fix; no overlapping sum. PASS351browser/84simulations, both final types/review+stable builds/releaseguard/49text isolation/style/syntax/JSON/links. Own Bách source/compiled each retains20 initial PASS, remaining after corrected branch; only final composite report counted. Earlier fixture/type/pose/instrumentation failures explicitly recorded. Three compiled captures viewed. Bách64cell/hash/PCM/18repeat/301unchanged boundary PASS; unchanged original art/deep-save/reset/mode evidence retains original refs. [Evidence](evidence/AW2-007J.md), [JSON](evidence/AW2-007J-verification.json).11actualkits/12references/5savedstarters/0fullDoD;demo90%/product40% unchanged.
+
 ## AW2-007I current verified scope
 
 Source `9b9c365a5dd4c01176bef59772967d64522685b0`, base `c38a5cc6d0ac0731904cc65ea1f582be24a4ef7a`. PASS1242unique units/111files (41new Mộc; full1241PASS/1FAIL inventory fixture, corrected Hai/Lien69PASS deduplicated). PASS310browser/72simulations; both final types/review+stable builds/releaseguard/49text isolation/style/syntax/JSON/links. Mộc64cells/hash/PCM/18repeat/299unchanged paths PASS. First focused fixture failures, count assertion, JSX boolean type correction/source-HMR invalidation and simulator advisory logged explicitly; final source33/compiled33PASS only counted. Three compiled captures viewed. Original art/deep-save/reset/mode detail kept at original source, no reused total added. [Evidence](evidence/AW2-007I.md), [JSON](evidence/AW2-007I-verification.json).10actualkits/12references/5savedstarters/0fullDoD;demo90%/product40% unchanged.
@@ -36,6 +40,7 @@ Owner refinement after004E: reuse original-SHA PASS when implementation/dependen
 | BATTLE-01 range/contact/projectile/ultimate five team | combat/asset | PASS at 5ca3964a2cb46b60188d3192e32a2545740cda14;1107 full units/30+30 Nhiên/27 Muối/41 boss/22 starter browser, all current shared consumers |
 | BATTLE-NHIEN-01 melee/multi-contact/recovery/target/energy/interrupt/events | combat/asset | PASS at 5ca3964a2cb46b60188d3192e32a2545740cda14;32 new cases inside1107,36 simulations,30+30 actual-practice browser; collection/full DoD OPEN |
 | BATTLE-MUOI-01 targeting/mark cap/cleanse/ordinary shield immunity/events | combat/asset | PASS ate1f023d391a2fcf14ab07b7a436b3bd0ad7d6cbd;19 new cases inside1068,24 simulations and actual27+27 practice gates; collection/final balance OPEN |
+| BATTLE-BACH-01 heavy contact/actual shield absorption/conserved ward/front impact | combat/asset | PASS at PENDING_007J_SOURCE;46new/own source+compiled/84sim; collection/fullDoD OPEN |
 | BATTLE-MOC-01 finite fixed mark/replacement shield/warned burst | combat/asset | PASS at 9b9c365a5dd4c01176bef59772967d64522685b0;41new,33+33 browser,72sim; collection/fullDoD OPEN |
 | BATTLE-LIEN-01 finite HoT/selective cleanse/guard/interrupt/expiry/events | combat/asset | PASS at 5247fd0963f261f156f00d673b0961657182b4af;37new in1201,34+34actual practice,60sim; collection/fullDoD OPEN |
 | BATTLE-HAI-01 directional field/line/passive/interrupt/expiry/events | combat/asset | PASS at 3154df089761afc11552c66668f8890640a1d914;32new cases inside1164unique,27+27 own practice; collection/full DoD OPEN |

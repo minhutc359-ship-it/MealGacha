@@ -1639,7 +1639,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "AW2-007J implements the development heavy melee contact, self shield, capped absorption sharing and personal-shield conversion ultimate; collection and full character acceptance remain open."
     },
     "auto": {
       "id": "aw2-bach:skill:auto",
@@ -1673,7 +1673,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "AW2-007J implements the development heavy melee contact, self shield, capped absorption sharing and personal-shield conversion ultimate; collection and full character acceptance remain open."
     },
     "passive": {
       "id": "aw2-bach:skill:passive",
@@ -1707,7 +1707,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "AW2-007J implements the development heavy melee contact, self shield, capped absorption sharing and personal-shield conversion ultimate; collection and full character acceptance remain open."
     },
     "ultimate": {
       "id": "aw2-bach:skill:ultimate",
@@ -1741,7 +1741,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "AW2-007J implements the development heavy melee contact, self shield, capped absorption sharing and personal-shield conversion ultimate; collection and full character acceptance remain open."
     }
   },
   "provenance": {

@@ -1,3 +1,11 @@
+import {
+  BACH_TUNING,
+  bachThreshold,
+  bachShareTarget,
+  bachAllies,
+  bachFront,
+  ordinaryShieldCap,
+} from "./bach"
 import { MOC_TUNING, mocEnemy, mocOccupants } from "./moc"
 import {
   combatSkillId,
@@ -115,9 +123,14 @@ function actorFromSeed(
     throw Error("Boss profile không thuộc Người Giữ Bàn Quên.")
   const base =
     side === "player" ||
-    ["aw2-muoi", "aw2-nhien", "aw2-hai", "aw2-lien", "aw2-moc"].includes(
-      seed.spiritId,
-    )
+    [
+      "aw2-muoi",
+      "aw2-nhien",
+      "aw2-hai",
+      "aw2-lien",
+      "aw2-moc",
+      "aw2-bach",
+    ].includes(seed.spiritId)
       ? COMBAT_KITS[seed.spiritId as CombatSpiritId]
       : defaultEnemy(seed)
   const maxHp = assertNumber(seed.maxHp ?? base.hp, "HP tối đa", 1, 1_000_000)
@@ -717,7 +730,7 @@ function startCast(
     slot,
     targetId,
     commitTick: battle.tick + ticks,
-    ...(["aw2-nhien", "aw2-hai"].includes(actor.spiritId) &&
+    ...(["aw2-nhien", "aw2-hai", "aw2-bach"].includes(actor.spiritId) &&
     targetId &&
     byId(battle, targetId)
       ? { facing: nhienFacing(actor, byId(battle, targetId)!) }
@@ -836,6 +849,7 @@ function applyShield(
   amount: number,
   skillId: string,
   duration = 5,
+  contact: Pick<CombatEvent, "actionId" | "contactIndex"> = {},
 ) {
   if (target.hp <= 0) {
     record(battle, "miss", source.id, [target.id], {
@@ -854,6 +868,7 @@ function applyShield(
   record(battle, "shield", source.id, [target.id], {
     skillId,
     amount: target.shield - previous,
+    ...contact,
   })
   if (
     source.spiritId === "aw2-moc-non" &&
@@ -963,6 +978,74 @@ function luaFocusBonus(
   return Math.round(source.attack * 0.45)
 }
 
+function updateBachPassive(
+  battle: CombatBattle,
+  target: CombatActor,
+  attacker: CombatActor,
+  absorbed: number,
+) {
+  if (
+    target.spiritId !== "aw2-bach" ||
+    target.hp <= 0 ||
+    attacker.side === target.side ||
+    absorbed <= 0
+  )
+    return
+  if (battle.tick < (target.bachShareUntilTick ?? 0)) {
+    target.bachGuarded = 0
+    return
+  }
+  target.bachGuarded = Math.min(
+    bachThreshold(target),
+    (target.bachGuarded ?? 0) + absorbed,
+  )
+  if (target.bachGuarded < bachThreshold(target)) return
+  const ally = bachShareTarget(battle, target)
+  if (!ally) return
+  const previous = ally.shield
+  applyShield(
+    battle,
+    target,
+    ally,
+    Math.max(1, Math.round(target.maxHp * BACH_TUNING.shareRatio)),
+    combatSkillId("aw2-bach", "passive"),
+    BACH_TUNING.shareTicks,
+  )
+  if (ally.shield > previous) {
+    target.bachGuarded = 0
+    target.bachShareUntilTick = battle.tick + BACH_TUNING.shareCooldown
+  }
+}
+
+function resolveBachStrikes(battle: CombatBattle) {
+  for (const source of living(battle).filter(
+    (a) => a.spiritId === "aw2-bach",
+  )) {
+    const strike = source.bachStrike
+    if (!strike || strike.resolveTick > battle.tick) continue
+    delete source.bachStrike
+    const skillId = combatSkillId("aw2-bach", "basic")
+    const target = byId(battle, strike.targetId)
+    if (
+      !target ||
+      target.hp <= 0 ||
+      target.side === source.side ||
+      distance(source, target) > source.range
+    ) {
+      record(battle, "miss", source.id, [strike.targetId], {
+        skillId,
+        actionId: strike.id,
+        text: "Mối Buộc hụt điểm chạm; không đổi mục tiêu.",
+      })
+      continue
+    }
+    applyDamage(battle, source, target, source.attack, skillId, undefined, {
+      actionId: strike.id,
+      contactIndex: 0,
+    })
+  }
+}
+
 function applyDamage(
   battle: CombatBattle,
   source: CombatActor,
@@ -1043,6 +1126,7 @@ function applyDamage(
     ...(blocked > 0 ? { blocked } : {}),
     ...(projectileId ? { projectileId } : {}),
   })
+  updateBachPassive(battle, target, source, absorbed)
   if (hpDamage + absorbed > 0) {
     const gained = grantNhienRhythm(source, target, battle.tick)
     if (gained > 0)
@@ -1109,6 +1193,8 @@ function applyDamage(
   }
   if (target.hp === 0) {
     target.cast = null
+    delete target.bachStrike
+    target.bachGuarded = 0
     delete target.nhienSequence
     delete target.nhienRecoveryUntilTick
     record(battle, "defeat", source.id, [target.id], { skillId })
@@ -1247,10 +1333,12 @@ function commitCast(
   const skillId = cast.skillId
   const teamTarget =
     cast.slot === "ultimate" &&
-    ["aw2-than", "aw2-lam", "aw2-moc-non", "aw2-lien"].includes(actor.spiritId)
+    ["aw2-than", "aw2-lam", "aw2-moc-non", "aw2-lien", "aw2-bach"].includes(
+      actor.spiritId,
+    )
   const committedTargets = teamTarget
     ? living(battle, actor.side).map((ally) => ally.id)
-    : cast.slot === "auto" && actor.spiritId === "aw2-than"
+    : cast.slot === "auto" && ["aw2-than", "aw2-bach"].includes(actor.spiritId)
       ? [actor.id]
       : injuredAlly
         ? [injuredAlly.id]
@@ -1260,6 +1348,83 @@ function commitCast(
             ? [enemy.id]
             : []
   record(battle, "cast-commit", actor.id, committedTargets, { skillId })
+  if (actor.spiritId === "aw2-bach") {
+    if (cast.slot === "auto") {
+      if (actor.shield > 0) {
+        record(battle, "miss", actor.id, [actor.id], {
+          skillId,
+          text: "Đã có khiên khác; Gói Chắc không cộng thêm.",
+        })
+        return
+      }
+      applyShield(
+        battle,
+        actor,
+        actor,
+        Math.max(1, Math.round(actor.maxHp * BACH_TUNING.shellRatio)),
+        skillId,
+        BACH_TUNING.shellTicks,
+        { actionId: cast.id, contactIndex: 0 },
+      )
+    } else {
+      const budget = actor.shield
+      actor.shield = 0
+      actor.shieldExpiresAtTick = 0
+      actor.bachGuarded = 0
+      record(battle, "status", actor.id, [actor.id], {
+        skillId,
+        actionId: cast.id,
+        statusEffect: "bach-release",
+        statusChange: "remove",
+        amount: budget,
+        text: `Mở Vòng Dây dùng hết ${budget} khiên cá nhân.`,
+      })
+      const allies = bachAllies(battle, actor).sort(
+        (a, b) => a.slot - b.slot || a.id.localeCompare(b.id),
+      )
+      for (const [index, ally] of allies.entries()) {
+        const allocation =
+          Math.floor(budget / allies.length) +
+          (index < budget % allies.length ? 1 : 0)
+        const actual = Math.min(
+          allocation,
+          Math.max(0, ordinaryShieldCap(ally) - ally.shield),
+        )
+        if (actual > 0)
+          applyShield(
+            battle,
+            actor,
+            ally,
+            actual,
+            skillId,
+            BACH_TUNING.wardTicks,
+            { actionId: cast.id, contactIndex: 0 },
+          )
+      }
+      const targets = bachFront(
+        battle,
+        actor,
+        cast.facing ?? (actor.side === "player" ? 1 : -1),
+      )
+      if (!targets.length)
+        record(battle, "miss", actor.id, [], {
+          skillId,
+          actionId: cast.id,
+          text: "Không có đối thủ trong tuyến trước ngắn.",
+        })
+      for (const target of targets)
+        applyDamage(
+          battle,
+          actor,
+          target,
+          actor.attack * BACH_TUNING.impactMultiplier,
+          skillId,
+          undefined,
+          { actionId: cast.id, contactIndex: 0 },
+        )
+    }
+    return
+  }
   if (actor.spiritId === "aw2-moc") {
     const target = cast.targetId ? byId(battle, cast.targetId) : undefined
     if (
@@ -1673,6 +1838,21 @@ function performBasic(
     )
     return
   }
+  if (actor.spiritId === "aw2-bach") {
+    const id = `bach:${++battle.actionSerial}`
+    actor.bachStrike = {
+      id,
+      targetId: target.id,
+      resolveTick: battle.tick + BACH_TUNING.basicWindup,
+    }
+    record(battle, "cast-start", actor.id, [target.id], {
+      skillId,
+      actionId: id,
+      resolveTick: actor.bachStrike.resolveTick,
+      text: "Mối Buộc chuẩn bị một điểm chạm nặng.",
+    })
+    return
+  }
   const projectile = actor.projectileTicks > 0
   if (actor.spiritId === "aw2-lua") {
     queueEffect(
@@ -1718,6 +1898,12 @@ function tryAutoSkill(battle: CombatBattle, actor: CombatActor): boolean {
     return false
   const kit = COMBAT_KITS[actor.spiritId]
   const enemy = selectEnemy(battle, actor)
+  if (actor.spiritId === "aw2-bach") {
+    if (actor.shield > 0) return false
+    actor.nextAutoTick = battle.tick + kit.autoCooldown
+    startCast(battle, actor, "auto", actor.id, kit.autoCastTicks)
+    return true
+  }
   if (actor.spiritId === "aw2-moc") {
     const target = mocEnemy(battle, actor)
     if (!target) return false
@@ -1879,6 +2065,7 @@ function actAutomatically(battle: CombatBattle) {
     if (
       actor.hp <= 0 ||
       actor.cast ||
+      actor.bachStrike ||
       actor.bossKit?.intent ||
       nhienBusy(actor, battle.tick)
     )
@@ -1903,6 +2090,8 @@ function checkResult(battle: CombatBattle) {
   removeMuoiMarks(battle, "trận kết thúc", () => true)
   for (const actor of battle.actors) {
     actor.cast = null
+    delete actor.bachStrike
+    if (actor.spiritId === "aw2-bach") actor.bachGuarded = 0
     delete actor.nhienSequence
     delete actor.nhienRecoveryUntilTick
     if (actor.nhienRhythm) actor.nhienRhythm.targetIds = []
@@ -1932,6 +2121,7 @@ function advanceOneTick(battle: CombatBattle) {
 
   resolveMocFields(battle)
   if (battle.status !== "active") return
+  resolveBachStrikes(battle)
   resolveNhienSequences(battle)
   checkResult(battle)
   if (battle.status !== "active") return
@@ -1974,6 +2164,7 @@ export function castCombatUltimate(
     !isCombatSpiritId(actor.spiritId)
   )
     throw Error("Vị Linh không thể dùng tuyệt kỹ.")
+  if (actor.bachStrike) throw Error("Bách đang chuẩn bị điểm chạm nặng.")
   if (actor.cast) throw Error("Vị Linh đang thi triển kỹ năng khác.")
   if (actor.mocBurst) throw Error("Mộc đang chờ vùng kết tụ đã cam kết.")
   if (actor.lienUltimate)
@@ -2008,7 +2199,7 @@ export function castCombatUltimate(
     battle,
     actor,
     "ultimate",
-    actor.spiritId === "aw2-hai"
+    ["aw2-hai", "aw2-bach"].includes(actor.spiritId)
       ? (selectEnemy(battle, actor)?.id ?? null)
       : (targetId ?? null),
     COMBAT_KITS[actor.spiritId].ultimateCastTicks,
@@ -2023,10 +2214,17 @@ export function interruptCombatCast(
   if (current.status !== "active") throw Error("Trận đấu đã kết thúc.")
   const battle = copyBattle(current)
   const actor = byId(battle, actorId)
-  if (!actor || actor.hp <= 0 || (!actor.cast && !actor.nhienSequence))
+  if (
+    !actor ||
+    actor.hp <= 0 ||
+    (!actor.cast && !actor.nhienSequence && !actor.bachStrike)
+  )
     throw Error("Không có kỹ năng đang thi triển để ngắt.")
   const skillId =
-    actor.cast?.skillId ?? combatSkillId("aw2-nhien", actor.nhienSequence!.slot)
+    actor.cast?.skillId ??
+    (actor.bachStrike
+      ? combatSkillId("aw2-bach", "basic")
+      : combatSkillId("aw2-nhien", actor.nhienSequence!.slot))
   if (
     actor.interruptGuardCharges > 0 &&
     actor.interruptGuardUntilTick > battle.tick
@@ -2039,6 +2237,7 @@ export function interruptCombatCast(
     return battle
   }
   actor.cast = null
+  delete actor.bachStrike
   if (actor.spiritId === "aw2-nhien") {
     delete actor.nhienSequence
     actor.nhienRecoveryUntilTick = battle.tick + NHIEN_TUNING.recoveryTicks + 1

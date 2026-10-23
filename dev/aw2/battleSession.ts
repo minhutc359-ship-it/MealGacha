@@ -15,7 +15,7 @@ import {
   type CombatPresentation,
 } from "../../src/aw2/combat"
 
-export type BattlePractice = "muoi" | "nhien" | "hai" | "lien" | "moc"
+export type BattlePractice = "muoi" | "nhien" | "hai" | "lien" | "moc" | "bach"
 
 export interface BattlePreviewSession {
   level: number
@@ -67,6 +67,7 @@ export type BattlePreviewCommand =
   | UltimateCommand
   | CleanseCommand
   | NhienInterruptCommand
+  | { type: "interrupt-bach" }
   | MocInterruptCommand
   | HaiInterruptCommand
   | LienInterruptCommand
@@ -77,23 +78,25 @@ export function createBattlePreviewSession(
 ): BattlePreviewSession {
   const experience = experienceToReachLevel(level)
   const identities: readonly CombatSpiritId[] =
-    practice === "moc"
-      ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-suong" ? "aw2-moc" : id))
-      : practice === "muoi"
-        ? [...STARTER_SPIRIT_IDS.slice(0, 4), "aw2-muoi"]
-        : practice === "nhien"
-          ? STARTER_SPIRIT_IDS.map((id) =>
-              id === "aw2-lua" ? "aw2-nhien" : id,
-            )
-          : practice === "hai"
+    practice === "bach"
+      ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-than" ? "aw2-bach" : id))
+      : practice === "moc"
+        ? STARTER_SPIRIT_IDS.map((id) => (id === "aw2-suong" ? "aw2-moc" : id))
+        : practice === "muoi"
+          ? [...STARTER_SPIRIT_IDS.slice(0, 4), "aw2-muoi"]
+          : practice === "nhien"
             ? STARTER_SPIRIT_IDS.map((id) =>
-                id === "aw2-than" ? "aw2-hai" : id,
+                id === "aw2-lua" ? "aw2-nhien" : id,
               )
-            : practice === "lien"
+            : practice === "hai"
               ? STARTER_SPIRIT_IDS.map((id) =>
-                  id === "aw2-lam" ? "aw2-lien" : id,
+                  id === "aw2-than" ? "aw2-hai" : id,
                 )
-              : STARTER_SPIRIT_IDS
+              : practice === "lien"
+                ? STARTER_SPIRIT_IDS.map((id) =>
+                    id === "aw2-lam" ? "aw2-lien" : id,
+                  )
+                : STARTER_SPIRIT_IDS
   const players = identities.map((spiritId, slot) =>
     createDevelopmentCombatSeed(`player-${spiritId}`, spiritId, experience, {
       position: 12 + slot * 4,
@@ -190,29 +193,36 @@ export function reduceBattlePreviewSession(
     } else if (
       command.type === "interrupt-nhien" ||
       command.type === "interrupt-hai" ||
-      command.type === "interrupt-moc"
+      command.type === "interrupt-moc" ||
+      command.type === "interrupt-bach"
     ) {
       const unit =
-        command.type === "interrupt-moc"
-          ? "moc"
-          : command.type === "interrupt-hai"
-            ? "hai"
-            : "nhien"
+        command.type === "interrupt-bach"
+          ? "bach"
+          : command.type === "interrupt-moc"
+            ? "moc"
+            : command.type === "interrupt-hai"
+              ? "hai"
+              : "nhien"
       if (current.practice !== unit)
         throw Error(
-          unit === "moc"
-            ? "Ngắt Mộc chỉ có trong trận luyện Mộc."
-            : unit === "hai"
-              ? "Ngắt Hải chỉ có trong trận luyện Hải."
-              : "Ngắt Nhiên chỉ có trong trận luyện Nhiên.",
+          unit === "bach"
+            ? "Ngắt Bách chỉ có trong trận luyện Bách."
+            : unit === "moc"
+              ? "Ngắt Mộc chỉ có trong trận luyện Mộc."
+              : unit === "hai"
+                ? "Ngắt Hải chỉ có trong trận luyện Hải."
+                : "Ngắt Nhiên chỉ có trong trận luyện Nhiên.",
         )
       battle = interruptCombatCast(current.battle, `player-aw2-${unit}`)
       message =
-        unit === "moc"
-          ? "Đối thủ thử ngắt Mộc trước điểm cam kết; dấu đã đặt vẫn hữu hạn."
-          : unit === "hai"
-            ? "Đối thủ thử ngắt Hải; vùng chưa dựng không có hiệu lực."
-            : "Đối thủ thử ngắt chuỗi Nhiên; chỉ các điểm chạm đã xảy ra được giữ lại."
+        unit === "bach"
+          ? "Đối thủ thử ngắt Bách trước điểm chạm hoặc cam kết."
+          : unit === "moc"
+            ? "Đối thủ thử ngắt Mộc trước điểm cam kết; dấu đã đặt vẫn hữu hạn."
+            : unit === "hai"
+              ? "Đối thủ thử ngắt Hải; vùng chưa dựng không có hiệu lực."
+              : "Đối thủ thử ngắt chuỗi Nhiên; chỉ các điểm chạm đã xảy ra được giữ lại."
     } else if (command.type === "cleanse") {
       if (current.practice !== "muoi")
         throw Error("Tẩy dấu chỉ có trong trận luyện Muối Đen.")

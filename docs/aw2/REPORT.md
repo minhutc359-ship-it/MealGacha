@@ -1,9 +1,19 @@
-# Báo cáo nhanh AW2
+# Báo cáo Adventure World 2 —23/10/2026
 
-**AW2-007I VERIFIED — Mộc có bộ kỹ năng chiến đấu thật và cấp1–20**. Source `9b9c365a5dd4c01176bef59772967d64522685b0`, base `c38a5cc6d0ac0731904cc65ea1f582be24a4ef7a`. Gieo Dấu là một vùng cố định chờ3nhịp/kích hoạt một lần/hết hạn6nhịp; Mùa Nối Mùa cấp khiên ngắn khi thay dấu ở vị trí mới; Mở Gói Mùa Xanh thu tối đa một dấu và báo trước2nhịp rồi nổ một lần. **10/12 kit thực thi≈83%** (từ9/12=75%); **12/12 bộ hình tham chiếu100%**, năm starter lưu giữ nguyên, **0/12 full-characterDoD**. **Demo≈90% và toàn sản phẩm≈40% (ước lượng35–45%) giữ nguyên**: chưa đóng collection, nghiệm thu art/playtest độc lập/thiết bị/rights/release.1242ca unit riêng biệt/111files được xác minh (1241PASS từ full run +69ca hai file sửa kiểm tra inventory, không cộng trùng),41ca Mộc mới;310browser assertions và72simulations PASS. Hai typecheck/review+stable build/isolation PASS. [Luyện Mộc](MOC_PRACTICE.md), [bằng chứng](evidence/AW2-007I.md). Next BA/mechanic:007J Bách, sau đó Vân; collection/đội lưu riêng.
+**Đã hoàn thành AW2-007J: bộ kỹ năng Tank của Bách và cấp1–20.** Source `PENDING_007J_SOURCE` trên `game/adventure-world-2`. Bách có đòn cận chiến chờ điểm chạm, khiên cá nhân, chia bảo vệ từ lượng khiên thực sự đỡ và tuyệt kỹ dùng hết khiên còn lại để bảo vệ đồng minh/tác động tuyến trước. Lỗi nhãn “striker” ở bàn giao007I đã sửa theo canon Tank.
 
-2026-10-23 · scretary-agent · game/adventure-world-2.
+| Chỉ báo | Tiến độ hiện tại | Thay đổi |
+|---|---:|---|
+| Demo với art tham chiếu | **≈90%** (9/10 nhóm) | Giữ nguyên; còn playtest độc lập/đóng lỗi |
+| Toàn sản phẩm12 nhân vật | **≈40%**, khoảng35–45% | Giữ nguyên; các gate sản phẩm còn mở |
+| Bộ kỹ năng thực thi | **11/12≈92%** | Tăng từ10/12≈83%; còn Vân |
+| Bộ hình tham chiếu | **12/12=100%** | Giữ nguyên; chưa phải nghiệm thu nhân vật đầy đủ |
+| Nhân vật qua đầy đủ DoD | **0/12** | Art/animation/nghe âm thanh/cân bằng/thiết bị/rights còn cần nghiệm thu |
 
-**AW2-007H VERIFIED — Liên đã có kỹ năng hồi phục thật và cấp1–20**. Source `5247fd0963f261f156f00d673b0961657182b4af`, base `b4d8d90d9ed6efb0be686bb4e49479cdcf51efab`. Hẹn Sau Cơn Mệt hồi ba nhịp hữu hạn; Mở Lời tẩy đúng một debuff được phép rồi hồi hai nhịp; nội tại cấp kháng một lần ngắt khi thực sự hồi HP cho người còn debuff.1201full unit tests/110files (37new Liên),278browser assertions,60simulations, cả hai typecheck/review+stable builds/isolation PASS.9actual kits/12bộ hình/5starter lưu/0full-characterDoD. Demo≈90% và sản phẩm≈40% (35–45%) giữ nguyên; collection/art/playtest/device/rights/release còn mở. [Luyện Liên](LIEN_PRACTICE.md), [bằng chứng](evidence/AW2-007H.md).
+[Phạm vi và cách tính](PROGRESS.md). Năm starter nhận/lưu trong hành trình giữ nguyên; các nhân vật ngoài starter chưa có collection/đội lưu. Không có thay đổi game stable, gacha phát hành, reset save hay deployment.
 
-Chơi: `pnpm dev` → http://localhost:8443/dev/aw2/battle.html?team=lien. Thử hồi ba nhịp, giải dấu Muối rồi hồi hai nhịp, chọn đồng minh để thử kháng đúng một lần ngắt. [Danh mục12 bộ hình](ROSTER_ART.md), [handoff](HANDOFF.md). Next007I Mộc; collection/đội lưu và các gate nghiệm thu còn mở.
+**Kiểm chứng:**1288ca test riêng biệt/112files, gồm46ca Bách cuối và1242ca không đổi từ full run1287PASS; không cộng trùng. 351kiểm tra trình duyệt và84mô phỏng PASS; cả hai typecheck, review/stable build, release guard và cách ly AW2 đạt. Đã sửa lỗi tư thế khi tuyệt kỹ/bị đánh/chuẩn bị đòn thường trùng nhịp; kiểm tra phần thay đổi sau sửa, giữ kết quả các phần không đổi.20ca browser Bách ban đầu mỗi bản được giữ, phần còn lại kiểm chứng sau sửa; ảnh share/ultimate/mobile đã mở. Chi tiết lệnh, các lần lỗi và ranh giới tái dùng tại [bằng chứng](evidence/AW2-007J.md).
+
+**Tiếp theo:**AW2-007K Vân — xác lập kit hybrid và lựa chọn nhấn bảo vệ/tấn công trước trận, rồi triển khai/kiểm chứng. Sau roster là collection/đội lưu; tiếp tục art/playtest/thiết bị/hiệu năng/offline/rights/save production/phát hành. D11 gacha vẫn PROPOSED, D12 vẫn OPEN.
+
+Chạy `pnpm dev`, mở `/dev/aw2/battle.html?team=bach`. [Luyện Bách](BACH_PRACTICE.md) · [Handoff](HANDOFF.md) · [Backlog](BACKLOG.md) · [Sổ test](TEST_LEDGER.md).

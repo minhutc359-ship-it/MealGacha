@@ -1,0 +1,1266 @@
+{
+  "task": "AW2-007J",
+  "status": "PASS",
+  "base": "3bd893a143e4954125a6e39ec608ced4c738d210",
+  "unchangedTrackedPaths": 301,
+  "unchanged": [
+    {
+      "path": "dev/aw2/AssetCanvas.tsx",
+      "sha256": "75a959953f063076d74dfeee58b004e7995413bfe4ab720705514438707b8492"
+    },
+    {
+      "path": "dev/aw2/BattleCanvas.tsx",
+      "sha256": "52a5ecdabb287cf63b0a6f93c497676c43742e38e9532620b07dbee581e3bd04"
+    },
+    {
+      "path": "dev/aw2/BossTelegraph.tsx",
+      "sha256": "b3739f2436ffa241c84bb8fa3d51835a5f65f3020e4b3a130d96eda3dd9a7247"
+    },
+    {
+      "path": "dev/aw2/ChessPractice.tsx",
+      "sha256": "c2172bc1c4fbb386758627fed50ca48c0bc3b9ab23212a834515f84a6bd09657"
+    },
+    {
+      "path": "dev/aw2/DemoCompletion.tsx",
+      "sha256": "4b7aff6279c76e2b217a4a09d19ff93c318955af8a70fea4c7bfc240a8e4cdbc"
+    },
+    {
+      "path": "dev/aw2/InventoryPanel.tsx",
+      "sha256": "6a0b1d52587c5e1467c6800681574045528b2d7e65219c4edf4630137a5ba8f5"
+    },
+    {
+      "path": "dev/aw2/JourneyGuide.tsx",
+      "sha256": "a406cb34ea14323ac99a6052b96a8dbbdc1c31429f67266c89eabb60e36af5fc"
+    },
+    {
+      "path": "dev/aw2/ModeLobby.tsx",
+      "sha256": "e6ed3c251cba0765425e15ec3f6fef4eb5eead48fa6f591750b4841935282e4c"
+    },
+    {
+      "path": "dev/aw2/TcgPractice.tsx",
+      "sha256": "a652109c5533ddfe37d47fe874fab1e084e44be2539c6b805cb419e4afd91337"
+    },
+    {
+      "path": "dev/aw2/WorldBattle.tsx",
+      "sha256": "cb45fd0903bce532a6b7ecd3feac04ebf8a78e82c940e4421098bd60e7979204"
+    },
+    {
+      "path": "dev/aw2/WorldCanvas.tsx",
+      "sha256": "d3132551fad96cfead62d7be3294eec1718a5addef55591185d693de852f57a4"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/auto.wav",
+      "sha256": "d201d144edf5682e6b1ae45ccf2415423f7966e4ce8e50db0c07ea994ce75817"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/basic.wav",
+      "sha256": "28dc5a7250da33685daf405f950d996eff97c6d946b5308d7c81a14fa709139e"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/battle-motion-a-v1.png",
+      "sha256": "8f4bc12b29694cf19112eebb6bb5d28f1d0e5a9842304c11c3810807c628cb24"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/battle-motion-a-v1.webp",
+      "sha256": "194398788398803cf0746b4c152be1677f82a538573acefec1fea90c9f479111"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/battle-motion-b-v1.png",
+      "sha256": "0cc5da8a5683bfb7aa24833b56464a9d3221fdacb6da9758774d7d91b7354447"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/battle-motion-b-v1.webp",
+      "sha256": "cb3f9e26440d36fcb710d8c6300fa2ba8d2ea722bd2b58229285297bbf766fbb"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/fx.png",
+      "sha256": "74e3095007526a18d5a30987be3366819dc066d887883efa4a7de49755a16fa6"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/fx.webp",
+      "sha256": "7d6e14054b04d230f885fe55c7a2b5caa02fffc073da8145c0b2b480740395d0"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/passive.wav",
+      "sha256": "79ff7e8ec50ad22e989a0dbafd83e9bfba331e2f4acabc4ddfaa3c29937eb307"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/portrait.png",
+      "sha256": "cb5d41d5276860f759d29284a9b0a4e3911c9d096c9911b5f8cc7588c7146537"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/portrait.webp",
+      "sha256": "17d31e790c4447f9fd4f6fc2958c43729621c384d3f23d91048ee1e926dbae70"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/prompts.json",
+      "sha256": "dc19bd56bacd0d6c2cca49a716793082c0357bab34cef2bfc8f59c03e858879d"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/ultimate.wav",
+      "sha256": "f63f500b1726eebbf4c4f3af09613a8412d2cdf5f5de597949ff7e9e1a4ca4c2"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/world.png",
+      "sha256": "5f65a3ebe0e92eaa3ea04f5b3a8f2f21e43e577d12aaa21f8d685c48e15f4343"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/world.webp",
+      "sha256": "d1771ea69846bfaceec61e1657e5032a43969c9d9ff7dd666d423571c7638e38"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/battle.png",
+      "sha256": "f91dcc73461219c1fddc824c954e65ed537f51243009a13ec85cb901de4ec95c"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+      "sha256": "6b17014ce6a2e324def5eaaa9666f687f2e7ad849121f13d227a7fa717a38689"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/fx.png",
+      "sha256": "d1671193bef36f37230b174e489542f649eb8689b40c865fba254932187f1dab"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+      "sha256": "c125771df4255c911bf9de925046873f88b58f7d77e886876b0858f9da370112"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/portrait.webp",
+      "sha256": "5cba73805eb282267307c096f285ec6d656a4da9c7da5fc8d16a9cf85bbd4c70"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/prompts.json",
+      "sha256": "dbd321e4f9d485929f7a7e8ccbc60242b9c95800f8f820ac9f84b5dbd8dab411"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/provenance.json",
+      "sha256": "f92be074c20bf87e465ddb560dfe78417249abaf8bfa877fa081e06b08ec219d"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/auto.wav",
+      "sha256": "0e74b56a4fe18af04144ec6a7181c734a7e18ffd40653043d9f1ce9c9428743f"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/basic.wav",
+      "sha256": "77b4f1c3c429f3f94b11e028a04e3d151781fe69f2cebee93c89f0bbb828a331"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/battle-motion-a-v2.png",
+      "sha256": "989a5a5ade17efd982d32a210f9ae24171cd0ae3ac92808439feb5997da9c1fe"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/battle-motion-a-v2.webp",
+      "sha256": "d7f62fb36533d0a31115207b38ed88702bdc6a9895ff91823c8354240c759fca"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/battle-motion-b-v2.png",
+      "sha256": "cb5681fe9b4c3b1311ca8f4e61d0691dbc13a869f71bde77f89b8f1ef63306d2"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/battle-motion-b-v2.webp",
+      "sha256": "b51ec51da50466d79e7a2ab97422c2ea6f4075e6019b2dd32dd4746c2bc36436"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/fx.png",
+      "sha256": "55f3138bfb09330d97f9b27aff8303e0c093a866ecad2350140ec5c7c0557588"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/fx.webp",
+      "sha256": "943e328bf0e6cf6844642bd85bd3fed4c07bd18ad3a94485ca62f7299116ee3b"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/passive.wav",
+      "sha256": "b91480310538f3de700858afd446515a6aa7a86b75f9f8f8bb1e619bd1216ec6"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/portrait.png",
+      "sha256": "ffe7ed38eaf2b07d6d219251e36fe887b132d47b705176a5295ed3c8e3d2f89a"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/portrait.webp",
+      "sha256": "f04d322e32e3d4404ccda0bb99a564a77d0f8967d2c1fd63ab7eef64c83e3616"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/prompts.json",
+      "sha256": "b4a60b235eb00223a575524fd09a25785daf49fed2c7f0f24ef73d93e5a91838"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/provenance.json",
+      "sha256": "e5cfa4c3f6dbc0ddceadf0e3da266275c73084cea9b4f31c4cb879d8ff286b29"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/spec.json",
+      "sha256": "41823c12f0219504e4adfc5b8c3c22d94dbd0c3d11efd1577a65b09eaef81c6d"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/ultimate.wav",
+      "sha256": "206cd7266f8a6b08f2a5f936b8e7c89eecdace34f529fd666770347ac232ddec"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/world.png",
+      "sha256": "9c6cbb3467450e76fb7fd88c2a2818780dd31f2cb454333dcf6198e268eb8f8c"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/world.webp",
+      "sha256": "c134af5717355ce6b78a44ac3f317e8193e674802972e76029a80c87c151fca4"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/auto.wav",
+      "sha256": "3c02ccde6d5d752e5752d87d8bf2ca594ce45cfcc6e5cfd814214c9dd7860cf1"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/basic.wav",
+      "sha256": "da66e995600c1e755fb231d4e3bf45606fc10ed95e2c3ef3ec7cc2780202e42c"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/battle-motion-a-v2.png",
+      "sha256": "4dcbce67127854fc7245ea3485427f610574da3946a345c2e9b9e2f8c674b3ec"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/battle-motion-a-v2.webp",
+      "sha256": "5e20faa1e80b12f9398076a6285f08db50c469263001a43f81f013fae08e7998"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/battle-motion-b-v2.png",
+      "sha256": "e89f140f5f4d2c4e2fb6c68663405e05c9ebe7df8797193cbd5fb8d444a725d0"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/battle-motion-b-v2.webp",
+      "sha256": "31db6625a285923f41b862d90e09b3dc53f3cd87e4dc189b8e8e7a9a57520237"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/battle.png",
+      "sha256": "6675f128c266d407f283396508b3e060e3adc93c8c97e1fe79c1ae0db93b86b7"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/battle.webp",
+      "sha256": "acf047befea78db2815789d87bdd5b623b3540cb9e3c2675bf87e9c0489b9cc7"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/fx.png",
+      "sha256": "9b74cd95b975ff4cff07978231d74a5e810ae85dd6ec24a8c5b7e18f3aedd3af"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/fx.webp",
+      "sha256": "eb6eea992f7007f044a560edf97a17751917569f3e6583e07781eac34096a82d"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/motion-prompts.json",
+      "sha256": "3c104f1743d8c336ae5a1127edaa3af7c0196da07eb35b377c9c73f6bc60f171"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/passive.wav",
+      "sha256": "561e6b1d92e94b78cd8d47495a24b16afa743f4936d0452f092bd42b93513ddc"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/portrait.png",
+      "sha256": "52a93fffa7af754e89a3bb731ed120deac3e5ae87c24fa3ae57b843a62ab8a39"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/portrait.webp",
+      "sha256": "21f0bf977a76e8506f1e33017b9db9a9bdfc17c932a213a22312b0b67f31088c"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/prompts.json",
+      "sha256": "c77e3c1acfd54fb2e3c564b4babd75dd89567685ef9bb48f90ee2e449343790d"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/provenance.json",
+      "sha256": "e0181f4515b9bb9d1ae25e1f49a260c26fb2674354ea1f95d14f0c0e6d510537"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/ultimate.wav",
+      "sha256": "b1fbc4d7ccfab297a8d8b61ef81e49774de937a079094644ebbc238654e0df09"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/world.png",
+      "sha256": "f7d5035e8741d31d3bc426112b0d4c5006e25f9c3d1d8f2e59eacaed54a92198"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/world.webp",
+      "sha256": "d20f21772c130ef8bf7b1a86c00fd2e9cdf9fce98c143858635649f78fc0f403"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/auto.wav",
+      "sha256": "54e971092b14fdd04268558e0abe466142d93a62df7bf27abdbe33202118a1d1"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/basic.wav",
+      "sha256": "104a6a20e0673b745f51bf729370d439839dbd1337612937df0e8104d4acb118"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/battle-motion-a-v1.png",
+      "sha256": "1844d7db3069520dc54227ef317ef943eddc490704bf1b6e9d9876e6ecacf07c"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/battle-motion-a-v1.webp",
+      "sha256": "8d9c9c3026ef8b74408fb668812e4d8bbaf4d8628aaa72663ea099ac8cf2b27a"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/battle-motion-b-v1.png",
+      "sha256": "09660bd2d9a944868aba13dba9d2e0daa5c517472e31b239b216e0aff29754d8"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/battle-motion-b-v1.webp",
+      "sha256": "b5ca0ad3a8731bb24b9deb0635b77b88fc777f95e4000ae52068e8143dc07e3c"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/fx.png",
+      "sha256": "a5017e9a5583709c111fb1a1f8381f6bd898f9ba496375e2b955c5016381866d"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/fx.webp",
+      "sha256": "82a636ae9ff765a1674101f709fb4651651e05d8e29798ea2531aa0857cebe23"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/passive.wav",
+      "sha256": "fbe7bb3b022165bc2fa0027f9c34d23816ebb7f005854e6e4c064ff3e6125365"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/portrait.png",
+      "sha256": "9fc0aeb6c86fbf61fa6073ff0238e580446e7312dbc64cf219f3bc4f5e49cbb2"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/portrait.webp",
+      "sha256": "76bf6a22e0401df81ce13bdc3a95bc9af07c9c07559421b76e12d5fa53b7b9fe"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/prompts.json",
+      "sha256": "654324ac853a62ef4eb060439b2d42c83c0083d5bd47b402f80db0d1aaf2c0c0"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/provenance.json",
+      "sha256": "617d4fc6dfc2bf04cd5087bbd410894b3424857e86b412b6a9097f81e65fa1a8"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/spec.json",
+      "sha256": "00957f95e27a8a99188d5f4a1bc70fc2856b782a746950d578738942df10bf20"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/ultimate.wav",
+      "sha256": "c7dc44987887f8c0502250eae449f0ea623d7741450034ec89155999e55d856e"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/world.png",
+      "sha256": "fa2f9582178d59f2f7f33dd806f01e0c00e95aa8ac8f7021259f5511f8a8f9f9"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/world.webp",
+      "sha256": "426aa170aa61e28739563a3ff9d622f1a0a8a2eb4e0502e2ea87795bfa36ba9c"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/auto.wav",
+      "sha256": "7702b45c6e648c83b071df86257845d5fda0e8b685daffce834ac31c6107b0ac"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/basic.wav",
+      "sha256": "691fc981b4fa59d132489dd2a33f8f24decd28934a21b7ac510ff90057e7fe31"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/battle-motion-a-v1.png",
+      "sha256": "90df59572639666221f30d354297b1a79e64fac6313a4d655db07d5c458fc697"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/battle-motion-a-v1.webp",
+      "sha256": "9e824650d6f77c91010f981ab3109c9496f4a804fb5e934e73cc98aed555e1b9"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/battle-motion-b-v2.png",
+      "sha256": "def5836eb85178ce1e43287473550e0be75140168bf115d1a5b0f4c02b928a93"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/battle-motion-b-v2.webp",
+      "sha256": "f63bccde32a35c08f423fbfb3068693cd21b3f611e1f6e26a7c921456009420d"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/battle.png",
+      "sha256": "404b4a65e5ad611f3357ab95e6dea37ce99490497329f1e2af6128222f99777f"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/battle.webp",
+      "sha256": "b7c66bdc46d477ed68140d001e1b305553319db377282fab4fced42fbfaaa0a5"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/fx.png",
+      "sha256": "cc6c64652f996a76311c44f8e7fe0f678cee4e74194fdc89829422039a7e0298"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/fx.webp",
+      "sha256": "d2e0600764bd84975c20d7bb93a8c31ae6bc1491add0162b3fb434c28a5668f6"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/motion-prompts.json",
+      "sha256": "9383860dc81fa74c93ecf8c35fef4d4684545b2a06fc9534a4855e9308d8ff0d"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/passive.wav",
+      "sha256": "c3de9608350bdf001492dda0fb8d5468ceb9685ba620d180bf44fedc6c504795"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/portrait.png",
+      "sha256": "077beff42ba2e04085db73daf58aae35d8e8c34edb83166add1f53e7bcc54682"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/portrait.webp",
+      "sha256": "fd07e40fde5ff65c881890625d1abbe3b3cb2826839cfdca85bdeb2a1233886b"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/prompts.json",
+      "sha256": "9a26a47f97b23acdacd46e0a2df031a3b937b6f755ca4b8f892a85e4bc5c1183"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/provenance.json",
+      "sha256": "894a4e7900e14a2fd7d6244c950bb852780ce0dd92b9ba7147702c1ba888c647"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/ultimate.wav",
+      "sha256": "694632c4a539938bf5f02ea2bf007a3297b8bb9a8b6ddcba198ef58c6ae0a812"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/world.png",
+      "sha256": "f1812aaf9b06dbab63fee21bd19ab05b24fc996f8a0eb1023f603b96e3ded71b"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/world.webp",
+      "sha256": "26c56a18e3a68606139aea0266d498acbfea8010fd653b951fbab02d2f220793"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/auto.wav",
+      "sha256": "de38c1dd2e03b3b79ba2602fe3e37ba3e87eebd6a64a442df38d5a928b3a5044"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/basic.wav",
+      "sha256": "64ec8cbdeed66ecb492c7c421604de82ae596365ad0ed079a66e6c7a6dcb1e2e"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/battle-motion-a-v1.png",
+      "sha256": "e30bedd9b9b0c70e8583b18d33725e930ddaac0f509c128aceb11954e7d19d69"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/battle-motion-a-v1.webp",
+      "sha256": "ab779aba6c4d96684f46da1e2c9fbfafd2309ad71df6bb0d7db01e1aa50b20b3"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/battle-motion-b-v1.png",
+      "sha256": "92e62f88098eae9211ca13f089a8f843605f81cbe1d3e892a3b46f612870bd21"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/battle-motion-b-v1.webp",
+      "sha256": "f54f30247f25681e7a8202d18d11babe449c0872146a3ba73e52b395c48c639a"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/battle.png",
+      "sha256": "40d272c9a391eab53ced50382db8971b9575eeba7d9509bf37e6accb511bd628"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/battle.webp",
+      "sha256": "a266da7ef17449a04e3c71758712e275d8c8b9558f72c6775f700c88d7ed480c"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/fx.png",
+      "sha256": "3d7f8384fbecd5487087d78a6b839eda29ea00d3269b8542377d482e705dc029"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/fx.webp",
+      "sha256": "97d7bb799ccee18530e75345fca00046327ad2892a13066f000b9000740e4c3b"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/motion-prompts.json",
+      "sha256": "3fcd51071697d021bd1585a47da1fb94494515716407bd24bfa78a3142e488cc"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/passive.wav",
+      "sha256": "7077526befbfc94717c8ee2ccb68795f5d19a5b2769974a8bccc2fe9038d9319"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/portrait.png",
+      "sha256": "ac454840da48f02fc820b160b486d9e86041dbcb32b5807e34553414e86af005"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/portrait.webp",
+      "sha256": "b02822ecd6a5bc62608e8493c7e8ba5129b80c6fb9709a94bf8fe6c329e872fa"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/prompts.json",
+      "sha256": "db28b9d22e61d8896ddd3bf3431ee0c04a99dd8f19c7e051e244bebddcd109c3"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/provenance.json",
+      "sha256": "0457e736732c966e1dbf91f449fa8cdeb5ba95ebaa0bc431d1694e1fa26d605a"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/ultimate.wav",
+      "sha256": "fbc720ba5b453ca3a7dc4740dde2bd287d45d32a3e66f4667966a33a65dae749"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/world.png",
+      "sha256": "f0923e2940fcb69dc106fda237874bac03cededab59f261322c12f8963465ee1"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/world.webp",
+      "sha256": "45968170a47136d7daa18e3f67f803c5c45f33a57e3168d2de3c2d1dedf36793"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/auto.wav",
+      "sha256": "2b751639e78a7989a4fef2863097411058be4e55d4c45d4fed80bdba4bf67fd9"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/basic.wav",
+      "sha256": "02ae8dabb3ced0457941d612f28c2c522511d1a8f1c826b3a9d3d250c3051348"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/battle-motion-a-v1.png",
+      "sha256": "737d418253010cc41aa9cf99807e624affaea5d08ba51006ca36f262a59e22c0"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/battle-motion-a-v1.webp",
+      "sha256": "d091ec6af9f208c854ddb9b2906b0b2182eff408bc77dc32c84122b33775928e"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/battle-motion-b-v1.png",
+      "sha256": "563a685931df116e615b1c1e890feb61fb5024730c56aa7c1910ce0efc23584c"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/battle-motion-b-v1.webp",
+      "sha256": "f76eb1bb29431f1db6e1c166ee587967c59349233318bc8ea9bd9dbfaae9cb8f"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/fx.png",
+      "sha256": "7dbbeef5a50d0165cab9dece2ff1450624e3f63e901692d54ca79a88042860b9"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/fx.webp",
+      "sha256": "5ba09136efcedc7a72ca4f7c8f282fef425bbabe29f48eb229c675d01b7e158c"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/passive.wav",
+      "sha256": "69001176bd623e3a1a1362c9edaf6412f99cd19d0f5703ac2a0b3e928d30c934"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/portrait.png",
+      "sha256": "8d12b1067a228ef600123394a2977518ea855360a3f44df229ffac13d333ca03"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/portrait.webp",
+      "sha256": "ce7a0bab8f21c2f82c3e702289fd81009b2927835fec1ff318143cd4cffdaea1"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/prompts.json",
+      "sha256": "896021350694e42ddb59a5b8c64a1d0f5b750d1d03fa6d7b93eada4a148af9a5"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/provenance.json",
+      "sha256": "66253d7d3bbc8498de6adc39556305c830e507fd174dae8fc9f8a6d7ec6c456b"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/spec.json",
+      "sha256": "7a8f44aa6ada428cdde36df3ef3b1edcba637d2683aaca14952968a0187a4ae9"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/ultimate.wav",
+      "sha256": "1a629e83381b215013e3b6c2209b6d5d31b04cecff91b483f0023462c09c156c"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/world.png",
+      "sha256": "9eecdf3161754dc473e265ab90d3bb2fdd6b99125c7f393a4e996067dbf30bde"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/world.webp",
+      "sha256": "d2a64d0de64f1580fb4a4518521053392e368e8d9f4145afcdf8f2ca300447bd"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/auto.wav",
+      "sha256": "cc31694b27fc5e5c3e43bf279b3b035e67dcc0928c5f223308e5c64baa1ea439"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/basic.wav",
+      "sha256": "c04b3fbe7c6d8f457338cbf940c8a0bd099ba78eb13fc72d9af8faf95585e5c5"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/battle-motion-a-v3.png",
+      "sha256": "6fe07a91890a6e56d312d3dd321fbd9c1576ab351580dc78bcc7605392eaee10"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/battle-motion-a-v3.webp",
+      "sha256": "c6e312a13e07eba6b53cdb2aa3570fd9b05851341f7d4a0bf7015ca686a1774d"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/battle-motion-b-v3.png",
+      "sha256": "2e7acfcc431aeda0ec11b85e24666c79d6cc752614f94b0a782af523b590bdeb"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/battle-motion-b-v3.webp",
+      "sha256": "822ff34bf2ac9921c5cbcc886d3cc85c17adc3e80338296603bf2acb16b4bd72"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/fx.png",
+      "sha256": "4af3bd1a616586d232f98b38148339971f2b9f72ef80f4194d3613dfb1f92527"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/fx.webp",
+      "sha256": "afaf4538b91eb92f130372d3579359f876407a54dccf8d6ffbdb0a1a80759b55"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/passive.wav",
+      "sha256": "a0c735cae03f0ed622daa51770cf9bde3db6cc7ad092b071ae77710de6e0b65e"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/portrait.png",
+      "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/portrait.webp",
+      "sha256": "e08672460c81347541ab4816d7c1d072c7ab999fa8c7266806c8486e79c90c23"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/prompts.json",
+      "sha256": "16e456925fd499f500829676462ccf219edbb6fd1db9add8c89e1200703ce768"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/provenance.json",
+      "sha256": "ebcd4519bf4d9980e7af8a6c066625c7e89f56bb3bbb3b28d264344546f9ac1b"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/ultimate.wav",
+      "sha256": "eb6f69f76fdc08e5dbbe898ff3216fec0e32c0c6ff8890e72477d4d9cc1c3a14"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/world.png",
+      "sha256": "595d5b4d0c2180a77db1b5978b14b95d9a06bb059abe59be0244c0bccba6e025"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/world.webp",
+      "sha256": "1684bb8a3cd48bfa7339f103b076178975ec6dc4c9b548da45d1edb2d331a46b"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/auto.wav",
+      "sha256": "5b2ecc492c15e1f906c06ba55deaac43fdcef7ec984856314afea24c6c11a231"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/basic.wav",
+      "sha256": "e450ff5b0fa5c48d6be4b3d8ee9f55612e4bfd4cb81693a1951d28e50dac850c"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/battle-motion-a-v1.png",
+      "sha256": "0faa90be9f0e105a0354701be01124b66d580620406906d9f0ec23bc78864139"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/battle-motion-a-v1.webp",
+      "sha256": "2ffe60dbf2e2d9e93ada2bdd3c12fc91ea124e09bcabc26bb1d953b176327bed"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/battle-motion-b-v2.png",
+      "sha256": "b18775405ae54941ad470f1ba63002ab68dd43e59cccb75a83b3cd740781fea1"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/battle-motion-b-v2.webp",
+      "sha256": "5b5ab981811f0f8cfd560522238500875cdeee99fa000938abd3331fcd809746"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/fx.png",
+      "sha256": "b019e165489c445e55f4fa5ada98adef7aae7e12a392775fb6c77d9e115e388d"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/fx.webp",
+      "sha256": "725b99050025b45c50d6314af1379ad804394d131b23d8a5b1ae348bf2afa544"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/passive.wav",
+      "sha256": "bee8a4d3d88999ff25a4e0f31655512453fdef6fd09c88744416b51ad830ee59"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/portrait.png",
+      "sha256": "ee788f6342fd6586fc4091682d2ed8e257aaa1928d189bbf51ba9409ae94cc13"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/portrait.webp",
+      "sha256": "50b9a9cbf67d92f62e4ea645e203415877340b11d6ef6153b18eba730762b1ba"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/prompts.json",
+      "sha256": "69309709be72a9c5452b57f67784e3ea0982e84fc7dee36f31a1e722ea15863e"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/provenance.json",
+      "sha256": "336f7aec900d6819457aff074ffed175ab5d8001ebe3fb9cbe4a57d8966989b1"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/ultimate.wav",
+      "sha256": "fff4f25db65f854d94cf3650af5b331a0713b32ce6bcc5de6fb6eebb8351afbd"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/world.png",
+      "sha256": "e672817665d88c05efedc39f88b674cdcc11374c8b84d2426fea34faa8580ad3"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/world.webp",
+      "sha256": "4ffbd251f6a2fa349a8a82c82b62132cc2aac4d8f6abf8cafbab65463b16c131"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/auto.wav",
+      "sha256": "161f9322ea856d9ba044d415148cc4fea0193bb1b5b1e9b7f4345513b574d434"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/basic.wav",
+      "sha256": "c1a6d1cb674a2b83cee2f1a51c5c370af7df4793073150885a2c74045940c1ea"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/battle-motion-a-v1.png",
+      "sha256": "1e0aa25456b915cf18a12d6c734e59626ca0083cd05f741167f6e47a240bda27"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/battle-motion-a-v1.webp",
+      "sha256": "1910f3c1c6bc99ed13459a2049fc4097c25ceb9e4574b910fc7d52758f184e8f"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/battle-motion-b-v1.png",
+      "sha256": "2b27053234303eea9b505a20bb60af3a47d50550b976e7addd92f2384f5ce916"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/battle-motion-b-v1.webp",
+      "sha256": "56d488229fb972f51fe842b2a424353ff3af24dc5cb187eafa3bfd26aacaecc2"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/battle.png",
+      "sha256": "243ec6912c587b60a4dbb78681ffdde9ca946d7a0a1f668154c25135bebf0f5f"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/battle.webp",
+      "sha256": "af0ca8d43d6e2978d72351706eb73982b343b202d12c5270c450882f54ebec3d"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/fx.png",
+      "sha256": "f542a3b3926a92b196fbd2d7af37427053455d04d50bc58a2fdaa0abd34ef95d"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/fx.webp",
+      "sha256": "fc94b2a6bd1fbd8990dd66daf1366ae9635a5ee29bf063e27628928ac0a2687f"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/motion-prompts.json",
+      "sha256": "d6c64ef46c3b4751d3f7b5e1f61a82d02806306c412f88e49c6d131b19ac951b"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/passive.wav",
+      "sha256": "17cd9b5530c0b406a92ef8e1ada9aaeb58ecb9c6918e8998259bb765c0afc689"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/portrait.png",
+      "sha256": "84659cbd7d4be062a18a8eaaec2a93c3c679bf9163e7d45644f6a78aae7493fd"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/portrait.webp",
+      "sha256": "0fa4848d0d332c3ea37680e21e04ac2ae9d96ebaa4c916ef6bdd6b1913dfe2dc"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/prompts.json",
+      "sha256": "9481b5c81faa14f616a2307005a797bbb9d990504eee5b6fb64a5e976beb3498"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/provenance.json",
+      "sha256": "b2d0f8141083d2689408b895302ce3cf2ef772011f6ff9bccf3859b438b9df22"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/ultimate.wav",
+      "sha256": "910c787aa3f4155b80821a915fdaf794b63455fb5c19396cf59cf262f36d94e4"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/world.png",
+      "sha256": "e0fabc93c17b44f893b18c0ba0ee22d23eae97bca195c38e0d69812353460475"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/world.webp",
+      "sha256": "e77fc6c8d373739469a261b1756c2127e3e12f92c97a6501a2ced591135be677"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/auto.wav",
+      "sha256": "3aedcc3066bb25402f1303136f3df5de17fe628d8287dab94df58dcc0852dee3"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/basic.wav",
+      "sha256": "d3d9faca4a1820c6e99a5bd7805d8613bd9233312e746ab97b7ccce33d5fe734"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle-motion-a-v2.png",
+      "sha256": "2b08938c3de5175736287bf887f394e7fd8a87805c5da6c18a0f7dc81fcc7581"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp",
+      "sha256": "4048798a87834f53afa893922ff9d42db69184f60e8827c01df55addbb5bf3c1"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle-motion-b-v2.png",
+      "sha256": "568380c52daca06ace4214ca2ec768777d4b35b38571c168fac631b663a42d2c"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle-motion-b-v2.webp",
+      "sha256": "4043a830eb54dc19062b664a52ac91d003b625526e3bbb2bc527c09549241ae2"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle.png",
+      "sha256": "10f44dbff3503e7577eeeab568c325d031e9bb6ad5b2180ae3a4ecdc654efb75"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle.webp",
+      "sha256": "c9ac23504d5e3750ec87c202c24fd2483aa9487e3c872683d59e51408443d57b"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/fx.png",
+      "sha256": "6dfb4c88717ddcbedbb2856875c9da36de9d3e42f7d765c9abc2b9257bac804e"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/fx.webp",
+      "sha256": "07e9a0286bac69443d658a63ad5959fb72d68fd9cfc6cb726c3e31e2ce4e652e"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/motion-prompts.json",
+      "sha256": "84fea6c61567a994dcce5a82d6211f20290fcf18c8ec118b1032444bfee707a9"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/passive.wav",
+      "sha256": "1a387d125863b8119284d897a1bf77906eec80f65209648c9385895cf4044be0"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/portrait.png",
+      "sha256": "69dabcd9af7f3f605f174f8e580f63e8ca41f771645ead607299393b4616edb6"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/portrait.webp",
+      "sha256": "f2c7e4b94f2935b763688b39b9d0a9c87fbb2b1f99b0dc53a2d2906e82d2d8ad"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/prompts.json",
+      "sha256": "8a4f08b9a80a7d3590499d63f0ab0311dce052f206a8acce099319f21c2fa657"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/provenance.json",
+      "sha256": "de0d0cfd19d146c65236c8ae7f419702843612477ccf98310332edd6f76fa72b"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/reference.png",
+      "sha256": "319c6e204ccf1953ebaa8b70979dc61a348842d487c31b367291cf0a72daef84"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/reference.webp",
+      "sha256": "12b44425e16406e8e9e71bf09fe835f64c13d059e25dffe896b2d86ffbba3025"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/ultimate.wav",
+      "sha256": "15b3373d0fe6f4e7e95c32eb53bfabc88eca33639e2560ba3e8f88f30d53fc6d"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/world.png",
+      "sha256": "0750639a65e141dfcf38130e8b68902f0891b4fc038f0f552755e77b926490b0"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/world.webp",
+      "sha256": "f079bea3e6ced921ad4e6d42fba22247a987cfa912bcb5cae6ba2872887b0c82"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/auto.wav",
+      "sha256": "9db132fd9bff30132fb8f3c90d1efb1942ca6ad431aed73446154f13e4935ac8"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/basic.wav",
+      "sha256": "7acbdef956b177542354d49b3a76ee034ed79ad7927fae807c0d4b47472c7395"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/battle-motion-a-v1.png",
+      "sha256": "1bcf8aad4e94cbf5dfb73c4e9311e642c844951587d7422de77a4b8cf24a5c63"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/battle-motion-a-v1.webp",
+      "sha256": "e9cb1f6047e84bf411164e073b88faef1b809bfc3e61f8444aa6fae57b9e1277"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/battle-motion-b-v1.png",
+      "sha256": "38d3ddfed8dfd54ca1aed6d9b36e6a36e5f5ad17549e656faddee05a55f03fa6"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/battle-motion-b-v1.webp",
+      "sha256": "8ba57df72ad9a39aab48e203807ab665685394504543f1d5998bac882e70a31a"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/fx.png",
+      "sha256": "5c78bf316bb3b72d70b6f7170c2ab783a22e5a0422466a86ccaa9213c5fc7a5f"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/fx.webp",
+      "sha256": "a8d68f9d1f8455560517a81b646be8da68ea4ae53e60d8f36180a80c09bfb760"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/passive.wav",
+      "sha256": "e413788a396293423be280f71d23b00f6e4a0864a134e4a374ac2ed546e985b9"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/portrait.png",
+      "sha256": "d485679092eb8046421d9b8b1ad65a11b0d5a79a01f2092c227523d24e40882a"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/portrait.webp",
+      "sha256": "7073e4925602cbfc4b18f3397878b0466fbf8d63faa2eccc58552e5a7bdd09a9"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/prompts.json",
+      "sha256": "38e1a8d105cbf5686b50107eed900928c25a086900d0fd7253afa56d4e4f6d84"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/provenance.json",
+      "sha256": "246d691f2b38bd91d924f1049966ee62936d65fe6e7d8a381a52a53e9f8fed6f"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/spec.json",
+      "sha256": "6487d94d7862aaf2543a81de6bd436d0a46003ca064a24c857e05362c60fe29e"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/ultimate.wav",
+      "sha256": "fce9852794384906dbf9a772fd2b10d8ae61f5cc514def097108a8eefe1d6b22"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/world.png",
+      "sha256": "6c3310281cf93646ffb5826a4e0d0b3823de9b1a517d5c55e407004eca7a9f6f"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/world.webp",
+      "sha256": "737b9ed9a12b4bb7bfa9fb4bd9b33f5bb90cbc1e8f6224fbffd39f28cd791349"
+    },
+    {
+      "path": "dev/aw2/battle.html",
+      "sha256": "fde794188a0bce3d5f400a8cd2a75a7f74dd57bfbff3deffe6b5343c01bf4e55"
+    },
+    {
+      "path": "dev/aw2/battleLayout.ts",
+      "sha256": "2929d556c1a446eca755a93c3ee2e79a48009dbe00cfff2a233059e569e4f94a"
+    },
+    {
+      "path": "dev/aw2/chess.css",
+      "sha256": "bb243d8174fa3a2f701baa2d7bda6337cda4be8f44af687b68b2b2722137398f"
+    },
+    {
+      "path": "dev/aw2/index.html",
+      "sha256": "74060602e39bb71b8859c4a92222a3796b68185a3cffbb70a83b1c5d55935193"
+    },
+    {
+      "path": "dev/aw2/main.tsx",
+      "sha256": "fc8f6b9845532314b260f5d52dd33b1b7142398fe71b8a5c54b7ae9d7d66f665"
+    },
+    {
+      "path": "dev/aw2/roster.html",
+      "sha256": "26922ab8ded0a788dc53e6161d242b03959e2baf200fc054855ccade4e10d109"
+    },
+    {
+      "path": "dev/aw2/roster.tsx",
+      "sha256": "1eb9c8b859ec60272d15b75240051966a043695f5fcdfd8e5f6355b94c56fb67"
+    },
+    {
+      "path": "dev/aw2/starters.html",
+      "sha256": "09d8c075a226605d1779ffbd69e4f44f06c07ae6ab308ce2cc68e709231327f5"
+    },
+    {
+      "path": "dev/aw2/starters.tsx",
+      "sha256": "0dc92b1809081e469bbe99ebfe2cee6d3c151a551c4094f98867b648d5f53cfc"
+    },
+    {
+      "path": "dev/aw2/styles.css",
+      "sha256": "ef94593a323a8374870d4993f52b58e1440458ca9b4d6b6cd4ed47ac27e74747"
+    },
+    {
+      "path": "dev/aw2/tcg.css",
+      "sha256": "7fbab366f414dafdb036fc950d9d907a8c6338278fa932311af70b66977375f5"
+    },
+    {
+      "path": "dev/aw2/than.html",
+      "sha256": "4516d159303f741b133deafce7d335a2871b1c4daf9b20e66886b85d3769061c"
+    },
+    {
+      "path": "dev/aw2/than.tsx",
+      "sha256": "a5e72544ef0d84e7a6a1ad57ae42b2c2ae00508a7e78ff5ea1d14cba401b18fa"
+    },
+    {
+      "path": "dev/aw2/useBattleAudio.ts",
+      "sha256": "7f295aa2888ae564e22169a29b62adb6cfefcab7968bf44ee451c7b50e46fbfb"
+    },
+    {
+      "path": "dev/aw2/world.html",
+      "sha256": "ee8022bc372f6f1a672dee6cbe9f647782bc4b427ca8721b0496c23382c6a1d4"
+    },
+    {
+      "path": "dev/aw2/world.tsx",
+      "sha256": "a494e953999307123c7ec0d42183ce8e7a067363bd9bd51de6250630523677d5"
+    },
+    {
+      "path": "dev/tsconfig.json",
+      "sha256": "3de34f5bee9a0ede1a53c14d7fc76def1dffba058b2d1b81d41b2a67f237e072"
+    },
+    {
+      "path": "dev/vite.aw2.config.ts",
+      "sha256": "aa3607e8e7245d4da88bf2f2606b12989c7950e49e86a4cdff02b3b7e1ffa183"
+    },
+    {
+      "path": "dev/vite.dev.config.ts",
+      "sha256": "3cb94f0206b87f5715a8bcd6b8d976331091644a7e027dfeb2b8a3e008af5587"
+    },
+    {
+      "path": "package.json",
+      "sha256": "857b2793dc8fbad7fc2188d876c4ced4f9d4bd7222500a8a5d2478a77de91c94"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "c5579cf6471369ee8c16341eb5646ca571e6d3b9a9b6e74ee84f3dfd5dee88d4"
+    },
+    {
+      "path": "src/aw2/assets/animation.ts",
+      "sha256": "bb9c23a9437d407ecb7f154dd1e36ebcc256423c92fa0eee7f54b2ae57fcfe04"
+    },
+    {
+      "path": "src/aw2/assets/bossPlayback.ts",
+      "sha256": "6dc6d40089892c942c8a32c5cea894b3b94c5771dc1d449b499f40b48e4259cc"
+    },
+    {
+      "path": "src/aw2/assets/forgotten-host.reference-v1.json",
+      "sha256": "92a4418e147f0158cfe74429adfa3dc4352219e88f5c1e6255609bd727ef2ff2"
+    },
+    {
+      "path": "src/aw2/assets/forgottenHost.ts",
+      "sha256": "00ac61722df3c2250cf2699773dfbc14a9d705cbb720da206890ba571e7c6adb"
+    },
+    {
+      "path": "src/aw2/assets/hai.base-v1.json",
+      "sha256": "b1b0cf02414409f48ca53e7af05215504150efa866b246a13f9d7ff3792b1777"
+    },
+    {
+      "path": "src/aw2/assets/lam.base-v1.json",
+      "sha256": "54d3dc10e2d6b6c48703681853d9bd0c4f1fa62de68f14077c7a0b1c8e65500b"
+    },
+    {
+      "path": "src/aw2/assets/lien.base-v1.json",
+      "sha256": "f06ed1dbfbd3b98aab8a70816cd391d3d03e952d88963f21d8194fe682119b3f"
+    },
+    {
+      "path": "src/aw2/assets/lua.base-v1.json",
+      "sha256": "2836fb5a31c76f1c9f894afe01c46b6ee5f997b5541b8c398c1cbde31b667710"
+    },
+    {
+      "path": "src/aw2/assets/moc-non.base-v1.json",
+      "sha256": "3cbffe65fbafbbb8bfe574ae7e369ad7a5f945f31eea2c95b298ab8c5dc1afa6"
+    },
+    {
+      "path": "src/aw2/assets/moc.base-v1.json",
+      "sha256": "e13f2b7fc9305c364fe7c837f7b069f30902b4ca99e7c54394d10865ff38f453"
+    },
+    {
+      "path": "src/aw2/assets/muoi.base-v1.json",
+      "sha256": "00f3bc8bc068462663ee4e0a2be99eaec7408de0dff33bf4a5bd07fa8fcec64c"
+    },
+    {
+      "path": "src/aw2/assets/nhien.base-v1.json",
+      "sha256": "654aeff6e1a7a19532b09990a05e801862ec0f02c46f79441a0bfca85cc6dbde"
+    },
+    {
+      "path": "src/aw2/assets/playback.ts",
+      "sha256": "916da19803481a033c92debe064c6f1a2b424d43c22843a01ec215e12e6cbb3b"
+    },
+    {
+      "path": "src/aw2/assets/roster.ts",
+      "sha256": "71d51e7cdbab23d153df9b145476ffc6d420789aab03deb34b0020f65e5b8d13"
+    },
+    {
+      "path": "src/aw2/assets/starters.ts",
+      "sha256": "ee6743333bbac65b480913a003eee2d93613b306be524a92fddb9315ea4bdf02"
+    },
+    {
+      "path": "src/aw2/assets/suong.base-v1.json",
+      "sha256": "afb2c7b9a317eb87ebab6726272610ece9e8830337a3fb4a0c4f1f69a683be88"
+    },
+    {
+      "path": "src/aw2/assets/than.base-v1.json",
+      "sha256": "e330f3bd03e42882116700e77500741e8faae3fb6c41bca70e4ba9157c2500ff"
+    },
+    {
+      "path": "src/aw2/assets/than.ts",
+      "sha256": "30b681ea4e9ccf3811a9fbcd389c76ce057294566346a2afc4df0a341a870e21"
+    },
+    {
+      "path": "src/aw2/assets/types.ts",
+      "sha256": "6be497df7b40e99214468691bbd089827d377b502de6a71870c3d4c283e131f0"
+    },
+    {
+      "path": "src/aw2/assets/van.base-v1.json",
+      "sha256": "3f839167783ee0cf4dec64958787746c040ae4e80f9ebaa3fcf69168cebad985"
+    },
+    {
+      "path": "src/aw2/chess/battle.ts",
+      "sha256": "01633b422d38f3dc15236dbc49ceff6a4ae07a0b1b1936a99e1369d8889131c7"
+    },
+    {
+      "path": "src/aw2/chess/catalog.ts",
+      "sha256": "c8f5cb103ff1c8b0b3b5df74047d9a762093ac743e744d7c656ee36c1b1bfc67"
+    },
+    {
+      "path": "src/aw2/chess/rules.ts",
+      "sha256": "4c078bc5fd13339ad15e0516907c9f056dedd81cb1c9553dcbe700c6ad734bde"
+    },
+    {
+      "path": "src/aw2/chess/types.ts",
+      "sha256": "cb40cbcfd2904b75fe4ec15d806a82bfcfe3149c8fab2a61d2c662ca888d4415"
+    },
+    {
+      "path": "src/aw2/combat/forgottenHost.ts",
+      "sha256": "2e03d2adb25625d077a6d25acbeaaa57cde974dd06676b77868a18f54918bafd"
+    },
+    {
+      "path": "src/aw2/combat/hai.ts",
+      "sha256": "cdb558c1ca90c0ded2a02928bdc5e8f1c2fb3aa12c812ea3584ede0e65271286"
+    },
+    {
+      "path": "src/aw2/combat/lien.ts",
+      "sha256": "9569e8b71611fe7c775ca575d000c50f924434facca190356ab89c969ad19591"
+    },
+    {
+      "path": "src/aw2/combat/moc.ts",
+      "sha256": "d27ef877265f8c48651491940a6e3f00a7a89df0bfb3246e7b6dc7430a16d5be"
+    },
+    {
+      "path": "src/aw2/combat/muoi.ts",
+      "sha256": "5b08a51173f30e963374abf925ea962580ca81ffde2c01f5f9548680a8daee3b"
+    },
+    {
+      "path": "src/aw2/combat/nhien.ts",
+      "sha256": "a1c3dd83fe2a1770a531d7bbba045f11f8440f4140517d0215485d128e4283f3"
+    },
+    {
+      "path": "src/aw2/combat/progression.ts",
+      "sha256": "500159c1f0344b42582b92b4d8b5b479082f721ee8477a74ab42f50e4845794d"
+    },
+    {
+      "path": "src/aw2/economy/model.ts",
+      "sha256": "732ee79d138ff99121f3157ccfac3c0ee311ab9bd9ae100c0cc0d2dcc56cd4df"
+    },
+    {
+      "path": "src/aw2/gacha/simulator.ts",
+      "sha256": "c05cb11e7d2ea12dc2fd3c69119b1445e7ea9cf47f8831727e22cdf735b946cf"
+    },
+    {
+      "path": "src/aw2/modes/catalog.ts",
+      "sha256": "175fe3c56bec31b6dbcbb3110fb3e0305d763d9a93a6bb7bb4af54702a055e07"
+    },
+    {
+      "path": "src/aw2/modes/session.ts",
+      "sha256": "8131834662e7d208ddb1b161023ebcaa014535f2dfda1df72f9d09f70fdc55f6"
+    },
+    {
+      "path": "src/aw2/save/schema.ts",
+      "sha256": "8d37d86073954a18c0898c08f3c75a45e06bf28ce9c334ef7c69c9ead9ca159d"
+    },
+    {
+      "path": "src/aw2/save/store.ts",
+      "sha256": "bc996cab0395644e315e6042bc5eef9da203e284ec75ed3ebaa12d0d34980246"
+    },
+    {
+      "path": "src/aw2/tcg/catalog.ts",
+      "sha256": "ba316a99ca04634e70e23dbeb12b822a2552fdd215d5e961e12f475dd31d95fb"
+    },
+    {
+      "path": "src/aw2/tcg/rules.ts",
+      "sha256": "68d40468c2470b9b88557b51ecc1d7bb7a98c580418b9c3f01268103c3813918"
+    },
+    {
+      "path": "src/aw2/tcg/session.ts",
+      "sha256": "633de0d4f58d89850c5d4800890b8b5098673132ffa961e6ac5a51feb275fa18"
+    },
+    {
+      "path": "src/aw2/tcg/types.ts",
+      "sha256": "d36dc2afcf9a68a8ae0a6dbe3066d7658e2520cf20c5253ec7e7b605252de40e"
+    },
+    {
+      "path": "src/aw2/world/controls.ts",
+      "sha256": "ac683de2d1a8e1f9ddda1d1057f87b6195cf1c3bdb93caf8d73d4c74b1f2b36b"
+    },
+    {
+      "path": "src/aw2/world/encounter.ts",
+      "sha256": "91d1f20d0c41713e8aeab3f364bb759f539f4e7c4ce17f0509f5c3b92e3de74e"
+    },
+    {
+      "path": "src/aw2/world/ids.ts",
+      "sha256": "d99d60f5823e3106867705057d798605633432c12508f55bbd35175adb7f39c5"
+    },
+    {
+      "path": "src/aw2/world/maps.ts",
+      "sha256": "cefbd0807b3aabe0f5b3a3a487993266da2220ae698536abc76010fa0cd85640"
+    },
+    {
+      "path": "src/aw2/world/model.ts",
+      "sha256": "f40d20a879936870a73a7122860657656db297cb4f32d74a94ef5600c2990bbc"
+    },
+    {
+      "path": "src/aw2/world/navigation.ts",
+      "sha256": "5cad98c3f0cba4c712b837e024dd4b50d826470d097c892b0cb9f74fec67b837"
+    },
+    {
+      "path": "src/aw2/world/rules.ts",
+      "sha256": "e6bbffb6144091224e68aa4d91e3b4ee54d1e9f0f230aaba5ce4ab6ea8bac71b"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "9a1e96d63eaccd5416b2f78ecaccf2b3a27ca71e213fa5859cf5349c66123bf9"
+    },
+    {
+      "path": "vite.config.ts",
+      "sha256": "8778290fb3f96ec53429966a5ed0898987d53d61e235b7d11edb0e694c6ab64f"
+    }
+  ],
+  "scopeOnly": "Bách four skill scope strings/spec skillScope/provenance specSha256 only; original image/PCM/frame/timing unchanged",
+  "repeat": {
+    "status": "PASS",
+    "paths": {
+      "dev/aw2/assets/bach/base-v1/world.webp": "d1771ea69846bfaceec61e1657e5032a43969c9d9ff7dd666d423571c7638e38",
+      "dev/aw2/assets/bach/base-v1/portrait.png": "cb5d41d5276860f759d29284a9b0a4e3911c9d096c9911b5f8cc7588c7146537",
+      "dev/aw2/assets/bach/base-v1/auto.wav": "d201d144edf5682e6b1ae45ccf2415423f7966e4ce8e50db0c07ea994ce75817",
+      "dev/aw2/assets/bach/base-v1/world.png": "5f65a3ebe0e92eaa3ea04f5b3a8f2f21e43e577d12aaa21f8d685c48e15f4343",
+      "dev/aw2/assets/bach/base-v1/battle-motion-b-v1.png": "0cc5da8a5683bfb7aa24833b56464a9d3221fdacb6da9758774d7d91b7354447",
+      "dev/aw2/assets/bach/base-v1/prompts.json": "dc19bd56bacd0d6c2cca49a716793082c0357bab34cef2bfc8f59c03e858879d",
+      "dev/aw2/assets/bach/base-v1/fx.png": "74e3095007526a18d5a30987be3366819dc066d887883efa4a7de49755a16fa6",
+      "dev/aw2/assets/bach/base-v1/spec.json": "2719c686a658e222f88c909338ffe51266a964eb191387818f502d689a839d9a",
+      "dev/aw2/assets/bach/base-v1/passive.wav": "79ff7e8ec50ad22e989a0dbafd83e9bfba331e2f4acabc4ddfaa3c29937eb307",
+      "dev/aw2/assets/bach/base-v1/battle-motion-a-v1.webp": "194398788398803cf0746b4c152be1677f82a538573acefec1fea90c9f479111",
+      "dev/aw2/assets/bach/base-v1/provenance.json": "57e91e70796227ab2116639a904e7d822c1c70ab6eed9a6bd743142761114cfc",
+      "dev/aw2/assets/bach/base-v1/battle-motion-a-v1.png": "8f4bc12b29694cf19112eebb6bb5d28f1d0e5a9842304c11c3810807c628cb24",
+      "dev/aw2/assets/bach/base-v1/ultimate.wav": "f63f500b1726eebbf4c4f3af09613a8412d2cdf5f5de597949ff7e9e1a4ca4c2",
+      "dev/aw2/assets/bach/base-v1/fx.webp": "7d6e14054b04d230f885fe55c7a2b5caa02fffc073da8145c0b2b480740395d0",
+      "dev/aw2/assets/bach/base-v1/basic.wav": "28dc5a7250da33685daf405f950d996eff97c6d946b5308d7c81a14fa709139e",
+      "dev/aw2/assets/bach/base-v1/battle-motion-b-v1.webp": "cb3f9e26440d36fcb710d8c6300fa2ba8d2ea722bd2b58229285297bbf766fbb",
+      "dev/aw2/assets/bach/base-v1/portrait.webp": "17d31e790c4447f9fd4f6fc2958c43729621c384d3f23d91048ee1e926dbae70",
+      "src/aw2/assets/bach.base-v1.json": "30bec57d8a7ed6cc0da90432da24bbbe3d569e0a8aa493120b5df4d856b8ce3d"
+    }
+  },
+  "fileAudit": {
+    "task": "AW2-004O",
+    "spiritId": "aw2-bach",
+    "status": "PASS",
+    "checks": [
+      "portrait: bytes/hash/dimensions/real alpha",
+      "world: bytes/hash/dimensions/real alpha",
+      "battle-motion-a-v1: bytes/hash/dimensions/real alpha",
+      "battle-motion-b-v1: bytes/hash/dimensions/real alpha",
+      "fx: bytes/hash/dimensions/real alpha",
+      "battle: bytes/hash/dimensions/real alpha",
+      "reference: bytes/hash/dimensions/real alpha",
+      "64 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+      "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+      "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+      "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+      "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+    ],
+    "webpBytes": 5714556
+  },
+  "reuse": {
+    "art": "Original AW2-004O at8344fc0b05275a1d8e314100fcfa3263d9956c8e; no new images or PCM",
+    "deepSaveModes": "Original source refs in007I retained only for unchanged detailed save/reset/mode/renderer cases; fresh full units and earned browser journey cover affected shared consumers; historical totals not added"
+  },
+  "stableIsolation": {
+    "status": "PASS",
+    "files": 851,
+    "bytes": 177450422,
+    "textScanned": 49
+  }
+}

@@ -2,7 +2,7 @@ import { StrictMode, useEffect, useReducer, useState } from "react"
 import { createRoot } from "react-dom/client"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import type { CombatSpiritId } from "../../src/aw2/combat"
-import { nhienBusy } from "../../src/aw2/combat"
+import { nhienBusy, bachThreshold } from "../../src/aw2/combat"
 import { BattleCanvas } from "./BattleCanvas"
 import { useBattleAudio } from "./useBattleAudio"
 import {
@@ -25,7 +25,9 @@ function BattlePreview() {
             ? "lien"
             : new URLSearchParams(location.search).get("team") === "moc"
               ? "moc"
-              : undefined
+              : new URLSearchParams(location.search).get("team") === "bach"
+                ? "bach"
+                : undefined
   const [level, setLevel] = useState(5)
   const [{ battle, presentation, level: activeLevel, message }, dispatch] =
     useReducer(reduceBattlePreviewSession, 5, (level) =>
@@ -71,6 +73,8 @@ function BattlePreview() {
   const playerRows = battle.actors.filter((actor) => actor.side === "player")
   const nhien = playerRows.find((actor) => actor.spiritId === "aw2-nhien")
   const hai = playerRows.find((actor) => actor.spiritId === "aw2-hai")
+  const bach = playerRows.find((actor) => actor.spiritId === "aw2-bach")
+  const requiredBachAbsorption = bach ? bachThreshold(bach) : 0
   const moc = playerRows.find((actor) => actor.spiritId === "aw2-moc")
   const lien = playerRows.find((actor) => actor.spiritId === "aw2-lien")
   const interruptActor = playerRows.find(
@@ -81,17 +85,19 @@ function BattlePreview() {
     <main className="aw2-save aw2-battle">
       <p className="eyebrow">AW2-007B · DEVELOPMENT-ONLY EVENT RENDERER</p>
       <h1>
-        {practice === "moc"
-          ? "Luyện kỹ năng Mộc"
-          : practice === "lien"
-            ? "Luyện kỹ năng Liên"
-            : practice === "hai"
-              ? "Luyện kỹ năng Hải"
-              : practice === "nhien"
-                ? "Luyện kỹ năng Nhiên"
-                : practice
-                  ? "Luyện kỹ năng Muối Đen"
-                  : "Giao ước bên bếp"}
+        {practice === "bach"
+          ? "Luyện kỹ năng Bách"
+          : practice === "moc"
+            ? "Luyện kỹ năng Mộc"
+            : practice === "lien"
+              ? "Luyện kỹ năng Liên"
+              : practice === "hai"
+                ? "Luyện kỹ năng Hải"
+                : practice === "nhien"
+                  ? "Luyện kỹ năng Nhiên"
+                  : practice
+                    ? "Luyện kỹ năng Muối Đen"
+                    : "Giao ước bên bếp"}
       </h1>
       <p>
         <a
@@ -109,6 +115,8 @@ function BattlePreview() {
         <a href="/dev/aw2/battle.html?team=lien">Luyện kỹ năng Liên</a>
         {" · "}
         <a href="/dev/aw2/battle.html?team=moc">Luyện kỹ năng Mộc</a>
+        {" · "}
+        <a href="/dev/aw2/battle.html?team=bach">Luyện kỹ năng Bách</a>
       </p>
       {practice === "muoi" && (
         <p>
@@ -123,6 +131,82 @@ function BattlePreview() {
           tuyệt kỹ có hồi thế; đánh trúng hai địch khác nhau mới hồi năng lượng
           có giới hạn. Có thể thử ngắt chuỗi, không cấp nhân vật hay ghi save.
         </p>
+      )}
+      {practice === "bach" && bach && (
+        <section aria-label="Thử kỹ năng Bách">
+          <p>
+            Đội luyện5 thay Than bằng Bách, một Tank dùng khiên và chia phần bảo
+            vệ. Gói Chắc tạo khiên cá nhân; Chia Phần chỉ tính lượng khiên thực
+            sự đỡ đòn. Mở Vòng Dây dùng hết khiên còn lại để chia cho đồng minh
+            gần và tác động ngắn phía trước. Thu thập và đội lưu còn chờ triển
+            khai.
+          </p>
+          <p data-testid="bach-state" data-state={JSON.stringify(bach)}>
+            Năng lượng {bach.energy}/100 · Khiên {bach.shield} ·{" "}
+            {bach.bachStrike
+              ? "Mối Buộc đang chờ điểm chạm"
+              : bach.cast
+                ? "Đang chuẩn bị kỹ năng"
+                : "Sẵn sàng"}
+          </p>
+          <p data-testid="bach-meter">
+            Chia Phần: {bach.bachGuarded ?? 0}/{requiredBachAbsorption} đã đỡ
+            bằng khiên ·{" "}
+            {(bach.bachShareUntilTick ?? 0) > battle.tick
+              ? `Nghỉ đến nhịp ${bach.bachShareUntilTick}`
+              : "Sẵn sàng chia khi đạt ngưỡng"}
+          </p>
+          <button
+            type="button"
+            data-testid="bach-interrupt"
+            disabled={
+              battle.status !== "active" ||
+              bach.hp <= 0 ||
+              !(bach.cast || bach.bachStrike)
+            }
+            onClick={() => dispatch({ type: "interrupt-bach" })}
+          >
+            Đối thủ ngắt Bách
+          </button>
+          <ul data-testid="bach-allies" data-state={JSON.stringify(playerRows)}>
+            {playerRows.map((actor) => (
+              <li key={actor.id}>
+                {ROSTER_ASSETS[actor.spiritId].displayName}: HP{actor.hp}/
+                {actor.maxHp} · Khiên{actor.shield}
+              </li>
+            ))}
+          </ul>
+          <ol
+            data-testid="bach-outcomes"
+            data-events={JSON.stringify(
+              battle.events.filter((e) => e.skillId?.startsWith("aw2-bach:")),
+            )}
+          >
+            {battle.events
+              .filter(
+                (e) =>
+                  e.skillId?.startsWith("aw2-bach:") &&
+                  [
+                    "hit",
+                    "miss",
+                    "shield",
+                    "status",
+                    "interrupt",
+                    "interrupt-resist",
+                  ].includes(e.kind),
+              )
+              .slice(-10)
+              .map((e) => (
+                <li key={e.serial} data-kind={e.kind} data-action={e.actionId}>
+                  Nhịp {e.tick}:{" "}
+                  {e.text ??
+                    (e.kind === "shield"
+                      ? `Khiên +${e.amount}`
+                      : `Sát thương ${e.amount ?? 0}`)}
+                </li>
+              ))}
+          </ol>
+        </section>
       )}
       {practice === "moc" && moc && (
         <section aria-label="Thử kỹ năng Mộc">
@@ -612,6 +696,7 @@ function BattlePreview() {
                     actor.energy < 100 ||
                     !!actor.lienUltimate ||
                     !!actor.mocBurst ||
+                    !!actor.bachStrike ||
                     nhienBusy(actor, battle.tick) ||
                     battle.status !== "active"
                   }

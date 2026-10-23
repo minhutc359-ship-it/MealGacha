@@ -10,3 +10,5 @@ export * from "./hai"
 export * from "./lien"
 
 export * from "./moc"
+
+export * from "./bach"
