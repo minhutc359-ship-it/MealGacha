@@ -2,8 +2,19 @@ import scene from "./kitchen-table.environment-v1.json"
 import { KITCHEN_BOSS_ID, TABLE_NOTE_ID, ZONE_IDS } from "../world/ids"
 import { zoneById } from "../world/maps"
 import type { WorldProgress } from "../world/model"
+import { FORGOTTEN_HOST_WORLD } from "./bossWorld"
 
-export const TABLE_ROOM_SCENE = scene
+// Preserve the original006B asset package; current boss metadata follows its own world registry.
+export const TABLE_ROOM_SCENE = {
+  ...scene,
+  bossMarker: {
+    entityId: FORGOTTEN_HOST_WORLD.entityId,
+    manifest: "forgotten-host.world-v1",
+    frame: FORGOTTEN_HOST_WORLD.directions.down,
+    height: FORGOTTEN_HOST_WORLD.display.maxSilhouetteHeight,
+    status: FORGOTTEN_HOST_WORLD.status,
+  },
+}
 export function tableRoomWaypoints(progress: WorldProgress) {
   if (progress.zoneId !== ZONE_IDS[5]) return []
   const zone = zoneById(progress.zoneId)

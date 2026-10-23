@@ -1,6 +1,16 @@
 # Test ledger / change impact
 
-## AW2-006E current verified scope
+## AW2-006D current verified scope
+
+Source `PENDING006D`, base `caf0057d8655f33d125c07fc32a53f057d29d0d5`. PASS59cases/5files=20new boss-world+10updated current-scene+8props+12controls+9rematch,0fail/skip. Actual source/runtime/reference/prompt hashes/budgets/rights, four safe frames/feet/common scale,11direction/tie/zero samples, real alpha states/detached nonmutation/canonical anchor. Full current-head NOT_RUN; unchanged pure world/save/combat/economy/modes retained at original refs, not counted fresh.
+
+PASS52focused native browser=26source+26compiled from exact006Bearned quest3/006Ecompleted raw, origin/hash recorded, no fresh full-story claim. Four directional idle textures/fixed measured feet,1map representative/5combat, keyboard/touch/reduced motion,320390768/frame-label controls fit, true205XPbosswin/note/reload, actual ending/rematchretreat/return/both exits/shortcut, newatlas404→visible error/disabled controls/exact bytes→recovery/no writes/new errors. Expected404separate, zero unexpected errors. File audit exactRGBA/alpha0..255/4safe frames/max edge2/reference-prompt hashes/repeat4paths PASS. Both types/final dev types/review209files/81,162,208bytes/newWebPparity/style/Node/PythonAST/JSON/links/whitespace/fresh49text stable exclusion PASS; original851file stable build reused.393unchanged hashes retain original HD/FX/art/pure authority/story/mode boundaries; old HD-static marker acceptance superseded by current composed scene. No failed/double counts. [Evidence](evidence/AW2-006D.md), [JSON](evidence/AW2-006D-verification.json), [reuse](evidence/AW2-006D-reused-evidence.json).
+
+Initial compiled browser completed26assertions/report but exited143 during preview cleanup; switched harness to Vite server.close, final compiled rerun26PASS/exit0 replaces it, source exit0; no double count or runtime change. Default oxfmt check reported wrapping differences in5files; established Prettier3.3.3 --no-semi check passes all6changed TS/TSX/MJS files without mutation.
+
+WORLD-BOSS-01/WORLD-SCENE-01/CONTROL-01/BATTLE-REMATCH-01 development subset PASS. One generated four-idle atlas, no motion/fullEnemyComplete claim. In-session React/visual review only; independent art/identity/continuity/player/device/listening/FPS/memory/offline/native/rights/production-save/release OPEN. Demo90/product40(35–45)/12reference/0fullDoD unchanged; next006F, full regression after shared authority/collision changes or release.
+
+## AW2-006E historical verified scope
 
 Source `d11708bfb316a128e4bb2df7b0104d81e8cabee2`, base `e6b87cf0dd2d0afc1b8237de4042a6868daf11b1`, D17 explicit owner one-map-leader request. PASS78cases/4files=10room+12controls+47collection+9rematch,0fail/skip. Existing meaningful navigation/visibility/collection/party/rematch rules unchanged; no tiny implementation-mirroring unit added. Full current-head NOT_RUN, mandatory on shared save/engine/world authority/collision changes or release.
 

@@ -1,0 +1,81 @@
+{
+  "task": "AW2-006D",
+  "generator": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-23",
+    "builtInCalls": 1,
+    "rejected": [],
+    "selectedGeneratedFile": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-c271fe2c-b3c3-45c1-a745-f4a6b3bbd1bb.png",
+    "reference": {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/portrait.webp",
+      "sha256": "5cba73805eb282267307c096f285ec6d656a4da9c7da5fc8d16a9cf85bbd4c70",
+      "role": "Own original identity reference only"
+    },
+    "prompts": {
+      "path": "dev/aw2/assets/forgotten-host/world-v1/prompts.json",
+      "sha256": "dfd4c46b3216bb662fef9bcd548fb6e0d3b9ee91132097ea9f49e615195cb2c2"
+    },
+    "externalReferences": [],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "pillow": "10.2.0",
+    "builder": "dev/tools/build-aw2-boss-world.py",
+    "processing": "Selected PNG unchanged; exact RGBA lossless WebP; alpha>8 bounds with4px padding and measured foot anchors; one common uniform render scale. No painting/masking/mirroring/resizing."
+  },
+  "asset": {
+    "id": "aw2-enemy-forgotten-host:world:world-v1",
+    "url": "/dev/aw2/assets/forgotten-host/world-v1/world.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 691470,
+    "sha256": "2777c2f58e990f982ed03d9b7405db7b085c512e840803d7a7ca5cf0761e6865",
+    "source": {
+      "path": "dev/aw2/assets/forgotten-host/world-v1/world-source.png",
+      "bytes": 910580,
+      "sha256": "9ff17d3f29b700afea899c6efed1f0447ea0ee6dcc473d9c28a9cb46d09a60e3"
+    }
+  },
+  "frames": {
+    "world.down.idle": {
+      "asset": "world",
+      "x": 149,
+      "y": 94,
+      "width": 374,
+      "height": 498,
+      "anchorX": 180,
+      "anchorY": 489
+    },
+    "world.left.idle": {
+      "asset": "world",
+      "x": 766,
+      "y": 100,
+      "width": 388,
+      "height": 497,
+      "anchorX": 146,
+      "anchorY": 485
+    },
+    "world.right.idle": {
+      "asset": "world",
+      "x": 114,
+      "y": 685,
+      "width": 384,
+      "height": 492,
+      "anchorX": 226,
+      "anchorY": 481
+    },
+    "world.up.idle": {
+      "asset": "world",
+      "x": 739,
+      "y": 698,
+      "width": 371,
+      "height": 479,
+      "anchorX": 211,
+      "anchorY": 468
+    }
+  },
+  "limits": [
+    "Four static directional idle poses, no walk/attack animation.",
+    "Independent identity/continuity/art/device/rights acceptance OPEN; not a completed enemy."
+  ]
+}

@@ -6,7 +6,7 @@ import {
   tableRoomPropAlpha,
   tableRoomWaypoints,
 } from "@/aw2/assets/tableRoom"
-import { FORGOTTEN_HOST_ASSETS } from "@/aw2/assets/forgottenHost"
+import { FORGOTTEN_HOST_WORLD } from "@/aw2/assets/bossWorld"
 import { newWorldProgress, worldProgressSchema } from "@/aw2/world/model"
 import {
   KITCHEN_BOSS_ID,
@@ -49,12 +49,10 @@ describe("WORLD-SCENE-01 authored room matches unchanged world authority", () =>
     expect(scene.provenance.licenseStatus).toBe("REVIEW_REQUIRED")
     expect(scene.provenance.commercialRelease).toBe("NOT_CLEARED")
     expect(scene.bossMarker.entityId).toBe(KITCHEN_BOSS_ID)
-    expect(scene.bossMarker.status).toBe(
-      "STATIC_BATTLE_REFERENCE_NOT_WORLD_MODEL",
-    )
+    expect(scene.bossMarker.status).toBe("FOUR_DIRECTION_IDLE_REFERENCE")
     expect(
-      FORGOTTEN_HOST_ASSETS.frames[
-        scene.bossMarker.frame as keyof typeof FORGOTTEN_HOST_ASSETS.frames
+      FORGOTTEN_HOST_WORLD.frames[
+        scene.bossMarker.frame as keyof typeof FORGOTTEN_HOST_WORLD.frames
       ],
     ).toBeDefined()
   })

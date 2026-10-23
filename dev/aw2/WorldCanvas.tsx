@@ -4,13 +4,16 @@ import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { sampleWorldFrame } from "../../src/aw2/assets/animation"
 import type { WorldProgress } from "../../src/aw2/world/model"
 import { zoneById } from "../../src/aw2/world/maps"
-import { KITCHEN_BOSS_ID, ZONE_IDS } from "../../src/aw2/world/ids"
+import { ZONE_IDS } from "../../src/aw2/world/ids"
 import {
   TABLE_ROOM_SCENE,
   tableRoomPropAlpha,
   tableRoomWaypoints,
 } from "../../src/aw2/assets/tableRoom"
-import { FORGOTTEN_HOST_ASSETS } from "../../src/aw2/assets/forgottenHost"
+import {
+  FORGOTTEN_HOST_WORLD,
+  worldBossPresentation,
+} from "../../src/aw2/assets/bossWorld"
 import { RoomWaypoints } from "./RoomWaypoints"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import {
@@ -61,7 +64,7 @@ export function WorldCanvas({
             ? Promise.all([
                 Assets.load(scene.assets.floor.url),
                 Assets.load(scene.assets.sideboard.url),
-                Assets.load(FORGOTTEN_HOST_ASSETS.assets.battle.url),
+                Assets.load(FORGOTTEN_HOST_WORLD.asset.url),
                 Assets.load(TABLE_ROOM_INTERACTIONS.assets.note.url),
                 Assets.load(TABLE_ROOM_INTERACTIONS.assets.threshold.url),
               ])
@@ -155,6 +158,7 @@ export function WorldCanvas({
         next.stage.addChild(terrain)
         let foreground: import("pixi.js").Sprite | undefined
         let bossMarker: import("pixi.js").Sprite | undefined
+        const bossFrames: Record<string, Texture> = {}
         const groundProps: {
           entityId: string
           sprite: import("pixi.js").Sprite
@@ -194,27 +198,29 @@ export function WorldCanvas({
           foreground.height = scene.prop.height
           foreground.zIndex = scene.prop.sortY + 10
           next.stage.addChild(foreground)
+          for (const [key, pose] of Object.entries(
+            FORGOTTEN_HOST_WORLD.frames,
+          )) {
+            const texture = new Texture({
+              source: environment[2].source,
+              frame: new Rectangle(pose.x, pose.y, pose.width, pose.height),
+            })
+            textures.push(texture)
+            bossFrames[key] = texture
+          }
+          const state = worldBossPresentation(world)!
           const pose =
-            FORGOTTEN_HOST_ASSETS.frames[
-              scene.bossMarker
-                .frame as keyof typeof FORGOTTEN_HOST_ASSETS.frames
+            FORGOTTEN_HOST_WORLD.frames[
+              state.frame as keyof typeof FORGOTTEN_HOST_WORLD.frames
             ]
-          const bossTexture = new Texture({
-            source: environment[2].source,
-            frame: new Rectangle(pose.x, pose.y, pose.width, pose.height),
-          })
-          textures.push(bossTexture)
-          bossMarker = new Sprite(bossTexture)
+          bossMarker = new Sprite(bossFrames[state.frame])
           bossMarker.anchor.set(
             pose.anchorX / pose.width,
             pose.anchorY / pose.height,
           )
-          bossMarker.scale.set(scene.bossMarker.height / pose.height)
-          const object = zoneById(world.zoneId).objects.find(
-            (object) => object.id === KITCHEN_BOSS_ID,
-          )!
-          bossMarker.position.set(object.x, object.y + 6)
-          bossMarker.zIndex = object.y + 10
+          bossMarker.scale.set(FORGOTTEN_HOST_WORLD.display.scale)
+          bossMarker.position.set(state.x, state.y)
+          bossMarker.zIndex = state.depth
           next.stage.addChild(bossMarker)
         }
         const actors = ids.map((id, index) => {
@@ -289,9 +295,30 @@ export function WorldCanvas({
               actors: actors.map(({ sprite }) => sprite.zIndex),
             })
           }
-          if (bossMarker)
-            bossMarker.alpha =
-              now.questIndex === 4 ? 1 : now.bossDefeated ? 0.6 : 1
+          if (bossMarker) {
+            const state = worldBossPresentation(now)!
+            const pose =
+              FORGOTTEN_HOST_WORLD.frames[
+                state.frame as keyof typeof FORGOTTEN_HOST_WORLD.frames
+              ]
+            bossMarker.texture = bossFrames[state.frame]
+            bossMarker.anchor.set(
+              pose.anchorX / pose.width,
+              pose.anchorY / pose.height,
+            )
+            bossMarker.alpha = state.alpha
+            next.canvas.dataset.worldBoss = JSON.stringify({
+              ...state,
+              assetId: FORGOTTEN_HOST_WORLD.asset.id,
+              x: bossMarker.x,
+              y: bossMarker.y,
+              depth: bossMarker.zIndex,
+              alpha: bossMarker.alpha,
+              scale: bossMarker.scale.x,
+              anchorX: bossMarker.anchor.x,
+              anchorY: bossMarker.anchor.y,
+            })
+          }
           if (groundProps.length) {
             const props = tableRoomInteractionProps(now)
             for (const { entityId, sprite } of groundProps)
@@ -381,13 +408,13 @@ export function WorldCanvas({
             key={object.id}
             className="aw2-world-label"
             style={{
-              transform: interactionProps.some(
-                (prop) => prop.entityId === object.id,
-              )
-                ? "translate(-50%, 0)"
-                : undefined,
+              transform:
+                (scene && object.id === FORGOTTEN_HOST_WORLD.entityId) ||
+                interactionProps.some((prop) => prop.entityId === object.id)
+                  ? "translate(-50%, 0)"
+                  : undefined,
               left: `${Math.max(12, Math.min(88, object.x / 6.4))}%`,
-              top: `${(object.y + (interactionProps.find((prop) => prop.entityId === object.id)?.labelOffsetY ?? (scene ? 14 : 0))) / 3.84}%`,
+              top: `${(object.y + (interactionProps.find((prop) => prop.entityId === object.id)?.labelOffsetY ?? (scene ? 24 : 0))) / 3.84}%`,
             }}
           >
             {scene

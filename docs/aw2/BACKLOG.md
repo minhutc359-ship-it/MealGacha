@@ -1,6 +1,6 @@
 # Task board
 
-**AW2-006E VERIFIED — chỉ nhân vật đầu đội đã lưu đại diện trên map, theo D17/owner.** Source `d11708bfb316a128e4bb2df7b0104d81e8cabee2`, base `e6b87cf0dd2d0afc1b8237de4042a6868daf11b1` trên `game/adventure-world-2`. Renderer tải/vẽ1world atlas và bỏ đoàn followers; chọn nháp/Hủy/lỗi ghi vẫn giữ đại diện cũ, Lưu thành công mới đổi. Trước nhập môn dùng Than như trước, không cấp nhân vật. Đội lưu/trận thực tế vẫn5thành viên, thứ tự/EXP/nhấn Vân/rewards/ending giữ nguyên. **78ca unit/4files và102browser assertions PASS**, đủ12đại diện,4hướng đi,6vùng, mobile320/390/768, furniture/reload/boss5người/thiếu atlas→khôi phục; hai typecheck/final review build/fresh49text stable exclusion đạt. Browser dùng checkpoint earned006B, không phải full-story mới;386hash giữ phần không đổi, full current-head NOT_RUN. **Demo≈90%, sản phẩm≈40%(35–45%),12kit/12bộ tham chiếu/0fullDoD giữ nguyên**: sửa trình bày theo yêu cầu chưa đóng gate độc lập. [Đội hình/cách đổi đại diện](COLLECTION.md), [bằng chứng](evidence/AW2-006E.md). Next[006D](tasks/AW2-006D.md) world chibi boss; D11PROPOSED/D12OPEN.
+**AW2-006D VERIFIED world-boss reference — Người Giữ Bàn Quên đã có chibi đứng bốn hướng riêng trên map.** Source `PENDING006D`, base `caf0057d8655f33d125c07fc32a53f057d29d0d5` trên `game/adventure-world-2`. Một atlas gốc built-in imagegen dùng chính portrait cũ làm tham chiếu identity; giữ PNG/WebP lossless/prompts/hashes/provenance. Boss đứng cố định, quay theo phía người chơi, chân giữ cùng vị trí; bốn tư thế tĩnh, chưa phải hoạt ảnh đi/đánh. Ảnh HD/FX/trận cũ giữ nguyên, chỉ tải khi vào trận. D17map1đại diện/đội chiến đấu5người giữ nguyên. **59ca unit/5files và52browser assertions PASS**, hai typecheck/final review build/fresh49text stable exclusion đạt. Browser tiếp tục checkpoint earned cũ, không phải full-story mới;393hash giữ phần không đổi, full current-head NOT_RUN. **Demo≈90%, sản phẩm≈40%(35–45%),12kit/12bộ tham chiếu/0fullDoD giữ nguyên**: bốn idle poses chưa đóng full-enemy/world/thiết bị/rights hoặc playtest độc lập. [Cách xem](PHONG_BAN.md), [gates](BOSS_CHARACTER_GATES.md), [bằng chứng](evidence/AW2-006D.md). Next[006F](tasks/AW2-006F.md) Phòng Lửa environment/navigation slice; D11PROPOSED/D12OPEN.
 
 | ID | Owner | Scope | Status |
 |---|---|---|---|
@@ -31,7 +31,8 @@
 | AW2-006B | BA/story/animation/mechanic/tester/scretary | Authored Phòng Bàn environment/navigation slice, current2exits/boss/note | VERIFIED subset at 425aa16d94ea51decf7f43afb5986b13ad126dfc;113targeted units/286browser; full world/art/device/rights gates OPEN |
 | AW2-006C | BA/story/animation/mechanic/tester/scretary | Authored note/two exit props in existing Phòng Bàn | VERIFIED subset at b350a11d777c1e8c94b5f2aadc6299b68f7e7722;30unit/102browser; full-room/device/rights OPEN |
 | AW2-006E | BA/mechanic/animation/tester/scretary | One saved leader represents exploration team, D17 | VERIFIED at d11708bfb316a128e4bb2df7b0104d81e8cabee2;78unit/102browser; combat/save remain5 |
-| AW2-006D | BA/story/character/animation/mechanic/tester/scretary | Own boss chibi world reference, scoped four-direction idle | NEXT scope review; implementation/tests NOT_RUN |
+| AW2-006D | BA/story/character/animation/mechanic/tester/scretary | Own boss chibi world reference, scoped four-direction idle | VERIFIED reference subset at PENDING006D;59unit/52browser; full enemy/motion/rights OPEN |
+| AW2-006F | BA/story/animation/mechanic/tester/scretary | Authored Phòng Lửa floor/props/native navigation | NEXT scoped card; implementation/tests NOT_RUN |
 | AW2-004L | character/story/animation/tester | Hải original reference package | VERIFIED at 57b160faefa4edca081e46680a45489bfa4d9e68;85 units/102 browser; full DoD OPEN |
 | AW2-004M | character/story/animation/tester | Liên original reference package | VERIFIED at 8344fc0b05275a1d8e314100fcfa3263d9956c8e;96 own browser assertions, shared full1132; [card](tasks/AW2-004M.md), full DoD OPEN |
 | AW2-004N | character/story/animation/tester | Mộc original reference package | VERIFIED at 8344fc0b05275a1d8e314100fcfa3263d9956c8e;96 own browser assertions, shared full1132; [card](tasks/AW2-004N.md), full DoD OPEN |
@@ -66,7 +67,7 @@ AW2-001 evidence: [task card](tasks/AW2-001.md), [verification](evidence/AW2-001
 
 Owner approved both story and roster proposals in-session. D10/D13/D14/D15 and CANON supersede historical PROPOSED labels in the archived review documents. D11 rates/pity remain unapproved; do not ship gacha before their simulation/review.
 
-Historical milestone notes below retain original source-bound claims; older Current/NEXT/schema/collection statements are superseded by006E/current STATUS above.
+Historical milestone notes below retain original source-bound claims; older Current/NEXT/schema/collection statements are superseded by006D/current STATUS above.
 
 AW2-006A foundation: six debug zones, collisions/range/returns, first three quests, memory choice/puzzle, one-time starter unlock and v1→v2 save migration; [task](tasks/AW2-006A.md), [evidence](evidence/AW2-006A.md). AW2-012 merged all completed feature heads locally into the long-lived AW2 branch; no master update or remote push. [Integration](evidence/AW2-012.md).
 
