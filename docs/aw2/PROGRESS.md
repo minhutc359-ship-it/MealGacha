@@ -29,7 +29,7 @@ Trước AW2-010A: **8/10 nhóm tiêu chí đã kiểm chứng, khoảng80%**. H
 |---|---:|---:|---|
 | Nền runtime/combat/save/tích hợp |25 |20 | Luật thật, checkpoint/progression và hai practice đã chạy; production durability/hoàn thiện còn mở |
 | Arc thế giới/quest/dungeon |15 |10 |6 zone/4 quest/boss/hai kết thúc hoạt động; map/NPC/boss riêng và polish còn thiếu |
-|12 nhân vật đủ DoD/art/animation/kit |30 |5 |7 bộ tham chiếu,5 bộ chưa tạo; **0/12 đạt đầy đủ DoD** |
+|12 nhân vật đủ DoD/art/animation/kit |30 |5 |12/12 bộ tham chiếu,10/12 kit thực thi sau007I; **0/12 đạt đầy đủ DoD**, collection và nghiệm thu còn mở |
 | UX/presentation/audio |10 |3 | Có điều khiển/touch/opt-in và hướng dẫn; UI/game art còn cần hoàn thiện/playtest |
 | Kinh tế/mode sản phẩm/gacha/cân bằng |10 |2 | Kinh tế/practice còn là development tuning; D11 chưa duyệt, gacha runtime/thu thập mode chưa làm |
 | Gate phát hành: thiết bị/hiệu năng/offline/save production/rights |10 |0 | Các gate đầy đủ còn NOT_RUN/mở; chưa có phát hành |
@@ -108,3 +108,8 @@ This supersedes earlier seven-actual-kit/Hải combat-pending status only. Exist
 **AW2-007H VERIFIED — Liên đã có kỹ năng hồi phục thật và cấp1–20**. Source `5247fd0963f261f156f00d673b0961657182b4af`, base `b4d8d90d9ed6efb0be686bb4e49479cdcf51efab`. Hẹn Sau Cơn Mệt hồi ba nhịp hữu hạn; Mở Lời tẩy đúng một debuff được phép rồi hồi hai nhịp; nội tại cấp kháng một lần ngắt khi thực sự hồi HP cho người còn debuff.1201full unit tests/110files (37new Liên),278browser assertions,60simulations, cả hai typecheck/review+stable builds/isolation PASS.9actual kits/12bộ hình/5starter lưu/0full-characterDoD. Demo≈90% và sản phẩm≈40% (35–45%) giữ nguyên; collection/art/playtest/device/rights/release còn mở. [Luyện Liên](LIEN_PRACTICE.md), [bằng chứng](evidence/AW2-007H.md).
 
 This supersedes earlier eight-actual-kit/Liên combat-pending status only. Existing conditional planning ranges and accepted-character velocity assumptions unchanged. Next007I Mộc; no new collection/gacha/rarity/story/production approval.
+
+
+## AW2-007I — current measurement
+
+**AW2-007I VERIFIED — Mộc có bộ kỹ năng chiến đấu thật và cấp1–20**. Source `PENDING_007I_SOURCE`, base `c38a5cc6d0ac0731904cc65ea1f582be24a4ef7a`. Gieo Dấu là một vùng cố định chờ3nhịp/kích hoạt một lần/hết hạn6nhịp; Mùa Nối Mùa cấp khiên ngắn khi thay dấu ở vị trí mới; Mở Gói Mùa Xanh thu tối đa một dấu và báo trước2nhịp rồi nổ một lần. **10/12 kit thực thi≈83%** (từ9/12=75%); **12/12 bộ hình tham chiếu100%**, năm starter lưu giữ nguyên, **0/12 full-characterDoD**. **Demo≈90% và toàn sản phẩm≈40% (ước lượng35–45%) giữ nguyên**: chưa đóng collection, nghiệm thu art/playtest độc lập/thiết bị/rights/release.1242ca unit riêng biệt/111files được xác minh (1241PASS từ full run +69ca hai file sửa kiểm tra inventory, không cộng trùng),41ca Mộc mới;310browser assertions và72simulations PASS. Hai typecheck/review+stable build/isolation PASS. [Luyện Mộc](MOC_PRACTICE.md), [bằng chứng](evidence/AW2-007I.md). Next BA/mechanic:007J Bách, sau đó Vân; collection/đội lưu riêng.

@@ -1661,7 +1661,7 @@
         },
         "scale": 0.65
       },
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "AW2-007I implements the development projectile, one finite ground mark, bounded replacement shield and warned single ultimate burst; collection and full character acceptance remain open."
     },
     "auto": {
       "id": "aw2-moc:skill:auto",
@@ -1695,7 +1695,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "AW2-007I implements the development projectile, one finite ground mark, bounded replacement shield and warned single ultimate burst; collection and full character acceptance remain open."
     },
     "passive": {
       "id": "aw2-moc:skill:passive",
@@ -1729,7 +1729,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "AW2-007I implements the development projectile, one finite ground mark, bounded replacement shield and warned single ultimate burst; collection and full character acceptance remain open."
     },
     "ultimate": {
       "id": "aw2-moc:skill:ultimate",
@@ -1763,7 +1763,7 @@
         "method": "original deterministic additive synthesis + seeded noise"
       },
       "projectile": null,
-      "scope": "reference assets only; actual combat/leveling/collection and final numerical balance not implemented"
+      "scope": "AW2-007I implements the development projectile, one finite ground mark, bounded replacement shield and warned single ultimate burst; collection and full character acceptance remain open."
     }
   },
   "provenance": {

@@ -15,7 +15,7 @@
   "fullCharacterComplete": false,
   "promptFile": "prompts.json",
   "promptSha256": "896021350694e42ddb59a5b8c64a1d0f5b750d1d03fa6d7b93eada4a148af9a5",
-  "specSha256": "32f4222b56760f969611d3c21ba245c0daecdd9cae678bf7539792c63b069e1b",
+  "specSha256": "7a8f44aa6ada428cdde36df3ef3b1edcba637d2683aaca14952968a0187a4ae9",
   "history": [
     {
       "callId": "AW2-004N-1",

@@ -78,10 +78,13 @@ export interface CombatEvent {
     | "hai-slow"
     | "hai-line"
     | "hai-block"
+    | "moc-mark"
+    | "moc-burst"
     | "lien-hot"
     | "lien-pulses"
     | "lien-guard"
     | "lien-cleanse"
+  areaCenter?: number
   cleansedEffect?: "muoi-mark" | "slow" | "weaken"
   statusChange?:
     | "apply"
@@ -165,6 +168,20 @@ export interface CombatActor {
   nhienSequence?: NhienSequence
   nhienRecoveryUntilTick?: number
   nhienRhythm?: NhienRhythm
+  mocMark?: {
+    id: string
+    center: number
+    armedAtTick: number
+    expiresAtTick: number
+  }
+  mocBurst?: {
+    id: string
+    center: number
+    resolveTick: number
+    amount: number
+    consumedMark: boolean
+  }
+  mocPassiveUntilTick?: number
   haiPassiveUntilTick?: number
   lienHoT?: {
     id: string

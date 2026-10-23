@@ -23,7 +23,9 @@ function BattlePreview() {
           ? "hai"
           : new URLSearchParams(location.search).get("team") === "lien"
             ? "lien"
-            : undefined
+            : new URLSearchParams(location.search).get("team") === "moc"
+              ? "moc"
+              : undefined
   const [level, setLevel] = useState(5)
   const [{ battle, presentation, level: activeLevel, message }, dispatch] =
     useReducer(reduceBattlePreviewSession, 5, (level) =>
@@ -58,7 +60,9 @@ function BattlePreview() {
     dispatch({
       type: "ultimate",
       actorId,
-      ...(["player-aw2-muoi", "player-aw2-nhien"].includes(actorId)
+      ...(["player-aw2-muoi", "player-aw2-nhien", "player-aw2-moc"].includes(
+        actorId,
+      )
         ? { targetId: skillTarget }
         : {}),
     })
@@ -67,6 +71,7 @@ function BattlePreview() {
   const playerRows = battle.actors.filter((actor) => actor.side === "player")
   const nhien = playerRows.find((actor) => actor.spiritId === "aw2-nhien")
   const hai = playerRows.find((actor) => actor.spiritId === "aw2-hai")
+  const moc = playerRows.find((actor) => actor.spiritId === "aw2-moc")
   const lien = playerRows.find((actor) => actor.spiritId === "aw2-lien")
   const interruptActor = playerRows.find(
     (actor) => actor.id === interruptTarget,
@@ -76,15 +81,17 @@ function BattlePreview() {
     <main className="aw2-save aw2-battle">
       <p className="eyebrow">AW2-007B · DEVELOPMENT-ONLY EVENT RENDERER</p>
       <h1>
-        {practice === "lien"
-          ? "Luyện kỹ năng Liên"
-          : practice === "hai"
-            ? "Luyện kỹ năng Hải"
-            : practice === "nhien"
-              ? "Luyện kỹ năng Nhiên"
-              : practice
-                ? "Luyện kỹ năng Muối Đen"
-                : "Giao ước bên bếp"}
+        {practice === "moc"
+          ? "Luyện kỹ năng Mộc"
+          : practice === "lien"
+            ? "Luyện kỹ năng Liên"
+            : practice === "hai"
+              ? "Luyện kỹ năng Hải"
+              : practice === "nhien"
+                ? "Luyện kỹ năng Nhiên"
+                : practice
+                  ? "Luyện kỹ năng Muối Đen"
+                  : "Giao ước bên bếp"}
       </h1>
       <p>
         <a
@@ -100,6 +107,8 @@ function BattlePreview() {
         <a href="/dev/aw2/battle.html?team=hai">Luyện kỹ năng Hải</a>
         {" · "}
         <a href="/dev/aw2/battle.html?team=lien">Luyện kỹ năng Liên</a>
+        {" · "}
+        <a href="/dev/aw2/battle.html?team=moc">Luyện kỹ năng Mộc</a>
       </p>
       {practice === "muoi" && (
         <p>
@@ -114,6 +123,86 @@ function BattlePreview() {
           tuyệt kỹ có hồi thế; đánh trúng hai địch khác nhau mới hồi năng lượng
           có giới hạn. Có thể thử ngắt chuỗi, không cấp nhân vật hay ghi save.
         </p>
+      )}
+      {practice === "moc" && moc && (
+        <section aria-label="Thử kỹ năng Mộc">
+          <p>
+            Đội luyện 5 người thay Sương Lành bằng Mộc. Gieo Dấu đặt một vùng cố
+            định, chờ ba nhịp rồi kích hoạt một lần khi địch đứng trong vùng.
+            Đổi dấu sang vị trí mới có thể cấp khiên ngắn. Mở Gói Mùa Xanh thu
+            dấu hợp lệ và báo trước hai nhịp; đối thủ có thể rời vùng. Thu thập
+            và đội lưu còn chờ triển khai.
+          </p>
+          <p data-testid="moc-state" data-state={JSON.stringify(moc)}>
+            Năng lượng {moc.energy}/100 · Khiên {moc.shield} ·{" "}
+            {moc.cast ? "Đang chuẩn bị" : "Sẵn sàng"}
+          </p>
+          <p data-testid="moc-fields">
+            {moc.mocMark
+              ? `Gieo Dấu tại ${moc.mocMark.center}, sẵn sàng nhịp ${moc.mocMark.armedAtTick}, tan nhịp ${moc.mocMark.expiresAtTick}. `
+              : "Chưa có dấu lá. "}
+            {moc.mocBurst
+              ? `Mở Gói Mùa Xanh tại ${moc.mocBurst.center}, kết tụ nhịp ${moc.mocBurst.resolveTick}${moc.mocBurst.consumedMark ? "; đã thu một dấu" : "; không có dấu để thu"}.`
+              : "Chưa có vùng kết tụ."}
+          </p>
+          <div className="actions">
+            <label>
+              Mục tiêu Mộc{" "}
+              <select
+                aria-label="Mục tiêu Mộc"
+                value={skillTarget}
+                onChange={(e) => setSkillTarget(e.target.value)}
+              >
+                {battle.actors
+                  .filter((a) => a.side === "enemy")
+                  .map((a) => (
+                    <option key={a.id} value={a.id} disabled={a.hp <= 0}>
+                      {ROSTER_ASSETS[a.spiritId]?.displayName ?? a.id}
+                      {a.hp <= 0 ? " · đã gục" : ""}
+                    </option>
+                  ))}
+              </select>
+            </label>
+            <button
+              type="button"
+              data-testid="moc-interrupt"
+              disabled={battle.status !== "active" || moc.hp <= 0 || !moc.cast}
+              onClick={() => dispatch({ type: "interrupt-moc" })}
+            >
+              Đối thủ ngắt Mộc
+            </button>
+          </div>
+          <ol
+            data-testid="moc-outcomes"
+            data-events={JSON.stringify(
+              battle.events.filter((e) => e.skillId?.startsWith("aw2-moc:")),
+            )}
+          >
+            {battle.events
+              .filter(
+                (e) =>
+                  e.skillId?.startsWith("aw2-moc:") &&
+                  ["hit", "miss", "status", "shield", "interrupt"].includes(
+                    e.kind,
+                  ),
+              )
+              .slice(-10)
+              .map((e) => (
+                <li
+                  key={e.serial}
+                  data-kind={e.kind}
+                  data-status={e.statusEffect}
+                  data-action={e.actionId}
+                >
+                  Nhịp {e.tick}:{" "}
+                  {e.text ??
+                    (e.kind === "shield"
+                      ? `Khiên +${e.amount}`
+                      : `Sát thương ${e.amount ?? 0}`)}
+                </li>
+              ))}
+          </ol>
+        </section>
       )}
       {practice === "lien" && lien && (
         <section aria-label="Thử kỹ năng Liên">
@@ -522,6 +611,7 @@ function BattlePreview() {
                     actor.hp <= 0 ||
                     actor.energy < 100 ||
                     !!actor.lienUltimate ||
+                    !!actor.mocBurst ||
                     nhienBusy(actor, battle.tick) ||
                     battle.status !== "active"
                   }

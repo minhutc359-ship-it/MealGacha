@@ -1,3 +1,4 @@
+import { MOC_TUNING, mocEnemy, mocOccupants } from "./moc"
 import {
   combatSkillId,
   isCombatSpiritId,
@@ -114,7 +115,9 @@ function actorFromSeed(
     throw Error("Boss profile không thuộc Người Giữ Bàn Quên.")
   const base =
     side === "player" ||
-    ["aw2-muoi", "aw2-nhien", "aw2-hai", "aw2-lien"].includes(seed.spiritId)
+    ["aw2-muoi", "aw2-nhien", "aw2-hai", "aw2-lien", "aw2-moc"].includes(
+      seed.spiritId,
+    )
       ? COMBAT_KITS[seed.spiritId as CombatSpiritId]
       : defaultEnemy(seed)
   const maxHp = assertNumber(seed.maxHp ?? base.hp, "HP tối đa", 1, 1_000_000)
@@ -542,7 +545,82 @@ function resolveLienHealing(battle: CombatBattle) {
   }
 }
 
+function removeMocField(
+  battle: CombatBattle,
+  source: CombatActor,
+  key: "mocMark" | "mocBurst",
+  reason: string,
+) {
+  const field = source[key]
+  if (!field) return
+  delete source[key]
+  record(battle, "status", source.id, [], {
+    skillId: combatSkillId("aw2-moc", key === "mocMark" ? "auto" : "ultimate"),
+    actionId: field.id,
+    statusEffect: key === "mocMark" ? "moc-mark" : "moc-burst",
+    statusChange: "remove",
+    text: reason,
+  })
+}
+
+function cleanupMocFields(battle: CombatBattle, terminal = false) {
+  for (const source of battle.actors) {
+    if (
+      terminal ||
+      source.hp <= 0 ||
+      (source.mocMark && source.mocMark.expiresAtTick <= battle.tick)
+    )
+      removeMocField(battle, source, "mocMark", "Dấu lá đã tan.")
+    if (terminal || source.hp <= 0)
+      removeMocField(battle, source, "mocBurst", "Kết tụ đã dừng.")
+  }
+}
+
+function resolveMocFields(battle: CombatBattle) {
+  cleanupMocFields(battle)
+  for (const source of living(battle).filter((a) => a.spiritId === "aw2-moc")) {
+    for (const key of ["mocMark", "mocBurst"] as const) {
+      const field = source[key]
+      if (!field) continue
+      if (key === "mocMark" && source.mocMark!.armedAtTick > battle.tick)
+        continue
+      if (key === "mocBurst" && source.mocBurst!.resolveTick > battle.tick)
+        continue
+      const targets = mocOccupants(
+        battle,
+        source,
+        field.center,
+        key === "mocMark" ? MOC_TUNING.markRadius : MOC_TUNING.burstRadius,
+      )
+      if (key === "mocMark" && !targets.length) continue
+      const amount =
+        key === "mocMark"
+          ? source.attack * MOC_TUNING.markMultiplier
+          : source.mocBurst!.amount
+      const skillId = combatSkillId(
+        "aw2-moc",
+        key === "mocMark" ? "auto" : "ultimate",
+      )
+      removeMocField(battle, source, key, "Đã dùng hết một lần kích hoạt.")
+      if (!targets.length)
+        record(battle, "miss", source.id, [], {
+          skillId,
+          actionId: field.id,
+          text: "Không còn đối thủ trong vùng cố định.",
+        })
+      for (const target of targets)
+        applyDamage(battle, source, target, amount, skillId, undefined, {
+          actionId: field.id,
+          contactIndex: 0,
+        })
+      checkResult(battle)
+      if (battle.status !== "active") return
+    }
+  }
+}
+
 function expireTimedState(battle: CombatBattle) {
+  cleanupMocFields(battle)
   cleanupLienHealing(battle)
   cleanupHaiFields(battle)
   cleanupMuoiMarks(battle)
@@ -1036,6 +1114,7 @@ function applyDamage(
     record(battle, "defeat", source.id, [target.id], { skillId })
     cleanupMuoiMarks(battle)
   }
+  cleanupMocFields(battle)
   cleanupHaiFields(battle)
   cleanupLienHealing(battle)
   updateHaiPassives(battle)
@@ -1148,9 +1227,13 @@ function commitCast(
 ) {
   actor.cast = null
   const enemy =
-    actor.spiritId === "aw2-muoi" && cast.slot === "auto"
-      ? selectMuoiTarget(battle, actor)
-      : selectEnemy(battle, actor, cast.targetId)
+    actor.spiritId === "aw2-moc"
+      ? cast.targetId
+        ? byId(battle, cast.targetId)
+        : undefined
+      : actor.spiritId === "aw2-muoi" && cast.slot === "auto"
+        ? selectMuoiTarget(battle, actor)
+        : selectEnemy(battle, actor, cast.targetId)
   const injuredAlly =
     cast.slot === "auto" && ["aw2-lam", "aw2-lien"].includes(actor.spiritId)
       ? actor.spiritId === "aw2-lien"
@@ -1177,6 +1260,92 @@ function commitCast(
             ? [enemy.id]
             : []
   record(battle, "cast-commit", actor.id, committedTargets, { skillId })
+  if (actor.spiritId === "aw2-moc") {
+    const target = cast.targetId ? byId(battle, cast.targetId) : undefined
+    if (
+      !target ||
+      target.hp <= 0 ||
+      target.side === actor.side ||
+      distance(actor, target) > actor.range
+    ) {
+      record(battle, "miss", actor.id, cast.targetId ? [cast.targetId] : [], {
+        skillId,
+        actionId: cast.id,
+        text: "Mục tiêu Mộc không còn hợp lệ trong tầm; không đổi mục tiêu.",
+      })
+      return
+    }
+    if (cast.slot === "auto") {
+      const old = actor.mocMark
+      const replacedAtNewPosition =
+        old &&
+        old.expiresAtTick > battle.tick &&
+        Math.abs(old.center - target.position) >= MOC_TUNING.newPositionDistance
+      removeMocField(battle, actor, "mocMark", "Dấu mới thay dấu cũ.")
+      actor.mocMark = {
+        id: cast.id,
+        center: target.position,
+        armedAtTick: battle.tick + MOC_TUNING.armTicks,
+        expiresAtTick: battle.tick + MOC_TUNING.markTicks,
+      }
+      if (
+        replacedAtNewPosition &&
+        actor.shield === 0 &&
+        battle.tick >= (actor.mocPassiveUntilTick ?? 0)
+      ) {
+        applyShield(
+          battle,
+          actor,
+          actor,
+          actor.maxHp * MOC_TUNING.passiveShieldRatio,
+          combatSkillId("aw2-moc", "passive"),
+          MOC_TUNING.passiveShieldTicks,
+        )
+        actor.mocPassiveUntilTick = battle.tick + MOC_TUNING.passiveCooldown
+      }
+      record(battle, "status", actor.id, [], {
+        skillId,
+        actionId: cast.id,
+        statusEffect: "moc-mark",
+        statusChange: "apply",
+        areaCenter: target.position,
+        resolveTick: actor.mocMark.armedAtTick,
+        expiresAtTick: actor.mocMark.expiresAtTick,
+        text: "Gieo Dấu: một vùng lá cố định, chờ đủ nhịp.",
+      })
+    } else {
+      const mark = actor.mocMark
+      const consumedMark = !!mark && mark.expiresAtTick > battle.tick
+      const center = consumedMark ? mark!.center : target.position
+      removeMocField(
+        battle,
+        actor,
+        "mocMark",
+        "Mở Gói Mùa Xanh thu dấu hợp lệ.",
+      )
+      actor.mocBurst = {
+        id: cast.id,
+        center,
+        resolveTick: battle.tick + MOC_TUNING.burstDelay,
+        amount:
+          actor.attack *
+          (consumedMark
+            ? MOC_TUNING.markedBurstMultiplier
+            : MOC_TUNING.burstMultiplier),
+        consumedMark,
+      }
+      record(battle, "status", actor.id, [], {
+        skillId,
+        actionId: cast.id,
+        statusEffect: "moc-burst",
+        statusChange: "apply",
+        areaCenter: center,
+        resolveTick: actor.mocBurst.resolveTick,
+        text: "Mở Gói Mùa Xanh: báo trước vùng kết tụ hai nhịp.",
+      })
+    }
+    return
+  }
   if (actor.spiritId === "aw2-lien") {
     if (cast.slot === "auto") {
       if (!injuredAlly || actor.lienHoT) {
@@ -1549,6 +1718,13 @@ function tryAutoSkill(battle: CombatBattle, actor: CombatActor): boolean {
     return false
   const kit = COMBAT_KITS[actor.spiritId]
   const enemy = selectEnemy(battle, actor)
+  if (actor.spiritId === "aw2-moc") {
+    const target = mocEnemy(battle, actor)
+    if (!target) return false
+    actor.nextAutoTick = battle.tick + kit.autoCooldown
+    startCast(battle, actor, "auto", target.id, kit.autoCastTicks)
+    return true
+  }
   if (actor.spiritId === "aw2-lien") {
     if (actor.lienHoT) return false
     const target = selectLienAlly(battle, actor)
@@ -1720,6 +1896,7 @@ function checkResult(battle: CombatBattle) {
   const enemies = living(battle, "enemy").length
   if (players && enemies) return
   battle.status = players ? "player-win" : enemies ? "enemy-win" : "draw"
+  cleanupMocFields(battle, true)
   cleanupHaiFields(battle, true)
   cleanupLienHealing(battle, true)
 
@@ -1753,6 +1930,8 @@ function advanceOneTick(battle: CombatBattle) {
 
   resolveLienHealing(battle)
 
+  resolveMocFields(battle)
+  if (battle.status !== "active") return
   resolveNhienSequences(battle)
   checkResult(battle)
   if (battle.status !== "active") return
@@ -1796,21 +1975,33 @@ export function castCombatUltimate(
   )
     throw Error("Vị Linh không thể dùng tuyệt kỹ.")
   if (actor.cast) throw Error("Vị Linh đang thi triển kỹ năng khác.")
+  if (actor.mocBurst) throw Error("Mộc đang chờ vùng kết tụ đã cam kết.")
   if (actor.lienUltimate)
     throw Error("Liên đang hoàn tất nhịp hồi phục đã cam kết.")
   if (nhienBusy(actor, battle.tick))
     throw Error("Nhiên đang nối nhịp hoặc hồi thế.")
   if (actor.energy < ULTIMATE_ENERGY)
     throw Error("Tuyệt kỹ chưa đủ năng lượng.")
-  const needsEnemy = ["aw2-lua", "aw2-suong", "aw2-muoi", "aw2-nhien"].includes(
-    actor.spiritId,
-  )
+  const needsEnemy = [
+    "aw2-lua",
+    "aw2-suong",
+    "aw2-muoi",
+    "aw2-nhien",
+    "aw2-moc",
+  ].includes(actor.spiritId)
   if (needsEnemy) {
     const target = targetId ? byId(battle, targetId) : undefined
     if (!target?.hp || target.side !== "enemy")
       throw Error("Tuyệt kỹ cần một mục tiêu địch hợp lệ.")
-    if (actor.spiritId === "aw2-nhien" && distance(actor, target) > actor.range)
-      throw Error("Mục tiêu nằm ngoài tầm cận chiến của Nhiên.")
+    if (
+      ["aw2-nhien", "aw2-moc"].includes(actor.spiritId) &&
+      distance(actor, target) > actor.range
+    )
+      throw Error(
+        actor.spiritId === "aw2-moc"
+          ? "Mục tiêu nằm ngoài tầm của Mộc."
+          : "Mục tiêu nằm ngoài tầm cận chiến của Nhiên.",
+      )
   }
   actor.energy = 0
   startCast(

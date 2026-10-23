@@ -78,8 +78,8 @@ function mark(b: CombatBattle, id = "a", source = "e", expires = 30) {
 }
 
 describe("AW2-007H Liên finite healing and selective cleanse", () => {
-  it("registers ninth actual kit and projects levels without starter/save ownership", () => {
-    expect(Object.keys(COMBAT_KITS)).toHaveLength(9)
+  it("retains its actual kit and projects levels without starter/save ownership", () => {
+    expect(COMBAT_KITS).toHaveProperty("aw2-lien")
     expect(STARTER_SPIRIT_IDS).toHaveLength(5)
     expect(STARTER_SPIRIT_IDS).not.toContain("aw2-lien")
     for (const level of [1, 5, 10, 20]) {

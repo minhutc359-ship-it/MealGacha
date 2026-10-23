@@ -320,6 +320,38 @@ export function BattleCanvas({
       element!.dataset.haiFields = JSON.stringify(fields)
     }
 
+    function drawMocFields() {
+      const fields = []
+      if (!presentation.terminal)
+        for (const actor of battle.actors) {
+          if (actor.spiritId !== "aw2-moc" || actor.hp <= 0) continue
+          const manifest = manifestFor(actor, visualIds)
+          for (const slot of ["auto", "ultimate"] as const) {
+            const field = slot === "auto" ? actor.mocMark : actor.mocBurst
+            if (!field) continue
+            const frame = manifest.skills[slot].fx[slot === "auto" ? 1 : 0]
+            paintFrame(
+              manifest,
+              frame,
+              atlases![manifest.spiritId].fx,
+              64 + (field.center * (layout.width - 128)) / 100,
+              actorY(actor),
+              0.22,
+              actor.side === "enemy",
+              0.65,
+            )
+            fields.push({
+              sourceId: actor.id,
+              slot,
+              position: field.center,
+              frame,
+              ...field,
+            })
+          }
+        }
+      element!.dataset.mocFields = JSON.stringify(fields)
+    }
+
     function drawActor(actor: CombatActor) {
       if (actor.spiritId === FORGOTTEN_HOST_ASSETS.entityId) {
         const manifest = FORGOTTEN_HOST_ASSETS
@@ -617,6 +649,7 @@ export function BattleCanvas({
         }
       drawArena()
       drawHaiFields()
+      drawMocFields()
       drawBossEffects(false)
       for (const projectile of Object.values(presentation.projectiles))
         drawProjectile(projectile, elapsed)

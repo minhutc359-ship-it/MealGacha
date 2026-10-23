@@ -8,3 +8,5 @@ export * from "./muoi"
 export * from "./nhien"
 export * from "./hai"
 export * from "./lien"
+
+export * from "./moc"

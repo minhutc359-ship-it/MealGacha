@@ -161,3 +161,5 @@ Không tuyên bố “không có bản quyền”, CC0 hoặc bảo đảm khôn
 - [Cấu trúc dev](dev/README.md), [lịch sử trước 3.3](dev/docs/HISTORY_BEFORE_33.md), [thay đổi 3.2.2](dev/docs/challenge-v322/VERIFICATION.md)
 
 Bản web có PvP giao hữu hai người qua WebRTC cho TCG/Auto chess; chủ phòng tính trận. Chưa có PvP xếp hạng, giao dịch người chơi, quảng cáo, IAP hay đồng bộ tài khoản. Browser QA dùng Chromium; Safari/WKWebView và Android native cần được thử trên máy thật theo kế hoạch mobile.
+
+AW2-007I: Mộc đã có kit thử nghiệm thực thi, dấu hữu hạn/khiên thay dấu/vùng kết tụ có báo trước và cấp1–20. Chạy `pnpm dev`, mở `/dev/aw2/battle.html?team=moc`.10/12 kit≈83%,12/12 bộ hình tham chiếu; demo≈90%/sản phẩm≈40% (35–45%) giữ nguyên,0full-characterDoD. [Báo cáo hiện tại](docs/aw2/REPORT.md), [luyện Mộc](docs/aw2/MOC_PRACTICE.md). Next Bách rồi Vân; collection/đội lưu còn chờ.

@@ -93,6 +93,13 @@ export function AssetPreview({
           thập và đội lưu còn chờ triển khai.
         </p>
       )}
+      {manifest.spiritId === "aw2-moc" && combatImplemented && (
+        <p>
+          Mộc có dấu lá cố định và tuyệt kỹ kết tụ theo luật thật; thử tại{" "}
+          <a href="/dev/aw2/battle.html?team=moc">luyện kỹ năng Mộc</a>. Thu
+          thập và đội lưu còn chờ triển khai.
+        </p>
+      )}
       {manifest.spiritId === "aw2-lien" && combatImplemented && (
         <p>
           Liên đã có chiến đấu/cấp độ thử nghiệm:{" "}

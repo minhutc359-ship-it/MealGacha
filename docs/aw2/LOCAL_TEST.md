@@ -64,3 +64,6 @@ Mở http://localhost:8443/dev/aw2/battle.html?team=hai sau `pnpm dev`. Đội l
 ## Liên · kỹ năng thật AW2-007H
 
 Mở http://localhost:8443/dev/aw2/battle.html?team=lien sau `pnpm dev`. Đội luyện5 người thay Lam Lam bằng Liên; Muối Đen phía địch tạo dấu thật. Thử HoT ba nhịp, tẩy một debuff và hai nhịp Mở Lời, kháng đúng một lần ngắt trên người được hồi máu. [Hướng dẫn Liên](LIEN_PRACTICE.md). Cấp1/5/10/20, pause/step/reduced/audio opt-in; chưa cấp Liên vào collection/đội lưu.
+
+
+AW2-007I: `pnpm dev`, mở `http://localhost:8443/dev/aw2/battle.html?team=moc`; đội5 thay Sương bằng Mộc, dấu cố định/cảnh báo/target/ngắt thật/cấp1–20. Không ghi save hoặc cấp collection. [Hướng dẫn](MOC_PRACTICE.md), [kiểm chứng](evidence/AW2-007I.md).
