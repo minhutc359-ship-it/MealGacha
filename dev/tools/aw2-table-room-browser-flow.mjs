@@ -11,7 +11,7 @@ const worldReady = async (page) => {
       ids = JSON.parse(localStorage.getItem("aw2.development.save")).progress
         .partyIds
     return (
-      canvas?.dataset.partyIds === JSON.stringify(ids) &&
+      canvas?.dataset.partyIds === JSON.stringify(ids.slice(0, 1)) &&
       canvas.dataset.sceneId === "aw2-environment-kitchen-table-v1" &&
       canvas.dataset.foregroundAlpha
     )
@@ -134,11 +134,13 @@ export async function roomBeforeBoss({
   for (let i = 0; i < teams.length; i++) {
     const ids = teams[i]
     await choose(page, ids)
-    ids.forEach((id) => seen.add(id))
+    seen.add(ids[0])
     const canvas = page.getByTestId("world-map").locator("canvas")
     check(
-      `Room follower group${i + 1} loads selected original world atlases`,
-      (await canvas.getAttribute("data-party-ids")) === JSON.stringify(ids),
+      `Room team${i + 1} draws only its saved leader`,
+      (await canvas.getAttribute("data-party-ids")) ===
+        JSON.stringify(ids.slice(0, 1)) &&
+        (await canvas.getAttribute("data-party-size")) === "1",
     )
     await go(272, 320)
     await page.waitForFunction(
@@ -166,13 +168,13 @@ export async function roomBeforeBoss({
           .foregroundAlpha === 1,
     )
     check(
-      `Group${i + 1} foreground restores full opacity after all followers clear it`,
+      `Group${i + 1} foreground restores full opacity after the representative clears it`,
       +(await canvas.getAttribute("data-foreground-alpha")) === 1,
     )
   }
   check(
-    "Authored room exercised all12 original follower identities",
-    seen.size === 12,
+    "Authored room exercised the first saved representative of three team compositions",
+    seen.size === 3,
   )
   await choose(page, starter)
   const after = await save()

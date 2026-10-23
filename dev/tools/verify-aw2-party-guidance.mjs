@@ -70,7 +70,7 @@ const world = async () => {
       .progress.partyIds
     return (
       document.querySelector('[data-testid="world-map"] canvas')?.dataset
-        .partyIds === JSON.stringify(party.length ? party : ["aw2-than"])
+        .partyIds === JSON.stringify([party[0] ?? "aw2-than"])
     )
   })
   await page
@@ -221,12 +221,13 @@ try {
   )
   await choose(["aw2-lua", "aw2-nhien", "aw2-lam", "aw2-moc-non", "aw2-suong"])
   check(
-    "No-tank draft explains an owned starter option and leaves storage/followers intact",
+    "No-tank draft explains an owned starter option and leaves storage/representative intact",
     (await page.getByTestId("party-no-tank").isVisible()) &&
       (await raw()) === beforeDraft &&
       (await page
         .locator("canvas[data-party-ids]")
-        .getAttribute("data-party-ids")) === JSON.stringify(originalParty),
+        .getAttribute("data-party-ids")) ===
+        JSON.stringify(originalParty.slice(0, 1)),
   )
   await choose(["aw2-than", "aw2-lua", "aw2-van", "aw2-moc-non", "aw2-suong"])
   check(

@@ -208,10 +208,10 @@ export async function collectionBeforeBoss({
         JSON.parse(
           document.querySelector("canvas[data-party-ids]").dataset.partyIds,
         ),
-      ) === JSON.stringify(ids),
+      ) === JSON.stringify(ids.slice(0, 1)),
     ids,
   )
-  check("World followers use all five selected nonstarter authored manifests")
+  check("World uses only the first saved nonstarter as representative")
   for (const width of [320, 390, 768]) {
     await page.setViewportSize({ width, height: 950 })
     check(

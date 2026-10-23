@@ -1,6 +1,14 @@
 # Test ledger / change impact
 
-## AW2-006C current verified scope
+## AW2-006E current verified scope
+
+Source `PENDING006E`, base `e6b87cf0dd2d0afc1b8237de4042a6868daf11b1`, D17 explicit owner one-map-leader request. PASS78cases/4files=10room+12controls+47collection+9rematch,0fail/skip. Existing meaningful navigation/visibility/collection/party/rematch rules unchanged; no tiny implementation-mirroring unit added. Full current-head NOT_RUN, mandatory on shared save/engine/world authority/collision changes or release.
+
+PASS102browser=47source+47compiled+8compiled build. Fresh pre-intro/no-unlock fallback, then exact006Bearned completed checkpoint with origin/hash. All12first-slot representatives/native draft/cancel/failed-save/retry/swap/reload/nonleader-only reorder+same canvas, four-direction real moving/idle frames, one-position metadata, six-zone reciprocal travel,320/390/768, furniture fade/front depth, actual saved-five battle order/retreat/return/no grants, unused nonleader atlas never requested and selected atlas404/recovery/exact legacy/ending/XP/ownership bytes. Expected404errors separated, zero unexpected errors. Compiled intro still grants exactlyfive starters/30XP/once-only receipt and reload. Both types/review206files/80,463,205bytes/style/MJS syntax/JSON/doc links/whitespace/fresh49text stable exclusion PASS. Stable851files/177,450,422bytes build reused at4165b1e.386unchanged hashes preserve historical pure authority/engine/art/story/mode evidence; original1401full units not counted fresh, old follower assertions superseded byD17. [Evidence](evidence/AW2-006E.md), [JSON](evidence/AW2-006E-verification.json), [reuse](evidence/AW2-006E-reused-evidence.json).
+
+WORLD-LEADER-01/CONTROL-01/COLLECTION-01/BATTLE-REMATCH-01 development subset PASS. Updated legacy harness selectors/assertions syntax-checked; full RPG/demo/advisory/collection/rematch flows NOT_RERUN in this task, changed display boundary checked by focused source+compiled QA. In-session React/visual review and selected captures opened; no physical-device/independent human acceptance. Demo90/product40(35–45)/0fullDoD unchanged; next006D. No reset/master/deploy/release.
+
+## AW2-006C historical verified scope
 
 Source `b350a11d777c1e8c94b5f2aadc6299b68f7e7722`, base `171ccd04efe7b5edc894a32ff5db14e15d54a111`. PASS30cases/3files=8new interaction-prop+10room+12controls,0fail/skip. Actual PNG/WebP hashes/frame/aspect/budget/rights, three map-sourced anchors/layer/label clearance, read-only live locked/won/read/completed state, real path/controls. Full current-head NOT_RUN; shared store/schema/collision/combat/world/economy/collection/mode authority unchanged.
 

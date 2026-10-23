@@ -44,7 +44,7 @@ async function team(page, ids, mode) {
   await page.waitForFunction(
     (ids) =>
       document.querySelector('[data-testid="world-map"] canvas')?.dataset
-        .partyIds === JSON.stringify(ids),
+        .partyIds === JSON.stringify(ids.slice(0, 1)),
     ids,
   )
   await page

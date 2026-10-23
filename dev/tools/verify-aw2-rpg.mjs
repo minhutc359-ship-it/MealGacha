@@ -93,7 +93,7 @@ try {
     page.getByRole("button", { name: "Đọc lại", exact: true }).click()
   const reload = async () => {
     await page.reload()
-    await page.locator('canvas[data-party-size="5"]').waitFor()
+    await page.locator('canvas[data-party-size="1"]').waitFor()
   }
   const status = async (text) =>
     page.getByRole("status").filter({ hasText: text }).waitFor()
@@ -118,7 +118,10 @@ try {
     "Ordinary position save rejects quest forgery without changing reward eligibility",
     ordinaryForgery,
   )
-  check("All five authored world atlases are decoded", worldImages.size === 5)
+  check(
+    "Only the representative world atlas is requested",
+    worldImages.size === 1,
+  )
   await page.keyboard.press("e")
   await page.getByRole("dialog").waitFor()
   await page.keyboard.press("Escape")
@@ -191,7 +194,7 @@ try {
       { key, zone, x, y },
     )
     await read()
-    await page.locator('canvas[data-party-size="5"]').waitFor()
+    await page.locator('canvas[data-party-size="1"]').waitFor()
   }
   await place("aw2-zone-forgotten-kitchen-yard", 320, 128)
   await page.getByText("Nấu và chia một bữa ấm", { exact: true }).click()
@@ -253,7 +256,7 @@ try {
   const beforeRead = await raw()
   await read()
   await page.waitForFunction(() => {
-    const canvas = document.querySelector('canvas[data-party-size="5"]')
+    const canvas = document.querySelector('canvas[data-party-size="1"]')
     if (!canvas?.dataset.partyPositions) return false
     return JSON.parse(canvas.dataset.partyPositions).every(
       (point) =>
@@ -261,7 +264,7 @@ try {
     )
   })
   check(
-    "Reread clears old follower trails and restores the saved position without writing",
+    "Reread restores the representative to the saved position without writing",
     (await raw()) === beforeRead,
   )
   for (const width of [320, 390, 768]) {

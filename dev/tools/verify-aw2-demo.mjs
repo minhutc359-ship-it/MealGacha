@@ -894,7 +894,7 @@ try {
     { key, readyEnding },
   )
   await branch.reload()
-  await branch.locator("canvas[data-party-size='5']").waitFor()
+  await branch.locator("canvas[data-party-size='1']").waitFor()
   await branch.getByTestId("world-map").focus()
   await branch.keyboard.press("e")
   await branch

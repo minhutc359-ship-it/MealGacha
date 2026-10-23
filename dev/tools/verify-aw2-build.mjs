@@ -97,7 +97,7 @@ try {
   await interact("Đọc mảnh khăn")
   await go(160, 240)
   await interact("Hoàn tất nhập môn")
-  await page.locator('canvas[data-party-size="5"]').waitFor()
+  await page.locator('canvas[data-party-size="1"]').waitFor()
   const raw = await page.evaluate(() =>
     localStorage.getItem("aw2.development.save"),
   )
@@ -109,7 +109,7 @@ try {
       save.economy.receipts.length === 1,
   )
   await page.reload()
-  await page.locator('canvas[data-party-size="5"]').waitFor()
+  await page.locator('canvas[data-party-size="1"]').waitFor()
   check(
     "Built save survives reload byte-identically",
     (await page.evaluate(() =>

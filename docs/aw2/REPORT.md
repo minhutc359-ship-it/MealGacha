@@ -1,20 +1,13 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-006C: hình ghi chép/chén và hai lối ra trong Phòng Bàn.** Source `b350a11d777c1e8c94b5f2aadc6299b68f7e7722` trên `game/adventure-world-2`.
+**Đã hoàn thành AW2-006E theo yêu cầu owner: chỉ nhân vật đầu đội đại diện khi di chuyển trên map.** Source `PENDING006E` trên `game/adventure-world-2`.
 
-- Ghi chép sáng lên sau khi thắng boss; lối tắt sáng lên sau kết thúc. Lối về Phòng Lửa luôn mở. Nhãn chữ nằm dưới hình, nút chỉ đường vẫn chỉ cho đội đi bộ.
-- Ba hình nằm dưới nhân vật, giữ nguyên đường đi/va chạm/điều kiện tương tác.
-- Sửa lỗi một nhịp vẽ khi chuyển vùng trước lúc canvas cũ được hủy.
+- Map tải/vẽ một nhân vật, bỏ đoàn đi theo. Đưa nhân vật muốn dùng lên **Vị trí đội 1**, rồi **Lưu đội hình** để đổi đại diện.
+- Chọn nháp/Hủy/lỗi lưu giữ đại diện cũ; tải lại tiếp tục theo đội đã lưu. Trước nhập môn vẫn hiển thị Than như trước.
+- Đội lưu và trận chiến vẫn đủ năm thành viên, đúng thứ tự/EXP/nhấn Vân. Không cần reset save.
 
-**Kiểm chứng:**30ca unit/3files và102browser assertions PASS; hai typecheck/review build/cách ly stable đạt. Dùng checkpoint earned006B nguyên văn, sau đó thắng boss/đọc ghi chép/đi hai lối ra/đấu lại-rút lui/reload và thử thiếu từng ảnh→khôi phục. Đây là kiểm tra phần thay đổi, không phải full-story mới;381hash giữ bằng chứng phần không đổi ở ref gốc. [Bằng chứng](evidence/AW2-006C.md), [cách dùng](PHONG_BAN.md).
+**Kiểm chứng:**78ca unit/4files và102browser assertions PASS; hai typecheck/review build/cách ly stable đạt. Đủ12nhân vật làm đại diện,4hướng đi,6vùng, mobile/furniture, lỗi lưu/retry/reload, trận5người và thiếu atlas→khôi phục. Dùng checkpoint earned nguyên văn, không phải full-story mới;386hash giữ phần không đổi ở ref gốc. [Bằng chứng](evidence/AW2-006E.md), [cách chọn đội](COLLECTION.md).
 
-| Chỉ báo | Hiện tại | Lý do |
-|---|---:|---|
-| Demo với art tham chiếu | **≈90%** | Giữ nguyên; còn playtest độc lập toàn hành trình và sửa blocker |
-| Toàn sản phẩm12nhân vật | **≈40%**, khoảng35–45% | Giữ nguyên; chưa đóng gói world/full-character/thiết bị/rights |
-| Kit/bộ hình tham chiếu | **12/12mỗi nhóm** | Giữ nguyên |
-| Nhân vật qua đầy đủ DoD | **0/12** | Gate độc lập còn mở |
+**Tiến độ giữ nguyên:** demo **≈90%**, sản phẩm **≈40%(35–45%)**,12kit/12bộ tham chiếu/**0fullDoD**. Thay đổi hiển thị này chưa đóng playtest độc lập, thiết bị thật, full-character hoặc rights.
 
-**Tiếp theo:**[AW2-006D](tasks/AW2-006D.md) — hình chibi world riêng cho boss; hiện vẫn dùng HD idle tĩnh. Năm vùng khác vẫn debug. [Bốn gói tới≈50%](NEXT_MILESTONES.md) chưa nghiệm thu đủ; D11gachaPROPOSED/D12OPEN.
-
-Ảnh mới tạo bằng **built-in imagegen**, lưu [ghi chép/chén PNG](../../dev/aw2/assets/environments/kitchen-table/interaction-v1/note-source.png), [thảm dấu lối PNG](../../dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png); [prompts nguyên văn](../../dev/aw2/assets/environments/kitchen-table/interaction-v1/prompts.json). Rights REVIEW_REQUIRED/commercial NOT_CLEARED.
+**Tiếp theo:**[AW2-006D](tasks/AW2-006D.md), hình chibi world riêng cho boss; hiện vẫn HD idle tĩnh. Năm vùng khác vẫn debug. [Bốn gói tới≈50%](NEXT_MILESTONES.md) còn nghiệm thu; D11PROPOSED/D12OPEN.

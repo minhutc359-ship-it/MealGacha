@@ -37,8 +37,8 @@ export function WorldCanvas({
   pauseRef.current = paused
   const [error, setError] = useState("")
   const [ready, setReady] = useState(false)
-  const ids = world.partyIds.length ? world.partyIds : ["aw2-than"]
-  const partyKey = ids.join(",")
+  const leaderId = world.partyIds[0] ?? "aw2-than"
+  const ids = [leaderId]
   const scene =
     world.zoneId === TABLE_ROOM_SCENE.zoneId ? TABLE_ROOM_SCENE : null
   const roomPoints = tableRoomWaypoints(world)
@@ -234,7 +234,6 @@ export function WorldCanvas({
           next.stage.addChild(sprite)
           return { manifest, frames, sprite }
         })
-        let trail = [{ ...position.current }]
         let prior = { ...position.current }
         let elapsed = 0
         const reduced = matchMedia("(prefers-reduced-motion: reduce)")
@@ -246,32 +245,11 @@ export function WorldCanvas({
           const moving =
             Math.hypot(now.x - prior.x, now.y - prior.y) > 0.05 &&
             !pauseRef.current
-          if (moving) {
-            elapsed += ticker.deltaMS
-            if (Math.hypot(now.x - trail[0].x, now.y - trail[0].y) >= 3) {
-              trail.unshift({ ...now })
-              trail = trail.slice(0, 160)
-            }
-          }
-          actors.forEach(({ manifest, frames, sprite }, index) => {
-            let distance = 0,
-              point = now
-            if (index > 0) {
-              point = trail[trail.length - 1]
-              for (let i = 1; i < trail.length; i++) {
-                distance += Math.hypot(
-                  trail[i].x - trail[i - 1].x,
-                  trail[i].y - trail[i - 1].y,
-                )
-                if (distance >= index * 27) {
-                  point = trail[i]
-                  break
-                }
-              }
-            }
+          if (moving) elapsed += ticker.deltaMS
+          actors.forEach(({ manifest, frames, sprite }) => {
             const frameId = sampleWorldFrame(
               manifest,
-              point.facing,
+              now.facing,
               moving,
               elapsed,
               reduced.matches,
@@ -285,8 +263,9 @@ export function WorldCanvas({
               frame.anchorY / frame.height,
             )
             sprite.scale.set(48 / frame.height)
-            sprite.position.set(point.x, point.y + 6)
-            sprite.zIndex = point.y + 10
+            sprite.position.set(now.x, now.y + 6)
+            sprite.zIndex = now.y + 10
+            next.canvas.dataset.representativeFrame = frameId
           })
           next.canvas.dataset.partyPositions = JSON.stringify(
             actors.map(({ sprite }) => ({ x: sprite.x, y: sprite.y })),
@@ -361,7 +340,7 @@ export function WorldCanvas({
       app?.destroy(true, { children: true })
       textures.forEach((texture) => texture.destroy(false))
     }
-  }, [world.zoneId, partyKey])
+  }, [world.zoneId, leaderId])
   return (
     <>
       <div
@@ -419,7 +398,7 @@ export function WorldCanvas({
         ))}
         {!ready && !error && (
           <p className="aw2-map-loading" role="status">
-            Đang gọi những người bạn…
+            Đang tải bản đồ…
           </p>
         )}
         {error && (
@@ -428,6 +407,10 @@ export function WorldCanvas({
           </p>
         )}
       </div>
+      <p data-testid="map-representative">
+        Đại diện trên bản đồ: {ROSTER_ASSETS[leaderId].displayName}. Vị trí đầu
+        trong đội đã lưu quyết định nhân vật đại diện.
+      </p>
       {scene && (
         <RoomWaypoints
           world={world}
