@@ -1,7 +1,7 @@
 {
   "task": "AW2-006B",
   "status": "PASS_DEVELOPMENT_SUBSET",
-  "source": "PENDING006B",
+  "source": "425aa16d94ea51decf7f43afb5986b13ad126dfc",
   "base": "87aa38c2e79ba11adb1508b78b83370c089b3984",
   "branch": "game/adventure-world-2",
   "environment": {

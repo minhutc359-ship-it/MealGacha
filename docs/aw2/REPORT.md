@@ -1,6 +1,6 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-006B: hình môi trường và chỉ đường trong Phòng Bàn.** Source `PENDING006B` trên `game/adventure-world-2`.
+**Đã hoàn thành AW2-006B: hình môi trường và chỉ đường trong Phòng Bàn.** Source `425aa16d94ea51decf7f43afb5986b13ad126dfc` trên `game/adventure-world-2`.
 
 - Nền gỗ/thảm và bàn nhỏ riêng; bàn mờ khi che nhân vật phía sau. Đã kiểm tra đủ12nhân vật tham chiếu.
 - Bốn nút đi bộ tới boss, ghi chép và hai lối ra; trạng thái theo nhiệm vụ. Khi đến gần vẫn dùng **E/Tương tác**; lối tắt mở sau kết thúc.

@@ -1,0 +1,22 @@
+{
+  "task": "AW2-006B",
+  "branch": "game/adventure-world-2",
+  "source": {
+    "sha": "425aa16d94ea51decf7f43afb5986b13ad126dfc",
+    "tree": "7bdaf4a01d0a2c773f2f9cd67570f4b2b74184d5",
+    "expectedHead": "87aa38c2e79ba11adb1508b78b83370c089b3984",
+    "force": false,
+    "textFiles": 34,
+    "binaryFiles": 4,
+    "stagedBytes": 6347136,
+    "apiTreeEqualsIndex": "PASS",
+    "independentFetchRemoteTreeIndexAncestry": "PASS",
+    "guardedLocalSync": "PASS",
+    "cleanSource": "PASS"
+  },
+  "completion": {
+    "scope": "Documentation source stamps/publication evidence only; no runtime/assets/tool/dependency changes",
+    "selfSha": "Omitted to avoid recursive tracked commit hash; final SHA and fresh clean remote/local readback are recorded before final handoff",
+    "approval": "Standing owner D16; no new branch/PR/merge/master/deploy/release"
+  }
+}
