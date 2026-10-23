@@ -2,7 +2,7 @@
   "task": "AW2-004M–P",
   "date": "2026-10-23",
   "base": "e0d6bb52584e84d047e0536d7c4525df0a64125e",
-  "implementationSource": "PENDING_COHORT_SOURCE",
+  "implementationSource": "8344fc0b05275a1d8e314100fcfa3263d9956c8e",
   "status": "PASS",
   "units": {
     "focusedCases": 105,
@@ -11,7 +11,16 @@
     "fullFiles": 108,
     "fullDurationSeconds": 21.43,
     "overlap": "Focused105 are contained in full1132, never sum them",
-    "fullRunNote": "A literal CLI -- made the intended scoped rerun ignore subsequent filters/options; observed full1132/108 PASS, no requested JSON was produced. Earlier focused105 JSON retained. No further rerun."
+    "fullRunNote": "A literal CLI -- made the intended scoped rerun ignore subsequent filters/options; observed full1132/108 PASS, no requested JSON was produced. Earlier focused105 JSON retained. No further rerun.",
+    "fullRunCommand": "pnpm test -- dev/tests/aw2/assets.test.ts dev/tests/aw2/starters.test.ts dev/tests/aw2/muoi-assets.test.ts dev/tests/aw2/nhien-assets.test.ts dev/tests/aw2/roster-references.test.ts dev/tests/aw2/confirmed-effects.test.ts dev/tests/aw2/playback.test.ts --maxWorkers=2 --reporter=json --outputFile=/tmp/aw2-004m-p-final-unit.json",
+    "fullRunExitCode": 0,
+    "fullRunObservedStdout": [
+      "Test Files  108 passed (108)",
+      "Tests  1132 passed (1132)",
+      "Start at  09:16:38",
+      "Duration  21.43s (tests 57%, transform 22%, import 20%, worker 1%)",
+      "Isolate  108 workers spawned · ~341ms startup each (spawn + environment, per file)"
+    ]
   },
   "browserAssertions": 390,
   "browser": {
@@ -1276,5 +1285,17 @@
       "event": "pnpm exec prettier unavailable in project dependencies",
       "resolution": "Used existing cached Prettier3.3.3 with --no-semi, scoped check PASS; no dependencies changed"
     }
-  ]
+  ],
+  "testedTree": "e9a3c5b6b65e17d63767ed17899446475962fb95",
+  "publication": {
+    "source": "8344fc0b05275a1d8e314100fcfa3263d9956c8e",
+    "tree": "e9a3c5b6b65e17d63767ed17899446475962fb95",
+    "files": 97,
+    "bytes": 49178170,
+    "binaryFiles": 50,
+    "everyBlobGitSHA": "MATCH",
+    "remoteUpdate": "expected e0d6bb52584e84d047e0536d7c4525df0a64125e / force=false",
+    "independentFetchIndexTreeAncestry": "PASS",
+    "completion": "Documentation source stamps only; final branch HEAD and remote equality are reported after completion commit"
+  }
 }

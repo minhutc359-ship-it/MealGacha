@@ -1,6 +1,6 @@
 # Bách — reference and full-character gates
 
-2026-10-23 · AW2-004O · aw2-bach/SSR/Bánh chưng/Tank. Source `PENDING_COHORT_SOURCE`. Approved identity and four canonical skill directions preserved. Portrait/16world/32HD/16FX/four cues verified as reference only;64 safe cells, edge≤2/255, lossless runtimeWebP and18-path repeat identity. Browser47source+47compiled PASS, included in cohort390; full1132 cases PASS.
+2026-10-23 · AW2-004O · aw2-bach/SSR/Bánh chưng/Tank. Source `8344fc0b05275a1d8e314100fcfa3263d9956c8e`. Approved identity and four canonical skill directions preserved. Portrait/16world/32HD/16FX/four cues verified as reference only;64 safe cells, edge≤2/255, lossless runtimeWebP and18-path repeat identity. Browser47source+47compiled PASS, included in cohort390; full1132 cases PASS.
 
 | Gate | Verified subset | Remaining |
 |---|---|---|
