@@ -1,6 +1,6 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-007N: đo đội hình ở EXP thực tế và cải thiện việc thử đội.** Source `PENDING007N` trên `game/adventure-world-2`.
+**Đã hoàn thành AW2-007N: đo đội hình ở EXP thực tế và cải thiện việc thử đội.** Source `6fc852872a008c08d2e9b2dd6a8983ba6f2617dc` trên `game/adventure-world-2`.
 
 - **Vai trò/chỉ số đội đang chọn:** xem Máu/Công/Thủ theo cấp chung; gợi ý khi thiếu người đỡ đòn, hồi phục hoặc sát thương chuyên trách. Vân giữ Hybrid; Mộc/Mộc Non tách đúng identity.
 - **Chọn đội khởi đầu:** trở lại năm starter trong draft, giữ nhấn Vân; bấm Lưu mới áp dụng, Hủy trả về đội lưu. Không cấp nhân vật/EXP/items hoặc sửa ending.

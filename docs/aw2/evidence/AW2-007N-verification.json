@@ -1,7 +1,7 @@
 {
   "task": "AW2-007N",
   "status": "PASS_DEVELOPMENT_SUBSET",
-  "source": "PENDING007N",
+  "source": "6fc852872a008c08d2e9b2dd6a8983ba6f2617dc",
   "base": "e855c8e87e45a3623aed09bd19cfab90ba9ff8d7",
   "branch": "game/adventure-world-2",
   "environment": {
@@ -299,5 +299,17 @@
     "fullCharacterDoD": 0,
     "pointsGranted": 0,
     "reason": "Measured/advisory slice improves existing development group; no independent/product gate closed."
+  },
+  "publication": {
+    "status": "PASS",
+    "source": "6fc852872a008c08d2e9b2dd6a8983ba6f2617dc",
+    "sourceTree": "9a30e0046bb8bb1119301b72db963c8993bd778c",
+    "expectedHead": "e855c8e87e45a3623aed09bd19cfab90ba9ff8d7",
+    "force": false,
+    "textFiles": 27,
+    "stagedBytes": 732500,
+    "independentFetchTreeIndexAncestryGuardedLocalSync": "PASS",
+    "sourceClean": true,
+    "completionScope": "Documentation source stamps/publication evidence only; final runtime remains tested. Final clean local HEAD/fresh remote equality required before success."
   }
 }

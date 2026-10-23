@@ -1,6 +1,6 @@
 # Chọn đội và học từ kết quả trận — AW2-007N
 
-Source `PENDING007N` · development measurement/guidance. Chưa phải cân bằng sản phẩm đã nghiệm thu. Dùng đội5người đã sở hữu, không cần UR để hoàn thành cốt truyện; năm starter vẫn được nhận trực tiếp từ nhập môn.
+Source `6fc852872a008c08d2e9b2dd6a8983ba6f2617dc` · development measurement/guidance. Chưa phải cân bằng sản phẩm đã nghiệm thu. Dùng đội5người đã sở hữu, không cần UR để hoàn thành cốt truyện; năm starter vẫn được nhận trực tiếp từ nhập môn.
 
 Trong `/dev/aw2/world.html`, mở **Đội và túi đồ**, chọn5người. **Vai trò đội đang chọn** đếm người chuyên đỡ đòn/hồi phục/gây sát thương theo kit thật; Vân luôn là Hybrid, Mộc và Mộc Non là hai người khác nhau. Thiếu vai trò sẽ hiện gợi ý dùng người đã nhận ở nhập môn. Đủ vai trò không dự đoán thắng: kỹ năng cụ thể và thời điểm dùng tuyệt kỹ vẫn ảnh hưởng kết quả.
 
