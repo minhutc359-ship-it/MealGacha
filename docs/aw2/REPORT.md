@@ -1,6 +1,6 @@
 # Báo cáo Adventure World 2 —23/10/2026
 
-**Đã hoàn thành AW2-006C: hình ghi chép/chén và hai lối ra trong Phòng Bàn.** Source `PENDING006C` trên `game/adventure-world-2`.
+**Đã hoàn thành AW2-006C: hình ghi chép/chén và hai lối ra trong Phòng Bàn.** Source `b350a11d777c1e8c94b5f2aadc6299b68f7e7722` trên `game/adventure-world-2`.
 
 - Ghi chép sáng lên sau khi thắng boss; lối tắt sáng lên sau kết thúc. Lối về Phòng Lửa luôn mở. Nhãn chữ nằm dưới hình, nút chỉ đường vẫn chỉ cho đội đi bộ.
 - Ba hình nằm dưới nhân vật, giữ nguyên đường đi/va chạm/điều kiện tương tác.
