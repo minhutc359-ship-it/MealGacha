@@ -1,5 +1,9 @@
 # Test ledger / change impact
 
+## AW2-014A milestone target —2026-10-24
+
+Owner target recorded: next AW2→`rpg` PR requires demo100% / product45%. Current measured state remains demo90% / product40%; AW2-010C independent full route and AW2-011A physical-device baseline are NOT_RUN, AW2-006F implementation/tests are NOT_RUN. This documentation update adds no runtime PASS. Before opening the milestone PR: full unit regression, source+compiled full demo/mode/boss/save/economy gates, both typechecks, review build, stable exclusion and observed human/device evidence are mandatory. [Task](tasks/AW2-014A.md).
+
 ## AW2-006D current verified scope
 
 Source `7124bed958ee5cfa537fa3a021b4f03836e19544`, base `caf0057d8655f33d125c07fc32a53f057d29d0d5`. PASS59cases/5files=20new boss-world+10updated current-scene+8props+12controls+9rematch,0fail/skip. Actual source/runtime/reference/prompt hashes/budgets/rights, four safe frames/feet/common scale,11direction/tie/zero samples, real alpha states/detached nonmutation/canonical anchor. Full current-head NOT_RUN; unchanged pure world/save/combat/economy/modes retained at original refs, not counted fresh.

@@ -1,4 +1,8 @@
-# Handoff —2026-10-23 / AW2-006D
+# Handoff —2026-10-24 / D18 next-PR target
+
+## D18 / mục tiêu PR kế tiếp —2026-10-24
+
+Owner đặt đích `game/adventure-world-2` → `rpg` kế tiếp ở demo100%/product45%. [AW2-014A](tasks/AW2-014A.md) ghi rõ không đổi baseline hiện tại90%/40% trước bằng chứng. Đường găng: AW2-006F và nghiệm thu tuyến Phòng Lửa→Phòng Bàn (`+3` world/UX), AW2-010C người chơi độc lập đi hết fresh-save route/đóng blocker (demo10/10), AW2-011A desktop + điện thoại thật (`+2` UX/release baseline), sau đó full integration gates và remote sạch mới mở PR. Task thường vẫn commit/push trực tiếp vào AW2 theo D16; không merge/deploy/release/master.
 
 **AW2-006D VERIFIED world-boss reference — Người Giữ Bàn Quên đã có chibi đứng bốn hướng riêng trên map.** Source `7124bed958ee5cfa537fa3a021b4f03836e19544`, base `caf0057d8655f33d125c07fc32a53f057d29d0d5` trên `game/adventure-world-2`. Một atlas gốc built-in imagegen dùng chính portrait cũ làm tham chiếu identity; giữ PNG/WebP lossless/prompts/hashes/provenance. Boss đứng cố định, quay theo phía người chơi, chân giữ cùng vị trí; bốn tư thế tĩnh, chưa phải hoạt ảnh đi/đánh. Ảnh HD/FX/trận cũ giữ nguyên, chỉ tải khi vào trận. D17map1đại diện/đội chiến đấu5người giữ nguyên. **59ca unit/5files và52browser assertions PASS**, hai typecheck/final review build/fresh49text stable exclusion đạt. Browser tiếp tục checkpoint earned cũ, không phải full-story mới;393hash giữ phần không đổi, full current-head NOT_RUN. **Demo≈90%, sản phẩm≈40%(35–45%),12kit/12bộ tham chiếu/0fullDoD giữ nguyên**: bốn idle poses chưa đóng full-enemy/world/thiết bị/rights hoặc playtest độc lập. [Cách xem](PHONG_BAN.md), [gates](BOSS_CHARACTER_GATES.md), [bằng chứng](evidence/AW2-006D.md). Next[006F](tasks/AW2-006F.md) Phòng Lửa environment/navigation slice; D11PROPOSED/D12OPEN.
 

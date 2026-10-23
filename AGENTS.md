@@ -5,6 +5,7 @@
 ## Branch and push policy — owner instruction 2026-10-21
 - Continue AW2 development directly on `game/adventure-world-2`; do not create a new feature branch for each task.
 - After each completed task, run appropriate checks, update the required documents, commit and automatically push `game/adventure-world-2` to `MealGacha`. Verify the remote SHA equals local HEAD before reporting success. No additional branch, PR or merge approval is needed for this authorized AW2 workflow.
+- D18 sets a separate milestone integration target: only after demo100%/product45% gates are evidenced may the next `game/adventure-world-2` → `rpg` PR be opened. Ordinary work remains direct-to-AW2; do not create per-task feature branches or treat the target as already achieved.
 - Inspect local/remote state before work; preserve concurrent commits and resolve divergence without rewriting remote history. Keep the task-card and evidence requirements below.
 - This supersedes earlier feature-branch-only instructions. Master, releases, deployment and stable game saves retain their existing restrictions. Branch cleanup must preserve default/current/worktree branches, open-PR refs and commits not included in retained branches; see `docs/aw2/WORKFLOW.md`.
 

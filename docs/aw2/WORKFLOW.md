@@ -14,6 +14,8 @@ At task start, inspect the worktree, current branch, remote AW2 head and relevan
 
 After each completed task: execute the checks required by its change impact, update STATUS/BACKLOG/HANDOFF/TEST_LEDGER and other affected documents, commit on `game/adventure-world-2`, then push that exact branch automatically and compare remote SHA with local HEAD. No additional branch/PR/merge is required. A failed check or push must be recorded honestly. Master updates, unrelated feature integration, deployment and releases still require separate explicit authorization; stable legacy data remains untouched by AW2 development resets.
 
+D18 adds a milestone gate without replacing this direct-task workflow: the next integration PR is `game/adventure-world-2` → `rpg`, opened only after [AW2-014A](tasks/AW2-014A.md) proves demo100% and product45%. Until then, keep reporting the measured current values and continue pushing completed atomic tasks directly to AW2. Opening the milestone PR does not authorize merge, deploy, release or a `master` change.
+
 Git Credential Manager has multiple cached GitHub accounts on this workspace. Use command-scoped owner selection without changing global settings or printing credentials:
 
 ```sh

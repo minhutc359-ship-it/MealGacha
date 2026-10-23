@@ -1,5 +1,7 @@
 # Từ demo sang sản phẩm AW2
 
+**Cut PR kế tiếp theo D18:** target demo100% / product45%, baseline hiện tại90%/40%. Đóng tuyến world/UX tới boss `+3` và playtest độc lập + desktop/điện thoại thật `+2`; không lấy điểm từ khoảng 35–45% hay số test. [Cổng milestone](tasks/AW2-014A.md) · [checklist người chơi/thiết bị](PLAYTEST_100_CHECKLIST.md). Gói cân bằng cuối và hai nhân vật full DoD tiếp tục sau PR nếu chưa được nghiệm thu độc lập.
+
 **AW2-007L VERIFIED — đã có bộ sưu tập và đội hình lưu cho12 Vị Linh.** Source `730bd97b81875489e87f5c0c96665157fb3b6bb4`, base `b4e20e628156b1ee5a6c17e8a2ed8b86c3b0b3ca` trên `game/adventure-world-2`. Mời nhân vật theo mốc nhiệm vụ thử nghiệm bằng thao tác rõ ràng; lưu đúng5 nhân vật sở hữu, thứ tự và nhấn Vân cho trận mới. Schema5 đọc/nâng cấp v1–4 trong bộ nhớ, không tự ghi hoặc cấp nhân vật ngoài starter. Boss/followers dùng đội đã lưu; trận cũ giữ snapshot và không ghi đè save mới.1392ca unit riêng biệt/114files,233browser assertions/104mô phỏng PASS; cả hai typecheck/review+stable builds/isolation đạt. **Demo≈90%, sản phẩm≈40% (35–45%) giữ nguyên**;12/12kit,12/12bộ tham chiếu,0/12fullDoD. [Quy tắc và cách dùng](COLLECTION.md), [bằng chứng](evidence/AW2-007L.md). Next007M: đấu lại boss sau kết thúc để thử đội đã lưu; cân bằng/nghiệm thu độc lập còn mở. D11 PROPOSED/D12 OPEN.
 
 Các mốc cũ bên dưới giữ source/bằng chứng gốc; nhận định pending collection được thay bởi007L. Prototype collection không đóng full-character/playtest/production-save/release gate; các trọng số và khoảng thời gian có điều kiện giữ nguyên.

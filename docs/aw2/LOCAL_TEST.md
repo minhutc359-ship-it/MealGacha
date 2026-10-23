@@ -1,5 +1,7 @@
 # Chạy AW2 trên máy để chơi thử
 
+Nếu đang nghiệm thu target D18, ghi SHA/môi trường và kết quả theo [PLAYTEST_100_CHECKLIST.md](PLAYTEST_100_CHECKLIST.md). Cần một lượt độc lập toàn hành trình và ít nhất một điện thoại thật; cửa sổ hẹp/viewport giả lập chỉ là regression bổ sung.
+
 Dùng nhánh `game/adventure-world-2`. Môi trường hiện được kiểm tra: Windows/Node25.2.0, pnpm10.34.3, Chrome155; trước đó có bằng chứng Linux/Node22.23.2. Các trang AW2 này chạy phía trình duyệt, không cần backend, tài khoản hoặc file .env.
 
 Tại thư mục dự án:

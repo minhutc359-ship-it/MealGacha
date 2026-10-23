@@ -1,4 +1,6 @@
-# Báo cáo Adventure World 2 —23/10/2026
+# Báo cáo Adventure World 2 —24/10/2026
+
+**Mục tiêu mới cho PR tích hợp kế tiếp:** demo **100%**, sản phẩm **45%**. Tiến độ có bằng chứng hiện tại vẫn demo **90%** và product **40%**; chưa cộng trước. [AW2-014A](tasks/AW2-014A.md) yêu cầu hoàn thiện/nghiệm thu tuyến Phòng Lửa→Phòng Bàn, một người chơi độc lập đi trọn hành trình và baseline desktop + ít nhất một điện thoại thật, rồi mới mở PR AW2→`rpg`. Tiếp theo vẫn là [AW2-006F](tasks/AW2-006F.md); AW2-010C/AW2-011A đang READY.
 
 **Đã hoàn thành AW2-006D: hình chibi đứng bốn hướng riêng cho Người Giữ Bàn Quên trên map.** Source `7124bed958ee5cfa537fa3a021b4f03836e19544` trên `game/adventure-world-2`.
 

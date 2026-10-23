@@ -1,5 +1,7 @@
 # Task board
 
+**Milestone PR target (D18): demo100% / product45%, hiện tại90%/40%.** [AW2-014A](tasks/AW2-014A.md) giữ cổng tổng; AW2-006F hoàn thiện tuyến world kế tiếp, AW2-010C chịu nghiệm thu người chơi toàn hành trình, AW2-011A chịu baseline desktop/điện thoại thật. Không nâng % hoặc mở PR `game/adventure-world-2` → `rpg` trước bằng chứng.
+
 **AW2-006D VERIFIED world-boss reference — Người Giữ Bàn Quên đã có chibi đứng bốn hướng riêng trên map.** Source `7124bed958ee5cfa537fa3a021b4f03836e19544`, base `caf0057d8655f33d125c07fc32a53f057d29d0d5` trên `game/adventure-world-2`. Một atlas gốc built-in imagegen dùng chính portrait cũ làm tham chiếu identity; giữ PNG/WebP lossless/prompts/hashes/provenance. Boss đứng cố định, quay theo phía người chơi, chân giữ cùng vị trí; bốn tư thế tĩnh, chưa phải hoạt ảnh đi/đánh. Ảnh HD/FX/trận cũ giữ nguyên, chỉ tải khi vào trận. D17map1đại diện/đội chiến đấu5người giữ nguyên. **59ca unit/5files và52browser assertions PASS**, hai typecheck/final review build/fresh49text stable exclusion đạt. Browser tiếp tục checkpoint earned cũ, không phải full-story mới;393hash giữ phần không đổi, full current-head NOT_RUN. **Demo≈90%, sản phẩm≈40%(35–45%),12kit/12bộ tham chiếu/0fullDoD giữ nguyên**: bốn idle poses chưa đóng full-enemy/world/thiết bị/rights hoặc playtest độc lập. [Cách xem](PHONG_BAN.md), [gates](BOSS_CHARACTER_GATES.md), [bằng chứng](evidence/AW2-006D.md). Next[006F](tasks/AW2-006F.md) Phòng Lửa environment/navigation slice; D11PROPOSED/D12OPEN.
 
 | ID | Owner | Scope | Status |
@@ -54,13 +56,16 @@
 | AW2-009C | BA/mechanic/tester | AW2 Auto Chess practice contract/board/rules through the adapter | VERIFIED at ff499a52e471f9b07133bc80e9d32802dda92cb8;970 full tests /177 AW2, actual recruit/merge/formation/combat/results and no world writes |
 | AW2-010 | all/tester | Lantern playable vertical slice | IN_PROGRESS foundations; full twelve-character/art/device slice open |
 | AW2-010B | BA/mechanic/tester/scretary | Saved-ending summary and concrete demo-to-product handoff | VERIFIED atb836a82;55 fresh compiled checks/types/review build PASS; full player playtest remains open |
+| AW2-010C | BA/tester/scretary | Independent full-route demo playtest, blocker closure and final 10th demo group | READY under AW2-014A; human evidence NOT_RUN, demo remains90% |
 | AW2-010A | BA/mechanic/tester/scretary | Fresh-player demo gate across RPG/TCG/Chess, onboarding/playtest and review blockers | VERIFIED automated subset at e7aedac;982 full tests/171 browser checks; independent human playtest NOT_RUN |
 | AW2-011 | tester | Release regression/rights/mobile/offline | BACKLOG |
+| AW2-011A | BA/tester | Desktop + at least one physical-phone baseline for touch/audio/load/FPS/memory/save recovery | READY under AW2-014A; physical-device evidence NOT_RUN |
 | AW2-012 | BA/tester/scretary | Integrate all six AW2 feature histories; preserve approved canon and review evidence | VERIFIED / MERGED locally, source 0e8fb7a;859 tests +212 Chromium checks PASS |
 | AW2-012A | BA/tester/scretary | Owner-authorized fast-forward/push of all completed AW2 features to the long-lived branch | VERIFIED / INTEGRATED / PUSHED at82b85cd;891 tests /88 files, both typechecks, build/release/isolation PASS; following edits docs only |
 | AW2-012B | BA/tester/scretary | Standing direct-AW2 development/push policy D16 and audited redundant branch cleanup | VERIFIED; policy pushed at3d03110;73 remote /3 local branches deleted and read back,6 remote /2 local retained; documentation/ref checks PASS |
 | AW2-013 | mechanic/animation/tester/scretary | Historical PR #82 RPG progression/companions/build work | Original source a66188f, pinned c34c6a2; reviewed/adapted by AW2-013A, PR/rpg unchanged |
 | AW2-013A | BA/mechanic/tester/scretary | Reviewed schema v4 economy/XP/chest/cooking, companions/touch/audio and isolated review build | VERIFIED at a40217a;909 full tests /124 Chromium assertions; D16 direct-AW2 delivery |
+| AW2-014A | BA/tester/scretary + owners | Gate next AW2→rpg PR at demo100% / product45% without pre-awarding progress | READY; target recorded D18, current90%/40%, depends006F/010C/011A |
 
 Current integration status supersedes the historical local-only/no-push statements below: the six foundation histories and AW2-007A/B/C are included in remote `game/adventure-world-2`. [AW2-012A task/checks](tasks/AW2-012A.md). AW2-012B now supersedes source-branch-retention and feature-only-push policy: work directly on AW2, push after each completed task and remove audited merged branch refs while retaining their reachable commits/evidence. Unrelated unmerged legacy work remains excluded.
 AW2-001 evidence: [task card](tasks/AW2-001.md), [verification](evidence/AW2-001.md). The original standalone save source is retained; AW2-012 now integrates it and schema-v2 world dependencies into `game/adventure-world-2`.
