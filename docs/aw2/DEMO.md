@@ -1,5 +1,7 @@
 # Chơi thử hành trình AW2
 
+[Làng Giao Ước: nền sân/NPC/bàn nhập môn và các nút đi tới mục tiêu](LANG_GIAO_UOC.md) —006G. TheoD20ưu tiên làm tiếp nội dung; lượt nghiệm thu độc lập tạm gác.
+
 [iPhone: mở bản HTTPS và xuất phiếu phản hồi](IPHONE_PLAYTEST.md). Phiếu nằm ở màn khám phá, có mã nội dung bản thử; xuất trước khi reload.
 
 **D18 target:** PR tích hợp kế tiếp chỉ mở ở demo100% / product45%; hiện tại vẫn90%/40%. Người chơi độc lập dùng [checklist đầy đủ](PLAYTEST_100_CHECKLIST.md) trên cùng build desktop + điện thoại thật; tự động hóa hoặc partial smoke không thay thế gate này.

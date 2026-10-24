@@ -1,0 +1,20 @@
+{
+  "builtInCalls": 2,
+  "selected": [
+    {
+      "asset": "floor",
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-dba38543-6c3a-457a-a84d-eba6c3b2842e.png",
+      "selectedPath": "dev/aw2/assets/environments/covenant-village/v1/floor-source.png",
+      "sha256": "9a053356b20a9b89096b4969c6cf4597f86d9fb8d10a37201dda8f5d67a0167a",
+      "promptKey": "floor"
+    },
+    {
+      "asset": "props",
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-5fd7a61d-9b4f-426f-889c-bfa49de65b25.png",
+      "selectedPath": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+      "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373",
+      "promptKey": "props"
+    }
+  ],
+  "rejected": []
+}

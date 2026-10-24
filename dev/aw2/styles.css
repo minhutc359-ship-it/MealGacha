@@ -151,3 +151,5 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-playtest-feedback textarea { resize: vertical; }
 .aw2-playtest-feedback code { overflow-wrap: anywhere; }
 .aw2-playtest-feedback a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .75rem; color: #f2d799; border: 1px solid #60756b; border-radius: .5rem; }
+
+.aw2-village-map .aw2-world-label { width: max-content; max-width: 28%; white-space: nowrap; }

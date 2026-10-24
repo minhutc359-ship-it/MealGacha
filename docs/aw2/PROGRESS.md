@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+006G/D20: tiếp tục mở rộng art thế giới với Làng Giao Ước; đã có3/6zone art tham chiếu (Làng/Lửa/Bàn), còn Phố/Sân/Kho. Đây là mẫu số asset coverage riêng, không tự cấp điểm package/world/UX; demo90/product≈40%(35–45%) giữ nguyên. Owner gác nghiệm thu để tiếp tục triển khai;12kits/12reference sets/0fullDoD và D18milestone evidence không đổi. Next Phòng Kho. [Task](tasks/AW2-006G.md).
+
 011B: phiếu phản hồi/mã nội dung và hướng dẫn iPhone đã chuẩn bị, kiểm tra kỹ thuật Chromium/WebKit PASS. Không tự cấp điểm từ UA/mô phỏng/JSON; demo90/product40(35–45%) giữ nguyên.010C/011A độc lập+iPhone thật và D18target100/45 còn mở. [Hướng dẫn](IPHONE_PLAYTEST.md), [evidence](evidence/AW2-011B.md).
 
 D19/013B: `rpg` đã được owner xác nhận là nhánh product về sau, AW2 giữ nhánh phát triển/tích hợp. Incoming PR82 merge vào AW2 được phép riêng; D18outgoing milestone100/45 và hiện tại90/40 không đổi. Lịch sử PR đã được tiếp nhận chức năng từ013A; lần hợp nhất này không tự cộng điểm product. [Evidence](evidence/AW2-013B.md).

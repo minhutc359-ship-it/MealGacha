@@ -5,6 +5,7 @@ import {
   HEARTH_ROOM_SCENE,
   hearthRoomWaypoints,
 } from "../../src/aw2/assets/hearthRoom"
+import { VILLAGE_SCENE, villageWaypoints } from "../../src/aw2/assets/village"
 
 export function RoomWaypoints({
   world,
@@ -16,13 +17,28 @@ export function RoomWaypoints({
   onChoose: (point: Waypoint) => void
 }) {
   const hearth = world.zoneId === HEARTH_ROOM_SCENE.zoneId
-  const points = hearth ? hearthRoomWaypoints(world) : tableRoomWaypoints(world)
+  const village = world.zoneId === VILLAGE_SCENE.zoneId
+  const points = village
+    ? villageWaypoints(world).map(({ walkX, walkY, ...point }) => ({
+        ...point,
+        x: walkX,
+        y: walkY,
+      }))
+    : hearth
+      ? hearthRoomWaypoints(world)
+      : tableRoomWaypoints(world)
   if (!points.length) return null
   return (
     <nav
       className="aw2-room-waypoints"
-      aria-label={`Điểm đến trong ${hearth ? "Phòng Lửa" : "Phòng Bàn"}`}
-      data-testid={hearth ? "hearth-room-waypoints" : "table-room-waypoints"}
+      aria-label={`Điểm đến trong ${village ? "Làng Giao Ước" : hearth ? "Phòng Lửa" : "Phòng Bàn"}`}
+      data-testid={
+        village
+          ? "village-waypoints"
+          : hearth
+            ? "hearth-room-waypoints"
+            : "table-room-waypoints"
+      }
     >
       <p>
         Chọn điểm đến để đi bộ. Khi đến gần, dùng E hoặc Tương tác để xem và

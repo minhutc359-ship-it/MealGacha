@@ -1,4 +1,8 @@
-# Handoff —2026-10-24 / AW2-011B
+# Handoff —2026-10-24 / AW2-006G
+
+**AW2-006G — đã hoàn thiện khu khởi đầu Làng Giao Ước theo ưu tiên sản phẩm (D20).** Source `PENDING006G`, base `22103f244fc9d9e2bba278977f0cfebcd167407f`. Nền sân, Bà Giữ Chỗ, bàn–mảnh khăn/giếng có ảnh gốc và ba điểm đến native; giữ một đại diện map/năm combat.51unit riêng biệt/60source+compiled browser assertions, hai typecheck/review219files/asset audit/stable exclusion PASS.3/6zone có art tham chiếu, còn Phố/Sân/Kho. **Demo90% / product≈40%(35–45%) giữ nguyên**. D20gác nghiệm thu độc lập/iPhone khỏi công việc hiện tại; tiếp theo[006HPhòng Kho](tasks/AW2-006H.md), không chờ011A. [Cách chơi làng](LANG_GIAO_UOC.md) · [Bằng chứng](evidence/AW2-006G.md).
+
+Các mốc dưới giữ source/bằng chứng lịch sử; Next hiện hành theo006G/D20,010C/011A được gác khỏi ưu tiên triển khai.
 
 **AW2-011B — đã chuẩn bị phiếu phản hồi và mã bản chơi cho lượt iPhone.** Source `eef69e8a0ee7ffe65fed7b9868817cd95a7d23f6`, base `ccb84bae740a05cc091ea68f9e1263ff8580f4df`. Tạo/đọc/sao chép/tải JSON từ màn khám phá; không tự ghi save hay gửi mạng.31unit/2files,100browser assertions trên Chromium+WebKit source/compiled, hai typecheck/review build/stable exclusion PASS. Hành trình mới110assertions=55source+55compiled PASS qua mode/puzzle/nấu/boss/hai ending. Fingerprint279đầu vào khớp cả4bản; WebKit không có JS heap ghi `null`. Hướng dẫn HTTPS/iPhone đã có; điện thoại thật/người chơi độc lập vẫn NOT_RUN, chưa deploy. **Demo90% / product40%(35–45%) giữ nguyên**. [Cách thử iPhone](IPHONE_PLAYTEST.md) · [Bằng chứng](evidence/AW2-011B.md). Next BA/tester010C/011A: lượt chơi độc lập trên cùng artifact HTTPS desktop+iPhone, đóng blocker; D18target100/45 còn mở.
 

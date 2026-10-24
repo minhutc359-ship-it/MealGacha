@@ -1,5 +1,9 @@
 # PR tích hợp kế tiếp: demo100% và sản phẩm45%
 
+**Ưu tiên owner2026-10-24 (D20): tiếp tục hoàn thiện, gác phần nghiệm thu.**006G triển khai khu khởi đầu Làng Giao Ước; việc tiếp theo là Phòng Kho (bảng dấu hơi/rương/đường qua Lửa), sau đó Sân/Phố. Không đặt010C/011A làm bước công việc kế tiếp trong lúc phát triển; các gate chưa quan sát vẫn NOT_RUN, D18outgoing PR không tự đạt. Demo90/product40 giữ nguyên. [Làng](LANG_GIAO_UOC.md), [task](tasks/AW2-006G.md).
+
+Các NEXT/ưu tiên bên dưới là lịch sử, đọc theo006G/D20 ở trên.
+
 D19/013B: `rpg` đã được owner xác nhận là nhánh product về sau, AW2 giữ nhánh phát triển/tích hợp. Incoming PR82 merge vào AW2 được phép riêng; D18outgoing milestone100/45 và hiện tại90/40 không đổi. Lịch sử PR đã được tiếp nhận chức năng từ013A; lần hợp nhất này không tự cộng điểm product. [Evidence](evidence/AW2-013B.md).
 
 2026-10-24 · BA/tester/scretary · D18/AW2-014A đặt mục tiêu cho PR `game/adventure-world-2` → `rpg` kế tiếp là **demo10/10=100%, sản phẩm45/100**. Chỉ báo hiện tại vẫn **demo9/10≈90%, sản phẩm≈40% (35–45%)**. [Mẫu số/trọng số](PROGRESS.md) giữ nguyên; không tính phần trăm theo số task, test hoặc số khung hình. PR chỉ mở sau bằng chứng, không tự merge/deploy/release/master.

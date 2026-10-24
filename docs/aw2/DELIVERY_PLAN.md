@@ -1,5 +1,9 @@
 # Ước lượng hoàn thiện AW2
 
+**Ưu tiên owner2026-10-24 (D20): tiếp tục hoàn thiện, gác phần nghiệm thu.**006G triển khai khu khởi đầu Làng Giao Ước; việc tiếp theo là Phòng Kho (bảng dấu hơi/rương/đường qua Lửa), sau đó Sân/Phố. Không đặt010C/011A làm bước công việc kế tiếp trong lúc phát triển; các gate chưa quan sát vẫn NOT_RUN, D18outgoing PR không tự đạt. Demo90/product40 giữ nguyên. [Làng](LANG_GIAO_UOC.md), [task](tasks/AW2-006G.md).
+
+Các NEXT/ưu tiên bên dưới là lịch sử, đọc theo006G/D20 ở trên.
+
 **Kế hoạch sau007M (2026-10-23):** [bốn gói tới sản phẩm≈50%](NEXT_MILESTONES.md): cân bằng đội/tiến trình → tuyến world/dungeon+UX → hai nhân vật đủDoD → playtest độc lập/baseline thiết bị thật. Demo còn một nhóm nghiệm thu full-route và sửa blocker. Đây là đề xuất có điều kiện, chưa cấp điểm; demo≈90%/product≈40% (35–45%) giữ nguyên. 007N đã có baseline96lượt/hướng dẫn đội; final balance vẫn mở, 006B đã có nền/bàn/chỉ đường Phòng Bàn; 006C đã có ghi chép/hai dấu lối; 006Fđã có Phòng Lửa kỹ thuật; tiếp theo[010C](tasks/AW2-010C.md)/[011A](tasks/AW2-011A.md) nghiệm thu. Các mốc ETA bên dưới vẫn có điều kiện, không quy đổi bốn gói thành bốn phiên làm việc.
 
 Các mốc nguồn bên dưới là lịch sử; NEXT/trạng thái hiện hành đọc theo006F và REPORT/STATUS.

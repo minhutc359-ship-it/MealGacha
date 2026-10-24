@@ -1,5 +1,7 @@
 # Changes
 
+2026-10-24 / AW2-006G/D20: owner defers acceptance, prioritizes product implementation. Original village floor/static Bà/cloth table/well, native safe approach targets/true status; one map leader/five combat retained.51uniqueunits/60browser/two types/asset repeat/review219files/stable exclusion PASS. Source `PENDING006G`;3/6authored reference zones, actualdemo90/product40 unchanged. Next006HPhòngKho; independent/device DEFERRED_NOT_RUN. [Evidence](evidence/AW2-006G.md).
+
 2026-10-24 / AW2-011B: iPhone owner-selected; native opt-in feedback/copy/download/capability sampling and content build identity.31scoped units/100Chromium+WebKit feedback+110fresh earned-demo assertions/both types/review+stable exclusion PASS; physical phone/human acceptance NOT_RUN, no deploy. Source `eef69e8a0ee7ffe65fed7b9868817cd95a7d23f6`; demo90/product40 unchanged. [Evidence](evidence/AW2-011B.md).
 
 2026-10-24 / AW2-013B: owner-authorized original PR82 ancestry integration into AW2, explicit30conflict/47path audit, no runtime rollback; D19rpgfutureproduct. Fresh1471full units PASS;2583non-document paths unchanged; demo90/product40 and human/device gaps unchanged. Source `0e65fc33624f072b026b80da02f2ae90bacc93bc`, publication/readback PASS (GitHub merged/closed AW2, independently fetched). [Evidence](evidence/AW2-013B.md).

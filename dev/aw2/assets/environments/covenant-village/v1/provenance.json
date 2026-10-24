@@ -1,0 +1,120 @@
+{
+  "task": "AW2-006G",
+  "generator": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-24",
+    "prompts": {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/prompts.json",
+      "sha256": "6ce401cb1c28b511ff686f711c2aab30b68e7ffbc797588ea3185310301e58fb"
+    },
+    "reference": {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/floor-source.png",
+      "sha256": "c630b749e4f918e709126da49b3692f0d97e2d1f7bff239fbf814acf71c7db86",
+      "role": "own hearth floor material/pixel style reference only; new outdoor floor"
+    },
+    "externalReferences": [],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "builder": "dev/tools/build-aw2-village.py",
+    "pillow": "10.2.0",
+    "processing": "Selected PNG bytes unchanged; exact RGBA lossless WebP; alpha>8 measured cells with4px padding; uniform logical render scales, no painting/masking/mirroring/resizing pixels.",
+    "reused": {
+      "threshold": {
+        "task": "AW2-006C",
+        "sourceRef": "b350a11d777c1e8c94b5f2aadc6299b68f7e7722"
+      }
+    }
+  },
+  "selection": {
+    "builtInCalls": 2,
+    "selected": [
+      {
+        "asset": "floor",
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-dba38543-6c3a-457a-a84d-eba6c3b2842e.png",
+        "selectedPath": "dev/aw2/assets/environments/covenant-village/v1/floor-source.png",
+        "sha256": "9a053356b20a9b89096b4969c6cf4597f86d9fb8d10a37201dda8f5d67a0167a",
+        "promptKey": "floor"
+      },
+      {
+        "asset": "props",
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-5fd7a61d-9b4f-426f-889c-bfa49de65b25.png",
+        "selectedPath": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+        "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373",
+        "promptKey": "props"
+      }
+    ],
+    "rejected": []
+  },
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-covenant-village-v1:floor",
+      "url": "/dev/aw2/assets/environments/covenant-village/v1/floor.webp",
+      "width": 1619,
+      "height": 971,
+      "bytes": 2087698,
+      "sha256": "c948a37720f9686c097b5140d1cf4827a714eb34370c075a9c41c7f437eab681",
+      "source": {
+        "path": "dev/aw2/assets/environments/covenant-village/v1/floor-source.png",
+        "bytes": 2804565,
+        "sha256": "9a053356b20a9b89096b4969c6cf4597f86d9fb8d10a37201dda8f5d67a0167a"
+      }
+    },
+    "props": {
+      "id": "aw2-environment-covenant-village-v1:props",
+      "url": "/dev/aw2/assets/environments/covenant-village/v1/props.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 617006,
+      "sha256": "3365687202d6f98884b30f7d9dff319a0ca854559f3d55b31af4f631762ef755",
+      "source": {
+        "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+        "bytes": 886068,
+        "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373"
+      }
+    },
+    "threshold": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:threshold",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 927068,
+      "sha256": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png",
+        "bytes": 1370491,
+        "sha256": "ecb379f438637c2dd66b3bfec67a6cafab5ace9b137b365091f1986747ddaf1d"
+      },
+      "frame": {
+        "x": 300,
+        "y": 231,
+        "width": 936,
+        "height": 564
+      }
+    }
+  },
+  "frames": {
+    "keeper": {
+      "x": 259,
+      "y": 90,
+      "width": 227,
+      "height": 529
+    },
+    "table": {
+      "x": 797,
+      "y": 233,
+      "width": 560,
+      "height": 352
+    },
+    "well": {
+      "x": 1550,
+      "y": 215,
+      "width": 471,
+      "height": 406
+    }
+  },
+  "limits": [
+    "Static NPC idle, no NPC walk/motion or new interaction/collision.",
+    "Owner deferred independent acceptance; human/device/rights/full environment remain NOT_RUN."
+  ]
+}

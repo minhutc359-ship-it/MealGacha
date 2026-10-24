@@ -25,6 +25,12 @@ import {
   TABLE_ROOM_INTERACTIONS,
   tableRoomInteractionProps,
 } from "../../src/aw2/assets/tableInteractions"
+import {
+  VILLAGE_SCENE,
+  villageProps,
+  villageWaypoints,
+  villageWellAlpha,
+} from "../../src/aw2/assets/village"
 
 export function WorldCanvas({
   world,
@@ -49,14 +55,24 @@ export function WorldCanvas({
   const ids = [leaderId]
   const hearthScene =
     world.zoneId === HEARTH_ROOM_SCENE.zoneId ? HEARTH_ROOM_SCENE : null
-  const scene =
+  const villageScene =
+    world.zoneId === VILLAGE_SCENE.zoneId ? VILLAGE_SCENE : null
+  const roomScene =
     world.zoneId === TABLE_ROOM_SCENE.zoneId ? TABLE_ROOM_SCENE : hearthScene
-  const roomPoints = hearthScene
-    ? hearthRoomWaypoints(world)
-    : tableRoomWaypoints(world)
+  const scene = villageScene ?? roomScene
+  const roomPoints = villageScene
+    ? villageWaypoints(world)
+    : hearthScene
+      ? hearthRoomWaypoints(world)
+      : tableRoomWaypoints(world)
   const interactionProps = tableRoomInteractionProps(world)
   const hearthProps = hearthRoomProps(world)
-  const labelProps = hearthScene ? hearthProps : interactionProps
+  const openingProps = villageProps(world)
+  const labelProps = villageScene
+    ? openingProps
+    : hearthScene
+      ? hearthProps
+      : interactionProps
   useEffect(() => {
     let disposed = false
     let app: Application | undefined
@@ -71,22 +87,28 @@ export function WorldCanvas({
           Promise.all(
             ids.map((id) => Assets.load(ROSTER_ASSETS[id].assets.world.url)),
           ),
-          hearthScene
+          villageScene
             ? Promise.all([
-                Assets.load(hearthScene.assets.floor.url),
-                Assets.load(hearthScene.assets.sideboard.url),
-                Assets.load(hearthScene.assets.puzzles.url),
-                Assets.load(hearthScene.assets.threshold.url),
+                Assets.load(villageScene.assets.floor.url),
+                Assets.load(villageScene.assets.props.url),
+                Assets.load(villageScene.assets.threshold.url),
               ])
-            : scene
+            : hearthScene
               ? Promise.all([
-                  Assets.load(scene.assets.floor.url),
-                  Assets.load(scene.assets.sideboard.url),
-                  Assets.load(FORGOTTEN_HOST_WORLD.asset.url),
-                  Assets.load(TABLE_ROOM_INTERACTIONS.assets.note.url),
-                  Assets.load(TABLE_ROOM_INTERACTIONS.assets.threshold.url),
+                  Assets.load(hearthScene.assets.floor.url),
+                  Assets.load(hearthScene.assets.sideboard.url),
+                  Assets.load(hearthScene.assets.puzzles.url),
+                  Assets.load(hearthScene.assets.threshold.url),
                 ])
-              : Promise.resolve([]),
+              : roomScene
+                ? Promise.all([
+                    Assets.load(roomScene.assets.floor.url),
+                    Assets.load(roomScene.assets.sideboard.url),
+                    Assets.load(FORGOTTEN_HOST_WORLD.asset.url),
+                    Assets.load(TABLE_ROOM_INTERACTIONS.assets.note.url),
+                    Assets.load(TABLE_ROOM_INTERACTIONS.assets.threshold.url),
+                  ])
+                : Promise.resolve([]),
         ])
         if (disposed) return
         for (const texture of environment) texture.source.scaleMode = "nearest"
@@ -182,7 +204,51 @@ export function WorldCanvas({
           sprite: import("pixi.js").Sprite
           textureId: string
         }[] = []
-        if (scene) {
+        if (villageScene) {
+          for (const prop of openingProps) {
+            const asset =
+              villageScene.assets[prop.asset as "props" | "threshold"]
+            const f =
+              prop.asset === "props"
+                ? villageScene.frames[
+                    prop.frame as keyof typeof villageScene.frames
+                  ]
+                : villageScene.assets.threshold.frame
+            const texture = new Texture({
+              source: environment[prop.asset === "props" ? 1 : 2].source,
+              frame: new Rectangle(f.x, f.y, f.width, f.height),
+            })
+            textures.push(texture)
+            const sprite = new Sprite(texture)
+            sprite.anchor.set(prop.anchorX, prop.anchorY)
+            sprite.position.set(prop.x, prop.y)
+            sprite.width = prop.width
+            sprite.height = prop.height
+            sprite.zIndex = prop.depth
+            sprite.alpha = prop.alpha
+            next.stage.addChild(sprite)
+            groundProps.push({
+              entityId: prop.entityId,
+              sprite,
+              textureId: asset.id,
+            })
+          }
+          const f = villageScene.frames.well,
+            prop = villageScene.obstacle
+          const texture = new Texture({
+            source: environment[1].source,
+            frame: new Rectangle(f.x, f.y, f.width, f.height),
+          })
+          textures.push(texture)
+          foreground = new Sprite(texture)
+          foreground.anchor.set(prop.anchorX, prop.anchorY)
+          foreground.position.set(prop.x, prop.y)
+          foreground.width = prop.width
+          foreground.height = prop.height
+          foreground.zIndex = prop.sortY + 10
+          next.stage.addChild(foreground)
+        }
+        if (roomScene) {
           for (const prop of interactionProps) {
             const asset =
               TABLE_ROOM_INTERACTIONS.assets[
@@ -238,18 +304,18 @@ export function WorldCanvas({
               })
             }
           }
-          const frame = scene.assets.sideboard.frame
+          const frame = roomScene.assets.sideboard.frame
           const texture = new Texture({
             source: environment[1].source,
             frame: new Rectangle(frame.x, frame.y, frame.width, frame.height),
           })
           textures.push(texture)
           foreground = new Sprite(texture)
-          foreground.anchor.set(scene.prop.anchorX, scene.prop.anchorY)
-          foreground.position.set(scene.prop.x, scene.prop.y)
-          foreground.width = scene.prop.width
-          foreground.height = scene.prop.height
-          foreground.zIndex = scene.prop.sortY + 10
+          foreground.anchor.set(roomScene.prop.anchorX, roomScene.prop.anchorY)
+          foreground.position.set(roomScene.prop.x, roomScene.prop.y)
+          foreground.width = roomScene.prop.width
+          foreground.height = roomScene.prop.height
+          foreground.zIndex = roomScene.prop.sortY + 10
           next.stage.addChild(foreground)
           if (!hearthScene) {
             for (const [key, pose] of Object.entries(
@@ -332,7 +398,9 @@ export function WorldCanvas({
             actors.map(({ sprite }) => ({ x: sprite.x, y: sprite.y })),
           )
           if (foreground && scene) {
-            foreground.alpha = tableRoomPropAlpha(
+            foreground.alpha = (
+              villageScene ? villageWellAlpha : tableRoomPropAlpha
+            )(
               actors.map(({ sprite }) => {
                 const bounds = sprite.getBounds()
                 return {
@@ -375,9 +443,11 @@ export function WorldCanvas({
             })
           }
           if (groundProps.length) {
-            const props = hearthScene
-              ? hearthRoomProps(now)
-              : tableRoomInteractionProps(now)
+            const props = villageScene
+              ? villageProps(now)
+              : hearthScene
+                ? hearthRoomProps(now)
+                : tableRoomInteractionProps(now)
             for (const { entityId, sprite } of groundProps)
               sprite.alpha = props.find(
                 (prop) => prop.entityId === entityId,
@@ -428,7 +498,9 @@ export function WorldCanvas({
     <>
       <div
         ref={focusRef}
-        className="aw2-world-map"
+        className={
+          villageScene ? "aw2-world-map aw2-village-map" : "aw2-world-map"
+        }
         data-testid="world-map"
         tabIndex={0}
         role="region"
@@ -465,11 +537,13 @@ export function WorldCanvas({
             className="aw2-world-label"
             style={{
               transform:
-                (scene && object.id === FORGOTTEN_HOST_WORLD.entityId) ||
+                openingProps.find((prop) => prop.entityId === object.id)
+                  ?.labelTransform ??
+                ((scene && object.id === FORGOTTEN_HOST_WORLD.entityId) ||
                 labelProps.some((prop) => prop.entityId === object.id)
                   ? "translate(-50%, 0)"
-                  : undefined,
-              left: `${Math.max(12, Math.min(88, object.x / 6.4))}%`,
+                  : undefined),
+              left: `${Math.max(12, Math.min(88, (object.x + (openingProps.find((prop) => prop.entityId === object.id)?.labelOffsetX ?? 0)) / 6.4))}%`,
               top: `${(object.y + (labelProps.find((prop) => prop.entityId === object.id)?.labelOffsetY ?? (scene ? 24 : 0))) / 3.84}%`,
             }}
           >
