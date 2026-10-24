@@ -4,6 +4,6 @@
 
 Puzzle, boss bốn hướng riêng, ghi chép, cửa khóa và đấu lại vẫn đọc tiến trình thật. Điểm đến chỉ đưa nhân vật tới gần, không tự thao tác/cấp thưởng. Thiếu ảnh báo lỗi và khóa điểm đến; khôi phục ảnh không đổi save.
 
-**85unit, hai typecheck, asset audit, build/cách ly stable PASS.**100kiểm tra trình duyệt=50source+50build, ghép các đoạn đã đạt trong phiên này theo checkpoint/hash; không gọi là lượt chơi mới liền mạch. Đã thắng boss thật, lưu/đọc ghi chép, hai kết thúc, đấu lại/rút lui, đi hai chiều và thử thiếu hai ảnh–khôi phục. Source `PENDING006L`; [chi tiết](evidence/AW2-006L.md).
+**85unit, hai typecheck, asset audit, build/cách ly stable PASS.**100kiểm tra trình duyệt=50source+50build, ghép các đoạn đã đạt trong phiên này theo checkpoint/hash; không gọi là lượt chơi mới liền mạch. Đã thắng boss thật, lưu/đọc ghi chép, hai kết thúc, đấu lại/rút lui, đi hai chiều và thử thiếu hai ảnh–khôi phục. Source `36c2231bafb9de8778f380183780af242cfa9281`; [chi tiết](evidence/AW2-006L.md).
 
 **Demo90% / sản phẩm≈40%(35–45%) giữ nguyên.**6/6cảnh là tiến độ hình ảnh riêng;8NPC hiện còn tĩnh,12bộ nhân vật chưa đạt fullDoD, motion/rights và các gate chưa quan sát còn mở. Theo D20tiếp tục gác nghiệm thu độc lập. Việc kế tiếp **006M: thêm chuyển động idle có frame riêng cho Bà và Dì**, rồi mở rộng các NPC khác.
