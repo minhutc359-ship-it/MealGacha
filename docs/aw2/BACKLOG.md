@@ -1,6 +1,6 @@
 # Task board
 
-**AW2-006G — đã hoàn thiện khu khởi đầu Làng Giao Ước theo ưu tiên sản phẩm (D20).** Source `PENDING006G`, base `22103f244fc9d9e2bba278977f0cfebcd167407f`. Nền sân, Bà Giữ Chỗ, bàn–mảnh khăn/giếng có ảnh gốc và ba điểm đến native; giữ một đại diện map/năm combat.51unit riêng biệt/60source+compiled browser assertions, hai typecheck/review219files/asset audit/stable exclusion PASS.3/6zone có art tham chiếu, còn Phố/Sân/Kho. **Demo90% / product≈40%(35–45%) giữ nguyên**. D20gác nghiệm thu độc lập/iPhone khỏi công việc hiện tại; tiếp theo[006HPhòng Kho](tasks/AW2-006H.md), không chờ011A. [Cách chơi làng](LANG_GIAO_UOC.md) · [Bằng chứng](evidence/AW2-006G.md).
+**AW2-006G — đã hoàn thiện khu khởi đầu Làng Giao Ước theo ưu tiên sản phẩm (D20).** Source `42f36d7c55921e6d2df474640cdfc212151bc4c0`, base `22103f244fc9d9e2bba278977f0cfebcd167407f`. Nền sân, Bà Giữ Chỗ, bàn–mảnh khăn/giếng có ảnh gốc và ba điểm đến native; giữ một đại diện map/năm combat.51unit riêng biệt/60source+compiled browser assertions, hai typecheck/review219files/asset audit/stable exclusion PASS.3/6zone có art tham chiếu, còn Phố/Sân/Kho. **Demo90% / product≈40%(35–45%) giữ nguyên**. D20gác nghiệm thu độc lập/iPhone khỏi công việc hiện tại; tiếp theo[006HPhòng Kho](tasks/AW2-006H.md), không chờ011A. [Cách chơi làng](LANG_GIAO_UOC.md) · [Bằng chứng](evidence/AW2-006G.md).
 
 Các mốc dưới giữ source/bằng chứng lịch sử; Next hiện hành theo006G/D20,010C/011A được gác khỏi ưu tiên triển khai.
 
@@ -44,7 +44,7 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | AW2-006C | BA/story/animation/mechanic/tester/scretary | Authored note/two exit props in existing Phòng Bàn | VERIFIED subset at b350a11d777c1e8c94b5f2aadc6299b68f7e7722;30unit/102browser; full-room/device/rights OPEN |
 | AW2-006E | BA/mechanic/animation/tester/scretary | One saved leader represents exploration team, D17 | VERIFIED at d11708bfb316a128e4bb2df7b0104d81e8cabee2;78unit/102browser; combat/save remain5 |
 | AW2-006D | BA/story/character/animation/mechanic/tester/scretary | Own boss chibi world reference, scoped four-direction idle | VERIFIED reference subset at 7124bed958ee5cfa537fa3a021b4f03836e19544;59unit/52browser; full enemy/motion/rights OPEN |
-| AW2-006G | BA/story/animation/mechanic/tester/scretary | Village floor/NPC/table/cloth/well + native intro destinations | VERIFIED atPENDING006G;51uniqueunits/60browser/types/build PASS; next006H underD20 |
+| AW2-006G | BA/story/animation/mechanic/tester/scretary | Village floor/NPC/table/cloth/well + native intro destinations | VERIFIED at42f36d7c55921e6d2df474640cdfc212151bc4c0;51uniqueunits/60browser/types/build PASS; next006H underD20 |
 | AW2-006H | BA/story/animation/mechanic/tester/scretary | Phòng Kho floor/hint/chest/native destinations | READY after006G; next product taskD20, implementation/assets NOT_STARTED |
 | AW2-006F | BA/story/animation/mechanic/tester/scretary | Authored Phòng Lửa floor/props/native navigation | VERIFIED development slice at 4d463302f95a33788ac9cb9c8274f12b18d86281;83unit/72browser, independent route/device gates OPEN |
 | AW2-004L | character/story/animation/tester | Hải original reference package | VERIFIED at 57b160faefa4edca081e46680a45489bfa4d9e68;85 units/102 browser; full DoD OPEN |

@@ -1,6 +1,6 @@
 # Soul of Meal Adventure World 2 — Next Game
 
-**AW2-006G — đã hoàn thiện khu khởi đầu Làng Giao Ước theo ưu tiên sản phẩm (D20).** Source `PENDING006G`, base `22103f244fc9d9e2bba278977f0cfebcd167407f`. Nền sân, Bà Giữ Chỗ, bàn–mảnh khăn/giếng có ảnh gốc và ba điểm đến native; giữ một đại diện map/năm combat.51unit riêng biệt/60source+compiled browser assertions, hai typecheck/review219files/asset audit/stable exclusion PASS.3/6zone có art tham chiếu, còn Phố/Sân/Kho. **Demo90% / product≈40%(35–45%) giữ nguyên**. D20gác nghiệm thu độc lập/iPhone khỏi công việc hiện tại; tiếp theo[006HPhòng Kho](tasks/AW2-006H.md), không chờ011A. [Cách chơi làng](LANG_GIAO_UOC.md) · [Bằng chứng](evidence/AW2-006G.md).
+**AW2-006G — đã hoàn thiện khu khởi đầu Làng Giao Ước theo ưu tiên sản phẩm (D20).** Source `42f36d7c55921e6d2df474640cdfc212151bc4c0`, base `22103f244fc9d9e2bba278977f0cfebcd167407f`. Nền sân, Bà Giữ Chỗ, bàn–mảnh khăn/giếng có ảnh gốc và ba điểm đến native; giữ một đại diện map/năm combat.51unit riêng biệt/60source+compiled browser assertions, hai typecheck/review219files/asset audit/stable exclusion PASS.3/6zone có art tham chiếu, còn Phố/Sân/Kho. **Demo90% / product≈40%(35–45%) giữ nguyên**. D20gác nghiệm thu độc lập/iPhone khỏi công việc hiện tại; tiếp theo[006HPhòng Kho](tasks/AW2-006H.md), không chờ011A. [Cách chơi làng](LANG_GIAO_UOC.md) · [Bằng chứng](evidence/AW2-006G.md).
 
 Các mốc dưới giữ source/bằng chứng lịch sử; Next hiện hành theo006G/D20,010C/011A được gác khỏi ưu tiên triển khai.
 

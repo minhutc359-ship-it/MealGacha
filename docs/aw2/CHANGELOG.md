@@ -1,6 +1,6 @@
 # Changes
 
-2026-10-24 / AW2-006G/D20: owner defers acceptance, prioritizes product implementation. Original village floor/static Bà/cloth table/well, native safe approach targets/true status; one map leader/five combat retained.51uniqueunits/60browser/two types/asset repeat/review219files/stable exclusion PASS. Source `PENDING006G`;3/6authored reference zones, actualdemo90/product40 unchanged. Next006HPhòngKho; independent/device DEFERRED_NOT_RUN. [Evidence](evidence/AW2-006G.md).
+2026-10-24 / AW2-006G/D20: owner defers acceptance, prioritizes product implementation. Original village floor/static Bà/cloth table/well, native safe approach targets/true status; one map leader/five combat retained.51uniqueunits/60browser/two types/asset repeat/review219files/stable exclusion PASS. Source `42f36d7c55921e6d2df474640cdfc212151bc4c0`;3/6authored reference zones, actualdemo90/product40 unchanged. Next006HPhòngKho; independent/device DEFERRED_NOT_RUN. [Evidence](evidence/AW2-006G.md).
 
 2026-10-24 / AW2-011B: iPhone owner-selected; native opt-in feedback/copy/download/capability sampling and content build identity.31scoped units/100Chromium+WebKit feedback+110fresh earned-demo assertions/both types/review+stable exclusion PASS; physical phone/human acceptance NOT_RUN, no deploy. Source `eef69e8a0ee7ffe65fed7b9868817cd95a7d23f6`; demo90/product40 unchanged. [Evidence](evidence/AW2-011B.md).
 

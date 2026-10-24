@@ -1,7 +1,7 @@
 {
   "task": "AW2-006G",
   "status": "PASS_DEVELOPER_SCOPE",
-  "source": "PENDING006G",
+  "source": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
   "base": "22103f244fc9d9e2bba278977f0cfebcd167407f",
   "ownerSteering": "D20: defer independent acceptance and continue implementation; unobserved gates remain NOT_RUN.",
   "environment": {
