@@ -6,4 +6,4 @@
 
 **Demo90% / product≈40%(35–45%) giữ nguyên.** Còn010C: người chơi độc lập đi hết tuyến/đóng blocker;011A: baseline desktop + iPhone thật. Cần một URL HTTPS review đã ghim artifact trước lượt iPhone; task này chưa deploy. Mục tiêu PR kế tiếp vẫn100%/45%, sau đó mới mở AW2→rpg.
 
-Source `PENDING011B`, base `ccb84bae740a05cc091ea68f9e1263ff8580f4df`. PR82 đã merge vào AW2 theo013B/D19; `rpg` giữ vai trò nhánh product tương lai. AW2 tiếp tục nhận các task theo D16. Tiếp theo BA/tester dùng [checklist](PLAYTEST_100_CHECKLIST.md) và phiếu phản hồi để ghi lượt chơi thực tế, sửa/retest lỗi quan sát được.
+Source `eef69e8a0ee7ffe65fed7b9868817cd95a7d23f6`, base `ccb84bae740a05cc091ea68f9e1263ff8580f4df`. PR82 đã merge vào AW2 theo013B/D19; `rpg` giữ vai trò nhánh product tương lai. AW2 tiếp tục nhận các task theo D16. Tiếp theo BA/tester dùng [checklist](PLAYTEST_100_CHECKLIST.md) và phiếu phản hồi để ghi lượt chơi thực tế, sửa/retest lỗi quan sát được.
