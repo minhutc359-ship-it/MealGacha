@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+**006H/J/K — ưu tiên hiện hành D20/D21:** đã có ảnh tham chiếu6/6vùng (từ3/6),8NPC tĩnh;4vùng có cảnh mở rộng/camera. Hai nội thất Lửa/Bàn v1 vẫn đơn giản, next006Lnâng cùng phong cách rồi NPC/ambient motion.88unit/222composite source+compiled browser/two types/build PASS, source `PENDING006HJK`; checkpoint prefixes truy vết theo hash, không thêm historical counts. Demo90/product≈40%(35–45%)/12kits/12references/0fullDoD giữ nguyên. D20gác nghiệm thu, không tự cấp điểm world/device/PR/release. [Cách chơi](THE_GIOI.md), [evidence](evidence/AW2-006HJK.md). Các NEXT phía dưới là lịch sử.
+
 006I/D21: làng có phong cảnh nhiều lớp/camera theo mainline, nâng chất lượng vùng đã có chứ không thêm zone. Art-reference coverage vẫn3/6;12kits/12reference sets/0fullDoD, demo90/product≈40%(35–45%) giữ nguyên. Tiếp theo006HPhòngKho theo cùng phong cách;D20gác nghiệm thu độc lập. [Evidence](evidence/AW2-006I.md).
 
 006G/D20: tiếp tục mở rộng art thế giới với Làng Giao Ước; đã có3/6zone art tham chiếu (Làng/Lửa/Bàn), còn Phố/Sân/Kho. Đây là mẫu số asset coverage riêng, không tự cấp điểm package/world/UX; demo90/product≈40%(35–45%) giữ nguyên. Owner gác nghiệm thu để tiếp tục triển khai;12kits/12reference sets/0fullDoD và D18milestone evidence không đổi. Next Phòng Kho. [Task](tasks/AW2-006G.md).

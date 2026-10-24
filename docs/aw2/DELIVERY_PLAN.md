@@ -1,5 +1,7 @@
 # Ước lượng hoàn thiện AW2
 
+**006H/J/K — ưu tiên hiện hành D20/D21:** đã có ảnh tham chiếu6/6vùng (từ3/6),8NPC tĩnh;4vùng có cảnh mở rộng/camera. Hai nội thất Lửa/Bàn v1 vẫn đơn giản, next006Lnâng cùng phong cách rồi NPC/ambient motion.88unit/222composite source+compiled browser/two types/build PASS, source `PENDING006HJK`; checkpoint prefixes truy vết theo hash, không thêm historical counts. Demo90/product≈40%(35–45%)/12kits/12references/0fullDoD giữ nguyên. D20gác nghiệm thu, không tự cấp điểm world/device/PR/release. [Cách chơi](THE_GIOI.md), [evidence](evidence/AW2-006HJK.md). Các NEXT phía dưới là lịch sử.
+
 **Ưu tiên hiện hành D20/D21:**006Iđã đưa phong cảnh làng/camera chiều sâu theo hai ảnh gốc mainline vào bản chơi.72units/82browser/types/build PASS, source `f0c1be37cef1c83416c5eb76be2943d1e768f2bc`;3/6zone tham chiếu/demo90/product40 giữ nguyên. Tiếp theo006HPhòng Kho theo cùng vật liệu/bảng màu, sau đó Phố/Sân; nghiệm thu độc lập được gác, không chặn phát triển. [Cách xem](LANG_GIAO_UOC.md), [evidence](evidence/AW2-006I.md). Các ưu tiên phía dưới là lịch sử.
 
 **Ưu tiên owner2026-10-24 (D20): tiếp tục hoàn thiện, gác phần nghiệm thu.**006G triển khai khu khởi đầu Làng Giao Ước; việc tiếp theo là Phòng Kho (bảng dấu hơi/rương/đường qua Lửa), sau đó Sân/Phố. Không đặt010C/011A làm bước công việc kế tiếp trong lúc phát triển; các gate chưa quan sát vẫn NOT_RUN, D18outgoing PR không tự đạt. Demo90/product40 giữ nguyên. [Làng](LANG_GIAO_UOC.md), [task](tasks/AW2-006G.md).

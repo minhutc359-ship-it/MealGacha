@@ -502,6 +502,7 @@ function WorldPreview() {
             focusRef={worldMap}
             key={`${snapshot.save.saveId}:${mapEpoch}`}
             world={world}
+            economy={snapshot.save.economy}
             onNavigate={navigate}
             paused={busy || !!dialogObject}
           />

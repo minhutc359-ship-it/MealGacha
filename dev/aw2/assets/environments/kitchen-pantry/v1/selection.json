@@ -1,0 +1,18 @@
+{
+  "initialCalls": 2,
+  "selected": [
+    {
+      "id": "floor",
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-4e97f44d-34ca-48cb-86da-7bde29c2bf50.png",
+      "sourceSha256": "014fac74ccce65b0908b101874f006338fd8cca6e3785c2b2cf0660b4206fe27",
+      "savedPath": "dev/aw2/assets/environments/kitchen-pantry/v1/floor-source.png"
+    },
+    {
+      "id": "props",
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-b8ebae86-de93-4944-b434-ff8c3b3402b2.png",
+      "sourceSha256": "f39115477bf73ade1866d06d016291bd333a893a6272610a3ba631dab5a0eb23",
+      "savedPath": "dev/aw2/assets/environments/kitchen-pantry/v1/props-source.png"
+    }
+  ],
+  "rejected": []
+}

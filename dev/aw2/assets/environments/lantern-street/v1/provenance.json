@@ -1,0 +1,209 @@
+{
+  "task": "AW2-006J",
+  "generator": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-24",
+    "prompts": {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/prompts.json",
+      "sha256": "632d98f487b268714d9eccdbf7cdbdde1ab210c9fb2cb313180cf46c79b43dfb"
+    },
+    "references": [
+      {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+        "role": "Own selected006Ilandscape palette/architecture/depth reference, derived from pinnedmainline",
+        "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+        "gitBlob": "383d13443d698e8f12a82c40990ef4a6ab949f3d",
+        "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+      },
+      {
+        "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+        "role": "Own selected006GstaticNPC/body/object rendering reference",
+        "commit": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
+        "gitBlob": "9caeb8b7e5f3bab3f12962e671b2be0fbe76fe31",
+        "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373"
+      }
+    ],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "builder": "dev/tools/build-aw2-journey-environments.py",
+    "pillow": "10.2.0",
+    "processing": "SelectedPNGbytes unchanged; exactRGBAlosslessWebP; alpha>8 explicit measured frames (street per-column row split,2pxpadding; othercells4px); uniform logical sprite scale only. No source painting/masking/cropping/mirroring/warping.",
+    "reused": {
+      "threshold": "AW2-006C/b350a11d777c1e8c94b5f2aadc6299b68f7e7722",
+      "obstacle": "This task pantry originalcrate",
+      "foreground": "AW2-006I/f0c1be37cef1c83416c5eb76be2943d1e768f2bc"
+    }
+  },
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-lantern-street-v1:floor",
+      "url": "/dev/aw2/assets/environments/lantern-street/v1/floor.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3239024,
+      "sha256": "b76780b2e5b5640edfa26251c745eedae1a79e0f2d0c2287637d7b63f3d37bff",
+      "source": {
+        "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+        "bytes": 3998946,
+        "sha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede"
+      }
+    },
+    "props": {
+      "id": "aw2-environment-lantern-street-v1:props",
+      "url": "/dev/aw2/assets/environments/lantern-street/v1/props.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1417392,
+      "sha256": "d4837098b1500e69bf9182f99e84e8550ee6c13b0371cdfed536fe9e959fe799",
+      "source": {
+        "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+        "bytes": 2143823,
+        "sha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74"
+      }
+    },
+    "threshold": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:threshold",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 927068,
+      "sha256": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png",
+        "bytes": 1370491,
+        "sha256": "ecb379f438637c2dd66b3bfec67a6cafab5ace9b137b365091f1986747ddaf1d"
+      },
+      "frame": {
+        "x": 300,
+        "y": 231,
+        "width": 936,
+        "height": 564
+      }
+    },
+    "obstacle": {
+      "id": "aw2-environment-kitchen-pantry-v1:props",
+      "url": "/dev/aw2/assets/environments/kitchen-pantry/v1/props.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 921926,
+      "sha256": "c5033be6dd6aa4f7085235ab1bd159d03cbde2c759920c97e1d8c430ebd82307",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-pantry/v1/props-source.png",
+        "bytes": 1237920,
+        "sha256": "f39115477bf73ade1866d06d016291bd333a893a6272610a3ba631dab5a0eb23"
+      }
+    },
+    "foreground": {
+      "id": "aw2-environment-covenant-village-v2:foreground",
+      "url": "/dev/aw2/assets/environments/covenant-village/v2/foreground.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 884746,
+      "sha256": "e6316b2bf86b2c93d7f033d07dbaaa8ff0066108ff353b3b0e3c72490672b012",
+      "source": {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/foreground-source.png",
+        "bytes": 1158981,
+        "sha256": "d5b2963a151efe6fa5ae24928d03b02b3e937b1ff03823bba5dd0641baabe5ca"
+      }
+    }
+  },
+  "frames": {
+    "lantern": {
+      "x": 143,
+      "y": 25,
+      "width": 225,
+      "height": 506
+    },
+    "breakfast": {
+      "x": 602,
+      "y": 51,
+      "width": 330,
+      "height": 470
+    },
+    "chair": {
+      "x": 1080,
+      "y": 25,
+      "width": 359,
+      "height": 498
+    },
+    "water": {
+      "x": 140,
+      "y": 560,
+      "width": 230,
+      "height": 404
+    },
+    "cards": {
+      "x": 571,
+      "y": 522,
+      "width": 376,
+      "height": 453
+    },
+    "chess": {
+      "x": 1105,
+      "y": 524,
+      "width": 315,
+      "height": 451
+    }
+  },
+  "frameEdgeAlpha": {
+    "lantern": 3,
+    "breakfast": 4,
+    "chair": 3,
+    "water": 2,
+    "cards": 2,
+    "chess": 4
+  },
+  "selection": {
+    "initialCalls": 2,
+    "selected": [
+      {
+        "id": "floor",
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-281b65d3-60ab-4bd0-8176-4882ac1db310.png",
+        "sourceSha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede",
+        "savedPath": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png"
+      },
+      {
+        "id": "props",
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-274d9f74-9ad9-4731-b939-5beb64d9f054.png",
+        "savedPath": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+        "sourceSha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74"
+      }
+    ],
+    "rejected": [
+      {
+        "id": "props",
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-b4cb7fff-1b47-44a0-b4c4-6cdea4d6055f.png",
+        "sourceSha256": "4dcbcd4e74a667cc2cb49cd94528b7a742cae55069b0f0da8567bdd4151377a7",
+        "reason": "Initial irregular row layout prompted transparency/spacing repair; later alpha inspection confirms original was transparent, not opaque. Selected repair uses explicitly measured per-column row separation rather than assuming equal grid."
+      }
+    ],
+    "repairCalls": 1,
+    "calibration": "Selected alpha is0..254, true transparent background despite colored preview RGB. Per-column clear gaps split rows;2pxpadding preserves every alpha>8 pixel, no source repaint/crop/masking or hand-erasure."
+  },
+  "calibration": {
+    "walkDomain": [
+      16,
+      16,
+      624,
+      368
+    ],
+    "inSource": [
+      464,
+      336,
+      1072,
+      688
+    ],
+    "scenicApronOnly": true
+  },
+  "budget": {
+    "compressedBytes": 7390156,
+    "decodedRgbaBytes": 31454592,
+    "maxCompressedBytes": 8000000,
+    "maxDecodedRgbaBytes": 40000000
+  },
+  "limits": [
+    "Static original reference scene/NPCs; no new interiors/actions/rights or full-environment acceptance.",
+    "D20independent acceptance deferred; no device-memory claim."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "task": "AW2-006H",
+  "tool": "OpenAI built-in image_gen",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "role": "Own selected006Ilandscape palette/architecture/depth reference, derived from pinnedmainline",
+      "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+      "gitBlob": "383d13443d698e8f12a82c40990ef4a6ab949f3d",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+      "role": "Own selected006GstaticNPC/body/object rendering reference",
+      "commit": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
+      "gitBlob": "9caeb8b7e5f3bab3f12962e671b2be0fbe76fe31",
+      "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373"
+    }
+  ],
+  "requests": [
+    {
+      "id": "floor",
+      "transparentBackground": false,
+      "prompt": "Use case: stylized-concept. Asset: original AW2 exploration panorama. Input image1 is our own village landscape STYLE reference, image2 our own prop/NPC style reference only. Match warm Vietnamese-inspired red tile roofs, amber lanterns, jade bamboo, flowers, natural stone and rich crisp painted pixel/chibi game art. Elevated three-quarter top-down view, not eye-level. Exact1536x1024 opaque single complete landscape. Camera looks at a rich environment with several depth layers around a large clear traversable central space. VERY IMPORTANT source image rectangle x430..1110,y310..720 must remain flat unobstructed walkable paving/wood: NO buildings/roofs/steps/water/shelves/tall props/people/walls in that central rectangle. The entire central region is walkable with tiny flat flowers/moss/dirt allowed only; perspective should be shallow enough not to imply steep stairs on floor. Buildings/tall objects/scenery only outside that rectangle, particularly the outer quarters. Do NOT bake NPCs, quest hint, chest, well, crates or game interfaces/text into floor. No words/letters/logos/watermarks, no center vignette or border. Fill the full frame with rich authored environment, center floor still pleasantly textured with low flat detail. No empty white/matte background. Subject: a cozy old village pantry in the communal kitchen compound. Rich shelves of ceramic storage jars, neatly bundled herbs, rice sacks, timber rafters, warm paper lamps and a glimpse of jade bamboo outside at the upper side. Shadowed shelves recede around the top, left and right outer apron. Wood-and-terracotta floor in the clear central rectangle. No perspective front wall blocking view. Side passageways visually align at image x472,y512 (west) and1064,y512(east) but do not place doors on those points; those are flat unobstructed floor. Bottom apron shows low floral/courtyard fringe and a cutaway timber edge outside clear rectangle. Quiet, welcoming, slightly dusty, highly detailed coherent environment. Does not depict an activated flame."
+    },
+    {
+      "id": "props",
+      "transparentBackground": true,
+      "prompt": "Use case: stylized-concept. Asset: transparent AW2 pantry prop atlas, original art. Style references are own village landscape and props only, match their crisp painted pixel/chibi detail, warm wood, amber/jade palette and elevated three-quarter top-down perspective. Exactly three equal cells in ONE HORIZONTAL ROW on a1536x512 transparent canvas. Each item centered and isolated completely INSIDE its own512x512cell with at least80transparent pixels on every edge. Content small (maximum320pixels width and350height), fully visible with no contact between cells. Leftcell: freestanding rustic bamboo-framed hint board on two short feet, slate surface with three tiny abstract steam/vent/pot/flame pictograms, no readable words or letters. Middlecell: a CLOSED small wooden ingredient chest with brass latch and woven corner details; neutral state, no glow/sparkles, no open lid or spilling loot. Rightcell: one low stacked wooden storage crate/barrel group suitable as a64x48logical map obstacle, sturdy compact rectangle, no chest latch. No people, no ground tile/backdrop/matte, no shadows extending into transparent gutters, no text/logos/borders/watermark. True transparent background, clean complete alpha silhouettes."
+    }
+  ]
+}

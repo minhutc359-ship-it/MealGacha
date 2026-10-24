@@ -1,5 +1,13 @@
 # Task board
 
+**AW2-006H/J/K — đã bổ sung phong cảnh và điểm đến cho Kho, Phố, Sân Bếp.** Source `PENDING006HJK`, base `fd1513306ea6cc5052bd08a04eaba666ce07b6cf`. Ba cảnh1536×1024 theo D21, bảng dấu hơi/rương/thùng hàng, đủ sáu NPC Phố và Dì/cổng lối tắt; cả8NPC có hình tham chiếu tĩnh trên map. Camera Bám nhân vật/Toàn cảnh, nhãn và điểm chạm theo cùng góc nhìn. Trạng thái rương đọc biên nhận thực, hint/ký ức/cửa đọc tiến trình; điểm đến chỉ đi tới gần. Một đại diện map/năm combat, luật/save/tọa độ cũ giữ nguyên. [Cách chơi sáu vùng](THE_GIOI.md) · [Bằng chứng](evidence/AW2-006HJK.md).
+
+88unit/7files, hai typecheck, asset audit/review239files/stable isolation PASS.222browser assertion instances=111source+111compiled được xác minh qua chuỗi checkpoint thật trong phiên này:168prefix đã đạt giữ theo hash +54ca tiếp nối cuối, không cộng trùng hoặc gọi là một lượt fresh liền mạch. Intro→modes→ký ức→rương lỗi ghi/thử lại→puzzle/nấu→boss→hai kết thúc/shortcuts→6ảnh thiếu/khôi phục, không sửa flag/HP/save để vượt bước. [Machine report](evidence/AW2-006HJK-verification.json).
+
+**Art tham chiếu3/6→6/6vùng;4vùng có cảnh mở rộng/camera, Lửa/Bàn vẫn là nội thất v1 đơn giản. Demo90% / product≈40%(35–45%) giữ nguyên.** D20tiếp tục gác nghiệm thu độc lập. Tiếp theo [006L](tasks/AW2-006L.md): nâng phong cảnh hai phòng Lửa/Bàn theo D21, rồi chuyển động NPC/môi trường.12kit/12bộ tham chiếu/0fullDoD, full environment/NPC motion/rights chưa đóng. Không reset hoặc cập nhậtmaster/rpg/deploy/release.
+
+Các mốc bên dưới là lịch sử theo source; ưu tiên hiện hành theo006H/J/K→006L, D20/D21 ở trên.
+
 **AW2-006I — làng đã có phong cảnh nhiều lớp theo hình Làng Linh Vị ở mainline.** Source `f0c1be37cef1c83416c5eb76be2943d1e768f2bc`, base `5d3ec842afbeb8518f6da957b78ad04cc59d94da`. Dùng hai ảnh gốc của dự án tại `master` (nhánh mặc định, không có remote `main`) làm tham chiếu: mái ngói đỏ, tre, đèn lồng, cầu/sen/thác, sân gạch và vườn hoa. Cảnh rộng1536×1024 + ba tán cây tiền cảnh, camera bám nhân vật/Toàn cảnh, chạm theo đúng góc nhìn; cây che nhân vật sẽ mờ. Giữ một đại diện đầu đội/năm combat và toàn bộ tọa độ/va chạm/nhiệm vụ/save.72unit riêng biệt/6files,82browser assertions=41source+41compiled, hai typecheck/asset audit/review224files/stable isolation PASS. [Cách xem](LANG_GIAO_UOC.md) · [Bằng chứng](evidence/AW2-006I.md).
 
 Art vẫn3/6zone tham chiếu; **demo90% / product≈40%(35–45%) giữ nguyên**. Nhà/cầu bên ngoài sân là phong cảnh, chưa phải phòng/tương tác mới; full environment/NPC motion/rights còn mở. D20tiếp tục gác nghiệm thu độc lập. Việc tiếp theo là [006HPhòng Kho](tasks/AW2-006H.md) theo cùng phong cách, sau đó Phố/Sân. D21đồng bộ hình ảnh, không đổi tên/canon và không merge `master`/`rpg`.
@@ -52,7 +60,10 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | AW2-006D | BA/story/character/animation/mechanic/tester/scretary | Own boss chibi world reference, scoped four-direction idle | VERIFIED reference subset at 7124bed958ee5cfa537fa3a021b4f03836e19544;59unit/52browser; full enemy/motion/rights OPEN |
 | AW2-006G | BA/story/animation/mechanic/tester/scretary | Village floor/NPC/table/cloth/well + native intro destinations | VERIFIED at42f36d7c55921e6d2df474640cdfc212151bc4c0;51uniqueunits/60browser/types/build PASS; next006H underD20 |
 | AW2-006I | BA/story/animation/mechanic/tester/scretary | Mainline style village panorama/foreground/follow+overview camera | VERIFIED developer subset atf0c1be37cef1c83416c5eb76be2943d1e768f2bc;72units/82browser/types/build PASS; D21, full environment OPEN |
-| AW2-006H | BA/story/animation/mechanic/tester/scretary | Phòng Kho floor/hint/chest/native destinations | READY after006I, unified D21 style; next product taskD20, implementation/assets NOT_STARTED |
+| AW2-006H | BA/story/animation/mechanic/tester/scretary | Pantry scenery/hint/chest/crate and committed receipt text | VERIFIED atPENDING006HJK; shared88unit/222composite browser/types/build PASS |
+| AW2-006J | BA/story/character/animation/mechanic/tester/scretary | Lantern street landscape/six NPC bodies/native destinations | VERIFIED atPENDING006HJK; static reference, full motion OPEN |
+| AW2-006K | BA/story/character/animation/mechanic/tester/scretary | Kitchen yard landscape/Dì/shortcut/native gates | VERIFIED atPENDING006HJK; static reference, full motion OPEN |
+| AW2-006L | BA/story/animation/mechanic/tester/scretary | Rich hearth/table interiors to D21, preserve puzzle/boss | READY; next product task, implementation NOT_STARTED |
 | AW2-006F | BA/story/animation/mechanic/tester/scretary | Authored Phòng Lửa floor/props/native navigation | VERIFIED development slice at 4d463302f95a33788ac9cb9c8274f12b18d86281;83unit/72browser, independent route/device gates OPEN |
 | AW2-004L | character/story/animation/tester | Hải original reference package | VERIFIED at 57b160faefa4edca081e46680a45489bfa4d9e68;85 units/102 browser; full DoD OPEN |
 | AW2-004M | character/story/animation/tester | Liên original reference package | VERIFIED at 8344fc0b05275a1d8e314100fcfa3263d9956c8e;96 own browser assertions, shared full1132; [card](tasks/AW2-004M.md), full DoD OPEN |

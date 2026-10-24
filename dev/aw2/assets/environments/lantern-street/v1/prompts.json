@@ -1,0 +1,39 @@
+{
+  "task": "AW2-006J",
+  "tool": "OpenAI built-in image_gen",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "role": "Own selected006Ilandscape palette/architecture/depth reference, derived from pinnedmainline",
+      "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+      "gitBlob": "383d13443d698e8f12a82c40990ef4a6ab949f3d",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+      "role": "Own selected006GstaticNPC/body/object rendering reference",
+      "commit": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
+      "gitBlob": "9caeb8b7e5f3bab3f12962e671b2be0fbe76fe31",
+      "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373"
+    }
+  ],
+  "requests": [
+    {
+      "id": "floor",
+      "transparentBackground": false,
+      "prompt": "Use case: stylized-concept. Asset: original AW2 exploration panorama. Input image1 is our own village landscape STYLE reference, image2 our own prop/NPC style reference only. Match warm Vietnamese-inspired red tile roofs, amber lanterns, jade bamboo, flowers, natural stone and rich crisp painted pixel/chibi game art. Elevated three-quarter top-down view, not eye-level. Exact1536x1024 opaque single complete landscape. Camera looks at a rich environment with several depth layers around a large clear traversable central space. VERY IMPORTANT source image rectangle x430..1110,y310..720 must remain flat unobstructed walkable paving/wood: NO buildings/roofs/steps/water/shelves/tall props/people/walls in that central rectangle. The entire central region is walkable with tiny flat flowers/moss/dirt allowed only; perspective should be shallow enough not to imply steep stairs on floor. Buildings/tall objects/scenery only outside that rectangle, particularly the outer quarters. Do NOT bake NPCs, quest hint, chest, well, crates or game interfaces/text into floor. No words/letters/logos/watermarks, no center vignette or border. Fill the full frame with rich authored environment, center floor still pleasantly textured with low flat detail. No empty white/matte background. Subject: a lively but currently unoccupied village lantern street and market court connected to our village. Rich red-tile shopfronts and awnings at outer top and sides, hanging strings of warm paper lanterns overhead in OUTER apron, flower boxes, bamboo, ceramic pots, water rill/stone bridges beyond walkable area, layered receding rooftops. Clear terracotta/stone central plaza, subtle flat wear/moss detail. A market lane crosses west/east through the central space. Keep all shop architecture/canopies and vendor stalls OUTSIDE the protected central rectangle. Do not bake any people, chairs in central area, card/chess tables or quest markers into panorama. Depth from foreground garden fringe and distant shops, warm afternoon light, colorful cozy exploration village."
+    },
+    {
+      "id": "props",
+      "transparentBackground": true,
+      "prompt": "Use case: stylized-concept. Asset: transparent original AW2 street NPC atlas. Input1ownlandscape is palette/architecture style only; input2ownNPC props is body/chibi proportion reference. Crisp detailed painted pixel/chibi exploration style, elevated3/4front view with feet visible, warm amber/jade/earthy palette. EXACT6isolated cells in3columns x2rows on a1536x1024transparentcanvas, each512x512. Each complete figure/item centered with minimum70transparent pixels on all4edges of EACHcell; no overlap, no character crossing grid boundary. All NPCs original Vietnamese-inspired villagers, no famous designs, unique clothing, neutral friendly expression. Top-left: An Vá Đèn, a slender adult lantern repairer, jade waistcoat/cream shirt, holding one small unlit folded lantern. Top-middle: Người Bán Bữa Sáng, adult breakfast seller with warm ochre clothing and a small woven food basket. Top-right: Thợ Sửa Ghế, adult chair repairer in brown apron with a SMALL low wooden stool beside them. Bottom-left: Em Đem Nước, a child in soft blue tunic holding small water pitcher, clearly a child and shorter proportions. Bottom-middle: Chủ Bàn Bài, adult host behind a tiny wooden table with a few plain unmarked rectangular game cards, no readable text or copied card art. Bottom-right: Chủ Bàn Cờ, different adult host behind a tiny square wooden board with abstract wooden pieces, no brands/recognizable external characters. Figure plus own small table/stool always fits its cell with transparent margin; no ground, scenery, backdrop, matte, letters/labels/borders/gridlines/logos/watermark. True transparent background and clean alpha contours."
+    }
+  ],
+  "repairs": [
+    {
+      "id": "props-transparent-spacing",
+      "target": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-b4cb7fff-1b47-44a0-b4c4-6cdea4d6055f.png",
+      "prompt": "Use case: background-extraction and precise-object-edit. Edit target: the attached own original six-villager sprite sheet. Preserve EXACT6characters in their same3columns x2rows order, identities/clothing/colors/props/table contents/expressions. Main changes: remove ALL opaque black/brown/gray background, colored backdrop glow and floor shadows so each sprite is a TRUE isolated transparent-alpha cutout. Also shrink and reposition EACH COMPLETE sprite within its own512x512cell on1536x1024canvas: bounding silhouette must fit centered INSIDE x=80..432,y=80..432 relative to each cell, with80pixels fully transparent gutter on all4cell edges. Top figures must NOT touch second row, and no character can touch a cell or outer canvas edge. Uniform scaling each figure allowed; retain complete feet, hats, lantern, stool, card table and board table, no cropping. Keep image background actual transparency, do not render a checkerboard or dark matte or warm glow. Do not erase skin/clothing/props or their interior colors. No scene/background/ground tile, no labels/gridlines/text/logos/watermarks."
+    }
+  ]
+}

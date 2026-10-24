@@ -6,38 +6,57 @@ import {
   hearthRoomWaypoints,
 } from "../../src/aw2/assets/hearthRoom"
 import { VILLAGE_SCENE, villageWaypoints } from "../../src/aw2/assets/village"
+import {
+  journeyScene,
+  journeyWaypoints,
+} from "../../src/aw2/assets/journeyScenes"
+import type { Economy } from "../../src/aw2/economy/model"
+import { zoneById } from "../../src/aw2/world/maps"
 
 export function RoomWaypoints({
   world,
+  economy,
   disabled,
   onChoose,
 }: {
   world: WorldProgress
+  economy?: Readonly<Economy>
   disabled: boolean
   onChoose: (point: Waypoint) => void
 }) {
   const hearth = world.zoneId === HEARTH_ROOM_SCENE.zoneId
   const village = world.zoneId === VILLAGE_SCENE.zoneId
-  const points = village
-    ? villageWaypoints(world).map(({ walkX, walkY, ...point }) => ({
-        ...point,
-        x: walkX,
-        y: walkY,
-      }))
-    : hearth
-      ? hearthRoomWaypoints(world)
-      : tableRoomWaypoints(world)
+  const journey = journeyScene(world.zoneId)
+  const points = journey
+    ? economy
+      ? journeyWaypoints(world, economy).map(({ walkX, walkY, ...p }) => ({
+          ...p,
+          x: walkX,
+          y: walkY,
+        }))
+      : []
+    : village
+      ? villageWaypoints(world).map(({ walkX, walkY, ...point }) => ({
+          ...point,
+          x: walkX,
+          y: walkY,
+        }))
+      : hearth
+        ? hearthRoomWaypoints(world)
+        : tableRoomWaypoints(world)
   if (!points.length) return null
   return (
     <nav
       className="aw2-room-waypoints"
-      aria-label={`Điểm đến trong ${village ? "Làng Giao Ước" : hearth ? "Phòng Lửa" : "Phòng Bàn"}`}
+      aria-label={`Điểm đến trong ${zoneById(world.zoneId).name}`}
       data-testid={
-        village
-          ? "village-waypoints"
-          : hearth
-            ? "hearth-room-waypoints"
-            : "table-room-waypoints"
+        journey
+          ? `${world.zoneId.replace("aw2-zone-", "")}-waypoints`
+          : village
+            ? "village-waypoints"
+            : hearth
+              ? "hearth-room-waypoints"
+              : "table-room-waypoints"
       }
     >
       <p>

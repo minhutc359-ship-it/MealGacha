@@ -32,11 +32,15 @@ import {
   villageWellAlpha,
 } from "../../src/aw2/assets/village"
 import { VillageLandscape } from "./VillageLandscape"
+import { JourneyLandscape } from "./JourneyLandscape"
+import { journeyScene } from "../../src/aw2/assets/journeyScenes"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
 
 export function WorldCanvas(props: WorldCanvasProps) {
   return props.world.zoneId === VILLAGE_SCENE.zoneId ? (
     <VillageLandscape {...props} />
+  ) : journeyScene(props.world.zoneId) ? (
+    <JourneyLandscape {...props} />
   ) : (
     <FlatWorldCanvas {...props} />
   )

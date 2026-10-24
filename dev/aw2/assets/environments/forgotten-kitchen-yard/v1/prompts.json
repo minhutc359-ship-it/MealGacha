@@ -1,0 +1,32 @@
+{
+  "task": "AW2-006K",
+  "tool": "OpenAI built-in image_gen",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "role": "Own selected006Ilandscape palette/architecture/depth reference, derived from pinnedmainline",
+      "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+      "gitBlob": "383d13443d698e8f12a82c40990ef4a6ab949f3d",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+      "role": "Own selected006GstaticNPC/body/object rendering reference",
+      "commit": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
+      "gitBlob": "9caeb8b7e5f3bab3f12962e671b2be0fbe76fe31",
+      "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373"
+    }
+  ],
+  "requests": [
+    {
+      "id": "floor",
+      "transparentBackground": false,
+      "prompt": "Use case: stylized-concept. Asset: original AW2 exploration panorama. Input image1 is our own village landscape STYLE reference, image2 our own prop/NPC style reference only. Match warm Vietnamese-inspired red tile roofs, amber lanterns, jade bamboo, flowers, natural stone and rich crisp painted pixel/chibi game art. Elevated three-quarter top-down view, not eye-level. Exact1536x1024 opaque single complete landscape. Camera looks at a rich environment with several depth layers around a large clear traversable central space. VERY IMPORTANT source image rectangle x430..1110,y310..720 must remain flat unobstructed walkable paving/wood: NO buildings/roofs/steps/water/shelves/tall props/people/walls in that central rectangle. The entire central region is walkable with tiny flat flowers/moss/dirt allowed only; perspective should be shallow enough not to imply steep stairs on floor. Buildings/tall objects/scenery only outside that rectangle, particularly the outer quarters. Do NOT bake NPCs, quest hint, chest, well, crates or game interfaces/text into floor. No words/letters/logos/watermarks, no center vignette or border. Fill the full frame with rich authored environment, center floor still pleasantly textured with low flat detail. No empty white/matte background. Subject: an old communal kitchen courtyard, a calm garden approach to the pantry and hearth. Weathered red tile kitchen buildings and timber porches at the OUTER top/left/right, a stone retaining terrace and bamboo garden, shaded baskets/planters ONLY on outer apron, a small lotus pool/stream to far right, climbing flowers, warm paper lanterns and distant leafy canopy. Central protected rectangle is flat open courtyard paving, worn but navigable, no obstacles, people, crates, cooking stations, steps or gates. Rich layered scenery and dappled warm light, signs of a kitchen waiting to be used, no actual active flames. Low foreground flowering shrubs frame outer lower edge but do not cross the central protected rectangle."
+    },
+    {
+      "id": "props",
+      "transparentBackground": true,
+      "prompt": "Use case: stylized-concept. Asset: transparent original AW2 kitchen-yard NPC and shortcut gate atlas. Match own input1landscape palette and input2NPCprops crisp painted pixel/chibi exploration rendering, elevated3/4 view. Exactly TWO equal cells SIDE BY SIDE on1536x768transparentcanvas, each768x768. Each complete silhouette centered, minimum130transparent pixels on all4edges of each cell; content max480wide and460high, no touching canvas/cell edges. Leftcell: Dì Gác Bếp, original kind middle-aged village kitchen caretaker, full-body chibi in a muted jade/brown apron over cream sleeves, warm russet scarf/headwrap, holding a simple wooden ladle at side; standing neutral, clear feet, no cooking flame or background. Rightcell: a modest timber-and-bamboo garden wicket/arch marking an old short passage, two slim posts and small red tile lintel, closed neutral low gate, no text/letters/signage, fully visible complete feet and roof; no glowing portal or magic. No groundtile/matte/scenery/other people/borders/gridlines/logos/watermarks. True transparent background, separated alpha silhouettes."
+    }
+  ]
+}

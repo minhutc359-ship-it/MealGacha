@@ -27,21 +27,29 @@ export function villageCamera(
   position: Waypoint,
   mode: VillageViewMode,
 ): VillageCamera {
+  return landscapeCamera(position, mode, scene)
+}
+/** Shared scenic camera; callers supply their authored bounds, never world authority. */
+export function landscapeCamera(
+  position: Waypoint,
+  mode: VillageViewMode,
+  spec: Pick<typeof scene, "camera" | "canvas" | "landscape">,
+): VillageCamera {
   finite(position.x, position.y)
   const zoom =
-    mode === "follow" ? scene.camera.followZoom : scene.camera.overviewZoom
-  const { width, height } = scene.canvas,
-    bounds = scene.landscape
+    mode === "follow" ? spec.camera.followZoom : spec.camera.overviewZoom
+  const { width, height } = spec.canvas,
+    bounds = spec.landscape
   const halfX = width / zoom / 2,
     halfY = height / zoom / 2
   return {
     x: clamp(
-      mode === "follow" ? position.x : scene.camera.centerX,
+      mode === "follow" ? position.x : spec.camera.centerX,
       bounds.x + halfX,
       bounds.x + bounds.width - halfX,
     ),
     y: clamp(
-      mode === "follow" ? position.y : scene.camera.centerY,
+      mode === "follow" ? position.y : spec.camera.centerY,
       bounds.y + halfY,
       bounds.y + bounds.height - halfY,
     ),
@@ -89,20 +97,21 @@ export function villageFoliage(
   camera: VillageCamera,
   actor: SceneBounds,
   reducedMotion: boolean,
+  spec: Pick<typeof scene, "camera" | "foliage"> = scene,
 ) {
   validCamera(camera)
   finite(actor.x, actor.y, actor.width, actor.height)
-  return scene.foliage.map((prop) => {
+  return spec.foliage.map((prop) => {
     const x =
       prop.x +
       (reducedMotion
         ? 0
-        : clamp((camera.x - scene.camera.centerX) * prop.parallax, -12, 12))
+        : clamp((camera.x - spec.camera.centerX) * prop.parallax, -12, 12))
     const y =
       prop.y +
       (reducedMotion
         ? 0
-        : clamp((camera.y - scene.camera.centerY) * prop.parallax, -8, 8))
+        : clamp((camera.y - spec.camera.centerY) * prop.parallax, -8, 8))
     const left = x - prop.width * prop.anchorX,
       top = y - prop.height * prop.anchorY
     const overlaps =

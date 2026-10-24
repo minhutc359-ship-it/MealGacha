@@ -118,6 +118,9 @@ try {
         const scene =
           {
             "aw2-zone-covenant-village": "aw2-environment-covenant-village-v2",
+            "aw2-zone-lantern-street": "aw2-environment-lantern-street-v1",
+            "aw2-zone-forgotten-kitchen-yard": "aw2-environment-forgotten-kitchen-yard-v1",
+            "aw2-zone-kitchen-pantry": "aw2-environment-kitchen-pantry-v1",
             "aw2-zone-kitchen-hearth": "aw2-environment-kitchen-hearth-v1",
             "aw2-zone-kitchen-table": "aw2-environment-kitchen-table-v1",
           }[p?.zoneId] ?? "debug-terrain"
@@ -520,7 +523,7 @@ try {
   check(
     "Explicit east travel enters original street with same five/XP",
     (await save()).progress.zoneId === "aw2-zone-lantern-street" &&
-      (await canvas().getAttribute("data-scene-id")) === "debug-terrain" &&
+      (await canvas().getAttribute("data-scene-id")) === "aw2-environment-lantern-street-v1" &&
       (await save()).economy.teamExperience === 30,
   )
   await travel(24, "Làng Giao Ước")
