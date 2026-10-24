@@ -1,0 +1,26 @@
+{
+  "task": "AW2-006O",
+  "tool": "OpenAI built-in image_gen",
+  "mode": "new architectural atlas using own style references",
+  "prompt": "Use case: style-transfer. Asset type: original AW2 RPG architecture sprite atlas on TRUE transparent background. Use the own village/street references ONLY as material/palette/camera style input. Render4separate buildings/structures in a strict2x2grid, square1536x1536canvas, equal spacious cells. One complete standalone structure percell, no landscape backdrop, no characters, no shadows outside the asset, no text/sign lettering, no UI or guide lines. Generous≥48px transparent gutters on every side of each cell. All structures front facing in the same slightly overhead three-quarter pixel/chibi RPG camera, richly hand-painted small-game details, red terracotta roof tiles, amber lanterns, warm wood, bamboo and subtle flower pots. Ground baseline aligned perrow. Full roofs/awnings/base visible. Architecture should read clearly at100-200game pixels width, not a tiny prop. The visible base of each building occupies only the lower28percent of its silhouette height and middle65percent of its width; generous eaves/roof overhang above, so our layer can sort and fade over player. Plain empty doorways are scenery, no glowing interaction signs. Do not copy outside IP.\nTop left: a cozy two-storey village home with red tile roof, small balcony, shutters, flower pots and bamboo side fence; no large yard. Top right: a small tea-house facade with red roof, cream linen shade, teapot shelf and bamboo stools tucked inside the narrow base. Bottom left: a grocery/herb shop facade with green cloth awning, wicker produce baskets and jars held inside the structure base. Bottom right: a compact village playground cluster: timber swing frame with two hanging seats, low slide and small sandbox, rustic timber, muted warm red/green details matching the village, no kids. Entire cluster in its cell, no broad paving island.",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "role": "own project style reference",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5",
+      "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+      "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d"
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+      "role": "own project style reference",
+      "sha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede",
+      "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+      "blob": "27893fcdb294368a46db5448531743544cf6a8d8"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "repairPrompt": "Edit this same four-structure atlas ONLY to separate the buildings cleanly. Preserve house/tea shop/grocery/playground appearance and palette. Strict2x2 arrangement, each complete structure fits inside its own cell with at least64pixels fully transparent gutter on EVERY side. In particular bottom-left grocery leaves and bottom-right playground must have a wide straight transparent vertical gap; no bamboo/flowers/roof/antialias may cross into another cell. Reduce all four structures slightly if needed. Keep all four roofs/bases visible. No backdrop, characters, labels, guides, cell outlines, code-painted shapes or extra items. Genuine transparency.",
+  "repairReason": "Lower grocery/playground had no straight safe vertical gutter; reject to avoid adjacent sprite leakage."
+}

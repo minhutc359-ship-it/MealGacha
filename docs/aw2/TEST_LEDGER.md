@@ -1,5 +1,19 @@
 # Test ledger / change impact
 
+## AW2-006O architectural density —2026-10-24
+
+Final structural checks PASS:11changedJSON,16localMarkdown link sets,2PythonAST,1NodeMJSsyntax,6oxfmtfiles,gitdiff whitespace; runtime371inputfingerprint unchanged after docs.
+
+Source `PENDING006O`, base `734cab6086b4ddddf7a8da8e6adf9a5a90af9099`. Linuxx64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chrome153.0.8010.36/Playwright1.58.2. **39unique unit cases/3files PASS**:25unchanged view/controls from initial run plus final complete14settlement rerun. Initial3failures were landmark endpoint metadata comparisons in tests; corrected x/y input, no runtime bug, no failed or duplicate cases added. Both final typechecks/review build PASS after named-type formatter repair before build/browser. [Exact commands](evidence/AW2-006O-verification.json).
+
+**248fresh focused browser assertions=124source+124compiled**, both process exit0/no unexpected errors,371inputfingerprint5b84f39cb4879e9216c22b9bcc886ae66bde4d2bd30d3fc4cbbf51aa59922b18.32actual architecture sprites/9native walk-only landmarks/keyboard+focus/no writes; follow0.65+overview320390768labels/native44px; actual roof-overlap fade0.25/restoration. All8NPC/32poses, feet/depth/scale, no duplicate or idle writes, pause/reducedneutral/freeze/resume. Fresh intro5starters30XP/exactreload, memories/An80XP/two practice entry-return, Dìlocked/acceptance/reciprocalpantry. Each8NPC+2architectureatlas404→error/no fallback/allpointsdisabled/exactsave→recovery. Both actual ending actions345XP/5receipts/completedBà from hashed historical earned boss+note checkpoint, retainedAssertions0. Fresh completed outward5+return5 native transitions across6zones preserve economy/ending/correct architecture/no phantom NPC. All5legacy sentinels exact. No uninterrupted intro-to-boss or new boss-win/full mode-round claim.
+
+3built-in imagegen calls/2selected/1rejected homes repaired for missing safe gutter; selected1254×1254PNG originals unchanged.8frames/fullalpha coverage/edge≤3/exactRGBA/pinnedrefs/repeat10paths PASS.32conservative lower28%solid bases outside old legal walkfield; no blocker/save-schema changes. Texture compressed/decodedRGBA: village9,900,218/44,033,328;street15,377,130/75,483,648;yard11,134,486/50,327,480;≤18MB/80MB each, chosenleader separate. Not measured totalGPU/device memory. [Guide/provenance](KHU_PHO.md).
+
+Review286files/118,853,221bytes/242runtimeassetparity/sourceexclusion/fingerprint PASS. Stable851files/177,450,422bytes reused at4165b1e; fresh49textAW2exclusion/entry/config/deps equality PASS.503unchanged tracked hashes retain1471fullunit013B only unchanged authorities/deps and006Linterior/boss scope; both outdoor canvases excluded and freshly checked. Historical totals never added. [Artifact](evidence/AW2-006O-review-build.json), [reuse](evidence/AW2-006O-reused-evidence.json).
+
+In-session BA/story/animation/mechanic/tester/scretary/React review and actual source/compiled390map captures opened. Current full suite/fresh uninterrupted boss route/independent human/physical phone/FPS/totalGPUmemory/listening/offline/native/rights/production-save/release NOT_RUN or OPEN; D20acceptance deferred. Demo90/product≈40%(35–45%) unchanged. Next006Nambient Làng/Phố. No reset/master/rpg/deploy/release.
+
 ## AW2-006M all eight NPC idle cycles —2026-10-24
 
 Source `639609b986389cc7743d977679ca361c010911f8`, clean local/freshremote base `b7b4d1c8d83875aba69307ef31c15743049e156c`. Linuxx64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.36/temporaryPlaywright1.58.2.83unit/5files PASS in one final run,28new NPC cases,0failed/skipped. Both final types exit0 after formatter inline object type semicolon was replaced with multiline form before frozen build/browser. [Exact commands/results](evidence/AW2-006M-verification.json).

@@ -22,6 +22,7 @@
 | D19 | APPROVED 2026-10-24 | Owner yêu cầu gộp PR #82 vào `game/adventure-world-2` và xác nhận `rpg` là nhánh product về sau. AW2 tiếp tục phát triển/tích hợp theo D16, incoming PR82 được phép đổi đích vào AW2 và merge sau audit. Outgoing AW2→rpg vẫn theo D18; không tự cập nhật product/master/deploy/release. |
 | D20 | APPROVED 2026-10-24 | Owner yêu cầu bỏ qua phần nghiệm thu để tiếp tục hoàn thiện. Ưu tiên triển khai tính năng/art tiếp theo; gác010C/011A khỏi công việc hiện tại, không lấy chúng làm điều kiện để bắt đầu task phát triển. Bằng chứng chưa chạy vẫn NOT_RUN; không tự đánh dấu PASS hoặc đủ milestone/deploy/release. Kiểm tra kỹ thuật theo tác động thay đổi và D16commitpush vẫn thực hiện. |
 | D21 | APPROVED 2026-10-24 | Owner yêu cầu kết hợp hình Làng Linh Vị ở mainline để đồng bộ phong cách và có map khám phá nhiều lớp, phong cảnh có chiều sâu.006Iưu tiên trước006H: lấy ảnh gốc dự án tại nhánh mặc địnhmaster làm tham chiếu, nâng cảnh làng/camera rồi áp dụng cùng hướng cho vùng tiếp theo. Không đổi tên/canon/luật/save hoặc cho phép merge/cập nhậtmaster; không tự đóng full-environment/rights/nghiệm thu. |
+| D22 | APPROVED 2026-10-24 | Owner yêu cầu thêm nhiều nhà/tiệm/cửa hàng/khu vui chơi vì khung nhìn còn trống.006Oưu tiên trước006N: đưa cụm kiến trúc sát tuyến khám phá và điều chỉnh góc bám để thấy khu dân cư; gắn quầy với NPC/tương tác có sẵn. Giữ6zone/8NPC/canon/save/collision, không suy thành duyệt commerce/room mới, quyền phát hành hoặc milestone. |
 
 Mọi thay đổi quyết định LOCKED cần owner xác nhận và scretary ghi lại.
 
@@ -36,3 +37,5 @@ D19 evidence: owner requests **“kết hợp merge code từ pr 82 vào game/ad
 D20 evidence: owner requests **“bỏ qua phần nghiệm thu, tiếp tục hoàn thiện giúp tôi”**. [AW2-006G](tasks/AW2-006G.md) continues product work on the opening village. This reprioritizes development immediately; no independent/device result is invented and no outgoing PR/deployment was requested.
 
 D21 evidence: owner requests **“Kết hợp với hình ảnh Làng Linh Vị ở nhánh main để đồng bộ phong cách đồ họa, phong cảnh, map khám phá có chiều sâu, chứ không chỉ 1-2 nhân vật + items lẻ tẻ.”** Default branch audit foundmaster/no main; two pinned original project images guide006Iart, with canon unchanged. [Contract](tasks/AW2-006I.md).
+
+D22 evidence: owner requests **“thêm nhiều nhà/tiệm/cửa hàng/khu vui chơi/... vì chỉ có mỗi npc thì khung ảnh hơi trống, sau đó tiếp tục hoàn thiện game”**. [AW2-006O](tasks/AW2-006O.md) adds a denser architectural layer and walk-only neighborhood landmarks, preserves current services/geometry and keeps006Nambient next.

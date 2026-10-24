@@ -1,5 +1,7 @@
 # Khám phá sáu vùng AW2
 
+**006O:** ba vùng ngoài trời nay có32công trình và9điểm đến đi bộ mới, góc bám rộng hơn/mái che mờ khi che nhân vật. [Danh sách nhà/tiệm/sân chơi, ảnh gốc và prompt](KHU_PHO.md). Hoạt ảnh của tám NPC và dịch vụ hiện có giữ nguyên.
+
 Chạy `pnpm dev`, mở `/dev/aw2/world.html` bằng hồ sơ chơi thử riêng. Tạo bản lưu AW2 nếu chưa có; tiếp tục bản lưu cũ bằng Đọc lại. Một nhân vật đầu đội đã lưu đại diện trên map; đội combat vẫn năm người.
 
 Cả sáu vùng có **Bám nhân vật / Toàn cảnh**. Chạm lối đi hoặc chọn điểm đến trong danh sách; khi đã tới gần, bấm E/Tương tác và chọn thao tác. Nút điểm đến chỉ đi bộ, không tự nhận nhiệm vụ, ký ức, quà hoặc qua cửa. Nhãn ra khỏi góc nhìn được ẩn, danh sách vẫn đầy đủ. Nhà/cầu/kệ trong cảnh bao quanh hiện là phong cảnh, không phải phòng mới có thể vào.

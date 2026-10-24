@@ -9,7 +9,7 @@ import {
   villageWaypoints,
 } from "../../src/aw2/assets/village"
 import {
-  villageCamera,
+  landscapeCamera,
   projectVillage,
   unprojectVillage,
   villageWorldBounds,
@@ -25,6 +25,13 @@ import {
   createNpcSprites,
   renderNpcSprites,
 } from "./npcSprites"
+import { settlementCameraSpec } from "../../src/aw2/assets/settlement"
+import {
+  loadSettlementTextures,
+  createSettlementSprites,
+  renderSettlement,
+  SettlementLandmarks,
+} from "./SettlementLayer"
 import { RoomWaypoints } from "./RoomWaypoints"
 
 /** Village presentation owns camera/layers only; all walking/actions remain world authority. */
@@ -60,15 +67,23 @@ export function VillageLandscape({
       try {
         const { Application, Assets, Sprite, Texture, Rectangle } =
           await import("pixi.js")
-        const [floor, props, threshold, foliage, body, loadedNpc] =
-          await Promise.all([
-            Assets.load(scene.assets.floor.url),
-            Assets.load(scene.assets.props.url),
-            Assets.load(scene.assets.threshold.url),
-            Assets.load(scene.assets.foreground.url),
-            Assets.load(ROSTER_ASSETS[leader].assets.world.url),
-            loadNpcTextures(scene.zoneId, (url) => Assets.load(url)),
-          ])
+        const [
+          floor,
+          props,
+          threshold,
+          foliage,
+          body,
+          loadedNpc,
+          loadedSettlement,
+        ] = await Promise.all([
+          Assets.load(scene.assets.floor.url),
+          Assets.load(scene.assets.props.url),
+          Assets.load(scene.assets.threshold.url),
+          Assets.load(scene.assets.foreground.url),
+          Assets.load(ROSTER_ASSETS[leader].assets.world.url),
+          loadNpcTextures(scene.zoneId, (url) => Assets.load(url)),
+          loadSettlementTextures(scene.zoneId, (url) => Assets.load(url)),
+        ])
         if (disposed) return
         floor.source.scaleMode = "linear"
         foliage.source.scaleMode = "linear"
@@ -117,6 +132,12 @@ export function VillageLandscape({
           textures,
         )
         for (const npc of npcSprites) next.stage.addChild(npc.sprite)
+        const settlement = createSettlementSprites(
+          loadedSettlement,
+          { Sprite, Texture, Rectangle },
+          textures,
+        )
+        for (const item of settlement) next.stage.addChild(item.sprite)
         const objects = villageProps(position.current)
           .filter((prop) => !npcForEntity(prop.entityId))
           .map((prop) => {
@@ -179,7 +200,11 @@ export function VillageLandscape({
             pause.current,
             reduced.matches,
           )
-          const view = villageCamera(now, viewMode.current)
+          const view = landscapeCamera(
+            now,
+            viewMode.current,
+            settlementCameraSpec(scene, scene.zoneId),
+          )
           next.stage.scale.set(view.zoom)
           next.stage.position.set(
             320 - view.x * view.zoom,
@@ -214,6 +239,15 @@ export function VillageLandscape({
           const currentProps = villageProps(now)
           next.canvas.dataset.npcMotion = JSON.stringify(
             renderNpcSprites(npcSprites, npcElapsed, reduced.matches),
+          )
+          next.canvas.dataset.settlement = JSON.stringify(
+            renderSettlement(settlement, [
+              { ...bounds, groundY: now.y },
+              ...npcSprites.map((npc) => ({
+                ...villageWorldBounds(npc.sprite.getBounds(), view),
+                groundY: npc.sprite.y,
+              })),
+            ]),
           )
           const viewport = next.canvas.getBoundingClientRect()
           for (const prop of currentProps) {
@@ -402,6 +436,14 @@ export function VillageLandscape({
         Đại diện trên bản đồ: {ROSTER_ASSETS[leader].displayName}. Vị trí đầu
         trong đội đã lưu quyết định nhân vật đại diện.
       </p>
+      <SettlementLandmarks
+        zoneId={world.zoneId}
+        disabled={!ready || paused}
+        onChoose={(point) => {
+          onNavigate(point)
+          host.current?.parentElement?.focus({ preventScroll: true })
+        }}
+      />
       <RoomWaypoints
         world={world}
         disabled={!ready || paused}

@@ -1,0 +1,858 @@
+{
+  "version": 1,
+  "id": "aw2-settlement-v1",
+  "status": "REFERENCE_ARCHITECTURE",
+  "fullEnvironmentComplete": false,
+  "geometryAuthorityChanged": false,
+  "followZoom": 0.65,
+  "assets": {
+    "homes": {
+      "id": "aw2-settlement-v1:homes",
+      "url": "/dev/aw2/assets/environments/settlement/v1/homes.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1679334,
+      "sha256": "725535f983f857d7ecfa5c38fcfd0217e020250bdcfff5de00cb3fdf7494afe5",
+      "source": {
+        "path": "dev/aw2/assets/environments/settlement/v1/homes-source.png",
+        "bytes": 2148701,
+        "sha256": "04d0c2a0194b064e55ec9e7b7b9a46adbd42a20b24edb24418b261fbd9d4316b"
+      }
+    },
+    "shops": {
+      "id": "aw2-settlement-v1:shops",
+      "url": "/dev/aw2/assets/environments/settlement/v1/shops.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2011246,
+      "sha256": "efdc5235ae271c28a6ee2e7363ca8b9d319c04ab8f7fbd09540101bcb1bfbd83",
+      "source": {
+        "path": "dev/aw2/assets/environments/settlement/v1/shops-source.png",
+        "bytes": 2487658,
+        "sha256": "33113f1dab1cb6afd9723846543e0606107880bb0d593445963a2303e7a73a09"
+      }
+    }
+  },
+  "frames": {
+    "home": {
+      "asset": "homes",
+      "x": 48,
+      "y": 74,
+      "width": 580,
+      "height": 553,
+      "alphaEdgeMax": 3,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "width": 628,
+        "height": 627
+      }
+    },
+    "tea": {
+      "asset": "homes",
+      "x": 676,
+      "y": 150,
+      "width": 541,
+      "height": 447,
+      "alphaEdgeMax": 2,
+      "cell": {
+        "x": 628,
+        "y": 0,
+        "width": 626,
+        "height": 627
+      }
+    },
+    "grocery": {
+      "asset": "homes",
+      "x": 43,
+      "y": 691,
+      "width": 584,
+      "height": 465,
+      "alphaEdgeMax": 2,
+      "cell": {
+        "x": 0,
+        "y": 627,
+        "width": 627,
+        "height": 627
+      }
+    },
+    "playground": {
+      "asset": "homes",
+      "x": 662,
+      "y": 707,
+      "width": 555,
+      "height": 454,
+      "alphaEdgeMax": 2,
+      "cell": {
+        "x": 627,
+        "y": 627,
+        "width": 627,
+        "height": 627
+      }
+    },
+    "lantern": {
+      "asset": "shops",
+      "x": 39,
+      "y": 45,
+      "width": 584,
+      "height": 545,
+      "alphaEdgeMax": 2,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "width": 627,
+        "height": 627
+      }
+    },
+    "breakfast": {
+      "asset": "shops",
+      "x": 670,
+      "y": 41,
+      "width": 552,
+      "height": 551,
+      "alphaEdgeMax": 3,
+      "cell": {
+        "x": 627,
+        "y": 0,
+        "width": 627,
+        "height": 627
+      }
+    },
+    "workshop": {
+      "asset": "shops",
+      "x": 44,
+      "y": 645,
+      "width": 584,
+      "height": 533,
+      "alphaEdgeMax": 3,
+      "cell": {
+        "x": 0,
+        "y": 627,
+        "width": 628,
+        "height": 627
+      }
+    },
+    "games": {
+      "asset": "shops",
+      "x": 673,
+      "y": 634,
+      "width": 527,
+      "height": 554,
+      "alphaEdgeMax": 3,
+      "cell": {
+        "x": 628,
+        "y": 627,
+        "width": 626,
+        "height": 627
+      }
+    }
+  },
+  "regions": [
+    {
+      "zoneId": "aw2-zone-covenant-village",
+      "buildings": [
+        {
+          "id": "village-north-0",
+          "frame": "home",
+          "x": 72,
+          "y": 4,
+          "width": 184,
+          "height": 175.434483,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 4,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": -20.0,
+            "y": -45.121655,
+            "width": 184,
+            "height": 49.121655
+          }
+        },
+        {
+          "id": "village-north-1",
+          "frame": "tea",
+          "x": 300,
+          "y": 4,
+          "width": 184,
+          "height": 152.029575,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 4,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 208.0,
+            "y": -38.568281,
+            "width": 184,
+            "height": 42.568281
+          }
+        },
+        {
+          "id": "village-north-2",
+          "frame": "grocery",
+          "x": 528,
+          "y": 4,
+          "width": 184,
+          "height": 146.506849,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 4,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 436.0,
+            "y": -37.021918,
+            "width": 184,
+            "height": 41.021918
+          }
+        },
+        {
+          "id": "village-west-0",
+          "frame": "home",
+          "x": -104,
+          "y": 142,
+          "width": 208,
+          "height": 198.317241,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 142,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": -208.0,
+            "y": 86.471172,
+            "width": 208,
+            "height": 55.528828
+          }
+        },
+        {
+          "id": "village-west-1",
+          "frame": "tea",
+          "x": -104,
+          "y": 360,
+          "width": 208,
+          "height": 171.859519,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 360,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": -208.0,
+            "y": 311.879335,
+            "width": 208,
+            "height": 48.120665
+          }
+        },
+        {
+          "id": "village-east-0",
+          "frame": "grocery",
+          "x": 744,
+          "y": 136,
+          "width": 208,
+          "height": 165.616438,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 136,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 640.0,
+            "y": 89.627397,
+            "width": 208,
+            "height": 46.372603
+          }
+        },
+        {
+          "id": "village-east-1",
+          "frame": "home",
+          "x": 744,
+          "y": 350,
+          "width": 208,
+          "height": 198.317241,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 350,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 640.0,
+            "y": 294.471172,
+            "width": 208,
+            "height": 55.528828
+          }
+        },
+        {
+          "id": "village-south-home",
+          "frame": "home",
+          "x": 80,
+          "y": 466,
+          "width": 180,
+          "height": 171.62069,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 466,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": -10.0,
+            "y": 417.946207,
+            "width": 180,
+            "height": 48.053793
+          }
+        },
+        {
+          "id": "village-south-tea",
+          "frame": "tea",
+          "x": 552,
+          "y": 466,
+          "width": 180,
+          "height": 148.724584,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 466,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 462.0,
+            "y": 424.357116,
+            "width": 180,
+            "height": 41.642884
+          }
+        },
+        {
+          "id": "village-playground",
+          "frame": "playground",
+          "x": 320,
+          "y": 468,
+          "width": 240,
+          "height": 196.324324,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 468,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 200.0,
+            "y": 413.029189,
+            "width": 240,
+            "height": 54.970811
+          }
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "courtyard",
+          "name": "Ngõ nhà dân",
+          "x": 96,
+          "y": 80
+        },
+        {
+          "id": "tea",
+          "name": "Hiên tiệm trà",
+          "x": 300,
+          "y": 48
+        },
+        {
+          "id": "playground",
+          "name": "Lối tới sân chơi",
+          "x": 432,
+          "y": 364
+        }
+      ],
+      "budget": {
+        "compressedBytes": 9900218,
+        "decodedRgbaBytes": 44033328,
+        "maxCompressedBytes": 18000000,
+        "maxDecodedRgbaBytes": 80000000
+      }
+    },
+    {
+      "zoneId": "aw2-zone-lantern-street",
+      "buildings": [
+        {
+          "id": "street-front-lantern",
+          "frame": "lantern",
+          "x": 160,
+          "y": 6,
+          "width": 118,
+          "height": 110.119863,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 6,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 101.0,
+            "y": -24.833562,
+            "width": 118,
+            "height": 30.833562
+          }
+        },
+        {
+          "id": "street-front-breakfast",
+          "frame": "breakfast",
+          "x": 280,
+          "y": 6,
+          "width": 118,
+          "height": 117.786232,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 6,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 221.0,
+            "y": -26.980145,
+            "width": 118,
+            "height": 32.980145
+          }
+        },
+        {
+          "id": "street-front-workshop",
+          "frame": "workshop",
+          "x": 392,
+          "y": 6,
+          "width": 118,
+          "height": 107.695205,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 6,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 333.0,
+            "y": -24.154658,
+            "width": 118,
+            "height": 30.154658
+          }
+        },
+        {
+          "id": "street-front-grocery",
+          "frame": "grocery",
+          "x": 504,
+          "y": 6,
+          "width": 118,
+          "height": 93.955479,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 6,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 445.0,
+            "y": -20.307534,
+            "width": 118,
+            "height": 26.307534
+          }
+        },
+        {
+          "id": "street-west-0",
+          "frame": "home",
+          "x": -104,
+          "y": 140,
+          "width": 208,
+          "height": 198.317241,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 140,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": -208.0,
+            "y": 84.471172,
+            "width": 208,
+            "height": 55.528828
+          }
+        },
+        {
+          "id": "street-west-1",
+          "frame": "tea",
+          "x": -104,
+          "y": 370,
+          "width": 208,
+          "height": 171.859519,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 370,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": -208.0,
+            "y": 321.879335,
+            "width": 208,
+            "height": 48.120665
+          }
+        },
+        {
+          "id": "street-east-0",
+          "frame": "grocery",
+          "x": 744,
+          "y": 150,
+          "width": 208,
+          "height": 165.616438,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 150,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 640.0,
+            "y": 103.627397,
+            "width": 208,
+            "height": 46.372603
+          }
+        },
+        {
+          "id": "street-east-1",
+          "frame": "home",
+          "x": 744,
+          "y": 370,
+          "width": 208,
+          "height": 198.317241,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 370,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 640.0,
+            "y": 314.471172,
+            "width": 208,
+            "height": 55.528828
+          }
+        },
+        {
+          "id": "street-cards-house",
+          "frame": "games",
+          "x": 240,
+          "y": 466,
+          "width": 160,
+          "height": 168.197343,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 466,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 160.0,
+            "y": 418.904744,
+            "width": 160,
+            "height": 47.095256
+          }
+        },
+        {
+          "id": "street-chess-house",
+          "frame": "games",
+          "x": 432,
+          "y": 466,
+          "width": 160,
+          "height": 168.197343,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 466,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 352.0,
+            "y": 418.904744,
+            "width": 160,
+            "height": 47.095256
+          }
+        },
+        {
+          "id": "street-south-shop",
+          "frame": "tea",
+          "x": 64,
+          "y": 466,
+          "width": 148,
+          "height": 122.284658,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 466,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": -10.0,
+            "y": 431.760296,
+            "width": 148,
+            "height": 34.239704
+          }
+        },
+        {
+          "id": "street-playground",
+          "frame": "playground",
+          "x": 624,
+          "y": 466,
+          "width": 164,
+          "height": 134.154955,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 466,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 542.0,
+            "y": 428.436613,
+            "width": 164,
+            "height": 37.563387
+          }
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "shops",
+          "name": "Dãy tiệm đầu phố",
+          "x": 96,
+          "y": 80
+        },
+        {
+          "id": "games",
+          "name": "Sân nhà chơi bài/cờ",
+          "x": 432,
+          "y": 320
+        },
+        {
+          "id": "tea",
+          "name": "Lối tới quầy trà",
+          "x": 96,
+          "y": 364
+        }
+      ],
+      "budget": {
+        "compressedBytes": 15377130,
+        "decodedRgbaBytes": 75483648,
+        "maxCompressedBytes": 18000000,
+        "maxDecodedRgbaBytes": 80000000
+      }
+    },
+    {
+      "zoneId": "aw2-zone-forgotten-kitchen-yard",
+      "buildings": [
+        {
+          "id": "yard-north-0",
+          "frame": "home",
+          "x": 96,
+          "y": 6,
+          "width": 184,
+          "height": 175.434483,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 6,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 4.0,
+            "y": -43.121655,
+            "width": 184,
+            "height": 49.121655
+          }
+        },
+        {
+          "id": "yard-north-1",
+          "frame": "breakfast",
+          "x": 320,
+          "y": 6,
+          "width": 184,
+          "height": 183.666667,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 6,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 228.0,
+            "y": -45.426667,
+            "width": 184,
+            "height": 51.426667
+          }
+        },
+        {
+          "id": "yard-north-2",
+          "frame": "grocery",
+          "x": 544,
+          "y": 6,
+          "width": 184,
+          "height": 146.506849,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 6,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 452.0,
+            "y": -35.021918,
+            "width": 184,
+            "height": 41.021918
+          }
+        },
+        {
+          "id": "yard-west-0",
+          "frame": "workshop",
+          "x": -104,
+          "y": 150,
+          "width": 208,
+          "height": 189.835616,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 150,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": -208.0,
+            "y": 96.846027,
+            "width": 208,
+            "height": 53.153973
+          }
+        },
+        {
+          "id": "yard-west-1",
+          "frame": "home",
+          "x": -104,
+          "y": 366,
+          "width": 208,
+          "height": 198.317241,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 366,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": -208.0,
+            "y": 310.471172,
+            "width": 208,
+            "height": 55.528828
+          }
+        },
+        {
+          "id": "yard-east-0",
+          "frame": "tea",
+          "x": 744,
+          "y": 160,
+          "width": 208,
+          "height": 171.859519,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 160,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 640.0,
+            "y": 111.879335,
+            "width": 208,
+            "height": 48.120665
+          }
+        },
+        {
+          "id": "yard-east-1",
+          "frame": "grocery",
+          "x": 744,
+          "y": 360,
+          "width": 208,
+          "height": 165.616438,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 360,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 640.0,
+            "y": 313.627397,
+            "width": 208,
+            "height": 46.372603
+          }
+        },
+        {
+          "id": "yard-south-home",
+          "frame": "home",
+          "x": 80,
+          "y": 466,
+          "width": 180,
+          "height": 171.62069,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 466,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": -10.0,
+            "y": 417.946207,
+            "width": 180,
+            "height": 48.053793
+          }
+        },
+        {
+          "id": "yard-storehouse",
+          "frame": "grocery",
+          "x": 552,
+          "y": 466,
+          "width": 180,
+          "height": 143.321918,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 466,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 462.0,
+            "y": 425.869863,
+            "width": 180,
+            "height": 40.130137
+          }
+        },
+        {
+          "id": "yard-playground",
+          "frame": "playground",
+          "x": 320,
+          "y": 468,
+          "width": 240,
+          "height": 196.324324,
+          "anchorX": 0.5,
+          "anchorY": 1,
+          "depth": 468,
+          "occludedAlpha": 0.25,
+          "solidBase": {
+            "x": 200.0,
+            "y": 413.029189,
+            "width": 240,
+            "height": 54.970811
+          }
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "kitchen",
+          "name": "Hiên bếp cộng đồng",
+          "x": 320,
+          "y": 64
+        },
+        {
+          "id": "homes",
+          "name": "Ngõ nhà sau bếp",
+          "x": 96,
+          "y": 80
+        },
+        {
+          "id": "playground",
+          "name": "Lối tới sân chơi",
+          "x": 432,
+          "y": 364
+        }
+      ],
+      "budget": {
+        "compressedBytes": 11134486,
+        "decodedRgbaBytes": 50327480,
+        "maxCompressedBytes": 18000000,
+        "maxDecodedRgbaBytes": 80000000
+      }
+    }
+  ],
+  "provenance": {
+    "task": "AW2-006O",
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-24",
+    "prompts": [
+      {
+        "path": "dev/aw2/assets/environments/settlement/v1/homes-prompts.json",
+        "sha256": "b748f339fd041c1a0836808a8042be6fa35002746d05b8dbcbbe0e7dee60b6ad"
+      },
+      {
+        "path": "dev/aw2/assets/environments/settlement/v1/shops-prompts.json",
+        "sha256": "aa4e763086a28fcf7704cf52cd56936fe906f8614b5f2bd4fe868e6abf6e8411"
+      }
+    ],
+    "references": [
+      {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+        "role": "own project style reference",
+        "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5",
+        "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+        "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d"
+      },
+      {
+        "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+        "role": "own project style reference",
+        "sha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede",
+        "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+        "blob": "27893fcdb294368a46db5448531743544cf6a8d8"
+      }
+    ],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "processing": "Unchanged selected PNGs; exactRGBA losslessWebP; measured safe cells. Uniform render scale only; no code painting/masking/mirroring/resizing.",
+    "builder": "dev/tools/build-aw2-settlement.py",
+    "pillow": "10.2.0"
+  }
+}

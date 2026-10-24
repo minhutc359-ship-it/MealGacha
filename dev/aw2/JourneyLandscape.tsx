@@ -25,6 +25,13 @@ import {
   createNpcSprites,
   renderNpcSprites,
 } from "./npcSprites"
+import { settlementCameraSpec } from "../../src/aw2/assets/settlement"
+import {
+  loadSettlementTextures,
+  createSettlementSprites,
+  renderSettlement,
+  SettlementLandmarks,
+} from "./SettlementLayer"
 import { RoomWaypoints } from "./RoomWaypoints"
 
 /** Three remaining regions share authored layers; committed progress/economy stay read-only. */
@@ -68,10 +75,11 @@ export function JourneyLandscape({
           (key) =>
             !(scene.zoneId === "aw2-zone-lantern-street" && key === "props"),
         )
-        const [loaded, body, loadedNpc] = await Promise.all([
+        const [loaded, body, loadedNpc, loadedSettlement] = await Promise.all([
           Promise.all(keys.map((key) => Assets.load(scene.assets[key].url))),
           Assets.load(ROSTER_ASSETS[leader].assets.world.url),
           loadNpcTextures(scene.zoneId, (url) => Assets.load(url)),
+          loadSettlementTextures(scene.zoneId, (url) => Assets.load(url)),
         ])
         if (disposed) return
         const assetTextures: Record<string, Texture> = Object.fromEntries(
@@ -123,6 +131,12 @@ export function JourneyLandscape({
           textures,
         )
         for (const npc of npcSprites) next.stage.addChild(npc.sprite)
+        const settlement = createSettlementSprites(
+          loadedSettlement,
+          { Sprite, Texture, Rectangle },
+          textures,
+        )
+        for (const item of settlement) next.stage.addChild(item.sprite)
         const objects = journeyProps(position.current, committedEconomy.current)
           .filter((prop) => !npcForEntity(prop.entityId))
           .map((prop) => {
@@ -186,7 +200,11 @@ export function JourneyLandscape({
             pause.current,
             reduced.matches,
           )
-          const view = landscapeCamera(now, viewMode.current, scene)
+          const view = landscapeCamera(
+            now,
+            viewMode.current,
+            settlementCameraSpec(scene, scene.zoneId),
+          )
           next.stage.scale.set(view.zoom)
           next.stage.position.set(
             320 - view.x * view.zoom,
@@ -235,6 +253,15 @@ export function JourneyLandscape({
             ).alpha = prop.alpha
           next.canvas.dataset.npcMotion = JSON.stringify(
             renderNpcSprites(npcSprites, npcElapsed, reduced.matches),
+          )
+          next.canvas.dataset.settlement = JSON.stringify(
+            renderSettlement(settlement, [
+              { ...bounds, groundY: now.y },
+              ...npcSprites.map((npc) => ({
+                ...villageWorldBounds(npc.sprite.getBounds(), view),
+                groundY: npc.sprite.y,
+              })),
+            ]),
           )
           const viewport = next.canvas.getBoundingClientRect()
           for (const prop of currentProps) {
@@ -429,6 +456,14 @@ export function JourneyLandscape({
         Đại diện trên bản đồ: {ROSTER_ASSETS[leader].displayName}. Vị trí đầu
         trong đội đã lưu quyết định nhân vật đại diện.
       </p>
+      <SettlementLandmarks
+        zoneId={world.zoneId}
+        disabled={!ready || paused}
+        onChoose={(point) => {
+          onNavigate(point)
+          host.current?.parentElement?.focus({ preventScroll: true })
+        }}
+      />
       <RoomWaypoints
         world={world}
         economy={economy}

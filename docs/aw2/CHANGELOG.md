@@ -1,5 +1,13 @@
 # Changes
 
+**AW2-006O — thêm 32 công trình quanh ba khu ngoài trời:** 10 ở Làng, 12 ở Phố, 10 ở Sân Bếp; gồm nhà, tiệm trà/tạp hóa/đèn lồng, quầy bữa sáng, xưởng, bàn chơi và sân chơi. Chín điểm đến đi bộ mới; góc bám nhân vật rộng hơn ở zoom0.65, mái che mờ khi che nhân vật/NPC. Tám NPC vẫn có32frame idle. Source `PENDING006O`, base `734cab6086b4ddddf7a8da8e6adf9a5a90af9099`. [Cách xem/ảnh/prompt](KHU_PHO.md) · [Bằng chứng](evidence/AW2-006O.md).
+
+39ca unit riêng biệt/3files, hai typecheck, exactRGBA/8safe frames/repeat10paths, review286files/242asset parity/stable isolation PASS.248kiểm tra trình duyệt mới=124source+124compiled: kiến trúc/điểm đến/che khuất, NPC/pause/reduced, intro/ký ức/host/Dì, hai ending từ checkpoint boss thật, đi–về đủ sáu vùng, từng10atlas NPC/kiến trúc thiếu–khôi phục/exactsave. Cả hai process exit0, không lỗi bất ngờ; chưa có lượt boss mới liền mạch. [Machine report](evidence/AW2-006O-verification.json).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.**6/6cảnh mở rộng,8/8NPC idle,32công trình là tiến độ hình ảnh riêng; nhà/tiệm mới là phong cảnh, dịch vụ thực vẫn qua NPC hiện có. Không thêm phòng/giao dịch/va chạm/save mới. Một đại diện map/năm combat giữ nguyên. D20gác nghiệm thu độc lập; next[006N](tasks/AW2-006N.md) chuyển động môi trường Làng/Phố. Full characterDoD/rights còn mở; không master/rpg/deploy/release.
+
+Các mốc bên dưới là lịch sử theo source; trạng thái/Next hiện hành theo006O→006N ở trên.
+
 **AW2-006M — cả 8 NPC đã có hoạt ảnh đứng yên riêng**, mở rộng phạm vi Bà/Dì theo yêu cầu owner. Source `639609b986389cc7743d977679ca361c010911f8`, base `b7b4d1c8d83875aba69307ef31c15743049e156c`. Bà, An, Người Bán Bữa Sáng, Thợ Sửa Ghế, Em Đem Nước, Chủ Bàn Bài/Bàn Cờ và Dì dùng32frame neutral/thở/chớp mắt/cử chỉ. Giữ nguyên chân/vị trí/depth/tương tác; không vẽ chồng hình tĩnh. Hội thoại dừng clock, giảm chuyển động dùng neutral, chuyển vùng chỉ tải atlas cần thiết; Phố bỏ atlas NPC tĩnh thừa. [Cách chơi/ảnh/prompt](THE_GIOI.md) · [Bằng chứng](evidence/AW2-006M.md).
 
 83unit/5files, hai typecheck, exactRGBA/32safe frames/repeat41paths, review279files/235asset parity/stable isolation PASS.178browser assertion instances=89source+89compiled trên cùng361đầu vào; source89fresh, compiled47prefix đã đạt+42tiếp nối sau khi sửa harness chờ đúng khung render.131fresh+47retained đã nằm trong178, không cộng historical counts. Đã quan sát cả32pose/8NPC, pause/reduced/resume, intro5starter30XP, ký ức/An80XP, hai host vào mode/trở lại, Dì/cửa khóa, hai ending từ checkpoint thật và từng8atlas404→error/khóa điểm đến/exactsave→recovery. [Machine report](evidence/AW2-006M-verification.json).
