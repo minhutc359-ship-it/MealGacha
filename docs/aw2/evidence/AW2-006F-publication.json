@@ -1,0 +1,225 @@
+{
+  "task": "AW2-006F",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "branch": "game/adventure-world-2",
+  "base": "e7dac41819b71ec881a3511b5aa842369ac5426b",
+  "source": "4d463302f95a33788ac9cb9c8274f12b18d86281",
+  "stagedAndRemoteSourceTree": "ffd5ff9cf99fc894b48149c09bf2b6f584b7f96b",
+  "changedFiles": 34,
+  "changedBytes": 6569008,
+  "files": [
+    {
+      "path": "dev/aw2/RoomWaypoints.tsx",
+      "mode": "100644",
+      "sha": "f0abe808f7165d925b6096ee56c27068a8ce71ba",
+      "bytes": 1525
+    },
+    {
+      "path": "dev/aw2/WorldCanvas.tsx",
+      "mode": "100644",
+      "sha": "b1befc254ab5e9c16f2d5fb827dcfc297325f89d",
+      "bytes": 19049
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/floor-source.png",
+      "mode": "100644",
+      "sha": "c9e8b9902f7874825f19fca476725fa6f2816195",
+      "bytes": 2426296
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/floor.webp",
+      "mode": "100644",
+      "sha": "5ab30bf5cc78474f5a02317883dd6b8ecb0e2d27",
+      "bytes": 1885996
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/prompts.json",
+      "mode": "100644",
+      "sha": "ca7df054645f8d6ba3e334c622c031688bf14337",
+      "bytes": 3196
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/provenance.json",
+      "mode": "100644",
+      "sha": "6d52199ae5fe7e06cf40712debbda265a763b417",
+      "bytes": 4503
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/puzzles-source.png",
+      "mode": "100644",
+      "sha": "d4871daada02d5c4d3dadb0cc8b0a8b067b0f44e",
+      "bytes": 970827
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/puzzles.webp",
+      "mode": "100644",
+      "sha": "0f48b9023be36b78ab99cb9afbd2645ed4209d4d",
+      "bytes": 680906
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/selection.json",
+      "mode": "100644",
+      "sha": "a59d3ba650dcad698e871c1463e7066459c22eb3",
+      "bytes": 275
+    },
+    {
+      "path": "dev/tests/aw2/hearth-room.test.ts",
+      "mode": "100644",
+      "sha": "67c4a40bf1b017d4ebc92f05f97f826534317977",
+      "bytes": 6522
+    },
+    {
+      "path": "dev/tools/build-aw2-hearth-room.py",
+      "mode": "100644",
+      "sha": "8d0896ee6f6cd4397323012f3e00ad99996c9f22",
+      "bytes": 5264
+    },
+    {
+      "path": "dev/tools/verify-aw2-hearth-room-files.py",
+      "mode": "100644",
+      "sha": "fb1b3e99bbad3d470bbc9a5e7ab58be3b08a1530",
+      "bytes": 2285
+    },
+    {
+      "path": "dev/tools/verify-aw2-hearth-room.mjs",
+      "mode": "100644",
+      "sha": "ee3f560442e383c3295704df59b5dce1553a42f2",
+      "bytes": 19319
+    },
+    {
+      "path": "docs/aw2/BACKLOG.md",
+      "mode": "100644",
+      "sha": "0b2c4091e1124c056277e8aeeceeb6ff3d997279",
+      "bytes": 24150
+    },
+    {
+      "path": "docs/aw2/CANON.md",
+      "mode": "100644",
+      "sha": "4a7039f1f38d93837db306c1f9712203a7e8c168",
+      "bytes": 21165
+    },
+    {
+      "path": "docs/aw2/CHANGELOG.md",
+      "mode": "100644",
+      "sha": "98e2c2a8f759cfb115b642c43b8805b6c74702b1",
+      "bytes": 42246
+    },
+    {
+      "path": "docs/aw2/DELIVERY_PLAN.md",
+      "mode": "100644",
+      "sha": "303534fd42fc4252e1242a2178f01efdfb576735",
+      "bytes": 25326
+    },
+    {
+      "path": "docs/aw2/HANDOFF.md",
+      "mode": "100644",
+      "sha": "d3c4e68c41219c3876a1273c3d29048fb806fd39",
+      "bytes": 5054
+    },
+    {
+      "path": "docs/aw2/NEXT_MILESTONES.md",
+      "mode": "100644",
+      "sha": "0a073dd60143b1058fc409b25fdaf10bf5fb686d",
+      "bytes": 6566
+    },
+    {
+      "path": "docs/aw2/PHONG_BAN.md",
+      "mode": "100644",
+      "sha": "d5c42e197bc66bf4b95e6669678bbe9af2cb6b48",
+      "bytes": 3636
+    },
+    {
+      "path": "docs/aw2/PHONG_LUA.md",
+      "mode": "100644",
+      "sha": "0b71bec9b24b2b4d32ee8d401b05038d2e926afa",
+      "bytes": 2822
+    },
+    {
+      "path": "docs/aw2/PROGRESS.md",
+      "mode": "100644",
+      "sha": "883263ef0a439a3307aafc1f5576a4efdbc7e0df",
+      "bytes": 29311
+    },
+    {
+      "path": "docs/aw2/README.md",
+      "mode": "100644",
+      "sha": "a082eb01771ed6accb7e17e449932d0f724143cf",
+      "bytes": 26211
+    },
+    {
+      "path": "docs/aw2/REPORT.md",
+      "mode": "100644",
+      "sha": "a07f96204b830d7167837f95b45c5325eccb68f8",
+      "bytes": 2501
+    },
+    {
+      "path": "docs/aw2/STATUS.md",
+      "mode": "100644",
+      "sha": "2dc5a790eea795c64b65a492f7afbe42ce2787c2",
+      "bytes": 2262
+    },
+    {
+      "path": "docs/aw2/TEST_LEDGER.md",
+      "mode": "100644",
+      "sha": "d33ad97dc6572b616fd22137d7c08afa50b2d483",
+      "bytes": 134742
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006F-reused-evidence.json",
+      "mode": "100644",
+      "sha": "9ca05015ad2e97b1c3ed86760e949cf161d20690",
+      "bytes": 61193
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006F-review-build.json",
+      "mode": "100644",
+      "sha": "99d964a121479ec9d8363a192197b7b42e01dd52",
+      "bytes": 37844
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006F-verification.json",
+      "mode": "100644",
+      "sha": "3d46f601e11e7da41c5a65a335b4086592c25b37",
+      "bytes": 87416
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006F.md",
+      "mode": "100644",
+      "sha": "68d269b51818aae67d2b444a1fd689e74df7ca14",
+      "bytes": 9857
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-006F.md",
+      "mode": "100644",
+      "sha": "9129adbc81b3c79a7b3e7fea570bea426d4a5fe9",
+      "bytes": 6489
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-014A.md",
+      "mode": "100644",
+      "sha": "0ce051f8792c70125451e0ffa2c43a4a5861a1c9",
+      "bytes": 5382
+    },
+    {
+      "path": "src/aw2/assets/hearthRoom.ts",
+      "mode": "100644",
+      "sha": "9e457c1d87c6baca31334d4ccda3a602f22a2bda",
+      "bytes": 2966
+    },
+    {
+      "path": "src/aw2/assets/kitchen-hearth.environment-v1.json",
+      "mode": "100644",
+      "sha": "987c577bf340b40d941adb8689d092097fe2ae95",
+      "bytes": 5906
+    }
+  ],
+  "expectedShaGuard": "e7dac41819b71ec881a3511b5aa842369ac5426b",
+  "force": false,
+  "independentGitFetch": "PASS",
+  "fetchedRemoteSha": "4d463302f95a33788ac9cb9c8274f12b18d86281",
+  "treeIndexEquality": "PASS",
+  "baseAncestor": "PASS",
+  "guardedLocalSync": "PASS",
+  "cleanLocalAfterSourceSync": true,
+  "completion": "Source stamp/evidence documents only. Final clean local=fresh remote must be independently read after completion push; no recursively embedded final SHA."
+}

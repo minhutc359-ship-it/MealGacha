@@ -1,7 +1,7 @@
 {
   "task": "AW2-006F",
   "status": "PASS_DEVELOPMENT_SLICE",
-  "source": "PENDING006F",
+  "source": "4d463302f95a33788ac9cb9c8274f12b18d86281",
   "base": "e7dac41819b71ec881a3511b5aa842369ac5426b",
   "branch": "game/adventure-world-2",
   "unit": {

@@ -1,6 +1,6 @@
 # Báo cáo Adventure World 2 —24/10/2026
 
-**Đã hoàn thành phần kỹ thuật AW2-006F: Phòng Lửa có nền gạch, ba vật giải đố riêng và năm điểm đến.** Source `PENDING006F` trên `game/adventure-world-2`. [Cách chơi](PHONG_LUA.md).
+**Đã hoàn thành phần kỹ thuật AW2-006F: Phòng Lửa có nền gạch, ba vật giải đố riêng và năm điểm đến.** Source `4d463302f95a33788ac9cb9c8274f12b18d86281` trên `game/adventure-world-2`. [Cách chơi](PHONG_LUA.md).
 
 - Nhãn chỉ rõ bước đã đúng, bước kế và gợi ý còn thiếu; cửa sang Phòng Bàn mở sau ba bước. Chọn điểm đến chỉ đi bộ, thao tác giải đố vẫn cần E/Tương tác.
 - Đã xác minh giải sai/thử lại, reload giữa puzzle, đi hai chiều Phòng Lửa↔Phòng Bàn, báo Dì, nấu và chia bữa đúng tài nguyên/EXP. Map giữ một đại diện đầu đội, chiến đấu vẫn năm người; không cần reset save.

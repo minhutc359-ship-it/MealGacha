@@ -1,6 +1,6 @@
 # Chơi thử Phòng Lửa — AW2-006F
 
-Bản phát triển tại source `PENDING006F`, sau D18. Phòng Lửa và Phòng Bàn đã có hình môi trường riêng; bốn vùng còn lại vẫn dùng terrain debug. Đây là bộ hình tham chiếu và luồng kỹ thuật đã kiểm chứng, chưa nghiệm thu world/UX độc lập hoặc điện thoại thật.
+Bản phát triển tại source `4d463302f95a33788ac9cb9c8274f12b18d86281`, sau D18. Phòng Lửa và Phòng Bàn đã có hình môi trường riêng; bốn vùng còn lại vẫn dùng terrain debug. Đây là bộ hình tham chiếu và luồng kỹ thuật đã kiểm chứng, chưa nghiệm thu world/UX độc lập hoặc điện thoại thật.
 
 Chạy `pnpm dev`, mở `http://localhost:8443/dev/aw2/world.html`. Tiếp tục save AW2 đang có; không cần reset. Để đi đúng luồng nhiệm vụ: hoàn tất nhập môn và ba ký ức ở Phố, nhận **Mở lại bếp** tại Dì ở Sân, đi qua Kho rồi vào Phòng Lửa. Save/địa chỉ/cổng thử nghiệm có hướng dẫn tại [LOCAL_TEST](LOCAL_TEST.md).
 
