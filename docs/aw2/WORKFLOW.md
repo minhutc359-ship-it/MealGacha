@@ -16,6 +16,8 @@ After each completed task: execute the checks required by its change impact, upd
 
 D18 adds a milestone gate without replacing this direct-task workflow: the next integration PR is `game/adventure-world-2` → `rpg`, opened only after [AW2-014A](tasks/AW2-014A.md) proves demo100% and product45%. Until then, keep reporting the measured current values and continue pushing completed atomic tasks directly to AW2. Opening the milestone PR does not authorize merge, deploy, release or a `master` change.
 
+D19 confirms `rpg` as the future product branch and AW2 as the current development/integration branch. Existing incoming PR82 is explicitly authorized to retarget/merge into AW2 under013B. This is separate from the gated outgoing AW2→rpg milestone: no product push/merge/deploy/release follows automatically.
+
 Git Credential Manager has multiple cached GitHub accounts on this workspace. Use command-scoped owner selection without changing global settings or printing credentials:
 
 ```sh

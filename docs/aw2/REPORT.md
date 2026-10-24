@@ -1,13 +1,13 @@
 # Báo cáo Adventure World 2 —24/10/2026
 
-**Đã hoàn thành phần kỹ thuật AW2-006F: Phòng Lửa có nền gạch, ba vật giải đố riêng và năm điểm đến.** Source `4d463302f95a33788ac9cb9c8274f12b18d86281` trên `game/adventure-world-2`. [Cách chơi](PHONG_LUA.md).
+**AW2-013B: đã chuẩn bị hợp nhất PR #82 vào `game/adventure-world-2` và ghi nhận `rpg` là nhánh product về sau.** Source `PENDING013B`. PR publication/readback PENDING.
 
-- Nhãn chỉ rõ bước đã đúng, bước kế và gợi ý còn thiếu; cửa sang Phòng Bàn mở sau ba bước. Chọn điểm đến chỉ đi bộ, thao tác giải đố vẫn cần E/Tương tác.
-- Đã xác minh giải sai/thử lại, reload giữa puzzle, đi hai chiều Phòng Lửa↔Phòng Bàn, báo Dì, nấu và chia bữa đúng tài nguyên/EXP. Map giữ một đại diện đầu đội, chiến đấu vẫn năm người; không cần reset save.
-- Hai phòng có art tham chiếu; bốn vùng trước đó còn hình debug. Bàn gỗ và dấu lối ra dùng lại ảnh gốc của dự án.
+Phần economy/EXP/rương/nấu ăn/build riêng của PR đã được tiếp nhận từ013A. Lần này gộp lịch sử source gốc bằng merge hai parent, giữ code AW2 đang có: schema5, bộ sưu tập12 Vị Linh, một đại diện map/năm chiến đấu, TCG/Chess, boss/đấu lại và hai phòng có art. Đã đối chiếu47tệp, giải quyết30xung đột; không tìm thấy tính năng runtime còn thiếu.
 
-**Kiểm chứng:**83ca unit riêng biệt (68ca giữ từ lượt đầu +15ca file đã sửa),72browser assertions (36source+36compiled), hai typecheck, build review và cách ly stable đạt. Bài test mới ban đầu có bốn lỗi so sánh metadata/tọa độ, đã sửa và chạy lại15/15; không sửa luật để qua test. Browser dùng checkpoint nhập môn earned nguyên văn rồi thực hiện thật phần còn lại; không phải full-story mới. [Bằng chứng](evidence/AW2-006F.md).
+**Kiểm chứng mới:**1471/1471unit tests trên120files PASS,0fail/skip. Toàn bộ2583tệp ngoài docs/policy giữ nguyên byte so với AW2 trước merge. Typecheck/build và72browser checks006F được giữ bằng chứng gốc vì code/config/dependencies không đổi; không tuyên bố browser hoặc điện thoại mới. [Chi tiết](evidence/AW2-013B.md).
 
-**Tiến độ vẫn demo90%, sản phẩm40% (ước lượng35–45%).** Mục tiêu PR kế tiếp theo D18 là **100%/45%**. 006F chưa tự đóng nghiệm thu tuyến world/UX; bước kế tiếp là [010C](tasks/AW2-010C.md) người chơi độc lập hoàn tất toàn hành trình và [011A](tasks/AW2-011A.md) desktop + ít nhất một điện thoại thật. Cần ghi kết quả/đóng blocker, rồi chạy full integration gate trước khi mở PR. [Checklist](PLAYTEST_100_CHECKLIST.md). Không suy ra kiểm tra điện thoại thật từ viewport hẹp; chưa mở PR/deploy/release.
+**Phân nhánh:** AW2 tiếp tục phát triển/tích hợp theo D16; `rpg` là đích product theo D19. Incoming PR82 được phép merge vào AW2 ngay theo yêu cầu. Outgoing AW2→rpg vẫn chờ cổng D18; rpg/master chưa cập nhật, không deploy/release/reset save.
 
-Ảnh mới tạo bằng **built-in imagegen**: [PNG nền](../../dev/aw2/assets/environments/kitchen-hearth/v1/floor-source.png), [PNG puzzle](../../dev/aw2/assets/environments/kitchen-hearth/v1/puzzles-source.png), [prompts](../../dev/aw2/assets/environments/kitchen-hearth/v1/prompts.json), [provenance](../../dev/aw2/assets/environments/kitchen-hearth/v1/provenance.json). Hình tĩnh trung tính, chưa có hoạt ảnh lửa hoặc nghiệm thu art/rights/full environment.
+**Tiến độ vẫn demo90% / product40% (ước lượng35–45%)**. Mục tiêu100%/45% còn [010C](tasks/AW2-010C.md) người chơi độc lập đi hết hành trình/đóng blocker và[011A](tasks/AW2-011A.md) desktop + điện thoại thật. Full unit đã có kết quả mới; các gate tích hợp khác vẫn cần đối chiếu trước milestone. [Checklist](PLAYTEST_100_CHECKLIST.md).
+
+[Chơi Phòng Lửa](PHONG_LUA.md) · [tuyến Phòng Bàn](PHONG_BAN.md) · [milestone](tasks/AW2-014A.md).

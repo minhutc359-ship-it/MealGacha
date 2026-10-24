@@ -1,5 +1,7 @@
 # PR tích hợp kế tiếp: demo100% và sản phẩm45%
 
+D19/013B: `rpg` đã được owner xác nhận là nhánh product về sau, AW2 giữ nhánh phát triển/tích hợp. Incoming PR82 merge vào AW2 được phép riêng; D18outgoing milestone100/45 và hiện tại90/40 không đổi. Lịch sử PR đã được tiếp nhận chức năng từ013A; lần hợp nhất này không tự cộng điểm product. [Evidence](evidence/AW2-013B.md).
+
 2026-10-24 · BA/tester/scretary · D18/AW2-014A đặt mục tiêu cho PR `game/adventure-world-2` → `rpg` kế tiếp là **demo10/10=100%, sản phẩm45/100**. Chỉ báo hiện tại vẫn **demo9/10≈90%, sản phẩm≈40% (35–45%)**. [Mẫu số/trọng số](PROGRESS.md) giữ nguyên; không tính phần trăm theo số task, test hoặc số khung hình. PR chỉ mở sau bằng chứng, không tự merge/deploy/release/master.
 
 **Demo còn1gói nghiệm thu:** một người chơi độc lập đi hết nhập môn→6vùng/4quest→rương/nấu/chia bữa→TCG/Chess→boss→ghi chép→ending→reload, ghi bản build, trình duyệt/thiết bị, đường đi, lỗi và đánh giá hướng dẫn; sau đó sửa và xác minh hết lỗi chặn demo. TCG/Chess/partial smoke đã được owner thử, nhưng chưa có bằng chứng hoàn tất toàn hành trình. Kiểm tra tự động không thay thế lượt chơi này. Một nhóm tiêu chí còn lại có thể sinh nhiều bug task, nên không thể hứa chỉ còn một lần sửa code. Demo100% cho phép art tham chiếu, không đồng nghĩa release/12 nhân vật hoàn chỉnh.

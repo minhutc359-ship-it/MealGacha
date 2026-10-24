@@ -1,5 +1,7 @@
 # Changes
 
+2026-10-24 / AW2-013B: owner-authorized original PR82 ancestry integration into AW2, explicit30conflict/47path audit, no runtime rollback; D19rpgfutureproduct. Fresh1471full units PASS;2583non-document paths unchanged; demo90/product40 and human/device gaps unchanged. Source `PENDING013B`, publication/readback PENDING. [Evidence](evidence/AW2-013B.md).
+
 2026-10-24 / AW2-006F: original hearth floor/three neutral puzzle props, read-only native target/status integration and five walk-only points; reuse original sideboard/threshold, preserve collision/rules/D17/save.83unique scoped units/72source+compiled browser assertions/types/review/stable exclusion PASS; full/human/device gates OPEN. D18milestone IN_PROGRESS, actual90/40 unchanged. Source `4d463302f95a33788ac9cb9c8274f12b18d86281`; [evidence](evidence/AW2-006F.md), next010C/011A.
 
 2026-10-24: Owner sets D18 milestone target for the next `game/adventure-world-2` → `rpg` PR: demo100% / product45%. AW2-014A defines evidence gates; AW2-010C independent full-route playtest and AW2-011A desktop/physical-phone baseline are READY, while AW2-006F remains the next world slice. Current progress stays90%/40%; no runtime, canon, save, balance, master, deployment or release change is claimed.

@@ -1,0 +1,620 @@
+{
+  "task": "AW2-013B",
+  "source": "PENDING013B",
+  "base": "9596f54b831a588f74d5eec7d08ab122b421a75f",
+  "status": "PASS",
+  "command": "pnpm test --maxWorkers=2 --reporter=json --outputFile=/tmp/aw2-013b-full-unit.json",
+  "summary": {
+    "numTotalTests": 1471,
+    "numPassedTests": 1471,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "numTotalTestSuites": 311,
+    "numPassedTestSuites": 311,
+    "success": true,
+    "startTime": 1792823119182
+  },
+  "files": [
+    {
+      "path": "dev/tests/aw2/asset-playback.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/aw2/assets.test.ts",
+      "status": "passed",
+      "tests": 8
+    },
+    {
+      "path": "dev/tests/aw2/bach-combat.test.ts",
+      "status": "passed",
+      "tests": 46
+    },
+    {
+      "path": "dev/tests/aw2/battle-layout.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/aw2/battle-presentation.test.ts",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "path": "dev/tests/aw2/battle-session.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/aw2/boss-presentation.test.ts",
+      "status": "passed",
+      "tests": 6
+    },
+    {
+      "path": "dev/tests/aw2/boss-rematch.test.ts",
+      "status": "passed",
+      "tests": 9
+    },
+    {
+      "path": "dev/tests/aw2/boss-world.test.ts",
+      "status": "passed",
+      "tests": 20
+    },
+    {
+      "path": "dev/tests/aw2/chess.test.ts",
+      "status": "passed",
+      "tests": 19
+    },
+    {
+      "path": "dev/tests/aw2/collection.test.ts",
+      "status": "passed",
+      "tests": 47
+    },
+    {
+      "path": "dev/tests/aw2/combat.test.ts",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "path": "dev/tests/aw2/controls.test.ts",
+      "status": "passed",
+      "tests": 12
+    },
+    {
+      "path": "dev/tests/aw2/economy.test.ts",
+      "status": "passed",
+      "tests": 11
+    },
+    {
+      "path": "dev/tests/aw2/forgotten-host.test.ts",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "path": "dev/tests/aw2/gacha-simulation.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "dev/tests/aw2/hai-combat.test.ts",
+      "status": "passed",
+      "tests": 32
+    },
+    {
+      "path": "dev/tests/aw2/hearth-room.test.ts",
+      "status": "passed",
+      "tests": 15
+    },
+    {
+      "path": "dev/tests/aw2/lam-motion.test.ts",
+      "status": "passed",
+      "tests": 11
+    },
+    {
+      "path": "dev/tests/aw2/lien-combat.test.ts",
+      "status": "passed",
+      "tests": 37
+    },
+    {
+      "path": "dev/tests/aw2/lua-motion.test.ts",
+      "status": "passed",
+      "tests": 7
+    },
+    {
+      "path": "dev/tests/aw2/moc-combat.test.ts",
+      "status": "passed",
+      "tests": 41
+    },
+    {
+      "path": "dev/tests/aw2/moc-motion.test.ts",
+      "status": "passed",
+      "tests": 7
+    },
+    {
+      "path": "dev/tests/aw2/modes.test.ts",
+      "status": "passed",
+      "tests": 17
+    },
+    {
+      "path": "dev/tests/aw2/muoi-assets.test.ts",
+      "status": "passed",
+      "tests": 7
+    },
+    {
+      "path": "dev/tests/aw2/muoi-combat.test.ts",
+      "status": "passed",
+      "tests": 19
+    },
+    {
+      "path": "dev/tests/aw2/navigation-audio.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/aw2/nhien-assets.test.ts",
+      "status": "passed",
+      "tests": 7
+    },
+    {
+      "path": "dev/tests/aw2/nhien-combat.test.ts",
+      "status": "passed",
+      "tests": 32
+    },
+    {
+      "path": "dev/tests/aw2/party-readiness.test.ts",
+      "status": "passed",
+      "tests": 17
+    },
+    {
+      "path": "dev/tests/aw2/roster-references.test.ts",
+      "status": "passed",
+      "tests": 25
+    },
+    {
+      "path": "dev/tests/aw2/save.test.ts",
+      "status": "passed",
+      "tests": 28
+    },
+    {
+      "path": "dev/tests/aw2/starters.test.ts",
+      "status": "passed",
+      "tests": 12
+    },
+    {
+      "path": "dev/tests/aw2/suong-motion.test.ts",
+      "status": "passed",
+      "tests": 7
+    },
+    {
+      "path": "dev/tests/aw2/table-interactions.test.ts",
+      "status": "passed",
+      "tests": 8
+    },
+    {
+      "path": "dev/tests/aw2/table-room.test.ts",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "path": "dev/tests/aw2/tcg.test.ts",
+      "status": "passed",
+      "tests": 25
+    },
+    {
+      "path": "dev/tests/aw2/van-combat.test.ts",
+      "status": "passed",
+      "tests": 57
+    },
+    {
+      "path": "dev/tests/aw2/world-encounter.test.ts",
+      "status": "passed",
+      "tests": 11
+    },
+    {
+      "path": "dev/tests/aw2/world.test.ts",
+      "status": "passed",
+      "tests": 18
+    },
+    {
+      "path": "dev/tests/domain/domain.test.ts",
+      "status": "passed",
+      "tests": 14
+    },
+    {
+      "path": "dev/tests/domain/features.test.ts",
+      "status": "passed",
+      "tests": 9
+    },
+    {
+      "path": "dev/tests/infrastructure/protectedStorage.test.ts",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "path": "dev/tests/infrastructure/webOffline.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "dev/tests/infrastructure/webUpdate.test.ts",
+      "status": "passed",
+      "tests": 9
+    },
+    {
+      "path": "dev/tests/game/adventure.test.ts",
+      "status": "passed",
+      "tests": 13
+    },
+    {
+      "path": "dev/tests/game/adventureAttackRange5923.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "dev/tests/game/adventurePresentation.test.ts",
+      "status": "passed",
+      "tests": 7
+    },
+    {
+      "path": "dev/tests/game/adventurePresentationModel.test.ts",
+      "status": "passed",
+      "tests": 2
+    },
+    {
+      "path": "dev/tests/game/adventureRpg.test.ts",
+      "status": "passed",
+      "tests": 27
+    },
+    {
+      "path": "dev/tests/game/adventureV560.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/adventureV570.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/game/adventureV580.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/game/adventureV582.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/animeUpdate.test.ts",
+      "status": "passed",
+      "tests": 8
+    },
+    {
+      "path": "dev/tests/game/audioScore.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/game/awakening530.test.ts",
+      "status": "passed",
+      "tests": 21
+    },
+    {
+      "path": "dev/tests/game/battleCoach.test.ts",
+      "status": "passed",
+      "tests": 11
+    },
+    {
+      "path": "dev/tests/game/battleVfx.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/campaignOutcome.test.ts",
+      "status": "passed",
+      "tests": 7
+    },
+    {
+      "path": "dev/tests/game/cardDepth.test.ts",
+      "status": "passed",
+      "tests": 12
+    },
+    {
+      "path": "dev/tests/game/challenge.test.ts",
+      "status": "passed",
+      "tests": 8
+    },
+    {
+      "path": "dev/tests/game/characterEffect5917.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/game/chefs593.test.ts",
+      "status": "passed",
+      "tests": 6
+    },
+    {
+      "path": "dev/tests/game/combat-theatre.test.ts",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "path": "dev/tests/game/combatDirection.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/combatEffects.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "dev/tests/game/culture.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "dev/tests/game/cultureJourney5920.test.ts",
+      "status": "passed",
+      "tests": 6
+    },
+    {
+      "path": "dev/tests/game/enemy598.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/game/enemy599.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "dev/tests/game/expedition.test.ts",
+      "status": "passed",
+      "tests": 15
+    },
+    {
+      "path": "dev/tests/game/familiar594.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/game/game.test.ts",
+      "status": "passed",
+      "tests": 24
+    },
+    {
+      "path": "dev/tests/game/imageRecovery595.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/impactLayers593.test.ts",
+      "status": "passed",
+      "tests": 2
+    },
+    {
+      "path": "dev/tests/game/introManga5918.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/korea5923.test.ts",
+      "status": "passed",
+      "tests": 2
+    },
+    {
+      "path": "dev/tests/game/livingTable.test.ts",
+      "status": "passed",
+      "tests": 15
+    },
+    {
+      "path": "dev/tests/game/mangaChronicle5915.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "dev/tests/game/mangaReader5916.test.ts",
+      "status": "passed",
+      "tests": 6
+    },
+    {
+      "path": "dev/tests/game/modeIntro.test.ts",
+      "status": "passed",
+      "tests": 11
+    },
+    {
+      "path": "dev/tests/game/modeIntroView.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/game/northwest5922.test.ts",
+      "status": "passed",
+      "tests": 2
+    },
+    {
+      "path": "dev/tests/game/presentation440.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/pvp490.test.ts",
+      "status": "passed",
+      "tests": 16
+    },
+    {
+      "path": "dev/tests/game/rare595.test.ts",
+      "status": "passed",
+      "tests": 49
+    },
+    {
+      "path": "dev/tests/game/regional5910.test.ts",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "path": "dev/tests/game/rpg520.test.ts",
+      "status": "passed",
+      "tests": 8
+    },
+    {
+      "path": "dev/tests/game/showcase597.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/spirit510.test.ts",
+      "status": "passed",
+      "tests": 8
+    },
+    {
+      "path": "dev/tests/game/spiritCollection530.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "dev/tests/game/spirits5917.test.ts",
+      "status": "passed",
+      "tests": 2
+    },
+    {
+      "path": "dev/tests/game/spirits5921.test.ts",
+      "status": "passed",
+      "tests": 2
+    },
+    {
+      "path": "dev/tests/game/starters590.test.ts",
+      "status": "passed",
+      "tests": 6
+    },
+    {
+      "path": "dev/tests/game/tactics583.test.ts",
+      "status": "passed",
+      "tests": 15
+    },
+    {
+      "path": "dev/tests/game/tcg470.test.ts",
+      "status": "passed",
+      "tests": 20
+    },
+    {
+      "path": "dev/tests/game/tcgCharacterMotion.test.ts",
+      "status": "passed",
+      "tests": 8
+    },
+    {
+      "path": "dev/tests/game/traps450.test.ts",
+      "status": "passed",
+      "tests": 19
+    },
+    {
+      "path": "dev/tests/game/v4.test.ts",
+      "status": "passed",
+      "tests": 19
+    },
+    {
+      "path": "dev/tests/game/vfxRecovery5917.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "dev/tests/game/village583.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/visualManifest591.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/game/visualPack.test.ts",
+      "status": "passed",
+      "tests": 2
+    },
+    {
+      "path": "dev/tests/game/web410.test.ts",
+      "status": "passed",
+      "tests": 7
+    },
+    {
+      "path": "dev/tests/game/web480.test.ts",
+      "status": "passed",
+      "tests": 6
+    },
+    {
+      "path": "dev/tests/infrastructure/audio/gameAudio.test.ts",
+      "status": "passed",
+      "tests": 19
+    },
+    {
+      "path": "dev/tests/infrastructure/audio/soundEngine.test.ts",
+      "status": "passed",
+      "tests": 1
+    },
+    {
+      "path": "dev/tests/infrastructure/catalog/dishCatalog.test.ts",
+      "status": "passed",
+      "tests": 6
+    },
+    {
+      "path": "dev/tests/infrastructure/places/placesGateway.test.ts",
+      "status": "passed",
+      "tests": 17
+    },
+    {
+      "path": "dev/tests/infrastructure/native/durableStorage.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/infrastructure/native/photos.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/autochess/autochess.test.ts",
+      "status": "passed",
+      "tests": 73
+    },
+    {
+      "path": "dev/tests/game/autochess/market.test.ts",
+      "status": "passed",
+      "tests": 8
+    },
+    {
+      "path": "dev/tests/game/autochess/nineMarket.test.ts",
+      "status": "passed",
+      "tests": 17
+    },
+    {
+      "path": "dev/tests/game/autochess/overtime.test.ts",
+      "status": "passed",
+      "tests": 8
+    },
+    {
+      "path": "dev/tests/game/autochess/presentation.test.ts",
+      "status": "passed",
+      "tests": 5
+    },
+    {
+      "path": "dev/tests/game/autochess/soundscape.test.ts",
+      "status": "passed",
+      "tests": 3
+    },
+    {
+      "path": "dev/tests/game/autochess/stage.test.ts",
+      "status": "passed",
+      "tests": 70
+    },
+    {
+      "path": "dev/tests/game/autochess/willpower.test.ts",
+      "status": "passed",
+      "tests": 7
+    }
+  ],
+  "browserBuildTypes": "NOT_RERUN; unchanged source/config/dependencies reuse006F/earlier refs; original PR907/120counts are historical"
+}
