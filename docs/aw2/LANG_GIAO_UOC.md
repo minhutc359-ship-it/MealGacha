@@ -1,12 +1,14 @@
 # Làng Giao Ước — khu khởi đầu
 
-AW2-006G triển khai nền sân lát đá riêng, Bà Giữ Chỗ đứng chờ, bàn chung có mảnh khăn và giếng ở đúng vật cản cũ. Một nhân vật đầu đội đã lưu đại diện khi khám phá; trước nhập môn dùng Than làm hình đại diện, chưa cấp sở hữu. Đây là art tham chiếu tĩnh, chưa phải NPC có chuyển động đầy đủ.
+AW2-006I nâng cảnh làng theo hai ảnh gốc Làng Linh Vị ở mainline: nhà ngói đỏ, tre, đèn lồng, cầu/sen/thác, sân gạch và hoa; ba tán cây tiền cảnh tạo chiều sâu. Bà Giữ Chỗ/bàn chung có mảnh khăn/giếng vẫn ở đúng điểm cũ. Một nhân vật đầu đội đã lưu đại diện khi khám phá; trước nhập môn dùng Than làm hình đại diện, chưa cấp sở hữu. Đây là art tham chiếu tĩnh, chưa phải NPC có chuyển động đầy đủ.
 
 ```sh
 pnpm dev
 ```
 
-Mở `/dev/aw2/world.html`, tạo bản lưu AW2 trong hồ sơ QA riêng. Dùng chạm lên lối đi/WASD hoặc ba nút trong “Điểm đến trong Làng Giao Ước”. Các nút chỉ đưa nhân vật đi tới gần mục tiêu; khi đến nơi, bấm E hoặc Tương tác rồi chọn thao tác:
+Mở `/dev/aw2/world.html`, tạo bản lưu AW2 trong hồ sơ QA riêng. Dùng chạm lên lối đi/WASD hoặc ba nút trong “Điểm đến trong Làng Giao Ước”. Chọn **Bám nhân vật** để camera đi theo hoặc **Toàn cảnh** để xem phong cảnh rộng. Điểm chạm dùng đúng góc nhìn; chạm lên nhà/cầu ngoài sân không mở thêm đường. Nút góc nhìn chỉ thay cách xem, không đổi vị trí/save/nhiệm vụ. Reduced motion tắt độ lệch tán cây theo camera; cây che nhân vật sẽ mờ. Danh sách điểm đến luôn có thể dùng dù nhãn trên map khuất khỏi góc nhìn.
+
+Các nút chỉ đưa nhân vật đi tới gần mục tiêu; khi đến nơi, bấm E hoặc Tương tác rồi chọn thao tác:
 
 1. **Bà Giữ Chỗ → Nhận nhiệm vụ**.
 2. **Bàn chung · mảnh khăn → Đọc mảnh khăn**.
@@ -17,4 +19,4 @@ Mục tiêu dừng32px dưới Bà/bàn để tránh đứng đè lên hình, v�
 
 Nếu ảnh làng không tải được, map báo lỗi và khóa các nút điểm đến; không thay bằng hình debug. Dữ liệu gốc được giữ, đọc lại/reload sau khi tài nguyên tải được. Các thao tác vẫn tuân theo save riêng `aw2.development.save`; không reset dữ liệu Soul of Meal.
 
-Nguồn ảnh và [prompt](../../dev/aw2/assets/environments/covenant-village/v1/prompts.json) do built-in imagegen tạo; PNG gốc, WebP lossless, khung alpha và provenance nằm trong cùng thư mục. Dấu lối ra tái dùng ảnh gốc006C. Full environment/NPC motion/rights chưa được công nhận hoàn tất. Theo yêu cầu owner, lượt nghiệm thu độc lập/iPhone tạm gác để tiếp tục triển khai các vùng còn lại; trạng thái đó vẫn NOT_RUN.
+Cảnh và tiền cảnh mới tạo bằng built-in imagegen: [PNG cảnh](../../dev/aw2/assets/environments/covenant-village/v2/landscape-source.png), [PNG tiền cảnh](../../dev/aw2/assets/environments/covenant-village/v2/foreground-source.png), [prompt/bằng chứng hai ảnh tham chiếu](../../dev/aw2/assets/environments/covenant-village/v2/prompts.json). PNG gốc/WebP lossless/khung alpha/provenance được giữ; Bà/bàn/giếng v1 tái dùng nguyên trạng. Dấu lối ra tái dùng ảnh gốc006C. Full environment/NPC motion/rights chưa được công nhận hoàn tất. Theo yêu cầu owner, lượt nghiệm thu độc lập/iPhone tạm gác để tiếp tục triển khai các vùng còn lại; trạng thái đó vẫn NOT_RUN.

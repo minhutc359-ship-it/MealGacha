@@ -10,6 +10,7 @@ import {
   collectionBeforeBoss,
 } from "./aw2-collection-browser-flow.mjs"
 import assert from "node:assert/strict"
+import { tapWorldPoint } from "./aw2-world-browser-view.mjs"
 import { mkdir, writeFile, readFile } from "node:fs/promises"
 import { createHash } from "node:crypto"
 import { parseArgs } from "node:util"
@@ -120,11 +121,7 @@ try {
     await world()
     await map.locator(".aw2-map-loading").waitFor({ state: "hidden" })
     await map.scrollIntoViewIfNeeded()
-    const box = await map.boundingBox()
-    await page.touchscreen.tap(
-      box.x + (x / 640) * box.width,
-      box.y + (y / 384) * box.height,
-    )
+    await tapWorldPoint(page, x, y)
     await page.waitForFunction(
       ({ x, y }) => {
         const m = document

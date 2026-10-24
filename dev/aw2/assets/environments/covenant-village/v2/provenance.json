@@ -1,0 +1,186 @@
+{
+  "task": "AW2-006I",
+  "generator": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-24",
+    "prompts": {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/prompts.json",
+      "sha256": "fc861a824226381c2b1a7eb6536d56f45c78f3300ff2daf23fe5b806ea79e820"
+    },
+    "reference": {
+      "path": "public/assets/rpg/village580/crossroads.webp",
+      "role": "Mainline village composition/material/architecture reference, project-owner supplied original",
+      "ref": "refs/heads/master",
+      "commit": "f9d39257d17b4dd378a2fbd2a9f936724754fc16",
+      "gitBlob": "a0dfd5cab95cacf37b2e03b46074f4e262294d90",
+      "sha256": "7dce7521bcaa6a15a7ede2e406f5e6a305c3f3bc579ce20518b1a4501c17a9df",
+      "bytes": 794330
+    },
+    "references": [
+      {
+        "path": "public/assets/rpg/village580/crossroads.webp",
+        "role": "Mainline village composition/material/architecture reference, project-owner supplied original",
+        "ref": "refs/heads/master",
+        "commit": "f9d39257d17b4dd378a2fbd2a9f936724754fc16",
+        "gitBlob": "a0dfd5cab95cacf37b2e03b46074f4e262294d90",
+        "sha256": "7dce7521bcaa6a15a7ede2e406f5e6a305c3f3bc579ce20518b1a4501c17a9df",
+        "bytes": 794330
+      },
+      {
+        "path": "dev/docs/web-v580/source/village-world.jpg",
+        "role": "Mainline landscape/depth/bamboo/lotus/terrace reference, project-owner supplied original",
+        "ref": "refs/heads/master",
+        "commit": "f9d39257d17b4dd378a2fbd2a9f936724754fc16",
+        "gitBlob": "07e6f049e6af1ec680bf9378a3fc8441e0eca5e3",
+        "sha256": "0d200c9483f7de090261a4b81f66c10d061f087ed3aae023155c55ac3345a7d9",
+        "bytes": 786396
+      }
+    ],
+    "referenceAttribution": "Project-owner supplied original Web5.8 village/world artwork, pinned to master f9d3925; adapted for AW2 by explicit owner request.",
+    "externalReferences": [],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "builder": "dev/tools/build-aw2-village-landscape.py",
+    "pillow": "10.2.0",
+    "processing": "Selected PNG bytes unchanged; exact RGBA lossless WebP; alpha>8 inset frame measurement with4px padding, logical uniform sprite scaling only. No painting/masking/warping/mirroring/cropping source pixels.",
+    "reused": {
+      "props": {
+        "task": "AW2-006G",
+        "sourceRef": "42f36d7c55921e6d2df474640cdfc212151bc4c0"
+      },
+      "threshold": {
+        "task": "AW2-006C",
+        "sourceRef": "b350a11d777c1e8c94b5f2aadc6299b68f7e7722"
+      }
+    }
+  },
+  "selection": {
+    "builtInCalls": 4,
+    "selected": [
+      {
+        "asset": "landscape",
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-9443cd78-0c51-4cf4-906b-86baf2c1c4f8.png",
+        "selectedPath": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+        "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+      },
+      {
+        "asset": "foreground",
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-582fd2c4-3b8a-4b5d-ab42-d01318e5dbfa.png",
+        "selectedPath": "dev/aw2/assets/environments/covenant-village/v2/foreground-source.png",
+        "sha256": "d5b2963a151efe6fa5ae24928d03b02b3e937b1ff03823bba5dd0641baabe5ca"
+      }
+    ],
+    "rejected": [
+      {
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-944afb8e-217e-4379-a18a-d89792290ab9.png",
+        "sha256": "7efb92de842067132cc8e1d72e527c664c3bacaec8f8109983f3fa4b70676a9e",
+        "reason": "Buildings/stairs invaded the planned gameplay rectangle; recomposed and calibrated larger scenic bounds to selected clear central plaza."
+      },
+      {
+        "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-c4c76d08-ae32-4e88-a9c8-ade4a68fbdd6.png",
+        "sha256": "1c07660efa8b3d35efbfe0aae24339d1dfa12bfae6bc7a57509bfc00086517d6",
+        "reason": "Foreground boughs touched cell/image boundaries; recomposed smaller with inset padding."
+      }
+    ]
+  },
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-covenant-village-v2:floor",
+      "url": "/dev/aw2/assets/environments/covenant-village/v2/landscape.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3121466,
+      "sha256": "8f275a7e17910db811a83b3126fa8d511c57df09f321f64f713ab61cede33800",
+      "source": {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+        "bytes": 4072635,
+        "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+      }
+    },
+    "foreground": {
+      "id": "aw2-environment-covenant-village-v2:foreground",
+      "url": "/dev/aw2/assets/environments/covenant-village/v2/foreground.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 884746,
+      "sha256": "e6316b2bf86b2c93d7f033d07dbaaa8ff0066108ff353b3b0e3c72490672b012",
+      "source": {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/foreground-source.png",
+        "bytes": 1158981,
+        "sha256": "d5b2963a151efe6fa5ae24928d03b02b3e937b1ff03823bba5dd0641baabe5ca"
+      }
+    },
+    "props": {
+      "id": "aw2-environment-covenant-village-v1:props",
+      "url": "/dev/aw2/assets/environments/covenant-village/v1/props.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 617006,
+      "sha256": "3365687202d6f98884b30f7d9dff319a0ca854559f3d55b31af4f631762ef755",
+      "source": {
+        "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+        "bytes": 886068,
+        "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373"
+      }
+    },
+    "threshold": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:threshold",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 927068,
+      "sha256": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png",
+        "bytes": 1370491,
+        "sha256": "ecb379f438637c2dd66b3bfec67a6cafab5ace9b137b365091f1986747ddaf1d"
+      },
+      "frame": {
+        "x": 300,
+        "y": 231,
+        "width": 936,
+        "height": 564
+      }
+    }
+  },
+  "foregroundFrames": {
+    "bamboo": {
+      "x": 207,
+      "y": 135,
+      "width": 455,
+      "height": 468
+    },
+    "blossom": {
+      "x": 829,
+      "y": 137,
+      "width": 490,
+      "height": 458
+    },
+    "willow": {
+      "x": 1560,
+      "y": 146,
+      "width": 471,
+      "height": 463
+    }
+  },
+  "calibration": {
+    "logicalWalkDomain": [
+      16,
+      16,
+      624,
+      368
+    ],
+    "walkDomainInSourceImage": [
+      464,
+      336,
+      1072,
+      688
+    ],
+    "basis": "Selected clear central plaza; architecture/water remain in wider scenic apron. Original collider/points unchanged."
+  },
+  "limits": [
+    "Scenic architecture is background, not added interactions/rooms or a new collision contract.",
+    "Independent acceptance remains deferredD20; rights/device/full-environment criteria OPEN."
+  ]
+}

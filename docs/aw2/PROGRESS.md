@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+006I/D21: làng có phong cảnh nhiều lớp/camera theo mainline, nâng chất lượng vùng đã có chứ không thêm zone. Art-reference coverage vẫn3/6;12kits/12reference sets/0fullDoD, demo90/product≈40%(35–45%) giữ nguyên. Tiếp theo006HPhòngKho theo cùng phong cách;D20gác nghiệm thu độc lập. [Evidence](evidence/AW2-006I.md).
+
 006G/D20: tiếp tục mở rộng art thế giới với Làng Giao Ước; đã có3/6zone art tham chiếu (Làng/Lửa/Bàn), còn Phố/Sân/Kho. Đây là mẫu số asset coverage riêng, không tự cấp điểm package/world/UX; demo90/product≈40%(35–45%) giữ nguyên. Owner gác nghiệm thu để tiếp tục triển khai;12kits/12reference sets/0fullDoD và D18milestone evidence không đổi. Next Phòng Kho. [Task](tasks/AW2-006G.md).
 
 011B: phiếu phản hồi/mã nội dung và hướng dẫn iPhone đã chuẩn bị, kiểm tra kỹ thuật Chromium/WebKit PASS. Không tự cấp điểm từ UA/mô phỏng/JSON; demo90/product40(35–45%) giữ nguyên.010C/011A độc lập+iPhone thật và D18target100/45 còn mở. [Hướng dẫn](IPHONE_PLAYTEST.md), [evidence](evidence/AW2-011B.md).

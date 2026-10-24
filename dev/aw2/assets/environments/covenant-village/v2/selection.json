@@ -1,0 +1,29 @@
+{
+  "builtInCalls": 4,
+  "selected": [
+    {
+      "asset": "landscape",
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-9443cd78-0c51-4cf4-906b-86baf2c1c4f8.png",
+      "selectedPath": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+    },
+    {
+      "asset": "foreground",
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-582fd2c4-3b8a-4b5d-ab42-d01318e5dbfa.png",
+      "selectedPath": "dev/aw2/assets/environments/covenant-village/v2/foreground-source.png",
+      "sha256": "d5b2963a151efe6fa5ae24928d03b02b3e937b1ff03823bba5dd0641baabe5ca"
+    }
+  ],
+  "rejected": [
+    {
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-944afb8e-217e-4379-a18a-d89792290ab9.png",
+      "sha256": "7efb92de842067132cc8e1d72e527c664c3bacaec8f8109983f3fa4b70676a9e",
+      "reason": "Buildings/stairs invaded the planned gameplay rectangle; recomposed and calibrated larger scenic bounds to selected clear central plaza."
+    },
+    {
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-c4c76d08-ae32-4e88-a9c8-ade4a68fbdd6.png",
+      "sha256": "1c07660efa8b3d35efbfe0aae24339d1dfa12bfae6bc7a57509bfc00086517d6",
+      "reason": "Foreground boughs touched cell/image boundaries; recomposed smaller with inset padding."
+    }
+  ]
+}

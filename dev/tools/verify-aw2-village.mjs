@@ -1,4 +1,5 @@
 import assert from "node:assert/strict"
+import { tapWorldPoint } from "./aw2-world-browser-view.mjs"
 import { createHash } from "node:crypto"
 import { mkdir, readFile, writeFile } from "node:fs/promises"
 import { parseArgs } from "node:util"
@@ -12,18 +13,18 @@ const { values } = parseArgs({
   },
 })
 const flavor = values.compiled ? "compiled" : "source",
-  port = values.compiled ? 8543 : 8542,
-  out = ".asset-work/aw2-006g",
+  port = values.compiled ? 8545 : 8544,
+  out = ".asset-work/aw2-006i",
   key = "aw2.development.save",
   village = "aw2-zone-covenant-village",
   url = `http://127.0.0.1:${port}/dev/aw2/world.html`,
   legacy = {
-    "foodchest.user.v1": "006g-user",
-    "foodchest.tcg.v1": "006g-cards",
+    "foodchest.user.v1": "006i-user",
+    "foodchest.tcg.v1": "006i-cards",
   },
   manifest = JSON.parse(
     await readFile(
-      "src/aw2/assets/covenant-village.environment-v1.json",
+      "src/aw2/assets/covenant-village.environment-v2.json",
       "utf8",
     ),
   )
@@ -111,13 +112,12 @@ try {
       JSON.parse(await canvas().getAttribute("data-interaction-props")),
     ready = async () => {
       await page.waitForFunction(() => {
-        const p = JSON.parse(
-            localStorage.getItem("aw2.development.save"),
-          )?.progress,
+        const p = JSON.parse(localStorage.getItem("aw2.development.save"))
+            ?.progress,
           c = document.querySelector('[data-testid="world-map"] canvas')
         const scene =
           {
-            "aw2-zone-covenant-village": "aw2-environment-covenant-village-v1",
+            "aw2-zone-covenant-village": "aw2-environment-covenant-village-v2",
             "aw2-zone-kitchen-hearth": "aw2-environment-kitchen-hearth-v1",
             "aw2-zone-kitchen-table": "aw2-environment-kitchen-table-v1",
           }[p?.zoneId] ?? "debug-terrain"
@@ -125,7 +125,9 @@ try {
           c?.dataset.sceneId === scene &&
           c.dataset.partyIds ===
             JSON.stringify([p.partyIds[0] ?? "aw2-than"]) &&
-          (scene === "debug-terrain" || !!c.dataset.interactionProps)
+          (scene === "debug-terrain" || !!c.dataset.interactionProps) &&
+          (scene !== "aw2-environment-covenant-village-v2" ||
+            !!c.dataset.worldCamera)
         )
       })
       await map().locator(".aw2-map-loading").waitFor({ state: "hidden" })
@@ -143,11 +145,7 @@ try {
     go = async (x, y) => {
       await ready()
       await map().scrollIntoViewIfNeeded()
-      const b = await map().boundingBox()
-      await page.touchscreen.tap(
-        b.x + (x * b.width) / 640,
-        b.y + (y * b.height) / 384,
-      )
+      await tapWorldPoint(page, x, y)
       await arrive(x, y)
     },
     approach = async (id, x, y) => {
@@ -185,7 +183,7 @@ try {
     "Empty world grants no save and village raster requests remain lazy",
     (await raw()) === null &&
       !requests.some(
-        (p) => p.includes("covenant-village/v1/") && p.endsWith(".webp"),
+        (p) => /covenant-village\/v[12]\//.test(p) && p.endsWith(".webp"),
       ),
   )
   await page
@@ -207,6 +205,113 @@ try {
           p.includes("kitchen-hearth/v1/") || p.includes("forgotten-host/"),
       ),
   )
+  const cameraBefore = await raw(),
+    cameraWrites = await writes()
+  const view = async () =>
+    JSON.parse(await canvas().getAttribute("data-world-camera"))
+  const setView = async (mode) => {
+    await page
+      .getByRole("button", {
+        name: mode === "follow" ? "Bám nhân vật" : "Toàn cảnh",
+        exact: true,
+      })
+      .click()
+    await page.waitForFunction(
+      (mode) =>
+        JSON.parse(
+          document.querySelector('[data-testid="world-map"] canvas').dataset
+            .worldCamera,
+        ).mode === mode,
+      mode,
+    )
+  }
+  check(
+    "Fresh view follows the actual leader with all three authored foreground sprites",
+    (await view()).mode === "follow" &&
+      JSON.parse(await canvas().getAttribute("data-foliage")).length === 3,
+  )
+  await setView("overview")
+  await page.setViewportSize({ width: 390, height: 900 })
+  await map().screenshot({ path: `${out}/${flavor}-overview-390.png` })
+  const bounds = await canvas().boundingBox()
+  await page.touchscreen.tap(bounds.x + 8, bounds.y + 8)
+  await page.waitForTimeout(250)
+  check(
+    "Overview scenic apron denies out-of-domain walking without any save/action",
+    (await raw()) === cameraBefore && (await writes()) === cameraWrites,
+  )
+  await arrive(96, 192)
+  await go(200, 210)
+  check(
+    "Actual overview touch inversely projects to original world coordinate",
+    (await raw()) === cameraBefore,
+  )
+  await setView("follow")
+  check(
+    "Follow camera uses current world position without warping/granting/writing",
+    Math.abs((await view()).x - 200) < 1 &&
+      Math.abs((await view()).y - 210) < 1 &&
+      (await raw()) === cameraBefore &&
+      (await writes()) === cameraWrites,
+  )
+  await page.getByRole("button", { name: "Toàn cảnh", exact: true }).focus()
+  await page.keyboard.press("e")
+  await page.keyboard.press("ArrowRight")
+  await arrive(200, 210)
+  check(
+    "Native view buttons own keyboard input without opening dialogue or moving",
+    !(await page.getByRole("dialog").isVisible()) &&
+      (await view()).mode === "follow",
+  )
+  await go(240, 240)
+  await arrive(240, 240)
+  check(
+    "Follow-mode touch resolves using the rendered camera, then camera follows arrival",
+    Math.abs((await view()).x - 240) < 1 && (await raw()) === cameraBefore,
+  )
+  await go(72, 366)
+  await page.waitForFunction(() =>
+    JSON.parse(
+      document.querySelector('[data-testid="world-map"] canvas').dataset
+        .foliage,
+    ).some((p) => p.frame === "willow" && p.alpha === 0.28),
+  )
+  check(
+    "Separate foreground fades over leader with reduced motion still enabled",
+    JSON.parse(await canvas().getAttribute("data-foliage")).find(
+      (p) => p.frame === "willow",
+    ).alpha === 0.28,
+  )
+  await page.emulateMedia({ reducedMotion: "no-preference" })
+  await page.waitForFunction(
+    () =>
+      JSON.parse(
+        document.querySelector('[data-testid="world-map"] canvas').dataset
+          .foliage,
+      )[0].x !== -80,
+  )
+  check(
+    "Optional parallax is actual, bounded and does not mutate world authority",
+    JSON.parse(await canvas().getAttribute("data-foliage")).every(
+      (p, i) =>
+        Math.abs(p.x - manifest.foliage[i].x) <= 12 &&
+        Math.abs(p.y - manifest.foliage[i].y) <= 8,
+    ) &&
+      (await raw()) === cameraBefore &&
+      (await writes()) === cameraWrites,
+  )
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await page.waitForFunction(
+    () =>
+      JSON.parse(
+        document.querySelector('[data-testid="world-map"] canvas').dataset
+          .foliage,
+      )[0].x === -80,
+  )
+  await go(96, 192)
+  await setView("follow")
+  await map().screenshot({ path: `${out}/${flavor}-follow-390.png` })
+  await page.setViewportSize({ width: 1280, height: 1000 })
   const first = await raw(),
     firstWrites = await writes()
   await approach(table, 160, 176)
@@ -286,6 +391,8 @@ try {
             b = host.getBoundingClientRect(),
             c = host.querySelector("canvas"),
             actual = JSON.parse(c.dataset.interactionProps),
+            view = JSON.parse(c.dataset.worldCamera),
+            cb = c.getBoundingClientRect(),
             buttons = [
               ...document.querySelectorAll(
                 '[data-testid="village-waypoints"] button',
@@ -303,19 +410,28 @@ try {
                   (s) => s.entityId === p.entityId,
                 ),
                 left =
-                  b.left + ((p.x - p.width * spec.anchorX) * b.width) / 640,
-                top = b.top + ((p.y - p.height * spec.anchorY) * b.height) / 384
+                  cb.left +
+                  (((p.x - p.width * spec.anchorX - view.x) * view.zoom + 320) *
+                    cb.width) /
+                    640,
+                top =
+                  cb.top +
+                  (((p.y - p.height * spec.anchorY - view.y) * view.zoom +
+                    192) *
+                    cb.height) /
+                    384
               return {
                 left,
                 top,
-                right: left + (p.width * b.width) / 640,
-                bottom: top + (p.height * b.height) / 384,
+                right: left + (p.width * view.zoom * cb.width) / 640,
+                bottom: top + (p.height * view.zoom * cb.height) / 384,
               }
             })
           return (
             document.documentElement.scrollWidth <= innerWidth &&
             buttons.every((x) => x.getBoundingClientRect().height >= 44) &&
             [...host.querySelectorAll(".aw2-world-label")].every((l) => {
+              if (getComputedStyle(l).visibility === "hidden") return true
               const r = l.getBoundingClientRect()
               return (
                 r.left >= b.left - 1 &&
@@ -328,6 +444,23 @@ try {
         { manifest },
       ),
     )
+    await map().screenshot({ path: `${out}/${flavor}-follow-${width}.png` })
+    await setView("overview")
+    await map().screenshot({ path: `${out}/${flavor}-overview-${width}.png` })
+    check(
+      `Overview labels hide while native camera/targets fit ${width}px`,
+      await page.evaluate(
+        () =>
+          [...document.querySelectorAll(".aw2-world-label")].every(
+            (l) => getComputedStyle(l).visibility === "hidden",
+          ) &&
+          [
+            ...document.querySelectorAll('[aria-label="Góc nhìn làng"] button'),
+          ].every((b) => b.getBoundingClientRect().height >= 44) &&
+          document.documentElement.scrollWidth <= innerWidth,
+      ),
+    )
+    await setView("follow")
     if (width === 390) {
       await map().screenshot({ path: `${out}/${flavor}-village-390.png` })
       await page
@@ -462,10 +595,10 @@ try {
       (await save()).economy.teamExperience === 345 &&
       (await canvas().getAttribute("data-party-size")) === "1",
   )
-  for (const asset of [manifest.assets.floor, manifest.assets.props]) {
+  for (const asset of [manifest.assets.floor, manifest.assets.foreground]) {
     fault = asset.url
     await page.route(`**${asset.url}`, (r) =>
-      r.fulfill({ status: 404, body: "expected006Gmissingtexture" }),
+      r.fulfill({ status: 404, body: "expected006Imissingtexture" }),
     )
     await page.evaluate(
       ({ key, earned }) => localStorage.setItem(key, earned),
@@ -511,7 +644,7 @@ try {
     JSON.stringify(
       {
         status: "PASS",
-        task: "AW2-006G",
+        task: "AW2-006I",
         flavor,
         engine: browser.version(),
         checks,

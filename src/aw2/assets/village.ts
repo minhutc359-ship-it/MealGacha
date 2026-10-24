@@ -1,4 +1,4 @@
-import scene from "./covenant-village.environment-v1.json"
+import scene from "./covenant-village.environment-v2.json"
 import type { WorldProgress } from "../world/model"
 import { zoneById } from "../world/maps"
 import { describeObject } from "../world/rules"

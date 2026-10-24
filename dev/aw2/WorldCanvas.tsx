@@ -31,8 +31,18 @@ import {
   villageWaypoints,
   villageWellAlpha,
 } from "../../src/aw2/assets/village"
+import { VillageLandscape } from "./VillageLandscape"
+import type { WorldCanvasProps } from "./worldCanvasTypes"
 
-export function WorldCanvas({
+export function WorldCanvas(props: WorldCanvasProps) {
+  return props.world.zoneId === VILLAGE_SCENE.zoneId ? (
+    <VillageLandscape {...props} />
+  ) : (
+    <FlatWorldCanvas {...props} />
+  )
+}
+
+function FlatWorldCanvas({
   world,
   onNavigate,
   paused,

@@ -153,3 +153,6 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-playtest-feedback a { display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .75rem; color: #f2d799; border: 1px solid #60756b; border-radius: .5rem; }
 
 .aw2-village-map .aw2-world-label { width: max-content; max-width: 28%; white-space: nowrap; }
+.aw2-map-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: .75rem 0; }
+.aw2-map-toolbar button[aria-pressed="true"] { outline: 2px solid #efd497; outline-offset: 2px; }
+.aw2-map-toolbar span { flex-basis: 100%; font-size: .875rem; color: #c5d6c5; }

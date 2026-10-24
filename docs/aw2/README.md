@@ -1,5 +1,11 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**AW2-006I — làng đã có phong cảnh nhiều lớp theo hình Làng Linh Vị ở mainline.** Source `PENDING006I`, base `5d3ec842afbeb8518f6da957b78ad04cc59d94da`. Dùng hai ảnh gốc của dự án tại `master` (nhánh mặc định, không có remote `main`) làm tham chiếu: mái ngói đỏ, tre, đèn lồng, cầu/sen/thác, sân gạch và vườn hoa. Cảnh rộng1536×1024 + ba tán cây tiền cảnh, camera bám nhân vật/Toàn cảnh, chạm theo đúng góc nhìn; cây che nhân vật sẽ mờ. Giữ một đại diện đầu đội/năm combat và toàn bộ tọa độ/va chạm/nhiệm vụ/save.72unit riêng biệt/6files,82browser assertions=41source+41compiled, hai typecheck/asset audit/review224files/stable isolation PASS. [Cách xem](LANG_GIAO_UOC.md) · [Bằng chứng](evidence/AW2-006I.md).
+
+Art vẫn3/6zone tham chiếu; **demo90% / product≈40%(35–45%) giữ nguyên**. Nhà/cầu bên ngoài sân là phong cảnh, chưa phải phòng/tương tác mới; full environment/NPC motion/rights còn mở. D20tiếp tục gác nghiệm thu độc lập. Việc tiếp theo là [006HPhòng Kho](tasks/AW2-006H.md) theo cùng phong cách, sau đó Phố/Sân. D21đồng bộ hình ảnh, không đổi tên/canon và không merge `master`/`rpg`.
+
+Các mốc bên dưới là lịch sử theo source; ưu tiên hiện hành theo006I/D20/D21 ở trên.
+
 **AW2-006G — đã hoàn thiện khu khởi đầu Làng Giao Ước theo ưu tiên sản phẩm (D20).** Source `42f36d7c55921e6d2df474640cdfc212151bc4c0`, base `22103f244fc9d9e2bba278977f0cfebcd167407f`. Nền sân, Bà Giữ Chỗ, bàn–mảnh khăn/giếng có ảnh gốc và ba điểm đến native; giữ một đại diện map/năm combat.51unit riêng biệt/60source+compiled browser assertions, hai typecheck/review219files/asset audit/stable exclusion PASS.3/6zone có art tham chiếu, còn Phố/Sân/Kho. **Demo90% / product≈40%(35–45%) giữ nguyên**. D20gác nghiệm thu độc lập/iPhone khỏi công việc hiện tại; tiếp theo[006HPhòng Kho](tasks/AW2-006H.md), không chờ011A. [Cách chơi làng](LANG_GIAO_UOC.md) · [Bằng chứng](evidence/AW2-006G.md).
 
 Các mốc dưới giữ source/bằng chứng lịch sử; Next hiện hành theo006G/D20,010C/011A được gác khỏi ưu tiên triển khai.
