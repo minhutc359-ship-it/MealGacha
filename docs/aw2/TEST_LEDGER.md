@@ -2,13 +2,13 @@
 
 ## AW2-013B PR82 integration checkpoint —2026-10-24
 
-Source `PENDING013B`, first parent `9596f54b831a588f74d5eec7d08ab122b421a75f`, second parent `c34c6a20dc9755d622117bb594b80e4787b5bf6c`. Full unit **1471/1471cases/120files PASS**,0fail/skip,311nested suites (not311files). Command `pnpm test --maxWorkers=2 --reporter=json --outputFile=/tmp/aw2-013b-full-unit.json`, Node22.23.2/pnpm10.34.3/Vitest5.0.1/Linux x64. Exact final source/runtime/test/config/dependency bytes equal premerge AW2; fresh full-unit evidence binds to that unchanged tree. [Summary](evidence/AW2-013B-unit-summary.json).
+Source `0e65fc33624f072b026b80da02f2ae90bacc93bc`, first parent `9596f54b831a588f74d5eec7d08ab122b421a75f`, second parent `c34c6a20dc9755d622117bb594b80e4787b5bf6c`. Full unit **1471/1471cases/120files PASS**,0fail/skip,311nested suites (not311files). Command `pnpm test --maxWorkers=2 --reporter=json --outputFile=/tmp/aw2-013b-full-unit.json`, Node22.23.2/pnpm10.34.3/Vitest5.0.1/Linux x64. Exact final source/runtime/test/config/dependency bytes equal premerge AW2; fresh full-unit evidence binds to that unchanged tree. [Summary](evidence/AW2-013B-unit-summary.json).
 
 Fresh merge analysis47files/30conflicts,14identical/33evolved; all nonconflicting provisional results equal AW2. Explicit per-path resolutions preserve already-adopted013Afunctions/current updates.2583non-document path hashes unchanged; no runtime code/test/asset/config/dependency change. New types/build/browser/device NOT_RUN; existing006Ftypes/214file review hashes/72browser assertions and prior scoped authority evidence retain original refs. No originalPR907/120counts added to1471. [Audit](evidence/AW2-013B-merge-audit.json), [evidence](evidence/AW2-013B.md).
 
-PRretarget/non-force two-parent merge/publication readback PENDING. D19rpgfutureproduct confirmed; rpg/master refs unchanged, D18human/device/remaining integration gates OPEN, actual90%/40% unchanged. Next010C/011A; full unit milestone requirement now fresh for identical code, not a closed human/device/product gate.
+PRretarget/non-force two-parent merge/publication readback PASS at0e65fc3. D19rpgfutureproduct confirmed; rpg/master refs unchanged, D18human/device/remaining integration gates OPEN, actual90%/40% unchanged. Next010C/011A; full unit milestone requirement now fresh for identical code, not a closed human/device/product gate.
 
-## AW2-006F current verified development slice —2026-10-24
+## AW2-006F historical verified development slice —2026-10-24
 
 Source `4d463302f95a33788ac9cb9c8274f12b18d86281`, base `e7dac41819b71ec881a3511b5aa842369ac5426b`.83unique units/6files PASS boundary:68cases in5unchanged files passed initial run; corrected hearth-room file15PASS rerun replaces its initial11PASS+4FAIL, no duplicate count. Initial path test compared all waypoint metadata against coordinates; test now supplies x/y, authority code unchanged. Cases cover actual hashes/budgets/provenance, three safe frames/uniform sizes, canonical wall/reuse/positions, real native permission parity/all step states/no-mutation/detached snapshots and paths from four safe origins. Both typechecks PASS, format5files/Node syntax/PythonAST/JSON/doc links/whitespace checked. Full current-headNOT_RUN; required at014Aclosure or shared authority change.
 

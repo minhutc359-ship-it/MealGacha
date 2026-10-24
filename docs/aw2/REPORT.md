@@ -1,6 +1,6 @@
 # Báo cáo Adventure World 2 —24/10/2026
 
-**AW2-013B: đã chuẩn bị hợp nhất PR #82 vào `game/adventure-world-2` và ghi nhận `rpg` là nhánh product về sau.** Source `PENDING013B`. PR publication/readback PENDING.
+**AW2-013B: đã merge PR #82 vào `game/adventure-world-2` và ghi nhận `rpg` là nhánh product về sau.** Source `0e65fc33624f072b026b80da02f2ae90bacc93bc`. PR publication/readback PASS: GitHub closed/merged into AW2 at0e65fc3.
 
 Phần economy/EXP/rương/nấu ăn/build riêng của PR đã được tiếp nhận từ013A. Lần này gộp lịch sử source gốc bằng merge hai parent, giữ code AW2 đang có: schema5, bộ sưu tập12 Vị Linh, một đại diện map/năm chiến đấu, TCG/Chess, boss/đấu lại và hai phòng có art. Đã đối chiếu47tệp, giải quyết30xung đột; không tìm thấy tính năng runtime còn thiếu.
 
