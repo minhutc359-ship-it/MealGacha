@@ -1,6 +1,8 @@
 # Changes
 
-2026-10-24 / AW2-013B: owner-authorized original PR82 ancestry integration into AW2, explicit30conflict/47path audit, no runtime rollback; D19rpgfutureproduct. Fresh1471full units PASS;2583non-document paths unchanged; demo90/product40 and human/device gaps unchanged. Source `0e65fc33624f072b026b80da02f2ae90bacc93bc`, publication/readback PENDING. [Evidence](evidence/AW2-013B.md).
+2026-10-24 / AW2-011B: iPhone owner-selected; native opt-in feedback/copy/download/capability sampling and content build identity.31scoped units/100Chromium+WebKit feedback+110fresh earned-demo assertions/both types/review+stable exclusion PASS; physical phone/human acceptance NOT_RUN, no deploy. Source `PENDING011B`; demo90/product40 unchanged. [Evidence](evidence/AW2-011B.md).
+
+2026-10-24 / AW2-013B: owner-authorized original PR82 ancestry integration into AW2, explicit30conflict/47path audit, no runtime rollback; D19rpgfutureproduct. Fresh1471full units PASS;2583non-document paths unchanged; demo90/product40 and human/device gaps unchanged. Source `0e65fc33624f072b026b80da02f2ae90bacc93bc`, publication/readback PASS (GitHub merged/closed AW2, independently fetched). [Evidence](evidence/AW2-013B.md).
 
 2026-10-24 / AW2-006F: original hearth floor/three neutral puzzle props, read-only native target/status integration and five walk-only points; reuse original sideboard/threshold, preserve collision/rules/D17/save.83unique scoped units/72source+compiled browser assertions/types/review/stable exclusion PASS; full/human/device gates OPEN. D18milestone IN_PROGRESS, actual90/40 unchanged. Source `4d463302f95a33788ac9cb9c8274f12b18d86281`; [evidence](evidence/AW2-006F.md), next010C/011A.
 

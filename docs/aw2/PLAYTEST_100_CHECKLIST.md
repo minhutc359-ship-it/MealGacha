@@ -10,7 +10,10 @@ Không đánh dấu PASS trước khi có một người chơi không triển kh
 - Desktop OS / trình duyệt / phiên bản:
 - Điện thoại thật / OS / trình duyệt / phiên bản:
 - Source hay compiled review build:
+- Code fingerprint trong Phiếu phản hồi chơi thử:
 - Thời gian từ save trống tới ending:
+
+Owner đã chọn iPhone cho lượt điện thoại. [Hướng dẫn mở bản HTTPS và xuất phiếu](IPHONE_PLAYTEST.md). Phiếu cung cấp metadata/quan sát, không tự đánh dấu nghiệm thu; cần URL review HTTPS trước lượt điện thoại thực tế.
 
 ## Hành trình bắt buộc
 

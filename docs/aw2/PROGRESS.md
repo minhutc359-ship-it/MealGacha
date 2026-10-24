@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+011B: phiếu phản hồi/mã nội dung và hướng dẫn iPhone đã chuẩn bị, kiểm tra kỹ thuật Chromium/WebKit PASS. Không tự cấp điểm từ UA/mô phỏng/JSON; demo90/product40(35–45%) giữ nguyên.010C/011A độc lập+iPhone thật và D18target100/45 còn mở. [Hướng dẫn](IPHONE_PLAYTEST.md), [evidence](evidence/AW2-011B.md).
+
 D19/013B: `rpg` đã được owner xác nhận là nhánh product về sau, AW2 giữ nhánh phát triển/tích hợp. Incoming PR82 merge vào AW2 được phép riêng; D18outgoing milestone100/45 và hiện tại90/40 không đổi. Lịch sử PR đã được tiếp nhận chức năng từ013A; lần hợp nhất này không tự cộng điểm product. [Evidence](evidence/AW2-013B.md).
 
 **Mục tiêu PR kế tiếp theo D18: demo100% / sản phẩm45%; số hiện tại vẫn90% / 40%.** Năm điểm product dự kiến chỉ được ghi nhận sau nghiệm thu đúng phạm vi: tuyến world/UX tới boss `+3` và playtest độc lập + baseline desktop/điện thoại thật `+2`. Demo chỉ đạt10/10 sau AW2-010C và đóng hết blocker. [AW2-014A](tasks/AW2-014A.md) khóa mẫu số, bằng chứng và điều kiện mở PR; khoảng cũ35–45% không phải bằng chứng rằng45% đã đạt.

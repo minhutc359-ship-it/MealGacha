@@ -1,5 +1,15 @@
 # Test ledger / change impact
 
+## AW2-011B feedback/build identity —2026-10-24
+
+Source `PENDING011B`, base `ccb84bae740a05cc091ea68f9e1263ff8580f4df`. Fresh31unit cases/2files PASS (19new privacy/snapshot/metrics/fingerprint +12controls),0fail/skip. Both types PASS exit0; review build214files/83,750,843bytes/170asset parity PASS; fresh49stable-text exclusions PASS,851file stable artifact at4165b1e reused. Source metadata and compiled metadata match independent SHA256 over279inputs; build baseccb/dirtytrue recorded honestly. [Verification](evidence/AW2-011B-verification.json), [artifact](evidence/AW2-011B-review-build.json).
+
+Fresh100native browser assertion instances=25each Chromium153.0.8010.36 and WebKit27.2 ×source/compiled, all exit0/no unexpected errors. Empty/ready/invalid/unavailable/no-lock reports, exact native download, deterministic clipboard-denial/selection+success branches, detached/regenerated snapshot+blob revocation,320390768/44px/16px forms,3second actual pageRAF/close/synthetic-hidden/unmount cleanup, native typing/arrows/E ownership, exact earned006Fraw/legacy preservation/no feedback writes or network. Source/compiled390captures inspected; physical iPhone NOT_RUN. Initial accessible-role closed-dialog count was a harness error; corrected branch assertions replace that failed attempt, no failed/double count. Sandbox first build git-spawnEPERM resolved by process permission, identical source.
+
+ Fresh earned demo110assertions=55source+55compiled PASS, both exit0/no unexpected errors: new save→five starters→both real modes/portal+quick-entry→three memories/chest/puzzle/cook+share→actual boss+audio opt-in/pause→both endings and reload. No checkpoint resume; alternate ending branches from exact earned checkpoint. Specialized stale/failed-write/collection/rematch/room regression retains scoped original refs, not a fresh claim.
+
+Full1471unit at013B/0e65fc3 retains unchanged authority/dependencies only, not a current full-suite claim.550tracked unchanged paths hashed; new builder/panel/config boundary checked freshly. [Reuse](evidence/AW2-011B-reused-evidence.json). Manual player/real-iPhone/actual audio listening/cold-warm/FPS/total-memory/offline/native/rights/production-save/release OPEN. Demo90/product40 unchanged; next010C/011A. [Evidence](evidence/AW2-011B.md), [iPhone instructions](IPHONE_PLAYTEST.md).
+
 ## AW2-013B PR82 integration checkpoint —2026-10-24
 
 Source `0e65fc33624f072b026b80da02f2ae90bacc93bc`, first parent `9596f54b831a588f74d5eec7d08ab122b421a75f`, second parent `c34c6a20dc9755d622117bb594b80e4787b5bf6c`. Full unit **1471/1471cases/120files PASS**,0fail/skip,311nested suites (not311files). Command `pnpm test --maxWorkers=2 --reporter=json --outputFile=/tmp/aw2-013b-full-unit.json`, Node22.23.2/pnpm10.34.3/Vitest5.0.1/Linux x64. Exact final source/runtime/test/config/dependency bytes equal premerge AW2; fresh full-unit evidence binds to that unchanged tree. [Summary](evidence/AW2-013B-unit-summary.json).

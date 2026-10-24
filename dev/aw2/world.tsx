@@ -32,6 +32,7 @@ import { ModeLobby } from "./ModeLobby"
 import { worldKeyAction } from "../../src/aw2/world/controls"
 import { JourneyGuide } from "./JourneyGuide"
 import { DemoCompletion } from "./DemoCompletion"
+import { PlaytestFeedback } from "./PlaytestFeedback"
 import "./styles.css"
 
 interface ActiveWorldEncounter {
@@ -600,6 +601,7 @@ function WorldPreview() {
       </div>
       <p role="status">{busy ? "Đang lưu…" : message}</p>
       {error && <p role="alert">{error}</p>}
+      <PlaytestFeedback snapshot={snapshot} busy={busy} />
       <dialog
         ref={dialog}
         aria-labelledby="interaction-title"

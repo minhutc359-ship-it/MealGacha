@@ -1,5 +1,7 @@
 # Chơi thử hành trình AW2
 
+[iPhone: mở bản HTTPS và xuất phiếu phản hồi](IPHONE_PLAYTEST.md). Phiếu nằm ở màn khám phá, có mã nội dung bản thử; xuất trước khi reload.
+
 **D18 target:** PR tích hợp kế tiếp chỉ mở ở demo100% / product45%; hiện tại vẫn90%/40%. Người chơi độc lập dùng [checklist đầy đủ](PLAYTEST_100_CHECKLIST.md) trên cùng build desktop + điện thoại thật; tự động hóa hoặc partial smoke không thay thế gate này.
 
 Phạm vi: web demo với5 Vị Linh và art tham chiếu. Đây là bản phát triển riêng;12 nhân vật hoàn chỉnh và gate phát hành vẫn còn mở. [Cài và chạy local từng bước](LOCAL_TEST.md) · [Báo cáo](REPORT.md) · [Phần trăm/cách tính](PROGRESS.md).

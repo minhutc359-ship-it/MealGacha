@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react"
 import { fileURLToPath } from "node:url"
 import { cp, mkdir, readdir, writeFile } from "node:fs/promises"
 import { join } from "node:path"
+import { aw2ReviewBuild } from "./tools/aw2-review-build"
 
 const root = fileURLToPath(new URL("../", import.meta.url))
 const entries = ["index", "world", "battle", "starters", "than", "roster"]
@@ -12,6 +13,7 @@ export default defineConfig({
   root,
   publicDir: false,
   plugins: [
+    aw2ReviewBuild(),
     react(),
     {
       name: "aw2-preview-runtime-assets",

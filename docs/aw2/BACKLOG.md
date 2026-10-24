@@ -1,5 +1,9 @@
 # Task board
 
+**AW2-011B — đã chuẩn bị phiếu phản hồi và mã bản chơi cho lượt iPhone.** Source `PENDING011B`, base `ccb84bae740a05cc091ea68f9e1263ff8580f4df`. Tạo/đọc/sao chép/tải JSON từ màn khám phá; không tự ghi save hay gửi mạng.31unit/2files,100browser assertions trên Chromium+WebKit source/compiled, hai typecheck/review build/stable exclusion PASS. Hành trình mới110assertions=55source+55compiled PASS qua mode/puzzle/nấu/boss/hai ending. Fingerprint279đầu vào khớp cả4bản; WebKit không có JS heap ghi `null`. Hướng dẫn HTTPS/iPhone đã có; điện thoại thật/người chơi độc lập vẫn NOT_RUN, chưa deploy. **Demo90% / product40%(35–45%) giữ nguyên**. [Cách thử iPhone](IPHONE_PLAYTEST.md) · [Bằng chứng](evidence/AW2-011B.md). Next BA/tester010C/011A: lượt chơi độc lập trên cùng artifact HTTPS desktop+iPhone, đóng blocker; D18target100/45 còn mở.
+
+Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạng thái hiện hành theo011B ở trên.
+
 **AW2-013B — hợp nhất lịch sử PR #82 vào AW2, xác nhận `rpg` là nhánh product theo D19.** Source `0e65fc33624f072b026b80da02f2ae90bacc93bc`, base `9596f54b831a588f74d5eec7d08ab122b421a75f`, second parent `c34c6a20dc9755d622117bb594b80e4787b5bf6c`. Đã audit47tệp/30xung đột;14tệp giống hệt,33tệp đã phát triển tiếp trong AW2. Toàn bộ2583tệp ngoài docs/policy giữ nguyên; các chức năng PR đã được tiếp nhận từ013A. Full unit mới **1471/1471ca,120files PASS**, không fail/skip. Type/build/browser006F giữ bằng chứng trong phạm vi không đổi; không có browser/điện thoại mới. Demo90%/product40% giữ nguyên; D18outgoing milestone100%/45% còn nghiệm thu độc lập. PR publication/readback PASS: GitHub closed/merged into AW2 at0e65fc3; [audit](evidence/AW2-013B.md).
 
 **Milestone PR target (D18): demo100% / product45%, hiện tại90%/40%.** [AW2-014A](tasks/AW2-014A.md) giữ cổng tổng; AW2-006F đã có tuyến world kỹ thuật; nghiệm thu world/UX còn mở, AW2-010C chịu nghiệm thu người chơi toàn hành trình, AW2-011A chịu baseline desktop/điện thoại thật. Không nâng % hoặc mở PR `game/adventure-world-2` → `rpg` trước bằng chứng.
@@ -60,6 +64,7 @@
 | AW2-010B | BA/mechanic/tester/scretary | Saved-ending summary and concrete demo-to-product handoff | VERIFIED atb836a82;55 fresh compiled checks/types/review build PASS; full player playtest remains open |
 | AW2-010C | BA/tester/scretary | Independent full-route demo playtest, blocker closure and final 10th demo group | READY under AW2-014A; human evidence NOT_RUN, demo remains90% |
 | AW2-010A | BA/mechanic/tester/scretary | Fresh-player demo gate across RPG/TCG/Chess, onboarding/playtest and review blockers | VERIFIED automated subset at e7aedac;982 full tests/171 browser checks; independent human playtest NOT_RUN |
+| AW2-011B | BA/mechanic/tester/scretary | iPhone feedback/export/build identity preparation | VERIFIED scoped technical checks atPENDING011B;31units/100browser/types/build PASS; physical iPhone/independent acceptance NOT_RUN |
 | AW2-011 | tester | Release regression/rights/mobile/offline | BACKLOG |
 | AW2-011A | BA/tester | Desktop + at least one physical-phone baseline for touch/audio/load/FPS/memory/save recovery | READY under AW2-014A; physical-device evidence NOT_RUN |
 | AW2-012 | BA/tester/scretary | Integrate all six AW2 feature histories; preserve approved canon and review evidence | VERIFIED / MERGED locally, source 0e8fb7a;859 tests +212 Chromium checks PASS |

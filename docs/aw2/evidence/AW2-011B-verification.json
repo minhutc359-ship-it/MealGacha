@@ -1,0 +1,536 @@
+{
+  "task": "AW2-011B",
+  "source": "PENDING011B",
+  "base": "ccb84bae740a05cc091ea68f9e1263ff8580f4df",
+  "status": "PASS_SCOPED_TECHNICAL_CHECKS",
+  "environment": {
+    "node": "22.23.2",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vite": "8.0.5",
+    "vitest": "5.0.1",
+    "os": "Linux x64"
+  },
+  "units": {
+    "status": "PASS",
+    "cases": 31,
+    "files": 2,
+    "failed": 0,
+    "skipped": 0,
+    "command": "pnpm test dev/tests/aw2/playtest-feedback.test.ts dev/tests/aw2/controls.test.ts --maxWorkers=2 --reporter=json --outputFile=/tmp/aw2-011b-unit.json",
+    "results": [
+      {
+        "path": "dev/tests/aw2/controls.test.ts",
+        "cases": 12
+      },
+      {
+        "path": "dev/tests/aw2/playtest-feedback.test.ts",
+        "cases": 19
+      }
+    ]
+  },
+  "types": {
+    "root": "PASS exit0",
+    "dev": "PASS exit0"
+  },
+  "reviewBuild": {
+    "status": "PASS exit0",
+    "command": "pnpm build:aw2",
+    "artifact": "AW2-011B-review-build.json",
+    "codeFingerprint": "71a2416b43e4f2c86d5dad35821db0ec7b47f8f79e5ff49cfa3d630e25f2b582",
+    "metadata": "Source/compiled independently match actual 279 input files; base HEAD at build time, dirty true. Completion docs do not change content fingerprint."
+  },
+  "browser": {
+    "assertionInstances": 100,
+    "results": [
+      {
+        "status": "PASS",
+        "task": "AW2-011B",
+        "engine": "chromium",
+        "version": "153.0.8010.36",
+        "flavor": "compiled",
+        "build": {
+          "version": 1,
+          "mode": "compiled",
+          "baseGitSha": "ccb84bae740a05cc091ea68f9e1263ff8580f4df",
+          "sourceDirty": true,
+          "codeFingerprint": "71a2416b43e4f2c86d5dad35821db0ec7b47f8f79e5ff49cfa3d630e25f2b582",
+          "inputFiles": 279
+        },
+        "checks": [
+          "Feedback is initially collapsed and available with an empty save",
+          "Generated empty report has exact build mode, content identity and unawarded acceptance",
+          "No query or legacy values leak into the report",
+          "Native JSON download contains exactly the generated snapshot and build filename",
+          "Clipboard denial selects readable report and offers manual copy/download",
+          "Clipboard success copies the same snapshot",
+          "Editing notes preserves point-in-time generated snapshot",
+          "Regeneration updates text and downloadable bytes together and revokes old blob",
+          "Feedback fits 320px and native controls retain 44px targets/16px inputs",
+          "Feedback fits 390px and native controls retain 44px targets/16px inputs",
+          "Feedback fits 768px and native controls retain 44px targets/16px inputs",
+          "Opt-in visible page cadence completes after >=3s and releases listener",
+          "Closing panel cancels sample without retaining an old result/listener",
+          "Injected hidden-page event cancels sample and releases listener",
+          "Empty-save report/copy/download/sample never writes any storage",
+          "Native text focus keeps movement and interaction keys inside the form",
+          "Ready report reads actual committed summary without identity/raw/timestamps",
+          "Ready report and form typing leave exact earned save and storage untouched",
+          "Mode transition unmount releases generated blob and sampling callback",
+          "Invalid save can produce feedback without exposing or repairing payload",
+          "Feedback text/report are not persisted after reload",
+          "Legacy data remains byte-identical",
+          "Unavailable storage/missing locks still allow feedback and useful HTTPS guidance",
+          "No unexpected page/console/resource errors",
+          "Feedback makes no external network requests"
+        ],
+        "errors": [],
+        "samples": [
+          {
+            "pageLoadMs": 495,
+            "jsHeapBytes": 6602031,
+            "frameCadence": {
+              "frames": 176,
+              "elapsedMs": 3003,
+              "rafHz": 58.6
+            },
+            "scope": "Page load/navigation timing, optional JS heap and visible-page requestAnimationFrame cadence; not cold-load proof, total memory, GPU or game FPS benchmark."
+          }
+        ],
+        "checkpoint": {
+          "path": ".asset-work/aw2-006f/compiled-browser.json",
+          "reportSha256": "651abf56a4877cfd39c43e87764043c939f6198d5383385246b9e2cc9b65c602",
+          "rawSha256": "5327c2a718bfbfd68c951f3b0da377c83ec41262722ba12fc1a3a893de272bc9"
+        },
+        "scope": "Desktop engines, touch/viewport/user-agent emulation only; synthetic clipboard denial/hidden event/unavailable storage. Not physical iPhone or independent acceptance."
+      },
+      {
+        "status": "PASS",
+        "task": "AW2-011B",
+        "engine": "chromium",
+        "version": "153.0.8010.36",
+        "flavor": "source",
+        "build": {
+          "version": 1,
+          "mode": "source",
+          "baseGitSha": "ccb84bae740a05cc091ea68f9e1263ff8580f4df",
+          "sourceDirty": true,
+          "codeFingerprint": "71a2416b43e4f2c86d5dad35821db0ec7b47f8f79e5ff49cfa3d630e25f2b582",
+          "inputFiles": 279
+        },
+        "checks": [
+          "Feedback is initially collapsed and available with an empty save",
+          "Generated empty report has exact build mode, content identity and unawarded acceptance",
+          "No query or legacy values leak into the report",
+          "Native JSON download contains exactly the generated snapshot and build filename",
+          "Clipboard denial selects readable report and offers manual copy/download",
+          "Clipboard success copies the same snapshot",
+          "Editing notes preserves point-in-time generated snapshot",
+          "Regeneration updates text and downloadable bytes together and revokes old blob",
+          "Feedback fits 320px and native controls retain 44px targets/16px inputs",
+          "Feedback fits 390px and native controls retain 44px targets/16px inputs",
+          "Feedback fits 768px and native controls retain 44px targets/16px inputs",
+          "Opt-in visible page cadence completes after >=3s and releases listener",
+          "Closing panel cancels sample without retaining an old result/listener",
+          "Injected hidden-page event cancels sample and releases listener",
+          "Empty-save report/copy/download/sample never writes any storage",
+          "Native text focus keeps movement and interaction keys inside the form",
+          "Ready report reads actual committed summary without identity/raw/timestamps",
+          "Ready report and form typing leave exact earned save and storage untouched",
+          "Mode transition unmount releases generated blob and sampling callback",
+          "Invalid save can produce feedback without exposing or repairing payload",
+          "Feedback text/report are not persisted after reload",
+          "Legacy data remains byte-identical",
+          "Unavailable storage/missing locks still allow feedback and useful HTTPS guidance",
+          "No unexpected page/console/resource errors",
+          "Feedback makes no external network requests"
+        ],
+        "errors": [],
+        "samples": [
+          {
+            "pageLoadMs": 1026,
+            "jsHeapBytes": 16314221,
+            "frameCadence": {
+              "frames": 175,
+              "elapsedMs": 3016,
+              "rafHz": 58
+            },
+            "scope": "Page load/navigation timing, optional JS heap and visible-page requestAnimationFrame cadence; not cold-load proof, total memory, GPU or game FPS benchmark."
+          }
+        ],
+        "checkpoint": {
+          "path": ".asset-work/aw2-006f/source-browser.json",
+          "reportSha256": "b74c6d8a64062624fd8ec322323d656acfc72bbfaa8d4f1be893cd6a2116e70b",
+          "rawSha256": "5e37b90b651dada1ff9509d44391fce8eb85e04edbf1b4ad37c224907dae375d"
+        },
+        "scope": "Desktop engines, touch/viewport/user-agent emulation only; synthetic clipboard denial/hidden event/unavailable storage. Not physical iPhone or independent acceptance."
+      },
+      {
+        "status": "PASS",
+        "task": "AW2-011B",
+        "engine": "webkit",
+        "version": "27.2",
+        "flavor": "compiled",
+        "build": {
+          "version": 1,
+          "mode": "compiled",
+          "baseGitSha": "ccb84bae740a05cc091ea68f9e1263ff8580f4df",
+          "sourceDirty": true,
+          "codeFingerprint": "71a2416b43e4f2c86d5dad35821db0ec7b47f8f79e5ff49cfa3d630e25f2b582",
+          "inputFiles": 279
+        },
+        "checks": [
+          "Feedback is initially collapsed and available with an empty save",
+          "Generated empty report has exact build mode, content identity and unawarded acceptance",
+          "No query or legacy values leak into the report",
+          "Native JSON download contains exactly the generated snapshot and build filename",
+          "Clipboard denial selects readable report and offers manual copy/download",
+          "Clipboard success copies the same snapshot",
+          "Editing notes preserves point-in-time generated snapshot",
+          "Regeneration updates text and downloadable bytes together and revokes old blob",
+          "Feedback fits 320px and native controls retain 44px targets/16px inputs",
+          "Feedback fits 390px and native controls retain 44px targets/16px inputs",
+          "Feedback fits 768px and native controls retain 44px targets/16px inputs",
+          "Opt-in visible page cadence completes after >=3s and releases listener",
+          "Closing panel cancels sample without retaining an old result/listener",
+          "Injected hidden-page event cancels sample and releases listener",
+          "Empty-save report/copy/download/sample never writes any storage",
+          "Native text focus keeps movement and interaction keys inside the form",
+          "Ready report reads actual committed summary without identity/raw/timestamps",
+          "Ready report and form typing leave exact earned save and storage untouched",
+          "Mode transition unmount releases generated blob and sampling callback",
+          "Invalid save can produce feedback without exposing or repairing payload",
+          "Feedback text/report are not persisted after reload",
+          "Legacy data remains byte-identical",
+          "Unavailable storage/missing locks still allow feedback and useful HTTPS guidance",
+          "No unexpected page/console/resource errors",
+          "Feedback makes no external network requests"
+        ],
+        "errors": [],
+        "samples": [
+          {
+            "pageLoadMs": 177,
+            "jsHeapBytes": null,
+            "frameCadence": {
+              "frames": 179,
+              "elapsedMs": 3013,
+              "rafHz": 59.4
+            },
+            "scope": "Page load/navigation timing, optional JS heap and visible-page requestAnimationFrame cadence; not cold-load proof, total memory, GPU or game FPS benchmark."
+          }
+        ],
+        "checkpoint": {
+          "path": ".asset-work/aw2-006f/compiled-browser.json",
+          "reportSha256": "651abf56a4877cfd39c43e87764043c939f6198d5383385246b9e2cc9b65c602",
+          "rawSha256": "5327c2a718bfbfd68c951f3b0da377c83ec41262722ba12fc1a3a893de272bc9"
+        },
+        "scope": "Desktop engines, touch/viewport/user-agent emulation only; synthetic clipboard denial/hidden event/unavailable storage. Not physical iPhone or independent acceptance."
+      },
+      {
+        "status": "PASS",
+        "task": "AW2-011B",
+        "engine": "webkit",
+        "version": "27.2",
+        "flavor": "source",
+        "build": {
+          "version": 1,
+          "mode": "source",
+          "baseGitSha": "ccb84bae740a05cc091ea68f9e1263ff8580f4df",
+          "sourceDirty": true,
+          "codeFingerprint": "71a2416b43e4f2c86d5dad35821db0ec7b47f8f79e5ff49cfa3d630e25f2b582",
+          "inputFiles": 279
+        },
+        "checks": [
+          "Feedback is initially collapsed and available with an empty save",
+          "Generated empty report has exact build mode, content identity and unawarded acceptance",
+          "No query or legacy values leak into the report",
+          "Native JSON download contains exactly the generated snapshot and build filename",
+          "Clipboard denial selects readable report and offers manual copy/download",
+          "Clipboard success copies the same snapshot",
+          "Editing notes preserves point-in-time generated snapshot",
+          "Regeneration updates text and downloadable bytes together and revokes old blob",
+          "Feedback fits 320px and native controls retain 44px targets/16px inputs",
+          "Feedback fits 390px and native controls retain 44px targets/16px inputs",
+          "Feedback fits 768px and native controls retain 44px targets/16px inputs",
+          "Opt-in visible page cadence completes after >=3s and releases listener",
+          "Closing panel cancels sample without retaining an old result/listener",
+          "Injected hidden-page event cancels sample and releases listener",
+          "Empty-save report/copy/download/sample never writes any storage",
+          "Native text focus keeps movement and interaction keys inside the form",
+          "Ready report reads actual committed summary without identity/raw/timestamps",
+          "Ready report and form typing leave exact earned save and storage untouched",
+          "Mode transition unmount releases generated blob and sampling callback",
+          "Invalid save can produce feedback without exposing or repairing payload",
+          "Feedback text/report are not persisted after reload",
+          "Legacy data remains byte-identical",
+          "Unavailable storage/missing locks still allow feedback and useful HTTPS guidance",
+          "No unexpected page/console/resource errors",
+          "Feedback makes no external network requests"
+        ],
+        "errors": [],
+        "samples": [
+          {
+            "pageLoadMs": 1894,
+            "jsHeapBytes": null,
+            "frameCadence": {
+              "frames": 183,
+              "elapsedMs": 3004,
+              "rafHz": 60.9
+            },
+            "scope": "Page load/navigation timing, optional JS heap and visible-page requestAnimationFrame cadence; not cold-load proof, total memory, GPU or game FPS benchmark."
+          }
+        ],
+        "checkpoint": {
+          "path": ".asset-work/aw2-006f/source-browser.json",
+          "reportSha256": "b74c6d8a64062624fd8ec322323d656acfc72bbfaa8d4f1be893cd6a2116e70b",
+          "rawSha256": "5e37b90b651dada1ff9509d44391fce8eb85e04edbf1b4ad37c224907dae375d"
+        },
+        "scope": "Desktop engines, touch/viewport/user-agent emulation only; synthetic clipboard denial/hidden event/unavailable storage. Not physical iPhone or independent acceptance."
+      }
+    ],
+    "physicalDevice": "NOT_RUN",
+    "independentHuman": "NOT_RUN"
+  },
+  "initialIssues": [
+    {
+      "status": "RESOLVED_ENVIRONMENT",
+      "issue": "Sandbox build spawnSync git EPERM; identical build succeeds with authorized process permission. No code workaround or invented Git identity."
+    },
+    {
+      "status": "RESOLVED_HARNESS",
+      "issue": "Initial focus assertion expected closed dialog to be included in default accessible-role count. Removed invalid count; actual no movement/no visible dialog assertions PASS. Corrected TCG label and isolated sampling listener delta before final runs. Runtime unchanged.",
+      "rawReportSha256": "874811406abd3ceec9a9583eb6a96805042bffc3557f8b2208f5617a3f0278bb"
+    }
+  ],
+  "styleSyntaxWhitespace": "PASS: Prettier3.3.3 --no-semi, two Node syntax checks, git diff --check",
+  "physicalIPhoneAcceptance": "NOT_RUN",
+  "deployed": false,
+  "progress": {
+    "demo": 90,
+    "productEstimate": 40,
+    "productUncertainty": [
+      35,
+      45
+    ],
+    "change": 0
+  },
+  "freshEarnedDemo": {
+    "assertionInstances": 110,
+    "results": [
+      {
+        "flavor": "source",
+        "status": "PASS",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Fresh demo opens without creating a save or granting progression",
+          "Incomplete saved journey does not claim demo completion",
+          "Initial goal precedes the map and names the first NPC",
+          "Keyboard opens optional help with save/mode return guidance and no writes",
+          "Native summary keeps browser arrows and interaction letters",
+          "Goal/help/world controls fit 320px",
+          "Goal/help/world controls fit 390px",
+          "Goal/help/world controls fit 768px",
+          "Save button keeps native key ownership",
+          "Direction button Enter moves right exactly through world rules without save writes",
+          "Focusing native UI stops held exploration movement",
+          "Reread restores initial unsaved movement without writing",
+          "Closing the first dialogue accepts nothing",
+          "Closing dialogue from body focus restores the keyboard map target",
+          "One earned intro unlocks five starters and exactly 30XP",
+          "Fresh intro reload is byte-identical and retains next objective",
+          "TCG/quick-entry leaves browser reading arrows available",
+          "Actual browser arrow scroll works inside the long TCG page",
+          "tcg/quick-entry real result returns exact RPG position/objective/economy without writes",
+          "Chess/quick-entry leaves browser reading arrows available",
+          "auto-chess/quick-entry real result returns exact RPG position/objective/economy without writes",
+          "TCG/portal leaves browser reading arrows available",
+          "tcg/portal real result returns exact RPG position/objective/economy without writes",
+          "Chess/portal leaves browser reading arrows available",
+          "auto-chess/portal real result returns exact RPG position/objective/economy without writes",
+          "Both real practices and both entry routes fit one legitimately earned journey",
+          "Three memories hand-in grants only its actual quest reward",
+          "Reading and closing chest grants nothing in the combined journey",
+          "Chest can be claimed only once with an actual receipt",
+          "Wrong puzzle attempt is retryable and spends no ingredients",
+          "Solved puzzle reload preserves earned state and exact bytes",
+          "Kitchen guidance explains an opened but distant kitchen",
+          "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
+          "Fresh earned team enters real boss with reduced motion and audio opt-in",
+          "Earned world encounter draws Than's new motion atlas through the shared renderer",
+          "Earned world encounter also draws Lua's authored motion atlas",
+          "Earned world encounter also draws Lam's authored motion atlas",
+          "Paused world encounter freezes visual time as well as core ticks",
+          "Same earned journey wins the actual boss without renderer-supplied outcome",
+          "Explicit boss commit survives reload before note and ending",
+          "Ending branch is captured at the explicitly saved NPC position",
+          "Closing the earned final choice grants no final quest reward",
+          "One fresh journey completes all four quests with exact once-only rewards",
+          "Saved wait ending has an honest completion summary and current XP",
+          "Completion summary reload preserves exact save bytes without grants",
+          "Completed ending and reload cannot repeat quest grants",
+          "Earned ending opens the reciprocal return shortcut",
+          "320px completion summary and both48px practice controls remain readable",
+          "390px completion summary and both48px practice controls remain readable",
+          "Completion tcg action uses safe checkpoint/return without grants",
+          "Completion auto-chess action uses safe checkpoint/return without grants",
+          "Alternate ending branches from exact earned checkpoint and gets same final reward",
+          "Alternate saved ending displays its own summary without a new reward",
+          "All five legacy keys remain byte-identical throughout the combined journey",
+          "No unexpected combined console/page/resource errors"
+        ],
+        "errors": [],
+        "modes": [
+          {
+            "mode": "tcg",
+            "entry": "quick-entry",
+            "result": "player-win",
+            "questIndex": 1
+          },
+          {
+            "mode": "auto-chess",
+            "entry": "quick-entry",
+            "result": "player-win",
+            "questIndex": 1
+          },
+          {
+            "mode": "tcg",
+            "entry": "portal",
+            "result": "opponent-win",
+            "questIndex": 1
+          },
+          {
+            "mode": "auto-chess",
+            "entry": "portal",
+            "result": "opponent-win",
+            "questIndex": 1
+          }
+        ],
+        "final": {
+          "experience": 345,
+          "receipts": [
+            "aw2-grant-kept-seat",
+            "aw2-grant-three-memories",
+            "aw2-grant-chest-pantry",
+            "aw2-grant-open-hearth",
+            "aw2-grant-one-more-bowl"
+          ],
+          "ending": "wait"
+        },
+        "scope": "Fresh earned web demo with reference assets; automated combined acceptance, no independent human/device/art/release approval",
+        "rawReportPath": ".asset-work/aw2-011b/source-demo.json",
+        "rawReportSha256": "9285c1726dad1b0e8a0079d70f5a879a45f5b4626acac2ea83668843a03b14b5",
+        "finalCheckpointSha256": "c59e003bfd8596693552789ba05d6ff22f2f221f97d52c4ac01c2253c06c909c",
+        "processExitCode": 0
+      },
+      {
+        "flavor": "compiled",
+        "status": "PASS",
+        "engine": "153.0.8010.36",
+        "checks": [
+          "Fresh demo opens without creating a save or granting progression",
+          "Incomplete saved journey does not claim demo completion",
+          "Initial goal precedes the map and names the first NPC",
+          "Keyboard opens optional help with save/mode return guidance and no writes",
+          "Native summary keeps browser arrows and interaction letters",
+          "Goal/help/world controls fit 320px",
+          "Goal/help/world controls fit 390px",
+          "Goal/help/world controls fit 768px",
+          "Save button keeps native key ownership",
+          "Direction button Enter moves right exactly through world rules without save writes",
+          "Focusing native UI stops held exploration movement",
+          "Reread restores initial unsaved movement without writing",
+          "Closing the first dialogue accepts nothing",
+          "Closing dialogue from body focus restores the keyboard map target",
+          "One earned intro unlocks five starters and exactly 30XP",
+          "Fresh intro reload is byte-identical and retains next objective",
+          "TCG/quick-entry leaves browser reading arrows available",
+          "Actual browser arrow scroll works inside the long TCG page",
+          "tcg/quick-entry real result returns exact RPG position/objective/economy without writes",
+          "Chess/quick-entry leaves browser reading arrows available",
+          "auto-chess/quick-entry real result returns exact RPG position/objective/economy without writes",
+          "TCG/portal leaves browser reading arrows available",
+          "tcg/portal real result returns exact RPG position/objective/economy without writes",
+          "Chess/portal leaves browser reading arrows available",
+          "auto-chess/portal real result returns exact RPG position/objective/economy without writes",
+          "Both real practices and both entry routes fit one legitimately earned journey",
+          "Three memories hand-in grants only its actual quest reward",
+          "Reading and closing chest grants nothing in the combined journey",
+          "Chest can be claimed only once with an actual receipt",
+          "Wrong puzzle attempt is retryable and spends no ingredients",
+          "Solved puzzle reload preserves earned state and exact bytes",
+          "Kitchen guidance explains an opened but distant kitchen",
+          "Real proximity cooking/sharing atomically consumes ingredients and grants 45XP",
+          "Fresh earned team enters real boss with reduced motion and audio opt-in",
+          "Earned world encounter draws Than's new motion atlas through the shared renderer",
+          "Earned world encounter also draws Lua's authored motion atlas",
+          "Earned world encounter also draws Lam's authored motion atlas",
+          "Paused world encounter freezes visual time as well as core ticks",
+          "Same earned journey wins the actual boss without renderer-supplied outcome",
+          "Explicit boss commit survives reload before note and ending",
+          "Ending branch is captured at the explicitly saved NPC position",
+          "Closing the earned final choice grants no final quest reward",
+          "One fresh journey completes all four quests with exact once-only rewards",
+          "Saved wait ending has an honest completion summary and current XP",
+          "Completion summary reload preserves exact save bytes without grants",
+          "Completed ending and reload cannot repeat quest grants",
+          "Earned ending opens the reciprocal return shortcut",
+          "320px completion summary and both48px practice controls remain readable",
+          "390px completion summary and both48px practice controls remain readable",
+          "Completion tcg action uses safe checkpoint/return without grants",
+          "Completion auto-chess action uses safe checkpoint/return without grants",
+          "Alternate ending branches from exact earned checkpoint and gets same final reward",
+          "Alternate saved ending displays its own summary without a new reward",
+          "All five legacy keys remain byte-identical throughout the combined journey",
+          "No unexpected combined console/page/resource errors"
+        ],
+        "errors": [],
+        "modes": [
+          {
+            "mode": "tcg",
+            "entry": "quick-entry",
+            "result": "player-win",
+            "questIndex": 1
+          },
+          {
+            "mode": "auto-chess",
+            "entry": "quick-entry",
+            "result": "player-win",
+            "questIndex": 1
+          },
+          {
+            "mode": "tcg",
+            "entry": "portal",
+            "result": "opponent-win",
+            "questIndex": 1
+          },
+          {
+            "mode": "auto-chess",
+            "entry": "portal",
+            "result": "opponent-win",
+            "questIndex": 1
+          }
+        ],
+        "final": {
+          "experience": 345,
+          "receipts": [
+            "aw2-grant-kept-seat",
+            "aw2-grant-three-memories",
+            "aw2-grant-chest-pantry",
+            "aw2-grant-open-hearth",
+            "aw2-grant-one-more-bowl"
+          ],
+          "ending": "wait"
+        },
+        "scope": "Fresh earned web demo with reference assets; automated combined acceptance, no independent human/device/art/release approval",
+        "rawReportPath": ".asset-work/aw2-011b/compiled-demo.json",
+        "rawReportSha256": "a2e12ca22bf41d7b7ed7627df63d38aba70efd82b6610e3c9e3d8998fcf6b56d",
+        "finalCheckpointSha256": "d0f59921ad8ab99c19bca68d009c32c0f7c8a21f591d0a5b31c16d3e19e85e06",
+        "processExitCode": 0
+      }
+    ],
+    "command": "node dev/tools/verify-aw2-demo.mjs --playwright <local-playwright> --chromium /usr/bin/google-chrome [--compiled] --out .asset-work/aw2-011b",
+    "noCheckpointResume": true,
+    "note": "Fresh route and true alternate-ending branch; no optional --room/--collection/--rematch matrix or independent acceptance claim. Those unchanged specialized scopes retain original evidence."
+  },
+  "totalFreshBrowserAssertionInstances": 210
+}

@@ -24,6 +24,7 @@ const { values } = parseArgs({
     room: { type: "boolean", default: false },
     "resume-room": { type: "string" },
     rematch: { type: "boolean", default: false },
+    out: { type: "string" },
   },
 })
 const withCollection = values.collection || values.rematch || values.room
@@ -40,13 +41,15 @@ const server = values.compiled
       configFile: "dev/vite.dev.config.ts",
       server: { host: "127.0.0.1", port, strictPort: true },
     })
-const out = values.room
-    ? ".asset-work/aw2-006b"
-    : values.rematch
-      ? ".asset-work/aw2-007m"
-      : withCollection
-        ? ".asset-work/aw2-007l"
-        : ".asset-work/aw2-010b",
+const out =
+    values.out ??
+    (values.room
+      ? ".asset-work/aw2-006b"
+      : values.rematch
+        ? ".asset-work/aw2-007m"
+        : withCollection
+          ? ".asset-work/aw2-007l"
+          : ".asset-work/aw2-010b"),
   key = "aw2.development.save",
   url = `http://127.0.0.1:${port}/dev/aw2/world.html`
 const checks = [],
@@ -1014,7 +1017,5 @@ try {
   throw cause
 } finally {
   await browser?.close()
-  if (values.compiled)
-    await new Promise((resolve) => server.httpServer.close(resolve))
-  else await server.close()
+  await server.close()
 }
