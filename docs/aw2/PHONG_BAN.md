@@ -15,3 +15,5 @@ Hai ảnh môi trường006B được tạo bằng built-in imagegen: [nền](..
 D17/006E: map chỉ vẽ nhân vật đầu đội đã lưu; đủ năm người vẫn vào trận. Đổi Vị trí đội1 rồi Lưu đội hình để đổi đại diện. Bàn mờ khi che chính nhân vật đại diện, không còn đoàn followers. [Đội hình](COLLECTION.md).
 
 006D: [atlas boss bốn idle hướng](../../dev/aw2/assets/forgotten-host/world-v1/world-source.png), [prompt](../../dev/aw2/assets/forgotten-host/world-v1/prompts.json), [provenance](../../dev/aw2/assets/forgotten-host/world-v1/provenance.json), [kiểm chứng](evidence/AW2-006D.md). Hình HD/FX chỉ dùng trong trận như trước; boss world vẫn đứng cố định và không tự mở hội thoại/trận.
+
+Phòng Lửa liền kề đã có art/ba puzzle props và năm waypoint riêng trong006F. [Cách đi tuyến hai phòng](PHONG_LUA.md). Bốn vùng trước còn debug; độc lập world/UX acceptance chưa chạy.

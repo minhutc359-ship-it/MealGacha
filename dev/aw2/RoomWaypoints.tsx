@@ -1,6 +1,10 @@
 import type { WorldProgress } from "../../src/aw2/world/model"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import { tableRoomWaypoints } from "../../src/aw2/assets/tableRoom"
+import {
+  HEARTH_ROOM_SCENE,
+  hearthRoomWaypoints,
+} from "../../src/aw2/assets/hearthRoom"
 
 export function RoomWaypoints({
   world,
@@ -11,13 +15,14 @@ export function RoomWaypoints({
   disabled: boolean
   onChoose: (point: Waypoint) => void
 }) {
-  const points = tableRoomWaypoints(world)
+  const hearth = world.zoneId === HEARTH_ROOM_SCENE.zoneId
+  const points = hearth ? hearthRoomWaypoints(world) : tableRoomWaypoints(world)
   if (!points.length) return null
   return (
     <nav
       className="aw2-room-waypoints"
-      aria-label="Điểm đến trong Phòng Bàn"
-      data-testid="table-room-waypoints"
+      aria-label={`Điểm đến trong ${hearth ? "Phòng Lửa" : "Phòng Bàn"}`}
+      data-testid={hearth ? "hearth-room-waypoints" : "table-room-waypoints"}
     >
       <p>
         Chọn điểm đến để đi bộ. Khi đến gần, dùng E hoặc Tương tác để xem và

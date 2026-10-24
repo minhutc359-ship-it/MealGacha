@@ -6,7 +6,7 @@
 
 **Sản phẩm≈50%: đề xuất4gói chính sau rematch**, theo thứ tự dưới. Đây là phạm vi lập kế hoạch để BA đánh giá lại sau nghiệm thu, chưa phải điểm đã đạt hay cam kết rằng đóng bốn ticket tự động bằng50%.
 
-**Cut cho PR45:** ưu tiên đóng gói2 (`+3`) và phần playtest/device của gói4 (`+2`). Gói1 cân bằng cuối và gói3 hai nhân vật full DoD tiếp tục sau PR nếu chưa đạt độc lập; không hạ tiêu chí của chúng để lấy điểm. AW2-006F là bước nhỏ tiếp theo của gói2, AW2-010C/AW2-011A đóng gói4.
+**Cut cho PR45:** ưu tiên đóng gói2 (`+3`) và phần playtest/device của gói4 (`+2`). Gói1 cân bằng cuối và gói3 hai nhân vật full DoD tiếp tục sau PR nếu chưa đạt độc lập; không hạ tiêu chí của chúng để lấy điểm. AW2-006F đã có bản kỹ thuật tham chiếu của gói2; nghiệm thu tuyến độc lập còn mở, AW2-010C/AW2-011A đóng gói4.
 
 | Gói | Kết quả cần có để nghiệm thu | Phần điểm dự kiến trong mẫu số100 | Owner/dependency |
 |---|---|---:|---|
@@ -18,8 +18,10 @@
 
 Điểm đích nếu phạm vi trên thực sự được chấp nhận: runtime21/25, world12/15, nhân vật8/30, UX5/10, kinh tế3/10, release1/10 =50/100. Đây vẫn là ước lượng khối lượng, có thể cần hiệu chỉnh sau hai nhân vật mẫu; không nâng chỉ báo hiện tại theo phép cộng giả định. Rematch cải thiện nhóm nền đã tính, không có điểm thưởng riêng. Gói4 chứa nghiệm thu demo nên không cộng thêm lần nữa.
 
-007N đã hoàn tất baseline96lượt và hướng dẫn vai trò/chỉ số/draft starter/kết quả trận; cân bằng cuối/nghiệm thu gói1 vẫn OPEN, chưa cấp+2điểm. 006B đã hoàn thành nền/bàn riêng và waypoint Phòng Bàn trong gói2; 006C đã thêm note/hai dấu lối, 006Dđã có boss chibi4idle, full motion còn mở, năm vùng khác vẫn debug. Việc nhỏ nhất tiếp theo là [AW2-006F](tasks/AW2-006F.md), Phòng Lửa sau scope review. Gói2/full tuyến và nghiệm thu độc lập vẫn OPEN, chưa cấp+3điểm; không triển khai gacha. D11 vẫn PROPOSED, D12 OPEN. Các phần để từ50% tới sản phẩm hoàn chỉnh vẫn gồm10nhân vật còn lại/full art, thế giới/dungeon còn lại, mode/economy/gacha nếu được duyệt, UX/audio, production-save/offline/performance/rights/release; owner phải cho phép deploy/release riêng. [Delivery plan](DELIVERY_PLAN.md), [REPORT](REPORT.md).
+007N đã hoàn tất baseline96lượt và hướng dẫn vai trò/chỉ số/draft starter/kết quả trận; cân bằng cuối/nghiệm thu gói1 vẫn OPEN, chưa cấp+2điểm. 006B đã hoàn thành nền/bàn riêng và waypoint Phòng Bàn trong gói2; 006C đã thêm note/hai dấu lối, 006Dđã có boss chibi4idle, full motion còn mở, 006Fđã có nền/ba puzzle props Phòng Lửa, bốn vùng khác vẫn debug. Tiếp theo là[AW2-010C](tasks/AW2-010C.md)/[AW2-011A](tasks/AW2-011A.md) nghiệm thu độc lập và thiết bị. Gói2/full tuyến và nghiệm thu độc lập vẫn OPEN, chưa cấp+3điểm; không triển khai gacha. D11 vẫn PROPOSED, D12 OPEN. Các phần để từ50% tới sản phẩm hoàn chỉnh vẫn gồm10nhân vật còn lại/full art, thế giới/dungeon còn lại, mode/economy/gacha nếu được duyệt, UX/audio, production-save/offline/performance/rights/release; owner phải cho phép deploy/release riêng. [Delivery plan](DELIVERY_PLAN.md), [REPORT](REPORT.md).
 
 006E/D17 ưu tiên theo owner: một nhân vật đầu đội đã lưu đại diện trên map, đội chiến đấu vẫn5; không tăng điểm demo/product. Task này hoàn tất trước006D, kế hoạch world boss và các gate độc lập vẫn mở. [Bằng chứng](evidence/AW2-006E.md).
 
-006Dđã thêm boss world4idle riêng, giữ D17một đại diện và5combat; full enemy/motion/gói2/nghiệm thu độc lập vẫn OPEN. Không tăng % hay rút ETA từ một atlas/test xanh. Next006F Phòng Lửa. [Bằng chứng](evidence/AW2-006D.md).
+006Dđã thêm boss world4idle riêng, giữ D17một đại diện và5combat; full enemy/motion/gói2/nghiệm thu độc lập vẫn OPEN. Không tăng % hay rút ETA từ một atlas/test xanh. 006Fđã có Phòng Lửa kỹ thuật; tiếp theo010C/011A. [Bằng chứng](evidence/AW2-006D.md).
+
+006F current: technical room route/puzzle/reload/cook/share/native menus verified; independent route/UX acceptance still OPEN. Actual90%/40%, D18target100%/45%; no package points or PR before010C/011A evidence. [006F evidence](evidence/AW2-006F.md).

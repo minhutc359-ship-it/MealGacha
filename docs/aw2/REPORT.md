@@ -1,17 +1,13 @@
 # Báo cáo Adventure World 2 —24/10/2026
 
-**Mục tiêu mới cho PR tích hợp kế tiếp:** demo **100%**, sản phẩm **45%**. Tiến độ có bằng chứng hiện tại vẫn demo **90%** và product **40%**; chưa cộng trước. [AW2-014A](tasks/AW2-014A.md) yêu cầu hoàn thiện/nghiệm thu tuyến Phòng Lửa→Phòng Bàn, một người chơi độc lập đi trọn hành trình và baseline desktop + ít nhất một điện thoại thật, rồi mới mở PR AW2→`rpg`. Tiếp theo vẫn là [AW2-006F](tasks/AW2-006F.md); AW2-010C/AW2-011A đang READY.
+**Đã hoàn thành phần kỹ thuật AW2-006F: Phòng Lửa có nền gạch, ba vật giải đố riêng và năm điểm đến.** Source `PENDING006F` trên `game/adventure-world-2`. [Cách chơi](PHONG_LUA.md).
 
-**Đã hoàn thành AW2-006D: hình chibi đứng bốn hướng riêng cho Người Giữ Bàn Quên trên map.** Source `7124bed958ee5cfa537fa3a021b4f03836e19544` trên `game/adventure-world-2`.
+- Nhãn chỉ rõ bước đã đúng, bước kế và gợi ý còn thiếu; cửa sang Phòng Bàn mở sau ba bước. Chọn điểm đến chỉ đi bộ, thao tác giải đố vẫn cần E/Tương tác.
+- Đã xác minh giải sai/thử lại, reload giữa puzzle, đi hai chiều Phòng Lửa↔Phòng Bàn, báo Dì, nấu và chia bữa đúng tài nguyên/EXP. Map giữ một đại diện đầu đội, chiến đấu vẫn năm người; không cần reset save.
+- Hai phòng có art tham chiếu; bốn vùng trước đó còn hình debug. Bàn gỗ và dấu lối ra dùng lại ảnh gốc của dự án.
 
-- Boss quay về phía người chơi, giữ nguyên vị trí/điểm đặt chân; nhãn nằm dưới hình. Bốn tư thế đứng tham chiếu, chưa có hoạt ảnh đi/đánh.
-- Sau chiến thắng trước ending, boss mờ như trước; sau ending hiện đầy đủ để đấu lại. Hình HD/FX trong trận giữ nguyên.
-- Map vẫn chỉ có một nhân vật đại diện đầu đội; vào trận vẫn đủ năm người. Không cần reset save.
+**Kiểm chứng:**83ca unit riêng biệt (68ca giữ từ lượt đầu +15ca file đã sửa),72browser assertions (36source+36compiled), hai typecheck, build review và cách ly stable đạt. Bài test mới ban đầu có bốn lỗi so sánh metadata/tọa độ, đã sửa và chạy lại15/15; không sửa luật để qua test. Browser dùng checkpoint nhập môn earned nguyên văn rồi thực hiện thật phần còn lại; không phải full-story mới. [Bằng chứng](evidence/AW2-006F.md).
 
-**Kiểm chứng:**59ca unit/5files và52browser assertions PASS; hai typecheck/review build/cách ly stable đạt. Đã kiểm tra bốn hướng, thắng boss thật/đọc ghi chép/reload, lối ra/lối tắt/đấu lại-rút lui và thiếu atlas→khôi phục. Dùng checkpoint earned nguyên văn, không phải full-story mới;393hash giữ bằng chứng phần không đổi. [Chi tiết](evidence/AW2-006D.md), [cách xem](PHONG_BAN.md).
+**Tiến độ vẫn demo90%, sản phẩm40% (ước lượng35–45%).** Mục tiêu PR kế tiếp theo D18 là **100%/45%**. 006F chưa tự đóng nghiệm thu tuyến world/UX; bước kế tiếp là [010C](tasks/AW2-010C.md) người chơi độc lập hoàn tất toàn hành trình và [011A](tasks/AW2-011A.md) desktop + ít nhất một điện thoại thật. Cần ghi kết quả/đóng blocker, rồi chạy full integration gate trước khi mở PR. [Checklist](PLAYTEST_100_CHECKLIST.md). Không suy ra kiểm tra điện thoại thật từ viewport hẹp; chưa mở PR/deploy/release.
 
-**Tiến độ giữ nguyên:** demo **≈90%**, sản phẩm **≈40%(35–45%)**,12kit/12bộ tham chiếu/**0fullDoD**. Bốn idle poses chưa đóng full-enemy/world, playtest độc lập, thiết bị hoặc rights.
-
-**Tiếp theo:**[AW2-006F](tasks/AW2-006F.md), nền/hình tương tác và chỉ đường trong Phòng Lửa liền kề; năm vùng trước Phòng Bàn còn debug. D11gachaPROPOSED/D12OPEN; [bốn gói tới≈50%](NEXT_MILESTONES.md) còn nghiệm thu.
-
-Ảnh tạo bằng **built-in imagegen** với portrait gốc của dự án làm tham chiếu: [atlas PNG](../../dev/aw2/assets/forgotten-host/world-v1/world-source.png), [WebP](../../dev/aw2/assets/forgotten-host/world-v1/world.webp), [prompt nguyên văn](../../dev/aw2/assets/forgotten-host/world-v1/prompts.json), [provenance](../../dev/aw2/assets/forgotten-host/world-v1/provenance.json). Rights REVIEW_REQUIRED/commercial NOT_CLEARED.
+Ảnh mới tạo bằng **built-in imagegen**: [PNG nền](../../dev/aw2/assets/environments/kitchen-hearth/v1/floor-source.png), [PNG puzzle](../../dev/aw2/assets/environments/kitchen-hearth/v1/puzzles-source.png), [prompts](../../dev/aw2/assets/environments/kitchen-hearth/v1/prompts.json), [provenance](../../dev/aw2/assets/environments/kitchen-hearth/v1/provenance.json). Hình tĩnh trung tính, chưa có hoạt ảnh lửa hoặc nghiệm thu art/rights/full environment.

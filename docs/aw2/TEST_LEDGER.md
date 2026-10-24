@@ -1,12 +1,20 @@
 # Test ledger / change impact
 
+## AW2-006F current verified development slice —2026-10-24
+
+Source `PENDING006F`, base `e7dac41819b71ec881a3511b5aa842369ac5426b`.83unique units/6files PASS boundary:68cases in5unchanged files passed initial run; corrected hearth-room file15PASS rerun replaces its initial11PASS+4FAIL, no duplicate count. Initial path test compared all waypoint metadata against coordinates; test now supplies x/y, authority code unchanged. Cases cover actual hashes/budgets/provenance, three safe frames/uniform sizes, canonical wall/reuse/positions, real native permission parity/all step states/no-mutation/detached snapshots and paths from four safe origins. Both typechecks PASS, format5files/Node syntax/PythonAST/JSON/doc links/whitespace checked. Full current-headNOT_RUN; required at014Aclosure or shared authority change.
+
+72native browser assertions=36source+36compiled, both exit0, zero unexpected page/console errors. Exact historical earned intro input; fresh memory/quest/hint/puzzle/hand-in/cook/share and room route, no full-story/human/device claim. Wrong/reset/partial+solved reload, keyboard/touch/focus/obstacle/320390768/44pxcontrols, lock/text/state, reciprocal table scene/own world boss/no unauthorized note, one hand-in receipt/real ingredient consumption/+45XP, each newasset404→visible error/no debug fallback/all disabled points/exact bytes→recovery, legacy preserved. Asset exactRGBA/alpha/three inset cells/repeat6paths PASS. Review214files/83,743,241bytes/newWebPparity/authored-source exclusion PASS; stable851files build reused at4165b1e and fresh49text isolation PASS.399unchanged hashes retain old authority/art/mode evidence; changed two TSX consumers explicitly excluded.
+
+WORLD-SCENE-01/WORLD-01/02/QUEST-01/CONTROL-01 technical subset PASS. Independent world/UX route acceptance010C/physicalphone011A/art/rights/full environment/motion/releaseNOT_RUN. D18target100/45, actual90/40/12kits/12references/0fullDoD unchanged. [Evidence](evidence/AW2-006F.md), [JSON](evidence/AW2-006F-verification.json), [reuse](evidence/AW2-006F-reused-evidence.json), [review artifact](evidence/AW2-006F-review-build.json).
+
 ## AW2-014A milestone target —2026-10-24
 
-Owner target recorded: next AW2→`rpg` PR requires demo100% / product45%. Current measured state remains demo90% / product40%; AW2-010C independent full route and AW2-011A physical-device baseline are NOT_RUN, AW2-006F implementation/tests are NOT_RUN. This documentation update adds no runtime PASS. Before opening the milestone PR: full unit regression, source+compiled full demo/mode/boss/save/economy gates, both typechecks, review build, stable exclusion and observed human/device evidence are mandatory. [Task](tasks/AW2-014A.md).
+Owner target recorded: next AW2→`rpg` PR requires demo100% / product45%. Current measured state remains demo90% / product40%; AW2-010C independent full route and AW2-011A physical-device baseline are NOT_RUN, AW2-006F technical slice is VERIFIED below; independent route acceptance remains NOT_RUN. This documentation update adds no runtime PASS. Before opening the milestone PR: full unit regression, source+compiled full demo/mode/boss/save/economy gates, both typechecks, review build, stable exclusion and observed human/device evidence are mandatory. [Task](tasks/AW2-014A.md).
 
 Planning source `a2afff5c65ee36474b1c7014452532406f9b1684`, tree `288a897d172d0c3018672239e22e1e93507b281a`: `git diff --check` PASS; all Markdown file links in19 changed/new files resolve; exact tree and remote expected-head readback PASS. Unit/type/build/browser/device NOT_RUN for this planning-only delta. [Evidence](evidence/AW2-014A.md).
 
-## AW2-006D current verified scope
+## AW2-006D historical verified scope
 
 Source `7124bed958ee5cfa537fa3a021b4f03836e19544`, base `caf0057d8655f33d125c07fc32a53f057d29d0d5`. PASS59cases/5files=20new boss-world+10updated current-scene+8props+12controls+9rematch,0fail/skip. Actual source/runtime/reference/prompt hashes/budgets/rights, four safe frames/feet/common scale,11direction/tie/zero samples, real alpha states/detached nonmutation/canonical anchor. Full current-head NOT_RUN; unchanged pure world/save/combat/economy/modes retained at original refs, not counted fresh.
 

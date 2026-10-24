@@ -14,6 +14,11 @@ import {
   FORGOTTEN_HOST_WORLD,
   worldBossPresentation,
 } from "../../src/aw2/assets/bossWorld"
+import {
+  HEARTH_ROOM_SCENE,
+  hearthRoomWaypoints,
+  hearthRoomProps,
+} from "../../src/aw2/assets/hearthRoom"
 import { RoomWaypoints } from "./RoomWaypoints"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import {
@@ -42,10 +47,16 @@ export function WorldCanvas({
   const [ready, setReady] = useState(false)
   const leaderId = world.partyIds[0] ?? "aw2-than"
   const ids = [leaderId]
+  const hearthScene =
+    world.zoneId === HEARTH_ROOM_SCENE.zoneId ? HEARTH_ROOM_SCENE : null
   const scene =
-    world.zoneId === TABLE_ROOM_SCENE.zoneId ? TABLE_ROOM_SCENE : null
-  const roomPoints = tableRoomWaypoints(world)
+    world.zoneId === TABLE_ROOM_SCENE.zoneId ? TABLE_ROOM_SCENE : hearthScene
+  const roomPoints = hearthScene
+    ? hearthRoomWaypoints(world)
+    : tableRoomWaypoints(world)
   const interactionProps = tableRoomInteractionProps(world)
+  const hearthProps = hearthRoomProps(world)
+  const labelProps = hearthScene ? hearthProps : interactionProps
   useEffect(() => {
     let disposed = false
     let app: Application | undefined
@@ -60,15 +71,22 @@ export function WorldCanvas({
           Promise.all(
             ids.map((id) => Assets.load(ROSTER_ASSETS[id].assets.world.url)),
           ),
-          scene
+          hearthScene
             ? Promise.all([
-                Assets.load(scene.assets.floor.url),
-                Assets.load(scene.assets.sideboard.url),
-                Assets.load(FORGOTTEN_HOST_WORLD.asset.url),
-                Assets.load(TABLE_ROOM_INTERACTIONS.assets.note.url),
-                Assets.load(TABLE_ROOM_INTERACTIONS.assets.threshold.url),
+                Assets.load(hearthScene.assets.floor.url),
+                Assets.load(hearthScene.assets.sideboard.url),
+                Assets.load(hearthScene.assets.puzzles.url),
+                Assets.load(hearthScene.assets.threshold.url),
               ])
-            : Promise.resolve([]),
+            : scene
+              ? Promise.all([
+                  Assets.load(scene.assets.floor.url),
+                  Assets.load(scene.assets.sideboard.url),
+                  Assets.load(FORGOTTEN_HOST_WORLD.asset.url),
+                  Assets.load(TABLE_ROOM_INTERACTIONS.assets.note.url),
+                  Assets.load(TABLE_ROOM_INTERACTIONS.assets.threshold.url),
+                ])
+              : Promise.resolve([]),
         ])
         if (disposed) return
         for (const texture of environment) texture.source.scaleMode = "nearest"
@@ -162,6 +180,7 @@ export function WorldCanvas({
         const groundProps: {
           entityId: string
           sprite: import("pixi.js").Sprite
+          textureId: string
         }[] = []
         if (scene) {
           for (const prop of interactionProps) {
@@ -183,7 +202,41 @@ export function WorldCanvas({
             sprite.zIndex = prop.depth
             sprite.alpha = prop.alpha
             next.stage.addChild(sprite)
-            groundProps.push({ entityId: prop.entityId, sprite })
+            groundProps.push({
+              entityId: prop.entityId,
+              sprite,
+              textureId: asset.id,
+            })
+          }
+          if (hearthScene) {
+            for (const prop of hearthProps) {
+              const asset =
+                hearthScene.assets[prop.asset as "puzzles" | "threshold"]
+              const f =
+                prop.asset === "puzzles"
+                  ? hearthScene.frames[
+                      prop.frame as keyof typeof hearthScene.frames
+                    ]
+                  : hearthScene.assets.threshold.frame
+              const texture = new Texture({
+                source: environment[prop.asset === "puzzles" ? 2 : 3].source,
+                frame: new Rectangle(f.x, f.y, f.width, f.height),
+              })
+              textures.push(texture)
+              const sprite = new Sprite(texture)
+              sprite.anchor.set(prop.anchorX, prop.anchorY)
+              sprite.position.set(prop.x, prop.y)
+              sprite.width = prop.width
+              sprite.height = prop.height
+              sprite.zIndex = prop.depth
+              sprite.alpha = prop.alpha
+              next.stage.addChild(sprite)
+              groundProps.push({
+                entityId: prop.entityId,
+                sprite,
+                textureId: asset.id,
+              })
+            }
           }
           const frame = scene.assets.sideboard.frame
           const texture = new Texture({
@@ -198,30 +251,32 @@ export function WorldCanvas({
           foreground.height = scene.prop.height
           foreground.zIndex = scene.prop.sortY + 10
           next.stage.addChild(foreground)
-          for (const [key, pose] of Object.entries(
-            FORGOTTEN_HOST_WORLD.frames,
-          )) {
-            const texture = new Texture({
-              source: environment[2].source,
-              frame: new Rectangle(pose.x, pose.y, pose.width, pose.height),
-            })
-            textures.push(texture)
-            bossFrames[key] = texture
+          if (!hearthScene) {
+            for (const [key, pose] of Object.entries(
+              FORGOTTEN_HOST_WORLD.frames,
+            )) {
+              const texture = new Texture({
+                source: environment[2].source,
+                frame: new Rectangle(pose.x, pose.y, pose.width, pose.height),
+              })
+              textures.push(texture)
+              bossFrames[key] = texture
+            }
+            const state = worldBossPresentation(world)!
+            const pose =
+              FORGOTTEN_HOST_WORLD.frames[
+                state.frame as keyof typeof FORGOTTEN_HOST_WORLD.frames
+              ]
+            bossMarker = new Sprite(bossFrames[state.frame])
+            bossMarker.anchor.set(
+              pose.anchorX / pose.width,
+              pose.anchorY / pose.height,
+            )
+            bossMarker.scale.set(FORGOTTEN_HOST_WORLD.display.scale)
+            bossMarker.position.set(state.x, state.y)
+            bossMarker.zIndex = state.depth
+            next.stage.addChild(bossMarker)
           }
-          const state = worldBossPresentation(world)!
-          const pose =
-            FORGOTTEN_HOST_WORLD.frames[
-              state.frame as keyof typeof FORGOTTEN_HOST_WORLD.frames
-            ]
-          bossMarker = new Sprite(bossFrames[state.frame])
-          bossMarker.anchor.set(
-            pose.anchorX / pose.width,
-            pose.anchorY / pose.height,
-          )
-          bossMarker.scale.set(FORGOTTEN_HOST_WORLD.display.scale)
-          bossMarker.position.set(state.x, state.y)
-          bossMarker.zIndex = state.depth
-          next.stage.addChild(bossMarker)
         }
         const actors = ids.map((id, index) => {
           const manifest = ROSTER_ASSETS[id]
@@ -320,7 +375,9 @@ export function WorldCanvas({
             })
           }
           if (groundProps.length) {
-            const props = tableRoomInteractionProps(now)
+            const props = hearthScene
+              ? hearthRoomProps(now)
+              : tableRoomInteractionProps(now)
             for (const { entityId, sprite } of groundProps)
               sprite.alpha = props.find(
                 (prop) => prop.entityId === entityId,
@@ -339,10 +396,9 @@ export function WorldCanvas({
                   depth: sprite.zIndex,
                   width: sprite.width,
                   height: sprite.height,
-                  textureId:
-                    TABLE_ROOM_INTERACTIONS.assets[
-                      prop.asset as keyof typeof TABLE_ROOM_INTERACTIONS.assets
-                    ].id,
+                  textureId: groundProps.find(
+                    (p) => p.entityId === prop.entityId,
+                  )!.textureId,
                 }
               }),
             )
@@ -410,11 +466,11 @@ export function WorldCanvas({
             style={{
               transform:
                 (scene && object.id === FORGOTTEN_HOST_WORLD.entityId) ||
-                interactionProps.some((prop) => prop.entityId === object.id)
+                labelProps.some((prop) => prop.entityId === object.id)
                   ? "translate(-50%, 0)"
                   : undefined,
               left: `${Math.max(12, Math.min(88, object.x / 6.4))}%`,
-              top: `${(object.y + (interactionProps.find((prop) => prop.entityId === object.id)?.labelOffsetY ?? (scene ? 24 : 0))) / 3.84}%`,
+              top: `${(object.y + (labelProps.find((prop) => prop.entityId === object.id)?.labelOffsetY ?? (scene ? 24 : 0))) / 3.84}%`,
             }}
           >
             {scene
