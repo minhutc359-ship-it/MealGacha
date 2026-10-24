@@ -1,0 +1,466 @@
+{
+  "task": "AW2-006H/J/K",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "branch": "game/adventure-world-2",
+  "base": "fd1513306ea6cc5052bd08a04eaba666ce07b6cf",
+  "source": "8543ad5c309d982ba0e7ae60753371aea384699e",
+  "stagedAndRemoteTree": "51ef4e41f54a4fc9804b9807e8e4004cefe30350",
+  "expectedShaGuard": "fd1513306ea6cc5052bd08a04eaba666ce07b6cf",
+  "force": false,
+  "independentGitFetch": "PASS",
+  "all62RemoteBlobsEqualStaged": "PASS",
+  "treeIndexEquality": "PASS",
+  "baseIsAncestor": true,
+  "guardedLocalSync": "PASS",
+  "cleanAfterSourceSync": true,
+  "changedFiles": 62,
+  "files": [
+    {
+      "path": "dev/aw2/JourneyLandscape.tsx",
+      "mode": "100644",
+      "sha": "455ff1af0f543d4ea60ede7df5e45b01539a4d2b",
+      "bytes": 14184
+    },
+    {
+      "path": "dev/aw2/RoomWaypoints.tsx",
+      "mode": "100644",
+      "sha": "4b42b5ba43e961c87d0649757647010ef1644c4b",
+      "bytes": 2477
+    },
+    {
+      "path": "dev/aw2/WorldCanvas.tsx",
+      "mode": "100644",
+      "sha": "b05241b77d2f70439b0983cc658812b2f67fb4ef",
+      "bytes": 22441
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/floor-source.png",
+      "mode": "100644",
+      "sha": "7d78da2f392f70e87781f49ad9f8a76666924669",
+      "bytes": 3954125
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/floor.webp",
+      "mode": "100644",
+      "sha": "01169d2b33b93875b1d60501e7125c5d8572a1a9",
+      "bytes": 3172580
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/prompts.json",
+      "mode": "100644",
+      "sha": "52a85e16c38501b3b182afc2213e744103bcbe29",
+      "bytes": 4185
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/props-source.png",
+      "mode": "100644",
+      "sha": "7abd9ace6b44d748ed9c5c13779166d2f3976d9a",
+      "bytes": 1012444
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/props.webp",
+      "mode": "100644",
+      "sha": "a31b055538a3e3de79fb64e20815315b9b32df1c",
+      "bytes": 724944
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/provenance.json",
+      "mode": "100644",
+      "sha": "9f98c49510824d0f8c82d5763b4f890716103906",
+      "bytes": 6314
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/selection.json",
+      "mode": "100644",
+      "sha": "6865d0a94451f1edc75cfe5154cecab565a69a40",
+      "bytes": 788
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/floor-source.png",
+      "mode": "100644",
+      "sha": "ab97b6ef05b562e644625617480557517ec47d44",
+      "bytes": 3704882
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/floor.webp",
+      "mode": "100644",
+      "sha": "8b8b6fbc085dd5dcd198d3347e6e9ec236e60dc8",
+      "bytes": 2880718
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/prompts.json",
+      "mode": "100644",
+      "sha": "b593dc08fc50a56aa70a3bbce08610d0bddd2915",
+      "bytes": 4331
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/props-source.png",
+      "mode": "100644",
+      "sha": "5253fa24f18fc95fc4d5e0e613152fa4d1f6cc9c",
+      "bytes": 1237920
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/props.webp",
+      "mode": "100644",
+      "sha": "4d6a9c700c14e4e915723d748e787e1fd40c2439",
+      "bytes": 921926
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/provenance.json",
+      "mode": "100644",
+      "sha": "7b0fda1b08f4bd421d36488f60ad6d62af842025",
+      "bytes": 5276
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/selection.json",
+      "mode": "100644",
+      "sha": "1cb87f9006f9ca0a1cb2340b51bde5d8eacb15de",
+      "bytes": 772
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+      "mode": "100644",
+      "sha": "27893fcdb294368a46db5448531743544cf6a8d8",
+      "bytes": 3998946
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/floor.webp",
+      "mode": "100644",
+      "sha": "209969371d7e59dca0a9b42c2aabc9bc2566cea8",
+      "bytes": 3239024
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/prompts.json",
+      "mode": "100644",
+      "sha": "95ffa8a7eb50a57ecc146af6b2c12eda9d6ac432",
+      "bytes": 6127
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+      "mode": "100644",
+      "sha": "671d1416b9fe96bd37295d1877296bc1d13857e3",
+      "bytes": 2143823
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/props.webp",
+      "mode": "100644",
+      "sha": "d07559f0a8462cf7347a1d3c819179fb7df52377",
+      "bytes": 1417392
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/provenance.json",
+      "mode": "100644",
+      "sha": "dcd8486a6ffbe25fb518da2d67713edc01ab045e",
+      "bytes": 7479
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/selection.json",
+      "mode": "100644",
+      "sha": "41d2670208538b9b6809c1d85a83b8dae5699f6f",
+      "bytes": 1545
+    },
+    {
+      "path": "dev/aw2/world.tsx",
+      "mode": "100644",
+      "sha": "764f14ba48bbc7da8a613515548cd885d7775582",
+      "bytes": 22373
+    },
+    {
+      "path": "dev/aw2/worldCanvasTypes.ts",
+      "mode": "100644",
+      "sha": "04a889c122c7f56f5082b073c9d5716d465dd654",
+      "bytes": 400
+    },
+    {
+      "path": "dev/tests/aw2/journey-scenes.test.ts",
+      "mode": "100644",
+      "sha": "985a377ffaab6b819155d17f1682368c92f042f6",
+      "bytes": 9749
+    },
+    {
+      "path": "dev/tools/aw2-journey-scene-browser.mjs",
+      "mode": "100644",
+      "sha": "589fc899de0ef7c941b6f3b06f6511feb593724f",
+      "bytes": 14843
+    },
+    {
+      "path": "dev/tools/build-aw2-journey-environments.py",
+      "mode": "100644",
+      "sha": "07bdb6d551bc330cb3f88a36f6acba1db620408a",
+      "bytes": 6981
+    },
+    {
+      "path": "dev/tools/verify-aw2-demo.mjs",
+      "mode": "100644",
+      "sha": "4312ed2695b82afec736bb89f6a7ab4c17cc9a27",
+      "bytes": 41949
+    },
+    {
+      "path": "dev/tools/verify-aw2-journey-environments.py",
+      "mode": "100644",
+      "sha": "07792b5fd880d32ff7f66d6b0f47847450fb9bc3",
+      "bytes": 3145
+    },
+    {
+      "path": "dev/tools/verify-aw2-village.mjs",
+      "mode": "100644",
+      "sha": "b12b51b6f760e9957427966a9042c5488124118d",
+      "bytes": 24081
+    },
+    {
+      "path": "docs/aw2/BACKLOG.md",
+      "mode": "100644",
+      "sha": "a9bffc14f73ee7c3e306799a4e50f06d61c0a255",
+      "bytes": 32262
+    },
+    {
+      "path": "docs/aw2/CANON.md",
+      "mode": "100644",
+      "sha": "5e3cd27986317713b8264d328d94fe57f141f6f1",
+      "bytes": 22448
+    },
+    {
+      "path": "docs/aw2/CHANGELOG.md",
+      "mode": "100644",
+      "sha": "5ac687f9b11281ab127d18765f1377bb9ca1ba86",
+      "bytes": 44873
+    },
+    {
+      "path": "docs/aw2/DELIVERY_PLAN.md",
+      "mode": "100644",
+      "sha": "8f0a313e3382e36edb1fe9e1c9e0ddd180984d16",
+      "bytes": 27118
+    },
+    {
+      "path": "docs/aw2/HANDOFF.md",
+      "mode": "100644",
+      "sha": "6b0c46bf1ebc1557944e41bcdf4636083db61f43",
+      "bytes": 13830
+    },
+    {
+      "path": "docs/aw2/PROGRESS.md",
+      "mode": "100644",
+      "sha": "5c9de66f198ef37c98bd32e9140a081461f39aa8",
+      "bytes": 31597
+    },
+    {
+      "path": "docs/aw2/README.md",
+      "mode": "100644",
+      "sha": "9dc1376585e5a4872f9063bc61dd1d2821f35433",
+      "bytes": 32511
+    },
+    {
+      "path": "docs/aw2/REPORT.md",
+      "mode": "100644",
+      "sha": "6e77ad88282850369eb1510fd09ddf999bf0f892",
+      "bytes": 1753
+    },
+    {
+      "path": "docs/aw2/STATUS.md",
+      "mode": "100644",
+      "sha": "750b03ae1cd658393ba20b0981ca520e5a9df778",
+      "bytes": 11085
+    },
+    {
+      "path": "docs/aw2/TEST_LEDGER.md",
+      "mode": "100644",
+      "sha": "d95df86704317e44c81bacba4eb95b92d5ec032e",
+      "bytes": 148285
+    },
+    {
+      "path": "docs/aw2/THE_GIOI.md",
+      "mode": "100644",
+      "sha": "d1a213deaade686bd5b62fc300a9a587233f547a",
+      "bytes": 4008
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK-compiled-prechest.json",
+      "mode": "100644",
+      "sha": "bf8b13b22fc02b7946eceaa999b3b453aa085711",
+      "bytes": 11022
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK-compiled-preending.json",
+      "mode": "100644",
+      "sha": "5fad5159c63f02f0040214f0053d20fba8c3bf5d",
+      "bytes": 19465
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK-compiled-prestreet.json",
+      "mode": "100644",
+      "sha": "91953cc6fe656863ec49f06e62138c07625ecd2e",
+      "bytes": 7946
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK-reused-evidence.json",
+      "mode": "100644",
+      "sha": "ef90ce998109538df318f81487ff946b01c0d9b7",
+      "bytes": 64239
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK-review-build.json",
+      "mode": "100644",
+      "sha": "77fe11bef4609bebae83248b1c549758dad46da7",
+      "bytes": 43383
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK-source-prechest.json",
+      "mode": "100644",
+      "sha": "97dd3fb74024faf04bacafe8fe58a5e950e5e671",
+      "bytes": 18490
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK-source-preending.json",
+      "mode": "100644",
+      "sha": "2c64a5f0649b48222532e129487cc65fdeb4dd98",
+      "bytes": 34782
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK-source-prestreet.json",
+      "mode": "100644",
+      "sha": "d372f126c0671d1f335f41d91b12edff8eb1cb68",
+      "bytes": 15794
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK-verification.json",
+      "mode": "100644",
+      "sha": "b22fac256ffb0afac77ffa0e970d0c59c61a3fa3",
+      "bytes": 202081
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK.md",
+      "mode": "100644",
+      "sha": "ce3f8c9722927c24a0742cdd80bd1a00e685c219",
+      "bytes": 7270
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-006H.md",
+      "mode": "100644",
+      "sha": "70d04dc96165c38b4f2c44b38d5eef765be5fcc5",
+      "bytes": 5928
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-006J.md",
+      "mode": "100644",
+      "sha": "f7523527db23b08254ddb717e4aa4f0dab6aee16",
+      "bytes": 4190
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-006K.md",
+      "mode": "100644",
+      "sha": "6ed5415a4ab55bfc3f9380142f3152303a9b2e3c",
+      "bytes": 4096
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-006L.md",
+      "mode": "100644",
+      "sha": "fd8e9e4f3ee826dbaa736e84cd2c08a2ce07eb12",
+      "bytes": 2465
+    },
+    {
+      "path": "src/aw2/assets/forgotten-kitchen-yard.environment-v1.json",
+      "mode": "100644",
+      "sha": "61f53f16ab8e269c70d2d03da6ab6f2e63552fe2",
+      "bytes": 8326
+    },
+    {
+      "path": "src/aw2/assets/journeyScenes.ts",
+      "mode": "100644",
+      "sha": "0e649e9a2689280d410eb9154fbb4f722aa2b018",
+      "bytes": 5495
+    },
+    {
+      "path": "src/aw2/assets/kitchen-pantry.environment-v1.json",
+      "mode": "100644",
+      "sha": "5e95f7812ad4daaa1d3f998145f0fdcfe5e9da56",
+      "bytes": 6089
+    },
+    {
+      "path": "src/aw2/assets/lantern-street.environment-v1.json",
+      "mode": "100644",
+      "sha": "390f8393e5f1dcab1c8d536ce050f186eca714bc",
+      "bytes": 9760
+    },
+    {
+      "path": "src/aw2/assets/villageView.ts",
+      "mode": "100644",
+      "sha": "71a4ff47515f1941fa77abb42ef52dacaa169dcc",
+      "bytes": 3637
+    }
+  ],
+  "binaryBlobs": [
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/floor-source.png",
+      "sha": "7d78da2f392f70e87781f49ad9f8a76666924669",
+      "bytes": 3954125
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/floor.webp",
+      "sha": "01169d2b33b93875b1d60501e7125c5d8572a1a9",
+      "bytes": 3172580
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/props-source.png",
+      "sha": "7abd9ace6b44d748ed9c5c13779166d2f3976d9a",
+      "bytes": 1012444
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/props.webp",
+      "sha": "a31b055538a3e3de79fb64e20815315b9b32df1c",
+      "bytes": 724944
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/floor-source.png",
+      "sha": "ab97b6ef05b562e644625617480557517ec47d44",
+      "bytes": 3704882
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/floor.webp",
+      "sha": "8b8b6fbc085dd5dcd198d3347e6e9ec236e60dc8",
+      "bytes": 2880718
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/props-source.png",
+      "sha": "5253fa24f18fc95fc4d5e0e613152fa4d1f6cc9c",
+      "bytes": 1237920
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/props.webp",
+      "sha": "4d6a9c700c14e4e915723d748e787e1fd40c2439",
+      "bytes": 921926
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+      "sha": "27893fcdb294368a46db5448531743544cf6a8d8",
+      "bytes": 3998946
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/floor.webp",
+      "sha": "209969371d7e59dca0a9b42c2aabc9bc2566cea8",
+      "bytes": 3239024
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+      "sha": "671d1416b9fe96bd37295d1877296bc1d13857e3",
+      "bytes": 2143823
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/props.webp",
+      "sha": "d07559f0a8462cf7347a1d3c819179fb7df52377",
+      "bytes": 1417392
+    }
+  ],
+  "cleanSourceIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "8543ad5c309d982ba0e7ae60753371aea384699e",
+    "sourceDirty": false,
+    "codeFingerprint": "30687d872185a80887003e6afd4da8815e360c5e8103fc81d639589517fe1727",
+    "inputFiles": 315
+  },
+  "retainedBranches": {
+    "master": "f9d39257d17b4dd378a2fbd2a9f936724754fc16",
+    "rpg": "5f14e42b1ab8e35764c379f2c5b14e81e5be945f"
+  },
+  "completion": "Source stamps and verified publication proof only; final clean local=fresh remote required after completion push. Final readback kept locally without recursive committed self-SHA."
+}
