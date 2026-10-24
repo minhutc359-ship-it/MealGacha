@@ -1,7 +1,7 @@
 {
   "task": "AW2-006M",
   "status": "PASS_DEVELOPMENT_SUBSET",
-  "source": "PENDING006M",
+  "source": "639609b986389cc7743d977679ca361c010911f8",
   "base": "b7b4d1c8d83875aba69307ef31c15743049e156c",
   "environment": {
     "os": "Linuxx64",
@@ -1592,5 +1592,14 @@
     "fullCharacterDoD": 0,
     "next": "AW2-006N authored ambient motion for village/street",
     "ownerAcceptanceDeferred": "D20"
+  },
+  "publication": "docs/aw2/evidence/AW2-006M-publication.json",
+  "cleanSourceIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "639609b986389cc7743d977679ca361c010911f8",
+    "sourceDirty": false,
+    "codeFingerprint": "12638bb685907682a4194d2e6bb0dc2267c2de9c2e5eba2d42009754a86fac7f",
+    "inputFiles": 361
   }
 }
