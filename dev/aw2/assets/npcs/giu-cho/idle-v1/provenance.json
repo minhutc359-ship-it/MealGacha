@@ -1,0 +1,28 @@
+{
+  "task": "AW2-006M",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-24",
+  "prompts": {
+    "path": "dev/aw2/assets/npcs/giu-cho/idle-v1/prompts.json",
+    "sha256": "60aacf8cf546324fa28570dfbca95bb09a07d3fc4393a59313bd51eddb1b3a00"
+  },
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/props-source.png",
+      "role": "own project identity edit reference",
+      "sha256": "d2e74cd1260cad9e3d46224a87aeb0054c84ce9f7eb18f5fa598a83971be2373",
+      "commit": "42f36d7c55921e6d2df474640cdfc212151bc4c0",
+      "blob": "9caeb8b7e5f3bab3f12962e671b2be0fbe76fe31"
+    }
+  ],
+  "selection": {
+    "path": "dev/aw2/assets/npcs/giu-cho/idle-v1/selection.json",
+    "sha256": "338e154622de8afcf17a7acf635f1dd37d2b1302c5ba5caa1515df7796154bae"
+  },
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "builder": "dev/tools/build-aw2-npc-idle.py",
+  "pillow": "10.2.0",
+  "processing": "Unchanged selected original transparent PNG; exact RGBA lossless WebP. Read-only alpha measurements for safe texture rectangles/feet. No pixel painting/masking/erasing/mirroring/resizing/interpolation."
+}

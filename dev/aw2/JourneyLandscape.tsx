@@ -19,6 +19,12 @@ import {
 } from "../../src/aw2/assets/villageView"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
+import { npcForEntity, advanceNpcClock } from "../../src/aw2/assets/npcMotion"
+import {
+  loadNpcTextures,
+  createNpcSprites,
+  renderNpcSprites,
+} from "./npcSprites"
 import { RoomWaypoints } from "./RoomWaypoints"
 
 /** Three remaining regions share authored layers; committed progress/economy stay read-only. */
@@ -58,10 +64,14 @@ export function JourneyLandscape({
       try {
         const { Application, Assets, Sprite, Texture, Rectangle } =
           await import("pixi.js")
-        const keys = Object.keys(scene.assets)
-        const [loaded, body] = await Promise.all([
+        const keys = Object.keys(scene.assets).filter(
+          (key) =>
+            !(scene.zoneId === "aw2-zone-lantern-street" && key === "props"),
+        )
+        const [loaded, body, loadedNpc] = await Promise.all([
           Promise.all(keys.map((key) => Assets.load(scene.assets[key].url))),
           Assets.load(ROSTER_ASSETS[leader].assets.world.url),
+          loadNpcTextures(scene.zoneId, (url) => Assets.load(url)),
         ])
         if (disposed) return
         const assetTextures: Record<string, Texture> = Object.fromEntries(
@@ -107,25 +117,30 @@ export function JourneyLandscape({
         backdrop.height = scene.landscape.height
         backdrop.zIndex = -1000
         next.stage.addChild(backdrop)
-        const objects = journeyProps(
-          position.current,
-          committedEconomy.current,
-        ).map((prop) => {
-          const asset = scene.assets[(prop.asset as "props" | "threshold")]
-          const f =
-            prop.asset === "props"
-              ? scene.frames[(prop.frame as keyof typeof scene.frames)]
-              : scene.assets.threshold.frame!
-          const sprite = new Sprite(crop(assetTextures[prop.asset], f))
-          sprite.anchor.set(prop.anchorX, prop.anchorY)
-          sprite.position.set(prop.x, prop.y)
-          sprite.width = prop.width
-          sprite.height = prop.height
-          sprite.zIndex = prop.depth
-          sprite.alpha = prop.alpha
-          next.stage.addChild(sprite)
-          return { entityId: prop.entityId, sprite, textureId: asset.id }
-        })
+        const npcSprites = createNpcSprites(
+          loadedNpc,
+          { Sprite, Texture, Rectangle },
+          textures,
+        )
+        for (const npc of npcSprites) next.stage.addChild(npc.sprite)
+        const objects = journeyProps(position.current, committedEconomy.current)
+          .filter((prop) => !npcForEntity(prop.entityId))
+          .map((prop) => {
+            const asset = scene.assets[(prop.asset as "props" | "threshold")]
+            const f =
+              prop.asset === "props"
+                ? scene.frames[(prop.frame as keyof typeof scene.frames)]
+                : scene.assets.threshold.frame!
+            const sprite = new Sprite(crop(assetTextures[prop.asset], f))
+            sprite.anchor.set(prop.anchorX, prop.anchorY)
+            sprite.position.set(prop.x, prop.y)
+            sprite.width = prop.width
+            sprite.height = prop.height
+            sprite.zIndex = prop.depth
+            sprite.alpha = prop.alpha
+            next.stage.addChild(sprite)
+            return { entityId: prop.entityId, sprite, textureId: asset.id }
+          })
         const well = new Sprite(
             crop(assetTextures[scene.obstacle.asset], scene.obstacle.frame),
           ),
@@ -160,10 +175,17 @@ export function JourneyLandscape({
         next.stage.addChild(actor)
         const reduced = matchMedia("(prefers-reduced-motion: reduce)")
         let prior = { ...position.current },
-          elapsed = 0
+          elapsed = 0,
+          npcElapsed = 0
         next.ticker.add((ticker) => {
           const now = position.current
           if (now.zoneId !== scene.zoneId) return
+          npcElapsed = advanceNpcClock(
+            npcElapsed,
+            ticker.deltaMS,
+            pause.current,
+            reduced.matches,
+          )
           const view = landscapeCamera(now, viewMode.current, scene)
           next.stage.scale.set(view.zoom)
           next.stage.position.set(
@@ -206,8 +228,14 @@ export function JourneyLandscape({
           }
           const currentProps = journeyProps(now, committedEconomy.current)
           for (const prop of currentProps)
-            objects.find((o) => o.entityId === prop.entityId)!.sprite.alpha =
-              prop.alpha
+            (
+              objects.find((o) => o.entityId === prop.entityId)?.sprite ??
+              npcSprites.find((npc) => npc.manifest.entityId === prop.entityId)!
+                .sprite
+            ).alpha = prop.alpha
+          next.canvas.dataset.npcMotion = JSON.stringify(
+            renderNpcSprites(npcSprites, npcElapsed, reduced.matches),
+          )
           const viewport = next.canvas.getBoundingClientRect()
           for (const prop of currentProps) {
             const label = labels.current.get(prop.entityId)
@@ -255,7 +283,17 @@ export function JourneyLandscape({
           )
           next.canvas.dataset.interactionProps = JSON.stringify(
             currentProps.map((prop) => {
-              const item = objects.find((o) => o.entityId === prop.entityId)!
+              const item =
+                objects.find((o) => o.entityId === prop.entityId) ??
+                (() => {
+                  const npc = npcSprites.find(
+                    (npc) => npc.manifest.entityId === prop.entityId,
+                  )!
+                  return {
+                    sprite: npc.sprite,
+                    textureId: npc.manifest.asset.id,
+                  }
+                })()
               return {
                 entityId: prop.entityId,
                 state: prop.state,

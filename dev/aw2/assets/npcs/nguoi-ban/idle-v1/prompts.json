@@ -1,0 +1,20 @@
+{
+  "task": "AW2-006M",
+  "entityId": "aw2-npc-nguoi-ban",
+  "displayName": "Người Bán Bữa Sáng",
+  "zoneId": "aw2-zone-lantern-street",
+  "tool": "OpenAI built-in image_gen",
+  "mode": "edit / identity-preserve",
+  "prompt": "Use case: identity-preserve. Asset type: AW2 hand-painted chibi NPC animation atlas. Edit ONLY the reference character described below into a new transparent four-pose sprite sheet,1024x1024square. Reference image is own project identity/style input; ignore every other character or prop in that image.\nCharacter: Người Bán Bữa Sáng. Exact reference selection: TOP CENTER cell: woman in conical straw hat with red ties, mustard yellow wrap blouse, dark skirt, sandals, holding wicker breakfast basket with food and cream/red towel.\nLayout: strict2columns×2rows, four equal512x512cells; reading order top-left neutral/open eyes, top-right subtle breathing inhale (chest/sleeves shift only2-4pixels), bottom-left blink with closed eyes (everything else aligned), bottom-right friendly small nod while keeping breakfast basket steady. One complete character in EACH cell, same downward/front three-quarter view, same scale/proportions/clothes/face/hair/palette/held items. Keep both feet at cell-localy460 and central body axisx256 in EVERY frame; fitted height about380px, generous transparent margins≥32px. Seated characters keep complete table feet fixed at y460, same table and board. All silhouettes including held props/stool inside cell. No walking, hopping, flying, stretching, squash, random sway or clothing changes. Distinct hand-drawn poses with subtle motion; keep neutral identity faithful.\nStyle: match original clean detailed painted pixel/chibi sprite, warm village palette, sharp edges at game scale. Genuine transparent background, no gradient/colored glow/checkerboard baked in, no cell borders/guides/shadows outside silhouette, no text/numbers/captions or UI. Do not composite other NPCs. Do not copy external IP.",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+      "role": "own project identity edit reference",
+      "sha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74",
+      "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+      "blob": "671d1416b9fe96bd37295d1877296bc1d13857e3"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED"
+}

@@ -1,0 +1,20 @@
+{
+  "task": "AW2-006M",
+  "entityId": "aw2-npc-gac-bep",
+  "displayName": "Dì Gác Bếp",
+  "zoneId": "aw2-zone-forgotten-kitchen-yard",
+  "tool": "OpenAI built-in image_gen",
+  "mode": "edit / identity-preserve",
+  "prompt": "Use case: identity-preserve. Asset type: AW2 hand-painted chibi NPC animation atlas. Edit ONLY the reference character described below into a new transparent four-pose sprite sheet,1024x1024square. Reference image is own project identity/style input; ignore every other character or prop in that image.\nCharacter: Dì Gác Bếp. Exact reference selection: LEFT half: older silver-haired woman in bun, rust red headscarf, cream rolled-sleeve blouse, green apron with subtle border, red waist sash, brown skirt and sandals, holding wooden ladle. Ignore gate on right.\nLayout: strict2columns×2rows, four equal512x512cells; reading order top-left neutral/open eyes, top-right subtle breathing inhale (chest/sleeves shift only2-4pixels), bottom-left blink with closed eyes (everything else aligned), bottom-right gentle small ladle-hand gesture, no cooking or flames. One complete character in EACH cell, same downward/front three-quarter view, same scale/proportions/clothes/face/hair/palette/held items. Keep both feet at cell-localy460 and central body axisx256 in EVERY frame; fitted height about380px, generous transparent margins≥32px. Seated characters keep complete table feet fixed at y460, same table and board. All silhouettes including held props/stool inside cell. No walking, hopping, flying, stretching, squash, random sway or clothing changes. Distinct hand-drawn poses with subtle motion; keep neutral identity faithful.\nStyle: match original clean detailed painted pixel/chibi sprite, warm village palette, sharp edges at game scale. Genuine transparent background, no gradient/colored glow/checkerboard baked in, no cell borders/guides/shadows outside silhouette, no text/numbers/captions or UI. Do not composite other NPCs. Do not copy external IP.",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/props-source.png",
+      "role": "own project identity edit reference",
+      "sha256": "f37a281583d31a6fbf631a54e486400e51a2665793d0ca16f4b9e93cfa91c5c6",
+      "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+      "blob": "7abd9ace6b44d748ed9c5c13779166d2f3976d9a"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED"
+}

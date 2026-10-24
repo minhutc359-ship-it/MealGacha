@@ -19,6 +19,12 @@ import {
 } from "../../src/aw2/assets/villageView"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
+import { npcForEntity, advanceNpcClock } from "../../src/aw2/assets/npcMotion"
+import {
+  loadNpcTextures,
+  createNpcSprites,
+  renderNpcSprites,
+} from "./npcSprites"
 import { RoomWaypoints } from "./RoomWaypoints"
 
 /** Village presentation owns camera/layers only; all walking/actions remain world authority. */
@@ -54,13 +60,15 @@ export function VillageLandscape({
       try {
         const { Application, Assets, Sprite, Texture, Rectangle } =
           await import("pixi.js")
-        const [floor, props, threshold, foliage, body] = await Promise.all([
-          Assets.load(scene.assets.floor.url),
-          Assets.load(scene.assets.props.url),
-          Assets.load(scene.assets.threshold.url),
-          Assets.load(scene.assets.foreground.url),
-          Assets.load(ROSTER_ASSETS[leader].assets.world.url),
-        ])
+        const [floor, props, threshold, foliage, body, loadedNpc] =
+          await Promise.all([
+            Assets.load(scene.assets.floor.url),
+            Assets.load(scene.assets.props.url),
+            Assets.load(scene.assets.threshold.url),
+            Assets.load(scene.assets.foreground.url),
+            Assets.load(ROSTER_ASSETS[leader].assets.world.url),
+            loadNpcTextures(scene.zoneId, (url) => Assets.load(url)),
+          ])
         if (disposed) return
         floor.source.scaleMode = "linear"
         foliage.source.scaleMode = "linear"
@@ -103,23 +111,31 @@ export function VillageLandscape({
         backdrop.height = scene.landscape.height
         backdrop.zIndex = -1000
         next.stage.addChild(backdrop)
-        const objects = villageProps(position.current).map((prop) => {
-          const asset = scene.assets[(prop.asset as "props" | "threshold")]
-          const f =
-            prop.asset === "props"
-              ? scene.frames[(prop.frame as keyof typeof scene.frames)]
-              : scene.assets.threshold.frame
-          const sprite = new Sprite(
-            crop(prop.asset === "props" ? props : threshold, f),
-          )
-          sprite.anchor.set(prop.anchorX, prop.anchorY)
-          sprite.position.set(prop.x, prop.y)
-          sprite.width = prop.width
-          sprite.height = prop.height
-          sprite.zIndex = prop.depth
-          next.stage.addChild(sprite)
-          return { entityId: prop.entityId, sprite, textureId: asset.id }
-        })
+        const npcSprites = createNpcSprites(
+          loadedNpc,
+          { Sprite, Texture, Rectangle },
+          textures,
+        )
+        for (const npc of npcSprites) next.stage.addChild(npc.sprite)
+        const objects = villageProps(position.current)
+          .filter((prop) => !npcForEntity(prop.entityId))
+          .map((prop) => {
+            const asset = scene.assets[(prop.asset as "props" | "threshold")]
+            const f =
+              prop.asset === "props"
+                ? scene.frames[(prop.frame as keyof typeof scene.frames)]
+                : scene.assets.threshold.frame
+            const sprite = new Sprite(
+              crop(prop.asset === "props" ? props : threshold, f),
+            )
+            sprite.anchor.set(prop.anchorX, prop.anchorY)
+            sprite.position.set(prop.x, prop.y)
+            sprite.width = prop.width
+            sprite.height = prop.height
+            sprite.zIndex = prop.depth
+            next.stage.addChild(sprite)
+            return { entityId: prop.entityId, sprite, textureId: asset.id }
+          })
         const well = new Sprite(crop(props, scene.frames.well)),
           obstacle = scene.obstacle
         well.anchor.set(obstacle.anchorX, obstacle.anchorY)
@@ -152,10 +168,17 @@ export function VillageLandscape({
         next.stage.addChild(actor)
         const reduced = matchMedia("(prefers-reduced-motion: reduce)")
         let prior = { ...position.current },
-          elapsed = 0
+          elapsed = 0,
+          npcElapsed = 0
         next.ticker.add((ticker) => {
           const now = position.current
           if (now.zoneId !== scene.zoneId) return
+          npcElapsed = advanceNpcClock(
+            npcElapsed,
+            ticker.deltaMS,
+            pause.current,
+            reduced.matches,
+          )
           const view = villageCamera(now, viewMode.current)
           next.stage.scale.set(view.zoom)
           next.stage.position.set(
@@ -189,6 +212,9 @@ export function VillageLandscape({
             item.sprite.alpha = prop.alpha
           }
           const currentProps = villageProps(now)
+          next.canvas.dataset.npcMotion = JSON.stringify(
+            renderNpcSprites(npcSprites, npcElapsed, reduced.matches),
+          )
           const viewport = next.canvas.getBoundingClientRect()
           for (const prop of currentProps) {
             const label = labels.current.get(prop.entityId)
@@ -236,7 +262,17 @@ export function VillageLandscape({
           )
           next.canvas.dataset.interactionProps = JSON.stringify(
             currentProps.map((prop) => {
-              const item = objects.find((o) => o.entityId === prop.entityId)!
+              const item =
+                objects.find((o) => o.entityId === prop.entityId) ??
+                (() => {
+                  const npc = npcSprites.find(
+                    (npc) => npc.manifest.entityId === prop.entityId,
+                  )!
+                  return {
+                    sprite: npc.sprite,
+                    textureId: npc.manifest.asset.id,
+                  }
+                })()
               return {
                 entityId: prop.entityId,
                 state: prop.state,
