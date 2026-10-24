@@ -1,5 +1,13 @@
 # Task board
 
+**AW2-006L — đã nâng phong cảnh Phòng Lửa và Phòng Bàn theo D21.** Source `PENDING006L`, base `8e2dae03e2631de9800db70ffc5e12d874169b10`. Hai cảnh1536×1024 có kiến trúc quanh vùng đi bộ, camera Bám nhân vật/Toàn cảnh, nhãn/chạm/đồ vật che người theo cùng góc nhìn; giữ bộ puzzle, ghi chép và boss bốn hướng riêng. Điểm đến puzzle/boss/ghi chép dừng32px phía dưới, chỉ đi bộ. **6/6vùng có cảnh mở rộng/camera** (từ4/6);8NPC vẫn tĩnh, full environment/motion/rights chưa đóng. [Cách chơi](THE_GIOI.md) · [Bằng chứng](evidence/AW2-006L.md).
+
+85unit riêng biệt/7files, hai typecheck, exactRGBA/repeat12paths, review247files/203asset parity/stable isolation PASS.100browser assertions=50source+50compiled, ghép44prefix đã đạt+6ca tiếp nối mỗi bản trên cùng326đầu vào: puzzle sai/partial/solved reload, hai chiều, boss thắng thật45nhịp/ghi chép, hai ending345XP, đấu lại/rút lui/shortcut, hai ảnh404→error/khóa điểm đến/exactsave→recovery.88prefix+12tiếp nối đã nằm trong100; không cộng historical counts hoặc gọi là lượt fresh liền mạch. [Machine report](evidence/AW2-006L-verification.json).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên**: số vùng có cảnh là mẫu số riêng, chưa hoàn tất characterDoD/motion/rights và các gate chưa quan sát. D20tiếp tục gác nghiệm thu độc lập; next[006M](tasks/AW2-006M.md) chuyển động idle có frame riêng cho Bà/Dì. Một đại diện map/năm combat/luật/save giữ nguyên; không reset/master/rpg/deploy/release.
+
+Các mốc bên dưới là lịch sử theo source; trạng thái/Next hiện hành theo006L→006M ở trên.
+
 **AW2-006H/J/K — đã bổ sung phong cảnh và điểm đến cho Kho, Phố, Sân Bếp.** Source `8543ad5c309d982ba0e7ae60753371aea384699e`, base `fd1513306ea6cc5052bd08a04eaba666ce07b6cf`. Ba cảnh1536×1024 theo D21, bảng dấu hơi/rương/thùng hàng, đủ sáu NPC Phố và Dì/cổng lối tắt; cả8NPC có hình tham chiếu tĩnh trên map. Camera Bám nhân vật/Toàn cảnh, nhãn và điểm chạm theo cùng góc nhìn. Trạng thái rương đọc biên nhận thực, hint/ký ức/cửa đọc tiến trình; điểm đến chỉ đi tới gần. Một đại diện map/năm combat, luật/save/tọa độ cũ giữ nguyên. [Cách chơi sáu vùng](THE_GIOI.md) · [Bằng chứng](evidence/AW2-006HJK.md).
 
 88unit/7files, hai typecheck, asset audit/review239files/stable isolation PASS.222browser assertion instances=111source+111compiled được xác minh qua chuỗi checkpoint thật trong phiên này:168prefix đã đạt giữ theo hash +54ca tiếp nối cuối, không cộng trùng hoặc gọi là một lượt fresh liền mạch. Intro→modes→ký ức→rương lỗi ghi/thử lại→puzzle/nấu→boss→hai kết thúc/shortcuts→6ảnh thiếu/khôi phục, không sửa flag/HP/save để vượt bước. [Machine report](evidence/AW2-006HJK-verification.json).
@@ -63,7 +71,8 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | AW2-006H | BA/story/animation/mechanic/tester/scretary | Pantry scenery/hint/chest/crate and committed receipt text | VERIFIED at8543ad5c309d982ba0e7ae60753371aea384699e; shared88unit/222composite browser/types/build PASS |
 | AW2-006J | BA/story/character/animation/mechanic/tester/scretary | Lantern street landscape/six NPC bodies/native destinations | VERIFIED at8543ad5c309d982ba0e7ae60753371aea384699e; static reference, full motion OPEN |
 | AW2-006K | BA/story/character/animation/mechanic/tester/scretary | Kitchen yard landscape/Dì/shortcut/native gates | VERIFIED at8543ad5c309d982ba0e7ae60753371aea384699e; static reference, full motion OPEN |
-| AW2-006L | BA/story/animation/mechanic/tester/scretary | Rich hearth/table interiors to D21, preserve puzzle/boss | READY; next product task, implementation NOT_STARTED |
+| AW2-006L | BA/story/animation/mechanic/tester/scretary | Rich hearth/table interiors to D21, preserve puzzle/boss | VERIFIED atPENDING006L;85unit/100composite browser/types/build PASS |
+| AW2-006M | BA/story/character/animation/mechanic/tester/scretary | Authored idle frames for Bà/Dì with pause/reduced motion | READY; next product task, implementation NOT_STARTED |
 | AW2-006F | BA/story/animation/mechanic/tester/scretary | Authored Phòng Lửa floor/props/native navigation | VERIFIED development slice at 4d463302f95a33788ac9cb9c8274f12b18d86281;83unit/72browser, independent route/device gates OPEN |
 | AW2-004L | character/story/animation/tester | Hải original reference package | VERIFIED at 57b160faefa4edca081e46680a45489bfa4d9e68;85 units/102 browser; full DoD OPEN |
 | AW2-004M | character/story/animation/tester | Liên original reference package | VERIFIED at 8344fc0b05275a1d8e314100fcfa3263d9956c8e;96 own browser assertions, shared full1132; [card](tasks/AW2-004M.md), full DoD OPEN |

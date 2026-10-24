@@ -1,10 +1,7 @@
 import type { WorldProgress } from "../../src/aw2/world/model"
 import type { Waypoint } from "../../src/aw2/world/navigation"
-import { tableRoomWaypoints } from "../../src/aw2/assets/tableRoom"
-import {
-  HEARTH_ROOM_SCENE,
-  hearthRoomWaypoints,
-} from "../../src/aw2/assets/hearthRoom"
+import { interiorWaypoints } from "../../src/aw2/assets/interiorLandscapes"
+import { HEARTH_ROOM_SCENE } from "../../src/aw2/assets/hearthRoom"
 import { VILLAGE_SCENE, villageWaypoints } from "../../src/aw2/assets/village"
 import {
   journeyScene,
@@ -41,9 +38,11 @@ export function RoomWaypoints({
           x: walkX,
           y: walkY,
         }))
-      : hearth
-        ? hearthRoomWaypoints(world)
-        : tableRoomWaypoints(world)
+      : interiorWaypoints(world).map(({ walkX, walkY, ...p }) => ({
+          ...p,
+          x: walkX,
+          y: walkY,
+        }))
   if (!points.length) return null
   return (
     <nav

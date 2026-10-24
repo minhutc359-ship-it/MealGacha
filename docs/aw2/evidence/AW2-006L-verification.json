@@ -1,0 +1,285 @@
+{
+  "task": "AW2-006L",
+  "source": "PENDING006L",
+  "base": "8e2dae03e2631de9800db70ffc5e12d874169b10",
+  "status": "PASS_DEVELOPMENT_SUBSET",
+  "environment": {
+    "os": "Linux x64",
+    "node": "22.23.2",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vite": "8.0.5",
+    "vitest": "5.0.1",
+    "chromium": "153.0.8010.36",
+    "playwright": "1.58.2 temporary /tmp install; prior tool path missing"
+  },
+  "runtimeIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "8e2dae03e2631de9800db70ffc5e12d874169b10",
+    "sourceDirty": true,
+    "codeFingerprint": "c24de0805c292c6dd84f1201712ef7ffe401b4f25925ea567a7f9e4084d8af66",
+    "inputFiles": 326
+  },
+  "units": {
+    "status": "PASS",
+    "uniqueCases": 85,
+    "files": 7,
+    "composition": "78 unchanged cases retained from initial85case/7file run plus7final interior file after type-only ZoneId annotation and stronger nonempty/segment-safe path assertions; replaces all original7, no duplicate count",
+    "command": "pnpm test dev/tests/aw2/{interior-landscapes,village-view,hearth-room,table-room,table-interactions,boss-world,controls}.test.ts; final pnpm test dev/tests/aw2/interior-landscapes.test.ts"
+  },
+  "types": {
+    "root": "PASS pnpm typecheck exit0",
+    "dev": "PASS pnpm typecheck:dev exit0 after test-only ZoneId annotation"
+  },
+  "assets": {
+    "status": "PASS",
+    "exactRgba": true,
+    "opaque": true,
+    "pinnedReferences": true,
+    "repeatIdenticalPaths": 12,
+    "sha256": {
+      "dev/aw2/assets/environments/kitchen-hearth/v2/landscape-source.png": "ce1849afd03ddb4237ce240489562c3bce7e7da429c4887fe7559b1b8c7740eb",
+      "dev/aw2/assets/environments/kitchen-hearth/v2/landscape.webp": "2b5cabcdfad4832931d1fe7f26f745b2f2a0b121938a236fa3750af715accf86",
+      "dev/aw2/assets/environments/kitchen-hearth/v2/prompts.json": "318b0a1b124086cc40ebc80ee6a0d844c4cf482b3575f9e9aeaec094efb362bf",
+      "dev/aw2/assets/environments/kitchen-hearth/v2/selection.json": "fb9266a0217c2ecb33ab6623a368fc902b1b8ac1fd6e1b64246ed5c21540c7c4",
+      "dev/aw2/assets/environments/kitchen-hearth/v2/provenance.json": "8e382d225a281a413863d294fe890d6a52c540c673849ce0cd6c7c6def4547e9",
+      "src/aw2/assets/kitchen-hearth.environment-v2.json": "bbc611d38810ca1b67e63562396c30819d8bd7a3064915ddfdcbe64d3ccaf039",
+      "dev/aw2/assets/environments/kitchen-table/v2/landscape-source.png": "5902f1deec63cf8093287a9039dba2b87904df2333885c029b0f6e62fa9a9667",
+      "dev/aw2/assets/environments/kitchen-table/v2/landscape.webp": "f23a15cd0b6b6171359e9c1727361b86ef8362a8c3a47082c874f4b8e6d5d907",
+      "dev/aw2/assets/environments/kitchen-table/v2/prompts.json": "ba7500df97bdcacf9806db6a78d4f3de5f6bdef6ef50b99dbe894d61b57e1f61",
+      "dev/aw2/assets/environments/kitchen-table/v2/selection.json": "fa2d1c645450b75d6d579ac16fec652b36f1523fd78533e5a784f7b41468d690",
+      "dev/aw2/assets/environments/kitchen-table/v2/provenance.json": "ef59a5c52cd8902ca662149135d06a874f1d2b0698091f5f991c3ee038742606",
+      "src/aw2/assets/kitchen-table.environment-v2.json": "9879fd83f718182a907af7e63c8a1b8e93e5111fb2534340c459835b8a9b196f"
+    }
+  },
+  "browser": {
+    "status": "PASS_COMPOSITE_FOCUSED",
+    "totalAssertions": 100,
+    "source": 50,
+    "compiled": 50,
+    "currentTaskPrefixRetained": 88,
+    "finalContinuationFresh": 12,
+    "scope": "44+6 each flavor, no overlap or historical assertion totals; actual puzzle partial/solved reload, reciprocal rooms, real45tickbosswin/note, two endings, rematch retreat/shortcuts; frozen326inputs c24de080...",
+    "reports": {
+      "source": {
+        "path": "docs/aw2/evidence/AW2-006L-source-browser.json",
+        "bossTick": 45,
+        "checks": [
+          "Exact earned pantry checkpoint restore is read-only",
+          "Both new interior textures remain lazy before native travel",
+          "kitchen-hearth: v2 scene, all authored objects and one committed map leader/five saved combat members",
+          "kitchen-hearth: keyboard native destination approaches silhouette safely, restores focus and grants nothing",
+          "kitchen-hearth: inverse camera touch reaches canonical destination without writing",
+          "kitchen-hearth: decorative apron tap cannot leave logical walkfield or write",
+          "kitchen-hearth: furniture fades from inverse-transformed real actor bounds",
+          "kitchen-hearth: south detour respects collision and restores foreground depth",
+          "kitchen-hearth: 320px labels fit actual canvas and native controls have44px targets",
+          "kitchen-hearth: 390px labels fit actual canvas and native controls have44px targets",
+          "kitchen-hearth: 768px labels fit actual canvas and native controls have44px targets",
+          "kitchen-hearth: open interaction pauses room navigation and view controls",
+          "kitchen-hearth: required landscape404 shows error, no fallback and disabled destinations with exact save",
+          "kitchen-hearth: resource recovery reload preserves exact earned bytes without grants",
+          "Unsolved puzzle keeps east exit genuinely disabled",
+          "Wrong native puzzle attempt is retryable without ingredient spend",
+          "Puzzle step1 uses explicit action and survives exact reload",
+          "Puzzle step2 uses explicit action and survives exact reload",
+          "Puzzle step3 uses explicit action and survives exact reload",
+          "Solved puzzle updates real sprite state and unlocks east destination",
+          "Early table note remains unavailable despite authored scenery",
+          "Reciprocal room travel preserves real cook/share205XP economy",
+          "kitchen-table: v2 scene, all authored objects and one committed map leader/five saved combat members",
+          "kitchen-table: keyboard native destination approaches silhouette safely, restores focus and grants nothing",
+          "kitchen-table: inverse camera touch reaches canonical destination without writing",
+          "kitchen-table: decorative apron tap cannot leave logical walkfield or write",
+          "kitchen-table: furniture fades from inverse-transformed real actor bounds",
+          "kitchen-table: south detour respects collision and restores foreground depth",
+          "kitchen-table: 320px labels fit actual canvas and native controls have44px targets",
+          "kitchen-table: 390px labels fit actual canvas and native controls have44px targets",
+          "kitchen-table: 768px labels fit actual canvas and native controls have44px targets",
+          "kitchen-table: open interaction pauses room navigation and view controls",
+          "kitchen-table: required landscape404 shows error, no fallback and disabled destinations with exact save",
+          "kitchen-table: resource recovery reload preserves exact earned bytes without grants",
+          "Boss left idle uses own atlas/feet/common scale through scenic camera",
+          "Boss right idle uses own atlas/feet/common scale through scenic camera",
+          "Boss up idle uses own atlas/feet/common scale through scenic camera",
+          "Boss down idle uses own atlas/feet/common scale through scenic camera",
+          "Scenic boss entry reaches actual player-win with five committed combat members and no premature save",
+          "Explicit real boss result survives reload before note permission",
+          "Read note sprite and exact save follow actual boss permission",
+          "Actual wait ending settles once345XP/5receipts and exact reload",
+          "Actual share ending settles once345XP/5receipts and exact reload",
+          "Earned ending opens actual yard-to-table shortcut",
+          "Exact current-task completed checkpoint resumes read-only before rematch",
+          "Completed boss rematch/retreat returns safely without rewards",
+          "Completed reciprocal hearth/table travel preserves all economy receipts",
+          "Table-to-yard shortcut is reciprocal and preserves ending economy",
+          "All five stable legacy keys remain byte-identical",
+          "No unexpected page/console/resource errors"
+        ],
+        "origins": [
+          {
+            "path": "docs/aw2/evidence/AW2-006L-source-prefix.json",
+            "reportSha256": "abf88e36a5de5686ce2178d16f1f38fd523539b5aae1fdac7c6e942129757183",
+            "rawSha256": "f0044e1ff2195329428525b45a4e1fdadacdf801e2f40bf1fe7b12616e19b3b3",
+            "retainedAssertions": 44,
+            "parent": [
+              {
+                "path": "docs/aw2/evidence/AW2-006HJK-source-prechest.json",
+                "reportSha256": "6805e247828beed246d749681c76f9edcb75638a5d72b09ebcada2d94f7ac82a",
+                "rawSha256": "a0ab5fb7419b17742e468e3c0190ce84845dfb7eae9a54a8db975ed193e89db9",
+                "retainedAssertions": 0,
+                "scope": "Exact historical earned chest/hint checkpoint, later harness failure not reused as PASS. All checks below fresh; no quest/HP/party/economy edits."
+              },
+              {
+                "stage": "kitchen-hearth",
+                "rawSha256": "a0dd580fa3ccf84ba534b33f202aa45ebc26ff6bfb647b325e3390aec4268eb4",
+                "scope": "Current task native travel, explicitly saved position; exact copy into isolated error/recovery context."
+              },
+              {
+                "stage": "kitchen-table",
+                "rawSha256": "551d24d412050536200cc8eea95c0dc01ba9b605cf16c0428af0c7e7437f6191",
+                "scope": "Current task native travel, explicitly saved position; exact copy into isolated error/recovery context."
+              }
+            ],
+            "scope": "Retain44 verified current-task prefix assertions on frozen c24de0805c292c6dd84f1201712ef7ffe401b4f25925ea567a7f9e4084d8af66 inputs. Exact native earned safe rematch checkpoint restored; rerun failed selector boundary only, no HP/quest/party edits."
+          }
+        ],
+        "expectedErrors": [
+          "404 http://127.0.0.1:8548/dev/aw2/assets/environments/kitchen-hearth/v2/landscape.webp",
+          "404 http://127.0.0.1:8548/dev/aw2/assets/environments/kitchen-table/v2/landscape.webp"
+        ],
+        "unexpectedErrors": []
+      },
+      "compiled": {
+        "path": "docs/aw2/evidence/AW2-006L-compiled-browser.json",
+        "bossTick": 45,
+        "checks": [
+          "Exact earned pantry checkpoint restore is read-only",
+          "Both new interior textures remain lazy before native travel",
+          "kitchen-hearth: v2 scene, all authored objects and one committed map leader/five saved combat members",
+          "kitchen-hearth: keyboard native destination approaches silhouette safely, restores focus and grants nothing",
+          "kitchen-hearth: inverse camera touch reaches canonical destination without writing",
+          "kitchen-hearth: decorative apron tap cannot leave logical walkfield or write",
+          "kitchen-hearth: furniture fades from inverse-transformed real actor bounds",
+          "kitchen-hearth: south detour respects collision and restores foreground depth",
+          "kitchen-hearth: 320px labels fit actual canvas and native controls have44px targets",
+          "kitchen-hearth: 390px labels fit actual canvas and native controls have44px targets",
+          "kitchen-hearth: 768px labels fit actual canvas and native controls have44px targets",
+          "kitchen-hearth: open interaction pauses room navigation and view controls",
+          "kitchen-hearth: required landscape404 shows error, no fallback and disabled destinations with exact save",
+          "kitchen-hearth: resource recovery reload preserves exact earned bytes without grants",
+          "Unsolved puzzle keeps east exit genuinely disabled",
+          "Wrong native puzzle attempt is retryable without ingredient spend",
+          "Puzzle step1 uses explicit action and survives exact reload",
+          "Puzzle step2 uses explicit action and survives exact reload",
+          "Puzzle step3 uses explicit action and survives exact reload",
+          "Solved puzzle updates real sprite state and unlocks east destination",
+          "Early table note remains unavailable despite authored scenery",
+          "Reciprocal room travel preserves real cook/share205XP economy",
+          "kitchen-table: v2 scene, all authored objects and one committed map leader/five saved combat members",
+          "kitchen-table: keyboard native destination approaches silhouette safely, restores focus and grants nothing",
+          "kitchen-table: inverse camera touch reaches canonical destination without writing",
+          "kitchen-table: decorative apron tap cannot leave logical walkfield or write",
+          "kitchen-table: furniture fades from inverse-transformed real actor bounds",
+          "kitchen-table: south detour respects collision and restores foreground depth",
+          "kitchen-table: 320px labels fit actual canvas and native controls have44px targets",
+          "kitchen-table: 390px labels fit actual canvas and native controls have44px targets",
+          "kitchen-table: 768px labels fit actual canvas and native controls have44px targets",
+          "kitchen-table: open interaction pauses room navigation and view controls",
+          "kitchen-table: required landscape404 shows error, no fallback and disabled destinations with exact save",
+          "kitchen-table: resource recovery reload preserves exact earned bytes without grants",
+          "Boss left idle uses own atlas/feet/common scale through scenic camera",
+          "Boss right idle uses own atlas/feet/common scale through scenic camera",
+          "Boss up idle uses own atlas/feet/common scale through scenic camera",
+          "Boss down idle uses own atlas/feet/common scale through scenic camera",
+          "Scenic boss entry reaches actual player-win with five committed combat members and no premature save",
+          "Explicit real boss result survives reload before note permission",
+          "Read note sprite and exact save follow actual boss permission",
+          "Actual wait ending settles once345XP/5receipts and exact reload",
+          "Actual share ending settles once345XP/5receipts and exact reload",
+          "Earned ending opens actual yard-to-table shortcut",
+          "Exact current-task completed checkpoint resumes read-only before rematch",
+          "Completed boss rematch/retreat returns safely without rewards",
+          "Completed reciprocal hearth/table travel preserves all economy receipts",
+          "Table-to-yard shortcut is reciprocal and preserves ending economy",
+          "All five stable legacy keys remain byte-identical",
+          "No unexpected page/console/resource errors"
+        ],
+        "origins": [
+          {
+            "path": "docs/aw2/evidence/AW2-006L-compiled-prefix.json",
+            "reportSha256": "8a63ec9d0e07a749c48589bfc3915bbb3dc67ad4ad55e2c5c60ced5890e5af45",
+            "rawSha256": "32900954be679dbb38376138f22b68151f61a207648fe639fe02385cfe6a263f",
+            "retainedAssertions": 44,
+            "parent": [
+              {
+                "path": "docs/aw2/evidence/AW2-006HJK-compiled-prechest.json",
+                "reportSha256": "478a100cffe995afb1987b70c213df09e697b750de53046736923b3b3c9e9cf4",
+                "rawSha256": "eb52623f4511c910ec76a798f4086c42c2002ca99f910cfcc0d9b10387a128de",
+                "retainedAssertions": 0,
+                "scope": "Exact historical earned chest/hint checkpoint, later harness failure not reused as PASS. All checks below fresh; no quest/HP/party/economy edits."
+              },
+              {
+                "stage": "kitchen-hearth",
+                "rawSha256": "1bb01102a098583f4f1de9c91a19f39b3624f9a8bc6fa419cdee882694c6e360",
+                "scope": "Current task native travel, explicitly saved position; exact copy into isolated error/recovery context."
+              },
+              {
+                "stage": "kitchen-table",
+                "rawSha256": "42ff6b9cd45b5f9db79003c5c2c5606175e51acfb8fb01ecb14469841b0b9ef8",
+                "scope": "Current task native travel, explicitly saved position; exact copy into isolated error/recovery context."
+              }
+            ],
+            "scope": "Retain44 verified current-task prefix assertions on frozen c24de0805c292c6dd84f1201712ef7ffe401b4f25925ea567a7f9e4084d8af66 inputs. Exact native earned safe rematch checkpoint restored; rerun failed selector boundary only, no HP/quest/party edits."
+          }
+        ],
+        "expectedErrors": [
+          "404 http://127.0.0.1:8549/dev/aw2/assets/environments/kitchen-hearth/v2/landscape.webp",
+          "404 http://127.0.0.1:8549/dev/aw2/assets/environments/kitchen-table/v2/landscape.webp"
+        ],
+        "unexpectedErrors": []
+      }
+    }
+  },
+  "build": {
+    "status": "PASS",
+    "command": "pnpm build:aw2",
+    "artifact": "docs/aw2/evidence/AW2-006L-review-build.json",
+    "files": 247,
+    "bytes": 107893836,
+    "runtimeAssetParity": 203
+  },
+  "reuse": "docs/aw2/evidence/AW2-006L-reused-evidence.json",
+  "incidents": [
+    "Two image requests rejected before generation due to relative paths; absolute paths produced2selected originals/0rejected images.",
+    "Initial build sandbox spawnSync git EPERM; rerun authorized escalated exit0.",
+    "Prior Playwright temp path absent; installed pinned1.58.2 in/tmp only; no project dependency changes.",
+    "Initial dev types rejected JSON zone string in new test; narrowed to existing ZoneId, no runtime change.",
+    "Initial focused browsers each passed44 then failed harness selector Rút lui; actual UI is Rút lui về Phòng Bàn. Retained verified prefixes by exact hash; six final continuation cases each PASS/exit0."
+  ],
+  "review": {
+    "roles": "BA/story/animation/mechanic/tester/scretary in-session, no delegated agents or independent acceptance",
+    "react": "Stable primitive dependencies, zone/disposal guard, parallel required loads, cached source textures retained, own framed textures destroyed; camera/data labels/pointer use same rendered view; native paused/disabled controls; no store/economy/schema change.",
+    "visual": "Both selected sources/tool outputs, source390hearth/compiled390table captures and dedicated sourcehearth/compiledtable map overview captures opened; actual camera/alpha/depth metadata checked. No physical device/independent art approval."
+  },
+  "notRun": [
+    "Current full unit suite",
+    "Fresh uninterrupted full journey from intro",
+    "Independent player/art/listening/physical phone/FPS/total memory/offline/native/rights/production save/release"
+  ],
+  "progress": {
+    "demo": 90,
+    "productEstimate": 40,
+    "productRange": [
+      35,
+      45
+    ],
+    "referenceZones": 6,
+    "expandedScenicZones": 6,
+    "staticNpcReferences": 8,
+    "fullCharacterDoD": 0,
+    "next": "AW2-006M authored Bà/Dì idle motion",
+    "ownerAcceptanceDeferred": "D20"
+  }
+}

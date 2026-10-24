@@ -34,6 +34,15 @@ import {
 import { VillageLandscape } from "./VillageLandscape"
 import { JourneyLandscape } from "./JourneyLandscape"
 import { journeyScene } from "../../src/aw2/assets/journeyScenes"
+import { interiorScene } from "../../src/aw2/assets/interiorLandscapes"
+import {
+  landscapeCamera,
+  projectVillage,
+  unprojectVillage,
+  villageWorldBounds,
+  type VillageCamera,
+  type VillageViewMode,
+} from "../../src/aw2/assets/villageView"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
 
 export function WorldCanvas(props: WorldCanvasProps) {
@@ -65,6 +74,12 @@ function FlatWorldCanvas({
   pauseRef.current = paused
   const [error, setError] = useState("")
   const [ready, setReady] = useState(false)
+  const [mode, setMode] = useState<VillageViewMode>("follow")
+  const modeRef = useRef(mode)
+  modeRef.current = mode
+  const camera = useRef<VillageCamera | null>(null)
+  const labels = useRef(new Map<string, HTMLSpanElement>())
+  const landscape = interiorScene(world.zoneId)!
   const leaderId = world.partyIds[0] ?? "aw2-than"
   const ids = [leaderId]
   const hearthScene =
@@ -109,14 +124,14 @@ function FlatWorldCanvas({
               ])
             : hearthScene
               ? Promise.all([
-                  Assets.load(hearthScene.assets.floor.url),
+                  Assets.load(landscape.assets.floor.url),
                   Assets.load(hearthScene.assets.sideboard.url),
                   Assets.load(hearthScene.assets.puzzles.url),
                   Assets.load(hearthScene.assets.threshold.url),
                 ])
               : roomScene
                 ? Promise.all([
-                    Assets.load(roomScene.assets.floor.url),
+                    Assets.load(landscape.assets.floor.url),
                     Assets.load(roomScene.assets.sideboard.url),
                     Assets.load(FORGOTTEN_HOST_WORLD.asset.url),
                     Assets.load(TABLE_ROOM_INTERACTIONS.assets.note.url),
@@ -143,8 +158,9 @@ function FlatWorldCanvas({
         const terrain = new Graphics()
         if (scene) {
           const floor = new Sprite(environment[0])
-          floor.width = scene.canvas.width
-          floor.height = scene.canvas.height
+          floor.position.set(landscape.landscape.x, landscape.landscape.y)
+          floor.width = landscape.landscape.width
+          floor.height = landscape.landscape.height
           next.stage.addChild(floor)
         }
         if (!scene) {
@@ -221,11 +237,11 @@ function FlatWorldCanvas({
         if (villageScene) {
           for (const prop of openingProps) {
             const asset =
-              villageScene.assets[prop.asset as "props" | "threshold"]
+              villageScene.assets[(prop.asset as "props" | "threshold")]
             const f =
               prop.asset === "props"
                 ? villageScene.frames[
-                    prop.frame as keyof typeof villageScene.frames
+                    (prop.frame as keyof typeof villageScene.frames)
                   ]
                 : villageScene.assets.threshold.frame
             const texture = new Texture({
@@ -266,7 +282,7 @@ function FlatWorldCanvas({
           for (const prop of interactionProps) {
             const asset =
               TABLE_ROOM_INTERACTIONS.assets[
-                prop.asset as keyof typeof TABLE_ROOM_INTERACTIONS.assets
+                (prop.asset as keyof typeof TABLE_ROOM_INTERACTIONS.assets)
               ]
             const f = asset.frame
             const texture = new Texture({
@@ -291,11 +307,11 @@ function FlatWorldCanvas({
           if (hearthScene) {
             for (const prop of hearthProps) {
               const asset =
-                hearthScene.assets[prop.asset as "puzzles" | "threshold"]
+                hearthScene.assets[(prop.asset as "puzzles" | "threshold")]
               const f =
                 prop.asset === "puzzles"
                   ? hearthScene.frames[
-                      prop.frame as keyof typeof hearthScene.frames
+                      (prop.frame as keyof typeof hearthScene.frames)
                     ]
                   : hearthScene.assets.threshold.frame
               const texture = new Texture({
@@ -345,7 +361,7 @@ function FlatWorldCanvas({
             const state = worldBossPresentation(world)!
             const pose =
               FORGOTTEN_HOST_WORLD.frames[
-                state.frame as keyof typeof FORGOTTEN_HOST_WORLD.frames
+                (state.frame as keyof typeof FORGOTTEN_HOST_WORLD.frames)
               ]
             bossMarker = new Sprite(bossFrames[state.frame])
             bossMarker.anchor.set(
@@ -383,6 +399,14 @@ function FlatWorldCanvas({
           const now = position.current
           // React may publish the destination before effect cleanup destroys this canvas.
           if (now.zoneId !== world.zoneId) return
+          const view = landscapeCamera(now, modeRef.current, landscape)
+          camera.current = view
+          next.stage.scale.set(view.zoom)
+          next.stage.position.set(
+            320 - view.x * view.zoom,
+            192 - view.y * view.zoom,
+          )
+          next.canvas.dataset.worldCamera = JSON.stringify(view)
           const moving =
             Math.hypot(now.x - prior.x, now.y - prior.y) > 0.05 &&
             !pauseRef.current
@@ -416,7 +440,7 @@ function FlatWorldCanvas({
               villageScene ? villageWellAlpha : tableRoomPropAlpha
             )(
               actors.map(({ sprite }) => {
-                const bounds = sprite.getBounds()
+                const bounds = villageWorldBounds(sprite.getBounds(), view)
                 return {
                   x: bounds.x,
                   y: bounds.y,
@@ -436,7 +460,7 @@ function FlatWorldCanvas({
             const state = worldBossPresentation(now)!
             const pose =
               FORGOTTEN_HOST_WORLD.frames[
-                state.frame as keyof typeof FORGOTTEN_HOST_WORLD.frames
+                (state.frame as keyof typeof FORGOTTEN_HOST_WORLD.frames)
               ]
             bossMarker.texture = bossFrames[state.frame]
             bossMarker.anchor.set(
@@ -487,10 +511,43 @@ function FlatWorldCanvas({
               }),
             )
           }
+          const viewport = next.canvas.getBoundingClientRect()
+          for (const object of zoneById(now.zoneId).objects) {
+            const label = labels.current.get(object.id)
+            if (!label) continue
+            const offset =
+              (hearthScene ? hearthProps : interactionProps).find(
+                (p) => p.entityId === object.id,
+              )?.labelOffsetY ?? 24
+            const point = projectVillage(
+              { x: object.x, y: object.y + offset },
+              view,
+            )
+            label.style.left = `${point.x / 6.4}%`
+            label.style.top = `${point.y / 3.84}%`
+            label.style.visibility =
+              view.mode === "follow" &&
+              point.x >= 8 &&
+              point.x <= 632 &&
+              point.y >= 8 &&
+              point.y <= 376
+                ? "visible"
+                : "hidden"
+            if (label.style.visibility === "visible") {
+              const b = label.getBoundingClientRect()
+              if (
+                b.left < viewport.left ||
+                b.right > viewport.right ||
+                b.top < viewport.top ||
+                b.bottom > viewport.bottom
+              )
+                label.style.visibility = "hidden"
+            }
+          }
           prior = { ...now }
         })
         next.canvas.setAttribute("aria-hidden", "true")
-        next.canvas.dataset.sceneId = scene?.id ?? "debug-terrain"
+        next.canvas.dataset.sceneId = landscape.id
         next.canvas.dataset.partySize = String(ids.length)
         next.canvas.dataset.partyIds = JSON.stringify(ids)
         host.current?.replaceChildren(next.canvas)
@@ -504,6 +561,7 @@ function FlatWorldCanvas({
     })()
     return () => {
       disposed = true
+      camera.current = null
       app?.destroy(true, { children: true })
       textures.forEach((texture) => texture.destroy(false))
     }
@@ -511,10 +569,33 @@ function FlatWorldCanvas({
   return (
     <>
       <div
+        className="aw2-map-toolbar"
+        role="group"
+        aria-label="Góc nhìn khu vực"
+      >
+        <button
+          type="button"
+          disabled={!ready || paused}
+          aria-pressed={mode === "follow"}
+          onClick={() => setMode("follow")}
+        >
+          Bám nhân vật
+        </button>
+        <button
+          type="button"
+          disabled={!ready || paused}
+          aria-pressed={mode === "overview"}
+          onClick={() => setMode("overview")}
+        >
+          Toàn cảnh
+        </button>
+        <span>
+          Chọn Toàn cảnh để ngắm khu vực; chạm lối đi hoặc chọn điểm đến để đi.
+        </span>
+      </div>
+      <div
         ref={focusRef}
-        className={
-          villageScene ? "aw2-world-map aw2-village-map" : "aw2-world-map"
-        }
+        className={"aw2-world-map aw2-village-map aw2-interior-map"}
         data-testid="world-map"
         tabIndex={0}
         role="region"
@@ -537,29 +618,33 @@ function FlatWorldCanvas({
             Math.hypot(event.clientX - start.x, event.clientY - start.y) > 8
           )
             return
-          const rect = event.currentTarget.getBoundingClientRect()
-          onNavigate({
-            x: ((event.clientX - rect.left) * 640) / rect.width,
-            y: ((event.clientY - rect.top) * 384) / rect.height,
-          })
+          const rect = host.current
+            ?.querySelector("canvas")
+            ?.getBoundingClientRect()
+          if (!rect || rect.width <= 0 || rect.height <= 0 || !camera.current)
+            return
+          onNavigate(
+            unprojectVillage(
+              {
+                x: ((event.clientX - rect.left) * 640) / rect.width,
+                y: ((event.clientY - rect.top) * 384) / rect.height,
+              },
+              camera.current,
+            ),
+          )
         }}
       >
         <div ref={host} />
         {zoneById(world.zoneId).objects.map((object) => (
           <span
             key={object.id}
-            className="aw2-world-label"
-            style={{
-              transform:
-                openingProps.find((prop) => prop.entityId === object.id)
-                  ?.labelTransform ??
-                ((scene && object.id === FORGOTTEN_HOST_WORLD.entityId) ||
-                labelProps.some((prop) => prop.entityId === object.id)
-                  ? "translate(-50%, 0)"
-                  : undefined),
-              left: `${Math.max(12, Math.min(88, (object.x + (openingProps.find((prop) => prop.entityId === object.id)?.labelOffsetX ?? 0)) / 6.4))}%`,
-              top: `${(object.y + (labelProps.find((prop) => prop.entityId === object.id)?.labelOffsetY ?? (scene ? 24 : 0))) / 3.84}%`,
+            ref={(node) => {
+              if (node) labels.current.set(object.id, node)
+              else labels.current.delete(object.id)
             }}
+            className="aw2-world-label"
+            data-world-label={object.id}
+            style={{ transform: "translate(-50%, 0)", visibility: "hidden" }}
           >
             {scene
               ? (roomPoints.find((point) => point.id === object.id)?.short ??

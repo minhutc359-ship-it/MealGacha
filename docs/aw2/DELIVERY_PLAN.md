@@ -1,5 +1,13 @@
 # Ước lượng hoàn thiện AW2
 
+**AW2-006L — đã nâng phong cảnh Phòng Lửa và Phòng Bàn theo D21.** Source `PENDING006L`, base `8e2dae03e2631de9800db70ffc5e12d874169b10`. Hai cảnh1536×1024 có kiến trúc quanh vùng đi bộ, camera Bám nhân vật/Toàn cảnh, nhãn/chạm/đồ vật che người theo cùng góc nhìn; giữ bộ puzzle, ghi chép và boss bốn hướng riêng. Điểm đến puzzle/boss/ghi chép dừng32px phía dưới, chỉ đi bộ. **6/6vùng có cảnh mở rộng/camera** (từ4/6);8NPC vẫn tĩnh, full environment/motion/rights chưa đóng. [Cách chơi](THE_GIOI.md) · [Bằng chứng](evidence/AW2-006L.md).
+
+85unit riêng biệt/7files, hai typecheck, exactRGBA/repeat12paths, review247files/203asset parity/stable isolation PASS.100browser assertions=50source+50compiled, ghép44prefix đã đạt+6ca tiếp nối mỗi bản trên cùng326đầu vào: puzzle sai/partial/solved reload, hai chiều, boss thắng thật45nhịp/ghi chép, hai ending345XP, đấu lại/rút lui/shortcut, hai ảnh404→error/khóa điểm đến/exactsave→recovery.88prefix+12tiếp nối đã nằm trong100; không cộng historical counts hoặc gọi là lượt fresh liền mạch. [Machine report](evidence/AW2-006L-verification.json).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên**: số vùng có cảnh là mẫu số riêng, chưa hoàn tất characterDoD/motion/rights và các gate chưa quan sát. D20tiếp tục gác nghiệm thu độc lập; next[006M](tasks/AW2-006M.md) chuyển động idle có frame riêng cho Bà/Dì. Một đại diện map/năm combat/luật/save giữ nguyên; không reset/master/rpg/deploy/release.
+
+Các mốc bên dưới là lịch sử theo source; trạng thái/Next hiện hành theo006L→006M ở trên.
+
 **006H/J/K — ưu tiên hiện hành D20/D21:** đã có ảnh tham chiếu6/6vùng (từ3/6),8NPC tĩnh;4vùng có cảnh mở rộng/camera. Hai nội thất Lửa/Bàn v1 vẫn đơn giản, next006Lnâng cùng phong cách rồi NPC/ambient motion.88unit/222composite source+compiled browser/two types/build PASS, source `8543ad5c309d982ba0e7ae60753371aea384699e`; checkpoint prefixes truy vết theo hash, không thêm historical counts. Demo90/product≈40%(35–45%)/12kits/12references/0fullDoD giữ nguyên. D20gác nghiệm thu, không tự cấp điểm world/device/PR/release. [Cách chơi](THE_GIOI.md), [evidence](evidence/AW2-006HJK.md). Các NEXT phía dưới là lịch sử.
 
 **Ưu tiên hiện hành D20/D21:**006Iđã đưa phong cảnh làng/camera chiều sâu theo hai ảnh gốc mainline vào bản chơi.72units/82browser/types/build PASS, source `f0c1be37cef1c83416c5eb76be2943d1e768f2bc`;3/6zone tham chiếu/demo90/product40 giữ nguyên. Tiếp theo006HPhòng Kho theo cùng vật liệu/bảng màu, sau đó Phố/Sân; nghiệm thu độc lập được gác, không chặn phát triển. [Cách xem](LANG_GIAO_UOC.md), [evidence](evidence/AW2-006I.md). Các ưu tiên phía dưới là lịch sử.

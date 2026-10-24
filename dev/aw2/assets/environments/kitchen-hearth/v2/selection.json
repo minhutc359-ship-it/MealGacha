@@ -1,0 +1,11 @@
+{
+  "task": "AW2-006L",
+  "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-46ee871b-ca4b-4b8f-ae11-dce54882bd10.png",
+  "selected": "landscape-source.png",
+  "sha256": "ce1849afd03ddb4237ce240489562c3bce7e7da429c4887fe7559b1b8c7740eb",
+  "callsProducingImages": 1,
+  "selectedCount": 1,
+  "rejectedCount": 0,
+  "inspection": "Opened tool output: center rectangle and canonical exits on flat floor; architecture at perimeter, no baked actors/puzzle/note/boss. Source PNG unchanged. Native logical playfield only; decorative perimeter is not navigable.",
+  "schemaRetries": "One initial request rejected before generation due to relative reference paths; retried with absolute paths."
+}

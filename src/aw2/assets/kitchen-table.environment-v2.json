@@ -1,0 +1,158 @@
+{
+  "version": 2,
+  "id": "aw2-environment-kitchen-table-v2",
+  "zoneId": "aw2-zone-kitchen-table",
+  "status": "REFERENCE_ENVIRONMENT",
+  "fullEnvironmentComplete": false,
+  "canvas": {
+    "width": 640,
+    "height": 384
+  },
+  "landscape": {
+    "x": -448,
+    "y": -320,
+    "width": 1536,
+    "height": 1024
+  },
+  "camera": {
+    "centerX": 320,
+    "centerY": 192,
+    "followZoom": 0.8,
+    "overviewZoom": 0.42
+  },
+  "safeSourcePlayfield": {
+    "x": 464,
+    "y": 336,
+    "width": 608,
+    "height": 352
+  },
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-kitchen-table-v2:landscape",
+      "url": "/dev/aw2/assets/environments/kitchen-table/v2/landscape.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2433468,
+      "sha256": "f23a15cd0b6b6171359e9c1727361b86ef8362a8c3a47082c874f4b8e6d5d907",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/v2/landscape-source.png",
+        "bytes": 3125280,
+        "sha256": "5902f1deec63cf8093287a9039dba2b87904df2333885c029b0f6e62fa9a9667"
+      }
+    },
+    "sideboard": {
+      "id": "aw2-environment-kitchen-table-v1:sideboard",
+      "url": "/dev/aw2/assets/environments/kitchen-table/v1/sideboard.webp",
+      "width": 1322,
+      "height": 1190,
+      "bytes": 733646,
+      "sha256": "5f1939c67f0342e46e4b018c011f7adcd3a3a2d3471ed665b4f735f96c83a5ef",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/v1/sideboard-source.png",
+        "bytes": 1049015,
+        "sha256": "71d9d181ec16826c51bf039ec00f723c9334fd595e3dbfdb7a443543c4abfdd4"
+      },
+      "frame": {
+        "x": 69,
+        "y": 278,
+        "width": 1187,
+        "height": 686
+      }
+    },
+    "note": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:note",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/note.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 609550,
+      "sha256": "e774cf7a7fd7aeb9af07e315b36e7ef2f5d7165a92a5bb2a9710cd0ab8047cfc",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/note-source.png",
+        "bytes": 923171,
+        "sha256": "c8631b1d9bddbf76d284f8294eca0828955917039f3a720cc6a21b248f08631c"
+      },
+      "frame": {
+        "x": 410,
+        "y": 259,
+        "width": 715,
+        "height": 515
+      }
+    },
+    "threshold": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:threshold",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 927068,
+      "sha256": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png",
+        "bytes": 1370491,
+        "sha256": "ecb379f438637c2dd66b3bfec67a6cafab5ace9b137b365091f1986747ddaf1d"
+      },
+      "frame": {
+        "x": 300,
+        "y": 231,
+        "width": 936,
+        "height": 564
+      }
+    },
+    "boss": {
+      "id": "aw2-enemy-forgotten-host:world:world-v1",
+      "url": "/dev/aw2/assets/forgotten-host/world-v1/world.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 691470,
+      "sha256": "2777c2f58e990f982ed03d9b7405db7b085c512e840803d7a7ca5cf0761e6865",
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/world-v1/world-source.png",
+        "bytes": 910580,
+        "sha256": "9ff17d3f29b700afea899c6efed1f0447ea0ee6dcc473d9c28a9cb46d09a60e3"
+      }
+    }
+  },
+  "budget": {
+    "compressedBytes": 5395202,
+    "decodedRgbaBytes": 31457152,
+    "maxCompressedBytes": 7000000,
+    "maxDecodedRgbaBytes": 40000000
+  },
+  "provenance": {
+    "task": "AW2-006L",
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-24",
+    "prompts": {
+      "path": "dev/aw2/assets/environments/kitchen-table/v2/prompts.json",
+      "sha256": "ba7500df97bdcacf9806db6a78d4f3de5f6bdef6ef50b99dbe894d61b57e1f61"
+    },
+    "references": [
+      {
+        "path": "dev/aw2/assets/environments/kitchen-table/v1/floor-source.png",
+        "role": "edit target",
+        "sha256": "bb42116815fcc1b76eb72949a3c592ee3af71e27004e628d55ba7364703e3649",
+        "commit": "425aa16d94ea51decf7f43afb5986b13ad126dfc",
+        "blob": "71c82374d8ac160febed8d71778586b28de1e5f9"
+      },
+      {
+        "path": "dev/aw2/assets/environments/kitchen-pantry/v1/floor-source.png",
+        "role": "own style reference",
+        "sha256": "014fac74ccce65b0908b101874f006338fd8cca6e3785c2b2cf0660b4206fe27",
+        "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+        "blob": "ab97b6ef05b562e644625617480557517ec47d44"
+      },
+      {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+        "role": "own style reference",
+        "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5",
+        "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+        "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d"
+      }
+    ],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "processing": "Unchanged selected opaque PNG; exact RGBA lossless WebP. No pixel painting/masking/cropping/resizing. Existing v1 props and own four-facing boss reused unchanged. Uniform 1:1 scene placement; native640x384 gameplay region unchanged.",
+    "builder": "dev/tools/build-aw2-interior-landscapes.py",
+    "pillow": "10.2.0"
+  }
+}

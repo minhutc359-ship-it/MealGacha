@@ -1,9 +1,9 @@
 # Báo cáo Adventure World 2 —24/10/2026
 
-Đã hoàn thành thêm **Phòng Kho, Phố Đèn Lồng và Sân Bếp Bỏ Quên** theo phong cách làng mới. Mỗi vùng có cảnh1536×1024, kiến trúc/vườn bao quanh lối đi, camera Bám nhân vật/Toàn cảnh và điểm đến native. Phố có đủ sáu NPC; Sân có Dì/cổng lối tắt; Kho có bảng dấu hơi, rương và thùng hàng. Trạng thái hình/nút đọc đúng tiến trình và biên nhận đã lưu; đi tới nơi không tự nhận nhiệm vụ hay quà. [Cách chơi](THE_GIOI.md).
+Đã hoàn thành thêm **phong cảnh Phòng Lửa và Phòng Bàn**: kiến trúc bếp/bàn ghế bao quanh vùng đi bộ, sàn gạch/gỗ/chiếu và ánh đèn đồng bộ phong cách làng. Cả **6/6vùng** nay có cảnh mở rộng và camera Bám nhân vật/Toàn cảnh; chọn Toàn cảnh để ngắm trọn khu vực. Một nhân vật đầu đội đại diện map, đội chiến đấu vẫn năm người. [Cách chơi](THE_GIOI.md).
 
-**Art tham chiếu đủ6/6vùng**, tăng từ3/6; đủ8NPC có hình tĩnh toàn thân trên map. Bốn vùng đã có cảnh mở rộng/camera; hai phòng Lửa/Bàn vẫn là nội thất v1 đơn giản, sẽ nâng phong cảnh tiếp. Đây chưa phải full environment/NPC motion hay sản phẩm hoàn tất.
+Puzzle, boss bốn hướng riêng, ghi chép, cửa khóa và đấu lại vẫn đọc tiến trình thật. Điểm đến chỉ đưa nhân vật tới gần, không tự thao tác/cấp thưởng. Thiếu ảnh báo lỗi và khóa điểm đến; khôi phục ảnh không đổi save.
 
-Kiểm tra PASS: **88unit, hai typecheck, asset audit, build và cách ly stable**. Hành trình source/build có222kiểm tra được truy vết qua checkpoint thật: nhập môn, cả hai mode, ký ức, rương lỗi ghi/thử lại, puzzle/nấu, boss, hai kết thúc, shortcuts và thiếu6ảnh–khôi phục. Các đoạn đã đạt giữ theo hash, không gọi là một lượt fresh liền mạch. Source `8543ad5c309d982ba0e7ae60753371aea384699e`; [chi tiết](evidence/AW2-006HJK.md).
+**85unit, hai typecheck, asset audit, build/cách ly stable PASS.**100kiểm tra trình duyệt=50source+50build, ghép các đoạn đã đạt trong phiên này theo checkpoint/hash; không gọi là lượt chơi mới liền mạch. Đã thắng boss thật, lưu/đọc ghi chép, hai kết thúc, đấu lại/rút lui, đi hai chiều và thử thiếu hai ảnh–khôi phục. Source `PENDING006L`; [chi tiết](evidence/AW2-006L.md).
 
-**Demo90% / sản phẩm≈40%(35–45%) giữ nguyên**; số vùng có ảnh là mẫu số riêng. Theo D20tiếp tục phát triển và gác nghiệm thu độc lập. Tiếp theo **006L: nâng phong cảnh Lửa/Bàn**, rồi chuyển động NPC/môi trường. Luật/save/đội năm người giữ nguyên, không reset hoặc thay đổi nhánh product/phát hành.
+**Demo90% / sản phẩm≈40%(35–45%) giữ nguyên.**6/6cảnh là tiến độ hình ảnh riêng;8NPC hiện còn tĩnh,12bộ nhân vật chưa đạt fullDoD, motion/rights và các gate chưa quan sát còn mở. Theo D20tiếp tục gác nghiệm thu độc lập. Việc kế tiếp **006M: thêm chuyển động idle có frame riêng cho Bà và Dì**, rồi mở rộng các NPC khác.

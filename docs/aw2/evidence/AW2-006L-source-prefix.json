@@ -1,0 +1,79 @@
+{
+  "task": "AW2-006L",
+  "status": "FAIL",
+  "flavor": "source",
+  "phase": "completed-room",
+  "checks": [
+    "Exact earned pantry checkpoint restore is read-only",
+    "Both new interior textures remain lazy before native travel",
+    "kitchen-hearth: v2 scene, all authored objects and one committed map leader/five saved combat members",
+    "kitchen-hearth: keyboard native destination approaches silhouette safely, restores focus and grants nothing",
+    "kitchen-hearth: inverse camera touch reaches canonical destination without writing",
+    "kitchen-hearth: decorative apron tap cannot leave logical walkfield or write",
+    "kitchen-hearth: furniture fades from inverse-transformed real actor bounds",
+    "kitchen-hearth: south detour respects collision and restores foreground depth",
+    "kitchen-hearth: 320px labels fit actual canvas and native controls have44px targets",
+    "kitchen-hearth: 390px labels fit actual canvas and native controls have44px targets",
+    "kitchen-hearth: 768px labels fit actual canvas and native controls have44px targets",
+    "kitchen-hearth: open interaction pauses room navigation and view controls",
+    "kitchen-hearth: required landscape404 shows error, no fallback and disabled destinations with exact save",
+    "kitchen-hearth: resource recovery reload preserves exact earned bytes without grants",
+    "Unsolved puzzle keeps east exit genuinely disabled",
+    "Wrong native puzzle attempt is retryable without ingredient spend",
+    "Puzzle step1 uses explicit action and survives exact reload",
+    "Puzzle step2 uses explicit action and survives exact reload",
+    "Puzzle step3 uses explicit action and survives exact reload",
+    "Solved puzzle updates real sprite state and unlocks east destination",
+    "Early table note remains unavailable despite authored scenery",
+    "Reciprocal room travel preserves real cook/share205XP economy",
+    "kitchen-table: v2 scene, all authored objects and one committed map leader/five saved combat members",
+    "kitchen-table: keyboard native destination approaches silhouette safely, restores focus and grants nothing",
+    "kitchen-table: inverse camera touch reaches canonical destination without writing",
+    "kitchen-table: decorative apron tap cannot leave logical walkfield or write",
+    "kitchen-table: furniture fades from inverse-transformed real actor bounds",
+    "kitchen-table: south detour respects collision and restores foreground depth",
+    "kitchen-table: 320px labels fit actual canvas and native controls have44px targets",
+    "kitchen-table: 390px labels fit actual canvas and native controls have44px targets",
+    "kitchen-table: 768px labels fit actual canvas and native controls have44px targets",
+    "kitchen-table: open interaction pauses room navigation and view controls",
+    "kitchen-table: required landscape404 shows error, no fallback and disabled destinations with exact save",
+    "kitchen-table: resource recovery reload preserves exact earned bytes without grants",
+    "Boss left idle uses own atlas/feet/common scale through scenic camera",
+    "Boss right idle uses own atlas/feet/common scale through scenic camera",
+    "Boss up idle uses own atlas/feet/common scale through scenic camera",
+    "Boss down idle uses own atlas/feet/common scale through scenic camera",
+    "Scenic boss entry reaches actual player-win with five committed combat members and no premature save",
+    "Explicit real boss result survives reload before note permission",
+    "Read note sprite and exact save follow actual boss permission",
+    "Actual wait ending settles once345XP/5receipts and exact reload",
+    "Actual share ending settles once345XP/5receipts and exact reload",
+    "Earned ending opens actual yard-to-table shortcut"
+  ],
+  "errors": [],
+  "expectedErrors": [
+    "404 http://127.0.0.1:8548/dev/aw2/assets/environments/kitchen-hearth/v2/landscape.webp",
+    "404 http://127.0.0.1:8548/dev/aw2/assets/environments/kitchen-table/v2/landscape.webp"
+  ],
+  "origins": [
+    {
+      "path": "docs/aw2/evidence/AW2-006HJK-source-prechest.json",
+      "reportSha256": "6805e247828beed246d749681c76f9edcb75638a5d72b09ebcada2d94f7ac82a",
+      "rawSha256": "a0ab5fb7419b17742e468e3c0190ce84845dfb7eae9a54a8db975ed193e89db9",
+      "retainedAssertions": 0,
+      "scope": "Exact historical earned chest/hint checkpoint, later harness failure not reused as PASS. All checks below fresh; no quest/HP/party/economy edits."
+    },
+    {
+      "stage": "kitchen-hearth",
+      "rawSha256": "a0dd580fa3ccf84ba534b33f202aa45ebc26ff6bfb647b325e3390aec4268eb4",
+      "scope": "Current task native travel, explicitly saved position; exact copy into isolated error/recovery context."
+    },
+    {
+      "stage": "kitchen-table",
+      "rawSha256": "551d24d412050536200cc8eea95c0dc01ba9b605cf16c0428af0c7e7437f6191",
+      "scope": "Current task native travel, explicitly saved position; exact copy into isolated error/recovery context."
+    }
+  ],
+  "bossTick": 45,
+  "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Rút lui', exact: true })\u001b[22m\n",
+  "observedRaw": "{\"gameId\":\"adventure-world-2\",\"environment\":\"development\",\"schemaVersion\":5,\"saveId\":\"b0ea30ee-078e-4ea6-9b80-e8e42b1014a7\",\"revision\":50,\"createdAt\":\"2026-10-24T07:48:57.573Z\",\"updatedAt\":\"2026-10-24T08:29:30.532Z\",\"progress\":{\"zoneId\":\"aw2-zone-kitchen-table\",\"x\":96,\"y\":192,\"facing\":\"right\",\"questIndex\":4,\"accepted\":false,\"tableRead\":true,\"memories\":[\"aw2-event-memory-bowl\",\"aw2-event-memory-vendor\",\"aw2-event-memory-chair\"],\"threadChoice\":\"wait\",\"hintRead\":true,\"puzzleStep\":3,\"partyIds\":[\"aw2-than\",\"aw2-lua\",\"aw2-lam\",\"aw2-moc-non\",\"aw2-suong\"],\"bossDefeated\":true,\"tableNoteRead\":true,\"endingChoice\":\"share\"},\"economy\":{\"tuningId\":\"aw2-economy-development-v1\",\"inventory\":{\"rice\":8,\"herbs\":7,\"broth\":5,\"warm-bowl\":0},\"teamExperience\":345,\"receipts\":[\"aw2-grant-kept-seat\",\"aw2-grant-three-memories\",\"aw2-grant-chest-pantry\",\"aw2-grant-open-hearth\",\"aw2-grant-one-more-bowl\"],\"cooked\":1,\"shared\":1},\"collection\":{\"recruitedIds\":[],\"vanEmphasis\":\"protection\"}}"
+}
