@@ -33,6 +33,12 @@ import {
   SettlementLandmarks,
 } from "./SettlementLayer"
 import { RoomWaypoints } from "./RoomWaypoints"
+import {
+  createAmbientSprites,
+  loadAmbientTexture,
+  releaseAmbientTexture,
+  renderAmbientSprites,
+} from "./AmbientLayer"
 
 /** Three remaining regions share authored layers; committed progress/economy stay read-only. */
 export function JourneyLandscape({
@@ -62,7 +68,8 @@ export function JourneyLandscape({
     points = journeyWaypoints(world, economy)
   useEffect(() => {
     let disposed = false,
-      app: Application | undefined
+      app: Application | undefined,
+      ambientUrl: string | undefined
     const textures: Texture[] = []
     setReady(false)
     setError("")
@@ -75,13 +82,20 @@ export function JourneyLandscape({
           (key) =>
             !(scene.zoneId === "aw2-zone-lantern-street" && key === "props"),
         )
-        const [loaded, body, loadedNpc, loadedSettlement] = await Promise.all([
-          Promise.all(keys.map((key) => Assets.load(scene.assets[key].url))),
-          Assets.load(ROSTER_ASSETS[leader].assets.world.url),
-          loadNpcTextures(scene.zoneId, (url) => Assets.load(url)),
-          loadSettlementTextures(scene.zoneId, (url) => Assets.load(url)),
-        ])
-        if (disposed) return
+        const [loaded, body, loadedNpc, loadedSettlement, loadedAmbient] =
+          await Promise.all([
+            Promise.all(keys.map((key) => Assets.load(scene.assets[key].url))),
+            Assets.load(ROSTER_ASSETS[leader].assets.world.url),
+            loadNpcTextures(scene.zoneId, (url) => Assets.load(url)),
+            loadSettlementTextures(scene.zoneId, (url) => Assets.load(url)),
+            loadAmbientTexture(scene.zoneId, (url) => Assets.load(url)),
+          ])
+        ambientUrl = loadedAmbient?.asset.url
+        if (disposed) {
+          releaseAmbientTexture(ambientUrl)
+          ambientUrl = undefined
+          return
+        }
         const assetTextures: Record<string, Texture> = Object.fromEntries(
           keys.map((key, i) => [key, loaded[i]]),
         )
@@ -137,6 +151,14 @@ export function JourneyLandscape({
           textures,
         )
         for (const item of settlement) next.stage.addChild(item.sprite)
+        const ambient = loadedAmbient
+          ? createAmbientSprites(
+              loadedAmbient,
+              { Sprite, Texture, Rectangle },
+              textures,
+            )
+          : []
+        for (const item of ambient) next.stage.addChild(item.sprite)
         const objects = journeyProps(position.current, committedEconomy.current)
           .filter((prop) => !npcForEntity(prop.entityId))
           .map((prop) => {
@@ -254,6 +276,9 @@ export function JourneyLandscape({
           next.canvas.dataset.npcMotion = JSON.stringify(
             renderNpcSprites(npcSprites, npcElapsed, reduced.matches),
           )
+          next.canvas.dataset.ambientMotion = JSON.stringify(
+            renderAmbientSprites(ambient, npcElapsed, reduced.matches),
+          )
           next.canvas.dataset.settlement = JSON.stringify(
             renderSettlement(settlement, [
               { ...bounds, groundY: now.y },
@@ -356,6 +381,7 @@ export function JourneyLandscape({
       camera.current = null
       app?.destroy(true, { children: true })
       textures.forEach((t) => t.destroy(false))
+      releaseAmbientTexture(ambientUrl)
     }
   }, [leader, scene.id])
   return (

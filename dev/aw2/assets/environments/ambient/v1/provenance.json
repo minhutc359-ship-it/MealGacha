@@ -1,0 +1,47 @@
+{
+  "task": "AW2-006N",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-25",
+  "calls": 2,
+  "selected": 2,
+  "rejected": 0,
+  "prompts": [
+    {
+      "path": "dev/aw2/assets/environments/ambient/v1/village-water-prompts.json",
+      "sha256": "01639345672e70eeade7dc8ebd2f3bc76173e09340d71b5e776446e3171be767"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v1/street-lantern-prompts.json",
+      "sha256": "6909414173e991199199ab77d06b9346e2350a98c262ca1350d046d39ad445c9"
+    }
+  ],
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "role": "own project style reference",
+      "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+      "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+      "role": "own project style reference",
+      "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+      "blob": "27893fcdb294368a46db5448531743544cf6a8d8",
+      "sha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede"
+    },
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/shops-source.png",
+      "role": "own project lantern placement reference",
+      "commit": "f7a51673061d5fb1017c3da78d7109cf649ea48b",
+      "blob": "1bda5e53e87230f0401596955d1dd128e15dba5b",
+      "sha256": "33113f1dab1cb6afd9723846543e0606107880bb0d593445963a2303e7a73a09"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "processing": "Unchanged selected transparent PNG; transparent-margin crop only; exact RGBA lossless WebP; measured safe frames. No code painting, masking, mirroring, resizing or interpolation.",
+  "builder": "dev/tools/build-aw2-ambient-motion.py",
+  "pillow": "12.3.0"
+}

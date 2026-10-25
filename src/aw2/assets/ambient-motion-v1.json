@@ -1,0 +1,280 @@
+{
+  "version": 1,
+  "id": "aw2-ambient-motion-v1",
+  "status": "AUTHORED_AMBIENT_REFERENCE",
+  "fullEnvironmentComplete": false,
+  "geometryAuthorityChanged": false,
+  "timeline": [
+    {
+      "frame": "calm",
+      "durationMs": 800
+    },
+    {
+      "frame": "lift",
+      "durationMs": 800
+    },
+    {
+      "frame": "bright",
+      "durationMs": 800
+    },
+    {
+      "frame": "settle",
+      "durationMs": 800
+    }
+  ],
+  "cycleMs": 3200,
+  "reducedMotionFrame": "calm",
+  "assets": {
+    "village-water": {
+      "id": "aw2-ambient-v1:village-water",
+      "url": "/dev/aw2/assets/environments/ambient/v1/village-water.webp",
+      "width": 2096,
+      "height": 230,
+      "bytes": 390822,
+      "sha256": "3c3229ef3ed8d3c8ccd182779b822f9e3667ccdcddb1f12fa141ff1251a57b7b",
+      "source": {
+        "path": "dev/aw2/assets/environments/ambient/v1/village-water-source.png",
+        "bytes": 562074,
+        "sha256": "e8e1436d2ec6533a88f4bb8770f7f9668bc59ca6d96c2fbe021a5b0770a9e4cc",
+        "width": 2172,
+        "height": 724,
+        "crop": {
+          "x": 37,
+          "y": 247,
+          "width": 2096,
+          "height": 230
+        }
+      },
+      "frames": {
+        "calm": {
+          "x": 4,
+          "y": 68,
+          "width": 481,
+          "height": 157,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": -37,
+            "y": -247,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "lift": {
+          "x": 541,
+          "y": 5,
+          "width": 487,
+          "height": 219,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 506,
+            "y": -247,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "bright": {
+          "x": 1068,
+          "y": 4,
+          "width": 497,
+          "height": 222,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 1049,
+            "y": -247,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "settle": {
+          "x": 1612,
+          "y": 69,
+          "width": 480,
+          "height": 157,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 1592,
+            "y": -247,
+            "width": 543,
+            "height": 724
+          }
+        }
+      }
+    },
+    "street-lantern": {
+      "id": "aw2-ambient-v1:street-lantern",
+      "url": "/dev/aw2/assets/environments/ambient/v1/street-lantern.webp",
+      "width": 1933,
+      "height": 444,
+      "bytes": 474742,
+      "sha256": "39ad89c7aacf5a00a462092e75e7e370ca09afea1109a451bc54266e9caaa152",
+      "source": {
+        "path": "dev/aw2/assets/environments/ambient/v1/street-lantern-source.png",
+        "bytes": 871293,
+        "sha256": "fe4ff7d81b3cde038bafb07bc808bbcb1cc20a156f3597ce1fee22411db52c4d",
+        "width": 2172,
+        "height": 724,
+        "crop": {
+          "x": 118,
+          "y": 139,
+          "width": 1933,
+          "height": 444
+        }
+      },
+      "frames": {
+        "calm": {
+          "x": 4,
+          "y": 82,
+          "width": 301,
+          "height": 302,
+          "alphaEdgeMax": 6,
+          "cell": {
+            "x": -118,
+            "y": -139,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "lift": {
+          "x": 508,
+          "y": 29,
+          "width": 357,
+          "height": 379,
+          "alphaEdgeMax": 6,
+          "cell": {
+            "x": 425,
+            "y": -139,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "bright": {
+          "x": 1029,
+          "y": 4,
+          "width": 414,
+          "height": 436,
+          "alphaEdgeMax": 7,
+          "cell": {
+            "x": 968,
+            "y": -139,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "settle": {
+          "x": 1624,
+          "y": 73,
+          "width": 305,
+          "height": 314,
+          "alphaEdgeMax": 6,
+          "cell": {
+            "x": 1511,
+            "y": -139,
+            "width": 543,
+            "height": 724
+          }
+        }
+      }
+    }
+  },
+  "regions": [
+    {
+      "zoneId": "aw2-zone-covenant-village",
+      "asset": "village-water",
+      "display": {
+        "width": 76,
+        "height": 38
+      },
+      "depth": -850,
+      "placements": [
+        {
+          "id": "village-water-1",
+          "x": -300,
+          "y": 220
+        },
+        {
+          "id": "village-water-2",
+          "x": 940,
+          "y": 236
+        }
+      ]
+    },
+    {
+      "zoneId": "aw2-zone-lantern-street",
+      "asset": "street-lantern",
+      "display": {
+        "width": 24,
+        "height": 24
+      },
+      "depth": 7,
+      "placements": [
+        {
+          "id": "street-lantern-1",
+          "x": 109,
+          "y": -53
+        },
+        {
+          "id": "street-lantern-2",
+          "x": 209,
+          "y": -53
+        },
+        {
+          "id": "street-lantern-3",
+          "x": 345,
+          "y": -37
+        },
+        {
+          "id": "street-lantern-4",
+          "x": 439,
+          "y": -37
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "task": "AW2-006N",
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-25",
+    "calls": 2,
+    "selected": 2,
+    "rejected": 0,
+    "prompts": [
+      {
+        "path": "dev/aw2/assets/environments/ambient/v1/village-water-prompts.json",
+        "sha256": "01639345672e70eeade7dc8ebd2f3bc76173e09340d71b5e776446e3171be767"
+      },
+      {
+        "path": "dev/aw2/assets/environments/ambient/v1/street-lantern-prompts.json",
+        "sha256": "6909414173e991199199ab77d06b9346e2350a98c262ca1350d046d39ad445c9"
+      }
+    ],
+    "references": [
+      {
+        "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+        "role": "own project style reference",
+        "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+        "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d",
+        "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5"
+      },
+      {
+        "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+        "role": "own project style reference",
+        "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+        "blob": "27893fcdb294368a46db5448531743544cf6a8d8",
+        "sha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede"
+      },
+      {
+        "path": "dev/aw2/assets/environments/settlement/v1/shops-source.png",
+        "role": "own project lantern placement reference",
+        "commit": "f7a51673061d5fb1017c3da78d7109cf649ea48b",
+        "blob": "1bda5e53e87230f0401596955d1dd128e15dba5b",
+        "sha256": "33113f1dab1cb6afd9723846543e0606107880bb0d593445963a2303e7a73a09"
+      }
+    ],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "processing": "Unchanged selected transparent PNG; transparent-margin crop only; exact RGBA lossless WebP; measured safe frames. No code painting, masking, mirroring, resizing or interpolation.",
+    "builder": "dev/tools/build-aw2-ambient-motion.py",
+    "pillow": "12.3.0"
+  }
+}

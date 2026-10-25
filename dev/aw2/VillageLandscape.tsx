@@ -33,6 +33,12 @@ import {
   SettlementLandmarks,
 } from "./SettlementLayer"
 import { RoomWaypoints } from "./RoomWaypoints"
+import {
+  createAmbientSprites,
+  loadAmbientTexture,
+  releaseAmbientTexture,
+  renderAmbientSprites,
+} from "./AmbientLayer"
 
 /** Village presentation owns camera/layers only; all walking/actions remain world authority. */
 export function VillageLandscape({
@@ -58,7 +64,8 @@ export function VillageLandscape({
     points = villageWaypoints(world)
   useEffect(() => {
     let disposed = false,
-      app: Application | undefined
+      app: Application | undefined,
+      ambientUrl: string | undefined
     const textures: Texture[] = []
     setReady(false)
     setError("")
@@ -75,6 +82,7 @@ export function VillageLandscape({
           body,
           loadedNpc,
           loadedSettlement,
+          loadedAmbient,
         ] = await Promise.all([
           Assets.load(scene.assets.floor.url),
           Assets.load(scene.assets.props.url),
@@ -83,8 +91,14 @@ export function VillageLandscape({
           Assets.load(ROSTER_ASSETS[leader].assets.world.url),
           loadNpcTextures(scene.zoneId, (url) => Assets.load(url)),
           loadSettlementTextures(scene.zoneId, (url) => Assets.load(url)),
+          loadAmbientTexture(scene.zoneId, (url) => Assets.load(url)),
         ])
-        if (disposed) return
+        ambientUrl = loadedAmbient?.asset.url
+        if (disposed) {
+          releaseAmbientTexture(ambientUrl)
+          ambientUrl = undefined
+          return
+        }
         floor.source.scaleMode = "linear"
         foliage.source.scaleMode = "linear"
         props.source.scaleMode = "nearest"
@@ -138,6 +152,14 @@ export function VillageLandscape({
           textures,
         )
         for (const item of settlement) next.stage.addChild(item.sprite)
+        const ambient = loadedAmbient
+          ? createAmbientSprites(
+              loadedAmbient,
+              { Sprite, Texture, Rectangle },
+              textures,
+            )
+          : []
+        for (const item of ambient) next.stage.addChild(item.sprite)
         const objects = villageProps(position.current)
           .filter((prop) => !npcForEntity(prop.entityId))
           .map((prop) => {
@@ -240,6 +262,9 @@ export function VillageLandscape({
           next.canvas.dataset.npcMotion = JSON.stringify(
             renderNpcSprites(npcSprites, npcElapsed, reduced.matches),
           )
+          next.canvas.dataset.ambientMotion = JSON.stringify(
+            renderAmbientSprites(ambient, npcElapsed, reduced.matches),
+          )
           next.canvas.dataset.settlement = JSON.stringify(
             renderSettlement(settlement, [
               { ...bounds, groundY: now.y },
@@ -340,6 +365,7 @@ export function VillageLandscape({
       camera.current = null
       app?.destroy(true, { children: true })
       textures.forEach((t) => t.destroy(false))
+      releaseAmbientTexture(ambientUrl)
     }
   }, [leader])
   return (
