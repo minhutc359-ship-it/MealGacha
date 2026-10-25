@@ -9,30 +9,38 @@ import {
 type Lease = {
   texture: Texture
   count: number
+  unload: (url: string) => Promise<void> | void
 }
 const leases = new Map<string, Lease>()
 const loading = new Map<string, Promise<Texture>>()
+const unloading = new Map<string, Promise<void>>()
 
 export async function loadAmbientTexture(
   zoneId: string,
   load: (url: string) => Promise<Texture>,
+  unload: (url: string) => Promise<void> | void,
 ) {
   const region = ambientForZone(zoneId)
   if (!region) return undefined
   const asset =
     AMBIENT_MOTION.assets[(region.asset as keyof typeof AMBIENT_MOTION.assets)]
+  await unloading.get(asset.url)
   let lease = leases.get(asset.url)
   if (!lease) {
     let pending = loading.get(asset.url)
     if (!pending) {
       pending = load(asset.url).then((texture) => {
-        if (!leases.has(asset.url)) leases.set(asset.url, { texture, count: 0 })
+        if (!leases.has(asset.url))
+          leases.set(asset.url, { texture, count: 0, unload })
         return texture
       })
       loading.set(asset.url, pending)
     }
-    await pending
-    loading.delete(asset.url)
+    try {
+      await pending
+    } finally {
+      if (loading.get(asset.url) === pending) loading.delete(asset.url)
+    }
     lease = leases.get(asset.url)!
   }
   lease.count += 1
@@ -45,8 +53,13 @@ export function releaseAmbientTexture(url?: string) {
   if (!lease) return
   lease.count -= 1
   if (lease.count <= 0) {
-    lease.texture.destroy(true)
     leases.delete(url)
+    const pending = Promise.resolve()
+      .then(() => lease.unload(url))
+      .finally(() => {
+        if (unloading.get(url) === pending) unloading.delete(url)
+      })
+    unloading.set(url, pending)
   }
 }
 

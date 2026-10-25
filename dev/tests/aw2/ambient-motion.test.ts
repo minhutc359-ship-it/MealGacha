@@ -41,30 +41,43 @@ describe("AW2 authored ambient motion", () => {
     expect(AMBIENT_MOTION.fullEnvironmentComplete).toBe(false)
   })
 
-  it("leases one concurrent texture and destroys it only after the last owner", async () => {
+  it("leases one concurrent texture and unloads it only after the last owner", async () => {
     let loads = 0
-    const texture = { destroy: () => undefined }
-    const destroy = vi.spyOn(texture, "destroy")
+    const texture = {}
+    const unload = vi.fn(async () => undefined)
     const load = async () => {
       loads += 1
       await Promise.resolve()
       return texture as never
     }
     const [first, second] = await Promise.all([
-      loadAmbientTexture("aw2-zone-covenant-village", load),
-      loadAmbientTexture("aw2-zone-covenant-village", load),
+      loadAmbientTexture("aw2-zone-covenant-village", load, unload),
+      loadAmbientTexture("aw2-zone-covenant-village", load, unload),
     ])
     expect(loads).toBe(1)
     releaseAmbientTexture(first?.asset.url)
-    expect(destroy).not.toHaveBeenCalled()
+    expect(unload).not.toHaveBeenCalled()
     releaseAmbientTexture(second?.asset.url)
-    expect(destroy).toHaveBeenCalledOnce()
+    await vi.waitFor(() => expect(unload).toHaveBeenCalledOnce())
+
+    const third = await loadAmbientTexture(
+      "aw2-zone-covenant-village",
+      load,
+      unload,
+    )
+    expect(loads).toBe(2)
+    releaseAmbientTexture(third?.asset.url)
+    await vi.waitFor(() => expect(unload).toHaveBeenCalledTimes(2))
   })
 
   it("does not request ambient textures outside the two authored zones", async () => {
     const load = vi.fn()
     expect(
-      await loadAmbientTexture("aw2-zone-forgotten-kitchen-yard", load),
+      await loadAmbientTexture(
+        "aw2-zone-forgotten-kitchen-yard",
+        load,
+        vi.fn(),
+      ),
     ).toBeUndefined()
     expect(load).not.toHaveBeenCalled()
   })

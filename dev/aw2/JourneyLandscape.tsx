@@ -88,7 +88,11 @@ export function JourneyLandscape({
             Assets.load(ROSTER_ASSETS[leader].assets.world.url),
             loadNpcTextures(scene.zoneId, (url) => Assets.load(url)),
             loadSettlementTextures(scene.zoneId, (url) => Assets.load(url)),
-            loadAmbientTexture(scene.zoneId, (url) => Assets.load(url)),
+            loadAmbientTexture(
+              scene.zoneId,
+              (url) => Assets.load(url),
+              (url) => Assets.unload(url),
+            ),
           ])
         ambientUrl = loadedAmbient?.asset.url
         if (disposed) {
