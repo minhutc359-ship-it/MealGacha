@@ -1,4 +1,8 @@
-# Live project status —2026-10-25
+# Live project status —2026-10-26
+
+**AW2-006P VERIFIED:** final browser acceptance của006N đạt **270fresh assertions =135source+135compiled**,0unexpected errors;36capture ở320/390/768, follow/overview. Đã sửa lỗi vòng đời Pixi được tái hiện: lease cuối dùng `Assets.unload`, remount nhanh chờ unload nên không còn cảnh báo destroy/cache trùng. Full1587/1587units, hai typecheck, asset audit, AW2/stable builds PASS. Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`; [bằng chứng](evidence/AW2-006P.md). Demo90%/product≈40%(35–45%) giữ nguyên; independent human và physical phone vẫn OPEN, không merge `rpg`/deploy/release.
+
+Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006P ở trên.
 
 **AW2-006N VERIFIED LOCAL:** hai gợn nước Làng và bốn quầng đèn Phố dùng hai atlas bốn frame, tải theo vùng, chung clock NPC, pause/reduced-motion và unload khi rời vùng. Source `3fc7d536a9a00d0be3b6eade1168470f279d9307`; full1587/1587units, types, assets, AW2/stable builds PASS; final browser/device NOT_RUN. Demo90%/product≈40%(35–45%) giữ nguyên. [Bằng chứng](evidence/AW2-006N.md).
 

@@ -1,4 +1,10 @@
-# Handoff —2026-10-25 / AW2-006N
+# Handoff —2026-10-26 / AW2-006P
+
+**Đã hoàn tất:** browser acceptance cuối cho ambient006N trên source và compiled,270fresh assertions/36captures/0unexpected errors. Lỗi Pixi `destroyed instead of unloaded` và cache-key trùng được tái hiện rồi sửa bằng lease-aware `Assets.unload`; full1587units, hai typecheck, asset audit, AW2/stable builds PASS. Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`; [evidence](evidence/AW2-006P.md).
+
+**Next owner:** BA/tester điều phối AW2-010C independent human full-route và AW2-011A physical-phone baseline trên candidate đã pin. Không tự nâng demo90/product≈40%(35–45%), không mở AW2→`rpg`, deploy hoặc release trước bằng chứng D18. Quyền thương mại/FPS/total GPU memory/listening/offline/native vẫn OPEN.
+
+Các mốc bên dưới là lịch sử; handoff hiện hành theo006P ở trên.
 
 **AW2-006N VERIFIED LOCAL:** hai gợn nước Làng và bốn quầng đèn Phố dùng hai atlas bốn frame, tải theo vùng, chung clock NPC, pause/reduced-motion và unload khi rời vùng. Source `3fc7d536a9a00d0be3b6eade1168470f279d9307`; full1587/1587units, types, assets, AW2/stable builds PASS; final browser/device NOT_RUN. Demo90%/product≈40%(35–45%) giữ nguyên. [Bằng chứng](evidence/AW2-006N.md).
 

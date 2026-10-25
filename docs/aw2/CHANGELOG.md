@@ -1,5 +1,9 @@
 # Changes
 
+**AW2-006P:** thêm final source/compiled browser verifier cho ambient006N và sửa vòng đời Pixi texture bằng lease-aware `Assets.unload`/serialized remount.270fresh assertions,36captures, full1587units, types/assets/AW2+stable builds PASS;0unexpected errors. Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`; [evidence](evidence/AW2-006P.md). Demo/product giữ90%/≈40%; human/device/rights/release còn mở.
+
+Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006P ở trên.
+
 **AW2-006N:** thêm2ripple hồ và4quầng đèn/8frame, lazy theo vùng, chung clock NPC, pause/reduced/unload; không đổi geometry/save/reward. Source local `3fc7d536a9a00d0be3b6eade1168470f279d9307`;1587units/types/assets/builds PASS, final browser/device NOT_RUN. [Evidence](evidence/AW2-006N.md).
 
 **AW2-006O — thêm 32 công trình quanh ba khu ngoài trời:** 10 ở Làng, 12 ở Phố, 10 ở Sân Bếp; gồm nhà, tiệm trà/tạp hóa/đèn lồng, quầy bữa sáng, xưởng, bàn chơi và sân chơi. Chín điểm đến đi bộ mới; góc bám nhân vật rộng hơn ở zoom0.65, mái che mờ khi che nhân vật/NPC. Tám NPC vẫn có32frame idle. Source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, base `734cab6086b4ddddf7a8da8e6adf9a5a90af9099`. [Cách xem/ảnh/prompt](KHU_PHO.md) · [Bằng chứng](evidence/AW2-006O.md).

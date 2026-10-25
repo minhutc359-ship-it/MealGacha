@@ -1,5 +1,9 @@
 # Task board
 
+**AW2-006P VERIFIED:** đóng khoảng trống browser kỹ thuật của006N với135source+135compiled assertions,36capture và0unexpected errors; sửa Pixi asset lifecycle bằng unload có lease/serialization. Full1587units, types, assets, AW2/stable builds PASS. [Bằng chứng](evidence/AW2-006P.md). Next vẫn là [AW2-010C](tasks/AW2-010C.md) independent full-route human và [AW2-011A](tasks/AW2-011A.md) physical phone; demo90/product≈40% không đổi, D18 chưa đạt.
+
+Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo006P ở trên.
+
 **AW2-006N VERIFIED LOCAL:** source `3fc7d536a9a00d0be3b6eade1168470f279d9307`;1587units/types/assets/builds PASS. Final browser/device and remote publication remain OPEN. [Bằng chứng](evidence/AW2-006N.md).
 
 **AW2-006O — thêm 32 công trình quanh ba khu ngoài trời:** 10 ở Làng, 12 ở Phố, 10 ở Sân Bếp; gồm nhà, tiệm trà/tạp hóa/đèn lồng, quầy bữa sáng, xưởng, bàn chơi và sân chơi. Chín điểm đến đi bộ mới; góc bám nhân vật rộng hơn ở zoom0.65, mái che mờ khi che nhân vật/NPC. Tám NPC vẫn có32frame idle. Source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, base `734cab6086b4ddddf7a8da8e6adf9a5a90af9099`. [Cách xem/ảnh/prompt](KHU_PHO.md) · [Bằng chứng](evidence/AW2-006O.md).

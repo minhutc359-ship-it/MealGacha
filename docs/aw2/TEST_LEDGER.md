@@ -1,5 +1,11 @@
 # Test ledger / change impact
 
+## AW2-006P final ambient browser acceptance —2026-10-26
+
+Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`, base `1bdf5b1af5a5fece53a13390b4113b88ddf7c9ca`. PASS:135fresh source +135fresh compiled browser assertions,18captures mỗi flavor,0unexpected page/console/resource errors và12expected fault observations mỗi flavor. Bao phủ exact2ripple+4lantern anchors/sizes/depths, đủ4frames, pause/reduced/resume/no-write, zone-lazy/no-yard,320/390/768 follow/overview,404/recovery/exact save/legacy, inherited NPC/settlement/route/endings. Hai ảnh390px đại diện được mở kiểm tra.
+
+Diagnostic source đầu tiên bị loại khỏi PASS: harness so snapshot trước khi ambient về `calm`; sau khi sửa wait, run đã phát hiện cảnh báo Pixi thật về destroy/cache. Runtime chuyển từ `Texture.destroy` sang lease-aware `Assets.unload`, serialize unload→reload; verifier coi hai cảnh báo này là lỗi. Final source/compiled đều sạch. Full1587/1587units/128files; focused5/5; root+dev typechecks; exactRGBA/8safe frames/pinned refs/repeat10paths; AW2build295files/120,778,461bytes; stable851files/177,450,422bytes + release guard đều PASS. Independent human, physical phone, full uninterrupted boss route, FPS/GPU memory, listening/offline/native, rights/production/release NOT_RUN/OPEN. [Evidence](evidence/AW2-006P.md).
+
 ## AW2-006N authored ambient motion —2026-10-25
 
 Source local `3fc7d536a9a00d0be3b6eade1168470f279d9307`, base/freshremote `7388f47f3b0f0272f3eb2ef40edf062dcf472b28`. Full1587/1587unit cases/128files PASS with `--maxWorkers=1 --testTimeout=60000`;0fail/skip. Initial default-concurrency run timed out4unchanged long simulations while1580 passed; isolated reruns and final serial full run passed. Both typechecks PASS.

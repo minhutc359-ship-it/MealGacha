@@ -1,4 +1,8 @@
-# Báo cáo Adventure World 2 —25/10/2026
+# Báo cáo Adventure World 2 —26/10/2026
+
+**006P đã đóng browser acceptance kỹ thuật của chuyển động môi trường:**135source+135compiled assertions PASS,36capture, không lỗi page/console/resource. Lỗi quản lý texture của Pixi được tái hiện và sửa bằng unload sau lease cuối, an toàn với remount nhanh. Full1587units, hai typecheck, asset audit, AW2/stable builds PASS. Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`; [bằng chứng](evidence/AW2-006P.md).
+
+Demo vẫn90%, sản phẩm≈40%(35–45%). Đây là developer acceptance, chưa thay thế người chơi độc lập hoặc điện thoại thật; D18/AW2→`rpg`, deploy và release chưa được mở.
 
 **006N đã hoàn tất local:** hai ripple hồ Làng và bốn quầng đèn Phố dùng8frame/lazy zone/shared clock/pause/reduced/unload. Full1587/1587units, hai typecheck, asset audit và AW2/stable builds PASS. Final browser/device chưa chạy lại sau khi workspace được khôi phục; không nhận lại bằng chứng của candidate đã mất. Demo90%/product≈40%(35–45%) giữ nguyên. Source `3fc7d536a9a00d0be3b6eade1168470f279d9307`; [bằng chứng](evidence/AW2-006N.md).
 
