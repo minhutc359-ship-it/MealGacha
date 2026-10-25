@@ -2,6 +2,8 @@
 
 **AW2-006N VERIFIED LOCAL:** hai gợn nước Làng và bốn quầng đèn Phố dùng hai atlas bốn frame, tải theo vùng, chung clock NPC, pause/reduced-motion và unload khi rời vùng. Source `3fc7d536a9a00d0be3b6eade1168470f279d9307`; full1587/1587units, types, assets, AW2/stable builds PASS; final browser/device NOT_RUN. Demo90%/product≈40%(35–45%) giữ nguyên. [Bằng chứng](evidence/AW2-006N.md).
 
+Publication PASS: remote source `112befddc6bf97a1f54fc6eaf8a03c8d5310c3e7`, docs `9e2c5bccf903cb6da3fb8140a519bd2cfb2bd7f2`; exact final tree `d2d9db25c9d8e4ba2f083a530016a66df524ae7c` khớp local và remote.
+
 **AW2-006O — thêm 32 công trình quanh ba khu ngoài trời:** 10 ở Làng, 12 ở Phố, 10 ở Sân Bếp; gồm nhà, tiệm trà/tạp hóa/đèn lồng, quầy bữa sáng, xưởng, bàn chơi và sân chơi. Chín điểm đến đi bộ mới; góc bám nhân vật rộng hơn ở zoom0.65, mái che mờ khi che nhân vật/NPC. Tám NPC vẫn có32frame idle. Source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, base `734cab6086b4ddddf7a8da8e6adf9a5a90af9099`. [Cách xem/ảnh/prompt](KHU_PHO.md) · [Bằng chứng](evidence/AW2-006O.md).
 
 39ca unit riêng biệt/3files, hai typecheck, exactRGBA/8safe frames/repeat10paths, review286files/242asset parity/stable isolation PASS.248kiểm tra trình duyệt mới=124source+124compiled: kiến trúc/điểm đến/che khuất, NPC/pause/reduced, intro/ký ức/host/Dì, hai ending từ checkpoint boss thật, đi–về đủ sáu vùng, từng10atlas NPC/kiến trúc thiếu–khôi phục/exactsave. Cả hai process exit0, không lỗi bất ngờ; chưa có lượt boss mới liền mạch. [Machine report](evidence/AW2-006O-verification.json).

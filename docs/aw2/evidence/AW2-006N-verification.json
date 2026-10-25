@@ -35,5 +35,11 @@
   "browser": {"status": "NOT_RUN_FINAL_RESTORED_SOURCE", "reason": "Earlier candidate observations are intentionally not reused for rebuilt source."},
   "open": ["independent player", "physical phone", "FPS", "total GPU memory", "listening", "offline", "native", "rights clearance", "production save", "release"],
   "progress": {"demoPercent": 90, "productEstimatePercent": 40, "productRangePercent": [35, 45], "changed": false},
-  "publication": "PENDING_PUSH"
+  "publication": {
+    "status": "PASS",
+    "remoteSource": "112befddc6bf97a1f54fc6eaf8a03c8d5310c3e7",
+    "remoteDocs": "9e2c5bccf903cb6da3fb8140a519bd2cfb2bd7f2",
+    "exactTree": "d2d9db25c9d8e4ba2f083a530016a66df524ae7c",
+    "localRemoteTreeMatch": true
+  }
 }

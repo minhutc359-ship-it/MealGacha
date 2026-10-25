@@ -2,6 +2,8 @@
 
 **006N đã hoàn tất local:** hai ripple hồ Làng và bốn quầng đèn Phố dùng8frame/lazy zone/shared clock/pause/reduced/unload. Full1587/1587units, hai typecheck, asset audit và AW2/stable builds PASS. Final browser/device chưa chạy lại sau khi workspace được khôi phục; không nhận lại bằng chứng của candidate đã mất. Demo90%/product≈40%(35–45%) giữ nguyên. Source `3fc7d536a9a00d0be3b6eade1168470f279d9307`; [bằng chứng](evidence/AW2-006N.md).
 
+Publication PASS: remote source `112befddc6bf97a1f54fc6eaf8a03c8d5310c3e7`, docs `9e2c5bccf903cb6da3fb8140a519bd2cfb2bd7f2`; exact final tree `d2d9db25c9d8e4ba2f083a530016a66df524ae7c` khớp local và remote.
+
 Đã thêm **32 công trình quanh Làng Giao Ước, Phố Đèn Lồng và Sân Bếp Bỏ Quên**: nhà ở, tiệm trà/tạp hóa/đèn lồng, quầy bữa sáng, xưởng, bàn chơi và sân chơi. Góc bám nhân vật rộng hơn để thấy các dãy nhà gần lối đi; mái che mờ khi che nhân vật hoặc NPC. Thêm chín điểm đến đi bộ. [Cách xem, ảnh và prompt](KHU_PHO.md).
 
 Các NPC tiếp tục dùng hoạt ảnh riêng và dịch vụ hiện có: hội thoại, ký ức, bàn bài/bàn cờ. Công trình mới là phong cảnh; chưa có mua bán hoặc vào nhà. Giữ nguyên lối đi, va chạm, nhiệm vụ, phần thưởng và bản lưu cũ; một nhân vật đại diện map, năm thành viên combat.
