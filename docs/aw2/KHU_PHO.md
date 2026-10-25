@@ -19,4 +19,6 @@ Hai atlas dùng **OpenAI built-in image_gen**,3lần gọi/2ảnh chọn/1ảnh 
 
 [Manifest và vị trí](../../src/aw2/assets/settlement-v1.json) · [Provenance/quyền sử dụng](../../dev/aw2/assets/environments/settlement/v1/provenance.json) · [Kiểm chứng006O](evidence/AW2-006O.md). Quyền sử dụng hiện REVIEW_REQUIRED/commercialNOT_CLEARED; đây là bộ hình tham chiếu phát triển.
 
-Hoạt ảnh đứng yên của tám NPC giữ nguyên. Việc tiếp theo[006N](tasks/AW2-006N.md) là thêm chuyển động môi trường có frame riêng ở Làng/Phố, có dừng khi hội thoại và chế độ giảm chuyển động. Demo90%/sản phẩm≈40%(35–45%) giữ nguyên.
+Hoạt ảnh đứng yên của tám NPC giữ nguyên. [006N](tasks/AW2-006N.md) đã thêm hai ripple hồ Làng và bốn quầng đèn Phố từ hai atlas bốn frame. Chuyển động dùng chung clock NPC, dừng khi hội thoại/giảm chuyển động, chỉ tải đúng vùng và unload khi rời vùng; Sân Bếp/các nội thất không tải ambient.
+
+[Manifest/neo](../../src/aw2/assets/ambient-motion-v1.json) · [PNG gợn nước](../../dev/aw2/assets/environments/ambient/v1/village-water-source.png) · [PNG quầng đèn](../../dev/aw2/assets/environments/ambient/v1/street-lantern-source.png) · [Provenance](../../dev/aw2/assets/environments/ambient/v1/provenance.json) · [Kiểm chứng006N](evidence/AW2-006N.md). Hai ảnh được tạo bằng OpenAI built-in imagegen,2call/2selected/0rejected; source PNG giữ nguyên, runtime WebP chỉ cắt lề trong suốt rồi nén lossless exactRGBA. Rights REVIEW_REQUIRED/commercialNOT_CLEARED. Demo90%/product≈40%(35–45%) giữ nguyên.

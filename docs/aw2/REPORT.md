@@ -1,4 +1,6 @@
-# Báo cáo Adventure World 2 —24/10/2026
+# Báo cáo Adventure World 2 —25/10/2026
+
+**006N đã hoàn tất local:** hai ripple hồ Làng và bốn quầng đèn Phố dùng8frame/lazy zone/shared clock/pause/reduced/unload. Full1587/1587units, hai typecheck, asset audit và AW2/stable builds PASS. Final browser/device chưa chạy lại sau khi workspace được khôi phục; không nhận lại bằng chứng của candidate đã mất. Demo90%/product≈40%(35–45%) giữ nguyên. Source `3fc7d536a9a00d0be3b6eade1168470f279d9307`; [bằng chứng](evidence/AW2-006N.md).
 
 Đã thêm **32 công trình quanh Làng Giao Ước, Phố Đèn Lồng và Sân Bếp Bỏ Quên**: nhà ở, tiệm trà/tạp hóa/đèn lồng, quầy bữa sáng, xưởng, bàn chơi và sân chơi. Góc bám nhân vật rộng hơn để thấy các dãy nhà gần lối đi; mái che mờ khi che nhân vật hoặc NPC. Thêm chín điểm đến đi bộ. [Cách xem, ảnh và prompt](KHU_PHO.md).
 

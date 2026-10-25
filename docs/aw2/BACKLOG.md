@@ -1,5 +1,7 @@
 # Task board
 
+**AW2-006N VERIFIED LOCAL:** source `3fc7d536a9a00d0be3b6eade1168470f279d9307`;1587units/types/assets/builds PASS. Final browser/device and remote publication remain OPEN. [Bằng chứng](evidence/AW2-006N.md).
+
 **AW2-006O — thêm 32 công trình quanh ba khu ngoài trời:** 10 ở Làng, 12 ở Phố, 10 ở Sân Bếp; gồm nhà, tiệm trà/tạp hóa/đèn lồng, quầy bữa sáng, xưởng, bàn chơi và sân chơi. Chín điểm đến đi bộ mới; góc bám nhân vật rộng hơn ở zoom0.65, mái che mờ khi che nhân vật/NPC. Tám NPC vẫn có32frame idle. Source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, base `734cab6086b4ddddf7a8da8e6adf9a5a90af9099`. [Cách xem/ảnh/prompt](KHU_PHO.md) · [Bằng chứng](evidence/AW2-006O.md).
 
 39ca unit riêng biệt/3files, hai typecheck, exactRGBA/8safe frames/repeat10paths, review286files/242asset parity/stable isolation PASS.248kiểm tra trình duyệt mới=124source+124compiled: kiến trúc/điểm đến/che khuất, NPC/pause/reduced, intro/ký ức/host/Dì, hai ending từ checkpoint boss thật, đi–về đủ sáu vùng, từng10atlas NPC/kiến trúc thiếu–khôi phục/exactsave. Cả hai process exit0, không lỗi bất ngờ; chưa có lượt boss mới liền mạch. [Machine report](evidence/AW2-006O-verification.json).
@@ -74,7 +76,7 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | AW2-006L | BA/story/animation/mechanic/tester/scretary | Rich hearth/table interiors to D21, preserve puzzle/boss | VERIFIED at36c2231bafb9de8778f380183780af242cfa9281;85unit/100composite browser/types/build PASS |
 | AW2-006M | BA/story/character/animation/mechanic/tester/scretary | Authored idle frames for all8NPCs with pause/reduced motion | VERIFIED at639609b986389cc7743d977679ca361c010911f8;83unit/178browser/types/build PASS |
 | AW2-006O | BA/story/animation/mechanic/tester/scretary |32houses/shops/playground across3regions,9walk-only landmarks | VERIFIED atf7a51673061d5fb1017c3da78d7109cf649ea48b;39unit/248fresh browser/types/build PASS |
-| AW2-006N | BA/story/animation/mechanic/tester/scretary | Authored ambient motion in village/street | READY; next product task, implementation NOT_STARTED |
+| AW2-006N | BA/story/animation/mechanic/tester/scretary | Authored ambient motion in village/street | VERIFIED LOCAL at3fc7d53;1587units/types/assets/build PASS; final browser/device and publication OPEN |
 | AW2-006F | BA/story/animation/mechanic/tester/scretary | Authored Phòng Lửa floor/props/native navigation | VERIFIED development slice at 4d463302f95a33788ac9cb9c8274f12b18d86281;83unit/72browser, independent route/device gates OPEN |
 | AW2-004L | character/story/animation/tester | Hải original reference package | VERIFIED at 57b160faefa4edca081e46680a45489bfa4d9e68;85 units/102 browser; full DoD OPEN |
 | AW2-004M | character/story/animation/tester | Liên original reference package | VERIFIED at 8344fc0b05275a1d8e314100fcfa3263d9956c8e;96 own browser assertions, shared full1132; [card](tasks/AW2-004M.md), full DoD OPEN |

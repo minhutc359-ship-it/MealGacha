@@ -1,5 +1,13 @@
 # Test ledger / change impact
 
+## AW2-006N authored ambient motion —2026-10-25
+
+Source local `3fc7d536a9a00d0be3b6eade1168470f279d9307`, base/freshremote `7388f47f3b0f0272f3eb2ef40edf062dcf472b28`. Full1587/1587unit cases/128files PASS with `--maxWorkers=1 --testTimeout=60000`;0fail/skip. Initial default-concurrency run timed out4unchanged long simulations while1580 passed; isolated reruns and final serial full run passed. Both typechecks PASS.
+
+Five focused tests cover deterministic4-frame/reduced pose/invalid time, exact6anchors/sizes/depth/no geometry authority, concurrent shared lease disposal and no requests outside Làng/Phố. Asset audit PASS:2imagegen calls/2selected/0rejected, unchanged sources, transparent-margin crop only, exact-losslessRGBA runtime,8safe frames/max edgeα7, pinned refs/repeat10paths. Budgets including NPC+settlement: village10,291,040compressed/45,961,648decoded;street15,851,872/78,916,656, both≤18MB/80MB.
+
+AW2 build293files/119,756,454bytes/148runtime assets PASS; stable build/release guard PASS. Final restored-source browser, independent player, physical phone, FPS/totalGPUmemory/listening/offline/native, rights, production-save and release NOT_RUN/OPEN. Demo90/product≈40%(35–45%) unchanged; remote publication pending. [Evidence](evidence/AW2-006N.md).
+
 ## AW2-006O architectural density —2026-10-24
 
 Final structural checks PASS:11changedJSON,16localMarkdown link sets,2PythonAST,1NodeMJSsyntax,6oxfmtfiles,gitdiff whitespace; runtime371inputfingerprint unchanged after docs.

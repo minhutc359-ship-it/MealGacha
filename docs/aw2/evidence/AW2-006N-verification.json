@@ -1,0 +1,39 @@
+{
+  "task": "AW2-006N",
+  "status": "PASS_LOCAL_DEVELOPMENT_SUBSET",
+  "source": "3fc7d536a9a00d0be3b6eade1168470f279d9307",
+  "base": "7388f47f3b0f0272f3eb2ef40edf062dcf472b28",
+  "units": {
+    "status": "PASS",
+    "tests": 1587,
+    "files": 128,
+    "command": "pnpm test --maxWorkers=1 --testTimeout=60000",
+    "initialConcurrentRun": "1580 passed; four unchanged long-running simulations timed out; all passed in isolated reruns and the final serial full run"
+  },
+  "types": {"root": "PASS pnpm typecheck", "dev": "PASS pnpm typecheck:dev"},
+  "assets": {
+    "status": "PASS",
+    "generatedCalls": 2,
+    "selected": 2,
+    "rejected": 0,
+    "safeFrames": 8,
+    "maxFrameEdgeAlpha": 7,
+    "exactRgba": true,
+    "sourceUnchanged": true,
+    "transparentMarginCropOnly": true,
+    "pinnedReferences": true,
+    "repeatIdenticalPaths": 10,
+    "regions": {
+      "aw2-zone-covenant-village": {"placements": 2, "compressedBytes": 10291040, "decodedRgbaBytes": 45961648, "maxCompressedBytes": 18000000, "maxDecodedRgbaBytes": 80000000},
+      "aw2-zone-lantern-street": {"placements": 4, "compressedBytes": 15851872, "decodedRgbaBytes": 78916656, "maxCompressedBytes": 18000000, "maxDecodedRgbaBytes": 80000000}
+    }
+  },
+  "builds": {
+    "aw2": {"status": "PASS", "files": 293, "bytes": 119756454, "runtimeWebpWav": 148},
+    "stable": {"status": "PASS", "releaseGuard": "no authored sources, maps, archives or recognized credentials in dist"}
+  },
+  "browser": {"status": "NOT_RUN_FINAL_RESTORED_SOURCE", "reason": "Earlier candidate observations are intentionally not reused for rebuilt source."},
+  "open": ["independent player", "physical phone", "FPS", "total GPU memory", "listening", "offline", "native", "rights clearance", "production save", "release"],
+  "progress": {"demoPercent": 90, "productEstimatePercent": 40, "productRangePercent": [35, 45], "changed": false},
+  "publication": "PENDING_PUSH"
+}
