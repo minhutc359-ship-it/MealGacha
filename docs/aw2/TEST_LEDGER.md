@@ -1,5 +1,11 @@
 # Test ledger / change impact
 
+## AW2-006Q authored kitchen-yard ambient motion —2026-10-26
+
+Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`, exact tree `315e92b50d30886c8f11a75aa5328c2d70b83af0`, base `c2e868394ef2bb8547989aecb37bf025f5f98391`. PASS:141fresh source +141fresh compiled browser assertions,18captures mỗi flavor,0unexpected page/console/resource errors và14expected fault observations mỗi flavor. Bao phủ exact3steam+3water anchors/sizes/depths, đủ4frames, pause/reduced/resume/no-write, two-sheet yard lazy lifecycle/no interior requests,320/390/768 follow/overview, reciprocal six-zone route và từng4ambient atlas404→recovery/exact save+legacy. Ảnh yard390/768 source+compiled đã được mở kiểm tra.
+
+Full1588/1588units/128files; focused6/6; root+dev typechecks; exactRGBA/8new safe frames/pinned own-project reference/repeat10paths; AW2build300files/120,532,716bytes; stable851files/177,450,422bytes + release guard đều PASS.2imagegen calls/2selected/0rejected; selected source PNG unchanged, lossless WebP exact RGBA. Diagnostic fontconfig failure excluded before final clean reruns. Independent human, physical phone, uninterrupted boss route, FPS/GPU memory, listening/offline/native, rights/production/release NOT_RUN/OPEN. [Evidence](evidence/AW2-006Q.md).
+
 ## AW2-006P final ambient browser acceptance —2026-10-26
 
 Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`, base `1bdf5b1af5a5fece53a13390b4113b88ddf7c9ca`. PASS:135fresh source +135fresh compiled browser assertions,18captures mỗi flavor,0unexpected page/console/resource errors và12expected fault observations mỗi flavor. Bao phủ exact2ripple+4lantern anchors/sizes/depths, đủ4frames, pause/reduced/resume/no-write, zone-lazy/no-yard,320/390/768 follow/overview,404/recovery/exact save/legacy, inherited NPC/settlement/route/endings. Hai ảnh390px đại diện được mở kiểm tra.

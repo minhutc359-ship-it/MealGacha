@@ -1,5 +1,9 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**AW2-006Q VERIFIED:** Sân Bếp có3hơi bếp+3gợn nước từ2atlas/8frame, tải nhiều sheet đúng vùng với lease/pause/reduced/resume và không đổi save/geometry.282fresh browser assertions/36captures/0unexpected errors; full1588units/types/assets/AW2+stable builds PASS. Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`; [bằng chứng](evidence/AW2-006Q.md). Demo90%/product≈40%(35–45%) giữ nguyên; next independent human+physical phone.
+
+Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006Q ở trên.
+
 **AW2-006P VERIFIED:** ambient006N đã PASS final source/compiled browser acceptance:270fresh assertions,36captures,0unexpected errors. Pixi texture lease nay unload qua asset manager và serialize remount; full1587units/types/assets/AW2+stable builds PASS. Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`; [bằng chứng](evidence/AW2-006P.md). Demo90%/product≈40%(35–45%) giữ nguyên; next independent human + physical phone, không `rpg`/deploy/release.
 
 Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006P ở trên.

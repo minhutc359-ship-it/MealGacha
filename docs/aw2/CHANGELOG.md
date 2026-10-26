@@ -1,5 +1,9 @@
 # Changes
 
+**AW2-006Q:** thêm3hơi bếp+3gợn nước/2atlas/8frame cho Sân Bếp và hỗ trợ nhiều ambient sheet trong một vùng với lazy lease lifecycle; pause/reduced/resume, geometry/save/economy không đổi.282fresh browser assertions/36captures, full1588units, types/assets/AW2+stable builds PASS;0unexpected errors. Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`; [evidence](evidence/AW2-006Q.md). Demo/product giữ90%/≈40%; human/device/rights/release còn mở.
+
+Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006Q ở trên.
+
 **AW2-006P:** thêm final source/compiled browser verifier cho ambient006N và sửa vòng đời Pixi texture bằng lease-aware `Assets.unload`/serialized remount.270fresh assertions,36captures, full1587units, types/assets/AW2+stable builds PASS;0unexpected errors. Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`; [evidence](evidence/AW2-006P.md). Demo/product giữ90%/≈40%; human/device/rights/release còn mở.
 
 Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006P ở trên.

@@ -1,5 +1,7 @@
 # Báo cáo Adventure World 2 —26/10/2026
 
+**006Q đã hoàn tất chuyển động môi trường cho Sân Bếp:**3luồng hơi bếp+3gợn nước,2atlas/8frame, lazy multi-sheet lifecycle và pause/reduced/resume không ghi save.141source+141compiled browser assertions/36capture/0unexpected errors; full1588units, hai typecheck, asset audit, AW2/stable builds PASS. Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`; [bằng chứng](evidence/AW2-006Q.md). Demo90%/product≈40%(35–45%) giữ nguyên; human/phone/rights/release còn OPEN.
+
 **006P đã đóng browser acceptance kỹ thuật của chuyển động môi trường:**135source+135compiled assertions PASS,36capture, không lỗi page/console/resource. Lỗi quản lý texture của Pixi được tái hiện và sửa bằng unload sau lease cuối, an toàn với remount nhanh. Full1587units, hai typecheck, asset audit, AW2/stable builds PASS. Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`; [bằng chứng](evidence/AW2-006P.md).
 
 Demo vẫn90%, sản phẩm≈40%(35–45%). Đây là developer acceptance, chưa thay thế người chơi độc lập hoặc điện thoại thật; D18/AW2→`rpg`, deploy và release chưa được mở.

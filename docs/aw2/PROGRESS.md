@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+**AW2-006Q VERIFIED:** Sân Bếp đã có6ambient placements/2atlas/8frame với lazy lifecycle và kiểm chứng source+compiled. Full1588units/types/assets/builds cùng282browser assertions PASS. Đây là nâng chất lượng trình bày vùng ngoài trời, không đóng independent human/phone/rights/full-environment gate; **demo90%/product≈40%(35–45%) giữ nguyên**. Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`; [bằng chứng](evidence/AW2-006Q.md).
+
 **AW2-006N VERIFIED LOCAL:** ambient Làng/Phố đã hoàn tất phạm vi hình ảnh; source `3fc7d536a9a00d0be3b6eade1168470f279d9307`,1587units/types/assets/builds PASS. Browser/device cuối chưa chạy; demo90%/product≈40%(35–45%) giữ nguyên. [Bằng chứng](evidence/AW2-006N.md).
 
 **AW2-006O — thêm 32 công trình quanh ba khu ngoài trời:** 10 ở Làng, 12 ở Phố, 10 ở Sân Bếp; gồm nhà, tiệm trà/tạp hóa/đèn lồng, quầy bữa sáng, xưởng, bàn chơi và sân chơi. Chín điểm đến đi bộ mới; góc bám nhân vật rộng hơn ở zoom0.65, mái che mờ khi che nhân vật/NPC. Tám NPC vẫn có32frame idle. Source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, base `734cab6086b4ddddf7a8da8e6adf9a5a90af9099`. [Cách xem/ảnh/prompt](KHU_PHO.md) · [Bằng chứng](evidence/AW2-006O.md).

@@ -1,5 +1,9 @@
 # Live project status —2026-10-26
 
+**AW2-006Q VERIFIED:** Sân Bếp có ba luồng hơi ấm và ba gợn sáng nước từ hai atlas bốn frame; runtime hỗ trợ nhiều ambient sheet trong cùng vùng, lazy-load/unload theo lease, pause/reduced/resume và không ghi save. Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`; full1588/1588units, hai typecheck, exactRGBA/8safe new frames/repeat audit, AW2/stable builds PASS. Browser mới đạt **282 assertions =141source+141compiled**,36capture,0unexpected errors;404/khôi phục giữ exact save. [Bằng chứng](evidence/AW2-006Q.md). Demo90%/product≈40%(35–45%) giữ nguyên; human/phone/rights/release OPEN, không merge `rpg`/deploy/release.
+
+Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006Q ở trên.
+
 **AW2-006P VERIFIED:** final browser acceptance của006N đạt **270fresh assertions =135source+135compiled**,0unexpected errors;36capture ở320/390/768, follow/overview. Đã sửa lỗi vòng đời Pixi được tái hiện: lease cuối dùng `Assets.unload`, remount nhanh chờ unload nên không còn cảnh báo destroy/cache trùng. Full1587/1587units, hai typecheck, asset audit, AW2/stable builds PASS. Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`; [bằng chứng](evidence/AW2-006P.md). Demo90%/product≈40%(35–45%) giữ nguyên; independent human và physical phone vẫn OPEN, không merge `rpg`/deploy/release.
 
 Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006P ở trên.

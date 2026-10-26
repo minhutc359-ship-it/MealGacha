@@ -1,0 +1,39 @@
+{
+  "task": "AW2-006Q",
+  "status": "PASS_DEVELOPMENT_ACCEPTANCE",
+  "source": "15c0cd2f6d833191c8b1b00ab392dfd7c0c34880",
+  "sourceTree": "315e92b50d30886c8f11a75aa5328c2d70b83af0",
+  "base": "c2e868394ef2bb8547989aecb37bf025f5f98391",
+  "browser": {
+    "engine": "Chromium 153.0.8010.0",
+    "source": {"status": "PASS", "freshAssertions": 141, "captures": 18, "unexpectedErrors": 0, "expectedFaultObservations": 14, "rawSha256": "c6755fb301d8409e0d8882ee2ba595ea09d5869dbc487e2d335ece847f9e5440"},
+    "compiled": {"status": "PASS", "freshAssertions": 141, "captures": 18, "unexpectedErrors": 0, "expectedFaultObservations": 14, "rawSha256": "0fe159bae18b0489d89d2e4afa3390f7b90e25caad4cd80c528955f5cec0ed87"},
+    "representativeCaptureInspection": "PASS source+compiled yard overview390/768",
+    "limitations": "No fresh uninterrupted boss journey, independent human or physical device."
+  },
+  "units": {"status": "PASS", "tests": 1588, "files": 128, "focusedAmbientTests": 6},
+  "types": {"root": "PASS", "dev": "PASS"},
+  "assets": {
+    "status": "PASS",
+    "newImageGenerationCalls": 2,
+    "selected": 2,
+    "rejected": 0,
+    "newPlacements": 6,
+    "totalOutdoorPlacements": 12,
+    "newFrames": 8,
+    "totalFrames": 16,
+    "exactRgba": true,
+    "newSafeFrames": 8,
+    "repeatIdenticalPaths": 10,
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED"
+  },
+  "builds": {
+    "aw2": {"status": "PASS", "files": 300, "bytes": 120532716},
+    "stable": {"status": "PASS", "files": 851, "bytes": 177450422, "releaseGuard": "PASS"}
+  },
+  "publication": {"status": "SOURCE_PASS", "expectedBase": "c2e868394ef2bb8547989aecb37bf025f5f98391", "force": false, "remoteSource": "15c0cd2f6d833191c8b1b00ab392dfd7c0c34880", "remoteTree": "315e92b50d30886c8f11a75aa5328c2d70b83af0"},
+  "diagnosticsExcluded": ["isolated FONTCONFIG_PATH hid rendered text before final source rerun"],
+  "open": ["independent player", "physical phone", "fresh uninterrupted boss route", "FPS", "total GPU memory", "listening", "offline", "native", "rights clearance", "production save", "release"],
+  "progress": {"demoPercent": 90, "productEstimatePercent": 40, "productRangePercent": [35, 45], "changed": false}
+}

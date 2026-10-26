@@ -1,5 +1,9 @@
 # Task board
 
+**AW2-006Q VERIFIED:** thêm2atlas/8frame và6placement cho hơi bếp + gợn nước ở Sân Bếp; nhiều sheet cùng vùng dùng chung clock và lease-aware lazy lifecycle.282fresh browser assertions/36captures/0unexpected errors; full1588units, types, asset audit, AW2/stable builds PASS. Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`; [bằng chứng](evidence/AW2-006Q.md). Next vẫn [AW2-010C](tasks/AW2-010C.md) independent human và [AW2-011A](tasks/AW2-011A.md) physical phone; demo90/product≈40% không đổi, không mở `rpg`/deploy/release.
+
+Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo006Q ở trên.
+
 **AW2-006P VERIFIED:** đóng khoảng trống browser kỹ thuật của006N với135source+135compiled assertions,36capture và0unexpected errors; sửa Pixi asset lifecycle bằng unload có lease/serialization. Full1587units, types, assets, AW2/stable builds PASS. [Bằng chứng](evidence/AW2-006P.md). Next vẫn là [AW2-010C](tasks/AW2-010C.md) independent full-route human và [AW2-011A](tasks/AW2-011A.md) physical phone; demo90/product≈40% không đổi, D18 chưa đạt.
 
 Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo006P ở trên.
