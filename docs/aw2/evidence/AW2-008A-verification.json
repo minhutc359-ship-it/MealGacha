@@ -1,7 +1,7 @@
 {
   "task": "AW2-008A",
   "status": "PASS_DEVELOPMENT_SUBSET",
-  "source": "PENDING008A",
+  "source": "45a54471750961d382c807c338e75248ee261783",
   "base": "045a30c9b796b5b08559e4a78c5e3466fb8cdc48",
   "environment": {
     "os": "Linuxx64",
@@ -116,5 +116,14 @@
     "next": "AW2-008B six-zone journey overview",
     "fullCharacterDoD": 0
   },
-  "workspace": "docs/aw2/evidence/AW2-008A-workspace.json"
+  "workspace": "docs/aw2/evidence/AW2-008A-workspace.json",
+  "postcommitCleanAw2RuntimeIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "45a54471750961d382c807c338e75248ee261783",
+    "sourceDirty": false,
+    "codeFingerprint": "0cdf990a4096cfea7f4747a47f6460668ebbd1b8b9595dfb211d84062001509d",
+    "inputFiles": 390
+  },
+  "publication": "docs/aw2/evidence/AW2-008A-publication.json"
 }

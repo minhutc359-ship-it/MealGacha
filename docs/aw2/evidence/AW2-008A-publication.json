@@ -1,0 +1,66 @@
+{
+  "task": "AW2-008A",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "source": "45a54471750961d382c807c338e75248ee261783",
+  "sourceTree": "5730d74fc3ed37c8fa8fc75201c3b524bb35f78f",
+  "expectedOldHead": "045a30c9b796b5b08559e4a78c5e3466fb8cdc48",
+  "apiRefUpdate": {
+    "success": true,
+    "force": false,
+    "expectedSha": "045a30c9b796b5b08559e4a78c5e3466fb8cdc48",
+    "newSha": "45a54471750961d382c807c338e75248ee261783"
+  },
+  "independentFetch": {
+    "phase": "source",
+    "base": "045a30c9b796b5b08559e4a78c5e3466fb8cdc48",
+    "head": "45a54471750961d382c807c338e75248ee261783",
+    "tree": "5730d74fc3ed37c8fa8fc75201c3b524bb35f78f",
+    "verifiedBlobs": 33,
+    "binaryFiles": 0,
+    "independentFetch": true,
+    "indexTreeEqualsRemote": true,
+    "ancestor": true,
+    "expectedHeadGuard": true,
+    "trackedWorkingTreeClean": true,
+    "preservedUntrackedFiles": 18
+  },
+  "postcommitCleanAw2RuntimeIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "45a54471750961d382c807c338e75248ee261783",
+    "sourceDirty": false,
+    "codeFingerprint": "0cdf990a4096cfea7f4747a47f6460668ebbd1b8b9595dfb211d84062001509d",
+    "inputFiles": 390
+  },
+  "stampedDocuments": [
+    "docs/aw2/DELIVERY_PLAN.md",
+    "docs/aw2/CANON.md",
+    "docs/aw2/HANDOFF.md",
+    "docs/aw2/REPORT.md",
+    "docs/aw2/BACKLOG.md",
+    "docs/aw2/CHANGELOG.md",
+    "docs/aw2/STATUS.md",
+    "docs/aw2/TEST_LEDGER.md",
+    "docs/aw2/README.md",
+    "docs/aw2/PROGRESS.md",
+    "docs/aw2/tasks/AW2-008A.md",
+    "docs/aw2/evidence/AW2-008A-review-build.json",
+    "docs/aw2/evidence/AW2-008A-reused-evidence.json",
+    "docs/aw2/evidence/AW2-008A.md",
+    "docs/aw2/evidence/AW2-008A-verification.json"
+  ],
+  "browserReportSha256": {
+    "source": "907d808acbc650a7047e2fc69ffd124154c11fc2bbbce71d41562dae201737df",
+    "compiled": "f89b7dbec32a0a294d9ee2bbc71ebaf907cec6dc66b191f14cd581b0e86f89eb"
+  },
+  "compiledPrefixSha256": "83f6f1b02b1a3414d08fb1ad1a7830806e5c45d1f54743ac27f9e9175ae03640",
+  "workspace": "docs/aw2/evidence/AW2-008A-workspace.json",
+  "cleanliness": "Tracked tree clean.18incoming owner reference files remain intentionally untracked and unchanged by SHA256; never staged or deleted.",
+  "completion": "Documentation-only source stamp/proof follows. Final completion SHA recorded in ignored .asset-work proof, with independent fetch/remote=localHEAD/clean tracked tree and preserved incoming hashes.",
+  "protectedRefs": {
+    "master": "f9d39257d17b4dd378a2fbd2a9f936724754fc16",
+    "rpg": "5f14e42b1ab8e35764c379f2c5b14e81e5be945f"
+  },
+  "deployed": false,
+  "released": false
+}
