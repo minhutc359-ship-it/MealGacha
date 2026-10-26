@@ -3,6 +3,7 @@ import type { ZoneId } from "./ids"
 export interface Waypoint {
   x: number
   y: number
+  entityId?: string
 }
 
 export function clearPath(zone: ZoneId, from: Waypoint, to: Waypoint): boolean {

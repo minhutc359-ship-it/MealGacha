@@ -6,6 +6,7 @@ import {
   ZONE_IDS,
 } from "./ids"
 import { canStand, zoneById, type WorldObject } from "./maps"
+import { worldObjects, type NpcPatrolState } from "./npcPatrol"
 import { worldProgressSchema, type WorldProgress } from "./model"
 
 export const INTERACT_RANGE = 48
@@ -52,9 +53,12 @@ export function currentObjective(state: WorldProgress): string {
           : "Trở về Bà Giữ Chỗ, chọn cách giữ lời mời."
   return "Bếp đã sáng. Bạn có thể khám phá, mở rương và chia một bữa ấm."
 }
-export function nearestObject(state: WorldProgress): WorldObject | undefined {
-  return zoneById(state.zoneId)
-    .objects.filter(
+export function nearestObject(
+  state: WorldProgress,
+  patrol?: Readonly<NpcPatrolState>,
+): WorldObject | undefined {
+  return worldObjects(state, patrol)
+    .filter(
       (object) =>
         Math.hypot(state.x - object.x, state.y - object.y) <= INTERACT_RANGE,
     )

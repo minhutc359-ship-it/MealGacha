@@ -1,0 +1,44 @@
+{
+  "task": "AW2-016B",
+  "status": "PASS",
+  "sourceUnchanged": true,
+  "exactRgba": true,
+  "safeFrames": 16,
+  "maxFrameEdgeAlpha": 4,
+  "fullCellCoverage": true,
+  "measuredFootAnchors": true,
+  "pinnedReference": true,
+  "repeatIdenticalPaths": 5,
+  "sha256": {
+    "src/aw2/assets/dem-nuoc.patrol-v1.json": "e172cd7e42192a32a2891acc18351e2fd0553cffcfc96d8616ad81fd8ae1814d",
+    "dev/aw2/assets/npcs/dem-nuoc/patrol-v1/patrol-source.png": "892875ff68b00a7b70b076281554b63ba565b66269739bcf9c959c9b906d0aa3",
+    "dev/aw2/assets/npcs/dem-nuoc/patrol-v1/patrol.webp": "e490aca4e22d5a47822abb9ac7aec148ee94a68876bd56afb8ed0f57c6f6f985",
+    "dev/aw2/assets/npcs/dem-nuoc/patrol-v1/prompts.json": "c65bd2582b981d69ad3fd0b13048d2220c51996ed50d52ad92c2fd1e5a8b813d",
+    "dev/aw2/assets/npcs/dem-nuoc/patrol-v1/provenance.json": "4d200140dfca5c4985d9585b0022b323141481633aa4f899b82ef48a19771dd5"
+  },
+  "budget": {
+    "requiredTextures": 13,
+    "compressedBytes": 16109916,
+    "decodedRgbaBytes": 78916656,
+    "maxCompressedBytes": 18000000,
+    "maxDecodedRgbaBytes": 80000000,
+    "leader": "Separate chosen leader atlas; not measured total GPU memory"
+  },
+  "requiredUrls": [
+    "/dev/aw2/assets/environments/lantern-street/v1/floor.webp",
+    "/dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+    "/dev/aw2/assets/environments/kitchen-pantry/v1/props.webp",
+    "/dev/aw2/assets/environments/covenant-village/v2/foreground.webp",
+    "/dev/aw2/assets/npcs/va-den/idle-v1/idle.webp",
+    "/dev/aw2/assets/npcs/nguoi-ban/idle-v1/idle.webp",
+    "/dev/aw2/assets/npcs/sua-ghe/idle-v1/idle.webp",
+    "/dev/aw2/assets/npcs/dem-nuoc/patrol-v1/patrol.webp",
+    "/dev/aw2/assets/npcs/ban-bai/idle-v1/idle.webp",
+    "/dev/aw2/assets/npcs/ban-co/idle-v1/idle.webp",
+    "/dev/aw2/assets/environments/settlement/v1/homes.webp",
+    "/dev/aw2/assets/environments/settlement/v1/shops.webp",
+    "/dev/aw2/assets/environments/ambient/v1/street-lantern.webp"
+  ],
+  "exactPromptStatus": "LOST_WITH_TEMPORARY_WORKSPACE",
+  "rights": "REVIEW_REQUIRED / NOT_CLEARED"
+}

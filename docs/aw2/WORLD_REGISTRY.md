@@ -1,5 +1,7 @@
 # Map registry và bản đồ hành trình
 
+016B adds one transient live-position provider for Em Đem Nước through `worldObjects`/`npcPatrolView`. Registry coordinates remain canonical story anchors. Renderer/proximity/labels/native destinations/quest guidance receive one controller snapshot; the existing memory write is available only at its immediate story anchor. No portal/spawn/blocker/save contract changes. [Patrol contract and limits](NPC_PATROL.md).
+
 Triển khai AW2-016A + AW2-008B, nền `2caa108`. Mở `/dev/aw2/game.html` → **Thêm → Bản đồ hành trình**. Chọn một trong sáu vùng, xem **Đường đi** hoặc từng **Cửa nối**. `●` là vị trí hiện tại; `★` là vùng của mục tiêu nhiệm vụ. Không có lịch sử “đã ghé” giả lập.
 
 **Đi tới cửa kế tiếp** chỉ đi bộ tới gần cửa trong vùng hiện tại. Khi tới nơi, người chơi tự **E / Tương tác → Đi qua**. Cửa khóa, tuyến chưa mở, tài nguyên chưa sẵn sàng hoặc lỗi lưu đều khóa thao tác đi. Mở/đóng bản đồ, phân trang và chọn vùng không ghi save. Vùng đang xem được giữ qua lượt TCG/Chess trong cùng phiên.

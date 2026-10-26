@@ -1,0 +1,16 @@
+[
+  {
+    "path": "dev/tests/game/tcg470.test.ts",
+    "sourceSha256": "7d5a209ee8ec6fef66d6cfb9d3c9dcea23b928b45047c56261eb870c81a96b7e",
+    "transformedSha256": "676c7420efc47be48e47312bc7b6195de11f6cda05141b14f2d816fd0f75345c",
+    "onlyChange": "One explicit timeout 20000ms → 120000ms",
+    "occurrences": 1
+  },
+  {
+    "path": "dev/tests/game/expedition.test.ts",
+    "sourceSha256": "7650d154de566b260bbd9e0c1592b78f3c455615f64c60920fa1e1a946b121cb",
+    "transformedSha256": "aac7a575a9ea308c1c5520b118bd4482043b0e5af7d2c716ae8df9fe971b988b",
+    "onlyChange": "One explicit timeout 20000ms → 120000ms",
+    "occurrences": 1
+  }
+]

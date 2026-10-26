@@ -3,13 +3,26 @@ import {
   npcsForZone,
   sampleNpcIdle,
   type NpcMotion,
-  type NpcIdleFrame,
 } from "../../src/aw2/assets/npcMotion"
 import { zoneById } from "../../src/aw2/world/maps"
 import type { ZoneId } from "../../src/aw2/world/ids"
+import {
+  PATROL_VISUAL,
+  samplePatrolVisual,
+  type PatrolVisual,
+} from "../../src/aw2/assets/npcPatrol"
+import {
+  npcPatrolView,
+  PATROL_NPC_ID,
+  type NpcPatrolState,
+} from "../../src/aw2/world/npcPatrol"
+import type { WorldProgress } from "../../src/aw2/world/model"
+
+type NpcVisual = NpcMotion | PatrolVisual
+type NpcFrame = NpcMotion["frames"]["neutral"]
 
 type LoadedNpc = {
-  manifest: NpcMotion
+  manifest: NpcVisual
   texture: Texture
 }
 export function loadNpcTextures(
@@ -17,17 +30,22 @@ export function loadNpcTextures(
   load: (url: string) => Promise<Texture>,
 ): Promise<LoadedNpc[]> {
   return Promise.all(
-    npcsForZone(zoneId).map(async (manifest) => ({
-      manifest,
-      texture: await load(manifest.asset.url),
-    })),
+    npcsForZone(zoneId)
+      .map(
+        (npc): NpcVisual =>
+          npc.entityId === PATROL_NPC_ID ? PATROL_VISUAL : npc,
+      )
+      .map(async (manifest) => ({
+        manifest,
+        texture: await load(manifest.asset.url),
+      })),
   )
 }
 export interface NpcSprite {
-  manifest: NpcMotion
+  manifest: NpcVisual
   sprite: Sprite
-  frames: Record<NpcIdleFrame, Texture>
-  frame: NpcIdleFrame
+  frames: Record<string, Texture>
+  frame: string
 }
 /** Create owned subtextures after the consumer's disposed guard; source stays cached. */
 export function createNpcSprites(
@@ -41,32 +59,50 @@ export function createNpcSprites(
 ): NpcSprite[] {
   return loaded.map(({ manifest, texture }) => {
     texture.source.scaleMode = "nearest"
-    const frames = {} as Record<NpcIdleFrame, Texture>
+    const frames: Record<string, Texture> = {}
     for (const [key, f] of Object.entries(manifest.frames)) {
       const t = new pixi.Texture({
         source: texture.source,
         frame: new pixi.Rectangle(f.x, f.y, f.width, f.height),
       })
       owned.push(t)
-      frames[(key as NpcIdleFrame)] = t
+      frames[key] = t
     }
-    const sprite = new pixi.Sprite(frames.neutral)
+    const initial =
+      manifest.entityId === PATROL_NPC_ID ? "down-idle" : "neutral"
+    const sprite = new pixi.Sprite(frames[initial])
     const object = zoneById(manifest.zoneId as ZoneId).objects.find(
       (o) => o.id === manifest.entityId,
     )!
     sprite.position.set(object.x, object.y)
     sprite.zIndex = object.y
-    return { manifest, sprite, frames, frame: "neutral" }
+    return { manifest, sprite, frames, frame: initial }
   })
+}
+interface LiveNpcRender {
+  world: WorldProgress
+  patrol?: Readonly<NpcPatrolState>
 }
 export function renderNpcSprites(
   npcs: readonly NpcSprite[],
   elapsedMs: number,
   reduced: boolean,
+  live?: LiveNpcRender,
 ) {
   return npcs.map((npc) => {
-    const frame = sampleNpcIdle(npc.manifest, elapsedMs, reduced),
-      f = npc.manifest.frames[frame]
+    const patrolling = npc.manifest.entityId === PATROL_NPC_ID
+    const frame = patrolling
+      ? live
+        ? samplePatrolVisual(live.world, live.patrol, reduced)
+        : "down-idle"
+      : sampleNpcIdle(npc.manifest as NpcMotion, elapsedMs, reduced)
+    const f = (npc.manifest.frames as Record<string, NpcFrame>)[frame]
+    const pose =
+      patrolling && live ? npcPatrolView(live.world, live.patrol) : undefined
+    if (pose) {
+      npc.sprite.position.set(pose.x, pose.y)
+      npc.sprite.zIndex = pose.y
+    }
     npc.frame = frame
     npc.sprite.texture = npc.frames[frame]
     npc.sprite.anchor.set(f.anchorX / f.width, f.anchorY / f.height)
@@ -85,6 +121,9 @@ export function renderNpcSprites(
       height: npc.sprite.height,
       alpha: npc.sprite.alpha,
       elapsedMs,
+      ...(pose
+        ? { facing: pose.facing, moving: pose.moving, held: pose.held }
+        : {}),
     }
   })
 }

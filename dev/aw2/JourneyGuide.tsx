@@ -3,10 +3,12 @@ import type { Waypoint } from "../../src/aw2/world/navigation"
 import { journeyDirections } from "../../src/aw2/world/journey"
 import { zoneById } from "../../src/aw2/world/maps"
 import { INTERACT_RANGE } from "../../src/aw2/world/rules"
+import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
 
 interface Props {
   objective: string
   world: WorldProgress
+  patrol?: Readonly<NpcPatrolState>
   disabled: boolean
   onNavigate: (point: Waypoint) => void
 }
@@ -14,10 +16,11 @@ interface Props {
 export function JourneyGuide({
   objective,
   world,
+  patrol,
   disabled,
   onNavigate,
 }: Props) {
-  const directions = journeyDirections(world)
+  const directions = journeyDirections(world, patrol)
   return (
     <section className="aw2-journey-guide" aria-label="Mục tiêu hành trình">
       <h2>Mục tiêu trước mắt</h2>
@@ -61,7 +64,12 @@ export function JourneyGuide({
                     aria-label={`Theo mục tiêu: ${direction.targetName}`}
                     data-testid={`journey-walk-${direction.targetId}`}
                     disabled={disabled || nearby}
-                    onClick={() => onNavigate(direction.approach)}
+                    onClick={() =>
+                      onNavigate({
+                        ...direction.approach,
+                        entityId: direction.next.id,
+                      })
+                    }
                   >
                     {nearby ? "Đã tới gần" : "Đi theo mục tiêu"}
                   </button>

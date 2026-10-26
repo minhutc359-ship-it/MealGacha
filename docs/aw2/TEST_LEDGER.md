@@ -1,5 +1,15 @@
 # Test ledger / change impact
 
+## AW2-016B — NPC patrol, 2026-10-27
+
+Base `eb70cdcfa9f0bc3619934885a9de0507aa7f1bce`; runtime fingerprint `e3d3522031b88f6eb090d2e5570f483a2831e6a19f6489cc4e8393685b132951`,405 inputs; sourceDirty=true/base recorded honestly.22 focused NPC tests PASS. Full serial run132files/1,689cases:1,687PASS/2FAIL_TIMEOUT_ONLY at explicit20s. Both named simulations passed under QA-only120s transformation,31,235ms and34,372ms;33 filtered-out cases in that rerun were already covered by the full run and are not counted again. Default full-suite status remains FAIL_TIMEOUT_ONLY, not PASS. All1,689 unique cases have passing functional assertions across these runs; a speed-budget result is separate.
+
+Late change only tightens JourneyLandscape labels to visible stage bounds. Substituting the pre-fix version of that one file exactly reproduces the full-unit basis fingerprint `77eaeee77a1ecfb66268ebdd616cd49f0450bcf83032ca68682998154d6bac7f`; other inputs/logic/tests unchanged. Final dev types/build plus complete55source+55compiled browser runs rerun after the label fix; root typecheck (src/vite.config.ts scope) and stable build remain applicable. No extra full run or historical assertion counts added.
+
+110fresh final browser checks PASS, six local captures,0unexpected errors; actual intro, moved NPC interaction, canonical memory anchor/failed write/retry/once-only80XP, modes entry-return, reload, atlas404/recovery, blur/reduced, visible labels and44pxcontrols at320/390/768/1280/chữ20px. Earlier timing/selector/harness diagnostics are excluded.16safe frames, exactRGBA/source hashes/pinned own-project reference, repeat5paths,13street textures16,109,916compressed/78,916,656decoded bytes≤18MB/80MB, leader separate; not totalGPUmemory. Build305files/121,738,941bytes/259asset parity; stable852files/177,450,422bytes/76textisolation and release guard PASS.
+
+Original PNG recovered from uploaded Git blob after workspace loss; exact prompt unavailable, reconstructed brief explicitly labeled, rights/fullNpcComplete open. In-session BA/story/character/mechanic/animation/tester/scretary/React review; actual selected source and final browser captures inspected. Physical phone/independent human/FPS/full fresh boss/full mode round/rights/release NOT_RUN or OPEN. Demo90/product≈40% unchanged. [Detailed evidence](evidence/AW2-016B.md).
+
 ## AW2-015B /016A /008B —2026-10-26
 
 **AW2-015B /016A /008B VERIFIED — trận và bản đồ trong khung chơi cố định.** Sảnh/TCG/Auto Chess/boss trên `game.html` đã phân trang cùng44pxcontrols; giữ ghim/trang nhật ký/vùng đang xem qua lượt chơi. Quầy cờ đánh dấu và đếm bản đang có. **Thêm → Bản đồ hành trình** có sáu vùng, vị trí/mục tiêu, cửa mở/khóa và đi bộ tới cửa kế; tự E/Đi qua, không tự dịch chuyển. Registry typed/runtime-validation chiếu sáu map/támNPC/portal/spawn hiện hành, không đổi luật/save/geometry; preload/rollback/nội thất mới vẫn là hợp đồng kế tiếp.

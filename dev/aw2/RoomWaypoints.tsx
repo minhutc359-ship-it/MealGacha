@@ -9,14 +9,17 @@ import {
 } from "../../src/aw2/assets/journeyScenes"
 import type { Economy } from "../../src/aw2/economy/model"
 import { zoneById } from "../../src/aw2/world/maps"
+import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
 
 export function RoomWaypoints({
   world,
+  patrol,
   economy,
   disabled,
   onChoose,
 }: {
   world: WorldProgress
+  patrol?: Readonly<NpcPatrolState>
   economy?: Readonly<Economy>
   disabled: boolean
   onChoose: (point: Waypoint) => void
@@ -26,11 +29,13 @@ export function RoomWaypoints({
   const journey = journeyScene(world.zoneId)
   const points = journey
     ? economy
-      ? journeyWaypoints(world, economy).map(({ walkX, walkY, ...p }) => ({
-          ...p,
-          x: walkX,
-          y: walkY,
-        }))
+      ? journeyWaypoints(world, economy, patrol).map(
+          ({ walkX, walkY, ...p }) => ({
+            ...p,
+            x: walkX,
+            y: walkY,
+          }),
+        )
       : []
     : village
       ? villageWaypoints(world).map(({ walkX, walkY, ...point }) => ({
@@ -70,7 +75,9 @@ export function RoomWaypoints({
             data-testid={`room-waypoint-${point.id}`}
             disabled={disabled || point.locked}
             aria-label={`Đi tới ${point.name}`}
-            onClick={() => onChoose({ x: point.x, y: point.y })}
+            onClick={() =>
+              onChoose({ x: point.x, y: point.y, entityId: point.id })
+            }
           >
             <strong>{point.name}</strong>
             <small>{point.status}</small>

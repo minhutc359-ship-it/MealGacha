@@ -6,7 +6,7 @@ import type { WorldProgress } from "../world/model"
 import type { Economy } from "../economy/model"
 import { CHEST_RECEIPT } from "../economy/model"
 import { MEMORY_IDS } from "../world/ids"
-import { zoneById } from "../world/maps"
+import { worldObjects, type NpcPatrolState } from "../world/npcPatrol"
 import { describeObject } from "../world/rules"
 import type { SceneBounds } from "./tableRoom"
 
@@ -31,9 +31,10 @@ export const journeyScene = (zoneId: string) =>
 export function journeyWaypoints(
   world: WorldProgress,
   economy: Readonly<Economy>,
+  patrol?: Readonly<NpcPatrolState>,
 ) {
   if (!journeyScene(world.zoneId)) return []
-  return zoneById(world.zoneId).objects.map((object) => {
+  return worldObjects(world, patrol).map((object) => {
     const actions = describeObject(world, object).actions
     let short = object.name,
       status =
@@ -114,9 +115,13 @@ export function journeyWaypoints(
     }
   })
 }
-export function journeyProps(world: WorldProgress, economy: Readonly<Economy>) {
+export function journeyProps(
+  world: WorldProgress,
+  economy: Readonly<Economy>,
+  patrol?: Readonly<NpcPatrolState>,
+) {
   const scene = journeyScene(world.zoneId),
-    points = journeyWaypoints(world, economy)
+    points = journeyWaypoints(world, economy, patrol)
   if (!scene) return []
   return scene.props.map((spec) => {
     const point = points.find((p) => p.id === spec.entityId)!

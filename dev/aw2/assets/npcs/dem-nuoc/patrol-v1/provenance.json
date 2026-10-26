@@ -1,0 +1,26 @@
+{
+  "task": "AW2-016B",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-26",
+  "recoveryDate": "2026-10-27",
+  "recoveredOriginalGitBlob": "dd01e53149a725c29c4867df626b49786b5d6fa2",
+  "exactPromptStatus": "LOST_WITH_TEMPORARY_WORKSPACE",
+  "prompts": {
+    "path": "dev/aw2/assets/npcs/dem-nuoc/patrol-v1/prompts.json",
+    "sha256": "c65bd2582b981d69ad3fd0b13048d2220c51996ed50d52ad92c2fd1e5a8b813d"
+  },
+  "references": [
+    {
+      "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/idle-source.png",
+      "commit": "eb70cdcfa9f0bc3619934885a9de0507aa7f1bce",
+      "blob": "ed334446c0308bdf1d041d9d2612b7da57cbf569",
+      "sha256": "623ee675fec778a1b73eef3b3a78e2fc5e7013e98b2bff655f8536fc6aeb1506"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "builder": "dev/tools/build-aw2-npc-patrol.py",
+  "pillow": "12.3.0",
+  "processing": "Original recovered PNG unchanged; exact RGBA lossless WebP. Read-only alpha/foot measurements; no painting, mirroring, masking, resizing or interpolation."
+}

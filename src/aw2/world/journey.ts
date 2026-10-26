@@ -9,6 +9,7 @@ import { zoneById, type WorldObject } from "./maps"
 import type { WorldProgress } from "./model"
 import { describeObject } from "./rules"
 import type { Waypoint } from "./navigation"
+import { worldObjects, type NpcPatrolState } from "./npcPatrol"
 
 export interface JourneyDirection {
   targetId: string
@@ -76,12 +77,15 @@ export function journeyRoute(
 }
 
 /** Directions do not move, persist, grant, interact or cross a zone boundary. */
-export function journeyDirections(state: WorldProgress): JourneyDirection[] {
+export function journeyDirections(
+  state: WorldProgress,
+  patrol?: Readonly<NpcPatrolState>,
+): JourneyDirection[] {
   return targets(state).flatMap((id) => {
     const targetZone = ZONE_IDS.find((zone) =>
       zoneById(zone).objects.some((object) => object.id === id),
     )!
-    const target = zoneById(targetZone).objects.find(
+    const target = worldObjects({ ...state, zoneId: targetZone }, patrol).find(
       (object) => object.id === id,
     )!
     const zones = journeyRoute(state, targetZone)

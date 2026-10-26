@@ -1,4 +1,10 @@
-# Báo cáo Adventure World 2 —26/10/2026
+# Báo cáo Adventure World 2 —27/10/2026
+
+**AW2-016B VERIFIED development slice — Em Đem Nước tuần tra với vị trí tương tác thật.** Bốn hướng/16 tư thế nguyên bản; sprite, nhãn, độ sâu, E, điểm đến native và chỉ đường dùng cùng snapshot. Đi tới NPC giữ vị trí hiện tại; khi cần ký ức nhiệm vụ, em về điểm nhiệm vụ ngay. Menu/hội thoại/ghi lỗi/tải lỗi/mất focus/giảm chuyển động đều dừng tuần tra. Sửa tràn khung chữ lớn, nhãn bị cắt ở mép bản đồ và loại tệp tạm khỏi bản đóng gói AW2.
+
+**110 kiểm tra trình duyệt mới = 55 source + 55 compiled PASS**, bốn viewport/chữ20px, ghi lỗi→thử lại, ba ký ức/80XP, hai mode đi–về, reload, atlas404→khôi phục; không lỗi bất ngờ.22 ca NPC đạt và đã nằm trong lượt hồi quy tổng: **1.687/1.689 ca đạt mặc định; hai mô phỏng cũ timeout20s**, sau đó cả2 đạt với allowance120s, giữ nguyên assertion/seed/loop và nguồn test. Không gọi lượt mặc định là full PASS. Hai typecheck, asset audit, AW2/stable builds đạt. [Cách chơi](NPC_PATROL.md) · [Bằng chứng và ngoại lệ](evidence/AW2-016B.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là một NPC locomotion reference, chưa phải full NPC/rights/nghiệm thu độc lập hoặc điện thoại thật; D18/D20/D11 giữ nguyên. Next: preload/rollback khi chuyển vùng, rồi một nội thất có canon/migration riêng. D16 phát triển/push trực tiếp AW2; không product/master/deploy/release/reset. Các bản ghi bên dưới là lịch sử; trạng thái hiện hành theo016B.
 
 **AW2-015B /016A /008B VERIFIED — trận và bản đồ trong khung chơi cố định.** Sảnh/TCG/Auto Chess/boss trên `game.html` đã phân trang cùng44pxcontrols; giữ ghim/trang nhật ký/vùng đang xem qua lượt chơi. Quầy cờ đánh dấu và đếm bản đang có. **Thêm → Bản đồ hành trình** có sáu vùng, vị trí/mục tiêu, cửa mở/khóa và đi bộ tới cửa kế; tự E/Đi qua, không tự dịch chuyển. Registry typed/runtime-validation chiếu sáu map/támNPC/portal/spawn hiện hành, không đổi luật/save/geometry; preload/rollback/nội thất mới vẫn là hợp đồng kế tiếp.
 

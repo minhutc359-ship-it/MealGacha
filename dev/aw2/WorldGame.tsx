@@ -17,6 +17,7 @@ import {
 } from "./GamePanels"
 import type { Aw2ModeId } from "../../src/aw2/modes/catalog"
 import type { ZoneId } from "../../src/aw2/world/ids"
+import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
 import { JourneyOverview } from "./JourneyOverview"
 import "./game.css"
 
@@ -28,6 +29,7 @@ interface Props {
   overviewMemory: RefObject<ZoneId>
   snapshot: SaveSnapshot
   world: WorldProgress
+  patrol?: Readonly<NpcPatrolState>
   panel: GamePanel
   busy: boolean
   error: string
@@ -217,6 +219,7 @@ export function WorldGame(props: Props) {
               memory={journalMemory}
               save={save}
               world={world}
+              patrol={props.patrol}
               canWalk={canWalk}
               pinned={pinned}
               onPin={props.onPin}
@@ -242,6 +245,7 @@ export function WorldGame(props: Props) {
           {panel === "places" && save && (
             <GamePlacesPanel
               world={world}
+              patrol={props.patrol}
               canWalk={canWalk}
               onWalk={props.onWalk}
             />

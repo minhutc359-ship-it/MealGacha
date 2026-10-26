@@ -23,6 +23,10 @@ import {
 import { journeyDirections } from "../../src/aw2/world/journey"
 import { describeObject, INTERACT_RANGE } from "../../src/aw2/world/rules"
 import { zoneById } from "../../src/aw2/world/maps"
+import {
+  worldObjects,
+  type NpcPatrolState,
+} from "../../src/aw2/world/npcPatrol"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import {
   canUseKitchen,
@@ -180,6 +184,7 @@ interface QuestPanelProps {
   memory: RefObject<QuestViewState>
   save: Aw2DevSave
   world: WorldProgress
+  patrol?: Readonly<NpcPatrolState>
   canWalk: boolean
   pinned: boolean
   onPin: () => void
@@ -189,6 +194,7 @@ export function GameQuestPanel({
   memory,
   save,
   world,
+  patrol,
   canWalk,
   pinned,
   onPin,
@@ -203,7 +209,7 @@ export function GameQuestPanel({
   const quests = questJournal(world, save.economy),
     view = pageSlice(quests, page, 1),
     quest = view.items[0]
-  const directions = quest.current ? journeyDirections(world) : [],
+  const directions = quest.current ? journeyDirections(world, patrol) : [],
     destinations = pageSlice(directions, destination, 1),
     direction = destinations.items[0]
   return (
@@ -266,7 +272,9 @@ export function GameQuestPanel({
                 data-testid={`game-quest-walk-${direction.targetId}`}
                 data-approach-x={direction.approach.x}
                 data-approach-y={direction.approach.y}
-                onClick={() => onWalk(direction.approach)}
+                onClick={() =>
+                  onWalk({ ...direction.approach, entityId: direction.next.id })
+                }
               >
                 Đi tới{" "}
                 {direction.zones.length > 1 ? "cửa kế tiếp" : "gần mục tiêu"}
@@ -585,12 +593,18 @@ export function GamePartyPanel({ save, busy, onAction }: PartyProps) {
 
 interface PlacesProps {
   world: WorldProgress
+  patrol?: Readonly<NpcPatrolState>
   canWalk: boolean
   onWalk: (point: Waypoint) => void
 }
-export function GamePlacesPanel({ world, canWalk, onWalk }: PlacesProps) {
+export function GamePlacesPanel({
+  world,
+  patrol,
+  canWalk,
+  onWalk,
+}: PlacesProps) {
   const [page, setPage] = useState(0),
-    view = pageSlice(zoneById(world.zoneId).objects, page, 1),
+    view = pageSlice(worldObjects(world, patrol), page, 1),
     object = view.items[0]
   const locked =
     object.kind === "exit" &&
@@ -614,7 +628,7 @@ export function GamePlacesPanel({ world, canWalk, onWalk }: PlacesProps) {
           onWalk(
             object.kind === "exit"
               ? { x: object.x + (object.x > 320 ? -24 : 24), y: object.y }
-              : { x: object.x, y: object.y + 32 },
+              : { x: object.x, y: object.y + 32, entityId: object.id },
           )
         }
       >

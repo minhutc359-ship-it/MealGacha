@@ -2,7 +2,7 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import { fileURLToPath } from "node:url"
 import { cp, mkdir, readdir, writeFile } from "node:fs/promises"
-import { join } from "node:path"
+import { basename, join } from "node:path"
 import { aw2ReviewBuild } from "./tools/aw2-review-build"
 
 const root = fileURLToPath(new URL("../", import.meta.url))
@@ -39,7 +39,8 @@ export default defineConfig({
         const destination = join(root, "dist-aw2/dev/aw2/assets")
         await cp(source, destination, {
           recursive: true,
-          filter: async (path) => !/\.(png)$/i.test(path),
+          filter: async (path) =>
+            !basename(path).startsWith(".") && !/\.(png)$/i.test(path),
         })
         await mkdir(join(root, "dist-aw2"), { recursive: true })
         await writeFile(

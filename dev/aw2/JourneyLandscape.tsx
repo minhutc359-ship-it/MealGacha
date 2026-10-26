@@ -43,6 +43,7 @@ import {
 /** Three remaining regions share authored layers; committed progress/economy stay read-only. */
 export function JourneyLandscape({
   world,
+  patrol,
   economy,
   onNavigate,
   paused,
@@ -50,6 +51,8 @@ export function JourneyLandscape({
   onReadyChange,
 }: WorldCanvasProps) {
   const scene = journeyScene(world.zoneId)!
+  const patrolRef = useRef(patrol)
+  patrolRef.current = patrol
   const committedEconomy = useRef(economy)
   committedEconomy.current = economy
   const host = useRef<HTMLDivElement>(null),
@@ -66,7 +69,7 @@ export function JourneyLandscape({
   pause.current = paused
   viewMode.current = mode
   const leader = world.partyIds[0] ?? "aw2-than",
-    points = journeyWaypoints(world, economy)
+    points = journeyWaypoints(world, economy, patrol)
   useEffect(() => {
     let disposed = false,
       app: Application | undefined,
@@ -165,7 +168,11 @@ export function JourneyLandscape({
           textures,
         )
         for (const item of ambient) next.stage.addChild(item.sprite)
-        const objects = journeyProps(position.current, committedEconomy.current)
+        const objects = journeyProps(
+          position.current,
+          committedEconomy.current,
+          patrolRef.current,
+        )
           .filter((prop) => !npcForEntity(prop.entityId))
           .map((prop) => {
             const asset = scene.assets[(prop.asset as "props" | "threshold")]
@@ -272,7 +279,11 @@ export function JourneyLandscape({
             item.sprite.position.set(prop.x, prop.y)
             item.sprite.alpha = prop.alpha
           }
-          const currentProps = journeyProps(now, committedEconomy.current)
+          const currentProps = journeyProps(
+            now,
+            committedEconomy.current,
+            patrolRef.current,
+          )
           for (const prop of currentProps)
             (
               objects.find((o) => o.entityId === prop.entityId)?.sprite ??
@@ -280,7 +291,10 @@ export function JourneyLandscape({
                 .sprite
             ).alpha = prop.alpha
           next.canvas.dataset.npcMotion = JSON.stringify(
-            renderNpcSprites(npcSprites, npcElapsed, reduced.matches),
+            renderNpcSprites(npcSprites, npcElapsed, reduced.matches, {
+              world: now,
+              patrol: patrolRef.current,
+            }),
           )
           next.canvas.dataset.ambientMotion = JSON.stringify(
             renderAmbientSprites(ambient, npcElapsed, reduced.matches),
@@ -294,7 +308,23 @@ export function JourneyLandscape({
               })),
             ]),
           )
-          const viewport = next.canvas.getBoundingClientRect()
+          const canvasViewport = next.canvas.getBoundingClientRect()
+          const clippedStage = host.current?.closest(".aw2-game-map")
+          const stageViewport = clippedStage?.getBoundingClientRect()
+          const toolbarBottom = clippedStage
+            ?.querySelector(".aw2-map-toolbar")
+            ?.getBoundingClientRect().bottom
+          const viewport = stageViewport
+            ? {
+                left: Math.max(canvasViewport.left, stageViewport.left),
+                right: Math.min(canvasViewport.right, stageViewport.right),
+                top: Math.max(
+                  canvasViewport.top,
+                  toolbarBottom ?? stageViewport.top,
+                ),
+                bottom: Math.min(canvasViewport.bottom, stageViewport.bottom),
+              }
+            : canvasViewport
           for (const prop of currentProps) {
             const label = labels.current.get(prop.entityId)
             if (!label) continue
@@ -500,6 +530,7 @@ export function JourneyLandscape({
       />
       <RoomWaypoints
         world={world}
+        patrol={patrol}
         economy={economy}
         disabled={!ready || paused}
         onChoose={(point) => {

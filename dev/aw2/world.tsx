@@ -38,6 +38,15 @@ import { WorldGame, type GamePanel } from "./WorldGame"
 import { PagedCopy, trapPanelTab, type QuestViewState } from "./GamePanels"
 import type { ZoneId } from "../../src/aw2/world/ids"
 import "./styles.css"
+import {
+  advanceNpcPatrol,
+  facePatrolNpc,
+  newNpcPatrol,
+  PATROL_NPC_ID,
+  pinNpcApproach,
+  releaseNpcApproach,
+  type NpcPatrolState,
+} from "../../src/aw2/world/npcPatrol"
 
 const singleViewport = window.location.pathname.endsWith("/game.html")
 
@@ -53,6 +62,11 @@ function WorldPreview() {
     snapshot.status === "ready" ? snapshot.save.progress : newWorldProgress(),
   )
   const [dialogObject, setDialogObject] = useState<WorldObject | null>(null)
+  const [patrol, setPatrol] = useState(() => newNpcPatrol(world.zoneId))
+  const patrolRef = useRef(patrol)
+  const patrolReady = useRef(false)
+  const reducedMotion = useRef(false)
+  const activeWindow = useRef(!document.hidden)
   const [busy, setBusy] = useState(false)
   const [gamePanel, setGamePanel] = useState<GamePanel>("none")
   const [questPinned, setQuestPinned] = useState(true)
@@ -101,6 +115,28 @@ function WorldPreview() {
     !!activeEncounter ||
     !!activeMode ||
     (singleViewport && gamePanel !== "none")
+  patrolReady.current =
+    snapshot.status === "ready" &&
+    !busy &&
+    !error &&
+    !!mapReadiness?.ready &&
+    mapReadiness.zoneId === world.zoneId &&
+    mapReadiness.leaderId === (world.partyIds[0] ?? "aw2-than")
+
+  function publishPatrol(next: NpcPatrolState) {
+    const prior = patrolRef.current
+    if (
+      Object.entries(next).every(
+        ([key, value]) => value === Reflect.get(prior, key),
+      )
+    )
+      return
+    patrolRef.current = next
+    setPatrol(next)
+  }
+  function releasePatrol() {
+    publishPatrol(releaseNpcApproach(patrolRef.current))
+  }
 
   function openInteraction() {
     route.current = []
@@ -108,13 +144,25 @@ function WorldPreview() {
       return
     keys.current.clear()
     route.current = []
-    const object = nearestObject(worldRef.current)
-    if (object) setDialogObject(object)
-    else
+    const object = nearestObject(worldRef.current, patrolRef.current)
+    if (object) {
+      if (object.id === PATROL_NPC_ID)
+        publishPatrol(facePatrolNpc(worldRef.current, patrolRef.current))
+      else releasePatrol()
+      setDialogObject(object)
+    } else {
+      releasePatrol()
       setMessage("Đến gần một người, đồ vật hoặc cửa rồi nhấn E / Tương tác.")
+    }
   }
 
   useEffect(() => {
+    const motion = matchMedia("(prefers-reduced-motion: reduce)")
+    const changedMotion = () => {
+      reducedMotion.current = motion.matches
+    }
+    changedMotion()
+    motion.addEventListener("change", changedMotion)
     const isNativeControl = (target: EventTarget | null) =>
       target instanceof Element &&
       !target.closest("[data-aw2-world-control]") &&
@@ -144,6 +192,7 @@ function WorldPreview() {
         keys.current.clear()
         route.current = []
         queuedWalk.current = null
+        releasePatrol()
         setGamePanel((panel) => (panel === "quest" ? "none" : "quest"))
         return
       }
@@ -160,6 +209,7 @@ function WorldPreview() {
       event.preventDefault()
       if (action.type === "interact") openInteraction()
       else {
+        releasePatrol()
         route.current = []
         keys.current.add(action.key)
       }
@@ -173,7 +223,28 @@ function WorldPreview() {
     const focused = (event: FocusEvent) => {
       if (isNativeControl(event.target)) stop()
     }
+    const blur = () => {
+      activeWindow.current = false
+      stop()
+    }
+    const focus = () => {
+      activeWindow.current = !document.hidden
+    }
+    const visibility = () => {
+      activeWindow.current = !document.hidden
+      stop()
+    }
     const timer = window.setInterval(() => {
+      publishPatrol(
+        advanceNpcPatrol(worldRef.current, patrolRef.current, 33, {
+          paused:
+            paused.current ||
+            pending.current ||
+            !patrolReady.current ||
+            !activeWindow.current,
+          reduced: reducedMotion.current,
+        }),
+      )
       if (paused.current || pending.current || saved.current.status !== "ready")
         return
       const held = (a: string, b: string) =>
@@ -200,9 +271,10 @@ function WorldPreview() {
     }, 33)
     window.addEventListener("keydown", down)
     window.addEventListener("keyup", up)
-    window.addEventListener("blur", stop)
+    window.addEventListener("blur", blur)
+    window.addEventListener("focus", focus)
     window.addEventListener("focusin", focused)
-    document.addEventListener("visibilitychange", stop)
+    document.addEventListener("visibilitychange", visibility)
     const changed = (event: StorageEvent) => {
       if (event.key === AW2_DEV_SAVE_KEY || event.key === null) {
         stop()
@@ -216,9 +288,11 @@ function WorldPreview() {
       clearInterval(timer)
       window.removeEventListener("keydown", down)
       window.removeEventListener("keyup", up)
-      window.removeEventListener("blur", stop)
+      window.removeEventListener("blur", blur)
+      window.removeEventListener("focus", focus)
       window.removeEventListener("focusin", focused)
-      document.removeEventListener("visibilitychange", stop)
+      document.removeEventListener("visibilitychange", visibility)
+      motion.removeEventListener("change", changedMotion)
       window.removeEventListener("storage", changed)
     }
   }, [])
@@ -243,6 +317,7 @@ function WorldPreview() {
       dialog.current?.showModal()
       closeButton.current?.focus()
     } else {
+      releasePatrol()
       const wasOpen = dialog.current?.open
       dialog.current?.close()
       if (wasOpen) worldMap.current?.focus({ preventScroll: true })
@@ -279,6 +354,7 @@ function WorldPreview() {
       worldRef.current = newWorldProgress()
       setWorld(worldRef.current)
     }
+    publishPatrol(newNpcPatrol(worldRef.current.zoneId))
     setMessage("Đã đọc lại AW2.")
     setError("")
   }
@@ -468,12 +544,17 @@ function WorldPreview() {
     if (pending.current || paused.current || saved.current.status !== "ready")
       return
     keys.current.clear()
+    const approach = pinNpcApproach(worldRef.current, patrolRef.current, point)
+    publishPatrol(approach.patrol)
     route.current = findWorldPath(
       worldRef.current.zoneId,
       worldRef.current,
-      point,
+      approach.point,
     )
-    if (!route.current.length) setMessage("Chọn một điểm trên lối đi.")
+    if (!route.current.length) {
+      releasePatrol()
+      setMessage("Chọn một điểm trên lối đi.")
+    }
   }
   async function finishEncounter() {
     if (!activeEncounter || pending.current) return
@@ -582,7 +663,7 @@ function WorldPreview() {
       {error && <p role="alert">{error}</p>}
     </dialog>
   )
-  const nearby = nearestObject(world)
+  const nearby = nearestObject(world, patrol)
   const navigationReady =
     snapshot.status === "ready" &&
     !busy &&
@@ -600,6 +681,7 @@ function WorldPreview() {
         overviewMemory={overviewMemory}
         snapshot={snapshot}
         world={world}
+        patrol={patrol}
         panel={gamePanel}
         busy={busy}
         error={error}
@@ -613,6 +695,7 @@ function WorldPreview() {
               focusRef={worldMap}
               key={`${snapshot.save.saveId}:${mapEpoch}`}
               world={world}
+              patrol={patrol}
               economy={snapshot.save.economy}
               onNavigate={navigate}
               paused={busy || !!dialogObject || gamePanel !== "none"}
@@ -622,6 +705,7 @@ function WorldPreview() {
         }
         dialog={interactionDialog}
         onPanel={(panel) => {
+          releasePatrol()
           keys.current.clear()
           route.current = []
           queuedWalk.current = null
@@ -640,11 +724,13 @@ function WorldPreview() {
             return
           }
           if (paused.current || !navigationReady) return
+          releasePatrol()
           route.current = []
           keys.current.add(key)
         }}
         onStep={(key) => {
           if (paused.current || !navigationReady) return
+          releasePatrol()
           route.current = []
           const next = moveWorld(
             worldRef.current,
@@ -708,6 +794,7 @@ function WorldPreview() {
           <JourneyGuide
             objective={currentObjective(world)}
             world={world}
+            patrol={patrol}
             disabled={
               busy ||
               !!dialogObject ||
@@ -725,6 +812,7 @@ function WorldPreview() {
             focusRef={worldMap}
             key={`${snapshot.save.saveId}:${mapEpoch}`}
             world={world}
+            patrol={patrol}
             economy={snapshot.save.economy}
             onNavigate={navigate}
             paused={busy || !!dialogObject}
@@ -770,6 +858,7 @@ function WorldPreview() {
                 disabled={busy}
                 style={{ touchAction: "none" }}
                 onPointerDown={(event) => {
+                  releasePatrol()
                   event.currentTarget.setPointerCapture(event.pointerId)
                   route.current = []
                   keys.current.add(key)
@@ -780,6 +869,7 @@ function WorldPreview() {
                 onClick={(event) => {
                   if (event.detail !== 0 || pending.current || paused.current)
                     return
+                  releasePatrol()
                   route.current = []
                   const next = moveWorld(
                     worldRef.current,
