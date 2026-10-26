@@ -1,6 +1,6 @@
 {
   "task": "AW2-015A",
-  "source": "PENDING015A",
+  "source": "0936b948db633c66e5539f631e3f8aaf7920fda1",
   "base": "601fed31d9965c883afc14774b123c56f4b272ef",
   "mode": "owner-provided reference archive, no generation or raster processing",
   "archiveRoot": "docs/aw2/design/world-v1.1",

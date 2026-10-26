@@ -1,0 +1,68 @@
+{
+  "task": "AW2-015A",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "source": "0936b948db633c66e5539f631e3f8aaf7920fda1",
+  "sourceTree": "0a221d3d19357ebcc5598aa70469521d55cc8c75",
+  "expectedOldHead": "601fed31d9965c883afc14774b123c56f4b272ef",
+  "apiRefUpdate": {
+    "success": true,
+    "force": false,
+    "expectedSha": "601fed31d9965c883afc14774b123c56f4b272ef",
+    "newSha": "0936b948db633c66e5539f631e3f8aaf7920fda1"
+  },
+  "independentFetch": {
+    "phase": "source",
+    "base": "601fed31d9965c883afc14774b123c56f4b272ef",
+    "head": "0936b948db633c66e5539f631e3f8aaf7920fda1",
+    "tree": "0a221d3d19357ebcc5598aa70469521d55cc8c75",
+    "verifiedBlobs": 59,
+    "verifiedBinaryBlobs": 12,
+    "independentFetch": true,
+    "indexTreeEqualsRemote": true,
+    "ancestor": true,
+    "expectedHeadGuard": true,
+    "trackedWorkingTreeClean": true,
+    "preservedUntrackedFiles": 23,
+    "exactArchiveFiles": 22
+  },
+  "postcommitCleanAw2RuntimeIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "0936b948db633c66e5539f631e3f8aaf7920fda1",
+    "sourceDirty": false,
+    "codeFingerprint": "d508dae2732de764ef96e9b0c361770665687a6e1efc76c0714fc79cd2b9714a",
+    "inputFiles": 395
+  },
+  "stampedDocuments": [
+    "docs/aw2/DELIVERY_PLAN.md",
+    "docs/aw2/CANON.md",
+    "docs/aw2/HANDOFF.md",
+    "docs/aw2/REPORT.md",
+    "docs/aw2/BACKLOG.md",
+    "docs/aw2/CHANGELOG.md",
+    "docs/aw2/STATUS.md",
+    "docs/aw2/TEST_LEDGER.md",
+    "docs/aw2/README.md",
+    "docs/aw2/PROGRESS.md",
+    "docs/aw2/tasks/AW2-015A.md",
+    "docs/aw2/evidence/AW2-015A-review-build.json",
+    "docs/aw2/evidence/AW2-015A-spec-provenance.json",
+    "docs/aw2/evidence/AW2-015A.md",
+    "docs/aw2/evidence/AW2-015A-verification.json",
+    "docs/aw2/evidence/AW2-015A-reused-evidence.json"
+  ],
+  "browserReportSha256": {
+    "source": "e8b0e2f5fa52ce4f8f835b7dcf6aee57f80148836a6d756bb6a060d087326fc4",
+    "compiled": "0a0ba3e522a33049416c925b408dd09bdb33b04d8711cf060eb27ae740fefff9"
+  },
+  "referenceProvenance": "docs/aw2/evidence/AW2-015A-spec-provenance.json",
+  "archive": "22reference files/12binary images exactly equal originals; source included all59blobs and fetched exact staged tree.",
+  "cleanliness": "Tracked tree clean.23incoming owner original/ZIP files remain intentionally untracked and SHA256-identical.",
+  "completion": "Docs-only source stamp and proof follows; finalcompletion SHA stored in ignored .asset-work/final proof to avoid recursive self-reference, independently fetch/verify localHEAD=freshremote/cleantrackedtree/originalhashes.",
+  "protectedRefs": {
+    "master": "f9d39257d17b4dd378a2fbd2a9f936724754fc16",
+    "rpg": "5f14e42b1ab8e35764c379f2c5b14e81e5be945f"
+  },
+  "deployed": false,
+  "released": false
+}

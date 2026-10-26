@@ -1,7 +1,7 @@
 {
   "task": "AW2-015A",
   "status": "PASS_FIRST_EXPLORATION_MENU_SLICE",
-  "source": "PENDING015A",
+  "source": "0936b948db633c66e5539f631e3f8aaf7920fda1",
   "base": "601fed31d9965c883afc14774b123c56f4b272ef",
   "environment": {
     "os": "Linuxx64",
@@ -181,5 +181,14 @@
       "008B",
       "016B"
     ]
-  }
+  },
+  "postcommitCleanAw2RuntimeIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "0936b948db633c66e5539f631e3f8aaf7920fda1",
+    "sourceDirty": false,
+    "codeFingerprint": "d508dae2732de764ef96e9b0c361770665687a6e1efc76c0714fc79cd2b9714a",
+    "inputFiles": 395
+  },
+  "publication": "docs/aw2/evidence/AW2-015A-publication.json"
 }

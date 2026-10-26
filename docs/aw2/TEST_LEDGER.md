@@ -2,7 +2,7 @@
 
 ## AW2-015A v1.1reference integration +first exploration/menu shell —2026-10-26
 
-Source `PENDING015A`, base `601fed31d9965c883afc14774b123c56f4b272ef` includes concurrent design commits73ef962..601fed3preserved in history. Imported duplicateD13→D23and UI-only012→015normalized explicitly, six importedUI-QUEST cases mapped toUI-V11-01..10without claiming implementation. Exact22file1,980,952byte reference archive and23untracked originals/ZIPhashes PASS;0rastergeneration/edits, rightsREVIEW_REQUIRED. [Matrix](WORLD_V1_1_INTEGRATION.md), [provenance](evidence/AW2-015A-spec-provenance.json).
+Source `0936b948db633c66e5539f631e3f8aaf7920fda1`, base `601fed31d9965c883afc14774b123c56f4b272ef` includes concurrent design commits73ef962..601fed3preserved in history. Imported duplicateD13→D23and UI-only012→015normalized explicitly, six importedUI-QUEST cases mapped toUI-V11-01..10without claiming implementation. Exact22file1,980,952byte reference archive and23untracked originals/ZIPhashes PASS;0rastergeneration/edits, rightsREVIEW_REQUIRED. [Matrix](WORLD_V1_1_INTEGRATION.md), [provenance](evidence/AW2-015A-spec-provenance.json).
 
 Linuxx64/Node22.23.2/pnpm10.34.3/TS5.9.3/Vitest5.0.1/Vite8.0.5/Chrome153.0.8010.36/Playwright1.58.2.88unique unitcases/4files PASS in one affected run:31newreadonlyjournal/paging +57guide/world/control,0fail/skip.4canonicalquestIDs/rewards/receiptstatus, migration-style pendingreceipt fixture/no backfill/detachedrewards,30/100itemgenericpaging and longUnicodecopyexactness. Actual runtime has4mainquests/oneactive, not100authoredquests. Root/finaldevtypes PASS. [Commands/results](evidence/AW2-015A-verification.json).
 
@@ -842,3 +842,5 @@ Workspace note: phát hiện18tệp zip/spec/ảnh map–NPC mới chưa tracked
 | UI-QUEST-06 | TCG/AutoChess in-shell return without reset | Mode routing | NOT_RUN |
 
 015Astructural PASS:7formattedTS/TSX/MJSfiles,Nodesyntax,6JSON/24localMarkdownlinksets,23uniqueDecisionIDs and normalized taskaliases. Whole staged whitespace PASS with narrow archived-original Markdown policy; all22stagedreferenceblobs equal23preserved owner inputs/ZIP by hashes. Runtime395inputfingerprint unchanged after docs/attribute update.
+
+015A publication PASS: source `0936b948db633c66e5539f631e3f8aaf7920fda1`, exact staged/independently fetched tree `0a221d3d19357ebcc5598aa70469521d55cc8c75`;59blobs/12binarySHAs/index/ancestry/expected-head/nonforce update and clean tracked local sync verified.395inputfingerprint staysd508dae2732de764.22referencefiles archived exactly,23originals/ZIPkept untracked/hash-identical. [Publication proof](evidence/AW2-015A-publication.json). Final docs-only completion independently verified before success.
