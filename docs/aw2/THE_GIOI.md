@@ -1,5 +1,7 @@
 # Khám phá sáu vùng AW2
 
+**008A:** chọn nút **Đi theo mục tiêu** để đi bộ tới người/đồ vật/cửa kế tiếp theo nhiệm vụ. Tới nơi vẫn tự E/Tương tác hoặc Đi qua; hướng dẫn khóa theo tải/lỗi cảnh và tiến trình thật. [Cách dùng](DAN_DUONG.md).
+
 **006O:** ba vùng ngoài trời nay có32công trình và9điểm đến đi bộ mới, góc bám rộng hơn/mái che mờ khi che nhân vật. [Danh sách nhà/tiệm/sân chơi, ảnh gốc và prompt](KHU_PHO.md). Hoạt ảnh của tám NPC và dịch vụ hiện có giữ nguyên.
 
 Chạy `pnpm dev`, mở `/dev/aw2/world.html` bằng hồ sơ chơi thử riêng. Tạo bản lưu AW2 nếu chưa có; tiếp tục bản lưu cũ bằng Đọc lại. Một nhân vật đầu đội đã lưu đại diện trên map; đội combat vẫn năm người.

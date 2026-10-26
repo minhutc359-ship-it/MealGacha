@@ -46,6 +46,7 @@ export function VillageLandscape({
   onNavigate,
   paused,
   focusRef,
+  onReadyChange,
 }: WorldCanvasProps) {
   const host = useRef<HTMLDivElement>(null),
     position = useRef(world),
@@ -67,7 +68,10 @@ export function VillageLandscape({
       app: Application | undefined,
       ambientUrls: string[] = []
     const textures: Texture[] = []
+    const signalReady = (ready: boolean) =>
+      onReadyChange?.({ zoneId: world.zoneId, leaderId: leader, ready })
     setReady(false)
+    signalReady(false)
     setError("")
     camera.current = null
     void (async () => {
@@ -355,6 +359,7 @@ export function VillageLandscape({
         next.canvas.dataset.partyIds = JSON.stringify([leader])
         host.current?.replaceChildren(next.canvas)
         setReady(true)
+        signalReady(true)
       } catch (cause) {
         if (!disposed)
           setError(
@@ -363,13 +368,14 @@ export function VillageLandscape({
       }
     })()
     return () => {
+      signalReady(false)
       disposed = true
       camera.current = null
       app?.destroy(true, { children: true })
       textures.forEach((t) => t.destroy(false))
       releaseAmbientTextures(ambientUrls)
     }
-  }, [leader])
+  }, [leader, onReadyChange])
   return (
     <>
       <div className="aw2-map-toolbar" role="group" aria-label="Góc nhìn làng">

@@ -1,5 +1,13 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**AW2-008A VERIFIED — hướng dẫn đường theo mục tiêu nhiệm vụ.** Hiện người/đồ vật cần tới, tuyến qua các cửa đang mở và nút đi bộ tới điểm kế tiếp; đủ lựa chọn ký ức, từng bước bếp, boss/ghi chép/đường về Bà. Tới nơi vẫn tự E/Tương tác, không tự qua cửa hoặc nhận quà. Nút khóa theo tải/lỗi cảnh, lưu lỗi/tab cũ và hội thoại; giữ một đại diện map/năm combat. Source `PENDING008A`, base `045a30c9b796b5b08559e4a78c5e3466fb8cdc48`. [Cách dùng](DAN_DUONG.md) · [Bằng chứng](evidence/AW2-008A.md).
+
+57unit/3files, hai typecheck, AW2build300files/256assetparity/stable isolation PASS.335browser assertion instances=167source+168compiled:305fresh+30current-task prefix đã đạt, không cộng trùng. Source là lượt mới từ tạo save tới boss thật45tick/hai ending; compiled giữ30prefix+138mới từ đúng checkpoint đã ghi sau đổi đội, sửa harness chờ commit/render. [Machine report](evidence/AW2-008A-verification.json).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** D20tiếp tục gác010C/011A; next[008B](tasks/AW2-008B.md) bản đồ hành trình sáu vùng. Điều này sửa ưu tiên next-human/phone của006Q, không đóng gate nghiệm thu. Không đổi quest/geometry/save/reward/mode/asset authority, không master/rpg/deploy/release.
+
+Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo008A→008B/D20 ở trên.
+
 **AW2-006Q VERIFIED:** Sân Bếp có3hơi bếp+3gợn nước từ2atlas/8frame, tải nhiều sheet đúng vùng với lease/pause/reduced/resume và không đổi save/geometry.282fresh browser assertions/36captures/0unexpected errors; full1588units/types/assets/AW2+stable builds PASS. Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`; [bằng chứng](evidence/AW2-006Q.md). Demo90%/product≈40%(35–45%) giữ nguyên; next independent human+physical phone.
 
 Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006Q ở trên.

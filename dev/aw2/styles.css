@@ -26,6 +26,11 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-world { width: min(100% - 2rem, 62rem); }
 .aw2-journey-guide { margin: 1rem 0; padding: 1rem; }
 .aw2-journey-guide h2 { margin-top: 0; }
+.aw2-journey-destinations { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,15rem),1fr)); gap: .75rem; margin-bottom: 1rem; }
+.aw2-journey-destinations article { min-width: 0; border: 1px solid #60756b; border-radius: .75rem; padding: .75rem; }
+.aw2-journey-destinations h3 { font-size: 1rem; margin: 0; }
+.aw2-journey-destinations p { overflow-wrap: anywhere; }
+.aw2-journey-destinations button { width: 100%; white-space: normal; }
 .aw2-journey-guide summary { cursor: pointer; min-height: 44px; padding: .6rem 0; }
 .aw2-world-map { position: relative; width: 100%; background: #203c35; aspect-ratio: 5 / 3; }
 .aw2-world-map canvas { display: block; width: 100%; height: auto; }

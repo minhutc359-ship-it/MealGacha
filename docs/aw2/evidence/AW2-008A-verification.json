@@ -1,0 +1,120 @@
+{
+  "task": "AW2-008A",
+  "status": "PASS_DEVELOPMENT_SUBSET",
+  "source": "PENDING008A",
+  "base": "045a30c9b796b5b08559e4a78c5e3466fb8cdc48",
+  "environment": {
+    "os": "Linuxx64",
+    "node": "22.23.2",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vite": "8.0.5",
+    "vitest": "5.0.1",
+    "chromium": "153.0.8010.36",
+    "playwright": "1.58.2 temporary /tmp/aw2-008a-qa install"
+  },
+  "runtimeIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "045a30c9b796b5b08559e4a78c5e3466fb8cdc48",
+    "sourceDirty": true,
+    "codeFingerprint": "0cdf990a4096cfea7f4747a47f6460668ebbd1b8b9595dfb211d84062001509d",
+    "inputFiles": 390
+  },
+  "units": {
+    "status": "PASS",
+    "uniqueCases": 57,
+    "files": 3,
+    "newJourneyCases": 27,
+    "existingWorldCases": 18,
+    "existingControlsCases": 12,
+    "failures": 0,
+    "command": "pnpm test dev/tests/aw2/journey-guide.test.ts dev/tests/aw2/world.test.ts dev/tests/aw2/controls.test.ts",
+    "scope": "24legal stage/subset fixtures plus exhaustive legal-stage/zone route+path+nearest-object property, locked-shortcut and detached-result tests. Unit boss fixtures are explicit legal fixtures, not browser-earned evidence."
+  },
+  "types": {
+    "root": "PASS pnpm typecheck",
+    "dev": "PASS final pnpm typecheck:dev"
+  },
+  "browser": {
+    "status": "PASS_FOCUSED_COMPOSITE",
+    "totalAssertions": 335,
+    "freshAssertions": 305,
+    "retainedCurrentTaskAssertions": 30,
+    "source": {
+      "assertions": 167,
+      "fresh": 167,
+      "retained": 0,
+      "report": "docs/aw2/evidence/AW2-008A-source-browser.json",
+      "composition": "Fresh native new-save guided journey, actual45tick boss, both ending branches from same fresh earned preending save."
+    },
+    "compiled": {
+      "assertions": 168,
+      "fresh": 138,
+      "retained": 30,
+      "report": "docs/aw2/evidence/AW2-008A-compiled-browser.json",
+      "prefix": "docs/aw2/evidence/AW2-008A-compiled-prefix.json",
+      "composition": "30verified current-task prefix +138fresh continuation, exact native earned team-restored checkpoint/report/raw hashes. Harness now waits committed original team and actual rendered leader. Not one uninterrupted compiled run."
+    },
+    "captures": 18,
+    "unexpectedErrors": 0,
+    "expectedFaultObservations": 6,
+    "visitedZones": 6,
+    "bossTick": 45,
+    "commands": [
+      "node dev/tools/verify-aw2-journey-guide.mjs --playwright /tmp/aw2-008a-qa/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome",
+      "node dev/tools/verify-aw2-journey-guide.mjs --compiled --resume-team docs/aw2/evidence/AW2-008A-compiled-prefix.json --playwright /tmp/aw2-008a-qa/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome"
+    ]
+  },
+  "build": {
+    "status": "PASS",
+    "command": "pnpm build:aw2",
+    "files": 300,
+    "bytes": 120536069,
+    "runtimeAssetParity": 256,
+    "artifact": "docs/aw2/evidence/AW2-008A-review-build.json"
+  },
+  "structuralChecks": {
+    "status": "PASS",
+    "changedJson": 7,
+    "localMarkdownFiles": 16,
+    "mjsSyntax": 1,
+    "formattedFiles": 9,
+    "gitDiffWhitespace": true,
+    "fingerprintUnchangedAfterDocs": true,
+    "taskMarkdownFiles": 16,
+    "note": "Original18link-checked Markdown files included2incoming untracked references;16task Markdown files were included in the commit."
+  },
+  "reuse": "docs/aw2/evidence/AW2-008A-reused-evidence.json",
+  "incidents": [
+    "Initial dev types caught sceneJSON string widening and a scripted dependency replacement accidentally touching the leader texture index. Corrected captured typed world.zoneId and exact effect dependency before final dev types/build/browser; no unit authority change.",
+    "Initial source/compiled browser diagnostic waited for injected storage exception text. Store correctly exposes friendly Vietnamese write-failed text; harness selector fixed, both initial9prefix attempts excluded.",
+    "Compiled second attempt passed30checks then read team restore before asynchronous commit/render; actual later captured save already had the original committed team. Source passed full167. Added actual save/render wait; retained only30passed compiled prefix by exact report/raw hashes, remaining138fresh on unchanged390inputs. Failed assertion never counted."
+  ],
+  "review": {
+    "roles": "BA/story/mechanic/tester/scretary and React/verification reviews in-session only, no subagents/independent sign-off.",
+    "react": "Pure projection and detached canonical objects. Native controls,48px arrival, no action dispatch/persistence in guide; stable React state setter readiness callback captured per zone+leader after actual renderer ready, reset on load/cleanup/reread and checked against current identity. Existing disposed guards/lazy assets/owned texture cleanup/leases preserved; no API/backend/env/store change.",
+    "visual": "Opened source320memory and390return captures; all18source/compiled captures at320390768 recorded. Compiled390 intro checked after final completion."
+  },
+  "priorityResolution": "006Q next-human/phone text conflicts with ownerD20. Explicit pre-edit008A priority correction retains NOT_RUN acceptance but continues product work; next008B map overview.",
+  "notRun": [
+    "Current full unit suite; historical1588 at006Q retained only byte-identical authorities/dependencies",
+    "Single uninterrupted final compiled journey; actual earned same-task prefix composition recorded",
+    "Full production TCG/Chess balance or new full mode rounds",
+    "Independent human/art/physical phone/audio listening/FPS/totalGPUmemory/offline/native/rights/production-save/release",
+    "Full incoming map/NPC design/canon/rights audit; reference package preserved untracked."
+  ],
+  "progress": {
+    "demo": 90,
+    "productEstimate": 40,
+    "productRange": [
+      35,
+      45
+    ],
+    "changed": false,
+    "reason": "Read-only navigation improves product UX but does not close D18 independent human/device/full-character/rights gates. D20defers acceptance.",
+    "next": "AW2-008B six-zone journey overview",
+    "fullCharacterDoD": 0
+  },
+  "workspace": "docs/aw2/evidence/AW2-008A-workspace.json"
+}

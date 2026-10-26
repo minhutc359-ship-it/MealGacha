@@ -1,4 +1,12 @@
-# Handoff —2026-10-26 / AW2-006Q
+# Handoff —2026-10-26 / AW2-008A
+
+**AW2-008A VERIFIED — hướng dẫn đường theo mục tiêu nhiệm vụ.** Hiện người/đồ vật cần tới, tuyến qua các cửa đang mở và nút đi bộ tới điểm kế tiếp; đủ lựa chọn ký ức, từng bước bếp, boss/ghi chép/đường về Bà. Tới nơi vẫn tự E/Tương tác, không tự qua cửa hoặc nhận quà. Nút khóa theo tải/lỗi cảnh, lưu lỗi/tab cũ và hội thoại; giữ một đại diện map/năm combat. Source `PENDING008A`, base `045a30c9b796b5b08559e4a78c5e3466fb8cdc48`. [Cách dùng](DAN_DUONG.md) · [Bằng chứng](evidence/AW2-008A.md).
+
+57unit/3files, hai typecheck, AW2build300files/256assetparity/stable isolation PASS.335browser assertion instances=167source+168compiled:305fresh+30current-task prefix đã đạt, không cộng trùng. Source là lượt mới từ tạo save tới boss thật45tick/hai ending; compiled giữ30prefix+138mới từ đúng checkpoint đã ghi sau đổi đội, sửa harness chờ commit/render. [Machine report](evidence/AW2-008A-verification.json).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** D20tiếp tục gác010C/011A; next[008B](tasks/AW2-008B.md) bản đồ hành trình sáu vùng. Điều này sửa ưu tiên next-human/phone của006Q, không đóng gate nghiệm thu. Không đổi quest/geometry/save/reward/mode/asset authority, không master/rpg/deploy/release.
+
+Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo008A→008B/D20 ở trên.
 
 **Đã hoàn tất:** sân bếp có3hơi bếp+3gợn nước/2atlas/8frame; runtime tải nhiều ambient sheet đúng vùng, chia sẻ clock, dừng/giảm chuyển động và unload theo lease. Browser source+compiled đạt282fresh assertions/36captures/0unexpected errors; full1588units, types, asset audit, AW2/stable builds PASS. Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`; [evidence](evidence/AW2-006Q.md).
 
@@ -81,3 +89,5 @@ D16 source `4d463302f95a33788ac9cb9c8274f12b18d86281` requires exact staged/remo
 006M source publication PASS: `639609b986389cc7743d977679ca361c010911f8`, exact staged/fetched tree`ac7b7235a3f1908a6834c94ad7286f2b90bb7f1b`; all69blobs/16binarySHAs/index/ancestry/expected-head guards verified, non-force update and clean local sync PASS. Clean361input fingerprint remains12638bb685907682. [Publication proof](evidence/AW2-006M-publication.json). Completion changes documents only; final fresh remote=clean local required before reporting success.
 
 006O publication PASS: source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, exact staged/independently fetched tree `b570275f0f76801a1d94a1d538857e247d897abe`;39blobs/4binarySHAs/index/ancestry/expected-head guards verified, non-force update and clean local sync PASS. Clean371inputfingerprint remains5b84f39cb4879e921. [Publication proof](evidence/AW2-006O-publication.json). Completion changes documents only; final fresh remote=clean local checked after its push.
+
+Workspace note: phát hiện18tệp zip/spec/ảnh map–NPC mới chưa tracked trong lúc chốt task. Giữ nguyên ngoài commit; mới đọc README/đầu đặc tả, cần rà soát D14/D17 trước khi dùng làm canon. [Hash/preservation record](evidence/AW2-008A-workspace.json). Sau push xác minh tracked tree sạch/HEAD=remote;18tệp tham chiếu vẫn untracked có chủ đích.

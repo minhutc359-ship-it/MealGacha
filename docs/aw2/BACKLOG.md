@@ -1,5 +1,13 @@
 # Task board
 
+**AW2-008A VERIFIED — hướng dẫn đường theo mục tiêu nhiệm vụ.** Hiện người/đồ vật cần tới, tuyến qua các cửa đang mở và nút đi bộ tới điểm kế tiếp; đủ lựa chọn ký ức, từng bước bếp, boss/ghi chép/đường về Bà. Tới nơi vẫn tự E/Tương tác, không tự qua cửa hoặc nhận quà. Nút khóa theo tải/lỗi cảnh, lưu lỗi/tab cũ và hội thoại; giữ một đại diện map/năm combat. Source `PENDING008A`, base `045a30c9b796b5b08559e4a78c5e3466fb8cdc48`. [Cách dùng](DAN_DUONG.md) · [Bằng chứng](evidence/AW2-008A.md).
+
+57unit/3files, hai typecheck, AW2build300files/256assetparity/stable isolation PASS.335browser assertion instances=167source+168compiled:305fresh+30current-task prefix đã đạt, không cộng trùng. Source là lượt mới từ tạo save tới boss thật45tick/hai ending; compiled giữ30prefix+138mới từ đúng checkpoint đã ghi sau đổi đội, sửa harness chờ commit/render. [Machine report](evidence/AW2-008A-verification.json).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** D20tiếp tục gác010C/011A; next[008B](tasks/AW2-008B.md) bản đồ hành trình sáu vùng. Điều này sửa ưu tiên next-human/phone của006Q, không đóng gate nghiệm thu. Không đổi quest/geometry/save/reward/mode/asset authority, không master/rpg/deploy/release.
+
+Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo008A→008B/D20 ở trên.
+
 **AW2-006Q VERIFIED:** thêm2atlas/8frame và6placement cho hơi bếp + gợn nước ở Sân Bếp; nhiều sheet cùng vùng dùng chung clock và lease-aware lazy lifecycle.282fresh browser assertions/36captures/0unexpected errors; full1588units, types, asset audit, AW2/stable builds PASS. Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`; [bằng chứng](evidence/AW2-006Q.md). Next vẫn [AW2-010C](tasks/AW2-010C.md) independent human và [AW2-011A](tasks/AW2-011A.md) physical phone; demo90/product≈40% không đổi, không mở `rpg`/deploy/release.
 
 Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo006Q ở trên.
@@ -48,6 +56,8 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 
 | ID | Owner | Scope | Status |
 |---|---|---|---|
+| AW2-008A | BA/story/mechanic/tester/scretary | Objective directions and readiness-gated walk controls | VERIFIED atPENDING008A;57units/335composite browser/types/build PASS |
+| AW2-008B | BA/story/mechanic/tester/scretary | Six-zone overview/current location/open exits, read-only navigation | READY; next D20 product task, implementation NOT_STARTED |
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |
@@ -84,7 +94,7 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | AW2-006L | BA/story/animation/mechanic/tester/scretary | Rich hearth/table interiors to D21, preserve puzzle/boss | VERIFIED at36c2231bafb9de8778f380183780af242cfa9281;85unit/100composite browser/types/build PASS |
 | AW2-006M | BA/story/character/animation/mechanic/tester/scretary | Authored idle frames for all8NPCs with pause/reduced motion | VERIFIED at639609b986389cc7743d977679ca361c010911f8;83unit/178browser/types/build PASS |
 | AW2-006O | BA/story/animation/mechanic/tester/scretary |32houses/shops/playground across3regions,9walk-only landmarks | VERIFIED atf7a51673061d5fb1017c3da78d7109cf649ea48b;39unit/248fresh browser/types/build PASS |
-| AW2-006N | BA/story/animation/mechanic/tester/scretary | Authored ambient motion in village/street | VERIFIED LOCAL at3fc7d53;1587units/types/assets/build PASS; final browser/device and publication OPEN |
+| AW2-006N | BA/story/animation/mechanic/tester/scretary | Authored ambient motion in village/street | VERIFIED through006P at84ae0b959e60149335af39e79dd0b1f87ed29d1e;270fresh browser/full1587/types/build PASS; device OPEN |
 | AW2-006F | BA/story/animation/mechanic/tester/scretary | Authored Phòng Lửa floor/props/native navigation | VERIFIED development slice at 4d463302f95a33788ac9cb9c8274f12b18d86281;83unit/72browser, independent route/device gates OPEN |
 | AW2-004L | character/story/animation/tester | Hải original reference package | VERIFIED at 57b160faefa4edca081e46680a45489bfa4d9e68;85 units/102 browser; full DoD OPEN |
 | AW2-004M | character/story/animation/tester | Liên original reference package | VERIFIED at 8344fc0b05275a1d8e314100fcfa3263d9956c8e;96 own browser assertions, shared full1132; [card](tasks/AW2-004M.md), full DoD OPEN |

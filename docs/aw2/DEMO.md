@@ -1,5 +1,7 @@
 # Chơi thử hành trình AW2
 
+**008A:** chọn nút **Đi theo mục tiêu** để đi bộ tới người/đồ vật/cửa kế tiếp theo nhiệm vụ. Tới nơi vẫn tự E/Tương tác hoặc Đi qua; hướng dẫn khóa theo tải/lỗi cảnh và tiến trình thật. [Cách dùng](DAN_DUONG.md).
+
 [Làng Giao Ước: nền sân/NPC/bàn nhập môn và các nút đi tới mục tiêu](LANG_GIAO_UOC.md) —006G. TheoD20ưu tiên làm tiếp nội dung; lượt nghiệm thu độc lập tạm gác.
 
 [iPhone: mở bản HTTPS và xuất phiếu phản hồi](IPHONE_PLAYTEST.md). Phiếu nằm ở màn khám phá, có mã nội dung bản thử; xuất trước khi reload.

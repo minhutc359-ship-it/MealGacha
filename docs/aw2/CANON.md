@@ -1,5 +1,7 @@
 # Canon — Initial 12 and Lantern direction approved 2026-10-20
 
+008A presentation-only directions at `PENDING008A` use D14canonical six zones/eight NPCs/four quests and existing real gate descriptions; all missing memories selectable, no automatic travel/actions/rewards and no saved visited-history. 006Qoutdoor ambient12placements/16frames retained unchanged;32buildings/one committed mapleader/five combat remain. This creates no lore, identity, quest, schema, economy or completion approval. [Guide](DAN_DUONG.md), [contract](tasks/AW2-008A.md).
+
 006N presentation-only:2village water ripples/4street lantern blooms animate on the shared NPC presentation clock. They add no flame/object/action/lore/collision/save/reward authority. Source local `3fc7d536a9a00d0be3b6eade1168470f279d9307`; rights remain REVIEW_REQUIRED.
 
 **AW2-006O — thêm 32 công trình quanh ba khu ngoài trời:** 10 ở Làng, 12 ở Phố, 10 ở Sân Bếp; gồm nhà, tiệm trà/tạp hóa/đèn lồng, quầy bữa sáng, xưởng, bàn chơi và sân chơi. Chín điểm đến đi bộ mới; góc bám nhân vật rộng hơn ở zoom0.65, mái che mờ khi che nhân vật/NPC. Tám NPC vẫn có32frame idle. Source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, base `734cab6086b4ddddf7a8da8e6adf9a5a90af9099`. [Cách xem/ảnh/prompt](KHU_PHO.md) · [Bằng chứng](evidence/AW2-006O.md).

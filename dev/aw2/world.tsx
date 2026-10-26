@@ -18,6 +18,7 @@ import {
 import type { WorldBossEncounter } from "../../src/aw2/world/encounter"
 import { WorldBattle } from "./WorldBattle"
 import { WorldCanvas } from "./WorldCanvas"
+import type { WorldMapReadiness } from "./worldCanvasTypes"
 import { InventoryPanel } from "./InventoryPanel"
 import { CHEST_RECEIPT, type EconomyAction } from "../../src/aw2/economy/model"
 import { findWorldPath, type Waypoint } from "../../src/aw2/world/navigation"
@@ -51,6 +52,9 @@ function WorldPreview() {
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
   const [mapEpoch, setMapEpoch] = useState(0)
+  const [mapReadiness, setMapReadiness] = useState<WorldMapReadiness | null>(
+    null,
+  )
   const [activeEncounter, setActiveEncounter] =
     useState<ActiveWorldEncounter | null>(null)
   const [activeMode, setActiveMode] = useState<ModeVisit | null>(null)
@@ -191,6 +195,7 @@ function WorldPreview() {
 
   function reread() {
     if (pending.current) return
+    setMapReadiness(null)
     restoreModeFocus.current = !!activeMode
     modeAdapter.abandon()
     setActiveMode(null)
@@ -497,7 +502,22 @@ function WorldPreview() {
               </button>
             ))}
           </nav>
-          <JourneyGuide objective={currentObjective(world)} />
+          <JourneyGuide
+            objective={currentObjective(world)}
+            world={world}
+            disabled={
+              busy ||
+              !!dialogObject ||
+              !!error ||
+              !mapReadiness?.ready ||
+              mapReadiness.zoneId !== world.zoneId ||
+              mapReadiness.leaderId !== (world.partyIds[0] ?? "aw2-than")
+            }
+            onNavigate={(point) => {
+              navigate(point)
+              worldMap.current?.focus({ preventScroll: true })
+            }}
+          />
           <WorldCanvas
             focusRef={worldMap}
             key={`${snapshot.save.saveId}:${mapEpoch}`}
@@ -505,6 +525,7 @@ function WorldPreview() {
             economy={snapshot.save.economy}
             onNavigate={navigate}
             paused={busy || !!dialogObject}
+            onReadyChange={setMapReadiness}
           />
           <p data-testid="player-position">
             Vị trí {world.x.toFixed(0)}, {world.y.toFixed(0)} · {world.facing}

@@ -47,6 +47,7 @@ export function JourneyLandscape({
   onNavigate,
   paused,
   focusRef,
+  onReadyChange,
 }: WorldCanvasProps) {
   const scene = journeyScene(world.zoneId)!
   const committedEconomy = useRef(economy)
@@ -71,7 +72,10 @@ export function JourneyLandscape({
       app: Application | undefined,
       ambientUrls: string[] = []
     const textures: Texture[] = []
+    const signalReady = (ready: boolean) =>
+      onReadyChange?.({ zoneId: world.zoneId, leaderId: leader, ready })
     setReady(false)
+    signalReady(false)
     setError("")
     camera.current = null
     void (async () => {
@@ -369,6 +373,7 @@ export function JourneyLandscape({
         next.canvas.dataset.partyIds = JSON.stringify([leader])
         host.current?.replaceChildren(next.canvas)
         setReady(true)
+        signalReady(true)
       } catch (cause) {
         if (!disposed)
           setError(
@@ -379,13 +384,14 @@ export function JourneyLandscape({
       }
     })()
     return () => {
+      signalReady(false)
       disposed = true
       camera.current = null
       app?.destroy(true, { children: true })
       textures.forEach((t) => t.destroy(false))
       releaseAmbientTextures(ambientUrls)
     }
-  }, [leader, scene.id])
+  }, [leader, scene.id, onReadyChange])
   return (
     <>
       <div

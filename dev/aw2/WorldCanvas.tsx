@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type Ref } from "react"
+import { useEffect, useRef, useState } from "react"
 import type { Application, Texture } from "pixi.js"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { sampleWorldFrame } from "../../src/aw2/assets/animation"
@@ -60,12 +60,8 @@ function FlatWorldCanvas({
   onNavigate,
   paused,
   focusRef,
-}: {
-  world: WorldProgress
-  onNavigate: (point: Waypoint) => void
-  paused: boolean
-  focusRef?: Ref<HTMLDivElement>
-}) {
+  onReadyChange,
+}: WorldCanvasProps) {
   const host = useRef<HTMLDivElement>(null)
   const pointerStart = useRef<Waypoint | null>(null)
   const position = useRef(world)
@@ -106,7 +102,10 @@ function FlatWorldCanvas({
     let disposed = false
     let app: Application | undefined
     const textures: Texture[] = []
+    const signalReady = (ready: boolean) =>
+      onReadyChange?.({ zoneId: world.zoneId, leaderId: leaderId, ready })
     setReady(false)
+    signalReady(false)
     setError("")
     void (async () => {
       try {
@@ -552,6 +551,7 @@ function FlatWorldCanvas({
         next.canvas.dataset.partyIds = JSON.stringify(ids)
         host.current?.replaceChildren(next.canvas)
         setReady(true)
+        signalReady(true)
       } catch (cause) {
         if (!disposed)
           setError(
@@ -560,12 +560,13 @@ function FlatWorldCanvas({
       }
     })()
     return () => {
+      signalReady(false)
       disposed = true
       camera.current = null
       app?.destroy(true, { children: true })
       textures.forEach((texture) => texture.destroy(false))
     }
-  }, [world.zoneId, leaderId])
+  }, [world.zoneId, leaderId, onReadyChange])
   return (
     <>
       <div
