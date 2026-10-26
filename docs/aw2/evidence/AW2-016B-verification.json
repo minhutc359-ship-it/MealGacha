@@ -76,7 +76,11 @@
     "Exact original generation prompt lost; recovered brief is not verbatim.",
     "Physical phone, independent human, full fresh boss route/full mode round, FPS/totalGPUmemory, rights/production/release not accepted."
   ],
-  "publication": "D16 automatic push after evidence; exact source commit recorded by publication stamp",
+  "publication": {
+    "source": "d120e2fc0c9e3da1289815aba1fd1d06c56f2497",
+    "sourceTree": "95a4c133132e6a4ec0a056fccc85b416de9a4527",
+    "proof": "AW2-016B-publication.json"
+  },
   "evidenceSha256": {
     "AW2-016B-stable-build.txt": "35d56c96c9b8f032c2ab4b4e33d5c74d7ed547b011f9b3d5bf3b858e3709e796",
     "AW2-016B-timeout-transform.json": "6b043511c418322d4d7b9870373f22f0bf283ef8f7e90dea73befbaf94c5dc08",
@@ -89,7 +93,8 @@
     "AW2-016B-full-unit.txt": "74a6208b65991e630215da923c02a7557c365390f42cea9435da03c2cb2203b3",
     "AW2-016B-files.json": "ee7434bb7f5b587654f22bbb0ee96b0dee609d4d15c6a020c8b3ddf5f87b6883",
     "AW2-016B-review-build.json": "ccccecd7d3c2785cc6ba9556ce803794b0fc6b77a6c5af9ab314cc9a2e07c1ed",
-    "AW2-016B.md": "4988b69484ee2eed52f524527a5b228926b48092f052484d8160f780d5d97a53"
+    "AW2-016B.md": "6f6da77ece8c721a42cf28cabef8198dfd27925b8a9716bc22e8d73315889555",
+    "AW2-016B-publication.json": "601cb279d30fe35560147a6adbe730cc2890a9974110eb353072ad3f03d3b326"
   },
   "logNormalization": {
     "AW2-016B-stable-build.txt": {

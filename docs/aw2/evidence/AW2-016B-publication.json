@@ -1,0 +1,16 @@
+{
+  "task": "AW2-016B",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "source": "d120e2fc0c9e3da1289815aba1fd1d06c56f2497",
+  "parent": "eb70cdcfa9f0bc3619934885a9de0507aa7f1bce",
+  "sourceTree": "95a4c133132e6a4ec0a056fccc85b416de9a4527",
+  "expectedHeadGuard": "eb70cdcfa9f0bc3619934885a9de0507aa7f1bce",
+  "force": false,
+  "githubAccount": "hoangmingzzz123-source",
+  "remoteBranch": "game/adventure-world-2",
+  "independentFetchSha": "d120e2fc0c9e3da1289815aba1fd1d06c56f2497",
+  "localHead": "d120e2fc0c9e3da1289815aba1fd1d06c56f2497",
+  "trackedCleanAtSourceSync": true,
+  "codeFingerprint": "e3d3522031b88f6eb090d2e5570f483a2831e6a19f6489cc4e8393685b132951",
+  "completion": "Following evidence stamp is documentation only; final remote/local equality checked after its push."
+}
