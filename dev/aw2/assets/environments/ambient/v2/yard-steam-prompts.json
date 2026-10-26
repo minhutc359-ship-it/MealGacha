@@ -1,0 +1,15 @@
+{
+  "task": "AW2-006Q",
+  "tool": "OpenAI built-in image_gen",
+  "calls": 1,
+  "prompt": "Create one transparent PNG sprite atlas for a cozy Vietnamese-inspired chibi RPG kitchen yard. Exactly four clearly separated animation frames in one horizontal row, depicting the same small wisp of warm cooking steam in calm, lift, bright and settle poses. The steam should be subtle cream-white with a faint amber warmth, painterly pixel-like edges, and readable when rendered at 34x50 world units near an existing outdoor stove. No stove, pot, food, fire, smoke cloud, character, text, label, background, ground plane, border or cast shadow. Keep the motion calm and non-flashing. Use generous fully transparent gutters between frames and around every outer edge, avoid cropping, preserve alpha transparency, and keep all four frame subjects isolated from one another. Match the warm red-tile, lantern, garden and stone palette of the supplied own-project Forgotten Kitchen Yard reference without copying any object from it.",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/floor-source.png",
+      "role": "own project kitchen-yard style and palette reference",
+      "commit": "c2e868394ef2bb8547989aecb37bf025f5f98391",
+      "blob": "7d78da2f392f70e87781f49ad9f8a76666924669",
+      "sha256": "e4c698086abe4dabc5bf07361f14b3587f6ce572664c6ca7bdee258544a0ed61"
+    }
+  ]
+}

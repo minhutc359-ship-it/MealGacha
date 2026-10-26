@@ -1,4 +1,4 @@
-import manifest from "./ambient-motion-v1.json"
+import manifest from "./ambient-motion-v2.json"
 
 export const AMBIENT_MOTION = manifest
 export type AmbientFrame = keyof typeof manifest.assets["village-water"]["frames"]
@@ -6,6 +6,9 @@ export type AmbientRegion = typeof manifest.regions[number]
 
 export const ambientForZone = (zoneId: string) =>
   manifest.regions.find((region) => region.zoneId === zoneId)
+
+export const ambientRegionsForZone = (zoneId: string) =>
+  manifest.regions.filter((region) => region.zoneId === zoneId)
 
 function validTime(value: number) {
   if (!Number.isFinite(value) || value < 0)

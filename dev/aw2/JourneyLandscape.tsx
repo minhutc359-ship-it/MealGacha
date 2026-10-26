@@ -35,8 +35,8 @@ import {
 import { RoomWaypoints } from "./RoomWaypoints"
 import {
   createAmbientSprites,
-  loadAmbientTexture,
-  releaseAmbientTexture,
+  loadAmbientTextures,
+  releaseAmbientTextures,
   renderAmbientSprites,
 } from "./AmbientLayer"
 
@@ -69,7 +69,7 @@ export function JourneyLandscape({
   useEffect(() => {
     let disposed = false,
       app: Application | undefined,
-      ambientUrl: string | undefined
+      ambientUrls: string[] = []
     const textures: Texture[] = []
     setReady(false)
     setError("")
@@ -88,16 +88,16 @@ export function JourneyLandscape({
             Assets.load(ROSTER_ASSETS[leader].assets.world.url),
             loadNpcTextures(scene.zoneId, (url) => Assets.load(url)),
             loadSettlementTextures(scene.zoneId, (url) => Assets.load(url)),
-            loadAmbientTexture(
+            loadAmbientTextures(
               scene.zoneId,
               (url) => Assets.load(url),
               (url) => Assets.unload(url),
             ),
           ])
-        ambientUrl = loadedAmbient?.asset.url
+        ambientUrls = loadedAmbient.map((item) => item.asset.url)
         if (disposed) {
-          releaseAmbientTexture(ambientUrl)
-          ambientUrl = undefined
+          releaseAmbientTextures(ambientUrls)
+          ambientUrls = []
           return
         }
         const assetTextures: Record<string, Texture> = Object.fromEntries(
@@ -155,13 +155,11 @@ export function JourneyLandscape({
           textures,
         )
         for (const item of settlement) next.stage.addChild(item.sprite)
-        const ambient = loadedAmbient
-          ? createAmbientSprites(
-              loadedAmbient,
-              { Sprite, Texture, Rectangle },
-              textures,
-            )
-          : []
+        const ambient = createAmbientSprites(
+          loadedAmbient,
+          { Sprite, Texture, Rectangle },
+          textures,
+        )
         for (const item of ambient) next.stage.addChild(item.sprite)
         const objects = journeyProps(position.current, committedEconomy.current)
           .filter((prop) => !npcForEntity(prop.entityId))
@@ -385,7 +383,7 @@ export function JourneyLandscape({
       camera.current = null
       app?.destroy(true, { children: true })
       textures.forEach((t) => t.destroy(false))
-      releaseAmbientTexture(ambientUrl)
+      releaseAmbientTextures(ambientUrls)
     }
   }, [leader, scene.id])
   return (

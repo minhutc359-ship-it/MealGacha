@@ -2,8 +2,10 @@ import type { Rectangle, Sprite, Texture } from "pixi.js"
 import {
   AMBIENT_MOTION,
   ambientForZone,
+  ambientRegionsForZone,
   sampleAmbientFrame,
   type AmbientFrame,
+  type AmbientRegion,
 } from "../../src/aw2/assets/ambientMotion"
 
 type Lease = {
@@ -15,13 +17,11 @@ const leases = new Map<string, Lease>()
 const loading = new Map<string, Promise<Texture>>()
 const unloading = new Map<string, Promise<void>>()
 
-export async function loadAmbientTexture(
-  zoneId: string,
+async function acquireAmbientTexture(
+  region: AmbientRegion,
   load: (url: string) => Promise<Texture>,
   unload: (url: string) => Promise<void> | void,
 ) {
-  const region = ambientForZone(zoneId)
-  if (!region) return undefined
   const asset =
     AMBIENT_MOTION.assets[(region.asset as keyof typeof AMBIENT_MOTION.assets)]
   await unloading.get(asset.url)
@@ -47,6 +47,32 @@ export async function loadAmbientTexture(
   return { region, asset, texture: lease.texture }
 }
 
+export async function loadAmbientTexture(
+  zoneId: string,
+  load: (url: string) => Promise<Texture>,
+  unload: (url: string) => Promise<void> | void,
+) {
+  const region = ambientForZone(zoneId)
+  if (!region) return undefined
+  return acquireAmbientTexture(region, load, unload)
+}
+
+export async function loadAmbientTextures(
+  zoneId: string,
+  load: (url: string) => Promise<Texture>,
+  unload: (url: string) => Promise<void> | void,
+) {
+  const loaded: Awaited<ReturnType<typeof acquireAmbientTexture>>[] = []
+  try {
+    for (const region of ambientRegionsForZone(zoneId))
+      loaded.push(await acquireAmbientTexture(region, load, unload))
+    return loaded
+  } catch (cause) {
+    for (const item of loaded) releaseAmbientTexture(item.asset.url)
+    throw cause
+  }
+}
+
 export function releaseAmbientTexture(url?: string) {
   if (!url) return
   const lease = leases.get(url)
@@ -63,8 +89,12 @@ export function releaseAmbientTexture(url?: string) {
   }
 }
 
+export function releaseAmbientTextures(urls: readonly string[]) {
+  for (const url of urls) releaseAmbientTexture(url)
+}
+
 export function createAmbientSprites(
-  loaded: NonNullable<Awaited<ReturnType<typeof loadAmbientTexture>>>,
+  loaded: Awaited<ReturnType<typeof loadAmbientTextures>>,
   pixi: {
     Sprite: typeof Sprite
     Texture: typeof Texture
@@ -72,30 +102,32 @@ export function createAmbientSprites(
   },
   owned: Texture[],
 ) {
-  loaded.texture.source.scaleMode = "linear"
-  const frames = {} as Record<AmbientFrame, Texture>
-  const sourceFrames = loaded.asset.frames as Record<AmbientFrame, {
-    x: number
-    y: number
-    width: number
-    height: number
-  }>
-  for (const [name, frame] of Object.entries(sourceFrames)) {
-    const texture = new pixi.Texture({
-      source: loaded.texture.source,
-      frame: new pixi.Rectangle(frame.x, frame.y, frame.width, frame.height),
+  return loaded.flatMap((item) => {
+    item.texture.source.scaleMode = "linear"
+    const frames = {} as Record<AmbientFrame, Texture>
+    const sourceFrames = item.asset.frames as Record<AmbientFrame, {
+      x: number
+      y: number
+      width: number
+      height: number
+    }>
+    for (const [name, frame] of Object.entries(sourceFrames)) {
+      const texture = new pixi.Texture({
+        source: item.texture.source,
+        frame: new pixi.Rectangle(frame.x, frame.y, frame.width, frame.height),
+      })
+      owned.push(texture)
+      frames[(name as AmbientFrame)] = texture
+    }
+    return item.region.placements.map((placement) => {
+      const sprite = new pixi.Sprite(frames.calm)
+      sprite.anchor.set(0.5)
+      sprite.position.set(placement.x, placement.y)
+      sprite.width = item.region.display.width
+      sprite.height = item.region.display.height
+      sprite.zIndex = item.region.depth
+      return { placement, sprite, frames, frame: "calm" as AmbientFrame }
     })
-    owned.push(texture)
-    frames[(name as AmbientFrame)] = texture
-  }
-  return loaded.region.placements.map((placement) => {
-    const sprite = new pixi.Sprite(frames.calm)
-    sprite.anchor.set(0.5)
-    sprite.position.set(placement.x, placement.y)
-    sprite.width = loaded.region.display.width
-    sprite.height = loaded.region.display.height
-    sprite.zIndex = loaded.region.depth
-    return { placement, sprite, frames, frame: "calm" as AmbientFrame }
   })
 }
 

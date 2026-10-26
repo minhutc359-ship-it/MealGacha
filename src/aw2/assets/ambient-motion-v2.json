@@ -1,0 +1,473 @@
+{
+  "status": "AUTHORED_AMBIENT_REFERENCE",
+  "fullEnvironmentComplete": false,
+  "geometryAuthorityChanged": false,
+  "timeline": [
+    {
+      "frame": "calm",
+      "durationMs": 800
+    },
+    {
+      "frame": "lift",
+      "durationMs": 800
+    },
+    {
+      "frame": "bright",
+      "durationMs": 800
+    },
+    {
+      "frame": "settle",
+      "durationMs": 800
+    }
+  ],
+  "cycleMs": 3200,
+  "reducedMotionFrame": "calm",
+  "version": 2,
+  "id": "aw2-ambient-motion-v2",
+  "assets": {
+    "village-water": {
+      "id": "aw2-ambient-v1:village-water",
+      "url": "/dev/aw2/assets/environments/ambient/v1/village-water.webp",
+      "width": 2096,
+      "height": 230,
+      "bytes": 390822,
+      "sha256": "3c3229ef3ed8d3c8ccd182779b822f9e3667ccdcddb1f12fa141ff1251a57b7b",
+      "source": {
+        "path": "dev/aw2/assets/environments/ambient/v1/village-water-source.png",
+        "bytes": 562074,
+        "sha256": "e8e1436d2ec6533a88f4bb8770f7f9668bc59ca6d96c2fbe021a5b0770a9e4cc",
+        "width": 2172,
+        "height": 724,
+        "crop": {
+          "x": 37,
+          "y": 247,
+          "width": 2096,
+          "height": 230
+        }
+      },
+      "frames": {
+        "calm": {
+          "x": 4,
+          "y": 68,
+          "width": 481,
+          "height": 157,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": -37,
+            "y": -247,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "lift": {
+          "x": 541,
+          "y": 5,
+          "width": 487,
+          "height": 219,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 506,
+            "y": -247,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "bright": {
+          "x": 1068,
+          "y": 4,
+          "width": 497,
+          "height": 222,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 1049,
+            "y": -247,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "settle": {
+          "x": 1612,
+          "y": 69,
+          "width": 480,
+          "height": 157,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 1592,
+            "y": -247,
+            "width": 543,
+            "height": 724
+          }
+        }
+      }
+    },
+    "street-lantern": {
+      "id": "aw2-ambient-v1:street-lantern",
+      "url": "/dev/aw2/assets/environments/ambient/v1/street-lantern.webp",
+      "width": 1933,
+      "height": 444,
+      "bytes": 474742,
+      "sha256": "39ad89c7aacf5a00a462092e75e7e370ca09afea1109a451bc54266e9caaa152",
+      "source": {
+        "path": "dev/aw2/assets/environments/ambient/v1/street-lantern-source.png",
+        "bytes": 871293,
+        "sha256": "fe4ff7d81b3cde038bafb07bc808bbcb1cc20a156f3597ce1fee22411db52c4d",
+        "width": 2172,
+        "height": 724,
+        "crop": {
+          "x": 118,
+          "y": 139,
+          "width": 1933,
+          "height": 444
+        }
+      },
+      "frames": {
+        "calm": {
+          "x": 4,
+          "y": 82,
+          "width": 301,
+          "height": 302,
+          "alphaEdgeMax": 6,
+          "cell": {
+            "x": -118,
+            "y": -139,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "lift": {
+          "x": 508,
+          "y": 29,
+          "width": 357,
+          "height": 379,
+          "alphaEdgeMax": 6,
+          "cell": {
+            "x": 425,
+            "y": -139,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "bright": {
+          "x": 1029,
+          "y": 4,
+          "width": 414,
+          "height": 436,
+          "alphaEdgeMax": 7,
+          "cell": {
+            "x": 968,
+            "y": -139,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "settle": {
+          "x": 1624,
+          "y": 73,
+          "width": 305,
+          "height": 314,
+          "alphaEdgeMax": 6,
+          "cell": {
+            "x": 1511,
+            "y": -139,
+            "width": 543,
+            "height": 724
+          }
+        }
+      }
+    },
+    "yard-steam": {
+      "id": "aw2-ambient-v2:yard-steam",
+      "url": "/dev/aw2/assets/environments/ambient/v2/yard-steam.webp",
+      "width": 1885,
+      "height": 574,
+      "bytes": 431072,
+      "sha256": "c43270a2241d294ae233e122b1641b5f080571720c87548b763a55d91448e74f",
+      "source": {
+        "path": "dev/aw2/assets/environments/ambient/v2/yard-steam-source.png",
+        "bytes": 587302,
+        "sha256": "61146d298d5c5dce83977ae78690638d58ff613b7b908806d707f3470d635e2e",
+        "width": 2172,
+        "height": 724,
+        "crop": {
+          "x": 163,
+          "y": 61,
+          "width": 1885,
+          "height": 574
+        }
+      },
+      "frames": {
+        "calm": {
+          "x": 4,
+          "y": 186,
+          "width": 229,
+          "height": 382,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": -163,
+            "y": -61,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "lift": {
+          "x": 539,
+          "y": 45,
+          "width": 262,
+          "height": 521,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 380,
+            "y": -61,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "bright": {
+          "x": 1056,
+          "y": 4,
+          "width": 314,
+          "height": 566,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 923,
+            "y": -61,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "settle": {
+          "x": 1624,
+          "y": 123,
+          "width": 257,
+          "height": 440,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 1466,
+            "y": -61,
+            "width": 543,
+            "height": 724
+          }
+        }
+      }
+    },
+    "yard-water": {
+      "id": "aw2-ambient-v2:yard-water",
+      "url": "/dev/aw2/assets/environments/ambient/v2/yard-water.webp",
+      "width": 2124,
+      "height": 213,
+      "bytes": 364974,
+      "sha256": "65111ae0bcb01aac4bac1e3446031b26542adbc903fb9669f733c4a619d8e5d7",
+      "source": {
+        "path": "dev/aw2/assets/environments/ambient/v2/yard-water-source.png",
+        "bytes": 498579,
+        "sha256": "2915efabd6181ced4393baa1efcdc9d5216d08c3f12ede02aee8bf17d1c3e5c8",
+        "width": 2172,
+        "height": 724,
+        "crop": {
+          "x": 22,
+          "y": 272,
+          "width": 2124,
+          "height": 213
+        }
+      },
+      "frames": {
+        "calm": {
+          "x": 4,
+          "y": 75,
+          "width": 486,
+          "height": 122,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": -22,
+            "y": -272,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "lift": {
+          "x": 555,
+          "y": 18,
+          "width": 490,
+          "height": 181,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 521,
+            "y": -272,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "bright": {
+          "x": 1083,
+          "y": 4,
+          "width": 496,
+          "height": 205,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 1064,
+            "y": -272,
+            "width": 543,
+            "height": 724
+          }
+        },
+        "settle": {
+          "x": 1643,
+          "y": 73,
+          "width": 477,
+          "height": 124,
+          "alphaEdgeMax": 1,
+          "cell": {
+            "x": 1607,
+            "y": -272,
+            "width": 543,
+            "height": 724
+          }
+        }
+      }
+    }
+  },
+  "regions": [
+    {
+      "zoneId": "aw2-zone-covenant-village",
+      "asset": "village-water",
+      "display": {
+        "width": 76,
+        "height": 38
+      },
+      "depth": -850,
+      "placements": [
+        {
+          "id": "village-water-1",
+          "x": -300,
+          "y": 220
+        },
+        {
+          "id": "village-water-2",
+          "x": 940,
+          "y": 236
+        }
+      ]
+    },
+    {
+      "zoneId": "aw2-zone-lantern-street",
+      "asset": "street-lantern",
+      "display": {
+        "width": 24,
+        "height": 24
+      },
+      "depth": 7,
+      "placements": [
+        {
+          "id": "street-lantern-1",
+          "x": 109,
+          "y": -53
+        },
+        {
+          "id": "street-lantern-2",
+          "x": 209,
+          "y": -53
+        },
+        {
+          "id": "street-lantern-3",
+          "x": 345,
+          "y": -37
+        },
+        {
+          "id": "street-lantern-4",
+          "x": 439,
+          "y": -37
+        }
+      ]
+    },
+    {
+      "zoneId": "aw2-zone-forgotten-kitchen-yard",
+      "asset": "yard-steam",
+      "display": {
+        "width": 34,
+        "height": 50
+      },
+      "depth": -700,
+      "placements": [
+        {
+          "id": "yard-steam-1",
+          "x": -60,
+          "y": -105
+        },
+        {
+          "id": "yard-steam-2",
+          "x": 65,
+          "y": -96
+        },
+        {
+          "id": "yard-steam-3",
+          "x": 720,
+          "y": 420
+        }
+      ]
+    },
+    {
+      "zoneId": "aw2-zone-forgotten-kitchen-yard",
+      "asset": "yard-water",
+      "display": {
+        "width": 60,
+        "height": 24
+      },
+      "depth": -850,
+      "placements": [
+        {
+          "id": "yard-water-1",
+          "x": 820,
+          "y": -70
+        },
+        {
+          "id": "yard-water-2",
+          "x": 900,
+          "y": 100
+        },
+        {
+          "id": "yard-water-3",
+          "x": 920,
+          "y": 255
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "task": "AW2-006Q",
+    "extends": {
+      "manifest": "src/aw2/assets/ambient-motion-v1.json",
+      "sha256": "dab87f2787aa9171dfe8484a07fe7a926782f63c52085a5e704c9616197e34b1",
+      "task": "AW2-006N/006P"
+    },
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-26",
+    "calls": 2,
+    "selected": 2,
+    "rejected": 0,
+    "prompts": [
+      {
+        "path": "dev/aw2/assets/environments/ambient/v2/yard-steam-prompts.json",
+        "sha256": "95ac20fa2625738648913914f26c8a0c803ea24207bd972d02350d101d8a1d7e"
+      },
+      {
+        "path": "dev/aw2/assets/environments/ambient/v2/yard-water-prompts.json",
+        "sha256": "75aadf5921848a808915a0d01bc33f1cace02934c880a629db663bbe615210dd"
+      }
+    ],
+    "references": [
+      {
+        "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/floor-source.png",
+        "role": "own project kitchen-yard style and palette reference",
+        "commit": "c2e868394ef2bb8547989aecb37bf025f5f98391",
+        "blob": "7d78da2f392f70e87781f49ad9f8a76666924669",
+        "sha256": "e4c698086abe4dabc5bf07361f14b3587f6ce572664c6ca7bdee258544a0ed61"
+      }
+    ],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "processing": "Unchanged selected transparent PNG; transparent-margin crop only; exact RGBA lossless WebP; measured safe frames. No code painting, masking, mirroring, resizing or interpolation.",
+    "builder": "dev/tools/build-aw2-yard-ambient.py",
+    "pillow": "12.3.0"
+  }
+}
