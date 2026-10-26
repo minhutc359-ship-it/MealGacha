@@ -819,3 +819,10 @@ Target base `72ee9b4360299db4bab9b9b43dba552dd80b86cf`; verified merged source `
 Workspace note: phát hiện18tệp zip/spec/ảnh map–NPC mới chưa tracked trong lúc chốt task. Giữ nguyên ngoài commit; mới đọc README/đầu đặc tả, cần rà soát D14/D17 trước khi dùng làm canon. [Hash/preservation record](evidence/AW2-008A-workspace.json). Sau push xác minh tracked tree sạch/HEAD=remote;18tệp tham chiếu vẫn untracked có chủ đích.
 
 008A publication PASS: source `45a54471750961d382c807c338e75248ee261783`, exact staged/independently fetched tree `5730d74fc3ed37c8fa8fc75201c3b524bb35f78f`;33blobs/index/ancestry/expected-head guards verified, non-force update and clean tracked local sync PASS.390inputfingerprint stays0cdf990a4096cfea.18incoming reference files preserved untracked with exact SHA256. [Publication proof](evidence/AW2-008A-publication.json). Final docs-only completion independently verified before success.
+
+| UI-QUEST-01 | Single viewport no document scroll at 320×568, 390×844, 844×390, 1280×720 | UI shell responsive | NOT_RUN |
+| UI-QUEST-02 | Quest tabs, pagination, keyboard, gamepad and focus handling | Quest/UI overlay | NOT_RUN |
+| UI-QUEST-03 | Open/close submenu preserves world position and blocks click-through | World/UI bridge | NOT_RUN |
+| UI-QUEST-04 | Quest tracker/NPC/journal synchronous state | Quests/story | NOT_RUN |
+| UI-QUEST-05 | Atomic claim, no duplicated rewards after reload/double tap | Quest reward/save | NOT_RUN |
+| UI-QUEST-06 | TCG/AutoChess in-shell return without reset | Mode routing | NOT_RUN |
