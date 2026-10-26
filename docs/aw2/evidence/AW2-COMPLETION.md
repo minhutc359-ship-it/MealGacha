@@ -1,5 +1,7 @@
 # AW2-015B / AW2-016A / AW2-008B — verification, 2026-10-26
 
+Implementation source **`a0414daefabc826ff8199ca7bc7db4e52f074f18`**, exact remote/staged tree `ad68d25f49908f6694b88dcb1fe6cf4d2b93c299`, expected-head/non-force push through the required GitHub account and independent fetch/ancestry/clean local sync PASS. [Publication proof](AW2-COMPLETION-publication.json). This evidence stamp is documentation only; final remote/local equality is checked after its push.
+
 Base `2caa108ec97bee1487521aa0aa7202c8daa37247`; development branch `game/adventure-world-2`. Runtime source/config fingerprint `34a7e3e6b138fa00afabf7b768e77faa1bf81c6f2459e32991e0d7dd97a32ad3`, 399 inputs, exact match with the compiled candidate. Build honestly records the base SHA and `sourceDirty=true`; implementation source stamp is recorded after commit. No source authority or dependency change.
 
 ## Scope delivered
