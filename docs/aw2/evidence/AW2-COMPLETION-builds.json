@@ -1,0 +1,19 @@
+{
+  "base": "2caa108ec97bee1487521aa0aa7202c8daa37247",
+  "sourceDirty": true,
+  "codeFingerprint": "34a7e3e6b138fa00afabf7b768e77faa1bf81c6f2459e32991e0d7dd97a32ad3",
+  "inputFiles": 399,
+  "builds": {
+    "dist-aw2": {
+      "totalFiles": 302,
+      "totalBytes": 120602933,
+      "runtimeAssetParity": 150,
+      "allRuntimeFilesParity": 256
+    },
+    "dist": {
+      "totalFiles": 851,
+      "totalBytes": 177450422,
+      "textIsolationFiles": 72
+    }
+  }
+}

@@ -4,13 +4,16 @@ import type { ModeVisit } from "../../src/aw2/modes/session"
 import { zoneById } from "../../src/aw2/world/maps"
 import { TcgPractice } from "./TcgPractice"
 import { ChessPractice } from "./ChessPractice"
+import { ActivityFrame, ActivityCopy } from "./ActivityFrame"
 
 export function ModeLobby({
   visit,
   error,
   onReturn,
   onReread,
+  compact = false,
 }: {
+  compact?: boolean
   visit: ModeVisit
   error: string
   onReturn: () => void
@@ -18,15 +21,65 @@ export function ModeLobby({
 }) {
   const heading = useRef<HTMLHeadingElement>(null)
   const [playing, setPlaying] = useState(false)
+  const [page, setPage] = useState("welcome")
+  useEffect(() => {
+    if (error && compact) setPage("notice")
+  }, [error, compact])
   useEffect(() => {
     heading.current?.focus()
   }, [])
   const mode = AW2_MODES.find((candidate) => candidate.id === visit.modeId)!
   if (playing && visit.modeId === "tcg")
-    return <TcgPractice error={error} onReturn={onReturn} onReread={onReread} />
+    return (
+      <TcgPractice
+        compact={compact}
+        error={error}
+        onReturn={onReturn}
+        onReread={onReread}
+      />
+    )
   if (playing && visit.modeId === "auto-chess")
     return (
-      <ChessPractice error={error} onReturn={onReturn} onReread={onReread} />
+      <ChessPractice
+        compact={compact}
+        error={error}
+        onReturn={onReturn}
+        onReread={onReread}
+      />
+    )
+  if (compact)
+    return (
+      <ActivityFrame
+        title={`${mode.name} · Sảnh chờ`}
+        status={`Trở về: ${zoneById(visit.returnZoneId).name}`}
+        page={page}
+        onPage={setPage}
+        pages={[
+          ["welcome", "Bàn chơi"],
+          ["notice", "Thông báo / đọc lại"],
+        ]}
+        data-testid="mode-lobby"
+        data-mode-id={visit.modeId}
+        data-entry={visit.entry}
+        footer={<button onClick={onReturn}>Trở về hành trình</button>}
+      >
+        <ActivityCopy
+          text={
+            page === "notice"
+              ? error || "Đọc lại sẽ trở về tiến trình hành trình mới nhất."
+              : visit.modeId === "tcg"
+                ? "Mượn bộ 20 lá để đấu với Chủ bàn. Không tốn vật phẩm, không nhận thưởng; tải lại hoặc rời bàn sẽ bỏ ván."
+                : "Mượn đội và vàng tại bàn để tuyển quân, xếp đội và đấu 5 vòng. Không tốn vật phẩm, không nhận thưởng hành trình; tải lại hoặc rời bàn sẽ bỏ ván."
+          }
+        />
+        {page === "welcome" ? (
+          <button onClick={() => setPlaying(true)}>
+            {visit.modeId === "tcg" ? "Chơi TCG thử" : "Chơi Auto Chess thử"}
+          </button>
+        ) : (
+          <button onClick={onReread}>Đọc lại hành trình</button>
+        )}
+      </ActivityFrame>
     )
   return (
     <main

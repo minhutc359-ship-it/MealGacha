@@ -35,7 +35,8 @@ import { JourneyGuide } from "./JourneyGuide"
 import { DemoCompletion } from "./DemoCompletion"
 import { PlaytestFeedback } from "./PlaytestFeedback"
 import { WorldGame, type GamePanel } from "./WorldGame"
-import { PagedCopy, trapPanelTab } from "./GamePanels"
+import { PagedCopy, trapPanelTab, type QuestViewState } from "./GamePanels"
+import type { ZoneId } from "../../src/aw2/world/ids"
 import "./styles.css"
 
 const singleViewport = window.location.pathname.endsWith("/game.html")
@@ -54,6 +55,17 @@ function WorldPreview() {
   const [dialogObject, setDialogObject] = useState<WorldObject | null>(null)
   const [busy, setBusy] = useState(false)
   const [gamePanel, setGamePanel] = useState<GamePanel>("none")
+  const [questPinned, setQuestPinned] = useState(true)
+  const journalMemory = useRef<QuestViewState>({
+    page: Math.min(world.questIndex, 3),
+    tab: "objective",
+    destination: 0,
+  })
+  const overviewMemory = useRef<ZoneId>(world.zoneId)
+  useEffect(() => {
+    journalMemory.current.page = Math.min(world.questIndex, 3)
+    journalMemory.current.destination = 0
+  }, [world.questIndex])
   const gamePanelRef = useRef(gamePanel)
   const queuedWalk = useRef<Waypoint | null>(null)
   gamePanelRef.current = gamePanel
@@ -497,6 +509,7 @@ function WorldPreview() {
   if (activeEncounter)
     return (
       <WorldBattle
+        compact={singleViewport}
         encounter={activeEncounter.run}
         busy={busy}
         error={error}
@@ -507,6 +520,7 @@ function WorldPreview() {
   if (activeMode)
     return (
       <ModeLobby
+        compact={singleViewport}
         visit={activeMode}
         error={error}
         onReturn={returnFromMode}
@@ -580,6 +594,10 @@ function WorldPreview() {
   if (singleViewport)
     return (
       <WorldGame
+        pinned={questPinned}
+        onPin={() => setQuestPinned((value) => !value)}
+        journalMemory={journalMemory}
+        overviewMemory={overviewMemory}
         snapshot={snapshot}
         world={world}
         panel={gamePanel}

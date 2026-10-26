@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "flavor": "compiled",
+  "checks": [
+    "Stale lobby cannot overwrite a newer actual save and remains recoverable",
+    "Read-again exits stale practice into the exact newer world",
+    "Completed overview routes reach table through actual unlocked reciprocal doors",
+    "Missing battle atlas is disclosed without fabricated complete art or committed result",
+    "Real rematch retreat preserves all economy/collection/quest/party data",
+    "A recovered atlas mounts the actual battle again",
+    "No unexpected errors in stale-tab/fault/recovery paths"
+  ],
+  "freshAssertions": 7,
+  "retainedAssertions": 0,
+  "errors": [],
+  "expectedErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "origin": {
+    "path": "docs/aw2/evidence/AW2-COMPLETION-compiled-browser.json",
+    "sha256": "3ec0f2148397bb3232e807e12caea1ae4ff081e0b6ee9c140d079e98992900c8",
+    "rawSha256": "8c640f0f990134fbf9bd4aee0485155fb7e3807800500bc7fa6274203d577b88"
+  },
+  "observedRaw": "{\"gameId\":\"adventure-world-2\",\"environment\":\"development\",\"schemaVersion\":5,\"saveId\":\"da47c192-bbc0-4122-8ba8-b3dacea50656\",\"revision\":44,\"createdAt\":\"2026-10-26T15:27:33.253Z\",\"updatedAt\":\"2026-10-26T15:32:24.807Z\",\"progress\":{\"zoneId\":\"aw2-zone-kitchen-table\",\"x\":96,\"y\":192,\"facing\":\"right\",\"questIndex\":4,\"accepted\":false,\"tableRead\":true,\"memories\":[\"aw2-event-memory-vendor\",\"aw2-event-memory-chair\",\"aw2-event-memory-bowl\"],\"threadChoice\":\"return\",\"hintRead\":true,\"puzzleStep\":3,\"partyIds\":[\"aw2-than\",\"aw2-lua\",\"aw2-lam\",\"aw2-moc-non\",\"aw2-suong\"],\"bossDefeated\":true,\"tableNoteRead\":true,\"endingChoice\":\"share\"},\"economy\":{\"tuningId\":\"aw2-economy-development-v1\",\"inventory\":{\"rice\":5,\"herbs\":5,\"broth\":4,\"warm-bowl\":0},\"teamExperience\":300,\"receipts\":[\"aw2-grant-kept-seat\",\"aw2-grant-three-memories\",\"aw2-grant-open-hearth\",\"aw2-grant-one-more-bowl\"],\"cooked\":0,\"shared\":0},\"collection\":{\"recruitedIds\":[],\"vanEmphasis\":\"protection\"}}"
+}

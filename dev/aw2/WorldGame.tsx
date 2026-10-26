@@ -1,10 +1,4 @@
-import {
-  useEffect,
-  useState,
-  useRef,
-  type ReactNode,
-  type RefObject,
-} from "react"
+import { useEffect, type ReactNode, type RefObject } from "react"
 import type { SaveSnapshot } from "../../src/aw2/save/schema"
 import type { WorldProgress } from "../../src/aw2/world/model"
 import type { Waypoint } from "../../src/aw2/world/navigation"
@@ -22,10 +16,16 @@ import {
   type QuestViewState,
 } from "./GamePanels"
 import type { Aw2ModeId } from "../../src/aw2/modes/catalog"
+import type { ZoneId } from "../../src/aw2/world/ids"
+import { JourneyOverview } from "./JourneyOverview"
 import "./game.css"
 
-export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help"
+export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas"
 interface Props {
+  pinned: boolean
+  onPin: () => void
+  journalMemory: RefObject<QuestViewState>
+  overviewMemory: RefObject<ZoneId>
   snapshot: SaveSnapshot
   world: WorldProgress
   panel: GamePanel
@@ -55,21 +55,13 @@ const titles = {
   more: "Menu hành trình",
   places: "Địa điểm trong vùng",
   help: "Hướng dẫn và thông báo",
+  atlas: "Bản đồ hành trình",
 }
 
 /** Opt-in v1.1 exploration UI. Existing controller owns every movement and save action. */
 export function WorldGame(props: Props) {
   const { snapshot, world, panel, busy, canWalk, onPanel } = props
-  const [pinned, setPinned] = useState(true)
-  const journalMemory = useRef<QuestViewState>({
-    page: Math.min(world.questIndex, 3),
-    tab: "objective",
-    destination: 0,
-  })
-  useEffect(() => {
-    journalMemory.current.page = Math.min(world.questIndex, 3)
-    journalMemory.current.destination = 0
-  }, [world.questIndex])
+  const { pinned, journalMemory } = props
   useEffect(() => {
     document.documentElement.classList.add("aw2-game-document")
     return () => document.documentElement.classList.remove("aw2-game-document")
@@ -227,7 +219,7 @@ export function WorldGame(props: Props) {
               world={world}
               canWalk={canWalk}
               pinned={pinned}
-              onPin={() => setPinned((p) => !p)}
+              onPin={props.onPin}
               onWalk={props.onWalk}
             />
           )}
@@ -254,8 +246,23 @@ export function WorldGame(props: Props) {
               onWalk={props.onWalk}
             />
           )}
+          {panel === "atlas" && save && (
+            <JourneyOverview
+              world={world}
+              canWalk={canWalk}
+              memory={props.overviewMemory}
+              onWalk={props.onWalk}
+            />
+          )}
           {panel === "more" && (
             <div className="aw2-panel-stack aw2-game-more">
+              <button
+                type="button"
+                disabled={!save}
+                onClick={() => onPanel("atlas")}
+              >
+                Bản đồ hành trình
+              </button>
               <button
                 type="button"
                 disabled={!save}

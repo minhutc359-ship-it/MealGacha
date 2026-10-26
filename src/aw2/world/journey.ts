@@ -51,7 +51,7 @@ function targets(state: WorldProgress): string[] {
 }
 
 /** Read-only graph projection: command descriptions remain the only travel authority. */
-function openRoute(
+export function journeyRoute(
   state: WorldProgress,
   destination: ZoneId,
 ): ZoneId[] | undefined {
@@ -84,7 +84,7 @@ export function journeyDirections(state: WorldProgress): JourneyDirection[] {
     const target = zoneById(targetZone).objects.find(
       (object) => object.id === id,
     )!
-    const zones = openRoute(state, targetZone)
+    const zones = journeyRoute(state, targetZone)
     if (!zones) return []
     const next =
       zones.length === 1

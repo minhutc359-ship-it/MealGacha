@@ -4,11 +4,42 @@ import {
   actorDisplayScale,
   actorStatus,
   projectBattle,
+  projectCompactBattle,
   recentActorOutcomes,
 } from "../../aw2/battleLayout"
 import { STARTER_ASSETS } from "../../../src/aw2/assets/starters"
 
 describe("AW2-004H presentation depth and readable outcomes", () => {
+  it("keeps compact actors in the viewport, stable by slot and proportional to actual progress", () => {
+    const { battle } = createBattlePreviewSession(5)
+    const before = JSON.stringify(battle)
+    for (const [width, height] of [
+      [300, 150],
+      [374, 430],
+      [828, 180],
+      [1264, 450],
+    ]) {
+      const view = projectCompactBattle(battle.actors, width, height)
+      expect(view).toEqual(
+        projectCompactBattle([...battle.actors].reverse(), width, height),
+      )
+      for (const actor of battle.actors) {
+        const point = view.points[actor.id]
+        expect(point.x).toBeGreaterThanOrEqual(64)
+        expect(point.x).toBeLessThanOrEqual(width - 64)
+        expect(point.y).toBeGreaterThan(32)
+        expect(point.y).toBeLessThan(height - 32)
+        for (const other of battle.actors) {
+          expect(view.points[other.id].x - point.x).toBeCloseTo(
+            ((other.position - actor.position) * (width - 128)) / 100,
+          )
+          if (actor.side === other.side && actor.id !== other.id)
+            expect(view.points[other.id].y).not.toBe(point.y)
+        }
+      }
+    }
+    expect(JSON.stringify(battle)).toBe(before)
+  })
   it("separates converged actors without modifying core position or actor order", () => {
     const { battle } = createBattlePreviewSession(5)
     battle.actors.forEach((actor) => (actor.position = 50))

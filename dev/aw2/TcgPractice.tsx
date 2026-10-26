@@ -18,8 +18,10 @@ import type {
   TcgUnit,
 } from "../../src/aw2/tcg/types"
 import "./tcg.css"
+import { ActivityFrame, ActivityPages, ActivityCopy } from "./ActivityFrame"
 
 interface PracticeProps {
+  compact?: boolean
   error: string
   onReturn: () => void
   onReread: () => void
@@ -40,7 +42,19 @@ function Portrait({ spiritId, name }: PortraitProps) {
     />
   )
 }
-export function TcgPractice({ error, onReturn, onReread }: PracticeProps) {
+export function TcgPractice({
+  error,
+  onReturn,
+  onReread,
+  compact = false,
+}: PracticeProps) {
+  const [page, setPage] = useState("hand")
+  const [handPage, setHandPage] = useState(0)
+  const [unitPage, setUnitPage] = useState(0)
+  const [enemyPage, setEnemyPage] = useState(0)
+  useEffect(() => {
+    if (error && compact) setPage("notice")
+  }, [error, compact])
   const [session, dispatch] = useReducer(reduceTcgSession, undefined, () =>
     createTcgSession(),
   )
@@ -54,8 +68,10 @@ export function TcgPractice({ error, onReturn, onReread }: PracticeProps) {
   const active = game.status === "active"
   const legal = legalTcgActions(game, "player"),
     selected = selectedTcgActions(session)
-  const command = (action: TcgCommand) =>
+  const command = (action: TcgCommand) => {
     dispatch({ type: "command", command: action })
+    if (compact) setPage("hand")
+  }
   const targetAction = (uid: string) =>
     selected.find((action) => "targetUid" in action && action.targetUid === uid)
   const targetButton = (uid: string, label: string) => {
@@ -97,12 +113,16 @@ export function TcgPractice({ error, onReturn, onReread }: PracticeProps) {
               session.selection?.kind === "attack" &&
               session.selection.uid === unit.uid
             }
-            onClick={() =>
+            onClick={() => {
               dispatch({
                 type: "select",
                 selection: { kind: "attack", uid: unit.uid },
               })
-            }
+              if (compact) {
+                setPage("opponent")
+                setEnemyPage(0)
+              }
+            }}
           >
             Tấn công bằng {card.name}
           </button>
@@ -136,14 +156,18 @@ export function TcgPractice({ error, onReturn, onReread }: PracticeProps) {
             session.selection?.kind === "play" &&
             session.selection.uid === instance.uid
           }
-          onClick={() =>
-            card.effect === "bolt-2"
-              ? dispatch({
-                  type: "select",
-                  selection: { kind: "play", uid: instance.uid },
-                })
-              : command(options.actions[0])
-          }
+          onClick={() => {
+            if (card.effect === "bolt-2") {
+              dispatch({
+                type: "select",
+                selection: { kind: "play", uid: instance.uid },
+              })
+              if (compact) {
+                setPage("opponent")
+                setEnemyPage(0)
+              }
+            } else command(options.actions[0])
+          }}
         >
           Dùng {card.name}
         </button>
@@ -157,6 +181,160 @@ export function TcgPractice({ error, onReturn, onReread }: PracticeProps) {
       : game.status === "opponent-win"
         ? "Chủ bàn thắng ván này"
         : "Ván hòa"
+  if (compact)
+    return (
+      <ActivityFrame
+        title="TCG · Luyện tập"
+        status={
+          active
+            ? `Lượt ${game.turn} · Bạn ${player.health}♥ · Địch ${enemy.health}♥ · NL ${player.energy}/${player.maxEnergy}`
+            : result
+        }
+        pages={[
+          ["hand", "Bài trên tay"],
+          ["player", "Đội của bạn"],
+          ["opponent", "Bàn và mục tiêu đối thủ"],
+          ["turn", "Nước đi và ván mới"],
+          ["rules", "Luật và bộ bài"],
+          ["log", "Nhật ký"],
+          ["notice", "Thông báo / đọc lại"],
+        ]}
+        page={page}
+        onPage={setPage}
+        data-testid="tcg-practice"
+        data-status={game.status}
+        data-turn={game.turn}
+        data-event-serial={game.eventSerial}
+        footer={
+          <>
+            <button type="button" onClick={onReturn}>
+              {active ? "Dừng ván và về hành trình" : "Trở về hành trình"}
+            </button>
+            {session.selection ? (
+              <button
+                type="button"
+                onClick={() => dispatch({ type: "cancel" })}
+              >
+                Hủy chọn mục tiêu
+              </button>
+            ) : (
+              <button
+                type="button"
+                disabled={!active}
+                onClick={() => command({ type: "end-turn", side: "player" })}
+              >
+                Kết thúc lượt
+              </button>
+            )}
+          </>
+        }
+      >
+        {page === "hand" && (
+          <ActivityPages
+            items={player.hand}
+            page={handPage}
+            onPage={setHandPage}
+            label="Lá"
+          >
+            {handCard}
+          </ActivityPages>
+        )}
+        {page === "player" && (
+          <ActivityPages
+            items={player.board}
+            page={unitPage}
+            onPage={setUnitPage}
+            label="Đồng đội"
+          >
+            {(unit) => unitCard(unit, "player")}
+          </ActivityPages>
+        )}
+        {page === "opponent" && (
+          <ActivityPages
+            items={[null, ...enemy.board]}
+            page={enemyPage}
+            onPage={setEnemyPage}
+            label="Mục tiêu"
+          >
+            {(unit) =>
+              unit ? (
+                unitCard(unit, "opponent")
+              ) : (
+                <article>
+                  <h2>Chủ bàn · Máu {enemy.health}/18</h2>
+                  <p>
+                    Tay {enemy.hand.length} · Bộ bài {enemy.deck.length} · Bỏ{" "}
+                    {enemy.discard.length}
+                  </p>
+                  {targetButton(tcgLeaderTarget("opponent"), "Chủ bàn") || (
+                    <p>
+                      Chọn quân tấn công hoặc chiến thuật để nhắm mục tiêu hợp
+                      lệ.
+                    </p>
+                  )}
+                </article>
+              )
+            }
+          </ActivityPages>
+        )}
+        {page === "turn" && (
+          <div className="aw2-activity-actions">
+            <button
+              disabled={!active}
+              onClick={() => {
+                dispatch({ type: "recommend" })
+                setPage("hand")
+              }}
+            >
+              Chơi nước gợi ý
+            </button>
+            <button
+              disabled={!active}
+              onClick={() => command({ type: "surrender", side: "player" })}
+            >
+              Nhận thua
+            </button>
+            {!active && (
+              <button
+                onClick={() => {
+                  dispatch({ type: "rematch" })
+                  setPage("hand")
+                }}
+              >
+                Chơi ván mới
+              </button>
+            )}
+          </div>
+        )}
+        {page === "rules" && (
+          <ActivityCopy
+            text={`Mỗi bên mượn 20 lá, mở 3 rồi rút 1 đầu lượt. 18 máu, tối đa 3 quân và 7 lá trên tay. Năng lượng hồi và tăng 1 mỗi lượt đến 6. Quân mới nghỉ một lượt; sau đó tấn công một lần. Sát thương trao đồng thời, khiên chịu trước máu. Hộ vệ chặn đòn thường; chiến thuật có thể bỏ qua. Đầy tay bỏ lá rút thêm. Hết bài mất máu tăng dần 1, 2, 3… Hòa sau 60 lượt. Gợi ý chỉ đọc bàn công khai. Không tốn vật phẩm/nhận thưởng; rời hoặc tải lại bỏ ván. Mã xáo ${game.seed}. ${TCG_CARDS.map((c) => `${c.name}: ${c.description}`).join(" ")}`}
+          />
+        )}
+        {page === "log" && (
+          <ActivityCopy
+            text={
+              game.events
+                .slice(-12)
+                .map((e) => e.text)
+                .join("\n") || "Chưa có sự kiện."
+            }
+          />
+        )}
+        {page === "notice" && (
+          <>
+            <ActivityCopy
+              text={
+                error ||
+                session.feedback ||
+                "Điểm khám phá được giữ. Đọc lại sẽ bỏ ván hiện tại và tải tiến trình hành trình mới nhất."
+              }
+            />
+            <button onClick={onReread}>Đọc lại hành trình và rời ván</button>
+          </>
+        )}
+      </ActivityFrame>
+    )
   return (
     <main
       className="aw2-save tcg-practice"

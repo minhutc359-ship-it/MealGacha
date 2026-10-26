@@ -1,5 +1,13 @@
 # Test ledger / change impact
 
+## AW2-015B /016A /008B —2026-10-26
+
+**AW2-015B /016A /008B VERIFIED — trận và bản đồ trong khung chơi cố định.** Sảnh/TCG/Auto Chess/boss trên `game.html` đã phân trang cùng44pxcontrols; giữ ghim/trang nhật ký/vùng đang xem qua lượt chơi. Quầy cờ đánh dấu và đếm bản đang có. **Thêm → Bản đồ hành trình** có sáu vùng, vị trí/mục tiêu, cửa mở/khóa và đi bộ tới cửa kế; tự E/Đi qua, không tự dịch chuyển. Registry typed/runtime-validation chiếu sáu map/támNPC/portal/spawn hiện hành, không đổi luật/save/geometry; preload/rollback/nội thất mới vẫn là hợp đồng kế tiếp.
+
+**205ca unit riêng biệt/11files, hai typecheck, AW2+stable builds PASS. 1,016fresh browser checks=508source+508compiled**, gồm501main+7faults mỗi flavor; thêm276source exploration regression tách riêng. Bốn viewport/font16–20px, ván TCG thật có nhắm đích thủ công, cờ xếp quân/giao tranh/sang vòng, hành trình mới đủ sáu vùng→boss45tick→ghi lỗi/thử lại→ghi chép/kết thúc/reload300XP. Tab cũ/atlas404/khôi phục/rút lui đấu lại giữ dữ liệu; không lỗi browser bất ngờ. Fingerprint399inputs `34a7e3e6b138fa00afabf7b768e77faa1bf81c6f2459e32991e0d7dd97a32ad3`; build302files/120,602,933bytes/256runtimeparity, stable851files/177,450,422bytes/72textisolation. [Bằng chứng](evidence/AW2-COMPLETION.md) · [Cách chơi](ACTIVITY_SHELL.md) · [Bản đồ/contract](WORLD_REGISTRY.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên**; D20gác nghiệm thu độc lập/điện thoại, D18milestone chưa đóng. D11PROPOSED; không thêm gacha/quyền phát hành/save field/ảnh/nhạc/dependency. Next016B: một NPC tuần tra bằng sprite nguyên bản và vị trí tương tác sống; sau đó preload/rollback và một nội thất có canon/migration riêng. Phát triển/push trực tiếp AW2 theoD16; không master/rpg/deploy/release. Các mục phía dưới là lịch sử; ưu tiên mới theo đoạn này.
+
 ## AW2-015A v1.1reference integration +first exploration/menu shell —2026-10-26
 
 Source `0936b948db633c66e5539f631e3f8aaf7920fda1`, base `601fed31d9965c883afc14774b123c56f4b272ef` includes concurrent design commits73ef962..601fed3preserved in history. Imported duplicateD13→D23and UI-only012→015normalized explicitly, six importedUI-QUEST cases mapped toUI-V11-01..10without claiming implementation. Exact22file1,980,952byte reference archive and23untracked originals/ZIPhashes PASS;0rastergeneration/edits, rightsREVIEW_REQUIRED. [Matrix](WORLD_V1_1_INTEGRATION.md), [provenance](evidence/AW2-015A-spec-provenance.json).

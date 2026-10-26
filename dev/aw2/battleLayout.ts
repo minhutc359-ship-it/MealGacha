@@ -8,6 +8,31 @@ export interface ActorPoint {
   badge: string
 }
 
+/** Display-only fixed viewport lanes. Horizontal progress remains the combat position. */
+export function projectCompactBattle(
+  actors: readonly CombatActor[],
+  containerWidth: number,
+  containerHeight: number,
+) {
+  const width = Math.max(240, Math.min(1600, Math.floor(containerWidth)))
+  const height = Math.max(120, Math.floor(containerHeight))
+  const points: Record<string, ActorPoint> = {}
+  for (const side of ["player", "enemy"] as const) {
+    const units = actors
+      .filter((a) => a.side === side)
+      .sort((a, b) => a.slot - b.slot || a.id.localeCompare(b.id))
+    units.forEach((actor, lane) => {
+      points[actor.id] = {
+        x: 64 + (actor.position * (width - 128)) / 100,
+        y: 32 + ((height - 64) * (lane + 0.5)) / Math.max(1, units.length),
+        lane,
+        badge: `${side === "player" ? "Đ" : "K"}${actor.slot + 1}`,
+      }
+    })
+  }
+  return { width, height, points }
+}
+
 /** Display depth only. The rules still use their original one-dimensional positions. */
 export function projectBattle(
   actors: readonly CombatActor[],

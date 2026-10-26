@@ -24,12 +24,14 @@ import {
   actorDisplayScale,
   actorStatus,
   projectBattle,
+  projectCompactBattle,
   recentActorOutcomes,
 } from "./battleLayout"
 
 type LoadedAtlas = Record<string, HTMLImageElement>
 
 interface Props {
+  compact?: boolean
   battle: CombatBattle
   presentation: CombatPresentation
   reducedMotion: boolean
@@ -55,7 +57,7 @@ function manifestFor(
 function slotFromSkill(skillId?: string): SkillSlot | null {
   const slot = skillId?.split(":").at(-1)
   return ["basic", "auto", "passive", "ultimate"].includes(slot ?? "")
-    ? (slot as SkillSlot)
+    ? slot as SkillSlot
     : null
 }
 
@@ -67,10 +69,12 @@ export function BattleCanvas({
   stopped = false,
   visualIds,
   labels,
+  compact = false,
 }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null)
   const stage = useRef<HTMLDivElement>(null)
   const [stageWidth, setStageWidth] = useState(960)
+  const [stageHeight, setStageHeight] = useState(320)
   const optionalVisualIds = [
     ...new Set(
       battle.actors.map((actor) => visualIds?.[actor.id] ?? actor.spiritId),
@@ -82,7 +86,9 @@ export function BattleCanvas({
   const bossPresent = battle.actors.some(
     (actor) => actor.spiritId === FORGOTTEN_HOST_ASSETS.entityId,
   )
-  const layout = projectBattle(battle.actors, stageWidth)
+  const layout = compact
+    ? projectCompactBattle(battle.actors, stageWidth, stageHeight)
+    : projectBattle(battle.actors, stageWidth)
   const clock = useRef({
     time: 0,
     tick: -1,
@@ -100,12 +106,13 @@ export function BattleCanvas({
   useEffect(() => {
     const container = stage.current
     if (!container) return
-    const observer = new ResizeObserver(([entry]) =>
-      setStageWidth(entry.contentRect.width),
-    )
+    const observer = new ResizeObserver(([entry]) => {
+      setStageWidth(entry.contentRect.width)
+      if (compact) setStageHeight(entry.contentRect.height)
+    })
     observer.observe(container)
     return () => observer.disconnect()
-  }, [])
+  }, [compact])
 
   useEffect(() => {
     let disposed = false
@@ -209,11 +216,14 @@ export function BattleCanvas({
     const scales = Object.fromEntries(
       battle.actors.map((actor) => [
         actor.id,
-        actorDisplayScale(
-          actor.spiritId === FORGOTTEN_HOST_ASSETS.entityId
-            ? FORGOTTEN_HOST_ASSETS
-            : manifestFor(actor, visualIds),
-        ),
+        (compact
+          ? Math.min(1, Math.max(20, (layout.height - 64) / 5 - 12) / 72)
+          : 1) *
+          actorDisplayScale(
+            actor.spiritId === FORGOTTEN_HOST_ASSETS.entityId
+              ? FORGOTTEN_HOST_ASSETS
+              : manifestFor(actor, visualIds),
+          ),
       ]),
     )
     const fxScale = (actor: CombatActor) => scales[actor.id] / 0.28
@@ -429,7 +439,7 @@ export function BattleCanvas({
         )
         clock.current.effects[key] = sampled.clock
         return (cue.targetIds ?? [cue.targetId]).map((targetId) => ({
-          skill: manifest.skills[slot as SkillSlot],
+          skill: manifest.skills[(slot as SkillSlot)],
           effect: presentation.terminal ? null : sampled.effect,
           targetId,
           serial: cue.serial,
@@ -512,7 +522,7 @@ export function BattleCanvas({
         enemy = actor.side === "enemy"
       const barWidth = 76
       const left = x - barWidth / 2
-      const top = y + 20
+      const top = y + (compact ? 6 : 20)
       context!.fillStyle = "rgba(5, 12, 10, .78)"
       context!.fillRect(left, top, barWidth, 8)
       context!.fillStyle = enemy ? "#d46a6a" : "#74d28c"
@@ -530,7 +540,9 @@ export function BattleCanvas({
       context!.font = "600 13px system-ui"
       context!.textAlign = "center"
       label(
-        `${layout.points[actor.id].badge} · ${labels?.[actor.id] ?? displayName}`,
+        compact
+          ? layout.points[actor.id].badge
+          : `${layout.points[actor.id].badge} · ${labels?.[actor.id] ?? displayName}`,
         x,
         top - 5,
       )
@@ -703,14 +715,18 @@ export function BattleCanvas({
     visualIds,
     labels,
     stageWidth,
+    stageHeight,
+    compact,
   ])
 
   return (
     <>
-      <p className="note">
-        Làn tách nhân vật để dễ theo dõi; vị trí ngang thể hiện bước tiến trong
-        trận. Đ: đội của bạn · K: ký ức.
-      </p>
+      {!compact && (
+        <p className="note">
+          Làn tách nhân vật để dễ theo dõi; vị trí ngang thể hiện bước tiến
+          trong trận. Đ: đội của bạn · K: ký ức.
+        </p>
+      )}
       <div
         className="aw2-battle-stage"
         id="battle-arena"
@@ -722,7 +738,7 @@ export function BattleCanvas({
           width={layout.width}
           height={layout.height}
           aria-label="Trận đấu năm Vị Linh AW2"
-          aria-describedby="battle-roster"
+          aria-describedby={compact ? undefined : "battle-roster"}
         />
       </div>
       <p role="status" data-testid="battle-atlas-state">
@@ -735,25 +751,27 @@ export function BattleCanvas({
             : "Đang tải atlas chiến đấu…"}
       </p>
       {error && <p role="alert">{error}</p>}
-      <details className="aw2-battle-roster" id="battle-roster">
-        <summary>Máu và trạng thái từng nhân vật</summary>
-        <ul>
-          {battle.actors.map((actor) => (
-            <li key={actor.id} data-actor-id={actor.id}>
-              <strong>
-                {layout.points[actor.id].badge} ·{" "}
-                {labels?.[actor.id] ??
-                  manifestFor(actor, visualIds)?.displayName ??
-                  actor.id}
-              </strong>
-              <span>
-                HP {actor.hp}/{actor.maxHp} ·{" "}
-                {actorStatus(actor, battle.tick).join(" · ") || "Sẵn sàng"}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </details>
+      {!compact && (
+        <details className="aw2-battle-roster" id="battle-roster">
+          <summary>Máu và trạng thái từng nhân vật</summary>
+          <ul>
+            {battle.actors.map((actor) => (
+              <li key={actor.id} data-actor-id={actor.id}>
+                <strong>
+                  {layout.points[actor.id].badge} ·{" "}
+                  {labels?.[actor.id] ??
+                    manifestFor(actor, visualIds)?.displayName ??
+                    actor.id}
+                </strong>
+                <span>
+                  HP {actor.hp}/{actor.maxHp} ·{" "}
+                  {actorStatus(actor, battle.tick).join(" · ") || "Sẵn sàng"}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
     </>
   )
 }

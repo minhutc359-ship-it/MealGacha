@@ -1,0 +1,29 @@
+# AW2-015B / AW2-016A / AW2-008B — verification, 2026-10-26
+
+Base `2caa108ec97bee1487521aa0aa7202c8daa37247`; development branch `game/adventure-world-2`. Runtime source/config fingerprint `34a7e3e6b138fa00afabf7b768e77faa1bf81c6f2459e32991e0d7dd97a32ad3`, 399 inputs, exact match with the compiled candidate. Build honestly records the base SHA and `sourceDirty=true`; implementation source stamp is recorded after commit. No source authority or dependency change.
+
+## Scope delivered
+
+- Typed, runtime-validated detached registry of the existing six maps, eight NPCs, other entities, reciprocal portals and safe spawns. Gate permissions use `describeObject`; route traversal is shared with objective directions. Future preload/rollback/interior transition contract is documented, not claimed implemented.
+- Native six-region overview in the game menu: current location, objective star, paged open/locked connections, route and walk-only next-door navigation. No invented visited-state or automatic travel.
+- Opt-in fixed-viewport lobby, TCG, Chess and actual boss scenes. Native page selection, cards/units/long-copy pagination, all commands, boss telegraph/settings/results, retained local journal/pin/region state. Chess shop highlights/counts owned copies. Diagnostic entry remains available.
+
+## Fresh technical checks
+
+Environment: Linux x64, Node24.22.1, pnpm11.25.0, TypeScript5.9.3, Vite8.0.5, Vitest5.0.1, React19.2.4, Chromium153.0.8010.0, bundled Playwright Core. No package/lockfile changes. Browser executable extraction avoided unsupported host `chown`; no product dependency was added.
+
+- **205 unique unit cases /11 files PASS.** First batch121/7; second89/5 includes the same five unchanged original battle-layout cases, counted once. The second batch adds the compact-layout case. Registry20 + compact1 are the new cases. World/guidance/journal, sessions/modes, TCG/Chess, save and encounter impact covered. Initial registry fixture used `.progress` instead of the real `.state` return and was corrected; no engine fix. `replaceAll` was replaced with an ES2020-compatible regex after typecheck. Formatter produced an invalid nested readonly tuple; named tuple type repaired it. Failed checks excluded.
+- Root and final dev typechecks PASS. AW2 build PASS: **302 files /120,602,933 bytes**, all256 copied runtime files exact, including150WebP/WAV files. No PNG/TS/TSX/ZIP/map artifacts. Stable build/release guard PASS: **851 files /177,450,422 bytes**; all72HTML/JS/CSS/JSON files checked for AW2 paths/save namespace. Stable entry/config/deps and gameplay/store/engine directories unchanged from base.
+- **1,002 fresh main browser checks =501source+501compiled**, no retained assertions, both process exit0. All scene pages at320×568/390×844/844×390/1280×720, root fonts16/20px: document/core content fits, no internal scroll or clipped controls, native44px bounds. Real manual TCG target selection plus a complete legal suggested-action game; real Chess purchase/formation/combat/round-result/next-round; exact world inventory/XP/context retained. Native complete fresh quest journey through all six zones, actual five-unit boss victory at tick45, no result write before settlement; failed write/exact checkpoint/retry; note, share ending, reload and300XP. Legacy sentinels exact.
+- **14 fresh supplemental browser checks =7source+7compiled**: another tab's actual save blocks stale practice return, read-again recovers exact newer data, completed overview traverses real doors/shortcut, required boss atlas404 is disclosed, actual rematch retreat preserves economy/collection/quest/party, asset recovery mounts a real fight. Both process exit0, no unexpected errors. Supplemental starting raw is the exact primary earned ending, with report/raw hashes recorded; no historical assertions are imported.
+- **276 fresh source exploration/menu regression checks** using existing015A harness also PASS on current source. That harness's original limitation text describes its own scope; the main501+501 above supplies the new mode/battle scope. Counts are separate, not added to source/compiled main totals.
+
+Main diagnostic initially waited for the injected low-level English write-error string; the store correctly displays its localized safe error. Assertion fixed to visible `Chưa lưu được AW2`, added alert semantics, then both final main runs completed freshly from new save. Supplemental diagnostic initially attempted rematch immediately at the return spawn; corrected to walk natively back to boss before retry. No runtime/save authority change. All failed diagnostic counts excluded.
+
+Actual TCG hand320/844, Chess formation390, compact boss arena320/844 and failed-write captures opened for visual review. QA images remain under ignored `.asset-work/`; no QA screenshots committed. Source/compiled JSON reports and build/fingerprint summary are adjacent.
+
+## Limits and next work
+
+Technical fixed-viewport core scenes are delivered, not physical-phone/independent-player acceptance. Battle canvas uses compact presentation lanes; full HUD stats are on native unit pages. Test covers one full TCG game, one Chess combat round plus next-round transition and one new quest boss win per flavor, not every strategy/party branch. No new current full-suite claim; historical1588-unit evidence remains valid only for unchanged authorities/assets/dependencies. Full regression is due on shared save/engine changes or milestone.
+
+Demo90% / product≈40%(35–45%) unchanged: independent human/phone/FPS/GPU-memory/listening/offline/native/rights/production-save and D18 release/milestone gates are open or deferred under D20. Twelve reference sets and kits do not imply full-character DoD. Next:016B one authored NPC patrol with a real live interaction position, then concrete destination-preload/rollback and one reconciled interior. D11gacha remains PROPOSED. No master/rpg update, reset, deploy, release or outgoing milestone PR.
