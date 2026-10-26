@@ -1,0 +1,1539 @@
+{
+  "task": "AW2-015A",
+  "source": "PENDING015A",
+  "base": "601fed31d9965c883afc14774b123c56f4b272ef",
+  "status": "PASS_LOCAL_REVIEW_ARTIFACT",
+  "totalFiles": 302,
+  "totalBytes": 120562756,
+  "runtimeAssetParity": 256,
+  "files": [
+    {
+      "path": "assets/AssetPreview-DWuzC9Np.js",
+      "bytes": 9471,
+      "sha256": "ea503a6049acbb2f84f065cfb98805782cc0907522dd51bfa7c084cdcf53bccc"
+    },
+    {
+      "path": "assets/BitmapFont-BS4YOkJF.js",
+      "bytes": 33752,
+      "sha256": "672600c5e29c12dbde6396874c782e3839b9c0cc2d64afc1fb3f551b1ab56d6f"
+    },
+    {
+      "path": "assets/BufferResource-D6PmTCzu.js",
+      "bytes": 11082,
+      "sha256": "65c74c2311e881ef9a6f33e1f940a6d3e05f6a3cd0461a66bd9dfa0d4509253a"
+    },
+    {
+      "path": "assets/Cache-AQcO6AON.js",
+      "bytes": 1098,
+      "sha256": "309cdf10dde95d8a711c5576a5682243949e2ee1eeff5868b69edb0eee7d7785"
+    },
+    {
+      "path": "assets/CanvasPool-B2fyoXnL.js",
+      "bytes": 767,
+      "sha256": "7b1197ab285afa84e15dcc0d71bc30ffcd0f555914b86d9675644e9c69bf5fa6"
+    },
+    {
+      "path": "assets/CanvasRenderer-BMc6-9v4.js",
+      "bytes": 27115,
+      "sha256": "ca628de0c5d439d9f5daeefef602e2a4757b2a15c34c19afae379d55838bd75e"
+    },
+    {
+      "path": "assets/FederatedEventTarget-BMZSPEtE.js",
+      "bytes": 42669,
+      "sha256": "294f91445eb9f8a0d6761a1fffb76290d7673c93c64b8629147035567d670ea4"
+    },
+    {
+      "path": "assets/Filter-tcJ1It8_.js",
+      "bytes": 39142,
+      "sha256": "06475e32be01f2bc6aed0d06826fbb787af6b9bcc875f9c9cb46e1912060d961"
+    },
+    {
+      "path": "assets/FilterSystem-B5K-nOlG.js",
+      "bytes": 39510,
+      "sha256": "5eeb3b8b0261c03a88592b7c6a52ad066830202b819f55ea86e0c04ee298f77a"
+    },
+    {
+      "path": "assets/GCManagedHash-CbEGoAlO.js",
+      "bytes": 26874,
+      "sha256": "f57229005bd37478359dccef936318fb733b98e6d3457e25f8976057d707161a"
+    },
+    {
+      "path": "assets/Geometry-C8lK_8zW.js",
+      "bytes": 64999,
+      "sha256": "0777cfed3c952b5df803ebd0133f57771c5a18b41a48c89f13061bc094bc1865"
+    },
+    {
+      "path": "assets/GraphicsContext-fdaNyEbx.js",
+      "bytes": 55463,
+      "sha256": "0ff58839f20e3715d644bac2c32beecabd4661abcf2dee6926f7adcbb5d1c0c6"
+    },
+    {
+      "path": "assets/RenderTargetSystem-eDIajJjI.js",
+      "bytes": 57680,
+      "sha256": "48c03661678ca1d31b2eabed0ec104ad400b0d5863108b14f0de1181b0f362eb"
+    },
+    {
+      "path": "assets/WebGLRenderer-BQTRqOTy.js",
+      "bytes": 71863,
+      "sha256": "d404885696076383fcef6974c85d8fb911b71f36685befa49baf3e11d865662e"
+    },
+    {
+      "path": "assets/WebGPURenderer-CsZcqiRA.js",
+      "bytes": 45783,
+      "sha256": "ca8fa3cfeb6875abdc480bebb8213857b6cadbac40c866b834a159a5b6d350c8"
+    },
+    {
+      "path": "assets/battle-BNwsiNlW.js",
+      "bytes": 25103,
+      "sha256": "425426d7220f343abca059cf29a413aad39766cda8952effc473486d11a1a708"
+    },
+    {
+      "path": "assets/browserAll-DJjiCfJt.js",
+      "bytes": 283,
+      "sha256": "0ed1f6bd506dfec5427792f801747226700d29ddcc46fa0dab059e62f24198f5"
+    },
+    {
+      "path": "assets/canvasUtils-BhjKeyUs.js",
+      "bytes": 6022,
+      "sha256": "cd1e8cc1bb129b8de9b13df684e0f9184116c4ad3f1a59f6c668275ef99b313d"
+    },
+    {
+      "path": "assets/chunk-cvfa0vKT.js",
+      "bytes": 558,
+      "sha256": "03a76345c69f8bd751dac18894f65c0918f1690fbbb661f38052819cd5ae8209"
+    },
+    {
+      "path": "assets/combat-DrI3uKV-.js",
+      "bytes": 57313,
+      "sha256": "12281a3da74852cc6fcb8a49f42c86d97ee22260e6b6ce85195d2b1180bf77a7"
+    },
+    {
+      "path": "assets/getTextureBatchBindGroup-GwrrRbIh.js",
+      "bytes": 342,
+      "sha256": "45c1122729be4cee17125cbcc521baf9287895d8da1fcc5cf53d1676a6edc82f"
+    },
+    {
+      "path": "assets/ids-Dt4kDvqJ.js",
+      "bytes": 1501,
+      "sha256": "fa5a63a90f685a0a537c91192735a8bff519e640640b6bf26299925ee6b238c1"
+    },
+    {
+      "path": "assets/index-z_rbhyhc.js",
+      "bytes": 5137,
+      "sha256": "91ae27dbf17d3138fe3aaedd96cea51796532c2b5181f1f380b77727c668d811"
+    },
+    {
+      "path": "assets/init-DtKhsQq3.js",
+      "bytes": 125,
+      "sha256": "9cadff96af3bac82ff12ab293378bf38336acfac2104b2ba52ff3d2ed3f05b28"
+    },
+    {
+      "path": "assets/jsx-runtime--EZ4MyU5.css",
+      "bytes": 11402,
+      "sha256": "cc96538f2d737b7f01474f004e51e1e6372da1eddcf968a45fc3d8af8e18f1ce"
+    },
+    {
+      "path": "assets/jsx-runtime-bpkFoxgY.js",
+      "bytes": 464227,
+      "sha256": "d97f4d51f1fb8caf4ac4cf3cf934e8837123297907b79978263670eb7097de51"
+    },
+    {
+      "path": "assets/lib-BzGaghfj.js",
+      "bytes": 31853,
+      "sha256": "6af652adc39bf2b4578f9b5b1f67e5feb980bdce9fdff0df0fa1460d12b91ab3"
+    },
+    {
+      "path": "assets/playback-BWoMAHf0.js",
+      "bytes": 6188,
+      "sha256": "b869d1ff85cf1bd16fa53a17dc719ea0c8a554b237d9557abb8f56ab6bee8342"
+    },
+    {
+      "path": "assets/preload-helper-uTix4PVD.js",
+      "bytes": 1193,
+      "sha256": "0c88c6aaef07b19239a2eac9faef82584f9e733114f85dc190e98dcea60b1753"
+    },
+    {
+      "path": "assets/roster-Bx-1ZPv-.js",
+      "bytes": 994,
+      "sha256": "d7a78a02a78d039c9472ca465204e3f1c486df0ab2ea5fa84575b27dbbe8c17f"
+    },
+    {
+      "path": "assets/roster-KNk5q77X.js",
+      "bytes": 2422,
+      "sha256": "4c2b03295bdb9bf6d9235d10127a5933350f52f89f76407fe66ce02051d949dc"
+    },
+    {
+      "path": "assets/starters-Ba99_ygO.js",
+      "bytes": 843,
+      "sha256": "b0a204c2cbc2799e9b96b18fb68b568ee1e3a1b096e0d8b3d148043165183e33"
+    },
+    {
+      "path": "assets/store-BnHXWZe5.js",
+      "bytes": 102725,
+      "sha256": "90c088ec738f82976a84f797ad918a938363a747ff4a623847bf871e5995c3bd"
+    },
+    {
+      "path": "assets/than-EsGsrRAk.js",
+      "bytes": 255,
+      "sha256": "561ea2fce25b4d02f4450ec358031e98f13f65ac6e1fd4017f2b934fd0bb315f"
+    },
+    {
+      "path": "assets/useBattleAudio-CUJDZpVw.js",
+      "bytes": 23363,
+      "sha256": "31588d4438b32e7c625c4ba9f0f5c6111efa58814883d41ff62a828416dffc44"
+    },
+    {
+      "path": "assets/webworkerAll-Dlp887M0.js",
+      "bytes": 62,
+      "sha256": "50b891d0884ef57ba01cd0da697a0bd2e90b8a5c41917fe7a725d22967cc6b1a"
+    },
+    {
+      "path": "assets/world-BQpSBcNS.js",
+      "bytes": 221697,
+      "sha256": "f005cc74722274f99ed91004a10ecdcf54281d892368dc8ed866182f089951cd"
+    },
+    {
+      "path": "assets/world-BV1-RsxA.css",
+      "bytes": 8672,
+      "sha256": "a853a8396f9000cd422e37a12f5e1f93ed1f40cdf09bf410ed33c268b72aa58a"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/auto.wav",
+      "bytes": 13274,
+      "sha256": "d201d144edf5682e6b1ae45ccf2415423f7966e4ce8e50db0c07ea994ce75817"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/basic.wav",
+      "bytes": 7982,
+      "sha256": "28dc5a7250da33685daf405f950d996eff97c6d946b5308d7c81a14fa709139e"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/battle-motion-a-v1.webp",
+      "bytes": 805004,
+      "sha256": "194398788398803cf0746b4c152be1677f82a538573acefec1fea90c9f479111"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/battle-motion-b-v1.webp",
+      "bytes": 856662,
+      "sha256": "cb3f9e26440d36fcb710d8c6300fa2ba8d2ea722bd2b58229285297bbf766fbb"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/fx.webp",
+      "bytes": 1750914,
+      "sha256": "7d6e14054b04d230f885fe55c7a2b5caa02fffc073da8145c0b2b480740395d0"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/passive.wav",
+      "bytes": 9746,
+      "sha256": "79ff7e8ec50ad22e989a0dbafd83e9bfba331e2f4acabc4ddfaa3c29937eb307"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/portrait.webp",
+      "bytes": 1432936,
+      "sha256": "17d31e790c4447f9fd4f6fc2958c43729621c384d3f23d91048ee1e926dbae70"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/prompts.json",
+      "bytes": 7707,
+      "sha256": "dc19bd56bacd0d6c2cca49a716793082c0357bab34cef2bfc8f59c03e858879d"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/provenance.json",
+      "bytes": 7472,
+      "sha256": "57e91e70796227ab2116639a904e7d822c1c70ab6eed9a6bd743142761114cfc"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/spec.json",
+      "bytes": 586,
+      "sha256": "2719c686a658e222f88c909338ffe51266a964eb191387818f502d689a839d9a"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/ultimate.wav",
+      "bytes": 18566,
+      "sha256": "f63f500b1726eebbf4c4f3af09613a8412d2cdf5f5de597949ff7e9e1a4ca4c2"
+    },
+    {
+      "path": "dev/aw2/assets/bach/base-v1/world.webp",
+      "bytes": 869040,
+      "sha256": "d1771ea69846bfaceec61e1657e5032a43969c9d9ff7dd666d423571c7638e38"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v1/provenance.json",
+      "bytes": 1951,
+      "sha256": "0de9b65c59f7b73195fcce8228a788e2ada38ec28fd53f6dc1dba5ca39a22deb"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v1/street-lantern-prompts.json",
+      "bytes": 1409,
+      "sha256": "6909414173e991199199ab77d06b9346e2350a98c262ca1350d046d39ad445c9"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v1/street-lantern-selection.json",
+      "bytes": 243,
+      "sha256": "83892c33f59a30d227767304e61d30fb2bc59d6a358ca0af2d94313cba38e4dd"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v1/street-lantern.webp",
+      "bytes": 474742,
+      "sha256": "39ad89c7aacf5a00a462092e75e7e370ca09afea1109a451bc54266e9caaa152"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v1/village-water-prompts.json",
+      "bytes": 1074,
+      "sha256": "01639345672e70eeade7dc8ebd2f3bc76173e09340d71b5e776446e3171be767"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v1/village-water-selection.json",
+      "bytes": 265,
+      "sha256": "c9ad36793191b2aba2875fdf0cb2412fc309ba26b9ffc082363438e1b81e5d4f"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v1/village-water.webp",
+      "bytes": 390822,
+      "sha256": "3c3229ef3ed8d3c8ccd182779b822f9e3667ccdcddb1f12fa141ff1251a57b7b"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v2/provenance.json",
+      "bytes": 1470,
+      "sha256": "c57df37a74b4d6ea7414a7a4e89ebfd35f319255c3636389e7c94eccb1d4c7d4"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v2/yard-steam-prompts.json",
+      "bytes": 1415,
+      "sha256": "95ac20fa2625738648913914f26c8a0c803ea24207bd972d02350d101d8a1d7e"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v2/yard-steam-selection.json",
+      "bytes": 267,
+      "sha256": "559385ed8c78e31b448f9af7bc23ec9d082d1320920439609dccf80cb9073055"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v2/yard-steam.webp",
+      "bytes": 431072,
+      "sha256": "c43270a2241d294ae233e122b1641b5f080571720c87548b763a55d91448e74f"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v2/yard-water-prompts.json",
+      "bytes": 1480,
+      "sha256": "75aadf5921848a808915a0d01bc33f1cace02934c880a629db663bbe615210dd"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v2/yard-water-selection.json",
+      "bytes": 272,
+      "sha256": "21df34ceefd5efb0e3801b9206c1f67ef188f9cca4ca3c699e0dd72b56a12161"
+    },
+    {
+      "path": "dev/aw2/assets/environments/ambient/v2/yard-water.webp",
+      "bytes": 364974,
+      "sha256": "65111ae0bcb01aac4bac1e3446031b26542adbc903fb9669f733c4a619d8e5d7"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/floor.webp",
+      "bytes": 2087698,
+      "sha256": "c948a37720f9686c097b5140d1cf4827a714eb34370c075a9c41c7f437eab681"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/prompts.json",
+      "bytes": 3220,
+      "sha256": "6ce401cb1c28b511ff686f711c2aab30b68e7ffbc797588ea3185310301e58fb"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/props.webp",
+      "bytes": 617006,
+      "sha256": "3365687202d6f98884b30f7d9dff319a0ca854559f3d55b31af4f631762ef755"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/provenance.json",
+      "bytes": 4254,
+      "sha256": "3f170321b29cd3937066ff0ef4958142c6462e5b63f2b1a3be293ec29bf56f26"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v1/selection.json",
+      "bytes": 832,
+      "sha256": "f75ea6679e1900c7fdf8e240d9b23fc0a08684fde8160d1380f462a82b9d840d"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/foreground.webp",
+      "bytes": 884746,
+      "sha256": "e6316b2bf86b2c93d7f033d07dbaaa8ff0066108ff353b3b0e3c72490672b012"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape.webp",
+      "bytes": 3121466,
+      "sha256": "8f275a7e17910db811a83b3126fa8d511c57df09f321f64f713ab61cede33800"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/prompts.json",
+      "bytes": 7958,
+      "sha256": "fc861a824226381c2b1a7eb6536d56f45c78f3300ff2daf23fe5b806ea79e820"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/provenance.json",
+      "bytes": 7343,
+      "sha256": "0bf8bd8bc200766e6e5be76cb089c054772111624f73a0861f7aeba526917714"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/selection.json",
+      "bytes": 1545,
+      "sha256": "d61e44e59f180d5a4e02f72e7655d36c993e964e8b9c510dd81e7e7ddc23e91e"
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/floor.webp",
+      "bytes": 3172580,
+      "sha256": "a5794addbc3b93c553d63f48fe152b6088933284994bdbf4fb19901fb20b6734"
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/prompts.json",
+      "bytes": 4185,
+      "sha256": "d5b7fffa46da3520583da0eaa0fd657fa64330f17edcf146c3ab16d5ba5257e8"
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/props.webp",
+      "bytes": 724944,
+      "sha256": "209bc37405280f239ffc30f55a8b5bd311b2532ec84ccd663906b5f6514011ee"
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/provenance.json",
+      "bytes": 6314,
+      "sha256": "99958aba79b4d78a7ee314cd68a6d8294fdc37adff8cc3b12b2940d55094532f"
+    },
+    {
+      "path": "dev/aw2/assets/environments/forgotten-kitchen-yard/v1/selection.json",
+      "bytes": 788,
+      "sha256": "86e6afbf2c5f48389c63c1e0174a08d8dc7712724b8b2c3aa4644b4b9af14ab0"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/floor.webp",
+      "bytes": 1885996,
+      "sha256": "7579fee6978a0d8738d77397eeaa82a7438f0e90c486a0f4f7af25948ef6b5a5"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/prompts.json",
+      "bytes": 3196,
+      "sha256": "5af97134c574e3b2a2bc710a870762116213cec66680aa4fdec98961492e9dfb"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/provenance.json",
+      "bytes": 4503,
+      "sha256": "82de7fbf35eb632a93e0a3c3c1349ef828b322d892da5fbc317638608e8faece"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/puzzles.webp",
+      "bytes": 680906,
+      "sha256": "350bf9270245ecc6c2c798beeacb180fefa75b24d620d460af3089d278061906"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/selection.json",
+      "bytes": 275,
+      "sha256": "3a21727c1671ac04110b4e0c9105a733d8491fc0bfd33c1c32ea38b1daf13d9f"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v2/landscape.webp",
+      "bytes": 2517370,
+      "sha256": "2b5cabcdfad4832931d1fe7f26f745b2f2a0b121938a236fa3750af715accf86"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v2/prompts.json",
+      "bytes": 2929,
+      "sha256": "318b0a1b124086cc40ebc80ee6a0d844c4cf482b3575f9e9aeaec094efb362bf"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v2/provenance.json",
+      "bytes": 1719,
+      "sha256": "8e382d225a281a413863d294fe890d6a52c540c673849ce0cd6c7c6def4547e9"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v2/selection.json",
+      "bytes": 734,
+      "sha256": "fb9266a0217c2ecb33ab6623a368fc902b1b8ac1fd6e1b64246ed5c21540c7c4"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/floor.webp",
+      "bytes": 2880718,
+      "sha256": "8945d0d17c82ddbf4962b56b6e1677f23d737313142a97f0dacf18c69ac6b5d5"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/prompts.json",
+      "bytes": 4331,
+      "sha256": "234de5514d3681fc3a93bd2c7a8156c6fcaa3cec58cdae3bda4941d7461ad044"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/props.webp",
+      "bytes": 921926,
+      "sha256": "c5033be6dd6aa4f7085235ab1bd159d03cbde2c759920c97e1d8c430ebd82307"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/provenance.json",
+      "bytes": 5276,
+      "sha256": "3f67c3447c40048edf9763696f4cffee994e3e77e727d83fc757ad4afb356080"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/selection.json",
+      "bytes": 772,
+      "sha256": "851ade6202cc0987418b4e19de8892ba18ed0186257af1fc68d3491cad36dac0"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/note.webp",
+      "bytes": 609550,
+      "sha256": "e774cf7a7fd7aeb9af07e315b36e7ef2f5d7165a92a5bb2a9710cd0ab8047cfc"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/prompts.json",
+      "bytes": 2112,
+      "sha256": "04256fe1476b7de0a9acfcb497ecb0ae306bd678571a85ccd54098c2c62914be"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/provenance.json",
+      "bytes": 2964,
+      "sha256": "d132976220814f3611384a77ee997ed07324c74ff87aa7200d9d42c328ab64b0"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/selection.json",
+      "bytes": 636,
+      "sha256": "febe1a3dcd9715307670cc9d6eeb7a0e11ff0e1caa38fc68ae90e53399805f2c"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+      "bytes": 927068,
+      "sha256": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/v1/floor.webp",
+      "bytes": 1724554,
+      "sha256": "307fe1452573173579aa406bd18ee0648574a075a3ac9919299fce73f3b3ec19"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/v1/prompts.json",
+      "bytes": 3133,
+      "sha256": "fb2aff5644597411e60f372a800c819aecf1c99dc0ef1ee1b8d3cb615c8944cc"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/v1/provenance.json",
+      "bytes": 2995,
+      "sha256": "6e0e68c6fea7baf73cb002b3593adf5c3c62bc959cb39de706add5c80e87dc87"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/v1/sideboard.webp",
+      "bytes": 733646,
+      "sha256": "5f1939c67f0342e46e4b018c011f7adcd3a3a2d3471ed665b4f735f96c83a5ef"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/v2/landscape.webp",
+      "bytes": 2433468,
+      "sha256": "f23a15cd0b6b6171359e9c1727361b86ef8362a8c3a47082c874f4b8e6d5d907"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/v2/prompts.json",
+      "bytes": 2920,
+      "sha256": "ba7500df97bdcacf9806db6a78d4f3de5f6bdef6ef50b99dbe894d61b57e1f61"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/v2/provenance.json",
+      "bytes": 1717,
+      "sha256": "ef59a5c52cd8902ca662149135d06a874f1d2b0698091f5f991c3ee038742606"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/v2/selection.json",
+      "bytes": 734,
+      "sha256": "fa2d1c645450b75d6d579ac16fec652b36f1523fd78533e5a784f7b41468d690"
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/floor.webp",
+      "bytes": 3239024,
+      "sha256": "b76780b2e5b5640edfa26251c745eedae1a79e0f2d0c2287637d7b63f3d37bff"
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/prompts.json",
+      "bytes": 6127,
+      "sha256": "632d98f487b268714d9eccdbf7cdbdde1ab210c9fb2cb313180cf46c79b43dfb"
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/props.webp",
+      "bytes": 1417392,
+      "sha256": "d4837098b1500e69bf9182f99e84e8550ee6c13b0371cdfed536fe9e959fe799"
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/provenance.json",
+      "bytes": 7479,
+      "sha256": "d541dbb3c3c6754f5c19229cf6bc26aa25fe987c3a54cef07fc170995e933ec5"
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/selection.json",
+      "bytes": 1545,
+      "sha256": "9ebe29e5b474bee5bf6a648fc54f42138c1cd255807a2fae2df8bcdbc4c3a035"
+    },
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/homes-prompts.json",
+      "bytes": 3553,
+      "sha256": "b748f339fd041c1a0836808a8042be6fa35002746d05b8dbcbbe0e7dee60b6ad"
+    },
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/homes-selection.json",
+      "bytes": 897,
+      "sha256": "1bcee4e910512f6462e93aead2b96bc675aea56cfd11f6eb16e1290dd7f99ef5"
+    },
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/homes.webp",
+      "bytes": 1679334,
+      "sha256": "725535f983f857d7ecfa5c38fcfd0217e020250bdcfff5de00cb3fdf7494afe5"
+    },
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/provenance.json",
+      "bytes": 1504,
+      "sha256": "5280c1f0d662752780fcb3aa301aa94f426fa33ae227e8fa4ed0737417ee76a7"
+    },
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/shops-prompts.json",
+      "bytes": 2785,
+      "sha256": "aa4e763086a28fcf7704cf52cd56936fe906f8614b5f2bd4fe868e6abf6e8411"
+    },
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/shops-selection.json",
+      "bytes": 519,
+      "sha256": "740fa1295b998dc531148ca8e5e77fe634f110a3ff9b30a09bbcad46af7466cc"
+    },
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/shops.webp",
+      "bytes": 2011246,
+      "sha256": "efdc5235ae271c28a6ee2e7363ca8b9d319c04ab8f7fbd09540101bcb1bfbd83"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+      "bytes": 924700,
+      "sha256": "6b17014ce6a2e324def5eaaa9666f687f2e7ad849121f13d227a7fa717a38689"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+      "bytes": 1161768,
+      "sha256": "c125771df4255c911bf9de925046873f88b58f7d77e886876b0858f9da370112"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/portrait.webp",
+      "bytes": 77108,
+      "sha256": "5cba73805eb282267307c096f285ec6d656a4da9c7da5fc8d16a9cf85bbd4c70"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/prompts.json",
+      "bytes": 5425,
+      "sha256": "dbd321e4f9d485929f7a7e8ccbc60242b9c95800f8f820ac9f84b5dbd8dab411"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/provenance.json",
+      "bytes": 2675,
+      "sha256": "f92be074c20bf87e465ddb560dfe78417249abaf8bfa877fa081e06b08ec219d"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/world-v1/prompts.json",
+      "bytes": 2058,
+      "sha256": "dfd4c46b3216bb662fef9bcd548fb6e0d3b9ee91132097ea9f49e615195cb2c2"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/world-v1/provenance.json",
+      "bytes": 2513,
+      "sha256": "552f44bd24fb2a92748777505c40525dc5da245c652e0d9ca7a18ff293dbd5c7"
+    },
+    {
+      "path": "dev/aw2/assets/forgotten-host/world-v1/world.webp",
+      "bytes": 691470,
+      "sha256": "2777c2f58e990f982ed03d9b7405db7b085c512e840803d7a7ca5cf0761e6865"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/auto.wav",
+      "bytes": 13274,
+      "sha256": "0e74b56a4fe18af04144ec6a7181c734a7e18ffd40653043d9f1ce9c9428743f"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/basic.wav",
+      "bytes": 7982,
+      "sha256": "77b4f1c3c429f3f94b11e028a04e3d151781fe69f2cebee93c89f0bbb828a331"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/battle-motion-a-v2.webp",
+      "bytes": 711968,
+      "sha256": "d7f62fb36533d0a31115207b38ed88702bdc6a9895ff91823c8354240c759fca"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/battle-motion-b-v2.webp",
+      "bytes": 896082,
+      "sha256": "b51ec51da50466d79e7a2ab97422c2ea6f4075e6019b2dd32dd4746c2bc36436"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/fx.webp",
+      "bytes": 1419394,
+      "sha256": "943e328bf0e6cf6844642bd85bd3fed4c07bd18ad3a94485ca62f7299116ee3b"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/passive.wav",
+      "bytes": 9746,
+      "sha256": "b91480310538f3de700858afd446515a6aa7a86b75f9f8f8bb1e619bd1216ec6"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/portrait.webp",
+      "bytes": 1367066,
+      "sha256": "f04d322e32e3d4404ccda0bb99a564a77d0f8967d2c1fd63ab7eef64c83e3616"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/prompts.json",
+      "bytes": 11394,
+      "sha256": "b4a60b235eb00223a575524fd09a25785daf49fed2c7f0f24ef73d93e5a91838"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/provenance.json",
+      "bytes": 8400,
+      "sha256": "e5cfa4c3f6dbc0ddceadf0e3da266275c73084cea9b4f31c4cb879d8ff286b29"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/spec.json",
+      "bytes": 317,
+      "sha256": "41823c12f0219504e4adfc5b8c3c22d94dbd0c3d11efd1577a65b09eaef81c6d"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/ultimate.wav",
+      "bytes": 18566,
+      "sha256": "206cd7266f8a6b08f2a5f936b8e7c89eecdace34f529fd666770347ac232ddec"
+    },
+    {
+      "path": "dev/aw2/assets/hai/base-v1/world.webp",
+      "bytes": 1338510,
+      "sha256": "c134af5717355ce6b78a44ac3f317e8193e674802972e76029a80c87c151fca4"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/auto.wav",
+      "bytes": 15038,
+      "sha256": "3c02ccde6d5d752e5752d87d8bf2ca594ce45cfcc6e5cfd814214c9dd7860cf1"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/basic.wav",
+      "bytes": 7100,
+      "sha256": "da66e995600c1e755fb231d4e3bf45606fc10ed95e2c3ef3ec7cc2780202e42c"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/battle-motion-a-v2.webp",
+      "bytes": 899948,
+      "sha256": "5e20faa1e80b12f9398076a6285f08db50c469263001a43f81f013fae08e7998"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/battle-motion-b-v2.webp",
+      "bytes": 858992,
+      "sha256": "31db6625a285923f41b862d90e09b3dc53f3cd87e4dc189b8e8e7a9a57520237"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/battle.webp",
+      "bytes": 1463912,
+      "sha256": "acf047befea78db2815789d87bdd5b623b3540cb9e3c2675bf87e9c0489b9cc7"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/fx.webp",
+      "bytes": 356606,
+      "sha256": "eb6eea992f7007f044a560edf97a17751917569f3e6583e07781eac34096a82d"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/motion-prompts.json",
+      "bytes": 4953,
+      "sha256": "3c104f1743d8c336ae5a1127edaa3af7c0196da07eb35b377c9c73f6bc60f171"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/passive.wav",
+      "bytes": 9746,
+      "sha256": "561e6b1d92e94b78cd8d47495a24b16afa743f4936d0452f092bd42b93513ddc"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/portrait.webp",
+      "bytes": 1077248,
+      "sha256": "21f0bf977a76e8506f1e33017b9db9a9bdfc17c932a213a22312b0b67f31088c"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/prompts.json",
+      "bytes": 5834,
+      "sha256": "c77e3c1acfd54fb2e3c564b4babd75dd89567685ef9bb48f90ee2e449343790d"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/provenance.json",
+      "bytes": 6003,
+      "sha256": "e0181f4515b9bb9d1ae25e1f49a260c26fb2674354ea1f95d14f0c0e6d510537"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/ultimate.wav",
+      "bytes": 20330,
+      "sha256": "b1fbc4d7ccfab297a8d8b61ef81e49774de937a079094644ebbc238654e0df09"
+    },
+    {
+      "path": "dev/aw2/assets/lam/base-v1/world.webp",
+      "bytes": 1140576,
+      "sha256": "d20f21772c130ef8bf7b1a86c00fd2e9cdf9fce98c143858635649f78fc0f403"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/auto.wav",
+      "bytes": 13274,
+      "sha256": "54e971092b14fdd04268558e0abe466142d93a62df7bf27abdbe33202118a1d1"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/basic.wav",
+      "bytes": 7982,
+      "sha256": "104a6a20e0673b745f51bf729370d439839dbd1337612937df0e8104d4acb118"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/battle-motion-a-v1.webp",
+      "bytes": 857048,
+      "sha256": "8d9c9c3026ef8b74408fb668812e4d8bbaf4d8628aaa72663ea099ac8cf2b27a"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/battle-motion-b-v1.webp",
+      "bytes": 1115770,
+      "sha256": "b5ca0ad3a8731bb24b9deb0635b77b88fc777f95e4000ae52068e8143dc07e3c"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/fx.webp",
+      "bytes": 1617290,
+      "sha256": "82a636ae9ff765a1674101f709fb4651651e05d8e29798ea2531aa0857cebe23"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/passive.wav",
+      "bytes": 9746,
+      "sha256": "fbe7bb3b022165bc2fa0027f9c34d23816ebb7f005854e6e4c064ff3e6125365"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/portrait.webp",
+      "bytes": 1166380,
+      "sha256": "76bf6a22e0401df81ce13bdc3a95bc9af07c9c07559421b76e12d5fa53b7b9fe"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/prompts.json",
+      "bytes": 7592,
+      "sha256": "654324ac853a62ef4eb060439b2d42c83c0083d5bd47b402f80db0d1aaf2c0c0"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/provenance.json",
+      "bytes": 7473,
+      "sha256": "617d4fc6dfc2bf04cd5087bbd410894b3424857e86b412b6a9097f81e65fa1a8"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/spec.json",
+      "bytes": 562,
+      "sha256": "00957f95e27a8a99188d5f4a1bc70fc2856b782a746950d578738942df10bf20"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/ultimate.wav",
+      "bytes": 18566,
+      "sha256": "c7dc44987887f8c0502250eae449f0ea623d7741450034ec89155999e55d856e"
+    },
+    {
+      "path": "dev/aw2/assets/lien/base-v1/world.webp",
+      "bytes": 1149322,
+      "sha256": "426aa170aa61e28739563a3ff9d622f1a0a8a2eb4e0502e2ea87795bfa36ba9c"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/auto.wav",
+      "bytes": 15038,
+      "sha256": "7702b45c6e648c83b071df86257845d5fda0e8b685daffce834ac31c6107b0ac"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/basic.wav",
+      "bytes": 7100,
+      "sha256": "691fc981b4fa59d132489dd2a33f8f24decd28934a21b7ac510ff90057e7fe31"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/battle-motion-a-v1.webp",
+      "bytes": 1199666,
+      "sha256": "9e824650d6f77c91010f981ab3109c9496f4a804fb5e934e73cc98aed555e1b9"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/battle-motion-b-v2.webp",
+      "bytes": 830168,
+      "sha256": "f63bccde32a35c08f423fbfb3068693cd21b3f611e1f6e26a7c921456009420d"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/battle.webp",
+      "bytes": 1423908,
+      "sha256": "b7c66bdc46d477ed68140d001e1b305553319db377282fab4fced42fbfaaa0a5"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/fx.webp",
+      "bytes": 224610,
+      "sha256": "d2e0600764bd84975c20d7bb93a8c31ae6bc1491add0162b3fb434c28a5668f6"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/motion-prompts.json",
+      "bytes": 5063,
+      "sha256": "9383860dc81fa74c93ecf8c35fef4d4684545b2a06fc9534a4855e9308d8ff0d"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/passive.wav",
+      "bytes": 9746,
+      "sha256": "c3de9608350bdf001492dda0fb8d5468ceb9685ba620d180bf44fedc6c504795"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/portrait.webp",
+      "bytes": 1176674,
+      "sha256": "fd07e40fde5ff65c881890625d1abbe3b3cb2826839cfdca85bdeb2a1233886b"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/prompts.json",
+      "bytes": 10424,
+      "sha256": "9a26a47f97b23acdacd46e0a2df031a3b937b6f755ca4b8f892a85e4bc5c1183"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/provenance.json",
+      "bytes": 6728,
+      "sha256": "894a4e7900e14a2fd7d6244c950bb852780ce0dd92b9ba7147702c1ba888c647"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/ultimate.wav",
+      "bytes": 20330,
+      "sha256": "694632c4a539938bf5f02ea2bf007a3297b8bb9a8b6ddcba198ef58c6ae0a812"
+    },
+    {
+      "path": "dev/aw2/assets/lua/base-v1/world.webp",
+      "bytes": 963132,
+      "sha256": "26c56a18e3a68606139aea0266d498acbfea8010fd653b951fbab02d2f220793"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/auto.wav",
+      "bytes": 13274,
+      "sha256": "2b751639e78a7989a4fef2863097411058be4e55d4c45d4fed80bdba4bf67fd9"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/basic.wav",
+      "bytes": 7982,
+      "sha256": "02ae8dabb3ced0457941d612f28c2c522511d1a8f1c826b3a9d3d250c3051348"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/battle-motion-a-v1.webp",
+      "bytes": 975988,
+      "sha256": "d091ec6af9f208c854ddb9b2906b0b2182eff408bc77dc32c84122b33775928e"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/battle-motion-b-v1.webp",
+      "bytes": 1157884,
+      "sha256": "f76eb1bb29431f1db6e1c166ee587967c59349233318bc8ea9bd9dbfaae9cb8f"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/fx.webp",
+      "bytes": 1580680,
+      "sha256": "5ba09136efcedc7a72ca4f7c8f282fef425bbabe29f48eb229c675d01b7e158c"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/passive.wav",
+      "bytes": 9746,
+      "sha256": "69001176bd623e3a1a1362c9edaf6412f99cd19d0f5703ac2a0b3e928d30c934"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/portrait.webp",
+      "bytes": 1296452,
+      "sha256": "ce7a0bab8f21c2f82c3e702289fd81009b2927835fec1ff318143cd4cffdaea1"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/prompts.json",
+      "bytes": 7676,
+      "sha256": "896021350694e42ddb59a5b8c64a1d0f5b750d1d03fa6d7b93eada4a148af9a5"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/provenance.json",
+      "bytes": 7438,
+      "sha256": "66253d7d3bbc8498de6adc39556305c830e507fd174dae8fc9f8a6d7ec6c456b"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/spec.json",
+      "bytes": 559,
+      "sha256": "7a8f44aa6ada428cdde36df3ef3b1edcba637d2683aaca14952968a0187a4ae9"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/ultimate.wav",
+      "bytes": 18566,
+      "sha256": "1a629e83381b215013e3b6c2209b6d5d31b04cecff91b483f0023462c09c156c"
+    },
+    {
+      "path": "dev/aw2/assets/moc/base-v1/world.webp",
+      "bytes": 1209528,
+      "sha256": "d2a64d0de64f1580fb4a4518521053392e368e8d9f4145afcdf8f2ca300447bd"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/auto.wav",
+      "bytes": 15038,
+      "sha256": "de38c1dd2e03b3b79ba2602fe3e37ba3e87eebd6a64a442df38d5a928b3a5044"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/basic.wav",
+      "bytes": 7100,
+      "sha256": "64ec8cbdeed66ecb492c7c421604de82ae596365ad0ed079a66e6c7a6dcb1e2e"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/battle-motion-a-v1.webp",
+      "bytes": 1181920,
+      "sha256": "ab779aba6c4d96684f46da1e2c9fbfafd2309ad71df6bb0d7db01e1aa50b20b3"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/battle-motion-b-v1.webp",
+      "bytes": 1154062,
+      "sha256": "f54f30247f25681e7a8202d18d11babe449c0872146a3ba73e52b395c48c639a"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/battle.webp",
+      "bytes": 1562632,
+      "sha256": "a266da7ef17449a04e3c71758712e275d8c8b9558f72c6775f700c88d7ed480c"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/fx.webp",
+      "bytes": 442358,
+      "sha256": "97d7bb799ccee18530e75345fca00046327ad2892a13066f000b9000740e4c3b"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/motion-prompts.json",
+      "bytes": 3264,
+      "sha256": "3fcd51071697d021bd1585a47da1fb94494515716407bd24bfa78a3142e488cc"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/passive.wav",
+      "bytes": 9746,
+      "sha256": "7077526befbfc94717c8ee2ccb68795f5d19a5b2769974a8bccc2fe9038d9319"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/portrait.webp",
+      "bytes": 1186780,
+      "sha256": "b02822ecd6a5bc62608e8493c7e8ba5129b80c6fb9709a94bf8fe6c329e872fa"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/prompts.json",
+      "bytes": 5759,
+      "sha256": "db28b9d22e61d8896ddd3bf3431ee0c04a99dd8f19c7e051e244bebddcd109c3"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/provenance.json",
+      "bytes": 5107,
+      "sha256": "0457e736732c966e1dbf91f449fa8cdeb5ba95ebaa0bc431d1694e1fa26d605a"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/ultimate.wav",
+      "bytes": 20330,
+      "sha256": "fbc720ba5b453ca3a7dc4740dde2bd287d45d32a3e66f4667966a33a65dae749"
+    },
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/world.webp",
+      "bytes": 1312152,
+      "sha256": "45968170a47136d7daa18e3f67f803c5c45f33a57e3168d2de3c2d1dedf36793"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/auto.wav",
+      "bytes": 14156,
+      "sha256": "cc31694b27fc5e5c3e43bf279b3b035e67dcc0928c5f223308e5c64baa1ea439"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/basic.wav",
+      "bytes": 7982,
+      "sha256": "c04b3fbe7c6d8f457338cbf940c8a0bd099ba78eb13fc72d9af8faf95585e5c5"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/battle-motion-a-v3.webp",
+      "bytes": 797164,
+      "sha256": "c6e312a13e07eba6b53cdb2aa3570fd9b05851341f7d4a0bf7015ca686a1774d"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/battle-motion-b-v3.webp",
+      "bytes": 661692,
+      "sha256": "822ff34bf2ac9921c5cbcc886d3cc85c17adc3e80338296603bf2acb16b4bd72"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/fx.webp",
+      "bytes": 1411420,
+      "sha256": "afaf4538b91eb92f130372d3579359f876407a54dccf8d6ffbdb0a1a80759b55"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/passive.wav",
+      "bytes": 9746,
+      "sha256": "a0c735cae03f0ed622daa51770cf9bde3db6cc7ad092b071ae77710de6e0b65e"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/portrait.webp",
+      "bytes": 943932,
+      "sha256": "e08672460c81347541ab4816d7c1d072c7ab999fa8c7266806c8486e79c90c23"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/prompts.json",
+      "bytes": 18830,
+      "sha256": "16e456925fd499f500829676462ccf219edbb6fd1db9add8c89e1200703ce768"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/provenance.json",
+      "bytes": 8360,
+      "sha256": "ebcd4519bf4d9980e7af8a6c066625c7e89f56bb3bbb3b28d264344546f9ac1b"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/ultimate.wav",
+      "bytes": 20330,
+      "sha256": "eb6f69f76fdc08e5dbbe898ff3216fec0e32c0c6ff8890e72477d4d9cc1c3a14"
+    },
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/world.webp",
+      "bytes": 808634,
+      "sha256": "1684bb8a3cd48bfa7339f103b076178975ec6dc4c9b548da45d1edb2d331a46b"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/auto.wav",
+      "bytes": 12392,
+      "sha256": "5b2ecc492c15e1f906c06ba55deaac43fdcef7ec984856314afea24c6c11a231"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/basic.wav",
+      "bytes": 7100,
+      "sha256": "e450ff5b0fa5c48d6be4b3d8ee9f55612e4bfd4cb81693a1951d28e50dac850c"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/battle-motion-a-v1.webp",
+      "bytes": 1034494,
+      "sha256": "2ffe60dbf2e2d9e93ada2bdd3c12fc91ea124e09bcabc26bb1d953b176327bed"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/battle-motion-b-v2.webp",
+      "bytes": 717682,
+      "sha256": "5b5ab981811f0f8cfd560522238500875cdeee99fa000938abd3331fcd809746"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/fx.webp",
+      "bytes": 954826,
+      "sha256": "725b99050025b45c50d6314af1379ad804394d131b23d8a5b1ae348bf2afa544"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/passive.wav",
+      "bytes": 10628,
+      "sha256": "bee8a4d3d88999ff25a4e0f31655512453fdef6fd09c88744416b51ad830ee59"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/portrait.webp",
+      "bytes": 1031738,
+      "sha256": "50b9a9cbf67d92f62e4ea645e203415877340b11d6ef6153b18eba730762b1ba"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/prompts.json",
+      "bytes": 15326,
+      "sha256": "69309709be72a9c5452b57f67784e3ea0982e84fc7dee36f31a1e722ea15863e"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/provenance.json",
+      "bytes": 4072,
+      "sha256": "336f7aec900d6819457aff074ffed175ab5d8001ebe3fb9cbe4a57d8966989b1"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/ultimate.wav",
+      "bytes": 16802,
+      "sha256": "fff4f25db65f854d94cf3650af5b331a0713b32ce6bcc5de6fb6eebb8351afbd"
+    },
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/world.webp",
+      "bytes": 946292,
+      "sha256": "4ffbd251f6a2fa349a8a82c82b62132cc2aac4d8f6abf8cafbab65463b16c131"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/ban-bai/idle-v1/idle.webp",
+      "bytes": 1017384,
+      "sha256": "4e3e85a0cfb89272140fd31ae9296d57f887a7261f60fb17bd26479f556a50b8"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/ban-bai/idle-v1/prompts.json",
+      "bytes": 2505,
+      "sha256": "2dea1884e6aefffd28b311851d93982d6504153f75fdb20f777f580473c1f71f"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/ban-bai/idle-v1/provenance.json",
+      "bytes": 1192,
+      "sha256": "601e73e4106cc5bbdfe7afb7ff2403306c50a5bcc2b6ca3498c4eaf28e7c396b"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/ban-bai/idle-v1/selection.json",
+      "bytes": 595,
+      "sha256": "b983e5de12dcf69a3155f776e735ce483e7ee881139eb04f1f65445d21f9e7be"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/ban-co/idle-v1/idle.webp",
+      "bytes": 842276,
+      "sha256": "a04aab12a9cf00235dfe45a8b69bede0fc5cb7951441b4cf49c151d2e8e7bc85"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/ban-co/idle-v1/prompts.json",
+      "bytes": 3490,
+      "sha256": "3d2ff6df69ebb905c7bf8dd2d165e44aa3960a129b012d068ce203119146e7d7"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/ban-co/idle-v1/provenance.json",
+      "bytes": 1190,
+      "sha256": "88eda1721275c20a937829495e6fbb36e9b8b6f2dbdb896a8ea93d880610c7b0"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/ban-co/idle-v1/selection.json",
+      "bytes": 961,
+      "sha256": "4e83b2e6fd6e7186f66f8c489357becbde02a4af2f179339d2776bf9e21d58d5"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/idle.webp",
+      "bytes": 868028,
+      "sha256": "5afe62b7dcd009b8db295ad9f0e186af5c73eaee397631f08f46731837292b50"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/prompts.json",
+      "bytes": 2398,
+      "sha256": "b22d751000693ced8f91ad44cecb822decf9c7d67dd2870c12eb51bc648134bc"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/provenance.json",
+      "bytes": 1194,
+      "sha256": "e322c6c743ce6f1820e295f2590f801827dc62dd9bec822e82d08ab0b636b946"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/selection.json",
+      "bytes": 595,
+      "sha256": "d709ccbe801c931283022f2975f476c16c94c04027d29ff88cdf1343dcf14409"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/gac-bep/idle-v1/idle.webp",
+      "bytes": 812642,
+      "sha256": "85b43956fffe742fb4345babaef74a6ab89a78f490e09fd001f40aab83e7521c"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/gac-bep/idle-v1/prompts.json",
+      "bytes": 2456,
+      "sha256": "114c81bc41f24da7a95a5ea1b65bf8d65e5f1ada2f93d6d5689110616bf7fd24"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/gac-bep/idle-v1/provenance.json",
+      "bytes": 1200,
+      "sha256": "2e4c1170613c7822df508faef3e3b5cec77ce6c3274d7afebad7d559b0625ea5"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/gac-bep/idle-v1/selection.json",
+      "bytes": 595,
+      "sha256": "2fb2ee4c16136565607c3c638ef827380636ced11023013a689b3b93a372589a"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/giu-cho/idle-v1/idle.webp",
+      "bytes": 659352,
+      "sha256": "84270c3ef65e6dc65ec8777f343a485a1c1c9b658853c8c00f8d242ca7a8bd1b"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/giu-cho/idle-v1/prompts.json",
+      "bytes": 2415,
+      "sha256": "60aacf8cf546324fa28570dfbca95bb09a07d3fc4393a59313bd51eddb1b3a00"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/giu-cho/idle-v1/provenance.json",
+      "bytes": 1194,
+      "sha256": "7920199f57d5973552fd734b252cc3de9ce4ce249d64cf009d214415bbf51357"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/giu-cho/idle-v1/selection.json",
+      "bytes": 595,
+      "sha256": "338e154622de8afcf17a7acf635f1dd37d2b1302c5ba5caa1515df7796154bae"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/nguoi-ban/idle-v1/idle.webp",
+      "bytes": 1117572,
+      "sha256": "a83ae55c68514347e4d1bde17248dfb26a61fdbe109113209f0a3181d1860613"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/nguoi-ban/idle-v1/prompts.json",
+      "bytes": 2428,
+      "sha256": "6bae463cd4c298ebc6e19f10b609fa6989561d7bfcf79b801948d3c54771d7f5"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/nguoi-ban/idle-v1/provenance.json",
+      "bytes": 1196,
+      "sha256": "ea66a0799b97b9864de44967687457d3e4e0dfff1a2b3e1eaf252befdf79a755"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/nguoi-ban/idle-v1/selection.json",
+      "bytes": 595,
+      "sha256": "465ceadf00cf3a9c8e00e45b6f73acfa501e712f4975fdfa877c9aa572458524"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/sua-ghe/idle-v1/idle.webp",
+      "bytes": 1012294,
+      "sha256": "807b7ab568568b75726dd8abfb603821c79f8399dd87e15333be2901adc4f193"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/sua-ghe/idle-v1/prompts.json",
+      "bytes": 2508,
+      "sha256": "9dfe2300acb25c7ab8029bc7bd0b6614b6d7ac75a6fcbdc81474a35bab677243"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/sua-ghe/idle-v1/provenance.json",
+      "bytes": 1192,
+      "sha256": "0ebb983ca6e1f3c9a92c09c44ae411d6ac557fbf5ee408c4a21f420bf8b3822a"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/sua-ghe/idle-v1/selection.json",
+      "bytes": 595,
+      "sha256": "b4f209975ffdf4edafdc3b7113c5e09dc4b2273d9c51c4aaeca9bb5e10466224"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/va-den/idle-v1/idle.webp",
+      "bytes": 856232,
+      "sha256": "2c9fad29aa5d1d34b1745a5cf9526160467d1df2f5e03f1dbf6aef11e178732f"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/va-den/idle-v1/prompts.json",
+      "bytes": 2457,
+      "sha256": "229dcb785faf1c6a96d0e4cc016d39e63b8396c2cfdc9eec37093be14c265e87"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/va-den/idle-v1/provenance.json",
+      "bytes": 1190,
+      "sha256": "072dd57fca26bca63b5acbabf95854a879c4e802d0b66b94e0892e83ccd6286a"
+    },
+    {
+      "path": "dev/aw2/assets/npcs/va-den/idle-v1/selection.json",
+      "bytes": 595,
+      "sha256": "6284796f2a6606a6089cb33d24cd1b4153b2d8d7614dc3be2e7c3fc811bbc8a1"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/auto.wav",
+      "bytes": 15038,
+      "sha256": "161f9322ea856d9ba044d415148cc4fea0193bb1b5b1e9b7f4345513b574d434"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/basic.wav",
+      "bytes": 7100,
+      "sha256": "c1a6d1cb674a2b83cee2f1a51c5c370af7df4793073150885a2c74045940c1ea"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/battle-motion-a-v1.webp",
+      "bytes": 1209384,
+      "sha256": "1910f3c1c6bc99ed13459a2049fc4097c25ceb9e4574b910fc7d52758f184e8f"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/battle-motion-b-v1.webp",
+      "bytes": 1311780,
+      "sha256": "56d488229fb972f51fe842b2a424353ff3af24dc5cb187eafa3bfd26aacaecc2"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/battle.webp",
+      "bytes": 1424544,
+      "sha256": "af0ca8d43d6e2978d72351706eb73982b343b202d12c5270c450882f54ebec3d"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/fx.webp",
+      "bytes": 518418,
+      "sha256": "fc94b2a6bd1fbd8990dd66daf1366ae9635a5ee29bf063e27628928ac0a2687f"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/motion-prompts.json",
+      "bytes": 4565,
+      "sha256": "d6c64ef46c3b4751d3f7b5e1f61a82d02806306c412f88e49c6d131b19ac951b"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/passive.wav",
+      "bytes": 9746,
+      "sha256": "17cd9b5530c0b406a92ef8e1ada9aaeb58ecb9c6918e8998259bb765c0afc689"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/portrait.webp",
+      "bytes": 1004776,
+      "sha256": "0fa4848d0d332c3ea37680e21e04ac2ae9d96ebaa4c916ef6bdd6b1913dfe2dc"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/prompts.json",
+      "bytes": 6147,
+      "sha256": "9481b5c81faa14f616a2307005a797bbb9d990504eee5b6fb64a5e976beb3498"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/provenance.json",
+      "bytes": 7894,
+      "sha256": "b2d0f8141083d2689408b895302ce3cf2ef772011f6ff9bccf3859b438b9df22"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/ultimate.wav",
+      "bytes": 20330,
+      "sha256": "910c787aa3f4155b80821a915fdaf794b63455fb5c19396cf59cf262f36d94e4"
+    },
+    {
+      "path": "dev/aw2/assets/suong/base-v1/world.webp",
+      "bytes": 1230892,
+      "sha256": "e77fc6c8d373739469a261b1756c2127e3e12f92c97a6501a2ced591135be677"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/auto.wav",
+      "bytes": 18566,
+      "sha256": "3aedcc3066bb25402f1303136f3df5de17fe628d8287dab94df58dcc0852dee3"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/basic.wav",
+      "bytes": 7982,
+      "sha256": "d3d9faca4a1820c6e99a5bd7805d8613bd9233312e746ab97b7ccce33d5fe734"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp",
+      "bytes": 1083934,
+      "sha256": "4048798a87834f53afa893922ff9d42db69184f60e8827c01df55addbb5bf3c1"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle-motion-b-v2.webp",
+      "bytes": 1055702,
+      "sha256": "4043a830eb54dc19062b664a52ac91d003b625526e3bbb2bc527c09549241ae2"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle.webp",
+      "bytes": 1461066,
+      "sha256": "c9ac23504d5e3750ec87c202c24fd2483aa9487e3c872683d59e51408443d57b"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/fx.webp",
+      "bytes": 380092,
+      "sha256": "07e9a0286bac69443d658a63ad5959fb72d68fd9cfc6cb726c3e31e2ce4e652e"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/motion-prompts.json",
+      "bytes": 5802,
+      "sha256": "84fea6c61567a994dcce5a82d6211f20290fcf18c8ec118b1032444bfee707a9"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/passive.wav",
+      "bytes": 11068,
+      "sha256": "1a387d125863b8119284d897a1bf77906eec80f65209648c9385895cf4044be0"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/portrait.webp",
+      "bytes": 1577496,
+      "sha256": "f2c7e4b94f2935b763688b39b9d0a9c87fbb2b1f99b0dc53a2d2906e82d2d8ad"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/prompts.json",
+      "bytes": 11267,
+      "sha256": "8a4f08b9a80a7d3590499d63f0ab0311dce052f206a8acce099319f21c2fa657"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/provenance.json",
+      "bytes": 6150,
+      "sha256": "de0d0cfd19d146c65236c8ae7f419702843612477ccf98310332edd6f76fa72b"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/reference.webp",
+      "bytes": 1406526,
+      "sha256": "12b44425e16406e8e9e71bf09fe835f64c13d059e25dffe896b2d86ffbba3025"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/ultimate.wav",
+      "bytes": 30914,
+      "sha256": "15b3373d0fe6f4e7e95c32eb53bfabc88eca33639e2560ba3e8f88f30d53fc6d"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/world.webp",
+      "bytes": 1118788,
+      "sha256": "f079bea3e6ced921ad4e6d42fba22247a987cfa912bcb5cae6ba2872887b0c82"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/auto.wav",
+      "bytes": 13274,
+      "sha256": "9db132fd9bff30132fb8f3c90d1efb1942ca6ad431aed73446154f13e4935ac8"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/basic.wav",
+      "bytes": 7982,
+      "sha256": "7acbdef956b177542354d49b3a76ee034ed79ad7927fae807c0d4b47472c7395"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/battle-motion-a-v1.webp",
+      "bytes": 1032732,
+      "sha256": "e9cb1f6047e84bf411164e073b88faef1b809bfc3e61f8444aa6fae57b9e1277"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/battle-motion-b-v1.webp",
+      "bytes": 1041298,
+      "sha256": "8ba57df72ad9a39aab48e203807ab665685394504543f1d5998bac882e70a31a"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/fx.webp",
+      "bytes": 1412958,
+      "sha256": "a8d68f9d1f8455560517a81b646be8da68ea4ae53e60d8f36180a80c09bfb760"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/passive.wav",
+      "bytes": 9746,
+      "sha256": "e413788a396293423be280f71d23b00f6e4a0864a134e4a374ac2ed546e985b9"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/portrait.webp",
+      "bytes": 1189370,
+      "sha256": "7073e4925602cbfc4b18f3397878b0466fbf8d63faa2eccc58552e5a7bdd09a9"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/prompts.json",
+      "bytes": 8006,
+      "sha256": "38e1a8d105cbf5686b50107eed900928c25a086900d0fd7253afa56d4e4f6d84"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/provenance.json",
+      "bytes": 7438,
+      "sha256": "4841d53ce533cecf78210a06861976130bb973f886a2ee3f786227ae6a5a7946"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/spec.json",
+      "bytes": 571,
+      "sha256": "1876b575e1c0889c625bb9d3c898540bf72fee0bcd121a2c319e8e739583351f"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/ultimate.wav",
+      "bytes": 18566,
+      "sha256": "fce9852794384906dbf9a772fd2b10d8ae61f5cc514def097108a8eefe1d6b22"
+    },
+    {
+      "path": "dev/aw2/assets/van/base-v1/world.webp",
+      "bytes": 1277032,
+      "sha256": "737b9ed9a12b4bb7bfa9fb4bd9b33f5bb90cbc1e8f6224fbffd39f28cd791349"
+    },
+    {
+      "path": "dev/aw2/battle.html",
+      "bytes": 920,
+      "sha256": "9400d5ccc3dfa3c727f3fcf512f7bffd79abcdcc5c10880e373d32ce9d3c4ac0"
+    },
+    {
+      "path": "dev/aw2/game.html",
+      "bytes": 1308,
+      "sha256": "eb1c862e34e381da2a3d2bfea603a085a1a4f763506530ad2d25a8670a270795"
+    },
+    {
+      "path": "dev/aw2/index.html",
+      "bytes": 966,
+      "sha256": "a1cff1953b46db58412a18f5bcba1b08f9a0eb19993ecf8e9930addb96648a1a"
+    },
+    {
+      "path": "dev/aw2/roster.html",
+      "bytes": 932,
+      "sha256": "a17b59d55bdc1d63d8a07a7b26624ad5dfb6109aa61c34f700f1566033221a59"
+    },
+    {
+      "path": "dev/aw2/starters.html",
+      "bytes": 844,
+      "sha256": "e44f817d0f3eb357f25a98ab9a20c2198f2fe8d1083f4e8213b32e3692d7f94c"
+    },
+    {
+      "path": "dev/aw2/than.html",
+      "bytes": 837,
+      "sha256": "c8769bb30277a229c89c1b8cfc51dfca1ae695bb4d4f226c6d35c3acd5fd16e6"
+    },
+    {
+      "path": "dev/aw2/world.html",
+      "bytes": 1261,
+      "sha256": "b337f5f6645a004b12fbc6c5f40b1a3b6eb958a4ef4027e551950f429d0a075d"
+    },
+    {
+      "path": "index.html",
+      "bytes": 399,
+      "sha256": "3302d4e5c37521497269727b3b4ac776e3e35434e6379efb78948b0d6ca69cf3"
+    }
+  ],
+  "buildIdentity": {
+    "version": 1,
+    "mode": "compiled",
+    "baseGitSha": "601fed31d9965c883afc14774b123c56f4b272ef",
+    "sourceDirty": true,
+    "codeFingerprint": "d508dae2732de764ef96e9b0c361770665687a6e1efc76c0714fc79cd2b9714a",
+    "inputFiles": 395
+  },
+  "stable": {
+    "reusedSource": "15c0cd2f6d833191c8b1b00ab392dfd7c0c34880",
+    "files": 851,
+    "bytes": 177450422,
+    "freshTextExclusion": 49,
+    "entryConfigDependenciesUnchanged": true
+  },
+  "aw2ConfigDelta": "Only adds opt-in game.html entry, stable config untouched",
+  "referenceArchiveExcluded": true,
+  "deployed": false
+}

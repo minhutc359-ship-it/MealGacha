@@ -1,4 +1,12 @@
-# Handoff —2026-10-26 / AW2-008A
+# Handoff —2026-10-26 / AW2-015A
+
+**AW2-015A VERIFIED — đã tích hợp đặc tảv1.1 và thêm UI khám phá một màn hình đầu tiên.** [Bản gốc kèm hình](design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md) được lưu nguyên22tệp/1,980,952bytes với provenance;23tệp đầu vào/ZIP giữ nguyên ngoài commit. D23chuẩn hóa UI decision bị trùngD13; luồng mới015thay aliasUItrùng012, giữ quyết định5starter và lịch sử tích hợp. [Ma trận tích hợp/hai luồng](WORLD_V1_1_INTEGRATION.md).
+
+Entry mới `/dev/aw2/game.html` có map/HUD/dock cố định, QuestJournal/đội/túi/bếp/địa điểm phân trang, một modal, J/Escape/focus trap và pause giữ nguyên canvas. Dùng cùng save/rules/controller với `/world.html`; không tự nhận thưởng/qua cửa, không tạo Lilia/xu/gacha minh họa.88unit/4files, hai typecheck, build302files/256assetparity/cách ly stable PASS.552fresh browser assertions=276source+276compiled,0unexpected errors,4viewport/20pxtext/intro/2entrysharedprogress/modesreturn/requiredassetfault/exactsave. Source `PENDING015A`, base `601fed31d9965c883afc14774b123c56f4b272ef`. [Cách mở](GAME_SHELL.md) · [Bằng chứng](evidence/AW2-015A.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là migration scopekhám phá/menu opt-in; battle/TCG/Chess vẫn dùng cảnh hiện có, full no-scrollUI cần[015B](tasks/AW2-015B.md). Luồng world chạy theo[016A](tasks/AW2-016A.md) contractmap/portal, rồi[016B](tasks/AW2-016B.md) patrolcó vị trí tương tác thật;008Boverview chuyển vào shell. D17một đại diện map/nămcombat giữ nguyên; D14canon/D11PROPOSED/D18/D20không đổi. Không master/rpg/deploy/release/reset.
+
+Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo015A→015B +016A/D23ở trên.
 
 **AW2-008A VERIFIED — hướng dẫn đường theo mục tiêu nhiệm vụ.** Hiện người/đồ vật cần tới, tuyến qua các cửa đang mở và nút đi bộ tới điểm kế tiếp; đủ lựa chọn ký ức, từng bước bếp, boss/ghi chép/đường về Bà. Tới nơi vẫn tự E/Tương tác, không tự qua cửa hoặc nhận quà. Nút khóa theo tải/lỗi cảnh, lưu lỗi/tab cũ và hội thoại; giữ một đại diện map/năm combat. Source `45a54471750961d382c807c338e75248ee261783`, base `045a30c9b796b5b08559e4a78c5e3466fb8cdc48`. [Cách dùng](DAN_DUONG.md) · [Bằng chứng](evidence/AW2-008A.md).
 

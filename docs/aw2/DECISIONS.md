@@ -23,6 +23,7 @@
 | D20 | APPROVED 2026-10-24 | Owner yêu cầu bỏ qua phần nghiệm thu để tiếp tục hoàn thiện. Ưu tiên triển khai tính năng/art tiếp theo; gác010C/011A khỏi công việc hiện tại, không lấy chúng làm điều kiện để bắt đầu task phát triển. Bằng chứng chưa chạy vẫn NOT_RUN; không tự đánh dấu PASS hoặc đủ milestone/deploy/release. Kiểm tra kỹ thuật theo tác động thay đổi và D16commitpush vẫn thực hiện. |
 | D21 | APPROVED 2026-10-24 | Owner yêu cầu kết hợp hình Làng Linh Vị ở mainline để đồng bộ phong cách và có map khám phá nhiều lớp, phong cảnh có chiều sâu.006Iưu tiên trước006H: lấy ảnh gốc dự án tại nhánh mặc địnhmaster làm tham chiếu, nâng cảnh làng/camera rồi áp dụng cùng hướng cho vùng tiếp theo. Không đổi tên/canon/luật/save hoặc cho phép merge/cập nhậtmaster; không tự đóng full-environment/rights/nghiệm thu. |
 | D22 | APPROVED 2026-10-24 | Owner yêu cầu thêm nhiều nhà/tiệm/cửa hàng/khu vui chơi vì khung nhìn còn trống.006Oưu tiên trước006N: đưa cụm kiến trúc sát tuyến khám phá và điều chỉnh góc bám để thấy khu dân cư; gắn quầy với NPC/tương tác có sẵn. Giữ6zone/8NPC/canon/save/collision, không suy thành duyệt commerce/room mới, quyền phát hành hoặc milestone. |
+| D23 | LOCKED 2026-10-26 | Core gameplay targets one fixed viewport, map HUD/dock, single blocking submenu, quest/party/inventory pages, no document scrolling; battle/TCG/Chess target in-shell safe return. Imported concurrent UI row mislabeledD13 is normalized here, preserving original starterD13. Implementation phases/evidence at015A/B; design approval is not runtime completion. |
 
 Mọi thay đổi quyết định LOCKED cần owner xác nhận và scretary ghi lại.
 
@@ -40,4 +41,5 @@ D21 evidence: owner requests **“Kết hợp với hình ảnh Làng Linh Vị 
 
 D22 evidence: owner requests **“thêm nhiều nhà/tiệm/cửa hàng/khu vui chơi/... vì chỉ có mỗi npc thì khung ảnh hơi trống, sau đó tiếp tục hoàn thiện game”**. [AW2-006O](tasks/AW2-006O.md) adds a denser architectural layer and walk-only neighborhood landmarks, preserves current services/geometry and keeps006Nambient next.
 
-| D13 | LOCKED | Core gameplay single-screen fixed viewport; map HUD + quest/party/inventory submenu; no webpage scrolling. Lists use tabs/pagination rather than page scroll; dialogs/TCG/Auto Chess stay within game shell with safe return context. | Owner request 2026-10-26 |
+
+D23 provenance: concurrent design commits73ef962/cfb2923/2b5b011/601fed3recorded owner single-screen UI request, then owner explicitly requested integratingv1.1. [Exact source](design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md), [reconciliation](WORLD_V1_1_INTEGRATION.md). D17one map representative/D14current canon/D11PROPOSED/D16/D18/D20remain authoritative.

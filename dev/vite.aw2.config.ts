@@ -6,7 +6,15 @@ import { join } from "node:path"
 import { aw2ReviewBuild } from "./tools/aw2-review-build"
 
 const root = fileURLToPath(new URL("../", import.meta.url))
-const entries = ["index", "world", "battle", "starters", "than", "roster"]
+const entries = [
+  "index",
+  "world",
+  "game",
+  "battle",
+  "starters",
+  "than",
+  "roster",
+]
 
 /** Separate review build. The stable production entry/config is unchanged. */
 export default defineConfig({

@@ -1,0 +1,261 @@
+{
+  "task": "AW2-015A",
+  "source": "PENDING015A",
+  "base": "601fed31d9965c883afc14774b123c56f4b272ef",
+  "mode": "owner-provided reference archive, no generation or raster processing",
+  "archiveRoot": "docs/aw2/design/world-v1.1",
+  "files": [
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/README.md",
+      "archive": "docs/aw2/design/world-v1.1/README.md",
+      "bytes": 655,
+      "sha256": "ea484be6b0bbb9a6da66eaf77d4f2931f45f932e23e30a7833215e8fd8a9ce43"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0.md",
+      "archive": "docs/aw2/design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0.md",
+      "bytes": 25963,
+      "sha256": "5a05e5d7aef439986fc8b6a545e0c8b34d613dbd134e8de2e97d76063e0896bb"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md",
+      "archive": "docs/aw2/design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md",
+      "bytes": 36388,
+      "sha256": "17c9730f07a7fb190a925aeac0cc3501e680137f878ebe50f9e9d362ffd788c7"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/chapter4_battle.jpg",
+      "archive": "docs/aw2/design/world-v1.1/assets/chapter4_battle.jpg",
+      "bytes": 89098,
+      "sha256": "47c5658dbbe23776f129becad9bc096175b1e1db78bdf91451fafc187f1c3012"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/chapter4_encounter.jpg",
+      "archive": "docs/aw2/design/world-v1.1/assets/chapter4_encounter.jpg",
+      "bytes": 69653,
+      "sha256": "deb1762df730e0922e7708c7db6974111ab12796fc46635261f7cced216a9a40"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/chapter4_npc_quest.jpg",
+      "archive": "docs/aw2/design/world-v1.1/assets/chapter4_npc_quest.jpg",
+      "bytes": 86903,
+      "sha256": "f6a6ebeff049696ea8e1f344e2ac4da4ad07465b630d827151d1701fb1bb110c"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/chapter4_reference.jpg",
+      "archive": "docs/aw2/design/world-v1.1/assets/chapter4_reference.jpg",
+      "bytes": 692919,
+      "sha256": "d8cb1ce5671954a7ba7936def64e455145ca889e7b4f8352d81f95cbb774a2da"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/chapter4_world_map.jpg",
+      "archive": "docs/aw2/design/world-v1.1/assets/chapter4_world_map.jpg",
+      "bytes": 104374,
+      "sha256": "ffa0ec7a1184ceeb306230f263cd2e6efa87565dd78dc146246eb142d519b8cf"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/guild_floorplan.png",
+      "archive": "docs/aw2/design/world-v1.1/assets/guild_floorplan.png",
+      "bytes": 109630,
+      "sha256": "16743cb1b46c28c49043efdab7ab93defbe600272167b7422ef221374293cf07"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/guild_floorplan.svg",
+      "archive": "docs/aw2/design/world-v1.1/assets/guild_floorplan.svg",
+      "bytes": 5403,
+      "sha256": "d88c7b575f50b76015e006b68ab5458ddf31e4ad7452f6e9a63fd497dbb1606c"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/npc_schedule.png",
+      "archive": "docs/aw2/design/world-v1.1/assets/npc_schedule.png",
+      "bytes": 62731,
+      "sha256": "af70dbc2ff28814ac7ff8592647388a68b2332df1dce5e6a30bc822574436bfa"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/npc_schedule.svg",
+      "archive": "docs/aw2/design/world-v1.1/assets/npc_schedule.svg",
+      "bytes": 2722,
+      "sha256": "a05f00c5e3c91465aa5b067ad0c8d116c21c2ebf0770062205dc569774f0ccb7"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/portal_sequence.png",
+      "archive": "docs/aw2/design/world-v1.1/assets/portal_sequence.png",
+      "bytes": 104639,
+      "sha256": "18d965b2dbe3c5d1bc294a94519b62a1235eaf4b87ce6817db6c70b5b88960d7"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/portal_sequence.svg",
+      "archive": "docs/aw2/design/world-v1.1/assets/portal_sequence.svg",
+      "bytes": 3843,
+      "sha256": "539cb046df34e2cb59cb8001c1482180404d6b9fae16126490ac0dea9cf6af7d"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/quest_single_screen_desktop.png",
+      "archive": "docs/aw2/design/world-v1.1/assets/quest_single_screen_desktop.png",
+      "bytes": 142511,
+      "sha256": "7c4756f36c2c70edb46c45c0acbb9a8cfe265cab763a0fe5bd5e9a837e8de274"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/quest_single_screen_desktop.svg",
+      "archive": "docs/aw2/design/world-v1.1/assets/quest_single_screen_desktop.svg",
+      "bytes": 10262,
+      "sha256": "e04ec6d214de21835089f014fbb8d95a891f019d4213a30d849805027b74481b"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/quest_single_screen_mobile.png",
+      "archive": "docs/aw2/design/world-v1.1/assets/quest_single_screen_mobile.png",
+      "bytes": 94143,
+      "sha256": "88353debcdc6e6253aa68075da5835c231c77c3bd94a294151c7e9b12c44c447"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/quest_single_screen_mobile.svg",
+      "archive": "docs/aw2/design/world-v1.1/assets/quest_single_screen_mobile.svg",
+      "bytes": 6827,
+      "sha256": "d8191bec240c07ff93d362b5323bfbcb794aa22c8616d2c0663d1b84d3bdd96c"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/village_mockup.png",
+      "archive": "docs/aw2/design/world-v1.1/assets/village_mockup.png",
+      "bytes": 165443,
+      "sha256": "5cdf6bf8aa3c5743ee89d0c5e09e113bc9ab46e1d0ab5f4618c5536763daa93e"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/village_mockup.svg",
+      "archive": "docs/aw2/design/world-v1.1/assets/village_mockup.svg",
+      "bytes": 21544,
+      "sha256": "c0ab6c0cf661487cbd49f1ca1ac51c953962f690c44826ad2d1b09d27b11b3b4"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/world_regions.png",
+      "archive": "docs/aw2/design/world-v1.1/assets/world_regions.png",
+      "bytes": 140526,
+      "sha256": "bfba664f7fb9f834334d81236cc9ccdfc5a66d2337503ab4ba49d43c56e9d01a"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/world_regions.svg",
+      "archive": "docs/aw2/design/world-v1.1/assets/world_regions.svg",
+      "bytes": 4775,
+      "sha256": "37fd0783447ba34cd63b25d00df4747ed350da7c3e0ba2188d0c056ce8c0ce69"
+    }
+  ],
+  "originalWorkspaceFiles": [
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES.zip",
+      "bytes": 1847711,
+      "sha256": "2e12624c6042e23eb7da1b8fcda9a456499926c0c0b8bd305b2bfd51d004785a"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/README.md",
+      "bytes": 655,
+      "sha256": "ea484be6b0bbb9a6da66eaf77d4f2931f45f932e23e30a7833215e8fd8a9ce43"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0.md",
+      "bytes": 25963,
+      "sha256": "5a05e5d7aef439986fc8b6a545e0c8b34d613dbd134e8de2e97d76063e0896bb"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md",
+      "bytes": 36388,
+      "sha256": "17c9730f07a7fb190a925aeac0cc3501e680137f878ebe50f9e9d362ffd788c7"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/chapter4_battle.jpg",
+      "bytes": 89098,
+      "sha256": "47c5658dbbe23776f129becad9bc096175b1e1db78bdf91451fafc187f1c3012"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/chapter4_encounter.jpg",
+      "bytes": 69653,
+      "sha256": "deb1762df730e0922e7708c7db6974111ab12796fc46635261f7cced216a9a40"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/chapter4_npc_quest.jpg",
+      "bytes": 86903,
+      "sha256": "f6a6ebeff049696ea8e1f344e2ac4da4ad07465b630d827151d1701fb1bb110c"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/chapter4_reference.jpg",
+      "bytes": 692919,
+      "sha256": "d8cb1ce5671954a7ba7936def64e455145ca889e7b4f8352d81f95cbb774a2da"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/chapter4_world_map.jpg",
+      "bytes": 104374,
+      "sha256": "ffa0ec7a1184ceeb306230f263cd2e6efa87565dd78dc146246eb142d519b8cf"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/guild_floorplan.png",
+      "bytes": 109630,
+      "sha256": "16743cb1b46c28c49043efdab7ab93defbe600272167b7422ef221374293cf07"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/guild_floorplan.svg",
+      "bytes": 5403,
+      "sha256": "d88c7b575f50b76015e006b68ab5458ddf31e4ad7452f6e9a63fd497dbb1606c"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/npc_schedule.png",
+      "bytes": 62731,
+      "sha256": "af70dbc2ff28814ac7ff8592647388a68b2332df1dce5e6a30bc822574436bfa"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/npc_schedule.svg",
+      "bytes": 2722,
+      "sha256": "a05f00c5e3c91465aa5b067ad0c8d116c21c2ebf0770062205dc569774f0ccb7"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/portal_sequence.png",
+      "bytes": 104639,
+      "sha256": "18d965b2dbe3c5d1bc294a94519b62a1235eaf4b87ce6817db6c70b5b88960d7"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/portal_sequence.svg",
+      "bytes": 3843,
+      "sha256": "539cb046df34e2cb59cb8001c1482180404d6b9fae16126490ac0dea9cf6af7d"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/quest_single_screen_desktop.png",
+      "bytes": 142511,
+      "sha256": "7c4756f36c2c70edb46c45c0acbb9a8cfe265cab763a0fe5bd5e9a837e8de274"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/quest_single_screen_desktop.svg",
+      "bytes": 10262,
+      "sha256": "e04ec6d214de21835089f014fbb8d95a891f019d4213a30d849805027b74481b"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/quest_single_screen_mobile.png",
+      "bytes": 94143,
+      "sha256": "88353debcdc6e6253aa68075da5835c231c77c3bd94a294151c7e9b12c44c447"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/quest_single_screen_mobile.svg",
+      "bytes": 6827,
+      "sha256": "d8191bec240c07ff93d362b5323bfbcb794aa22c8616d2c0663d1b84d3bdd96c"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/village_mockup.png",
+      "bytes": 165443,
+      "sha256": "5cdf6bf8aa3c5743ee89d0c5e09e113bc9ab46e1d0ab5f4618c5536763daa93e"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/village_mockup.svg",
+      "bytes": 21544,
+      "sha256": "c0ab6c0cf661487cbd49f1ca1ac51c953962f690c44826ad2d1b09d27b11b3b4"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/world_regions.png",
+      "bytes": 140526,
+      "sha256": "bfba664f7fb9f834334d81236cc9ccdfc5a66d2337503ab4ba49d43c56e9d01a"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1_WITH_IMAGES/Soul_of_Meal_AW2_Map_NPC_World_Spec_v1.1/assets/world_regions.svg",
+      "bytes": 4775,
+      "sha256": "37fd0783447ba34cd63b25d00df4747ed350da7c3e0ba2188d0c056ce8c0ce69"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "notes": "Original PNG/JPG/SVG/text bytes unchanged. Chapter4 illustrations supplied by owner as references; wireframes are design diagrams, not game screenshots/runtime assets. User asks integration2026-10-26; archive does not approve protected-game copying or release rights."
+}

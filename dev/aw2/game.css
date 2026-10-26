@@ -1,0 +1,73 @@
+html.aw2-game-document, html.aw2-game-document body, html.aw2-game-document #root { width: 100%; height: 100%; margin: 0; overflow: hidden; overscroll-behavior: none; }
+.aw2-game-shell { height: 100dvh; width: 100%; display: grid; grid-template-rows: auto auto minmax(0,1fr) auto; background: #122b27; color: #f9efdc; padding: env(safe-area-inset-top) max(.5rem,env(safe-area-inset-right)) env(safe-area-inset-bottom) max(.5rem,env(safe-area-inset-left)); overflow: hidden; }
+.aw2-game-header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; min-height: 44px; padding: .25rem .5rem; }
+.aw2-game-header h1 { font-size: 1rem; line-height: 1.3; margin: 0; max-width: 75%; }
+.aw2-game-header span { white-space: nowrap; color: #e8cb89; font-size: .85rem; }
+.aw2-game-tracker { display: flex; align-items: center; gap: .5rem; padding: .4rem .6rem; border: 1px solid #658878; border-radius: .75rem; background: #1c3e36; }
+.aw2-game-tracker > div { flex: 1; min-width: 0; }
+.aw2-game-tracker strong { font-size: .9rem; }
+.aw2-game-tracker p { margin: 0; font-size: .8rem; line-height: 1.3; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.aw2-game-tracker > button { flex-shrink: 0; max-width: 6.5rem; font-size: .8rem; padding: .3rem; }
+.aw2-game-map { position: relative; min-width: 0; min-height: 0; display: grid; grid-template-columns: minmax(0,1fr); grid-template-rows: 44px minmax(0,1fr); align-items: center; justify-items: center; container-type: size; overflow: clip; }
+.aw2-game-map > .aw2-map-toolbar { width: 100%; min-width: 0; display: flex; gap: .4rem; margin: 0; padding: 0; align-self: stretch; position: relative; z-index: 1; }
+.aw2-game-map > .aw2-map-toolbar > span, .aw2-game-map > p, .aw2-game-map > nav { display: none; }
+.aw2-game-map > .aw2-map-toolbar button { font-size: .8rem; padding: .3rem .6rem; }
+.aw2-game-map > .aw2-world-map { width: min(100cqw,calc((100cqh - 44px) * 5 / 3)); height: auto; aspect-ratio: 5 / 3; align-self: center; }
+.aw2-game-map:has(.aw2-map-toolbar button:first-child[aria-pressed="true"]) > .aw2-world-map { width: max(100cqw,calc((100cqh - 44px) * 5 / 3)); }
+.aw2-game-map .aw2-world-map canvas { width: 100%; height: auto; }
+.aw2-game-inputs { position: absolute; bottom: .4rem; left: .25rem; right: .25rem; display: flex; justify-content: space-between; align-items: flex-end; pointer-events: none; z-index: 2; }
+.aw2-game-inputs button { pointer-events: auto; background: #243e35e8; color: #ffe9b3; border-color: #b8b48a; }
+.aw2-game-dpad { display: grid; grid-template-columns: repeat(3,44px); grid-template-rows: repeat(2,44px); gap: 2px; }
+.aw2-game-dpad button { padding: 0; width: 44px; height: 44px; font-size: 1.25rem; touch-action: none; }
+.aw2-game-dpad [data-direction="w"] { grid-column: 2; }
+.aw2-game-dpad [data-direction="a"] { grid-column: 1; grid-row: 2; }
+.aw2-game-dpad [data-direction="s"] { grid-column: 2; grid-row: 2; }
+.aw2-game-dpad [data-direction="d"] { grid-column: 3; grid-row: 2; }
+.aw2-game-interact { min-height: 48px; font-size: .9rem; padding: .5rem; }
+.aw2-game-bottom { padding: .2rem 0; }
+.aw2-game-message { margin: 0 .25rem; height: 1.6rem; min-height: 0; font-size: .75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.aw2-game-dock { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .3rem; }
+.aw2-game-dock button { min-width: 0; min-height: 48px; padding: .25rem; font-size: .85rem; white-space: normal; }
+.aw2-game-dock button[aria-pressed="true"] { background: #e8c785; }
+.aw2-game-position { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
+.aw2-game-empty { grid-row: 1 / -1; margin: .5rem; padding: 1rem; max-width: 28rem; }
+.aw2-game-panel { width: min(calc(100% - 1rem),44rem); height: min(calc(100dvh - 1rem),35rem); max-height: calc(100dvh - 1rem); margin: auto; padding: .75rem; overflow: hidden; border: 2px solid #e8c785; background: #f9f0dc; color: #3c382d; display: none; }
+.aw2-game-panel[open] { display: flex; flex-direction: column; gap: .6rem; }
+.aw2-game-panel::backdrop { background: #071a16bb; }
+.aw2-game-panel > header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; flex-shrink: 0; }
+.aw2-game-panel > header h2 { margin: 0; font-size: 1.05rem; line-height: 1.25; }
+.aw2-game-panel > header button { min-width: 44px; width: 44px; height: 44px; padding: 0; }
+.aw2-panel-content { flex: 1; min-height: 0; }
+.aw2-panel-stack { height: 100%; min-height: 0; display: flex; flex-direction: column; gap: .55rem; }
+.aw2-panel-stack > h3 { margin: 0; font-size: 1rem; line-height: 1.3; }
+.aw2-panel-stack p { margin: 0; overflow-wrap: anywhere; }
+.aw2-panel-stack .note { color: #625e51; font-size: .85rem; }
+.aw2-panel-stack button, .aw2-panel-stack select { min-width: 0; white-space: normal; }
+.aw2-panel-stack select { width: 100%; min-height: 44px; background: #fffaf0; color: #302d25; font: inherit; border: 1px solid #8c9778; border-radius: .4rem; }
+.aw2-panel-subtitle { display: flex; justify-content: space-between; gap: .5rem; font-size: .75rem; color: #625e51; }
+.aw2-panel-tabs { display: flex; gap: .35rem; }
+.aw2-panel-tabs > button { flex: 1; padding: .3rem; font-size: .8rem; }
+.aw2-panel-tabs [aria-pressed="true"] { background: #d6ad68; }
+.aw2-panel-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: .6rem; }
+.aw2-paged-copy { display: flex; flex-direction: column; gap: .5rem; font-size: .95rem; line-height: 1.5; }
+.aw2-page-controls { margin-top: auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: .35rem; }
+.aw2-page-controls button { padding: .3rem; font-size: .85rem; }
+.aw2-page-controls span { font-size: .8rem; text-align: center; }
+.aw2-game-items { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .5rem; }
+.aw2-game-items > p { margin: 0; padding: .5rem; border: 1px solid #bfb58f; border-radius: .5rem; font-size: .85rem; }
+.aw2-game-items strong { display: block; font-size: 1rem; color: #315845; }
+.aw2-game-more { justify-content: space-evenly; }
+.aw2-game-shell > dialog:not(.aw2-game-panel) { max-height: calc(100dvh - 1rem); overflow: hidden; }
+.aw2-game-shell > dialog .actions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .4rem; margin-top: .5rem; }
+.aw2-game-shell > dialog .actions button { padding: .4rem; font-size: .9rem; }
+.aw2-game-shell > dialog .aw2-paged-copy > p { margin: .5rem 0; }
+@media (orientation: landscape) and (max-height: 450px) {
+  .aw2-game-header { min-height: 32px; }
+  .aw2-game-tracker { padding: .2rem .5rem; }
+  .aw2-game-tracker p { -webkit-line-clamp: 1; }
+  .aw2-game-dpad { grid-template-columns: repeat(4,44px); grid-template-rows: 44px; }
+  .aw2-game-dpad [data-direction] { grid-column: auto; grid-row: 1; }
+  .aw2-game-panel { height: calc(100dvh - 1rem); gap: .25rem; padding: .5rem; }
+  .aw2-panel-stack { gap: .35rem; }
+  .aw2-panel-subtitle { display: none; }
+}

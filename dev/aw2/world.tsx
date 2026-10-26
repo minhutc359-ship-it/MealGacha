@@ -34,7 +34,11 @@ import { worldKeyAction } from "../../src/aw2/world/controls"
 import { JourneyGuide } from "./JourneyGuide"
 import { DemoCompletion } from "./DemoCompletion"
 import { PlaytestFeedback } from "./PlaytestFeedback"
+import { WorldGame, type GamePanel } from "./WorldGame"
+import { PagedCopy, trapPanelTab } from "./GamePanels"
 import "./styles.css"
+
+const singleViewport = window.location.pathname.endsWith("/game.html")
 
 interface ActiveWorldEncounter {
   run: WorldBossEncounter
@@ -49,6 +53,10 @@ function WorldPreview() {
   )
   const [dialogObject, setDialogObject] = useState<WorldObject | null>(null)
   const [busy, setBusy] = useState(false)
+  const [gamePanel, setGamePanel] = useState<GamePanel>("none")
+  const gamePanelRef = useRef(gamePanel)
+  const queuedWalk = useRef<Waypoint | null>(null)
+  gamePanelRef.current = gamePanel
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
   const [mapEpoch, setMapEpoch] = useState(0)
@@ -76,7 +84,11 @@ function WorldPreview() {
   const closeButton = useRef<HTMLButtonElement>(null)
   worldRef.current = world
   saved.current = snapshot
-  paused.current = !!dialogObject || !!activeEncounter || !!activeMode
+  paused.current =
+    !!dialogObject ||
+    !!activeEncounter ||
+    !!activeMode ||
+    (singleViewport && gamePanel !== "none")
 
   function openInteraction() {
     route.current = []
@@ -99,6 +111,30 @@ function WorldPreview() {
       )
     const down = (event: KeyboardEvent) => {
       if (event.defaultPrevented) return
+      if (
+        singleViewport &&
+        event.key.toLowerCase() === "j" &&
+        !event.repeat &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey &&
+        !pending.current &&
+        saved.current.status === "ready" &&
+        (!paused.current || gamePanelRef.current !== "none") &&
+        !(
+          event.target instanceof Element &&
+          event.target.closest(
+            "input, textarea, select, [contenteditable='true']",
+          )
+        )
+      ) {
+        event.preventDefault()
+        keys.current.clear()
+        route.current = []
+        queuedWalk.current = null
+        setGamePanel((panel) => (panel === "quest" ? "none" : "quest"))
+        return
+      }
       const action = worldKeyAction(event.key, {
         enabled:
           saved.current.status === "ready" &&
@@ -176,6 +212,21 @@ function WorldPreview() {
   }, [])
 
   useEffect(() => {
+    if (
+      !singleViewport ||
+      gamePanel !== "none" ||
+      !queuedWalk.current ||
+      busy ||
+      dialogObject
+    )
+      return
+    const point = queuedWalk.current
+    queuedWalk.current = null
+    navigate(point)
+    worldMap.current?.focus({ preventScroll: true })
+  }, [gamePanel, busy, dialogObject])
+
+  useEffect(() => {
     if (dialogObject) {
       dialog.current?.showModal()
       closeButton.current?.focus()
@@ -195,6 +246,8 @@ function WorldPreview() {
 
   function reread() {
     if (pending.current) return
+    setGamePanel("none")
+    queuedWalk.current = null
     setMapReadiness(null)
     restoreModeFocus.current = !!activeMode
     modeAdapter.abandon()
@@ -227,6 +280,8 @@ function WorldPreview() {
     )
       return
     pending.current = true
+    setGamePanel("none")
+    queuedWalk.current = null
     setBusy(true)
     keys.current.clear()
     route.current = []
@@ -459,7 +514,137 @@ function WorldPreview() {
       />
     )
   const description = dialogObject ? describeObject(world, dialogObject) : null
+  const interactionDialog = (
+    <dialog
+      ref={dialog}
+      aria-labelledby="interaction-title"
+      onKeyDown={singleViewport ? trapPanelTab : undefined}
+      onCancel={(event) => {
+        event.preventDefault()
+        if (!pending.current) setDialogObject(null)
+      }}
+    >
+      <h2 id="interaction-title">{description?.title}</h2>
+      {singleViewport ? (
+        <PagedCopy text={description?.text ?? ""} />
+      ) : (
+        <p>{description?.text}</p>
+      )}
+      <div className="actions">
+        <button
+          ref={closeButton}
+          onClick={() => setDialogObject(null)}
+          disabled={busy}
+        >
+          Để sau / Đóng
+        </button>
+        {dialogObject?.kind === "chest" && snapshot.status === "ready" && (
+          <button
+            disabled={
+              busy || snapshot.save.economy.receipts.includes(CHEST_RECEIPT)
+            }
+            onClick={() => void transact("open-chest")}
+          >
+            {snapshot.save.economy.receipts.includes(CHEST_RECEIPT)
+              ? "Đã nhận rương"
+              : "Mở rương nguyên liệu"}
+          </button>
+        )}
+        {description?.actions.map((action) => (
+          <button
+            key={action.id}
+            onClick={() => {
+              const mode = dialogObject && modeForPortal(dialogObject.id)
+              if (action.id === "visit-mode" && mode)
+                void enterMode(mode.id, "portal")
+              else void persist(action.id)
+            }}
+            disabled={busy}
+          >
+            {action.label}
+          </button>
+        ))}
+      </div>
+      {error && <p role="alert">{error}</p>}
+    </dialog>
+  )
   const nearby = nearestObject(world)
+  const navigationReady =
+    snapshot.status === "ready" &&
+    !busy &&
+    !error &&
+    !dialogObject &&
+    !!mapReadiness?.ready &&
+    mapReadiness.zoneId === world.zoneId &&
+    mapReadiness.leaderId === (world.partyIds[0] ?? "aw2-than")
+  if (singleViewport)
+    return (
+      <WorldGame
+        snapshot={snapshot}
+        world={world}
+        panel={gamePanel}
+        busy={busy}
+        error={error}
+        message={message}
+        mapRef={worldMap}
+        headingRef={worldHeading}
+        canWalk={navigationReady}
+        map={
+          snapshot.status === "ready" ? (
+            <WorldCanvas
+              focusRef={worldMap}
+              key={`${snapshot.save.saveId}:${mapEpoch}`}
+              world={world}
+              economy={snapshot.save.economy}
+              onNavigate={navigate}
+              paused={busy || !!dialogObject || gamePanel !== "none"}
+              onReadyChange={setMapReadiness}
+            />
+          ) : null
+        }
+        dialog={interactionDialog}
+        onPanel={(panel) => {
+          keys.current.clear()
+          route.current = []
+          queuedWalk.current = null
+          setGamePanel(panel)
+        }}
+        onWalk={(point) => {
+          if (!navigationReady) return
+          keys.current.clear()
+          route.current = []
+          queuedWalk.current = point
+          setGamePanel("none")
+        }}
+        onHold={(key, down) => {
+          if (!down) {
+            keys.current.delete(key)
+            return
+          }
+          if (paused.current || !navigationReady) return
+          route.current = []
+          keys.current.add(key)
+        }}
+        onStep={(key) => {
+          if (paused.current || !navigationReady) return
+          route.current = []
+          const next = moveWorld(
+            worldRef.current,
+            key === "d" ? 1 : key === "a" ? -1 : 0,
+            key === "s" ? 1 : key === "w" ? -1 : 0,
+            0.05,
+          )
+          worldRef.current = next
+          setWorld(next)
+        }}
+        onInteract={openInteraction}
+        onSave={() => void persist()}
+        onReread={reread}
+        onEconomy={(action) => void transact(action)}
+        onCollection={(action) => void collect(action)}
+        onMode={(mode) => void enterMode(mode, "quick-entry")}
+      />
+    )
   return (
     <main className="aw2-save aw2-world">
       <p className="eyebrow">SOUL OF MEAL · RPG · BẢN PHÁT TRIỂN</p>
@@ -624,53 +809,7 @@ function WorldPreview() {
       <p role="status">{busy ? "Đang lưu…" : message}</p>
       {error && <p role="alert">{error}</p>}
       <PlaytestFeedback snapshot={snapshot} busy={busy} />
-      <dialog
-        ref={dialog}
-        aria-labelledby="interaction-title"
-        onCancel={(event) => {
-          event.preventDefault()
-          if (!pending.current) setDialogObject(null)
-        }}
-      >
-        <h2 id="interaction-title">{description?.title}</h2>
-        <p>{description?.text}</p>
-        <div className="actions">
-          <button
-            ref={closeButton}
-            onClick={() => setDialogObject(null)}
-            disabled={busy}
-          >
-            Để sau / Đóng
-          </button>
-          {dialogObject?.kind === "chest" && snapshot.status === "ready" && (
-            <button
-              disabled={
-                busy || snapshot.save.economy.receipts.includes(CHEST_RECEIPT)
-              }
-              onClick={() => void transact("open-chest")}
-            >
-              {snapshot.save.economy.receipts.includes(CHEST_RECEIPT)
-                ? "Đã nhận rương"
-                : "Mở rương nguyên liệu"}
-            </button>
-          )}
-          {description?.actions.map((action) => (
-            <button
-              key={action.id}
-              onClick={() => {
-                const mode = dialogObject && modeForPortal(dialogObject.id)
-                if (action.id === "visit-mode" && mode)
-                  void enterMode(mode.id, "portal")
-                else void persist(action.id)
-              }}
-              disabled={busy}
-            >
-              {action.label}
-            </button>
-          ))}
-        </div>
-        {error && <p role="alert">{error}</p>}
-      </dialog>
+      {interactionDialog}
     </main>
   )
 }

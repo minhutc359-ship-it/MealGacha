@@ -1,0 +1,185 @@
+{
+  "task": "AW2-015A",
+  "status": "PASS_FIRST_EXPLORATION_MENU_SLICE",
+  "source": "PENDING015A",
+  "base": "601fed31d9965c883afc14774b123c56f4b272ef",
+  "environment": {
+    "os": "Linuxx64",
+    "node": "22.23.2",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vite": "8.0.5",
+    "vitest": "5.0.1",
+    "chromium": "153.0.8010.36",
+    "playwright": "1.58.2 temporary /tmp/aw2-008a-qa"
+  },
+  "runtimeIdentity": {
+    "version": 1,
+    "mode": "source",
+    "baseGitSha": "601fed31d9965c883afc14774b123c56f4b272ef",
+    "sourceDirty": true,
+    "codeFingerprint": "d508dae2732de764ef96e9b0c361770665687a6e1efc76c0714fc79cd2b9714a",
+    "inputFiles": 395
+  },
+  "referenceArchive": {
+    "files": 22,
+    "bytes": 1980952,
+    "originalUntrackedFiles": 23,
+    "provenance": "docs/aw2/evidence/AW2-015A-spec-provenance.json",
+    "rasterGenerationCalls": 0,
+    "rasterEdits": 0,
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED"
+  },
+  "reconciliation": {
+    "uiDecision": "D23 normalized from concurrent duplicateD13, original five-starterD13preserved",
+    "uiWorkstream": "AW2-015 normalized from duplicateAW2-012, historical integration012preserved",
+    "testIds": "UI-V11-01..10 mapped explicitly to6importedUI-QUEST cases",
+    "canon": "D17one map representative overrides illustrative1–2followers; D14sixmaps/8NPC/4quests and immutable12identities preserved; D11PROPOSED",
+    "parallelNext": [
+      "015B compactbattle/modes",
+      "016A compatible map/portal contract",
+      "016Bpatrol after live-position contract",
+      "008Boverview inside new shell"
+    ]
+  },
+  "units": {
+    "status": "PASS",
+    "uniqueCases": 88,
+    "files": 4,
+    "newJournalCases": 31,
+    "failures": 0,
+    "command": "pnpm test dev/tests/aw2/quest-journal.test.ts dev/tests/aw2/journey-guide.test.ts dev/tests/aw2/world.test.ts dev/tests/aw2/controls.test.ts",
+    "scope": "Readonly journal status/actual receipt/reward projection, missing-receipt migration fixture, detachment,30/100item pagination fixtures, Unicode/long-copy exact paging, plus57existing guide/world/control cases. Actual canon still4quests; no100authored quest claim."
+  },
+  "types": {
+    "root": "PASS pnpm typecheck",
+    "dev": "PASS final pnpm typecheck:dev after React/focus changes"
+  },
+  "browser": {
+    "status": "PASS_FRESH_EXPLORATION_MENU_CHECKS",
+    "totalAssertions": 552,
+    "source": 276,
+    "compiled": 276,
+    "freshAssertions": 552,
+    "retainedAssertions": 0,
+    "captures": 64,
+    "unexpectedErrors": 0,
+    "expectedFaultObservations": 2,
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        1280,
+        720
+      ]
+    ],
+    "reports": {
+      "source": {
+        "path": "docs/aw2/evidence/AW2-015A-source-browser.json",
+        "assertions": 276,
+        "captures": 32,
+        "origins": [
+          {
+            "path": "docs/aw2/evidence/AW2-008A-source-browser.json",
+            "reportSha256": "907d808acbc650a7047e2fc69ffd124154c11fc2bbbce71d41562dae201737df",
+            "rawSha256": "e5d84804024b0d4f127f148541460ed2659ffe50576318bacd73fcedd0013233",
+            "retainedAssertions": 0,
+            "scope": "Historical actual completed raw only; new UI projection/party/bag assertions fresh."
+          }
+        ]
+      },
+      "compiled": {
+        "path": "docs/aw2/evidence/AW2-015A-compiled-browser.json",
+        "assertions": 276,
+        "captures": 32,
+        "origins": [
+          {
+            "path": "docs/aw2/evidence/AW2-008A-compiled-browser.json",
+            "reportSha256": "f89b7dbec32a0a294d9ee2bbc71ebaf907cec6dc66b191f14cd581b0e86f89eb",
+            "rawSha256": "f2921002fff35f444a821fd654a396180ad005abe69ca2a028d43d51e9e616b9",
+            "retainedAssertions": 0,
+            "scope": "Historical actual completed raw only; new UI projection/party/bag assertions fresh."
+          }
+        ]
+      }
+    },
+    "commands": [
+      "node dev/tools/verify-aw2-game-shell.mjs --playwright /tmp/aw2-008a-qa/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome",
+      "node dev/tools/verify-aw2-game-shell.mjs --compiled --playwright /tmp/aw2-008a-qa/node_modules/playwright-core/index.mjs --chromium /usr/bin/google-chrome"
+    ]
+  },
+  "build": {
+    "status": "PASS",
+    "command": "pnpm build:aw2",
+    "files": 302,
+    "bytes": 120562756,
+    "runtimeAssetParity": 256,
+    "gameAndClassicEntries": true,
+    "referenceArchiveExcluded": true,
+    "artifact": "docs/aw2/evidence/AW2-015A-review-build.json"
+  },
+  "structuralChecks": {
+    "status": "PASS",
+    "json": 6,
+    "markdownFiles": 24,
+    "uniqueDecisionIds": 23,
+    "importedAliasesNormalized": true,
+    "formattedFiles": 7,
+    "mjsSyntax": 1,
+    "stagedWhitespace": true,
+    "stagedArchiveExactOriginals": 22,
+    "fingerprintUnchangedAfterDocs": true,
+    "archiveAttributes": "Reference-only -filter/-text rules retain actual bytes in ordinary clones; original Markdown whitespace is intentionally allowed only in the byte-exact archive. All owned source/docs still checked."
+  },
+  "reuse": "docs/aw2/evidence/AW2-015A-reused-evidence.json",
+  "incidents": [
+    "Initial source check found native dialog Tab could leave the modal. Added explicit visible/enabled-control focus cycle for game panels and new NPC dialog; final forward Tab trap/return-focus PASS. Initial failed prefix counts excluded.",
+    "Uniform canvas cover initially let the implicit grid column grow to canvas width, placing the representative outside the clipped viewport and failing inverse touch. Explicit minmax(0,1fr) track and UI z-order fixed before final source/compiled; actual representative visibility and exact inverse touch observed. Both failed diagnostics excluded.",
+    "Layout calibration used authentic008Aearned starter checkpoint only, no edited flags/HP/grants; final main runs each start new save, then use historical completed checkpoint only for completed receipt/party/bag UI checks with report/raw hashes and0retained assertions.",
+    "Build audit initially compared formatter trailing-comma bytes literally; audit now normalizes whitespace/trailing commas and confirms only game entry added. No runtime change from audit fix.",
+    "Reference Markdown has8original trailing-space/hard-break lines. Preserved exact bytes with narrow archive whitespace attributes; original inheritedLFSfilter was scoped off for portable reference files. Staged22blobs already had real bytes in this environment and are verified exactly against originals; no actual missingLFSobject claim."
+  ],
+  "review": {
+    "roles": "BA/story/mechanic/animation/tester/scretary and React/verification in-session, no delegated agents or independent acceptance.",
+    "react": "New opt-in entry shares existing controller/save/actions/renderers; world canvas remains mounted during local panel navigation. One native modal, explicit Tab trap/Escape/J and focus return, local journal page/pin state, queued walk after close, held key/path clearing and existing async readiness/disposal. No quest/store/battle/mode authority or runtime-art changes.",
+    "visual": "Opened both owner UI wireframes before code and final source844landscape party/compiled320quest captures; first source failure capture used to diagnose grid/representative placement. Canvas uniformly scales/clips rendered viewport for follow; authored PNG/WebP untouched, overview fits full aspect."
+  },
+  "notRun": [
+    "Full current unit suite; historical1588authority/deps at006Q retained only unchanged boundaries",
+    "Full fixed-viewport battle/TCG/AutoChess migration015B; UI-V11-10and full-coreUI-V11-01 remainNOT_RUN",
+    "New full boss win or complete new mode rounds in015A",
+    "100authored quests/multi-active-quest3pin behavior; current4mainquests only oneactive, generic paging tested by unitfixtures",
+    "New house/guild interiors, portal preload/rollback, NPC patrol/schedule/world monster AI; mapped to future contracts",
+    "Independent human/physical phone/gamepad/FPS/totalGPUmemory/listening/offline/native/rights/production-save/release"
+  ],
+  "progress": {
+    "demo": 90,
+    "productEstimate": 40,
+    "productRange": [
+      35,
+      45
+    ],
+    "changed": false,
+    "reason": "Reference integration and first opt-in exploration/menu UI do not close full-core v1.1/D18human/device/full-character/rights gates. D20acceptance deferred.",
+    "fullCharacterDoD": 0,
+    "next": [
+      "015B",
+      "016A"
+    ],
+    "secondary": [
+      "008B",
+      "016B"
+    ]
+  }
+}

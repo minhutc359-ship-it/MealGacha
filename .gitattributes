@@ -237,3 +237,8 @@ dev/docs/web-v530/*.jpg -filter -diff -merge -text
 dev/docs/web-v530/*.webp -filter -diff -merge -text
 
 public/assets/intro-manga5918/** -filter -diff -merge -text
+
+# Small owner-provided design archive: preserve original bytes in ordinary clones.
+docs/aw2/design/world-v1.1/** -filter -diff -merge -text
+docs/aw2/design/world-v1.1/*.md diff whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+docs/aw2/design/world-v1.1/assets/*.svg diff

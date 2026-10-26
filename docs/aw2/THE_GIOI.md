@@ -1,5 +1,7 @@
 # Khám phá sáu vùng AW2
 
+**015A:** bản UIkhám phá một màn hình mới ở `/dev/aw2/game.html`, dùng chungsave với `/world.html`; Quest/đội/túi có phân trang. [Cách dùng và scopechưa chuyển](GAME_SHELL.md).
+
 **008A:** chọn nút **Đi theo mục tiêu** để đi bộ tới người/đồ vật/cửa kế tiếp theo nhiệm vụ. Tới nơi vẫn tự E/Tương tác hoặc Đi qua; hướng dẫn khóa theo tải/lỗi cảnh và tiến trình thật. [Cách dùng](DAN_DUONG.md).
 
 **006O:** ba vùng ngoài trời nay có32công trình và9điểm đến đi bộ mới, góc bám rộng hơn/mái che mờ khi che nhân vật. [Danh sách nhà/tiệm/sân chơi, ảnh gốc và prompt](KHU_PHO.md). Hoạt ảnh của tám NPC và dịch vụ hiện có giữ nguyên.

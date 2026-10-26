@@ -1,5 +1,7 @@
 # Chơi thử hành trình AW2
 
+**015A:** bản UIkhám phá một màn hình mới ở `/dev/aw2/game.html`, dùng chungsave với `/world.html`; Quest/đội/túi có phân trang. [Cách dùng và scopechưa chuyển](GAME_SHELL.md).
+
 **008A:** chọn nút **Đi theo mục tiêu** để đi bộ tới người/đồ vật/cửa kế tiếp theo nhiệm vụ. Tới nơi vẫn tự E/Tương tác hoặc Đi qua; hướng dẫn khóa theo tải/lỗi cảnh và tiến trình thật. [Cách dùng](DAN_DUONG.md).
 
 [Làng Giao Ước: nền sân/NPC/bàn nhập môn và các nút đi tới mục tiêu](LANG_GIAO_UOC.md) —006G. TheoD20ưu tiên làm tiếp nội dung; lượt nghiệm thu độc lập tạm gác.

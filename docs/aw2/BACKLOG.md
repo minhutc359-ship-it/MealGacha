@@ -1,5 +1,13 @@
 # Task board
 
+**AW2-015A VERIFIED — đã tích hợp đặc tảv1.1 và thêm UI khám phá một màn hình đầu tiên.** [Bản gốc kèm hình](design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md) được lưu nguyên22tệp/1,980,952bytes với provenance;23tệp đầu vào/ZIP giữ nguyên ngoài commit. D23chuẩn hóa UI decision bị trùngD13; luồng mới015thay aliasUItrùng012, giữ quyết định5starter và lịch sử tích hợp. [Ma trận tích hợp/hai luồng](WORLD_V1_1_INTEGRATION.md).
+
+Entry mới `/dev/aw2/game.html` có map/HUD/dock cố định, QuestJournal/đội/túi/bếp/địa điểm phân trang, một modal, J/Escape/focus trap và pause giữ nguyên canvas. Dùng cùng save/rules/controller với `/world.html`; không tự nhận thưởng/qua cửa, không tạo Lilia/xu/gacha minh họa.88unit/4files, hai typecheck, build302files/256assetparity/cách ly stable PASS.552fresh browser assertions=276source+276compiled,0unexpected errors,4viewport/20pxtext/intro/2entrysharedprogress/modesreturn/requiredassetfault/exactsave. Source `PENDING015A`, base `601fed31d9965c883afc14774b123c56f4b272ef`. [Cách mở](GAME_SHELL.md) · [Bằng chứng](evidence/AW2-015A.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là migration scopekhám phá/menu opt-in; battle/TCG/Chess vẫn dùng cảnh hiện có, full no-scrollUI cần[015B](tasks/AW2-015B.md). Luồng world chạy theo[016A](tasks/AW2-016A.md) contractmap/portal, rồi[016B](tasks/AW2-016B.md) patrolcó vị trí tương tác thật;008Boverview chuyển vào shell. D17một đại diện map/nămcombat giữ nguyên; D14canon/D11PROPOSED/D18/D20không đổi. Không master/rpg/deploy/release/reset.
+
+Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo015A→015B +016A/D23ở trên.
+
 **AW2-008A VERIFIED — hướng dẫn đường theo mục tiêu nhiệm vụ.** Hiện người/đồ vật cần tới, tuyến qua các cửa đang mở và nút đi bộ tới điểm kế tiếp; đủ lựa chọn ký ức, từng bước bếp, boss/ghi chép/đường về Bà. Tới nơi vẫn tự E/Tương tác, không tự qua cửa hoặc nhận quà. Nút khóa theo tải/lỗi cảnh, lưu lỗi/tab cũ và hội thoại; giữ một đại diện map/năm combat. Source `45a54471750961d382c807c338e75248ee261783`, base `045a30c9b796b5b08559e4a78c5e3466fb8cdc48`. [Cách dùng](DAN_DUONG.md) · [Bằng chứng](evidence/AW2-008A.md).
 
 57unit/3files, hai typecheck, AW2build300files/256assetparity/stable isolation PASS.335browser assertion instances=167source+168compiled:305fresh+30current-task prefix đã đạt, không cộng trùng. Source là lượt mới từ tạo save tới boss thật45tick/hai ending; compiled giữ30prefix+138mới từ đúng checkpoint đã ghi sau đổi đội, sửa harness chờ commit/render. [Machine report](evidence/AW2-008A-verification.json).
@@ -57,7 +65,12 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | ID | Owner | Scope | Status |
 |---|---|---|---|
 | AW2-008A | BA/story/mechanic/tester/scretary | Objective directions and readiness-gated walk controls | VERIFIED at45a54471750961d382c807c338e75248ee261783;57units/335composite browser/types/build PASS |
-| AW2-008B | BA/story/mechanic/tester/scretary | Six-zone overview/current location/open exits, read-only navigation | READY; next D20 product task, implementation NOT_STARTED |
+| AW2-008B | BA/story/mechanic/tester/scretary | Six-zone overview/current location/open exits, read-only navigation | READY; overview inside new015Ashell, implementation NOT_STARTED |
+| AW2-015 | BA/story/mechanic/animation/tester/scretary | v1.1UI integration workstream; replaces duplicateUI012alias | IN_PROGRESS; first015Aslice verified,015Bpending |
+| AW2-015A | BA/story/mechanic/animation/tester/scretary | Archive/reconcilev1.1 +opt-in exploration/menu shell | VERIFIED atPENDING015A;88units/552freshbrowser/types/build PASS |
+| AW2-015B | BA/mechanic/animation/tester/scretary | Fixed-viewportbattle/TCG/Chess migration | READY; nextUI task, implementation NOT_STARTED |
+| AW2-016A | BA/story/mechanic/animation/tester/scretary | Compatible map/portal/spawn/entity projection | READY; parallelworld contract, no new room activation |
+| AW2-016B | story/character/mechanic/animation/tester/scretary | Authored NPC patrol with real live interaction positions | BACKLOG after016Aentity contract, not cosmetic motion |
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |
@@ -176,5 +189,3 @@ Current007F source `5ca3964a2cb46b60188d3192e32a2545740cda14` supersedes older n
 006O publication PASS: source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, exact staged/independently fetched tree `b570275f0f76801a1d94a1d538857e247d897abe`;39blobs/4binarySHAs/index/ancestry/expected-head guards verified, non-force update and clean local sync PASS. Clean371inputfingerprint remains5b84f39cb4879e921. [Publication proof](evidence/AW2-006O-publication.json). Completion changes documents only; final fresh remote=clean local checked after its push.
 
 008A publication PASS: source `45a54471750961d382c807c338e75248ee261783`, exact staged/independently fetched tree `5730d74fc3ed37c8fa8fc75201c3b524bb35f78f`;33blobs/index/ancestry/expected-head guards verified, non-force update and clean tracked local sync PASS.390inputfingerprint stays0cdf990a4096cfea.18incoming reference files preserved untracked with exact SHA256. [Publication proof](evidence/AW2-008A-publication.json). Final docs-only completion independently verified before success.
-
-| AW2-012 | BA/mechanic/animation | Single-screen game shell, fixed HUD/dock, quest submenu, responsive paging and overlay manager | READY (design v1.1) |
