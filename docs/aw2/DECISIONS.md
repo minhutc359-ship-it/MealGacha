@@ -39,3 +39,5 @@ D20 evidence: owner requests **“bỏ qua phần nghiệm thu, tiếp tục ho�
 D21 evidence: owner requests **“Kết hợp với hình ảnh Làng Linh Vị ở nhánh main để đồng bộ phong cách đồ họa, phong cảnh, map khám phá có chiều sâu, chứ không chỉ 1-2 nhân vật + items lẻ tẻ.”** Default branch audit foundmaster/no main; two pinned original project images guide006Iart, with canon unchanged. [Contract](tasks/AW2-006I.md).
 
 D22 evidence: owner requests **“thêm nhiều nhà/tiệm/cửa hàng/khu vui chơi/... vì chỉ có mỗi npc thì khung ảnh hơi trống, sau đó tiếp tục hoàn thiện game”**. [AW2-006O](tasks/AW2-006O.md) adds a denser architectural layer and walk-only neighborhood landmarks, preserves current services/geometry and keeps006Nambient next.
+
+| D13 | LOCKED | Core gameplay single-screen fixed viewport; map HUD + quest/party/inventory submenu; no webpage scrolling. Lists use tabs/pagination rather than page scroll; dialogs/TCG/Auto Chess stay within game shell with safe return context. | Owner request 2026-10-26 |
