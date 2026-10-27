@@ -1,3 +1,5 @@
+import { PlaceCue, hideOverlappingPlaceCues } from "./PlaceCue"
+import { placeAffordance } from "../../src/aw2/world/placeAffordance"
 import {
   WalkingMarker,
   updateWalkingMarker,
@@ -367,7 +369,8 @@ export function JourneyLandscape({
             label.style.left = `${point.x / 6.4}%`
             label.style.top = `${point.y / 3.84}%`
             label.style.visibility =
-              view.mode === "follow" &&
+              (view.mode === "follow" ||
+                !!label.querySelector("[data-place-state]")) &&
               point.x >= 8 &&
               point.x <= 632 &&
               point.y >= 8 &&
@@ -385,6 +388,7 @@ export function JourneyLandscape({
                 label.style.visibility = "hidden"
             }
           }
+          hideOverlappingPlaceCues(labels.current.values())
           updateWalkingMarker(
             walkingMarker.current,
             walking.current,
@@ -505,6 +509,7 @@ export function JourneyLandscape({
         ref={focusRef}
         className="aw2-world-map aw2-village-map aw2-journey-map"
         data-testid="world-map"
+        data-view-mode={mode}
         tabIndex={0}
         role="region"
         aria-label="Bản đồ khám phá"
@@ -570,7 +575,10 @@ export function JourneyLandscape({
             data-world-label={prop.entityId}
             style={{ transform: prop.labelTransform, visibility: "hidden" }}
           >
-            {points.find((p) => p.id === prop.entityId)?.short}
+            <span className="aw2-place-name">
+              {points.find((p) => p.id === prop.entityId)?.short}
+            </span>
+            <PlaceCue value={placeAffordance(world, economy, prop.entityId)} />
           </span>
         ))}
         {!ready && !error && (

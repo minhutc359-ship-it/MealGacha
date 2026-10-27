@@ -1,0 +1,197 @@
+{
+  "task": "AW2-016I",
+  "status": "PASS_DEVELOPMENT",
+  "date": "2026-10-27",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "base": "6250c8d0d1703c6ef8bf66344e23b04d8c0246d6",
+  "environment": {
+    "os": "Linux x64",
+    "node": "24.22.1",
+    "pnpm": "11.25.0",
+    "python": "3.12.14",
+    "typescript": "5.9.3",
+    "vite": "8.0.5",
+    "vitest": "5.0.1",
+    "chromium": "153.0.8010.0"
+  },
+  "runtimeFingerprint": "35563866a2e6087fdcdae526d4f674e7d572a6a7e9bcd458828a6b9f431ba709",
+  "inputFiles": 429,
+  "freshUnits": {
+    "passed": 191,
+    "files": 7,
+    "newCasesIncluded": 39,
+    "casesByFile": {
+      "dev/tests/aw2/economy.test.ts": 11,
+      "dev/tests/aw2/pantry-inspection.test.ts": 24,
+      "dev/tests/aw2/place-affordance.test.ts": 39,
+      "dev/tests/aw2/journey-guide.test.ts": 27,
+      "dev/tests/aw2/tea-room.test.ts": 24,
+      "dev/tests/aw2/place-guidance.test.ts": 27,
+      "dev/tests/aw2/walking-intent.test.ts": 39
+    },
+    "seconds": 2.93,
+    "maxWorkers": 1,
+    "timeoutAllowanceMs": 120000,
+    "note": "Pure/imported unit implementation unchanged by subsequent UI-only focus fix; affected browser focus checks freshly rerun."
+  },
+  "reusedFullRegression": {
+    "task": "AW2-016F",
+    "source": "86de61389e5b64e1e6a9fbab4851bd9204251dfc",
+    "fullCases": 1781,
+    "freshHere": false,
+    "boundaries": [
+      "src/aw2/save",
+      "src/aw2/combat",
+      "src/aw2/economy",
+      "src/aw2/collection",
+      "src/aw2/modes",
+      "src/aw2/world/model.ts",
+      "src/aw2/world/maps.ts",
+      "src/aw2/world/rules.ts",
+      "src/aw2/world/navigation.ts",
+      "src/aw2/world/controls.ts",
+      "src/aw2/world/placeGuidance.ts",
+      "src/aw2/world/scene.ts",
+      "src/aw2/world/journey.ts",
+      "src/aw2/assets/settlement.ts",
+      "src/aw2/world/registry.ts",
+      "src/aw2/world/encounter.ts",
+      "src/aw2/world/npcPatrol.ts",
+      "src/aw2/world/walkingIntent.ts",
+      "src/aw2/world/interiorLayout.ts",
+      "src/aw2/world/pantryLayout.ts",
+      "dev/aw2/assets",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts",
+      "dev/vite.aw2.config.ts"
+    ],
+    "note": "Only protected unchanged engine/art boundaries; not included in fresh counts. Full battle/mode-match/device acceptance not rerun."
+  },
+  "browser": {
+    "source": 397,
+    "compiled": 397,
+    "freshTotal": 794,
+    "unexpectedErrors": 0,
+    "retainedDiagnosticChecks": 0,
+    "processes": "both exit0",
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1280,
+        900
+      ]
+    ],
+    "rootFontPx": 20,
+    "minimumControlPx": 44,
+    "classicViewportVerified": [
+      1280,
+      900
+    ],
+    "scenarios": [
+      "Actual scene-local doors and services, overview symbols/follow text, whole visible labels/nonoverlap, same canvas and no implicit writes.",
+      "Real new intro5/30XP, memory80XP, yard acceptance gate, puzzle inner-door gate; actual TCG service return.",
+      "Actual chest write failure keeps raw/unclaimed cue, retry grants once; stock and native paged explanations.",
+      "Real cooking/sharing until ingredients depleted: eligible→warm bowl→missing, exact45XP per share, same canvas; reread preserves status.",
+      "Native Places4viewports20px/native44px; first/last page enabled focus, Tab/Shift+Tab/trap/Escape/mapfocus, classic entry.",
+      "Walking retarget/Stop/Escape/manual/menu/blur/visibility cancellation, actual-camera crop/edge, tea room exactoutside, mode returns, real WebGL loss and second-tab stale save.",
+      "Authentic completed6 and historical5 fixtures, actual six-zone travel/allfourrendererfamilies, completion shortcuts;300XP/fiveparty and stablelegacy bytes retained."
+    ],
+    "limits": "Desktop Chromium only; physical device/human/FPS/totalGPUmemory/rights/release acceptance not performed."
+  },
+  "types": {
+    "root": "PASS",
+    "dev": "PASS"
+  },
+  "build": {
+    "task": "AW2-016I",
+    "status": "PASS",
+    "base": "6250c8d0d1703c6ef8bf66344e23b04d8c0246d6",
+    "codeFingerprint": "35563866a2e6087fdcdae526d4f674e7d572a6a7e9bcd458828a6b9f431ba709",
+    "inputFiles": 429,
+    "compiledFingerprintMatch": true,
+    "aw2Files": 308,
+    "aw2Bytes": 125192206,
+    "runtimeParity": 262,
+    "newRasterAudioBytes": 0,
+    "originalLamMetadataPreserved": true,
+    "unchangedAuthorities": [
+      "src/aw2/save",
+      "src/aw2/combat",
+      "src/aw2/economy",
+      "src/aw2/collection",
+      "src/aw2/modes",
+      "src/aw2/world/model.ts",
+      "src/aw2/world/maps.ts",
+      "src/aw2/world/rules.ts",
+      "src/aw2/world/navigation.ts",
+      "src/aw2/world/controls.ts",
+      "src/aw2/world/placeGuidance.ts",
+      "src/aw2/world/scene.ts",
+      "src/aw2/world/journey.ts",
+      "src/aw2/assets/settlement.ts",
+      "src/aw2/world/registry.ts",
+      "src/aw2/world/encounter.ts",
+      "src/aw2/world/npcPatrol.ts",
+      "src/aw2/world/walkingIntent.ts",
+      "src/aw2/world/interiorLayout.ts",
+      "src/aw2/world/pantryLayout.ts",
+      "dev/aw2/assets",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts",
+      "dev/vite.aw2.config.ts"
+    ],
+    "stableFiles": 851,
+    "stableBytes": 177450422,
+    "stableTextIsolation": 49
+  },
+  "progress": {
+    "demo": 90,
+    "productApprox": 40,
+    "range": [
+      35,
+      45
+    ],
+    "changed": false,
+    "reason": "Presentation/accessibility increment does not close independent acceptance/full-character/product gates."
+  },
+  "commands": [
+    "pnpm install --frozen-lockfile",
+    "pnpm test dev/tests/aw2/place-affordance.test.ts dev/tests/aw2/place-guidance.test.ts dev/tests/aw2/tea-room.test.ts dev/tests/aw2/pantry-inspection.test.ts dev/tests/aw2/walking-intent.test.ts dev/tests/aw2/journey-guide.test.ts dev/tests/aw2/economy.test.ts --maxWorkers=1 --testTimeout=120000 --reporter=verbose",
+    "pnpm typecheck",
+    "pnpm typecheck:dev",
+    "pnpm build:aw2",
+    "pnpm build",
+    "node dev/tools/verify-aw2-place-cues.mjs [--compiled] --playwright /opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/index.mjs --chromium /tmp/meal-chrome-016i/chromium",
+    "node dev/tools/verify-aw2-place-cues-package.mjs",
+    "git diff --check"
+  ],
+  "diagnosticsExcluded": [
+    "Browser package autoextract/chown failed; manual Brotli/tar --no-same-owner into executable scratch directory. Repo dependencies unchanged.",
+    "Initial selective command had stale pantry filename and incomplete quest2 unit fixture; final corrected7file191case command passed.",
+    "320follow from the grandmother legitimately had no door in crop; final harness walks to the real tea approach before requiring a visible cue, then restores position.",
+    "Native title switch and disabled final-page pagination lost focus; source fixed and final fresh source/compiled checks include both boundaries and keyboard trap.",
+    "Initial compiled save assertion sampled the previous renderer frame before menu pause; final harness waits two actual animation frames, retains strict0.01coordinate comparison and no-intent-field assertions.",
+    "Audit while rebuild was in flight caught stale compiled fingerprint; final frozen build+audit passed. Earlier diagnostic/prefix assertions not retained."
+  ],
+  "limits": [
+    "D18 demo100/product45 milestone not met. D20 human/device acceptance deferred, not passed.",
+    "No master/rpg/milestonePR/deploy/release/reset; no canon/gacha/schema/assets/provenance changes.",
+    "No current full boss/full match, physical phone, independent playtest, human audio, total GPU memory/FPS or legal rights clearance."
+  ],
+  "publication": {
+    "status": "PENDING_EXPECTED_HEAD_AW2_PUSH"
+  }
+}

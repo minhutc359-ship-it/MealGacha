@@ -1,3 +1,5 @@
+import { placeAffordance } from "../../src/aw2/world/placeAffordance"
+import { PlaceCue } from "./PlaceCue"
 import {
   useEffect,
   useRef,
@@ -36,6 +38,7 @@ import {
   ITEM_NAMES,
   pendingQuestRewards,
   type EconomyAction,
+  type Economy,
 } from "../../src/aw2/economy/model"
 
 interface FrameProps {
@@ -69,6 +72,9 @@ export function trapPanelTab(event: KeyboardEvent<HTMLDialogElement>) {
 export function PanelFrame({ title, children, busy, onClose }: FrameProps) {
   const dialog = useRef<HTMLDialogElement>(null),
     heading = useRef<HTMLHeadingElement>(null)
+  useEffect(() => {
+    heading.current?.focus({ preventScroll: true })
+  }, [title])
   useEffect(() => {
     const node = dialog.current!,
       opener = document.activeElement
@@ -124,13 +130,30 @@ export function PageControls({
   label = "Trang",
   compact = false,
 }: PageProps) {
+  const navigation = useRef<HTMLElement>(null),
+    requestedBy = useRef<HTMLButtonElement | null>(null)
+  useEffect(() => {
+    const button = requestedBy.current
+    requestedBy.current = null
+    if (button?.disabled)
+      navigation.current
+        ?.querySelector<HTMLButtonElement>("button:not(:disabled)")
+        ?.focus({ preventScroll: true })
+  }, [page])
   return (
-    <nav className="aw2-page-controls" aria-label={`Phân trang ${label}`}>
+    <nav
+      ref={navigation}
+      className="aw2-page-controls"
+      aria-label={`Phân trang ${label}`}
+    >
       <button
         type="button"
         disabled={page === 0}
         aria-label={`${label} trước`}
-        onClick={() => onPage(page - 1)}
+        onClick={(event) => {
+          requestedBy.current = event.currentTarget
+          onPage(page - 1)
+        }}
       >
         ‹ Trước
       </button>
@@ -142,7 +165,10 @@ export function PageControls({
         type="button"
         disabled={page + 1 === pages}
         aria-label={`${label} sau`}
-        onClick={() => onPage(page + 1)}
+        onClick={(event) => {
+          requestedBy.current = event.currentTarget
+          onPage(page + 1)
+        }}
       >
         Sau ›
       </button>
@@ -600,6 +626,7 @@ export function GamePartyPanel({ save, busy, onAction }: PartyProps) {
 
 interface PlacesProps {
   world: WorldProgress
+  economy: Readonly<Economy>
   patrol?: Readonly<NpcPatrolState>
   canWalk: boolean
   onWalk: (point: Waypoint) => void
@@ -607,6 +634,7 @@ interface PlacesProps {
 }
 export function GamePlacesPanel({
   world,
+  economy,
   patrol,
   canWalk,
   onWalk,
@@ -616,6 +644,7 @@ export function GamePlacesPanel({
     view = pageSlice(worldObjects(world, patrol), page, 1),
     object = view.items[0]
   const { near, locked, kind, approach } = placeGuidance(world, object)
+  const cue = placeAffordance(world, economy, object.id)
   return (
     <div
       className="aw2-panel-stack"
@@ -626,13 +655,21 @@ export function GamePlacesPanel({
       <p className="note" data-testid="place-context">
         {kind}
       </p>
-      <p>
-        {locked
-          ? "Cửa chưa mở theo nhiệm vụ."
-          : near
-            ? "Đã ở gần. Xem tương tác hoặc tự E trên bản đồ."
-            : "Đi bộ tới gần, sau đó tự tương tác."}
-      </p>
+      {cue && (
+        <div className="aw2-place-explanation" data-testid="place-availability">
+          <PlaceCue value={cue} />
+          <p>{cue.detail}</p>
+        </div>
+      )}
+      {!cue && (
+        <p>
+          {locked
+            ? "Cửa chưa mở theo nhiệm vụ."
+            : near
+              ? "Đã ở gần. Xem tương tác hoặc tự E trên bản đồ."
+              : "Đi bộ tới gần, sau đó tự tương tác."}
+        </p>
+      )}
       {near ? (
         <button
           type="button"

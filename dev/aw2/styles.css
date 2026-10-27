@@ -200,3 +200,17 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-walk-arrow { display: none; transform: rotate(var(--walk-angle,0deg)); }
 .aw2-walk-marker[data-offscreen="true"] .aw2-walk-ring { display: none; }
 .aw2-walk-marker[data-offscreen="true"] .aw2-walk-arrow { display: block; }
+
+.aw2-place-cue { display: flex; align-items: center; justify-content: center; gap: .2rem; color: #e2f6da; font-size: max(.65rem, 13px); line-height: 1.25; }
+.aw2-place-cue svg { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.aw2-place-cue[data-place-state="locked"], .aw2-place-cue[data-place-state="unavailable"] { color: #ffe0ac; }
+.aw2-place-cue[data-place-state="claimed"] { color: #d3dce6; }
+.aw2-world-label .aw2-place-name { display: block; }
+.aw2-world-label:has(.aw2-place-cue) { width: max-content; max-width: 28%; white-space: normal; overflow-wrap: anywhere; }
+.aw2-world-map[data-view-mode="overview"] .aw2-world-label:has(.aw2-place-cue) { width: 28px; max-width: none; padding: 2px; border: 1px solid #f2dfb3; border-radius: 50%; background: #10251cf0; }
+.aw2-world-map[data-view-mode="overview"] .aw2-world-label .aw2-place-name,
+.aw2-world-map[data-view-mode="overview"] .aw2-world-label .aw2-place-cue-text { display: none; }
+.aw2-world-map[data-view-mode="overview"] .aw2-place-cue svg { width: 24px; height: 24px; }
+.aw2-place-explanation { border: 1px solid #8d7950; border-radius: .5rem; padding: .4rem; background: #17382e; color: #fff5dc; }
+.aw2-place-explanation .aw2-place-cue { justify-content: flex-start; font-size: .85rem; }
+.aw2-place-explanation p { margin: .3rem 0 0; font-size: .85rem; line-height: 1.35; }

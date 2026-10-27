@@ -1,5 +1,11 @@
 # Task board
 
+**AW2-016I VERIFIED — cửa và dịch vụ có chỉ báo trên bản đồ.** Nhãn hiện Lối mở/Khóa, trạng thái bàn TCG/cờ/tiệm trà, rương Chưa nhận/Đã nhận và bếp đủ đồ/có bữa ấm/thiếu đồ. Góc bám có tên và chữ; toàn cảnh dùng biểu tượng tĩnh, ẩn nhãn bị cắt/chồng. Địa điểm dùng cùng giải thích; đổi menu và tới hai đầu phân trang giữ focus. [Cách dùng](CUA_VA_DICH_VU.md).
+
+**191 kiểm thử tác động/7 tệp PASS**, gồm39 ca mới; **794 kiểm tra trình duyệt mới =397 source+397 compiled PASS**,0 lỗi bất ngờ. Bốn viewport/chữ20px/44px, cửa theo nhiệm vụ và puzzle thật, rương ghi lỗi→retry, nấu/chia đến thiếu đồ, all4renderer/6vùng+tiệm trà, save5–6/Stop/WebGL/tab cũ/classic đã kiểm tra. Hai typecheck/AW2+stable build/262asset byte parity đạt. Full1781unit016F chỉ tái sử dụng cho engine/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016I.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là cải thiện UX, chưa đóng các gate nghiệm thu độc lập/sản phẩm. Không đổi canon/schema/luật/thưởng/gacha/asset; trạng thái chỉ đọc và không tự thực hiện thao tác. D18/D20/D11 giữ nguyên; D16push trực tiếp AW2. Next BA/mechanic/UX/tester:016Jchỉ báo nhiệm vụ có thể nhận/hoàn tất tại NPC và đồ vật, scope riêng trước triển khai. Các bản ghi dưới là lịch sử; trạng thái hiện tại theo016I.
+
 **AW2-016H VERIFIED — điểm đến đang đi và nút Dừng.** Thanh Đang tới nêu đích, vòng tròn/mũi tên mép khung dùng camera thật; có thể đổi Bám/Toàn cảnh khi đi. Dừng bằng chuột/bàn phím hoặc Escape giữ vị trí hiện tại và trả focus map. Chọn lại đích/điều khiển tay/menu/lỗi/mấtfocus/tabcũ hủy đường cũ, không tự chạy lại. Tới nơi vẫn tự E/hành động. Sửa nhãn bị cắt theo cùng khung nhìn. [Cách dùng](DUONG_DI.md).
 
 **152ca unit tác động/7files PASS**,39ca mới nằm trong tổng; **328kiểm tra trình duyệt mới=164source+164compiled PASS**,0lỗi bất ngờ. Bốn viewport/chữ20px/44px/camera/marker/focus, đủ4renderer/6vùng+tiệmtrà, introthật/save5–6/modesreturn/WebGL/tabcũ/classic đã kiểm tra. Hai typecheck/AW2+stable builds/262asset byte parity đạt. Full1781unit016F chỉ tái sử dụng cho engine/save/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016H.md).

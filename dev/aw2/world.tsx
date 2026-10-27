@@ -1068,6 +1068,7 @@ function WorldPreview() {
       >
         {gamePanel === "places" ? (
           <GamePlacesPanel
+            economy={snapshot.save.economy}
             world={world}
             patrol={patrol}
             canWalk={navigationReady}

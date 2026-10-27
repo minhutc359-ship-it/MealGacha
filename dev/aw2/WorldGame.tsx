@@ -272,6 +272,7 @@ export function WorldGame(props: Props) {
           {panel === "recipe" && save && <RecipePanel economy={save.economy} />}
           {panel === "places" && save && (
             <GamePlacesPanel
+              economy={save.economy}
               world={world}
               patrol={props.patrol}
               canWalk={canWalk}

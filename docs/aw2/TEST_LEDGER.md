@@ -1,5 +1,15 @@
 # Test ledger / change impact
 
+## AW2-016I — map door/service cues and focus /2026-10-27
+
+Base `6250c8d0d1703c6ef8bf66344e23b04d8c0246d6`, tested runtime429inputs `35563866a2e6087fdcdae526d4f674e7d572a6a7e9bcd458828a6b9f431ba709`, compiled match. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.0/Python3.12.14. Fresh191units/7files PASS in2.93s,39new included; serial120s allowance, no assertion/seed/loop/config changes. UI-only focus fix after the unit run leaves those imported pure modules unchanged; affected browser checks rerun freshly. Root/dev types and AW2/stable builds PASS. Full1781units016F are historical reuse only for the byte-unchanged protected engine/save/art boundaries; never added to this fresh total.
+
+Final fresh browser source397+compiled397=794PASS, both processes exit0/complete,0unexpectederrors,0diagnostic-prefix retained. Actual new intro5/30XP→memory80XP→yard acceptance opens gate→three puzzle steps open inner door. Actual TCG service return; chest write failure retains exactraw/unclaimed cue and retry grants once. Real cooking/sharing until one ingredient depleted changes cue correctly and adds exactly45XP/share on the same canvas. Four viewports20px/44px/nonoverlap/wholelabels/no-scroll, native status/explanation/paging first+last enabledfocus/Tab/Shift+Tab/Escape; room exactoutside/Stop/marker/cameras, realWebGL loss, actual secondtab stale guard and classic panel. Authentic completed6/historical5 retained; allfour renderers/six zones/shortcuts and300XP/fiveparty,5legacykeys unchanged. No fabricated quest/HP/items/reward bypass.
+
+Build308files/125,192,206bytes/262asset byte parity/0new media; original Lam prompt metadata exact. Stable851files/177,450,422bytes/49text isolation/releaseguard PASS. Two original local inputs preserved; source art/provenance/deps/config untouched. Visuals opened:390village follow,390street overview,320native long-title panel,390compiled room target. QA images remain ignored.
+
+Excluded diagnostics: autoextract chown/environment workaround; stale pantry test filename/incomplete quest unit fixture corrected; valid empty320follow crop tested at actual door approach; title/pagination focus fixed; strict save sample waits two real frames after pause; in-flight stale-build fingerprint rejected before final frozen audit. No earlier partial counts retained. BA/mechanic/animation/tester/scretary/React review in-session, no subagents/independent acceptance. D18/D20/D11 open; full current boss/mode match/device/human/FPS/totalGPUmemory/listening/rights/release NOT_RUN. Demo90/product≈40% unchanged. [Evidence](evidence/AW2-016I.md).
+
 016H source `50b842e100cce3a81e66d26d1d600ca3a5e9d48b` / exact staged+independently fetched tree `cf931b44adba16002914dc4349f9206af01e8b3a` published on AW2; expected-head/non-force/direct-parent/ancestry/index match and clean tracked local sync PASS. [Publication proof](evidence/AW2-016H-publication.json). Following completion stamp is documentation/evidence only.
 
 ## AW2-016H — ephemeral walking target /2026-10-27

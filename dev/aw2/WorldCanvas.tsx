@@ -1,3 +1,5 @@
+import { PlaceCue, hideOverlappingPlaceCues } from "./PlaceCue"
+import { placeAffordance } from "../../src/aw2/world/placeAffordance"
 import {
   WalkingMarker,
   updateWalkingMarker,
@@ -69,6 +71,7 @@ export function WorldCanvas(props: WorldCanvasProps) {
 
 function FlatWorldCanvas({
   world,
+  economy,
   onNavigate,
   paused,
   focusRef,
@@ -568,7 +571,8 @@ function FlatWorldCanvas({
             label.style.left = `${point.x / 6.4}%`
             label.style.top = `${point.y / 3.84}%`
             label.style.visibility =
-              view.mode === "follow" &&
+              (view.mode === "follow" ||
+                !!label.querySelector("[data-place-state]")) &&
               point.x >= 8 &&
               point.x <= 632 &&
               point.y >= 8 &&
@@ -586,6 +590,7 @@ function FlatWorldCanvas({
                 label.style.visibility = "hidden"
             }
           }
+          hideOverlappingPlaceCues(labels.current.values())
           prior = { ...now }
         }
         next.canvas.setAttribute("aria-hidden", "true")
@@ -645,6 +650,7 @@ function FlatWorldCanvas({
         ref={focusRef}
         className={"aw2-world-map aw2-village-map aw2-interior-map"}
         data-testid="world-map"
+        data-view-mode={mode}
         tabIndex={0}
         role="region"
         aria-label="Bản đồ khám phá"
@@ -700,10 +706,13 @@ function FlatWorldCanvas({
             data-world-label={object.id}
             style={{ transform: "translate(-50%, 0)", visibility: "hidden" }}
           >
-            {scene
-              ? (roomPoints.find((point) => point.id === object.id)?.short ??
-                object.name)
-              : object.name}
+            <span className="aw2-place-name">
+              {scene
+                ? (roomPoints.find((point) => point.id === object.id)?.short ??
+                  object.name)
+                : object.name}
+            </span>
+            <PlaceCue value={placeAffordance(world, economy, object.id)} />
           </span>
         ))}
         {!ready && !error && (

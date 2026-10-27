@@ -1,3 +1,5 @@
+import { PlaceCue, hideOverlappingPlaceCues } from "./PlaceCue"
+import { placeAffordance } from "../../src/aw2/world/placeAffordance"
 import {
   WalkingMarker,
   updateWalkingMarker,
@@ -29,6 +31,7 @@ import { RoomWaypoints } from "./RoomWaypoints"
 /** Renderer only: rules/store own room movement, actions and the outside checkpoint. */
 export function TeaRoomCanvas({
   world,
+  economy,
   onNavigate,
   paused,
   focusRef,
@@ -192,8 +195,7 @@ export function TeaRoomCanvas({
             )
             label.style.left = `${p.x / 6.4}%`
             label.style.top = `${p.y / 3.84}%`
-            label.style.visibility =
-              modeRef.current === "follow" ? "visible" : "hidden"
+            label.style.visibility = "visible"
             const b = label.getBoundingClientRect()
             if (
               b.left < viewport.left ||
@@ -203,6 +205,7 @@ export function TeaRoomCanvas({
             )
               label.style.visibility = "hidden"
           }
+          hideOverlappingPlaceCues(labels.current.values())
           updateWalkingMarker(
             walkingMarker.current,
             walking.current,
@@ -291,6 +294,7 @@ export function TeaRoomCanvas({
         ref={focusRef}
         className="aw2-world-map aw2-village-map aw2-tea-room"
         data-testid="world-map"
+        data-view-mode={mode}
         tabIndex={0}
         role="region"
         aria-label="Bản đồ khám phá"
@@ -346,11 +350,14 @@ export function TeaRoomCanvas({
             }}
             style={{ visibility: "hidden" }}
           >
-            {o.kind === "room-exit"
-              ? "Ra hiên"
-              : o.x === 240
-                ? "Đội đồng hành"
-                : "Nhật ký / công thức"}
+            <span className="aw2-place-name">
+              {o.kind === "room-exit"
+                ? "Ra hiên"
+                : o.x === 240
+                  ? "Đội đồng hành"
+                  : "Nhật ký / công thức"}
+            </span>
+            <PlaceCue value={placeAffordance(world, economy, o.id)} />
           </span>
         ))}
         {!ready && !error && (
