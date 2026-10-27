@@ -1,15 +1,11 @@
-# Soul of Meal AW2 — cập nhật 27/10/2026
+# Soul of Meal AW2 — cập nhật 28/10/2026
 
-016I source `0cd198862f8ac3eea12d979393ff8e6c6cd9ec4f` / exact staged+independently fetched tree `f49c6fd6b4bcf895f226f791fb52f5b10de4bb16` published on AW2; expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016I-publication.json). Following completion stamp is documentation/evidence only.
+Đã hoàn tất AW2-016J: NPC/đồ vật có dấu **Nhận nhiệm vụ → Mục tiêu → Trả nhiệm vụ**, dùng tiến trình thật của bốn nhiệm vụ. Khi chồng nhãn, nhiệm vụ được ưu tiên. Địa điểm vẫn giải thích trạng thái bếp. [Cách dùng](NHIEM_VU_TREN_MAP.md).
 
-Đã hoàn tất AW2-016I: trạng thái cửa và dịch vụ ngay trên bản đồ. Góc bám hiện tên/chữ, toàn cảnh hiện biểu tượng; menu Địa điểm có giải thích cùng nguồn dữ liệu. Rương và bếp phản ánh biên nhận/nguyên liệu thật. Đổi menu và phân trang giữ focus bàn phím. [Cách dùng](CUA_VA_DICH_VU.md).
+**Kiểm tra mới:**173unit/6files (16ca mới nằm trong tổng),296browser=148source+148compiled,0lỗi bất ngờ. Cả hai lượt mới đi đủ bốn nhiệm vụ, boss thắng tick45, kết thúc/reload300XP. Ghi lỗi/thử lại, classic, bốnviewport20px/44px/focus/camera đạt. Hai typecheck và hai build đạt;262asset byte-giống, stable build giữ nguyên177450422bytes. [Bằng chứng](evidence/AW2-016J.md).
 
-**Đã kiểm tra mới:**191ca unit/7files (39ca mới nằm trong tổng),794kiểm tra trình duyệt=397source+397compiled,0lỗi bất ngờ. Cửa theo nhiệm vụ/puzzle thật; rương ghi lỗi–retry; nấu/chia;4viewport/chữ20px/44px/focus;6vùng/4renderer/tiệm trà, walkingStop/save5–6/WebGL/tabcũ/classic đều đạt. Hai typecheck và hai build đạt;262asset giữ nguyên bytes. [Bằng chứng](evidence/AW2-016I.md).
+**Sửa hồ sơ:**các hàng008B/015B/016F còn trạng thái kế hoạch đã được đối chiếu bằng chứng và cập nhật, thêm các hàng016G/H/I. Kết quả full1781unit016F chỉ là lịch sử cho phần engine/art không đổi, không cộng vào lượt mới. Mode match đầy đủ mới, điện thoại thật, playtest độc lập, FPS/rights chưa nghiệm thu.
 
-**Tái sử dụng có giới hạn:**full1781unit016F chỉ cho engine/save/art byte-không-đổi, không cộng vào số mới. Lượt boss/mode match toàn phần mới, điện thoại thật, playtest độc lập, FPS/tổngGPUmemory, nghe âm thanh và quyền phát hành chưa nghiệm thu.
-
-**Demo90% / toàn sản phẩm≈40%(35–45%) — không đổi.** Cải thiện này chưa đóng gate D18; D20gác nghiệm thu để tiếp tục phát triển. D11gacha vẫnPROPOSED. Không đổi tiến trình, tài nguyên, canon/schema/luật/thưởng; không master/rpg/deploy/release/reset.
-
-Baseline `6250c8d0d1703c6ef8bf66344e23b04d8c0246d6`; runtime429inputs `35563866a2e6087fdcdae526d4f674e7d572a6a7e9bcd458828a6b9f431ba709`. D16hoàn tất bằng pushAW2 có expected-head và xác minh fetch độc lập. Tiếp theo BA/mechanic/UX/tester:016Jchỉ báo nhiệm vụ có thể nhận/hoàn tất tại NPC/đồ vật, chốt task trước khi sửa.
+**Demo90% / toàn sản phẩm≈40%(35–45%) — không đổi.** Đây là cải thiện UX, chưa đóng gateD18; D20tiếp tục gác nghiệm thu để phát triển. D11gacha vẫnPROPOSED. Base `9b3339fdc41e3ad9c0c0c4f5a99f2b0b09d4aabf`,429runtimeinputs `f797a8c337f749850f22c2569ca5dd0d64c557fb9138f622c03582a6872ae997`; D16pushAW2 và xác minh remote/local trước báo thành công. Next BA/story/mechanic: chốt task nội thất/NPC tiếp theo từ ma trậnv1.1.
 
 [Trạng thái](STATUS.md) · [Công việc](BACKLOG.md) · [Bàn giao](HANDOFF.md) · [Kiểm thử](TEST_LEDGER.md) · [Phần trăm](PROGRESS.md)

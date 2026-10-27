@@ -147,7 +147,11 @@ describe.each([
   [2, "aw2-npc-gac-bep"],
   [4, "aw2-object-steam-2"],
 ] as const)("016I kitchen at %i/%s", (index, id) => {
-  const openKitchen = (): WorldProgress => ({ ...zone(index), questIndex: 3 })
+  const openKitchen = (): WorldProgress => ({
+    ...zone(index),
+    questIndex: 3,
+    accepted: true,
+  })
   it("keeps cooking locked before the quest even with a stocked bag", () => {
     const economy = newEconomy()
     economy.inventory = { rice: 10, herbs: 10, broth: 10, "warm-bowl": 1 }
@@ -188,7 +192,6 @@ describe("016I projection boundaries", () => {
   it.each([
     "unknown",
     "tea",
-    "aw2-npc-giu-cho",
     "aw2-object-village-table",
     "aw2-npc-ban-bai",
     PANTRY_STOCK.id,

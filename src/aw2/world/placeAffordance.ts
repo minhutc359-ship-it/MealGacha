@@ -6,11 +6,12 @@ import {
   type Economy,
 } from "../economy/model"
 import { sceneObjects } from "./scene"
-import { describeObject } from "./rules"
+import { describeObject, type WorldDialog } from "./rules"
+import type { WorldObject } from "./maps"
 
 export interface PlaceAffordance {
-  state: "open" | "locked" | "ready" | "claimed" | "unavailable"
-  symbol: "door" | "lock" | "service" | "check" | "kitchen"
+  state: "open" | "locked" | "ready" | "claimed" | "unavailable" | "quest-available" | "quest-active" | "quest-ready"
+  symbol: "door" | "lock" | "service" | "check" | "kitchen" | "quest" | "quest-return" | "objective"
   label: string
   detail: string
 }
@@ -24,6 +25,63 @@ export function placeAffordance(
   const object = sceneObjects(world).find((candidate) => candidate.id === id)
   if (!object) return
   const description = describeObject(world, object)
+  const quest = questAffordance(world, object, description)
+  const service = serviceAffordance(world, economy, object, description)
+  // One marker per anchor. A quest at Dì takes priority without hiding kitchen readiness.
+  return quest
+    ? { ...quest, detail: quest.detail + (service ? ` ${service.label}.` : "") }
+    : service
+}
+
+/** Project offered actions, never journal guesses, reward receipts or renderer outcomes. */
+function questAffordance(
+  world: WorldProgress,
+  object: WorldObject,
+  description: WorldDialog,
+): PlaceAffordance | undefined {
+  if (world.questIndex === 4) return
+  const actions = description.actions
+  if (actions.some((action) => action.id === "accept"))
+    return {
+      state: "quest-available",
+      symbol: "quest",
+      label: "Nhận nhiệm vụ",
+      detail: "Có nhiệm vụ để nhận. Đến gần rồi tự chọn Nhận nhiệm vụ.",
+    }
+  if (
+    actions.some(
+      (action) =>
+        action.id === "turn-in" ||
+        action.id.startsWith("thread-") ||
+        action.id.startsWith("seat-"),
+    )
+  )
+    return {
+      state: "quest-ready",
+      symbol: "quest-return",
+      label: "Trả nhiệm vụ",
+      detail: "Đủ mục tiêu. Đến gần rồi tự chọn cách hoàn tất nhiệm vụ.",
+    }
+  const objective = actions.find(
+    (action) =>
+      ["inspect", "remember", "read-note", "challenge"].includes(action.id) ||
+      (action.id === "puzzle" && object.step === world.puzzleStep),
+  )
+  if (objective)
+    return {
+      state: "quest-active",
+      symbol: "objective",
+      label: "Mục tiêu",
+      detail: `Bước tiếp theo: ${objective.label}. Đến gần rồi tự tương tác.`,
+    }
+}
+
+function serviceAffordance(
+  world: WorldProgress,
+  economy: Readonly<Economy>,
+  object: WorldObject,
+  description: WorldDialog,
+): PlaceAffordance | undefined {
   if (["exit", "room", "room-exit"].includes(object.kind)) {
     const open = description.actions.some((action) =>
       ["travel", "enter-room", "leave-room"].includes(action.id),

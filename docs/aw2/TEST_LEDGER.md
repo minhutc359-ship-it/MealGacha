@@ -1,5 +1,17 @@
 # Test ledger / change impact
 
+## AW2-016J — quest cues /2026-10-28
+
+Base `9b3339fdc41e3ad9c0c0c4f5a99f2b0b09d4aabf`; frozen runtime429inputs `f797a8c337f749850f22c2569ca5dd0d64c557fb9138f622c03582a6872ae997` equals compiled fingerprint. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.0. Fresh173units/6files PASS (16new included); serial120s allowance. Pure modules unchanged after that run; final presentation priority is verified in both browser runs. Root/dev typechecks, AW2/stable builds and asset/isolation audit PASS.
+
+Fresh296browser checks=148source+148compiled, both final processes exit0,0unexpectederrors,0retained diagnostic prefixes. Both independently create a new save; actual accept-write failure preserves old marker/raw/party, retry changes only after commit. Cloth/intro grants5/30XP/one receipt; all three memories earn80XP; hint/wrong puzzle reset/correct three-step puzzle/return/next acceptance; real boss wins tick45; explicit settlement unlocks note; note then return to Bà; ending/reload300XP. No fabricated flags/HP/items or fixture victory. Classic uses the exact pending-return checkpoint earned earlier in the same run. One stable TCG sentinel preserved. Four viewports320×568/390×844/844×390/1280×720 at20px: follow/overview/native44px/no clipping/no scroll, Places shares cue, Tab/ShiftTab/Escape/focus, samecanvas/exactraw on viewing/walking. Source available and compiled return390captures inspected, ignored QA images not committed.
+
+AW2308files/125193871bytes, stable851files/177450422bytes/49text isolation,262runtimeasset byte parity,0newmedia. Stable/save/combat/economy/collection/modes/rules/geometry/patrol/navigation/art/dependencies are guarded byte-unchanged. Prior016Ffull1781is historical scope only, not a current full run or added to fresh counts. Fresh mode matches, physical phone/independenthuman/FPS/listening/rights/release NOT_RUN.
+
+Diagnostics excluded: one new unit expectation incorrectly assumed cooking opened before reporting to Dì; corrected to existing Bếp khóa authority. Initial browser harness sampled follow CSS before the owning renderer tick; it now waits for actual camera mode while retaining bounds assertions. Duplicate legitimate storage alerts required `.first()` in the harness. Original Playwright browser download/automatic npm browser extraction failed; standard npm Chromium bytes extracted without ownership restoration, no game/browser binary changes. Final source/compiled are fresh complete runs after fixes, no failed-prefix counts retained. [Evidence](evidence/AW2-016J.md).
+
+Backlog conflicts resolved explicitly against existing task/evidence records for008B/015B/016F; no new canon/decision/schema/asset/reward approval. In-session BA/mechanic/animation/tester/scretary review; no subagents or independent acceptance. Demo90/product≈40%(35–45%) unchanged; D16expected-head non-force AW2 publication follows, no product/master/deploy/release/reset.
+
 016I source `0cd198862f8ac3eea12d979393ff8e6c6cd9ec4f` / exact staged+independently fetched tree `f49c6fd6b4bcf895f226f791fb52f5b10de4bb16` published on AW2; expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016I-publication.json). Following completion stamp is documentation/evidence only.
 
 ## AW2-016I — map door/service cues and focus /2026-10-27

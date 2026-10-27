@@ -1,4 +1,10 @@
-# Handoff —2026-10-27 / AW2-016I
+# Handoff —2026-10-28 / AW2-016J
+
+**AW2-016J VERIFIED — nhiệm vụ có chỉ báo tại NPC và đồ vật.** Dấu nhận nhiệm vụ, mục tiêu và trả nhiệm vụ đọc cùng các thao tác thật; ký ức đã đọc mất dấu, puzzle theo bước hiện tại và boss chỉ mở ghi chép sau khi thắng/lưu. Ưu tiên nhiệm vụ khi nhãn chồng; Địa điểm vẫn nêu trạng thái bếp. [Cách dùng](NHIEM_VU_TREN_MAP.md).
+
+**173 kiểm thử tác động/6 tệp PASS**, gồm16ca mới; **296 kiểm tra trình duyệt mới=148source+148compiled PASS**,0lỗi bất ngờ. Cả hai đi từ save mới qua đủ bốn nhiệm vụ, boss thắng tick45, kết thúc/reload300XP; nhận nhiệm vụ ghi lỗi–retry, classic, bốn viewport/chữ20px/44px/focus/camera đều đạt. Hai typecheck/hai build/262asset byte parity đạt. [Bằng chứng](evidence/AW2-016J.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là hoàn thiện UX trên tiến trình hiện có. Sửa các hàng backlog008B/015B/016F còn mang nhãn kế hoạch cũ theo bằng chứng đã có; bổ sung016G/H/I. D18/D20/D11 giữ nguyên. Next BA/story/mechanic: chốt phạm vi nội thất/NPC tiếp theo theo ma trậnv1.1; nghiệm thu độc lập/điện thoại vẫn gác theoD20. Các bản ghi dưới là lịch sử; trạng thái hiện tại theo016J.
 
 016I source `0cd198862f8ac3eea12d979393ff8e6c6cd9ec4f` / exact staged+independently fetched tree `f49c6fd6b4bcf895f226f791fb52f5b10de4bb16` published on AW2; expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016I-publication.json). Following completion stamp is documentation/evidence only.
 

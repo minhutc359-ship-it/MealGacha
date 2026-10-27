@@ -1,0 +1,84 @@
+{
+  "task": "AW2-016J",
+  "date": "2026-10-28",
+  "status": "VERIFIED_DEVELOPMENT",
+  "branch": "game/adventure-world-2",
+  "base": "9b3339fdc41e3ad9c0c0c4f5a99f2b0b09d4aabf",
+  "runtimeFingerprint": "f797a8c337f749850f22c2569ca5dd0d64c557fb9138f622c03582a6872ae997",
+  "unit": {
+    "freshPassed": 173,
+    "files": 6,
+    "newIncluded": 16,
+    "fullCurrentHead": false
+  },
+  "browser": {
+    "freshPassed": 296,
+    "source": 148,
+    "compiled": 148,
+    "errors": 0,
+    "bossTicks": [
+      45,
+      45
+    ],
+    "freshFullQuestJourneys": 2
+  },
+  "typechecks": [
+    "PASS",
+    "PASS"
+  ],
+  "buildAudit": {
+    "task": "AW2-016J",
+    "status": "PASS",
+    "base": "9b3339fdc41e3ad9c0c0c4f5a99f2b0b09d4aabf",
+    "codeFingerprint": "f797a8c337f749850f22c2569ca5dd0d64c557fb9138f622c03582a6872ae997",
+    "inputFiles": 429,
+    "compiledFingerprintMatch": true,
+    "aw2Files": 308,
+    "aw2Bytes": 125193871,
+    "runtimeParity": 262,
+    "newRasterAudioBytes": 0,
+    "originalLamMetadataPreserved": true,
+    "unchangedAuthorities": [
+      "src/aw2/save",
+      "src/aw2/combat",
+      "src/aw2/economy",
+      "src/aw2/collection",
+      "src/aw2/modes",
+      "src/aw2/world/model.ts",
+      "src/aw2/world/maps.ts",
+      "src/aw2/world/rules.ts",
+      "src/aw2/world/navigation.ts",
+      "src/aw2/world/controls.ts",
+      "src/aw2/world/placeGuidance.ts",
+      "src/aw2/world/scene.ts",
+      "src/aw2/world/journey.ts",
+      "src/aw2/assets/settlement.ts",
+      "src/aw2/world/registry.ts",
+      "src/aw2/world/encounter.ts",
+      "src/aw2/world/npcPatrol.ts",
+      "src/aw2/world/walkingIntent.ts",
+      "src/aw2/world/interiorLayout.ts",
+      "src/aw2/world/pantryLayout.ts",
+      "dev/aw2/assets",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts",
+      "dev/vite.aw2.config.ts"
+    ],
+    "stableFiles": 851,
+    "stableBytes": 177450422,
+    "stableTextIsolation": 49
+  },
+  "formatter": "PASS",
+  "syntax": "PASS",
+  "whitespace": "PASS",
+  "demoPercent": 90,
+  "productApproxPercent": 40,
+  "productRange": [
+    35,
+    45
+  ],
+  "physicalDevice": "NOT_RUN",
+  "independentAcceptance": "NOT_RUN",
+  "publication": "PENDING"
+}

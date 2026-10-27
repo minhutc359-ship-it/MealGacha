@@ -205,6 +205,8 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-place-cue svg { flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .aw2-place-cue[data-place-state="locked"], .aw2-place-cue[data-place-state="unavailable"] { color: #ffe0ac; }
 .aw2-place-cue[data-place-state="claimed"] { color: #d3dce6; }
+.aw2-place-cue[data-place-state="quest-available"], .aw2-place-cue[data-place-state="quest-ready"] { color: #ffe394; }
+.aw2-place-cue[data-place-state="quest-active"] { color: #c7eeff; }
 .aw2-world-label .aw2-place-name { display: block; }
 .aw2-world-label:has(.aw2-place-cue) { width: max-content; max-width: 28%; white-space: normal; overflow-wrap: anywhere; }
 .aw2-world-map[data-view-mode="overview"] .aw2-world-label:has(.aw2-place-cue) { width: 28px; max-width: none; padding: 2px; border: 1px solid #f2dfb3; border-radius: 50%; background: #10251cf0; }

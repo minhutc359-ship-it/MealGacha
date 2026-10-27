@@ -2,6 +2,8 @@
 
 AW2-016I bổ sung trạng thái vào các nhãn đang có. Góc **Bám nhân vật** hiện tên và trạng thái; **Toàn cảnh** dùng biểu tượng nhỏ để giữ bản đồ thoáng. Nhãn nằm ngoài khung nhìn hoặc chồng nhau được ẩn; không dời biểu tượng sang một vị trí khác.
 
+AW2-016J bổ sung [chỉ báo nhiệm vụ](NHIEM_VU_TREN_MAP.md). Khi một NPC đang có nhiệm vụ cần nhận/trả, dấu nhiệm vụ được ưu tiên; Địa điểm vẫn ghi trạng thái bếp tại Dì.
+
 | Trạng thái | Ý nghĩa |
 | --- | --- |
 | Lối mở | Có thể đi qua cửa theo tiến trình hiện tại. Tới gần rồi tự E/Tương tác và chọn thao tác. |

@@ -1071,6 +1071,8 @@ try {
   await travel(24, "Sân Bếp Bỏ Quên")
   await placeWalk("aw2-npc-gac-bep")
   await inspect("aw2-npc-gac-bep", "Báo đã mở bếp")
+  await expectCue("aw2-npc-gac-bep", "Nhận nhiệm vụ", "quest-available")
+  await inspect("aw2-npc-gac-bep", "Nhận nhiệm vụ")
   await expectCue("aw2-npc-gac-bep", "Có thể nấu", "ready")
   const kitchenCanvas = await canvas().evaluate(
       (c) => (c.__walkIdentity ??= crypto.randomUUID()),

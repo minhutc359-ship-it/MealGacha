@@ -1,5 +1,11 @@
 # Task board
 
+**AW2-016J VERIFIED — nhiệm vụ có chỉ báo tại NPC và đồ vật.** Dấu nhận nhiệm vụ, mục tiêu và trả nhiệm vụ đọc cùng các thao tác thật; ký ức đã đọc mất dấu, puzzle theo bước hiện tại và boss chỉ mở ghi chép sau khi thắng/lưu. Ưu tiên nhiệm vụ khi nhãn chồng; Địa điểm vẫn nêu trạng thái bếp. [Cách dùng](NHIEM_VU_TREN_MAP.md).
+
+**173 kiểm thử tác động/6 tệp PASS**, gồm16ca mới; **296 kiểm tra trình duyệt mới=148source+148compiled PASS**,0lỗi bất ngờ. Cả hai đi từ save mới qua đủ bốn nhiệm vụ, boss thắng tick45, kết thúc/reload300XP; nhận nhiệm vụ ghi lỗi–retry, classic, bốn viewport/chữ20px/44px/focus/camera đều đạt. Hai typecheck/hai build/262asset byte parity đạt. [Bằng chứng](evidence/AW2-016J.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là hoàn thiện UX trên tiến trình hiện có. Sửa các hàng backlog008B/015B/016F còn mang nhãn kế hoạch cũ theo bằng chứng đã có; bổ sung016G/H/I. D18/D20/D11 giữ nguyên. Next BA/story/mechanic: chốt phạm vi nội thất/NPC tiếp theo theo ma trậnv1.1; nghiệm thu độc lập/điện thoại vẫn gác theoD20. Các bản ghi dưới là lịch sử; trạng thái hiện tại theo016J.
+
 **AW2-016I VERIFIED — cửa và dịch vụ có chỉ báo trên bản đồ.** Nhãn hiện Lối mở/Khóa, trạng thái bàn TCG/cờ/tiệm trà, rương Chưa nhận/Đã nhận và bếp đủ đồ/có bữa ấm/thiếu đồ. Góc bám có tên và chữ; toàn cảnh dùng biểu tượng tĩnh, ẩn nhãn bị cắt/chồng. Địa điểm dùng cùng giải thích; đổi menu và tới hai đầu phân trang giữ focus. [Cách dùng](CUA_VA_DICH_VU.md).
 
 **191 kiểm thử tác động/7 tệp PASS**, gồm39 ca mới; **794 kiểm tra trình duyệt mới =397 source+397 compiled PASS**,0 lỗi bất ngờ. Bốn viewport/chữ20px/44px, cửa theo nhiệm vụ và puzzle thật, rương ghi lỗi→retry, nấu/chia đến thiếu đồ, all4renderer/6vùng+tiệm trà, save5–6/Stop/WebGL/tab cũ/classic đã kiểm tra. Hai typecheck/AW2+stable build/262asset byte parity đạt. Full1781unit016F chỉ tái sử dụng cho engine/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016I.md).
@@ -119,16 +125,20 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | ID | Owner | Scope | Status |
 |---|---|---|---|
 | AW2-008A | BA/story/mechanic/tester/scretary | Objective directions and readiness-gated walk controls | VERIFIED at45a54471750961d382c807c338e75248ee261783;57units/335composite browser/types/build PASS |
-| AW2-008B | BA/story/mechanic/tester/scretary | Six-zone overview/current location/open exits, read-only navigation | READY; overview inside new015Ashell, implementation NOT_STARTED |
-| AW2-015 | BA/story/mechanic/animation/tester/scretary | v1.1UI integration workstream; replaces duplicateUI012alias | IN_PROGRESS; first015Aslice verified,015Bpending |
+| AW2-008B | BA/story/mechanic/tester/scretary | Six-zone overview/current location/open exits, read-only navigation | VERIFIED development; [015B/016A/008B evidence](evidence/AW2-COMPLETION.md) |
+| AW2-015 | BA/story/mechanic/animation/tester/scretary | v1.1UI integration workstream; replaces duplicateUI012alias | IN_PROGRESS;015A/B development scopes verified, independent acceptance deferred D20 |
 | AW2-015A | BA/story/mechanic/animation/tester/scretary | Archive/reconcilev1.1 +opt-in exploration/menu shell | VERIFIED at0936b948db633c66e5539f631e3f8aaf7920fda1;88units/552freshbrowser/types/build PASS |
-| AW2-015B | BA/mechanic/animation/tester/scretary | Fixed-viewportbattle/TCG/Chess migration | READY; nextUI task, implementation NOT_STARTED |
+| AW2-015B | BA/mechanic/animation/tester/scretary | Fixed-viewportbattle/TCG/Chess migration | VERIFIED development; [015B/016A/008B evidence](evidence/AW2-COMPLETION.md) |
 | AW2-016A | BA/story/mechanic/animation/tester/scretary | Compatible map/portal/spawn/entity projection | VERIFIED; see015B/016A/008B evidence, no new room activation |
 | AW2-016B | story/character/mechanic/animation/tester/scretary | Authored NPC patrol with real live interaction positions | VERIFIED; live Em Đem Nước patrol,016B evidence |
 | AW2-016C | BA/mechanic/animation/tester/scretary | Destination image preparation before travel commit | VERIFIED;016C evidence |
 | AW2-016D | BA/mechanic/animation/tester/scretary | Actual renderer/first frame and guarded travel commit | VERIFIED; 016D evidence |
 | AW2-016E | BA/story/mechanic/animation/tester/scretary | Existing pantry stock inspection and safe walk-only directions | VERIFIED; current016E evidence |
-| AW2-016F | BA/story/mechanic/animation/tester/scretary | Village tea-room access/scene/save6 proposal | PROPOSED; review scope before activation, no room/schema6 yet |
+| AW2-016F | BA/story/mechanic/animation/tester/scretary | Optional village tea-room/access/scene/save6 | VERIFIED development; [016F evidence](evidence/AW2-016F.md), corrected source86de613 |
+| AW2-016G | BA/mechanic/animation/tester/scretary | Scene-aware place/door directions | VERIFIED development; [016G evidence](evidence/AW2-016G.md) |
+| AW2-016H | BA/mechanic/animation/tester/scretary | Walking destination and explicit Stop | VERIFIED development; [016H evidence](evidence/AW2-016H.md) |
+| AW2-016I | BA/mechanic/animation/tester/scretary | Door and service cues/focus | VERIFIED development; [016I evidence](evidence/AW2-016I.md) |
+| AW2-016J | BA/mechanic/animation/tester/scretary | Available/objective/return quest cues | VERIFIED development; [016J evidence](evidence/AW2-016J.md) |
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |

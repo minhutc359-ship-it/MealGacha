@@ -9,9 +9,22 @@ import {
   mkdirSync,
 } from "node:fs"
 import { join } from "node:path"
+import { parseArgs } from "node:util"
 
-const base = "6250c8d0d1703c6ef8bf66344e23b04d8c0246d6"
-const output = ".asset-work/aw2-016i/review-build.json"
+const { values } = parseArgs({
+  options: {
+    base: {
+      type: "string",
+      default: "6250c8d0d1703c6ef8bf66344e23b04d8c0246d6",
+    },
+    task: { type: "string", default: "AW2-016I" },
+  },
+})
+assert.match(values.base, /^[a-f0-9]{40}$/)
+assert.match(values.task, /^AW2-[0-9]{3}[A-Z]$/)
+const base = values.base,
+  directory = `.asset-work/${values.task.toLowerCase()}`
+const output = `${directory}/review-build.json`
 function filesIn(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const file = join(directory, entry.name)
@@ -108,7 +121,7 @@ assert.ok(
   "no temporary files in stable package",
 )
 const summary = {
-  task: "AW2-016I",
+  task: values.task,
   status: "PASS",
   base,
   codeFingerprint: fingerprint,
@@ -124,6 +137,6 @@ const summary = {
   stableBytes: stable.reduce((sum, file) => sum + statSync(file).size, 0),
   stableTextIsolation: texts.length,
 }
-mkdirSync(".asset-work/aw2-016i", { recursive: true })
+mkdirSync(directory, { recursive: true })
 writeFileSync(output, JSON.stringify(summary, null, 2) + "\n")
 console.log(JSON.stringify(summary))

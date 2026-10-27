@@ -1,5 +1,11 @@
 # Phần trăm hoàn thiện AW2
 
+**AW2-016J VERIFIED — nhiệm vụ có chỉ báo tại NPC và đồ vật.** Dấu nhận nhiệm vụ, mục tiêu và trả nhiệm vụ đọc cùng các thao tác thật; ký ức đã đọc mất dấu, puzzle theo bước hiện tại và boss chỉ mở ghi chép sau khi thắng/lưu. Ưu tiên nhiệm vụ khi nhãn chồng; Địa điểm vẫn nêu trạng thái bếp. [Cách dùng](NHIEM_VU_TREN_MAP.md).
+
+**173 kiểm thử tác động/6 tệp PASS**, gồm16ca mới; **296 kiểm tra trình duyệt mới=148source+148compiled PASS**,0lỗi bất ngờ. Cả hai đi từ save mới qua đủ bốn nhiệm vụ, boss thắng tick45, kết thúc/reload300XP; nhận nhiệm vụ ghi lỗi–retry, classic, bốn viewport/chữ20px/44px/focus/camera đều đạt. Hai typecheck/hai build/262asset byte parity đạt. [Bằng chứng](evidence/AW2-016J.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là hoàn thiện UX trên tiến trình hiện có. Sửa các hàng backlog008B/015B/016F còn mang nhãn kế hoạch cũ theo bằng chứng đã có; bổ sung016G/H/I. D18/D20/D11 giữ nguyên. Next BA/story/mechanic: chốt phạm vi nội thất/NPC tiếp theo theo ma trậnv1.1; nghiệm thu độc lập/điện thoại vẫn gác theoD20. Các bản ghi dưới là lịch sử; trạng thái hiện tại theo016J.
+
 **AW2-016I VERIFIED — cửa và dịch vụ có chỉ báo trên bản đồ.** Nhãn hiện Lối mở/Khóa, trạng thái bàn TCG/cờ/tiệm trà, rương Chưa nhận/Đã nhận và bếp đủ đồ/có bữa ấm/thiếu đồ. Góc bám có tên và chữ; toàn cảnh dùng biểu tượng tĩnh, ẩn nhãn bị cắt/chồng. Địa điểm dùng cùng giải thích; đổi menu và tới hai đầu phân trang giữ focus. [Cách dùng](CUA_VA_DICH_VU.md).
 
 **191 kiểm thử tác động/7 tệp PASS**, gồm39 ca mới; **794 kiểm tra trình duyệt mới =397 source+397 compiled PASS**,0 lỗi bất ngờ. Bốn viewport/chữ20px/44px, cửa theo nhiệm vụ và puzzle thật, rương ghi lỗi→retry, nấu/chia đến thiếu đồ, all4renderer/6vùng+tiệm trà, save5–6/Stop/WebGL/tab cũ/classic đã kiểm tra. Hai typecheck/AW2+stable build/262asset byte parity đạt. Full1781unit016F chỉ tái sử dụng cho engine/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016I.md).

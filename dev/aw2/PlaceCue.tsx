@@ -12,7 +12,22 @@ export function PlaceCue({ value }: { value?: PlaceAffordance }) {
       title={value.detail}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-        {value.symbol === "door" ? (
+        {value.symbol === "quest" ? (
+          <>
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 6v8m0 3h.01" />
+          </>
+        ) : value.symbol === "quest-return" ? (
+          <>
+            <path d="M5 20V4h14l-3 5 3 5H5" />
+            <path d="m8 8 2 2 3-3" />
+          </>
+        ) : value.symbol === "objective" ? (
+          <>
+            <path d="m12 3 9 9-9 9-9-9Z" />
+            <circle cx="12" cy="12" r="2" />
+          </>
+        ) : value.symbol === "door" ? (
           <path d="M4 21V3h13v18M8 21V6l9-3M13 13h1M2 21h19" />
         ) : value.symbol === "lock" ? (
           <>
@@ -43,7 +58,20 @@ export function PlaceCue({ value }: { value?: PlaceAffordance }) {
 /** Run after projection. Hide whole labels instead of clipping or shifting their anchor. */
 export function hideOverlappingPlaceCues(labels: Iterable<HTMLSpanElement>) {
   const occupied: DOMRect[] = []
-  for (const label of labels) {
+  const priority = (label: HTMLSpanElement) => {
+    const state =
+      label.querySelector<HTMLElement>("[data-place-state]")?.dataset.placeState
+    return state === "quest-ready"
+      ? 0
+      : state === "quest-available"
+        ? 1
+        : state === "quest-active"
+          ? 2
+          : 3
+  }
+  for (const label of Array.from(labels).sort(
+    (a, b) => priority(a) - priority(b),
+  )) {
     if (
       label.style.visibility !== "visible" ||
       !label.querySelector("[data-place-state]")
