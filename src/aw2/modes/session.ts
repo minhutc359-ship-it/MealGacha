@@ -4,11 +4,13 @@ import { worldProgressSchema, type WorldProgress } from "../world/model"
 import { zoneById } from "../world/maps"
 import { INTERACT_RANGE } from "../world/rules"
 import { AW2_MODES, type Aw2ModeId, type ModeEntry } from "./catalog"
+import { TEA_ROOM_ID } from "../world/interiorLayout"
 
 export interface ModeVisit {
   modeId: Aw2ModeId
   entry: ModeEntry
   returnZoneId: WorldProgress["zoneId"]
+  returnRoomId?: typeof TEA_ROOM_ID
 }
 
 type ReadySave = Extract<SaveSnapshot, { status: "ready" }>
@@ -81,6 +83,7 @@ export class Aw2ModeAdapter {
         modeId: mode.id,
         entry,
         returnZoneId: checkpoint.save.progress.zoneId,
+        ...(checkpoint.save.progress.interior ? { returnRoomId: checkpoint.save.progress.interior.roomId } : {}),
       }
       this.visit = { raw: checkpoint.raw, view }
       return { checkpoint, visit: structuredClone(view) }

@@ -4,6 +4,7 @@ import { journeyDirections } from "../../src/aw2/world/journey"
 import { zoneById } from "../../src/aw2/world/maps"
 import { INTERACT_RANGE } from "../../src/aw2/world/rules"
 import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
+import { scenePosition } from "../../src/aw2/world/scene"
 
 interface Props {
   objective: string
@@ -37,8 +38,8 @@ export function JourneyGuide({
             {directions.map((direction) => {
               const nearby =
                 Math.hypot(
-                  world.x - direction.next.x,
-                  world.y - direction.next.y,
+                  scenePosition(world).x - direction.next.x,
+                  scenePosition(world).y - direction.next.y,
                 ) <= INTERACT_RANGE
               return (
                 <article

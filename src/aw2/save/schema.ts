@@ -11,13 +11,14 @@ import {
   worldProgressSchema,
   worldProgressV2Schema,
   worldProgressV4Schema,
+  worldProgressV5Schema,
 } from "../world/model"
 
 export const AW2_DEV_SAVE_KEY = "aw2.development.save"
 export const AW2_RESET_CONFIRMATION = "RESET AW2"
 
 // Version stays in the envelope so a newer save at the same key is detected.
-// Historical versions remain strict; v4 adds economy, v5 adds collection/owned teams.
+// Historical versions stay strict; v6 adds a room position, leaving the outside checkpoint intact.
 export const aw2DevSaveV1Schema = z
   .strictObject({
     gameId: z.literal("adventure-world-2"),
@@ -66,8 +67,8 @@ export const aw2DevSaveV4Schema = z
       Date.parse(save.updatedAt) < Date.parse(save.createdAt) ||
       save.economy.receipts.some(
         (id) =>
-          QUEST_GRANTS.includes(id as (typeof QUEST_GRANTS)[number]) &&
-          QUEST_GRANTS.indexOf(id as (typeof QUEST_GRANTS)[number]) >=
+          QUEST_GRANTS.includes(id as typeof QUEST_GRANTS[number]) &&
+          QUEST_GRANTS.indexOf(id as typeof QUEST_GRANTS[number]) >=
             save.progress.questIndex,
       )
     )
@@ -77,11 +78,11 @@ export const aw2DevSaveV4Schema = z
       })
   })
 
-export const aw2DevSaveSchema = z
+export const aw2DevSaveV5Schema = z
   .strictObject({
     ...aw2DevSaveV4Schema.shape,
     schemaVersion: z.literal(5),
-    progress: worldProgressSchema,
+    progress: worldProgressV5Schema,
     collection: collectionSchema,
   })
   .superRefine((save, ctx) => {
@@ -89,8 +90,34 @@ export const aw2DevSaveSchema = z
       Date.parse(save.updatedAt) < Date.parse(save.createdAt) ||
       save.economy.receipts.some(
         (id) =>
-          QUEST_GRANTS.includes(id as (typeof QUEST_GRANTS)[number]) &&
-          QUEST_GRANTS.indexOf(id as (typeof QUEST_GRANTS)[number]) >=
+          QUEST_GRANTS.includes(id as typeof QUEST_GRANTS[number]) &&
+          QUEST_GRANTS.indexOf(id as typeof QUEST_GRANTS[number]) >=
+            save.progress.questIndex,
+      ) ||
+      !validCollectionProgress(
+        { ...save.progress, interior: null },
+        save.collection,
+      )
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Bộ sưu tập/đội/biên nhận AW2 không hợp lệ.",
+      })
+  })
+
+export const aw2DevSaveSchema = z
+  .strictObject({
+    ...aw2DevSaveV5Schema.shape,
+    schemaVersion: z.literal(6),
+    progress: worldProgressSchema,
+  })
+  .superRefine((save, ctx) => {
+    if (
+      Date.parse(save.updatedAt) < Date.parse(save.createdAt) ||
+      save.economy.receipts.some(
+        (id) =>
+          QUEST_GRANTS.includes(id as typeof QUEST_GRANTS[number]) &&
+          QUEST_GRANTS.indexOf(id as typeof QUEST_GRANTS[number]) >=
             save.progress.questIndex,
       ) ||
       !validCollectionProgress(save.progress, save.collection)
@@ -101,20 +128,17 @@ export const aw2DevSaveSchema = z
       })
   })
 
-export type ReadableSave =
-  | {
-      status: "empty"
-      raw: null
-    }
-  | {
-      status: "ready"
-      raw: string
-      save: Aw2DevSave
-    }
-  | {
-      status: "invalid" | "unsupported"
-      raw: string
-    }
+export type ReadableSave = {
+  status: "empty"
+  raw: null
+} | {
+  status: "ready"
+  raw: string
+  save: Aw2DevSave
+} | {
+  status: "invalid" | "unsupported"
+  raw: string
+}
 
 export type SaveSnapshot = ReadableSave | { status: "unavailable" }
 
@@ -131,7 +155,7 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
     typeof value === "object" &&
     "schemaVersion" in value &&
     typeof value.schemaVersion === "number" &&
-    value.schemaVersion > 5
+    value.schemaVersion > 6
   ) {
     return { status: "unsupported", raw }
   }
@@ -139,6 +163,7 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
   const previous = aw2DevSaveV2Schema.safeParse(value)
   const third = aw2DevSaveV3Schema.safeParse(value)
   const fourth = aw2DevSaveV4Schema.safeParse(value)
+  const fifth = aw2DevSaveV5Schema.safeParse(value)
   const historical = legacy.success
     ? { ...legacy.data, progress: newWorldProgress(), economy: newEconomy() }
     : previous.success
@@ -159,8 +184,19 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
           : null
   const parsed = aw2DevSaveSchema.safeParse(
     historical
-      ? { ...historical, schemaVersion: 5, collection: newCollection() }
-      : value,
+      ? {
+          ...historical,
+          progress: { ...historical.progress, interior: null },
+          schemaVersion: 6,
+          collection: newCollection(),
+        }
+      : fifth.success
+        ? {
+            ...fifth.data,
+            schemaVersion: 6,
+            progress: { ...fifth.data.progress, interior: null },
+          }
+        : value,
   )
 
   return parsed.success

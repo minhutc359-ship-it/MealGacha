@@ -1,12 +1,15 @@
-import { canStand } from "./maps"
-import type { ZoneId } from "./ids"
+import { canStandInScene as canStand, type SceneId } from "./scene"
 export interface Waypoint {
   x: number
   y: number
   entityId?: string
 }
 
-export function clearPath(zone: ZoneId, from: Waypoint, to: Waypoint): boolean {
+export function clearPath(
+  zone: SceneId,
+  from: Waypoint,
+  to: Waypoint,
+): boolean {
   if (![from.x, from.y, to.x, to.y].every(Number.isFinite)) return false
   const steps = Math.max(
     1,
@@ -26,7 +29,7 @@ export function clearPath(zone: ZoneId, from: Waypoint, to: Waypoint): boolean {
 
 /** Bounded four-neighbour search; no corner-cutting or teleport through walls. */
 export function findWorldPath(
-  zone: ZoneId,
+  zone: SceneId,
   from: Waypoint,
   to: Waypoint,
 ): Waypoint[] {

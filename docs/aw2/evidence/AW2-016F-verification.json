@@ -1,0 +1,119 @@
+{
+  "task": "AW2-016F",
+  "status": "VERIFIED_DEVELOPMENT_OPTIONAL_TEA_ROOM",
+  "date": "2026-10-27",
+  "base": "d459b30bf884778576065a95a713304ea71e65c0",
+  "runtimeFingerprint": "ef95196c72a49313c53f93db70aad87abb0482a02e9bf7dcad0e8b8f80f4a843",
+  "inputFiles": 423,
+  "units": {
+    "freshFull": 1781,
+    "files": 136,
+    "newCasesIncluded": 24,
+    "seconds": 115.47,
+    "maxWorkers": 1,
+    "timeoutAllowanceMs": 120000,
+    "defaultTimeoutRun": "NOT_RUN; historical20s/concurrency reliability remains open"
+  },
+  "browser": {
+    "roomSource": 71,
+    "roomCompiled": 71,
+    "roomTotal": 142,
+    "storySource": 501,
+    "storyCompiled": 501,
+    "storyTotal": 1002,
+    "freshTotal": 1144,
+    "unexpectedErrors": 0,
+    "retainedDiagnosticChecks": 0,
+    "bossTick": [
+      45,
+      45
+    ],
+    "storyEndingXP": [
+      300,
+      300
+    ],
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1280,
+        900
+      ]
+    ],
+    "rootFontPx": 20
+  },
+  "types": {
+    "root": "PASS",
+    "dev": "PASS"
+  },
+  "build": {
+    "task": "AW2-016F",
+    "status": "PASS",
+    "base": "d459b30bf884778576065a95a713304ea71e65c0",
+    "codeFingerprint": "ef95196c72a49313c53f93db70aad87abb0482a02e9bf7dcad0e8b8f80f4a843",
+    "inputFiles": 423,
+    "compiledFingerprintMatch": true,
+    "aw2Files": 308,
+    "aw2Bytes": 125176257,
+    "runtimeParity": 153,
+    "sourceTempExclusion": true,
+    "stableFiles": 851,
+    "stableBytes": 177450422,
+    "stableTextIsolation": 49,
+    "unchangedAuthorities": [
+      "src/aw2/world/encounter.ts",
+      "src/aw2/economy/model.ts",
+      "src/aw2/collection/model.ts",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts",
+      "dev/vite.aw2.config.ts"
+    ],
+    "stablePrunedTransientInputCopies": [
+      {
+        "bytes": 262144
+      }
+    ]
+  },
+  "assets": {
+    "newRuntimeBytes": 3403990,
+    "newDecodedRgbaBytes": 12582912,
+    "status": "REFERENCE_ENVIRONMENT_REVIEW_REQUIRED",
+    "manifest": "src/aw2/assets/village-tea.environment-v1.json"
+  },
+  "progress": {
+    "demo": 90,
+    "productApprox": 40,
+    "range": [
+      35,
+      45
+    ],
+    "changed": false
+  },
+  "commands": [
+    "python3 dev/tools/build-aw2-tea-room.py",
+    "pnpm exec vitest run --config dev/vitest.config.ts --maxWorkers=1 --testTimeout=120000",
+    "pnpm typecheck",
+    "pnpm typecheck:dev",
+    "pnpm build:aw2",
+    "pnpm build",
+    "node releaseGuard.mjs",
+    "node dev/tools/verify-aw2-tea-room.mjs [--compiled] --playwright <playwright-core/index.mjs> --chromium /tmp/meal-chrome-016f/chromium",
+    "node dev/tools/verify-aw2-completion.mjs [--compiled] --playwright <playwright-core/index.mjs> --chromium /tmp/meal-chrome-016f/chromium"
+  ],
+  "limits": [
+    "Developer automated Chromium only; no independent human/physical phone/FPS/totalGPUmemory/rights/commercial/release acceptance.",
+    "Two contexts during preflight; post-commit GPU recovery remains map error/reread, no compensating rollback.",
+    "Six canonical regions/eightNPC/fourquests/12spirits unchanged; optional room is development scope, no broad new canon approval."
+  ]
+}

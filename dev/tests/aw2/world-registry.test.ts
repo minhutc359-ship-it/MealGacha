@@ -120,7 +120,7 @@ describe("AW2 compatible map registry", () => {
     [
       "wrong entity namespace",
       (r: ReturnType<typeof worldRegistry>) => {
-        r.maps[0].entities[0].id = "aw2-object-foreign-npc"
+        r.maps[0].entities.find((entity) => entity.kind === "npc")!.id = "aw2-object-foreign-npc"
       },
     ],
     [

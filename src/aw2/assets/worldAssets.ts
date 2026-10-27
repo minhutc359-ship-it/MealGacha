@@ -11,12 +11,18 @@ import { FORGOTTEN_HOST_WORLD } from "./bossWorld"
 import { npcVisualsForZone } from "./npcPatrol"
 import { SETTLEMENT, settlementForZone } from "./settlement"
 import { AMBIENT_MOTION, ambientRegionsForZone } from "./ambientMotion"
+import { TEA_ROOM_SCENE } from "./teaRoom"
 
 /** Exact mandatory world textures; no portraits/battle/audio/source PNGs or future zones. */
 export function worldAssetUrls(world: Readonly<WorldProgress>): string[] {
   const leader = ROSTER_ASSETS[world.partyIds[0] ?? "aw2-than"]
   if (!leader) throw Error("Không tìm thấy hình đại diện của đội.")
   const urls = [leader.assets.world.url]
+  if (world.interior)
+    return [
+      ...urls,
+      ...Object.values(TEA_ROOM_SCENE.assets).map((asset) => asset.url),
+    ]
   const journey = journeyScene(world.zoneId)
   if (world.zoneId === VILLAGE_SCENE.zoneId) {
     urls.push(...Object.values(VILLAGE_SCENE.assets).map((a) => a.url))

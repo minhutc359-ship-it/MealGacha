@@ -1,3 +1,4 @@
+import { legacyProgress } from "./legacy-fixtures"
 import { describe, expect, it } from "vitest"
 import { Aw2DevSaveStore } from "@/aw2/save/store"
 import { AW2_DEV_SAVE_KEY, decodeAw2Save } from "@/aw2/save/schema"
@@ -29,7 +30,7 @@ function fixture(progress = progressed()) {
     revision: 7,
     createdAt: "2026-10-20T08:00:00.000Z",
     updatedAt: "2026-10-20T08:00:00.000Z",
-    progress,
+    progress: legacyProgress(progress),
   }
   const raw = JSON.stringify(old)
   const memory = new Map([
@@ -110,7 +111,7 @@ describe("SAVE-02 inventory, chest and cooking transactions", () => {
     expect(f.store.load()).toMatchObject({
       status: "ready",
       raw: f.raw,
-      save: { schemaVersion: 5, economy: newEconomy() },
+      save: { schemaVersion: 6, economy: newEconomy() },
     })
     expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(f.raw)
     const grant = await f.store.economyAction(
@@ -285,7 +286,7 @@ describe("SAVE-02 inventory, chest and cooking transactions", () => {
       const raw = JSON.stringify({ ...f.old, schemaVersion: 4, economy })
       expect(decodeAw2Save(raw)).toEqual({ status: "invalid", raw })
     }
-    const raw = JSON.stringify({ schemaVersion: 6, preserve: true })
+    const raw = JSON.stringify({ schemaVersion: 7, preserve: true })
     expect(decodeAw2Save(raw)).toEqual({ status: "unsupported", raw })
   })
 })

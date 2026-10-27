@@ -1,5 +1,8 @@
 # AW2-016F — đề xuất nội thất tiệm trà đầu tiên
 
+**Cập nhật016F:** phạm vi phòng con tùy chọn đã được triển khai theo yêu cầu tiếp tục công việc sau016E. Xem [hợp đồng triển khai](../tasks/AW2-016F.md) và [cách chơi](../TIEM_TRA.md). Phần bên dưới giữ nguyên đề xuất lịch sử trước triển khai; không phải trạng thái runtime hiện tại hay phê duyệt canon rộng hơn.
+
+
 **PROPOSED, chưa kích hoạt trong game.** BA/story/mechanic/animation/tester/scretary review trong phiên27/10/2026, nền `ec74c99`. Đây là phương án cụ thể để xem xét sau016E, không phải canon/room/schema đã được owner duyệt.
 
 ## Trải nghiệm đề xuất

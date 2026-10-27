@@ -24,6 +24,7 @@ import { journeyDirections } from "../../src/aw2/world/journey"
 import { describeObject, INTERACT_RANGE } from "../../src/aw2/world/rules"
 import { zoneById } from "../../src/aw2/world/maps"
 import { PANTRY_STOCK } from "../../src/aw2/world/pantryLayout"
+import { scenePosition } from "../../src/aw2/world/scene"
 import {
   worldObjects,
   type NpcPatrolState,
@@ -611,7 +612,10 @@ export function GamePlacesPanel({
     object.kind === "exit" &&
     !describeObject(world, object).actions.some((a) => a.id === "travel")
   const near =
-    Math.hypot(world.x - object.x, world.y - object.y) <= INTERACT_RANGE
+    Math.hypot(
+      scenePosition(world).x - object.x,
+      scenePosition(world).y - object.y,
+    ) <= INTERACT_RANGE
   return (
     <div className="aw2-panel-stack">
       <h3>{object.name}</h3>
@@ -627,11 +631,13 @@ export function GamePlacesPanel({
         disabled={!canWalk || locked || near}
         onClick={() =>
           onWalk(
-            object.kind === "stock"
-              ? PANTRY_STOCK.approach
-              : object.kind === "exit"
-                ? { x: object.x + (object.x > 320 ? -24 : 24), y: object.y }
-                : { x: object.x, y: object.y + 32, entityId: object.id },
+            object.kind === "room-exit"
+              ? { x: object.x + 24, y: object.y, entityId: object.id }
+              : object.kind === "stock"
+                ? PANTRY_STOCK.approach
+                : object.kind === "exit"
+                  ? { x: object.x + (object.x > 320 ? -24 : 24), y: object.y }
+                  : { x: object.x, y: object.y + 32, entityId: object.id },
           )
         }
       >

@@ -156,8 +156,16 @@ export class Aw2DevSaveStore {
       if (result.state.questIndex > current.save.progress.questIndex)
         next.economy = grantQuestRewards(current.save.economy, result.state)
       const valid = aw2DevSaveSchema.parse(next)
+      if (
+        ["enter-room", "leave-room"].includes(actionId) &&
+        !assertDestinationReady
+      )
+        throw new Aw2SaveError(
+          "invalid",
+          "Cần chuẩn bị cảnh trước khi vào/ra tiệm trà.",
+        )
       if (assertDestinationReady) {
-        if (actionId !== "travel")
+        if (!["travel", "enter-room", "leave-room"].includes(actionId))
           throw new Aw2SaveError(
             "invalid",
             "Chỉ kiểm tra cảnh đích khi chuyển vùng.",
@@ -216,7 +224,14 @@ export class Aw2DevSaveStore {
     allowZoneChange = false,
   ): void {
     const valid = worldProgressSchema.parse(candidate)
-    const spatial = ["x", "y", "facing", ...(allowZoneChange ? ["zoneId"] : [])]
+    if ((before.interior?.roomId ?? null) !== (valid.interior?.roomId ?? null))
+      throw new Aw2SaveError(
+        "invalid",
+        "Vào/ra phòng bằng cửa; không đổi phòng qua lưu vị trí.",
+      )
+    const spatial = before.interior
+      ? ["interior"]
+      : ["x", "y", "facing", ...(allowZoneChange ? ["zoneId"] : [])]
     if (
       (Object.keys(before) as Array<keyof WorldProgress>).some(
         (key) =>
@@ -301,7 +316,7 @@ export class Aw2DevSaveStore {
     return aw2DevSaveSchema.parse({
       gameId: "adventure-world-2",
       environment: "development",
-      schemaVersion: 5,
+      schemaVersion: 6,
       collection: newCollection(),
       saveId: this.newId(),
       revision: 0,

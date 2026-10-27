@@ -10,6 +10,8 @@ import {
 import type { Economy } from "../../src/aw2/economy/model"
 import { zoneById } from "../../src/aw2/world/maps"
 import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
+import { sceneName } from "../../src/aw2/world/scene"
+import { TEA_ROOM } from "../../src/aw2/world/interiorLayout"
 
 export function RoomWaypoints({
   world,
@@ -27,40 +29,52 @@ export function RoomWaypoints({
   const hearth = world.zoneId === HEARTH_ROOM_SCENE.zoneId
   const village = world.zoneId === VILLAGE_SCENE.zoneId
   const journey = journeyScene(world.zoneId)
-  const points = journey
-    ? economy
-      ? journeyWaypoints(world, economy, patrol).map(
-          ({ walkX, walkY, ...p }) => ({
+  const points = world.interior
+    ? TEA_ROOM.objects.map((object) => ({
+        id: object.id,
+        name: object.name,
+        short: object.name,
+        x: object.x + (object.kind === "room-exit" ? 24 : 0),
+        y: object.y + (object.kind === "room-exit" ? 0 : 32),
+        status: "Đến gần rồi tự E / Tương tác",
+        locked: false,
+      }))
+    : journey
+      ? economy
+        ? journeyWaypoints(world, economy, patrol).map(
+            ({ walkX, walkY, ...p }) => ({
+              ...p,
+              x: walkX,
+              y: walkY,
+            }),
+          )
+        : []
+      : village
+        ? villageWaypoints(world).map(({ walkX, walkY, ...point }) => ({
+            ...point,
+            x: walkX,
+            y: walkY,
+          }))
+        : interiorWaypoints(world).map(({ walkX, walkY, ...p }) => ({
             ...p,
             x: walkX,
             y: walkY,
-          }),
-        )
-      : []
-    : village
-      ? villageWaypoints(world).map(({ walkX, walkY, ...point }) => ({
-          ...point,
-          x: walkX,
-          y: walkY,
-        }))
-      : interiorWaypoints(world).map(({ walkX, walkY, ...p }) => ({
-          ...p,
-          x: walkX,
-          y: walkY,
-        }))
+          }))
   if (!points.length) return null
   return (
     <nav
       className="aw2-room-waypoints"
-      aria-label={`Điểm đến trong ${zoneById(world.zoneId).name}`}
+      aria-label={`Điểm đến trong ${sceneName(world)}`}
       data-testid={
-        journey
-          ? `${world.zoneId.replace("aw2-zone-", "")}-waypoints`
-          : village
-            ? "village-waypoints"
-            : hearth
-              ? "hearth-room-waypoints"
-              : "table-room-waypoints"
+        world.interior
+          ? "tea-room-waypoints"
+          : journey
+            ? `${world.zoneId.replace("aw2-zone-", "")}-waypoints`
+            : village
+              ? "village-waypoints"
+              : hearth
+                ? "hearth-room-waypoints"
+                : "table-room-waypoints"
       }
     >
       <p>

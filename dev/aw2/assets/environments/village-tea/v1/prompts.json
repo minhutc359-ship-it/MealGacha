@@ -1,0 +1,19 @@
+{
+  "tool": "OpenAI built-in image_gen",
+  "date": "2026-10-27",
+  "model": "not exposed by tool",
+  "reference": "dev/aw2/assets/environments/kitchen-table/v2/landscape-source.png",
+  "referenceRole": "Own project style reference only, not an edit target",
+  "generation": [
+    {
+      "output": "floor-source.png",
+      "transparentBackground": false,
+      "prompt": "Use case: stylized-concept. Asset type: original top-down chibi RPG tea-room floor/background for Soul of Meal AW2. Input image is STYLE REFERENCE ONLY (our own project image), do not edit it. Create a NEW distinct cozy Vietnamese village tea-house interior, full landscape 1536x1024 canvas. Match the reference's warm amber wood, jade green bamboo, red roof trim, lantern light, richly textured crisp pixel-art inspired game environment, high overhead orthographic camera with short visible furniture sides and NO vanishing point. Entire room seen as game map, not a cinematic photograph. Important composition: keep a broad unobstructed, completely empty WALKABLE wooden floor rectangle across center (roughly x448 to1088, y320 to704), no large rug or objects in this central play area. Beautiful decorative tea shelves, woven baskets, ceramic tea pots, bamboo screens, flowers and benches only around the far outer edges, no freestanding furniture in central area. Space for our separate gameplay desk sprites and left-side exit marker will be added in engine. Warm afternoon light from bamboo windows, calm inviting room with layered depth. No people, no characters, no text/glyphs/labels/signage/UI, no logos/watermarks. Original project art only, no resemblance to any named external game asset. Opaque full scene, not transparent."
+    },
+    {
+      "output": "props-source.png",
+      "transparentBackground": true,
+      "prompt": "Use case: stylized-concept. Asset type: NEW original transparent sprite atlas for Soul of Meal AW2 village tea-room. Use input only as our project's palette/camera/style reference, not an edit target. Landscape canvas 1536x1024, actual transparent alpha background. Exactly THREE isolated game props on one horizontal row, each centered in a separate equal-width 512px column with at least50px transparent gutters, keep every object fully inside its own column. LEFT: a low warm wooden companion tea table with exactly five small plain jade/cream seat cushions arranged around it, tea tray and tiny empty cups, no people. MIDDLE: a wooden writing/reading desk with an open blank book and a plain folded recipe paper, small teacup, no writing or symbols. RIGHT: a small walkable wooden threshold/entry step with two short bamboo side posts and a rolled-up bamboo doorway shade, a compact floor-oriented exit prop (not a complete tall building). All three viewed from a high overhead orthographic chibi RPG camera, short visible front faces, warm amber wood/jade bamboo/red fabric accents, same richly textured crisp pixel-art inspired style as reference, consistent top lighting; restrained contact shadows only inside each prop. No floors/background panels or checkerboard, no text/letters/glyphs/numbers/UI/icons/logos/watermarks, no characters. Three separate objects, no overlap or connecting scenery, transparent surrounding canvas."
+    }
+  ]
+}

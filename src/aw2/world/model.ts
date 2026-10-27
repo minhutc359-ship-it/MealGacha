@@ -1,6 +1,7 @@
 import { z } from "zod"
 import { MEMORY_IDS, SPIRIT_IDS, STARTER_TEAM, ZONE_IDS } from "./ids"
 import { canStand } from "./maps"
+import { TEA_ROOM, TEA_ROOM_ID, canStandInTeaRoom } from "./interiorLayout"
 
 const baseProgressSchema = z.strictObject({
   zoneId: z.enum(ZONE_IDS),
@@ -126,12 +127,38 @@ export const worldProgressV4Schema = progressWithBoss.superRefine(
     validateBoss(value, ctx)
   },
 )
-export const worldProgressSchema = progressWithBoss.superRefine(
+export const worldProgressV5Schema = progressWithBoss.superRefine(
   (value, ctx) => {
     validateBase(value, ctx, false)
     validateBoss(value, ctx)
   },
 )
+
+const interiorSchema = z.strictObject({
+  roomId: z.literal(TEA_ROOM_ID),
+  x: z.number().finite(),
+  y: z.number().finite(),
+  facing: z.enum(["up", "down", "left", "right"]),
+})
+export const worldProgressSchema = progressWithBoss
+  .extend({ interior: interiorSchema.nullable() })
+  .superRefine((value, ctx) => {
+    validateBase(value, ctx, false)
+    validateBoss(value, ctx)
+    if (
+      value.interior &&
+      (value.zoneId !== TEA_ROOM.zoneId ||
+        Math.hypot(
+          value.x - TEA_ROOM.entrance.x,
+          value.y - TEA_ROOM.entrance.y,
+        ) > 48 ||
+        !canStandInTeaRoom(value.interior.x, value.interior.y))
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Vị trí tiệm trà/điểm quay về không hợp lệ.",
+      })
+  })
 
 export type WorldProgress = z.infer<typeof worldProgressSchema>
 export function newWorldProgress(): WorldProgress {
@@ -151,6 +178,7 @@ export function newWorldProgress(): WorldProgress {
     bossDefeated: false,
     tableNoteRead: false,
     endingChoice: null,
+    interior: null,
   }
 }
 

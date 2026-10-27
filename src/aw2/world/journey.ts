@@ -10,6 +10,7 @@ import type { WorldProgress } from "./model"
 import { describeObject } from "./rules"
 import type { Waypoint } from "./navigation"
 import { worldObjects, type NpcPatrolState } from "./npcPatrol"
+import { TEA_ROOM, TEA_EXIT_ID } from "./interiorLayout"
 
 export interface JourneyDirection {
   targetId: string
@@ -81,6 +82,19 @@ export function journeyDirections(
   state: WorldProgress,
   patrol?: Readonly<NpcPatrolState>,
 ): JourneyDirection[] {
+  if (state.interior) {
+    const exit = TEA_ROOM.objects.find((object) => object.id === TEA_EXIT_ID)!
+    return [
+      {
+        targetId: exit.id,
+        targetName: "Ra hiên để tiếp tục hành trình",
+        targetZone: state.zoneId,
+        zones: [state.zoneId],
+        next: { ...exit },
+        approach: { x: 48, y: 192 },
+      },
+    ]
+  }
   return targets(state).flatMap((id) => {
     const targetZone = ZONE_IDS.find((zone) =>
       zoneById(zone).objects.some((object) => object.id === id),

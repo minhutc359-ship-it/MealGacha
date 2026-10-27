@@ -22,7 +22,8 @@ import {
   type WorldSceneHostHandle,
   type PreparedWorldScene,
 } from "./WorldSceneHost"
-import type { WorldMapReadiness } from "./worldCanvasTypes"
+import { mapReadyFor, type WorldMapReadiness } from "./worldCanvasTypes"
+import { sceneId, sceneName, scenePosition } from "../../src/aw2/world/scene"
 import { InventoryPanel } from "./InventoryPanel"
 import { CHEST_RECEIPT, type EconomyAction } from "../../src/aw2/economy/model"
 import { findWorldPath, type Waypoint } from "../../src/aw2/world/navigation"
@@ -39,7 +40,15 @@ import { JourneyGuide } from "./JourneyGuide"
 import { DemoCompletion } from "./DemoCompletion"
 import { PlaytestFeedback } from "./PlaytestFeedback"
 import { WorldGame, type GamePanel } from "./WorldGame"
-import { PagedCopy, trapPanelTab, type QuestViewState } from "./GamePanels"
+import {
+  PagedCopy,
+  trapPanelTab,
+  type QuestViewState,
+  PanelFrame,
+  GamePartyPanel,
+  GameQuestPanel,
+} from "./GamePanels"
+import { RecipePanel } from "./RecipePanel"
 import { PantryInspection } from "./PantryInspection"
 import type { ZoneId } from "../../src/aw2/world/ids"
 import "./styles.css"
@@ -62,7 +71,7 @@ interface ActiveWorldEncounter {
   checkpointRaw: string
 }
 interface TravelProgress extends ScenePreparationProgress {
-  destination: ZoneId
+  destination: string
   phase: "loading" | "rendering" | "saving"
 }
 
@@ -91,6 +100,7 @@ function WorldPreview() {
     }
   }, [])
   const [gamePanel, setGamePanel] = useState<GamePanel>("none")
+  const deskReturnFocus = useRef(false)
   const [questPinned, setQuestPinned] = useState(true)
   const journalMemory = useRef<QuestViewState>({
     page: Math.min(world.questIndex, 3),
@@ -124,6 +134,12 @@ function WorldPreview() {
   )
   const worldHeading = useRef<HTMLHeadingElement>(null)
   const worldMap = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (gamePanel === "none" && deskReturnFocus.current) {
+      deskReturnFocus.current = false
+      worldMap.current?.focus({ preventScroll: true })
+    }
+  }, [gamePanel])
   const restoreModeFocus = useRef(false)
   const worldRef = useRef(world)
   const saved = useRef(snapshot)
@@ -136,16 +152,14 @@ function WorldPreview() {
   worldRef.current = world
   saved.current = snapshot
   paused.current =
-    !!dialogObject ||
-    !!activeEncounter ||
-    !!activeMode ||
-    (singleViewport && gamePanel !== "none")
+    !!dialogObject || !!activeEncounter || !!activeMode || gamePanel !== "none"
   patrolReady.current =
     snapshot.status === "ready" &&
     !busy &&
     !error &&
     !!mapReadiness?.ready &&
     mapReadiness.zoneId === world.zoneId &&
+    mapReadiness.sceneId === sceneId(world) &&
     mapReadiness.leaderId === (world.partyIds[0] ?? "aw2-than")
 
   function publishPatrol(next: NpcPatrolState) {
@@ -165,7 +179,12 @@ function WorldPreview() {
 
   function openInteraction() {
     route.current = []
-    if (pending.current || paused.current || saved.current.status !== "ready")
+    if (
+      pending.current ||
+      paused.current ||
+      saved.current.status !== "ready" ||
+      !patrolReady.current
+    )
       return
     keys.current.clear()
     route.current = []
@@ -225,7 +244,8 @@ function WorldPreview() {
         enabled:
           saved.current.status === "ready" &&
           !paused.current &&
-          !pending.current,
+          !pending.current &&
+          patrolReady.current,
         nativeControl: isNativeControl(event.target),
         modified: event.ctrlKey || event.metaKey || event.altKey,
         repeat: event.repeat,
@@ -270,21 +290,27 @@ function WorldPreview() {
           reduced: reducedMotion.current,
         }),
       )
-      if (paused.current || pending.current || saved.current.status !== "ready")
+      if (
+        paused.current ||
+        pending.current ||
+        saved.current.status !== "ready" ||
+        !patrolReady.current
+      )
         return
       const held = (a: string, b: string) =>
         Number(keys.current.has(a) || keys.current.has(b))
       const point = route.current[0]
+      const position = scenePosition(worldRef.current)
       const distance = point
-        ? Math.hypot(point.x - worldRef.current.x, point.y - worldRef.current.y)
+        ? Math.hypot(point.x - position.x, point.y - position.y)
         : 0
       const next = moveWorld(
         worldRef.current,
         point
-          ? point.x - worldRef.current.x
+          ? point.x - position.x
           : held("d", "arrowright") - held("a", "arrowleft"),
         point
-          ? point.y - worldRef.current.y
+          ? point.y - position.y
           : held("s", "arrowdown") - held("w", "arrowup"),
         point ? Math.min(0.033, distance / 140) : 0.033,
       )
@@ -331,6 +357,7 @@ function WorldPreview() {
       error ||
       !mapReadiness?.ready ||
       mapReadiness.zoneId !== worldRef.current.zoneId ||
+      mapReadiness.sceneId !== sceneId(worldRef.current) ||
       mapReadiness.leaderId !== (worldRef.current.partyIds[0] ?? "aw2-than")
     )
       return
@@ -451,21 +478,22 @@ function WorldPreview() {
     setMessage("")
     try {
       if (
-        actionId === "travel" &&
+        actionId &&
+        ["travel", "enter-room", "leave-room"].includes(actionId) &&
         dialogObject &&
         saved.current.status === "ready"
       ) {
         const source = worldRef.current,
           expected = saved.current,
           objectId = dialogObject.id
-        const destination = applyWorldAction(source, objectId, "travel").state
+        const destination = applyWorldAction(source, objectId, actionId).state
         const abort = new AbortController()
         travelAbort.current = abort
         let release: (() => void) | undefined
         let prepared: PreparedWorldScene | undefined
         try {
           setTravel({
-            destination: destination.zoneId,
+            destination: sceneName(destination),
             phase: "loading",
             completed: 0,
             total: 1,
@@ -477,7 +505,7 @@ function WorldPreview() {
               if (mounted.current)
                 setTravel({
                   ...progress,
-                  destination: destination.zoneId,
+                  destination: sceneName(destination),
                   phase: "loading",
                 })
             },
@@ -507,7 +535,7 @@ function WorldPreview() {
             expected.raw,
             source,
             objectId,
-            "travel",
+            actionId,
             prepared.assertReady,
           )
           if (!mounted.current) return
@@ -518,7 +546,7 @@ function WorldPreview() {
           worldRef.current = next.save.progress
           setWorld(next.save.progress)
           setDialogObject(null)
-          setMessage(`Đã tới ${zoneById(destination.zoneId).name}.`)
+          setMessage(`Đã tới ${sceneName(destination)}.`)
         } finally {
           travelAbort.current = null
           prepared?.dispose()
@@ -658,8 +686,8 @@ function WorldPreview() {
     const approach = pinNpcApproach(worldRef.current, patrolRef.current, point)
     publishPatrol(approach.patrol)
     route.current = findWorldPath(
-      worldRef.current.zoneId,
-      worldRef.current,
+      sceneId(worldRef.current),
+      scenePosition(worldRef.current),
       approach.point,
     )
     if (!route.current.length) {
@@ -725,7 +753,7 @@ function WorldPreview() {
       ref={dialog}
       aria-labelledby="interaction-title"
       onKeyDown={
-        singleViewport || dialogObject?.kind === "stock"
+        singleViewport || dialogObject?.kind === "stock" || dialogObject?.kind.startsWith("room")
           ? trapPanelTab
           : undefined
       }
@@ -747,6 +775,7 @@ function WorldPreview() {
             !!error ||
             !mapReadiness?.ready ||
             mapReadiness.zoneId !== world.zoneId ||
+            mapReadiness.sceneId !== sceneId(world) ||
             mapReadiness.leaderId !== (world.partyIds[0] ?? "aw2-than")
           }
           onWalk={(point) => {
@@ -754,7 +783,8 @@ function WorldPreview() {
               pending.current ||
               error ||
               !mapReadiness?.ready ||
-              mapReadiness.zoneId !== world.zoneId
+              mapReadiness.zoneId !== world.zoneId ||
+              mapReadiness.sceneId !== sceneId(world)
             )
               return
             keys.current.clear()
@@ -792,16 +822,44 @@ function WorldPreview() {
           <button
             key={action.id}
             onClick={() => {
+              if (
+                action.id.startsWith("view-") &&
+                world.interior &&
+                mapReadyFor(mapReadiness, world) &&
+                !pending.current &&
+                !error
+              ) {
+                keys.current.clear()
+                route.current = []
+                queuedWalk.current = null
+                deskReturnFocus.current = true
+                dialog.current?.close()
+                setDialogObject(null)
+                setGamePanel(
+                  action.id === "view-party"
+                    ? "party"
+                    : action.id === "view-journal"
+                      ? "quest"
+                      : "recipe",
+                )
+                return
+              }
               const mode = dialogObject && modeForPortal(dialogObject.id)
               if (action.id === "visit-mode" && mode)
                 void enterMode(mode.id, "portal")
               else void persist(action.id)
             }}
-            disabled={busy}
+            disabled={
+              busy ||
+              (action.id.startsWith("view-") &&
+                (!mapReadyFor(mapReadiness, world) || !!error))
+            }
           >
             {action.id === "travel" && error
               ? "Thử lại chuyển vùng"
-              : action.label}
+              : ["enter-room", "leave-room"].includes(action.id) && error
+                ? `${action.label} · thử lại`
+                : action.label}
           </button>
         ))}
       </div>
@@ -816,8 +874,8 @@ function WorldPreview() {
             {travel.phase === "saving"
               ? "Đang ghi điểm đến…"
               : travel.phase === "rendering"
-                ? `Đang mở bản đồ ${zoneById(travel.destination).name}…`
-                : `Đang chuẩn bị ${zoneById(travel.destination).name}…`}
+                ? `Đang mở bản đồ ${travel.destination}…`
+                : `Đang chuẩn bị ${travel.destination}…`}
           </p>
           <progress
             aria-label="Tải cảnh đích"
@@ -847,7 +905,46 @@ function WorldPreview() {
     !dialogObject &&
     !!mapReadiness?.ready &&
     mapReadiness.zoneId === world.zoneId &&
+    mapReadiness.sceneId === sceneId(world) &&
     mapReadiness.leaderId === (world.partyIds[0] ?? "aw2-than")
+  const roomServicePanel =
+    !singleViewport && snapshot.status === "ready" && gamePanel !== "none" ? (
+      <PanelFrame
+        title={
+          gamePanel === "party"
+            ? "Đội đồng hành"
+            : gamePanel === "recipe"
+              ? "Công thức bên bàn trà"
+              : "Nhật ký nhiệm vụ"
+        }
+        busy={busy}
+        onClose={() => setGamePanel("none")}
+      >
+        {gamePanel === "party" ? (
+          <GamePartyPanel
+            save={snapshot.save}
+            busy={busy}
+            onAction={(action) => void collect(action)}
+          />
+        ) : gamePanel === "recipe" ? (
+          <RecipePanel economy={snapshot.save.economy} />
+        ) : (
+          <GameQuestPanel
+            memory={journalMemory}
+            save={snapshot.save}
+            world={world}
+            patrol={patrol}
+            canWalk={navigationReady}
+            pinned={questPinned}
+            onPin={() => setQuestPinned((value) => !value)}
+            onWalk={(point) => {
+              queuedWalk.current = point
+              setGamePanel("none")
+            }}
+          />
+        )}
+      </PanelFrame>
+    ) : null
   if (singleViewport)
     return (
       <WorldGame
@@ -956,7 +1053,7 @@ function WorldPreview() {
             busy={busy}
             onPractice={(mode) => void enterMode(mode, "quick-entry")}
           />
-          <h2 data-testid="zone-name">{zoneById(world.zoneId).name}</h2>
+          <h2 data-testid="zone-name">{sceneName(world)}</h2>
           <nav className="actions aw2-mode-menu" aria-label="Ghé bàn nhanh">
             {AW2_MODES.map((mode) => (
               <button
@@ -978,6 +1075,7 @@ function WorldPreview() {
               !!error ||
               !mapReadiness?.ready ||
               mapReadiness.zoneId !== world.zoneId ||
+              mapReadiness.sceneId !== sceneId(world) ||
               mapReadiness.leaderId !== (world.partyIds[0] ?? "aw2-than")
             }
             onNavigate={(point) => {
@@ -997,7 +1095,8 @@ function WorldPreview() {
             onReadyChange={handleMapReady}
           />
           <p data-testid="player-position">
-            Vị trí {world.x.toFixed(0)}, {world.y.toFixed(0)} · {world.facing}
+            Vị trí {scenePosition(world).x.toFixed(0)},{" "}
+            {scenePosition(world).y.toFixed(0)} · {scenePosition(world).facing}
           </p>
           <p data-testid="quest-status">
             Nhiệm vụ: {questLabel(world)} ·{" "}
@@ -1096,6 +1195,7 @@ function WorldPreview() {
       {error && <p role="alert">{error}</p>}
       <PlaytestFeedback snapshot={snapshot} busy={busy} />
       {interactionDialog}
+      {roomServicePanel}
     </main>
   )
 }

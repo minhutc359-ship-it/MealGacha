@@ -19,6 +19,7 @@ import {
 } from "../../src/aw2/assets/villageView"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
+import { TEA_ROOM } from "../../src/aw2/world/interiorLayout"
 import {
   SceneLifetime,
   initializeWorldScene,
@@ -79,6 +80,7 @@ export function VillageLandscape({
     ) =>
       onReadyChange?.({
         zoneId: world.zoneId,
+        sceneId: world.zoneId,
         leaderId: leader,
         ready,
         error,
@@ -304,7 +306,16 @@ export function VillageLandscape({
             ]),
           )
           const viewport = next.canvas.getBoundingClientRect()
-          for (const prop of currentProps) {
+          for (const prop of [
+            ...currentProps,
+            {
+              entityId: TEA_ROOM.entrance.id,
+              x: TEA_ROOM.entrance.x,
+              y: TEA_ROOM.entrance.y,
+              labelOffsetX: 0,
+              labelOffsetY: -24,
+            },
+          ]) {
             const label = labels.current.get(prop.entityId)
             if (!label) continue
             const point = projectVillage(
@@ -337,6 +348,10 @@ export function VillageLandscape({
           next.canvas.dataset.partyPositions = JSON.stringify([
             { x: actor.x, y: actor.y },
           ])
+          next.canvas.dataset.teaEntrance = JSON.stringify({
+            ...TEA_ROOM.entrance,
+            approach: TEA_ROOM.approach,
+          })
           next.canvas.dataset.foregroundAlpha = String(well.alpha)
           next.canvas.dataset.groundDepths = JSON.stringify({
             prop: well.zIndex,
@@ -465,7 +480,13 @@ export function VillageLandscape({
         }}
       >
         <div ref={host} />
-        {scene.props.map((prop) => (
+        {[
+          ...scene.props,
+          {
+            entityId: TEA_ROOM.entrance.id,
+            labelTransform: "translate(-50%, -100%)",
+          },
+        ].map((prop) => (
           <span
             key={prop.entityId}
             ref={(node) => {

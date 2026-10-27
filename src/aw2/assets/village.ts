@@ -3,17 +3,31 @@ import type { WorldProgress } from "../world/model"
 import { zoneById } from "../world/maps"
 import { describeObject } from "../world/rules"
 import type { SceneBounds } from "./tableRoom"
+import { TEA_ROOM } from "../world/interiorLayout"
 
 export const VILLAGE_SCENE = scene
 
 /** Read-only descriptions; walking never accepts, inspects, grants or travels. */
 export function villageWaypoints(progress: WorldProgress) {
-  if (progress.zoneId !== scene.zoneId) return []
+  if (progress.zoneId !== scene.zoneId || progress.interior) return []
   return zoneById(progress.zoneId).objects.map((object) => {
     const actions = describeObject(progress, object).actions
     let state = "waiting",
       status = "Bà vẫn chờ bên bàn chung",
       short = "Bà Giữ Chỗ"
+    if (object.kind === "room")
+      return {
+        id: object.id,
+        name: object.name,
+        x: object.x,
+        y: object.y,
+        walkX: TEA_ROOM.approach.x,
+        walkY: TEA_ROOM.approach.y,
+        short: "Tiệm trà",
+        status: "Đến gần rồi chọn Vào tiệm trà",
+        state: "ready",
+        locked: false,
+      }
     if (object.kind === "exit") {
       const locked = !actions.some((a) => a.id === "travel")
       return {
@@ -88,8 +102,9 @@ export function villageProps(progress: WorldProgress) {
   })
 }
 
+type VillageActorBounds = SceneBounds & { groundY: number }
 export function villageWellAlpha(
-  actors: readonly (SceneBounds & { groundY: number })[],
+  actors: readonly VillageActorBounds[],
 ): number {
   const prop = scene.obstacle,
     left = prop.x - prop.width * prop.anchorX,

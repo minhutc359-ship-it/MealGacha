@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { AW2_MODES } from "../../src/aw2/modes/catalog"
 import type { ModeVisit } from "../../src/aw2/modes/session"
 import { zoneById } from "../../src/aw2/world/maps"
+import { TEA_ROOM } from "../../src/aw2/world/interiorLayout"
 import { TcgPractice } from "./TcgPractice"
 import { ChessPractice } from "./ChessPractice"
 import { ActivityFrame, ActivityCopy } from "./ActivityFrame"
@@ -51,7 +52,7 @@ export function ModeLobby({
     return (
       <ActivityFrame
         title={`${mode.name} · Sảnh chờ`}
-        status={`Trở về: ${zoneById(visit.returnZoneId).name}`}
+        status={`Trở về: ${(visit.returnRoomId ? TEA_ROOM.name : zoneById(visit.returnZoneId).name)}`}
         page={page}
         onPage={setPage}
         pages={[
@@ -116,7 +117,7 @@ export function ModeLobby({
           </>
         )}
         <p>
-          Trở về: <strong>{zoneById(visit.returnZoneId).name}</strong>.
+          Trở về: <strong>{(visit.returnRoomId ? TEA_ROOM.name : zoneById(visit.returnZoneId).name)}</strong>.
         </p>
         <div className="actions">
           <button onClick={onReturn}>Trở về hành trình</button>

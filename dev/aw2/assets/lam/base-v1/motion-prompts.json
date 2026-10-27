@@ -1,24 +1,26 @@
 {
-  "task": "AW2-004E",
-  "tool": "OpenAI built-in image_gen",
-  "model": "not exposed by tool",
-  "externalInputs": [],
-  "prompts": [
-    {
-      "key": "AW2-004E-a",
-      "prompt": "Use case: stylized-concept. Asset type: original Adventure World 2 Lam Lam combat animation sprite atlas A. Input image 1 portrait and image 2 original eight-pose sheet are identity references only. Preserve the adult gentle healer: navy blue long side braid, warm skin, white layered robe, light blue apron/tunic, navy loose trousers, cloth shoes, dark blue sash, small blue thermos with brass bands at hip. Create exactly sixteen DISTINCT hand-drawn full-body anime cels in a clean FOUR columns x FOUR rows on genuinely TRANSPARENT background. Each row is ONE animation sequence, left to right four frames: row1 idle gentle breathing and braid/sleeve settling; row2 move four phases of a short walking stride; row3 ranged attack preparation, palm extending to RELEASE a small clear drop, extended follow-through, arm returning; row4 warm heal cast palms gather steam, lift, open to offer warmth, return. Every cel must be fully visible isolated, same identity/costume/body proportions, view three-quarter facing right, coherent consecutive animation, not repeated static poses shifted. SMALL figures within each cell: occupy only central 55% width and 70% height, large truly empty transparent gutters on all sides; no pixels cross quarter-sheet cuts. Entire hands, shoes, hair and sleeves fully inside cells. No large FX, no background, no text, no labels, no grid lines, no external game references or logos. Match original linework and soft painted shading. Square sheet, four equal rows and columns. Keep subtle animation readable at game size."
-    },
-    {
-      "key": "AW2-004E-a2",
-      "prompt": "Use case: precise-object-edit. Edit the attached Lam Lam sixteen-cel atlas A only to repair spacing. Preserve all sixteen distinct poses, identity, costume, colors, soft anime shading and row sequence exactly. Make every entire figure and its small steam/drop marks 30% SMALLER within its own cell, centered, with at least 40 pixels truly empty alpha padding above/below/left/right in EACH of the four equal rows and four columns. Nothing crosses any quarter-sheet cut or outer boundary. Transparent background. No text, grid or new art elements. Keep original pixels' appearance/pose identity, but redraw/relayout as needed. A spacious atlas with four columns/four rows and consistent body scale; full shoes/braid/sleeves visible. Remove floating disconnected specks outside each figure's close silhouette. No large healing or projectile FX in this character sheet, retain hand gestures."
-    },
-    {
-      "key": "AW2-004E-b",
-      "prompt": "Use case: stylized-concept. Asset type: Adventure World 2 Lam Lam original combat animation atlas B. Reference portrait and original eight-pose sheet establish identity/costume: gentle adult healer with navy side braid, white layered robe, pale blue apron/tunic, dark blue trousers/sash/cloth shoes, blue thermos with brass bands at hip. Create exactly 16 DISTINCT anime full-body cels, FOUR columns x FOUR rows, truly TRANSPARENT background. Coherent four phases each row, facing three-quarter right: row1 hit reaction recoil, deeper recoil, brace, recover; row2 guard hug thermos and brace then relax, subtle sleeve/braid motion; row3 ultimate two HEAL gestures: gather palms low, raise open palms first blessing, gather again, open palms second blessing (same person, no large FX); row4 defeat stagger, descend to one knee, sit exhausted, head bowed on knees, never gore. Match original linework/soft painted shading. Crucial layout: small figures, occupy center 55% width and 65% height of each equal cell; consistent standing body scale, HUGE clear gutters, at least 45px empty alpha around every cel at 1254-square output. Every shoe, braid, thermos, sleeve inside its own cell. Do not put grid lines, text, labels, shadows, floor, glow, detached specks or projectiles in this atlas. No repeated translated static poses, no external IP. Entire sheet four equal columns/rows, 16 isolated figures."
-    },
-    {
-      "key": "AW2-004E-b2",
-      "prompt": "Use case: precise-object-edit. Repair only spacing/layout of the attached sixteen-cel Lam Lam atlas B. Keep exactly the same sixteen different poses and identity, costume, colors and anime linework. FOUR columns, FOUR rows. Shrink EVERY entire figure 35% and center it in its own cell; leave wide clear truly transparent gutters, at least 40px alpha-empty on all sides of each cel, no overlap across quarter-sheet cuts, no cut shoes/braid/sleeves. Keep all four phases per row in the same order (hit, guard, two-blessing ultimate, defeat). No new props, no FX, no detached specks, no ground, no shadows, no text, no grid. Consistent character body scale. Preserve transparent background. Make layout spacious rather than filling cells."
-    }
-  ]
+  "task": "AW2-016F",
+  "status": "PASS",
+  "base": "d459b30bf884778576065a95a713304ea71e65c0",
+  "codeFingerprint": "ef95196c72a49313c53f93db70aad87abb0482a02e9bf7dcad0e8b8f80f4a843",
+  "inputFiles": 423,
+  "compiledFingerprintMatch": true,
+  "aw2Files": 308,
+  "aw2Bytes": 125176257,
+  "runtimeParity": 262,
+  "sourceTempExclusion": true,
+  "stableFiles": 851,
+  "stableBytes": 177450422,
+  "stableTextIsolation": 49,
+  "unchangedAuthorities": [
+    "src/aw2/world/encounter.ts",
+    "src/aw2/economy/model.ts",
+    "src/aw2/collection/model.ts",
+    "package.json",
+    "pnpm-lock.yaml",
+    "vite.config.ts",
+    "dev/vite.aw2.config.ts"
+  ],
+  "stablePrunedTransientInputCopies": [],
+  "untrackedTemporaryInputPreserved": true
 }

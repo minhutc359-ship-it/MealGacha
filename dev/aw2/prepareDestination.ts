@@ -18,6 +18,7 @@ export async function prepareDestination(
     onProgress,
     load: (url) => Assets.load(url),
     acquire: async () => {
+      if (world.interior) return () => {}
       const loaded = await loadAmbientTextures(
         world.zoneId,
         (url) => Assets.load(url),

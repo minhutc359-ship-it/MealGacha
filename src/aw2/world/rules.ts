@@ -8,6 +8,8 @@ import {
 import { canStand, zoneById, type WorldObject } from "./maps"
 import { worldObjects, type NpcPatrolState } from "./npcPatrol"
 import { worldProgressSchema, type WorldProgress } from "./model"
+import { canStandInScene, sceneId, scenePosition, sceneObjects } from "./scene"
+import { TEA_ROOM, TEA_PARTY_ID, TEA_JOURNAL_ID } from "./interiorLayout"
 
 export const INTERACT_RANGE = 48
 export const questLabel = (state: WorldProgress) =>
@@ -57,15 +59,17 @@ export function nearestObject(
   state: WorldProgress,
   patrol?: Readonly<NpcPatrolState>,
 ): WorldObject | undefined {
+  const position = scenePosition(state)
   return worldObjects(state, patrol)
     .filter(
       (object) =>
-        Math.hypot(state.x - object.x, state.y - object.y) <= INTERACT_RANGE,
+        Math.hypot(position.x - object.x, position.y - object.y) <=
+        INTERACT_RANGE,
     )
     .sort(
       (a, b) =>
-        Math.hypot(state.x - a.x, state.y - a.y) -
-        Math.hypot(state.x - b.x, state.y - b.y),
+        Math.hypot(position.x - a.x, position.y - a.y) -
+        Math.hypot(position.x - b.x, position.y - b.y),
     )[0]
 }
 export function moveWorld(
@@ -80,12 +84,12 @@ export function moveWorld(
   const distance = 140 * Math.min(seconds, 0.05)
   const vx = (dx / length) * distance,
     vy = (dy / length) * distance
-  let x = state.x,
-    y = state.y
-  if (canStand(state.zoneId, x + vx, y)) x += vx
-  if (canStand(state.zoneId, x, y + vy)) y += vy
-  return {
-    ...state,
+  const position = scenePosition(state)
+  let x = position.x,
+    y = position.y
+  if (canStandInScene(sceneId(state), x + vx, y)) x += vx
+  if (canStandInScene(sceneId(state), x, y + vy)) y += vy
+  const nextPosition: Pick<WorldProgress, "x" | "y" | "facing"> = {
     x,
     y,
     facing:
@@ -97,6 +101,9 @@ export function moveWorld(
           ? "up"
           : "down",
   }
+  return state.interior
+    ? { ...state, interior: { ...state.interior, ...nextPosition } }
+    : { ...state, ...nextPosition }
 }
 
 export interface WorldDialogAction {
@@ -118,6 +125,32 @@ export function describeObject(
     text,
     actions,
   })
+  if (object.kind === "room")
+    return result(
+      "Vào tiệm trà để xem đội đồng hành và ghi chép.",
+      state.interior ? [] : [action("enter-room", "Vào tiệm trà")],
+    )
+  if (object.kind === "room-exit")
+    return result(
+      "Trở lại đúng vị trí ngoài hiên đã lưu khi vào tiệm.",
+      state.interior ? [action("leave-room", "Ra hiên")] : [],
+    )
+  if (object.kind === "room-service")
+    return result(
+      object.id === TEA_PARTY_ID
+        ? "Xem và sắp xếp năm người bạn đồng hành."
+        : "Xem nhật ký hành trình và công thức hiện có.",
+      state.interior
+        ? object.id === TEA_PARTY_ID
+          ? [action("view-party", "Xem đội đồng hành")]
+          : object.id === TEA_JOURNAL_ID
+            ? [
+                action("view-journal", "Xem nhật ký"),
+                action("view-recipe", "Xem công thức"),
+              ]
+            : []
+        : [],
+    )
   if (object.kind === "exit") {
     const locked =
       (object.to === ZONE_IDS[3] &&
@@ -285,12 +318,15 @@ export function applyWorldAction(
   objectId: string,
   actionId: string,
 ): WorldActionResult {
-  const object = zoneById(state.zoneId).objects.find(
+  const object = sceneObjects(state).find(
     (candidate) => candidate.id === objectId,
   )
   if (
     !object ||
-    Math.hypot(state.x - object.x, state.y - object.y) > INTERACT_RANGE
+    Math.hypot(
+      scenePosition(state).x - object.x,
+      scenePosition(state).y - object.y,
+    ) > INTERACT_RANGE
   )
     throw Error("Hãy đến gần để tương tác.")
   if (
@@ -307,10 +343,15 @@ export function applyWorldAction(
     throw Error(
       "Ghé bàn qua bộ chuyển mode; không thay đổi quest hoặc nhận phần thưởng.",
     )
+  if (actionId.startsWith("view-"))
+    throw Error("Mở góc xem trong giao diện; không ghi quest hoặc nhận thưởng.")
   let next = { ...state },
     message = "Đã ghi nhận tiến trình AW2."
   if (actionId === "travel")
     next = { ...next, zoneId: object.to!, x: object.spawnX!, y: 192 }
+  if (actionId === "enter-room")
+    next = { ...next, interior: { ...TEA_ROOM.spawn } }
+  if (actionId === "leave-room") next = { ...next, interior: null }
   if (actionId === "accept") next.accepted = true
   if (actionId === "inspect" && object.kind === "table") next.tableRead = true
   if (actionId === "inspect" && object.kind === "hint") next.hintRead = true
@@ -344,7 +385,13 @@ export function applyWorldAction(
       : "Chưa đúng thứ tự. Thử lại từ mở lối thoát; không mất tài nguyên."
   }
   next = worldProgressSchema.parse(next)
-  if (!canStand(next.zoneId, next.x, next.y))
+  if (
+    !canStandInScene(
+      sceneId(next),
+      scenePosition(next).x,
+      scenePosition(next).y,
+    )
+  )
     throw Error("Điểm đến chưa an toàn.")
   return { state: next, message }
 }

@@ -8,13 +8,13 @@ const flavor = values.compiled ? "compiled" : "source", port = values.compiled ?
 const out = ".asset-work/aw2-completion", key = "aw2.development.save"
 const checks = [], errors = [], captures = []
 let phase = "bootstrap", page, browser, bossTick = null
-const server = values.compiled ? await preview({ configFile: "dev/vite.aw2.config.ts", preview: { host: "127.0.0.1", port, strictPort: true } }) : await createServer({ configFile: "dev/vite.dev.config.ts", server: { host: "127.0.0.1", port, strictPort: true } })
+const server = values.compiled ? await preview({ configFile: "dev/vite.aw2.config.ts", preview: { host: "127.0.0.1", port, strictPort: true } }) : await createServer({ configFile: "dev/vite.dev.config.ts", server: { host: "127.0.0.1", port, strictPort: true, watch: {ignored:["**/dist*/**"]} } })
 const check = (name, condition = true) => { assert.ok(condition, name); checks.push(name); console.log(name) }
 const { chromium } = await import(values.playwright)
 try {
   await mkdir(out, { recursive: true })
   if (!values.compiled) await server.listen()
-  browser = await chromium.launch({ executablePath: values.chromium, headless: true, args: ["--no-sandbox", "--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"] })
+  browser = await chromium.launch({ executablePath: values.chromium, env: {...process.env, LD_LIBRARY_PATH: values.chromium?.slice(0,values.chromium.lastIndexOf("/"))}, headless: true, args: ["--no-sandbox", "--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"] })
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, reducedMotion: "reduce" })
   await context.addInitScript(() => {
     const original = Storage.prototype.setItem

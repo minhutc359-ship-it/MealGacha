@@ -1,3 +1,4 @@
+import { legacyProgress } from "./legacy-fixtures"
 import { Aw2ModeAdapter } from "@/aw2/modes/session"
 import { describe, expect, it, vi } from "vitest"
 import {
@@ -59,7 +60,7 @@ function oldSave(q = 3) {
     revision: 8,
     createdAt: "2026-10-20T08:00:00.000Z",
     updatedAt: "2026-10-20T08:00:00.000Z",
-    progress: progress(q),
+    progress: legacyProgress(progress(q)),
     economy: { ...newEconomy(), teamExperience: 205 },
   }
 }
@@ -142,7 +143,7 @@ describe("AW2-007L collection/save/real-party authority", () => {
       const s = f.ready()
       expect(s.raw).toBe(raw)
       expect(s.save).toMatchObject({
-        schemaVersion: 5,
+        schemaVersion: 6,
         saveId: old.saveId,
         revision: 8,
         createdAt: old.createdAt,
@@ -159,10 +160,13 @@ describe("AW2-007L collection/save/real-party authority", () => {
   it("explicitly persists the upgrade without clearing economy/receipts", async () => {
     const f = fixture()
     const next = await f.store.save(f.original)
-    expect(next.save.schemaVersion).toBe(5)
+    expect(next.save.schemaVersion).toBe(6)
     expect(next.save.economy).toEqual(oldSave().economy)
     expect(next.save.revision).toBe(9)
-    expect(next.save.progress).toEqual(oldSave().progress)
+    expect(next.save.progress).toEqual({
+      ...oldSave().progress,
+      interior: null,
+    })
   })
   it.each(RECRUIT_IDS)(
     "rejects early %s recruitment without any write",
@@ -303,8 +307,8 @@ describe("AW2-007L collection/save/real-party authority", () => {
     const s = structuredClone(f.ready().save)
     if (kind === "duplicates")
       s.collection.recruitedIds = ["aw2-van", "aw2-van"]
-    if (kind === "unknown") s.collection.recruitedIds = ["unknown"] as never
-    if (kind === "starter") s.collection.recruitedIds = ["aw2-than"] as never
+    if (kind === "unknown") s.collection.recruitedIds = (["unknown"] as never)
+    if (kind === "starter") s.collection.recruitedIds = (["aw2-than"] as never)
     if (kind === "early") {
       s.progress = progress(1)
       s.collection.recruitedIds = ["aw2-van"]
@@ -325,7 +329,7 @@ describe("AW2-007L collection/save/real-party authority", () => {
     expect(aw2DevSaveV4Schema.safeParse(forged).success).toBe(false)
     const raw = JSON.stringify(forged)
     expect(decodeAw2Save(raw)).toEqual({ status: "invalid", raw })
-    const future = '{"schemaVersion":6,"retain":"untouched"}'
+    const future = '{"schemaVersion":7,"retain":"untouched"}'
     expect(decodeAw2Save(future)).toEqual({
       status: "unsupported",
       raw: future,

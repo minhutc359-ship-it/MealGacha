@@ -87,6 +87,7 @@ export function JourneyLandscape({
     ) =>
       onReadyChange?.({
         zoneId: world.zoneId,
+        sceneId: world.zoneId,
         leaderId: leader,
         ready,
         error,

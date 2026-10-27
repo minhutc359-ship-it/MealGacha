@@ -1,5 +1,11 @@
 # Handoff —2026-10-27 / AW2-016E
 
+**AW2-016F VERIFIED — tiệm trà đã có nội thất và lưu vị trí riêng.** Cửa ở hiên Làng mở phòng con có bàn đội đồng hành và góc nhật ký/công thức. Đổi trưởng đội dùng bộ sưu tập thật; đọc không ghi save, TCG/Auto Chess trở về đúng phòng; ra hiên khôi phục đúng điểm/hướng ngoài cửa. Schema6 đọc save1–5 mà không ghi đè, chỉ nâng cấp khi có thao tác lưu. [Cách chơi/ảnh/prompt](TIEM_TRA.md).
+
+**1.781/1.781unit/136files PASS**, gồm24ca mới, serial120sQA allowance. **1144 kiểm tra trình duyệt mới PASS**: 142tiệm trà (71source+71compiled) và 1002hồi quy toàn tuyến (501+501). Cả hai flavor có hành trình mới→TCG thật→cờ giao tranh/sang vòng→boss thật→lỗi ghi/thử lại→kết thúc/reload; không lỗi bất ngờ. Hai typecheck/AW2+stable builds/153asset byte parity đạt. [Bằng chứng](evidence/AW2-016F.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Hai ảnh runtime mới3.403.990bytes, rightsREVIEW_REQUIRED; đây là nội thất phát triển, chưa nghiệm thu độc lập/điện thoại/FPS/fullDoD. D18/D20/D11 giữ nguyên; D16push AW2, không master/rpg/deploy/release/reset. Next BA/UX/tester: chỉ dẫn cửa/địa điểm trong–ngoài phòng và kiểm tra accessibility toàn tuyến; scope riêng trước triển khai. Các mục dưới là lịch sử; trạng thái hiện tại theo016F.
+
 016E source `bc60accb91b303bf2c34d66aed3a73ec2d042504` / exact staged+fetched tree `1ddca1fcc2a06773b5d7379d69ebf003a27bb1a0` published; expected-head/non-force/ancestry/clean tracked local sync PASS. [Publication proof](evidence/AW2-016E-publication.json). Completion stamp changes documents only.
 
 **AW2-016E VERIFIED — Phòng Kho có điểm Kiểm nguyên liệu.** E tại thùng hàng mở bảng Nguyên liệu/Công thức/Lối đi có phân trang; số lượng và trạng thái đọc túi/receipt/progress thật. Đi tới rương/gợi ý/hai cửa chỉ đi bộ; nhận đồ/ghi gợi ý/Đi qua vẫn là thao tác rõ ràng. Dùng lại crate, không thêm texture/vật cản/room/quest/schema; save5cũ đọc nguyên bytes. Công thức nấu và bảng chuẩn bị dùng chung định lượng1/1/1, thưởng chia bữa45XP giữ nguyên. [Cách dùng](PHONG_KHO.md).

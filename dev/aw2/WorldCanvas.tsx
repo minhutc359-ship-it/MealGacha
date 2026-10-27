@@ -44,6 +44,7 @@ import {
   type VillageViewMode,
 } from "../../src/aw2/assets/villageView"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
+import { TeaRoomCanvas } from "./TeaRoomCanvas"
 import {
   SceneLifetime,
   initializeWorldScene,
@@ -51,6 +52,7 @@ import {
 } from "./sceneLifecycle"
 
 export function WorldCanvas(props: WorldCanvasProps) {
+  if (props.world.interior) return <TeaRoomCanvas {...props} />
   return props.world.zoneId === VILLAGE_SCENE.zoneId ? (
     <VillageLandscape {...props} />
   ) : journeyScene(props.world.zoneId) ? (
@@ -114,6 +116,7 @@ function FlatWorldCanvas({
     ) =>
       onReadyChange?.({
         zoneId: world.zoneId,
+        sceneId: world.zoneId,
         leaderId: leaderId,
         ready,
         error,

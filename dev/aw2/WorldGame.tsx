@@ -6,6 +6,7 @@ import type { CollectionAction } from "../../src/aw2/collection/model"
 import type { EconomyAction } from "../../src/aw2/economy/model"
 import { currentObjective, questLabel } from "../../src/aw2/world/rules"
 import { zoneById } from "../../src/aw2/world/maps"
+import { sceneName, scenePosition } from "../../src/aw2/world/scene"
 import {
   PanelFrame,
   GameQuestPanel,
@@ -19,9 +20,10 @@ import type { Aw2ModeId } from "../../src/aw2/modes/catalog"
 import type { ZoneId } from "../../src/aw2/world/ids"
 import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
 import { JourneyOverview } from "./JourneyOverview"
+import { RecipePanel } from "./RecipePanel"
 import "./game.css"
 
-export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas"
+export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe"
 interface Props {
   pinned: boolean
   onPin: () => void
@@ -51,6 +53,7 @@ interface Props {
   onMode: (id: Aw2ModeId) => void
 }
 const titles = {
+  recipe: "Công thức bên bàn trà",
   quest: "Nhật ký nhiệm vụ",
   party: "Đội đồng hành",
   bag: "Túi đồ và bếp",
@@ -73,7 +76,7 @@ export function WorldGame(props: Props) {
     <main className="aw2-game-shell" data-testid="game-shell">
       <header className="aw2-game-header">
         <h1 ref={props.headingRef} tabIndex={-1} data-testid="zone-name">
-          {zoneById(world.zoneId).name}
+          {sceneName(world)}
         </h1>
         <span>{save?.economy.teamExperience ?? 0} EXP</span>
       </header>
@@ -205,7 +208,8 @@ export function WorldGame(props: Props) {
         </nav>
       </div>
       <output className="aw2-game-position" data-testid="player-position">
-        Vị trí {world.x.toFixed(0)}, {world.y.toFixed(0)} · {world.facing}
+        Vị trí {scenePosition(world).x.toFixed(0)},{" "}
+        {scenePosition(world).y.toFixed(0)} · {scenePosition(world).facing}
       </output>
       {panel !== "none" && (
         <PanelFrame
@@ -242,6 +246,7 @@ export function WorldGame(props: Props) {
               onAction={props.onEconomy}
             />
           )}
+          {panel === "recipe" && save && <RecipePanel economy={save.economy} />}
           {panel === "places" && save && (
             <GamePlacesPanel
               world={world}

@@ -2,6 +2,7 @@ import { MEMORY_IDS, ZONE_IDS, type ZoneId } from "./ids"
 import { zoneById } from "./maps"
 import type { WorldProgress } from "./model"
 import type { Waypoint } from "./navigation"
+import { sceneObjects } from "./scene"
 
 export const PATROL_NPC_ID = "aw2-npc-dem-nuoc"
 export const PATROL_ZONE = ZONE_IDS[1]
@@ -69,7 +70,7 @@ export function worldObjects(
   patrol?: Readonly<NpcPatrolState>,
 ) {
   const pose = npcPatrolView(world, patrol)
-  return zoneById(world.zoneId).objects.map((object) => ({
+  return sceneObjects(world).map((object) => ({
     ...object,
     ...(object.id === PATROL_NPC_ID ? { x: pose.x, y: pose.y } : {}),
   }))
