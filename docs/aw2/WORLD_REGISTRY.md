@@ -10,7 +10,7 @@ Triển khai AW2-016A + AW2-008B, nền `2caa108`. Mở `/dev/aw2/game.html` →
 
 Validator kiểm tra dữ liệu hữu hạn, namespace, ID duy nhất, vùng tồn tại, spawn an toàn, liên kết hai chiều và spawn không mồ côi. Mỗi lần lấy registry có dữ liệu tách rời; sửa snapshot không đổi `ZONES`. Quyền mở cổng luôn đọc `describeObject`; tìm tuyến dùng cùng `journeyRoute` với chỉ đường nhiệm vụ. Sân→Kho theo nhận nhiệm vụ bếp, Kho/Lửa→Bàn theo puzzle, hai lối tắt theo kết thúc thực.
 
-## Hợp đồng chuyển cảnh kế tiếp — chưa triển khai
+## Hợp đồng chuyển cảnh — trạng thái sau016C
 
 1. Chuẩn bị: kiểm tra quyền bằng rules và tạo yêu cầu chuyển cảnh gắn với raw save hiện tại; chặn yêu cầu lặp.
 2. Tải trước đúng destination, giữ lease/camera/cảnh nguồn; chưa thay tọa độ hoặc ghi save. NPC/điều khiển tạm dừng.
@@ -18,4 +18,4 @@ Validator kiểm tra dữ liệu hữu hạn, namespace, ID duy nhất, vùng t�
 4. Chỉ sau readiness mới commit giao dịch bằng Web Locks/expected raw; tab cũ không được ghi đè. Ghi lỗi giữ cảnh nguồn và tài nguyên đã chuẩn bị để thử lại hoặc hủy.
 5. Commit thành công mới swap scene/camera, đặt vị trí an toàn, trả focus/điều khiển và giải phóng lease nguồn. Cooldown chỉ ngăn kích hoạt lại; không đổi gate nhiệm vụ.
 
-Đây là hợp đồng cho task chuyển cảnh/nội thất sau này. Runtime hiện hành vẫn ghi điểm đến qua thao tác **Đi qua**, rồi tải cảnh theo cơ chế cũ. Không tuyên bố đã có rollback/preload/nhà/hội quán mới. Patrol016B cần cùng vị trí sống cho hình vẽ, proximity, label và chỉ đường, kèm sprite bốn hướng thật; không dịch sprite khỏi điểm tương tác tĩnh.
+016C đã triển khai kiểm tra quyền/spawn hiện hành, tải trước ảnh, giữ cảnh nguồn, hủy/timeout, expected-raw commit và ambient lease handover. Lỗi ảnh/lưu trước commit giữ source; chỉ commit thành công mới đổi world. Readiness ở bước này là ảnh/lease đã tải; GPU/renderer-init vẫn diễn ra sau commit. Bước preflight toàn renderer hoặc compensating rollback sau commit còn mở. Chưa có phòng/nhà/hội quán mới. Xem [hướng dẫn và giới hạn](CHUYEN_VUNG.md). Patrol016B cần cùng vị trí sống cho hình vẽ, proximity, label và chỉ đường, kèm sprite bốn hướng thật; không dịch sprite khỏi điểm tương tác tĩnh.

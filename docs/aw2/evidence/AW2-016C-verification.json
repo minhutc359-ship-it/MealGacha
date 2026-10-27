@@ -1,0 +1,79 @@
+{
+  "task": "AW2-016C",
+  "status": "VERIFIED_DEVELOPMENT_PRECOMMIT_ASSET_AND_SAVE_FAILURES",
+  "date": "2026-10-27",
+  "base": "7d157f1a5ca665db297f3093d491f2598830511b",
+  "runtimeFingerprint": "524f4a81706fc1198f1a8c537e079bcccf3d5686c2cc4bb487374b4ba0a81c55",
+  "inputFiles": 408,
+  "units": {
+    "uniqueVerified": 186,
+    "files": 10,
+    "newPreparationCases": 18,
+    "finalPreparationRerun": 18,
+    "otherUnchangedRetained": 168,
+    "fullCurrentSuite": "NOT_RUN",
+    "oldDefault20sTimeouts": "Still OPEN at016B; not newly tested"
+  },
+  "browser": {
+    "source": 60,
+    "compiled": 60,
+    "fresh": 120,
+    "unexpectedErrors": 0
+  },
+  "typechecks": {
+    "root": "PASS",
+    "dev": "PASS"
+  },
+  "build": {
+    "task": "AW2-016C",
+    "status": "PASS",
+    "base": "7d157f1a5ca665db297f3093d491f2598830511b",
+    "codeFingerprint": "524f4a81706fc1198f1a8c537e079bcccf3d5686c2cc4bb487374b4ba0a81c55",
+    "inputFiles": 408,
+    "compiledFingerprintMatch": true,
+    "aw2Files": 305,
+    "aw2Bytes": 121743389,
+    "runtimeParity": 259,
+    "sourceTempExclusion": true,
+    "stableFiles": 851,
+    "stableBytes": 177450422,
+    "stableTextIsolation": 76,
+    "unchangedAuthorities": [
+      "src/aw2/world/maps.ts",
+      "src/aw2/world/model.ts",
+      "src/aw2/world/rules.ts",
+      "src/aw2/save/schema.ts",
+      "src/aw2/save/store.ts",
+      "src/aw2/world/encounter.ts",
+      "src/aw2/economy/model.ts",
+      "src/aw2/modes/session.ts",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts"
+    ]
+  },
+  "authorityReuse": "Exact unchanged files verified against base; refer to016B evidence only within those boundaries, no historical counts added.",
+  "limits": [
+    "Post-commit GPU/renderer-init failure remains existing error/reload path, not compensating rollback.",
+    "30s timeout and late lease cleanup unit tested; not browser-timeout acceptance.",
+    "No physical phone, independent human, fresh boss/full mode match, FPS/totalGPUmemory or release acceptance."
+  ],
+  "progress": {
+    "demo": 90,
+    "productApprox": 40,
+    "range": [
+      35,
+      45
+    ],
+    "changed": false
+  },
+  "commands": [
+    "pnpm exec vitest run --config dev/vitest.config.ts <10 impacted files> --maxWorkers=1 --testTimeout=60000",
+    "pnpm exec vitest run --config dev/vitest.config.ts dev/tests/aw2/scene-preparation.test.ts --maxWorkers=1",
+    "pnpm typecheck",
+    "pnpm exec tsc --noEmit -p dev/tsconfig.json",
+    "pnpm build:aw2",
+    "pnpm build",
+    "node dev/tools/verify-aw2-scene-transition.mjs [--compiled] --playwright <playwright-core/index.mjs> --chromium /tmp/meal-chrome-016c/chromium"
+  ]
+}

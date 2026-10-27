@@ -161,3 +161,8 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-map-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: .75rem 0; }
 .aw2-map-toolbar button[aria-pressed="true"] { outline: 2px solid #efd497; outline-offset: 2px; }
 .aw2-map-toolbar span { flex-basis: 100%; font-size: .875rem; color: #c5d6c5; }
+
+.aw2-travel-progress { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .35rem .5rem; margin-top: .6rem; min-width: 0; }
+.aw2-travel-progress p { grid-column: 1 / -1; margin: 0; font-size: .9rem; overflow-wrap: anywhere; }
+.aw2-travel-progress progress { width: 100%; min-width: 0; align-self: center; }
+.aw2-travel-progress button { grid-column: 1 / -1; min-height: 44px; }

@@ -1,5 +1,5 @@
 import type { CollectionAction } from "../../src/aw2/collection/model"
-import { StrictMode, useEffect, useRef, useState } from "react"
+import { StrictMode, useCallback, useEffect, useRef, useState } from "react"
 import { createRoot } from "react-dom/client"
 import { Aw2DevSaveStore } from "../../src/aw2/save/store"
 import type { SaveSnapshot } from "../../src/aw2/save/schema"
@@ -38,6 +38,8 @@ import { WorldGame, type GamePanel } from "./WorldGame"
 import { PagedCopy, trapPanelTab, type QuestViewState } from "./GamePanels"
 import type { ZoneId } from "../../src/aw2/world/ids"
 import "./styles.css"
+import { prepareDestination } from "./prepareDestination"
+import type { ScenePreparationProgress } from "../../src/aw2/assets/prepareScene"
 import {
   advanceNpcPatrol,
   facePatrolNpc,
@@ -54,6 +56,15 @@ interface ActiveWorldEncounter {
   run: WorldBossEncounter
   checkpointRaw: string
 }
+interface TravelProgress extends ScenePreparationProgress {
+  destination: ZoneId
+  phase: "loading" | "saving"
+}
+interface PreparedDestination {
+  destination: ZoneId
+  leaderId: string
+  release: () => void
+}
 
 function WorldPreview() {
   const [store] = useState(() => new Aw2DevSaveStore())
@@ -68,6 +79,19 @@ function WorldPreview() {
   const reducedMotion = useRef(false)
   const activeWindow = useRef(!document.hidden)
   const [busy, setBusy] = useState(false)
+  const [travel, setTravel] = useState<TravelProgress | null>(null)
+  const travelAbort = useRef<AbortController | null>(null)
+  const preparedDestination = useRef<PreparedDestination | null>(null)
+  const mounted = useRef(true)
+  useEffect(() => {
+    mounted.current = true
+    return () => {
+      mounted.current = false
+      travelAbort.current?.abort()
+      preparedDestination.current?.release()
+      preparedDestination.current = null
+    }
+  }, [])
   const [gamePanel, setGamePanel] = useState<GamePanel>("none")
   const [questPinned, setQuestPinned] = useState(true)
   const journalMemory = useRef<QuestViewState>({
@@ -89,6 +113,18 @@ function WorldPreview() {
   const [mapReadiness, setMapReadiness] = useState<WorldMapReadiness | null>(
     null,
   )
+  const handleMapReady = useCallback((state: WorldMapReadiness) => {
+    setMapReadiness(state)
+    const prepared = preparedDestination.current
+    if (
+      state.ready &&
+      prepared?.destination === state.zoneId &&
+      prepared.leaderId === state.leaderId
+    ) {
+      prepared.release()
+      preparedDestination.current = null
+    }
+  }, [])
   const [activeEncounter, setActiveEncounter] =
     useState<ActiveWorldEncounter | null>(null)
   const [activeMode, setActiveMode] = useState<ModeVisit | null>(null)
@@ -333,6 +369,8 @@ function WorldPreview() {
 
   function reread() {
     if (pending.current) return
+    preparedDestination.current?.release()
+    preparedDestination.current = null
     setGamePanel("none")
     queuedWalk.current = null
     setMapReadiness(null)
@@ -425,6 +463,67 @@ function WorldPreview() {
     setMessage("")
     try {
       if (
+        actionId === "travel" &&
+        dialogObject &&
+        saved.current.status === "ready"
+      ) {
+        const source = worldRef.current,
+          expected = saved.current,
+          objectId = dialogObject.id
+        const destination = applyWorldAction(source, objectId, "travel").state
+        const abort = new AbortController()
+        travelAbort.current = abort
+        let release: (() => void) | undefined
+        try {
+          setTravel({
+            destination: destination.zoneId,
+            phase: "loading",
+            completed: 0,
+            total: 1,
+          })
+          release = await prepareDestination(
+            destination,
+            abort.signal,
+            (progress) => {
+              if (mounted.current)
+                setTravel({
+                  ...progress,
+                  destination: destination.zoneId,
+                  phase: "loading",
+                })
+            },
+          )
+          if (!mounted.current || abort.signal.aborted) {
+            const error = Error("Đã hủy chuyển vùng.")
+            error.name = "AbortError"
+            throw error
+          }
+          travelAbort.current = null
+          setTravel((current) =>
+            current ? { ...current, phase: "saving" } : null,
+          )
+          const next = await store.act(expected.raw, source, objectId, "travel")
+          if (!mounted.current) return
+          preparedDestination.current?.release()
+          preparedDestination.current = {
+            destination: destination.zoneId,
+            leaderId: destination.partyIds[0] ?? "aw2-than",
+            release,
+          }
+          release = undefined
+          saved.current = next
+          setSnapshot(next)
+          worldRef.current = next.save.progress
+          setWorld(next.save.progress)
+          setDialogObject(null)
+          setMessage(`Đã tới ${zoneById(destination.zoneId).name}.`)
+        } finally {
+          travelAbort.current = null
+          release?.()
+        }
+        return
+      }
+      if (
         (actionId === "challenge" || actionId === "rematch") &&
         saved.current.status === "ready"
       ) {
@@ -467,10 +566,19 @@ function WorldPreview() {
       setDialogObject(null)
       setMessage(result.message)
     } catch (cause) {
-      setError(
-        cause instanceof Error ? cause.message : "Thao tác chưa hoàn tất.",
-      )
+      if (cause instanceof Error && cause.name === "AbortError")
+        setMessage("Đã hủy chuyển vùng. Vị trí và bản lưu được giữ nguyên.")
+      else
+        setError(
+          (actionId === "travel"
+            ? "Chưa chuyển vùng; cảnh nguồn được giữ. "
+            : "") +
+            (cause instanceof Error
+              ? cause.message
+              : "Thao tác chưa hoàn tất."),
+        )
     } finally {
+      setTravel(null)
       pending.current = false
       setBusy(false)
     }
@@ -616,7 +724,8 @@ function WorldPreview() {
       onKeyDown={singleViewport ? trapPanelTab : undefined}
       onCancel={(event) => {
         event.preventDefault()
-        if (!pending.current) setDialogObject(null)
+        if (travel?.phase === "loading") travelAbort.current?.abort()
+        else if (!pending.current) setDialogObject(null)
       }}
     >
       <h2 id="interaction-title">{description?.title}</h2>
@@ -656,10 +765,41 @@ function WorldPreview() {
             }}
             disabled={busy}
           >
-            {action.label}
+            {action.id === "travel" && error
+              ? "Thử lại chuyển vùng"
+              : action.label}
           </button>
         ))}
       </div>
+      {travel && (
+        <div
+          className="aw2-travel-progress"
+          data-testid="travel-progress"
+          role="status"
+          aria-live="polite"
+        >
+          <p>
+            {travel.phase === "saving"
+              ? "Đang ghi điểm đến…"
+              : `Đang chuẩn bị ${zoneById(travel.destination).name}…`}
+          </p>
+          <progress
+            aria-label="Tải cảnh đích"
+            value={travel.completed}
+            max={travel.total}
+          />
+          <small>
+            {travel.completed}/{travel.total}
+          </small>
+          <button
+            type="button"
+            disabled={travel.phase !== "loading"}
+            onClick={() => travelAbort.current?.abort()}
+          >
+            Hủy chuyển vùng
+          </button>
+        </div>
+      )}
       {error && <p role="alert">{error}</p>}
     </dialog>
   )
@@ -699,7 +839,7 @@ function WorldPreview() {
               economy={snapshot.save.economy}
               onNavigate={navigate}
               paused={busy || !!dialogObject || gamePanel !== "none"}
-              onReadyChange={setMapReadiness}
+              onReadyChange={handleMapReady}
             />
           ) : null
         }
@@ -816,7 +956,7 @@ function WorldPreview() {
             economy={snapshot.save.economy}
             onNavigate={navigate}
             paused={busy || !!dialogObject}
-            onReadyChange={setMapReadiness}
+            onReadyChange={handleMapReady}
           />
           <p data-testid="player-position">
             Vị trí {world.x.toFixed(0)}, {world.y.toFixed(0)} · {world.facing}

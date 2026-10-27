@@ -1,5 +1,13 @@
 # Changes
 
+## 2026-10-27 — AW2-016C
+
+**AW2-016C VERIFIED development — chuẩn bị cảnh trước khi ghi điểm đến.** Đi qua cửa tải trước đúng ảnh của vùng đích/nhân vật đại diện, giữ bản đồ và vị trí nguồn trong khi tải; có tiến độ, hủy và timeout30s. Lỗi ảnh hoặc ghi save giữ cảnh nguồn và cho thử lại. Raw save được chụp trước await; tab cũ không ghi đè tab mới, thao tác lặp chỉ commit một lần. Ambient lease giữ tới khi renderer đích ready.
+
+**120 kiểm tra trình duyệt mới =60source+60compiled PASS**, gồm delayed atlas/cancel/late404/retry/ghi lỗi, hai tab thực, đi–về đủ6vùng qua gate nhiệm vụ/puzzle thật, reload và entrygame/world;4viewport/chữ20px/44px/no-scroll.186ca unit tác động/10files được xác minh, gồm18ca mới;18ca cuối được chạy lại sau sửa type fixture, không cộng trùng. Hai typecheck/AW2+stable build và259asset parity đạt. [Cách dùng/giới hạn](CHUYEN_VUNG.md) · [Bằng chứng](evidence/AW2-016C.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là bảo vệ lỗi tải/ghi **trước commit**; GPU/renderer-init lỗi sau durable commit vẫn theo luồng lỗi bản đồ/Đọc lại hiện có, chưa có compensating rollback save. Không thêm ảnh/phòng/quest/schema/economy. D20human/device/D18milestone/D11gacha và hai timeout20s cũ của016B vẫn mở. Next: preflight renderer/lifecycle trước commit, rồi một nội thất có contract/canon riêng. D16push trực tiếp AW2; không master/rpg/deploy/release/reset. Các bản ghi bên dưới là lịch sử.
+
 ## 2026-10-27 — AW2-016B
 
 **AW2-016B VERIFIED development slice — Em Đem Nước tuần tra với vị trí tương tác thật.** Bốn hướng/16 tư thế nguyên bản; sprite, nhãn, độ sâu, E, điểm đến native và chỉ đường dùng cùng snapshot. Đi tới NPC giữ vị trí hiện tại; khi cần ký ức nhiệm vụ, em về điểm nhiệm vụ ngay. Menu/hội thoại/ghi lỗi/tải lỗi/mất focus/giảm chuyển động đều dừng tuần tra. Sửa tràn khung chữ lớn, nhãn bị cắt ở mép bản đồ và loại tệp tạm khỏi bản đóng gói AW2.

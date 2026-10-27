@@ -1,15 +1,11 @@
 import type { Rectangle, Sprite, Texture } from "pixi.js"
-import {
-  npcsForZone,
-  sampleNpcIdle,
-  type NpcMotion,
-} from "../../src/aw2/assets/npcMotion"
+import { sampleNpcIdle, type NpcMotion } from "../../src/aw2/assets/npcMotion"
 import { zoneById } from "../../src/aw2/world/maps"
 import type { ZoneId } from "../../src/aw2/world/ids"
 import {
-  PATROL_VISUAL,
   samplePatrolVisual,
   type PatrolVisual,
+  npcVisualsForZone,
 } from "../../src/aw2/assets/npcPatrol"
 import {
   npcPatrolView,
@@ -30,15 +26,10 @@ export function loadNpcTextures(
   load: (url: string) => Promise<Texture>,
 ): Promise<LoadedNpc[]> {
   return Promise.all(
-    npcsForZone(zoneId)
-      .map(
-        (npc): NpcVisual =>
-          npc.entityId === PATROL_NPC_ID ? PATROL_VISUAL : npc,
-      )
-      .map(async (manifest) => ({
-        manifest,
-        texture: await load(manifest.asset.url),
-      })),
+    npcVisualsForZone(zoneId).map(async (manifest) => ({
+      manifest,
+      texture: await load(manifest.asset.url),
+    })),
   )
 }
 export interface NpcSprite {
