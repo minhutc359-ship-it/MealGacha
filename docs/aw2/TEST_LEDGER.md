@@ -1,5 +1,7 @@
 # Test ledger / change impact
 
+016D source `32afa6dd6564ced989eb4433b12a61392b1f81e6` / exact staged+fetched tree `49e3a471932637f981f3c593a7d3c10cf04e856b` published; expected-head/non-force/ancestry/clean tracked local sync PASS. [Publication proof](evidence/AW2-016D-publication.json). Completion stamp changes documents only.
+
 ## AW2-016D — actual renderer preflight /2026-10-27
 
 Base `6f1c0abecb68cf79b1d6d8cae4e2dc714e7e6970`, runtime411inputs `f989329abbc7f0ac3d53aac3126f8e734305e1e428d8b6dabe6f57a70c1a4bb3`, compiled match. Fresh full1,733/1,733units/134files PASS in62.44s using explicit `--maxWorkers=1 --testTimeout=120000`, zero fail/skip. Includes26new (20preflight/lifetime +6inside-lock save guards); the initial54focused cases overlap this total. No assertions/seeds/loops or default configuration changed. This is a serial QA-allowance run, not a new default20s/concurrency result; historical016Bdefault-timeout reliability remains open. Both root/dev types, AW2305files/121,748,807bytes/259runtimeasset parity, stable851files/177,450,422bytes/49HTML-JS-CSS isolation + release guard PASS. Unchanged rules/maps/schema/economy/modes/art/dependency boundaries remain explicit in the build record; full units freshly run, no historical unit totals reused.

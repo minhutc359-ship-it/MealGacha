@@ -93,8 +93,9 @@
     "No new full boss/full mode match/physical phone/independent human/listening/rights/release acceptance."
   ],
   "publication": {
-    "status": "PENDING_SOURCE_PUSH",
-    "branch": "game/adventure-world-2",
-    "expectedBase": "6f1c0abecb68cf79b1d6d8cae4e2dc714e7e6970"
+    "status": "PASS_SOURCE_PUBLICATION",
+    "source": "32afa6dd6564ced989eb4433b12a61392b1f81e6",
+    "sourceTree": "49e3a471932637f981f3c593a7d3c10cf04e856b",
+    "proof": "AW2-016D-publication.json"
   }
 }

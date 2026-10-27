@@ -1,5 +1,7 @@
 # Handoff —2026-10-27 / AW2-016D
 
+016D source `32afa6dd6564ced989eb4433b12a61392b1f81e6` / exact staged+fetched tree `49e3a471932637f981f3c593a7d3c10cf04e856b` published; expected-head/non-force/ancestry/clean tracked local sync PASS. [Publication proof](evidence/AW2-016D-publication.json). Completion stamp changes documents only.
+
 **AW2-016D VERIFIED development — dựng cảnh đích trước khi ghi save.** Giữ cảnh/camera nguồn, dựng một renderer đích ẩn và kiểm tra khung hình đầu thật; lưu thành công mới đưa chính canvas đó ra hiển thị. Lỗi init/vẽ/context trước ghi, hủy/timeout hoặc lỗi lưu bỏ candidate và giữ nguồn. Guard kiểm tra lại ngay trong Web Lock; cảnh lỗi trong lúc chờ khóa không được ghi vị trí.
 
 **262 kiểm tra trình duyệt mới =131source+131compiled PASS**, gồm lỗi init/khung đầu, timeout renderer30s, mất context thật khi chờ khóa, cùng canvas được promote, hai tab, đi–về sáu vùng/quest thật, classic entry và4viewport/chữ20px/44px. **Full1.733/1.733unit/134files PASS** với `--maxWorkers=1 --testTimeout=120000` (26ca mới đã nằm trong tổng); hai typecheck/AW2+stable build/259asset parity đạt. Không cộng lịch sử hoặc gọi đây là lượt default-timeout. [Cách dùng](CHUYEN_VUNG.md) · [Bằng chứng](evidence/AW2-016D.md).
