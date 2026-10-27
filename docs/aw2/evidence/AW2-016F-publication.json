@@ -1,13 +1,13 @@
 {
   "task": "AW2-016F",
-  "status": "SUPERSEDED_BY_METADATA_CORRECTION",
+  "status": "PASS_CORRECTED_SOURCE_PUBLICATION",
   "branch": "game/adventure-world-2",
   "base": "d459b30bf884778576065a95a713304ea71e65c0",
-  "source": "7a83d2c3c4e225982edba288f60322a37e5633bd",
-  "sourceTree": "316697d2d52b488a05fdc03d3aaccb0d2d07f34c",
+  "source": "86de61389e5b64e1e6a9fbab4851bd9204251dfc",
+  "sourceTree": "61e1ab0be9b0b22c66bba62c14af4bb33ff110a8",
   "expectedHeadNonForce": true,
-  "independentFetchSha": "7a83d2c3c4e225982edba288f60322a37e5633bd",
-  "independentFetchTree": "316697d2d52b488a05fdc03d3aaccb0d2d07f34c",
+  "independentFetchSha": "86de61389e5b64e1e6a9fbab4851bd9204251dfc",
+  "independentFetchTree": "61e1ab0be9b0b22c66bba62c14af4bb33ff110a8",
   "indexTreeMatches": true,
   "directParentMatches": true,
   "ancestry": true,
@@ -15,5 +15,12 @@
   "trackedClean": true,
   "runtimeFingerprint": "ef95196c72a49313c53f93db70aad87abb0482a02e9bf7dcad0e8b8f80f4a843",
   "followingStamp": "docs/evidence only, verified separately after push",
-  "metadataCorrection": "Final verification caught an audit-script loop-variable shadowing error that overwrote only Lam historical prompt metadata after the frozen build. Restore exact base bytes (9ee35ef blob) and correct the JSON-inclusive asset count from153 image/audio files to262 packaged files; no art or gameplay changes. Final restored runtime fingerprint matches frozen tested build. Earlier source/stamp publication is superseded by the corrective commit, verified separately."
+  "metadataCorrection": "Final verification caught an audit-script loop-variable shadowing error that overwrote only Lam historical prompt metadata after the frozen build. Restore exact base bytes (9ee35ef blob) and correct the JSON-inclusive asset count from153 image/audio files to262 packaged files; no art or gameplay changes. Final restored runtime fingerprint matches frozen tested build. Earlier source/stamp publication is superseded by the corrective commit, verified separately.",
+  "supersededSource": "7a83d2c3c4e225982edba288f60322a37e5633bd",
+  "supersededSourceTree": "316697d2d52b488a05fdc03d3aaccb0d2d07f34c",
+  "parent": "29ab1aff189cdee68ff2bf3e5da912969b8ea185",
+  "restoredMetadataBlob": "9ee35efb55fda47082646b2bcfb59196b05f1cf8",
+  "runtimeFingerprintMatchesTestedBuild": true,
+  "packagedAssetParity": 262,
+  "postRestoreFocusedCases": 32
 }

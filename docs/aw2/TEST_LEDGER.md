@@ -1,5 +1,7 @@
 # Test ledger / change impact
 
+Corrected final source `86de61389e5b64e1e6a9fbab4851bd9204251dfc` / exact independently fetched tree `61e1ab0be9b0b22c66bba62c14af4bb33ff110a8` restores original Lam prompt metadata and matches tested runtime fingerprint. All262packaged assets byte-match;32focused asset/room cases pass (overlap full). This supersedes the earlier016Fsource/stamp proof; gameplay/art unchanged. [Publication proof](evidence/AW2-016F-publication.json).
+
 Final verification caught an audit-script loop-variable shadowing error that overwrote only Lam historical prompt metadata after the frozen build. Restore exact base bytes (9ee35ef blob) and correct the JSON-inclusive asset count from153 image/audio files to262 packaged files; no art or gameplay changes. Final restored runtime fingerprint matches frozen tested build. Earlier source/stamp publication is superseded by the corrective commit, verified separately.
 
 016F source `7a83d2c3c4e225982edba288f60322a37e5633bd` / exact staged+independently fetched tree `316697d2d52b488a05fdc03d3aaccb0d2d07f34c` published on `game/adventure-world-2`; expected-head/non-force, direct parent/ancestry/index-tree/clean tracked local sync PASS. [Publication proof](evidence/AW2-016F-publication.json). This completion stamp changes documentation/evidence only.
