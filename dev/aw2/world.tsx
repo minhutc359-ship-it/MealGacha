@@ -40,6 +40,7 @@ import { DemoCompletion } from "./DemoCompletion"
 import { PlaytestFeedback } from "./PlaytestFeedback"
 import { WorldGame, type GamePanel } from "./WorldGame"
 import { PagedCopy, trapPanelTab, type QuestViewState } from "./GamePanels"
+import { PantryInspection } from "./PantryInspection"
 import type { ZoneId } from "../../src/aw2/world/ids"
 import "./styles.css"
 import { prepareDestination } from "./prepareDestination"
@@ -322,19 +323,20 @@ function WorldPreview() {
   }, [])
 
   useEffect(() => {
-    if (
-      !singleViewport ||
-      gamePanel !== "none" ||
-      !queuedWalk.current ||
-      busy ||
-      dialogObject
-    )
+    if (gamePanel !== "none" || !queuedWalk.current || busy || dialogObject)
       return
     const point = queuedWalk.current
     queuedWalk.current = null
+    if (
+      error ||
+      !mapReadiness?.ready ||
+      mapReadiness.zoneId !== worldRef.current.zoneId ||
+      mapReadiness.leaderId !== (worldRef.current.partyIds[0] ?? "aw2-than")
+    )
+      return
     navigate(point)
     worldMap.current?.focus({ preventScroll: true })
-  }, [gamePanel, busy, dialogObject])
+  }, [gamePanel, busy, dialogObject, error, mapReadiness])
 
   useEffect(() => {
     if (dialogObject) {
@@ -722,15 +724,46 @@ function WorldPreview() {
     <dialog
       ref={dialog}
       aria-labelledby="interaction-title"
-      onKeyDown={singleViewport ? trapPanelTab : undefined}
+      onKeyDown={
+        singleViewport || dialogObject?.kind === "stock"
+          ? trapPanelTab
+          : undefined
+      }
       onCancel={(event) => {
         event.preventDefault()
         if (travel && travel.phase !== "saving") travelAbort.current?.abort()
         else if (!pending.current) setDialogObject(null)
       }}
     >
-      <h2 id="interaction-title">{description?.title}</h2>
-      {singleViewport ? (
+      <h2 id="interaction-title">
+        {dialogObject?.kind === "stock" ? "Kiểm kho" : description?.title}
+      </h2>
+      {dialogObject?.kind === "stock" && snapshot.status === "ready" ? (
+        <PantryInspection
+          world={world}
+          economy={snapshot.save.economy}
+          disabled={
+            busy ||
+            !!error ||
+            !mapReadiness?.ready ||
+            mapReadiness.zoneId !== world.zoneId ||
+            mapReadiness.leaderId !== (world.partyIds[0] ?? "aw2-than")
+          }
+          onWalk={(point) => {
+            if (
+              pending.current ||
+              error ||
+              !mapReadiness?.ready ||
+              mapReadiness.zoneId !== world.zoneId
+            )
+              return
+            keys.current.clear()
+            route.current = []
+            queuedWalk.current = point
+            setDialogObject(null)
+          }}
+        />
+      ) : singleViewport ? (
         <PagedCopy text={description?.text ?? ""} />
       ) : (
         <p>{description?.text}</p>

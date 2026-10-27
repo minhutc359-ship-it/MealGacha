@@ -180,3 +180,13 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
   overflow: clip;
   contain: layout style;
 }
+.aw2-pantry-inspection { display: grid; gap: .5rem; }
+.aw2-pantry-inspection .aw2-panel-tabs { margin: 0; }
+.aw2-pantry-inspection .aw2-panel-tabs button { min-width: 0; padding: .3rem; font-size: max(.75rem,14px); line-height: 1.3; white-space: normal; }
+.aw2-pantry-card { border: 1px solid #60756b; border-radius: .6rem; padding: .5rem; overflow-wrap: anywhere; }
+.aw2-pantry-card strong { display: block; font-size: .95rem; }
+.aw2-pantry-card p { margin: .3rem 0; }
+.aw2-pantry-card small { display: block; font-size: .8rem; }
+.aw2-pantry-card button { width: 100%; padding: .35rem; font-size: .9rem; }
+.aw2-pantry-inspection .aw2-page-controls { margin: 0; font-size: .8rem; }
+.aw2-pantry-inspection .aw2-page-controls button { padding: .3rem; font-size: max(.75rem,14px); white-space: nowrap; }

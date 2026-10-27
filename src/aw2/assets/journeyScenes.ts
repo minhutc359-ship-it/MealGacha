@@ -9,6 +9,7 @@ import { MEMORY_IDS } from "../world/ids"
 import { worldObjects, type NpcPatrolState } from "../world/npcPatrol"
 import { describeObject } from "../world/rules"
 import type { SceneBounds } from "./tableRoom"
+import { PANTRY_STOCK } from "../world/pantryLayout"
 
 export interface JourneyFrame {
   x: number
@@ -97,17 +98,24 @@ export function journeyWaypoints(
       short = "Dì Gác Bếp"
       if (!actions.length && world.questIndex >= 3)
         status = "Đến gần Dì để nấu/chia bữa"
+    } else if (object.kind === "stock") {
+      short = "Kiểm kho"
+      status = "Đến gần để kiểm nguyên liệu và công thức"
+      state = "ready"
     } else short = "An Vá Đèn"
     const spec = journeyScene(world.zoneId)!.props.find(
       (p) => p.entityId === object.id,
-    )!
+    )
     return {
       id: object.id,
       name: object.name,
       x: object.x,
       y: object.y,
-      walkX: object.x,
-      walkY: object.y + (spec.asset === "threshold" ? 0 : 32),
+      walkX: object.kind === "stock" ? PANTRY_STOCK.approach.x : object.x,
+      walkY:
+        object.kind === "stock"
+          ? PANTRY_STOCK.approach.y
+          : object.y + (spec?.asset === "threshold" ? 0 : 32),
       short,
       status,
       state,

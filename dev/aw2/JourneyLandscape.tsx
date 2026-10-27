@@ -19,6 +19,7 @@ import {
 } from "../../src/aw2/assets/villageView"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
+import { PANTRY_STOCK } from "../../src/aw2/world/pantryLayout"
 import {
   SceneLifetime,
   initializeWorldScene,
@@ -348,7 +349,20 @@ export function JourneyLandscape({
                 bottom: Math.min(canvasViewport.bottom, stageViewport.bottom),
               }
             : canvasViewport
-          for (const prop of currentProps) {
+          const labelProps = [
+            ...currentProps,
+            ...(scene.zoneId === PANTRY_STOCK.zoneId
+              ? [
+                  {
+                    entityId: PANTRY_STOCK.id,
+                    x: PANTRY_STOCK.x,
+                    y: PANTRY_STOCK.y,
+                    ...PANTRY_STOCK.label,
+                  },
+                ]
+              : []),
+          ]
+          for (const prop of labelProps) {
             const label = labels.current.get(prop.entityId)
             if (!label) continue
             const point = projectVillage(
@@ -377,6 +391,19 @@ export function JourneyLandscape({
             }
           }
           next.canvas.dataset.worldCamera = JSON.stringify(view)
+          if (scene.zoneId === PANTRY_STOCK.zoneId)
+            next.canvas.dataset.stockInspection = JSON.stringify({
+              entityId: PANTRY_STOCK.id,
+              interaction: { x: PANTRY_STOCK.x, y: PANTRY_STOCK.y },
+              approach: PANTRY_STOCK.approach,
+              visual: {
+                x: well.x,
+                y: well.y,
+                width: well.width,
+                height: well.height,
+                textureId: scene.assets.props.id,
+              },
+            })
           next.canvas.dataset.representativeFrame = frameId
           next.canvas.dataset.partyPositions = JSON.stringify([
             { x: actor.x, y: actor.y },
@@ -513,7 +540,17 @@ export function JourneyLandscape({
         }}
       >
         <div ref={host} />
-        {scene.props.map((prop) => (
+        {[
+          ...scene.props,
+          ...(scene.zoneId === PANTRY_STOCK.zoneId
+            ? [
+                {
+                  entityId: PANTRY_STOCK.id,
+                  labelTransform: "translate(-50%, 0)",
+                },
+              ]
+            : []),
+        ].map((prop) => (
           <span
             key={prop.entityId}
             ref={(node) => {

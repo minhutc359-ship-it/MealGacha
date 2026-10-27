@@ -15,6 +15,10 @@ export const ITEM_NAMES: Record<typeof ITEM_IDS[number], string> = {
   broth: "Nước dùng",
   "warm-bowl": "Chén cơm ấm",
 }
+/** Shared authority for actual cooking and read-only planning. */
+export const WARM_BOWL_RECIPE = {
+  ingredients: { rice: 1, herbs: 1, broth: 1 },
+} as const
 const count = z.number().int().min(0).max(9999)
 export const economySchema = z
   .strictObject({
@@ -132,14 +136,13 @@ export function applyEconomyAction(
       throw Error("Đến gần Dì Gác Bếp hoặc bếp đã mở để nấu/chia bữa.")
     if (action === "cook") {
       if (
-        ["rice", "herbs", "broth"].some(
-          (id) => next.inventory[(id as "rice")] < 1,
+        Object.entries(WARM_BOWL_RECIPE.ingredients).some(
+          ([id, amount]) => next.inventory[(id as "rice")] < amount,
         )
       )
         throw Error("Cần 1 Gạo thơm, 1 Rau vườn và 1 Nước dùng.")
-      next.inventory.rice--
-      next.inventory.herbs--
-      next.inventory.broth--
+      for (const [id, amount] of Object.entries(WARM_BOWL_RECIPE.ingredients))
+        next.inventory[(id as "rice")] -= amount
       next.inventory["warm-bowl"]++
       next.cooked++
     } else if (action === "share-meal") {

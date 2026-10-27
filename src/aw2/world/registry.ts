@@ -42,6 +42,7 @@ const registrySchema = z.strictObject({
               "note",
               "chest",
               "mode",
+              "stock",
             ]),
             position: point,
           }),

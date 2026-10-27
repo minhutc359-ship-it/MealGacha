@@ -1,0 +1,136 @@
+{
+  "task": "AW2-016E",
+  "status": "VERIFIED_DEVELOPMENT_EXISTING_PANTRY_INSPECTION",
+  "date": "2026-10-27",
+  "base": "ec74c99c095ce139b07bd1d1bec85d655a615c9d",
+  "runtimeFingerprint": "19f40b33d99c1e81cd6835cb446c51e6f753d96329d5fa426a39c06e435764d1",
+  "inputFiles": 414,
+  "units": {
+    "freshFull": 1757,
+    "files": 135,
+    "newCasesIncluded": 24,
+    "focusedOverlapping": 188,
+    "focusedFiles": 9,
+    "maxWorkers": 1,
+    "timeoutAllowanceMs": 120000,
+    "seconds": 76.63,
+    "defaultTimeoutRun": "NOT_RUN;016Bdefault20s reliability remains open"
+  },
+  "browser": {
+    "source": 147,
+    "compiled": 147,
+    "freshTotal": 294,
+    "unexpectedErrors": 0,
+    "diagnosticAssertionsRetained": 0,
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1280,
+        900
+      ]
+    ],
+    "rootFontPx": 20,
+    "inspectionPages": 11,
+    "endingEarnedXP": 205,
+    "endingInventory": {
+      "rice": 6,
+      "herbs": 5,
+      "broth": 3,
+      "warm-bowl": 0
+    }
+  },
+  "typechecks": {
+    "root": "PASS",
+    "dev": "PASS"
+  },
+  "build": {
+    "task": "AW2-016E",
+    "status": "PASS",
+    "base": "ec74c99c095ce139b07bd1d1bec85d655a615c9d",
+    "codeFingerprint": "19f40b33d99c1e81cd6835cb446c51e6f753d96329d5fa426a39c06e435764d1",
+    "inputFiles": 414,
+    "compiledFingerprintMatch": true,
+    "aw2Files": 305,
+    "aw2Bytes": 121753962,
+    "runtimeParity": 259,
+    "sourceTempExclusion": true,
+    "stableFiles": 851,
+    "stableBytes": 177450422,
+    "stableTextIsolation": 49,
+    "unchangedAuthorities": [
+      "src/aw2/world/model.ts",
+      "src/aw2/save/schema.ts",
+      "src/aw2/save/store.ts",
+      "src/aw2/world/encounter.ts",
+      "src/aw2/modes/session.ts",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts",
+      "dev/vite.aw2.config.ts"
+    ],
+    "stableBuildBeforePackaging": {
+      "files": 852,
+      "bytes": 177974710
+    },
+    "stablePrunedTransientInputCopies": [
+      {
+        "bytes": 524288
+      }
+    ]
+  },
+  "environment": {
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "node": "v24.22.1",
+    "pnpm": "11.25.0",
+    "vitest": "5.0.1",
+    "typescript": "5.9.3",
+    "pixi": "8.20.1",
+    "chromium": "153.0.8010.0",
+    "playwrightCore": "1.62.1"
+  },
+  "progress": {
+    "demo": 90,
+    "productApprox": 40,
+    "range": [
+      35,
+      45
+    ],
+    "changed": false
+  },
+  "proposal": {
+    "id": "AW2-016F",
+    "status": "PROPOSED_NOT_IMPLEMENTED",
+    "path": "proposals/AW2-016F-TEA-ROOM.md"
+  },
+  "commands": [
+    "pnpm exec vitest run --config dev/vitest.config.ts <9 impacted files> --maxWorkers=1 --testTimeout=60000",
+    "pnpm exec vitest run --config dev/vitest.config.ts --maxWorkers=1 --testTimeout=120000",
+    "pnpm typecheck",
+    "pnpm exec tsc --noEmit -p dev/tsconfig.json",
+    "pnpm build:aw2",
+    "pnpm build",
+    "node releaseGuard.mjs (after derived transient-copy removal)",
+    "node dev/tools/verify-aw2-pantry-inspection.mjs [--compiled] --playwright /opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/index.mjs --chromium /tmp/meal-chrome-016e/chromium"
+  ],
+  "limits": [
+    "No new room/schema6/art/NPC/quest/economy values;016Fproposal only.",
+    "No new full boss/mode match/independent human/physical phone/FPS/totalGPUmemory/listening/rights/release acceptance.",
+    "Post-commit GPU recovery remains016Dmap-error/reread, no compensating rollback."
+  ],
+  "publication": {
+    "status": "PENDING_SOURCE_PUSH",
+    "branch": "game/adventure-world-2",
+    "expectedBase": "ec74c99c095ce139b07bd1d1bec85d655a615c9d"
+  }
+}

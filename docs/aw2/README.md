@@ -1,5 +1,11 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**AW2-016E VERIFIED — Phòng Kho có điểm Kiểm nguyên liệu.** E tại thùng hàng mở bảng Nguyên liệu/Công thức/Lối đi có phân trang; số lượng và trạng thái đọc túi/receipt/progress thật. Đi tới rương/gợi ý/hai cửa chỉ đi bộ; nhận đồ/ghi gợi ý/Đi qua vẫn là thao tác rõ ràng. Dùng lại crate, không thêm texture/vật cản/room/quest/schema; save5cũ đọc nguyên bytes. Công thức nấu và bảng chuẩn bị dùng chung định lượng1/1/1, thưởng chia bữa45XP giữ nguyên. [Cách dùng](PHONG_KHO.md).
+
+**294 kiểm tra trình duyệt mới =147source+147compiled PASS**, toàn bộ11trang/4viewport/chữ20px/44px, no-write/cùngcanvas/focus, chestghi lỗi→retry, hint/puzzle/nấu-chia205XP, reload/hai tab và classic. **Full1.757/1.757unit/135files PASS**,24ca mới nằm trong tổng; focused188/9files chồng full, không cộng thêm. Hai typecheck/AW2+stable build/259runtime parity đạt; full chạy serial với allowance120s, không phải lượt default20s. [Bằng chứng](evidence/AW2-016E.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** [016Ftiệm trà](proposals/AW2-016F-TEA-ROOM.md) đã có đề xuất cụ thể cửa/phòng con/migration5→6; trạng thái PROPOSED, chưa bật phòng/schema6 hoặc trao duyệt canon. D18/D20human-device/D11/rights giữ nguyên; D16push trực tiếp AW2, không master/rpg/deploy/release/reset. Next BA/story: review/chốt scope016F trước khi triển khai. Các mục dưới là lịch sử; trạng thái hiện tại theo016E.
+
 **AW2-016D VERIFIED development — dựng cảnh đích trước khi ghi save.** Giữ cảnh/camera nguồn, dựng một renderer đích ẩn và kiểm tra khung hình đầu thật; lưu thành công mới đưa chính canvas đó ra hiển thị. Lỗi init/vẽ/context trước ghi, hủy/timeout hoặc lỗi lưu bỏ candidate và giữ nguồn. Guard kiểm tra lại ngay trong Web Lock; cảnh lỗi trong lúc chờ khóa không được ghi vị trí.
 
 **262 kiểm tra trình duyệt mới =131source+131compiled PASS**, gồm lỗi init/khung đầu, timeout renderer30s, mất context thật khi chờ khóa, cùng canvas được promote, hai tab, đi–về sáu vùng/quest thật, classic entry và4viewport/chữ20px/44px. **Full1.733/1.733unit/134files PASS** với `--maxWorkers=1 --testTimeout=120000` (26ca mới đã nằm trong tổng); hai typecheck/AW2+stable build/259asset parity đạt. Không cộng lịch sử hoặc gọi đây là lượt default-timeout. [Cách dùng](CHUYEN_VUNG.md) · [Bằng chứng](evidence/AW2-016D.md).

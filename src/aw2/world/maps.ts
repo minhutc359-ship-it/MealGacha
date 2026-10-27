@@ -1,11 +1,12 @@
 import { KITCHEN_BOSS_ID, TABLE_NOTE_ID, ZONE_IDS, type ZoneId } from "./ids"
+import { PANTRY_STOCK } from "./pantryLayout"
 
 export interface WorldObject {
   id: string
   name: string
   x: number
   y: number
-  kind: "npc" | "table" | "memory" | "hint" | "puzzle" | "boss" | "note" | "chest" | "exit" | "mode"
+  kind: "npc" | "table" | "memory" | "hint" | "puzzle" | "boss" | "note" | "chest" | "exit" | "mode" | "stock"
   to?: ZoneId
   memory?: 0 | 1 | 2
   step?: 0 | 1 | 2
@@ -86,6 +87,13 @@ const objects: WorldObject[][] = [
     },
   ],
   [
+    {
+      id: PANTRY_STOCK.id,
+      name: PANTRY_STOCK.name,
+      kind: PANTRY_STOCK.kind,
+      x: PANTRY_STOCK.x,
+      y: PANTRY_STOCK.y,
+    },
     {
       id: "aw2-object-hearth-hint",
       name: "Bảng dấu hơi",

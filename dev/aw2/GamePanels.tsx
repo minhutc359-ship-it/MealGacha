@@ -23,6 +23,7 @@ import {
 import { journeyDirections } from "../../src/aw2/world/journey"
 import { describeObject, INTERACT_RANGE } from "../../src/aw2/world/rules"
 import { zoneById } from "../../src/aw2/world/maps"
+import { PANTRY_STOCK } from "../../src/aw2/world/pantryLayout"
 import {
   worldObjects,
   type NpcPatrolState,
@@ -626,9 +627,11 @@ export function GamePlacesPanel({
         disabled={!canWalk || locked || near}
         onClick={() =>
           onWalk(
-            object.kind === "exit"
-              ? { x: object.x + (object.x > 320 ? -24 : 24), y: object.y }
-              : { x: object.x, y: object.y + 32, entityId: object.id },
+            object.kind === "stock"
+              ? PANTRY_STOCK.approach
+              : object.kind === "exit"
+                ? { x: object.x + (object.x > 320 ? -24 : 24), y: object.y }
+                : { x: object.x, y: object.y + 32, entityId: object.id },
           )
         }
       >

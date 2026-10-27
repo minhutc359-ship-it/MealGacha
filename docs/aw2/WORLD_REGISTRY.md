@@ -1,5 +1,7 @@
 # Map registry và bản đồ hành trình
 
+016E adds optional `stock` entity `aw2-object-pantry-stock` to the existing pantry registry. Anchor320,288 and native approach320,256 remain outside the unchanged crate wall; label and all native approaches use one layout definition. The renderer reuses the original crate, no duplicate sprite/asset download. E opens read-only inventory/recipe/routes; path buttons use existing safe navigation and require a later explicit interaction. No new zone/portal/spawn/wall/save field or automatic rewards. [Pantry guide](PHONG_KHO.md), [contract](tasks/AW2-016E.md).016Fnew room is a separate proposal.
+
 016B adds one transient live-position provider for Em Đem Nước through `worldObjects`/`npcPatrolView`. Registry coordinates remain canonical story anchors. Renderer/proximity/labels/native destinations/quest guidance receive one controller snapshot; the existing memory write is available only at its immediate story anchor. No portal/spawn/blocker/save contract changes. [Patrol contract and limits](NPC_PATROL.md).
 
 Triển khai AW2-016A + AW2-008B, nền `2caa108`. Mở `/dev/aw2/game.html` → **Thêm → Bản đồ hành trình**. Chọn một trong sáu vùng, xem **Đường đi** hoặc từng **Cửa nối**. `●` là vị trí hiện tại; `★` là vùng của mục tiêu nhiệm vụ. Không có lịch sử “đã ghé” giả lập.

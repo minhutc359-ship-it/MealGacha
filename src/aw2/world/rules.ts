@@ -141,6 +141,10 @@ export function describeObject(
         : "Ghé bàn Auto Chess luyện tập: tuyển Vị Linh mượn, xếp đội và đấu 5 vòng, rồi quay về điểm khám phá đã lưu. Không tốn vật phẩm, không nhận thưởng hành trình.",
       [action("visit-mode", "Ghé bàn")],
     )
+  if (object.kind === "stock")
+    return result(
+      "Kiểm nguyên liệu đang có, xem công thức và chọn lối đi trong Kho.",
+    )
   if (object.kind === "chest")
     return result(
       "Rương nguyên liệu: 4 Gạo thơm, 3 Rau vườn, 2 Nước dùng. Mỗi hành trình chỉ nhận một lần.",

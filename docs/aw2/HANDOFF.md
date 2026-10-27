@@ -1,4 +1,10 @@
-# Handoff —2026-10-27 / AW2-016D
+# Handoff —2026-10-27 / AW2-016E
+
+**AW2-016E VERIFIED — Phòng Kho có điểm Kiểm nguyên liệu.** E tại thùng hàng mở bảng Nguyên liệu/Công thức/Lối đi có phân trang; số lượng và trạng thái đọc túi/receipt/progress thật. Đi tới rương/gợi ý/hai cửa chỉ đi bộ; nhận đồ/ghi gợi ý/Đi qua vẫn là thao tác rõ ràng. Dùng lại crate, không thêm texture/vật cản/room/quest/schema; save5cũ đọc nguyên bytes. Công thức nấu và bảng chuẩn bị dùng chung định lượng1/1/1, thưởng chia bữa45XP giữ nguyên. [Cách dùng](PHONG_KHO.md).
+
+**294 kiểm tra trình duyệt mới =147source+147compiled PASS**, toàn bộ11trang/4viewport/chữ20px/44px, no-write/cùngcanvas/focus, chestghi lỗi→retry, hint/puzzle/nấu-chia205XP, reload/hai tab và classic. **Full1.757/1.757unit/135files PASS**,24ca mới nằm trong tổng; focused188/9files chồng full, không cộng thêm. Hai typecheck/AW2+stable build/259runtime parity đạt; full chạy serial với allowance120s, không phải lượt default20s. [Bằng chứng](evidence/AW2-016E.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** [016Ftiệm trà](proposals/AW2-016F-TEA-ROOM.md) đã có đề xuất cụ thể cửa/phòng con/migration5→6; trạng thái PROPOSED, chưa bật phòng/schema6 hoặc trao duyệt canon. D18/D20human-device/D11/rights giữ nguyên; D16push trực tiếp AW2, không master/rpg/deploy/release/reset. Next BA/story: review/chốt scope016F trước khi triển khai. Các mục dưới là lịch sử; trạng thái hiện tại theo016E.
 
 016D source `32afa6dd6564ced989eb4433b12a61392b1f81e6` / exact staged+fetched tree `49e3a471932637f981f3c593a7d3c10cf04e856b` published; expected-head/non-force/ancestry/clean tracked local sync PASS. [Publication proof](evidence/AW2-016D-publication.json). Completion stamp changes documents only.
 
