@@ -1,5 +1,7 @@
 # Test ledger / change impact
 
+016G source `4d145e4fdab39cabe116b78049d1bd0c7faa12ee` / exact staged+independently fetched tree `01aa80868bc0170362dbb4cfee2c45fec5e293c5` published on AW2; expected-head/non-force/direct-parent/ancestry/index match and clean tracked local sync PASS. [Publication proof](evidence/AW2-016G-publication.json). Following completion stamp is documentation/evidence only.
+
 ## AW2-016G — scene-aware place/door guidance
 
 Base `bd67e271209cc94cc02dbe7a08589de263bfbeaf`;424runtimeinputs `483ac9d86e32c69e765c3c4f27e8cc2f250036dd05de0d5db5437206ba7f979f` match compiled bundle. Fresh124units/6files in3.62s serial120sallowance;27newplace-guidance cases included, exact per-file counts in report. Range48boundary/selected-vs-nearest, foreign scene isolation, current patrol snapshot, all six region safe approaches/openreturnports/blockedgate/no permissions, room paths/desks/exit from3origins, detached projections and scenic manifest preservation. Root/devtypes PASS. Full1781/136files016F at86de613 is reused for byte-unchanged save/combat/economy/collection/mode/rule/geometry/navigation/asset/dependency boundaries; not a fresh016Gfull count. Changed UI/controller consumers fresh below; default20s/concurrency remainsopen.

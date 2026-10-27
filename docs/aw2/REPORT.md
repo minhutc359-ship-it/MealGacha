@@ -1,5 +1,7 @@
 # Báo cáo Adventure World 2
 
+016G source `4d145e4fdab39cabe116b78049d1bd0c7faa12ee` / exact staged+independently fetched tree `01aa80868bc0170362dbb4cfee2c45fec5e293c5` published on AW2; expected-head/non-force/direct-parent/ancestry/index match and clean tracked local sync PASS. [Publication proof](evidence/AW2-016G-publication.json). Following completion stamp is documentation/evidence only.
+
 016G đã hoàn tất trên nhánh `game/adventure-world-2`, nền `bd67e271209cc94cc02dbe7a08589de263bfbeaf`. Tiệm trà/schema6 của016F đang hoạt động; các báo cáo016E“đề xuất/chưa bật” là lịch sử.
 
 **AW2-016G VERIFIED — chỉ dẫn cửa và tương tác theo địa điểm.** Địa điểm có điểm đứng an toàn và nút Xem tương tác khi đã gần; mở đúng đối tượng đang chọn, không tự thực hiện hành động. Bản đồ ghi rõ phòng hiện tại, chỉ ra hiên trước khi sang vùng khác và có mục Tiệm trà tại Làng. Nhãn cạnh E nêu điểm gần nhất; Escape trả focus map. Classic dùng chung cả hai menu, bỏ điểm hiên trùng. [Cách dùng](DIA_DIEM.md).

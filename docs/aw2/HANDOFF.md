@@ -1,5 +1,7 @@
 # Handoff —2026-10-27 / AW2-016E
 
+016G source `4d145e4fdab39cabe116b78049d1bd0c7faa12ee` / exact staged+independently fetched tree `01aa80868bc0170362dbb4cfee2c45fec5e293c5` published on AW2; expected-head/non-force/direct-parent/ancestry/index match and clean tracked local sync PASS. [Publication proof](evidence/AW2-016G-publication.json). Following completion stamp is documentation/evidence only.
+
 **AW2-016G VERIFIED — chỉ dẫn cửa và tương tác theo địa điểm.** Địa điểm có điểm đứng an toàn và nút Xem tương tác khi đã gần; mở đúng đối tượng đang chọn, không tự thực hiện hành động. Bản đồ ghi rõ phòng hiện tại, chỉ ra hiên trước khi sang vùng khác và có mục Tiệm trà tại Làng. Nhãn cạnh E nêu điểm gần nhất; Escape trả focus map. Classic dùng chung cả hai menu, bỏ điểm hiên trùng. [Cách dùng](DIA_DIEM.md).
 
 **124ca unit tác động/6files PASS**, gồm27ca mới; **510kiểm tra trình duyệt mới=255source+255compiled PASS**,0lỗi bất ngờ. Bốn viewport/chữ20px/44px, freshintro5người30XP/gate thật, save5và6có nguồn, đủ6vùng và hai entry; cảnh lỗi/retry/tabcũ/raw/focus/pause đã kiểm tra. Hai typecheck/AW2+stable builds/262asset byte parity PASS. Full1781units016F chỉ tái sử dụng cho engine/save/economy/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016G.md).

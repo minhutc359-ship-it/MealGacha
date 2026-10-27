@@ -157,5 +157,11 @@
     "Selected inspection only opens read-only existing dialog; write conflict/proximity/action authority remain the unchanged save store/rules.",
     "Full default20s/concurrency reliability remains open; no major engine/save changes in016G."
   ],
-  "timezone": "Asia/Saigon"
+  "timezone": "Asia/Saigon",
+  "publication": {
+    "status": "PASS_SOURCE_PUBLICATION",
+    "source": "4d145e4fdab39cabe116b78049d1bd0c7faa12ee",
+    "sourceTree": "01aa80868bc0170362dbb4cfee2c45fec5e293c5",
+    "proof": "AW2-016G-publication.json"
+  }
 }
