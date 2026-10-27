@@ -1,5 +1,7 @@
 # Handoff —2026-10-27 / AW2-016E
 
+016F source `7a83d2c3c4e225982edba288f60322a37e5633bd` / exact staged+independently fetched tree `316697d2d52b488a05fdc03d3aaccb0d2d07f34c` published on `game/adventure-world-2`; expected-head/non-force, direct parent/ancestry/index-tree/clean tracked local sync PASS. [Publication proof](evidence/AW2-016F-publication.json). This completion stamp changes documentation/evidence only.
+
 **AW2-016F VERIFIED — tiệm trà đã có nội thất và lưu vị trí riêng.** Cửa ở hiên Làng mở phòng con có bàn đội đồng hành và góc nhật ký/công thức. Đổi trưởng đội dùng bộ sưu tập thật; đọc không ghi save, TCG/Auto Chess trở về đúng phòng; ra hiên khôi phục đúng điểm/hướng ngoài cửa. Schema6 đọc save1–5 mà không ghi đè, chỉ nâng cấp khi có thao tác lưu. [Cách chơi/ảnh/prompt](TIEM_TRA.md).
 
 **1.781/1.781unit/136files PASS**, gồm24ca mới, serial120sQA allowance. **1144 kiểm tra trình duyệt mới PASS**: 142tiệm trà (71source+71compiled) và 1002hồi quy toàn tuyến (501+501). Cả hai flavor có hành trình mới→TCG thật→cờ giao tranh/sang vòng→boss thật→lỗi ghi/thử lại→kết thúc/reload; không lỗi bất ngờ. Hai typecheck/AW2+stable builds/153asset byte parity đạt. [Bằng chứng](evidence/AW2-016F.md).

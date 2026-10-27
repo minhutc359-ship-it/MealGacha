@@ -1,5 +1,7 @@
 # Test ledger / change impact
 
+016F source `7a83d2c3c4e225982edba288f60322a37e5633bd` / exact staged+independently fetched tree `316697d2d52b488a05fdc03d3aaccb0d2d07f34c` published on `game/adventure-world-2`; expected-head/non-force, direct parent/ancestry/index-tree/clean tracked local sync PASS. [Publication proof](evidence/AW2-016F-publication.json). This completion stamp changes documentation/evidence only.
+
 ## AW2-016F — persistent optional tea-room /2026-10-27
 
 Base `d459b30bf884778576065a95a713304ea71e65c0`, 423runtimeinputs fingerprint `ef95196c72a49313c53f93db70aad87abb0482a02e9bf7dcad0e8b8f80f4a843` equals compiled bundle. Fresh full1,781/1,781units/136files PASS in115.47s, serial120sallowance;24new cases included, no fail/skip. Focused24+33/core191 runs overlap the full, not added. An initial full found8historical boss-rematch fixtures that still embedded the new interior field under old strict schemas; fixed fixture construction/default current version, preserving economic/story assertions, seeds and loops. Type diagnostics/formatter syntax issues corrected before final types/builds. Default20s/concurrency reliability remains open.
