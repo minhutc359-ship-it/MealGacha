@@ -75,5 +75,10 @@
     "pnpm build:aw2",
     "pnpm build",
     "node dev/tools/verify-aw2-scene-transition.mjs [--compiled] --playwright <playwright-core/index.mjs> --chromium /tmp/meal-chrome-016c/chromium"
-  ]
+  ],
+  "publication": {
+    "source": "fbbce246b921065c4417c6806df955e399a3d67c",
+    "sourceTree": "6917333ebf85d3b9fd3799d96a15a8e6c835333a",
+    "proof": "AW2-016C-publication.json"
+  }
 }
