@@ -1,5 +1,7 @@
 # Test ledger / change impact
 
+016I source `0cd198862f8ac3eea12d979393ff8e6c6cd9ec4f` / exact staged+independently fetched tree `f49c6fd6b4bcf895f226f791fb52f5b10de4bb16` published on AW2; expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016I-publication.json). Following completion stamp is documentation/evidence only.
+
 ## AW2-016I — map door/service cues and focus /2026-10-27
 
 Base `6250c8d0d1703c6ef8bf66344e23b04d8c0246d6`, tested runtime429inputs `35563866a2e6087fdcdae526d4f674e7d572a6a7e9bcd458828a6b9f431ba709`, compiled match. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.0/Python3.12.14. Fresh191units/7files PASS in2.93s,39new included; serial120s allowance, no assertion/seed/loop/config changes. UI-only focus fix after the unit run leaves those imported pure modules unchanged; affected browser checks rerun freshly. Root/dev types and AW2/stable builds PASS. Full1781units016F are historical reuse only for the byte-unchanged protected engine/save/art boundaries; never added to this fresh total.

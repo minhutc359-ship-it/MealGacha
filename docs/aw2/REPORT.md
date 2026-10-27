@@ -1,5 +1,7 @@
 # Soul of Meal AW2 — cập nhật 27/10/2026
 
+016I source `0cd198862f8ac3eea12d979393ff8e6c6cd9ec4f` / exact staged+independently fetched tree `f49c6fd6b4bcf895f226f791fb52f5b10de4bb16` published on AW2; expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016I-publication.json). Following completion stamp is documentation/evidence only.
+
 Đã hoàn tất AW2-016I: trạng thái cửa và dịch vụ ngay trên bản đồ. Góc bám hiện tên/chữ, toàn cảnh hiện biểu tượng; menu Địa điểm có giải thích cùng nguồn dữ liệu. Rương và bếp phản ánh biên nhận/nguyên liệu thật. Đổi menu và phân trang giữ focus bàn phím. [Cách dùng](CUA_VA_DICH_VU.md).
 
 **Đã kiểm tra mới:**191ca unit/7files (39ca mới nằm trong tổng),794kiểm tra trình duyệt=397source+397compiled,0lỗi bất ngờ. Cửa theo nhiệm vụ/puzzle thật; rương ghi lỗi–retry; nấu/chia;4viewport/chữ20px/44px/focus;6vùng/4renderer/tiệm trà, walkingStop/save5–6/WebGL/tabcũ/classic đều đạt. Hai typecheck và hai build đạt;262asset giữ nguyên bytes. [Bằng chứng](evidence/AW2-016I.md).

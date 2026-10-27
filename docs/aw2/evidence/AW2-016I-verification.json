@@ -192,6 +192,9 @@
     "No current full boss/full match, physical phone, independent playtest, human audio, total GPU memory/FPS or legal rights clearance."
   ],
   "publication": {
-    "status": "PENDING_EXPECTED_HEAD_AW2_PUSH"
+    "status": "PASS_SOURCE_PUBLICATION",
+    "source": "0cd198862f8ac3eea12d979393ff8e6c6cd9ec4f",
+    "sourceTree": "f49c6fd6b4bcf895f226f791fb52f5b10de4bb16",
+    "proof": "AW2-016I-publication.json"
   }
 }

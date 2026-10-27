@@ -1,5 +1,7 @@
 # Handoff —2026-10-27 / AW2-016I
 
+016I source `0cd198862f8ac3eea12d979393ff8e6c6cd9ec4f` / exact staged+independently fetched tree `f49c6fd6b4bcf895f226f791fb52f5b10de4bb16` published on AW2; expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016I-publication.json). Following completion stamp is documentation/evidence only.
+
 **AW2-016I VERIFIED — cửa và dịch vụ có chỉ báo trên bản đồ.** Nhãn hiện Lối mở/Khóa, trạng thái bàn TCG/cờ/tiệm trà, rương Chưa nhận/Đã nhận và bếp đủ đồ/có bữa ấm/thiếu đồ. Góc bám có tên và chữ; toàn cảnh dùng biểu tượng tĩnh, ẩn nhãn bị cắt/chồng. Địa điểm dùng cùng giải thích; đổi menu và tới hai đầu phân trang giữ focus. [Cách dùng](CUA_VA_DICH_VU.md).
 
 **191 kiểm thử tác động/7 tệp PASS**, gồm39 ca mới; **794 kiểm tra trình duyệt mới =397 source+397 compiled PASS**,0 lỗi bất ngờ. Bốn viewport/chữ20px/44px, cửa theo nhiệm vụ và puzzle thật, rương ghi lỗi→retry, nấu/chia đến thiếu đồ, all4renderer/6vùng+tiệm trà, save5–6/Stop/WebGL/tab cũ/classic đã kiểm tra. Hai typecheck/AW2+stable build/262asset byte parity đạt. Full1781unit016F chỉ tái sử dụng cho engine/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016I.md).
