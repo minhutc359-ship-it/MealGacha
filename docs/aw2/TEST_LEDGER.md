@@ -1,5 +1,7 @@
 # Test ledger / change impact
 
+Final verification caught an audit-script loop-variable shadowing error that overwrote only Lam historical prompt metadata after the frozen build. Restore exact base bytes (9ee35ef blob) and correct the JSON-inclusive asset count from153 image/audio files to262 packaged files; no art or gameplay changes. Final restored runtime fingerprint matches frozen tested build. Earlier source/stamp publication is superseded by the corrective commit, verified separately.
+
 016F source `7a83d2c3c4e225982edba288f60322a37e5633bd` / exact staged+independently fetched tree `316697d2d52b488a05fdc03d3aaccb0d2d07f34c` published on `game/adventure-world-2`; expected-head/non-force, direct parent/ancestry/index-tree/clean tracked local sync PASS. [Publication proof](evidence/AW2-016F-publication.json). This completion stamp changes documentation/evidence only.
 
 ## AW2-016F — persistent optional tea-room /2026-10-27
@@ -10,7 +12,7 @@ Base `d459b30bf884778576065a95a713304ea71e65c0`, 423runtimeinputs fingerprint `e
 
 1002additional fresh full-story regression checks=501source+501compiled, not historical counts: freshintro→oneTCGgame/manualtarget→Chessrealplacement/combat/nextround→all six regions/realgates→bosswin ticks[45, 45]→quota/retry→note/ending/reload. Full-story ending XP[300, 300]. Reducedmotion and4viewport16/20px matrices. Harness only adds browser-specific library path and ignores generated output; no scenario/assertion changes.
 
-Root/devtypes, AW2/stablebuild/releaseguard and153asset byteparity PASS. New original floor/transparentatlas lossless exactRGBA;3,403,990runtimebytes,12,582,912decoded+leader<24MB; sourcePNG/prompts/hash retained, rightsREVIEW_REQUIRED. AW2308files/125,176,257bytes; stable851files/177,450,422bytes/49textisolation. Untracked source temp retained and absent from packages; no derived prune performed. QA captures remain ignored; source room and compiled390recipe visually reviewed. [Evidence](evidence/AW2-016F.md).
+Root/devtypes, AW2/stablebuild/releaseguard and262asset byteparity PASS. New original floor/transparentatlas lossless exactRGBA;3,403,990runtimebytes,12,582,912decoded+leader<24MB; sourcePNG/prompts/hash retained, rightsREVIEW_REQUIRED. AW2308files/125,176,257bytes; stable851files/177,450,422bytes/49textisolation. Untracked source temp retained and absent from packages; no derived prune performed. QA captures remain ignored; source room and compiled390recipe visually reviewed. [Evidence](evidence/AW2-016F.md).
 
 In-session BA/story/mechanic/animation/tester/scretary and React/imagegen workflows; no subagents/independentacceptance. Demo90/product≈40%(35–45%), D18/D20/D11 held. No master/rpg/deploy/release/reset. Next BA/UX/tester: scoped doorway/place guidance and full-route accessibility. Prior ledger below historical.
 

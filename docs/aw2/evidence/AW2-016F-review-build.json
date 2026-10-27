@@ -7,7 +7,7 @@
   "compiledFingerprintMatch": true,
   "aw2Files": 308,
   "aw2Bytes": 125176257,
-  "runtimeParity": 153,
+  "runtimeParity": 262,
   "sourceTempExclusion": true,
   "stableFiles": 851,
   "stableBytes": 177450422,
@@ -21,9 +21,7 @@
     "vite.config.ts",
     "dev/vite.aw2.config.ts"
   ],
-  "stablePrunedTransientInputCopies": [
-    {
-      "bytes": 262144
-    }
-  ]
+  "stablePrunedTransientInputCopies": [],
+  "untrackedTemporaryInputPreserved": true,
+  "metadataCorrection": "Final verification caught an audit-script loop-variable shadowing error that overwrote only Lam historical prompt metadata after the frozen build. Restore exact base bytes (9ee35ef blob) and correct the JSON-inclusive asset count from153 image/audio files to262 packaged files; no art or gameplay changes. Final restored runtime fingerprint matches frozen tested build. Earlier source/stamp publication is superseded by the corrective commit, verified separately."
 }

@@ -1,6 +1,6 @@
 {
   "task": "AW2-016F",
-  "status": "PASS_SOURCE_PUBLICATION",
+  "status": "SUPERSEDED_BY_METADATA_CORRECTION",
   "branch": "game/adventure-world-2",
   "base": "d459b30bf884778576065a95a713304ea71e65c0",
   "source": "7a83d2c3c4e225982edba288f60322a37e5633bd",
@@ -14,5 +14,6 @@
   "localBranchSynchronized": true,
   "trackedClean": true,
   "runtimeFingerprint": "ef95196c72a49313c53f93db70aad87abb0482a02e9bf7dcad0e8b8f80f4a843",
-  "followingStamp": "docs/evidence only, verified separately after push"
+  "followingStamp": "docs/evidence only, verified separately after push",
+  "metadataCorrection": "Final verification caught an audit-script loop-variable shadowing error that overwrote only Lam historical prompt metadata after the frozen build. Restore exact base bytes (9ee35ef blob) and correct the JSON-inclusive asset count from153 image/audio files to262 packaged files; no art or gameplay changes. Final restored runtime fingerprint matches frozen tested build. Earlier source/stamp publication is superseded by the corrective commit, verified separately."
 }

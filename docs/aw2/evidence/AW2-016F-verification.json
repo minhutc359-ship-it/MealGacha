@@ -65,7 +65,7 @@
     "compiledFingerprintMatch": true,
     "aw2Files": 308,
     "aw2Bytes": 125176257,
-    "runtimeParity": 153,
+    "runtimeParity": 262,
     "sourceTempExclusion": true,
     "stableFiles": 851,
     "stableBytes": 177450422,
@@ -79,11 +79,9 @@
       "vite.config.ts",
       "dev/vite.aw2.config.ts"
     ],
-    "stablePrunedTransientInputCopies": [
-      {
-        "bytes": 262144
-      }
-    ]
+    "stablePrunedTransientInputCopies": [],
+    "untrackedTemporaryInputPreserved": true,
+    "metadataCorrection": "Final verification caught an audit-script loop-variable shadowing error that overwrote only Lam historical prompt metadata after the frozen build. Restore exact base bytes (9ee35ef blob) and correct the JSON-inclusive asset count from153 image/audio files to262 packaged files; no art or gameplay changes. Final restored runtime fingerprint matches frozen tested build. Earlier source/stamp publication is superseded by the corrective commit, verified separately."
   },
   "assets": {
     "newRuntimeBytes": 3403990,
@@ -117,9 +115,10 @@
     "Six canonical regions/eightNPC/fourquests/12spirits unchanged; optional room is development scope, no broad new canon approval."
   ],
   "publication": {
-    "status": "PASS_SOURCE_PUBLICATION",
+    "status": "SUPERSEDED_PENDING_METADATA_CORRECTION_VERIFICATION",
     "source": "7a83d2c3c4e225982edba288f60322a37e5633bd",
     "sourceTree": "316697d2d52b488a05fdc03d3aaccb0d2d07f34c",
     "proof": "AW2-016F-publication.json"
-  }
+  },
+  "metadataCorrection": "Final verification caught an audit-script loop-variable shadowing error that overwrote only Lam historical prompt metadata after the frozen build. Restore exact base bytes (9ee35ef blob) and correct the JSON-inclusive asset count from153 image/audio files to262 packaged files; no art or gameplay changes. Final restored runtime fingerprint matches frozen tested build. Earlier source/stamp publication is superseded by the corrective commit, verified separately."
 }
