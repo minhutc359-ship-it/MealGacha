@@ -80,5 +80,7 @@
   ],
   "physicalDevice": "NOT_RUN",
   "independentAcceptance": "NOT_RUN",
-  "publication": "PENDING"
+  "publication": "PASS_SOURCE_PUBLICATION",
+  "sourceCommit": "6418d55e4bab58efa2e57749b362f260c232e293",
+  "sourceTree": "d8107ff7faee5a81e43b4499bbb23817c6c7b7c3"
 }

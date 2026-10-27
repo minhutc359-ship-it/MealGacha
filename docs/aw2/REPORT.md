@@ -1,5 +1,7 @@
 # Soul of Meal AW2 — cập nhật 28/10/2026
 
+016J source `6418d55e4bab58efa2e57749b362f260c232e293` / exact staged+independently fetched tree `d8107ff7faee5a81e43b4499bbb23817c6c7b7c3` published on AW2; all27 changed blobs, expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016J-publication.json). This completion stamp is documentation/evidence only.
+
 Đã hoàn tất AW2-016J: NPC/đồ vật có dấu **Nhận nhiệm vụ → Mục tiêu → Trả nhiệm vụ**, dùng tiến trình thật của bốn nhiệm vụ. Khi chồng nhãn, nhiệm vụ được ưu tiên. Địa điểm vẫn giải thích trạng thái bếp. [Cách dùng](NHIEM_VU_TREN_MAP.md).
 
 **Kiểm tra mới:**173unit/6files (16ca mới nằm trong tổng),296browser=148source+148compiled,0lỗi bất ngờ. Cả hai lượt mới đi đủ bốn nhiệm vụ, boss thắng tick45, kết thúc/reload300XP. Ghi lỗi/thử lại, classic, bốnviewport20px/44px/focus/camera đạt. Hai typecheck và hai build đạt;262asset byte-giống, stable build giữ nguyên177450422bytes. [Bằng chứng](evidence/AW2-016J.md).

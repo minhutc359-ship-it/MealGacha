@@ -1,5 +1,7 @@
 # Handoff —2026-10-28 / AW2-016J
 
+016J source `6418d55e4bab58efa2e57749b362f260c232e293` / exact staged+independently fetched tree `d8107ff7faee5a81e43b4499bbb23817c6c7b7c3` published on AW2; all27 changed blobs, expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016J-publication.json). This completion stamp is documentation/evidence only.
+
 **AW2-016J VERIFIED — nhiệm vụ có chỉ báo tại NPC và đồ vật.** Dấu nhận nhiệm vụ, mục tiêu và trả nhiệm vụ đọc cùng các thao tác thật; ký ức đã đọc mất dấu, puzzle theo bước hiện tại và boss chỉ mở ghi chép sau khi thắng/lưu. Ưu tiên nhiệm vụ khi nhãn chồng; Địa điểm vẫn nêu trạng thái bếp. [Cách dùng](NHIEM_VU_TREN_MAP.md).
 
 **173 kiểm thử tác động/6 tệp PASS**, gồm16ca mới; **296 kiểm tra trình duyệt mới=148source+148compiled PASS**,0lỗi bất ngờ. Cả hai đi từ save mới qua đủ bốn nhiệm vụ, boss thắng tick45, kết thúc/reload300XP; nhận nhiệm vụ ghi lỗi–retry, classic, bốn viewport/chữ20px/44px/focus/camera đều đạt. Hai typecheck/hai build/262asset byte parity đạt. [Bằng chứng](evidence/AW2-016J.md).

@@ -1,5 +1,7 @@
 # Test ledger / change impact
 
+016J source `6418d55e4bab58efa2e57749b362f260c232e293` / exact staged+independently fetched tree `d8107ff7faee5a81e43b4499bbb23817c6c7b7c3` published on AW2; all27 changed blobs, expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016J-publication.json). This completion stamp is documentation/evidence only.
+
 ## AW2-016J — quest cues /2026-10-28
 
 Base `9b3339fdc41e3ad9c0c0c4f5a99f2b0b09d4aabf`; frozen runtime429inputs `f797a8c337f749850f22c2569ca5dd0d64c557fb9138f622c03582a6872ae997` equals compiled fingerprint. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.0. Fresh173units/6files PASS (16new included); serial120s allowance. Pure modules unchanged after that run; final presentation priority is verified in both browser runs. Root/dev typechecks, AW2/stable builds and asset/isolation audit PASS.
