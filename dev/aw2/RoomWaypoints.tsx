@@ -11,6 +11,7 @@ import type { Economy } from "../../src/aw2/economy/model"
 import { zoneById } from "../../src/aw2/world/maps"
 import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
 import { sceneName } from "../../src/aw2/world/scene"
+import { placeApproach } from "../../src/aw2/world/placeGuidance"
 import { TEA_ROOM } from "../../src/aw2/world/interiorLayout"
 
 export function RoomWaypoints({
@@ -34,8 +35,7 @@ export function RoomWaypoints({
         id: object.id,
         name: object.name,
         short: object.name,
-        x: object.x + (object.kind === "room-exit" ? 24 : 0),
-        y: object.y + (object.kind === "room-exit" ? 0 : 32),
+        ...placeApproach(object),
         status: "Đến gần rồi tự E / Tương tác",
         locked: false,
       }))

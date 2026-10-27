@@ -1,0 +1,135 @@
+
+ RUN  v5.0.1 /workspace/scratch/47c00dd5b26d/MealGacha
+
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > preserves six maps, eight NPCs, entities and explicit reciprocal portals 15ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > is detached from authored geometry and from later snapshots 3ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > rejects duplicate map 2ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > rejects duplicate entity 1ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > rejects foreign namespace 2ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > rejects wrong entity namespace 1ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > rejects missing region 1ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > rejects bad reverse 1ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > rejects orphan spawn 1ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > rejects wall spawn 1ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > rejects nonfinite point 1ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > rejects out-of-map wall 1ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > projects actual gate/travel permissions at stage 0 31ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > projects actual gate/travel permissions at stage 1 26ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > projects actual gate/travel permissions at stage 2 15ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > projects actual gate/travel permissions at stage 3 22ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > projects actual gate/travel permissions at stage 4 15ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > projects actual gate/travel permissions at stage 5 16ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > projects actual gate/travel permissions at stage 6 23ms
+ ✓ dev/tests/aw2/world-registry.test.ts > AW2 compatible map registry > keeps a locked route unselectable and opens the two shortcuts only at completion 6ms
+ ✓ dev/tests/aw2/settlement.test.ts > binds two original transparent architecture atlases and eight safe frames without authority claims 29ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-covenant-village > adds a dense varied neighborhood with solid bases outside legal saved positions 1ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-covenant-village > keeps all original NPCs, both spawns and landmark approaches reachable with collision-safe segments 26ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-covenant-village > projects unchanged coordinates with the denser default camera and preserves overview/inverse math 1ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-covenant-village > fades overhanging roof only on actual overlap behind its ground depth 0ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-lantern-street > adds a dense varied neighborhood with solid bases outside legal saved positions 0ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-lantern-street > keeps all original NPCs, both spawns and landmark approaches reachable with collision-safe segments 15ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-lantern-street > projects unchanged coordinates with the denser default camera and preserves overview/inverse math 0ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-lantern-street > fades overhanging roof only on actual overlap behind its ground depth 0ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-forgotten-kitchen-yard > adds a dense varied neighborhood with solid bases outside legal saved positions 0ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-forgotten-kitchen-yard > keeps all original NPCs, both spawns and landmark approaches reachable with collision-safe segments 6ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-forgotten-kitchen-yard > projects unchanged coordinates with the denser default camera and preserves overview/inverse math 0ms
+ ✓ dev/tests/aw2/settlement.test.ts > 006O aw2-zone-forgotten-kitchen-yard > fades overhanging roof only on actual overlap behind its ground depth 0ms
+ ✓ dev/tests/aw2/settlement.test.ts > adds32structures only to outdoor regions and leaves interior camera alone 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > enters and exits only by explicit nearby room actions 13ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > moves the active actor, collides with desks and keeps outside state exactly 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > uses room-local objects, paths and exit directions instead of outside targets 2ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 0 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 1 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 2 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 3 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 4 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 5 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects outside checkpoints from another region or far from entrance 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > requires a live renderer guard for both directions and writes exactly once per action 18ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > refuses generic room entry/exit/outside mutations, including economy and collection writers 8ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > keeps the exact source on failed readiness, quota and stale-tab conflict 3ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > reads historical v1 without writes and upgrades once on explicit action 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > reads historical v2 without writes and upgrades once on explicit action 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > reads historical v3 without writes and upgrades once on explicit action 2ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > reads historical v4 without writes and upgrades once on explicit action 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > reads historical v5 without writes and upgrades once on explicit action 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > preserves authentic 016E earned v5 inventory/quest/party and exact raw on read 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > preserves unsupported and corrupt room bytes without reset 2ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > quick tcg returns to exact room checkpoint without another write 3ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > quick auto-chess returns to exact room checkpoint without another write 2ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F scene readiness and original asset contract > does not accept outside readiness for the room or another leader 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F scene readiness and original asset contract > prepares only the two room atlases and one leader, within measured budgets 10ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > accept intro points only to actual available quest interactions 5ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > read cloth points only to actual available quest interactions 1ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > receive starters points only to actual available quest interactions 2ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > accept memories points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 0 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 1 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 2 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 3 points only to actual available quest interactions 3ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 4 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 5 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 6 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 7 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > accept hearth points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > read hint before puzzle points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > puzzle next step 0 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > puzzle next step 1 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > puzzle next step 2 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > report hearth points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > accept final quest points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > challenge boss points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > read earned victory note points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > return to Ba points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > completed wait points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > completed share points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > every legal stage/zone has an open reciprocal route and collision-safe approach to the correct E target 81ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > keeps unearned shortcut gates closed even on the final return-to-Ba route 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > does not expose or mutate canonical maps/arrays through returned directions 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps a selected nearby object even when another object is nearest 3ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > checks range inclusively and never falls back to a different nearest object 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects outdoor aw2-object-village-tea-door while inside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects outdoor aw2-npc-giu-cho while inside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects outdoor aw2-object-village-table while inside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects outdoor aw2-zone-covenant-village:exit:east while inside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects room aw2-object-tea-exit while outside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects room aw2-object-tea-party-desk while outside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects room aw2-object-tea-journal-desk while outside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > resolves the moving NPC at its current snapshot without mutating or teleporting it 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-covenant-village authored approaches standable and inside interaction range 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-lantern-street authored approaches standable and inside interaction range 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-forgotten-kitchen-yard authored approaches standable and inside interaction range 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-kitchen-pantry authored approaches standable and inside interaction range 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-kitchen-hearth authored approaches standable and inside interaction range 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-kitchen-table authored approaches standable and inside interaction range 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > gives room desks and exit collision-safe approaches reachable from multiple origins 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > describes a locked door without granting travel or changing the progress 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > uses the real door approach in village, not its roof anchor 3ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > walks only to the next local portal from aw2-zone-lantern-street 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > walks only to the next local portal from aw2-zone-forgotten-kitchen-yard 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > walks only to the next local portal from aw2-zone-kitchen-pantry 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > walks only to the next local portal from aw2-zone-kitchen-hearth 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > walks only to the next local portal from aw2-zone-kitchen-table 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > points to the local room exit first, without changing the outdoor region graph 9ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > omits only the duplicate village tea landmark and preserves all manifest data 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > returns detached approach data and preserves story/economy authority 1ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > leaves ArrowDown untouched in other modes, dialogs or unavailable saves 8ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > leaves w untouched in other modes, dialogs or unavailable saves 0ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > leaves E untouched in other modes, dialogs or unavailable saves 0ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > preserves ArrowDown for native UI and modifier shortcuts 0ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > preserves w for native UI and modifier shortcuts 0ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > preserves e for native UI and modifier shortcuts 0ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > allows held movement and uppercase keys but only one interaction per key press 5ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > preserves normal browser key Tab 0ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > preserves normal browser key   0ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > preserves normal browser key Enter 0ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > preserves normal browser key Escape 0ms
+ ✓ dev/tests/aw2/controls.test.ts > world shortcut ownership > preserves normal browser key PageDown 0ms
+
+ Test Files  6 passed (6)
+      Tests  124 passed (124)
+   Start at  17:42:34
+   Duration  3.62s (transform 46%, import 33%, tests 20%, worker 1%)
+
+    Isolate  6 workers spawned · ~182ms startup each (spawn + environment, per file)
+             at least ~910ms faster with isolate: false — reuses workers across files instead of one per file

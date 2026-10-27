@@ -2,6 +2,7 @@ import type { Texture, Sprite, Rectangle } from "pixi.js"
 import {
   SETTLEMENT,
   settlementForZone,
+  scenicWalkingLandmarks,
   settlementRoofAlpha,
   type SettlementBuilding,
   type SettlementActor,
@@ -109,7 +110,7 @@ export function SettlementLandmarks({
         để trò chuyện hoặc mở bàn luyện tập.
       </p>
       <div className="aw2-room-waypoint-grid">
-        {region.landmarks.map((point) => (
+        {scenicWalkingLandmarks(zoneId).map((point) => (
           <button
             key={point.id}
             type="button"

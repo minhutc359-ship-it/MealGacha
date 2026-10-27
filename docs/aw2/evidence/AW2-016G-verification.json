@@ -1,0 +1,161 @@
+{
+  "task": "AW2-016G",
+  "status": "VERIFIED_DEVELOPMENT_PLACE_GUIDANCE",
+  "date": "2026-10-27",
+  "base": "bd67e271209cc94cc02dbe7a08589de263bfbeaf",
+  "runtimeFingerprint": "483ac9d86e32c69e765c3c4f27e8cc2f250036dd05de0d5db5437206ba7f979f",
+  "inputFiles": 424,
+  "freshUnits": {
+    "passed": 124,
+    "files": 6,
+    "newCasesIncluded": 27,
+    "casesByFile": {
+      "dev/tests/aw2/world-registry.test.ts": 20,
+      "dev/tests/aw2/settlement.test.ts": 14,
+      "dev/tests/aw2/tea-room.test.ts": 24,
+      "dev/tests/aw2/journey-guide.test.ts": 27,
+      "dev/tests/aw2/place-guidance.test.ts": 27,
+      "dev/tests/aw2/controls.test.ts": 12
+    },
+    "seconds": 3.62,
+    "maxWorkers": 1,
+    "timeoutAllowanceMs": 120000
+  },
+  "reusedFullRegression": {
+    "task": "AW2-016F",
+    "source": "86de61389e5b64e1e6a9fbab4851bd9204251dfc",
+    "passed": 1781,
+    "files": 136,
+    "newFullRun": "NOT_RUN for016G UI/controller projection task",
+    "boundaries": [
+      "src/aw2/save",
+      "src/aw2/combat",
+      "src/aw2/economy",
+      "src/aw2/collection",
+      "src/aw2/modes",
+      "src/aw2/world/model.ts",
+      "src/aw2/world/maps.ts",
+      "src/aw2/world/rules.ts",
+      "src/aw2/world/navigation.ts",
+      "src/aw2/world/registry.ts",
+      "src/aw2/world/encounter.ts",
+      "src/aw2/world/npcPatrol.ts",
+      "dev/aw2/assets",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts",
+      "dev/vite.aw2.config.ts"
+    ],
+    "limitations": "Changed UI/path consumers are freshly verified; old full count is not added to current counts. No new full boss or mode match in016G."
+  },
+  "browser": {
+    "source": 255,
+    "compiled": 255,
+    "freshTotal": 510,
+    "unexpectedErrors": 0,
+    "retainedDiagnosticChecks": 0,
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1280,
+        900
+      ]
+    ],
+    "rootFontPx": 20,
+    "minimumControlPx": 44,
+    "freshStory": "Real intro, five starters30XP, locked pantry gate; no fabricated flags/HP/items.",
+    "authenticFixtures": [
+      "016Dsource finalRaw v5",
+      "016Fstorysource observedRaw completed v6/300XP; read-only map views and real six-zone travel."
+    ],
+    "entries": [
+      "game.html",
+      "world.html"
+    ],
+    "classicViewportVerified": [
+      1280,
+      900
+    ]
+  },
+  "types": {
+    "root": "PASS",
+    "dev": "PASS"
+  },
+  "build": {
+    "task": "AW2-016G",
+    "status": "PASS",
+    "base": "bd67e271209cc94cc02dbe7a08589de263bfbeaf",
+    "codeFingerprint": "483ac9d86e32c69e765c3c4f27e8cc2f250036dd05de0d5db5437206ba7f979f",
+    "inputFiles": 424,
+    "compiledFingerprintMatch": true,
+    "aw2Files": 308,
+    "aw2Bytes": 125180809,
+    "runtimeParity": 262,
+    "newRasterAudioBytes": 0,
+    "originalLamMetadataPreserved": true,
+    "unchangedAuthorities": [
+      "src/aw2/save",
+      "src/aw2/combat",
+      "src/aw2/economy",
+      "src/aw2/collection",
+      "src/aw2/modes",
+      "src/aw2/world/model.ts",
+      "src/aw2/world/maps.ts",
+      "src/aw2/world/rules.ts",
+      "src/aw2/world/navigation.ts",
+      "src/aw2/world/registry.ts",
+      "src/aw2/world/encounter.ts",
+      "src/aw2/world/npcPatrol.ts",
+      "dev/aw2/assets",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts",
+      "dev/vite.aw2.config.ts"
+    ],
+    "stableFiles": 851,
+    "stableBytes": 177450422,
+    "stableTextIsolation": 49
+  },
+  "progress": {
+    "demo": 90,
+    "productApprox": 40,
+    "range": [
+      35,
+      45
+    ],
+    "changed": false
+  },
+  "commands": [
+    "pnpm exec vitest run --config dev/vitest.config.ts <6 impacted files> --maxWorkers=1 --testTimeout=120000 --reporter=verbose",
+    "pnpm typecheck",
+    "pnpm typecheck:dev",
+    "pnpm build:aw2",
+    "pnpm build",
+    "node dev/tools/verify-aw2-place-package.mjs",
+    "node dev/tools/verify-aw2-place-guidance.mjs [--compiled] --playwright <playwright-core/index.mjs> --chromium /tmp/meal-chrome-016g/chromium"
+  ],
+  "diagnosticsExcluded": [
+    "Exact midpoint walking float was outside strict48px range; harness uses191y for reliable table approach, exact-boundary case retained in units.",
+    "Initial320px/20px atlas clipped primary button: fixed scoped typography/55character copy pages and optional compact page counters without changing accessible names.",
+    "Escape restored More opener, leaving keyboard E on a native button: Places/atlas now restore map focus.",
+    "Test fixture optional approach type corrected before final dev types.",
+    "An intermediate package had two chunk generations; final fresh review rebuild contains only current chunks and matches frozen input fingerprint."
+  ],
+  "limits": [
+    "Independent human/physical phone/FPS/totalGPUmemory/rights/release acceptance not performed; D18/D20gates unchanged.",
+    "Selected inspection only opens read-only existing dialog; write conflict/proximity/action authority remain the unchanged save store/rules.",
+    "Full default20s/concurrency reliability remains open; no major engine/save changes in016G."
+  ],
+  "timezone": "Asia/Saigon"
+}

@@ -47,7 +47,10 @@ import {
   PanelFrame,
   GamePartyPanel,
   GameQuestPanel,
+  GamePlacesPanel,
 } from "./GamePanels"
+import { JourneyOverview } from "./JourneyOverview"
+import { interactionTarget } from "../../src/aw2/world/placeGuidance"
 import { RecipePanel } from "./RecipePanel"
 import { PantryInspection } from "./PantryInspection"
 import type { ZoneId } from "../../src/aw2/world/ids"
@@ -63,6 +66,12 @@ import {
   releaseNpcApproach,
   type NpcPatrolState,
 } from "../../src/aw2/world/npcPatrol"
+
+interface PendingPlaceInteraction {
+  id: string
+  scene: ReturnType<typeof sceneId>
+  raw: string
+}
 
 const singleViewport = window.location.pathname.endsWith("/game.html")
 
@@ -114,6 +123,7 @@ function WorldPreview() {
   }, [world.questIndex])
   const gamePanelRef = useRef(gamePanel)
   const queuedWalk = useRef<Waypoint | null>(null)
+  const queuedInteraction = useRef<PendingPlaceInteraction | null>(null)
   gamePanelRef.current = gamePanel
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
@@ -177,7 +187,7 @@ function WorldPreview() {
     publishPatrol(releaseNpcApproach(patrolRef.current))
   }
 
-  function openInteraction() {
+  function openInteraction(id?: string) {
     route.current = []
     if (
       pending.current ||
@@ -188,7 +198,7 @@ function WorldPreview() {
       return
     keys.current.clear()
     route.current = []
-    const object = nearestObject(worldRef.current, patrolRef.current)
+    const object = interactionTarget(worldRef.current, id, patrolRef.current)
     if (object) {
       if (object.id === PATROL_NPC_ID)
         publishPatrol(facePatrolNpc(worldRef.current, patrolRef.current))
@@ -236,6 +246,7 @@ function WorldPreview() {
         keys.current.clear()
         route.current = []
         queuedWalk.current = null
+        queuedInteraction.current = null
         releasePatrol()
         setGamePanel((panel) => (panel === "quest" ? "none" : "quest"))
         return
@@ -349,10 +360,28 @@ function WorldPreview() {
   }, [])
 
   useEffect(() => {
+    if (gamePanel !== "none" || !queuedInteraction.current) return
+    const selected = queuedInteraction.current
+    queuedInteraction.current = null
+    if (
+      busy ||
+      dialogObject ||
+      error ||
+      saved.current.status !== "ready" ||
+      selected.raw !== saved.current.raw ||
+      selected.scene !== sceneId(worldRef.current) ||
+      !mapReadyFor(mapReadiness, worldRef.current)
+    )
+      return
+    openInteraction(selected.id)
+  }, [gamePanel, busy, dialogObject, error, mapReadiness])
+
+  useEffect(() => {
     if (gamePanel !== "none" || !queuedWalk.current || busy || dialogObject)
       return
     const point = queuedWalk.current
     queuedWalk.current = null
+    queuedInteraction.current = null
     if (
       error ||
       !mapReadiness?.ready ||
@@ -388,6 +417,7 @@ function WorldPreview() {
     if (pending.current) return
     setGamePanel("none")
     queuedWalk.current = null
+    queuedInteraction.current = null
     setMapReadiness(null)
     restoreModeFocus.current = !!activeMode
     modeAdapter.abandon()
@@ -423,6 +453,7 @@ function WorldPreview() {
     pending.current = true
     setGamePanel("none")
     queuedWalk.current = null
+    queuedInteraction.current = null
     setBusy(true)
     keys.current.clear()
     route.current = []
@@ -753,7 +784,9 @@ function WorldPreview() {
       ref={dialog}
       aria-labelledby="interaction-title"
       onKeyDown={
-        singleViewport || dialogObject?.kind === "stock" || dialogObject?.kind.startsWith("room")
+        singleViewport ||
+        dialogObject?.kind === "stock" ||
+        dialogObject?.kind.startsWith("room")
           ? trapPanelTab
           : undefined
       }
@@ -832,6 +865,7 @@ function WorldPreview() {
                 keys.current.clear()
                 route.current = []
                 queuedWalk.current = null
+                queuedInteraction.current = null
                 deskReturnFocus.current = true
                 dialog.current?.close()
                 setDialogObject(null)
@@ -897,6 +931,20 @@ function WorldPreview() {
       {error && <p role="alert">{error}</p>}
     </dialog>
   )
+  function inspectPlace(id: string) {
+    if (!navigationReady || saved.current.status !== "ready") return
+    if (!interactionTarget(worldRef.current, id, patrolRef.current)) return
+    keys.current.clear()
+    route.current = []
+    queuedWalk.current = null
+    queuedInteraction.current = {
+      id,
+      scene: sceneId(worldRef.current),
+      raw: saved.current.raw,
+    }
+    deskReturnFocus.current = true
+    setGamePanel("none")
+  }
   const nearby = nearestObject(world, patrol)
   const navigationReady =
     snapshot.status === "ready" &&
@@ -907,20 +955,45 @@ function WorldPreview() {
     mapReadiness.zoneId === world.zoneId &&
     mapReadiness.sceneId === sceneId(world) &&
     mapReadiness.leaderId === (world.partyIds[0] ?? "aw2-than")
-  const roomServicePanel =
+  const classicPanel =
     !singleViewport && snapshot.status === "ready" && gamePanel !== "none" ? (
       <PanelFrame
         title={
-          gamePanel === "party"
-            ? "Đội đồng hành"
-            : gamePanel === "recipe"
-              ? "Công thức bên bàn trà"
-              : "Nhật ký nhiệm vụ"
+          gamePanel === "places"
+            ? "Địa điểm trong vùng"
+            : gamePanel === "atlas"
+              ? "Bản đồ hành trình"
+              : gamePanel === "party"
+                ? "Đội đồng hành"
+                : gamePanel === "recipe"
+                  ? "Công thức bên bàn trà"
+                  : "Nhật ký nhiệm vụ"
         }
         busy={busy}
         onClose={() => setGamePanel("none")}
       >
-        {gamePanel === "party" ? (
+        {gamePanel === "places" ? (
+          <GamePlacesPanel
+            world={world}
+            patrol={patrol}
+            canWalk={navigationReady}
+            onInspect={inspectPlace}
+            onWalk={(point) => {
+              queuedWalk.current = point
+              setGamePanel("none")
+            }}
+          />
+        ) : gamePanel === "atlas" ? (
+          <JourneyOverview
+            world={world}
+            canWalk={navigationReady}
+            memory={overviewMemory}
+            onWalk={(point) => {
+              queuedWalk.current = point
+              setGamePanel("none")
+            }}
+          />
+        ) : gamePanel === "party" ? (
           <GamePartyPanel
             save={snapshot.save}
             busy={busy}
@@ -979,10 +1052,13 @@ function WorldPreview() {
         }
         dialog={interactionDialog}
         onPanel={(panel) => {
+          if (panel === "places" || panel === "atlas")
+            deskReturnFocus.current = true
           releasePatrol()
           keys.current.clear()
           route.current = []
           queuedWalk.current = null
+          queuedInteraction.current = null
           setGamePanel(panel)
         }}
         onWalk={(point) => {
@@ -1015,7 +1091,8 @@ function WorldPreview() {
           worldRef.current = next
           setWorld(next)
         }}
-        onInteract={openInteraction}
+        onInteract={() => openInteraction()}
+        onInspect={inspectPlace}
         onSave={() => void persist()}
         onReread={reread}
         onEconomy={(action) => void transact(action)}
@@ -1065,6 +1142,26 @@ function WorldPreview() {
               </button>
             ))}
           </nav>
+          <nav className="actions" aria-label="Khám phá địa điểm">
+            <button
+              disabled={!navigationReady}
+              onClick={() => {
+                deskReturnFocus.current = true
+                setGamePanel("places")
+              }}
+            >
+              Địa điểm trong vùng
+            </button>
+            <button
+              disabled={!navigationReady}
+              onClick={() => {
+                deskReturnFocus.current = true
+                setGamePanel("atlas")
+              }}
+            >
+              Bản đồ hành trình
+            </button>
+          </nav>
           <JourneyGuide
             objective={currentObjective(world)}
             world={world}
@@ -1091,7 +1188,7 @@ function WorldPreview() {
             patrol={patrol}
             economy={snapshot.save.economy}
             onNavigate={navigate}
-            paused={busy || !!dialogObject}
+            paused={busy || !!dialogObject || gamePanel !== "none"}
             onReadyChange={handleMapReady}
           />
           <p data-testid="player-position">
@@ -1163,7 +1260,7 @@ function WorldPreview() {
             ))}
             <button
               data-aw2-world-control="interact"
-              onClick={openInteraction}
+              onClick={() => openInteraction()}
               disabled={busy}
             >
               Tương tác{nearby ? ` · ${nearby.name}` : ""}
@@ -1195,7 +1292,7 @@ function WorldPreview() {
       {error && <p role="alert">{error}</p>}
       <PlaytestFeedback snapshot={snapshot} busy={busy} />
       {interactionDialog}
-      {roomServicePanel}
+      {classicPanel}
     </main>
   )
 }

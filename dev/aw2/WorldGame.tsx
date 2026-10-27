@@ -19,6 +19,7 @@ import {
 import type { Aw2ModeId } from "../../src/aw2/modes/catalog"
 import type { ZoneId } from "../../src/aw2/world/ids"
 import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
+import { interactionTarget, placeKind } from "../../src/aw2/world/placeGuidance"
 import { JourneyOverview } from "./JourneyOverview"
 import { RecipePanel } from "./RecipePanel"
 import "./game.css"
@@ -45,6 +46,7 @@ interface Props {
   onWalk: (point: Waypoint) => void
   onHold: (key: string, down: boolean) => void
   onStep: (key: string) => void
+  onInspect: (id: string) => void
   onInteract: () => void
   onSave: () => void
   onReread: () => void
@@ -72,6 +74,9 @@ export function WorldGame(props: Props) {
     return () => document.documentElement.classList.remove("aw2-game-document")
   }, [])
   const save = snapshot.status === "ready" ? snapshot.save : null
+  const nearby = canWalk
+    ? interactionTarget(world, undefined, props.patrol)
+    : undefined
   return (
     <main className="aw2-game-shell" data-testid="game-shell">
       <header className="aw2-game-header">
@@ -164,15 +169,28 @@ export function WorldGame(props: Props) {
                 </button>
               ))}
             </div>
-            <button
-              type="button"
-              className="aw2-game-interact"
-              data-aw2-world-control="interact"
-              disabled={!canWalk || busy}
-              onClick={props.onInteract}
-            >
-              E · Tương tác
-            </button>
+            <div className="aw2-game-interaction">
+              {nearby && (
+                <p
+                  id="aw2-nearby-point"
+                  role="status"
+                  className="aw2-nearby-point"
+                  data-testid="nearby-point"
+                >
+                  {placeKind(nearby)} · {nearby.name}
+                </p>
+              )}
+              <button
+                type="button"
+                className="aw2-game-interact"
+                aria-describedby={nearby ? "aw2-nearby-point" : undefined}
+                data-aw2-world-control="interact"
+                disabled={!canWalk || busy}
+                onClick={props.onInteract}
+              >
+                E · Tương tác
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -253,6 +271,7 @@ export function WorldGame(props: Props) {
               patrol={props.patrol}
               canWalk={canWalk}
               onWalk={props.onWalk}
+              onInspect={props.onInspect}
             />
           )}
           {panel === "atlas" && save && (

@@ -1,3 +1,4 @@
+import { TEA_ROOM } from "../world/interiorLayout"
 import manifest from "./settlement-v1.json"
 import type { SceneBounds } from "./tableRoom"
 import type { landscapeCamera } from "./villageView"
@@ -33,4 +34,11 @@ export function settlementRoofAlpha(
   )
     ? building.occludedAlpha
     : 1
+}
+
+/** The real tea entrance is already listed by RoomWaypoints, not a scenic roof destination. */
+export function scenicWalkingLandmarks(zoneId: string) {
+  return (settlementForZone(zoneId)?.landmarks ?? [])
+    .filter((point) => !(zoneId === TEA_ROOM.zoneId && point.id === "tea"))
+    .map((point) => ({ ...point }))
 }

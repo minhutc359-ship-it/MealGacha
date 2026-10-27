@@ -23,7 +23,7 @@ import {
 import { journeyDirections } from "../../src/aw2/world/journey"
 import { describeObject, INTERACT_RANGE } from "../../src/aw2/world/rules"
 import { zoneById } from "../../src/aw2/world/maps"
-import { PANTRY_STOCK } from "../../src/aw2/world/pantryLayout"
+import { placeGuidance } from "../../src/aw2/world/placeGuidance"
 import { scenePosition } from "../../src/aw2/world/scene"
 import {
   worldObjects,
@@ -115,12 +115,14 @@ interface PageProps {
   pages: number
   onPage: (page: number) => void
   label?: string
+  compact?: boolean
 }
 export function PageControls({
   page,
   pages,
   onPage,
   label = "Trang",
+  compact = false,
 }: PageProps) {
   return (
     <nav className="aw2-page-controls" aria-label={`Phân trang ${label}`}>
@@ -133,7 +135,8 @@ export function PageControls({
         ‹ Trước
       </button>
       <span>
-        {label} {page + 1}/{pages}
+        {!compact && `${label} `}
+        {page + 1}/{pages}
       </span>
       <button
         type="button"
@@ -150,8 +153,9 @@ export function PageControls({
 interface CopyProps {
   text: string
   limit?: number
+  compact?: boolean
 }
-export function PagedCopy({ text, limit = 140 }: CopyProps) {
+export function PagedCopy({ text, limit = 140, compact = false }: CopyProps) {
   const [page, setPage] = useState(0),
     view = pageSlice(textPages(text, limit), page, 1)
   useEffect(() => setPage(0), [text])
@@ -164,6 +168,7 @@ export function PagedCopy({ text, limit = 140 }: CopyProps) {
           pages={view.pages}
           onPage={setPage}
           label="Đoạn"
+          compact={compact}
         />
       )}
     </div>
@@ -598,51 +603,55 @@ interface PlacesProps {
   patrol?: Readonly<NpcPatrolState>
   canWalk: boolean
   onWalk: (point: Waypoint) => void
+  onInspect: (id: string) => void
 }
 export function GamePlacesPanel({
   world,
   patrol,
   canWalk,
   onWalk,
+  onInspect,
 }: PlacesProps) {
   const [page, setPage] = useState(0),
     view = pageSlice(worldObjects(world, patrol), page, 1),
     object = view.items[0]
-  const locked =
-    object.kind === "exit" &&
-    !describeObject(world, object).actions.some((a) => a.id === "travel")
-  const near =
-    Math.hypot(
-      scenePosition(world).x - object.x,
-      scenePosition(world).y - object.y,
-    ) <= INTERACT_RANGE
+  const { near, locked, kind, approach } = placeGuidance(world, object)
   return (
-    <div className="aw2-panel-stack">
+    <div
+      className="aw2-panel-stack"
+      data-testid="place-guidance"
+      data-place-id={object.id}
+    >
       <h3>{object.name}</h3>
+      <p className="note" data-testid="place-context">
+        {kind}
+      </p>
       <p>
         {locked
           ? "Cửa chưa mở theo nhiệm vụ."
           : near
-            ? "Đang ở gần. Đóng menu rồi E / Tương tác."
+            ? "Đã ở gần. Xem tương tác hoặc tự E trên bản đồ."
             : "Đi bộ tới gần, sau đó tự tương tác."}
       </p>
-      <button
-        type="button"
-        disabled={!canWalk || locked || near}
-        onClick={() =>
-          onWalk(
-            object.kind === "room-exit"
-              ? { x: object.x + 24, y: object.y, entityId: object.id }
-              : object.kind === "stock"
-                ? PANTRY_STOCK.approach
-                : object.kind === "exit"
-                  ? { x: object.x + (object.x > 320 ? -24 : 24), y: object.y }
-                  : { x: object.x, y: object.y + 32, entityId: object.id },
-          )
-        }
-      >
-        Đi tới địa điểm
-      </button>
+      {near ? (
+        <button
+          type="button"
+          disabled={!canWalk}
+          onClick={() => onInspect(object.id)}
+        >
+          Xem tương tác
+        </button>
+      ) : (
+        <button
+          type="button"
+          disabled={!canWalk || locked}
+          data-approach-x={approach.x}
+          data-approach-y={approach.y}
+          onClick={() => onWalk(approach)}
+        >
+          Đi tới địa điểm
+        </button>
+      )}
       <PageControls
         page={view.page}
         pages={view.pages}

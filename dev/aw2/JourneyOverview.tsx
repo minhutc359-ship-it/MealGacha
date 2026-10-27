@@ -4,6 +4,9 @@ import type { ZoneId } from "../../src/aw2/world/ids"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import { journeyApproach, journeyOverview } from "../../src/aw2/world/registry"
 import { journeyDirections } from "../../src/aw2/world/journey"
+import { TEA_ROOM } from "../../src/aw2/world/interiorLayout"
+import { teaRoomDirection } from "../../src/aw2/world/placeGuidance"
+import { sceneName } from "../../src/aw2/world/scene"
 import { zoneById } from "../../src/aw2/world/maps"
 import { PageControls, PagedCopy } from "./GamePanels"
 import { pageSlice } from "../../src/aw2/world/questJournal"
@@ -27,9 +30,20 @@ export function JourneyOverview({
   const view = pageSlice(map.connections, connection, 1),
     door = view.items[0]
   const approach = journeyApproach(world, selected)
-  const objectives = new Set(journeyDirections(world).map((d) => d.targetZone))
+  const objectives = new Set(
+    journeyDirections({ ...world, interior: null }).map((d) => d.targetZone),
+  )
+  const tea = teaRoomDirection(world)
+  const village = selected === TEA_ROOM.zoneId
+  const viewTab = tab === "tea" && !village ? "route" : tab
   return (
-    <div className="aw2-panel-stack" data-testid="journey-overview">
+    <div
+      className="aw2-panel-stack aw2-journey-overview"
+      data-testid="journey-overview"
+    >
+      <p className="note" data-testid="overview-current-scene">
+        Đang ở: {sceneName(world)}
+      </p>
       <select
         aria-label="Vùng trên bản đồ hành trình"
         value={selected}
@@ -51,30 +65,60 @@ export function JourneyOverview({
       <div className="aw2-panel-tabs" role="group" aria-label="Chi tiết vùng">
         <button
           type="button"
-          aria-pressed={tab === "route"}
+          aria-pressed={viewTab === "route"}
           onClick={() => setTab("route")}
         >
           Đường đi
         </button>
         <button
           type="button"
-          aria-pressed={tab === "doors"}
+          aria-pressed={viewTab === "doors"}
           onClick={() => setTab("doors")}
         >
           Cửa nối
         </button>
+        {village && (
+          <button
+            type="button"
+            aria-pressed={viewTab === "tea"}
+            onClick={() => setTab("tea")}
+          >
+            Tiệm trà
+          </button>
+        )}
       </div>
       <div className="aw2-panel-body">
-        {tab === "route" ? (
+        {viewTab === "tea" ? (
+          <>
+            <PagedCopy limit={55} compact text={tea.text} />
+            <button
+              type="button"
+              disabled={!canWalk || !tea.approach}
+              data-testid="overview-tea-walk"
+              onClick={() => tea.approach && onWalk(tea.approach)}
+            >
+              {tea.label}
+            </button>
+          </>
+        ) : viewTab === "route" ? (
           <>
             <PagedCopy
-              limit={85}
+              limit={55}
+              compact
               text={
-                map.current
-                  ? `Bạn đang ở ${map.name}. Chọn vùng khác để tìm cửa tiếp theo.`
-                  : map.route
-                    ? map.route.map((id) => zoneById(id).name).join(" → ")
-                    : "Chưa có đường đang mở tới vùng này. Tiếp tục nhiệm vụ để mở cửa."
+                world.interior
+                  ? `Bạn đang trong tiệm trà. Ra hiên trước; sau đó ${
+                      map.current
+                        ? "tiếp tục ở Làng Giao Ước."
+                        : map.route
+                          ? map.route.map((id) => zoneById(id).name).join(" → ")
+                          : "tiếp tục nhiệm vụ để mở đường."
+                    }`
+                  : map.current
+                    ? `Bạn đang ở ${map.name}. Chọn vùng khác để tìm cửa tiếp theo.`
+                    : map.route
+                      ? map.route.map((id) => zoneById(id).name).join(" → ")
+                      : "Chưa có đường đang mở tới vùng này. Tiếp tục nhiệm vụ để mở cửa."
               }
             />
             <button
@@ -83,7 +127,7 @@ export function JourneyOverview({
               onClick={() => approach && onWalk(approach)}
               data-testid="overview-walk"
             >
-              Đi tới cửa kế tiếp
+              {world.interior ? "Đi tới cửa ra hiên" : "Đi tới cửa kế tiếp"}
             </button>
           </>
         ) : (
@@ -92,12 +136,13 @@ export function JourneyOverview({
               <strong>{zoneById(door.destination).name}</strong> ·{" "}
               {door.open ? "Đang mở" : "Chưa mở"}
             </p>
-            <PagedCopy limit={70} text={door.reason} />
+            <PagedCopy limit={55} compact text={door.reason} />
             <PageControls
               page={view.page}
               pages={view.pages}
               onPage={setConnection}
               label="Cửa"
+              compact
             />
           </>
         )}

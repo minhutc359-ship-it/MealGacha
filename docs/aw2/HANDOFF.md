@@ -1,5 +1,11 @@
 # Handoff —2026-10-27 / AW2-016E
 
+**AW2-016G VERIFIED — chỉ dẫn cửa và tương tác theo địa điểm.** Địa điểm có điểm đứng an toàn và nút Xem tương tác khi đã gần; mở đúng đối tượng đang chọn, không tự thực hiện hành động. Bản đồ ghi rõ phòng hiện tại, chỉ ra hiên trước khi sang vùng khác và có mục Tiệm trà tại Làng. Nhãn cạnh E nêu điểm gần nhất; Escape trả focus map. Classic dùng chung cả hai menu, bỏ điểm hiên trùng. [Cách dùng](DIA_DIEM.md).
+
+**124ca unit tác động/6files PASS**, gồm27ca mới; **510kiểm tra trình duyệt mới=255source+255compiled PASS**,0lỗi bất ngờ. Bốn viewport/chữ20px/44px, freshintro5người30XP/gate thật, save5và6có nguồn, đủ6vùng và hai entry; cảnh lỗi/retry/tabcũ/raw/focus/pause đã kiểm tra. Hai typecheck/AW2+stable builds/262asset byte parity PASS. Full1781units016F chỉ tái sử dụng cho engine/save/economy/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016G.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Không thêm media/canon/schema/rewards, giữ nguyên mọi asset/provenance và save. D18/D20/D11 giữ nguyên; D16push trực tiếp AW2, không master/rpg/deploy/release/reset. Next BA/UX/tester:016Hđiểm đến đang đi và nút dừng đường đi, scope riêng trước triển khai. Các mục dưới là lịch sử; trạng thái hiện tại theo016G.
+
 Corrected final source `86de61389e5b64e1e6a9fbab4851bd9204251dfc` / exact independently fetched tree `61e1ab0be9b0b22c66bba62c14af4bb33ff110a8` restores original Lam prompt metadata and matches tested runtime fingerprint. All262packaged assets byte-match;32focused asset/room cases pass (overlap full). This supersedes the earlier016Fsource/stamp proof; gameplay/art unchanged. [Publication proof](evidence/AW2-016F-publication.json).
 
 016F source `7a83d2c3c4e225982edba288f60322a37e5633bd` / exact staged+independently fetched tree `316697d2d52b488a05fdc03d3aaccb0d2d07f34c` published on `game/adventure-world-2`; expected-head/non-force, direct parent/ancestry/index-tree/clean tracked local sync PASS. [Publication proof](evidence/AW2-016F-publication.json). This completion stamp changes documentation/evidence only.

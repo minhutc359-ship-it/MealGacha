@@ -1,5 +1,11 @@
 # Live project status —2026-10-27
 
+**AW2-016G VERIFIED — chỉ dẫn cửa và tương tác theo địa điểm.** Địa điểm có điểm đứng an toàn và nút Xem tương tác khi đã gần; mở đúng đối tượng đang chọn, không tự thực hiện hành động. Bản đồ ghi rõ phòng hiện tại, chỉ ra hiên trước khi sang vùng khác và có mục Tiệm trà tại Làng. Nhãn cạnh E nêu điểm gần nhất; Escape trả focus map. Classic dùng chung cả hai menu, bỏ điểm hiên trùng. [Cách dùng](DIA_DIEM.md).
+
+**124ca unit tác động/6files PASS**, gồm27ca mới; **510kiểm tra trình duyệt mới=255source+255compiled PASS**,0lỗi bất ngờ. Bốn viewport/chữ20px/44px, freshintro5người30XP/gate thật, save5và6có nguồn, đủ6vùng và hai entry; cảnh lỗi/retry/tabcũ/raw/focus/pause đã kiểm tra. Hai typecheck/AW2+stable builds/262asset byte parity PASS. Full1781units016F chỉ tái sử dụng cho engine/save/economy/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016G.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Không thêm media/canon/schema/rewards, giữ nguyên mọi asset/provenance và save. D18/D20/D11 giữ nguyên; D16push trực tiếp AW2, không master/rpg/deploy/release/reset. Next BA/UX/tester:016Hđiểm đến đang đi và nút dừng đường đi, scope riêng trước triển khai. Các mục dưới là lịch sử; trạng thái hiện tại theo016G.
+
 **AW2-016F VERIFIED — tiệm trà đã có nội thất và lưu vị trí riêng.** Cửa ở hiên Làng mở phòng con có bàn đội đồng hành và góc nhật ký/công thức. Đổi trưởng đội dùng bộ sưu tập thật; đọc không ghi save, TCG/Auto Chess trở về đúng phòng; ra hiên khôi phục đúng điểm/hướng ngoài cửa. Schema6 đọc save1–5 mà không ghi đè, chỉ nâng cấp khi có thao tác lưu. [Cách chơi/ảnh/prompt](TIEM_TRA.md).
 
 **1.781/1.781unit/136files PASS**, gồm24ca mới, serial120sQA allowance. **1144 kiểm tra trình duyệt mới PASS**: 142tiệm trà (71source+71compiled) và 1002hồi quy toàn tuyến (501+501). Cả hai flavor có hành trình mới→TCG thật→cờ giao tranh/sang vòng→boss thật→lỗi ghi/thử lại→kết thúc/reload; không lỗi bất ngờ. Hai typecheck/AW2+stable builds/262asset byte parity đạt. [Bằng chứng](evidence/AW2-016F.md).
