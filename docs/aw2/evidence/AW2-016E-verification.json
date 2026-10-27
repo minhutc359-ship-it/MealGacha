@@ -129,8 +129,9 @@
     "Post-commit GPU recovery remains016Dmap-error/reread, no compensating rollback."
   ],
   "publication": {
-    "status": "PENDING_SOURCE_PUSH",
-    "branch": "game/adventure-world-2",
-    "expectedBase": "ec74c99c095ce139b07bd1d1bec85d655a615c9d"
+    "status": "PASS_SOURCE_PUBLICATION",
+    "source": "bc60accb91b303bf2c34d66aed3a73ec2d042504",
+    "sourceTree": "1ddca1fcc2a06773b5d7379d69ebf003a27bb1a0",
+    "proof": "AW2-016E-publication.json"
   }
 }

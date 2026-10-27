@@ -1,5 +1,7 @@
 # Test ledger / change impact
 
+016E source `bc60accb91b303bf2c34d66aed3a73ec2d042504` / exact staged+fetched tree `1ddca1fcc2a06773b5d7379d69ebf003a27bb1a0` published; expected-head/non-force/ancestry/clean tracked local sync PASS. [Publication proof](evidence/AW2-016E-publication.json). Completion stamp changes documents only.
+
 ## AW2-016E — optional pantry stock inspection /2026-10-27
 
 Base `ec74c99c095ce139b07bd1d1bec85d655a615c9d`, runtime414inputs `19f40b33d99c1e81cd6835cb446c51e6f753d96329d5fa426a39c06e435764d1` equals compiled fingerprint. Fresh full1,757/1,757units/135files PASS in76.63s using `--maxWorkers=1 --testTimeout=120000`,0fail/skip.24new pantry cases included; initial188focused/9files overlaps full. Pure detached inventory/missing costs/batch/receipt/hint projection, guarded location/proximity/safe path from3origins, oneoptionalstock/eightNPC/sixmaps/originalwalls/anchors, rejection of stock world actions, actual1/1/1cook+45XPshare and historical016Dsave5decode/no-write covered. Full default20s/concurrency NOT_RUN, historical timeout reliability not silently closed. Root/dev types and AW2/stable build/release guard PASS.259runtimeasset byte parity/no new images/audio/deps, no new collision or save fields; build record lists unchanged schema/model/store/encounter/mode/dependency boundaries. No historical units added to fresh counts.
