@@ -1,5 +1,11 @@
 # Handoff —2026-10-27 / AW2-016E
 
+**AW2-016H VERIFIED — điểm đến đang đi và nút Dừng.** Thanh Đang tới nêu đích, vòng tròn/mũi tên mép khung dùng camera thật; có thể đổi Bám/Toàn cảnh khi đi. Dừng bằng chuột/bàn phím hoặc Escape giữ vị trí hiện tại và trả focus map. Chọn lại đích/điều khiển tay/menu/lỗi/mấtfocus/tabcũ hủy đường cũ, không tự chạy lại. Tới nơi vẫn tự E/hành động. Sửa nhãn bị cắt theo cùng khung nhìn. [Cách dùng](DUONG_DI.md).
+
+**152ca unit tác động/7files PASS**,39ca mới nằm trong tổng; **328kiểm tra trình duyệt mới=164source+164compiled PASS**,0lỗi bất ngờ. Bốn viewport/chữ20px/44px/camera/marker/focus, đủ4renderer/6vùng+tiệmtrà, introthật/save5–6/modesreturn/WebGL/tabcũ/classic đã kiểm tra. Hai typecheck/AW2+stable builds/262asset byte parity đạt. Full1781unit016F chỉ tái sử dụng cho engine/save/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016H.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đích/đường đi chỉ ở bộ nhớ, không thêm schema/media/NPC/quest/reward/gacha; toàn bộ art/provenance và tiến trình được giữ. D18/D20/D11 giữ nguyên; D16push AW2, không master/rpg/milestonePR/deploy/release/reset. Next BA/mechanic/UX/tester:016Idấu cửa mở/khóa và dịch vụ sẵn sàng ngay trên bản đồ, scope riêng trước triển khai. Các mục dưới là lịch sử; trạng thái hiện tại theo016H.
+
 016G source `4d145e4fdab39cabe116b78049d1bd0c7faa12ee` / exact staged+independently fetched tree `01aa80868bc0170362dbb4cfee2c45fec5e293c5` published on AW2; expected-head/non-force/direct-parent/ancestry/index match and clean tracked local sync PASS. [Publication proof](evidence/AW2-016G-publication.json). Following completion stamp is documentation/evidence only.
 
 **AW2-016G VERIFIED — chỉ dẫn cửa và tương tác theo địa điểm.** Địa điểm có điểm đứng an toàn và nút Xem tương tác khi đã gần; mở đúng đối tượng đang chọn, không tự thực hiện hành động. Bản đồ ghi rõ phòng hiện tại, chỉ ra hiên trước khi sang vùng khác và có mục Tiệm trà tại Làng. Nhãn cạnh E nêu điểm gần nhất; Escape trả focus map. Classic dùng chung cả hai menu, bỏ điểm hiên trùng. [Cách dùng](DIA_DIEM.md).

@@ -1,3 +1,10 @@
+import { WalkingStatus } from "./WalkingTarget"
+import {
+  planWalking,
+  reachedWalkingTarget,
+  walkingArrivalText,
+  type WalkingTarget,
+} from "../../src/aw2/world/walkingIntent"
 import type { CollectionAction } from "../../src/aw2/collection/model"
 import { StrictMode, useCallback, useEffect, useRef, useState } from "react"
 import { createRoot } from "react-dom/client"
@@ -26,7 +33,7 @@ import { mapReadyFor, type WorldMapReadiness } from "./worldCanvasTypes"
 import { sceneId, sceneName, scenePosition } from "../../src/aw2/world/scene"
 import { InventoryPanel } from "./InventoryPanel"
 import { CHEST_RECEIPT, type EconomyAction } from "../../src/aw2/economy/model"
-import { findWorldPath, type Waypoint } from "../../src/aw2/world/navigation"
+import { type Waypoint } from "../../src/aw2/world/navigation"
 import {
   AW2_MODES,
   modeForPortal,
@@ -155,6 +162,9 @@ function WorldPreview() {
   const saved = useRef(snapshot)
   const keys = useRef(new Set<string>())
   const route = useRef<Waypoint[]>([])
+  const [walkingTarget, setWalkingTarget] = useState<WalkingTarget | null>(null)
+  const walkingRef = useRef(walkingTarget)
+  walkingRef.current = walkingTarget
   const pending = useRef(false)
   const paused = useRef(false)
   const dialog = useRef<HTMLDialogElement>(null)
@@ -187,8 +197,26 @@ function WorldPreview() {
     publishPatrol(releaseNpcApproach(patrolRef.current))
   }
 
-  function openInteraction(id?: string) {
+  function clearWalking() {
     route.current = []
+    if (walkingRef.current) {
+      walkingRef.current = null
+      setWalkingTarget(null)
+    }
+  }
+  function stopWalking() {
+    const active = !!walkingRef.current || route.current.length > 0
+    keys.current.clear()
+    clearWalking()
+    queuedWalk.current = null
+    queuedInteraction.current = null
+    releasePatrol()
+    if (active) setMessage("Đã dừng đường đi.")
+    worldMap.current?.focus({ preventScroll: true })
+  }
+
+  function openInteraction(id?: string) {
+    clearWalking()
     if (
       pending.current ||
       paused.current ||
@@ -197,7 +225,7 @@ function WorldPreview() {
     )
       return
     keys.current.clear()
-    route.current = []
+    clearWalking()
     const object = interactionTarget(worldRef.current, id, patrolRef.current)
     if (object) {
       if (object.id === PATROL_NPC_ID)
@@ -244,11 +272,26 @@ function WorldPreview() {
       ) {
         event.preventDefault()
         keys.current.clear()
-        route.current = []
+        clearWalking()
         queuedWalk.current = null
         queuedInteraction.current = null
         releasePatrol()
         setGamePanel((panel) => (panel === "quest" ? "none" : "quest"))
+        return
+      }
+      if (
+        event.key === "Escape" &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey &&
+        walkingRef.current &&
+        !paused.current &&
+        !pending.current &&
+        patrolReady.current &&
+        !isNativeControl(event.target)
+      ) {
+        event.preventDefault()
+        stopWalking()
         return
       }
       const action = worldKeyAction(event.key, {
@@ -266,7 +309,7 @@ function WorldPreview() {
       if (action.type === "interact") openInteraction()
       else {
         releasePatrol()
-        route.current = []
+        clearWalking()
         keys.current.add(action.key)
       }
     }
@@ -274,7 +317,8 @@ function WorldPreview() {
       keys.current.delete(event.key.toLowerCase())
     const stop = () => {
       keys.current.clear()
-      route.current = []
+      clearWalking()
+      releasePatrol()
     }
     const focused = (event: FocusEvent) => {
       if (isNativeControl(event.target)) stop()
@@ -305,7 +349,8 @@ function WorldPreview() {
         paused.current ||
         pending.current ||
         saved.current.status !== "ready" ||
-        !patrolReady.current
+        !patrolReady.current ||
+        !activeWindow.current
       )
         return
       const held = (a: string, b: string) =>
@@ -325,7 +370,18 @@ function WorldPreview() {
           : held("s", "arrowdown") - held("w", "arrowup"),
         point ? Math.min(0.033, distance / 140) : 0.033,
       )
-      if (point && distance <= 140 * 0.033) route.current.shift()
+      if (point && distance <= 140 * 0.033) {
+        route.current.shift()
+        if (!route.current.length && walkingRef.current) {
+          const completed = walkingRef.current
+          clearWalking()
+          setMessage(
+            reachedWalkingTarget(next, completed)
+              ? walkingArrivalText(completed)
+              : "Đường đi bị gián đoạn. Hãy chọn lại điểm đến.",
+          )
+        }
+      }
       if (next !== worldRef.current) {
         worldRef.current = next
         setWorld(next)
@@ -358,6 +414,29 @@ function WorldPreview() {
       window.removeEventListener("storage", changed)
     }
   }, [])
+
+  useEffect(() => {
+    if (
+      walkingRef.current &&
+      (busy ||
+        paused.current ||
+        error ||
+        !mapReadyFor(mapReadiness, world) ||
+        walkingRef.current.sceneId !== sceneId(world))
+    ) {
+      clearWalking()
+    }
+  }, [
+    busy,
+    error,
+    gamePanel,
+    dialogObject,
+    activeMode,
+    activeEncounter,
+    mapReadiness,
+    world.zoneId,
+    world.interior?.roomId,
+  ])
 
   useEffect(() => {
     if (gamePanel !== "none" || !queuedInteraction.current) return
@@ -424,7 +503,7 @@ function WorldPreview() {
     setActiveMode(null)
     setMapEpoch((epoch) => epoch + 1)
     keys.current.clear()
-    route.current = []
+    clearWalking()
     setDialogObject(null)
     setActiveEncounter(null)
     const next = store.load()
@@ -456,7 +535,7 @@ function WorldPreview() {
     queuedInteraction.current = null
     setBusy(true)
     keys.current.clear()
-    route.current = []
+    clearWalking()
     setError("")
     try {
       const started = await modeAdapter.enter(
@@ -504,7 +583,7 @@ function WorldPreview() {
     pending.current = true
     setBusy(true)
     keys.current.clear()
-    route.current = []
+    clearWalking()
     setError("")
     setMessage("")
     try {
@@ -650,7 +729,7 @@ function WorldPreview() {
     pending.current = true
     setBusy(true)
     keys.current.clear()
-    route.current = []
+    clearWalking()
     setError("")
     try {
       const next = await store.economyAction(
@@ -683,7 +762,7 @@ function WorldPreview() {
     pending.current = true
     setBusy(true)
     keys.current.clear()
-    route.current = []
+    clearWalking()
     setError("")
     try {
       const next = await store.collectionAction(
@@ -711,20 +790,35 @@ function WorldPreview() {
     }
   }
   function navigate(point: Waypoint) {
-    if (pending.current || paused.current || saved.current.status !== "ready")
+    if (
+      pending.current ||
+      paused.current ||
+      saved.current.status !== "ready" ||
+      !patrolReady.current
+    )
       return
     keys.current.clear()
+    clearWalking()
     const approach = pinNpcApproach(worldRef.current, patrolRef.current, point)
     publishPatrol(approach.patrol)
-    route.current = findWorldPath(
-      sceneId(worldRef.current),
-      scenePosition(worldRef.current),
+    const planned = planWalking(
+      worldRef.current,
       approach.point,
+      approach.patrol,
     )
-    if (!route.current.length) {
+    if (!planned) {
       releasePatrol()
       setMessage("Chọn một điểm trên lối đi.")
+      return
     }
+    if (reachedWalkingTarget(worldRef.current, planned.target)) {
+      setMessage(walkingArrivalText(planned.target))
+      return
+    }
+    route.current = planned.path
+    walkingRef.current = planned.target
+    setWalkingTarget(planned.target)
+    setMessage("")
   }
   async function finishEncounter() {
     if (!activeEncounter || pending.current) return
@@ -821,7 +915,7 @@ function WorldPreview() {
             )
               return
             keys.current.clear()
-            route.current = []
+            clearWalking()
             queuedWalk.current = point
             setDialogObject(null)
           }}
@@ -863,7 +957,7 @@ function WorldPreview() {
                 !error
               ) {
                 keys.current.clear()
-                route.current = []
+                clearWalking()
                 queuedWalk.current = null
                 queuedInteraction.current = null
                 deskReturnFocus.current = true
@@ -935,7 +1029,7 @@ function WorldPreview() {
     if (!navigationReady || saved.current.status !== "ready") return
     if (!interactionTarget(worldRef.current, id, patrolRef.current)) return
     keys.current.clear()
-    route.current = []
+    clearWalking()
     queuedWalk.current = null
     queuedInteraction.current = {
       id,
@@ -1035,6 +1129,8 @@ function WorldPreview() {
         mapRef={worldMap}
         headingRef={worldHeading}
         canWalk={navigationReady}
+        walkTarget={walkingTarget}
+        onStopWalking={stopWalking}
         map={
           snapshot.status === "ready" ? (
             <WorldSceneHost
@@ -1044,6 +1140,7 @@ function WorldPreview() {
               world={world}
               patrol={patrol}
               economy={snapshot.save.economy}
+              walkTarget={walkingTarget}
               onNavigate={navigate}
               paused={busy || !!dialogObject || gamePanel !== "none"}
               onReadyChange={handleMapReady}
@@ -1056,7 +1153,7 @@ function WorldPreview() {
             deskReturnFocus.current = true
           releasePatrol()
           keys.current.clear()
-          route.current = []
+          clearWalking()
           queuedWalk.current = null
           queuedInteraction.current = null
           setGamePanel(panel)
@@ -1064,7 +1161,7 @@ function WorldPreview() {
         onWalk={(point) => {
           if (!navigationReady) return
           keys.current.clear()
-          route.current = []
+          clearWalking()
           queuedWalk.current = point
           setGamePanel("none")
         }}
@@ -1075,13 +1172,13 @@ function WorldPreview() {
           }
           if (paused.current || !navigationReady) return
           releasePatrol()
-          route.current = []
+          clearWalking()
           keys.current.add(key)
         }}
         onStep={(key) => {
           if (paused.current || !navigationReady) return
           releasePatrol()
-          route.current = []
+          clearWalking()
           const next = moveWorld(
             worldRef.current,
             key === "d" ? 1 : key === "a" ? -1 : 0,
@@ -1187,6 +1284,10 @@ function WorldPreview() {
             world={world}
             patrol={patrol}
             economy={snapshot.save.economy}
+            walkTarget={walkingTarget}
+            walkControls={
+              <WalkingStatus target={walkingTarget} onStop={stopWalking} />
+            }
             onNavigate={navigate}
             paused={busy || !!dialogObject || gamePanel !== "none"}
             onReadyChange={handleMapReady}
@@ -1234,7 +1335,7 @@ function WorldPreview() {
                 onPointerDown={(event) => {
                   releasePatrol()
                   event.currentTarget.setPointerCapture(event.pointerId)
-                  route.current = []
+                  clearWalking()
                   keys.current.add(key)
                 }}
                 onPointerUp={() => keys.current.delete(key)}
@@ -1244,7 +1345,7 @@ function WorldPreview() {
                   if (event.detail !== 0 || pending.current || paused.current)
                     return
                   releasePatrol()
-                  route.current = []
+                  clearWalking()
                   const next = moveWorld(
                     worldRef.current,
                     key === "d" ? 1 : key === "a" ? -1 : 0,

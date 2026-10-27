@@ -1,0 +1,175 @@
+{
+  "task": "AW2-016H",
+  "status": "VERIFIED_DEVELOPMENT_WALKING_INTENT",
+  "date": "2026-10-27",
+  "timezone": "Asia/Saigon",
+  "base": "bc7e31dc2c8e3322ccb56244233b94be0f38549f",
+  "runtimeFingerprint": "819a17e39d16bb035e5733fa56486d76b5a468a39f9c47f1ac392fbe6f934fa2",
+  "inputFiles": 427,
+  "freshUnits": {
+    "passed": 152,
+    "files": 7,
+    "newCasesIncluded": 39,
+    "casesByFile": {
+      "dev/tests/aw2/scene-preflight.test.ts": 20,
+      "dev/tests/aw2/walking-intent.test.ts": 39,
+      "dev/tests/aw2/journey-guide.test.ts": 27,
+      "dev/tests/aw2/tea-room.test.ts": 24,
+      "dev/tests/aw2/place-guidance.test.ts": 27,
+      "dev/tests/aw2/navigation-audio.test.ts": 3,
+      "dev/tests/aw2/controls.test.ts": 12
+    },
+    "seconds": 2.38,
+    "maxWorkers": 1,
+    "timeoutAllowanceMs": 120000
+  },
+  "reusedFullRegression": {
+    "task": "AW2-016F",
+    "source": "86de61389e5b64e1e6a9fbab4851bd9204251dfc",
+    "passed": 1781,
+    "files": 136,
+    "newFullRun": "NOT_RUN for016H UI/controller intent task",
+    "unchangedBoundaries": [
+      "src/aw2/save",
+      "src/aw2/combat",
+      "src/aw2/economy",
+      "src/aw2/collection",
+      "src/aw2/modes",
+      "src/aw2/world/model.ts",
+      "src/aw2/world/maps.ts",
+      "src/aw2/world/rules.ts",
+      "src/aw2/world/navigation.ts",
+      "src/aw2/world/controls.ts",
+      "src/aw2/world/placeGuidance.ts",
+      "src/aw2/world/scene.ts",
+      "src/aw2/world/journey.ts",
+      "src/aw2/assets/settlement.ts",
+      "src/aw2/world/registry.ts",
+      "src/aw2/world/encounter.ts",
+      "src/aw2/world/npcPatrol.ts",
+      "dev/aw2/assets",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts",
+      "dev/vite.aw2.config.ts"
+    ],
+    "counting": "Historical count is not added to current focused units or browser counts."
+  },
+  "browser": {
+    "source": 164,
+    "compiled": 164,
+    "freshTotal": 328,
+    "unexpectedErrors": 0,
+    "retainedDiagnosticChecks": 0,
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1280,
+        900
+      ]
+    ],
+    "rootFontPx": 20,
+    "minimumControlPx": 44,
+    "classicViewportVerified": [
+      1280,
+      900
+    ],
+    "scenarios": [
+      "Neutral floor target, replacement and invalid wall, real arrival without auto action or save.",
+      "Pointer/keyboardStop/Escape/manualWASD/Dpad, nativefocus/menu/blur/visibility cancellation, no automatic resume.",
+      "Actual live camera projection, cropped/offscreen edge arrows, complete visible labels, same canvas and no writes across start/stop/camera/resize.",
+      "Real fresh named intro five/30XP/one receipt, saving current actor only, bothmode return checkpoints without a persisted intent.",
+      "Tearoom named long target across four viewports; exact outside checkpoint restored on explicit exit.",
+      "Real active WebGL loss/readiness cancellation and reread recovery, actual secondtab save blocks stale walking.",
+      "Authentic016Fcompleted6fixture for actual six-zone travel/allfourrendererfamilies;300XP/fiveparty/ending retained.",
+      "Actual moving-NPC pin destination; authentic016Dv5walkstop preserves raw/no implicit migration; classic village+roomStop no clickthrough."
+    ],
+    "limits": "Actual device/human/FPS/totalGPUmemory/release acceptance not performed."
+  },
+  "types": {
+    "root": "PASS",
+    "dev": "PASS"
+  },
+  "build": {
+    "task": "AW2-016H",
+    "status": "PASS",
+    "base": "bc7e31dc2c8e3322ccb56244233b94be0f38549f",
+    "codeFingerprint": "819a17e39d16bb035e5733fa56486d76b5a468a39f9c47f1ac392fbe6f934fa2",
+    "inputFiles": 427,
+    "compiledFingerprintMatch": true,
+    "aw2Files": 308,
+    "aw2Bytes": 125186602,
+    "runtimeParity": 262,
+    "newRasterAudioBytes": 0,
+    "originalLamMetadataPreserved": true,
+    "unchangedAuthorities": [
+      "src/aw2/save",
+      "src/aw2/combat",
+      "src/aw2/economy",
+      "src/aw2/collection",
+      "src/aw2/modes",
+      "src/aw2/world/model.ts",
+      "src/aw2/world/maps.ts",
+      "src/aw2/world/rules.ts",
+      "src/aw2/world/navigation.ts",
+      "src/aw2/world/controls.ts",
+      "src/aw2/world/placeGuidance.ts",
+      "src/aw2/world/scene.ts",
+      "src/aw2/world/journey.ts",
+      "src/aw2/assets/settlement.ts",
+      "src/aw2/world/registry.ts",
+      "src/aw2/world/encounter.ts",
+      "src/aw2/world/npcPatrol.ts",
+      "dev/aw2/assets",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts",
+      "dev/vite.aw2.config.ts"
+    ],
+    "stableFiles": 851,
+    "stableBytes": 177450422,
+    "stableTextIsolation": 49
+  },
+  "progress": {
+    "demo": 90,
+    "productApprox": 40,
+    "range": [
+      35,
+      45
+    ],
+    "changed": false
+  },
+  "commands": [
+    "pnpm exec vitest run --config dev/vitest.config.ts <7 impacted files> --maxWorkers=1 --testTimeout=120000 --reporter=verbose",
+    "pnpm typecheck",
+    "pnpm typecheck:dev",
+    "pnpm build:aw2",
+    "pnpm build",
+    "node dev/tools/verify-aw2-walking-package.mjs",
+    "node dev/tools/verify-aw2-walking.mjs [--compiled] --playwright <playwright-core/index.mjs> --chromium /tmp/meal-chrome-016g/chromium"
+  ],
+  "diagnosticsExcluded": [
+    "Canvas border caused a2pxmarker offset; corrected to subtract clientLeft/clientTop.",
+    "Pointer world roundtrip produces floats: strict marker-x520 equality in harness changed to.1px tolerance. No gameplay position snapping.",
+    "Visual review exposed a pre-existing cut village label; shared actual crop now hides incomplete labels in all renderer families, fresh browser assertions added.",
+    "Authentic5fixture starts576,192; a40pxclassic walk could finish during automation beforeStop. Final harness walks left to32,192 so in-flight assertions remain observable. Original assertions preserved; no progress fabrication.",
+    "An offscreen-arrow assumption at320depended on current actor position; all sizes now assert actual projected state and390has the dedicated cropped-edge probe.",
+    "Intermediate package held old chunk generations; final serialized frozen build has only current output."
+  ],
+  "limits": [
+    "No save schema/content/economy/gacha/identity/geometry/pathfinding/combat or authoredasset changes.",
+    "Static code-native marker is not a full-environment/rights approval.",
+    "No new full boss or mode match; unchanged engines reuse016Fevidence. Default20s/concurrency reliability andD18/D20gates remain open."
+  ]
+}

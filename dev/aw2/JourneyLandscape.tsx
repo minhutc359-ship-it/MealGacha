@@ -1,3 +1,8 @@
+import {
+  WalkingMarker,
+  updateWalkingMarker,
+  worldVisibleBounds,
+} from "./WalkingTarget"
 import { useEffect, useRef, useState } from "react"
 import type { Texture } from "pixi.js"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
@@ -55,12 +60,17 @@ export function JourneyLandscape({
   paused,
   focusRef,
   onReadyChange,
+  walkTarget,
+  walkControls,
 }: WorldCanvasProps) {
   const scene = journeyScene(world.zoneId)!
   const patrolRef = useRef(patrol)
   patrolRef.current = patrol
   const committedEconomy = useRef(economy)
   committedEconomy.current = economy
+  const walking = useRef(walkTarget)
+  const walkingMarker = useRef<HTMLSpanElement>(null)
+  walking.current = walkTarget
   const host = useRef<HTMLDivElement>(null),
     position = useRef(world),
     pause = useRef(paused)
@@ -333,23 +343,7 @@ export function JourneyLandscape({
               })),
             ]),
           )
-          const canvasViewport = next.canvas.getBoundingClientRect()
-          const clippedStage = host.current?.closest(".aw2-game-map")
-          const stageViewport = clippedStage?.getBoundingClientRect()
-          const toolbarBottom = clippedStage
-            ?.querySelector(".aw2-map-toolbar")
-            ?.getBoundingClientRect().bottom
-          const viewport = stageViewport
-            ? {
-                left: Math.max(canvasViewport.left, stageViewport.left),
-                right: Math.min(canvasViewport.right, stageViewport.right),
-                top: Math.max(
-                  canvasViewport.top,
-                  toolbarBottom ?? stageViewport.top,
-                ),
-                bottom: Math.min(canvasViewport.bottom, stageViewport.bottom),
-              }
-            : canvasViewport
+          const viewport = worldVisibleBounds(next.canvas)
           const labelProps = [
             ...currentProps,
             ...(scene.zoneId === PANTRY_STOCK.zoneId
@@ -391,6 +385,12 @@ export function JourneyLandscape({
                 label.style.visibility = "hidden"
             }
           }
+          updateWalkingMarker(
+            walkingMarker.current,
+            walking.current,
+            view,
+            next.canvas,
+          )
           next.canvas.dataset.worldCamera = JSON.stringify(view)
           if (scene.zoneId === PANTRY_STOCK.zoneId)
             next.canvas.dataset.stockInspection = JSON.stringify({
@@ -482,6 +482,7 @@ export function JourneyLandscape({
         <button
           type="button"
           disabled={!ready || paused}
+          data-aw2-world-control="view"
           aria-pressed={mode === "follow"}
           onClick={() => setMode("follow")}
         >
@@ -490,6 +491,7 @@ export function JourneyLandscape({
         <button
           type="button"
           disabled={!ready || paused}
+          data-aw2-world-control="view"
           aria-pressed={mode === "overview"}
           onClick={() => setMode("overview")}
         >
@@ -541,6 +543,12 @@ export function JourneyLandscape({
         }}
       >
         <div ref={host} />
+        <WalkingMarker
+          world={world}
+          target={walkTarget}
+          markerRef={walkingMarker}
+        />
+        {walkControls}
         {[
           ...scene.props,
           ...(scene.zoneId === PANTRY_STOCK.zoneId

@@ -1,3 +1,5 @@
+import { WalkingStatus } from "./WalkingTarget"
+import type { WalkingTarget } from "../../src/aw2/world/walkingIntent"
 import { useEffect, type ReactNode, type RefObject } from "react"
 import type { SaveSnapshot } from "../../src/aw2/save/schema"
 import type { WorldProgress } from "../../src/aw2/world/model"
@@ -42,6 +44,8 @@ interface Props {
   mapRef: RefObject<HTMLDivElement | null>
   headingRef: RefObject<HTMLHeadingElement | null>
   canWalk: boolean
+  walkTarget: WalkingTarget | null
+  onStopWalking: () => void
   onPanel: (panel: GamePanel) => void
   onWalk: (point: Waypoint) => void
   onHold: (key: string, down: boolean) => void
@@ -112,6 +116,7 @@ export function WorldGame(props: Props) {
         </button>
       </div>
       <div className="aw2-game-map" data-testid="game-map-stage">
+        <WalkingStatus target={props.walkTarget} onStop={props.onStopWalking} />
         {save ? (
           props.map
         ) : (

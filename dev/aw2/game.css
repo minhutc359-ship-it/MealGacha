@@ -79,3 +79,5 @@ html.aw2-game-document, html.aw2-game-document body, html.aw2-game-document #roo
 .aw2-journey-overview > .note { font-size: .75rem; line-height: 1.3; }
 .aw2-journey-overview .aw2-panel-tabs button { min-height: 44px; font-size: max(.7rem,14px); }
 .aw2-journey-overview .aw2-panel-body > button { font-size: .9rem; padding: .4rem; }
+
+.aw2-game-map > .aw2-walk-status { top: calc(44px + .4rem); }

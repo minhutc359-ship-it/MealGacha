@@ -1,3 +1,8 @@
+import {
+  WalkingMarker,
+  updateWalkingMarker,
+  worldVisibleBounds,
+} from "./WalkingTarget"
 import { useEffect, useRef, useState } from "react"
 import type { Texture } from "pixi.js"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
@@ -68,7 +73,12 @@ function FlatWorldCanvas({
   paused,
   focusRef,
   onReadyChange,
+  walkTarget,
+  walkControls,
 }: WorldCanvasProps) {
+  const walking = useRef(walkTarget)
+  const walkingMarker = useRef<HTMLSpanElement>(null)
+  walking.current = walkTarget
   const host = useRef<HTMLDivElement>(null)
   const pointerStart = useRef<Waypoint | null>(null)
   const position = useRef(world)
@@ -432,6 +442,12 @@ function FlatWorldCanvas({
             320 - view.x * view.zoom,
             192 - view.y * view.zoom,
           )
+          updateWalkingMarker(
+            walkingMarker.current,
+            walking.current,
+            view,
+            next.canvas,
+          )
           next.canvas.dataset.worldCamera = JSON.stringify(view)
           const moving =
             Math.hypot(now.x - prior.x, now.y - prior.y) > 0.05 &&
@@ -537,7 +553,7 @@ function FlatWorldCanvas({
               }),
             )
           }
-          const viewport = next.canvas.getBoundingClientRect()
+          const viewport = worldVisibleBounds(next.canvas)
           for (const object of zoneById(now.zoneId).objects) {
             const label = labels.current.get(object.id)
             if (!label) continue
@@ -606,6 +622,7 @@ function FlatWorldCanvas({
         <button
           type="button"
           disabled={!ready || paused}
+          data-aw2-world-control="view"
           aria-pressed={mode === "follow"}
           onClick={() => setMode("follow")}
         >
@@ -614,6 +631,7 @@ function FlatWorldCanvas({
         <button
           type="button"
           disabled={!ready || paused}
+          data-aw2-world-control="view"
           aria-pressed={mode === "overview"}
           onClick={() => setMode("overview")}
         >
@@ -665,6 +683,12 @@ function FlatWorldCanvas({
         }}
       >
         <div ref={host} />
+        <WalkingMarker
+          world={world}
+          target={walkTarget}
+          markerRef={walkingMarker}
+        />
+        {walkControls}
         {zoneById(world.zoneId).objects.map((object) => (
           <span
             key={object.id}

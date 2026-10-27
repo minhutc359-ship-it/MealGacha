@@ -1,3 +1,8 @@
+import {
+  WalkingMarker,
+  updateWalkingMarker,
+  worldVisibleBounds,
+} from "./WalkingTarget"
 import { useEffect, useRef, useState } from "react"
 import type { Texture } from "pixi.js"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
@@ -53,7 +58,12 @@ export function VillageLandscape({
   paused,
   focusRef,
   onReadyChange,
+  walkTarget,
+  walkControls,
 }: WorldCanvasProps) {
+  const walking = useRef(walkTarget)
+  const walkingMarker = useRef<HTMLSpanElement>(null)
+  walking.current = walkTarget
   const host = useRef<HTMLDivElement>(null),
     position = useRef(world),
     pause = useRef(paused)
@@ -305,7 +315,7 @@ export function VillageLandscape({
               })),
             ]),
           )
-          const viewport = next.canvas.getBoundingClientRect()
+          const viewport = worldVisibleBounds(next.canvas)
           for (const prop of [
             ...currentProps,
             {
@@ -343,6 +353,12 @@ export function VillageLandscape({
                 label.style.visibility = "hidden"
             }
           }
+          updateWalkingMarker(
+            walkingMarker.current,
+            walking.current,
+            view,
+            next.canvas,
+          )
           next.canvas.dataset.worldCamera = JSON.stringify(view)
           next.canvas.dataset.representativeFrame = frameId
           next.canvas.dataset.partyPositions = JSON.stringify([
@@ -421,6 +437,7 @@ export function VillageLandscape({
         <button
           type="button"
           disabled={!ready || paused}
+          data-aw2-world-control="view"
           aria-pressed={mode === "follow"}
           onClick={() => setMode("follow")}
         >
@@ -429,6 +446,7 @@ export function VillageLandscape({
         <button
           type="button"
           disabled={!ready || paused}
+          data-aw2-world-control="view"
           aria-pressed={mode === "overview"}
           onClick={() => setMode("overview")}
         >
@@ -480,6 +498,12 @@ export function VillageLandscape({
         }}
       >
         <div ref={host} />
+        <WalkingMarker
+          world={world}
+          target={walkTarget}
+          markerRef={walkingMarker}
+        />
+        {walkControls}
         {[
           ...scene.props,
           {

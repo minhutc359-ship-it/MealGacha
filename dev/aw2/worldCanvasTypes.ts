@@ -1,4 +1,4 @@
-import type { Ref } from "react"
+import type { Ref, ReactNode } from "react"
 import type { WorldProgress } from "../../src/aw2/world/model"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import type { Economy } from "../../src/aw2/economy/model"
@@ -26,7 +26,11 @@ export function mapReadyFor(
   )
 }
 
+import type { WalkingTarget } from "../../src/aw2/world/walkingIntent"
+
 export interface WorldCanvasProps {
+  walkTarget?: WalkingTarget | null
+  walkControls?: ReactNode
   world: WorldProgress
   patrol?: Readonly<NpcPatrolState>
   economy: Readonly<Economy>

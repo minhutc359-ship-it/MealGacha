@@ -1,3 +1,8 @@
+import {
+  WalkingMarker,
+  updateWalkingMarker,
+  worldVisibleBounds,
+} from "./WalkingTarget"
 import { useEffect, useRef, useState } from "react"
 import type { Texture, Ticker } from "pixi.js"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
@@ -28,7 +33,12 @@ export function TeaRoomCanvas({
   paused,
   focusRef,
   onReadyChange,
+  walkTarget,
+  walkControls,
 }: WorldCanvasProps) {
+  const walking = useRef(walkTarget)
+  const walkingMarker = useRef<HTMLSpanElement>(null)
+  walking.current = walkTarget
   const host = useRef<HTMLDivElement>(null),
     position = useRef(world),
     pause = useRef(paused)
@@ -99,10 +109,7 @@ export function TeaRoomCanvas({
           lifetime,
         )
         if (lifetime.disposed) return
-        const crop = (
-          base: Texture,
-          f: JourneyFrame,
-        ) => {
+        const crop = (base: Texture, f: JourneyFrame) => {
           const t = new Texture({
             source: base.source,
             frame: new Rectangle(f.x, f.y, f.width, f.height),
@@ -172,10 +179,7 @@ export function TeaRoomCanvas({
               Math.abs(point.y - spec.y) < 50
                 ? 0.45
                 : 1
-          const viewport = app.canvas.getBoundingClientRect(),
-            clip = host.current
-              ?.closest(".aw2-game-map")
-              ?.getBoundingClientRect()
+          const viewport = worldVisibleBounds(app.canvas)
           for (const object of TEA_ROOM.objects) {
             const label = labels.current.get(object.id)
             if (!label) continue
@@ -192,15 +196,19 @@ export function TeaRoomCanvas({
               modeRef.current === "follow" ? "visible" : "hidden"
             const b = label.getBoundingClientRect()
             if (
-              b.left < Math.max(viewport.left, clip?.left ?? viewport.left) ||
-              b.right >
-                Math.min(viewport.right, clip?.right ?? viewport.right) ||
-              b.top < Math.max(viewport.top, clip?.top ?? viewport.top) ||
-              b.bottom >
-                Math.min(viewport.bottom, clip?.bottom ?? viewport.bottom)
+              b.left < viewport.left ||
+              b.right > viewport.right ||
+              b.top < viewport.top ||
+              b.bottom > viewport.bottom
             )
               label.style.visibility = "hidden"
           }
+          updateWalkingMarker(
+            walkingMarker.current,
+            walking.current,
+            view,
+            app.canvas,
+          )
           app.canvas.dataset.worldCamera = JSON.stringify(view)
           app.canvas.dataset.representativeFrame = id
           app.canvas.dataset.partyPositions = JSON.stringify([
@@ -262,6 +270,7 @@ export function TeaRoomCanvas({
         <button
           type="button"
           disabled={!ready || paused}
+          data-aw2-world-control="view"
           aria-pressed={mode === "follow"}
           onClick={() => setMode("follow")}
         >
@@ -270,6 +279,7 @@ export function TeaRoomCanvas({
         <button
           type="button"
           disabled={!ready || paused}
+          data-aw2-world-control="view"
           aria-pressed={mode === "overview"}
           onClick={() => setMode("overview")}
         >
@@ -319,6 +329,12 @@ export function TeaRoomCanvas({
         }}
       >
         <div ref={host} />
+        <WalkingMarker
+          world={world}
+          target={walkTarget}
+          markerRef={walkingMarker}
+        />
+        {walkControls}
         {TEA_ROOM.objects.map((o) => (
           <span
             key={o.id}
