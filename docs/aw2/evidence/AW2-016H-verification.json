@@ -171,5 +171,11 @@
     "No save schema/content/economy/gacha/identity/geometry/pathfinding/combat or authoredasset changes.",
     "Static code-native marker is not a full-environment/rights approval.",
     "No new full boss or mode match; unchanged engines reuse016Fevidence. Default20s/concurrency reliability andD18/D20gates remain open."
-  ]
+  ],
+  "publication": {
+    "status": "PASS_SOURCE_PUBLICATION",
+    "source": "50b842e100cce3a81e66d26d1d600ca3a5e9d48b",
+    "sourceTree": "cf931b44adba16002914dc4349f9206af01e8b3a",
+    "proof": "AW2-016H-publication.json"
+  }
 }

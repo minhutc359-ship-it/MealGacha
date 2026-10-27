@@ -1,5 +1,7 @@
 # Test ledger / change impact
 
+016H source `50b842e100cce3a81e66d26d1d600ca3a5e9d48b` / exact staged+independently fetched tree `cf931b44adba16002914dc4349f9206af01e8b3a` published on AW2; expected-head/non-force/direct-parent/ancestry/index match and clean tracked local sync PASS. [Publication proof](evidence/AW2-016H-publication.json). Following completion stamp is documentation/evidence only.
+
 ## AW2-016H — ephemeral walking target /2026-10-27
 
 Base `bc7e31dc2c8e3322ccb56244233b94be0f38549f`,427runtimeinputs `819a17e39d16bb035e5733fa56486d76b5a468a39f9c47f1ac392fbe6f934fa2` equal compiled fingerprint. Fresh152units/7files/2.38s serial120sallowance,39newwalking/projection cases included, exact per-file counts in machine report. Six-region and tea local plans, semantic/floor labels, foreignID/malformed/wall rejection, detached/no mutation/currentpatrolpin, actualscene arrival; actual camera projection/CSSscale/crop/status exclusion/edge clamp/tiny-invalid bounds. Root/devtypes PASS. Save/combat/economy/collection/modes/rules/geometry/pathfinding/controls/oldguidance/authoredassets/deps are byte-unchanged and reuse016Ffull1781/136files; that is not a fresh016Hfull run. Changed controller/renderers are freshly checked below; default20s/concurrency remainsOPEN.
