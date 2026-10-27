@@ -17,7 +17,11 @@ import {
 } from "../../src/aw2/world/rules"
 import type { WorldBossEncounter } from "../../src/aw2/world/encounter"
 import { WorldBattle } from "./WorldBattle"
-import { WorldCanvas } from "./WorldCanvas"
+import {
+  WorldSceneHost,
+  type WorldSceneHostHandle,
+  type PreparedWorldScene,
+} from "./WorldSceneHost"
 import type { WorldMapReadiness } from "./worldCanvasTypes"
 import { InventoryPanel } from "./InventoryPanel"
 import { CHEST_RECEIPT, type EconomyAction } from "../../src/aw2/economy/model"
@@ -58,12 +62,7 @@ interface ActiveWorldEncounter {
 }
 interface TravelProgress extends ScenePreparationProgress {
   destination: ZoneId
-  phase: "loading" | "saving"
-}
-interface PreparedDestination {
-  destination: ZoneId
-  leaderId: string
-  release: () => void
+  phase: "loading" | "rendering" | "saving"
 }
 
 function WorldPreview() {
@@ -81,15 +80,13 @@ function WorldPreview() {
   const [busy, setBusy] = useState(false)
   const [travel, setTravel] = useState<TravelProgress | null>(null)
   const travelAbort = useRef<AbortController | null>(null)
-  const preparedDestination = useRef<PreparedDestination | null>(null)
+  const sceneHost = useRef<WorldSceneHostHandle | null>(null)
   const mounted = useRef(true)
   useEffect(() => {
     mounted.current = true
     return () => {
       mounted.current = false
       travelAbort.current?.abort()
-      preparedDestination.current?.release()
-      preparedDestination.current = null
     }
   }, [])
   const [gamePanel, setGamePanel] = useState<GamePanel>("none")
@@ -115,15 +112,6 @@ function WorldPreview() {
   )
   const handleMapReady = useCallback((state: WorldMapReadiness) => {
     setMapReadiness(state)
-    const prepared = preparedDestination.current
-    if (
-      state.ready &&
-      prepared?.destination === state.zoneId &&
-      prepared.leaderId === state.leaderId
-    ) {
-      prepared.release()
-      preparedDestination.current = null
-    }
   }, [])
   const [activeEncounter, setActiveEncounter] =
     useState<ActiveWorldEncounter | null>(null)
@@ -369,8 +357,6 @@ function WorldPreview() {
 
   function reread() {
     if (pending.current) return
-    preparedDestination.current?.release()
-    preparedDestination.current = null
     setGamePanel("none")
     queuedWalk.current = null
     setMapReadiness(null)
@@ -474,6 +460,7 @@ function WorldPreview() {
         const abort = new AbortController()
         travelAbort.current = abort
         let release: (() => void) | undefined
+        let prepared: PreparedWorldScene | undefined
         try {
           setTravel({
             destination: destination.zoneId,
@@ -498,19 +485,32 @@ function WorldPreview() {
             error.name = "AbortError"
             throw error
           }
+          setTravel((current) =>
+            current ? { ...current, phase: "rendering" } : null,
+          )
+          if (!sceneHost.current) throw Error("Bản đồ hiện tại đã đóng.")
+          prepared = await sceneHost.current.prepare(
+            destination,
+            expected.save.economy,
+            abort.signal,
+          )
+          // Candidate now owns its own ambient lease and first rendered frame.
+          release()
+          release = undefined
           travelAbort.current = null
           setTravel((current) =>
             current ? { ...current, phase: "saving" } : null,
           )
-          const next = await store.act(expected.raw, source, objectId, "travel")
+          const next = await store.act(
+            expected.raw,
+            source,
+            objectId,
+            "travel",
+            prepared.assertReady,
+          )
           if (!mounted.current) return
-          preparedDestination.current?.release()
-          preparedDestination.current = {
-            destination: destination.zoneId,
-            leaderId: destination.partyIds[0] ?? "aw2-than",
-            release,
-          }
-          release = undefined
+          prepared.activate()
+          prepared = undefined
           saved.current = next
           setSnapshot(next)
           worldRef.current = next.save.progress
@@ -519,6 +519,7 @@ function WorldPreview() {
           setMessage(`Đã tới ${zoneById(destination.zoneId).name}.`)
         } finally {
           travelAbort.current = null
+          prepared?.dispose()
           release?.()
         }
         return
@@ -724,7 +725,7 @@ function WorldPreview() {
       onKeyDown={singleViewport ? trapPanelTab : undefined}
       onCancel={(event) => {
         event.preventDefault()
-        if (travel?.phase === "loading") travelAbort.current?.abort()
+        if (travel && travel.phase !== "saving") travelAbort.current?.abort()
         else if (!pending.current) setDialogObject(null)
       }}
     >
@@ -781,7 +782,9 @@ function WorldPreview() {
           <p>
             {travel.phase === "saving"
               ? "Đang ghi điểm đến…"
-              : `Đang chuẩn bị ${zoneById(travel.destination).name}…`}
+              : travel.phase === "rendering"
+                ? `Đang mở bản đồ ${zoneById(travel.destination).name}…`
+                : `Đang chuẩn bị ${zoneById(travel.destination).name}…`}
           </p>
           <progress
             aria-label="Tải cảnh đích"
@@ -793,7 +796,7 @@ function WorldPreview() {
           </small>
           <button
             type="button"
-            disabled={travel.phase !== "loading"}
+            disabled={travel.phase === "saving"}
             onClick={() => travelAbort.current?.abort()}
           >
             Hủy chuyển vùng
@@ -831,7 +834,8 @@ function WorldPreview() {
         canWalk={navigationReady}
         map={
           snapshot.status === "ready" ? (
-            <WorldCanvas
+            <WorldSceneHost
+              ref={sceneHost}
               focusRef={worldMap}
               key={`${snapshot.save.saveId}:${mapEpoch}`}
               world={world}
@@ -948,7 +952,8 @@ function WorldPreview() {
               worldMap.current?.focus({ preventScroll: true })
             }}
           />
-          <WorldCanvas
+          <WorldSceneHost
+            ref={sceneHost}
             focusRef={worldMap}
             key={`${snapshot.save.saveId}:${mapEpoch}`}
             world={world}

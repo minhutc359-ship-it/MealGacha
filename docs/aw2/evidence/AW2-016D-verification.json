@@ -1,0 +1,100 @@
+{
+  "task": "AW2-016D",
+  "status": "VERIFIED_DEVELOPMENT_PRECOMMIT_RENDERER_AND_FIRST_FRAME",
+  "date": "2026-10-27",
+  "base": "6f1c0abecb68cf79b1d6d8cae4e2dc714e7e6970",
+  "runtimeFingerprint": "f989329abbc7f0ac3d53aac3126f8e734305e1e428d8b6dabe6f57a70c1a4bb3",
+  "inputFiles": 411,
+  "units": {
+    "status": "PASS",
+    "freshFullCases": 1733,
+    "files": 134,
+    "newCasesIncluded": 26,
+    "focusedCasesOverlapping": 54,
+    "maxWorkers": 1,
+    "timeoutAllowanceMs": 120000,
+    "seconds": 62.44,
+    "defaultTimeoutRun": "NOT_RUN; historical016Bdefault20s reliability remains open"
+  },
+  "browser": {
+    "source": 131,
+    "compiled": 131,
+    "freshTotal": 262,
+    "unexpectedErrors": 0,
+    "diagnosticAssertionsRetained": 0,
+    "actualRendererTimeoutMs": 30000,
+    "postCommitContextRecovery": true,
+    "insideLockContextLossNoWrite": true,
+    "firstFrameAndCanvasIdentityBeforeWrite": true
+  },
+  "typechecks": {
+    "root": "PASS",
+    "dev": "PASS"
+  },
+  "build": {
+    "task": "AW2-016D",
+    "status": "PASS",
+    "base": "6f1c0abecb68cf79b1d6d8cae4e2dc714e7e6970",
+    "codeFingerprint": "f989329abbc7f0ac3d53aac3126f8e734305e1e428d8b6dabe6f57a70c1a4bb3",
+    "inputFiles": 411,
+    "compiledFingerprintMatch": true,
+    "aw2Files": 305,
+    "aw2Bytes": 121748807,
+    "runtimeParity": 259,
+    "sourceTempExclusion": true,
+    "stableFiles": 851,
+    "stableBytes": 177450422,
+    "stableTextIsolation": 49,
+    "unchangedAuthorities": [
+      "src/aw2/world/maps.ts",
+      "src/aw2/world/model.ts",
+      "src/aw2/world/rules.ts",
+      "src/aw2/save/schema.ts",
+      "src/aw2/world/encounter.ts",
+      "src/aw2/economy/model.ts",
+      "src/aw2/modes/session.ts",
+      "package.json",
+      "pnpm-lock.yaml",
+      "vite.config.ts",
+      "dev/vite.aw2.config.ts"
+    ]
+  },
+  "environment": {
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "node": "v24.22.1",
+    "pnpm": "11.25.0",
+    "vitest": "5.0.1",
+    "typescript": "5.9.3",
+    "pixi": "8.20.1",
+    "chromium": "153.0.8010.0",
+    "playwrightCore": "1.62.1"
+  },
+  "progress": {
+    "demo": 90,
+    "productApprox": 40,
+    "range": [
+      35,
+      45
+    ],
+    "changed": false
+  },
+  "commands": [
+    "pnpm exec vitest run --config dev/vitest.config.ts --maxWorkers=1 --testTimeout=120000",
+    "pnpm typecheck",
+    "pnpm exec tsc --noEmit -p dev/tsconfig.json",
+    "pnpm build:aw2",
+    "pnpm build",
+    "node dev/tools/verify-aw2-render-transition.mjs [--compiled] --playwright /opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/index.mjs --chromium /tmp/meal-chrome-016d/chromium"
+  ],
+  "limits": [
+    "No compensating rollback after durable write; later GPU errors use map error/reread.",
+    "At most two contexts during preparation; no total GPU memory/FPS measurement.",
+    "No new interior/canon/schema/media/dependency/economy.",
+    "No new full boss/full mode match/physical phone/independent human/listening/rights/release acceptance."
+  ],
+  "publication": {
+    "status": "PENDING_SOURCE_PUSH",
+    "branch": "game/adventure-world-2",
+    "expectedBase": "6f1c0abecb68cf79b1d6d8cae4e2dc714e7e6970"
+  }
+}

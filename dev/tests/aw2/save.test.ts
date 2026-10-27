@@ -6,6 +6,7 @@ import {
   decodeAw2Save,
 } from "@/aw2/save/schema"
 import { Aw2DevSaveStore } from "@/aw2/save/store"
+import { ZONE_IDS } from "@/aw2/world/ids"
 
 const legacyEntries = [
   ["foodchest.tcg.v1", '{"coins":9876,"cards":{"owned":7}}'],
@@ -67,6 +68,124 @@ function fixture() {
 }
 
 afterEach(() => vi.unstubAllGlobals())
+
+describe("SAVE-016D: destination validity inside the write lock", () => {
+  const exit = `${ZONE_IDS[0]}:exit:east`
+  it("validates a prepared scene exactly once and preserves all other save data", async () => {
+    const f = fixture(),
+      before = await f.store.save(null),
+      ready = vi.fn()
+    const source = { ...before.save.progress, x: 616, y: 192 }
+    const next = await f.store.act(before.raw, source, exit, "travel", ready)
+    expect(ready).toHaveBeenCalledTimes(1)
+    expect(next.save.revision).toBe(before.save.revision + 1)
+    expect(next.save.progress).toMatchObject({
+      zoneId: ZONE_IDS[1],
+      x: 64,
+      y: 192,
+    })
+    expect(next.save.economy).toEqual(before.save.economy)
+    expect(next.save.collection).toEqual(before.save.collection)
+    f.expectLegacyPreserved()
+  })
+  it("writes nothing if the scene becomes invalid during an actual lock wait", async () => {
+    const f = fixture(),
+      before = await f.store.save(null)
+    let release: () => void = () => {
+      throw Error("Lock gate not initialized")
+    }
+    const blocked = new Promise<void>((resolve) => {
+      release = resolve
+    })
+    const store = new Aw2DevSaveStore({
+      ...f.options,
+      lock: async (action) => {
+        await blocked
+        return action()
+      },
+    })
+    let valid = true
+    const ready = vi.fn(() => {
+      if (!valid) throw Error("candidate disposed")
+    })
+    const pending = store.act(
+      before.raw,
+      { ...before.save.progress, x: 616 },
+      exit,
+      "travel",
+      ready,
+    )
+    expect(ready).not.toHaveBeenCalled()
+    valid = false
+    release()
+    await expect(pending).rejects.toThrow("candidate disposed")
+    expect(f.setItem).toHaveBeenCalledTimes(1)
+    expect(f.store.load()).toEqual(before)
+    f.expectLegacyPreserved()
+  })
+  it("rejects stale raw before consulting readiness", async () => {
+    const f = fixture(),
+      before = await f.store.save(null),
+      ready = vi.fn()
+    const changed = await f.store.save(before.raw)
+    await expect(
+      f.store.act(
+        before.raw,
+        { ...before.save.progress, x: 616 },
+        exit,
+        "travel",
+        ready,
+      ),
+    ).rejects.toMatchObject({ code: "conflict" })
+    expect(ready).not.toHaveBeenCalled()
+    expect(f.store.load()).toEqual(changed)
+  })
+  it("cannot use a renderer guard to bypass proximity or locked rules", async () => {
+    const f = fixture(),
+      before = await f.store.save(null),
+      ready = vi.fn()
+    await expect(
+      f.store.act(before.raw, before.save.progress, exit, "travel", ready),
+    ).rejects.toThrow()
+    expect(ready).not.toHaveBeenCalled()
+    expect(f.store.load()).toEqual(before)
+  })
+  it("does not permit a readiness hook on a nontravel action", async () => {
+    const f = fixture(),
+      before = await f.store.save(null),
+      ready = vi.fn()
+    await expect(
+      f.store.act(
+        before.raw,
+        { ...before.save.progress, x: 160, y: 240 },
+        "aw2-npc-giu-cho",
+        "accept",
+        ready,
+      ),
+    ).rejects.toMatchObject({ code: "invalid" })
+    expect(ready).not.toHaveBeenCalled()
+    expect(f.store.load()).toEqual(before)
+  })
+  it("keeps the original save on storage failure after successful readiness", async () => {
+    const f = fixture(),
+      before = await f.store.save(null),
+      ready = vi.fn()
+    f.setItem.mockImplementationOnce(() => {
+      throw Error("quota")
+    })
+    await expect(
+      f.store.act(
+        before.raw,
+        { ...before.save.progress, x: 616 },
+        exit,
+        "travel",
+        ready,
+      ),
+    ).rejects.toMatchObject({ code: "write-failed" })
+    expect(ready).toHaveBeenCalledTimes(1)
+    expect(f.store.load()).toEqual(before)
+  })
+})
 
 describe("SAVE-01: AW2 namespace, round-trip and explicit reset", () => {
   it("does not create a save or touch legacy storage on load", () => {

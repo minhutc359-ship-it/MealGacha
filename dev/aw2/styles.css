@@ -166,3 +166,17 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-travel-progress p { grid-column: 1 / -1; margin: 0; font-size: .9rem; overflow-wrap: anywhere; }
 .aw2-travel-progress progress { width: 100%; min-width: 0; align-self: center; }
 .aw2-travel-progress button { grid-column: 1 / -1; min-height: 44px; }
+.aw2-scene-slot[data-world-scene-state="active"] { display: contents; }
+.aw2-scene-slot[data-world-scene-state="preparing"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 640px;
+  height: 384px;
+  max-width: 100vw;
+  max-height: 100dvh;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: clip;
+  contain: layout style;
+}

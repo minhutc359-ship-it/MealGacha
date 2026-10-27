@@ -10,12 +10,12 @@ Triển khai AW2-016A + AW2-008B, nền `2caa108`. Mở `/dev/aw2/game.html` →
 
 Validator kiểm tra dữ liệu hữu hạn, namespace, ID duy nhất, vùng tồn tại, spawn an toàn, liên kết hai chiều và spawn không mồ côi. Mỗi lần lấy registry có dữ liệu tách rời; sửa snapshot không đổi `ZONES`. Quyền mở cổng luôn đọc `describeObject`; tìm tuyến dùng cùng `journeyRoute` với chỉ đường nhiệm vụ. Sân→Kho theo nhận nhiệm vụ bếp, Kho/Lửa→Bàn theo puzzle, hai lối tắt theo kết thúc thực.
 
-## Hợp đồng chuyển cảnh — trạng thái sau016C
+## Hợp đồng chuyển cảnh — trạng thái sau016D
 
-1. Chuẩn bị: kiểm tra quyền bằng rules và tạo yêu cầu chuyển cảnh gắn với raw save hiện tại; chặn yêu cầu lặp.
-2. Tải trước đúng destination, giữ lease/camera/cảnh nguồn; chưa thay tọa độ hoặc ghi save. NPC/điều khiển tạm dừng.
-3. Kiểm tra spawn trên dữ liệu destination và trạng thái nhiệm vụ mới nhất. Asset bắt buộc lỗi phải hiện lỗi/thử lại; giữ cảnh nguồn và exact raw save.
-4. Chỉ sau readiness mới commit giao dịch bằng Web Locks/expected raw; tab cũ không được ghi đè. Ghi lỗi giữ cảnh nguồn và tài nguyên đã chuẩn bị để thử lại hoặc hủy.
-5. Commit thành công mới swap scene/camera, đặt vị trí an toàn, trả focus/điều khiển và giải phóng lease nguồn. Cooldown chỉ ngăn kích hoạt lại; không đổi gate nhiệm vụ.
+1. Kiểm tra quyền/proximity/spawn bằng rules hiện hành và chụp source/raw trước await; chặn thao tác lặp.
+2. Tải đúng ảnh đích, giữ nguồn/camera và lease; NPC/điều khiển tạm dừng, chưa ghi save.
+3. Dựng một renderer đích trong slot ẩn/inert, tạo sprite/camera và vẽ khung đầu thật. Lỗi/cancel/timeout/unmount giải phóng candidate, giữ nguồn. Không dùng readiness chỉ từ ảnh hoặc chỉ từ app.init.
+4. Chạy lại guard đồng bộ của chính renderer đích bên trong Web Lock, sau rules/expected-raw validation, trước durable setItem. Readiness mất khi chờ khóa hoặc lỗi ghi đều không đổi vị trí đã lưu. Thử lại dựng candidate mới.
+5. Commit thành công mới promote cùng canvas/renderer đã chuẩn bị, trả focus/điều khiển và hủy cảnh nguồn. Không tạo renderer đích lần thứ hai sau commit.
 
-016C đã triển khai kiểm tra quyền/spawn hiện hành, tải trước ảnh, giữ cảnh nguồn, hủy/timeout, expected-raw commit và ambient lease handover. Lỗi ảnh/lưu trước commit giữ source; chỉ commit thành công mới đổi world. Readiness ở bước này là ảnh/lease đã tải; GPU/renderer-init vẫn diễn ra sau commit. Bước preflight toàn renderer hoặc compensating rollback sau commit còn mở. Chưa có phòng/nhà/hội quán mới. Xem [hướng dẫn và giới hạn](CHUYEN_VUNG.md). Patrol016B cần cùng vị trí sống cho hình vẽ, proximity, label và chỉ đường, kèm sprite bốn hướng thật; không dịch sprite khỏi điểm tương tác tĩnh.
+016D hoàn tất preflight renderer/first-frame và vòng đời trước commit. Source/candidate tối đa hai slot; candidate không có world input, cập nhật luật hoặc quyền ghi. Ambient preload lease chuyển sang lease của renderer; async về muộn có cleanup. Ticker bắt lỗi vẽ/context loss. Lỗi GPU sau durable commit dùng lỗi bản đồ/Đọc lại, không có compensating rollback save. Chưa thêm phòng/nhà/hội quán mới hoặc sửa registry/save/canon. [Hướng dẫn/giới hạn](CHUYEN_VUNG.md), [task](tasks/AW2-016D.md). Patrol016B tiếp tục dùng cùng snapshot vị trí cho sprite/proximity/labels/điểm đến/chỉ đường.

@@ -1,5 +1,11 @@
 # Task board
 
+**AW2-016D VERIFIED development — dựng cảnh đích trước khi ghi save.** Giữ cảnh/camera nguồn, dựng một renderer đích ẩn và kiểm tra khung hình đầu thật; lưu thành công mới đưa chính canvas đó ra hiển thị. Lỗi init/vẽ/context trước ghi, hủy/timeout hoặc lỗi lưu bỏ candidate và giữ nguồn. Guard kiểm tra lại ngay trong Web Lock; cảnh lỗi trong lúc chờ khóa không được ghi vị trí.
+
+**262 kiểm tra trình duyệt mới =131source+131compiled PASS**, gồm lỗi init/khung đầu, timeout renderer30s, mất context thật khi chờ khóa, cùng canvas được promote, hai tab, đi–về sáu vùng/quest thật, classic entry và4viewport/chữ20px/44px. **Full1.733/1.733unit/134files PASS** với `--maxWorkers=1 --testTimeout=120000` (26ca mới đã nằm trong tổng); hai typecheck/AW2+stable build/259asset parity đạt. Không cộng lịch sử hoặc gọi đây là lượt default-timeout. [Cách dùng](CHUYEN_VUNG.md) · [Bằng chứng](evidence/AW2-016D.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Lỗi GPU sau durable commit dùng lỗi bản đồ/Đọc lại, không rollback bù save. Hai context có thể tồn tại trong lúc chuẩn bị; chưa đo tổngGPUmemory/FPS hoặc nghiệm thu độc lập/điện thoại thật. D18/D20/D11 giữ nguyên; không thêm nội thất/canon/schema/media/economy. Tiếp theo BA/story chốt một nội thất có tương tác và contract truy cập/migration riêng. D16push trực tiếp AW2; không master/rpg/deploy/release/reset. Các bản ghi bên dưới là lịch sử, ưu tiên hiện tại theo016D.
+
 **AW2-016C VERIFIED development — chuẩn bị cảnh trước khi ghi điểm đến.** Đi qua cửa tải trước đúng ảnh của vùng đích/nhân vật đại diện, giữ bản đồ và vị trí nguồn trong khi tải; có tiến độ, hủy và timeout30s. Lỗi ảnh hoặc ghi save giữ cảnh nguồn và cho thử lại. Raw save được chụp trước await; tab cũ không ghi đè tab mới, thao tác lặp chỉ commit một lần. Ambient lease giữ tới khi renderer đích ready.
 
 **120 kiểm tra trình duyệt mới =60source+60compiled PASS**, gồm delayed atlas/cancel/late404/retry/ghi lỗi, hai tab thực, đi–về đủ6vùng qua gate nhiệm vụ/puzzle thật, reload và entrygame/world;4viewport/chữ20px/44px/no-scroll.186ca unit tác động/10files được xác minh, gồm18ca mới;18ca cuối được chạy lại sau sửa type fixture, không cộng trùng. Hai typecheck/AW2+stable build và259asset parity đạt. [Cách dùng/giới hạn](CHUYEN_VUNG.md) · [Bằng chứng](evidence/AW2-016C.md).
@@ -87,8 +93,10 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | AW2-015 | BA/story/mechanic/animation/tester/scretary | v1.1UI integration workstream; replaces duplicateUI012alias | IN_PROGRESS; first015Aslice verified,015Bpending |
 | AW2-015A | BA/story/mechanic/animation/tester/scretary | Archive/reconcilev1.1 +opt-in exploration/menu shell | VERIFIED at0936b948db633c66e5539f631e3f8aaf7920fda1;88units/552freshbrowser/types/build PASS |
 | AW2-015B | BA/mechanic/animation/tester/scretary | Fixed-viewportbattle/TCG/Chess migration | READY; nextUI task, implementation NOT_STARTED |
-| AW2-016A | BA/story/mechanic/animation/tester/scretary | Compatible map/portal/spawn/entity projection | READY; parallelworld contract, no new room activation |
-| AW2-016B | story/character/mechanic/animation/tester/scretary | Authored NPC patrol with real live interaction positions | BACKLOG after016Aentity contract, not cosmetic motion |
+| AW2-016A | BA/story/mechanic/animation/tester/scretary | Compatible map/portal/spawn/entity projection | VERIFIED; see015B/016A/008B evidence, no new room activation |
+| AW2-016B | story/character/mechanic/animation/tester/scretary | Authored NPC patrol with real live interaction positions | VERIFIED; live Em Đem Nước patrol,016B evidence |
+| AW2-016C | BA/mechanic/animation/tester/scretary | Destination image preparation before travel commit | VERIFIED;016C evidence |
+| AW2-016D | BA/mechanic/animation/tester/scretary | Actual renderer/first frame and guarded travel commit | VERIFIED; current016D evidence |
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |

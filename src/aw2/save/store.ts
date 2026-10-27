@@ -39,13 +39,7 @@ export type ResetRequest = Readonly<{ expectedRaw: string | null }>
 
 export class Aw2SaveError extends Error {
   constructor(
-    readonly code:
-      | "unavailable"
-      | "write-failed"
-      | "conflict"
-      | "invalid"
-      | "confirmation"
-      | "locking",
+    readonly code: "unavailable" | "write-failed" | "conflict" | "invalid" | "confirmation" | "locking",
     message: string,
   ) {
     super(message)
@@ -151,6 +145,7 @@ export class Aw2DevSaveStore {
     progress: WorldProgress,
     objectId: string,
     actionId: string,
+    assertDestinationReady?: () => void,
   ): Promise<ReadySave> {
     return this.write(expectedRaw, (current) => {
       if (current.status !== "ready")
@@ -160,7 +155,17 @@ export class Aw2DevSaveStore {
       const next = this.revise(current, result.state)
       if (result.state.questIndex > current.save.progress.questIndex)
         next.economy = grantQuestRewards(current.save.economy, result.state)
-      return aw2DevSaveSchema.parse(next)
+      const valid = aw2DevSaveSchema.parse(next)
+      if (assertDestinationReady) {
+        if (actionId !== "travel")
+          throw new Aw2SaveError(
+            "invalid",
+            "Chỉ kiểm tra cảnh đích khi chuyển vùng.",
+          )
+        // No await between this guard and setItem in write(). Rules/raw remain authoritative.
+        assertDestinationReady()
+      }
+      return valid
     })
   }
 

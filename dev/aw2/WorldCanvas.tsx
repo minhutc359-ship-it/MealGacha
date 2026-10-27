@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import type { Application, Texture } from "pixi.js"
+import type { Texture } from "pixi.js"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { sampleWorldFrame } from "../../src/aw2/assets/animation"
 import type { WorldProgress } from "../../src/aw2/world/model"
@@ -44,6 +44,11 @@ import {
   type VillageViewMode,
 } from "../../src/aw2/assets/villageView"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
+import {
+  SceneLifetime,
+  initializeWorldScene,
+  firstWorldFrame,
+} from "./sceneLifecycle"
 
 export function WorldCanvas(props: WorldCanvasProps) {
   return props.world.zoneId === VILLAGE_SCENE.zoneId ? (
@@ -99,11 +104,30 @@ function FlatWorldCanvas({
       ? hearthProps
       : interactionProps
   useEffect(() => {
-    let disposed = false
-    let app: Application | undefined
+    const lifetime = new SceneLifetime()
     const textures: Texture[] = []
-    const signalReady = (ready: boolean) =>
-      onReadyChange?.({ zoneId: world.zoneId, leaderId: leaderId, ready })
+    lifetime.own(() => textures.forEach((texture) => texture.destroy(false)))
+    const signalReady = (
+      ready: boolean,
+      error?: string,
+      assertUsable?: () => void,
+    ) =>
+      onReadyChange?.({
+        zoneId: world.zoneId,
+        leaderId: leaderId,
+        ready,
+        error,
+        assertUsable,
+      })
+    const fail = (cause: unknown) => {
+      if (lifetime.disposed) return
+      const message =
+        cause instanceof Error ? cause.message : "Chưa tải được bản đồ."
+      setReady(false)
+      setError(message)
+      signalReady(false, message)
+      lifetime.dispose()
+    }
     setReady(false)
     signalReady(false)
     setError("")
@@ -138,21 +162,21 @@ function FlatWorldCanvas({
                   ])
                 : Promise.resolve([]),
         ])
-        if (disposed) return
+        if (lifetime.disposed) return
         for (const texture of environment) texture.source.scaleMode = "nearest"
         const next = new Application()
-        await next.init({
-          width: 640,
-          height: 384,
-          background: 0x233b32,
-          antialias: false,
-          preference: "webgl",
-        })
-        if (disposed) {
-          next.destroy(true)
-          return
-        }
-        app = next
+        await initializeWorldScene(
+          next,
+          {
+            width: 640,
+            height: 384,
+            background: 0x233b32,
+            antialias: false,
+            preference: "webgl",
+          },
+          lifetime,
+        )
+        if (lifetime.disposed) return
         const room = ZONE_IDS.indexOf(world.zoneId) >= 3
         const terrain = new Graphics()
         if (scene) {
@@ -394,7 +418,7 @@ function FlatWorldCanvas({
         let elapsed = 0
         const reduced = matchMedia("(prefers-reduced-motion: reduce)")
         next.stage.sortableChildren = true
-        next.ticker.add((ticker) => {
+        const update = (ticker: import("pixi.js").Ticker) => {
           const now = position.current
           // React may publish the destination before effect cleanup destroys this canvas.
           if (now.zoneId !== world.zoneId) return
@@ -544,27 +568,29 @@ function FlatWorldCanvas({
             }
           }
           prior = { ...now }
-        })
+        }
         next.canvas.setAttribute("aria-hidden", "true")
         next.canvas.dataset.sceneId = landscape.id
         next.canvas.dataset.partySize = String(ids.length)
         next.canvas.dataset.partyIds = JSON.stringify(ids)
-        host.current?.replaceChildren(next.canvas)
+        const assertUsable = await firstWorldFrame(
+          next,
+          host.current!,
+          update,
+          lifetime,
+          fail,
+        )
+        if (lifetime.disposed) return
         setReady(true)
-        signalReady(true)
+        signalReady(true, undefined, assertUsable)
       } catch (cause) {
-        if (!disposed)
-          setError(
-            cause instanceof Error ? cause.message : "Chưa tải được bản đồ.",
-          )
+        fail(cause)
       }
     })()
     return () => {
       signalReady(false)
-      disposed = true
       camera.current = null
-      app?.destroy(true, { children: true })
-      textures.forEach((texture) => texture.destroy(false))
+      lifetime.dispose()
     }
   }, [world.zoneId, leaderId, onReadyChange])
   return (

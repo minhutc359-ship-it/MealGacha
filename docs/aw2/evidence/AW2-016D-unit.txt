@@ -1,0 +1,11 @@
+
+ RUN  v5.0.1 /workspace/scratch/47c00dd5b26d/MealGacha
+
+
+ Test Files  134 passed (134)
+      Tests  1733 passed (1733)
+   Start at  12:39:21
+   Duration  62.44s (tests 70%, import 22%, transform 7%, worker 1%)
+
+    Isolate  134 workers spawned · ~112ms startup each (spawn + environment, per file)
+             at least ~14.92s faster with isolate: false — reuses workers across files instead of one per file

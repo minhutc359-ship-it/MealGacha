@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import type { Application, Texture } from "pixi.js"
+import type { Texture } from "pixi.js"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { sampleWorldFrame } from "../../src/aw2/assets/animation"
 import {
@@ -19,6 +19,11 @@ import {
 } from "../../src/aw2/assets/villageView"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
+import {
+  SceneLifetime,
+  initializeWorldScene,
+  firstWorldFrame,
+} from "./sceneLifecycle"
 import { npcForEntity, advanceNpcClock } from "../../src/aw2/assets/npcMotion"
 import {
   loadNpcTextures,
@@ -71,12 +76,30 @@ export function JourneyLandscape({
   const leader = world.partyIds[0] ?? "aw2-than",
     points = journeyWaypoints(world, economy, patrol)
   useEffect(() => {
-    let disposed = false,
-      app: Application | undefined,
-      ambientUrls: string[] = []
+    const lifetime = new SceneLifetime()
     const textures: Texture[] = []
-    const signalReady = (ready: boolean) =>
-      onReadyChange?.({ zoneId: world.zoneId, leaderId: leader, ready })
+    lifetime.own(() => textures.forEach((texture) => texture.destroy(false)))
+    const signalReady = (
+      ready: boolean,
+      error?: string,
+      assertUsable?: () => void,
+    ) =>
+      onReadyChange?.({
+        zoneId: world.zoneId,
+        leaderId: leader,
+        ready,
+        error,
+        assertUsable,
+      })
+    const fail = (cause: unknown) => {
+      if (lifetime.disposed) return
+      const message =
+        cause instanceof Error ? cause.message : "Chưa tải được phong cảnh."
+      setReady(false)
+      setError(message)
+      signalReady(false, message)
+      lifetime.dispose()
+    }
     setReady(false)
     signalReady(false)
     setError("")
@@ -99,14 +122,14 @@ export function JourneyLandscape({
               scene.zoneId,
               (url) => Assets.load(url),
               (url) => Assets.unload(url),
-            ),
+            ).then((loaded) => {
+              lifetime.own(() =>
+                releaseAmbientTextures(loaded.map((item) => item.asset.url)),
+              )
+              return loaded
+            }),
           ])
-        ambientUrls = loadedAmbient.map((item) => item.asset.url)
-        if (disposed) {
-          releaseAmbientTextures(ambientUrls)
-          ambientUrls = []
-          return
-        }
+        if (lifetime.disposed) return
         const assetTextures: Record<string, Texture> = Object.fromEntries(
           keys.map((key, i) => [key, loaded[i]]),
         )
@@ -115,18 +138,18 @@ export function JourneyLandscape({
             key === "floor" || key === "foreground" ? "linear" : "nearest"
         body.source.scaleMode = "nearest"
         const next = new Application()
-        await next.init({
-          width: 640,
-          height: 384,
-          background: 0x193b32,
-          antialias: false,
-          preference: "webgl",
-        })
-        if (disposed) {
-          next.destroy(true)
-          return
-        }
-        app = next
+        await initializeWorldScene(
+          next,
+          {
+            width: 640,
+            height: 384,
+            background: 0x193b32,
+            antialias: false,
+            preference: "webgl",
+          },
+          lifetime,
+        )
+        if (lifetime.disposed) return
         next.stage.sortableChildren = true
         const crop = (
           base: Texture,
@@ -226,7 +249,7 @@ export function JourneyLandscape({
         let prior = { ...position.current },
           elapsed = 0,
           npcElapsed = 0
-        next.ticker.add((ticker) => {
+        const update = (ticker: import("pixi.js").Ticker) => {
           const now = position.current
           if (now.zoneId !== scene.zoneId) return
           npcElapsed = advanceNpcClock(
@@ -396,30 +419,29 @@ export function JourneyLandscape({
             }),
           )
           prior = { ...now }
-        })
+        }
         next.canvas.setAttribute("aria-hidden", "true")
         next.canvas.dataset.sceneId = scene.id
         next.canvas.dataset.partySize = "1"
         next.canvas.dataset.partyIds = JSON.stringify([leader])
-        host.current?.replaceChildren(next.canvas)
+        const assertUsable = await firstWorldFrame(
+          next,
+          host.current!,
+          update,
+          lifetime,
+          fail,
+        )
+        if (lifetime.disposed) return
         setReady(true)
-        signalReady(true)
+        signalReady(true, undefined, assertUsable)
       } catch (cause) {
-        if (!disposed)
-          setError(
-            cause instanceof Error
-              ? cause.message
-              : "Chưa tải được phong cảnh.",
-          )
+        fail(cause)
       }
     })()
     return () => {
       signalReady(false)
-      disposed = true
       camera.current = null
-      app?.destroy(true, { children: true })
-      textures.forEach((t) => t.destroy(false))
-      releaseAmbientTextures(ambientUrls)
+      lifetime.dispose()
     }
   }, [leader, scene.id, onReadyChange])
   return (

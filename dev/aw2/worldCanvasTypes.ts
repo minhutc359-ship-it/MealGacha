@@ -3,11 +3,11 @@ import type { WorldProgress } from "../../src/aw2/world/model"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import type { Economy } from "../../src/aw2/economy/model"
 import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
+import type { SceneReadiness } from "../../src/aw2/assets/scenePreflight"
 
-export interface WorldMapReadiness {
+export interface WorldMapReadiness extends SceneReadiness {
   zoneId: WorldProgress["zoneId"]
   leaderId: string
-  ready: boolean
 }
 
 export interface WorldCanvasProps {
