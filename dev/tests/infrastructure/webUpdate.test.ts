@@ -11,10 +11,40 @@ class Registration extends EventTarget {
 }
 
 async function fixture(waiting = true, controlled = true) {
+  class TestMessageChannel {
+    port1: {
+      onmessage: ((event: MessageEvent) => void) | null
+      close: ReturnType<typeof vi.fn>
+    }
+    port2: {
+      postMessage: (data: unknown) => void
+      close: ReturnType<typeof vi.fn>
+    }
+    constructor() {
+      this.port1 = { onmessage: null, close: vi.fn() }
+      this.port2 = {
+        postMessage: (data) => this.port1.onmessage?.({ data } as MessageEvent),
+        close: vi.fn(),
+      }
+    }
+  }
   const registration = new Registration()
   registration.waiting = waiting ? { postMessage: vi.fn() } : null
+  const controller = {
+    postMessage: vi.fn(
+      (message: { type?: string }, ports?: readonly MessagePort[]) => {
+        if (message.type === "WEB_CACHE_STATUS")
+          ports?.[0]?.postMessage({
+            version: "cache-v1",
+            entries: 7,
+            bytes: 2048,
+            previousCaches: 1,
+          })
+      },
+    ),
+  }
   const serviceWorker = Object.assign(new EventTarget(), {
-    controller: controlled ? { postMessage: vi.fn() } : null,
+    controller: controlled ? controller : null,
     ready: Promise.resolve(registration),
     register: vi.fn(async () => registration),
   })
@@ -23,9 +53,18 @@ async function fixture(waiting = true, controlled = true) {
     images: [],
     documentElement: { dataset: {} },
   })
-  const window = new EventTarget(),
+  const window = Object.assign(new EventTarget(), {
+      matchMedia: vi.fn(() => ({ matches: false })),
+    }),
     reload = vi.fn()
-  vi.stubGlobal("navigator", { serviceWorker })
+  const storage = {
+    persisted: vi.fn(async () => false),
+    persist: vi.fn(async () => true),
+    estimate: vi.fn(async () => ({ usage: 3_000_000, quota: 50_000_000 })),
+  }
+  const navigator = { serviceWorker, storage, onLine: true }
+  vi.stubGlobal("navigator", navigator)
+  vi.stubGlobal("MessageChannel", TestMessageChannel)
   vi.stubGlobal("document", document)
   vi.stubGlobal("window", window)
   vi.stubGlobal("location", { reload })
@@ -34,7 +73,17 @@ async function fixture(waiting = true, controlled = true) {
   await Promise.resolve()
   await Promise.resolve()
   await Promise.resolve()
-  return { api, registration, serviceWorker, document, window, reload }
+  return {
+    api,
+    registration,
+    serviceWorker,
+    controller,
+    document,
+    window,
+    navigator,
+    storage,
+    reload,
+  }
 }
 
 beforeEach(() => {
@@ -66,17 +115,18 @@ describe("explicit web updates", () => {
       )
     try {
       const f = await fixture(false, false)
-      f.serviceWorker.controller = { postMessage: vi.fn() }
+      f.serviceWorker.controller = f.controller
       f.serviceWorker.dispatchEvent(new Event("controllerchange"))
-      expect(
-        f.serviceWorker.controller.postMessage,
-      ).toHaveBeenCalledExactlyOnceWith({ type: "WARM_WEB_ASSETS", urls })
+      const warmCalls = () =>
+        f.controller.postMessage.mock.calls.filter(
+          ([message]) => message.type === "WARM_WEB_ASSETS",
+        )
+      expect(warmCalls()).toEqual([[{ type: "WARM_WEB_ASSETS", urls }]])
       await vi.advanceTimersByTimeAsync(1_500)
-      expect(f.serviceWorker.controller.postMessage).toHaveBeenCalledTimes(2)
-      expect(f.serviceWorker.controller.postMessage).toHaveBeenLastCalledWith({
-        type: "WARM_WEB_ASSETS",
-        urls,
-      })
+      expect(warmCalls()).toEqual([
+        [{ type: "WARM_WEB_ASSETS", urls }],
+        [{ type: "WARM_WEB_ASSETS", urls }],
+      ])
     } finally {
       resources.mockRestore()
     }
@@ -106,6 +156,69 @@ describe("explicit web updates", () => {
     f.document.hidden = false
     f.document.dispatchEvent(new Event("visibilitychange"))
     expect(f.registration.update).toHaveBeenCalledTimes(3)
+  })
+  it("publishes live connectivity, storage and worker cache status", async () => {
+    const f = await fixture(false)
+    await f.api.refreshWebReadiness()
+    await Promise.resolve()
+    expect(f.api.offlineSnapshot()).toMatchObject({
+      online: true,
+      persistent: false,
+      storageUsage: 3_000_000,
+      storageQuota: 50_000_000,
+      cacheVersion: "cache-v1",
+      cacheEntries: 7,
+      cacheBytes: 2048,
+      previousCaches: 1,
+    })
+    f.navigator.onLine = false
+    f.window.dispatchEvent(new Event("offline"))
+    expect(f.api.offlineSnapshot().online).toBe(false)
+    f.navigator.onLine = true
+    f.window.dispatchEvent(new Event("online"))
+    expect(f.api.offlineSnapshot().online).toBe(true)
+    await f.api.requestPersistentStorage()
+    expect(f.storage.persist).toHaveBeenCalledOnce()
+    expect(f.api.offlineSnapshot().persistent).toBe(true)
+  })
+  it("captures an install prompt and records accepted or installed state", async () => {
+    const f = await fixture(false, false)
+    const prompt = vi.fn(async () => {})
+    const event = Object.assign(
+      new Event("beforeinstallprompt", { cancelable: true }),
+      {
+        prompt,
+        userChoice: Promise.resolve({
+          outcome: "accepted" as const,
+          platform: "web",
+        }),
+      },
+    )
+    f.window.dispatchEvent(event)
+    expect(event.defaultPrevented).toBe(true)
+    expect(f.api.offlineSnapshot().install).toBe("available")
+    await expect(f.api.promptWebInstall()).resolves.toBe(true)
+    expect(prompt).toHaveBeenCalledOnce()
+    expect(f.api.offlineSnapshot().install).toBe("installed")
+    f.window.dispatchEvent(new Event("appinstalled"))
+    expect(f.api.offlineSnapshot().install).toBe("installed")
+  })
+  it("records a dismissed install prompt without retrying the consumed event", async () => {
+    const f = await fixture(false, false)
+    const prompt = vi.fn(async () => {})
+    f.window.dispatchEvent(
+      Object.assign(new Event("beforeinstallprompt", { cancelable: true }), {
+        prompt,
+        userChoice: Promise.resolve({
+          outcome: "dismissed" as const,
+          platform: "web",
+        }),
+      }),
+    )
+    await expect(f.api.promptWebInstall()).resolves.toBe(false)
+    await expect(f.api.promptWebInstall()).resolves.toBe(false)
+    expect(prompt).toHaveBeenCalledOnce()
+    expect(f.api.offlineSnapshot().install).toBe("dismissed")
   })
   it("notices the waiting slot populated after an installed event", async () => {
     const f = await fixture(false)

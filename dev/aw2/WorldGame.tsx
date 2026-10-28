@@ -26,6 +26,7 @@ import { JourneyOverview } from "./JourneyOverview"
 import { RecipePanel } from "./RecipePanel"
 import { RoomPracticePanel } from "./RoomPracticePanel"
 import { npcLifeClock } from "../../src/aw2/world/npcLife"
+import { WebReadiness } from "../../src/components/layout/WebReadiness"
 import "./game.css"
 
 export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe" | "practice"
@@ -364,7 +365,7 @@ export function WorldGame(props: Props) {
             </div>
           )}
           {panel === "help" && (
-            <div className="aw2-panel-stack">
+            <div className="aw2-panel-stack aw2-help-panel">
               <PagedCopy
                 text={
                   props.error ||
@@ -372,6 +373,7 @@ export function WorldGame(props: Props) {
                   "Chạm lối đi hoặc dùng WASD/mũi tên để đi. E tương tác, J mở nhiệm vụ, Escape đóng menu. Chỉ đường chỉ đi tới gần: bạn tự nhận nhiệm vụ, qua cửa và chọn hành động. Đi bộ chưa ghi bản lưu; dùng Lưu vị trí trước khi rời trang."
                 }
               />
+              {props.production && <WebReadiness compact />}
               {props.production ? (
                 <a className="aw2-production-chest-link" href="/chest">
                   Mở Rương Vị Giác original

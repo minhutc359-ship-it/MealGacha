@@ -6,7 +6,10 @@ const MEDIA = `som-web-media-${VERSION}`;
 const MEDIA_LIMIT = 60_000_000;
 const ENTRY_LIMIT = 120;
 let writing = Promise.resolve();
-self.addEventListener('install', event => event.waitUntil(caches.open(CORE).then(cache => cache.addAll(CORE_URLS))));
+self.addEventListener('install', event => event.waitUntil((async () => {
+  try { await (await caches.open(CORE)).addAll(CORE_URLS); }
+  catch (cause) { await caches.delete(CORE); throw cause; }
+})()));
 self.addEventListener('activate', event => event.waitUntil((async () => {
   // Retain a previous version for other open tabs; only remove our own older caches.
   const keys = await caches.keys();
@@ -24,6 +27,13 @@ self.addEventListener('activate', event => event.waitUntil((async () => {
 })()));
 self.addEventListener('message', event => {
   if (event.data?.type === 'WEB_VERSION') event.ports?.[0]?.postMessage(VERSION);
+  if (event.data?.type === 'WEB_CACHE_STATUS') event.waitUntil((async () => {
+    const cache = await caches.open(MEDIA), keys = await cache.keys();
+    let bytes = 0;
+    for (const key of keys) bytes += Number((await cache.match(key))?.headers.get('X-SOM-Bytes') || 0);
+    const previousCaches = (await caches.keys()).filter(name => /^som-web-(?:core|media)-/.test(name) && name !== CORE && name !== MEDIA).length;
+    event.ports?.[0]?.postMessage({version: VERSION, entries: keys.length, bytes, previousCaches});
+  })());
   if (event.data?.type === 'APPLY_WEB_UPDATE') event.waitUntil(self.skipWaiting());
   if (event.data?.type === 'WARM_WEB_ASSETS' && Array.isArray(event.data.urls)) event.waitUntil(Promise.all(event.data.urls.slice(0,48).map(async value => {
     try {
@@ -35,6 +45,17 @@ self.addEventListener('message', event => {
     } catch { /* offline warming is optional */ }
   })));
 });
+async function trimMedia(cache, incomingBytes = 0, incomingEntries = 0) {
+  const keys = await cache.keys();
+  let bytes = 0;
+  for (const key of keys) bytes += Number((await cache.match(key))?.headers.get('X-SOM-Bytes') || 0);
+  while (keys.length && (keys.length + incomingEntries > ENTRY_LIMIT || bytes + incomingBytes > MEDIA_LIMIT)) {
+    const key = keys.shift();
+    if (!key) break;
+    bytes -= Number((await cache.match(key))?.headers.get('X-SOM-Bytes') || 0);
+    await cache.delete(key);
+  }
+}
 function putMedia(request, response) {
   if (new URL(request.url).pathname.endsWith('.mp4')) return Promise.resolve();
   // Serialize LRU writes; partial streams and oversized files never fill the cache.
@@ -46,15 +67,16 @@ function putMedia(request, response) {
     headers.set('X-SOM-Bytes', String(body.size));
     const cache = await caches.open(MEDIA);
     await cache.delete(request);
-    await cache.put(request, new Response(body, {status: 200, headers}));
-    const keys = await cache.keys();
-    let size = 0;
-    for (const key of keys) size += Number((await cache.match(key))?.headers.get('X-SOM-Bytes') || 0);
-    while (keys.length > ENTRY_LIMIT || size > MEDIA_LIMIT) {
-      const key = keys.shift();
-      if (!key) break;
-      size -= Number((await cache.match(key))?.headers.get('X-SOM-Bytes') || 0);
-      await cache.delete(key);
+    await trimMedia(cache, body.size, 1);
+    const stored = new Response(body, {status: 200, headers});
+    try { await cache.put(request, stored.clone()); }
+    catch {
+      // A browser may report quota pressure between estimate and write. Evict
+      // one additional oldest entry and retry once; gameplay still uses the
+      // network response if the optional cache write cannot be completed.
+      const oldest = (await cache.keys())[0];
+      if (oldest) await cache.delete(oldest);
+      try { await cache.put(request, stored); } catch { /* optional cache */ }
     }
   });
   return writing;
@@ -72,12 +94,21 @@ async function ranged(response, range) {
   headers.set('Accept-Ranges', 'bytes');
   return new Response(bytes.slice(start, end + 1), {status: 206, headers});
 }
+async function shellFromCurrentOrPrevious() {
+  const current = await (await caches.open(CORE)).match('/index.html');
+  if (current) return current;
+  const previous = (await caches.keys()).filter(key => key.startsWith('som-web-core-') && key !== CORE).reverse();
+  for (const key of previous) {
+    const shell = await (await caches.open(key)).match('/index.html');
+    if (shell) return shell;
+  }
+}
 self.addEventListener('fetch', event => {
   const request = event.request, url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== self.location.origin || url.pathname.endsWith('/sw.js')) return;
   if (request.mode === 'navigate') {
     // Pin the document to this worker's shell so a deploy cannot mix JS versions.
-    event.respondWith(caches.open(CORE).then(async cache => (await cache.match('/index.html')) || fetch(request)));
+    event.respondWith((async () => (await shellFromCurrentOrPrevious()) || fetch(request))());
     return;
   }
   if (!url.pathname.startsWith('/assets/') && !CORE_URLS.includes(url.pathname)) return;

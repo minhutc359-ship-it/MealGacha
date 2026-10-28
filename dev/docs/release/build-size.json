@@ -3,16 +3,16 @@
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 710000,
   "version": "5.9.23",
-  "bytes": 141435007,
-  "files": 373,
+  "bytes": 141442314,
+  "files": 375,
   "byType": {
     "js": {
-      "files": 29,
-      "bytes": 2429219
+      "files": 30,
+      "bytes": 2435658
     },
     "css": {
-      "files": 4,
-      "bytes": 167819
+      "files": 5,
+      "bytes": 168266
     },
     "wav": {
       "files": 48,
@@ -52,20 +52,20 @@
     },
     "webmanifest": {
       "files": 1,
-      "bytes": 530
+      "bytes": 951
     }
   },
   "groups": {
-    "Application JS/CSS": 2597038,
-    "Other and legal": 124530227,
+    "Application JS/CSS": 2603924,
+    "Other and legal": 124530648,
     "Brand": 229534,
     "Shared character atlases": 1731768,
     "Food art": 7490462,
     "Spirit RPG art/audio/video": 4751008,
     "TCG art/audio": 104970
   },
-  "js_gzip": 694053,
-  "css_gzip": 36709,
+  "js_gzip": 696570,
+  "css_gzip": 37148,
   "largest": [
     {
       "path": "assets/aw2/environments/lantern-street/v1/floor.webp",
@@ -118,19 +118,19 @@
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 1436750,
-    "urls": 23,
+    "bytes": 1443941,
+    "urls": 24,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 10563250
+    "remainingBytes": 10556059
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 178564993
+    "remainingBytes": 178557686
   }
 }

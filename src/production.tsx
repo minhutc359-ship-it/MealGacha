@@ -31,8 +31,16 @@ async function start() {
     render(<OriginalChestApp />)
     return
   }
-  const { WorldPreview } = await import("../dev/aw2/world")
-  render(<WorldPreview production />)
+  const [{ WorldPreview }, { WebUpdatePrompt }] = await Promise.all([
+    import("../dev/aw2/world"),
+    import("./components/layout/WebUpdatePrompt"),
+  ])
+  render(
+    <>
+      <WebUpdatePrompt />
+      <WorldPreview production />
+    </>,
+  )
 }
 
 void start().catch(renderFailure)

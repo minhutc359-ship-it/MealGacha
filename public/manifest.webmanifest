@@ -2,6 +2,8 @@
   "name": "Soul of Meal · Huyền thoại vị giác",
   "short_name": "Soul of Meal",
   "description": "Hành trình RPG Soul of Meal mới cùng Rương Vị Giác original",
+  "id": "/",
+  "scope": "/",
   "start_url": "/",
   "display": "standalone",
   "lang": "vi",
@@ -10,5 +12,9 @@
   "icons": [
     { "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "/assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Tiếp tục hành trình", "short_name": "Hành trình", "url": "/", "icons": [{ "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Rương Vị Giác original", "short_name": "Rương original", "url": "/chest", "icons": [{ "src": "/assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
   ]
 }

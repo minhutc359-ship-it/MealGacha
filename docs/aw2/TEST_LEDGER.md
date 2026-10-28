@@ -1,5 +1,23 @@
 # Test ledger / change impact
 
+## AW2-018D PWA recovery /2026-10-28
+
+Base remote `09041839dcd772b9740a4ed04ddd2c9edf6a3285`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi gameplay/save/schema/quest/economy/art/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| PWA/update/worker/package focused | PASS |3files /50tests;10new |
+| Full Vitest | PASS |150files /2.104tests |
+| Root/dev typecheck | PASS |Both exit0 |
+| AW2 review build | PASS |985modules /7HTML entry |
+| Production build/package | PASS |1.122modules;141.442.314bytes/375files |
+| Offline/package graph | PASS |24URL/1.443.941bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS696.570/CSS37.148;0leaks |
+| Fresh browser | NOT_RUN |Playwright resolves nhưng Chromium binary path không tồn tại |
+| React review | PASS |Parallel imports, singleton listeners/store, direct imports, accessible status/buttons, no render waterfall |
+
+Diagnostics excluded: formatter làm mất hai dấu phân cách type và typecheck bắt ngay; test MessageChannel đầu phụ thuộc scheduling dưới fake timer, fixture được chuyển sang channel xác định. Final types/focused/full/build đều chạy lại trên source cuối. [Evidence](evidence/AW2-018D.md).
+
 ## AW2-018C scene delivery / 2026-10-28
 
 Base remote `570d0490dcfbe0962eeaa56ba1ee2d9bb9d9f778`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi gameplay/save/schema/quest/economy/media/dependency.

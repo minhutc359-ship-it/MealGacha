@@ -131,3 +131,58 @@ describe("018C offline code graph", () => {
     expect(worker).not.toContain("indexedDB")
   })
 })
+
+describe("018D production PWA contract", () => {
+  it("publishes an installable root manifest with only current product shortcuts", () => {
+    const manifest = JSON.parse(
+      readFileSync("public/manifest.webmanifest", "utf8"),
+    ) as {
+      id: string
+      scope: string
+      start_url: string
+      display: string
+      lang: string
+      icons: { sizes: string; src: string }[]
+      shortcuts: { url: string }[]
+    }
+    expect(manifest).toMatchObject({
+      id: "/",
+      scope: "/",
+      start_url: "/",
+      display: "standalone",
+      lang: "vi",
+    })
+    expect(manifest.icons.map((icon) => icon.sizes)).toEqual([
+      "192x192",
+      "512x512",
+    ])
+    expect(
+      manifest.icons.every((icon) => existsSync(`public${icon.src}`)),
+    ).toBe(true)
+    expect(manifest.shortcuts.map((shortcut) => shortcut.url)).toEqual([
+      "/",
+      "/chest",
+    ])
+  })
+
+  it("makes update and readiness controls reachable from the AW2 production UI", () => {
+    const entry = readFileSync("src/production.tsx", "utf8")
+    const game = readFileSync("dev/aw2/WorldGame.tsx", "utf8")
+    expect(entry).toContain('import("./components/layout/WebUpdatePrompt")')
+    expect(entry).toContain("<WebUpdatePrompt />")
+    expect(game).toContain("<WebReadiness compact />")
+    expect(game).toContain("props.production && <WebReadiness")
+  })
+
+  it("keeps recovery bounded to Soul of Meal caches and explicit updates", () => {
+    const worker = readFileSync("web-service-worker.js", "utf8")
+    expect(worker).toContain("await caches.delete(CORE)")
+    expect(worker).toContain("shellFromCurrentOrPrevious")
+    expect(worker).toContain("trimMedia(cache, body.size, 1)")
+    expect(worker).toContain("WEB_CACHE_STATUS")
+    expect(worker).toContain("APPLY_WEB_UPDATE")
+    expect(worker).not.toContain("caches.keys()).map(key => caches.delete")
+    expect(worker).not.toContain("localStorage")
+    expect(worker).not.toContain("indexedDB")
+  })
+})

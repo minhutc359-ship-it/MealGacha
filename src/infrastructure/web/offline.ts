@@ -5,14 +5,43 @@ type Snapshot = {
   update: boolean
   applying: boolean
   updateError: boolean
+  online: boolean
+  install: "unavailable" | "available" | "installing" | "installed" | "dismissed"
+  persistent: boolean | null
+  storageUsage: number | null
+  storageQuota: number | null
+  cacheVersion: string | null
+  cacheEntries: number | null
+  cacheBytes: number | null
+  previousCaches: number | null
 }
 let snapshot: Snapshot = {
   phase: "preparing",
   update: false,
   applying: false,
   updateError: false,
+  online: true,
+  install: "unavailable",
+  persistent: null,
+  storageUsage: null,
+  storageQuota: null,
+  cacheVersion: null,
+  cacheEntries: null,
+  cacheBytes: null,
+  previousCaches: null,
+}
+interface InstallPromptEvent extends Event {
+  prompt(): Promise<void>
+  userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>
+}
+interface CacheStatus {
+  version: string
+  entries: number
+  bytes: number
+  previousCaches: number
 }
 let registration: ServiceWorkerRegistration | undefined
+let installPrompt: InstallPromptEvent | undefined
 let started = false
 const listeners = new Set<() => void>()
 const publish = (next: Partial<Snapshot>) => {
@@ -27,9 +56,107 @@ export const subscribeOffline = (listener: () => void) => {
   }
 }
 
+function installedStandalone() {
+  const iosNavigator = navigator as Navigator & { standalone?: boolean }
+  return (
+    iosNavigator.standalone === true ||
+    window.matchMedia?.("(display-mode: standalone)").matches === true
+  )
+}
+
+function requestCacheStatus() {
+  const controller = navigator.serviceWorker?.controller
+  if (!controller || typeof MessageChannel === "undefined") return
+  const channel = new MessageChannel()
+  const close = () => {
+    channel.port1.close()
+    channel.port2.close()
+  }
+  channel.port1.onmessage = (event: MessageEvent<CacheStatus>) => {
+    const status = event.data
+    if (
+      status &&
+      typeof status.version === "string" &&
+      Number.isFinite(status.entries) &&
+      Number.isFinite(status.bytes) &&
+      Number.isFinite(status.previousCaches)
+    )
+      publish({
+        cacheVersion: status.version,
+        cacheEntries: status.entries,
+        cacheBytes: status.bytes,
+        previousCaches: status.previousCaches,
+      })
+    close()
+  }
+  controller.postMessage({ type: "WEB_CACHE_STATUS" }, [channel.port2])
+  setTimeout(close, 2_000)
+}
+
+export async function refreshWebReadiness() {
+  const storage = navigator.storage
+  if (storage) {
+    const [persistent, estimate] = await Promise.all([
+      storage.persisted?.().catch(() => null) ?? Promise.resolve(null),
+      storage.estimate?.().catch(() => ({}) as StorageEstimate) ??
+        Promise.resolve({} as StorageEstimate),
+    ])
+    publish({
+      persistent,
+      storageUsage: typeof estimate.usage === "number" ? estimate.usage : null,
+      storageQuota: typeof estimate.quota === "number" ? estimate.quota : null,
+    })
+  }
+  requestCacheStatus()
+}
+
+export async function requestPersistentStorage() {
+  const granted =
+    (await navigator.storage?.persist?.().catch(() => false)) ?? false
+  publish({ persistent: granted })
+  return granted
+}
+
+export async function promptWebInstall() {
+  const prompt = installPrompt
+  if (!prompt || snapshot.install !== "available") return false
+  installPrompt = undefined
+  publish({ install: "installing" })
+  try {
+    await prompt.prompt()
+    const choice = await prompt.userChoice
+    publish({
+      install: choice.outcome === "accepted" ? "installed" : "dismissed",
+    })
+    return choice.outcome === "accepted"
+  } catch {
+    publish({ install: "dismissed" })
+    return false
+  }
+}
+
 export function startWebOffline() {
   if (started) return
   started = true
+  publish({
+    online: navigator.onLine !== false,
+    install: installedStandalone() ? "installed" : "unavailable",
+  })
+  const connection = () => publish({ online: navigator.onLine !== false })
+  const captureInstall = (event: Event) => {
+    const prompt = event as InstallPromptEvent
+    if (typeof prompt.prompt !== "function" || installedStandalone()) return
+    prompt.preventDefault()
+    installPrompt = prompt
+    publish({ install: "available" })
+  }
+  window.addEventListener("online", connection)
+  window.addEventListener("offline", connection)
+  window.addEventListener("beforeinstallprompt", captureInstall)
+  window.addEventListener("appinstalled", () => {
+    installPrompt = undefined
+    publish({ install: "installed" })
+  })
   const visibility = () => {
     document.documentElement.dataset.webHidden = String(document.hidden)
     if (!document.hidden) void checkWebUpdate()
@@ -81,6 +208,7 @@ export function startWebOffline() {
           warmLoadedAssets()
           setTimeout(warmLoadedAssets, 1_500)
         }
+        if (navigator.serviceWorker.controller) void refreshWebReadiness()
       }
       const track = () => {
         const installing = reg.installing
@@ -110,8 +238,9 @@ export function startWebOffline() {
 export async function checkWebUpdate() {
   try {
     await registration?.update()
+    return true
   } catch {
-    /* current cached version remains playable */
+    return false
   }
 }
 /** Activate only on an explicit click. Player storage is never cleared. */

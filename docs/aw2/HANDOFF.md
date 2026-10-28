@@ -1,4 +1,6 @@
-# Handoff —2026-10-28 / AW2-018C
+# Handoff —2026-10-28 / AW2-018D
+
+018D hoàn tất batch2/10 với19/20 kế hoạch: update/install/readiness trực tiếp trong AW2, cache/quota/persistence telemetry, rollback install, previous-version fallback, bounded LRU quota retry và manifest gate. Full2.104unit/150files,focused50,hai types/builds,package/release/assets/budget PASS; artifact141.442.314bytes/375files,offline1.443.941bytes/24URL. Browser NOT_RUN vì thiếu Chromium. Không đổi save/gameplay/art/dependency. Còn≈8commit; next batch3 save migration/recovery/stale-tab/concurrency. [Roadmap](PRODUCTION_10_COMMIT.md) · [Bằng chứng](evidence/AW2-018D.md).
 
 018C hoàn tất batch1/10 với19/20 kế hoạch: scene-level lazy delivery, parallel preload,12-group inventory, static-only offline core, runtime cache và hard cold-shell/package gates; Rương original giữ lazy portrait graph riêng. Full2.094unit/150files, focused77,hai typecheck/build, package/release/assets/budget PASS; artifact141.435.007bytes/373files, offline1.436.750bytes/23URL. Browser NOT_RUN vì thiếu Chromium binary. Không đổi gameplay/save/economy/media/dependency. Demo90/product≈40% giữ nguyên. Còn khoảng9commit lớn có điều kiện; next batch2 PWA install/update/recovery, quota và cache cross-version. [Roadmap](PRODUCTION_10_COMMIT.md) · [Bằng chứng](evidence/AW2-018C.md).
 

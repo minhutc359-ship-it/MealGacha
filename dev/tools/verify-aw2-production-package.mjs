@@ -159,6 +159,28 @@ for (const required of [
     `missing production contract file ${required}`,
   )
 
+const webManifest = JSON.parse(
+  readFileSync(path.join(dist, "manifest.webmanifest"), "utf8"),
+)
+assert.deepEqual(
+  {
+    id: webManifest.id,
+    scope: webManifest.scope,
+    start_url: webManifest.start_url,
+    display: webManifest.display,
+    lang: webManifest.lang,
+  },
+  { id: "/", scope: "/", start_url: "/", display: "standalone", lang: "vi" },
+)
+assert.deepEqual(
+  webManifest.icons.map((icon) => icon.sizes),
+  ["192x192", "512x512"],
+)
+assert.deepEqual(
+  webManifest.shortcuts.map((shortcut) => shortcut.url),
+  ["/", "/chest"],
+)
+
 const sw = readFileSync(path.join(dist, "sw.js"), "utf8")
 const core = JSON.parse(
   sw.match(/^const CORE_URLS = (\[.*\]);$/m)?.[1] ?? "null",
