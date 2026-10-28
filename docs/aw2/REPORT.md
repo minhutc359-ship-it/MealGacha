@@ -1,5 +1,7 @@
 # Soul of Meal AW2 — cập nhật 28/10/2026
 
+**AW2-017D VERIFIED:** sáu kế hoạch được gom trong một commit—step portals, anti-loop/compatibility và ba field props no-write. Full1.958unit/146files,330browser,hai typecheck/build,262asset parity PASS. Demo90% / product≈40%(35–45%) giữ nguyên; next017E. [Bằng chứng](evidence/AW2-017D.md).
+
 **AW2-017C VERIFIED:** Sân Bếp có hai cổng chức năng Kho/Bàn, đường đi và hồi đáp hai chiều dùng cùng dữ liệu; không đổi save/collider/canon và không thêm media. Full1.946unit/144files,318browser source+compiled,hai typecheck/build PASS. Demo90% / product≈40%(35–45%) giữ nguyên; next017D. [Bằng chứng](evidence/AW2-017C.md).
 
 017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).

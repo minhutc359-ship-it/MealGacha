@@ -218,6 +218,17 @@ try {
       await dialog().waitFor({ state: "hidden" })
     }
   }
+  const observe = async (id) => {
+    await walk(id)
+    const before = await raw()
+    await inspect(id)
+    check(
+      `${id}: field feedback is read-only`,
+      (await dialog().innerText()).includes("không nhận vật phẩm") &&
+        (await raw()) === before,
+    )
+    await close()
+  }
   const residentRoom = {
     "aw2-npc-nguoi-ban": "street-breakfast",
     "aw2-npc-sua-ghe": "street-workshop",
@@ -267,13 +278,25 @@ try {
   }
 
   const travel = async (x, name, y = 192) => {
-    await go(x, y)
-    await map().focus()
-    await page.keyboard.press("e")
-    await dialog().getByRole("button", { name: "Đi qua", exact: true }).click()
+    const step =
+      y === 192 &&
+      (x === 24 || x === 616) &&
+      !(x === 24 && name === "Sân Bếp Bỏ Quên")
+    if (step) {
+      await ready()
+      await click("Toàn cảnh")
+      await tapWorldPoint(page, x, y)
+    } else {
+      await go(x, y)
+      await map().focus()
+      await page.keyboard.press("e")
+      await dialog()
+        .getByRole("button", { name: "Đi qua", exact: true })
+        .click()
+    }
     await page.getByTestId("zone-name").filter({ hasText: name }).waitFor()
     await ready()
-    check(`${name}: travel reaches ready scene`)
+    check(`${name}: ${step ? "step" : "interact"} travel reaches ready scene`)
   }
   const layout = async (label) => {
     const result = await page.evaluate(() => {
@@ -450,6 +473,7 @@ try {
   await page.goto(url)
   await click("Tạo bản lưu AW2")
   await ready()
+  await observe("aw2-object-village-well")
   await page.evaluate(() =>
     localStorage.setItem("foodchest.tcg.v1", "016J-legacy"),
   )
@@ -497,6 +521,7 @@ try {
   )
   phase = "memories"
   await travel(616, "Phố Đèn Lồng")
+  await observe("aw2-object-street-repair-crate")
   await cue("aw2-npc-va-den", "quest-available")
   await walk("aw2-npc-va-den")
   await inspect("aw2-npc-va-den", "Nhận nhiệm vụ")
@@ -519,6 +544,7 @@ try {
   )
   phase = "puzzle"
   await travel(616, "Sân Bếp Bỏ Quên")
+  await observe("aw2-object-yard-wash-basin")
   await cue("aw2-npc-gac-bep", "quest-available")
   await walk("aw2-npc-gac-bep")
   await inspect("aw2-npc-gac-bep", "Nhận nhiệm vụ")

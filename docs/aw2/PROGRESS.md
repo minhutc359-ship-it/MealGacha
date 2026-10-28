@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+017D hoàn thành sáu kế hoạch cùng lúc: step travel an toàn và ba điểm khám phá no-write. **Demo90% / product≈40%(35–45%) không đổi** vì lịchNPC/final art/human/device/rights/release vẫn mở. [Evidence](evidence/AW2-017D.md).
+
 017C hoàn thành cấu trúc cổng Sân Bếp:2facade chức năng thay10facade trang trí. **Demo90% / product≈40%(35–45%) không đổi** vì step portal/field props, final art, lịch NPC, human/device/rights/release vẫn mở. [Evidence](evidence/AW2-017C.md).
 
 017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).

@@ -63,6 +63,7 @@ import {
   releaseAmbientTextures,
   renderAmbientSprites,
 } from "./AmbientLayer"
+import { zoneById } from "../../src/aw2/world/maps"
 
 /** Three remaining regions share authored layers; committed progress/economy stay read-only. */
 export function JourneyLandscape({
@@ -104,7 +105,12 @@ export function JourneyLandscape({
   pause.current = paused
   viewMode.current = mode
   const leader = world.partyIds[0] ?? "aw2-than",
-    points = journeyWaypoints(world, economy, patrol)
+    points = journeyWaypoints(world, economy, patrol),
+    fieldPoints = points.filter((point) =>
+      zoneById(world.zoneId).objects.some(
+        (object) => object.id === point.id && object.kind === "field",
+      ),
+    )
   useEffect(() => {
     const lifetime = new SceneLifetime()
     const textures: Texture[] = []
@@ -393,6 +399,13 @@ export function JourneyLandscape({
               labelOffsetY: 28,
             })),
             ...currentProps,
+            ...fieldPoints.map((point) => ({
+              entityId: point.id,
+              x: point.x,
+              y: point.y,
+              labelOffsetX: 0,
+              labelOffsetY: -24,
+            })),
             ...(scene.zoneId === PANTRY_STOCK.zoneId
               ? [
                   {
@@ -608,6 +621,10 @@ export function JourneyLandscape({
           ...scene.props.filter((p) =>
             points.some((point) => point.id === p.entityId),
           ),
+          ...fieldPoints.map((point) => ({
+            entityId: point.id,
+            labelTransform: "translate(-50%, -100%)",
+          })),
           ...rooms.map((room) => ({
             entityId: room.entrance.id,
             labelTransform: "translate(-50%, -100%)",

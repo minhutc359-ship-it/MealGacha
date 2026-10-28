@@ -1,4 +1,6 @@
-# Handoff —2026-10-28 / AW2-017C
+# Handoff —2026-10-28 / AW2-017D
+
+017D hoàn thành sáu hạng mục trong một commit: step portal + latch an toàn + bảo toàn cổng manual/lỗi + ba field prop no-write. Full1.958unit/146files,330browser source+compiled,types/build PASS. Next017E lịchNPC/final art; không làm lại017A–D. [Bằng chứng](evidence/AW2-017D.md).
 
 017C đã chuyển Sân từ10facade trang trí sang2cổng công năng Kho/Bàn, giữ nguyên save8/collider/canon. Full1.946unit/144files,318browser source+compiled,types/build PASS. Next017D step portals/field props; không làm lại017A–C. [Bằng chứng](evidence/AW2-017C.md).
 

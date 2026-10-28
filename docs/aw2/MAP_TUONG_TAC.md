@@ -39,7 +39,7 @@ Cần thiết kế tuyến đi và công năng trước, sau đó mới phủ m�
 | Hội quán, phía phải | `aw2-object-guild-door` → `aw2-room-village-guild` | Hai bàn TCG và Auto Chess vào các activity thật |
 | Bàn chung và Bà Giữ Chỗ | Các ID nhiệm vụD14 cũ | Nhận/đọc/trả nhập môn và kết thúc hành trình |
 | Lối sang Phố | Cửa nối vùng cũ | Điều kiện nhiệm vụ và chuyển cảnh hiện có |
-| Giếng | Vật cản cũ, đường vòng vẫn thông | Chưa thêm lấy nước/hồi phục/quest; tương tác ngoài trời là pha017D |
+| Giếng | Vật cản cũ, đường vòng vẫn thông | Quan sát no-write; không lấy nước/hồi phục/quest |
 
 Tại mốc017A, ba facade Làng có phòng riêng:3/3 và bảy công trình dư đã bỏ khỏi bản render; bản asset gốc giữ nguyên. Khi đó22công trình ở Phố/Sân còn theo cấu trúc cũ.017B ở trên đã thay12facade Phố bằng ba công trình chức năng. Registry vùng ngoài trời vẫn là6map; registry nội thất quản lý các phòng con riêng.
 
@@ -65,10 +65,10 @@ D17một trưởng đội đại diện trên map vẫn áp dụng; không bật
 | --- | --- | --- |
 | 017B · Phố Đèn Lồng | ĐÃ TRIỂN KHAI: ba công trình chức năng, bốn NPC chuyển vào đúng phòng, chỉ dẫn biết phòng và save8 | Đủ3ký ức/80EXP; mode/quick entry và save cũ được bảo toàn; mỹ thuật riêng còn tiếp |
 | 017C · Sân và bếp | ĐÃ TRIỂN KHAI: hai facade/cổng Kho và Bàn, bố cục tách lớp, điểm tiếp cận và hồi đáp hai chiều | Tuyến nhận nguyên liệu→gợi ý→giải bếp→boss→ghi chép đi được hai chiều; không sinh ra trong collider |
-| 017D · Cửa bước qua và đồ vật | Step portals cho cửa thường; tương tác giếng/bảng chỉ đường/ghế/đồ khám phá có phản hồi phù hợp. Mỗi đồ vật chốt một hành vi, trạng thái sau dùng và nhu cầu lưu | Chống loop/kích kép; touch/keyboard giống nhau; không tự nhận thưởng; lỗi lưu không tiêu đồ; không thêm vật phẩm/quest chưa có contract |
+| 017D · Cửa bước qua và đồ vật | ĐÃ TRIỂN KHAI:8portal tuyến ngang bước qua; latch chống loop; giếng/thùng sửa/bồn rửa có phản hồi quan sát no-write | Touch/keyboard cùng detector; load-inside/spawn/lỗi giữ an toàn; cổng công trình vẫn explicit; không thêm thưởng/vật phẩm/quest |
 | 017E · Đời sống và phối cảnh cuối | LịchNPC theo game clock, các điểm nghỉ/hoạt động, art nội thất riêng, mép vườn và đường chuyển vùng. Đo thời gian đi giữa các hoạt động để điều chỉnh mật độ | NPC theo lịch vẫn luôn truy cập được lúc cần nhiệm vụ; có đường ngắn về trung tâm; art/collider/ánh sáng khớp cùng mặt đất |
 
-017D là bước nhỏ tiếp theo. LịchNPC được chuyển sau cấu trúc không gian.017D–E là kế hoạch, chưa triển khai và chưa nghiệm thu. Mục tiêu thiết kế: trong một khung bám luôn thấy một đích có ý nghĩa hoặc hướng đi tới đích; tuyến chính không có đoạn sân dài không mang thông tin. Chưa tuyên bố có số đo playtest thời gian đi thực tế.
+017E là bước nhỏ tiếp theo. Cấu trúc cổng và field prop quan sát của017D đã kiểm chứng; lịchNPC/final art vẫn là kế hoạch, chưa triển khai và chưa nghiệm thu. Mục tiêu thiết kế: trong một khung bám luôn thấy một đích có ý nghĩa hoặc hướng đi tới đích; tuyến chính không có đoạn sân dài không mang thông tin. Chưa tuyên bố có số đo playtest thời gian đi thực tế.
 
 ## Bảo toàn tiến trình
 

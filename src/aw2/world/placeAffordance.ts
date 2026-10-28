@@ -102,7 +102,9 @@ function serviceAffordance(
       symbol: open ? "door" : "lock",
       label: open ? "Lối mở" : "Khóa",
       detail: open
-        ? "Lối đã mở. Đến gần rồi tự tương tác để đi qua."
+        ? object.activation === "step"
+          ? "Lối đã mở. Bước vào ngưỡng để chuyển vùng; E vẫn mở lựa chọn thủ công."
+          : "Lối đã mở. Đến gần rồi tự tương tác để đi qua."
         : description.text,
     }
   }

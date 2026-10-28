@@ -75,6 +75,10 @@ import {
   releaseNpcApproach,
   type NpcPatrolState,
 } from "../../src/aw2/world/npcPatrol"
+import {
+  advanceStepPortals,
+  newStepPortalLatch,
+} from "../../src/aw2/world/stepPortals"
 
 interface PendingPlaceInteraction {
   id: string
@@ -165,6 +169,7 @@ function WorldPreview() {
   const saved = useRef(snapshot)
   const keys = useRef(new Set<string>())
   const route = useRef<Waypoint[]>([])
+  const stepPortalLatch = useRef(newStepPortalLatch(world))
   const [walkingTarget, setWalkingTarget] = useState<WalkingTarget | null>(null)
   const walkingRef = useRef(walkingTarget)
   walkingRef.current = walkingTarget
@@ -373,6 +378,12 @@ function WorldPreview() {
           : held("s", "arrowdown") - held("w", "arrowup"),
         point ? Math.min(0.033, distance / 140) : 0.033,
       )
+      const step = advanceStepPortals(
+        worldRef.current,
+        next,
+        stepPortalLatch.current,
+      )
+      stepPortalLatch.current = step.latch
       if (point && distance <= 140 * 0.033) {
         route.current.shift()
         if (!route.current.length && walkingRef.current) {
@@ -385,7 +396,20 @@ function WorldPreview() {
           )
         }
       }
-      if (next !== worldRef.current) {
+      if (step.portal) {
+        const open = describeObject(next, step.portal).actions.some(
+          (action) => action.id === "travel",
+        )
+        keys.current.clear()
+        clearWalking()
+        worldRef.current = next
+        setWorld(next)
+        if (open) {
+          void startStepTravel(next, step.portal)
+          return
+        }
+        setMessage("Cửa đang khóa. Nhấn E / Tương tác để xem điều kiện mở.")
+      } else if (next !== worldRef.current) {
         worldRef.current = next
         setWorld(next)
       }
@@ -521,6 +545,7 @@ function WorldPreview() {
       worldRef.current = newWorldProgress()
       setWorld(worldRef.current)
     }
+    stepPortalLatch.current = newStepPortalLatch(worldRef.current)
     publishPatrol(newNpcPatrol(worldRef.current.zoneId))
     setMessage("Đã đọc lại AW2.")
     setError("")
@@ -591,6 +616,106 @@ function WorldPreview() {
     }
   }
 
+  async function performTravel(
+    expected: Extract<SaveSnapshot, { status: "ready" }>,
+    source: WorldProgress,
+    object: WorldObject,
+    actionId: "travel" | "enter-room" | "leave-room",
+  ) {
+    const destination = applyWorldAction(source, object.id, actionId).state
+    const abort = new AbortController()
+    travelAbort.current = abort
+    let release: (() => void) | undefined
+    let prepared: PreparedWorldScene | undefined
+    try {
+      setTravel({
+        destination: sceneName(destination),
+        phase: "loading",
+        completed: 0,
+        total: 1,
+      })
+      release = await prepareDestination(
+        destination,
+        abort.signal,
+        (progress) => {
+          if (mounted.current)
+            setTravel({
+              ...progress,
+              destination: sceneName(destination),
+              phase: "loading",
+            })
+        },
+      )
+      if (!mounted.current || abort.signal.aborted) {
+        const error = Error("Đã hủy chuyển vùng.")
+        error.name = "AbortError"
+        throw error
+      }
+      setTravel((current) =>
+        current ? { ...current, phase: "rendering" } : null,
+      )
+      if (!sceneHost.current) throw Error("Bản đồ hiện tại đã đóng.")
+      prepared = await sceneHost.current.prepare(
+        destination,
+        expected.save.economy,
+        abort.signal,
+      )
+      // Candidate owns its ambient lease and first frame before durable commit.
+      release()
+      release = undefined
+      travelAbort.current = null
+      setTravel((current) => (current ? { ...current, phase: "saving" } : null))
+      const next = await store.act(
+        expected.raw,
+        source,
+        object.id,
+        actionId,
+        prepared.assertReady,
+      )
+      if (!mounted.current) return
+      prepared.activate()
+      prepared = undefined
+      saved.current = next
+      setSnapshot(next)
+      worldRef.current = next.save.progress
+      stepPortalLatch.current = newStepPortalLatch(next.save.progress)
+      setWorld(next.save.progress)
+      setDialogObject(null)
+      setMessage(`Đã tới ${sceneName(destination)}.`)
+    } finally {
+      travelAbort.current = null
+      prepared?.dispose()
+      release?.()
+    }
+  }
+
+  async function startStepTravel(source: WorldProgress, object: WorldObject) {
+    if (pending.current || saved.current.status !== "ready") return
+    pending.current = true
+    setBusy(true)
+    keys.current.clear()
+    clearWalking()
+    setError("")
+    setMessage("")
+    try {
+      await performTravel(saved.current, source, object, "travel")
+    } catch (cause) {
+      if (cause instanceof Error && cause.name === "AbortError")
+        setMessage("Đã hủy chuyển vùng. Vị trí và bản lưu được giữ nguyên.")
+      else
+        setError(
+          "Chưa chuyển vùng; cảnh nguồn được giữ. " +
+            (cause instanceof Error
+              ? cause.message
+              : "Thao tác chưa hoàn tất."),
+        )
+    } finally {
+      setTravel(null)
+      pending.current = false
+      setBusy(false)
+    }
+  }
+
   async function persist(actionId?: string) {
     if (pending.current || saved.current.status === "unavailable") return
     pending.current = true
@@ -606,75 +731,12 @@ function WorldPreview() {
         dialogObject &&
         saved.current.status === "ready"
       ) {
-        const source = worldRef.current,
-          expected = saved.current,
-          objectId = dialogObject.id
-        const destination = applyWorldAction(source, objectId, actionId).state
-        const abort = new AbortController()
-        travelAbort.current = abort
-        let release: (() => void) | undefined
-        let prepared: PreparedWorldScene | undefined
-        try {
-          setTravel({
-            destination: sceneName(destination),
-            phase: "loading",
-            completed: 0,
-            total: 1,
-          })
-          release = await prepareDestination(
-            destination,
-            abort.signal,
-            (progress) => {
-              if (mounted.current)
-                setTravel({
-                  ...progress,
-                  destination: sceneName(destination),
-                  phase: "loading",
-                })
-            },
-          )
-          if (!mounted.current || abort.signal.aborted) {
-            const error = Error("Đã hủy chuyển vùng.")
-            error.name = "AbortError"
-            throw error
-          }
-          setTravel((current) =>
-            current ? { ...current, phase: "rendering" } : null,
-          )
-          if (!sceneHost.current) throw Error("Bản đồ hiện tại đã đóng.")
-          prepared = await sceneHost.current.prepare(
-            destination,
-            expected.save.economy,
-            abort.signal,
-          )
-          // Candidate now owns its own ambient lease and first rendered frame.
-          release()
-          release = undefined
-          travelAbort.current = null
-          setTravel((current) =>
-            current ? { ...current, phase: "saving" } : null,
-          )
-          const next = await store.act(
-            expected.raw,
-            source,
-            objectId,
-            actionId,
-            prepared.assertReady,
-          )
-          if (!mounted.current) return
-          prepared.activate()
-          prepared = undefined
-          saved.current = next
-          setSnapshot(next)
-          worldRef.current = next.save.progress
-          setWorld(next.save.progress)
-          setDialogObject(null)
-          setMessage(`Đã tới ${sceneName(destination)}.`)
-        } finally {
-          travelAbort.current = null
-          prepared?.dispose()
-          release?.()
-        }
+        await performTravel(
+          saved.current,
+          worldRef.current,
+          dialogObject,
+          actionId as "travel" | "enter-room" | "leave-room",
+        )
         return
       }
       if (

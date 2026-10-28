@@ -34,6 +34,8 @@ export function placeKind(object: Readonly<WorldObject>) {
       return "Bàn trong tiệm"
     case "stock":
       return "Kiểm nguyên liệu"
+    case "field":
+      return "Đồ vật ngoài trời"
     case "mode":
       return "Bàn luyện tập"
     case "npc":

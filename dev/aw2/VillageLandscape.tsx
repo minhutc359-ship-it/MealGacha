@@ -60,6 +60,7 @@ import {
   releaseAmbientTextures,
   renderAmbientSprites,
 } from "./AmbientLayer"
+import { zoneById } from "../../src/aw2/world/maps"
 
 /** Village presentation owns camera/layers only; all walking/actions remain world authority. */
 export function VillageLandscape({
@@ -89,7 +90,12 @@ export function VillageLandscape({
   pause.current = paused
   viewMode.current = mode
   const leader = world.partyIds[0] ?? "aw2-than",
-    points = villageWaypoints(world)
+    points = villageWaypoints(world),
+    fieldPoints = points.filter((point) =>
+      zoneById(world.zoneId).objects.some(
+        (object) => object.id === point.id && object.kind === "field",
+      ),
+    )
   useEffect(() => {
     const lifetime = new SceneLifetime()
     const textures: Texture[] = []
@@ -339,6 +345,13 @@ export function VillageLandscape({
           const viewport = worldVisibleBounds(next.canvas)
           for (const prop of [
             ...currentProps,
+            ...fieldPoints.map((point) => ({
+              entityId: point.id,
+              x: point.x,
+              y: point.y,
+              labelOffsetX: 0,
+              labelOffsetY: -24,
+            })),
             ...ROOMS.map((room) => ({
               entityId: room.entrance.id,
               x: room.entrance.x,
@@ -532,6 +545,10 @@ export function VillageLandscape({
         {walkControls}
         {[
           ...scene.props,
+          ...fieldPoints.map((point) => ({
+            entityId: point.id,
+            labelTransform: "translate(-50%, -100%)",
+          })),
           ...ROOMS.map((room) => ({
             entityId: room.entrance.id,
             labelTransform: "translate(-50%, -100%)",

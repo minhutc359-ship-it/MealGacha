@@ -63,7 +63,9 @@ export function journeyWaypoints(
           : "Nhận nhiệm vụ Mở lại bếp ở Dì trước"
         : shortcut
           ? "Đường tắt đã mở · đến gần rồi chọn Đi qua"
-          : "Đến gần rồi chọn Đi qua"
+          : object.activation === "step"
+            ? "Bước vào ngưỡng để chuyển vùng · E vẫn dùng được"
+            : "Đến gần rồi chọn Đi qua"
     } else if (object.kind === "chest") {
       state = economy.receipts.includes(CHEST_RECEIPT) ? "claimed" : "ready"
       short = state === "claimed" ? "Rương · đã nhận" : "Rương"
@@ -107,6 +109,10 @@ export function journeyWaypoints(
     } else if (object.kind === "stock") {
       short = "Kiểm kho"
       status = "Đến gần để kiểm nguyên liệu và công thức"
+      state = "ready"
+    } else if (object.kind === "field") {
+      short = object.field === "repair-crate" ? "Thùng sửa đèn" : "Bồn rửa bếp"
+      status = "Đến gần để quan sát · không nhận vật phẩm"
       state = "ready"
     } else short = "An Vá Đèn"
     const spec = journeyScene(world.zoneId)!.props.find(

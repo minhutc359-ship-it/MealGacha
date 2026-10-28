@@ -89,7 +89,7 @@ describe("AW2 compatible map registry", () => {
         expect(
           canStand(destination.id, spawn.position.x, spawn.position.y),
         ).toBe(true)
-        expect(portal.activation).toBe("interact")
+        expect(portal.activation).toBe(object.activation ?? "interact")
       }
     }
   })

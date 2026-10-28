@@ -7,7 +7,7 @@ export interface WorldObject {
   name: string
   x: number
   y: number
-  kind: "npc" | "table" | "memory" | "hint" | "puzzle" | "boss" | "note" | "chest" | "exit" | "mode" | "stock" | "room" | "room-exit" | "room-service"
+  kind: "npc" | "table" | "memory" | "hint" | "puzzle" | "boss" | "note" | "chest" | "exit" | "mode" | "stock" | "room" | "room-exit" | "room-service" | "field"
   service?: "party" | "journal"
   to?: ZoneId
   memory?: 0 | 1 | 2
@@ -16,6 +16,8 @@ export interface WorldObject {
   spawnY?: number
   approachX?: number
   approachY?: number
+  activation?: "interact" | "step"
+  field?: "well" | "repair-crate" | "wash-basin"
   requiresCompleted?: boolean
 }
 export interface WorldWall {
@@ -51,6 +53,14 @@ const objects: WorldObject[][] = [
       y: 144,
       kind: "table",
     },
+    {
+      id: "aw2-object-village-well",
+      name: "Giếng sân chung",
+      x: 272,
+      y: 328,
+      kind: "field",
+      field: "well",
+    },
   ],
   [
     { id: "aw2-npc-va-den", name: "An Vá Đèn", x: 160, y: 112, kind: "npc" },
@@ -64,6 +74,14 @@ const objects: WorldObject[][] = [
       x: 504,
       y: 128,
       kind: "memory",
+    },
+    {
+      id: "aw2-object-street-repair-crate",
+      name: "Thùng đồ sửa đèn",
+      x: 272,
+      y: 328,
+      kind: "field",
+      field: "repair-crate",
     },
   ],
   [
@@ -80,6 +98,14 @@ const objects: WorldObject[][] = [
       approachX: 480,
       approachY: 48,
       requiresCompleted: true,
+    },
+    {
+      id: "aw2-object-yard-wash-basin",
+      name: "Bồn rửa cạnh bếp",
+      x: 272,
+      y: 328,
+      kind: "field",
+      field: "wash-basin",
     },
   ],
   [
@@ -159,6 +185,9 @@ export const ZONES: WorldZone[] = ZONE_IDS.map((id, index) => ({
             to: ZONE_IDS[index - 1],
             spawnX: index === 3 ? 208 : 576,
             spawnY: index === 3 ? 48 : 192,
+            activation: (index === 3
+              ? "interact"
+              : "step") as Exclude<WorldObject["activation"], undefined>,
           },
         ]
       : []),
@@ -173,6 +202,9 @@ export const ZONES: WorldZone[] = ZONE_IDS.map((id, index) => ({
             to: ZONE_IDS[index + 1],
             spawnX: 64,
             spawnY: 192,
+            activation: (index === 2
+              ? "interact"
+              : "step") as Exclude<WorldObject["activation"], undefined>,
             ...(index === 2 ? { approachX: 208, approachY: 48 } : {}),
           },
         ]

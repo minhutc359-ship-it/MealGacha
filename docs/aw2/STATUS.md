@@ -1,5 +1,9 @@
 # Live project status —2026-10-28
 
+**AW2-017D VERIFIED — sáu kế hoạch trong một thay đổi.** Tám portal tuyến ngang tự chuyển khi bước vào; latch chống loop/load-inside, spawn ngoài trigger và pipeline preload→render→save giữ nguyên. Cổng Kho/Bàn/phòng vẫn explicit. Giếng Làng, thùng sửa Phố và bồn rửa Sân có phản hồi quan sát no-write, không thưởng/schema/media. **1.958unit/146files**, hai typecheck/build và **330browser=165source+165compiled PASS**, boss tick45, ending300XP,0unexpected errors. [Bằng chứng](evidence/AW2-017D.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên. Next017E: lịch NPC/final art/mép vườn. Các mục dưới là lịch sử; hiện hành theo017D.
+
 **AW2-017C VERIFIED — Sân Bếp có hai cổng công năng.** Mười facade trang trí đã rời bản render, thay bằng Kho nguyên liệu và Phòng Bàn gắn portal thật. Mọi chỉ dẫn dùng chung điểm trước cửa; Sân↔Kho và shortcut Sân↔Bàn hồi đáp đúng cửa, ngoài collider. Bounds/collider/save8/tám NPC/bốn quest/reward giữ nguyên; không media mới. **1.946unit/144files**, hai typecheck/build và **318browser=159source+159compiled PASS**, boss thật tick45, kết thúc300XP,0lỗi bất ngờ. [Bố cục](MAP_TUONG_TAC.md) · [Bằng chứng](evidence/AW2-017C.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên. Next017D: step portals và field props; sau đó017E lịch NPC/final art. Các mục dưới là lịch sử; hiện hành theo017C.

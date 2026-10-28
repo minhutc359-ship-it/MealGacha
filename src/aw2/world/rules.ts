@@ -197,6 +197,16 @@ export function describeObject(
     return result(
       "Kiểm nguyên liệu đang có, xem công thức và chọn lối đi trong Kho.",
     )
+  if (object.kind === "field")
+    return result(
+      {
+        well: "Nước giếng trong và mát. Đây là điểm quan sát của sân chung; xem không nhận vật phẩm hoặc thay đổi hành trình.",
+        "repair-crate":
+          "Thùng đựng dây, giấy dầu và dụng cụ vá đèn. Đây là điểm quan sát; xem không nhận vật phẩm hoặc thay đổi hành trình.",
+        "wash-basin":
+          "Bồn rửa còn vệt nước sau buổi chuẩn bị bếp. Đây là điểm quan sát; xem không nhận vật phẩm hoặc thay đổi hành trình.",
+      }[object.field!],
+    )
   if (object.kind === "chest")
     return result(
       "Rương nguyên liệu: 4 Gạo thơm, 3 Rau vườn, 2 Nước dùng. Mỗi hành trình chỉ nhận một lần.",

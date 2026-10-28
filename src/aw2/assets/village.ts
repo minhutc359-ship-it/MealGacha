@@ -40,11 +40,26 @@ export function villageWaypoints(progress: WorldProgress) {
         short: "Ra Phố",
         status: locked
           ? "Lối đi chưa mở"
-          : "Điểm đến Phố Đèn Lồng · đến gần rồi Đi qua",
+          : object.activation === "step"
+            ? "Bước qua để sang Phố Đèn Lồng"
+            : "Điểm đến Phố Đèn Lồng · đến gần rồi Đi qua",
         state: locked ? "unavailable" : "ready",
         locked,
       }
     }
+    if (object.kind === "field")
+      return {
+        id: object.id,
+        name: object.name,
+        x: object.x,
+        y: object.y,
+        walkX: object.x,
+        walkY: object.y + 32,
+        short: "Giếng",
+        status: "Đến gần để quan sát · không nhận vật phẩm",
+        state: "ready",
+        locked: false,
+      }
     if (object.kind === "table") {
       short = "Mảnh khăn"
       state = progress.tableRead

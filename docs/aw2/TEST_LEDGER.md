@@ -1,5 +1,9 @@
 # Test ledger / change impact
 
+## AW2-017D — 2026-10-28
+
+Full Vitest mặc định1.958/1.958,146files;12ca mới trong tổng. Hai typecheck/build PASS. Fresh browser165source+165compiled=330, Chromium153, step/manual portal thật, ba field prop raw-no-write, boss tick45,300XP,0unexpected errors. 262asset byte parity/0media mới. [Evidence](evidence/AW2-017D.md).
+
 ## AW2-017C — 2026-10-28
 
 Full Vitest mặc định1.946/1.946,144files; hai typecheck và hai build PASS. Fresh browser159source+159compiled=318, Chromium153, boss tick45,300XP,0unexpected errors; kiểm tra Sân↔Kho và shortcut Sân↔Bàn hai chiều. Không cộng lịch sử. [Evidence](evidence/AW2-017C.md).

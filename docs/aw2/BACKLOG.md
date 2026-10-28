@@ -1,5 +1,7 @@
 # Task board
 
+**017D DONE/VERIFIED trong một commit:** step portals; anti-loop/load guard; locked/failure preservation; giếng; thùng sửa; bồn rửa. Full1.958unit/330browser/types/build/262asset parity PASS. **NEXT017E:** NPC life + final art. Demo90% / product≈40% giữ nguyên. [Evidence](evidence/AW2-017D.md).
+
 **017C DONE/VERIFIED:** Sân có hai facade→portal thật, điểm tiếp cận dùng chung và hồi đáp Sân↔Kho/Bàn; full1.946unit,318browser,types/build PASS. **NEXT 017D:** step portals + field props với chống kích kép/không tự thưởng. Demo90% / product≈40% giữ nguyên. [Evidence](evidence/AW2-017C.md).
 
 017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).
@@ -164,7 +166,8 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | AW2-016K | BA/story/mechanic/animation/tester/scretary | Validated tea-desk TCG/Chess service and exact return | VERIFIED development; [evidence](evidence/AW2-016K.md) |
 | AW2-017A | BA/story/mechanic/animation/tester/scretary | Functional village facades/independent rooms/save7 and map plan | VERIFIED development; [evidence](evidence/AW2-017A.md) |
 | AW2-017B | BA/story/mechanic/animation/tester/scretary | Functional Phố rooms, original NPC relocation, scene-aware quest routes/save8 | VERIFIED development / source published after owner confirmation; [evidence](evidence/AW2-017B.md) |
-| AW2-017C–E | BA/story/mechanic/animation/tester/scretary | Sân/bếp, step portals/field props, NPC life/final art | PLANNED, not implemented; phase contracts required |
+| AW2-017C–D | BA/story/mechanic/animation/tester/scretary | Sân/bếp và step portals/field props | VERIFIED;017C/017D evidence |
+| AW2-017E | BA/story/mechanic/animation/tester/scretary | NPC life/final art/mép vườn | PLANNED; phase contract required |
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |
