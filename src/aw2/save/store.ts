@@ -316,7 +316,7 @@ export class Aw2DevSaveStore {
     return aw2DevSaveSchema.parse({
       gameId: "adventure-world-2",
       environment: "development",
-      schemaVersion: 6,
+      schemaVersion: 7,
       collection: newCollection(),
       saveId: this.newId(),
       revision: 0,

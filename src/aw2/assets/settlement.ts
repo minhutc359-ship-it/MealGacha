@@ -1,4 +1,5 @@
 import { TEA_ROOM } from "../world/interiorLayout"
+import { VILLAGE_DISTRICT } from "./villageDistrict"
 import manifest from "./settlement-v1.json"
 import type { SceneBounds } from "./tableRoom"
 import type { landscapeCamera } from "./villageView"
@@ -7,12 +8,26 @@ export interface SettlementActor extends SceneBounds {
 }
 export const SETTLEMENT = manifest
 export type SettlementBuilding = typeof manifest.regions[number]["buildings"][number]
-export const settlementForZone = (zoneId: string) =>
-  manifest.regions.find((region) => region.zoneId === zoneId)
+export const settlementForZone = (zoneId: string) => {
+  const region = manifest.regions.find((region) => region.zoneId === zoneId)
+  return region && zoneId === TEA_ROOM.zoneId
+    ? {
+        ...region,
+        buildings: region.buildings.slice(0, 3).map((building, i) => ({
+          ...building,
+          frame: i === 2 ? "games" : building.frame,
+          ...(i === 2 ? { width: 168, height: 176.6 } : {}),
+        })),
+        landmarks: [],
+      }
+    : region
+}
 export function settlementCameraSpec(
   spec: Parameters<typeof landscapeCamera>[2],
   zoneId: string,
 ) {
+  if (zoneId === TEA_ROOM.zoneId)
+    return { ...spec, ...VILLAGE_DISTRICT, canvas: spec.canvas }
   return settlementForZone(zoneId)
     ? { ...spec, camera: { ...spec.camera, followZoom: manifest.followZoom } }
     : spec

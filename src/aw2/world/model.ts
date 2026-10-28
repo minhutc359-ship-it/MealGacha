@@ -1,7 +1,14 @@
 import { z } from "zod"
 import { MEMORY_IDS, SPIRIT_IDS, STARTER_TEAM, ZONE_IDS } from "./ids"
 import { canStand } from "./maps"
-import { TEA_ROOM, TEA_ROOM_ID, canStandInTeaRoom } from "./interiorLayout"
+import {
+  TEA_ROOM,
+  TEA_ROOM_ID,
+  canStandInTeaRoom,
+  ROOM_IDS,
+  roomById,
+  canStandInRoom,
+} from "./interiorLayout"
 
 const baseProgressSchema = z.strictObject({
   zoneId: z.enum(ZONE_IDS),
@@ -140,7 +147,7 @@ const interiorSchema = z.strictObject({
   y: z.number().finite(),
   facing: z.enum(["up", "down", "left", "right"]),
 })
-export const worldProgressSchema = progressWithBoss
+export const worldProgressV6Schema = progressWithBoss
   .extend({ interior: interiorSchema.nullable() })
   .superRefine((value, ctx) => {
     validateBase(value, ctx, false)
@@ -158,6 +165,27 @@ export const worldProgressSchema = progressWithBoss
         code: "custom",
         message: "Vị trí tiệm trà/điểm quay về không hợp lệ.",
       })
+  })
+
+export const worldProgressSchema = progressWithBoss
+  .extend({
+    interior: interiorSchema.extend({ roomId: z.enum(ROOM_IDS) }).nullable(),
+  })
+  .superRefine((value, ctx) => {
+    validateBase(value, ctx, false)
+    validateBoss(value, ctx)
+    if (value.interior) {
+      const room = roomById(value.interior.roomId)
+      if (
+        value.zoneId !== room.zoneId ||
+        Math.hypot(value.x - room.entrance.x, value.y - room.entrance.y) > 48 ||
+        !canStandInRoom(room.id, value.interior.x, value.interior.y)
+      )
+        ctx.addIssue({
+          code: "custom",
+          message: "Vị trí phòng/điểm quay về không hợp lệ.",
+        })
+    }
   })
 
 export type WorldProgress = z.infer<typeof worldProgressSchema>

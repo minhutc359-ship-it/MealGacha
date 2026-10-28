@@ -26,7 +26,7 @@ import {
 } from "../../src/aw2/assets/villageView"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
-import { TEA_ROOM } from "../../src/aw2/world/interiorLayout"
+import { TEA_ROOM, ROOMS } from "../../src/aw2/world/interiorLayout"
 import {
   SceneLifetime,
   initializeWorldScene,
@@ -46,6 +46,10 @@ import {
   SettlementLandmarks,
 } from "./SettlementLayer"
 import { RoomWaypoints } from "./RoomWaypoints"
+import {
+  VILLAGE_DISTRICT,
+  villageFacadeTarget,
+} from "../../src/aw2/assets/villageDistrict"
 import {
   createAmbientSprites,
   loadAmbientTextures,
@@ -114,8 +118,14 @@ export function VillageLandscape({
     camera.current = null
     void (async () => {
       try {
-        const { Application, Assets, Sprite, Texture, Rectangle } =
-          await import("pixi.js")
+        const {
+          Application,
+          Assets,
+          Sprite,
+          Texture,
+          Rectangle,
+          TilingSprite,
+        } = await import("pixi.js")
         const [
           floor,
           props,
@@ -180,12 +190,59 @@ export function VillageLandscape({
           textures.push(t)
           return t
         }
-        const backdrop = new Sprite(floor)
-        backdrop.position.set(scene.landscape.x, scene.landscape.y)
-        backdrop.width = scene.landscape.width
-        backdrop.height = scene.landscape.height
-        backdrop.zIndex = -1000
-        next.stage.addChild(backdrop)
+        // Crop ordinary sprites on a shared grid: stable atlas UVs and aligned roads.
+        const pave = (
+          area: {
+            x: number
+            y: number
+            width: number
+            height: number
+          },
+          tint: number,
+          depth: number,
+        ) => {
+          const frame = VILLAGE_DISTRICT.pavingFrame
+          for (
+            let y = Math.floor(area.y / frame.height) * frame.height;
+            y < area.y + area.height;
+            y += frame.height
+          )
+            for (
+              let x = Math.floor(area.x / frame.width) * frame.width;
+              x < area.x + area.width;
+              x += frame.width
+            ) {
+              const left = Math.max(x, area.x),
+                top = Math.max(y, area.y)
+              const width =
+                Math.min(x + frame.width, area.x + area.width) - left
+              const height =
+                Math.min(y + frame.height, area.y + area.height) - top
+              const tile = new Sprite(
+                crop(floor, {
+                  x: frame.x + left - x,
+                  y: frame.y + top - y,
+                  width,
+                  height,
+                }),
+              )
+              tile.position.set(left, top)
+              tile.tint = tint
+              tile.zIndex = depth
+              next.stage.addChild(tile)
+            }
+        }
+        pave(VILLAGE_DISTRICT.landscape, 0x9db594, -1000)
+        for (const path of VILLAGE_DISTRICT.paths) pave(path, 0xffffff, -990)
+        for (const room of ROOMS) {
+          const step = new Sprite(crop(threshold, scene.assets.threshold.frame))
+          step.anchor.set(0.5, 1)
+          step.position.set(room.entrance.x, room.entrance.y + 12)
+          step.width = 56
+          step.height = 34
+          step.zIndex = 1
+          next.stage.addChild(step)
+        }
         const npcSprites = createNpcSprites(
           loadedNpc,
           { Sprite, Texture, Rectangle },
@@ -321,13 +378,13 @@ export function VillageLandscape({
           const viewport = worldVisibleBounds(next.canvas)
           for (const prop of [
             ...currentProps,
-            {
-              entityId: TEA_ROOM.entrance.id,
-              x: TEA_ROOM.entrance.x,
-              y: TEA_ROOM.entrance.y,
+            ...ROOMS.map((room) => ({
+              entityId: room.entrance.id,
+              x: room.entrance.x,
+              y: room.entrance.y,
               labelOffsetX: 0,
               labelOffsetY: -24,
-            },
+            })),
           ]) {
             const label = labels.current.get(prop.entityId)
             if (!label) continue
@@ -493,12 +550,14 @@ export function VillageLandscape({
             ?.getBoundingClientRect()
           if (!rect || rect.width <= 0 || rect.height <= 0) return
           onNavigate(
-            unprojectVillage(
-              {
-                x: ((e.clientX - rect.left) * 640) / rect.width,
-                y: ((e.clientY - rect.top) * 384) / rect.height,
-              },
-              camera.current,
+            villageFacadeTarget(
+              unprojectVillage(
+                {
+                  x: ((e.clientX - rect.left) * 640) / rect.width,
+                  y: ((e.clientY - rect.top) * 384) / rect.height,
+                },
+                camera.current,
+              ),
             ),
           )
         }}
@@ -512,10 +571,10 @@ export function VillageLandscape({
         {walkControls}
         {[
           ...scene.props,
-          {
-            entityId: TEA_ROOM.entrance.id,
+          ...ROOMS.map((room) => ({
+            entityId: room.entrance.id,
             labelTransform: "translate(-50%, -100%)",
-          },
+          })),
         ].map((prop) => (
           <span
             key={prop.entityId}

@@ -43,7 +43,9 @@ it("binds two original transparent architecture atlases and eight safe frames wi
 })
 describe.each(SETTLEMENT.regions)("006O $zoneId", (region) => {
   it("adds a dense varied neighborhood with solid bases outside legal saved positions", () => {
-    expect(settlementForZone(region.zoneId)).toBe(region)
+    if (region.zoneId === ZONE_IDS[0])
+      expect(settlementForZone(region.zoneId)!.buildings).toHaveLength(3)
+    else expect(settlementForZone(region.zoneId)).toBe(region)
     expect(region.buildings.length).toBeGreaterThanOrEqual(10)
     expect(
       new Set(region.buildings.map((b) => b.frame)).size,
@@ -99,8 +101,12 @@ describe.each(SETTLEMENT.regions)("006O $zoneId", (region) => {
   })
   it("projects unchanged coordinates with the denser default camera and preserves overview/inverse math", () => {
     const spec = settlementCameraSpec(VILLAGE_SCENE, region.zoneId)
-    expect(spec.camera.followZoom).toBe(0.65)
-    expect(spec.camera.overviewZoom).toBe(VILLAGE_SCENE.camera.overviewZoom)
+    expect(spec.camera.followZoom).toBe(
+      region.zoneId === ZONE_IDS[0] ? 1.05 : 0.65,
+    )
+    expect(spec.camera.overviewZoom).toBe(
+      region.zoneId === ZONE_IDS[0] ? 0.68 : VILLAGE_SCENE.camera.overviewZoom,
+    )
     for (const mode of ["follow", "overview"] as const) {
       const view = landscapeCamera({ x: 320, y: 240 }, mode, spec)
       for (const p of region.landmarks) {

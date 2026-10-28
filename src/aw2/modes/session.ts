@@ -1,17 +1,22 @@
 import { decodeAw2Save, type SaveSnapshot } from "../save/schema"
 import { Aw2SaveError, type Aw2DevSaveStore } from "../save/store"
 import { worldProgressSchema, type WorldProgress } from "../world/model"
-import { zoneById } from "../world/maps"
+import { sceneObjects, scenePosition } from "../world/scene"
 import { INTERACT_RANGE } from "../world/rules"
-import { AW2_MODES, type Aw2ModeId, type ModeEntry } from "./catalog"
-import { TEA_ROOM_ID } from "../world/interiorLayout"
+import {
+  AW2_MODES,
+  modeForPortal,
+  type Aw2ModeId,
+  type ModeEntry,
+} from "./catalog"
+import { type RoomId } from "../world/interiorLayout"
 import { canUseRoomPractice } from "./roomPractice"
 
 export interface ModeVisit {
   modeId: Aw2ModeId
   entry: ModeEntry
   returnZoneId: WorldProgress["zoneId"]
-  returnRoomId?: typeof TEA_ROOM_ID
+  returnRoomId?: RoomId
 }
 
 type ReadySave = Extract<SaveSnapshot, { status: "ready" }>
@@ -65,16 +70,20 @@ export class Aw2ModeAdapter {
         "Hãy đến gần góc nhật ký trong tiệm trà.",
       )
     if (entry === "portal") {
-      const portal = zoneById(valid.zoneId).objects.find(
-        (object) => object.id === mode.portalId && object.kind === "mode",
+      const portal = sceneObjects(valid).find(
+        (object) =>
+          modeForPortal(object.id)?.id === modeId && object.kind === "mode",
       )
       if (
         !portal ||
-        Math.hypot(valid.x - portal.x, valid.y - portal.y) > INTERACT_RANGE
+        Math.hypot(
+          scenePosition(valid).x - portal.x,
+          scenePosition(valid).y - portal.y,
+        ) > INTERACT_RANGE
       )
         throw new Aw2SaveError(
           "invalid",
-          "Hãy đến gần đúng bàn ở Phố Đèn Lồng.",
+          "Hãy đến gần đúng bàn trong khu vực hiện tại.",
         )
     }
     this.pending = true

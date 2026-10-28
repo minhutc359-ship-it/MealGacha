@@ -6,4 +6,9 @@ export const AW2_MODES = [
 export type Aw2ModeId = typeof AW2_MODES[number]["id"]
 export type ModeEntry = "portal" | "quick-entry" | "room-service"
 export const modeForPortal = (objectId: string) =>
-  AW2_MODES.find((mode) => mode.portalId === objectId)
+  AW2_MODES.find(
+    (mode) =>
+      mode.portalId === objectId ||
+      objectId ===
+        (mode.id === "tcg" ? "aw2-object-guild-tcg" : "aw2-object-guild-chess"),
+  )

@@ -1,5 +1,11 @@
 # Test ledger / change impact
 
+## AW2-017A — functional village /2026-10-28
+
+Base `b8fc6e990a3398591e7b3a68840d114279e7728f`; frozen432inputs `f6ab7ae05c3ef85aa85b8b83bb2c9b25e27b7326a0f0c6248d33b589221bd956` equals compiled. Full1925/142files at default timeout PASS (11new included),28.69s; root/dev types and both builds PASS. Fresh414browser checks=59+59village and148+148whole-story, all source/compiled exit0 and0unexpectederrors. Per-room roof/door/services/quota–retry/double click/exact return/reload; actual4quests/boss45tick/300XP;4viewport20px/native44px/labels/focus/legacy/classic verified. No new terminal guild match claim. [Full evidence and diagnostics](evidence/AW2-017A.md).
+
+AW2308files/125216171bytes, stable851files/177450422bytes,262runtimebyte parity,49stabletext exclusion,516protected original hashes.21explicit runtime changes include save/schema/rules/adapter/room registry/presentation; no media/dependencies/outdoor collider/story actor relocation or engine tuning. Source390home/overview and compiled1280village captures inspected; final garden/room art and22other-zone decorative facades remain open. Strict old6/tea read/no-write and reject new IDs under6; explicit write7 tested. Current outdoor6 browser fixture is version-relabelled earned data, identified in evidence. Demo90/product≈40%(35–45%) unchanged. Independent/device/FPS/rights NOT_RUN. Next017B Phố layout/scene-aware directions before moving NPCs. Direct expected-head AW2 publication/readback follows; no product/master/deploy/release/reset.
+
 016K source `c62500841351e6e8b68089ce89fca5f6641b74c2` / exact staged+independently fetched tree `ee8dc038bfe3fc1bab6470fec2c4da04ef6d4a28` published on AW2; all31changed blobs/expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016K-publication.json). This stamp is documentation/evidence only.
 
 ## AW2-016K — room practice service /2026-10-28

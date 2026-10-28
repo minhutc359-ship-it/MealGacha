@@ -1,5 +1,9 @@
 # Canon — Initial 12 and Lantern direction approved 2026-10-20
 
+## Current spatial extension — 2026-10-28 / D24 /017A
+
+Six outdoor zones/eight story NPCs/four quests remainD14. Optional village interiors now include `aw2-room-village-home` (team/journal/recipe), existing `aw2-room-village-tea`, and `aw2-room-village-guild` (real TCG/Chess practice tables). These are service locations, not new named story characters/quests or a collectible/reward contract. Separate room IDs/doors and save7; historical6 remains tea-only and reads without write. One map representative/D17 remains. Two new interiors reuse original tea-room components; unique final interior art and the other-zone redesign remain pending. [Functional map contract](MAP_TUONG_TAC.md).
+
 016K extends the existing journal desk with a selector for already implemented borrowed TCG/Auto Chess practices. New ephemeral entry label `room-service` requires the actual tea room/journal desk range; saved position remains schema6. No new NPC, building, lore, reward, collision, artwork or rates. This is a service in the existing tea interior, not a new guild/canon identity. [Contract](tasks/AW2-016K.md), [guide](BAN_LUYEN_TAP.md).
 
 016F implements one optional child room of Làng under the owner's continuation request after016E; this is development implementation, no new story identity or broader canon approval. `aw2-room-village-tea` has an explicit door at300,48/approach300,80, party desk and journal/recipe desk; no NPC/quest/reward/commerce. Six canonical region IDs/eightNPC/fourquests/12spirits remain. Schema6 stores nullable room position separately from the exact outside checkpoint; versions1–5 read unchanged until explicit write. One map representative/fivecombat remain. [Contract](tasks/AW2-016F.md), [guide/provenance](TIEM_TRA.md). Statements below about proposal-only/schema5 are historical snapshots, superseded for016F's runtime scope.

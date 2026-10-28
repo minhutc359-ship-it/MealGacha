@@ -3,7 +3,7 @@ import type { WorldProgress } from "../world/model"
 import { zoneById } from "../world/maps"
 import { describeObject } from "../world/rules"
 import type { SceneBounds } from "./tableRoom"
-import { TEA_ROOM } from "../world/interiorLayout"
+import { TEA_ROOM, roomForEntrance } from "../world/interiorLayout"
 
 export const VILLAGE_SCENE = scene
 
@@ -21,10 +21,10 @@ export function villageWaypoints(progress: WorldProgress) {
         name: object.name,
         x: object.x,
         y: object.y,
-        walkX: TEA_ROOM.approach.x,
-        walkY: TEA_ROOM.approach.y,
-        short: "Tiệm trà",
-        status: "Đến gần rồi chọn Vào tiệm trà",
+        walkX: roomForEntrance(object.id)!.approach.x,
+        walkY: roomForEntrance(object.id)!.approach.y,
+        short: roomForEntrance(object.id)!.name,
+        status: `Đến gần rồi vào ${roomForEntrance(object.id)!.name}`,
         state: "ready",
         locked: false,
       }

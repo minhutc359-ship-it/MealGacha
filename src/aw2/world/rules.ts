@@ -9,7 +9,12 @@ import { canStand, zoneById, type WorldObject } from "./maps"
 import { worldObjects, type NpcPatrolState } from "./npcPatrol"
 import { worldProgressSchema, type WorldProgress } from "./model"
 import { canStandInScene, sceneId, scenePosition, sceneObjects } from "./scene"
-import { TEA_ROOM, TEA_PARTY_ID, TEA_JOURNAL_ID } from "./interiorLayout"
+import {
+  TEA_ROOM,
+  TEA_PARTY_ID,
+  TEA_JOURNAL_ID,
+  roomForEntrance,
+} from "./interiorLayout"
 
 export const INTERACT_RANGE = 48
 export const questLabel = (state: WorldProgress) =>
@@ -127,27 +132,40 @@ export function describeObject(
   })
   if (object.kind === "room")
     return result(
-      "Vào tiệm trà để xem đội đồng hành và ghi chép.",
-      state.interior ? [] : [action("enter-room", "Vào tiệm trà")],
+      `Vào ${roomForEntrance(object.id)?.name ?? "phòng"} để sử dụng các hoạt động bên trong.`,
+      state.interior
+        ? []
+        : [
+            action(
+              "enter-room",
+              object.id === TEA_ROOM.entrance.id
+                ? "Vào tiệm trà"
+                : `Vào ${roomForEntrance(object.id)!.name}`,
+            ),
+          ],
     )
   if (object.kind === "room-exit")
     return result(
-      "Trở lại đúng vị trí ngoài hiên đã lưu khi vào tiệm.",
+      "Trở lại đúng vị trí và hướng trước cửa đã lưu khi vào nhà.",
       state.interior ? [action("leave-room", "Ra hiên")] : [],
     )
   if (object.kind === "room-service")
     return result(
-      object.id === TEA_PARTY_ID
+      object.id === TEA_PARTY_ID || object.service === "party"
         ? "Xem và sắp xếp năm người bạn đồng hành."
-        : "Xem nhật ký, công thức hoặc ghé bàn luyện tập TCG/Auto Chess. Các ván luyện tập không nhận thưởng hành trình.",
+        : object.service === "journal"
+          ? "Đọc sổ hành trình và xem công thức hiện có."
+          : "Xem nhật ký, công thức hoặc ghé bàn luyện tập TCG/Auto Chess. Các ván luyện tập không nhận thưởng hành trình.",
       state.interior
-        ? object.id === TEA_PARTY_ID
+        ? object.id === TEA_PARTY_ID || object.service === "party"
           ? [action("view-party", "Xem đội đồng hành")]
-          : object.id === TEA_JOURNAL_ID
+          : object.id === TEA_JOURNAL_ID || object.service === "journal"
             ? [
                 action("view-journal", "Xem nhật ký"),
                 action("view-recipe", "Xem công thức"),
-                action("view-practice", "Xem bàn luyện tập"),
+                ...(object.id === TEA_JOURNAL_ID
+                  ? [action("view-practice", "Xem bàn luyện tập")]
+                  : []),
               ]
             : []
         : [],
@@ -170,7 +188,7 @@ export function describeObject(
   }
   if (object.kind === "mode")
     return result(
-      object.id === "aw2-npc-ban-bai"
+      object.id === "aw2-npc-ban-bai" || object.id === "aw2-object-guild-tcg"
         ? "Ghé bàn TCG luyện tập với bộ bài mượn, rồi quay về điểm khám phá đã lưu. Không tốn vật phẩm, không nhận thưởng."
         : "Ghé bàn Auto Chess luyện tập: tuyển Vị Linh mượn, xếp đội và đấu 5 vòng, rồi quay về điểm khám phá đã lưu. Không tốn vật phẩm, không nhận thưởng hành trình.",
       [action("visit-mode", "Ghé bàn")],
@@ -351,7 +369,7 @@ export function applyWorldAction(
   if (actionId === "travel")
     next = { ...next, zoneId: object.to!, x: object.spawnX!, y: 192 }
   if (actionId === "enter-room")
-    next = { ...next, interior: { ...TEA_ROOM.spawn } }
+    next = { ...next, interior: { ...roomForEntrance(object.id)!.spawn } }
   if (actionId === "leave-room") next = { ...next, interior: null }
   if (actionId === "accept") next.accepted = true
   if (actionId === "inspect" && object.kind === "table") next.tableRead = true

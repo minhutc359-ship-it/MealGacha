@@ -143,7 +143,7 @@ describe("AW2-007L collection/save/real-party authority", () => {
       const s = f.ready()
       expect(s.raw).toBe(raw)
       expect(s.save).toMatchObject({
-        schemaVersion: 6,
+        schemaVersion: 7,
         saveId: old.saveId,
         revision: 8,
         createdAt: old.createdAt,
@@ -160,7 +160,7 @@ describe("AW2-007L collection/save/real-party authority", () => {
   it("explicitly persists the upgrade without clearing economy/receipts", async () => {
     const f = fixture()
     const next = await f.store.save(f.original)
-    expect(next.save.schemaVersion).toBe(6)
+    expect(next.save.schemaVersion).toBe(7)
     expect(next.save.economy).toEqual(oldSave().economy)
     expect(next.save.revision).toBe(9)
     expect(next.save.progress).toEqual({
@@ -322,14 +322,14 @@ describe("AW2-007L collection/save/real-party authority", () => {
     expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(raw)
     expect(f.setItem).not.toHaveBeenCalled()
   })
-  it("keeps v4 strict starter validation and treats future6 as unsupported", () => {
+  it("keeps v4 strict starter validation and treats future version as unsupported", () => {
     const f = fixture()
     const forged = oldSave()
     forged.progress.partyIds[0] = "aw2-van"
     expect(aw2DevSaveV4Schema.safeParse(forged).success).toBe(false)
     const raw = JSON.stringify(forged)
     expect(decodeAw2Save(raw)).toEqual({ status: "invalid", raw })
-    const future = '{"schemaVersion":7,"retain":"untouched"}'
+    const future = '{"schemaVersion":8,"retain":"untouched"}'
     expect(decodeAw2Save(future)).toEqual({
       status: "unsupported",
       raw: future,

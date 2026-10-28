@@ -8,8 +8,8 @@ import {
 import { useEffect, useRef, useState } from "react"
 import type { Texture, Ticker } from "pixi.js"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
-import { TEA_ROOM_SCENE as scene } from "../../src/aw2/assets/teaRoom"
-import { TEA_ROOM } from "../../src/aw2/world/interiorLayout"
+import { roomScene } from "../../src/aw2/assets/teaRoom"
+import { roomById } from "../../src/aw2/world/interiorLayout"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { sampleWorldFrame } from "../../src/aw2/assets/animation"
 import {
@@ -39,6 +39,8 @@ export function TeaRoomCanvas({
   walkTarget,
   walkControls,
 }: WorldCanvasProps) {
+  const room = roomById(world.interior!.roomId)
+  const scene = roomScene(room.id)
   const walking = useRef(walkTarget)
   const walkingMarker = useRef<HTMLSpanElement>(null)
   walking.current = walkTarget
@@ -66,8 +68,8 @@ export function TeaRoomCanvas({
       assertUsable?: () => void,
     ) =>
       onReadyChange?.({
-        zoneId: TEA_ROOM.zoneId,
-        sceneId: TEA_ROOM.id,
+        zoneId: room.zoneId,
+        sceneId: room.id,
         leaderId: leader,
         ready,
         error,
@@ -122,9 +124,9 @@ export function TeaRoomCanvas({
         }
         app.stage.sortableChildren = true
         const background = new Sprite(floor)
-        background.position.set(scene.landscape.x, scene.landscape.y)
-        background.width = scene.landscape.width
-        background.height = scene.landscape.height
+        background.position.set(scene.floorBounds.x, scene.floorBounds.y)
+        background.width = scene.floorBounds.width
+        background.height = scene.floorBounds.height
         background.zIndex = -1000
         app.stage.addChild(background)
         const furniture = scene.props.map((spec) => {
@@ -145,7 +147,7 @@ export function TeaRoomCanvas({
         const actor = new Sprite(frames[manifest.world.down.idle])
         app.stage.addChild(actor)
         const reduced = matchMedia("(prefers-reduced-motion: reduce)")
-        let prior = position.current.interior ?? TEA_ROOM.spawn,
+        let prior = position.current.interior ?? room.spawn,
           elapsed = 0
         const update = (ticker: Ticker) => {
           const now = position.current,
@@ -183,7 +185,7 @@ export function TeaRoomCanvas({
                 ? 0.45
                 : 1
           const viewport = worldVisibleBounds(app.canvas)
-          for (const object of TEA_ROOM.objects) {
+          for (const object of room.objects) {
             const label = labels.current.get(object.id)
             if (!label) continue
             const p = projectVillage(
@@ -240,7 +242,7 @@ export function TeaRoomCanvas({
         }
         app.canvas.setAttribute("aria-hidden", "true")
         app.canvas.dataset.sceneId = scene.id
-        app.canvas.dataset.roomId = TEA_ROOM.id
+        app.canvas.dataset.roomId = room.id
         app.canvas.dataset.partySize = "1"
         app.canvas.dataset.partyIds = JSON.stringify([leader])
         const assertUsable = await firstWorldFrame(
@@ -262,7 +264,7 @@ export function TeaRoomCanvas({
       camera.current = null
       lifetime.dispose()
     }
-  }, [leader, onReadyChange])
+  }, [leader, room.id, onReadyChange])
   return (
     <>
       <div
@@ -339,7 +341,7 @@ export function TeaRoomCanvas({
           markerRef={walkingMarker}
         />
         {walkControls}
-        {TEA_ROOM.objects.map((o) => (
+        {room.objects.map((o) => (
           <span
             key={o.id}
             className="aw2-world-label"

@@ -157,7 +157,7 @@ describe("006G original village scene stays separate from world authority", () =
   it("derives object coordinates from maps and separate safe approach within authoritative range", () => {
     const fresh = newWorldProgress(),
       points = villageWaypoints(fresh)
-    expect(points).toHaveLength(4)
+    expect(points).toHaveLength(6)
     for (const p of points) {
       const object = zoneById(fresh.zoneId).objects.find((o) => o.id === p.id)!
       expect([p.x, p.y, p.name]).toEqual([object.x, object.y, object.name])

@@ -172,16 +172,16 @@ describe("016G tea-room signposting across scenes", () => {
     expect(ZONES).toHaveLength(6)
     expect(JSON.stringify(world)).toBe(before)
   })
-  it("omits only the duplicate village tea landmark and preserves all manifest data", () => {
+  it("removes scenic-only village landmarks and preserves all manifest data", () => {
     const before = JSON.stringify(SETTLEMENT),
       village = settlementForZone(ZONE_IDS[0])!,
       street = settlementForZone(ZONE_IDS[1])!
     const points = scenicWalkingLandmarks(ZONE_IDS[0])
-    expect(points).toHaveLength(village.landmarks.length - 1)
+    expect(points).toHaveLength(0)
     expect(points.some((p) => p.id === "tea")).toBe(false)
     expect(scenicWalkingLandmarks(ZONE_IDS[1])).toEqual(street.landmarks)
     expect(scenicWalkingLandmarks("unknown")).toEqual([])
-    points[0].x = 600
+    scenicWalkingLandmarks(ZONE_IDS[1])[0].x = 600
     expect(JSON.stringify(SETTLEMENT)).toBe(before)
   })
   it("returns detached approach data and preserves story/economy authority", () => {

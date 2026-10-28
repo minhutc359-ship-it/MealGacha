@@ -5,12 +5,17 @@ import { worldObjects, type NpcPatrolState } from "./npcPatrol"
 import { describeObject, INTERACT_RANGE, nearestObject } from "./rules"
 import { scenePosition } from "./scene"
 import { PANTRY_STOCK } from "./pantryLayout"
-import { TEA_ROOM, TEA_EXIT_ID } from "./interiorLayout"
+import {
+  TEA_ROOM,
+  TEA_EXIT_ID,
+  roomById,
+  roomForEntrance,
+} from "./interiorLayout"
 import { journeyApproach } from "./registry"
 
 /** A local approach only. No route, inspection or projection writes a save or runs an action. */
 export function placeApproach(object: Readonly<WorldObject>): Waypoint {
-  if (object.kind === "room") return { ...TEA_ROOM.approach }
+  if (object.kind === "room") return { ...roomForEntrance(object.id)!.approach }
   if (object.kind === "room-exit")
     return { x: object.x + 24, y: object.y, entityId: object.id }
   if (object.kind === "stock") return { ...PANTRY_STOCK.approach }
@@ -75,9 +80,11 @@ export function teaRoomDirection(world: WorldProgress) {
   if (world.interior)
     return {
       label: "Đi tới cửa ra hiên",
-      text: "Bạn đang trong tiệm trà. Ra hiên trước khi đi sang vùng khác.",
+      text: `Bạn đang trong ${roomById(world.interior.roomId).name}. Ra cửa trước khi đi sang vùng khác.`,
       approach: placeApproach(
-        TEA_ROOM.objects.find((object) => object.id === TEA_EXIT_ID)!,
+        roomById(world.interior.roomId).objects.find(
+          (object) => object.kind === "room-exit",
+        )!,
       ),
     }
   if (world.zoneId === TEA_ROOM.zoneId)

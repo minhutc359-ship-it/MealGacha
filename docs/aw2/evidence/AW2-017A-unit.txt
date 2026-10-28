@@ -1,0 +1,12 @@
+$ vitest run --config dev/vitest.config.ts
+
+ RUN  v5.0.1 /workspace/scratch/b67404650095/soul-of-meal
+
+
+ Test Files  142 passed (142)
+      Tests  1925 passed (1925)
+   Start at  03:53:30
+   Duration  28.69s (tests 58%, import 23%, transform 18%, worker 1%)
+
+    Isolate  142 workers spawned · ~348ms startup each (spawn + environment, per file)
+             at least ~6.72s faster with isolate: false — reuses workers across files instead of one per file

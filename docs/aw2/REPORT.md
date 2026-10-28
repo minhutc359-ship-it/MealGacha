@@ -1,5 +1,11 @@
 # Soul of Meal AW2 — cập nhật 28/10/2026
 
+**AW2-017A VERIFIED development — Làng chuyển sang công trình có chức năng.** Ba facade Nhà đồng hành/Tiệm trà/Hội quán đều có cửa và nội thất riêng; bảy nhà trang trí dư đã bỏ khỏi bản render Làng. Lối đi ghép tách lớp và camera gần hơn; nhấn mái đi tới cửa thật. Nhà mở đội/sổ, hội quán mở hai bàn TCG/Chess thật; ra/về giữ đúng phòng và checkpoint. Save7 đọc1–6 không ghi đè, nâng cấp khi lưu rõ ràng. [Bố cục và lộ trình](MAP_TUONG_TAC.md).
+
+**1.925unit/142files PASS** toàn bộ, gồm11ca mới; **414browser mới=118khu mẫu+296toàn tuyến**, source+compiled đều đạt/0lỗi bất ngờ. Ba phòng/quota–retry/bấm lặp/reload/đúng cửa, save6no-write, bốnviewport20px/44px; toàn tuyến4quest/boss45tick/kết thúc300XP đạt. Hai typecheck/hai build/262asset parity đạt;516file gốc được guard. [Bằng chứng](evidence/AW2-017A.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** D24ưu tiên cấu trúc map trước lịchNPC;6zone/8NPC/4quest và D17giữ nguyên. Đây là khu mẫu Làng, chưa hoàn thiện toàn bộ map:22facade Phố/Sân còn xử lý, step portal/đồ vật ngoài trời/nội thất art riêng/vườn-biên-collision cuối chưa xong. Next017B: Phố Đèn Lồng theo cùng cấu trúc công năng và dẫn đường biết phòng. D18/D20/D11không đổi. Các bản ghi dưới là lịch sử; hiện hành theo017A.
+
 016K source `c62500841351e6e8b68089ce89fca5f6641b74c2` / exact staged+independently fetched tree `ee8dc038bfe3fc1bab6470fec2c4da04ef6d4a28` published on AW2; all31changed blobs/expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016K-publication.json). This stamp is documentation/evidence only.
 
 Đã hoàn tất016K: **tiệm trà có bàn luyện tập TCG/Auto Chess** tại Góc nhật ký. Chọn tab và đọc không ghi save; Ghé bàn kiểm tra đúng phòng/khoảng cách, lưu điểm trở về một lần. Lưu lỗi giữ menu để thử lại; tab cũ cần Đọc lại. Quay về/ra hiên giữ đúng vị trí. [Cách dùng](BAN_LUYEN_TAP.md).

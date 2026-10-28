@@ -4,7 +4,7 @@ import { canStand, ZONES, zoneById } from "./maps"
 import { describeObject } from "./rules"
 import type { WorldProgress } from "./model"
 import { journeyRoute } from "./journey"
-import { TEA_ROOM } from "./interiorLayout"
+import { roomById, TEA_ROOM } from "./interiorLayout"
 
 const point = z.strictObject({ x: z.number().finite(), y: z.number().finite() })
 const id = z.string().regex(/^aw2-[a-z0-9-]+(?::[a-z0-9-]+)*$/)
@@ -232,7 +232,12 @@ export function journeyOverview(world: WorldProgress) {
 
 /** Only a local walking destination. It never crosses a portal or saves the world. */
 export function journeyApproach(world: WorldProgress, destination: ZoneId) {
-  if (world.interior) return { x: 48, y: 192, entityId: TEA_ROOM.objects[0].id }
+  if (world.interior)
+    return {
+      x: 48,
+      y: 192,
+      entityId: roomById(world.interior.roomId).objects[0].id,
+    }
   const route = journeyRoute(world, destination)
   if (!route || route.length < 2) return undefined
   const portal = zoneById(world.zoneId).objects.find(

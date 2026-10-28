@@ -1,5 +1,11 @@
 # Task board
 
+**AW2-017A VERIFIED development — Làng chuyển sang công trình có chức năng.** Ba facade Nhà đồng hành/Tiệm trà/Hội quán đều có cửa và nội thất riêng; bảy nhà trang trí dư đã bỏ khỏi bản render Làng. Lối đi ghép tách lớp và camera gần hơn; nhấn mái đi tới cửa thật. Nhà mở đội/sổ, hội quán mở hai bàn TCG/Chess thật; ra/về giữ đúng phòng và checkpoint. Save7 đọc1–6 không ghi đè, nâng cấp khi lưu rõ ràng. [Bố cục và lộ trình](MAP_TUONG_TAC.md).
+
+**1.925unit/142files PASS** toàn bộ, gồm11ca mới; **414browser mới=118khu mẫu+296toàn tuyến**, source+compiled đều đạt/0lỗi bất ngờ. Ba phòng/quota–retry/bấm lặp/reload/đúng cửa, save6no-write, bốnviewport20px/44px; toàn tuyến4quest/boss45tick/kết thúc300XP đạt. Hai typecheck/hai build/262asset parity đạt;516file gốc được guard. [Bằng chứng](evidence/AW2-017A.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** D24ưu tiên cấu trúc map trước lịchNPC;6zone/8NPC/4quest và D17giữ nguyên. Đây là khu mẫu Làng, chưa hoàn thiện toàn bộ map:22facade Phố/Sân còn xử lý, step portal/đồ vật ngoài trời/nội thất art riêng/vườn-biên-collision cuối chưa xong. Next017B: Phố Đèn Lồng theo cùng cấu trúc công năng và dẫn đường biết phòng. D18/D20/D11không đổi. Các bản ghi dưới là lịch sử; hiện hành theo017A.
+
 **AW2-016K VERIFIED — TCG/Auto Chess tại bàn trong tiệm trà.** Góc nhật ký mở bộ chọn luyện tập có tab/hướng dẫn; vào bàn kiểm tra đúng phòng/khoảng cách và lưu điểm trở về một lần. Quay về giữ đúng vị trí trong phòng/ngoài hiên, không đổi EXP/đội/nguyên liệu. Lưu lỗi giữ menu để thử lại; tab cũ phải Đọc lại. [Cách dùng](BAN_LUYEN_TAP.md).
 
 **142unit/6files PASS**,13ca mới nằm trong tổng; **156browser=78source+78compiled PASS**,0lỗi bất ngờ. Hai lượt mới nhập môn→tiệm trà→TCG thật tới kết quả→Chess giao tranh/sang vòng2→trở về; bốn viewport20px/44px/focus, ghi lỗi–retry/bấm lặp/tabcũ/reload/classic/ra hiên đều đạt. Hai typecheck/hai build/262asset parity đạt;529file cũ được guard nguyên bytes. [Bằng chứng](evidence/AW2-016K.md).
@@ -146,6 +152,9 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | AW2-016I | BA/mechanic/animation/tester/scretary | Door and service cues/focus | VERIFIED development; [016I evidence](evidence/AW2-016I.md) |
 | AW2-016J | BA/mechanic/animation/tester/scretary | Available/objective/return quest cues | VERIFIED development; [016J evidence](evidence/AW2-016J.md) |
 | AW2-016K | BA/story/mechanic/animation/tester/scretary | Validated tea-desk TCG/Chess service and exact return | VERIFIED development; [evidence](evidence/AW2-016K.md) |
+| AW2-017A | BA/story/mechanic/animation/tester/scretary | Functional village facades/independent rooms/save7 and map plan | VERIFIED development; [evidence](evidence/AW2-017A.md) |
+| AW2-017B | BA/story/mechanic/animation/tester/scretary | Functional Phố layout; scene-aware quest targets before moving actors | NEXT, scope before code; [rollout](MAP_TUONG_TAC.md) |
+| AW2-017C–E | BA/story/mechanic/animation/tester/scretary | Sân/bếp, step portals/field props, NPC life/final art | PLANNED, not implemented; phase contracts required |
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |

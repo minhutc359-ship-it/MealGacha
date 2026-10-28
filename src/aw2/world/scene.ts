@@ -1,15 +1,26 @@
 import type { WorldProgress } from "./model"
 import type { ZoneId } from "./ids"
 import { canStand, zoneById, type WorldObject } from "./maps"
-import { TEA_ROOM, TEA_ROOM_ID, canStandInTeaRoom } from "./interiorLayout"
+import {
+  ROOM_IDS,
+  roomById,
+  canStandInRoom,
+  type RoomId,
+} from "./interiorLayout"
 
-export type SceneId = ZoneId | typeof TEA_ROOM_ID
+export type SceneId = ZoneId | RoomId
 export const sceneId = (world: WorldProgress): SceneId =>
   world.interior?.roomId ?? world.zoneId
 export const scenePosition = (world: WorldProgress) => world.interior ?? world
 export const sceneName = (world: WorldProgress) =>
-  world.interior ? TEA_ROOM.name : zoneById(world.zoneId).name
+  world.interior
+    ? roomById(world.interior.roomId).name
+    : zoneById(world.zoneId).name
 export const sceneObjects = (world: WorldProgress): readonly WorldObject[] =>
-  world.interior ? TEA_ROOM.objects : zoneById(world.zoneId).objects
+  world.interior
+    ? roomById(world.interior.roomId).objects
+    : zoneById(world.zoneId).objects
 export const canStandInScene = (id: SceneId, x: number, y: number) =>
-  id === TEA_ROOM_ID ? canStandInTeaRoom(x, y) : canStand(id, x, y)
+  (ROOM_IDS as readonly string[]).includes(id)
+    ? canStandInRoom(id, x, y)
+    : canStand(id as ZoneId, x, y)

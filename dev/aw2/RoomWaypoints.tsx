@@ -12,7 +12,7 @@ import { zoneById } from "../../src/aw2/world/maps"
 import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
 import { sceneName } from "../../src/aw2/world/scene"
 import { placeApproach } from "../../src/aw2/world/placeGuidance"
-import { TEA_ROOM } from "../../src/aw2/world/interiorLayout"
+import { roomById } from "../../src/aw2/world/interiorLayout"
 
 export function RoomWaypoints({
   world,
@@ -31,7 +31,7 @@ export function RoomWaypoints({
   const village = world.zoneId === VILLAGE_SCENE.zoneId
   const journey = journeyScene(world.zoneId)
   const points = world.interior
-    ? TEA_ROOM.objects.map((object) => ({
+    ? roomById(world.interior.roomId).objects.map((object) => ({
         id: object.id,
         name: object.name,
         short: object.name,

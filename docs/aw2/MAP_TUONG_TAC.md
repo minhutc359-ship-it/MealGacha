@@ -1,0 +1,57 @@
+# Thiết kế lại map theo công năng
+
+28/10/2026 · AW2-017A · khu mẫu Làng Giao Ước. [Đặc tả v1.1 đã đối chiếu](design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md), đặc biệt mục2–5,7 và10–12.
+
+## Vấn đề cần giải quyết
+
+Ảnh owner gửi cho thấy sân lát gạch chiếm phần lớn khung hình, các công trình làm nền không có cửa thật và các điểm nhiệm vụ nhỏ, tách rời. Tăng thêm nhà chỉ làm số đích giả tăng lên. Bản006O có32kiến trúc trang trí trên ba vùng; tại Làng có10công trình nhưng chỉ một nội thất tiệm trà. Tranh panorama cũng chứa sẵn nhà và cổng không có entity tương ứng.
+
+Cần thiết kế tuyến đi và công năng trước, sau đó mới phủ mỹ thuật. Mỗi công trình mà người chơi có thể đi tới phải dẫn tới hoạt động thật. Cây, nước, mép vườn có vai trò định hướng/ranh giới/che khuất; không cần biến từng chiếc lá thành nút tương tác.
+
+## Khu mẫu đã triển khai trong017A
+
+| Ngoại thất ở Làng | Cửa và phòng thật | Hoạt động hiện có |
+| --- | --- | --- |
+| Nhà đồng hành, phía trái | `aw2-object-home-door` → `aw2-room-village-home` | Mở đội đã sở hữu, sổ hành trình và công thức |
+| Tiệm trà, ở giữa | `aw2-object-village-tea-door` → `aw2-room-village-tea` | Giữ dịch vụ đội/nhật ký/công thức và luyện tập016K |
+| Hội quán, phía phải | `aw2-object-guild-door` → `aw2-room-village-guild` | Hai bàn TCG và Auto Chess vào các activity thật |
+| Bàn chung và Bà Giữ Chỗ | Các ID nhiệm vụD14 cũ | Nhận/đọc/trả nhập môn và kết thúc hành trình |
+| Lối sang Phố | Cửa nối vùng cũ | Điều kiện nhiệm vụ và chuyển cảnh hiện có |
+| Giếng | Vật cản cũ, đường vòng vẫn thông | Chưa thêm lấy nước/hồi phục/quest; tương tác ngoài trời là pha017D |
+
+Ba facade đang render đều có phòng riêng:3/3. Bảy công trình Làng dư bị loại khỏi bản render đang dùng; bản asset gốc vẫn giữ nguyên.22công trình ở Phố/Sân vẫn thuộc cấu trúc cũ, cần xử lý tiếp; không tính các công trình này là đã chuyển đổi. Tổng đang có6vùng ngoài trời và3phòng con; registry vùng ngoài trời vẫn là6map, registry nội thất quản lý riêng.
+
+Sân mới ghép từ crop gạch gốc bằng Sprite, tách lớp nền/lối đi/công trình/nhân vật/tiền cảnh. Ba đường cửa nối vào một tuyến ngang, nhánh bàn chung và vòng qua giếng. Camera bám gần hơn và toàn cảnh gói vào khu chức năng. Không còn dùng nguyên panorama có các nhà nền giả ở Làng. Đây là bố cục chức năng đầu tiên; nền gạch còn lặp, vườn/biên/sân chưa phải bản mỹ thuật cuối.
+
+Nhấn vào mái nhà đưa nhân vật tới đúng điểm đứng trước cửa, không cố đi tới một pixel mái ngoài map. Tới cửa vẫn bấmE/Tương tác rồi chọn Vào. Trong phòng, đi bộ tới bàn, chọn dịch vụ thật; ra cửa giữ đúng tọa độ/hướng trước cửa nguồn. Hội quán không tạoNPC, tiền tệ hay phần thưởng mới; các ván vẫn là luyện tập không thưởng. Hai phòng mới dùng lại thành phần art tiệm trà với vị trí bàn khác; chưa có bộ nội thất nguyên bản riêng cho từng nhà.
+
+## Cấu trúc lấy từ tài liệu Pokémon-style
+
+Áp dụng cấu trúc không gian và luồng chuyển cảnh từv1.1, dùng hoàn toàn nội dung/mỹ thuật dự án:
+
+1. **World → Region → Map → Interior.** Mỗi phòng/cửa có ID ổn định, collider và danh sách tương tác riêng. Thêm khu chức năng bằng dữ liệu, không nhân các nhánh xử lý chỉ dành cho tiệm trà.
+2. **Một cửa, một nơi đến, một nơi trở về.** Lưu checkpoint bên ngoài; tải và dựng khung hình đích trước commit. Hỏng tải/renderer/lưu giữ cảnh nguồn. Trở về từ TCG/cờ giữ cả phòng và vị trí bên trong.
+3. **Nhìn thấy là hiểu đường đi.** Lối chính nối cổng với quảng trường nhỏ; ngõ phụ kết thúc ở cửa/dịch vụ/đồ vật có vai trò. Công trình không có công năng phải bỏ khỏi vùng tiếp cận hoặc chuyển thành nền ngoài ranh giới rõ ràng.
+4. **Địa điểm, sprite và luật dùng cùng dữ liệu.** Khoảng cách tương tác, điểm đứng, nhãn, collision và save không được dùng các tọa độ độc lập. Nhà mới dùng `ROOMS`; cùng ID được dùng ở reducer/scene/preload/waypoint/adapter.
+5. **Phân biệt bước qua cửa với hành động có hệ quả.** v1.1 có cả step portal và interact portal.017A chỉ hoàn thành loại bấm tương tác; loại bước qua sẽ làm riêng với chốt chống kích kép, điểm ra nằm ngoài trigger và hủy di chuyển trước chuyển cảnh. Nhận nhiệm vụ, dùng đồ và nhận thưởng luôn là thao tác rõ ràng.
+
+D17một trưởng đội đại diện trên map vẫn áp dụng; không bật follower minh họa trongv1.1. Các ID nhà/shop/guild minh họa của tài liệu không tự thay canonD14 hoặc duyệt commerce/gacha.
+
+## Thứ tự tiếp theo
+
+| Pha | Công việc cụ thể | Điều kiện hoàn thành |
+| --- | --- | --- |
+| 017B · Phố Đèn Lồng | Lập sơ đồ3cụm: khu gặp người, cửa tiệm có dịch vụ, cổng tới sân bếp. Xử lý11facade Phố: có chức năng thật thì giữ, còn lại bỏ/chuyển ngoài ranh. Đưa bàn/NPC phù hợp vào nội thất sau khi có dẫn đường nhiệm vụ biết scene | Không còn nhà tiếp cận được nhưng không có cửa; đủ3ký ức vẫn lấy được; các mode/quick entry và save cũ giữ nguyên |
+| 017C · Sân và bếp | Cổng bếp dẫn tới kho/lửa/bàn ăn rõ vai trò; collider khớp chân tường/bồn/chướng ngại; thu hẹp khoảng rỗng bằng bố cục và art tách lớp | Tuyến nhận nguyên liệu→gợi ý→giải bếp→boss→ghi chép đi được hai chiều; không đứng xuyên công trình hoặc sinh ra trong collider |
+| 017D · Cửa bước qua và đồ vật | Step portals cho cửa thường; tương tác giếng/bảng chỉ đường/ghế/đồ khám phá có phản hồi phù hợp. Mỗi đồ vật chốt một hành vi, trạng thái sau dùng và nhu cầu lưu | Chống loop/kích kép; touch/keyboard giống nhau; không tự nhận thưởng; lỗi lưu không tiêu đồ; không thêm vật phẩm/quest chưa có contract |
+| 017E · Đời sống và phối cảnh cuối | LịchNPC theo game clock, các điểm nghỉ/hoạt động, art nội thất riêng, mép vườn và đường chuyển vùng. Đo thời gian đi giữa các hoạt động để điều chỉnh mật độ | NPC theo lịch vẫn luôn truy cập được lúc cần nhiệm vụ; có đường ngắn về trung tâm; art/collider/ánh sáng khớp cùng mặt đất |
+
+017B là bước nhỏ tiếp theo. LịchNPC được chuyển sau cấu trúc không gian; không nên thêm người đi lại vào các sân còn thiếu mục đích.017B–E là kế hoạch, chưa triển khai và chưa nghiệm thu. Mục tiêu thiết kế: trong một khung bám luôn thấy một đích có ý nghĩa hoặc hướng đi tới đích; tuyến chính không có đoạn sân dài không mang thông tin. Chưa tuyên bố có số đo playtest thời gian đi thực tế.
+
+## Bảo toàn tiến trình
+
+Save7 chỉ mở rộng tập roomId. Save6 vẫn kiểm tra đúng hợp đồng cũ chỉ có tiệm trà; không chấp nhận dữ liệu mang nhãn6 nhưng chứa nhà/hội quán mới. Đọc save1–6 nâng mô hình trong bộ nhớ, không ghi lại raw. Thao tác lưu rõ ràng mới tạo bản7, giữ saveId/ngày tạo/đội/quest/túi/EXP/receipt và checkpoint. Không reset dữ liệu.
+
+Khu mẫu giữ hình học ngoài trời640×384 và vị trí nhiệm vụ cũ để save đang đứng ở bất kỳ điểm hợp lệ nào vẫn dùng được. Đây là lý do chưa nén toàn bộ tọa độ sang map nhỏ hơn; pha thay collider/tọa độ cần migration và kiểm thử điểm cũ riêng.
+
+Kiểm tra và giới hạn đo được tại [AW2-017A](evidence/AW2-017A.md). Demo90%/product≈40%(35–45%) giữ nguyên; cấu trúc map tốt hơn chưa tự đóng nghiệm thu độc lập, thiết bị thật hay điều kiện tích hợpD18.

@@ -11,7 +11,7 @@ import { FORGOTTEN_HOST_WORLD } from "./bossWorld"
 import { npcVisualsForZone } from "./npcPatrol"
 import { SETTLEMENT, settlementForZone } from "./settlement"
 import { AMBIENT_MOTION, ambientRegionsForZone } from "./ambientMotion"
-import { TEA_ROOM_SCENE } from "./teaRoom"
+import { roomScene } from "./teaRoom"
 
 /** Exact mandatory world textures; no portraits/battle/audio/source PNGs or future zones. */
 export function worldAssetUrls(world: Readonly<WorldProgress>): string[] {
@@ -21,7 +21,9 @@ export function worldAssetUrls(world: Readonly<WorldProgress>): string[] {
   if (world.interior)
     return [
       ...urls,
-      ...Object.values(TEA_ROOM_SCENE.assets).map((asset) => asset.url),
+      ...Object.values(roomScene(world.interior.roomId).assets).map(
+        (asset) => asset.url,
+      ),
     ]
   const journey = journeyScene(world.zoneId)
   if (world.zoneId === VILLAGE_SCENE.zoneId) {

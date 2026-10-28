@@ -96,7 +96,7 @@ describe("016K real tea desk service", () => {
       expect(started.checkpoint.save.collection).toEqual(
         f.entered.save.collection,
       )
-      expect(started.checkpoint.save.schemaVersion).toBe(6)
+      expect(started.checkpoint.save.schemaVersion).toBe(7)
       expect(started.checkpoint.save.revision).toBe(f.entered.save.revision + 1)
       expect(f.write).toHaveBeenCalledTimes(before + 1)
       expect(f.adapter.returnToWorld()).toEqual(started.checkpoint)
@@ -198,7 +198,7 @@ describe("016K real tea desk service", () => {
     const writes = f.write.mock.calls.length
     expect(decodeAw2Save(visit.checkpoint.raw)).toMatchObject({
       status: "ready",
-      save: { schemaVersion: 6, progress: f.near },
+      save: { schemaVersion: 7, progress: f.near },
     })
     expect(() => new Aw2ModeAdapter(f.store).returnToWorld()).toThrow()
     expect(f.store.load()).toEqual(visit.checkpoint)

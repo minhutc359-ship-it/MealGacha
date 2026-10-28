@@ -1,6 +1,6 @@
 import { KITCHEN_BOSS_ID, TABLE_NOTE_ID, ZONE_IDS, type ZoneId } from "./ids"
 import { PANTRY_STOCK } from "./pantryLayout"
-import { TEA_ROOM } from "./interiorLayout"
+import { ROOMS } from "./interiorLayout"
 
 export interface WorldObject {
   id: string
@@ -8,6 +8,7 @@ export interface WorldObject {
   x: number
   y: number
   kind: "npc" | "table" | "memory" | "hint" | "puzzle" | "boss" | "note" | "chest" | "exit" | "mode" | "stock" | "room" | "room-exit" | "room-service"
+  service?: "party" | "journal"
   to?: ZoneId
   memory?: 0 | 1 | 2
   step?: 0 | 1 | 2
@@ -36,7 +37,7 @@ const names = [
 ]
 const objects: WorldObject[][] = [
   [
-    { ...TEA_ROOM.entrance },
+    ...ROOMS.map((room) => ({ ...room.entrance })),
     { id: "aw2-npc-giu-cho", name: "Bà Giữ Chỗ", x: 160, y: 240, kind: "npc" },
     {
       id: "aw2-object-village-table",

@@ -10,7 +10,7 @@ import type { WorldProgress } from "./model"
 import { describeObject } from "./rules"
 import type { Waypoint } from "./navigation"
 import { worldObjects, type NpcPatrolState } from "./npcPatrol"
-import { TEA_ROOM, TEA_EXIT_ID } from "./interiorLayout"
+import { roomById, TEA_ROOM, TEA_EXIT_ID } from "./interiorLayout"
 
 export interface JourneyDirection {
   targetId: string
@@ -83,7 +83,9 @@ export function journeyDirections(
   patrol?: Readonly<NpcPatrolState>,
 ): JourneyDirection[] {
   if (state.interior) {
-    const exit = TEA_ROOM.objects.find((object) => object.id === TEA_EXIT_ID)!
+    const exit = roomById(state.interior.roomId).objects.find(
+      (object) => object.kind === "room-exit",
+    )!
     return [
       {
         targetId: exit.id,
