@@ -1,5 +1,7 @@
 # Handoff —2026-10-28 / AW2-016K
 
+016K source `c62500841351e6e8b68089ce89fca5f6641b74c2` / exact staged+independently fetched tree `ee8dc038bfe3fc1bab6470fec2c4da04ef6d4a28` published on AW2; all31changed blobs/expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016K-publication.json). This stamp is documentation/evidence only.
+
 **AW2-016K VERIFIED — TCG/Auto Chess tại bàn trong tiệm trà.** Góc nhật ký mở bộ chọn luyện tập có tab/hướng dẫn; vào bàn kiểm tra đúng phòng/khoảng cách và lưu điểm trở về một lần. Quay về giữ đúng vị trí trong phòng/ngoài hiên, không đổi EXP/đội/nguyên liệu. Lưu lỗi giữ menu để thử lại; tab cũ phải Đọc lại. [Cách dùng](BAN_LUYEN_TAP.md).
 
 **142unit/6files PASS**,13ca mới nằm trong tổng; **156browser=78source+78compiled PASS**,0lỗi bất ngờ. Hai lượt mới nhập môn→tiệm trà→TCG thật tới kết quả→Chess giao tranh/sang vòng2→trở về; bốn viewport20px/44px/focus, ghi lỗi–retry/bấm lặp/tabcũ/reload/classic/ra hiên đều đạt. Hai typecheck/hai build/262asset parity đạt;529file cũ được guard nguyên bytes. [Bằng chứng](evidence/AW2-016K.md).

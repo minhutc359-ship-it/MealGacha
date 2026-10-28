@@ -1,5 +1,7 @@
 # Test ledger / change impact
 
+016K source `c62500841351e6e8b68089ce89fca5f6641b74c2` / exact staged+independently fetched tree `ee8dc038bfe3fc1bab6470fec2c4da04ef6d4a28` published on AW2; all31changed blobs/expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016K-publication.json). This stamp is documentation/evidence only.
+
 ## AW2-016K — room practice service /2026-10-28
 
 Base `01480f61c706c8ead346499f39666648487ecf8b`; frozen431runtimeinputs `7199f1883206ae806f2db0f9dc0f94906ef507c60b0ada67470feb53cc9f60bd` matches compiled bundle. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.0. Fresh142units/6files PASS in2.33s,13new included, serial120s allowance; modes, tea-room, save and cue consumers covered. Root/dev typechecks and both builds PASS. No failed diagnostic runs or retained partial counts in this task.

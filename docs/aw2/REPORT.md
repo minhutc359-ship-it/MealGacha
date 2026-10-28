@@ -1,5 +1,7 @@
 # Soul of Meal AW2 — cập nhật 28/10/2026
 
+016K source `c62500841351e6e8b68089ce89fca5f6641b74c2` / exact staged+independently fetched tree `ee8dc038bfe3fc1bab6470fec2c4da04ef6d4a28` published on AW2; all31changed blobs/expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016K-publication.json). This stamp is documentation/evidence only.
+
 Đã hoàn tất016K: **tiệm trà có bàn luyện tập TCG/Auto Chess** tại Góc nhật ký. Chọn tab và đọc không ghi save; Ghé bàn kiểm tra đúng phòng/khoảng cách, lưu điểm trở về một lần. Lưu lỗi giữ menu để thử lại; tab cũ cần Đọc lại. Quay về/ra hiên giữ đúng vị trí. [Cách dùng](BAN_LUYEN_TAP.md).
 
 **Kiểm tra mới:**142unit/6files (13mới nằm trong tổng),156browser=78source+78compiled,0lỗi bất ngờ. Cả hai đi từ nhập môn mới tới tiệm trà, chơi TCG tới kết quả thật, xếp quân/đánh một vòng Chess và sang vòng2; quay về/reload/classic/quota–retry/bấm lặp/tabcũ đều đạt. Selector/desk qua bốnviewport/chữ20px/44px/no-scroll/focus. Hai typecheck/hai build/262asset parity đạt;529file gốc không đổi. [Bằng chứng](evidence/AW2-016K.md).
