@@ -3,44 +3,40 @@
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
   "version": "5.9.23",
-  "bytes": 300366505,
-  "files": 984,
+  "bytes": 141108610,
+  "files": 370,
   "byType": {
     "js": {
-      "files": 23,
-      "bytes": 2107710
+      "files": 26,
+      "bytes": 2108391
     },
-    "webp": {
-      "files": 711,
-      "bytes": 285541752
+    "css": {
+      "files": 4,
+      "bytes": 167718
     },
     "wav": {
       "files": 48,
       "bytes": 624362
     },
-    "css": {
+    "webp": {
+      "files": 265,
+      "bytes": 136720012
+    },
+    "json": {
       "files": 2,
-      "bytes": 233219
+      "bytes": 56948
     },
     "png": {
       "files": 3,
       "bytes": 164790
-    },
-    "json": {
-      "files": 23,
-      "bytes": 433321
     },
     "woff2": {
       "files": 11,
       "bytes": 285956
     },
     "mp3": {
-      "files": 152,
-      "bytes": 10834115
-    },
-    "svg": {
       "files": 1,
-      "bytes": 4902
+      "bytes": 843904
     },
     "ico": {
       "files": 1,
@@ -48,7 +44,7 @@
     },
     "html": {
       "files": 4,
-      "bytes": 36153
+      "bytes": 36304
     },
     "txt": {
       "files": 4,
@@ -60,19 +56,16 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2340929,
-    "Auto chess art/audio": 4025282,
-    "Other and legal": 164651446,
+    "Application JS/CSS": 2276109,
+    "Other and legal": 124524759,
     "Brand": 229534,
-    "Shared character atlases": 82857616,
-    "Event art": 2016822,
+    "Shared character atlases": 1731768,
     "Food art": 7490462,
-    "Adventure presentation art": 1400332,
-    "Spirit RPG art/audio/video": 17336030,
-    "TCG art/audio": 18018052
+    "Spirit RPG art/audio/video": 4751008,
+    "TCG art/audio": 104970
   },
-  "js_gzip": 593955,
-  "css_gzip": 49555,
+  "js_gzip": 596107,
+  "css_gzip": 36684,
   "largest": [
     {
       "path": "assets/aw2/environments/lantern-street/v1/floor.webp",
@@ -103,14 +96,6 @@
       "bytes": 2358656
     },
     {
-      "path": "assets/rpg/campaign580/campaignB.webp",
-      "bytes": 2223544
-    },
-    {
-      "path": "assets/rpg/campaign580/campaignA.webp",
-      "bytes": 2153792
-    },
-    {
       "path": "assets/aw2/environments/covenant-village/v1/floor.webp",
       "bytes": 2087698
     },
@@ -121,23 +106,31 @@
     {
       "path": "assets/aw2/environments/kitchen-hearth/v1/floor.webp",
       "bytes": 1885996
+    },
+    {
+      "path": "assets/aw2/bach/base-v1/fx.webp",
+      "bytes": 1750914
+    },
+    {
+      "path": "assets/aw2/environments/kitchen-table/v1/floor.webp",
+      "bytes": 1724554
     }
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 2639696,
-    "urls": 39,
+    "bytes": 1454684,
+    "urls": 23,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 9360304
+    "remainingBytes": 10545316
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
-    "warning": true,
+    "warning": false,
     "exceeded": false,
-    "remainingBytes": 19633495
+    "remainingBytes": 178891390
   }
 }

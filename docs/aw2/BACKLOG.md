@@ -1,5 +1,7 @@
 # Task board
 
+**018B DONE/VERIFIED development với giới hạn, 19/20 kế hoạch:** selective public packaging; AW2/public SHA-256 inventories; chest food/music/portrait/core assets; no legacy media; isolated chest CSS; lazy chest code/CSS; AW2-only offline core; WAV warm cache; 180MB hard verifier; server build gate; review compatibility. Artifact141.108.610bytes/370files (-53,02%), offline1.454.684/23; full2.045unit/149files, focused63, types/build/release/assets PASS. Fresh browser NOT_RUN do Chromium unavailable; retained236 checks018A cho UI/gameplay không đổi. **NEXT017F** final art; optional018C scene-level AW2 media/chunk split. [Evidence](evidence/AW2-018B.md).
+
 **018A DONE/VERIFIED với 18 kế hoạch trong một commit:** default/Vercel build→AW2; legacy routes→AW2; exact chest allowlist; standalone original chest; production asset rewrite/filter; offline/release guard; save isolation; review build; full2.018unit và236browser PASS. **NEXT018B:** giảm payload/cold-load dưới target300MB; **017F** final art/mép vườn/collider/ánh sáng vẫn mở. [Evidence](evidence/AW2-018A.md).
 
 **017E DONE/VERIFIED trong một commit với 16 kế hoạch:** đồng hồ phiên bốn ca;32hoạt động/tám NPC; projection HUD/Places/waypoint/dialog/renderer; pause/reduced/no-save/quest compatibility; full1.986unit/380browser/types/build/262asset parity PASS. **NEXT017F:** final art/mép vườn/collider/ánh sáng. Demo90% / product≈40% giữ nguyên. [Evidence](evidence/AW2-017E.md).

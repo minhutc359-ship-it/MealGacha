@@ -1,0 +1,101 @@
+.rpg-spirit-art {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background-color: #12323a;
+  border-radius: 9px;
+  contain: paint;
+}
+
+.rpg-spirit-image {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  background-repeat: no-repeat;
+  transform: translateY(-30%);
+}
+
+.rpg-spirit-art[data-portrait-square] .rpg-spirit-image {
+  top: 0;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.chest-spirit-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin: 12px 0;
+  color: #e7eadf;
+  text-decoration: none;
+  background: linear-gradient(120deg, #25354b, #11232f);
+  border: 1px solid #cfb57880;
+  border-radius: 16px;
+  box-shadow: inset 0 0 20px #ddab6320;
+}
+
+.chest-spirit-card > .rpg-spirit-art {
+  flex: 0 0 76px;
+  width: 76px;
+  height: 76px;
+  border-radius: 10px;
+}
+
+.chest-spirit-card > span {
+  display: grid;
+  flex: 1;
+  gap: 5px;
+  min-width: 0;
+}
+
+.chest-spirit-card small {
+  color: #dbbf88;
+  font-size: 10px;
+}
+
+.chest-spirit-card strong {
+  font-size: 17px;
+}
+
+.chest-spirit-card b {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.chest-spirit-meter {
+  height: 5px;
+  overflow: hidden;
+  background: #040f1d;
+  border-radius: 6px;
+}
+
+.chest-spirit-meter i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #58c09d, #e7cc83);
+}
+
+.chest-spirit-note {
+  max-width: 520px;
+  padding: 0 16px;
+  margin: 16px auto 4px;
+  color: #aebcce;
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.chest-spirit-note a {
+  display: block;
+  margin-top: 6px;
+  color: #e5c88f;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

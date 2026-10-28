@@ -3,7 +3,7 @@ import { CARD_MAP } from "../../game/catalog";
 import { SPIRIT_RARITY, SPIRIT_RARITY_NAMES } from "../../domain/spiritSummons";
 import { collectedSpiritCards, spiritProgress } from "../../domain/spiritCollection";
 import { SpiritArt } from "../game/SpiritArt";
-import "../../game/adventureRpg/rpg.css";
+import "./ChestSpiritCard.css";
 export default function ChestSpiritCard({ id }: {
     id: string;
 }) {

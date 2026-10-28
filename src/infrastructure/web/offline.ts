@@ -30,7 +30,7 @@ export function startWebOffline() {
       if (!warmed && navigator.serviceWorker.controller) {
         warmed = true
         const urls = [...document.images].filter(img => img.complete && img.naturalWidth && img.getClientRects().length).map(img => img.currentSrc)
-        urls.push(...performance.getEntriesByType("resource").filter(entry => /\.(?:webp|png|jpe?g|mp3)(?:\?|$)/.test(entry.name)).map(entry => entry.name))
+        urls.push(...performance.getEntriesByType("resource").filter(entry => /\.(?:webp|png|jpe?g|mp3|wav)(?:\?|$)/.test(entry.name)).map(entry => entry.name))
         navigator.serviceWorker.controller.postMessage({type:"WARM_WEB_ASSETS",urls:[...new Set(urls)].slice(0,32)})
       }
     }

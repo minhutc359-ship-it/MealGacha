@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url"
 import metadata from "./src/appMetadata.json"
 import { aw2ReviewBuild } from "./dev/tools/aw2-review-build"
 import { aw2ProductionBuild } from "./dev/tools/aw2-production-build"
+import { productionPublicAssets } from "./dev/tools/production-public-assets"
 
 const escape = (value: string) =>
   value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;")
@@ -74,9 +75,11 @@ function appMetadata(): Plugin {
 
 export default defineConfig({
   base: "/",
+  publicDir: false,
   plugins: [
     aw2ReviewBuild(),
     aw2ProductionBuild(),
+    productionPublicAssets(),
     react(),
     tailwindcss(),
     appMetadata(),
@@ -103,9 +106,9 @@ export default defineConfig({
         codeSplitting: {
           groups: [
             {
-              name: "original-chest",
-              test: /[\/]src[\/](OriginalChestApp|production\.css|pages[\/]ChestPage|components[\/]chest[\/])/,
-              priority: 20,
+              name: "production-runtime",
+              test: /[\\/](?:node_modules[\\/](?:react|react-dom|scheduler|@capacitor[\\/]core)[\\/]|src[\\/](?:productionRoute\.ts|infrastructure[\\/]web[\\/]offline\.ts))/,
+              priority: 30,
             },
             {
               name: "aw2-game",

@@ -1,4 +1,6 @@
-# Handoff —2026-10-28 / AW2-018A
+# Handoff —2026-10-28 / AW2-018B
+
+018B hoàn tất19/20 hạng mục production package trong một commit: tắt wholesale public, allowlist+SHA-256 cho183public/153AW2 file, cô lập CSS Rương khỏi battle legacy, root/offline không eager-load rương, hard gate180MB nằm trong `pnpm build`. Artifact141.108.610bytes/370files (-53,02%); offline1.454.684bytes/23URL. Full2.045unit/149files, focused63, hai types/builds, release/assets/budget PASS. Fresh browser018B NOT_RUN vì Chromium/CDN/localhost bị chặn; giữ236browser018A cho gameplay/UI không đổi, không gọi là lượt mới. Không deploy/đổi master/rpg; next017F hoặc018C. [Bằng chứng](evidence/AW2-018B.md).
 
 018A hoàn thành 18 hạng mục production cutover trong một commit: root/server build là AW2, mọi route main cũ rơi về AW2, chỉ `/chest` giữ rương original; review build tách riêng. Full2.018unit/148files, hai types/builds,46browser cutover +190current journey,153runtime parity/release guard PASS. Static300.366.505bytes đã chạm warning target; next018B ưu tiên pruning/cold-load, đồng thời017F final art. Không làm lại017A–E; không deploy/đổi master/rpg. [Bằng chứng](evidence/AW2-018A.md).
 

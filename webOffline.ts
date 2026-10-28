@@ -1,35 +1,95 @@
 import type { Plugin } from "vite"
 import { createHash } from "node:crypto"
-import { readFileSync, readdirSync, statSync } from "node:fs"
-import path from "node:path"
+import { readFileSync } from "node:fs"
+import { PRODUCTION_CORE_PUBLIC_FILES } from "./dev/tools/production-public-assets"
+
+interface BundleChunk {
+  type: "chunk"
+  isEntry?: boolean
+  imports?: string[]
+  dynamicImports?: string[]
+  modules?: Record<string, unknown>
+}
+
+function isChunk(value: unknown): value is BundleChunk {
+  return Boolean(
+    value &&
+      typeof value === "object" &&
+      "type" in value &&
+      value.type === "chunk",
+  )
+}
+
+/** Entry + AW2 graph only. The original chest stays lazy until `/chest`. */
+export function offlineCoreBundleNames(bundle: Record<string, unknown>) {
+  const selected = new Set<string>()
+  const add = (name: string, dynamic = false) => {
+    if (selected.has(name)) return
+    const output = bundle[name]
+    if (!isChunk(output)) return
+    selected.add(name)
+    for (const dependency of output.imports ?? []) add(dependency, dynamic)
+    if (dynamic)
+      for (const dependency of output.dynamicImports ?? [])
+        add(dependency, true)
+  }
+  for (const [name, output] of Object.entries(bundle))
+    if (isChunk(output) && output.isEntry) add(name)
+  for (const [name, output] of Object.entries(bundle))
+    if (
+      isChunk(output) &&
+      Object.keys(output.modules ?? {}).some((id) =>
+        /[\\/](?:src[\\/]aw2|dev[\\/]aw2)[\\/]/.test(id),
+      )
+    )
+      add(name, true)
+  for (const name of Object.keys(bundle))
+    if (
+      name.endsWith(".css") &&
+      !/(?:original-chest|OriginalChest|ChestSpirit)/.test(name)
+    )
+      selected.add(name)
+  return [...selected].sort()
+}
 
 /** Precache code/fonts, then cache media on demand. Never handles player storage. */
 export function webOffline(): Plugin {
-  let publicDir = ""
   return {
     name: "soul-of-meal-web-offline",
     apply: "build",
-    configResolved(config) { publicDir = config.publicDir },
     generateBundle(_, bundle) {
       const hash = createHash("sha256")
-      for (const [name, output] of Object.entries(bundle)) {
-        hash.update(name).update(output.type === "chunk" ? output.code : output.source)
+      for (const [name, output] of Object.entries(bundle).sort(([a], [b]) =>
+        a.localeCompare(b),
+      )) {
+        hash
+          .update(name)
+          .update(output.type === "chunk" ? output.code : output.source)
       }
-      const visit = (dir: string) => {
-        for (const file of readdirSync(dir).sort()) {
-          const full = path.join(dir, file)
-          if (statSync(full).isDirectory()) visit(full)
-          else hash.update(path.relative(publicDir, full)).update(readFileSync(full))
-        }
-      }
-      visit(publicDir)
-      const template = readFileSync(new URL("./web-service-worker.js", import.meta.url), "utf8")
+      const template = readFileSync(
+        new URL("./web-service-worker.js", import.meta.url),
+        "utf8",
+      )
       hash.update(template)
       const version = hash.digest("hex").slice(0, 16)
-      const core = ["/", "/index.html", "/manifest.webmanifest", "/favicon.ico",
-        ...Object.keys(bundle).filter(name => /\.(js|css)$/.test(name)).map(name => `/${name}`),
-        ...readdirSync(path.join(publicDir, "assets/fonts")).filter(name => name.endsWith(".woff2")).map(name => `/assets/fonts/${name}`)]
-      this.emitFile({ type: "asset", fileName: "sw.js", source: template.replace("__VERSION__", JSON.stringify(version)).replace("__CORE__", JSON.stringify(core)) })
+      const core = [
+        "/",
+        "/index.html",
+        "/manifest.webmanifest",
+        "/favicon.ico",
+        ...offlineCoreBundleNames(bundle).map((name) => `/${name}`),
+        ...PRODUCTION_CORE_PUBLIC_FILES.filter((name) =>
+          name.startsWith("assets/"),
+        ).map((name) => `/${name}`),
+      ]
+      const uniqueCore = [...new Set(core)]
+      this.emitFile({
+        type: "asset",
+        fileName: "sw.js",
+        source: template
+          .replace("__VERSION__", JSON.stringify(version))
+          .replace("__CORE__", JSON.stringify(uniqueCore)),
+      })
     },
   }
 }

@@ -1,0 +1,37 @@
+{
+  "task": "AW2-018B",
+  "status": "VERIFIED_DEVELOPMENT_WITH_LIMITATION",
+  "base": "3a7eebf6de3a03bd64b2aa591e2d022d26c32f80",
+  "plans": { "total": 20, "completed": 19, "notRun": 1 },
+  "artifact": {
+    "beforeBytes": 300366505,
+    "bytes": 141108610,
+    "reducedBytes": 159257895,
+    "reducedPercent": 53.021,
+    "files": 370,
+    "jsGzipBytes": 596107,
+    "cssGzipBytes": 36684
+  },
+  "selectedPublic": { "files": 183, "bytes": 15572485 },
+  "aw2Runtime": { "files": 153, "bytes": 123201422 },
+  "offlineCore": { "urls": 23, "bytes": 1454684 },
+  "tests": {
+    "focused": { "files": 3, "passed": 63 },
+    "full": { "files": 149, "passed": 2045 },
+    "webBudget": { "passed": 4 },
+    "assetValidation": { "checked": 137, "missing": 0 }
+  },
+  "checks": {
+    "rootTypecheck": "PASS",
+    "devTypecheck": "PASS",
+    "productionBuild": "PASS",
+    "reviewBuild": "PASS",
+    "packageVerifier": "PASS",
+    "releaseGuard": "PASS",
+    "releaseSize": "PASS",
+    "freshBrowser": "NOT_RUN",
+    "retained018ABrowser": 236
+  },
+  "browserLimitation": "Playwright was available without Chromium; CDN returned zero-byte archives and cloud browser could not reach container localhost. No failed attempt is counted PASS.",
+  "scope": "Production packaging/offline/build only; no gameplay, UI, canon, economy, save, deploy, master or rpg change."
+}

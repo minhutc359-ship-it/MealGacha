@@ -1,5 +1,25 @@
 # Test ledger / change impact
 
+## AW2-018B production package / 2026-10-28
+
+Base remote `3a7eebf6de3a03bd64b2aa591e2d022d26c32f80`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. No gameplay/save contract changed; chest-only rules were extracted from legacy shared CSS without intended visual change.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Focused production/offline contract | PASS | 3 files /63 tests; 27 new018B cases |
+| Full Vitest | PASS |149 files /2.045 tests |
+| Root/dev typecheck | PASS | Both exit0 |
+| `pnpm build` | PASS | 1.118 modules; package verifier then release guard |
+| Package verifier | PASS |141.108.610bytes/370files;183public/15.572.485bytes;153AW2/123.201.422bytes; all SHA-256/size/path/static-CSS-URL checks |
+| Offline shell | PASS |1.454.684bytes/23URL; no chest chunk/media; below8/12MB target/limit |
+| Review build | PASS |979 modules/7 QA HTML; production allowlist isolated |
+| Release size/guard | PASS | JS gzip596.107; CSS gzip36.684;0leaks; static target/hard limit PASS |
+| Asset validation / web budget tests | PASS |137checked/0missing;4/4 budget/guard tests |
+| Fresh browser018B | NOT_RUN | Playwright present but Chromium absent; CDN returned0-byte archives; cloud browser localhost refused. Neither attempt counted PASS. |
+| Retained browser018A | HISTORICAL/UNCHANGED |236 checks remain relevant to unchanged route/UI/gameplay/save surface; not added to018B fresh totals |
+
+Selective packaging owns new behavior:137 food catalog IDs and all resolved spirit portraits exist; only `mode-chest.mp3` from legacy soundtrack ships; manifest/icons/brand/fonts/legal exist; old Auto Chess/events/manga/loading/v4/map/character atlases and non-chest music are rejected. Service worker hashes selected bundle plus AW2 inventory, accepts WAV warming and never touches player storage. Initial failed build correctly exposed chest CSS/JS in core; split policy repaired and final verifier proves absence. A transient hidden copy filename was never present in final artifact; both plugin and verifier now guard it. [Evidence](evidence/AW2-018B.md).
+
 ## AW2-018A — 2026-10-28
 
 Full Vitest **2.018/2.018,148files**; contract018A32ca nằm trong tổng. Root/dev typecheck, production/review builds, release guard, hard size/offline budgets PASS. Fresh production browser23source+23compiled; retained verifier hiện hành190compiled qua4quest/boss45tick/ending300XP; tổng236,0unexpectederrors. 153runtime WebP/WAV source↔dist byte parity,0dev URL/authoring/source/map. Artifact300.366.505bytes/984files vượt warning target300MB nhưng dưới hard limit320MB. Hai harness lịch sử dừng do assumption cổng `Đi qua` trước step-room và không được tính; verifier017E hiện hành thay thế. [Evidence](evidence/AW2-018A.md).

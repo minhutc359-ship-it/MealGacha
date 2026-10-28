@@ -8,7 +8,6 @@ import { Toast } from "./components/ui/Toast"
 import { WebUpdatePrompt } from "./components/layout/WebUpdatePrompt"
 import "./index.css"
 import "./ui-polish.css"
-import "./game/presentation440.css"
 
 export function OriginalChestApp() {
   const init = useAppStore((state) => state.init)

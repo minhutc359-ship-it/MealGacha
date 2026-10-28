@@ -1,5 +1,9 @@
 # Live project status —2026-10-28
 
+**AW2-018B VERIFIED development với giới hạn — 19/20 kế hoạch packaging/cold-load đạt.** Default/server build không còn chép169MB `public` legacy; chỉ phát hành183public asset cần cho AW2 + Rương original và153runtime AW2, tất cả có SHA-256 inventory. Artifact **141.108.610bytes/370files**, giảm159.257.895bytes (**53,02%**) so với018A; offline core **1.454.684bytes/23URL**, không chứa chunk/media rương. **2.045unit/149files**, focused63, hai typecheck/build, package/release/asset/budget audit PASS. Fresh browser018B NOT_RUN vì không có Chromium và hai kênh cấp browser đều bị chặn; giữ236browser018A cho gameplay/UI không đổi, không gọi là lượt mới. [Bằng chứng](evidence/AW2-018B.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên vì đây là production engineering, không phải final art/device/human/rights. Next017F final art/mép vườn/collider/ánh sáng; sau đó018C có thể tiếp tục tách chunk/chọn asset AW2 theo scene. Không deploy hay đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018B.
+
 **AW2-018A VERIFIED development — 18 kế hoạch production cutover trong một commit.** `pnpm build`/Vercel nay mở AW2 tại `/`; chín URL main cũ và fallback đều vào AW2, chỉ `/chest`/`/chest/` giữ Rương Vị Giác original bằng shell riêng. Review multi-entry vẫn hoạt động;153runtime WebP/WAV byte-match ở `/assets/aw2`,0authoring/source/map/dev URL. **2.018unit/148files**, hai typecheck/build, release guard và **236browser=23source+23compiled cutover+190compiled journey PASS**, boss45tick/ending300XP/0unexpected errors. [Bằng chứng](evidence/AW2-018A.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên vì đây là cutover build, không phải final art/device/human/rights/release. Static300.366.505bytes vượt target cảnh báo300MB nhưng dưới limit320MB; next018B giảm payload/cold-load, song song017F final art. Không deploy hay đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018A.
