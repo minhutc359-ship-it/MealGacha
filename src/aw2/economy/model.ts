@@ -19,6 +19,8 @@ export const ITEM_NAMES: Record<typeof ITEM_IDS[number], string> = {
 export const WARM_BOWL_RECIPE = {
   ingredients: { rice: 1, herbs: 1, broth: 1 },
 } as const
+export const CHEST_REWARD = { rice: 4, herbs: 3, broth: 2 } as const
+export const SHARE_MEAL_EXPERIENCE = 45 as const
 const count = z.number().int().min(0).max(9999)
 export const economySchema = z
   .strictObject({
@@ -127,9 +129,9 @@ export function applyEconomyAction(
       throw Error("Hãy đến gần rương trong Phòng Kho.")
     if (next.receipts.includes(CHEST_RECEIPT))
       throw Error("Rương này đã được nhận.")
-    next.inventory.rice += 4
-    next.inventory.herbs += 3
-    next.inventory.broth += 2
+    next.inventory.rice += CHEST_REWARD.rice
+    next.inventory.herbs += CHEST_REWARD.herbs
+    next.inventory.broth += CHEST_REWARD.broth
     next.receipts.push(CHEST_RECEIPT)
   } else {
     if (!canUseKitchen(progress))
@@ -150,7 +152,7 @@ export function applyEconomyAction(
         throw Error("Hãy nấu một Chén cơm ấm trước.")
       next.inventory["warm-bowl"]--
       next.shared++
-      addXp(next, 45)
+      addXp(next, SHARE_MEAL_EXPERIENCE)
     } else throw Error("Thao tác túi đồ không hợp lệ.")
   }
   return economySchema.parse(next)

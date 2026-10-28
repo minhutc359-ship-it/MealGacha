@@ -8,6 +8,16 @@ import type { CombatUnitSeed } from "./types"
 
 export const DEVELOPMENT_LEVELING_ID = "aw2-leveling-development-v1" as const
 export const MAX_DEVELOPMENT_LEVEL = 20
+export const LEVEL_EXPERIENCE_CURVE = {
+  base: 80,
+  linear: 35,
+  quadratic: 5,
+} as const
+export const DEVELOPMENT_STAT_GROWTH = {
+  hp: 0.055,
+  attack: 0.04,
+  defense: 0.045,
+} as const
 
 export interface DevelopmentProgression {
   tuningId: typeof DEVELOPMENT_LEVELING_ID
@@ -41,7 +51,10 @@ export function experienceToReachLevel(level: number): number {
   const target = assertLevel(level)
   let total = 0
   for (let current = 1; current < target; current++)
-    total += 80 + current * 35 + current * current * 5
+    total +=
+      LEVEL_EXPERIENCE_CURVE.base +
+      current * LEVEL_EXPERIENCE_CURVE.linear +
+      current * current * LEVEL_EXPERIENCE_CURVE.quadratic
   return total
 }
 
@@ -78,9 +91,13 @@ export function developmentCombatStats(
   const kit = COMBAT_KITS[spiritId]
   const gained = safeLevel - 1
   return {
-    maxHp: Math.round(kit.hp * (1 + gained * 0.055)),
-    attack: Math.round(kit.attack * (1 + gained * 0.04)),
-    defense: Math.round(kit.defense * (1 + gained * 0.045)),
+    maxHp: Math.round(kit.hp * (1 + gained * DEVELOPMENT_STAT_GROWTH.hp)),
+    attack: Math.round(
+      kit.attack * (1 + gained * DEVELOPMENT_STAT_GROWTH.attack),
+    ),
+    defense: Math.round(
+      kit.defense * (1 + gained * DEVELOPMENT_STAT_GROWTH.defense),
+    ),
   }
 }
 

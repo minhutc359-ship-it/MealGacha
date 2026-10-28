@@ -1,5 +1,7 @@
 # Task board
 
+**018G DONE/VERIFIED development với giới hạn — batch5/10,19/20:** versioned balance snapshot+SHA cho12kit/progression/economy; D11 proposal tách simulator, runtime capabilities đều false; production disclosure rõ ràng. Artifact141.460.868bytes/375files;offline1.462.495/24;full2.167unit/154files,focused19,types/build/release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. **CÒN≈5COMMIT LỚN; NEXT batch6** readiness12 nhân vật/provenance/rights inventory. [Evidence](evidence/AW2-018G.md).
+
 **018F DONE/VERIFIED development với giới hạn — batch4/10,19/20:** onboarding no-write/recovery priority; skip/focus/live regions; J/I/P/M/H guarded; UI preferences version1; large text/contrast/motion/touch; safe-area/320px/low-landscape. Artifact141.459.568bytes/375files;offline1.461.195/24;full2.163unit/153files,focused86,types/build/release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. **CÒN≈6COMMIT LỚN; NEXT batch5** freeze combat/economy/gacha/balance + disclosure/regression định lượng. [Evidence](evidence/AW2-018F.md).
 
 **018E DONE/VERIFIED development với giới hạn — batch3/10,19/20:** backup+journal+main read-back, quarantine, explicit recovery, future-schema guard, stale exact-raw/Web Lock và production UI. Artifact141.446.573bytes/375files;offline1.448.200/24;full2.119unit/150files,focused79,types/build/release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. **CÒN≈7COMMIT LỚN; NEXT batch4** onboarding/accessibility/touch/mobile/keyboard-focus. [Evidence](evidence/AW2-018E.md).

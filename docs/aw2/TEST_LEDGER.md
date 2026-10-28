@@ -1,5 +1,23 @@
 # Test ledger / change impact
 
+## AW2-018G balance freeze/disclosure /2026-10-29
+
+Base remote `627a591a542af6ccea3ab2441c363ad00a87ed90`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi schema8/gameplay output/art/dependency; D11 vẫn proposal.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Balance/gacha focused | PASS |3files /19tests; snapshot/drift/disclosure/simulator |
+| Full Vitest | PASS |154files /2.167tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |993modules /7HTML entry |
+| Production build/package | PASS |1.130modules;141.460.868bytes/375files |
+| Offline/package graph | PASS |24URL/1.462.495bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS700.484/CSS38.083;0leaks |
+| Fresh browser | NOT_RUN |Workspace không có package `playwright`; verifier dừng trước browser launch |
+| React review | PASS |Pure disclosure/direct imports; no hook/effect/network/simulator import |
+
+Diagnostics excluded: hai lượt build va vào rsync workspace và thấy stale chunk/`.rsync-tmp`; nguyên lệnh `pnpm build` final PASS sau sync, đúng3scene chunk. [Evidence](evidence/AW2-018G.md).
+
 ## AW2-018F onboarding/accessibility/mobile /2026-10-29
 
 Base remote `bfdc2060620ae66e23fff2b0eaec89bf8544343a`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi schema8/gameplay/quest/economy/art/dependency.

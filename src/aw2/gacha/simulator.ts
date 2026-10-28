@@ -1,7 +1,14 @@
 /** D11 PROPOSAL ONLY. No runtime draw/spend/save API imports this simulator. */
-export const TIERS = ["N", "R", "SR", "SSR", "UR"] as const
-export const WEIGHTS = [5500, 3000, 1100, 350, 50] as const
-export const DUPLICATE_SHARDS = [1, 3, 8, 20, 50] as const
+import {
+  GACHA_BASE_RATES,
+  GACHA_PROPOSAL_ID,
+  GACHA_PROPOSAL_STATUS,
+  PITY_LIMITS,
+  TIERS,
+  WEIGHTS,
+} from "./proposal"
+
+export { DUPLICATE_SHARDS, TIERS, WEIGHTS } from "./proposal"
 export interface PityState {
   sr: number
   ssr: number
@@ -17,15 +24,21 @@ export function simulateDraw(before: PityState, random: number): SimulatedDraw {
   if (
     ![before.sr, before.ssr, before.ur].every(Number.isInteger) ||
     before.sr < 0 ||
-    before.sr > 9 ||
+    before.sr >= PITY_LIMITS.sr ||
     before.ssr < 0 ||
-    before.ssr > 79 ||
+    before.ssr >= PITY_LIMITS.ssr ||
     before.ur < 0 ||
-    before.ur > 199
+    before.ur >= PITY_LIMITS.ur
   )
     throw Error("Invalid pity counters")
   const floor =
-    before.ur === 199 ? 4 : before.ssr === 79 ? 3 : before.sr === 9 ? 2 : 0
+    before.ur === PITY_LIMITS.ur - 1
+      ? 4
+      : before.ssr === PITY_LIMITS.ssr - 1
+        ? 3
+        : before.sr === PITY_LIMITS.sr - 1
+          ? 2
+          : 0
   const eligible = WEIGHTS.slice(floor)
   let value = random * eligible.reduce((sum, weight) => sum + weight, 0),
     index = floor
@@ -97,15 +110,13 @@ export function simulatePopulation(
     }
   }
   return {
-    status: "PROPOSED_NOT_APPROVED",
-    profile: "aw2-d11-simulation-v1",
+    status: GACHA_PROPOSAL_STATUS,
+    profile: GACHA_PROPOSAL_ID,
     seed,
     players,
     drawsPerPlayer,
     totalDraws: players * drawsPerPlayer,
-    baseRates: Object.fromEntries(
-      TIERS.map((tier, i) => [tier, WEIGHTS[i] / 100]),
-    ),
+    baseRates: GACHA_BASE_RATES,
     effectiveRates: Object.fromEntries(
       TIERS.map((tier, i) => [
         tier,

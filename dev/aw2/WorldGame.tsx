@@ -30,6 +30,7 @@ import { WebReadiness } from "../../src/components/layout/WebReadiness"
 import { FirstJourneyOnboarding } from "./FirstJourneyOnboarding"
 import { GameAccessibilityPanel } from "./GameAccessibilityPanel"
 import { useGameAccessibility } from "./useGameAccessibility"
+import { BalanceDisclosure } from "./BalanceDisclosure"
 import "./game.css"
 
 export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe" | "practice"
@@ -427,6 +428,7 @@ export function WorldGame(props: Props) {
                 onChange={accessibility.update}
                 onReset={accessibility.reset}
               />
+              <BalanceDisclosure />
               {props.production && <WebReadiness compact />}
               {props.production ? (
                 <a className="aw2-production-chest-link" href="/chest">

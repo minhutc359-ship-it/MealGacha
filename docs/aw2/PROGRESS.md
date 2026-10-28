@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+018G hoàn thành **19/20 kế hoạch balance freeze/disclosure** và là batch5/10. **Demo90% / product≈40%(35–45%) không đổi**: baseline kỹ thuật và minh bạch tốt hơn nhưng không tự phê duyệt final balance/D11/human playtest. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **khoảng5commit lớn** có điều kiện; next readiness12 nhân vật/provenance/rights inventory. [Evidence](evidence/AW2-018G.md).
+
 018F hoàn thành **19/20 kế hoạch onboarding/accessibility/mobile production** và là batch4/10. **Demo90% / product≈40%(35–45%) không đổi**: accessibility engineering tốt hơn nhưng không tự cấp điểm character/art/rights/screen-reader/device/human. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **khoảng6commit lớn** có điều kiện; next freeze combat/economy/gacha/balance, disclosure và regression định lượng. [Evidence](evidence/AW2-018F.md).
 
 018E hoàn thành **19/20 kế hoạch save durability/recovery production** và là batch3/10. **Demo90% / product≈40%(35–45%) không đổi**: dữ liệu local bền và phục hồi được hơn nhưng không tự cấp điểm character/art/rights/human/device. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **khoảng7commit lớn** có điều kiện; next onboarding/accessibility/touch/mobile/keyboard-focus. [Evidence](evidence/AW2-018E.md).

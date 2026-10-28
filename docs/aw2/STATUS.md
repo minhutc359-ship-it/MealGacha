@@ -1,5 +1,9 @@
 # Live project status —2026-10-29
 
+**AW2-018G VERIFIED development với giới hạn — batch5/10,19/20 kế hoạch đạt.** Balance contract versioned/fingerprint khóa12kit, progression và economy authority; D11 metadata tách khỏi simulator và production disclosure xác nhận không draw/spend/purchase/save-pity/story-gate. Artifact141.460.868bytes/375files; offline1.462.495bytes/24URL; **2.167unit/154files**,focused19,hai typecheck/build,package/release/assets/budget PASS. Browser NOT_RUN vì thiếu package Playwright. [Bằng chứng](evidence/AW2-018G.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên. Batch5 đóng baseline kỹ thuật, không tự phê duyệt final balance/D11 hay playtest con người. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **khoảng5commit lớn** có điều kiện. Next batch6: readiness12 nhân vật, provenance và rights inventory; full DoD/rights vẫn cần nghiệm thu ngoài. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018G.
+
 **AW2-018F VERIFIED development với giới hạn — batch4/10,19/20 kế hoạch đạt.** Onboarding bốn bước no-write giữ recovery priority; skip/focus/live-region contract, J/I/P/M/H có native/modifier/repeat guard và preference versioned cho chữ/contrast/motion/touch đã vào production shell. Portrait320px, landscape thấp, safe-area, forced-colors và panel scroll được khóa bằng CSS/tests. Artifact141.459.568bytes/375files; offline1.461.195bytes/24URL; **2.163unit/153files**,focused86,hai typecheck/build,package/release/assets/budget PASS. Browser NOT_RUN vì thiếu package Playwright. [Bằng chứng](evidence/AW2-018F.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên. Batch4 đóng accessibility engineering, không tự đóng character/art/rights/screen-reader/device/human/release. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **khoảng6commit lớn** có điều kiện. Next batch5: freeze combat/economy/gacha/balance, disclosure và regression định lượng. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018F.

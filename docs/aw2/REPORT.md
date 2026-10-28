@@ -1,5 +1,7 @@
 # Soul of Meal AW2 — cập nhật 29/10/2026
 
+**AW2-018G VERIFIED development với giới hạn — batch5/10:**19/20 kế hoạch balance đạt: snapshot/fingerprint12kit, progression/economy authority, D11 metadata tách simulator và disclosure production no-runtime. Artifact141.460.868bytes/375files,offline1.462.495bytes/24URL;2.167unit/154files,focused19,hai types/builds,release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. Demo90%/product≈40% giữ nguyên; còn≈5commit lớn có điều kiện. [Evidence](evidence/AW2-018G.md).
+
 **AW2-018F VERIFIED development với giới hạn — batch4/10:**19/20 kế hoạch onboarding/accessibility đạt: recovery priority, skip/focus/live regions, J/I/P/M/H guard và preference chữ/contrast/motion/touch responsive đã vào production shell. Artifact141.459.568bytes/375files,offline1.461.195bytes/24URL;2.163unit/153files,focused86,hai types/builds,release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. Demo90%/product≈40% giữ nguyên; còn≈6commit lớn có điều kiện. [Evidence](evidence/AW2-018F.md).
 
 **AW2-018E VERIFIED development với giới hạn — batch3/10:**19/20 kế hoạch save đạt: backup/journal/read-back, quarantine, recovery explicit, no future rollback và stale-tab guard đã vào production UI. Artifact141.446.573bytes/375files,offline1.448.200bytes/24URL;2.119unit/150files,focused79,hai types/builds,release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. Demo90%/product≈40% giữ nguyên; còn≈7commit lớn có điều kiện. [Evidence](evidence/AW2-018E.md).

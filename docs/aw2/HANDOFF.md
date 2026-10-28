@@ -1,4 +1,6 @@
-# Handoff —2026-10-29 / AW2-018F
+# Handoff —2026-10-29 / AW2-018G
+
+018G hoàn tất batch5/10 với19/20 kế hoạch: balance contract/fingerprint cho12kit/progression/economy, constant authority và D11 proposal metadata tách simulator; production disclosure khẳng định không có gacha runtime. Full2.167unit/154files,focused19,hai types/builds,package/release/assets/budget PASS; artifact141.460.868bytes/375files,offline1.462.495bytes/24URL. Browser NOT_RUN vì thiếu Playwright. Còn≈5commit; next batch6 character readiness/provenance/rights inventory, không giả lập full DoD/clearance. [Roadmap](PRODUCTION_10_COMMIT.md) · [Contract](BALANCE.md) · [Bằng chứng](evidence/AW2-018G.md).
 
 018F hoàn tất batch4/10 với19/20 kế hoạch: onboarding no-write/recovery priority, skip/focus/live regions, J/I/P/M/H guarded, preference UI version1 và responsive contrast/motion/touch. Full2.163unit/153files,focused86,hai types/builds,package/release/assets/budget PASS; artifact141.459.568bytes/375files,offline1.461.195bytes/24URL. Browser NOT_RUN vì thiếu package Playwright. Không đổi save/schema/gameplay/art/dependency. Còn≈6commit; next batch5 freeze combat/economy/gacha/balance và regression định lượng. [Roadmap](PRODUCTION_10_COMMIT.md) · [Runbook](ACCESSIBILITY.md) · [Bằng chứng](evidence/AW2-018F.md).
 
