@@ -1,5 +1,7 @@
 # Task board
 
+**018F DONE/VERIFIED development với giới hạn — batch4/10,19/20:** onboarding no-write/recovery priority; skip/focus/live regions; J/I/P/M/H guarded; UI preferences version1; large text/contrast/motion/touch; safe-area/320px/low-landscape. Artifact141.459.568bytes/375files;offline1.461.195/24;full2.163unit/153files,focused86,types/build/release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. **CÒN≈6COMMIT LỚN; NEXT batch5** freeze combat/economy/gacha/balance + disclosure/regression định lượng. [Evidence](evidence/AW2-018F.md).
+
 **018E DONE/VERIFIED development với giới hạn — batch3/10,19/20:** backup+journal+main read-back, quarantine, explicit recovery, future-schema guard, stale exact-raw/Web Lock và production UI. Artifact141.446.573bytes/375files;offline1.448.200/24;full2.119unit/150files,focused79,types/build/release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. **CÒN≈7COMMIT LỚN; NEXT batch4** onboarding/accessibility/touch/mobile/keyboard-focus. [Evidence](evidence/AW2-018E.md).
 
 **018D DONE/VERIFIED development với giới hạn — batch2/10,19/20:** AW2 update/install/readiness UI; online/quota/cache/persistence status; partial-install rollback; previous-shell/chunk fallback; bounded LRU+quota retry; manifest contract. Artifact141.442.314bytes/375files;offline1.443.941/24;full2.104unit/150files,focused50,types/build/release/assets/budget PASS. Browser NOT_RUN do thiếu Chromium. **CÒN≈8COMMIT LỚN; NEXT batch3** save migration/recovery/stale-tab/concurrency. [Evidence](evidence/AW2-018D.md).

@@ -27,6 +27,9 @@ import { RecipePanel } from "./RecipePanel"
 import { RoomPracticePanel } from "./RoomPracticePanel"
 import { npcLifeClock } from "../../src/aw2/world/npcLife"
 import { WebReadiness } from "../../src/components/layout/WebReadiness"
+import { FirstJourneyOnboarding } from "./FirstJourneyOnboarding"
+import { GameAccessibilityPanel } from "./GameAccessibilityPanel"
+import { useGameAccessibility } from "./useGameAccessibility"
 import "./game.css"
 
 export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe" | "practice"
@@ -77,11 +80,18 @@ const titles = {
   help: "Hướng dẫn và thông báo",
   atlas: "Bản đồ hành trình",
 }
+const DOCK_ITEMS = [
+  ["quest", "Nhiệm vụ", "J"],
+  ["party", "Đội", "P"],
+  ["bag", "Túi", "I"],
+  ["more", "Thêm", undefined],
+] as const
 
 /** Opt-in v1.1 exploration UI. Existing controller owns every movement and save action. */
 export function WorldGame(props: Props) {
   const { snapshot, world, panel, busy, canWalk, onPanel } = props
   const { pinned, journalMemory } = props
+  const accessibility = useGameAccessibility()
   useEffect(() => {
     document.documentElement.classList.add("aw2-game-document")
     return () => document.documentElement.classList.remove("aw2-game-document")
@@ -92,9 +102,21 @@ export function WorldGame(props: Props) {
     ? interactionTarget(world, undefined, props.patrol)
     : undefined
   return (
-    <main className="aw2-game-shell" data-testid="game-shell">
+    <main
+      className="aw2-game-shell"
+      data-testid="game-shell"
+      aria-labelledby="aw2-zone-heading"
+    >
+      <a className="aw2-skip-link" href="#aw2-game-map">
+        Bỏ qua tới bản đồ và điều khiển
+      </a>
       <header className="aw2-game-header">
-        <h1 ref={props.headingRef} tabIndex={-1} data-testid="zone-name">
+        <h1
+          id="aw2-zone-heading"
+          ref={props.headingRef}
+          tabIndex={-1}
+          data-testid="zone-name"
+        >
           {sceneName(world)}
         </h1>
         <span data-testid="npc-life-clock" title="Đồng hồ trong game">
@@ -124,26 +146,33 @@ export function WorldGame(props: Props) {
           disabled={!save || busy}
           onClick={() => onPanel("quest")}
           aria-label="Mở nhật ký nhiệm vụ"
+          aria-keyshortcuts="J"
         >
           J · Nhiệm vụ
         </button>
       </div>
-      <div className="aw2-game-map" data-testid="game-map-stage">
+      <div
+        id="aw2-game-map"
+        className="aw2-game-map"
+        data-testid="game-map-stage"
+        role="region"
+        aria-label="Bản đồ khám phá và điều khiển"
+        tabIndex={-1}
+      >
         <WalkingStatus target={props.walkTarget} onStop={props.onStopWalking} />
         {save ? (
           props.map
         ) : (
           <section className="aw2-game-empty">
-            <h2>Bắt đầu hành trình</h2>
             {snapshot.status === "empty" && !props.recoveryAvailable ? (
-              <>
-                <p>Cùng năm người bạn giữ một lời mời bên bếp.</p>
-                <button type="button" disabled={busy} onClick={props.onSave}>
-                  {props.production ? "Bắt đầu hành trình" : "Tạo bản lưu AW2"}
-                </button>
-              </>
+              <FirstJourneyOnboarding
+                busy={busy}
+                production={props.production}
+                onStart={props.onSave}
+              />
             ) : (
               <>
+                <h2>Khôi phục hành trình</h2>
                 <p role="alert">
                   {snapshot.status === "empty"
                     ? "Bản lưu chính đang trống nhưng có bản an toàn có thể phục hồi."
@@ -225,29 +254,31 @@ export function WorldGame(props: Props) {
         )}
       </div>
       <div className="aw2-game-bottom">
-        <p
-          className="aw2-game-message"
-          role={props.error ? "alert" : "status"}
-          title={props.error || props.message}
-        >
-          {busy
-            ? "Đang ghi…"
-            : props.error ||
-              props.message ||
-              "Chạm lối đi · E tương tác · J nhiệm vụ"}
-        </p>
+        <div className="aw2-game-announcements">
+          <p
+            className="aw2-game-message"
+            role="status"
+            aria-live="polite"
+            title={props.message}
+          >
+            {busy
+              ? "Đang ghi…"
+              : props.message || "Chạm lối đi · E tương tác · J nhiệm vụ"}
+          </p>
+          {props.error && (
+            <p className="aw2-game-error" role="alert" title={props.error}>
+              {props.error}
+            </p>
+          )}
+        </div>
         <nav className="aw2-game-dock" aria-label="Menu game">
-          {[
-            ["quest", "Nhiệm vụ"],
-            ["party", "Đội"],
-            ["bag", "Túi"],
-            ["more", "Thêm"],
-          ].map(([id, label]) => (
+          {DOCK_ITEMS.map(([id, label, shortcut]) => (
             <button
               type="button"
               key={id}
               disabled={busy || (id !== "more" && !save)}
               aria-pressed={panel === id}
+              aria-keyshortcuts={shortcut}
               onClick={() => onPanel(id as GamePanel)}
             >
               {label}
@@ -327,6 +358,7 @@ export function WorldGame(props: Props) {
               <button
                 type="button"
                 disabled={!save}
+                aria-keyshortcuts="M"
                 onClick={() => onPanel("atlas")}
               >
                 Bản đồ hành trình
@@ -366,7 +398,11 @@ export function WorldGame(props: Props) {
                   Ghé Auto Chess
                 </button>
               </div>
-              <button type="button" onClick={() => onPanel("help")}>
+              <button
+                type="button"
+                aria-keyshortcuts="H"
+                onClick={() => onPanel("help")}
+              >
                 Hướng dẫn / thông báo
               </button>
               {props.production && (
@@ -382,8 +418,14 @@ export function WorldGame(props: Props) {
                 text={
                   props.error ||
                   props.message ||
-                  "Chạm lối đi hoặc dùng WASD/mũi tên để đi. E tương tác, J mở nhiệm vụ, Escape đóng menu. Chỉ đường chỉ đi tới gần: bạn tự nhận nhiệm vụ, qua cửa và chọn hành động. Đi bộ chưa ghi bản lưu; dùng Lưu vị trí trước khi rời trang."
+                  "Chạm lối đi hoặc dùng WASD/mũi tên để đi. E tương tác; J nhiệm vụ; I túi; P đội; M bản đồ; H hướng dẫn; Escape đóng menu hoặc dừng đường đi. Chỉ đường chỉ đi tới gần: bạn tự nhận nhiệm vụ, qua cửa và chọn hành động. Đi bộ chưa ghi bản lưu; dùng Lưu vị trí trước khi rời trang."
                 }
+              />
+              <GameAccessibilityPanel
+                preferences={accessibility.preferences}
+                announcement={accessibility.announcement}
+                onChange={accessibility.update}
+                onReset={accessibility.reset}
               />
               {props.production && <WebReadiness compact />}
               {props.production ? (

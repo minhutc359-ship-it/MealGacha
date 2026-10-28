@@ -1,4 +1,8 @@
-# Live project status —2026-10-28
+# Live project status —2026-10-29
+
+**AW2-018F VERIFIED development với giới hạn — batch4/10,19/20 kế hoạch đạt.** Onboarding bốn bước no-write giữ recovery priority; skip/focus/live-region contract, J/I/P/M/H có native/modifier/repeat guard và preference versioned cho chữ/contrast/motion/touch đã vào production shell. Portrait320px, landscape thấp, safe-area, forced-colors và panel scroll được khóa bằng CSS/tests. Artifact141.459.568bytes/375files; offline1.461.195bytes/24URL; **2.163unit/153files**,focused86,hai typecheck/build,package/release/assets/budget PASS. Browser NOT_RUN vì thiếu package Playwright. [Bằng chứng](evidence/AW2-018F.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên. Batch4 đóng accessibility engineering, không tự đóng character/art/rights/screen-reader/device/human/release. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **khoảng6commit lớn** có điều kiện. Next batch5: freeze combat/economy/gacha/balance, disclosure và regression định lượng. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018F.
 
 **AW2-018E VERIFIED development với giới hạn — batch3/10,19/20 kế hoạch đạt.** Save AW2 production ghi backup→journal→main với read-back; quarantine bytes lỗi, recovery explicit, chặn tạo mới đè candidate và không rollback schema tương lai. Storage event bốn key + Web Lock/exact raw chặn tab cũ. Artifact141.446.573bytes/375files; offline1.448.200bytes/24URL; **2.119unit/150files**,focused79,hai typecheck/build,package/release/assets/budget PASS. Browser NOT_RUN vì thiếu package Playwright. [Bằng chứng](evidence/AW2-018E.md).
 

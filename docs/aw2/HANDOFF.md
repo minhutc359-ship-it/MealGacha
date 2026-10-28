@@ -1,4 +1,6 @@
-# Handoff —2026-10-28 / AW2-018E
+# Handoff —2026-10-29 / AW2-018F
+
+018F hoàn tất batch4/10 với19/20 kế hoạch: onboarding no-write/recovery priority, skip/focus/live regions, J/I/P/M/H guarded, preference UI version1 và responsive contrast/motion/touch. Full2.163unit/153files,focused86,hai types/builds,package/release/assets/budget PASS; artifact141.459.568bytes/375files,offline1.461.195bytes/24URL. Browser NOT_RUN vì thiếu package Playwright. Không đổi save/schema/gameplay/art/dependency. Còn≈6commit; next batch5 freeze combat/economy/gacha/balance và regression định lượng. [Roadmap](PRODUCTION_10_COMMIT.md) · [Runbook](ACCESSIBILITY.md) · [Bằng chứng](evidence/AW2-018F.md).
 
 018E hoàn tất batch3/10 với19/20 kế hoạch: backup/journal/main read-back, quarantine, explicit recovery, no future-schema rollback, empty-candidate guard và stale-tab Web Lock/exact raw. Full2.119unit/150files,focused79,hai types/builds,package/release/assets/budget PASS; artifact141.446.573bytes/375files,offline1.448.200bytes/24URL. Browser NOT_RUN vì thiếu package Playwright. Không đổi schema/gameplay/art/dependency. Còn≈7commit; next batch4 onboarding/accessibility/touch/mobile/keyboard-focus. [Roadmap](PRODUCTION_10_COMMIT.md) · [Runbook](SAVE_RECOVERY.md) · [Bằng chứng](evidence/AW2-018E.md).
 

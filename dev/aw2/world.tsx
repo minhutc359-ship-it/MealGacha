@@ -14,6 +14,7 @@ import {
 } from "../../src/aw2/save/store"
 import type { SaveSnapshot } from "../../src/aw2/save/schema"
 import { AW2_SAVE_STORAGE_KEYS } from "../../src/aw2/save/schema"
+import { AW2_UI_PREFERENCES_EVENT } from "../../src/aw2/ui/preferences"
 import { ROSTER } from "../../src/aw2/world/ids"
 import { newWorldProgress, type WorldProgress } from "../../src/aw2/world/model"
 import { zoneById, type WorldObject } from "../../src/aw2/world/maps"
@@ -45,7 +46,10 @@ import {
 } from "../../src/aw2/modes/catalog"
 import { Aw2ModeAdapter, type ModeVisit } from "../../src/aw2/modes/session"
 import { ModeLobby } from "./ModeLobby"
-import { worldKeyAction } from "../../src/aw2/world/controls"
+import {
+  worldKeyAction,
+  worldMenuKeyAction,
+} from "../../src/aw2/world/controls"
 import { JourneyGuide } from "./JourneyGuide"
 import { DemoCompletion } from "./DemoCompletion"
 import { PlaytestFeedback } from "./PlaytestFeedback"
@@ -257,10 +261,13 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
   useEffect(() => {
     const motion = matchMedia("(prefers-reduced-motion: reduce)")
     const changedMotion = () => {
-      reducedMotion.current = motion.matches
+      reducedMotion.current =
+        motion.matches ||
+        document.documentElement.dataset.aw2Motion === "reduced"
     }
     changedMotion()
     motion.addEventListener("change", changedMotion)
+    window.addEventListener(AW2_UI_PREFERENCES_EVENT, changedMotion)
     const isNativeControl = (target: EventTarget | null) =>
       target instanceof Element &&
       !target.closest("[data-aw2-world-control]") &&
@@ -269,30 +276,30 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
       )
     const down = (event: KeyboardEvent) => {
       if (event.defaultPrevented) return
-      if (
-        singleViewport &&
-        event.key.toLowerCase() === "j" &&
-        !event.repeat &&
-        !event.ctrlKey &&
-        !event.metaKey &&
-        !event.altKey &&
-        !pending.current &&
-        saved.current.status === "ready" &&
-        (!paused.current || gamePanelRef.current !== "none") &&
-        !(
-          event.target instanceof Element &&
-          event.target.closest(
-            "input, textarea, select, [contenteditable='true']",
-          )
+      const editing =
+        event.target instanceof Element &&
+        !!event.target.closest(
+          "input, textarea, select, [contenteditable='true'], [role='textbox']",
         )
-      ) {
+      const menu = worldMenuKeyAction(event.key, {
+        enabled:
+          singleViewport &&
+          !pending.current &&
+          saved.current.status === "ready" &&
+          (!paused.current || gamePanelRef.current !== "none"),
+        nativeControl: editing,
+        modified:
+          event.ctrlKey || event.metaKey || event.altKey || event.shiftKey,
+        repeat: event.repeat,
+      })
+      if (menu) {
         event.preventDefault()
         keys.current.clear()
         clearWalking()
         queuedWalk.current = null
         queuedInteraction.current = null
         releasePatrol()
-        setGamePanel((panel) => (panel === "quest" ? "none" : "quest"))
+        setGamePanel((panel) => (panel === menu ? "none" : menu))
         return
       }
       if (
@@ -317,7 +324,8 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
           !pending.current &&
           patrolReady.current,
         nativeControl: isNativeControl(event.target),
-        modified: event.ctrlKey || event.metaKey || event.altKey,
+        modified:
+          event.ctrlKey || event.metaKey || event.altKey || event.shiftKey,
         repeat: event.repeat,
       })
       if (!action) return
@@ -462,6 +470,7 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
       window.removeEventListener("focusin", focused)
       document.removeEventListener("visibilitychange", visibility)
       motion.removeEventListener("change", changedMotion)
+      window.removeEventListener(AW2_UI_PREFERENCES_EVENT, changedMotion)
       window.removeEventListener("storage", changed)
     }
   }, [])

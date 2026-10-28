@@ -1,5 +1,7 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**AW2-018F hiện hành — batch4/10:** onboarding bốn bước no-write giữ recovery priority; keyboard/focus/live-region contract và preference chữ/contrast/motion/touch đã vào production shell, gồm safe-area/320px/low-landscape. Full2.163unit/153files,hai builds/package PASS; browser thật `NOT_RUN` do thiếu Playwright. [Task](tasks/AW2-018F.md) · [Evidence](evidence/AW2-018F.md) · [Runbook](ACCESSIBILITY.md) · [Roadmap còn≈6commit lớn](PRODUCTION_10_COMMIT.md).
+
 **AW2-018E hiện hành — batch3/10:** save production có backup+journal+read-back, quarantine và phục hồi explicit; Web Lock/exact raw chặn tab cũ, schema tương lai không bị rollback. Full2.119unit/150files,hai builds/package PASS; browser thật `NOT_RUN` do thiếu Playwright. [Task](tasks/AW2-018E.md) · [Evidence](evidence/AW2-018E.md) · [Runbook](SAVE_RECOVERY.md) · [Roadmap còn≈7commit lớn](PRODUCTION_10_COMMIT.md).
 
 **AW2-018D hiện hành — batch2/10:** production AW2 có update/install/readiness trong game; service worker rollback partial install, fallback shell/chunk cũ, giữ cache có giới hạn và retry quota. Full2.104unit/150files,hai builds/package PASS; browser thật còn `NOT_RUN` do thiếu Chromium. [Task](tasks/AW2-018D.md) · [Evidence](evidence/AW2-018D.md) · [Roadmap còn≈8commit lớn](PRODUCTION_10_COMMIT.md).

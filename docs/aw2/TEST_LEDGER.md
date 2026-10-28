@@ -1,5 +1,23 @@
 # Test ledger / change impact
 
+## AW2-018F onboarding/accessibility/mobile /2026-10-29
+
+Base remote `bfdc2060620ae66e23fff2b0eaec89bf8544343a`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi schema8/gameplay/quest/economy/art/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Accessibility/package focused | PASS |5files /86tests; onboarding/preferences/shortcuts/static contract |
+| Full Vitest | PASS |153files /2.163tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |990modules /7HTML entry |
+| Production build/package | PASS |1.127modules;141.459.568bytes/375files |
+| Offline/package graph | PASS |24URL/1.461.195bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS699.990/CSS38.083;0leaks |
+| Fresh browser | NOT_RUN |Workspace không có package `playwright`; verifier dừng trước browser launch |
+| React review | PASS |Direct imports/static config/lazy state/listener cleanup/pure shortcuts; no inline component/waterfall |
+
+Diagnostic excluded: first focused run85/86 do static literal assertion không nhận dock config động; sửa assertion rồi final86/86. Browser dependency thiếu ghi NOT_RUN. [Evidence](evidence/AW2-018F.md).
+
 ## AW2-018E save durability/recovery /2026-10-28
 
 Base remote `f33f3a355cb2d2fa3a0b6a2cd70ca1bfd2a0909c`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi schema8/gameplay/quest/economy/art/dependency.

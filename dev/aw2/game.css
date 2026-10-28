@@ -43,6 +43,7 @@ html.aw2-game-document, html.aw2-game-document body, html.aw2-game-document #roo
 .aw2-panel-stack p { margin: 0; overflow-wrap: anywhere; }
 .aw2-panel-stack .note { color: #625e51; font-size: .85rem; }
 .aw2-panel-stack button, .aw2-panel-stack select { min-width: 0; white-space: normal; }
+.aw2-panel-stack button, .aw2-production-chest-link { min-height: 44px; }
 .aw2-panel-stack select { width: 100%; min-height: 44px; background: #fffaf0; color: #302d25; font: inherit; border: 1px solid #8c9778; border-radius: .4rem; }
 .aw2-panel-subtitle { display: flex; justify-content: space-between; gap: .5rem; font-size: .75rem; color: #625e51; }
 .aw2-panel-tabs { display: flex; gap: .35rem; }
@@ -87,3 +88,76 @@ html.aw2-game-document, html.aw2-game-document body, html.aw2-game-document #roo
 .aw2-journey-overview .aw2-panel-body > button { font-size: .9rem; padding: .4rem; }
 
 .aw2-game-map > .aw2-walk-status { top: calc(44px + .4rem); }
+
+.aw2-skip-link { position: fixed; z-index: 1000; top: -8rem; left: max(.5rem,env(safe-area-inset-left)); min-height: 44px; padding: .65rem 1rem; border: 3px solid #f9efdc; border-radius: .4rem; background: #122b27; color: #fff4c7; font-weight: 800; }
+.aw2-skip-link:focus { top: max(.5rem,env(safe-area-inset-top)); }
+.aw2-game-map:focus-visible { outline: 3px solid #f5d68b; outline-offset: -3px; }
+.aw2-game-announcements { min-height: 1.6rem; display: grid; align-items: center; }
+.aw2-game-announcements > p { grid-area: 1 / 1; }
+.aw2-game-error { margin: 0 .25rem; min-height: 1.6rem; font-size: .75rem; color: #ffe3cf; background: #6b251f; padding: .1rem .35rem; border-radius: .3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; z-index: 1; }
+.aw2-first-journey { display: grid; gap: .75rem; max-width: 32rem; text-align: left; }
+.aw2-first-journey h2, .aw2-first-journey p { margin: 0; }
+.aw2-onboarding-progress { color: #e8cb89; font-weight: 800; }
+.aw2-onboarding-actions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .5rem; }
+.aw2-onboarding-actions button, .aw2-onboarding-skip { min-height: 48px; }
+.aw2-onboarding-skip { width: 100%; background: transparent; color: inherit; border-color: #a6c7b8; }
+.aw2-accessibility-settings { display: grid; gap: .55rem; padding: .65rem; border: 1px solid #8c9778; border-radius: .5rem; background: #fffaf0; }
+.aw2-accessibility-settings h3, .aw2-accessibility-settings p { margin: 0; }
+.aw2-accessibility-options { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .5rem; }
+.aw2-accessibility-options > div { min-width: 0; display: grid; align-content: start; gap: .2rem; }
+.aw2-accessibility-options button { min-height: 48px; }
+.aw2-accessibility-options small { line-height: 1.35; overflow-wrap: anywhere; }
+.aw2-setting-status { min-height: 1.4em; font-size: .8rem; }
+.aw2-panel-content { overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+
+html[data-aw2-text="large"] .aw2-game-shell { font-size: 1.2rem; }
+html[data-aw2-text="large"] .aw2-game-header h1, html[data-aw2-text="large"] .aw2-game-tracker strong { font-size: 1rem; }
+html[data-aw2-text="large"] .aw2-game-tracker p, html[data-aw2-text="large"] .aw2-game-message, html[data-aw2-text="large"] .aw2-game-error { font-size: .85rem; }
+html[data-aw2-text="large"] .aw2-game-panel { height: calc(100dvh - 1rem); }
+
+html[data-aw2-touch="large"] .aw2-game-dpad { grid-template-columns: repeat(3,52px); grid-template-rows: repeat(2,52px); }
+html[data-aw2-touch="large"] .aw2-game-dpad button { width: 52px; height: 52px; }
+html[data-aw2-touch="large"] .aw2-game-interaction { max-width: calc(100% - 166px); }
+html[data-aw2-touch="large"] .aw2-game-interact, html[data-aw2-touch="large"] .aw2-game-dock button, html[data-aw2-touch="large"] .aw2-panel-stack button, html[data-aw2-touch="large"] .aw2-production-chest-link { min-height: 52px; }
+
+html[data-aw2-contrast="high"] .aw2-game-shell { background: #061511; color: #fff; }
+html[data-aw2-contrast="high"] .aw2-game-tracker, html[data-aw2-contrast="high"] .aw2-nearby-point { background: #061511; border: 2px solid #fff; color: #fff; }
+html[data-aw2-contrast="high"] .aw2-game-inputs button { background: #000; border: 2px solid #fff; color: #fff; }
+html[data-aw2-contrast="high"] .aw2-game-panel, html[data-aw2-contrast="high"] .aw2-accessibility-settings, html[data-aw2-contrast="high"] .aw2-web-readiness, html[data-aw2-contrast="high"] .aw2-panel-stack select, html[data-aw2-contrast="high"] .aw2-production-chest-link { background: #000; border-color: #fff; color: #fff; }
+html[data-aw2-contrast="high"] .aw2-web-readiness h2, html[data-aw2-contrast="high"] .aw2-panel-stack .note, html[data-aw2-contrast="high"] .aw2-panel-subtitle { color: #fff; }
+html[data-aw2-contrast="high"] .aw2-game-dock button[aria-pressed="true"], html[data-aw2-contrast="high"] .aw2-panel-tabs [aria-pressed="true"], html[data-aw2-contrast="high"] .aw2-accessibility-options button[aria-pressed="true"] { background: #fff; color: #000; outline: 3px solid #f5d000; outline-offset: -5px; }
+html[data-aw2-contrast="high"] :disabled { opacity: .65; text-decoration: line-through; }
+
+html[data-aw2-motion="reduced"] .aw2-game-shell *, html[data-aw2-motion="reduced"] .aw2-game-shell *::before, html[data-aw2-motion="reduced"] .aw2-game-shell *::after { scroll-behavior: auto !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aw2-game-shell *, .aw2-game-shell *::before, .aw2-game-shell *::after { scroll-behavior: auto !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+
+@media (prefers-contrast: more) {
+  .aw2-game-shell { background: #061511; color: #fff; }
+  .aw2-game-tracker, .aw2-nearby-point { border-width: 2px; border-color: currentColor; }
+  .aw2-game-panel, .aw2-accessibility-settings, .aw2-web-readiness, .aw2-production-chest-link { border-width: 2px; border-color: currentColor; }
+}
+
+@media (forced-colors: active) {
+  .aw2-game-shell, .aw2-game-panel, .aw2-game-inputs button, .aw2-game-tracker, .aw2-nearby-point { forced-color-adjust: auto; border-color: ButtonText; }
+  .aw2-game-dock button[aria-pressed="true"], .aw2-accessibility-options button[aria-pressed="true"] { outline: 3px solid Highlight; outline-offset: -5px; }
+  .aw2-game-error { border: 2px solid LinkText; }
+}
+
+@media (max-width: 359px) {
+  .aw2-game-shell { padding-left: max(.25rem,env(safe-area-inset-left)); padding-right: max(.25rem,env(safe-area-inset-right)); }
+  .aw2-game-header { gap: .25rem; padding-inline: .25rem; }
+  .aw2-game-header span { font-size: .72rem; }
+  .aw2-game-tracker { padding-inline: .35rem; }
+  .aw2-game-tracker > button { max-width: 5.5rem; }
+  .aw2-accessibility-options { grid-template-columns: minmax(0,1fr); }
+}
+
+@media (orientation: landscape) and (max-height: 450px) {
+  html[data-aw2-touch="large"] .aw2-game-dpad { grid-template-columns: repeat(4,52px); grid-template-rows: 52px; }
+  .aw2-first-journey { grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: .35rem .75rem; }
+  .aw2-first-journey h2, .aw2-first-journey > p { grid-column: 1; }
+  .aw2-onboarding-actions, .aw2-onboarding-skip { grid-column: 2; }
+}
