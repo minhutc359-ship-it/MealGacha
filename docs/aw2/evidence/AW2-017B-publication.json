@@ -1,0 +1,22 @@
+{
+  "task": "AW2-017B",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "base": "7b676ae29398ff4f6be4785e8a876bfb92cf3aed",
+  "branch": "game/adventure-world-2",
+  "repository": "minhutc359-ship-it/MealGacha",
+  "approvedLocalCommit": "4ba24e62b0a0fac9135677255bf786caff20d311",
+  "ownerConfirmation": "xác nhận. push giúp tôi",
+  "sourceCommit": "c9c703bd8452104870998427b08c6f6a3e254d88",
+  "sourceTree": "e3b5c4e53927f307396556dbe4419929d2a676ac",
+  "expectedHead": "7b676ae29398ff4f6be4785e8a876bfb92cf3aed",
+  "force": false,
+  "directParent": true,
+  "independentPublicFetch": true,
+  "allPreparedSourceBlobsVerified": 74,
+  "approvedRuntimeAndTestsIdentical": true,
+  "only12PublicationDocumentsDifferFromApprovedLocal": true,
+  "authenticatedOwnerMatches": true,
+  "pushPermissionVerified": true,
+  "runtimeFingerprint": "0b5cb7d474d5dbf805e709980349ebb8ead62eba0b2c38ee77d07215a0a9910e",
+  "previousApprovalBlock": "Resolved by explicit owner confirmation; no CLI bypass used."
+}

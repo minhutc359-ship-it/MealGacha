@@ -1,5 +1,7 @@
 # Task board
 
+017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).
+
 **AW2-017B VERIFIED development — Phố Đèn Lồng có công trình và NPC bên trong.** Giữ ba nhà: Quầy bữa sáng/Xưởng sửa ghế/Nhà bàn chơi; bỏ chín facade dư. Bốn NPC cũ vào đúng phòng, An và Em Đem Nước ở ngoài; đủ tám NPC toàn tuyến, không bản sao. Nhật ký dẫn qua cửa/ra phòng/đến NPC theo scene thật; cửa có dấu ký ức còn thiếu. Save8 đọc1–7 không ghi đè, nâng cấp khi lưu rõ ràng. [Bố cục và cách chơi](MAP_TUONG_TAC.md).
 
 **1.943unit/143files PASS** toàn bộ,18ca mới nằm trong tổng; **498browser mới=190khu Phố+308toàn tuyến**,95+95và154+154source/compiled,0lỗi bất ngờ. Ba phòng/resident sprites+tên đúng/quota–retry/bấm lặp/reload/mode return/đúng cửa/save7, bốnviewport20px/native44px; hai hành trình thật đủ4quest/boss45tick/kết thúc-reload300XP đạt. Hai types/hai builds/262asset parity/517file gốc guard PASS. [Bằng chứng](evidence/AW2-017B.md).
@@ -159,7 +161,7 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | AW2-016J | BA/mechanic/animation/tester/scretary | Available/objective/return quest cues | VERIFIED development; [016J evidence](evidence/AW2-016J.md) |
 | AW2-016K | BA/story/mechanic/animation/tester/scretary | Validated tea-desk TCG/Chess service and exact return | VERIFIED development; [evidence](evidence/AW2-016K.md) |
 | AW2-017A | BA/story/mechanic/animation/tester/scretary | Functional village facades/independent rooms/save7 and map plan | VERIFIED development; [evidence](evidence/AW2-017A.md) |
-| AW2-017B | BA/story/mechanic/animation/tester/scretary | Functional Phố rooms, original NPC relocation, scene-aware quest routes/save8 | VERIFIED development; [evidence](evidence/AW2-017B.md) |
+| AW2-017B | BA/story/mechanic/animation/tester/scretary | Functional Phố rooms, original NPC relocation, scene-aware quest routes/save8 | VERIFIED development / source published after owner confirmation; [evidence](evidence/AW2-017B.md) |
 | AW2-017C–E | BA/story/mechanic/animation/tester/scretary | Sân/bếp, step portals/field props, NPC life/final art | PLANNED, not implemented; phase contracts required |
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |

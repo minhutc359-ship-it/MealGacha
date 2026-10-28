@@ -86,5 +86,10 @@
   ],
   "physicalDevice": "NOT_RUN",
   "independentAcceptance": "NOT_RUN",
-  "publication": "PENDING"
+  "publication": "PASS_SOURCE_PUBLICATION",
+  "destinationVerifiedOwned": true,
+  "sourceCommit": "c9c703bd8452104870998427b08c6f6a3e254d88",
+  "sourceTree": "e3b5c4e53927f307396556dbe4419929d2a676ac",
+  "approvedLocalCommit": "4ba24e62b0a0fac9135677255bf786caff20d311",
+  "explicitOwnerConfirmation": "xác nhận. push giúp tôi"
 }
