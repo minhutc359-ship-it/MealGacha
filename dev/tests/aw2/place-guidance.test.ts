@@ -119,7 +119,7 @@ describe("016G exact selected interaction and scene-local approaches", () => {
     }
   })
   it("describes a locked door without granting travel or changing the progress", () => {
-    const world = { ...newWorldProgress(), zoneId: ZONE_IDS[2], x: 592, y: 192 }
+    const world = { ...newWorldProgress(), zoneId: ZONE_IDS[2], x: 208, y: 48 }
     const door = zoneById(world.zoneId).objects.find(
       (o) => o.to === ZONE_IDS[3],
     )!
@@ -181,7 +181,7 @@ describe("016G tea-room signposting across scenes", () => {
     expect(points.some((p) => p.id === "tea")).toBe(false)
     expect(scenicWalkingLandmarks(ZONE_IDS[1])).toEqual(street.landmarks)
     expect(scenicWalkingLandmarks("unknown")).toEqual([])
-    scenicWalkingLandmarks(ZONE_IDS[2])[0].x = 600
+    expect(scenicWalkingLandmarks(ZONE_IDS[2])).toEqual([])
     expect(JSON.stringify(SETTLEMENT)).toBe(before)
   })
   it("returns detached approach data and preserves story/economy authority", () => {

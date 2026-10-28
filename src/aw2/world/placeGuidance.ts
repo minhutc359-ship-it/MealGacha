@@ -1,5 +1,5 @@
 import type { WorldProgress } from "./model"
-import type { WorldObject } from "./maps"
+import { exitApproach, type WorldObject } from "./maps"
 import type { Waypoint } from "./navigation"
 import { worldObjects, type NpcPatrolState } from "./npcPatrol"
 import { describeObject, INTERACT_RANGE, nearestObject } from "./rules"
@@ -19,12 +19,7 @@ export function placeApproach(object: Readonly<WorldObject>): Waypoint {
   if (object.kind === "room-exit")
     return { x: object.x + 24, y: object.y, entityId: object.id }
   if (object.kind === "stock") return { ...PANTRY_STOCK.approach }
-  if (object.kind === "exit")
-    return {
-      x: object.x + (object.x > 320 ? -24 : 24),
-      y: object.y,
-      entityId: object.id,
-    }
+  if (object.kind === "exit") return exitApproach(object)
   return { x: object.x, y: object.y + 32, entityId: object.id }
 }
 export function placeKind(object: Readonly<WorldObject>) {

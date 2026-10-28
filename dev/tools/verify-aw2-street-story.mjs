@@ -266,8 +266,8 @@ try {
     check(`${id}: ${state ?? "no quest cue"}`)
   }
 
-  const travel = async (x, name) => {
-    await go(x, 192)
+  const travel = async (x, name, y = 192) => {
+    await go(x, y)
     await map().focus()
     await page.keyboard.press("e")
     await dialog().getByRole("button", { name: "Đi qua", exact: true }).click()
@@ -523,7 +523,7 @@ try {
   await walk("aw2-npc-gac-bep")
   await inspect("aw2-npc-gac-bep", "Nhận nhiệm vụ")
   await cue("aw2-npc-gac-bep")
-  await travel(616, "Phòng Kho")
+  await travel(208, "Phòng Kho", 48)
   await cue("aw2-object-hearth-hint", "quest-active")
   await walk("aw2-object-hearth-hint")
   await inspect("aw2-object-hearth-hint", "Ghi lại gợi ý")
@@ -560,7 +560,7 @@ try {
   await inspect("aw2-npc-gac-bep", "Nhận nhiệm vụ")
   await cue("aw2-npc-gac-bep", "ready")
   phase = "actual-boss"
-  await travel(616, "Phòng Kho")
+  await travel(208, "Phòng Kho", 48)
   await travel(616, "Phòng Lửa")
   await travel(616, "Phòng Bàn")
   await cue("aw2-enemy-forgotten-host", "quest-active")
@@ -634,6 +634,11 @@ try {
       (await save()).economy.teamExperience === 300 &&
       (await map().locator('[data-place-state^="quest-"]').count()) === 0,
   )
+  await travel(616, "Phố Đèn Lồng")
+  await travel(616, "Sân Bếp Bỏ Quên")
+  await travel(480, "Phòng Bàn", 48)
+  await travel(520, "Sân Bếp Bỏ Quên", 240)
+  check("Completed yard/table shortcut works in both directions")
   phase = "classic-shared-checkpoint"
   await page.evaluate(({ key, value }) => localStorage.setItem(key, value), {
     key,

@@ -1,5 +1,9 @@
 # Live project status —2026-10-28
 
+**AW2-017C VERIFIED — Sân Bếp có hai cổng công năng.** Mười facade trang trí đã rời bản render, thay bằng Kho nguyên liệu và Phòng Bàn gắn portal thật. Mọi chỉ dẫn dùng chung điểm trước cửa; Sân↔Kho và shortcut Sân↔Bàn hồi đáp đúng cửa, ngoài collider. Bounds/collider/save8/tám NPC/bốn quest/reward giữ nguyên; không media mới. **1.946unit/144files**, hai typecheck/build và **318browser=159source+159compiled PASS**, boss thật tick45, kết thúc300XP,0lỗi bất ngờ. [Bố cục](MAP_TUONG_TAC.md) · [Bằng chứng](evidence/AW2-017C.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên. Next017D: step portals và field props; sau đó017E lịch NPC/final art. Các mục dưới là lịch sử; hiện hành theo017C.
+
 017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).
 
 **AW2-017B VERIFIED development — Phố Đèn Lồng có công trình và NPC bên trong.** Giữ ba nhà: Quầy bữa sáng/Xưởng sửa ghế/Nhà bàn chơi; bỏ chín facade dư. Bốn NPC cũ vào đúng phòng, An và Em Đem Nước ở ngoài; đủ tám NPC toàn tuyến, không bản sao. Nhật ký dẫn qua cửa/ra phòng/đến NPC theo scene thật; cửa có dấu ký ức còn thiếu. Save8 đọc1–7 không ghi đè, nâng cấp khi lưu rõ ràng. [Bố cục và cách chơi](MAP_TUONG_TAC.md).

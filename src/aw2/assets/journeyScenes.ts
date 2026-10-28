@@ -11,6 +11,7 @@ import { describeObject } from "../world/rules"
 import type { SceneBounds } from "./tableRoom"
 import { roomForEntrance } from "../world/interiorLayout"
 import { PANTRY_STOCK } from "../world/pantryLayout"
+import { exitApproach } from "../world/maps"
 
 export interface JourneyFrame {
   x: number
@@ -121,13 +122,17 @@ export function journeyWaypoints(
           ? roomForEntrance(object.id)!.approach.x
           : object.kind === "stock"
             ? PANTRY_STOCK.approach.x
-            : object.x,
+            : object.kind === "exit"
+              ? exitApproach(object).x
+              : object.x,
       walkY:
         object.kind === "room"
           ? roomForEntrance(object.id)!.approach.y
           : object.kind === "stock"
             ? PANTRY_STOCK.approach.y
-            : object.y + (spec?.asset === "threshold" ? 0 : 32),
+            : object.kind === "exit"
+              ? exitApproach(object).y
+              : object.y + (spec?.asset === "threshold" ? 0 : 32),
       short,
       status,
       state,

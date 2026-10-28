@@ -1,5 +1,9 @@
 # Test ledger / change impact
 
+## AW2-017C — 2026-10-28
+
+Full Vitest mặc định1.946/1.946,144files; hai typecheck và hai build PASS. Fresh browser159source+159compiled=318, Chromium153, boss tick45,300XP,0unexpected errors; kiểm tra Sân↔Kho và shortcut Sân↔Bàn hai chiều. Không cộng lịch sử. [Evidence](evidence/AW2-017C.md).
+
 017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).
 
 ## AW2-017B — functional Phố /2026-10-28

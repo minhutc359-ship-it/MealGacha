@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { ZONE_IDS, type ZoneId } from "./ids"
-import { canStand, ZONES, zoneById } from "./maps"
+import { canStand, exitApproach, ZONES, zoneById } from "./maps"
 import { describeObject } from "./rules"
 import type { WorldProgress } from "./model"
 import { journeyRoute } from "./journey"
@@ -205,7 +205,7 @@ export function worldRegistry(): WorldRegistry {
           .map((o) => ({
             id: spawnId(o.id),
             sourcePortalId: o.id,
-            position: { x: o.spawnX, y: 192 },
+            position: { x: o.spawnX, y: o.spawnY ?? 192 },
           })),
       ),
     })),
@@ -246,5 +246,5 @@ export function journeyApproach(world: WorldProgress, destination: ZoneId) {
       o.to === route[1] &&
       describeObject(world, o).actions.some((a) => a.id === "travel"),
   )!
-  return { x: portal.x + (portal.x > 320 ? -24 : 24), y: portal.y }
+  return exitApproach(portal)
 }

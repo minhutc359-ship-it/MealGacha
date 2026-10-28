@@ -4,6 +4,11 @@ import {
   streetFacadeTarget,
 } from "../../src/aw2/assets/streetDistrict"
 import { STREET_ROOMS } from "../../src/aw2/world/interiorLayout"
+import {
+  YARD_DISTRICT,
+  yardFacadeTarget,
+} from "../../src/aw2/assets/yardDistrict"
+import { ZONE_IDS } from "../../src/aw2/world/ids"
 import { PlaceCue, hideOverlappingPlaceCues } from "./PlaceCue"
 import { placeAffordance } from "../../src/aw2/world/placeAffordance"
 import {
@@ -73,6 +78,11 @@ export function JourneyLandscape({
 }: WorldCanvasProps) {
   const scene = journeyScene(world.zoneId)!
   const rooms = STREET_ROOMS.filter((room) => room.zoneId === world.zoneId)
+  const district = rooms.length
+    ? STREET_DISTRICT
+    : world.zoneId === ZONE_IDS[2]
+      ? YARD_DISTRICT
+      : undefined
   const patrolRef = useRef(patrol)
   patrolRef.current = patrol
   const committedEconomy = useRef(economy)
@@ -188,12 +198,12 @@ export function JourneyLandscape({
           textures.push(t)
           return t
         }
-        if (rooms.length) {
+        if (district) {
           addDistrictGround(
             next.stage,
             assetTextures.floor,
             crop,
-            STREET_DISTRICT,
+            district,
             Sprite,
           )
           for (const room of rooms) {
@@ -578,7 +588,13 @@ export function JourneyLandscape({
             },
             camera.current,
           )
-          onNavigate(rooms.length ? streetFacadeTarget(selected) : selected)
+          onNavigate(
+            rooms.length
+              ? streetFacadeTarget(selected)
+              : world.zoneId === ZONE_IDS[2]
+                ? yardFacadeTarget(selected)
+                : selected,
+          )
         }}
       >
         <div ref={host} />

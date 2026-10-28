@@ -82,7 +82,10 @@ describe("AW2 compatible map registry", () => {
           (m) => m.id === portal.destination,
         )!
         const spawn = destination.spawns.find((s) => s.id === portal.spawnId)!
-        expect(spawn.position).toEqual({ x: object.spawnX, y: 192 })
+        expect(spawn.position).toEqual({
+          x: object.spawnX,
+          y: object.spawnY ?? 192,
+        })
         expect(
           canStand(destination.id, spawn.position.x, spawn.position.y),
         ).toBe(true)

@@ -13,6 +13,9 @@ export interface WorldObject {
   memory?: 0 | 1 | 2
   step?: 0 | 1 | 2
   spawnX?: number
+  spawnY?: number
+  approachX?: number
+  approachY?: number
   requiresCompleted?: boolean
 }
 export interface WorldWall {
@@ -67,12 +70,15 @@ const objects: WorldObject[][] = [
     { id: "aw2-npc-gac-bep", name: "Dì Gác Bếp", x: 320, y: 128, kind: "npc" },
     {
       id: "aw2-shortcut-yard-table",
-      name: "Lối tắt đến Phòng Bàn",
-      x: 520,
-      y: 240,
+      name: "Phòng Bàn",
+      x: 480,
+      y: 16,
       kind: "exit",
       to: ZONE_IDS[5],
       spawnX: 96,
+      spawnY: 192,
+      approachX: 480,
+      approachY: 48,
       requiresCompleted: true,
     },
   ],
@@ -129,7 +135,8 @@ const objects: WorldObject[][] = [
       y: 240,
       kind: "exit",
       to: ZONE_IDS[2],
-      spawnX: 96,
+      spawnX: 480,
+      spawnY: 48,
       requiresCompleted: true,
     },
   ],
@@ -150,7 +157,8 @@ export const ZONES: WorldZone[] = ZONE_IDS.map((id, index) => ({
             y: 192,
             kind: "exit" as const,
             to: ZONE_IDS[index - 1],
-            spawnX: 576,
+            spawnX: index === 3 ? 208 : 576,
+            spawnY: index === 3 ? 48 : 192,
           },
         ]
       : []),
@@ -158,18 +166,28 @@ export const ZONES: WorldZone[] = ZONE_IDS.map((id, index) => ({
       ? [
           {
             id: `${id}:exit:east`,
-            name: `Đến ${names[index + 1]}`,
-            x: 616,
-            y: 192,
+            name: index === 2 ? "Kho nguyên liệu" : `Đến ${names[index + 1]}`,
+            x: index === 2 ? 208 : 616,
+            y: index === 2 ? 16 : 192,
             kind: "exit" as const,
             to: ZONE_IDS[index + 1],
             spawnX: 64,
+            spawnY: 192,
+            ...(index === 2 ? { approachX: 208, approachY: 48 } : {}),
           },
         ]
       : []),
   ],
 }))
 export const zoneById = (id: ZoneId) => ZONES.find((zone) => zone.id === id)!
+/** One shared local destination for guides, clicks and keyboard walking. */
+export function exitApproach(object: Readonly<WorldObject>) {
+  return {
+    x: object.approachX ?? object.x + (object.x > 320 ? -24 : 24),
+    y: object.approachY ?? object.y,
+    entityId: object.id,
+  }
+}
 export function canStand(id: ZoneId, x: number, y: number): boolean {
   return (
     Number.isFinite(x) &&

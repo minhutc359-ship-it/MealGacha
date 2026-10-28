@@ -1,4 +1,6 @@
-# Handoff —2026-10-28 / AW2-017B
+# Handoff —2026-10-28 / AW2-017C
+
+017C đã chuyển Sân từ10facade trang trí sang2cổng công năng Kho/Bàn, giữ nguyên save8/collider/canon. Full1.946unit/144files,318browser source+compiled,types/build PASS. Next017D step portals/field props; không làm lại017A–C. [Bằng chứng](evidence/AW2-017C.md).
 
 017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).
 

@@ -2,6 +2,8 @@ import { STREET_DISTRICT } from "./streetDistrict"
 import { STREET_ROOMS } from "../world/interiorLayout"
 import { TEA_ROOM } from "../world/interiorLayout"
 import { VILLAGE_DISTRICT } from "./villageDistrict"
+import { YARD_DISTRICT, YARD_PORTALS } from "./yardDistrict"
+import { ZONE_IDS } from "../world/ids"
 import manifest from "./settlement-v1.json"
 import type { SceneBounds } from "./tableRoom"
 import type { landscapeCamera } from "./villageView"
@@ -38,6 +40,32 @@ export const settlementForZone = (zoneId: string) => {
         }
       }),
     }
+  if (region && zoneId === ZONE_IDS[2])
+    return {
+      ...region,
+      landmarks: [],
+      buildings: YARD_PORTALS.map(({ object, frame }, i) => {
+        const width = 184
+        const height =
+          (width * manifest.frames[frame].height) / manifest.frames[frame].width
+        return {
+          ...region.buildings[i],
+          id: `yard-functional-${i}`,
+          frame,
+          x: object.x,
+          y: 4,
+          width,
+          height,
+          depth: 4,
+          solidBase: {
+            x: object.x - width / 2,
+            y: 4 - height * 0.28,
+            width,
+            height: height * 0.28,
+          },
+        }
+      }),
+    }
   return region && zoneId === TEA_ROOM.zoneId
     ? {
         ...region,
@@ -58,6 +86,8 @@ export function settlementCameraSpec(
     return { ...spec, ...STREET_DISTRICT, canvas: spec.canvas }
   if (zoneId === TEA_ROOM.zoneId)
     return { ...spec, ...VILLAGE_DISTRICT, canvas: spec.canvas }
+  if (zoneId === ZONE_IDS[2])
+    return { ...spec, ...YARD_DISTRICT, canvas: spec.canvas }
   return settlementForZone(zoneId)
     ? { ...spec, camera: { ...spec.camera, followZoom: manifest.followZoom } }
     : spec

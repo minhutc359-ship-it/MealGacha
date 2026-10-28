@@ -367,7 +367,12 @@ export function applyWorldAction(
   let next = { ...state },
     message = "Đã ghi nhận tiến trình AW2."
   if (actionId === "travel")
-    next = { ...next, zoneId: object.to!, x: object.spawnX!, y: 192 }
+    next = {
+      ...next,
+      zoneId: object.to!,
+      x: object.spawnX!,
+      y: object.spawnY ?? 192,
+    }
   if (actionId === "enter-room")
     next = { ...next, interior: { ...roomForEntrance(object.id)!.spawn } }
   if (actionId === "leave-room") next = { ...next, interior: null }

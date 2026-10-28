@@ -1,6 +1,12 @@
 # Thiết kế lại map theo công năng
 
-28/10/2026 · AW2-017A/B · Làng và Phố có công năng. [Đặc tả v1.1 đã đối chiếu](design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md), đặc biệt mục2–5,7 và10–12.
+28/10/2026 · AW2-017A/B/C · Làng, Phố và Sân Bếp có công năng. [Đặc tả v1.1 đã đối chiếu](design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md), đặc biệt mục2–5,7 và10–12.
+
+## Sân Bếp — cập nhật017C
+
+Mười facade trang trí đã được thay bằng hai công trình có cổng thật: **Kho nguyên liệu** ở cửa trái và **Phòng Bàn** ở cửa phải. Dì Gác Bếp vẫn ở trung tâm, cổng về Phố và vật cản phía nam giữ nguyên. Kho mở theo nhiệm vụ; Phòng Bàn là shortcut chỉ mở sau kết thúc.
+
+Nhấn mái đưa nhân vật tới điểm đứng trước đúng cửa, không tự qua vùng hoặc ghi save. Cùng điểm đó được dùng cho nhật ký, Địa điểm và điều hướng bàn phím. Đi ngược từ Kho/Bàn trả về trước cửa tương ứng. Không đổi kích thước/collider nên vị trí save8 cũ vẫn hợp lệ. [Bằng chứng017C](evidence/AW2-017C.md).
 
 ## Phố Đèn Lồng — cập nhật017B
 
@@ -16,7 +22,7 @@ Nhật ký giữ tên NPC làm mục tiêu, chỉ rõ phòng trong tuyến đi. 
 
 Nhân vật trong nhà dùng sprite/idle gốc tại đúng điểm tương tác; preloader chỉ tải NPC thực sự thuộc cảnh đang mở. Các bàn chơi cũ đã chuyển vào Nhà bàn chơi, truy cập nhanh vẫn giữ nguyên. Ra nhà và trở về từ activity giữ cả vị trí trong phòng lẫn checkpoint ngoài cửa. Save8 đọc1–7 không ghi đè; chỉ thao tác lưu rõ ràng mới nâng phiên bản. Save7 vẫn chỉ nhận ba phòng Làng của017A, không chấp nhận gắn nhãn7 cho phòng Phố mới.
 
-Hiện có6vùng ngoài trời và6phòng con. Làng/Phố có6facade chức năng,3mỗi nơi; Sân còn10facade trang trí chưa chuyển đổi. Nội thất mới vẫn dùng lại thành phần art tiệm trà, nền lát còn lặp và vườn/biên/collider mỹ thuật cuối còn làm tiếp.017B hoàn thành cấu trúc và tương tác của Phố, chưa phải hoàn thiện mỹ thuật toàn thế giới. [Bằng chứng017B](evidence/AW2-017B.md).
+Hiện có6vùng ngoài trời và6phòng con. Làng/Phố có6facade chức năng,3mỗi nơi; Sân có2facade portal chức năng và không còn facade trang trí chủ động. Nội thất vẫn dùng lại art gốc, nền lát còn lặp và vườn/biên/collider mỹ thuật cuối còn làm tiếp.017C hoàn thành cấu trúc cổng của Sân, chưa phải hoàn thiện mỹ thuật toàn thế giới. [Bằng chứng017C](evidence/AW2-017C.md).
 
 ## Vấn đề cần giải quyết
 
@@ -58,11 +64,11 @@ D17một trưởng đội đại diện trên map vẫn áp dụng; không bật
 | Pha | Công việc cụ thể | Điều kiện hoàn thành |
 | --- | --- | --- |
 | 017B · Phố Đèn Lồng | ĐÃ TRIỂN KHAI: ba công trình chức năng, bốn NPC chuyển vào đúng phòng, chỉ dẫn biết phòng và save8 | Đủ3ký ức/80EXP; mode/quick entry và save cũ được bảo toàn; mỹ thuật riêng còn tiếp |
-| 017C · Sân và bếp | Cổng bếp dẫn tới kho/lửa/bàn ăn rõ vai trò; collider khớp chân tường/bồn/chướng ngại; thu hẹp khoảng rỗng bằng bố cục và art tách lớp | Tuyến nhận nguyên liệu→gợi ý→giải bếp→boss→ghi chép đi được hai chiều; không đứng xuyên công trình hoặc sinh ra trong collider |
+| 017C · Sân và bếp | ĐÃ TRIỂN KHAI: hai facade/cổng Kho và Bàn, bố cục tách lớp, điểm tiếp cận và hồi đáp hai chiều | Tuyến nhận nguyên liệu→gợi ý→giải bếp→boss→ghi chép đi được hai chiều; không sinh ra trong collider |
 | 017D · Cửa bước qua và đồ vật | Step portals cho cửa thường; tương tác giếng/bảng chỉ đường/ghế/đồ khám phá có phản hồi phù hợp. Mỗi đồ vật chốt một hành vi, trạng thái sau dùng và nhu cầu lưu | Chống loop/kích kép; touch/keyboard giống nhau; không tự nhận thưởng; lỗi lưu không tiêu đồ; không thêm vật phẩm/quest chưa có contract |
 | 017E · Đời sống và phối cảnh cuối | LịchNPC theo game clock, các điểm nghỉ/hoạt động, art nội thất riêng, mép vườn và đường chuyển vùng. Đo thời gian đi giữa các hoạt động để điều chỉnh mật độ | NPC theo lịch vẫn luôn truy cập được lúc cần nhiệm vụ; có đường ngắn về trung tâm; art/collider/ánh sáng khớp cùng mặt đất |
 
-017C là bước nhỏ tiếp theo. LịchNPC được chuyển sau cấu trúc không gian; không nên thêm người đi lại vào các sân còn thiếu mục đích.017C–E là kế hoạch, chưa triển khai và chưa nghiệm thu. Mục tiêu thiết kế: trong một khung bám luôn thấy một đích có ý nghĩa hoặc hướng đi tới đích; tuyến chính không có đoạn sân dài không mang thông tin. Chưa tuyên bố có số đo playtest thời gian đi thực tế.
+017D là bước nhỏ tiếp theo. LịchNPC được chuyển sau cấu trúc không gian.017D–E là kế hoạch, chưa triển khai và chưa nghiệm thu. Mục tiêu thiết kế: trong một khung bám luôn thấy một đích có ý nghĩa hoặc hướng đi tới đích; tuyến chính không có đoạn sân dài không mang thông tin. Chưa tuyên bố có số đo playtest thời gian đi thực tế.
 
 ## Bảo toàn tiến trình
 
