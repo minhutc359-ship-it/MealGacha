@@ -1,5 +1,7 @@
 # Changes
 
+**AW2-017F:** thêm contract world polish sáu zone và Pixi layer chung cho Làng, Phố/Sân/Kho, Phòng Lửa/Bàn. Bốn ca ambient đọc NPC life; mép cảnh mở khe cổng24/616/bắc; bóng collider đọc `zone.walls`;12light pool có pause/reduced; canvas xuất telemetry. Không đổi save/gameplay/media. 2.091unit/150files,hai typecheck/build/package/release PASS; browser NOT_RUN. [Evidence](evidence/AW2-017F.md).
+
 017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).
 
 **AW2-017B VERIFIED development — Phố Đèn Lồng có công trình và NPC bên trong.** Giữ ba nhà: Quầy bữa sáng/Xưởng sửa ghế/Nhà bàn chơi; bỏ chín facade dư. Bốn NPC cũ vào đúng phòng, An và Em Đem Nước ở ngoài; đủ tám NPC toàn tuyến, không bản sao. Nhật ký dẫn qua cửa/ra phòng/đến NPC theo scene thật; cửa có dấu ký ức còn thiếu. Save8 đọc1–7 không ghi đè, nâng cấp khi lưu rõ ràng. [Bố cục và cách chơi](MAP_TUONG_TAC.md).

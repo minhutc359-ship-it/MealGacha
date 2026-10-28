@@ -61,6 +61,7 @@ import {
   renderAmbientSprites,
 } from "./AmbientLayer"
 import { zoneById } from "../../src/aw2/world/maps"
+import { createWorldPolishLayer } from "./WorldPolishLayer"
 
 /** Village presentation owns camera/layers only; all walking/actions remain world authority. */
 export function VillageLandscape({
@@ -137,6 +138,7 @@ export function VillageLandscape({
           Sprite,
           Texture,
           Rectangle,
+          Graphics,
           TilingSprite,
         } = await import("pixi.js")
         const [
@@ -204,6 +206,11 @@ export function VillageLandscape({
           return t
         }
         addDistrictGround(next.stage, floor, crop, VILLAGE_DISTRICT, Sprite)
+        const polish = createWorldPolishLayer(
+          next.stage,
+          world.zoneId,
+          Graphics,
+        )
         for (const room of ROOMS) {
           const step = new Sprite(crop(threshold, scene.assets.threshold.frame))
           step.anchor.set(0.5, 1)
@@ -292,6 +299,12 @@ export function VillageLandscape({
             ticker.deltaMS,
             pause.current,
             reduced.matches,
+          )
+          next.canvas.dataset.worldPolish = JSON.stringify(
+            polish.render(patrolRef.current?.lifeMs ?? 0, npcElapsed, {
+              paused: pause.current,
+              reduced: reduced.matches,
+            }),
           )
           const view = landscapeCamera(
             now,

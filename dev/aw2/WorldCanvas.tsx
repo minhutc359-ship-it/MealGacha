@@ -57,6 +57,7 @@ import {
   initializeWorldScene,
   firstWorldFrame,
 } from "./sceneLifecycle"
+import { createWorldPolishLayer } from "./WorldPolishLayer"
 
 export function WorldCanvas(props: WorldCanvasProps) {
   if (props.world.interior) return <TeaRoomCanvas {...props} />
@@ -71,6 +72,7 @@ export function WorldCanvas(props: WorldCanvasProps) {
 
 function FlatWorldCanvas({
   world,
+  patrol,
   economy,
   onNavigate,
   paused,
@@ -86,8 +88,10 @@ function FlatWorldCanvas({
   const pointerStart = useRef<Waypoint | null>(null)
   const position = useRef(world)
   const pauseRef = useRef(paused)
+  const patrolRef = useRef(patrol)
   position.current = world
   pauseRef.current = paused
+  patrolRef.current = patrol
   const [error, setError] = useState("")
   const [ready, setReady] = useState(false)
   const [mode, setMode] = useState<VillageViewMode>("follow")
@@ -200,6 +204,7 @@ function FlatWorldCanvas({
           floor.position.set(landscape.landscape.x, landscape.landscape.y)
           floor.width = landscape.landscape.width
           floor.height = landscape.landscape.height
+          floor.zIndex = -1000
           next.stage.addChild(floor)
         }
         if (!scene) {
@@ -265,6 +270,11 @@ function FlatWorldCanvas({
               .fill(0xf2d5ad)
         }
         next.stage.addChild(terrain)
+        const polish = createWorldPolishLayer(
+          next.stage,
+          world.zoneId,
+          Graphics,
+        )
         let foreground: import("pixi.js").Sprite | undefined
         let bossMarker: import("pixi.js").Sprite | undefined
         const bossFrames: Record<string, Texture> = {}
@@ -432,12 +442,21 @@ function FlatWorldCanvas({
         })
         let prior = { ...position.current }
         let elapsed = 0
+        let polishElapsed = 0
         const reduced = matchMedia("(prefers-reduced-motion: reduce)")
         next.stage.sortableChildren = true
         const update = (ticker: import("pixi.js").Ticker) => {
           const now = position.current
           // React may publish the destination before effect cleanup destroys this canvas.
           if (now.zoneId !== world.zoneId) return
+          if (!pauseRef.current && !reduced.matches)
+            polishElapsed += Math.min(ticker.deltaMS, 1_000)
+          next.canvas.dataset.worldPolish = JSON.stringify(
+            polish.render(patrolRef.current?.lifeMs ?? 0, polishElapsed, {
+              paused: pauseRef.current,
+              reduced: reduced.matches,
+            }),
+          )
           const view = landscapeCamera(now, modeRef.current, landscape)
           camera.current = view
           next.stage.scale.set(view.zoom)

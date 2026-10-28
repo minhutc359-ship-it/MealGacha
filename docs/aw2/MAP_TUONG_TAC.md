@@ -67,9 +67,9 @@ D17một trưởng đội đại diện trên map vẫn áp dụng; không bật
 | 017C · Sân và bếp | ĐÃ TRIỂN KHAI: hai facade/cổng Kho và Bàn, bố cục tách lớp, điểm tiếp cận và hồi đáp hai chiều | Tuyến nhận nguyên liệu→gợi ý→giải bếp→boss→ghi chép đi được hai chiều; không sinh ra trong collider |
 | 017D · Cửa bước qua và đồ vật | ĐÃ TRIỂN KHAI:8portal tuyến ngang bước qua; latch chống loop; giếng/thùng sửa/bồn rửa có phản hồi quan sát no-write | Touch/keyboard cùng detector; load-inside/spawn/lỗi giữ an toàn; cổng công trình vẫn explicit; không thêm thưởng/vật phẩm/quest |
 | 017E · Đời sống NPC | ĐÃ TRIỂN KHAI: đồng hồ phiên bốn ca và32hoạt động cho tám NPC; HUD/Địa điểm/waypoint/dialog/renderer dùng cùng projection | NPC nhiệm vụ/mode luôn truy cập được; Em giữ patrol; pause/reduced/no-save/save1–8 và toàn tuyến đã kiểm chứng |
-| 017F · Phối cảnh cuối | Art nội thất riêng, mép vườn, collider/ánh sáng và đường chuyển vùng; đo thời gian đi để điều chỉnh mật độ | Có đường ngắn về trung tâm; art/collider/ánh sáng khớp mặt đất; nghiệm thu art riêng, không suy từ017E |
+| 017F · Phối cảnh cuối | ĐÃ TRIỂN KHAI contract kỹ thuật:6profile, mép chừa cổng, bóng collider authority,12light pool và4ca ambient trên3renderer | Unit/type/build/package đạt; fresh browser/nghiệm thu art độc lập và đo đi bộ người thật còn mở, không suy PASS |
 
-017E đã kiểm chứng lịchNPC mà không đổi scene, quest, save hoặc economy. 017F là bước nhỏ tiếp theo cho final art/mép vườn/collider/ánh sáng. Mục tiêu thiết kế: trong một khung bám luôn thấy một đích có ý nghĩa hoặc hướng đi tới đích; tuyến chính không có đoạn sân dài không mang thông tin. Chưa tuyên bố có số đo playtest thời gian đi thực tế hay nghiệm thu art cuối.
+017F đã nối bốn ca của017E vào lighting presentation và giữ scene/quest/save/economy bất biến. Mục tiêu thiết kế vẫn là trong một khung bám luôn thấy một đích có ý nghĩa hoặc hướng đi tới đích; tuyến chính không có đoạn sân dài không mang thông tin. Chưa tuyên bố có số đo playtest thời gian đi thực tế hay nghiệm thu art cuối vì workspace không có browser và chưa có reviewer độc lập.
 
 ## Bảo toàn tiến trình
 

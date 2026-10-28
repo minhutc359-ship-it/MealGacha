@@ -64,6 +64,7 @@ import {
   renderAmbientSprites,
 } from "./AmbientLayer"
 import { zoneById } from "../../src/aw2/world/maps"
+import { createWorldPolishLayer } from "./WorldPolishLayer"
 
 /** Three remaining regions share authored layers; committed progress/economy stay read-only. */
 export function JourneyLandscape({
@@ -143,7 +144,7 @@ export function JourneyLandscape({
     camera.current = null
     void (async () => {
       try {
-        const { Application, Assets, Sprite, Texture, Rectangle } =
+        const { Application, Assets, Sprite, Texture, Rectangle, Graphics } =
           await import("pixi.js")
         const keys = Object.keys(scene.assets).filter(
           (key) =>
@@ -231,6 +232,11 @@ export function JourneyLandscape({
           backdrop.zIndex = -1000
           next.stage.addChild(backdrop)
         }
+        const polish = createWorldPolishLayer(
+          next.stage,
+          world.zoneId,
+          Graphics,
+        )
         const npcSprites = createNpcSprites(
           loadedNpc,
           { Sprite, Texture, Rectangle },
@@ -315,6 +321,12 @@ export function JourneyLandscape({
             ticker.deltaMS,
             pause.current,
             reduced.matches,
+          )
+          next.canvas.dataset.worldPolish = JSON.stringify(
+            polish.render(patrolRef.current?.lifeMs ?? 0, npcElapsed, {
+              paused: pause.current,
+              reduced: reduced.matches,
+            }),
           )
           const view = landscapeCamera(
             now,

@@ -1,5 +1,7 @@
 # Task board
 
+**017F VERIFIED development với giới hạn, 19/20 kế hoạch:** 6 profile zone;4 ca ambient theo NPC life; mép cảnh khớp bounds và mở khe mọi cổng; bóng collider parity;12 light pool; pause/reduced/no-save;3 renderer dùng chung telemetry; không media/dependency. Full2.091unit/150files, focused163/10files, hai typecheck/build, package/release/assets/budget PASS; artifact141.114.279bytes/370files. Browser NOT_RUN do không có Playwright/Chromium. **NEXT018C:** scene-level chunk/media và production durability; sau đó playtest/device/balance/rights theo roadmap. [Evidence](evidence/AW2-017F.md).
+
 **018B DONE/VERIFIED development với giới hạn, 19/20 kế hoạch:** selective public packaging; AW2/public SHA-256 inventories; chest food/music/portrait/core assets; no legacy media; isolated chest CSS; lazy chest code/CSS; AW2-only offline core; WAV warm cache; 180MB hard verifier; server build gate; review compatibility. Artifact141.108.610bytes/370files (-53,02%), offline1.454.684/23; full2.045unit/149files, focused63, types/build/release/assets PASS. Fresh browser NOT_RUN do Chromium unavailable; retained236 checks018A cho UI/gameplay không đổi. **NEXT017F** final art; optional018C scene-level AW2 media/chunk split. [Evidence](evidence/AW2-018B.md).
 
 **018A DONE/VERIFIED với 18 kế hoạch trong một commit:** default/Vercel build→AW2; legacy routes→AW2; exact chest allowlist; standalone original chest; production asset rewrite/filter; offline/release guard; save isolation; review build; full2.018unit và236browser PASS. **NEXT018B:** giảm payload/cold-load dưới target300MB; **017F** final art/mép vườn/collider/ánh sáng vẫn mở. [Evidence](evidence/AW2-018A.md).
@@ -174,7 +176,7 @@ Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạ
 | AW2-017B | BA/story/mechanic/animation/tester/scretary | Functional Phố rooms, original NPC relocation, scene-aware quest routes/save8 | VERIFIED development / source published after owner confirmation; [evidence](evidence/AW2-017B.md) |
 | AW2-017C–D | BA/story/mechanic/animation/tester/scretary | Sân/bếp và step portals/field props | VERIFIED;017C/017D evidence |
 | AW2-017E | BA/story/mechanic/animation/tester/scretary | NPC life clock/activity contracts | VERIFIED development; [017E evidence](evidence/AW2-017E.md) |
-| AW2-017F | BA/story/mechanic/animation/tester/scretary | Final art/mép vườn/collider/ánh sáng | PLANNED; phase contract and art acceptance required |
+| AW2-017F | BA/story/mechanic/animation/tester/scretary | Mép cảnh/collider/ánh sáng sáu zone | VERIFIED development with limitation; technical contract complete, fresh browser/independent art acceptance open; [evidence](evidence/AW2-017F.md) |
 | AW2-000 | scretary/BA | Branch, canon/docs and seven agent skills; Git readback verified | VERIFIED |
 | AW2-001 | mechanic/BA/tester | Isolated save/reset; read-only v1/v2/v3→v4 migration | Foundation MERGED; v4/authority/economy regression VERIFIED in AW2-013A at a40217a |
 | AW2-002 | story/BA | 6-zone / 8-NPC / 4-quest bible; owner approved D14 | MERGED approved specification + original review history; runtime partial |

@@ -1,4 +1,6 @@
-# Handoff —2026-10-28 / AW2-018B
+# Handoff —2026-10-28 / AW2-017F
+
+017F hoàn tất19/20 hạng mục polish world trong một commit:6profile/4ca ambient, mép khớp bounds và chừa đúng cổng, collider shadow từ authority,12light pool,3renderer chung, pause/reduced/no-save. Full2.091unit/150files, focused163/10files, hai types/builds, package/release/assets/budget PASS; artifact141.114.279bytes/370files (+5.669). Browser NOT_RUN vì thiếu Playwright/Chromium; không gọi là PASS. Demo90/product≈40% giữ nguyên; next018C scene payload/durability. Dự báo sau commit:5–7 commit lớn tới production candidate web,14–20 tới full product; không deploy/đổi master/rpg. [Bằng chứng](evidence/AW2-017F.md).
 
 018B hoàn tất19/20 hạng mục production package trong một commit: tắt wholesale public, allowlist+SHA-256 cho183public/153AW2 file, cô lập CSS Rương khỏi battle legacy, root/offline không eager-load rương, hard gate180MB nằm trong `pnpm build`. Artifact141.108.610bytes/370files (-53,02%); offline1.454.684bytes/23URL. Full2.045unit/149files, focused63, hai types/builds, release/assets/budget PASS. Fresh browser018B NOT_RUN vì Chromium/CDN/localhost bị chặn; giữ236browser018A cho gameplay/UI không đổi, không gọi là lượt mới. Không deploy/đổi master/rpg; next017F hoặc018C. [Bằng chứng](evidence/AW2-018B.md).
 

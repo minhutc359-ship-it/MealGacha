@@ -3,12 +3,12 @@
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
   "version": "5.9.23",
-  "bytes": 141108610,
+  "bytes": 141114279,
   "files": 370,
   "byType": {
     "js": {
       "files": 26,
-      "bytes": 2108391
+      "bytes": 2114060
     },
     "css": {
       "files": 4,
@@ -56,7 +56,7 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2276109,
+    "Application JS/CSS": 2281778,
     "Other and legal": 124524759,
     "Brand": 229534,
     "Shared character atlases": 1731768,
@@ -64,7 +64,7 @@
     "Spirit RPG art/audio/video": 4751008,
     "TCG art/audio": 104970
   },
-  "js_gzip": 596107,
+  "js_gzip": 598171,
   "css_gzip": 36684,
   "largest": [
     {
@@ -118,19 +118,19 @@
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 1454684,
+    "bytes": 1460353,
     "urls": 23,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 10545316
+    "remainingBytes": 10539647
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 178891390
+    "remainingBytes": 178885721
   }
 }

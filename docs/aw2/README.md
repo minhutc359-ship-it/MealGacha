@@ -1,5 +1,7 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**AW2-017F hiện hành:** production AW2 có lớp polish dùng chung cho sáu zone: mép cảnh/cổng, bóng collider,12light pool và4ca ambient theo NPC life. Full2.091unit/150files, hai typecheck/build/package/release PASS; không đổi save/gameplay và không thêm media. Browser fresh/independent art/device vẫn mở. [Task](tasks/AW2-017F.md) · [Evidence](evidence/AW2-017F.md).
+
 **Production build trên nhánh AW2 nay là game mới.** `pnpm build` tạo `dist/` với AW2 tại `/`; mọi route main cũ rơi về AW2 và chỉ `/chest`/`/chest/` mở Rương Vị Giác original. `pnpm build:aw2` vẫn tạo review nhiều entry ở `dist-aw2/`. Media production dùng `/assets/aw2`, không ship PNG/tệp ẩn/authoring JSON. [Task018A](tasks/AW2-018A.md) · [Bằng chứng](evidence/AW2-018A.md).
 
 Kiểm chứng018A:2.018unit/148files,hai typecheck/build,46browser cutover+190hành trình compiled,153runtime parity/0unexpected errors. Static300.366.505bytes đã vượt target cảnh báo300MB nhưng dưới hard limit320MB; ưu tiên tối ưu payload/cold-load trước media lớn tiếp theo. Không có deploy hoặc thay đổi `master`/`rpg` trong task này.

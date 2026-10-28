@@ -1,5 +1,7 @@
 # PR tích hợp kế tiếp: demo100% và sản phẩm45%
 
+**Dự báo hiện hành sau AW2-017F (2026-10-28):** nếu tiếp tục gom tối thiểu15 kế hoạch kỹ thuật mỗi commit, còn khoảng **5–7 commit lớn** để có production candidate web có thể đưa cho người chơi độc lập, và **14–20 commit lớn** để đạt phạm vi product đầy đủ hiện mô tả. Khoảng14–20 bao gồm các batch character DoD, balance/economy/gacha decision, durability/offline/save, art/audio polish, device/FPS/accessibility, human blocker fixes, rights và release. Đây không phải deadline hay số commit cố định: gate art/rights/người chơi/thiết bị có thể tạo thêm vòng sửa. Next engineering commit là **AW2-018C** scene-level media/chunk + cold-load/durability; không tự đóng D18.
+
 **Ưu tiên owner2026-10-24 (D20): tiếp tục hoàn thiện, gác phần nghiệm thu.**006G triển khai khu khởi đầu Làng Giao Ước; việc tiếp theo là Phòng Kho (bảng dấu hơi/rương/đường qua Lửa), sau đó Sân/Phố. Không đặt010C/011A làm bước công việc kế tiếp trong lúc phát triển; các gate chưa quan sát vẫn NOT_RUN, D18outgoing PR không tự đạt. Demo90/product40 giữ nguyên. [Làng](LANG_GIAO_UOC.md), [task](tasks/AW2-006G.md).
 
 Các NEXT/ưu tiên bên dưới là lịch sử, đọc theo006G/D20 ở trên.
