@@ -80,8 +80,8 @@ describe("018B selective production public assets", () => {
   })
 })
 
-describe("018B offline code graph", () => {
-  it("preloads the entry and AW2 graph while keeping chest lazy", () => {
+describe("018C offline code graph", () => {
+  it("preloads entry and static AW2 dependencies while keeping scene/chest chunks lazy", () => {
     const chunk = (
       modules: string[],
       options: Partial<{
@@ -103,9 +103,9 @@ describe("018B offline code graph", () => {
       }),
       "assets/aw2.js": chunk(["/dev/aw2/world.tsx"], {
         imports: ["assets/pixi.js"],
-        dynamicImports: ["assets/aw2-battle.js"],
+        dynamicImports: ["assets/aw2-scene.js"],
       }),
-      "assets/aw2-battle.js": chunk(["/src/aw2/battle.ts"]),
+      "assets/aw2-scene.js": chunk(["/dev/aw2-scenes/VillageLandscape.tsx"]),
       "assets/pixi.js": chunk(["/node_modules/pixi.js/index.mjs"]),
       "assets/original-chest.js": chunk(["/src/OriginalChestApp.tsx"]),
       "assets/original-chest.css": { type: "asset", source: "" },
@@ -113,18 +113,20 @@ describe("018B offline code graph", () => {
     })
     expect(names).toEqual([
       "assets/app.css",
-      "assets/aw2-battle.js",
       "assets/aw2.js",
       "assets/entry.js",
       "assets/pixi.js",
     ])
   })
 
-  it("allows AW2 WAV warming without broadening player storage scope", () => {
+  it("warms visited media and lazy code without broadening player storage scope", () => {
     const worker = readFileSync("web-service-worker.js", "utf8")
     const client = readFileSync("src/infrastructure/web/offline.ts", "utf8")
     expect(worker).toContain("webp|png|jpg|mp3|wav")
     expect(client).toContain("webp|png|jpe?g|mp3|wav")
+    expect(worker).toContain("wav|js|css")
+    expect(client).toContain("wav|js|css")
+    expect(client).toContain("warmPasses >= 2")
     expect(worker).not.toContain("localStorage")
     expect(worker).not.toContain("indexedDB")
   })

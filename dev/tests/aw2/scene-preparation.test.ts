@@ -1,11 +1,17 @@
 import { describe, expect, it, vi } from "vitest"
-import { existsSync } from "node:fs"
-import { worldAssetUrls } from "@/aw2/assets/worldAssets"
+import { existsSync, readFileSync } from "node:fs"
+import {
+  worldAssetUrls,
+  worldLeaderAssetUrls,
+  worldSceneAssetGroups,
+} from "@/aw2/assets/worldAssets"
 import { prepareScene } from "@/aw2/assets/prepareScene"
 import { newWorldProgress } from "@/aw2/world/model"
 import { ZONE_IDS, STARTER_TEAM } from "@/aw2/world/ids"
 import { PATROL_VISUAL } from "@/aw2/assets/npcPatrol"
 import { ROSTER_ASSETS } from "@/aw2/assets/roster"
+import { ROOM_IDS } from "@/aw2/world/interiorLayout"
+import { worldRendererFamily } from "../../aw2/worldRendererLoader"
 
 function deferred<T>() {
   let resolve: (value: T) => void = () => {
@@ -229,5 +235,61 @@ describe("016C exact destination asset preparation", () => {
     await expect(prepareScene(opts)).rejects.toMatchObject({
       name: "AbortError",
     })
+  })
+})
+
+describe("018C scene delivery catalog", () => {
+  it("selects one deterministic renderer family for every zone and room", () => {
+    expect(
+      ZONE_IDS.map((zoneId) =>
+        worldRendererFamily({ ...newWorldProgress(), zoneId }),
+      ),
+    ).toEqual(["village", "journey", "journey", "journey", "flat", "flat"])
+    expect(
+      ROOM_IDS.map((roomId) =>
+        worldRendererFamily({
+          ...newWorldProgress(),
+          interior: { roomId, x: 64, y: 192, facing: "right" },
+        }),
+      ),
+    ).toEqual(ROOM_IDS.map(() => "interior"))
+  })
+
+  it("catalogs six zones and six rooms without duplicating leader sprites", () => {
+    const groups = worldSceneAssetGroups()
+    const leaders = worldLeaderAssetUrls()
+    expect(groups.map((group) => group.sceneId)).toEqual([
+      ...ZONE_IDS,
+      ...ROOM_IDS,
+    ])
+    expect(leaders).toHaveLength(12)
+    expect(new Set(leaders).size).toBe(leaders.length)
+    for (const group of groups) {
+      expect(group.urls.length).toBeGreaterThan(0)
+      expect(group.urls).toEqual([...new Set(group.urls)].sort())
+      expect(group.urls.some((url) => leaders.includes(url))).toBe(false)
+      expect(
+        group.urls.every(
+          (url) => url.startsWith("/dev/aw2/assets/") && url.endsWith(".webp"),
+        ),
+      ).toBe(true)
+    }
+  })
+
+  it("keeps scene modules dynamic and starts renderer/Pixi loading together", () => {
+    const canvas = readFileSync("dev/aw2/WorldCanvas.tsx", "utf8")
+    const loader = readFileSync("dev/aw2/worldRendererLoader.tsx", "utf8")
+    const destination = readFileSync("dev/aw2/prepareDestination.ts", "utf8")
+    for (const renderer of [
+      "VillageLandscape",
+      "JourneyLandscape",
+      "TeaRoomCanvas",
+    ]) {
+      expect(canvas).not.toContain(`from \"./${renderer}\"`)
+      expect(loader).toContain(`import(\"../aw2-scenes/${renderer}\")`)
+    }
+    expect(canvas).toContain("<Suspense")
+    expect(destination).toContain("Promise.all([")
+    expect(destination).toContain("preloadWorldRenderer(world)")
   })
 })

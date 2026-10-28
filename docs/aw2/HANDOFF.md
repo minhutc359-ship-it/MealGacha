@@ -1,4 +1,6 @@
-# Handoff —2026-10-28 / AW2-017F
+# Handoff —2026-10-28 / AW2-018C
+
+018C hoàn tất batch1/10 với19/20 kế hoạch: scene-level lazy delivery, parallel preload,12-group inventory, static-only offline core, runtime cache và hard cold-shell/package gates; Rương original giữ lazy portrait graph riêng. Full2.094unit/150files, focused77,hai typecheck/build, package/release/assets/budget PASS; artifact141.435.007bytes/373files, offline1.436.750bytes/23URL. Browser NOT_RUN vì thiếu Chromium binary. Không đổi gameplay/save/economy/media/dependency. Demo90/product≈40% giữ nguyên. Còn khoảng9commit lớn có điều kiện; next batch2 PWA install/update/recovery, quota và cache cross-version. [Roadmap](PRODUCTION_10_COMMIT.md) · [Bằng chứng](evidence/AW2-018C.md).
 
 017F hoàn tất19/20 hạng mục polish world trong một commit:6profile/4ca ambient, mép khớp bounds và chừa đúng cổng, collider shadow từ authority,12light pool,3renderer chung, pause/reduced/no-save. Full2.091unit/150files, focused163/10files, hai types/builds, package/release/assets/budget PASS; artifact141.114.279bytes/370files (+5.669). Browser NOT_RUN vì thiếu Playwright/Chromium; không gọi là PASS. Demo90/product≈40% giữ nguyên; next018C scene payload/durability. Dự báo sau commit:5–7 commit lớn tới production candidate web,14–20 tới full product; không deploy/đổi master/rpg. [Bằng chứng](evidence/AW2-017F.md).
 

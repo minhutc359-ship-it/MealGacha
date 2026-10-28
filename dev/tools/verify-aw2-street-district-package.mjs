@@ -15,9 +15,9 @@ const base = "7b676ae29398ff4f6be4785e8a876bfb92cf3aed",
 const allowed = new Set([
   "dev/aw2/GamePanels.tsx",
   "dev/aw2/JourneyGuide.tsx",
-  "dev/aw2/JourneyLandscape.tsx",
-  "dev/aw2/TeaRoomCanvas.tsx",
-  "dev/aw2/VillageLandscape.tsx",
+  "dev/aw2-scenes/JourneyLandscape.tsx",
+  "dev/aw2-scenes/TeaRoomCanvas.tsx",
+  "dev/aw2-scenes/VillageLandscape.tsx",
   "dev/aw2/npcSprites.ts",
   "src/aw2/assets/journeyScenes.ts",
   "src/aw2/assets/npcPatrol.ts",
@@ -52,6 +52,11 @@ const extra = [
   "pnpm-lock.yaml",
   "vite.config.ts",
 ]
+const moved = new Map([
+  ["dev/aw2/JourneyLandscape.tsx", "dev/aw2-scenes/JourneyLandscape.tsx"],
+  ["dev/aw2/TeaRoomCanvas.tsx", "dev/aw2-scenes/TeaRoomCanvas.tsx"],
+  ["dev/aw2/VillageLandscape.tsx", "dev/aw2-scenes/VillageLandscape.tsx"],
+])
 const owned = (p) =>
   p.startsWith("src/aw2/") || p.startsWith("dev/aw2/") || extra.includes(p)
 const blob = (p) => {
@@ -68,24 +73,36 @@ const entries = execFileSync("git", ["ls-tree", "-r", base], {
     return { path, sha: meta.split(" ")[2] }
   })
   .filter((f) => owned(f.path))
-const known = new Set(entries.map((f) => f.path)),
+const known = new Set(
+    entries.flatMap((f) => [f.path, moved.get(f.path)].filter(Boolean)),
+  ),
   changed = []
 for (const f of entries) {
-  assert.ok(existsSync(f.path), `missing original ${f.path}`)
-  if (blob(f.path) !== f.sha) {
-    assert.ok(allowed.has(f.path), `unapproved runtime change ${f.path}`)
-    changed.push(f.path)
+  const localPath = moved.get(f.path) ?? f.path
+  assert.ok(existsSync(localPath), `missing original ${f.path}`)
+  if (blob(localPath) !== f.sha) {
+    assert.ok(
+      allowed.has(f.path) || allowed.has(localPath),
+      `unapproved runtime change ${localPath}`,
+    )
+    changed.push(localPath)
   }
 }
-for (const p of [...filesIn("src/aw2"), ...filesIn("dev/aw2")])
+for (const p of [
+  ...filesIn("src/aw2"),
+  ...filesIn("dev/aw2"),
+  ...filesIn("dev/aw2-scenes"),
+])
   if (!known.has(p)) {
     assert.ok(allowed.has(p), `unapproved new runtime file ${p}`)
     changed.push(p)
   }
 assert.equal(changed.length, 22)
-const inputs = [...filesIn("src/aw2"), ...filesIn("dev/aw2")].filter((p) =>
-  /\.(ts|tsx|css|html|json|webp|wav)$/.test(p),
-)
+const inputs = [
+  ...filesIn("src/aw2"),
+  ...filesIn("dev/aw2"),
+  ...filesIn("dev/aw2-scenes"),
+].filter((p) => /\.(ts|tsx|css|html|json|webp|wav)$/.test(p))
 inputs.push(...extra.filter((p) => p !== "vite.config.ts"))
 const hash = createHash("sha256")
 for (const p of inputs.sort())

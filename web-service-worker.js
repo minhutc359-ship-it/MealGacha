@@ -25,10 +25,10 @@ self.addEventListener('activate', event => event.waitUntil((async () => {
 self.addEventListener('message', event => {
   if (event.data?.type === 'WEB_VERSION') event.ports?.[0]?.postMessage(VERSION);
   if (event.data?.type === 'APPLY_WEB_UPDATE') event.waitUntil(self.skipWaiting());
-  if (event.data?.type === 'WARM_WEB_ASSETS' && Array.isArray(event.data.urls)) event.waitUntil(Promise.all(event.data.urls.slice(0,32).map(async value => {
+  if (event.data?.type === 'WARM_WEB_ASSETS' && Array.isArray(event.data.urls)) event.waitUntil(Promise.all(event.data.urls.slice(0,48).map(async value => {
     try {
       const url = new URL(value, self.location.origin);
-      if(url.origin !== self.location.origin || !url.pathname.startsWith('/assets/') || !/\.(webp|png|jpg|mp3|wav)$/.test(url.pathname)) return;
+      if(url.origin !== self.location.origin || !url.pathname.startsWith('/assets/') || !/\.(webp|png|jpg|mp3|wav|js|css)$/.test(url.pathname)) return;
       const request = new Request(url.href, {credentials:'same-origin'});
       const cache = await caches.open(MEDIA);
       if(!await cache.match(request)) await putMedia(request, await fetch(request));

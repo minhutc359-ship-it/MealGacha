@@ -3,6 +3,10 @@ import { cp, lstat, mkdir, readFile, readdir } from "node:fs/promises"
 import { basename, extname, join, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 import type { Plugin, ResolvedConfig } from "vite"
+import {
+  worldLeaderAssetUrls,
+  worldSceneAssetGroups,
+} from "../../src/aw2/assets/worldAssets"
 
 export const AW2_SOURCE_ASSET_PREFIX = "/dev/aw2/assets/"
 export const AW2_PRODUCTION_ASSET_PREFIX = "/assets/aw2/"
@@ -58,6 +62,35 @@ async function runtimeInventory(source: string) {
   return assets.sort((a, b) => a.path.localeCompare(b.path))
 }
 
+function productionAssetCatalog(assets: RuntimeAsset[]) {
+  const byPath = new Map(assets.map((asset) => [asset.path, asset]))
+  const productionUrls = (urls: readonly string[]) =>
+    [...new Set(urls)]
+      .map((url) => {
+        if (!url.startsWith(AW2_SOURCE_ASSET_PREFIX))
+          throw Error(`Unexpected AW2 scene asset URL: ${url}`)
+        const relative = url.slice(AW2_SOURCE_ASSET_PREFIX.length)
+        if (!byPath.has(relative))
+          throw Error(`AW2 scene catalog asset is not packaged: ${relative}`)
+        return `${AW2_PRODUCTION_ASSET_PREFIX}${relative}`
+      })
+      .sort()
+  const bytesFor = (urls: readonly string[]) =>
+    urls.reduce((total, url) => {
+      const relative = url.slice(AW2_PRODUCTION_ASSET_PREFIX.length)
+      return total + (byPath.get(relative)?.bytes ?? 0)
+    }, 0)
+  const sceneGroups = worldSceneAssetGroups().map((group) => {
+    const urls = productionUrls(group.urls)
+    return { sceneId: group.sceneId, urls, bytes: bytesFor(urls) }
+  })
+  const leaderUrls = productionUrls(worldLeaderAssetUrls())
+  return {
+    sceneGroups,
+    worldLeaders: { urls: leaderUrls, bytes: bytesFor(leaderUrls) },
+  }
+}
+
 /** Production-only URL rewrite and source-safe runtime asset copy. */
 export function aw2ProductionBuild(): Plugin {
   let config: ResolvedConfig
@@ -80,16 +113,18 @@ export function aw2ProductionBuild(): Plugin {
     },
     async generateBundle() {
       const assets = await runtimeInventory(join(root, "dev/aw2/assets"))
+      const catalog = productionAssetCatalog(assets)
       this.emitFile({
         type: "asset",
         fileName: AW2_PRODUCTION_INVENTORY,
         source: `${JSON.stringify(
           {
-            schema: 1,
+            schema: 2,
             sourcePrefix: AW2_SOURCE_ASSET_PREFIX,
             productionPrefix: AW2_PRODUCTION_ASSET_PREFIX,
             assets,
             bytes: assets.reduce((total, asset) => total + asset.bytes, 0),
+            ...catalog,
           },
           null,
           2,

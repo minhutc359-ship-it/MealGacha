@@ -85,6 +85,7 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-item-grid dt { font-size: .85rem; }
 .aw2-item-grid dd { font-size: 1.4rem; color: #f2d59a; }
 .aw2-inventory summary { cursor: pointer; min-height: 44px; padding: .6rem 0; }
+.aw2-scene-loading { min-height: 384px; display: grid; place-items: center; color: #f4dfac; background: #182b27; }
 .aw2-ultimate-grid article { grid-template-columns: 64px minmax(0,1fr); }
 .aw2-ultimate-grid button { grid-column: 2; width: 100%; justify-self: stretch; }
 @media (max-width: 600px) {

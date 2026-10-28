@@ -1,13 +1,13 @@
-import { PlaceCue, hideOverlappingPlaceCues } from "./PlaceCue"
+import { PlaceCue, hideOverlappingPlaceCues } from "../aw2/PlaceCue"
 import { placeAffordance } from "../../src/aw2/world/placeAffordance"
 import {
   WalkingMarker,
   updateWalkingMarker,
   worldVisibleBounds,
-} from "./WalkingTarget"
+} from "../aw2/WalkingTarget"
 import { useEffect, useRef, useState } from "react"
 import type { Texture, Ticker } from "pixi.js"
-import type { WorldCanvasProps } from "./worldCanvasTypes"
+import type { WorldCanvasProps } from "../aw2/worldCanvasTypes"
 import { roomScene } from "../../src/aw2/assets/teaRoom"
 import { roomById } from "../../src/aw2/world/interiorLayout"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
@@ -25,14 +25,14 @@ import {
   SceneLifetime,
   initializeWorldScene,
   firstWorldFrame,
-} from "./sceneLifecycle"
+} from "../aw2/sceneLifecycle"
 import {
   loadNpcTextures,
   createNpcSprites,
   renderNpcSprites,
-} from "./npcSprites"
+} from "../aw2/npcSprites"
 import { advanceNpcClock } from "../../src/aw2/assets/npcMotion"
-import { RoomWaypoints } from "./RoomWaypoints"
+import { RoomWaypoints } from "../aw2/RoomWaypoints"
 import { worldObjects } from "../../src/aw2/world/npcPatrol"
 
 /** Renderer only: rules/store own room movement, actions and the outside checkpoint. */

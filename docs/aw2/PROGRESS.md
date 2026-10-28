@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+018C hoàn thành **19/20 kế hoạch production engineering** và là batch1/10: scene delivery theo nhu cầu, inventory12cảnh, offline core và hard build gates. **Demo90% / product≈40%(35–45%) không đổi** vì không tự cấp điểm cho character DoD, art/rights, người chơi hay thiết bị. Theo [roadmap production](PRODUCTION_10_COMMIT.md), còn **khoảng9commit lớn** tới web1.0 nếu scope đóng băng và gate bên ngoài được cung cấp đúng lúc; blocker nghiệm thu có thể làm tăng số. [Evidence](evidence/AW2-018C.md).
+
 017F hoàn thành **19 kế hoạch kỹ thuật** cho phối cảnh sáu zone: mép/cổng/collider/light/phase/lifecycle/renderer/test/build. **Demo90% / product≈40%(35–45%) không đổi**: visual contract đã tốt hơn nhưng chưa có browser fresh, nghiệm thu art/người chơi/thiết bị/rights/release;0/12 nhân vật đạt full DoD và D11/D12 còn mở. Với nhịp commit lớn hiện tại, dự báo còn **5–7 commit tới production candidate web** hoặc **14–20 commit tới product đầy đủ**; không quy đổi tuyến tính từ40% và không tính trước gate ngoài. [Evidence](evidence/AW2-017F.md).
 
 018A hoàn thành **18 kế hoạch production cutover** và đưa AW2 thành default server artifact, chỉ giữ Rương Vị Giác original. **Demo90% / product≈40%(35–45%) không đổi**: build routing đã production-first nhưng final art, tối ưu payload, thiết bị/người chơi độc lập, rights và release còn mở. [Evidence](evidence/AW2-018A.md).

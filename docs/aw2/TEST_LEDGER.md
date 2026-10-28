@@ -1,5 +1,23 @@
 # Test ledger / change impact
 
+## AW2-018C scene delivery / 2026-10-28
+
+Base remote `570d0490dcfbe0962eeaa56ba1ee2d9bb9d9f778`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi gameplay/save/schema/quest/economy/media/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Focused scene/package/offline | PASS |4files /77tests |
+| Full Vitest | PASS |150files /2.094tests |
+| Root/dev typecheck | PASS |Both exit0 |
+| AW2 review build | PASS |982modules /7HTML entry |
+| Production build/package | PASS |1.121modules;141.435.007bytes/373files;183public+153AW2runtime |
+| Offline/scene graph | PASS |23URL/1.436.750bytes;12groups;3scene chunks;1lazy chest portrait; no scene/Pixi/chest in core |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS gzip694.053/CSS36.709;0leaks |
+| Fresh browser | NOT_RUN |Playwright resolves but bundled Chromium path is missing; no Chromium/Chrome executable |
+| React review | PASS |Module-level lazy/Suspense; deterministic family; direct dynamic imports; parallel renderer/Pixi/media preload |
+
+Diagnostic failures are excluded: old offline fixture expected media-only warming; initial675k JS budget exposed newly emitted required lazy chest portrait graph; two rejected chunk experiments increased core. Final source uses the stable broad AW2 group with scene renderers outside that group. [Evidence](evidence/AW2-018C.md).
+
 ## AW2-017F world polish / 2026-10-28
 
 Base remote `aea1a99c5c2481e4b0a5ff25aa8a63768f773ad9`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.7/Vite8.0.5/Vitest5.0.1. Presentation-only change; no save/schema/collider/quest/economy/media/dependency change.

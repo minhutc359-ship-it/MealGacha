@@ -5,7 +5,7 @@ import {
   updateWalkingMarker,
   worldVisibleBounds,
 } from "./WalkingTarget"
-import { useEffect, useRef, useState } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import type { Texture } from "pixi.js"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { sampleWorldFrame } from "../../src/aw2/assets/animation"
@@ -38,9 +38,6 @@ import {
   villageWaypoints,
   villageWellAlpha,
 } from "../../src/aw2/assets/village"
-import { VillageLandscape } from "./VillageLandscape"
-import { JourneyLandscape } from "./JourneyLandscape"
-import { journeyScene } from "../../src/aw2/assets/journeyScenes"
 import { interiorScene } from "../../src/aw2/assets/interiorLandscapes"
 import {
   landscapeCamera,
@@ -51,7 +48,12 @@ import {
   type VillageViewMode,
 } from "../../src/aw2/assets/villageView"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
-import { TeaRoomCanvas } from "./TeaRoomCanvas"
+import {
+  InteriorWorldRenderer,
+  JourneyWorldRenderer,
+  VillageWorldRenderer,
+  worldRendererFamily,
+} from "./worldRendererLoader"
 import {
   SceneLifetime,
   initializeWorldScene,
@@ -60,13 +62,26 @@ import {
 import { createWorldPolishLayer } from "./WorldPolishLayer"
 
 export function WorldCanvas(props: WorldCanvasProps) {
-  if (props.world.interior) return <TeaRoomCanvas {...props} />
-  return props.world.zoneId === VILLAGE_SCENE.zoneId ? (
-    <VillageLandscape {...props} />
-  ) : journeyScene(props.world.zoneId) ? (
-    <JourneyLandscape {...props} />
-  ) : (
-    <FlatWorldCanvas {...props} />
+  const family = worldRendererFamily(props.world)
+  if (family === "flat") return <FlatWorldCanvas {...props} />
+  const renderer =
+    family === "interior" ? (
+      <InteriorWorldRenderer {...props} />
+    ) : family === "village" ? (
+      <VillageWorldRenderer {...props} />
+    ) : (
+      <JourneyWorldRenderer {...props} />
+    )
+  return (
+    <Suspense
+      fallback={
+        <div className="aw2-scene-loading" role="status" aria-live="polite">
+          Đang dựng cảnh…
+        </div>
+      }
+    >
+      {renderer}
+    </Suspense>
   )
 }
 

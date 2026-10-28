@@ -76,6 +76,7 @@ for (const file of publicManifest.files) {
 const aw2Manifest = JSON.parse(
   readFileSync(path.join(dist, "assets/aw2/inventory.json"), "utf8"),
 )
+assert.equal(aw2Manifest.schema, 2)
 assert.equal(aw2Manifest.productionPrefix, "/assets/aw2/")
 assert.equal(
   aw2Manifest.bytes,
@@ -87,6 +88,48 @@ for (const file of aw2Manifest.assets) {
   assert.equal(size(output), file.bytes, `size changed for ${output}`)
   assert.equal(digest(output), file.sha256, `hash changed for ${output}`)
 }
+const aw2ByUrl = new Map(
+  aw2Manifest.assets.map((file) => [
+    `${aw2Manifest.productionPrefix}${file.path}`,
+    file,
+  ]),
+)
+const catalogBytes = (urls) =>
+  urls.reduce((sum, url) => sum + (aw2ByUrl.get(url)?.bytes ?? 0), 0)
+assert.equal(aw2Manifest.sceneGroups.length, 12)
+assert.equal(
+  new Set(aw2Manifest.sceneGroups.map((group) => group.sceneId)).size,
+  12,
+)
+for (const group of aw2Manifest.sceneGroups) {
+  assert.ok(group.urls.length > 0, `empty scene asset group: ${group.sceneId}`)
+  assert.deepEqual(group.urls, [...new Set(group.urls)].sort())
+  for (const url of group.urls) {
+    assert.ok(
+      url.startsWith(aw2Manifest.productionPrefix),
+      `non-production scene URL: ${url}`,
+    )
+    assert.ok(aw2ByUrl.has(url), `scene asset is absent from inventory: ${url}`)
+  }
+  assert.equal(group.bytes, catalogBytes(group.urls))
+}
+assert.equal(aw2Manifest.worldLeaders.urls.length, 12)
+assert.deepEqual(
+  aw2Manifest.worldLeaders.urls,
+  [...new Set(aw2Manifest.worldLeaders.urls)].sort(),
+)
+for (const url of aw2Manifest.worldLeaders.urls)
+  assert.ok(aw2ByUrl.has(url), `leader asset is absent from inventory: ${url}`)
+assert.equal(
+  aw2Manifest.worldLeaders.bytes,
+  catalogBytes(aw2Manifest.worldLeaders.urls),
+)
+for (const group of aw2Manifest.sceneGroups)
+  assert.deepEqual(
+    group.urls.filter((url) => aw2Manifest.worldLeaders.urls.includes(url)),
+    [],
+    `leader duplicated into scene group: ${group.sceneId}`,
+  )
 
 const forbidden = files.filter((file) =>
   /^(?:assets\/(?:autochess|culture5920|events|intro-manga5918|loading|manga5915|manga5916|v4)\/|assets\/music580\/(?!mode-chest\.mp3$)|assets\/rpg\/(?!spirit510\/portraits-\d+\.webp$)|assets\/characters\/(?!(?:(?:familiar594|rare595|rare596|regional5910|spring5911|starters590)\/[^/]+-portrait|chefs593\/chef-[a-z0-9-]+-neutral)\.webp$)|assets\/tcg\/(?!characters\/anime\/bach\.webp$))/.test(
@@ -135,6 +178,35 @@ for (const url of core) {
     `service worker core URL does not exist: ${url}`,
   )
 }
+const coreBytes = core.reduce((sum, url) => {
+  const file = url === "/" ? "index.html" : url.slice(1)
+  return sum + size(file)
+}, 0)
+assert.ok(coreBytes < 2_000_000, `offline cold shell is ${coreBytes} bytes`)
+const sceneChunks = files.filter((file) =>
+  /assets\/(?:VillageLandscape|JourneyLandscape|TeaRoomCanvas)-[^/]+\.js$/.test(
+    file,
+  ),
+)
+assert.equal(sceneChunks.length, 3, `scene chunks: ${sceneChunks.join(", ")}`)
+for (const chunk of sceneChunks)
+  assert.ok(!core.includes(`/${chunk}`), `scene chunk was precached: ${chunk}`)
+const chestPortraitChunks = files.filter((file) =>
+  /assets\/spiritArt-[^/]+\.js$/.test(file),
+)
+assert.equal(
+  chestPortraitChunks.length,
+  1,
+  `original chest portrait chunks: ${chestPortraitChunks.join(", ")}`,
+)
+assert.ok(
+  !core.includes(`/${chestPortraitChunks[0]}`),
+  "original chest portrait graph returned to the AW2 cold shell",
+)
+assert.ok(
+  !core.some((url) => /pixi-renderer/.test(url)),
+  "Pixi renderer returned to the cold shell",
+)
 
 console.log(
   JSON.stringify({
@@ -146,5 +218,9 @@ console.log(
     aw2RuntimeFiles: aw2Manifest.assets.length,
     aw2RuntimeBytes: aw2Manifest.bytes,
     offlineCoreUrls: core.length,
+    offlineCoreBytes: coreBytes,
+    sceneGroups: aw2Manifest.sceneGroups.length,
+    sceneChunks: sceneChunks.length,
+    lazyChestPortraitChunks: chestPortraitChunks.length,
   }),
 )

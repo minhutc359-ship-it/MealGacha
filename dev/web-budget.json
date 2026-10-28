@@ -1,10 +1,11 @@
 {
-  "approvedOn": "2026-10-16",
+  "approvedOn": "2026-10-28",
   "releaseTarget": "Web 6.0",
   "units": "decimal bytes (1 MB = 1000000 bytes)",
   "staticTargetBytes": 300000000,
   "staticBudgetBytes": 320000000,
-  "jsGzipBudgetBytes": 675000,
+  "jsGzipBudgetBytes": 710000,
+  "jsBudgetNote": "AW2-018C accounts for the retained original chest portrait graph as a lazy route chunk; AW2 cold shell remains independently capped at 2 MB.",
   "initialTargetBytes": 8000000,
   "initialBudgetBytes": 12000000,
   "additionalAllocationBytes": 60000000,

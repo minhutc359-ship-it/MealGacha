@@ -20,29 +20,30 @@ function isChunk(value: unknown): value is BundleChunk {
   )
 }
 
-/** Entry + AW2 graph only. The original chest stays lazy until `/chest`. */
+/** Entry + the AW2 route's static graph. Scene renderers and chest stay lazy. */
 export function offlineCoreBundleNames(bundle: Record<string, unknown>) {
   const selected = new Set<string>()
-  const add = (name: string, dynamic = false) => {
+  const add = (name: string) => {
     if (selected.has(name)) return
     const output = bundle[name]
     if (!isChunk(output)) return
     selected.add(name)
-    for (const dependency of output.imports ?? []) add(dependency, dynamic)
-    if (dynamic)
-      for (const dependency of output.dynamicImports ?? [])
-        add(dependency, true)
+    for (const dependency of output.imports ?? []) add(dependency)
   }
   for (const [name, output] of Object.entries(bundle))
-    if (isChunk(output) && output.isEntry) add(name)
-  for (const [name, output] of Object.entries(bundle))
-    if (
-      isChunk(output) &&
-      Object.keys(output.modules ?? {}).some((id) =>
-        /[\\/](?:src[\\/]aw2|dev[\\/]aw2)[\\/]/.test(id),
-      )
-    )
-      add(name, true)
+    if (isChunk(output) && output.isEntry) {
+      add(name)
+      for (const target of output.dynamicImports ?? []) {
+        const dynamic = bundle[target]
+        if (
+          isChunk(dynamic) &&
+          Object.keys(dynamic.modules ?? {}).some((id) =>
+            /[\\/](?:src[\\/]aw2|dev[\\/]aw2)[\\/]/.test(id),
+          )
+        )
+          add(target)
+      }
+    }
   for (const name of Object.keys(bundle))
     if (
       name.endsWith(".css") &&

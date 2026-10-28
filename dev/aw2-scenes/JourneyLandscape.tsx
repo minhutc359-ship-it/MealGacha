@@ -1,4 +1,4 @@
-import { addDistrictGround } from "./districtGround"
+import { addDistrictGround } from "../aw2/districtGround"
 import {
   STREET_DISTRICT,
   streetFacadeTarget,
@@ -9,13 +9,13 @@ import {
   yardFacadeTarget,
 } from "../../src/aw2/assets/yardDistrict"
 import { ZONE_IDS } from "../../src/aw2/world/ids"
-import { PlaceCue, hideOverlappingPlaceCues } from "./PlaceCue"
+import { PlaceCue, hideOverlappingPlaceCues } from "../aw2/PlaceCue"
 import { placeAffordance } from "../../src/aw2/world/placeAffordance"
 import {
   WalkingMarker,
   updateWalkingMarker,
   worldVisibleBounds,
-} from "./WalkingTarget"
+} from "../aw2/WalkingTarget"
 import { useEffect, useRef, useState } from "react"
 import type { Texture } from "pixi.js"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
@@ -36,35 +36,35 @@ import {
   type VillageViewMode,
 } from "../../src/aw2/assets/villageView"
 import type { Waypoint } from "../../src/aw2/world/navigation"
-import type { WorldCanvasProps } from "./worldCanvasTypes"
+import type { WorldCanvasProps } from "../aw2/worldCanvasTypes"
 import { PANTRY_STOCK } from "../../src/aw2/world/pantryLayout"
 import {
   SceneLifetime,
   initializeWorldScene,
   firstWorldFrame,
-} from "./sceneLifecycle"
+} from "../aw2/sceneLifecycle"
 import { npcForEntity, advanceNpcClock } from "../../src/aw2/assets/npcMotion"
 import {
   loadNpcTextures,
   createNpcSprites,
   renderNpcSprites,
-} from "./npcSprites"
+} from "../aw2/npcSprites"
 import { settlementCameraSpec } from "../../src/aw2/assets/settlement"
 import {
   loadSettlementTextures,
   createSettlementSprites,
   renderSettlement,
   SettlementLandmarks,
-} from "./SettlementLayer"
-import { RoomWaypoints } from "./RoomWaypoints"
+} from "../aw2/SettlementLayer"
+import { RoomWaypoints } from "../aw2/RoomWaypoints"
 import {
   createAmbientSprites,
   loadAmbientTextures,
   releaseAmbientTextures,
   renderAmbientSprites,
-} from "./AmbientLayer"
+} from "../aw2/AmbientLayer"
 import { zoneById } from "../../src/aw2/world/maps"
-import { createWorldPolishLayer } from "./WorldPolishLayer"
+import { createWorldPolishLayer } from "../aw2/WorldPolishLayer"
 
 /** Three remaining regions share authored layers; committed progress/economy stay read-only. */
 export function JourneyLandscape({

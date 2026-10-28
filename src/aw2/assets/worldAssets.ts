@@ -1,5 +1,6 @@
-import type { WorldProgress } from "../world/model"
-import { ZONE_IDS } from "../world/ids"
+import { newWorldProgress, type WorldProgress } from "../world/model"
+import { SPIRIT_IDS, ZONE_IDS } from "../world/ids"
+import { ROOM_IDS, roomById } from "../world/interiorLayout"
 import { ROSTER_ASSETS } from "./roster"
 import { VILLAGE_SCENE } from "./village"
 import { journeyScene } from "./journeyScenes"
@@ -12,6 +13,42 @@ import { npcVisualsForScene } from "./npcPatrol"
 import { SETTLEMENT, settlementForZone } from "./settlement"
 import { AMBIENT_MOTION, ambientRegionsForZone } from "./ambientMotion"
 import { roomScene } from "./teaRoom"
+
+export interface WorldSceneAssetGroup {
+  sceneId: string
+  urls: string[]
+}
+
+/** Production catalog only; the live loader still requests the exact committed leader. */
+export function worldLeaderAssetUrls() {
+  return SPIRIT_IDS.map((id) => ROSTER_ASSETS[id].assets.world.url)
+}
+
+/** Stable environment/NPC requirements for all six outdoor zones and six rooms. */
+export function worldSceneAssetGroups(): WorldSceneAssetGroup[] {
+  const seed = newWorldProgress()
+  const worlds: Array<{ sceneId: string; world: WorldProgress }> = [
+    ...ZONE_IDS.map((zoneId) => ({
+      sceneId: zoneId,
+      world: { ...seed, zoneId },
+    })),
+    ...ROOM_IDS.map((roomId) => {
+      const room = roomById(roomId)
+      return {
+        sceneId: room.id,
+        world: {
+          ...seed,
+          zoneId: room.zoneId,
+          interior: { ...room.spawn },
+        },
+      }
+    }),
+  ]
+  return worlds.map(({ sceneId, world }) => ({
+    sceneId,
+    urls: worldAssetUrls(world).slice(1).sort(),
+  }))
+}
 
 /** Exact mandatory world textures; no portraits/battle/audio/source PNGs or future zones. */
 export function worldAssetUrls(world: Readonly<WorldProgress>): string[] {
