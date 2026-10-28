@@ -1,5 +1,9 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**Production build trên nhánh AW2 nay là game mới.** `pnpm build` tạo `dist/` với AW2 tại `/`; mọi route main cũ rơi về AW2 và chỉ `/chest`/`/chest/` mở Rương Vị Giác original. `pnpm build:aw2` vẫn tạo review nhiều entry ở `dist-aw2/`. Media production dùng `/assets/aw2`, không ship PNG/tệp ẩn/authoring JSON. [Task018A](tasks/AW2-018A.md) · [Bằng chứng](evidence/AW2-018A.md).
+
+Kiểm chứng018A:2.018unit/148files,hai typecheck/build,46browser cutover+190hành trình compiled,153runtime parity/0unexpected errors. Static300.366.505bytes đã vượt target cảnh báo300MB nhưng dưới hard limit320MB; ưu tiên tối ưu payload/cold-load trước media lớn tiếp theo. Không có deploy hoặc thay đổi `master`/`rpg` trong task này.
+
 017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).
 
 **AW2-017B VERIFIED development — Phố Đèn Lồng có công trình và NPC bên trong.** Giữ ba nhà: Quầy bữa sáng/Xưởng sửa ghế/Nhà bàn chơi; bỏ chín facade dư. Bốn NPC cũ vào đúng phòng, An và Em Đem Nước ở ngoài; đủ tám NPC toàn tuyến, không bản sao. Nhật ký dẫn qua cửa/ra phòng/đến NPC theo scene thật; cửa có dấu ký ức còn thiếu. Save8 đọc1–7 không ghi đè, nâng cấp khi lưu rõ ràng. [Bố cục và cách chơi](MAP_TUONG_TAC.md).

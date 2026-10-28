@@ -1,5 +1,7 @@
 # Soul of Meal AW2 — cập nhật 28/10/2026
 
+**AW2-018A VERIFIED:** 18 kế hoạch trong một commit chuyển default/server build sang AW2 và chỉ allowlist Rương Vị Giác original tại `/chest`. Legacy routes không mount UI cũ; save namespaces độc lập; review build, service worker, release guard và asset production riêng vẫn đạt. Full2.018unit/148files,hai typecheck/build,236browser,153runtime parity PASS; size300.366.505bytes dưới hard limit320MB nhưng đã có warning. Không deploy/đổi master/rpg; next018B payload/cold-load và017F final art. [Bằng chứng](evidence/AW2-018A.md).
+
 **AW2-017E VERIFIED:** gom 16 kế hoạch vào một commit—đồng hồ phiên bốn ca, 32 hoạt động cho tám NPC, HUD/Địa điểm/waypoint/dialog/renderer thống nhất và lifecycle transient/no-save. Full1.986unit/147files, focused165,380browser,hai typecheck/build,262asset parity PASS;0media/0unexpected errors. Demo90% / product≈40%(35–45%) giữ nguyên; next017F final art/mép vườn/collider/ánh sáng. [Bằng chứng](evidence/AW2-017E.md).
 
 **AW2-017D VERIFIED:** sáu kế hoạch được gom trong một commit—step portals, anti-loop/compatibility và ba field props no-write. Full1.958unit/146files,330browser,hai typecheck/build,262asset parity PASS. Demo90% / product≈40%(35–45%) giữ nguyên; next017E. [Bằng chứng](evidence/AW2-017D.md).

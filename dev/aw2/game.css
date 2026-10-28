@@ -57,6 +57,7 @@ html.aw2-game-document, html.aw2-game-document body, html.aw2-game-document #roo
 .aw2-game-items > p { margin: 0; padding: .5rem; border: 1px solid #bfb58f; border-radius: .5rem; font-size: .85rem; }
 .aw2-game-items strong { display: block; font-size: 1rem; color: #315845; }
 .aw2-game-more { justify-content: space-evenly; }
+.aw2-production-chest-link { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; padding: .45rem .7rem; border: 1px solid #8c9778; border-radius: .45rem; background: #fffaf0; color: #315845; font-weight: 700; text-decoration: none; text-align: center; }
 .aw2-game-shell > dialog:not(.aw2-game-panel) { max-height: calc(100dvh - 1rem); overflow: hidden; }
 .aw2-game-shell > dialog .actions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .4rem; margin-top: .5rem; }
 .aw2-game-shell > dialog .actions button { padding: .4rem; font-size: .9rem; }

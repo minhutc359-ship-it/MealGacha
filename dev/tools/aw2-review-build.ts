@@ -12,11 +12,22 @@ const extra = [
   "dev/vite.aw2.config.ts",
   "dev/vite.dev.config.ts",
   "dev/tools/aw2-review-build.ts",
+  "dev/tools/aw2-production-build.ts",
+  "src/production.tsx",
+  "src/productionRoute.ts",
+  "src/OriginalChestApp.tsx",
+  "src/production.css",
+  "index.html",
+  "vercel.json",
   "package.json",
   "pnpm-lock.yaml",
 ]
+interface ReviewBuildInput {
+  path: string
+  bytes: Uint8Array
+}
 export function fingerprintReviewInputs(
-  entries: readonly { path: string; bytes: Uint8Array }[],
+  entries: readonly ReviewBuildInput[],
 ): string {
   const hash = createHash("sha256")
   const sorted = [...entries].sort((a, b) =>

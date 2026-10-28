@@ -30,6 +30,7 @@ import "./game.css"
 
 export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe" | "practice"
 interface Props {
+  production?: boolean
   pinned: boolean
   onPin: () => void
   journalMemory: RefObject<QuestViewState>
@@ -135,7 +136,7 @@ export function WorldGame(props: Props) {
               <>
                 <p>Cùng năm người bạn giữ một lời mời bên bếp.</p>
                 <button type="button" disabled={busy} onClick={props.onSave}>
-                  Tạo bản lưu AW2
+                  {props.production ? "Bắt đầu hành trình" : "Tạo bản lưu AW2"}
                 </button>
               </>
             ) : (
@@ -147,7 +148,9 @@ export function WorldGame(props: Props) {
                 <button type="button" disabled={busy} onClick={props.onReread}>
                   Đọc lại
                 </button>
-                <a href="/dev/aw2/index.html">Công cụ bản lưu</a>
+                {!props.production && (
+                  <a href="/dev/aw2/index.html">Công cụ bản lưu</a>
+                )}
               </>
             )}
           </section>
@@ -353,6 +356,11 @@ export function WorldGame(props: Props) {
               <button type="button" onClick={() => onPanel("help")}>
                 Hướng dẫn / thông báo
               </button>
+              {props.production && (
+                <a className="aw2-production-chest-link" href="/chest">
+                  Rương Vị Giác original
+                </a>
+              )}
             </div>
           )}
           {panel === "help" && (
@@ -364,8 +372,16 @@ export function WorldGame(props: Props) {
                   "Chạm lối đi hoặc dùng WASD/mũi tên để đi. E tương tác, J mở nhiệm vụ, Escape đóng menu. Chỉ đường chỉ đi tới gần: bạn tự nhận nhiệm vụ, qua cửa và chọn hành động. Đi bộ chưa ghi bản lưu; dùng Lưu vị trí trước khi rời trang."
                 }
               />
-              <a href="/dev/aw2/world.html">Công cụ chơi thử đầy đủ</a>
-              <a href="/dev/aw2/index.html">Công cụ bản lưu</a>
+              {props.production ? (
+                <a className="aw2-production-chest-link" href="/chest">
+                  Mở Rương Vị Giác original
+                </a>
+              ) : (
+                <>
+                  <a href="/dev/aw2/world.html">Công cụ chơi thử đầy đủ</a>
+                  <a href="/dev/aw2/index.html">Công cụ bản lưu</a>
+                </>
+              )}
             </div>
           )}
         </PanelFrame>

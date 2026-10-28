@@ -3,20 +3,24 @@
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 675000,
   "version": "5.9.23",
-  "bytes": 177450394,
-  "files": 851,
+  "bytes": 300366505,
+  "files": 984,
   "byType": {
     "js": {
-      "files": 40,
-      "bytes": 2107069
-    },
-    "css": {
-      "files": 5,
-      "bytes": 518912
+      "files": 23,
+      "bytes": 2107710
     },
     "webp": {
-      "files": 606,
-      "bytes": 162964692
+      "files": 711,
+      "bytes": 285541752
+    },
+    "wav": {
+      "files": 48,
+      "bytes": 624362
+    },
+    "css": {
+      "files": 2,
+      "bytes": 233219
     },
     "png": {
       "files": 3,
@@ -44,7 +48,7 @@
     },
     "html": {
       "files": 4,
-      "bytes": 36409
+      "bytes": 36153
     },
     "txt": {
       "files": 4,
@@ -52,24 +56,52 @@
     },
     "webmanifest": {
       "files": 1,
-      "bytes": 533
+      "bytes": 530
     }
   },
   "groups": {
-    "Application JS/CSS": 2625981,
+    "Application JS/CSS": 2340929,
     "Auto chess art/audio": 4025282,
+    "Other and legal": 164651446,
     "Brand": 229534,
     "Shared character atlases": 82857616,
-    "Other and legal": 41450283,
     "Event art": 2016822,
     "Food art": 7490462,
     "Adventure presentation art": 1400332,
     "Spirit RPG art/audio/video": 17336030,
     "TCG art/audio": 18018052
   },
-  "js_gzip": 674873,
-  "css_gzip": 107187,
+  "js_gzip": 593955,
+  "css_gzip": 49555,
   "largest": [
+    {
+      "path": "assets/aw2/environments/lantern-street/v1/floor.webp",
+      "bytes": 3239024
+    },
+    {
+      "path": "assets/aw2/environments/forgotten-kitchen-yard/v1/floor.webp",
+      "bytes": 3172580
+    },
+    {
+      "path": "assets/aw2/environments/covenant-village/v2/landscape.webp",
+      "bytes": 3121466
+    },
+    {
+      "path": "assets/aw2/environments/kitchen-pantry/v1/floor.webp",
+      "bytes": 2880718
+    },
+    {
+      "path": "assets/aw2/environments/kitchen-hearth/v2/landscape.webp",
+      "bytes": 2517370
+    },
+    {
+      "path": "assets/aw2/environments/kitchen-table/v2/landscape.webp",
+      "bytes": 2433468
+    },
+    {
+      "path": "assets/aw2/environments/village-tea/v1/floor.webp",
+      "bytes": 2358656
+    },
     {
       "path": "assets/rpg/campaign580/campaignB.webp",
       "bytes": 2223544
@@ -79,61 +111,33 @@
       "bytes": 2153792
     },
     {
-      "path": "assets/rpg-presentation-YaK6CU55.js",
-      "bytes": 1127988
+      "path": "assets/aw2/environments/covenant-village/v1/floor.webp",
+      "bytes": 2087698
     },
     {
-      "path": "assets/characters/rosterB.webp",
-      "bytes": 1125838
+      "path": "assets/aw2/environments/settlement/v1/shops.webp",
+      "bytes": 2011246
     },
     {
-      "path": "assets/characters/nightB.webp",
-      "bytes": 1083090
-    },
-    {
-      "path": "assets/characters/rosterG.webp",
-      "bytes": 1064480
-    },
-    {
-      "path": "assets/characters/rosterE.webp",
-      "bytes": 1037958
-    },
-    {
-      "path": "assets/characters/rosterC.webp",
-      "bytes": 1025512
-    },
-    {
-      "path": "assets/autochess/movement.webp",
-      "bytes": 1005956
-    },
-    {
-      "path": "assets/characters/starters590/goi-cuon-tom-thit.webp",
-      "bytes": 1002666
-    },
-    {
-      "path": "assets/characters/starters590/pho-bo.webp",
-      "bytes": 998102
-    },
-    {
-      "path": "assets/rpg/combat583/effects.webp",
-      "bytes": 990866
+      "path": "assets/aw2/environments/kitchen-hearth/v1/floor.webp",
+      "bytes": 1885996
     }
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 2924615,
-    "urls": 59,
+    "bytes": 2639696,
+    "urls": 39,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 9075385
+    "remainingBytes": 9360304
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
-    "warning": false,
+    "warning": true,
     "exceeded": false,
-    "remainingBytes": 142549606
+    "remainingBytes": 19633495
   }
 }

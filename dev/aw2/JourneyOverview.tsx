@@ -136,7 +136,7 @@ export function JourneyOverview({
               <strong>{zoneById(door.destination).name}</strong> ·{" "}
               {door.open ? "Đang mở" : "Chưa mở"}
             </p>
-            <PagedCopy limit={55} compact text={door.reason} />
+            <PagedCopy limit={90} compact text={door.reason} />
             <PageControls
               page={view.page}
               pages={view.pages}

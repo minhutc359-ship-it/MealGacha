@@ -1,4 +1,6 @@
-# Handoff —2026-10-28 / AW2-017E
+# Handoff —2026-10-28 / AW2-018A
+
+018A hoàn thành 18 hạng mục production cutover trong một commit: root/server build là AW2, mọi route main cũ rơi về AW2, chỉ `/chest` giữ rương original; review build tách riêng. Full2.018unit/148files, hai types/builds,46browser cutover +190current journey,153runtime parity/release guard PASS. Static300.366.505bytes đã chạm warning target; next018B ưu tiên pruning/cold-load, đồng thời017F final art. Không làm lại017A–E; không deploy/đổi master/rpg. [Bằng chứng](evidence/AW2-018A.md).
 
 017E hoàn thành 16 hạng mục trong một commit: đồng hồ phiên/bốn ca, 32 hoạt động cho tám NPC, projection thống nhất và lifecycle transient/no-save. Full1.986unit/147files, focused165,380browser source+compiled,types/build/262asset parity PASS. Không làm lại017A–E; next017F final art/mép vườn/collider/ánh sáng. Demo90% / product≈40% giữ nguyên. [Bằng chứng](evidence/AW2-017E.md).
 

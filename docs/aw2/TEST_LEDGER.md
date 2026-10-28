@@ -1,5 +1,9 @@
 # Test ledger / change impact
 
+## AW2-018A — 2026-10-28
+
+Full Vitest **2.018/2.018,148files**; contract018A32ca nằm trong tổng. Root/dev typecheck, production/review builds, release guard, hard size/offline budgets PASS. Fresh production browser23source+23compiled; retained verifier hiện hành190compiled qua4quest/boss45tick/ending300XP; tổng236,0unexpectederrors. 153runtime WebP/WAV source↔dist byte parity,0dev URL/authoring/source/map. Artifact300.366.505bytes/984files vượt warning target300MB nhưng dưới hard limit320MB. Hai harness lịch sử dừng do assumption cổng `Đi qua` trước step-room và không được tính; verifier017E hiện hành thay thế. [Evidence](evidence/AW2-018A.md).
+
 ## AW2-017E — 2026-10-28
 
 Full Vitest mặc định **1.986/1.986,147files**; focused165/7files gồm28ca lịch mới. Root/dev typecheck, AW2/stable build và release guard PASS. Fresh browser **190source+190compiled=380**, Chromium153; đủ tám activity snapshot/Places/HUD, reduced-motion neutral+raw-save no-write, bốn quest, step/manual portal, ba prop, boss tick45, ending/reload300XP,0unexpected errors. 262asset byte parity/0media mới. Hai lỗi focused đầu là test assumption/fixture và đã sửa trước các lượt cuối; không phải lỗi sản phẩm. [Evidence](evidence/AW2-017E.md).

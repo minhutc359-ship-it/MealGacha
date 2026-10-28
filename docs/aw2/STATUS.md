@@ -1,5 +1,9 @@
 # Live project status —2026-10-28
 
+**AW2-018A VERIFIED development — 18 kế hoạch production cutover trong một commit.** `pnpm build`/Vercel nay mở AW2 tại `/`; chín URL main cũ và fallback đều vào AW2, chỉ `/chest`/`/chest/` giữ Rương Vị Giác original bằng shell riêng. Review multi-entry vẫn hoạt động;153runtime WebP/WAV byte-match ở `/assets/aw2`,0authoring/source/map/dev URL. **2.018unit/148files**, hai typecheck/build, release guard và **236browser=23source+23compiled cutover+190compiled journey PASS**, boss45tick/ending300XP/0unexpected errors. [Bằng chứng](evidence/AW2-018A.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên vì đây là cutover build, không phải final art/device/human/rights/release. Static300.366.505bytes vượt target cảnh báo300MB nhưng dưới limit320MB; next018B giảm payload/cold-load, song song017F final art. Không deploy hay đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018A.
+
 **AW2-017E VERIFIED development — 16 kế hoạch nhịp sống NPC trong một commit.** Đồng hồ phiên 24 giờ có bốn ca; cả tám NPC có 32 hoạt động và cùng projection ở HUD/Địa điểm/waypoint/dialog/renderer. Em Đem Nước giữ patrol; lịch dừng đúng pause/focus/reduced-motion, không đổi scene, quest, save1–8, economy hoặc reward. **1.986unit/147files**, focused165, hai typecheck/build và **380browser=190source+190compiled PASS**, 262asset parity,0media/lỗi bất ngờ. [Bằng chứng](evidence/AW2-017E.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên. Next017F: final art/mép vườn/collider/ánh sáng; human/device/rights/release vẫn mở. Các mục dưới là lịch sử; hiện hành theo017E.

@@ -1,0 +1,87 @@
+.production-start-error {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  padding: 24px;
+  color: #f4e9ce;
+  background: #07161b;
+  text-align: center;
+}
+
+.production-start-error button,
+.production-start-error a {
+  min-height: 44px;
+}
+
+.loot-client.production-chest-shell {
+  grid-template-rows: 56px minmax(0, 1fr);
+}
+
+.production-chest-nav {
+  position: relative;
+  z-index: 45;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 8px clamp(12px, 3vw, 28px);
+  color: #f4e9ce;
+  border-bottom: 1px solid rgb(232 199 119 / 24%);
+  background: rgb(3 14 22 / 92%);
+  backdrop-filter: blur(16px);
+}
+
+.production-chest-nav a {
+  width: fit-content;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: #e8c777;
+  text-decoration: none;
+}
+
+.production-chest-nav a:last-child {
+  justify-self: end;
+}
+
+.production-chest-nav strong {
+  font-family: "Exo 2", sans-serif;
+  text-align: center;
+}
+
+.production-chest-layout {
+  position: relative;
+  z-index: 41;
+  display: block;
+  min-height: 0;
+  height: 100%;
+}
+
+.production-chest-shell .client-stage {
+  width: min(1180px, 100%);
+  height: 100%;
+  margin: 0 auto;
+  padding-bottom: 0;
+}
+
+@media (max-width: 620px) {
+  .loot-client.production-chest-shell {
+    grid-template-rows: 52px minmax(0, 1fr);
+  }
+
+  .production-chest-nav {
+    min-height: 52px;
+    grid-template-columns: 1fr auto;
+    font-size: 12px;
+  }
+
+  .production-chest-nav strong {
+    justify-self: end;
+  }
+
+  .production-chest-nav a:last-child {
+    display: none;
+  }
+}

@@ -6,8 +6,7 @@ import {
   type WalkingTarget,
 } from "../../src/aw2/world/walkingIntent"
 import type { CollectionAction } from "../../src/aw2/collection/model"
-import { StrictMode, useCallback, useEffect, useRef, useState } from "react"
-import { createRoot } from "react-dom/client"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { Aw2DevSaveStore, Aw2SaveError } from "../../src/aw2/save/store"
 import type { SaveSnapshot } from "../../src/aw2/save/schema"
 import { AW2_DEV_SAVE_KEY } from "../../src/aw2/save/schema"
@@ -88,8 +87,6 @@ interface PendingPlaceInteraction {
   raw: string
 }
 
-const singleViewport = window.location.pathname.endsWith("/game.html")
-
 interface ActiveWorldEncounter {
   run: WorldBossEncounter
   checkpointRaw: string
@@ -99,7 +96,9 @@ interface TravelProgress extends ScenePreparationProgress {
   phase: "loading" | "rendering" | "saving"
 }
 
-function WorldPreview() {
+export function WorldPreview({ production = false }: { production?: boolean }) {
+  const singleViewport =
+    production || window.location.pathname.endsWith("/game.html")
   const [store] = useState(() => new Aw2DevSaveStore())
   const [snapshot, setSnapshot] = useState<SaveSnapshot>(() => store.load())
   const [world, setWorld] = useState(() =>
@@ -1222,6 +1221,7 @@ function WorldPreview() {
   if (singleViewport)
     return (
       <WorldGame
+        production={production}
         pinned={questPinned}
         onPin={() => setQuestPinned((value) => !value)}
         journalMemory={journalMemory}
@@ -1509,8 +1509,3 @@ function WorldPreview() {
     </main>
   )
 }
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <WorldPreview />
-  </StrictMode>,
-)

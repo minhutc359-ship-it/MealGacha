@@ -1,5 +1,7 @@
 # Task board
 
+**018A DONE/VERIFIED với 18 kế hoạch trong một commit:** default/Vercel build→AW2; legacy routes→AW2; exact chest allowlist; standalone original chest; production asset rewrite/filter; offline/release guard; save isolation; review build; full2.018unit và236browser PASS. **NEXT018B:** giảm payload/cold-load dưới target300MB; **017F** final art/mép vườn/collider/ánh sáng vẫn mở. [Evidence](evidence/AW2-018A.md).
+
 **017E DONE/VERIFIED trong một commit với 16 kế hoạch:** đồng hồ phiên bốn ca;32hoạt động/tám NPC; projection HUD/Places/waypoint/dialog/renderer; pause/reduced/no-save/quest compatibility; full1.986unit/380browser/types/build/262asset parity PASS. **NEXT017F:** final art/mép vườn/collider/ánh sáng. Demo90% / product≈40% giữ nguyên. [Evidence](evidence/AW2-017E.md).
 
 **017D DONE/VERIFIED trong một commit:** step portals; anti-loop/load guard; locked/failure preservation; giếng; thùng sửa; bồn rửa. Full1.958unit/330browser/types/build/262asset parity PASS. **NEXT017E:** NPC life + final art. Demo90% / product≈40% giữ nguyên. [Evidence](evidence/AW2-017D.md).

@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+018A hoàn thành **18 kế hoạch production cutover** và đưa AW2 thành default server artifact, chỉ giữ Rương Vị Giác original. **Demo90% / product≈40%(35–45%) không đổi**: build routing đã production-first nhưng final art, tối ưu payload, thiết bị/người chơi độc lập, rights và release còn mở. [Evidence](evidence/AW2-018A.md).
+
 017E hoàn thành **16 kế hoạch**: tám lịch NPC/bốn ca và tám contract dùng chung về clock, projection, accessibility, lifecycle, save/economy và hồi quy. **Demo90% / product≈40%(35–45%) không đổi** vì final art/mép vườn/collider/ánh sáng, human/device/rights/release vẫn mở. [Evidence](evidence/AW2-017E.md).
 
 017D hoàn thành sáu kế hoạch cùng lúc: step travel an toàn và ba điểm khám phá no-write. **Demo90% / product≈40%(35–45%) không đổi** vì lịchNPC/final art/human/device/rights/release vẫn mở. [Evidence](evidence/AW2-017D.md).

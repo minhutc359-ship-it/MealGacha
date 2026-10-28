@@ -8,6 +8,7 @@
     "dev": "vite --config dev/vite.dev.config.ts",
     "build": "vite build && node releaseGuard.mjs",
     "build:aw2": "vite build --config dev/vite.aw2.config.ts",
+    "verify:production": "node dev/tools/verify-aw2-production-cutover.mjs",
     "preview": "vite preview",
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",

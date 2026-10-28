@@ -16,7 +16,7 @@ const entries = [
   "roster",
 ]
 
-/** Separate review build. The stable production entry/config is unchanged. */
+/** Multi-entry QA artifact; the server production build uses the root config. */
 export default defineConfig({
   root,
   publicDir: false,
