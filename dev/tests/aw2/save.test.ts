@@ -3,6 +3,9 @@ import { afterEach, describe, expect, it, vi } from "vitest"
 import {
   AW2_DEV_SAVE_KEY,
   AW2_RESET_CONFIRMATION,
+  AW2_SAVE_BACKUP_KEY,
+  AW2_SAVE_JOURNAL_KEY,
+  AW2_SAVE_QUARANTINE_KEY,
   decodeAw2Save,
 } from "@/aw2/save/schema"
 import { Aw2DevSaveStore } from "@/aw2/save/store"
@@ -64,6 +67,44 @@ function fixture() {
     now,
     options,
     expectLegacyPreserved,
+  }
+}
+
+function durableFixture() {
+  const memory = new Map<string, string>()
+  const getItem = vi.fn((key: string) => memory.get(key) ?? null)
+  const setItem = vi.fn((key: string, value: string) => {
+    memory.set(key, value)
+  })
+  const removeItem = vi.fn((key: string) => {
+    memory.delete(key)
+  })
+  let queue = Promise.resolve()
+  const lock = <T>(action: () => T): Promise<T> => {
+    const result = queue.then(action)
+    queue = result.then(
+      () => undefined,
+      () => undefined,
+    )
+    return result
+  }
+  let sequence = 0
+  const now = vi.fn(() => "2026-10-28T08:00:00.000Z")
+  const options = {
+    storage: () => ({ getItem, setItem, removeItem }),
+    lock,
+    now,
+    newId: () =>
+      `00000000-0000-4000-8001-${String(++sequence).padStart(12, "0")}`,
+  }
+  return {
+    memory,
+    getItem,
+    setItem,
+    removeItem,
+    now,
+    options,
+    store: new Aw2DevSaveStore(options),
   }
 }
 
@@ -479,5 +520,216 @@ describe("SAVE-03: validation, conflicts and failures", () => {
     f.memory.set(AW2_DEV_SAVE_KEY, raw)
     await expect(f.store.save(raw)).rejects.toThrow()
     expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(raw)
+  })
+})
+
+describe("AW2-018E: durable journal, backup and explicit recovery", () => {
+  it("writes journal before main, verifies both and removes the completed journal", async () => {
+    const f = durableFixture()
+    const first = await f.store.save(null)
+    expect(f.setItem.mock.calls.map(([key]) => key)).toEqual([
+      AW2_SAVE_JOURNAL_KEY,
+      AW2_DEV_SAVE_KEY,
+    ])
+    expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(first.raw)
+    expect(f.memory.has(AW2_SAVE_JOURNAL_KEY)).toBe(false)
+    expect(f.removeItem).toHaveBeenCalledWith(AW2_SAVE_JOURNAL_KEY)
+  })
+
+  it("keeps the exact prior valid save as backup before a revision write", async () => {
+    const f = durableFixture()
+    const first = await f.store.save(null)
+    f.setItem.mockClear()
+    const second = await f.store.save(first.raw)
+    expect(f.setItem.mock.calls.map(([key]) => key)).toEqual([
+      AW2_SAVE_BACKUP_KEY,
+      AW2_SAVE_JOURNAL_KEY,
+      AW2_DEV_SAVE_KEY,
+    ])
+    expect(f.memory.get(AW2_SAVE_BACKUP_KEY)).toBe(first.raw)
+    expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(second.raw)
+  })
+
+  it("rejects a storage no-op instead of fabricating a successful main write", async () => {
+    const f = durableFixture()
+    const first = await f.store.save(null)
+    f.setItem.mockImplementation((key, value) => {
+      if (key !== AW2_DEV_SAVE_KEY) f.memory.set(key, value)
+    })
+    await expect(f.store.save(first.raw)).rejects.toMatchObject({
+      code: "write-failed",
+    })
+    expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(first.raw)
+    expect(
+      decodeAw2Save(f.memory.get(AW2_SAVE_JOURNAL_KEY) ?? null),
+    ).toMatchObject({
+      status: "ready",
+      save: { revision: 1 },
+    })
+  })
+
+  it.each([AW2_SAVE_BACKUP_KEY, AW2_SAVE_JOURNAL_KEY])(
+    "preserves main when quota blocks durable stage %s",
+    async (blockedKey) => {
+      const f = durableFixture()
+      const first = await f.store.save(null)
+      f.setItem.mockImplementation((key, value) => {
+        if (key === blockedKey) throw Error("QuotaExceededError")
+        f.memory.set(key, value)
+      })
+      await expect(f.store.save(first.raw)).rejects.toMatchObject({
+        code: "write-failed",
+      })
+      expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(first.raw)
+    },
+  )
+
+  it("never applies a leftover journal while main remains valid", async () => {
+    const f = durableFixture()
+    const first = await f.store.save(null)
+    const other = await f.store.save(first.raw)
+    f.memory.set(AW2_DEV_SAVE_KEY, first.raw)
+    f.memory.set(AW2_SAVE_JOURNAL_KEY, other.raw)
+    expect(f.store.load()).toEqual(first)
+    expect(f.store.inspectRecovery()).toEqual({ status: "none" })
+    expect(f.memory.get(AW2_SAVE_JOURNAL_KEY)).toBe(other.raw)
+  })
+
+  it("blocks a new empty save from overwriting a recoverable candidate", async () => {
+    const f = durableFixture()
+    const valid = await f.store.save(null)
+    f.memory.delete(AW2_DEV_SAVE_KEY)
+    f.memory.set(AW2_SAVE_JOURNAL_KEY, valid.raw)
+    await expect(f.store.save(null)).rejects.toMatchObject({ code: "invalid" })
+    expect(f.memory.get(AW2_SAVE_JOURNAL_KEY)).toBe(valid.raw)
+    expect(f.memory.has(AW2_DEV_SAVE_KEY)).toBe(false)
+    const reset = await f.store.confirmReset(
+      f.store.beginReset(null),
+      AW2_RESET_CONFIRMATION,
+    )
+    expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(reset.raw)
+    expect(f.memory.has(AW2_SAVE_JOURNAL_KEY)).toBe(false)
+  })
+
+  it("offers the newest valid candidate for invalid/empty main and prefers journal on ties", async () => {
+    const f = durableFixture()
+    const first = await f.store.save(null)
+    f.now.mockReturnValue("2026-10-28T08:01:00.000Z")
+    const second = await f.store.save(first.raw)
+    f.memory.set(AW2_DEV_SAVE_KEY, "{broken")
+    f.memory.set(AW2_SAVE_BACKUP_KEY, first.raw)
+    f.memory.set(AW2_SAVE_JOURNAL_KEY, second.raw)
+    expect(f.store.inspectRecovery()).toMatchObject({
+      status: "available",
+      candidate: { source: "journal", raw: second.raw, save: { revision: 1 } },
+    })
+    f.memory.set(AW2_SAVE_BACKUP_KEY, second.raw)
+    expect(f.store.inspectRecovery()).toMatchObject({
+      status: "available",
+      candidate: { source: "journal", raw: second.raw },
+    })
+    f.memory.delete(AW2_DEV_SAVE_KEY)
+    expect(f.store.inspectRecovery().status).toBe("available")
+  })
+
+  it("ignores invalid candidates and never offers rollback over a future schema", async () => {
+    const f = durableFixture()
+    const valid = await f.store.save(null)
+    f.memory.set(AW2_SAVE_BACKUP_KEY, valid.raw)
+    f.memory.set(AW2_SAVE_JOURNAL_KEY, "{broken")
+    f.memory.set(AW2_DEV_SAVE_KEY, JSON.stringify({ schemaVersion: 99 }))
+    expect(f.store.inspectRecovery()).toEqual({ status: "none" })
+    f.memory.set(AW2_DEV_SAVE_KEY, "{broken")
+    f.memory.set(AW2_SAVE_BACKUP_KEY, "null")
+    expect(f.store.inspectRecovery()).toEqual({ status: "none" })
+  })
+
+  it("quarantines corrupt main, verifies the selected backup and cleans the journal", async () => {
+    const f = durableFixture()
+    const valid = await f.store.save(null)
+    const corrupt = "{broken-but-preserved"
+    f.memory.set(AW2_DEV_SAVE_KEY, corrupt)
+    f.memory.set(AW2_SAVE_BACKUP_KEY, valid.raw)
+    const inspection = f.store.inspectRecovery()
+    expect(inspection.status).toBe("available")
+    if (inspection.status !== "available") throw Error("candidate missing")
+    const recovered = await f.store.recover(corrupt, inspection.candidate)
+    expect(recovered).toEqual(valid)
+    expect(f.memory.get(AW2_SAVE_QUARANTINE_KEY)).toBe(corrupt)
+    expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(valid.raw)
+    expect(f.memory.has(AW2_SAVE_JOURNAL_KEY)).toBe(false)
+  })
+
+  it("rejects stale main or stale candidate under the same write lock", async () => {
+    const f = durableFixture()
+    const first = await f.store.save(null)
+    f.memory.set(AW2_DEV_SAVE_KEY, "{broken")
+    f.memory.set(AW2_SAVE_BACKUP_KEY, first.raw)
+    const inspection = f.store.inspectRecovery()
+    if (inspection.status !== "available") throw Error("candidate missing")
+    f.memory.set(AW2_SAVE_BACKUP_KEY, "{changed")
+    await expect(
+      f.store.recover("{broken", inspection.candidate),
+    ).rejects.toMatchObject({ code: "conflict" })
+    f.memory.set(AW2_SAVE_BACKUP_KEY, first.raw)
+    f.memory.set(AW2_DEV_SAVE_KEY, "{different")
+    await expect(
+      f.store.recover("{broken", inspection.candidate),
+    ).rejects.toMatchObject({ code: "conflict" })
+    expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe("{different")
+  })
+
+  it("refuses recovery over a ready/future main even with a reconstructed candidate", async () => {
+    const f = durableFixture()
+    const ready = await f.store.save(null)
+    const candidate = {
+      source: "backup" as const,
+      raw: ready.raw,
+      save: ready.save,
+    }
+    f.memory.set(AW2_SAVE_BACKUP_KEY, ready.raw)
+    await expect(f.store.recover(ready.raw, candidate)).rejects.toMatchObject({
+      code: "invalid",
+    })
+    const future = JSON.stringify({ schemaVersion: 99 })
+    f.memory.set(AW2_DEV_SAVE_KEY, future)
+    await expect(f.store.recover(future, candidate)).rejects.toMatchObject({
+      code: "invalid",
+    })
+    expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(future)
+  })
+
+  it("quarantines unreadable/future bytes before an explicitly confirmed reset", async () => {
+    const f = durableFixture()
+    for (const raw of ["{broken", JSON.stringify({ schemaVersion: 99 })]) {
+      f.memory.set(AW2_DEV_SAVE_KEY, raw)
+      const result = await f.store.confirmReset(
+        f.store.beginReset(raw),
+        AW2_RESET_CONFIRMATION,
+      )
+      expect(f.memory.get(AW2_SAVE_QUARANTINE_KEY)).toBe(raw)
+      expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(result.raw)
+    }
+  })
+
+  it("reports unavailable recovery inspection without mutating any key", () => {
+    const f = durableFixture()
+    f.getItem.mockImplementation(() => {
+      throw Error("SecurityError")
+    })
+    expect(f.store.inspectRecovery()).toEqual({ status: "unavailable" })
+    expect(f.setItem).not.toHaveBeenCalled()
+    expect(f.removeItem).not.toHaveBeenCalled()
+  })
+
+  it("keeps success truthful if journal cleanup is denied after verified main write", async () => {
+    const f = durableFixture()
+    f.removeItem.mockImplementation(() => {
+      throw Error("SecurityError")
+    })
+    const result = await f.store.save(null)
+    expect(f.store.load()).toEqual(result)
+    expect(f.memory.get(AW2_SAVE_JOURNAL_KEY)).toBe(result.raw)
+    expect(f.store.inspectRecovery()).toEqual({ status: "none" })
   })
 })

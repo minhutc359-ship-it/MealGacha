@@ -1,5 +1,9 @@
 # Live project status —2026-10-28
 
+**AW2-018E VERIFIED development với giới hạn — batch3/10,19/20 kế hoạch đạt.** Save AW2 production ghi backup→journal→main với read-back; quarantine bytes lỗi, recovery explicit, chặn tạo mới đè candidate và không rollback schema tương lai. Storage event bốn key + Web Lock/exact raw chặn tab cũ. Artifact141.446.573bytes/375files; offline1.448.200bytes/24URL; **2.119unit/150files**,focused79,hai typecheck/build,package/release/assets/budget PASS. Browser NOT_RUN vì thiếu package Playwright. [Bằng chứng](evidence/AW2-018E.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên. Batch3 đóng save durability/recovery kỹ thuật, không tự đóng character/art/rights/human/device/release. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **khoảng7commit lớn** có điều kiện. Next batch4: onboarding, accessibility, touch/mobile layout và keyboard/focus toàn tuyến. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018E.
+
 **AW2-018D VERIFIED development với giới hạn — batch2/10,19/20 kế hoạch đạt.** AW2 production có update prompt và bảng PWA trong Hướng dẫn; theo dõi online/cache/quota/install/persistence. Worker rollback core cài dở, fallback shell trước, giữ một previous version và retry quota có chặn. Manifest/production verifier khóa AW2+Rương shortcuts. Artifact141.442.314bytes/375files; offline1.443.941bytes/24URL; **2.104unit/150files**,focused50,hai typecheck/build,package/release/assets/budget PASS. Browser NOT_RUN vì thiếu Chromium binary. [Bằng chứng](evidence/AW2-018D.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên. Batch2 đóng durability PWA, không tự đóng character/art/rights/human/device/release. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **khoảng8commit lớn** có điều kiện. Next batch3: save migration/recovery, stale-tab/concurrency, lỗi ghi và dữ liệu production. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018D.

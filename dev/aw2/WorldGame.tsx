@@ -58,6 +58,8 @@ interface Props {
   onInteract: () => void
   onSave: () => void
   onReread: () => void
+  recoveryAvailable: boolean
+  onRecover: () => void
   onEconomy: (action: EconomyAction) => void
   onCollection: (action: CollectionAction) => void
   onMode: (id: Aw2ModeId) => void
@@ -133,7 +135,7 @@ export function WorldGame(props: Props) {
         ) : (
           <section className="aw2-game-empty">
             <h2>Bắt đầu hành trình</h2>
-            {snapshot.status === "empty" ? (
+            {snapshot.status === "empty" && !props.recoveryAvailable ? (
               <>
                 <p>Cùng năm người bạn giữ một lời mời bên bếp.</p>
                 <button type="button" disabled={busy} onClick={props.onSave}>
@@ -143,12 +145,22 @@ export function WorldGame(props: Props) {
             ) : (
               <>
                 <p role="alert">
-                  Chưa đọc được bản lưu ({snapshot.status}). Dữ liệu gốc được
-                  giữ.
+                  {snapshot.status === "empty"
+                    ? "Bản lưu chính đang trống nhưng có bản an toàn có thể phục hồi."
+                    : `Chưa đọc được bản lưu (${snapshot.status}). Dữ liệu gốc được giữ.`}
                 </p>
                 <button type="button" disabled={busy} onClick={props.onReread}>
                   Đọc lại
                 </button>
+                {props.recoveryAvailable && (
+                  <button
+                    type="button"
+                    disabled={busy}
+                    onClick={props.onRecover}
+                  >
+                    Phục hồi bản an toàn
+                  </button>
+                )}
                 {!props.production && (
                   <a href="/dev/aw2/index.html">Công cụ bản lưu</a>
                 )}

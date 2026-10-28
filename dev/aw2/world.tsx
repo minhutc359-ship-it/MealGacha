@@ -7,9 +7,13 @@ import {
 } from "../../src/aw2/world/walkingIntent"
 import type { CollectionAction } from "../../src/aw2/collection/model"
 import { useCallback, useEffect, useRef, useState } from "react"
-import { Aw2DevSaveStore, Aw2SaveError } from "../../src/aw2/save/store"
+import {
+  Aw2DevSaveStore,
+  Aw2SaveError,
+  type RecoveryInspection,
+} from "../../src/aw2/save/store"
 import type { SaveSnapshot } from "../../src/aw2/save/schema"
-import { AW2_DEV_SAVE_KEY } from "../../src/aw2/save/schema"
+import { AW2_SAVE_STORAGE_KEYS } from "../../src/aw2/save/schema"
 import { ROSTER } from "../../src/aw2/world/ids"
 import { newWorldProgress, type WorldProgress } from "../../src/aw2/world/model"
 import { zoneById, type WorldObject } from "../../src/aw2/world/maps"
@@ -101,6 +105,9 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
     production || window.location.pathname.endsWith("/game.html")
   const [store] = useState(() => new Aw2DevSaveStore())
   const [snapshot, setSnapshot] = useState<SaveSnapshot>(() => store.load())
+  const [recovery, setRecovery] = useState<RecoveryInspection>(() =>
+    store.inspectRecovery(),
+  )
   const [world, setWorld] = useState(() =>
     snapshot.status === "ready" ? snapshot.save.progress : newWorldProgress(),
   )
@@ -433,8 +440,12 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
     window.addEventListener("focusin", focused)
     document.addEventListener("visibilitychange", visibility)
     const changed = (event: StorageEvent) => {
-      if (event.key === AW2_DEV_SAVE_KEY || event.key === null) {
+      if (
+        event.key === null ||
+        AW2_SAVE_STORAGE_KEYS.some((key) => key === event.key)
+      ) {
         stop()
+        setRecovery({ status: "none" })
         setRoomPracticeRetry(false)
         setError(
           "Kho AW2 đã thay đổi ở tab khác. Đọc lại trước khi tiếp tục lưu.",
@@ -548,6 +559,7 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
     setDialogObject(null)
     setActiveEncounter(null)
     const next = store.load()
+    setRecovery(store.inspectRecovery())
     setSnapshot(next)
     saved.current = next
     if (next.status === "ready") {
@@ -561,6 +573,42 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
     publishPatrol(newNpcPatrol(worldRef.current.zoneId))
     setMessage("Đã đọc lại AW2.")
     setError("")
+  }
+
+  async function recover() {
+    if (
+      pending.current ||
+      saved.current.status === "unavailable" ||
+      recovery.status !== "available"
+    )
+      return
+    pending.current = true
+    setBusy(true)
+    keys.current.clear()
+    clearWalking()
+    setError("")
+    setMessage("")
+    try {
+      const next = await store.recover(saved.current.raw, recovery.candidate)
+      setSnapshot(next)
+      setRecovery({ status: "none" })
+      saved.current = next
+      worldRef.current = next.save.progress
+      setWorld(next.save.progress)
+      setMapEpoch((epoch) => epoch + 1)
+      stepPortalLatch.current = newStepPortalLatch(next.save.progress)
+      publishPatrol(newNpcPatrol(next.save.progress.zoneId))
+      setMessage("Đã phục hồi bản lưu AW2 đã được xác minh.")
+    } catch (cause) {
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "Chưa phục hồi được AW2. Hãy đọc lại kho.",
+      )
+    } finally {
+      pending.current = false
+      setBusy(false)
+    }
   }
 
   async function enterMode(modeId: Aw2ModeId, entry: ModeEntry) {
@@ -612,6 +660,7 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
     try {
       const next = modeAdapter.returnToWorld()
       setSnapshot(next)
+      setRecovery({ status: "none" })
       saved.current = next
       worldRef.current = next.save.progress
       setWorld(next.save.progress)
@@ -788,6 +837,7 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
               saved.current.status === "ready" ? result.state : undefined,
             )
       setSnapshot(next)
+      setRecovery({ status: "none" })
       saved.current = next
       worldRef.current = next.save.progress
       setWorld(next.save.progress)
@@ -1299,6 +1349,8 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
         onInspect={inspectPlace}
         onSave={() => void persist()}
         onReread={reread}
+        recoveryAvailable={recovery.status === "available"}
+        onRecover={() => void recover()}
         onEconomy={(action) => void transact(action)}
         onCollection={(action) => void collect(action)}
         onMode={(mode) => void enterMode(mode, "quick-entry")}
@@ -1320,15 +1372,28 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
         <a href="/dev/aw2/index.html">Kho save / xác nhận reset AW2</a> ·{" "}
         <a href="/dev/aw2/starters.html">Năm starter · xem bộ chuyển động</a>
       </p>
-      {snapshot.status === "empty" ? (
+      {snapshot.status === "empty" && recovery.status !== "available" ? (
         <button onClick={() => void persist()} disabled={busy}>
           Tạo bản lưu AW2
         </button>
       ) : snapshot.status !== "ready" ? (
-        <p role="alert">
-          Chưa mở được save ({snapshot.status}). Dữ liệu gốc được giữ; đọc lại
-          hoặc mở kho save.
-        </p>
+        <section>
+          <p role="alert">
+            {snapshot.status === "empty"
+              ? "Bản lưu chính đang trống nhưng có bản an toàn có thể phục hồi."
+              : `Chưa mở được save (${snapshot.status}). Dữ liệu gốc được giữ; đọc lại hoặc mở kho save.`}
+          </p>
+          <div className="actions">
+            <button onClick={reread} disabled={busy}>
+              Đọc lại
+            </button>
+            {recovery.status === "available" && (
+              <button onClick={() => void recover()} disabled={busy}>
+                Phục hồi bản an toàn
+              </button>
+            )}
+          </div>
+        </section>
       ) : (
         <>
           <DemoCompletion

@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+018E hoàn thành **19/20 kế hoạch save durability/recovery production** và là batch3/10. **Demo90% / product≈40%(35–45%) không đổi**: dữ liệu local bền và phục hồi được hơn nhưng không tự cấp điểm character/art/rights/human/device. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **khoảng7commit lớn** có điều kiện; next onboarding/accessibility/touch/mobile/keyboard-focus. [Evidence](evidence/AW2-018E.md).
+
 018D hoàn thành **19/20 kế hoạch PWA production** và là batch2/10. **Demo90% / product≈40%(35–45%) không đổi**: install/update/offline durability tốt hơn nhưng không tự cấp điểm character/art/rights/human/device. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **khoảng8commit lớn** có điều kiện; next save migration/recovery/stale-tab/concurrency. [Evidence](evidence/AW2-018D.md).
 
 018C hoàn thành **19/20 kế hoạch production engineering** và là batch1/10: scene delivery theo nhu cầu, inventory12cảnh, offline core và hard build gates. **Demo90% / product≈40%(35–45%) không đổi** vì không tự cấp điểm cho character DoD, art/rights, người chơi hay thiết bị. Theo [roadmap production](PRODUCTION_10_COMMIT.md), còn **khoảng9commit lớn** tới web1.0 nếu scope đóng băng và gate bên ngoài được cung cấp đúng lúc; blocker nghiệm thu có thể làm tăng số. [Evidence](evidence/AW2-018C.md).

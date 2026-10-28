@@ -142,8 +142,8 @@ describe("018D production PWA contract", () => {
       start_url: string
       display: string
       lang: string
-      icons: { sizes: string; src: string }[]
-      shortcuts: { url: string }[]
+      icons: Array<Record<"sizes" | "src", string>>
+      shortcuts: Array<Record<"url", string>>
     }
     expect(manifest).toMatchObject({
       id: "/",
@@ -168,10 +168,15 @@ describe("018D production PWA contract", () => {
   it("makes update and readiness controls reachable from the AW2 production UI", () => {
     const entry = readFileSync("src/production.tsx", "utf8")
     const game = readFileSync("dev/aw2/WorldGame.tsx", "utf8")
+    const world = readFileSync("dev/aw2/world.tsx", "utf8")
     expect(entry).toContain('import("./components/layout/WebUpdatePrompt")')
     expect(entry).toContain("<WebUpdatePrompt />")
     expect(game).toContain("<WebReadiness compact />")
     expect(game).toContain("props.production && <WebReadiness")
+    expect(game).toContain("Phục hồi bản an toàn")
+    expect(world).toContain("store.inspectRecovery()")
+    expect(world).toContain("await store.recover(")
+    expect(world).toContain("AW2_SAVE_STORAGE_KEYS.some")
   })
 
   it("keeps recovery bounded to Soul of Meal caches and explicit updates", () => {

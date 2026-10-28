@@ -17,6 +17,15 @@ import {
 } from "../world/model"
 
 export const AW2_DEV_SAVE_KEY = "aw2.development.save"
+export const AW2_SAVE_BACKUP_KEY = `${AW2_DEV_SAVE_KEY}.backup`
+export const AW2_SAVE_JOURNAL_KEY = `${AW2_DEV_SAVE_KEY}.journal`
+export const AW2_SAVE_QUARANTINE_KEY = `${AW2_DEV_SAVE_KEY}.quarantine`
+export const AW2_SAVE_STORAGE_KEYS = Object.freeze([
+  AW2_DEV_SAVE_KEY,
+  AW2_SAVE_BACKUP_KEY,
+  AW2_SAVE_JOURNAL_KEY,
+  AW2_SAVE_QUARANTINE_KEY,
+])
 export const AW2_RESET_CONFIRMATION = "RESET AW2"
 
 // Version stays in the envelope so a newer save at the same key is detected.

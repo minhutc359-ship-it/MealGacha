@@ -6,6 +6,9 @@ import {
 import {
   AW2_DEV_SAVE_KEY,
   AW2_RESET_CONFIRMATION,
+  AW2_SAVE_BACKUP_KEY,
+  AW2_SAVE_JOURNAL_KEY,
+  AW2_SAVE_QUARANTINE_KEY,
   aw2DevSaveSchema,
   decodeAw2Save,
   type Aw2DevSave,
@@ -32,10 +35,17 @@ import {
   type EconomyAction,
 } from "../economy/model"
 
-type SaveStorage = Pick<Storage, "getItem" | "setItem">
+type SaveStorage = Pick<Storage, "getItem" | "setItem"> & Partial<Pick<Storage, "removeItem">>
 type WriteLock = <T>(action: () => T) => Promise<T>
 type ReadySave = Extract<SaveSnapshot, { status: "ready" }>
 export type ResetRequest = Readonly<{ expectedRaw: string | null }>
+export type RecoverySource = "journal" | "backup"
+export type RecoveryCandidate = Readonly<{
+  source: RecoverySource
+  raw: string
+  save: Aw2DevSave
+}>
+export type RecoveryInspection = Readonly<Record<"status", "none" | "unavailable">> | Readonly<Record<"status", "available"> & Record<"candidate", RecoveryCandidate>>
 
 export class Aw2SaveError extends Error {
   constructor(
@@ -65,9 +75,9 @@ const browserWriteLock: WriteLock = async (action) => {
   )
 }
 
-/** One atomic localStorage value, independent of legacy journals/native bridges.
- * Web Locks serialize cooperating AW2 tabs; raw comparison rejects stale views.
- * Uncooperative scripts clearing storage remain outside this pre-release contract.
+/** Versioned main value plus AW2-scoped backup/journal/quarantine keys.
+ * Web Locks serialize cooperating AW2 tabs; raw comparison rejects stale views,
+ * and every browser write is read back before success is reported.
  */
 export class Aw2DevSaveStore {
   private pendingReset: ResetRequest | null = null
@@ -96,6 +106,77 @@ export class Aw2DevSaveStore {
     } catch {
       return { status: "unavailable" }
     }
+  }
+
+  /** Read-only recovery discovery. A valid/future main save always wins. */
+  inspectRecovery(): RecoveryInspection {
+    try {
+      const storage = this.storage()
+      const main = decodeAw2Save(storage.getItem(AW2_DEV_SAVE_KEY))
+      if (main.status === "ready" || main.status === "unsupported")
+        return { status: "none" }
+      const candidates = ([
+        ["journal", AW2_SAVE_JOURNAL_KEY],
+        ["backup", AW2_SAVE_BACKUP_KEY],
+      ] as const).flatMap(([source, key]) => {
+        const decoded = decodeAw2Save(storage.getItem(key))
+        return decoded.status === "ready"
+          ? [{ source, raw: decoded.raw, save: decoded.save }]
+          : []
+      })
+      let candidate: RecoveryCandidate | undefined
+      for (const item of candidates) {
+        if (!candidate || this.preferRecovery(item, candidate)) candidate = item
+      }
+      return candidate
+        ? { status: "available", candidate: Object.freeze(candidate) }
+        : { status: "none" }
+    } catch {
+      return { status: "unavailable" }
+    }
+  }
+
+  /** Restore only the exact candidate the player inspected. Never downgrade a future save. */
+  recover(
+    expectedRaw: string | null,
+    candidate: RecoveryCandidate,
+  ): Promise<ReadySave> {
+    return this.lock(() => {
+      const storage = this.readStorage()
+      if (!storage.removeItem)
+        throw new Aw2SaveError(
+          "write-failed",
+          "Kho hiện tại không hỗ trợ dọn journal; chưa thể phục hồi an toàn.",
+        )
+      const raw = this.readMain(storage)
+      if (raw !== expectedRaw) this.throwConflict()
+      const current = decodeAw2Save(raw)
+      if (current.status === "ready" || current.status === "unsupported")
+        throw new Aw2SaveError(
+          "invalid",
+          current.status === "unsupported"
+            ? "Không hạ cấp bản lưu thuộc schema mới hơn. Hãy dùng bản game mới hơn hoặc reset có xác nhận riêng."
+            : "Bản lưu chính đang hợp lệ; không cần phục hồi từ bản cũ.",
+        )
+      const key =
+        candidate.source === "journal"
+          ? AW2_SAVE_JOURNAL_KEY
+          : AW2_SAVE_BACKUP_KEY
+      const candidateRaw = this.readExact(storage, key)
+      if (candidateRaw !== candidate.raw) this.throwConflict()
+      const decoded = decodeAw2Save(candidateRaw)
+      if (decoded.status !== "ready")
+        throw new Aw2SaveError(
+          "invalid",
+          "Bản phục hồi không còn hợp lệ. Đọc lại kho trước khi thử tiếp.",
+        )
+      if (raw !== null) this.writeExact(storage, AW2_SAVE_QUARANTINE_KEY, raw)
+      if (candidate.source !== "journal")
+        this.writeExact(storage, AW2_SAVE_JOURNAL_KEY, candidateRaw)
+      this.writeExact(storage, AW2_DEV_SAVE_KEY, candidateRaw)
+      this.removeVerified(storage, AW2_SAVE_JOURNAL_KEY)
+      return { status: "ready", raw: candidateRaw, save: decoded.save }
+    })
   }
 
   save(
@@ -302,13 +383,28 @@ export class Aw2DevSaveStore {
     }
     // Consume before awaiting the lock: repeated clicks cannot reset twice.
     this.pendingReset = null
-    return this.write(request.expectedRaw, () => this.freshSave())
+    return this.write(request.expectedRaw, () => this.freshSave(), true)
   }
 
   private timestamp(previous?: string): string {
     const now = this.now()
     // Clock adjustments must not invalidate an otherwise readable save.
     return previous && Date.parse(now) < Date.parse(previous) ? previous : now
+  }
+
+  private preferRecovery(
+    candidate: RecoveryCandidate,
+    current: RecoveryCandidate,
+  ): boolean {
+    const candidateTime = Date.parse(candidate.save.updatedAt)
+    const currentTime = Date.parse(current.save.updatedAt)
+    if (candidateTime !== currentTime) return candidateTime > currentTime
+    if (
+      candidate.save.saveId === current.save.saveId &&
+      candidate.save.revision !== current.save.revision
+    )
+      return candidate.save.revision > current.save.revision
+    return candidate.source === "journal" && current.source === "backup"
   }
 
   private freshSave(): Aw2DevSave {
@@ -332,36 +428,104 @@ export class Aw2DevSaveStore {
     next: (
       snapshot: Exclude<SaveSnapshot, { status: "unavailable" }>,
     ) => Aw2DevSave,
+    discardRecovery = false,
   ): Promise<ReadySave> {
     return this.lock(() => {
-      let storage: SaveStorage
-      let raw: string | null
-      try {
-        storage = this.storage()
-        raw = storage.getItem(AW2_DEV_SAVE_KEY)
-      } catch {
-        throw new Aw2SaveError(
-          "unavailable",
-          "Chưa đọc được kho AW2. Kiểm tra quyền lưu của trình duyệt rồi thử lại.",
+      const storage = this.readStorage()
+      const raw = this.readMain(storage)
+      if (raw !== expectedRaw) this.throwConflict()
+      const current = decodeAw2Save(raw)
+      if (
+        !discardRecovery &&
+        current.status === "empty" &&
+        storage.removeItem &&
+        [AW2_SAVE_JOURNAL_KEY, AW2_SAVE_BACKUP_KEY].some(
+          (key) =>
+            decodeAw2Save(this.readExact(storage, key)).status === "ready",
         )
-      }
-      if (raw !== expectedRaw) {
+      )
         throw new Aw2SaveError(
-          "conflict",
-          "Dữ liệu AW2 đã thay đổi ở tab khác. Đọc lại trước khi lưu hoặc mở xác nhận reset mới.",
+          "invalid",
+          "Đã tìm thấy bản AW2 có thể phục hồi. Hãy phục hồi hoặc reset có xác nhận trước khi tạo bản mới.",
         )
-      }
-      const save = next(decodeAw2Save(raw))
+      const save = next(current)
       const encoded = JSON.stringify(save)
-      try {
-        storage.setItem(AW2_DEV_SAVE_KEY, encoded)
-      } catch {
-        throw new Aw2SaveError(
-          "write-failed",
-          "Chưa lưu được AW2. Kho có thể đã đầy hoặc bị chặn; bản lưu trước vẫn được giữ.",
-        )
+      // Test adapters and older embedders may expose only the original two-method
+      // contract. Browser localStorage has removeItem and takes the durable path.
+      if (!storage.removeItem) {
+        this.writeExact(storage, AW2_DEV_SAVE_KEY, encoded)
+        return { status: "ready", raw: encoded, save }
       }
+      if (current.status === "ready")
+        this.writeExact(storage, AW2_SAVE_BACKUP_KEY, current.raw)
+      else if (raw !== null)
+        this.writeExact(storage, AW2_SAVE_QUARANTINE_KEY, raw)
+      this.writeExact(storage, AW2_SAVE_JOURNAL_KEY, encoded)
+      this.writeExact(storage, AW2_DEV_SAVE_KEY, encoded)
+      this.removeVerified(storage, AW2_SAVE_JOURNAL_KEY)
       return { status: "ready", raw: encoded, save }
     })
+  }
+
+  private readStorage(): SaveStorage {
+    try {
+      return this.storage()
+    } catch {
+      throw new Aw2SaveError(
+        "unavailable",
+        "Chưa đọc được kho AW2. Kiểm tra quyền lưu của trình duyệt rồi thử lại.",
+      )
+    }
+  }
+
+  private readMain(storage: SaveStorage): string | null {
+    try {
+      return storage.getItem(AW2_DEV_SAVE_KEY)
+    } catch {
+      throw new Aw2SaveError(
+        "unavailable",
+        "Chưa đọc được kho AW2. Kiểm tra quyền lưu của trình duyệt rồi thử lại.",
+      )
+    }
+  }
+
+  private readExact(storage: SaveStorage, key: string): string | null {
+    try {
+      return storage.getItem(key)
+    } catch {
+      throw new Aw2SaveError(
+        "write-failed",
+        "Kho AW2 chưa cho phép xác minh dữ liệu vừa ghi. Hãy đọc lại trước khi thao tác tiếp.",
+      )
+    }
+  }
+
+  private writeExact(storage: SaveStorage, key: string, value: string): void {
+    try {
+      storage.setItem(key, value)
+      if (storage.getItem(key) !== value) throw new Error("read-back mismatch")
+    } catch {
+      throw new Aw2SaveError(
+        "write-failed",
+        "Chưa xác minh được lần ghi AW2. Không reset dữ liệu; hãy đọc lại kho trước khi thử tiếp.",
+      )
+    }
+  }
+
+  private removeVerified(storage: SaveStorage, key: string): void {
+    try {
+      storage.removeItem?.(key)
+      if (storage.getItem(key) !== null) throw new Error("remove mismatch")
+    } catch {
+      // Main was already read back successfully. A same-save journal is harmless
+      // and remains available for deterministic inspection after a later fault.
+    }
+  }
+
+  private throwConflict(): never {
+    throw new Aw2SaveError(
+      "conflict",
+      "Dữ liệu AW2 đã thay đổi ở tab khác. Đọc lại trước khi lưu, phục hồi hoặc mở xác nhận reset mới.",
+    )
   }
 }
