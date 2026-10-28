@@ -8,7 +8,7 @@ import {
 import type { CollectionAction } from "../../src/aw2/collection/model"
 import { StrictMode, useCallback, useEffect, useRef, useState } from "react"
 import { createRoot } from "react-dom/client"
-import { Aw2DevSaveStore } from "../../src/aw2/save/store"
+import { Aw2DevSaveStore, Aw2SaveError } from "../../src/aw2/save/store"
 import type { SaveSnapshot } from "../../src/aw2/save/schema"
 import { AW2_DEV_SAVE_KEY } from "../../src/aw2/save/schema"
 import { ROSTER } from "../../src/aw2/world/ids"
@@ -59,6 +59,8 @@ import {
 import { JourneyOverview } from "./JourneyOverview"
 import { interactionTarget } from "../../src/aw2/world/placeGuidance"
 import { RecipePanel } from "./RecipePanel"
+import { RoomPracticePanel } from "./RoomPracticePanel"
+import { canUseRoomPractice } from "../../src/aw2/modes/roomPractice"
 import { PantryInspection } from "./PantryInspection"
 import type { ZoneId } from "../../src/aw2/world/ids"
 import "./styles.css"
@@ -116,6 +118,7 @@ function WorldPreview() {
     }
   }, [])
   const [gamePanel, setGamePanel] = useState<GamePanel>("none")
+  const [roomPracticeRetry, setRoomPracticeRetry] = useState(false)
   const deskReturnFocus = useRef(false)
   const [questPinned, setQuestPinned] = useState(true)
   const journalMemory = useRef<QuestViewState>({
@@ -396,6 +399,7 @@ function WorldPreview() {
     const changed = (event: StorageEvent) => {
       if (event.key === AW2_DEV_SAVE_KEY || event.key === null) {
         stop()
+        setRoomPracticeRetry(false)
         setError(
           "Kho AW2 đã thay đổi ở tab khác. Đọc lại trước khi tiếp tục lưu.",
         )
@@ -495,6 +499,7 @@ function WorldPreview() {
   function reread() {
     if (pending.current) return
     setGamePanel("none")
+    setRoomPracticeRetry(false)
     queuedWalk.current = null
     queuedInteraction.current = null
     setMapReadiness(null)
@@ -529,8 +534,10 @@ function WorldPreview() {
       saved.current.status !== "ready"
     )
       return
+    if (entry === "room-service" && !roomPracticeReady) return
     pending.current = true
-    setGamePanel("none")
+    if (entry !== "room-service") setGamePanel("none")
+    setRoomPracticeRetry(false)
     queuedWalk.current = null
     queuedInteraction.current = null
     setBusy(true)
@@ -549,8 +556,14 @@ function WorldPreview() {
       worldRef.current = started.checkpoint.save.progress
       setWorld(started.checkpoint.save.progress)
       setDialogObject(null)
+      setGamePanel("none")
       setActiveMode(started.visit)
     } catch (cause) {
+      setRoomPracticeRetry(
+        entry === "room-service" &&
+          cause instanceof Aw2SaveError &&
+          cause.code === "write-failed",
+      )
       setError(cause instanceof Error ? cause.message : "Chưa ghé được bàn.")
     } finally {
       pending.current = false
@@ -968,7 +981,9 @@ function WorldPreview() {
                     ? "party"
                     : action.id === "view-journal"
                       ? "quest"
-                      : "recipe",
+                      : action.id === "view-practice"
+                        ? "practice"
+                        : "recipe",
                 )
                 return
               }
@@ -1040,6 +1055,12 @@ function WorldPreview() {
     setGamePanel("none")
   }
   const nearby = nearestObject(world, patrol)
+  const roomPracticeReady =
+    snapshot.status === "ready" &&
+    !busy &&
+    mapReadyFor(mapReadiness, world) &&
+    canUseRoomPractice(world) &&
+    (!error || roomPracticeRetry)
   const navigationReady =
     snapshot.status === "ready" &&
     !busy &&
@@ -1057,16 +1078,26 @@ function WorldPreview() {
             ? "Địa điểm trong vùng"
             : gamePanel === "atlas"
               ? "Bản đồ hành trình"
-              : gamePanel === "party"
-                ? "Đội đồng hành"
-                : gamePanel === "recipe"
-                  ? "Công thức bên bàn trà"
-                  : "Nhật ký nhiệm vụ"
+              : gamePanel === "practice"
+                ? "Bàn luyện tập trong tiệm trà"
+                : gamePanel === "party"
+                  ? "Đội đồng hành"
+                  : gamePanel === "recipe"
+                    ? "Công thức bên bàn trà"
+                    : "Nhật ký nhiệm vụ"
         }
         busy={busy}
         onClose={() => setGamePanel("none")}
       >
-        {gamePanel === "places" ? (
+        {gamePanel === "practice" ? (
+          <RoomPracticePanel
+            busy={busy}
+            canEnter={roomPracticeReady}
+            error={error}
+            onEnter={(mode) => void enterMode(mode, "room-service")}
+            onReread={reread}
+          />
+        ) : gamePanel === "places" ? (
           <GamePlacesPanel
             economy={snapshot.save.economy}
             world={world}
@@ -1196,6 +1227,8 @@ function WorldPreview() {
         onEconomy={(action) => void transact(action)}
         onCollection={(action) => void collect(action)}
         onMode={(mode) => void enterMode(mode, "quick-entry")}
+        canEnterRoomPractice={roomPracticeReady}
+        onRoomPractice={(mode) => void enterMode(mode, "room-service")}
       />
     )
   return (

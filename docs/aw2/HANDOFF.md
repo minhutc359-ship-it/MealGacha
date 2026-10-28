@@ -1,4 +1,10 @@
-# Handoff —2026-10-28 / AW2-016J
+# Handoff —2026-10-28 / AW2-016K
+
+**AW2-016K VERIFIED — TCG/Auto Chess tại bàn trong tiệm trà.** Góc nhật ký mở bộ chọn luyện tập có tab/hướng dẫn; vào bàn kiểm tra đúng phòng/khoảng cách và lưu điểm trở về một lần. Quay về giữ đúng vị trí trong phòng/ngoài hiên, không đổi EXP/đội/nguyên liệu. Lưu lỗi giữ menu để thử lại; tab cũ phải Đọc lại. [Cách dùng](BAN_LUYEN_TAP.md).
+
+**142unit/6files PASS**,13ca mới nằm trong tổng; **156browser=78source+78compiled PASS**,0lỗi bất ngờ. Hai lượt mới nhập môn→tiệm trà→TCG thật tới kết quả→Chess giao tranh/sang vòng2→trở về; bốn viewport20px/44px/focus, ghi lỗi–retry/bấm lặp/tabcũ/reload/classic/ra hiên đều đạt. Hai typecheck/hai build/262asset parity đạt;529file cũ được guard nguyên bytes. [Bằng chứng](evidence/AW2-016K.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là dịch vụ trong nội thất hiện có, không phải hội quán mới; schema6/canon/art/economy giữ nguyên. D18/D20/D11 không đổi. Next BA/story/mechanic: chốt contract lịch sinh hoạt NPC trên game clock, giữ điểm nhiệm vụ luôn truy cập được. Các bản ghi dưới là lịch sử, trạng thái hiện hành theo016K.
 
 016J source `6418d55e4bab58efa2e57749b362f260c232e293` / exact staged+independently fetched tree `d8107ff7faee5a81e43b4499bbb23817c6c7b7c3` published on AW2; all27 changed blobs, expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016J-publication.json). This completion stamp is documentation/evidence only.
 

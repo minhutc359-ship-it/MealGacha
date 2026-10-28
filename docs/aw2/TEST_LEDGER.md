@@ -1,5 +1,15 @@
 # Test ledger / change impact
 
+## AW2-016K — room practice service /2026-10-28
+
+Base `01480f61c706c8ead346499f39666648487ecf8b`; frozen431runtimeinputs `7199f1883206ae806f2db0f9dc0f94906ef507c60b0ada67470feb53cc9f60bd` matches compiled bundle. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1/Chromium153.0.8010.0. Fresh142units/6files PASS in2.33s,13new included, serial120s allowance; modes, tea-room, save and cue consumers covered. Root/dev typechecks and both builds PASS. No failed diagnostic runs or retained partial counts in this task.
+
+Fresh156browser=78source+78compiled, both exit0/0unexpected errors. Each new isolated save earns actual five/30XP through intro, enters tea room and walks to actual journal desk. Reading/mode-tab/viewport changes retain exactraw/canvas/actor; one blocking panel and explicit entry. Real quota failure keeps menu/raw and focus; retry double-click commits exactlyonce. Both actual TCG games reach opponent-win through legal actions with a manual target; Chess recruits/places/fights to round-result then round2. These are not claims of TCG victory or allfive Chess rounds. Mode play and return leave checkpoint unchanged; room-service stores inside432,160 plus exact outside checkpoint. Reload lobby abandons visit, actual second tab disables stale entry, explicit reread and classic service return/exit keep current save/30XP/fiveparty and stableTCGsentinel.
+
+Selector/desk matrix320×568/390×844/844×390/1280×720 at20px: native44px/no scroll/clipping, TabShiftTab/Escape/focus, samecanvas/no drift. Actual mode games run390×844/16px; existing mode-layout/engine evidence reused only where byte-unchanged. Classic checks bounded panel, not its debug document's no-scroll status. Source390selector/Chess formation captures opened in-session, images ignored.
+
+AW2308files/125196205bytes, stable851files/177450422bytes/49text exclusion;262packaged asset byte parity,0newmedia. Audit hashes529original files unchanged; approved7runtime changes are listed explicitly, including modified adapter/rules, not falsely classed unchanged. Save store/schema, mode engines/economy/art/geometry/deps remain unchanged. No fresh full-suite, physical device, independent player, FPS/listening/rights/release acceptance. Historical1781/016F and296/016J counts not added. [Evidence](evidence/AW2-016K.md). In-session BA/story/mechanic/animation/tester/scretary review, no subagents. Demo90/product≈40%(35–45%) unchanged; direct expected-head AW2 publication follows.
+
 016J source `6418d55e4bab58efa2e57749b362f260c232e293` / exact staged+independently fetched tree `d8107ff7faee5a81e43b4499bbb23817c6c7b7c3` published on AW2; all27 changed blobs, expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016J-publication.json). This completion stamp is documentation/evidence only.
 
 ## AW2-016J — quest cues /2026-10-28

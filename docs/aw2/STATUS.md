@@ -1,5 +1,11 @@
 # Live project status —2026-10-28
 
+**AW2-016K VERIFIED — TCG/Auto Chess tại bàn trong tiệm trà.** Góc nhật ký mở bộ chọn luyện tập có tab/hướng dẫn; vào bàn kiểm tra đúng phòng/khoảng cách và lưu điểm trở về một lần. Quay về giữ đúng vị trí trong phòng/ngoài hiên, không đổi EXP/đội/nguyên liệu. Lưu lỗi giữ menu để thử lại; tab cũ phải Đọc lại. [Cách dùng](BAN_LUYEN_TAP.md).
+
+**142unit/6files PASS**,13ca mới nằm trong tổng; **156browser=78source+78compiled PASS**,0lỗi bất ngờ. Hai lượt mới nhập môn→tiệm trà→TCG thật tới kết quả→Chess giao tranh/sang vòng2→trở về; bốn viewport20px/44px/focus, ghi lỗi–retry/bấm lặp/tabcũ/reload/classic/ra hiên đều đạt. Hai typecheck/hai build/262asset parity đạt;529file cũ được guard nguyên bytes. [Bằng chứng](evidence/AW2-016K.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là dịch vụ trong nội thất hiện có, không phải hội quán mới; schema6/canon/art/economy giữ nguyên. D18/D20/D11 không đổi. Next BA/story/mechanic: chốt contract lịch sinh hoạt NPC trên game clock, giữ điểm nhiệm vụ luôn truy cập được. Các bản ghi dưới là lịch sử, trạng thái hiện hành theo016K.
+
 **AW2-016J VERIFIED — nhiệm vụ có chỉ báo tại NPC và đồ vật.** Dấu nhận nhiệm vụ, mục tiêu và trả nhiệm vụ đọc cùng các thao tác thật; ký ức đã đọc mất dấu, puzzle theo bước hiện tại và boss chỉ mở ghi chép sau khi thắng/lưu. Ưu tiên nhiệm vụ khi nhãn chồng; Địa điểm vẫn nêu trạng thái bếp. [Cách dùng](NHIEM_VU_TREN_MAP.md).
 
 **173 kiểm thử tác động/6 tệp PASS**, gồm16ca mới; **296 kiểm tra trình duyệt mới=148source+148compiled PASS**,0lỗi bất ngờ. Cả hai đi từ save mới qua đủ bốn nhiệm vụ, boss thắng tick45, kết thúc/reload300XP; nhận nhiệm vụ ghi lỗi–retry, classic, bốn viewport/chữ20px/44px/focus/camera đều đạt. Hai typecheck/hai build/262asset byte parity đạt. [Bằng chứng](evidence/AW2-016J.md).

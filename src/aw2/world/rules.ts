@@ -139,7 +139,7 @@ export function describeObject(
     return result(
       object.id === TEA_PARTY_ID
         ? "Xem và sắp xếp năm người bạn đồng hành."
-        : "Xem nhật ký hành trình và công thức hiện có.",
+        : "Xem nhật ký, công thức hoặc ghé bàn luyện tập TCG/Auto Chess. Các ván luyện tập không nhận thưởng hành trình.",
       state.interior
         ? object.id === TEA_PARTY_ID
           ? [action("view-party", "Xem đội đồng hành")]
@@ -147,6 +147,7 @@ export function describeObject(
             ? [
                 action("view-journal", "Xem nhật ký"),
                 action("view-recipe", "Xem công thức"),
+                action("view-practice", "Xem bàn luyện tập"),
               ]
             : []
         : [],

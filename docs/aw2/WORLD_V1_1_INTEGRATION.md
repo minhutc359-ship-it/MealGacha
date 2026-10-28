@@ -1,5 +1,7 @@
 # Tích hợp đặc tả map/NPC/UI v1.1 —26/10/2026
 
+**Cập nhật triển khai28/10:**015B/016A/008B đã có bằng chứng;016C/D bảo vệ chuyển cảnh;016F mở tiệm trà.016K đưa hai hoạt động TCG/Chess vào chính nội thất này qua bàn nhật ký và điểm trở về đã kiểm chứng. Bảng bên dưới giữ kế hoạch/tham chiếu ban đầu; trạng thái hiện hành theo[STATUS](STATUS.md). Không coi tiệm trà là hội quán mới, không đổi D14/D17/D23 hoặc tự đóng full-world/device gates.
+
 Owner yêu cầu tích hợp v1.1 song song với phát triển AW2. [Bản gốc portable, giữ nguyên byte](design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md) · [README](design/world-v1.1/README.md) · [Nguồn/hash/quyền](evidence/AW2-015A-spec-provenance.json) · [Task trước sửa mã](tasks/AW2-015A.md).
 
 ## Những điểm đã đối chiếu

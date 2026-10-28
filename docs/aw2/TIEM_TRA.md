@@ -2,6 +2,8 @@
 
 AW2-016F mở một phòng con tùy chọn của Làng, dùng chung ở `/dev/aw2/game.html` và `/dev/aw2/world.html`.
 
+AW2-016K bổ sung [bàn luyện tập TCG/Auto Chess](BAN_LUYEN_TAP.md) tại Góc nhật ký và công thức. Chọn **Xem bàn luyện tập** rồi Ghé bàn để chơi; sảnh và ván dùng chung cơ chế điểm trở về trong phòng, không nhận thưởng hành trình.
+
 1. Tại Làng, tới **Cửa tiệm trà** ở hiên phía bắc (điểm tiếp cận300,80). Nhấn E / Tương tác → **Vào tiệm trà**.
 2. Tới **Bàn đội đồng hành**: xem bộ sưu tập, chọn năm người đã sở hữu và lưu đội. Trên map vẫn chỉ có một đại diện. Đóng khi chưa lưu bỏ bản chọn nháp.
 3. Tới **Góc nhật ký và công thức**: đọc nhiệm vụ hoặc định lượng Chén cơm ấm từ túi thật. Đọc và lật trang không ghi save hay tự nấu.

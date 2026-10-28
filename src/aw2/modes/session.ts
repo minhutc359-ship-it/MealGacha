@@ -5,6 +5,7 @@ import { zoneById } from "../world/maps"
 import { INTERACT_RANGE } from "../world/rules"
 import { AW2_MODES, type Aw2ModeId, type ModeEntry } from "./catalog"
 import { TEA_ROOM_ID } from "../world/interiorLayout"
+import { canUseRoomPractice } from "./roomPractice"
 
 export interface ModeVisit {
   modeId: Aw2ModeId
@@ -47,7 +48,7 @@ export class Aw2ModeAdapter {
         "Hãy trở về hành trình trước khi ghé bàn khác.",
       )
     const mode = AW2_MODES.find((candidate) => candidate.id === modeId)
-    if (!mode || !["portal", "quick-entry"].includes(entry))
+    if (!mode || !["portal", "quick-entry", "room-service"].includes(entry))
       throw new Aw2SaveError("invalid", "Bàn chơi hoặc cách vào chưa hợp lệ.")
     if (
       typeof expectedRaw !== "string" ||
@@ -58,6 +59,11 @@ export class Aw2ModeAdapter {
         "Cần bản lưu AW2 hợp lệ trước khi ghé bàn.",
       )
     const valid = worldProgressSchema.parse(progress)
+    if (entry === "room-service" && !canUseRoomPractice(valid))
+      throw new Aw2SaveError(
+        "invalid",
+        "Hãy đến gần góc nhật ký trong tiệm trà.",
+      )
     if (entry === "portal") {
       const portal = zoneById(valid.zoneId).objects.find(
         (object) => object.id === mode.portalId && object.kind === "mode",
@@ -83,7 +89,9 @@ export class Aw2ModeAdapter {
         modeId: mode.id,
         entry,
         returnZoneId: checkpoint.save.progress.zoneId,
-        ...(checkpoint.save.progress.interior ? { returnRoomId: checkpoint.save.progress.interior.roomId } : {}),
+        ...(checkpoint.save.progress.interior
+          ? { returnRoomId: checkpoint.save.progress.interior.roomId }
+          : {}),
       }
       this.visit = { raw: checkpoint.raw, view }
       return { checkpoint, visit: structuredClone(view) }

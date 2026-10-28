@@ -24,9 +24,10 @@ import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
 import { interactionTarget, placeKind } from "../../src/aw2/world/placeGuidance"
 import { JourneyOverview } from "./JourneyOverview"
 import { RecipePanel } from "./RecipePanel"
+import { RoomPracticePanel } from "./RoomPracticePanel"
 import "./game.css"
 
-export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe"
+export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe" | "practice"
 interface Props {
   pinned: boolean
   onPin: () => void
@@ -57,8 +58,11 @@ interface Props {
   onEconomy: (action: EconomyAction) => void
   onCollection: (action: CollectionAction) => void
   onMode: (id: Aw2ModeId) => void
+  canEnterRoomPractice: boolean
+  onRoomPractice: (id: Aw2ModeId) => void
 }
 const titles = {
+  practice: "Bàn luyện tập trong tiệm trà",
   recipe: "Công thức bên bàn trà",
   quest: "Nhật ký nhiệm vụ",
   party: "Đội đồng hành",
@@ -270,6 +274,15 @@ export function WorldGame(props: Props) {
             />
           )}
           {panel === "recipe" && save && <RecipePanel economy={save.economy} />}
+          {panel === "practice" && save && (
+            <RoomPracticePanel
+              busy={busy}
+              canEnter={props.canEnterRoomPractice}
+              error={props.error}
+              onEnter={props.onRoomPractice}
+              onReread={props.onReread}
+            />
+          )}
           {panel === "places" && save && (
             <GamePlacesPanel
               economy={save.economy}

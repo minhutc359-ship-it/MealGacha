@@ -1,13 +1,11 @@
 # Soul of Meal AW2 — cập nhật 28/10/2026
 
-016J source `6418d55e4bab58efa2e57749b362f260c232e293` / exact staged+independently fetched tree `d8107ff7faee5a81e43b4499bbb23817c6c7b7c3` published on AW2; all27 changed blobs, expected-head/non-force/direct-parent/ancestry/index and clean tracked local sync PASS. [Publication proof](evidence/AW2-016J-publication.json). This completion stamp is documentation/evidence only.
+Đã hoàn tất016K: **tiệm trà có bàn luyện tập TCG/Auto Chess** tại Góc nhật ký. Chọn tab và đọc không ghi save; Ghé bàn kiểm tra đúng phòng/khoảng cách, lưu điểm trở về một lần. Lưu lỗi giữ menu để thử lại; tab cũ cần Đọc lại. Quay về/ra hiên giữ đúng vị trí. [Cách dùng](BAN_LUYEN_TAP.md).
 
-Đã hoàn tất AW2-016J: NPC/đồ vật có dấu **Nhận nhiệm vụ → Mục tiêu → Trả nhiệm vụ**, dùng tiến trình thật của bốn nhiệm vụ. Khi chồng nhãn, nhiệm vụ được ưu tiên. Địa điểm vẫn giải thích trạng thái bếp. [Cách dùng](NHIEM_VU_TREN_MAP.md).
+**Kiểm tra mới:**142unit/6files (13mới nằm trong tổng),156browser=78source+78compiled,0lỗi bất ngờ. Cả hai đi từ nhập môn mới tới tiệm trà, chơi TCG tới kết quả thật, xếp quân/đánh một vòng Chess và sang vòng2; quay về/reload/classic/quota–retry/bấm lặp/tabcũ đều đạt. Selector/desk qua bốnviewport/chữ20px/44px/no-scroll/focus. Hai typecheck/hai build/262asset parity đạt;529file gốc không đổi. [Bằng chứng](evidence/AW2-016K.md).
 
-**Kiểm tra mới:**173unit/6files (16ca mới nằm trong tổng),296browser=148source+148compiled,0lỗi bất ngờ. Cả hai lượt mới đi đủ bốn nhiệm vụ, boss thắng tick45, kết thúc/reload300XP. Ghi lỗi/thử lại, classic, bốnviewport20px/44px/focus/camera đạt. Hai typecheck và hai build đạt;262asset byte-giống, stable build giữ nguyên177450422bytes. [Bằng chứng](evidence/AW2-016J.md).
+**Demo90% / toàn sản phẩm≈40%(35–45%) — không đổi.** Đây là dịch vụ trong tiệm trà hiện có, chưa tạo hội quán mới hay đổi schema6/canon/art/economy. D18/D20/D11 giữ nguyên; điện thoại thật/playtest độc lập/FPS/rights còn mở. Không cộng số kiểm thử lịch sử vào lượt mới. Next BA/story/mechanic: contract lịch sinh hoạt NPC theo game clock, không khóa nhiệm vụ theo giờ thật.
 
-**Sửa hồ sơ:**các hàng008B/015B/016F còn trạng thái kế hoạch đã được đối chiếu bằng chứng và cập nhật, thêm các hàng016G/H/I. Kết quả full1781unit016F chỉ là lịch sử cho phần engine/art không đổi, không cộng vào lượt mới. Mode match đầy đủ mới, điện thoại thật, playtest độc lập, FPS/rights chưa nghiệm thu.
-
-**Demo90% / toàn sản phẩm≈40%(35–45%) — không đổi.** Đây là cải thiện UX, chưa đóng gateD18; D20tiếp tục gác nghiệm thu để phát triển. D11gacha vẫnPROPOSED. Base `9b3339fdc41e3ad9c0c0c4f5a99f2b0b09d4aabf`,429runtimeinputs `f797a8c337f749850f22c2569ca5dd0d64c557fb9138f622c03582a6872ae997`; D16pushAW2 và xác minh remote/local trước báo thành công. Next BA/story/mechanic: chốt task nội thất/NPC tiếp theo từ ma trậnv1.1.
+Base `01480f61c706c8ead346499f39666648487ecf8b`,431inputs `7199f1883206ae806f2db0f9dc0f94906ef507c60b0ada67470feb53cc9f60bd`. D16commit/push AW2 và đối chiếu fetch độc lập trước báo thành công; không master/rpg/deploy/release/reset.
 
 [Trạng thái](STATUS.md) · [Công việc](BACKLOG.md) · [Bàn giao](HANDOFF.md) · [Kiểm thử](TEST_LEDGER.md) · [Phần trăm](PROGRESS.md)
