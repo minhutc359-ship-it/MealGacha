@@ -1,3 +1,4 @@
+import { roomById } from "../../src/aw2/world/interiorLayout"
 import { placeAffordance } from "../../src/aw2/world/placeAffordance"
 import { PlaceCue } from "./PlaceCue"
 import {
@@ -297,7 +298,12 @@ export function GameQuestPanel({
                 <strong>{direction.targetName}</strong>
               </p>
               <p className="note">
-                {direction.zones.map((id) => zoneById(id).name).join(" → ")}
+                {[
+                  ...direction.zones.map((id) => zoneById(id).name),
+                  ...(direction.targetRoomId
+                    ? [roomById(direction.targetRoomId).name]
+                    : []),
+                ].join(" → ")}
               </p>
               <button
                 type="button"

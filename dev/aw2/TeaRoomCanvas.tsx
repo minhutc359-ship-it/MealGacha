@@ -26,6 +26,12 @@ import {
   initializeWorldScene,
   firstWorldFrame,
 } from "./sceneLifecycle"
+import {
+  loadNpcTextures,
+  createNpcSprites,
+  renderNpcSprites,
+} from "./npcSprites"
+import { advanceNpcClock } from "../../src/aw2/assets/npcMotion"
 import { RoomWaypoints } from "./RoomWaypoints"
 
 /** Renderer only: rules/store own room movement, actions and the outside checkpoint. */
@@ -78,7 +84,7 @@ export function TeaRoomCanvas({
     const fail = (cause: unknown) => {
       if (lifetime.disposed) return
       const message =
-        cause instanceof Error ? cause.message : "Chưa mở được tiệm trà."
+        cause instanceof Error ? cause.message : "Chưa mở được căn phòng."
       setReady(false)
       setError(message)
       report(false, message)
@@ -92,10 +98,11 @@ export function TeaRoomCanvas({
       try {
         const { Application, Assets, Sprite, Texture, Rectangle } =
           await import("pixi.js")
-        const [floor, props, body] = await Promise.all([
+        const [floor, props, body, loadedNpc] = await Promise.all([
           Assets.load(scene.assets.floor.url),
           Assets.load(scene.assets.props.url),
           Assets.load(ROSTER_ASSETS[leader].assets.world.url),
+          loadNpcTextures(room.id, (url) => Assets.load(url)),
         ])
         if (lifetime.disposed) return
         floor.source.scaleMode = "linear"
@@ -140,6 +147,12 @@ export function TeaRoomCanvas({
           app.stage.addChild(sprite)
           return { spec, sprite }
         })
+        const npcs = createNpcSprites(
+          loadedNpc,
+          { Sprite, Texture, Rectangle },
+          textures,
+        )
+        for (const npc of npcs) app.stage.addChild(npc.sprite)
         const manifest = ROSTER_ASSETS[leader],
           frames: Record<string, Texture> = {}
         for (const [id, f] of Object.entries(manifest.frames))
@@ -148,11 +161,21 @@ export function TeaRoomCanvas({
         app.stage.addChild(actor)
         const reduced = matchMedia("(prefers-reduced-motion: reduce)")
         let prior = position.current.interior ?? room.spawn,
-          elapsed = 0
+          elapsed = 0,
+          npcElapsed = 0
         const update = (ticker: Ticker) => {
           const now = position.current,
             point = now.interior
           if (!point) return
+          npcElapsed = advanceNpcClock(
+            npcElapsed,
+            ticker.deltaMS,
+            pause.current,
+            reduced.matches,
+          )
+          app.canvas.dataset.npcMotion = JSON.stringify(
+            renderNpcSprites(npcs, npcElapsed, reduced.matches),
+          )
           const view = landscapeCamera(point, modeRef.current, scene)
           camera.current = view
           app.stage.scale.set(view.zoom)
@@ -270,7 +293,7 @@ export function TeaRoomCanvas({
       <div
         className="aw2-map-toolbar"
         role="group"
-        aria-label="Góc nhìn tiệm trà"
+        aria-label={`Góc nhìn ${room.name}`}
       >
         <button
           type="button"
@@ -353,18 +376,14 @@ export function TeaRoomCanvas({
             style={{ visibility: "hidden" }}
           >
             <span className="aw2-place-name">
-              {o.kind === "room-exit"
-                ? "Ra hiên"
-                : o.x === 240
-                  ? "Đội đồng hành"
-                  : "Nhật ký / công thức"}
+              {o.kind === "room-exit" ? "Ra hiên" : o.name}
             </span>
             <PlaceCue value={placeAffordance(world, economy, o.id)} />
           </span>
         ))}
         {!ready && !error && (
           <p className="aw2-map-loading" role="status">
-            Đang mở tiệm trà…
+            Đang mở {room.name}…
           </p>
         )}
         {error && (

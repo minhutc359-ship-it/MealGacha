@@ -1,3 +1,5 @@
+import { STREET_DISTRICT } from "./streetDistrict"
+import { STREET_ROOMS } from "../world/interiorLayout"
 import { TEA_ROOM } from "../world/interiorLayout"
 import { VILLAGE_DISTRICT } from "./villageDistrict"
 import manifest from "./settlement-v1.json"
@@ -10,6 +12,32 @@ export const SETTLEMENT = manifest
 export type SettlementBuilding = typeof manifest.regions[number]["buildings"][number]
 export const settlementForZone = (zoneId: string) => {
   const region = manifest.regions.find((region) => region.zoneId === zoneId)
+  if (region && zoneId === STREET_ROOMS[0].zoneId)
+    return {
+      ...region,
+      landmarks: [],
+      buildings: STREET_ROOMS.map((room, i) => {
+        const frame = (["breakfast", "workshop", "games"] as const)[i]
+        const height =
+          (184 * manifest.frames[frame].height) / manifest.frames[frame].width
+        return {
+          ...region.buildings[i],
+          id: `street-functional-${i}`,
+          frame,
+          x: room.entrance.x,
+          y: 4,
+          width: 184,
+          height,
+          depth: 4,
+          solidBase: {
+            x: room.entrance.x - 92,
+            y: 4 - height * 0.28,
+            width: 184,
+            height: height * 0.28,
+          },
+        }
+      }),
+    }
   return region && zoneId === TEA_ROOM.zoneId
     ? {
         ...region,
@@ -26,6 +54,8 @@ export function settlementCameraSpec(
   spec: Parameters<typeof landscapeCamera>[2],
   zoneId: string,
 ) {
+  if (zoneId === STREET_ROOMS[0].zoneId)
+    return { ...spec, ...STREET_DISTRICT, canvas: spec.canvas }
   if (zoneId === TEA_ROOM.zoneId)
     return { ...spec, ...VILLAGE_DISTRICT, canvas: spec.canvas }
   return settlementForZone(zoneId)

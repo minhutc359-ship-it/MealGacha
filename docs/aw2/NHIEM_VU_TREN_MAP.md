@@ -1,5 +1,7 @@
 # Nhiệm vụ ngay trên bản đồ
 
+**017B current extension:** directions resolve the stable NPC ID to its real outdoor zone or child room. Outside→correct entrance, wrong room→own exit, matching room→NPC. Journal appends the room name; available resident memories mark the building door. Existing NPC IDs/dialogue/rewards unchanged; four Phố NPCs now live in three rooms, not duplicate outdoor anchors. Six outdoor-map registry entries remain; `ROOMS`/`entityLocation` cover six child rooms and all eight NPCs. Save8 reads1–7 without write. [Current guide](MAP_TUONG_TAC.md), [evidence](evidence/AW2-017B.md). Earlier descriptions below are source-bound history.
+
 AW2-016J thêm chỉ báo cho bốn nhiệm vụ hiện có. Xem bản đồ ở **Bám nhân vật** để thấy tên và chữ, hoặc **Toàn cảnh** để thấy biểu tượng gọn.
 
 | Chỉ báo | Ý nghĩa |

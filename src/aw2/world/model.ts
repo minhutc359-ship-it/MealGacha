@@ -6,6 +6,7 @@ import {
   TEA_ROOM_ID,
   canStandInTeaRoom,
   ROOM_IDS,
+  V7_ROOM_IDS,
   roomById,
   canStandInRoom,
 } from "./interiorLayout"
@@ -165,6 +166,27 @@ export const worldProgressV6Schema = progressWithBoss
         code: "custom",
         message: "Vị trí tiệm trà/điểm quay về không hợp lệ.",
       })
+  })
+
+export const worldProgressV7Schema = progressWithBoss
+  .extend({
+    interior: interiorSchema.extend({ roomId: z.enum(V7_ROOM_IDS) }).nullable(),
+  })
+  .superRefine((value, ctx) => {
+    validateBase(value, ctx, false)
+    validateBoss(value, ctx)
+    if (value.interior) {
+      const room = roomById(value.interior.roomId)
+      if (
+        value.zoneId !== room.zoneId ||
+        Math.hypot(value.x - room.entrance.x, value.y - room.entrance.y) > 48 ||
+        !canStandInRoom(room.id, value.interior.x, value.interior.y)
+      )
+        ctx.addIssue({
+          code: "custom",
+          message: "Vị trí phòng/điểm quay về không hợp lệ.",
+        })
+    }
   })
 
 export const worldProgressSchema = progressWithBoss

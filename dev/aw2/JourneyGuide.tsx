@@ -1,3 +1,4 @@
+import { roomById } from "../../src/aw2/world/interiorLayout"
 import type { WorldProgress } from "../../src/aw2/world/model"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import { journeyDirections } from "../../src/aw2/world/journey"
@@ -51,7 +52,12 @@ export function JourneyGuide({
                 >
                   <h3>{direction.targetName}</h3>
                   <p className="note" data-testid="journey-zone-route">
-                    {direction.zones.map((id) => zoneById(id).name).join(" → ")}
+                    {[
+                      ...direction.zones.map((id) => zoneById(id).name),
+                      ...(direction.targetRoomId
+                        ? [roomById(direction.targetRoomId).name]
+                        : []),
+                    ].join(" → ")}
                   </p>
                   <p data-testid="journey-next-step">
                     {nearby

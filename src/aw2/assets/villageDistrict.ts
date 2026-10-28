@@ -1,4 +1,4 @@
-import { ROOMS } from "../world/interiorLayout"
+import { VILLAGE_ROOMS as ROOMS } from "../world/interiorLayout"
 import type { Waypoint } from "../world/navigation"
 
 /** Functional town layout; ground paths and facades share actual entrance anchors. */

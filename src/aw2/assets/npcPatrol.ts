@@ -1,7 +1,8 @@
 import manifest from "./dem-nuoc.patrol-v1.json"
 import { npcPatrolView, type NpcPatrolState } from "../world/npcPatrol"
 import type { WorldProgress } from "../world/model"
-import { npcsForZone } from "./npcMotion"
+import { objectsInScene } from "../world/scene"
+import { npcsForZone, NPC_MOTION } from "./npcMotion"
 
 export const PATROL_VISUAL = manifest
 export type PatrolVisual = typeof manifest
@@ -23,4 +24,12 @@ export function samplePatrolVisual(
   return `${pose.facing}-${
     pose.moving && !reduced ? `walk${step}` : "idle"
   }` as PatrolFrame
+}
+
+/** Runtime membership follows the actual scene, independent of original atlas provenance. */
+export const npcVisualsForScene = (id: string) => {
+  const ids = new Set(objectsInScene(id).map((o) => o.id))
+  return NPC_MOTION.npc
+    .filter((n) => ids.has(n.entityId))
+    .map((n) => (n.entityId === manifest.entityId ? manifest : n))
 }

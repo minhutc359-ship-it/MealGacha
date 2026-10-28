@@ -10,6 +10,7 @@ import {
   newWorldProgress,
   worldProgressSchema,
   worldProgressV6Schema,
+  worldProgressV7Schema,
   worldProgressV2Schema,
   worldProgressV4Schema,
   worldProgressV5Schema,
@@ -129,10 +130,33 @@ export const aw2DevSaveV6Schema = z
       })
   })
 
-export const aw2DevSaveSchema = z
+export const aw2DevSaveV7Schema = z
   .strictObject({
     ...aw2DevSaveV6Schema.shape,
     schemaVersion: z.literal(7),
+    progress: worldProgressV7Schema,
+  })
+  .superRefine((save, ctx) => {
+    if (
+      Date.parse(save.updatedAt) < Date.parse(save.createdAt) ||
+      save.economy.receipts.some(
+        (id) =>
+          QUEST_GRANTS.includes(id as typeof QUEST_GRANTS[number]) &&
+          QUEST_GRANTS.indexOf(id as typeof QUEST_GRANTS[number]) >=
+            save.progress.questIndex,
+      ) ||
+      !validCollectionProgress(save.progress, save.collection)
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Bộ sưu tập/đội/biên nhận AW2 không hợp lệ.",
+      })
+  })
+
+export const aw2DevSaveSchema = z
+  .strictObject({
+    ...aw2DevSaveV7Schema.shape,
+    schemaVersion: z.literal(8),
     progress: worldProgressSchema,
   })
   .superRefine((save, ctx) => {
@@ -179,7 +203,7 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
     typeof value === "object" &&
     "schemaVersion" in value &&
     typeof value.schemaVersion === "number" &&
-    value.schemaVersion > 7
+    value.schemaVersion > 8
   ) {
     return { status: "unsupported", raw }
   }
@@ -187,6 +211,7 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
   const previous = aw2DevSaveV2Schema.safeParse(value)
   const third = aw2DevSaveV3Schema.safeParse(value)
   const fourth = aw2DevSaveV4Schema.safeParse(value)
+  const seventh = aw2DevSaveV7Schema.safeParse(value)
   const sixth = aw2DevSaveV6Schema.safeParse(value)
   const fifth = aw2DevSaveV5Schema.safeParse(value)
   const historical = legacy.success
@@ -212,18 +237,20 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
       ? {
           ...historical,
           progress: { ...historical.progress, interior: null },
-          schemaVersion: 7,
+          schemaVersion: 8,
           collection: newCollection(),
         }
       : fifth.success
         ? {
             ...fifth.data,
-            schemaVersion: 7,
+            schemaVersion: 8,
             progress: { ...fifth.data.progress, interior: null },
           }
         : sixth.success
-          ? { ...sixth.data, schemaVersion: 7 }
-          : value,
+          ? { ...sixth.data, schemaVersion: 8 }
+          : seventh.success
+            ? { ...seventh.data, schemaVersion: 8 }
+            : value,
   )
 
   return parsed.success

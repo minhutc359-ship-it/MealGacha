@@ -1,5 +1,9 @@
 # Canon — Initial 12 and Lantern direction approved 2026-10-20
 
+## Current spatial extension —2026-10-28 / D24 /017B
+
+Six outdoor zones/eight NPC/four quests remainD14. Three optional Phố interiors: `aw2-room-street-breakfast` holds original Người Bán Bữa Sáng/memory0, `aw2-room-street-workshop` holds Thợ Sửa Ghế/memory1, `aw2-room-street-play` holds original TCG/Chess hosts. An Vá Đèn and Em Đem Nước remain outdoors; no duplicate actor IDs or new narrative identities. All dialogue/choices/rewards preserved. Six optional rooms total; save8, strict old7 village-only rooms and read-no-write compatibility. Original art reused, one representative/D17 retained. [Map contract](MAP_TUONG_TAC.md). Earlier original-zone-only NPC and schema7 statements are historical snapshots, superseded for this scope.
+
 ## Current spatial extension — 2026-10-28 / D24 /017A
 
 Six outdoor zones/eight story NPCs/four quests remainD14. Optional village interiors now include `aw2-room-village-home` (team/journal/recipe), existing `aw2-room-village-tea`, and `aw2-room-village-guild` (real TCG/Chess practice tables). These are service locations, not new named story characters/quests or a collectible/reward contract. Separate room IDs/doors and save7; historical6 remains tea-only and reads without write. One map representative/D17 remains. Two new interiors reuse original tea-room components; unique final interior art and the other-zone redesign remain pending. [Functional map contract](MAP_TUONG_TAC.md).

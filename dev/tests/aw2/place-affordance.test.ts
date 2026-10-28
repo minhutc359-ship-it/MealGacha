@@ -1,3 +1,4 @@
+import { atEntity } from "./entity-fixture"
 import { describe, expect, it } from "vitest"
 import { newWorldProgress, type WorldProgress } from "@/aw2/world/model"
 import { MEMORY_IDS, STARTER_TEAM, ZONE_IDS } from "@/aw2/world/ids"
@@ -95,7 +96,7 @@ describe("016I existing services and receipts", () => {
   it.each(["aw2-npc-ban-bai", "aw2-npc-ban-co"])(
     "allows approaching %s before any quest is earned",
     (id) => {
-      expect(view(zone(1), id)).toMatchObject({
+      expect(view(atEntity(zone(1), id), id)).toMatchObject({
         state: "ready",
         label: "Sẵn sàng",
       })

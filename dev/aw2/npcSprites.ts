@@ -1,11 +1,11 @@
 import type { Rectangle, Sprite, Texture } from "pixi.js"
 import { sampleNpcIdle, type NpcMotion } from "../../src/aw2/assets/npcMotion"
-import { zoneById } from "../../src/aw2/world/maps"
-import type { ZoneId } from "../../src/aw2/world/ids"
+import { objectsInScene } from "../../src/aw2/world/scene"
+import type { WorldObject } from "../../src/aw2/world/maps"
 import {
   samplePatrolVisual,
   type PatrolVisual,
-  npcVisualsForZone,
+  npcVisualsForScene,
 } from "../../src/aw2/assets/npcPatrol"
 import {
   npcPatrolView,
@@ -20,14 +20,16 @@ type NpcFrame = NpcMotion["frames"]["neutral"]
 type LoadedNpc = {
   manifest: NpcVisual
   texture: Texture
+  object: Readonly<WorldObject>
 }
 export function loadNpcTextures(
   zoneId: string,
   load: (url: string) => Promise<Texture>,
 ): Promise<LoadedNpc[]> {
   return Promise.all(
-    npcVisualsForZone(zoneId).map(async (manifest) => ({
+    npcVisualsForScene(zoneId).map(async (manifest) => ({
       manifest,
+      object: objectsInScene(zoneId).find((o) => o.id === manifest.entityId)!,
       texture: await load(manifest.asset.url),
     })),
   )
@@ -48,7 +50,7 @@ export function createNpcSprites(
   },
   owned: Texture[],
 ): NpcSprite[] {
-  return loaded.map(({ manifest, texture }) => {
+  return loaded.map(({ manifest, texture, object }) => {
     texture.source.scaleMode = "nearest"
     const frames: Record<string, Texture> = {}
     for (const [key, f] of Object.entries(manifest.frames)) {
@@ -62,9 +64,6 @@ export function createNpcSprites(
     const initial =
       manifest.entityId === PATROL_NPC_ID ? "down-idle" : "neutral"
     const sprite = new pixi.Sprite(frames[initial])
-    const object = zoneById(manifest.zoneId as ZoneId).objects.find(
-      (o) => o.id === manifest.entityId,
-    )!
     sprite.position.set(object.x, object.y)
     sprite.zIndex = object.y
     return { manifest, sprite, frames, frame: initial }

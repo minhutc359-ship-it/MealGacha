@@ -1,3 +1,4 @@
+import { addDistrictGround } from "./districtGround"
 import { PlaceCue, hideOverlappingPlaceCues } from "./PlaceCue"
 import { placeAffordance } from "../../src/aw2/world/placeAffordance"
 import {
@@ -26,7 +27,10 @@ import {
 } from "../../src/aw2/assets/villageView"
 import type { Waypoint } from "../../src/aw2/world/navigation"
 import type { WorldCanvasProps } from "./worldCanvasTypes"
-import { TEA_ROOM, ROOMS } from "../../src/aw2/world/interiorLayout"
+import {
+  TEA_ROOM,
+  VILLAGE_ROOMS as ROOMS,
+} from "../../src/aw2/world/interiorLayout"
 import {
   SceneLifetime,
   initializeWorldScene,
@@ -190,50 +194,7 @@ export function VillageLandscape({
           textures.push(t)
           return t
         }
-        // Crop ordinary sprites on a shared grid: stable atlas UVs and aligned roads.
-        const pave = (
-          area: {
-            x: number
-            y: number
-            width: number
-            height: number
-          },
-          tint: number,
-          depth: number,
-        ) => {
-          const frame = VILLAGE_DISTRICT.pavingFrame
-          for (
-            let y = Math.floor(area.y / frame.height) * frame.height;
-            y < area.y + area.height;
-            y += frame.height
-          )
-            for (
-              let x = Math.floor(area.x / frame.width) * frame.width;
-              x < area.x + area.width;
-              x += frame.width
-            ) {
-              const left = Math.max(x, area.x),
-                top = Math.max(y, area.y)
-              const width =
-                Math.min(x + frame.width, area.x + area.width) - left
-              const height =
-                Math.min(y + frame.height, area.y + area.height) - top
-              const tile = new Sprite(
-                crop(floor, {
-                  x: frame.x + left - x,
-                  y: frame.y + top - y,
-                  width,
-                  height,
-                }),
-              )
-              tile.position.set(left, top)
-              tile.tint = tint
-              tile.zIndex = depth
-              next.stage.addChild(tile)
-            }
-        }
-        pave(VILLAGE_DISTRICT.landscape, 0x9db594, -1000)
-        for (const path of VILLAGE_DISTRICT.paths) pave(path, 0xffffff, -990)
+        addDistrictGround(next.stage, floor, crop, VILLAGE_DISTRICT, Sprite)
         for (const room of ROOMS) {
           const step = new Sprite(crop(threshold, scene.assets.threshold.frame))
           step.anchor.set(0.5, 1)

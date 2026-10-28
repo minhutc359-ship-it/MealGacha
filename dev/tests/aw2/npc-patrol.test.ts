@@ -213,7 +213,7 @@ describe("016B real NPC patrol", () => {
       urls.push(url)
       return {} as never
     })
-    expect(urls).toHaveLength(6)
+    expect(urls).toHaveLength(2)
     expect(urls.filter((u) => u.includes("/dem-nuoc/"))).toEqual([
       PATROL_VISUAL.asset.url,
     ])

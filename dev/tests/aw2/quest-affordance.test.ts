@@ -1,3 +1,4 @@
+import { atEntity } from "./entity-fixture"
 import { describe, expect, it } from "vitest"
 import {
   newWorldProgress,
@@ -40,13 +41,8 @@ function state(
     ...patch,
   })
 }
-function at(world: WorldProgress, id: string): WorldProgress {
-  const zone = ZONE_IDS.find((zone) =>
-    zoneById(zone).objects.some((o) => o.id === id),
-  )!
-  const object = zoneById(zone).objects.find((o) => o.id === id)!
-  return { ...world, zoneId: zone, x: object.x, y: object.y + 32 }
-}
+const at = atEntity
+
 const act = (world: WorldProgress, id: string, action: string) =>
   applyWorldAction(at(world, id), id, action).state
 const giver = [
@@ -104,7 +100,7 @@ describe("016J quest cues use existing action authority", () => {
         expect(cue(world, id)?.state).toBe("quest-active")
         world = act(world, id, "remember")
         expect(cue(world, id)).toBeUndefined()
-        expect(cue(world, giver[1])?.state).toBe(
+        expect(cue(at(world, giver[1]), giver[1])?.state).toBe(
           i === 2 ? "quest-ready" : undefined,
         )
       }

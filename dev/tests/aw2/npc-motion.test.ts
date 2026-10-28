@@ -1,3 +1,5 @@
+import { ROOMS } from "@/aw2/world/interiorLayout"
+import { entityLocation } from "@/aw2/world/scene"
 import { readFileSync } from "node:fs"
 import { createHash } from "node:crypto"
 import { describe, expect, it } from "vitest"
@@ -18,7 +20,13 @@ describe("006M all canonical NPC idle motion", () => {
       zoneById(zone)
         .objects.filter((o) => o.id.startsWith("aw2-npc-"))
         .map((o) => o.id),
-    ).sort()
+    )
+      .concat(
+        ROOMS.flatMap((r) =>
+          r.objects.filter((o) => o.id.startsWith("aw2-npc-")).map((o) => o.id),
+        ),
+      )
+      .sort()
     expect(NPC_MOTION.npc.map((n) => n.entityId).sort()).toEqual(canonical)
     expect(new Set(canonical).size).toBe(8)
     expect(NPC_MOTION.authoredFrameCount).toBe(32)
@@ -29,9 +37,7 @@ describe("006M all canonical NPC idle motion", () => {
     expect(npcsForZone(ZONE_IDS[1])).toHaveLength(6)
     for (const n of NPC_MOTION.npc) {
       expect(npcForEntity(n.entityId)).toBe(n)
-      expect(
-        zoneById(n.zoneId as ZoneId).objects.some((o) => o.id === n.entityId),
-      ).toBe(true)
+      expect(entityLocation(n.entityId)?.zoneId === n.zoneId).toBe(true)
       expect(n).not.toHaveProperty("spiritId")
       expect(n).not.toHaveProperty("rarity")
     }

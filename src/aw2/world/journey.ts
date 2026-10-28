@@ -10,12 +10,14 @@ import type { WorldProgress } from "./model"
 import { describeObject } from "./rules"
 import type { Waypoint } from "./navigation"
 import { worldObjects, type NpcPatrolState } from "./npcPatrol"
-import { roomById, TEA_ROOM, TEA_EXIT_ID } from "./interiorLayout"
+import { roomById, roomForEntrance, type RoomId } from "./interiorLayout"
+import { entityLocation } from "./scene"
 
 export interface JourneyDirection {
   targetId: string
   targetName: string
   targetZone: ZoneId
+  targetRoomId: RoomId | null
   zones: ZoneId[]
   next: WorldObject
   approach: Waypoint
@@ -31,13 +33,9 @@ function targets(state: WorldProgress): string[] {
   if (state.questIndex === 1) {
     if (!state.accepted || state.memories.length === 3)
       return ["aw2-npc-va-den"]
-    return zoneById(ZONE_IDS[1])
-      .objects.filter(
-        (object) =>
-          object.kind === "memory" &&
-          !state.memories.includes(MEMORY_IDS[object.memory!]),
-      )
-      .map((object) => object.id)
+    return ["aw2-npc-nguoi-ban", "aw2-npc-sua-ghe", "aw2-npc-dem-nuoc"].filter(
+      (_, memory) => !state.memories.includes(MEMORY_IDS[memory]),
+    )
   }
   if (state.questIndex === 2) {
     if (!state.accepted || state.puzzleStep === 3) return ["aw2-npc-gac-bep"]
@@ -82,52 +80,51 @@ export function journeyDirections(
   state: WorldProgress,
   patrol?: Readonly<NpcPatrolState>,
 ): JourneyDirection[] {
-  if (state.interior) {
-    const exit = roomById(state.interior.roomId).objects.find(
-      (object) => object.kind === "room-exit",
-    )!
-    return [
-      {
-        targetId: exit.id,
-        targetName: "Ra hiên để tiếp tục hành trình",
-        targetZone: state.zoneId,
-        zones: [state.zoneId],
-        next: { ...exit },
-        approach: { x: 48, y: 192 },
-      },
-    ]
-  }
   return targets(state).flatMap((id) => {
-    const targetZone = ZONE_IDS.find((zone) =>
-      zoneById(zone).objects.some((object) => object.id === id),
-    )!
-    const target = worldObjects({ ...state, zoneId: targetZone }, patrol).find(
-      (object) => object.id === id,
-    )!
-    const zones = journeyRoute(state, targetZone)
+    const location = entityLocation(id)
+    if (!location) throw Error(`Missing journey entity: ${id}`)
+    const { zoneId: targetZone, roomId: targetRoomId } = location
+    const zones = journeyRoute({ ...state, interior: null }, targetZone)
     if (!zones) return []
-    const next =
-      zones.length === 1
-        ? target
-        : zoneById(state.zoneId).objects.find(
-            (object) =>
-              object.kind === "exit" &&
-              object.to === zones[1] &&
-              describeObject(state, object).actions.some(
-                (action) => action.id === "travel",
-              ),
-          )!
+    let next: WorldObject
+    if (state.interior && state.interior.roomId !== targetRoomId) {
+      next = roomById(state.interior.roomId).objects.find(
+        (o) => o.kind === "room-exit",
+      )!
+    } else if (zones.length > 1) {
+      next = zoneById(state.zoneId).objects.find(
+        (o) =>
+          o.kind === "exit" &&
+          o.to === zones[1] &&
+          describeObject({ ...state, interior: null }, o).actions.some(
+            (a) => a.id === "travel",
+          ),
+      )!
+    } else if (targetRoomId && state.interior?.roomId !== targetRoomId) {
+      next = roomById(targetRoomId).entrance
+    } else {
+      next =
+        worldObjects({ ...state, zoneId: targetZone }, patrol).find(
+          (o) => o.id === id,
+        ) ?? location.object
+    }
+    const approach =
+      next.kind === "room"
+        ? { ...roomForEntrance(next.id)!.approach }
+        : next.kind === "room-exit"
+          ? { x: next.x + 24, y: next.y }
+          : next.kind === "exit"
+            ? { x: next.x + (next.x > 320 ? -24 : 24), y: next.y }
+            : { x: next.x, y: next.y + 32 }
     return [
       {
-        targetId: target.id,
-        targetName: target.name,
+        targetId: id,
+        targetName: location.object.name,
         targetZone,
+        targetRoomId,
         zones,
         next: { ...next },
-        approach:
-          next.kind === "exit"
-            ? { x: next.x + (next.x > 320 ? -24 : 24), y: next.y }
-            : { x: next.x, y: next.y + 32 },
+        approach,
       },
     ]
   })

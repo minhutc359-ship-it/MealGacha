@@ -1,3 +1,5 @@
+import { atEntity } from "./entity-fixture"
+import { entityLocation } from "@/aw2/world/scene"
 import { describe, expect, it } from "vitest"
 import { journeyDirections } from "@/aw2/world/journey"
 import {
@@ -117,12 +119,9 @@ describe("JOURNEY-GUIDE-01 canonical objective directions", () => {
       const directions = journeyDirections(progress)
       expect(directions.map((d) => d.targetId)).toEqual(expected)
       for (const d of directions) {
-        const object = zoneById(d.targetZone).objects.find(
-          (o) => o.id === d.targetId,
-        )!
+        const object = entityLocation(d.targetId)!.object
         expect(
-          describeObject({ ...progress, zoneId: d.targetZone }, object).actions
-            .length,
+          describeObject(atEntity(progress, d.targetId), object).actions.length,
         ).toBeGreaterThan(0)
       }
       expect(JSON.stringify(progress)).toBe(before)

@@ -35,7 +35,7 @@ const ready: SaveSnapshot = {
   save: {
     gameId: "adventure-world-2",
     environment: "development",
-    schemaVersion: 7,
+    schemaVersion: 8,
     saveId: "PRIVATE_ID",
     createdAt: "2026-01-01T00:00:00Z",
     updatedAt: "2026-01-01T00:00:00Z",
@@ -75,7 +75,7 @@ describe("Opt-in playtest reports preserve data boundaries", () => {
     ])
       expect(serialized).not.toContain(secret)
     expect(report.committedProgress).toMatchObject({
-      schemaVersion: 7,
+      schemaVersion: 8,
       questIndex: 0,
       partySize: 0,
       teamExperience: 0,

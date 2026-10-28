@@ -1,3 +1,4 @@
+import { ROOMS } from "@/aw2/world/interiorLayout"
 import { describe, expect, it, vi } from "vitest"
 import { readFileSync } from "node:fs"
 import { pantryInspection, canInspectPantry } from "@/aw2/world/pantry"
@@ -48,8 +49,9 @@ describe("016E existing pantry stock inspection", () => {
     expect(r.maps).toHaveLength(6)
     expect(
       r.maps
-        .flatMap((m) => m.entities)
-        .filter((e) => e.id.startsWith("aw2-npc-")),
+        .flatMap((m) => m.entities.map((e) => e.id))
+        .concat(ROOMS.flatMap((room) => room.objects.map((o) => o.id)))
+        .filter((id) => id.startsWith("aw2-npc-")),
     ).toHaveLength(8)
     expect(map.entities.filter((e) => e.kind === "stock")).toEqual([
       {

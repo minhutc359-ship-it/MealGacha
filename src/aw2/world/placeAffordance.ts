@@ -7,6 +7,7 @@ import {
 } from "../economy/model"
 import { sceneObjects } from "./scene"
 import { describeObject, type WorldDialog } from "./rules"
+import { roomForEntrance } from "./interiorLayout"
 import type { WorldObject } from "./maps"
 
 export interface PlaceAffordance {
@@ -25,7 +26,17 @@ export function placeAffordance(
   const object = sceneObjects(world).find((candidate) => candidate.id === id)
   if (!object) return
   const description = describeObject(world, object)
-  const quest = questAffordance(world, object, description)
+  const room = object.kind === "room" ? roomForEntrance(object.id) : undefined
+  const insideQuest = room?.objects
+    .map((o) => {
+      const inside = { ...world, interior: { ...room.spawn } }
+      const cue = questAffordance(inside, o, describeObject(inside, o))
+      return cue
+        ? { ...cue, detail: `${o.name} trong ${room.name}. ${cue.detail}` }
+        : undefined
+    })
+    .find(Boolean)
+  const quest = insideQuest ?? questAffordance(world, object, description)
   const service = serviceAffordance(world, economy, object, description)
   // One marker per anchor. A quest at Dì takes priority without hiding kitchen readiness.
   return quest

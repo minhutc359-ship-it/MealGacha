@@ -1,3 +1,5 @@
+import { sceneObjects } from "@/aw2/world/scene"
+import { atEntity } from "./entity-fixture"
 import { describe, expect, it } from "vitest"
 import { Aw2DevSaveStore } from "@/aw2/save/store"
 import { AW2_DEV_SAVE_KEY } from "@/aw2/save/schema"
@@ -21,9 +23,9 @@ function at(
   id: string,
   zoneId = state.zoneId,
 ): WorldProgress {
-  const object = zoneById(zoneId).objects.find((object) => object.id === id)!
-  return { ...state, zoneId, x: object.x, y: object.y }
+  return atEntity(state, id)
 }
+
 function act(
   state: WorldProgress,
   id: string,
@@ -170,7 +172,7 @@ describe("WORLD-02 approved quest progression and starter unlock", () => {
       ["aw2-npc-ban-co", ZONE_IDS[1]],
     ] as const) {
       const placed = at(state, id, zone)
-      const object = zoneById(zone).objects.find((object) => object.id === id)!
+      const object = sceneObjects(placed).find((object) => object.id === id)!
       expect(describeObject(placed, object).actions).toEqual(
         object.kind === "mode" ? [{ id: "visit-mode", label: "Ghé bàn" }] : [],
       )
@@ -242,14 +244,14 @@ describe("SAVE-03 v1 migration and atomic world/starter writes", () => {
     const loaded = f.store.load()
     expect(loaded).toMatchObject({
       status: "ready",
-      save: { schemaVersion: 7, revision: 7, progress: newWorldProgress() },
+      save: { schemaVersion: 8, revision: 7, progress: newWorldProgress() },
     })
     expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(raw)
     const saved = await f.store.save(raw)
     expect(saved.save).toMatchObject({
       saveId: first.save.saveId,
       createdAt: first.save.createdAt,
-      schemaVersion: 7,
+      schemaVersion: 8,
       revision: 8,
     })
     expect(f.memory.get("foodchest.tcg.v1")).toBe("stable original")

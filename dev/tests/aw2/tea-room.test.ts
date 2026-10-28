@@ -96,7 +96,7 @@ describe("016F room rules preserve the outside checkpoint", () => {
       y: 160,
     })
     expect(path.length).toBeGreaterThan(0)
-    expect(journeyDirections(room)[0].targetName).toMatch(/hiên/)
+    expect(journeyDirections(room)[0].next.name).toMatch(/hiên/)
     for (const object of TEA_ROOM.objects.filter(
       (o) => o.kind === "room-service",
     )) {
@@ -254,7 +254,7 @@ describe("016F atomic persistence and migration", () => {
       expect(loaded.save.createdAt).toBe(value.createdAt)
       expect(loaded.save.updatedAt).toBe(value.updatedAt)
       const upgraded = await f.store.save(raw)
-      expect(upgraded.save.schemaVersion).toBe(7)
+      expect(upgraded.save.schemaVersion).toBe(8)
       expect(upgraded.save.revision).toBe(value.revision + 1)
       expect(f.setItem).toHaveBeenCalledTimes(2)
     },
@@ -278,7 +278,7 @@ describe("016F atomic persistence and migration", () => {
   it("preserves unsupported and corrupt room bytes without reset", async () => {
     const f = await fixture()
     for (const bad of [
-      { ...f.saved.save, schemaVersion: 8 },
+      { ...f.saved.save, schemaVersion: 9 },
       {
         ...f.saved.save,
         progress: {
@@ -290,7 +290,7 @@ describe("016F atomic persistence and migration", () => {
       const raw = JSON.stringify(bad)
       f.memory.set(AW2_DEV_SAVE_KEY, raw)
       expect(f.store.load().status).toBe(
-        bad.schemaVersion === 8 ? "unsupported" : "invalid",
+        bad.schemaVersion === 9 ? "unsupported" : "invalid",
       )
       await expect(f.store.save(raw)).rejects.toThrow()
       expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(raw)

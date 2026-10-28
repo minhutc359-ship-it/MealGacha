@@ -12,12 +12,25 @@ export function roomScene(id: string) {
     sceneId: id,
     floorBounds: { x: -80, y: -112, width: 800, height: 536 },
     camera: { ...TEA_ROOM_SCENE.camera, overviewZoom: 0.75 },
-    props: TEA_ROOM_SCENE.props.map((p, i) => ({
-      ...p,
-      entityId: room.objects[i === 0 ? 1 : i === 1 ? 2 : 0].id,
-      x: room.objects[i === 0 ? 1 : i === 1 ? 2 : 0].x,
-      y: room.objects[i === 0 ? 1 : i === 1 ? 2 : 0].y - (i === 2 ? 0 : 32),
-      depth: room.objects[i === 0 ? 1 : i === 1 ? 2 : 0].y,
-    })),
+    props:
+      room.zoneId === "aw2-zone-lantern-street"
+        ? room.objects.map((o, i) => ({
+            entityId: o.id,
+            frame:
+              o.kind === "room-exit" ? "exit" : i === 1 ? "party" : "journal",
+            x: o.x,
+            y: o.y - (o.kind === "room-exit" ? 0 : 32),
+            width: o.kind === "room-exit" ? 56 : 108,
+            depth: o.kind === "room-exit" ? 1 : o.y - 1,
+          }))
+        : TEA_ROOM_SCENE.props.map((p, i) => ({
+            ...p,
+            entityId: room.objects[i === 0 ? 1 : i === 1 ? 2 : 0].id,
+            x: room.objects[i === 0 ? 1 : i === 1 ? 2 : 0].x,
+            y:
+              room.objects[i === 0 ? 1 : i === 1 ? 2 : 0].y -
+              (i === 2 ? 0 : 32),
+            depth: room.objects[i === 0 ? 1 : i === 1 ? 2 : 0].y,
+          })),
   }
 }

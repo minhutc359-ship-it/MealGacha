@@ -181,7 +181,7 @@ describe("016G tea-room signposting across scenes", () => {
     expect(points.some((p) => p.id === "tea")).toBe(false)
     expect(scenicWalkingLandmarks(ZONE_IDS[1])).toEqual(street.landmarks)
     expect(scenicWalkingLandmarks("unknown")).toEqual([])
-    scenicWalkingLandmarks(ZONE_IDS[1])[0].x = 600
+    scenicWalkingLandmarks(ZONE_IDS[2])[0].x = 600
     expect(JSON.stringify(SETTLEMENT)).toBe(before)
   })
   it("returns detached approach data and preserves story/economy authority", () => {

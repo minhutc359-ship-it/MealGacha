@@ -37,7 +37,9 @@ const names = [
 ]
 const objects: WorldObject[][] = [
   [
-    ...ROOMS.map((room) => ({ ...room.entrance })),
+    ...ROOMS.filter((room) => room.zoneId === ZONE_IDS[0]).map((room) => ({
+      ...room.entrance,
+    })),
     { id: "aw2-npc-giu-cho", name: "Bà Giữ Chỗ", x: 160, y: 240, kind: "npc" },
     {
       id: "aw2-object-village-table",
@@ -49,31 +51,16 @@ const objects: WorldObject[][] = [
   ],
   [
     { id: "aw2-npc-va-den", name: "An Vá Đèn", x: 160, y: 112, kind: "npc" },
-    ...["Người Bán Bữa Sáng", "Thợ Sửa Ghế", "Em Đem Nước"].map(
-      (name, memory) => ({
-        id: ["aw2-npc-nguoi-ban", "aw2-npc-sua-ghe", "aw2-npc-dem-nuoc"][
-          memory
-        ],
-        name,
-        memory: memory as 0 | 1 | 2,
-        x: 280 + memory * 112,
-        y: 128,
-        kind: "memory" as const,
-      }),
-    ),
+    ...ROOMS.filter((room) => room.zoneId === ZONE_IDS[1]).map((room) => ({
+      ...room.entrance,
+    })),
     {
-      id: "aw2-npc-ban-bai",
-      name: "Chủ Bàn Bài · TCG",
-      x: 240,
-      y: 272,
-      kind: "mode",
-    },
-    {
-      id: "aw2-npc-ban-co",
-      name: "Chủ Bàn Cờ · Auto Chess",
-      x: 432,
-      y: 272,
-      kind: "mode",
+      id: "aw2-npc-dem-nuoc",
+      name: "Em Đem Nước",
+      memory: 2,
+      x: 504,
+      y: 128,
+      kind: "memory",
     },
   ],
   [

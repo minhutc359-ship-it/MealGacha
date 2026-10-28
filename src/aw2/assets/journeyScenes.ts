@@ -9,6 +9,7 @@ import { MEMORY_IDS } from "../world/ids"
 import { worldObjects, type NpcPatrolState } from "../world/npcPatrol"
 import { describeObject } from "../world/rules"
 import type { SceneBounds } from "./tableRoom"
+import { roomForEntrance } from "../world/interiorLayout"
 import { PANTRY_STOCK } from "../world/pantryLayout"
 
 export interface JourneyFrame {
@@ -42,7 +43,11 @@ export function journeyWaypoints(
         actions.map((a) => a.label).join(" · ") || "Đến gần để trò chuyện",
       state = actions.length ? "ready" : "waiting",
       locked = false
-    if (object.kind === "exit") {
+    if (object.kind === "room") {
+      short = roomForEntrance(object.id)!.name
+      status = `Đến cửa rồi tự vào ${short}`
+      state = "ready"
+    } else if (object.kind === "exit") {
       locked = !actions.some((a) => a.id === "travel")
       state = locked ? "locked" : "ready"
       const shortcut = !!object.requiresCompleted
@@ -111,11 +116,18 @@ export function journeyWaypoints(
       name: object.name,
       x: object.x,
       y: object.y,
-      walkX: object.kind === "stock" ? PANTRY_STOCK.approach.x : object.x,
+      walkX:
+        object.kind === "room"
+          ? roomForEntrance(object.id)!.approach.x
+          : object.kind === "stock"
+            ? PANTRY_STOCK.approach.x
+            : object.x,
       walkY:
-        object.kind === "stock"
-          ? PANTRY_STOCK.approach.y
-          : object.y + (spec?.asset === "threshold" ? 0 : 32),
+        object.kind === "room"
+          ? roomForEntrance(object.id)!.approach.y
+          : object.kind === "stock"
+            ? PANTRY_STOCK.approach.y
+            : object.y + (spec?.asset === "threshold" ? 0 : 32),
       short,
       status,
       state,
@@ -131,21 +143,23 @@ export function journeyProps(
   const scene = journeyScene(world.zoneId),
     points = journeyWaypoints(world, economy, patrol)
   if (!scene) return []
-  return scene.props.map((spec) => {
-    const point = points.find((p) => p.id === spec.entityId)!
-    return {
-      ...spec,
-      x: point.x,
-      y: point.y,
-      state: point.state,
-      alpha: point.locked
-        ? 0.45
-        : point.state === "claimed" || point.state === "read"
-          ? 0.85
-          : 1,
-      depth: spec.asset === "threshold" ? 1 : point.y,
-    }
-  })
+  return scene.props
+    .filter((spec) => points.some((p) => p.id === spec.entityId))
+    .map((spec) => {
+      const point = points.find((p) => p.id === spec.entityId)!
+      return {
+        ...spec,
+        x: point.x,
+        y: point.y,
+        state: point.state,
+        alpha: point.locked
+          ? 0.45
+          : point.state === "claimed" || point.state === "read"
+            ? 0.85
+            : 1,
+        depth: spec.asset === "threshold" ? 1 : point.y,
+      }
+    })
 }
 export function journeyObstacleAlpha(
   scene: JourneyScene,

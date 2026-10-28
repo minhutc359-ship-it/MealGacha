@@ -30,7 +30,7 @@ const defaults = () => ({
 
 describe("016C exact destination asset preparation", () => {
   it.each(
-    ZONE_IDS.map((zoneId, i) => [zoneId, [9, 14, 11, 4, 5, 6][i]] as const),
+    ZONE_IDS.map((zoneId, i) => [zoneId, [9, 10, 11, 4, 5, 6][i]] as const),
   )(
     "%s prepares exactly %s required unique runtime images",
     (zoneId, count) => {

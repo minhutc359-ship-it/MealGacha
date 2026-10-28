@@ -1,3 +1,4 @@
+import { atEntity } from "./entity-fixture"
 import { describe, expect, it } from "vitest"
 import { AW2_MODES, type Aw2ModeId, type ModeEntry } from "@/aw2/modes/catalog"
 import { Aw2ModeAdapter } from "@/aw2/modes/session"
@@ -76,14 +77,18 @@ describe("MODE-01 transition foundation (lobby only)", () => {
     "uses the same checkpoint policy through the $id portal",
     async (mode) => {
       const f = await fixture()
-      const progress = {
-        ...f.saved.save.progress,
-        zoneId: ZONE_IDS[1],
-        x: mode.id === "tcg" ? 240 : 432,
-        y: 272,
-      }
+      const progress = atEntity(f.saved.save.progress, mode.portalId)
+      const outside = { ...progress, interior: null }
+      const moved = await f.store.save(f.saved.raw, outside)
+      const checkpoint = await f.store.act(
+        moved.raw,
+        outside,
+        "aw2-object-street-play-door",
+        "enter-room",
+        () => {},
+      )
       const entered = await f.adapter.enter(
-        f.saved.raw,
+        checkpoint.raw,
         progress,
         mode.id,
         "portal",
@@ -92,6 +97,7 @@ describe("MODE-01 transition foundation (lobby only)", () => {
         modeId: mode.id,
         entry: "portal",
         returnZoneId: ZONE_IDS[1],
+        returnRoomId: "aw2-room-street-play",
       })
       expect(f.adapter.returnToWorld().save.progress).toEqual(progress)
     },

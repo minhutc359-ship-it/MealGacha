@@ -1,5 +1,11 @@
 # Changes
 
+**AW2-017B VERIFIED development — Phố Đèn Lồng có công trình và NPC bên trong.** Giữ ba nhà: Quầy bữa sáng/Xưởng sửa ghế/Nhà bàn chơi; bỏ chín facade dư. Bốn NPC cũ vào đúng phòng, An và Em Đem Nước ở ngoài; đủ tám NPC toàn tuyến, không bản sao. Nhật ký dẫn qua cửa/ra phòng/đến NPC theo scene thật; cửa có dấu ký ức còn thiếu. Save8 đọc1–7 không ghi đè, nâng cấp khi lưu rõ ràng. [Bố cục và cách chơi](MAP_TUONG_TAC.md).
+
+**1.943unit/143files PASS** toàn bộ,18ca mới nằm trong tổng; **498browser mới=190khu Phố+308toàn tuyến**,95+95và154+154source/compiled,0lỗi bất ngờ. Ba phòng/resident sprites+tên đúng/quota–retry/bấm lặp/reload/mode return/đúng cửa/save7, bốnviewport20px/native44px; hai hành trình thật đủ4quest/boss45tick/kết thúc-reload300XP đạt. Hai types/hai builds/262asset parity/517file gốc guard PASS. [Bằng chứng](evidence/AW2-017B.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là cấu trúc và tương tác Phố; nội thất dùng lại art gốc, vườn/biên/collider mỹ thuật cuối chưa hoàn thiện. Hiện6vùng+6phòng,6facade chức năng ở Làng/Phố; Sân còn10facade trang trí. Next017C: Sân Bếp và cửa nối kho/lửa/bàn ăn, trước step portal/đồ vật/lịchNPC. D14/D17/D18/D20/D11giữ nguyên; không commerce/gacha/reward mới hay phát hành. Các mục bên dưới là lịch sử, hiện hành theo017B.
+
 **AW2-017A VERIFIED development — Làng chuyển sang công trình có chức năng.** Ba facade Nhà đồng hành/Tiệm trà/Hội quán đều có cửa và nội thất riêng; bảy nhà trang trí dư đã bỏ khỏi bản render Làng. Lối đi ghép tách lớp và camera gần hơn; nhấn mái đi tới cửa thật. Nhà mở đội/sổ, hội quán mở hai bàn TCG/Chess thật; ra/về giữ đúng phòng và checkpoint. Save7 đọc1–6 không ghi đè, nâng cấp khi lưu rõ ràng. [Bố cục và lộ trình](MAP_TUONG_TAC.md).
 
 **1.925unit/142files PASS** toàn bộ, gồm11ca mới; **414browser mới=118khu mẫu+296toàn tuyến**, source+compiled đều đạt/0lỗi bất ngờ. Ba phòng/quota–retry/bấm lặp/reload/đúng cửa, save6no-write, bốnviewport20px/44px; toàn tuyến4quest/boss45tick/kết thúc300XP đạt. Hai typecheck/hai build/262asset parity đạt;516file gốc được guard. [Bằng chứng](evidence/AW2-017A.md).

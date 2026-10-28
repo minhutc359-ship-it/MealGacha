@@ -372,7 +372,7 @@ describe("BATTLE-02 trusted world encounter and SAVE-02 boss subset", () => {
       status: "ready",
       raw,
       save: {
-        schemaVersion: 7,
+        schemaVersion: 8,
         saveId: value.saveId,
         revision: 8,
         progress: readyProgress(),
@@ -382,7 +382,7 @@ describe("BATTLE-02 trusted world encounter and SAVE-02 boss subset", () => {
     expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(raw)
     const upgraded = await f.store.save(raw)
     expect(upgraded.save).toMatchObject({
-      schemaVersion: 7,
+      schemaVersion: 8,
       createdAt: value.createdAt,
       saveId: value.saveId,
       revision: 9,
@@ -449,7 +449,7 @@ describe("BATTLE-02 trusted world encounter and SAVE-02 boss subset", () => {
       { ...readyProgress(), bossDefeated: true, accepted: false },
     ])
       expect(worldProgressSchema.safeParse(progress).success).toBe(false)
-    const raw = JSON.stringify({ schemaVersion: 8, future: "retain" })
+    const raw = JSON.stringify({ schemaVersion: 9, future: "retain" })
     expect(decodeAw2Save(raw)).toEqual({ status: "unsupported", raw })
     const boss = zoneById(ZONE_IDS[5]).objects.find(
       (object) => object.id === KITCHEN_BOSS_ID,

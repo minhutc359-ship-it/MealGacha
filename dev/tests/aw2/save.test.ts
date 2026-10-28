@@ -201,7 +201,7 @@ describe("SAVE-01: AW2 namespace, round-trip and explicit reset", () => {
     expect(first.save).toMatchObject({
       gameId: "adventure-world-2",
       environment: "development",
-      schemaVersion: 7,
+      schemaVersion: 8,
       revision: 0,
       progress: newWorldProgress(),
     })
@@ -281,7 +281,7 @@ describe("SAVE-03: validation, conflicts and failures", () => {
     ["null", "invalid"],
     ["[]", "invalid"],
     [
-      JSON.stringify({ schemaVersion: 8, futureData: ["retain"] }),
+      JSON.stringify({ schemaVersion: 9, futureData: ["retain"] }),
       "unsupported",
     ],
     [JSON.stringify({ version: 1, gameId: "soul-of-meal" }), "invalid"],
@@ -330,7 +330,7 @@ describe("SAVE-03: validation, conflicts and failures", () => {
 
   it.each([
     "{broken",
-    JSON.stringify({ schemaVersion: 8, futureData: ["retain"] }),
+    JSON.stringify({ schemaVersion: 9, futureData: ["retain"] }),
   ])("allows an explicitly confirmed dev reset of %s", async (raw) => {
     const f = fixture()
     f.memory.set(AW2_DEV_SAVE_KEY, raw)

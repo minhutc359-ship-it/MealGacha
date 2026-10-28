@@ -1,3 +1,4 @@
+import { ROOMS } from "@/aw2/world/interiorLayout"
 import { describe, expect, it } from "vitest"
 import {
   worldRegistry,
@@ -66,8 +67,9 @@ describe("AW2 compatible map registry", () => {
     expect(registry.maps.map((m) => m.id)).toEqual([...ZONE_IDS])
     expect(
       registry.maps
-        .flatMap((m) => m.entities)
-        .filter((e) => e.id.startsWith("aw2-npc-")),
+        .flatMap((m) => m.entities.map((e) => e.id))
+        .concat(ROOMS.flatMap((room) => room.objects.map((o) => o.id)))
+        .filter((id) => id.startsWith("aw2-npc-")),
     ).toHaveLength(8)
     for (const map of registry.maps) {
       const zone = zoneById(map.id)
@@ -120,7 +122,8 @@ describe("AW2 compatible map registry", () => {
     [
       "wrong entity namespace",
       (r: ReturnType<typeof worldRegistry>) => {
-        r.maps[0].entities.find((entity) => entity.kind === "npc")!.id = "aw2-object-foreign-npc"
+        r.maps[0].entities.find((entity) => entity.kind === "npc")!.id =
+          "aw2-object-foreign-npc"
       },
     ],
     [

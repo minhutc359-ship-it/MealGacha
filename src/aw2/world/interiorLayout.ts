@@ -64,10 +64,16 @@ export function canStandInTeaRoom(x: number, y: number) {
   )
 }
 
-export const ROOM_IDS = [
+export const V7_ROOM_IDS = [
   TEA_ROOM_ID,
   "aw2-room-village-home",
   "aw2-room-village-guild",
+] as const
+export const ROOM_IDS = [
+  ...V7_ROOM_IDS,
+  "aw2-room-street-breakfast",
+  "aw2-room-street-workshop",
+  "aw2-room-street-play",
 ] as const
 export type RoomId = typeof ROOM_IDS[number]
 function additionalRoom<Id extends RoomId>(
@@ -137,14 +143,106 @@ function additionalRoom<Id extends RoomId>(
     ] as WorldObject[],
   }
 }
-export const HOME_ROOM = additionalRoom(ROOM_IDS[1], "Nhà đồng hành", 72, false)
+export const HOME_ROOM = additionalRoom(
+  V7_ROOM_IDS[1],
+  "Nhà đồng hành",
+  72,
+  false,
+)
 export const GUILD_ROOM = additionalRoom(
-  ROOM_IDS[2],
+  V7_ROOM_IDS[2],
   "Hội quán bàn chơi",
   528,
   true,
 )
-export const ROOMS = [HOME_ROOM, TEA_ROOM, GUILD_ROOM] as const
+export const VILLAGE_ROOMS = [HOME_ROOM, TEA_ROOM, GUILD_ROOM] as const
+function streetRoom<Id extends RoomId>(
+  id: Id,
+  name: string,
+  x: number,
+  residents: WorldObject[],
+) {
+  return {
+    id,
+    name,
+    zoneId: "aw2-zone-lantern-street" as const,
+    entrance: {
+      id: `aw2-object-${id.slice(9)}-door`,
+      name: `Cửa ${name}`,
+      x,
+      y: 48,
+      kind: "room" as const,
+    },
+    approach: { x, y: 80, entityId: `aw2-object-${id.slice(9)}-door` },
+    spawn: { roomId: id, x: 64, y: 192, facing: "right" as const },
+    walls: [
+      { x: 208, y: 80, width: 64, height: 32 },
+      ...(residents.length > 1
+        ? [{ x: 400, y: 176, width: 64, height: 32 }]
+        : []),
+    ],
+    objects: [
+      {
+        id: `aw2-object-${id.slice(9)}-exit`,
+        name: `Ra cửa ${name}`,
+        x: 24,
+        y: 192,
+        kind: "room-exit" as const,
+      },
+      ...residents,
+    ],
+  }
+}
+export const BREAKFAST_ROOM = streetRoom(ROOM_IDS[3], "Quầy bữa sáng", 72, [
+  {
+    id: "aw2-npc-nguoi-ban",
+    name: "Người Bán Bữa Sáng",
+    x: 240,
+    y: 128,
+    kind: "memory",
+    memory: 0,
+  },
+  {
+    id: "aw2-object-breakfast-recipes",
+    name: "Sổ công thức",
+    x: 432,
+    y: 224,
+    kind: "room-service",
+    service: "journal",
+  },
+])
+export const WORKSHOP_ROOM = streetRoom(ROOM_IDS[4], "Xưởng sửa ghế", 300, [
+  {
+    id: "aw2-npc-sua-ghe",
+    name: "Thợ Sửa Ghế",
+    x: 240,
+    y: 128,
+    kind: "memory",
+    memory: 1,
+  },
+])
+export const STREET_PLAY_ROOM = streetRoom(ROOM_IDS[5], "Nhà bàn chơi", 528, [
+  {
+    id: "aw2-npc-ban-bai",
+    name: "Chủ Bàn Bài · TCG",
+    x: 240,
+    y: 128,
+    kind: "mode",
+  },
+  {
+    id: "aw2-npc-ban-co",
+    name: "Chủ Bàn Cờ · Auto Chess",
+    x: 432,
+    y: 224,
+    kind: "mode",
+  },
+])
+export const STREET_ROOMS = [
+  BREAKFAST_ROOM,
+  WORKSHOP_ROOM,
+  STREET_PLAY_ROOM,
+] as const
+export const ROOMS = [...VILLAGE_ROOMS, ...STREET_ROOMS] as const
 export const roomForEntrance = (id: string) =>
   ROOMS.find((room) => room.entrance.id === id)
 export function roomById(id: string) {

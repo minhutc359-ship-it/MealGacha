@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest"
 import {
-  ROOMS,
+  VILLAGE_ROOMS as ROOMS,
   TEA_ROOM,
   HOME_ROOM,
   GUILD_ROOM,
@@ -116,7 +116,7 @@ describe("017A save6 to7 and real room services", () => {
       status: "ready",
       raw,
       save: {
-        schemaVersion: 7,
+        schemaVersion: 8,
         saveId: old.saveId,
         revision: old.revision,
         progress: old.progress,
@@ -124,7 +124,7 @@ describe("017A save6 to7 and real room services", () => {
     })
     expect(f.setItem).not.toHaveBeenCalled()
     const saved = await f.store.save(raw)
-    expect(saved.save.schemaVersion).toBe(7)
+    expect(saved.save.schemaVersion).toBe(8)
     expect(saved.save.progress).toEqual(old.progress)
     expect(f.memory.get("foodchest.tcg.v1")).toBe("legacy")
   })

@@ -162,7 +162,7 @@ export class Aw2DevSaveStore {
       )
         throw new Aw2SaveError(
           "invalid",
-          "Cần chuẩn bị cảnh trước khi vào/ra tiệm trà.",
+          "Cần chuẩn bị cảnh trước khi vào/ra phòng.",
         )
       if (assertDestinationReady) {
         if (!["travel", "enter-room", "leave-room"].includes(actionId))
@@ -316,7 +316,7 @@ export class Aw2DevSaveStore {
     return aw2DevSaveSchema.parse({
       gameId: "adventure-world-2",
       environment: "development",
-      schemaVersion: 7,
+      schemaVersion: 8,
       collection: newCollection(),
       saveId: this.newId(),
       revision: 0,

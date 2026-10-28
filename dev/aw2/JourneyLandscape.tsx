@@ -1,3 +1,9 @@
+import { addDistrictGround } from "./districtGround"
+import {
+  STREET_DISTRICT,
+  streetFacadeTarget,
+} from "../../src/aw2/assets/streetDistrict"
+import { STREET_ROOMS } from "../../src/aw2/world/interiorLayout"
 import { PlaceCue, hideOverlappingPlaceCues } from "./PlaceCue"
 import { placeAffordance } from "../../src/aw2/world/placeAffordance"
 import {
@@ -66,6 +72,7 @@ export function JourneyLandscape({
   walkControls,
 }: WorldCanvasProps) {
   const scene = journeyScene(world.zoneId)!
+  const rooms = STREET_ROOMS.filter((room) => room.zoneId === world.zoneId)
   const patrolRef = useRef(patrol)
   patrolRef.current = patrol
   const committedEconomy = useRef(economy)
@@ -181,12 +188,33 @@ export function JourneyLandscape({
           textures.push(t)
           return t
         }
-        const backdrop = new Sprite(assetTextures.floor)
-        backdrop.position.set(scene.landscape.x, scene.landscape.y)
-        backdrop.width = scene.landscape.width
-        backdrop.height = scene.landscape.height
-        backdrop.zIndex = -1000
-        next.stage.addChild(backdrop)
+        if (rooms.length) {
+          addDistrictGround(
+            next.stage,
+            assetTextures.floor,
+            crop,
+            STREET_DISTRICT,
+            Sprite,
+          )
+          for (const room of rooms) {
+            const step = new Sprite(
+              crop(assetTextures.threshold, scene.assets.threshold.frame!),
+            )
+            step.anchor.set(0.5, 1)
+            step.position.set(room.entrance.x, room.entrance.y + 12)
+            step.width = 56
+            step.height = 34
+            step.zIndex = 1
+            next.stage.addChild(step)
+          }
+        } else {
+          const backdrop = new Sprite(assetTextures.floor)
+          backdrop.position.set(scene.landscape.x, scene.landscape.y)
+          backdrop.width = scene.landscape.width
+          backdrop.height = scene.landscape.height
+          backdrop.zIndex = -1000
+          next.stage.addChild(backdrop)
+        }
         const npcSprites = createNpcSprites(
           loadedNpc,
           { Sprite, Texture, Rectangle },
@@ -347,6 +375,13 @@ export function JourneyLandscape({
           )
           const viewport = worldVisibleBounds(next.canvas)
           const labelProps = [
+            ...rooms.map((room) => ({
+              entityId: room.entrance.id,
+              x: room.entrance.x,
+              y: room.entrance.y,
+              labelOffsetX: 0,
+              labelOffsetY: 28,
+            })),
             ...currentProps,
             ...(scene.zoneId === PANTRY_STOCK.zoneId
               ? [
@@ -536,15 +571,14 @@ export function JourneyLandscape({
             ?.querySelector("canvas")
             ?.getBoundingClientRect()
           if (!rect || rect.width <= 0 || rect.height <= 0) return
-          onNavigate(
-            unprojectVillage(
-              {
-                x: ((e.clientX - rect.left) * 640) / rect.width,
-                y: ((e.clientY - rect.top) * 384) / rect.height,
-              },
-              camera.current,
-            ),
+          const selected = unprojectVillage(
+            {
+              x: ((e.clientX - rect.left) * 640) / rect.width,
+              y: ((e.clientY - rect.top) * 384) / rect.height,
+            },
+            camera.current,
           )
+          onNavigate(rooms.length ? streetFacadeTarget(selected) : selected)
         }}
       >
         <div ref={host} />
@@ -555,7 +589,13 @@ export function JourneyLandscape({
         />
         {walkControls}
         {[
-          ...scene.props,
+          ...scene.props.filter((p) =>
+            points.some((point) => point.id === p.entityId),
+          ),
+          ...rooms.map((room) => ({
+            entityId: room.entrance.id,
+            labelTransform: "translate(-50%, -100%)",
+          })),
           ...(scene.zoneId === PANTRY_STOCK.zoneId
             ? [
                 {

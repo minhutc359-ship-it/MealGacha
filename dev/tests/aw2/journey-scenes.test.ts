@@ -186,19 +186,18 @@ describe("006H/J/K authored journey scenes read real authority", () => {
     )
     expect(hint({ ...pantry, hintRead: true }).state).toBe("read")
     expect(
-      journeyWaypoints(street, economy).find(
-        (p) => p.id === "aw2-npc-nguoi-ban",
-      )?.state,
+      journeyWaypoints(street, economy).find((p) => p.id === "aw2-npc-dem-nuoc")
+        ?.state,
     ).toBe("unavailable")
     expect(
       journeyWaypoints(
         { ...street, questIndex: 1, accepted: true },
         economy,
-      ).find((p) => p.id === "aw2-npc-nguoi-ban")?.state,
+      ).find((p) => p.id === "aw2-npc-dem-nuoc")?.state,
     ).toBe("ready")
     expect(
-      journeyWaypoints({ ...street, memories: [MEMORY_IDS[0]] }, economy).find(
-        (p) => p.id === "aw2-npc-nguoi-ban",
+      journeyWaypoints({ ...street, memories: [MEMORY_IDS[2]] }, economy).find(
+        (p) => p.id === "aw2-npc-dem-nuoc",
       )?.state,
     ).toBe("read")
   })

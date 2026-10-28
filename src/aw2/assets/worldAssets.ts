@@ -8,7 +8,7 @@ import { HEARTH_ROOM_SCENE } from "./hearthRoom"
 import { TABLE_ROOM_SCENE } from "./tableRoom"
 import { TABLE_ROOM_INTERACTIONS } from "./tableInteractions"
 import { FORGOTTEN_HOST_WORLD } from "./bossWorld"
-import { npcVisualsForZone } from "./npcPatrol"
+import { npcVisualsForScene } from "./npcPatrol"
 import { SETTLEMENT, settlementForZone } from "./settlement"
 import { AMBIENT_MOTION, ambientRegionsForZone } from "./ambientMotion"
 import { roomScene } from "./teaRoom"
@@ -21,6 +21,7 @@ export function worldAssetUrls(world: Readonly<WorldProgress>): string[] {
   if (world.interior)
     return [
       ...urls,
+      ...npcVisualsForScene(world.interior.roomId).map((n) => n.asset.url),
       ...Object.values(roomScene(world.interior.roomId).assets).map(
         (asset) => asset.url,
       ),
@@ -53,7 +54,7 @@ export function worldAssetUrls(world: Readonly<WorldProgress>): string[] {
       )
     }
   }
-  urls.push(...npcVisualsForZone(world.zoneId).map((n) => n.asset.url))
+  urls.push(...npcVisualsForScene(world.zoneId).map((n) => n.asset.url))
   if (settlementForZone(world.zoneId))
     urls.push(...Object.values(SETTLEMENT.assets).map((a) => a.url))
   urls.push(

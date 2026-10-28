@@ -27,7 +27,7 @@ function fixture(ending: "wait" | "share" = "wait", version = 6) {
   const save = aw2DevSaveSchema.parse({
     gameId: "adventure-world-2",
     environment: "development",
-    schemaVersion: 7,
+    schemaVersion: 8,
     saveId: "00000000-0000-4000-8000-000000000001",
     revision: 20,
     createdAt: "2026-10-20T08:00:00.000Z",
@@ -384,7 +384,7 @@ describe("BATTLE-REMATCH-01 reward-free completed-story boss", () => {
       )
       encounter.retreat()
       const next = await f.store.finishBoss(snapshot.raw, encounter)
-      expect(next.save.schemaVersion).toBe(7)
+      expect(next.save.schemaVersion).toBe(8)
       expect(next.save.saveId).toBe(read.save.saveId)
       expect(next.save.createdAt).toBe(read.save.createdAt)
       expect(next.save.economy).toEqual(read.save.economy)
