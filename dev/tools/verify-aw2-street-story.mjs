@@ -13,7 +13,7 @@ const { values } = parseArgs({
 })
 const flavor = values.compiled ? "compiled" : "source",
   port = values.compiled ? 8793 : 8792
-const out = ".asset-work/aw2-017b-story",
+const out = ".asset-work/aw2-017e-life-story",
   key = "aw2.development.save",
   checks = [],
   errors = [],
@@ -261,6 +261,51 @@ try {
       )
     }
   }
+  const morningLife = {
+    "aw2-npc-giu-cho": "Sắp khăn bên bàn chung",
+    "aw2-npc-va-den": "Kiểm giấy và tim đèn",
+    "aw2-npc-nguoi-ban": "Bày giỏ bữa sáng",
+    "aw2-npc-sua-ghe": "Chọn đệm cho ghế thấp",
+    "aw2-npc-dem-nuoc": "Múc đầy bình nước nhỏ",
+    "aw2-npc-ban-bai": "Xếp bộ bài mượn",
+    "aw2-npc-ban-co": "Lau bàn và đếm quân cờ",
+    "aw2-npc-gac-bep": "Chuẩn bị sân và dụng cụ bếp",
+  }
+  const life = async (id) => {
+    await ensureScene(id)
+    await ready()
+    const expected = morningLife[id]
+    await page.waitForFunction(
+      ({ id, expected }) => {
+        const canvas = document.querySelector(
+            '[data-world-scene-state="active"] canvas',
+          ),
+          motion = JSON.parse(canvas?.dataset.npcMotion ?? "[]")
+        return motion.some(
+          (npc) =>
+            npc.entityId === id &&
+            npc.activity === expected &&
+            npc.lifePhase === "morning" &&
+            npc.lifeClock === "06:00 · Buổi sáng",
+        )
+      },
+      { id, expected },
+    )
+    check(
+      `${id}: authored renderer exposes frozen morning life snapshot`,
+      (await page.getByTestId("npc-life-clock").innerText()).includes(
+        "06:00 · Buổi sáng",
+      ),
+    )
+    await places(id)
+    check(
+      `${id}: Places exposes the same current activity`,
+      (await panel().getByTestId("place-context").innerText()).includes(
+        expected,
+      ),
+    )
+    await close()
+  }
   const cue = async (id, state) => {
     await ensureScene(id)
     await page.waitForFunction(
@@ -473,6 +518,7 @@ try {
   await page.goto(url)
   await click("Tạo bản lưu AW2")
   await ready()
+  await life("aw2-npc-giu-cho")
   await observe("aw2-object-village-well")
   await page.evaluate(() =>
     localStorage.setItem("foodchest.tcg.v1", "016J-legacy"),
@@ -522,6 +568,15 @@ try {
   phase = "memories"
   await travel(616, "Phố Đèn Lồng")
   await observe("aw2-object-street-repair-crate")
+  for (const id of [
+    "aw2-npc-va-den",
+    "aw2-npc-nguoi-ban",
+    "aw2-npc-sua-ghe",
+    "aw2-npc-dem-nuoc",
+    "aw2-npc-ban-bai",
+    "aw2-npc-ban-co",
+  ])
+    await life(id)
   await cue("aw2-npc-va-den", "quest-available")
   await walk("aw2-npc-va-den")
   await inspect("aw2-npc-va-den", "Nhận nhiệm vụ")
@@ -544,6 +599,7 @@ try {
   )
   phase = "puzzle"
   await travel(616, "Sân Bếp Bỏ Quên")
+  await life("aw2-npc-gac-bep")
   await observe("aw2-object-yard-wash-basin")
   await cue("aw2-npc-gac-bep", "quest-available")
   await walk("aw2-npc-gac-bep")
@@ -695,7 +751,7 @@ try {
     `${out}/${flavor}-browser.json`,
     JSON.stringify(
       {
-        task: "AW2-017B-story",
+        task: "AW2-017E-story",
         status: "PASS",
         flavor,
         browserVersion,

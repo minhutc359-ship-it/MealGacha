@@ -1,4 +1,6 @@
-# Handoff —2026-10-28 / AW2-017D
+# Handoff —2026-10-28 / AW2-017E
+
+017E hoàn thành 16 hạng mục trong một commit: đồng hồ phiên/bốn ca, 32 hoạt động cho tám NPC, projection thống nhất và lifecycle transient/no-save. Full1.986unit/147files, focused165,380browser source+compiled,types/build/262asset parity PASS. Không làm lại017A–E; next017F final art/mép vườn/collider/ánh sáng. Demo90% / product≈40% giữ nguyên. [Bằng chứng](evidence/AW2-017E.md).
 
 017D hoàn thành sáu hạng mục trong một commit: step portal + latch an toàn + bảo toàn cổng manual/lỗi + ba field prop no-write. Full1.958unit/146files,330browser source+compiled,types/build PASS. Next017E lịchNPC/final art; không làm lại017A–D. [Bằng chứng](evidence/AW2-017D.md).
 

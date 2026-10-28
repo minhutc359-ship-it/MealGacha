@@ -65,6 +65,7 @@ import { zoneById } from "../../src/aw2/world/maps"
 /** Village presentation owns camera/layers only; all walking/actions remain world authority. */
 export function VillageLandscape({
   world,
+  patrol,
   economy,
   onNavigate,
   paused,
@@ -78,7 +79,8 @@ export function VillageLandscape({
   walking.current = walkTarget
   const host = useRef<HTMLDivElement>(null),
     position = useRef(world),
-    pause = useRef(paused)
+    pause = useRef(paused),
+    patrolRef = useRef(patrol)
   const camera = useRef<VillageCamera | null>(null),
     pointer = useRef<Waypoint | null>(null)
   const labels = useRef(new Map<string, HTMLSpanElement>())
@@ -88,9 +90,10 @@ export function VillageLandscape({
     [error, setError] = useState("")
   position.current = world
   pause.current = paused
+  patrolRef.current = patrol
   viewMode.current = mode
   const leader = world.partyIds[0] ?? "aw2-than",
-    points = villageWaypoints(world),
+    points = villageWaypoints(world, patrol),
     fieldPoints = points.filter((point) =>
       zoneById(world.zoneId).objects.some(
         (object) => object.id === point.id && object.kind === "field",
@@ -228,7 +231,7 @@ export function VillageLandscape({
           textures,
         )
         for (const item of ambient) next.stage.addChild(item.sprite)
-        const objects = villageProps(position.current)
+        const objects = villageProps(position.current, patrolRef.current)
           .filter((prop) => !npcForEntity(prop.entityId))
           .map((prop) => {
             const asset = scene.assets[(prop.asset as "props" | "threshold")]
@@ -326,9 +329,12 @@ export function VillageLandscape({
             item.sprite.position.set(prop.x, prop.y)
             item.sprite.alpha = prop.alpha
           }
-          const currentProps = villageProps(now)
+          const currentProps = villageProps(now, patrolRef.current)
           next.canvas.dataset.npcMotion = JSON.stringify(
-            renderNpcSprites(npcSprites, npcElapsed, reduced.matches),
+            renderNpcSprites(npcSprites, npcElapsed, reduced.matches, {
+              world: now,
+              patrol: patrolRef.current,
+            }),
           )
           next.canvas.dataset.ambientMotion = JSON.stringify(
             renderAmbientSprites(ambient, npcElapsed, reduced.matches),
@@ -595,6 +601,7 @@ export function VillageLandscape({
       />
       <RoomWaypoints
         world={world}
+        patrol={patrol}
         disabled={!ready || paused}
         onChoose={(point) => {
           onNavigate(point)

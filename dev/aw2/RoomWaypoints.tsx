@@ -8,11 +8,12 @@ import {
   journeyWaypoints,
 } from "../../src/aw2/assets/journeyScenes"
 import type { Economy } from "../../src/aw2/economy/model"
-import { zoneById } from "../../src/aw2/world/maps"
-import type { NpcPatrolState } from "../../src/aw2/world/npcPatrol"
+import {
+  worldObjects,
+  type NpcPatrolState,
+} from "../../src/aw2/world/npcPatrol"
 import { sceneName } from "../../src/aw2/world/scene"
 import { placeApproach } from "../../src/aw2/world/placeGuidance"
-import { roomById } from "../../src/aw2/world/interiorLayout"
 
 export function RoomWaypoints({
   world,
@@ -31,13 +32,14 @@ export function RoomWaypoints({
   const village = world.zoneId === VILLAGE_SCENE.zoneId
   const journey = journeyScene(world.zoneId)
   const points = world.interior
-    ? roomById(world.interior.roomId).objects.map((object) => ({
+    ? worldObjects(world, patrol).map((object) => ({
         id: object.id,
         name: object.name,
         short: object.name,
         ...placeApproach(object),
         status: "Đến gần rồi tự E / Tương tác",
         locked: false,
+        activity: object.activity,
       }))
     : journey
       ? economy
@@ -50,7 +52,7 @@ export function RoomWaypoints({
           )
         : []
       : village
-        ? villageWaypoints(world).map(({ walkX, walkY, ...point }) => ({
+        ? villageWaypoints(world, patrol).map(({ walkX, walkY, ...point }) => ({
             ...point,
             x: walkX,
             y: walkY,
@@ -95,6 +97,9 @@ export function RoomWaypoints({
           >
             <strong>{point.name}</strong>
             <small>{point.status}</small>
+            {"activity" in point && typeof point.activity === "string" ? (
+              <small>Nhịp sống · {point.activity}</small>
+            ) : null}
           </button>
         ))}
       </div>

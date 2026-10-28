@@ -1,8 +1,8 @@
 import { MEMORY_IDS, ZONE_IDS, type ZoneId } from "./ids"
-import { zoneById } from "./maps"
 import type { WorldProgress } from "./model"
 import type { Waypoint } from "./navigation"
 import { sceneObjects } from "./scene"
+import { npcLifeActivity } from "./npcLife"
 
 export const PATROL_NPC_ID = "aw2-npc-dem-nuoc"
 export const PATROL_ZONE = ZONE_IDS[1]
@@ -19,6 +19,7 @@ export const NPC_PATROL = {
 
 export interface NpcPatrolState {
   zoneId: ZoneId
+  lifeMs: number
   x: number
   y: number
   facing: WorldProgress["facing"]
@@ -29,9 +30,10 @@ export interface NpcPatrolState {
   held: boolean
 }
 
-export function newNpcPatrol(zoneId: ZoneId): NpcPatrolState {
+export function newNpcPatrol(zoneId: ZoneId, lifeMs = 0): NpcPatrolState {
   return {
     zoneId,
+    lifeMs,
     ...NPC_PATROL.route[0],
     facing: "down",
     nextPoint: 1,
@@ -57,7 +59,7 @@ export function npcPatrolView(
 ): NpcPatrolState {
   const pose =
     !patrol || patrol.zoneId !== world.zoneId
-      ? newNpcPatrol(world.zoneId)
+      ? newNpcPatrol(world.zoneId, patrol?.lifeMs)
       : { ...patrol }
   return npcNeedsStoryAnchor(world)
     ? { ...pose, ...NPC_PATROL.route[0], moving: false }
@@ -70,10 +72,20 @@ export function worldObjects(
   patrol?: Readonly<NpcPatrolState>,
 ) {
   const pose = npcPatrolView(world, patrol)
-  return sceneObjects(world).map((object) => ({
-    ...object,
-    ...(object.id === PATROL_NPC_ID ? { x: pose.x, y: pose.y } : {}),
-  }))
+  return sceneObjects(world).map((object) => {
+    const life = npcLifeActivity(object.id, pose.lifeMs)
+    return {
+      ...object,
+      ...(object.id === PATROL_NPC_ID ? { x: pose.x, y: pose.y } : {}),
+      ...(life
+        ? {
+            activity: life.label,
+            lifePhase: life.clock.phase,
+            lifeClock: life.clock.label,
+          }
+        : {}),
+    }
+  })
 }
 
 function facingPlayer(
@@ -103,6 +115,18 @@ export function facePatrolNpc(
 interface PatrolControls {
   paused?: boolean
   reduced?: boolean
+}
+
+/** Session-only clock. It is intentionally absent from WorldProgress/save schemas. */
+export function advanceNpcLife(
+  patrol: Readonly<NpcPatrolState>,
+  deltaMs: number,
+  controls: PatrolControls = {},
+): NpcPatrolState {
+  if (!Number.isFinite(deltaMs) || deltaMs < 0)
+    throw Error("Invalid NPC life delta")
+  if (!deltaMs || controls.paused || controls.reduced) return { ...patrol }
+  return { ...patrol, lifeMs: patrol.lifeMs + Math.min(deltaMs, 1_000) }
 }
 
 /** Local bounded simulation only. Never reads real-world time or writes progress. */

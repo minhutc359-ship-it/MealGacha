@@ -143,6 +143,7 @@ export function journeyWaypoints(
       status,
       state,
       locked,
+      activity: object.activity,
     }
   })
 }

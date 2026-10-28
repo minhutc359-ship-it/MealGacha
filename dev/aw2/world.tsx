@@ -67,6 +67,7 @@ import "./styles.css"
 import { prepareDestination } from "./prepareDestination"
 import type { ScenePreparationProgress } from "../../src/aw2/assets/prepareScene"
 import {
+  advanceNpcLife,
   advanceNpcPatrol,
   facePatrolNpc,
   newNpcPatrol,
@@ -79,6 +80,7 @@ import {
   advanceStepPortals,
   newStepPortalLatch,
 } from "../../src/aw2/world/stepPortals"
+import { npcLifeClock } from "../../src/aw2/world/npcLife"
 
 interface PendingPlaceInteraction {
   id: string
@@ -342,17 +344,28 @@ function WorldPreview() {
       activeWindow.current = !document.hidden
       stop()
     }
+    let lifeAccumulator = 0
     const timer = window.setInterval(() => {
-      publishPatrol(
-        advanceNpcPatrol(worldRef.current, patrolRef.current, 33, {
-          paused:
-            paused.current ||
-            pending.current ||
-            !patrolReady.current ||
-            !activeWindow.current,
-          reduced: reducedMotion.current,
-        }),
+      const clockPaused =
+        paused.current ||
+        pending.current ||
+        !patrolReady.current ||
+        !activeWindow.current
+      let nextPatrol = advanceNpcPatrol(
+        worldRef.current,
+        patrolRef.current,
+        33,
+        { paused: clockPaused, reduced: reducedMotion.current },
       )
+      if (clockPaused || reducedMotion.current) lifeAccumulator = 0
+      else {
+        lifeAccumulator += 33
+        if (lifeAccumulator >= 500) {
+          nextPatrol = advanceNpcLife(nextPatrol, lifeAccumulator)
+          lifeAccumulator = 0
+        }
+      }
+      publishPatrol(nextPatrol)
       if (
         paused.current ||
         pending.current ||
@@ -1324,6 +1337,9 @@ function WorldPreview() {
             onPractice={(mode) => void enterMode(mode, "quick-entry")}
           />
           <h2 data-testid="zone-name">{sceneName(world)}</h2>
+          <p data-testid="npc-life-clock">
+            Nhịp sống: {npcLifeClock(patrol.lifeMs).label}
+          </p>
           <nav className="actions aw2-mode-menu" aria-label="Ghé bàn nhanh">
             {AW2_MODES.map((mode) => (
               <button

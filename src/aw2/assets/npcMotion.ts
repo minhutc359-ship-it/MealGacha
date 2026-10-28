@@ -1,4 +1,5 @@
 import manifest from "./npc-idle-v1.json"
+import { npcLifeActivity } from "../world/npcLife"
 export const NPC_MOTION = manifest
 export type NpcMotion = typeof manifest.npc[number]
 export type NpcIdleFrame = keyof NpcMotion["frames"]
@@ -35,4 +36,19 @@ export function sampleNpcIdle(
     at -= step.durationMs
   }
   return "neutral"
+}
+
+/** Activity cue is brief; the authored idle timeline remains visible between cues. */
+export function sampleNpcLifeFrame(
+  npc: NpcMotion,
+  elapsedMs: number,
+  lifeMs: number,
+  reduced: boolean,
+): NpcIdleFrame {
+  time(lifeMs)
+  if (reduced) return "neutral"
+  const current = npcLifeActivity(npc.entityId, lifeMs)
+  if ((elapsedMs + npc.phaseMs) % manifest.cycleMs < 400 && current)
+    return current.frame
+  return sampleNpcIdle(npc, elapsedMs, false)
 }

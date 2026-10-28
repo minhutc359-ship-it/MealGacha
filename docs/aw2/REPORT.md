@@ -1,5 +1,7 @@
 # Soul of Meal AW2 — cập nhật 28/10/2026
 
+**AW2-017E VERIFIED:** gom 16 kế hoạch vào một commit—đồng hồ phiên bốn ca, 32 hoạt động cho tám NPC, HUD/Địa điểm/waypoint/dialog/renderer thống nhất và lifecycle transient/no-save. Full1.986unit/147files, focused165,380browser,hai typecheck/build,262asset parity PASS;0media/0unexpected errors. Demo90% / product≈40%(35–45%) giữ nguyên; next017F final art/mép vườn/collider/ánh sáng. [Bằng chứng](evidence/AW2-017E.md).
+
 **AW2-017D VERIFIED:** sáu kế hoạch được gom trong một commit—step portals, anti-loop/compatibility và ba field props no-write. Full1.958unit/146files,330browser,hai typecheck/build,262asset parity PASS. Demo90% / product≈40%(35–45%) giữ nguyên; next017E. [Bằng chứng](evidence/AW2-017D.md).
 
 **AW2-017C VERIFIED:** Sân Bếp có hai cổng chức năng Kho/Bàn, đường đi và hồi đáp hai chiều dùng cùng dữ liệu; không đổi save/collider/canon và không thêm media. Full1.946unit/144files,318browser source+compiled,hai typecheck/build PASS. Demo90% / product≈40%(35–45%) giữ nguyên; next017D. [Bằng chứng](evidence/AW2-017C.md).

@@ -1,5 +1,9 @@
 import type { Rectangle, Sprite, Texture } from "pixi.js"
-import { sampleNpcIdle, type NpcMotion } from "../../src/aw2/assets/npcMotion"
+import {
+  sampleNpcIdle,
+  sampleNpcLifeFrame,
+  type NpcMotion,
+} from "../../src/aw2/assets/npcMotion"
 import { objectsInScene } from "../../src/aw2/world/scene"
 import type { WorldObject } from "../../src/aw2/world/maps"
 import {
@@ -13,6 +17,7 @@ import {
   type NpcPatrolState,
 } from "../../src/aw2/world/npcPatrol"
 import type { WorldProgress } from "../../src/aw2/world/model"
+import { npcLifeActivity } from "../../src/aw2/world/npcLife"
 
 type NpcVisual = NpcMotion | PatrolVisual
 type NpcFrame = NpcMotion["frames"]["neutral"]
@@ -81,11 +86,22 @@ export function renderNpcSprites(
 ) {
   return npcs.map((npc) => {
     const patrolling = npc.manifest.entityId === PATROL_NPC_ID
+    const lifeMs = live?.patrol?.lifeMs ?? 0
+    const activity = live
+      ? npcLifeActivity(npc.manifest.entityId, lifeMs)
+      : undefined
     const frame = patrolling
       ? live
         ? samplePatrolVisual(live.world, live.patrol, reduced)
         : "down-idle"
-      : sampleNpcIdle(npc.manifest as NpcMotion, elapsedMs, reduced)
+      : live
+        ? sampleNpcLifeFrame(
+            npc.manifest as NpcMotion,
+            elapsedMs,
+            lifeMs,
+            reduced,
+          )
+        : sampleNpcIdle(npc.manifest as NpcMotion, elapsedMs, reduced)
     const f = (npc.manifest.frames as Record<string, NpcFrame>)[frame]
     const pose =
       patrolling && live ? npcPatrolView(live.world, live.patrol) : undefined
@@ -111,6 +127,13 @@ export function renderNpcSprites(
       height: npc.sprite.height,
       alpha: npc.sprite.alpha,
       elapsedMs,
+      ...(activity
+        ? {
+            activity: activity.label,
+            lifePhase: activity.clock.phase,
+            lifeClock: activity.clock.label,
+          }
+        : {}),
       ...(pose
         ? { facing: pose.facing, moving: pose.moving, held: pose.held }
         : {}),

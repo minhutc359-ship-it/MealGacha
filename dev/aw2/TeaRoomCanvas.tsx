@@ -33,10 +33,12 @@ import {
 } from "./npcSprites"
 import { advanceNpcClock } from "../../src/aw2/assets/npcMotion"
 import { RoomWaypoints } from "./RoomWaypoints"
+import { worldObjects } from "../../src/aw2/world/npcPatrol"
 
 /** Renderer only: rules/store own room movement, actions and the outside checkpoint. */
 export function TeaRoomCanvas({
   world,
+  patrol,
   economy,
   onNavigate,
   paused,
@@ -52,7 +54,8 @@ export function TeaRoomCanvas({
   walking.current = walkTarget
   const host = useRef<HTMLDivElement>(null),
     position = useRef(world),
-    pause = useRef(paused)
+    pause = useRef(paused),
+    patrolRef = useRef(patrol)
   const camera = useRef<VillageCamera | null>(null),
     pointer = useRef<Waypoint | null>(null),
     labels = useRef(new Map<string, HTMLSpanElement>())
@@ -62,8 +65,10 @@ export function TeaRoomCanvas({
     modeRef = useRef(mode)
   position.current = world
   pause.current = paused
+  patrolRef.current = patrol
   modeRef.current = mode
   const leader = world.partyIds[0] ?? "aw2-than"
+  const liveObjects = worldObjects(world, patrol)
   useEffect(() => {
     const lifetime = new SceneLifetime(),
       textures: Texture[] = []
@@ -174,7 +179,10 @@ export function TeaRoomCanvas({
             reduced.matches,
           )
           app.canvas.dataset.npcMotion = JSON.stringify(
-            renderNpcSprites(npcs, npcElapsed, reduced.matches),
+            renderNpcSprites(npcs, npcElapsed, reduced.matches, {
+              world: now,
+              patrol: patrolRef.current,
+            }),
           )
           const view = landscapeCamera(point, modeRef.current, scene)
           camera.current = view
@@ -364,7 +372,7 @@ export function TeaRoomCanvas({
           markerRef={walkingMarker}
         />
         {walkControls}
-        {room.objects.map((o) => (
+        {liveObjects.map((o) => (
           <span
             key={o.id}
             className="aw2-world-label"
@@ -397,6 +405,7 @@ export function TeaRoomCanvas({
       </p>
       <RoomWaypoints
         world={world}
+        patrol={patrol}
         disabled={!ready || paused}
         onChoose={(point) => {
           onNavigate(point)

@@ -1,5 +1,9 @@
 # Live project status —2026-10-28
 
+**AW2-017E VERIFIED development — 16 kế hoạch nhịp sống NPC trong một commit.** Đồng hồ phiên 24 giờ có bốn ca; cả tám NPC có 32 hoạt động và cùng projection ở HUD/Địa điểm/waypoint/dialog/renderer. Em Đem Nước giữ patrol; lịch dừng đúng pause/focus/reduced-motion, không đổi scene, quest, save1–8, economy hoặc reward. **1.986unit/147files**, focused165, hai typecheck/build và **380browser=190source+190compiled PASS**, 262asset parity,0media/lỗi bất ngờ. [Bằng chứng](evidence/AW2-017E.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên. Next017F: final art/mép vườn/collider/ánh sáng; human/device/rights/release vẫn mở. Các mục dưới là lịch sử; hiện hành theo017E.
+
 **AW2-017D VERIFIED — sáu kế hoạch trong một thay đổi.** Tám portal tuyến ngang tự chuyển khi bước vào; latch chống loop/load-inside, spawn ngoài trigger và pipeline preload→render→save giữ nguyên. Cổng Kho/Bàn/phòng vẫn explicit. Giếng Làng, thùng sửa Phố và bồn rửa Sân có phản hồi quan sát no-write, không thưởng/schema/media. **1.958unit/146files**, hai typecheck/build và **330browser=165source+165compiled PASS**, boss tick45, ending300XP,0unexpected errors. [Bằng chứng](evidence/AW2-017D.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên. Next017E: lịch NPC/final art/mép vườn. Các mục dưới là lịch sử; hiện hành theo017D.

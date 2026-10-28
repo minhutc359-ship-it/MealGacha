@@ -25,6 +25,7 @@ import { interactionTarget, placeKind } from "../../src/aw2/world/placeGuidance"
 import { JourneyOverview } from "./JourneyOverview"
 import { RecipePanel } from "./RecipePanel"
 import { RoomPracticePanel } from "./RoomPracticePanel"
+import { npcLifeClock } from "../../src/aw2/world/npcLife"
 import "./game.css"
 
 export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe" | "practice"
@@ -82,6 +83,7 @@ export function WorldGame(props: Props) {
     return () => document.documentElement.classList.remove("aw2-game-document")
   }, [])
   const save = snapshot.status === "ready" ? snapshot.save : null
+  const lifeClock = npcLifeClock(props.patrol?.lifeMs ?? 0)
   const nearby = canWalk
     ? interactionTarget(world, undefined, props.patrol)
     : undefined
@@ -91,6 +93,9 @@ export function WorldGame(props: Props) {
         <h1 ref={props.headingRef} tabIndex={-1} data-testid="zone-name">
           {sceneName(world)}
         </h1>
+        <span data-testid="npc-life-clock" title="Đồng hồ trong game">
+          {lifeClock.label}
+        </span>
         <span>{save?.economy.teamExperience ?? 0} EXP</span>
       </header>
       <div className="aw2-game-tracker">

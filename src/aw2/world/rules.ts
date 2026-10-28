@@ -125,11 +125,20 @@ export function describeObject(
   state: WorldProgress,
   object: WorldObject,
 ): WorldDialog {
-  const result = (text: string, actions: WorldDialog["actions"] = []) => ({
-    title: object.name,
-    text,
-    actions,
-  })
+  const result = (text: string, actions: WorldDialog["actions"] = []) => {
+    const scheduled =
+      object.activity &&
+      (object.kind === "npc" ||
+        object.kind === "memory" ||
+        (object.kind === "mode" && object.id.startsWith("aw2-npc-")))
+    return {
+      title: object.name,
+      text: scheduled
+        ? `${text}\nNhịp sống ${object.lifeClock}: ${object.activity}.`
+        : text,
+      actions,
+    }
+  }
   if (object.kind === "room")
     return result(
       `Vào ${roomForEntrance(object.id)?.name ?? "phòng"} để sử dụng các hoạt động bên trong.`,

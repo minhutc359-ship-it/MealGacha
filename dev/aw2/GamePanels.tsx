@@ -660,6 +660,7 @@ export function GamePlacesPanel({
       <h3>{object.name}</h3>
       <p className="note" data-testid="place-context">
         {kind}
+        {object.activity ? ` · ${object.activity}` : ""}
       </p>
       {cue && (
         <div className="aw2-place-explanation" data-testid="place-availability">

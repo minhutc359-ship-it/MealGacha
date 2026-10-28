@@ -18,6 +18,10 @@ export interface WorldObject {
   approachY?: number
   activation?: "interact" | "step"
   field?: "well" | "repair-crate" | "wash-basin"
+  /** Transient read-only NPC projection; never part of canonical map/save data. */
+  activity?: string
+  lifePhase?: "morning" | "day" | "evening" | "night"
+  lifeClock?: string
   requiresCompleted?: boolean
 }
 export interface WorldWall {

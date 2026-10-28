@@ -1,16 +1,19 @@
 import scene from "./covenant-village.environment-v2.json"
 import type { WorldProgress } from "../world/model"
-import { zoneById } from "../world/maps"
 import { describeObject } from "../world/rules"
 import type { SceneBounds } from "./tableRoom"
 import { TEA_ROOM, roomForEntrance } from "../world/interiorLayout"
+import { worldObjects, type NpcPatrolState } from "../world/npcPatrol"
 
 export const VILLAGE_SCENE = scene
 
 /** Read-only descriptions; walking never accepts, inspects, grants or travels. */
-export function villageWaypoints(progress: WorldProgress) {
+export function villageWaypoints(
+  progress: WorldProgress,
+  patrol?: Readonly<NpcPatrolState>,
+) {
   if (progress.zoneId !== scene.zoneId || progress.interior) return []
-  return zoneById(progress.zoneId).objects.map((object) => {
+  return worldObjects(progress, patrol).map((object) => {
     const actions = describeObject(progress, object).actions
     let state = "waiting",
       status = "Bà vẫn chờ bên bàn chung",
@@ -27,6 +30,7 @@ export function villageWaypoints(progress: WorldProgress) {
         status: `Đến gần rồi vào ${roomForEntrance(object.id)!.name}`,
         state: "ready",
         locked: false,
+        activity: object.activity,
       }
     if (object.kind === "exit") {
       const locked = !actions.some((a) => a.id === "travel")
@@ -45,6 +49,7 @@ export function villageWaypoints(progress: WorldProgress) {
             : "Điểm đến Phố Đèn Lồng · đến gần rồi Đi qua",
         state: locked ? "unavailable" : "ready",
         locked,
+        activity: object.activity,
       }
     }
     if (object.kind === "field")
@@ -59,6 +64,7 @@ export function villageWaypoints(progress: WorldProgress) {
         status: "Đến gần để quan sát · không nhận vật phẩm",
         state: "ready",
         locked: false,
+        activity: object.activity,
       }
     if (object.kind === "table") {
       short = "Mảnh khăn"
@@ -104,12 +110,16 @@ export function villageWaypoints(progress: WorldProgress) {
       status,
       state,
       locked: false,
+      activity: object.activity,
     }
   })
 }
 
-export function villageProps(progress: WorldProgress) {
-  const points = villageWaypoints(progress)
+export function villageProps(
+  progress: WorldProgress,
+  patrol?: Readonly<NpcPatrolState>,
+) {
+  const points = villageWaypoints(progress, patrol)
   if (!points.length) return []
   return scene.props.map((prop) => {
     const point = points.find((p) => p.id === prop.entityId)!

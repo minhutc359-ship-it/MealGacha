@@ -1,5 +1,9 @@
 # Test ledger / change impact
 
+## AW2-017E — 2026-10-28
+
+Full Vitest mặc định **1.986/1.986,147files**; focused165/7files gồm28ca lịch mới. Root/dev typecheck, AW2/stable build và release guard PASS. Fresh browser **190source+190compiled=380**, Chromium153; đủ tám activity snapshot/Places/HUD, reduced-motion neutral+raw-save no-write, bốn quest, step/manual portal, ba prop, boss tick45, ending/reload300XP,0unexpected errors. 262asset byte parity/0media mới. Hai lỗi focused đầu là test assumption/fixture và đã sửa trước các lượt cuối; không phải lỗi sản phẩm. [Evidence](evidence/AW2-017E.md).
+
 ## AW2-017D — 2026-10-28
 
 Full Vitest mặc định1.958/1.958,146files;12ca mới trong tổng. Hai typecheck/build PASS. Fresh browser165source+165compiled=330, Chromium153, step/manual portal thật, ba field prop raw-no-write, boss tick45,300XP,0unexpected errors. 262asset byte parity/0media mới. [Evidence](evidence/AW2-017D.md).
