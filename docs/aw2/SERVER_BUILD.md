@@ -1,6 +1,6 @@
 # Build Soul of Meal mới trên server
 
-Source: repo MealGacha, nhánh **`game/adventure-world-2`**, root directory là gốc repo. Build `master` sẽ không nhận thay đổi trên nhánh AW2. Task018M chỉ commit/push AW2; chưa thay production branch hoặc deploy Vercel.
+Source hiện tại: repo MealGacha, nhánh **`master`**, root directory là gốc repo. AW2 đã đi qua PR84 (`game/adventure-world-2`→`rpg`) và PR85 (`rpg`→`master`). Hotfix019D sửa `.vercelignore` từng loại nhầm toàn bộ `dev/`/`rights/`; không được thêm lại hai rule đó vì `pnpm build` cần runtime, tool và hồ sơ quyền trong các thư mục này.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -21,7 +21,7 @@ curl -fsSI https://<host>/sw.js | sed -n '/cache-control:/Ip;/service-worker-all
 
 Release identity phải có `product=soul-of-meal`, `candidate=aw2-web1-rc-v1`, `source.provider=vercel`, full40-hex revision đúng commit AW2, `sourcePortable=true`, `deliverySecurityProfile=aw2-static-v1`, default surface`soul-of-meal-aw2` và retained legacy đúng một`chest`. Response thiếu/sai là blocker, không promote.
 
-Vercel: framework Vite, build command `pnpm build`, output `dist`, source branch phải là AW2. Connection trong phiên018M không nhìn thấy project/team MealGacha; server setting chưa được xác minh hoặc sửa. Không dùng thao tác merge/master/promote thay cho kiểm đúng project/branch.
+Vercel: framework Vite, build command `pnpm build`, output `dist`, source branch production hiện phải là `master`. Sau hotfix019D, đọc lại build log/commit SHA thay vì suy ra PASS từ local. Connection trong phiên018M không nhìn thấy project/team MealGacha; server setting chưa được xác minh hoặc sửa. Không dùng thao tác promote/release thay cho kiểm đúng project/branch và response HTTPS.
 
 Chơi và ghi save cần HTTPS hoặc localhost cùng Web Locks. Preview HTTP báo điều kiện trước khi bắt đầu; không nới bảo vệ trình duyệt để vượt gate. Giao diện review riêng: `pnpm dev:aw2` và `pnpm build:aw2` (`dist-aw2/`).
 

@@ -1,5 +1,21 @@
 # Test ledger / change impact
 
+## AW2-019D Vercel build-input hotfix /2026-11-02
+
+Base`82c62af6791990330dcf6bb80c5db0f22c2a9319`;`master`;Linux/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Pre-fix deployment filter reproduced exact `MODULE_NOT_FOUND`; post-fix filtered input retained production source/tools/rights.
+
+| Gate | Result | Observed |
+|---|---|---|
+|Pre-fix filtered input|REPRODUCED|Missing`dev/tools/verify-aw2-source-checkout.mjs`;same Node main frames/code/empty requireStack|
+|Post-fix source audit|PASS|3662tracked/2443critical/555837183bytes before final docs;0pointer/0symlink|
+|Focused delivery/candidate/cutover|PASS|68tests/3files/784ms|
+|Root/dev typecheck|PASS|Final declarations and consumers exit0|
+|Format/syntax/whitespace|PASS|Changed code and task card;3MJS syntax;Git diff clean|
+|Filtered guarded production build|PASS|1142modules;166712260bytes/396files;JS700714;offline1479512/27;15/15technical,0/7external|
+|Gameplay/browser/device/human/legal|NOT_RUN/UNCHANGED|No runtime/save/canon/media/dependency change;no acceptance inference|
+
+First dev typecheck correctly failed on missing declarations for the new MJS exports; declarations were added and final both typechecks PASS. No failed assertion was weakened or added to PASS counts. [Evidence](evidence/AW2-019D.md).
+
 ## AW2-019C portable source and hardened delivery /2026-11-02
 
 Base`ab0c756648af1bae7a0d6cf56259908d036b40a5`; tested tree becomes its direct task child. Linux/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1; managed Chrome source preview1363×936. No gameplay/save/canon values changed.

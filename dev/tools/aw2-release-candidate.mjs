@@ -7,6 +7,7 @@ import { inspectRelease } from "../../releaseGuard.mjs"
 import {
   AW2_DELIVERY_SECURITY_PROFILE,
   validateAw2DeliveryConfig,
+  validateAw2VercelIgnore,
 } from "./aw2-delivery-contract.mjs"
 
 export const AW2_RELEASE_CANDIDATE_ID = "aw2-web1-rc-v1"
@@ -291,7 +292,11 @@ export function readReleaseCandidateReport(root = process.cwd()) {
     const config = JSON.parse(
       readFileSync(resolve(root, "vercel.json"), "utf8"),
     )
-    if (validateAw2DeliveryConfig(config).length)
+    const ignore = readFileSync(resolve(root, ".vercelignore"), "utf8")
+    if (
+      validateAw2DeliveryConfig(config).length ||
+      validateAw2VercelIgnore(ignore).length
+    )
       throw Error("Invalid delivery security contract")
     deliverySecurity = true
   } catch {

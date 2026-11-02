@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url"
 import {
   AW2_DELIVERY_SECURITY_PROFILE,
   validateAw2DeliveryConfig,
+  validateAw2VercelIgnore,
 } from "./aw2-delivery-contract.mjs"
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..")
@@ -212,6 +213,13 @@ assert.deepEqual(
   validateAw2DeliveryConfig(deliveryConfig),
   [],
   "production delivery header contract drifted",
+)
+assert.deepEqual(
+  validateAw2VercelIgnore(
+    readFileSync(path.join(root, ".vercelignore"), "utf8"),
+  ),
+  [],
+  "production deployment input contract drifted",
 )
 
 const webManifest = JSON.parse(

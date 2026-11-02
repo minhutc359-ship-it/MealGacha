@@ -21,6 +21,15 @@ export const AW2_CACHE_HEADERS = Object.freeze({
   "/sw.js": "public, max-age=0, must-revalidate",
 })
 
+export const AW2_VERCEL_IGNORE_RULES = Object.freeze([
+  "node_modules/",
+  "dist/",
+  "dist-aw2/",
+  ".asset-work/",
+  "*.log",
+  "*.tsbuildinfo",
+])
+
 function headerMap(rule) {
   if (!Array.isArray(rule?.headers)) return new Map()
   return new Map(rule.headers.map(({ key, value }) => [key, value]))
@@ -39,5 +48,23 @@ export function validateAw2DeliveryConfig(config) {
     const actual = headerMap(bySource.get(source)).get("Cache-Control")
     if (actual !== value) issues.push(`Cache header mismatch: ${source}`)
   }
+  return issues
+}
+
+export function validateAw2VercelIgnore(source) {
+  if (typeof source !== "string") return ["Vercel ignore contract is missing"]
+  const rules = source
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith("#"))
+  const issues = []
+  const unique = new Set(rules)
+  if (unique.size !== rules.length)
+    issues.push("Vercel ignore contract contains duplicate rules")
+  for (const rule of rules)
+    if (!AW2_VERCEL_IGNORE_RULES.includes(rule))
+      issues.push(`Unapproved Vercel ignore rule: ${rule}`)
+  for (const rule of AW2_VERCEL_IGNORE_RULES)
+    if (!unique.has(rule)) issues.push(`Missing Vercel ignore rule: ${rule}`)
   return issues
 }
