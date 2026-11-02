@@ -5,14 +5,17 @@ export const RC_TECHNICAL_GATE_IDS = [
   "offline-shell",
   "javascript-gzip",
   "leak-scan",
+  "source-portability",
   "production-entry",
   "offline-worker",
   "web-manifest",
   "aw2-inventory",
   "public-inventory",
   "legal-artifacts",
+  "release-identity",
   "rollback-runbook",
   "build-routing",
+  "delivery-security",
 ] as const
 export type RcTechnicalGateId = typeof RC_TECHNICAL_GATE_IDS[number]
 

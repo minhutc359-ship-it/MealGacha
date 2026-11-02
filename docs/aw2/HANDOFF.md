@@ -1,4 +1,8 @@
-# Handoff —2026-11-02 / AW2-019B
+# Handoff —2026-11-02 / AW2-019C
+
+**019C VERIFIED technical / EXTERNAL BLOCKED:** clean-clone LFS404 đã được sửa bằng actual49136-byte journal blob có đúng SHA-256 cũ. Build/CI source audit3662tracked/2443critical/555835985bytes,0pointer/0symlink; release identity và Vercel CSP/9security header/4cache contract được candidate/package kiểm. Full2337tests/169files,89focused,hai types/hai builds và release/catalog/assets/budget PASS. Artifact166712221bytes/396files;JS700718≤710000;offline1479512/27;candidate15/15technical,0/7external,overallBLOCKED_EXTERNAL. Browser source rootgame mới,original chest và journal PASS giới hạn. [Evidence](evidence/AW2-019C.md) · [Server](SERVER_BUILD.md).
+
+Next owner/operator: chọn đúng project Vercel, xác nhận production branch là`game/adventure-world-2`, chạy HTTPS probes trong SERVER_BUILD và lưu response evidence. Independent reviewers/owner vẫn phải cung cấp character DoD, art/audio/content, device/performance, rights và release approval. Không còn blocker repository/LFS đã biết; không có deploy/master/rpg change trong019C. Demo90/product≈40 lịch sử không đổi.
 
 **019B VERIFIED engineering / EXTERNAL BLOCKED:** một batch/commit bổ sung save9, triệu hồi1/10 miễn phí và vé từ biên nhận thật, tiến trình TCG/Chess3bậc với kết quả engine, nhật ký12VịLinh, boss32cel+4cue và kiểm nguồn171/171media. **2312tests/167files**,hai types/hai builds,source/repeat/package/catalog/assets/release/4budget checks PASS;browser nguồn qua QA memory PASS giới hạn,không bỏ Web Locks. Build166711768bytes/395files;JS700716≤710000;offline1479512bytes/27URLs;candidate12/12technical,0/7external. Rootgame mới+Rương original giữ nguyên. Không tuyên bố100%production hoặc duyệt rights/human/device/server. [Evidence](evidence/AW2-019B.md) · [Free scope](FREE_PLAY.md).
 

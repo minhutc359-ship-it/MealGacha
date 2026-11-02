@@ -3,10 +3,12 @@ import { cp, lstat, mkdir, readFile, readdir } from "node:fs/promises"
 import { basename, extname, join, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 import type { Plugin, ResolvedConfig } from "vite"
+import { AW2_RELEASE_CANDIDATE_ID } from "../../src/aw2/release/candidate"
 import {
   worldLeaderAssetUrls,
   worldSceneAssetGroups,
 } from "../../src/aw2/assets/worldAssets"
+import { AW2_DELIVERY_SECURITY_PROFILE } from "./aw2-delivery-contract.mjs"
 
 export const AW2_SOURCE_ASSET_PREFIX = "/dev/aw2/assets/"
 export const AW2_PRODUCTION_ASSET_PREFIX = "/assets/aw2/"
@@ -16,6 +18,7 @@ const runtimeExtensions = new Set([".json", ".wav", ".webp"])
 const authoringJson = /(?:^|[-])(provenance|prompts|selection|spec)\.json$/
 export const AW2_PRODUCTION_INVENTORY = "assets/aw2/inventory.json"
 export const AW2_PRODUCTION_CONTRACT = "assets/production-contract.json"
+export const AW2_RELEASE_IDENTITY = "assets/release-identity.json"
 
 /** Fail the actual bundle graph if any retired page or review-only UI returns. */
 export function productionSurfaceContract(moduleIds: readonly string[]) {
@@ -44,6 +47,45 @@ export function productionSurfaceContract(moduleIds: readonly string[]) {
     legacyPageCount: 1,
     reviewUiModules: 0,
     legacyEntryModules: 0,
+  }
+}
+
+export function releaseSourceIdentity(
+  environment: Readonly<Record<string, string | undefined>> = process.env,
+) {
+  const vercel = environment.VERCEL_GIT_COMMIT_SHA?.trim().toLowerCase()
+  const github = environment.GITHUB_SHA?.trim().toLowerCase()
+  for (const [name, value] of [
+    ["VERCEL_GIT_COMMIT_SHA", vercel],
+    ["GITHUB_SHA", github],
+  ] as const)
+    if (value && !/^[0-9a-f]{40}$/.test(value))
+      throw Error(`${name} must be a complete Git SHA`)
+  if (vercel && github && vercel !== github)
+    throw Error("Host and CI Git revisions disagree")
+  return vercel
+    ? { provider: "vercel" as const, revision: vercel }
+    : github
+      ? { provider: "github" as const, revision: github }
+      : { provider: "local" as const, revision: null }
+}
+
+export function productionReleaseIdentity(
+  contract: ReturnType<typeof productionSurfaceContract>,
+  version: string,
+  environment: Readonly<Record<string, string | undefined>> = process.env,
+) {
+  if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(version))
+    throw Error("Package version is not release-identifiable")
+  return {
+    schema: 1,
+    product: "soul-of-meal",
+    version,
+    candidate: AW2_RELEASE_CANDIDATE_ID,
+    source: releaseSourceIdentity(environment),
+    sourcePortable: true,
+    deliverySecurityProfile: AW2_DELIVERY_SECURITY_PROFILE,
+    surface: contract,
   }
 }
 
@@ -163,6 +205,18 @@ export function aw2ProductionBuild(): Plugin {
         type: "asset",
         fileName: AW2_PRODUCTION_CONTRACT,
         source: `${JSON.stringify(contract, null, 2)}\n`,
+      })
+      const packageJson = JSON.parse(
+        await readFile(join(root, "package.json"), "utf8"),
+      )
+      this.emitFile({
+        type: "asset",
+        fileName: AW2_RELEASE_IDENTITY,
+        source: `${JSON.stringify(
+          productionReleaseIdentity(contract, packageJson.version),
+          null,
+          2,
+        )}\n`,
       })
       const assets = await runtimeInventory(join(root, "dev/aw2/assets"))
       const catalog = productionAssetCatalog(assets)

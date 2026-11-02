@@ -198,6 +198,10 @@ docs/challenge-v322/screenshots/** -filter -diff -merge -text
 # Development evidence/archives preserve the original bytes outside Git LFS.
 dev/** -filter !diff !merge -text
 
+# AW2 verification captures must survive ordinary clones as real evidence
+# bytes. They are intentionally small and are audited by the production build.
+docs/aw2/evidence/** -filter !diff !merge -text
+
 # Upstream license text retains its original whitespace and line endings.
 public/legal/THIRD_PARTY_LICENSES.txt whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 rights/fonts/* whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol

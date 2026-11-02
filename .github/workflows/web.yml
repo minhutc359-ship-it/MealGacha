@@ -24,6 +24,7 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+      - run: node dev/tools/verify-aw2-source-checkout.mjs
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck && pnpm typecheck:dev && pnpm test && pnpm validate:catalog
       - run: node --test dev/tests/release-guard.test.mjs dev/tests/web-budget.test.mjs

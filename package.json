@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite --config dev/vite.dev.config.ts",
     "dev:aw2": "vite --config dev/vite.aw2.config.ts",
-    "build": "node dev/tools/aw2-character-rights.mjs --check && node dev/tools/aw2-media-sources.mjs --check && vite build && node dev/tools/verify-aw2-production-package.mjs && node releaseGuard.mjs && node dev/tools/aw2-release-candidate.mjs",
+    "build": "node dev/tools/verify-aw2-source-checkout.mjs && node dev/tools/aw2-character-rights.mjs --check && node dev/tools/aw2-media-sources.mjs --check && vite build && node dev/tools/verify-aw2-production-package.mjs && node releaseGuard.mjs && node dev/tools/aw2-release-candidate.mjs",
     "build:aw2": "vite build --config dev/vite.aw2.config.ts",
     "verify:production": "node dev/tools/verify-aw2-production-cutover.mjs",
     "verify:package": "node dev/tools/verify-aw2-production-package.mjs",
@@ -26,6 +26,7 @@
     "release:aw2-candidate": "node dev/tools/aw2-release-candidate.mjs",
     "release:aw2-rights": "node dev/tools/aw2-character-rights.mjs",
     "release:aw2-media": "node dev/tools/aw2-media-sources.mjs",
+    "release:source-checkout": "node dev/tools/verify-aw2-source-checkout.mjs",
     "release:guard": "node releaseGuard.mjs",
     "release:rights": "node dev/tools/release-rights.mjs",
     "release:commercial": "pnpm release:verify && pnpm release:rights --commercial && pnpm build && pnpm release:size",

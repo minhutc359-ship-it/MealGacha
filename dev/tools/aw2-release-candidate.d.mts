@@ -2,6 +2,8 @@ export interface CandidateBuildSize {
   bytes: number
   js_gzip: number
   leaks: number | unknown[]
+  sourcePortable?: boolean
+  deliverySecurity?: boolean
   offlineShell?: {
     bytes: number
   }

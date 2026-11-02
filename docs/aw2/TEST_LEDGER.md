@@ -1,5 +1,25 @@
 # Test ledger / change impact
 
+## AW2-019C portable source and hardened delivery /2026-11-02
+
+Base`ab0c756648af1bae7a0d6cf56259908d036b40a5`; tested tree becomes its direct task child. Linux/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1; managed Chrome source preview1363×936. No gameplay/save/canon values changed.
+
+| Gate | Result | Observed |
+|---|---|---|
+|Source portability|PASS|3662tracked/2443critical/555835985bytes;0pointer/0symlink; actual journal JPEG49136bytes/hash restored|
+|Focused source/delivery/candidate|PASS|5files/89tests on final implementation|
+|Full Vitest|PASS|169files/2337tests/22.06s|
+|Root/dev typecheck|PASS|Both exit0|
+|Production/review build|PASS|1142/1021modules;396production files;8review HTML entries|
+|Package/release/catalog/assets|PASS|171AW2media;183public;32deps/774records/3policies;123foods/35tags/9events;137assets/0missing|
+|Artifact/candidate|PASS technical/BLOCKED external|166712221bytes;JS700718;CSS38663;offline1479512/27;15/15technical,0/7external;SHA`4e1a2e0d8b8ecf88f759cff9ba85502b1ae8f12cb96d2c2707ba3be758d1892b`|
+|Budget/worker|PASS|4/4Node tests;service-worker syntax PASS;0leak|
+|Rights inventory|LIMITED|13historical unresolved;0shipped;commercial clearance pending|
+|Browser source|PASS limited|Root new game/onboarding,original chest,journal actual image;HTTP keeps Web Locks start/save blocked|
+|HTTPS/device/human/legal/Vercel|NOT_RUN/OPEN|No deployed response or physical-device/independent/release evidence|
+
+`--require-ready` expected exit2; no technical PASS is converted to release/deploy permission. Post-publication remote equality and ordinary clean-clone checkout are verified in the handoff, because a final SHA cannot self-reference its own tree. [Evidence](evidence/AW2-019C.md).
+
 **019B VERIFIED engineering / EXTERNAL BLOCKED:** một batch/commit bổ sung save9, triệu hồi1/10 miễn phí và vé từ biên nhận thật, tiến trình TCG/Chess3bậc với kết quả engine, nhật ký12VịLinh, boss32cel+4cue và kiểm nguồn171/171media. **2312tests/167files**,hai types/hai builds,source/repeat/package/catalog/assets/release/4budget checks PASS;browser nguồn qua QA memory PASS giới hạn,không bỏ Web Locks. Build166711768bytes/395files;JS700716≤710000;offline1479512bytes/27URLs;candidate12/12technical,0/7external. Rootgame mới+Rương original giữ nguyên. Không tuyên bố100%production hoặc duyệt rights/human/device/server. [Evidence](evidence/AW2-019B.md) · [Free scope](FREE_PLAY.md).
 
 Base`b9a395522af9c14601c05f5291c41c53827d1a65`;tested worktree becomes the single task child commit. Checks used installed local binaries, not an unverified pnpm reinstall. No physical device/independent listening/full HTTPS storage run. Source QA screenshot and renderer/mode observations are separately scoped in evidence. Final publication SHA/remote equality is verified in the handoff response.

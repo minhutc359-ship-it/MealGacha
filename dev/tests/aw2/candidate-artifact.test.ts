@@ -1,8 +1,13 @@
 import { createHash } from "node:crypto"
-import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs"
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { dirname, join } from "node:path"
 import { describe, expect, it } from "vitest"
+import {
+  AW2_CACHE_HEADERS,
+  AW2_DELIVERY_SECURITY_PROFILE,
+  AW2_SECURITY_HEADERS,
+} from "../../tools/aw2-delivery-contract.mjs"
 import { readReleaseCandidateReport } from "../../tools/aw2-release-candidate.mjs"
 
 function artifactFixture() {
@@ -54,6 +59,22 @@ function artifactFixture() {
       legacyEntryModules: 0,
     }),
   )
+  write(
+    "dist/assets/release-identity.json",
+    JSON.stringify({
+      schema: 1,
+      product: "soul-of-meal",
+      version: "5.9.23",
+      candidate: "aw2-web1-rc-v1",
+      source: { provider: "local", revision: null },
+      sourcePortable: true,
+      deliverySecurityProfile: AW2_DELIVERY_SECURITY_PROFILE,
+      surface: {
+        defaultSurface: "soul-of-meal-aw2",
+        retainedLegacySurfaces: ["chest"],
+      },
+    }),
+  )
   for (const name of [
     "privacy.html",
     "terms.html",
@@ -69,7 +90,23 @@ function artifactFixture() {
   )
   write(
     "vercel.json",
-    JSON.stringify({ buildCommand: "pnpm build", outputDirectory: "dist" }),
+    JSON.stringify({
+      buildCommand: "pnpm build",
+      outputDirectory: "dist",
+      headers: [
+        ...Object.entries(AW2_CACHE_HEADERS).map(([source, value]) => ({
+          source,
+          headers: [{ key: "Cache-Control", value }],
+        })),
+        {
+          source: "/:path*",
+          headers: Object.entries(AW2_SECURITY_HEADERS).map(([key, value]) => ({
+            key,
+            value,
+          })),
+        },
+      ],
+    }),
   )
   // Deliberately stale, forged measurements must never be used by the candidate.
   write(
@@ -135,6 +172,29 @@ describe("RC measures the actual artifact", () => {
     ).toBe("FAIL")
     expect(
       report.gates.find((gate) => gate.id === "offline-worker")!.status,
+    ).toBe("FAIL")
+  })
+
+  it("fails a forged identity or weakened delivery header", () => {
+    const f = artifactFixture()
+    f.write(
+      "dist/assets/release-identity.json",
+      JSON.stringify({ product: "other", sourcePortable: true }),
+    )
+    const config = JSON.parse(readFileSync(join(f.root, "vercel.json"), "utf8"))
+    config.headers.find(
+      (rule: { source: string }) => rule.source === "/:path*",
+    ).headers = []
+    f.write("vercel.json", JSON.stringify(config))
+    const report = readReleaseCandidateReport(f.root)
+    expect(
+      report.gates.find((gate) => gate.id === "release-identity")!.status,
+    ).toBe("FAIL")
+    expect(
+      report.gates.find((gate) => gate.id === "source-portability")!.status,
+    ).toBe("FAIL")
+    expect(
+      report.gates.find((gate) => gate.id === "delivery-security")!.status,
     ).toBe("FAIL")
   })
 

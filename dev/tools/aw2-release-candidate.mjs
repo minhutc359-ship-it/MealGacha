@@ -4,6 +4,10 @@ import { gzipSync } from "node:zlib"
 import { relative, resolve, sep } from "node:path"
 import { fileURLToPath } from "node:url"
 import { inspectRelease } from "../../releaseGuard.mjs"
+import {
+  AW2_DELIVERY_SECURITY_PROFILE,
+  validateAw2DeliveryConfig,
+} from "./aw2-delivery-contract.mjs"
 
 export const AW2_RELEASE_CANDIDATE_ID = "aw2-web1-rc-v1"
 export const TECHNICAL_GATE_IDS = [
@@ -11,14 +15,17 @@ export const TECHNICAL_GATE_IDS = [
   "offline-shell",
   "javascript-gzip",
   "leak-scan",
+  "source-portability",
   "production-entry",
   "offline-worker",
   "web-manifest",
   "aw2-inventory",
   "public-inventory",
   "legal-artifacts",
+  "release-identity",
   "rollback-runbook",
   "build-routing",
+  "delivery-security",
 ]
 export const EXTERNAL_GATE_IDS = [
   "character-full-dod",
@@ -44,6 +51,7 @@ export const REQUIRED_PATHS = {
     "dist/legal/THIRD_PARTY_LICENSES.txt",
     "dist/legal/NATIVE_SDK_NOTICES.txt",
   ],
+  "release-identity": ["dist/assets/release-identity.json"],
   "rollback-runbook": ["docs/aw2/ROLLBACK.md"],
   "build-routing": ["dist/assets/production-contract.json", "vercel.json"],
 }
@@ -85,11 +93,23 @@ export function createReleaseCandidateReport({
       710_000,
     ),
     gate("leak-scan", leakCount === 0, leakCount, 0),
+    gate(
+      "source-portability",
+      buildSize.sourcePortable === true,
+      buildSize.sourcePortable === true ? 1 : 0,
+      1,
+    ),
     ...Object.entries(REQUIRED_PATHS).map(([id, paths]) =>
       gate(
         id,
         paths.every((path) => presentPaths.has(path)),
       ),
+    ),
+    gate(
+      "delivery-security",
+      buildSize.deliverySecurity === true,
+      buildSize.deliverySecurity === true ? 1 : 0,
+      1,
     ),
   ]
   for (const item of gates)
@@ -145,6 +165,8 @@ export function readReleaseCandidateReport(root = process.cwd()) {
       0,
     )
   let shellBytes = 0
+  let sourcePortable = false
+  let deliverySecurity = false
   const safeArtifactPath = (name) => {
     if (
       typeof name !== "string" ||
@@ -223,6 +245,31 @@ export function readReleaseCandidateReport(root = process.cwd()) {
     "public-inventory",
   )
   try {
+    const identity = parseJson("assets/release-identity.json")
+    if (
+      identity.schema !== 1 ||
+      identity.product !== "soul-of-meal" ||
+      !/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(identity.version) ||
+      identity.candidate !== AW2_RELEASE_CANDIDATE_ID ||
+      identity.sourcePortable !== true ||
+      identity.deliverySecurityProfile !== AW2_DELIVERY_SECURITY_PROFILE ||
+      identity.surface?.defaultSurface !== "soul-of-meal-aw2" ||
+      JSON.stringify(identity.surface?.retainedLegacySurfaces) !==
+        '["chest"]' ||
+      !["local", "github", "vercel"].includes(identity.source?.provider) ||
+      !(
+        identity.source?.revision === null ||
+        /^[0-9a-f]{40}$/.test(identity.source?.revision)
+      ) ||
+      (identity.source.provider === "local") !==
+        (identity.source.revision === null)
+    )
+      throw Error("Invalid release identity")
+    sourcePortable = true
+  } catch {
+    failedChecks.push("release-identity", "source-portability")
+  }
+  try {
     const contract = parseJson("assets/production-contract.json")
     const config = JSON.parse(
       readFileSync(resolve(root, "vercel.json"), "utf8"),
@@ -239,6 +286,16 @@ export function readReleaseCandidateReport(root = process.cwd()) {
       throw Error("Invalid production routing")
   } catch {
     failedChecks.push("build-routing")
+  }
+  try {
+    const config = JSON.parse(
+      readFileSync(resolve(root, "vercel.json"), "utf8"),
+    )
+    if (validateAw2DeliveryConfig(config).length)
+      throw Error("Invalid delivery security contract")
+    deliverySecurity = true
+  } catch {
+    failedChecks.push("delivery-security")
   }
   try {
     const manifest = parseJson("manifest.webmanifest")
@@ -281,6 +338,8 @@ export function readReleaseCandidateReport(root = process.cwd()) {
     bytes,
     js_gzip,
     leaks,
+    sourcePortable,
+    deliverySecurity,
     offlineShell: { bytes: shellBytes },
   }
   const paths = Object.values(REQUIRED_PATHS).flat()

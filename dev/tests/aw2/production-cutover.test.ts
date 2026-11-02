@@ -4,7 +4,9 @@ import {
   AW2_PRODUCTION_ASSET_PREFIX,
   AW2_SOURCE_ASSET_PREFIX,
   isAw2ProductionRuntimePath,
+  productionReleaseIdentity,
   rewriteAw2AssetUrls,
+  releaseSourceIdentity,
   productionSurfaceContract,
   runtimeAw2Manifest,
 } from "../../tools/aw2-production-build"
@@ -152,5 +154,36 @@ describe("018A server build contract", () => {
     expect(text("src/OriginalChestApp.tsx")).toContain(
       "<ChestPage standalone />",
     )
+  })
+
+  it("emits a host-verifiable release identity without inventing a local revision", () => {
+    const contract = productionSurfaceContract([
+      "/repo/src/production.tsx",
+      "/repo/dev/aw2/WorldGame.tsx",
+      "/repo/src/pages/ChestPage.tsx",
+    ])
+    expect(productionReleaseIdentity(contract, "5.9.23", {})).toMatchObject({
+      schema: 1,
+      product: "soul-of-meal",
+      version: "5.9.23",
+      candidate: "aw2-web1-rc-v1",
+      source: { provider: "local", revision: null },
+      sourcePortable: true,
+      deliverySecurityProfile: "aw2-static-v1",
+      surface: contract,
+    })
+    expect(releaseSourceIdentity({ GITHUB_SHA: "a".repeat(40) })).toEqual({
+      provider: "github",
+      revision: "a".repeat(40),
+    })
+    expect(() => releaseSourceIdentity({ GITHUB_SHA: "short" })).toThrow(
+      "complete Git SHA",
+    )
+    expect(() =>
+      releaseSourceIdentity({
+        GITHUB_SHA: "a".repeat(40),
+        VERCEL_GIT_COMMIT_SHA: "b".repeat(40),
+      }),
+    ).toThrow("disagree")
   })
 })

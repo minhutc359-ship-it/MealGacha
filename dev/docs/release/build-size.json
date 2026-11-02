@@ -3,8 +3,8 @@
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 710000,
   "version": "5.9.23",
-  "bytes": 166711768,
-  "files": 395,
+  "bytes": 166712221,
+  "files": 396,
   "byType": {
     "js": {
       "files": 31,
@@ -23,8 +23,8 @@
       "bytes": 161937854
     },
     "json": {
-      "files": 3,
-      "bytes": 65583
+      "files": 4,
+      "bytes": 66036
     },
     "png": {
       "files": 3,
@@ -57,14 +57,14 @@
   },
   "groups": {
     "Application JS/CSS": 2613984,
-    "Other and legal": 149790042,
+    "Other and legal": 149790495,
     "Brand": 229534,
     "Shared character atlases": 1731768,
     "Food art": 7490462,
     "Spirit RPG art/audio/video": 4751008,
     "TCG art/audio": 104970
   },
-  "js_gzip": 700716,
+  "js_gzip": 700718,
   "css_gzip": 38663,
   "largest": [
     {
@@ -131,6 +131,6 @@
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 153288232
+    "remainingBytes": 153287779
   }
 }

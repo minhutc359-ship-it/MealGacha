@@ -3,6 +3,10 @@ import { createHash } from "node:crypto"
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
+import {
+  AW2_DELIVERY_SECURITY_PROFILE,
+  validateAw2DeliveryConfig,
+} from "./aw2-delivery-contract.mjs"
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..")
 const dist = path.join(root, process.argv[2] || "dist")
@@ -146,6 +150,7 @@ for (const required of [
   "index.html",
   "manifest.webmanifest",
   "favicon.ico",
+  "assets/release-identity.json",
   "legal/privacy.html",
   "assets/brand/icon-192.png",
   "assets/brand/icon-512.png",
@@ -158,6 +163,56 @@ for (const required of [
     files.includes(required),
     `missing production contract file ${required}`,
   )
+
+const packageJson = JSON.parse(readFileSync(path.join(root, "package.json")))
+const releaseIdentity = JSON.parse(
+  readFileSync(path.join(dist, "assets/release-identity.json"), "utf8"),
+)
+assert.deepEqual(
+  {
+    schema: releaseIdentity.schema,
+    product: releaseIdentity.product,
+    version: releaseIdentity.version,
+    candidate: releaseIdentity.candidate,
+    sourcePortable: releaseIdentity.sourcePortable,
+    deliverySecurityProfile: releaseIdentity.deliverySecurityProfile,
+    defaultSurface: releaseIdentity.surface?.defaultSurface,
+    retainedLegacySurfaces: releaseIdentity.surface?.retainedLegacySurfaces,
+  },
+  {
+    schema: 1,
+    product: "soul-of-meal",
+    version: packageJson.version,
+    candidate: "aw2-web1-rc-v1",
+    sourcePortable: true,
+    deliverySecurityProfile: AW2_DELIVERY_SECURITY_PROFILE,
+    defaultSurface: "soul-of-meal-aw2",
+    retainedLegacySurfaces: ["chest"],
+  },
+)
+assert.ok(
+  ["local", "github", "vercel"].includes(releaseIdentity.source?.provider),
+  "release identity source provider is invalid",
+)
+assert.ok(
+  releaseIdentity.source.revision === null ||
+    /^[0-9a-f]{40}$/.test(releaseIdentity.source.revision),
+  "release identity source revision is invalid",
+)
+assert.equal(
+  releaseIdentity.source.provider === "local",
+  releaseIdentity.source.revision === null,
+  "only a local build may omit its source revision",
+)
+
+const deliveryConfig = JSON.parse(
+  readFileSync(path.join(root, "vercel.json"), "utf8"),
+)
+assert.deepEqual(
+  validateAw2DeliveryConfig(deliveryConfig),
+  [],
+  "production delivery header contract drifted",
+)
 
 const webManifest = JSON.parse(
   readFileSync(path.join(dist, "manifest.webmanifest"), "utf8"),
