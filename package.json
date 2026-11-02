@@ -22,6 +22,7 @@
     "release:records": "node dev/tools/release-records.mjs",
     "release:verify": "node dev/tools/release-records.mjs --check",
     "release:size": "node dev/tools/release-size.mjs",
+    "release:aw2-candidate": "node dev/tools/aw2-release-candidate.mjs",
     "release:guard": "node releaseGuard.mjs",
     "release:rights": "node dev/tools/release-rights.mjs",
     "release:commercial": "pnpm release:verify && pnpm release:rights --commercial && pnpm build && pnpm release:size",

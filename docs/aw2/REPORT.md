@@ -1,5 +1,7 @@
 # Soul of Meal AW2 — cập nhật 02/11/2026
 
+**AW2-018L VERIFIED technical với blockers — batch10/10:** candidate CLI12/12technicalPASS,0/7externalPASS,overallBLOCKED_EXTERNAL;stage/promote/rollback runbook và no-save-delete guard hoàn tất, không chạy Vercel. Artifact141.472.277bytes/376files,offline1.473.753bytes/24URL;2.207unit/159files,focused29,hai types/builds,candidate/release/assets/budget PASS. Browser NOT_RUN. Roadmap kỹ thuật10/10 đã xử lý,0commit định trước; product≈40% giữ nguyên do external gates. [Evidence](evidence/AW2-018L.md).
+
 **AW2-018K VERIFIED technical với blockers — batch9/10:** UAT matrix7lane/8scenario, exact privacy allowlist, artifact-bound session và blocker aggregation hoàn tất;0PASS/0FAIL/7NOT_RUN. Artifact141.470.404bytes/376files,offline1.471.880bytes/24URL;2.197unit/158files,focused29,hai types/builds,release/assets/budget PASS. Browser/human UAT NOT_RUN. Demo90%/product≈40% giữ nguyên; còn1commit kỹ thuật. [Evidence](evidence/AW2-018K.md).
 
 **AW2-018J VERIFIED technical với blockers — batch8/10:** performance budgets/evaluator, privacy-safe scalar telemetry và AW2-only error recovery hoàn tất; build artifact/offline/JS PASS, device runtime metrics NOT_RUN. Artifact141.468.122bytes/376files,offline1.469.598bytes/24URL;2.187unit/157files,focused90,hai types/builds,release/assets/budget PASS. Browser NOT_RUN. Demo90%/product≈40% giữ nguyên; còn2commit kỹ thuật. [Evidence](evidence/AW2-018J.md).

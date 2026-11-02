@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+018L hoàn thành **technical release-candidate/report/runbook** và là batch10/10. **Demo90% / product≈40%(35–45%) không đổi**:12/12 technical gate PASS nhưng0/7 external,overall`BLOCKED_EXTERNAL`. Roadmap kỹ thuật10/10 đã xử lý; không còn commit định trước, còn evidence/fix theo7 gate ngoài. [Evidence](evidence/AW2-018L.md).
+
 018K hoàn thành **UAT matrix/session evidence contract kỹ thuật** và là batch9/10. **Demo90% / product≈40%(35–45%) không đổi**: 7 lane đều `NOT_RUN` vì chưa có lượt người thật/thiết bị ngoài. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **1commit kỹ thuật**, production-ready vẫn phụ thuộc external acceptance. [Evidence](evidence/AW2-018K.md).
 
 018J hoàn thành **performance/telemetry/error recovery contract kỹ thuật** và là batch8/10. **Demo90% / product≈40%(35–45%) không đổi**: build budgets PASS nhưng browser/device runtime metrics vẫn `NOT_RUN`. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **2commit kỹ thuật**, production-ready vẫn phụ thuộc external acceptance. [Evidence](evidence/AW2-018J.md).

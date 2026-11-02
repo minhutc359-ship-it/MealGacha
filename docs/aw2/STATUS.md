@@ -1,5 +1,9 @@
 # Live project status —2026-11-02
 
+**AW2-018L VERIFIED technical với blockers — batch10/10,19/20 automated gates.** Candidate audit12/12technicalPASS nhưng0/7externalPASS;overall`BLOCKED_EXTERNAL`,deploy/release false. Runbook stage/test/promote/rollback không xóa save đã khóa; không chạy Vercel. Artifact141.472.277bytes/376files;offline1.473.753bytes/24URL;**2.207unit/159files**,focused29,hai typecheck/build,candidate/package/release/assets/budget PASS. Browser/external `NOT_RUN/BLOCKED`. [Bằng chứng](evidence/AW2-018L.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên. Roadmap kỹ thuật **10/10 đã xử lý,0commit định trước còn lại**, nhưng không được gọi production-ready trước7 external gates. Công việc tiếp theo phải là evidence thật/fix blocker cho full character DoD,rights,art-audio,content,human/device UAT,device performance,owner approval. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018L.
+
 **AW2-018K VERIFIED technical với blockers — batch9/10,19/20 automated gates.** Matrix versioned khóa7 lane desktop/mobile/screen-reader và8 scenario; session bắt SHA-256/human/device/no-automation/exact allowlist/blocker. Hiện0PASS/0FAIL/7NOT_RUN. Artifact141.470.404bytes/376files;offline1.471.880bytes/24URL;**2.197unit/158files**,focused29,hai typecheck/build,package/release/assets/budget PASS. Browser/UAT `NOT_RUN`. [Bằng chứng](evidence/AW2-018K.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên. Batch9 đóng evidence contract, không tự tạo session người thật. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **1commit kỹ thuật**; next batch10 release-candidate/runbook/rollback technical manifest. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018K.

@@ -13,6 +13,6 @@ Baseline ngày 2026-10-28. Mục tiêu này gom các lát nhỏ thành 10 batch 
 |7 |TECHNICAL DONE — AW2-018I; human BLOCKED |6 zone/6 room/8 NPC/4 quest/12 spirit, reciprocal routes và placeholder guard |
 |8 |TECHNICAL DONE — AW2-018J; device BLOCKED |Build/runtime budgets, scalar telemetry privacy và AW2-only error recovery |
 |9 |TECHNICAL DONE — AW2-018K; human BLOCKED |7-lane/8-scenario matrix, private-field guard, session/blocker evidence contract |
-|10 |NEXT |Release candidate: security/privacy/legal/observability/runbook/rollback và final acceptance |
+|10 |TECHNICAL DONE — AW2-018L; overall BLOCKED_EXTERNAL |12-gate artifact audit, external decision, stage/promote/rollback runbook |
 
-Sau018K còn **1commit kỹ thuật** trong roadmap; production-ready vẫn bị chặn nếu 12/12 character DoD, rights, duyệt nội dung, thiết bị thật, playtest độc lập và release acceptance chưa có bằng chứng. Test tự động không thay thế các gate đó.
+Đã xử lý **10/10 batch kỹ thuật** trong roadmap; không còn commit kỹ thuật định trước. Đây chưa phải production-ready: candidate hiện12/12technical nhưng0/7external, overall `BLOCKED_EXTERNAL`. Commit tiếp theo phụ thuộc evidence thật cho character DoD/rights, art-audio, content, human/device UAT, device performance và owner release approval hoặc blocker phát hiện từ các lượt đó.

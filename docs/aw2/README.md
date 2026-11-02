@@ -1,5 +1,7 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**AW2-018L hiện hành — batch10/10:** technical candidate12/12PASS nhưng external0/7,overall`BLOCKED_EXTERNAL`;deploy/release false. Artifact audit CLI và stage→test→promote/rollback runbook đã khóa, không chạy Vercel. Full2.207unit/159files,hai builds/package PASS. Roadmap kỹ thuật10/10 đã xử lý,0commit định trước; product≈40% giữ nguyên. [Task](tasks/AW2-018L.md) · [Evidence](evidence/AW2-018L.md) · [Candidate](RELEASE_CANDIDATE.md) · [Rollback](ROLLBACK.md).
+
 **AW2-018K hiện hành — batch9/10:** UAT matrix7lane/8scenario và evidence contract yêu cầu SHA-256/human/device/no-automation/exact privacy allowlist; hiện0PASS/0FAIL/7NOT_RUN. Full2.197unit/158files,hai builds/package PASS. [Task](tasks/AW2-018K.md) · [Evidence](evidence/AW2-018K.md) · [Matrix](UAT_MATRIX.md) · [Roadmap còn1commit kỹ thuật](PRODUCTION_10_COMMIT.md).
 
 **AW2-018J hiện hành — batch8/10:** performance build/runtime budgets, scalar telemetry privacy và AW2-only error recovery đã khóa; artifact/offline/JS PASS, cold-load/FPS/GPU/heap/long-task thiết bị thật `NOT_RUN`. Full2.187unit/157files,hai builds/package PASS. [Task](tasks/AW2-018J.md) · [Evidence](evidence/AW2-018J.md) · [Contract](PERFORMANCE.md) · [Roadmap còn2commit kỹ thuật](PRODUCTION_10_COMMIT.md).

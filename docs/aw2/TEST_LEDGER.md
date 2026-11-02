@@ -1,5 +1,24 @@
 # Test ledger / change impact
 
+## AW2-018L technical release candidate /2026-11-02
+
+Base remote `acde4789db8dc2ed3e2e769815bf12caad2cc773`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không deploy/promote/rollback,không auth/secret,không đổi gameplay/save/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| RC/performance/UAT focused | PASS |3files/29tests;decision/CLI/overflow/missing-output/disclosure |
+| Full Vitest | PASS |159files/2.207tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |1.003modules/7HTML entry |
+| Production build/package | PASS |1.142modules;141.472.277bytes/376files |
+| Offline/package graph | PASS |24URL/1.473.753bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS704.593/CSS38.083;0leaks |
+| Candidate CLI | PASS/BLOCKED |12/12technical;0/7external;normal exit0;require-ready exit2 |
+| Fresh browser/external | NOT_RUN/BLOCKED |Thiếu Playwright;character/rights/human/device/owner evidence mở |
+| React review | PASS |Static decision/disclosure; no state/effect/network/waterfall |
+
+[Evidence](evidence/AW2-018L.md).
+
 ## AW2-018K UAT matrix/evidence /2026-11-02
 
 Base remote `a628163b989e4f5e0430697a696cad86be96beae`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không tạo human/device evidence, không PII/raw save/URL, không đổi gameplay/save/dependency.
