@@ -59,6 +59,14 @@ html.aw2-game-document, html.aw2-game-document body, html.aw2-game-document #roo
 .aw2-game-items strong { display: block; font-size: 1rem; color: #315845; }
 .aw2-game-more { justify-content: space-evenly; }
 .aw2-help-panel { overflow-y: auto; overscroll-behavior: contain; padding-right: .2rem; }
+.aw2-save-transfer { flex-shrink: 0; padding: .65rem; border: 1px solid #8c9778; border-radius: .5rem; background: #fffaf0; }
+.aw2-save-transfer[open], .aw2-restore-confirmation { display: grid; gap: .55rem; }
+.aw2-save-transfer summary { cursor: pointer; min-height: 44px; padding-block: .4rem; font-weight: 700; }
+.aw2-save-transfer label { display: grid; gap: .35rem; }
+.aw2-save-transfer input { width: 100%; min-width: 0; color: inherit; background: #fffaf0; }
+.aw2-save-transfer a, .aw2-legal-links a { color: #315845; min-height: 44px; display: inline-flex; align-items: center; }
+.aw2-save-transfer [role="status"] { color: #315845; font-size: .85rem; }
+.aw2-legal-links { display: flex; flex-wrap: wrap; column-gap: 1rem; }
 .aw2-web-readiness { margin: 0; padding: .65rem; display: grid; gap: .35rem; border: 1px solid #8c9778; border-radius: .5rem; background: #fffaf0; color: #3c382d; font: inherit; }
 .aw2-web-readiness h2 { margin: 0; font-size: 1rem; color: #315845; }
 .aw2-web-readiness p { margin: 0; font-size: .82rem; line-height: 1.35; }

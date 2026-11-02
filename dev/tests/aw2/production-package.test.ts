@@ -172,7 +172,7 @@ describe("018D production PWA contract", () => {
     expect(entry).toContain('import("./components/layout/WebUpdatePrompt")')
     expect(entry).toContain("<WebUpdatePrompt />")
     expect(game).toContain("<WebReadiness compact />")
-    expect(game).toContain("props.production && <WebReadiness")
+    expect(game).toContain("production && <WebReadiness")
     expect(game).toContain("Phục hồi bản an toàn")
     expect(world).toContain("store.inspectRecovery()")
     expect(world).toContain("await store.recover(")

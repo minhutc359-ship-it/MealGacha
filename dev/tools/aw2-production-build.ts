@@ -15,6 +15,36 @@ const root = fileURLToPath(new URL("../../", import.meta.url))
 const runtimeExtensions = new Set([".json", ".wav", ".webp"])
 const authoringJson = /(?:^|[-])(provenance|prompts|selection|spec)\.json$/
 export const AW2_PRODUCTION_INVENTORY = "assets/aw2/inventory.json"
+export const AW2_PRODUCTION_CONTRACT = "assets/production-contract.json"
+
+/** Fail the actual bundle graph if any retired page or review-only UI returns. */
+export function productionSurfaceContract(moduleIds: readonly string[]) {
+  const ids = [...new Set(moduleIds.map((id) => id.replace(/\\/g, "/")))]
+  const forbidden = ids.filter(
+    (id) =>
+      /\/src\/(?:App|main)\.tsx$/.test(id) ||
+      (/\/src\/pages\//.test(id) && !id.endsWith("/src/pages/ChestPage.tsx")) ||
+      /\/dev\/aw2\/(?:ReviewDisclosures|BalanceDisclosure|CharacterReadinessDisclosure|ContentAcceptanceDisclosure|PerformanceDisclosure|UatDisclosure|ReleaseCandidateDisclosure|PlaytestFeedback)\.tsx$/.test(
+        id,
+      ),
+  )
+  if (forbidden.length)
+    throw Error(`Retired/review UI entered production: ${forbidden.join(", ")}`)
+  if (
+    !ids.some((id) => id.endsWith("/src/production.tsx")) ||
+    !ids.some((id) => id.endsWith("/dev/aw2/WorldGame.tsx")) ||
+    !ids.some((id) => id.endsWith("/src/pages/ChestPage.tsx"))
+  )
+    throw Error("Production graph must include the new game and original chest")
+  return {
+    version: 1,
+    defaultSurface: "soul-of-meal-aw2",
+    retainedLegacySurfaces: ["chest"],
+    legacyPageCount: 1,
+    reviewUiModules: 0,
+    legacyEntryModules: 0,
+  }
+}
 
 export function rewriteAw2AssetUrls(code: string) {
   return code.split(AW2_SOURCE_ASSET_PREFIX).join(AW2_PRODUCTION_ASSET_PREFIX)
@@ -111,7 +141,16 @@ export function aw2ProductionBuild(): Plugin {
       const rewritten = rewriteAw2AssetUrls(code)
       return rewritten === code ? undefined : rewritten
     },
-    async generateBundle() {
+    async generateBundle(_, bundle) {
+      const modules = Object.values(bundle).flatMap((output) =>
+        output.type === "chunk" ? Object.keys(output.modules) : [],
+      )
+      const contract = productionSurfaceContract(modules)
+      this.emitFile({
+        type: "asset",
+        fileName: AW2_PRODUCTION_CONTRACT,
+        source: `${JSON.stringify(contract, null, 2)}\n`,
+      })
       const assets = await runtimeInventory(join(root, "dev/aw2/assets"))
       const catalog = productionAssetCatalog(assets)
       this.emitFile({

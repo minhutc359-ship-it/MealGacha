@@ -1,5 +1,9 @@
 # Live project status —2026-11-02
 
+**AW2-018M VERIFIED technical — web chính là Soul of Meal mới, chỉ giữ Rương original.** Hard module-graph guard loại App/main/pages cũ và QA UI; backup/restore có checksum/confirmation/durable store; legal/worker/CI/fresh-artifact audit hoàn tất. **2.240unit/161files**,hai types/hai builds/package/candidate/assets/release/budget PASS. Artifact141.429.950bytes/377files;offline1.466.328/27;JS694.940/CSS38.209. Browser compiled UI/source route+chest PASS giới hạn; HTTP save và physical-device/Vercel config chưa xác minh. [Evidence](evidence/AW2-018M.md).
+
+Demo90%/product≈40%(35–45%) giữ nguyên. Cutover/build đã đóng trong task, chưa thể ghi production100% khi rights/art/human/device còn mở. Báo cáo018L12/12 trước đây chỉ checklist,018M sửa các thiếu sót thật tìm được khi audit; không dùng việc hết roadmap để gọi toàn sản phẩm hoàn tất. Server phải lấy đúng AW2; connection Vercel không thấy project/team nên chưa sửa setting/deploy. Các mục dưới là lịch sử; hiện hành018M.
+
 **AW2-018L VERIFIED technical với blockers — batch10/10,19/20 automated gates.** Candidate audit12/12technicalPASS nhưng0/7externalPASS;overall`BLOCKED_EXTERNAL`,deploy/release false. Runbook stage/test/promote/rollback không xóa save đã khóa; không chạy Vercel. Artifact141.472.277bytes/376files;offline1.473.753bytes/24URL;**2.207unit/159files**,focused29,hai typecheck/build,candidate/package/release/assets/budget PASS. Browser/external `NOT_RUN/BLOCKED`. [Bằng chứng](evidence/AW2-018L.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên. Roadmap kỹ thuật **10/10 đã xử lý,0commit định trước còn lại**, nhưng không được gọi production-ready trước7 external gates. Công việc tiếp theo phải là evidence thật/fix blocker cho full character DoD,rights,art-audio,content,human/device UAT,device performance,owner approval. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018L.

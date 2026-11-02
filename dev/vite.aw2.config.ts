@@ -20,6 +20,8 @@ const entries = [
 export default defineConfig({
   root,
   publicDir: false,
+  define: { __AW2_PRODUCTION__: false },
+  server: { host: "0.0.0.0", allowedHosts: ["terminal.local"] },
   plugins: [
     aw2ReviewBuild(),
     react(),

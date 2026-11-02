@@ -1,4 +1,6 @@
-# Handoff —2026-11-02 / AW2-018L
+# Handoff —2026-11-02 / AW2-018M
+
+018M đóng web cutover:rootgame mới/onlyChestPage;compile-time QA removal;explicit checksum backup/restore;loading/chest recovery;legal policy+worker;CI AW2;fresh artifact fingerprint audit trong mỗi build. Full2.240unit/161files,hai types/builds/release/assets/budget/candidate PASS. Artifact141.429.950bytes/377files;JS694.940;offline1.466.328/27. Compiled UI/source routes+chest browser PASS giới hạn;previewHTTP không có Web Locks,full journey/device chưa chạy mới. Vercel connection không thấy project,không deploy/master/rpg. Demo90/product≈40 giữ nguyên. Next owner:operator xác minh sourcebranch AW2 trên projectđúng;owner/tester cung cấp human/device/rights evidence. [Evidence](evidence/AW2-018M.md) · [Server](SERVER_BUILD.md) · [Backup](SAVE_RECOVERY.md).
 
 018L hoàn tất batch10 với19/20 automated gates: candidate CLI12/12technicalPASS,0/7externalPASS,overallBLOCKED_EXTERNAL;normal exit0,require-ready exit2;runbook stage/test/promote/rollback không xóa save. Full2.207unit/159files,focused29,hai types/builds,candidate/package/release/assets/budget PASS;artifact141.472.277bytes/376files,offline1.473.753bytes/24URL. Browser/external NOT_RUN/BLOCKED. Roadmap kỹ thuật10/10 đã xử lý,0commit định trước; tiếp theo chỉ evidence thật/fix blocker. [Candidate](RELEASE_CANDIDATE.md) · [Rollback](ROLLBACK.md) · [Bằng chứng](evidence/AW2-018L.md).
 

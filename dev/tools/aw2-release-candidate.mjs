@@ -1,6 +1,9 @@
-import { existsSync, readFileSync } from "node:fs"
-import { resolve } from "node:path"
+import { existsSync, lstatSync, readFileSync, readdirSync } from "node:fs"
+import { createHash } from "node:crypto"
+import { gzipSync } from "node:zlib"
+import { relative, resolve, sep } from "node:path"
 import { fileURLToPath } from "node:url"
+import { inspectRelease } from "../../releaseGuard.mjs"
 
 export const AW2_RELEASE_CANDIDATE_ID = "aw2-web1-rc-v1"
 export const TECHNICAL_GATE_IDS = [
@@ -42,7 +45,7 @@ export const REQUIRED_PATHS = {
     "dist/legal/NATIVE_SDK_NOTICES.txt",
   ],
   "rollback-runbook": ["docs/aw2/ROLLBACK.md"],
-  "build-routing": ["src/production.tsx", "vercel.json"],
+  "build-routing": ["dist/assets/production-contract.json", "vercel.json"],
 }
 
 const gate = (id, pass, observed = null, limit = null) => ({
@@ -52,26 +55,32 @@ const gate = (id, pass, observed = null, limit = null) => ({
   limit,
 })
 
-export function createReleaseCandidateReport({ buildSize, presentPaths }) {
+export function createReleaseCandidateReport({
+  buildSize,
+  presentPaths,
+  failedChecks = [],
+}) {
+  const validCount = (value) => Number.isSafeInteger(value) && value > 0
   const leakCount = Array.isArray(buildSize.leaks)
     ? buildSize.leaks.length
     : buildSize.leaks
   const gates = [
     gate(
       "artifact-size",
-      buildSize.bytes <= 320_000_000,
+      validCount(buildSize.bytes) && buildSize.bytes <= 320_000_000,
       buildSize.bytes,
       320_000_000,
     ),
     gate(
       "offline-shell",
-      buildSize.offlineShell?.bytes <= 12_000_000,
+      validCount(buildSize.offlineShell?.bytes) &&
+        buildSize.offlineShell.bytes <= 12_000_000,
       buildSize.offlineShell?.bytes ?? null,
       12_000_000,
     ),
     gate(
       "javascript-gzip",
-      buildSize.js_gzip <= 710_000,
+      validCount(buildSize.js_gzip) && buildSize.js_gzip <= 710_000,
       buildSize.js_gzip,
       710_000,
     ),
@@ -83,6 +92,8 @@ export function createReleaseCandidateReport({ buildSize, presentPaths }) {
       ),
     ),
   ]
+  for (const item of gates)
+    if (failedChecks.includes(item.id)) item.status = "FAIL"
   if (
     gates.length !== TECHNICAL_GATE_IDS.length ||
     gates.some((item, index) => item.id !== TECHNICAL_GATE_IDS[index])
@@ -109,13 +120,188 @@ export function createReleaseCandidateReport({ buildSize, presentPaths }) {
 }
 
 export function readReleaseCandidateReport(root = process.cwd()) {
-  const buildSizePath = resolve(root, "dev/docs/release/build-size.json")
-  const buildSize = JSON.parse(readFileSync(buildSizePath, "utf8"))
+  // Measure the current output, never a previously generated build-size report.
+  const dist = resolve(root, "dist")
+  const files = []
+  const failedChecks = []
+  const walk = (directory) => {
+    for (const name of readdirSync(directory).sort()) {
+      const path = resolve(directory, name)
+      const stat = lstatSync(path)
+      if (stat.isSymbolicLink()) {
+        failedChecks.push("leak-scan")
+        continue
+      }
+      if (stat.isDirectory()) walk(path)
+      else if (stat.isFile()) files.push(path)
+    }
+  }
+  if (existsSync(dist)) walk(dist)
+  const bytes = files.reduce((sum, path) => sum + lstatSync(path).size, 0)
+  const js_gzip = files
+    .filter((path) => path.endsWith(".js"))
+    .reduce(
+      (sum, path) => sum + gzipSync(readFileSync(path), { level: 9 }).length,
+      0,
+    )
+  let shellBytes = 0
+  const safeArtifactPath = (name) => {
+    if (
+      typeof name !== "string" ||
+      !name ||
+      name.includes("\\") ||
+      name.includes("?")
+    )
+      throw Error("Invalid artifact path")
+    const path = resolve(dist, name)
+    if (!path.startsWith(`${dist}${sep}`) || !files.includes(path))
+      throw Error("Missing artifact path")
+    return path
+  }
+  const parseJson = (name) =>
+    JSON.parse(readFileSync(safeArtifactPath(name), "utf8"))
+  try {
+    const worker = readFileSync(safeArtifactPath("sw.js"), "utf8")
+    const urls = JSON.parse(
+      worker.match(/^const CORE_URLS = (\[.*\]);$/m)?.[1] ?? "null",
+    )
+    if (
+      !Array.isArray(urls) ||
+      urls.length < 2 ||
+      urls.some(
+        (url) =>
+          typeof url !== "string" ||
+          !url.startsWith("/") ||
+          url.startsWith("//"),
+      )
+    )
+      throw Error("Invalid offline manifest")
+    shellBytes = [...new Set(urls)].reduce(
+      (sum, url) =>
+        sum +
+        lstatSync(safeArtifactPath(url === "/" ? "index.html" : url.slice(1)))
+          .size,
+      0,
+    )
+  } catch {
+    failedChecks.push("offline-worker", "offline-shell")
+  }
+  const verifyInventory = (name, key, prefix, gateId) => {
+    try {
+      const manifest = parseJson(name)
+      const entries = manifest[key]
+      if (!Array.isArray(entries) || !entries.length)
+        throw Error("Empty inventory")
+      const seen = new Set()
+      let total = 0
+      for (const entry of entries) {
+        if (seen.has(entry.path)) throw Error("Duplicate inventory path")
+        seen.add(entry.path)
+        const data = readFileSync(safeArtifactPath(`${prefix}${entry.path}`))
+        if (
+          data.length !== entry.bytes ||
+          createHash("sha256").update(data).digest("hex") !== entry.sha256
+        )
+          throw Error("Inventory mismatch")
+        total += data.length
+      }
+      if (manifest.bytes !== total) throw Error("Inventory byte mismatch")
+    } catch {
+      failedChecks.push(gateId)
+    }
+  }
+  verifyInventory(
+    "assets/aw2/inventory.json",
+    "assets",
+    "assets/aw2/",
+    "aw2-inventory",
+  )
+  verifyInventory(
+    "assets/production-public-manifest.json",
+    "files",
+    "",
+    "public-inventory",
+  )
+  try {
+    const contract = parseJson("assets/production-contract.json")
+    const config = JSON.parse(
+      readFileSync(resolve(root, "vercel.json"), "utf8"),
+    )
+    if (
+      contract.defaultSurface !== "soul-of-meal-aw2" ||
+      JSON.stringify(contract.retainedLegacySurfaces) !== '["chest"]' ||
+      contract.legacyPageCount !== 1 ||
+      contract.reviewUiModules !== 0 ||
+      contract.legacyEntryModules !== 0 ||
+      config.buildCommand !== "pnpm build" ||
+      config.outputDirectory !== "dist"
+    )
+      throw Error("Invalid production routing")
+  } catch {
+    failedChecks.push("build-routing")
+  }
+  try {
+    const manifest = parseJson("manifest.webmanifest")
+    if (
+      manifest.start_url !== "/" ||
+      manifest.scope !== "/" ||
+      JSON.stringify(manifest.shortcuts?.map((item) => item.url)) !==
+        '["/","/chest"]'
+    )
+      throw Error("Invalid web manifest")
+  } catch {
+    failedChecks.push("web-manifest")
+  }
+  try {
+    const html = readFileSync(safeArtifactPath("index.html"), "utf8")
+    const scripts = [...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(
+      (match) => match[1],
+    )
+    if (
+      !scripts.length ||
+      scripts.some(
+        (src) =>
+          !src.startsWith("/assets/") ||
+          lstatSync(safeArtifactPath(src.slice(1))).size === 0,
+      )
+    )
+      throw Error("Missing compiled entry")
+  } catch {
+    failedChecks.push("production-entry")
+  }
+  const artifactHash = createHash("sha256")
+  for (const path of files)
+    artifactHash
+      .update(relative(dist, path).split(sep).join("/"))
+      .update("\0")
+      .update(createHash("sha256").update(readFileSync(path)).digest())
+      .update("\0")
+  const leaks = existsSync(dist) ? inspectRelease(dist) : ["Missing dist"]
+  const buildSize = {
+    bytes,
+    js_gzip,
+    leaks,
+    offlineShell: { bytes: shellBytes },
+  }
   const paths = Object.values(REQUIRED_PATHS).flat()
   const presentPaths = new Set(
-    paths.filter((path) => existsSync(resolve(root, path))),
+    paths.filter((path) => {
+      const full = resolve(root, path)
+      return (
+        existsSync(full) && lstatSync(full).isFile() && lstatSync(full).size > 0
+      )
+    }),
   )
-  return createReleaseCandidateReport({ buildSize, presentPaths })
+  return {
+    ...createReleaseCandidateReport({ buildSize, presentPaths, failedChecks }),
+    artifact: {
+      sha256: artifactHash.digest("hex"),
+      files: files.length,
+      bytes,
+      jsGzipBytes: js_gzip,
+      offlineShellBytes: shellBytes,
+    },
+  }
 }
 
 export function candidateExitCode(report, requireReady = false) {

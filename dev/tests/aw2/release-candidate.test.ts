@@ -59,6 +59,9 @@ describe("AW2 technical release candidate", () => {
   })
 
   it.each([
+    ["negative bytes", { ...buildSize, bytes: -1 }, allPaths],
+    ["empty build", { ...buildSize, bytes: 0 }, allPaths],
+    ["nonfinite JS", { ...buildSize, js_gzip: Infinity }, allPaths],
     ["artifact bytes", { ...buildSize, bytes: 320_000_001 }, allPaths],
     [
       "offline bytes",

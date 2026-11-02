@@ -1,4 +1,6 @@
 # AW2 Decision Register
+
+018M / owner2026-11-02 tiếp tục D25: **“update để khi build lên phần mới này sẽ trở thành phần chính luôn, soul of meal mới hoạt động, loại bỏ phần cũ (giữ mỗi rương vị giác), đồng thời update luôn để production được100%”**. Triển khai web chính, bỏ UI QA/legacy khỏi artifact, backup/restore, CI và audit artifact thật. Mục tiêu100% không phải evidence cho rights/art/device/human và không tự authorize merge master/rpg hay deploy khi user mới yêu cầu chuẩn bị build. D16push AW2 và D18bằng chứng tiến độ giữ nguyên.
 | ID | Status | Decision |
 |---|---|---|
 | D01 | LOCKED | RPG mới trên nhánh riêng, khả năng tách repo/game riêng; master giữ ổn định |

@@ -76,6 +76,7 @@ function appMetadata(): Plugin {
 export default defineConfig({
   base: "/",
   publicDir: false,
+  define: { __AW2_PRODUCTION__: true },
   plugins: [
     aw2ReviewBuild(),
     aw2ProductionBuild(),
@@ -125,6 +126,11 @@ export default defineConfig({
       },
     },
   },
-  server: { host: "0.0.0.0", port: 8443, strictPort: true },
-  preview: { host: "0.0.0.0", port: 8443 },
+  server: {
+    host: "0.0.0.0",
+    port: 8443,
+    strictPort: true,
+    allowedHosts: ["terminal.local"],
+  },
+  preview: { host: "0.0.0.0", port: 8443, allowedHosts: ["terminal.local"] },
 })

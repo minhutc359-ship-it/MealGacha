@@ -1,6 +1,12 @@
 import { WalkingStatus } from "./WalkingTarget"
 import type { WalkingTarget } from "../../src/aw2/world/walkingIntent"
-import { useEffect, type ReactNode, type RefObject } from "react"
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  type ReactNode,
+  type RefObject,
+} from "react"
 import type { SaveSnapshot } from "../../src/aw2/save/schema"
 import type { WorldProgress } from "../../src/aw2/world/model"
 import type { Waypoint } from "../../src/aw2/world/navigation"
@@ -30,13 +36,12 @@ import { WebReadiness } from "../../src/components/layout/WebReadiness"
 import { FirstJourneyOnboarding } from "./FirstJourneyOnboarding"
 import { GameAccessibilityPanel } from "./GameAccessibilityPanel"
 import { useGameAccessibility } from "./useGameAccessibility"
-import { BalanceDisclosure } from "./BalanceDisclosure"
-import { CharacterReadinessDisclosure } from "./CharacterReadinessDisclosure"
-import { ContentAcceptanceDisclosure } from "./ContentAcceptanceDisclosure"
-import { PerformanceDisclosure } from "./PerformanceDisclosure"
-import { UatDisclosure } from "./UatDisclosure"
-import { ReleaseCandidateDisclosure } from "./ReleaseCandidateDisclosure"
+import { SaveTransferPanel } from "./SaveTransferPanel"
 import "./game.css"
+
+const ReviewDisclosures = __AW2_PRODUCTION__
+  ? () => null
+  : lazy(() => import("./ReviewDisclosures"))
 
 export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe" | "practice"
 interface Props {
@@ -69,6 +74,7 @@ interface Props {
   onReread: () => void
   recoveryAvailable: boolean
   onRecover: () => void
+  onRestoreBackup?: (raw: string) => Promise<void>
   onEconomy: (action: EconomyAction) => void
   onCollection: (action: CollectionAction) => void
   onMode: (id: Aw2ModeId) => void
@@ -95,6 +101,7 @@ const DOCK_ITEMS = [
 
 /** Opt-in v1.1 exploration UI. Existing controller owns every movement and save action. */
 export function WorldGame(props: Props) {
+  const production = __AW2_PRODUCTION__ || props.production
   const { snapshot, world, panel, busy, canWalk, onPanel } = props
   const { pinned, journalMemory } = props
   const accessibility = useGameAccessibility()
@@ -123,7 +130,7 @@ export function WorldGame(props: Props) {
           tabIndex={-1}
           data-testid="zone-name"
         >
-          {sceneName(world)}
+          {save ? sceneName(world) : "Soul of Meal"}
         </h1>
         <span data-testid="npc-life-clock" title="Đồng hồ trong game">
           {lifeClock.label}
@@ -173,7 +180,7 @@ export function WorldGame(props: Props) {
             {snapshot.status === "empty" && !props.recoveryAvailable ? (
               <FirstJourneyOnboarding
                 busy={busy}
-                production={props.production}
+                production={production}
                 onStart={props.onSave}
               />
             ) : (
@@ -196,7 +203,7 @@ export function WorldGame(props: Props) {
                     Phục hồi bản an toàn
                   </button>
                 )}
-                {!props.production && (
+                {!production && (
                   <a href="/dev/aw2/index.html">Công cụ bản lưu</a>
                 )}
               </>
@@ -411,7 +418,7 @@ export function WorldGame(props: Props) {
               >
                 Hướng dẫn / thông báo
               </button>
-              {props.production && (
+              {production && (
                 <a className="aw2-production-chest-link" href="/chest">
                   Rương Vị Giác original
                 </a>
@@ -433,14 +440,48 @@ export function WorldGame(props: Props) {
                 onChange={accessibility.update}
                 onReset={accessibility.reset}
               />
-              <BalanceDisclosure />
-              <CharacterReadinessDisclosure />
-              <ContentAcceptanceDisclosure />
-              <PerformanceDisclosure />
-              <UatDisclosure />
-              <ReleaseCandidateDisclosure />
-              {props.production && <WebReadiness compact />}
-              {props.production ? (
+              {production && props.onRestoreBackup && (
+                <SaveTransferPanel
+                  snapshot={snapshot}
+                  busy={busy}
+                  onRestore={props.onRestoreBackup}
+                />
+              )}
+              {!__AW2_PRODUCTION__ && !production && (
+                <Suspense fallback={<p>Đang mở công cụ kiểm chứng…</p>}>
+                  <ReviewDisclosures />
+                </Suspense>
+              )}
+              {production && <WebReadiness compact />}
+              {production && (
+                <nav
+                  className="aw2-legal-links"
+                  aria-label="Thông tin Soul of Meal"
+                >
+                  <a
+                    href="/legal/privacy.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Quyền riêng tư
+                  </a>
+                  <a
+                    href="/legal/terms.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Điều khoản
+                  </a>
+                  <a
+                    href="/legal/rights.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Tài nguyên và quyền sử dụng
+                  </a>
+                </nav>
+              )}
+              {production ? (
                 <a className="aw2-production-chest-link" href="/chest">
                   Mở Rương Vị Giác original
                 </a>

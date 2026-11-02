@@ -9,6 +9,9 @@ export const PRODUCTION_PUBLIC_MANIFEST =
 export const PRODUCTION_CORE_PUBLIC_FILES = [
   "favicon.ico",
   "manifest.webmanifest",
+  "legal/privacy.html",
+  "legal/terms.html",
+  "legal/rights.html",
   "assets/brand/icon-192.png",
   "assets/brand/icon-512.png",
   "assets/fonts/font-1.woff2",

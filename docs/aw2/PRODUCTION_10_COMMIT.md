@@ -1,5 +1,7 @@
 # Roadmap 10 commit lớn tới production-ready web1.0
 
+**Audit bổ sung018M:**checklist10/10 không đồng nghĩa toàn production100%. Đã tìm và sửa UI QA trong bundle,thiếu backup chuyển máy,CI chưa chạy AW2,candidate dùng số liệu cũ và legal navigation/scope lỗi. Bản build hiện chỉ game mới+Rương,technical gates đo artifact thật. External art/rights/human/device và server project vẫn cần evidence. [018M](evidence/AW2-018M.md).
+
 Baseline ngày 2026-10-28. Mục tiêu này gom các lát nhỏ thành 10 batch lớn, mỗi batch có ít nhất15 tiêu chí nghiệm thu và một commit đã kiểm chứng. Đây là target có điều kiện, không phải lời hứa bỏ qua gate: scope web1.0 phải được đóng băng; owner phải cung cấp/duyệt art, rights, thiết bị và người chơi độc lập đúng lúc. Nếu nghiệm thu ngoài phát hiện blocker, số commit có thể tăng.
 
 | Batch | Trạng thái | Phạm vi đóng |

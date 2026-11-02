@@ -220,6 +220,56 @@ export class Aw2DevSaveStore {
     return { snapshot, encounter }
   }
 
+  /** Explicitly confirmed import; uses the same lock/backup/journal/read-back path. */
+  restore(
+    expectedRaw: string | null,
+    importedRaw: string,
+    confirmation: string,
+  ): Promise<ReadySave> {
+    if (confirmation !== "RESTORE AW2")
+      return Promise.reject(
+        new Aw2SaveError(
+          "confirmation",
+          "Hãy xác nhận khôi phục từ bản sao lưu đã kiểm tra.",
+        ),
+      )
+    if (new TextEncoder().encode(importedRaw).byteLength > 256_000)
+      return Promise.reject(
+        new Aw2SaveError("invalid", "Bản sao lưu vượt giới hạn cho phép."),
+      )
+    const imported = decodeAw2Save(importedRaw)
+    if (imported.status !== "ready")
+      return Promise.reject(
+        new Aw2SaveError("invalid", "Bản sao lưu hành trình không hợp lệ."),
+      )
+    return this.write(
+      expectedRaw,
+      (current) => {
+        if (current.status === "unsupported")
+          throw new Aw2SaveError(
+            "invalid",
+            "Bản lưu hiện tại cần game mới hơn; không ghi đè bằng bản cũ.",
+          )
+        return aw2DevSaveSchema.parse({
+          ...imported.save,
+          revision:
+            Math.max(
+              imported.save.revision,
+              current.status === "ready" ? current.save.revision : 0,
+            ) + 1,
+          updatedAt: this.timestamp(
+            current.status === "ready" &&
+              Date.parse(current.save.updatedAt) >
+                Date.parse(imported.save.updatedAt)
+              ? current.save.updatedAt
+              : imported.save.updatedAt,
+          ),
+        })
+      },
+      true,
+    )
+  }
+
   /** Resolve actions inside the lock; renderer never supplies items, XP or receipts. */
   act(
     expectedRaw: string,

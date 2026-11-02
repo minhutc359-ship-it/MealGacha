@@ -20,6 +20,7 @@ function renderFailure(cause: unknown) {
         Thử lại
       </button>
       {location.pathname !== "/" && <a href="/">Về hành trình mới</a>}
+      <a href="/chest">Mở Rương Vị Giác original</a>
     </main>,
   )
 }

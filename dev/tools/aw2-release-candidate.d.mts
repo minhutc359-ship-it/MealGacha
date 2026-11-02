@@ -33,6 +33,16 @@ export interface CandidateReport {
   }
 }
 
+export interface MeasuredCandidateReport extends CandidateReport {
+  artifact: {
+    sha256: string
+    files: number
+    bytes: number
+    jsGzipBytes: number
+    offlineShellBytes: number
+  }
+}
+
 export declare const AW2_RELEASE_CANDIDATE_ID: string
 export declare const TECHNICAL_GATE_IDS: readonly string[]
 export declare const EXTERNAL_GATE_IDS: readonly string[]
@@ -40,8 +50,11 @@ export declare const REQUIRED_PATHS: Readonly<Record<string, readonly string[]>>
 export function createReleaseCandidateReport(input: {
   buildSize: CandidateBuildSize
   presentPaths: ReadonlySet<string>
+  failedChecks?: readonly string[]
 }): CandidateReport
-export function readReleaseCandidateReport(root?: string): CandidateReport
+export function readReleaseCandidateReport(
+  root?: string,
+): MeasuredCandidateReport
 export function candidateExitCode(
   report: CandidateReport,
   requireReady?: boolean,

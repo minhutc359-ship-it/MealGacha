@@ -106,6 +106,17 @@ async function shellFromCurrentOrPrevious() {
 self.addEventListener('fetch', event => {
   const request = event.request, url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== self.location.origin || url.pathname.endsWith('/sw.js')) return;
+  if (/^\/legal\/[a-zA-Z0-9_-]+\.(?:html|txt)$/.test(url.pathname)) {
+    // Legal documents are real files, never SPA navigations into the game.
+    event.respondWith((async () => {
+      const core = await caches.open(CORE);
+      const hit = await core.match(request, {ignoreVary: true});
+      if (hit) return hit;
+      try { return await fetch(request); }
+      catch { return new Response('Chưa có tài liệu này khi offline. Hãy kết nối mạng rồi mở lại.', {status: 503, headers: {'Content-Type': 'text/plain; charset=utf-8'}}); }
+    })());
+    return;
+  }
   if (request.mode === 'navigate') {
     // Pin the document to this worker's shell so a deploy cannot mix JS versions.
     event.respondWith((async () => (await shellFromCurrentOrPrevious()) || fetch(request))());

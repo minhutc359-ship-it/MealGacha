@@ -1,6 +1,6 @@
 # AW2 web1.0 technical release candidate
 
-`aw2-web1-rc-v1` có 12 technical gate và 7 external gate. `pnpm release:aw2-candidate` đọc build-size cùng output local sau `pnpm build`; lệnh không gọi mạng, deploy, promote hoặc release.
+`aw2-web1-rc-v1` có 12 technical gate và 7 external gate. Sau018M, `pnpm release:aw2-candidate` đo trực tiếp file/gzip/offline/inventory hash của `dist` và xuất fingerprint artifact; không tin build-size JSON lịch sử. Lệnh cũng chạy bắt buộc trong `pnpm build`, không gọi mạng, deploy, promote hoặc release.
 
 Technical gates kiểm artifact/offline/JS hard limits, leak scan, production entry, service worker, web manifest, AW2/public inventories, legal artifacts, rollback runbook và build routing. CLI mặc định exit 0 nếu technical PASS dù overall còn `BLOCKED_EXTERNAL`, giúp CI phân biệt artifact hỏng với external work chưa xong. `--require-ready` trả nonzero khi overall chưa `READY`.
 

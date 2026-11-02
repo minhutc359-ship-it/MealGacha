@@ -6,7 +6,7 @@ import {
   type WalkingTarget,
 } from "../../src/aw2/world/walkingIntent"
 import type { CollectionAction } from "../../src/aw2/collection/model"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react"
 import {
   Aw2DevSaveStore,
   Aw2SaveError,
@@ -52,7 +52,6 @@ import {
 } from "../../src/aw2/world/controls"
 import { JourneyGuide } from "./JourneyGuide"
 import { DemoCompletion } from "./DemoCompletion"
-import { PlaytestFeedback } from "./PlaytestFeedback"
 import { WorldGame, type GamePanel } from "./WorldGame"
 import {
   PagedCopy,
@@ -89,6 +88,14 @@ import {
 } from "../../src/aw2/world/stepPortals"
 import { npcLifeClock } from "../../src/aw2/world/npcLife"
 
+const PlaytestFeedback = __AW2_PRODUCTION__
+  ? () => null
+  : lazy(() =>
+      import("./PlaytestFeedback").then(({ PlaytestFeedback }) => ({
+        default: PlaytestFeedback,
+      })),
+    )
+
 interface PendingPlaceInteraction {
   id: string
   scene: ReturnType<typeof sceneId>
@@ -104,9 +111,15 @@ interface TravelProgress extends ScenePreparationProgress {
   phase: "loading" | "rendering" | "saving"
 }
 
-export function WorldPreview({ production = false }: { production?: boolean }) {
+export function WorldPreview({
+  production = __AW2_PRODUCTION__,
+}: {
+  production?: boolean
+}) {
   const singleViewport =
-    production || window.location.pathname.endsWith("/game.html")
+    __AW2_PRODUCTION__ ||
+    production ||
+    window.location.pathname.endsWith("/game.html")
   const [store] = useState(() => new Aw2DevSaveStore())
   const [snapshot, setSnapshot] = useState<SaveSnapshot>(() => store.load())
   const [recovery, setRecovery] = useState<RecoveryInspection>(() =>
@@ -618,6 +631,29 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
       pending.current = false
       setBusy(false)
     }
+  }
+
+  async function restoreBackup(raw: string) {
+    if (pending.current || saved.current.status === "unavailable")
+      throw Error("Hãy đợi thao tác hiện tại hoàn tất rồi thử lại.")
+    pending.current = true
+    setBusy(true)
+    keys.current.clear()
+    clearWalking()
+    try {
+      await store.restore(saved.current.raw, raw, "RESTORE AW2")
+      rereadAfterRestore()
+    } finally {
+      pending.current = false
+      setBusy(false)
+    }
+  }
+
+  function rereadAfterRestore() {
+    // Same reload path as stale-tab recovery, after the guarded write completed.
+    pending.current = false
+    reread()
+    setMessage("Đã khôi phục hành trình từ bản sao lưu.")
   }
 
   async function enterMode(modeId: Aw2ModeId, entry: ModeEntry) {
@@ -1360,6 +1396,7 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
         onReread={reread}
         recoveryAvailable={recovery.status === "available"}
         onRecover={() => void recover()}
+        onRestoreBackup={restoreBackup}
         onEconomy={(action) => void transact(action)}
         onCollection={(action) => void collect(action)}
         onMode={(mode) => void enterMode(mode, "quick-entry")}
@@ -1577,7 +1614,9 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
       </div>
       <p role="status">{busy ? "Đang lưu…" : message}</p>
       {error && <p role="alert">{error}</p>}
-      <PlaytestFeedback snapshot={snapshot} busy={busy} />
+      <Suspense fallback={null}>
+        <PlaytestFeedback snapshot={snapshot} busy={busy} />
+      </Suspense>
       {interactionDialog}
       {classicPanel}
     </main>

@@ -1,5 +1,7 @@
 # Chạy AW2 trên máy để chơi thử
 
+**018M hiện hành:** `pnpm dev` mở game chính tại `http://localhost:8443/`, rương ở `/chest`; có sao lưu tại Thêm → Hướng dẫn / thông báo. Dùng `pnpm dev:aw2 --port 8444` cho các trang QA `/dev/aw2/*` riêng; các hướng dẫn review ở phần lịch sử dưới đây áp dụng cho server QA đó, không phải production artifact. `pnpm build && pnpm preview` kiểm bản web chính; `pnpm build:aw2` tạo `dist-aw2` riêng. [Cấu hình server](SERVER_BUILD.md).
+
 Nếu đang nghiệm thu target D18, ghi SHA/môi trường và kết quả theo [PLAYTEST_100_CHECKLIST.md](PLAYTEST_100_CHECKLIST.md). Cần một lượt độc lập toàn hành trình và ít nhất một điện thoại thật; cửa sổ hẹp/viewport giả lập chỉ là regression bổ sung.
 
 Dùng nhánh `game/adventure-world-2`. Môi trường hiện được kiểm tra: Windows/Node25.2.0, pnpm10.34.3, Chrome155; trước đó có bằng chứng Linux/Node22.23.2. Các trang AW2 này chạy phía trình duyệt, không cần backend, tài khoản hoặc file .env.

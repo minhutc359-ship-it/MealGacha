@@ -1,6 +1,6 @@
 export type PolicyId = "terms" | "privacy" | "rights"
-export const POLICY_DATE = "16/10/2026"
-export const POLICY_VERSION = "2026-10-16"
+export const POLICY_DATE = "02/11/2026"
+export const POLICY_VERSION = "2026-11-02-aw2"
 export const SUPPORT_NOTICE =
   "Kênh hỗ trợ riêng chưa được công bố. Thông tin liên hệ sẽ được cập nhật tại đây trước khi phát hành thương mại hoặc trên cửa hàng ứng dụng. Không gửi bản lưu, giấy tờ hoặc dữ liệu nhạy cảm lên nơi công khai."
 export interface Policy {
@@ -13,7 +13,7 @@ export interface Policy {
 }
 
 // Shared with generated JavaScript-free public/legal pages. Describe shipped behavior.
-export const POLICIES: Record<PolicyId, Policy> = {
+const LEGACY_POLICIES: Record<PolicyId, Policy> = {
   terms: {
     title: "Điều khoản sử dụng",
     intro:
@@ -230,6 +230,116 @@ export const POLICIES: Record<PolicyId, Policy> = {
           "Nếu bằng chứng có dữ liệu riêng, chỉ yêu cầu kênh trao đổi riêng trước; không đăng giấy tờ, địa chỉ cá nhân hoặc file mật lên nơi công khai. Báo cáo không tự chứng minh quyền sở hữu và không hạn chế quyền yêu cầu cơ quan có thẩm quyền xử lý.",
         ],
       },
+    ],
+  },
+}
+
+// Current web surfaces. Legacy operational instructions remain above as reference
+// but are not exported into the public policy pages.
+export const POLICIES: Record<PolicyId, Policy> = {
+  terms: {
+    title: LEGACY_POLICIES.terms.title,
+    intro:
+      "Áp dụng cho Soul of Meal mới: hành trình Một chỗ bên bếp tại trang chính, đội năm Vị Linh, bàn luyện tập TCG/Auto Chess trong game và Rương Vị Giác original tại /chest. Các giao diện Phiêu lưu, PvP, sự kiện, Timeline và Cài đặt của bản cũ không còn được cung cấp trong bản web này.",
+    sections: [
+      {
+        title: "1. Sản phẩm và liên hệ",
+        paragraphs: [
+          LEGACY_POLICIES.terms.sections[0].paragraphs[0],
+          "Bản web hiện chơi miễn phí, không yêu cầu tài khoản máy chủ, không có chat công khai, PvP mạng, quảng cáo hoặc thanh toán. Đây là phạm vi web; không mô tả bản Android/iOS mới đã phát hành.",
+        ],
+      },
+      { ...LEGACY_POLICIES.terms.sections[2], title: "Quyền chơi và nội dung" },
+      {
+        title: "2. Tiến trình và vật phẩm",
+        paragraphs: [
+          "Hành trình, đội, nguyên liệu, kinh nghiệm và bộ sưu tập được lưu cục bộ trên trình duyệt. Rương original giữ dữ liệu riêng; bộ sưu tập cũ không bị tự chuyển thành nhân vật hoặc phần thưởng trong hành trình mới. Các tài nguyên ảo không đổi thành tiền hoặc phần thưởng bên ngoài trò chơi.",
+          "Dùng Lưu vị trí trước khi rời game. Trong Thêm → Hướng dẫn / thông báo → Sao lưu và chuyển thiết bị, bạn có thể xuất JSON, chọn tệp và xác nhận khôi phục. Khôi phục thay tiến trình hiện tại; bản hợp lệ ngay trước đó được giữ ở bản an toàn. Không có cloud save hay cam kết phục hồi được dữ liệu chưa từng sao lưu khi trình duyệt bị xóa hoặc thu hồi dung lượng.",
+          "Rương original có lựa chọn ngẫu nhiên và hiển thị quy tắc tại Xem món & tỉ lệ. Gacha tuyển Vị Linh trong hành trình mới chưa được bật; không có mua tiền tệ, pity trả phí hoặc điều kiện phải quay để kết thúc cốt truyện.",
+        ],
+      },
+      {
+        title: "3. Tệp bạn chọn và liên kết",
+        paragraphs: [
+          "Chỉ chọn bản sao lưu mà bạn tin cậy. Tệp được đọc và kiểm tra ngay trên thiết bị khi bạn chủ động chọn; không tự tải lên máy chủ. Người có tệp JSON có thể đọc và sử dụng tiến trình đó. Không chia sẻ bản lưu hoặc dữ liệu riêng ở nơi công khai.",
+          LEGACY_POLICIES.terms.sections[5].paragraphs[2],
+        ],
+      },
+      ...LEGACY_POLICIES.terms.sections.slice(6, 9).map((section) => ({
+        ...section,
+        title: section.title.replace(/^\d+\. /, ""),
+      })),
+      {
+        title: "Báo lỗi và hỗ trợ",
+        paragraphs: [
+          "Khi báo lỗi, nêu vùng, thao tác và thông báo trên màn hình. Che thông tin riêng trên ảnh và không gửi toàn bộ bản sao lưu, giấy tờ hoặc khóa truy cập ở nơi công khai. Kênh hỗ trợ riêng chưa được công bố; không tự gửi dữ liệu nhạy cảm.",
+        ],
+      },
+    ],
+  },
+  privacy: {
+    title: LEGACY_POLICIES.privacy.title,
+    intro:
+      "Chính sách mô tả Soul of Meal mới và Rương Vị Giác original. Game chạy trên trình duyệt, lưu tiến trình tại thiết bị và không tự gửi bản lưu lên tài khoản máy chủ. Các mô tả PvP, tìm quán, Timeline, ảnh check-in và native bridge của bản cũ không áp dụng cho các giao diện web hiện đang cung cấp.",
+    sections: [
+      {
+        title: "1. Dữ liệu trên thiết bị",
+        paragraphs: [
+          "Hành trình lưu vùng/vị trí, nhiệm vụ, đội, bộ sưu tập, nguyên liệu, EXP và biên nhận phần thưởng trong localStorage. Bản chính, backup, journal và quarantine phục vụ ghi an toàn hoặc phục hồi khi có lỗi. Tùy chọn cỡ chữ, tương phản, chuyển động và âm thanh được giữ riêng. Rương original tiếp tục dùng hồ sơ và dữ liệu món/thẻ cũ của nó; game không tự xóa chúng.",
+          "Dữ liệu gắn với origin, trình duyệt và profile. Đổi địa chỉ, thiết bị hoặc dùng cửa sổ riêng tư có thể mở một kho khác. Dữ liệu tồn tại đến khi bạn xóa, trình duyệt thu hồi hoặc profile bị gỡ; bản backup nằm trên cùng thiết bị không thay thế một tệp sao lưu bên ngoài.",
+        ],
+      },
+      {
+        title: "2. Xuất, nhập và bảo vệ bản sao lưu",
+        paragraphs: [
+          "Bạn chủ động tạo/tải JSON tại Sao lưu và chuyển thiết bị. Tệp chứa envelope tiến trình đã commit và SHA-256 kiểm tra hư hỏng. Checksum không mã hóa hoặc chứng minh người tạo tệp; ai có bản JSON có thể đọc nó. Lựa chọn tệp chỉ đọc trên trình duyệt, không upload; nhập chỉ ghi sau bước xác nhận.",
+          "Game dùng Web Locks, so sánh bản đã đọc và kiểm tra sau ghi để hạn chế tab cũ ghi đè. HTTPS/localhost và trình duyệt hỗ trợ là điều kiện ghi an toàn. Các cơ chế này không bảo đảm chống mọi lỗi thiết bị, extension hoặc người có quyền truy cập profile.",
+        ],
+      },
+      {
+        title: "3. Offline, hosting và lưu lượng mạng",
+        paragraphs: [
+          "Service worker lưu shell, font, chính sách và các tài nguyên đã ghé trong Cache Storage để hỗ trợ offline/cập nhật. Cache không phải bản lưu người chơi. Có thể giữ một phiên bản tài nguyên trước để phục vụ tab đang mở.",
+          "Hosting phân phối trang, ảnh và âm thanh có thể xử lý IP và nhật ký yêu cầu theo chính sách của nhà cung cấp. Font được đóng gói cùng game. Bản này không có analytics/ads SDK của nhà phát hành và không tự gửi raw save, URL/query, identity hoặc stack qua chẩn đoán.",
+          "Phiên web hiện tại không mở phòng PeerServer/WebRTC, yêu cầu GPS, camera hoặc micro. Liên kết ngoài chỉ được mở theo lựa chọn của bạn và chịu chính sách của dịch vụ đích.",
+        ],
+      },
+      {
+        title: "4. Quyền kiểm soát dữ liệu",
+        paragraphs: [
+          "Bạn có thể xuất bản lưu trước khi đổi thiết bị hoặc xóa dữ liệu. Để xóa dữ liệu cục bộ, dùng mục dữ liệu website của trình duyệt cho đúng địa chỉ Soul of Meal; thao tác này có thể xóa cả hành trình mới và dữ liệu Rương trên origin đó. Game không tự xóa dữ liệu để nâng cấp phiên bản.",
+          "Xóa dữ liệu website không xóa tệp trong Downloads, clipboard, bản sao ở dịch vụ lưu trữ hoặc bản đã gửi cho người khác. Bạn cần quản lý các bản sao đó tại nơi đã lưu. Không có tài khoản máy chủ để nhà phát hành tra cứu/xóa từ xa tiến trình trên thiết bị của bạn.",
+        ],
+      },
+      ...LEGACY_POLICIES.privacy.sections
+        .filter((section) =>
+          [
+            "8. Quyền dữ liệu và yêu cầu hỗ trợ",
+            "10. Cập nhật chính sách",
+          ].includes(section.title),
+        )
+        .map((section) => ({
+          ...section,
+          title: section.title.replace(/^\d+\. /, ""),
+          paragraphs: section.paragraphs.map((paragraph) =>
+            paragraph.replace(
+              "sửa hồ sơ, xuất bản lưu, xóa ảnh/dữ liệu và thu hồi quyền trình duyệt",
+              "xuất/khôi phục bản lưu và quản lý dữ liệu website trong trình duyệt",
+            ),
+          ),
+        })),
+    ],
+  },
+  rights: {
+    ...LEGACY_POLICIES.rights,
+    sections: [
+      {
+        title: "Phạm vi tài nguyên web hiện tại",
+        paragraphs: [
+          "Bản web hiện đóng gói tài nguyên của hành trình mới và Rương Vị Giác original. Các màn cũ đã rời bundle không được mở lại qua đường dẫn cũ. Có model, chuyển động hoặc hồ sơ nguồn không tự đồng nghĩa mọi tài nguyên đã được ký duyệt thương mại; những mục rights còn mở vẫn cần chủ thể có quyền xác minh.",
+        ],
+      },
+      ...LEGACY_POLICIES.rights.sections,
     ],
   },
 }

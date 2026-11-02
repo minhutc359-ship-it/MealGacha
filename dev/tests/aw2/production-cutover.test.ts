@@ -5,6 +5,7 @@ import {
   AW2_SOURCE_ASSET_PREFIX,
   isAw2ProductionRuntimePath,
   rewriteAw2AssetUrls,
+  productionSurfaceContract,
 } from "../../tools/aw2-production-build"
 import { productionSurface } from "@/productionRoute"
 
@@ -32,8 +33,46 @@ describe("018A production route allowlist", () => {
     "/taste-swipe",
     "/events",
     "/anything-else",
+    "/dev/aw2/world.html",
+    "/dev/aw2/index.html",
+    "/chest/collection",
   ])("routes old surface %s to AW2", (path) => {
     expect(productionSurface(path)).toBe("aw2")
+  })
+})
+
+describe("018M actual production module graph", () => {
+  const graph = [
+    "/repo/src/production.tsx",
+    "/repo/dev/aw2/WorldGame.tsx",
+    "/repo/src/pages/ChestPage.tsx",
+  ]
+  it("accepts only the new game with the original chest", () => {
+    expect(productionSurfaceContract(graph)).toMatchObject({
+      defaultSurface: "soul-of-meal-aw2",
+      retainedLegacySurfaces: ["chest"],
+      legacyPageCount: 1,
+      reviewUiModules: 0,
+      legacyEntryModules: 0,
+    })
+  })
+  it.each([
+    "/repo/src/App.tsx",
+    "/repo/src/main.tsx",
+    "/repo/src/pages/AdventurePage.tsx",
+    "/repo/dev/aw2/CharacterReadinessDisclosure.tsx",
+    "/repo/dev/aw2/PlaytestFeedback.tsx",
+  ])("refuses retired or internal UI %s", (id) => {
+    expect(() => productionSurfaceContract([...graph, id])).toThrow(
+      "entered production",
+    )
+  })
+  it("refuses a graph that dropped the actual new game", () => {
+    expect(() =>
+      productionSurfaceContract(
+        graph.filter((id) => !id.endsWith("WorldGame.tsx")),
+      ),
+    ).toThrow("new game")
   })
 })
 

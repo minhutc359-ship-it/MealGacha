@@ -1,5 +1,13 @@
 # Save AW2: ghi bền và phục hồi
 
+## Sao lưu để chuyển thiết bị —018M
+
+Trong game chính: **Thêm → Hướng dẫn / thông báo → Sao lưu và chuyển thiết bị**. Lưu vị trí trước, chọn Chuẩn bị bản sao lưu rồi Tải bản sao lưu JSON. Tệp chỉ chứa envelope AW2 đã commit, format riêng và SHA-256; không đọc save Rương. Giữ tệp riêng tư vì có tiến trình/đội/túi đồ.
+
+Trên thiết bị đích, chọn tệp, đọc vùng/nhiệm vụ/EXP đã kiểm tra rồi **Xác nhận khôi phục hành trình**. Hủy không ghi dữ liệu. Checksum/kích thước/schema phải hợp lệ; lần ghi vẫn có Web Lock, kiểm raw/tab cũ, backup/journal/read-back. Save schema tương lai không bị hạ cấp. Đây là sao lưu thủ công, không tự đồng bộ qua mạng.
+
+Namespace/envelope8 được giữ tương thích với các lượt chơi hiện có; không đổi key hoặc reset chỉ để bỏ tên lịch sử `development`.
+
 AW2 vẫn dùng namespace phát triển `aw2.development.save` cho tới khi có quyết định phát hành đầu tiên. Schema chính hiện là8; save1–7 được migrate **trong bộ nhớ khi đọc** và chỉ nâng lên8 sau một thao tác lưu rõ ràng. Không có đường tự reset hoặc tự hạ schema.
 
 ## Bốn key trong namespace AW2

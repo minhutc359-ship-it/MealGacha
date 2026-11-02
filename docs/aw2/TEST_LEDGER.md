@@ -1,5 +1,26 @@
 # Test ledger / change impact
 
+## AW2-018M main web cutover /2026-11-02
+
+Base `e3b20e01997cb6d64b9b8b07ac592ed7fbefaae1`. Linux/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1;Chrome cloud browser qua cua.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Save/cutover/candidate impact | PASS |6files/113tests ở lượt cuối;focused nằm trong full total |
+| Full unit | PASS |161files/2.240tests sau runtime/save/worker changes |
+| Final root/dev types | PASS |Rerun sau export-size guard/policy/generated HTML/dev-public config |
+| Final review+production builds | PASS |1.006/1.127modules;7review entry;377production files |
+| Package/inventory/offline | PASS |141.429.950bytes;183public/153AW2;27core URLs/1.466.328bytes;3scene chunks+1lazy chest portrait |
+| Release/assets/budget | PASS |32deps/774records/3policies;137assets;4budget tests;JS694.940/CSS38.209;0leaks |
+| Candidate | PASS technical/BLOCKED external |12/12actual artifact gates,0/7external;SHA6326ee686ede1dae8c039ce078c66da091d60cf2e48467c4db0361b5fffe6161 |
+| Browser compiled UI | PASS limited |Root,onboarding,menu/help,backup entry,legal links;no internal QA reports |
+| Browser source routes | PASS limited |/adventure→newgame;/chest→standalone original;/legal/privacy→policy2026-11-02-aw2 |
+| HTTP save/device/human | BLOCKED/NOT_RUN |PreviewHTTP lacks WebLocks;no security bypass;unit save tests not physical-device evidence |
+| Vercel | UNVERIFIED/NOT_RUN |Project404 and empty teams/projects;no server-setting/deploy writes |
+| React review | PASS |Compile-time review elimination,lazy QA,local file checks,URL cleanup,explicit event writes;no render side effects/network upload |
+
+Full suite, types, both builds/release/candidate rerun after final export-size guard/policy/dev-public changes. Preview sync introduced `.rsync-tmp` in an intermediate package; guard rejected it, preview stopped and clean generated output rebuilt PASS. No historical browser/full-suite count is added. [Evidence](evidence/AW2-018M.md).
+
 ## AW2-018L technical release candidate /2026-11-02
 
 Base remote `acde4789db8dc2ed3e2e769815bf12caad2cc773`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không deploy/promote/rollback,không auth/secret,không đổi gameplay/save/dependency.

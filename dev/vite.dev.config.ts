@@ -22,6 +22,8 @@ const panel: Plugin = {
 
 export default defineConfig(
   mergeConfig(production, {
+    // Serve original chest images/fonts locally; production still uses its allowlist.
+    publicDir: fileURLToPath(new URL("../public", import.meta.url)),
     plugins: [aw2ReviewBuild(), panel, devContentWriter()],
   }),
 )

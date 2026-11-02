@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 
+declare const __AW2_PRODUCTION__: boolean
+
 declare module "virtual:dev-content-panel" {
   export const DevContentPanel: import("react").ComponentType
 }
