@@ -1,4 +1,6 @@
-# Soul of Meal AW2 — cập nhật 29/10/2026
+# Soul of Meal AW2 — cập nhật 02/11/2026
+
+**AW2-018H VERIFIED technical với blockers — batch6/10:** inventory12 identity/reference/kit/provenance và disclosure production hoàn tất;12/12 technical reference nhưng0/12 fullDoD,rights,release; art/device/audio NOT_RUN. Artifact141.464.300bytes/375files,offline1.465.927bytes/24URL;2.172unit/155files,focused42,hai types/builds,release/assets/budget PASS. Browser NOT_RUN. Demo90%/product≈40% giữ nguyên; còn4commit kỹ thuật, external gates vẫn block production-ready. [Evidence](evidence/AW2-018H.md).
 
 **AW2-018G VERIFIED development với giới hạn — batch5/10:**19/20 kế hoạch balance đạt: snapshot/fingerprint12kit, progression/economy authority, D11 metadata tách simulator và disclosure production no-runtime. Artifact141.460.868bytes/375files,offline1.462.495bytes/24URL;2.167unit/154files,focused19,hai types/builds,release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. Demo90%/product≈40% giữ nguyên; còn≈5commit lớn có điều kiện. [Evidence](evidence/AW2-018G.md).
 

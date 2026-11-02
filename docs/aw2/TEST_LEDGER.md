@@ -1,5 +1,24 @@
 # Test ledger / change impact
 
+## AW2-018H character readiness /2026-11-02
+
+Base remote `bbcc292a15bbe587e634c2785b2ffb23cae5ce11`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi asset/identity/rarity/skill/balance/save/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Character/roster focused | PASS |3files /42tests;12 identity/packages, drift, disclosure, existing asset contracts |
+| Full Vitest | PASS |155files /2.172tests |
+| Root/dev typecheck | PASS |Both exit0 on final source |
+| AW2 review build | PASS |995modules /7HTML entry |
+| Production build/package | PASS |1.133modules;141.464.300bytes/375files |
+| Offline/package graph | PASS |24URL/1.465.927bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS |137assets;32deps/774assets/3policies;4/4budget;JS701.798/CSS38.083;0leaks |
+| Fresh browser | NOT_RUN |Workspace không có package `playwright`; verifier dừng trước browser launch |
+| Independent art/device/audio/rights | BLOCKED/NOT_RUN |0/12 fullDoD,rights,release; không suy diễn từ automated tests |
+| React review | PASS |Static inventory/disclosure/direct imports; no state/effect/network/waterfall |
+
+Workspace clone lại từ remote sau automatic scratch pruning;018G được giữ nguyên trên GitHub. [Evidence](evidence/AW2-018H.md).
+
 ## AW2-018G balance freeze/disclosure /2026-10-29
 
 Base remote `627a591a542af6ccea3ab2441c363ad00a87ed90`. Linux x64/Node24.22.1/pnpm11.25.0/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi schema8/gameplay output/art/dependency; D11 vẫn proposal.

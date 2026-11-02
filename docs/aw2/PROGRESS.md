@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+018H hoàn thành **inventory/readiness kỹ thuật 12 nhân vật** và là batch6/10. **Demo90% / product≈40%(35–45%) không đổi**: 12/12 reference-ready không được tính thành full DoD; hiện 0/12 full-character/rights/release. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **4commit kỹ thuật**, nhưng production-ready vẫn phụ thuộc external acceptance. [Evidence](evidence/AW2-018H.md).
+
 018G hoàn thành **19/20 kế hoạch balance freeze/disclosure** và là batch5/10. **Demo90% / product≈40%(35–45%) không đổi**: baseline kỹ thuật và minh bạch tốt hơn nhưng không tự phê duyệt final balance/D11/human playtest. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **khoảng5commit lớn** có điều kiện; next readiness12 nhân vật/provenance/rights inventory. [Evidence](evidence/AW2-018G.md).
 
 018F hoàn thành **19/20 kế hoạch onboarding/accessibility/mobile production** và là batch4/10. **Demo90% / product≈40%(35–45%) không đổi**: accessibility engineering tốt hơn nhưng không tự cấp điểm character/art/rights/screen-reader/device/human. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **khoảng6commit lớn** có điều kiện; next freeze combat/economy/gacha/balance, disclosure và regression định lượng. [Evidence](evidence/AW2-018F.md).
