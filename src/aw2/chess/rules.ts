@@ -269,9 +269,9 @@ export function applyChessCommand(
   assertFormation(next)
   return next
 }
-export function createChessSession(): ChessSession {
+export function createChessSession(seed = CHESS_SEED): ChessSession {
   return {
-    game: createChessMatch(),
+    game: createChessMatch(seed),
     feedback: "",
   }
 }

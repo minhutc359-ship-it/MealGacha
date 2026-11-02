@@ -6,6 +6,7 @@ import {
   isAw2ProductionRuntimePath,
   rewriteAw2AssetUrls,
   productionSurfaceContract,
+  runtimeAw2Manifest,
 } from "../../tools/aw2-production-build"
 import { productionSurface } from "@/productionRoute"
 
@@ -62,6 +63,9 @@ describe("018M actual production module graph", () => {
     "/repo/src/pages/AdventurePage.tsx",
     "/repo/dev/aw2/CharacterReadinessDisclosure.tsx",
     "/repo/dev/aw2/PlaytestFeedback.tsx",
+    "/repo/dev/aw2/free-play.tsx",
+    "/repo/src/aw2/gacha/simulator.ts",
+    "/repo/src/aw2/roster/readiness.ts",
   ])("refuses retired or internal UI %s", (id) => {
     expect(() => productionSurfaceContract([...graph, id])).toThrow(
       "entered production",
@@ -77,6 +81,19 @@ describe("018M actual production module graph", () => {
 })
 
 describe("018A production asset contract", () => {
+  it("strips authoring provenance only, preserving every runtime asset/frame/skill value", () => {
+    const raw = text("src/aw2/assets/forgotten-host.reference-v1.json"),
+      before = JSON.parse(raw),
+      runtime = JSON.parse(runtimeAw2Manifest(raw))
+    expect(runtime.assets).toEqual(before.assets)
+    expect(runtime.frames).toEqual(before.frames)
+    expect(runtime.battle).toEqual(before.battle)
+    expect(runtime.skills).toEqual(before.skills)
+    expect(runtime.audio).toEqual(before.audio)
+    expect(runtime).not.toHaveProperty("provenance")
+    expect(runtime).not.toHaveProperty("motionProvenance")
+    expect(JSON.parse(raw)).toHaveProperty("motionProvenance")
+  })
   it("rewrites every AW2 source prefix without changing unrelated URLs", () => {
     expect(
       rewriteAw2AssetUrls(

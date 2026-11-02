@@ -6,9 +6,9 @@ Trong game chính: **Thêm → Hướng dẫn / thông báo → Sao lưu và chu
 
 Trên thiết bị đích, chọn tệp, đọc vùng/nhiệm vụ/EXP đã kiểm tra rồi **Xác nhận khôi phục hành trình**. Hủy không ghi dữ liệu. Checksum/kích thước/schema phải hợp lệ; lần ghi vẫn có Web Lock, kiểm raw/tab cũ, backup/journal/read-back. Save schema tương lai không bị hạ cấp. Đây là sao lưu thủ công, không tự đồng bộ qua mạng.
 
-Namespace/envelope8 được giữ tương thích với các lượt chơi hiện có; không đổi key hoặc reset chỉ để bỏ tên lịch sử `development`.
+Namespace được giữ tương thích với các lượt chơi hiện có; không đổi key hoặc reset chỉ để bỏ tên lịch sử `development`. Envelope9 thêm`modes`/`summons`: tiến trình và kết quả bàn chơi, vé đã nhận, bộ đếm bảo hiểm, dấu kỷ niệm, nhân vật đã gặp và lô kết quả gần nhất. Export/restore giữ toàn bộ các trường đã commit này; ván đang diễn ra chỉ ở bộ nhớ trang.
 
-AW2 vẫn dùng namespace phát triển `aw2.development.save` cho tới khi có quyết định phát hành đầu tiên. Schema chính hiện là8; save1–7 được migrate **trong bộ nhớ khi đọc** và chỉ nâng lên8 sau một thao tác lưu rõ ràng. Không có đường tự reset hoặc tự hạ schema.
+AW2 vẫn dùng namespace phát triển `aw2.development.save` cho tới khi có quyết định phát hành đầu tiên. Schema chính hiện là9; save1–8 giữ validator lịch sử nghiêm ngặt, migrate **trong bộ nhớ khi đọc** và chỉ nâng lên9 sau một thao tác lưu rõ ràng. Đọc không cấp vé/nhân vật/kết quả. Schema10+ được giữ nguyên và chặn ghi hạ cấp. Không có đường tự reset hoặc tự hạ schema.
 
 ## Bốn key trong namespace AW2
 

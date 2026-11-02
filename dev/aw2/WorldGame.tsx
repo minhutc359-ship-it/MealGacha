@@ -45,6 +45,8 @@ const ReviewDisclosures = __AW2_PRODUCTION__
   : lazy(() => import("./ReviewDisclosures"))
 
 export type GamePanel = "none" | "quest" | "party" | "bag" | "more" | "places" | "help" | "atlas" | "recipe" | "practice"
+import type { SummonAction } from "../../src/aw2/gacha/runtime"
+
 interface Props {
   production?: boolean
   pinned: boolean
@@ -78,6 +80,7 @@ interface Props {
   onRestoreBackup?: (raw: string) => Promise<void>
   onEconomy: (action: EconomyAction) => void
   onCollection: (action: CollectionAction) => void
+  onSummon?: (action: SummonAction) => void
   onMode: (id: Aw2ModeId) => void
   canEnterRoomPractice: boolean
   onRoomPractice: (id: Aw2ModeId) => void
@@ -329,6 +332,7 @@ export function WorldGame(props: Props) {
               save={save}
               busy={busy}
               onAction={props.onCollection}
+              onSummon={props.onSummon}
             />
           )}
           {panel === "bag" && save && (

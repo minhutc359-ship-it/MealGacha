@@ -143,7 +143,7 @@ export function BattleCanvas({
             {
               id: FORGOTTEN_HOST_ASSETS.entityId,
               assets: FORGOTTEN_HOST_ASSETS.assets,
-              keys: ["battle", "fx"],
+              keys: ["battle", "fx", "motion-a", "motion-b"],
             },
           ]
         : []),
@@ -371,7 +371,7 @@ export function BattleCanvas({
         paintFrame(
           manifest,
           visual.pose.frame,
-          atlas.battle,
+          atlas[manifest.frames[visual.pose.frame].asset],
           actorX(actor),
           actorY(actor),
           scales[actor.id],

@@ -14,6 +14,7 @@ const entries = [
   "starters",
   "than",
   "roster",
+  "free-play",
 ]
 
 /** Multi-entry QA artifact; the server production build uses the root config. */

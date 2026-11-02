@@ -1,4 +1,10 @@
 import { z } from "zod"
+import { modeProgressSchema, newModeProgress } from "../modes/progress"
+import {
+  summonSchema,
+  newSummonState,
+  validSummonEntitlements,
+} from "../gacha/runtime"
 import { economySchema, newEconomy } from "../economy/model"
 import {
   collectionSchema,
@@ -162,7 +168,7 @@ export const aw2DevSaveV7Schema = z
       })
   })
 
-export const aw2DevSaveSchema = z
+export const aw2DevSaveV8Schema = z
   .strictObject({
     ...aw2DevSaveV7Schema.shape,
     schemaVersion: z.literal(8),
@@ -182,6 +188,35 @@ export const aw2DevSaveSchema = z
       ctx.addIssue({
         code: "custom",
         message: "Bộ sưu tập/đội/biên nhận AW2 không hợp lệ.",
+      })
+  })
+
+export const aw2DevSaveSchema = z
+  .strictObject({
+    ...aw2DevSaveV8Schema.shape,
+    schemaVersion: z.literal(9),
+    modes: modeProgressSchema,
+    summons: summonSchema,
+  })
+  .superRefine((save, ctx) => {
+    if (
+      Date.parse(save.updatedAt) < Date.parse(save.createdAt) ||
+      save.economy.receipts.some(
+        (id) =>
+          QUEST_GRANTS.includes(id as typeof QUEST_GRANTS[number]) &&
+          QUEST_GRANTS.indexOf(id as typeof QUEST_GRANTS[number]) >=
+            save.progress.questIndex,
+      ) ||
+      !validCollectionProgress(
+        save.progress,
+        save.collection,
+        save.summons.obtainedIds,
+      ) ||
+      !validSummonEntitlements(save.summons, save.economy, save.modes)
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "Tiến trình/đội/vé AW2 không hợp lệ.",
       })
   })
 
@@ -212,7 +247,7 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
     typeof value === "object" &&
     "schemaVersion" in value &&
     typeof value.schemaVersion === "number" &&
-    value.schemaVersion > 8
+    value.schemaVersion > 9
   ) {
     return { status: "unsupported", raw }
   }
@@ -241,7 +276,7 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
         : fourth.success
           ? fourth.data
           : null
-  const parsed = aw2DevSaveSchema.safeParse(
+  const migrated = aw2DevSaveV8Schema.safeParse(
     historical
       ? {
           ...historical,
@@ -260,6 +295,16 @@ export function decodeAw2Save(raw: string | null): ReadableSave {
           : seventh.success
             ? { ...seventh.data, schemaVersion: 8 }
             : value,
+  )
+  const parsed = aw2DevSaveSchema.safeParse(
+    migrated.success
+      ? {
+          ...migrated.data,
+          schemaVersion: 9,
+          modes: newModeProgress(),
+          summons: newSummonState(),
+        }
+      : value,
   )
 
   return parsed.success

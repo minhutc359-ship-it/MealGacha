@@ -1,4 +1,7 @@
 import { describe, expect, it, vi } from "vitest"
+import { beforeEarnedModes } from "./legacy-fixtures"
+import { newModeProgress } from "@/aw2/modes/progress"
+import { newSummonState } from "@/aw2/gacha/runtime"
 import { Aw2DevSaveStore } from "@/aw2/save/store"
 import {
   AW2_DEV_SAVE_KEY,
@@ -27,7 +30,9 @@ function fixture(ending: "wait" | "share" = "wait", version = 6) {
   const save = aw2DevSaveSchema.parse({
     gameId: "adventure-world-2",
     environment: "development",
-    schemaVersion: 8,
+    schemaVersion: 9,
+    modes: newModeProgress(),
+    summons: newSummonState(),
     saveId: "00000000-0000-4000-8000-000000000001",
     revision: 20,
     createdAt: "2026-10-20T08:00:00.000Z",
@@ -59,7 +64,10 @@ function fixture(ending: "wait" | "share" = "wait", version = 6) {
     },
     collection: newCollection(),
   })
-  const legacy: Record<string, unknown> = { ...save, schemaVersion: version }
+  const legacy: Record<string, unknown> = {
+    ...beforeEarnedModes(save),
+    schemaVersion: version,
+  }
   if (version < 6) {
     const { interior, ...progress } = save.progress
     legacy.progress = progress
@@ -384,7 +392,7 @@ describe("BATTLE-REMATCH-01 reward-free completed-story boss", () => {
       )
       encounter.retreat()
       const next = await f.store.finishBoss(snapshot.raw, encounter)
-      expect(next.save.schemaVersion).toBe(8)
+      expect(next.save.schemaVersion).toBe(9)
       expect(next.save.saveId).toBe(read.save.saveId)
       expect(next.save.createdAt).toBe(read.save.createdAt)
       expect(next.save.economy).toEqual(read.save.economy)

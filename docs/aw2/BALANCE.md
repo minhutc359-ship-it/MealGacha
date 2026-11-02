@@ -1,6 +1,6 @@
 # Balance development và công bố D11
 
-Runtime hiện dùng contract `aw2-balance-development-v1`. Contract này khóa serialization ổn định của 12 combat kit, năm starter, level cap/công thức XP/hệ số stat, bốn quest reward, rương, công thức bữa ấm và XP chia bữa. SHA-256 trong test phát hiện mọi drift không được review.
+Runtime hiện dùng contract `aw2-balance-development-v2`. Giữ nguyên12 combat kit, năm starter, level cap/công thức XP/hệ số stat, bốn quest reward, rương, công thức bữa ấm và XP chia bữa;019B thêm hồ sơ chơi miễn phí,100 vé/10 mốc và3 bậc mỗi bàn. SHA-256 serialization hiện là`a0c1f4ad81a5eaf709c8162fce03c987ff022353dc57ed4c647dbb3cf08d6e62`, phát hiện drift không được review. D11 proposal metadata vẫn false-capability; khả năng runtime miễn phí được khai báo riêng trong`freePlay`, không ngầm duyệt paid/final balance. [Free profile](FREE_PLAY.md).
 
 Đây là **development tuning**, không phải cân bằng cuối. Thay đổi có chủ đích phải bump contract, chạy lại mô phỏng/regression và ghi bằng chứng playtest; fingerprint không chứng minh trò chơi vui hoặc công bằng.
 

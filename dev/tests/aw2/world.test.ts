@@ -233,7 +233,8 @@ describe("SAVE-03 v1 migration and atomic world/starter writes", () => {
     const raw = JSON.stringify({
       ...Object.fromEntries(
         Object.entries(first.save).filter(
-          ([key]) => !["economy", "collection"].includes(key),
+          ([key]) =>
+            !["economy", "collection", "modes", "summons"].includes(key),
         ),
       ),
       schemaVersion: 1,
@@ -244,14 +245,14 @@ describe("SAVE-03 v1 migration and atomic world/starter writes", () => {
     const loaded = f.store.load()
     expect(loaded).toMatchObject({
       status: "ready",
-      save: { schemaVersion: 8, revision: 7, progress: newWorldProgress() },
+      save: { schemaVersion: 9, revision: 7, progress: newWorldProgress() },
     })
     expect(f.memory.get(AW2_DEV_SAVE_KEY)).toBe(raw)
     const saved = await f.store.save(raw)
     expect(saved.save).toMatchObject({
       saveId: first.save.saveId,
       createdAt: first.save.createdAt,
-      schemaVersion: 8,
+      schemaVersion: 9,
       revision: 8,
     })
     expect(f.memory.get("foodchest.tcg.v1")).toBe("stable original")

@@ -3,57 +3,18 @@ import {
   GACHA_BASE_RATES,
   GACHA_PROPOSAL_ID,
   GACHA_PROPOSAL_STATUS,
-  PITY_LIMITS,
   TIERS,
-  WEIGHTS,
 } from "./proposal"
+import { drawTier, type PityState } from "./rules"
+export type { PityState } from "./rules"
 
 export { DUPLICATE_SHARDS, TIERS, WEIGHTS } from "./proposal"
-export interface PityState {
-  sr: number
-  ssr: number
-  ur: number
-}
 export interface SimulatedDraw {
   tier: typeof TIERS[number]
   pity: PityState
 }
 export function simulateDraw(before: PityState, random: number): SimulatedDraw {
-  if (!Number.isFinite(random) || random < 0 || random >= 1)
-    throw Error("Random sample must be in [0, 1).")
-  if (
-    ![before.sr, before.ssr, before.ur].every(Number.isInteger) ||
-    before.sr < 0 ||
-    before.sr >= PITY_LIMITS.sr ||
-    before.ssr < 0 ||
-    before.ssr >= PITY_LIMITS.ssr ||
-    before.ur < 0 ||
-    before.ur >= PITY_LIMITS.ur
-  )
-    throw Error("Invalid pity counters")
-  const floor =
-    before.ur === PITY_LIMITS.ur - 1
-      ? 4
-      : before.ssr === PITY_LIMITS.ssr - 1
-        ? 3
-        : before.sr === PITY_LIMITS.sr - 1
-          ? 2
-          : 0
-  const eligible = WEIGHTS.slice(floor)
-  let value = random * eligible.reduce((sum, weight) => sum + weight, 0),
-    index = floor
-  for (; index < 4; index++) {
-    value -= WEIGHTS[index]
-    if (value < 0) break
-  }
-  return {
-    tier: TIERS[index],
-    pity: {
-      sr: index >= 2 ? 0 : before.sr + 1,
-      ssr: index >= 3 ? 0 : before.ssr + 1,
-      ur: index === 4 ? 0 : before.ur + 1,
-    },
-  }
+  return drawTier(before, random)
 }
 export function seededRandom(seed: number) {
   let state = seed >>> 0

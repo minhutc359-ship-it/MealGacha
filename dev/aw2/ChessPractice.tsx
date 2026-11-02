@@ -1,4 +1,5 @@
-import { useEffect, useReducer, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import type { ChessRun } from "../../src/aw2/modes/run"
 import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
 import {
   CHESS_UNITS,
@@ -20,6 +21,10 @@ import "./chess.css"
 import { ActivityFrame, ActivityPages, ActivityCopy } from "./ActivityFrame"
 
 interface Props {
+  run?: ChessRun
+  busy?: boolean
+  completed?: boolean
+  onComplete?: () => void
   compact?: boolean
   error: string
   onReturn: () => void
@@ -42,6 +47,10 @@ function ChessPortrait({ spiritId, name }: PortraitProps) {
   )
 }
 export function ChessPractice({
+  run,
+  busy = false,
+  completed = false,
+  onComplete,
   error,
   onReturn,
   onReread,
@@ -54,10 +63,17 @@ export function ChessPractice({
   useEffect(() => {
     if (error && compact) setPage("notice")
   }, [error, compact])
-  const [session, dispatch] = useReducer(
-    reduceChessSession,
-    undefined,
-    createChessSession,
+  const [session, setSession] = useState(
+    () => run?.snapshot() ?? createChessSession(),
+  )
+  const dispatch = (action: ChessCommand) => {
+    if (run) setSession(run.dispatch(action))
+    else setSession((current) => reduceChessSession(current, action))
+  }
+  const resultControl = run && session.game.status !== "active" && (
+    <button disabled={busy || completed} onClick={onComplete}>
+      {completed ? "Đã lưu kết quả" : busy ? "Đang lưu…" : "Lưu kết quả"}
+    </button>
   )
   const [selected, setSelected] = useState<string | null>(null)
   const [paused, setPaused] = useState(false)
@@ -132,10 +148,15 @@ export function ChessPractice({
       : game.battle?.status === "opponent-win"
         ? "Bạn thua vòng"
         : "Vòng hòa"
+  const rewardCopy = run
+    ? "Lưu kết quả sau ván; lần đầu thắng mỗi bậc mở mốc 10 vé. Rời hoặc tải lại bỏ phần chưa lưu."
+    : "Không nhận thưởng hành trình; rời hoặc tải lại bỏ ván."
   if (compact)
     return (
       <ActivityFrame
-        title="Auto Chess · Luyện tập"
+        title={
+          run ? `Auto Chess · Bậc ${run.stage}/3` : "Auto Chess · Luyện tập"
+        }
         status={`Vòng ${game.round}/5 · ${game.health}♥ · ${game.gold} vàng · ${
           planning
             ? "Chuẩn bị"
@@ -169,7 +190,8 @@ export function ChessPractice({
         data-tick={game.battle?.tick ?? 0}
         footer={
           <>
-            <button onClick={onReturn}>
+            {resultControl}
+            <button disabled={busy} onClick={onReturn}>
               {finished ? "Trở về hành trình" : "Dừng ván cờ và về hành trình"}
             </button>
             {planning ? (
@@ -196,7 +218,7 @@ export function ChessPractice({
               <button onClick={() => command({ type: "next" })}>
                 Vòng tiếp · nhận 6 vàng
               </button>
-            ) : (
+            ) : !run ? (
               <button
                 onClick={() => {
                   setPaused(false)
@@ -205,7 +227,7 @@ export function ChessPractice({
               >
                 Chơi ván cờ mới
               </button>
-            )}
+            ) : null}
           </>
         }
       >
@@ -433,7 +455,7 @@ export function ChessPractice({
         )}
         {page === "rules" && (
           <ActivityCopy
-            text={`12 máu; thua vòng mất 3, hòa mất 1. Sống qua 5 vòng là thắng. Tối đa 80 nhịp/vòng. Hàng chờ 6, đội tăng 3→4→5 quân. Chọn quân rồi chọn ô đích để xếp hoặc đổi chỗ. Vàng đầu 10, vòng mới +6, đổi quầy tốn 1. Khóa giữ quầy qua vòng sau. Bán hoàn đủ vàng/trả bản về nguồn. Mỗi danh tính 9 bản, rút đều; 3 bản 1 sao ghép 2 sao, máu ×1,8 công ×1,6 làm tròn. Đủ 3 danh tính cả đội +1 công, đủ 5 thêm 2 máu. Hồi đầy máu trước vòng sau. Tầm theo bước ngang/dọc, khiên tối đa 12. Không dùng tỷ lệ gacha RPG, không nhận thưởng hành trình. Mở trang ngoài giao tranh tự tạm dừng. ${CHESS_UNITS.map((u) => `${u.name}: ${u.cost} vàng, máu ${u.health}, công ${u.attack}, tầm ${u.range}. ${u.skill}`).join(" ")}`}
+            text={`12 máu; thua vòng mất 3, hòa mất 1. Sống qua 5 vòng là thắng. Tối đa 80 nhịp/vòng. Hàng chờ 6, đội tăng 3→4→5 quân. Chọn quân rồi chọn ô đích để xếp hoặc đổi chỗ. Vàng đầu 10, vòng mới +6, đổi quầy tốn 1. Khóa giữ quầy qua vòng sau. Bán hoàn đủ vàng/trả bản về nguồn. Mỗi danh tính 9 bản, rút đều; 3 bản 1 sao ghép 2 sao, máu ×1,8 công ×1,6 làm tròn. Đủ 3 danh tính cả đội +1 công, đủ 5 thêm 2 máu. Hồi đầy máu trước vòng sau. Tầm theo bước ngang/dọc, khiên tối đa 12. Không dùng tỷ lệ gacha RPG. ${rewardCopy} Mở trang ngoài giao tranh tự tạm dừng. ${CHESS_UNITS.map((u) => `${u.name}: ${u.cost} vàng, máu ${u.health}, công ${u.attack}, tầm ${u.range}. ${u.skill}`).join(" ")}`}
           />
         )}
         {page === "log" && (
@@ -474,8 +496,8 @@ export function ChessPractice({
         Auto Chess · Luyện tập
       </h1>
       <p>
-        5 vòng với Vị Linh mượn. Vàng tại bàn chỉ dùng trong ván này; không tiêu
-        túi đồ hoặc nhận thưởng hành trình. Rời bàn/tải lại sẽ bỏ ván.
+        5 vòng với Vị Linh mượn. Vàng chỉ dùng tại bàn, không tiêu túi đồ.{" "}
+        {rewardCopy}
       </p>
       <p role="status">
         Vòng {game.round}/5 · Máu {game.health}/12 · Vàng luyện tập{" "}
@@ -718,14 +740,16 @@ export function ChessPractice({
           </button>
         )}
         {finished ? (
-          <button
-            onClick={() => {
-              setPaused(false)
-              command({ type: "rematch" })
-            }}
-          >
-            Chơi ván cờ mới
-          </button>
+          !run && (
+            <button
+              onClick={() => {
+                setPaused(false)
+                command({ type: "rematch" })
+              }}
+            >
+              Chơi ván cờ mới
+            </button>
+          )
         ) : (
           <button onClick={() => command({ type: "surrender" })}>
             Nhận thua ván cờ
@@ -769,7 +793,8 @@ export function ChessPractice({
         </ol>
       </details>
       <div className="actions">
-        <button onClick={onReturn}>
+        {resultControl}
+        <button disabled={busy} onClick={onReturn}>
           {finished ? "Trở về hành trình" : "Dừng ván cờ và về hành trình"}
         </button>
         <button onClick={onReread}>Đọc lại hành trình và rời bàn cờ</button>

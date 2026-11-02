@@ -1,5 +1,7 @@
 # TCG practice — development contract v1
 
+**019B current product integration:** the same actual engine now has3 issued checkpoint-bound stages, explicit saved outcomes/first-win milestones and free-ticket claims through schema9. UI cannot supply a winner. Reload/return before settlement discards the ephemeral match. Stage3 remains replayable without a new first-win grant. [Current contract](FREE_PLAY.md). The older practice-only/no-reward scope below is historical; engine rules and borrowed20-card deck remain unchanged, final balance is still open.
+
 Profile `aw2-tcg-practice-v1`, task [AW2-009B](tasks/AW2-009B.md). This is an isolated borrowed-deck practice, not the legacy TCG economy, final balance or a collectible-card release. Approved starter identities and reference portraits are reused through manifests; RPG kits and full-character completion are unchanged.
 
 Run `pnpm dev`, open `/dev/aw2/world.html`, create/read an AW2 development save, then **Ghé nhanh TCG → Chơi TCG thử**. The street table `aw2-npc-ban-bai` offers the same practice through **Ghé bàn**. Select a card to summon/cast; Hơi sương and attacks require an enemy target. New units rest until the next own turn. **Chơi nước gợi ý** executes one legal move; **Kết thúc lượt** lets the actual opponent play. **Nhận thua** ends the current match; **Chơi ván mới** borrows a fresh shuffle after a terminal result.

@@ -939,6 +939,68 @@ export function WorldPreview({
       setBusy(false)
     }
   }
+  async function summon(
+    action: import("../../src/aw2/gacha/runtime").SummonAction,
+  ) {
+    if (
+      pending.current ||
+      saved.current.status !== "ready" ||
+      activeMode ||
+      activeEncounter
+    )
+      return
+    pending.current = true
+    setBusy(true)
+    keys.current.clear()
+    clearWalking()
+    setError("")
+    try {
+      const next = await store.summonAction(
+        saved.current.raw,
+        worldRef.current,
+        action,
+      )
+      saved.current = next
+      setSnapshot(next)
+      worldRef.current = next.save.progress
+      setWorld(next.save.progress)
+      setMessage(
+        action.type === "claim"
+          ? "Đã nhận vé từ các mốc hoàn tất."
+          : "Đã lưu kết quả triệu hồi; mở Kết quả đã lưu để xem.",
+      )
+    } catch (cause) {
+      setError(
+        cause instanceof Error ? cause.message : "Chưa lưu được triệu hồi.",
+      )
+    } finally {
+      pending.current = false
+      setBusy(false)
+    }
+  }
+  async function completeMode() {
+    if (pending.current || !activeMode) return
+    pending.current = true
+    setBusy(true)
+    setError("")
+    try {
+      const next = await modeAdapter.complete()
+      saved.current = next
+      setSnapshot(next)
+      setMessage(
+        "Đã lưu kết quả bàn chơi. Mốc thắng mới có thể nhận vé ở Đội → Triệu hồi.",
+      )
+    } catch (cause) {
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "Chưa lưu được kết quả bàn chơi.",
+      )
+    } finally {
+      pending.current = false
+      setBusy(false)
+    }
+  }
   async function collect(action: CollectionAction) {
     if (pending.current || saved.current.status !== "ready") return
     pending.current = true
@@ -1047,6 +1109,11 @@ export function WorldPreview({
   if (activeMode)
     return (
       <ModeLobby
+        run={modeAdapter.currentRun()}
+        progress={snapshot.status === "ready" ? snapshot.save.modes : undefined}
+        busy={busy}
+        completed={modeAdapter.isComplete()}
+        onComplete={() => void completeMode()}
         compact={singleViewport}
         visit={activeMode}
         error={error}
@@ -1293,6 +1360,7 @@ export function WorldPreview({
             save={snapshot.save}
             busy={busy}
             onAction={(action) => void collect(action)}
+            onSummon={(action) => void summon(action)}
           />
         ) : gamePanel === "recipe" ? (
           <RecipePanel economy={snapshot.save.economy} />
@@ -1399,6 +1467,7 @@ export function WorldPreview({
         onRestoreBackup={restoreBackup}
         onEconomy={(action) => void transact(action)}
         onCollection={(action) => void collect(action)}
+        onSummon={(action) => void summon(action)}
         onMode={(mode) => void enterMode(mode, "quick-entry")}
         canEnterRoomPractice={roomPracticeReady}
         onRoomPractice={(mode) => void enterMode(mode, "room-service")}

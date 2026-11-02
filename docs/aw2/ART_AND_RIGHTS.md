@@ -1,5 +1,13 @@
 # Art và quyền sử dụng nhân vật — AW2-019A
 
+## 019B — toàn bộ media AW2 và boss
+
+`rights/aw2/all-media-sources.json` bổ sung kiểm kê **171/171** media runtime AW2:119 WebP có hash ảnh gốc và hồ sơ manifest/prompt,52 WAV tổng hợp bằng mã có hash nguồn. Bao gồm12 Vị Linh, boss, NPC, môi trường và các biến thể lịch sử đang được đóng gói. File media mới chưa có đăng ký, hash/source lệch hoặc đường dẫn/symlink không an toàn làm kiểm tra build thất bại. Kiểm tra12nhân vật chuyên sâu019A vẫn chạy; đăng ký toàn bộ không thay thế bằng chứng generation chi tiết đó.
+
+Boss giữ8pose gốc giảm chuyển động và9FX, thêm32cel từ2atlas mới có alpha edge≤1/8,4cue riêng cho đòn thường/Mời hụt/Tắt bếp/Ghế trống. Giữ4PNG đầu ra gốc (2lần đầu,2bản chọn có gutter tốt), prompt/identity input/hash, WebP lossless và mã tổng hợp PCM. Renderer tải đúng atlas theo frame; âm thanh chỉ theo contact/barrier application thật, không dự đoán hit hoặc phát lại theo từng người nhận.
+
+Nguồn/mã kiểm tra/điều khoản nhà cung cấp là bằng chứng kỹ thuật. `humanLegalReview=NOT_RUN`, `commercialRelease=NOT_CLEARED`, `releaseAuthorized=false` và không khẳng định bản quyền độc quyền. Mỹ thuật chuyển động/âm thanh cuối cần nghiệm thu người thật; không thay bằng đếm frame/hash hoặc screenshot. Production bỏ provenance authoring khỏi module JSON để giảm JS; hồ sơ đầy đủ vẫn được giữ và kiểm tra trong repo. [Contract](FREE_PLAY.md) · [Evidence](evidence/AW2-019B.md).
+
 2026-11-02 · Nhánh `game/adventure-world-2` · Cả 12 Vị Linh giữ nguyên ID, tên, trang phục, vai trò và kit đã duyệt.
 
 ## Bộ art đã triển khai

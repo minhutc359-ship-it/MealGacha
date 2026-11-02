@@ -1,5 +1,6 @@
 import {
   applyCollectionAction,
+  ownedSpirits,
   newCollection,
   type CollectionAction,
 } from "../collection/model"
@@ -34,6 +35,18 @@ import {
   newEconomy,
   type EconomyAction,
 } from "../economy/model"
+import {
+  newSummonState,
+  applySummonAction,
+  secureSummonRandom,
+  type SummonAction,
+} from "../gacha/runtime"
+import { newModeProgress, recordModeResult } from "../modes/progress"
+import {
+  inspectTableResult,
+  consumeTableResult,
+  type TableRun,
+} from "../modes/run"
 
 type SaveStorage = Pick<Storage, "getItem" | "setItem"> & Partial<Pick<Storage, "removeItem">>
 type WriteLock = <T>(action: () => T) => Promise<T>
@@ -85,6 +98,7 @@ export class Aw2DevSaveStore {
   private readonly lock: WriteLock
   private readonly now: () => string
   private readonly newId: () => string
+  private readonly random: () => number
 
   constructor(
     options: {
@@ -92,12 +106,14 @@ export class Aw2DevSaveStore {
       lock?: WriteLock
       now?: () => string
       newId?: () => string
+      random?: () => number
     } = {},
   ) {
     this.storage = options.storage ?? (() => window.localStorage)
     this.lock = options.lock ?? browserWriteLock
     this.now = options.now ?? (() => new Date().toISOString())
     this.newId = options.newId ?? (() => crypto.randomUUID())
+    this.random = options.random ?? secureSummonRandom
   }
 
   load(): SaveSnapshot {
@@ -340,6 +356,7 @@ export class Aw2DevSaveStore {
         current.save.collection,
         progress,
         action,
+        current.save.summons.obtainedIds,
       )
       return aw2DevSaveSchema.parse({
         ...this.revise(current, progress),
@@ -347,6 +364,51 @@ export class Aw2DevSaveStore {
         collection: result.collection,
       })
     })
+  }
+
+  summonAction(
+    expectedRaw: string,
+    progress: WorldProgress,
+    action: SummonAction,
+  ): Promise<ReadySave> {
+    return this.write(expectedRaw, (current) => {
+      if (current.status !== "ready")
+        throw new Aw2SaveError("invalid", "Cần đọc lại bản lưu AW2.")
+      this.assertPositionOnly(current.save.progress, progress)
+      const next = this.revise(current, progress)
+      next.summons = applySummonAction(
+        current.save.summons,
+        current.save.economy,
+        current.save.modes,
+        ownedSpirits(
+          current.save.progress,
+          current.save.collection,
+          current.save.summons.obtainedIds,
+        ),
+        action,
+        this.random,
+      )
+      return aw2DevSaveSchema.parse(next)
+    })
+  }
+
+  async finishMode(expectedRaw: string, run: TableRun): Promise<ReadySave> {
+    const snapshot = await this.write(expectedRaw, (current) => {
+      if (current.status !== "ready")
+        throw new Aw2SaveError("invalid", "Cần đọc lại bản lưu AW2.")
+      const result = inspectTableResult(run, expectedRaw)
+      return aw2DevSaveSchema.parse({
+        ...this.revise(current, current.save.progress),
+        modes: recordModeResult(
+          current.save.modes,
+          result.mode,
+          result.stage,
+          result.outcome,
+        ),
+      })
+    })
+    consumeTableResult(run)
+    return snapshot
   }
 
   private assertPositionOnly(
@@ -462,7 +524,9 @@ export class Aw2DevSaveStore {
     return aw2DevSaveSchema.parse({
       gameId: "adventure-world-2",
       environment: "development",
-      schemaVersion: 8,
+      schemaVersion: 9,
+      modes: newModeProgress(),
+      summons: newSummonState(),
       collection: newCollection(),
       saveId: this.newId(),
       revision: 0,

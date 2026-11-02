@@ -1,6 +1,6 @@
 export type PolicyId = "terms" | "privacy" | "rights"
 export const POLICY_DATE = "02/11/2026"
-export const POLICY_VERSION = "2026-11-02-aw2"
+export const POLICY_VERSION = "2026-11-02-aw2-free-v1"
 export const SUPPORT_NOTICE =
   "Kênh hỗ trợ riêng chưa được công bố. Thông tin liên hệ sẽ được cập nhật tại đây trước khi phát hành thương mại hoặc trên cửa hàng ứng dụng. Không gửi bản lưu, giấy tờ hoặc dữ liệu nhạy cảm lên nơi công khai."
 export interface Policy {
@@ -255,7 +255,8 @@ export const POLICIES: Record<PolicyId, Policy> = {
         paragraphs: [
           "Hành trình, đội, nguyên liệu, kinh nghiệm và bộ sưu tập được lưu cục bộ trên trình duyệt. Rương original giữ dữ liệu riêng; bộ sưu tập cũ không bị tự chuyển thành nhân vật hoặc phần thưởng trong hành trình mới. Các tài nguyên ảo không đổi thành tiền hoặc phần thưởng bên ngoài trò chơi.",
           "Dùng Lưu vị trí trước khi rời game. Trong Thêm → Hướng dẫn / thông báo → Sao lưu và chuyển thiết bị, bạn có thể xuất JSON, chọn tệp và xác nhận khôi phục. Khôi phục thay tiến trình hiện tại; bản hợp lệ ngay trước đó được giữ ở bản an toàn. Không có cloud save hay cam kết phục hồi được dữ liệu chưa từng sao lưu khi trình duyệt bị xóa hoặc thu hồi dung lượng.",
-          "Rương original có lựa chọn ngẫu nhiên và hiển thị quy tắc tại Xem món & tỉ lệ. Gacha tuyển Vị Linh trong hành trình mới chưa được bật; không có mua tiền tệ, pity trả phí hoặc điều kiện phải quay để kết thúc cốt truyện.",
+          "Rương original có lựa chọn ngẫu nhiên và hiển thị quy tắc tại Xem món & tỉ lệ. Hành trình mới có triệu hồi miễn phí tại Đội → Triệu hồi, với tỷ lệ và bảo hiểm công bố trong cùng menu. Vé chỉ nhận từ biên nhận nhiệm vụ và lần đầu thắng mỗi bậc TCG/Auto Chess; không có mua vé hoặc thanh toán. Các mốc hiện có cho tổng cộng 100 vé. Bảo hiểm UR ở 200 lần không hứa nhận UR ngẫu nhiên trong số vé này; cốt truyện vẫn có lời mời miễn phí cho đủ 12 Vị Linh.",
+          "Mỗi bàn TCG/Auto Chess có ba bậc, dùng bộ bài hoặc quân và vàng riêng tại bàn. Kết quả cần được lưu sau khi ván kết thúc; rời bàn hay tải lại giữa ván bỏ phần chưa lưu. Thắng lần đầu mỗi bậc mở mốc nhận vé riêng, xem lại hoặc chơi lại bậc đã hoàn tất không nhận mốc lần nữa. Bản Vị Linh trùng ghi dấu kỷ niệm, không tăng sức mạnh và không đổi thành tiền hay vật phẩm.",
         ],
       },
       {
@@ -285,7 +286,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
       {
         title: "1. Dữ liệu trên thiết bị",
         paragraphs: [
-          "Hành trình lưu vùng/vị trí, nhiệm vụ, đội, bộ sưu tập, nguyên liệu, EXP và biên nhận phần thưởng trong localStorage. Bản chính, backup, journal và quarantine phục vụ ghi an toàn hoặc phục hồi khi có lỗi. Tùy chọn cỡ chữ, tương phản, chuyển động và âm thanh được giữ riêng. Rương original tiếp tục dùng hồ sơ và dữ liệu món/thẻ cũ của nó; game không tự xóa chúng.",
+          "Hành trình lưu vùng/vị trí, nhiệm vụ, đội, bộ sưu tập, nguyên liệu, EXP, biên nhận phần thưởng, vé triệu hồi, bộ đếm bảo hiểm, kết quả triệu hồi gần nhất và tiến trình/kết quả bàn chơi trong localStorage. Ván TCG/Auto Chess đang diễn ra chỉ ở bộ nhớ trang cho tới bước lưu kết quả. Bản chính, backup, journal và quarantine phục vụ ghi an toàn hoặc phục hồi khi có lỗi. Tùy chọn cỡ chữ, tương phản, chuyển động và âm thanh được giữ riêng. Rương original tiếp tục dùng hồ sơ và dữ liệu món/thẻ cũ của nó; game không tự xóa chúng.",
           "Dữ liệu gắn với origin, trình duyệt và profile. Đổi địa chỉ, thiết bị hoặc dùng cửa sổ riêng tư có thể mở một kho khác. Dữ liệu tồn tại đến khi bạn xóa, trình duyệt thu hồi hoặc profile bị gỡ; bản backup nằm trên cùng thiết bị không thay thế một tệp sao lưu bên ngoài.",
         ],
       },
@@ -342,7 +343,7 @@ export const POLICIES: Record<PolicyId, Policy> = {
       {
         title: "Hình ảnh và hiệu ứng nhân vật Soul of Meal mới",
         paragraphs: [
-          "Bộ 12 Vị Linh sử dụng minh họa và sprite tạo với công cụ image_gen của OpenAI, dựa trên thiết kế và ảnh tham chiếu được lưu trong hồ sơ dự án. Ảnh tuyệt kỹ có hồ sơ prompt, ảnh nguồn và mã kiểm tra để truy vết. Hiệu ứng âm thanh nhân vật được tổng hợp bằng mã, không lấy từ bản ghi giọng nói ChatGPT hoặc nhạc của trò chơi khác.",
+          "Bộ 12 Vị Linh sử dụng minh họa và sprite tạo với công cụ image_gen của OpenAI, dựa trên thiết kế và ảnh tham chiếu được lưu trong hồ sơ dự án. Ảnh tuyệt kỹ, boss, NPC và môi trường có hồ sơ nguồn, prompt và mã kiểm tra để truy vết. Hiệu ứng âm thanh Vị Linh và boss được tổng hợp bằng mã, không lấy từ bản ghi giọng nói ChatGPT hoặc nhạc của trò chơi khác.",
           "Điều khoản OpenAI quy định quyền đối với output giữa nhà cung cấp và người dùng trong phạm vi pháp luật cho phép; output có thể không độc quyền và người dùng vẫn chịu trách nhiệm về quyền đối với đầu vào. Hồ sơ nguồn của dự án không phải giấy chứng nhận đăng ký bản quyền hoặc bảo đảm không có quyền của bên thứ ba. Việc sử dụng trong Soul of Meal không cấp phép công khai để người khác bán lại hay tái phân phối asset.",
         ],
       },

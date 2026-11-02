@@ -1,5 +1,7 @@
 # Người Giữ Bàn Quên — reference presentation gates
 
+019B current battle update2026-11-02:32 newly generated motion cels across8states, preserving original8 reduced poses/9FX/four world idle directions. Two source atlases with alpha-safe per-column cells(edge≤1/8), lossless WebP and4 original synthesized event-bound cues. Actual frame-owned atlas routing corrected; no forecast/recipient-multiplied audio. Original/rejected/selected PNGs and prompts/hashes/build source preserved. This closes technical single-pose/no-own-audio gaps; fullEnemyComplete, independent continuity/anatomy/listening/device/rights approval stay open. [Current art record](ART_AND_RIGHTS.md) · [019B evidence](evidence/AW2-019B.md). Older “no audio/single battle pose” descriptions below are historical.
+
 006D current world update2026-10-23: four original idle directions now replace HD-static exploration marker. One imagegen call using own portrait, separate world-v1 manifest; battle/FX/portrait untouched.59affected units/52focused browser PASS. No fullEnemyComplete or independent art/device/rights acceptance; below004Icounts retain original battle/source scope. [006D evidence](evidence/AW2-006D.md).
 
 2026-10-22 · AW2-004I · source `26849546825131a5c448645274880977caa9d230`. Enemy `aw2-enemy-forgotten-host`, noncollectible memory, no rarity/new spirit or identification as Vân. `fullEnemyComplete=false`; this boss is outside the12 collectible-character denominator.

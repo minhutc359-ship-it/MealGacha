@@ -24,9 +24,10 @@ export function productionSurfaceContract(moduleIds: readonly string[]) {
     (id) =>
       /\/src\/(?:App|main)\.tsx$/.test(id) ||
       (/\/src\/pages\//.test(id) && !id.endsWith("/src/pages/ChestPage.tsx")) ||
-      /\/dev\/aw2\/(?:ReviewDisclosures|BalanceDisclosure|CharacterReadinessDisclosure|ContentAcceptanceDisclosure|PerformanceDisclosure|UatDisclosure|ReleaseCandidateDisclosure|PlaytestFeedback)\.tsx$/.test(
+      /\/dev\/aw2\/(?:free-play|ReviewDisclosures|BalanceDisclosure|CharacterReadinessDisclosure|ContentAcceptanceDisclosure|PerformanceDisclosure|UatDisclosure|ReleaseCandidateDisclosure|PlaytestFeedback)\.tsx$/.test(
         id,
-      ),
+      ) ||
+      /\/src\/aw2\/(?:gacha\/simulator|roster\/readiness)\.ts$/.test(id),
   )
   if (forbidden.length)
     throw Error(`Retired/review UI entered production: ${forbidden.join(", ")}`)
@@ -48,6 +49,13 @@ export function productionSurfaceContract(moduleIds: readonly string[]) {
 
 export function rewriteAw2AssetUrls(code: string) {
   return code.split(AW2_SOURCE_ASSET_PREFIX).join(AW2_PRODUCTION_ASSET_PREFIX)
+}
+
+/** Authoring/review provenance stays in source and the audited register. */
+export function runtimeAw2Manifest(code: string): string {
+  const value = JSON.parse(code)
+  for (const key of ["provenance", "motionProvenance"]) delete value[key]
+  return JSON.stringify(value)
 }
 
 export function isAw2ProductionRuntimePath(path: string) {
@@ -138,7 +146,12 @@ export function aw2ProductionBuild(): Plugin {
         !code.includes(AW2_SOURCE_ASSET_PREFIX)
       )
         return
-      const rewritten = rewriteAw2AssetUrls(code)
+      const manifest =
+        /\/src\/aw2\/assets\/[^/?]+\.json$/.test(id) &&
+        code.trimStart().startsWith("{")
+          ? runtimeAw2Manifest(code)
+          : code
+      const rewritten = rewriteAw2AssetUrls(manifest)
       return rewritten === code ? undefined : rewritten
     },
     async generateBundle(_, bundle) {
