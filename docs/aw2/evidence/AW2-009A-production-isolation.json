@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "stableFiles": 851,
+  "stableTextArtifacts": 72,
+  "markers": [
+    "aw2.development.save",
+    "/dev/aw2/",
+    "Aw2ModeAdapter",
+    "aw2-npc-ban-bai",
+    "aw2-economy-development-v1",
+    "Ghé nhanh TCG",
+    "AW2-009A"
+  ],
+  "hits": [],
+  "reviewFiles": 91,
+  "reviewBytes": 23790245,
+  "saveSchemaChanged": false,
+  "stableConfigChanged": false,
+  "lockfileChanged": false
+}

@@ -198,6 +198,10 @@ docs/challenge-v322/screenshots/** -filter -diff -merge -text
 # Development evidence/archives preserve the original bytes outside Git LFS.
 dev/** -filter !diff !merge -text
 
+# AW2 verification captures must survive ordinary clones as real evidence
+# bytes. They are intentionally small and are audited by the production build.
+docs/aw2/evidence/** -filter !diff !merge -text
+
 # Upstream license text retains its original whitespace and line endings.
 public/legal/THIRD_PARTY_LICENSES.txt whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
 rights/fonts/* whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
@@ -237,3 +241,8 @@ dev/docs/web-v530/*.jpg -filter -diff -merge -text
 dev/docs/web-v530/*.webp -filter -diff -merge -text
 
 public/assets/intro-manga5918/** -filter -diff -merge -text
+
+# Small owner-provided design archive: preserve original bytes in ordinary clones.
+docs/aw2/design/world-v1.1/** -filter -diff -merge -text
+docs/aw2/design/world-v1.1/*.md diff whitespace=-blank-at-eol,-blank-at-eof,cr-at-eol
+docs/aw2/design/world-v1.1/assets/*.svg diff

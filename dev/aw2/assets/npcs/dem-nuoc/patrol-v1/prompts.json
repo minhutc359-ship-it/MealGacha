@@ -1,0 +1,18 @@
+{
+  "task": "AW2-016B",
+  "entityId": "aw2-npc-dem-nuoc",
+  "tool": "OpenAI built-in image_gen",
+  "generationDate": "2026-10-26",
+  "selected": 1,
+  "rejected": 0,
+  "exactPromptStatus": "LOST_WITH_TEMPORARY_WORKSPACE",
+  "recoveredBrief": "Own-project Em Đem Nước identity: brown twin hair buns, blue ribbons, light-blue wrap tunic with cream cuffs, brown trousers and sandals, earthenware jug. Transparent 4x4 sheet: down/left/right/up rows, idle plus three authored walk poses per row. Preserve identity, no mirrored stand-ins. This is a reconstructed brief, not the verbatim generation prompt.",
+  "references": [
+    {
+      "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/idle-source.png",
+      "commit": "eb70cdcfa9f0bc3619934885a9de0507aa7f1bce",
+      "blob": "ed334446c0308bdf1d041d9d2612b7da57cbf569",
+      "sha256": "623ee675fec778a1b73eef3b3a78e2fc5e7013e98b2bff655f8536fc6aeb1506"
+    }
+  ]
+}

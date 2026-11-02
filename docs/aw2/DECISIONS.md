@@ -1,0 +1,66 @@
+# AW2 Decision Register
+
+## D27 —2026-11-02 / portable source and hardened static delivery
+
+An ordinary AW2 clone, CI checkout and server build must contain real bytes for all production-critical source/evidence; LFS pointers, symlinks, missing roots or unsafe tracked paths fail before bundling. Every production artifact exposes a validated release identity and keeps the exact AW2-root/original-chest-only surface. Static delivery uses the versioned same-origin security/header/cache contract. This engineering lock repairs a reproduced LFS404 and improves traceability; it does not approve commercial rights, human/device results, deployment or release. [Task](tasks/AW2-019C.md) · [Evidence](evidence/AW2-019C.md).
+
+## D26 —2026-11-02 / one-commit free web completion
+
+Owner requests finishing the product in one commit. Implementation authorized for the free web scope: durable TCG/Chess results/first wins, earned-ticket summons using separately versioned free profile,12-unit journal, original boss motion/audio and all-media source checks. No new payment/account/PvP scope, final numerical rate sign-off, exclusive copyright, independent human/device acceptance, master/rpg integration or deployment is inferred. D11 remains a historical proposal; BA/mechanic engineering review uses the shared10/80/200 five-tier rules in the free profile, while final acceptance remains OPEN. No acceptance gate is fabricated to reach100%. One AW2 commit/push, preserving original chest and all prior saves. [Contract](FREE_PLAY.md) · [Task](tasks/AW2-019B.md).
+
+019A / owner2026-11-02: **“tạo luôn hoàn thiện nhân vật, art/bản quyền”**. Triển khai art HD mới cho12identity đã chốt, tích hợp actual combat, bảo toàn ảnh nguồn và kiểm kê bằng chứng nguồn/quyền dùng theo nhà cung cấp. Không đổi canon/kit/save; yêu cầu tạo art không phải chữ ký nghiệm thu độc lập/thiết bị hoặc chứng nhận đăng ký bản quyền. [Phạm vi và kết quả](ART_AND_RIGHTS.md).
+
+018M / owner2026-11-02 tiếp tục D25: **“update để khi build lên phần mới này sẽ trở thành phần chính luôn, soul of meal mới hoạt động, loại bỏ phần cũ (giữ mỗi rương vị giác), đồng thời update luôn để production được100%”**. Triển khai web chính, bỏ UI QA/legacy khỏi artifact, backup/restore, CI và audit artifact thật. Mục tiêu100% không phải evidence cho rights/art/device/human và không tự authorize merge master/rpg hay deploy khi user mới yêu cầu chuẩn bị build. D16push AW2 và D18bằng chứng tiến độ giữ nguyên.
+| ID | Status | Decision |
+|---|---|---|
+| D01 | LOCKED | RPG mới trên nhánh riêng, khả năng tách repo/game riêng; master giữ ổn định |
+| D02 | LOCKED | Free roam các map kết nối, không monolithic world |
+| D03 | LOCKED | 5 Vị Linh auto attack/cast, player timed ultimate |
+| D04 | LOCKED | Pixel/chibi map, HD anime battle, authored FX |
+| D05 | LOCKED | TCG/Auto Chess tích hợp + direct quick access |
+| D06 | LOCKED | 10–20 starter, thực hiện 12 full-quality đầu tiên |
+| D07 | LOCKED | Gacha N-R-SR-SSR-UR; khác legacy 4 tier |
+| D08 | LOCKED | Cho reset AW2 development save trước release; từ release dùng migrations |
+| D09 | LOCKED | Lore/tên/công thức/hoạt họa có thể viết lại; tránh sao chép IP khác |
+| D10 | APPROVED 2026-10-20 | Owner duyệt 12 identity/tên/món/tier/role và hướng kit tại AW2-003; phân phối 3N,3R,3SR,2SSR,1UR; spiritId từ đây immutable |
+| D11 | PROPOSED | Rarity rates/pity do mechanic simulate rồi owner approve |
+| D12 | OPEN (partial) | Final tên game mới, monetization, runtime platform; initial roster 12 đã chốt theo D10, mở rộng sau gate |
+| D13 | APPROVED 2026-10-20 | Đội khởi đầu 5 N/R: Than, Lửa Nhỏ, Lam Lam, Mộc Non, Sương Lành; nhận trực tiếp qua nhập môn trước trận bắt buộc, không cần quay gacha |
+| D14 | APPROVED 2026-10-20 | Hướng story/map/quest AW2-002: 6 zone, 8 NPC, 4 quest, puzzle thử lại không tiêu tài nguyên, boss ký ức; không xác nhận Vân là người vắng mặt |
+| D15 | APPROVED 2026-10-20 | Hướng bốn slot kit/nhân vật và visual direction tại AW2-003; chưa phải stats/leveling, assets hoàn tất hoặc license approval |
+| D16 | APPROVED 2026-10-21 | Owner yêu cầu tiếp tục AW2 trực tiếp trên game/adventure-world-2, không tạo branch mới; mỗi task hoàn thành phải kiểm tra/cập nhật doc/commit/push ngay vào nhánh đó và xác minh remote. Thay thế quy trình feature branch cũ; dọn các branch thừa đã tích hợp theo AW2-012B, giữ lịch sử chưa tích hợp và PR đang mở. |
+| D17 | APPROVED 2026-10-23 | Khi khám phá map, chỉ nhân vật đầu đội đã lưu làm đại diện; bỏ đoàn nhân vật đi theo. Đội lưu và chiến đấu vẫn đủ5người. Thay thế phần hiển thị followers trước đây, không đổi D03/D13/canon/luật/save. |
+| D18 | APPROVED 2026-10-24 | Mục tiêu cho PR tích hợp AW2 kế tiếp là demo100% và sản phẩm45%. Giữ số hiện tại90%/40% cho đến khi có bằng chứng: playtest độc lập toàn hành trình + đóng blocker, tuyến world/UX được nghiệm thu và baseline desktop + ít nhất một điện thoại thật. Phát triển task vẫn trực tiếp trên `game/adventure-world-2` theo D16; PR milestone chỉ mở sau khi đủ gate, dự kiến tích hợp vào `rpg`, không đụng `master`/deploy/release. |
+| D19 | APPROVED 2026-10-24 | Owner yêu cầu gộp PR #82 vào `game/adventure-world-2` và xác nhận `rpg` là nhánh product về sau. AW2 tiếp tục phát triển/tích hợp theo D16, incoming PR82 được phép đổi đích vào AW2 và merge sau audit. Outgoing AW2→rpg vẫn theo D18; không tự cập nhật product/master/deploy/release. |
+| D20 | APPROVED 2026-10-24 | Owner yêu cầu bỏ qua phần nghiệm thu để tiếp tục hoàn thiện. Ưu tiên triển khai tính năng/art tiếp theo; gác010C/011A khỏi công việc hiện tại, không lấy chúng làm điều kiện để bắt đầu task phát triển. Bằng chứng chưa chạy vẫn NOT_RUN; không tự đánh dấu PASS hoặc đủ milestone/deploy/release. Kiểm tra kỹ thuật theo tác động thay đổi và D16commitpush vẫn thực hiện. |
+| D21 | APPROVED 2026-10-24 | Owner yêu cầu kết hợp hình Làng Linh Vị ở mainline để đồng bộ phong cách và có map khám phá nhiều lớp, phong cảnh có chiều sâu.006Iưu tiên trước006H: lấy ảnh gốc dự án tại nhánh mặc địnhmaster làm tham chiếu, nâng cảnh làng/camera rồi áp dụng cùng hướng cho vùng tiếp theo. Không đổi tên/canon/luật/save hoặc cho phép merge/cập nhậtmaster; không tự đóng full-environment/rights/nghiệm thu. |
+| D22 | APPROVED 2026-10-24 | Owner yêu cầu thêm nhiều nhà/tiệm/cửa hàng/khu vui chơi vì khung nhìn còn trống.006Oưu tiên trước006N: đưa cụm kiến trúc sát tuyến khám phá và điều chỉnh góc bám để thấy khu dân cư; gắn quầy với NPC/tương tác có sẵn. Giữ6zone/8NPC/canon/save/collision, không suy thành duyệt commerce/room mới, quyền phát hành hoặc milestone. |
+| D23 | LOCKED 2026-10-26 | Core gameplay targets one fixed viewport, map HUD/dock, single blocking submenu, quest/party/inventory pages, no document scrolling; battle/TCG/Chess target in-shell safe return. Imported concurrent UI row mislabeledD13 is normalized here, preserving original starterD13. Implementation phases/evidence at015A/B; design approval is not runtime completion. |
+| D24 | APPROVED 2026-10-28 | Owner asks to redesign perspectives, remove surplus noninteractive structures/empty space and follow the existing Pokémon-style map specification. Prioritize functional spatial structure before NPC schedules:017A village sample adds distinct home/guild interiors alongside tea, removes surplus village facades, connects paths and extends save6→7 safely. Supersedes D22 scenery-only limit for this explicit scope. Other zones, step portals, field props and final art follow phased contracts; no new NPC/quest/gacha, commerce, product integration or release approval. |
+| D25 | APPROVED 2026-10-28 | Trên nhánh AW2, server/default `pnpm build` phải mở trực tiếp fixed-viewport game mới tại `/`; mọi route giao diện main cũ trở về AW2, chỉ giữ Rương Vị Giác original tại `/chest`. Giữ source và save namespace cũ để bảo toàn dữ liệu, nhưng không bundle/mount các trang main cũ làm bề mặt production. Đây là quyền thay build contract của AW2, không phải quyền đổi `master`/`rpg`, deploy, release, production-save migration hay đóng art/device/human/rights gates. |
+| D27 | LOCKED 2026-11-02 | Production-critical source/evidence phải là real Git bytes; build/CI fail pointer/symlink/missing/unsafe. Artifact phải có release identity và static delivery security profile; không tự cấp external acceptance/deploy/release. |
+
+Mọi thay đổi quyết định LOCKED cần owner xác nhận và scretary ghi lại.
+
+Approval evidence: owner replied **“Duyệt cả hai bản đề xuất”** to the explicit review request for AW2-002 story/map/quest and AW2-003 12 identities/tier/kit/N/R starter. Request explicitly excluded gacha rates/pity: D11 remains PROPOSED. D12 roster component is resolved for the initial 12 by D10; title/monetization/runtime platform remain OPEN. Proposal documents preserve their original review labels as historical artifacts; D10/D13/D14/D15 and CANON supersede those labels. No approval of asset completion, device QA, release or merge is implied.
+
+D17 evidence: owner requests **“Khi di chuyển trong map, chỉ cần 1 nhân vật đầu team đại diện là được”**. AW2-006E applies the first committed slot, preserving draft/cancel/failed-write semantics and all five combat members. Before intro, the existing Than fallback is visual only and grants no ownership. Historical follower implementation/test records retain their original refs; current behavior follows D17.
+
+D18 evidence: owner requests **“mục tiêu trong pr tiếp theo này là 100% demo, 45% product”**. [AW2-014A](tasks/AW2-014A.md) defines measurable gates and prevents the target from being reported as current progress before independent evidence exists.
+
+D19 evidence: owner requests **“kết hợp merge code từ pr 82 vào game/adventure-world-2 luôn được không? sau này nhánh rpg sẽ là nhánh product”**. [AW2-013B](tasks/AW2-013B.md) records original-source ancestry and current-feature preservation;013Aprevious no-PR-change scope does not block this newly explicit authorization.
+
+D20 evidence: owner requests **“bỏ qua phần nghiệm thu, tiếp tục hoàn thiện giúp tôi”**. [AW2-006G](tasks/AW2-006G.md) continues product work on the opening village. This reprioritizes development immediately; no independent/device result is invented and no outgoing PR/deployment was requested.
+
+D21 evidence: owner requests **“Kết hợp với hình ảnh Làng Linh Vị ở nhánh main để đồng bộ phong cách đồ họa, phong cảnh, map khám phá có chiều sâu, chứ không chỉ 1-2 nhân vật + items lẻ tẻ.”** Default branch audit foundmaster/no main; two pinned original project images guide006Iart, with canon unchanged. [Contract](tasks/AW2-006I.md).
+
+D22 evidence: owner requests **“thêm nhiều nhà/tiệm/cửa hàng/khu vui chơi/... vì chỉ có mỗi npc thì khung ảnh hơi trống, sau đó tiếp tục hoàn thiện game”**. [AW2-006O](tasks/AW2-006O.md) adds a denser architectural layer and walk-only neighborhood landmarks, preserves current services/geometry and keeps006Nambient next.
+
+
+D23 provenance: concurrent design commits73ef962/cfb2923/2b5b011/601fed3recorded owner single-screen UI request, then owner explicitly requested integratingv1.1. [Exact source](design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md), [reconciliation](WORLD_V1_1_INTEGRATION.md). D17one map representative/D14current canon/D11PROPOSED/D16/D18/D20remain authoritative.
+
+D24 evidence: owner asks **“thiết kế lại các phối cảnh, các công trình đang thừa không tương tác được, map trống quá nhiều … các thành phần trong map đều có tính tương tác liền mạch (tham khảo cấu trúc map pokemon trong các tài liệu đã có)”**, with a screenshot of the village. [Scope017A](tasks/AW2-017A.md), [functional layout and rollout](MAP_TUONG_TAC.md). Preserve D14 six-zone/eight-NPC/four-quest canon and D17; the two optional service interiors add no story identity or reward. The v1.1 illustrative follower, Lilia, coin and guild floors are not adopted automatically.
+
+D24 continuation017B: owner **“tiếp tục thực hiện giusp tôi”** after the017A Phố-next handoff. [017B](tasks/AW2-017B.md) implements the requested functional street slice with original NPC IDs/dialogue and explicit save7→8 compatibility. No new named lore/commerce or release approval.
+
+D25 evidence: owner requests **“setting để khi build trên server sẽ ra phần game mới luôn, bỏ qua tất cả những phần cũ ở main (giữ lại rương vị giác original thôi)”**. [AW2-018A](tasks/AW2-018A.md) owns the production-entry/build cutover and exact chest allowlist. The old source remains available for data compatibility and rollback; no deploy or `master` update is inferred.

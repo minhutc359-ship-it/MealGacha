@@ -1,0 +1,19 @@
+{
+  "task": "AW2-004A",
+  "status": "PASS",
+  "checks": [
+    "reference: bytes/hash/dimensions/real alpha",
+    "world: bytes/hash/dimensions/real alpha",
+    "battle: bytes/hash/dimensions/real alpha",
+    "portrait: bytes/hash/dimensions/real alpha",
+    "fx: bytes/hash/dimensions/real alpha",
+    "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+    "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+    "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+    "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+    "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+  ],
+  "webpBytes": 5943968,
+  "sourceSha": "5d1df97da61bbefca1bdbe27f27f6c28ed3ed694",
+  "baseSha": "944e4dff411c57ad903c7a7c332e91172cbf77f6"
+}

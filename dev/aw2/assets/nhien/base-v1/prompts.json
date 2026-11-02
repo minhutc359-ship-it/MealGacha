@@ -1,0 +1,139 @@
+{
+  "task": "AW2-004K",
+  "externalReferences": [],
+  "records": [
+    {
+      "callId": "AW2-004K-1",
+      "key": "aw2_004k_portrait",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: stylized-concept. Asset type: original anime game full-body identity reference. Primary request: Nhiên, a frontline rhythm cook spirit inspired by bun bo, original project-owned character, not an existing IP. Young adult woman, warm medium skin, focused lively brown eyes, dark brown hair tied in a compact high knot with a small clay-red cloth tie. Practical ivory short-sleeve cook shirt, clay-red apron with simple crossed waist ties, charcoal ankle-length trousers, sturdy dark flat shoes. Forward-leaning ready silhouette, two short WOODEN cooking tools, a short rounded spatula in the right hand and short rounded spoon in the left; hold both visibly at waist/chest, no metal weapons, no bowls. Human anatomy, distinct from a child/chibi in this HD portrait. Clean polished HD anime game linework and restrained cel shading, small amber stitching as functional costume detail. Full body head to toes, slight three-quarter facing right; ample transparent empty margins on all four sides. Transparent RGBA background. No scenery, floor, shadow, particles, text, logo, watermark, UI, brand/IP likeness or outside character references. The reference establishes appearance only, no new story identity claims.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-6ff11956-e58f-45d9-825b-05e4e291a2df.png",
+      "workspacePath": ".asset-work/aw2-004k/rejected-portrait.png",
+      "selected": false,
+      "reason": "Superseded by targeted transparent-background portrait refinement",
+      "referenceKeys": [],
+      "sha256": "06110aeb3bd59d23f44bbb87496d073e8221aa7a5c7c10e25b19c2523051816e",
+      "referenceInputs": []
+    },
+    {
+      "callId": "AW2-004K-2",
+      "key": "aw2_004k_portrait_repair",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: precise-object-edit. Edit target: the supplied original Nhiên full-body identity portrait. Change ONLY background: remove every diffuse brown/gray glow, halo and cast shadow around the character; require clean genuinely empty alpha=0 outside the subject with no scenery or floor. Preserve exactly the same woman, face, high brown hair knot/red tie, ivory shirt, clay-red apron, two wooden tools, hands, trousers, shoes, body pose and painted subject pixels as far as possible. Keep the whole head, hair, tools and toes complete with generous transparent margin on all four sides; shrink subject within canvas by composition only if necessary. No text, logos or new elements.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-79450de1-374f-44f1-88b5-f1d4d052e155.png",
+      "workspacePath": "dev/aw2/assets/nhien/base-v1/portrait.png",
+      "selected": true,
+      "reason": "Selected full-body identity reference; alpha outside subject checked",
+      "referenceKeys": [
+        "aw2_004k_portrait"
+      ],
+      "sha256": "ee788f6342fd6586fc4091682d2ed8e257aaa1928d189bbf51ba9409ae94cc13",
+      "referenceInputs": [
+        {
+          "path": ".asset-work/aw2-004k/rejected-portrait.png",
+          "sha256": "06110aeb3bd59d23f44bbb87496d073e8221aa7a5c7c10e25b19c2523051816e"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004K-3",
+      "key": "aw2_004k_world",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: stylized-concept. Asset type: ORIGINAL game sprite atlas, transparent 4 by 4 equal-cell grid, 16 separate sprites. Reference image role: character identity/costume only, not an edit target. Create pixel/chibi exploration Nhiên matching the supplied high-knot brown hair/red tie, ivory cook shirt, clay-red apron, charcoal trousers, dark shoes and two short wooden cooking tools. Strict layout on a square canvas: 4 columns and 4 rows. Every sprite is complete head-to-toes, COMPACT in central 45% width and central 55% height of its own equal cell. Huge empty transparent gutters, at least 20% cell padding on EVERY side. No sprite or tool overlaps adjacent cells; nothing touches canvas edges. Row1 faces DOWN toward viewer; row2 faces LEFT in true side view; row3 faces RIGHT in true side view; row4 faces UP with back/head knot/apron ties visible. These are separately authored direction drawings, not mirrored. Each row columns: standing idle with tools low, walking left foot forward, passing neutral, walking right foot forward. Four DISTINCT leg/arm poses with consistent compact scale, feet on same baseline. Crisp original pixel/chibi artwork, limited warm palette, readable at small size, solid silhouette, no HD portrait realism. Both wooden tools may be carried lowered and safely within cells. No motion trails, glow, particles, ground shadows, floor, borders, grid lines, labels, numbers, text, logo, background painting or other characters. ONLY16 isolated cels on genuinely transparent RGBA, alpha zero in all gutters.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-57ba11e3-cb4d-4aef-b926-96e3359f07a1.png",
+      "workspacePath": "dev/aw2/assets/nhien/base-v1/world.png",
+      "selected": true,
+      "reason": "Four authored directions;16 measured safe cells",
+      "referenceKeys": [
+        "aw2_004k_portrait_repair"
+      ],
+      "sha256": "e672817665d88c05efedc39f88b674cdcc11374c8b84d2426fea34faa8580ad3",
+      "referenceInputs": [
+        {
+          "path": "dev/aw2/assets/nhien/base-v1/portrait.png",
+          "sha256": "ee788f6342fd6586fc4091682d2ed8e257aaa1928d189bbf51ba9409ae94cc13"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004K-4",
+      "key": "aw2_004k_motion_a",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: stylized-concept. Asset type: HD anime game animation atlas A,16 isolated full-body cels, strict4 columns by4 rows on a square transparent canvas. Reference role: original Nhiên identity/costume, not edit target. Same adult woman, brown high knot/red cloth, ivory cook shirt, clay-red apron, charcoal trousers, flat dark shoes, short rounded wooden spatula RIGHT hand and spoon LEFT hand. Slight3/4 facing right, forward-leaning frontline cook; no metal weapons. All characters have identical scale, occupy ONLY central45% of each equal cell width and central55% of height, tools within central65% width; generous completely empty transparent gutters and at least15% top/bottom padding. Feet and tools fully visible in EVERY cell, nothing touches cell/canvas boundaries. Row1 IDLE four distinct small breathing/hand/apron variations returning to ready stance. Row2 MOVE four advancing step poses, alternating actual feet/contact, spoon/spatula carried low safely. Row3 ATTACK four key cels: anticipation pulling tool back, short first melee tap with spatula, second short alternating spoon contact, explicit idle recovery with both tools returned. Row4 CAST four key cels: plant feet and prepare, coil waist, short forward side sweep with both tools contained near body, recover ready. No painted strike trails or FX in body atlas. Clean original HD anime linework/cel shading, match supplied reference.16 genuinely distinct cels, not repeated identical portraits. Transparent RGBA ONLY with alpha zero gutters. No labels, text, grid lines, borders, background, glow, floor, shadows or outside IP. Prioritize COMPLETE small sprites and safe empty gutters over large figures.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-b24b804e-ba08-4c3e-a692-8da35d8fa581.png",
+      "workspacePath": "dev/aw2/assets/nhien/base-v1/battle-motion-a-v1.png",
+      "selected": true,
+      "reason": "Four states/16 safe measured cels; max edge alpha6/255",
+      "referenceKeys": [
+        "aw2_004k_portrait_repair"
+      ],
+      "sha256": "0faa90be9f0e105a0354701be01124b66d580620406906d9f0ec23bc78864139",
+      "referenceInputs": [
+        {
+          "path": "dev/aw2/assets/nhien/base-v1/portrait.png",
+          "sha256": "ee788f6342fd6586fc4091682d2ed8e257aaa1928d189bbf51ba9409ae94cc13"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004K-5",
+      "key": "aw2_004k_motion_b",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: stylized-concept. Asset type: HD anime game animation atlas B,16 isolated COMPLETE full-body cels, strict4 columns by4 rows, square transparent canvas. Reference image: Nhiên identity/costume only. Same adult woman with brown high knot/red cloth, ivory cook shirt, clay-red apron, charcoal trousers, dark flat shoes; short wooden spatula in RIGHT hand and spoon in LEFT hand. Same3/4 right-facing game view. Each miniature occupies only central45% width and central55% height of its own equal cell; hands/tools max65% width. Enormous blank transparent gutters/top/bottom margins; NO feet/tools/hair touch cell or outer canvas edges. Row1 HIT: ready startled, compact recoil, settle, return ready, all feet visible. Row2 GUARD: brace both short tools near chest, small second brace, ease stance, return, no shield object or invulnerability art. Row3 ULTIMATE, four very distinct cels: anticipation crouch tools drawn close, first short horizontal wooden-tool tap, second alternating diagonal tap, third short downward tap; keep tools/arms contained IN each cell; body and feet full visible. Recovery reuses ready idle from atlas A, so last cel is third contact, not victory. No flying or endless spin. Row4 DEFEAT: tired bend, one knee lowers, kneel with both tools resting nearby but held, last quiet kneel head lowered. NO gore/death imagery. Clean original HD anime game cel shading, no painted FX/trails/particles/glow/shadows/floor. Exactly16 separate cels, transparent alpha zero gutters; no text, numbers, labels, grid lines, borders, background or unrelated characters. COMPLETE compact subjects and safe padding take priority over large rendering.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-da49096c-4f1e-4ebb-a81f-30207e7f418c.png",
+      "workspacePath": ".asset-work/aw2-004k/rejected-battle-motion-b-v1.png",
+      "selected": false,
+      "reason": "Rejected: no safe row cut, minimum edge214/255; outer top9/255",
+      "referenceKeys": [
+        "aw2_004k_portrait_repair"
+      ],
+      "sha256": "e5990d38b6ae062c24b888a014e44835efa94174c134acf436291b455450755b",
+      "referenceInputs": [
+        {
+          "path": "dev/aw2/assets/nhien/base-v1/portrait.png",
+          "sha256": "ee788f6342fd6586fc4091682d2ed8e257aaa1928d189bbf51ba9409ae94cc13"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004K-6",
+      "key": "aw2_004k_motion_b_repair",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: precise-object-edit. Edit target: supplied Nhiên atlas B. Fix ONLY atlas packing while preserving the same character design, sixteen pose meanings and HD rendering. Current figures are too tall and touch adjacent rows. Recompose as16 SMALL separated miniature full-body figures on a strict4x4 equal-cell square grid. Each complete figure INCLUDING hair/tools/shoes must be at most55% of its cell height and65% width, centered in cell, leaving a WIDE completely transparent band above and below EVERY row and left/right between columns. At least20% of each cell height is absolutely empty alpha=0 at both top and bottom. No part crosses any grid boundary or canvas edge. The sprite content must be visibly much smaller than original, not just remove pixels at edges. Do not crop limbs or change appearance. Rows remain hit4 poses, guard4poses, ultimate anticipation/horizontal/diagonal/downward contacts, defeat bend→knee→kneel→head low. Same adult female cook brown hair knot/red tie, ivory shirt/clay-red apron/charcoal pants/two short wooden tools. No new FX/background/shadows/glow/grid/labels/text. Transparent RGBA with truly empty gutters; prioritize SMALL complete separated sprites over filling the sheet. Redraw/recompose with safe spacing; do not simply repeat original packing.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-bc34bc7f-b7dc-4ec4-9a25-d2efc4f9ff5a.png",
+      "workspacePath": "dev/aw2/assets/nhien/base-v1/battle-motion-b-v2.png",
+      "selected": true,
+      "reason": "Selected compact recompose;16 safe cels, edge1/255",
+      "referenceKeys": [
+        "aw2_004k_motion_b"
+      ],
+      "sha256": "b18775405ae54941ad470f1ba63002ab68dd43e59cccb75a83b3cd740781fea1",
+      "referenceInputs": [
+        {
+          "path": ".asset-work/aw2-004k/rejected-battle-motion-b-v1.png",
+          "sha256": "e5990d38b6ae062c24b888a014e44835efa94174c134acf436291b455450755b"
+        }
+      ]
+    },
+    {
+      "callId": "AW2-004K-7",
+      "key": "aw2_004k_fx",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "prompt": "Use case: stylized-concept. Asset type: original HD anime game VFX sprite atlas for Nhiên, a clay-red apron frontline cook wielding two short WOODEN cooking tools.16 separate compact effects on a square genuinely transparent canvas, strict4 columns x4 rows. No character bodies, utensils, text or symbols borrowed from outside IP. Every effect entirely inside central50% of its own equal cell, HUGE empty alpha-zero gutters at all edges, no glow bleeding into next cell. Warm amber/clay-red with ivory contours readable on dark and light. Row1 BASIC: four chronological stages of ONE compact blunt wood-contact accent, small angular ivory spark, short amber notch, compact peak, small fading flecks; NO projectile, no flight trail. Row2 AUTO short frontal sweep:4 stages, short crescent starts, wide but compact forward arc, tiny contact notches, fading arc; no full-screen explosion. Row3 PASSIVE bounded-energy rhythm:4 stages of a compact original three-notch open diamond motif that pulses once then fades, icon geometry distinct from Muoi mark, no letters/numbers. Row4 ULTIMATE short melee beat accent:4 stages of ONE short directional impact/v-shaped trail with ivory edge and clay-red core, clear compact center, strongest peak, small fade; preview repeats this finite owned accent at three separately timed contacts, so do NOT draw three simultaneous impacts in a cell. Clean game-effect cel shading, crisp transparent silhouettes. Strict16 isolated effects, no ground shadows, background, floor, grid lines, labels, borders, watermarks, diffuse haze or extra objects.",
+      "toolOutputPath": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-77d57252-9462-46e0-a160-9cf52ba46b69.png",
+      "workspacePath": "dev/aw2/assets/nhien/base-v1/fx.png",
+      "selected": true,
+      "reason": "16 finite own contact/sweep/rhythm/ultimate cells; alpha-safe",
+      "referenceKeys": [],
+      "sha256": "b019e165489c445e55f4fa5ada98adef7aae7e12a392775fb6c77d9e115e388d",
+      "referenceInputs": []
+    }
+  ]
+}

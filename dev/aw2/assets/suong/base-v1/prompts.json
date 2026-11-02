@@ -1,0 +1,46 @@
+{
+  "task": "AW2-004B",
+  "spiritId": "aw2-suong",
+  "mode": "built-in image_gen",
+  "date": "2026-10-20",
+  "calls": [
+    {
+      "id": "AW2-004B-09",
+      "kind": "portrait",
+      "prompt": "Use case: stylized-concept. Original chest-up portrait and identity reference for AW2 spirit aw2-suong, Sương Lành, Bánh cuốn-affiliated mage. Quiet observant young adult woman, warm light skin, deep violet eyes, straight deep plum shoulder-length hair, one small pale hair clasp. White scarf edged violet, pale lavender practical robe jacket, long sleeves with short clearly separated steam-line embroidery, dark plum waist sash, holding a rolled paper message near her chest. Gentle attentive thoughtful expression. Human note-restorer, no ice crown, no snowflake emblems, no wings, no staff, no food mascot. Original HD anime game portrait, clean ink and soft cel shading, ivory/lavender/deep plum palette. Square head-and-shoulders cutout, all hair/scarf/shoulders inside generous 12 percent margins, genuine transparent alpha background. No text on paper, no environment, mist backdrop, glow haze, frame, letters, logo or external franchise/artist reference.",
+      "inputImages": [],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-17",
+      "kind": "world",
+      "prompt": "Use case: stylized-concept. Original AW2 Sương Lành aw2-suong. Image1 is ONLY portrait identity reference. Same young adult woman, warm light skin, violet eyes, shoulder-length deep plum hair with small pale clasp, white scarf edged purple, pale lavender robe jacket with separated short steam-line embroidery on sleeves, dark plum sash, rolled paper message held close. Lower body dark plum trousers and soft ivory flat shoes. Quiet attentive mage, human, not ice goddess, no crown/staff/wings/snowflakes. Same face, scarf and clothes throughout. Genuine transparent alpha outside silhouettes, no background/floor/shadow/text/grid/labels. Square exact FOUR columns x FOUR rows,16 isolated small complete pixel/chibi bodies, crisp pixel clusters and3-head proportions. Each figure fits within CENTER 58% width and 70% height of each equal invisible cell, enormous transparent gutters. Rows front/down, profile screen-left, profile screen-right, back/up showing back of head. Columns idle / left-foot-forward / passing feet / right-foot-forward. Distinct walking legs, stable foot baseline, same scale, all hair/scarf/sleeves/paper/shoes contained inside cells, no FX.",
+      "inputImages": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-e84b1fa6-e13c-4ff7-9e44-1d064909d615.png",
+          "sha256": "84659cbd7d4be062a18a8eaaec2a93c3c679bf9163e7d45644f6a78aae7493fd"
+        }
+      ],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-18",
+      "kind": "battle",
+      "prompt": "Use case: stylized-concept. Original AW2 Sương Lành aw2-suong. Image1 is ONLY portrait identity reference. Same young adult woman, warm light skin, violet eyes, shoulder-length deep plum hair with small pale clasp, white scarf edged purple, pale lavender robe jacket with separated short steam-line embroidery on sleeves, dark plum sash, rolled paper message held close. Lower body dark plum trousers and soft ivory flat shoes. Quiet attentive mage, human, not ice goddess, no crown/staff/wings/snowflakes. Same face, scarf and clothes throughout. Genuine transparent alpha outside silhouettes, no background/floor/shadow/text/grid/labels. Wide3:2 canvas, EXACT FOUR columns x TWO rows of EIGHT SMALL separate full-body HD anime key poses. Critical figure fits wholly within CENTER 58% width and 75% height of own equal invisible cell, huge transparent gutters and entirely empty transparent corridors at all column boundaries and middle row boundary. Keep arms compact, all scarf/paper/sleeves/shoes inside cell. Original clean anime ink/cel rendering, same body scale. Row1 idle holding scroll near waist; rightward walking step; one hand releasing a soft projectile near chest while other holds scroll; unrolling message slightly for cast. Row2 recoiling hit; sleeve raised across chest in guard; one hand tracing a short forward lane while paper held close for ultimate; kneeling exhausted defeat. Clearly distinct silhouettes; no actual magical FX, trails, floor or shadow.",
+      "inputImages": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-e84b1fa6-e13c-4ff7-9e44-1d064909d615.png",
+          "sha256": "84659cbd7d4be062a18a8eaaec2a93c3c679bf9163e7d45644f6a78aae7493fd"
+        }
+      ],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-19",
+      "kind": "fx",
+      "prompt": "Use case: stylized-concept. Original AW2 Sương Lành VFX ICON atlas, square, EXACT FOUR columns x FOUR rows, true transparent alpha. Each small discrete icon restricted to central 40% width/height of equal cell, enormous empty transparent gutters. Clean anime ink/cel curves, ivory and violet contours with tiny lavender accents; no fog, smoke, bloom, haze, background, text, grid or characters. Row1 ranged basic: col1 short ivory/violet tapered steam ribbon pointing right (PROJECTILE); col2 slightly curved ivory ribbon with broken violet tail (PROJECTILE); col3 small crisp violet/white curling impact knot; col4 two fading short ivory strokes. Row2 localized damage zone: four stages of a small violet shallow ring with three separated ivory steam strokes, seed / forming / clear three-stroke rim / fading. Row3 slow proc: four stages of a small broken violet bracket enclosing one crisp ivory message-line without letters, seed / two brackets / three short pause ticks / fading bracket. Row4 ultimate telegraph lane: four stages of a short horizontal ivory lane between thin violet parallel edge guides, two short guides / arrowlike open guide ends / one compact curl at right impact end / fading guides. No opaque white sheet, no screen-filling fog, all art strictly enclosed in central part of own cell.",
+      "inputImages": [],
+      "transparentBackground": true
+    }
+  ]
+}

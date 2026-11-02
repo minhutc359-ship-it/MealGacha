@@ -1,0 +1,206 @@
+{
+  "task": "AW2-011B",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "branch": "game/adventure-world-2",
+  "source": "eef69e8a0ee7ffe65fed7b9868817cd95a7d23f6",
+  "base": "ccb84bae740a05cc091ea68f9e1263ff8580f4df",
+  "stagedAndRemoteTree": "4eff972620b94bea7973cbeb33cd3ecfec493e27",
+  "expectedShaGuard": "ccb84bae740a05cc091ea68f9e1263ff8580f4df",
+  "force": false,
+  "independentGitFetch": "PASS",
+  "treeIndexEquality": "PASS",
+  "baseIsAncestor": true,
+  "guardedLocalSync": "PASS",
+  "cleanAfterSourceSync": true,
+  "changedFiles": 30,
+  "files": [
+    {
+      "path": "dev/aw2/PlaytestFeedback.tsx",
+      "mode": "100644",
+      "sha": "26ad54c7c262d82cd69f8740be60d05828439da6",
+      "bytes": 6786
+    },
+    {
+      "path": "dev/aw2/feedbackRuntime.ts",
+      "mode": "100644",
+      "sha": "0a525973c7f63545013613198bde4c1da7382227",
+      "bytes": 1085
+    },
+    {
+      "path": "dev/aw2/review-build.d.ts",
+      "mode": "100644",
+      "sha": "053bc37712a56bf8ae2538b9fd4a77c22df6f47a",
+      "bytes": 236
+    },
+    {
+      "path": "dev/aw2/styles.css",
+      "mode": "100644",
+      "sha": "8ec8627913de88286d43f39d4d623608aeb4f197",
+      "bytes": 12104
+    },
+    {
+      "path": "dev/aw2/world.tsx",
+      "mode": "100644",
+      "sha": "de3b42e27d800ff07953cdf5ea3777dd35c37e6d",
+      "bytes": 22329
+    },
+    {
+      "path": "dev/tests/aw2/playtest-feedback.test.ts",
+      "mode": "100644",
+      "sha": "226196a1a7b7dc82c2abb4d4069c0414b87a945a",
+      "bytes": 6338
+    },
+    {
+      "path": "dev/tools/aw2-review-build.ts",
+      "mode": "100644",
+      "sha": "9ff4d9b7ea3e6cd628bd522348e3b69e5a8830e5",
+      "bytes": 3047
+    },
+    {
+      "path": "dev/tools/verify-aw2-demo.mjs",
+      "mode": "100644",
+      "sha": "c0cf488590e23fa601da2b7d70edcf2bfdfef1c4",
+      "bytes": 34506
+    },
+    {
+      "path": "dev/tools/verify-aw2-feedback.mjs",
+      "mode": "100644",
+      "sha": "4aa27cfcbe3a6b9d0e3801d00cc2132b0ff4a657",
+      "bytes": 16597
+    },
+    {
+      "path": "dev/vite.aw2.config.ts",
+      "mode": "100644",
+      "sha": "89c5d0333d9ad6ac5752d02c91b5d2593575b4ae",
+      "bytes": 2519
+    },
+    {
+      "path": "dev/vite.dev.config.ts",
+      "mode": "100644",
+      "sha": "ecaaa713d81dff6d332c9ce39fc74d7aa0f0a4f8",
+      "bytes": 783
+    },
+    {
+      "path": "docs/aw2/BACKLOG.md",
+      "mode": "100644",
+      "sha": "84b0384ede60a30cf1ff30711fc81aa30a0f3f55",
+      "bytes": 26660
+    },
+    {
+      "path": "docs/aw2/CHANGELOG.md",
+      "mode": "100644",
+      "sha": "f58d0b82b61a7a9cd692d4950073f4dccf0b4d78",
+      "bytes": 43090
+    },
+    {
+      "path": "docs/aw2/DEMO.md",
+      "mode": "100644",
+      "sha": "1575343562e97b21354c0d4b40df7d65fda1a884",
+      "bytes": 6278
+    },
+    {
+      "path": "docs/aw2/HANDOFF.md",
+      "mode": "100644",
+      "sha": "4507b4fc5b85a0de4567c02e45c5727aff448244",
+      "bytes": 8098
+    },
+    {
+      "path": "docs/aw2/IPHONE_PLAYTEST.md",
+      "mode": "100644",
+      "sha": "6d631f8bcb16a13349e13349a48988b414253ced",
+      "bytes": 4927
+    },
+    {
+      "path": "docs/aw2/PLAYTEST_100_CHECKLIST.md",
+      "mode": "100644",
+      "sha": "bee21a3f0c8a1fbce84b72003cf4c187a9fa7bd1",
+      "bytes": 3438
+    },
+    {
+      "path": "docs/aw2/PROGRESS.md",
+      "mode": "100644",
+      "sha": "48c2ffe1c0e97a3f61e18d7065b0bc8ada83dd69",
+      "bytes": 30106
+    },
+    {
+      "path": "docs/aw2/README.md",
+      "mode": "100644",
+      "sha": "796f4b68195581adf22f4eb8e197d8b89dffd029",
+      "bytes": 28186
+    },
+    {
+      "path": "docs/aw2/REPORT.md",
+      "mode": "100644",
+      "sha": "ad0b12a45bf5ca5ac02115809281796ccf7ffc88",
+      "bytes": 1834
+    },
+    {
+      "path": "docs/aw2/STATUS.md",
+      "mode": "100644",
+      "sha": "6b79d2468b5f54b83526c7d65aa2adfff6264149",
+      "bytes": 5357
+    },
+    {
+      "path": "docs/aw2/TEST_LEDGER.md",
+      "mode": "100644",
+      "sha": "d766416f6a01fd131437ce58f2bf1e442a980fdc",
+      "bytes": 138644
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-011B-reused-evidence.json",
+      "mode": "100644",
+      "sha": "2427c8749b2109f0c7b695259c4f89b485f5a7f4",
+      "bytes": 83070
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-011B-review-build.json",
+      "mode": "100644",
+      "sha": "f5a43a1afe67b1f7c6b741c888fefe62ffa8cf9c",
+      "bytes": 38164
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-011B-verification.json",
+      "mode": "100644",
+      "sha": "9b916c7980f0c8ea13d006ffb6fb9d5d6f48edd5",
+      "bytes": 27916
+    },
+    {
+      "path": "docs/aw2/evidence/AW2-011B.md",
+      "mode": "100644",
+      "sha": "b1492df3f31dabd85a82c1cbace0250c7fd8cf56",
+      "bytes": 6415
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-010C.md",
+      "mode": "100644",
+      "sha": "3c2fbc23843b8416119f0b0f6a27c413a13963e0",
+      "bytes": 1384
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-011A.md",
+      "mode": "100644",
+      "sha": "b56c47ec8e8ee83fb97c61a6b71fe29649db5963",
+      "bytes": 1219
+    },
+    {
+      "path": "docs/aw2/tasks/AW2-011B.md",
+      "mode": "100644",
+      "sha": "d2c464c9740dafdabd066864853d3fac29da71fa",
+      "bytes": 5228
+    },
+    {
+      "path": "src/aw2/review/feedback.ts",
+      "mode": "100644",
+      "sha": "102a685d4f7a8fe0e373b98d975a3df29a5ac29f",
+      "bytes": 3443
+    }
+  ],
+  "postCommitBuildIdentity": {
+    "baseGitSha": "eef69e8a0ee7ffe65fed7b9868817cd95a7d23f6",
+    "sourceDirty": false,
+    "codeFingerprint": "71a2416b43e4f2c86d5dad35821db0ec7b47f8f79e5ff49cfa3d630e25f2b582",
+    "inputFiles": 279,
+    "matchesPrecommitTestedArtifact": true
+  },
+  "remainingPublication": "Docs-only source stamps/proof completion; independently fetch and verify final clean local=fresh remote after that push."
+}

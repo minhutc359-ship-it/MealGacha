@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "engine": "153.0.8010.36",
+  "checks": [
+    "Static root opens the compiled RPG world",
+    "Built intro grants five starters and one 30XP reward",
+    "Built save survives reload byte-identically",
+    "Standalone compiled battle loads all atlases",
+    "Compiled starter preview is reachable",
+    "Review tools leave progression and stable save untouched",
+    "No failed resources or console/page errors",
+    "Review bundle excludes source PNG/code/maps/archives"
+  ],
+  "errors": [],
+  "files": 101,
+  "bytes": 29817175
+}

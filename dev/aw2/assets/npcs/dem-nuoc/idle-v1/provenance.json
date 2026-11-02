@@ -1,0 +1,28 @@
+{
+  "task": "AW2-006M",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-24",
+  "prompts": {
+    "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/prompts.json",
+    "sha256": "b22d751000693ced8f91ad44cecb822decf9c7d67dd2870c12eb51bc648134bc"
+  },
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+      "role": "own project identity edit reference",
+      "sha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74",
+      "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+      "blob": "671d1416b9fe96bd37295d1877296bc1d13857e3"
+    }
+  ],
+  "selection": {
+    "path": "dev/aw2/assets/npcs/dem-nuoc/idle-v1/selection.json",
+    "sha256": "d709ccbe801c931283022f2975f476c16c94c04027d29ff88cdf1343dcf14409"
+  },
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "builder": "dev/tools/build-aw2-npc-idle.py",
+  "pillow": "10.2.0",
+  "processing": "Unchanged selected original transparent PNG; exact RGBA lossless WebP. Read-only alpha measurements for safe texture rectangles/feet. No pixel painting/masking/erasing/mirroring/resizing/interpolation."
+}

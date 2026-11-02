@@ -1,0 +1,31 @@
+{
+  "task": "AW2-006L",
+  "tool": "OpenAI built-in image_gen",
+  "mode": "edit / style-transfer",
+  "prompt": "Use case: style-transfer. Asset type: original AW2 game exploration room panorama, 1536x1024 landscape PNG. Edit the old simple floor reference into a richer fully authored cutaway interior, matching the own-project pantry and village references: dense hand-painted pixel/chibi environment, red terracotta roof edges, carved warm wood, bamboo details, amber lantern light, subtle flowers outside open windows. Same high oblique overhead RPG view and coherent orthogonal ground plane; no fisheye. Critical layout: image center rectangle x440..1096,y310..720 is continuous flat walkable floor with no raised furniture, walls, steps, posts, planters, people, flame, particles, food stations or objects. Keep horizontal exit paths across x0..1536 around y512 visibly open floor, at least90px tall. Put rich layered architecture ONLY above y290, below y760, or at the far sides x<380/x>1156 away from those exit paths. Natural detailed scene, not a bordered empty texture. Architectural perspective can have depth at the perimeter. No UI, text, labels, symbols, arrows, characters, interactable objects, boss, note, pot puzzle or central dining table. Do not copy external IP. Preserve clear center so our separately authored sprites supply all gameplay objects. Output opaque.\nWelcoming communal dining hall interior. Center is continuous honey brown wooden planks with a flat woven bamboo rug contained in x570..970,y380..640. Rich perimeter has carved timber beams, red tiled eaves, side dining benches and low tables tucked far outside center, stacked ceramic bowls, warm lanterns, bamboo-screen windows overlooking the flower garden. No text or notes, no central table, no people. Flat rug does not obstruct walking.",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/kitchen-table/v1/floor-source.png",
+      "role": "edit target",
+      "sha256": "bb42116815fcc1b76eb72949a3c592ee3af71e27004e628d55ba7364703e3649",
+      "commit": "425aa16d94ea51decf7f43afb5986b13ad126dfc",
+      "blob": "71c82374d8ac160febed8d71778586b28de1e5f9"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/floor-source.png",
+      "role": "own style reference",
+      "sha256": "014fac74ccce65b0908b101874f006338fd8cca6e3785c2b2cf0660b4206fe27",
+      "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+      "blob": "ab97b6ef05b562e644625617480557517ec47d44"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "role": "own style reference",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5",
+      "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+      "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED"
+}

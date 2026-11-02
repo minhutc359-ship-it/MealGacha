@@ -1,0 +1,43 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-moc",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: original Soul of Meal HD ultimate cut-in illustration. Input image 1 is the project's own identity reference. Preserve its exact face, hairstyle, clothing, costume motifs and held object; do not redesign the person. New expressive three-quarter waist-up composition, detailed hand-painted anime game art, natural hands/anatomy, readable clean silhouette, refined cloth and magical highlights. One character only, no additional people. Landscape 1536x1024, safe padding around head/hands/held tool. Transparent background; no scenery, rectangle, UI, lettering, logos or watermarks. Mộc, distinct from Mộc Non: same thoughtful young Vietnamese man with short swept brown hair and small green leaf ornament, green eyes, layered pale rice-green/cream leaf-shaped robe, dark olive undershirt, rope belt and dark bracers. Holds the existing small tied bundle of rice leaves in his left hand. Approved ultimate 'Mở Gói Mùa Xanh': opens a wrapping leaf with the other hand, a precise jade luminous seal and fresh green rice grains unfurl into one compact upward leaf vortex, thoughtful focused expression. Leaf/rice magic, no fan, no new staff or weapons.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/moc/base-v1/portrait.png",
+      "sha256": "8d12b1067a228ef600123394a2977518ea855360a3f44df229ffac13d333ca03"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/moc/ultimate-v1/art.png",
+    "sha256": "035910e891eb776fc531d1043f98915d4405aff7f31cfef06c19624097c10320"
+  },
+  "toolOutputFilename": "exec-77db16f8-984c-4821-9b7e-8b42721fd488.png",
+  "selected": true,
+  "runtime": {
+    "id": "aw2-moc:ultimate-art:v1",
+    "url": "/dev/aw2/assets/moc/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2201524,
+    "sha256": "b0686843b0bbbaf41e37dd633247fb55a7a8d6e10fc3f6e4cf26f34e26ebbbb9",
+    "source": {
+      "path": "dev/aw2/assets/moc/ultimate-v1/art.png",
+      "sha256": "035910e891eb776fc531d1043f98915d4405aff7f31cfef06c19624097c10320"
+    },
+    "promptSha256": "a2e2916875f675966dfb73bdddf46f6151e2fd5540536de1140edbfb6169caf1",
+    "transparentFraction": 0.197271
+  },
+  "processing": "Source PNG preserved byte-for-byte; exact lossless WebP RGBA, no repaint/masking/mirroring/resizing.",
+  "providerUseBasis": "aw2-openai-output-use-2026-11-02",
+  "sourceAudit": "VERIFIED",
+  "copyrightExclusivity": "NOT_ASSERTED",
+  "humanLegalReview": "NOT_RUN",
+  "licenseStatus": "PROVIDER_TERMS_DOCUMENTED",
+  "commercialRelease": "NOT_CLEARED"
+}

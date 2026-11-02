@@ -1,0 +1,24 @@
+{
+  "task": "AW2-006O",
+  "tool": "OpenAI built-in image_gen",
+  "mode": "new architectural atlas using own style references",
+  "prompt": "Use case: style-transfer. Asset type: original AW2 RPG architecture sprite atlas on TRUE transparent background. Use the own village/street references ONLY as material/palette/camera style input. Render4separate buildings/structures in a strict2x2grid, square1536x1536canvas, equal spacious cells. One complete standalone structure percell, no landscape backdrop, no characters, no shadows outside the asset, no text/sign lettering, no UI or guide lines. Generous≥48px transparent gutters on every side of each cell. All structures front facing in the same slightly overhead three-quarter pixel/chibi RPG camera, richly hand-painted small-game details, red terracotta roof tiles, amber lanterns, warm wood, bamboo and subtle flower pots. Ground baseline aligned perrow. Full roofs/awnings/base visible. Architecture should read clearly at100-200game pixels width, not a tiny prop. The visible base of each building occupies only the lower28percent of its silhouette height and middle65percent of its width; generous eaves/roof overhang above, so our layer can sort and fade over player. Plain empty doorways are scenery, no glowing interaction signs. Do not copy outside IP.\nTop left: a lantern repair shop facade with red tiled roof, hanging amber lanterns and paper lantern tools arranged on rear shelves, open front awning. Top right: a breakfast food stall facade under red roof and mustard cloth canopy, bamboo baskets, plain ceramic bowls and cooking supplies inside its rear footprint, no active flames or food icons. Bottom left: a carpentry workshop facade with red roof, timber rack, a small bench/chairs and tools held within the base footprint. Bottom right: an open-sided community games pavilion, compact red tiled pagoda roof, timber beams, a low card/board table and stools within narrow base; inviting play-space, no people or giant signs.",
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "role": "own project style reference",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5",
+      "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+      "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d"
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+      "role": "own project style reference",
+      "sha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede",
+      "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+      "blob": "27893fcdb294368a46db5448531743544cf6a8d8"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED"
+}

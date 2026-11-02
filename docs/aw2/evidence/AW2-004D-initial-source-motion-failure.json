@@ -1,0 +1,78 @@
+{
+  "task": "AW2-004D",
+  "spiritId": "aw2-lua",
+  "status": "FAIL",
+  "flavor": "source",
+  "checks": [
+    "Lửa Nhỏ preview declares four-cel reference motion without full-character approval",
+    "idle: browser draws all four declared distinct cels",
+    "idle: preview pause freezes authored timeline",
+    "move: browser draws all four declared distinct cels",
+    "move: preview pause freezes authored timeline",
+    "attack: browser draws all four declared distinct cels",
+    "attack: preview pause freezes authored timeline",
+    "cast: browser draws all four declared distinct cels",
+    "cast: preview pause freezes authored timeline",
+    "hit: browser draws all four declared distinct cels",
+    "hit: preview pause freezes authored timeline",
+    "guard: browser draws all four declared distinct cels",
+    "guard: preview pause freezes authored timeline",
+    "ultimate: browser draws all four declared distinct cels",
+    "ultimate: preview pause freezes authored timeline",
+    "defeat: browser draws all four declared distinct cels",
+    "defeat: preview pause freezes authored timeline"
+  ],
+  "errors": [],
+  "timelines": {
+    "idle": [
+      "battle.idle.0",
+      "battle.idle.1",
+      "battle.idle.2",
+      "battle.idle.3"
+    ],
+    "move": [
+      "battle.move.0",
+      "battle.move.1",
+      "battle.move.2",
+      "battle.move.3"
+    ],
+    "attack": [
+      "battle.attack.0",
+      "battle.attack.1",
+      "battle.attack.2",
+      "battle.attack.3"
+    ],
+    "cast": [
+      "battle.cast.0",
+      "battle.cast.1",
+      "battle.cast.2",
+      "battle.cast.3"
+    ],
+    "hit": [
+      "battle.hit.0",
+      "battle.hit.1",
+      "battle.hit.2",
+      "battle.hit.3"
+    ],
+    "guard": [
+      "battle.guard.0",
+      "battle.guard.1",
+      "battle.guard.2",
+      "battle.guard.3"
+    ],
+    "ultimate": [
+      "battle.ultimate.0",
+      "battle.ultimate.1",
+      "battle.ultimate.2",
+      "battle.ultimate.3"
+    ],
+    "defeat": [
+      "battle.defeat.0",
+      "battle.defeat.1",
+      "battle.defeat.2",
+      "battle.defeat.3"
+    ]
+  },
+  "confirmedContacts": [],
+  "failure": "AssertionError [ERR_ASSERTION]: Full Lua preview crosses exactly two authored contacts and two FX/audio cues"
+}

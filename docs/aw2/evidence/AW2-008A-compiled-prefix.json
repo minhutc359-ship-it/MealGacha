@@ -1,0 +1,51 @@
+{
+  "task": "AW2-008A",
+  "status": "FAIL",
+  "flavor": "compiled",
+  "phase": "intro",
+  "checks": [
+    "Fresh profile does not create a save or show mandatory targets",
+    "intro: 320px directions fit viewport with44px native controls",
+    "intro: 390px directions fit viewport with44px native controls",
+    "intro: 768px directions fit viewport with44px native controls",
+    "intro: resize and rendering do not save",
+    "village: actual delayed scene load disables all guide controls",
+    "village: correct scene readiness enables guide after load without writes",
+    "village: missing required scene keeps directions disabled and exact save",
+    "village: resource recovery recreates correct guide with exact save",
+    "Save failure disables directions without altering saved bytes",
+    "Reread recovers real map readiness and directions",
+    "Another-tab write disables directions until explicit reread",
+    "intro: aw2-npc-giu-cho walk restores actual map focus",
+    "intro: aw2-npc-giu-cho approach never writes, travels or advances progress",
+    "intro: opening dialogue disables every journey direction",
+    "Closing an arrival dialogue grants no action",
+    "intro: opening dialogue disables every journey direction",
+    "intro: aw2-object-village-table walk restores actual map focus",
+    "intro: aw2-object-village-table approach never writes, travels or advances progress",
+    "intro: opening dialogue disables every journey direction",
+    "intro: aw2-npc-giu-cho walk restores actual map focus",
+    "intro: aw2-npc-giu-cho approach never writes, travels or advances progress",
+    "intro: opening dialogue disables every journey direction",
+    "Guided native intro grants exactly five starters30XP once",
+    "TCG: actual mode unmounts objective navigation without grants",
+    "TCG: returning remounts ready directions at exact saved checkpoint",
+    "Auto Chess: actual mode unmounts objective navigation without grants",
+    "Auto Chess: returning remounts ready directions at exact saved checkpoint",
+    "New saved leader cannot use previous leader readiness while texture loads",
+    "Ready new leader keeps one map representative, five party members and exact economy"
+  ],
+  "errors": [],
+  "expectedErrors": [
+    "404 http://127.0.0.1:8611/dev/aw2/assets/environments/covenant-village/v2/landscape.webp"
+  ],
+  "captures": [
+    ".asset-work/aw2-008a/compiled-intro-320.png",
+    ".asset-work/aw2-008a/compiled-intro-390.png",
+    ".asset-work/aw2-008a/compiled-intro-768.png"
+  ],
+  "snapshots": [],
+  "bossTick": null,
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   'aw2-lam',\n+   'aw2-lua',\n    'aw2-than',\n-   'aw2-lua',\n-   'aw2-lam',\n    'aw2-moc-non',\n    'aw2-suong'\n  ]\n\n    at file:///home/sotatek/Documents/prj/MealGacha/MealGacha/dev/tools/verify-aw2-journey-guide.mjs:475:10",
+  "observedRaw": "{\"gameId\":\"adventure-world-2\",\"environment\":\"development\",\"schemaVersion\":5,\"saveId\":\"5b936554-3094-489f-be29-9b915edbd748\",\"revision\":8,\"createdAt\":\"2026-10-26T08:39:21.161Z\",\"updatedAt\":\"2026-10-26T08:39:33.512Z\",\"progress\":{\"zoneId\":\"aw2-zone-covenant-village\",\"x\":152.05275337771081,\"y\":201.89157682379002,\"facing\":\"down\",\"questIndex\":1,\"accepted\":false,\"tableRead\":true,\"memories\":[],\"threadChoice\":null,\"hintRead\":false,\"puzzleStep\":0,\"partyIds\":[\"aw2-than\",\"aw2-lua\",\"aw2-lam\",\"aw2-moc-non\",\"aw2-suong\"],\"bossDefeated\":false,\"tableNoteRead\":false,\"endingChoice\":null},\"economy\":{\"tuningId\":\"aw2-economy-development-v1\",\"inventory\":{\"rice\":2,\"herbs\":1,\"broth\":0,\"warm-bowl\":0},\"teamExperience\":30,\"receipts\":[\"aw2-grant-kept-seat\"],\"cooked\":0,\"shared\":0},\"collection\":{\"recruitedIds\":[],\"vanEmphasis\":\"protection\"}}"
+}

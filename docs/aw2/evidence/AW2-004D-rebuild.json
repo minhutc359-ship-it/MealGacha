@@ -1,0 +1,12 @@
+{
+  "task": "AW2-004D",
+  "status": "PASS",
+  "checks": [
+    "Initial all-starter rebuild changed only Lua manifest",
+    "Rebuilding Than after explicit timeline extraction is byte-idempotent",
+    "Rebuilding Lua again is byte-idempotent",
+    "Other source/runtime/manifests unchanged"
+  ],
+  "trackedAssetFilesCompared": 87,
+  "idempotencyDiff": []
+}

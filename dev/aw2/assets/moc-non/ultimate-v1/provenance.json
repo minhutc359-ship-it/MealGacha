@@ -1,0 +1,43 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-moc-non",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: Soul of Meal original ultimate cut-in artwork. Input image 1 is the project's existing original portrait, used solely to preserve exact face, hairstyle, clothing, colors and character identity. Make a NEW dynamic three-quarter waist-up illustration; expressive natural face and correct hands, no extra limbs, preserve costume. Polished detailed hand-painted anime game art matching this reference, strong readable silhouette, restrained magical highlights and richly shaded cloth. One character only. Landscape 1536x1024; keep head, hands, tools and main effects fully inside with safe padding. Genuine transparent background, no scenery, no rectangular background, no UI, no lettering, no logos or watermarks. Mộc Non: same youthful Vietnamese man, long brown hair tied high with leaf-green ribbon, hazel-green eyes, olive-green sleeveless mantle and cream shirt, bamboo folding fan. Approved ultimate 'Chung Một Mâm': opens the bamboo fan, one other hand gathering a welcoming circular swirl of fresh green leaves around a small warm shared-meal light. Lively supportive expression. Natural muted leafy greens and soft jade, no new weapon or armor.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/moc-non/base-v1/portrait.png",
+      "sha256": "ac454840da48f02fc820b160b486d9e86041dbcb32b5807e34553414e86af005"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/moc-non/ultimate-v1/art.png",
+    "sha256": "aa888262cbbf31ce1fc4c0f20b756ef2133a6977c0252d57f7fb882c21c1aaf6"
+  },
+  "toolOutputFilename": "exec-a2c828b4-e5ed-4b3f-a3b4-3d648b89a211.png",
+  "selected": true,
+  "runtime": {
+    "id": "aw2-moc-non:ultimate-art:v1",
+    "url": "/dev/aw2/assets/moc-non/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1958530,
+    "sha256": "56fce6525b4b230a05d930a421e59724e58c4ae1dd4bfa8a9a8ece8850c23ca4",
+    "source": {
+      "path": "dev/aw2/assets/moc-non/ultimate-v1/art.png",
+      "sha256": "aa888262cbbf31ce1fc4c0f20b756ef2133a6977c0252d57f7fb882c21c1aaf6"
+    },
+    "promptSha256": "11b8670db2c232f4de1e2041a1e5a86397d03d16f09918bb6a0ef0cc15d311ef",
+    "transparentFraction": 0.303204
+  },
+  "processing": "Source PNG preserved byte-for-byte; exact lossless WebP RGBA, no repaint/masking/mirroring/resizing.",
+  "providerUseBasis": "aw2-openai-output-use-2026-11-02",
+  "sourceAudit": "VERIFIED",
+  "copyrightExclusivity": "NOT_ASSERTED",
+  "humanLegalReview": "NOT_RUN",
+  "licenseStatus": "PROVIDER_TERMS_DOCUMENTED",
+  "commercialRelease": "NOT_CLEARED"
+}

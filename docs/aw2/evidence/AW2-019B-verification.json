@@ -1,0 +1,225 @@
+{
+  "task": "AW2-019B",
+  "date": "2026-11-02",
+  "branch": "game/adventure-world-2",
+  "baseGitSha": "b9a395522af9c14601c05f5291c41c53827d1a65",
+  "testedSource": "worktree later committed as the single task commit; docs-only completion notes added after checks",
+  "environment": {
+    "node": "24.22.1",
+    "typescript": "5.9.3",
+    "vite": "8.0.5",
+    "vitest": "5.0.1",
+    "browser": "Chrome cloud / managed HTTP preview",
+    "viewport": {
+      "width": 1363,
+      "height": 936
+    }
+  },
+  "verification": {
+    "rootTypecheck": "PASS",
+    "devTypecheck": "PASS",
+    "unit": {
+      "status": "PASS",
+      "files": 167,
+      "tests": 2312
+    },
+    "productionBuild": "PASS",
+    "reviewBuild": "PASS",
+    "mediaSources": {
+      "status": "PASS",
+      "runtimeFiles": 171,
+      "imageFiles": 119,
+      "synthesizedAudioFiles": 52,
+      "humanCleared": 0
+    },
+    "characterSources": {
+      "status": "PASS",
+      "characters": 12,
+      "runtimeFiles": 126,
+      "commercialCleared": 0
+    },
+    "bossRepeatBuild": {
+      "status": "PASS",
+      "files": 13,
+      "newCels": 32,
+      "audioCues": 4,
+      "maxEdgeAlpha": 1
+    },
+    "releaseRecords": {
+      "status": "PASS",
+      "runtimeDependencies": 32,
+      "legacyRegisteredAssets": 774,
+      "staticPolicies": 3
+    },
+    "legacyAssetValidation": {
+      "status": "PASS",
+      "checked": 137,
+      "missing": 0
+    },
+    "catalog": {
+      "status": "PASS",
+      "foods": 123,
+      "tags": 35,
+      "events": 9
+    },
+    "budgetTests": {
+      "status": "PASS",
+      "tests": 4
+    },
+    "workerSyntax": "PASS",
+    "diffCheck": "PASS",
+    "cssGzipBytes": 38663,
+    "legacyUnresolvedAssetsShipped": 0
+  },
+  "browser": {
+    "status": "PASS_LIMITED",
+    "surface": "source QA memory store, not production HTTPS persistence",
+    "rootHttpWriteGuard": "PASS_BLOCKS_UNSAFE_ORIGIN",
+    "checks": [
+      "quest receipt claims10tickets once",
+      "ten-draw batch then single draw after another earned claim",
+      "twelve journal identities/names/tiers and selected actual skill description",
+      "journal art loaded, dialog556px client/scroll no overflow at1363x936",
+      "TCG actual player-win after29 legal coach commands; explicit save disables duplicate settlement; return shows1/3",
+      "Chess real buy10→8gold, formation, battle round loss12→9health, surrender/save; stage stays0/3",
+      "only TCG first win opens another10tickets, loss opensnone",
+      "boss canvas idle/attack/guard/cast/ultimate use new motion atlas frames",
+      "boss reduced guard uses original battle.guard pose"
+    ],
+    "physicalDevice": "NOT_RUN",
+    "httpsProductStorage": "BLOCKED_IN_HTTP_PREVIEW",
+    "independentListening": "NOT_RUN",
+    "screenshot": {
+      "path": "docs/aw2/evidence/AW2-019B-journal.jpg",
+      "bytes": 49136,
+      "sha256": "ec947c4b01cc964ebfa1ef3bc36b2ecd94d8f9119b695a13f49e99af13aa14b9"
+    }
+  },
+  "candidate": {
+    "id": "aw2-web1-rc-v1",
+    "technicalStatus": "PASS",
+    "overallStatus": "BLOCKED_EXTERNAL",
+    "releaseAuthorized": false,
+    "deployAuthorized": false,
+    "gates": [
+      {
+        "id": "artifact-size",
+        "status": "PASS",
+        "observed": 166711768,
+        "limit": 320000000
+      },
+      {
+        "id": "offline-shell",
+        "status": "PASS",
+        "observed": 1479512,
+        "limit": 12000000
+      },
+      {
+        "id": "javascript-gzip",
+        "status": "PASS",
+        "observed": 700716,
+        "limit": 710000
+      },
+      {
+        "id": "leak-scan",
+        "status": "PASS",
+        "observed": 0,
+        "limit": 0
+      },
+      {
+        "id": "production-entry",
+        "status": "PASS",
+        "observed": null,
+        "limit": null
+      },
+      {
+        "id": "offline-worker",
+        "status": "PASS",
+        "observed": null,
+        "limit": null
+      },
+      {
+        "id": "web-manifest",
+        "status": "PASS",
+        "observed": null,
+        "limit": null
+      },
+      {
+        "id": "aw2-inventory",
+        "status": "PASS",
+        "observed": null,
+        "limit": null
+      },
+      {
+        "id": "public-inventory",
+        "status": "PASS",
+        "observed": null,
+        "limit": null
+      },
+      {
+        "id": "legal-artifacts",
+        "status": "PASS",
+        "observed": null,
+        "limit": null
+      },
+      {
+        "id": "rollback-runbook",
+        "status": "PASS",
+        "observed": null,
+        "limit": null
+      },
+      {
+        "id": "build-routing",
+        "status": "PASS",
+        "observed": null,
+        "limit": null
+      }
+    ],
+    "external": [
+      {
+        "id": "character-full-dod",
+        "status": "OPEN"
+      },
+      {
+        "id": "character-rights",
+        "status": "OPEN"
+      },
+      {
+        "id": "independent-art-audio",
+        "status": "OPEN"
+      },
+      {
+        "id": "human-content-acceptance",
+        "status": "OPEN"
+      },
+      {
+        "id": "human-device-uat",
+        "status": "OPEN"
+      },
+      {
+        "id": "device-performance",
+        "status": "OPEN"
+      },
+      {
+        "id": "owner-release-approval",
+        "status": "OPEN"
+      }
+    ],
+    "summary": {
+      "technicalPass": 12,
+      "technicalTotal": 12,
+      "externalPass": 0,
+      "externalTotal": 7
+    },
+    "artifact": {
+      "sha256": "ef7613d2b06aee2b99814e1f4ebaa7b2a75fcd954c873402e31ab7fc4c377795",
+      "files": 395,
+      "bytes": 166711768,
+      "jsGzipBytes": 700716,
+      "offlineShellBytes": 1479512
+    }
+  },
+  "requiredReadyExitCode": 2,
+  "releaseAuthorized": false,
+  "deployAuthorized": false
+}

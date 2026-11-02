@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "files": 851,
+  "textArtifacts": 72,
+  "markers": [
+    "aw2.development.save",
+    "aw2-economy-development-v1",
+    "aw2-than",
+    "/dev/aw2/",
+    "aw2-d11-simulation-v1",
+    "RESET AW2"
+  ],
+  "hits": [],
+  "totalBytes": 177450422
+}

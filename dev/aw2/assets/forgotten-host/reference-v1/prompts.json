@@ -1,0 +1,32 @@
+{
+  "task": "AW2-004I",
+  "generator": "built-in image_gen",
+  "date": "2026-10-22",
+  "externalReferences": [],
+  "calls": [
+    {
+      "type": "generate",
+      "prompt": "Use case: stylized-concept. Asset type: original HD anime game enemy sprite atlas, eight key-pose states, transparent PNG. Create ORIGINAL noncollectible fictional memory boss Forgotten Host for a warm Vietnamese-inspired kitchen-memory fantasy. No text, logos, existing game characters, borders or painted checkerboard. Character: tall slender gentle but formidable empty-place host, charcoal indigo kitchen apron with asymmetrical warm ochre ties over layered pale grey fabric; head is a smooth ivory ceramic bowl-shaped mask with subtle glaze crack, absolutely no eyes/mouth/human face; blue-grey steam rises from hollow bowl rim; old dark wooden serving paddle in right hand, small amber invitation ribbon on left wrist. Pale steam trailing hem, simple sturdy slipper feet. Same costume/proportions/identity across eight cells. Not skeleton, armored knight or chef caricature. Warm amber/teal accents; clean cel-shaded hand-painted anime linework, no environment. EXACTLY FOUR equal columns and TWO equal rows, landscape2048x1024 if possible. Each512x512 cell contains whole figure+paddle within central370x390 with at least55 transparent pixels at all edges. Feet common baseline near y440 in each cell, same body scale, no cell overlap. Full-body three-quarter FACING LEFT in every cell. Real transparent alpha, no floor/ground/shadow spanning cells. Row1 LEFT TO RIGHT:1 idle paddle down;2 move stepping left fabric/steam trailing;3 basic attack paddle sweeping left fully contained;4 cast invitation left hand extends amber ribbon paddle upright. Row2 LEFT TO RIGHT:5 hit recoils mask intact;6 guard paddle across chest curled steam cloak;7 ultimate snuffs hearth both hands draw blue-grey steam inward with amber ember at chest;8 defeat kneels bowl-mask tilted steam dissipates full silhouette visible not dismembered. Eight separate KEY POSES, beautifully readable small sprites. Wide transparent gutters and distinct boundaries.",
+      "sha256": "86bc4fb66497a4d232c4a2c2b0636d6191709ffdfebda9f7e4e8afb71ef7eee5",
+      "status": "REJECTED: unsafe cell gutters/edge clipping; not runtime art"
+    },
+    {
+      "type": "edit",
+      "prompt": "Repair the supplied eight-pose Forgotten Host transparent game sprite sheet. Preserve this exact original bowl-mask/apron/wood-paddle identity, colors, all eight pose meanings and left-facing direction. Current sprites nearly touch edges and overlap cell boundaries. Re-layout exactly 4 columns x 2 rows with MUCH SMALLER sprites, every silhouette INCLUDING steam/ribbons/paddle fully inside its own cell. Each sprite must occupy at most 65% of cell width and 65% of cell height, centered, with at least 15% completely transparent gutters on EVERY side. No effects cross cell boundaries or touch image edges. Clear horizontal and vertical empty channels. Keep transparent alpha, no shadow/background/text/border/checkerboard. Do not cut the steam or alter anatomy. All8 full-body poses fit in8 nonoverlapping cells. Same pose order idle/move/attack/cast then hit/guard/ultimate/defeat.",
+      "inputSha256": "86bc4fb66497a4d232c4a2c2b0636d6191709ffdfebda9f7e4e8afb71ef7eee5",
+      "output": "battle.png",
+      "sha256": "f91dcc73461219c1fddc824c954e65ed537f51243009a13ec85cb901de4ec95c",
+      "status": "SELECTED: measured gutters/17-cell audit passes"
+    },
+    {
+      "type": "generate with selected battle as style reference",
+      "prompt": "Create a NEW transparent game skill EFFECT atlas matching the attached original bowl-mask Forgotten Host sprite as STYLE REFERENCE ONLY. Do not include the character in this effect sheet. Exactly THREE columns and THREE rows, nine distinct effects with wide transparent gutters, every effect fully isolated and fully inside its own cell, occupying at most60% of width and height. Landscape/square1536x1536 if possible. Clean hand-painted anime fantasy, charcoal ivory/teal steam and amber invitation ribbons, original motifs, no text/numbers/UI/icons/rectangles/borders/checkerboard/background. Row1 Mời hụt LEFT TO RIGHT:1 thin curved amber invitation ribbon with a subtle steam crescent warning,2 bright broad wooden-paddle sweep impact crescent with tiny amber sparks,3 small fading amber steam curl. Row2 Tắt bếp:1 small upright warm hearth ember surrounded by three wisps of cool steam,2 blue-grey snuffing plume embracing a tiny fading amber flame actual impact,3 sparse fading cool steam puff. Row3 Ghế trống:1 protective ethereal empty-chair back silhouette framed by an oval of teal steam,2 same protective chair rim showing amber cracks beginning to break,3 shattered steam oval dissolving into small ivory/amber wisps. No floor, environment or solid background; real transparent alpha. Art suited to readability at120px runtime. The nine effects must NEVER touch image/cell edges or other cells. Empty fully transparent channels separate every row/column.",
+      "referenceSha256": "f91dcc73461219c1fddc824c954e65ed537f51243009a13ec85cb901de4ec95c",
+      "output": "fx.png",
+      "sha256": "d1671193bef36f37230b174e489542f649eb8689b40c865fba254932187f1dab",
+      "status": "SELECTED: original9 effect cells; no external art"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED"
+}

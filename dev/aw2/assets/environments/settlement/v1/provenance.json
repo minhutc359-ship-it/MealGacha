@@ -1,0 +1,37 @@
+{
+  "task": "AW2-006O",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-24",
+  "prompts": [
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/homes-prompts.json",
+      "sha256": "b748f339fd041c1a0836808a8042be6fa35002746d05b8dbcbbe0e7dee60b6ad"
+    },
+    {
+      "path": "dev/aw2/assets/environments/settlement/v1/shops-prompts.json",
+      "sha256": "aa4e763086a28fcf7704cf52cd56936fe906f8614b5f2bd4fe868e6abf6e8411"
+    }
+  ],
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "role": "own project style reference",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5",
+      "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+      "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d"
+    },
+    {
+      "path": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png",
+      "role": "own project style reference",
+      "sha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede",
+      "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+      "blob": "27893fcdb294368a46db5448531743544cf6a8d8"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "processing": "Unchanged selected PNGs; exactRGBA losslessWebP; measured safe cells. Uniform render scale only; no code painting/masking/mirroring/resizing.",
+  "builder": "dev/tools/build-aw2-settlement.py",
+  "pillow": "10.2.0"
+}

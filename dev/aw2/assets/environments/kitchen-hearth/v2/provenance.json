@@ -1,0 +1,38 @@
+{
+  "task": "AW2-006L",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-10-24",
+  "prompts": {
+    "path": "dev/aw2/assets/environments/kitchen-hearth/v2/prompts.json",
+    "sha256": "318b0a1b124086cc40ebc80ee6a0d844c4cf482b3575f9e9aeaec094efb362bf"
+  },
+  "references": [
+    {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/floor-source.png",
+      "role": "edit target",
+      "sha256": "c630b749e4f918e709126da49b3692f0d97e2d1f7bff239fbf814acf71c7db86",
+      "commit": "4d463302f95a33788ac9cb9c8274f12b18d86281",
+      "blob": "c9e8b9902f7874825f19fca476725fa6f2816195"
+    },
+    {
+      "path": "dev/aw2/assets/environments/kitchen-pantry/v1/floor-source.png",
+      "role": "own style reference",
+      "sha256": "014fac74ccce65b0908b101874f006338fd8cca6e3785c2b2cf0660b4206fe27",
+      "commit": "8543ad5c309d982ba0e7ae60753371aea384699e",
+      "blob": "ab97b6ef05b562e644625617480557517ec47d44"
+    },
+    {
+      "path": "dev/aw2/assets/environments/covenant-village/v2/landscape-source.png",
+      "role": "own style reference",
+      "sha256": "968919f466f7dbdd752626e4f75b8101c757a02ff55e89c4415358e8275bc3c5",
+      "commit": "f0c1be37cef1c83416c5eb76be2943d1e768f2bc",
+      "blob": "383d13443d698e8f12a82c40990ef4a6ab949f3d"
+    }
+  ],
+  "licenseStatus": "REVIEW_REQUIRED",
+  "commercialRelease": "NOT_CLEARED",
+  "processing": "Unchanged selected opaque PNG; exact RGBA lossless WebP. No pixel painting/masking/cropping/resizing. Existing v1 props and own four-facing boss reused unchanged. Uniform 1:1 scene placement; native640x384 gameplay region unchanged.",
+  "builder": "dev/tools/build-aw2-interior-landscapes.py",
+  "pillow": "10.2.0"
+}

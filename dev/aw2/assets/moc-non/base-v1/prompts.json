@@ -1,0 +1,46 @@
+{
+  "task": "AW2-004B",
+  "spiritId": "aw2-moc-non",
+  "mode": "built-in image_gen",
+  "date": "2026-10-20",
+  "calls": [
+    {
+      "id": "AW2-004B-08",
+      "kind": "portrait",
+      "prompt": "Use case: stylized-concept. Original chest-up portrait and identity reference for AW2 spirit aw2-moc-non, Mộc Non, Gỏi cuốn-affiliated support. Slender young adult human with a long light silhouette, warm olive skin, hazel eyes, dark brown straight hair tied into a small high knot with two loose temple locks. Pale cream inner top, leaf-green long wrap tunic, fabric strips folded and tied like a neat leaf parcel, small folded bamboo fan held at chest for giving signals. Welcoming collaborative expression. Distinct from other characters, no antlers, no fairy wings, no branch crown, no sword. Original HD anime RPG linework with soft cel shading, natural leaf-green/cream palette. One head-and-shoulders portrait on square canvas, all hair and shoulders within 12 percent transparent margins. True transparent alpha background, no forest/scenery, no frame, text, labels, logos or imitation of an external franchise/artist.",
+      "inputImages": [],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-14",
+      "kind": "world",
+      "prompt": "Use case: stylized-concept. Original AW2 Mộc Non aw2-moc-non. Image1 is identity reference only. Preserve slender young adult human, warm olive skin, hazel eyes, dark brown hair in a small high knot with two temple locks, leaf-green long wrap tunic and parcel-folded fabric ties over cream inner top, folded bamboo fan. Lower body loose cream trousers and simple brown cloth shoes. Collaborative support, no wings/antlers/crown/weapon. Same face and costume in each pose. True transparent alpha outside silhouettes, no background/floor/shadows/text/grid/labels. Exact square FOUR columns x FOUR rows atlas,16 isolated complete pixel/chibi bodies, crisp pixel clusters, 3-head proportions. Each body fits central 60% width and 75% height of equal invisible cell, huge transparent gutters. Rows front/down, profile left, profile right, back/up with back of head. Columns in each row idle, left-step, passing feet, right-step. Clearly distinct walking feet poses, all hair/fan/cloth/shoes inside cells. Same scale and foot baseline. Fan folded and held close, no magic effects.",
+      "inputImages": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-0e091ffd-86ae-4545-be94-1d2b03ae0a27.png",
+          "sha256": "ac454840da48f02fc820b160b486d9e86041dbcb32b5807e34553414e86af005"
+        }
+      ],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-15",
+      "kind": "battle",
+      "prompt": "Use case: stylized-concept. Original AW2 Mộc Non aw2-moc-non. Image1 is identity reference only. Preserve slender young adult human, warm olive skin, hazel eyes, dark brown hair in a small high knot with two temple locks, leaf-green long wrap tunic and parcel-folded fabric ties over cream inner top, folded bamboo fan. Lower body loose cream trousers and simple brown cloth shoes. Collaborative support, no wings/antlers/crown/weapon. Same face and costume in each pose. True transparent alpha outside silhouettes, no background/floor/shadows/text/grid/labels. Exact EIGHT SMALL complete-body HD anime key poses on wide 3:2 canvas, FOUR columns x TWO rows. CRITICAL keep each figure entirely inside central 60% width and 75% height of own equal cell. Wide empty transparent vertical corridors at column quarters and horizontal corridor at midpoint. All hair/fan/cloth/shoes enclosed; arms stay close, same scale. Row1: relaxed idle fan folded at chest; light rightward step; small fan flick forward for leaf projectile; compact fan-and-hand gesture tying a protective parcel. Row2: recoil hit; fan held across torso guarding; fan opened near shoulder and other hand signaling team link ultimate; kneeling exhausted defeat holding folded fan. Clean original anime ink/cel shading, eight visibly distinct silhouettes, no FX, no trails, no shadow.",
+      "inputImages": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-0e091ffd-86ae-4545-be94-1d2b03ae0a27.png",
+          "sha256": "ac454840da48f02fc820b160b486d9e86041dbcb32b5807e34553414e86af005"
+        }
+      ],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-16",
+      "kind": "fx",
+      "prompt": "Use case: stylized-concept. Original AW2 Mộc Non VFX ICON atlas on square transparent alpha. Exactly FOUR columns x FOUR rows of equal invisible cells. Each small icon restricted to CENTER 40% width/height of cell with enormous EMPTY transparent gutters. Sharp anime ink/cel forms, leaf green, pale jade, cream, restrained gold, NO BLOOM/FOG/SMOKE/HAZE, no backgrounds/text/grids/people. Row1 ranged basic: col1 small pointed jade leaf projectile facing right and short thin tail; col2 same leaf with two short trails; col3 small leaf-shaped contact star with two leaf fragments; col4 two fading leaf fragments. Row2 protection: four stages of a small folded-leaf parcel shield, a folded leaf / three wrapping strips / neat translucent jade parcel shell / two fading strips. Row3 helping rhythm: four stages of a tiny folded fan with two handlike arc accents, seed / two distinct arcs / three gentle rhythm ticks / one faint arc; no real human hands. Row4 team link: four stages of a compact shallow oval link connecting five little leaf nodes, forming / partial link / complete five-node link / broken fading link. No huge effects, all art fully enclosed in center of individual cells.",
+      "inputImages": [],
+      "transparentBackground": true
+    }
+  ]
+}

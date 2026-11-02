@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "stableFiles": 851,
+  "stableTextFiles": 78,
+  "stableExcludedMarkers": [
+    "aw2.development.save",
+    "aw2-than",
+    "aw2-lam",
+    "aw2-lua",
+    "/dev/aw2/",
+    "AW2-004E"
+  ],
+  "reviewFiles": 101,
+  "reviewBytes": 29817175,
+  "reviewNoPngTsTsxMapZip": true,
+  "newLamWebpBytes": 1758940,
+  "newLamDecodedRGBA": 12580128,
+  "LamMaxEdgeAlpha": 3,
+  "stableTextSuffixes": [
+    ".css",
+    ".html",
+    ".js",
+    ".json",
+    ".svg",
+    ".txt",
+    ".webmanifest"
+  ]
+}

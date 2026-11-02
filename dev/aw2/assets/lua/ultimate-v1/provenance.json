@@ -1,0 +1,43 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-lua",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: Soul of Meal original ultimate cut-in artwork. Input image 1 is the project's existing original portrait, used solely to preserve exact face, hairstyle, clothing, colors and character identity. Make a NEW dynamic three-quarter waist-up illustration; expressive natural face and correct hands, no extra limbs, preserve costume. Polished detailed hand-painted anime game art matching this reference, strong readable silhouette, restrained magical highlights and richly shaded cloth. One character only. Landscape 1536x1024; keep head, hands, tools and main effects fully inside with safe padding. Genuine transparent background, no scenery, no rectangular background, no UI, no lettering, no logos or watermarks. Lửa Nhỏ: same cheerful young Vietnamese man with brown tousled hair, teal jacket over cream shirt, orange scarf, brown travel bag. Approved ultimate 'Dọc Phố Sớm': dashing forward on a flowing ribbon of dawn-orange warmth, scarf following the movement, eager determined smile, one gloved hand leading the dash, no new weapon. Compact orange-gold streaks curling behind him; retain teal/orange costume.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/lua/base-v1/portrait.png",
+      "sha256": "077beff42ba2e04085db73daf58aae35d8e8c34edb83166add1f53e7bcc54682"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/lua/ultimate-v1/art.png",
+    "sha256": "e2ed2082a0ff94d379aa55600d1daf30c43287e1b9a503a5d39b7f026f2e40be"
+  },
+  "toolOutputFilename": "exec-2872ee35-9d98-4c8d-9440-c6cb13c9b6e9.png",
+  "selected": true,
+  "runtime": {
+    "id": "aw2-lua:ultimate-art:v1",
+    "url": "/dev/aw2/assets/lua/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2024112,
+    "sha256": "bf895b2871c8284258d2f6ba0c1fa2566d7fe7969313f863ade37924a24e4975",
+    "source": {
+      "path": "dev/aw2/assets/lua/ultimate-v1/art.png",
+      "sha256": "e2ed2082a0ff94d379aa55600d1daf30c43287e1b9a503a5d39b7f026f2e40be"
+    },
+    "promptSha256": "2db9745ec4d8aeb2ee7e649a345c41a41e1ab37b07c1a547e7dd29b33075c284",
+    "transparentFraction": 0.235679
+  },
+  "processing": "Source PNG preserved byte-for-byte; exact lossless WebP RGBA, no repaint/masking/mirroring/resizing.",
+  "providerUseBasis": "aw2-openai-output-use-2026-11-02",
+  "sourceAudit": "VERIFIED",
+  "copyrightExclusivity": "NOT_ASSERTED",
+  "humanLegalReview": "NOT_RUN",
+  "licenseStatus": "PROVIDER_TERMS_DOCUMENTED",
+  "commercialRelease": "NOT_CLEARED"
+}

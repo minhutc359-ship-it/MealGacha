@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "trackedAssetManifestPaths": 87,
+  "repeatBuildByteIdentity": true,
+  "onlyChangedTrackedPaths": [
+    "dev/aw2/assets/lam/base-v1/provenance.json",
+    "src/aw2/assets/lam.base-v1.json"
+  ],
+  "originalLamImageAudioPreserved": 12,
+  "priorHarnessFailures": [
+    "initial original comparison included intentionally modified TS helpers; no asset/rebuild mismatch; restrict inventory to assets/manifests",
+    "second byte/identity assertions passed but report directory was missing; created directory before final run"
+  ]
+}

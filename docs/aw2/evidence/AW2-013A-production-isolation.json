@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "files": 851,
+  "textArtifacts": 72,
+  "markers": [
+    "aw2.development.save",
+    "/dev/aw2/",
+    "aw2-economy-development-v1",
+    "aw2-combat-development-v1",
+    "aw2-leveling-development-v1",
+    "aw2-grant-chest-pantry",
+    "aw2-zone-covenant-village",
+    "AW2-013A"
+  ],
+  "hits": [],
+  "stableBuild": "pnpm build (Vite + releaseGuard.mjs)",
+  "reviewBuildSeparate": "dist-aw2/"
+}

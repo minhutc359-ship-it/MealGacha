@@ -1,0 +1,17 @@
+{
+  "task": "AW2-006M",
+  "selected": "idle-source.png",
+  "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-efcabe87-8556-47ad-9c6e-57714c863ecc.png",
+  "sha256": "86fa37be9288b03d13691a2c7380920e3463405a4fa4a6d037a16332c6d51913",
+  "generatedCount": 2,
+  "selectedCount": 1,
+  "rejectedCount": 1,
+  "inspection": "Opened generated output: faithful own reference identity/clothes/held objects, four authored neutral/breath/blink/gesture poses. Feet measured before runtime integration. Selected PNG unchanged; transparent background retained.",
+  "rejected": [
+    {
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-241bcad1-9cf3-43b1-9158-ba5b78a7b3b4.png",
+      "sha256": "346287375f35dddc966cf3df7b97008ee238e2ca49b6d1495dec3363e392f8ae",
+      "reason": "Blink table leg antialias alpha23 touched outer image bottom; no safe frame margin."
+    }
+  ]
+}

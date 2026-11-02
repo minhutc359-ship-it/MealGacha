@@ -1,0 +1,170 @@
+{
+  "aw2-than": {
+    "id": "aw2-than:ultimate-art:v1",
+    "url": "/dev/aw2/assets/than/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2103696,
+    "sha256": "9d8354b704f20487b8bb812f5e423f81d57b2d5e8a0feef3f38659eb69d6d09d",
+    "source": {
+      "path": "dev/aw2/assets/than/ultimate-v1/art.png",
+      "sha256": "f1e83a7ef5d6d300ed3a7d8896f15f44f90c400381480366b3581ec73c5dec53"
+    },
+    "promptSha256": "4a5f6ba9115245c11608fdd4563a1bbebc9e1b5de875507db006ee8d3698cdb6",
+    "transparentFraction": 0.299697
+  },
+  "aw2-lua": {
+    "id": "aw2-lua:ultimate-art:v1",
+    "url": "/dev/aw2/assets/lua/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2024112,
+    "sha256": "bf895b2871c8284258d2f6ba0c1fa2566d7fe7969313f863ade37924a24e4975",
+    "source": {
+      "path": "dev/aw2/assets/lua/ultimate-v1/art.png",
+      "sha256": "e2ed2082a0ff94d379aa55600d1daf30c43287e1b9a503a5d39b7f026f2e40be"
+    },
+    "promptSha256": "2db9745ec4d8aeb2ee7e649a345c41a41e1ab37b07c1a547e7dd29b33075c284",
+    "transparentFraction": 0.235679
+  },
+  "aw2-lam": {
+    "id": "aw2-lam:ultimate-art:v1",
+    "url": "/dev/aw2/assets/lam/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1841148,
+    "sha256": "e19130ac593841889ef3e87a419887f00ddd549a804f56b567e29a2d229a4189",
+    "source": {
+      "path": "dev/aw2/assets/lam/ultimate-v1/art.png",
+      "sha256": "514e52d3266150ff8d89b75bb649aa71c60abffacb30f34e3705e18c0da438f9"
+    },
+    "promptSha256": "fa2e2c327e1e6ee4fa84bd2ca5996591552e7b686d1dfc3a6c9a3ec4e0bc4150",
+    "transparentFraction": 0.285514
+  },
+  "aw2-moc-non": {
+    "id": "aw2-moc-non:ultimate-art:v1",
+    "url": "/dev/aw2/assets/moc-non/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1958530,
+    "sha256": "56fce6525b4b230a05d930a421e59724e58c4ae1dd4bfa8a9a8ece8850c23ca4",
+    "source": {
+      "path": "dev/aw2/assets/moc-non/ultimate-v1/art.png",
+      "sha256": "aa888262cbbf31ce1fc4c0f20b756ef2133a6977c0252d57f7fb882c21c1aaf6"
+    },
+    "promptSha256": "11b8670db2c232f4de1e2041a1e5a86397d03d16f09918bb6a0ef0cc15d311ef",
+    "transparentFraction": 0.303204
+  },
+  "aw2-suong": {
+    "id": "aw2-suong:ultimate-art:v1",
+    "url": "/dev/aw2/assets/suong/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1840142,
+    "sha256": "0dcec5499630a946089c4221a4740b404cb13c5f1f8f9511da242ef2aa2c9532",
+    "source": {
+      "path": "dev/aw2/assets/suong/ultimate-v1/art.png",
+      "sha256": "2d7e83d449e8b8844f6f8590676b88f7ecc0a8cb3473734328c53e2d81e11665"
+    },
+    "promptSha256": "ecbf7987af701e1df4af9df56f78b0a0c06e49c118d4b299e67e6201b93f0f3b",
+    "transparentFraction": 0.17454
+  },
+  "aw2-muoi": {
+    "id": "aw2-muoi:ultimate-art:v1",
+    "url": "/dev/aw2/assets/muoi/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1360674,
+    "sha256": "f032e76e854d7edf5c9dca347d8de420c73f21d1e94a76351d06fbb1e35406c5",
+    "source": {
+      "path": "dev/aw2/assets/muoi/ultimate-v1/art.png",
+      "sha256": "87baf71904b6201f9c3f1225c281a8889d61f078a8d53e883431323f9f1664db"
+    },
+    "promptSha256": "b978a7d3ce291e3d36da7e97caef503947f6a9240af3fafe13d5642b14dfbd15",
+    "transparentFraction": 0.475403
+  },
+  "aw2-nhien": {
+    "id": "aw2-nhien:ultimate-art:v1",
+    "url": "/dev/aw2/assets/nhien/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1757952,
+    "sha256": "05f67e2d391739e545b24192a7c68a8c9f8e654861245a61ed34d481a8c4d11a",
+    "source": {
+      "path": "dev/aw2/assets/nhien/ultimate-v1/art.png",
+      "sha256": "4a99b6f44c2d36eee67bf6f60ed1fd0a20ce0c33c7499d10531c8c2445ef3599"
+    },
+    "promptSha256": "cbf6e0137a63c27c1e89d7ee4e72ef879b1b63c0d595f668b54130baace1422e",
+    "transparentFraction": 0.392198
+  },
+  "aw2-hai": {
+    "id": "aw2-hai:ultimate-art:v1",
+    "url": "/dev/aw2/assets/hai/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2132968,
+    "sha256": "06b45fff20813dbf6eb46c122020a9727457a16a2637c662b4748cd191dceeb4",
+    "source": {
+      "path": "dev/aw2/assets/hai/ultimate-v1/art.png",
+      "sha256": "102ac29acbe0b5dc4700d479db2fc57e5f9c73772d5b99964c7bf848d926f783"
+    },
+    "promptSha256": "045780b8c9690c4db35ba237d7abbf4a2dc169168c48f1c22c91dcda85bdd079",
+    "transparentFraction": 0.195999
+  },
+  "aw2-lien": {
+    "id": "aw2-lien:ultimate-art:v1",
+    "url": "/dev/aw2/assets/lien/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1918652,
+    "sha256": "e7a685061f091e1063df02f356873fdd1e7a0bad77251353ed3aef46fba398c4",
+    "source": {
+      "path": "dev/aw2/assets/lien/ultimate-v1/art.png",
+      "sha256": "375129f0ea14c090daf0aecc0a7ab48cf88f30b4a4c1f39dd482c5ac7023c000"
+    },
+    "promptSha256": "63519d29a7f216795ccdf48094160b0bf5bf2c7de74348d4b192b118216c3aec",
+    "transparentFraction": 0.245916
+  },
+  "aw2-moc": {
+    "id": "aw2-moc:ultimate-art:v1",
+    "url": "/dev/aw2/assets/moc/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2201524,
+    "sha256": "b0686843b0bbbaf41e37dd633247fb55a7a8d6e10fc3f6e4cf26f34e26ebbbb9",
+    "source": {
+      "path": "dev/aw2/assets/moc/ultimate-v1/art.png",
+      "sha256": "035910e891eb776fc531d1043f98915d4405aff7f31cfef06c19624097c10320"
+    },
+    "promptSha256": "a2e2916875f675966dfb73bdddf46f6151e2fd5540536de1140edbfb6169caf1",
+    "transparentFraction": 0.197271
+  },
+  "aw2-bach": {
+    "id": "aw2-bach:ultimate-art:v1",
+    "url": "/dev/aw2/assets/bach/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2200088,
+    "sha256": "9a00f14a1c8fef346c00751ab105bb72ca062e1366b3bc5785ac539b182cb2f7",
+    "source": {
+      "path": "dev/aw2/assets/bach/ultimate-v1/art.png",
+      "sha256": "2e08d177e7a539eae6386063e0bb944caa31461bd3a72d357c96623c5acb201f"
+    },
+    "promptSha256": "49ac65129b3758ab8540d86d4ed918974a41b2e8c0aa6f93ab5dedae981685b8",
+    "transparentFraction": 0.226744
+  },
+  "aw2-van": {
+    "id": "aw2-van:ultimate-art:v1",
+    "url": "/dev/aw2/assets/van/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1668342,
+    "sha256": "ca6aecd0e578cd510d357951bb5c683b87a331aa7310b665554d3f1b0acdfb07",
+    "source": {
+      "path": "dev/aw2/assets/van/ultimate-v1/art.png",
+      "sha256": "c22026c9f70fa70cf83a3f084b19829cfb943c07d1e084b9f4a9274268fb60c3"
+    },
+    "promptSha256": "bb326894254947bcd87e4c176ac30c664dc2cef1fea5f7bebdbd2442acd68f03",
+    "transparentFraction": 0.381114
+  }
+}

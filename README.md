@@ -1,3 +1,17 @@
+# Soul of Meal · Hành trình mới
+
+**018M: web chính là game mới; chỉ giữ Rương Vị Giác original.** Trên `game/adventure-world-2`, `pnpm dev`, `pnpm build` và `pnpm preview` mở game mới tại `/`. `/chest` giữ rương; đường dẫn UI cũ về game mới. Build tự kiểm module graph, asset/package và candidate từ chính output vừa tạo. Đã thêm sao lưu/khôi phục JSON, legal/offline fixes và CI cho nhánh AW2. Công cụ QA dùng `pnpm dev:aw2` hoặc `pnpm build:aw2`, không nằm trong artifact chính. [Cấu hình server](docs/aw2/SERVER_BUILD.md) · [Evidence](docs/aw2/evidence/AW2-018M.md).
+
+Build server phải lấy đúng nhánh này; `master` vẫn là source lịch sử riêng. Không tự merge hoặc đổi production branch trên Vercel. Rights, art và thiết bị thật chưa được suy thành PASS từ build. Một đại diện đầu đội trên map, năm thành viên trong combat theo D17.
+
+Các mốc bên dưới là lịch sử; trạng thái hiện hành theo018M.
+
+**Build production trên nhánh này đã chuyển sang AW2.** `pnpm build` và cấu hình Vercel tạo game mới tại `/`; các URL giao diện cũ đều về AW2, chỉ `/chest` và `/chest/` giữ Rương Vị Giác original. `pnpm build:aw2` tiếp tục tạo bộ trang QA riêng. [Chi tiết cutover](docs/aw2/tasks/AW2-018A.md) · [Kiểm chứng](docs/aw2/evidence/AW2-018A.md).
+
+**Báo cáo nhanh từ scretary:** [REPORT.md](docs/aw2/REPORT.md) · [Chạy local để chơi thử AW2](docs/aw2/LOCAL_TEST.md).
+
+AW2 phát triển trên `game/adventure-world-2`. Đọc [tài liệu và tiến độ](docs/aw2/README.md) trước khi tiếp tục. Đã có 6 zone, 4 nhiệm vụ, đội 5 người đi theo, chạm để di chuyển, boss thật và hai kết thúc; save v8 lưu túi đồ/EXP, rương nguyên liệu và nấu/chia bữa. TCG và Auto Chess đều có ván luyện tập với tài nguyên mượn, đối thủ và kết quả thật: **Ghé nhanh TCG/Auto Chess → Chơi thử**. [Luật TCG](docs/aw2/TCG_PRACTICE.md) · [Luật Auto Chess](docs/aw2/AUTO_CHESS_PRACTICE.md) · [Ước lượng hoàn thiện](docs/aw2/DELIVERY_PLAN.md) · [Phần trăm/cách tính](docs/aw2/PROGRESS.md) · [Chơi thử demo](docs/aw2/DEMO.md). Đã có đủ [12/12 bộ hình nhân vật tham chiếu](docs/aw2/ROSTER_ART.md), gồm portrait, world bốn hướng, tám trạng thái HD, FX và âm thanh riêng; boss có bộ hình tham chiếu riêng, final map/NPC art vẫn mở. Demo≈90%, sản phẩm≈40% (35–45%); tài nguyên tham chiếu đủ chưa đồng nghĩa nhân vật hoàn tất full DoD. Sau `pnpm dev`, mở `/` cho production shell hoặc `/dev/aw2/world.html` cho review; `pnpm build:aw2` tạo bản xem thử riêng trong `dist-aw2/`. Gacha mới ở bước mô phỏng/đề xuất, chưa được duyệt để triển khai. Chi tiết kiểm chứng và bước tiếp theo: [HANDOFF](docs/aw2/HANDOFF.md). Các mục Soul of Meal bên dưới là lịch sử của main cũ, không còn là bề mặt production của nhánh AW2.
+
 # Soul of Meal · Web 5.9.20 · Sổ chung và hành trình văn hóa
 
 Nút **▤ Sổ** ở TCG, Phiêu lưu, Auto chess, Rương và PvP mở manga giới thiệu 4 chương hoặc **9 chặng văn hóa / 27 bước tương tác**. Các cuộc gặp có người truyền nghề, món ăn, lựa chọn, phản hồi và trang lưu niệm; tiếp tục được từ tiến trình TCG hoặc Adventure. Sửa thẻ manga giới thiệu bị co và đè lên bìa truyện trong Adventure.
@@ -155,3 +169,7 @@ Không tuyên bố “không có bản quyền”, CC0 hoặc bảo đảm khôn
 - [Cấu trúc dev](dev/README.md), [lịch sử trước 3.3](dev/docs/HISTORY_BEFORE_33.md), [thay đổi 3.2.2](dev/docs/challenge-v322/VERIFICATION.md)
 
 Bản web có PvP giao hữu hai người qua WebRTC cho TCG/Auto chess; chủ phòng tính trận. Chưa có PvP xếp hạng, giao dịch người chơi, quảng cáo, IAP hay đồng bộ tài khoản. Browser QA dùng Chromium; Safari/WKWebView và Android native cần được thử trên máy thật theo kế hoạch mobile.
+
+AW2-007I: Mộc đã có kit thử nghiệm thực thi, dấu hữu hạn/khiên thay dấu/vùng kết tụ có báo trước và cấp1–20. Chạy `pnpm dev`, mở `/dev/aw2/battle.html?team=moc`.10/12 kit≈83%,12/12 bộ hình tham chiếu; demo≈90%/sản phẩm≈40% (35–45%) giữ nguyên,0full-characterDoD. [Báo cáo hiện tại](docs/aw2/REPORT.md), [luyện Mộc](docs/aw2/MOC_PRACTICE.md). Next Bách rồi Vân; collection/đội lưu còn chờ.
+
+AW2-007J: Bách Tank có đòn nặng, khiên cá nhân, chia phần từ lượng hấp thụ thật và tuyệt kỹ tiêu khiên để bảo vệ/tác động tuyến trước; cấp1–20. `pnpm dev` → `/dev/aw2/battle.html?team=bach`.11/12kit≈92%,12/12 bộ hình tham chiếu; demo≈90%/sản phẩm≈40% (35–45%) giữ nguyên,0fullDoD. [Báo cáo](docs/aw2/REPORT.md), [luyện Bách](docs/aw2/BACH_PRACTICE.md). Next Vân, collection/đội lưu còn chờ.

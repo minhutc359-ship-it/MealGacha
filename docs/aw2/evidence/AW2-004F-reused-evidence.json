@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "reusedSource": "cf0b39469d1fb8f7d77e18feb5e16895d70565a1",
+  "base": "ff44ab28d5a30a5f63b52b55db25a594118042e3",
+  "unchangedEngineSaveStableEntryBuildConfigDependencies": true,
+  "changedRuntimePaths": [
+    "src/aw2/combat/presentation.ts",
+    "src/aw2/assets/moc-non.base-v1.json",
+    "dev/aw2/BattleCanvas.tsx"
+  ],
+  "reused": [
+    "full1007-unit suite except fresh affected62",
+    "stable851-file/78-text AW2 exclusion build",
+    "complete earned RPG/TCG/Chess/quest/boss/both-ending journeys47+47",
+    "unrelated Than/Lua/other starter previews",
+    "original audio/world/other-unit asset inventories"
+  ],
+  "noHistoricalCountsAdded": true,
+  "fullRegressionRequiredBefore": "release or major save/shared-engine change"
+}

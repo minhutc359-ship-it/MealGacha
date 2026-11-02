@@ -1,0 +1,353 @@
+# Soul of Meal Adventure World 2 — Next Game
+
+**019C VERIFIED technical / EXTERNAL BLOCKED:** sửa lỗi clone thật do object LFS của ảnh evidence bị thiếu; ảnh QA49136bytes/hash cũ nay là Git blob thật. Build/CI audit3662tracked/2443critical/555835985bytes,0pointer/0symlink; thêm release identity và CSP+9header/4cache contract. **2337tests/169files**,hai types/hai builds/package/release/assets/budget PASS. Artifact166712221bytes/396files;JS700718≤710000;offline1479512/27;candidate15/15technical,0/7external. Browser rootgame mới/Rương original/journal source PASS giới hạn; HTTPS/device/rights/human/server vẫn mở. [Task](tasks/AW2-019C.md) · [Evidence](evidence/AW2-019C.md) · [Server](SERVER_BUILD.md).
+
+**019B VERIFIED engineering / EXTERNAL BLOCKED:** một batch/commit bổ sung save9, triệu hồi1/10 miễn phí và vé từ biên nhận thật, tiến trình TCG/Chess3bậc với kết quả engine, nhật ký12VịLinh, boss32cel+4cue và kiểm nguồn171/171media. **2312tests/167files**,hai types/hai builds,source/repeat/package/catalog/assets/release/4budget checks PASS;browser nguồn qua QA memory PASS giới hạn,không bỏ Web Locks. Build166711768bytes/395files;JS700716≤710000;offline1479512bytes/27URLs;candidate12/12technical,0/7external. Rootgame mới+Rương original giữ nguyên. Không tuyên bố100%production hoặc duyệt rights/human/device/server. [Evidence](evidence/AW2-019B.md) · [Free scope](FREE_PLAY.md).
+
+**019A VERIFIED technical:**12ảnh HD tuyệt kỹ mới đã vào actual combat/roster;source-use dossier kiểm12nhân vật/126runtime files,credit/legal/build guard hoàn tất. Full2.278/163,38focused,hai types/hai builds/art repeat/package/assets/release/budget PASS. Production164.450.337bytes/389files;JS698.274≤710.000. Browser art/DOM cue PASS giới hạn;fullDoD/commercial clearance0/12,independent/human/device vẫn mở. Demo90/product≈40 giữ nguyên. [Evidence](evidence/AW2-019A.md) · [Art/quyền](ART_AND_RIGHTS.md).
+
+**018M hiện hành:**`pnpm dev/build/preview` mở game mới tại `/`,chỉ `/chest` giữ UI cũ;module graph chặn App/main/pages khác và QA UI. Backup/restore JSON,policy/worker fixes,CI AW2 và fresh artifact audit đã vào code.2.239tests/161files,hai types/builds/package PASS;browser UI/source route+chest PASS giới hạn. HTTPS/device/rights/human/Vercel settings chưa được ký duyệt. [Task](tasks/AW2-018M.md) · [Evidence](evidence/AW2-018M.md) · [Server build](SERVER_BUILD.md) · [Backup](SAVE_RECOVERY.md).
+
+**AW2-018L hiện hành — batch10/10:** technical candidate12/12PASS nhưng external0/7,overall`BLOCKED_EXTERNAL`;deploy/release false. Artifact audit CLI và stage→test→promote/rollback runbook đã khóa, không chạy Vercel. Full2.207unit/159files,hai builds/package PASS. Roadmap kỹ thuật10/10 đã xử lý,0commit định trước; product≈40% giữ nguyên. [Task](tasks/AW2-018L.md) · [Evidence](evidence/AW2-018L.md) · [Candidate](RELEASE_CANDIDATE.md) · [Rollback](ROLLBACK.md).
+
+**AW2-018K hiện hành — batch9/10:** UAT matrix7lane/8scenario và evidence contract yêu cầu SHA-256/human/device/no-automation/exact privacy allowlist; hiện0PASS/0FAIL/7NOT_RUN. Full2.197unit/158files,hai builds/package PASS. [Task](tasks/AW2-018K.md) · [Evidence](evidence/AW2-018K.md) · [Matrix](UAT_MATRIX.md) · [Roadmap còn1commit kỹ thuật](PRODUCTION_10_COMMIT.md).
+
+**AW2-018J hiện hành — batch8/10:** performance build/runtime budgets, scalar telemetry privacy và AW2-only error recovery đã khóa; artifact/offline/JS PASS, cold-load/FPS/GPU/heap/long-task thiết bị thật `NOT_RUN`. Full2.187unit/157files,hai builds/package PASS. [Task](tasks/AW2-018J.md) · [Evidence](evidence/AW2-018J.md) · [Contract](PERFORMANCE.md) · [Roadmap còn2commit kỹ thuật](PRODUCTION_10_COMMIT.md).
+
+**AW2-018I hiện hành — batch7/10:** contract machine-readable xác nhận6zone/6room/8NPC/4quest/12spirit,12/12 portal có return route,6/6 vùng reachable và0placeholder; human story/content acceptance vẫn `NOT_RUN`. Full2.178unit/156files,hai builds/package PASS; browser thật `NOT_RUN`. [Task](tasks/AW2-018I.md) · [Evidence](evidence/AW2-018I.md) · [Contract](CONTENT_ACCEPTANCE.md) · [Roadmap còn3commit kỹ thuật](PRODUCTION_10_COMMIT.md).
+
+**AW2-018H hiện hành — batch6/10:** inventory machine-readable xác nhận12/12 technical reference package nhưng giữ0/12 full DoD,rights-cleared,release-ready; art/device/audio đều `NOT_RUN`. Full2.172unit/155files,hai builds/package PASS; browser thật `NOT_RUN`. [Task](tasks/AW2-018H.md) · [Evidence](evidence/AW2-018H.md) · [Inventory](CHARACTER_READINESS.md) · [Roadmap còn4commit kỹ thuật](PRODUCTION_10_COMMIT.md).
+
+**AW2-018G hiện hành — batch5/10:** balance contract/fingerprint khóa12kit/progression/economy; D11 proposal tách khỏi simulator và Hướng dẫn production xác nhận không có draw/spend/purchase/save-pity. Full2.167unit/154files,hai builds/package PASS; browser thật `NOT_RUN` do thiếu Playwright. [Task](tasks/AW2-018G.md) · [Evidence](evidence/AW2-018G.md) · [Contract](BALANCE.md) · [Roadmap còn≈5commit lớn](PRODUCTION_10_COMMIT.md).
+
+**AW2-018F hiện hành — batch4/10:** onboarding bốn bước no-write giữ recovery priority; keyboard/focus/live-region contract và preference chữ/contrast/motion/touch đã vào production shell, gồm safe-area/320px/low-landscape. Full2.163unit/153files,hai builds/package PASS; browser thật `NOT_RUN` do thiếu Playwright. [Task](tasks/AW2-018F.md) · [Evidence](evidence/AW2-018F.md) · [Runbook](ACCESSIBILITY.md) · [Roadmap còn≈6commit lớn](PRODUCTION_10_COMMIT.md).
+
+**AW2-018E hiện hành — batch3/10:** save production có backup+journal+read-back, quarantine và phục hồi explicit; Web Lock/exact raw chặn tab cũ, schema tương lai không bị rollback. Full2.119unit/150files,hai builds/package PASS; browser thật `NOT_RUN` do thiếu Playwright. [Task](tasks/AW2-018E.md) · [Evidence](evidence/AW2-018E.md) · [Runbook](SAVE_RECOVERY.md) · [Roadmap còn≈7commit lớn](PRODUCTION_10_COMMIT.md).
+
+**AW2-018D hiện hành — batch2/10:** production AW2 có update/install/readiness trong game; service worker rollback partial install, fallback shell/chunk cũ, giữ cache có giới hạn và retry quota. Full2.104unit/150files,hai builds/package PASS; browser thật còn `NOT_RUN` do thiếu Chromium. [Task](tasks/AW2-018D.md) · [Evidence](evidence/AW2-018D.md) · [Roadmap còn≈8commit lớn](PRODUCTION_10_COMMIT.md).
+
+**AW2-018C hiện hành — batch1/10:** scene renderer/media tải theo nhu cầu, preload song song,12scene-group inventory, offline core1.436.750bytes và production package gates đều đạt; Rương Vị Giác original vẫn là lazy route/chunk riêng. Full2.094unit/150files và hai build PASS; browser thật còn `NOT_RUN` do thiếu Chromium. [Task](tasks/AW2-018C.md) · [Evidence](evidence/AW2-018C.md) · [Roadmap còn≈9commit lớn](PRODUCTION_10_COMMIT.md).
+
+**AW2-017F hiện hành:** production AW2 có lớp polish dùng chung cho sáu zone: mép cảnh/cổng, bóng collider,12light pool và4ca ambient theo NPC life. Full2.091unit/150files, hai typecheck/build/package/release PASS; không đổi save/gameplay và không thêm media. Browser fresh/independent art/device vẫn mở. [Task](tasks/AW2-017F.md) · [Evidence](evidence/AW2-017F.md).
+
+**Production build trên nhánh AW2 nay là game mới.** `pnpm build` tạo `dist/` với AW2 tại `/`; mọi route main cũ rơi về AW2 và chỉ `/chest`/`/chest/` mở Rương Vị Giác original. `pnpm build:aw2` vẫn tạo review nhiều entry ở `dist-aw2/`. Media production dùng `/assets/aw2`, không ship PNG/tệp ẩn/authoring JSON. [Task018A](tasks/AW2-018A.md) · [Bằng chứng](evidence/AW2-018A.md).
+
+Kiểm chứng018A:2.018unit/148files,hai typecheck/build,46browser cutover+190hành trình compiled,153runtime parity/0unexpected errors. Static300.366.505bytes đã vượt target cảnh báo300MB nhưng dưới hard limit320MB; ưu tiên tối ưu payload/cold-load trước media lớn tiếp theo. Không có deploy hoặc thay đổi `master`/`rpg` trong task này.
+
+017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).
+
+**AW2-017B VERIFIED development — Phố Đèn Lồng có công trình và NPC bên trong.** Giữ ba nhà: Quầy bữa sáng/Xưởng sửa ghế/Nhà bàn chơi; bỏ chín facade dư. Bốn NPC cũ vào đúng phòng, An và Em Đem Nước ở ngoài; đủ tám NPC toàn tuyến, không bản sao. Nhật ký dẫn qua cửa/ra phòng/đến NPC theo scene thật; cửa có dấu ký ức còn thiếu. Save8 đọc1–7 không ghi đè, nâng cấp khi lưu rõ ràng. [Bố cục và cách chơi](MAP_TUONG_TAC.md).
+
+**1.943unit/143files PASS** toàn bộ,18ca mới nằm trong tổng; **498browser mới=190khu Phố+308toàn tuyến**,95+95và154+154source/compiled,0lỗi bất ngờ. Ba phòng/resident sprites+tên đúng/quota–retry/bấm lặp/reload/mode return/đúng cửa/save7, bốnviewport20px/native44px; hai hành trình thật đủ4quest/boss45tick/kết thúc-reload300XP đạt. Hai types/hai builds/262asset parity/517file gốc guard PASS. [Bằng chứng](evidence/AW2-017B.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là cấu trúc và tương tác Phố; nội thất dùng lại art gốc, vườn/biên/collider mỹ thuật cuối chưa hoàn thiện. Hiện6vùng+6phòng,6facade chức năng ở Làng/Phố; Sân còn10facade trang trí. Next017C: Sân Bếp và cửa nối kho/lửa/bàn ăn, trước step portal/đồ vật/lịchNPC. D14/D17/D18/D20/D11giữ nguyên; không commerce/gacha/reward mới hay phát hành. Các mục bên dưới là lịch sử, hiện hành theo017B.
+
+**AW2-017A VERIFIED development — Làng chuyển sang công trình có chức năng.** Ba facade Nhà đồng hành/Tiệm trà/Hội quán đều có cửa và nội thất riêng; bảy nhà trang trí dư đã bỏ khỏi bản render Làng. Lối đi ghép tách lớp và camera gần hơn; nhấn mái đi tới cửa thật. Nhà mở đội/sổ, hội quán mở hai bàn TCG/Chess thật; ra/về giữ đúng phòng và checkpoint. Save7 đọc1–6 không ghi đè, nâng cấp khi lưu rõ ràng. [Bố cục và lộ trình](MAP_TUONG_TAC.md).
+
+**1.925unit/142files PASS** toàn bộ, gồm11ca mới; **414browser mới=118khu mẫu+296toàn tuyến**, source+compiled đều đạt/0lỗi bất ngờ. Ba phòng/quota–retry/bấm lặp/reload/đúng cửa, save6no-write, bốnviewport20px/44px; toàn tuyến4quest/boss45tick/kết thúc300XP đạt. Hai typecheck/hai build/262asset parity đạt;516file gốc được guard. [Bằng chứng](evidence/AW2-017A.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** D24ưu tiên cấu trúc map trước lịchNPC;6zone/8NPC/4quest và D17giữ nguyên. Đây là khu mẫu Làng, chưa hoàn thiện toàn bộ map:22facade Phố/Sân còn xử lý, step portal/đồ vật ngoài trời/nội thất art riêng/vườn-biên-collision cuối chưa xong. Next017B: Phố Đèn Lồng theo cùng cấu trúc công năng và dẫn đường biết phòng. D18/D20/D11không đổi. Các bản ghi dưới là lịch sử; hiện hành theo017A.
+
+**AW2-016K VERIFIED — TCG/Auto Chess tại bàn trong tiệm trà.** Góc nhật ký mở bộ chọn luyện tập có tab/hướng dẫn; vào bàn kiểm tra đúng phòng/khoảng cách và lưu điểm trở về một lần. Quay về giữ đúng vị trí trong phòng/ngoài hiên, không đổi EXP/đội/nguyên liệu. Lưu lỗi giữ menu để thử lại; tab cũ phải Đọc lại. [Cách dùng](BAN_LUYEN_TAP.md).
+
+**142unit/6files PASS**,13ca mới nằm trong tổng; **156browser=78source+78compiled PASS**,0lỗi bất ngờ. Hai lượt mới nhập môn→tiệm trà→TCG thật tới kết quả→Chess giao tranh/sang vòng2→trở về; bốn viewport20px/44px/focus, ghi lỗi–retry/bấm lặp/tabcũ/reload/classic/ra hiên đều đạt. Hai typecheck/hai build/262asset parity đạt;529file cũ được guard nguyên bytes. [Bằng chứng](evidence/AW2-016K.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là dịch vụ trong nội thất hiện có, không phải hội quán mới; schema6/canon/art/economy giữ nguyên. D18/D20/D11 không đổi. Next BA/story/mechanic: chốt contract lịch sinh hoạt NPC trên game clock, giữ điểm nhiệm vụ luôn truy cập được. Các bản ghi dưới là lịch sử, trạng thái hiện hành theo016K.
+
+**AW2-016J VERIFIED — nhiệm vụ có chỉ báo tại NPC và đồ vật.** Dấu nhận nhiệm vụ, mục tiêu và trả nhiệm vụ đọc cùng các thao tác thật; ký ức đã đọc mất dấu, puzzle theo bước hiện tại và boss chỉ mở ghi chép sau khi thắng/lưu. Ưu tiên nhiệm vụ khi nhãn chồng; Địa điểm vẫn nêu trạng thái bếp. [Cách dùng](NHIEM_VU_TREN_MAP.md).
+
+**173 kiểm thử tác động/6 tệp PASS**, gồm16ca mới; **296 kiểm tra trình duyệt mới=148source+148compiled PASS**,0lỗi bất ngờ. Cả hai đi từ save mới qua đủ bốn nhiệm vụ, boss thắng tick45, kết thúc/reload300XP; nhận nhiệm vụ ghi lỗi–retry, classic, bốn viewport/chữ20px/44px/focus/camera đều đạt. Hai typecheck/hai build/262asset byte parity đạt. [Bằng chứng](evidence/AW2-016J.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là hoàn thiện UX trên tiến trình hiện có. Sửa các hàng backlog008B/015B/016F còn mang nhãn kế hoạch cũ theo bằng chứng đã có; bổ sung016G/H/I. D18/D20/D11 giữ nguyên. Next BA/story/mechanic: chốt phạm vi nội thất/NPC tiếp theo theo ma trậnv1.1; nghiệm thu độc lập/điện thoại vẫn gác theoD20. Các bản ghi dưới là lịch sử; trạng thái hiện tại theo016J.
+
+**AW2-016I VERIFIED — cửa và dịch vụ có chỉ báo trên bản đồ.** Nhãn hiện Lối mở/Khóa, trạng thái bàn TCG/cờ/tiệm trà, rương Chưa nhận/Đã nhận và bếp đủ đồ/có bữa ấm/thiếu đồ. Góc bám có tên và chữ; toàn cảnh dùng biểu tượng tĩnh, ẩn nhãn bị cắt/chồng. Địa điểm dùng cùng giải thích; đổi menu và tới hai đầu phân trang giữ focus. [Cách dùng](CUA_VA_DICH_VU.md).
+
+**191 kiểm thử tác động/7 tệp PASS**, gồm39 ca mới; **794 kiểm tra trình duyệt mới =397 source+397 compiled PASS**,0 lỗi bất ngờ. Bốn viewport/chữ20px/44px, cửa theo nhiệm vụ và puzzle thật, rương ghi lỗi→retry, nấu/chia đến thiếu đồ, all4renderer/6vùng+tiệm trà, save5–6/Stop/WebGL/tab cũ/classic đã kiểm tra. Hai typecheck/AW2+stable build/262asset byte parity đạt. Full1781unit016F chỉ tái sử dụng cho engine/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016I.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là cải thiện UX, chưa đóng các gate nghiệm thu độc lập/sản phẩm. Không đổi canon/schema/luật/thưởng/gacha/asset; trạng thái chỉ đọc và không tự thực hiện thao tác. D18/D20/D11 giữ nguyên; D16push trực tiếp AW2. Next BA/mechanic/UX/tester:016Jchỉ báo nhiệm vụ có thể nhận/hoàn tất tại NPC và đồ vật, scope riêng trước triển khai. Các bản ghi dưới là lịch sử; trạng thái hiện tại theo016I.
+
+**AW2-016H VERIFIED — điểm đến đang đi và nút Dừng.** Thanh Đang tới nêu đích, vòng tròn/mũi tên mép khung dùng camera thật; có thể đổi Bám/Toàn cảnh khi đi. Dừng bằng chuột/bàn phím hoặc Escape giữ vị trí hiện tại và trả focus map. Chọn lại đích/điều khiển tay/menu/lỗi/mấtfocus/tabcũ hủy đường cũ, không tự chạy lại. Tới nơi vẫn tự E/hành động. Sửa nhãn bị cắt theo cùng khung nhìn. [Cách dùng](DUONG_DI.md).
+
+**152ca unit tác động/7files PASS**,39ca mới nằm trong tổng; **328kiểm tra trình duyệt mới=164source+164compiled PASS**,0lỗi bất ngờ. Bốn viewport/chữ20px/44px/camera/marker/focus, đủ4renderer/6vùng+tiệmtrà, introthật/save5–6/modesreturn/WebGL/tabcũ/classic đã kiểm tra. Hai typecheck/AW2+stable builds/262asset byte parity đạt. Full1781unit016F chỉ tái sử dụng cho engine/save/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016H.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đích/đường đi chỉ ở bộ nhớ, không thêm schema/media/NPC/quest/reward/gacha; toàn bộ art/provenance và tiến trình được giữ. D18/D20/D11 giữ nguyên; D16push AW2, không master/rpg/milestonePR/deploy/release/reset. Next BA/mechanic/UX/tester:016Idấu cửa mở/khóa và dịch vụ sẵn sàng ngay trên bản đồ, scope riêng trước triển khai. Các mục dưới là lịch sử; trạng thái hiện tại theo016H.
+
+**AW2-016G VERIFIED — chỉ dẫn cửa và tương tác theo địa điểm.** Địa điểm có điểm đứng an toàn và nút Xem tương tác khi đã gần; mở đúng đối tượng đang chọn, không tự thực hiện hành động. Bản đồ ghi rõ phòng hiện tại, chỉ ra hiên trước khi sang vùng khác và có mục Tiệm trà tại Làng. Nhãn cạnh E nêu điểm gần nhất; Escape trả focus map. Classic dùng chung cả hai menu, bỏ điểm hiên trùng. [Cách dùng](DIA_DIEM.md).
+
+**124ca unit tác động/6files PASS**, gồm27ca mới; **510kiểm tra trình duyệt mới=255source+255compiled PASS**,0lỗi bất ngờ. Bốn viewport/chữ20px/44px, freshintro5người30XP/gate thật, save5và6có nguồn, đủ6vùng và hai entry; cảnh lỗi/retry/tabcũ/raw/focus/pause đã kiểm tra. Hai typecheck/AW2+stable builds/262asset byte parity PASS. Full1781units016F chỉ tái sử dụng cho engine/save/economy/art không đổi, không cộng vào số mới. [Bằng chứng](evidence/AW2-016G.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Không thêm media/canon/schema/rewards, giữ nguyên mọi asset/provenance và save. D18/D20/D11 giữ nguyên; D16push trực tiếp AW2, không master/rpg/deploy/release/reset. Next BA/UX/tester:016Hđiểm đến đang đi và nút dừng đường đi, scope riêng trước triển khai. Các mục dưới là lịch sử; trạng thái hiện tại theo016G.
+
+**AW2-016F VERIFIED — tiệm trà đã có nội thất và lưu vị trí riêng.** Cửa ở hiên Làng mở phòng con có bàn đội đồng hành và góc nhật ký/công thức. Đổi trưởng đội dùng bộ sưu tập thật; đọc không ghi save, TCG/Auto Chess trở về đúng phòng; ra hiên khôi phục đúng điểm/hướng ngoài cửa. Schema6 đọc save1–5 mà không ghi đè, chỉ nâng cấp khi có thao tác lưu. [Cách chơi/ảnh/prompt](TIEM_TRA.md).
+
+**1.781/1.781unit/136files PASS**, gồm24ca mới, serial120sQA allowance. **1144 kiểm tra trình duyệt mới PASS**: 142tiệm trà (71source+71compiled) và 1002hồi quy toàn tuyến (501+501). Cả hai flavor có hành trình mới→TCG thật→cờ giao tranh/sang vòng→boss thật→lỗi ghi/thử lại→kết thúc/reload; không lỗi bất ngờ. Hai typecheck/AW2+stable builds/262asset byte parity đạt. [Bằng chứng](evidence/AW2-016F.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Hai ảnh runtime mới3.403.990bytes, rightsREVIEW_REQUIRED; đây là nội thất phát triển, chưa nghiệm thu độc lập/điện thoại/FPS/fullDoD. D18/D20/D11 giữ nguyên; D16push AW2, không master/rpg/deploy/release/reset. Next BA/UX/tester: chỉ dẫn cửa/địa điểm trong–ngoài phòng và kiểm tra accessibility toàn tuyến; scope riêng trước triển khai. Các mục dưới là lịch sử; trạng thái hiện tại theo016F.
+
+**AW2-016E VERIFIED — Phòng Kho có điểm Kiểm nguyên liệu.** E tại thùng hàng mở bảng Nguyên liệu/Công thức/Lối đi có phân trang; số lượng và trạng thái đọc túi/receipt/progress thật. Đi tới rương/gợi ý/hai cửa chỉ đi bộ; nhận đồ/ghi gợi ý/Đi qua vẫn là thao tác rõ ràng. Dùng lại crate, không thêm texture/vật cản/room/quest/schema; save5cũ đọc nguyên bytes. Công thức nấu và bảng chuẩn bị dùng chung định lượng1/1/1, thưởng chia bữa45XP giữ nguyên. [Cách dùng](PHONG_KHO.md).
+
+**294 kiểm tra trình duyệt mới =147source+147compiled PASS**, toàn bộ11trang/4viewport/chữ20px/44px, no-write/cùngcanvas/focus, chestghi lỗi→retry, hint/puzzle/nấu-chia205XP, reload/hai tab và classic. **Full1.757/1.757unit/135files PASS**,24ca mới nằm trong tổng; focused188/9files chồng full, không cộng thêm. Hai typecheck/AW2+stable build/259runtime parity đạt; full chạy serial với allowance120s, không phải lượt default20s. [Bằng chứng](evidence/AW2-016E.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** [016Ftiệm trà](proposals/AW2-016F-TEA-ROOM.md) đã có đề xuất cụ thể cửa/phòng con/migration5→6; trạng thái PROPOSED, chưa bật phòng/schema6 hoặc trao duyệt canon. D18/D20human-device/D11/rights giữ nguyên; D16push trực tiếp AW2, không master/rpg/deploy/release/reset. Next BA/story: review/chốt scope016F trước khi triển khai. Các mục dưới là lịch sử; trạng thái hiện tại theo016E.
+
+**AW2-016D VERIFIED development — dựng cảnh đích trước khi ghi save.** Giữ cảnh/camera nguồn, dựng một renderer đích ẩn và kiểm tra khung hình đầu thật; lưu thành công mới đưa chính canvas đó ra hiển thị. Lỗi init/vẽ/context trước ghi, hủy/timeout hoặc lỗi lưu bỏ candidate và giữ nguồn. Guard kiểm tra lại ngay trong Web Lock; cảnh lỗi trong lúc chờ khóa không được ghi vị trí.
+
+**262 kiểm tra trình duyệt mới =131source+131compiled PASS**, gồm lỗi init/khung đầu, timeout renderer30s, mất context thật khi chờ khóa, cùng canvas được promote, hai tab, đi–về sáu vùng/quest thật, classic entry và4viewport/chữ20px/44px. **Full1.733/1.733unit/134files PASS** với `--maxWorkers=1 --testTimeout=120000` (26ca mới đã nằm trong tổng); hai typecheck/AW2+stable build/259asset parity đạt. Không cộng lịch sử hoặc gọi đây là lượt default-timeout. [Cách dùng](CHUYEN_VUNG.md) · [Bằng chứng](evidence/AW2-016D.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Lỗi GPU sau durable commit dùng lỗi bản đồ/Đọc lại, không rollback bù save. Hai context có thể tồn tại trong lúc chuẩn bị; chưa đo tổngGPUmemory/FPS hoặc nghiệm thu độc lập/điện thoại thật. D18/D20/D11 giữ nguyên; không thêm nội thất/canon/schema/media/economy. Tiếp theo BA/story chốt một nội thất có tương tác và contract truy cập/migration riêng. D16push trực tiếp AW2; không master/rpg/deploy/release/reset. Các bản ghi bên dưới là lịch sử, ưu tiên hiện tại theo016D.
+
+**AW2-016C VERIFIED development — chuẩn bị cảnh trước khi ghi điểm đến.** Đi qua cửa tải trước đúng ảnh của vùng đích/nhân vật đại diện, giữ bản đồ và vị trí nguồn trong khi tải; có tiến độ, hủy và timeout30s. Lỗi ảnh hoặc ghi save giữ cảnh nguồn và cho thử lại. Raw save được chụp trước await; tab cũ không ghi đè tab mới, thao tác lặp chỉ commit một lần. Ambient lease giữ tới khi renderer đích ready.
+
+**120 kiểm tra trình duyệt mới =60source+60compiled PASS**, gồm delayed atlas/cancel/late404/retry/ghi lỗi, hai tab thực, đi–về đủ6vùng qua gate nhiệm vụ/puzzle thật, reload và entrygame/world;4viewport/chữ20px/44px/no-scroll.186ca unit tác động/10files được xác minh, gồm18ca mới;18ca cuối được chạy lại sau sửa type fixture, không cộng trùng. Hai typecheck/AW2+stable build và259asset parity đạt. [Cách dùng/giới hạn](CHUYEN_VUNG.md) · [Bằng chứng](evidence/AW2-016C.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là bảo vệ lỗi tải/ghi **trước commit**; GPU/renderer-init lỗi sau durable commit vẫn theo luồng lỗi bản đồ/Đọc lại hiện có, chưa có compensating rollback save. Không thêm ảnh/phòng/quest/schema/economy. D20human/device/D18milestone/D11gacha và hai timeout20s cũ của016B vẫn mở. Next: preflight renderer/lifecycle trước commit, rồi một nội thất có contract/canon riêng. D16push trực tiếp AW2; không master/rpg/deploy/release/reset. Các bản ghi bên dưới là lịch sử.
+
+**AW2-016B VERIFIED development slice — Em Đem Nước tuần tra với vị trí tương tác thật.** Bốn hướng/16 tư thế nguyên bản; sprite, nhãn, độ sâu, E, điểm đến native và chỉ đường dùng cùng snapshot. Đi tới NPC giữ vị trí hiện tại; khi cần ký ức nhiệm vụ, em về điểm nhiệm vụ ngay. Menu/hội thoại/ghi lỗi/tải lỗi/mất focus/giảm chuyển động đều dừng tuần tra. Sửa tràn khung chữ lớn, nhãn bị cắt ở mép bản đồ và loại tệp tạm khỏi bản đóng gói AW2.
+
+**110 kiểm tra trình duyệt mới = 55 source + 55 compiled PASS**, bốn viewport/chữ20px, ghi lỗi→thử lại, ba ký ức/80XP, hai mode đi–về, reload, atlas404→khôi phục; không lỗi bất ngờ.22 ca NPC đạt và đã nằm trong lượt hồi quy tổng: **1.687/1.689 ca đạt mặc định; hai mô phỏng cũ timeout20s**, sau đó cả2 đạt với allowance120s, giữ nguyên assertion/seed/loop và nguồn test. Không gọi lượt mặc định là full PASS. Hai typecheck, asset audit, AW2/stable builds đạt. [Cách chơi](NPC_PATROL.md) · [Bằng chứng và ngoại lệ](evidence/AW2-016B.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là một NPC locomotion reference, chưa phải full NPC/rights/nghiệm thu độc lập hoặc điện thoại thật; D18/D20/D11 giữ nguyên. Next: preload/rollback khi chuyển vùng, rồi một nội thất có canon/migration riêng. D16 phát triển/push trực tiếp AW2; không product/master/deploy/release/reset. Các bản ghi bên dưới là lịch sử; trạng thái hiện hành theo016B.
+
+**AW2-015B /016A /008B VERIFIED — trận và bản đồ trong khung chơi cố định.** Sảnh/TCG/Auto Chess/boss trên `game.html` đã phân trang cùng44pxcontrols; giữ ghim/trang nhật ký/vùng đang xem qua lượt chơi. Quầy cờ đánh dấu và đếm bản đang có. **Thêm → Bản đồ hành trình** có sáu vùng, vị trí/mục tiêu, cửa mở/khóa và đi bộ tới cửa kế; tự E/Đi qua, không tự dịch chuyển. Registry typed/runtime-validation chiếu sáu map/támNPC/portal/spawn hiện hành, không đổi luật/save/geometry; preload/rollback/nội thất mới vẫn là hợp đồng kế tiếp.
+
+**205ca unit riêng biệt/11files, hai typecheck, AW2+stable builds PASS. 1,016fresh browser checks=508source+508compiled**, gồm501main+7faults mỗi flavor; thêm276source exploration regression tách riêng. Bốn viewport/font16–20px, ván TCG thật có nhắm đích thủ công, cờ xếp quân/giao tranh/sang vòng, hành trình mới đủ sáu vùng→boss45tick→ghi lỗi/thử lại→ghi chép/kết thúc/reload300XP. Tab cũ/atlas404/khôi phục/rút lui đấu lại giữ dữ liệu; không lỗi browser bất ngờ. Fingerprint399inputs `34a7e3e6b138fa00afabf7b768e77faa1bf81c6f2459e32991e0d7dd97a32ad3`; build302files/120,602,933bytes/256runtimeparity, stable851files/177,450,422bytes/72textisolation. [Bằng chứng](evidence/AW2-COMPLETION.md) · [Cách chơi](ACTIVITY_SHELL.md) · [Bản đồ/contract](WORLD_REGISTRY.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên**; D20gác nghiệm thu độc lập/điện thoại, D18milestone chưa đóng. D11PROPOSED; không thêm gacha/quyền phát hành/save field/ảnh/nhạc/dependency. Next016B: một NPC tuần tra bằng sprite nguyên bản và vị trí tương tác sống; sau đó preload/rollback và một nội thất có canon/migration riêng. Phát triển/push trực tiếp AW2 theoD16; không master/rpg/deploy/release. Các mục phía dưới là lịch sử; ưu tiên mới theo đoạn này.
+
+**AW2-015A VERIFIED — đã tích hợp đặc tảv1.1 và thêm UI khám phá một màn hình đầu tiên.** [Bản gốc kèm hình](design/world-v1.1/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.1.md) được lưu nguyên22tệp/1,980,952bytes với provenance;23tệp đầu vào/ZIP giữ nguyên ngoài commit. D23chuẩn hóa UI decision bị trùngD13; luồng mới015thay aliasUItrùng012, giữ quyết định5starter và lịch sử tích hợp. [Ma trận tích hợp/hai luồng](WORLD_V1_1_INTEGRATION.md).
+
+Entry mới `/dev/aw2/game.html` có map/HUD/dock cố định, QuestJournal/đội/túi/bếp/địa điểm phân trang, một modal, J/Escape/focus trap và pause giữ nguyên canvas. Dùng cùng save/rules/controller với `/world.html`; không tự nhận thưởng/qua cửa, không tạo Lilia/xu/gacha minh họa.88unit/4files, hai typecheck, build302files/256assetparity/cách ly stable PASS.552fresh browser assertions=276source+276compiled,0unexpected errors,4viewport/20pxtext/intro/2entrysharedprogress/modesreturn/requiredassetfault/exactsave. Source `0936b948db633c66e5539f631e3f8aaf7920fda1`, base `601fed31d9965c883afc14774b123c56f4b272ef`. [Cách mở](GAME_SHELL.md) · [Bằng chứng](evidence/AW2-015A.md).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** Đây là migration scopekhám phá/menu opt-in; battle/TCG/Chess vẫn dùng cảnh hiện có, full no-scrollUI cần[015B](tasks/AW2-015B.md). Luồng world chạy theo[016A](tasks/AW2-016A.md) contractmap/portal, rồi[016B](tasks/AW2-016B.md) patrolcó vị trí tương tác thật;008Boverview chuyển vào shell. D17một đại diện map/nămcombat giữ nguyên; D14canon/D11PROPOSED/D18/D20không đổi. Không master/rpg/deploy/release/reset.
+
+Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo015A→015B +016A/D23ở trên.
+
+**AW2-008A VERIFIED — hướng dẫn đường theo mục tiêu nhiệm vụ.** Hiện người/đồ vật cần tới, tuyến qua các cửa đang mở và nút đi bộ tới điểm kế tiếp; đủ lựa chọn ký ức, từng bước bếp, boss/ghi chép/đường về Bà. Tới nơi vẫn tự E/Tương tác, không tự qua cửa hoặc nhận quà. Nút khóa theo tải/lỗi cảnh, lưu lỗi/tab cũ và hội thoại; giữ một đại diện map/năm combat. Source `45a54471750961d382c807c338e75248ee261783`, base `045a30c9b796b5b08559e4a78c5e3466fb8cdc48`. [Cách dùng](DAN_DUONG.md) · [Bằng chứng](evidence/AW2-008A.md).
+
+57unit/3files, hai typecheck, AW2build300files/256assetparity/stable isolation PASS.335browser assertion instances=167source+168compiled:305fresh+30current-task prefix đã đạt, không cộng trùng. Source là lượt mới từ tạo save tới boss thật45tick/hai ending; compiled giữ30prefix+138mới từ đúng checkpoint đã ghi sau đổi đội, sửa harness chờ commit/render. [Machine report](evidence/AW2-008A-verification.json).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.** D20tiếp tục gác010C/011A; next[008B](tasks/AW2-008B.md) bản đồ hành trình sáu vùng. Điều này sửa ưu tiên next-human/phone của006Q, không đóng gate nghiệm thu. Không đổi quest/geometry/save/reward/mode/asset authority, không master/rpg/deploy/release.
+
+Các mốc bên dưới là lịch sử; trạng thái/Next hiện hành theo008A→008B/D20 ở trên.
+
+**AW2-006Q VERIFIED:** Sân Bếp có3hơi bếp+3gợn nước từ2atlas/8frame, tải nhiều sheet đúng vùng với lease/pause/reduced/resume và không đổi save/geometry.282fresh browser assertions/36captures/0unexpected errors; full1588units/types/assets/AW2+stable builds PASS. Source `15c0cd2f6d833191c8b1b00ab392dfd7c0c34880`; [bằng chứng](evidence/AW2-006Q.md). Demo90%/product≈40%(35–45%) giữ nguyên; next independent human+physical phone.
+
+Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006Q ở trên.
+
+**AW2-006P VERIFIED:** ambient006N đã PASS final source/compiled browser acceptance:270fresh assertions,36captures,0unexpected errors. Pixi texture lease nay unload qua asset manager và serialize remount; full1587units/types/assets/AW2+stable builds PASS. Source `84ae0b959e60149335af39e79dd0b1f87ed29d1e`; [bằng chứng](evidence/AW2-006P.md). Demo90%/product≈40%(35–45%) giữ nguyên; next independent human + physical phone, không `rpg`/deploy/release.
+
+Các mốc bên dưới là lịch sử; trạng thái hiện hành theo006P ở trên.
+
+**AW2-006N VERIFIED LOCAL:** hai gợn nước Làng và bốn quầng đèn Phố dùng hai atlas bốn frame, tải theo vùng, chung clock NPC, pause/reduced-motion và unload khi rời vùng. Source `3fc7d536a9a00d0be3b6eade1168470f279d9307`; full1587/1587units, types, assets, AW2/stable builds PASS; final browser/device NOT_RUN. Demo90%/product≈40%(35–45%) giữ nguyên. [Bằng chứng](evidence/AW2-006N.md).
+
+Publication PASS: remote source `112befddc6bf97a1f54fc6eaf8a03c8d5310c3e7`, docs `9e2c5bccf903cb6da3fb8140a519bd2cfb2bd7f2`; exact final tree `d2d9db25c9d8e4ba2f083a530016a66df524ae7c` khớp local và remote.
+
+**AW2-006O — thêm 32 công trình quanh ba khu ngoài trời:** 10 ở Làng, 12 ở Phố, 10 ở Sân Bếp; gồm nhà, tiệm trà/tạp hóa/đèn lồng, quầy bữa sáng, xưởng, bàn chơi và sân chơi. Chín điểm đến đi bộ mới; góc bám nhân vật rộng hơn ở zoom0.65, mái che mờ khi che nhân vật/NPC. Tám NPC vẫn có32frame idle. Source `f7a51673061d5fb1017c3da78d7109cf649ea48b`, base `734cab6086b4ddddf7a8da8e6adf9a5a90af9099`. [Cách xem/ảnh/prompt](KHU_PHO.md) · [Bằng chứng](evidence/AW2-006O.md).
+
+39ca unit riêng biệt/3files, hai typecheck, exactRGBA/8safe frames/repeat10paths, review286files/242asset parity/stable isolation PASS.248kiểm tra trình duyệt mới=124source+124compiled: kiến trúc/điểm đến/che khuất, NPC/pause/reduced, intro/ký ức/host/Dì, hai ending từ checkpoint boss thật, đi–về đủ sáu vùng, từng10atlas NPC/kiến trúc thiếu–khôi phục/exactsave. Cả hai process exit0, không lỗi bất ngờ; chưa có lượt boss mới liền mạch. [Machine report](evidence/AW2-006O-verification.json).
+
+**Demo90% / product≈40%(35–45%) giữ nguyên.**6/6cảnh mở rộng,8/8NPC idle,32công trình là tiến độ hình ảnh riêng; nhà/tiệm mới là phong cảnh, dịch vụ thực vẫn qua NPC hiện có. Không thêm phòng/giao dịch/va chạm/save mới. Một đại diện map/năm combat giữ nguyên. D20gác nghiệm thu độc lập; next[006N](tasks/AW2-006N.md) chuyển động môi trường Làng/Phố. Full characterDoD/rights còn mở; không master/rpg/deploy/release.
+
+Các mốc bên dưới là lịch sử theo source; trạng thái/Next hiện hành theo006O→006N ở trên.
+
+**AW2-006H/J/K — đã bổ sung phong cảnh và điểm đến cho Kho, Phố, Sân Bếp.** Source `8543ad5c309d982ba0e7ae60753371aea384699e`, base `fd1513306ea6cc5052bd08a04eaba666ce07b6cf`. Ba cảnh1536×1024 theo D21, bảng dấu hơi/rương/thùng hàng, đủ sáu NPC Phố và Dì/cổng lối tắt; cả8NPC có hình tham chiếu tĩnh trên map. Camera Bám nhân vật/Toàn cảnh, nhãn và điểm chạm theo cùng góc nhìn. Trạng thái rương đọc biên nhận thực, hint/ký ức/cửa đọc tiến trình; điểm đến chỉ đi tới gần. Một đại diện map/năm combat, luật/save/tọa độ cũ giữ nguyên. [Cách chơi sáu vùng](THE_GIOI.md) · [Bằng chứng](evidence/AW2-006HJK.md).
+
+88unit/7files, hai typecheck, asset audit/review239files/stable isolation PASS.222browser assertion instances=111source+111compiled được xác minh qua chuỗi checkpoint thật trong phiên này:168prefix đã đạt giữ theo hash +54ca tiếp nối cuối, không cộng trùng hoặc gọi là một lượt fresh liền mạch. Intro→modes→ký ức→rương lỗi ghi/thử lại→puzzle/nấu→boss→hai kết thúc/shortcuts→6ảnh thiếu/khôi phục, không sửa flag/HP/save để vượt bước. [Machine report](evidence/AW2-006HJK-verification.json).
+
+**Art tham chiếu3/6→6/6vùng;4vùng có cảnh mở rộng/camera, Lửa/Bàn vẫn là nội thất v1 đơn giản. Demo90% / product≈40%(35–45%) giữ nguyên.** D20tiếp tục gác nghiệm thu độc lập. Tiếp theo [006L](tasks/AW2-006L.md): nâng phong cảnh hai phòng Lửa/Bàn theo D21, rồi chuyển động NPC/môi trường.12kit/12bộ tham chiếu/0fullDoD, full environment/NPC motion/rights chưa đóng. Không reset hoặc cập nhậtmaster/rpg/deploy/release.
+
+Các mốc bên dưới là lịch sử theo source; ưu tiên hiện hành theo006H/J/K→006L, D20/D21 ở trên.
+
+**AW2-006I — làng đã có phong cảnh nhiều lớp theo hình Làng Linh Vị ở mainline.** Source `f0c1be37cef1c83416c5eb76be2943d1e768f2bc`, base `5d3ec842afbeb8518f6da957b78ad04cc59d94da`. Dùng hai ảnh gốc của dự án tại `master` (nhánh mặc định, không có remote `main`) làm tham chiếu: mái ngói đỏ, tre, đèn lồng, cầu/sen/thác, sân gạch và vườn hoa. Cảnh rộng1536×1024 + ba tán cây tiền cảnh, camera bám nhân vật/Toàn cảnh, chạm theo đúng góc nhìn; cây che nhân vật sẽ mờ. Giữ một đại diện đầu đội/năm combat và toàn bộ tọa độ/va chạm/nhiệm vụ/save.72unit riêng biệt/6files,82browser assertions=41source+41compiled, hai typecheck/asset audit/review224files/stable isolation PASS. [Cách xem](LANG_GIAO_UOC.md) · [Bằng chứng](evidence/AW2-006I.md).
+
+Art vẫn3/6zone tham chiếu; **demo90% / product≈40%(35–45%) giữ nguyên**. Nhà/cầu bên ngoài sân là phong cảnh, chưa phải phòng/tương tác mới; full environment/NPC motion/rights còn mở. D20tiếp tục gác nghiệm thu độc lập. Việc tiếp theo là [006HPhòng Kho](tasks/AW2-006H.md) theo cùng phong cách, sau đó Phố/Sân. D21đồng bộ hình ảnh, không đổi tên/canon và không merge `master`/`rpg`.
+
+Các mốc bên dưới là lịch sử theo source; ưu tiên hiện hành theo006I/D20/D21 ở trên.
+
+**AW2-006G — đã hoàn thiện khu khởi đầu Làng Giao Ước theo ưu tiên sản phẩm (D20).** Source `42f36d7c55921e6d2df474640cdfc212151bc4c0`, base `22103f244fc9d9e2bba278977f0cfebcd167407f`. Nền sân, Bà Giữ Chỗ, bàn–mảnh khăn/giếng có ảnh gốc và ba điểm đến native; giữ một đại diện map/năm combat.51unit riêng biệt/60source+compiled browser assertions, hai typecheck/review219files/asset audit/stable exclusion PASS.3/6zone có art tham chiếu, còn Phố/Sân/Kho. **Demo90% / product≈40%(35–45%) giữ nguyên**. D20gác nghiệm thu độc lập/iPhone khỏi công việc hiện tại; tiếp theo[006HPhòng Kho](tasks/AW2-006H.md), không chờ011A. [Cách chơi làng](LANG_GIAO_UOC.md) · [Bằng chứng](evidence/AW2-006G.md).
+
+Các mốc dưới giữ source/bằng chứng lịch sử; Next hiện hành theo006G/D20,010C/011A được gác khỏi ưu tiên triển khai.
+
+**AW2-011B — đã chuẩn bị phiếu phản hồi và mã bản chơi cho lượt iPhone.** Source `eef69e8a0ee7ffe65fed7b9868817cd95a7d23f6`, base `ccb84bae740a05cc091ea68f9e1263ff8580f4df`. Tạo/đọc/sao chép/tải JSON từ màn khám phá; không tự ghi save hay gửi mạng.31unit/2files,100browser assertions trên Chromium+WebKit source/compiled, hai typecheck/review build/stable exclusion PASS. Hành trình mới110assertions=55source+55compiled PASS qua mode/puzzle/nấu/boss/hai ending. Fingerprint279đầu vào khớp cả4bản; WebKit không có JS heap ghi `null`. Hướng dẫn HTTPS/iPhone đã có; điện thoại thật/người chơi độc lập vẫn NOT_RUN, chưa deploy. **Demo90% / product40%(35–45%) giữ nguyên**. [Cách thử iPhone](IPHONE_PLAYTEST.md) · [Bằng chứng](evidence/AW2-011B.md). Next BA/tester010C/011A: lượt chơi độc lập trên cùng artifact HTTPS desktop+iPhone, đóng blocker; D18target100/45 còn mở.
+
+Các mốc bên dưới giữ bằng chứng lịch sử theo source; Next/trạng thái hiện hành theo011B ở trên.
+
+**AW2-013B — hợp nhất lịch sử PR #82 vào AW2, xác nhận `rpg` là nhánh product theo D19.** Source `0e65fc33624f072b026b80da02f2ae90bacc93bc`, base `9596f54b831a588f74d5eec7d08ab122b421a75f`, second parent `c34c6a20dc9755d622117bb594b80e4787b5bf6c`. Đã audit47tệp/30xung đột;14tệp giống hệt,33tệp đã phát triển tiếp trong AW2. Toàn bộ2583tệp ngoài docs/policy giữ nguyên; các chức năng PR đã được tiếp nhận từ013A. Full unit mới **1471/1471ca,120files PASS**, không fail/skip. Type/build/browser006F giữ bằng chứng trong phạm vi không đổi; không có browser/điện thoại mới. Demo90%/product40% giữ nguyên; D18outgoing milestone100%/45% còn nghiệm thu độc lập. PR publication/readback PASS: GitHub closed/merged into AW2 at0e65fc3; [audit](evidence/AW2-013B.md).
+
+**Mục tiêu PR tích hợp kế tiếp (D18): demo 100%, sản phẩm 45%.** Đây là đích nghiệm thu, chưa phải tiến độ hiện tại: baseline vẫn demo90%/product40%. Phát triển tiếp trực tiếp trên `game/adventure-world-2`; chỉ mở PR milestone vào `rpg` sau playtest độc lập toàn hành trình, đóng blocker, nghiệm thu tuyến Phòng Lửa→Phòng Bàn và baseline desktop + ít nhất một điện thoại thật. [Cổng chi tiết](tasks/AW2-014A.md) · [cách tính](PROGRESS.md).
+
+**AW2-006F VERIFIED development slice: Phòng Lửa đã có nền gạch riêng, ba hình puzzle và năm điểm đến native.** Source `4d463302f95a33788ac9cb9c8274f12b18d86281`, base `e7dac41819b71ec881a3511b5aa842369ac5426b` trên `game/adventure-world-2`. Puzzle/hint/cửa khóa/đi hai chiều/reload/nấu-chia bữa đã kiểm chứng bằng thao tác thật; D17một đại diện map/năm combat giữ nguyên. **83ca unit riêng biệt được xác minh (68ca giữ từ lượt đầu +15ca file đã sửa),72browser assertions=36source+36compiled PASS**, hai typecheck/review build/cách ly stable đạt. Hai ảnh mới built-in imagegen; bàn gỗ/dấu lối ra tái dùng ảnh gốc006B/006C. Hai phòng có art tham chiếu, bốn vùng còn debug. **Demo90% / product40%(ước lượng35–45%) giữ nguyên**: tuyến world/UX, người chơi độc lập và điện thoại thật chưa nghiệm thu. Mục tiêu D18 vẫn100%/45%, PR milestone chưa mở. [Cách chơi](PHONG_LUA.md), [bằng chứng](evidence/AW2-006F.md), tiếp theo[010C](tasks/AW2-010C.md)/[011A](tasks/AW2-011A.md).
+
+Nhánh: `game/adventure-world-2`. Incubator tiền đề game riêng, không phải bản patch/đè lên master. Giai đoạn đầu hoàn thiện 12 nhân vật rồi mở lên 16–20; kết nối map, đi tự do, team 5 tự đánh/ultimate thủ công, pixel world + HD anime battle, TCG/Auto Chess trong thế giới kèm quick-entry, khám phá dungeon/rương/nấu ăn.
+## Quy tắc
+Được reset **AW2 pre-release dev data riêng** sau xác nhận rõ; không clear dữ liệu của game Soul of Meal hiện tại. Kể từ release đầu tiên phải migration save và patch an toàn. 5 tier **N R SR SSR UR**, tách luật 4-tier cũ; tài nguyên/canon legacy chỉ tái sử dụng có chọn lọc.
+## Khởi động ngữ cảnh
+Đọc `AGENTS.md`, `DECISIONS.md`, `CANON.md`, `STATUS.md`, `BACKLOG.md`, `TEST_LEDGER.md`, `HANDOFF.md` và skill tương ứng. Agent skills là vai trò + tài liệu bền vững, không phải background agents tự chạy.
+
+**Xem nhanh cho chủ dự án:** [REPORT.md](REPORT.md), do `scretary-agent` tổng hợp sau mỗi task. [Phần trăm và cách tính](PROGRESS.md) · [Chơi thử demo](DEMO.md) · [Chạy local từng bước](LOCAL_TEST.md). [HANDOFF.md](HANDOFF.md) ghi chi tiết triển khai và việc bàn giao.
+
+## Quy trình phát triển và push
+
+Theo yêu cầu owner ngày 2026-10-21 (D16), tiếp tục chức năng trực tiếp trên `game/adventure-world-2`, **không tạo branch mới**. Mỗi task hoàn thành: chạy kiểm tra phù hợp, cập nhật tài liệu, commit rồi **push ngay vào `game/adventure-world-2`** và xác minh SHA trên remote trùng local. Quy định này thay thế hướng dẫn feature branch trước đây. Chi tiết lệnh và dọn nhánh đã tích hợp tại [WORKFLOW](WORKFLOW.md), [AW2-012B](tasks/AW2-012B.md).
+
+## Bộ sưu tập và đội hình lưu — AW2-007L
+
+Mở **Đội và túi đồ** trong world. Sau mốc nhiệm vụ, bấm **Mời …** một lần, chọn đủ năm người và nhấn Vân, rồi **Lưu đội hình**. Chọn một người đang ở slot khác sẽ đổi chỗ; Hủy chọn đội giữ bản lưu. Draft không đổi nhân vật đại diện trên map hoặc trận đang chạy. Đội mới áp dụng cho lần bắt đầu boss tiếp theo. Save cũ tải không tự nhận thêm nhân vật/XP; thao tác ghi tiếp theo mới lưu schema5. [Quy tắc/giới hạn](COLLECTION.md). Sau kết thúc chọn đội đồng hành rồi tới Phòng Bàn để **Đấu lại boss · không nhận thưởng** (007M). Gacha vẫn chưa triển khai.
+
+Các bản ghi asset/kit có source cũ dưới đây giữ bằng chứng gốc; nhận định pending inventory/collection được thay bởi STATUS/COLLECTION hiện tại, không đổi canon hoặc nghiệm thu art.
+
+## AW2 development preview — expedition, TCG and Auto Chess practice
+
+**AW2-007H VERIFIED — Liên đã có kỹ năng hồi phục thật và cấp1–20**. Source `5247fd0963f261f156f00d673b0961657182b4af`, base `b4d8d90d9ed6efb0be686bb4e49479cdcf51efab`. Hẹn Sau Cơn Mệt hồi ba nhịp hữu hạn; Mở Lời tẩy đúng một debuff được phép rồi hồi hai nhịp; nội tại cấp kháng một lần ngắt khi thực sự hồi HP cho người còn debuff.1201full unit tests/110files (37new Liên),278browser assertions,60simulations, cả hai typecheck/review+stable builds/isolation PASS.9actual kits/12bộ hình/5starter lưu/0full-characterDoD. Demo≈90% và sản phẩm≈40% (35–45%) giữ nguyên; collection/art/playtest/device/rights/release còn mở. [Luyện Liên](LIEN_PRACTICE.md), [bằng chứng](evidence/AW2-007H.md).
+
+```sh
+pnpm install --frozen-lockfile
+pnpm dev
+```
+
+Open `http://localhost:8443/dev/aw2/index.html`. This standalone development entry does not mount the Soul of Meal app, native bridge or legacy save services. It is excluded from the production entry graph. This entry is the save test screen; the world preview is separate at `/dev/aw2/world.html`. Neither entry mounts legacy gameplay or native save bridges.
+
+Choose **Tạo bản lưu AW2** to initialize `aw2.development.save`, **Lưu thử AW2** to advance its revision, then reload to inspect persistence. **Bắt đầu lại AW2…** opens a modal; each reset requires the exact phrase `RESET AW2` and an explicit final action. Hủy/Escape leaves stored bytes intact. Normal writes preserve invalid/future saves, stale tabs must read again, and failed writes report an error. Confirmed development reset may replace an invalid/future AW2 save as disclosed in the dialog.
+
+Writes require Web Locks and a secure context (localhost or HTTPS); unsupported browsers can inspect/read only. Schema v5 stores world/quest/boss/note/ending, inventory/shared XP/receipts and collection/saved party/Van emphasis. Valid v1/v2/v3/v4 saves upgrade in memory without writing or granting until an explicit action, preserving identity/timestamps/prior progress and legacy data. Ordinary position-save cannot change quest/objectives; locked world/economy actions own reward changes. Future production migrations/native durability remain future work. No operation on this screen clears Soul of Meal saves.
+
+```sh
+pnpm test dev/tests/aw2/save.test.ts dev/tests/infrastructure/protectedStorage.test.ts
+pnpm typecheck
+pnpm typecheck:dev
+pnpm test
+pnpm build
+# Requires Playwright (or playwright-core) and Chromium available locally:
+node dev/tools/verify-aw2-save.mjs --url http://localhost:8443/dev/aw2/index.html
+```
+
+The browser tool also accepts `--playwright /absolute/path/to/playwright-core/index.mjs` and `--chromium /path/to/chromium`. It uses a fresh isolated browser profile, seeds test legacy keys, checks reset/conflicts/failures, and writes captures/report under ignored `.asset-work/aw2-001/`. It never uses the owner's browser profile. See [task card](tasks/AW2-001.md), [verification](evidence/AW2-001.md) and [handoff](HANDOFF.md).
+
+## World / quest foundation
+
+Open `http://localhost:8443/dev/aw2/world.html`. Click/tap a clear destination, WASD/arrows or hold the on-screen direction buttons; E / Tương tác near an object. D17/006E: only the first member of the committed team appears on the map; the pre-intro Than fallback grants no ownership. Saving a reordered team changes the representative; draft/cancel/failed writes keep the old one. Reread restores the saved position and committed representative. Closing dialogue changes nothing. Explicit actions and Lưu vị trí commit one coherent AW2 save; walking alone remains local until saved. Blur/keyup/pointer release stop movement, and dialogs pause it.
+
+Flow: meet Bà Giữ Chỗ → read the cloth → hand in to unlock five approved N/R starters. Go east to Phố, accept at An, listen to three memories in any order, choose a thread. Accept at Dì, read the hint in Kho, solve the three-step puzzle in Phòng Lửa, then return to Dì to report. Wrong order resets only the attempt. All six zones have safe return routes.
+
+For the fourth quest, explicitly accept **Thêm một chén** at Dì, reach Người Giữ Bàn Quên in Phòng Bàn and choose **Bắt đầu thử thách**. A safe checkpoint is written before combat mounts. The five development starters use persisted team XP to derive actual stats and auto-fight; manual ultimates remain available. The current fresh earned-XP journey wins at tick45; this is development tuning, not final balance. The boss now announces Mời hụt/Tắt bếp and shows Ghế trống protection; see [boss practice](BOSS_PRACTICE.md) for counters. Pause/step/reduced motion and retreat are available. Choose **Lưu kết quả và trở về** after win/loss/retreat. Failed writes keep the live result for retry; another-tab writes require reread. Reload/reread abandons an uncommitted attempt at its checkpoint and never implies a win.
+
+After a committed win, explicitly read **Ghi chép bên chén**, return to Bà and choose either **Để ghế trống chờ** or **Mời cả làng dùng bữa**. Both finish the same quest once, grant its development XP/ingredients atomically and open the reciprocal Sân↔Phòng Bàn shortcut. Closing dialogue does not choose an ending or grant rewards.
+
+Phòng Bàn now uses original reference floor/furniture and native state-aware waypoints; 006C now supplies original note/two-exit floor props in this room, while the other four zones and their NPC/chest objects retain debug visuals;006F adds the adjacent authored hearth floor/three puzzle props and native waypoints. The map representative uses the first saved member’s original world manifest; battles still use all five saved members. Development XP/inventory/chest/cooking are now implemented below. The boss development kit is verified through AW2-007D; full boss motion/world art/audio, independent acceptance of the12 spirit reference sets, final balance/device usability and full AW2-006/008/010 gates remain open.
+
+```sh
+pnpm test dev/tests/aw2
+node dev/tools/verify-aw2-world.mjs --url http://localhost:8443/dev/aw2/world.html
+# Full four-quest/boss/checkpoint/failure/ending flow:
+node dev/tools/verify-aw2-world.mjs --boss --url http://localhost:8443/dev/aw2/world.html
+```
+
+The world browser script accepts `--playwright` and `--chromium`; fresh isolated profiles only, normal captures under `.asset-work/aw2-006a/`, `--boss` captures/report under `.asset-work/aw2-007c/`. [AW2-006A foundation](tasks/AW2-006A.md), [current AW2-007C task](tasks/AW2-007C.md), [current evidence](evidence/AW2-007C.md), [canon](CANON.md), [handoff](HANDOFF.md). Original schema-v1/v2 evidence remains historical; current save/world results supersede affected ledger rows.
+
+## Persistent progression and separate review build — AW2-013A
+
+Open **Đội và túi đồ** for actual shared EXP/levels/items. Quest hand-in saves progress and reward together. Phòng Kho has a one-time ingredient chest. After completing the third quest, stand near Dì or the opened hearth: cook 1 rice +1 herbs +1 broth into a warm bowl, then share it for 45 team XP. Old saves expose an explicit **Nhận quà … nhiệm vụ đã hoàn tất** catch-up action; loading grants nothing. Failed writes preserve items/receipts; stale tabs must reread. These amounts use `aw2-economy-development-v1`, not final balance.
+
+```sh
+pnpm build:aw2
+pnpm exec vite preview --config dev/vite.aw2.config.ts --host 127.0.0.1 --port 8455
+# Open http://127.0.0.1:8455/ → compiled world
+node dev/tools/verify-aw2-rpg.mjs --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+node dev/tools/verify-aw2-build.mjs --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+node dev/tools/simulate-aw2-gacha.mjs
+```
+
+`dist-aw2/` is a local review artifact with separate world/save/battle/starter/Than entries and runtime assets, excluding source PNG/code/maps/archives. `pnpm build` still creates the stable game without AW2. No deployment/release. The two new browser verifiers own ports8454/8455; close a manual preview before using8455. Captures stay ignored under `.asset-work/`. [Development contract and fresh evidence](evidence/AW2-013A.md). Gacha simulation is a [proposal for D11](proposals/AW2-005A-RATES.md), with no runtime draw/spend/save.
+
+## Embedded TCG / Auto Chess practice — AW2-009A/B/C
+
+With a ready AW2 save, choose **Ghé nhanh TCG/Auto Chess** from the world, or approach either table in Phố, interact and choose **Ghé bàn**. Both paths checkpoint current exploration before entering. The lobby now opens **Chơi TCG thử** or **Chơi Auto Chess thử**. Both actual borrowed-resource practices are integrated; mode prizes/collected progression are not. Return reads the same checkpoint without another write; changed data requires **Đọc lại hành trình**. Reload abandons the match at its checkpoint. Active world battle/visits block nested entry; no legacy store or schema change.
+
+This supersedes the old AW2-009A subsection that said actual games were not integrated; that statement described its historical transition-only milestone. [Navigation foundation](tasks/AW2-009A.md), [TCG](TCG_PRACTICE.md), [Auto Chess](AUTO_CHESS_PRACTICE.md).
+
+```sh
+node dev/tools/verify-aw2-modes.mjs --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+node dev/tools/verify-aw2-chess.mjs --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+pnpm build:aw2
+node dev/tools/verify-aw2-chess.mjs --compiled --playwright /path/to/playwright-core/index.mjs --chromium /path/to/chromium
+```
+
+Navigation owns/closes source8456/compiled8457, TCG8458/8459, Chess8460/8461. Fresh isolated browser profiles only. [Current task](tasks/AW2-009C.md), [evidence](evidence/AW2-009C.md). Embedded-practice/navigation subset verified; production mode balance/art/persistence/prizes and complete release gates remain open. [AW2-010A](tasks/AW2-010A.md) automated integration gate now passes; independent playtest remains open.
+
+## Deterministic combat core — AW2-007A
+
+`src/aw2/combat` is a development-only pure rules module for one-to-five units per side. It owns movement/range, melee contacts, launched projectiles, auto skills, manual ultimates, interruptions, bounded starter passives and the terminal result. Renderer-facing events describe outcomes that already happened; they cannot apply damage or grant rewards. Numeric stats use `aw2-combat-development-v1` and are not final approved balance.
+
+```sh
+pnpm test dev/tests/aw2/combat.test.ts
+pnpm test dev/tests/aw2
+pnpm typecheck
+pnpm typecheck:dev
+```
+
+These rules are consumed by the independent preview below and AW2-007C's private world encounter controller. The renderer never applies world results; the save boundary accepts an authentic terminal/retreat bound to its exact checkpoint raw bytes. BATTLE-02's development boss subset is now verified; production/native continuation remains open. AW2-013A adds development numerical rewards through locked save transactions. [Rules task](tasks/AW2-007A.md) · [world integration](tasks/AW2-007C.md).
+
+## Event battle preview — AW2-007B
+
+Open `http://localhost:8443/dev/aw2/battle.html` after `pnpm dev`; verification runners own temporary ports and do not leave a8452 server running. The five approved starters auto-fight with HD reference atlases and can use manual ultimates. Pause, step one tick, choose development levels 1/5/10/20, reset, and enable reduced motion. Choosing a level applies only when creating the next battle; current cards retain their active level/stats. Terminal events clear unfinished visual projectiles. Enemy units temporarily reuse tinted starter atlases and are not finished enemy assets.
+
+The canvas consumes `CombatEvent` presentation state; it does not calculate damage or award outcomes. `aw2-leveling-development-v1` is a deterministic development curve, not approved balance. The standalone page never writes XP, rewards or save data; world encounters now project persisted team XP through the same curve. Audio is opt-in and consumes confirmed events only.
+
+```sh
+pnpm test dev/tests/aw2/combat.test.ts dev/tests/aw2/battle-presentation.test.ts
+node dev/tools/verify-aw2-battle-browser.mjs --url http://localhost:8443/dev/aw2/battle.html
+```
+
+The browser verifier needs Playwright/Chromium and uses a fresh profile. It accepts a package name, file URL, or local Windows/POSIX module path through `--playwright`, and a browser executable through `--chromium`. Current Chromium gate: 22 checks PASS; desktop/mobile/terminal captures inspected. Device/mobile UX/FPS remain open. The separate world boss/save integration and mode transitions now have their own verified development scopes. [Task](tasks/AW2-007B.md) · [evidence](evidence/AW2-007B.md).
+
+## Than asset / animation reference — AW2-004A/C
+
+Open `http://localhost:8443/dev/aw2/than.html` after `pnpm dev`. Eight HD states, four world directions, four skill FX/audio tracks, pause/replay and reduced motion. Audio starts only after opting in. Preview does not access or change saves. World uses the same reference atlases for followers/battle; this manual asset preview itself grants no gameplay outcome.
+
+Five original PNG sources plus two motion PNGs and their lossless WebP counterparts live in `dev/aw2/assets/than/base-v1/`, alongside four synthesized WAVs, exact original `prompts.json`, additional `motion-prompts.json` and `provenance.json`. Runtime metadata at `src/aw2/assets/than.base-v1.json` binds canonical identity/variant/asset/skill IDs to measured frames, foot anchors, timings/contact markers and source hashes. Generated sheet dimensions/spacing were not exact uniform grids; explicit calibrated rectangles preserve complete visible sprites without repainting or mirroring. Alpha edges tolerate at most 8/255 (observed maximum 4/255 on the selected cells).
+
+World has 16 chibi cels: one idle + three authored walking poses per direction, played as a four-step cycle. AW2-004C adds32 HD motion cels (four per eight states); the original eight poses remain reduced-motion frames. Sparse reference clips still need independent art/continuity/contact review. Skill FX has four stages per skill, 16 frames. Than is melee, no projectile substitute. Actual development combat supplies confirmed passive status events; the manual asset preview proc grants no gameplay. Original audio cues are synthetic sounds, not sampled recordings/music. All image creation/repair used built-in `image_gen`, not a CLI/API fallback.
+
+```sh
+python3 dev/tools/build-aw2-than-assets.py
+python3 dev/tools/verify-aw2-than-files.py
+pnpm test dev/tests/aw2
+node dev/tools/verify-aw2-than-browser.mjs --url http://localhost:8443/dev/aw2/than.html
+```
+
+Build processing requires Pillow (recorded version in provenance); source PNG artwork remains unchanged. Build only encodes lossless WebP, writes atlas/timing metadata and synthesizes the four cues. Browser verification accepts the existing `--playwright` and `--chromium` options; uses a fresh temporary profile and writes captures under ignored `.asset-work/aw2-004a/`.
+
+[Task](tasks/AW2-004A.md) · [evidence](evidence/AW2-004A.md) · [source prompts](../../dev/aw2/assets/than/base-v1/prompts.json) · [provenance](../../dev/aw2/assets/than/base-v1/provenance.json). License remains REVIEW_REQUIRED / commercial release NOT_CLEARED. Than is a reference asset set, not a completed character: five-starter development combat/leveling are verified separately, while full-character/device/human-listening/legal gates remain open. Other four starters now have reference sets through AW2-004B; seven non-starters remain NOT_CREATED. No AW2-010 completion or release follows from these tasks.
+
+## Five starter references — AW2-004B/C/D/E/F
+
+After `pnpm dev`, open `http://localhost:8443/dev/aw2/starters.html`; do not assume an old verification server is still running. Choose Than, Lửa Nhỏ, Lam Lam, Mộc Non or Sương Lành. Selection resets playback/audio opt-in; only selected unit image atlases are loaded. Pause/replay, reduced motion, world directions, eight HD states, four skills, portrait and source links are shared. Missing atlas gives an explicit error and blank canvas. Optional `?spirit=aw2-lam` selects the initial unit.
+
+Historical AW2-004B originals: `dev/aw2/assets/{lua,lam,moc-non,suong}/base-v1/`; each contains four unchanged original PNGs and four lossless WebPs (portrait also serves as identity reference), four WAVs, exact prompts and generation provenance. Canonical manifests: `src/aw2/assets/{lua,lam,moc-non,suong}.base-v1.json`; registry `starters.ts`. Sixteen selected images from nineteen built-in image_gen calls, no external artwork references or CLI/API fallback. Total new WebPs 16,509,218 bytes. Explicit measured cells preserve source art; Sương Lành source rows map down/right/left/up. Mộc Non's faint world gutter permits declared edge alpha 9/255, other sets 8/255; all visible alpha≥96 bounds inset ≥2px.
+
+Current inventory: all five starters (Than/Lửa Nhỏ/Lam Lam/Mộc Non/Sương Lành) each have32 additional HD motion cels,160 total. Original reduced poses and source art remain. Lửa Nhỏ basic has contacts at220/380ms with explicit idle recovery; Lam Lam ultimate pulses at520/1040ms. Three ranged basics have separate authored projectile cels/flight and impact cels (launch260/impact700ms). These are reference presentation timings/coordinates, not approved damage/speed/balance or engine hit confirmation. Passives in this preview are manual, while actual development combat supplies authoritative events. Lua actual combat shows only each confirmed basic beat. Lam actual cast/launch suppress outcome FX; independent clocks retain confirmed target impacts and one healing cue per pulse without inventing later effects or reviving expired reduced FX. Moc actual confirmed shields attach at the ally target, passive requires its rules status, and grouped ultimate recipient guards keep their own art. Sương confirmed area pulses group actual same-tick recipients without replaying future contacts; pull statuses add no damage FX. Full character completion remains false for all five.
+
+```sh
+python3 dev/tools/build-aw2-starter-assets.py
+python3 dev/tools/verify-aw2-starter-files.py
+pnpm test dev/tests/aw2
+node dev/tools/verify-aw2-starter-browser.mjs --url http://localhost:8443/dev/aw2/starters.html
+# Than compatibility:
+node dev/tools/verify-aw2-than-browser.mjs --url http://localhost:8443/dev/aw2/than.html
+```
+
+Build uses preserved sources, encoder/synth helpers, explicit reference timelines and unit-owned metadata; it never inherits another spirit's mutable motion manifest or generates/repaints art. `--unit moc-non` rebuilds only Mộc Non (also supports lua/lam/suong); scoped repeat-build identity/other-manifest preservation verified through004G. Motion browser `--reuse-originals` skips byte-identical original audio/world tests, `--combat-only` checks only the affected renderer. Follow WORKFLOW selective coverage rather than automatically rerunning unrelated PASS. Browser tools accept `--playwright`/`--chromium`, use fresh isolated profiles and keep QA PNGs under ignored `.asset-work/`. [Task](tasks/AW2-004B.md), [verification](evidence/AW2-004B.md), [handoff](HANDOFF.md). AW2-007C now connects the development canvas to world/save boss progress. AW2-013A now adds numerical loot/cooking and followers; authored enemies/seven remaining spirit sets/full character gates remain open.
+
+## Muối Đen reference inventory —AW2-004J
+
+Current authored spirit inventory is six sets, six absent; supersedes earlier seven-absent inventory statements only for Muối. Open `/dev/aw2/roster.html?spirit=aw2-muoi` after pnpm dev; this shows references, not ownership.007E actual isolated combat is linked separately; world collection remains pending. Original five-starter selector and actual world team remain fixed. Source `7643ec4cb4e1e56d0c1013f7135a065e5ad3af36`. Build only Muối via `python3 dev/tools/build-aw2-muoi-assets.py`, verify with generic file checker plus manifest path; new browser `verify-aw2-muoi.mjs [--compiled] --playwright <module> --chromium <exe>` owns8474/8475. Do not run unrelated starter builders/passing suites automatically. [Gates](MUOI_CHARACTER_GATES.md), [actual007E](tasks/AW2-007E.md), [next004K](tasks/AW2-004K.md).
+
+## Nhiên reference preview —AW2-004K
+
+After `pnpm dev`, open `/dev/aw2/roster.html?spirit=aw2-nhien`. Seven authored sets/five absent; this supersedes earlier six-reference counts only for Nhiên. Four directions/eight HD states, finite two-basic/three-ultimate cues and optional synthesized audio; actual Nhiên combat/leveling is now in007F isolated practice; no ownership/save. `python3 dev/tools/build-aw2-nhien-assets.py` rebuilds only Nhiên with preserved measurement/encoding helpers; `verify-aw2-than-files.py src/aw2/assets/nhien.base-v1.json` is read-only audit. `verify-aw2-nhien.mjs [--compiled] --playwright <module> --chromium <exe>` owns8480/8481. `--remaining-only` exists for documented source alias recovery, not a full preview run. [Gates](NHIEN_CHARACTER_GATES.md), [actual007F](tasks/AW2-007F.md), [practice](NHIEN_PRACTICE.md).
+
+2026-10-23: [Sau boss rematch: một nhóm demo còn lại và bốn gói đề xuất tới product≈50%](NEXT_MILESTONES.md). Điểm hiện tại vẫn90%/≈40%; không tự đóng nghiệm thu người chơi/nhân vật/thiết bị.
+
+006L source publication PASS: `36c2231bafb9de8778f380183780af242cfa9281`, exact staged/fetched tree`51798249d483bf50fa177c2096104fd37eb8c7ac`; all40blobs/4binarySHAs/index/ancestry/expected-head guards verified, non-force update and clean local sync PASS. Clean326input fingerprint remainsc24de0805c292c6d. [Publication proof](evidence/AW2-006L-publication.json). Completion changes documents only; final fresh remote=clean local required before reporting success.
+
+006M source publication PASS: `639609b986389cc7743d977679ca361c010911f8`, exact staged/fetched tree`ac7b7235a3f1908a6834c94ad7286f2b90bb7f1b`; all69blobs/16binarySHAs/index/ancestry/expected-head guards verified, non-force update and clean local sync PASS. Clean361input fingerprint remains12638bb685907682. [Publication proof](evidence/AW2-006M-publication.json). Completion changes documents only; final fresh remote=clean local required before reporting success.

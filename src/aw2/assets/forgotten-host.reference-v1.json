@@ -1,0 +1,1365 @@
+{
+  "version": 1,
+  "entityId": "aw2-enemy-forgotten-host",
+  "displayName": "Người Giữ Bàn Quên",
+  "artVariantId": "reference-v1",
+  "status": "MOTION_AND_AUDIO_IMPLEMENTED_REVIEW_OPEN",
+  "fullEnemyComplete": false,
+  "facing": "left",
+  "assets": {
+    "battle": {
+      "id": "aw2-enemy-forgotten-host:battle:reference-v1",
+      "url": "/dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+      "width": 1774,
+      "height": 887,
+      "sha256": "6b17014ce6a2e324def5eaaa9666f687f2e7ad849121f13d227a7fa717a38689",
+      "bytes": 924700,
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/reference-v1/battle.png",
+        "sha256": "f91dcc73461219c1fddc824c954e65ed537f51243009a13ec85cb901de4ec95c"
+      },
+      "transparentFraction": 0.7530927120921135
+    },
+    "fx": {
+      "id": "aw2-enemy-forgotten-host:fx:reference-v1",
+      "url": "/dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "c125771df4255c911bf9de925046873f88b58f7d77e886876b0858f9da370112",
+      "bytes": 1161768,
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/reference-v1/fx.png",
+        "sha256": "d1671193bef36f37230b174e489542f649eb8689b40c865fba254932187f1dab"
+      },
+      "transparentFraction": 0.6856040954589844
+    },
+    "portrait": {
+      "id": "aw2-enemy-forgotten-host:portrait:reference-v1",
+      "url": "/dev/aw2/assets/forgotten-host/reference-v1/portrait.webp",
+      "width": 254,
+      "height": 332,
+      "sha256": "5cba73805eb282267307c096f285ec6d656a4da9c7da5fc8d16a9cf85bbd4c70",
+      "bytes": 77108,
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/reference-v1/battle.png",
+        "sha256": "f91dcc73461219c1fddc824c954e65ed537f51243009a13ec85cb901de4ec95c"
+      },
+      "sourceCrop": [
+        89,
+        93,
+        254,
+        332
+      ],
+      "transparentFraction": 0.5886656863675173
+    },
+    "motion-a": {
+      "id": "aw2-enemy-forgotten-host:motion-a:motion-v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/motion-a.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ebe67dfc40ff18c77368e1c0df351b20fa9eefb40411bbf61233c3e676bc08a7",
+      "bytes": 989004,
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/motion-a.png",
+        "sha256": "b6c996f95f73fa683505cfa46f0bc89ca202f073bfceb878818c3e97bc6383ec"
+      },
+      "transparentFraction": 0.642783
+    },
+    "motion-b": {
+      "id": "aw2-enemy-forgotten-host:motion-b:motion-v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/motion-b.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "bc5e92161f88303b1d3c6a852aa8837d27ee3f08d4222b65e3d3962cefb13907",
+      "bytes": 1221010,
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/motion-b.png",
+        "sha256": "19a332235d8b6ddb85dd1543e55629602e4fa2880a67e4c9f9d01443dab77049"
+      },
+      "transparentFraction": 0.536793
+    }
+  },
+  "frames": {
+    "battle.idle": {
+      "asset": "battle",
+      "x": 89,
+      "y": 93,
+      "width": 254,
+      "height": 332,
+      "anchorX": 127,
+      "anchorY": 329,
+      "visibleBounds": [
+        3,
+        3,
+        251,
+        329
+      ],
+      "maxEdgeAlpha": 1
+    },
+    "battle.move": {
+      "asset": "battle",
+      "x": 512,
+      "y": 94,
+      "width": 335,
+      "height": 323,
+      "anchorX": 167.5,
+      "anchorY": 320,
+      "visibleBounds": [
+        3,
+        3,
+        332,
+        320
+      ],
+      "maxEdgeAlpha": 3
+    },
+    "battle.attack": {
+      "asset": "battle",
+      "x": 927,
+      "y": 119,
+      "width": 367,
+      "height": 302,
+      "anchorX": 183.5,
+      "anchorY": 299,
+      "visibleBounds": [
+        3,
+        3,
+        364,
+        299
+      ],
+      "maxEdgeAlpha": 5
+    },
+    "battle.cast": {
+      "asset": "battle",
+      "x": 1432,
+      "y": 94,
+      "width": 286,
+      "height": 333,
+      "anchorX": 143,
+      "anchorY": 330,
+      "visibleBounds": [
+        3,
+        3,
+        283,
+        330
+      ],
+      "maxEdgeAlpha": 2
+    },
+    "battle.hit": {
+      "asset": "battle",
+      "x": 61,
+      "y": 535,
+      "width": 332,
+      "height": 297,
+      "anchorX": 166,
+      "anchorY": 294,
+      "visibleBounds": [
+        3,
+        3,
+        329,
+        294
+      ],
+      "maxEdgeAlpha": 4
+    },
+    "battle.guard": {
+      "asset": "battle",
+      "x": 532,
+      "y": 508,
+      "width": 318,
+      "height": 320,
+      "anchorX": 159,
+      "anchorY": 317,
+      "visibleBounds": [
+        3,
+        3,
+        315,
+        317
+      ],
+      "maxEdgeAlpha": 2
+    },
+    "battle.ultimate": {
+      "asset": "battle",
+      "x": 934,
+      "y": 500,
+      "width": 363,
+      "height": 329,
+      "anchorX": 181.5,
+      "anchorY": 326,
+      "visibleBounds": [
+        3,
+        3,
+        360,
+        326
+      ],
+      "maxEdgeAlpha": 2
+    },
+    "battle.defeat": {
+      "asset": "battle",
+      "x": 1411,
+      "y": 588,
+      "width": 306,
+      "height": 239,
+      "anchorX": 153,
+      "anchorY": 236,
+      "visibleBounds": [
+        3,
+        3,
+        303,
+        236
+      ],
+      "maxEdgeAlpha": 3
+    },
+    "fx.sweep.0": {
+      "asset": "fx",
+      "x": 82,
+      "y": 71,
+      "width": 361,
+      "height": 264,
+      "anchorX": 180.5,
+      "anchorY": 132,
+      "visibleBounds": [
+        3,
+        3,
+        358,
+        261
+      ],
+      "maxEdgeAlpha": 4
+    },
+    "fx.sweep.1": {
+      "asset": "fx",
+      "x": 553,
+      "y": 68,
+      "width": 468,
+      "height": 269,
+      "anchorX": 234,
+      "anchorY": 134.5,
+      "visibleBounds": [
+        3,
+        3,
+        465,
+        266
+      ],
+      "maxEdgeAlpha": 4
+    },
+    "fx.sweep.2": {
+      "asset": "fx",
+      "x": 1150,
+      "y": 100,
+      "width": 321,
+      "height": 233,
+      "anchorX": 160.5,
+      "anchorY": 116.5,
+      "visibleBounds": [
+        3,
+        3,
+        318,
+        230
+      ],
+      "maxEdgeAlpha": 5
+    },
+    "fx.snuff.0": {
+      "asset": "fx",
+      "x": 129,
+      "y": 362,
+      "width": 272,
+      "height": 280,
+      "anchorX": 136,
+      "anchorY": 140,
+      "visibleBounds": [
+        3,
+        3,
+        269,
+        277
+      ],
+      "maxEdgeAlpha": 4
+    },
+    "fx.snuff.1": {
+      "asset": "fx",
+      "x": 599,
+      "y": 390,
+      "width": 417,
+      "height": 237,
+      "anchorX": 208.5,
+      "anchorY": 118.5,
+      "visibleBounds": [
+        3,
+        3,
+        414,
+        234
+      ],
+      "maxEdgeAlpha": 4
+    },
+    "fx.snuff.2": {
+      "asset": "fx",
+      "x": 1189,
+      "y": 373,
+      "width": 272,
+      "height": 246,
+      "anchorX": 136,
+      "anchorY": 123,
+      "visibleBounds": [
+        3,
+        3,
+        269,
+        243
+      ],
+      "maxEdgeAlpha": 4
+    },
+    "fx.barrier.0": {
+      "asset": "fx",
+      "x": 68,
+      "y": 679,
+      "width": 405,
+      "height": 308,
+      "anchorX": 202.5,
+      "anchorY": 154,
+      "visibleBounds": [
+        3,
+        3,
+        402,
+        305
+      ],
+      "maxEdgeAlpha": 5
+    },
+    "fx.barrier.1": {
+      "asset": "fx",
+      "x": 576,
+      "y": 676,
+      "width": 449,
+      "height": 302,
+      "anchorX": 224.5,
+      "anchorY": 151,
+      "visibleBounds": [
+        3,
+        3,
+        446,
+        299
+      ],
+      "maxEdgeAlpha": 4
+    },
+    "fx.barrier.2": {
+      "asset": "fx",
+      "x": 1111,
+      "y": 698,
+      "width": 375,
+      "height": 276,
+      "anchorX": 187.5,
+      "anchorY": 138,
+      "visibleBounds": [
+        3,
+        3,
+        372,
+        273
+      ],
+      "maxEdgeAlpha": 6
+    },
+    "battle.idle.0": {
+      "asset": "motion-a",
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "anchorX": 163.5,
+      "anchorY": 305,
+      "visibleBounds": [
+        81,
+        101,
+        246,
+        305
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.move.0": {
+      "asset": "motion-a",
+      "x": 0,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "anchorX": 166.5,
+      "anchorY": 297,
+      "visibleBounds": [
+        68,
+        102,
+        265,
+        297
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.attack.0": {
+      "asset": "motion-a",
+      "x": 0,
+      "y": 627,
+      "width": 314,
+      "height": 341,
+      "anchorX": 173.5,
+      "anchorY": 272,
+      "visibleBounds": [
+        75,
+        70,
+        272,
+        272
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.cast.0": {
+      "asset": "motion-a",
+      "x": 0,
+      "y": 968,
+      "width": 314,
+      "height": 286,
+      "anchorX": 172.5,
+      "anchorY": 213,
+      "visibleBounds": [
+        72,
+        17,
+        273,
+        213
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.idle.1": {
+      "asset": "motion-a",
+      "x": 314,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "anchorX": 181.5,
+      "anchorY": 305,
+      "visibleBounds": [
+        81,
+        99,
+        282,
+        305
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.move.1": {
+      "asset": "motion-a",
+      "x": 314,
+      "y": 314,
+      "width": 314,
+      "height": 362,
+      "anchorX": 179.0,
+      "anchorY": 297,
+      "visibleBounds": [
+        48,
+        99,
+        310,
+        297
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.attack.1": {
+      "asset": "motion-a",
+      "x": 314,
+      "y": 676,
+      "width": 314,
+      "height": 264,
+      "anchorX": 166.0,
+      "anchorY": 219,
+      "visibleBounds": [
+        38,
+        43,
+        294,
+        219
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.cast.1": {
+      "asset": "motion-a",
+      "x": 314,
+      "y": 940,
+      "width": 314,
+      "height": 314,
+      "anchorX": 185.0,
+      "anchorY": 247,
+      "visibleBounds": [
+        92,
+        28,
+        278,
+        247
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.idle.2": {
+      "asset": "motion-a",
+      "x": 628,
+      "y": 0,
+      "width": 320,
+      "height": 314,
+      "anchorX": 176.5,
+      "anchorY": 305,
+      "visibleBounds": [
+        79,
+        96,
+        274,
+        305
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.move.2": {
+      "asset": "motion-a",
+      "x": 628,
+      "y": 314,
+      "width": 320,
+      "height": 313,
+      "anchorX": 180.5,
+      "anchorY": 297,
+      "visibleBounds": [
+        68,
+        100,
+        293,
+        297
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.attack.2": {
+      "asset": "motion-a",
+      "x": 628,
+      "y": 627,
+      "width": 320,
+      "height": 313,
+      "anchorX": 180.0,
+      "anchorY": 273,
+      "visibleBounds": [
+        44,
+        85,
+        316,
+        273
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.cast.2": {
+      "asset": "motion-a",
+      "x": 628,
+      "y": 940,
+      "width": 320,
+      "height": 314,
+      "anchorX": 161.5,
+      "anchorY": 250,
+      "visibleBounds": [
+        27,
+        59,
+        296,
+        250
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.idle.3": {
+      "asset": "motion-a",
+      "x": 948,
+      "y": 0,
+      "width": 306,
+      "height": 344,
+      "anchorX": 157.0,
+      "anchorY": 305,
+      "visibleBounds": [
+        65,
+        110,
+        249,
+        305
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.move.3": {
+      "asset": "motion-a",
+      "x": 948,
+      "y": 344,
+      "width": 306,
+      "height": 283,
+      "anchorX": 160.5,
+      "anchorY": 271,
+      "visibleBounds": [
+        55,
+        83,
+        266,
+        271
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.attack.3": {
+      "asset": "motion-a",
+      "x": 948,
+      "y": 627,
+      "width": 306,
+      "height": 313,
+      "anchorX": 158.5,
+      "anchorY": 275,
+      "visibleBounds": [
+        43,
+        86,
+        274,
+        275
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.cast.3": {
+      "asset": "motion-a",
+      "x": 948,
+      "y": 940,
+      "width": 306,
+      "height": 314,
+      "anchorX": 166.5,
+      "anchorY": 250,
+      "visibleBounds": [
+        71,
+        65,
+        262,
+        250
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.hit.0": {
+      "asset": "motion-b",
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "anchorX": 167.5,
+      "anchorY": 295,
+      "visibleBounds": [
+        57,
+        76,
+        278,
+        295
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.guard.0": {
+      "asset": "motion-b",
+      "x": 0,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "anchorX": 180.5,
+      "anchorY": 284,
+      "visibleBounds": [
+        74,
+        83,
+        287,
+        284
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.ultimate.0": {
+      "asset": "motion-b",
+      "x": 0,
+      "y": 627,
+      "width": 314,
+      "height": 313,
+      "anchorX": 178.5,
+      "anchorY": 293,
+      "visibleBounds": [
+        71,
+        84,
+        286,
+        293
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.defeat.0": {
+      "asset": "motion-b",
+      "x": 0,
+      "y": 940,
+      "width": 314,
+      "height": 314,
+      "anchorX": 176.5,
+      "anchorY": 238,
+      "visibleBounds": [
+        66,
+        58,
+        287,
+        238
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.hit.1": {
+      "asset": "motion-b",
+      "x": 314,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "anchorX": 169.0,
+      "anchorY": 295,
+      "visibleBounds": [
+        63,
+        78,
+        275,
+        295
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.guard.1": {
+      "asset": "motion-b",
+      "x": 314,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "anchorX": 164.5,
+      "anchorY": 282,
+      "visibleBounds": [
+        47,
+        71,
+        282,
+        282
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.ultimate.1": {
+      "asset": "motion-b",
+      "x": 314,
+      "y": 627,
+      "width": 313,
+      "height": 313,
+      "anchorX": 175.0,
+      "anchorY": 295,
+      "visibleBounds": [
+        69,
+        28,
+        281,
+        295
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.defeat.1": {
+      "asset": "motion-b",
+      "x": 314,
+      "y": 940,
+      "width": 313,
+      "height": 314,
+      "anchorX": 181.5,
+      "anchorY": 233,
+      "visibleBounds": [
+        66,
+        53,
+        297,
+        233
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.hit.2": {
+      "asset": "motion-b",
+      "x": 627,
+      "y": 0,
+      "width": 324,
+      "height": 314,
+      "anchorX": 171.5,
+      "anchorY": 296,
+      "visibleBounds": [
+        58,
+        105,
+        285,
+        296
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.guard.2": {
+      "asset": "motion-b",
+      "x": 627,
+      "y": 314,
+      "width": 324,
+      "height": 313,
+      "anchorX": 174.0,
+      "anchorY": 288,
+      "visibleBounds": [
+        63,
+        80,
+        285,
+        288
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.ultimate.2": {
+      "asset": "motion-b",
+      "x": 627,
+      "y": 627,
+      "width": 324,
+      "height": 313,
+      "anchorX": 169.0,
+      "anchorY": 294,
+      "visibleBounds": [
+        18,
+        77,
+        320,
+        294
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.defeat.2": {
+      "asset": "motion-b",
+      "x": 627,
+      "y": 940,
+      "width": 324,
+      "height": 314,
+      "anchorX": 185.0,
+      "anchorY": 239,
+      "visibleBounds": [
+        74,
+        60,
+        296,
+        239
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.hit.3": {
+      "asset": "motion-b",
+      "x": 951,
+      "y": 0,
+      "width": 303,
+      "height": 314,
+      "anchorX": 160.5,
+      "anchorY": 299,
+      "visibleBounds": [
+        63,
+        85,
+        258,
+        299
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.guard.3": {
+      "asset": "motion-b",
+      "x": 951,
+      "y": 314,
+      "width": 303,
+      "height": 313,
+      "anchorX": 147.0,
+      "anchorY": 288,
+      "visibleBounds": [
+        32,
+        73,
+        262,
+        288
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.ultimate.3": {
+      "asset": "motion-b",
+      "x": 951,
+      "y": 627,
+      "width": 303,
+      "height": 313,
+      "anchorX": 161.0,
+      "anchorY": 294,
+      "visibleBounds": [
+        51,
+        79,
+        271,
+        294
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    },
+    "battle.defeat.3": {
+      "asset": "motion-b",
+      "x": 951,
+      "y": 940,
+      "width": 303,
+      "height": 314,
+      "anchorX": 161.5,
+      "anchorY": 235,
+      "visibleBounds": [
+        47,
+        90,
+        276,
+        235
+      ],
+      "maxEdgeAlpha": 1,
+      "renderScale": 1.5
+    }
+  },
+  "battle": {
+    "idle": {
+      "id": "aw2-enemy-forgotten-host:clip:idle",
+      "durationMs": 1200,
+      "loop": true,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.idle.0"
+        },
+        {
+          "atMs": 300,
+          "frame": "battle.idle.1"
+        },
+        {
+          "atMs": 600,
+          "frame": "battle.idle.2"
+        },
+        {
+          "atMs": 900,
+          "frame": "battle.idle.3"
+        }
+      ],
+      "reducedMotionFrame": "battle.idle",
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1200,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "four distinct original image_gen motion cels; measured alpha-safe cells; human continuity review pending"
+    },
+    "move": {
+      "id": "aw2-enemy-forgotten-host:clip:move",
+      "durationMs": 1200,
+      "loop": true,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.move.0"
+        },
+        {
+          "atMs": 300,
+          "frame": "battle.move.1"
+        },
+        {
+          "atMs": 600,
+          "frame": "battle.move.2"
+        },
+        {
+          "atMs": 900,
+          "frame": "battle.move.3"
+        }
+      ],
+      "reducedMotionFrame": "battle.move",
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1200,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "four distinct original image_gen motion cels; measured alpha-safe cells; human continuity review pending"
+    },
+    "attack": {
+      "id": "aw2-enemy-forgotten-host:clip:attack",
+      "durationMs": 560,
+      "loop": false,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.attack.0"
+        },
+        {
+          "atMs": 140,
+          "frame": "battle.attack.1"
+        },
+        {
+          "atMs": 280,
+          "frame": "battle.attack.2"
+        },
+        {
+          "atMs": 420,
+          "frame": "battle.attack.3"
+        }
+      ],
+      "reducedMotionFrame": "battle.attack",
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 560,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "four distinct original image_gen motion cels; measured alpha-safe cells; human continuity review pending"
+    },
+    "cast": {
+      "id": "aw2-enemy-forgotten-host:clip:cast",
+      "durationMs": 1950,
+      "loop": false,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.cast.0"
+        },
+        {
+          "atMs": 488,
+          "frame": "battle.cast.1"
+        },
+        {
+          "atMs": 975,
+          "frame": "battle.cast.2"
+        },
+        {
+          "atMs": 1462,
+          "frame": "battle.cast.3"
+        }
+      ],
+      "reducedMotionFrame": "battle.cast",
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1950,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "four distinct original image_gen motion cels; measured alpha-safe cells; human continuity review pending"
+    },
+    "hit": {
+      "id": "aw2-enemy-forgotten-host:clip:hit",
+      "durationMs": 300,
+      "loop": false,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.hit.0"
+        },
+        {
+          "atMs": 75,
+          "frame": "battle.hit.1"
+        },
+        {
+          "atMs": 150,
+          "frame": "battle.hit.2"
+        },
+        {
+          "atMs": 225,
+          "frame": "battle.hit.3"
+        }
+      ],
+      "reducedMotionFrame": "battle.hit",
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 300,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "four distinct original image_gen motion cels; measured alpha-safe cells; human continuity review pending"
+    },
+    "guard": {
+      "id": "aw2-enemy-forgotten-host:clip:guard",
+      "durationMs": 1200,
+      "loop": true,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.guard.0"
+        },
+        {
+          "atMs": 300,
+          "frame": "battle.guard.1"
+        },
+        {
+          "atMs": 600,
+          "frame": "battle.guard.2"
+        },
+        {
+          "atMs": 900,
+          "frame": "battle.guard.3"
+        }
+      ],
+      "reducedMotionFrame": "battle.guard",
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1200,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "four distinct original image_gen motion cels; measured alpha-safe cells; human continuity review pending"
+    },
+    "ultimate": {
+      "id": "aw2-enemy-forgotten-host:clip:ultimate",
+      "durationMs": 1950,
+      "loop": false,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.ultimate.0"
+        },
+        {
+          "atMs": 488,
+          "frame": "battle.ultimate.1"
+        },
+        {
+          "atMs": 975,
+          "frame": "battle.ultimate.2"
+        },
+        {
+          "atMs": 1462,
+          "frame": "battle.ultimate.3"
+        }
+      ],
+      "reducedMotionFrame": "battle.ultimate",
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1950,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "four distinct original image_gen motion cels; measured alpha-safe cells; human continuity review pending"
+    },
+    "defeat": {
+      "id": "aw2-enemy-forgotten-host:clip:defeat",
+      "durationMs": 1200,
+      "loop": false,
+      "frames": [
+        {
+          "atMs": 0,
+          "frame": "battle.defeat.0"
+        },
+        {
+          "atMs": 300,
+          "frame": "battle.defeat.1"
+        },
+        {
+          "atMs": 600,
+          "frame": "battle.defeat.2"
+        },
+        {
+          "atMs": 900,
+          "frame": "battle.defeat.3"
+        }
+      ],
+      "reducedMotionFrame": "battle.defeat",
+      "motion": [
+        {
+          "atMs": 0,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        },
+        {
+          "atMs": 1200,
+          "x": 0,
+          "y": 0,
+          "rotation": 0,
+          "scale": 1,
+          "opacity": 1
+        }
+      ],
+      "markers": [],
+      "method": "four distinct original image_gen motion cels; measured alpha-safe cells; human continuity review pending"
+    }
+  },
+  "skills": {
+    "sweep": {
+      "id": "aw2-enemy-forgotten-host:skill:missed-invitation",
+      "warningFrame": "fx.sweep.0",
+      "impactFrames": [
+        "fx.sweep.1",
+        "fx.sweep.2"
+      ],
+      "frameMs": 180
+    },
+    "snuff": {
+      "id": "aw2-enemy-forgotten-host:skill:snuff-hearth",
+      "warningFrame": "fx.snuff.0",
+      "impactFrames": [
+        "fx.snuff.1",
+        "fx.snuff.2"
+      ],
+      "frameMs": 180
+    },
+    "barrier": {
+      "id": "aw2-enemy-forgotten-host:skill:empty-chair",
+      "warningFrame": "fx.barrier.0",
+      "impactFrames": [
+        "fx.barrier.1",
+        "fx.barrier.2"
+      ],
+      "frameMs": 180
+    }
+  },
+  "provenance": {
+    "generator": "built-in image_gen",
+    "model": "tool managed",
+    "date": "2026-10-22",
+    "prompts": "dev/aw2/assets/forgotten-host/reference-v1/prompts.json",
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "alphaEdgeTolerance": 8,
+    "processing": "Original PNG preserved; measured alpha-bounded cells/anchors; no painting, resize, mask or mirroring. Lossless WebP visible RGBA + alpha verified. Portrait is exact idle-cell crop. No generated audio."
+  },
+  "audio": {
+    "basic": {
+      "id": "aw2-enemy-forgotten-host:audio:basic:v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/basic.wav",
+      "durationMs": 160,
+      "sampleRate": 22050,
+      "sha256": "af1ca2de3f5a8b1774f157002177ef6f9412478c948fc8b8341c0a10038f6171",
+      "method": "original deterministic additive synthesis + seeded noise"
+    },
+    "sweep": {
+      "id": "aw2-enemy-forgotten-host:audio:sweep:v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/sweep.wav",
+      "durationMs": 260,
+      "sampleRate": 22050,
+      "sha256": "fc66ee9d6705bb0ff8b12a8ab21cc962a7fad46a11f4c6c153b01b0fe33936ba",
+      "method": "original deterministic additive synthesis + seeded noise"
+    },
+    "snuff": {
+      "id": "aw2-enemy-forgotten-host:audio:snuff:v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/snuff.wav",
+      "durationMs": 420,
+      "sampleRate": 22050,
+      "sha256": "fbce5d5374a46171c6fda38bf0018d7bf01db4c7d1e83bc89f2600ceaad490a5",
+      "method": "original deterministic additive synthesis + seeded noise"
+    },
+    "barrier": {
+      "id": "aw2-enemy-forgotten-host:audio:barrier:v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/barrier.wav",
+      "durationMs": 240,
+      "sampleRate": 22050,
+      "sha256": "f356c15c67c3623f55150efd0f0383d4df9c9e7ec7a5729c0f2121376e019eaa",
+      "method": "original deterministic additive synthesis + seeded noise"
+    }
+  },
+  "motionProvenance": {
+    "generator": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-11-02",
+    "task": "AW2-019B",
+    "prompts": "dev/aw2/assets/forgotten-host/motion-v1/prompts.json",
+    "sourceFiles": [
+      {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/initial-a.png",
+        "sha256": "31b5dfdc97a1e5ecea2830ae44d3e849f6fc26086ae23b897bb07cf40bf6ca5a"
+      },
+      {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/initial-b.png",
+        "sha256": "9b4812dcf75d9d3f9b9f8de562d03074bcd8677b2fcc8559b0ad3553287f175b"
+      },
+      {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/motion-a.png",
+        "sha256": "b6c996f95f73fa683505cfa46f0bc89ca202f073bfceb878818c3e97bc6383ec"
+      },
+      {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/motion-b.png",
+        "sha256": "19a332235d8b6ddb85dd1543e55629602e4fa2880a67e4c9f9d01443dab77049"
+      }
+    ],
+    "originalIdentity": {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/battle.png",
+      "sha256": "f91dcc73461219c1fddc824c954e65ed537f51243009a13ec85cb901de4ec95c"
+    },
+    "externalReferences": [],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "humanApproval": false,
+    "processing": "Preserved original PNG; lossless visible RGBA/alpha comparison; alpha-safe per-column cell measurements; logical renderScale only.",
+    "audioSource": [
+      "dev/tools/build-aw2-boss-motion.py",
+      "dev/tools/build-aw2-than-assets.py"
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "task": "AW2-007B",
+  "status": "PASS",
+  "engine": "Chromium 153.0.8010.36",
+  "viewports": [
+    "1280x1000",
+    "390x844"
+  ],
+  "checks": [
+    "Five starter ultimate cards render",
+    "Canvas draws all five decoded authored battle atlases",
+    "Auto combat advances core ticks",
+    "Pause freezes core ticks",
+    "Manual step advances exactly one tick",
+    "Selecting a pending level preserves the active battle cards",
+    "Level reset applies development stats without persistence",
+    "Manual ultimate emits core cast event and spends energy",
+    "Projectile remains visible after authoritative launch",
+    "Authoritative hit settles projectile presentation",
+    "Reduced motion reaches renderer while outcomes remain readable",
+    "Mobile viewport has no horizontal overflow",
+    "Combat reaches one authoritative terminal result without presentation gaps",
+    "Terminal battle disables stepping and all manual ultimates",
+    "Terminal event cancels unfinished visual projectiles",
+    "Resuming a terminal battle cannot advance ticks",
+    "Canvas uses decoded FX atlases with no out-of-bounds source frames",
+    "Reset after terminal clears events and restores a playable level-one team",
+    "Battle preview leaves stable and AW2 save bytes unchanged",
+    "No primary-context browser errors or failed requests",
+    "Missing authored atlas reports a visible error",
+    "System reduced-motion preference initializes the control"
+  ],
+  "errors": [],
+  "failed": [],
+  "atlasDraws": {
+    "/dev/aw2/assets/than/base-v1/battle-motion-a-v2.webp": {
+      "draws": 998,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/suong/base-v1/battle.webp": {
+      "draws": 2728,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/lua/base-v1/battle.webp": {
+      "draws": 2728,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/lam/base-v1/battle.webp": {
+      "draws": 1364,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/moc-non/base-v1/battle.webp": {
+      "draws": 1364,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/lam/base-v1/fx.webp": {
+      "draws": 452,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/suong/base-v1/fx.webp": {
+      "draws": 965,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/moc-non/base-v1/fx.webp": {
+      "draws": 492,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/than/base-v1/battle.webp": {
+      "draws": 82,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/than/base-v1/fx.webp": {
+      "draws": 41,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/lua/base-v1/fx.webp": {
+      "draws": 41,
+      "invalid": 0
+    },
+    "/dev/aw2/assets/than/base-v1/battle-motion-b-v2.webp": {
+      "draws": 1648,
+      "invalid": 0
+    }
+  },
+  "limits": [
+    "development renderer only",
+    "no physical device/performance/save/boss/reward/final-balance approval"
+  ]
+}

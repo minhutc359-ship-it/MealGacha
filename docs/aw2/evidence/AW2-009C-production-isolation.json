@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "stableFiles": 851,
+  "stableTextArtifacts": 77,
+  "markers": [
+    "aw2.development.save",
+    "/dev/aw2/",
+    "Aw2ModeAdapter",
+    "aw2-chess-practice-v1",
+    "aw2-tcg-practice-v1",
+    "Chơi Auto Chess thử"
+  ],
+  "hits": [],
+  "reviewFiles": 92,
+  "reviewBytes": 23828460,
+  "saveSchemaChanged": false,
+  "stableConfigChanged": false,
+  "lockfileChanged": false
+}

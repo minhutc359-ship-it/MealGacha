@@ -1,0 +1,46 @@
+{
+  "task": "AW2-004B",
+  "spiritId": "aw2-lam",
+  "mode": "built-in image_gen",
+  "date": "2026-10-20",
+  "calls": [
+    {
+      "id": "AW2-004B-07",
+      "kind": "portrait",
+      "prompt": "Use case: stylized-concept. One original chest-up portrait and identity reference for AW2 spirit aw2-lam, Lam Lam, Phở-affiliated healer. A calm young adult woman, warm tan skin, soft gray-blue attentive eyes, dark navy hair in a low loose side braid, gentle tired smile. Layered pale ivory and mist-blue practical clothes, soft blue apron sash, a small cylindrical thermal flask clipped at her hip (a glimpse near lower crop), sleeves folded back, one open hand welcoming a thin line of warm steam. Peaceful caregiver who needs rest, grounded human, no wings or halo, no weapon, not a water goddess. Original HD anime game illustration, precise clean line and soft cel shading. Single head-and-shoulders subject centered with 12 percent clear margins around entire hair and shoulders, square composition, actual transparent alpha background. No scenery, glow wash, text, frame, logo, food head or external franchise/artist reference.",
+      "inputImages": [],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-11",
+      "kind": "world",
+      "prompt": "Use case: stylized-concept. Original AW2 Lam Lam aw2-lam. Image1 is ONLY the identity portrait reference. Preserve adult woman, warm tan skin, dark navy low side braid, gray-blue eyes, layered pale ivory and mist-blue clothes, blue apron sash, cylindrical thermal flask at hip. Lower body: practical calf-length split apron over loose navy trousers and simple flat shoes. Human caregiver/healer, no weapon, no staff, no halo. True transparent alpha outside figures, no scenery, floor, shadow, labels, text or grid. Create EXACT 4-column x4-row atlas, sixteen isolated pixel/chibi complete bodies, 3-head proportions, crisp pixel clusters. Equal square invisible cells with very wide transparent gutters, each figure inside central 60% width and 75% height. Rows top to bottom front/down, profile screen-left, profile screen-right, back/up with back of head visible. Every row columns idle / left-foot-forward / passing feet / right-foot-forward, four distinct leg poses. All heads, braid, hands, thermal flask and feet remain inside own cell; same scale/foot baseline; no FX.",
+      "inputImages": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-cdef50c5-01b0-47f0-849c-2bbd562b3a2b.png",
+          "sha256": "52a93fffa7af754e89a3bb731ed120deac3e5ae87c24fa3ae57b843a62ab8a39"
+        }
+      ],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-12",
+      "kind": "battle",
+      "prompt": "Use case: stylized-concept. Original AW2 Lam Lam aw2-lam. Image1 is ONLY the identity portrait reference. Preserve adult woman, warm tan skin, dark navy low side braid, gray-blue eyes, layered pale ivory and mist-blue clothes, blue apron sash, cylindrical thermal flask at hip. Lower body: practical calf-length split apron over loose navy trousers and simple flat shoes. Human caregiver/healer, no weapon, no staff, no halo. True transparent alpha outside figures, no scenery, floor, shadow, labels, text or grid. Create eight SMALL isolated complete HD anime key-pose figures on wide 3:2 canvas, EXACT four equal columns x two equal rows. CRITICAL: each figure fits fully within CENTER 60% WIDTH and 75% HEIGHT of own cell, ample empty transparent corridors at quarter column boundaries and middle row boundary. Keep arms compact, no wide outstretched pose, all feet inside. Same body scale, clean ink/cel style matching portrait. Row1 left to right: calm idle with open hand; walking right; small projectile-release hand forward near chest; cupping two hands to pour warmth, healing cast. Row2: recoil from hit; forearms protecting flask/chest; palms raised compactly for two-stage area heal ultimate; kneeling exhausted defeat. Eight distinct silhouettes, no effects or projectile painted in poses, no shadow.",
+      "inputImages": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-cdef50c5-01b0-47f0-849c-2bbd562b3a2b.png",
+          "sha256": "52a93fffa7af754e89a3bb731ed120deac3e5ae87c24fa3ae57b843a62ab8a39"
+        }
+      ],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-13",
+      "kind": "fx",
+      "prompt": "Use case: stylized-concept. Original AW2 Lam Lam VFX ICON atlas, square, exact FOUR columns x FOUR rows of equal invisible cells. Actual transparent alpha. Each small icon only inside central 40% width/height of own cell, enormous empty transparent gutters. NO BLOOM, HAZE, SMOKE, FOG, background, grid, text or characters. Clean sharp anime ink/cel effect contours, blue/ivory/soft gold, no screen-filling light. Row1 ranged basic: col1 single tiny blue droplet pointing right with short tail (PROJECTILE), col2 slightly longer blue droplet with short tail (PROJECTILE), col3 small crisp blue impact ring with three droplets, col4 two fading droplets. Row2 healing (ivory/gold distinct from blue attack): col1 tiny warm cup-shaped curl, col2 cupped golden steam curl with a small plus silhouette, col3 paired ivory warmth ribbons and one small plus, col4 small fading gold curl. Row3 overheal protection: four stages of a tiny pale-blue/gold rounded protective shell, seed arc / forming shell / shell with small steam mark / thin fading arc. Row4 team heal: four stages of a compact ivory/gold shallow oval with TWO separated rising steam curls, forming / first pulse / fuller second pulse / fading curls. All icons separate, small and fully enclosed with generous transparent space; no lettering.",
+      "inputImages": [],
+      "transparentBackground": true
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "task": "AW2-019C",
+  "date": "2026-11-02",
+  "branch": "game/adventure-world-2",
+  "base": "ab0c756648af1bae7a0d6cf56259908d036b40a5",
+  "sourceCheckout": {
+    "status": "PASS",
+    "trackedFiles": 3662,
+    "criticalFiles": 2443,
+    "criticalBytes": 555835985,
+    "lfsPointers": 0,
+    "symlinks": 0
+  },
+  "tests": {
+    "focused": { "status": "PASS", "files": 5, "tests": 89 },
+    "full": { "status": "PASS", "files": 169, "tests": 2337, "seconds": 22.06 },
+    "rootTypecheck": "PASS",
+    "devTypecheck": "PASS",
+    "productionBuild": "PASS",
+    "reviewBuild": "PASS",
+    "nodeBudgetTests": { "status": "PASS", "tests": 4 },
+    "serviceWorkerSyntax": "PASS"
+  },
+  "artifact": {
+    "sha256": "4e1a2e0d8b8ecf88f759cff9ba85502b1ae8f12cb96d2c2707ba3be758d1892b",
+    "bytes": 166712221,
+    "files": 396,
+    "jsGzipBytes": 700718,
+    "cssGzipBytes": 38663,
+    "offlineCoreBytes": 1479512,
+    "offlineCoreUrls": 27
+  },
+  "candidate": {
+    "technicalPass": 15,
+    "technicalTotal": 15,
+    "externalPass": 0,
+    "externalTotal": 7,
+    "overall": "BLOCKED_EXTERNAL",
+    "requireReadyExit": 2,
+    "releaseAuthorized": false,
+    "deployAuthorized": false
+  },
+  "journalEvidence": {
+    "path": "docs/aw2/evidence/AW2-019B-journal.jpg",
+    "bytes": 49136,
+    "width": 1363,
+    "height": 936,
+    "sha256": "ec947c4b01cc964ebfa1ef3bc36b2ecd94d8f9119b695a13f49e99af13aa14b9",
+    "source": "actual managed-browser free-play QA collection journal",
+    "physicalDevice": false
+  },
+  "browser": {
+    "sourceRootNewGame": "PASS_LIMITED",
+    "sourceOriginalChest": "PASS_LIMITED",
+    "httpsHeaders": "NOT_RUN",
+    "physicalDevice": "NOT_RUN"
+  },
+  "rights": {
+    "historicalUnresolved": 13,
+    "unresolvedShipped": 0,
+    "commercialClearance": "PENDING_EVIDENCE"
+  }
+}

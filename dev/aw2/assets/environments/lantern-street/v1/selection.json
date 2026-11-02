@@ -1,0 +1,27 @@
+{
+  "initialCalls": 2,
+  "selected": [
+    {
+      "id": "floor",
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-281b65d3-60ab-4bd0-8176-4882ac1db310.png",
+      "sourceSha256": "8b8324ea10f38a4d1089f5a5b944d257afa43e7633e3fc846aa5f7b2c12c2ede",
+      "savedPath": "dev/aw2/assets/environments/lantern-street/v1/floor-source.png"
+    },
+    {
+      "id": "props",
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-274d9f74-9ad9-4731-b939-5beb64d9f054.png",
+      "savedPath": "dev/aw2/assets/environments/lantern-street/v1/props-source.png",
+      "sourceSha256": "0c8e0f4c8264f4f73a0db963e6bd5176ded48acdd01598e8fc96b8fe5d04ba74"
+    }
+  ],
+  "rejected": [
+    {
+      "id": "props",
+      "generatedPath": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-b4cb7fff-1b47-44a0-b4c4-6cdea4d6055f.png",
+      "sourceSha256": "4dcbcd4e74a667cc2cb49cd94528b7a742cae55069b0f0da8567bdd4151377a7",
+      "reason": "Initial irregular row layout prompted transparency/spacing repair; later alpha inspection confirms original was transparent, not opaque. Selected repair uses explicitly measured per-column row separation rather than assuming equal grid."
+    }
+  ],
+  "repairCalls": 1,
+  "calibration": "Selected alpha is0..254, true transparent background despite colored preview RGB. Per-column clear gaps split rows;2pxpadding preserves every alpha>8 pixel, no source repaint/crop/masking or hand-erasure."
+}

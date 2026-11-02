@@ -1,0 +1,45 @@
+
+ RUN  v5.0.1 /workspace/scratch/47c00dd5b26d/MealGacha
+
+ ❯ dev/tests/game/tcg470.test.ts (20 tests | 1 failed) 78269ms
+   ❯ 24-card construction and old collections (4)
+     × resolves 60 seeded full games with legal hints, reactions, four-slot snapshots and no stalled matches 76111ms
+ ❯ dev/tests/game/expedition.test.ts (15 tests | 1 failed) 27103ms
+   × resolves 30 starter encounters and 20 complete journeys with real turns, health carryover and seeded decks 25362ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  dev/tests/game/expedition.test.ts > resolves 30 starter encounters and 20 complete journeys with real turns, health carryover and seeded decks
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ dev/tests/game/expedition.test.ts:367:1
+    365|   return b
+    366| }
+    367| it("resolves 30 starter encounters and 20 complete journeys with real …
+       | ^
+    368|   let starterWins = 0,
+    369|     completed = 0
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  dev/tests/game/tcg470.test.ts > 24-card construction and old collections > resolves 60 seeded full games with legal hints, reactions, four-slot snapshots and no stalled matches
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ dev/tests/game/tcg470.test.ts:130:3
+    128|     }
+    129|   })
+    130|   it("resolves 60 seeded full games with legal hints, reactions, four-…
+       |   ^
+    131|     let wins=0,reactions=0
+    132|     for(let seed=1;seed<=60;seed++){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 130 passed (132)
+      Tests  2 failed | 1687 passed (1689)
+   Start at  12:55:37
+   Duration  434.35s (tests 71%, import 21%, transform 7%, worker 1%)
+
+    Isolate  132 workers spawned · ~733ms startup each (spawn + environment, per file)
+             at least ~96.03s faster with isolate: false — reuses workers across files instead of one per file

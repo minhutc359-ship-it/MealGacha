@@ -1,0 +1,19 @@
+{
+  "task": "AW2-006P",
+  "status": "PASS_LOCAL_DEVELOPMENT_ACCEPTANCE",
+  "source": "84ae0b959e60149335af39e79dd0b1f87ed29d1e",
+  "base": "1bdf5b1af5a5fece53a13390b4113b88ddf7c9ca",
+  "browser": {
+    "source": {"status": "PASS", "freshAssertions": 135, "captures": 18, "unexpectedErrors": 0, "expectedFaultObservations": 12, "rawSha256": "e60c3831c40cb709e6dd661c3a35d0657cecf5774e35cad7c1ac8ce28fbb13bc"},
+    "compiled": {"status": "PASS", "freshAssertions": 135, "captures": 18, "unexpectedErrors": 0, "expectedFaultObservations": 12, "rawSha256": "d23fa3d20439662e10d3958c7227ee32dcc7f4f5aac1429da6a1e938ed40e0e9"},
+    "representativeCaptureInspection": "PASS source village follow390 and compiled street overview390",
+    "limitations": "No fresh uninterrupted boss journey, independent human or physical device."
+  },
+  "units": {"status": "PASS", "tests": 1587, "files": 128, "focusedAmbientTests": 5},
+  "types": {"root": "PASS", "dev": "PASS"},
+  "assets": {"status": "PASS", "placements": 6, "frames": 8, "exactRgba": true, "safeFrames": 8, "repeatIdenticalPaths": 10},
+  "builds": {"aw2": {"status": "PASS", "files": 295, "bytes": 120778461}, "stable": {"status": "PASS", "files": 851, "bytes": 177450422, "releaseGuard": "PASS"}},
+  "diagnosticsExcluded": ["initial ambient-calm harness timing failure", "pre-fix Pixi asset destroy/cache warnings"],
+  "open": ["independent player", "physical phone", "fresh uninterrupted boss route", "FPS", "total GPU memory", "listening", "offline", "native", "rights clearance", "production save", "release"],
+  "progress": {"demoPercent": 90, "productEstimatePercent": 40, "productRangePercent": [35, 45], "changed": false}
+}

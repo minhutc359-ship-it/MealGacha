@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "reviewFiles": 104,
+  "reviewBytes": 32168363,
+  "excludedPngTsTsxMapZip": true,
+  "newMocWebpBytes": 2335982,
+  "newMocDecodedRGBA": 12584856,
+  "newMotionMaxEdgeAlpha": 4,
+  "allMocMaxEdgeAlpha": 9,
+  "motionSourceDimensions": [
+    [
+      1254,
+      1254
+    ],
+    [
+      1263,
+      1246
+    ]
+  ],
+  "stableBuild": "REUSED at cf0b394; stable graph/config/dependencies unchanged, not rebuilt"
+}

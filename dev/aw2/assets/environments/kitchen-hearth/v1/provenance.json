@@ -1,0 +1,130 @@
+{
+  "task": "AW2-006F",
+  "generator": {
+    "tool": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-10-24",
+    "prompts": {
+      "path": "dev/aw2/assets/environments/kitchen-hearth/v1/prompts.json",
+      "sha256": "5af97134c574e3b2a2bc710a870762116213cec66680aa4fdec98961492e9dfb"
+    },
+    "reference": {
+      "path": "dev/aw2/assets/environments/kitchen-table/v1/floor.webp",
+      "sha256": "307fe1452573173579aa406bd18ee0648574a075a3ac9919299fce73f3b3ec19",
+      "role": "own floor style reference only"
+    },
+    "externalReferences": [],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "builder": "dev/tools/build-aw2-hearth-room.py",
+    "pillow": "10.2.0",
+    "processing": "Selected PNGs unchanged; exact RGBA lossless WebP; alpha>8 measured three cells with4px padding. Uniform per-prop render scale, no painting/masking/mirroring/resizing of pixels.",
+    "reused": {
+      "sideboard": {
+        "task": "AW2-006B",
+        "sourceRef": "425aa16d94ea51decf7f43afb5986b13ad126dfc"
+      },
+      "threshold": {
+        "task": "AW2-006C",
+        "sourceRef": "b350a11d777c1e8c94b5f2aadc6299b68f7e7722"
+      }
+    }
+  },
+  "selection": {
+    "floor": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-3b742dcb-b83b-4aa5-8f24-145f9b24c317.png",
+    "puzzles": "/home/sotatek/.codex/generated_images/01a16283-7855-7dc1-b115-9664e1dc7e24/exec-ac0fbc6a-ad4e-471a-a589-6a7566da14ad.png"
+  },
+  "builtInCalls": 2,
+  "rejected": [],
+  "assets": {
+    "floor": {
+      "id": "aw2-environment-kitchen-hearth-v1:floor",
+      "url": "/dev/aw2/assets/environments/kitchen-hearth/v1/floor.webp",
+      "width": 1619,
+      "height": 971,
+      "bytes": 1885996,
+      "sha256": "7579fee6978a0d8738d77397eeaa82a7438f0e90c486a0f4f7af25948ef6b5a5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-hearth/v1/floor-source.png",
+        "bytes": 2426296,
+        "sha256": "c630b749e4f918e709126da49b3692f0d97e2d1f7bff239fbf814acf71c7db86"
+      }
+    },
+    "puzzles": {
+      "id": "aw2-environment-kitchen-hearth-v1:puzzles",
+      "url": "/dev/aw2/assets/environments/kitchen-hearth/v1/puzzles.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 680906,
+      "sha256": "350bf9270245ecc6c2c798beeacb180fefa75b24d620d460af3089d278061906",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-hearth/v1/puzzles-source.png",
+        "bytes": 970827,
+        "sha256": "9dbcf7535f738f4064b6d3d084f4806665045ad2bdb8da4f38afd460e327039a"
+      }
+    },
+    "sideboard": {
+      "id": "aw2-environment-kitchen-table-v1:sideboard",
+      "url": "/dev/aw2/assets/environments/kitchen-table/v1/sideboard.webp",
+      "width": 1322,
+      "height": 1190,
+      "bytes": 733646,
+      "sha256": "5f1939c67f0342e46e4b018c011f7adcd3a3a2d3471ed665b4f735f96c83a5ef",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/v1/sideboard-source.png",
+        "bytes": 1049015,
+        "sha256": "71d9d181ec16826c51bf039ec00f723c9334fd595e3dbfdb7a443543c4abfdd4"
+      },
+      "frame": {
+        "x": 69,
+        "y": 278,
+        "width": 1187,
+        "height": 686
+      }
+    },
+    "threshold": {
+      "id": "aw2-environment-kitchen-table-interactions-v1:threshold",
+      "url": "/dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 927068,
+      "sha256": "2d65c8dafa4505cd1ef95ef2fa7f7c58215dd1d88b1c8b5bea0123dc818122e5",
+      "source": {
+        "path": "dev/aw2/assets/environments/kitchen-table/interaction-v1/threshold-source.png",
+        "bytes": 1370491,
+        "sha256": "ecb379f438637c2dd66b3bfec67a6cafab5ace9b137b365091f1986747ddaf1d"
+      },
+      "frame": {
+        "x": 300,
+        "y": 231,
+        "width": 936,
+        "height": 564
+      }
+    }
+  },
+  "frames": {
+    "vent": {
+      "x": 145,
+      "y": 139,
+      "width": 461,
+      "height": 465
+    },
+    "pot": {
+      "x": 800,
+      "y": 180,
+      "width": 594,
+      "height": 433
+    },
+    "brazier": {
+      "x": 1579,
+      "y": 192,
+      "width": 457,
+      "height": 421
+    }
+  },
+  "limits": [
+    "Static neutral props; progress/solved text comes from actual rules, no animated fire.",
+    "Existing own sideboard/threshold reused unchanged with original provenance.",
+    "Independent route/player/device/rights/full-environment acceptance OPEN."
+  ]
+}

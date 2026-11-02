@@ -1,0 +1,420 @@
+{
+  "task": "AW2-004I",
+  "status": "PASS reference subset",
+  "date": "2026-10-22",
+  "source": "26849546825131a5c448645274880977caa9d230",
+  "base": "97b9b27fc9f6d0d18873b0d97420f2031efc1092",
+  "environment": {
+    "os": "Windows10.0.26200 x64",
+    "node": "25.2.0",
+    "pnpm": "10.34.3",
+    "typescript": "5.9.3",
+    "vitest": "5.0.1",
+    "vite": "8.0.5",
+    "chrome": "155.0.8059.85",
+    "playwright": "1.64.1",
+    "sharp": "0.35.5 ignored QA tool"
+  },
+  "units": {
+    "affected": 49,
+    "files": 7,
+    "new": 6,
+    "finalSamplerRerun": 6,
+    "unchangedPassingRetained": 43,
+    "status": "PASS",
+    "fullCurrentHead": "NOT_RUN, unchanged core1036 PASS at910b55b reused"
+  },
+  "types": {
+    "root": "PASS",
+    "dev": "PASS",
+    "initial": "FAIL missing portrait transparentFraction, measured/fixed"
+  },
+  "formatSyntaxWhitespace": "PASS",
+  "assets": {
+    "status": "PASS",
+    "sourceFiles": 2,
+    "runtimeAssets": 3,
+    "runtimeBytes": 2163576,
+    "decodedRGBABytes": 12922920,
+    "actualAlphaSafeFrames": 17,
+    "keyPoses": 8,
+    "effectCells": 9,
+    "generatedCalls": 3,
+    "selectedOutputs": 2,
+    "rejected": 1,
+    "repeatBuildFilesByteIdentical": 8,
+    "processing": "Preserved PNG sources/lossless WebP; exact idle crop portrait; no repaint/mask/resize/mirror",
+    "rights": "REVIEW_REQUIRED / NOT_CLEARED"
+  },
+  "builds": {
+    "dist": {
+      "files": 851,
+      "bytes": 177450783,
+      "textArtifacts": 72,
+      "leaks": [],
+      "sources": []
+    },
+    "dist-aw2": {
+      "files": 112,
+      "bytes": 36902504,
+      "textArtifacts": 58,
+      "leaks": [],
+      "sources": []
+    }
+  },
+  "browser": {
+    "source-boss": {
+      "status": "PASS",
+      "checks": [
+        "Canonical boss resolves its own left-facing manifest, without starter fallback",
+        "Real Ghế trống activates with a finite four-basic protection counter",
+        "Actual protection uses own guard pose and authored empty-chair art",
+        "Pause freezes the authoritative boss countdown/protection",
+        "Paused boss presentation clock remains frozen",
+        "390px sticky protection remains visible at manual ultimate controls",
+        "390px jump leaves the first ultimate uncovered by the sticky panel",
+        "320px sticky protection remains visible at manual ultimate controls",
+        "320px jump leaves the first ultimate uncovered by the sticky panel",
+        "Mời hụt displays real remaining beat 3",
+        "Real sweep warning uses own cast pose and warning art without a predicted hit",
+        "Mời hụt displays real remaining beat 2",
+        "Mời hụt displays real remaining beat 1",
+        "Sweep warning ends after its actual scheduled resolution",
+        "Actual sweep hits use confirmed authored effects at real recipients",
+        "Confirmed boss impact expires without reviving after the hit",
+        "Tắt bếp exposes countdown 3 with audio off",
+        "Real snuff warning uses own ultimate pose and ember art",
+        "Tắt bếp exposes countdown 2 with audio off",
+        "Tắt bếp exposes countdown 1 with audio off",
+        "Live combat progress cannot write boss victory before explicit settlement",
+        "Retreat suppresses outstanding warning/protection display",
+        "Retreat cancels all boss authored warning/contact art",
+        "Retreat returns to the safe yard with accepted objectives and no boss grant",
+        "auto-only reaches its real enemy-win result",
+        "auto-only terminal clears telegraph/protection without writing results",
+        "auto-only terminal clears authored boss effects",
+        "auto-only commits only its actual result and correct safe return",
+        "auto-only reload preserves exact committed bytes and seeded legacy",
+        "hold-damage-ultimates-for-barrier reaches its real player-win result",
+        "hold-damage-ultimates-for-barrier terminal clears telegraph/protection without writing results",
+        "hold-damage-ultimates-for-barrier terminal clears authored boss effects",
+        "Defeated boss resolves its own defeat cell",
+        "Failed win settlement retains checkpoint bytes and authentic live terminal for retry",
+        "hold-damage-ultimates-for-barrier commits only its actual result and correct safe return",
+        "hold-damage-ultimates-for-barrier reload preserves exact committed bytes and seeded legacy",
+        "Actual draws include both own battle/effect atlases with safe source cells and no recolor/mirroring",
+        "Actual battle draws include own idle/guard/cast/ultimate/defeat key poses",
+        "No browser/page/asset errors"
+      ],
+      "runs": [
+        {
+          "strategy": "auto-only",
+          "result": "enemy-win",
+          "tick": 51
+        },
+        {
+          "strategy": "hold-damage-ultimates-for-barrier",
+          "result": "player-win",
+          "tick": 43
+        }
+      ],
+      "engine": "155.0.8059.85",
+      "drawSummary": [
+        {
+          "url": "http://127.0.0.1:8470/dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+          "draws": 245,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 7
+        },
+        {
+          "url": "http://127.0.0.1:8470/dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+          "draws": 333,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 7
+        },
+        {
+          "url": "http://127.0.0.1:8470/dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+          "draws": 345,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 7
+        },
+        {
+          "url": "http://127.0.0.1:8470/dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+          "draws": 401,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 7
+        },
+        {
+          "url": "http://127.0.0.1:8470/dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+          "draws": 369,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 8
+        },
+        {
+          "url": "http://127.0.0.1:8470/dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+          "draws": 353,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 7
+        }
+      ]
+    },
+    "compiled-boss": {
+      "status": "PASS",
+      "checks": [
+        "Canonical boss resolves its own left-facing manifest, without starter fallback",
+        "Real Ghế trống activates with a finite four-basic protection counter",
+        "Actual protection uses own guard pose and authored empty-chair art",
+        "Pause freezes the authoritative boss countdown/protection",
+        "Paused boss presentation clock remains frozen",
+        "390px sticky protection remains visible at manual ultimate controls",
+        "390px jump leaves the first ultimate uncovered by the sticky panel",
+        "320px sticky protection remains visible at manual ultimate controls",
+        "320px jump leaves the first ultimate uncovered by the sticky panel",
+        "Mời hụt displays real remaining beat 3",
+        "Real sweep warning uses own cast pose and warning art without a predicted hit",
+        "Mời hụt displays real remaining beat 2",
+        "Mời hụt displays real remaining beat 1",
+        "Sweep warning ends after its actual scheduled resolution",
+        "Actual sweep hits use confirmed authored effects at real recipients",
+        "Confirmed boss impact expires without reviving after the hit",
+        "Tắt bếp exposes countdown 3 with audio off",
+        "Real snuff warning uses own ultimate pose and ember art",
+        "Tắt bếp exposes countdown 2 with audio off",
+        "Tắt bếp exposes countdown 1 with audio off",
+        "Live combat progress cannot write boss victory before explicit settlement",
+        "Retreat suppresses outstanding warning/protection display",
+        "Retreat cancels all boss authored warning/contact art",
+        "Retreat returns to the safe yard with accepted objectives and no boss grant",
+        "auto-only reaches its real enemy-win result",
+        "auto-only terminal clears telegraph/protection without writing results",
+        "auto-only terminal clears authored boss effects",
+        "auto-only commits only its actual result and correct safe return",
+        "auto-only reload preserves exact committed bytes and seeded legacy",
+        "hold-damage-ultimates-for-barrier reaches its real player-win result",
+        "hold-damage-ultimates-for-barrier terminal clears telegraph/protection without writing results",
+        "hold-damage-ultimates-for-barrier terminal clears authored boss effects",
+        "Defeated boss resolves its own defeat cell",
+        "Failed win settlement retains checkpoint bytes and authentic live terminal for retry",
+        "hold-damage-ultimates-for-barrier commits only its actual result and correct safe return",
+        "hold-damage-ultimates-for-barrier reload preserves exact committed bytes and seeded legacy",
+        "Actual draws include both own battle/effect atlases with safe source cells and no recolor/mirroring",
+        "Actual battle draws include own idle/guard/cast/ultimate/defeat key poses",
+        "No browser/page/asset errors"
+      ],
+      "runs": [
+        {
+          "strategy": "auto-only",
+          "result": "enemy-win",
+          "tick": 51
+        },
+        {
+          "strategy": "hold-damage-ultimates-for-barrier",
+          "result": "player-win",
+          "tick": 43
+        }
+      ],
+      "engine": "155.0.8059.85",
+      "drawSummary": [
+        {
+          "url": "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+          "draws": 251,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 7
+        },
+        {
+          "url": "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+          "draws": 330,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 7
+        },
+        {
+          "url": "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+          "draws": 312,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 7
+        },
+        {
+          "url": "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+          "draws": 365,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 7
+        },
+        {
+          "url": "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+          "draws": 407,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 8
+        },
+        {
+          "url": "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+          "draws": 448,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 7
+        }
+      ]
+    },
+    "source-navigation": {
+      "status": "PASS",
+      "checks": [
+        "Canonical boss resolves its own left-facing manifest, without starter fallback",
+        "Real Ghế trống activates with a finite four-basic protection counter",
+        "Actual protection uses own guard pose and authored empty-chair art",
+        "Pause freezes the authoritative boss countdown/protection",
+        "Paused boss presentation clock remains frozen",
+        "390px sticky protection remains visible at manual ultimate controls",
+        "390px jump leaves the first ultimate uncovered by the sticky panel",
+        "390px arena jump keeps own boss visible below the sticky warning",
+        "320px sticky protection remains visible at manual ultimate controls",
+        "320px jump leaves the first ultimate uncovered by the sticky panel",
+        "320px arena jump keeps own boss visible below the sticky warning",
+        "No navigation browser/page/asset errors"
+      ],
+      "engine": "155.0.8059.85",
+      "drawSummary": [
+        {
+          "url": "http://127.0.0.1:8470/dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+          "draws": 108,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 3
+        },
+        {
+          "url": "http://127.0.0.1:8470/dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+          "draws": 97,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 1
+        }
+      ]
+    },
+    "compiled-navigation": {
+      "status": "PASS",
+      "checks": [
+        "Canonical boss resolves its own left-facing manifest, without starter fallback",
+        "Real Ghế trống activates with a finite four-basic protection counter",
+        "Actual protection uses own guard pose and authored empty-chair art",
+        "Pause freezes the authoritative boss countdown/protection",
+        "Paused boss presentation clock remains frozen",
+        "390px sticky protection remains visible at manual ultimate controls",
+        "390px jump leaves the first ultimate uncovered by the sticky panel",
+        "390px arena jump keeps own boss visible below the sticky warning",
+        "320px sticky protection remains visible at manual ultimate controls",
+        "320px jump leaves the first ultimate uncovered by the sticky panel",
+        "320px arena jump keeps own boss visible below the sticky warning",
+        "No navigation browser/page/asset errors"
+      ],
+      "engine": "155.0.8059.85",
+      "drawSummary": [
+        {
+          "url": "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/battle.webp",
+          "draws": 105,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 3
+        },
+        {
+          "url": "http://127.0.0.1:8471/dev/aw2/assets/forgotten-host/reference-v1/fx.webp",
+          "draws": 93,
+          "invalid": 0,
+          "flipped": 0,
+          "tinted": 0,
+          "sourceCellCount": 1
+        }
+      ]
+    }
+  },
+  "standalone": {
+    "status": "PASS",
+    "checks": [
+      "Five starter ultimate cards render",
+      "Canvas draws all five decoded authored battle atlases",
+      "Auto combat advances core ticks",
+      "Pause freezes core ticks",
+      "Manual step advances exactly one tick",
+      "Selecting a pending level preserves the active battle cards",
+      "Level reset applies development stats without persistence",
+      "Manual ultimate emits core cast event and spends energy",
+      "Projectile remains visible after authoritative launch",
+      "Authoritative hit settles projectile presentation",
+      "Reduced motion reaches renderer while outcomes remain readable",
+      "Mobile viewport has no horizontal overflow",
+      "Combat reaches one authoritative terminal result without presentation gaps",
+      "Terminal battle disables stepping and all manual ultimates",
+      "Terminal event cancels unfinished visual projectiles",
+      "Resuming a terminal battle cannot advance ticks",
+      "Canvas uses decoded FX atlases with no out-of-bounds source frames",
+      "Reset after terminal clears events and restores a playable level-one team",
+      "Battle preview leaves stable and AW2 save bytes unchanged",
+      "No primary-context browser errors or failed requests",
+      "Missing authored atlas reports a visible error",
+      "System reduced-motion preference initializes the control"
+    ],
+    "errors": []
+  },
+  "timing": "39+39 full boss gates before final AW2-only arena margin;12+12 final navigation-only gates validate CSS delta;22 standalone after final build. Overlap explicitly not summed as unique checks. Types/stable build before CSS only, their inputs unchanged.",
+  "visual": {
+    "openedInitial": 3,
+    "openedFinal": [
+      "compiled-own-boss-320.png",
+      "compiled-own-boss-390.png"
+    ],
+    "directory": ".asset-work/aw2-004i"
+  },
+  "reused": [
+    {
+      "source": "910b55bf977557f11be03111afa40283df0fbcf1",
+      "scope": "1036 full units/core/save/economy/boss tuning unchanged"
+    },
+    {
+      "source": "b836a82f3cb8babf1087e6ac32603de1f83336de",
+      "scope": "55 earned demo quest/mode/ending checks, world route/save rules unchanged; changed boss consumer tested directly"
+    }
+  ],
+  "playerFeedback": "Owner tried TCG/Auto Chess, not finished journey; end-to-end player gate NOT_RUN",
+  "open": [
+    "full boss motion/world object/audio",
+    "full12 character DoD",
+    "independent art/device/listening/rights",
+    "final balance/performance/offline/native/production save/release"
+  ],
+  "progress": {
+    "demo": 90,
+    "product": 40,
+    "roughRange": [
+      35,
+      45
+    ],
+    "fullDoD": "0/12",
+    "starterMotion": "5/5;160 cels",
+    "absentSpiritSets": 7,
+    "unchanged": true
+  },
+  "next": "AW2-004J Muoi asset package; mechanic007E actual kit follows"
+}

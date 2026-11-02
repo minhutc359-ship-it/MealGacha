@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "checks": [
+    "v3 migration is read-only until an explicit action",
+    "All five authored world atlases are decoded",
+    "Closing chest dialogue grants nothing",
+    "Failed chest write preserves raw bytes and unclaimed UI",
+    "Chest inventory and receipt commit together",
+    "Chest cannot be claimed again after reload",
+    "Old completed quests grant once and level the party",
+    "Cooking consumes exact ingredients and persists one meal",
+    "Sharing consumes the meal and grants XP atomically",
+    "Empty meal inventory disables repeat sharing",
+    "Inventory and EXP survive reload",
+    "Touch/click path navigates around the wall to the exact target",
+    "Reaching a tap target stops movement",
+    "World/inventory fits 320px",
+    "World/inventory fits 390px",
+    "World/inventory fits 768px",
+    "Stale tab cannot overwrite newer inventory",
+    "Stable legacy save remains byte-identical",
+    "Battle audio is opt-in; no WAV is requested by default",
+    "Confirmed combat events request authored WAV cues after opt-in",
+    "No page or console errors"
+  ],
+  "errors": [],
+  "engine": "153.0.8010.0",
+  "viewports": [
+    1280,
+    768,
+    390,
+    320
+  ],
+  "scope": "isolated desktop Chromium; not physical-device QA"
+}

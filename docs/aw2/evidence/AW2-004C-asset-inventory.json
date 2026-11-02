@@ -1,0 +1,40 @@
+{
+  "task": "AW2-004C",
+  "status": "PASS",
+  "originalAssetsByteIdenticalToBase": [
+    "dev/aw2/assets/than/base-v1/world.webp",
+    "dev/aw2/assets/than/base-v1/portrait.png",
+    "dev/aw2/assets/than/base-v1/battle.png",
+    "dev/aw2/assets/than/base-v1/auto.wav",
+    "dev/aw2/assets/than/base-v1/world.png",
+    "dev/aw2/assets/than/base-v1/fx.png",
+    "dev/aw2/assets/than/base-v1/reference.webp",
+    "dev/aw2/assets/than/base-v1/passive.wav",
+    "dev/aw2/assets/than/base-v1/reference.png",
+    "dev/aw2/assets/than/base-v1/ultimate.wav",
+    "dev/aw2/assets/than/base-v1/fx.webp",
+    "dev/aw2/assets/than/base-v1/basic.wav",
+    "dev/aw2/assets/than/base-v1/battle.webp",
+    "dev/aw2/assets/than/base-v1/portrait.webp"
+  ],
+  "totalFrames": 72,
+  "worldCels": 16,
+  "preservedHdPoses": 8,
+  "fxCels": 16,
+  "newMotionCels": 32,
+  "sourcePngs": [
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle-motion-a-v2.png",
+      "sha256": "2b08938c3de5175736287bf887f394e7fd8a87805c5da6c18a0f7dc81fcc7581"
+    },
+    {
+      "path": "dev/aw2/assets/than/base-v1/battle-motion-b-v2.png",
+      "sha256": "568380c52daca06ace4214ca2ec768777d4b35b38571c168fac631b663a42d2c"
+    }
+  ],
+  "runtimeMotionWebpBytes": 2139636,
+  "runtimeMotionDecodedRgbaBytes": 12580128,
+  "maxActualEdgeAlpha": 4,
+  "fullCharacterComplete": false,
+  "licenseStatus": "REVIEW_REQUIRED"
+}

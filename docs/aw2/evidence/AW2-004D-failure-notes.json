@@ -1,0 +1,40 @@
+{
+  "task": "AW2-004D",
+  "status": "PASS",
+  "initialFailures": [
+    {
+      "boundary": "file verifier",
+      "observed": "AssertionError: attack",
+      "reason": "Counted five timeline keys as five authored cels; Lua has four attack cels plus idle recovery alias.",
+      "repair": "Validate all72 rectangles, count four distinct state-owned cels; keep recovery alias verified."
+    },
+    {
+      "boundary": "Than builder reproducibility probe",
+      "observed": "NameError: name 'contacts' is not defined",
+      "reason": "Extracted explicit reference-clip helper left a main-scope FX trigger reference.",
+      "repair": "Derive trigger from explicit clip marker; repeat byte-idempotency probe PASS for Than and Lua."
+    },
+    {
+      "boundary": "source/compiled motion observation",
+      "observed": "Full Lua preview crosses exactly two authored contacts and two FX/audio cues assertion failed after17 checks",
+      "reason": "Elapsed-only wait could consume prior defeat canvas time before newly selected skill first RAF.",
+      "repair": "Wait for recovery frame, elapsed and actual2 event/2 cue counters; no runtime weakening."
+    },
+    {
+      "boundary": "compiled reduced-motion observation",
+      "observed": "Static attack pixel equality failed after contact probe",
+      "reason": "Prior selected skill already used same reduced frame ID with FX; frame-only wait could snapshot stale FX before state-only redraw.",
+      "repair": "Wait for preserved attack frame and empty FX; accepted compiled38 checks follow."
+    }
+  ],
+  "artwork": [
+    {
+      "candidate": "motion-b-v1",
+      "status": "REJECTED",
+      "observed": "Best vertical gutters near x640/960 still had max alpha250/252; source poses overlap neighbouring cells.",
+      "repair": "Built-in image_gen layout repair, preserved selected motion-b-v2; no masking/cropping."
+    }
+  ],
+  "captures": "Two diagnostic failure images opened separately; not counted as accepted evidence. Three accepted final captures opened.",
+  "runtimeAfterUnitBuild": "Unchanged; later changes only verification synchronization/docs."
+}

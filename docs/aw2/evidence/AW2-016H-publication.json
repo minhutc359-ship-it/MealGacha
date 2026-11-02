@@ -1,0 +1,18 @@
+{
+  "task": "AW2-016H",
+  "status": "PASS_SOURCE_PUBLICATION",
+  "branch": "game/adventure-world-2",
+  "base": "bc7e31dc2c8e3322ccb56244233b94be0f38549f",
+  "source": "50b842e100cce3a81e66d26d1d600ca3a5e9d48b",
+  "sourceTree": "cf931b44adba16002914dc4349f9206af01e8b3a",
+  "expectedHeadNonForce": true,
+  "independentFetchSha": "50b842e100cce3a81e66d26d1d600ca3a5e9d48b",
+  "independentFetchTree": "cf931b44adba16002914dc4349f9206af01e8b3a",
+  "indexTreeMatches": true,
+  "directParentMatches": true,
+  "ancestry": true,
+  "localBranchSynchronized": true,
+  "trackedClean": true,
+  "runtimeFingerprint": "819a17e39d16bb035e5733fa56486d76b5a468a39f9c47f1ac392fbe6f934fa2",
+  "nextStamp": "Documentation/evidence only; independently verified after push."
+}

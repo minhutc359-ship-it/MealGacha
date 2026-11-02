@@ -1,0 +1,203 @@
+$ vitest run --config dev/vitest.config.ts dev/tests/aw2/place-affordance.test.ts dev/tests/aw2/place-guidance.test.ts dev/tests/aw2/tea-room.test.ts dev/tests/aw2/pantry-inspection.test.ts dev/tests/aw2/walking-intent.test.ts dev/tests/aw2/journey-guide.test.ts dev/tests/aw2/economy.test.ts --maxWorkers=1 --testTimeout=120000 --reporter=verbose
+
+ RUN  v5.0.1 /workspace/scratch/47c00dd5b26d/MealGacha
+
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > rejects valid-looking quest/objective changes through ordinary position saves before rewards can be claimed 22ms
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > requires the accepted boss quest to be persisted before checkpointing 2ms
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > reads v3 without writing/granting; explicit catch-up preserves identity and grants once 5ms
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > loses neither items nor old bytes on failure; retries chest once 3ms
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > serializes two chest claims across tabs; stale replays cannot duplicate 1ms
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > rejects far-away claims and forged quest or zone changes before granting 2ms
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > uses explicit kitchen actions; failed cooking/share stays atomic and cannot overspend 7ms
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > keeps meals optional; closed hearth and remote kitchen cannot consume 1ms
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > grants a quest and ingredients in one action, and closing/replay grants nothing 3ms
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > normal position save preserves inventory and real boss uses persisted level 3ms
+ ✓ dev/tests/aw2/economy.test.ts > SAVE-02 inventory, chest and cooking transactions > preserves malformed inventory/future schemas instead of dropping unknown data 3ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > exposes one optional object, no extra map/NPC/portal or duplicate crate sprite 18ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > keeps every existing wall, portal and original pantry anchor unchanged 1ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > offers a collision-safe approach from 64,192 with the stock as E target 2ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > offers a collision-safe approach from 576,192 with the stock as E target 1ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > offers a collision-safe approach from 320,366 with the stock as E target 4ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not inspect remotely in aw2-zone-covenant-village 1ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not inspect remotely in aw2-zone-lantern-street 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not inspect remotely in aw2-zone-forgotten-kitchen-yard 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not inspect remotely in aw2-zone-kitchen-hearth 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not inspect remotely in aw2-zone-kitchen-table 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > requires proximity and a safe player position 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > projects actual committed counts, no implied ownership from world progression 1ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > uses actual recipe costs and the least available ingredient, not XP 1ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > projects chest receipt independently from the number of held ingredients 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not read or reveal the hint through inspection, and reflects an explicit read 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > returns only safe same-room walks to chest, hint and both doors 3ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not make accept a stock world action 1ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not make inspect a stock world action 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not make travel a stock world action 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not make turn-in a stock world action 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > does not make cook a stock world action 0ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > returns detached snapshots without mutating world, inventory, receipts or layout 1ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > actual cook/share keeps the same cost, 45XP and counts shown by inspection 1ms
+ ✓ dev/tests/aw2/pantry-inspection.test.ts > 016E existing pantry stock inspection > reads a historical016D schema5 save without a migration or write 12ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > projects actual doors in region 0 2ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > projects actual doors in region 1 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > projects actual doors in region 2 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > projects actual doors in region 3 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > projects actual doors in region 4 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > projects actual doors in region 5 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > opens the yard gate after actual quest acceptance, without executing travel 7ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > keeps the inner door locked at puzzle step 0 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > keeps the inner door locked at puzzle step 1 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > keeps the inner door locked at puzzle step 2 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > keeps the inner door locked at puzzle step 3 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > opens only completed shortcuts in region 2 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > opens only completed shortcuts in region 5 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I door states follow the real action authority > room access is scene-local and never creates an interior 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I existing services and receipts > allows approaching aw2-npc-ban-bai before any quest is earned 1ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I existing services and receipts > allows approaching aw2-npc-ban-co before any quest is earned 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I existing services and receipts > projects desk aw2-object-tea-party-desk only inside 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I existing services and receipts > projects desk aw2-object-tea-journal-desk only inside 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I existing services and receipts > keeps stock inspection available with an empty or already-used bag 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I existing services and receipts > changes chest cue only after the real once-only economy transaction 3ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I existing services and receipts > does not infer an already-claimed chest from ingredient counts 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I kitchen at 2/aw2-npc-gac-bep > keeps cooking locked before the quest even with a stocked bag 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I kitchen at 2/aw2-npc-gac-bep > reports missing rice without claiming that nearby talk is locked 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I kitchen at 2/aw2-npc-gac-bep > reports missing herbs without claiming that nearby talk is locked 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I kitchen at 2/aw2-npc-gac-bep > reports missing broth without claiming that nearby talk is locked 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I kitchen at 2/aw2-npc-gac-bep > projects readiness on approach and actual cook/share/empty transitions 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I kitchen at 4/aw2-object-steam-2 > keeps cooking locked before the quest even with a stocked bag 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I kitchen at 4/aw2-object-steam-2 > reports missing rice without claiming that nearby talk is locked 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I kitchen at 4/aw2-object-steam-2 > reports missing herbs without claiming that nearby talk is locked 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I kitchen at 4/aw2-object-steam-2 > reports missing broth without claiming that nearby talk is locked 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I kitchen at 4/aw2-object-steam-2 > projects readiness on approach and actual cook/share/empty transitions 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I projection boundaries > does not invent a service for village unknown 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I projection boundaries > does not invent a service for village tea 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I projection boundaries > does not invent a service for village aw2-npc-giu-cho 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I projection boundaries > does not invent a service for village aw2-object-village-table 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I projection boundaries > does not invent a service for village aw2-npc-ban-bai 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I projection boundaries > does not invent a service for village aw2-object-pantry-stock 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I projection boundaries > does not invent a service for village aw2-object-tea-party-desk 0ms
+ ✓ dev/tests/aw2/place-affordance.test.ts > 016I projection boundaries > does not mutate frozen world/economy/geometry or expose mutable source objects 1ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > accept intro points only to actual available quest interactions 3ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > read cloth points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > receive starters points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > accept memories points only to actual available quest interactions 1ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 0 points only to actual available quest interactions 1ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 1 points only to actual available quest interactions 1ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 2 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 3 points only to actual available quest interactions 1ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 4 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 5 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 6 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > memory subset 7 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > accept hearth points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > read hint before puzzle points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > puzzle next step 0 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > puzzle next step 1 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > puzzle next step 2 points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > report hearth points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > accept final quest points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > challenge boss points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > read earned victory note points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > return to Ba points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > completed wait points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > completed share points only to actual available quest interactions 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > every legal stage/zone has an open reciprocal route and collision-safe approach to the correct E target 63ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > keeps unearned shortcut gates closed even on the final return-to-Ba route 0ms
+ ✓ dev/tests/aw2/journey-guide.test.ts > JOURNEY-GUIDE-01 canonical objective directions > does not expose or mutate canonical maps/arrays through returned directions 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > enters and exits only by explicit nearby room actions 8ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > moves the active actor, collides with desks and keeps outside state exactly 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > uses room-local objects, paths and exit directions instead of outside targets 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 0 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 1 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 2 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 3 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 4 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects invalid room data 5 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F room rules preserve the outside checkpoint > rejects outside checkpoints from another region or far from entrance 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > requires a live renderer guard for both directions and writes exactly once per action 14ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > refuses generic room entry/exit/outside mutations, including economy and collection writers 4ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > keeps the exact source on failed readiness, quota and stale-tab conflict 3ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > reads historical v1 without writes and upgrades once on explicit action 2ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > reads historical v2 without writes and upgrades once on explicit action 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > reads historical v3 without writes and upgrades once on explicit action 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > reads historical v4 without writes and upgrades once on explicit action 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > reads historical v5 without writes and upgrades once on explicit action 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > preserves authentic 016E earned v5 inventory/quest/party and exact raw on read 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > preserves unsupported and corrupt room bytes without reset 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > quick tcg returns to exact room checkpoint without another write 2ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F atomic persistence and migration > quick auto-chess returns to exact room checkpoint without another write 1ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F scene readiness and original asset contract > does not accept outside readiness for the room or another leader 0ms
+ ✓ dev/tests/aw2/tea-room.test.ts > 016F scene readiness and original asset contract > prepares only the two room atlases and one leader, within measured budgets 11ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps a selected nearby object even when another object is nearest 3ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > checks range inclusively and never falls back to a different nearest object 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects outdoor aw2-object-village-tea-door while inside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects outdoor aw2-npc-giu-cho while inside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects outdoor aw2-object-village-table while inside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects outdoor aw2-zone-covenant-village:exit:east while inside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects room aw2-object-tea-exit while outside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects room aw2-object-tea-party-desk while outside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > rejects room aw2-object-tea-journal-desk while outside 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > resolves the moving NPC at its current snapshot without mutating or teleporting it 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-covenant-village authored approaches standable and inside interaction range 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-lantern-street authored approaches standable and inside interaction range 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-forgotten-kitchen-yard authored approaches standable and inside interaction range 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-kitchen-pantry authored approaches standable and inside interaction range 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-kitchen-hearth authored approaches standable and inside interaction range 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > keeps all aw2-zone-kitchen-table authored approaches standable and inside interaction range 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > gives room desks and exit collision-safe approaches reachable from multiple origins 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G exact selected interaction and scene-local approaches > describes a locked door without granting travel or changing the progress 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > uses the real door approach in village, not its roof anchor 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > walks only to the next local portal from aw2-zone-lantern-street 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > walks only to the next local portal from aw2-zone-forgotten-kitchen-yard 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > walks only to the next local portal from aw2-zone-kitchen-pantry 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > walks only to the next local portal from aw2-zone-kitchen-hearth 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > walks only to the next local portal from aw2-zone-kitchen-table 0ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > points to the local room exit first, without changing the outdoor region graph 9ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > omits only the duplicate village tea landmark and preserves all manifest data 1ms
+ ✓ dev/tests/aw2/place-guidance.test.ts > 016G tea-room signposting across scenes > returns detached approach data and preserves story/economy authority 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > uses the exact existing safe local path in aw2-zone-covenant-village 3ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > uses the exact existing safe local path in aw2-zone-lantern-street 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > uses the exact existing safe local path in aw2-zone-forgotten-kitchen-yard 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > uses the exact existing safe local path in aw2-zone-kitchen-pantry 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > uses the exact existing safe local path in aw2-zone-kitchen-hearth 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > uses the exact existing safe local path in aw2-zone-kitchen-table 1ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > labels floor taps neutrally, detects safe semantic approaches and detaches requested input 1ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > rejects invalid or blocked target 0 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > rejects invalid or blocked target 1 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > rejects invalid or blocked target 2 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > rejects invalid or blocked target 3 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > rejects invalid or blocked target 4 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > rejects invalid or blocked target 5 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > rejects foreign/missing entity missing without a fallback 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > rejects foreign/missing entity aw2-object-tea-exit without a fallback 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > rejects foreign/missing entity aw2-object-tea-party-desk without a fallback 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > cannot label a distant floor point as an unrelated existing entity 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > plans room desks/exits with a separate scene identity and no outside checkpoint changes 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > keeps the existing moving-NPC pin snapshot as the destination authority 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H ephemeral walking plans > reports arrival only from actual final position in the same scene 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > projects an onscreen target exactly and leaves input geometry unchanged 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > clamps offscreen target (-1000,192) to a visible edge 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > clamps offscreen target (2000,192) to a visible edge 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > clamps offscreen target (320,-1000) to a visible edge 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > clamps offscreen target (320,2000) to a visible edge 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > uses the visible crop/status exclusion rather than full oversize canvas bounds 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > retains camera alignment under CSS display scale0.5 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > retains camera alignment under CSS display scale1 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > retains camera alignment under CSS display scale2 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > handles both actual follow and overview camera transforms 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > hides empty, tiny, invalid or disjoint visible bounds 0 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > hides empty, tiny, invalid or disjoint visible bounds 1 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > hides empty, tiny, invalid or disjoint visible bounds 2 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > hides empty, tiny, invalid or disjoint visible bounds 3 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > rejects unusable camera scale 0 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > rejects unusable camera scale -1 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > rejects unusable camera scale NaN 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > rejects unusable camera scale Infinity 0ms
+ ✓ dev/tests/aw2/walking-intent.test.ts > 016H camera-projected destination marker > rejects invalid target, canvas dimensions and padding 0ms
+
+ Test Files  7 passed (7)
+      Tests  191 passed (191)
+   Start at  19:30:43
+   Duration  2.93s (import 45%, transform 38%, tests 15%, worker 2%)
+
+    Isolate  7 workers spawned · ~132ms startup each (spawn + environment, per file)
+             at least ~795ms faster with isolate: false — reuses workers across files instead of one per file

@@ -1,0 +1,108 @@
+{
+  "task": "AW2-004B",
+  "status": "PASS",
+  "units": [
+    {
+      "task": "AW2-004A",
+      "spiritId": "aw2-than",
+      "status": "PASS",
+      "checks": [
+        "reference: bytes/hash/dimensions/real alpha",
+        "world: bytes/hash/dimensions/real alpha",
+        "battle: bytes/hash/dimensions/real alpha",
+        "portrait: bytes/hash/dimensions/real alpha",
+        "fx: bytes/hash/dimensions/real alpha",
+        "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+        "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+      ],
+      "webpBytes": 5943968
+    },
+    {
+      "task": "AW2-004B",
+      "spiritId": "aw2-lua",
+      "status": "PASS",
+      "checks": [
+        "world: bytes/hash/dimensions/real alpha",
+        "battle: bytes/hash/dimensions/real alpha",
+        "portrait: bytes/hash/dimensions/real alpha",
+        "fx: bytes/hash/dimensions/real alpha",
+        "reference: bytes/hash/dimensions/real alpha",
+        "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+        "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+      ],
+      "webpBytes": 3788324
+    },
+    {
+      "task": "AW2-004B",
+      "spiritId": "aw2-lam",
+      "status": "PASS",
+      "checks": [
+        "world: bytes/hash/dimensions/real alpha",
+        "battle: bytes/hash/dimensions/real alpha",
+        "portrait: bytes/hash/dimensions/real alpha",
+        "fx: bytes/hash/dimensions/real alpha",
+        "reference: bytes/hash/dimensions/real alpha",
+        "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+        "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+      ],
+      "webpBytes": 4038342
+    },
+    {
+      "task": "AW2-004B",
+      "spiritId": "aw2-moc-non",
+      "status": "PASS",
+      "checks": [
+        "world: bytes/hash/dimensions/real alpha",
+        "battle: bytes/hash/dimensions/real alpha",
+        "portrait: bytes/hash/dimensions/real alpha",
+        "fx: bytes/hash/dimensions/real alpha",
+        "reference: bytes/hash/dimensions/real alpha",
+        "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 9/255",
+        "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+      ],
+      "webpBytes": 4503922
+    },
+    {
+      "task": "AW2-004B",
+      "spiritId": "aw2-suong",
+      "status": "PASS",
+      "checks": [
+        "world: bytes/hash/dimensions/real alpha",
+        "battle: bytes/hash/dimensions/real alpha",
+        "portrait: bytes/hash/dimensions/real alpha",
+        "fx: bytes/hash/dimensions/real alpha",
+        "reference: bytes/hash/dimensions/real alpha",
+        "40 actual atlas cells: safe bounds, visible pixels inset, alpha edge <= 8/255",
+        "basic: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "auto: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "passive: WAV hash/PCM/duration/non-silent/no clipping/faded edges",
+        "ultimate: WAV hash/PCM/duration/non-silent/no clipping/faded edges"
+      ],
+      "webpBytes": 4178630
+    }
+  ],
+  "newSourceImages": 16,
+  "newAudioCues": 16,
+  "newUniqueWebpBytes": 16509218,
+  "checks": [
+    "source/packed visible RGBA and alpha equality",
+    "selected prompt/output/workspace hashes",
+    "four distinct portraits and sixteen distinct audio cues",
+    "rights not cleared; no full-character completion"
+  ],
+  "baseSha": "7f9c6ab63637ab9d9eb4cf6fa6e7dfb649892bed",
+  "sourceSha": "f6a3b6655988d262a974f6f5034845740fd94766",
+  "branch": "feat/aw2-004b-starter-assets"
+}

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "base": "339edaf80e2ee879455a09c484058470318d8493",
+  "environment": {
+    "os": "Linux 7.0.0-38-generic",
+    "arch": "x86_64",
+    "node": "v22.23.2",
+    "pnpm": "10.34.3"
+  },
+  "command": "pnpm test --maxWorkers=2 --reporter=default --reporter=json --outputFile=/tmp/aw2-009a-unit.json",
+  "files": 92,
+  "tests": 926,
+  "passed": 926,
+  "failed": 0,
+  "pending": 0,
+  "durationSeconds": 37.66,
+  "aw2Files": 12,
+  "aw2Tests": 133
+}

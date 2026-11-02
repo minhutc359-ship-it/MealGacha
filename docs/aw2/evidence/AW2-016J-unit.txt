@@ -1,0 +1,13 @@
+$ vitest run --config dev/vitest.config.ts dev/tests/aw2/quest-affordance.test.ts dev/tests/aw2/place-affordance.test.ts dev/tests/aw2/quest-journal.test.ts dev/tests/aw2/place-guidance.test.ts dev/tests/aw2/npc-patrol.test.ts dev/tests/aw2/walking-intent.test.ts --maxWorkers=1 --testTimeout=120000
+
+ RUN  v5.0.1 /workspace/scratch/b67404650095/soul-of-meal
+
+
+ Test Files  6 passed (6)
+      Tests  173 passed (173)
+   Start at  10:30:20
+   Duration  26.87s (import 48%, transform 43%, tests 8%, worker 1%)
+
+  Transform  transforming modules took 6.42s · 43% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns

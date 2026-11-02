@@ -1,0 +1,85 @@
+{
+  "task": "AW2-004B",
+  "status": "PASS",
+  "engine": "Chromium 153.0.8010.36",
+  "viewports": [
+    "1280x1000",
+    "390x844"
+  ],
+  "checks": [
+    "Asset preview opens without creating game saves",
+    "HD state idle draws authored pixels",
+    "HD state move draws authored pixels",
+    "HD state attack draws authored pixels",
+    "HD state cast draws authored pixels",
+    "HD state hit draws authored pixels",
+    "HD state guard draws authored pixels",
+    "HD state ultimate draws authored pixels",
+    "HD state defeat draws authored pixels",
+    "Skill basic uses its own authored FX at the declared cue",
+    "Skill basic emits only one cue",
+    "Skill auto uses its own authored FX at the declared cue",
+    "Skill auto emits only one cue",
+    "Skill passive uses its own authored FX at the declared cue",
+    "Skill passive emits only one cue",
+    "Skill ultimate uses its own authored FX at the declared cue",
+    "Skill ultimate emits only one cue",
+    "All four WAV cues load and decode in the browser",
+    "Reduced motion holds a meaningful attack pose without visual animation",
+    "World down advances real walk cels",
+    "World left advances real walk cels",
+    "World right advances real walk cels",
+    "World up advances real walk cels",
+    "Pause freezes the timeline",
+    "Resume continues the timeline",
+    "Standing selects the direction-specific idle cel",
+    "Separate portrait loads",
+    "Mobile preview has no horizontal overflow",
+    "All legacy and AW2 save bytes remain unchanged",
+    "No primary-context browser errors or missing assets",
+    "Missing atlas reports an error without a geometry replacement",
+    "System reduced-motion preference initializes the control"
+  ],
+  "errors": [],
+  "failed": [],
+  "audio": [
+    {
+      "slot": "basic",
+      "duration": 0.18,
+      "channels": 1
+    },
+    {
+      "slot": "auto",
+      "duration": 0.42,
+      "channels": 1
+    },
+    {
+      "slot": "passive",
+      "duration": 0.24995833333333334,
+      "channels": 1
+    },
+    {
+      "slot": "ultimate",
+      "duration": 0.7,
+      "channels": 1
+    }
+  ],
+  "requestedAssets": [
+    "/dev/aw2/assets/than/base-v1/auto.wav",
+    "/dev/aw2/assets/than/base-v1/basic.wav",
+    "/dev/aw2/assets/than/base-v1/battle.webp",
+    "/dev/aw2/assets/than/base-v1/fx.webp",
+    "/dev/aw2/assets/than/base-v1/passive.wav",
+    "/dev/aw2/assets/than/base-v1/portrait.webp",
+    "/dev/aw2/assets/than/base-v1/ultimate.wav",
+    "/dev/aw2/assets/than/base-v1/world.webp"
+  ],
+  "limits": [
+    "headless browser audio decoded, not human listening",
+    "no real device/combat/leveling/legal approval"
+  ],
+  "subject": "Than regression after shared player extraction",
+  "baseSha": "7f9c6ab63637ab9d9eb4cf6fa6e7dfb649892bed",
+  "sourceSha": "f6a3b6655988d262a974f6f5034845740fd94766",
+  "branch": "feat/aw2-004b-starter-assets"
+}

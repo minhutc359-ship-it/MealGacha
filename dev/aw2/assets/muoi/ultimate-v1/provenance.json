@@ -1,0 +1,43 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-muoi",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: original Soul of Meal ultimate cut-in art. Input image 1 is solely the project's existing original identity reference; preserve exact recognizable face, hair, eye color, clothing, tools and costume palette. Create a new dynamic three-quarter waist-up hero composition, polished detailed hand-painted anime art, natural anatomy and clearly drawn hands, rich fabric shading, clean readable silhouette, compact magical effects. One character only. Landscape 1536x1024, keep the head, hands and tools entirely inside with safe padding. Transparent background; no scenery or rectangle, no UI, no text, logos or watermarks. Muối Đen: same reserved young Vietnamese man with tousled charcoal hair, amber eyes, grey wrapped tunic over white shirt, dark apron/sash and small dark ceramic salt jar with bronze lid. Approved ultimate 'Một Nhúm Đủ Rồi': gently scatters precisely one pinch of sparkling salt with his right hand while holding the existing dark jar in his left, calculating poised expression. Tiny graphite-violet salt crystals trace a precise finite crescent, amber fingertips, no huge explosion, no new weapon.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/muoi/base-v1/portrait.png",
+      "sha256": "cdfe38c93587ba5d498d0c0c06dc9134f12fa451518df50b782e06a6d199913f"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/muoi/ultimate-v1/art.png",
+    "sha256": "87baf71904b6201f9c3f1225c281a8889d61f078a8d53e883431323f9f1664db"
+  },
+  "toolOutputFilename": "exec-a8dd621e-11d6-4b5b-85bf-dcdb4ea79cfc.png",
+  "selected": true,
+  "runtime": {
+    "id": "aw2-muoi:ultimate-art:v1",
+    "url": "/dev/aw2/assets/muoi/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1360674,
+    "sha256": "f032e76e854d7edf5c9dca347d8de420c73f21d1e94a76351d06fbb1e35406c5",
+    "source": {
+      "path": "dev/aw2/assets/muoi/ultimate-v1/art.png",
+      "sha256": "87baf71904b6201f9c3f1225c281a8889d61f078a8d53e883431323f9f1664db"
+    },
+    "promptSha256": "b978a7d3ce291e3d36da7e97caef503947f6a9240af3fafe13d5642b14dfbd15",
+    "transparentFraction": 0.475403
+  },
+  "processing": "Source PNG preserved byte-for-byte; exact lossless WebP RGBA, no repaint/masking/mirroring/resizing.",
+  "providerUseBasis": "aw2-openai-output-use-2026-11-02",
+  "sourceAudit": "VERIFIED",
+  "copyrightExclusivity": "NOT_ASSERTED",
+  "humanLegalReview": "NOT_RUN",
+  "licenseStatus": "PROVIDER_TERMS_DOCUMENTED",
+  "commercialRelease": "NOT_CLEARED"
+}

@@ -1,0 +1,22 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-lam",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: Soul of Meal original ultimate cut-in artwork. Input image 1 is the project's existing original portrait, used solely to preserve exact face, hairstyle, clothing, colors and character identity. Make a NEW dynamic three-quarter waist-up illustration; expressive natural face and correct hands, no extra limbs, preserve costume. Polished detailed hand-painted anime game art matching this reference, strong readable silhouette, restrained magical highlights and richly shaded cloth. One character only. Landscape 1536x1024; keep head, hands, tools and main effects fully inside with safe padding. Genuine transparent background, no scenery, no rectangular background, no UI, no lettering, no logos or watermarks. Lam Lam: same gentle Vietnamese woman with long blue-black side braid, grey-blue eyes, white wrapped shirt and pale blue apron, blue waist ribbon and small metal flask. Approved ultimate 'Bữa Ăn Yên': she offers an open hand while gathering soothing pale-blue broth-steam ribbons in a protective restful arc, calm inviting smile. Soft blue/ivory/gold light, no new staff, no attack pose or weapon.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/lam/base-v1/portrait.png",
+      "sha256": "52a93fffa7af754e89a3bb731ed120deac3e5ae87c24fa3ae57b843a62ab8a39"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/lam/ultimate-v1/art.png",
+    "sha256": "514e52d3266150ff8d89b75bb649aa71c60abffacb30f34e3705e18c0da438f9"
+  },
+  "toolOutputFilename": "exec-f5cdfbd4-2049-499c-a489-9af9d9e53e35.png",
+  "selected": true
+}

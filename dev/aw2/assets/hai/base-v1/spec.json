@@ -1,0 +1,11 @@
+{
+  "task": "AW2-004L",
+  "displayName": "Hải",
+  "sheetA": "battle-motion-a-v2",
+  "sheetB": "battle-motion-b-v2",
+  "worldRows": ["down", "right", "left", "up"],
+  "ranged": false,
+  "basicContactMs": 420,
+  "skills": ["Gạt Sóng", "Giữ Lối", "Biết Đường Về", "Bờ Đợi"],
+  "audioBaseHz": 275
+}

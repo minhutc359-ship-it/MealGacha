@@ -1,0 +1,124 @@
+{
+  "task": "AW2-007B",
+  "date": "2026-10-20",
+  "branch": "feat/aw2-007b-browser-qa",
+  "baseSha": "f0d588461f2408a8e0a1ee49a78b36af5a8c7476",
+  "sourceSha": "9067376b728d12bb55fbce3b94f81e80e7675978",
+  "environment": {
+    "os": "Windows NT 10.0.26200 x64",
+    "node": "v25.2.0",
+    "pnpm": "10.34.3",
+    "playwright": "1.64.1",
+    "vite": "8.0.5",
+    "vitest": "5.0.1",
+    "typescript": "5.9.3"
+  },
+  "browser": {
+    "task": "AW2-007B",
+    "status": "PASS",
+    "engine": "Chromium 155.0.8059.85",
+    "viewports": [
+      "1280x1000",
+      "390x844"
+    ],
+    "checks": [
+      "Five starter ultimate cards render",
+      "Canvas draws all five decoded authored battle atlases",
+      "Auto combat advances core ticks",
+      "Pause freezes core ticks",
+      "Manual step advances exactly one tick",
+      "Selecting a pending level preserves the active battle cards",
+      "Level reset applies development stats without persistence",
+      "Manual ultimate emits core cast event and spends energy",
+      "Projectile remains visible after authoritative launch",
+      "Authoritative hit settles projectile presentation",
+      "Reduced motion reaches renderer while outcomes remain readable",
+      "Mobile viewport has no horizontal overflow",
+      "Combat reaches one authoritative terminal result without presentation gaps",
+      "Terminal battle disables stepping and all manual ultimates",
+      "Terminal event cancels unfinished visual projectiles",
+      "Resuming a terminal battle cannot advance ticks",
+      "Canvas uses decoded FX atlases with no out-of-bounds source frames",
+      "Reset after terminal clears events and restores a playable level-one team",
+      "Battle preview leaves stable and AW2 save bytes unchanged",
+      "No primary-context browser errors or failed requests",
+      "Missing authored atlas reports a visible error",
+      "System reduced-motion preference initializes the control"
+    ],
+    "errors": [],
+    "failed": [],
+    "atlasDraws": {
+      "/dev/aw2/assets/than/base-v1/battle.webp": {
+        "draws": 792,
+        "invalid": 0
+      },
+      "/dev/aw2/assets/suong/base-v1/battle.webp": {
+        "draws": 792,
+        "invalid": 0
+      },
+      "/dev/aw2/assets/lua/base-v1/battle.webp": {
+        "draws": 792,
+        "invalid": 0
+      },
+      "/dev/aw2/assets/lam/base-v1/battle.webp": {
+        "draws": 396,
+        "invalid": 0
+      },
+      "/dev/aw2/assets/moc-non/base-v1/battle.webp": {
+        "draws": 396,
+        "invalid": 0
+      },
+      "/dev/aw2/assets/lua/base-v1/fx.webp": {
+        "draws": 49,
+        "invalid": 0
+      },
+      "/dev/aw2/assets/than/base-v1/fx.webp": {
+        "draws": 144,
+        "invalid": 0
+      },
+      "/dev/aw2/assets/lam/base-v1/fx.webp": {
+        "draws": 314,
+        "invalid": 0
+      },
+      "/dev/aw2/assets/suong/base-v1/fx.webp": {
+        "draws": 581,
+        "invalid": 0
+      },
+      "/dev/aw2/assets/moc-non/base-v1/fx.webp": {
+        "draws": 333,
+        "invalid": 0
+      }
+    },
+    "limits": [
+      "development renderer only",
+      "no physical device/performance/save/boss/reward/final-balance approval"
+    ]
+  },
+  "unit": {
+    "status": "PASS",
+    "files": 87,
+    "passed": 880,
+    "failed": 0,
+    "pending": 0,
+    "nodeOptions": "--no-experimental-webstorage"
+  },
+  "production": {
+    "status": "PASS",
+    "totalFiles": 851,
+    "textFiles": 76,
+    "matches": [],
+    "developmentEntries": 0
+  },
+  "captures": [
+    ".asset-work/aw2-007b/desktop.png",
+    ".asset-work/aw2-007b/mobile.png",
+    ".asset-work/aw2-007b/terminal.png"
+  ],
+  "evidence": "AW2-007B.md",
+  "limits": [
+    "standalone development preview",
+    "mobile arena text remains small/crowded",
+    "world/save/boss/rewards/persistent XP not integrated",
+    "no physical-device/art-completion/audio/rights/release acceptance"
+  ]
+}

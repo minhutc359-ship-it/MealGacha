@@ -1,0 +1,100 @@
+{
+  "task": "AW2-008A",
+  "noticed": "After source staging; incoming untracked user documents appeared while task was running.",
+  "status": "PRESERVED_UNTRACKED_EXCLUDED",
+  "files": [
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES.zip",
+      "bytes": 1598864,
+      "sha256": "37975c9bfed1a6f20eb2395a2815b73f2fc26bc547105397a68186c20eb5bdb6"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/README.md",
+      "bytes": 326,
+      "sha256": "291d2a0ee459b774adca0039b43ab274bd42c882c3ca783ff2364d344b2976db"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0.md",
+      "bytes": 25963,
+      "sha256": "5a05e5d7aef439986fc8b6a545e0c8b34d613dbd134e8de2e97d76063e0896bb"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/chapter4_battle.jpg",
+      "bytes": 89098,
+      "sha256": "47c5658dbbe23776f129becad9bc096175b1e1db78bdf91451fafc187f1c3012"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/chapter4_encounter.jpg",
+      "bytes": 69653,
+      "sha256": "deb1762df730e0922e7708c7db6974111ab12796fc46635261f7cced216a9a40"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/chapter4_npc_quest.jpg",
+      "bytes": 86903,
+      "sha256": "f6a6ebeff049696ea8e1f344e2ac4da4ad07465b630d827151d1701fb1bb110c"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/chapter4_reference.jpg",
+      "bytes": 692919,
+      "sha256": "d8cb1ce5671954a7ba7936def64e455145ca889e7b4f8352d81f95cbb774a2da"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/chapter4_world_map.jpg",
+      "bytes": 104374,
+      "sha256": "ffa0ec7a1184ceeb306230f263cd2e6efa87565dd78dc146246eb142d519b8cf"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/guild_floorplan.png",
+      "bytes": 109630,
+      "sha256": "16743cb1b46c28c49043efdab7ab93defbe600272167b7422ef221374293cf07"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/guild_floorplan.svg",
+      "bytes": 5403,
+      "sha256": "d88c7b575f50b76015e006b68ab5458ddf31e4ad7452f6e9a63fd497dbb1606c"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/npc_schedule.png",
+      "bytes": 62731,
+      "sha256": "af70dbc2ff28814ac7ff8592647388a68b2332df1dce5e6a30bc822574436bfa"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/npc_schedule.svg",
+      "bytes": 2722,
+      "sha256": "a05f00c5e3c91465aa5b067ad0c8d116c21c2ebf0770062205dc569774f0ccb7"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/portal_sequence.png",
+      "bytes": 104639,
+      "sha256": "18d965b2dbe3c5d1bc294a94519b62a1235eaf4b87ce6817db6c70b5b88960d7"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/portal_sequence.svg",
+      "bytes": 3843,
+      "sha256": "539cb046df34e2cb59cb8001c1482180404d6b9fae16126490ac0dea9cf6af7d"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/village_mockup.png",
+      "bytes": 165443,
+      "sha256": "5cdf6bf8aa3c5743ee89d0c5e09e113bc9ab46e1d0ab5f4618c5536763daa93e"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/village_mockup.svg",
+      "bytes": 21544,
+      "sha256": "c0ab6c0cf661487cbd49f1ca1ac51c953962f690c44826ad2d1b09d27b11b3b4"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/world_regions.png",
+      "bytes": 140526,
+      "sha256": "bfba664f7fb9f834334d81236cc9ccdfc5a66d2337503ab4ba49d43c56e9d01a"
+    },
+    {
+      "path": "SOUL_OF_MEAL_AW2_MAP_NPC_WORLD_SPEC_v1.0_WITH_IMAGES/assets/world_regions.svg",
+      "bytes": 4775,
+      "sha256": "37fd0783447ba34cd63b25d00df4747ed350da7c3e0ba2188d0c056ce8c0ce69"
+    }
+  ],
+  "review": "README and specification opening section read only. Specification explicitly says design not implemented. New interiors/guild/map IDs and1–2companions require separate BA/story/canon reconciliation withD14/D17; not silently adopted. No incoming files edited, staged, moved or deleted.",
+  "publicationCleanliness": "Tracked AW2 working tree must be clean and HEAD equal freshremote;18incoming files intentionally remain untracked with hashes checked before/after publication.",
+  "next": "Review incoming design as reference before freezing008B; preserve locked single representative and six canonical zones unless owner explicitly changes decisions."
+}

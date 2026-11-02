@@ -1,0 +1,77 @@
+{
+  "task": "AW2-004B",
+  "spiritId": "aw2-lua",
+  "mode": "built-in image_gen",
+  "date": "2026-10-20",
+  "calls": [
+    {
+      "id": "AW2-004B-01",
+      "kind": "portrait",
+      "prompt": "Use case: stylized-concept. Original game character portrait and identity reference for Adventure World 2, spirit aw2-lua, Lửa Nhỏ, breakfast-delivery Striker affiliated with bánh mì. Create one warm, nimble young adult courier with a compact light build, short tousled chestnut hair, bright attentive brown eyes, short burnt-orange scarf, cream rolled-sleeve shirt, teal cropped delivery jacket, dark tapered trousers, fingerless padded gloves with a subtle steam-stroke motif, and a practical small canvas breakfast delivery satchel across the torso. Human ears, original face, no weapon, no shield. Chest-up three-quarter portrait, both shoulders and the delivery satchel strap visible, energetic kind smile. Original polished HD anime game illustration, precise clean linework, soft cel shading, warm orange and restrained teal palette. Center subject within generous transparent margins on a genuinely transparent background. No text, no labels, no frame, no logo, no food mascot, no external franchise or artist reference. This portrait is also the identity reference for separate full-body battle and chibi world assets.",
+      "inputImages": [],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-02",
+      "kind": "world",
+      "prompt": "Use case: stylized-concept. Reference image is the identity reference for original AW2 spirit aw2-lua Lửa Nhỏ. Preserve the same chestnut-haired young adult courier, short burnt-orange scarf, teal cropped jacket over cream rolled-sleeve shirt, brown canvas satchel, padded fingerless gloves with steam motifs, dark tapered trousers and light brown ankle boots. No shield, no weapon, no text, no labels, no grid lines, no scenery. Truly transparent background. Asset type: pixel/chibi exploration sprite atlas, square canvas, exactly 4 columns and 4 rows of equal invisible cells. Exactly 16 separate small full-body sprites, one centered in each cell, with wide transparent gutters (at least 20% empty on each side of every cell). Crisp pixel-inspired chibi with 3-head proportions and consistent scale. Each row is one facing direction: row1 front/down; row2 profile facing screen-left; row3 profile facing screen-right; row4 back/up with back of head visible. In every row columns are idle, left-foot-forward walking, passing feet, right-foot-forward walking. Body stays within central 60% width and 70% height of cell. Distinct real leg poses and facing profiles, no mirrored duplicate of the front row, no trails or effects. All feet visible, consistent foot baseline within each row.",
+      "inputImages": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-dd2e9246-5653-4fd3-94a8-6c2c3cf75570.png",
+          "sha256": "077beff42ba2e04085db73daf58aae35d8e8c34edb83166add1f53e7bcc54682"
+        }
+      ],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-03",
+      "kind": "battle",
+      "prompt": "Use case: stylized-concept. Reference image is the identity reference for original AW2 spirit aw2-lua Lửa Nhỏ. Preserve the same chestnut-haired young adult courier, short burnt-orange scarf, teal cropped jacket over cream rolled-sleeve shirt, brown canvas satchel, padded fingerless gloves with steam motifs, dark tapered trousers and light brown ankle boots. No shield, no weapon, no text, no labels, no grid lines, no scenery. Truly transparent background. Asset type: HD anime full-body combat KEY POSE atlas on a wide 3:2 canvas with exactly 4 equal columns and 2 equal rows, eight isolated complete figures. Each figure must fit entirely inside its own cell, leaving at least 15% blank margin on each side and top/bottom; keep each figure small enough to prevent scarf, fists or feet crossing a cell boundary. Consistent adult anatomy and costume, three-quarter view facing right. Row1 left-to-right: relaxed ready idle, forward running step, compact forward punching attack with TWO gloved fists ready for a quick rhythm, open-hand steam-passing cast. Row2: recoiling from hit, forearms guarding face and chest, low forward dash ultimate windup, kneeling exhausted defeat. Distinct silhouettes. No FX, no speed trails, no ground shadow, no duplicate figures in a cell, no text. Exact regular grid spacing, full feet inside each cell. This is eight key poses, not sequential animation frames.",
+      "inputImages": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-dd2e9246-5653-4fd3-94a8-6c2c3cf75570.png",
+          "sha256": "077beff42ba2e04085db73daf58aae35d8e8c34edb83166add1f53e7bcc54682"
+        }
+      ],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-04",
+      "kind": "fx",
+      "prompt": "Use case: stylized-concept. Original AW2 Lửa Nhỏ skill effects atlas. Truly transparent square canvas, exactly 4 columns x4 rows equal invisible cells; one compact isolated effect centered inside each cell, with minimum 25% fully transparent margin on all four sides; NO grid, labels, people, background or full-screen glow. Clean HD anime VFX, hard readable contours with small restrained luminous accents. Each row four stages: forming, contact, peak, dissipating. Row1 warm amber two-beat fist impact: paired short curved knuckle arcs and crisp small impact sparks, no fist/body. Row2 orange and ivory short forward dash swoosh for passing warmth, compact curved ribbon. Row3 small orange rhythmic clock-like ring made of three tick strokes, no numerals, no text. Row4 short horizontal orange dawn lane with two narrow pale parallel guides and small steam accents. Make every effect comfortably fit in central 50% of its own cell; no overlap, no bleed, avoid dense opaque light, all outside area fully transparent.",
+      "inputImages": [],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-05",
+      "kind": "battle-repair",
+      "prompt": "Use case: precise-object-edit. Edit target image1 is the eight-pose Lửa Nhỏ atlas. Preserve his same face/costume and eight pose meanings (idle, run, punch, cast / hit, guard, dash, kneel). REPAIR BACKGROUND AND LAYOUT ONLY. Remove the brown background completely: actual alpha transparency, no scenery, vignette, shadow, checkerboard or colored background. Shrink all eight complete bodies significantly. EXACT 4 columns x2 rows, regular equal invisible cells, each character fits within CENTER 65 percent width and 78 percent height of its own cell. Wide completely transparent corridors at 25/50/75 percent canvas width and 50 percent canvas height. Every glove, scarf, boot and hair remains inside the cell, no part crossing corridors. Keep full bodies and all feet intact. Wide 3:2 canvas, original clean HD anime ink/cel style, no labels, no text, no effects, no grid lines. True transparent alpha outside character silhouettes.",
+      "inputImages": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-dfcc3249-a572-4585-a776-ba29c5b555df.png",
+          "sha256": "4fd8fc1d8e1d7cd26f290b70f73da579dcc2e7e883ac79df2e24f3893ad16829"
+        }
+      ],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-06",
+      "kind": "fx-repair",
+      "prompt": "Use case: stylized-concept. Create ORIGINAL game VFX ICON atlas for aw2-lua. EXACTLY 4 columns x4 rows, 16 isolated SMALL icons on true transparent alpha, square sheet. ABSOLUTELY NO BLOOM, NO FOG, NO SMOKE, NO GLOW HALO, NO COLOR WASH, NO GROUND. Sharp clean inked anime cel-shaded effect strokes with only short opaque warm amber/orange/ivory accents. Draw each icon ONLY INSIDE CENTER 45 PERCENT of its equal square cell. Leave the entire outside half of each cell empty transparent. Empty transparent corridors at each quarter grid boundary. No labels, text, numbers, characters or grids. Each row four successive stages left to right, forming/contact/peak/fade: Row1 tiny twin orange impact ticks; small two-beat angular impact star; paired short curved impact arcs with two sparks; two fading sparks. Row2 a small ivory/orange forward ribbon; two compact speed curves; three short forward curves; one fading curve. Row3 one orange rhythm tick; small incomplete ring with three ticks; small clocklike three-tick ring without numbers; two dim ticks. Row4 two tiny horizontal amber parallel lane guides; short guides with a small steam curl; slightly fuller short dawn lane; two fading line ends. Icons must be small and discrete, not as large as their cells.",
+      "inputImages": [],
+      "transparentBackground": true
+    },
+    {
+      "id": "AW2-004B-10",
+      "kind": "battle-final",
+      "prompt": "Use case: stylized-concept\nAsset type: transparent HD anime battle KEY POSE atlas for original AW2 Lửa Nhỏ. Image1 is ONLY the portrait identity reference: same young adult courier, chestnut hair, short orange scarf, cropped teal jacket over cream shirt, canvas satchel, fingerless padded gloves, dark trousers and brown ankle boots.\nCreate exactly EIGHT SMALL complete cutout figures on a wide 3:2 canvas, FOUR equal columns x TWO equal rows. All figures must be much smaller than their cell, fully within central 60% cell width and 75% cell height, with wide empty corridors between cells. Full feet and scarf visible. Same scale, original clean anime ink/cel shading.\nRow1 left to right: idle; running right; forward short punch; open-hand cast. Row2: hit recoil; forearm guard; low dash windup; kneeling exhausted defeat. Distinct silhouette per pose. No effects.\nCRITICAL: TRANSPARENT ALPHA BACKGROUND. Outside figures must be actual empty transparent pixels, no color. No brown background, no floor, no gradients, no shadows, no mist, no vignette, no text, no grid, no border. Characters must appear as separate stickers floating on transparency. Do not create any background whatsoever.",
+      "inputImages": [
+        {
+          "path": "/home/sotatek/.codex/generated_images/01a1587c-8183-78f1-9d0b-b6ae7dc7795d/exec-dd2e9246-5653-4fd3-94a8-6c2c3cf75570.png",
+          "sha256": "077beff42ba2e04085db73daf58aae35d8e8c34edb83166add1f53e7bcc54682"
+        }
+      ],
+      "transparentBackground": true
+    }
+  ]
+}

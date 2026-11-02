@@ -1,0 +1,41 @@
+{
+  "task": "AW2-018A",
+  "date": "2026-10-28",
+  "baseRemote": "8a470db2494c5f2a52c4f801639e0bf97d4d8016",
+  "status": "PASS",
+  "plansVerified": 18,
+  "unit": { "files": 148, "tests": 2018, "passed": 2018 },
+  "typecheck": { "root": "PASS", "dev": "PASS" },
+  "build": {
+    "productionModules": 1119,
+    "reviewModules": 979,
+    "releaseGuard": "PASS",
+    "bytes": 300366505,
+    "files": 984,
+    "jsGzip": 593955,
+    "cssGzip": 49555,
+    "offlineShellBytes": 2639696,
+    "offlineShellUrls": 39,
+    "hardBudget": "PASS",
+    "targetWarning": true
+  },
+  "assets": {
+    "runtimeFiles": 153,
+    "extensions": ["webp", "wav"],
+    "byteParity": true,
+    "devAssetUrlsInDist": 0,
+    "authoredSourcesInDist": 0
+  },
+  "browser": {
+    "productionSource": 23,
+    "productionCompiled": 23,
+    "currentJourneyCompiled": 190,
+    "bossTick": 45,
+    "unexpectedErrors": 0
+  },
+  "limitations": [
+    "No deployment or master/rpg update",
+    "No physical-device, independent-human, FPS/GPU, final-art, rights or release acceptance",
+    "Static payload is above the 300 MB warning target but below the 320 MB hard limit"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-lien",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: original Soul of Meal ultimate cut-in art. Input image 1 is solely the project's existing original identity reference; preserve exact recognizable face, hair, eye color, clothing, tools and costume palette. Create a new dynamic three-quarter waist-up hero composition, polished detailed hand-painted anime art, natural anatomy and clearly drawn hands, rich fabric shading, clean readable silhouette, compact magical effects. One character only. Landscape 1536x1024, keep the head, hands and tools entirely inside with safe padding. Transparent background; no scenery or rectangle, no UI, no text, logos or watermarks. Liên: same warm Vietnamese woman, dark brown hair in a loose high half-bun with silver leaf/lotus ornament and dusty-rose ribbons, brown eyes, dusty-rose robe over ivory layers, burgundy waist sash, small lotus pouch. Approved ultimate 'Mở Lời': opens one hand while lifting a single luminous pink lotus seed/bud with the other, delicate finite golden threads dissolve a few dull violet motes and become two soft rose-gold healing ripples. Tender determined expression, no new staff or wings.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/lien/base-v1/portrait.png",
+      "sha256": "9fc0aeb6c86fbf61fa6073ff0238e580446e7312dbc64cf219f3bc4f5e49cbb2"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/lien/ultimate-v1/art.png",
+    "sha256": "375129f0ea14c090daf0aecc0a7ab48cf88f30b4a4c1f39dd482c5ac7023c000"
+  },
+  "toolOutputFilename": "exec-975ba781-b22a-4441-abb4-8d87f27653a5.png",
+  "selected": true
+}
