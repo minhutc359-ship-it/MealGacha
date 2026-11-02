@@ -1,5 +1,23 @@
 # Test ledger / change impact
 
+## AW2-018J performance/resilience /2026-11-02
+
+Base remote `e1b87c396cd9827f80ec0d961f7eb4b97ba0abb9`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi save/gameplay/art/dependency; không analytics/network sink.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Performance/resilience focused | PASS | 4files /90tests; budget/evaluator/privacy/boundary/package/cutover |
+| Full Vitest | PASS | 157files /2.187tests |
+| Root/dev typecheck | PASS | Both exit0 on final source |
+| AW2 review build | PASS | 999modules /7HTML entry |
+| Production build/package | PASS | 1.138modules;141.468.122bytes/376files |
+| Offline/package graph | PASS | 24URL/1.469.598bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS | 137assets;32deps/774assets/3policies;4/4budget;JS703.222/CSS38.083;0leaks |
+| Fresh browser/device | NOT_RUN | Thiếu package `playwright`; không có thiết bị thật |
+| React/performance review | PASS | Dynamic AW2 boundary after route; static disclosure; no effect/network/storage/waterfall |
+
+[Evidence](evidence/AW2-018J.md).
+
 ## AW2-018I content acceptance /2026-11-02
 
 Base remote `d0143049289c7c2d1d6945568ded2aa1cb87c11c`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi save/gameplay/reward/asset/balance/dependency.

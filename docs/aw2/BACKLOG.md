@@ -1,5 +1,7 @@
 # Task board
 
+**018J TECHNICAL DONE/DEVICE BLOCKED — batch8/10,19/20 automated gates:** artifact/offline/JS+runtime budgets,4-state evaluator,scalar telemetry privacy,AW2-only dynamic error boundary/no-save-touch fallback. Artifact141.468.122bytes/376files;offline1.469.598/24;full2.187unit/157files,focused90,types/build/release/assets/budget PASS. Browser/device metrics NOT_RUN. **CÒN2COMMIT KỸ THUẬT; NEXT batch9** UAT matrix/session evidence. [Evidence](evidence/AW2-018J.md).
+
 **018I TECHNICAL DONE/HUMAN BLOCKED — batch7/10,19/20 automated gates:** content contract6zone/6room/8NPC/4quest/12spirit;12/12 reciprocal routes;6/6 reachable;0placeholder; production disclosure giữ human acceptance NOT_RUN. Artifact141.465.237bytes/375files;offline1.466.864/24;full2.178unit/156files,focused26,types/build/release/assets/budget PASS. Browser NOT_RUN. **CÒN3COMMIT KỸ THUẬT; NEXT batch8** performance/loading/telemetry/error boundary. [Evidence](evidence/AW2-018I.md).
 
 **018H TECHNICAL DONE/EXTERNAL BLOCKED — batch6/10,19/20 automated gates:** inventory12 identity/reference/kit/provenance;12/12 technical-ready nhưng0/12 fullDoD,rights,release; art/device/audio NOT_RUN; production disclosure. Artifact141.464.300bytes/375files;offline1.465.927/24;full2.172unit/155files,focused42,types/build/release/assets/budget PASS. Browser NOT_RUN. **CÒN4COMMIT KỸ THUẬT; NEXT batch7** world/quest/NPC/content/canon acceptance. [Evidence](evidence/AW2-018H.md).

@@ -1,4 +1,6 @@
-# Handoff —2026-11-02 / AW2-018I
+# Handoff —2026-11-02 / AW2-018J
+
+018J hoàn tất batch8 với19/20 automated gates: build/runtime budgets, evaluator, telemetry scalar privacy và AW2-only dynamic error boundary; artifact/offline/JS PASS, device metrics NOT_RUN. Full2.187unit/157files,focused90,hai types/builds,package/release/assets/budget PASS; artifact141.468.122bytes/376files,offline1.469.598bytes/24URL. Browser NOT_RUN vì thiếu Playwright. Còn2commit kỹ thuật; next batch9 UAT matrix/session evidence contract. [Roadmap](PRODUCTION_10_COMMIT.md) · [Contract](PERFORMANCE.md) · [Bằng chứng](evidence/AW2-018J.md).
 
 018I hoàn tất batch7 với19/20 automated gates: contract đúng6zone/6room/8NPC/4quest/12spirit,12/12 reciprocal portal,6/6 reachable và0placeholder; disclosure giữ human content acceptance NOT_RUN. Full2.178unit/156files,focused26,hai types/builds,package/release/assets/budget PASS; artifact141.465.237bytes/375files,offline1.466.864bytes/24URL. Browser NOT_RUN vì thiếu Playwright. Còn3commit kỹ thuật; next batch8 performance/loading/telemetry/error boundary. [Roadmap](PRODUCTION_10_COMMIT.md) · [Contract](CONTENT_ACCEPTANCE.md) · [Bằng chứng](evidence/AW2-018I.md).
 

@@ -1,5 +1,7 @@
 # Changes
 
+**AW2-018J:** thêm performance budgets/evaluator, privacy-safe scalar telemetry, production disclosure và AW2-only dynamic error boundary/no-save-touch fallback. 2.187unit/157files,hai typecheck/build/package/release PASS; browser/device metrics NOT_RUN. [Evidence](evidence/AW2-018J.md).
+
 **AW2-018I:** thêm content acceptance contract cho6zone/6room/8NPC/4quest/12spirit, reciprocal return routes, reachability và placeholder guard; Hướng dẫn production công bố technical PASS/human NOT_RUN. 2.178unit/156files,hai typecheck/build/package/release PASS; browser/human acceptance NOT_RUN. [Evidence](evidence/AW2-018I.md).
 
 **AW2-017F:** thêm contract world polish sáu zone và Pixi layer chung cho Làng, Phố/Sân/Kho, Phòng Lửa/Bàn. Bốn ca ambient đọc NPC life; mép cảnh mở khe cổng24/616/bắc; bóng collider đọc `zone.walls`;12light pool có pause/reduced; canvas xuất telemetry. Không đổi save/gameplay/media. 2.091unit/150files,hai typecheck/build/package/release PASS; browser NOT_RUN. [Evidence](evidence/AW2-017F.md).

@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+018J hoàn thành **performance/telemetry/error recovery contract kỹ thuật** và là batch8/10. **Demo90% / product≈40%(35–45%) không đổi**: build budgets PASS nhưng browser/device runtime metrics vẫn `NOT_RUN`. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **2commit kỹ thuật**, production-ready vẫn phụ thuộc external acceptance. [Evidence](evidence/AW2-018J.md).
+
 018I hoàn thành **content/canon acceptance contract kỹ thuật** và là batch7/10. **Demo90% / product≈40%(35–45%) không đổi**: consistency tự động PASS nhưng human story/content acceptance vẫn `NOT_RUN`. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **3commit kỹ thuật**, production-ready vẫn phụ thuộc external acceptance. [Evidence](evidence/AW2-018I.md).
 
 018H hoàn thành **inventory/readiness kỹ thuật 12 nhân vật** và là batch6/10. **Demo90% / product≈40%(35–45%) không đổi**: 12/12 reference-ready không được tính thành full DoD; hiện 0/12 full-character/rights/release. Theo [roadmap](PRODUCTION_10_COMMIT.md), còn **4commit kỹ thuật**, nhưng production-ready vẫn phụ thuộc external acceptance. [Evidence](evidence/AW2-018H.md).

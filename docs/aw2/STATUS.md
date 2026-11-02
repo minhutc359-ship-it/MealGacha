@@ -1,5 +1,9 @@
 # Live project status —2026-11-02
 
+**AW2-018J VERIFIED technical với blockers — batch8/10,19/20 automated gates.** Performance contract khóa artifact/offline/JS và runtime observation budgets; telemetry scalar không private fields/sink; error boundary chỉ tải nhánh AW2 và không chạm save. Artifact141.468.122bytes/376files; offline1.469.598bytes/24URL; **2.187unit/157files**,focused90,hai typecheck/build,package/release/assets/budget PASS. Browser/device metrics `NOT_RUN`. [Bằng chứng](evidence/AW2-018J.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên. Batch8 đóng resilience kỹ thuật, không tự biến build metrics thành device acceptance. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **2commit kỹ thuật**; next batch9 UAT matrix/session evidence contract. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018J.
+
 **AW2-018I VERIFIED technical với blockers — batch7/10, 19/20 automated gates.** Contract versioned khóa 6 zone, 6 room, 8 NPC, 4 quest, 12 Vị Linh, 12/12 reciprocal portal, 6/6 reachable và 0 placeholder. Artifact 141.465.237 bytes/375 files; offline 1.466.864 bytes/24 URL; **2.178 unit/156 files**, focused26, hai typecheck/build, package/release/assets/budget PASS. Browser và human content acceptance `NOT_RUN`. [Bằng chứng](evidence/AW2-018I.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên. Batch7 đóng consistency kỹ thuật, không tự ký duyệt narrative/device/human/rights. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **3 commit kỹ thuật**; next batch8 performance/loading/telemetry/error boundary. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018I.

@@ -31,15 +31,17 @@ async function start() {
     render(<OriginalChestApp />)
     return
   }
-  const [{ WorldPreview }, { WebUpdatePrompt }] = await Promise.all([
-    import("../dev/aw2/world"),
-    import("./components/layout/WebUpdatePrompt"),
-  ])
+  const [{ WorldPreview }, { WebUpdatePrompt }, { Aw2ErrorBoundary }] =
+    await Promise.all([
+      import("../dev/aw2/world"),
+      import("./components/layout/WebUpdatePrompt"),
+      import("./aw2/observability/Aw2ErrorBoundary"),
+    ])
   render(
-    <>
+    <Aw2ErrorBoundary>
       <WebUpdatePrompt />
       <WorldPreview production />
-    </>,
+    </Aw2ErrorBoundary>,
   )
 }
 
