@@ -1,5 +1,7 @@
 # Live project status —2026-11-02
 
+**019A VERIFIED technical:**12ảnh HD tuyệt kỹ mới đã vào actual combat/roster;source-use dossier kiểm12nhân vật/126runtime files,credit/legal/build guard hoàn tất. Full2.278/163,38focused,hai types/hai builds/art repeat/package/assets/release/budget PASS. Production164.450.337bytes/389files;JS698.274≤710.000. Browser art/DOM cue PASS giới hạn;fullDoD/commercial clearance0/12,independent/human/device vẫn mở. Demo90/product≈40 giữ nguyên. [Evidence](evidence/AW2-019A.md) · [Art/quyền](ART_AND_RIGHTS.md).
+
 **AW2-018M VERIFIED technical — web chính là Soul of Meal mới, chỉ giữ Rương original.** Hard module-graph guard loại App/main/pages cũ và QA UI; backup/restore có checksum/confirmation/durable store; legal/worker/CI/fresh-artifact audit hoàn tất. **2.240unit/161files**,hai types/hai builds/package/candidate/assets/release/budget PASS. Artifact141.429.950bytes/377files;offline1.466.328/27;JS694.940/CSS38.209. Browser compiled UI/source route+chest PASS giới hạn; HTTP save và physical-device/Vercel config chưa xác minh. [Evidence](evidence/AW2-018M.md).
 
 Demo90%/product≈40%(35–45%) giữ nguyên. Cutover/build đã đóng trong task, chưa thể ghi production100% khi rights/art/human/device còn mở. Báo cáo018L12/12 trước đây chỉ checklist,018M sửa các thiếu sót thật tìm được khi audit; không dùng việc hết roadmap để gọi toàn sản phẩm hoàn tất. Server phải lấy đúng AW2; connection Vercel không thấy project/team nên chưa sửa setting/deploy. Các mục dưới là lịch sử; hiện hành018M.

@@ -1,0 +1,23 @@
+{
+  "id": "aw2-openai-output-use-2026-11-02",
+  "reviewedAt": "2026-11-02",
+  "provider": "OpenAI built-in image_gen",
+  "sources": [
+    {
+      "url": "https://openai.com/policies/terms-of-use/",
+      "sections": ["Content: Ownership of content", "Content: Similarity of content", "Content: Your content"],
+      "finding": "Between OpenAI and its user, output rights are assigned to the user to the extent permitted by law. Input rights remain the user's responsibility; outputs may be non-unique."
+    },
+    {
+      "url": "https://openai.com/policies/service-terms/",
+      "sections": ["Image and Video Capabilities", "Voice Conversations"],
+      "finding": "Visual inputs require appropriate rights. This character pack uses image output and deterministic synthesized WAVs; it does not use ChatGPT Voice Output or claim voice-output commercial rights."
+    }
+  ],
+  "scope": "Provider/user output-use basis only; not a third-party license, copyright registration, exclusivity guarantee or transfer of another person's rights.",
+  "projectLicense": "LICENSE",
+  "copyrightRegistration": "NOT_APPLIED_FOR",
+  "copyrightExclusivity": "NOT_ASSERTED",
+  "humanLegalReview": "NOT_RUN",
+  "releaseAuthorized": false
+}

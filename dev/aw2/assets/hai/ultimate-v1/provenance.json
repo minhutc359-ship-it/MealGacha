@@ -1,0 +1,43 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-hai",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: original Soul of Meal ultimate cut-in art. Input image 1 is solely the project's existing original identity reference; preserve exact recognizable face, hair, eye color, clothing, tools and costume palette. Create a new dynamic three-quarter waist-up hero composition, polished detailed hand-painted anime art, natural anatomy and clearly drawn hands, rich fabric shading, clean readable silhouette, compact magical effects. One character only. Landscape 1536x1024, keep the head, hands and tools entirely inside with safe padding. Transparent background; no scenery or rectangle, no UI, no text, logos or watermarks. Hải: same dependable young Vietnamese man with short dark tousled hair, teal tunic over white patterned underrobe, brown crossing straps, jade ornaments and tall curved turquoise/gold wave shield. Approved ultimate 'Bờ Đợi': plants the existing wave shield forward, free hand extends protectively, a clear aqua current forms a defensive curved shoreline boundary behind the shield, steady reassuring gaze. Teal, pale jade and warm bronze accents, no new weapon, no sea scene.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/hai/base-v1/portrait.png",
+      "sha256": "ffe7ed38eaf2b07d6d219251e36fe887b132d47b705176a5295ed3c8e3d2f89a"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/hai/ultimate-v1/art.png",
+    "sha256": "102ac29acbe0b5dc4700d479db2fc57e5f9c73772d5b99964c7bf848d926f783"
+  },
+  "toolOutputFilename": "exec-47e17794-e631-4001-a84e-a61d2f9a8373.png",
+  "selected": true,
+  "runtime": {
+    "id": "aw2-hai:ultimate-art:v1",
+    "url": "/dev/aw2/assets/hai/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2132968,
+    "sha256": "06b45fff20813dbf6eb46c122020a9727457a16a2637c662b4748cd191dceeb4",
+    "source": {
+      "path": "dev/aw2/assets/hai/ultimate-v1/art.png",
+      "sha256": "102ac29acbe0b5dc4700d479db2fc57e5f9c73772d5b99964c7bf848d926f783"
+    },
+    "promptSha256": "045780b8c9690c4db35ba237d7abbf4a2dc169168c48f1c22c91dcda85bdd079",
+    "transparentFraction": 0.195999
+  },
+  "processing": "Source PNG preserved byte-for-byte; exact lossless WebP RGBA, no repaint/masking/mirroring/resizing.",
+  "providerUseBasis": "aw2-openai-output-use-2026-11-02",
+  "sourceAudit": "VERIFIED",
+  "copyrightExclusivity": "NOT_ASSERTED",
+  "humanLegalReview": "NOT_RUN",
+  "licenseStatus": "PROVIDER_TERMS_DOCUMENTED",
+  "commercialRelease": "NOT_CLEARED"
+}

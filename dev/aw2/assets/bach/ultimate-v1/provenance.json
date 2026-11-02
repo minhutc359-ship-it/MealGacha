@@ -1,0 +1,43 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-bach",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: original Soul of Meal HD ultimate cut-in illustration. Input image 1 is the project's own identity reference. Preserve its exact face, hairstyle, clothing, costume motifs and held object; do not redesign the person. New expressive three-quarter waist-up composition, detailed hand-painted anime game art, natural hands/anatomy, readable clean silhouette, refined cloth and magical highlights. One character only, no additional people. Landscape 1536x1024, safe padding around head/hands/held tool. Transparent background; no scenery, rectangle, UI, lettering, logos or watermarks. Bách: same broad-shouldered mature Vietnamese man with short black hair, light beard stubble, deep forest-green wrap tunic, grey sash and dark wrist wraps; same LARGE RECTANGULAR WOODEN SHIELD bound by green strips with dark metal corner brackets. Approved ultimate 'Mở Vòng Dây': braces the rectangular shield and opens a finite glowing golden-green binding loop from his free hand, shield stays rectangular with all four corners readable, steady protective expression. Golden braided cord and rice-leaf light surround him in a protective arc; no metal round shield or new armor.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/bach/base-v1/portrait.png",
+      "sha256": "cb5d41d5276860f759d29284a9b0a4e3911c9d096c9911b5f8cc7588c7146537"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/bach/ultimate-v1/art.png",
+    "sha256": "2e08d177e7a539eae6386063e0bb944caa31461bd3a72d357c96623c5acb201f"
+  },
+  "toolOutputFilename": "exec-38434741-6bc3-4452-b56d-426a411a93b2.png",
+  "selected": true,
+  "runtime": {
+    "id": "aw2-bach:ultimate-art:v1",
+    "url": "/dev/aw2/assets/bach/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2200088,
+    "sha256": "9a00f14a1c8fef346c00751ab105bb72ca062e1366b3bc5785ac539b182cb2f7",
+    "source": {
+      "path": "dev/aw2/assets/bach/ultimate-v1/art.png",
+      "sha256": "2e08d177e7a539eae6386063e0bb944caa31461bd3a72d357c96623c5acb201f"
+    },
+    "promptSha256": "49ac65129b3758ab8540d86d4ed918974a41b2e8c0aa6f93ab5dedae981685b8",
+    "transparentFraction": 0.226744
+  },
+  "processing": "Source PNG preserved byte-for-byte; exact lossless WebP RGBA, no repaint/masking/mirroring/resizing.",
+  "providerUseBasis": "aw2-openai-output-use-2026-11-02",
+  "sourceAudit": "VERIFIED",
+  "copyrightExclusivity": "NOT_ASSERTED",
+  "humanLegalReview": "NOT_RUN",
+  "licenseStatus": "PROVIDER_TERMS_DOCUMENTED",
+  "commercialRelease": "NOT_CLEARED"
+}

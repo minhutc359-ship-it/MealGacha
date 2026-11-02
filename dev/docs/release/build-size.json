@@ -3,28 +3,28 @@
   "staticTargetBytes": 300000000,
   "jsGzipBudgetBytes": 710000,
   "version": "5.9.23",
-  "bytes": 141429950,
-  "files": 377,
+  "bytes": 164450337,
+  "files": 389,
   "byType": {
     "js": {
       "files": 31,
-      "bytes": 2428314
+      "bytes": 2436346
     },
     "css": {
       "files": 5,
-      "bytes": 174652
+      "bytes": 176139
     },
     "wav": {
       "files": 48,
       "bytes": 624362
     },
     "webp": {
-      "files": 265,
-      "bytes": 136720012
+      "files": 277,
+      "bytes": 159727840
     },
     "json": {
       "files": 3,
-      "bytes": 62595
+      "bytes": 64551
     },
     "png": {
       "files": 3,
@@ -44,7 +44,7 @@
     },
     "html": {
       "files": 4,
-      "bytes": 24719
+      "bytes": 25803
     },
     "txt": {
       "files": 4,
@@ -56,16 +56,16 @@
     }
   },
   "groups": {
-    "Application JS/CSS": 2602966,
-    "Other and legal": 124519242,
+    "Application JS/CSS": 2612485,
+    "Other and legal": 147530110,
     "Brand": 229534,
     "Shared character atlases": 1731768,
     "Food art": 7490462,
     "Spirit RPG art/audio/video": 4751008,
     "TCG art/audio": 104970
   },
-  "js_gzip": 694940,
-  "css_gzip": 38209,
+  "js_gzip": 698274,
+  "css_gzip": 38575,
   "largest": [
     {
       "path": "assets/aw2/environments/lantern-street/v1/floor.webp",
@@ -96,41 +96,41 @@
       "bytes": 2358656
     },
     {
+      "path": "assets/aw2/moc/ultimate-v1/art.webp",
+      "bytes": 2201524
+    },
+    {
+      "path": "assets/aw2/bach/ultimate-v1/art.webp",
+      "bytes": 2200088
+    },
+    {
+      "path": "assets/aw2/hai/ultimate-v1/art.webp",
+      "bytes": 2132968
+    },
+    {
+      "path": "assets/aw2/than/ultimate-v1/art.webp",
+      "bytes": 2103696
+    },
+    {
       "path": "assets/aw2/environments/covenant-village/v1/floor.webp",
       "bytes": 2087698
-    },
-    {
-      "path": "assets/aw2/environments/settlement/v1/shops.webp",
-      "bytes": 2011246
-    },
-    {
-      "path": "assets/aw2/environments/kitchen-hearth/v1/floor.webp",
-      "bytes": 1885996
-    },
-    {
-      "path": "assets/aw2/bach/base-v1/fx.webp",
-      "bytes": 1750914
-    },
-    {
-      "path": "assets/aw2/environments/kitchen-table/v1/floor.webp",
-      "bytes": 1724554
     }
   ],
   "leaks": [],
   "offlineShell": {
-    "bytes": 1466328,
+    "bytes": 1476931,
     "urls": 27,
     "targetBytes": 8000000,
     "limitBytes": 12000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 10533672
+    "remainingBytes": 10523069
   },
   "budget": {
     "targetBytes": 300000000,
     "limitBytes": 320000000,
     "warning": false,
     "exceeded": false,
-    "remainingBytes": 178570050
+    "remainingBytes": 155549663
   }
 }

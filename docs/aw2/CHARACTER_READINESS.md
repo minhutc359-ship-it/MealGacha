@@ -1,5 +1,7 @@
 # Readiness 12 Vị Linh
 
+019A bổ sung12/12 minh họa HD tuyệt kỹ mới và source audit12nhân vật/126runtime files, cùng provider-use dossier/credit/build guard. [Art và quyền sử dụng](ART_AND_RIGHTS.md). Đây là tiến độ art/nguồn thực tế; các gate full DoD/independent art/human audio/device và commercial clearance ở bảng dưới chưa được ký duyệt.
+
 Contract `aw2-character-readiness-v1` tách hai khái niệm: **technical reference package** chỉ xác nhận manifest/model/chuyển động/bốn skill/combat kit/provenance có cấu trúc hợp lệ; **release-ready character** còn bắt buộc full-character DoD, art review độc lập, thiết bị thật, người nghe audio và rights clearance.
 
 | Vị Linh | Tier | Vai trò | Reference kỹ thuật | Full DoD | Rights | Release |

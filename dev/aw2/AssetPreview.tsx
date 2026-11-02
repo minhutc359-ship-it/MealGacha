@@ -11,6 +11,7 @@ import {
 import { validateAssetManifest } from "../../src/aw2/assets/animation"
 import { ROSTER } from "../../src/aw2/world/ids"
 import { AssetCanvas } from "./AssetCanvas"
+import { ULTIMATE_ART } from "../../src/aw2/assets/ultimateArt"
 
 const stateLabels: Record<BattleState, string> = {
   idle: "Đứng",
@@ -76,7 +77,17 @@ export function AssetPreview({
         <p>
           Kit đã có trong{" "}
           <a
-            href={`/dev/aw2/battle.html${["aw2-than", "aw2-lua", "aw2-lam", "aw2-moc-non", "aw2-suong"].includes(manifest.spiritId) ? "" : `?team=${manifest.spiritId.slice(4)}`}`}
+            href={`/dev/aw2/battle.html${
+              [
+                "aw2-than",
+                "aw2-lua",
+                "aw2-lam",
+                "aw2-moc-non",
+                "aw2-suong",
+              ].includes(manifest.spiritId)
+                ? ""
+                : `?team=${manifest.spiritId.slice(4)}`
+            }`}
           >
             {manifest.spiritId === "aw2-muoi"
               ? "trận luyện Muối Đen"
@@ -223,6 +234,19 @@ export function AssetPreview({
           </p>
         </>
       )}
+      <figure className="aw2-ultimate-art-review">
+        <img
+          src={ULTIMATE_ART[manifest.spiritId].url}
+          width={ULTIMATE_ART[manifest.spiritId].width}
+          height={ULTIMATE_ART[manifest.spiritId].height}
+          loading="lazy"
+          decoding="async"
+          alt={`Minh họa tuyệt kỹ ${manifest.skills.ultimate.displayName} của ${manifest.displayName}`}
+        />
+        <figcaption>
+          {manifest.skills.ultimate.displayName} · HD ultimate-v1
+        </figcaption>
+      </figure>
       <section className="aw2-asset-details">
         <img
           src={manifest.assets.portrait.url}

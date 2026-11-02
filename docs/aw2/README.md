@@ -1,5 +1,7 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**019A VERIFIED technical:**12ảnh HD tuyệt kỹ mới đã vào actual combat/roster;source-use dossier kiểm12nhân vật/126runtime files,credit/legal/build guard hoàn tất. Full2.278/163,38focused,hai types/hai builds/art repeat/package/assets/release/budget PASS. Production164.450.337bytes/389files;JS698.274≤710.000. Browser art/DOM cue PASS giới hạn;fullDoD/commercial clearance0/12,independent/human/device vẫn mở. Demo90/product≈40 giữ nguyên. [Evidence](evidence/AW2-019A.md) · [Art/quyền](ART_AND_RIGHTS.md).
+
 **018M hiện hành:**`pnpm dev/build/preview` mở game mới tại `/`,chỉ `/chest` giữ UI cũ;module graph chặn App/main/pages khác và QA UI. Backup/restore JSON,policy/worker fixes,CI AW2 và fresh artifact audit đã vào code.2.239tests/161files,hai types/builds/package PASS;browser UI/source route+chest PASS giới hạn. HTTPS/device/rights/human/Vercel settings chưa được ký duyệt. [Task](tasks/AW2-018M.md) · [Evidence](evidence/AW2-018M.md) · [Server build](SERVER_BUILD.md) · [Backup](SAVE_RECOVERY.md).
 
 **AW2-018L hiện hành — batch10/10:** technical candidate12/12PASS nhưng external0/7,overall`BLOCKED_EXTERNAL`;deploy/release false. Artifact audit CLI và stage→test→promote/rollback runbook đã khóa, không chạy Vercel. Full2.207unit/159files,hai builds/package PASS. Roadmap kỹ thuật10/10 đã xử lý,0commit định trước; product≈40% giữ nguyên. [Task](tasks/AW2-018L.md) · [Evidence](evidence/AW2-018L.md) · [Candidate](RELEASE_CANDIDATE.md) · [Rollback](ROLLBACK.md).

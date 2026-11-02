@@ -1,5 +1,7 @@
 # AW2 Decision Register
 
+019A / owner2026-11-02: **“tạo luôn hoàn thiện nhân vật, art/bản quyền”**. Triển khai art HD mới cho12identity đã chốt, tích hợp actual combat, bảo toàn ảnh nguồn và kiểm kê bằng chứng nguồn/quyền dùng theo nhà cung cấp. Không đổi canon/kit/save; yêu cầu tạo art không phải chữ ký nghiệm thu độc lập/thiết bị hoặc chứng nhận đăng ký bản quyền. [Phạm vi và kết quả](ART_AND_RIGHTS.md).
+
 018M / owner2026-11-02 tiếp tục D25: **“update để khi build lên phần mới này sẽ trở thành phần chính luôn, soul of meal mới hoạt động, loại bỏ phần cũ (giữ mỗi rương vị giác), đồng thời update luôn để production được100%”**. Triển khai web chính, bỏ UI QA/legacy khỏi artifact, backup/restore, CI và audit artifact thật. Mục tiêu100% không phải evidence cho rights/art/device/human và không tự authorize merge master/rpg hay deploy khi user mới yêu cầu chuẩn bị build. D16push AW2 và D18bằng chứng tiến độ giữ nguyên.
 | ID | Status | Decision |
 |---|---|---|

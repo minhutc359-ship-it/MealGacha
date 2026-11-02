@@ -37,6 +37,7 @@ import { FirstJourneyOnboarding } from "./FirstJourneyOnboarding"
 import { GameAccessibilityPanel } from "./GameAccessibilityPanel"
 import { useGameAccessibility } from "./useGameAccessibility"
 import { SaveTransferPanel } from "./SaveTransferPanel"
+import { GameArtCredits } from "./GameArtCredits"
 import "./game.css"
 
 const ReviewDisclosures = __AW2_PRODUCTION__
@@ -453,6 +454,7 @@ export function WorldGame(props: Props) {
                 </Suspense>
               )}
               {production && <WebReadiness compact />}
+              <GameArtCredits />
               {production && (
                 <nav
                   className="aw2-legal-links"

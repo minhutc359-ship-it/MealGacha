@@ -1,0 +1,22 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-nhien",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: original Soul of Meal ultimate cut-in art. Input image 1 is solely the project's existing original identity reference; preserve exact recognizable face, hair, eye color, clothing, tools and costume palette. Create a new dynamic three-quarter waist-up hero composition, polished detailed hand-painted anime art, natural anatomy and clearly drawn hands, rich fabric shading, clean readable silhouette, compact magical effects. One character only. Landscape 1536x1024, keep the head, hands and tools entirely inside with safe padding. Transparent background; no scenery or rectangle, no UI, no text, logos or watermarks. Nhiên: same spirited Vietnamese woman, dark brown hair in a high bun tied with red ribbon, warm brown eyes, white short sleeve chef wrap top with red toggles and rust-red apron/sash. Preserve both existing wooden kitchen tools, one flat spatula and one spoon. Approved ultimate 'Lửa Qua Ba Nhịp': swings the wooden tools rhythmically as three distinct orange-red flame arcs spiral around the utensils, confident energetic smile, readable staggered three-beat pattern, no added metal sword or armor.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/nhien/base-v1/portrait.png",
+      "sha256": "ee788f6342fd6586fc4091682d2ed8e257aaa1928d189bbf51ba9409ae94cc13"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/nhien/ultimate-v1/art.png",
+    "sha256": "4a99b6f44c2d36eee67bf6f60ed1fd0a20ce0c33c7499d10531c8c2445ef3599"
+  },
+  "toolOutputFilename": "exec-391250ee-2622-4f6e-b79d-071abeb1e1a1.png",
+  "selected": true
+}

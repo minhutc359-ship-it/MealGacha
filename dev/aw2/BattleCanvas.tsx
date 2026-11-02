@@ -9,6 +9,7 @@ import {
 } from "../../src/aw2/assets/playback"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { isStarterSpiritId } from "../../src/aw2/combat/roster"
+import { UltimateCutIn } from "./UltimateCutIn"
 import { FORGOTTEN_HOST_ASSETS } from "../../src/aw2/assets/forgottenHost"
 import {
   sampleBossVisual,
@@ -739,6 +740,12 @@ export function BattleCanvas({
           height={layout.height}
           aria-label="Trận đấu năm Vị Linh AW2"
           aria-describedby={compact ? undefined : "battle-roster"}
+        />
+        <UltimateCutIn
+          key={battle.id}
+          battle={battle}
+          paused={paused || stopped}
+          reducedMotion={reducedMotion}
         />
       </div>
       <p role="status" data-testid="battle-atlas-state">

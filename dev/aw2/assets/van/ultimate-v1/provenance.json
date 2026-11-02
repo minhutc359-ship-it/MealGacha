@@ -1,0 +1,43 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-van",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: original Soul of Meal HD ultimate cut-in illustration. Input image 1 is the project's own identity reference. Preserve its exact face, hairstyle, clothing, costume motifs and held object; do not redesign the person. New expressive three-quarter waist-up composition, detailed hand-painted anime game art, natural hands/anatomy, readable clean silhouette, refined cloth and magical highlights. One character only, no additional people. Landscape 1536x1024, safe padding around head/hands/held tool. Transparent background; no scenery, rectangle, UI, lettering, logos or watermarks. Vân: same androgynous youthful Vietnamese spirit with long silver-grey hair partially braided, pale green-grey eyes, dark inner high-collar tunic and layered ragged grey/ivory robes, dark trailing ribbons, subtle mother-of-pearl details. Holds the SAME BROKEN CIRCULAR MOTHER-OF-PEARL RING with visible gaps between six irregular fragments, never a complete ring. Approved ultimate 'Bữa Ăn Chưa Gọi Tên': delicately brings the six fragments into a hovering open circle as two fine silver-teal threads branch outward, wistful restrained expression. Iridescent ivory/teal with small soft gold memory lights. No identity reveal, no wings, no new weapon.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/van/base-v1/portrait.png",
+      "sha256": "d485679092eb8046421d9b8b1ad65a11b0d5a79a01f2092c227523d24e40882a"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/van/ultimate-v1/art.png",
+    "sha256": "c22026c9f70fa70cf83a3f084b19829cfb943c07d1e084b9f4a9274268fb60c3"
+  },
+  "toolOutputFilename": "exec-8a6dac7f-751a-4190-91f0-7d17885c36bc.png",
+  "selected": true,
+  "runtime": {
+    "id": "aw2-van:ultimate-art:v1",
+    "url": "/dev/aw2/assets/van/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1668342,
+    "sha256": "ca6aecd0e578cd510d357951bb5c683b87a331aa7310b665554d3f1b0acdfb07",
+    "source": {
+      "path": "dev/aw2/assets/van/ultimate-v1/art.png",
+      "sha256": "c22026c9f70fa70cf83a3f084b19829cfb943c07d1e084b9f4a9274268fb60c3"
+    },
+    "promptSha256": "bb326894254947bcd87e4c176ac30c664dc2cef1fea5f7bebdbd2442acd68f03",
+    "transparentFraction": 0.381114
+  },
+  "processing": "Source PNG preserved byte-for-byte; exact lossless WebP RGBA, no repaint/masking/mirroring/resizing.",
+  "providerUseBasis": "aw2-openai-output-use-2026-11-02",
+  "sourceAudit": "VERIFIED",
+  "copyrightExclusivity": "NOT_ASSERTED",
+  "humanLegalReview": "NOT_RUN",
+  "licenseStatus": "PROVIDER_TERMS_DOCUMENTED",
+  "commercialRelease": "NOT_CLEARED"
+}

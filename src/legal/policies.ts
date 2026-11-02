@@ -339,6 +339,13 @@ export const POLICIES: Record<PolicyId, Policy> = {
           "Bản web hiện đóng gói tài nguyên của hành trình mới và Rương Vị Giác original. Các màn cũ đã rời bundle không được mở lại qua đường dẫn cũ. Có model, chuyển động hoặc hồ sơ nguồn không tự đồng nghĩa mọi tài nguyên đã được ký duyệt thương mại; những mục rights còn mở vẫn cần chủ thể có quyền xác minh.",
         ],
       },
+      {
+        title: "Hình ảnh và hiệu ứng nhân vật Soul of Meal mới",
+        paragraphs: [
+          "Bộ 12 Vị Linh sử dụng minh họa và sprite tạo với công cụ image_gen của OpenAI, dựa trên thiết kế và ảnh tham chiếu được lưu trong hồ sơ dự án. Ảnh tuyệt kỹ có hồ sơ prompt, ảnh nguồn và mã kiểm tra để truy vết. Hiệu ứng âm thanh nhân vật được tổng hợp bằng mã, không lấy từ bản ghi giọng nói ChatGPT hoặc nhạc của trò chơi khác.",
+          "Điều khoản OpenAI quy định quyền đối với output giữa nhà cung cấp và người dùng trong phạm vi pháp luật cho phép; output có thể không độc quyền và người dùng vẫn chịu trách nhiệm về quyền đối với đầu vào. Hồ sơ nguồn của dự án không phải giấy chứng nhận đăng ký bản quyền hoặc bảo đảm không có quyền của bên thứ ba. Việc sử dụng trong Soul of Meal không cấp phép công khai để người khác bán lại hay tái phân phối asset.",
+        ],
+      },
       ...LEGACY_POLICIES.rights.sections,
     ],
   },

@@ -1,0 +1,43 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-than",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: original Soul of Meal game ultimate cut-in illustration, landscape composition. Reference image 1 is the project's original character identity sheet for Than, NOT a style to replace. Preserve exactly his recognizable young Vietnamese male face, short tousled dark hair, indigo cloth tunic over cream wrap shirt, rust-red sash, rope ties and aged bronze circular shield with three amber ember stones. Illustrate the approved ultimate 'Chỗ Sau Lưng': he braces the bronze shield forward with a warm protective amber crescent curling behind his shoulder, a few distinct ember motes, calm resolute protective expression. Dynamic three-quarter chest-to-mid-thigh hero composition, shield and both hands anatomically clear, same hand grips, readable silhouette. Polished detailed anime game key art, soft painterly cel shading, natural anatomy, restrained gold rim light; match the reference's hand-painted textile detail. One character only, no allies, no added armor or new weapons. Genuine transparent background; isolated character and compact amber effect, no scenery, no rectangular backdrop, no ground shadow, no UI or letters, no logos or watermarks. Landscape 1536x1024, center the subject with 8 percent transparent padding around every opaque effect/shield/hair edge; no cropped head, hands or shield. This is a brand-new illustration with the reference used only to retain the project's identity.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/than/base-v1/reference.png",
+      "sha256": "319c6e204ccf1953ebaa8b70979dc61a348842d487c31b367291cf0a72daef84"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/than/ultimate-v1/art.png",
+    "sha256": "f1e83a7ef5d6d300ed3a7d8896f15f44f90c400381480366b3581ec73c5dec53"
+  },
+  "toolOutputFilename": "exec-ee1303fc-672c-4753-8b2d-e922c32b6ff7.png",
+  "selected": true,
+  "runtime": {
+    "id": "aw2-than:ultimate-art:v1",
+    "url": "/dev/aw2/assets/than/ultimate-v1/art.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 2103696,
+    "sha256": "9d8354b704f20487b8bb812f5e423f81d57b2d5e8a0feef3f38659eb69d6d09d",
+    "source": {
+      "path": "dev/aw2/assets/than/ultimate-v1/art.png",
+      "sha256": "f1e83a7ef5d6d300ed3a7d8896f15f44f90c400381480366b3581ec73c5dec53"
+    },
+    "promptSha256": "4a5f6ba9115245c11608fdd4563a1bbebc9e1b5de875507db006ee8d3698cdb6",
+    "transparentFraction": 0.299697
+  },
+  "processing": "Source PNG preserved byte-for-byte; exact lossless WebP RGBA, no repaint/masking/mirroring/resizing.",
+  "providerUseBasis": "aw2-openai-output-use-2026-11-02",
+  "sourceAudit": "VERIFIED",
+  "copyrightExclusivity": "NOT_ASSERTED",
+  "humanLegalReview": "NOT_RUN",
+  "licenseStatus": "PROVIDER_TERMS_DOCUMENTED",
+  "commercialRelease": "NOT_CLEARED"
+}

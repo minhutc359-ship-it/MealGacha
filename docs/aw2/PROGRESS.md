@@ -1,5 +1,7 @@
 # Phần trăm hoàn thiện AW2
 
+019A thêm12minh họa HD tuyệt kỹ và hồ sơ source/provider-use12nhân vật/126runtime files. Đây là tiến độ art đã tích hợp; full-character/independent art/human audio/device/commercial gates chưa có acceptance. **Demo90%/product≈40%(35–45%) giữ nguyên** theo denominatorD18, không tự cộng% từ ảnh hoặc test. [Art/quyền sử dụng](ART_AND_RIGHTS.md) · [Evidence](evidence/AW2-019A.md).
+
 018M hoàn thành **cutover/build,backup/restore và production UI engineering**. Full2.240test/161files cùng hard graph/package/fresh artifact gates PASS không tự đóng full-character/rights/art-audio/content/human/device gates. **Demo90%/product≈40%(35–45%) giữ nguyên**, không đổi cờ thành100% theo mục tiêu. Các thiếu sót kỹ thuật phát hiện sau018L đã được sửa thật trong018M;roadmap10/10 không có nghĩa hết công việc sản phẩm. [Evidence](evidence/AW2-018M.md).
 
 018L hoàn thành **technical release-candidate/report/runbook** và là batch10/10. **Demo90% / product≈40%(35–45%) không đổi**:12/12 technical gate PASS nhưng0/7 external,overall`BLOCKED_EXTERNAL`. Roadmap kỹ thuật10/10 đã xử lý; không còn commit định trước, còn evidence/fix theo7 gate ngoài. [Evidence](evidence/AW2-018L.md).
