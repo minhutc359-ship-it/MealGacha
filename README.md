@@ -1,4 +1,10 @@
-# Adventure World 2 · Nhánh phát triển game mới
+# Soul of Meal · Hành trình mới
+
+**018M: web chính là game mới; chỉ giữ Rương Vị Giác original.** Trên `game/adventure-world-2`, `pnpm dev`, `pnpm build` và `pnpm preview` mở game mới tại `/`. `/chest` giữ rương; đường dẫn UI cũ về game mới. Build tự kiểm module graph, asset/package và candidate từ chính output vừa tạo. Đã thêm sao lưu/khôi phục JSON, legal/offline fixes và CI cho nhánh AW2. Công cụ QA dùng `pnpm dev:aw2` hoặc `pnpm build:aw2`, không nằm trong artifact chính. [Cấu hình server](docs/aw2/SERVER_BUILD.md) · [Evidence](docs/aw2/evidence/AW2-018M.md).
+
+Build server phải lấy đúng nhánh này; `master` vẫn là source lịch sử riêng. Không tự merge hoặc đổi production branch trên Vercel. Rights, art và thiết bị thật chưa được suy thành PASS từ build. Một đại diện đầu đội trên map, năm thành viên trong combat theo D17.
+
+Các mốc bên dưới là lịch sử; trạng thái hiện hành theo018M.
 
 **Build production trên nhánh này đã chuyển sang AW2.** `pnpm build` và cấu hình Vercel tạo game mới tại `/`; các URL giao diện cũ đều về AW2, chỉ `/chest` và `/chest/` giữ Rương Vị Giác original. `pnpm build:aw2` tiếp tục tạo bộ trang QA riêng. [Chi tiết cutover](docs/aw2/tasks/AW2-018A.md) · [Kiểm chứng](docs/aw2/evidence/AW2-018A.md).
 

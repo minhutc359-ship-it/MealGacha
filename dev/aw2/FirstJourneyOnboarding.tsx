@@ -3,6 +3,7 @@ import {
   AW2_ONBOARDING_STEPS,
   onboardingStepFromKey,
 } from "../../src/aw2/ui/onboarding"
+import { supportsAw2Writes } from "../../src/aw2/save/store"
 
 interface Props {
   busy: boolean
@@ -15,6 +16,7 @@ export function FirstJourneyOnboarding({ busy, production, onStart }: Props) {
   const heading = useRef<HTMLHeadingElement>(null)
   const step = AW2_ONBOARDING_STEPS[index]
   const last = index === AW2_ONBOARDING_STEPS.length - 1
+  const canStart = !production || supportsAw2Writes()
 
   useEffect(() => {
     heading.current?.focus({ preventScroll: true })
@@ -45,6 +47,13 @@ export function FirstJourneyOnboarding({ busy, production, onStart }: Props) {
         {step.title}
       </h2>
       <p>{step.body}</p>
+      {!canStart && (
+        <p role="alert">
+          Mở Soul of Meal bằng HTTPS hoặc localhost trên trình duyệt hỗ trợ Web
+          Locks để bắt đầu và lưu an toàn. Đường dẫn HTTP hiện tại chỉ xem được
+          hướng dẫn.
+        </p>
+      )}
       <div className="aw2-onboarding-actions">
         <button
           type="button"
@@ -54,7 +63,7 @@ export function FirstJourneyOnboarding({ busy, production, onStart }: Props) {
           Quay lại
         </button>
         {last ? (
-          <button type="button" disabled={busy} onClick={onStart}>
+          <button type="button" disabled={busy || !canStart} onClick={onStart}>
             {production ? "Bắt đầu hành trình" : "Tạo bản lưu AW2"}
           </button>
         ) : (
@@ -75,7 +84,7 @@ export function FirstJourneyOnboarding({ busy, production, onStart }: Props) {
         <button
           type="button"
           className="aw2-onboarding-skip"
-          disabled={busy}
+          disabled={busy || !canStart}
           onClick={onStart}
         >
           Bỏ qua hướng dẫn và bắt đầu

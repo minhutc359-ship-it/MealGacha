@@ -1,0 +1,22 @@
+{
+  "task": "AW2-019A",
+  "spiritId": "aw2-suong",
+  "variant": "ultimate-v1",
+  "tool": "OpenAI built-in image_gen",
+  "model": "not exposed by tool",
+  "date": "2026-11-02",
+  "prompt": "Use case: stylized-concept. Asset type: Soul of Meal original ultimate cut-in artwork. Input image 1 is the project's existing original portrait, used solely to preserve exact face, hairstyle, clothing, colors and character identity. Make a NEW dynamic three-quarter waist-up illustration; expressive natural face and correct hands, no extra limbs, preserve costume. Polished detailed hand-painted anime game art matching this reference, strong readable silhouette, restrained magical highlights and richly shaded cloth. One character only. Landscape 1536x1024; keep head, hands, tools and main effects fully inside with safe padding. Genuine transparent background, no scenery, no rectangular background, no UI, no lettering, no logos or watermarks. Sương Lành: same gentle Vietnamese woman, shoulder-length dark plum hair, violet eyes, small silver leaf hair clip, lavender/white layered robes and white scarf, rolled cream scroll with purple tie. Approved ultimate 'Lối Qua Màn Trắng': opens a clear narrow passage through curling pearl-white mist ribbons with her free hand while holding the same scroll, tranquil focused expression. Lavender and silver-white luminosity, clearly defined bright path-shaped arc behind her, no new weapon, no landscape.",
+  "externalInputs": [],
+  "referenceInputs": [
+    {
+      "path": "dev/aw2/assets/suong/base-v1/portrait.png",
+      "sha256": "84659cbd7d4be062a18a8eaaec2a93c3c679bf9163e7d45644f6a78aae7493fd"
+    }
+  ],
+  "source": {
+    "path": "dev/aw2/assets/suong/ultimate-v1/art.png",
+    "sha256": "2d7e83d449e8b8844f6f8590676b88f7ecc0a8cb3473734328c53e2d81e11665"
+  },
+  "toolOutputFilename": "exec-b299e7cd-ce0a-474f-8ce6-95c8ff8ceea2.png",
+  "selected": true
+}

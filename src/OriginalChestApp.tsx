@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom"
 import { ChestPage } from "./pages/ChestPage"
 import { useAppStore } from "./store/useAppStore"
 import { PresentationSettings } from "./components/game/PresentationSettings"
-import { GameErrorBoundary } from "./components/layout/GameErrorBoundary"
+import { ProductionChestBoundary } from "./components/chest/ProductionChestBoundary"
 import { Toast } from "./components/ui/Toast"
 import { WebUpdatePrompt } from "./components/layout/WebUpdatePrompt"
 import "./index.css"
@@ -23,7 +23,7 @@ export function OriginalChestApp() {
   return (
     <BrowserRouter>
       <PresentationSettings />
-      <GameErrorBoundary>
+      <ProductionChestBoundary>
         <WebUpdatePrompt />
         <div
           className="loot-client production-chest-shell"
@@ -45,7 +45,7 @@ export function OriginalChestApp() {
           </div>
         </div>
         <Toast />
-      </GameErrorBoundary>
+      </ProductionChestBoundary>
     </BrowserRouter>
   )
 }

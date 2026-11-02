@@ -6,7 +6,7 @@ import {
   type WalkingTarget,
 } from "../../src/aw2/world/walkingIntent"
 import type { CollectionAction } from "../../src/aw2/collection/model"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from "react"
 import {
   Aw2DevSaveStore,
   Aw2SaveError,
@@ -52,7 +52,6 @@ import {
 } from "../../src/aw2/world/controls"
 import { JourneyGuide } from "./JourneyGuide"
 import { DemoCompletion } from "./DemoCompletion"
-import { PlaytestFeedback } from "./PlaytestFeedback"
 import { WorldGame, type GamePanel } from "./WorldGame"
 import {
   PagedCopy,
@@ -89,6 +88,14 @@ import {
 } from "../../src/aw2/world/stepPortals"
 import { npcLifeClock } from "../../src/aw2/world/npcLife"
 
+const PlaytestFeedback = __AW2_PRODUCTION__
+  ? () => null
+  : lazy(() =>
+      import("./PlaytestFeedback").then(({ PlaytestFeedback }) => ({
+        default: PlaytestFeedback,
+      })),
+    )
+
 interface PendingPlaceInteraction {
   id: string
   scene: ReturnType<typeof sceneId>
@@ -104,9 +111,15 @@ interface TravelProgress extends ScenePreparationProgress {
   phase: "loading" | "rendering" | "saving"
 }
 
-export function WorldPreview({ production = false }: { production?: boolean }) {
+export function WorldPreview({
+  production = __AW2_PRODUCTION__,
+}: {
+  production?: boolean
+}) {
   const singleViewport =
-    production || window.location.pathname.endsWith("/game.html")
+    __AW2_PRODUCTION__ ||
+    production ||
+    window.location.pathname.endsWith("/game.html")
   const [store] = useState(() => new Aw2DevSaveStore())
   const [snapshot, setSnapshot] = useState<SaveSnapshot>(() => store.load())
   const [recovery, setRecovery] = useState<RecoveryInspection>(() =>
@@ -620,6 +633,29 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
     }
   }
 
+  async function restoreBackup(raw: string) {
+    if (pending.current || saved.current.status === "unavailable")
+      throw Error("Hãy đợi thao tác hiện tại hoàn tất rồi thử lại.")
+    pending.current = true
+    setBusy(true)
+    keys.current.clear()
+    clearWalking()
+    try {
+      await store.restore(saved.current.raw, raw, "RESTORE AW2")
+      rereadAfterRestore()
+    } finally {
+      pending.current = false
+      setBusy(false)
+    }
+  }
+
+  function rereadAfterRestore() {
+    // Same reload path as stale-tab recovery, after the guarded write completed.
+    pending.current = false
+    reread()
+    setMessage("Đã khôi phục hành trình từ bản sao lưu.")
+  }
+
   async function enterMode(modeId: Aw2ModeId, entry: ModeEntry) {
     if (
       pending.current ||
@@ -903,6 +939,68 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
       setBusy(false)
     }
   }
+  async function summon(
+    action: import("../../src/aw2/gacha/runtime").SummonAction,
+  ) {
+    if (
+      pending.current ||
+      saved.current.status !== "ready" ||
+      activeMode ||
+      activeEncounter
+    )
+      return
+    pending.current = true
+    setBusy(true)
+    keys.current.clear()
+    clearWalking()
+    setError("")
+    try {
+      const next = await store.summonAction(
+        saved.current.raw,
+        worldRef.current,
+        action,
+      )
+      saved.current = next
+      setSnapshot(next)
+      worldRef.current = next.save.progress
+      setWorld(next.save.progress)
+      setMessage(
+        action.type === "claim"
+          ? "Đã nhận vé từ các mốc hoàn tất."
+          : "Đã lưu kết quả triệu hồi; mở Kết quả đã lưu để xem.",
+      )
+    } catch (cause) {
+      setError(
+        cause instanceof Error ? cause.message : "Chưa lưu được triệu hồi.",
+      )
+    } finally {
+      pending.current = false
+      setBusy(false)
+    }
+  }
+  async function completeMode() {
+    if (pending.current || !activeMode) return
+    pending.current = true
+    setBusy(true)
+    setError("")
+    try {
+      const next = await modeAdapter.complete()
+      saved.current = next
+      setSnapshot(next)
+      setMessage(
+        "Đã lưu kết quả bàn chơi. Mốc thắng mới có thể nhận vé ở Đội → Triệu hồi.",
+      )
+    } catch (cause) {
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "Chưa lưu được kết quả bàn chơi.",
+      )
+    } finally {
+      pending.current = false
+      setBusy(false)
+    }
+  }
   async function collect(action: CollectionAction) {
     if (pending.current || saved.current.status !== "ready") return
     pending.current = true
@@ -1011,6 +1109,11 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
   if (activeMode)
     return (
       <ModeLobby
+        run={modeAdapter.currentRun()}
+        progress={snapshot.status === "ready" ? snapshot.save.modes : undefined}
+        busy={busy}
+        completed={modeAdapter.isComplete()}
+        onComplete={() => void completeMode()}
         compact={singleViewport}
         visit={activeMode}
         error={error}
@@ -1257,6 +1360,7 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
             save={snapshot.save}
             busy={busy}
             onAction={(action) => void collect(action)}
+            onSummon={(action) => void summon(action)}
           />
         ) : gamePanel === "recipe" ? (
           <RecipePanel economy={snapshot.save.economy} />
@@ -1360,8 +1464,10 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
         onReread={reread}
         recoveryAvailable={recovery.status === "available"}
         onRecover={() => void recover()}
+        onRestoreBackup={restoreBackup}
         onEconomy={(action) => void transact(action)}
         onCollection={(action) => void collect(action)}
+        onSummon={(action) => void summon(action)}
         onMode={(mode) => void enterMode(mode, "quick-entry")}
         canEnterRoomPractice={roomPracticeReady}
         onRoomPractice={(mode) => void enterMode(mode, "room-service")}
@@ -1577,7 +1683,9 @@ export function WorldPreview({ production = false }: { production?: boolean }) {
       </div>
       <p role="status">{busy ? "Đang lưu…" : message}</p>
       {error && <p role="alert">{error}</p>}
-      <PlaytestFeedback snapshot={snapshot} busy={busy} />
+      <Suspense fallback={null}>
+        <PlaytestFeedback snapshot={snapshot} busy={busy} />
+      </Suspense>
       {interactionDialog}
       {classicPanel}
     </main>

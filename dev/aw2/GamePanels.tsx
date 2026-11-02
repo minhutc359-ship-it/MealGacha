@@ -18,6 +18,9 @@ import {
   RECRUIT_QUESTS,
 } from "../../src/aw2/collection/model"
 import { ROSTER } from "../../src/aw2/world/ids"
+import type { SummonAction } from "../../src/aw2/gacha/runtime"
+import { SummonPanel } from "./SummonPanel"
+import { CharacterJournal } from "./CharacterJournal"
 import {
   questJournal,
   pageSlice,
@@ -461,14 +464,19 @@ interface PartyProps {
   save: Aw2DevSave
   busy: boolean
   onAction: (action: CollectionAction) => void
+  onSummon?: (action: SummonAction) => void
 }
-export function GamePartyPanel({ save, busy, onAction }: PartyProps) {
+export function GamePartyPanel({ save, busy, onAction, onSummon }: PartyProps) {
   const [tab, setTab] = useState("team"),
     [slot, setSlot] = useState(0),
     [unit, setUnit] = useState(0),
     [draft, setDraft] = useState([...save.progress.partyIds]),
     [emphasis, setEmphasis] = useState(save.collection.vanEmphasis)
-  const owned = ownedSpirits(save.progress, save.collection),
+  const owned = ownedSpirits(
+      save.progress,
+      save.collection,
+      save.summons.obtainedIds,
+    ),
     roster = pageSlice(ROSTER, unit, 1),
     spirit = roster.items[0]
   const changed =
@@ -482,6 +490,7 @@ export function GamePartyPanel({ save, busy, onAction }: PartyProps) {
         {[
           ["team", "Đội hình"],
           ["collection", "Bộ sưu tập"],
+          ...(onSummon ? [["summon", "Triệu hồi"]] : []),
           ...(owned.includes("aw2-van") ? [["van", "Nhấn Vân"]] : []),
         ].map(([id, label]) => (
           <button
@@ -582,7 +591,10 @@ export function GamePartyPanel({ save, busy, onAction }: PartyProps) {
           <p>
             {owned.includes(spirit.spiritId)
               ? "Đã sở hữu"
-              : `Mở sau nhiệm vụ ${gate}`}
+              : `Mời miễn phí sau nhiệm vụ ${gate}; cũng có thể gặp qua triệu hồi`}
+            {save.summons.fragments[spirit.spiritId] > 0
+              ? ` · ${save.summons.fragments[spirit.spiritId]} dấu kỷ niệm`
+              : ""}
           </p>
           {recruit && !owned.includes(recruit) && (
             <button
@@ -593,6 +605,11 @@ export function GamePartyPanel({ save, busy, onAction }: PartyProps) {
               Mời {spirit.displayName}
             </button>
           )}
+          <CharacterJournal
+            key={spirit.spiritId}
+            spiritId={spirit.spiritId}
+            experience={save.economy.teamExperience}
+          />
           <PageControls
             page={roster.page}
             pages={roster.pages}
@@ -600,6 +617,9 @@ export function GamePartyPanel({ save, busy, onAction }: PartyProps) {
             label="Vị Linh"
           />
         </>
+      )}
+      {tab === "summon" && onSummon && (
+        <SummonPanel save={save} busy={busy} onAction={onSummon} />
       )}
       {tab === "van" && (
         <>

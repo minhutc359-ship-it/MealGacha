@@ -5,8 +5,15 @@ export function ReleaseCandidateDisclosure() {
     <details className="aw2-release-candidate-disclosure">
       <summary>Release candidate web1.0</summary>
       <p>
-        Technical gates: <strong>{summary.technicalPass}/12 PASS</strong>.
-        External gates: <strong>{summary.externalPass}/7 PASS</strong>.
+        Technical gates:{" "}
+        <strong>
+          {summary.technicalPass}/{summary.technicalTotal} PASS
+        </strong>
+        . External gates:{" "}
+        <strong>
+          {summary.externalPass}/{summary.externalTotal} PASS
+        </strong>
+        .
       </p>
       <p>
         Overall: <strong>BLOCKED_EXTERNAL</strong>. Character DoD/rights,

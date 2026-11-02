@@ -147,7 +147,7 @@ function actorFromSeed(
       "aw2-bach",
       "aw2-van",
     ].includes(seed.spiritId)
-      ? COMBAT_KITS[seed.spiritId as CombatSpiritId]
+      ? COMBAT_KITS[(seed.spiritId as CombatSpiritId)]
       : defaultEnemy(seed)
   const maxHp = assertNumber(seed.maxHp ?? base.hp, "HP tối đa", 1, 1_000_000)
   const hp = assertNumber(seed.hp ?? maxHp, "HP", 1, maxHp)
@@ -265,10 +265,7 @@ function record(
   kind: CombatEventKind,
   sourceId: string | null,
   targetIds: string[],
-  detail: Omit<
-    CombatEvent,
-    "serial" | "tick" | "kind" | "sourceId" | "targetIds"
-  > = {},
+  detail: Omit<CombatEvent, "serial" | "tick" | "kind" | "sourceId" | "targetIds"> = {},
 ): CombatEvent {
   const event: CombatEvent = {
     serial: ++battle.eventSerial,
@@ -654,13 +651,7 @@ function resolveMocFields(battle: CombatBattle) {
 function endVanLink(
   battle: CombatBattle,
   source: CombatActor,
-  reason:
-    | "expiry"
-    | "defeat"
-    | "cleanse"
-    | "replacement"
-    | "source"
-    | "terminal",
+  reason: "expiry" | "defeat" | "cleanse" | "replacement" | "source" | "terminal",
 ) {
   const link = source.vanLink
   if (!link) return
@@ -2224,6 +2215,7 @@ function tryForgottenHostSkill(
     record(battle, "status", actor.id, [actor.id], {
       skillId: FORGOTTEN_HOST_SKILLS.barrier.id,
       text: "Ghế trống: phá bằng 4 đòn thường, tự tan sau 8 nhịp.",
+      statusChange: "apply",
     })
   } else {
     const kind = phase === 1 ? "sweep" : "snuff"

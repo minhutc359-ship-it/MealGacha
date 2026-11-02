@@ -1,4 +1,16 @@
 # AW2 Decision Register
+
+## D27 —2026-11-02 / portable source and hardened static delivery
+
+An ordinary AW2 clone, CI checkout and server build must contain real bytes for all production-critical source/evidence; LFS pointers, symlinks, missing roots or unsafe tracked paths fail before bundling. Every production artifact exposes a validated release identity and keeps the exact AW2-root/original-chest-only surface. Static delivery uses the versioned same-origin security/header/cache contract. This engineering lock repairs a reproduced LFS404 and improves traceability; it does not approve commercial rights, human/device results, deployment or release. [Task](tasks/AW2-019C.md) · [Evidence](evidence/AW2-019C.md).
+
+## D26 —2026-11-02 / one-commit free web completion
+
+Owner requests finishing the product in one commit. Implementation authorized for the free web scope: durable TCG/Chess results/first wins, earned-ticket summons using separately versioned free profile,12-unit journal, original boss motion/audio and all-media source checks. No new payment/account/PvP scope, final numerical rate sign-off, exclusive copyright, independent human/device acceptance, master/rpg integration or deployment is inferred. D11 remains a historical proposal; BA/mechanic engineering review uses the shared10/80/200 five-tier rules in the free profile, while final acceptance remains OPEN. No acceptance gate is fabricated to reach100%. One AW2 commit/push, preserving original chest and all prior saves. [Contract](FREE_PLAY.md) · [Task](tasks/AW2-019B.md).
+
+019A / owner2026-11-02: **“tạo luôn hoàn thiện nhân vật, art/bản quyền”**. Triển khai art HD mới cho12identity đã chốt, tích hợp actual combat, bảo toàn ảnh nguồn và kiểm kê bằng chứng nguồn/quyền dùng theo nhà cung cấp. Không đổi canon/kit/save; yêu cầu tạo art không phải chữ ký nghiệm thu độc lập/thiết bị hoặc chứng nhận đăng ký bản quyền. [Phạm vi và kết quả](ART_AND_RIGHTS.md).
+
+018M / owner2026-11-02 tiếp tục D25: **“update để khi build lên phần mới này sẽ trở thành phần chính luôn, soul of meal mới hoạt động, loại bỏ phần cũ (giữ mỗi rương vị giác), đồng thời update luôn để production được100%”**. Triển khai web chính, bỏ UI QA/legacy khỏi artifact, backup/restore, CI và audit artifact thật. Mục tiêu100% không phải evidence cho rights/art/device/human và không tự authorize merge master/rpg hay deploy khi user mới yêu cầu chuẩn bị build. D16push AW2 và D18bằng chứng tiến độ giữ nguyên.
 | ID | Status | Decision |
 |---|---|---|
 | D01 | LOCKED | RPG mới trên nhánh riêng, khả năng tách repo/game riêng; master giữ ổn định |
@@ -26,6 +38,7 @@
 | D23 | LOCKED 2026-10-26 | Core gameplay targets one fixed viewport, map HUD/dock, single blocking submenu, quest/party/inventory pages, no document scrolling; battle/TCG/Chess target in-shell safe return. Imported concurrent UI row mislabeledD13 is normalized here, preserving original starterD13. Implementation phases/evidence at015A/B; design approval is not runtime completion. |
 | D24 | APPROVED 2026-10-28 | Owner asks to redesign perspectives, remove surplus noninteractive structures/empty space and follow the existing Pokémon-style map specification. Prioritize functional spatial structure before NPC schedules:017A village sample adds distinct home/guild interiors alongside tea, removes surplus village facades, connects paths and extends save6→7 safely. Supersedes D22 scenery-only limit for this explicit scope. Other zones, step portals, field props and final art follow phased contracts; no new NPC/quest/gacha, commerce, product integration or release approval. |
 | D25 | APPROVED 2026-10-28 | Trên nhánh AW2, server/default `pnpm build` phải mở trực tiếp fixed-viewport game mới tại `/`; mọi route giao diện main cũ trở về AW2, chỉ giữ Rương Vị Giác original tại `/chest`. Giữ source và save namespace cũ để bảo toàn dữ liệu, nhưng không bundle/mount các trang main cũ làm bề mặt production. Đây là quyền thay build contract của AW2, không phải quyền đổi `master`/`rpg`, deploy, release, production-save migration hay đóng art/device/human/rights gates. |
+| D27 | LOCKED 2026-11-02 | Production-critical source/evidence phải là real Git bytes; build/CI fail pointer/symlink/missing/unsafe. Artifact phải có release identity và static delivery security profile; không tự cấp external acceptance/deploy/release. |
 
 Mọi thay đổi quyết định LOCKED cần owner xác nhận và scretary ghi lại.
 

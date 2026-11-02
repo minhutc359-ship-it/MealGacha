@@ -1,0 +1,36 @@
+{
+  "task": "AW2-019B",
+  "entityId": "aw2-enemy-forgotten-host",
+  "externalReferences": [],
+  "inputs": [
+    {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/battle.png",
+      "basis": "Existing original project-owned identity source; no external art input."
+    }
+  ],
+  "generations": [
+    {
+      "initialPrompt": "Create an ORIGINAL animation sprite atlas for the project's own Forgotten Host character, using the attached project-owned battle atlas strictly for identity. Preserve faceless ivory porcelain bowl-mask head with NO face, blue-grey steam rising, dark charcoal apron over ivory layered robes, ochre-gold sash/ribbons, sturdy boots, broad wooden serving paddle. High-quality hand-painted anime full-body combat sprites facing left, same character and scale across EVERY cell. Transparent background, no grid lines, no letters, no watermark, no extra people. Exactly 4 columns x4 rows, sixteen separate full-body cels, each centered inside an equal square cell with very generous transparent gutters. All feet on same baseline within each cell. Every cell fully contains all body, weapon and steam; NO overlap between cells. Four genuinely distinct motion phases per row, not copies or transforms. Keep FX restrained enough to fit. Aim square 2048x2048 atlas. ROW1 idle: breath in, steam drift, settling cloth, breath out. ROW2 move left: step preparation, long stride, passing step, foot plant with swinging robe. ROW3 attack with wooden paddle: pull back, lunge, broad leftward strike contact, follow-through recovery. ROW4 cast: gather warm golden light at open hand, raise hand, release a small cloud left, lower hand. Make sixteen distinct poses and clear hand/weapon animation. No large surrounding circles.",
+      "layoutPrompt": "Edit this ORIGINAL sprite atlas layout only. Preserve ALL SIXTEEN distinct illustrated full-body character motion cels and their identity/painted details. Make a clean uniform 4 by4 square grid with HUGE transparent gutters: EACH character including every effect must occupy ONLY the middle 65 percent of its cell width and height, with at least 17 percent totally empty transparent margin on every side INSIDE each cell. This means make the figures much smaller within each cell, particularly the wide attack/steam/ultimate poses. Every character is full-body and complete, no cropped weapons, no clipped cloth. Uniform cell coordinates, NO contact or overlap between neighboring cells, no labels or lines. Do not mirror or replace unique poses. Transparent background.",
+      "initialOutput": "initial-a.png",
+      "selectedOutput": "motion-a.png",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "date": "2026-11-02"
+    },
+    {
+      "initialPrompt": "Create an ORIGINAL animation sprite atlas for the project's own Forgotten Host character, using the attached project-owned battle atlas strictly for identity. Preserve faceless ivory porcelain bowl-mask head with NO face, blue-grey steam rising, dark charcoal apron over ivory layered robes, ochre-gold sash/ribbons, sturdy boots, broad wooden serving paddle. High-quality hand-painted anime full-body combat sprites facing left, same character and scale across EVERY cell. Transparent background, no grid lines, no letters, no watermark, no extra people. Exactly 4 columns x4 rows, sixteen separate full-body cels, each centered inside an equal square cell with very generous transparent gutters. All feet on same baseline within each cell. Every cell fully contains all body, weapon and steam; NO overlap between cells. Four genuinely distinct motion phases per row, not copies or transforms. Keep FX restrained enough to fit. Aim square 2048x2048 atlas. ROW1 hit reaction: startled recoil, lean back with raised forearm, stagger forward, regain stance. ROW2 guard: raise paddle diagonally, brace behind paddle with a small warm barrier, firm planted defensive pose, lower guard slightly. ROW3 ultimate: gather gold light near chest, raise both hands with paddle and a tight steam spiral, extend hand in powerful release left, finish with robe and steam settling. ROW4 defeat: buckle knees, kneel using paddle for support, lower head and shoulders, rest kneeling with one hand on ground. Every cell complete full body including boots; same figure scale; clearly distinct phases. Steam/FX contained in each cell.",
+      "layoutPrompt": "Edit this ORIGINAL sprite atlas layout only. Preserve ALL SIXTEEN distinct illustrated full-body character motion cels and their identity/painted details. Make a clean uniform 4 by4 square grid with HUGE transparent gutters: EACH character including every effect must occupy ONLY the middle 65 percent of its cell width and height, with at least 17 percent totally empty transparent margin on every side INSIDE each cell. This means make the figures much smaller within each cell, particularly the wide attack/steam/ultimate poses. Every character is full-body and complete, no cropped weapons, no clipped cloth. Uniform cell coordinates, NO contact or overlap between neighboring cells, no labels or lines. Do not mirror or replace unique poses. Transparent background.",
+      "initialOutput": "initial-b.png",
+      "selectedOutput": "motion-b.png",
+      "tool": "OpenAI built-in image_gen",
+      "model": "not exposed by tool",
+      "date": "2026-11-02"
+    }
+  ],
+  "rights": {
+    "status": "REVIEW_REQUIRED",
+    "exclusiveCopyright": "NOT_ASSERTED",
+    "humanApproval": false
+  }
+}

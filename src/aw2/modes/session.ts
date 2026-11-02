@@ -11,6 +11,8 @@ import {
 } from "./catalog"
 import { type RoomId } from "../world/interiorLayout"
 import { canUseRoomPractice } from "./roomPractice"
+import { createTableRun, type TableRun } from "./run"
+import { modeStage } from "./progress"
 
 export interface ModeVisit {
   modeId: Aw2ModeId
@@ -24,6 +26,8 @@ type ReadySave = Extract<SaveSnapshot, { status: "ready" }>
 interface ActiveModeVisit {
   raw: string
   view: ModeVisit
+  run: TableRun
+  complete: boolean
 }
 
 export interface ModeCheckpoint {
@@ -31,7 +35,7 @@ export interface ModeCheckpoint {
   visit: ModeVisit
 }
 
-/** Transition foundation only. No game engine, prizes or persistent mode state. */
+/** Checkpoint-bound engines and durable result transitions. */
 export class Aw2ModeAdapter {
   private pending = false
   private visit: ActiveModeVisit | null = null
@@ -102,8 +106,42 @@ export class Aw2ModeAdapter {
           ? { returnRoomId: checkpoint.save.progress.interior.roomId }
           : {}),
       }
-      this.visit = { raw: checkpoint.raw, view }
+      this.visit = {
+        raw: checkpoint.raw,
+        view,
+        run: createTableRun(
+          checkpoint.raw,
+          modeId,
+          modeStage(checkpoint.save.modes, modeId),
+        ),
+        complete: false,
+      }
       return { checkpoint, visit: structuredClone(view) }
+    } finally {
+      this.pending = false
+    }
+  }
+
+  currentRun(): TableRun | undefined {
+    return this.visit?.run
+  }
+
+  isComplete(): boolean {
+    return this.visit?.complete ?? false
+  }
+
+  async complete(): Promise<ReadySave> {
+    if (this.pending || !this.visit || this.visit.complete)
+      throw new Aw2SaveError(
+        "invalid",
+        "Kết quả đã lưu hoặc không có lượt bàn chơi.",
+      )
+    this.pending = true
+    try {
+      const next = await this.store.finishMode(this.visit.raw, this.visit.run)
+      this.visit.raw = next.raw
+      this.visit.complete = true
+      return next
     } finally {
       this.pending = false
     }

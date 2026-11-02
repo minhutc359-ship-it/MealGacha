@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest"
 import { atEntity } from "./entity-fixture"
+import { beforeEarnedModes } from "./legacy-fixtures"
 import {
   ROOMS,
   STREET_ROOMS,
@@ -185,7 +186,7 @@ describe("017B strict save7 compatibility", () => {
     }
   }
   it.each([null, ...VILLAGE_ROOMS])(
-    "reads old7 checkpoint %s without write, explicitly upgrades8",
+    "reads old7 checkpoint %s without write, explicitly upgrades9",
     async (room) => {
       const f = await fixture(),
         progress = room
@@ -196,19 +197,23 @@ describe("017B strict save7 compatibility", () => {
               interior: { ...room.spawn },
             }
           : newWorldProgress()
-      const old = { ...f.first.save, schemaVersion: 7, progress },
+      const old = {
+          ...beforeEarnedModes(f.first.save),
+          schemaVersion: 7,
+          progress,
+        },
         raw = JSON.stringify(old)
       f.data.set(AW2_DEV_SAVE_KEY, raw)
       f.write.mockClear()
       expect(f.store.load()).toMatchObject({
         status: "ready",
         raw,
-        save: { schemaVersion: 8, progress },
+        save: { schemaVersion: 9, progress },
       })
       expect(f.write).not.toHaveBeenCalled()
       const saved = await f.store.save(raw)
       expect(saved.save).toMatchObject({
-        schemaVersion: 8,
+        schemaVersion: 9,
         saveId: old.saveId,
         createdAt: old.createdAt,
         progress,
@@ -251,8 +256,12 @@ describe("017B strict save7 compatibility", () => {
         save: { progress: entered.save.progress },
       })
       expect(
-        decodeAw2Save(JSON.stringify({ ...entered.save, schemaVersion: 7 }))
-          .status,
+        decodeAw2Save(
+          JSON.stringify({
+            ...beforeEarnedModes(entered.save),
+            schemaVersion: 7,
+          }),
+        ).status,
       ).toBe("invalid")
       const exited = await f.store.act(
         entered.raw,

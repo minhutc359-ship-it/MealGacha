@@ -48,8 +48,19 @@ dialog label, dialog input { display: block; width: 100%; margin-top: 1rem; }
 .aw2-asset-details img { object-fit: contain; flex-shrink: 0; }
 @media (max-width: 600px) { .aw2-asset-details { flex-direction: column; } }
 .aw2-battle { width: min(100% - 2rem, 76rem); }
-.aw2-battle-stage { width: 100%; max-width: 962px; margin-inline: auto; overflow: hidden; border: 1px solid #60756b; border-radius: 1rem; background: #172b31; }
+.aw2-battle-stage { position: relative; width: 100%; max-width: 962px; margin-inline: auto; overflow: hidden; border: 1px solid #60756b; border-radius: 1rem; background: #172b31; }
 .aw2-battle-stage canvas { display: block; width: 100%; height: auto; }
+.aw2-ultimate-cut-in { position: absolute; z-index: 3; top: .4rem; left: .4rem; width: min(27rem, calc(100% - .8rem)); height: clamp(5.5rem, 30%, 9rem); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; pointer-events: none; overflow: hidden; border: 1px solid #cfb67d; border-radius: .8rem; background: linear-gradient(100deg, #12202fe6, #183e3af2); box-shadow: 0 .2rem 1rem #0008; animation: aw2-cut-in 1.8s ease both; }
+.aw2-ultimate-cut-in[data-side="enemy"] { left: auto; right: .4rem; background: linear-gradient(100deg, #352538ee, #462d2bf2); }
+.aw2-ultimate-cut-in img { position: absolute; inset: 0 auto 0 0; display: block; width: 52%; height: 100%; object-fit: contain; }
+.aw2-ultimate-cut-in > div { grid-column: 2; min-width: 0; padding: .5rem .6rem; color: #fff3d1; overflow-wrap: anywhere; text-shadow: 0 1px 2px #000; }
+.aw2-ultimate-cut-in span { display: block; font-size: .875rem; color: #e2e9e7; }
+.aw2-ultimate-cut-in strong { display: block; font-size: clamp(1rem, 2.4vw, 1.25rem); line-height: 1.25; }
+.aw2-ultimate-cut-in[data-reduced="true"] { animation: none; }
+.aw2-ultimate-art-review { max-width: 40rem; margin: 1rem auto; padding: .75rem; border: 1px solid #536a61; border-radius: 1rem; background: radial-gradient(ellipse at center, #38504c, #14221f); }
+.aw2-ultimate-art-review img { width: 100%; height: auto; max-height: 24rem; object-fit: contain; }
+@keyframes aw2-cut-in { 0% { transform: translateX(-.75rem); opacity: 0; } 16%, 86% { transform: translateX(0); opacity: 1; } 100% { transform: translateX(.4rem); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .aw2-ultimate-cut-in { animation: none; } }
 .aw2-battle-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; margin-bottom: 1rem; }
 .aw2-battle-controls label { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; }
 .aw2-battle-controls select { display: block; min-height: 44px; border: 1px solid #a3b4a8; border-radius: .5rem; padding: .55rem .8rem; background: #13231f; color: inherit; }

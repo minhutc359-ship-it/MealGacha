@@ -8,6 +8,8 @@ import {
 import { newWorldProgress } from "@/aw2/world/model"
 import { newEconomy } from "@/aw2/economy/model"
 import { newCollection } from "@/aw2/collection/model"
+import { newModeProgress } from "@/aw2/modes/progress"
+import { newSummonState } from "@/aw2/gacha/runtime"
 import type { SaveSnapshot } from "@/aw2/save/schema"
 import { fingerprintReviewInputs } from "../../tools/aw2-review-build"
 
@@ -35,7 +37,9 @@ const ready: SaveSnapshot = {
   save: {
     gameId: "adventure-world-2",
     environment: "development",
-    schemaVersion: 8,
+    schemaVersion: 9,
+    modes: newModeProgress(),
+    summons: newSummonState(),
     saveId: "PRIVATE_ID",
     createdAt: "2026-01-01T00:00:00Z",
     updatedAt: "2026-01-01T00:00:00Z",
@@ -75,7 +79,7 @@ describe("Opt-in playtest reports preserve data boundaries", () => {
     ])
       expect(serialized).not.toContain(secret)
     expect(report.committedProgress).toMatchObject({
-      schemaVersion: 8,
+      schemaVersion: 9,
       questIndex: 0,
       partySize: 0,
       teamExperience: 0,

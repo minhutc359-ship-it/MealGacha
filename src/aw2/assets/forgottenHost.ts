@@ -18,6 +18,13 @@ export interface BossAssetManifest {
   frames: Record<string, AtlasFrame>
   battle: Record<BattleState, BattleClip>
   skills: Record<"sweep" | "snuff" | "barrier", BossSkillAsset>
+  audio: Record<string, BossAudioAsset>
+}
+
+export interface BossAudioAsset {
+  url: string
+  sha256: string
+  durationMs: number
 }
 
 /** Enemy-only registry: no collectible spirit identity, rarity or world clip. */

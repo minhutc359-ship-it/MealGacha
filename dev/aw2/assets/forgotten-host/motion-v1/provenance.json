@@ -1,0 +1,107 @@
+{
+  "task": "AW2-019B",
+  "entityId": "aw2-enemy-forgotten-host",
+  "motion": {
+    "generator": "OpenAI built-in image_gen",
+    "model": "not exposed by tool",
+    "date": "2026-11-02",
+    "task": "AW2-019B",
+    "prompts": "dev/aw2/assets/forgotten-host/motion-v1/prompts.json",
+    "sourceFiles": [
+      {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/initial-a.png",
+        "sha256": "31b5dfdc97a1e5ecea2830ae44d3e849f6fc26086ae23b897bb07cf40bf6ca5a"
+      },
+      {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/initial-b.png",
+        "sha256": "9b4812dcf75d9d3f9b9f8de562d03074bcd8677b2fcc8559b0ad3553287f175b"
+      },
+      {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/motion-a.png",
+        "sha256": "b6c996f95f73fa683505cfa46f0bc89ca202f073bfceb878818c3e97bc6383ec"
+      },
+      {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/motion-b.png",
+        "sha256": "19a332235d8b6ddb85dd1543e55629602e4fa2880a67e4c9f9d01443dab77049"
+      }
+    ],
+    "originalIdentity": {
+      "path": "dev/aw2/assets/forgotten-host/reference-v1/battle.png",
+      "sha256": "f91dcc73461219c1fddc824c954e65ed537f51243009a13ec85cb901de4ec95c"
+    },
+    "externalReferences": [],
+    "licenseStatus": "REVIEW_REQUIRED",
+    "commercialRelease": "NOT_CLEARED",
+    "humanApproval": false,
+    "processing": "Preserved original PNG; lossless visible RGBA/alpha comparison; alpha-safe per-column cell measurements; logical renderScale only.",
+    "audioSource": [
+      "dev/tools/build-aw2-boss-motion.py",
+      "dev/tools/build-aw2-than-assets.py"
+    ]
+  },
+  "assets": {
+    "motion-a": {
+      "id": "aw2-enemy-forgotten-host:motion-a:motion-v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/motion-a.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ebe67dfc40ff18c77368e1c0df351b20fa9eefb40411bbf61233c3e676bc08a7",
+      "bytes": 989004,
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/motion-a.png",
+        "sha256": "b6c996f95f73fa683505cfa46f0bc89ca202f073bfceb878818c3e97bc6383ec"
+      },
+      "transparentFraction": 0.642783
+    },
+    "motion-b": {
+      "id": "aw2-enemy-forgotten-host:motion-b:motion-v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/motion-b.webp",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "bc5e92161f88303b1d3c6a852aa8837d27ee3f08d4222b65e3d3962cefb13907",
+      "bytes": 1221010,
+      "source": {
+        "path": "dev/aw2/assets/forgotten-host/motion-v1/motion-b.png",
+        "sha256": "19a332235d8b6ddb85dd1543e55629602e4fa2880a67e4c9f9d01443dab77049"
+      },
+      "transparentFraction": 0.536793
+    }
+  },
+  "audio": {
+    "basic": {
+      "id": "aw2-enemy-forgotten-host:audio:basic:v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/basic.wav",
+      "durationMs": 160,
+      "sampleRate": 22050,
+      "sha256": "af1ca2de3f5a8b1774f157002177ef6f9412478c948fc8b8341c0a10038f6171",
+      "method": "original deterministic additive synthesis + seeded noise"
+    },
+    "sweep": {
+      "id": "aw2-enemy-forgotten-host:audio:sweep:v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/sweep.wav",
+      "durationMs": 260,
+      "sampleRate": 22050,
+      "sha256": "fc66ee9d6705bb0ff8b12a8ab21cc962a7fad46a11f4c6c153b01b0fe33936ba",
+      "method": "original deterministic additive synthesis + seeded noise"
+    },
+    "snuff": {
+      "id": "aw2-enemy-forgotten-host:audio:snuff:v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/snuff.wav",
+      "durationMs": 420,
+      "sampleRate": 22050,
+      "sha256": "fbce5d5374a46171c6fda38bf0018d7bf01db4c7d1e83bc89f2600ceaad490a5",
+      "method": "original deterministic additive synthesis + seeded noise"
+    },
+    "barrier": {
+      "id": "aw2-enemy-forgotten-host:audio:barrier:v1",
+      "url": "/dev/aw2/assets/forgotten-host/motion-v1/barrier.wav",
+      "durationMs": 240,
+      "sampleRate": 22050,
+      "sha256": "f356c15c67c3623f55150efd0f0383d4df9c9e7ec7a5729c0f2121376e019eaa",
+      "method": "original deterministic additive synthesis + seeded noise"
+    }
+  },
+  "promptsSha256": "f69088bcc5906cde80483b5674718f76e1054c3511f27502f779c999a1ef22c9",
+  "builderSha256": "1111cd0a2e4781a6683da99b1a55ccca704ba25630d9eb8ceb8dff291da04b0f",
+  "fullEnemyComplete": false
+}

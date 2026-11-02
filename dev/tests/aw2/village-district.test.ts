@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest"
+import { beforeEarnedModes } from "./legacy-fixtures"
 import {
   VILLAGE_ROOMS as ROOMS,
   TEA_ROOM,
@@ -108,7 +109,7 @@ async function fixture() {
 describe("017A save6 to7 and real room services", () => {
   it("reads strict historical6 without writes and upgrades only on explicit save", async () => {
     const f = await fixture(),
-      old = { ...f.first.save, schemaVersion: 6 }
+      old = { ...beforeEarnedModes(f.first.save), schemaVersion: 6 }
     const raw = JSON.stringify(old)
     f.memory.set(AW2_DEV_SAVE_KEY, raw)
     f.setItem.mockClear()
@@ -116,7 +117,7 @@ describe("017A save6 to7 and real room services", () => {
       status: "ready",
       raw,
       save: {
-        schemaVersion: 8,
+        schemaVersion: 9,
         saveId: old.saveId,
         revision: old.revision,
         progress: old.progress,
@@ -124,7 +125,7 @@ describe("017A save6 to7 and real room services", () => {
     })
     expect(f.setItem).not.toHaveBeenCalled()
     const saved = await f.store.save(raw)
-    expect(saved.save.schemaVersion).toBe(8)
+    expect(saved.save.schemaVersion).toBe(9)
     expect(saved.save.progress).toEqual(old.progress)
     expect(f.memory.get("foodchest.tcg.v1")).toBe("legacy")
   })
@@ -159,7 +160,10 @@ describe("017A save6 to7 and real room services", () => {
       )
       expect(f.store.load()).toEqual(entry)
       expect(entry.save.progress.interior!.roomId).toBe(room.id)
-      const legacy6 = JSON.stringify({ ...entry.save, schemaVersion: 6 })
+      const legacy6 = JSON.stringify({
+        ...beforeEarnedModes(entry.save),
+        schemaVersion: 6,
+      })
       expect(decodeAw2Save(legacy6).status).toBe(
         room.id === TEA_ROOM.id ? "ready" : "invalid",
       )

@@ -12,7 +12,7 @@ import { questLabel } from "../../src/aw2/world/rules"
 import { STARTER_SPIRIT_IDS } from "../../src/aw2/combat/roster"
 import { PartyReadiness } from "./PartyReadiness"
 
-type SpiritId = (typeof SPIRIT_IDS)[number]
+type SpiritId = typeof SPIRIT_IDS[number]
 type CollectionPanelProps = {
   save: Aw2DevSave
   busy: boolean
@@ -32,7 +32,11 @@ export function CollectionPanel(props: CollectionPanelProps) {
 function CollectionEditor({ save, busy, onAction }: CollectionPanelProps) {
   const [party, setParty] = useState(save.progress.partyIds)
   const [emphasis, setEmphasis] = useState(save.collection.vanEmphasis)
-  const owned = ownedSpirits(save.progress, save.collection)
+  const owned = ownedSpirits(
+    save.progress,
+    save.collection,
+    save.summons.obtainedIds,
+  )
   const changed =
     JSON.stringify(party) !== JSON.stringify(save.progress.partyIds) ||
     emphasis !== save.collection.vanEmphasis

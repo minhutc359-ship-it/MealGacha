@@ -79,8 +79,8 @@ export function webOffline(): Plugin {
         "/manifest.webmanifest",
         "/favicon.ico",
         ...offlineCoreBundleNames(bundle).map((name) => `/${name}`),
-        ...PRODUCTION_CORE_PUBLIC_FILES.filter((name) =>
-          name.startsWith("assets/"),
+        ...PRODUCTION_CORE_PUBLIC_FILES.filter(
+          (name) => name.startsWith("assets/") || name.startsWith("legal/"),
         ).map((name) => `/${name}`),
       ]
       const uniqueCore = [...new Set(core)]

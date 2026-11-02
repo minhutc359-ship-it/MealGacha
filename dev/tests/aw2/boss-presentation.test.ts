@@ -49,13 +49,15 @@ function sample(
 }
 
 describe("ART-BOSS-01 authoritative reference presentation", () => {
-  it("has8 own key poses/9 effect frames, enemy identity and safe measured source rectangles", () => {
+  it("has32 distinct motion cels,8 reduced poses and9 effect frames with safe source rectangles", () => {
     expect(art.entityId).toBe("aw2-enemy-forgotten-host")
     expect(art.fullEnemyComplete).toBe(false)
     expect(art.facing).toBe("left")
-    expect(Object.keys(art.frames)).toHaveLength(17)
+    expect(Object.keys(art.frames)).toHaveLength(49)
     for (const state of BATTLE_STATES) {
-      expect(art.battle[state].frames[0].frame).toBe(`battle.${state}`)
+      expect(art.battle[state].frames.map((key) => key.frame)).toEqual(
+        [0, 1, 2, 3].map((i) => `battle.${state}.${i}`),
+      )
       expect(art.battle[state].reducedMotionFrame).toBe(`battle.${state}`)
     }
     for (const frame of Object.values(art.frames)) {

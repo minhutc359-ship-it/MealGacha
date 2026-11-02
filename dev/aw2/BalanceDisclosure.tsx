@@ -6,6 +6,7 @@ import {
   GACHA_PROPOSAL_STATUS,
   PITY_LIMITS,
 } from "../../src/aw2/gacha/proposal"
+import { FREE_SUMMON_PROFILE } from "../../src/aw2/gacha/runtime"
 
 export function BalanceDisclosure() {
   return (
@@ -17,15 +18,16 @@ export function BalanceDisclosure() {
         <code>{BALANCE_CONTRACT_ID}</code> ({BALANCE_CONTRACT_STATUS}). Đây chưa
         phải cân bằng cuối và có thể đổi sau playtest có ghi nhận.
       </p>
-      <h3>Gacha chưa được bật</h3>
+      <h3>Triệu hồi miễn phí</h3>
       <p>
-        D11 hiện là <strong>{GACHA_PROPOSAL_STATUS}</strong>. Game không có nút
-        quay, không tiêu hoặc mua tiền tệ, không lưu pity và không khóa cốt
-        truyện sau rarity.
+        Hồ sơ <code>{FREE_SUMMON_PROFILE}</code> có nút gặp Vị Linh bằng vé kiếm
+        qua nhiệm vụ và bàn chơi, lưu kết quả và bảo hiểm. Không mua vé, không
+        thanh toán và không khóa cốt truyện sau rarity.
       </p>
       <p>
-        Các mốc {PITY_LIMITS.sr}/{PITY_LIMITS.ssr}/{PITY_LIMITS.ur} chỉ phục vụ
-        mô phỏng nội bộ; chúng không phải lời hứa phát hành.
+        Bảo hiểm {PITY_LIMITS.sr}/{PITY_LIMITS.ssr}/{PITY_LIMITS.ur} dùng chung
+        luật với mô phỏng. D11 gốc vẫn có nhãn {GACHA_PROPOSAL_STATUS}; triển
+        khai miễn phí không thay cho nghiệm thu tỷ lệ cuối hay quyền phát hành.
       </p>
     </details>
   )

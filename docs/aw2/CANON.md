@@ -1,5 +1,9 @@
 # Canon — Initial 12 and Lantern direction approved 2026-10-20
 
+## Current earned progression —2026-11-02 / D26 /019B
+
+Schema9 adds free summons and saved TCG/Chess outcomes, preserving strict schema1–8 read compatibility and all12 canonical identities/tiers/skills. Story invitations still allow all12 without RNG. Four quest milestones and six table first-win milestones give100 free tickets via explicit claims. Runtime profile/rates/keepsakes and non-approval boundaries are in[FREE_PLAY](FREE_PLAY.md). Boss receives32 original battle motion cels and4 synthesized cues; no new boss identity, collectible rarity, NPC, quest, world region or combat number. Eight original reduced poses remain. Earlier statements “no draw/no persistent modes/schema8” are historical for their tasks, superseded only for this implementation scope.
+
 ## Current spatial extension —2026-10-28 / D24 /017B
 
 Six outdoor zones/eight NPC/four quests remainD14. Three optional Phố interiors: `aw2-room-street-breakfast` holds original Người Bán Bữa Sáng/memory0, `aw2-room-street-workshop` holds Thợ Sửa Ghế/memory1, `aw2-room-street-play` holds original TCG/Chess hosts. An Vá Đèn and Em Đem Nước remain outdoors; no duplicate actor IDs or new narrative identities. All dialogue/choices/rewards preserved. Six optional rooms total; save8, strict old7 village-only rooms and read-no-write compatibility. Original art reused, one representative/D17 retained. [Map contract](MAP_TUONG_TAC.md). Earlier original-zone-only NPC and schema7 statements are historical snapshots, superseded for this scope.

@@ -1,5 +1,52 @@
 # Test ledger / change impact
 
+## AW2-019C portable source and hardened delivery /2026-11-02
+
+Base`ab0c756648af1bae7a0d6cf56259908d036b40a5`; tested tree becomes its direct task child. Linux/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1; managed Chrome source preview1363×936. No gameplay/save/canon values changed.
+
+| Gate | Result | Observed |
+|---|---|---|
+|Source portability|PASS|3662tracked/2443critical/555835985bytes;0pointer/0symlink; actual journal JPEG49136bytes/hash restored|
+|Focused source/delivery/candidate|PASS|5files/89tests on final implementation|
+|Full Vitest|PASS|169files/2337tests/22.06s|
+|Root/dev typecheck|PASS|Both exit0|
+|Production/review build|PASS|1142/1021modules;396production files;8review HTML entries|
+|Package/release/catalog/assets|PASS|171AW2media;183public;32deps/774records/3policies;123foods/35tags/9events;137assets/0missing|
+|Artifact/candidate|PASS technical/BLOCKED external|166712221bytes;JS700718;CSS38663;offline1479512/27;15/15technical,0/7external;SHA`4e1a2e0d8b8ecf88f759cff9ba85502b1ae8f12cb96d2c2707ba3be758d1892b`|
+|Budget/worker|PASS|4/4Node tests;service-worker syntax PASS;0leak|
+|Rights inventory|LIMITED|13historical unresolved;0shipped;commercial clearance pending|
+|Browser source|PASS limited|Root new game/onboarding,original chest,journal actual image;HTTP keeps Web Locks start/save blocked|
+|HTTPS/device/human/legal/Vercel|NOT_RUN/OPEN|No deployed response or physical-device/independent/release evidence|
+
+`--require-ready` expected exit2; no technical PASS is converted to release/deploy permission. Post-publication remote equality and ordinary clean-clone checkout are verified in the handoff, because a final SHA cannot self-reference its own tree. [Evidence](evidence/AW2-019C.md).
+
+**019B VERIFIED engineering / EXTERNAL BLOCKED:** một batch/commit bổ sung save9, triệu hồi1/10 miễn phí và vé từ biên nhận thật, tiến trình TCG/Chess3bậc với kết quả engine, nhật ký12VịLinh, boss32cel+4cue và kiểm nguồn171/171media. **2312tests/167files**,hai types/hai builds,source/repeat/package/catalog/assets/release/4budget checks PASS;browser nguồn qua QA memory PASS giới hạn,không bỏ Web Locks. Build166711768bytes/395files;JS700716≤710000;offline1479512bytes/27URLs;candidate12/12technical,0/7external. Rootgame mới+Rương original giữ nguyên. Không tuyên bố100%production hoặc duyệt rights/human/device/server. [Evidence](evidence/AW2-019B.md) · [Free scope](FREE_PLAY.md).
+
+Base`b9a395522af9c14601c05f5291c41c53827d1a65`;tested worktree becomes the single task child commit. Checks used installed local binaries, not an unverified pnpm reinstall. No physical device/independent listening/full HTTPS storage run. Source QA screenshot and renderer/mode observations are separately scoped in evidence. Final publication SHA/remote equality is verified in the handoff response.
+
+**019A VERIFIED technical:**12ảnh HD tuyệt kỹ mới đã vào actual combat/roster;source-use dossier kiểm12nhân vật/126runtime files,credit/legal/build guard hoàn tất. Full2.278/163,38focused,hai types/hai builds/art repeat/package/assets/release/budget PASS. Production164.450.337bytes/389files;JS698.274≤710.000. Browser art/DOM cue PASS giới hạn;fullDoD/commercial clearance0/12,independent/human/device vẫn mở. Demo90/product≈40 giữ nguyên. [Evidence](evidence/AW2-019A.md) · [Art/quyền](ART_AND_RIGHTS.md).
+
+## AW2-018M main web cutover /2026-11-02
+
+Base `e3b20e01997cb6d64b9b8b07ac592ed7fbefaae1`. Linux/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1;Chrome cloud browser qua cua.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Save/cutover/candidate impact | PASS |6files/113tests ở lượt cuối;focused nằm trong full total |
+| Full unit | PASS |161files/2.240tests sau runtime/save/worker changes |
+| Final root/dev types | PASS |Rerun sau export-size guard/policy/generated HTML/dev-public config |
+| Final review+production builds | PASS |1.006/1.127modules;7review entry;377production files |
+| Package/inventory/offline | PASS |141.429.950bytes;183public/153AW2;27core URLs/1.466.328bytes;3scene chunks+1lazy chest portrait |
+| Release/assets/budget | PASS |32deps/774records/3policies;137assets;4budget tests;JS694.940/CSS38.209;0leaks |
+| Candidate | PASS technical/BLOCKED external |12/12actual artifact gates,0/7external;SHA6326ee686ede1dae8c039ce078c66da091d60cf2e48467c4db0361b5fffe6161 |
+| Browser compiled UI | PASS limited |Root,onboarding,menu/help,backup entry,legal links;no internal QA reports |
+| Browser source routes | PASS limited |/adventure→newgame;/chest→standalone original;/legal/privacy→policy2026-11-02-aw2 |
+| HTTP save/device/human | BLOCKED/NOT_RUN |PreviewHTTP lacks WebLocks;no security bypass;unit save tests not physical-device evidence |
+| Vercel | UNVERIFIED/NOT_RUN |Project404 and empty teams/projects;no server-setting/deploy writes |
+| React review | PASS |Compile-time review elimination,lazy QA,local file checks,URL cleanup,explicit event writes;no render side effects/network upload |
+
+Full suite, types, both builds/release/candidate rerun after final export-size guard/policy/dev-public changes. Preview sync introduced `.rsync-tmp` in an intermediate package; guard rejected it, preview stopped and clean generated output rebuilt PASS. No historical browser/full-suite count is added. [Evidence](evidence/AW2-018M.md).
+
 ## AW2-018L technical release candidate /2026-11-02
 
 Base remote `acde4789db8dc2ed3e2e769815bf12caad2cc773`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không deploy/promote/rollback,không auth/secret,không đổi gameplay/save/dependency.

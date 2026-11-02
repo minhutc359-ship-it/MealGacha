@@ -1,5 +1,11 @@
 # Changes
 
+**AW2-019C:** sửa clean-clone LFS404 bằng real-byte browser evidence; thêm tracked-source portability audit trước build+CI, release identity artifact, candidate15gate và Vercel CSP/security/cache contract.2337unit/169files,hai typecheck/build/package/release PASS;0/7external,không deploy. [Evidence](evidence/AW2-019C.md).
+
+**019A VERIFIED technical:**12ảnh HD tuyệt kỹ mới đã vào actual combat/roster;source-use dossier kiểm12nhân vật/126runtime files,credit/legal/build guard hoàn tất. Full2.278/163,38focused,hai types/hai builds/art repeat/package/assets/release/budget PASS. Production164.450.337bytes/389files;JS698.274≤710.000. Browser art/DOM cue PASS giới hạn;fullDoD/commercial clearance0/12,independent/human/device vẫn mở. Demo90/product≈40 giữ nguyên. [Evidence](evidence/AW2-019A.md) · [Art/quyền](ART_AND_RIGHTS.md).
+
+**AW2-018M:** web chính game mới/onlyoriginalchest;module graph và compile-time loại UI cũ/QA;checksum backup/confirmed durable restore;loading/chest recovery;legal scope+offline navigation;CI AW2 và candidate đo artifact thật.2.240unit/161files,hai types/builds/package/assets/release/budget PASS;browser UI giới hạn,external/server còn mở. [Evidence](evidence/AW2-018M.md).
+
 **AW2-018L:** thêm12-gate candidate CLI/decision,7 external blockers,require-ready guard,production disclosure và Vercel stage→test→promote/rollback runbook không xóa save. 2.207unit/159files,hai typecheck/build/candidate/package/release PASS;overall BLOCKED_EXTERNAL,không deploy. [Evidence](evidence/AW2-018L.md).
 
 **AW2-018K:** thêm UAT matrix7lane/8scenario, artifact-bound human/device session validator, exact privacy allowlist, blocker/latest-run aggregation và production disclosure. 2.197unit/158files,hai typecheck/build/package/release PASS; browser/human UAT NOT_RUN. [Evidence](evidence/AW2-018K.md).

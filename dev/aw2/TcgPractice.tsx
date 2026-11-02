@@ -1,4 +1,6 @@
-import { useEffect, useReducer, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import type { TcgRun } from "../../src/aw2/modes/run"
+import type { TcgSessionAction } from "../../src/aw2/tcg/session"
 import { STARTER_ASSETS } from "../../src/aw2/assets/starters"
 import { TCG_CARDS, tcgCard } from "../../src/aw2/tcg/catalog"
 import {
@@ -21,6 +23,10 @@ import "./tcg.css"
 import { ActivityFrame, ActivityPages, ActivityCopy } from "./ActivityFrame"
 
 interface PracticeProps {
+  run?: TcgRun
+  busy?: boolean
+  completed?: boolean
+  onComplete?: () => void
   compact?: boolean
   error: string
   onReturn: () => void
@@ -43,6 +49,10 @@ function Portrait({ spiritId, name }: PortraitProps) {
   )
 }
 export function TcgPractice({
+  run,
+  busy = false,
+  completed = false,
+  onComplete,
   error,
   onReturn,
   onReread,
@@ -55,8 +65,17 @@ export function TcgPractice({
   useEffect(() => {
     if (error && compact) setPage("notice")
   }, [error, compact])
-  const [session, dispatch] = useReducer(reduceTcgSession, undefined, () =>
-    createTcgSession(),
+  const [session, setSession] = useState(
+    () => run?.snapshot() ?? createTcgSession(),
+  )
+  const dispatch = (action: TcgSessionAction) => {
+    if (run) setSession(run.dispatch(action))
+    else setSession((current) => reduceTcgSession(current, action))
+  }
+  const resultControl = run && session.match.status !== "active" && (
+    <button disabled={busy || completed} onClick={onComplete}>
+      {completed ? "Đã lưu kết quả" : busy ? "Đang lưu…" : "Lưu kết quả"}
+    </button>
   )
   const heading = useRef<HTMLHeadingElement>(null)
   useEffect(() => {
@@ -66,6 +85,9 @@ export function TcgPractice({
     player = game.players.player,
     enemy = game.players.opponent
   const active = game.status === "active"
+  const rewardCopy = run
+    ? "Không tốn vật phẩm. Lưu kết quả sau ván; thắng lần đầu mỗi bậc mở mốc 10 vé. Rời hoặc tải lại bỏ phần chưa lưu."
+    : "Không tốn vật phẩm/nhận thưởng; rời hoặc tải lại bỏ ván."
   const legal = legalTcgActions(game, "player"),
     selected = selectedTcgActions(session)
   const command = (action: TcgCommand) => {
@@ -184,7 +206,7 @@ export function TcgPractice({
   if (compact)
     return (
       <ActivityFrame
-        title="TCG · Luyện tập"
+        title={run ? `TCG · Bậc ${run.stage}/3` : "TCG · Luyện tập"}
         status={
           active
             ? `Lượt ${game.turn} · Bạn ${player.health}♥ · Địch ${enemy.health}♥ · NL ${player.energy}/${player.maxEnergy}`
@@ -207,7 +229,8 @@ export function TcgPractice({
         data-event-serial={game.eventSerial}
         footer={
           <>
-            <button type="button" onClick={onReturn}>
+            {resultControl}
+            <button type="button" disabled={busy} onClick={onReturn}>
               {active ? "Dừng ván và về hành trình" : "Trở về hành trình"}
             </button>
             {session.selection ? (
@@ -294,7 +317,7 @@ export function TcgPractice({
             >
               Nhận thua
             </button>
-            {!active && (
+            {!active && !run && (
               <button
                 onClick={() => {
                   dispatch({ type: "rematch" })
@@ -308,7 +331,7 @@ export function TcgPractice({
         )}
         {page === "rules" && (
           <ActivityCopy
-            text={`Mỗi bên mượn 20 lá, mở 3 rồi rút 1 đầu lượt. 18 máu, tối đa 3 quân và 7 lá trên tay. Năng lượng hồi và tăng 1 mỗi lượt đến 6. Quân mới nghỉ một lượt; sau đó tấn công một lần. Sát thương trao đồng thời, khiên chịu trước máu. Hộ vệ chặn đòn thường; chiến thuật có thể bỏ qua. Đầy tay bỏ lá rút thêm. Hết bài mất máu tăng dần 1, 2, 3… Hòa sau 60 lượt. Gợi ý chỉ đọc bàn công khai. Không tốn vật phẩm/nhận thưởng; rời hoặc tải lại bỏ ván. Mã xáo ${game.seed}. ${TCG_CARDS.map((c) => `${c.name}: ${c.description}`).join(" ")}`}
+            text={`Mỗi bên mượn 20 lá, mở 3 rồi rút 1 đầu lượt. 18 máu, tối đa 3 quân và 7 lá trên tay. Năng lượng hồi và tăng 1 mỗi lượt đến 6. Quân mới nghỉ một lượt; sau đó tấn công một lần. Sát thương trao đồng thời, khiên chịu trước máu. Hộ vệ chặn đòn thường; chiến thuật có thể bỏ qua. Đầy tay bỏ lá rút thêm. Hết bài mất máu tăng dần 1, 2, 3… Hòa sau 60 lượt. Gợi ý chỉ đọc bàn công khai. ${rewardCopy} Mã xáo ${game.seed}. ${TCG_CARDS.map((c) => `${c.name}: ${c.description}`).join(" ")}`}
           />
         )}
         {page === "log" && (
@@ -347,10 +370,7 @@ export function TcgPractice({
       <h1 ref={heading} tabIndex={-1}>
         TCG · Luyện tập
       </h1>
-      <p>
-        Luật thử nghiệm v1 · Không tốn vật phẩm, không nhận thưởng. Rời bàn hoặc
-        tải lại sẽ bỏ ván; điểm khám phá vẫn được giữ.
-      </p>
+      <p>{rewardCopy}</p>
       <p role="status">
         {active ? `Lượt ${game.turn} · Đến lượt bạn` : result} ·{" "}
         {session.feedback}
@@ -404,7 +424,7 @@ export function TcgPractice({
         >
           Nhận thua
         </button>
-        {!active && (
+        {!active && !run && (
           <button onClick={() => dispatch({ type: "rematch" })}>
             Chơi ván mới
           </button>
@@ -459,7 +479,8 @@ export function TcgPractice({
         </ol>
       </details>
       <div className="actions">
-        <button onClick={onReturn}>
+        {resultControl}
+        <button disabled={busy} onClick={onReturn}>
           {active ? "Dừng ván và về hành trình" : "Trở về hành trình"}
         </button>
         <button onClick={onReread}>Đọc lại hành trình và rời ván</button>

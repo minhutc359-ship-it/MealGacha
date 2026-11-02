@@ -12,7 +12,7 @@ export const RECRUIT_IDS = [
   "aw2-bach",
   "aw2-van",
 ] as const
-export const RECRUIT_QUESTS: Record<(typeof RECRUIT_IDS)[number], number> = {
+export const RECRUIT_QUESTS: Record<typeof RECRUIT_IDS[number], number> = {
   "aw2-muoi": 1,
   "aw2-nhien": 2,
   "aw2-hai": 2,
@@ -47,17 +47,22 @@ export function newCollection(): Collection {
 export function ownedSpirits(
   progress: WorldProgress,
   collection: Collection,
-): (typeof SPIRIT_IDS)[number][] {
+  summoned: readonly typeof SPIRIT_IDS[number][] = [],
+): typeof SPIRIT_IDS[number][] {
   return [
-    ...(progress.questIndex > 0 ? STARTER_TEAM : []),
-    ...collection.recruitedIds,
+    ...new Set([
+      ...(progress.questIndex > 0 ? STARTER_TEAM : []),
+      ...collection.recruitedIds,
+      ...summoned,
+    ]),
   ]
 }
 export function validCollectionProgress(
   progress: WorldProgress,
   collection: Collection,
+  summoned: readonly typeof SPIRIT_IDS[number][] = [],
 ) {
-  const owned = ownedSpirits(progress, collection)
+  const owned = ownedSpirits(progress, collection, summoned)
   return (
     collection.recruitedIds.every(
       (id) => progress.questIndex >= RECRUIT_QUESTS[id],
@@ -74,6 +79,7 @@ export function applyCollectionAction(
   collection: Collection,
   progress: WorldProgress,
   command: CollectionAction,
+  summoned: readonly typeof SPIRIT_IDS[number][] = [],
 ) {
   const action = collectionActionSchema.parse(command)
   const next = structuredClone(collection),
@@ -88,7 +94,7 @@ export function applyCollectionAction(
     if (
       progress.questIndex < 1 ||
       action.partyIds.some(
-        (id) => !ownedSpirits(progress, collection).includes(id),
+        (id) => !ownedSpirits(progress, collection, summoned).includes(id),
       )
     )
       throw Error("Đội cần đúng năm Vị Linh đã sở hữu.")
@@ -100,7 +106,7 @@ export function applyCollectionAction(
     world.partyIds = [...action.partyIds]
     next.vanEmphasis = action.vanEmphasis
   }
-  if (!validCollectionProgress(world, next))
+  if (!validCollectionProgress(world, next, summoned))
     throw Error("Bộ sưu tập/đội AW2 không hợp lệ.")
   return { collection: next, progress: world }
 }

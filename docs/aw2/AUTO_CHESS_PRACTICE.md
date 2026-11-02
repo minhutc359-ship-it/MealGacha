@@ -1,5 +1,7 @@
 # Auto Chess practice — development contract v1
 
+**019B current product integration:** the same actual engine now has3 issued checkpoint-bound stages, explicit saved outcomes/first-win milestones and free-ticket claims through schema9. Each stage is winnable under tested legal recruitment/formation commands; this is not final human balance acceptance. UI cannot supply a winner. Reload/return before settlement discards the ephemeral match; repeat wins do not farm a new milestone. [Current contract](FREE_PLAY.md). The older practice-only/no-reward scope below is historical; five-round rules and borrowed army/gold remain separate from RPG inventory.
+
 Profile `aw2-chess-practice-v1`, task [AW2-009C](tasks/AW2-009C.md). Borrowed-team practice through the AW2 adapter; separate from legacy Chess, RPG kits/economy and final mode design. Five approved starter identities and reference portraits come from canonical manifests. No new art/audio, full-character or production-balance claim.
 
 `pnpm dev` → `/dev/aw2/world.html` → ready AW2 save → **Ghé nhanh Auto Chess → Chơi Auto Chess thử**. The Phố portal `aw2-npc-ban-co` offers the same practice through **Ghé bàn**. Buy from the shop, select a bench/deployed unit and a destination cell to place/swap; **Đưa về hàng chờ** and **Bán quân đã chọn** act on the selected piece. **Xếp đội gợi ý** arranges owned units only; it does not buy, award or force a win. All actions have ordinary keyboard buttons, no drag dependency.

@@ -27,7 +27,15 @@ import {
   WEIGHTS,
 } from "../gacha/proposal"
 
-export const BALANCE_CONTRACT_ID = "aw2-balance-development-v1" as const
+import {
+  FREE_SUMMON_PROFILE,
+  FREE_SUMMON_CAPABILITIES,
+  TICKETS_PER_MILESTONE,
+  SUMMON_MILESTONES,
+} from "../gacha/runtime"
+import { MODE_PROGRESS_PROFILE, MODE_STAGES } from "../modes/progress"
+
+export const BALANCE_CONTRACT_ID = "aw2-balance-development-v2" as const
 export const BALANCE_CONTRACT_STATUS = "DEVELOPMENT_FROZEN" as const
 export const COMBAT_GUARDRAILS = {
   hp: [100, 300],
@@ -92,6 +100,14 @@ export function developmentBalanceSnapshot() {
       pityLimits: PITY_LIMITS,
       duplicateShards: DUPLICATE_SHARDS,
       runtime: GACHA_RUNTIME_CAPABILITIES,
+    },
+    freePlay: {
+      summonProfile: FREE_SUMMON_PROFILE,
+      capabilities: FREE_SUMMON_CAPABILITIES,
+      ticketsPerMilestone: TICKETS_PER_MILESTONE,
+      milestoneCount: SUMMON_MILESTONES.length,
+      tableProfile: MODE_PROGRESS_PROFILE,
+      stages: MODE_STAGES,
     },
   }
 }
@@ -160,5 +176,15 @@ export function validateDevelopmentBalance(
     issues.push("Đề xuất gacha D11 không nhất quán.")
   if (Object.values(snapshot.gacha.runtime).some(Boolean))
     issues.push("Đề xuất gacha không được bật capability runtime.")
+  if (
+    snapshot.freePlay.summonProfile !== FREE_SUMMON_PROFILE ||
+    snapshot.freePlay.tableProfile !== MODE_PROGRESS_PROFILE ||
+    snapshot.freePlay.ticketsPerMilestone !== 10 ||
+    snapshot.freePlay.milestoneCount !== 10 ||
+    snapshot.freePlay.stages !== 3 ||
+    JSON.stringify(snapshot.freePlay.capabilities) !==
+      JSON.stringify(FREE_SUMMON_CAPABILITIES)
+  )
+    issues.push("Hồ sơ chơi miễn phí không nhất quán.")
   return issues
 }

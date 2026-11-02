@@ -27,7 +27,7 @@ describe("AW2 development balance contract", () => {
     expect(snapshot.combat.starters).toHaveLength(5)
     expect(validateDevelopmentBalance(snapshot)).toEqual([])
     expect(createHash("sha256").update(serialized).digest("hex")).toBe(
-      "3e24fb95ed32c24d30917e0847aaeaa6a49f145529ab85c7653906c3c1bb136b",
+      "a0c1f4ad81a5eaf709c8162fce03c987ff022353dc57ed4c647dbb3cf08d6e62",
     )
   })
 
@@ -65,8 +65,8 @@ describe("AW2 development balance contract", () => {
     const html = renderToStaticMarkup(createElement(BalanceDisclosure))
     expect(html).toContain(BALANCE_CONTRACT_ID)
     expect(html).toContain("PROPOSED_NOT_APPROVED")
-    expect(html).toContain("không có nút")
-    expect(html).toContain("không lưu pity")
+    expect(html).toContain("aw2-free-summon-v1")
+    expect(html).toContain("Không mua vé")
     for (const source of [
       "dev/aw2/BalanceDisclosure.tsx",
       "src/aw2/balance/contract.ts",

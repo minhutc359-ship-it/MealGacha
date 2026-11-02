@@ -9,6 +9,7 @@ import {
 } from "../../src/aw2/assets/playback"
 import { ROSTER_ASSETS } from "../../src/aw2/assets/roster"
 import { isStarterSpiritId } from "../../src/aw2/combat/roster"
+import { UltimateCutIn } from "./UltimateCutIn"
 import { FORGOTTEN_HOST_ASSETS } from "../../src/aw2/assets/forgottenHost"
 import {
   sampleBossVisual,
@@ -142,7 +143,7 @@ export function BattleCanvas({
             {
               id: FORGOTTEN_HOST_ASSETS.entityId,
               assets: FORGOTTEN_HOST_ASSETS.assets,
-              keys: ["battle", "fx"],
+              keys: ["battle", "fx", "motion-a", "motion-b"],
             },
           ]
         : []),
@@ -370,7 +371,7 @@ export function BattleCanvas({
         paintFrame(
           manifest,
           visual.pose.frame,
-          atlas.battle,
+          atlas[manifest.frames[visual.pose.frame].asset],
           actorX(actor),
           actorY(actor),
           scales[actor.id],
@@ -739,6 +740,12 @@ export function BattleCanvas({
           height={layout.height}
           aria-label="Trận đấu năm Vị Linh AW2"
           aria-describedby={compact ? undefined : "battle-roster"}
+        />
+        <UltimateCutIn
+          key={battle.id}
+          battle={battle}
+          paused={paused || stopped}
+          reducedMotion={reducedMotion}
         />
       </div>
       <p role="status" data-testid="battle-atlas-state">

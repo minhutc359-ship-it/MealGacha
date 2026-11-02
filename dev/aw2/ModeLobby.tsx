@@ -6,14 +6,26 @@ import { roomById } from "../../src/aw2/world/interiorLayout"
 import { TcgPractice } from "./TcgPractice"
 import { ChessPractice } from "./ChessPractice"
 import { ActivityFrame, ActivityCopy } from "./ActivityFrame"
+import type { TableRun } from "../../src/aw2/modes/run"
+import type { ModeProgress } from "../../src/aw2/modes/progress"
 
 export function ModeLobby({
+  run,
+  progress,
+  busy = false,
+  completed = false,
+  onComplete,
   visit,
   error,
   onReturn,
   onReread,
   compact = false,
 }: {
+  run?: TableRun
+  progress?: ModeProgress
+  busy?: boolean
+  completed?: boolean
+  onComplete?: () => void
   compact?: boolean
   visit: ModeVisit
   error: string
@@ -33,6 +45,10 @@ export function ModeLobby({
   if (playing && visit.modeId === "tcg")
     return (
       <TcgPractice
+        run={run?.mode === "tcg" ? run : undefined}
+        busy={busy}
+        completed={completed}
+        onComplete={onComplete}
         compact={compact}
         error={error}
         onReturn={onReturn}
@@ -42,12 +58,24 @@ export function ModeLobby({
   if (playing && visit.modeId === "auto-chess")
     return (
       <ChessPractice
+        run={run?.mode === "auto-chess" ? run : undefined}
+        busy={busy}
+        completed={completed}
+        onComplete={onComplete}
         compact={compact}
         error={error}
         onReturn={onReturn}
         onReread={onReread}
       />
     )
+  const track = progress?.[visit.modeId]
+  const productCopy = run
+    ? `Bậc ${run.stage}/3. Mượn bộ bài hoặc quân tại bàn, không tốn vật phẩm. Thắng lần đầu mỗi bậc mở mốc nhận 10 vé ở Đội → Triệu hồi. Kết thúc ván cần bấm Lưu kết quả; rời bàn hay tải lại giữa ván sẽ bỏ phần chưa lưu. ${
+        track
+          ? `Đã chơi ${track.played} ván, thắng ${track.wins}, hoàn tất ${track.bestStage}/3 bậc.`
+          : ""
+      }`
+    : ""
   if (compact)
     return (
       <ActivityFrame
@@ -66,20 +94,30 @@ export function ModeLobby({
         data-testid="mode-lobby"
         data-mode-id={visit.modeId}
         data-entry={visit.entry}
-        footer={<button onClick={onReturn}>Trở về hành trình</button>}
+        footer={
+          <button disabled={busy} onClick={onReturn}>
+            Trở về hành trình
+          </button>
+        }
       >
         <ActivityCopy
           text={
             page === "notice"
               ? error || "Đọc lại sẽ trở về tiến trình hành trình mới nhất."
-              : visit.modeId === "tcg"
-                ? "Mượn bộ 20 lá để đấu với Chủ bàn. Không tốn vật phẩm, không nhận thưởng; tải lại hoặc rời bàn sẽ bỏ ván."
-                : "Mượn đội và vàng tại bàn để tuyển quân, xếp đội và đấu 5 vòng. Không tốn vật phẩm, không nhận thưởng hành trình; tải lại hoặc rời bàn sẽ bỏ ván."
+              : run
+                ? productCopy
+                : visit.modeId === "tcg"
+                  ? "Mượn bộ 20 lá để đấu với Chủ bàn. Không tốn vật phẩm, không nhận thưởng; tải lại hoặc rời bàn sẽ bỏ ván."
+                  : "Mượn đội và vàng tại bàn để tuyển quân, xếp đội và đấu 5 vòng. Không tốn vật phẩm, không nhận thưởng hành trình; tải lại hoặc rời bàn sẽ bỏ ván."
           }
         />
         {page === "welcome" ? (
           <button onClick={() => setPlaying(true)}>
-            {visit.modeId === "tcg" ? "Chơi TCG thử" : "Chơi Auto Chess thử"}
+            {run
+              ? `Vào bậc ${run.stage}`
+              : visit.modeId === "tcg"
+                ? "Chơi TCG thử"
+                : "Chơi Auto Chess thử"}
           </button>
         ) : (
           <button onClick={onReread}>Đọc lại hành trình</button>
@@ -98,7 +136,15 @@ export function ModeLobby({
         {mode.name} · Sảnh chờ
       </h1>
       <section aria-label="Tình trạng bàn chơi">
-        {visit.modeId === "tcg" ? (
+        {run && <p>{productCopy}</p>}
+        {run ? (
+          <>
+            <h2>Thử thách bậc {run.stage}/3</h2>
+            <button disabled={busy} onClick={() => setPlaying(true)}>
+              Vào bậc {run.stage}
+            </button>
+          </>
+        ) : visit.modeId === "tcg" ? (
           <>
             <h2>Bộ bài luyện tập đã sẵn sàng</h2>
             <p>

@@ -134,6 +134,37 @@ describe("web offline boundaries", () => {
     await f.event("message", { data: { type: "APPLY_WEB_UPDATE" } })
     expect(f.activated()).toBe(1)
   })
+  it("serves the actual cached legal document for navigation, never the game shell", async () => {
+    const f = fixture()
+    await f.event("install", {})
+    const core = await f.caches.open("som-web-core-v1")
+    await core.put("/legal/privacy.html", new Response("privacy-policy"))
+    f.setOffline()
+    const response = await f.event("fetch", {
+      request: {
+        url: origin + "/legal/privacy.html",
+        method: "GET",
+        mode: "navigate",
+        headers: new Headers(),
+      },
+    })
+    expect(await response!.text()).toBe("privacy-policy")
+  })
+  it("returns an honest offline response for an uncached legal document", async () => {
+    const f = fixture()
+    await f.event("install", {})
+    f.setOffline()
+    const response = await f.event("fetch", {
+      request: {
+        url: origin + "/legal/unknown.html",
+        method: "GET",
+        mode: "navigate",
+        headers: new Headers(),
+      },
+    })
+    expect(response!.status).toBe(503)
+    expect(await response!.text()).not.toContain("shell-v1")
+  })
   it("caches a full audio file and serves valid partial ranges when offline", async () => {
     const f = fixture(),
       url = origin + "/assets/test.mp3"

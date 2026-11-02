@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import type { CombatBattle } from "../../src/aw2/combat"
 import { combatAudioCues } from "../../src/aw2/combat/audio"
+import { bossAudioCues } from "../../src/aw2/combat/bossAudio"
 
 export function useBattleAudio(battle: CombatBattle, paused: boolean) {
   const [enabled, setEnabled] = useState(false)
@@ -19,7 +20,10 @@ export function useBattleAudio(battle: CombatBattle, paused: boolean) {
       stop()
       cursor.current = { id: battle.id, serial: 0 }
     }
-    const cues = combatAudioCues(battle.events, cursor.current.serial)
+    const cues = [
+      ...combatAudioCues(battle.events, cursor.current.serial),
+      ...bossAudioCues(battle.events, cursor.current.serial),
+    ]
     cursor.current.serial = battle.events.at(-1)?.serial ?? 0
     if (!enabled || paused || battle.status !== "active") {
       stop()

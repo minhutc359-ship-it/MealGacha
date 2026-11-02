@@ -1,6 +1,7 @@
 /**
- * D11 is proposal metadata only. This module is safe to render as disclosure;
- * it deliberately has no draw, currency, purchase, storage or save operation.
+ * Preserved D11 numerical source/proposal metadata, with no storage operations.
+ * Free runtime is separately versioned in runtime.ts; paid/release acceptance
+ * is not inferred from the owner's request to complete the free web game.
  */
 export const GACHA_PROPOSAL_ID = "aw2-d11-simulation-v1" as const
 export const GACHA_PROPOSAL_STATUS = "PROPOSED_NOT_APPROVED" as const

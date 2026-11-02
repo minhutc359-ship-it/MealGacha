@@ -4,7 +4,11 @@ import {
   AW2_PRODUCTION_ASSET_PREFIX,
   AW2_SOURCE_ASSET_PREFIX,
   isAw2ProductionRuntimePath,
+  productionReleaseIdentity,
   rewriteAw2AssetUrls,
+  releaseSourceIdentity,
+  productionSurfaceContract,
+  runtimeAw2Manifest,
 } from "../../tools/aw2-production-build"
 import { productionSurface } from "@/productionRoute"
 
@@ -32,12 +36,66 @@ describe("018A production route allowlist", () => {
     "/taste-swipe",
     "/events",
     "/anything-else",
+    "/dev/aw2/world.html",
+    "/dev/aw2/index.html",
+    "/chest/collection",
   ])("routes old surface %s to AW2", (path) => {
     expect(productionSurface(path)).toBe("aw2")
   })
 })
 
+describe("018M actual production module graph", () => {
+  const graph = [
+    "/repo/src/production.tsx",
+    "/repo/dev/aw2/WorldGame.tsx",
+    "/repo/src/pages/ChestPage.tsx",
+  ]
+  it("accepts only the new game with the original chest", () => {
+    expect(productionSurfaceContract(graph)).toMatchObject({
+      defaultSurface: "soul-of-meal-aw2",
+      retainedLegacySurfaces: ["chest"],
+      legacyPageCount: 1,
+      reviewUiModules: 0,
+      legacyEntryModules: 0,
+    })
+  })
+  it.each([
+    "/repo/src/App.tsx",
+    "/repo/src/main.tsx",
+    "/repo/src/pages/AdventurePage.tsx",
+    "/repo/dev/aw2/CharacterReadinessDisclosure.tsx",
+    "/repo/dev/aw2/PlaytestFeedback.tsx",
+    "/repo/dev/aw2/free-play.tsx",
+    "/repo/src/aw2/gacha/simulator.ts",
+    "/repo/src/aw2/roster/readiness.ts",
+  ])("refuses retired or internal UI %s", (id) => {
+    expect(() => productionSurfaceContract([...graph, id])).toThrow(
+      "entered production",
+    )
+  })
+  it("refuses a graph that dropped the actual new game", () => {
+    expect(() =>
+      productionSurfaceContract(
+        graph.filter((id) => !id.endsWith("WorldGame.tsx")),
+      ),
+    ).toThrow("new game")
+  })
+})
+
 describe("018A production asset contract", () => {
+  it("strips authoring provenance only, preserving every runtime asset/frame/skill value", () => {
+    const raw = text("src/aw2/assets/forgotten-host.reference-v1.json"),
+      before = JSON.parse(raw),
+      runtime = JSON.parse(runtimeAw2Manifest(raw))
+    expect(runtime.assets).toEqual(before.assets)
+    expect(runtime.frames).toEqual(before.frames)
+    expect(runtime.battle).toEqual(before.battle)
+    expect(runtime.skills).toEqual(before.skills)
+    expect(runtime.audio).toEqual(before.audio)
+    expect(runtime).not.toHaveProperty("provenance")
+    expect(runtime).not.toHaveProperty("motionProvenance")
+    expect(JSON.parse(raw)).toHaveProperty("motionProvenance")
+  })
   it("rewrites every AW2 source prefix without changing unrelated URLs", () => {
     expect(
       rewriteAw2AssetUrls(
@@ -96,5 +154,36 @@ describe("018A server build contract", () => {
     expect(text("src/OriginalChestApp.tsx")).toContain(
       "<ChestPage standalone />",
     )
+  })
+
+  it("emits a host-verifiable release identity without inventing a local revision", () => {
+    const contract = productionSurfaceContract([
+      "/repo/src/production.tsx",
+      "/repo/dev/aw2/WorldGame.tsx",
+      "/repo/src/pages/ChestPage.tsx",
+    ])
+    expect(productionReleaseIdentity(contract, "5.9.23", {})).toMatchObject({
+      schema: 1,
+      product: "soul-of-meal",
+      version: "5.9.23",
+      candidate: "aw2-web1-rc-v1",
+      source: { provider: "local", revision: null },
+      sourcePortable: true,
+      deliverySecurityProfile: "aw2-static-v1",
+      surface: contract,
+    })
+    expect(releaseSourceIdentity({ GITHUB_SHA: "a".repeat(40) })).toEqual({
+      provider: "github",
+      revision: "a".repeat(40),
+    })
+    expect(() => releaseSourceIdentity({ GITHUB_SHA: "short" })).toThrow(
+      "complete Git SHA",
+    )
+    expect(() =>
+      releaseSourceIdentity({
+        GITHUB_SHA: "a".repeat(40),
+        VERCEL_GIT_COMMIT_SHA: "b".repeat(40),
+      }),
+    ).toThrow("disagree")
   })
 })
