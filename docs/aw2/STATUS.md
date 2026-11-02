@@ -1,5 +1,9 @@
 # Live project status —2026-11-02
 
+**AW2-018I VERIFIED technical với blockers — batch7/10, 19/20 automated gates.** Contract versioned khóa 6 zone, 6 room, 8 NPC, 4 quest, 12 Vị Linh, 12/12 reciprocal portal, 6/6 reachable và 0 placeholder. Artifact 141.465.237 bytes/375 files; offline 1.466.864 bytes/24 URL; **2.178 unit/156 files**, focused26, hai typecheck/build, package/release/assets/budget PASS. Browser và human content acceptance `NOT_RUN`. [Bằng chứng](evidence/AW2-018I.md).
+
+Demo90% / product≈40%(35–45%) giữ nguyên. Batch7 đóng consistency kỹ thuật, không tự ký duyệt narrative/device/human/rights. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **3 commit kỹ thuật**; next batch8 performance/loading/telemetry/error boundary. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018I.
+
 **AW2-018H VERIFIED technical với blockers — batch6/10,19/20 automated gates.** Inventory versioned khóa đúng12 identity/reference/combat/provenance package; production công bố **12/12 technical reference,0/12 full DoD,0/12 rights-cleared,0/12 release-ready**, art/device/audio `NOT_RUN`. Artifact141.464.300bytes/375files; offline1.465.927bytes/24URL; **2.172unit/155files**,focused42,hai typecheck/build,package/release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. [Bằng chứng](evidence/AW2-018H.md).
 
 Demo90% / product≈40%(35–45%) giữ nguyên. Batch6 hoàn tất inventory/guard kỹ thuật nhưng external character/rights acceptance vẫn BLOCKED. Theo [roadmap](PRODUCTION_10_COMMIT.md) còn **4commit kỹ thuật**; next batch7 world/quest/NPC/content consistency và canon acceptance contract. Không deploy/đổi `master`/`rpg`. Các mục dưới là lịch sử; hiện hành theo018H.

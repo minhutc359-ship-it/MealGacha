@@ -1,5 +1,24 @@
 # Test ledger / change impact
 
+## AW2-018I content acceptance /2026-11-02
+
+Base remote `d0143049289c7c2d1d6945568ded2aa1cb87c11c`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi save/gameplay/reward/asset/balance/dependency.
+
+| Gate | Result | Observed |
+|---|---|---|
+| Content/world focused | PASS | 2 files / 26 tests; canon, entity, routes, drift, disclosure, registry |
+| Full Vitest | PASS | 156 files / 2.178 tests |
+| Root/dev typecheck | PASS | Both exit0 on final source |
+| AW2 review build | PASS | 997 modules / 7 HTML entry |
+| Production build/package | PASS | 1.135 modules;141.465.237bytes/375files |
+| Offline/package graph | PASS | 24URL/1.466.864bytes;12groups;3scene chunks;1lazy chest portrait |
+| Release/assets/budget | PASS | 137assets;32deps/774assets/3policies;4/4budget;JS702.058/CSS38.083;0leaks |
+| Fresh browser | NOT_RUN | Workspace không có package `playwright`; verifier dừng trước browser launch |
+| Human story/content/device | BLOCKED/NOT_RUN | Không suy diễn từ automated contract |
+| React review | PASS | Static disclosure; no state/effect/network/waterfall |
+
+[Evidence](evidence/AW2-018I.md).
+
 ## AW2-018H character readiness /2026-11-02
 
 Base remote `bbcc292a15bbe587e634c2785b2ffb23cae5ce11`. Linux x64/Node24.22.1/pnpm10.34.3/TS5.9.3/Vite8.0.5/Vitest5.0.1. Không đổi asset/identity/rarity/skill/balance/save/dependency.

@@ -1,5 +1,7 @@
 # Changes
 
+**AW2-018I:** thêm content acceptance contract cho6zone/6room/8NPC/4quest/12spirit, reciprocal return routes, reachability và placeholder guard; Hướng dẫn production công bố technical PASS/human NOT_RUN. 2.178unit/156files,hai typecheck/build/package/release PASS; browser/human acceptance NOT_RUN. [Evidence](evidence/AW2-018I.md).
+
 **AW2-017F:** thêm contract world polish sáu zone và Pixi layer chung cho Làng, Phố/Sân/Kho, Phòng Lửa/Bàn. Bốn ca ambient đọc NPC life; mép cảnh mở khe cổng24/616/bắc; bóng collider đọc `zone.walls`;12light pool có pause/reduced; canvas xuất telemetry. Không đổi save/gameplay/media. 2.091unit/150files,hai typecheck/build/package/release PASS; browser NOT_RUN. [Evidence](evidence/AW2-017F.md).
 
 017B published after owner confirmation **“xác nhận. push giúp tôi”**. Source `c9c703bd8452104870998427b08c6f6a3e254d88` / independently fetched tree `e3b5c4e53927f307396556dbe4419929d2a676ac` matches all74prepared blobs and the approved local runtime/tests. The12differences from local4ba24e6 are publication-status documents, reconciled by this completion stamp. [Publication proof](evidence/AW2-017B-publication.json).

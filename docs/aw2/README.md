@@ -1,5 +1,7 @@
 # Soul of Meal Adventure World 2 — Next Game
 
+**AW2-018I hiện hành — batch7/10:** contract machine-readable xác nhận6zone/6room/8NPC/4quest/12spirit,12/12 portal có return route,6/6 vùng reachable và0placeholder; human story/content acceptance vẫn `NOT_RUN`. Full2.178unit/156files,hai builds/package PASS; browser thật `NOT_RUN`. [Task](tasks/AW2-018I.md) · [Evidence](evidence/AW2-018I.md) · [Contract](CONTENT_ACCEPTANCE.md) · [Roadmap còn3commit kỹ thuật](PRODUCTION_10_COMMIT.md).
+
 **AW2-018H hiện hành — batch6/10:** inventory machine-readable xác nhận12/12 technical reference package nhưng giữ0/12 full DoD,rights-cleared,release-ready; art/device/audio đều `NOT_RUN`. Full2.172unit/155files,hai builds/package PASS; browser thật `NOT_RUN`. [Task](tasks/AW2-018H.md) · [Evidence](evidence/AW2-018H.md) · [Inventory](CHARACTER_READINESS.md) · [Roadmap còn4commit kỹ thuật](PRODUCTION_10_COMMIT.md).
 
 **AW2-018G hiện hành — batch5/10:** balance contract/fingerprint khóa12kit/progression/economy; D11 proposal tách khỏi simulator và Hướng dẫn production xác nhận không có draw/spend/purchase/save-pity. Full2.167unit/154files,hai builds/package PASS; browser thật `NOT_RUN` do thiếu Playwright. [Task](tasks/AW2-018G.md) · [Evidence](evidence/AW2-018G.md) · [Contract](BALANCE.md) · [Roadmap còn≈5commit lớn](PRODUCTION_10_COMMIT.md).

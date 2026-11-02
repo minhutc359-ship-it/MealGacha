@@ -1,5 +1,7 @@
 # Task board
 
+**018I TECHNICAL DONE/HUMAN BLOCKED — batch7/10,19/20 automated gates:** content contract6zone/6room/8NPC/4quest/12spirit;12/12 reciprocal routes;6/6 reachable;0placeholder; production disclosure giữ human acceptance NOT_RUN. Artifact141.465.237bytes/375files;offline1.466.864/24;full2.178unit/156files,focused26,types/build/release/assets/budget PASS. Browser NOT_RUN. **CÒN3COMMIT KỸ THUẬT; NEXT batch8** performance/loading/telemetry/error boundary. [Evidence](evidence/AW2-018I.md).
+
 **018H TECHNICAL DONE/EXTERNAL BLOCKED — batch6/10,19/20 automated gates:** inventory12 identity/reference/kit/provenance;12/12 technical-ready nhưng0/12 fullDoD,rights,release; art/device/audio NOT_RUN; production disclosure. Artifact141.464.300bytes/375files;offline1.465.927/24;full2.172unit/155files,focused42,types/build/release/assets/budget PASS. Browser NOT_RUN. **CÒN4COMMIT KỸ THUẬT; NEXT batch7** world/quest/NPC/content/canon acceptance. [Evidence](evidence/AW2-018H.md).
 
 **018G DONE/VERIFIED development với giới hạn — batch5/10,19/20:** versioned balance snapshot+SHA cho12kit/progression/economy; D11 proposal tách simulator, runtime capabilities đều false; production disclosure rõ ràng. Artifact141.460.868bytes/375files;offline1.462.495/24;full2.167unit/154files,focused19,types/build/release/assets/budget PASS. Browser NOT_RUN do thiếu Playwright. **CÒN≈5COMMIT LỚN; NEXT batch6** readiness12 nhân vật/provenance/rights inventory. [Evidence](evidence/AW2-018G.md).
